@@ -1,118 +1,140 @@
-Return-Path: <devicetree+bounces-111237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0EEB99DE38
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:24:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0164D99DE82
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:35:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE123B227A9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:24:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC6DB282996
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE71189BA0;
-	Tue, 15 Oct 2024 06:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 050A718A957;
+	Tue, 15 Oct 2024 06:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p85FOT8c"
+	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="cklBz734"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out-02.smtp.spacemail.com (out-02.smtp.spacemail.com [63.250.43.87])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7023B189B88;
-	Tue, 15 Oct 2024 06:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C35189F32;
+	Tue, 15 Oct 2024 06:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728973473; cv=none; b=hBj16XX98pGsu/kSyndtDGLOV4YfhFYxlWRl2dbZbyIJLF8T7uZWq+DYm6oPRInA2uzGDhshL++RW756Z9KBI9oUfLotrBa78nloPrqfawZaZ8gmQTHSG5cdXh7RAjjgGTGQ8TXz+xwVGJjkAIHGhYmTOe7TKjb7P/HdKNermyM=
+	t=1728974102; cv=none; b=HhHAyraCtJOFSKsyNtsBMjtmFL0YAqLUBYIF9V8C0OqujqE98krscBBVvOykaJ+/8O95fdzuk0IB5rRDzmWUOEPoFeGLfyyiR5NTQnSBeZvvMmOqsWbXSzxsnp7s2ykF/B7bBHAg/HurxxsQFBkzGxdtaC2w5PNZTpNME4g2Hc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728973473; c=relaxed/simple;
-	bh=vsXOOA5ANMXEDreUY4REBTLChawkE5C8ea8kSRyDtmA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h5gIsWV3tTsbY+9BpH6iA5QGT5Do2zCmBgdlS1ekAkwzoqUhceNBg2nieq7JtvjV6gPixxpiwJvWSdk5jTrHs2a/Igm6MYQzw7MZ3RuIjrWyQ5hb0VAvOj2WiWoP3462ZScuiF4+63Z+eJASoSxvfzxIz2TpWqjYiMCQLMyLB+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p85FOT8c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52347C4CEC7;
-	Tue, 15 Oct 2024 06:24:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728973473;
-	bh=vsXOOA5ANMXEDreUY4REBTLChawkE5C8ea8kSRyDtmA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=p85FOT8cZgvfLGCc1nlifVmk6Mi8WDsF9W8hMsGffKM4EA/8w2Su3ZQGJHMiolj0H
-	 W8zezNObIX0jzBcZBwFR50fZ9tIv46OeeTrYsFdHIEWeupFqXD4qRo9uDPeru7bTFE
-	 w0g5mWyfHRp7olfKZk1KZoM25aHTbRmNMxghlpogYHhzLfigL9XcbXCzNoIdtqXpdE
-	 Pko92kAN8yMAYTY9Y1NPj7hhanQMK9zrLShWXEBzpQcHpHRvJaHqiOAp2NW+mS7Sfh
-	 RMOlMws/3+CUa0kTE8/6R0X8yCqEPM6aymRyKEtaKl34pQw141zEX5XYvqRql4C9RB
-	 zVxHBjvRkEs9w==
-Message-ID: <b4e4718e-d601-4ea2-b5e6-e4e1e778afe3@kernel.org>
-Date: Tue, 15 Oct 2024 15:24:30 +0900
+	s=arc-20240116; t=1728974102; c=relaxed/simple;
+	bh=8RyzPsxrc81SaaR22TiyjUyYAHHalzKa1iaFskZgqSM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XuAyE/JK4W7yikotcm23EoW40jTIFxnxSwVxaMAaWg1kMf6YnpruGMfj3C0TFH5AVs4lD1sCccDHZOKuLjwZSRu1MqUz36AcxV0hor0o4syrreomzBBrsm1xBWddkgQASsU0Cwt4Rnc8tQHP61Bh/dV02uO7dyAdE2dW9guBYAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=cklBz734; arc=none smtp.client-ip=63.250.43.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
+	by smtp.spacemail.com (Postfix) with ESMTPA id 4XSPLM0Xkdz4wYc;
+	Tue, 15 Oct 2024 06:28:27 +0000 (UTC)
+Received: from igor-systemproductname.lan (83.8.240.202.ipv4.supernova.orange.pl [83.8.240.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.spacemail.com (Postfix) with ESMTPSA id 4XSPLC0vsmz2x9B;
+	Tue, 15 Oct 2024 06:28:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=mentallysanemainliners.org; s=spacemail; t=1728973701;
+	bh=8RyzPsxrc81SaaR22TiyjUyYAHHalzKa1iaFskZgqSM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=cklBz734sU+ThjU67y0GY0hZh9vTfz5RC0YCSDygMARoR/feJqcgXSPDGB5AoBA5h
+	 brY3vcszXWPPn7OSPZ4R7o+bXqa/0D4j8zmAfQxkMWvlciUQnxCaUalF3iVMw1lTFj
+	 w+silLtSbfh21KiUgY+9p2JL1KD8yLG3wPNzV2A7QQNCC+leypOrmm8wbni4nfvMQI
+	 +fE659Bu/jgq8MvDFTgMr/SJrrhf+6LHOGOF4gwVi/j08Z6jACJ58r3Vmq/WZdTtBH
+	 YnY/7DMPj3f8Ex/nlM04FSVGvmtBMm/nOneMM914hsnivzbtgQRchd/f1lsxIuKcV7
+	 Jqn3qhRIawGrw==
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	david@mainlining.org
+Subject: [PATCH v1 0/7] Add minimal Exynos990 SoC and SM-N981B support
+Date: Tue, 15 Oct 2024 08:27:39 +0200
+Message-ID: <20241015062746.713245-1-igor.belwon@mentallysanemainliners.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/12] PCI: rockchip-ep: Handle PERST# signal in
- endpoint mode
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-13-dlemoal@kernel.org>
- <20241010104932.gfrunorhpnhan5wp@thinkpad>
- <b525abc8-4066-4097-9a36-558b84144228@kernel.org>
- <20241012123111.bg6rzxotabkxfchc@thinkpad>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <20241012123111.bg6rzxotabkxfchc@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/12/24 21:31, Manivannan Sadhasivam wrote:
-> On Fri, Oct 11, 2024 at 06:30:31PM +0900, Damien Le Moal wrote:
->> On 10/10/24 19:49, Manivannan Sadhasivam wrote:
->>>> +static int rockchip_pcie_ep_setup_irq(struct pci_epc *epc)
->>>> +{
->>>> +	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
->>>> +	struct rockchip_pcie *rockchip = &ep->rockchip;
->>>> +	struct device *dev = rockchip->dev;
->>>> +	int ret;
->>>> +
->>>> +	if (!rockchip->ep_gpio)
->>>> +		return 0;
->>>> +
->>>> +	/* PCIe reset interrupt */
->>>> +	ep->perst_irq = gpiod_to_irq(rockchip->ep_gpio);
->>>> +	if (ep->perst_irq < 0) {
->>>> +		dev_err(dev, "No corresponding IRQ for PERST GPIO\n");
->>>> +		return ep->perst_irq;
->>>> +	}
->>>> +
->>>> +	ep->perst_asserted = true;
->>>
->>> How come?
->>
->> Yeah, a bit confusing. This is because the gpio active low / inactive high, so
->> as soon as we enable the IRQ, we are going to get one IRQ even though perst gpio
->> signal has not changed yet.
-> 
-> Which means you are looking for a wrong level! What is the polarity of the
-> PERST# gpio in DT?
+Hi folks,
 
-It is not defined in the default DT with the kernel. I added an overlay file to
-define it together with the EP mode. And as I said above, the gpio is active
-low. If I reverse that to active high, it does not work.
+This series adds initial support for the Exynos 990 SoC and also
+initial board support for the Samsung Galaxy Note20 5G (SM-N981B)
+codenamed c1s.
 
+The Exynos 990 SoC is also used in the S20 series, as well as in the
+Note 20 Ultra phones. Currently the device trees added are for the
+Exynos 990 SoC and c1s. The device tree has been tested with 
+dtbs_check W=1 and results in no warnings.
+
+This initial bringup consists of:
+ * cpus
+ * pinctrl
+ * gpio-keys
+ * simple-framebuffer
+ 
+This is enough to reach a shell in an initramfs. More platform support
+will be added in the future.
+
+The preferred way to boot the upstream kernel is by using a shim
+bootloader, called uniLoader [1], which works around some issues with
+the stock, non-replacable Samsung S-LK bootloader. For example, the
+stock bootloader leaves the decon trigger control unset, which causes
+the framebuffer not to refresh.
+
+Device functionality depends on the 2nd patch series:
+"Add Exynos990 pinctrl and chipid drivers"
+
+Kind regards,
+Igor
+
+[1] https://github.com/ivoszbg/uniLoader
+
+Igor Belwon (7):
+  dt-bindings: arm: cpus: Add Samsung Mongoose M5
+  dt-bindings: hwinfo: exynos-chipid: Add compatible for Exynos 990
+    chipid
+  dt-bindings: arm: samsung: samsung-boards: Add bindings for Exynos 990
+    boards.
+  dt-bindings: pinctrl: samsung: Add exynos990-pinctrl compatible
+  dt-bindings: pinctrl: samsung: add exynos990-wakeup-eint compatible
+  arm64: dts: exynos: Add initial support for the Exynos 990 SoC
+  arm64: boot: dts: Add initial support for Samsung Galaxy Note20 5G
+    (c1s)
+
+ .../devicetree/bindings/arm/cpus.yaml         |    1 +
+ .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
+ .../hwinfo/samsung,exynos-chipid.yaml         |    1 +
+ .../samsung,pinctrl-wakeup-interrupt.yaml     |    1 +
+ .../bindings/pinctrl/samsung,pinctrl.yaml     |    1 +
+ arch/arm64/boot/dts/exynos/Makefile           |    1 +
+ arch/arm64/boot/dts/exynos/exynos990-c1s.dts  |  111 +
+ .../boot/dts/exynos/exynos990-pinctrl.dtsi    | 2195 +++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos990.dtsi     |  241 ++
+ 9 files changed, 2558 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-c1s.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990.dtsi
 
 -- 
-Damien Le Moal
-Western Digital Research
+2.45.2
+
 
