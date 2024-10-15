@@ -1,82 +1,174 @@
-Return-Path: <devicetree+bounces-111223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F33599DDED
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:06:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 124EE99DDF5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:11:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE6EA1F21A8F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:06:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B39B282070
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C60818732C;
-	Tue, 15 Oct 2024 06:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700FA187844;
+	Tue, 15 Oct 2024 06:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DC0kyElX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ARF1yu3S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C17113C3F2;
-	Tue, 15 Oct 2024 06:06:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35431185920;
+	Tue, 15 Oct 2024 06:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728972375; cv=none; b=Y7mP9qGSqWWoHpp7eN5UGMD3S5KbnUzd0Ze7GGwydNFtHb0t5WZ4lDdONTke0fuqFuzNVYM09eVCsVwF8C7x84FeSlNSVuqZI00UCFCku73+rW7n4tOUgOlABNUHZOMhShBttC55HC4wwOtwI4WnQZqSUr+OF7Zjy0mLXorXT1s=
+	t=1728972694; cv=none; b=d6j2az8RErqxS2mMw/jefJTDLkrglhNYGGJsc4LIXMIILRVdmrjJOsPkiQ8nfjJ79juRwInNdCQ8PFWJmI3T9UELwbtUR3PykAJimWKj8u5M6hA0zFWtbqHRqxpQQjbaPwZxzYGRKdVIAuAHjQrEWzUqVPtptYgCKefC+1N9KIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728972375; c=relaxed/simple;
-	bh=UOc2GMt219Ucp2LEz8uG4xfOIHYym8Fi6q68FxagS38=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qTP7OhFug9g2B+K5e9JmFN9Ddw8GfM+mm6SBOH12FxKl0bvZS5Ql8vWQzEs/QEb8fC4ovvGi+ueN1VUDDXbW6Y63EtT6J3/BZvseycOagm90ACNn42pFgxuMRJ0hQifxJm0uqz09n1GfecPFFHhuK0+327WlWGJQo6EZ5tiGVTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DC0kyElX; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ASuBcpLVRHwqVESDWXGS90dfdjQqRtTA3nVmTt7XIHM=; b=DC0kyElXnIAgTkVIE9Yb6zwK8M
-	Sq02nthbwrp3zH3WKRRKi3FnyYVvFGtVyNJ94Az8FiXPCSGbpDX5pI7S8+mQAGeqDfiPVtM/vKVbK
-	MS5WXh2DxoGT5pGXL452jG70HztHWIrcdp0oB1iaczCTAkgQQ/8uyEwB3DdF/BhwRU2ZY1bxnf8ZL
-	JEbrM6P63miqJ43+Qw/8rpFa8kHdx4DC6njoCL8pP/FT7awk4ymNuLlFwdCaQrCdTtSGFSmQ5y+rU
-	qXDgy5b8GAmioztzwXyoPh+MWIOHzdqlh++3KK1pG1k8ILGjyG+vnSO8a7eY0B6DiyxbBvDiULG+x
-	9nvlPh0g==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1t0ah1-0006wa-AN; Tue, 15 Oct 2024 08:06:03 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Frank Wang <frawang.cn@gmail.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
- tim.chen@rock-chips.com, Frank Wang <frank.wang@rock-chips.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: rockchip: add rk3576 compatible
-Date: Tue, 15 Oct 2024 08:06:02 +0200
-Message-ID: <3315048.aeNJFYEL58@diego>
-In-Reply-To: <20241015013351.4884-1-frawang.cn@gmail.com>
-References: <20241015013351.4884-1-frawang.cn@gmail.com>
+	s=arc-20240116; t=1728972694; c=relaxed/simple;
+	bh=9NKbHyMUPkDv34hvsYlt9gQsZvtT3TEIpct0QrrspAM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Aud7TA7F+wI3yYENWfQ7bwEFSjHubByPBIKZsd8MGRMoYsbuJ6xQTz9wXHjYSAE5PVoAQg837Nbr4qra3RWE3jHHHsqQ+uDptI72ax5JfC9jsLIp4HglTyZBOO2qh/NXRUpY7nGnYCfaQAZ7CrdwozyOvaM4jujteO5YaSmR1bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ARF1yu3S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EA58C4CEC7;
+	Tue, 15 Oct 2024 06:11:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728972693;
+	bh=9NKbHyMUPkDv34hvsYlt9gQsZvtT3TEIpct0QrrspAM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ARF1yu3Soe+NXwbaegRSGpwUnweAlUmucKPcf57QpvE9ZnT/JJwUsDvpxiewbn7K5
+	 PwpIK8tbBHOuti4dQEcJXtJLTK6bUn2lj3x9bFJ1W0lTsyiT9MZr17mkifhC0XZCSs
+	 MIZrugqHSY9Axkue3aUCIjiMcURtaxIGD9sHqCB2GjUERiJIVtnJZ5jVui4E4clmQA
+	 0LojFG7qfvh8t6DqEMnlYfor//Ql2zFCsZnrpPQA65hSOcJPzcO7sgZ9WAoOS9coS7
+	 o/6BwalOLykFSQIOsWttJFSgNWSFO+FacyfO8A62HFXrmTjD/PcIHgPjJDm9wP51kO
+	 ZHEwHQZPJOhaA==
+Message-ID: <f265576c-7d83-40cb-b857-7ec54ef9ab46@kernel.org>
+Date: Tue, 15 Oct 2024 08:11:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] media: dt-bindings: Use additionalProperties: false
+ for endpoint: properties:
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Martin Kepplinger <martink@posteo.de>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ "Paul J. Murphy" <paul.j.murphy@intel.com>,
+ Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+ Tommaso Merciai <tomm.merciai@gmail.com>,
+ Martin Hecht <martin.hecht@avnet.eu>, Zhi Mao <zhi.mao@mediatek.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Mikhail Rudenko <mike.rudenko@gmail.com>,
+ Ricardo Ribalda <ribalda@kernel.org>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Umang Jain <umang.jain@ideasonboard.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Dongchun Zhu <dongchun.zhu@mediatek.com>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
+ <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-2-a2bb12a1796d@linaro.org>
+ <7ecxjoa7aije46cxmkyfd6ihxnqw4wleqkioddomxbwlu7qtrc@4dkfitppeksu>
+ <6f461cb3-3a41-4a3d-b9b2-71b1c6be77f7@linaro.org>
+ <9510b546-28fa-4fb4-b06e-0af5f9fd3bbb@kernel.org>
+ <20241014202920.GE5522@pendragon.ideasonboard.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20241014202920.GE5522@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Am Dienstag, 15. Oktober 2024, 03:33:50 CEST schrieb Frank Wang:
-> From: Frank Wang <frank.wang@rock-chips.com>
+On 14/10/2024 22:29, Laurent Pinchart wrote:
+> On Mon, Oct 14, 2024 at 10:47:31AM +0200, Krzysztof Kozlowski wrote:
+>> On 14/10/2024 10:31, Bryan O'Donoghue wrote:
+>>> On 14/10/2024 08:45, Krzysztof Kozlowski wrote:
+>>>> I do not understand the reasoning behind this change at all. I don't
+>>>> think DT maintainers ever suggested it (in fact, rather opposite:
+>>>> suggested using unevaluatedProps) and I think is not a consensus of any
+>>>> talks.
+>>>
+>>> No there is not but then, how do you give consistent feedback except 
+>>> proposing something to be a baseline.
+>>>
+>>> On the one hand you have upstream additionalProperties: false and 
+>>> unevaluatedProperites: false - it'd be better to have a consistent 
+>>> message on which is to be used.
+>>
+>> Well, I am afraid that push towards additionalProps will lead to grow
+>> common schema (video-interface-devices or video-interfaces) into huge
+>> one-fit-all binding. And that's not good.
+>>
+>> If a common binding for a group of devices encourages you to list its
+>> subset, then it is not that common.
+>>
+>> Solution is to fix that, e.g. split it per classes of devices.
 > 
-> Adds the compatible line to support RK3576 SoC.
-> 
-> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+> I think splitting large schemas per class is a good idea, but the
+> problem will still exist. For instance, if we were to move the
+> CSI-2-specific properties to a separate schema, that schema would define
+> clock-lanes, data-lanes and clock-noncontinuous. The clock-lanes and
+> clock-noncontinuous properties do not apply to every device, how would
+> we then handle that ? I see three options:
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Why is this a problem? Why is this a problem here, but not in other
+subsystems having exactly the same case?
 
+Best regards,
+Krzysztof
 
 
