@@ -1,84 +1,118 @@
-Return-Path: <devicetree+bounces-111236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA9F899DE34
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:24:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0EEB99DE38
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 680ACB21923
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:24:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE123B227A9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A203D189B86;
-	Tue, 15 Oct 2024 06:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE71189BA0;
+	Tue, 15 Oct 2024 06:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxrUFvCC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p85FOT8c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D72189B88;
-	Tue, 15 Oct 2024 06:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7023B189B88;
+	Tue, 15 Oct 2024 06:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728973463; cv=none; b=SVxRRNBMyp4YdtwbK0B0aXPatcoxaPOp5rtITqGgG+/fTZ+DULUfsvJsNhuTrMYPyoJj9r8i1FeSxjIDDisgkXLo7HkcehNYCxTTny7qFwe+G2OcRQbcUN8h/czDMcZI4eb94EvCzZ2BcJ4MgCGRCrOZLcHxLM6IyJE2Uet31ww=
+	t=1728973473; cv=none; b=hBj16XX98pGsu/kSyndtDGLOV4YfhFYxlWRl2dbZbyIJLF8T7uZWq+DYm6oPRInA2uzGDhshL++RW756Z9KBI9oUfLotrBa78nloPrqfawZaZ8gmQTHSG5cdXh7RAjjgGTGQ8TXz+xwVGJjkAIHGhYmTOe7TKjb7P/HdKNermyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728973463; c=relaxed/simple;
-	bh=FqxeBKUSF4YzO24qe/B/5MSnoqbuPJw/4FZvim8DKts=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e9SWZoMa3SX2V0waHed2wjaZ58DqhhsTVwPnuqslTeqXo/sjlEDcn09M0VZqNr0GiOLRNZo0Vrs91fwV9Dys0MfHWlS8n4pwY5+o7kKHJpOapvFU8XP/nYfFcNonjaqnIeowLH6uEnGpJ/BlWB579cpmPpPYbIEWnQ0bl8Ioi60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxrUFvCC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F53AC4CECD;
-	Tue, 15 Oct 2024 06:24:21 +0000 (UTC)
+	s=arc-20240116; t=1728973473; c=relaxed/simple;
+	bh=vsXOOA5ANMXEDreUY4REBTLChawkE5C8ea8kSRyDtmA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h5gIsWV3tTsbY+9BpH6iA5QGT5Do2zCmBgdlS1ekAkwzoqUhceNBg2nieq7JtvjV6gPixxpiwJvWSdk5jTrHs2a/Igm6MYQzw7MZ3RuIjrWyQ5hb0VAvOj2WiWoP3462ZScuiF4+63Z+eJASoSxvfzxIz2TpWqjYiMCQLMyLB+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p85FOT8c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52347C4CEC7;
+	Tue, 15 Oct 2024 06:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728973463;
-	bh=FqxeBKUSF4YzO24qe/B/5MSnoqbuPJw/4FZvim8DKts=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oxrUFvCCXqq8tRPyBfrXUgFV6loELPv0mo85a/RPryoaejKqn/IRhMeFtPKqkc5N8
-	 9EWqmeW2UVpbdfRkZA9uoAGG3zbx37SvGzWHSeg53NlaLKUPX0Dt+4BvANEkRIYgK0
-	 q5OPuxtetCYGXbyjm8fjjQcc3KbK4vByglPKPe+eBAitKmR48TFtQyYkYfTzgK847j
-	 3ARKBm3sTBH+9acpgyXzMCbzu2tdnr4ZLB/6cAbDZnZTm++zOKw5J5OV/XH+8SMJCf
-	 aZgacKQqmkbLxmxKDfcHDB1PkcbbvPYFagHdBlBH9lYHowp4QJe46+Ig/PkrE4dVy5
-	 cPh8Fd3qlildQ==
-Date: Tue, 15 Oct 2024 08:24:18 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Olivia Mackall <olivia@selenic.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jayesh Choudhary <j-choudhary@ti.com>, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rng: Add Marvell Armada RNG support
-Message-ID: <zy2mqac5jxh7eyxk3lazdsplthlmluvtvqtyuth37jvqxijym2@jzjqpjkxg24n>
-References: <20241014185457.1827734-1-robh@kernel.org>
+	s=k20201202; t=1728973473;
+	bh=vsXOOA5ANMXEDreUY4REBTLChawkE5C8ea8kSRyDtmA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p85FOT8cZgvfLGCc1nlifVmk6Mi8WDsF9W8hMsGffKM4EA/8w2Su3ZQGJHMiolj0H
+	 W8zezNObIX0jzBcZBwFR50fZ9tIv46OeeTrYsFdHIEWeupFqXD4qRo9uDPeru7bTFE
+	 w0g5mWyfHRp7olfKZk1KZoM25aHTbRmNMxghlpogYHhzLfigL9XcbXCzNoIdtqXpdE
+	 Pko92kAN8yMAYTY9Y1NPj7hhanQMK9zrLShWXEBzpQcHpHRvJaHqiOAp2NW+mS7Sfh
+	 RMOlMws/3+CUa0kTE8/6R0X8yCqEPM6aymRyKEtaKl34pQw141zEX5XYvqRql4C9RB
+	 zVxHBjvRkEs9w==
+Message-ID: <b4e4718e-d601-4ea2-b5e6-e4e1e778afe3@kernel.org>
+Date: Tue, 15 Oct 2024 15:24:30 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241014185457.1827734-1-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 12/12] PCI: rockchip-ep: Handle PERST# signal in
+ endpoint mode
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
+References: <20241007041218.157516-1-dlemoal@kernel.org>
+ <20241007041218.157516-13-dlemoal@kernel.org>
+ <20241010104932.gfrunorhpnhan5wp@thinkpad>
+ <b525abc8-4066-4097-9a36-558b84144228@kernel.org>
+ <20241012123111.bg6rzxotabkxfchc@thinkpad>
+From: Damien Le Moal <dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <20241012123111.bg6rzxotabkxfchc@thinkpad>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 14, 2024 at 01:54:57PM -0500, Rob Herring (Arm) wrote:
-> The Marvell Armada RNG uses the same IP as TI from Inside Secure and is
-> already using the binding. The only missing part is the
-> "marvell,armada-8k-rng" compatible string.
+On 10/12/24 21:31, Manivannan Sadhasivam wrote:
+> On Fri, Oct 11, 2024 at 06:30:31PM +0900, Damien Le Moal wrote:
+>> On 10/10/24 19:49, Manivannan Sadhasivam wrote:
+>>>> +static int rockchip_pcie_ep_setup_irq(struct pci_epc *epc)
+>>>> +{
+>>>> +	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+>>>> +	struct rockchip_pcie *rockchip = &ep->rockchip;
+>>>> +	struct device *dev = rockchip->dev;
+>>>> +	int ret;
+>>>> +
+>>>> +	if (!rockchip->ep_gpio)
+>>>> +		return 0;
+>>>> +
+>>>> +	/* PCIe reset interrupt */
+>>>> +	ep->perst_irq = gpiod_to_irq(rockchip->ep_gpio);
+>>>> +	if (ep->perst_irq < 0) {
+>>>> +		dev_err(dev, "No corresponding IRQ for PERST GPIO\n");
+>>>> +		return ep->perst_irq;
+>>>> +	}
+>>>> +
+>>>> +	ep->perst_asserted = true;
+>>>
+>>> How come?
+>>
+>> Yeah, a bit confusing. This is because the gpio active low / inactive high, so
+>> as soon as we enable the IRQ, we are going to get one IRQ even though perst gpio
+>> signal has not changed yet.
 > 
-> Rename the binding to inside-secure,safexcel-eip76.yaml to better
-> reflect it is multi-vendor, licensed IP and to follow the naming
-> convention using compatible string.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  ...g.yaml => inside-secure,safexcel-eip76.yaml} | 17 +++++++++++------
->  1 file changed, 11 insertions(+), 6 deletions(-)
->  rename Documentation/devicetree/bindings/rng/{omap_rng.yaml => inside-secure,safexcel-eip76.yaml} (79%)
+> Which means you are looking for a wrong level! What is the polarity of the
+> PERST# gpio in DT?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It is not defined in the default DT with the kernel. I added an overlay file to
+define it together with the EP mode. And as I said above, the gpio is active
+low. If I reverse that to active high, it does not work.
 
-Best regards,
-Krzysztof
 
+-- 
+Damien Le Moal
+Western Digital Research
 
