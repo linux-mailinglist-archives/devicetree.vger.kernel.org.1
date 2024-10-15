@@ -1,81 +1,128 @@
-Return-Path: <devicetree+bounces-111559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89FF199F4B7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:02:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDAD99F4C2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:03:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 375031F256F3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:02:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53D571C2081F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:03:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52A42296DD;
-	Tue, 15 Oct 2024 18:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0473D1B21BA;
+	Tue, 15 Oct 2024 18:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ONKR8oEy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j7DpASe7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7592F229114;
-	Tue, 15 Oct 2024 18:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0165E28691;
+	Tue, 15 Oct 2024 18:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729015244; cv=none; b=dvcwwtIoTc4keis9zVmjAKk4lKUGB6UWFpu+Z8K1Ih6HNrbfs/VA1c+IEu0u/IlWMe4ZL2qoCtrkIZT1KHRZ83o/FOxZX0gf75rnyPOws+WF6YgTG07E2Digh+M8z9NFt6fsEV8NVrfQPWDenKPQnQiNt14OlbjQAef7mobni0g=
+	t=1729015403; cv=none; b=TeznQ/U6gpq1THQJPZMicdrBMDjia8JgYPf4zr0Vjx8J8Yf2kR/UoalmE+0dtepqUkepMR8qDJOVGajoT82j0UVQGRZOcsW7goE2yd54KzdczPWfcqzHCB0BJjAoGP15uAsp5Lo2+lTKzH0809gZkNGOV9KyMIwGXGsSH+Qq7CE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729015244; c=relaxed/simple;
-	bh=6BAMH+Px+76REEHH++B/Lc+QYvBL3VcxAy72V4ZN4Lk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s1nYVbpwBKKIOPyil3u1m+pV5fGnciaPDFLQkmkyCL58h/UFT8x4uLfvkQqKH9k7NpW+lj7Z5rJU5CTjKJuniFgJ8YgVCKAlMKCjJ6oMfq7zNiqjseKzDxjzU10hkD+bXuacQ67cspDN1Ul8+IGBlPoQKK+Iz4tL7pNRPe8n1yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ONKR8oEy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7CD9C4CEC7;
-	Tue, 15 Oct 2024 18:00:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729015244;
-	bh=6BAMH+Px+76REEHH++B/Lc+QYvBL3VcxAy72V4ZN4Lk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ONKR8oEyIWD64bnr9k3vrIb8fy7uiel4qC7K0XlOVM2F1vE1DzYnwgz1xgZEtJ219
-	 WPGyXHqtA2XLYzCl8ZumyRpEtAwVTAAmYpjcc3UI8kYek/q0PatGJywMgYafAcieLj
-	 oBrESgZz/Fa8ovD6jTp2oUfsTJIlHWt6D2nipWCB8pJSO/iw3O1j/kKUhw+HsTExYA
-	 qlSnSIHRwTd1381Ku77bxi9HOtFGHMQ/NgA89I68LXZkgnG2pee4szdCMQIq16557J
-	 nw3NwYCsHtdzjR18kfT2/ZGSmSjNqou2Fe3PaJ8xOxaP8u2ZO7B64CmhGuuGx9BwzX
-	 f+FuegrTqKiJg==
-Date: Tue, 15 Oct 2024 19:00:34 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, David
- Lechner <dlechner@baylibre.com>, Uwe Kleine-Konig
- <u.kleine-koenig@baylibre.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] docs: iio: new docs for ad7625 driver
-Message-ID: <20241015190034.3a6f6761@jic23-huawei>
-In-Reply-To: <20240909-ad7625_r1-v5-3-60a397768b25@baylibre.com>
-References: <20240909-ad7625_r1-v5-0-60a397768b25@baylibre.com>
-	<20240909-ad7625_r1-v5-3-60a397768b25@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729015403; c=relaxed/simple;
+	bh=eh6byDyRvz0D0m9V0d4eNpB5N5SL207MeVOFPzaUivs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fZQzurUa3RA8MyvO5cy7nTNhimLk2o4JgW7U96edxmVVRJSEZ1d3kHOGg8npaIPxP6Tw37lESKq/1kjVWQHH5p9n1fLf8hRG/tbnAuImBNJw2e6W/8MTrtFDeOvtnaGOL2pJR3BkSEBnSiRDqNQmYtl/5lQy8bIcU1iWz725HLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j7DpASe7; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729015402; x=1760551402;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=eh6byDyRvz0D0m9V0d4eNpB5N5SL207MeVOFPzaUivs=;
+  b=j7DpASe7RLW9RIYZjwlhNO/THE0O8BNdUQqyYwYp2heZMqP2W4vvY9Vy
+   Zf/dY3vQc1om0tt1gxjakXUOd+TjrL0SuIcFOzF9Os7ewn0eosaxYPyeu
+   TjUBU9QjKpRxvhGCum5lPHjrjnCN6zkD97HpCptsIX+LDW5lm13cL6n3q
+   hUVQLyvoiZl2XVUTFWRN0jYAwf6Eoc+zzI45OFj2B656+HWcsgBHh8HQ4
+   C+FSzG9ZO+u2+8ywF1hGTwKKdsT/guWffMJhc4vkfC9zu2mMQ2Vy5YFuC
+   YdfJadfudEN/iGgLDEUtwPrf6LraRENnhuFx75Uh029GXpkNOmCVtVhSl
+   g==;
+X-CSE-ConnectionGUID: s8bFPH9sTeaQ6rtL5FqcOA==
+X-CSE-MsgGUID: ROYQJQqsQfeov0EdIMS0yA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="28558236"
+X-IronPort-AV: E=Sophos;i="6.11,205,1725346800"; 
+   d="scan'208";a="28558236"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 11:03:21 -0700
+X-CSE-ConnectionGUID: jDCVe1NaS82xc497trlqsA==
+X-CSE-MsgGUID: 0g268ps7TfOSgloJEy9fVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,205,1725346800"; 
+   d="scan'208";a="77988218"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 11:03:17 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1t0lt4-00000003Tee-1SQx;
+	Tue, 15 Oct 2024 21:03:14 +0300
+Date: Tue, 15 Oct 2024 21:03:14 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v8 4/8] i2c: Introduce OF component probe function
+Message-ID: <Zw6uYl0CXhl_ru08@smile.fi.intel.com>
+References: <20241008073430.3992087-1-wenst@chromium.org>
+ <20241008073430.3992087-5-wenst@chromium.org>
+ <CAD=FV=WRSjk3U9Kau0wqkgv3KB=9jM6wCM9Gs-WxWai35sfxTg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=WRSjk3U9Kau0wqkgv3KB=9jM6wCM9Gs-WxWai35sfxTg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, 09 Sep 2024 10:30:49 -0400
-Trevor Gamblin <tgamblin@baylibre.com> wrote:
+On Tue, Oct 15, 2024 at 10:58:31AM -0700, Doug Anderson wrote:
+> On Tue, Oct 8, 2024 at 12:35 AM Chen-Yu Tsai <wenst@chromium.org> wrote:
 
-> Add documentation for the AD7625/AD7626/AD7960/AD7961 ADCs.
+...
+
+> > +       struct device_node *i2c_node __free(device_node) = i2c_of_probe_get_i2c_node(dev, type);
+> > +       if (IS_ERR(i2c_node))
+> > +               return PTR_ERR(i2c_node);
 > 
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-Bot picked up that this wasn't added to index.rst. I fixed up.
+> I'm still getting comfortable with the __free() syntax so sorry if I'm
+> wrong, but I _think_ the above is buggy. I believe that the definition
+> of the free function for "device_node" is from:
+> 
+> DEFINE_FREE(device_node, struct device_node *, if (_T) of_node_put(_T))
+> 
+> ...which means it'll call of_node_put() to free "i2c_node" when it
+> goes out of scope. of_node_put() handles NULL pointers but _not_ ERR
+> pointers. So I think that if you get an error back and then return via
+> the PTR_ERR(i2c_node) then it'll crash because it will try to free an
+> ERR pointer. Did I get that right? Presumably you need to instead do:
+> 
+>   return PTR_ERR(no_free_ptr(i2c_node));
+> 
+> ...or change of_node_put() to be a noop for error pointers?
 
-Thanks,
+I could state that device_node FREE class has to be updated for these cases.
+fwnode, for example, handles both error pointers and NULL.
 
-Jonathan
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
