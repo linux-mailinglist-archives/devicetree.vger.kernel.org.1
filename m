@@ -1,128 +1,183 @@
-Return-Path: <devicetree+bounces-111212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6711499DD84
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:34:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 393AF99DD8A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:35:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 961A91C21458
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 05:34:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED7DC28371D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 05:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659E7170828;
-	Tue, 15 Oct 2024 05:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D483176231;
+	Tue, 15 Oct 2024 05:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZSfT8FMd"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fqqI43QN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 268893C3C;
-	Tue, 15 Oct 2024 05:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4542E17554A
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 05:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728970438; cv=none; b=Cuv7qbMxkwaAn80BRHKbdEv/uL/jKQ9wljgFxRMjTYSxsob/oh+Bo3nVvMaI7y+//qfkVnR1Y4tkQPJSayicx7479yail64Mlmp2bCFYL0R9J7NzKdoAKPbSzLXH4USkP2uLmMALnfZNJ05XYRsBzK6wTm178lUEUUQJQhQPzIM=
+	t=1728970507; cv=none; b=I6/YcFGbhNfyiWNv+XU67YQAq9KcKiMFnWnSjqK8a0TSzrYtJTVIiWjqErs3fvSk6d+9s8YzOh0FFl8Djd6Y9FGtKckrNVVYG5n6UOYAuX94Nb700IKWqFQ4DIW+EKfht59I7iWrEj7Z76rl1OeyPLEXa4dFWX2OJSwGukc4Vj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728970438; c=relaxed/simple;
-	bh=lVkzCwpPPzfQ/BJvc5k6fW9QSs78IwHbRAO9HHb9aII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RYNeFDaTzp3P0pxN2uFRq9jGztbRymluTY9fYRHGifVQGti966LSZ6B5WRdBsEHKzvHu9rCcKn0scUXFS6XO57cdAxjr1aMGZYMQgmTYgSdV0uvndFtZlA8guKnlH/BnlwtRenfnGHDdVHt7Qf4i16Y97Ka0vwbBGq6f2NwjkuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZSfT8FMd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D7BCC4CEC7;
-	Tue, 15 Oct 2024 05:33:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728970437;
-	bh=lVkzCwpPPzfQ/BJvc5k6fW9QSs78IwHbRAO9HHb9aII=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZSfT8FMdFkBR9EH2Kg7wOQBVDNWqw+M6Fp/9lJzHRlnyFyZMeEyuCHn3kVhvUOKVP
-	 6KSgFO5gqywmsX8H/Nz/sJqblm0TdqWQI+WDNq8bMwgyojjUtk/i7lMOeY7QFJ84f5
-	 JLhjnAOHmKMeqWyavzqBhNBwfi0wLYC+pgbA3KizVj9T8/S3k5/dgua1dg4dJ8YFan
-	 5rT4up/aBpKV7D2cWzSH1dpbnot2+XoPOysvxaz1IfF9NNu5637wxbDcajU4lTUmL9
-	 h4RsgaHuayj+BN5lNVMqnnLcqVpJoypjw12O5G5fRa4SMiqCMyYF6LKf4IBlU7KP6f
-	 LI3jkE8q3pwhQ==
-Message-ID: <a79274b9-d8f2-484e-9455-01834f7ff2c6@kernel.org>
-Date: Tue, 15 Oct 2024 07:33:53 +0200
+	s=arc-20240116; t=1728970507; c=relaxed/simple;
+	bh=JR6gZ2MYyBQRhGGMVIzq353IT1yqvpAlneMgFsqBvhU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NpdJk5bIsy8GbVmD3FTZwa+QKO6VeACPuEcwibAd7QW7EiTBUazw5IiYyE9O5uZXjtQdg/ak74nZ7Zq9RrrmMurofOkJyw/McNE+DQ6nvb+EedN5QsuwVucJtibcYVuOhpek28OQtHMzPZrLTn81fF2IBv1D0tAF2jufzcZ7JNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fqqI43QN; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539fe76e802so507878e87.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 22:35:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1728970503; x=1729575303; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2HWrH+K7cTgTjTPYZ+dL7fGmCBNocSiDK/Hn2JY2vEs=;
+        b=fqqI43QNkB+bJpOjwnY8O0LZdEmGzSYuVG+oUajBkNI19xNVzxaF4A5pGBDvsp22Dp
+         BNdSOvhl1OE1mqcug0JrlBYvF+dtgplaJckilfupNJGH+05Uptj67GNow7t9tXsLmbfO
+         9bbqsnFPZ2htEJODKmaCx0JPvqdoY9vHBvvYk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728970503; x=1729575303;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2HWrH+K7cTgTjTPYZ+dL7fGmCBNocSiDK/Hn2JY2vEs=;
+        b=X6UDZ9zZh53D6M91p3r69MKe2bL1+7srNvPNdFyJyTYmk6pF3DuQiM8ioDStLKeJI0
+         Rb3qe2QRB+eP9nfgWRpeOWUGCtN5AI4xgJWHC9Cih+l1qYuUCBndzvxMBqu/T+lcWPIP
+         bY4rqU7RwUM3BpZKYSj3+9AxVVVxPQL6fKg/ySzN01M3RxrHn/uDepU3VBkDNdUQlWNq
+         EncHPeGJLqdWci66RbJEocLS4++WH7vXH4Y6r1oB2Krb0ErUBwx/PrKDYKMVD9qxDcCY
+         /iGOcG3BncFpTY+J28S2+Xg6oKoZFvWoQMKI95IjraRA0UinIKXMn2Hb0DeupoVjf6sl
+         X59w==
+X-Forwarded-Encrypted: i=1; AJvYcCU/VbyyJ0kFVlrpDfhMh37vYAlb/0wHqCoFM4MxkSx9PrpoAlkZ+nmvoTFoDWAQ0gFMsijyxaHF2JNT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBGi2i2BsvnAAKX77zgunibY+nFAIaXsnZaTsSeVmx2ZNWUo8G
+	gAL8gUPCoHf1eZW8tnUlVTzofVmt5VRtQOZ50eHeS5p6cYjuNQCKiXV8Z+d0qF80kUuvgYVn5si
+	dNtsHKIcwFfTjk805AYQChiUPjZPLah+DYlm7
+X-Google-Smtp-Source: AGHT+IE/CwxLRzqmXVYjkMDrcTm2+DQg9NcGd7Zyw9exDfJ8teYEZF+svaLAA8rUa5571DxzVoiZK6455ROycmYsGCQ=
+X-Received: by 2002:a05:6512:1598:b0:539:9155:e8d4 with SMTP id
+ 2adb3069b0e04-539e54d77ecmr4621333e87.8.1728970503111; Mon, 14 Oct 2024
+ 22:35:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] dt-bindings: rtc: qcom-pm8xxx: document
- qcom,no-alarm flag
-To: Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Satya Priya <quic_c_skakit@quicinc.com>,
- "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20241015004945.3676-1-jonathan@marek.ca>
- <20241015004945.3676-3-jonathan@marek.ca>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241015004945.3676-3-jonathan@marek.ca>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241008073430.3992087-1-wenst@chromium.org> <20241008073430.3992087-7-wenst@chromium.org>
+ <Zwfwv-O9ln-PVMdc@smile.fi.intel.com> <CAGXv+5F=5f4R5AExANxOwgTL6_VbpHdNKKhHnzy_PDcxtcFoEQ@mail.gmail.com>
+ <Zwz-benEP4PHbRb2@smile.fi.intel.com>
+In-Reply-To: <Zwz-benEP4PHbRb2@smile.fi.intel.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 15 Oct 2024 13:34:52 +0800
+Message-ID: <CAGXv+5HtDqf9MbGc53axP276fFA6riM85+Sa7nXHPvZcCb5-Pg@mail.gmail.com>
+Subject: Re: [PATCH v8 6/8] i2c: of-prober: Add GPIO support to simple helpers
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 15/10/2024 02:47, Jonathan Marek wrote:
-> Qualcomm x1e80100 firmware sets the ownership of the RTC alarm to ADSP.
-> Thus writing to RTC alarm registers and receiving alarm interrupts is not
-> possible.
-> 
-> Add a qcom,no-alarm flag to support RTC on this platform.
-> 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> ---
+On Mon, Oct 14, 2024 at 7:20=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Mon, Oct 14, 2024 at 12:06:16PM +0800, Chen-Yu Tsai wrote:
+> > On Thu, Oct 10, 2024 at 11:20=E2=80=AFPM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > > On Tue, Oct 08, 2024 at 03:34:25PM +0800, Chen-Yu Tsai wrote:
+> > > > Add GPIO support to the simple helpers for the I2C OF component pro=
+ber.
+> > > > Components that the prober intends to probe likely require their
+> > > > regulator supplies be enabled, and GPIOs be toggled to enable them =
+or
+> > > > bring them out of reset before they will respond to probe attempts.
+> > > > Regulator supplies were handled in the previous patch.
+> > > >
+> > > > The assumption is that the same class of components to be probed ar=
+e
+> > > > always connected in the same fashion with the same regulator supply
+> > > > and GPIO. The names may vary due to binding differences, but the
+> > > > physical layout does not change.
+> > > >
+> > > > This supports at most one GPIO pin. The user must specify the GPIO =
+name,
+> > > > the polarity, and the amount of time to wait after the GPIO is togg=
+led.
+> > > > Devices with more than one GPIO pin likely require specific power
+> > > > sequencing beyond what generic code can easily support.
+>
+> ...
+>
+> > > > +     /* An empty string signals an unnamed GPIO */
+> > > > +     if (!ctx->opts->gpio_name[0])
+> > > > +             con_id =3D NULL;
+> > > > +     else
+> > > > +             con_id =3D ctx->opts->gpio_name;
+> > >
+> > > Can it use positive conditional?
+> > >
+> > >         if (ctx->opts->gpio_name[0])
+> > >                 con_id =3D ctx->opts->gpio_name;
+> > >         else
+> > >                 con_id =3D NULL;
+> >
+> > You suggested writing it this way in your reply to v7. Please pick one.
+>
+> Oh, whatever you will finish with then, sorry for the noise.
+>
+> ...
+>
+> > > > +static void i2c_of_probe_simple_disable_gpio(struct device *dev, s=
+truct i2c_of_probe_simple_ctx *ctx)
+> > > > +{
+> > > > +     if (!ctx->gpiod)
+> > > > +             return;
+> > >
+> > > Do you need this check for the future patches?
+> >
+> > Not sure I follow. The check is needed because this function is called
+> > in i2c_of_probe_simple_cleanup(), but the GPIO could have been released
+> > earlier in i2c_of_probe_simple_cleanup_early(), and that makes this
+> > function a no-op.
+>
+> Do you have a known race condition then? This is bad. You shouldn't rely =
+on
+> the sequence of events here, or the serialisation has to be added.
+>
+> > The helpers for the release side are quite short, but the ones on the
+> > request side wrap some conditional and error handling. I think it's
+> > better to keep it symmetric?
+>
+> Yes, but why do you need the above check, I didn't still get...
+> I.o.w. you think that there is a gap in time that (if no check) the GPIO
+> descriptor might be changed? But then how does it affect anyway the possi=
+bility
+> that it becomes not NULL even with the current code.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The opposite actually. Either it is always NULL, or it was initially valid,
+but the early cleanup function released it and thus it became NULL by the
+time this function gets called.
 
-Best regards,
-Krzysztof
+ChenYu
 
+> > > > +     /* Ignore error if GPIO is not in output direction */
+> > > > +     gpiod_set_value(ctx->gpiod, !ctx->opts->gpio_assert_to_enable=
+);
+> > > > +}
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
