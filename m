@@ -1,130 +1,192 @@
-Return-Path: <devicetree+bounces-111270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0194799DF8F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 09:46:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBAE999DFAD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 09:51:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADFD21F23E13
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:46:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 621A0B21C8E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:51:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61FA1C9EDF;
-	Tue, 15 Oct 2024 07:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D67F1A0B15;
+	Tue, 15 Oct 2024 07:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="nZxl2E8+"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="MVl8ECzQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306551C2327
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 07:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF646139578
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 07:51:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728978362; cv=none; b=i1uTwt/wqIx3iSW6rEYTGaWPRZFpJ1CiiOStA5A9OF9ubMSvZPcdAzKvHdP3T0pb1DAdGZFqX6RZEFk2VI+u3rZbg8gxlqgr4q4E+blyoySE9cY47xqrvozC0TUPuvjWwgcaKOmZweptHYRPIs2woXL+qoRZDP5VtSiayk0z9I8=
+	t=1728978688; cv=none; b=mwwqZ7bQNQXUD6lD7XtnPvX2T5rIzz1OOXD309SVz7Ze/d+woCTyIGbpBtNCArjGb+l/TkT+sEvq3GOi0EpNz8fJ/+puiAGSc0Ix3rErspygQ7KHLLtZUwZFopVO41n0Z5QuuaZS1OsXsI9bscki8TtZrS3yIKPjVQxJ+tbwgjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728978362; c=relaxed/simple;
-	bh=vlXtBKVnXfGbKLkE/qDj9i17mSuFZ64HL3fM0HBPdDI=;
+	s=arc-20240116; t=1728978688; c=relaxed/simple;
+	bh=hfK2U/GrNYgsYtl8NtSXyFYbjdCtuYMGCNrIn/wLtiA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eF9QvfReUsebfg5eRgAU9yHYxlJ16yiyOQULAGUxHiCFxV5S9EEO1Yay6OIdzHTq9NZQyRycYR8rXyXbul9HxFtsvq/P7Vg2j1lV+ecwHTx3mqW39m+NYDlVvIF4qOBx2CFFTwzdi83OfeAo7hJyLO3DbigUkigMkBwMxX6hQBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=nZxl2E8+; arc=none smtp.client-ip=209.85.166.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-3a3b28ac9a1so1030385ab.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 00:46:00 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OePnWhVe2/3FoqcP+avqqsK9Q81jUUaEeyCkLHl8bXioiyDeno46B8wVxbEszRmv3t0CrLKpl99O4ynCmrY+MRw4rO6cq3Keh5uItgGXy5Z6Efg5qgxZajb1XoJ9fEFoNEMsOHRJSSKNQjMIxJ+8FpOl5Uni/pGJaW5U2UXbvX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=MVl8ECzQ; arc=none smtp.client-ip=209.85.210.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7170d0edab6so2553224a34.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 00:51:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1728978360; x=1729583160; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=12pFpxnrbGxJEph57/6mELybsu5UzTUq2TEGUPb5hXs=;
-        b=nZxl2E8+7by3W9/NiYWssbklyl3ELkKGdZQIcGZAXIu0/7nxv86eTDQVfZ60NlAKBa
-         wdPTU9vEw+qqkcoLAcjVnV/idedBH34jAz0ul/80fAGcamq9/0YaCmfXOtPzWoWWyTXW
-         FFShkaH8IEf5Ud7AH+PJdHD5oWQ70I0tCjlR4X1oFTtspr8bZKURNCDsDQMAhIEhUWhw
-         /hu1gcNeFF+3fOBkzO4fN0dMhedj6z0PhchBOggXdljREcqSDNumyz3L1OPgcggajgKR
-         SwwulawtfETUh/a6CP7WhSN1rF/G1o2bm7it6pT+M7M6E3ftM20DWYAePHzfIlFhbYiQ
-         zsiA==
+        d=chromium.org; s=google; t=1728978686; x=1729583486; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=aaW2sa/1ZxtztZoldWmZYhD7VcMhjqCGkrdW4rioaxc=;
+        b=MVl8ECzQEa1tbVUH82ZXxYOzRXBKBVViNbkl33XR62SUk+oPRJwWsnS0CpQ5GANxcq
+         +1xZ9x18Lwk/Je+gYTvKMr3gSyJsS5pXnL8SHe9NtnD3ZWCbH+LjHG4fCTlE8+q+dBFE
+         CCTE2PtyFTI6JlPOVgri+SL9Ld3tGnyB4hEG8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728978360; x=1729583160;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=12pFpxnrbGxJEph57/6mELybsu5UzTUq2TEGUPb5hXs=;
-        b=Bz4Z+PH3BaEaf+hsgMzp++fqmqcu1jg0A/xxdc84QiM+8kx9C6IwvcBNx7ll7rSH17
-         d+jXhIgA/2gdQtraAUu5GjH0H6K13JTe6SmhJGRip81mlwV1QWeJNL1dx/8GtCny/r6B
-         e8qCEmqbRQEVUp1MxyUS8Li7Gduz0PSHIftMXXwKDjx6d43HNUbZNSgKHjVWVNuTs//B
-         HQBCoGeTGRSfCmoFo+OT3+hQBoYTuYRnRRJsPAe9NJDYkYwP1CUYTwnnJCMJoWfhhwi9
-         GNWFGtbqRv+hVgMyOofSLB9DL1q+csoZVi40YNCDZqR4btxpuD8Dj+XmuEfNX29Pq1AN
-         0HiA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6JRY/fTzlyHo7VcLzrghtKP1YzYJ7w4a2GsQ54l/DyI1IkMNA4gC1Dr4n97xmk6+qbLV/xep/3SMx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnqldVRY/tnwOrz5rzLXpIxpwQUK4Q4UC/F/pur1SDWDKX32Ra
-	10SfGd+lDhW0ZS85irHuu1TIZvJ/ZfFx+Djtd/FbjCk/0mj91Yu83zinrNcSkQ==
-X-Google-Smtp-Source: AGHT+IGwCERemshlQ9IHB/+9DCefPlRwOjvwDRvaGMX9XFXY+6vxh/QCc+0dTnMQeEqWO5nbKdZGUg==
-X-Received: by 2002:a05:6e02:b44:b0:3a0:9f85:d768 with SMTP id e9e14a558f8ab-3a3bdd346femr12060435ab.11.1728978360066;
-        Tue, 15 Oct 2024 00:46:00 -0700 (PDT)
-Received: from google.com (62.166.143.34.bc.googleusercontent.com. [34.143.166.62])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20d17fa48cfsm6533885ad.78.2024.10.15.00.45.56
+        d=1e100.net; s=20230601; t=1728978686; x=1729583486;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aaW2sa/1ZxtztZoldWmZYhD7VcMhjqCGkrdW4rioaxc=;
+        b=hiaaoev+w7PyXE+dVbWc7lVuo4JWGWvbYfguhQSMthjAZ0v8LjKD5M7puBETMUC/uv
+         Icoq+uyReGj4Bdu7TNE9kiiox8l0Yx72/uINH5J2M3IS9uejCwMmUZ04G/3KOd2Gg4Td
+         wtWzSk1RGc0Hx6Z7Pvs5sIXnucVgUO7GrdERyu8PHb4FtzX1qmeC10JbhxcqxWRz8Auz
+         l7aywz38P1CHN36A+uj79yOnzZz5hzXIClzYbVN0z6UoOAvtd/dCRsTssArDBLKFidB+
+         Y9epWc9zSj0K7HgHbbNJKZeOM+ktD+Nwu3020F8XE59eHGGy4tiZGwOL6NRJCB02U0Cq
+         hx6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUE5PkJl1erT78BlIyUihzEJl8VmG2M6sMH/WCds+/V5uzLEV14QG75mJZNTJEwXIIl5+IZzVAKgAEL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEL75qUH0SVAHM7DMv6rf9agZW+Hdp/HXC1dw5dPwpYVQxdTb3
+	NgoVk2fpp2EsotrksMOIpjRhGQYzBk5BSTHHys7AFJ5TAQF3nbSPW0XNy3kpoQ==
+X-Google-Smtp-Source: AGHT+IEfvWKZ1jcEyU30hF3ZW6BxaiMzf1hjuhVYl88Vngg8HNiMsojaXq2qzSwNVqU01VmSdulBrA==
+X-Received: by 2002:a05:6358:52c5:b0:1b5:a38c:11d1 with SMTP id e5c5f4694b2df-1c32bc8c0f9mr537792955d.26.1728978685952;
+        Tue, 15 Oct 2024 00:51:25 -0700 (PDT)
+Received: from google.com ([2401:fa00:1:10:f99b:9883:3b88:182a])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ea9c713432sm730557a12.83.2024.10.15.00.51.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2024 00:45:59 -0700 (PDT)
-Date: Tue, 15 Oct 2024 07:45:50 +0000
-From: Pranjal Shrivastava <praan@google.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>, Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH RFC 0/2] iommu/arm-smmu-v3: bypass streamid zero on i.MX95
-Message-ID: <Zw4drtlAGy-LW7Ov@google.com>
-References: <20241015-smmuv3-v1-0-e4b9ed1b5501@nxp.com>
+        Tue, 15 Oct 2024 00:51:25 -0700 (PDT)
+Date: Tue, 15 Oct 2024 15:51:21 +0800
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v8 7/8] platform/chrome: Introduce device tree hardware
+ prober
+Message-ID: <20241015075121.GA292890@google.com>
+References: <20241008073430.3992087-1-wenst@chromium.org>
+ <20241008073430.3992087-8-wenst@chromium.org>
+ <Zwfy6ER6sbr_QxsY@smile.fi.intel.com>
+ <CAGXv+5FAhZQR+Tah_6Qxp4O7=x2RawfWuMh29_FT4mGQGQF84w@mail.gmail.com>
+ <Zwz_p3o1PJF6sl2Y@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241015-smmuv3-v1-0-e4b9ed1b5501@nxp.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zwz_p3o1PJF6sl2Y@smile.fi.intel.com>
 
-Hi Peng,
+On Mon, Oct 14, 2024 at 02:25:27PM +0300, Andy Shevchenko wrote:
+> On Mon, Oct 14, 2024 at 03:04:44PM +0800, Chen-Yu Tsai wrote:
+> > On Thu, Oct 10, 2024 at 11:29 PM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > > On Tue, Oct 08, 2024 at 03:34:26PM +0800, Chen-Yu Tsai wrote:
+> 
+> ...
+> 
+> > > > +static const struct chromeos_i2c_probe_data chromeos_i2c_probe_hana_trackpad = {
+> > > > +     .cfg = &chromeos_i2c_probe_simple_trackpad_cfg,
+> > >
+> > >         .cfg = DEFINE_I2C_OF_PROBE_CFG(trackpad, i2c_of_probe_simple_ops),
+> > >
+> > > Or even
+> > >
+> > > #define DEFINE_I2C_OF_PROBE_CFG_SIMPLE(_type_)                  \
+> > >         DEFINE_I2C_OF_PROBE_CFG(type, &i2c_of_probe_simple_ops)
+> > >
+> > > > +     .opts = &(const struct i2c_of_probe_simple_opts) {
+> > >
+> > > Perhaps also DEFINE_xxx for this compound literal?
+> > 
+> > I think it's better to leave this one as is.
+> 
+> Using a compound literal like this questions the entire approach.
 
-On Tue, Oct 15, 2024 at 11:14:41AM +0800, Peng Fan (OSS) wrote:
-> i.MX95 eDMA3 connects to DSU ACP, supporting dma coherent memory to
-> memory operations. However TBU is in the path between eDMA3 and ACP,
-> need to bypass the default SID 0 to make eDMA3 work properly.
-> 
-> I was also thinking to introduce "bypass-sids = <0xA 0xB 0xC ...>" to
-> make this reusable for others, but not sure. I could switch to
-> "bypass-sids" if you prefer.
+I don't follow. It's a valid use.
 
-Any reason why you can't use the sysfs to change the iommu domain type?
-i.e. by using the /sys/kernel/iommu_groups/<iommu_group_number>/type
-AFAIK, the arm-smmu-v3 driver allocates one iommu_group per device.
+> Why you can't you drop it and use the static initializers?
 
+Did you mean split that part out as a separate variable:
+
+	static const struct i2c_of_probe_simple_opts
+	chromeos_i2c_probe_voltorb_tch_opts = {
+		.res_node_compatible = "elan,ekth6915",
+		.supply_name = "vcc33",
+		.gpio_name = "reset",
+		.post_power_on_delay_ms = 1,
+		.post_gpio_config_delay_ms = 300,
+		.gpio_assert_to_enable = true,
+	};
+
+	static const struct chromeos_i2c_probe_data
+	chromeos_i2c_probe_voltorb_touchscreen = {
+		.cfg = &chromeos_i2c_probe_simple_touchscreen_cfg,
+		.opts = &chromeos_i2c_probe_voltorb_tch_opts,
+	};
+
+Instead of the following, which is slightly shorter, and gets rid of one
+explicit symbol name:
+
+	static const struct chromeos_i2c_probe_data
+	chromeos_i2c_probe_voltorb_touchscreen = {
+		.cfg = &chromeos_i2c_probe_simple_touchscreen_cfg,
+		.opts = &(const struct i2c_of_probe_simple_opts) {
+			.res_node_compatible = "elan,ekth6915",
+			.supply_name = "vcc33",
+			.gpio_name = "reset",
+			.post_power_on_delay_ms = 1,
+			.post_gpio_config_delay_ms = 300,
+			.gpio_assert_to_enable = true,
+		},
+	};
+
+
+
+ChenYu
+
+> > Not every entry will
+> > use the same combination of parameters. And having the entry spelled
+> > out like this makes it easier to read which value is for what
+> > parameter, instead of having to go up to the macro definition.
+> > 
+> > For comparison, this entry uses just two of the parameters, while for
+> > another platform I'm working on the full set of parameters is needed.
+> > 
+> > > > +             .res_node_compatible = "elan,ekth3000",
+> > > > +             .supply_name = "vcc",
+> > > > +             /*
+> > > > +              * ELAN trackpad needs 2 ms for H/W init and 100 ms for F/W init.
+> > > > +              * Synaptics trackpad needs 100 ms.
+> > > > +              * However, the regulator is set to "always-on", presumably to
+> > > > +              * avoid this delay. The ELAN driver is also missing delays.
+> > > > +              */
+> > > > +             .post_power_on_delay_ms = 0,
+> > > > +     }
+> > > > +};
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> Peng Fan (2):
->       dt-bindings: iommu: arm,smmu-v3: introduce nxp,imx95-bypass-sid-zero
->       iommu/arm-smmu-v3: Bypass SID0 for NXP i.MX95
-> 
->  .../devicetree/bindings/iommu/arm,smmu-v3.yaml        |  4 ++++
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c           | 19 ++++++++++++++++---
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h           |  1 +
->  3 files changed, 21 insertions(+), 3 deletions(-)
-> ---
-> base-commit: d61a00525464bfc5fe92c6ad713350988e492b88
-> change-id: 20241014-smmuv3-120b24bc4659
-> 
-> Best regards,
 > -- 
-> Peng Fan <peng.fan@nxp.com>
+> With Best Regards,
+> Andy Shevchenko
 > 
 > 
-
-Thanks,
-Pranjal
 
