@@ -1,99 +1,99 @@
-Return-Path: <devicetree+bounces-111627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F06E499F7B9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:02:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C024399F7E4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:11:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23D971C22040
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:02:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 762081F223CA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B953E1F669D;
-	Tue, 15 Oct 2024 20:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553EA1F6695;
+	Tue, 15 Oct 2024 20:11:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bt/fuR56"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aSVxLUjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F7F51F582F;
-	Tue, 15 Oct 2024 20:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280E51B3936;
+	Tue, 15 Oct 2024 20:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729022550; cv=none; b=VP+tAlHXo5bM0J9hQPsXAinYkQiXX5J4XfHcYSZZ5oEWMlHndcecIlaqM1wxTnOBl1zFcOS2TbbFx9DxOz5WMzaS7x2e/S7FwRYgEfrA/q4mlfgIpefuVC2aHNaadMjfbyvpF3zqZGRvpj8V5m8LlklYv9JIUTlSqsLrdw/DXCc=
+	t=1729023102; cv=none; b=nhE/DZ07fc2r6n/09w5RE9a9dyVvHLK2v+UgzARaMPaPJyGm8xR5ZiKE0VGZt3GkJ/L/NJ/Rm8xCnu9et7NJiZtmF780/XZdhTEn9maLdiToAeial6hCvS68qj1tUlJ5ICeTZaq6bVkfY9sHvwFLW+clGZZQ0YnTcjWZRhJKMuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729022550; c=relaxed/simple;
-	bh=4E9KrtJPra18ekGLCafFdTVcdiBBpoXvHXnrngEDQOA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GLefx5gEly+akC3h2B+63QN4vVeBnKiPJvXEZpZucMob5iv3KJyPA4RtIFaqDYpE15s/t1FR4wW40Efbx7LgcvqcdDxUQ+qgBNIp4ASC4kWoSQhjckR/MOE/9q0o0srI6iWqdXZYzswMMmh2GPekYRaSd6Wa1XxJ06U9XuNe54I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=bt/fuR56; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-20caea61132so37349955ad.2;
-        Tue, 15 Oct 2024 13:02:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1729022547; x=1729627347; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4E9KrtJPra18ekGLCafFdTVcdiBBpoXvHXnrngEDQOA=;
-        b=bt/fuR56jgfZpo2kBsx4OfTyEi/pNCItoYX+QM6kXh+LlVjbOFNeGmJhWN+CvgRPnN
-         u6kRYmKNE1ERmLQu2cAylwusP+oExyzN+RDPZ7SUjWpj/+UiHnuVouSx5FdcYgx0wntk
-         BDqFNk1XEvR3KLwKGKvxrxvDx1QLLdA5hH6FnZ8Kp4qfeCL3yT53tNX0zcOxGWoCYuJk
-         dA9ETCIfEqxAPxMP8m5GZd8Mau4nyybK7nCp7hxuCSzHbk3Y/A2ijALDhqJ/eSInD5TF
-         KcFMjrgxSqt+ASBbySi0lMa41a81duqImbbzldjootUs+M7BmDd83LEFWl3Uf84OZCmz
-         OgKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729022547; x=1729627347;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4E9KrtJPra18ekGLCafFdTVcdiBBpoXvHXnrngEDQOA=;
-        b=wxhiU1t2Es5gzzFjKcxzIwf1CKzYm4J5t6Kojpp2GnOwZEsgVNaSQsvrnbnzsVadjO
-         tegGbMzv04fo2WatwrT7l3Slebtg8azOWMROY3lwAPDV0ag6Cy9gz3myXL0MXhv8iVLv
-         SACneMvEfgfn6hrnwLnJeoG+bUynupP9L56JfnWgrcAg466UO+9RocKJjPZIzYuW0B0a
-         PItF/1iFE2DvuQZ7k/ViOohrnlkm6wRVpmLVntiY/8ofsp4zV4OHXvkd6rylk08aPlOV
-         ueMOCLS1NrF4Sw6VTYSbRjCv3xOVhRDTTygyEefVsShZH5sbmlvnGcmupKSn/V471kEb
-         H8OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV2IKjaF/DgEPNi2ehgXvT4/i9RsLW8qZSZzeij4DSjOxf0krTgMOsz95+H93qALWTKQZKgeANfK77n@vger.kernel.org, AJvYcCWENE/eEi6+RDkIHI/1BuWu/vBNk30zVc/DFWCHtOq8Uu8COqJsLcw5jlHf3e4wc7EdnVAZZSnIQyFE3j/K@vger.kernel.org, AJvYcCWVHFnyk1x5Q8XJYcB5ipPQgA4H67ou2urT4A465NSUGUGrX2Lb2sCu9rgEW8H2fpxSn3qv3FblBPBT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZPnypAgzDd7yQxGQopWtehria6jcos3TxTLtCroFZS/5giua4
-	vmCY4627bDdun9QEucx2rbeLThg+kEkmbIg+gaYzS9wlwzA71qo7btm1lPds+zxY2RVjCgOMuFE
-	fdmWeyFQxkstdN+gD9dPouNA6rn8nPdpt
-X-Google-Smtp-Source: AGHT+IFdTSQzdCKXkl2sCIwJ4f6NxCKsUewi9E/3FPVpvhK23o3jahGuP0PQDNUbMudL7f8kYdk05V0AWgHhdzwY6pU=
-X-Received: by 2002:a17:902:d489:b0:20b:a25e:16c5 with SMTP id
- d9443c01a7336-20cbb2a0c4emr211703075ad.53.1729022547422; Tue, 15 Oct 2024
- 13:02:27 -0700 (PDT)
+	s=arc-20240116; t=1729023102; c=relaxed/simple;
+	bh=ch+bU3YCeAL9AGC+OR03PPFSLvIjMObE1/y1gqTqgWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bySBxFQuVypVo4Iw0/H5/4T8l4GQoJ7v7eDkK4X6LiO8uUFnxPBlzcrN8GRWaw3j18//3MVBCA15CXPey+wKWpOSqVIG7csiBylyxl+KgS0XTc5FVsa6PYMgW5eBbyEHot0JezUxhbQS733GKYxDhCovW8a8G4r7bktNsOE438o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aSVxLUjO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A02C4CEC6;
+	Tue, 15 Oct 2024 20:11:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729023101;
+	bh=ch+bU3YCeAL9AGC+OR03PPFSLvIjMObE1/y1gqTqgWY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aSVxLUjO5MT7Aro1Wr0ura4irHKfPboHSiKqyOHXoCK244uHQEeUNPNbReEGwD4Zk
+	 2kRt8/kW2sWtNjKCd/zr06e9kn0nmT1kVnLcFSr4dfnkVAWp2HFjNcMwiHfEM9UYRi
+	 XJ6E1Vq28LqsE+5r1PK/dOmfUyBEzL+IRFFxg7RL/kpMBNptnbBwAtS+tR/BORKV0X
+	 uCXePKO8UfFVbMaQUIFebFM9ORBQws/657/ktitvK3xOBotlKPfoem6xoL/WLY8b1T
+	 ok6kWPnBDE/HflRGWoVlK0NEdLMdJgRCeN48wzQ20KbfB8+vs9HAVn30yCfkYNk8R/
+	 cjw2xUkE7Jlpw==
+Date: Tue, 15 Oct 2024 15:11:40 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-pci@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	devicetree@vger.kernel.org, Phil Elwell <phil@raspberrypi.com>,
+	linux-kernel@vger.kernel.org, Jim Quinlan <jim2101024@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v3 01/11] dt-bindings: interrupt-controller: Add bcm2712
+ MSI-X DT bindings
+Message-ID: <172902309954.1771543.1322600375013063730.robh@kernel.org>
+References: <20241014130710.413-1-svarbanov@suse.de>
+ <20241014130710.413-2-svarbanov@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-0-ad4eb22c2a8d@linaro.org>
- <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-3-ad4eb22c2a8d@linaro.org>
-In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-3-ad4eb22c2a8d@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 15 Oct 2024 22:02:16 +0200
-Message-ID: <CAFBinCBbq2+_-z3h8r2BA0vxOTLa3qM1KSL29POBr0e9Y6ZexA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt
- to dtschema
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241014130710.413-2-svarbanov@suse.de>
 
-On Mon, Oct 7, 2024 at 4:03=E2=80=AFPM Neil Armstrong <neil.armstrong@linar=
-o.org> wrote:
->
-> Convert the Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
-> bindings to dt-schema.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+On Mon, 14 Oct 2024 16:07:00 +0300, Stanimir Varbanov wrote:
+> Adds DT bindings for bcm2712 MSI-X interrupt peripheral controller.
+> 
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> ---
+> v2 -> v3:
+>  - dropped '>' from the description entry (Rob)
+>  - dropped interrupt-controller and interrupt-cells properties (Rob)
+>  - dropped msi-controller and use 'unevaluatedProperties' (Rob)
+>  - use const: 0 in msi-cells (Rob)
+>  - dropped msi-ranges property (Rob)
+>  - re-introduce brcm,msi-offset private property,
+>    which looks unavoidable at that time
+> 
+> .../brcm,bcm2712-msix.yaml                    | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
+> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
