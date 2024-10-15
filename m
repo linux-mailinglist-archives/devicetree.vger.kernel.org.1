@@ -1,265 +1,197 @@
-Return-Path: <devicetree+bounces-111208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3155799DC99
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 05:06:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA9799DD51
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:54:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 557AB1C216A1
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 03:06:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12F28B2230C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 04:54:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE9FB171E6E;
-	Tue, 15 Oct 2024 03:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2071F1741D4;
+	Tue, 15 Oct 2024 04:54:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="NYBVWvxI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Py9yH+gR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2080.outbound.protection.outlook.com [40.107.21.80])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B121714CD;
-	Tue, 15 Oct 2024 03:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728961577; cv=fail; b=MMMIrfl5hcvI0kWWfFpZ64gUn/k0NEQ2OEWRzvIHqv218RKRgt+nNkCDXQla4F0U8Ug1dcGuy+kg5LWP2BVQhy4VgllXKNRQmgWheuE9h+7LNObFlse9k3zartk53AaFFLpOg7We9OrI9ww3htp9e0fNIB4KklLHsBaCU8hG7v8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728961577; c=relaxed/simple;
-	bh=DfcneFLqdBdGmPAJczvPNYpaTTk2MX/SRs1lKzSSUOA=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=hVet0kMt+a4SUBCCSNqK6O5pRiAl+k1dP1ZSjIPQrBEVxqPNyCXN/Xvq08YTcdlOxoz80ucq4wrSTzqaFwDcwiXlo+e3tQURgX22daGqT+PmxOddVI+D7XKFQek5rkbHZxu8vmAY6ANIyGMGnGWNjNz70k+fN3UcJlFYPKCLVx4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=NYBVWvxI; arc=fail smtp.client-ip=40.107.21.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LBm3pusfHiS9FAIlz2hn6Rf94xSDPZ5wno6iF2wbILYP18FteDcuir6NMclV6/UhwnRpFthAVq6UHOgopEQikFxBNIU4SuMp2vbGBncJ0NjZLSSxOF/CL78gV+HIrKthS21Ds1agkx+jzcF79NX2gC8KzERTFhrUporSG5PDOLko4h1PBgilJAR5zm51K2bBC7B5A1TqQ8+HWA3d6v67389uON+dO7IVsY2ozpnub8QNTsOl4tIPQD7ypM2pBp2qEM8LKTrvmHgQjqACxxUTutc2qNHY33WeMTbxu5++yEhb9XCRSsjoi+dXNxsW7TNZypQ2YpY0Xdc9QZNoG+DqbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0OAVDj4lxiUm9B2gMs19l7f2hsZrxwWooSsM29M+/kI=;
- b=DNQVq0WJU4dMqF0lMzAcWSS9bLkg0y6GUzXxCMRFaVY7r/44VEulBG6IaiOk05+/TK5LSR5430lpJbC73wQhx8jlFccOWiXYiPvRVgY0PZpYGixejrjbwTZVAErjJ//ZJFr3XEeSby3XzsnzA+AygqzZZv+Ik6TiLztCIT4TXvoeIeqCMmyVKuPsNDfA6fd83WyemLLKic2ZOQCRh0lWbv7MmfYyZYTtGJYjzOtv1afrcE1Il6d+IIz5lSD+GycEoEayrqQkBWcmv0g7YJULNRh9+pC6MrpT2zzFBImenKqTB2vf3BqGZpKbbvwWI4vmdoJYnMpItqcvLuGZwfQLtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0OAVDj4lxiUm9B2gMs19l7f2hsZrxwWooSsM29M+/kI=;
- b=NYBVWvxIoN+5VTh07EpQXaa5hAJF8yK2lsCsNVEoPu4Lt2TYPAmfQ5+PCsFCHvsTTSjUrBduobFGRPcS7sLk98gEjnHJOgBzYp7+mfif5JGm0vQzhx0zIxlAgu5pbxTVH6AaoJM/aVdHn9A0DhglV31fS0SF9aX7c8riAm2SUThO7c+1gRxurYxy0FQbLWVdCDGZowURyPX4IcGcdUm28feEvXfA78EAwxFrWfz+Sg8AvzAAe+cfTrOxi71EuZrV68XMCCDMN3kBms2DoZsdqFcGmff/vT7Z3q6FlVSMyINbU4MtVbOrHL3xxydkSN0Qf8CnJy6NImCvk5dyIUaM2w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AS8PR04MB9173.eurprd04.prod.outlook.com (2603:10a6:20b:448::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.27; Tue, 15 Oct
- 2024 03:06:12 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%5]) with mapi id 15.20.8048.020; Tue, 15 Oct 2024
- 03:06:12 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Tue, 15 Oct 2024 11:14:43 +0800
-Subject: [PATCH RFC 2/2] iommu/arm-smmu-v3: Bypass SID0 for NXP i.MX95
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241015-smmuv3-v1-2-e4b9ed1b5501@nxp.com>
-References: <20241015-smmuv3-v1-0-e4b9ed1b5501@nxp.com>
-In-Reply-To: <20241015-smmuv3-v1-0-e4b9ed1b5501@nxp.com>
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
- Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Joy Zou <joy.zou@nxp.com>, linux-arm-kernel@lists.infradead.org, 
- iommu@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, 
- Jason Gunthorpe <jgg@ziepe.ca>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1728962092; l=2967;
- i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
- bh=lDCDQiGPOSRXc7ev1dUa1F8oSAhBoTCxcJi2puh3lOw=;
- b=fIWBFLYMswv9hNrVHTz6dQ2yEimP0aeNQGlcDp3joMWgSJ2N62QpiooFtiRX86YTStp97zcmQ
- zoR15HltTAFAGM0jrzS5kH9Hvz/JgRMXprlCNpIyzeRTyM+L8m3uMv+
-X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
- pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
-X-ClientProxiedBy: SI1PR02CA0026.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::11) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDD216EB56;
+	Tue, 15 Oct 2024 04:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728968078; cv=none; b=J8pSABFiS3VvIWWeXkIpWslzmmnV5lfwxKNBBQ4L4k5IC5WUSN5dXIZGBilXCA6qMj8YDOqo5g4j/sRWc0hS3RuIz0wGn0c1ibI4TWkZP6p2ghiieG2w/hyhbXLjghFeQLRvr2CA76+o8p7gWVmrcgWWCpra/piKU4cXItEel0w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728968078; c=relaxed/simple;
+	bh=oVz47PuMBIBfEu4mr/NH3wXzWsFTytrvHYSGy9yzmwc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bE/S1UfB7FvWLaprc18t1RO+/Lz66YX0EJKdmAuaB6OAIq0DUpCnPCsKMUDA26mOTKs2Pne7jGbEeXryranvM/RuObQ0mX6i1YW60LTHIrxujTiFyneoB3+vgG3ldZKBlq5re7d1jsDOO1WeN3p0ZAbwPFfWqZB2Jh4m6i9vw9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Py9yH+gR; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728968076; x=1760504076;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oVz47PuMBIBfEu4mr/NH3wXzWsFTytrvHYSGy9yzmwc=;
+  b=Py9yH+gRtMT1ruwBTz5aEwoKBed6KKSxOKRttDKOSKaA9hje2ZzZhHsj
+   suFg4ItcHaqOxCmqd9XjaLPD+DAlRcB04HnCMeBRHG9avG4V09oEaFHnE
+   zyWur4NlmmUXNWYfBk4rDPfZbLwRnsBL44OhonKIFWBKmjhF7S4rHPk8h
+   r80gYJO9YDMZc69vUqDeHQVYDFYdbwbvpplUHACRPExnYwhUTamwvey7E
+   BF6AeJyTPfUem0+pe+XlwaQ8YxAIylMEcTeFixkX/7z0VZ7kT5nv8iuW8
+   eWmLFyUg/Sr7kcOwT+QEl83+6YnDyaflrLlYwyZJqsyraJX5flMXqWNZr
+   g==;
+X-CSE-ConnectionGUID: HPRdToMKQ76q9c73mksyuA==
+X-CSE-MsgGUID: dxQHfK54RwynUBRdQqz+RQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="45845458"
+X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; 
+   d="scan'208";a="45845458"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2024 21:54:35 -0700
+X-CSE-ConnectionGUID: neUJbXNaRCiM7QAbRmJjQA==
+X-CSE-MsgGUID: dLERMooTToO/skjvgMDaBA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; 
+   d="scan'208";a="77637593"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 14 Oct 2024 21:54:28 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t0ZZi-000Hdb-0C;
+	Tue, 15 Oct 2024 04:54:26 +0000
+Date: Tue, 15 Oct 2024 12:54:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
+	will@kernel.org, quic_bjorande@quicinc.com, geert+renesas@glider.be,
+	dmitry.baryshkov@linaro.org, arnd@arndb.de, nfraprado@collabora.com
+Subject: Re: [PATCH v2 6/9] drm/bridge: Add ITE IT6263 LVDS to HDMI converter
+Message-ID: <202410151230.DwfMNFO5-lkp@intel.com>
+References: <20241012073543.1388069-7-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AS8PR04MB9173:EE_
-X-MS-Office365-Filtering-Correlation-Id: 35428267-57f9-435e-7815-08dcecc65321
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|1800799024|366016|52116014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?eVZnZGtPbjBRVkZ6eStacmdDUFBoZVdiK29UdGNHRVV1S29YTG1sblhWQUxK?=
- =?utf-8?B?eVF0OU1wL2JBNXJMQzlUQ1lldWxkT2MrdDNvTEtnbkhKQXBzSjZJNE15RVQy?=
- =?utf-8?B?NTVIaFZwVWI0U01UV0g2Q05JUis5VlVVSGRISXY3SzdnVHphL0pDZFVhVkY4?=
- =?utf-8?B?ZGo2SDJNdHh1WG5hQ2RTK2FFMXMwRzZSU1lPdWRRcTJmVEFSTUlkSGR0NStN?=
- =?utf-8?B?ZFAwdks0UEVERFYrWmRHL2I5V3JJRFBoM2hnWWtKWFBaZ1QrdSs0dzVNVmlo?=
- =?utf-8?B?QUxwb1RaSWZwVXRiVW1NOHg0TExQdURINVFVbVZEUWJNamZBNllYTVhpN3ZK?=
- =?utf-8?B?YzhxOE9oWFNHQUtIdU1HRTBGNzhrTHNqRzg5TWZ3UHBpWFhUdmw5UjV2L3ht?=
- =?utf-8?B?MkEzYklyRE85QnJLeUUxKzAwZmVmMC9ZUkkxUWZnekJWVjgrR2VkNG5jZzlP?=
- =?utf-8?B?dzJBemlla05zZzd2K05EU3o5US9KK04wL25VeC8ybU50eGNUbEE0Wi9icmZL?=
- =?utf-8?B?ZVY5Q2hhditBSkJkWFBTUk1oOWFGdzV4bGo3aDZpWFdzYVV1aDJXczlmK0xp?=
- =?utf-8?B?TkNaUVczd1JCVnhNeTUyQVgvZXpaUTA4ekg0VGJhclF4ZkNzUHErdFdCQmor?=
- =?utf-8?B?dTR6Y3ZqdkYxeUp1dzlPTE01MEMvTlF2ZkRpV1JBbHZvZW5pVkR0ZzVQSDly?=
- =?utf-8?B?UEN2Zk96Q3RSb3RtaHlDN1FrelNsQWpXT2JJaUQ4OWFXdnltSU54QmZibUhS?=
- =?utf-8?B?NmM4aXVrOWVtOU9yemVpM2R1UEJ6L05ObXl3VVdPVVJoT29YMisyOS9mRTh5?=
- =?utf-8?B?a3lId0J6dnk5QlhHWlJJNmlWV1poZ3FvRnZsYXFjKzNqYlpRWlZzWUFqV2lU?=
- =?utf-8?B?Z2lIa2h3Qi9OcmdPUllOWjBvY0xLbk01d2RPVGJReVphWEhUcmFoY2VGOUMx?=
- =?utf-8?B?cXBkUVRrVG5XRGRjcU5yOG5sQkNFYm5paVhkL1hWTlY5NHpPQmczQmptckwv?=
- =?utf-8?B?bjV5ZTRNQjJzcTVhUFM3N2pUckxWaVR3alRqVVBpOW02MHBCdmIwQ01jcnYz?=
- =?utf-8?B?ZDFLSE50MG5qeU9TT2VrcFpsVy8xWnB3MDM5RFRuR3FLS09VajBGellBY2ZV?=
- =?utf-8?B?RDNUbEl3WDdOa3EvVklBTWhtUTNKOUs3TG5WcXNXRjQrdXZSZmVsOHFmRE1u?=
- =?utf-8?B?SlJyWHpScjJKUmNIanFnR1RJa2VwRE1jQVJMbzBzcmpCdnNlaU40NDNJTEJP?=
- =?utf-8?B?c2RBeFoxZ0laWXdhbThMek5oZ3NUVExLaVlDbWFqYURQVjZORTd4RGtVRThE?=
- =?utf-8?B?cUZhZ3htQno5UVpReFlzTVBLcG54Y2kyYi9ROEpsTk95b0hJT2ljZnZjME43?=
- =?utf-8?B?T1h5NVo3aU5UdXNGeGpGTGNaTW9kV21sejFhS1hxV1huWVBaOWxtNGF4Zmdk?=
- =?utf-8?B?ZnI2bmQxbnVPZEdGQ1Z1ZkxEUnpiQm5oZm8zQ0c4YUVHUWFTQnFKQkV1WTVh?=
- =?utf-8?B?Q0RHUm84RkdLVFY3ZW81WGVVZEF1aEV0UUlsSXMzMmpxUmNZaGpTVTVxeUlP?=
- =?utf-8?B?ZXQ5NkxycGI0ZUE1SUdQZDZqTjJoZEZ6NWxuVGpRMWwrMzBGZ3R5Wi9Fa3Y0?=
- =?utf-8?B?bFFqSExUelZtOXZvYjQ1U3U2Y0docCtaM1NTenI2YlJRcFpOWEZSRC81VFNW?=
- =?utf-8?B?WkhWNkxpUlVacVV4cW9rMWUySndPaU85K1p2WW9JeWpaN0J1UHN3VVQrK0NK?=
- =?utf-8?B?R04xdExaRFVwTEc5ZTI3Yy9aL0lmOVRIZjN5dGt0aVRZbG56dngzOXVxYThJ?=
- =?utf-8?B?TVlmNHFueHVKU1U3Q1lCdz09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TlVJWEFseUE1UGN1eWp2Ry90WWpvYmNEZCtqL0NUbFV5bHEzR09DZFVaTXBH?=
- =?utf-8?B?bEV2OHE2VmxjNTREOXVhOFJxeVgybDBGUWxZMDRLN3BacW1vMUtaNm9adG1o?=
- =?utf-8?B?MTQxN1FzeUVmMnAvNW9wd2d0MG1rdlVWcHlTdkhtdXZTcW9Qbm0xUDRheHls?=
- =?utf-8?B?d3RtOC8xTWx2bWdxUjljTS80eWRJTWZkOVdacmdmcFRWNTZud3dIZTArdzVD?=
- =?utf-8?B?blozREM1SmVyby93RXdSZ1ZHSTdreXRGYkN0dEVjY2QxaGV0K0lxVFNrbEJN?=
- =?utf-8?B?bE9yYmhwNStRZHdHZG5YaytrYk9hbkd6TW9zVE85RWhwd2JvQzRmejdmR1dG?=
- =?utf-8?B?NmYzNlh2NUttVGthWkNQMlQzZTBmd1M0N1JLQ2g1RC9Qd0ZMcmVhUjlnK1c1?=
- =?utf-8?B?VDRrY244d1JpRzQvTE9hbkVjWEswSkJFc0xzNy9GRm8vTmVSM2p1c2RrdUlH?=
- =?utf-8?B?VUtsem4vQm1hTGhrYmtvcU1xOWg1SHd4cnpMSWV3K00xOWs2UklmcERWZUlX?=
- =?utf-8?B?b1QrRGhabVQ3QjRWWDEzL2gxOE9OS1NHRjU3ZU1sUkFQa3Y0MjlGOWFyMDls?=
- =?utf-8?B?V1FiS20wUEZFQm44L2ZWWjJmUUVEQ0FjeXBMMCtuT2tPZTRwR1lUWWJLRXpY?=
- =?utf-8?B?elpaWlJzdzZmRVFrc3lhdWNkTUlJY2o3Mjh0NlBSK1ZSOTZwTThsUVdOSlhn?=
- =?utf-8?B?WmFZa21YU1kwLzN4dmoxYjlRME90eUgzL2l1QkVxOTMxZTRaekVUMGJUN2Zo?=
- =?utf-8?B?SHhPVXMyYnNCNmRvZ1ZDQjNSblZTNXRtYm5Pc2lMUkRYUzFLcDhkZjFlcDZV?=
- =?utf-8?B?MnplWk5UZElRV3NqSGVWcmRJQ3B3dGRiT09vMUIvZGtMbTE4VmdOdDcxbjFK?=
- =?utf-8?B?bm1FQnNpS2QvbUE4VDZBN3Q3L01xeUt2UUppbENIWFN3ZVBVUGRDdTZDR25Z?=
- =?utf-8?B?ZGdIb0xPdktQVlYrdzFySHROSkx6Vmp6dCtJS0lOMGlDTUovTkFWUWVNSkE3?=
- =?utf-8?B?YU1qU1p0emk2UmpZaG1QUXdTS0hjbmJFWFF0bkd5MVl0aVQwclRhMlJVZ01y?=
- =?utf-8?B?UWpJeXl3OWU0TFo0d2hnTkEwOEs4Mm9QT0NHQVJrVjQrODBrVitvLzR0Wkd1?=
- =?utf-8?B?c21ucmkzbi90akhSVi9PYmFXQXlOZitpaE41ZzFxMDFLUEJtZ3VSOWtsbHVP?=
- =?utf-8?B?RjhzdGRLTzF6QlVhQ0ZhWkpuWWtlWnVhLy9lNmxnMmNHdUMwSkJHV2hpRTVP?=
- =?utf-8?B?WmdiL2R3d0JOQ05xaXZDcktPYitqUmdadUR2dkFTNkJRRzZuY2pqSlozcUNo?=
- =?utf-8?B?TzA2ZXFrUjdPd2Y5a0RGWTlSVFVKd0ZHY2VGTndHZGhvaWhZNFhwYzBhZjZv?=
- =?utf-8?B?N3o3SUZBc01kWlpFRVZ3blRXMW9rRGpnVG9FM2NvMWhFRXhoR1h0T3RBK2VB?=
- =?utf-8?B?bGQzNkFPdmhra3FtdkhZLzQ2b3Z6WUdyaTJqdklScEF6RTBPUHFzaUkzMHow?=
- =?utf-8?B?bXNUdS9wdE5GRmc5Zmk2K0w5TkpqS3JESlNLYWIyZjh2QU5UdkpXc0d1dEY1?=
- =?utf-8?B?YUZiZ1BDeFZEYUxmMFg4K0FYenN6TEVHZjR5cHVDY01DK2d1Wk1vdDBIbVhx?=
- =?utf-8?B?VGhTdU5QaUprOGF0b3F6aXN4Y2llbHVqQWd5OVJ6WGZHY281QTdIRzRNMnQ5?=
- =?utf-8?B?a280RnVsWkJQZmFieElUT0s4K3FrTEdiRXZxbzF3NWEwWG9wTUprOGpta2k1?=
- =?utf-8?B?NVhqMmZDZnR4WjZTblAvZHZsWnk4ZFFwSHlZbEdHU0xsTTJqdmJ0M3pyVkMr?=
- =?utf-8?B?SHB1UEt2Q1VXa05DYldsWlRvUWtQaHpVd2U1eWhJdldBcDJFZzhZbmZJZHpl?=
- =?utf-8?B?VmlHUjJncnRiSk91SzgyUjN5SlY5RzVZOHN1cEo5dWtCZlczejFmcTRaSFZX?=
- =?utf-8?B?TmZIVzlmczhQUXFma2JCNUN2UG8rUEkzc1VoRHRSZ0hCT3V0STdpdnBvT2xU?=
- =?utf-8?B?ZC9SL09XYytyWWVWblB3TmQ5NFZBSXZGdU11V0J0MHE2SnJsdmozTS8wSHlB?=
- =?utf-8?B?eDlLK0FMNkNuK2FVWlh3aGNvS0N4THVPMjB1NzJoQmluYUVvNFg0ajFzMkhx?=
- =?utf-8?Q?UTJmsy3eWl8uC2mYMn3N3rfs1?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35428267-57f9-435e-7815-08dcecc65321
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2024 03:06:12.3182
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SYmwQJ+52sG1WJgM+Sjsj5RDY5xUkGCwNbpj+zbM3wxzGxGM1NiHGsZWUUXXImWDhdhlXULUMW8z6Z9B0PpbaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9173
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241012073543.1388069-7-victor.liu@nxp.com>
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi Liu,
 
-i.MX95 eDMA3 connects to DSU ACP, supporting dma coherent memory to
-memory operations. However TBU is in the path between eDMA3 and ACP,
-need to bypass the default SID 0 to make eDMA3 work properly.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 19 ++++++++++++++++---
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h |  1 +
- 2 files changed, 17 insertions(+), 3 deletions(-)
+[auto build test WARNING on shawnguo/for-next]
+[also build test WARNING on arm64/for-next/core drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master v6.12-rc3 next-20241014]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 737c5b88235510e3ddb91a28cecbdcdc14854b32..3db7b3e2ac94e16130fc0356f7954ffa1a9dfb33 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -80,6 +80,7 @@ DEFINE_MUTEX(arm_smmu_asid_lock);
- static struct arm_smmu_option_prop arm_smmu_options[] = {
- 	{ ARM_SMMU_OPT_SKIP_PREFETCH, "hisilicon,broken-prefetch-cmd" },
- 	{ ARM_SMMU_OPT_PAGE0_REGS_ONLY, "cavium,cn9900-broken-page1-regspace"},
-+	{ ARM_SMMU_OPT_IMX95_BYPASS_SID0, "nxp,imx95-bypass-sid-zero"},
- 	{ 0, NULL},
- };
- 
-@@ -4465,7 +4466,7 @@ static void __iomem *arm_smmu_ioremap(struct device *dev, resource_size_t start,
- 	return devm_ioremap_resource(dev, &res);
- }
- 
--static void arm_smmu_rmr_install_bypass_ste(struct arm_smmu_device *smmu)
-+static void arm_smmu_install_bypass_ste(struct arm_smmu_device *smmu)
- {
- 	struct list_head rmr_list;
- 	struct iommu_resv_region *e;
-@@ -4496,6 +4497,18 @@ static void arm_smmu_rmr_install_bypass_ste(struct arm_smmu_device *smmu)
- 	}
- 
- 	iort_put_rmr_sids(dev_fwnode(smmu->dev), &rmr_list);
-+
-+	if (smmu->options & ARM_SMMU_OPT_IMX95_BYPASS_SID0) {
-+		int ret = arm_smmu_init_sid_strtab(smmu, 0);
-+
-+		if (ret) {
-+			dev_err(smmu->dev, "i.MX95 SID0 bypass failed\n");
-+			return;
-+		}
-+
-+		arm_smmu_make_bypass_ste(smmu,
-+					 arm_smmu_get_step_for_sid(smmu, 0));
-+	}
- }
- 
- static void arm_smmu_impl_remove(void *data)
-@@ -4614,8 +4627,8 @@ static int arm_smmu_device_probe(struct platform_device *pdev)
- 	/* Record our private device structure */
- 	platform_set_drvdata(pdev, smmu);
- 
--	/* Check for RMRs and install bypass STEs if any */
--	arm_smmu_rmr_install_bypass_ste(smmu);
-+	/* Install bypass STEs if any */
-+	arm_smmu_install_bypass_ste(smmu);
- 
- 	/* Reset the device */
- 	ret = arm_smmu_device_reset(smmu);
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-index 1e9952ca989f87957197f4d4b400f9d74bb685ac..06481b923284776e7dc4f3301e5cbe8ab7869a9c 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-@@ -733,6 +733,7 @@ struct arm_smmu_device {
- #define ARM_SMMU_OPT_MSIPOLL		(1 << 2)
- #define ARM_SMMU_OPT_CMDQ_FORCE_SYNC	(1 << 3)
- #define ARM_SMMU_OPT_TEGRA241_CMDQV	(1 << 4)
-+#define ARM_SMMU_OPT_IMX95_BYPASS_SID0	(1 << 5)
- 	u32				options;
- 
- 	struct arm_smmu_cmdq		cmdq;
+url:    https://github.com/intel-lab-lkp/linux/commits/Liu-Ying/arm64-dts-imx8mp-skov-revb-mi1010ait-1cp1-Add-panel-timing-node-to-panel-node/20241012-154239
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241012073543.1388069-7-victor.liu%40nxp.com
+patch subject: [PATCH v2 6/9] drm/bridge: Add ITE IT6263 LVDS to HDMI converter
+config: i386-randconfig-052-20241015 (https://download.01.org/0day-ci/archive/20241015/202410151230.DwfMNFO5-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410151230.DwfMNFO5-lkp@intel.com/
+
+cocci warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/bridge/ite-it6263.c:683:57-62: WARNING: conversion to bool not needed here
+
+vim +683 drivers/gpu/drm/bridge/ite-it6263.c
+
+   655	
+   656	static void
+   657	it6263_bridge_atomic_enable(struct drm_bridge *bridge,
+   658				    struct drm_bridge_state *old_bridge_state)
+   659	{
+   660		struct drm_atomic_state *state = old_bridge_state->base.state;
+   661		struct it6263 *it = bridge_to_it6263(bridge);
+   662		const struct drm_crtc_state *crtc_state;
+   663		struct regmap *regmap = it->hdmi_regmap;
+   664		const struct drm_display_mode *mode;
+   665		struct drm_connector *connector;
+   666		bool is_stable = false;
+   667		struct drm_crtc *crtc;
+   668		unsigned int val;
+   669		bool pclk_high;
+   670		int i, ret;
+   671	
+   672		connector = drm_atomic_get_new_connector_for_encoder(state,
+   673								     bridge->encoder);
+   674		crtc = drm_atomic_get_new_connector_state(state, connector)->crtc;
+   675		crtc_state = drm_atomic_get_new_crtc_state(state, crtc);
+   676		mode = &crtc_state->adjusted_mode;
+   677	
+   678		regmap_write(regmap, HDMI_REG_HDMI_MODE, TX_HDMI_MODE);
+   679	
+   680		it6263_hdmi_avi_infoframe_configure(it, connector, mode);
+   681	
+   682		/* HDMI AFE setup */
+ > 683		pclk_high = mode->clock > HIGH_PIXEL_CLOCK_KHZ ? true : false;
+   684		regmap_write(regmap, HDMI_REG_AFE_DRV_CTRL, AFE_DRV_RST);
+   685		if (pclk_high)
+   686			regmap_write(regmap, HDMI_REG_AFE_XP_CTRL,
+   687				     AFE_XP_GAINBIT | AFE_XP_RESETB);
+   688		else
+   689			regmap_write(regmap, HDMI_REG_AFE_XP_CTRL,
+   690				     AFE_XP_ER0 | AFE_XP_RESETB);
+   691		regmap_write(regmap, HDMI_REG_AFE_ISW_CTRL, 0x10);
+   692		if (pclk_high)
+   693			regmap_write(regmap, HDMI_REG_AFE_IP_CTRL,
+   694				     AFE_IP_GAINBIT | AFE_IP_RESETB);
+   695		else
+   696			regmap_write(regmap, HDMI_REG_AFE_IP_CTRL,
+   697				     AFE_IP_ER0 | AFE_IP_RESETB);
+   698	
+   699		/* HDMI software video reset */
+   700		regmap_write_bits(regmap, HDMI_REG_SW_RST, SOFTV_RST, SOFTV_RST);
+   701		fsleep(1000);
+   702		regmap_write_bits(regmap, HDMI_REG_SW_RST, SOFTV_RST, 0);
+   703	
+   704		/* reconfigure LVDS and retry several times in case video is instable */
+   705		for (i = 0; i < 3; i++) {
+   706			ret = regmap_read_poll_timeout(regmap, HDMI_REG_SYS_STATUS, val,
+   707						       val & TXVIDSTABLE,
+   708						       20000, 500000);
+   709			if (!ret) {
+   710				is_stable = true;
+   711				break;
+   712			}
+   713	
+   714			it6263_lvds_config(it);
+   715		}
+   716	
+   717		if (!is_stable)
+   718			dev_warn(it->dev, "failed to wait for video stable\n");
+   719	
+   720		/* HDMI AFE reset release and power up */
+   721		regmap_write(regmap, HDMI_REG_AFE_DRV_CTRL, 0);
+   722	
+   723		regmap_write_bits(regmap, HDMI_REG_GCP, AVMUTE, 0);
+   724	
+   725		regmap_write(regmap, HDMI_REG_PKT_GENERAL_CTRL, ENABLE_PKT | REPEAT_PKT);
+   726	}
+   727	
 
 -- 
-2.37.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
