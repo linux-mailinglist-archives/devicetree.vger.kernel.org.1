@@ -1,113 +1,108 @@
-Return-Path: <devicetree+bounces-111688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 989DB99FA11
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:41:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB4999FA28
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:43:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D0871F21427
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:41:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D2C01C23A3A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:43:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1541FE112;
-	Tue, 15 Oct 2024 21:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B93C1D63D8;
+	Tue, 15 Oct 2024 21:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TwZuXoGB"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="gNMcktVB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5551FE10C;
-	Tue, 15 Oct 2024 21:30:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22681D63C8;
+	Tue, 15 Oct 2024 21:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729027855; cv=none; b=ZgCLR0iKHZEhQv7LfnxkSxtWeQr4aVxXBGHr8z1ViOzAgyUWSXltHdEZ/MNenYtRkoUhU/Iq/PHjmPXtRY8cAsU8GVUHQdrztx5pe0D07A4ORQsaZzW5SHRy1+G6wEetsPHbm4IF4Dk2v+WEFCw3vNb1QyFBimKLTVA1kwSWO+g=
+	t=1729028176; cv=none; b=MG1uCbquh+HaM5uXszNLWT7eQYt8tN1f+SUZGtuUWXnbDnd0VaNqxWNEUIGnPfkGePDjgLMh682SBkQkdiNGiP4yU1R2vqTG2AUftAydhnbs06F/+MOTRdT/r/Y1VlDwRgQoCdqQNHIwDR1QE6/M4ytYp4/uWOKCkdX0wtu8G7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729027855; c=relaxed/simple;
-	bh=U7XE5u0pRR0pjYvZzMuh+uJeZUztv2GjXrvRNqavzVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KpILyWTA7b8k2q08HrVao/Dj9S+6QKLdiJ5FbZYPdEl7xAIRVPAl4jR/ghWR3MOUu/6tWOSYP+/18/MbRlKkSCYY60Obb5c2T2bgHfxrJMfRDcbvWmQUF9YXCLmgRNKpVXchTTCbHGuJJngz/pBsAZz06GIkSAv5A8NDBieTD50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TwZuXoGB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E940C4CEC6;
-	Tue, 15 Oct 2024 21:30:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729027854;
-	bh=U7XE5u0pRR0pjYvZzMuh+uJeZUztv2GjXrvRNqavzVs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TwZuXoGBhtKmtnUGkO9xhM+OkaS9RCQXoW1EB2LgyL+yZks5KwPMA3TkdudxYKAT6
-	 N7Fbp+l2LfaBB1gbBDmJZ3n97fnpu/SVZIDwSw02u+nA+/AxJiA7iv5EGQxutMkpNk
-	 WfGRBQWhKzGlehhRjbyCfstJtjq48xsNR0DNnZA+L31+WSZRUwXioxeqHUlDRIZ76G
-	 KA52D7nTrumkV9YhnLUtxGk3Dewd+LKyXFAt7l/2a78sk/4FWo9yYbtey2P0JR3vi8
-	 wKqlN916tSBZdEamcVw3Xgt4t+EW4V6i/QpH3Ew1SKMWa4UmLnodB92b5KiWEys1cP
-	 jSa/R3fVTwFng==
-Date: Tue, 15 Oct 2024 16:30:53 -0500
-From: Rob Herring <robh@kernel.org>
-To: Amelie Delaunay <amelie.delaunay@foss.st.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	dmaengine@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/9] dt-bindings: dma: stm32-dma3: prevent additional
- transfers
-Message-ID: <20241015213053.GA1992090-robh@kernel.org>
-References: <20241015-dma3-mp25-updates-v2-0-b63e21556ec8@foss.st.com>
- <20241015-dma3-mp25-updates-v2-4-b63e21556ec8@foss.st.com>
+	s=arc-20240116; t=1729028176; c=relaxed/simple;
+	bh=TUHbc2NCTZoEqVKU7wn/lP9FbtA0R/gTWuGh32oa8nQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CCdVOLN5DUA3wUcLpgvypsvUOwRgmyKvcV6xTonxX5xM2dGtAizaq4PRprNXYNkaL6ubBJDPKkO7q1NDWzXo9scPer1NRkh4d6tE+bCB5w9FuZ297ijZu2PFcedT2wnH2vAn3deSzOzTXZoJjGU3vGxEnBEwOJei8cpQKN0wHSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=gNMcktVB; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-20cbca51687so32296205ad.1;
+        Tue, 15 Oct 2024 14:36:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1729028174; x=1729632974; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TUHbc2NCTZoEqVKU7wn/lP9FbtA0R/gTWuGh32oa8nQ=;
+        b=gNMcktVBGtPT4YJR26v+FuG1z5zFhWZKEsaGsMqYL4kVnwiixBsn0ogFfucxRimuhb
+         qH2Ny5mfdkYc3ursn1dXoPvDC1DAKCiZv6OpFR/0eZKd8IMlm+saItyOsnZaXXAFvEqV
+         Q8Sn++V5tUfzrGI8yv9+JDy7IYIYAdZJqMtaKHeNf4EECpybdRxAElQoHr5/uDyf49iV
+         Emqf4f2dpnuvEandsCouxfEdmIL75fLu8T1Gag3rJHuX9lUsJ24cKjOL3sp56Koh+09k
+         ciGlIP4F9lDcbcTSJ91ckX/AaYHYoqVDqHoieZU70Jn+qctsTaradt1q6oWJME4aSFIh
+         y2IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729028174; x=1729632974;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TUHbc2NCTZoEqVKU7wn/lP9FbtA0R/gTWuGh32oa8nQ=;
+        b=eFAzhj/N+YhaekiV5FH+obHtSkm6ZWrjA4FC3KfxJeNRvo9d7jCs+KYk94kJ6jpcBp
+         4LmYqGWvD82VzsHw8fpO4eDRy8xjnNuIuojrE8p5SSE12UhbPH4wRxznLBxP9cJ/64AZ
+         gXzlNmg2RNQRudRqKzWc3eaDbFFPPeola4ExAeqWwa89J49XT520W34avd8DOA9ADhIr
+         lMjT5vAjJNXPZEN0CNQN09wJhcGmny/yBDWzRcQLQ75xvpvRz1SRUbuucs/HCO6LfbH4
+         YBfAfJZi0ZrDEvO7o8CWyXH1BtnaoEm6x/WWAP1oYojl54sEX2Xj232XkY3xfdQ6Qc17
+         NyUA==
+X-Forwarded-Encrypted: i=1; AJvYcCUteaHQKHfxAHRZt/P0f+ESZzs+EO5kn5WPHTgQJquaOwTwapfui8Z9YT61cTV+Q7XRIyDfrhl1Syln@vger.kernel.org, AJvYcCVFUJKEDXYrIMqm+SrwkvV3wnxdZBoVW+bEMiqQkhRoXTwndugvssxCjd74gP3dFlflEGwTq9ORDvXCT0Af@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzfNh0AlfvzFCD3UQtTmiFPXkYI4rwV3MH5fiTIkBcv1rZYHiO
+	EEukvk2HNL17WMLanO5zvak6nI5QkFJpytEGnR3e7JCo+Unf+2yRVXJGDZxG4qR3BaU+37nFXB8
+	QWVX3/yU4qWaSR7yzI9fZGn2QR7Y=
+X-Google-Smtp-Source: AGHT+IFqbNMesq/OCjTCsA5X5R9B78s0bALNeQXGiwca2lvIOVLQDgOQfJTpZTWJnaYVc8WGp678vgmB0ffwb2wprOQ=
+X-Received: by 2002:a17:903:244e:b0:20b:b238:9d02 with SMTP id
+ d9443c01a7336-20cbb21e84bmr225904075ad.33.1729028174053; Tue, 15 Oct 2024
+ 14:36:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015-dma3-mp25-updates-v2-4-b63e21556ec8@foss.st.com>
+References: <20241015-topic-amlogic-arm32-upstream-bindings-fixes-pinctrl-dtbs-v1-1-c7291f17063e@linaro.org>
+In-Reply-To: <20241015-topic-amlogic-arm32-upstream-bindings-fixes-pinctrl-dtbs-v1-1-c7291f17063e@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 15 Oct 2024 23:36:03 +0200
+Message-ID: <CAFBinCC2cfRQcQw4BoVqmJMqWMoD4TLur_ev+Bsp5NWL=hmt+w@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: amlogic: meson8/8b: remove invalid pinctrl reg
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 15, 2024 at 02:14:40PM +0200, Amelie Delaunay wrote:
-> stm32-dma3 driver refactors the linked-list in order to address the memory
-> with the highest possible data width.
+Thank you Neil!
 
-You are still talking about driver...
-
-> It means that it can introduce up to 2 linked-list items. One with a
-> transfer length multiple of channel maximum burst length and so with the
-> highest possible data width. And an extra one with the latest bytes, with
-> lower data width.
-> Some devices (e.g. FMC ECC) don't support having several transfers instead
-> of only one.
-> So add the possibility to prevent these additional transfers, by setting
-> bit 17 of the 'DMA transfer requirements' bit mask.
-
-Some devices require single transfers. That's about all you need to say.
-
-> 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-> ---
-> Changes in v2:
-> - Reword commit title/message/content as per Rob's suggestion.
-> ---
->  Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml b/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
-> index 5484848735f8ac3d2050104bbab1d986e82ba6a7..36f9fe860eb990e6caccedd31460ee6993772a35 100644
-> --- a/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
-> +++ b/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
-> @@ -99,6 +99,9 @@ properties:
->          -bit 16: Prevent packing/unpacking mode
->            0x0: pack/unpack enabled when source data width/burst != destination data width/burst
->            0x1: memory data width/burst forced to peripheral data width/burst to prevent pack/unpack
-> +        -bit 17: Prevent additional transfers due to linked-list refactoring
-> +          0x0: don't prevent additional transfers for optimal performance
-> +          0x1: prevent additional transfer to accommodate user constraints such as single transfer
->  
->  required:
->    - compatible
-> 
-> -- 
-> 2.25.1
-> 
+On Tue, Oct 15, 2024 at 2:25=E2=80=AFPM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+>
+> The pinctrl aobus/cbus was originally here to configure the
+> GPIO interrupt, but it was a bad design and was moved to a
+> separate gpio_intc node because the GPIO interrupt is actually
+> separate from the pinctrl/gpio registers.
+>
+> Drop this reg entry, and fix all the register offsets with a
+> proper range property.
+>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+as well as:
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> # Odroi=
+d-C1
 
