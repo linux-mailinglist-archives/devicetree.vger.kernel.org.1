@@ -1,229 +1,162 @@
-Return-Path: <devicetree+bounces-111244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E03FE99DE57
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:29:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 642FA99DE40
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:28:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1015FB21169
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:29:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2386528574B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:28:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1760A1A0B07;
-	Tue, 15 Oct 2024 06:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA026189BB2;
+	Tue, 15 Oct 2024 06:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="Bim9eASb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+nGoZq5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-03.smtp.spacemail.com (out-03.smtp.spacemail.com [63.250.43.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E412189BB3;
-	Tue, 15 Oct 2024 06:28:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A037D189BA9;
+	Tue, 15 Oct 2024 06:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728973732; cv=none; b=HBtrhzlOwj6TzuoizdMeyUDZPAY9ZmtZFZ+2YO6FUj0PwMzJPxsqJCO8jF3mexArlQc0FKPbZ6vPjAzjA7uX4JQP2oCM8mylZpM4UIwOeHz0s/6jevgm6TD9jXEMMbZW97KDiyxFUmArmhH4FpZmw/rXMaDsWXtsLn0Nc3/r44c=
+	t=1728973686; cv=none; b=b2TU8K/a9Gsn476Wt2EAy6Q4/V0TKJ2ScFl0sN9LFZHKhVEVc7DlGqv4x/nLeb3baYq6Dn/fT8i7mOtAhLTLXfJ6sgE3rGdmGwgyQgwdunA2XAx4XE6RAzVeKvH+hneYAGU8qPJpcBVKLaQU4SsPvfv2tBi6ewZ6scVtDWTdpSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728973732; c=relaxed/simple;
-	bh=20UrSrn3b3jYpsgqWKn9DR7CdaIQ8LzBBkejRd7qghM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kp+7bFS4vOQyNiQXv3X7qaXvC6NlYIv6zH1kcapbn6BXvHeM15isDQ/SD3zkqKAJizovrOOaU8fBdmvP5hTOot1my/dTYJsHvZNEoIGY7mJm9+p4NXtsQRMAJxYiCyjUuXQrGEOe8f9ejwWLdjGK1wf7P+FeTrpjD0bhL32DIxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=Bim9eASb; arc=none smtp.client-ip=63.250.43.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
-	by smtp.spacemail.com (Postfix) with ESMTPA id 4XSPLn30sKzGpTc;
-	Tue, 15 Oct 2024 06:28:49 +0000 (UTC)
-Received: from igor-systemproductname.lan (83.8.240.202.ipv4.supernova.orange.pl [83.8.240.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.spacemail.com (Postfix) with ESMTPSA id 4XSPLd3ykkz2x9D;
-	Tue, 15 Oct 2024 06:28:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=mentallysanemainliners.org; s=spacemail; t=1728973724;
-	bh=20UrSrn3b3jYpsgqWKn9DR7CdaIQ8LzBBkejRd7qghM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Bim9eASb3AJqsbc/gPREog9Xk0j7j5wnMLl9Dej2g5cnyUy5XCUBOWDM3Kp6vl+Gp
-	 1aRgOUlaGJRAUH722kzep87uJer6NQO93YH8zob+OzBxIHD014FkRVlN/jfMoggoAp
-	 ZS6WTNha6lyorS72TC2r4N8dvRplFMxmJYKoeSLNy0/q/GJMPgryMQDVliCpyE4+03
-	 IcB9CqMM/pYOpSGSHSzaL9lUq3dMUAOhXAjkUf9TkpmhIwOQAq8BPS+Ougs5AHP4vw
-	 LZddLM1klEwR+O6yiqTyWqU+eDCFQvLSXuv5miUP5XyUW3uCULCa4gie5sROpBtr0E
-	 FTjHc7gFr5lNA==
-From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	david@mainlining.org
-Subject: [PATCH v1 7/7] arm64: boot: dts: Add initial support for Samsung Galaxy Note20 5G (c1s)
-Date: Tue, 15 Oct 2024 08:27:46 +0200
-Message-ID: <20241015062746.713245-8-igor.belwon@mentallysanemainliners.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241015062746.713245-1-igor.belwon@mentallysanemainliners.org>
-References: <20241015062746.713245-1-igor.belwon@mentallysanemainliners.org>
+	s=arc-20240116; t=1728973686; c=relaxed/simple;
+	bh=tPQDC6jWE/QSFlktB+sW1IjHMIzKkrLP0/8RKmBWHug=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=asIVvy0K8SDfj1b+ClLBkCx2r37uCX8rH4r3HxZmfzKZ7W7JLDHCuDK4YhG678LfLbDrbProGA/s4GPmHzobu3RFdtRX17bzTZ1s3LBz6avewKU2PL0mN2ohj/upr4AQBRn1064wb6iTcg7W2GgOft7/1xcCgr7p5xgACGHGYls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+nGoZq5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A7F4C4CEC7;
+	Tue, 15 Oct 2024 06:27:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728973686;
+	bh=tPQDC6jWE/QSFlktB+sW1IjHMIzKkrLP0/8RKmBWHug=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=o+nGoZq5itIkZyD5F2liKKz1Uw12xx+MPZXRBfFe/iLWO07ykJlkT2m30ClLZxPBz
+	 qXamBn8TdEgE/c9JnJLuz8WMuI7AEA8F145zGiCrrhZ/9xFleOikATBbH5jFaj6CsM
+	 1PQbn1dlLz4JDmI6Dl/JCEMB7NRSlDK1NzKbKxK+m1d7/+RuqXBYACU3kr4qMe/KJS
+	 eNJTtHPtcosha73Obd8eGjkliCk46jY+O9VTaSLXZOlTFGngSvBdNTf3c16K2/aKFr
+	 aA2BpnQB+5wQRMDGEX4xQSkKehfNKiDtPi7wRlvC3svMBN1ZT4FiL3sguD/nm6b1J9
+	 Ey6bluucObdmA==
+Message-ID: <f96fe4a7-9903-4b15-9994-985004bd6d4c@kernel.org>
+Date: Tue, 15 Oct 2024 08:27:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] dt-bindings: net: qcom,ethqos: add description for
+ qcs8300
+To: Yijie Yang <quic_yijiyang@quicinc.com>
+Cc: Vinod Koul <vkoul@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, quic_tingweiz@quicinc.com,
+ quic_aiquny@quicinc.com
+References: <20241010-schema-v1-0-98b2d0a2f7a2@quicinc.com>
+ <20241010-schema-v1-3-98b2d0a2f7a2@quicinc.com>
+ <da45vocnwnnnlo6nrxh6x4xwmnsgdp5axfvomzniw5vxlmerer@6ntl3ae4q2ci>
+ <b2f027d1-5b4a-4b73-aa26-a332df2a561b@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <b2f027d1-5b4a-4b73-aa26-a332df2a561b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add initial support for the Samsung Galaxy Note20 5G (c1s/SM-N981B)
-phone. It was launched in 2020, and it's based on the Exynos 990 SoC. It
-has only one configuration with 8GB of RAM, albeit storage options may
-differ.
+On 15/10/2024 08:21, Yijie Yang wrote:
+> 
+> 
+> On 2024-10-10 14:15, Krzysztof Kozlowski wrote:
+>> On Thu, Oct 10, 2024 at 10:03:45AM +0800, Yijie Yang wrote:
+>>> Add compatible for the MAC controller on qcs8300 platforms.
+>>> Since qcs8300 shares the same EMAC as sa8775p, so it fallback to the
+>>> compatible.
+>>>
+>>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 4 ++++
+>>>   1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>>> index 8cf29493b822..3ee5367bdde1 100644
+>>> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>>> @@ -23,6 +23,10 @@ properties:
+>>>             - enum:
+>>>                 - qcom,qcs615-ethqos
+>>>             - const: qcom,sm8150-ethqos
+>>> +      - items:
+>>> +          - enum:
+>>> +              - qcom,qcs8300-ethqos
+>>> +          - const: qcom,sa8775p-ethqos
+>>
+>> This block should go before earlier qcs615, to keep order by fallback.
 
-This device tree adds support for the following:
+--------------------------------------------------^^^^^^^^^^^^^^^^^^^^^^^
 
-- SimpleFB
-- 8GB RAM
-- Buttons
+Here
 
-Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
----
- arch/arm64/boot/dts/exynos/Makefile          |   1 +
- arch/arm64/boot/dts/exynos/exynos990-c1s.dts | 111 +++++++++++++++++++
- 2 files changed, 112 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynos990-c1s.dts
+> 
+> Why this block should positioned before qcs615, given that it comes 
+> later in alphabetical order?
 
-diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-index 18f5a3eed523..7a934499b235 100644
---- a/arch/arm64/boot/dts/exynos/Makefile
-+++ b/arch/arm64/boot/dts/exynos/Makefile
-@@ -8,5 +8,6 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	exynos7885-jackpotlte.dtb	\
- 	exynos850-e850-96.dtb		\
- 	exynos8895-dreamlte.dtb		\
-+	exynos990-c1s.dtb		\
- 	exynosautov9-sadk.dtb		\
- 	exynosautov920-sadk.dtb
-diff --git a/arch/arm64/boot/dts/exynos/exynos990-c1s.dts b/arch/arm64/boot/dts/exynos/exynos990-c1s.dts
-new file mode 100644
-index 000000000000..7bff098d7982
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynos990-c1s.dts
-@@ -0,0 +1,111 @@
-+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-+/*
-+ * Samsung Galaxy Note20 5G (c1s/SM-N981B) device tree source
-+ *
-+ * Copyright (c) 2024, Igor Belwon <igor.belwon@mentallysanemainliners.org>
-+ */
-+
-+/dts-v1/;
-+#include "exynos990.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	model = "Samsung Galaxy Note20";
-+	compatible = "samsung,c1s", "samsung,exynos990";
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		framebuffer0: framebuffer@f1000000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0 0xf1000000 (1080 * 2400 * 4)>;
-+			width = <1080>;
-+			height = <2400>;
-+			stride = <(1080 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
-+
-+	memory@80001000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x3ab00000>,
-+		      /* Memory hole */
-+		      <0x0 0xc1200000 0x1ed80000>,
-+		      /* Memory hole */
-+		      <0x0 0xe1900000 0x1a8e9800>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		cont_splash_mem: framebuffer@f1000000 {
-+			reg = <0 0xf1000000 0x13c6800>;
-+			no-map;
-+		};
-+
-+		abox_reserved: audio@f7fb0000 {
-+			reg = <0 0xf7fb0000 0x2a50000>;
-+			no-map;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&key_power &key_voldown &key_volup>;
-+		pinctrl-names = "default";
-+
-+		power-key {
-+			label = "Power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpa2 4 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		voldown-key {
-+			label = "Volume Down";
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpios = <&gpa0 4 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		volup-key {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&gpa0 3 GPIO_ACTIVE_LOW>;
-+		};
-+
-+	};
-+};
-+
-+&oscclk {
-+	clock-frequency = <26000000>;
-+};
-+
-+&pinctrl_alive {
-+	key_power: key-power-pins {
-+		samsung,pins = "gpa2-4";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-+	};
-+
-+	key_voldown: key-voldown-pins {
-+		samsung,pins = "gpa0-4";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-+	};
-+
-+	key_volup: key-volup-pins {
-+		samsung,pins = "gpa0-3";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-+	};
-+};
--- 
-2.45.2
+sa < sm
+
+Best regards,
+Krzysztof
 
 
