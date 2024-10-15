@@ -1,268 +1,197 @@
-Return-Path: <devicetree+bounces-111567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5978499F522
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:21:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E403199F533
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:27:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE740B229E6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:21:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A837F2842EF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:27:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DA21FC7FB;
-	Tue, 15 Oct 2024 18:21:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98EF1FC7DB;
+	Tue, 15 Oct 2024 18:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0OdaMpoq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U1eyWnlh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9B61FAF1F
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 18:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 026B61F9ED1;
+	Tue, 15 Oct 2024 18:27:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729016487; cv=none; b=T6oAlaofFvhFTz+FuHZfp0+roZSenJdo/GIjxzMdCxQ3Wwa0UEvmQ+CFVlAHMXEHe2EQutDBFI3UsEgOB2Ofyfx5bX0UFFi1yb8qs8KXf46lEmOMVhGcqiXAkfbCYwE48+YFjZ7k7NwPTf9SQUSio1C9eTMI7luswN+YNzQ/3MM=
+	t=1729016846; cv=none; b=rrzfJ6LAqRTjXUJLWO82elCaEFr10c/XtVKWZQ/9F3ltEKovfOiJGoIdz4TOIUBI+u599oLX9p4TP/o0wSYouuOIHsosvtAvaTcgaH6MKCM78PZKfcCjjfJnQ5X5jdhq62F2atGuJ9xVNgp0YSPn4SzNTAbkpthjxq+fo2kNq/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729016487; c=relaxed/simple;
-	bh=yc2h4BPm9lerqvkZe0C16BjSjaJRuyLKuuQpw4aslgg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sohc9PuIWBe7uITMxtsuCnDHWYQAwU7zwksRuuVjC5VkGRLVQagVeZkcQwiR59o3ikUDr/hFo29HDf4P5BsGmkhjWM2mT/LuOWpjW9P6AOjPPwE4+GFBcAF5qGYrE0YiMYzcXhVHw9AEUxk3n1uCZ1UKkVw49FOo1JkGZDR9G50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0OdaMpoq; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-430ee5c9570so66965945e9.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 11:21:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729016482; x=1729621282; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=D+aXqtZXZvimQkxefENobzS2Pd7lngBrozxAJiZ0Xjc=;
-        b=0OdaMpoqYGilHGvCmG24/rYPQoBKiq7PKbGp59bo/TS4ioFmuRJYzxIfbvNBrMdGVY
-         rc0OV0Ky6soxlpCFYvpeHFPWizwLP+OdTn0dADW5pObu4jiYU52iIy1eqpQ6+R+aO+H3
-         1lkbZc7kmXUxXcNNPk80MNBS7En0+vnJ/AXeOVtgdxAVh8/zCFFbCGiFWZ0raxizSaRh
-         fOp/yvKiPQFKIxMSkcolvAYXmfZiZG744bEJprVQopi+VeFRlJ3VmgUKOSRsVR5Fmn3P
-         YtXq7WBJ9W+3IYAwachXCR/lTQ18OHOTjiEbMIqf+3TqWE06ugmDXkye9MkEdZ70GNt2
-         +2kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729016482; x=1729621282;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D+aXqtZXZvimQkxefENobzS2Pd7lngBrozxAJiZ0Xjc=;
-        b=lVECQO5oLQ/wyfErZZoZjsUIOjhVmeemjZmxGPBWS6+VzTgt3ZPN+tbzD1MQYPH2uu
-         surpcer1UoaJyqvme6NUTEDWYIu586yF96CVHw4VrOtJ+WIh0BG5felAjSxPGC53mOLL
-         oUyg82Ful80qfkOgBGtEj0MNGfkWD2VLTcXwkzjY48gUfpNGAjzHDvl+EUIJMTdQYLc5
-         wILR4ig7qWXdutRq+W/4enlwAQ12pZe9Jl3wLb2oxpiq/jjC/fCCWU82kIcGBOegy+XQ
-         WzbEC/HTtwlvS7EH+LCic8Nd9lP8EvCBq7CsataiFjU9ljlxT++5JY8katYCXehcguYR
-         EY0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUzf2BH9F1wCQ2xICDegOOq2KNQsg/vEp1dR8xfRw/b88xQ0S4JT39xH3FuFcxTEDYCbC/RwifVYoi9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMe6HXV22MzUu+tZq8o6p7bWosooNyDDvv+D/lz19datso+wqc
-	t7fWUxd07rZzMIuDoemrAzr07eDOCQSJznGCi4gZECihpz+027fvZDw8g/T/EFI=
-X-Google-Smtp-Source: AGHT+IEd7HjqCcUyoudVa5+3g8x6nN5KRE7yRwbFauUCQQUQXSlhk1PPuVEO2uZlqnECpyuY+81AOQ==
-X-Received: by 2002:a05:600c:4e13:b0:42c:b9a5:bd95 with SMTP id 5b1f17b1804b1-43125560014mr141659805e9.0.1729016482204;
-        Tue, 15 Oct 2024 11:21:22 -0700 (PDT)
-Received: from dfj (host-79-50-238-21.retail.telecomitalia.it. [79.50.238.21])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fa7a055sm2217994f8f.1.2024.10.15.11.21.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2024 11:21:21 -0700 (PDT)
-Date: Tue, 15 Oct 2024 20:19:52 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v6 2/8] dt-bindings: iio: dac: adi-axi-dac: add ad3552r
- axi variant
-Message-ID: <jscqeduc4dvvpu3z7a3jc7lfpjlzhkknfcj2fuazfciskezn5y@xwp42o6rswvt>
-References: <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-0-eeef0c1e0e56@baylibre.com>
- <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-2-eeef0c1e0e56@baylibre.com>
- <a27eb208-0fa1-45cc-bb0c-18a03b6cce4e@baylibre.com>
- <imlhddzkf5eefr64n73pgtbvyax54746v6wzlwngryzzwrbw4h@uaaom7tbod5m>
- <776ed45e-7ca8-42e8-9050-86928f223965@baylibre.com>
- <35d247418b8bd43695644f395901b117a1014109.camel@gmail.com>
+	s=arc-20240116; t=1729016846; c=relaxed/simple;
+	bh=gJQ+QtaJu95zsVAAg22z4qlMvHm4Bi0RoYZIPGW4U+0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KKbrKJvpicyYD2akBqWgiobASxPxrno1qYN09riPmQlt7NT0hzL7N2eYR5V8EG3Y58wqnKBf5zD4FezxS9AbMg/e7DLKUJhhE/gAf7iLnNXRIGlGP26SvKkteWFiK1ykckRGxd8GTHpXycsOUwoLEagfTyEFgRU6wTur0uARBC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=U1eyWnlh; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49FBejj3019629;
+	Tue, 15 Oct 2024 18:27:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ZZiwqF20rDtQLdlXXlqvzw
+	lZsLog4CB3TcNilWiCjSI=; b=U1eyWnlhg0VdjLhG3CVeVDC1XGDZMciZ3Q9xH/
+	DCml/fOB0I4c53jvzjsWXWOx9LenuVY8BXEknscATh0HHQ3A/MzjLWqc9r9j9dG1
+	QpCYA1+OMvaEVQiPr5f0l6ySbTscMhmlnec1uvZd5nyQm5aFlmMuac44csNRknFs
+	VFGSSJkRYwnT1tj3UgVeWCsEdL+jaHk8lKocCWpamQ4iEedfnmhEhnYdg4I3OQhA
+	1cbfrUlaSQSCt/jpEBNvKiZEwRU8zDJ22q4KVq08kvoM76lDnb3lIO/z7AXrfzOo
+	gQuFEySi/+88Qerqsv0XmmZPMaS+ELFNObr6xO/Z7VPXZSnA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 427jd90jpv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Oct 2024 18:27:16 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49FIRF0Z003860
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Oct 2024 18:27:15 GMT
+Received: from hu-rajkbhag-blr.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 15 Oct 2024 11:27:11 -0700
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+To: <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Subject: [PATCH v2 00/22] wifi: ath12k: add Ath12k AHB driver support for IPQ5332
+Date: Tue, 15 Oct 2024 23:56:15 +0530
+Message-ID: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="y"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <35d247418b8bd43695644f395901b117a1014109.camel@gmail.com>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4GOuJXn4R8GBzzws6oxtlsJKbqR3CP6Z
+X-Proofpoint-ORIG-GUID: 4GOuJXn4R8GBzzws6oxtlsJKbqR3CP6Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 suspectscore=0 impostorscore=0 bulkscore=0
+ mlxscore=0 mlxlogscore=850 malwarescore=0 priorityscore=1501 adultscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410150125
 
-On 15.10.2024 16:51, Nuno Sá wrote:
-> On Tue, 2024-10-15 at 09:40 -0500, David Lechner wrote:
-> > On 10/15/24 2:44 AM, Angelo Dureghello wrote:
-> > > On 14.10.2024 16:13, David Lechner wrote:
-> > > > On 10/14/24 5:08 AM, Angelo Dureghello wrote:
-> > > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > > > 
-> > > > > Add a new compatible and related bindigns for the fpga-based
-> > > > > "ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
-> > > > > 
-> > > > > The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
-> > > > > generic AXI "DAC" IP, intended to control ad3552r and similar chips,
-> > > > > mainly to reach high speed transfer rates using a QSPI DDR
-> > > > > (dobule-data-rate) interface.
-> > > > > 
-> > > > > The ad3552r device is defined as a child of the AXI DAC, that in
-> > > > > this case is acting as an SPI controller.
-> > > > > 
-> > > > > Note, #io-backend is present because it is possible (in theory anyway)
-> > > > > to use a separate controller for the control path than that used
-> > > > > for the datapath.
-> > > > > 
-> > > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   | 56
-> > > > > ++++++++++++++++++++--
-> > > > >  1 file changed, 53 insertions(+), 3 deletions(-)
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > > > > b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > > > > index a55e9bfc66d7..2b7e16717219 100644
-> > > > > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > > > > @@ -19,11 +19,13 @@ description: |
-> > > > >    memory via DMA into the DAC.
-> > > > >  
-> > > > >    https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
-> > > > > +  https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
-> > > > >  
-> > > > >  properties:
-> > > > >    compatible:
-> > > > >      enum:
-> > > > >        - adi,axi-dac-9.1.b
-> > > > > +      - adi,axi-ad3552r
-> > > > >  
-> > > > >    reg:
-> > > > >      maxItems: 1
-> > > > > @@ -36,7 +38,14 @@ properties:
-> > > > >        - const: tx
-> > > > >  
-> > > > >    clocks:
-> > > > > -    maxItems: 1
-> > > > > +    minItems: 1
-> > > > > +    maxItems: 2
-> > > > > +
-> > > > > +  clock-names:
-> > > > > +    minItems: 1
-> > > > > +    items:
-> > > > > +      - const: s_axi_aclk
-> > > > > +      - const: dac_clk
-> > > > >  
-> > > > >    '#io-backend-cells':
-> > > > >      const: 0
-> > > > > @@ -47,7 +56,16 @@ required:
-> > > > >    - reg
-> > > > >    - clocks
-> > > > >  
-> > > > > -additionalProperties: false
-> > > > > +allOf:
-> > > > > +  - if:
-> > > > > +      properties:
-> > > > > +        compatible:
-> > > > > +          contains:
-> > > > > +            const: adi,axi-ad3552r
-> > > > > +    then:
-> > > > > +      $ref: /schemas/spi/spi-controller.yaml#
-> > > >   +      properties:
-> > > >   +        clocks:
-> > > >   +          minItems: 2
-> > > >   +        clock-names:
-> > > >   +          minItems: 2
-> > > >   +      required:
-> > > >   +        clock-names
-> > > >   +    else:
-> > > >   +      properties:
-> > > >   +        clocks:
-> > > >   +          maxItems: 1
-> > > >   +        clock-names:
-> > > >   +          maxItems: 1
-> > > > 
-> > > > We could make the checking of clocks more strict to show
-> > > > the intent:
-> > > > 
-> > > > adi,axi-dac-9.1.b only has 1 clock and clock-names is optional.
-> > > > 
-> > > > adi,axi-ad3552r always has 2 clocks and clock-names is required.
-> > > > 
-> > > is this really necessary ? At v.6 would not fix things
-> > > not reallyh necessary.
-> > >  
-> > It is just a suggestion from me. I will leave it to the maintainers
-> > to say if it is necessary or not. (If they don't say anything, then
-> > we'll take it to mean it isn't necessary.)
-> > 
-> 
-> Not a DT maintainer but IMHO, having these kind of checks in the bindings is very
-> useful.
->
+Currently, Ath12k driver only supports WiFi devices that are based on
+PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
+Ath12k AHB support for IPQ5332.
 
-added the above checks, but they are producing errors.
+IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
+device:
+- Add hardware parameters for IPQ5332.
+- CE and CMEM register address space in IPQ5332 is separate from WCSS
+  register space. Hence, add logic to remap CE and CMEM register
+  address.
+- Add support for fixed QMI firmware memory for IPQ5332.
+- Support userPD handling for WCSS secure PIL driver to enable ath12k
+  AHB support.
 
-I propose this:
+Depends-On: [PATCH V7 0/5] remove unnecessary q6 clocks
+Depends-On: [PATCH V2 0/4] Add new driver for WCSS secure PIL loading
+Link: https://lore.kernel.org/all/20240820055618.267554-1-quic_gokulsri@quicinc.com/
+Link: https://lore.kernel.org/all/20240829134021.1452711-1-quic_gokulsri@quicinc.com/
 
-  ...
+Balamurugan S (9):
+  wifi: ath12k: add ath12k_hw_params for IPQ5332
+  wifi: ath12k: add ath12k_hw_hal_params for IPQ5332
+  wifi: ath12k: avoid m3 firmware download in AHB device IPQ5332
+  wifi: ath12k: add new CMEM read-write ath12k_hif_ops
+  wifi: ath12k: remap CMEM register space for IPQ5332
+  wifi: ath12k: fix incorrect CE addresses
+  wifi: ath12k: remap CE register space for IPQ5332
+  wifi: ath12k: add AHB driver support for IPQ5332
+  wifi: ath12k: enable ath12k AHB support
 
-  clocks:
-    minItems: 1
-    maxItems: 2
+P Praneesh (4):
+  wifi: ath12k: refactor ath12k_hw_regs structure
+  wifi: ath12k: add ath12k_hw_regs for IPQ5332
+  wifi: ath12k: add ath12k_hw_ring_mask for IPQ5332
+  wifi: ath12k: add CE configurations for IPQ5332
 
-  clock-names:
-    minItems: 1
-    maxItems: 2
+Raj Kumar Bhagat (5):
+  dt-bindings: net: wireless: describe the ath12k AHB module
+  arm64: dts: qcom: add wifi node for IPQ5332 based RDP441
+  wifi: ath12k: add support for fixed QMI firmware memory
+  wifi: ath12k: add BDF address in hardware parameter
+  wifi: ath12k: convert tasklet to BH workqueue for CE interrupts
 
-  '#io-backend-cells':
-    const: 0
+Sowmiya Sree Elavalagan (4):
+  wifi: ath12k: Power up root PD
+  wifi: ath12k: Register various userPD interrupts and save SMEM entries
+  wifi: ath12k: Power up userPD
+  wifi: ath12k: Power down userPD
+---
+v2:
+- Integrated the â€œSupport userPD handling for WCSS secure PIL driverâ€
+  patch series with the Ath12k AHB bring-up patch.
+- Updated DT binding and DTS files to align with the new Rproc design.
+- Addressed review comments on RFC patch series v1 of
+  â€œwifi: ath12k: add Ath12k AHB driver support for IPQ5332â€.
+- Removed the RFC tag as all dependency patch series are now compilable.
 
-required:
-  - compatible
-  - dmas
-  - reg
-  - clocks
-
-allOf:
-  - if:
-      properties:
-        compatible:
-          contains:
-            const: adi,axi-ad3552r
-    then:
-      $ref: /schemas/spi/spi-controller.yaml#
-      properties:
-        clocks:
-          minItems: 2
-          maxItems: 2
-        clock-names:
-          items:
-            - const: s_axi_aclk
-            - const: dac_clk
-    else:
-      properties:
-        clocks:
-          maxItems: 1
-        clock-names:
-          items:
-            - const: s_axi_aclk
-
-unevaluatedProperties: false
-
-examples:
-...
-
-Keeping clock-names not required, for backward compatibility.
+v1: https://patchwork.kernel.org/project/linux-wireless/cover/20240814094323.3927603-1-quic_rajkbhag@quicinc.com/
+---
+ .../net/wireless/qcom,ath12k-ahb.yaml         |  293 ++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts   |   59 +-
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         |  108 +-
+ drivers/net/wireless/ath/ath12k/Kconfig       |    6 +
+ drivers/net/wireless/ath/ath12k/Makefile      |    1 +
+ drivers/net/wireless/ath/ath12k/ahb.c         | 1326 +++++++++++++++++
+ drivers/net/wireless/ath/ath12k/ahb.h         |   80 +
+ drivers/net/wireless/ath/ath12k/ce.c          |   90 ++
+ drivers/net/wireless/ath/ath12k/ce.h          |   18 +-
+ drivers/net/wireless/ath/ath12k/core.c        |   35 +-
+ drivers/net/wireless/ath/ath12k/core.h        |   19 +-
+ drivers/net/wireless/ath/ath12k/dp.c          |   10 +-
+ drivers/net/wireless/ath/ath12k/hal.c         |   82 +-
+ drivers/net/wireless/ath/ath12k/hal.h         |   69 +-
+ drivers/net/wireless/ath/ath12k/hif.h         |   13 +
+ drivers/net/wireless/ath/ath12k/hw.c          |  482 ++++++
+ drivers/net/wireless/ath/ath12k/hw.h          |   16 +
+ drivers/net/wireless/ath/ath12k/pci.c         |   28 +-
+ drivers/net/wireless/ath/ath12k/pci.h         |    2 +
+ drivers/net/wireless/ath/ath12k/qmi.c         |  169 ++-
+ drivers/net/wireless/ath/ath12k/qmi.h         |    1 +
+ 21 files changed, 2793 insertions(+), 114 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+ create mode 100644 drivers/net/wireless/ath/ath12k/ahb.c
+ create mode 100644 drivers/net/wireless/ath/ath12k/ahb.h
 
 
-Regards,
-  Angelo
- 
-> - Nuno Sá
+base-commit: 69eabe24843f238e79a6dbbd2b3fcc8eef39d6b8
+prerequisite-patch-id: bfefff55ba6a3fdf8930b3b4d48746bc9cd5a0a0
+prerequisite-patch-id: 9e143f9cd10add55d2fd52bac0e538b904d6dee5
+prerequisite-patch-id: cb987ee3dbc145fee1135307badb61c0e21f0ccd
+prerequisite-patch-id: 14b990ceacec658b924c78d91ce33b45f70ca112
+prerequisite-patch-id: b1f6cc6ae066f3e10b5626ff0af3267449d613d3
+prerequisite-patch-id: be810c2435b44ea08527d739510d18770e732dfa
+prerequisite-patch-id: 1a946f3d5f563f0de825606b276dbaee695aa5b8
+prerequisite-patch-id: 97f4a586c7040822e0e7977bd1599333ad02237b
+prerequisite-patch-id: bc306b2998d1afe66757052e33dc685ae4e7a627
+-- 
+2.34.1
+
 
