@@ -1,204 +1,142 @@
-Return-Path: <devicetree+bounces-111303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9CCA99E179
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:47:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2EAF99E190
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:50:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 610471F228A6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:47:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F4B01F254CF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B359E1CF296;
-	Tue, 15 Oct 2024 08:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8BF31B85D7;
+	Tue, 15 Oct 2024 08:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="OAP9RAR6"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EmWB4ip4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4854B1C3F0A;
-	Tue, 15 Oct 2024 08:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A62518A6A8;
+	Tue, 15 Oct 2024 08:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728982050; cv=none; b=FqGZvYERVX+jmoLJKRExOE7qK4hAsSaVAD+Fxk2Uz3wnso5zurIAiRUiSx+oUKTc1WZiBmyNxk/f5nMr1MRDfdFUT0qUpWmjCR8GTQoFOe7hSb6xko+VWPgSSI3CxyUHciZG6fgrPZ4/aNILF/LwkKYdg07qEZxfyP/Fq2ebmGg=
+	t=1728982231; cv=none; b=Z+4fqqVXKNyfVrveGMBv/2MiykRTHhqLGMToYQZxB61mH/DKzy3b4Osfq/UdKOp54E+ShWKFiO370vO0dNSyBB0H2oN69uG6ApV0U8keePMbCRKNPhYktremrte/AMU8j8sPysyd4g00eamVWXJo6l6rgqC0624iZnsOW5vKtNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728982050; c=relaxed/simple;
-	bh=DnIc4xM2zJ+Fy6DQgI0gV5Of6HlbyLsvO0xNd1WYuqI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s6G3BIDXAkxkDS2EmfEK9pjskf1ESIWcDB+8NB4GSHRxgkRYllYL4TKBiYAe9xhnuEF1h481dxWx/cBYNql8Wa/5tcfDdCChujDUHZYf9jVBr2uNsosK8yyV7izl8tJHqKzs6jjqATDA6DwoeVL/BcWKEAwHMm1MJFsVfxAZMyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=OAP9RAR6; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vpyNKncwLHQJiPMjN9dAouFfUchGeFmb6bGSak7LW2g=; b=OAP9RAR6SKFYIB8O4nUEdjkmAo
-	X/KuYnRtEKUT8IoebiLtMthdIVBq9ZFt4TR8FwWTEDSsv9xD0yoRSqv+Y8KhdWz+5u6kG5QnyYdyR
-	CCdnG1IiRAWMlDZVYN8pk2T1Fw6DVAOlLFNjq7eNuwq2HDqOcoY8Qc4oR8iU3oxA9yI84nlYpgkXu
-	4PNQaRigXOo9stQUxFvwhjSq3L5LiwJeXnpX1sFyPfLHBB/50so58CKtDamMppyzl3U/nYoaf6d28
-	nqxkmLwOHmIGf4RAQLoblbB8HBKab9eqvafQBADn/XRyRvnKnKBD9UquC+3JTD83QTQ5kXXmkAaI4
-	tNNQrFdA==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1t0dDA-00084I-8r; Tue, 15 Oct 2024 10:47:24 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Frank Wang <frawang.cn@gmail.com>,
- Shawn Lin <shawn.lin@rock-chips.com>
-Cc: shawn.lin@rock-chips.com, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- william.wu@rock-chips.com, tim.chen@rock-chips.com,
- Kever Yang <kever.yang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>
-Subject: Re: [PATCH 2/2] phy: rockchip-naneng-combo: Support rk3576
-Date: Tue, 15 Oct 2024 10:47:23 +0200
-Message-ID: <1904911.CQOukoFCf9@diego>
-In-Reply-To: <aac59920-db0b-4b3a-af1b-58e8e4d3a08b@rock-chips.com>
-References:
- <20241015013351.4884-1-frawang.cn@gmail.com> <1981070.PYKUYFuaPT@diego>
- <aac59920-db0b-4b3a-af1b-58e8e4d3a08b@rock-chips.com>
+	s=arc-20240116; t=1728982231; c=relaxed/simple;
+	bh=1NQgzWnE3190zr4gxbyrXYFAKHrlKNYxNmEOJhdHd4Q=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=Uj7v1DHwUXduut2RTirItQx0pVuC/mdELJGX6Hcl3U+nBTdQbsI45roz4xThlBv9Mb783azfMlubh7ol96zZuIwSHRi1/SYSwFqxyWh09yEkVgeNA7h9SochN4DokWw8klpTJNpGgXp/NMzasACnfXpGNHI5sMeC9n4NKWbaB/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EmWB4ip4; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6E16A1C0010;
+	Tue, 15 Oct 2024 08:50:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1728982227;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4xnDRAazvPzZ47xJTR0xO8huRjhANCrx409P3pTb++k=;
+	b=EmWB4ip4lODwtZPBuBqTkUndqJ0ebdPh28tB+aZXccgUEd5jOJMQoiYWKsN+rR61Jzbecv
+	PDOPK8TrQklixhL4utXeYArWGYJEtqnpf1GvEB6uo26TnrVI6ZdLbDJmwsl1QiGYl9fIe6
+	loqbMWI8vic1ta2DuaKJy3jxSU7i7DnncPQC7qGB/CD6Wxbn0w28X+JUpMnyi7Ew3DaHXQ
+	JqS6kELA8MTXbeeK7QkxK3uHgV5NkY29rQVd4DCQeD3qaHFP7AwjCsC557TSmkCUuGdQPj
+	2ctBBdqdBIrbpclQBfPAvDnksCBOgbE5M8Pj1AOSoKrT2C+3ufSgsU2/t62xCQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 15 Oct 2024 10:50:26 +0200
+Message-Id: <D4W91PHV3238.3SL8CZLC15V5O@bootlin.com>
+Cc: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>
+To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Michael
+ Turquette" <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v5 0/4] Add Mobileye EyeQ clock support
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20241007-mbly-clk-v5-0-e9d8994269cb@bootlin.com>
+In-Reply-To: <20241007-mbly-clk-v5-0-e9d8994269cb@bootlin.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hi Shawn,
+Hello Stephen,
 
-Am Dienstag, 15. Oktober 2024, 10:39:28 CEST schrieb Shawn Lin:
-> =E5=9C=A8 2024/10/15 14:15, Heiko St=C3=BCbner =E5=86=99=E9=81=93:
-> > Am Dienstag, 15. Oktober 2024, 03:33:51 CEST schrieb Frank Wang:
-> >> From: Kever Yang <kever.yang@rock-chips.com>
-> >>
->=20
-> ...
->=20
-> >> +			writel(0x02, priv->mmio + (0xb << 2));
-> >> +			writel(0x57, priv->mmio + (0xd << 2));
-> >> +
-> >> +			writel(0x5f, priv->mmio + (0xf << 2));
-> >=20
-> > This does includes both the value as well as the register addresses,
-> > because a hex-value with a bit shift makes that even less readable.
-> >=20
->=20
-> Actually, it's more readable when we need to debug, IMO. Because the
-> PHY document provided is listing the registers just like what the patch
-> did(0xb/0xd/0xf). So for example, we could easily find 0xb in the=20
-> document, which refers to su_trim[15:8].
+On Mon Oct 7, 2024 at 3:49 PM CEST, Th=C3=A9o Lebrun wrote:
+> This series adds a platform driver dealing with read-only PLLs derived
+> from the main crystal, and some divider clocks based on those PLLs. It
+> also acts at the one instantiating reset and pinctrl auxiliary devices.
 
-Documentation-wise the rk3576 has gotten worse, compared to the
-rk3588 and before.  I guess you're refering to a document that is not
-part of the trm-part1 pdf I guess.
+I'd be curious to get feedback on this series?
+Could it make it before the next merge window?
 
-So I guess using register numbers somewhat matching the sparse
-document you have can be fine, but I guess try to use constants where
-possible.
+V4 fixed all your comments but one. You implied the linked list might be
+useless, but I am not convinced:
 
-The block above though at least needs a comment about what is
-happening there.
+> I had a pending question [0], asking for confirmation that the static
+> linked list to inherit cells from of_clk_init() stage to platform
+> device probe is indeed the right solution. As -rc1 got released I sent
+> the new revision anyway.
+>
+> [0]: https://lore.kernel.org/lkml/D4ELMFAUQYZ7.3LXGQZJSX68UF@bootlin.com/
 
+Quoting here the original email for full context:
 
-Heiko
+On Tue Sep 24, 2024 at 4:53 PM CEST, Th=C3=A9o Lebrun wrote:
+> On Wed Sep 18, 2024 at 7:28 AM CEST, Stephen Boyd wrote:
+> > Quoting Th=C3=A9o Lebrun (2024-07-30 09:04:46)
+> > > +       list_add_tail(&priv->list, &eqc_list);
+> >
+> > The list is also kind of unnecessary. Set a bool in the match_data and
+> > move on? We could have some sort of static_assert() check to make sure
+> > if there's a CLK_OF_DECLARE_DRIVER() then the bool is set in the
+> > match_data for the driver. Such a design is cheaper than taking a lock,
+> > adding to a list.
+>
+> This list's main goal is not to know what was early-inited. Its only
+> reason for existence is that we want to get, at eqc_probe(), the cells
+> pointer allocated at eqc_init().
+>
+> struct eqc_priv {
+> 	/* this field is why we store priv inside a linked list: */
+> 	struct clk_hw_onecell_data	*cells;
+> 	/* the rest, we don't care much: */
+> 	const struct eqc_early_match_data *early_data;
+> 	const struct eqc_match_data	*data;
+> 	void __iomem			*base;
+> 	struct device_node		*np;
+> 	struct list_head		list;
+> };
+>
+> I do not see how to do that with a bool. We could put the pointer into
+> the match data, but that would mean we'd have to make them writable
+> (currently static const data). We are talking about a linked list with
+> two items in the worst case (EyeQ6H), accessed twice.
+>
+> The reason we store the whole of priv: simpler code and we avoid mapping
+> registers twice (once at eqc_init() and once at eqc_probe()).
+>
+> Can you confirm the current static linked list approach (without any
+> spinlock) will be good for next revision?
 
-> >> +		}
-> >> +		break;
-> >> +	case REF_CLOCK_25MHz:
-> >> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_25m, tru=
-e);
-> >> +		break;
-> >> +	case REF_CLOCK_100MHz:
-> >> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_100m, tr=
-ue);
-> >> +		if (priv->type =3D=3D PHY_TYPE_PCIE) {
-> >> +			/* gate_tx_pck_sel length select work for L1SS */
-> >> +			writel(0xc0, priv->mmio + 0x74);
-> >> +
-> >> +			/* PLL KVCO tuning fine */
-> >> +			rockchip_combphy_updatel(priv, GENMASK(4, 2), 0x4 << 2, 0x20 << 2);
-> >> +
-> >> +			/* Set up rx_trim: PLL LPF C1 85pf R1 1.25kohm */
-> >> +			writel(0x4c, priv->mmio + (0x1b << 2));
-> >> +
-> >> +			/* Set up su_trim: T3_P1 650mv */
-> >> +			writel(0x90, priv->mmio + (0xa << 2));
-> >> +			writel(0x43, priv->mmio + (0xb << 2));
-> >> +			writel(0x88, priv->mmio + (0xc << 2));
-> >> +			writel(0x56, priv->mmio + (0xd << 2));
-> >> +		} else if (priv->type =3D=3D PHY_TYPE_SATA) {
-> >> +			/* downward spread spectrum +500ppm */
-> >> +			rockchip_combphy_updatel(priv, GENMASK(7, 4), 0x50, 0x1f << 2);
-> >> +
-> >> +			/* ssc ppm adjust to 3500ppm */
-> >> +			rockchip_combphy_updatel(priv, GENMASK(3, 0), 0x7, 0x9 << 2);
-> >> +		}
-> >> +		break;
-> >> +	default:
-> >> +		dev_err(priv->dev, "Unsupported rate: %lu\n", rate);
-> >> +		return -EINVAL;
-> >> +	}
-> >> +
-> >> +	if (priv->ext_refclk) {
-> >> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_ext, tru=
-e);
-> >> +		if (priv->type =3D=3D PHY_TYPE_PCIE && rate =3D=3D REF_CLOCK_100MHz=
-) {
-> >> +			writel(0x10, priv->mmio + (0x20 << 2));
-> >> +
-> >> +			writel(0x0c, priv->mmio + (0x1b << 2));
-> >> +
-> >> +			/* Set up su_trim: T3_P1 650mv */
-> >> +			writel(0x90, priv->mmio + (0xa << 2));
-> >> +			writel(0x43, priv->mmio + (0xb << 2));
-> >> +			writel(0x88, priv->mmio + (0xc << 2));
-> >> +			writel(0x56, priv->mmio + (0xd << 2));
-> >> +		}
-> >> +	}
-> >> +
-> >> +	if (priv->enable_ssc) {
-> >> +		rockchip_combphy_updatel(priv, GENMASK(4, 4), BIT(4), 0x7 << 2);
-> >> +
-> >> +		if (priv->type =3D=3D PHY_TYPE_PCIE && rate =3D=3D REF_CLOCK_24MHz)=
- {
-> >> +			/* Xin24M T0_1 650mV */
-> >> +			writel(0x00, priv->mmio + (0x10 << 2));
-> >> +			writel(0x32, priv->mmio + (0x11 << 2));
-> >> +			writel(0x00, priv->mmio + (0x1b << 2));
-> >> +			writel(0x90, priv->mmio + (0x0a << 2));
-> >> +			writel(0x02, priv->mmio + (0x0b << 2));
-> >> +			writel(0x08, priv->mmio + (0x0c << 2));
-> >> +			writel(0x57, priv->mmio + (0x0d << 2));
-> >> +			writel(0x40, priv->mmio + (0x0e << 2));
-> >> +			writel(0x5f, priv->mmio + (0x0f << 2));
-> >> +			writel(0x10, priv->mmio + (0x20 << 2));
-> >> +		}
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +}
-> >=20
-> >=20
-> >=20
-> >=20
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
->=20
->=20
+Thanks,
 
-
-
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
