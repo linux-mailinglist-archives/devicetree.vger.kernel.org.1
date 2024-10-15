@@ -1,186 +1,142 @@
-Return-Path: <devicetree+bounces-111415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F4299EA43
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:48:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07F2899EA56
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:53:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F49AB24115
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:48:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBAD51F21E7F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9AD1C07F3;
-	Tue, 15 Oct 2024 12:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD6A1C07D5;
+	Tue, 15 Oct 2024 12:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VWVUQEiv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5gm2GLF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587831C07E0;
-	Tue, 15 Oct 2024 12:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5531C07C4;
+	Tue, 15 Oct 2024 12:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728996495; cv=none; b=mpD90ZA/UDGkpMxIszY8OyLIYaYpfZgceekzLtla+V+/LA2pquaJULFroilZkKoL3uRHt9WRiOT+4Wkbi1vtVpolxDMVLASj5CZxrQ3VUhKJr+yi9bhtg/20Poy58Dw+l5L3wIv5q+gCMd2ztWZ2A+jlrdDlt68wA1KXl9q9l04=
+	t=1728996812; cv=none; b=eGXiCnIvbG5U71kPSvosSHJTaoAacCsZNspKKZrKbqsEvAvyn3eKwpd4e+qnSadLCRCKPdH12XnZ6cOaEu/zQ9CO+UdnTkaX5JQNGesXTMy9x2xu+ajHSGRPCCWu7X/5jTeJ5d5uGwi/1ZjhViwvcYmp3wnu/TkerJH2As1H7Ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728996495; c=relaxed/simple;
-	bh=wsTS2WCqFOpO0DvNwr7sz9CyhmcJQl/xQAKXdzpLRqI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N4/yH3cy+cXr/jcaa34QUF9F0lErl20gB/T6bndtPmxKfSS+Kb0uFkAgMmIo+Azv1aRSXWTCmbp7bHy9m5UTujZrJIKNdZkFjeTaP+sUEbxmfjMFzba48USKw+vxSauYiJHDgKDqamPU3mxANWPzv/pB9QvXxXi7l5ly/V/5pDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VWVUQEiv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD2C9C4CED1;
-	Tue, 15 Oct 2024 12:48:14 +0000 (UTC)
+	s=arc-20240116; t=1728996812; c=relaxed/simple;
+	bh=ZKf9/CxVREmj132u1cKYBcG4ddSqcH0nUrjmlXb6ajg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WYmCez6Ava7K/3P1c0g9LeXWb8qxWljxrjOQ4wipImivF0lT79UxKbeRU+pfk/v3EXzuTb8alPjB1Y8xrWp7OfgCF0AMjnx3HvJW0V74Og2OwgVP8GHTKUneHpiXLS5CrALpID04g0rau1fFHuClDXgxLIIUytXiYHQJ/QYNIOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5gm2GLF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F33CEC4CEC6;
+	Tue, 15 Oct 2024 12:53:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728996494;
-	bh=wsTS2WCqFOpO0DvNwr7sz9CyhmcJQl/xQAKXdzpLRqI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VWVUQEiv5lwhjRg9Kk6XU34TBrmeKBVaNSD9I/VAYSlKhXhMavscUFgFmaNQT31RD
-	 TPSMxgDSxUqbRgHs1tjTfKUCDHLySZa9m4qQoWmkSNClgIeS5yVG/wMcq/f79d5k1E
-	 R2m87bIysPWEC5VyFZI2NK3UIjWPBuC2Ze88U49PbDYMp3N6+SZhm00E5A4QmxA9a/
-	 OxHXiztUx0hb0FHg34uI4V16GRdlDzVqkgPRnqTgd3GOV//IIPeyuoF5sf0DQA6RTK
-	 NvZdqXff5PSaFgKj2OV77MCC3cIXufZJ+SQL9a1q1nklY8XOgjm6H6wjC5b2EGDP8b
-	 Z0rx+NO1xBz9Q==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t0gyI-000000004da-3YUb;
-	Tue, 15 Oct 2024 14:48:19 +0200
-Date: Tue, 15 Oct 2024 14:48:18 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add Parade PS8830 Type-C
- retimer bindings
-Message-ID: <Zw5kkhkT62pDoW8I@hovoldconsulting.com>
-References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
- <20241004-x1e80100-ps8830-v2-1-5cd8008c8c40@linaro.org>
+	s=k20201202; t=1728996812;
+	bh=ZKf9/CxVREmj132u1cKYBcG4ddSqcH0nUrjmlXb6ajg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=H5gm2GLFdq6bMu2FyuM8677593LfAO53e7QBMwnqvhVxNjuDtQMAg5G78UiA6DEv0
+	 /4CHRvC8DqK35jsNbnP7tPGtrrAIvLqrSNaXryxqgJOSq0/dJz01pO1l3JvU+BoXqe
+	 Bta7d8xzOVjKuTzzbXYbd4hyTT2RBeSXRXqoqiIyjcO8IwCBG+DKTEa6qTgKUVbNfy
+	 d8FIsEO/edvVSQS7LMMxAw1QrtCwdKRy8oaBgkFd6ItmMLyl2Q3dkKkZqsnvoRuuEH
+	 u000lyJ+Ioi9dWxqGlrGMe8sZNRzaJ+nJFmhG/TlSFXyATJQq+E27/s/idyH9yoWIZ
+	 YjewrCUzFy9rw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DB459D2169C;
+	Tue, 15 Oct 2024 12:53:31 +0000 (UTC)
+From: George Chan via B4 Relay <devnull+gchan9527.gmail.com@kernel.org>
+Subject: [PATCH RFC/RFT 0/3] Add support to Novatek's touch IC nt36xxx
+Date: Tue, 15 Oct 2024 20:53:28 +0800
+Message-Id: <20241015-nt36xxx-v1-0-3919d0bffee6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241004-x1e80100-ps8830-v2-1-5cd8008c8c40@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMhlDmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDA0NT3bwSY7OKigpdA/NUE1OLpEQjC3NzJaDqgqLUtMwKsEnRsbW1AFr
+ uf6xZAAAA
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Del Regno <kholk11@gmail.com>, 
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, George Chan <gchan9527@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728996810; l=2271;
+ i=gchan9527@gmail.com; s=20241015; h=from:subject:message-id;
+ bh=ZKf9/CxVREmj132u1cKYBcG4ddSqcH0nUrjmlXb6ajg=;
+ b=S7DiFUAoX5Tavd4PRUkeZlzJGf/fPE5DU3MYMBVaHeQCigqYlYYD5vEs5HinxCLbv3MgupxqE
+ 9XZQcrs3z+tCypOMVonTRvFsy9GHySqSNuW27mOhh5rqCGptG1iH31T
+X-Developer-Key: i=gchan9527@gmail.com; a=ed25519;
+ pk=dscYWhT+BiQOBMpPE19NFQAjBBmcpipc6zdf2MTze/U=
+X-Endpoint-Received: by B4 Relay for gchan9527@gmail.com/20241015 with
+ auth_id=248
+X-Original-From: George Chan <gchan9527@gmail.com>
+Reply-To: gchan9527@gmail.com
 
-On Fri, Oct 04, 2024 at 04:57:37PM +0300, Abel Vesa wrote:
-> Document bindings for the Parade PS8830 Type-C retimer. This retimer is
-> currently found on all boards featuring Qualcomm Snapdragon X Elite SoCs
-> and it is needed to provide altmode muxing between DP and USB, but also
-> connector orientation handling between.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Initially support for nt36xxx series spi device. Below 
+list all supported varients:
 
-> +  clocks:
-> +    items:
-> +      - description: XO Clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xo
+ - NT36675
+ - NT36672A
+ - NT36772(?)
+ - NT36525
+ - NT36676F
 
-> +  vdd-supply:
-> +    description: power supply (1.07V)
-> +
-> +  vdd33-supply:
-> +    description: power supply (3.3V)
-> +
-> +  vdd33-cap-supply:
-> +    description: power supply (3.3V)
-> +
-> +  vddar-supply:
-> +    description: power supply (1.07V)
-> +
-> +  vddat-supply:
-> +    description: power supply (1.07V)
-> +
-> +  vddio-supply:
-> +    description: power supply (1.2V or 1.8V)
+I had tested it with Redmi note 9 pro, aka NT36675 chip.
 
-> +required:
-> +  - compatible
-> +  - reg
+This series is based on my repo below:
+https://github.com/99degree/linux/tree/nt36xxx
 
-Presumably all of the supplies are also required.
+There is a boot-and-functional tree for miatoll device:
+https://github.com/99degree/linux/tree/working-20241015
 
-Similar for clocks, etc.
+And the older dev history:
+https://github.com/99degree/linux/tree/nt36xxx_old
+https://github.com/99degree/linux/tree/working-20230528/drivers/input/touchscreen
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        typec-mux@8 {
-> +            compatible = "parade,ps8830";
-> +            reg = <0x8>;
-> +
-> +            vdd-supply = <&vreg_rtmr_1p15>;
-> +            vdd33-supply = <&vreg_rtmr_3p3>;
-> +            vdd33-cap-supply = <&vreg_rtmr_3p3>;
-> +            vddar-supply = <&vreg_rtmr_1p15>;
-> +            vddat-supply = <&vreg_rtmr_1p15>;
-> +            vddio-supply = <&vreg_rtmr_1p8>;
-> +
-> +            reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_HIGH>;
+This driver is based on 
+AngeloGioacchino Del Regno for i2c based drive
+https://patchwork.kernel.org/project/linux-input/cover/20201028221302.66583-1-kholk11@gmail.com/#24831734
 
-The reset line is active low.
+_AND_
+Neil Armstrong for the spi device codes
+https://patchwork.kernel.org/project/linux-input/patch/20231213-topic-goodix-berlin-upstream-initial-v13-2-5d7a26a5eaa2@linaro.org/
 
-> +
-> +            retimer-switch;
-> +            orientation-switch;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
+Download fw function is adapted from original vendor driver
+https://github.com/LineageOS/android_kernel_xiaomi_sm6250/tree/lineage-21/drivers/input/touchscreen/nt36xxx_spi/
 
-Please add a newline before each child node for readability.
+Panel follower functionality is finally added.
 
-> +                    usb_con_ss: endpoint {
+Since the driver is split into core+spi so i2c function is relatively
+easily to add.
 
-We typically avoid adding unused labels to the examples, but perhaps
-here it serves as documentation?
+Signed-off-by: George Chan <gchan9527@gmail.com>
+---
+George Chan (3):
+      dt-bindings: touchscreen: Add binding for Novatek NT36xxx series driver
+      [RFC/RFT]Input: Add Novatek NT36xxx touchscreen driver
+      dts: sm7125-xiaomi-joyeuse: Sample device tree for reference
 
-> +                        remote-endpoint = <&typec_con_ss>;
-> +                    };
-> +                };
+ .../bindings/input/touchscreen/nt36xxx.yaml        |   70 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dts  |  183 +++
+ drivers/input/touchscreen/Kconfig                  |   13 +
+ drivers/input/touchscreen/Makefile                 |    2 +
+ drivers/input/touchscreen/nt36xxx.h                |  142 ++
+ drivers/input/touchscreen/nt36xxx_core.c           | 1422 ++++++++++++++++++++
+ drivers/input/touchscreen/nt36xxx_spi.c            |  256 ++++
+ 8 files changed, 2089 insertions(+)
+---
+base-commit: b852e1e7a0389ed6168ef1d38eb0bad71a6b11e8
+change-id: 20241015-nt36xxx-07e458ba2877
 
-Add newline here too, and similar below.
+Best regards,
+-- 
+George Chan <gchan9527@gmail.com>
 
-> +                port@1 {
-> +                    reg = <1>;
-> +                    phy_con_ss: endpoint {
-> +                        remote-endpoint = <&usb_phy_ss>;
-> +                        data-lanes = <3 2 1 0>;
-> +                    };
-> +                };
-> +                port@2 {
-> +                    reg = <2>;
-> +                    usb_con_sbu: endpoint {
-> +                        remote-endpoint = <&typec_dp_aux>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
 
-Johan
 
