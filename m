@@ -1,302 +1,160 @@
-Return-Path: <devicetree+bounces-111260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C082D99DEEE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:59:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD4F99DEF0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 09:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F170B23585
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:59:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B325282CC0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0CB019E990;
-	Tue, 15 Oct 2024 06:58:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129651A76DD;
+	Tue, 15 Oct 2024 06:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C8pFKm74"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PCFsuZzK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306F618BB8F;
-	Tue, 15 Oct 2024 06:58:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE451ABEBB
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 06:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728975528; cv=none; b=KUgu2ROKKGWHAAbhsgTN59kVA14AJLCZgQtl3VX+ujq3Y9V6hElgyB2QnLh/IuBCSjWjfhF2upn/z/gXfBG3//viraJzEt6wobSyelR6SiwTsUBpHjSyQRKaDqOs2igWS21HQmUXJ4PDnG7rQgCc4kvYiSZerc0rKj45A+8H8+k=
+	t=1728975537; cv=none; b=bCopX0PhO8t0vuH1D+kvUWQT7PlIBSrzagCohUrTHqoTAQovnNIWB5YlQn50S5qRgZh1FMx2fTbkamvRk0/uGbSG3nvn61SU2EXHKAy3CeyEP9VfCboAPXAr56x6efhZPtSrdn33V29SoD/PcZVjwLeI3d137nZZWRJtN6JSBDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728975528; c=relaxed/simple;
-	bh=6uwY9iEupC2nz8gGrmjjlG5L8kjSkt5VX/hruS/T2pM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M9pgDmae8V580dVhFkHMfMxosQ5pG3AcSHU6eb73JaQ7M8RvzXQVletcwqDIEilWMB2IB66U3zVjgoJ61h51AutywIjfEzp4Yf1HZDrf4EYIs8jRjyJNpR/+gHMfiqDLBpLq0/dOTHs2JUG8yYMvAqlEB/JBgsM/7OdOQ3pGh2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C8pFKm74; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e2ee0a47fdso823586a91.2;
-        Mon, 14 Oct 2024 23:58:47 -0700 (PDT)
+	s=arc-20240116; t=1728975537; c=relaxed/simple;
+	bh=HHRjomsRYsJDwBzUt/stxykgtORGhKkWesiG8s2sUzQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GMAykxlP905SitGMxaSdB8qcBQyhvlB2CGPj7NxboOtZW7TSnGu0/UrQvADqNuF3O0pROamWrmK9/9Ptv4g9Xy0/E7SmHjWbDB2IekPspm0HLOwxXHmo9Jta4KHLprgvjcsGfOUU0G0DLOTj4lpvQXvO9uSnyOjJFPOMUzjt4eI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PCFsuZzK; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-430549e65a4so6060005e9.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 23:58:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728975526; x=1729580326; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8O8a/W9BX22xkR7baqN01A7a4KYNQYX8/DGiUlDM8bs=;
-        b=C8pFKm74C+pgC6u/2iWnQXKI6lwD6YQs0GN/ocQEx5x+imtFFNZrzvF0GglH6smzma
-         fk89f5VCwAonDdJCJ9UZACwtczOscVQCXre7Rm0493XsucRqIjH4GEPBWoBW9HUbtLtF
-         SBk8MvZ4amupXHAHnaD9BYkyDdtsQtK02ju/27mvfp0YCpI1RH3LUmh7fjY587vIoX7G
-         KsgFfc/12g5n82vztN//RF57IpxB7p+HYaQpD12wBBwkG4RxObwYmVT63K+XpDS7UkdJ
-         C+LA9EEW1IX/6tBTqSdnspV5j5mGJCWBlDjGorpVyKBH5rkNs0LF9lNcbaJXc9Ed/03+
-         e6Dg==
+        d=linaro.org; s=google; t=1728975534; x=1729580334; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Rg9CafE1YGkVl9KvHL3hkpJVC1sI0hUFkBUJZbx7bE=;
+        b=PCFsuZzKQAR9kOL6ni8Kn0H9p+6MTkmTF4D+Fp053Ojk/c0Du5nfr2xqGqiYwee+kB
+         YOcC8WBKZQSMVX3hgMZL8vriWYVmNTdRp9piSGURLmPXoiZJB3E9HgQazfgc0g9AkYyz
+         uPBDLHOtBgeWZFKvjP/tQ0+vTT987www5QA5+vPUq8BmE1O/uQwKOya/G9v7wQ5hmsfH
+         7DYnA4kvWqz33GL9wvZi9wNEZH8i30eD4weWbViSxizGIPrKorkf+sywal49bRhzm5Gu
+         crES1KWqZAqLsIUQFAQ1r/s0pJg2zcLNiBi+XqO3y4aG8vJMfIysFr0BXiU62JaFCPbv
+         DkHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728975526; x=1729580326;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8O8a/W9BX22xkR7baqN01A7a4KYNQYX8/DGiUlDM8bs=;
-        b=gxLsnFVBL4WZSO3N7NTp3ySslA/rhko2VfZ/PWjMwCUA20uex47bamWPoecKjx3+Sq
-         A5Ab4ujYz6Pxa473HnD9IfCgLuZ1h5rWfqF27P9tZV4dEouwEN4vRLM73exM5Rd3yU0O
-         e5Z8uId1NujK4jUKyVtQ6qsEry1pqFWpmUkWNvsdpVXvAXwUWCfaLIihidUDhl+lz4na
-         NvRjf5MvbMpTU/hGrSCfa074gwhpnC7ZttgQrH5yRjWmwBLLDo6QKTcwiQYXxk5Z4tWt
-         RSEZEmJPvrWm3VrsJiqLw+k4AOanPxbJU6EPq2HzktqBAfbiEq0m5y7beRRhLfo5pZe4
-         Y4xg==
-X-Forwarded-Encrypted: i=1; AJvYcCUti2iaK25mBB2FDY7tEuP5tgINHQiebJxb0eCh/OATSy3ezA/eoAjAETBot0WEV0kE9bv7prqLAhoD@vger.kernel.org, AJvYcCWWmz9rzN3NXKSz+8eADQqChbetZUjaEgJsfuoVME0j4P0Bah4kHGc5hvr4Rb876JL0gdRAtqXDbRrU6o1Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXpn6eWGkCUxnVeV/YikkyHlqEn8u73BwABzwTqur5Q6ixmfvZ
-	0a7XZYp9E2G9/YGrymScuZMrX7bQbBYn60DDJn12lhm3wxTqcqtr
-X-Google-Smtp-Source: AGHT+IEBqmxJcUAPwc0m9shaSmGmfnJw4762AWitMaevIA/PybZVcHiiqdG350ME7/zXk7SV5l8ICA==
-X-Received: by 2002:a05:6a00:4b04:b0:71e:770d:2c00 with SMTP id d2e1a72fcca58-71e770d2fc9mr755063b3a.4.1728975526306;
-        Mon, 14 Oct 2024 23:58:46 -0700 (PDT)
-Received: from [192.168.60.56] ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ea9c70590esm638195a12.70.2024.10.14.23.58.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Oct 2024 23:58:45 -0700 (PDT)
-Message-ID: <31b9d876-3790-4427-a2d0-8e20192744eb@gmail.com>
-Date: Tue, 15 Oct 2024 14:58:40 +0800
+        d=1e100.net; s=20230601; t=1728975534; x=1729580334;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3Rg9CafE1YGkVl9KvHL3hkpJVC1sI0hUFkBUJZbx7bE=;
+        b=IZpNnOaRmjUeh++6vi3Qwvb1hNcY/87gX3gtfq/YgPdbjMnGaoT767l/b4JLa6KJgh
+         xBACm46CoG5LcozeMVv6TnJNdH+AAwf6iea3zMuDrk4tdK5xdQTgRrfDI0n9amfz0xBC
+         RfViKjxj3NLKXPiAC3YymDYQQr6ftNFmkhEHyJH8jcKwgW7OQUPjORyVDxMJ+KbTKCO+
+         lifLThbp7rbxPk2n1BwrHwXpgWQS0q7ZpnBWXX2rYzcAyoFLMgEJbhOjC0MLGLS2iqyg
+         7In9SwVKgh3GXxtQh9xbx2n2FUaPC+MbUmONXyhU+1QojtS4JAFwWXF1uRseMTn6C0PD
+         zUxg==
+X-Forwarded-Encrypted: i=1; AJvYcCWeHLHh8+E+3RMKZnJ2QIiT1YbmeyGLXS52puBj1n5M0jP5uAJ6G2M+eR9KT5pGrk9HgJmwc9vR3ZYP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAka4AwVapOYFNmqVJGkPg5mopP2XedSN+Q0US/HkIdwj989Ip
+	yb9TCAjcs9rsrePxi52Y9rDW9ZJx3RB4Id9HbJSCRK/Do6XT4J7NtLLkBVFYcsI=
+X-Google-Smtp-Source: AGHT+IGbPMxgc3DOJjQs7sGqlYcjADDsKE8cdCECGo3sJ7ddzUzXMkKiJhT5InhJZ4au28jZv0tx4A==
+X-Received: by 2002:a05:600c:5122:b0:42c:b63d:df3 with SMTP id 5b1f17b1804b1-4311ddff73dmr55330175e9.0.1728975534141;
+        Mon, 14 Oct 2024 23:58:54 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4313f6c5d22sm8461645e9.40.2024.10.14.23.58.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Oct 2024 23:58:53 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tomasz Figa <tomasz.figa@gmail.com>,
+	Jaewon Kim <jaewon02.kim@samsung.com>,
+	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	stable@vger.kernel.org,
+	Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH 1/2] dt-bindings: pinctrl: samsung: Fix interrupt constraint for variants with fallbacks
+Date: Tue, 15 Oct 2024 08:58:47 +0200
+Message-ID: <20241015065848.29429-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] phy: rockchip-naneng-combo: Support rk3576
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
- tim.chen@rock-chips.com, Kever Yang <kever.yang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>
-References: <20241015013351.4884-1-frawang.cn@gmail.com>
- <20241015013351.4884-2-frawang.cn@gmail.com> <1981070.PYKUYFuaPT@diego>
-Content-Language: en-US
-From: Frank Wang <frawang.cn@gmail.com>
-In-Reply-To: <1981070.PYKUYFuaPT@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi Heiko,
+Commit 904140fa4553 ("dt-bindings: pinctrl: samsung: use Exynos7
+fallbacks for newer wake-up controllers") added
+samsung,exynos7-wakeup-eint fallback to some compatibles, so the
+intention in the if:then: conditions was to handle the cases:
 
-On 2024/10/15 14:15, Heiko Stübner wrote:
-> Hi Frank,
->
-> Am Dienstag, 15. Oktober 2024, 03:33:51 CEST schrieb Frank Wang:
->> From: Kever Yang <kever.yang@rock-chips.com>
->>
->> phy0: pcie, sata
->> phy1: pcie, sata, usb3
->>
->> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
->> Signed-off-by: William Wu <william.wu@rock-chips.com>
->> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
->> ---
->>   .../rockchip/phy-rockchip-naneng-combphy.c    | 202 ++++++++++++++++++
->>   1 file changed, 202 insertions(+)
->>
->> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
->> index 0a9989e41237..4c41317a8041 100644
->> --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
->> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
->> @@ -584,6 +585,203 @@ static const struct rockchip_combphy_cfg rk3568_combphy_cfgs = {
->>   	.combphy_cfg	= rk3568_combphy_cfg,
->>   };
->>   
->> +static int rk3576_combphy_cfg(struct rockchip_combphy_priv *priv)
->> +{
->> +	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
->> +	unsigned long rate;
->> +
->> +	switch (priv->type) {
->> +	case PHY_TYPE_PCIE:
->> +		/* Set SSC downward spread spectrum */
->> +		rockchip_combphy_updatel(priv, GENMASK(5, 4), BIT(4), 0x7c);
-> Can we get constants for those magic values please?
+1. Single Exynos7 compatible or Exynos5433+Exynos7 or
+   Exynos7885+Exynos7: only one interrupt
 
-Ah of cause, I will amend them and send a new patch.
+2. Exynos850+Exynos7: no interrupts
 
+This was not implemented properly however and if:then: block matches
+only single Exynos5433 or Exynos7885 compatibles, which do not exist in
+DTS anymore, so basically is a no-op and no enforcement on number of
+interrupts is made by the binding.
 
-Best regards,
-Frank
+Fix the if:then: condition so interrupts in the Exynos5433 and
+Exynos7885 wake-up pin controller will be properly constrained.
 
+Fixes: 904140fa4553 ("dt-bindings: pinctrl: samsung: use Exynos7 fallbacks for newer wake-up controllers")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> The combophys for rk3568 and rk3588 do use actual constants to at least
-> somewhat describe what happens, so it would be really nice for the rk3576
-> to do this as well.
->
-> Same for the rockchip_combphy_updatel and other writel calls below.
->
->
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
->> +		break;
->> +	case PHY_TYPE_USB3:
->> +		/* Set SSC downward spread spectrum */
->> +		rockchip_combphy_updatel(priv, GENMASK(5, 4), BIT(4), 0x7c);
->> +
->> +		/* Enable adaptive CTLE for USB3.0 Rx */
->> +		rockchip_combphy_updatel(priv, GENMASK(0, 0), BIT(0), 0x38);
->> +
->> +		/* Set PLL KVCO fine tuning signals */
->> +		rockchip_combphy_updatel(priv, GENMASK(4, 2), BIT(3), 0x80);
->> +
->> +		/* Set PLL LPF R1 to su_trim[10:7]=1001 */
->> +		writel(0x4, priv->mmio + (0xb << 2));
->> +
->> +		/* Set PLL input clock divider 1/2 */
->> +		rockchip_combphy_updatel(priv, GENMASK(7, 6), BIT(6), 0x14);
->> +
->> +		/* Set PLL loop divider */
->> +		writel(0x32, priv->mmio + (0x11 << 2));
->> +
->> +		/* Set PLL KVCO to min and set PLL charge pump current to max */
->> +		writel(0xf0, priv->mmio + (0xa << 2));
->> +
->> +		/* Set Rx squelch input filler bandwidth */
->> +		writel(0x0d, priv->mmio + (0x14 << 2));
->> +
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
->> +		break;
->> +	case PHY_TYPE_SATA:
->> +		/* Enable adaptive CTLE for SATA Rx */
->> +		rockchip_combphy_updatel(priv, GENMASK(0, 0), BIT(0), 0x38);
->> +
->> +		/* Set tx_rterm = 50 ohm and rx_rterm = 43.5 ohm */
->> +		writel(0x8F, priv->mmio + (0x06 << 2));
->> +
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_sata, true);
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_sata, true);
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_sata, true);
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_sata, true);
->> +		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_con0_for_sata, true);
->> +		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_con1_for_sata, true);
->> +		break;
->> +	default:
->> +		dev_err(priv->dev, "incompatible PHY type\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	rate = clk_get_rate(priv->refclk);
->> +
->> +	switch (rate) {
->> +	case REF_CLOCK_24MHz:
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_24m, true);
->> +		if (priv->type == PHY_TYPE_USB3 || priv->type == PHY_TYPE_SATA) {
->> +			/* Set ssc_cnt[9:0]=0101111101 & 31.5KHz */
->> +			rockchip_combphy_updatel(priv, GENMASK(7, 6), BIT(6), 0xe << 2);
->> +
->> +			rockchip_combphy_updatel(priv, GENMASK(7, 0), 0x5f, 0xf << 2);
->> +		} else if (priv->type == PHY_TYPE_PCIE) {
->> +			/* PLL KVCO tuning fine */
->> +			rockchip_combphy_updatel(priv, GENMASK(4, 2), 0x4 << 2, 0x20 << 2);
->> +
->> +			/* Set up rx_trim */
->> +			writel(0x0, priv->mmio + (0x1b << 2));
->> +
->> +			/* Set up su_trim: T0_1 */
->> +			writel(0x90, priv->mmio + (0xa << 2));
->> +			writel(0x02, priv->mmio + (0xb << 2));
->> +			writel(0x57, priv->mmio + (0xd << 2));
->> +
->> +			writel(0x5f, priv->mmio + (0xf << 2));
-> This does includes both the value as well as the register addresses,
-> because a hex-value with a bit shift makes that even less readable.
->
-> Thanks a lot
-> Heiko
->
->
->> +		}
->> +		break;
->> +	case REF_CLOCK_25MHz:
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_25m, true);
->> +		break;
->> +	case REF_CLOCK_100MHz:
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_100m, true);
->> +		if (priv->type == PHY_TYPE_PCIE) {
->> +			/* gate_tx_pck_sel length select work for L1SS */
->> +			writel(0xc0, priv->mmio + 0x74);
->> +
->> +			/* PLL KVCO tuning fine */
->> +			rockchip_combphy_updatel(priv, GENMASK(4, 2), 0x4 << 2, 0x20 << 2);
->> +
->> +			/* Set up rx_trim: PLL LPF C1 85pf R1 1.25kohm */
->> +			writel(0x4c, priv->mmio + (0x1b << 2));
->> +
->> +			/* Set up su_trim: T3_P1 650mv */
->> +			writel(0x90, priv->mmio + (0xa << 2));
->> +			writel(0x43, priv->mmio + (0xb << 2));
->> +			writel(0x88, priv->mmio + (0xc << 2));
->> +			writel(0x56, priv->mmio + (0xd << 2));
->> +		} else if (priv->type == PHY_TYPE_SATA) {
->> +			/* downward spread spectrum +500ppm */
->> +			rockchip_combphy_updatel(priv, GENMASK(7, 4), 0x50, 0x1f << 2);
->> +
->> +			/* ssc ppm adjust to 3500ppm */
->> +			rockchip_combphy_updatel(priv, GENMASK(3, 0), 0x7, 0x9 << 2);
->> +		}
->> +		break;
->> +	default:
->> +		dev_err(priv->dev, "Unsupported rate: %lu\n", rate);
->> +		return -EINVAL;
->> +	}
->> +
->> +	if (priv->ext_refclk) {
->> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_ext, true);
->> +		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_100MHz) {
->> +			writel(0x10, priv->mmio + (0x20 << 2));
->> +
->> +			writel(0x0c, priv->mmio + (0x1b << 2));
->> +
->> +			/* Set up su_trim: T3_P1 650mv */
->> +			writel(0x90, priv->mmio + (0xa << 2));
->> +			writel(0x43, priv->mmio + (0xb << 2));
->> +			writel(0x88, priv->mmio + (0xc << 2));
->> +			writel(0x56, priv->mmio + (0xd << 2));
->> +		}
->> +	}
->> +
->> +	if (priv->enable_ssc) {
->> +		rockchip_combphy_updatel(priv, GENMASK(4, 4), BIT(4), 0x7 << 2);
->> +
->> +		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_24MHz) {
->> +			/* Xin24M T0_1 650mV */
->> +			writel(0x00, priv->mmio + (0x10 << 2));
->> +			writel(0x32, priv->mmio + (0x11 << 2));
->> +			writel(0x00, priv->mmio + (0x1b << 2));
->> +			writel(0x90, priv->mmio + (0x0a << 2));
->> +			writel(0x02, priv->mmio + (0x0b << 2));
->> +			writel(0x08, priv->mmio + (0x0c << 2));
->> +			writel(0x57, priv->mmio + (0x0d << 2));
->> +			writel(0x40, priv->mmio + (0x0e << 2));
->> +			writel(0x5f, priv->mmio + (0x0f << 2));
->> +			writel(0x10, priv->mmio + (0x20 << 2));
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->
->
+---
+
+Cc: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+---
+ .../samsung,pinctrl-wakeup-interrupt.yaml     | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+index 91516fedc872..49cb2b1a3d28 100644
+--- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+@@ -92,14 +92,17 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          # Match without "contains", to skip newer variants which are still
+-          # compatible with samsung,exynos7-wakeup-eint
+-          enum:
+-            - samsung,s5pv210-wakeup-eint
+-            - samsung,exynos4210-wakeup-eint
+-            - samsung,exynos5433-wakeup-eint
+-            - samsung,exynos7-wakeup-eint
+-            - samsung,exynos7885-wakeup-eint
++          oneOf:
++            # Match without "contains", to skip newer variants which are still
++            # compatible with samsung,exynos7-wakeup-eint
++            - enum:
++                - samsung,exynos4210-wakeup-eint
++                - samsung,exynos7-wakeup-eint
++                - samsung,s5pv210-wakeup-eint
++            - contains:
++                enum:
++                  - samsung,exynos5433-wakeup-eint
++                  - samsung,exynos7885-wakeup-eint
+     then:
+       properties:
+         interrupts:
+-- 
+2.43.0
 
 
