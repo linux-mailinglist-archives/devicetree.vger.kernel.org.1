@@ -1,110 +1,86 @@
-Return-Path: <devicetree+bounces-111690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A3099FA74
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:48:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B53F99FAA0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:56:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15B86284AC4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:48:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C49A9281A03
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD5CF21E3B4;
-	Tue, 15 Oct 2024 21:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1632A21E3C1;
+	Tue, 15 Oct 2024 21:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Bs4WK+3i";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="4GA+ftBD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="psqEJMF+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2746821E3B2;
-	Tue, 15 Oct 2024 21:42:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33E921E3BF;
+	Tue, 15 Oct 2024 21:56:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729028546; cv=none; b=sdY35HdSzZv0dBbYc0nBT1rUlOARW2QM6vIV/tuDnNSS6NRubes2fUd9Axl+vSSgp+f0hBGo8tY4L/k2TH4+OQt/nCzWgf8wtT/H5XxyQgWl+tN/Z+nG2De5uU6RlyueyZ5DgJBYHiaU4v3FPmCv3tnMTJ63sV4UhrpFhUHlXaA=
+	t=1729029380; cv=none; b=gNTuTt03DiIrznNFeAT0FMtDqr9vDXoqanurWfSiQ3GSyduJ7KWOZNBzXuw3jojHNA+W++wrPFqoE6VyGYM4S35jMRtyE/uvi/RBIoAqhtrHh2AsU0Ffr9orj6nBmg8GHp1u9IrHy+d7Llhp+b4Ti6HUZmXhE6o5+3gn9Dzlayw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729028546; c=relaxed/simple;
-	bh=ADjjbzXz95P9cj8Qiy/Kdepn7OHwPWnDZ3anvu7xMrk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=u16wvkFGfhGryppYl4i7X8MsOdjpYkjUyooHb8buuc77OMggAPAZfFvjQopXR7PiYk6OSsG+hdyvTt2gh0PmgktIT0DZX1SHGtBE0zeEnOeCZnzcFJ9gkbvJupPzmxCTtdrqvFsTU/Z//Jco0VmzL5JXmSmXL9HqYcRvzctsyVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Bs4WK+3i; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=4GA+ftBD; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1729028543;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hALBkgP+0vHQHFOLfJVhzpCvZiu7iqZATK+f8xljF6o=;
-	b=Bs4WK+3isP7DKVNVaTNUaI/cX7y8ywrDgKgH/p2ecpxNUxJJo0bfpcpQ8SK4BcXOY2CYJQ
-	koe/V5rgwmYPy4OWcSKmFZbCAnO4X1fTHuAcVGFm61OmX+gLgw0WYIvAimHF/WjW3WvyzH
-	SCWMpw4lmBbQGc18oHIUM1HiDR7eaiJnFh3+YDMdDoTYHCvxulNioczbrzxxErJ5PRSj+P
-	D93sv4JPFkjAYRaW9BAAMV+Cv4RpA0dmVS+s5qKqYs0Vh8Rat09h+FJ59ePaDnNdymW+ce
-	nbD6AcfZIse28KHvl5QHb6eJQY84fpgt+5/ZGIpET97fj9/LBur6aj45bZQMjQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1729028543;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hALBkgP+0vHQHFOLfJVhzpCvZiu7iqZATK+f8xljF6o=;
-	b=4GA+ftBDLrodNSL6IIhR1BlPC9NDD73LIkk4yNdYSvee3SIv688WmN65Kfer6AZf+2rNDY
-	GP+ZpDSLkttq53Dw==
-To: Markus Elfring <Markus.Elfring@web.de>, Kevin Chen
- <kevin_chen@aspeedtech.com>, linux-aspeed@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Andrew
- Jeffery <andrew@codeconstruct.com.au>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] irqchip/aspeed-intc: Add support for AST27XX INTC
-In-Reply-To: <f65dd139-1021-47d6-93a1-1477d6b4ca1d@web.de>
-References: <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
- <f65dd139-1021-47d6-93a1-1477d6b4ca1d@web.de>
-Date: Tue, 15 Oct 2024 23:42:22 +0200
-Message-ID: <874j5ddow1.ffs@tglx>
+	s=arc-20240116; t=1729029380; c=relaxed/simple;
+	bh=FEqerJBuQ58gg8O693l9lf/6FSUknQEcXmuLQP0+nbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gb5Gzl+v+mCJCKJHa7ZZS4amxdIPrzKnZyDc0c767Sprjist9RfS9tx+MYHvpvwazUA9wpkNKD1F5Tbhb6RAss7yWUFZ/hFbX9A5aMcAH2iXt5iZ+C3uBK+z+eFqC+FM1XhwOQDsU2UFfqPIdDJWbkDjmDeGjw4NXLJHzmsl2z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=psqEJMF+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E157C4CEC6;
+	Tue, 15 Oct 2024 21:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729029379;
+	bh=FEqerJBuQ58gg8O693l9lf/6FSUknQEcXmuLQP0+nbk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=psqEJMF+ByIlDNMNGy+4xfUymKgJSCwWV8Y324pbWj1xeZ0HwjPP7Zj4vamk1z6X6
+	 C4kcxXiVfspAvha8eVgxh5zi5LpFgHOuH1u3c72WsF4yHc3kkvDecD8zzb4N92eJER
+	 7JxlA+bWyo81Ol2M2NVwdnod7KV+L2S4S9RN++FZRyB7jkr1iebhztDZmTxarLjzCc
+	 K7mmpvQFh0kLFfzZQTj0N/QzIsjowPpNQzeH1+exZAK7OhZdMW9vqQ+2ftRbATRBCc
+	 morkRV/n3KjTvRZZWnBgRnL1n01Od4gcS8/7O3Vuy6riWkqS6YQdJQVuB2qRbUdJdx
+	 GGUthdkUuoMkQ==
+Date: Tue, 15 Oct 2024 16:56:18 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: imx@lists.linux.dev, edumazet@google.com, Frank.Li@nxp.com,
+	conor+dt@kernel.org, kuba@kernel.org, bhelgaas@google.com,
+	linux-pci@vger.kernel.org, claudiu.manoil@nxp.com,
+	christophe.leroy@csgroup.eu, xiaoning.wang@nxp.com,
+	krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+	vladimir.oltean@nxp.com, davem@davemloft.net, horms@kernel.org,
+	netdev@vger.kernel.org, linux@armlinux.org.uk,
+	devicetree@vger.kernel.org, pabeni@redhat.com
+Subject: Re: [PATCH v2 net-next 01/13] dt-bindings: net: add compatible
+ string for i.MX95 EMDIO
+Message-ID: <172902935285.2022343.10056149639875783222.robh@kernel.org>
+References: <20241015125841.1075560-1-wei.fang@nxp.com>
+ <20241015125841.1075560-2-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241015125841.1075560-2-wei.fang@nxp.com>
 
-On Wed, Oct 09 2024 at 14:32, Markus Elfring wrote:
->> +
->> +	chained_irq_enter(chip, desc);
->
-> Would you become interested to collaborate with another scoped guard
-> for this programming interface?
 
-Collaborate in which way? What are you collaborating on?
+On Tue, 15 Oct 2024 20:58:29 +0800, Wei Fang wrote:
+> The EMDIO of i.MX95 has been upgraded to revision 4.1, and the vendor
+> ID and device ID have also changed, so add the new compatible strings
+> for i.MX95 EMDIO.
+> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+> v2 changes: remove "nxp,netc-emdio" compatible string.
+> ---
+>  .../devicetree/bindings/net/fsl,enetc-mdio.yaml       | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
+> 
 
-You are merely asking people to do work which you think is useful. You
-can do that, but that does not make it useful.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Making a guard variant of chained_irq_enter/exit needs some thought and
-a general plan for cleaning the whole chained irq usage up. It's on the
-cleanup list already with quite some other items.
-
-We are not adhoc adding a guard variant because guards are hip right
-now. And no this does not need a scoped variant ever.
-
-guards are not the panacea for everything.
-
-> https://elixir.bootlin.com/linux/v6.12-rc2/source/include/linux/irqchip/chained_irq.h#L13
-
-Please refrain from these silly links. People know to find the functions
-on their own.
-
-Kevin, please update the change log, add your SOB and move the local
-variables (unsigned long bit, status;) into the scoped_guard() zone.
-
-Leave chained_irq_enter/exit() alone and resubmit.
-
-Thanks,
-
-        tglx
 
