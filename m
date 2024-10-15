@@ -1,109 +1,115 @@
-Return-Path: <devicetree+bounces-111644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F1299F87E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:02:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1001899F898
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:05:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A68A1C22CAA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:02:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAEA91F2349C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F831FAEF3;
-	Tue, 15 Oct 2024 21:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381971FAF1B;
+	Tue, 15 Oct 2024 21:05:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="LR3EeD3j"
+	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="meJd2q7r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out-02.smtp.spacemail.com (out-02.smtp.spacemail.com [63.250.43.87])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83F31F81AE
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 21:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8644E1CBE8A;
+	Tue, 15 Oct 2024 21:05:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729026113; cv=none; b=hdSvfoLIxTIDqsce+1XStp/psYsC7IyG5XQgHq/Ef4oUd1EG+XrtYMbXd/4dmbiLSG9vXS5+OFYrkzQObnOZJx36jZWQefe8yN0pY4HLh/cUaG9Qo3AiXBefXGkAeSMt8qmdTIHzGi3qC9EGPwSzXBBi4yle/FiYsjpkHIXKp6A=
+	t=1729026307; cv=none; b=BbDXxMz2cLduN2z4YJqwHse5cqTEGkgndXChYCochDRl+n/n4MBPlPx9HHbjWXd5deZZapmwqlZqreXLK+VbMHxhzCyJVIcbXBym3VqfkH6Gv1rYDCMQHO7b1Kaa2Lj8EgldAHlg9uqkznrB4TAmI/dUl0phi3b9qrzhTBwqZiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729026113; c=relaxed/simple;
-	bh=MZpiEl9+p1+8tohkeplA7FfFnOl9tmF6blXh1D3ylwc=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=qiPmfJzhbqe9GYPrnaOESHiImSXv5mGHX5P3swiuxv6TTfGXIJg5oDU3L6OlWfjv1fo+++7Ukf9YoTZn4e0kiySwLva/UXcZGmc9YDWjKud+U1i1umybD0yxYAGr5uxtl8Wub6V+T4hNGnh24h9WkAjpnrTA9iU2lOJMmBQ8E6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=LR3EeD3j; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	s=arc-20240116; t=1729026307; c=relaxed/simple;
+	bh=bddsUPMT8EfofxAtkov5RMslED/8sk7QJjEjhVwY9g0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=P7zfn5xLhpcztNmUf7ySs8wIpuRQ3j7Bvs5fUyzPpIGlWF0ttoju+AjvRcmOmSi+Nh4EnfVi4xe0VCtrxt85O9Syrq2eOVWWiJgEafLWca/WhJtMdOuHKXLBNPX4KNFIZiW6Uvp+VVhg8/cxMghVpw2RClvfOvI1hLhf/DLT184=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=meJd2q7r; arc=none smtp.client-ip=63.250.43.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
+	by smtp.spacemail.com (Postfix) with ESMTPA id 4XSmnq63htz4w5K;
+	Tue, 15 Oct 2024 21:05:03 +0000 (UTC)
+Received: from igor-systemproductname.lan (83.8.240.202.ipv4.supernova.orange.pl [83.8.240.202])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8145B2C03CB;
-	Wed, 16 Oct 2024 10:01:43 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1729026103;
-	bh=MZpiEl9+p1+8tohkeplA7FfFnOl9tmF6blXh1D3ylwc=;
-	h=From:To:Subject:Date:References:In-Reply-To:From;
-	b=LR3EeD3jVJUbtC74r8VOEEBDYDwzAbh0lmQmczn5c5D69dfzReB8inCvJ/QXTJ7RD
-	 fbPxNNcM8lT/bd8oBSZc03YU5BEHB1WQ4fkAbJmfMeEIt81hI19NDtxyAztwQsE2yh
-	 El35bTKx+EK0CArIwY8DlQpkVe2W+BPI/nYdMsTqvPf3Ugc1RzF6oQkVHE6gSYAzst
-	 kavvSKh4Ea6AOIHVDg2vKGlURvaowHOr+rDQmAa2Geh5yXGP60etRaXn3WPd9cV8CW
-	 YKlfd/YV7mL57oDO9OIH+fez8Wr+FvHkMyaZAAratLPkLcuc3MuqIqzitK1RRlXMwc
-	 RVvBBeEx43URQ==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B670ed8370000>; Wed, 16 Oct 2024 10:01:43 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1544.11; Wed, 16 Oct 2024 10:01:43 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
- SMTP Server (TLS) id 15.0.1497.48; Wed, 16 Oct 2024 10:01:43 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.011; Wed, 16 Oct 2024 10:01:43 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>, "Masahiro
- Yamada" <masahiroy@kernel.org>
-Subject: Re: Building out of tree dtbs
-Thread-Topic: Building out of tree dtbs
-Thread-Index: AQHbHz8ShM93kB+1lU6CdSd0a3sZxrKHcnIA
-Date: Tue, 15 Oct 2024 21:01:42 +0000
-Message-ID: <2a2be28c-fd5e-45b0-8834-611d35c5e6a6@alliedtelesis.co.nz>
-References: <269854a8-1041-4ba6-b022-ba8ec15c6b78@alliedtelesis.co.nz>
-In-Reply-To: <269854a8-1041-4ba6-b022-ba8ec15c6b78@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <29306E9582879B409922E33C57C3D3CA@atlnz.lc>
-Content-Transfer-Encoding: base64
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.spacemail.com (Postfix) with ESMTPSA id 4XSmnh08Nbz8sWP;
+	Tue, 15 Oct 2024 21:04:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=mentallysanemainliners.org; s=spacemail; t=1729026298;
+	bh=bddsUPMT8EfofxAtkov5RMslED/8sk7QJjEjhVwY9g0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=meJd2q7r0+Bv6jFY2P1JS+H4aMSNaTDNParY0Xo8fuvJgsmP4xmSl/GOYotUXiDnw
+	 8/ruouuRf8AT7OHiqB1VT6HUDA1rMijb2CkIjtKJdBtiY7Hg6Cite7pMIRM2uR9MA0
+	 HNLWYJ2lZAuGpIbURB13t1eJkezbmYC0VR63fnLexqHcIYj4OMW8sY0cPbCdD1BIzR
+	 x0c9TEZb0yZVbSB2yEuRcDbk37CV9B6HvfBIUphA7W9iCJWrTvH2Rg49B3koEnBLcU
+	 lIXbqrHR549w6jLPXlZbyUbC6HQtCpX+p9diz2AzEkOBIeVkehiG0E2AxxQXppxtbv
+	 +0cGccSz9Fv7A==
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tomasz Figa <tomasz.figa@gmail.com>
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] Add Exynos990 pinctrl and chipid drivers
+Date: Tue, 15 Oct 2024 23:04:45 +0200
+Message-ID: <20241015210450.964093-1-igor.belwon@mentallysanemainliners.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=670ed837 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=p0WdMEafAAAA:8 a=YRHvXXt1AAAA:8 a=cBH9McE8t2GGkYx7cgcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=9bw_jnHfPby8klRCszyn:22
-X-SEG-SpamProfiler-Score: 0
+Content-Transfer-Encoding: 8bit
 
-DQpPbiAxNi8xMC8yNCAwOToxNiwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4gKHJlc2VuZCB3aXRo
-b3V0IEhUTUwgcGFydCkNCj4NCj4gSGksDQo+DQo+IEkganVzdCBub3RpY2VkIHdpdGggdGhlIGxh
-dGVzdCA2LjEyLXJjIEknbSBubyBsb25nZXIgYWJsZSB0byBidWlsZCBhbiANCj4gb3V0IG9mIHRy
-ZWUgZHRiIGJ5IGp1c3QgY29weWluZyBpdCBpbnRvIGFyY2gvJEFSQ0gvYm9vdC9kdHMgKGF0IGxl
-YXN0IA0KPiBmb3IgQVJDSD1taXBzIGFuZCBBUkNIPWFybTY0KSBhbmQgcnVubmluZyBgbWFrZSBt
-eS1ib2FyZC5kdGJgLiBJIA0KPiBiZWxpZXZlIGJ1aWxkcm9vdCByZWxpZXMgb24gdGhpcyBhcyB3
-ZWxsWzFdLg0KDQpBIHNpbXBsZSByZXBybyBpcw0KDQptYWtlIEFSQ0g9YXJtIG12ZWJ1X3Y3X2Rl
-ZmNvbmZpZw0KY3AgYXJjaC9hcm0vYm9vdC9kdHMvbWFydmVsbC9hcm1hZGEtMzg1LWRiLWFwLmR0
-cyANCmFyY2gvYXJtL2Jvb3QvZHRzL215Ym9hcmQuZHRzDQptYWtlIEFSQ0g9YXJtIG15Ym9hcmQu
-ZHRiDQoNCj4NCj4gSXMgdGhpcyBhbiBpbnRlbnRpb25hbCBjaGFuZ2U/IElzIGl0IHRvbyBsYXRl
-IHRvIHVuZG8gaXQgKG9yIHByb3ZpZGUgDQo+IGFuIGFsdGVybmF0aXZlIHdheSBvZiBoYXZpbmcg
-b3V0IG9mIHRyZWUgZHRzIHRoYXQgbWFrZSB1c2Ugb2YgaW4tdHJlZSANCj4gZHRzaSkuDQpMb29r
-cyBsaWtlIHRoaXMgaXMgY2F1c2VkIGJ5IGNvbW1pdCBlN2UyOTQxMzAwZDIgKCJrYnVpbGQ6IHNw
-bGl0IGRldmljZSANCnRyZWUgYnVpbGQgcnVsZXMgaW50byBzY3JpcHRzL01ha2VmaWxlLmR0YnMi
-KS4gVGhlIGNvbmRpdGlvbmFsIGluY2x1ZGUgDQpvZiBNYWtlZmlsZS5kdGJzIGlzbid0IHNhdGlz
-ZmllZCB3aGVuIGJ1aWxkaW5nIGFuIG91dCBvZiB0cmVlIGR0Yi4NCj4NCj4gVGhhbmtzLA0KPiBD
-aHJpcw0KPg0KPiAtLSANCj4NCj4gWzFdIC0gDQo+IGh0dHBzOi8vZ2l0bGFiLmNvbS9idWlsZHJv
-b3Qub3JnL2J1aWxkcm9vdC8tL2Jsb2IvbWFzdGVyL2xpbnV4L2xpbnV4Lm1rP3JlZl90eXBlPWhl
-YWRzI0w1MTYNCj4=
+Hi folks,
+
+This series adds support for the drivers for the Exynos 990 SoC. It
+consists of the pinctrl driver and the chipid driver. The product ID
+of this chip for chipid is 0xe9830000. The pinctrl bank types are the
+same as in the Exynos 850 chip.
+
+Changes in v2:
+ - Moved bindings from SoC bringup commit
+ - Moved device tree changes from SoC bringup commit
+ - Ordered pinctrl nodes by unit address in SoC DT
+ - Moved the exynos990-wakeup-eint binding to the correct if.
+ - Added pinctrl aliases to SoC DT.
+
+Kind regards,
+Igor
+
+Igor Belwon (5):
+  dt-bindings: pinctrl: samsung: Add exynos990-pinctrl compatible
+  dt-bindings: pinctrl: samsung: add exynos990-wakeup-eint compatible
+  pinctrl: samsung: Add Exynos 990 SoC pinctrl configuration
+  arm64: dts: exynos: Add Exynos 990 pinctrl nodes
+  arm64: dts: exynos: Add button support for c1s
+
+ .../samsung,pinctrl-wakeup-interrupt.yaml     |    1 +
+ .../bindings/pinctrl/samsung,pinctrl.yaml     |    1 +
+ arch/arm64/boot/dts/exynos/exynos990-c1s.dts  |   49 +
+ .../boot/dts/exynos/exynos990-pinctrl.dtsi    | 2195 +++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos990.dtsi     |   57 +
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    |  140 ++
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |    2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |    1 +
+ 8 files changed, 2446 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-pinctrl.dtsi
+
+-- 
+2.45.2
+
 
