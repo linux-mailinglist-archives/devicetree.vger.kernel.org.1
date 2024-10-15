@@ -1,364 +1,206 @@
-Return-Path: <devicetree+bounces-111479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D460199EFA6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:33:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C282999EFB4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:37:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5841D1F2573B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:33:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53E9CB20D69
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944641B21BA;
-	Tue, 15 Oct 2024 14:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E991C07D1;
+	Tue, 15 Oct 2024 14:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XKfjf2Dk"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="rpTJ2N2t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2074.outbound.protection.outlook.com [40.107.103.74])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB561AF0AA;
-	Tue, 15 Oct 2024 14:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729002815; cv=none; b=JWniz83041UA2RI4WVwcgmck84ubeplH4Qi4ncPhvlpMS2oAQTS1kpFq+BNMBZi8ntYrXRttk5eMUTDpkQrsNx96hh2Ddeqmf0WL+xYrogr4WaYJoNNjWlFImngEy35lll6T6IscVWK5wJnJ+XIy+pTqjplhpRz8hZ57CbC65Pg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729002815; c=relaxed/simple;
-	bh=PNMJc04pU83VuuyPs3myh2JVU41q5r+y1toi+Wk/W0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nrDyMTFrFh1tgSc94sspDtG025CDhE3ogX76TWgZ4hRX6VqFqTGBuq9kyrELbNY84MhN+JLQACVkEymIoAsxgB4oq+CDomqu2TQ9NaMH+ORbGs96cNVD+CfsNta9UnhTAkdop0mTkez9EFOollD30Hoc33g6lcRZz8t9/8+A41g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XKfjf2Dk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C810C4CEC6;
-	Tue, 15 Oct 2024 14:33:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729002814;
-	bh=PNMJc04pU83VuuyPs3myh2JVU41q5r+y1toi+Wk/W0I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XKfjf2DkuDwwCU82M6UHX06chmOI+WDD2mhjgqrAQDG2t7dk+ig/OEcVdNtFkkyVB
-	 PDSJ7jl8ORsRRkDfgPglFEdHjlUxAeAjWXY4l/gJpzSci6CIdYKkLHoZB2MUcYucbG
-	 sBxrbAEtcg7hGL4RAsl4dRshgIgIpf9iYy75SL1uib2R4SkrezMk3kb4c46pONJNe9
-	 Xsm58y9DqWbDj3SBCojy9D7rouqKCOPMsz82eRE9f+NFHFmD2qthHgEYlHbW+3aAyA
-	 02uRYfaKaFMHIrxWVwXmru/arqZVqFVu+Vb6hj7fIw1/vnX/JkvWdXCiIO+QYQzgc1
-	 23yn48mym8e3g==
-Date: Tue, 15 Oct 2024 15:33:29 +0100
-From: Lee Jones <lee@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v6 7/7] leds: max77705: Add LEDs support
-Message-ID: <20241015143329.GJ8348@google.com>
-References: <20241007-starqltechn_integration_upstream-v6-0-0d38b5090c57@gmail.com>
- <20241007-starqltechn_integration_upstream-v6-7-0d38b5090c57@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F4D1FC7D6;
+	Tue, 15 Oct 2024 14:37:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.74
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729003049; cv=fail; b=bBfae/1gjDw4MmM4+EMoauD7YbjJltt7zlzJnyQpx4Oym0RYEFoBy7keldOVwYrrKknMC2IzRKKib4mc9kEmC2x9UCgrPGIv3FePkUtwsF5EeDfGUmwhSKBXC6stFuYl3CTooie2fmjgy2wcZJ1GK4MuT+ao+TO2BlOg0YIs1+o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729003049; c=relaxed/simple;
+	bh=c513S76t2xZtO7orkEqLONELqr7e2Jhozw6d1aV5Flg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Jl1LE+mSXZS5ahGi5jq1Pfcxjz8+d4TozwpTvCnZ2sKJuhceAGs2JeqdtOaAow7Vj7A8csi8yLORkVTx0dkHez2hykKzIs2UxB27ujiaOaNFFo4comts+z6GMowg/JcDJ9bhlL90MhqTCjLeuqnOCFJJHB8kPURGv67SY7xw9DY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=rpTJ2N2t; arc=fail smtp.client-ip=40.107.103.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QhchBajFN8LF8ZF9Uai+LzGf2MSPi4KDan5aOg0ouD3H17OwBImO1WGeAQ1EniSDuGAI5ayPnKRbRYbYd5LDy7hu3E2Qgqrh035hZD74AfVbp8+/gAgsCliG1Ggza8BNiBmyoHmXtiTxzGNykc+mlgq/kDiGpShcZ2gBHjA1ryz76Ma7OKgZKYhkx+zNvTlvt8pTAenAxQRYkNqQ/C6iXbsJTMXUNog2czwmdnJZJMqx1mbvQDOu1RzAwcW6cqCtV7I/rnPOGAnNLvOUq49fkVC985snk5r41PBvVzVhRrxP3wliSrc9eCEQ2ueMmF3wJktuXhi1cyZNdY/4UD/Zvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z1of2NTzEL262vgM+sfWxvgS3fw3t8OAI26dOcdc8WA=;
+ b=XEoBQ4meQGd6+H1E3Kg9nynbxNBvS1y3uIFguOfNDMcGoZJrU6TC1McHLqK89xvOev2diPHa9VWMt3cb3wKOH7qORzAiuXU98crlW+gVxzJO4515SqpVlvyMWotvfLU8Pj4cxvx6eCVDBy3Gr3a05Imcy4xP9/QpR6tTN4cCna9/tX+8UzxolQwt2YAT2JTbC7qrz7PCPj9CU7AoDcNDdsEIBVAiQcLmnkvzYUhzPm7Gc0eUD3RVBhXaS2Eya6+in59cF6JkoDn+bR8olometemBillfaNbTRZAHmafgLlkQZfqfXxUK+tPhoMZfFG9HWT5t+9jEvBqf50F2vsPK7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z1of2NTzEL262vgM+sfWxvgS3fw3t8OAI26dOcdc8WA=;
+ b=rpTJ2N2tv0enICNgwQKWjV/jtldmrQYJjuxUVLIfxvrQ/3rXyVO0BMK6Q7mrJJcmNw8J/UHZDBAGHaGlowmh8M5IbG/1N96odC/tcDi6dfrnyVfBCrY4NRfTONNXHQPjQCuaoxzntPSZG7X5B5qdK6yVkK0YIDG5ysfqv+d6enQ=
+Received: from DB8PR03CA0036.eurprd03.prod.outlook.com (2603:10a6:10:be::49)
+ by AM9PR02MB6690.eurprd02.prod.outlook.com (2603:10a6:20b:2c3::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.27; Tue, 15 Oct
+ 2024 14:37:18 +0000
+Received: from DU2PEPF0001E9C2.eurprd03.prod.outlook.com
+ (2603:10a6:10:be:cafe::8e) by DB8PR03CA0036.outlook.office365.com
+ (2603:10a6:10:be::49) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.17 via Frontend
+ Transport; Tue, 15 Oct 2024 14:37:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ DU2PEPF0001E9C2.mail.protection.outlook.com (10.167.8.71) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8069.17 via Frontend Transport; Tue, 15 Oct 2024 14:37:18 +0000
+Received: from se-mail02w.axis.com (10.20.40.8) by se-mail01w.axis.com
+ (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 15 Oct
+ 2024 16:37:17 +0200
+Received: from se-intmail02x.se.axis.com (10.4.0.28) by se-mail02w.axis.com
+ (10.20.40.8) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Tue, 15 Oct 2024 16:37:17 +0200
+Received: from pc48051-2208.se.axis.com (pc48051-2208.se.axis.com [10.96.59.31])
+	by se-intmail02x.se.axis.com (Postfix) with ESMTP id 622371C3;
+	Tue, 15 Oct 2024 16:37:17 +0200 (CEST)
+Received: by pc48051-2208.se.axis.com (Postfix, from userid 21236)
+	id 5D49418E1ECB; Tue, 15 Oct 2024 16:37:17 +0200 (CEST)
+From: Per-Daniel Olsson <perdaniel.olsson@axis.com>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+CC: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <rickard.andersson@axis.com>,
+	<kernel@axis.com>, Per-Daniel Olsson <perdaniel.olsson@axis.com>
+Subject: [PATCH v3 0/2] Support for Texas Instruments OPT4060 RGBW Color sensor.
+Date: Tue, 15 Oct 2024 16:37:11 +0200
+Message-ID: <20241015143713.2017626-1-perdaniel.olsson@axis.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241007-starqltechn_integration_upstream-v6-7-0d38b5090c57@gmail.com>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF0001E9C2:EE_|AM9PR02MB6690:EE_
+X-MS-Office365-Filtering-Correlation-Id: de0c5287-ed29-440d-b859-08dced26df22
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?qyWoeooNxeXx9BoWs88cOOKphs8qLwhHILgtm1H4lOsVHBW/EdoUg5eJ+YCO?=
+ =?us-ascii?Q?hMiDN/HeZsPZfx7tSZVuta4TWM9wabibuVjvlTbXFhu3+O4jqvy1izkQcLwy?=
+ =?us-ascii?Q?vcupKfst24ihspVbrth8nkJszY5sim1cRKKHomUAz11yrwP7ywyTaCiw50iu?=
+ =?us-ascii?Q?Ut+b04IUB7qzOnyVFXaWJwduXBTqYbOLy0RFnlElVnLzRODYMqPkFeF3cV03?=
+ =?us-ascii?Q?c1K9LvvgRYU37ZWjdNMT+keAQX6ssYd7FaPJmJq3QTfeYQ2gwAyt3dhxINfo?=
+ =?us-ascii?Q?t1AiMsWrTDKvCrOlYgOR3Nc+WLQ5TLkejshhJr4ikQ/G2ezNS2CJNW/c877R?=
+ =?us-ascii?Q?cjPnS/i9I8gdE4LLmJ8vihuK3QLexk9cntmBRQvBGrE6PV3+NRmfucJuwPn/?=
+ =?us-ascii?Q?vEiBGM+2/XE9FGzXd/wHibXgS4L5d17AEncjfpk2q/C35LNhv2cOS/bosl0C?=
+ =?us-ascii?Q?jFcv/WbqDmswncakVhiN2CdMrOIL/pTT0Dgk7zPZByTS23u7Mqf5QkEYZooY?=
+ =?us-ascii?Q?DgwsUpe/g8o6p5qmTkHYMngDC9LpH0rDnb9snhAB9mBgLCNSuEodUnZEsyk2?=
+ =?us-ascii?Q?qWrNp693Bu+VBCYF+lDfD5NEKs+qePEKqvuwACYN160i3z4nIjBEVJreGkZv?=
+ =?us-ascii?Q?Ja+MXMqH95TBWgRxcRPFy3D+q/OgDcgIouvzH5Zn8fs8MxZocXtdFsbrz0k4?=
+ =?us-ascii?Q?R1MqFAjo5tGUBUb0mgtOVY0SZru4BzuEkj31mVAEvVmxbwsoAWN0vt3HGpB0?=
+ =?us-ascii?Q?SJWMndS8my8yp1lapDwxHRz4ZwFmKlA+lP1tft83oDKNC3KpjgnmCSkJUYGx?=
+ =?us-ascii?Q?tBsI+jF4Tb2URJl248RDMfbII7m5rv/fPwHMsYz6laDFKDgE47Z7Wzw7u/FS?=
+ =?us-ascii?Q?lP10Zr4wETCaKautMIeLhHg73IEs6Ipycf4PRGaqjC871kwoyUiLeyATvadu?=
+ =?us-ascii?Q?EsI0pVrUhe2jQffC9soZ/o/ok0lhpbqbs0ujrEksZJTf9Ze5p4ILA4HoOgqf?=
+ =?us-ascii?Q?tX4w6PVA5g1nOSq8n1XWvTfJ3QIz8RwKIaRgxwYn2bvxU861gAOdqzA3e9br?=
+ =?us-ascii?Q?57HiE4Jk8ulFXjHF4lDLMnH/XNwB5zs0u6LrgQGULAfIEZ1rj9CSBJN1pOTv?=
+ =?us-ascii?Q?htDq6td1N0Vu1tBe9QLWwH0/n0WxyPNTLDneSVaTjDoERGW1zXjOnrE4C72x?=
+ =?us-ascii?Q?zuNgEC6ozS+TYRAs/zamzv+iWshk+6MJ9JbhNl0B2MDQ+WMAe1v6PAilx4Vd?=
+ =?us-ascii?Q?DNtmiKLxBuZEIfPMwM9pm8pMD7FfpYmpHEol38O2krHxOJsUr4cshKR1Stfs?=
+ =?us-ascii?Q?/xdUb+6KYvYnZSOzuO6l7T8/79qEAi/+SNuoFWXEA60W0rwU/soHhuxpjidV?=
+ =?us-ascii?Q?6rhhmhAbvURyTKjMiFHEyp08W0qY?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2024 14:37:18.7121
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: de0c5287-ed29-440d-b859-08dced26df22
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF0001E9C2.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR02MB6690
 
-On Mon, 07 Oct 2024, Dzmitry Sankouski wrote:
+This patch series adds support for Texas Instruments OPT4060 RGBW Color sensor
+using the i2c interface.
 
-> This adds basic support for LEDs for the max77705 PMIC.
-> 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> 
-> ---
-> Changes for v5:
-> - use same hardware name in Kconfig and module descriptions
-> - remove copyrighter owner from module authors
-> 
-> Changes in v4:
-> - inline BLINK_(ON|OFF) macro
-> - remove camel case
-> - drop backwards compatibility(new driver)
-> - drop module alias
-> ---
->  MAINTAINERS                  |   1 +
->  drivers/leds/Kconfig         |   6 ++++++
->  drivers/leds/Makefile        |   1 +
->  drivers/leds/leds-max77705.c | 157 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+The driver exposes both raw adc values and sensor compensated values through
+sysfs. Integration time can be configured through sysfs as well. The OPT4060
+sensor supports both rising and falling threshold interrupts. These interrupts
+are exposed as IIO events. The driver also implements an IIO triggered buffer
+with two triggers, one trigger for conversion ready interrupts and one trigger
+for threshold interrupts. The typical use case for this is to define a threshold
+and listen for the events, and at the same time enable the triggered buffer with
+the threshold trigger. Once the application gets the threshold event, the values
+from the time of the event will be available in the triggered buffer. This
+limits the number of interrupts between sensor and host and also the the usage
+of sysfs for reading values after events.
 
-Lol!  How big is your terminal? :)
+Changes in v3:
+- Cover letter: Removed lux from description.
+- OPT_4060_DRV_NAME define removed.
+- Corrected alignment for struct opt4060_buffer.
+- Added description of the CRC calculation.
+- Cleaned variable declaration in several places.
+- Added a path for the non-irq case in opt4060_read_chan_value(...).
+- Added a description of processed values.
+- Use of regmap_clear_bits in opt4060_power_down(...).
+- Switched to IIO_INTENSITY instead of IIO_LIGHT.
+- Correction of channel index in IIO_UNMOD_EVENT_CODE, found by test robot.
+- Added iio_chan_spec for the non-irq case without events.
+- Fixed braces in a few if-else statements.
+- Refactoring with early returns in a few places to reduce indentation.
+- Replaced for_each_set_bit with iio_for_each_active_channel.
+- Removed various too obvious comments.
+- Fixed various other code style problems.
+- Link to V2: https://lore.kernel.org/lkml/20241005165119.3549472-1-perdaniel.olsson@axis.com/
 
->  4 files changed, 165 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4bc9c0da6adb..66a1dd7577c4 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14079,6 +14079,7 @@ F:	drivers/*/max14577*.c
->  F:	drivers/*/max77686*.c
->  F:	drivers/*/max77693*.c
->  F:	drivers/*/max77705*.c
-> +F:	drivers/leds/leds-max77705.c
+Changes in v2:
+- dt-bindings: Removed incorrect allOf.
+- dt-bindings: Changed to generic node name.
+- Correction in opt4060_trigger_one_shot(...) for continuous mode.
+- Correction in opt4060_power_down(...), wrong register was read.
+- Corrected usage of active_scan_mask in opt4060_trigger_handler(...).
+- Clean-up of various comments.
+- Link to V1: https://lore.kernel.org/lkml/20241003164932.1162049-1-perdaniel.olsson@axis.com/
 
-Alphabetical?
+Per-Daniel Olsson (2):
+  dt-bindings: iio: light: Document TI OPT4060 RGBW sensor
+  iio: light: Add support for TI OPT4060 color sensor
 
->  F:	drivers/clk/clk-max77686.c
->  F:	drivers/extcon/extcon-max14577.c
->  F:	drivers/extcon/extcon-max77693.c
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index b784bb74a837..a8492623caa4 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -753,6 +753,12 @@ config LEDS_MAX77650
->  	help
->  	  LEDs driver for MAX77650 family of PMICs from Maxim Integrated.
->  
-> +config LEDS_MAX77705
-> +	tristate "LED support for Maxim MAX77705 PMIC"
-> +	depends on MFD_MAX77705 && LEDS_CLASS && I2C
+ .../bindings/iio/light/ti,opt4060.yaml        |   51 +
+ drivers/iio/light/Kconfig                     |   13 +
+ drivers/iio/light/Makefile                    |    1 +
+ drivers/iio/light/opt4060.c                   | 1243 +++++++++++++++++
+ 4 files changed, 1308 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/ti,opt4060.yaml
+ create mode 100644 drivers/iio/light/opt4060.c
 
-If MFD_MAX77705 depends on I2C, you shouldn't need that here.
 
-> +	help
-> +	  LED driver for MAX77705 MFD chip from Maxim Integrated.
+base-commit: eca631b8fe808748d7585059c4307005ca5c5820
+--
+2.39.5
 
-No such thing as an "MFD chip".
-
-> +
->  config LEDS_MAX8997
->  	tristate "LED support for MAX8997 PMIC"
->  	depends on LEDS_CLASS && MFD_MAX8997
-> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> index 18afbb5a23ee..096bf244527d 100644
-> --- a/drivers/leds/Makefile
-> +++ b/drivers/leds/Makefile
-> @@ -60,6 +60,7 @@ obj-$(CONFIG_LEDS_LP8860)		+= leds-lp8860.o
->  obj-$(CONFIG_LEDS_LT3593)		+= leds-lt3593.o
->  obj-$(CONFIG_LEDS_MAX5970)		+= leds-max5970.o
->  obj-$(CONFIG_LEDS_MAX77650)		+= leds-max77650.o
-> +obj-$(CONFIG_LEDS_MAX77705)		+= leds-max77705.o
->  obj-$(CONFIG_LEDS_MAX8997)		+= leds-max8997.o
->  obj-$(CONFIG_LEDS_MC13783)		+= leds-mc13783.o
->  obj-$(CONFIG_LEDS_MENF21BMC)		+= leds-menf21bmc.o
-> diff --git a/drivers/leds/leds-max77705.c b/drivers/leds/leds-max77705.c
-> new file mode 100644
-> index 000000000000..50af81fb7324
-> --- /dev/null
-> +++ b/drivers/leds/leds-max77705.c
-> @@ -0,0 +1,157 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// Based on leds-max77650 driver:
-> +//		Copyright (C) 2018 BayLibre SAS
-> +//		Author: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-
-You don't need to do that.
-
-> +//
-> +// LED driver for MAXIM 77705 MFD.
-
-Remove MFD from everywhere.
-
-> +// Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.org>
-
-Only the SPDX in C++ please.
-
-> +#include <linux/i2c.h>
-> +#include <linux/leds.h>
-> +#include <linux/mfd/max77705-private.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#define MAX77705_LED_NUM_LEDS		4
-> +#define MAX77705_LED_EN_MASK		GENMASK(1, 0)
-> +#define MAX77705_LED_MAX_BRIGHTNESS	0xff
-> +
-> +struct max77705_led {
-> +	struct led_classdev cdev;
-> +	struct regmap *regmap;
-> +	unsigned int en_shift;
-> +	unsigned int reg_brightness;
-> +};
-> +
-> +static struct max77705_led *max77705_to_led(struct led_classdev *cdev)
-> +{
-> +	return container_of(cdev, struct max77705_led, cdev);
-> +}
-> +
-> +static int max77705_rgb_blink(struct led_classdev *cdev,
-> +				unsigned long *delay_on,
-> +				unsigned long *delay_off)
-> +{
-> +	struct max77705_led *led = max77705_to_led(cdev);
-> +	int value, on_value, off_value;
-> +
-> +	on_value = (((*delay_on < 100) ? 0 :
-> +			(*delay_on < 500) ? *delay_on/100 - 1 :
-> +			(*delay_on < 3250) ? (*delay_on - 500) / 250 + 4 : 15) << 4);
-> +	off_value = ((*delay_off < 1) ? 0x00 :
-> +			(*delay_off < 500) ? 0x01 :
-> +			(*delay_off < 5000) ? *delay_off / 500 :
-> +			(*delay_off < 8000) ? (*delay_off - 5000) / 1000 + 10 :
-> +			(*delay_off < 12000) ? (*delay_off - 8000) / 2000 + 13 : 15);
-
-These nested ternary are pretty miserable.  Please break them out.
-
-Also all of these magic numbers probably need defining so the maths
-becomes easier to follow for humans.
-
-> +	value = on_value | off_value;
-> +	return regmap_write(led->regmap, MAX77705_RGBLED_REG_LEDBLNK, value);
-> +}
-> +
-> +static int max77705_led_brightness_set(struct led_classdev *cdev,
-> +					enum led_brightness brightness)
-> +{
-> +	struct max77705_led *led = max77705_to_led(cdev);
-> +	int ret;
-
-Pop the ret on the bottom, if no other reason than for my OCD!
-
-> +	unsigned long blink_default = 0;
-> +
-> +	if (brightness == LED_OFF) {
-> +		// Flash OFF
-
-No C++ comments please.
-
-> +		ret = regmap_update_bits(led->regmap,
-> +					MAX77705_RGBLED_REG_LEDEN,
-> +					MAX77705_LED_EN_MASK << led->en_shift, 0);
-> +		max77705_rgb_blink(cdev, &blink_default, &blink_default);
-> +	} else {
-> +		// Set current
-> +		ret = regmap_write(led->regmap,
-> +				   led->reg_brightness, brightness);
-
-Line wrap at 100-chars.
-
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = regmap_update_bits(led->regmap,
-> +					MAX77705_RGBLED_REG_LEDEN, LED_ON << led->en_shift,
-> +					MAX77705_LED_EN_MASK << led->en_shift);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int max77705_led_probe(struct platform_device *pdev)
-> +{
-> +	struct fwnode_handle *child;
-> +	struct max77705_led *leds, *led;
-> +	struct device *dev;
-> +	struct regmap *map;
-
-s/map/regmap/
-
-> +	int rv, num_leds;
-
-What's rv?  If it's "return value", then please just use ret.
-
-> +	u32 reg;
-> +
-> +	dev = &pdev->dev;
-
-Do this during the declaration
-
-> +	leds = devm_kcalloc(dev, sizeof(*leds),
-> +				MAX77705_LED_NUM_LEDS, GFP_KERNEL);
-> +	if (!leds)
-> +		return -ENOMEM;
-> +
-> +	map = dev_get_regmap(dev->parent, NULL);
-> +	if (!map)
-> +		return -ENODEV;
-> +
-> +	num_leds = device_get_child_node_count(dev);
-> +	if (!num_leds || num_leds > MAX77705_LED_NUM_LEDS)
-
-num_leds < 0
-
-> +		return -ENODEV;
-> +
-> +	device_for_each_child_node(dev, child) {
-
-If you use the _scoped version, you can drop the gotos.
-
-> +		struct led_init_data init_data = {};
-> +
-> +		rv = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (rv || reg >= MAX77705_LED_NUM_LEDS) {
-> +			rv = -EINVAL;
-> +			goto err_node_put;
-> +		}
-> +
-> +		led = &leds[reg];
-> +		led->regmap = map;
-> +		led->reg_brightness = MAX77705_RGBLED_REG_LED0BRT + reg;
-> +		led->en_shift = 2 * reg;
-
-Why 2?
-
-> +		led->cdev.brightness_set_blocking = max77705_led_brightness_set;
-> +		led->cdev.blink_set = max77705_rgb_blink;
-> +		led->cdev.max_brightness = MAX77705_LED_MAX_BRIGHTNESS;
-> +
-> +		init_data.fwnode = child;
-> +		init_data.devicename = "max77705";
-
-You don't want to use the label as the devicename?
-
-https://github.com/torvalds/linux/blob/master/drivers/leds/led-core.c#L526
-
-> +
-> +		rv = devm_led_classdev_register_ext(dev, &led->cdev,
-> +							&init_data);
-> +		if (rv)
-> +			goto err_node_put;
-> +
-> +		rv = max77705_led_brightness_set(&led->cdev, LED_OFF);
-> +		if (rv)
-> +			goto err_node_put;
-> +	}
-> +
-> +	return 0;
-
-'\n' here.
-
-> +err_node_put:
-> +	fwnode_handle_put(child);
-> +	return rv;
-> +}
-> +
-> +static const struct of_device_id max77705_led_of_match[] = {
-> +	{ .compatible = "maxim,max77705-led" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, max77705_led_of_match);
-> +
-> +static struct platform_driver max77705_led_driver = {
-> +	.driver = {
-> +		.name = "max77705-led",
-> +		.of_match_table = max77705_led_of_match,
-> +	},
-> +	.probe = max77705_led_probe,
-> +};
-> +module_platform_driver(max77705_led_driver);
-> +
-> +MODULE_DESCRIPTION("Maxim MAX77705 LED driver");
-> +MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.39.2
-> 
-
--- 
-Lee Jones [李琼斯]
 
