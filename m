@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-111520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6180E99F20C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:56:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E41A99F250
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:08:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F34828347D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:56:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31DC81C20DC1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:08:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4A91DD0D8;
-	Tue, 15 Oct 2024 15:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B461F130C;
+	Tue, 15 Oct 2024 16:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YopLdicK"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="i/dXZ2II"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860D11CB9EB;
-	Tue, 15 Oct 2024 15:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F541E9096
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 16:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729007773; cv=none; b=Gu/8d5x20XseXsg2L8tXOI4XNNaST+B4d3m2kz3Rip2ZbIDqHjbKVSOEuopozfx57OChX1aKJ5EEIaC0ZQ9UG8NXZk+229mPgN+hdCn0YgFJo7MgErMxrRfIxZPjd/vp4Scft6cwvrUMjG27Haamzdg3Rq6kS5ifHXFuItr+jm0=
+	t=1729008503; cv=none; b=uC2VsHMQwmmdBQME2lXm+w0RFYaauGF/tTVvqpJBwzauw9Oc6MRKT28O0B/2C9Kdk0MjxhvlNOGTWvN0PwaP5uP+aN8ZPiDfibFqCFWrUOvQnMn6oqcr03UoE2xzzq72nbzDnhgAfIcKLNQr8KH9aNLvfw03K0vWdfoMWdkR2qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729007773; c=relaxed/simple;
-	bh=vIm5D+Nt5FDuEtC55CCb3arvTUdGz5H2q0PVfEd8fQQ=;
+	s=arc-20240116; t=1729008503; c=relaxed/simple;
+	bh=4Bzdfhl+m7ShnIiiJTobPwP7Xgi6C+hX2rwg3xphCJY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vBO7ULFtkS84YH76rnOGUgBi9AZDk6c3iROvcvNfeoSOeOpjwpbhyOulIuPbahFmHt/xstTbCSI16t29+RIVuFxt+FKxPDI3IA3nuLc9SXXn6Z8oJoi4EC7GK+g6Kj4ZYaiimNFgIQu3Q+0pORJ8tCMcWjXSFz1sZzcMBnHAABU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YopLdicK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2EC8C4CECF;
-	Tue, 15 Oct 2024 15:56:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729007773;
-	bh=vIm5D+Nt5FDuEtC55CCb3arvTUdGz5H2q0PVfEd8fQQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YopLdicKA9pmmyomjRmvMga2ZE8Wj+Sc7nsg//dFZVw7KA3GBJPjJ7wUYMnRcC1Q6
-	 tKpSlqzNEoDkTVddCXorIGjYh0M6WH6K+x17WnlAUFsx4IhenfuhsjwN0BCwPP+yTc
-	 6D86BmjIuQGN6d5w9SJn0ZPMgRQxDhYb9RFJ66hUuexEu15RSHEBXisYevgQNc948m
-	 qKtTS4wyA3fAsEjbovZSXn/oGJmb9Lskmd5L/0EUcy1FIyMgkO2u1ooGJAET6jFUEc
-	 ZqG8bQpLRWg34ko5taTTAz5j7/qZ4tOHLmRZ6ICqbbnONFhH8ZRa46rs3dY0sqktkK
-	 +NAT53tOEHdBQ==
-Message-ID: <713434a1-98fb-4e7d-b3b2-5bf4da99d615@kernel.org>
-Date: Tue, 15 Oct 2024 17:56:04 +0200
+	 In-Reply-To:Content-Type; b=mL54pbq/J/EmLIyGIp0zgz/zahVhrU9w58R3A2+Ha72nvSvIP0YGSlGg9CohiuXWFpGcGfzDhB0KHW9RK2GdfJ7wK9QkOhklnSkZPszLISiRukiVeu2JssNCgucqcv77dB6QOSp9lE7O93POOgCUigO2BKnt8Ja5acVJvHdSfJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=i/dXZ2II; arc=none smtp.client-ip=209.85.210.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7154e7b915bso3529020a34.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 09:08:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729008500; x=1729613300; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=swtPW+tLLd0OzR6ekCZ+L05YNw5hBkLTnVHdB063/5s=;
+        b=i/dXZ2IIxke8jaX3Vdp7BpaSW/1VCxIE32jLHX0OXehjHTiwukbn+e5ozb1jqMNFIQ
+         E5GWz8ALGnxe20sCyiFp+l5iMpoUi3ywzhq6qu/DEVcvABQjEyOsytKm7IMZ/cE5o9WN
+         JQ1C6BgHvH/nWN7H5dKYYHqQLrnBoqpCnBxqN6yLk5Su+t9TuuvNt/2p3WphC9MylTk9
+         ZIlznqIGkTJTnu64EQOj/aT6RqtyrpSCcTz0UP8R824NQ8HKGTfw2Kw6PlJyYxUUF4ga
+         yoZgAwoEHHXI/vJSJ9oqZCIVblYnWlnBX+iaOLKIHVxl7EHu8/85GvRy7QsdLVFIfzhC
+         yzow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729008500; x=1729613300;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=swtPW+tLLd0OzR6ekCZ+L05YNw5hBkLTnVHdB063/5s=;
+        b=D3cbv36VuYjXBjjSZl7D2TECGuVUe3bmpRgOkGcx5VvgmnzfFZD+5IWRrd4llbpqnO
+         jPa/kKU6C/6pJW2SaxBA8/U0c+IqG8+D6gjerwNHizVsBdYkHjXrZ65bHaFTsiLaNS8M
+         f/PsEgCLH7NNCuyHmA+AAT8EOZvECU5JXSqhWJxhSfWs04Xozlww/ESUeaIFdK/explH
+         HeDmKWlobnGfiiYsdPcYTjJDtfmBAfWxsG4W+lCbK50tolvE+AtnouhHXRtrsT431ycH
+         8FARS2lFKy8m43Dfq2wppuHYnLV7142vkR5BwzA9H0XKoheMRa067MuJlLjoj0M6nspC
+         hSdA==
+X-Forwarded-Encrypted: i=1; AJvYcCXrINYrh8NpNDcEpUEkPSIgJu+QRjW6pe3nwzrdjBrPUJ/R1fpWgx3HaY2YPYvC4vMjCy5qcsuxucrn@vger.kernel.org
+X-Gm-Message-State: AOJu0YweSkYE6cI4bkPJM2x2hi1CU6ZF/8Pqe/yIBKpzsjhmrwsL95Aj
+	/JRYzuSLc31ZSCVjeedzZfLBCxO2wvQW6LTUpS2xnzeubMrcG7fN5kSnrQSd6UE=
+X-Google-Smtp-Source: AGHT+IEwPPYkT6dxAxzECLc4uz6QgfRyPeTxs3ZCoeVmhMjxDE6Q2Jva1e5+jR93VB23GYq/ngQhtA==
+X-Received: by 2002:a05:6830:3688:b0:717:d601:eb42 with SMTP id 46e09a7af769-7180350411amr1306094a34.31.1729008500459;
+        Tue, 15 Oct 2024 09:08:20 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-717fb9ee9d6sm347988a34.21.2024.10.15.09.08.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Oct 2024 09:08:19 -0700 (PDT)
+Message-ID: <704f4440-9699-48ef-acd7-e0bf9c4ae5b0@baylibre.com>
+Date: Tue, 15 Oct 2024 11:08:18 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,78 +76,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 1/8] spi: dt-bindings: Introduce qcom,spi-qpic-snand
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, broonie@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, miquel.raynal@bootlin.com,
- richard@nod.at, vigneshr@ti.com, manivannan.sadhasivam@linaro.org,
- arnd@arndb.de, esben@geanix.com, nikita.shubin@maquefel.me,
- linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+Subject: Re: [PATCH v3 6/6] iio: adc: ad4851: add ad485x driver
+To: Andy Shevchenko <andy@kernel.org>, Jonathan Cameron <jic23@kernel.org>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Ivan Mikhaylov <fr0st61te@gmail.com>,
+ Marius Cristea <marius.cristea@microchip.com>,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>,
+ =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Mike Looijmans <mike.looijmans@topic.nl>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
-References: <20241010070510.1504250-1-quic_mdalam@quicinc.com>
- <20241010070510.1504250-2-quic_mdalam@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ linux-pwm@vger.kernel.org
+References: <20241014094154.9439-1-antoniu.miclaus@analog.com>
+ <20241014094154.9439-6-antoniu.miclaus@analog.com>
+ <Zw0ZM0vQXJep3dFJ@smile.fi.intel.com> <20241014201515.463c7c07@jic23-huawei>
+ <Zw5N_fxdDKQxlPoj@smile.fi.intel.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241010070510.1504250-2-quic_mdalam@quicinc.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <Zw5N_fxdDKQxlPoj@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/10/2024 09:05, Md Sadre Alam wrote:
-> Document the QPIC-SPI-NAND flash controller present in the IPQ SoCs.
-> It can work both in serial and parallel mode and supports typical
-> SPI-NAND page cache operations.
+On 10/15/24 6:11 AM, Andy Shevchenko wrote:
+> On Mon, Oct 14, 2024 at 08:15:15PM +0100, Jonathan Cameron wrote:
+>> On Mon, 14 Oct 2024 16:14:27 +0300
+>> Andy Shevchenko <andy@kernel.org> wrote:
+>>> On Mon, Oct 14, 2024 at 12:40:40PM +0300, Antoniu Miclaus wrote:
 > 
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
-> ---
+> ...
+> 
+>>>> +config AD4851
+>>>> +	tristate "Analog Device AD4851 DAS Driver"
+>>>> +	depends on SPI
+>>>> +	select REGMAP_SPI
+>>>> +	select IIO_BACKEND
+>>>> +	help
+>>>> +	  Say yes here to build support for Analog Devices AD4851, AD4852,
+>>>> +	  AD4853, AD4854, AD4855, AD4856, AD4857, AD4858, AD4858I high speed
+>>>> +	  data acquisition system (DAS).  
+>>>
+>>> I think I already commented on this... Anyway, it's much better to support when
+>>> this list is broke down on per device per line. In such a case it's less churn
+>>> if we need to remove or add an entry in the future.
+>>>
+>>>> +	  To compile this driver as a module, choose M here: the module will be
+>>>> +	  called ad4851.  
+>>>
+>>> Also, with all these devices to be supported why not ad485x as the name of
+>>> the driver? Is it a preference by the IIO subsystem?
+>>
+>> Don't.  We've been bitten by too many cases of manufacturers noticing
+>> a hole in their part numbers and 'slotting' something unrelated in.
+>> So it just causes confusion.  Hence strong preference for any new code
+>> is pick a name from the list.  The wild card also implies restrictions
+>> that tend to break overtime when other part numbers outside the range
+>> are used.  Not using a wildcard keeps it consistently wrong so people
+>> get used to it :)
+> 
+> I see your point!
+> 
+> But shouldn't we have a formal criteria for choosing that one from the list?
+> I would go with "most featured device" as it may be aligned with all enabled
+> features that otherwise would be questionable / confusing for the chips that
+> do not support them or support in a limited manner.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+I always go with the lowest number supported by the driver at the time
+the driver was created. It is a simple, objective criteria and no one
+has to spend time looking through features to decide which one is "best".
 
