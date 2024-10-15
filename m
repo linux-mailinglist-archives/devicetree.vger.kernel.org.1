@@ -1,195 +1,201 @@
-Return-Path: <devicetree+bounces-111379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465DE99E752
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:51:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72F8B99E871
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:06:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 601AB1C20850
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:51:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95E5E1C224D3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAAA41E3DE8;
-	Tue, 15 Oct 2024 11:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3B41EBA12;
+	Tue, 15 Oct 2024 12:05:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uuxSSGy1"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="e2oN4jST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8750D19B3FF;
-	Tue, 15 Oct 2024 11:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D83F1E7669
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 12:05:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728993115; cv=none; b=acTsufDuobd4fpnsLnIPl3e1wdqzAXHs8vc3oRi+kKRQNeekFcOrgJxC6Gj8PSyv6xA0El2rIZcQMGmxLF+XgQSUsYU4sGagat5YtnRhD/2J4jk0rVkzheyyxOlkZ92HBnt1im5CFJ+8cxYe2+vxH+AuHL0UXcCLs7LnLWESXII=
+	t=1728993953; cv=none; b=joQbTVUUk1CK5D/9f3nryKl2hSWtkqOF+PGVG6bzA0p5FKXPpKvELjmxecJXcddWdl2CmFvAXsmigvjIfGgLd7WD3PvlpOQRLz1tdp3DbzWIjjntCzxoFonEwNsWQRenGP94qhJ4zpFCJLEFCQelSjlB4v2ArNwMf/TBaLGMDp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728993115; c=relaxed/simple;
-	bh=+0r1udq374oab/kn6p7coOzMnCmavq5jR+mo4tQ6GYA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UhL2OslBPCrVRW0ps/RC6yI7ob0mzopp3PmOeckx0DUhq4qGTM0gsH2fPXgkWX6vJ/ctR9vEnz8M2Tpj2et6Dqokwg4PQK55xK6jBJZQc4CQnZP/SJQM026jXUFPNBfDq+ZV4ioCpr/+yJzH3GkfQ98Frl5aDkkpHndT3q4Vcuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uuxSSGy1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9B67C4CECE;
-	Tue, 15 Oct 2024 11:51:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728993115;
-	bh=+0r1udq374oab/kn6p7coOzMnCmavq5jR+mo4tQ6GYA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uuxSSGy17yQd40mq1CMFBH0+Png5FUO3jmqpTArY/cCfntCc3p4S4IlIR3uUCDZCW
-	 gjLSb8K7riK3UiSnL4pqpXTVGHHOIpGjglogkp6UHgL9KuaPZDPq6XzjprxuVb7ncD
-	 P5FjMEbc/ONcSWxtqt8bFzTN3E1y0jiqb9fWx5hdZgFtx3AhumkZiWqwBrD3vj9Pqe
-	 pz4+DbnzLOm0trJr8I2CtUL7Ljow16KUgCwwwdPE+9GnGWWOgmKVyCVPpISLS5sdSf
-	 xmAKy5GkSQp6g2l2y+bibDNwwU+STvv4I1X2irKMELoiZhbsJsA7F+jnqZtW1AhEpJ
-	 Gylm7vPYIFxFg==
-Message-ID: <0c4d199a-ed74-4d44-a715-ceb498898ddc@kernel.org>
-Date: Tue, 15 Oct 2024 13:51:43 +0200
+	s=arc-20240116; t=1728993953; c=relaxed/simple;
+	bh=TkH6GmEo4c9tnguqpqU/PvDipqNVka108zrquojRkfU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FmnEZmApBZGbF7lE+jUkJUIsFacr/ZltrIF6MHdcYNZEfe9SVuvcjxcg5pC6H+yHYrl0eMbIkXwg9s7KsA8tZoLyEK+6G+0nmiDvhh9ZKvd22FIRLdaIs6QansQ/6CialRki9hXQJlzN4QxN5vwncYrS62+nOHagKnmrk2hb9qM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=e2oN4jST; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5369f1c7cb8so6622525e87.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 05:05:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1728993950; x=1729598750; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3pkU2eRjeKvSY6f0pSdTbycrkRgeCmqTec03rjYKyF8=;
+        b=e2oN4jSTp0hQjZQT7F/jZLiSUj681eVWGqlZcJyQijdY+/mdOhyPTDZ1V5xwguoIbn
+         7P28qyMu1BPQdBLO4/tVDto/TginTNo6iLExtjKz6wHIXUJb9I+WTug1ywopRRBB53yD
+         18+9DEIpXjmhGPsCKuV401tlV3Q0gUjH3gHP4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728993950; x=1729598750;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3pkU2eRjeKvSY6f0pSdTbycrkRgeCmqTec03rjYKyF8=;
+        b=XpQICreuzXnD4c2H0Opm0VeOOhkicTMvgV7QH7JZfi1ihhbsoo6Cv98Ra5TGxStc2/
+         crP/Z5kb3vxlXecDBbrsCM0FgKYaHHnEn7Z6zzmqi3MhVfa7Oe70JWCHKB97vxyWacVV
+         Gc/E9CZiBr6jto9N+y29JIn9a3Vv3E7P4D86q+Uv51Yi9s+JiQmKGD/hEXzSgrvHh8Y3
+         qMo4RAWmgl23vUuDxXTKvIhu0hs5woe4LY7BAqAsn7IWPsAhmL/KZIsw4vycjelfF5IA
+         6rSeqtgNgLxG2xhLVtLdH42hfdFmQMHMThVXNwNraffYAS2diZchmG2yWZujNeB8EVmB
+         y9sg==
+X-Forwarded-Encrypted: i=1; AJvYcCXZXxwvj0fsxmpwokhvkx4dHsdoMILEml/u169LWrPAEdE8GOxAKfkc17P08xsuqAYUUjn292Hv+yDY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLtcx17yZO4yzHMsoodzkgALCKEFJrZvPxb3Rxr0XXvQz0giu4
+	wVhxUigvFY3gmhwjWcpsLjitn9gAAmRVrIO8ooOFELZ5ASziNmQgSo7vXmVVe/tCd0d1PDqSxe3
+	3k2rzIy6eVgJP3SdQ4vTw1eN7plYRxVRjAF3K
+X-Google-Smtp-Source: AGHT+IEQXdmQdNm+HUimDjCPdKjEChhYuf8aN9wLvl2NObC3Ky9RVqgYEBecyoCudKfI+sGJ8TfqR02sf0yymk/NXVk=
+X-Received: by 2002:a05:6512:3da6:b0:536:a275:9d61 with SMTP id
+ 2adb3069b0e04-539e551624bmr5918785e87.21.1728993949587; Tue, 15 Oct 2024
+ 05:05:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: dt-bindings: Use additionalProperties: false
- for endpoint: properties:
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Martin Kepplinger <martink@posteo.de>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- "Paul J. Murphy" <paul.j.murphy@intel.com>,
- Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
- Tommaso Merciai <tomm.merciai@gmail.com>,
- Martin Hecht <martin.hecht@avnet.eu>, Zhi Mao <zhi.mao@mediatek.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Mikhail Rudenko <mike.rudenko@gmail.com>,
- Ricardo Ribalda <ribalda@kernel.org>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Umang Jain <umang.jain@ideasonboard.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Dongchun Zhu <dongchun.zhu@mediatek.com>,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
- <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-2-a2bb12a1796d@linaro.org>
- <7ecxjoa7aije46cxmkyfd6ihxnqw4wleqkioddomxbwlu7qtrc@4dkfitppeksu>
- <6f461cb3-3a41-4a3d-b9b2-71b1c6be77f7@linaro.org>
- <9510b546-28fa-4fb4-b06e-0af5f9fd3bbb@kernel.org>
- <20241014202920.GE5522@pendragon.ideasonboard.com>
- <f265576c-7d83-40cb-b857-7ec54ef9ab46@kernel.org>
- <20241015112806.GA2712@pendragon.ideasonboard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241015112806.GA2712@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241008073430.3992087-1-wenst@chromium.org> <20241008073430.3992087-7-wenst@chromium.org>
+ <Zwfwv-O9ln-PVMdc@smile.fi.intel.com> <CAGXv+5F=5f4R5AExANxOwgTL6_VbpHdNKKhHnzy_PDcxtcFoEQ@mail.gmail.com>
+ <Zwz-benEP4PHbRb2@smile.fi.intel.com> <CAGXv+5EwSZFoE-Uzb5x1QfknkVfd64Z_uzR0YcvZ_pR9ktGUBA@mail.gmail.com>
+ <Zw5PxMOrF8Ape3if@smile.fi.intel.com>
+In-Reply-To: <Zw5PxMOrF8Ape3if@smile.fi.intel.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 15 Oct 2024 20:05:38 +0800
+Message-ID: <CAGXv+5GXVdLg8+gHTAY2ur1u35HLFqq33DLfef_P3geDr3XrMQ@mail.gmail.com>
+Subject: Re: [PATCH v8 6/8] i2c: of-prober: Add GPIO support to simple helpers
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 15/10/2024 13:28, Laurent Pinchart wrote:
-> Hi Krzysztof,
-> 
-> On Tue, Oct 15, 2024 at 08:11:18AM +0200, Krzysztof Kozlowski wrote:
->> On 14/10/2024 22:29, Laurent Pinchart wrote:
->>> On Mon, Oct 14, 2024 at 10:47:31AM +0200, Krzysztof Kozlowski wrote:
->>>> On 14/10/2024 10:31, Bryan O'Donoghue wrote:
->>>>> On 14/10/2024 08:45, Krzysztof Kozlowski wrote:
->>>>>> I do not understand the reasoning behind this change at all. I don't
->>>>>> think DT maintainers ever suggested it (in fact, rather opposite:
->>>>>> suggested using unevaluatedProps) and I think is not a consensus of any
->>>>>> talks.
->>>>>
->>>>> No there is not but then, how do you give consistent feedback except 
->>>>> proposing something to be a baseline.
->>>>>
->>>>> On the one hand you have upstream additionalProperties: false and 
->>>>> unevaluatedProperites: false - it'd be better to have a consistent 
->>>>> message on which is to be used.
->>>>
->>>> Well, I am afraid that push towards additionalProps will lead to grow
->>>> common schema (video-interface-devices or video-interfaces) into huge
->>>> one-fit-all binding. And that's not good.
->>>>
->>>> If a common binding for a group of devices encourages you to list its
->>>> subset, then it is not that common.
->>>>
->>>> Solution is to fix that, e.g. split it per classes of devices.
->>>
->>> I think splitting large schemas per class is a good idea, but the
->>> problem will still exist. For instance, if we were to move the
->>> CSI-2-specific properties to a separate schema, that schema would define
->>> clock-lanes, data-lanes and clock-noncontinuous. The clock-lanes and
->>> clock-noncontinuous properties do not apply to every device, how would
->>> we then handle that ? I see three options:
->>
->> Why is this a problem? Why is this a problem here, but not in other
->> subsystems having exactly the same case?
-> 
-> I won't talk for other subsystems, but I can say I see value in
-> explicitly expressing what properties are valid for a device in DT
-> bindings both to inform DT authors and to perform validation on DT
-> sources. That's the whole point of YAML schemas, and I can't see a good
-> reason not to use the tooling we have developed when it has an easy way
-> to do the job.
+On Tue, Oct 15, 2024 at 7:19=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Tue, Oct 15, 2024 at 01:31:40PM +0800, Chen-Yu Tsai wrote:
+> > On Mon, Oct 14, 2024 at 7:20=E2=80=AFPM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > > On Mon, Oct 14, 2024 at 12:06:16PM +0800, Chen-Yu Tsai wrote:
+> > > > On Thu, Oct 10, 2024 at 11:20=E2=80=AFPM Andy Shevchenko
+> > > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > > On Tue, Oct 08, 2024 at 03:34:25PM +0800, Chen-Yu Tsai wrote:
+>
+> ...
+>
+> > > > > > +static void i2c_of_probe_simple_disable_gpio(struct device *de=
+v, struct i2c_of_probe_simple_ctx *ctx)
+> > > > > > +{
+> > > > > > +     if (!ctx->gpiod)
+> > > > > > +             return;
+> > > > >
+> > > > > Do you need this check for the future patches?
+> > > >
+> > > > Not sure I follow. The check is needed because this function is cal=
+led
+> > > > in i2c_of_probe_simple_cleanup(), but the GPIO could have been rele=
+ased
+> > > > earlier in i2c_of_probe_simple_cleanup_early(), and that makes this
+> > > > function a no-op.
+> > >
+> > > Do you have a known race condition then? This is bad. You shouldn't r=
+ely on
+> > > the sequence of events here, or the serialisation has to be added.
+> >
+> > No there isn't. Explanation below.
+> >
+> > > > The helpers for the release side are quite short, but the ones on t=
+he
+> > > > request side wrap some conditional and error handling. I think it's
+> > > > better to keep it symmetric?
+> > >
+> > > Yes, but why do you need the above check, I didn't still get...
+> > > I.o.w. you think that there is a gap in time that (if no check) the G=
+PIO
+> > > descriptor might be changed? But then how does it affect anyway the p=
+ossibility
+> > > that it becomes not NULL even with the current code.
+> >
+> > There are two codes paths, either
+> >
+> >     a) successfully finding a device and enabling it, or
+> >     b) exhausting all options and not finding a device, because it was
+> >        optional or it is malfunctioning.
+> >
+> > After either code path, this cleanup function is called.
+> >
+> > In path (a), the GPIO descriptor is released prior to enabling the devi=
+ce,
+> > because the descriptor is an exclusive resource, and as soon as the dev=
+ice
+> > is enabled, its corresponding driver may probe and request the same GPI=
+O,
+> > and would fail if it was not released.
+> >
+> > In path (b), nothing was enabled, and the GPIO descriptor was not relea=
+sed
+> > early.
+> >
+> > The cleanup function here accounts for both cases, hence the check.
+>
+> Yes, but the very same check is inside gpiod_set_value(). I'm still puzzl=
+ed
+> about the duplication. Maybe I'm missing something...
 
-I understand. The benefit, which you see, comes with complexity of the
-binding and need of listing properties.
+My bad. I did not check if the GPIO descriptor API had these checks.
+In that case I will drop the check in this patch.
 
-We do not enforce such rules (narrowing common schema in very strict
-way) in other subsystems, maybe with exception of input and touchscreen
-devices, but there common schema is quite big. And DT maintainers
-suggested to drop such code even for these, BTW.
 
-Best regards,
-Krzysztof
+Thanks
+ChenYu
 
+> > A step-by-step description might be clearer:
+> >
+> > 1. i2c_of_probe_simple_enable()
+> >    ...
+> >    1a. i2c_of_probe_simple_get_supply()
+> >    1b. i2c_of_probe_simple_get_gpiod()
+> >    1c. i2c_of_probe_simple_enable_regulator()
+> >    1d. i2c_of_probe_simple_set_gpio()
+> >
+> > 2. Loop through potential component options and probe; if one is found:
+> >    2a. i2c_of_probe_simple_cleanup_early()
+> >        2a-i. i2c_of_probe_simple_put_gpiod
+> >    2b. Enable device and driver's probe() gets called
+> >
+> > 3. i2c_of_probe_simple_cleanup()
+> >    3a. i2c_of_probe_simple_disable_gpio()
+> >    3b. i2c_of_probe_simple_put_gpiod()
+> >    3c. i2c_of_probe_simple_disable_regulator()
+> >    3d. i2c_of_probe_simple_put_supply()
+> >
+> > > > > > +     /* Ignore error if GPIO is not in output direction */
+> > > > > > +     gpiod_set_value(ctx->gpiod, !ctx->opts->gpio_assert_to_en=
+able);
+> > > > > > +}
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
