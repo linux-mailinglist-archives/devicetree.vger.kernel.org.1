@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-111449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3EE399EDBF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:35:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B62A99EDFB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:42:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E002B22BFF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:35:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A66541C20B24
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:42:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD25C14A4E0;
-	Tue, 15 Oct 2024 13:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8267D1B2183;
+	Tue, 15 Oct 2024 13:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mtlw3P1b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t4EyHoVh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820721FC7C9;
-	Tue, 15 Oct 2024 13:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EB519B3FF;
+	Tue, 15 Oct 2024 13:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728999352; cv=none; b=rnFzFbEYZIQgke9LlNMKQ76eRyG/IooF06Nxm3fr/OKHg1tPcsftpW/w7YUb9xmo4q5m6kDfxKfuvwFlTtMFOi7zH747ix8pL6SyGJVHWhoE8W022EDkCTZhslFdKAyXGEvGq2R1DWdlHYbop6v0iAFeifsTxQwrjBMoArDF48g=
+	t=1728999560; cv=none; b=rYdsbbbkx9UZHTNXpOKGbOUGqTzlpi3egABTev5pjtOujbCcTuO/Va1YHbyipgauX/4s3ttbW+/MN4njKqdAHnluhMxn6QpvqsKwf2ipy7rP9Y/ZIC4qTy1uDLbasTWeUqlQQdid6UCtTHwwwiKyQ2qcGxgcpK4Gq3YEA6XSri4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728999352; c=relaxed/simple;
-	bh=iWqukihIetnXFxIMSRJf6mjrnCnlfxnayzBqiz8bRnY=;
+	s=arc-20240116; t=1728999560; c=relaxed/simple;
+	bh=bTR48j1g4dx5AtyOntoopUuO8cq9v0ZkN5DjIQDaZYQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IF7J5l2uGfLifNC1u5beGMUDj4dARVCoFY3ZsvEDXBJ/1mWomH3lQon0dyKNszAOY4GautTF+4uAj+V44/m6I5wG29OlsIxYweaVNwKjUMWA+mDUrJTEnphPz5Z+q0b77Xo3IiRA/z8ELI1xsTIGmEbxTV/JjHRezmg5mrm4rcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mtlw3P1b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A65FC4CEC6;
-	Tue, 15 Oct 2024 13:35:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qTe61eepDGu9/vDkDL2Sa+MTvIwEchWMJjDR/jg+oR5oPNaBYX1l1gbh94i/ifSCcQU+ZtH375EidZBi02EIiXM6xhmDeH/qFhMxg1H80xgveyHQxHmp5yv4qRXERNqVRvHPzb5dCZh6SPIB0yO3IC/kzurIQOGjDVFKyQaKLzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t4EyHoVh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2909C4CEC6;
+	Tue, 15 Oct 2024 13:39:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728999352;
-	bh=iWqukihIetnXFxIMSRJf6mjrnCnlfxnayzBqiz8bRnY=;
+	s=k20201202; t=1728999559;
+	bh=bTR48j1g4dx5AtyOntoopUuO8cq9v0ZkN5DjIQDaZYQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Mtlw3P1bWQYcQxdXci7wwOz8Hy1DkvnYOvYplfMHvTejdKnUeG+pS6hmL8bPYpNDN
-	 GAyFx/ZYwZYi82WmEesfcrXljVPTuXcq597/C4Tucja62HoghI26C52oPaRC0F1XVS
-	 IZ7BSGjzXuyIYLy9MeB9n6nSDDboWFD3jjYH0pxkREuZUnY2Gdb8HPfWlj3xqXdQfi
-	 Sy/QScWmSgpezN2rlj7c4nzsMmgALGB1SXyHJCtouCPy8KyCuwwIvnXQHmxw7aK122
-	 Y17hkhyrmE3Ia0zoQxIaPVnlJAcuAA7B/gcu3g7kLqAyTMIxIu18RRijpRedPnZYNd
-	 SDuEzpSjXnTRA==
-Message-ID: <f0da1029-c8df-40e7-8312-a41a87b7b940@kernel.org>
-Date: Tue, 15 Oct 2024 15:35:46 +0200
+	b=t4EyHoVhEP+VEniDqzNanjchFTMY7GYdH2h0z6efjMxlHVbKQv8V0Oqmq1M2l5r6i
+	 w6jS2jbkRkI6TBKc6O4C3mggNm2A7Izi19TUjx2R91GHlHsQsUziOR1Bn7VelzR2/U
+	 epKu1UOdKjyWGxm/QN6js2MvozmLefFSu9NqC6lX1jF3CY03din2Hq0uD0keCjm9ED
+	 rSeCYpAxD46covPcFhqQvZzvi/FFIWAQ1Tp2XC3ftOJsHsO4qFNlfd701EfOpgJdrM
+	 J7tvdh740hQ0x4dAUCKUUG1+58+zeHKzCcCq9IwjYgQb1WggBiEWO7hcBjnczeeJ3f
+	 W8jbXRr16FKwA==
+Message-ID: <c10b0b99-5bf2-47d3-b879-872f80e6883d@kernel.org>
+Date: Tue, 15 Oct 2024 15:39:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/5] dt-bindings: remoteproc: add binding for Microchip
- IPC remoteproc
-To: Valentina.FernandezAlanis@microchip.com, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, peterlin@andestech.com,
- dminus@andestech.com, Conor.Dooley@microchip.com, conor+dt@kernel.org,
- ycliang@andestech.com, jassisinghbrar@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, andersson@kernel.org, mathieu.poirier@linaro.org
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
- <20240912170025.455167-5-valentina.fernandezalanis@microchip.com>
- <fc541e78-5304-42be-a844-70935d66f151@kernel.org>
- <82eae461-3cce-4e36-905c-34c147fabcb3@microchip.com>
+Subject: Re: [PATCH RFC/RFT 1/3] dt-bindings: touchscreen: Add binding for
+ Novatek NT36xxx series driver
+To: gchan9527@gmail.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Del Regno <kholk11@gmail.com>,
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241015-nt36xxx-v1-0-3919d0bffee6@gmail.com>
+ <20241015-nt36xxx-v1-1-3919d0bffee6@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,86 +105,75 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <82eae461-3cce-4e36-905c-34c147fabcb3@microchip.com>
+In-Reply-To: <20241015-nt36xxx-v1-1-3919d0bffee6@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/10/2024 14:09, Valentina.FernandezAlanis@microchip.com wrote:
-> On 16/09/2024 21:14, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 12/09/2024 19:00, Valentina Fernandez wrote:
->>> Microchip family of RISC-V SoCs typically has or more clusters. These
->>> clusters can be configured to run in Asymmetric Multi Processing (AMP)
->>> mode
->>
->> A nit, subject: drop second/last, redundant "binding for". The
->> "dt-bindings" prefix is already stating that these are bindings.
->> See also:
->> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
->>
->>>
->>> Add a dt-binding for the Microchip IPC Remoteproc platform driver.
->>>
->>
->> Binding is for hardware, not driver. Please rephrase it to describe
->> hardware.
->>
->>
->>> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
->>> ---
->>>   .../remoteproc/microchip,ipc-remoteproc.yaml  | 84 +++++++++++++++++++
->>>   1 file changed, 84 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/microchip,ipc-remoteproc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/microchip,ipc-remoteproc.yaml b/Documentation/devicetree/bindings/remoteproc/microchip,ipc-remoteproc.yaml
->>> new file mode 100644
->>> index 000000000000..1765c68d22cf
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/microchip,ipc-remoteproc.yaml
->>> @@ -0,0 +1,84 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/microchip,ipc-remoteproc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Microchip IPC Remote Processor
->>> +
->>> +description:
->>> +  Microchip family of RISC-V SoCs typically have one or more
->>> +  clusters. These clusters can be configured to run in an Asymmetric
->>> +  Multi Processing (AMP) mode where clusters are split in independent
->>> +  software contexts.
->>> +
->>> +  This document defines the binding for the remoteproc component that
->>> +  loads and boots firmwares on remote clusters.
->>
->> Don't say that binding is a binding for. Say what this hardware piece is.
->>
->>> +
->>> +  This SBI interface is compatible with the Mi-V Inter-hart
->>> +  Communication (IHC) IP.
->>> +
->>> +maintainers:
->>> +  - Valentina Fernandez <valentina.fernandezalanis@microchip.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: microchip,ipc-remoteproc
->>
->> That's quite generic. Basically this says it will handle IPC of all
->> possible Microchip SoCs, not only RISC-V but also ARM and whatever you
->> come up with.
-> IPC is the actual name of the hardware block described in this binding. 
-> I'll update the description of the binding in v2 to mention this.
+On 15/10/2024 14:53, George Chan via B4 Relay wrote:
+> From: George Chan <gchan9527@gmail.com>
 > 
-> Additionally, I'll rename the compatible to microchip,ipc-sbi-remoteproc 
-> to further clarify that this binding is intended for devices using the 
-> Microchip IPC hardware block and for devices with an SBI interface (RISC-V).
+> Add binding for the Novatek NT36xxx series touchscreen driver.
 
-Well, still generic. Explain why this deserves exception from specific
-SoC compatibles.
+Several issues here.
+1. A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+2. Commit msg: Bindings are about hardware, not driver.
+
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+
+That's odd sequence.
+
+> Signed-off-by: George Chan <gchan9527@gmail.com>
+> ---
+>  .../bindings/input/touchscreen/nt36xxx.yaml        | 70 ++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml b/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
+> new file mode 100644
+> index 0000000000..3919f0d026
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
+
+Use compatible as filename.
+
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/nt36xxx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Novatek NT36xxx series touchscreen controller Bindings
+
+Not tested.
+
+
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <kholk11@gmail.com>
+> +  - George Chan <gchan9527@gmail.com>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +        - novatek,nt36525-spi
+> +        - novatek,nt36672a-spi
+> +        - novatek,nt36675-spi
+> +        - novatek,nt36676f-spi
+> +        - novatek,nt36772-spi
+
+This just does not work and was not tested... Limited review follows:
+
+Drop spi and explain why this cannot be part of existing nt36672a.
+
+I finished review here.
 
 Best regards,
 Krzysztof
