@@ -1,161 +1,107 @@
-Return-Path: <devicetree+bounces-111476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C8A99EF3C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7BB99EF5C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:21:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81FB628574B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:19:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E038280D31
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76ADD1E907D;
-	Tue, 15 Oct 2024 14:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6CC21AF0D6;
+	Tue, 15 Oct 2024 14:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ea1n0h+A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jbkm/EVO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47DA11E7C35;
-	Tue, 15 Oct 2024 14:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974C8149E16;
+	Tue, 15 Oct 2024 14:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729001873; cv=none; b=Aov+Smbvu0XEqK66FHbHDHfgs2mqyOZ4KiCSs5PQM9IekfrXEHEVcTup6dZtaQGGPcp8mIkMBdHZ+PNi3UuYaQbkfc/6z3OfKZlW0v4M7rToL41hWvlgaQb8/RqkmrKbI7plPBCSi5LQBID+3/mypeS0rCMgKBexf5u8veTLSEs=
+	t=1729002108; cv=none; b=rpm6vsyELLfc/SuC1SK7QBzwD5rvuX2VmKyav1j+WPkUtj9weH86KdZ/VIHvoM/ZYA86Kjxh4XlmKT/pQBClrQXR7Agv8Ijms0NZRx8505S/0vHCdDeBYb0afv/BBu1pErrMIT+Z72O2sqiMN0xWpphLxnld6Vl0Snw8XnloIvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729001873; c=relaxed/simple;
-	bh=9baH6CHGZzsM468eHEGN4gVq+5woj1MILXky7eF7law=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=OGaL1qew3jxes0muua4PPfhTTR4rO8+Chr+7hB6BliKjD/nqXW1/UNeyZDBrCj2aLgHoNLSAqDPY2JGE0nk2QCti6mB1qL29ZzQi1b5/+1qR/f/p7lbq6v1dbY+cwmPlb2lo70A6uEA/vPKb35L431g1/VMBylO29/tjtecYrYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ea1n0h+A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 815B8C4CED2;
-	Tue, 15 Oct 2024 14:17:52 +0000 (UTC)
+	s=arc-20240116; t=1729002108; c=relaxed/simple;
+	bh=y9Remuzhazsl6jG4wSR5jXZQPRLnrYUCmNCQ7YesZps=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aNoPfWki6bzVpvrnlmHfK+QhAe1m9wN9X2i/sWC0G11slzMRTeMAY6CpJUv9f/h7gc/BtUbANiFFvzTW2UIFwBtcUFCYlPqggNekl1mjeTbylwoxjMo9GFhHcghHQliWOf3ynwxKepmo9L+VlJt8Z+/ZkCtdTHrKSpmGAHGTQ24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jbkm/EVO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E50C9C4CECE;
+	Tue, 15 Oct 2024 14:21:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729001872;
-	bh=9baH6CHGZzsM468eHEGN4gVq+5woj1MILXky7eF7law=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=ea1n0h+A8vZ+CYbBUYN/JABoDPu4WImaTh8VyRjrMfxf1HNNGWcqwUpOcf6BwXTZL
-	 Hc8/WjOB9c38UmMSXmtfP2hMhPPOSEvVkg0oQHOdsQ8rPsV2e8xLMqAykQH824qFbQ
-	 884KnmRkFBwBTnZVlNCCy4+icqxIH7zvsnYTPFgs3yft4/oOan5DAZA4ZOdBTu6/Mo
-	 iasxFqR8xAKH8YusBWimPmbq6Nu599hnGz2DF35DqH7+QVbOwP2Sn8hjeTDJP6zj0p
-	 vy/kPzBHQCZr2qq2DtbysCFl+ok0dzx/SZfM7py861cQZsXq8vn1jcq3y0KtuhqzqI
-	 A8UbHx2hVfJjw==
-Date: Tue, 15 Oct 2024 09:17:51 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1729002108;
+	bh=y9Remuzhazsl6jG4wSR5jXZQPRLnrYUCmNCQ7YesZps=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jbkm/EVOBnWAwjn0Odp22gnMBUiYL6syoS5SHuyG+e4D7572qMJgnKfvVJPTL/S6w
+	 HDegeDPnibo9WmnsXAZxaeC22x5zSFSLSF5RT68Agu7KXe7eicpzvZ+FRCJbUs7UeO
+	 qxx8t2v7bukGdXXLJlWMdS1QxyKbk1qj4ZNsHwl8+AG3tJRN7A54q3xqud/1O4DxeM
+	 tGkMAzmK7ElI2fVPl2FOHbSk8FtDJcZOacm7/dkh0FJQkG4jTBvxUDCdr6SimJwO0X
+	 aoRwyHVenpuSV9SbM9FsX4huGBk5t5cDnsiuMcvOIbMd+cbH9vUUgzBXWqKoIWG4Uk
+	 9o5cJ4AlmjY6g==
+Date: Tue, 15 Oct 2024 09:21:45 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/5] dt-bindings: arm: fsl: add imx-se-fw binding doc
+Message-ID: <172900201303.807870.3079581090690762853.robh@kernel.org>
+References: <20241015-imx-se-if-v8-0-915438e267d3@nxp.com>
+ <20241015-imx-se-if-v8-2-915438e267d3@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: George Chan <gchan9527@gmail.com>
-Cc: linux-input@vger.kernel.org, Henrik Rydberg <rydberg@bitmath.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Del Regno <kholk11@gmail.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>
-In-Reply-To: <20241015-nt36xxx-v1-0-3919d0bffee6@gmail.com>
-References: <20241015-nt36xxx-v1-0-3919d0bffee6@gmail.com>
-Message-Id: <172900161342.733407.14343301296469733039.robh@kernel.org>
-Subject: Re: [PATCH RFC/RFT 0/3] Add support to Novatek's touch IC nt36xxx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241015-imx-se-if-v8-2-915438e267d3@nxp.com>
 
 
-On Tue, 15 Oct 2024 20:53:28 +0800, George Chan wrote:
-> Initially support for nt36xxx series spi device. Below
-> list all supported varients:
+On Tue, 15 Oct 2024 14:31:00 +0530, Pankaj Gupta wrote:
+> The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
+> creates an embedded secure enclave within the SoC boundary to enable
+> features like:
+> - HSM
+> - SHE
+> - V2X
 > 
->  - NT36675
->  - NT36672A
->  - NT36772(?)
->  - NT36525
->  - NT36676F
+> Secure-Enclave(s) communication interface are typically via message
+> unit, i.e., based on mailbox linux kernel driver. This driver enables
+> communication ensuring well defined message sequence protocol between
+> Application Core and enclave's firmware.
 > 
-> I had tested it with Redmi note 9 pro, aka NT36675 chip.
+> Driver configures multiple misc-device on the MU, for multiple
+> user-space applications, to be able to communicate over single MU.
 > 
-> This series is based on my repo below:
-> https://github.com/99degree/linux/tree/nt36xxx
+> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
 > 
-> There is a boot-and-functional tree for miatoll device:
-> https://github.com/99degree/linux/tree/working-20241015
-> 
-> And the older dev history:
-> https://github.com/99degree/linux/tree/nt36xxx_old
-> https://github.com/99degree/linux/tree/working-20230528/drivers/input/touchscreen
-> 
-> This driver is based on
-> AngeloGioacchino Del Regno for i2c based drive
-> https://patchwork.kernel.org/project/linux-input/cover/20201028221302.66583-1-kholk11@gmail.com/#24831734
-> 
-> _AND_
-> Neil Armstrong for the spi device codes
-> https://patchwork.kernel.org/project/linux-input/patch/20231213-topic-goodix-berlin-upstream-initial-v13-2-5d7a26a5eaa2@linaro.org/
-> 
-> Download fw function is adapted from original vendor driver
-> https://github.com/LineageOS/android_kernel_xiaomi_sm6250/tree/lineage-21/drivers/input/touchscreen/nt36xxx_spi/
-> 
-> Panel follower functionality is finally added.
-> 
-> Since the driver is split into core+spi so i2c function is relatively
-> easily to add.
-> 
-> Signed-off-by: George Chan <gchan9527@gmail.com>
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
 > ---
-> George Chan (3):
->       dt-bindings: touchscreen: Add binding for Novatek NT36xxx series driver
->       [RFC/RFT]Input: Add Novatek NT36xxx touchscreen driver
->       dts: sm7125-xiaomi-joyeuse: Sample device tree for reference
-> 
->  .../bindings/input/touchscreen/nt36xxx.yaml        |   70 +
->  arch/arm64/boot/dts/qcom/Makefile                  |    1 +
->  .../boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dts  |  183 +++
->  drivers/input/touchscreen/Kconfig                  |   13 +
->  drivers/input/touchscreen/Makefile                 |    2 +
->  drivers/input/touchscreen/nt36xxx.h                |  142 ++
->  drivers/input/touchscreen/nt36xxx_core.c           | 1422 ++++++++++++++++++++
->  drivers/input/touchscreen/nt36xxx_spi.c            |  256 ++++
->  8 files changed, 2089 insertions(+)
-> ---
-> base-commit: b852e1e7a0389ed6168ef1d38eb0bad71a6b11e8
-> change-id: 20241015-nt36xxx-07e458ba2877
-> 
-> Best regards,
-> --
-> George Chan <gchan9527@gmail.com>
-> 
-> 
+>  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 91 ++++++++++++++++++++++
+>  1 file changed, 91 insertions(+)
 > 
 
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+If a tag was not added on purpose, please state why and what changed.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Missing tags:
 
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y qcom/sm7125-xiaomi-joyeuse-touch.dtb' for 20241015-nt36xxx-v1-0-3919d0bffee6@gmail.com:
-
-arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dts:9:10: fatal error: sm7125-xiaomi-joyeuse-display.dts: No such file or directory
-    9 | #include "sm7125-xiaomi-joyeuse-display.dts"
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[3]: *** [scripts/Makefile.dtbs:131: arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:478: arch/arm64/boot/dts/qcom] Error 2
-make[2]: Target 'arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1412: qcom/sm7125-xiaomi-joyeuse-touch.dtb] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
-make: Target 'qcom/sm7125-xiaomi-joyeuse-touch.dtb' not remade because of errors.
-
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
 
