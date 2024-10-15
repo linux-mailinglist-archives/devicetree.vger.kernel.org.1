@@ -1,160 +1,190 @@
-Return-Path: <devicetree+bounces-111467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218EC99EEFF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:13:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08ABE99EF16
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:17:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCED31F22159
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:13:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCBE1285CD9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 541D91C4A01;
-	Tue, 15 Oct 2024 14:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBAE155A4D;
+	Tue, 15 Oct 2024 14:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HPtphILJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ao4/tEzY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A01031C07D5;
-	Tue, 15 Oct 2024 14:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 385031FC7EC;
+	Tue, 15 Oct 2024 14:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729001455; cv=none; b=s87wvpcpfzz82ckMjYR1qyDIDx0eCF0GhLSDjvhVbZ0JCjoM67cz6hU6wsUB3fTcyhK0zTNUkhM/7Sqbpz4HxORSfHsl57sO6A9ElMEh5w/d9YelkuZ+TOUhAJfvL8pu05hP/jbSaaIjlizOr59uZDvUgPeQz7nyFsAy/1kAgCw=
+	t=1729001849; cv=none; b=LrAssONeEIZHv1QhKMVRwEfs4tJp+RMkY19FeHvyPiFyWMKIRwOtA1Bb8NUFjFQJPZpfyuQ55eCd4JKHoSoPO9qv1igmNPBs67rH+N/qgQ5FTjYfS5GR6b5/fabMM1cGPhc0m5Hn+SBznckgloj8mwptngQ8UNZItSQwYUi9B8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729001455; c=relaxed/simple;
-	bh=4ilgM/XgrMYplYtg0dFd5RFUXbCho10fI62JZ9/QqAU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ocPdxhmoDT3HolH3YFPktXRmPiAP7sdMv15vFjPBIzpVro2PmvshaIu7xNovKvZTvr2IFEmaMpLb4hfPzr5XRtLxoaIDgJ9eJv2/s7A0WsaqpqFndh0oM0euCu9raYhXYEMqxVmsZF2i62AR3ta2VpQO9vhH5Di1Qz9+1f+sudA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HPtphILJ; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20cdb889222so22205775ad.3;
-        Tue, 15 Oct 2024 07:10:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729001453; x=1729606253; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=Schv5VB6tTanv9Tkkt6eqPig+ccww5N0g+oEIu4mf54=;
-        b=HPtphILJnCeyHxG+fN7XQjOukyEXh3YujFCDG9SGNvA2fDypRz//MWTY9+QKIbqB0P
-         xLtjzHiRKGmNRMXydEDfxJZEBHPXGP5SQ8E/zHtuwbdZSSbX1UN/ZGjT1MbxsZ8oBtSf
-         Tdde7CLc1LOL1HjNb2PqbGKw+FQHJca0UbBgt2XauVkoCD5Ygyeq8SVu8SPGzBA4lMVY
-         hoh68zsm4+VDBJjMTJV3ZOc65bWsrVzsfULPHNIsjB/AClnouoKaZKQsa6fVhdQLudv7
-         TX4C5ona/m5RxcswhbwfPKZLaX3dbpjBriwaZfdM3BfOVckYHaYS5LXQvDqlVRO6TI4d
-         uQ8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729001453; x=1729606253;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Schv5VB6tTanv9Tkkt6eqPig+ccww5N0g+oEIu4mf54=;
-        b=TI9H7/LWiyHRou/R0DiywGxQfm2riQLUihTkTnwVQ2/iqoGCrI8x565ZgciQLRDRnR
-         yIh3K6OX0rFZAtqqehKLCvM2rZjZ4Axkyi1GGw68qv42fL7sKRQRztJU6ttx/GOoI5fo
-         i7mmfKfOySITcFJgX59LDHuJYjjn2azAwFt9DZQlG30uH21RFJoH85KcpEFh0wXYAn7V
-         /oPc/1g6yPxqoebb2l0y8dSQ8JeRThgiCPW/dr5txanN2LvxCZAi7j+R/X2anorR9uhL
-         LQB8Hu3JweDtqFDsrcj1Vq8+8tNtfMDmV6ckjP/q5gYqCs0TP0NxzqEJtwxnwYVF6MLY
-         h05w==
-X-Forwarded-Encrypted: i=1; AJvYcCUE4gJLc2WIN93sFa6q67vSnLv4wPNbjJXhURCUTV5xuklpbTBeEZhlbvNg2BICDD77CsnmgP9tfhVg@vger.kernel.org, AJvYcCV4wY7tnz/Yv7/1NB8yQedOFcuBlGUGW+uLMVntsVoSCKHtRTM6R4eJ8dwSOiDYfTBiLKd9H1L78o/1piI=@vger.kernel.org, AJvYcCVWjSWJpYUCR8BWvxinyEM7oiGVU/gn9UGWXtjeVmvAObwu2sIr6P5+mGGjV9oz7sZR+9PgB+p4p/MBZMdI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD7ekzT8C8+nr68ey8U8mBioTHtkIoAojhQM0///XiHRDxwY2l
-	T2SvM6JlrzVlQZLCVok0OFeaFfNpdjCbxBe/GpKr3QE93U/Y/mOp
-X-Google-Smtp-Source: AGHT+IFeY1RiaYBz6I6wopnkI+z8bFuqMYJgX7uRLVyCXWyiyfQDtZMKCAd+OIRb3jDr7kWQBEWfvA==
-X-Received: by 2002:a17:902:e805:b0:20c:7eaf:8945 with SMTP id d9443c01a7336-20ca14601b3mr227905945ad.28.1729001452814;
-        Tue, 15 Oct 2024 07:10:52 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20d1803625dsm12388695ad.121.2024.10.15.07.10.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Oct 2024 07:10:52 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <30089bac-e764-45ca-b0fd-f0eb0333e632@roeck-us.net>
-Date: Tue, 15 Oct 2024 07:10:50 -0700
+	s=arc-20240116; t=1729001849; c=relaxed/simple;
+	bh=i79zFnY40N7dlPsjPAz9d5dpzSdeqjeY7NKpv/37xmQ=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=NCrQGNci2zc3A14jTj+6G5aAHXDFg4dtUnLED1624hqi7s6dazGBmP9vFPFDR0in2Bwx1yJf7EGmRPe5PtspEYRPok1jIkTG2qWoNkuPmtK1njKJ/SWb11l7coomWLc33qJv9FfgR64QHsYAS/Ts4KZuCqgjPuyPMX/BhVFHqJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ao4/tEzY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49FDkcMB011547;
+	Tue, 15 Oct 2024 14:17:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=X2800jNXRP4KCOfju7R0AF
+	htw657g+Ji8Oi8jJZsgT4=; b=Ao4/tEzYXAvomDo6YhTL/ZiqTrarKWriduo3ZZ
+	B4KlXzw7RmurVeYogkqcVbT1YRCdHuzPOpbzDdEvNURwTD7moD4893JrRLyBChDL
+	Ne109I5GofnIERsmQhPP5IIV9B6wj3/+gk0WBzg/jqXq9ady9vmk4vNJIU16BV4e
+	hFBc/RLmGULZX9An5/yn/Qp2gsHy0wnBx0GqmStYcS/jS6163Euwh9R1jpvGijYN
+	XKhWLvD7avOPX8S5eCExhbsyf+uuVoNOACMSgDlrBy1a9Oo4Hkr6lCHF5/q5lAuh
+	iLQ59WTMPPFIsPIZatoM5AsOXRVqPb4/dn6gxhK2nIazQTGQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 429m0f91w9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Oct 2024 14:17:13 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49FEHBCs010205
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Oct 2024 14:17:11 GMT
+Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 15 Oct 2024 07:17:06 -0700
+From: Luo Jie <quic_luoj@quicinc.com>
+Subject: [PATCH v4 0/4] Add CMN PLL clock controller driver for IPQ9574
+Date: Tue, 15 Oct 2024 22:16:50 +0800
+Message-ID: <20241015-qcom_ipq_cmnpll-v4-0-27817fbe3505@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: hwmon: pmbus: pli209bc: Add bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sylvester Bauer <sylv@sylv.io>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241015113329.667831-1-naresh.solanki@9elements.com>
- <20241015113329.667831-2-naresh.solanki@9elements.com>
- <c07435f5-af3f-46e2-8e4d-b0a42969b60a@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <c07435f5-af3f-46e2-8e4d-b0a42969b60a@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFN5DmcC/2WNwQ6CMBBEf4Xs2ZptabB68j8MIbIssgkUaJVoC
+ P9u5erxTWberBA5CEe4ZCsEXiTK6BPYQwbU3f2DlTSJwaCxGrVVM41DJdNc0eCnvld1w1jkrrV
+ aF5BWU+BW3rvxVibuJD7H8NkPlvyX7i505vTnWnKFyjHimZjY1eY6v4TE0zEVody27QvG0YrOs
+ AAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
+        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>,
+        Luo Jie
+	<quic_luoj@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1729001826; l=3348;
+ i=quic_luoj@quicinc.com; s=20240808; h=from:subject:message-id;
+ bh=i79zFnY40N7dlPsjPAz9d5dpzSdeqjeY7NKpv/37xmQ=;
+ b=9HlT4acMtPNAANdi7F86wtCsiCzbfVHptKoJc5go2VEMDvqhBHbbCESYy+5RyO0BpMxJgIO+m
+ 272AizGKokYCzjEpf352W9sRikQll/UBQNmiszZi0HonykmYKV8SYFO
+X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
+ pk=P81jeEL23FcOkZtXZXeDDiPwIwgAHVZFASJV12w3U6w=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: HDbjAiUeYah5u9OUAzSMOYGn6JuEhSau
+X-Proofpoint-ORIG-GUID: HDbjAiUeYah5u9OUAzSMOYGn6JuEhSau
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 adultscore=0 clxscore=1011 phishscore=0
+ spamscore=0 impostorscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410150098
 
-On 10/15/24 04:48, Krzysztof Kozlowski wrote:
-> On 15/10/2024 13:33, Naresh Solanki wrote:
->> Add bindings for Vicor pli1209bc.
->> It a Digital Supervisor with Isolation for use with BCM Bus Converter
->> Modules.
->>
->> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
->> ---
->>   .../bindings/hwmon/pmbus/vicor,pli1209bc.yaml | 65 +++++++++++++++++++
-> 
-> This has to be squashed with previous patch.
-> 
+The CMN PLL clock controller in Qualcomm IPQ chipsets provides
+the clocks to the networking hardware blocks that are internal
+or external to the SoC, and to the GCC. This driver configures
+the CMN PLL clock controller to enable the output clocks. The
+networking blocks include the internal blocks such as PPE
+(Packet Process Engine) and PCS blocks, and external hardware
+such as Ethernet PHY or switch. The CMN PLL block also outputs
+fixed rate clocks to GCC, such as 24 MHZ as XO clock and 32 KHZ
+as sleep clock supplied to GCC.
 
-Neither me nor the hwmon mailing list was copied on that previous patch
-(or on an intro patch if there was one), so I have no idea what this
-is about.
+The controller expects the input reference clock from the internal
+Wi-Fi block acting as the clock source. The output clocks supplied
+by the controller are fixed rate clocks.
 
-Guenter
+The CMN PLL hardware block does not include any other function
+other than enabling the clocks to the networking hardware blocks
+and GCC.
+
+The driver is being enabled to support IPQ9574 SoC initially, and
+will be extended for other SoCs.
+
+Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+---
+Changes in v4:
+- Rename driver file to ipq-cmn-pll.c
+- Register CMN PLL as a 12 GHZ clock.
+- Configure CMN PLL input ref clock using clk_ops::determine_rate().
+  Add the additional output clocks to GCC and PCS.
+- Update the same information in dtbindings.
+- Use PM clock APIs for input clock enablement.
+- Link to v3: https://lore.kernel.org/r/20240827-qcom_ipq_cmnpll-v3-0-8e009cece8b2@quicinc.com
+
+Changes in v3:
+- Update description of dt-binding to explain scope of 'CMN' in CMN PLL.
+- Collect Reviewed-by tags for dtbindings and defconfig patches.
+- Enable PLL_LOCKED check for the stability of output clocks.
+- Link to v2: https://lore.kernel.org/r/20240820-qcom_ipq_cmnpll-v2-0-b000dd335280@quicinc.com
+
+Changes in v2:
+- Rename the dt-binding file with the compatible.
+- Remove property 'clock-output-names' from dt-bindings and define
+  names in the driver. Add qcom,ipq-cmn-pll.h to export the output
+  clock specifier.
+- Alphanumeric ordering of 'cmn_pll_ref_clk' node in DTS.
+- Fix allmodconfig error reported by test robot.
+- Replace usage of "common" to "CMN" to match the name with the
+  hardware specification.
+- Clarify in commit message on scope of CMN PLL function.
+- Link to v1: https://lore.kernel.org/r/20240808-qcom_ipq_cmnpll-v1-0-b0631dcbf785@quicinc.com
+
+---
+Luo Jie (4):
+      dt-bindings: clock: qcom: Add CMN PLL clock controller for IPQ SoC
+      clk: qcom: Add CMN PLL clock controller driver for IPQ SoC
+      arm64: defconfig: Enable Qualcomm IPQ CMN PLL clock controller
+      arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
+
+ .../bindings/clock/qcom,ipq9574-cmn-pll.yaml       |  85 +++++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi   |   6 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  20 +-
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/clk/qcom/Kconfig                           |  10 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/ipq-cmn-pll.c                     | 411 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,ipq-cmn-pll.h       |  22 ++
+ 8 files changed, 554 insertions(+), 2 deletions(-)
+---
+base-commit: d61a00525464bfc5fe92c6ad713350988e492b88
+change-id: 20241014-qcom_ipq_cmnpll-bde0638f4116
+
+Best regards,
+-- 
+Luo Jie <quic_luoj@quicinc.com>
 
 
