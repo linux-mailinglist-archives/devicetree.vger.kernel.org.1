@@ -1,81 +1,99 @@
-Return-Path: <devicetree+bounces-111625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A773E99F7A6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:00:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F06E499F7B9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:02:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D5D01F21FE7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:00:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23D971C22040
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F9A7189B83;
-	Tue, 15 Oct 2024 20:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B953E1F669D;
+	Tue, 15 Oct 2024 20:02:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tSAEZSU0"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bt/fuR56"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3968E1F80AC;
-	Tue, 15 Oct 2024 20:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F7F51F582F;
+	Tue, 15 Oct 2024 20:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729022422; cv=none; b=H28oJ7Q5aAad/s75JNo9ycDUlhtGqlmNsYf0n7kvRXnahLdeNckV3C8+H3eri8BnXMRpi7KdwF+2RoDJP3r/99txfKldbywwJvFIJBH+xUA6BRRJvEGBhf9PVx7xxhA0s+oYBHgeAjiheIkdEZB8e2MDaJ9iWYMaaBYvyN0Nt6I=
+	t=1729022550; cv=none; b=VP+tAlHXo5bM0J9hQPsXAinYkQiXX5J4XfHcYSZZ5oEWMlHndcecIlaqM1wxTnOBl1zFcOS2TbbFx9DxOz5WMzaS7x2e/S7FwRYgEfrA/q4mlfgIpefuVC2aHNaadMjfbyvpF3zqZGRvpj8V5m8LlklYv9JIUTlSqsLrdw/DXCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729022422; c=relaxed/simple;
-	bh=H43Rm70PtO4uEyIEBYzv7WvwKVBQ1nWE3T4ED/q/rA0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lTuni7pz+u3bSZVfu5jfSF0WisP1g6NI1bd27mTwOhFkvFI8fmai3jwJU97l9a65LBKIqmRHTs+TnVGnqwb82VVqh/MsbAjSKk9YHQGCGYln92HkWEUiwH4D1EfDQ6KDpY8KyjH4iBdlGEwQ1uu7aIwlxAgLx7BPAW+uRRV6ogs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tSAEZSU0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85297C4CEC6;
-	Tue, 15 Oct 2024 20:00:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729022421;
-	bh=H43Rm70PtO4uEyIEBYzv7WvwKVBQ1nWE3T4ED/q/rA0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tSAEZSU07/j6rXtmzBlUT/cc5/vUNoDIg7kmzVuBdNBU2UzUJ4ZmEl9BW1JUPPLkQ
-	 KTOWMEocP7e4ZFfzIScIC0EoLdqOwyxirsAAhCtbvS5RXG6awM51MlfDM2qkyo1zm4
-	 DDBgRboB+tY+ShyNsbxFeUWiJqhVBBvEFMRcgIYpellFv3i7W61s/JhdQ4aUmBKXut
-	 DTEmu6wSTUUCnfpzSzcxDEzk9EXCJt8PBm1dorOpJnTvbSHHImyxkHywQtqOSb3l9y
-	 cggAUGMnWDC3CpUgge0JG495lukdK3tKwPxGLtc7jfdug4oBrhKHRV6bBKqJEKsZH6
-	 8JIK3YzQbWddg==
-Date: Tue, 15 Oct 2024 15:00:20 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Wang <frawang.cn@gmail.com>
-Cc: kishon@kernel.org, vkoul@kernel.org, heiko@sntech.de,
-	yubing.zhang@rock-chips.com, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Frank Wang <frank.wang@rock-chips.com>, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, tim.chen@rock-chips.com,
-	william.wu@rock-chips.com, linux-phy@lists.infradead.org,
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: rockchip-usbdp: add rk3576
-Message-ID: <172902241945.1703112.6047940247854753283.robh@kernel.org>
-References: <20241014020342.15974-1-frawang.cn@gmail.com>
+	s=arc-20240116; t=1729022550; c=relaxed/simple;
+	bh=4E9KrtJPra18ekGLCafFdTVcdiBBpoXvHXnrngEDQOA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GLefx5gEly+akC3h2B+63QN4vVeBnKiPJvXEZpZucMob5iv3KJyPA4RtIFaqDYpE15s/t1FR4wW40Efbx7LgcvqcdDxUQ+qgBNIp4ASC4kWoSQhjckR/MOE/9q0o0srI6iWqdXZYzswMMmh2GPekYRaSd6Wa1XxJ06U9XuNe54I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=bt/fuR56; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-20caea61132so37349955ad.2;
+        Tue, 15 Oct 2024 13:02:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1729022547; x=1729627347; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4E9KrtJPra18ekGLCafFdTVcdiBBpoXvHXnrngEDQOA=;
+        b=bt/fuR56jgfZpo2kBsx4OfTyEi/pNCItoYX+QM6kXh+LlVjbOFNeGmJhWN+CvgRPnN
+         u6kRYmKNE1ERmLQu2cAylwusP+oExyzN+RDPZ7SUjWpj/+UiHnuVouSx5FdcYgx0wntk
+         BDqFNk1XEvR3KLwKGKvxrxvDx1QLLdA5hH6FnZ8Kp4qfeCL3yT53tNX0zcOxGWoCYuJk
+         dA9ETCIfEqxAPxMP8m5GZd8Mau4nyybK7nCp7hxuCSzHbk3Y/A2ijALDhqJ/eSInD5TF
+         KcFMjrgxSqt+ASBbySi0lMa41a81duqImbbzldjootUs+M7BmDd83LEFWl3Uf84OZCmz
+         OgKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729022547; x=1729627347;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4E9KrtJPra18ekGLCafFdTVcdiBBpoXvHXnrngEDQOA=;
+        b=wxhiU1t2Es5gzzFjKcxzIwf1CKzYm4J5t6Kojpp2GnOwZEsgVNaSQsvrnbnzsVadjO
+         tegGbMzv04fo2WatwrT7l3Slebtg8azOWMROY3lwAPDV0ag6Cy9gz3myXL0MXhv8iVLv
+         SACneMvEfgfn6hrnwLnJeoG+bUynupP9L56JfnWgrcAg466UO+9RocKJjPZIzYuW0B0a
+         PItF/1iFE2DvuQZ7k/ViOohrnlkm6wRVpmLVntiY/8ofsp4zV4OHXvkd6rylk08aPlOV
+         ueMOCLS1NrF4Sw6VTYSbRjCv3xOVhRDTTygyEefVsShZH5sbmlvnGcmupKSn/V471kEb
+         H8OQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV2IKjaF/DgEPNi2ehgXvT4/i9RsLW8qZSZzeij4DSjOxf0krTgMOsz95+H93qALWTKQZKgeANfK77n@vger.kernel.org, AJvYcCWENE/eEi6+RDkIHI/1BuWu/vBNk30zVc/DFWCHtOq8Uu8COqJsLcw5jlHf3e4wc7EdnVAZZSnIQyFE3j/K@vger.kernel.org, AJvYcCWVHFnyk1x5Q8XJYcB5ipPQgA4H67ou2urT4A465NSUGUGrX2Lb2sCu9rgEW8H2fpxSn3qv3FblBPBT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZPnypAgzDd7yQxGQopWtehria6jcos3TxTLtCroFZS/5giua4
+	vmCY4627bDdun9QEucx2rbeLThg+kEkmbIg+gaYzS9wlwzA71qo7btm1lPds+zxY2RVjCgOMuFE
+	fdmWeyFQxkstdN+gD9dPouNA6rn8nPdpt
+X-Google-Smtp-Source: AGHT+IFdTSQzdCKXkl2sCIwJ4f6NxCKsUewi9E/3FPVpvhK23o3jahGuP0PQDNUbMudL7f8kYdk05V0AWgHhdzwY6pU=
+X-Received: by 2002:a17:902:d489:b0:20b:a25e:16c5 with SMTP id
+ d9443c01a7336-20cbb2a0c4emr211703075ad.53.1729022547422; Tue, 15 Oct 2024
+ 13:02:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241014020342.15974-1-frawang.cn@gmail.com>
+References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-0-ad4eb22c2a8d@linaro.org>
+ <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-3-ad4eb22c2a8d@linaro.org>
+In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-3-ad4eb22c2a8d@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 15 Oct 2024 22:02:16 +0200
+Message-ID: <CAFBinCBbq2+_-z3h8r2BA0vxOTLa3qM1KSL29POBr0e9Y6ZexA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt
+ to dtschema
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On Mon, 14 Oct 2024 10:03:41 +0800, Frank Wang wrote:
-> From: Frank Wang <frank.wang@rock-chips.com>
-> 
-> Add compatible for the USBDP phy in the Rockchip RK3576 SoC.
-> 
-> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
-> ---
->  Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+On Mon, Oct 7, 2024 at 4:03=E2=80=AFPM Neil Armstrong <neil.armstrong@linar=
+o.org> wrote:
+>
+> Convert the Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+> bindings to dt-schema.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
