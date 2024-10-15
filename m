@@ -1,109 +1,173 @@
-Return-Path: <devicetree+bounces-111534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A3C99F2EC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:43:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7ECB99F316
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:47:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99996B213CD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:43:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 010C5286250
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:47:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348AA1F76A4;
-	Tue, 15 Oct 2024 16:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C37CA1F76C4;
+	Tue, 15 Oct 2024 16:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VV+Qs+46"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QCsBMBtc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015191F6671;
-	Tue, 15 Oct 2024 16:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915961D5169;
+	Tue, 15 Oct 2024 16:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729010604; cv=none; b=hLK8RDjWUim0Q0WXxDbtPI1SxDcRTGKKGShVhbWBY9TkmiBx+py0Idzm5TAariLrvq76MEvq4OqlnyyhS4IrUHG+8xCcYwu8VQwgSnAs2zFT0SUba6toC40aDjbJv77RrP8+ojBIWokc3AN2FSWHJ8rDQ9OMHuf1ihCDlPUAnuw=
+	t=1729010771; cv=none; b=PaIkHJ46uMXqyAn8HfJKwiryxl61JNXda65VC5/MD9p2tNv1TcR97z60DP1ZTUo/ffZ30+tawZUveEQT7RxOIR/8K0YNN08+Q+NiXAb0ujASqe+LLrM8DOubjP0hMD+q4eTUOxFS3z08CpkxuG75iwLlCGpMNTuRRoCWFpBRylg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729010604; c=relaxed/simple;
-	bh=Zp5x28awwso2vq4W5at6yDp0Z0E2vZCjRjcmFsBaAIg=;
+	s=arc-20240116; t=1729010771; c=relaxed/simple;
+	bh=ty485hgQRf36tvCdf7hLCpqH8wPJP/ov3etpcqFjYBw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AvER378eObX/ZBRX5B+TFbflCuOznBi333Ilrjkw9/LPCLqkJVtd6njQpCCle3Le3sRhfS/53gqD2qHSw4lmcKxSZieMN3wE+nucoynVxy/ul5JhasZx9FaTqE4azmwEbdmdVukqJOZGODDA5PXAUV3WQ3YhhXBu+6pen20e14w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VV+Qs+46; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFAA8C4CEC6;
-	Tue, 15 Oct 2024 16:43:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A55+WbkrObhGcxpWS9TXBHU/l6BgCg0SLECN0RuErtsBgNE7UlPNDhVwZr3yFae26RVMYpuEXxnw01NKS88Tfs5uwP/pWl7PFOc3mCuAO6MwkLHeOw/LacyFTGNYhNuPT8kJsAzE7ZJ7p6tetaX3m9Tb2R5sfL8Cp0gY4bqBClw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QCsBMBtc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9660C4CEC6;
+	Tue, 15 Oct 2024 16:46:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729010603;
-	bh=Zp5x28awwso2vq4W5at6yDp0Z0E2vZCjRjcmFsBaAIg=;
+	s=k20201202; t=1729010771;
+	bh=ty485hgQRf36tvCdf7hLCpqH8wPJP/ov3etpcqFjYBw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VV+Qs+46ppTUZUXsf69B7hzmxiymCC0zQSOLcO4KNGzvpeGXGA9lK2U3R3C0CDU6k
-	 NGsl4KceqsPv12A62QirAGkNOTRYo8+NPjeUr9yOH9+Ew+07htvFgB6iYE0zK89JkQ
-	 vjUdqLJNTO5IfDxw1RV6n3B0lCrRDzHTjdq93WAL+mD6NmbeC/UgirUNObl91m4oru
-	 XgTwJootzavUxQTPxCY0ZJ/Z9251Jl5gTtX9NaPsGQKDvJAe3E2a/NvphbBgzdqtPb
-	 82dBz83EkEhvDuyrIiAivEm5aaMi7Np3wI/Muju+3JDf1fuRXou4qfRxacCI7Kt0t5
-	 AyleRtFbmvRhg==
-Date: Tue, 15 Oct 2024 17:43:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	b=QCsBMBtcCWJ6BusDVYweMMvwHStKIq9JHRukZj/8ReMVp/piTWhlQAiNOCUn00IDT
+	 KW9tfaN4Op8u0JikMfXBgS8HaSOBo1FDnUsHzFJb8e2UKdW5s8G8zg6taztjhTeWe/
+	 G+THbdgIw4Nuezq2itQRuQJsHwJe71+7nQOsgS/XVanPnTEIUAgIgBsb+jU2qut9iz
+	 NwIRhfqgXLwcaEABQk4e3E0zK/8Y7JpwEB2RMc5napn7msbHYyNRA5oN8zEXA/+fcB
+	 MthVhQ4oWpMs9mJZXhusjDSHsRhA6yIuTYJkhI9l4CvKuLDbKKg67vLo/JKFzjWw0x
+	 q1MKryp1rv7vw==
+Date: Tue, 15 Oct 2024 11:46:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Martin Hecht <martin.hecht@avnet.eu>,
+	Zhi Mao <zhi.mao@mediatek.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,
+	Ricardo Ribalda <ribalda@kernel.org>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Umang Jain <umang.jain@ideasonboard.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Dongchun Zhu <dongchun.zhu@mediatek.com>,
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH RFC 0/4] ad7380: add adaq4370-4 and adaq4380-4 support
-Message-ID: <20241015-scoreless-carwash-9ac6047092fe@spud>
-References: <20241015-ad7380-add-adaq4380-4-support-v1-0-d2e1a95fb248@baylibre.com>
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: Remove assigned-clock-* from
+ various schema
+Message-ID: <20241015164609.GA1235530-robh@kernel.org>
+References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
+ <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-1-a2bb12a1796d@linaro.org>
+ <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
+ <20241014203441.GF5522@pendragon.ideasonboard.com>
+ <b0154e75-370e-4a5f-9309-6a3ae5d85b5c@kernel.org>
+ <20241015112922.GB2712@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="FquwYMWZuCPTNX1G"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241015-ad7380-add-adaq4380-4-support-v1-0-d2e1a95fb248@baylibre.com>
+In-Reply-To: <20241015112922.GB2712@pendragon.ideasonboard.com>
 
+On Tue, Oct 15, 2024 at 02:29:22PM +0300, Laurent Pinchart wrote:
+> On Tue, Oct 15, 2024 at 08:13:19AM +0200, Krzysztof Kozlowski wrote:
+> > On 14/10/2024 22:34, Laurent Pinchart wrote:
+> > > On Mon, Oct 14, 2024 at 09:43:07AM +0200, Krzysztof Kozlowski wrote:
+> > >> On Sat, Oct 12, 2024 at 04:02:50PM +0100, Bryan O'Donoghue wrote:
+> > >>> Remove extraneous assigned-clock* from media/i2c/* schemas, retain in the
+> > >>> relevant examples.
+> > >>>
+> > >>> Link: https://lore.kernel.org/linux-media/j7kgz2lyxnler5qwd7yiazdq6fmsv77kyozdrxf33h54ydakjz@uqjhwhoyv6re
+> > >>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > >>> ---
+> > >>>  Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 8 --------
+> > >>>  Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml | 8 --------
+> > >>>  Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml | 8 --------
+> > >>>  Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml | 4 ----
+> > >>>  Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml | 4 ----
+> > >>>  Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml | 4 ----
+> > >>>  Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml | 4 ----
+> > >>>  Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 4 ----
+> > >>>  8 files changed, 44 deletions(-)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > >>> index 60f19e1152b33128cf3baa15b8c70a874ca6d52e..d18ead8f7fc43bfacc291aed85b5ca9166c46edb 100644
+> > >>> --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > >>> @@ -28,12 +28,6 @@ properties:
+> > >>>      items:
+> > >>>        - description: Reference to the mclk clock.
+> > >>>  
+> > >>> -  assigned-clocks:
+> > >>> -    maxItems: 1
+> > >>> -
+> > >>> -  assigned-clock-rates:
+> > >>> -    maxItems: 1
+> > >>> -
+> > >>>    reset-gpios:
+> > >>>      description: Reference to the GPIO connected to the RESETB pin. Active low.
+> > >>>      maxItems: 1
+> > >>> @@ -82,8 +76,6 @@ required:
+> > >>>    - compatible
+> > >>>    - reg
+> > >>>    - clocks
+> > >>> -  - assigned-clocks
+> > >>> -  - assigned-clock-rates
+> > >>
+> > >> That's not extraneous, but has a meaning that without assigned-clocks
+> > >> this device or driver will not operate.
+> > > 
+> > > How so ? Even if we assume that the device requires a specific clock
+> > > frequency (which is often not the case for camera sensors, the
+> > > limitation usually comes from drivers, so the constraint shouldn't be
+> > > expressed in the bindings in that case), there is no overall requirement
+> > > to assign a clock rate as in many cases the clock will come from a
+> > > fixed-frequency oscillator. This seems to be a constraint that is
+> > > outside of the scope of DT bindings. It is similar to regulators, where
+> > > the regulator consumer doesn't have a way to express supported voltages
+> > > in its DT bindings.
+> > 
+> > This property does not say it comes from a fixed-frequency oscillator,
+> > so I do not understand why you think it is unreasonable constraint. I
+> > have no clue what the author wanted to say here, so I just explained
+> > that there is a meaning behind requiring such properties. If you claim
+> > device or implementations do not have such requirement, after
+> > investigating each case, feel free to drop this. I think I also stated
+> > this already in other reply.
+> 
+> For camera sensor drivers I'm pretty sure we can drop those properties
+> when they're marked as required, as there's no intrinsic characteristics
+> of camera sensors that would require assigned-clock*.
 
---FquwYMWZuCPTNX1G
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I tend to agree, and would take it one step further to say that applies 
+everywhere. Whatever clock setup needed is outside the scope of a 
+binding. The simplest case is all input clocks are fixed. The next 
+simplest case is firmware did all clock setup needed for a specific 
+board and the boot time default works.
 
-On Tue, Oct 15, 2024 at 11:09:05AM +0200, Julien Stephan wrote:
-> Hello,
->=20
-> This series add support for adaq4370-4 (2MSPS) and adaq4380-4 (4MSPS)
-> which are quad-channel precision data acquisition signal chain =CE=BCModu=
-le
-> solutions compatible with the ad738x family, with the following differenc=
-es:
->=20
-> - configurable gain in front of each 4 adc
-> - internal reference is 3V derived from refin-supply (5V)
-> - additional supplies
->=20
-> This series depends on [1] which fix several supplies issues
->=20
-> [1]: https://lore.kernel.org/all/20241007-ad7380-fix-supplies-v1-0-badcf8=
-13c9b9@baylibre.com/
-
-What exactly makes this series RFC rather than v1?
-
---FquwYMWZuCPTNX1G
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZw6bpgAKCRB4tDGHoIJi
-0gW1AP48+cVNlb0SPPyBWZb3bp4yRzZlQBfrWiCLsO0pH/QZSQEAsbgWsUskqrtD
-yvKLDMW6F6ddCH4YHgLRdER2iz36DAM=
-=HG2C
------END PGP SIGNATURE-----
-
---FquwYMWZuCPTNX1G--
+Rob
 
