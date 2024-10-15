@@ -1,129 +1,232 @@
-Return-Path: <devicetree+bounces-111408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEEEA99E9C8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:27:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0470599E9CC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:27:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 957B11F21E8D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:27:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79EBD1F22C25
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C682E1F8F08;
-	Tue, 15 Oct 2024 12:26:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660702071F5;
+	Tue, 15 Oct 2024 12:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="zpI6+yis"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EwggUooR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855DB1F12E4
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 12:26:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974B4206975;
+	Tue, 15 Oct 2024 12:26:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728995194; cv=none; b=Iz2sJUtTbYQpr4r4qIoCU5yvQ2KbhPO8jE01u6VRJKcnDWC4tclk5XlAIdJqD/jiIMR3+TgEKEal+4mDAlSuMHQSLpR2qhJQ3pYHWhFJ0URcvn6tUZie4eG7FzyuK6jKqcfVMPyecyCZFwFq1DwD/X5Y/pAcOrNfRp8tBr1HX+k=
+	t=1728995205; cv=none; b=UCz94UtV/zZAAFD0073iAN12/rbnuIBj0poOMaON/yQQs4kt3sZY2Z0487LRiYCQqGMbVwsLxk/6Qk3KVmZv/4c/PHcV45JSkVlGBg4TZiEFrqe+h5fEraFbqHgE+c8GgYI46q5/+oYQmY99/zj61IFQ7jO8uMiOEaGKEoWp4u8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728995194; c=relaxed/simple;
-	bh=03Qb5hxKK7rAKMhBjn9jT6mqUqatJTsr8tb5L6OSVI8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=qU4I0dSZ0Gq50C8l43AEwtZ42KOLrwGhggXDXT2Jy6oFhZCMzzk5OF/WetRbL8wRZH6P5S4TNLViD55wH8PsAz3h5dRttb1MnwoWUklUXuhUq6ERiS4HSjS1Oa0N3okBDpsA1UMRbeUiC0aoL/SAxhF6sMntmc9P85unBrN1pQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=zpI6+yis; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2e2ee0a47fdso873420a91.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 05:26:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1728995191; x=1729599991; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XkkT1YK08fvvBnsXdekTj1dlk1F6WdJ88gbC//Uv2Rg=;
-        b=zpI6+yisdnnNbqTSacZHVX4xHdp5axZcL55Ekc5ljyliZmwJTBP3TSnwtRZLs6ttxz
-         zvrqAcUg7DKg/fQwbx5n1I1uwg4WWLJ5ygojocd2ATJ+jnSYdIluwbeddPBvQh5zhRl4
-         Ij+zk4KCbbCJ4/rohVxB6qqg9Mntd1n2irfgHqtMUmVpE9QDjNtRS4gfsfGnuWDrdrRq
-         fE8RSWZ1dplg9khtgUU8nib9b1liCvHMO+ep9hAXe9EdkNDasGeDEBLUdYj0C5DCATd9
-         5fejKIUsfBjIJucLj4qvBL+5re7MCWMITPLVqKhfzCG0Wy5i36u9nVh6Mmwusl38BGgR
-         t4uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728995191; x=1729599991;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XkkT1YK08fvvBnsXdekTj1dlk1F6WdJ88gbC//Uv2Rg=;
-        b=Vy8qfuIuYyaqHPmy2HcFvvgiXS+VZqBeGaELk8QCK9n2WAIhKvvacT0RMou/sy1pa+
-         AwdnhzUeieUfRiDdyfaxeChgBqvGvbQVTUC/KGkYqzS9iQoS4sfHx7XCfd5ndYfHJrK2
-         FfLQ5DPix/++Jt5+JhNxaRkUPOb/PMRvaU3wGkyEPzgRnfsNsUHu0XFrZZBHM/to0FfT
-         PmBMbcevcyaBtR0QSGeCKQHC4Qm9jSooyfKBZxqdgpln2s1JgJ/kRvRHDrcy3LRmnJD4
-         Ios7zNsAm7B1fuS3RxAgDX6hwL19YlPFk0DQTwz12+BK1hudj9xqKoW2zAgXX9I+7h9a
-         nvOw==
-X-Gm-Message-State: AOJu0Yz0on+gknDFOVUC4on5RBJd9uCCJ7pPAotcEgJwdKxGEnM539wG
-	WJ+ObqK6XRAdVeBW81DAkXb9H1LWQbZKKGJOzuDGAI2gAzq958ktmsAYlPnMNiZS/M1qk2/G2fi
-	a
-X-Google-Smtp-Source: AGHT+IFvZj2VfZqljCqw3jma49Pp6xcmlucmNJ1sekFJZrx2haRRMxJLdzbrnRlngELlYtE94RuvZw==
-X-Received: by 2002:a17:90b:1056:b0:2e2:c423:8e16 with SMTP id 98e67ed59e1d1-2e2f0a2fb66mr7652523a91.1.1728995191585;
-        Tue, 15 Oct 2024 05:26:31 -0700 (PDT)
-Received: from ubuntu.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e392e8cdc7sm1592844a91.10.2024.10.15.05.26.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2024 05:26:31 -0700 (PDT)
-From: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1728995205; c=relaxed/simple;
+	bh=NYbHOMwMrdG/wiT8RCznhicJLT/5UcM5sidpVpTNIvw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K7aGNfXqwWSThW4M20knv2XDTk9M6HqgL5oFK3XAoVI2XFAuaISllxHPZ4X2qxm/C5qMsjippv6loThxd8hAOeNI3xp+RhRQiUAzerb/T+uotJc9Asr2wI+YJOsjthGb6OYXzBGQJ0pRCUzrmFVqHTcV43MHuLMmuIPh3WgApig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EwggUooR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D3D8C4CEC6;
+	Tue, 15 Oct 2024 12:26:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728995205;
+	bh=NYbHOMwMrdG/wiT8RCznhicJLT/5UcM5sidpVpTNIvw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EwggUooRAbrIXkMRbaDLuwY6cbRSNxUb+yU2CwJ8fCkc/gqjuOIZLjldGepu1+/SE
+	 iQ9eC7BABbaFAqW41FBAwXx8xUaoYChyUjU5yEEYWLnI6S6eH2654d7JDoOp9oUAHZ
+	 J5vIVUt5tzvwtaBYO3Gadc0irVHL2LT8BK4gV9gAiiXE9ED7LV4KAHDgp2L0T44+3V
+	 q327O+flBAflHrT2wqg3/lq/fWKx+PyGbs1+ZQ09IpqNfsbcnsuE74maVopIa2X2uK
+	 pOSRS8G4kWcWoAQPdKhm8yuKOQ+kcRSzClntfW6W716yrOjj81aHuXUcb30OS8WKQQ
+	 hiiwZXIvaAgeg==
+Date: Tue, 15 Oct 2024 14:26:37 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Elliot Berman <quic_eberman@quicinc.com>
+Cc: Shivendra Pratap <quic_spratap@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	wenst@chromium.org,
-	hsinyi@chromium.org,
-	rafal@milecki.pl,
-	macpaul.lin@mediatek.com,
-	sean.wang@mediatek.com,
-	Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
-Subject: [PATCH v1 3/3] arm64: dts: mediatek: Add exton node for DP bridge
-Date: Tue, 15 Oct 2024 20:26:08 +0800
-Message-Id: <20241015122608.24569-4-xiazhengqiao@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20241015122608.24569-1-xiazhengqiao@huaqin.corp-partner.google.com>
-References: <20241015122608.24569-1-xiazhengqiao@huaqin.corp-partner.google.com>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	quic_spratap@qucinc.com
+Subject: Re: [PATCH v5 3/4] firmware: psci: Read and use vendor reset types
+Message-ID: <Zw5ffeYW5uRpsaG3@lpieralisi>
+References: <20240617-arm-psci-system_reset2-vendor-reboots-v5-0-086950f650c8@quicinc.com>
+ <20240617-arm-psci-system_reset2-vendor-reboots-v5-3-086950f650c8@quicinc.com>
+ <ZrOMjomTTWZ91Uzf@lpieralisi>
+ <20240807103245593-0700.eberman@hu-eberman-lv.qualcomm.com>
+ <ZrYZ/i1QFhfmv0zi@lpieralisi>
+ <20240809090339647-0700.eberman@hu-eberman-lv.qualcomm.com>
+ <28c8bc92-4a55-8a07-1ece-333316d78410@quicinc.com>
+ <Zr4Td7PiKhKl3Et3@lpieralisi>
+ <20240815100749641-0700.eberman@hu-eberman-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240815100749641-0700.eberman@hu-eberman-lv.qualcomm.com>
 
-Add exton node for DP bridge to make the display work properly.
+On Thu, Aug 15, 2024 at 11:05:09AM -0700, Elliot Berman wrote:
+> On Thu, Aug 15, 2024 at 04:40:55PM +0200, Lorenzo Pieralisi wrote:
+> > On Mon, Aug 12, 2024 at 11:46:08PM +0530, Shivendra Pratap wrote:
+> > > 
+> > > 
+> > > On 8/9/2024 10:28 PM, Elliot Berman wrote:
+> > > > On Fri, Aug 09, 2024 at 03:30:38PM +0200, Lorenzo Pieralisi wrote:
+> > > >> On Wed, Aug 07, 2024 at 11:10:50AM -0700, Elliot Berman wrote:
+> > > >>
+> > > >> [...]
+> > > >>
+> > > >>>>> +static void psci_vendor_sys_reset2(unsigned long action, void *data)
+> > > >>>>
+> > > >>>> 'action' is unused and therefore it is not really needed.
+> > > >>>>
+> > > >>>>> +{
+> > > >>>>> +	const char *cmd = data;
+> > > >>>>> +	unsigned long ret;
+> > > >>>>> +	size_t i;
+> > > >>>>> +
+> > > >>>>> +	for (i = 0; i < num_psci_reset_params; i++) {
+> > > >>>>> +		if (!strcmp(psci_reset_params[i].mode, cmd)) {
+> > > >>>>> +			ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
+> > > >>>>> +					     psci_reset_params[i].reset_type,
+> > > >>>>> +					     psci_reset_params[i].cookie, 0);
+> > > >>>>> +			pr_err("failed to perform reset \"%s\": %ld\n",
+> > > >>>>> +				cmd, (long)ret);
+> > > >>>>> +		}
+> > > >>>>> +	}
+> > > >>>>> +}
+> > > >>>>> +
+> > > >>>>>  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
+> > > >>>>>  			  void *data)
+> > > >>>>>  {
+> > > >>>>> +	if (data && num_psci_reset_params)
+> > > >>>>
+> > > >>>> So, reboot_mode here is basically ignored; if there is a vendor defined
+> > > >>>> reset, we fire it off.
+> > > >>>>
+> > > >>>> I think Mark mentioned his concerns earlier related to REBOOT_* mode and
+> > > >>>> reset type (granted, the context was different):
+> > > >>>>
+> > > >>>> https://lore.kernel.org/all/20200320120105.GA36658@C02TD0UTHF1T.local/
+> > > >>>>
+> > > >>>> I would like to understand if this is the right thing to do before
+> > > >>>> accepting this patchset.
+> > > >>>>
+> > > >>>
+> > > >>> I don't have any concerns to move this part below checking reboot_mode.
+> > > >>> Or, I could add reboot_mode == REBOOT_COLD check.
+> > > >>
+> > > >> The question is how can we map vendor specific reboot magic to Linux
+> > > >> reboot modes sensibly in generic PSCI code - that's by definition
+> > > >> vendor specific.
+> > > >>
+> > > > 
+> > > > I don't think it's a reasonable thing to do. "reboot bootloader" or
+> > > > "reboot edl" don't make sense to the Linux reboot modes.
+> > > > 
+> > > > I believe the Linux reboot modes enum is oriented to perspective of
+> > > > Linux itself and the vendor resets are oriented towards behavior of the
+> > > > SoC.
+> > > > 
+> > > > Thanks,
+> > > > Elliot
+> > > > 
+> > > 
+> > > Agree.
+> > > 
+> > > from perspective of linux reboot modes, kernel's current
+> > > implementation in reset path is like:
+> > >
+> > > __
+> > > #1 If reboot_mode is WARM/SOFT and PSCI_SYSRESET2 is supported 
+> > >     Call PSCI - SYSTEM_RESET2 - ARCH RESET
+> > > #2 ELSE
+> > >     Call PSCI - SYSTEM_RESET COLD RESET
+> > > ___
+> > > 
+> > > ARM SPECS for PSCI SYSTEM_RESET2
+> > > This function extends SYSTEM_RESET. It provides:
+> > > • ARCH RESET: set Bit[31] to 0               = > This is already in place in condition #1.
+> > > • vendor-specific resets: set Bit[31] to 1.  = > current patchset adds this part before kernel's reboot_mode reset at #0.
+> > > 
+> > > 
+> > > In current patchset, we see a condition added at
+> > > #0-psci_vendor_reset2 being called before kernel’s current
+> > > reboot_mode condition and it can take any action only if all below
+> > > conditions are satisfied.
+> > > - PSCI SYSTEM_RESET2 is supported.
+> > > - psci dt node defines an entry "bootloader" as a reboot-modes.
+> > > - User issues reboot with a command say - (reboot bootloader).
+> > > - If vendor reset fails, default reboot mode will execute as is.
+> > > 
+> > > Don't see if we will skip or break the kernel reboot_mode flow with
+> > > this patch.  Also if user issues reboot <cmd> and <cmd> is supported
+> > > on SOC vendor reset psci node, should cmd take precedence over
+> > > kernel reboot mode enum? may be yes? 
+> > > 
+> > 
+> > Please wrap lines when replying.
+> > 
+> > I don't think it is a matter of precedence. reboot_mode and the reboot
+> > command passed to the reboot() syscall are there for different (?)
+> > reasons.
+> > 
+> > What I am asking is whether it is always safe to execute a PSCI vendor
+> > reset irrispective of the reboot_mode value.
+> 
+> The only way I see it to be unsafe is we need some other driver using
+> the reboot_mode to configure something and then the PSCI vendor reset
+> being incompatible with whatever that other driver did. I don't see that
+> happens today, so it is up to us to decide what the policy ought to be.
+> The PSCI spec doesn't help us here because the reboot_mode enum is
+> totally a Linux construct. In my opinion, firmware should be able to
+> deal with whatever the driver did or (less ideal) the driver need to be
+> aware of the PSCI vendor resets. Thus, it would be always safe to
+> execute a PSCI vendor reset regardless of the reboot_mode value.
 
-Signed-off-by: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
----
- arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+It is hard to understand history behind reboot_mode and
+the LINUX_REBOOT_CMD_RESTART2 cmd, at least *I* don't
+understand it fully.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index 682c6ad2574d..943837f20377 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -424,6 +424,7 @@
- 		ovdd-supply = <&mt6366_vsim2_reg>;
- 		pwr18-supply = <&pp1800_dpbrdg_dx>;
- 		reset-gpios = <&pio 177 GPIO_ACTIVE_HIGH>;
-+		extcon = <&usbc_extcon>;
- 
- 		ports {
- 			#address-cells = <1>;
-@@ -1656,6 +1657,11 @@
- 				try-power-role = "source";
- 			};
- 		};
-+
-+		usbc_extcon: extcon0 {
-+			compatible = "google,extcon-usbc-cros-ec";
-+			google,usb-port-id = <0>;
-+		};
- 	};
- };
- 
--- 
-2.17.1
+What I do understand is:
 
+- reboot_mode can be set from userspace and kernel params
+- It affects some drivers restart handler behaviours
+- Incidentally, I noticed that reboot_mode affects the EFI reset
+  being issued (and EFI ignores the cmd and platform specific
+  resets AFAICS). This is not related to this thread but may provide
+  some guidance
+- if reboot_mode is set to REBOOT_GPIO - it is impossible to understand
+  what PSCI code should do other than ignoring it ? It is not that
+  REBOOT_WARM/COLD/HARD/SOFT are easier to fathom either to be honest,
+  would be happy if anyone could chime in and shed some light.
+
+My biggest fear here is that after merging this code, various quirks
+based on what SYSTEM_RESET2 platform specific parameters are set-up
+will appear, whereby a driver needs to do this or that in its restart
+handler depending on the specific reset being issued in PSCI
+(an example was provided in this same thread).
+
+Thoughts ? I'd like to see some progress on this but it is proving
+to be ways more complex than I thought initially.
+
+Thanks,
+Lorenzo
 
