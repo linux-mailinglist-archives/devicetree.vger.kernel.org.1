@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-111634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB9299F809
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:22:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4624F99F80F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:25:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E85F8B21F37
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:22:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A9EA28725E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:25:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B67D1F6697;
-	Tue, 15 Oct 2024 20:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 783831F8181;
+	Tue, 15 Oct 2024 20:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XlbSFO4O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k1TE9Wr0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52AB1EC006;
-	Tue, 15 Oct 2024 20:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 499C11F585D;
+	Tue, 15 Oct 2024 20:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729023750; cv=none; b=dSL2rxiBSSzaV7dNTBBtiMtktGraMgQxEsQviD9AnKonoL4+8IccJ1+lv9GConG9Emfz7fjLt6SGpsE22YjpPFNsk8iH46JrudJKSUsqbjkZ0qZjAjOEMlFtNFiHv8INUnw8+5G3K0EavQT6A75Px9BoQ78V4Zz/udSCwg2rhxc=
+	t=1729023942; cv=none; b=HH8Aor5MpPizrPrgjw2c3OXGFX4InbYn0vtPhMgnLef8NUu0Ov47zQUzSAmXY7EHBtmluUTDyi58L3JGHtg08BYt9qRb1O7+UBedwFb0dts2wR82753BaAh+KM4l0wBzk3kPzJ9PDF5zWCilZVnK5/IdlaonjhRZqVhU8U3Y1HM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729023750; c=relaxed/simple;
-	bh=UWUU6krJtOL9KGlFLqj3zzr7nr2dBDOvGvKhRL72vuM=;
+	s=arc-20240116; t=1729023942; c=relaxed/simple;
+	bh=nsd/upD+9R74nEL0M6h/FKKkDQ+u0zpHjyKAGpKw3LE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uH+zQBzQOdfHB4kA6cLJ3rkrRLWxL/tJvSUHg0wwgv6ZlH0L5LBOFSTPGUfqFhv0AK8SqJ9c8bbtP5u0Dx6o3R3hheACAQNVnLNFQ4GQYCYSbl5Ixhb0LFg83VRNkI6aBxw4UG+n52ISQq2LnZHxAn7w9sLrWhaBhC/DCE5yA1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XlbSFO4O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC606C4CEC6;
-	Tue, 15 Oct 2024 20:22:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=naf3AlM9pgAsbNzmh4YiurNB2RBMynrWfRlfbdVtnC+P+DTpv+nhZQAQ1p0lRYUwb6778HXO1NhiVjjC3p3GN9G3UH7aWHnw4naT3LnYFtHZQAjMgmirPPfAGpMsnqXG9m8RAPVWz9SVV64tJIVOBmjMN/pmsfVKD+I7FmSjhPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k1TE9Wr0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE55C4CEC6;
+	Tue, 15 Oct 2024 20:25:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729023749;
-	bh=UWUU6krJtOL9KGlFLqj3zzr7nr2dBDOvGvKhRL72vuM=;
+	s=k20201202; t=1729023940;
+	bh=nsd/upD+9R74nEL0M6h/FKKkDQ+u0zpHjyKAGpKw3LE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XlbSFO4OQmdQ3fvTeEO3evC3mD+52YdtCglGkm7L6/rSZzSbinNRsdjlSJTRJnAA9
-	 3c4sjjT+sSvPx9FKbv90E4DidlbynVYS90pURjYWdHy7Ym1w81nxyNjxxPZSer/WBF
-	 KIcbUJToExlcTjoXmJFDbVirNmajbbk2DyW1eCBZdW2PXe7nXvuqknhxBKfGGcAKG7
-	 Wx1xpcGvtsUtXtdAtbtAIdFKGb/0252Pw0/M8wIKn5Y0q/BdmTtEwUEYOhusBzxSeV
-	 5lPF7Ga0eHLW8UkP35jNlvMYL/atfKUDBin+UVa113hxZcFN3waUFqMwPw/6/OnMFh
-	 h1t2fTPW+DVDA==
-Date: Tue, 15 Oct 2024 21:22:23 +0100
+	b=k1TE9Wr0Ag+ZkEAhO8vxdlz9AwjITwCqdk7Lr2r12iD59JBz10Q8UlxCxuqdnBV01
+	 wSY/gsP/5OalZwTSBvnY6UrgBcTSOUxOZIxjXXAOzWImTzRcVRtU1IBFxqAxfJmDaC
+	 2M3BMuKtjPfIBTtk+JCALdiIWrBs3LGjgv3tVBk+VQZYxoRhvnpL+xRGva5VbFK4PT
+	 +j0yWkLErF3vAK0HzmM1HC8cCyYkRqAv4lHW7l+YFBxJEW2cvLiC5Zk/cQ7twIwizX
+	 JeSXhtqL6XDENfm0pyMvkfz4SJDlAbqtvyMsG/CP8dm9sUE2962FGuuwqji+leHywk
+	 5jvQppQg5XmGA==
+Date: Tue, 15 Oct 2024 21:25:35 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Valentina.FernandezAlanis@microchip.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, peterlin@andestech.com,
-	dminus@andestech.com, Conor.Dooley@microchip.com,
-	conor+dt@kernel.org, ycliang@andestech.com,
-	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	andersson@kernel.org, mathieu.poirier@linaro.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v1 4/5] dt-bindings: remoteproc: add binding for
- Microchip IPC remoteproc
-Message-ID: <20241015-distrust-chatty-9e723e670fef@spud>
-References: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
- <20240912170025.455167-5-valentina.fernandezalanis@microchip.com>
- <fc541e78-5304-42be-a844-70935d66f151@kernel.org>
- <82eae461-3cce-4e36-905c-34c147fabcb3@microchip.com>
- <f0da1029-c8df-40e7-8312-a41a87b7b940@kernel.org>
+To: Karan Sanghavi <karansanghvi98@gmail.com>
+Cc: krzysztof.kozlowski@linaro.org, bcm-kernel-feedback-list@broadcom.com,
+	broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	florian.fainelli@broadcom.com, krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	rjui@broadcom.com, robh+dt@kernel.org, sbranden@broadcom.com,
+	skhan@linuxfoundation.org
+Subject: Re: [PATCH v2] dt-bindings: spi: Convert bcm2835-aux-spi.txt to
+Message-ID: <20241015-proactive-backlog-b77c42eef79c@spud>
+References: <09826ffb-b7d1-4244-af0d-854f1f0339a1@linaro.org>
+ <20241015180906.8464-2-karansanghvi98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,142 +62,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ebRKqoIVG18m2cC+"
+	protocol="application/pgp-signature"; boundary="FBBz714teq+aCQWZ"
 Content-Disposition: inline
-In-Reply-To: <f0da1029-c8df-40e7-8312-a41a87b7b940@kernel.org>
+In-Reply-To: <20241015180906.8464-2-karansanghvi98@gmail.com>
 
 
---ebRKqoIVG18m2cC+
+--FBBz714teq+aCQWZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 15, 2024 at 03:35:46PM +0200, Krzysztof Kozlowski wrote:
-> On 15/10/2024 14:09, Valentina.FernandezAlanis@microchip.com wrote:
-> > On 16/09/2024 21:14, Krzysztof Kozlowski wrote:
-> >> EXTERNAL EMAIL: Do not click links or open attachments unless you know=
- the content is safe
-> >>
-> >> On 12/09/2024 19:00, Valentina Fernandez wrote:
-> >>> Microchip family of RISC-V SoCs typically has or more clusters. These
-> >>> clusters can be configured to run in Asymmetric Multi Processing (AMP)
-> >>> mode
-> >>
-> >> A nit, subject: drop second/last, redundant "binding for". The
-> >> "dt-bindings" prefix is already stating that these are bindings.
-> >> See also:
-> >> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicet=
-ree/bindings/submitting-patches.rst#L18
-> >>
-> >>>
-> >>> Add a dt-binding for the Microchip IPC Remoteproc platform driver.
-> >>>
-> >>
-> >> Binding is for hardware, not driver. Please rephrase it to describe
-> >> hardware.
-> >>
-> >>
-> >>> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microch=
-ip.com>
-> >>> ---
-> >>>   .../remoteproc/microchip,ipc-remoteproc.yaml  | 84 ++++++++++++++++=
-+++
-> >>>   1 file changed, 84 insertions(+)
-> >>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/mic=
-rochip,ipc-remoteproc.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/remoteproc/microchip,i=
-pc-remoteproc.yaml b/Documentation/devicetree/bindings/remoteproc/microchip=
-,ipc-remoteproc.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..1765c68d22cf
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/remoteproc/microchip,ipc-remo=
-teproc.yaml
-> >>> @@ -0,0 +1,84 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/remoteproc/microchip,ipc-remotepr=
-oc.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Microchip IPC Remote Processor
-> >>> +
-> >>> +description:
-> >>> +  Microchip family of RISC-V SoCs typically have one or more
-> >>> +  clusters. These clusters can be configured to run in an Asymmetric
-> >>> +  Multi Processing (AMP) mode where clusters are split in independent
-> >>> +  software contexts.
-> >>> +
-> >>> +  This document defines the binding for the remoteproc component that
-> >>> +  loads and boots firmwares on remote clusters.
-> >>
-> >> Don't say that binding is a binding for. Say what this hardware piece =
-is.
-> >>
-> >>> +
-> >>> +  This SBI interface is compatible with the Mi-V Inter-hart
-> >>> +  Communication (IHC) IP.
-> >>> +
-> >>> +maintainers:
-> >>> +  - Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: microchip,ipc-remoteproc
-> >>
-> >> That's quite generic. Basically this says it will handle IPC of all
-> >> possible Microchip SoCs, not only RISC-V but also ARM and whatever you
-> >> come up with.
-> > IPC is the actual name of the hardware block described in this binding.=
-=20
-> > I'll update the description of the binding in v2 to mention this.
-> >=20
-> > Additionally, I'll rename the compatible to microchip,ipc-sbi-remotepro=
-c=20
-> > to further clarify that this binding is intended for devices using the=
-=20
-> > Microchip IPC hardware block and for devices with an SBI interface (RIS=
-C-V).
+On Tue, Oct 15, 2024 at 06:09:07PM +0000, Karan Sanghavi wrote:
+> Converted the brcm,bcm2835-aux-spi.txt file to
+> its respective yaml file format.
 >=20
-> Well, still generic. Explain why this deserves exception from specific
-> SoC compatibles.
+> Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
+> ---
+> v1->v2 : Made the necessary changes in  the yaml file=20
+> suggested by Krzysztof Kozlowski
+>=20
+> v1:
+> - https://lore.kernel.org/all/Zw1Oj1utiBJ9Sosg@Emma/
 
-If I understand this correctly, some degree of generic-ness is actually
-intended here. The IPC/IHC (the name depends on whether or not it is RTL
-for the FPGA fabric or a hardened version) isn't quite like some of the
-other remoteproc things here, that are intended for programming a DSP or
-similar with some firmware - it's intended for asymmetric
-multiprocessing stuff, where some of the CPU cores run Linux and the
-others are running something like freertos or zephyr, with an abstracted
-interface provided by the firmware/SBI implementation. The mailbox side
-of this is also implemented using an SBI abstraction (similar to PSCI or
-SCMI, I never recall which) and also has a compatible that isn't tied to
-specific soc.
-Granted, the mailbox side does also have a IP core specific version, but
-that is not intended to be consumed by the OS, but rather by the SBI
-implementation (e.g. OpenSBI).
+I don't understand this patch. How is it converting a text file to
+json schema when all you're doing here is deleting stuff from an
+existing yaml file?
 
-What this binding is supposed to be describing is the "generic" ecall
-interface to a set of remote processors provided by the SBI
-implementation. The platform you're running on is meant to be abstracted
-away by use of ecalls etc, just as the mailbox is - which is why
-Valentina went something not soc-specific here. I can see much more of
-an argument for encoding the version of the protocol that is implemented
-by the SBI firmware than for having a soc-specific set of compatibles
-here.
+>=20
+>  .../bindings/spi/brcm,bcm2835-aux-spi.yaml     | 18 ++----------------
+>  1 file changed, 2 insertions(+), 16 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.y=
+aml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
+> index 4c24cf2fe214..f83f71ba78dc 100644
+> --- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
+> @@ -9,8 +9,7 @@ title: Broadcom BCM2835 Auxiliary SPI1/2 Controller
+>  maintainers:
+>    - Karan Sanghavi <karansanghvi98@gmail.com>
+> =20
+> -description: |
+> -  The BCM2835 contains two forms of SPI master controller. One is known =
+simply as
+> +description: The BCM2835 contains two forms of SPI master controller. On=
+e is known simply as
+>    SPI0, and the other as the "Universal SPI Master," part of the auxilia=
+ry block.
+>    This binding applies to the SPI1 and SPI2 auxiliary controllers.
+> =20
+> @@ -21,7 +20,6 @@ properties:
+>    compatible:
+>      enum:
+>        - brcm,bcm2835-aux-spi
+> -    description: Broadcom BCM2835 Auxiliary SPI controller for SPI1 and =
+SPI2.
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -30,8 +28,7 @@ properties:
+>      maxItems: 1
+> =20
+>    clocks:
+> -    items:
+> -      - description: Reference to the auxiliary clock driver for the BCM=
+2835.
+> +    maxItems: 1
+> =20
+>  required:
+>    - compatible
+> @@ -53,14 +50,3 @@ examples:
+>          #size-cells =3D <0>;
+>      };
+> =20
+> -  - |
+> -    #include <dt-bindings/clock/bcm2835-aux.h>
+> -    spi@7e2150c0 {
+> -        compatible =3D "brcm,bcm2835-aux-spi";
+> -        reg =3D <0x7e2150c0 0x40>;
+> -        interrupts =3D <1 29>;
+> -        clocks =3D <&aux_clocks BCM2835_AUX_CLOCK_SPI2>;
+> -        #address-cells =3D <1>;
+> -        #size-cells =3D <0>;
+> -    };
+> -
+> --=20
+> 2.43.0
+>=20
 
---ebRKqoIVG18m2cC+
+--FBBz714teq+aCQWZ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZw7O/wAKCRB4tDGHoIJi
-0oHaAQDcB66qUv/rZ3n4eYXFQNmW6lkghVITam7nzpZJFxq/nwD+L/jTBBJxvAEo
-mBKnoOyDEsehaMsVOUCJivIg7hy1NQc=
-=uuwh
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZw7PvwAKCRB4tDGHoIJi
+0vaoAP9i8RiGMTdEG5XMDG3fcn0dODkCjLTFsR/WYBTGhLAT2QEAhnXEtD3vMery
+tLiiBJIWDvIldsUnJW7klOI1Ubde0g0=
+=db74
 -----END PGP SIGNATURE-----
 
---ebRKqoIVG18m2cC+--
+--FBBz714teq+aCQWZ--
 
