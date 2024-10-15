@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-111705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C884299FB9E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 00:44:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B99899FBA2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 00:45:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E59A288B89
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:44:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDD08B23041
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C691B2182;
-	Tue, 15 Oct 2024 22:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58F61B0F1D;
+	Tue, 15 Oct 2024 22:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="GXxLURb0"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="XnPcRyqL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A561AB6D4
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 22:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2105A1B0F1F
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 22:45:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729032290; cv=none; b=dUdcbbQDPSdQqh0jNBdwy+6sZNax9LI9kKPT2TCzHsx0fcaNim6U24Mc82caKo/LaETFgqsGjw6bs3XDE15J1Vvrat9/tCGntxjUw0hSit0YYC5r1gquidEWhtRuDnzRiBosT169UHHf4gWgaBxFIPbNpaxiXPrwFvO+thaEg2E=
+	t=1729032319; cv=none; b=Pg7Rp+bfyckXzeBCp0WJXmVYCT4cD2xeXMOcFxHBo3iMX0TuWlvF0ntkeORYdt8ouv5ItJwv4f7GEC86kxaexK4topboUlqJgVje26N1n0vRlYbE+lAdugXkUDok5EwdZRERupo3+SKrtnfXgSD4okVQnEAzQZ3zZ8X/UEHSujA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729032290; c=relaxed/simple;
-	bh=zwBsvOnl9TxZV7ONcmKarlYbywqteu42+m78Za3/qd8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ivwurJ9Y4plAI1lySwXEu8qjukdvzJx1aKC4//Zn9LpN1hmwSgZzQ55ecmH68SXTGCp5X+wd5FiTSUljeLBSdkhU97Q5AEPAPpwkgOiPwIPEcXkkylzgJvzPF8hZDt6VFlnZYR94OB66P5rLQWft7jVJzJ9eBE/OYBzHd/rJMIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=GXxLURb0; arc=none smtp.client-ip=85.214.62.61
+	s=arc-20240116; t=1729032319; c=relaxed/simple;
+	bh=LrKAr/EB55J3iH2QEKLMy/GfXb8FL/LzKpLIH0xUgp8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VlbzduC/09Frt0sZAArVINhKgIzRePNG6SPoaeAD5XbAJLTtE0nwJJaBOSsF/uZwoaRukQKYqIpuYbTO3mStMk5hDzo/V1PJviPlnxr8B/3egsiSuUv1Al/RzXV8iCALuLUAsPfJofahkg6Y8wGGBZno+KVTu0G9BAzeVN2nlD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=XnPcRyqL; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 228E187D1A;
-	Wed, 16 Oct 2024 00:44:47 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id 2B28187F19;
+	Wed, 16 Oct 2024 00:45:16 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729032287;
-	bh=pXAQtoDM6FVV9vWsnh6V0QV6tZN7yS0DEA+DZgj3ldc=;
+	s=phobos-20191101; t=1729032316;
+	bh=zlGIuq5CB/mEW8f4HaxR2NBQBs9E5vMufUVvQanNugI=;
 	h=From:To:Cc:Subject:Date:From;
-	b=GXxLURb0yqIwcBGA8Yu0BiwmVeGNkrp5FP9KH1ETkBULRwFyQb+INLdytxJAbz7YI
-	 nzxQYrSmfNpHSLWZKn55Igz4fxv5JF5WZJFCE2RQ5qWIjIV8B6B+5qf2Yib8Oaejx/
-	 h9APcc+gdRvhIKKeGHAV0r5cnVsxuphUwE54lWVuCc4FzAwx2Vc3VUIrXNCHlCADc2
-	 JVnvWYwqz1OoNJs/mq7aRhhAB740dECezzoPRr6cxvwdb0ET4wDZobC6pZrUTrXFXi
-	 wuVyUvE5BZGHgx09EJLfFWpELkrvAKXLUHgb+zfhGG3qIjthdK7dHPsiX1un1M8uHu
-	 L3IzUU3yF+izA==
+	b=XnPcRyqLF9AvOIY+j7QiZAKafNLVle5muoA1/tL8/Vrb7k9+cYEtBjIXfILtsYT7W
+	 81Sk6YnLbTMKO5xzRrkub0vTuUfG6spj9SLkBIB/rM5YBWh8ctA3c2pHM4dyPVGCPo
+	 TrBlRh671jDtS0aUvNLbmRf+zVCkCxtASkJYsditEhyVG/zvTu+c6kGVU1ElMAbegV
+	 z4qugn+WX+DlQGyBSLZSAavBgmq7xYuBfVhtRbS3TFoDbIqwCPsf6ByTeE/HvVd8I1
+	 xfhJ+nBPeUfrIqeBp0gNcsSoMLFIBDRcgehXs9MCAnOUU7/DbfoGaSAyjhRntgB8wG
+	 MhQ9x5PKldrow==
 From: Marek Vasut <marex@denx.de>
 To: linux-arm-kernel@lists.infradead.org
 Cc: Marek Vasut <marex@denx.de>,
@@ -60,9 +60,9 @@ Cc: Marek Vasut <marex@denx.de>,
 	devicetree@vger.kernel.org,
 	imx@lists.linux.dev,
 	kernel@dh-electronics.com
-Subject: [PATCH] ARM: dts: imx6qdl-dhcom-som: Drop bogus regulator-suspend-mem-microvolt
-Date: Wed, 16 Oct 2024 00:44:10 +0200
-Message-ID: <20241015224436.94334-1-marex@denx.de>
+Subject: [PATCH] ARM: dts: imx6qdl-dhcom-pdk2: Drop incorrect size-cells in GPIO keys
+Date: Wed, 16 Oct 2024 00:44:52 +0200
+Message-ID: <20241015224505.94359-1-marex@denx.de>
 X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -74,9 +74,12 @@ Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-Drop unused regulator-suspend-mem-microvolt property from PMIC regulator nodes.
-This property is not used by either U-Boot, Linux, nor is it documented in the
-DT bindings, remove it.
+Bindings do not allow address/size-cells in GPIO keys and the GPIO keys
+is not a bus, see dtbs_check warning:
+
+"
+arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: gpio-keys: '#address-cells', '#size-cells' do not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
+"
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
@@ -93,29 +96,21 @@ Cc: imx@lists.linux.dev
 Cc: kernel@dh-electronics.com
 Cc: linux-arm-kernel@lists.infradead.org
 ---
- arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi
-index eaa87b3331648..af0d95396cd51 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi
-@@ -256,7 +256,6 @@ sw1_reg: sw1 {
- 				regulator-max-microvolt = <1527272>;
- 				regulator-min-microvolt = <787500>;
- 				regulator-ramp-delay = <7000>;
--				regulator-suspend-mem-microvolt = <1040000>;
- 			};
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2.dtsi
+index 6248b126b5578..773fdcfcd0015 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2.dtsi
+@@ -56,7 +56,6 @@ lcd_display_out: endpoint {
+ 	};
  
- 			sw2_reg: sw2 {
-@@ -275,7 +274,6 @@ sw3_reg: sw3 {
- 				regulator-max-microvolt = <1527272>;
- 				regulator-min-microvolt = <787500>;
- 				regulator-ramp-delay = <7000>;
--				regulator-suspend-mem-microvolt = <980000>;
- 			};
+ 	gpio-keys {
+-		#size-cells = <0>;
+ 		compatible = "gpio-keys";
  
- 			sw4_reg: sw4 {
+ 		button-0 {
 -- 
 2.45.2
 
