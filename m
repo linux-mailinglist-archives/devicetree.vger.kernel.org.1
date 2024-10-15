@@ -1,156 +1,194 @@
-Return-Path: <devicetree+bounces-111493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7631999F02E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:53:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A591499F081
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:01:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BD461F21907
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:53:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C99521C23295
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E441C4A29;
-	Tue, 15 Oct 2024 14:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7657F1D5141;
+	Tue, 15 Oct 2024 14:57:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="LhEqlfvw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fvpjX7ln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FC21AF0D5;
-	Tue, 15 Oct 2024 14:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFFE1CBA11
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 14:57:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729003994; cv=none; b=NBz2Ei23O+42dveaRsOFc7uyq+5ARkaAHGsmP0ca7aLqrIFMGnM4qyOHht8zhilwVGvukf7uzwvGs0B2vju72n3i2neTHxogRiLSiPQkW3dXOp5R9v+U2x2iVk67OmxELHHxyuHE8fC+hjOBBhhYXo8mhb13tQ/+1PqJv7RIKsI=
+	t=1729004247; cv=none; b=cgDVN5ORttXy5yh1exeBgN23TA4N9jDpDkVdPM1jWdGtbyMK412GkCBLBc6mdKOC3gs+XpRFX75PCrD18JnBIkbj1msXsqLVai9j2s4HaAjSncF54EHbEq4oY1Ayrogzc8PIYTiYzqv7uFCnnMgp8UcQvic9huAgUH4MmEDs87M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729003994; c=relaxed/simple;
-	bh=TXL5ECwjpaQl9xrzbHeNrLMJad9K2tD5pt8Y+USrQcg=;
+	s=arc-20240116; t=1729004247; c=relaxed/simple;
+	bh=SlICqBZXrQRrlbYBRBFsm9lw6h24q5u37vave91lLI4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ICvIUtd2ICUBh1ekMqkUf1TDcuBZD9U71aJFcE3fUYSsvL2BaFU2qUhT972KVpYKga+qdGIIK3OmWnU4g57oZOYUN42z4oHB9sqGCvWmCV5W3JOf+9SI/YMqd7vNqqdf2ycC9VbEVv1P9DKjiJ4Lh2PYGBrNSWegjepNghtZv70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=LhEqlfvw; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id A679740E0194;
-	Tue, 15 Oct 2024 14:53:09 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id eTQLnIpnaaak; Tue, 15 Oct 2024 14:53:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1729003984; bh=IWu4dX3tvzxOwCtQqhtsDrxvJqZWaM0N7YGfox1xlSc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LhEqlfvwFailZ+MIpmFomDMYfFNQnVJTcMpPK31TtPGDjT2YbTH4rgGG4Pj02chhX
-	 7j66HnnZKf2bL+ontS+YzhtVtau4PD5ulUpVwt2fWWV2e/2QeYyyOMPAIj5HJsJSFM
-	 LOF/Osf1rGG2PQTvJG7B1Lq5bKTC8Ss7ap+G89YWLZt2hY90ExdDn8JMiG6lUt6iS4
-	 E7JEPDfrKGJq74CsZYzogfEGXit681oxix7iQ1nkr+Zh4Er+8WkpYkjjTU0Q7Hq7n0
-	 PREPPsbfQStwnfjsayZfUR7hJwa85PyNkjyDLxp8NU2DeiOsmvNedzSgn2eRbwHDoA
-	 Yhb9ZFhIN9tHHEYAR6T4eiTmlzzPsmRHgRDuQ3TUb/yMIfpiOPcChGgAK8mMKy60Tq
-	 7IAqvVEEQ42bPAENIriDrf6/miWqu6jKNuUqwGClT2Ef27azW7RhmMv7k8o8qrGxeE
-	 57r5uELf1Z6ZVWUZVb8FSpapTICC7EFUvGakVW3G6lV5DdBk346BgckLC4pWhTohFP
-	 5g2vhZxW14hWs2VjBM3B7r390mhDgRxt53thdFQ6Uw0jaycMmEJNlgqJF63REaQomp
-	 yxzsM4jcw/elUs79mvLMaybJ6Feskdqfl5ex5AglQfvmi8KkRdr8NfHWgOARSs5NRH
-	 jKYYjBC9wGkgNnD0XlBPK+VU=
-Received: from zn.tnic (p5de8e8eb.dip0.t-ipconnect.de [93.232.232.235])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 571FC40E0169;
-	Tue, 15 Oct 2024 14:52:42 +0000 (UTC)
-Date: Tue, 15 Oct 2024 16:52:34 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: York Sun <york.sun@nxp.com>, Tony Luck <tony.luck@intel.com>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iuHT7Q20O1Wn4Q14CrAq6v0+K8EN3VifmKYj+s4kdKezcdnDOa382giJ8+SS3Alxp60Fy3R2XkZzkTBVs+RLyT/bhTpAiK2i2BK4rLTLsZqRaYINanCsAMXxR5rh2Rs0a730HSv6crB9WYNmMnRciOmkZOXDamIRwFavbWx7/wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fvpjX7ln; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43124843b04so30697265e9.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 07:57:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729004244; x=1729609044; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dd/y4e5VLsv45xhA5HVGa4kwa+DBg+30cli4MtlNzRs=;
+        b=fvpjX7lni4jFERnsxFhJLjlaA2tYfaisIdv2ofeLfwqm1FZ3u8xxSqHOkrTbjjdRNe
+         vJCw502B0oTuVIltcLp0T/cSWSWjnZecR3f9TJhFwGnXhxiuPDI3syE5NpLvyasgKCEJ
+         DGM7hWFSWCcWiWL9RiHpCVR99PyWf17grU+jAC65DpyP+JAiXrlduh2dXfrdeFvHZobF
+         tZdHyt1RdI1Upmu2ImdZJfHzsu8hCGOGVgvNrMqVhoZC3qaKN/9lblSwm6zmPiqgHJ/w
+         YYjfQL7tyPATZgXogZpGfRK0QLFN/OerkPE0yyxK4bxtAZsqb7sLzwJCca1dlsPMhkyd
+         y5nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729004244; x=1729609044;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dd/y4e5VLsv45xhA5HVGa4kwa+DBg+30cli4MtlNzRs=;
+        b=PLPyQf6dQ5Twf5LJotOyHTVYE4M/nZB0tXsYny5VVkmPxCxUUu0QaatByeK9T3fcCc
+         Gr2NksGIme68YVQhiEabei7NFoxXg9uoz3B6DRiGoeop8jyOzIHiSyoK9lOO2CW+ewZw
+         dA/an2xu3yRhWkyYTJCpma4V9hDjpzGDmUDFdbEkk907IoL/miGV+kyLvaIgPWU/lCxG
+         W6XNqT3B8E/TFAZEgT5fC2Lrs5FC0uT/OyRd4xaym3wW1wDXQNs7CvULZI3k3OpcXrLm
+         sXF0ZizzY5VhH11GPVEr/UfeRkZuOQMgUI5jnpgvFoog2DqjDzjYlBpYYzIUP3Q4gUC/
+         b40w==
+X-Forwarded-Encrypted: i=1; AJvYcCXH/HxqC8WepcM+NO8x+8tMhayBRyn9XmGTxWhFOlwJ6XtH43yXaSA1ft6LfKJpOIUGWowtXT2Qvxui@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQrROjhOQD3UDvkzdQAy34BQrEiwgiKMRlwPW0tj+9KtX9AZ6m
+	AsggOklD7JykNqtkkMZbBm85W7Mf1R+NsVI5s0P5D99OaVdLSsE8Xe0BvI7xlLQ=
+X-Google-Smtp-Source: AGHT+IHQ7R4nBExzm5obkauib5uoXD+Q+dcoKzQHxjHFC5ayr61rq+06s4us4vX2nYJ7a6xxImhbzA==
+X-Received: by 2002:a05:600c:4e46:b0:42c:b8cc:205a with SMTP id 5b1f17b1804b1-4311df5644amr149049145e9.32.1729004243748;
+        Tue, 15 Oct 2024 07:57:23 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef80:d7:7e1e:c886:6f9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fc11aefsm1765066f8f.93.2024.10.15.07.57.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2024 07:57:23 -0700 (PDT)
+Date: Tue, 15 Oct 2024 16:57:18 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-edac@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Borislav Petkov <bp@suse.de>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, Ye Li <ye.li@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v2 5/6] EDAC/fsl_ddr: Add support for i.MX9 DDR controller
-Message-ID: <20241015145234.GRZw6BsqnIbaGWMzG_@fat_crate.local>
-References: <20241011-imx95_edac-v2-0-011b68290951@nxp.com>
- <20241011-imx95_edac-v2-5-011b68290951@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: x1e80100-crd: describe HID supplies
+Message-ID: <Zw6CzgluMauSdl2j@linaro.org>
+References: <20241015122427.15995-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241011-imx95_edac-v2-5-011b68290951@nxp.com>
+In-Reply-To: <20241015122427.15995-1-johan+linaro@kernel.org>
 
-On Fri, Oct 11, 2024 at 11:31:33AM -0400, Frank Li wrote:
-> From: Ye Li <ye.li@nxp.com>
+On Tue, Oct 15, 2024 at 02:24:27PM +0200, Johan Hovold wrote:
+> Add the missing HID supplies to avoid relying on other consumers to keep
+> them on.
 > 
-> Add support for the i.MX9 DDR controller, which has different register
-> offsets and some function changes compared to the existing fsl_ddr
-> controller. The ECC and error injection functions are almost the same, so
-> update and reuse the driver for i.MX9. A special type 'TYPE_IMX9' is added
-> specifically for the i.MX9 controller to distinguish the differences.
+> This also avoids the following warnings on boot:
 > 
-> Signed-off-by: Ye Li <ye.li@nxp.com>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> 	i2c_hid_of 0-0010: supply vdd not found, using dummy regulator
+> 	i2c_hid_of 0-0010: supply vddl not found, using dummy regulator
+> 	i2c_hid_of 1-0015: supply vdd not found, using dummy regulator
+> 	i2c_hid_of 1-0015: supply vddl not found, using dummy regulator
+> 	i2c_hid_of 1-003a: supply vdd not found, using dummy regulator
+> 	i2c_hid_of 1-003a: supply vddl not found, using dummy regulator
+> 
+> Note that VREG_MISC_3P3 is also used for things like the fingerprint
+> reader which are not yet fully described so mark the regulator as always
+> on for now.
+> 
+> Fixes: d7e03cce0400 ("arm64: dts: qcom: x1e80100-crd: Enable more support")
+> Cc: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  drivers/edac/fsl_ddr_edac.c    | 48 ++++++++++++++++++++++++++++++++++++------
->  drivers/edac/fsl_ddr_edac.h    | 10 +++++++++
->  drivers/edac/layerscape_edac.c |  1 +
->  3 files changed, 53 insertions(+), 6 deletions(-)
-
-checking file drivers/edac/fsl_ddr_edac.c
-Hunk #1 FAILED at 31.
-Hunk #2 succeeded at 442 (offset 4 lines).
-Hunk #3 succeeded at 478 (offset 4 lines).
-Hunk #4 succeeded at 492 (offset 4 lines).
-Hunk #5 succeeded at 520 (offset 4 lines).
-Hunk #6 succeeded at 550 (offset 4 lines).
-Hunk #7 succeeded at 577 (offset 4 lines).
-1 out of 7 hunks FAILED
-checking file drivers/edac/fsl_ddr_edac.h
-Hunk #3 FAILED at 71.
-1 out of 3 hunks FAILED
-checking file drivers/edac/layerscape_edac.c
-
-What tree have you created your patches against?
-
-> diff --git a/drivers/edac/fsl_ddr_edac.c b/drivers/edac/fsl_ddr_edac.c
-> index ccc13c2adfd6f..3e4c2869a07cd 100644
-> --- a/drivers/edac/fsl_ddr_edac.c
-> +++ b/drivers/edac/fsl_ddr_edac.c
-> @@ -31,16 +31,28 @@
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 34 +++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> index 10b28d870f08..4ab7078f76e0 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> @@ -288,6 +288,23 @@ vreg_edp_3p3: regulator-edp-3p3 {
+>  		regulator-boot-on;
+>  	};
 >  
->  static int edac_mc_idx;
+> +	vreg_misc_3p3: regulator-misc-3p3 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_MISC_3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&pm8550ve_8_gpios 6 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&misc_3p3_reg_en>;
+> +
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+>  	vreg_nvme: regulator-nvme {
+>  		compatible = "regulator-fixed";
+>  
+> @@ -689,6 +706,9 @@ touchpad@15 {
+>  		hid-descr-addr = <0x1>;
+>  		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
+>  
+> +		vdd-supply = <&vreg_misc_3p3>;
+> +		vddl-supply = <&vreg_l12b_1p2>;
+> +
+>  		pinctrl-0 = <&tpad_default>;
+>  		pinctrl-names = "default";
+>  
+> @@ -702,6 +722,9 @@ keyboard@3a {
+>  		hid-descr-addr = <0x1>;
+>  		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
+>  
+> +		vdd-supply = <&vreg_misc_3p3>;
+> +		vddl-supply = <&vreg_l12b_1p2>;
+> +
+>  		pinctrl-0 = <&kybd_default>;
+>  		pinctrl-names = "default";
+>  
+> @@ -721,6 +744,9 @@ touchscreen@10 {
+>  		hid-descr-addr = <0x1>;
+>  		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
+>  
+> +		vdd-supply = <&vreg_misc_3p3>;
+> +		vddl-supply = <&vreg_l15b_1p8>;
+> +
+>  		pinctrl-0 = <&ts0_default>;
+>  		pinctrl-names = "default";
+>  	};
+> @@ -854,6 +880,14 @@ &pcie6a_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pm8550ve_8_gpios {
+> +	misc_3p3_reg_en: misc-3p3-reg-en-state {
+> +		pins = "gpio6";
+> +		function = "normal";
+> +		bias-disable;
 
-I see here:
+Can we add a "power-source" here? PMIC GPIOs can be either ~3.7V
+(VPH_PWR) or 1.8V, depending on which power-source is selected. Without
+that, we rely on the firmware to set the voltage level for the GPIO
+during boot.
 
-|static int edac_mc_idx;
-|
-|static u32 orig_ddr_err_disable; 
-|static u32 orig_ddr_err_sbe;
-|static bool little_endian;
-|
-|static inline u32 ddr_in32(struct fsl_mc_pdata *pdata, unsigned int off)
+I'm not sure which one would be suitable here. I guess we can just
+replicate what the firmware configures during boot.
 
-and you don't have those in your diff.
-
-What's up?
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+Thanks,
+Stephan
 
