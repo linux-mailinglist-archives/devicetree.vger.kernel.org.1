@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-111701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A0599FB3B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 00:17:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0CB599FB44
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 00:21:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E4881F22559
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:17:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D3122846B6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724241B0F15;
-	Tue, 15 Oct 2024 22:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4991D63D6;
+	Tue, 15 Oct 2024 22:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q9TNb6Y7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QJ5OWFOg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424D6185B47;
-	Tue, 15 Oct 2024 22:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21EBF185B47;
+	Tue, 15 Oct 2024 22:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729030662; cv=none; b=HEoOQPGXvp5epQSe8qJI1IYXXPo4NMnR3lAvPFY3Xuudn8tzy8hk/gn/8pABAsRs0J1jnn/UC842zyph1vUrnZMC1v5/ay825M6Y9AKWpp021qWiCwu2m8AGwYoNB8B+7qbbWH7p2ox6bFlOA7RqOU2M4az/x7xXGoc5xS0xM1A=
+	t=1729030848; cv=none; b=YPtHEeRv7hNUXdxR5oQXWhwkU8g0VSKKYd9Fc+VOrHw11F5KCI6FNYRVzX4ljmSRToCVF72+L0jjsZEmXOY929GteseXZM8ID1llt9TtpE89t9ZyoXzoV5rNgbVbnAGpNIBONfER+NRVZIy4IE3npJoRMvBJNJw8/nVGsv6plWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729030662; c=relaxed/simple;
-	bh=uMYkHlMKaytHOvnhHen4sk4aMkGAAmVSj+k1YxZcbDg=;
+	s=arc-20240116; t=1729030848; c=relaxed/simple;
+	bh=cz0wcw3Y7yNv81Eqmq/jRhBRalPGnIOBsVA8ozyzCVI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mwmEM7BGAti2j7lw1HxMCixOTeOmMTfRvO2XPzNw7JOBwZ6HLQMjt40cwEyzxWdquwUglnyZ/G3t3LHY6D7IFcgRIuGyNW6Iwi+ZvrdQ60n+eB2ijNNAHY5w7T66ozlakfbs1hlh2j3erDp09wfFbkAn9S2TQ8opYn9P68VFFfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q9TNb6Y7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 924D3C4CEC6;
-	Tue, 15 Oct 2024 22:17:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LZy9Bfi4z3j+I8HXhZXlF8p1PHezXB6Gr5qiQJjGC+tOkjbkTh+iWB30gcvq8ERU97ubYjkvqzMcmJlaA3AQFdvdxI8VmN5TKVmBGecPEvtG5Ye8XE6TLggY8v62WLBSYVjOepm+nLsSNN0BZb31CU3taMv5OlhKuPGT9mjn7uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QJ5OWFOg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F57FC4CEC6;
+	Tue, 15 Oct 2024 22:20:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729030661;
-	bh=uMYkHlMKaytHOvnhHen4sk4aMkGAAmVSj+k1YxZcbDg=;
+	s=k20201202; t=1729030847;
+	bh=cz0wcw3Y7yNv81Eqmq/jRhBRalPGnIOBsVA8ozyzCVI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q9TNb6Y7mb2ZnDSkREuBd+zIZhQ5UlL4+nGnSv6fUlRhQQYyEjJgfHNzkHJpNNUIE
-	 Awwzor3n00sSb9KTvfywA+9gBoqnwxE3tSAPVgOY2MRJr90V+PqMte0D34wMA6Dyii
-	 lVNrktg9wupODvZnp/zFjluPk7+q3unGwiDzeIM1OzlJbXdrzM7uBcxa7lh+xw0z9q
-	 aGCi0vyTZ0Yv4Ea3RVEHowbnGY72hkqGKDskK7orwREwNTNWDUYDXWLBnaWhcU/ZBY
-	 bgpMr/hvstaNV5NQKwAyLElO/cxdzaC0Qz24kVNVlkxBjst7GvqnPA9F2GeMXxAKg1
-	 rftr8OQpGU9iQ==
-Date: Tue, 15 Oct 2024 17:17:40 -0500
+	b=QJ5OWFOgkkbenFSC429aGainB2dB4o0Q1vBAUtQN81RS+VdC7+NpsQcZaLWnrJu+N
+	 4/M8AGaJGNfzask2wpXq4U9kC2eZ6g+ZKzHkJ++CXumOaNt2Jk2AkWMWsNeFoqYciM
+	 sYYvXSbooEjQgj5oYEjH3Fkab210ZGDzdwoeqfxmtLVG6gmH61DMfc4GvcC3ngxaOg
+	 k73Ht2ipOfeaooBnACRFeOPJPk9nKiVjxBXA44plZvh5BhM7dS8/DzlQUr37Y5FhTM
+	 uv/KZcWhx/zMKVPaaJ8aAYyecBQPV9scgLLS2W3fFlV0SZvruGCX4BCpDiyo8X6Siv
+	 Ap/ZZCi9S8Jcg==
+Date: Tue, 15 Oct 2024 17:20:46 -0500
 From: Rob Herring <robh@kernel.org>
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Lionel Debieve <lionel.debieve@foss.st.com>, marex@denx.de,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: rng: add st,stm32mp25-rng support
-Message-ID: <20241015221740.GA2100600-robh@kernel.org>
-References: <20241015-rng-mp25-v2-v3-0-87630d73e5eb@foss.st.com>
- <20241015-rng-mp25-v2-v3-1-87630d73e5eb@foss.st.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	ChiYuan Huang <cy_huang@richtek.com>, linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	Chris-qj chen <chris-qj.chen@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: usb: mtu3: add mediatek,usb3-drd property
+Message-ID: <20241015222046.GA2164669-robh@kernel.org>
+References: <20241015172100.15150-1-macpaul.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,96 +68,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241015-rng-mp25-v2-v3-1-87630d73e5eb@foss.st.com>
+In-Reply-To: <20241015172100.15150-1-macpaul.lin@mediatek.com>
 
-On Tue, Oct 15, 2024 at 06:48:54PM +0200, Gatien Chevallier wrote:
-> Add RNG STM32MP25x platforms compatible. Update the clock
-> properties management to support all versions.
+On Wed, Oct 16, 2024 at 01:21:00AM +0800, Macpaul Lin wrote:
+> Add optional 'mediatek,usb3-drd' property to MediaTek MTU3 DT Schema.
+> This flag specify whether it is a USB3 Dual-role device hardware.
 > 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 > ---
-> Changes in V3:
-> 	- Add constraint on clock-names for st,stm32mp25-rng compatible
+>  Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> Changes in V2
-> 	-Fix missing min/maxItems
-> 	-Removed MP25 RNG example
-> 	-Renamed RNG clocks for mp25 to "core" and "bus"
-> ---
->  .../devicetree/bindings/rng/st,stm32-rng.yaml      | 34 +++++++++++++++++++++-
->  1 file changed, 33 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
-> index 340d01d481d12ce8664a60db42182ddaf0d1385b..c276723d566ce4a0d6deca10c491510644d842f8 100644
-> --- a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
-> +++ b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
-> @@ -18,12 +18,20 @@ properties:
->      enum:
->        - st,stm32-rng
->        - st,stm32mp13-rng
-> +      - st,stm32mp25-rng
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> index d4e187c78a0b..1e70af0dac82 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> @@ -155,6 +155,12 @@ properties:
+>        property is used. See graph.txt
+>      $ref: /schemas/graph.yaml#/properties/port
 >  
->    reg:
->      maxItems: 1
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
+> +  mediatek,usb3-drd:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Specify whether it is a USB3 Dual-role device hardware.
+> +    type: boolean
 > +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: core
-> +      - const: bus
->  
->    resets:
->      maxItems: 1
-> @@ -57,6 +65,30 @@ allOf:
->        properties:
->          st,rng-lock-conf: false
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - st,stm32-rng
-> +              - st,stm32mp13-rng
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +        clock-names: false
 
-It makes no sense that you allowed 1 entry, but then disallow the 
-property. Either drop the 'minItems: 1' at the top level (keeping this) 
-or put 'maxItems: 1' here, 
+Don't the standard properties such as usb-role-switch or dr_mode work 
+for you?
 
-> +    else:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-
-maxItems is already 2. Only need minItems.
-
-> +        clock-names:
-> +          items:
-> +            - const: core
-> +            - const: bus
-
-You already defined the names, don't do it again. You need either 
-nothing or 'minItems: 2' depending on the above.
-
-> +      required:
-> +        - clock-names
-> +
->  additionalProperties: false
->  
->  examples:
-> 
+>    enable-manual-drd:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
 > -- 
-> 2.25.1
+> 2.45.2
 > 
 
