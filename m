@@ -1,163 +1,193 @@
-Return-Path: <devicetree+bounces-111280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CC6D99E00A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 09:59:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8673299E012
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E4CCB227E3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:59:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A94EF1C21769
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A611B4F0A;
-	Tue, 15 Oct 2024 07:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C491B4F2B;
+	Tue, 15 Oct 2024 08:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="j1H5Iosx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bv1YQk3i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153641B85D4
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 07:58:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227C91AF4EE;
+	Tue, 15 Oct 2024 08:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728979099; cv=none; b=c0oy5x9au5Kh/kNUTKa3Ap0aFYdk0mGAVOLOD2tVBjNWifxrauhJtV1xdQMFh1n6rOrLFl/6qCpiKxn6bPoVp6NARLEEjEuLGiEHdOYqg6hIcOFePf538mhk3YFEBNhbxtFyV2ayCm0Go3PXW4dyK65uyQzIgLCM0S+mpmpO7xQ=
+	t=1728979203; cv=none; b=dYyIc6MqnsQCRRghQ6bOCxGYy76hSkus+EerPpiP3n1IPLkJbIz39An4xWb2iWBu7nc5EfrQHNSFnUiRL2y4hbaWjWWndDgcsfE2tv1xWjoTvXhIA0sbqUWzTouAzidwwcbCec070gXwomwILfQShOK0MS0LaH1mZC67h5Re6V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728979099; c=relaxed/simple;
-	bh=xqbnlLiVNwKqNk4B6zxRxQlS9F/oHJRfBlpXtgY8Yeo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Q+QAP0J1UxRIBAeEARnA7Ut6lOKG7xZTMxagCu/WhTMhhRKw7qwhA48SajTyU68Tc13CtPtqdTikhUhkGaKI/lvgFoyY1nVubWYMZz6ctPSencTTn7W7XjpHt9o2eTQVNJ+f+y8yRjMsIHlRLiWyjxHH4GKJSwXAkO4I2PpVTW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=j1H5Iosx; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-539e4b7409fso2829850e87.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 00:58:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1728979096; x=1729583896; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eC4BB+tDEl8JjaqDwzWgkstqnxwTVkHhasRVEYNy6PE=;
-        b=j1H5IosxH8aclbmF/IGO8/trWO+AKt1YcExrJNOpKE6PMDwQkWYtnYvk+LM2yWq2dm
-         ykvMMKuHL1quG6EOHKC/Ibg+ZZbQDaaHxckr38zqCoe7dCswdGVm29g3ck7cewNK4UB9
-         xzIY3o25jnPK7br2vkwDUDIZqns3UnVBKfF2A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728979096; x=1729583896;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eC4BB+tDEl8JjaqDwzWgkstqnxwTVkHhasRVEYNy6PE=;
-        b=XKHYzQWEz6SNcO2Lue93QdNjCRsSEJEq6Urr/b31OkflmwaCQ6yQU8xL2f1Jv52h4n
-         UT9Ui/6c+zC1odSTkagOWAbCmPilI3ib/SIYDAu7zfmB2Xex/0Yabr8R2Sax//76WbjD
-         AGUYacF1Yqc7tRrP9dqLzujyawYXZpx/5W1meIS3Ox19aa9CEzLjsgw9hX5asK2Y3wQ5
-         MykPsyPIr9qOHSxUMrtbPGlyLW2av8ZjRj+eRFd5E0mWT9QruT6o9v+GxY6Y9r/GQKrb
-         Rv9BaRBkMUUONBDKuZCZYdpMd8pKP6XnCY+ncIrY7y/dO1LUfxjhM8Hq0/i6Kt7OiCGv
-         O5+w==
-X-Forwarded-Encrypted: i=1; AJvYcCV4u8l8cep5W/YToFSAKTEJcaql/WKiXOKbSqDuz8AlAHJsf2OY8GmF8GZXG/5RnPNLgEbKBWF3camv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQgsN0ELrKAhxXKHhaDP+qAynLOFobW6KSnzz58S0Ew4HxHNOR
-	wnitdIWPbVJvRnEWzYMpdKILeXDJrDYyhYBIHlOZ3+yI3azgBtbrhobHFFGALuvsP3aIdPhKc8B
-	WLtLr2d29a9PmwYE2bQ2uRULy8of/EqBn3Q43
-X-Google-Smtp-Source: AGHT+IGjJNGNwEUDC+KZo44b4hUQtyEA+RBC3R7OuIVRUtmEkMET/oSfQ/G/cmV6HDCYX8i5o2poiLBvda9ljao0a+8=
-X-Received: by 2002:a05:6512:2254:b0:539:f775:c0bc with SMTP id
- 2adb3069b0e04-539f775c343mr1766569e87.29.1728979096001; Tue, 15 Oct 2024
- 00:58:16 -0700 (PDT)
+	s=arc-20240116; t=1728979203; c=relaxed/simple;
+	bh=rL++ewozoXto81Yc1rbqAgf54mHr09dluoYtOFAcW5w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YH9OcBboF+IMt9Cs8lBJqsadbAhLtOVscbiY5I8uF6DYTk1UKXuCdPF+O4vsvEuno6YYLJRsDmNGKRnsr7qjklj53QlRehQGb/dMdK7RRiiYcYwzIGErbtNHcSR7lsw27wu2AYdnW3IqAi8XtNAOJzZ1NDQsUnKCVtzgvM8LfPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bv1YQk3i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E97E5C4CEC7;
+	Tue, 15 Oct 2024 07:59:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728979202;
+	bh=rL++ewozoXto81Yc1rbqAgf54mHr09dluoYtOFAcW5w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bv1YQk3iD1eSxJHZHi8RXPgJZCFbvJhEW8fBDGP/ZF1uVphUH3yd/OxIGGs/fTOun
+	 Co6g46kVVCw0DbHrATa/ke2QdsdMdf4XxaUa24x71/0A5qKZN8TBnA/1bVJyUmK3Fc
+	 c1lS/iS31DPP0CTrbt3JPq3Oz5wo1sZGIaube9+aeQw8q4U7YOWyzQ8HsDHRLpKHRT
+	 aIE7mUUve1+KZCyjGJiAUAyX2p9uVk6SoHTr2PuGT5u+NYUo2qMoCOAXRxpWxK8CUc
+	 HdQXaeXuxxuNMqlgLcfUE8SnRqonasE3eT7znNdm0EXJhyR2sVWRRBEElQvSHNPO2r
+	 f7UOOx0En1ROQ==
+Message-ID: <9c7f0c20-aafe-45b2-aa3e-c2c21e3a5b71@kernel.org>
+Date: Tue, 15 Oct 2024 09:59:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241014073314.18409-1-yunfei.dong@mediatek.com> <20241014073314.18409-3-yunfei.dong@mediatek.com>
-In-Reply-To: <20241014073314.18409-3-yunfei.dong@mediatek.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 15 Oct 2024 15:58:05 +0800
-Message-ID: <CAGXv+5H4FsadBheokwO7hTxDxAtYakL15Ki+EcnhQ3Unbz3o9w@mail.gmail.com>
-Subject: Re: [PATCH 2/6] media: mediatek: vcodec: remove parse nal info in kernel
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, 
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>, 
-	Daniel Almeida <daniel.almeida@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
-	Fritz Koenig <frkoenig@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, 
-	Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] pinctrl: meson: Add driver support for Amlogic A4
+ SoCs
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241014-a4_pinctrl-v2-0-3e74a65c285e@amlogic.com>
+ <20241014-a4_pinctrl-v2-2-3e74a65c285e@amlogic.com>
+ <aju3dgugbmj52i74j7csyuwejczsvk4sxtsdzuq62jutq7jxbe@wbc7fveloxv2>
+ <1c054eb4-9ac1-4965-8847-d851b9fb1131@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <1c054eb4-9ac1-4965-8847-d851b9fb1131@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 14, 2024 at 3:33=E2=80=AFPM Yunfei Dong <yunfei.dong@mediatek.c=
-om> wrote:
->
-> Hardware can parse the slice synatx to get nal information in
-> scp, needn't to parse it in kernel again.
+On 15/10/2024 09:54, Xianwei Zhao wrote:
+> Hi Krzysztof,
+>      Thanks for your reply.
+> 
+> On 2024/10/15 14:01, Krzysztof Kozlowski wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On Mon, Oct 14, 2024 at 05:05:52PM +0800, Xianwei Zhao wrote:
+>>> Add a new pinctrl driver for Amlogic A4 SoCs which share
+>>> the same register layout as the previous Amlogic S4.
+>>>
+>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> ---
+>>>   drivers/pinctrl/meson/Kconfig              |    6 +
+>>>   drivers/pinctrl/meson/Makefile             |    1 +
+>>>   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1176 ++++++++++++++++++++++++++++
+>>>   3 files changed, 1183 insertions(+)
+>>>
+>>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+>>> index cc397896762c..3e90bb5ec442 100644
+>>> --- a/drivers/pinctrl/meson/Kconfig
+>>> +++ b/drivers/pinctrl/meson/Kconfig
+>>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
+>>>        select PINCTRL_MESON_AXG_PMX
+>>>        default y
+>>>
+>>> +config PINCTRL_AMLOGIC_A4
+>>> +     tristate "Amlogic A4 SoC pinctrl driver"
+>>> +     depends on ARM64
+>>> +     select PINCTRL_MESON_AXG_PMX
+>>> +     default y
+>>> +
+>>>   config PINCTRL_AMLOGIC_C3
+>>>        tristate "Amlogic C3 SoC pinctrl driver"
+>>>        depends on ARM64
+>>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
+>>> index 9e538b9ffb9b..c92a65a83344 100644
+>>> --- a/drivers/pinctrl/meson/Makefile
+>>> +++ b/drivers/pinctrl/meson/Makefile
+>>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
+>>>   obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
+>>>   obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
+>>>   obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
+>>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
+>>>   obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
+>>>   obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
+>>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>>> new file mode 100644
+>>> index 000000000000..dee1ae43edb5
+>>> --- /dev/null
+>>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>>> @@ -0,0 +1,1176 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>>> +/*
+>>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
+>>> + *
+>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
+>>> + */
+>>> +
+>>> +#include <dt-bindings/gpio/amlogic-a4-gpio.h>
+>>
+>> I do not see any usage of it.
+>>
+> 
+> The header file "amlogic-a4-gpio.h"  is used by AMLOGIC_PIN and 
+> GPIO_GROUP_V2, The code used  is  AMLOGIC_GPIO().
+> This is binding definition.
 
-Does this apply to all existing shipped SCP firmware? If not, please
-put this behind a vdec firmware flag.
+Then all other defines are not used. AMLOGIC_GPIO is not used by DTS, so
+how is that a binding? Don't stuff random defines into the bindings.
 
-ChenYu
+Best regards,
+Krzysztof
 
-
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->  .../vcodec/decoder/vdec/vdec_h264_req_multi_if.c    | 13 ++-----------
->  1 file changed, 2 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h26=
-4_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec=
-_h264_req_multi_if.c
-> index d3f8d62238c0..76b96924a2a7 100644
-> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_m=
-ulti_if.c
-> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_m=
-ulti_if.c
-> @@ -634,11 +634,10 @@ static int vdec_h264_slice_lat_decode(void *h_vdec,=
- struct mtk_vcodec_mem *bs,
->         struct vdec_h264_slice_inst *inst =3D h_vdec;
->         struct vdec_vpu_inst *vpu =3D &inst->vpu;
->         struct mtk_video_dec_buf *src_buf_info;
-> -       int nal_start_idx, err, timeout =3D 0;
-> +       int err, timeout =3D 0;
->         unsigned int data[2];
->         struct vdec_lat_buf *lat_buf;
->         struct vdec_h264_slice_share_info *share_info;
-> -       unsigned char *buf;
->
->         if (vdec_msg_queue_init(&inst->ctx->msg_queue, inst->ctx,
->                                 vdec_h264_slice_core_decode,
-> @@ -662,14 +661,6 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, =
-struct mtk_vcodec_mem *bs,
->         share_info =3D lat_buf->private_data;
->         src_buf_info =3D container_of(bs, struct mtk_video_dec_buf, bs_bu=
-ffer);
->
-> -       buf =3D (unsigned char *)bs->va;
-> -       nal_start_idx =3D mtk_vdec_h264_find_start_code(buf, bs->size);
-> -       if (nal_start_idx < 0) {
-> -               err =3D -EINVAL;
-> -               goto err_free_fb_out;
-> -       }
-> -
-> -       inst->vsi->dec.nal_info =3D buf[nal_start_idx];
->         lat_buf->vb2_v4l2_src =3D &src_buf_info->m2m_buf.vb;
->         v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &lat_buf->t=
-s_info, true);
->
-> @@ -677,7 +668,7 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, s=
-truct mtk_vcodec_mem *bs,
->         if (err)
->                 goto err_free_fb_out;
->
-> -       vdec_h264_insert_startcode(inst->ctx->dev, buf, &bs->size,
-> +       vdec_h264_insert_startcode(inst->ctx->dev, bs->va, &bs->size,
->                                    &share_info->h264_slice_params.pps);
->
->         *res_chg =3D inst->resolution_changed;
-> --
-> 2.46.0
->
->
 
