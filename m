@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-111218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20E2699DDBC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:55:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDD1C99DDC6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:57:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B123B21CD2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 05:55:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDF541C2107B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 05:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FD917799F;
-	Tue, 15 Oct 2024 05:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED7B17A586;
+	Tue, 15 Oct 2024 05:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pQzcS5yC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xt60iYJ3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A13A173357;
-	Tue, 15 Oct 2024 05:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20468173357;
+	Tue, 15 Oct 2024 05:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728971715; cv=none; b=XF5YWw1DS9+38Fl6nZaaZ271faqmYcuxWpwsCIPoJ59lf8n+Nc6i4McnYd0UYZUyKP1RQ+v1HPiUKSP3ge28JAeHUJlhVQB4fPVnGmaeOZGkveZ0nT05u59MwY5p5IFOZ1VzrOfQ/A1FUWGG/tV7F17g4Krg5L6v2K3dfQjGHWw=
+	t=1728971826; cv=none; b=qU3gWd0fkPb1TEV+jTmd087ul6Re645zPg3Jko/lYn5AEEmGnpoG7uFwj2Jz2YHoe6fz/o8WIXQxBWQhfmfk2OFOz51GgKtBR5TalJZiyffT5Nm8+4PdRNu4jI1QjVNuWV2sLUTwgQ9UKz8ARSOmtbIhstj2ib2IMj/RzFu0t48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728971715; c=relaxed/simple;
-	bh=kWLHVvcvN2bSXqY2RMOj0qilVEgJsGNToj1Exm2AhDk=;
+	s=arc-20240116; t=1728971826; c=relaxed/simple;
+	bh=jh3FS2NplQHmnYRTMHu/6cEeELYhB+WGx4QCqrWjDCI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pfUUKeJJo+TFzWODXFIxyqvpBD75o7SCzj1WBACYEtmWZo+PsbXaLASlgLHUkLBcKQrhMV/0oaKAytKIow6EYmcUG+MKcqSsplL0uyaVxeizIE0AP9RFlQrPT9iys1kjTmFRzjTsrrgBcKKOW0NMAT7AgECCPPUMyjPvDtND20Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pQzcS5yC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0225EC4CEC7;
-	Tue, 15 Oct 2024 05:55:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UCvde8ASlEMJnAx6nNYtpNigXQ9R0RUuXKUeWfDpXxBVc3m+0MJCvqwUcXnzaH/wxNdftaDcQn+TLFxNmC6nQ2dKcr21tyLC77GsT4T+gcXHPpg90JLdh3T4ii0UI0rcOnJeyrTjwCoku0UKg00tRMP41gN7RXHPh507g1SlJbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xt60iYJ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 815B9C4CEC7;
+	Tue, 15 Oct 2024 05:57:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728971714;
-	bh=kWLHVvcvN2bSXqY2RMOj0qilVEgJsGNToj1Exm2AhDk=;
+	s=k20201202; t=1728971825;
+	bh=jh3FS2NplQHmnYRTMHu/6cEeELYhB+WGx4QCqrWjDCI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pQzcS5yC3K7U2OtzrX9rJTMPbuxRjLQ/xE4Arr24JdSI122irbNpZKtg9JFDS5BAR
-	 uqtPQrhOmK0ymnIn1cz2zWQyybcNw6N9U4nEJmXGd/WDTQ/Z4GQmxMVoLZfaUg+v2d
-	 YDrRQ1Re6eyLMjQxlPf91GZ421QJIZ4rjMtJPRMbMjSLDKuBkPvmKo9lFyK3TMkI7c
-	 8jrpWZ5G6dy/ScldF/+n1sVM4+A4R4lBsl76kAYIpc1e5Pd9bhy51i1VwdwwYxZW3K
-	 jjUh+LDT3yBvxcu0HPKi+Pl+8/bfG8aApthurePHwd5k9S1/C14U0ME0mvgAMCffWi
-	 deWNravhRvZrw==
-Date: Tue, 15 Oct 2024 07:55:10 +0200
+	b=Xt60iYJ3Entkh3D5XzExsObjSiudTP7BXRUFl8zaqxvYcbf92zXDuxJDqZAdval0v
+	 cNWZ9x55Uymj3qL64yQ6XCme6i3gDafRRGNXKXcGKIA+8ELf857FwBMsbGlKKAh0/M
+	 UmdfFgGbF8/in9C74/+sm6ms/KmYwkxS/pd1SY4wysx2yp+jRTcJtpsIa9WHDs27uK
+	 fx5NxbE4XRhlZTH9M9kA6yLUL2BHaRymvHs5m8jgRdiLp2xJ6/hEUt56uQABBigDKK
+	 e4rp+W5YTRpVvX2F+MfaFdza+pRWqlhTuMhfHqdCEkUDeTjQQ9mkhiIsgR/U+oUmqT
+	 yqvai6eUrQaAw==
+Date: Tue, 15 Oct 2024 07:57:01 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Haylen Chu <heylenay@4d2.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Jisheng Zhang <jszhang@kernel.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: thermal: sophgo,cv1800-thermal: Add
- Sophgo CV1800 thermal
-Message-ID: <4ey46hxumhldwrbzalyw6xzn2l52cejggxvg6e3imus3qqzsjn@r55xpxvkpodu>
-References: <20241014073813.23984-1-heylenay@4d2.org>
- <20241014073813.23984-2-heylenay@4d2.org>
+To: guoniu.zhou@oss.nxp.com
+Cc: linux-media@vger.kernel.org, laurent.pinchart@ideasonboard.com, 
+	jacopo@jmondi.org, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: media: nxp,imx8-isi: Add i.MX8ULP
+ ISI compatible string
+Message-ID: <zkcihcydz4xsr7htmiy5gvatc7ojpgn66jhc6ki744pb4qz7r7@4aokg7rd422p>
+References: <20241014093312.1588304-1-guoniu.zhou@oss.nxp.com>
+ <20241014093312.1588304-3-guoniu.zhou@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,62 +62,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241014073813.23984-2-heylenay@4d2.org>
+In-Reply-To: <20241014093312.1588304-3-guoniu.zhou@oss.nxp.com>
 
-On Mon, Oct 14, 2024 at 07:38:11AM +0000, Haylen Chu wrote:
-> Add devicetree binding documentation for thermal sensors integrated in
-> Sophgo CV1800 SoCs.
+On Mon, Oct 14, 2024 at 05:33:14PM +0800, guoniu.zhou@oss.nxp.com wrote:
+> From: Guoniu Zhou <guoniu.zhou@nxp.com>
 > 
-> Signed-off-by: Haylen Chu <heylenay@4d2.org>
+> Add the compatible string support for i.MX8ULP ISI.
+> 
+> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
->  .../thermal/sophgo,cv1800-thermal.yaml        | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml b/Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml
-> new file mode 100644
-> index 000000000000..14abeb7a272a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/sophgo,cv1800-thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo CV1800 on-SoC Thermal Sensor
-> +
-> +maintainers:
-> +  - Haylen Chu <heylenay@4d2.org>
-> +
-> +description: Sophgo CV1800 on-SoC thermal sensor
-> +
-> +$ref: thermal-sensor.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sophgo,cv1800-thermal
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  sample-rate-hz:
-> +    minimum: 1
-> +    maximum: 1908
-> +    default: 1
+>  Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-1. Why this is a property of a board?
-2. I do not see this property defined in any common schema and I am not
-sure if it even should. Sample rate appears from time to time, but not
-in context of thermal sensors, so this should have vendor prefix.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
