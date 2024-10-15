@@ -1,224 +1,136 @@
-Return-Path: <devicetree+bounces-111546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3F899F383
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:58:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 832B099F3A5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 19:02:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C687B20A66
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:58:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B51121C2263C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9CF1F667D;
-	Tue, 15 Oct 2024 16:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C1C21F76B4;
+	Tue, 15 Oct 2024 17:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XTCoOWFa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iHa5tApa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2065.outbound.protection.outlook.com [40.107.20.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4F91CB9E2;
-	Tue, 15 Oct 2024 16:58:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.65
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729011513; cv=fail; b=RIethl7WcpslKKAowCy8ALd8pdOtjvy4RA52YVoL/e73qo0y/HpKYl1hMej+0x+h91hyPlDllcp6Rza/6qHtbTt+9PxUojo+tLyMgzaZU68pv78C+L0nBCf2h1jcHkwaoc/xu5i9dL/ka7oz+PEpzl2qq4B9en2jWIspgCMwpqM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729011513; c=relaxed/simple;
-	bh=mUr90TeLgR/uCobxGMSnbcYQ/KqDbhwA6QI4jjnfK6c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=u/kfwLnkwh2U7sOAe34LUH+9SytzKCGxa5MAcLY6BdDg6ZgSzMVYgXRhc11Rvth//HAbmRsjeTF4p4zvOnKHxHFrmjLrOzXS7Gi2DED21ZZIA/2du6A4hfmbx938AXW6YFz5D9DdwI2r+cw3ZaTbCA/YVYqs7moKsWVkqzR6SDI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XTCoOWFa; arc=fail smtp.client-ip=40.107.20.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C0ME/AtqwC2ReN5rBG3fEIhYno6ML3luS5H023Fg3r1f9oKIRqyg7b1Z2csTvFwqEW6E9iAHDFpYR1HRlfTbGEFwrUsZwNxa3ujgPV4+C4C3s/fVnSApRB5boA4zVLMM1j42gr5GD1VDsclgmuHQo+bK/7pCu/1hMamhpd770khqMMorycKu6bheg/O/zEGpQ/n7CqhpvfxpF9z63IIILe8xi2+OAeZKirovIr1slGHCABcgsVXbioboH3u29HV7EcPFWm8SbZPvTTopCQQtUPJ8SwGEO0spX9S1lHogH1a6ES4FZqsQ5o/ekTOu0NdZktuDgV3IBCsQ5+u7lJad7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E5Mq8EaQWcWqM5uqCN4TI82PbONubJ6vNR5ZK/3YJ7c=;
- b=wKVCcxzrWMSdq+UoiHCAuNfj1C0Q5wcyfXFegAhkbRFf4MC/iKw1lILmbl2yAShJpbFHA3T+FBuGRQF+Ooz1xnyWMB/wKD+HjhvariGouo1ihN1TVj6xgEep3hrHvCK2yOrZHnQBSmpB/CqDB4DU1gSzRBi3Jaxo9r1QmmeADni/n0QyFkN1NLeOltpH1K4F+VX/lyvcYBuR3IW6G5eGQWb4FQvZu1nAts/jdbYor2kRZkzZU1lgstbNwdIoSgn/luyoyPgU+jrdu9POlIhFuFUxd6JSWcUEToGUTaDeEuaoR7I6I0nOEnZPAiFXK/63m8JyN7CzTsRgqT/zmSqEww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E5Mq8EaQWcWqM5uqCN4TI82PbONubJ6vNR5ZK/3YJ7c=;
- b=XTCoOWFamzpV8jfB+s67y03qL5sNJUoovbXBbr/th6KvwHmoaDWsIM7AIhNEYF9jXABauooIgXnUEEd76kPxzDXmillVz8XO02F9x+Z5FtiGpHdudlZZrF64qFLkJvI/XCZFDpAUgjPawUDQHJ3vsjFH74RyXBkcdU8/gxnwcv1o2RAwZGjqu0wX4F/Gte/VxpD9Oh5qH/kL9HLe255wzECmlptnUch/QcvrIq/qH9HRRZK6Eq+qlTQhnM8dqp3fIzAj15Zt+ir43tO9UDtbTbwZtVpxUOhx8uPHJRlJ105aSdGAmCJb4mIx2+Pb1wMgYT1UmhQH/UgX5avR8uhPrQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GVXPR04MB10828.eurprd04.prod.outlook.com (2603:10a6:150:227::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.26; Tue, 15 Oct
- 2024 16:58:28 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8069.016; Tue, 15 Oct 2024
- 16:58:26 +0000
-Date: Tue, 15 Oct 2024 12:58:16 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, vladimir.oltean@nxp.com,
-	claudiu.manoil@nxp.com, xiaoning.wang@nxp.com,
-	christophe.leroy@csgroup.eu, linux@armlinux.org.uk,
-	bhelgaas@google.com, horms@kernel.org, imx@lists.linux.dev,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 11/13] net: enetc: optimize the allocation of
- tx_bdr
-Message-ID: <Zw6fKHOXbQsoV4MV@lizhi-Precision-Tower-5810>
-References: <20241015125841.1075560-1-wei.fang@nxp.com>
- <20241015125841.1075560-12-wei.fang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015125841.1075560-12-wei.fang@nxp.com>
-X-ClientProxiedBy: SJ0PR05CA0105.namprd05.prod.outlook.com
- (2603:10b6:a03:334::20) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73DCB1CBA07;
+	Tue, 15 Oct 2024 17:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729011757; cv=none; b=Pf3fguy6s7w0wEBaF3OdbVfOxSJig6hEQrG8YlaRDVMF+HBzPIg4yH8CMqhBopX0Vl4REQOW/3Ohvvc4tXI8MVN5ld0COwpACZ9TBepiANW37nyblEGeHSyga359TYg/rxkQ2yCcp++4kSBaTA0anf0ziwGhtDHTL6pSNEt3hRM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729011757; c=relaxed/simple;
+	bh=mjX969uiuUwFxTha3ATjNRBsXorKp3Xk+b55UuTlw3k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hIdv6nMIYrYliWUcaNa+/lXbeuS5QYZXqzwTtz1qdFJ1fVeynouQOo5tMXp6Y/LJIak3AtqLUlTuA1RWG3y3UEjRXfuvXL28j3Fc2jv1k7zNSQgdKEdI6vz1acK7WhclGj6P5lWUJWqiueKiTOlZL01yuZxTrXmKKtZvoo2PEkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iHa5tApa; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539e59dadebso4243557e87.0;
+        Tue, 15 Oct 2024 10:02:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729011753; x=1729616553; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=krABLQUOhPKpyg/+NTCc6dULQXBvHVAWEp5lKk1wTOE=;
+        b=iHa5tApa0PR4X3vg92G+Q6kSXT0N5JnKecCEaW5+uQVdjnfNaiKcEVaP4WebC+dlIr
+         JK3h+g7+Sz6CiJ+NLa9pli40A9QbfsJr/7zGoQMxewA5H5gIhzPrtMzQ+PMhXaGRXitM
+         tuiQo0TGV/EfbihkhT6Cb2ZnX8ixYy0TRJyK+LA1FMUc9SNmRXuYfUEm9TD1vNF5pI7M
+         U4XBfcsY4MoQV+kblhTtYStdN6ZPUmSIl7fUjOHT4UooB32eAfq96ZWboBNKGdS751Jm
+         eVQVWo0akHIeeNQm9iErR9oegJdea5CNs+EER0XuH5y1jnW7GN3kDuZaeJMG7Oa5LYDa
+         oHxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729011753; x=1729616553;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=krABLQUOhPKpyg/+NTCc6dULQXBvHVAWEp5lKk1wTOE=;
+        b=vW3QPBcdnYgglbehcL8ieXoztZwSVOJV3S2KeiXdQrWN9RZuNcj8v+xiA+91I8+a55
+         PODD6513IgUnIkjlGY/8smQVo6uqbxZta56PHOqHB1xVU9/eASr0RvYpEr/HxWJP+JcA
+         tdTpN0OfQMKBKll3zusUB2HGkFeln6wSZm2NvkG5UbNvRGU/PlQT5R3lU4tGHLpxW+Sn
+         jMzHoHgc2z6mlLgvriDlqrhghFegmzEy75yS80iXbeC/7IoIZJnlSpCzceYZDS4Pctnl
+         irEMYgkKcHr4PfYsJlyzy7Viq9Uj+wcmQJSZcch6cW+3HRcoh3ntvdl8YI3R1a/uN4GB
+         yBgA==
+X-Forwarded-Encrypted: i=1; AJvYcCVyySyxqDWt7acseSfqApUk337bzaAaTyn8DKZEW5G39Tfhf1vElYFsue7pk+FGg0sghv52dBc+subS@vger.kernel.org, AJvYcCWcbYUWisHvD5QqoWNcWMe9K8C+Qwp0kcRl+iF2CZ4VULeqcDB7p0A7sCQcrNoso8mcOSKCBtxaffzJCi5Qpg==@vger.kernel.org, AJvYcCX4Q4nEJrBZ0yKmJVvgGUiSFJV/0DJdzbAqsYtqKjLbyU8FSyIdyuHd2RchwV/Eq6aVizxz2ON3/S2U9rpr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLBUV3qzx1QuCJUsruufGviB9+b2YBNLd+36HMkqkAA9IWyLnX
+	539b8WXYfPyETfe4zejfz+pMT79VQco2TXpjg+F2rxmN8mYMgA6R
+X-Google-Smtp-Source: AGHT+IE5XwKsd8tVB2eXHpA8pKI6YCSFne2iE1hn7kaytgEM8+CZ3ujUaw+e+N2/5X23OWcCcmu7OA==
+X-Received: by 2002:a05:6512:31cf:b0:539:e97c:cb10 with SMTP id 2adb3069b0e04-53a03f7cefbmr872115e87.40.1729011753113;
+        Tue, 15 Oct 2024 10:02:33 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:a311:80b0:1c80:9433:9060:39fc:2954])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a00013bc5sm211045e87.271.2024.10.15.10.02.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2024 10:02:32 -0700 (PDT)
+From: Maya Matuszczyk <maccraft123mc@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jos Dehaes <jos.dehaes@gmail.com>,
+	Maya Matuszczyk <maccraft123mc@gmail.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: Rename "Twitter" to "Tweeter"
+Date: Tue, 15 Oct 2024 19:01:56 +0200
+Message-ID: <20241015170157.2959-1-maccraft123mc@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10828:EE_
-X-MS-Office365-Filtering-Correlation-Id: db91f4a7-ada5-4b70-e2d5-08dced3a9614
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?pQZTAcpBVe+kuZUbF18LBhqzJIsg8RVvWMDkuHwUxcjV9f++9/478gpFWw8t?=
- =?us-ascii?Q?9Q9EsDNPDeZeEaSyU6yGwYJ9hU9gHPX0ibzwXGc3bbXZACHBgjIMoRIwKz7F?=
- =?us-ascii?Q?l4otpcKLXg5umlDqWQafBMZ8nzM4oUbWP8dsfnM7nPo84cV8+TkHqF8hUrcs?=
- =?us-ascii?Q?vNP94G61m2oe2QXryhLaBqots2YBzO/LvFxXcO9BYQSU4WLrOE2vACh36W07?=
- =?us-ascii?Q?I9mn0QVSF8OQMnuAmXSgApCyAXUedJhP10ttBnshzp82HB+2H8xN6ErtDWr7?=
- =?us-ascii?Q?Pd9S5mknJmNVRM/K097G9iWEQuO7SvYZ3cdExZ47ttgok9p+RbJvzOS3nT8B?=
- =?us-ascii?Q?RyPIDfUYmK5PGaS+zWdeK5KMknI/AHMF9UvjS8DwxpeQ9JNrinjODzPMtkSj?=
- =?us-ascii?Q?yVIwhRMeJ2XYbYAs5VfxBVAmcsD1Y4VZ+JyN2qjjwW8wZwdc6x5wt5aiSPST?=
- =?us-ascii?Q?p1tS8TUEUrg9y8da1+w4Yv9k2+iMQEC1aFCZG4EWN6keAHUEP1xD9YEEiX1h?=
- =?us-ascii?Q?9lct6sod7Qem9hDDZ2KBM7lxHkgv4hguk3mX2pc/QDdGuUziV4Thwe+1pk3l?=
- =?us-ascii?Q?4hQfEPsihhNREEeFKk2nyBb0SghYChvKP3rd6hcjwg0sks3F7RfLAqMCM93V?=
- =?us-ascii?Q?UjLk3Eh6XtuMR13cz1LWqEveKaQt4lRD5HuNL7+INJmWJvGY/sSp7kpXPYZj?=
- =?us-ascii?Q?3RVhRKHKvBwJrsggBmYjONYAkSQmNkZvmipcObqtF/gSnVpLHQfg/luAyyqr?=
- =?us-ascii?Q?iKWJyJ4SPPlTrA3BYQDvVEUWTjL7LQHHX7x/yDjg6wV5bAXUhaBOapHtTl0R?=
- =?us-ascii?Q?AuskI8T/md8sKs0MK3tLLydhkjnOQaHakmWvSgZybNWTMWDtIfvb5e+hOCQP?=
- =?us-ascii?Q?8eyPH1XhPpqC2UbPy7Dy/UpVu5YzPMJQ4F3YdonMeyZIYy9rX1tfXgObX20+?=
- =?us-ascii?Q?kcl0OadATBEj9ZxAJFU5PV8hJiJ2iL3aWcQkHr+yf4HvF4hGAeoJg64jE4Mu?=
- =?us-ascii?Q?mj3OXJwbx433Jz8kVoAwi0BD8XiZw1l2wsCmfzo8d+2ilv2merC4B0lCP91r?=
- =?us-ascii?Q?kAdknlhncnKAg4YI9pJRX1n69VXQyN+lrGMHh7OrF7lMW0DquOmGi1kQcRFc?=
- =?us-ascii?Q?w0aDDhtuJfDb5el74/iTHe6Mzq8T7sUjvKEAyn7BTZyqZGMFgvzrsiPADhSy?=
- =?us-ascii?Q?C17HEjgoDfa+Rv/fTAgs5XfEF7Z/Uk/uJA24bSL5BuwcN650OPkCLai0a6dZ?=
- =?us-ascii?Q?jpm9NbxdtFK9azaEAScLl17HIhQWPAsTPvTspfknWsSDUttEuG/V0WsXFMT8?=
- =?us-ascii?Q?INXoD8wnTQOYuqpRgmonOPYc5Aj1ZY1HZPekHV7wozerUw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?4Br0HKFPaHg91cQirdhubgD95KSCv0VQIrquOb2O4dvjtUH2nMpnGCwsxJC+?=
- =?us-ascii?Q?lIImql+L3jcgmKNQUL7nK8cmAQQC1GUkTj15utBHtemofSm58albC7Z7lukK?=
- =?us-ascii?Q?SAmSd0qGzU0v8prkaOcATumGUN+E74S35t/vTCJanfTgtywkkeRLZ4d4h5dY?=
- =?us-ascii?Q?w5QShD2cDRFrKg6msaaGB7NrSu58GMaGSax8KsG8AKSJwP51fgPA2+QW/X0y?=
- =?us-ascii?Q?atP3bdpJY2oO3d7ww+C8qns0jTR+zoMBn+o2y3oa/efv2uXuyRsoOnShLLKG?=
- =?us-ascii?Q?XN8+93MVHxjIDapPvUjEF+TH4CtUmdSHW0wxXQVSpipHpVJHCXGuTlM/Scrd?=
- =?us-ascii?Q?fTwzk0stGjhVE214X4LMqiZh/xJLK0PqsU/0l+yUvSah/IBXZ1hFndAQayX3?=
- =?us-ascii?Q?hcWhRlBXKvv7kaSJLTJ4N1qCFximTGURy7ZK2KJpa4akemqMED73g7bM+xLI?=
- =?us-ascii?Q?s+gm8DvtDsJK/UDuAelIA2Z82HnrxzOB3M2J4cEUziQw+Hrq/7oJU2lB9BwL?=
- =?us-ascii?Q?/tX+a4MaaGF9Ns/zXKOpZHvVJy7QhyRteOJIINLLR1thJ9ps3Ugu8X9El+RX?=
- =?us-ascii?Q?ktdjoEoXBGM0Y1PkrlhzfcUc5iUxvIUJJmc6Q2hlI237BHvQPPNnC0QPEi2o?=
- =?us-ascii?Q?JbblypBm9qDfpOh9HlO8o10DzMZsfsDWVi9TH++xr/ZVWuw6TTmms9Sl/dSG?=
- =?us-ascii?Q?xAw+/SPZ2zItMhSUjqpWaypIuTOIb4RGcm55SonORRA2ivpx5PB1bdHU+MZK?=
- =?us-ascii?Q?uecjiqkvsc106cDSR8upEiyISGEVJx2HJ+oXsGUrsD6HUT6Fvc7cb/TxOJ/H?=
- =?us-ascii?Q?K0BqqMtu982BE3+oMEcQfru9QB+qICrhaJ5vlmNsDw5pGSs8hPUsw9Do5tsl?=
- =?us-ascii?Q?gcqscK11I6r79kC8CJWTlqM5mJfTieIHvZBKpb/R4BswaWaqduHtazYe6e49?=
- =?us-ascii?Q?/PCKO9AB+CyLuJ4s/87rNTsJ8MZXlk3k9D0aA0pf0JYhPfKQAxNnQw54KaQk?=
- =?us-ascii?Q?wNGgnoZap8jjCuQ1Bj/zhpW/r4XtdHdQWWyHfVtjr9o47O8tpU2jwz8/VVmi?=
- =?us-ascii?Q?LGjLMZ53g0g8o7s9nzWfejR/xSJPtxC/lHWsMTi1AdKewdapEs8UqfXJrl2z?=
- =?us-ascii?Q?OSFNI7RjVjONuDTCQu+Gz79piRdhqW5FJ30N1R16RaMiyBlSdk8p0sMSXrUR?=
- =?us-ascii?Q?nA81ShCIYcXWNZ8nGLg5zs+6XXknfA83egwlcCkdJO3P41cBQ8wIApo8z5aA?=
- =?us-ascii?Q?TKPpkfocVetE0qIa/pL966aEf87ep0bF3ePHcwtHuiipyhfPICy7BiiFITwe?=
- =?us-ascii?Q?tq3cjEgQJAADVOSF1Y2U1fDr7wRImbp/YEDhBIoinnz3VQ7CeXKZJzpYA8qH?=
- =?us-ascii?Q?8LLMZojBe4lZNcbmEUYQxhyR1l1YKqA5bNFmdVhNU5jXHunJjCFsGLJizwlw?=
- =?us-ascii?Q?Dhw7T1559ZMpgcSwAMUbF95vXI3wJIpwdOdq93JNL5q/mEeklX9Gddie+NU1?=
- =?us-ascii?Q?CXvfGxAkegp73L9HLdd9a3YJaVhfzHdjpj70Awu15czpZWC525gztIjTt7Zm?=
- =?us-ascii?Q?ajT+RXvemFR8eSUx2Bk=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db91f4a7-ada5-4b70-e2d5-08dced3a9614
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2024 16:58:26.3138
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Kvr7LiG3wfh2y6G891aYwwRskRBowdz6eeHomR/4ePQhvV4MXm1o5MzyATHWK/D4gKxB8puxDr1I7Xc4AR9/JA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10828
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 15, 2024 at 08:58:39PM +0800, Wei Fang wrote:
-> From: Clark Wang <xiaoning.wang@nxp.com>
->
-> There is a situation where num_tx_rings cannot be divided by bdr_int_num.
-> For example, num_tx_rings is 8 and bdr_int_num is 3. According to the
-> previous logic, this results in two tx_bdr corresponding memories not
-> being allocated, so when sending packets to tx ring 6 or 7, wild pointers
-> will be accessed. Of course, this issue doesn't exist on LS1028A, because
-> its num_tx_rings is 8, and bdr_int_num is either 1 or 2. However, there
-> is a risk for the upcoming i.MX95. Therefore, it is necessary to ensure
-> that each tx_bdr can be allocated to the corresponding memory.
->
-> Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> ---
-> v2 changes:
-> This patch is separated from v1 patch 9 ("net: enetc: optimize the
-> allocation of tx_bdr"). Only the optimized part is kept.
-> ---
->  drivers/net/ethernet/freescale/enetc/enetc.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/net/ethernet/freescale/enetc/enetc.c b/drivers/net/ethernet/freescale/enetc/enetc.c
-> index d36af3f8ba31..72ddf8b16271 100644
-> --- a/drivers/net/ethernet/freescale/enetc/enetc.c
-> +++ b/drivers/net/ethernet/freescale/enetc/enetc.c
-> @@ -3049,10 +3049,10 @@ static void enetc_int_vector_destroy(struct enetc_ndev_priv *priv, int i)
->  int enetc_alloc_msix(struct enetc_ndev_priv *priv)
->  {
->  	struct pci_dev *pdev = priv->si->pdev;
-> +	int v_tx_rings, v_remainder;
->  	int num_stack_tx_queues;
->  	int first_xdp_tx_ring;
->  	int i, n, err, nvec;
-> -	int v_tx_rings;
+This makes the name consistent with both other x1e80100 devices and the
+dictionary. A UCM fix was merged already.
 
-Nit: Needn't move v_tx_rings.
+Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+index 10b28d870f08..004353220dc5 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+@@ -177,9 +177,9 @@ sound {
+ 		compatible = "qcom,x1e80100-sndcard";
+ 		model = "X1E80100-CRD";
+ 		audio-routing = "WooferLeft IN", "WSA WSA_SPK1 OUT",
+-				"TwitterLeft IN", "WSA WSA_SPK2 OUT",
++				"TweeterLeft IN", "WSA WSA_SPK2 OUT",
+ 				"WooferRight IN", "WSA2 WSA_SPK2 OUT",
+-				"TwitterRight IN", "WSA2 WSA_SPK2 OUT",
++				"TweeterRight IN", "WSA2 WSA_SPK2 OUT",
+ 				"IN1_HPHL", "HPHL_OUT",
+ 				"IN2_HPHR", "HPHR_OUT",
+ 				"AMIC2", "MIC BIAS2",
+@@ -933,7 +933,7 @@ left_tweeter: speaker@0,1 {
+ 		reg = <0 1>;
+ 		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
+ 		#sound-dai-cells = <0>;
+-		sound-name-prefix = "TwitterLeft";
++		sound-name-prefix = "TweeterLeft";
+ 		vdd-1p8-supply = <&vreg_l15b_1p8>;
+ 		vdd-io-supply = <&vreg_l12b_1p2>;
+ 		qcom,port-mapping = <4 5 6 7 11 13>;
+@@ -986,7 +986,7 @@ right_tweeter: speaker@0,1 {
+ 		reg = <0 1>;
+ 		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
+ 		#sound-dai-cells = <0>;
+-		sound-name-prefix = "TwitterRight";
++		sound-name-prefix = "TweeterRight";
+ 		vdd-1p8-supply = <&vreg_l15b_1p8>;
+ 		vdd-io-supply = <&vreg_l12b_1p2>;
+ 		qcom,port-mapping = <4 5 6 7 11 13>;
+-- 
+2.45.2
 
->
->  	nvec = ENETC_BDR_INT_BASE_IDX + priv->bdr_int_num;
->  	/* allocate MSIX for both messaging and Rx/Tx interrupts */
-> @@ -3066,10 +3066,14 @@ int enetc_alloc_msix(struct enetc_ndev_priv *priv)
->
->  	/* # of tx rings per int vector */
->  	v_tx_rings = priv->num_tx_rings / priv->bdr_int_num;
-> +	v_remainder = priv->num_tx_rings % priv->bdr_int_num;
->
-> -	for (i = 0; i < priv->bdr_int_num; i++)
-> -		if (enetc_int_vector_init(priv, i, v_tx_rings))
-> +	for (i = 0; i < priv->bdr_int_num; i++) {
-> +		int num_tx_rings = i < v_remainder ? v_tx_rings + 1 : v_tx_rings;
-> +
-> +		if (enetc_int_vector_init(priv, i, num_tx_rings))
->  			goto fail;
-> +	}
->
->  	num_stack_tx_queues = enetc_num_stack_tx_queues(priv);
->
-> --
-> 2.34.1
->
 
