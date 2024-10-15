@@ -1,123 +1,129 @@
-Return-Path: <devicetree+bounces-111526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A6C99F28C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:19:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFB699F291
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58AAD1C21F87
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:19:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80140B20DF4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A183E1B3927;
-	Tue, 15 Oct 2024 16:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFC751B392A;
+	Tue, 15 Oct 2024 16:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f3hqesS/"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="E2a6/OG4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25634158DD8;
-	Tue, 15 Oct 2024 16:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D266158DD8
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 16:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729009173; cv=none; b=AfyebSCbzLwJ9k7foTVxnL0tFkidtJ93L+GUyO/JO0jQ12NVxzL1AtczIvZY28HNcKDkFkJ7OEae4fiuKP336dJ6MmbnFmcWvu3qn0a+8qnynl3mwHp8WtRtHxNL3fjAzf1XlMVdzx6jLdLRecygj/3KLoPtcA6ohne+Dc4+J2o=
+	t=1729009248; cv=none; b=XCFJYojjNCalfcp1+xF3uqr30rKOEtx5l+qO0N3wyyYBJrlHPQW0nm/KAY692SYp9OODIdCoCNZxlclANnWLSXAQWuYVCYx4s3mGepTLQzc5wf7vA02k7PLdsFZUAirpm/7tiiT4SqFxyZKvlGYq3zYZ28+J4J7tTiY85/OfAJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729009173; c=relaxed/simple;
-	bh=zmA/00I/rJT/tqnmzKp6XjapkqZfWbScm/Yeourf5vU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=C6mOgUTgvyvCC5SjvrzSQMg6gzNBPPNF60UNZXOnEkAlukb+kzwy5S+u/gKBhxxWwTnrn5XFI4+sUMYlJrWbb2bdN6ZHkg1MPoeJV37O74zEpPzIkEw3QX1egL9bg2pz2h7FG8uHDL2Lk145N58XsrCLbxLPJ/IU+yk/pl8WOKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=f3hqesS/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49F9qV3l027796;
-	Tue, 15 Oct 2024 16:18:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	r+FlGNemb68zVPoS1oWfgoA7NXvv0pIJi/EsE9mxPOI=; b=f3hqesS/1jiW0k2a
-	MCQ4x0nu7Fx7w15w7SBwqf8PnpvQWIUe+IqSsyTpCwVvyKZS0/nkwCDtJ0LsZz3J
-	KgLDgWP94jSZAqjlqHq30gw49hqhBKlpzvZb7z283emY5rOdZ7nAWVudU2P2h5Qh
-	7N0PP7qpFZ56N+3qwLPBfYamIN/Ru56Q1mg91h9J+RRMN3oNy7kKXk9C/PNKLKki
-	uUwB+VPdttT33x5REQ0Ek4J3Th8Il5aqbIAgZHI2jSH43KDXL1Jm8NU0GPPSTQOs
-	bmgUNB8hS4Gt6NQ2CV37ybqRPILVnbLd+t6+EskiuTtlSt52R0bVD3qZaP616j69
-	Dma9hA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 427jd904tc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Oct 2024 16:18:47 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49FGIkRa005017
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Oct 2024 16:18:46 GMT
-Received: from [10.216.57.188] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 15 Oct
- 2024 09:18:38 -0700
-Message-ID: <382e2d4d-3bf8-d88b-29c1-37c1446a0843@quicinc.com>
-Date: Tue, 15 Oct 2024 21:48:21 +0530
+	s=arc-20240116; t=1729009248; c=relaxed/simple;
+	bh=GKD35OEDDKtMzVLFMvSyT8zat97kb+O+cKvE4YkLIpw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CQDX0b7becFihtfgtv91LifQ1a8dc93ySgjh+yjMMdT48aTe1/HIYWPR2M9F8IJI4oXKv+2YfnFqzvB4V+raDryYMWOsCseId8eWbsF47MY2Ldz+l7H7L8ujzlMstJyiprO+SatyTKcPo0UD+R3LrLR11hNv/cQcHvrqotGwkNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=E2a6/OG4; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6c5ab2de184so35257466d6.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 09:20:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1729009246; x=1729614046; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DtJ+WCcZlnqJEtBJ5ahUedtheIBoZsN5YCfn7xZAGeE=;
+        b=E2a6/OG4G8EWuQprTfXnJ+qwCOIV79DT8iN/++zEzUS/qJDMpHoKAFD3Kynk5+TgMS
+         VffntilQkERhJp4SzlF5w+4KCW8G4LndS20G1ka2EI0RNcLQAFq67/5cAG1iz1UC+VXE
+         5Gew4NiQYuuwXEPFHybVXIln9yqzWiEcr+9arj8BSGh2VtF5GD8q2nDe0N8D/Q1nDFTX
+         rbCPnpSMmR/2lDvbBJKSPZDhH/WBGmQ64KKNtdRjYvpYLY0eeb+q3auXgR8uQfotJrPc
+         2GjuBpHUho0OHJrpjjXDINtek2Ldnky7oDUNvasqBCCqeViFhw+cOU57vuDaxOODZRjE
+         ewag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729009246; x=1729614046;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DtJ+WCcZlnqJEtBJ5ahUedtheIBoZsN5YCfn7xZAGeE=;
+        b=n/foyCFKYioTsNDYcI95YYYoDPfh/uhcpK957oQ7dbZNiNzzaamegaMS3wNB+2O3al
+         1l0+k/cio9nEKlNPmfYfPLpP2mMVDS5JsIp4kH4y4ZH+LZV0W0WmrW4ri4Cam/9zD5St
+         pjsC2Ku4nRYADlb5e9Bs0BSOR3+tlnFE+7sh/p+Qxl2fDmjtaCVyBC+rmmR9VGGHB9uX
+         ZR//v2Jai7pzAN0IYG9lrbtmMstwaOO7b9K5MV+JUT7FaWUjaprQJJ7ozcf9wmIXd4B4
+         LcySfujaCdb67oBwiGrNY/hDHrQh0jJIgYvasQXH5r4z2UoKRaGV9OZ62OguaCtHcPqm
+         UTYg==
+X-Forwarded-Encrypted: i=1; AJvYcCWBsrtUlY6mrIvBMZEaU6LLUQM3Hf2BRR8M9sfQm/T/CTP8aZMqZXAS48xo/yrF3VlzdeUbTQ0sA3Jn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBbER0x2qqZZJJRYc5vnn50SkRYYRYXqez8qC6WfMTda1GG6mw
+	i+S02zL2IR3cofmeasWs/MFB90kY4k12GBwRQC7P9BS/Og1Iu0/fjuhZM86x65k=
+X-Google-Smtp-Source: AGHT+IEOm3RZ0qr3XQeoZ584E3gMolo8dla+rxJiMl2IgTVjvh9zKfMlP0bSl5xGgTacD1zRpQZ8Zg==
+X-Received: by 2002:a05:6214:4345:b0:6cb:ead8:c53b with SMTP id 6a1803df08f44-6cbf009b929mr198694786d6.31.1729009246110;
+        Tue, 15 Oct 2024 09:20:46 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-142-68-128-5.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.128.5])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cc2291da47sm8321016d6.48.2024.10.15.09.20.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2024 09:20:45 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1t0kHt-00Dw7g-4A;
+	Tue, 15 Oct 2024 13:20:45 -0300
+Date: Tue, 15 Oct 2024 13:20:45 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Nick Kossifidis <mick@ics.forth.gr>,
+	Sebastien Boeuf <seb@rivosinc.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux@rivosinc.com,
+	Lu Baolu <baolu.lu@linux.intel.com>, Zong Li <zong.li@sifive.com>
+Subject: Re: [PATCH v9 7/7] iommu/riscv: Paging domain support
+Message-ID: <20241015162045.GO1825128@ziepe.ca>
+References: <cover.1728579958.git.tjeznach@rivosinc.com>
+ <3d0f71ee9178c9fcb9d62db135776895a91c3d70.1728579958.git.tjeznach@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v11 4/8] mtd: nand: Add qpic_common API file
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-        kernel test robot
-	<lkp@intel.com>
-CC: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <arnd@arndb.de>,
-        <esben@geanix.com>, <nikita.shubin@maquefel.me>,
-        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <oe-kbuild-all@lists.linux.dev>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241010070510.1504250-5-quic_mdalam@quicinc.com>
- <202410130129.M8J7VJoG-lkp@intel.com> <20241015172955.7b0b6708@xps-13>
-Content-Language: en-US
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <20241015172955.7b0b6708@xps-13>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8z6kBnp7XghZECOsLn3_bo8kKUAu8CXp
-X-Proofpoint-ORIG-GUID: 8z6kBnp7XghZECOsLn3_bo8kKUAu8CXp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 phishscore=0 suspectscore=0 impostorscore=0 bulkscore=0
- mlxscore=0 mlxlogscore=857 malwarescore=0 priorityscore=1501 adultscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410150111
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3d0f71ee9178c9fcb9d62db135776895a91c3d70.1728579958.git.tjeznach@rivosinc.com>
 
+On Thu, Oct 10, 2024 at 12:48:10PM -0700, Tomasz Jeznach wrote:
 
+> @@ -856,7 +1445,7 @@ static struct iommu_domain riscv_iommu_identity_domain = {
+>  
+>  static int riscv_iommu_device_domain_type(struct device *dev)
+>  {
+> -	return IOMMU_DOMAIN_IDENTITY;
+> +	return 0;
+>  }
 
-On 10/15/2024 8:59 PM, Miquel Raynal wrote:
-> Hi,
-> 
-> lkp@intel.com wrote on Sun, 13 Oct 2024 01:57:12 +0800:
-> 
->> Hi Md,
->>
->> kernel test robot noticed the following build errors:
-> 
-> The below errors seem like basic Kconfig misconfiguration. To be clear,
-> I usually don't review series getting kernel test robot failures and I
-> am expecting that you will fix these errors and post an updated version.
-Sure Will fix this, and post next revision.
-> 
-> Thanks,
-> Miquèl
-> 
+Remove the function please instead of returning 0
+
+> +static void riscv_iommu_release_device(struct device *dev)
+> +{
+> +	struct riscv_iommu_info *info = dev_iommu_priv_get(dev);
+> +
+> +	synchronize_rcu();
+> +	kfree(info);
+> +}
+
+Just call kfree_rcu() ? We have a variation that doesn't require the
+rcu_head now.
+
+Jason
 
