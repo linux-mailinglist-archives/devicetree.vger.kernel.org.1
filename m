@@ -1,115 +1,180 @@
-Return-Path: <devicetree+bounces-111367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 322FE99E54B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:14:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D1C799E56C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:19:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 498F51C20D3B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:14:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F06732845D8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:19:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8487F1E32CF;
-	Tue, 15 Oct 2024 11:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 344481D6DB6;
+	Tue, 15 Oct 2024 11:19:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UN9vmwAr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D211D89F3;
-	Tue, 15 Oct 2024 11:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2121A76CE;
+	Tue, 15 Oct 2024 11:19:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728990839; cv=none; b=tBt25FFcAb3kpKGeNl85M2UuKhtJ7f3qXdOysO4Y/mzcIgst45Pdf2PVl77mGftlm40XklhGPRsCLp23sYA3NrXwwz/DEkmHi0o3fmiSOyOWBOe2S9zuFwNSA2p9End126zwdX5+g4wfQnJ0TIkzg4+wAhHh6oJYeLRhXvBIuHE=
+	t=1728991182; cv=none; b=tGZbyNpQVmXr20UIsMh0Qb2lC3obPvGGMoLD1OF3ISuax/8UpsjZF23+StXlMDypdPcdJs7nf728ieTK0idvm96MOLlHjaEzYgV+b+1A+kyqvhwwawI78VU7li1VoCMlFK8sC9wo1sb9KItPnzmVtubO6C900J5+i4TKfBtuzB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728990839; c=relaxed/simple;
-	bh=WvOBu/y7FFpCn+M/r8vBiywVPF77IlJRf6ph7rkqysU=;
+	s=arc-20240116; t=1728991182; c=relaxed/simple;
+	bh=nHnbY3Qf1d9Iv/MtYL8kyklNX27QMs4I/0vg9sFyQ/k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GrwwpctpXy+pIDkm4M/GRhBcqm1MH69/zplV7HE1eIGMEUEC6xD66xQ60DMDr2kUpDbddAdEw+rh0jc0GAT6CetRUD/6Guov4tqdHPBtMthh9zTinJA9bicFKDqeB/ISVuNnVwqai7rPL7wFf7VFjH08yo1VbDqlUfkjZVYWa94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: BKQ7Vu59SkmeIazDZCyYlA==
-X-CSE-MsgGUID: aOjOjgHgQCW52kdzqla80A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="28257774"
+	 Content-Type:Content-Disposition:In-Reply-To; b=EArpjX87H50K0z1vyTC7cucbOrPO3bIk1jbyxs0yB6zgk6RL+agIkzW1exm/MDxbatXXh/TxbO90xEGRvdctrC05adBXNL0jj7pdLNydIP6sEQOIVWVVNNEzuqcsmvsMZdVJyfJzyitZ1k6/GjWOxqbqh0MHBijJHsI4u1EcJ4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UN9vmwAr; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728991180; x=1760527180;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=nHnbY3Qf1d9Iv/MtYL8kyklNX27QMs4I/0vg9sFyQ/k=;
+  b=UN9vmwAra4mwmNqKvFOfezL812wJ0753XK0SrYLwjXg7z5Yd9t0CKNjy
+   P3mItgc8EAQVLtC3K2vqfW6q8jKB1xgOy3vln+iCbQHw18swH/MU4hBGu
+   LpnKY0gBibiIAwucp8N9W/7wggsZy+a3XUJMIovrvvieXbLwGoQj5pLNU
+   GftyP6a6Wz/dTP1cTp2MLWrajoiemcFwbv6LhwZUdMx7+lgvuyMFi8FVU
+   CmGSaAVOeCSYIZY9o2zCEB+dBYm4t7dTuOfcj6WS38fb/0xr720IzRgGc
+   HU9Fk+qaBLvOyjQySoXrMe9wbSbXgJcSjFA6+a9ZP58LaQq7sVgyNRsIF
+   Q==;
+X-CSE-ConnectionGUID: Xd8Bk5xKT82CQUX5e4uCxQ==
+X-CSE-MsgGUID: ZUuvhse5Qxyfcv8kol+Hhg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="32297430"
 X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; 
-   d="scan'208";a="28257774"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 04:13:51 -0700
-X-CSE-ConnectionGUID: 0MXsz2toRPKXWw+85noTVQ==
-X-CSE-MsgGUID: HvfYLc6DTHCUipDyy5GClw==
+   d="scan'208";a="32297430"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 04:19:39 -0700
+X-CSE-ConnectionGUID: R9uydBfYRYeW71Emay4xrQ==
+X-CSE-MsgGUID: UZheSprSSyqQfzcSvzXGnQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; 
-   d="scan'208";a="108654600"
+   d="scan'208";a="78047063"
 Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 04:13:45 -0700
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 04:19:36 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andy@kernel.org>)
-	id 1t0fUj-00000003FHF-0i05;
-	Tue, 15 Oct 2024 14:13:41 +0300
-Date: Tue, 15 Oct 2024 14:13:40 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Ivan Mikhaylov <fr0st61te@gmail.com>,
-	Marius Cristea <marius.cristea@microchip.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1t0faO-00000003FMY-2Ug5;
+	Tue, 15 Oct 2024 14:19:32 +0300
+Date: Tue, 15 Oct 2024 14:19:32 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 6/6] iio: adc: ad4851: add ad485x driver
-Message-ID: <Zw5OZAhzyhNUTPae@smile.fi.intel.com>
-References: <20241014094154.9439-1-antoniu.miclaus@analog.com>
- <20241014094154.9439-6-antoniu.miclaus@analog.com>
- <Zw0ZM0vQXJep3dFJ@smile.fi.intel.com>
- <c70139f8-c0ba-4e28-9477-964db3fbfbba@baylibre.com>
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v8 6/8] i2c: of-prober: Add GPIO support to simple helpers
+Message-ID: <Zw5PxMOrF8Ape3if@smile.fi.intel.com>
+References: <20241008073430.3992087-1-wenst@chromium.org>
+ <20241008073430.3992087-7-wenst@chromium.org>
+ <Zwfwv-O9ln-PVMdc@smile.fi.intel.com>
+ <CAGXv+5F=5f4R5AExANxOwgTL6_VbpHdNKKhHnzy_PDcxtcFoEQ@mail.gmail.com>
+ <Zwz-benEP4PHbRb2@smile.fi.intel.com>
+ <CAGXv+5EwSZFoE-Uzb5x1QfknkVfd64Z_uzR0YcvZ_pR9ktGUBA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <c70139f8-c0ba-4e28-9477-964db3fbfbba@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGXv+5EwSZFoE-Uzb5x1QfknkVfd64Z_uzR0YcvZ_pR9ktGUBA@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, Oct 14, 2024 at 05:08:47PM -0500, David Lechner wrote:
-> On 10/14/24 8:14 AM, Andy Shevchenko wrote:
-> > On Mon, Oct 14, 2024 at 12:40:40PM +0300, Antoniu Miclaus wrote:
+On Tue, Oct 15, 2024 at 01:31:40PM +0800, Chen-Yu Tsai wrote:
+> On Mon, Oct 14, 2024 at 7:20 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Mon, Oct 14, 2024 at 12:06:16PM +0800, Chen-Yu Tsai wrote:
+> > > On Thu, Oct 10, 2024 at 11:20 PM Andy Shevchenko
+> > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > On Tue, Oct 08, 2024 at 03:34:25PM +0800, Chen-Yu Tsai wrote:
 
 ...
 
-> >> +	return regmap_update_bits(st->regmap, AD4851_REG_PACKET,
-> >> +				  AD4851_PACKET_FORMAT_MASK, (osr == 1) ? 0 : 1);
-> > 
-> > I would do it with a conditional
-> > 
-> > 	if (osr ...)
-> > 		return regmap_update_bits(st->regmap, AD4851_REG_PACKET,
-> > 					  AD4851_PACKET_FORMAT_MASK, 0);
-> > 
-> > 	return regmap_update_bits(st->regmap, AD4851_REG_PACKET,
-> > 				  AD4851_PACKET_FORMAT_MASK, 1);
-> > 
-> If we do this, regmap_set_bits() and regmap_clear_bits() would
-> be even better.
+> > > > > +static void i2c_of_probe_simple_disable_gpio(struct device *dev, struct i2c_of_probe_simple_ctx *ctx)
+> > > > > +{
+> > > > > +     if (!ctx->gpiod)
+> > > > > +             return;
+> > > >
+> > > > Do you need this check for the future patches?
+> > >
+> > > Not sure I follow. The check is needed because this function is called
+> > > in i2c_of_probe_simple_cleanup(), but the GPIO could have been released
+> > > earlier in i2c_of_probe_simple_cleanup_early(), and that makes this
+> > > function a no-op.
+> >
+> > Do you have a known race condition then? This is bad. You shouldn't rely on
+> > the sequence of events here, or the serialisation has to be added.
+> 
+> No there isn't. Explanation below.
+> 
+> > > The helpers for the release side are quite short, but the ones on the
+> > > request side wrap some conditional and error handling. I think it's
+> > > better to keep it symmetric?
+> >
+> > Yes, but why do you need the above check, I didn't still get...
+> > I.o.w. you think that there is a gap in time that (if no check) the GPIO
+> > descriptor might be changed? But then how does it affect anyway the possibility
+> > that it becomes not NULL even with the current code.
+> 
+> There are two codes paths, either
+> 
+>     a) successfully finding a device and enabling it, or
+>     b) exhausting all options and not finding a device, because it was
+>        optional or it is malfunctioning.
+> 
+> After either code path, this cleanup function is called.
+> 
+> In path (a), the GPIO descriptor is released prior to enabling the device,
+> because the descriptor is an exclusive resource, and as soon as the device
+> is enabled, its corresponding driver may probe and request the same GPIO,
+> and would fail if it was not released.
+> 
+> In path (b), nothing was enabled, and the GPIO descriptor was not released
+> early.
+> 
+> The cleanup function here accounts for both cases, hence the check.
 
-Sure, but I want also to have the only one conditional, so the respective
-helper functions can be easily read and followed.
+Yes, but the very same check is inside gpiod_set_value(). I'm still puzzled
+about the duplication. Maybe I'm missing something...
+
+> A step-by-step description might be clearer:
+> 
+> 1. i2c_of_probe_simple_enable()
+>    ...
+>    1a. i2c_of_probe_simple_get_supply()
+>    1b. i2c_of_probe_simple_get_gpiod()
+>    1c. i2c_of_probe_simple_enable_regulator()
+>    1d. i2c_of_probe_simple_set_gpio()
+> 
+> 2. Loop through potential component options and probe; if one is found:
+>    2a. i2c_of_probe_simple_cleanup_early()
+>        2a-i. i2c_of_probe_simple_put_gpiod
+>    2b. Enable device and driver's probe() gets called
+> 
+> 3. i2c_of_probe_simple_cleanup()
+>    3a. i2c_of_probe_simple_disable_gpio()
+>    3b. i2c_of_probe_simple_put_gpiod()
+>    3c. i2c_of_probe_simple_disable_regulator()
+>    3d. i2c_of_probe_simple_put_supply()
+> 
+> > > > > +     /* Ignore error if GPIO is not in output direction */
+> > > > > +     gpiod_set_value(ctx->gpiod, !ctx->opts->gpio_assert_to_enable);
+> > > > > +}
 
 -- 
 With Best Regards,
