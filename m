@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-111378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC9599E70D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:48:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465DE99E752
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:51:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8060B2788F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:48:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 601AB1C20850
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57AAE1E633E;
-	Tue, 15 Oct 2024 11:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAAA41E3DE8;
+	Tue, 15 Oct 2024 11:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Smm2RYdc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uuxSSGy1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29CFC1D89F8;
-	Tue, 15 Oct 2024 11:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8750D19B3FF;
+	Tue, 15 Oct 2024 11:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728992909; cv=none; b=gYghqoLVP2H0C/IMBf9+XK3n1HRNn3jMi37nJTexAxpJcYdDQpnU5GM/d7SACmTWYVTLclRiKCjtiD63UmQUmMKs8CReAQxiPYkH3fODBEvgctJeXNrNtmckGziFFANTwUBwjZ3QYCYXqxvewtCfHlXfHfDwLp+cObiHztjZySc=
+	t=1728993115; cv=none; b=acTsufDuobd4fpnsLnIPl3e1wdqzAXHs8vc3oRi+kKRQNeekFcOrgJxC6Gj8PSyv6xA0El2rIZcQMGmxLF+XgQSUsYU4sGagat5YtnRhD/2J4jk0rVkzheyyxOlkZ92HBnt1im5CFJ+8cxYe2+vxH+AuHL0UXcCLs7LnLWESXII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728992909; c=relaxed/simple;
-	bh=qP4vkoQEf82DbmsdvrIYK1YEQEgx8nmJc6fCsY6YB5I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HVWn+27xkIVK149cUsN+s9SEI/CU9B8pQIEYqfC0pnf7Qkj3xBwk5F3v+1AU9knEY7nkldRNFejzov8Kz4kb/WVrHP/RCN6pGGJE5nPgZ7kWpuVMie+HetF19xXfCP457EGeZLYA0D8lmIKNWiqxQZqJjDdXaPZdGKCyt4Hm46o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Smm2RYdc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7F38C4CED0;
-	Tue, 15 Oct 2024 11:48:24 +0000 (UTC)
+	s=arc-20240116; t=1728993115; c=relaxed/simple;
+	bh=+0r1udq374oab/kn6p7coOzMnCmavq5jR+mo4tQ6GYA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UhL2OslBPCrVRW0ps/RC6yI7ob0mzopp3PmOeckx0DUhq4qGTM0gsH2fPXgkWX6vJ/ctR9vEnz8M2Tpj2et6Dqokwg4PQK55xK6jBJZQc4CQnZP/SJQM026jXUFPNBfDq+ZV4ioCpr/+yJzH3GkfQ98Frl5aDkkpHndT3q4Vcuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uuxSSGy1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9B67C4CECE;
+	Tue, 15 Oct 2024 11:51:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728992908;
-	bh=qP4vkoQEf82DbmsdvrIYK1YEQEgx8nmJc6fCsY6YB5I=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Smm2RYdcQSFcO0CXmrrUtWq+x8XvXSw4Ul2f783T62FrW8QjkagZwGYSti+cXG9qX
-	 TK1g1M52cgvIbpDJOyD1XLkle1++7aAikFQS7P4R/BsxVwBfpY9D9HKfRMUXVa6zS1
-	 D4S+nVT0m3k9uGmbdkyln6yLFDjwGdDbnMnpXl8Q/s+nJsS6No8wnf6x1Y9xexpyUm
-	 FPY4beaIGn6Dplh5/hNnzp6SuDEDEQen9Z2+aGcJPET2QNrLp0xTNqnllByF23BXcp
-	 TMTWkmpC/swztnXWxeTHpbxwYGjEBJR8nJZhsGXLnswtxufYfDfCn68LEarnMyikvi
-	 Bp1u2SqYOOEMQ==
-Message-ID: <c07435f5-af3f-46e2-8e4d-b0a42969b60a@kernel.org>
-Date: Tue, 15 Oct 2024 13:48:21 +0200
+	s=k20201202; t=1728993115;
+	bh=+0r1udq374oab/kn6p7coOzMnCmavq5jR+mo4tQ6GYA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uuxSSGy17yQd40mq1CMFBH0+Png5FUO3jmqpTArY/cCfntCc3p4S4IlIR3uUCDZCW
+	 gjLSb8K7riK3UiSnL4pqpXTVGHHOIpGjglogkp6UHgL9KuaPZDPq6XzjprxuVb7ncD
+	 P5FjMEbc/ONcSWxtqt8bFzTN3E1y0jiqb9fWx5hdZgFtx3AhumkZiWqwBrD3vj9Pqe
+	 pz4+DbnzLOm0trJr8I2CtUL7Ljow16KUgCwwwdPE+9GnGWWOgmKVyCVPpISLS5sdSf
+	 xmAKy5GkSQp6g2l2y+bibDNwwU+STvv4I1X2irKMELoiZhbsJsA7F+jnqZtW1AhEpJ
+	 Gylm7vPYIFxFg==
+Message-ID: <0c4d199a-ed74-4d44-a715-ceb498898ddc@kernel.org>
+Date: Tue, 15 Oct 2024 13:51:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: hwmon: pmbus: pli209bc: Add bindings
-To: Naresh Solanki <naresh.solanki@9elements.com>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sylvester Bauer <sylv@sylv.io>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241015113329.667831-1-naresh.solanki@9elements.com>
- <20241015113329.667831-2-naresh.solanki@9elements.com>
+Subject: Re: [PATCH 2/2] media: dt-bindings: Use additionalProperties: false
+ for endpoint: properties:
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Martin Kepplinger <martink@posteo.de>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ "Paul J. Murphy" <paul.j.murphy@intel.com>,
+ Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+ Tommaso Merciai <tomm.merciai@gmail.com>,
+ Martin Hecht <martin.hecht@avnet.eu>, Zhi Mao <zhi.mao@mediatek.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Mikhail Rudenko <mike.rudenko@gmail.com>,
+ Ricardo Ribalda <ribalda@kernel.org>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Umang Jain <umang.jain@ideasonboard.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Dongchun Zhu <dongchun.zhu@mediatek.com>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
+ <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-2-a2bb12a1796d@linaro.org>
+ <7ecxjoa7aije46cxmkyfd6ihxnqw4wleqkioddomxbwlu7qtrc@4dkfitppeksu>
+ <6f461cb3-3a41-4a3d-b9b2-71b1c6be77f7@linaro.org>
+ <9510b546-28fa-4fb4-b06e-0af5f9fd3bbb@kernel.org>
+ <20241014202920.GE5522@pendragon.ideasonboard.com>
+ <f265576c-7d83-40cb-b857-7ec54ef9ab46@kernel.org>
+ <20241015112806.GA2712@pendragon.ideasonboard.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,114 +131,63 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241015113329.667831-2-naresh.solanki@9elements.com>
+In-Reply-To: <20241015112806.GA2712@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/10/2024 13:33, Naresh Solanki wrote:
-> Add bindings for Vicor pli1209bc.
-> It a Digital Supervisor with Isolation for use with BCM Bus Converter
-> Modules.
+On 15/10/2024 13:28, Laurent Pinchart wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> ---
->  .../bindings/hwmon/pmbus/vicor,pli1209bc.yaml | 65 +++++++++++++++++++
-
-This has to be squashed with previous patch.
-
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
+> On Tue, Oct 15, 2024 at 08:11:18AM +0200, Krzysztof Kozlowski wrote:
+>> On 14/10/2024 22:29, Laurent Pinchart wrote:
+>>> On Mon, Oct 14, 2024 at 10:47:31AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 14/10/2024 10:31, Bryan O'Donoghue wrote:
+>>>>> On 14/10/2024 08:45, Krzysztof Kozlowski wrote:
+>>>>>> I do not understand the reasoning behind this change at all. I don't
+>>>>>> think DT maintainers ever suggested it (in fact, rather opposite:
+>>>>>> suggested using unevaluatedProps) and I think is not a consensus of any
+>>>>>> talks.
+>>>>>
+>>>>> No there is not but then, how do you give consistent feedback except 
+>>>>> proposing something to be a baseline.
+>>>>>
+>>>>> On the one hand you have upstream additionalProperties: false and 
+>>>>> unevaluatedProperites: false - it'd be better to have a consistent 
+>>>>> message on which is to be used.
+>>>>
+>>>> Well, I am afraid that push towards additionalProps will lead to grow
+>>>> common schema (video-interface-devices or video-interfaces) into huge
+>>>> one-fit-all binding. And that's not good.
+>>>>
+>>>> If a common binding for a group of devices encourages you to list its
+>>>> subset, then it is not that common.
+>>>>
+>>>> Solution is to fix that, e.g. split it per classes of devices.
+>>>
+>>> I think splitting large schemas per class is a good idea, but the
+>>> problem will still exist. For instance, if we were to move the
+>>> CSI-2-specific properties to a separate schema, that schema would define
+>>> clock-lanes, data-lanes and clock-noncontinuous. The clock-lanes and
+>>> clock-noncontinuous properties do not apply to every device, how would
+>>> we then handle that ? I see three options:
+>>
+>> Why is this a problem? Why is this a problem here, but not in other
+>> subsystems having exactly the same case?
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
-> new file mode 100644
-> index 000000000000..3647d14e9111
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
+> I won't talk for other subsystems, but I can say I see value in
+> explicitly expressing what properties are valid for a device in DT
+> bindings both to inform DT authors and to perform validation on DT
+> sources. That's the whole point of YAML schemas, and I can't see a good
+> reason not to use the tooling we have developed when it has an easy way
+> to do the job.
 
-Drop blank line
+I understand. The benefit, which you see, comes with complexity of the
+binding and need of listing properties.
 
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/vicor,pli1209bc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Vicor PLI1209BC Power Regulator
-> +
-> +maintainers:
-> +  - Marcello Sylvester Bauer <sylv@sylv.io>
-> +  - Naresh Solanki <naresh.solanki@9elements.com>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  The Vicor PLI1209BC is a Digital Supervisor with Isolation for use
-> +  with BCM Bus Converter Modules.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - vicor,pli1209bc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  regulators:
-
-Drop the node and define vout2 here directly.... unless anything needs
-such layout? Then explain this in commit msg.
-
-> +    type: object
-> +    description:
-> +      List of regulators provided by this controller.
-> +
-> +    properties:
-> +      vout2:
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        type: object
-> +
-
-Drop blank line.
-
-> +        unevaluatedProperties: false
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-
-Drop, not used.
-
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pli1209bc_p12v_d: regulator@5f {
-
-Drop unused prefix
-
-> +            compatible = "vicor,pli1209bc";
-> +            reg = <0x5f>;
-> +
-> +            regulators {
-> +                p12v_d: vout2 {
-> +                    regulator-name = "bcm3";
-> +                    regulator-boot-on;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
+We do not enforce such rules (narrowing common schema in very strict
+way) in other subsystems, maybe with exception of input and touchscreen
+devices, but there common schema is quite big. And DT maintainers
+suggested to drop such code even for these, BTW.
 
 Best regards,
 Krzysztof
