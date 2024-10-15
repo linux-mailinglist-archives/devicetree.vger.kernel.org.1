@@ -1,159 +1,117 @@
-Return-Path: <devicetree+bounces-111193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947B699DACB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 02:44:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D0999DAE8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 02:53:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E319F282E42
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 00:44:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F709B21A7C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 00:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96011101F7;
-	Tue, 15 Oct 2024 00:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6092074040;
+	Tue, 15 Oct 2024 00:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="PiOv2Rv5"
+	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="BOcee/EW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE5C4B5C1;
-	Tue, 15 Oct 2024 00:44:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399DD433B9
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 00:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728953074; cv=none; b=n+vYIQHC+3IM306Rocu/xF26Do+FtEA5qHtRkxGDV/HdySgKP/kHG48V6Ju6nZFzURLkwt7g7gYDEh0BO/BSA47lGl3YAJxKWI3t4qFsyUaaesRUDKSamYcFy9MyjRa0uBJXqdhK21VTqSCWtsJnGtw4kpk//P7F7zzakPQaN2Q=
+	t=1728953606; cv=none; b=kHunbOiO5itfBWqPE/4JXEK6TgDf45tPugfBAB5imYMKqmiqhN40B/O5P1VgRAxNVnN0NXVGtsBY/QKT7Jr+kDw/YXKdp+SQY+/GN2g0NLB0fzF1dkWFBVj8LA/OKkNgOA3OlRmxvy+qgZRqrM2HAhE+8/fVTJ4t8DBotImVC14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728953074; c=relaxed/simple;
-	bh=aaOkoglpjn8F6wIEeDrouknk6uZHXWOFgzj2wxj00GQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pTsAk/JPAJmaRLhnk3bufn22EEZmRx3T7BQSSsIJ+/FKBXeCCCWzNrOx17JOJ7fQVChHg+Uqab91gVbBOEXrhW/ZKGGoDkKn34Xn8pKwrEmO1E3ipM1MV+2gdsdPcWigQA8kmJfm1A0pvr1wFcVruWBB5Ezm9R41N+8wmJvJH9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=PiOv2Rv5; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1728953606; c=relaxed/simple;
+	bh=7/bYDZwG5gQSOjxXtGNG+aCpL4QOwMiPuf40BsF41LE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=di8FXJ+yKzvd47HKhH1zJPk4BpyJXh5hhM4fsJZvaT6GIJ7H2iEzZZXK8Y7FCzCwp/FVykTjN1biVA3MIjI0E3XxPpStUapSghx4JxlEal9jJYPvIuOLEsHFP9mK0CJJ9onw2/KgCZRscN03RtjUyvq6HAyP/LIYQnVQNOSvITo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=BOcee/EW; arc=none smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6cbd12b38b4so40833256d6.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 17:53:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1728953070;
-	bh=2nnTU/ADEM4/VUxWefc0PONe2IBy5+5Jla7mbf0EfVs=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=PiOv2Rv5D4gz2LFQ1h7BrLF79+/3pHIZJ+tJ9BELKEx57hW33NeTxupy4Zch8v+jg
-	 jwjE5z2HOStoVOfhe3YWxqNZz8A5gzBfWKlLw2THkfMIK9yGq94HOvEGsPn1JIs5Dl
-	 NvymJ7DbZDry2bLNbBhpAnAboweXTFHT2yvSzydX6gqxSv927YB4S/NfosYcGKmhb4
-	 o1lBI3qWsHSezjrDopLqLklQflemn37Y2NR7eMxSYhLxZhmoahwt6Ebp7bf+QVmpst
-	 hF2S+ArVf6lGiBsjQAahRkhReJjQ6gUrmfJPBnM4UjqszbGa/g0LupdNDFY5A4TIIQ
-	 Z+yYLAYSTiL6A==
-Received: from [192.168.68.112] (203-173-0-39.dyn.iinet.net.au [203.173.0.39])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 75277649A0;
-	Tue, 15 Oct 2024 08:44:29 +0800 (AWST)
-Message-ID: <b5919d904c9f06a618a54d49bc895c3081a511e4.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
- Jefferson BMC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Chanh Nguyen <chanh@os.amperecomputing.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Khanh Pham
- <khpham@amperecomputing.com>, linux-arm-kernel@lists.infradead.org, Thang
- Nguyen <thang@os.amperecomputing.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Phong Vo <phong@os.amperecomputing.com>, Conor Dooley
- <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, OpenBMC Maillist
- <openbmc@lists.ozlabs.org>, Open Source Submission
- <patches@amperecomputing.com>, Quan Nguyen <quan@os.amperecomputing.com>, 
- linux-aspeed@lists.ozlabs.org
-Date: Tue, 15 Oct 2024 11:14:28 +1030
-In-Reply-To: <172891445289.1127319.4114892374425336022.robh@kernel.org>
-References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
-	 <172891445289.1127319.4114892374425336022.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=marek.ca; s=google; t=1728953602; x=1729558402; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jqrv9fCsGQoNutoN42YBjCpBp+qUvSGmeJ+vISLCIE8=;
+        b=BOcee/EWfRL62xc3R8JZB/z5H2B1+MQQcatjXln8iEWlwnIDVaAk1+rJ4MOBMLXsdk
+         +r9SjQAVtPM/mfGFC2zjEDC0g4cLqui383J+SZYwL6pVKLRz9W63vtagr8UR/fYiYorh
+         AUFLAg22HRg3YDC0br1mDNg++EHu/4d4TXEdFpZcb+WNeSLcLlbD0XdN4FLWbeQ8d+pE
+         MpNOFtC5g8uBU06B9CuMwW/75Z1Zz/e/HwMD7lS3eIS+6KZCiuUsNgdRTxI6gsLsRlNo
+         sScOUaYJGecTr+K2uutwNrBc9t+tuwDPVgJycWc8+ycl3I2KpZzGHspB29hByepGtmlm
+         28ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728953602; x=1729558402;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jqrv9fCsGQoNutoN42YBjCpBp+qUvSGmeJ+vISLCIE8=;
+        b=AMijTUvZT8uOv7kXfuO/SEtb3VD5YYQEsDeIvNQgOG5QmErQSN/3hUfOolWKfb9jSx
+         kJUXC+E+8z3P85V+6/9cOUS+uYO3uFYYz8U0Fxzfqkp/3A1+3C7EBeMrfuuDiGgGapel
+         JFmNFqNQeGuFGbPhNrQ1yE8rRTN7pTFGH8J82K6y9Ir3Vm/zJ6HXKNfjHU5cdhzQL3EM
+         BccK5gnreKO8BBoLqrJ0W+cEjq/3jqK6PpvIOzuh95atDIIrw4D2jlurw5dPV4MIh6M7
+         iMXpBS6vo08Umf2o3x3TNxpnOMbdzRcnG3GktJVMF24s2d899rX8lmp/U64Oxtnbvd6d
+         53KA==
+X-Forwarded-Encrypted: i=1; AJvYcCW+2cuwozBoxKTpjH9pRzIFxWC11aeXLIIvofktzUwEKxUVVLaZFdFMPVy1YWU+A7mUao2QI2AJTr0j@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8uOq79d0ZqyRmRSLhDe8s5P1TScHdpY5IxdI5xNdJWOr+eMBg
+	yAPWVMP5D8jI1t8GBRMAdGvCTIYAFHIgnk97TVVZTHTmvCVakXVa4Os0CjXpdak=
+X-Google-Smtp-Source: AGHT+IFfCoP9g5esUnZD9NdkTUNwRKk5/mdnFQRGMYxzk4NzOKyEkw7d+u0WCrNS3asHWRpShXg3EQ==
+X-Received: by 2002:a05:6214:3a8c:b0:6cb:f654:55ac with SMTP id 6a1803df08f44-6cbf6545880mr201576446d6.11.1728953602008;
+        Mon, 14 Oct 2024 17:53:22 -0700 (PDT)
+Received: from localhost.localdomain (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cc22910f0bsm1213956d6.16.2024.10.14.17.53.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Oct 2024 17:53:21 -0700 (PDT)
+From: Jonathan Marek <jonathan@marek.ca>
+To: linux-arm-msm@vger.kernel.org
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org (open list),
+	linux-rtc@vger.kernel.org (open list:REAL TIME CLOCK (RTC) SUBSYSTEM),
+	Rob Herring <robh@kernel.org>,
+	Satya Priya <quic_c_skakit@quicinc.com>
+Subject: [PATCH v3 0/5] x1e80100 RTC support
+Date: Mon, 14 Oct 2024 20:47:25 -0400
+Message-ID: <20241015004945.3676-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hi Chanh,
+x1e80100 needs a workaround because the RTC alarm is not owned by HLOS.
+It also needs the same offset workaround as sc8280xp/etc.
 
-On Mon, 2024-10-14 at 09:05 -0500, Rob Herring (Arm) wrote:
-> On Mon, 14 Oct 2024 10:50:31 +0000, Chanh Nguyen wrote:
-> > The Mt. Jefferson BMC is an ASPEED AST2600-based BMC for the Mt. Jeffer=
-son
-> > hardware reference platform with AmpereOne(TM)M processor.
-> >=20
-> > Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> > ---
-> >  arch/arm/boot/dts/aspeed/Makefile             |   1 +
-> >  .../aspeed/aspeed-bmc-ampere-mtjefferson.dts  | 646 ++++++++++++++++++
-> >  2 files changed, 647 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjeffer=
-son.dts
-> >=20
->=20
->=20
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->=20
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->=20
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->=20
->   pip3 install dtschema --upgrade
->=20
->=20
-> New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ampere-mtjeff=
-erson.dtb' for 20241014105031.1963079-1-chanh@os.amperecomputing.com:
->=20
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /: compatible=
-: 'oneOf' conditional failed, one must be fixed:
-> 	'ampere,mtjefferson-bmc' is not one of ['delta,ahe50dc-bmc', 'facebook,g=
-alaxy100-bmc', 'facebook,wedge100-bmc', 'facebook,wedge40-bmc', 'microsoft,=
-olympus-bmc', 'quanta,q71l-bmc', 'tyan,palmetto-bmc', 'yadro,vesnin-bmc']
-> 	'ampere,mtjefferson-bmc' is not one of ['amd,daytonax-bmc', 'amd,ethanol=
-x-bmc', 'ampere,mtjade-bmc', 'aspeed,ast2500-evb', 'asrock,e3c246d4i-bmc', =
-'asrock,e3c256d4i-bmc', 'asrock,romed8hm3-bmc', 'asrock,spc621d8hm3-bmc', '=
-asrock,x570d4u-bmc', 'bytedance,g220a-bmc', 'facebook,cmm-bmc', 'facebook,m=
-inipack-bmc', 'facebook,tiogapass-bmc', 'facebook,yamp-bmc', 'facebook,yose=
-mitev2-bmc', 'facebook,wedge400-bmc', 'hxt,stardragon4800-rep2-bmc', 'ibm,m=
-ihawk-bmc', 'ibm,mowgli-bmc', 'ibm,romulus-bmc', 'ibm,swift-bmc', 'ibm,with=
-erspoon-bmc', 'ingrasys,zaius-bmc', 'inspur,fp5280g2-bmc', 'inspur,nf5280m6=
--bmc', 'inspur,on5263m5-bmc', 'intel,s2600wf-bmc', 'inventec,lanyang-bmc', =
-'lenovo,hr630-bmc', 'lenovo,hr855xg2-bmc', 'portwell,neptune-bmc', 'qcom,ce=
-ntriq2400-rep-bmc', 'supermicro,x11spi-bmc', 'tyan,s7106-bmc', 'tyan,s8036-=
-bmc', 'yadro,nicole-bmc', 'yadro,vegman-n110-bmc', 'yadro,vegman-rx20-bmc',=
- 'yadro,vegman-sx20-bmc']
-> 	'ampere,mtjefferson-bmc' is not one of ['ampere,mtmitchell-bmc', 'aspeed=
-,ast2600-evb', 'aspeed,ast2600-evb-a1', 'asus,x4tf-bmc', 'facebook,bletchle=
-y-bmc', 'facebook,catalina-bmc', 'facebook,cloudripper-bmc', 'facebook,elbe=
-rt-bmc', 'facebook,fuji-bmc', 'facebook,greatlakes-bmc', 'facebook,harma-bm=
-c', 'facebook,minerva-cmc', 'facebook,yosemite4-bmc', 'ibm,blueridge-bmc', =
-'ibm,everest-bmc', 'ibm,fuji-bmc', 'ibm,rainier-bmc', 'ibm,system1-bmc', 'i=
-bm,tacoma-bmc', 'inventec,starscream-bmc', 'inventec,transformer-bmc', 'jab=
-il,rbp-bmc', 'qcom,dc-scm-v1-bmc', 'quanta,s6q-bmc', 'ufispace,ncplite-bmc'=
-]
-> 	'aspeed,ast2400' was expected
-> 	'aspeed,ast2500' was expected
-> 	from schema $id: http://devicetree.org/schemas/arm/aspeed/aspeed.yaml#
->=20
+v2: remove duplicated ops and use RTC_FEATURE_ALARM instead
+v3:
+ - renamed flag to qcom,no-alarm
+ - don't remove alarm registers/interrupt from dts
 
-This needs to be fixed as pointed out by Krzysztof.
+Jonathan Marek (5):
+  rtc: pm8xxx: implement qcom,no-alarm flag for non-HLOS owned alarm
+  dt-bindings: rtc: qcom-pm8xxx: document qcom,no-alarm flag
+  arm64: dts: qcom: x1e80100-pmics: enable RTC
+  arm64: dts: qcom: x1e80100-crd: add rtc offset to set rtc time
+  arm64: dts: qcom: x1e78100-t14s: add rtc offset to set rtc time
 
-*snip*
+ .../bindings/rtc/qcom-pm8xxx-rtc.yaml         |  5 +++
+ .../qcom/x1e78100-lenovo-thinkpad-t14s.dts    | 11 +++++
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts     | 11 +++++
+ arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi  |  3 +-
+ drivers/rtc/rtc-pm8xxx.c                      | 44 +++++++++++++------
+ 5 files changed, 58 insertions(+), 16 deletions(-)
 
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /ahb/apb/bus@=
-1e78a000/i2c@180/i2c-mux@70/i2c@0/psu@58: failed to match any schema with c=
-ompatible: ['pmbus']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /ahb/apb/bus@=
-1e78a000/i2c@180/i2c-mux@70/i2c@0/psu@59: failed to match any schema with c=
-ompatible: ['pmbus']
-
-These two should also be fixed. The compatible must describe the
-physical device, not the communication/application protocol. It may be
-necessary to add a binding if there's not one already for the device.
-
-Andrew
+-- 
+2.45.1
 
 
