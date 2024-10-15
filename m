@@ -1,139 +1,297 @@
-Return-Path: <devicetree+bounces-111410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 305D299E9D3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:28:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5600899E9D4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:28:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61FDD1C20C21
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:28:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FA801C20DE5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3EC21F12FB;
-	Tue, 15 Oct 2024 12:27:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BC352101B5;
+	Tue, 15 Oct 2024 12:27:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xEj+LFmd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="avdzBpdt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E3E1F4FA7
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 12:27:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44AD920FAA6
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 12:27:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728995228; cv=none; b=QS3TpMxwkXhSqIJV8CaoRegYX+c4okitnCHgiKf/kclHk4y6+ueVXNTwTSKdjrERF80EbbGwEJiRops7itVtL3KHq49EM/JWPHIwYI/tsnu6Lu/Ns5tmVEX+Hb7pJetnlypyQN/OuSxCqi0mtzyxH0nbfu7nIFifhJELE8ZVBOU=
+	t=1728995229; cv=none; b=uQBQLfYhJf3OE/dAW9YCxndHoo79WXiJg/wnNgEzOvAoG0/VMDq/vxpEiQh6bUrQ2zdN5tl3H1W5STmegrDt6FeMEZb7BkUm3+3cm7jgl4011z/Qmb91N0tGhgjfeMeZlEJLXYgb62DudFZXjgwHisahf+8zCNXao2zCDg7bMAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728995228; c=relaxed/simple;
-	bh=IJlYtQFeLG0i9bPxCxcljLBDzVvz3Kvv8tvwApj9vmk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EjkBf2ywZAT4qn2uZANoesgH6M9KXizGfkcha1bvmf+TnE/Y+PVYw6bL2ongX1owsvw7gcuf7VJIMg23MKEIWvmDWt6DDNo3b+9qewxazCw2dI1Q0p/tmmE2QFxsT4pIMZAVMnki8LRDfUx0X0D+yqzv0mmC/Akoy2//pf8HED8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xEj+LFmd; arc=none smtp.client-ip=209.85.128.181
+	s=arc-20240116; t=1728995229; c=relaxed/simple;
+	bh=MOv5FWpO/CjdyeVYuruElEec1lWVycWSaJ29ldPnHI0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=O66vLtlyznWi50myntZSYS9YuX1zEhZOG7mlxsGmXy3l1CeFUgnIqKv4dtNSOMK24EfQocjQT7gpjHr1I37HTwd90t+XjRC8TgttpQmY2tcMHDR588Eh5yUBp97PXpSQ9nypfz2iLMvdZypd8fEJSYGdfEayHDGhTc7HxikXX3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=avdzBpdt; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6e2e41bd08bso54923557b3.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 05:27:04 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43140cadeaaso4946975e9.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 05:27:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728995223; x=1729600023; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ks6Ykml+AXF/SLAnbRT+RNH2STdD8HOXdreQb6f0egQ=;
-        b=xEj+LFmdYVHPzl3DWJcKIhao6TMusleO/pV7XcxKxG1Dy95RWHZrrq+KWDTPQWOMNz
-         1pKSwBXnuziqxns6Z18jZZ7yP3uWn8eUCg4L/2Om43l70dNbLoNZgOU7Enqh7n9NslXf
-         Z45xAZsIMK+b1tbWOhN5Ks8iwUThF4Bs7VqnKYrLhYXuWsrfPAuZxnRqdU/3b/GSLZlW
-         U50kZ2JkdUm0NuJUSt2X8/e2UzDWF2AV2QOHOXLKU69IZFDz0cpqZyCcd/siisdP1Rur
-         VY1UsoztlP5lrrPT6pB4m1A3tXEwEylGqakexw2zg6FN2W3gbWwdKka+XIz3ZoNsniGX
-         3nLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728995223; x=1729600023;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1728995224; x=1729600024; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ks6Ykml+AXF/SLAnbRT+RNH2STdD8HOXdreQb6f0egQ=;
-        b=cDs63ljlDIL8rKj4I9baG0m3FzQKk+KT1NE1kG7oZRxfGM7dUS+ucqeXs1JzvC/ofK
-         fDrWmfMx3Ed+5aXtRBE9d5kjRbT+TdbwmbP68/RjWoXYnU5pLv6loL2xPyewCyBD1Wjb
-         2mruLcrzXafhuyx6CNRgE3qXBJdgV/LxyAT8BW+PhvwZr+tAuHxM4/agXLH+4pESVRCR
-         JpkKSRk5R9Yejw/Baizk5S9CsT9BxZxBWbEVZv+/WuXua/mADwsNnb1HE7uD7CuhBJoo
-         LtX3njS/0Xva2t3CMltqEM7WxI0Jgbiwqo31F3tXFvq3fN00RFvoux3wJDtFfCwR6F1t
-         JkbA==
-X-Forwarded-Encrypted: i=1; AJvYcCW8rBes3YPDxD5/lCSbLAxHXNYYBHz0GgSNxJqSm0RvDhMKxyqADsFG/JGyveGqeP9sveC+JMHPPhIP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgTmmPzU4UBldI+JJLvc/tjoAip1u9muvyHGYw0WW53bV6ArHW
-	eHN1HMcIORgA45463XUmvPPbht+sq0abqL2JTOYrx3mfmnRhhMyH4LKEvrGZMTa11QAQhrn1RQN
-	bnKBJ73Ld4hYL9HbqMcZA8YStoRR/9DuAf8YTPg==
-X-Google-Smtp-Source: AGHT+IF9cEyFlB4rJ2xvEcXHUWgmUWBXAAmvE4lzHc02ikckmMbCT8jufBaw4HpfIgnp6G5dxrvwmFVSxwc5Xo0DWgQ=
-X-Received: by 2002:a05:690c:d96:b0:6e2:b263:1051 with SMTP id
- 00721157ae682-6e3640f5282mr82517567b3.7.1728995223277; Tue, 15 Oct 2024
- 05:27:03 -0700 (PDT)
+        bh=9njlOBMQc/dhVBHMm2KkKA3jMdO4Wx6jwbEj5y6QnBs=;
+        b=avdzBpdtow1qMktKZhdkGe8Nn0qxfx/hszjhu1h5jynGNXFGm2bT75pSC8tOximer4
+         mvI26FKWk+M9asCO/jipp0a+2lu44G1SzXOePQdraR8uS3rGXkh6XDuefGd+J5s68Oxi
+         R4caNBYp+3sJpmtQqkZkh0uFhqZPOLAwqkBUkdl5v1PnzhL97pol5n4OIWHWgVPfsCkv
+         8nkWXexcQm5zAd641O6Ul5FmtWiAqqDmOwRfiHzQIJuCovae+ZplMc6HpuOnHutoEkLY
+         VGMf1V7QAzuGLDp880l9CkPFROhewUzVw9kLH9BK5pO7r/WjGXT64P3fRnHa3IDp/cIS
+         kXbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728995224; x=1729600024;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=9njlOBMQc/dhVBHMm2KkKA3jMdO4Wx6jwbEj5y6QnBs=;
+        b=DqACQhlYuKHnqTdXMQhexUx8onVqKKFwQhoanF3ZlOBq1N1Nyrw43qlKV9Q2ZojHPb
+         +1sHSQdTNNJnWVJFwJR5XoaPsYJElYVyQQwhn03zl/jneFAqYdFKuc7iDfqnOUzZc2wU
+         7D/e6ZAvAW6vK3JPn0R/wdm4kb4aO7CZzSEMkZoBb/l1j1pjvX8neazknBGYO75WK7zi
+         6mzYvsxpErq9U+5jAgdZtzOdfZPgMu2KYafKY6HijnyWHtk8wgV4J+kuweivZ1DBlIgr
+         ATVJd89C7gzAcNPndNrrkKNzRTbpg7wCN8sco2xm69c7MU54M6I+yMnx+fJ73l7j8O7O
+         9fDg==
+X-Forwarded-Encrypted: i=1; AJvYcCWU2tJLXe//T+3y4pIGIbo8tHsMW8+5e87FDQnoWC0mC0REXJ+YNCNHo93d/5qFodgCit8hhfbC7Uy3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMllB7xbQLTOVPvtzbwD9LejibqX9XxVe7Uzf/cK4b9hW9gYv5
+	CPLbQzt8JAEKXO4vVJ9lfmKehGQZRYVs6WPvULZlfzzF5Jw1K6vriTGdCAXomwA=
+X-Google-Smtp-Source: AGHT+IFK8Sxq5O2daKZCX0NG4dA9HLXlgGDGO7JTuKN7++PD8SDAcw/9xgHSlPGmehhf8aWWBmFzYw==
+X-Received: by 2002:a05:600c:1f0e:b0:42f:8515:e47d with SMTP id 5b1f17b1804b1-4311ded2340mr126219565e9.11.1728995222663;
+        Tue, 15 Oct 2024 05:27:02 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e686:73e1:36a8:3467? ([2a01:e0a:982:cbb0:e686:73e1:36a8:3467])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4313f6b3266sm16662515e9.37.2024.10.15.05.27.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Oct 2024 05:27:02 -0700 (PDT)
+Message-ID: <2287a783-d00b-4175-8ac0-a6e86dc9245d@linaro.org>
+Date: Tue, 15 Oct 2024 14:27:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com>
- <20241014-qcom-video-iris-v4-v4-27-c5eaa4e9ab9e@quicinc.com>
- <Zw0j9UeJmC1MZ3Xt@localhost.localdomain> <7vmxx5qtbvhyfcdeariqiult27j5rmykxrefl2qmkhqnrw5wi5@6ugxtx643bmq>
- <48f0e7a1-f5d4-62ec-ec4b-f5bf2ca9caa5@quicinc.com>
-In-Reply-To: <48f0e7a1-f5d4-62ec-ec4b-f5bf2ca9caa5@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 15 Oct 2024 15:26:58 +0300
-Message-ID: <CAA8EJpq6Q80fcUZfP-DRmo8LHLHrwnkFd5FQ4Mrs0hiwPUyuSw@mail.gmail.com>
-Subject: Re: [PATCH v4 27/28] media: iris: enable video driver probe of SM8250 SoC
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>
-Cc: Jianhua Lu <lujianhua000@gmail.com>, Vikash Garodia <quic_vgarodia@quicinc.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, linux-arm-msm@vger.kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: rename vph-pwr regulator
+ nodes
+To: Johan Hovold <johan+linaro@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241015122601.16127-1-johan+linaro@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241015122601.16127-1-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, 15 Oct 2024 at 12:22, Dikshita Agarwal
-<quic_dikshita@quicinc.com> wrote:
->
->
->
-> On 10/14/2024 7:38 PM, Dmitry Baryshkov wrote:
-> > On Mon, Oct 14, 2024 at 10:00:21PM +0800, Jianhua Lu wrote:
-> >> On Mon, Oct 14, 2024 at 02:37:48PM +0530, Dikshita Agarwal wrote:
-> >>> Initialize the platform data and enable video driver
-> >>> probe of SM8250 SoC.
-> >>>
-> >>> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> >>> ---
-> >> [..]
-> >>> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-> >>> index 86ef2e5c488e..a2aadd48926f 100644
-> >>> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> >>> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> >>> @@ -325,6 +325,10 @@ static const struct of_device_id iris_dt_match[] = {
-> >>>             .compatible = "qcom,sm8550-iris",
-> >>>             .data = &sm8550_data,
-> >>>     },
-> >>> +   {
-> >>> +           .compatible = "qcom,sm8250-venus",
-> >>> +           .data = &sm8250_data,
-> >>> +   },
-> >>>     { },
-> >>>  };
-> >>>  MODULE_DEVICE_TABLE(of, iris_dt_match);
-> >>
-> >> qcom-venus driver has already supported sm8250 soc, I think you should add
-> >> an extra patch to drop sm8250 releated code from qcom-venus driver if you
-> >> tend to add support for sm8250 in qcom-iris driver.
-> >
-> > Iris driver did not feature parity with the venus driver, so it is
-> > expected that two drivers will exist side by side for some time.
-> > Nevertheless ideally we should have a way to specify which driver should
-> > be used for sm8250 (and other platforms being migrated).
-> >
-> Agree, we should have a way to specify this. Any suggestions to achieve
-> this are welcomed.
+On 15/10/2024 14:26, Johan Hovold wrote:
+> Rename the x1e80100 vph-pwr regulator nodes to use "regulator" as a
+> prefix for consistency with the other fixed regulators.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   .../dts/qcom/x1e80100-asus-vivobook-s15.dts   | 22 +++++++++----------
+>   arch/arm64/boot/dts/qcom/x1e80100-crd.dts     | 22 +++++++++----------
+>   .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 22 +++++++++----------
+>   .../dts/qcom/x1e80100-microsoft-romulus.dtsi  | 22 +++++++++----------
+>   4 files changed, 44 insertions(+), 44 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+> index 20616bd4aa6c..b1f190a9686f 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+> @@ -94,17 +94,6 @@ linux,cma {
+>   		};
+>   	};
+>   
+> -	vph_pwr: vph-pwr-regulator {
+> -		compatible = "regulator-fixed";
+> -
+> -		regulator-name = "vph_pwr";
+> -		regulator-min-microvolt = <3700000>;
+> -		regulator-max-microvolt = <3700000>;
+> -
+> -		regulator-always-on;
+> -		regulator-boot-on;
+> -	};
+> -
+>   	vreg_edp_3p3: regulator-edp-3p3 {
+>   		compatible = "regulator-fixed";
+>   
+> @@ -135,6 +124,17 @@ vreg_nvme: regulator-nvme {
+>   		pinctrl-0 = <&nvme_reg_en>;
+>   		pinctrl-names = "default";
+>   	};
+> +
+> +	vph_pwr: regulator-vph-pwr {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+>   };
+>   
+>   &apps_rsc {
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> index 4ab7078f76e0..4ab9e0ca4591 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> @@ -261,17 +261,6 @@ platform {
+>   		};
+>   	};
+>   
+> -	vph_pwr: vph-pwr-regulator {
+> -		compatible = "regulator-fixed";
+> -
+> -		regulator-name = "vph_pwr";
+> -		regulator-min-microvolt = <3700000>;
+> -		regulator-max-microvolt = <3700000>;
+> -
+> -		regulator-always-on;
+> -		regulator-boot-on;
+> -	};
+> -
+>   	vreg_edp_3p3: regulator-edp-3p3 {
+>   		compatible = "regulator-fixed";
+>   
+> @@ -319,6 +308,17 @@ vreg_nvme: regulator-nvme {
+>   		pinctrl-0 = <&nvme_reg_en>;
+>   	};
+>   
+> +	vph_pwr: regulator-vph-pwr {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+>   	vreg_wwan: regulator-wwan {
+>   		compatible = "regulator-fixed";
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> index 3c13331a9ef4..10ba934652c3 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> @@ -166,17 +166,6 @@ platform {
+>   		};
+>   	};
+>   
+> -	vph_pwr: vph-pwr-regulator {
+> -		compatible = "regulator-fixed";
+> -
+> -		regulator-name = "vph_pwr";
+> -		regulator-min-microvolt = <3700000>;
+> -		regulator-max-microvolt = <3700000>;
+> -
+> -		regulator-always-on;
+> -		regulator-boot-on;
+> -	};
+> -
+>   	vreg_edp_3p3: regulator-edp-3p3 {
+>   		compatible = "regulator-fixed";
+>   
+> @@ -206,6 +195,17 @@ vreg_nvme: regulator-nvme {
+>   		pinctrl-0 = <&nvme_reg_en>;
+>   		pinctrl-names = "default";
+>   	};
+> +
+> +	vph_pwr: regulator-vph-pwr {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+>   };
+>   
+>   &apps_rsc {
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+> index 42e02ad6a9c3..c47a63b5c85b 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+> @@ -125,17 +125,6 @@ linux,cma {
+>   		};
+>   	};
+>   
+> -	vph_pwr: vph-pwr-regulator {
+> -		compatible = "regulator-fixed";
+> -
+> -		regulator-name = "vph_pwr";
+> -		regulator-min-microvolt = <3700000>;
+> -		regulator-max-microvolt = <3700000>;
+> -
+> -		regulator-always-on;
+> -		regulator-boot-on;
+> -	};
+> -
+>   	vreg_edp_3p3: regulator-edp-3p3 {
+>   		compatible = "regulator-fixed";
+>   
+> @@ -165,6 +154,17 @@ vreg_nvme: regulator-nvme {
+>   		pinctrl-0 = <&nvme_reg_en>;
+>   		pinctrl-names = "default";
+>   	};
+> +
+> +	vph_pwr: regulator-vph-pwr {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+>   };
+>   
+>   &apps_rsc {
 
-See how this is handled for the drm/msm/mdp5 vs dpu drivers.
-
--- 
-With best wishes
-Dmitry
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
