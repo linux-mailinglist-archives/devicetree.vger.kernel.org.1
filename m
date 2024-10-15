@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-111263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41A799DEF9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 09:02:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B431499DF02
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 09:03:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64E961F2149E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:02:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16600B23FBB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A1C175D54;
-	Tue, 15 Oct 2024 07:02:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1DA18BBA0;
+	Tue, 15 Oct 2024 07:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aCaU+Hmu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gHO0Krzv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94104137930;
-	Tue, 15 Oct 2024 07:02:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051D41714B4;
+	Tue, 15 Oct 2024 07:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728975748; cv=none; b=IVXkroCDSwvpJnch8w97xlU7DZDtF8orjp0b84DuZtKXyAJO8wU1yoavboL/falggPMmmnQKethxaj26C5voUxIHo03hO294t/A1Six+SrXqBYsnUq1fVCmrA04BKgFObXZ6f2Cg+gRjji/A8HvFtN+PSPqQyQLlhe+/Ej68vqA=
+	t=1728975785; cv=none; b=MZ1UbJKpyoOg38pKAFhw8q9TjFUQvpv9QTklWu9ffM27edMbhF3POgPjZso7cbDB3wBf9o371dmI53TqKhdaTWjtUBhfioMf4yMNOoZYb+lvOWTRV5+bPLq5Jr3toqBf5CljxCn/Rxkki3/Mn0l9eCKdB9WNmXGgO8VagATVhcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728975748; c=relaxed/simple;
-	bh=s4T8/jTVUn1rYhBlAL29+WbFoChCUfqqhBQWqGCSLJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=huR0Q/X7VAfkC4n1mSU8VB8jPv1pIWodjSxwD668kxSAlyo6KdgTWCYeUtzfJHiIayZCHqpsZ0XV+J0w+T7U4wiHUZJ9VUkUcpxdop30gtUngOZYCUu+32ERCf230C5zx8HbY0xLZFS5ZhD80srNRK9eB3/ls5y+vIZ+tjiXUr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aCaU+Hmu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 433B0C4CEC7;
-	Tue, 15 Oct 2024 07:02:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728975747;
-	bh=s4T8/jTVUn1rYhBlAL29+WbFoChCUfqqhBQWqGCSLJk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aCaU+Hmuc0t9ltne6NYfLFP8tYu+c6t++i7X2olSmlxHwNdBH23O+WAcwWO6OBMdd
-	 ATDFjE4wi4gAYGMFQqiKQO0K/3CuxJI28/br93Yl2fwdVwn/8x5G1/aqY9woltLGAi
-	 G+/J8gEls0pc5BG0+HQGzsbVop0yGykxbve0HUiLcOlDYHstg1ACIGzEhFCdfJwEtr
-	 xxbDfSMCTU9mbj/4Ftczqabbogk6qGv2FLGCj+HYmY1dnEyV1k9sXRB02l2gfkwUBf
-	 qqOA4BrZSo2SWetAGEFlQuHdGyGWcs2Paav9Prr2p/ivVOtrtbLWZunvIrM9ILKtAI
-	 XIsdTDxPxYuug==
-Message-ID: <2edf63cd-66e2-4050-80dd-800ed77ef5e1@kernel.org>
-Date: Tue, 15 Oct 2024 09:02:19 +0200
+	s=arc-20240116; t=1728975785; c=relaxed/simple;
+	bh=6ak+FbFcheSC/07hSqggboSBc44x/jnUTK0Zu6i2J9U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=csdDzaRr+hilwMXJA+U+ocenVyMpwwjbYzDEfPEpwPx5VaDAqedn/YZTburoobI341uGNm+l0Uu8/FUe3285gnCPq7RALFKh6iygzWyE1nmQLXdAmR7+kHsQ7wT5f/OhE+ALo1GNGEuO6cvoe8Yb3ead00D0M5fqXwzyZTqoGDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gHO0Krzv; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49F0nqXK028943;
+	Tue, 15 Oct 2024 07:02:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MNxcovHaCZr4YyZwbkPjdIHNQ44b3u3Z8IXuc9mgySg=; b=gHO0KrzvEjmG+I38
+	XvZ3iZIgIEfDAGnxjJ9THEildcaXiNRUlTLyVIepkEyRPRZZB/BhJ6aTkmlh+dKc
+	lkXIZZhlBCyJh6JrIoUlQMeI0v3ED9EBc85hCtalLswsLq213f0gGeUC1V5ZGeqP
+	fd9maBH5bwIn6Wl/dXbXaXVWSf7dIlIypsimDAK7XSsmFT73qFBihmy/hD0Ujvfb
+	NMsxq9yox3t9yLuwgpkFA0b82hY5sbL6PfYsI735xRObr0+oNQ13HDtn6y5CVNTw
+	9hS+4UCrYCX2c7s0YnnWEFhSmcT50V2IzUa/tCVlRAWyj8NakRNGgtnCRBg5Gj1q
+	9Im+FA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4292evjdhm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Oct 2024 07:02:46 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49F72io5000952
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Oct 2024 07:02:44 GMT
+Received: from [10.204.67.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 15 Oct
+ 2024 00:02:36 -0700
+Message-ID: <2a2b1373-6cb4-4813-8736-dd7b12c90c0a@quicinc.com>
+Date: Tue, 15 Oct 2024 12:32:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,292 +65,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 6/7] arm64: dts: exynos: Add initial support for the
- Exynos 990 SoC
-To: Igor Belwon <igor.belwon@mentallysanemainliners.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-gpio@vger.kernel.org, david@mainlining.org
-References: <20241015062746.713245-1-igor.belwon@mentallysanemainliners.org>
- <20241015062746.713245-7-igor.belwon@mentallysanemainliners.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 0/5] Add support for DisplayPort on SA8775P platform
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241015062746.713245-7-igor.belwon@mentallysanemainliners.org>
-Content-Type: text/plain; charset=UTF-8
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <konradybcio@kernel.org>,
+        <andersson@kernel.org>, <simona@ffwll.ch>, <abel.vesa@linaro.org>,
+        <robdclark@gmail.com>, <quic_abhinavk@quicinc.com>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <quic_khsieh@quicinc.com>,
+        <konrad.dybcio@linaro.org>, <quic_parellan@quicinc.com>,
+        <quic_bjorande@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <quic_riteshk@quicinc.com>,
+        <quic_vproddut@quicinc.com>
+References: <20241004103046.22209-1-quic_mukhopad@quicinc.com>
+ <CAA8EJprNz-Byy6T3qkkUyZnTkyb_7osyuevP8E-xYzzPSmQjUw@mail.gmail.com>
+From: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+In-Reply-To: <CAA8EJprNz-Byy6T3qkkUyZnTkyb_7osyuevP8E-xYzzPSmQjUw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: sX5TkqqPVxeTca0Ty3eh-82zg5gY4O8X
+X-Proofpoint-ORIG-GUID: sX5TkqqPVxeTca0Ty3eh-82zg5gY4O8X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 malwarescore=0 mlxlogscore=999 lowpriorityscore=0
+ phishscore=0 adultscore=0 bulkscore=0 mlxscore=0 impostorscore=0
+ suspectscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2410150047
 
-On 15/10/2024 08:27, Igor Belwon wrote:
-> The Exynos 990 SoC is an ARMv8 mobile SoC found in Samsung Galaxy N/S20
-> series phones (x1sxxx, c1sxxx). Add minimal support for this SoC,
-> including:
-> 
 
-...
+On 10/6/2024 8:30 PM, Dmitry Baryshkov wrote:
+> On Fri, 4 Oct 2024 at 12:30, Soutrik Mukhopadhyay
+> <quic_mukhopad@quicinc.com> wrote:
+>> This series adds support for the DisplayPort controller
+>> and eDP PHY v5 found on the Qualcomm SA8775P platform.
+>>
+>> ---
+>> v2: Fixed review comments from Dmitry and Bjorn
+>>          - Made aux_cfg array as const.
+>>          - Reused edp_swing_hbr_rbr and edp_swing_hbr2_hbr3 for v5.
+>>
+>> v3: Fixed review comments from Dmitry, Konrad and Bjorn
+>>          - Used a for loop to write the dp_phy_aux_cfg registers.
+>>          - Pre-defined the aux_cfg size to prevent any magic numbers.
+>>          - Added all the necessary DPTX controllers for this platform.
+>>
+>> v4: Fixed review comments from Dmitry and Krzysztof
+>>          - Updated commit message.
+> For which patches? How?
 
-> +	/* There's no PMU model for cluster2, which are the Mongoose cores. */
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +
-> +				core2 {
-> +					cpu = <&cpu2>;
-> +				};
-> +
-> +				core3 {
-> +					cpu = <&cpu3>;
-> +				};
-> +			};
-> +
-> +			cluster1 {
-> +				core0 {
-> +					cpu = <&cpu4>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu5>;
-> +				};
-> +			};
-> +
-> +			cluster2 {
-> +				core0 {
-> +					cpu = <&cpu6>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x1>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu2: cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x2>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu3: cpu@3 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55";
-> +			reg = <0x3>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu4: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a76";
-> +			reg = <0x4>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu5: cpu@101 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a76";
-> +			reg = <0x5>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu6: cpu@200 {
-> +			device_type = "cpu";
-> +			compatible = "samsung,mongoose-m5";
-> +			reg = <0x6>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu7: cpu@201 {
-> +			device_type = "cpu";
-> +			compatible = "samsung,mongoose-m5";
-> +			reg = <0x7>;
-> +			enable-method = "psci";
-> +		};
-> +
 
-Stray blank line
+We have removed the "reviewed by" and kept only the "acked by" for patch 
+1. We have updated
 
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-0.2";
-> +		method = "hvc";
-> +	};
-> +
-> +	oscclk: osc-clock {
+the commit message of patch 5 , to mention specifically about the 
+validation of 'only' MDSS0 DPTX0 and
 
-clock-osc and keep order by node name
+DPTX1.
 
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-output-names = "oscclk";
-> +	};
-> +
-> +	soc: soc@0 {
-> +		compatible = "simple-bus";
-> +		ranges = <0x0 0x0 0x0 0x20000000>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		chipid@10000000 {
-> +			compatible = "samsung,exynos990-chipid",
-> +				     "samsung,exynos850-chipid";
-> +			reg = <0x10000000 0x100>;
-> +		};
-> +
-> +		gic: interrupt-controller@10101000 {
-> +			compatible = "arm,gic-400";
-> +			#interrupt-cells = <3>;
-> +			interrupt-controller;
-> +			reg = <0x10101000 0x1000>,
-> +			      <0x10102000 0x1000>,
-> +			      <0x10104000 0x2000>,
-> +			      <0x10106000 0x2000>;
 
-reg is the second property
-
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) |
-> +						 IRQ_TYPE_LEVEL_HIGH)>;
-> +			#address-cells = <0>;
-> +			#size-cells = <1>;
-> +		};
-> +
-> +		pinctrl_cmgp: pinctrl@15c30000 {
-
-Keep order by unit address.
-
-> +			compatible = "samsung,exynos990-pinctrl";
-> +			reg = <0x15c30000 0x1000>;
-> +		};
-> +
-> +		pinctrl_hsi1: pinctrl@13040000 {
-> +			compatible = "samsung,exynos990-pinctrl";
-> +			reg = <0x13040000 0x1000>;
-> +			interrupts = <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		pinctrl_hsi2: pinctrl@13c30000 {
-> +			compatible = "samsung,exynos990-pinctrl";
-> +			reg = <0x13c30000 0x1000>;
-> +			interrupts = <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		pinctrl_peric0: pinctrl@10430000 {
-> +			compatible = "samsung,exynos990-pinctrl";
-> +			reg = <0x10430000 0x1000>;
-> +			interrupts = <GIC_SPI 392 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		pinctrl_peric1: pinctrl@10730000 {
-> +			compatible = "samsung,exynos990-pinctrl";
-> +			reg = <0x10730000 0x1000>;
-> +			interrupts = <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		pinctrl_vts: pinctrl@15580000 {
-> +			compatible = "samsung,exynos990-pinctrl";
-> +			reg = <0x15580000 0x1000>;
-> +		};
-> +
-> +		pinctrl_alive: pinctrl@15850000 {
-> +			compatible = "samsung,exynos990-pinctrl";
-> +			reg = <0x15850000 0x1000>;
-> +
-> +			wakeup-interrupt-controller {
-> +				compatible = "samsung,exynos990-wakeup-eint",
-> +					     "samsung,exynos7-wakeup-eint";
-> +			};
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +
-> +		/*
-> +		 * Non-updatable, broken stock Samsung bootloader does not
-> +		 * configure CNTFRQ_EL0
-> +		 */
-> +		clock-frequency = <26000000>;
-> +	};
-> +};
-> +
-> +#include "exynos990-pinctrl.dtsi"
-
-Best regards,
-Krzysztof
-
+>
+>> ---
+>>
+>> Soutrik Mukhopadhyay (5):
+>>    dt-bindings: phy: Add eDP PHY compatible for sa8775p
+>>    phy: qcom: edp: Introduce aux_cfg array for version specific aux
+>>      settings
+>>    phy: qcom: edp: Add support for eDP PHY on SA8775P
+>>    dt-bindings: display: msm: dp-controller: document SA8775P compatible
+>>    drm/msm/dp: Add DisplayPort controller for SA8775P
+>>
+>>   .../bindings/display/msm/dp-controller.yaml   |  1 +
+>>   .../devicetree/bindings/phy/qcom,edp-phy.yaml |  1 +
+>>   drivers/gpu/drm/msm/dp/dp_display.c           |  9 +++
+>>   drivers/phy/qualcomm/phy-qcom-edp.c           | 74 +++++++++++++------
+>>   4 files changed, 61 insertions(+), 24 deletions(-)
+>>
+>> --
+>> 2.17.1
+>>
+>
 
