@@ -1,95 +1,110 @@
-Return-Path: <devicetree+bounces-111631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D5C099F7FC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:16:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02EBC99F802
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:18:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40C311F2254C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:16:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FF041F22391
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD231F8181;
-	Tue, 15 Oct 2024 20:16:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="IzUCzDB6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F83B1F5856;
+	Tue, 15 Oct 2024 20:18:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E38B15699D
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 20:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E670415699D
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 20:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.154.21.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729023375; cv=none; b=pc+pE3DSlPUq+G5VEeH6NrlQxRroODWBRidcKE7QCcPdEWxYF9vsVKeqsTy46CZo5h83+xtaoi2o2PqdMR5xmKLzU5g7CYOmeIOXFMHTWPzf+MiHySeRojBtS08oYgczBbk29YDlZT/aJ2bdMyI+qkHLlnBkNZQswB+2rhEqT00=
+	t=1729023518; cv=none; b=eHWI6PyWkElaver63CE1wWASoI/Ji50hVRgZVXi/taRvDBa0tfZ5mfuskWuVbNjA39eHdbXs5FcIV+Z5nl4QfCf2sJe/2x7UAosqQooZM51gJ5r6HUJh6JRLXqUJvXtzKZI6UwiFnqH45ERqXM56j/bXX0KkPenqCKWKKhNKdoo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729023375; c=relaxed/simple;
-	bh=tu1QoClbkObUUASz2k72n5n9x6U9Edk37FHc0RbrcK8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Content-Type; b=OX1GvQi4Aut3cXI/ww27htOgj+8n1UWXHDm2bHe5/goEMT3+VApm1BBmFClVXx6+cJ7BxKQeLH35ECl09/1hcapoHtoIkSG8htmghCdhYJkr50jU5rLMSjnt7rCOtolfcYgtdy0EUfwnVV1S6F7xuZtnVsEnx1FsOxexXXNJuH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=IzUCzDB6; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E36A82C03CB;
-	Wed, 16 Oct 2024 09:16:09 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1729023369;
-	bh=n+f8WcwPeAeJHJNpFk2AM+E9vsZVL3Pq+k16AJ57gbQ=;
-	h=Date:From:Subject:To:From;
-	b=IzUCzDB64DbWMlDDv05shZusOcYCAhnUoQ1ji4XpnMSx94OqTIU+mkSWA87PxYULt
-	 axS4g3CZCjHsVm8KvQFyASTtuCtl6PuBPHD83W8b9dbDi3u6hG1NyPQPHTGrEoUATz
-	 yzzT041ANhXvp1D8SLDoyT94SF1T5IC5BgzvkP3csPIqqKaA+PHgBXJVMiF7NaGYQc
-	 EpTLnZnk35hmzjpQb4bQAacSmrxSxMCwdwI478nT5tqU76X4uUCbesvuX1mcLmbl/r
-	 qzlI7+bP05PBSYYRoVACM28CWTkJ86zizBKaH2Tol30RvJ8qFJ7E+bEBoYcMvky8mM
-	 8p8LiqeX8DBkA==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B670ecd890001>; Wed, 16 Oct 2024 09:16:09 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id AE02813ED7B;
-	Wed, 16 Oct 2024 09:16:09 +1300 (NZDT)
-Message-ID: <269854a8-1041-4ba6-b022-ba8ec15c6b78@alliedtelesis.co.nz>
-Date: Wed, 16 Oct 2024 09:16:09 +1300
+	s=arc-20240116; t=1729023518; c=relaxed/simple;
+	bh=Wt5m2v2E3htJ/INsDb0ySCTjr7HLsTxmrOXwzqr0b6s=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
+	 In-Reply-To:Content-Type; b=mIDZCD9O7n7Ls2CJHD3sXD4QMb2iQvyYJI/RhNuOIag0L88zSNxBGaUaRIL2yzpy4zJUPFYyCxLT/77qCt3fJRhnujEtFJ4a+3LzS5NNlHLCyTxy9yYd4CzbaMymyT4RD1t69dCYhgqHElvnnRJTeJLCjpSuTuYT0pcFlYToC4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru; spf=pass smtp.mailfrom=omp.ru; arc=none smtp.client-ip=90.154.21.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=omp.ru
+Received: from [192.168.2.101] (213.87.90.91) by msexch01.omp.ru (10.188.4.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Tue, 15 Oct
+ 2024 23:18:26 +0300
+Message-ID: <5b0ad893-60c1-422a-a935-4d4aa266214b@omp.ru>
+Date: Tue, 15 Oct 2024 23:18:25 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Building out of tree dtbs
-To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] of: module: remove strlen() call in of_modalias()
+From: Sergey Shtylyov <s.shtylyov@omp.ru>
+To: <devicetree@vger.kernel.org>, Saravana Kannan <saravanak@google.com>, Rob
+ Herring <robh@kernel.org>
+References: <471418be-5d2f-4d14-bd9e-9e8f0526241f@omp.ru>
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Open Mobile Platform
+In-Reply-To: <471418be-5d2f-4d14-bd9e-9e8f0526241f@omp.ru>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=670ecd89 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=p0WdMEafAAAA:8 a=YRHvXXt1AAAA:8 a=w3Su-nGi9A_OhNgBJrUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=9bw_jnHfPby8klRCszyn:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
+ (10.188.4.12)
+X-KSE-ServerInfo: msexch01.omp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 6.1.0, Database issued on: 10/15/2024 20:05:36
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 19
+X-KSE-AntiSpam-Info: Lua profiles 188459 [Oct 15 2024]
+X-KSE-AntiSpam-Info: Version: 6.1.0.4
+X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
+X-KSE-AntiSpam-Info: LuaCore: 39 0.3.39
+ e168d0b3ce73b485ab2648dd465313add1404cce
+X-KSE-AntiSpam-Info: {rep_avail}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info: {SMTP from is not routable}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 213.87.90.91 in (user)
+ b.barracudacentral.org}
+X-KSE-AntiSpam-Info:
+	omp.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2
+X-KSE-AntiSpam-Info: FromAlignment: s
+X-KSE-AntiSpam-Info: ApMailHostAddress: 213.87.90.91
+X-KSE-AntiSpam-Info: {DNS response errors}
+X-KSE-AntiSpam-Info: Rate: 19
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
+ smtp.mailfrom=omp.ru;dkim=none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Heuristic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 10/15/2024 20:09:00
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 10/15/2024 6:51:00 PM
+X-KSE-Attachment-Filter-Triggered-Rules: Clean
+X-KSE-Attachment-Filter-Triggered-Filters: Clean
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
 
-(resend without HTML part)
+On 10/15/24 11:15 PM, Sergey Shtylyov wrote:
 
-Hi,
+> In of_modalias(), there's no dire need to call strlen() (and then add 1
+> to its result to account for the 'C' char preceding the compat string).
+> Replace that strlen() with snprintf() (currently below it) -- this way,
+> we always try to print the compat string but then only advance the str
+> and len parameters iff the comapt string fit into the remaining buffer
 
-I just noticed with the latest 6.12-rc I'm no longer able to build an 
-out of tree dtb by just copying it into arch/$ARCH/boot/dts (at least 
-for ARCH=mips and ARCH=arm64) and running `make my-board.dtb`. I believe 
-buildroot relies on this as well[1].
+    Oops, compat! :-)
 
-Is this an intentional change? Is it too late to undo it (or provide an 
-alternative way of having out of tree dts that make use of in-tree dtsi).
+> space...
+> 
+> Signed-off-by: Sergey Shtylyov <s.shtylyov@omp.ru>
+[...]
 
-Thanks,
-Chris
-
---
-
-[1] - 
-https://gitlab.com/buildroot.org/buildroot/-/blob/master/linux/linux.mk?ref_type=heads#L516
+MBR, Sergey
 
 
