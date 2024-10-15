@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-111637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A2DA99F82A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:37:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7486A99F82D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:38:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A1F5287DF4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:37:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6E9C1C21F1A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1657A1F8183;
-	Tue, 15 Oct 2024 20:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC791F8190;
+	Tue, 15 Oct 2024 20:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AIdXaRjt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EAmg8LKF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C3B158D9C;
-	Tue, 15 Oct 2024 20:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDDA11F8183;
+	Tue, 15 Oct 2024 20:38:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729024651; cv=none; b=hsOEjMlgdONUZVW/C5Nb/IcK/vU0y48k6pmCXNlP6y4cK2lucsdxtQ0T2qrnaJKpsQBdCpkdbJ/mzKcozsQRrrgRrFiflRBm7ZYVKWdvxcgvHG+xSfVw/g5GkAYRwgGAEDN1d+/WDkJwN5ArhIvDc5ESMXf6UJ4YzbWGR2zO/t8=
+	t=1729024680; cv=none; b=KFzWGX+u52nHCYEaF9d4h7ofS4QiztD6ktl3bsTsxfu0M/gmIlymKc3pIV1p/x+FDGLZPsZiEs+OiYjurKL7/3mKSaXjv5UkeCcsw8cS+VExNEU1Ec9P0tY6RV87lvupYeMHyE9VAkFUJphLs9Xfp0WKMCEy6KIVGVd58yfzE8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729024651; c=relaxed/simple;
-	bh=wEllmQzVhgF4GVOEm1VErXB6Nk08jOpeFQrbb38vU6w=;
+	s=arc-20240116; t=1729024680; c=relaxed/simple;
+	bh=bpAQwajbarVL+eDndZH9QhXSZF1JRneheM5bwvm0BVQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jTYvOhf4Y4zFXL16CaU6jZ9Jg+w9wNO+k5XpXD35qoZjvZAC2Gl4ep2acQU5K2oLQ8gn2I6u2+cK3gBIS+Zcu0Qzi6rAtoJjzlBeuFT/fHeQhohSqdUnY1RanYzUhR22llVHcpVT60wxy3JYFPkXw5ryXYa0SCh5w9QwrL89OXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AIdXaRjt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE1C6C4CEC6;
-	Tue, 15 Oct 2024 20:37:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HdNnYviloOhnRfOVeQlUf+xLferVDfEZ9BDNlcP8xBVc50Y7Zwc1ykcyOiTR0guUnPoGzuQ/sgBy6PQ6TREWGVDUOm8dy0yyhQpPWirxhqYMW2vpmaG5awpJmZrlQvjYHkh9KcUzaAmU1roX4jqCJ8kfuaw0t/QV3qpBm0u0Y7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EAmg8LKF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCAC7C4CEC6;
+	Tue, 15 Oct 2024 20:37:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729024650;
-	bh=wEllmQzVhgF4GVOEm1VErXB6Nk08jOpeFQrbb38vU6w=;
+	s=k20201202; t=1729024680;
+	bh=bpAQwajbarVL+eDndZH9QhXSZF1JRneheM5bwvm0BVQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AIdXaRjtRU52RixQ78a0qnfo5er9t1kQMM6/HBYQRQ+WSdI4fqrBoN8e/Q6Pqqqo2
-	 3YQfF9R4ARVIG2TKqAqi/nwZsnqXg9RDWa5AXJkGXZ+Mp6bsw1tS3v+cim4TfxAlVt
-	 2XhZRYUAvsgZsmDuGoyzYTMuq7KQKY0KRsI9gChZ4DZVzDzaxFkLN78/FOTcuDBiEb
-	 zvgqPikaEeEaHEbbe9aZX+EURghDT+tr8usAZMM2vfp0HMCucCKE5p4/tDI4kOKqE4
-	 G8mohUPqezznGm4E7+AbrPz2BQujfH7D8TTKJ7XrYqzexc2zRI6njmae4p5CjaabyH
-	 gSEFMnBvLw4GQ==
-Date: Tue, 15 Oct 2024 15:37:28 -0500
-From: Rob Herring <robh@kernel.org>
-To: Cenk Uluisik <cenk.uluisik@googlemail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=EAmg8LKFmJoV5FKmDRReK0jF0mr90pHAjUxl+P42xpk66rHCTM60W7ItQlm046hFb
+	 JdHqhH5kIZ4O539tpOToVzZVzw4SPNDBbsq3rLMEuZ20xBti8MCqlTSNWO2gw19g7V
+	 DlYo1cEb5ikgEH6NMV77Ka1UveXatTieiUomeuin5G5N6nGYUWzTdcHQ8SZYJ0DoFj
+	 u7raiKpqU2AEhH1b15O2FDl4snLkxqjrZJcGWi3Z0DilmM8u+5+IzumZojGYNLJPsO
+	 f6opCWcWm6gdV6+3uAAebQ0kbIkmVSgz258O9MGwShawSKcOaLhpiE2jFl2Rk3hQfm
+	 bUr93JqVxfLgg==
+Date: Tue, 15 Oct 2024 15:37:58 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Andy Yan <andyshrk@163.com>, Tim Lunn <tim@feathertop.org>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Jimmy Hon <honyuenkwun@gmail.com>, Jing Luo <jing@jing.rocks>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: rockchip: Add Orange Pi 5b enum
- to Orange Pi 5 entry
-Message-ID: <20241015203728.GA1914063-robh@kernel.org>
-References: <20241015192905.28969-1-cenk.uluisik@googlemail.com>
+	linux-samsung-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, david@mainlining.org,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/7] dt-bindings: arm: cpus: Add Samsung Mongoose M5
+Message-ID: <172902467738.1921050.15982334526237120937.robh@kernel.org>
+References: <20241015062746.713245-1-igor.belwon@mentallysanemainliners.org>
+ <20241015062746.713245-2-igor.belwon@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,53 +65,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241015192905.28969-1-cenk.uluisik@googlemail.com>
+In-Reply-To: <20241015062746.713245-2-igor.belwon@mentallysanemainliners.org>
 
-On Tue, Oct 15, 2024 at 09:28:35PM +0200, Cenk Uluisik wrote:
-> This extends the Xunlong Orange Pi 5 device tree binding with an enum for
-> the Orange Pi 5b, which is implemented before the device tree.
+
+On Tue, 15 Oct 2024 08:27:40 +0200, Igor Belwon wrote:
+> Add a compatible for the Samsung Mongoose M5 cores, found in
+> the Exynos 990.
 > 
-> How does this board differ from the original Orange Pi 5?
->   - the Orange Pi 5 has a M.2 NVMe M-key PCI 2.0x1
->     slot (hooked to combphy0_ps) whereas the Orange Pi 5b uses combphy0_ps
->     for the WiFi.
->   - The Orange Pi 5 with the M.2 socket has a regulator defined hooked to
->     "GPIO0_C5" (i.e. PCIE_PWREN_H) whereas the Orange Pi 5B has GPIO0_C5
->     hooked to BT_WAKE_HOST.
->   - builtin eMMC storage
->   - no SPI NOR flash (u-boot, preboot etc. initiates
->       from within the eMMC
->       storage)
->   - ap6275p Wifi module (like the Orange Pi 5 Plus)
->   - builtin BlueTooth module
-> 
-> Signed-off-by: Cenk Uluisik <cenk.uluisik@googlemail.com>
+> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-
-Well, still kind of too fast because I just acked v5. Before you send 
-v7, read the process for adding tags.
-
-You should also read the part on adding change log to your patches.
-
+>  Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 687823e58c22..62bb6587da8f 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -1051,7 +1051,9 @@ properties:
->  
->        - description: Xunlong Orange Pi 5
->          items:
-> -          - const: xunlong,orangepi-5
-> +          - enum:
-> +              - xunlong,orangepi-5
-> +              - xunlong,orangepi-5b
->            - const: rockchip,rk3588s
->  
->        - description: Zkmagic A95X Z2
-> -- 
-> 2.46.1
-> 
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
