@@ -1,267 +1,319 @@
-Return-Path: <devicetree+bounces-111254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D28199DE91
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:39:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2EEE99DEAA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:47:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D10342827A1
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:39:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 851841F249E2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88FAC189F2B;
-	Tue, 15 Oct 2024 06:39:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAABE189BBF;
+	Tue, 15 Oct 2024 06:47:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="9GT9u1tD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O6G1+BOl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2102.outbound.protection.outlook.com [40.107.220.102])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74C117335E;
-	Tue, 15 Oct 2024 06:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.102
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728974380; cv=fail; b=d70OUl9FT906RLVbVj5y7v+bTUK0gz7m4AlmxopTt3yf4xoH7CXigPFLetv2melvUbVotntIW3TrBbH7AB192nlDKcMW1ZWb195pysYz4GW/g9Yr3foqsF/Y3ZAHBMVI2TJLMQ0MP8FX82ArE0sadc1stI4kFCzd99swNeIvIHo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728974380; c=relaxed/simple;
-	bh=m/gqwy7wU3IftN0PJupXQ9P7Yy99J/8/wophO1GGgeU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=BrUmEhqb8dgSq6z/6Plw1BdGvN2HRM6bJXcdcqzpoKiBQqKOJ1TVlgb31sc2GdwXmdQrJ8BY+p0H3r0EdHtKvoIZeKfX82r+LQdRDBlRH+1UEtZs4TX61j2cdRPyl6ySzqtvzNQ74zF8ltmZA632tQIfwg5n7+7fl/Xf6+6wDI4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=9GT9u1tD reason="key not found in DNS"; arc=fail smtp.client-ip=40.107.220.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mDnUfwvWCa1WlmYZmG5nrzuyxOdJ/1GHO6o048fl1uUNeDLSdLkAiwRX7ym8JLmJhGmWZ7DILJ44KAk4GqhEq/pOAECqgLTj3LyEcQu5bI0oAbPldCDRqRwq8TkF3FBdr9o0sGazEWUBNybAL9tcXbqHcEigXHWluXzx7eJRh0GtlgCkMNBlH3pOCYACNoy2vFvg64N8htni8/rkAM05mT5frSAnYnQly6SK2oC+6gk9EUqFdgk9BkqX882eeJy2X4pvxeCTvq+M6ukT8Q3o/zUePW8e9vIUxQ2iMPT1AIcQZZ70VvTjPcAOrfI4ei4OHtIR2LxGqq0wNzd8PbN+1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2rTFlNEtgI76ExkkBHWq0bouL70KkEFKVqrchbxvZJk=;
- b=u+EHytmbbzhjyNK+U/uUzVDEZlh/WmI3I2GVt5rXN2nHdUGMSoirnLWcNvbu0eRNbp7rjCFBsbKfjcGBZ/Nq1s7S5sVkepK0B2niFdIaF1OCPIBXXsG1ZujC/Wl01IyRer3XMW31e+PyEPKimYN5EtJr0W83eZ2/DgL/WzmFdxYeC6w9mwNATFi5iAlHsmOv5UB7+oVAm0D6Of3RuQo7SjaxdTueKVcuRImJ4ERn29ZjaxfmsDS/KsL7lfg3idqQHrvvJ1AWGRfwKEB0yMraI6dyp4WN/OuPUl+dKXVlqVEByRCCjtKDyjcpMq1Unb+Q+cVso25tdn7UoQKoP/cQnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=amperemail.onmicrosoft.com; dkim=pass
- header.d=amperemail.onmicrosoft.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2rTFlNEtgI76ExkkBHWq0bouL70KkEFKVqrchbxvZJk=;
- b=9GT9u1tDGtv9kYmxdLsSJ+DRBNg+rfw9pPsCIRyYbKpoQiggCF59rTb6uVfj8Oq7UG+Yczqessoup/I8KDpIWdPKsdZuNVan2y1+z3IUy1EvKfDlq/ixXE+6yW12fr1F0MAG8dpBBYdq6J6pNN/aLXoQh+J2CYL6Y74Khsj2GXw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
-Received: from BL3PR01MB7057.prod.exchangelabs.com (2603:10b6:208:35c::16) by
- SA6PR01MB8732.prod.exchangelabs.com (2603:10b6:806:40a::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8048.21; Tue, 15 Oct 2024 06:39:35 +0000
-Received: from BL3PR01MB7057.prod.exchangelabs.com
- ([fe80::b69e:5684:ed7c:4d09]) by BL3PR01MB7057.prod.exchangelabs.com
- ([fe80::b69e:5684:ed7c:4d09%4]) with mapi id 15.20.7982.033; Tue, 15 Oct 2024
- 06:39:34 +0000
-Message-ID: <e8e31fb4-4a9f-4ea9-be4d-9ba29d824cc5@amperemail.onmicrosoft.com>
-Date: Tue, 15 Oct 2024 13:39:23 +0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
- Jefferson BMC
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
- Chanh Nguyen <chanh@os.amperecomputing.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, Joel Stanley <joel@jms.id.au>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Khanh Pham <khpham@amperecomputing.com>,
- linux-arm-kernel@lists.infradead.org,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Phong Vo <phong@os.amperecomputing.com>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, OpenBMC Maillist
- <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>, linux-aspeed@lists.ozlabs.org
-References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
- <172891445289.1127319.4114892374425336022.robh@kernel.org>
- <b5919d904c9f06a618a54d49bc895c3081a511e4.camel@codeconstruct.com.au>
-Content-Language: en-US
-From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
-In-Reply-To: <b5919d904c9f06a618a54d49bc895c3081a511e4.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CYXP220CA0007.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:930:ee::7) To BL3PR01MB7057.prod.exchangelabs.com
- (2603:10b6:208:35c::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92EF8173320;
+	Tue, 15 Oct 2024 06:47:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728974860; cv=none; b=uZZqwR3l6PStoenx9pk3E8iBKUZScCltWjPNUG+VPgWEZndzht76uEYKbY0xPuBF4OLCJipk4ipoAuf6xStRFmqd6+ZB0wlVI9LPbp2XHu7hEHQM8jUjUNGS7i9rUpg8OaH1GxSOSCnh0U23l4YVCjiwMHeuUCUPdbABJyMwkEg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728974860; c=relaxed/simple;
+	bh=QnmdqlUzl5mD6BYj4MP1FHjqNwxAYNNrC194BjJdZcU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cz2J2RVYPfk6cDoE/0niBjOu8QnP6oNYn3dwJUgJzU/8VS9TQVRllx+njoHK1m2QTh6h4xBUFQqqDEca9jMxi96M2/DWG5pRhsGzGS7R06s56MfGQldhQTq+ufcNUj4MbfgPAZ9BWxTgL/qddbUnt5irwIz4Ntu/eOz3mMqnf3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O6G1+BOl; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728974858; x=1760510858;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QnmdqlUzl5mD6BYj4MP1FHjqNwxAYNNrC194BjJdZcU=;
+  b=O6G1+BOlA3yOveH1peytO9x6nD/73ZMgoRTSEcBOqmTCihmq0RrelIo/
+   KFq9TRLkXXyUd1PxC/N3ySvZmc3PX/NxKoA1pSAzvTqb0HZSmkfCCUFh8
+   7mVBrAAFRgmjYd/4wF6AvLQws+MYmEh5JxospjJI82WYSgy1wXASTz2Rd
+   L19TElpuxHgQdvc/JQiq0q0JrFVWIiLTYb0ydKllWKVkJA87ehzMFUEhJ
+   arZ6g1FwIP/ziHCphKM4HTlJ6ZEBMGd6EwmuvIcepEG50KEuVSSthceen
+   1fbVCmSZ4EWLbjtsxtaab8bypIrvPJRsK3fB0uC2QKgLwSgA47FkkQ5uD
+   g==;
+X-CSE-ConnectionGUID: Lgh4rXHrRO+Lhi0d92dQgQ==
+X-CSE-MsgGUID: i6BfCY3SS4+8bdVUYWUF/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="45821685"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="45821685"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2024 23:47:38 -0700
+X-CSE-ConnectionGUID: rJhn4m6RR3621sODBiR/WQ==
+X-CSE-MsgGUID: 9XIi+BPDSnaO5K1CSGw6XQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; 
+   d="scan'208";a="82424741"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 14 Oct 2024 23:47:34 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t0bL9-000HiB-2b;
+	Tue, 15 Oct 2024 06:47:31 +0000
+Date: Tue, 15 Oct 2024 14:46:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Damien Le Moal <dlemoal@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-rockchip@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v4 12/12] PCI: rockchip-ep: Handle PERST# signal in
+ endpoint mode
+Message-ID: <202410151206.MIdxs469-lkp@intel.com>
+References: <20241011121408.89890-13-dlemoal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR01MB7057:EE_|SA6PR01MB8732:EE_
-X-MS-Office365-Filtering-Correlation-Id: f335bdfd-c4a6-4a49-3dd2-08dcece421f5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dXRRT0lGRDB6ZDdjK3BJeUtqa2hTZnZsNTMxK040QmIzb29uYmdHNTFHNTN2?=
- =?utf-8?B?eW5LYnpSQXBNMFBMWUsxRlplcllqMi8yU1RIcWJNd05RWVIyejYzemhqNFd4?=
- =?utf-8?B?Nk5iZFQ4dkVGN2dlYjR1dGJNdWFlK2tlWGlOalA3WXVnR00ydXBFeGRHWlNP?=
- =?utf-8?B?NVhQanExa1Y5dXBsdWJ1cGpQZVVkWC9iWDhGVlhrbGJHUDgxdDJCS3dqWFRt?=
- =?utf-8?B?d3J4WU5KWmFnQjE1RXl1OEpUczJ1YXlWTXp4eGZ2cXBOc3NpUTFuaFhSR1F1?=
- =?utf-8?B?bEJ4N0tzU2ZuTFZmVUZ5UFRKUHdDUThIb1dCMGFGcmM2bDVmbHFKTyt1L0FM?=
- =?utf-8?B?d2dwNUtqQkRSR2tyakdNOXQyRUtKd0xFSnNZdFVtOUZ3ZWxEZHk5SFBmdUow?=
- =?utf-8?B?Wk1BNS80ZlVyUmdwZzhENmc1R3g2c053eXFhTDdWRWxEWG9XZVVOV1lSakJG?=
- =?utf-8?B?cEdWMGU0OU5EemZ4cnYrR25RcFdzRUs1bWVHQWJXQ1JFQmlQOXgwSldoL3kz?=
- =?utf-8?B?MFdYYzBMTVJxcHF0Nkpabzc2RTBac0VwcXlFUTZDZ05OLzAzRUtIZU5MNHhR?=
- =?utf-8?B?Q05udzZYNEZJTDFYS3YrRGJDNHJrcHNaKzkyRWY5M0p4NzJScFZCYnptSnVY?=
- =?utf-8?B?aVh2dWZCbzNTT1ZmNjUwaXVhcmtYOG9QM1JsQ3BuUDBOUXBsOEZXdTREQXlw?=
- =?utf-8?B?MnhITXBndnE3ZmNmbHcyTnloSk00Y1M5NlB2dXRwaWhuRE9KcEQwelJkdWR4?=
- =?utf-8?B?MkZQK0NLMTFmY3NWOVlHOGtSQlJhcm5RSFNFWE43V08xWVhlM1hxdndsUnQ3?=
- =?utf-8?B?ZEliSWk0U3VmanNUaHcxR3F3MEFhZDJERGRaN095WHEvd2U3akR0ZC9ySkR3?=
- =?utf-8?B?VVVPaXdEUkFjaE1DTXN2eUdsb0wzd2Zic3JTamUwblJ0bkVNYlhpOVc1dlhk?=
- =?utf-8?B?R3NhZ2dENkxHVmNoRk5nNFdqdVk4dFZyK0RMVTQ5MDIxQmRnbXVvZE9hc1J4?=
- =?utf-8?B?MkVKWmErODN0aE9Uc2JuUzdSd0g5WlpuaVVpMDBUMTkxT0lzVWNDTzFaT1JH?=
- =?utf-8?B?NWtseU5IZkM2bzFNQjVGRmY1ck5rVGkvYkxHRTVrMldrYTgrWEU0ZzRtdHRB?=
- =?utf-8?B?U05BZVNreGU4VFV4TjB0eTVyYnk0Z1B4NkI2dDRPa08zNEdZaS91T3dGd2tR?=
- =?utf-8?B?T0g2SVViVkZrWWUwSkJWVXlxdEFmMFNzSTl6L01GNTBzWS9zcFJLL1Z6Umxx?=
- =?utf-8?B?eTdrMEQ2TzdzRytjOERibzFCeFVQZ3Y0SFVoc2ZmTmJweU1kcGRETlRRSC9Y?=
- =?utf-8?B?TW9XMnRSR0pxUFVucE5XdThGK1ZZRzBCYWg3SHRIZCtnZjFtN0lYODlJZmQy?=
- =?utf-8?B?U2NFdWx0eG1ObWN5ZXU2QjBTRXRHbGs1Vy9ORjhJVjNCcnlHN2hwVnlWK3Rq?=
- =?utf-8?B?emhITkdSVFhNbnhlS2VKT1Nxa29mbi9GTEppOVhKK3BodXhSR3Q3bzBXK0pl?=
- =?utf-8?B?cUtnMGRTajZBOVdwMWF2cHNuUG5aeWFkVU1oelhHajFHZ05zT1FYbVVYaGhS?=
- =?utf-8?B?WTNKN1ZRUjNTOVVCWXY3ZFhjekUrVWZtMkdkU1ArVlFDc1pZZE8zSUJLRzJ1?=
- =?utf-8?Q?lyR8cM2AnIuvJnXjJWLja56wxWoeM+qXcsH3pxY3bWmY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR01MB7057.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SHJGNkVDaCtEUnNRQ0o5WHdCd0ZGY3lVdlp3UDNySklqSndWRmNhZFZ0cXBI?=
- =?utf-8?B?NjJ2QmNoeTQxbzQ5bUZxcE9PNjZON2VjRlJCakdNR2ZrSE4wM3VqMDZ5bVh3?=
- =?utf-8?B?eDJQOEZjZDBLUHV2UXFGN3BrN3RYQXpUdkx5R1NvU3FVVDBKalV1ME1lZklM?=
- =?utf-8?B?L3E5cStNWHNCb2JxUFNURGwzWHozNm1kYzE1b1pKdGYwY2VLdktTT1BZSGZP?=
- =?utf-8?B?bEtvMGFkSDBKUDF0cnJyLzM1TkFIVklvWExpOW41SmRCUXFlcUNJVE9HZ3pE?=
- =?utf-8?B?eHFFSnlhemlWTDZzMHdVS2V0Sk11cWdGeUZoWm51M1RiM2RiS0R0QmZrNGJQ?=
- =?utf-8?B?S1ZJUDdBWFZuUG9JMEZpMkI1UDVlTHZpUERYQVhqcmxpQWNTcmpwc0Z4SEQz?=
- =?utf-8?B?Nk9uZldjUEw4NUFSV3dJVndtZ2dLcDRmbFlyRyt4Z2xUTGZYdWxJam9MYm4w?=
- =?utf-8?B?M3hrNDREZlBMdE01ZlIzZ09BYktUZXR0N28vWkpUcTcraHlScjBCT1NJODM2?=
- =?utf-8?B?bWFjRHhJV0NOUHpsTld5Rk1DWGdobFZPeTk4a2pLU2V2Zm1SbDl5WXp4TmVB?=
- =?utf-8?B?elZGMXRKVERRVklKaFp1TDV5Mm9yQVdTVDg5TVArbHZBbjJKaU96YUwxd1Bh?=
- =?utf-8?B?aEdxcTBvSDlBQkUzOFBRL1BUeCtkTFZzc2g1THdrR3hvNExrODhUMlhUOHF3?=
- =?utf-8?B?Mmo5UzJZN1NYQ1JQOFlMNnJmMGpOZlFKcFBVQ0JhL05NbERLU2hPVTlmT0FT?=
- =?utf-8?B?aHZwelk5MmlUWjh5WElzMXlEQSt2R3YvUmJzcEg4bWw3U21FMUR5aW5sSzhU?=
- =?utf-8?B?UGNCY2pRUVMvUzBzTzFhZXBzS0FwZGRjRmw2aE1hZ2c0aExZQlFOYkxvbHdk?=
- =?utf-8?B?ekVNV1plWWh1SEdRQ1lWcXdsUnd2cDJLdUZ0OWNMM2FSbnFHNjR1VnVLbFNR?=
- =?utf-8?B?aWZJT1kycmN5SnlBMWl4ck8wNTNlbnBCeHJYUTJuSU8vRXNVNEFmdEtiS1Zz?=
- =?utf-8?B?bThvRU5WangwdkE4SnBiZXlQdGJTQW5XS3BzV1F5OFhiODJIYXM0bE85OVNx?=
- =?utf-8?B?OHlONmlKTXJPZk5uSHdXVFg4aDF5YUU4dDh3QnJRNWZRVDBtd1VndFByM0V2?=
- =?utf-8?B?MnpsdXJRcEFVbUVFUTV1SHQxQzhrUE9wUnFMTWpjRzZ0V3lsb29RaElwb3hp?=
- =?utf-8?B?dVpmOHhmNGhQdlhEamg1NUgzNlRRQURRU2NnaDg0akk3QnpUeitXdmVnNjMw?=
- =?utf-8?B?NEF3V1c0ak51LzZ5WXhramxSNFJRaGp5aDlBeU5WSUg4Y2hEdW9ReXh3Uk1I?=
- =?utf-8?B?VkxOUG1FNmFXVVZuMUlpQWEzcXRBcWRQSFIyZDNheTJqei9XeGFqVmFLZzQ3?=
- =?utf-8?B?cGg3UllEMFBMZklyZHJXSzJEMGRmVFNzTkJXcVNTSHRGS3dpdis0cFdpNWJi?=
- =?utf-8?B?ck9nbEZ5ZFVQa0ZSU1h0UURoc3lQUlQycXZTTitaTnFmN3FsaXJuSWtwUEx4?=
- =?utf-8?B?bXNQS29saDJwRWxDYVBNcm1US2xDV3JZQm5iS1o4eHlyTzBUUjI1bHF0UXJj?=
- =?utf-8?B?V0xJT2M1blFpT2Z2eEJPNkF0ajkxd1hBNkhoWFhTUU1sRE52VE9xdW5HTXZZ?=
- =?utf-8?B?Q0dRam15TVo0QUNqcmNiaWpsRndqYngwU3FSS3BIaFhYUU5iS2N6b21oTDRr?=
- =?utf-8?B?clRHcjdIaFRMQytlU0Q4MVc5MXJoZU9LRHZqOGdzcUJQNEdqbWdhRkwxTmI4?=
- =?utf-8?B?MWZucUpLK3dxZFlhYkk0TXROWXFSZ2YzaEMzdjAzTmRadml6dS9pOTFIWCsz?=
- =?utf-8?B?R0ErVHNaVHE2WGpxUWtJSi9sSTdPeWlhakJ0bG12YjhZZWk3YXUxdDJKenVO?=
- =?utf-8?B?WFR3THR4bStjYkxKeHFVdFBJeGJIZE1tbnJUYWZPVEVTcyt5aVZBN09IRTR6?=
- =?utf-8?B?QnpqQlZtcFdUdS9sdUUybzBnbWtVZmM2UTNzTEdiT0tUQUhMcGcvbDNyQkFJ?=
- =?utf-8?B?WWRkcThMYzM3SWNLVXFmd1hRbWNGNENmZWJkZnc2WEwvL1ovRDVtMWFacEV0?=
- =?utf-8?B?RnAxdDNjZ2NEOHJIa0RMeHpzODJhNXp0ckh4aGM3TVVvbklXaDZGK0I2K0R4?=
- =?utf-8?B?dGVoYm1vMlpNd0txNyt1bWlqVHhkRDErRit3MmJzODZvc0Q1YlBESjhaaElz?=
- =?utf-8?Q?yUuAOzUOZNfvNji7cfDz5kQ=3D?=
-X-OriginatorOrg: amperemail.onmicrosoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f335bdfd-c4a6-4a49-3dd2-08dcece421f5
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR01MB7057.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2024 06:39:34.8351
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HD/4TNfpqp/xQYKkMJ/jNR3vGFKVSK9K1gAd/AN6UV/GEtah3dBbnQa0CWM4MP2r3MlJ+ThFWLwuDIRizMmaoPaimPlTnPqw6PEfjgYFs8opiDeG1KEM+smTzIApa6YP
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA6PR01MB8732
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241011121408.89890-13-dlemoal@kernel.org>
+
+Hi Damien,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on pci/next]
+[also build test ERROR on pci/for-linus mani-mhi/mhi-next linus/master v6.12-rc3 next-20241014]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Damien-Le-Moal/PCI-rockchip-ep-Fix-address-translation-unit-programming/20241011-201512
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20241011121408.89890-13-dlemoal%40kernel.org
+patch subject: [PATCH v4 12/12] PCI: rockchip-ep: Handle PERST# signal in endpoint mode
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20241015/202410151206.MIdxs469-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241015/202410151206.MIdxs469-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410151206.MIdxs469-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+         |                            ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:255:44: error: invalid use of undefined type 'struct pci_epc_map'
+     255 |         map->map_ofst = map->pci_addr - map->map_pci_addr;
+         |                                            ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:257:16: error: invalid use of undefined type 'struct pci_epc_map'
+     257 |         if (map->map_ofst + map->pci_size > SZ_1M)
+         |                ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:257:32: error: invalid use of undefined type 'struct pci_epc_map'
+     257 |         if (map->map_ofst + map->pci_size > SZ_1M)
+         |                                ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:258:20: error: invalid use of undefined type 'struct pci_epc_map'
+     258 |                 map->pci_size = SZ_1M - map->map_ofst;
+         |                    ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:258:44: error: invalid use of undefined type 'struct pci_epc_map'
+     258 |                 map->pci_size = SZ_1M - map->map_ofst;
+         |                                            ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:12: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |            ^~
+   In file included from include/vdso/const.h:5,
+                    from include/linux/const.h:4,
+                    from include/uapi/linux/kernel.h:6,
+                    from include/linux/cache.h:5,
+                    from include/linux/time.h:5,
+                    from include/linux/stat.h:19,
+                    from include/linux/configfs.h:22,
+                    from drivers/pci/controller/pcie-rockchip-ep.c:11:
+   drivers/pci/controller/pcie-rockchip-ep.c:260:34: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                  ^~
+   include/uapi/linux/const.h:49:44: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                            ^
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:50: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                                  ^~
+   include/uapi/linux/const.h:49:44: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                            ^
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:34: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                  ^~
+   include/uapi/linux/const.h:49:50: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                                  ^~~~
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:50: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                                  ^~
+   include/uapi/linux/const.h:49:50: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                                  ^~~~
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:34: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                  ^~
+   include/uapi/linux/const.h:49:61: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                                             ^~~~
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:50: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                                  ^~
+   include/uapi/linux/const.h:49:61: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                                             ^~~~
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c: In function 'rockchip_pcie_ep_perst_irq_thread':
+>> drivers/pci/controller/pcie-rockchip-ep.c:631:9: error: implicit declaration of function 'irq_set_irq_type'; did you mean 'irq_set_irq_wake'? [-Werror=implicit-function-declaration]
+     631 |         irq_set_irq_type(ep->perst_irq,
+         |         ^~~~~~~~~~~~~~~~
+         |         irq_set_irq_wake
+   drivers/pci/controller/pcie-rockchip-ep.c: In function 'rockchip_pcie_ep_setup_irq':
+>> drivers/pci/controller/pcie-rockchip-ep.c:660:9: error: implicit declaration of function 'irq_set_status_flags' [-Werror=implicit-function-declaration]
+     660 |         irq_set_status_flags(ep->perst_irq, IRQ_NOAUTOEN);
+         |         ^~~~~~~~~~~~~~~~~~~~
+>> drivers/pci/controller/pcie-rockchip-ep.c:660:45: error: 'IRQ_NOAUTOEN' undeclared (first use in this function); did you mean 'IRQF_NO_AUTOEN'?
+     660 |         irq_set_status_flags(ep->perst_irq, IRQ_NOAUTOEN);
+         |                                             ^~~~~~~~~~~~
+         |                                             IRQF_NO_AUTOEN
+   drivers/pci/controller/pcie-rockchip-ep.c:660:45: note: each undeclared identifier is reported only once for each function it appears in
+   drivers/pci/controller/pcie-rockchip-ep.c: At top level:
+   drivers/pci/controller/pcie-rockchip-ep.c:690:10: error: 'const struct pci_epc_ops' has no member named 'get_mem_map'
+     690 |         .get_mem_map    = rockchip_pcie_ep_get_mem_map,
+         |          ^~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:690:27: error: initialization of 'int (*)(struct pci_epc *, u8,  u8,  phys_addr_t,  u64,  size_t)' {aka 'int (*)(struct pci_epc *, unsigned char,  unsigned char,  long long unsigned int,  long long unsigned int,  unsigned int)'} from incompatible pointer type 'int (*)(struct pci_epc *, u8,  u8,  struct pci_epc_map *)' {aka 'int (*)(struct pci_epc *, unsigned char,  unsigned char,  struct pci_epc_map *)'} [-Werror=incompatible-pointer-types]
+     690 |         .get_mem_map    = rockchip_pcie_ep_get_mem_map,
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:690:27: note: (near initialization for 'rockchip_pcie_epc_ops.map_addr')
+   drivers/pci/controller/pcie-rockchip-ep.c:691:27: warning: initialized field overwritten [-Woverride-init]
+     691 |         .map_addr       = rockchip_pcie_ep_map_addr,
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:691:27: note: (near initialization for 'rockchip_pcie_epc_ops.map_addr')
+   cc1: some warnings being treated as errors
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=n] || GCC_PLUGINS [=y]) && MODULES [=y]
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
 
 
+vim +631 drivers/pci/controller/pcie-rockchip-ep.c
 
-On 15/10/2024 07:44, Andrew Jeffery wrote:
-> Hi Chanh,
-> 
-> On Mon, 2024-10-14 at 09:05 -0500, Rob Herring (Arm) wrote:
->> On Mon, 14 Oct 2024 10:50:31 +0000, Chanh Nguyen wrote:
->>> The Mt. Jefferson BMC is an ASPEED AST2600-based BMC for the Mt. Jefferson
->>> hardware reference platform with AmpereOne(TM)M processor.
->>>
->>> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
->>> ---
->>>   arch/arm/boot/dts/aspeed/Makefile             |   1 +
->>>   .../aspeed/aspeed-bmc-ampere-mtjefferson.dts  | 646 ++++++++++++++++++
->>>   2 files changed, 647 insertions(+)
->>>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts
->>>
->>
->>
->> My bot found new DTB warnings on the .dts files added or changed in this
->> series.
->>
->> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->> are fixed by another series. Ultimately, it is up to the platform
->> maintainer whether these warnings are acceptable or not. No need to reply
->> unless the platform maintainer has comments.
->>
->> If you already ran DT checks and didn't see these error(s), then
->> make sure dt-schema is up to date:
->>
->>    pip3 install dtschema --upgrade
->>
->>
->> New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-ampere-mtjefferson.dtb' for 20241014105031.1963079-1-chanh@os.amperecomputing.com:
->>
->> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
->> 	'ampere,mtjefferson-bmc' is not one of ['delta,ahe50dc-bmc', 'facebook,galaxy100-bmc', 'facebook,wedge100-bmc', 'facebook,wedge40-bmc', 'microsoft,olympus-bmc', 'quanta,q71l-bmc', 'tyan,palmetto-bmc', 'yadro,vesnin-bmc']
->> 	'ampere,mtjefferson-bmc' is not one of ['amd,daytonax-bmc', 'amd,ethanolx-bmc', 'ampere,mtjade-bmc', 'aspeed,ast2500-evb', 'asrock,e3c246d4i-bmc', 'asrock,e3c256d4i-bmc', 'asrock,romed8hm3-bmc', 'asrock,spc621d8hm3-bmc', 'asrock,x570d4u-bmc', 'bytedance,g220a-bmc', 'facebook,cmm-bmc', 'facebook,minipack-bmc', 'facebook,tiogapass-bmc', 'facebook,yamp-bmc', 'facebook,yosemitev2-bmc', 'facebook,wedge400-bmc', 'hxt,stardragon4800-rep2-bmc', 'ibm,mihawk-bmc', 'ibm,mowgli-bmc', 'ibm,romulus-bmc', 'ibm,swift-bmc', 'ibm,witherspoon-bmc', 'ingrasys,zaius-bmc', 'inspur,fp5280g2-bmc', 'inspur,nf5280m6-bmc', 'inspur,on5263m5-bmc', 'intel,s2600wf-bmc', 'inventec,lanyang-bmc', 'lenovo,hr630-bmc', 'lenovo,hr855xg2-bmc', 'portwell,neptune-bmc', 'qcom,centriq2400-rep-bmc', 'supermicro,x11spi-bmc', 'tyan,s7106-bmc', 'tyan,s8036-bmc', 'yadro,nicole-bmc', 'yadro,vegman-n110-bmc', 'yadro,vegman-rx20-bmc', 'yadro,vegman-sx20-bmc']
->> 	'ampere,mtjefferson-bmc' is not one of ['ampere,mtmitchell-bmc', 'aspeed,ast2600-evb', 'aspeed,ast2600-evb-a1', 'asus,x4tf-bmc', 'facebook,bletchley-bmc', 'facebook,catalina-bmc', 'facebook,cloudripper-bmc', 'facebook,elbert-bmc', 'facebook,fuji-bmc', 'facebook,greatlakes-bmc', 'facebook,harma-bmc', 'facebook,minerva-cmc', 'facebook,yosemite4-bmc', 'ibm,blueridge-bmc', 'ibm,everest-bmc', 'ibm,fuji-bmc', 'ibm,rainier-bmc', 'ibm,system1-bmc', 'ibm,tacoma-bmc', 'inventec,starscream-bmc', 'inventec,transformer-bmc', 'jabil,rbp-bmc', 'qcom,dc-scm-v1-bmc', 'quanta,s6q-bmc', 'ufispace,ncplite-bmc']
->> 	'aspeed,ast2400' was expected
->> 	'aspeed,ast2500' was expected
->> 	from schema $id: http://devicetree.org/schemas/arm/aspeed/aspeed.yaml#
->>
-> 
-> This needs to be fixed as pointed out by Krzysztof.
-> 
+   618	
+   619	static irqreturn_t rockchip_pcie_ep_perst_irq_thread(int irq, void *data)
+   620	{
+   621		struct pci_epc *epc = data;
+   622		struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+   623		struct rockchip_pcie *rockchip = &ep->rockchip;
+   624		u32 perst = gpiod_get_value(rockchip->perst_gpio);
+   625	
+   626		if (perst)
+   627			rockchip_pcie_ep_perst_assert(ep);
+   628		else
+   629			rockchip_pcie_ep_perst_deassert(ep);
+   630	
+ > 631		irq_set_irq_type(ep->perst_irq,
+   632				 (perst ? IRQF_TRIGGER_HIGH : IRQF_TRIGGER_LOW));
+   633	
+   634		return IRQ_HANDLED;
+   635	}
+   636	
+   637	static int rockchip_pcie_ep_setup_irq(struct pci_epc *epc)
+   638	{
+   639		struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+   640		struct rockchip_pcie *rockchip = &ep->rockchip;
+   641		struct device *dev = rockchip->dev;
+   642		int ret;
+   643	
+   644		if (!rockchip->perst_gpio)
+   645			return 0;
+   646	
+   647		/* PCIe reset interrupt */
+   648		ep->perst_irq = gpiod_to_irq(rockchip->perst_gpio);
+   649		if (ep->perst_irq < 0) {
+   650			dev_err(dev, "No corresponding IRQ for PERST GPIO\n");
+   651			return ep->perst_irq;
+   652		}
+   653	
+   654		/*
+   655		 * The perst_gpio is active low, so when it is inactive on start, it
+   656		 * is high and will trigger the perst_irq handler. So treat this initial
+   657		 * IRQ as a dummy one by faking the host asserting #PERST.
+   658		 */
+   659		ep->perst_asserted = true;
+ > 660		irq_set_status_flags(ep->perst_irq, IRQ_NOAUTOEN);
+   661		ret = devm_request_threaded_irq(dev, ep->perst_irq, NULL,
+   662						rockchip_pcie_ep_perst_irq_thread,
+   663						IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+   664						"pcie-ep-perst", epc);
+   665		if (ret) {
+   666			dev_err(dev, "Request PERST GPIO IRQ failed %d\n", ret);
+   667			return ret;
+   668		}
+   669	
+   670		return 0;
+   671	}
+   672	
 
-Thank Andrew, I'll update that in patch v2
-
-> *snip*
-> 
->> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /ahb/apb/bus@1e78a000/i2c@180/i2c-mux@70/i2c@0/psu@58: failed to match any schema with compatible: ['pmbus']
->> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /ahb/apb/bus@1e78a000/i2c@180/i2c-mux@70/i2c@0/psu@59: failed to match any schema with compatible: ['pmbus']
-> 
-> These two should also be fixed. The compatible must describe the
-> physical device, not the communication/application protocol. It may be
-> necessary to add a binding if there's not one already for the device.
-> 
-
-Hi Andrew, My device is following the pmbus specification. So I'm using 
-the generic pmbus driver 
-(https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/hwmon/pmbus/pmbus.c#n237) 
-to probe my device. In arch/arm/boot/dts/aspeed/ directory, many boards 
-are also using this compatible to probe our devices.
-
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts#n219
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/boot/dts/aspeed/aspeed-bmc-inventec-transformers.dts#n263
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/boot/dts/aspeed/aspeed-bmc-tyan-s8036.dts#n260
-
-Andrew, Recently I saw the ASPEED platform's maintainer accept the 
-"pmbus" compatible with a warning log. You can see in the below list 
-that patches were merged recently.
-
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=bb3776e564d2190db0ef45609e66f13c60ce5b48
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=28cfb03afcb20a841e96e821ba20870a7c437034
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=36d96827f480e90037d162098061333e279ea35f
-
-Regards,
-Chanh Ng
-
-
-> Andrew
-> 
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
