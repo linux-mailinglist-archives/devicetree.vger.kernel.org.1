@@ -1,160 +1,95 @@
-Return-Path: <devicetree+bounces-111268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FE899DF41
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 09:26:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7443D99DFFC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 09:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75D511C213E1
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:26:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 198F1B240F4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 07:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C5C18BBBA;
-	Tue, 15 Oct 2024 07:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GQdc9DVF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD28B1AE006;
+	Tue, 15 Oct 2024 07:57:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE719474;
-	Tue, 15 Oct 2024 07:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276951ABEB8;
+	Tue, 15 Oct 2024 07:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728977211; cv=none; b=FXkYfJkdi75rFLdhdXF7RY3bAmnX1ZfyDuDHI7RxY43XvMypbNNTUaud/P0tWhWFDTyIUsbXsW4oItR1mPRgRghLlP7VtlVtWsmiPamXYD4iLxLQWvLhWxDTbL8IDi7u/zInWPo5lmZSmfkhsCqKqoSmgxFfmJajx+bm2XjKulY=
+	t=1728979063; cv=none; b=dkokxHBNbHHAYtjjgCXkzgJEIdPpFicW0bM/aHFQtCrUjsrxnXGqzFmCE4uKNZ2L3T36YSvGpQnri+hVgzh1URoiDtfLV+X17E5DsSozWa/iyClXlxpDfUTnRSLvr4PzZRT8wrnx/G23yLEMP4wrKV1r93doQdq8UXASMtJMCPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728977211; c=relaxed/simple;
-	bh=AFwOLTJBM7YSONnnjQ8PrBR6mSkmXeYFl9Z1iatT4Vc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QeEWRUi3NLGuSbCZDbmeDWJAQ2i3/aRHuEKi4UJXAV4Aznfr4ZVesOd+wIAr23omM3x35gtFdKv+kLlUQyavpr7pK/w6OW4Il5Udp0kLH14fCUHLkfI0LWa69WVkqlb4NbD6JFw/+aWoALP9KHl01dC10IYfDnwrSk/ARh+otwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GQdc9DVF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49F0l0KZ011535;
-	Tue, 15 Oct 2024 07:26:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Q526+r0Dcxm3qRY0GFP4GetrV21kKQI4ls6mq6CHL6w=; b=GQdc9DVFk8PN8GUS
-	5RHr19x5Ruoc/tMxM9VValt5R8ZURrju0GflIkHimqVS6wCP+cac58UF2AThebGs
-	vARlrt4QRFg6g1Lf+t1RGsnmrWLlEAPuk4YKW8qGzGr4eM08HFXwnBQalUnlYGa/
-	SvYZRtPsxNFAsG1fPQ64ZS5rOW1F/7c7HE9e3X1U9FwDGUzKDS5xv/LBVDvbV49B
-	LY//cyD2snH+mIl5zu19aGhAzBK//JvkBEwAfIb8u6BLsKaZK3pGhxySg3Zd7J2q
-	UaggEYW54SN0UkgfXJPmJ7esldj+eOl0bHYeX83lFG7qOM+jqOhwsCcR5ZbPJpBJ
-	7ugwJQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 429e5g0s8a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Oct 2024 07:26:42 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49F7Qfce007232
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Oct 2024 07:26:41 GMT
-Received: from [10.204.101.50] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 15 Oct
- 2024 00:26:36 -0700
-Message-ID: <ba4620df-7933-3730-eb9a-ffdd5cd98adb@quicinc.com>
-Date: Tue, 15 Oct 2024 12:56:34 +0530
+	s=arc-20240116; t=1728979063; c=relaxed/simple;
+	bh=gJbvZ4ihg9NU9ggA0FMT/mLb35qajlrUSUmtskjYl1Y=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=msGeUBkKAThw5KuJ6Egb78/b28v1LapVlsp39pSj/FzmQLBWiUZrtncAmVwsboM0PRVfYgkcS5sA/JczZev8vjUtkYsFandfGPxJid2e0ar8GykNm+1cXgFVhyujg9a5xP7giRHi5XmDpJ3pwNDIPaOUANxNHa1G+cBitETJVPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 707E0200C6D;
+	Tue, 15 Oct 2024 09:57:35 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3B0DE2005A4;
+	Tue, 15 Oct 2024 09:57:35 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 2D503183DC03;
+	Tue, 15 Oct 2024 15:57:33 +0800 (+08)
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	abelvesa@kernel.org,
+	peng.fan@nxp.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com
+Cc: hongxing.zhu@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@pengutronix.de
+Subject: [PATCH v5 0/2] Add one clock gate for i.MX95 HSIO block
+Date: Tue, 15 Oct 2024 15:34:02 +0800
+Message-Id: <1728977644-8207-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 00/28] Qualcomm iris video decoder driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: Hans Verkuil <hverkuil@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vedang Nagar <quic_vnagar@quicinc.com>
-References: <20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com>
- <e954a3b7-296f-4dbf-8325-b5993d11da92@kernel.org>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <e954a3b7-296f-4dbf-8325-b5993d11da92@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3FJMYedsetfFeeXfYQEGnrlFEi1Ss1a5
-X-Proofpoint-ORIG-GUID: 3FJMYedsetfFeeXfYQEGnrlFEi1Ss1a5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- adultscore=0 impostorscore=0 mlxscore=0 priorityscore=1501 suspectscore=0
- bulkscore=0 phishscore=0 spamscore=0 mlxlogscore=880 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410150049
 
+REF_EN (Bit6) of LFAST_IO_REG control i.MX95 PCIe REF clock out
+enable/disable.
+Add one clock gate for i.MX95 HSIO block to support PCIe REF clock
+out gate.
 
+v5 changes:
+- Rebase to v6.12-rc3.
 
-On 10/14/2024 5:24 PM, Krzysztof Kozlowski wrote:
-> On 14/10/2024 11:07, Dikshita Agarwal wrote:
->> Introduce support for Qualcomm new video acceleration hardware i.e.
->> iris, used for video stream decoding.
->>
->> Iris is a multi pipe based hardware that offloads video stream decoding
->> from the application processor (AP). It supports H.264 decoding.
->> The AP communicates with hardware through a well defined protocol,
->> called as host firmware interface (HFI), which provides fine-grained
->> and asynchronous control over individual hardware features.
->>
->> This driver implements upgraded HFI gen2 to communicate with firmware.
->> It supports SM8550 which is based out of HFI gen 2. It also supports
->> SM8250 which is based out of HFI gen1.
->>
->> This driver comes with below capabilities:
->> - V4L2 complaint video driver with M2M and STREAMING capability.
->> - Supports H264 decoder.
->>
->> This driver comes with below features:
->> - Centralized resource management.
->> - Centralized management of core and instance states.
->> - Defines platform specific capabilities and features. As a results, it
->>   provides a single point of control to enable/disable a given feature
->>   depending on specific platform capabilities.
->> - Handles various video recommended sequences, like DRC, Drain, Seek,
->>   EOS.
->> - Implements asynchronous communication with hardware to achieve better
->>   experience in low latency usecases.
->> - Output and capture planes are controlled independently. Thereby
->>   providing a way to reconfigure individual plane.
->> - Native hardware support of LAST flag which is mandatory to align with
->>   port reconfiguration and DRAIN sequence as per V4L guidelines.
->>
->> Changes since v3:
-> 
-> You send the patches with b4, so why do you strip the link to previous
-> series? It makes out life just more difficult. Include the link, how the
-> b4 instructs you.
-> 
-Sure, Noted.
+v4 changes:
+- Correct typo in commit message of #2 patch.
 
-Link to v3 -
-https://lore.kernel.org/linux-media/9b116753-9a21-4f9c-b86f-dded20713b53@linaro.org/
+v3 changes:
+- Squash first two dt-binding patches into one.
+- Add Krzysztof's Acked-by tag, and Frank's Reviewed-by tag.
 
-Thanks,
-Dikshita
+v2 changes:
+- Correct the compatible entries by alphabetical order
+- Include all necessary To/Cc entried reminderd by Krzysztof.
+Thanks.
 
-> Best regards,
-> Krzysztof
-> 
+[PATCH v5 1/2] dt-bindings: clock: nxp,imx95-blk-ctl: Add compatible
+[PATCH v5 2/2] clk: imx95-blk-ctl: Add one clock gate for HSIO block
+
+Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml |  5 +++--
+drivers/clk/imx/clk-imx95-blk-ctl.c                            | 20 ++++++++++++++++++++
+2 files changed, 23 insertions(+), 2 deletions(-)
 
