@@ -1,72 +1,56 @@
-Return-Path: <devicetree+bounces-111593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759ED99F5EF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:44:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9532599F60B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:51:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 012061F2554D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:44:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09C28281706
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F362036E5;
-	Tue, 15 Oct 2024 18:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE8820370D;
+	Tue, 15 Oct 2024 18:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="AevDnAo6"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=deller@gmx.de header.b="MC+ozjnY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45022036F0
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 18:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDDD2036F1;
+	Tue, 15 Oct 2024 18:51:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729017853; cv=none; b=ngsXScFlEuYXBndhndFuLewPyADYcyO3Cekg9ZlQanz1OzgRj2dLs7kj08ac6GPftlx4vT5wKyqYn8iUIn4ixqqo9hjHrrT2tFby1JBJnOb/bUiYls4sskMOo2onr53GeBhWA3sDLhs6ngRX0vxodfctn66ef6IcvWYYuW3Lq64=
+	t=1729018297; cv=none; b=uQfTmy5tO+dhnX1zHGdzWG5aLtygMqDX7jIBrYRh7Y+yLrWYVfgJHT/FXY4/+YHxaDiY28l+bG34BPwL2eWeF5rlygCHTFQNKt87lD6QWgw/nUDetxcWtuC8XAMgZSTlTbnfuj3wKDlVA8yCYajtuO9RJS3e6zD5SelGm8ZShCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729017853; c=relaxed/simple;
-	bh=w6OKnR0WlNxCnYdj8s6LQkJtAOoLnQJdnbXkyhcg9p4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=WAOKocOdhe7QhQIP2h7GpT0296+kg/YMHZSO8iQjKYJ4+wIgqDETOaWidFrUq0WCscbQhyLP47OpyPawpdKgWp3TAtSins8FWZsBGzupf413n094yqXcu/9joZf/J0gHt3sfi9xkCQiB4A5iR/P23mFIsl45H0PiLBmV2Le20UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=AevDnAo6; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20241015184402euoutp027c382b56f61214e32579912d82551863~_tJE7Gxv81372313723euoutp02P
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 18:44:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20241015184402euoutp027c382b56f61214e32579912d82551863~_tJE7Gxv81372313723euoutp02P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1729017842;
-	bh=HuC5Q9IVnT9C9ZqpNbJeHd8wdpadVR4wwXRjo0qvcnM=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=AevDnAo6B7wHZsA2xvIcI64Mm82mRWL2WInyQE0EPt1iZlGNSlwZj7Axw+sFD37a+
-	 x5OE7uW4iQC2hBkQDu/15MbmVoJy+Rb8NoVrPHPGmUaEQjnsgTZKqZhYwqaspgSqwz
-	 a+S4mbeHdhNcnnKaWcRvBPoRo1KerWN2fcWO8ubM=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20241015184402eucas1p25b7f6832596302aa419497c9e7c73915~_tJEkmmoB0374103741eucas1p2B;
-	Tue, 15 Oct 2024 18:44:02 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id 6A.1D.09875.2F7BE076; Tue, 15
-	Oct 2024 19:44:02 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20241015184401eucas1p2a9a19f6e99a7b47f20574fcef500313f~_tJD4YnTg1034210342eucas1p2R;
-	Tue, 15 Oct 2024 18:44:01 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241015184401eusmtrp1ec0fd5726de5a734ef78a03bd4a68f38~_tJDpQbyS0484904849eusmtrp14;
-	Tue, 15 Oct 2024 18:44:01 +0000 (GMT)
-X-AuditID: cbfec7f4-131ff70000002693-09-670eb7f276f2
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id 5F.54.14621.1F7BE076; Tue, 15
-	Oct 2024 19:44:01 +0100 (BST)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20241015184400eusmtip2cb3004d5575998c9688dbea89091a9ab~_tJC7Olvv0203102031eusmtip2i;
-	Tue, 15 Oct 2024 18:44:00 +0000 (GMT)
-Message-ID: <4825037e-08e6-4946-9aee-a19512fb2346@samsung.com>
-Date: Tue, 15 Oct 2024 20:44:00 +0200
+	s=arc-20240116; t=1729018297; c=relaxed/simple;
+	bh=4RQYhM1GERHWSxPDCyVIe0s/83fAm3MMFNdqMZSuIfk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=kvce9gTQn3+q64X5M3Al0veqAUYLjTOF/7iMrYWCYqact0WDvr+bcyiwFw1Es7VJDtE+aOKCtt20BoQ+dWuTwxcreWaZi9vHNaowyYvMNxB/OPu2yuauALEOhDeQsuLxFmygPC7JThUMqjhmZKcnwzNBdON+8n+CHBhROAdK4sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=deller@gmx.de header.b=MC+ozjnY; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1729018269; x=1729623069; i=deller@gmx.de;
+	bh=9jaQnEjymFY3oxOxnvMn1q08An0kyg3ycazGUlE2w4Y=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=MC+ozjnYCodS1EJ0Jv4hpnQM7VCHIB5SXkONEUhNHuAOnVlfFVPVIIs7VLPy2PtZ
+	 o9vBYGYylfNDj/5P23G9x7Pu6dolQAsb8h8utLkcwMEHaagBj4JO3uSPxoUiN6xDt
+	 OAGKl09queEsN/xtOniVe9DxH8dtbOLPGKOi+A+oNce44ed8bgTmDW450AVXVEy0O
+	 lgF8ouPYMEZxLpCkg+ItHAnPABawQtjB30yb2RSIYwELsgQ7IymtseNP24ZAz30KS
+	 kuw7SNpseL1dXniyaKJ3y9Sn6CKLHqo5qnkn941bWO/GzjI/Si9vOCDT2vqNb3vst
+	 w1MSBMBmZxSHwmtPSQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.20.55] ([109.250.63.79]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N7i8O-1u46wB0nD8-00zMgp; Tue, 15
+ Oct 2024 20:51:09 +0200
+Message-ID: <cc055b74-f424-45a9-a4ae-d8881dd985a0@gmx.de>
+Date: Tue, 15 Oct 2024 20:51:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,170 +58,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] riscv: dts: thead: Add mailbox node
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, jassisinghbrar@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	m.szyprowski@samsung.com
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 8/9] fbdev: omapfb: use new of_graph functions
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Jaroslav Kysela <perex@perex.cz>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+ linux-omap@vger.kernel.org
+References: <87wmiirqwy.wl-kuninori.morimoto.gx@renesas.com>
+ <87ldyyrqv7.wl-kuninori.morimoto.gx@renesas.com>
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <CAJM55Z-bzivMZWUsHiii+2tw2-kdRe7kqtVa+MvPEAVTmOvChg@mail.gmail.com>
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAKsWRmVeSWpSXmKPExsWy7djPc7qftvOlG0y8IWKx9fcsdos1e88x
-	Wcw/co7V4t6lLUwWlzpXMFq82NvIYnFtxVx2i5ez7rFZXN41h81i2+cWNou1R+4CxS73MFu0
-	zeK3+L9nB7tFy/4pLA78HrMaetk83rx8yeJxuOMLu8fOWXfZPTat6mTz2Lyk3qNl7TEmj/f7
-	rrJ59G1Zxehxqfk6u8fnTXIB3FFcNimpOZllqUX6dglcGa+3XWcveClfsaWnla2BsV+qi5GT
-	Q0LAROLegzvsXYxcHEICKxglDh64zgaSEBL4wiixbV0uROIzo0Tj2u9sMB03G3uhOpYzSsw4
-	M40NwnnLKHHjUw8TSBWvgJ3El1N3wDpYBFQlLj16zQgRF5Q4OfMJC4gtKiAvcf/WDKBJHBzC
-	AvYSG7sEQeaICKxmkth4tQlsDrNAvMTjKRegbHGJW0/mg9lsAkYSD5bPZwWxOQUCJWbO2wpV
-	Iy/RvHU2M8ggCYH9nBKvp19ihjjbReLyzj+sELawxKvjW9ghbBmJ05N7WCDsfIkHWz9B1ddI
-	7Ow5DmVbS9w594sN5FBmAU2J9bv0IcKOEtuXXgcLSwjwSdx4KwhxAp/EpG3TmSHCvBIdbUIQ
-	1WoSU3t64ZaeW7GNaQKj0iykQJmF5MlZSJ6ZhbB3ASPLKkbx1NLi3PTUYqO81HK94sTc4tK8
-	dL3k/NxNjMBEePrf8S87GJe/+qh3iJGJg/EQowQHs5II76Qu3nQh3pTEyqrUovz4otKc1OJD
-	jNIcLErivKop8qlCAumJJanZqakFqUUwWSYOTqkGJu78+xdd5LZrnbzDHfDux7IdXPNijz7I
-	v7Z+od2Ep3y3F1/vT/zXU2mcKP5mlmD4pW3zpxvkbzQNrby6a9OcnGAr/r3rTR/Ui2wRmTFr
-	qWpZ+Z+ks2vTXt5S8o165R/3pHh9R9Px/e6P5HkKbm+ZucJm5+a4u+1vW1L397rIf7uY/nPD
-	tOQLH1etkLOVj+QNrrX/ZerqenLPEcucqye4JvyvdVHhkZR/+P3pD8Mnf7WPyLjy/mt4JdkZ
-	+ZZX+sZjD8dLNr8Oum55xHhm6dJ4PdvjHzNYGlR+Guzy+RkUkvHUx6browp7a6Bp89ml6xvv
-	FjP6+F54UvxJ8EiMZtm6nui4N13tmd38LcpnFk55eV2JpTgj0VCLuag4EQCpNp7n8wMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrIIsWRmVeSWpSXmKPExsVy+t/xe7oft/OlG5w7KWax9fcsdos1e88x
-	Wcw/co7V4t6lLUwWlzpXMFq82NvIYnFtxVx2i5ez7rFZXN41h81i2+cWNou1R+4CxS73MFu0
-	zeK3+L9nB7tFy/4pLA78HrMaetk83rx8yeJxuOMLu8fOWXfZPTat6mTz2Lyk3qNl7TEmj/f7
-	rrJ59G1Zxehxqfk6u8fnTXIB3FF6NkX5pSWpChn5xSW2StGGFkZ6hpYWekYmlnqGxuaxVkam
-	Svp2NimpOZllqUX6dgl6Ga+3XWcveClfsaWnla2BsV+qi5GTQ0LAROJmYy97FyMXh5DAUkaJ
-	pdc3M0MkZCSudb9kgbCFJf5c62KDKHrNKDG99xU7SIJXwE7iy6k7bCA2i4CqxKVHrxkh4oIS
-	J2c+AWsWFZCXuH9rBlA9B4ewgL3Exi5BkLCIwGomiVOPIkHCzALxEhtuKkOMn8Akce3ZIlaQ
-	GmYBcYlbT+YzgdhsAkYSD5bPB4tzCgRKzJy3lQmiV11i/TwhiHJ5ieats5knMArNQnLELCST
-	ZiF0zELSsYCRZRWjSGppcW56brGhXnFibnFpXrpecn7uJkZg3G879nPzDsZ5rz7qHWJk4mA8
-	xCjBwawkwjupizddiDclsbIqtSg/vqg0J7X4EKMpMCAmMkuJJucDE09eSbyhmYGpoYmZpYGp
-	pZmxkjiv2+XzaUIC6YklqdmpqQWpRTB9TBycUg1MEk2Cm7m2OBT02pe+uHmI7bGCvVFI45KD
-	taGWB/yCY6+6lv4wZ463nV4kXSHgclL/n+XL2dZ/H2X9+rterfC5qKedlydbvLnBfi6ezMpV
-	TqdaZ5he/PfXer6x+jHfkusxG5+5/2t6sn8hdz8Tk9TOPUIzugva/3R/v9GzvvHRUtkPxfuf
-	3sm+HXc2/AjffT/720z/j2xNFrr0+MKGedwthudsIhcZ/T825VMoU6dn0NFp3357t/zemuM4
-	J/lt97wynS9pNpdPXfuuVf+l816UftPDy4kyx7y/3WOZcsJYQF5td3H7PU7ZvvUH0g7PrdLh
-	X5ZhEHR9mliKWaxr61wWnSBHy2cyamcmCdXHqhopsRRnJBpqMRcVJwIAZ8em64QDAAA=
-X-CMS-MailID: 20241015184401eucas1p2a9a19f6e99a7b47f20574fcef500313f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328
-References: <20241014123314.1231517-1-m.wilczynski@samsung.com>
-	<CGME20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328@eucas1p2.samsung.com>
-	<20241014123314.1231517-4-m.wilczynski@samsung.com>
-	<CAJM55Z-bzivMZWUsHiii+2tw2-kdRe7kqtVa+MvPEAVTmOvChg@mail.gmail.com>
+From: Helge Deller <deller@gmx.de>
+Autocrypt: addr=deller@gmx.de; keydata=
+ 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
+In-Reply-To: <87ldyyrqv7.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:EdVI0VSYeL3LEOEJi+jbSkms2cqQAE1hN0i+/9ZcCXcEGnmNG0n
+ gj0Dp1Xb0FLCEB1Pmha36fyLEIHmAUNJHUnVUOXn/XYf+iwVVsIDWvqJuByBOfLs91Bk1se
+ o7WoInpOefGGHfmvdjloogyUuWi7FcB2xNXLcOOFyyNv1Z5QQzIG9OHBEqHjDEG0N40k5yZ
+ 2gzcyvmMsR2CUL+wYCTfA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:zPouFLlPz0M=;gnMXag3WKBn0uZpYW3G8t8VVrpZ
+ afPUrS5i7P6iHoOeiY3ybTUI1T9MIwvF4UP+R3whEtLqyxOfU/o8tGlZyLpnfWDEz5KONemre
+ IAENelYowMsZgNUbMnEEK0IjNezITScNNToEpsfISMUl3xd0XuNTSzCaODbbE9TKGHesY62NE
+ J6vxs5qX2NQyciPX1SAMJxDJNiy9lk3SjiZY0CE9LL6+IYrkD2V20vF5Inr684DjOTlkS2S40
+ z/XcBtCaIk6krvXzWoNLjAfB2A1qNbX0kQ6oOrj17nAyaLtjbaSMRaFP+LL/cPI8WcREpJP1B
+ QkTPCdBmlRzMhXYls+moSajojWqQCjYk4G1jOkOvkft/QdIxKLwwOUc3KcOkgvu6mpV3TX9PG
+ syqwv4QFGASh0gEJk3i09GnQ+x9Sc4jgYjJ9WaSHjLT+HmE/RgNF9ZBAM1dXi+V187aK9Jbec
+ Pvd/8jAOx26pFr0qbpEA3HNx9FteXYf4s8ngCLSPyq6HqYWhbMHdzSSTmyvXX7Jr59Dmc+jQh
+ JNyEouHIE4zTWJLxZ8kRXw4hwWcgBGdyl40hZchV1i7NcjY8jz90g9jnECs4H/HtlCfc6uNEe
+ MeXUZT2Yn7yLdqp+5/7a6wp0ypiLcPhadiQ6Bv9Ka6C6X7bphQ4gMWIZ7iYsSw4ZOmBE3PaAH
+ F2CF18RMFVSrmRI/8qEfoQKXJ7d5v87K5AiBPaAb+fymm5RxHTInVDHm6Fg1/JdwzD2gBl8qm
+ e67vOz3BEHpTKxuDIdollUZSzQPjCdAJ3hWXPYRhGO9abUozXJRMLToc65DOOIJFw85lh4lIC
+ C0cnFw0CMCHBNbG8fF+Z92OQ==
 
+On 10/9/24 03:45, Kuninori Morimoto wrote:
+> Now we can use new port related functions for port parsing. Use it.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
+Acked-by: Helge Deller <deller@gmx.de>
 
-On 10/14/24 16:57, Emil Renner Berthing wrote:
-> Michal Wilczynski wrote:
->> Add mailbox device tree node. This work is based on the vendor kernel [1].
->>
->> Link: https://protect2.fireeye.com/v1/url?k=0bc95f25-545267d8-0bc8d46a-000babff317b-85a52eab21db9d22&q=1&e=63a49acd-e343-43d2-a57d-b4f6fcd23b61&u=https%3A%2F%2Fgithub.com%2Frevyos%2Fthead-kernel.git [1]
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
->>  1 file changed, 12 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
->> index 6992060e6a54..435f0ab0174d 100644
->> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
->> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
->> @@ -555,5 +555,17 @@ portf: gpio-controller@0 {
->>  				interrupts = <55 IRQ_TYPE_LEVEL_HIGH>;
->>  			};
->>  		};
->> +
->> +		mbox_910t: mailbox@ffffc38000 {
-> 
-> Hi Michal,
-> 
-> Thanks for your patch! Please sort this by address similar to the other nodes.
+> ---
+>   drivers/video/fbdev/omap2/omapfb/dss/dpi.c    |  3 +-
+>   drivers/video/fbdev/omap2/omapfb/dss/dss-of.c | 66 -------------------
+>   drivers/video/fbdev/omap2/omapfb/dss/dss.c    | 20 +++---
+>   drivers/video/fbdev/omap2/omapfb/dss/sdi.c    |  3 +-
+>   include/video/omapfb_dss.h                    |  8 ---
+>   5 files changed, 13 insertions(+), 87 deletions(-)
 
-Thank you for your review. Will do.
-
-> 
->> +		       compatible = "thead,th1520-mbox";
->> +		       reg = <0xff 0xffc38000 0x0 0x4000>,
-> 
-> The documentation[1] calls this area MBOX0_T, but it says it's 24kB long.
-> 
-> [1]: https://protect2.fireeye.com/v1/url?k=182b68d6-47b0502b-182ae399-000babff317b-d2b05f97b85a09ff&q=1&e=63a49acd-e343-43d2-a57d-b4f6fcd23b61&u=https%3A%2F%2Fgit.beagleboard.org%2Fbeaglev-ahead%2Fbeaglev-ahead%2F-%2Fblob%2Fmain%2Fdocs%2FTH1520%2520System%2520User%2520Manual.pdf
-> 
->> +			     <0xff 0xffc44000 0x0 0x1000>,
-> 
-> According to the documentation this is inside the 24kB MBOX1_T area.
-> 
->> +			     <0xff 0xffc4c000 0x0 0x1000>,
-> 
-> This is callod MBOX2_T, but is 8kB long.
-> 
->> +			     <0xff 0xffc54000 0x0 0x1000>;
-> 
-> This is callod MBOX3_T, but is 8kB long.
-> 
->> +		       reg-names = "local", "remote-icu0", "remote-icu1", "remote-icu2";
-> 
-> Maybe these should match the MBOXn_T names in the documentation?
-
-Indeed, those are excellent points. I wondered about this today, trying
-to understand why the mapping was done this way.
-
-For the MBOX0_T mapping, the mailbox driver needs to map the M0_*
-registers, including the M0_Cn registers, where other cores write their
-messages. This setup requires a total of 16KB, with an additional 8KB
-that remains unused.
-
-Regarding MBOX1_T, MBOX2_T, and MBOX3_T, only one set of registers is
-necessary - specifically, Mn_C0 since the kernel always sends messages
-from the 910t core with CPU_IDX=0.
-
-The MBOX1_T mapping is particularly confusing, as the relevant
-registers, M1_C0*, start with an offset of 0x4000 relative to the
-beginning of the mapping.
-
-For MBOX2_T and MBOX3_T, the necessary register sets, M2_C0 and M3_C0,
-each occupy 4KB of address space, leaving extra 4kB unused.
-
-I assume the hardware designers found these mappings more
-straightforward to implement this way. I’m fairly confident that these
-numbers are accurate, as I have tested them and confirmed they work.
-
-> 
->> +		       interrupt-parent = <&plic>;
->> +		       interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> You should probably also add the clocks here:
-> 
-> 	clocks = <&clk CLK_MBOX0>,  .., <&clk CLK_MBOX3>;
-> 
-> ..and claim them in the driver. Otherwise the clock framework will consider
-> them unused and turn them off without the clk_ignore_unesed kernel command
-> line.
-
-Thanks for the suggestion! I’ll re-test with the clocks added. I had
-clk_ignore_unused enabled permanently in my U-Boot configuration, so I
-might have overlooked this detail.
-
-> 
-> /Emil
-> 
->> +		       #mbox-cells = <2>;
->> +		};
->>  	};
->>  };
->> --
->> 2.34.1
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> https://protect2.fireeye.com/v1/url?k=cb1a1bba-94812347-cb1b90f5-000babff317b-3fe071fc8037390e&q=1&e=63a49acd-e343-43d2-a57d-b4f6fcd23b61&u=http%3A%2F%2Flists.infradead.org%2Fmailman%2Flistinfo%2Flinux-riscv
-> 
 
