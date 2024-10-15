@@ -1,88 +1,143 @@
-Return-Path: <devicetree+bounces-111353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C03299E3C4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:24:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C85F99E47B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:49:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC56F1F230A5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:24:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 304312836A8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FEEA1E7672;
-	Tue, 15 Oct 2024 10:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97F61E32D0;
+	Tue, 15 Oct 2024 10:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jUDrhd7i"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dIZg9dNZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F91F1E7640;
-	Tue, 15 Oct 2024 10:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6008B16A92D;
+	Tue, 15 Oct 2024 10:49:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728987800; cv=none; b=WSACnn+/w1w7ccF+OROp5Usnr4iDwp01L797KBqPP0oSCXsRQY47VYfU5GcpHcrN1F3H90h2bIeLkfu34SiBr7OgmZSFsm95TpjY/OEwIPB1ge/7inxBwNyQlUzZ0MhQ2J7XT7K1YvIz+MbeDPSvB6KaqrtUwT2IFpOwrPzawcM=
+	t=1728989355; cv=none; b=STjyJ9OQSZah0BJcJaTeoncG21PVactACcHQ5pvEnhDonCpy6AU6NVRgd0h/1tRf/ah6+SXgVDVdkbinoXv/sudVUNahLunrKmVH5vmdUyjavw/4sGRUH8H8mRIObQ4ZyfYWeghPQJiQux5HTJmsZwCUyDPFaF7X2aFyLiDnG9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728987800; c=relaxed/simple;
-	bh=oRNGjrDKi2Hm53gnbXJGC6YvgFgibQ8fpuTcUT3TPMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R3ToSpAT2ufrlkiv66669hMYHhy6PksHS87rc0vURWMCPtpSUeaDENIWp0HMhfUHHp0dPKc6klcv7l7lpJ9kKLuV1OwWK+bxtJ557hk1OQ/puxdsyvpJ4YrHeLht9ZmHO8XHlaxbAyve1zLomC5Nf5DlWTFbZGcukGKAXfhVi8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jUDrhd7i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D8F5C4CED0;
-	Tue, 15 Oct 2024 10:23:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728987799;
-	bh=oRNGjrDKi2Hm53gnbXJGC6YvgFgibQ8fpuTcUT3TPMo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jUDrhd7iBnTe8hchjCw5VvonV+PgBwSvS/GHTMQ6R+uLbL7GLKLUrqBdYaOpocZg2
-	 XOBj0U2iJqzyrNtzp/xltjrfltk89lvoFBIinHdOb7/jhNAwewxxiu9GgjdQb/zVi9
-	 +jh5+pe0hHv6RCObDWSSn4jEzqoMwDOuQ2ZUl0SukCfcnYcc5gqStIfzh+1TDaox1D
-	 EhGVFCG6RWiljEMPUVVHXJAGei93AZupBXttsjrilUfB2A8XoORAYz6txpbZAgG5SB
-	 ZHFQcdb2xMIMDvxvx5KQ8RmNoH15sC0chi2GlcsvaAEtYWDjf2UGle336VjWUC1LrQ
-	 NejxIe3pfn3wQ==
-Date: Tue, 15 Oct 2024 11:23:14 +0100
-From: Lee Jones <lee@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Martin Botka <martin.botka@somainline.org>,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v2 5/5] regulator: axp20x: add support for the AXP323
-Message-ID: <20241015102314.GG8348@google.com>
-References: <20241007001408.27249-1-andre.przywara@arm.com>
- <20241007001408.27249-6-andre.przywara@arm.com>
+	s=arc-20240116; t=1728989355; c=relaxed/simple;
+	bh=gSowaey9fHJcIYX6mmkBzqtjye8WHjyEg/klSDzQxE0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=m2FteRyPPEQF5aEYcZPvd0A0lT7IHWoX5pAfndX7NlQo5hTq3FpI+5rahZVn6znh8qmh/StsnRewNL7lSh5ZaCqB3rtrkL2sWGCzzuxvhaz1RTNNQuQ8oPOK7r97XPGUSYZCK8zVCDZYUarXUIrwJQ6NQp9TOdXOVIdSBFdEvzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=dIZg9dNZ; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: fca4a91c8ae011ef8b96093e013ec31c-20241015
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=a8qCVhVIWFAmnRKX3OXq2rlmCfjQb9p/E9Q29h/MGfI=;
+	b=dIZg9dNZ78CGEz1H5ECI36zLGdngdlbEClKELM1jSO3OqVVt2+Sw61arhAY6Kl88wQeVGbRUPm10bhca+TME1A5VUIvEB/IuXetLJYy/9DQOposl6Unkjt9cMg/WZTjPDxTudr9P/4n7VCa0zIgkAU9MQOPQomUjNat9ClSzQRM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:424b073b-aa29-43db-9b83-dac143259757,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:d85a4765-444a-4b47-a99a-591ade3b04b2,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: fca4a91c8ae011ef8b96093e013ec31c-20241015
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 62356359; Tue, 15 Oct 2024 18:33:58 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 15 Oct 2024 18:33:56 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 15 Oct 2024 18:33:56 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"Matthias Brugger" <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, ChiYuan Huang
+	<cy_huang@richtek.com>, <linux-usb@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chris-qj chen
+	<chris-qj.chen@mediatek.com>
+Subject: [PATCH 1/2] dt-bindings: usb: mediatek,mt6360-tcpc: add ports properties
+Date: Tue, 15 Oct 2024 18:33:36 +0800
+Message-ID: <20241015103337.20479-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241007001408.27249-6-andre.przywara@arm.com>
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--5.840500-8.000000
+X-TMASE-MatchedRID: 6pbNFWS8cDsogNuHjUlKTcV1CHtMfzqgJNtuyL6mpIXfUZT83lbkEDQz
+	47GqDWjpiYeJX0ZLCFCwji3+hURDy7YCBNsYIDyvjtK7dC6UBnnlOkM7VYqzaZsoi2XrUn/Jn6K
+	dMrRsL14qtq5d3cxkNZGN3uF5aYuhkFr/Uz3mflTcBaWlN+Fm4iCeCicusNBiC3m0DNajQcvAvp
+	LE+mvX8g==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--5.840500-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	636958D15D9342168208B73159A0A722B66D6B91044804FA29D1FA68BA23E3B02000:8
+X-MTK: N
 
-On Mon, 07 Oct 2024, Andre Przywara wrote:
+Add 'ports' and sub node 'port' properties to specify connectors on the
+High-Speed/Super-Speed data bus, or Sideband Use (SBU) AUX lines
+endpoints of the USB controller.
 
-> The X-Powers AXP323 is a very close sibling of the AXP313A. The only
-> difference seems to be the ability to dual-phase the first two DC/DC
-> converters.
-> 
-> Place the new AXP323 ID next to the existing AXP313A checks, to let
-> them share most code.
-> The only difference is the poly-phase detection code, which gets
-> extended to check the respective bit in a newly used register.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
-> Reviewed-by: Mark Brown <broonie@kernel.org>
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ .../bindings/usb/mediatek,mt6360-tcpc.yaml    | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-Mark, can I take this without issuing a PR?
-
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+index 053264e60583..5b6ea0d734ea 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+@@ -32,6 +32,27 @@ properties:
+     description:
+       Properties for usb c connector.
+ 
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    description:
++      Any connector to the data bus of this controller should be specified.
++    properties:
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 0
++
++    patternProperties:
++      "port@[0-2]$":
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          It could be one of the following interface types. High-Speed
++          (HS) data bus endpoint to the Type-C connector, SuperSpeed (SS)
++          data bus endpoint to the Type-C connector, or Sideband Use (SBU)
++          AUX lines endpoint to the Type-C connector for the purpose of
++          handling altmode muxing and orientation switching.
++
+ additionalProperties: false
+ 
+ required:
 -- 
-Lee Jones [李琼斯]
+2.45.2
+
 
