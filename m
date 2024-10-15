@@ -1,108 +1,110 @@
-Return-Path: <devicetree+bounces-111689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB4999FA28
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:43:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A3099FA74
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:48:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D2C01C23A3A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:43:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15B86284AC4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B93C1D63D8;
-	Tue, 15 Oct 2024 21:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD5CF21E3B4;
+	Tue, 15 Oct 2024 21:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="gNMcktVB"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Bs4WK+3i";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="4GA+ftBD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22681D63C8;
-	Tue, 15 Oct 2024 21:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2746821E3B2;
+	Tue, 15 Oct 2024 21:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729028176; cv=none; b=MG1uCbquh+HaM5uXszNLWT7eQYt8tN1f+SUZGtuUWXnbDnd0VaNqxWNEUIGnPfkGePDjgLMh682SBkQkdiNGiP4yU1R2vqTG2AUftAydhnbs06F/+MOTRdT/r/Y1VlDwRgQoCdqQNHIwDR1QE6/M4ytYp4/uWOKCkdX0wtu8G7Q=
+	t=1729028546; cv=none; b=sdY35HdSzZv0dBbYc0nBT1rUlOARW2QM6vIV/tuDnNSS6NRubes2fUd9Axl+vSSgp+f0hBGo8tY4L/k2TH4+OQt/nCzWgf8wtT/H5XxyQgWl+tN/Z+nG2De5uU6RlyueyZ5DgJBYHiaU4v3FPmCv3tnMTJ63sV4UhrpFhUHlXaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729028176; c=relaxed/simple;
-	bh=TUHbc2NCTZoEqVKU7wn/lP9FbtA0R/gTWuGh32oa8nQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CCdVOLN5DUA3wUcLpgvypsvUOwRgmyKvcV6xTonxX5xM2dGtAizaq4PRprNXYNkaL6ubBJDPKkO7q1NDWzXo9scPer1NRkh4d6tE+bCB5w9FuZ297ijZu2PFcedT2wnH2vAn3deSzOzTXZoJjGU3vGxEnBEwOJei8cpQKN0wHSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=gNMcktVB; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-20cbca51687so32296205ad.1;
-        Tue, 15 Oct 2024 14:36:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1729028174; x=1729632974; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TUHbc2NCTZoEqVKU7wn/lP9FbtA0R/gTWuGh32oa8nQ=;
-        b=gNMcktVBGtPT4YJR26v+FuG1z5zFhWZKEsaGsMqYL4kVnwiixBsn0ogFfucxRimuhb
-         qH2Ny5mfdkYc3ursn1dXoPvDC1DAKCiZv6OpFR/0eZKd8IMlm+saItyOsnZaXXAFvEqV
-         Q8Sn++V5tUfzrGI8yv9+JDy7IYIYAdZJqMtaKHeNf4EECpybdRxAElQoHr5/uDyf49iV
-         Emqf4f2dpnuvEandsCouxfEdmIL75fLu8T1Gag3rJHuX9lUsJ24cKjOL3sp56Koh+09k
-         ciGlIP4F9lDcbcTSJ91ckX/AaYHYoqVDqHoieZU70Jn+qctsTaradt1q6oWJME4aSFIh
-         y2IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729028174; x=1729632974;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TUHbc2NCTZoEqVKU7wn/lP9FbtA0R/gTWuGh32oa8nQ=;
-        b=eFAzhj/N+YhaekiV5FH+obHtSkm6ZWrjA4FC3KfxJeNRvo9d7jCs+KYk94kJ6jpcBp
-         4LmYqGWvD82VzsHw8fpO4eDRy8xjnNuIuojrE8p5SSE12UhbPH4wRxznLBxP9cJ/64AZ
-         gXzlNmg2RNQRudRqKzWc3eaDbFFPPeola4ExAeqWwa89J49XT520W34avd8DOA9ADhIr
-         lMjT5vAjJNXPZEN0CNQN09wJhcGmny/yBDWzRcQLQ75xvpvRz1SRUbuucs/HCO6LfbH4
-         YBfAfJZi0ZrDEvO7o8CWyXH1BtnaoEm6x/WWAP1oYojl54sEX2Xj232XkY3xfdQ6Qc17
-         NyUA==
-X-Forwarded-Encrypted: i=1; AJvYcCUteaHQKHfxAHRZt/P0f+ESZzs+EO5kn5WPHTgQJquaOwTwapfui8Z9YT61cTV+Q7XRIyDfrhl1Syln@vger.kernel.org, AJvYcCVFUJKEDXYrIMqm+SrwkvV3wnxdZBoVW+bEMiqQkhRoXTwndugvssxCjd74gP3dFlflEGwTq9ORDvXCT0Af@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzfNh0AlfvzFCD3UQtTmiFPXkYI4rwV3MH5fiTIkBcv1rZYHiO
-	EEukvk2HNL17WMLanO5zvak6nI5QkFJpytEGnR3e7JCo+Unf+2yRVXJGDZxG4qR3BaU+37nFXB8
-	QWVX3/yU4qWaSR7yzI9fZGn2QR7Y=
-X-Google-Smtp-Source: AGHT+IFqbNMesq/OCjTCsA5X5R9B78s0bALNeQXGiwca2lvIOVLQDgOQfJTpZTWJnaYVc8WGp678vgmB0ffwb2wprOQ=
-X-Received: by 2002:a17:903:244e:b0:20b:b238:9d02 with SMTP id
- d9443c01a7336-20cbb21e84bmr225904075ad.33.1729028174053; Tue, 15 Oct 2024
- 14:36:14 -0700 (PDT)
+	s=arc-20240116; t=1729028546; c=relaxed/simple;
+	bh=ADjjbzXz95P9cj8Qiy/Kdepn7OHwPWnDZ3anvu7xMrk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=u16wvkFGfhGryppYl4i7X8MsOdjpYkjUyooHb8buuc77OMggAPAZfFvjQopXR7PiYk6OSsG+hdyvTt2gh0PmgktIT0DZX1SHGtBE0zeEnOeCZnzcFJ9gkbvJupPzmxCTtdrqvFsTU/Z//Jco0VmzL5JXmSmXL9HqYcRvzctsyVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Bs4WK+3i; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=4GA+ftBD; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1729028543;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hALBkgP+0vHQHFOLfJVhzpCvZiu7iqZATK+f8xljF6o=;
+	b=Bs4WK+3isP7DKVNVaTNUaI/cX7y8ywrDgKgH/p2ecpxNUxJJo0bfpcpQ8SK4BcXOY2CYJQ
+	koe/V5rgwmYPy4OWcSKmFZbCAnO4X1fTHuAcVGFm61OmX+gLgw0WYIvAimHF/WjW3WvyzH
+	SCWMpw4lmBbQGc18oHIUM1HiDR7eaiJnFh3+YDMdDoTYHCvxulNioczbrzxxErJ5PRSj+P
+	D93sv4JPFkjAYRaW9BAAMV+Cv4RpA0dmVS+s5qKqYs0Vh8Rat09h+FJ59ePaDnNdymW+ce
+	nbD6AcfZIse28KHvl5QHb6eJQY84fpgt+5/ZGIpET97fj9/LBur6aj45bZQMjQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1729028543;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hALBkgP+0vHQHFOLfJVhzpCvZiu7iqZATK+f8xljF6o=;
+	b=4GA+ftBDLrodNSL6IIhR1BlPC9NDD73LIkk4yNdYSvee3SIv688WmN65Kfer6AZf+2rNDY
+	GP+ZpDSLkttq53Dw==
+To: Markus Elfring <Markus.Elfring@web.de>, Kevin Chen
+ <kevin_chen@aspeedtech.com>, linux-aspeed@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Andrew
+ Jeffery <andrew@codeconstruct.com.au>, Conor Dooley <conor+dt@kernel.org>,
+ Joel Stanley <joel@jms.id.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] irqchip/aspeed-intc: Add support for AST27XX INTC
+In-Reply-To: <f65dd139-1021-47d6-93a1-1477d6b4ca1d@web.de>
+References: <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
+ <f65dd139-1021-47d6-93a1-1477d6b4ca1d@web.de>
+Date: Tue, 15 Oct 2024 23:42:22 +0200
+Message-ID: <874j5ddow1.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241015-topic-amlogic-arm32-upstream-bindings-fixes-pinctrl-dtbs-v1-1-c7291f17063e@linaro.org>
-In-Reply-To: <20241015-topic-amlogic-arm32-upstream-bindings-fixes-pinctrl-dtbs-v1-1-c7291f17063e@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 15 Oct 2024 23:36:03 +0200
-Message-ID: <CAFBinCC2cfRQcQw4BoVqmJMqWMoD4TLur_ev+Bsp5NWL=hmt+w@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: amlogic: meson8/8b: remove invalid pinctrl reg
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-Thank you Neil!
+On Wed, Oct 09 2024 at 14:32, Markus Elfring wrote:
+>> +
+>> +	chained_irq_enter(chip, desc);
+>
+> Would you become interested to collaborate with another scoped guard
+> for this programming interface?
 
-On Tue, Oct 15, 2024 at 2:25=E2=80=AFPM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> The pinctrl aobus/cbus was originally here to configure the
-> GPIO interrupt, but it was a bad design and was moved to a
-> separate gpio_intc node because the GPIO interrupt is actually
-> separate from the pinctrl/gpio registers.
->
-> Drop this reg entry, and fix all the register offsets with a
-> proper range property.
->
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-as well as:
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> # Odroi=
-d-C1
+Collaborate in which way? What are you collaborating on?
+
+You are merely asking people to do work which you think is useful. You
+can do that, but that does not make it useful.
+
+Making a guard variant of chained_irq_enter/exit needs some thought and
+a general plan for cleaning the whole chained irq usage up. It's on the
+cleanup list already with quite some other items.
+
+We are not adhoc adding a guard variant because guards are hip right
+now. And no this does not need a scoped variant ever.
+
+guards are not the panacea for everything.
+
+> https://elixir.bootlin.com/linux/v6.12-rc2/source/include/linux/irqchip/chained_irq.h#L13
+
+Please refrain from these silly links. People know to find the functions
+on their own.
+
+Kevin, please update the change log, add your SOB and move the local
+variables (unsigned long bit, status;) into the scoped_guard() zone.
+
+Leave chained_irq_enter/exit() alone and resubmit.
+
+Thanks,
+
+        tglx
 
