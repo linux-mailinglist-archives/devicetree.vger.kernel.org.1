@@ -1,137 +1,109 @@
-Return-Path: <devicetree+bounces-111643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BACD99F853
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:56:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F1299F87E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:02:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11095282BC0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:56:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A68A1C22CAA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88BB1F81BF;
-	Tue, 15 Oct 2024 20:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F831FAEF3;
+	Tue, 15 Oct 2024 21:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GE+V9sNL"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="LR3EeD3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6471F80DD;
-	Tue, 15 Oct 2024 20:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83F31F81AE
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 21:01:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729025799; cv=none; b=SUaevF5Y4qggH9myAQKKTHiS82IO/5LnSTeTqhjWvNSrIAZl3DwmoQkdPne0gDX8O5vNuhyDoyQsfyfmz/X2CpSXvH2EbdBoorSZj0UTqjxP19apm9j+SjWaBJ2iADCQHD4dEnEH+lyU8hxbcWa4Q5+I1a1UUvH+I96pAz93Muo=
+	t=1729026113; cv=none; b=hdSvfoLIxTIDqsce+1XStp/psYsC7IyG5XQgHq/Ef4oUd1EG+XrtYMbXd/4dmbiLSG9vXS5+OFYrkzQObnOZJx36jZWQefe8yN0pY4HLh/cUaG9Qo3AiXBefXGkAeSMt8qmdTIHzGi3qC9EGPwSzXBBi4yle/FiYsjpkHIXKp6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729025799; c=relaxed/simple;
-	bh=COqA3y5JKsekq6nOGaTnmPFsD3u1LocTUoESaQBM8sQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e4foG6lhWATO2dFFSqchIOli/lUe+LKB+y+Wc6mdsYWMBLj1tS2ypiQGPNCSZ2WYam8su8yv7OshNDdbmKKkVp9UJCGRWtfyo8vU4yGQyysYsQV+4JlL5LsqFEMbR6fhOmyYivlDq2aephDaw8vooLrkUmvTYLFaRAKzyYyiTqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GE+V9sNL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DABD2C4CEC6;
-	Tue, 15 Oct 2024 20:56:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729025799;
-	bh=COqA3y5JKsekq6nOGaTnmPFsD3u1LocTUoESaQBM8sQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GE+V9sNL2uXDEmkps1B1aP3XL4XRdAvgkdl6+dVVrgBTD86ZOcCDbnCVeap08q/YQ
-	 k4DC6jXcdJNPVf1hcovW8aCrrMVcZ9tHRanzyFOyir49CnmDdTSkU59z9FzAzDqL6l
-	 5bcsIoBWxv5cz/m4GxRcA6sOYLUm1fpVIiYj4m8kdH9+q3b01Mk++qKHPopHrqHzDa
-	 SjN3JMCP6IyIba7mKmhNig2Ld0kQaCszIcoZYggjHtIfMB77ZKosr3vgpogLO/Lrwm
-	 pzX85fYZb3Rp+lrZJgE7DYngOmlSCf9qxFtpPLbUo5/6qkhPZOeNoYGyFGMaJ8ytPy
-	 KPQ/Z9FLG7wCw==
-Date: Tue, 15 Oct 2024 15:56:37 -0500
-From: Rob Herring <robh@kernel.org>
-To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	ChiYuan Huang <cy_huang@richtek.com>, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	Chris-qj chen <chris-qj.chen@mediatek.com>,
-	Fabien Parent <fparent@baylibre.com>,
-	Simon Sun <simon.sun@yunjingtech.com>
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8395-genio-1200-evk: add
- support for TCPC port
-Message-ID: <20241015205637.GB1934266-robh@kernel.org>
-References: <20241015103337.20479-1-macpaul.lin@mediatek.com>
- <20241015103337.20479-2-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1729026113; c=relaxed/simple;
+	bh=MZpiEl9+p1+8tohkeplA7FfFnOl9tmF6blXh1D3ylwc=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=qiPmfJzhbqe9GYPrnaOESHiImSXv5mGHX5P3swiuxv6TTfGXIJg5oDU3L6OlWfjv1fo+++7Ukf9YoTZn4e0kiySwLva/UXcZGmc9YDWjKud+U1i1umybD0yxYAGr5uxtl8Wub6V+T4hNGnh24h9WkAjpnrTA9iU2lOJMmBQ8E6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=LR3EeD3j; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8145B2C03CB;
+	Wed, 16 Oct 2024 10:01:43 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1729026103;
+	bh=MZpiEl9+p1+8tohkeplA7FfFnOl9tmF6blXh1D3ylwc=;
+	h=From:To:Subject:Date:References:In-Reply-To:From;
+	b=LR3EeD3jVJUbtC74r8VOEEBDYDwzAbh0lmQmczn5c5D69dfzReB8inCvJ/QXTJ7RD
+	 fbPxNNcM8lT/bd8oBSZc03YU5BEHB1WQ4fkAbJmfMeEIt81hI19NDtxyAztwQsE2yh
+	 El35bTKx+EK0CArIwY8DlQpkVe2W+BPI/nYdMsTqvPf3Ugc1RzF6oQkVHE6gSYAzst
+	 kavvSKh4Ea6AOIHVDg2vKGlURvaowHOr+rDQmAa2Geh5yXGP60etRaXn3WPd9cV8CW
+	 YKlfd/YV7mL57oDO9OIH+fez8Wr+FvHkMyaZAAratLPkLcuc3MuqIqzitK1RRlXMwc
+	 RVvBBeEx43URQ==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B670ed8370000>; Wed, 16 Oct 2024 10:01:43 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1544.11; Wed, 16 Oct 2024 10:01:43 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
+ SMTP Server (TLS) id 15.0.1497.48; Wed, 16 Oct 2024 10:01:43 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1544.011; Wed, 16 Oct 2024 10:01:43 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>, "Masahiro
+ Yamada" <masahiroy@kernel.org>
+Subject: Re: Building out of tree dtbs
+Thread-Topic: Building out of tree dtbs
+Thread-Index: AQHbHz8ShM93kB+1lU6CdSd0a3sZxrKHcnIA
+Date: Tue, 15 Oct 2024 21:01:42 +0000
+Message-ID: <2a2be28c-fd5e-45b0-8834-611d35c5e6a6@alliedtelesis.co.nz>
+References: <269854a8-1041-4ba6-b022-ba8ec15c6b78@alliedtelesis.co.nz>
+In-Reply-To: <269854a8-1041-4ba6-b022-ba8ec15c6b78@alliedtelesis.co.nz>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <29306E9582879B409922E33C57C3D3CA@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015103337.20479-2-macpaul.lin@mediatek.com>
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=670ed837 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=p0WdMEafAAAA:8 a=YRHvXXt1AAAA:8 a=cBH9McE8t2GGkYx7cgcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=9bw_jnHfPby8klRCszyn:22
+X-SEG-SpamProfiler-Score: 0
 
-On Tue, Oct 15, 2024 at 06:33:37PM +0800, Macpaul Lin wrote:
-> From: Fabien Parent <fparent@baylibre.com>
-> 
-> Enable USB Type-C support on MediaTek MT8395 Genio 1200 EVK by adding
-> configuration for TCPC Port, USB-C connector, and related settings.
-> 
-> Configure dual role switch capability, set up PD (Power Delivery) profiles,
-> and establish endpoints for SSUSB (SuperSpeed USB).
-> 
-> Update pinctrl configurations for U3 P0 VBus default pins and set dr_mode
-> to "otg" for OTG (On-The-Go) mode operation.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Simon Sun <simon.sun@yunjingtech.com>
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> ---
->  .../dts/mediatek/mt8395-genio-1200-evk.dts    | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> index 5f16fb820580..b91a46f4a702 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> @@ -249,6 +249,39 @@ mt6360: pmic@34 {
->  		#interrupt-cells = <1>;
->  		pinctrl-0 = <&mt6360_pins>;
->  
-> +		tcpc {
-> +			compatible = "mediatek,mt6360-tcpc";
-> +			interrupts-extended = <&pio 17 IRQ_TYPE_LEVEL_LOW>;
-> +			interrupt-names = "PD_IRQB";
-> +
-> +			connector {
-> +				compatible = "usb-c-connector";
-> +				label = "USB-C";
-> +				data-role = "dual";
-> +				power-role = "dual";
-> +				try-power-role = "sink";
-> +				source-pdos = <PDO_FIXED(5000, 1000, \
-> +					       PDO_FIXED_DUAL_ROLE | \
-> +					       PDO_FIXED_DATA_SWAP)>;
-> +				sink-pdos = <PDO_FIXED(5000, 2000, \
-> +					     PDO_FIXED_DUAL_ROLE | \
-> +					     PDO_FIXED_DATA_SWAP)>;
-> +				op-sink-microwatt = <10000000>;
-> +			};
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					mt6360_ssusb_ep: endpoint {
-> +						remote-endpoint = <&ssusb_ep>;
-
-No, this is wrong. This should go to 'port@1' in the connector node. 
-That is the SS connection.
-
-Rob
+DQpPbiAxNi8xMC8yNCAwOToxNiwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4gKHJlc2VuZCB3aXRo
+b3V0IEhUTUwgcGFydCkNCj4NCj4gSGksDQo+DQo+IEkganVzdCBub3RpY2VkIHdpdGggdGhlIGxh
+dGVzdCA2LjEyLXJjIEknbSBubyBsb25nZXIgYWJsZSB0byBidWlsZCBhbiANCj4gb3V0IG9mIHRy
+ZWUgZHRiIGJ5IGp1c3QgY29weWluZyBpdCBpbnRvIGFyY2gvJEFSQ0gvYm9vdC9kdHMgKGF0IGxl
+YXN0IA0KPiBmb3IgQVJDSD1taXBzIGFuZCBBUkNIPWFybTY0KSBhbmQgcnVubmluZyBgbWFrZSBt
+eS1ib2FyZC5kdGJgLiBJIA0KPiBiZWxpZXZlIGJ1aWxkcm9vdCByZWxpZXMgb24gdGhpcyBhcyB3
+ZWxsWzFdLg0KDQpBIHNpbXBsZSByZXBybyBpcw0KDQptYWtlIEFSQ0g9YXJtIG12ZWJ1X3Y3X2Rl
+ZmNvbmZpZw0KY3AgYXJjaC9hcm0vYm9vdC9kdHMvbWFydmVsbC9hcm1hZGEtMzg1LWRiLWFwLmR0
+cyANCmFyY2gvYXJtL2Jvb3QvZHRzL215Ym9hcmQuZHRzDQptYWtlIEFSQ0g9YXJtIG15Ym9hcmQu
+ZHRiDQoNCj4NCj4gSXMgdGhpcyBhbiBpbnRlbnRpb25hbCBjaGFuZ2U/IElzIGl0IHRvbyBsYXRl
+IHRvIHVuZG8gaXQgKG9yIHByb3ZpZGUgDQo+IGFuIGFsdGVybmF0aXZlIHdheSBvZiBoYXZpbmcg
+b3V0IG9mIHRyZWUgZHRzIHRoYXQgbWFrZSB1c2Ugb2YgaW4tdHJlZSANCj4gZHRzaSkuDQpMb29r
+cyBsaWtlIHRoaXMgaXMgY2F1c2VkIGJ5IGNvbW1pdCBlN2UyOTQxMzAwZDIgKCJrYnVpbGQ6IHNw
+bGl0IGRldmljZSANCnRyZWUgYnVpbGQgcnVsZXMgaW50byBzY3JpcHRzL01ha2VmaWxlLmR0YnMi
+KS4gVGhlIGNvbmRpdGlvbmFsIGluY2x1ZGUgDQpvZiBNYWtlZmlsZS5kdGJzIGlzbid0IHNhdGlz
+ZmllZCB3aGVuIGJ1aWxkaW5nIGFuIG91dCBvZiB0cmVlIGR0Yi4NCj4NCj4gVGhhbmtzLA0KPiBD
+aHJpcw0KPg0KPiAtLSANCj4NCj4gWzFdIC0gDQo+IGh0dHBzOi8vZ2l0bGFiLmNvbS9idWlsZHJv
+b3Qub3JnL2J1aWxkcm9vdC8tL2Jsb2IvbWFzdGVyL2xpbnV4L2xpbnV4Lm1rP3JlZl90eXBlPWhl
+YWRzI0w1MTYNCj4=
 
