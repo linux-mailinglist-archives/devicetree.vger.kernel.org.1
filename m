@@ -1,340 +1,243 @@
-Return-Path: <devicetree+bounces-111592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FA0199F5D7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:40:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 759ED99F5EF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:44:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A31BC1C23658
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:40:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 012061F2554D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 18:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B86A17335C;
-	Tue, 15 Oct 2024 18:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F362036E5;
+	Tue, 15 Oct 2024 18:44:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="DmVvwC6Q"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="AevDnAo6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262AA2036F8
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 18:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45022036F0
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 18:44:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729017623; cv=none; b=uk7N3VuChTfuUU19Zl4jRetsR753jG0jPV09ISi6Ba3b4of5Zh7wJ1luhVTA8hPMajHBC0pSu7PO2GgzZQ8ROqrO7gqjUuVpOks9xZC0jpl0AtrZN0MoJ4mmU/vOt9T6NXwQkgLVG2NppTGDNL9iF3GlW8igtns9oH0TKih/XxI=
+	t=1729017853; cv=none; b=ngsXScFlEuYXBndhndFuLewPyADYcyO3Cekg9ZlQanz1OzgRj2dLs7kj08ac6GPftlx4vT5wKyqYn8iUIn4ixqqo9hjHrrT2tFby1JBJnOb/bUiYls4sskMOo2onr53GeBhWA3sDLhs6ngRX0vxodfctn66ef6IcvWYYuW3Lq64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729017623; c=relaxed/simple;
-	bh=S8qZ5VAzN4pcHHfNgHDiuu35+4RSiNxrbYTWhDHnCKM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bgSe4PuGE5yyURe4na7N02YKZRX243b39+1D0CgGBoeuz4Je/p6BZ/smZIVFnW8+S6bC4Sw2DIW1D/UUlAHpKK/MSD6dvWDmCpAZTjxyE2WvN0wb91RcaBvimljySRsATV1WJi9dU3nXKyjbS6cB7R0f4F391inVzqoc3YOU4cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=DmVvwC6Q; arc=none smtp.client-ip=209.85.219.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6cbe8119e21so46077366d6.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 11:40:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1729017618; x=1729622418; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=8ZIAcIQNXFU0HJAbelK5w6AajE5AfFCSDcserEzGKO8=;
-        b=DmVvwC6Qsq+1nwmUyMWT96jwI+YO/NCs/aZQHUtCV5XIjPF8ntC96BIYe2jNgtT5lQ
-         VwypBg4dWjmDYkGX0QrDbWLBkYHwxXN85WCUAU5jnmcBLi3bHi7Yqgc6uaLw1LaAaCLj
-         I7UOLyDiSQObK0/YsgYXEUplBMt+XWxFKZyD1FwKh8VNaIo83tPUNoMQaKxGEXRbsn5A
-         y5TMw8eTSIthtaYWx8b0hNiHA9gGzei42ns+zbIBwTwcVhBbHOyrIJjG3xRnHeJ2zA/B
-         I7iDGhVJ5mTdLXPlsrxMnSzeDcn21NBnwpGhtHQc5A76RP4/5khkxDKX6vkp4UXbjyd8
-         sUOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729017618; x=1729622418;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8ZIAcIQNXFU0HJAbelK5w6AajE5AfFCSDcserEzGKO8=;
-        b=mjpNOWWIUv9WDhZVPRZF7NF79Lqfwp3i5GMRgFUdsRaA46Q3Xnlpd3gNr+436pv4MS
-         d3DOxKKS3W5b+yFjXNnZOWIUh8F9PYZoC2UVxRj73I2Pt8WkghUtI7F3sbHkQVMPWDPL
-         wH3HANmGcQiuUWNb8GEiW73ypm1BDK+IujyINfEeL0RENLEF2Yogd58nHQHCoyamiacb
-         skeJXJ48kx/bcyn0+HrpcjXMFRj/EGmfaDyFHmHLs9f1Q62VqCk2Ep/srjchAH1iFFJH
-         2DKiCFlNgWNI+mDSM/pA+2xfmnKdlY+6T4TtQvG2CwuM6DD1pVZ9t/cxh+z01gCIO0Qh
-         tGHw==
-X-Forwarded-Encrypted: i=1; AJvYcCV8BrY+nm3AmLFruyE6L9b06APfacH9uRCAXymId9S6oL2sySqslEhEXHDaSMh1E4ONUEBLJWGLkRnj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7Gkl9RkFMz/FPkKR940MEAPIg+mW9ParSMbsaPHf/aQEqUKr8
-	KrfYTgsvQ4+f+3Nk+7ymzicSyM/VMFRi9XWaTITzomEf2NsmiHQfrmFJNehb/Pc=
-X-Google-Smtp-Source: AGHT+IFusBTYb7gPAxZixD4vre5MF4aNXpzmSWO1sCDmCktW5i/0FD6ZzrAV8Ze8EESk75jqueZHlQ==
-X-Received: by 2002:a05:6214:469b:b0:6cb:faee:76da with SMTP id 6a1803df08f44-6cc2b923c6fmr17530536d6.48.1729017618017;
-        Tue, 15 Oct 2024 11:40:18 -0700 (PDT)
-Received: from nicolas-tpx395.lan ([2606:6d00:15:862e::7a9])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cc22959b4fsm9683206d6.84.2024.10.15.11.40.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2024 11:40:17 -0700 (PDT)
-Message-ID: <ef6f582876782339a6abed5e5d114efade10f9ec.camel@ndufresne.ca>
-Subject: Re: [PATCH v1 00/10] Add MediaTek ISP7 camera system driver
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Shu-hsiang Yang <Shu-hsiang.Yang@mediatek.com>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	 <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	 <angelogioacchino.delregno@collabora.com>, Sumit Semwal
-	 <sumit.semwal@linaro.org>, Christian Konig <christian.koenig@amd.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- linaro-mm-sig@lists.linaro.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, yaya.chang@mediatek.com,
-  teddy.chen@mediatek.com, hidenorik@chromium.org, yunkec@chromium.org, 
- shun-yi.wang@mediatek.com
-Date: Tue, 15 Oct 2024 14:40:16 -0400
-In-Reply-To: <20241009111551.27052-1-Shu-hsiang.Yang@mediatek.com>
-References: <20241009111551.27052-1-Shu-hsiang.Yang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1729017853; c=relaxed/simple;
+	bh=w6OKnR0WlNxCnYdj8s6LQkJtAOoLnQJdnbXkyhcg9p4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=WAOKocOdhe7QhQIP2h7GpT0296+kg/YMHZSO8iQjKYJ4+wIgqDETOaWidFrUq0WCscbQhyLP47OpyPawpdKgWp3TAtSins8FWZsBGzupf413n094yqXcu/9joZf/J0gHt3sfi9xkCQiB4A5iR/P23mFIsl45H0PiLBmV2Le20UI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=AevDnAo6; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20241015184402euoutp027c382b56f61214e32579912d82551863~_tJE7Gxv81372313723euoutp02P
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 18:44:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20241015184402euoutp027c382b56f61214e32579912d82551863~_tJE7Gxv81372313723euoutp02P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1729017842;
+	bh=HuC5Q9IVnT9C9ZqpNbJeHd8wdpadVR4wwXRjo0qvcnM=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=AevDnAo6B7wHZsA2xvIcI64Mm82mRWL2WInyQE0EPt1iZlGNSlwZj7Axw+sFD37a+
+	 x5OE7uW4iQC2hBkQDu/15MbmVoJy+Rb8NoVrPHPGmUaEQjnsgTZKqZhYwqaspgSqwz
+	 a+S4mbeHdhNcnnKaWcRvBPoRo1KerWN2fcWO8ubM=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20241015184402eucas1p25b7f6832596302aa419497c9e7c73915~_tJEkmmoB0374103741eucas1p2B;
+	Tue, 15 Oct 2024 18:44:02 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id 6A.1D.09875.2F7BE076; Tue, 15
+	Oct 2024 19:44:02 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20241015184401eucas1p2a9a19f6e99a7b47f20574fcef500313f~_tJD4YnTg1034210342eucas1p2R;
+	Tue, 15 Oct 2024 18:44:01 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241015184401eusmtrp1ec0fd5726de5a734ef78a03bd4a68f38~_tJDpQbyS0484904849eusmtrp14;
+	Tue, 15 Oct 2024 18:44:01 +0000 (GMT)
+X-AuditID: cbfec7f4-131ff70000002693-09-670eb7f276f2
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id 5F.54.14621.1F7BE076; Tue, 15
+	Oct 2024 19:44:01 +0100 (BST)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20241015184400eusmtip2cb3004d5575998c9688dbea89091a9ab~_tJC7Olvv0203102031eusmtip2i;
+	Tue, 15 Oct 2024 18:44:00 +0000 (GMT)
+Message-ID: <4825037e-08e6-4946-9aee-a19512fb2346@samsung.com>
+Date: Tue, 15 Oct 2024 20:44:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] riscv: dts: thead: Add mailbox node
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, jassisinghbrar@gmail.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	m.szyprowski@samsung.com
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <CAJM55Z-bzivMZWUsHiii+2tw2-kdRe7kqtVa+MvPEAVTmOvChg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAKsWRmVeSWpSXmKPExsWy7djPc7qftvOlG0y8IWKx9fcsdos1e88x
+	Wcw/co7V4t6lLUwWlzpXMFq82NvIYnFtxVx2i5ez7rFZXN41h81i2+cWNou1R+4CxS73MFu0
+	zeK3+L9nB7tFy/4pLA78HrMaetk83rx8yeJxuOMLu8fOWXfZPTat6mTz2Lyk3qNl7TEmj/f7
+	rrJ59G1Zxehxqfk6u8fnTXIB3FFcNimpOZllqUX6dglcGa+3XWcveClfsaWnla2BsV+qi5GT
+	Q0LAROLegzvsXYxcHEICKxglDh64zgaSEBL4wiixbV0uROIzo0Tj2u9sMB03G3uhOpYzSsw4
+	M40NwnnLKHHjUw8TSBWvgJ3El1N3wDpYBFQlLj16zQgRF5Q4OfMJC4gtKiAvcf/WDKBJHBzC
+	AvYSG7sEQeaICKxmkth4tQlsDrNAvMTjKRegbHGJW0/mg9lsAkYSD5bPZwWxOQUCJWbO2wpV
+	Iy/RvHU2M8ggCYH9nBKvp19ihjjbReLyzj+sELawxKvjW9ghbBmJ05N7WCDsfIkHWz9B1ddI
+	7Ow5DmVbS9w594sN5FBmAU2J9bv0IcKOEtuXXgcLSwjwSdx4KwhxAp/EpG3TmSHCvBIdbUIQ
+	1WoSU3t64ZaeW7GNaQKj0iykQJmF5MlZSJ6ZhbB3ASPLKkbx1NLi3PTUYqO81HK94sTc4tK8
+	dL3k/NxNjMBEePrf8S87GJe/+qh3iJGJg/EQowQHs5II76Qu3nQh3pTEyqrUovz4otKc1OJD
+	jNIcLErivKop8qlCAumJJanZqakFqUUwWSYOTqkGJu78+xdd5LZrnbzDHfDux7IdXPNijz7I
+	v7Z+od2Ep3y3F1/vT/zXU2mcKP5mlmD4pW3zpxvkbzQNrby6a9OcnGAr/r3rTR/Ui2wRmTFr
+	qWpZ+Z+ks2vTXt5S8o165R/3pHh9R9Px/e6P5HkKbm+ZucJm5+a4u+1vW1L397rIf7uY/nPD
+	tOQLH1etkLOVj+QNrrX/ZerqenLPEcucqye4JvyvdVHhkZR/+P3pD8Mnf7WPyLjy/mt4JdkZ
+	+ZZX+sZjD8dLNr8Oum55xHhm6dJ4PdvjHzNYGlR+Guzy+RkUkvHUx6browp7a6Bp89ml6xvv
+	FjP6+F54UvxJ8EiMZtm6nui4N13tmd38LcpnFk55eV2JpTgj0VCLuag4EQCpNp7n8wMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrIIsWRmVeSWpSXmKPExsVy+t/xe7oft/OlG5w7KWax9fcsdos1e88x
+	Wcw/co7V4t6lLUwWlzpXMFq82NvIYnFtxVx2i5ez7rFZXN41h81i2+cWNou1R+4CxS73MFu0
+	zeK3+L9nB7tFy/4pLA78HrMaetk83rx8yeJxuOMLu8fOWXfZPTat6mTz2Lyk3qNl7TEmj/f7
+	rrJ59G1Zxehxqfk6u8fnTXIB3FF6NkX5pSWpChn5xSW2StGGFkZ6hpYWekYmlnqGxuaxVkam
+	Svp2NimpOZllqUX6dgl6Ga+3XWcveClfsaWnla2BsV+qi5GTQ0LAROJmYy97FyMXh5DAUkaJ
+	pdc3M0MkZCSudb9kgbCFJf5c62KDKHrNKDG99xU7SIJXwE7iy6k7bCA2i4CqxKVHrxkh4oIS
+	J2c+AWsWFZCXuH9rBlA9B4ewgL3Exi5BkLCIwGomiVOPIkHCzALxEhtuKkOMn8Akce3ZIlaQ
+	GmYBcYlbT+YzgdhsAkYSD5bPB4tzCgRKzJy3lQmiV11i/TwhiHJ5ieats5knMArNQnLELCST
+	ZiF0zELSsYCRZRWjSGppcW56brGhXnFibnFpXrpecn7uJkZg3G879nPzDsZ5rz7qHWJk4mA8
+	xCjBwawkwjupizddiDclsbIqtSg/vqg0J7X4EKMpMCAmMkuJJucDE09eSbyhmYGpoYmZpYGp
+	pZmxkjiv2+XzaUIC6YklqdmpqQWpRTB9TBycUg1MEk2Cm7m2OBT02pe+uHmI7bGCvVFI45KD
+	taGWB/yCY6+6lv4wZ463nV4kXSHgclL/n+XL2dZ/H2X9+rterfC5qKedlydbvLnBfi6ezMpV
+	TqdaZ5he/PfXer6x+jHfkusxG5+5/2t6sn8hdz8Tk9TOPUIzugva/3R/v9GzvvHRUtkPxfuf
+	3sm+HXc2/AjffT/720z/j2xNFrr0+MKGedwthudsIhcZ/T825VMoU6dn0NFp3357t/zemuM4
+	J/lt97wynS9pNpdPXfuuVf+l816UftPDy4kyx7y/3WOZcsJYQF5td3H7PU7ZvvUH0g7PrdLh
+	X5ZhEHR9mliKWaxr61wWnSBHy2cyamcmCdXHqhopsRRnJBpqMRcVJwIAZ8em64QDAAA=
+X-CMS-MailID: 20241015184401eucas1p2a9a19f6e99a7b47f20574fcef500313f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328
+References: <20241014123314.1231517-1-m.wilczynski@samsung.com>
+	<CGME20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328@eucas1p2.samsung.com>
+	<20241014123314.1231517-4-m.wilczynski@samsung.com>
+	<CAJM55Z-bzivMZWUsHiii+2tw2-kdRe7kqtVa+MvPEAVTmOvChg@mail.gmail.com>
 
-Hi,
 
-Le mercredi 09 octobre 2024 =C3=A0 19:15 +0800, Shu-hsiang Yang a =C3=A9cri=
-t=C2=A0:
-> Based on linux-next/master, tag: next-20241008
->=20
-> The patch set adds the MediaTek ISP7.x camera system hardware driver.
->=20
-> This driver sets up ISP hardware, handles interrupts, and initializes
-> V4L2 device nodes and functions. Moreover, implement V4L2 standard
-> video driver that utilizes media framework APIs. It also connects
-> the sensors and ISP, bridging with the seninf interface. Communicate
-> with SCP co-processor to compose ISP registers in the firmware.
 
-Thanks for this work. If I read you correctly, this will depends on an scp
-firmware update. Its probably early at rev1, but we appreciate if you can c=
-ross-
-reference your associated linux-firmware submission (or document which MT
-flavour of SCP firmware) contains this support already.
+On 10/14/24 16:57, Emil Renner Berthing wrote:
+> Michal Wilczynski wrote:
+>> Add mailbox device tree node. This work is based on the vendor kernel [1].
+>>
+>> Link: https://protect2.fireeye.com/v1/url?k=0bc95f25-545267d8-0bc8d46a-000babff317b-85a52eab21db9d22&q=1&e=63a49acd-e343-43d2-a57d-b4f6fcd23b61&u=https%3A%2F%2Fgithub.com%2Frevyos%2Fthead-kernel.git [1]
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
+>>  1 file changed, 12 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+>> index 6992060e6a54..435f0ab0174d 100644
+>> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+>> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+>> @@ -555,5 +555,17 @@ portf: gpio-controller@0 {
+>>  				interrupts = <55 IRQ_TYPE_LEVEL_HIGH>;
+>>  			};
+>>  		};
+>> +
+>> +		mbox_910t: mailbox@ffffc38000 {
+> 
+> Hi Michal,
+> 
+> Thanks for your patch! Please sort this by address similar to the other nodes.
 
-For ISP drivers reviewers, we have the experience with SCP that the IPC is =
-not
-versioned, making it difficult to maintain backward compatibility. Won't ma=
-tter
-until this is merged, but be aware that unless this SCP IPC design issue ha=
-s
-been fixed, any change to the -if headers means a modification to the SCP h=
-as
-been made, and often we have had to ask MTK to revisit the firmware code to
-unbreak backward compatibility.
+Thank you for your review. Will do.
 
-If this specific part of the SCP IPC is versioned, please let us know. I do=
-n't
-want this to be alarming message, just something we need to collectively be
-aware of not to break userspace, which may not update their firmwares in lo=
-ck
-step with the kernel.
+> 
+>> +		       compatible = "thead,th1520-mbox";
+>> +		       reg = <0xff 0xffc38000 0x0 0x4000>,
+> 
+> The documentation[1] calls this area MBOX0_T, but it says it's 24kB long.
+> 
+> [1]: https://protect2.fireeye.com/v1/url?k=182b68d6-47b0502b-182ae399-000babff317b-d2b05f97b85a09ff&q=1&e=63a49acd-e343-43d2-a57d-b4f6fcd23b61&u=https%3A%2F%2Fgit.beagleboard.org%2Fbeaglev-ahead%2Fbeaglev-ahead%2F-%2Fblob%2Fmain%2Fdocs%2FTH1520%2520System%2520User%2520Manual.pdf
+> 
+>> +			     <0xff 0xffc44000 0x0 0x1000>,
+> 
+> According to the documentation this is inside the 24kB MBOX1_T area.
+> 
+>> +			     <0xff 0xffc4c000 0x0 0x1000>,
+> 
+> This is callod MBOX2_T, but is 8kB long.
+> 
+>> +			     <0xff 0xffc54000 0x0 0x1000>;
+> 
+> This is callod MBOX3_T, but is 8kB long.
+> 
+>> +		       reg-names = "local", "remote-icu0", "remote-icu1", "remote-icu2";
+> 
+> Maybe these should match the MBOXn_T names in the documentation?
 
-regards,
-Nicolas
+Indeed, those are excellent points. I wondered about this today, trying
+to understand why the mapping was done this way.
 
-p.s. for those new to MTK architecture, the SCP firmware provides services =
-to
-everything multimedia in the platform, including CODECs, color converter an=
-d
-scalers, etc.
+For the MBOX0_T mapping, the mailbox driver needs to map the M0_*
+registers, including the M0_Cn registers, where other cores write their
+messages. This setup requires a total of 16KB, with an additional 8KB
+that remains unused.
 
->=20
-> These patches include CSI received data from sensors, sensor interface
-> bridge, raw/YUV image pre-processing, ISP utility and ISP control parts.
->=20
-> Thank you for reviewing these patches.
->=20
-> Shu-hsiang Yang (10):
->   dt-bindings: media: mediatek: add camsys device
->   media: platform: mediatek: add seninf controller
->   media: platform: mediatek: add isp_7x seninf unit
->   media: platform: mediatek: add isp_7x cam-raw unit
->   media: platform: mediatek: add isp_7x camsys unit
->   media: platform: mediatek: add isp_7x utility
->   media: platform: mediatek: add isp_7x video ops
->   media: platform: mediatek: add isp_7x state ctrl
->   media: platform: mediatek: add isp_7x build config
->   uapi: linux: add mediatek isp_7x camsys user api
->=20
->  .../media/mediatek/mediatek,cam-raw.yaml      |  169 +
->  .../media/mediatek/mediatek,cam-yuv.yaml      |  148 +
->  .../media/mediatek/mediatek,camisp.yaml       |   71 +
->  .../media/mediatek/mediatek,seninf-core.yaml  |  106 +
->  .../media/mediatek/mediatek,seninf.yaml       |   88 +
->  drivers/media/platform/mediatek/Kconfig       |    1 +
->  drivers/media/platform/mediatek/Makefile      |    2 +
->  drivers/media/platform/mediatek/isp/Kconfig   |   21 +
->  .../platform/mediatek/isp/isp_7x/Makefile     |    7 +
->  .../mediatek/isp/isp_7x/camsys/Makefile       |   16 +
->  .../isp_7x/camsys/kd_imgsensor_define_v4l2.h  |   87 +
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-ctrl.c | 1797 ++++++
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-ctrl.h |  140 +
->  .../isp/isp_7x/camsys/mtk_cam-debug.c         | 1271 ++++
->  .../isp/isp_7x/camsys/mtk_cam-debug.h         |  273 +
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-defs.h |  168 +
->  .../isp/isp_7x/camsys/mtk_cam-dmadbg.h        |  721 +++
->  .../isp/isp_7x/camsys/mtk_cam-feature.c       |   40 +
->  .../isp/isp_7x/camsys/mtk_cam-feature.h       |   26 +
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-fmt.h  |   87 +
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-ipi.h  |  233 +
->  .../isp/isp_7x/camsys/mtk_cam-meta-mt8188.h   | 2436 ++++++++
->  .../isp/isp_7x/camsys/mtk_cam-plat-util.c     |  207 +
->  .../isp/isp_7x/camsys/mtk_cam-plat-util.h     |   16 +
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-pool.c |  393 ++
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-pool.h |   28 +
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-raw.c  | 5359 +++++++++++++++++
->  .../mediatek/isp/isp_7x/camsys/mtk_cam-raw.h  |  325 +
->  .../isp/isp_7x/camsys/mtk_cam-raw_debug.c     |  403 ++
->  .../isp/isp_7x/camsys/mtk_cam-raw_debug.h     |   39 +
->  .../isp/isp_7x/camsys/mtk_cam-regs-mt8188.h   |  382 ++
->  .../isp/isp_7x/camsys/mtk_cam-seninf-def.h    |  193 +
->  .../isp/isp_7x/camsys/mtk_cam-seninf-drv.c    | 1741 ++++++
->  .../isp/isp_7x/camsys/mtk_cam-seninf-drv.h    |   16 +
->  .../isp/isp_7x/camsys/mtk_cam-seninf-hw.h     |  120 +
->  .../isp/isp_7x/camsys/mtk_cam-seninf-if.h     |   28 +
->  .../isp/isp_7x/camsys/mtk_cam-seninf-regs.h   |   40 +
->  .../isp/isp_7x/camsys/mtk_cam-seninf-route.c  |  356 ++
->  .../isp/isp_7x/camsys/mtk_cam-seninf-route.h  |   23 +
->  .../isp/isp_7x/camsys/mtk_cam-seninf.h        |  170 +
->  .../isp/isp_7x/camsys/mtk_cam-timesync.c      |  125 +
->  .../isp/isp_7x/camsys/mtk_cam-timesync.h      |   12 +
->  .../isp/isp_7x/camsys/mtk_cam-ufbc-def.h      |   59 +
->  .../isp/isp_7x/camsys/mtk_cam-video.c         | 1817 ++++++
->  .../isp/isp_7x/camsys/mtk_cam-video.h         |  224 +
->  .../mediatek/isp/isp_7x/camsys/mtk_cam.c      | 4168 +++++++++++++
->  .../mediatek/isp/isp_7x/camsys/mtk_cam.h      |  733 +++
->  .../isp_7x/camsys/mtk_camera-v4l2-controls.h  |   65 +
->  .../isp_7x/camsys/mtk_csi_phy_2_0/Makefile    |    5 +
->  .../mtk_csi_phy_2_0/mtk_cam-seninf-cammux.h   |  911 +++
->  .../mtk_cam-seninf-csi0-cphy.h                |   69 +
->  .../mtk_cam-seninf-csi0-dphy.h                |  139 +
->  .../mtk_cam-seninf-hw_phy_2_0.c               | 2879 +++++++++
->  .../mtk_cam-seninf-mipi-rx-ana-cdphy-csi0a.h  |  257 +
->  .../mtk_cam-seninf-seninf1-csi2.h             |  415 ++
->  .../mtk_cam-seninf-seninf1-mux.h              |  147 +
->  .../mtk_csi_phy_2_0/mtk_cam-seninf-seninf1.h  |   47 +
->  .../mtk_csi_phy_2_0/mtk_cam-seninf-tg1.h      |   49 +
->  .../mtk_csi_phy_2_0/mtk_cam-seninf-top-ctrl.h |   99 +
->  include/uapi/linux/mtkisp_camsys.h            |  227 +
->  60 files changed, 30194 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek/medi=
-atek,cam-raw.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek/medi=
-atek,cam-yuv.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek/medi=
-atek,camisp.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek/medi=
-atek,seninf-core.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek/medi=
-atek,seninf.yaml
->  create mode 100644 drivers/media/platform/mediatek/isp/Kconfig
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/Makefile
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/Mak=
-efile
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/kd_=
-imgsensor_define_v4l2.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-ctrl.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-ctrl.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-debug.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-debug.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-defs.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-dmadbg.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-feature.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-feature.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-fmt.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-ipi.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-meta-mt8188.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-plat-util.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-plat-util.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-pool.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-pool.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-raw.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-raw.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-raw_debug.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-raw_debug.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-regs-mt8188.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf-def.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf-drv.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf-drv.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf-hw.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf-if.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf-regs.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf-route.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf-route.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-seninf.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-timesync.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-timesync.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-ufbc-def.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-video.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam-video.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_cam.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_camera-v4l2-controls.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/Makefile
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-cammux.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-csi0-cphy.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-csi0-dphy.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-hw_phy_2_0.c
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-mipi-rx-ana-cdphy-csi0a.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-seninf1-csi2.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-seninf1-mux.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-seninf1.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-tg1.h
->  create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk=
-_csi_phy_2_0/mtk_cam-seninf-top-ctrl.h
->  create mode 100644 include/uapi/linux/mtkisp_camsys.h
->=20
+Regarding MBOX1_T, MBOX2_T, and MBOX3_T, only one set of registers is
+necessary - specifically, Mn_C0 since the kernel always sends messages
+from the 910t core with CPU_IDX=0.
 
+The MBOX1_T mapping is particularly confusing, as the relevant
+registers, M1_C0*, start with an offset of 0x4000 relative to the
+beginning of the mapping.
+
+For MBOX2_T and MBOX3_T, the necessary register sets, M2_C0 and M3_C0,
+each occupy 4KB of address space, leaving extra 4kB unused.
+
+I assume the hardware designers found these mappings more
+straightforward to implement this way. I’m fairly confident that these
+numbers are accurate, as I have tested them and confirmed they work.
+
+> 
+>> +		       interrupt-parent = <&plic>;
+>> +		       interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> You should probably also add the clocks here:
+> 
+> 	clocks = <&clk CLK_MBOX0>,  .., <&clk CLK_MBOX3>;
+> 
+> ..and claim them in the driver. Otherwise the clock framework will consider
+> them unused and turn them off without the clk_ignore_unesed kernel command
+> line.
+
+Thanks for the suggestion! I’ll re-test with the clocks added. I had
+clk_ignore_unused enabled permanently in my U-Boot configuration, so I
+might have overlooked this detail.
+
+> 
+> /Emil
+> 
+>> +		       #mbox-cells = <2>;
+>> +		};
+>>  	};
+>>  };
+>> --
+>> 2.34.1
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> https://protect2.fireeye.com/v1/url?k=cb1a1bba-94812347-cb1b90f5-000babff317b-3fe071fc8037390e&q=1&e=63a49acd-e343-43d2-a57d-b4f6fcd23b61&u=http%3A%2F%2Flists.infradead.org%2Fmailman%2Flistinfo%2Flinux-riscv
+> 
 
