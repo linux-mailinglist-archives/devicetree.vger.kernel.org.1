@@ -1,91 +1,70 @@
-Return-Path: <devicetree+bounces-111414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A60499EA3A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:47:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F4299EA43
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:48:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C229B1C21083
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:47:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F49AB24115
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F8A1C07DC;
-	Tue, 15 Oct 2024 12:47:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9AD1C07F3;
+	Tue, 15 Oct 2024 12:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="j2DLWB3P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VWVUQEiv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056061C07CC
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 12:47:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587831C07E0;
+	Tue, 15 Oct 2024 12:48:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728996447; cv=none; b=SCQlyHz3YZc9eX0yulCOndEFUmr8WbBFC1A9h+9q+7DncYwp13W6bDWPv2cBCs09q3MrJcaGvPJDDDIoQsQQWU3GxBq7UhcTFSQP4b8b2XD1kZQMlEhvxp1yk3j3zL4nINzoF7dqNeYyO0yEab+FsDhfACBtzvrE8L940x/nCzc=
+	t=1728996495; cv=none; b=mpD90ZA/UDGkpMxIszY8OyLIYaYpfZgceekzLtla+V+/LA2pquaJULFroilZkKoL3uRHt9WRiOT+4Wkbi1vtVpolxDMVLASj5CZxrQ3VUhKJr+yi9bhtg/20Poy58Dw+l5L3wIv5q+gCMd2ztWZ2A+jlrdDlt68wA1KXl9q9l04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728996447; c=relaxed/simple;
-	bh=9S1snqy0sUlcGrxSkmAISPY4bKaFGc5qSCVtFcrN4RE=;
+	s=arc-20240116; t=1728996495; c=relaxed/simple;
+	bh=wsTS2WCqFOpO0DvNwr7sz9CyhmcJQl/xQAKXdzpLRqI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=biLx6exSKirejWuxpCCWecrJVz5LWDdmxmx+BCuVQqM4LF84F8ru2iUn7F0l5GOVeFLzLI3WEge6Q7Lmrk8SZ60rzT8T+TuOOKqbdTHIbrdqFSPPaXe4JzfawUqDDmRZiX8yyEd6HcyengX/GUdvqdDc+0Y4ZRelanUbkQE+Bk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=j2DLWB3P; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-84fd01c9defso1303067241.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 05:47:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1728996445; x=1729601245; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9S1snqy0sUlcGrxSkmAISPY4bKaFGc5qSCVtFcrN4RE=;
-        b=j2DLWB3Paan6KBP9L8uoyRVkBC4TNnT/hpUMlcw7GzrWf1k7WAfybHi/1u0hG1h+gV
-         Wxtbnke+cFZy2rfgug2oh02DdYq1NeejYggkKA8Pwa0KipziaEHdi15SxJdleT3OpOpi
-         McgjZr27Lf0Cca0lkXEuKnwwVh+w9yt5gdequkc1ric4a2AfN1jhNVxkzYWZp9PNrfCN
-         77zntjuP/Q1qAPlULLcDiVABb7mUaPgaNOLP6OkT6MrN0Lax0IMyrlbnhDc6eVM2C4qM
-         +gvKuihwpmnwfbFqvA97BJwen+JKbjXw4SjArky1+Z/uxaeoD+p5hHgWS4TnyRMCqQOW
-         gN2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728996445; x=1729601245;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9S1snqy0sUlcGrxSkmAISPY4bKaFGc5qSCVtFcrN4RE=;
-        b=YD4zBl5l8woj8vFBuHD47MuvB43O4nxBi4IBAxKkXO3O3xwTt7QgOt47Rf9KmUMSGP
-         HUMgxq5UQBUb58rOT8efi2NQqe7qd2uMx+ZLtdeCCbbaUb/W23jrwJrOTyx3SPFApQXz
-         t29aIxIWB9lH4Eq6QzB2k4GC64QZ4MqMidWlBo43aSD25LkWxbtpB3bxLcIoqx3YQFKA
-         UjjOO2ovTqVj8jdf+2XtA4CI1vCiRwOdI1Wg73pDr66N5RMmLUrWXWpOBKI7cfJpYadk
-         Vh3WHmdjlO5BNydfDKJjRNYTa+4VE+NoqehNDN2a4qCU6jqYtK08/k/xqEGXb2eYFlFF
-         dmGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUmMp0DC4XO1ySpbS7uTebK4WZYXNTM9EWc1b6/gX0QbXXVkuWxYD4/qQ5lhXN3aqWXlVdmuv5l/5pa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvQKtMuFg07WSys2hLFKcmhM3EPsj6MMBKbk17A8l1pMR6+Dsf
-	4ZbKZ9ZbMvnwHcWD2OEpVjPr5nr6y1c1uzEyjBzH1gcqS0PNHnrtOl6MEpgGh74=
-X-Google-Smtp-Source: AGHT+IHIRxePA9J/5yRqXfxDEQAMQhA+JMP40CVAOrPRfL5HhzVbrqqZKc4spR4QAm7PXjUlxeCV1g==
-X-Received: by 2002:a05:6102:3752:b0:4a4:9416:6a18 with SMTP id ada2fe7eead31-4a5b579b8e7mr231229137.0.1728996444983;
-        Tue, 15 Oct 2024 05:47:24 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-68-128-5.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.128.5])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b13616611csm67089085a.14.2024.10.15.05.47.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2024 05:47:24 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1t0gxP-00D2Mx-UU;
-	Tue, 15 Oct 2024 09:47:23 -0300
-Date: Tue, 15 Oct 2024 09:47:23 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Pranjal Shrivastava <praan@google.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=N4/yH3cy+cXr/jcaa34QUF9F0lErl20gB/T6bndtPmxKfSS+Kb0uFkAgMmIo+Azv1aRSXWTCmbp7bHy9m5UTujZrJIKNdZkFjeTaP+sUEbxmfjMFzba48USKw+vxSauYiJHDgKDqamPU3mxANWPzv/pB9QvXxXi7l5ly/V/5pDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VWVUQEiv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD2C9C4CED1;
+	Tue, 15 Oct 2024 12:48:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728996494;
+	bh=wsTS2WCqFOpO0DvNwr7sz9CyhmcJQl/xQAKXdzpLRqI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VWVUQEiv5lwhjRg9Kk6XU34TBrmeKBVaNSD9I/VAYSlKhXhMavscUFgFmaNQT31RD
+	 TPSMxgDSxUqbRgHs1tjTfKUCDHLySZa9m4qQoWmkSNClgIeS5yVG/wMcq/f79d5k1E
+	 R2m87bIysPWEC5VyFZI2NK3UIjWPBuC2Ze88U49PbDYMp3N6+SZhm00E5A4QmxA9a/
+	 OxHXiztUx0hb0FHg34uI4V16GRdlDzVqkgPRnqTgd3GOV//IIPeyuoF5sf0DQA6RTK
+	 NvZdqXff5PSaFgKj2OV77MCC3cIXufZJ+SQL9a1q1nklY8XOgjm6H6wjC5b2EGDP8b
+	 Z0rx+NO1xBz9Q==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t0gyI-000000004da-3YUb;
+	Tue, 15 Oct 2024 14:48:19 +0200
+Date: Tue, 15 Oct 2024 14:48:18 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH RFC 2/2] iommu/arm-smmu-v3: Bypass SID0 for NXP i.MX95
-Message-ID: <20241015124723.GI1825128@ziepe.ca>
-References: <20241015-smmuv3-v1-0-e4b9ed1b5501@nxp.com>
- <20241015-smmuv3-v1-2-e4b9ed1b5501@nxp.com>
- <Zw4kKDFOcXEC78mb@google.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add Parade PS8830 Type-C
+ retimer bindings
+Message-ID: <Zw5kkhkT62pDoW8I@hovoldconsulting.com>
+References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
+ <20241004-x1e80100-ps8830-v2-1-5cd8008c8c40@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,20 +73,114 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Zw4kKDFOcXEC78mb@google.com>
+In-Reply-To: <20241004-x1e80100-ps8830-v2-1-5cd8008c8c40@linaro.org>
 
-On Tue, Oct 15, 2024 at 08:13:28AM +0000, Pranjal Shrivastava wrote:
+On Fri, Oct 04, 2024 at 04:57:37PM +0300, Abel Vesa wrote:
+> Document bindings for the Parade PS8830 Type-C retimer. This retimer is
+> currently found on all boards featuring Qualcomm Snapdragon X Elite SoCs
+> and it is needed to provide altmode muxing between DP and USB, but also
+> connector orientation handling between.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-> Umm.. this was specific for rmr not a generic thing. I'd suggest to
-> avoid meddling with the STEs directly for acheiving bypass. Playing
-> with the iommu domain type could be neater. Perhaps, modify the
-> ops->def_domain_type to return an appropriate domain?
+> +  clocks:
+> +    items:
+> +      - description: XO Clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xo
 
-Yeah, that is the expected way, to force the def_domain_type to
-IDENTITY and refuse to attach a PAGING/BLOCKED domain.
+> +  vdd-supply:
+> +    description: power supply (1.07V)
+> +
+> +  vdd33-supply:
+> +    description: power supply (3.3V)
+> +
+> +  vdd33-cap-supply:
+> +    description: power supply (3.3V)
+> +
+> +  vddar-supply:
+> +    description: power supply (1.07V)
+> +
+> +  vddat-supply:
+> +    description: power supply (1.07V)
+> +
+> +  vddio-supply:
+> +    description: power supply (1.2V or 1.8V)
 
-If this is a common thing we could have the core code take on more of
-the job.
+> +required:
+> +  - compatible
+> +  - reg
 
-Jason
+Presumably all of the supplies are also required.
+
+Similar for clocks, etc.
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        typec-mux@8 {
+> +            compatible = "parade,ps8830";
+> +            reg = <0x8>;
+> +
+> +            vdd-supply = <&vreg_rtmr_1p15>;
+> +            vdd33-supply = <&vreg_rtmr_3p3>;
+> +            vdd33-cap-supply = <&vreg_rtmr_3p3>;
+> +            vddar-supply = <&vreg_rtmr_1p15>;
+> +            vddat-supply = <&vreg_rtmr_1p15>;
+> +            vddio-supply = <&vreg_rtmr_1p8>;
+> +
+> +            reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_HIGH>;
+
+The reset line is active low.
+
+> +
+> +            retimer-switch;
+> +            orientation-switch;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+
+Please add a newline before each child node for readability.
+
+> +                    usb_con_ss: endpoint {
+
+We typically avoid adding unused labels to the examples, but perhaps
+here it serves as documentation?
+
+> +                        remote-endpoint = <&typec_con_ss>;
+> +                    };
+> +                };
+
+Add newline here too, and similar below.
+
+> +                port@1 {
+> +                    reg = <1>;
+> +                    phy_con_ss: endpoint {
+> +                        remote-endpoint = <&usb_phy_ss>;
+> +                        data-lanes = <3 2 1 0>;
+> +                    };
+> +                };
+> +                port@2 {
+> +                    reg = <2>;
+> +                    usb_con_sbu: endpoint {
+> +                        remote-endpoint = <&typec_dp_aux>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+
+Johan
 
