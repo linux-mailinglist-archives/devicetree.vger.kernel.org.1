@@ -1,133 +1,81 @@
-Return-Path: <devicetree+bounces-111376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B6B99E5BD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:34:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22BFA99E6A9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:44:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3E381F23446
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:34:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 542A11C24245
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7B71EB9E2;
-	Tue, 15 Oct 2024 11:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA881E9082;
+	Tue, 15 Oct 2024 11:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LsPWwgCo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ee+LUZmf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A751E9068;
-	Tue, 15 Oct 2024 11:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0361E884C;
+	Tue, 15 Oct 2024 11:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728992027; cv=none; b=D5gpKmiQLllhH9Sn5CadxqTm9ldXOi0sn2xAIHiIvb66LGRjy9lJVIk2tU4lZcz9Sc35HCe64oOF/60Rv3FPPy9hPRIlhh6sdH64FdJalY19NBexeRDDSd39CebXe4v7il/cJ+oMM2dLdxjD5ps2l6MDkva3z5HGZHFtHlx2uUA=
+	t=1728992630; cv=none; b=OPLwdfpF2GFQUa/jsgC/Acj9iE5MwhY2DWWVgIoCNsbGPM9cfI/og+Q6GIITlut1aHAfImI9fnvWY9p74+P7fC2sQJXN9HGPsgHQbEp9hxNjZoXWK5fHom9FMZ8Grt9khblp6bn/vuJk2YsmO/EbwBw8EdB9UcE/RQXZcdmAAtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728992027; c=relaxed/simple;
-	bh=ch5okUWGA+CN4BsyDr/07MOn3D2VkJk254MFi+dtfKw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=qtVq7qqUsKp5+IOYeSoGB/ox9EwlymWIujFWhGV8i3ywEu/wNXFUolknsKX/B3hR8lKqH1Sq3YijDa0JfgBEvnlA/tDF0csYvkoSfdcmM/kb8ZfV0Q1SZcxjAMAFOfNLeqJ6WH7nk51EdXaB+tblZSIvkqsf/fcKyZa9opj81OY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LsPWwgCo; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7d4fa972cbeso3967209a12.2;
-        Tue, 15 Oct 2024 04:33:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728992025; x=1729596825; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zk20xddrCI+1UTpfhGcnbi1rryEpUOFeAY/WaVP0xkM=;
-        b=LsPWwgCoSSgKNtGFCBRmRRzaGLWkEoXpgcnPBqHpyDPfZsoxKMds+aS6LN5xhdL2DH
-         iZt4qmFU4Wr97LkOv89idZEJ7yqNYBBjxtjTaq16PrexQZGiseUHWlfIKiJzl98Bkz6/
-         DeMUMaJ/XWf6lRJ2/N6wkO3i2awUDGbIXaj1NYzA9wCpFci2diZupRiOGbC+M7MWsJJr
-         7Gya8bi0aAG2XG8NtkPKi5vwW5GPBohfe6dIKIcs6y9qdDSQgHx6IWFQ+uHzfoRsP3qh
-         mqjMDv+nqwAEohyofUIFHhyRdLynQy6SXVfdGvnYwOL+bbrlQlZVO6Dp4p9ldyidbWkk
-         p9kQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728992025; x=1729596825;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Zk20xddrCI+1UTpfhGcnbi1rryEpUOFeAY/WaVP0xkM=;
-        b=kjkHXvGvWciebETIa1kNETH7Aq59MyAeIah+Meh+BzlDPVUZg7R/tc/GlGrXbBoAkP
-         UeGY3mAOy3fcqyfjZKm+OFIpuWFpPtz60F+rjz1cpS2Z9FsoPZIlRqmtrnlEzdy96PDk
-         aCT1uj8HsRL8+eWkJL7H01ml0Hkk6VWYkRx1TFxfU2qS47CHPngFcKw4LJQEFbtKQf9M
-         +9JMv82V1eRPBIE3sL39qA3NcR8avN3k/MJg7nAAUq5buRgdCpQtd8JRZOnZPKVtqlgI
-         6F27o5Ad7sJI60xqXsGO3CIoJQzZw/AXqDkF0sZWjLA9DAH211mu/wpnM9xWgtCo3Xby
-         o5Sw==
-X-Forwarded-Encrypted: i=1; AJvYcCUtdEqvEM5+OeFXqIV8fwXoBkD16j4495yMt0F4ULQKoa2egXVIjTKKileDutL+T4f4yuwxn05kqIXU@vger.kernel.org, AJvYcCV0GJOfJJDM0UAQhbHWcQx3xvTaK3lQwZWNbJ6hxmC4NIpFLN39mvZD97wt3/swz1FF0r1z8opJwGl4SWGf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5KdzxwqvpvgpfOQ0XpBKB9360qMTk4yGkpnpgM5rIcnRJBjXz
-	ev1dYpjfnKu5xJQYLEkfC5pbmTiRRSstVFc2mjSCfDTzFnb/0wHJdfA3i9WR
-X-Google-Smtp-Source: AGHT+IGwP1I8w68XCMtbhgXs5MLUMnBT1yYS8XxOgQuQZyarTMsouVs5FP6o5vACqFbWGTmJC9mjCQ==
-X-Received: by 2002:a05:6a21:2d84:b0:1d8:adea:6598 with SMTP id adf61e73a8af0-1d8bcfaf61emr23924962637.38.1728992025447;
-        Tue, 15 Oct 2024 04:33:45 -0700 (PDT)
-Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20d1805b056sm10017455ad.248.2024.10.15.04.33.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2024 04:33:44 -0700 (PDT)
-From: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: =?utf-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: ti: k3-am62-verdin: Fix SoM ADC compatible
-Date: Tue, 15 Oct 2024 08:33:34 -0300
-Message-Id: <20241015113334.246110-1-jpaulo.silvagoncalves@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1728992630; c=relaxed/simple;
+	bh=mo/gQH4hkR/5aTytPaB8K9yOU0NG0/ishx8d4c82Usw=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=j2stq3vWEIT599VbHH77BSTAHufFAJwH3V8a4ga0NyeA/Xd9OTVxIPXWK8EIv0LIqVPevDCpl0IGsfkA+Vj3PjOn2y0FhVX6FC2SCbGc99sSWcYVDvz4IUKdpZSvRLfukwaNK1VnNGbbaP2ivcP8oq6jGMtm+fzAlWPpvLTyrH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ee+LUZmf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01EDBC4CEC6;
+	Tue, 15 Oct 2024 11:43:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728992630;
+	bh=mo/gQH4hkR/5aTytPaB8K9yOU0NG0/ishx8d4c82Usw=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=ee+LUZmf7X/dLPb6sy14WZNVzdqMubo1HQky6XpYfr+9FhlTkGzNGrfm1DRF80VgY
+	 5V1cwcbdKpBYQSt1Qy27MOoMy8NYuwRFuc7crB3zm3iplC1RFJNS/7EJJNyujsjxar
+	 9ylTuS9UovxQldRhGL0ONByc8Qt1sGdhwGaSjZcxKUnHwYvgF1NeQ/iSZVPQnjGJiM
+	 80NDUlbOSN1ZCre1Eft7KAGtklR0eID082lIydag+LrnXTh3hBn+jXI50xr4cZhdlq
+	 apb4ydR1nPKVw/g1ZPrYA0iAm58wAemZC7Yq3vMxQsfttUfN/FWlW652KZ+1FVEDh3
+	 hBWrwmNkQn2jw==
+From: Lee Jones <lee@kernel.org>
+To: devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+ linux-kernel@vger.kernel.org, tony@atomide.com, 
+ Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, khilman@baylibre.com, 
+ linux-omap@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Sebastian Reichel <sre@kernel.org>, Andreas Kemnade <andreas@kemnade.info>
+In-Reply-To: <20241007150120.1416698-3-andreas@kemnade.info>
+References: <20241007150120.1416698-1-andreas@kemnade.info>
+ <20241007150120.1416698-3-andreas@kemnade.info>
+Subject: Re: (subset) [PATCH v4 2/4] dt-bindings: mfd: twl: add charger
+ node also for TWL603x
+Message-Id: <172899262774.511730.12889214471457383320.b4-ty@kernel.org>
+Date: Tue, 15 Oct 2024 12:43:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On Mon, 07 Oct 2024 17:01:18 +0200, Andreas Kemnade wrote:
+> Also the TWL603X devices have a charger, so allow to specify it here.
+> 
+> 
 
-Fix Verdin AM62 on-SOM ADC compatible. Currently the hardware is not
-correctly described in the DT, use the correct TI TLA2024 compatible that
-matches what is assembled on the board.
+Applied, thanks!
 
-The "ti,tla2024" compatible was introduced in Linux v5.19 and Verdin AM62
-support was introduced in Linux v6.5.
+[2/4] dt-bindings: mfd: twl: add charger node also for TWL603x
+      commit: 8a2ef90ff7924250db535454ef92ba2961b80fba
 
-The new DTB will not work on kernel older than v5.19, but this seems
-unlikely to happen. U-Boot does not use the ADC node and a known Android 14
-out-of-tree port uses a Linux Kernel 6.1.
-
-With that said, despite this being a breaking change, it seems fair to
-to not expect any regression because of it.
-
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
----
-v2: Update commit message to make clearer these are breaking changes.
-
-v1: https://lore.kernel.org/lkml/20241001111413.10390-1-jpaulo.silvagoncalves@gmail.com/
-
- arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-index 5bef31b8577b..f201722d81b3 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-@@ -1220,7 +1220,7 @@ sensor@48 {
- 	};
- 
- 	adc@49 {
--		compatible = "ti,ads1015";
-+		compatible = "ti,tla2024";
- 		reg = <0x49>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--- 
-2.34.1
+--
+Lee Jones [李琼斯]
 
 
