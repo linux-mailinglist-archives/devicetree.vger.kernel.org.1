@@ -1,224 +1,302 @@
-Return-Path: <devicetree+bounces-111259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2896099DED8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:56:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C082D99DEEE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:59:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C3441C21883
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:56:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F170B23585
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1263118A956;
-	Tue, 15 Oct 2024 06:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0CB019E990;
+	Tue, 15 Oct 2024 06:58:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="2hL0BQAF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C8pFKm74"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 115D5172BCE;
-	Tue, 15 Oct 2024 06:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306F618BB8F;
+	Tue, 15 Oct 2024 06:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728975405; cv=none; b=ERBSInzMSJGLaxcUlr+gCY8j3IrwY9dzkyMlV1C06SHD9ar7wCdzCQk+VFgtMohFBZpGdsKXGQ5W9/R1lnQakT63U7nLItcFdwXwpdH3sCEEWsx3im0Vxx50Hhw+ZWYsiYsqpeW7QUn6Z9IaXrqtK/1ggUcDoXKahtnEtXACyRg=
+	t=1728975528; cv=none; b=KUgu2ROKKGWHAAbhsgTN59kVA14AJLCZgQtl3VX+ujq3Y9V6hElgyB2QnLh/IuBCSjWjfhF2upn/z/gXfBG3//viraJzEt6wobSyelR6SiwTsUBpHjSyQRKaDqOs2igWS21HQmUXJ4PDnG7rQgCc4kvYiSZerc0rKj45A+8H8+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728975405; c=relaxed/simple;
-	bh=4Sj4pR4hDeqqU2JhHI+sXnxUm8jUqiCpTHuhpkV97O4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CDh6jC0tQOzbFSIHguSJG3OzUl47Zi6nx+aHMB9DoBSGRzhJHhJ67Dy44sQixUpCZTDX4+/iYG7RV4hSrwJi5lAZedly/VF0+nN4LeeO/ay8GnTaXLIqK7P8vVHA2gBFgqhxMU0Bjzylcq7EPayQPNbRnZzTzzmnn8FZ1o7u6kY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=2hL0BQAF; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1728975403; x=1760511403;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4Sj4pR4hDeqqU2JhHI+sXnxUm8jUqiCpTHuhpkV97O4=;
-  b=2hL0BQAF+FKXuxRAWpfMiE8uiJEQaWyq6ZfK8UfyyhS93FDUuEZ4KqwM
-   6uedrr75rW9FJurMJHFnTEb8/5tKtgWflYcmk8ckLc4oIumhg6feOYV0i
-   DYMyyACwSR/Kz5IGOWL7WiaERMXwuNlh0T+b+LYd1JRn8KhBW4r5/dz55
-   uHDdQ8XpeZd6VFUhVzfQPAq/VTVHub39EaPDZ84BSk81Uenfv3N7lDKRB
-   vcS2joTlxZJLjpfh0/279lrVWCXCm5l2DYp23LG+1Ha00Vs9oNaLTamSw
-   b8Sruj4lNJ+5R02QoG8h5LD/awsjL0cH3jidMKNFM656Vkcf2P6buFa8A
-   w==;
-X-CSE-ConnectionGUID: XyjmHW/JQKad8t5tqwiT3A==
-X-CSE-MsgGUID: wlxq7VeBR3KD9OaaVPDVjA==
-X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; 
-   d="asc'?scan'208";a="33020112"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Oct 2024 23:56:42 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 14 Oct 2024 23:56:40 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Mon, 14 Oct 2024 23:56:39 -0700
-Date: Tue, 15 Oct 2024 07:56:20 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-CC: Andrew Jeffery <andrew@codeconstruct.com.au>, "Rob Herring (Arm)"
-	<robh@kernel.org>, <devicetree@vger.kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Joel Stanley <joel@jms.id.au>, Conor
- Dooley <conor+dt@kernel.org>, <linux-aspeed@lists.ozlabs.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: add IBM SBP1 board
-Message-ID: <20241015-portion-parish-4ca08647bb4c@wendy>
-References: <20241010112337.3840703-1-naresh.solanki@9elements.com>
- <172857036038.1533242.5775916298170949713.robh@kernel.org>
- <4d596ac9a2215be8510369c948e0b9680ee2fce3.camel@codeconstruct.com.au>
- <CABqG17gmjvBmpp2a7tgVwR+q3tsrbejVmezWaXH__txytr30hQ@mail.gmail.com>
+	s=arc-20240116; t=1728975528; c=relaxed/simple;
+	bh=6uwY9iEupC2nz8gGrmjjlG5L8kjSkt5VX/hruS/T2pM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M9pgDmae8V580dVhFkHMfMxosQ5pG3AcSHU6eb73JaQ7M8RvzXQVletcwqDIEilWMB2IB66U3zVjgoJ61h51AutywIjfEzp4Yf1HZDrf4EYIs8jRjyJNpR/+gHMfiqDLBpLq0/dOTHs2JUG8yYMvAqlEB/JBgsM/7OdOQ3pGh2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C8pFKm74; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e2ee0a47fdso823586a91.2;
+        Mon, 14 Oct 2024 23:58:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728975526; x=1729580326; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8O8a/W9BX22xkR7baqN01A7a4KYNQYX8/DGiUlDM8bs=;
+        b=C8pFKm74C+pgC6u/2iWnQXKI6lwD6YQs0GN/ocQEx5x+imtFFNZrzvF0GglH6smzma
+         fk89f5VCwAonDdJCJ9UZACwtczOscVQCXre7Rm0493XsucRqIjH4GEPBWoBW9HUbtLtF
+         SBk8MvZ4amupXHAHnaD9BYkyDdtsQtK02ju/27mvfp0YCpI1RH3LUmh7fjY587vIoX7G
+         KsgFfc/12g5n82vztN//RF57IpxB7p+HYaQpD12wBBwkG4RxObwYmVT63K+XpDS7UkdJ
+         C+LA9EEW1IX/6tBTqSdnspV5j5mGJCWBlDjGorpVyKBH5rkNs0LF9lNcbaJXc9Ed/03+
+         e6Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728975526; x=1729580326;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8O8a/W9BX22xkR7baqN01A7a4KYNQYX8/DGiUlDM8bs=;
+        b=gxLsnFVBL4WZSO3N7NTp3ySslA/rhko2VfZ/PWjMwCUA20uex47bamWPoecKjx3+Sq
+         A5Ab4ujYz6Pxa473HnD9IfCgLuZ1h5rWfqF27P9tZV4dEouwEN4vRLM73exM5Rd3yU0O
+         e5Z8uId1NujK4jUKyVtQ6qsEry1pqFWpmUkWNvsdpVXvAXwUWCfaLIihidUDhl+lz4na
+         NvRjf5MvbMpTU/hGrSCfa074gwhpnC7ZttgQrH5yRjWmwBLLDo6QKTcwiQYXxk5Z4tWt
+         RSEZEmJPvrWm3VrsJiqLw+k4AOanPxbJU6EPq2HzktqBAfbiEq0m5y7beRRhLfo5pZe4
+         Y4xg==
+X-Forwarded-Encrypted: i=1; AJvYcCUti2iaK25mBB2FDY7tEuP5tgINHQiebJxb0eCh/OATSy3ezA/eoAjAETBot0WEV0kE9bv7prqLAhoD@vger.kernel.org, AJvYcCWWmz9rzN3NXKSz+8eADQqChbetZUjaEgJsfuoVME0j4P0Bah4kHGc5hvr4Rb876JL0gdRAtqXDbRrU6o1Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXpn6eWGkCUxnVeV/YikkyHlqEn8u73BwABzwTqur5Q6ixmfvZ
+	0a7XZYp9E2G9/YGrymScuZMrX7bQbBYn60DDJn12lhm3wxTqcqtr
+X-Google-Smtp-Source: AGHT+IEBqmxJcUAPwc0m9shaSmGmfnJw4762AWitMaevIA/PybZVcHiiqdG350ME7/zXk7SV5l8ICA==
+X-Received: by 2002:a05:6a00:4b04:b0:71e:770d:2c00 with SMTP id d2e1a72fcca58-71e770d2fc9mr755063b3a.4.1728975526306;
+        Mon, 14 Oct 2024 23:58:46 -0700 (PDT)
+Received: from [192.168.60.56] ([103.29.142.67])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ea9c70590esm638195a12.70.2024.10.14.23.58.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Oct 2024 23:58:45 -0700 (PDT)
+Message-ID: <31b9d876-3790-4427-a2d0-8e20192744eb@gmail.com>
+Date: Tue, 15 Oct 2024 14:58:40 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zgnNujWOZf5FzJWM"
-Content-Disposition: inline
-In-Reply-To: <CABqG17gmjvBmpp2a7tgVwR+q3tsrbejVmezWaXH__txytr30hQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] phy: rockchip-naneng-combo: Support rk3576
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, vkoul@kernel.org,
+ kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, Kever Yang <kever.yang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>
+References: <20241015013351.4884-1-frawang.cn@gmail.com>
+ <20241015013351.4884-2-frawang.cn@gmail.com> <1981070.PYKUYFuaPT@diego>
+Content-Language: en-US
+From: Frank Wang <frawang.cn@gmail.com>
+In-Reply-To: <1981070.PYKUYFuaPT@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---zgnNujWOZf5FzJWM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Heiko,
 
-On Fri, Oct 11, 2024 at 01:38:52PM +0530, Naresh Solanki wrote:
-> Hi Andrew,
->=20
->=20
-> On Fri, 11 Oct 2024 at 05:15, Andrew Jeffery
-> <andrew@codeconstruct.com.au> wrote:
-> >
-> > Hi Naresh,
-> >
-> > On Thu, 2024-10-10 at 09:30 -0500, Rob Herring (Arm) wrote:
-> > > On Thu, 10 Oct 2024 16:53:31 +0530, Naresh Solanki wrote:
-> > > > Document the new compatibles used on IBM SBP1.
-> > > >
-> > > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > ---
-> > > > Changes in V4:
-> > > > - Retain Acked-by from v2.
-> > > > - Fix alphabetic order
-> > > > ---
-> > > >  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >
-> > >
-> > >
-> > > My bot found new DTB warnings on the .dts files added or changed in t=
-his
-> > > series.
-> > >
-> > > Some warnings may be from an existing SoC .dtsi. Or perhaps the warni=
-ngs
-> > > are fixed by another series. Ultimately, it is up to the platform
-> > > maintainer whether these warnings are acceptable or not. No need to r=
-eply
-> > > unless the platform maintainer has comments.
-> > >
-> > > If you already ran DT checks and didn't see these error(s), then
-> > > make sure dt-schema is up to date:
-> > >
-> > >   pip3 install dtschema --upgrade
-> > >
-> > >
-> > > New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-sbp1.=
-dtb' for 20241010112337.3840703-1-naresh.solanki@9elements.com:
-> > >
-> >
-> > ...
-> >
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mux@77: interrupts:=
- False schema does not allow [[44, 4]]
-> > >       from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca9=
-54x.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-c=
-pu2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccf=
-a-cpu2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-c=
-pu1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccf=
-a-cpu1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-c=
-pu3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccf=
-a-cpu3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regu=
-lators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regu=
-lators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regu=
-lators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regu=
-lators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-c=
-pu0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccf=
-a-cpu0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >       from schema $id: http://devicetree.org/schemas/trivial-devices.=
-yaml#
-> >
-> > These still must be addressed as mentioned on v3 (with more specific
-> > comments regarding the infineon,ir38263 on v4). Please look through the
-> > binding documents for the affected nodes and make sure the nodes in
-> > your DTS conform to their definitions. You can check your work with
-> > `make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-sbp1.dtb` prior to sending.
->=20
-> These are the warnings coming for trivial devices. Even for regulator@5f
->=20
-> grep -rsn mp2973 Documentation/
-> Documentation/devicetree/bindings/trivial-devices.yaml:286:
-> # Monolithic Power Systems Inc. multi-phase controller mp2973
-> Documentation/devicetree/bindings/trivial-devices.yaml:287:          -
-> mps,mp2973
+On 2024/10/15 14:15, Heiko Stübner wrote:
+> Hi Frank,
+>
+> Am Dienstag, 15. Oktober 2024, 03:33:51 CEST schrieb Frank Wang:
+>> From: Kever Yang <kever.yang@rock-chips.com>
+>>
+>> phy0: pcie, sata
+>> phy1: pcie, sata, usb3
+>>
+>> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+>> Signed-off-by: William Wu <william.wu@rock-chips.com>
+>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>> ---
+>>   .../rockchip/phy-rockchip-naneng-combphy.c    | 202 ++++++++++++++++++
+>>   1 file changed, 202 insertions(+)
+>>
+>> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>> index 0a9989e41237..4c41317a8041 100644
+>> --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>> @@ -584,6 +585,203 @@ static const struct rockchip_combphy_cfg rk3568_combphy_cfgs = {
+>>   	.combphy_cfg	= rk3568_combphy_cfg,
+>>   };
+>>   
+>> +static int rk3576_combphy_cfg(struct rockchip_combphy_priv *priv)
+>> +{
+>> +	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
+>> +	unsigned long rate;
+>> +
+>> +	switch (priv->type) {
+>> +	case PHY_TYPE_PCIE:
+>> +		/* Set SSC downward spread spectrum */
+>> +		rockchip_combphy_updatel(priv, GENMASK(5, 4), BIT(4), 0x7c);
+> Can we get constants for those magic values please?
 
-It coming from trivial-devices.yaml means that the device does not
-actually qualify as a trivial device, but rather needs to be described
-in a binding of its own.
+Ah of cause, I will amend them and send a new patch.
 
---zgnNujWOZf5FzJWM
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+Frank
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZw4SEwAKCRB4tDGHoIJi
-0nIjAPwIEU8NPVESdU3NKkpEF0S/EBcc+8Exu+WbEkvqoq2nIAD+KK53TduJay6t
-7wAqGuWhZfn8YbO16ghift7SX79yeg8=
-=Gv8+
------END PGP SIGNATURE-----
 
---zgnNujWOZf5FzJWM--
+> The combophys for rk3568 and rk3588 do use actual constants to at least
+> somewhat describe what happens, so it would be really nice for the rk3576
+> to do this as well.
+>
+> Same for the rockchip_combphy_updatel and other writel calls below.
+>
+>
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
+>> +		break;
+>> +	case PHY_TYPE_USB3:
+>> +		/* Set SSC downward spread spectrum */
+>> +		rockchip_combphy_updatel(priv, GENMASK(5, 4), BIT(4), 0x7c);
+>> +
+>> +		/* Enable adaptive CTLE for USB3.0 Rx */
+>> +		rockchip_combphy_updatel(priv, GENMASK(0, 0), BIT(0), 0x38);
+>> +
+>> +		/* Set PLL KVCO fine tuning signals */
+>> +		rockchip_combphy_updatel(priv, GENMASK(4, 2), BIT(3), 0x80);
+>> +
+>> +		/* Set PLL LPF R1 to su_trim[10:7]=1001 */
+>> +		writel(0x4, priv->mmio + (0xb << 2));
+>> +
+>> +		/* Set PLL input clock divider 1/2 */
+>> +		rockchip_combphy_updatel(priv, GENMASK(7, 6), BIT(6), 0x14);
+>> +
+>> +		/* Set PLL loop divider */
+>> +		writel(0x32, priv->mmio + (0x11 << 2));
+>> +
+>> +		/* Set PLL KVCO to min and set PLL charge pump current to max */
+>> +		writel(0xf0, priv->mmio + (0xa << 2));
+>> +
+>> +		/* Set Rx squelch input filler bandwidth */
+>> +		writel(0x0d, priv->mmio + (0x14 << 2));
+>> +
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
+>> +		break;
+>> +	case PHY_TYPE_SATA:
+>> +		/* Enable adaptive CTLE for SATA Rx */
+>> +		rockchip_combphy_updatel(priv, GENMASK(0, 0), BIT(0), 0x38);
+>> +
+>> +		/* Set tx_rterm = 50 ohm and rx_rterm = 43.5 ohm */
+>> +		writel(0x8F, priv->mmio + (0x06 << 2));
+>> +
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_sata, true);
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_sata, true);
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_sata, true);
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_sata, true);
+>> +		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_con0_for_sata, true);
+>> +		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_con1_for_sata, true);
+>> +		break;
+>> +	default:
+>> +		dev_err(priv->dev, "incompatible PHY type\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	rate = clk_get_rate(priv->refclk);
+>> +
+>> +	switch (rate) {
+>> +	case REF_CLOCK_24MHz:
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_24m, true);
+>> +		if (priv->type == PHY_TYPE_USB3 || priv->type == PHY_TYPE_SATA) {
+>> +			/* Set ssc_cnt[9:0]=0101111101 & 31.5KHz */
+>> +			rockchip_combphy_updatel(priv, GENMASK(7, 6), BIT(6), 0xe << 2);
+>> +
+>> +			rockchip_combphy_updatel(priv, GENMASK(7, 0), 0x5f, 0xf << 2);
+>> +		} else if (priv->type == PHY_TYPE_PCIE) {
+>> +			/* PLL KVCO tuning fine */
+>> +			rockchip_combphy_updatel(priv, GENMASK(4, 2), 0x4 << 2, 0x20 << 2);
+>> +
+>> +			/* Set up rx_trim */
+>> +			writel(0x0, priv->mmio + (0x1b << 2));
+>> +
+>> +			/* Set up su_trim: T0_1 */
+>> +			writel(0x90, priv->mmio + (0xa << 2));
+>> +			writel(0x02, priv->mmio + (0xb << 2));
+>> +			writel(0x57, priv->mmio + (0xd << 2));
+>> +
+>> +			writel(0x5f, priv->mmio + (0xf << 2));
+> This does includes both the value as well as the register addresses,
+> because a hex-value with a bit shift makes that even less readable.
+>
+> Thanks a lot
+> Heiko
+>
+>
+>> +		}
+>> +		break;
+>> +	case REF_CLOCK_25MHz:
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_25m, true);
+>> +		break;
+>> +	case REF_CLOCK_100MHz:
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_100m, true);
+>> +		if (priv->type == PHY_TYPE_PCIE) {
+>> +			/* gate_tx_pck_sel length select work for L1SS */
+>> +			writel(0xc0, priv->mmio + 0x74);
+>> +
+>> +			/* PLL KVCO tuning fine */
+>> +			rockchip_combphy_updatel(priv, GENMASK(4, 2), 0x4 << 2, 0x20 << 2);
+>> +
+>> +			/* Set up rx_trim: PLL LPF C1 85pf R1 1.25kohm */
+>> +			writel(0x4c, priv->mmio + (0x1b << 2));
+>> +
+>> +			/* Set up su_trim: T3_P1 650mv */
+>> +			writel(0x90, priv->mmio + (0xa << 2));
+>> +			writel(0x43, priv->mmio + (0xb << 2));
+>> +			writel(0x88, priv->mmio + (0xc << 2));
+>> +			writel(0x56, priv->mmio + (0xd << 2));
+>> +		} else if (priv->type == PHY_TYPE_SATA) {
+>> +			/* downward spread spectrum +500ppm */
+>> +			rockchip_combphy_updatel(priv, GENMASK(7, 4), 0x50, 0x1f << 2);
+>> +
+>> +			/* ssc ppm adjust to 3500ppm */
+>> +			rockchip_combphy_updatel(priv, GENMASK(3, 0), 0x7, 0x9 << 2);
+>> +		}
+>> +		break;
+>> +	default:
+>> +		dev_err(priv->dev, "Unsupported rate: %lu\n", rate);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	if (priv->ext_refclk) {
+>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_ext, true);
+>> +		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_100MHz) {
+>> +			writel(0x10, priv->mmio + (0x20 << 2));
+>> +
+>> +			writel(0x0c, priv->mmio + (0x1b << 2));
+>> +
+>> +			/* Set up su_trim: T3_P1 650mv */
+>> +			writel(0x90, priv->mmio + (0xa << 2));
+>> +			writel(0x43, priv->mmio + (0xb << 2));
+>> +			writel(0x88, priv->mmio + (0xc << 2));
+>> +			writel(0x56, priv->mmio + (0xd << 2));
+>> +		}
+>> +	}
+>> +
+>> +	if (priv->enable_ssc) {
+>> +		rockchip_combphy_updatel(priv, GENMASK(4, 4), BIT(4), 0x7 << 2);
+>> +
+>> +		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_24MHz) {
+>> +			/* Xin24M T0_1 650mV */
+>> +			writel(0x00, priv->mmio + (0x10 << 2));
+>> +			writel(0x32, priv->mmio + (0x11 << 2));
+>> +			writel(0x00, priv->mmio + (0x1b << 2));
+>> +			writel(0x90, priv->mmio + (0x0a << 2));
+>> +			writel(0x02, priv->mmio + (0x0b << 2));
+>> +			writel(0x08, priv->mmio + (0x0c << 2));
+>> +			writel(0x57, priv->mmio + (0x0d << 2));
+>> +			writel(0x40, priv->mmio + (0x0e << 2));
+>> +			writel(0x5f, priv->mmio + (0x0f << 2));
+>> +			writel(0x10, priv->mmio + (0x20 << 2));
+>> +		}
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>
+>
+
 
