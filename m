@@ -1,202 +1,289 @@
-Return-Path: <devicetree+bounces-111282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF7AB99E029
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:02:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7587999E05E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:08:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E1A2B23831
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:02:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECA561F21646
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254521AB538;
-	Tue, 15 Oct 2024 08:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D331AC450;
+	Tue, 15 Oct 2024 08:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AA2uh2/U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZP/gCuNF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91FD1741C3;
-	Tue, 15 Oct 2024 08:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EABF19F420;
+	Tue, 15 Oct 2024 08:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728979349; cv=none; b=cewwbU/TfZrl3d+sTh54Wxhsfa+w5Qu/XuOKr+OBGmwiCX8ksygJaTnzOXu3Cr0uTW8Ml/oYHMUZxXf94gbPKB4bcS0KWPOS4fb2i5X4onbrUhUOsZPBpH0OQK5/wWWGunsSLbqNHvsbSPgpKYL1aUstdLZDuY7ocCspgqDQvlM=
+	t=1728979688; cv=none; b=YBpWajhGbMxIx1VwiM27AjHONYx1IwhaCM+13mR8cpK7WaSKHcvNM6L1bUyf6Y/YTcftqew4rZf/btd1wNggPbu9XOI4uMgK9YS0HMD6Kjh2jiEE1XbpENMIpTMCJ139W+ebhRHMOxJrNSzpH1V7HUiAsKh6lJJBxbTnrKjcJIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728979349; c=relaxed/simple;
-	bh=+4LZciiB4pvFS5ClsfPK9lGllyRTY2VBQwBnC98TgiQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WMb9f5tw2QPf58Gm6t86IWh4VSo/bbLR5PfTUHeUmDrUpIfHv4x26bJLyt0gRNoTWmbBzL158nFOHNj7A079ds+gUvrXNFzNHT06lHXEnQSDEauxgpcL92NYmxvODTgZpzwpKVqbqq0p5mRBs+u4OXR9GvDyXXXZrJ/3fxXS6gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AA2uh2/U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CE27C4CEC7;
-	Tue, 15 Oct 2024 08:02:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728979348;
-	bh=+4LZciiB4pvFS5ClsfPK9lGllyRTY2VBQwBnC98TgiQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AA2uh2/UPExJglAvChIjbiip1CLR6L6yreSs+pE6t5KI+NjTm55WS7pYjfcYXKmMU
-	 jet8/b+WMXAyNIpVrSmV5b1TsvZuGbpwXnyeG1Tkt8bIxaG+M02czzCrQVm55EaI1B
-	 Cw1gGSZD+dL2br1ivIrXOEQuYiBAZ2RxtLtcsLwmZC04a3cZkfX8hnseZLyGMTlR6i
-	 NauF9aDcdwVOjYqa0J8L+oJl3l281ms5OBOg2YtfAy40F2HH4BnXSih3MP9IwkVcxr
-	 Oylg1B5umiu5/UTF1Yd/JeLc8NbK8ARIZoGxEQF2Y2mth7C96lAmHG78EKKkaZ7hIM
-	 n3YSfqIsYRcBg==
-Message-ID: <1524dbc2-2c9a-476f-a06a-0d998c29534d@kernel.org>
-Date: Tue, 15 Oct 2024 10:02:21 +0200
+	s=arc-20240116; t=1728979688; c=relaxed/simple;
+	bh=0HM5QzbApdifMro5Q6I0Vfw6ka77pCzXs9quQRKR2us=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=D/9E44mh+XBHadWB8yQcvuXIA09Sf+BuBqn15FmoYQzOvanrBnRLOgY9lrrvQmzFWSOZ2fugRHgEZ1xt9AhseqPG9XGYsxFdfSn3KvlQvin6zv2WqMGpPJKBHZbqpszk7V5cSB4mxlw/MG6024IRXTRatuStyEN0jFJhGcxZ370=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZP/gCuNF; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53a007743e7so328602e87.1;
+        Tue, 15 Oct 2024 01:08:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728979684; x=1729584484; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qf4YX1pnBlpdfRPG1tk8PhQCn7JdDosYa2aEpKQFtec=;
+        b=ZP/gCuNFZroSRIO/r77w0cXXDSjmmiW/dk00nqkl/Nm4bHQ56RfUWwBgZi4I2cfJLo
+         m5EhIIIZFJbtcMNDcDURPv9dhdH9zGTocOdR/sWqnCyvM/G9dtGKUdCmXFiKjmV0WePb
+         aoE3FIL9HvtSzz7d59PqK0ySq02X+xMzYEc/7qyVRntV7CeBOzJQ45iFAUxdi17De0cR
+         ZSjeXtWRZJxTb8VQVwkfzSHlfWXwrO43PYvdilDZsUAX9l0ELy4Sfg/+Mz/uKg6jACky
+         xk16ThyQBJbibEUZdATkPlRznW32ag0PWpv9PCxeysOKoqZZPzRlMCqTYg+3SuLCWEC+
+         20kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728979684; x=1729584484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Qf4YX1pnBlpdfRPG1tk8PhQCn7JdDosYa2aEpKQFtec=;
+        b=HvLRn3WbokrKPvRCQdQl3LZhGhigk8ZvH8Bc6YCxWomCVFtVxQx6GxxqrLprXVD9MP
+         0sKIas2WXRQ9UD6kCl5Ll6KMDOLdtg/4YNQcsYGx9kSUhIWQ3e15cnLFGIotpxBJcdcy
+         YHORSgHpvVPgxW2e7qmTaDkaX43Yw2HwB78fJGoVJijlahJYuhwXYO3BUjLp7YI6kMvr
+         UqenjPYjIffkOu97pjs8E+i8YHtIW58dzpm08UVlbxE9kw7yVoak8yJ8tlY/EQs5ybbM
+         31GOeCuX29ZWrYX9eWvB9hEyKVzSFFRx8MDAtjVudrav7o2Yw4AQpdQCD3MGfU+ks1nq
+         pnvQ==
+X-Gm-Message-State: AOJu0YxbuD5L1Oqnv+63G9RR3sw4fKX+GwZTFH+UlGTVbiqVepdCnzx1
+	4Qe/XBtqHAKctn8+M7F5irEpPk7rpvXOtq3ZGw9kdNpxVkOMZhIdotVHNQKgCQc=
+X-Google-Smtp-Source: AGHT+IEv1hJjXrzLHsjIxDivTbnZhYVuj6vaZhprgrQSN8mpwxtBFCbAyWJBy1N163Rq17jGawuGsw==
+X-Received: by 2002:a05:6512:3c92:b0:536:9f72:c427 with SMTP id 2adb3069b0e04-539da4e12dfmr6293352e87.28.1728979683201;
+        Tue, 15 Oct 2024 01:08:03 -0700 (PDT)
+Received: from localhost.localdomain ([188.243.23.53])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539ffff3ddfsm94736e87.149.2024.10.15.01.07.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2024 01:08:01 -0700 (PDT)
+From: Alexander Shiyan <eagle.alexander923@gmail.com>
+To: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Alexander Shiyan <eagle.alexander923@gmail.com>
+Subject: [PATCH v3 1/3] media: i2c: ds90ub960: Convert IC specific variables to enums
+Date: Tue, 15 Oct 2024 11:07:35 +0300
+Message-Id: <20241015080737.16272-1-eagle.alexander923@gmail.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
-To: Troy Mitchell <troymitchell988@gmail.com>, andi.shyti@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241015075134.1449458-1-TroyMitchell988@gmail.com>
- <20241015075134.1449458-2-TroyMitchell988@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241015075134.1449458-2-TroyMitchell988@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 15/10/2024 09:51, Troy Mitchell wrote:
-> The i2c of K1 supports fast-speed-mode and high-speed-mode,
+This patch converts chip-specific variables into chip enums that
+can be used to easily add support for other chip types.
 
-s/i2c/I2C/
+Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
+---
+v2: Use family enumeration instead of flags to indicate FPD3/FPD4 difference.
+v3: Fix Media-CI test warnings
+---
+ drivers/media/i2c/ds90ub960.c | 83 ++++++++++++++++++++++++-----------
+ 1 file changed, 58 insertions(+), 25 deletions(-)
 
-> and supports FIFO transmission.
-> 
-> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> ---
->  .../bindings/i2c/spacemit,k1-i2c.yaml         | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> new file mode 100644
-> index 000000000000..c1460ec2b323
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: I2C controller embedded in SpacemiT's K1 SoC
-> +
-> +maintainers:
-> +  - Troy Mitchell <troymitchell988@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: spacemit,k1-i2c
-
-There is no such vendor prefix.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    description:
-> +      Desired I2C bus clock frequency in Hz. As only fast and high-speed
-> +      modes are supported by hardware, possible values are 100000 and 400000.
-> +    enum: [100000, 400000]
-> +    default: 100000
-> +
-> +  fifo-disable:
-
-Why is this a property of a board?
-
-Also, missing vendor prefix.
-
-
-> +    type: boolean
-> +    description:
-> +      Whether to disable FIFO. If FIFO is turned on, it will be interrupted
-> +      only when the FIFO depth is reached, which can reduce the frequency
-> +      of interruption.
-> +    default: false
-
-Drop
-
-> +
-> +unevaluatedProperties: false
-
-This goes after required: block.
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +examples:
-> +  - |
-> +    i2c0: i2c@d4010800 {
-
-Drop unused alias
-
-> +        compatible = "spacemit,k1-i2c";
-
-Best regards,
-Krzysztof
+diff --git a/drivers/media/i2c/ds90ub960.c b/drivers/media/i2c/ds90ub960.c
+index ffe5f25f8647..8000801d5810 100644
+--- a/drivers/media/i2c/ds90ub960.c
++++ b/drivers/media/i2c/ds90ub960.c
+@@ -402,12 +402,21 @@
+ #define UB960_MAX_EQ_LEVEL  14
+ #define UB960_NUM_EQ_LEVELS (UB960_MAX_EQ_LEVEL - UB960_MIN_EQ_LEVEL + 1)
+ 
++enum chip_type {
++	UB960,
++	UB9702,
++};
++
++enum chip_family {
++	FAMILY_FPD3,
++	FAMILY_FPD4,
++};
++
+ struct ub960_hw_data {
+-	const char *model;
++	enum chip_type chip_type;
++	enum chip_family chip_family;
+ 	u8 num_rxports;
+ 	u8 num_txports;
+-	bool is_ub9702;
+-	bool is_fpdlink4;
+ };
+ 
+ enum ub960_rxport_mode {
+@@ -1654,10 +1663,15 @@ static int ub960_rxport_add_serializer(struct ub960_data *priv, u8 nport)
+ 
+ 	ser_pdata->port = nport;
+ 	ser_pdata->atr = priv->atr;
+-	if (priv->hw_data->is_ub9702)
++
++	switch (priv->hw_data->chip_type) {
++	case UB9702:
+ 		ser_pdata->bc_rate = ub960_calc_bc_clk_rate_ub9702(priv, rxport);
+-	else
++		break;
++	default:
+ 		ser_pdata->bc_rate = ub960_calc_bc_clk_rate_ub960(priv, rxport);
++		break;
++	}
+ 
+ 	/*
+ 	 * The serializer is added under the same i2c adapter as the
+@@ -1785,7 +1799,7 @@ static int ub960_init_tx_ports(struct ub960_data *priv)
+ 
+ 	ub960_write(priv, UB960_SR_CSI_PLL_CTL, speed_select);
+ 
+-	if (priv->hw_data->is_ub9702) {
++	if (priv->hw_data->chip_type == UB9702) {
+ 		ub960_write(priv, UB960_SR_CSI_PLL_DIV, pll_div);
+ 
+ 		switch (priv->tx_data_rate) {
+@@ -2140,10 +2154,14 @@ static int ub960_init_rx_ports(struct ub960_data *priv)
+ 		if (!rxport)
+ 			continue;
+ 
+-		if (priv->hw_data->is_ub9702)
++		switch (priv->hw_data->chip_type) {
++		case UB9702:
+ 			ub960_init_rx_port_ub9702(priv, rxport);
+-		else
++			break;
++		default:
+ 			ub960_init_rx_port_ub960(priv, rxport);
++			break;
++		}
+ 	}
+ 
+ 	return 0;
+@@ -2486,6 +2504,7 @@ static int ub960_configure_ports_for_streaming(struct ub960_data *priv,
+ 	for (nport = 0; nport < priv->hw_data->num_rxports; nport++) {
+ 		struct ub960_rxport *rxport = priv->rxports[nport];
+ 		u8 vc = vc_map[nport];
++		unsigned int i;
+ 
+ 		if (rx_data[nport].num_streams == 0)
+ 			continue;
+@@ -2509,21 +2528,22 @@ static int ub960_configure_ports_for_streaming(struct ub960_data *priv,
+ 
+ 		case RXPORT_MODE_CSI2_SYNC:
+ 		case RXPORT_MODE_CSI2_NONSYNC:
+-			if (!priv->hw_data->is_ub9702) {
++			switch (priv->hw_data->chip_type) {
++			case UB9702:
++				/* Map all VCs from this port to VC(nport) */
++				for (i = 0; i < 8; i++)
++					ub960_rxport_write(priv, nport,
++							   UB960_RR_VC_ID_MAP(i),
++							   nport);
++				break;
++			default:
+ 				/* Map all VCs from this port to the same VC */
+ 				ub960_rxport_write(priv, nport, UB960_RR_CSI_VC_MAP,
+ 						   (vc << UB960_RR_CSI_VC_MAP_SHIFT(3)) |
+ 						   (vc << UB960_RR_CSI_VC_MAP_SHIFT(2)) |
+ 						   (vc << UB960_RR_CSI_VC_MAP_SHIFT(1)) |
+ 						   (vc << UB960_RR_CSI_VC_MAP_SHIFT(0)));
+-			} else {
+-				unsigned int i;
+-
+-				/* Map all VCs from this port to VC(nport) */
+-				for (i = 0; i < 8; i++)
+-					ub960_rxport_write(priv, nport,
+-							   UB960_RR_VC_ID_MAP(i),
+-							   nport);
++				break;
+ 			}
+ 
+ 			break;
+@@ -3217,7 +3237,8 @@ ub960_parse_dt_rxport_link_properties(struct ub960_data *priv,
+ 		return -EINVAL;
+ 	}
+ 
+-	if (!priv->hw_data->is_fpdlink4 && cdr_mode == RXPORT_CDR_FPD4) {
++	if (priv->hw_data->chip_family != FAMILY_FPD4 &&
++	    cdr_mode == RXPORT_CDR_FPD4) {
+ 		dev_err(dev, "rx%u: FPD-Link 4 CDR not supported\n", nport);
+ 		return -EINVAL;
+ 	}
+@@ -3796,6 +3817,7 @@ static int ub960_get_hw_resources(struct ub960_data *priv)
+ static int ub960_enable_core_hw(struct ub960_data *priv)
+ {
+ 	struct device *dev = &priv->client->dev;
++	const char *model;
+ 	u8 rev_mask;
+ 	int ret;
+ 	u8 dev_sts;
+@@ -3830,8 +3852,19 @@ static int ub960_enable_core_hw(struct ub960_data *priv)
+ 		goto err_pd_gpio;
+ 	}
+ 
+-	dev_dbg(dev, "Found %s (rev/mask %#04x)\n", priv->hw_data->model,
+-		rev_mask);
++	switch (priv->hw_data->chip_type) {
++	case UB960:
++		model = "UB960";
++		break;
++	case UB9702:
++		model = "UB9702";
++		break;
++	default:
++		model = "Unknown";
++		break;
++	}
++
++	dev_info(dev, "Found %s (rev/mask %#04x)\n", model, rev_mask);
+ 
+ 	ret = ub960_read(priv, UB960_SR_DEVICE_STS, &dev_sts);
+ 	if (ret)
+@@ -3851,7 +3884,7 @@ static int ub960_enable_core_hw(struct ub960_data *priv)
+ 		goto err_pd_gpio;
+ 
+ 	/* release GPIO lock */
+-	if (priv->hw_data->is_ub9702) {
++	if (priv->hw_data->chip_type == UB9702) {
+ 		ret = ub960_update_bits(priv, UB960_SR_RESET,
+ 					UB960_SR_RESET_GPIO_LOCK_RELEASE,
+ 					UB960_SR_RESET_GPIO_LOCK_RELEASE);
+@@ -4013,17 +4046,17 @@ static void ub960_remove(struct i2c_client *client)
+ }
+ 
+ static const struct ub960_hw_data ds90ub960_hw = {
+-	.model = "ub960",
++	.chip_type = UB960,
++	.chip_family = FAMILY_FPD3,
+ 	.num_rxports = 4,
+ 	.num_txports = 2,
+ };
+ 
+ static const struct ub960_hw_data ds90ub9702_hw = {
+-	.model = "ub9702",
++	.chip_type = UB9702,
++	.chip_family = FAMILY_FPD4,
+ 	.num_rxports = 4,
+ 	.num_txports = 2,
+-	.is_ub9702 = true,
+-	.is_fpdlink4 = true,
+ };
+ 
+ static const struct i2c_device_id ub960_id[] = {
+-- 
+2.39.1
 
 
