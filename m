@@ -1,176 +1,169 @@
-Return-Path: <devicetree+bounces-111370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4A8B99E57A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:24:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE62A99E597
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58A411F2492C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:24:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79B8BB24FDA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 11:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFBE61D9674;
-	Tue, 15 Oct 2024 11:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66451E6321;
+	Tue, 15 Oct 2024 11:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="afe5MrKh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gF4Jiud4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 325321D95A4;
-	Tue, 15 Oct 2024 11:24:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4151D89F8;
+	Tue, 15 Oct 2024 11:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728991445; cv=none; b=W2c0e1Dw8wEtZcxFuAGG456XPnNehE6ic2FuFAQzxIvymrxO9F7AMKhh/tTgVNOCpRmEkiUMDfRBlx11cb1QANki7IbMwXQbx8o8tAyR+v2/Rdmdo3GojSPJz806mHKCDkHr26P0CBdJ4tOpdk+s0T96jMlGwr1irW56NgWrrn0=
+	t=1728991623; cv=none; b=cUR6siFRF8TsBT7Op1Resi0VICNxglsZ8xex8knXmIpKBeY3un44Cr9cglpYnLVShYE/mF4pR7u+yUhFeAgbVd+WnSHirvU4bOxIe4cVcc7pzaBpV2gOkTJCG6IOqw7lXV4uAG1hOe6uErgBUzQ84ezc26ILwhyxAPLDzcBCV9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728991445; c=relaxed/simple;
-	bh=Rdzp13zaH99entWKg0lm1Wx8wDdv6n9NqLsTT0PIeco=;
+	s=arc-20240116; t=1728991623; c=relaxed/simple;
+	bh=CU5Ivy8Z00Cv051dEKbRz2VOtggkLM1An6ezy/8TD6I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DMRZx5DGgrilpjK+MSaMsMAWyu3TsSy+NTdRIbUBHF8dt2LH8Bfq7KWUxia7q6vMa8UTGOyzCbE7ZMUyuQdzBdKKEpfnsoMXiJxSYacqcydiyC7NfIVBA2I89XMCA7ygHKfDrC727Eyg2ZEmhwZzaIiI4KpRwEP9PxtIIhdAUEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=afe5MrKh; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=KWYFPdnvKGyqlSXjfh5/AT4y9ZVcUi+mx9bCrtkVpnvOvFSn/ScMGw39btM41GOy7nEBfIJdYPbxnJjdR7UXlRV8evcMT4vaaaP9YA9xJZaZjD5H/lBOoZ6dBrnrYbkH51r/gquTiAX1f4Mwp3jzHR3+U72Nhwx19HYndQCiM14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gF4Jiud4; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728991445; x=1760527445;
+  t=1728991620; x=1760527620;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Rdzp13zaH99entWKg0lm1Wx8wDdv6n9NqLsTT0PIeco=;
-  b=afe5MrKhsF3tcd4ecrIBfNbikkr/VgOgdaIc7bAa4UAaxcAABxIhhZvT
-   FPUretu47bESzoJJyVfQxhOW9vHGU7pcObXPvALcqTfdLqpLBfkrs5GvO
-   OZe4OK7CqSh0s7zRl4rRPKkxP9sYIVF/5+XJ7rJMhYUcn9avCghWsQGkj
-   xT8FIdKGzeloyyan3ovR4kkXeqCJtv976ex/UWf+aamGB1tGPd7yFwfoe
-   asg0Kdv111P3qudwltFRZCCQ5EWAxQ3oIG0Foy+n3Iz4P/Jf/ciAtVbLY
-   2CxWMtvHlUoJvm2w7BBljqfPZfYSeKNz+tFTBvZmRe8vNtWVAKi/4pIfS
-   Q==;
-X-CSE-ConnectionGUID: 7sxydskBSKGv635HITyJUg==
-X-CSE-MsgGUID: mHUPXui2TWa6TrP1UinnaA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="45850674"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="45850674"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 04:24:04 -0700
-X-CSE-ConnectionGUID: XjzeGirsRkyt2NS4hd72oA==
-X-CSE-MsgGUID: UxyCuKF0TkCwvW1mvnN1dA==
+   mime-version:in-reply-to;
+  bh=CU5Ivy8Z00Cv051dEKbRz2VOtggkLM1An6ezy/8TD6I=;
+  b=gF4Jiud4EQ0nGn6RHyKTMukoiLfxymkgNV3AeP0bO0FqMvvRCH8F60V2
+   uUqo/yeAZqsB9FBt+D3EJTfpqq3gOZ6R9hgKahKkgSGk+FU1Hg0tDSIaz
+   bHcO33iBckEfscz1QvGrYOhTI5Q4EE8uywyaPG7q+SYqcEMIaUcE07CnL
+   Pzyd3l3kf2FYC/dJewKgRAe9Afc3xBCfScvUcdeBtI5NzpQXnbVIbm4Dt
+   ufOWpQktQ7d6GfMZhY4OmpHjaC4lA+fERRls0EUqir8cwMi7G58AF2tmn
+   85tMpIUoprxveCgP2VZzyE9jXwfCUReQmJYyxWxgHBW3Dhr3C8w9vQ4tw
+   w==;
+X-CSE-ConnectionGUID: pB1IadCmQimfQZ/ElAHqTQ==
+X-CSE-MsgGUID: CD1fs7D+Ti+wnhZ1yheFJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="39768517"
+X-IronPort-AV: E=Sophos;i="6.11,205,1725346800"; 
+   d="scan'208";a="39768517"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 04:26:54 -0700
+X-CSE-ConnectionGUID: SVYhPXiBT5SLyftBMZcMKA==
+X-CSE-MsgGUID: ncKQkyxCRaeSGbYGnAeclg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,204,1725346800"; 
-   d="scan'208";a="77948538"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 04:24:00 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1t0fef-00000003FQr-0uQa;
-	Tue, 15 Oct 2024 14:23:57 +0300
-Date: Tue, 15 Oct 2024 14:23:56 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v8 7/8] platform/chrome: Introduce device tree hardware
- prober
-Message-ID: <Zw5QzP-5hnHW--F-@smile.fi.intel.com>
-References: <20241008073430.3992087-1-wenst@chromium.org>
- <20241008073430.3992087-8-wenst@chromium.org>
- <Zwfy6ER6sbr_QxsY@smile.fi.intel.com>
- <ZwfzhsvlPrxMi61j@smile.fi.intel.com>
- <CAGXv+5ED7j49ndT7BaESW8ZL7_mjVUJLM_FWma8Lwkg+Uh3saw@mail.gmail.com>
- <Zwz_Kl7SwfL0ZaAZ@smile.fi.intel.com>
- <CAGXv+5H0Yvt1cwPOim-quT3C+=s9NapnryJhNxs_QW=DAyAycQ@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="6.11,205,1725346800"; 
+   d="scan'208";a="108592278"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 15 Oct 2024 04:26:49 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t0fhP-000I2R-08;
+	Tue, 15 Oct 2024 11:26:47 +0000
+Date: Tue, 15 Oct 2024 19:25:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+	Vikash Garodia <quic_vgarodia@quicinc.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dikshita Agarwal <quic_dikshita@quicinc.com>
+Subject: Re: [PATCH v4 08/28] media: iris: implement power management
+Message-ID: <202410151929.iJzD1Wez-lkp@intel.com>
+References: <20241014-qcom-video-iris-v4-v4-8-c5eaa4e9ab9e@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGXv+5H0Yvt1cwPOim-quT3C+=s9NapnryJhNxs_QW=DAyAycQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20241014-qcom-video-iris-v4-v4-8-c5eaa4e9ab9e@quicinc.com>
 
-On Tue, Oct 15, 2024 at 02:32:54PM +0800, Chen-Yu Tsai wrote:
-> On Mon, Oct 14, 2024 at 7:23 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Mon, Oct 14, 2024 at 12:56:20PM +0800, Chen-Yu Tsai wrote:
-> > > On Thu, Oct 10, 2024 at 11:32 PM Andy Shevchenko
-> > > <andriy.shevchenko@linux.intel.com> wrote:
-> > > > On Thu, Oct 10, 2024 at 06:29:44PM +0300, Andy Shevchenko wrote:
-> > > > > On Tue, Oct 08, 2024 at 03:34:26PM +0800, Chen-Yu Tsai wrote:
+Hi Dikshita,
 
-...
+kernel test robot noticed the following build warnings:
 
-> > > > > > +   .cfg = &chromeos_i2c_probe_simple_trackpad_cfg,
-> > > > >
-> > > > >       .cfg = DEFINE_I2C_OF_PROBE_CFG(trackpad, i2c_of_probe_simple_ops),
-> > > > >
-> > > > > Or even
-> > > > >
-> > > > > #define DEFINE_I2C_OF_PROBE_CFG_SIMPLE(_type_)                        \
-> > > > >       DEFINE_I2C_OF_PROBE_CFG(type, &i2c_of_probe_simple_ops)
-> > >
-> > > I'm not inclined on using compound literals here. "simple X cfg" will
-> > > likely get shared between multiple |chromeos_i2c_probe_data| entries,
-> > > and AFAIK the toolchain can't merge them. So we would end up with one
-> > > compound literal per entry, even if their contents are the same.
-> >
-> > I'm not sure I follow, you are using compound literal _already_.
-> > How does my proposal change that?
-> 
-> I'm using it where it makes sense, i.e. where the embedded variable
-> is not going to be shared with other instances.
-> 
-> For the dumb probers, there's only going to be one instance per "type".
-> 
-> For the simple probers, the config part is still one instance per "type",
-> but the parameters are board and component specific. There will be
-> multiple instances. Hence the config part can be shared, while the
-> parameters likely won't be.
-> 
-> > > > With that also looking at the above
-> > > >
-> > > > #define DEFINE_I2C_OF_PROBE_CFG_NONE(_type_)                            \
-> > > >         DEFINE_I2C_OF_PROBE_CFG(type, NULL)
-> > >
-> > > For the "dumb" case it makes sense though, since it would be one instance
-> > > per type. But we could go further and just wrap the whole
-> > > |chromeos_i2c_probe_data| declaration.
-> >
-> > Maybe it's too far from now...
-> 
-> This is what I have:
-> 
-> #define DEFINE_CHROMEOS_I2C_PROBE_DATA_DUMB(_type)
->                         \
->        static const struct chromeos_i2c_probe_data
-> chromeos_i2c_probe_dumb_ ## _type = {       \
+[auto build test WARNING on 67cefecf2a039b9ed0030b9213ceafcd45e6f9e3]
 
->                .cfg = &(const struct i2c_of_probe_cfg) {
+url:    https://github.com/intel-lab-lkp/linux/commits/Dikshita-Agarwal/dt-bindings-media-Add-video-support-for-QCOM-SM8550-SoC/20241014-171950
+base:   67cefecf2a039b9ed0030b9213ceafcd45e6f9e3
+patch link:    https://lore.kernel.org/r/20241014-qcom-video-iris-v4-v4-8-c5eaa4e9ab9e%40quicinc.com
+patch subject: [PATCH v4 08/28] media: iris: implement power management
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20241015/202410151929.iJzD1Wez-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241015/202410151929.iJzD1Wez-lkp@intel.com/reproduce)
 
-But the below is static initializer, why do you need a compound literal here?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410151929.iJzD1Wez-lkp@intel.com/
 
->                         \
->                        .type = #_type,
->                         \
->                },
->                         \
-> };
-> 
-> DEFINE_CHROMEOS_I2C_PROBE_DATA_DUMB(touchscreen);
+All warnings (new ones prefixed by >>):
 
-s/dumb/simple/g
+>> drivers/media/platform/qcom/iris/iris_probe.c:292:12: warning: 'iris_pm_resume' defined but not used [-Wunused-function]
+     292 | static int iris_pm_resume(struct device *dev)
+         |            ^~~~~~~~~~~~~~
+>> drivers/media/platform/qcom/iris/iris_probe.c:273:12: warning: 'iris_pm_suspend' defined but not used [-Wunused-function]
+     273 | static int iris_pm_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~~~~
+
+
+vim +/iris_pm_resume +292 drivers/media/platform/qcom/iris/iris_probe.c
+
+   272	
+ > 273	static int iris_pm_suspend(struct device *dev)
+   274	{
+   275		struct iris_core *core;
+   276		int ret;
+   277	
+   278		core = dev_get_drvdata(dev);
+   279	
+   280		mutex_lock(&core->lock);
+   281		if (core->state != IRIS_CORE_INIT)
+   282			goto exit;
+   283	
+   284		ret = iris_hfi_pm_suspend(core);
+   285	
+   286	exit:
+   287		mutex_unlock(&core->lock);
+   288	
+   289		return ret;
+   290	}
+   291	
+ > 292	static int iris_pm_resume(struct device *dev)
+   293	{
+   294		struct iris_core *core;
+   295		int ret = 0;
+   296	
+   297		core = dev_get_drvdata(dev);
+   298	
+   299		mutex_lock(&core->lock);
+   300		if (core->state != IRIS_CORE_INIT)
+   301			goto exit;
+   302	
+   303		ret = iris_hfi_pm_resume(core);
+   304		pm_runtime_mark_last_busy(core->dev);
+   305	
+   306	exit:
+   307		mutex_unlock(&core->lock);
+   308	
+   309		return ret;
+   310	}
+   311	
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
