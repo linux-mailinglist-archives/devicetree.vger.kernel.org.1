@@ -1,303 +1,196 @@
-Return-Path: <devicetree+bounces-111418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3688799EA5B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:53:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F50C99EA7D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:55:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86C8AB21011
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:53:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5514128812B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 12:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27821C07F5;
-	Tue, 15 Oct 2024 12:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7E51E7C14;
+	Tue, 15 Oct 2024 12:54:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AfC8smwn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nM8K+qa0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8794F1C07E5;
-	Tue, 15 Oct 2024 12:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05511C07CC;
+	Tue, 15 Oct 2024 12:54:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728996812; cv=none; b=RWDq5uwHdlO5fAKJV1kNDfOHqsJYPq3FIeCdWlRnaJ85ZG3rqa4Q3OZy3gXoJK1JpSaWORRo2Xi7YqEC35gc7QRy4ail8ZWecqqnaS0SBtoA7o67Xblxus7Ug4Wg44EoNhh9XzP7iE0+X7NCX5m3MrXTP4JSr4W3fyLWq9JbZy8=
+	t=1728996892; cv=none; b=AC8W0gswn6E7Ehckjq37akiDfnHf+4qtJwCJd5mq4/65LB4QyK0vyTtwizbaShxhfKMqceh5OWhsa+unbX4mzaJyMl5kDv7DQ2aSgaNblBXX1m4uz6NeuFUEvXBtPq1IahujDunVpwNtUMxiAV1NBWudgK4yaFZrDZNrTqMzVMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728996812; c=relaxed/simple;
-	bh=Udnv1koDwbInVk0nEtEsG9PIAwZTO9fQsSD5ERFyx0Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VemFn+q2ufe1aXCqrIpPVHrkO74vDYsO0Plw8U6BSx3jx61TeRJl27q5aNXNlqEw9PhP+vtRaoHAgpsdLA4Sn/e2KSot/0/KLmGDgCR8KGe1dMPLQTJdsClti2JAzaCpb88f7xYPg3ZJhnxAEJwgnORok0QqO8LgEUeL5YFh4C4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AfC8smwn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 29C2CC4CED2;
-	Tue, 15 Oct 2024 12:53:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728996812;
-	bh=Udnv1koDwbInVk0nEtEsG9PIAwZTO9fQsSD5ERFyx0Q=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=AfC8smwnmghjBAVSSws9C+MKUkIKkYWPsE7UTBzl7Q3hpSImONJ70FotEYB2Z5y4m
-	 sz72barFcKYLrtP+1dG6e7uq1XDqvBHJxupt2nCpPenvJ9gIBn10bl9WQlzMeqlhO1
-	 BDbFnJEkLPKdKrLZMFTF1zDfh0SzXmecpvBwLFkHA9x3Zr8k6Iju98UZ5Hekxw/Lxr
-	 woZa874ilKx7Yc+4tRol1Q3u4QAaOVK29947kGYaTqebw1v+V9+Vj4ORBx5ZGs5uBj
-	 ZGOcpM1TmXlS5N3zt/Xvq6tYUYf/xS5yjRBBdBYRI5JCUYaL6j433btFB3qtLqodpu
-	 C3z0gtsB9rXZQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1EDDBD216A2;
-	Tue, 15 Oct 2024 12:53:32 +0000 (UTC)
-From: George Chan via B4 Relay <devnull+gchan9527.gmail.com@kernel.org>
-Date: Tue, 15 Oct 2024 20:53:31 +0800
-Subject: [PATCH RFC/RFT 3/3] dts: sm7125-xiaomi-joyeuse: Sample device tree
- for reference
+	s=arc-20240116; t=1728996892; c=relaxed/simple;
+	bh=IpUeFHHJn0wswPXOIvJ6ugRddbx0dZyA2d3iKLKDp/k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aKhRw4MnJHob8KJHmprmnojOihj+oMxPn2u2YdB+wpfj02RV8FTkaa/5qQDqf6IdEGyscPeR3L3EoAD5kk46p1j4uqEWPjAE9YW3GYPFPn7zRrgAZOLq1hZ9HZbuMJBfKzg8eaDzMTcjsbGAmf22W9sXHRpkBWpnnBul90siWY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nM8K+qa0; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728996891; x=1760532891;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=IpUeFHHJn0wswPXOIvJ6ugRddbx0dZyA2d3iKLKDp/k=;
+  b=nM8K+qa0WCr0vg9lCDaNzzNO/5EWpSvnxS19en9D3PFrKVE14xRwNgKc
+   zgIth3BvAzIhQr+qj1FNpdWQGWVKzaXMEbyMdNQzmj+sGW6sN1lVRjA8r
+   8DPQsgYN7vrfGyELaW97zIvP1/1nyR6a9vlYFYiTF6mqf15lyBY4Nsmga
+   pAbzrhBXcTI6OmDWI7aNLRLfHnhF1sFqOB06ACwHPOBlX0otFD59rrtRi
+   hXg2mO0PxvxKn4prT0RkefkDfoYwEj4Y0yPNA4WtvPOAV6grMSJuT6wsa
+   /MjBhGhxfdYMpDQoJ/D9TmDbZikBq0xUBg3O2yqlyxMb37HadeFVlrEY9
+   w==;
+X-CSE-ConnectionGUID: Nab0Y0QYTeSDICH9mYz+qQ==
+X-CSE-MsgGUID: MBzDGlKWQKKg1SNVuOC6qA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="27831881"
+X-IronPort-AV: E=Sophos;i="6.11,205,1725346800"; 
+   d="scan'208";a="27831881"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 05:54:50 -0700
+X-CSE-ConnectionGUID: 21gC6auxR7iXSugTgjheEQ==
+X-CSE-MsgGUID: lVgSUNSMRReLO0GG2lM24A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,205,1725346800"; 
+   d="scan'208";a="78333817"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Oct 2024 05:54:46 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1t0h4U-00000003GzT-49q1;
+	Tue, 15 Oct 2024 15:54:42 +0300
+Date: Tue, 15 Oct 2024 15:54:42 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v8 7/8] platform/chrome: Introduce device tree hardware
+ prober
+Message-ID: <Zw5mEv_cnZzPUqII@smile.fi.intel.com>
+References: <20241008073430.3992087-1-wenst@chromium.org>
+ <20241008073430.3992087-8-wenst@chromium.org>
+ <Zwfy6ER6sbr_QxsY@smile.fi.intel.com>
+ <ZwfzhsvlPrxMi61j@smile.fi.intel.com>
+ <CAGXv+5ED7j49ndT7BaESW8ZL7_mjVUJLM_FWma8Lwkg+Uh3saw@mail.gmail.com>
+ <Zwz_Kl7SwfL0ZaAZ@smile.fi.intel.com>
+ <CAGXv+5H0Yvt1cwPOim-quT3C+=s9NapnryJhNxs_QW=DAyAycQ@mail.gmail.com>
+ <Zw5QzP-5hnHW--F-@smile.fi.intel.com>
+ <CAGXv+5FuMjSaUJ+qDrx7Vmr9o5vJ9VW=tss1ezvdJyaZZouHKw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241015-nt36xxx-v1-3-3919d0bffee6@gmail.com>
-References: <20241015-nt36xxx-v1-0-3919d0bffee6@gmail.com>
-In-Reply-To: <20241015-nt36xxx-v1-0-3919d0bffee6@gmail.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Del Regno <kholk11@gmail.com>, 
- Henrik Rydberg <rydberg@bitmath.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, George Chan <gchan9527@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1728996810; l=6157;
- i=gchan9527@gmail.com; s=20241015; h=from:subject:message-id;
- bh=tWQZcmPANb4gyYg3Iy7tm37YDTp8/euoXHalxbM18xI=;
- b=LpMt6KwLQJJNw2ApXjiVTFev3urGDEjLrV4ifAm4rghDhKju/6l5pSvCF1By3ymwJAdwDXGAl
- 4I6CBpnVE/IACDBLermLo56NxcrYbTBr/dDOEjn2heqvCAV/cAjwTXP
-X-Developer-Key: i=gchan9527@gmail.com; a=ed25519;
- pk=dscYWhT+BiQOBMpPE19NFQAjBBmcpipc6zdf2MTze/U=
-X-Endpoint-Received: by B4 Relay for gchan9527@gmail.com/20241015 with
- auth_id=248
-X-Original-From: George Chan <gchan9527@gmail.com>
-Reply-To: gchan9527@gmail.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGXv+5FuMjSaUJ+qDrx7Vmr9o5vJ9VW=tss1ezvdJyaZZouHKw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-From: George Chan <gchan9527@gmail.com>
+On Tue, Oct 15, 2024 at 08:18:50PM +0800, Chen-Yu Tsai wrote:
+> On Tue, Oct 15, 2024 at 7:24 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Tue, Oct 15, 2024 at 02:32:54PM +0800, Chen-Yu Tsai wrote:
+> > > On Mon, Oct 14, 2024 at 7:23 PM Andy Shevchenko
+> > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > On Mon, Oct 14, 2024 at 12:56:20PM +0800, Chen-Yu Tsai wrote:
+> > > > > On Thu, Oct 10, 2024 at 11:32 PM Andy Shevchenko
+> > > > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > > > On Thu, Oct 10, 2024 at 06:29:44PM +0300, Andy Shevchenko wrote:
+> > > > > > > On Tue, Oct 08, 2024 at 03:34:26PM +0800, Chen-Yu Tsai wrote:
 
-Provide a include-made-easy devicetree file for demo.
-This sample file aimed including novatek touch support.
+...
 
-Reviewers please ignore this patch.
+> > > > > > > > +   .cfg = &chromeos_i2c_probe_simple_trackpad_cfg,
+> > > > > > >
+> > > > > > >       .cfg = DEFINE_I2C_OF_PROBE_CFG(trackpad, i2c_of_probe_simple_ops),
+> > > > > > >
+> > > > > > > Or even
+> > > > > > >
+> > > > > > > #define DEFINE_I2C_OF_PROBE_CFG_SIMPLE(_type_)                        \
+> > > > > > >       DEFINE_I2C_OF_PROBE_CFG(type, &i2c_of_probe_simple_ops)
+> > > > >
+> > > > > I'm not inclined on using compound literals here. "simple X cfg" will
+> > > > > likely get shared between multiple |chromeos_i2c_probe_data| entries,
+> > > > > and AFAIK the toolchain can't merge them. So we would end up with one
+> > > > > compound literal per entry, even if their contents are the same.
+> > > >
+> > > > I'm not sure I follow, you are using compound literal _already_.
+> > > > How does my proposal change that?
+> > >
+> > > I'm using it where it makes sense, i.e. where the embedded variable
+> > > is not going to be shared with other instances.
+> > >
+> > > For the dumb probers, there's only going to be one instance per "type".
+> > >
+> > > For the simple probers, the config part is still one instance per "type",
+> > > but the parameters are board and component specific. There will be
+> > > multiple instances. Hence the config part can be shared, while the
+> > > parameters likely won't be.
+> > >
+> > > > > > With that also looking at the above
+> > > > > >
+> > > > > > #define DEFINE_I2C_OF_PROBE_CFG_NONE(_type_)                            \
+> > > > > >         DEFINE_I2C_OF_PROBE_CFG(type, NULL)
+> > > > >
+> > > > > For the "dumb" case it makes sense though, since it would be one instance
+> > > > > per type. But we could go further and just wrap the whole
+> > > > > |chromeos_i2c_probe_data| declaration.
+> > > >
+> > > > Maybe it's too far from now...
+> > >
+> > > This is what I have:
+> > >
+> > > #define DEFINE_CHROMEOS_I2C_PROBE_DATA_DUMB(_type)
+> > >                         \
+> > >        static const struct chromeos_i2c_probe_data
+> > > chromeos_i2c_probe_dumb_ ## _type = {       \
+> >
+> > >                .cfg = &(const struct i2c_of_probe_cfg) {
+> >
+> > But the below is static initializer, why do you need a compound literal here?
+> 
+> Because .cfg takes a pointer to a struct. It's not an embedded struct.
+> The compound literal creates the internal struct, and then its address
+> is taken and assigned to the .cfg field.
+> 
+> Does that make sense?
 
-The full device tree is at below:
-https://github.com/99degree/linux/tree/working-20241015/arch/arm64/boot/dts/qcom
+Okay, I see now. Yeah, I have no preferences here, I saw the code like in split
+version or like in yours. I _slightly_ bend to non-compound literal variant,
+but again here it might be not worth doing a such.
 
-Signed-off-by: George Chan <gchan9527@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dts  | 183 +++++++++++++++++++++
- 2 files changed, 184 insertions(+)
+> > >                         \
+> > >                        .type = #_type,
+> > >                         \
+> > >                },
+> > >                         \
+> > > };
+> > >
+> > > DEFINE_CHROMEOS_I2C_PROBE_DATA_DUMB(touchscreen);
+> >
+> > s/dumb/simple/g
+> 
+> "simple" is taken. This is "dumb" as in it does not need any helpers.
+> Maybe "no-op" if you don't like the negative connotation?
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index aea1d69db5..ba9786555b 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -235,6 +235,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-curtana.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-joyeuse.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-joyeuse-touch.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-microsoft-surface-duo.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dts b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dts
-new file mode 100644
-index 0000000000..4a43db701d
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse-touch.dts
-@@ -0,0 +1,183 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+#ifndef SM7125_XIAOMI_JOYEUSE_TOUCH_DTS
-+#define SM7125_XIAOMI_JOYEUSE_TOUCH_DTS
-+
-+#include <dt-bindings/dma/qcom-gpi.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "sm7125-xiaomi-joyeuse-display.dts"
-+
-+&soc {
-+	gpi_dma0: dma-controller@800000  {
-+		compatible = "qcom,sm7125-gpi-dma", "qcom,sm6350-gpi-dma";
-+		reg = <0 0x00800000 0 0x60000>;
-+		interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>;
-+		dma-channels = <10>;
-+		dma-channel-mask = <0x1f>;
-+		iommus = <&apps_smmu 0x56 0x0>;
-+		#dma-cells = <3>;
-+		
-+		status = "disabled";
-+	};
-+
-+	gpi_dma1: dma-controller@a00000 {
-+		compatible = "qcom,sm7125-gpi-dma", "qcom,sm6350-gpi-dma";
-+		reg = <0 0x00a00000 0 0x60000>;
-+		interrupts = <GIC_SPI 645 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 646 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 647 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 648 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 649 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 650 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 651 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 653 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 654 IRQ_TYPE_LEVEL_HIGH>;
-+		dma-channels = <10>;
-+		dma-channel-mask = <0x3f>;
-+		iommus = <&apps_smmu 0x4d6 0x0>;
-+		#dma-cells = <3>;
-+		
-+		status = "disabled";
-+	};
-+};
-+
-+//spi@880000
-+&spi0 {
-+	dmas = <&gpi_dma0 0 0 QCOM_GPI_SPI>,
-+		<&gpi_dma0 1 0 QCOM_GPI_SPI>;
-+	dma-names = "tx", "rx";
-+};
-+
-+//spi@884000
-+&spi1 {
-+	dmas = <&gpi_dma0 0 1 QCOM_GPI_SPI>,
-+		<&gpi_dma0 1 1 QCOM_GPI_SPI>;
-+	dma-names = "tx", "rx";
-+};
-+//spi@88c000
-+&spi3 {
-+	dmas = <&gpi_dma0 0 3 QCOM_GPI_SPI>,
-+		<&gpi_dma0 1 3 QCOM_GPI_SPI>;
-+	dma-names = "tx", "rx";
-+};
-+
-+//spi@88c000
-+&spi3 {
-+	dmas = <&gpi_dma0 0 3 QCOM_GPI_SPI>,
-+		<&gpi_dma0 1 3 QCOM_GPI_SPI>;
-+	dma-names = "tx", "rx";
-+};
-+
-+//spi@894000
-+&spi5 {
-+        dmas = <&gpi_dma0 0 5 QCOM_GPI_SPI>,
-+                <&gpi_dma0 1 5 QCOM_GPI_SPI>;
-+        dma-names = "tx", "rx";
-+};
-+
-+//spi@a80000
-+&spi6 {
-+	dmas = <&gpi_dma1 0 0 QCOM_GPI_SPI>,
-+		<&gpi_dma1 1 0 QCOM_GPI_SPI>;
-+	dma-names = "tx", "rx";
-+};
-+
-+//spi@a88000
-+&spi8 {
-+	dmas = <&gpi_dma1 0 2 QCOM_GPI_SPI>,
-+		<&gpi_dma1 1 2 QCOM_GPI_SPI>;
-+	dma-names = "tx", "rx";
-+};
-+
-+//spi@a90000
-+&spi10 {
-+	dma-names = "tx", "rx";
-+        dmas = <&gpi_dma1 0 4 QCOM_GPI_SPI>,
-+                <&gpi_dma1 1 4 QCOM_GPI_SPI>;
-+};
-+
-+//spi@a94000
-+&spi11 {
-+	dma-names = "tx", "rx";
-+	dmas = <&gpi_dma1 0 5 QCOM_GPI_SPI>,
-+		<&gpi_dma1 1 5 QCOM_GPI_SPI>;
-+};
-+
-+&spi11 {
-+        status = "okay";
-+
-+        touchscreen: touchscreen@0 {
-+                compatible = "novatek,nt36675-spi",
-+				"novatek,nt36xxx-spi",
-+				"novatek,NVT-ts-spi";
-+			
-+                reg = <0>;
-+
-+                /* caught from joyeuse dtb*/
-+                spi-max-frequency = <4000000>;
-+
-+                /* ts->irq report 194 */
-+                /* interrupts = <&tlmm 194 IRQ_TYPE_EDGE_FALLING>; */
-+                /* interrupt= <&tlmm 13 2>; */ //dtb specified, but GPIO13 is CAM_MCLK0
-+
-+                novatek,reset-gpio = <&tlmm 8 0x00>;
-+                novatek,irq-gpio = <&tlmm 9 0x2001>;
-+
-+                /* 672C */
-+                novatek,swrst-n8-addr = <0x03F0FE>;
-+                novatek,spi-rd-fast-addr = <0x03F310>;
-+
-+                reset-gpio = <&tlmm 8 0x00>;
-+                /* dtb show <&tlmm 13 2>*/
-+                irq-gpio = <&tlmm 9 0x2001>;
-+
-+/*
-+                touch_ibb-supply = <0x241>; //lcdb_ncp
-+                touch_lab-supply = <0x240>; //qcom,qpnp-lcdb-regulator ldo
-+                touch_vddio-supply = <0x33c>; //pm6150_l18
-+*/
-+
-+                vio-supply = <&vreg_l18a_3p0>;
-+                vdd-supply = <&vreg_l18a_3p0>;
-+
-+                panel = <&panel0>;
-+                status = "okay";
-+        };
-+};
-+
-+
-+&qup_spi11_spi {
-+        drive-strength = <2>;
-+        //bias-disable;
-+};
-+
-+&qup_spi11_cs {
-+        drive-strength = <2>;
-+        //bias-disable;
-+};
-+
-+&qup_spi11_cs_gpio {
-+        drive-strength = <2>;
-+        bias-disable;
-+};
-+
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+        status = "okay";
-+};
-+
-+#endif
+_BY_TYPE ?
 
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
 
 
 
