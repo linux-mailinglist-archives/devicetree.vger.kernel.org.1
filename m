@@ -1,92 +1,82 @@
-Return-Path: <devicetree+bounces-111441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5374199ED2E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:25:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 422AA99ED67
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:27:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D5E61C23763
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:25:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06EC0281E01
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 13:27:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7961A1FAEE8;
-	Tue, 15 Oct 2024 13:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5481C07F8;
+	Tue, 15 Oct 2024 13:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="qjUCldBF";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="vnMZI+8p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g+67O5yB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96BC1FC7FB;
-	Tue, 15 Oct 2024 13:21:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7A31C07D4
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 13:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728998474; cv=none; b=W7YPl4ZZSV+rEWFLQt6owBN51R7a9axjzNqS7wPnLFLR0L1FTXjsG5fKSpGPidO9w8rSFkKCvLoDN3dnsU+JyN33w6dbPMYBq0BD+oUxHyU+voZxJaIQb1ORyKlt0jLchJ5r+ATwqVrIO+N0HfsLcnQ4h+YSR5Ir8BcOSMLMwyM=
+	t=1728998674; cv=none; b=kb+knerp/GrMltjN+gc+QfxQ4c82q7mgh7VXoZgbypwGpnXPudaQmbfBKBqfDkfJFrThyDZo94kAPOCtv7Q6prwKSY/LFreB3cfKHw3sY0XgWPHyDxTuXGIz24DcDjsNJEJwEySB7BIeYGa3sxtkjcREKnPOeNUf46/Tx0sOa04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728998474; c=relaxed/simple;
-	bh=BifDifB6wdUvkl5Iu/cIT7h0gvstAeks818zu+TYv74=;
+	s=arc-20240116; t=1728998674; c=relaxed/simple;
+	bh=Yto6XsPX307BnN/gUZ9s+Z2mufkFGjyCQ15rsIyKa1w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eiQBtsV35NwZewh3b7BBefJmPLBsqDwUeFW9MkPVqmrudrrccdjHeqdWjKMAc5shccOo+xkds7g3eazal4TW/NZ5a/T1bOW71Ray+3q2MPuyw3oL9DSDQEEsnEev8v/1C7eLglyCjACB45JWbBSVCsPSIANCMP865gRmNH3QuTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=qjUCldBF; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=vnMZI+8p; arc=none smtp.client-ip=5.78.89.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 1A234122FE21;
-	Tue, 15 Oct 2024 06:21:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1728998472; bh=BifDifB6wdUvkl5Iu/cIT7h0gvstAeks818zu+TYv74=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qjUCldBFec5UnpTkUwhnE14W7FBEE7CGTFEWgvSSW8YP4q5cXW85B80/5znrdIhvE
-	 YSgz3uRlW8xACFzs1pyfp0lMZoYWDMUtRsMhZAiqyXdqjNhGg9nQR8weK3velaT1Rw
-	 YOQI9JHF6+ywyFKZuA3per0KMo/g65m3LhG6sQ/dhwuALlB2bBLhMjuBB+POoYix/h
-	 1bwrw3U/UZowAlizH+fbYZqmNwLcU1yEETVW3OVaLSR23eCVGXgWpjTUwl89DeNkjs
-	 KEORSaahgeaZ/HPFnXqeJggxQAVXt7vhA9NQk9JgtiOcSWKqaCkV6+8D+E/meRm4p5
-	 HB0izStlZSdew==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 59EUaKZiQaZK; Tue, 15 Oct 2024 06:21:08 -0700 (PDT)
-Received: from ketchup (unknown [110.52.220.241])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id F1E91122FE1E;
-	Tue, 15 Oct 2024 06:21:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1728998468; bh=BifDifB6wdUvkl5Iu/cIT7h0gvstAeks818zu+TYv74=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vnMZI+8p5fXNQrO5i/2EDsem9c/EUus7ofhbdg/7N+T70XusEsqnVOpUrIfzU1sA5
-	 dghyXpOG1v48hoT77sv7mlqriSd74qa5Fdw4iirLnW/DqBdxQpM5e0Nji+dk2xds5Q
-	 /zoy6xucE6lhrJeT4/nsOAQOFbaUeHC/ZV5lsXy1R5y2kRqVKrwJtglhY7KGFBzuNY
-	 gsT6VD135fSlZgNzJo7Q1j2ozWvNkJlHQUErAPTKHhlB00UzvDAg6Wt8BVAhSfBNG8
-	 r7cJRju+03XLm+owuPVX05aY5jLxJEgDkFVt29eZJoQ6qccKePiURH0u9x5kD6Bi2R
-	 3c6zUv9dQSMNA==
-Date: Tue, 15 Oct 2024 13:20:54 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: thermal: sophgo,cv1800-thermal: Add
- Sophgo CV1800 thermal
-Message-ID: <Zw5sNqiradqQzmDD@ketchup>
-References: <20241014073813.23984-1-heylenay@4d2.org>
- <20241014073813.23984-2-heylenay@4d2.org>
- <4ey46hxumhldwrbzalyw6xzn2l52cejggxvg6e3imus3qqzsjn@r55xpxvkpodu>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fYVsoPBUu/lDaU81Gsk9jsPfurU1NpmBryIyVGsOIXgxU+VHyOFJ2lSdWiQjbekLPs2A80KwCz1oH3fQRZ9Y8+PfmeRnz+IkomNn2bKZx8fc6Bph5zgC620GD4UJQOvXpWfLlSSIaJ/8QYX1yzT3w6vGdqwmujWGSVOuCH69PGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g+67O5yB; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-539f2b95775so2804258e87.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 06:24:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728998671; x=1729603471; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=f3HPN0Wb5LO49XK1vdWh1amy3jYUqFLvzrYUchAGQ7w=;
+        b=g+67O5yB5L8zA2+1QlEO/4X/VEUb3Z+jlvH4C/kkQ5dbnJfJ6GHZ4iiqV6CSEyzUmm
+         6C4gBGmblv+rvE2NzeMNpkVDJMON1dPoI1/MITAS4PNKHrd+kQgOHjbbEW0xq1YaOs/1
+         2lCSzAwpcsBeC1hSdnCXB3dsBjCG7cbh0AIi1c1RyvFr9930+6o8N5i5WibndFvKgPzk
+         GowlAL4vMoG7P9abF6xf0OLBx2NxdS+YzL8zMVn2acmYGZ2XAdXFwPjw492DRaznJB8v
+         K1ZY1xbyAloT7WD1yo2TXwlAtAfqqwhFxWsMDfeLTYiEdjUo2XsW4WHeLAsxw+UwBTMG
+         9YLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728998671; x=1729603471;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f3HPN0Wb5LO49XK1vdWh1amy3jYUqFLvzrYUchAGQ7w=;
+        b=e7kagisw3XGh4cRyJxKt3nX+S1Pq8xu9SDZBgIwaScNjpbAoMWl94dNhUoYNcZ9jFH
+         4xWrsLeisOhweSuwDhwq5RFR7ywZcQhRYmLrL0xt2mjxL9MfGnyR/Rba3G5wPqZpmdlX
+         kPwtOzUGMGBSz9OboQM1t/cbmwgJhTFQq/IDorhZZGUr16m30gf6kz8Ux17PCA4theSP
+         DjAF39A/a834cYelf91y/OQ1Ivj2+A8TZ2UOK1PBkNnrJzThaA0mv2IZddDKR//7pksW
+         ymLShGcFyE30nrOjhlcy5kvAGVQqk+lDO/t43MG0dU92kW88VQSwRHKzcpi8K4w3SQ75
+         By1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW4b5DQI7g11HT9hzrmpPZj1hu4HnEpDC0SOm5nhN6pcAZIQFnKSPsvbQb+fDqyZI8ZesnhRVyqg/RX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUSnjyoC9z3SPk0di6Id5ERqpN9IsLx90RfA/tpIamUG9hjfml
+	xovxGviae5yrq/4UPtR8Mcgc77kaE3MBvKFHOi9dETRCo4DupPeTQKBuesbblVQ=
+X-Google-Smtp-Source: AGHT+IHgr9LmpYpCXWcLMeJQh5/sdLZ7i0a0+HgofYe7nVBOCqrwB/tlVIYrp4mOmwYvq5oHjf6buA==
+X-Received: by 2002:a05:6512:3402:b0:539:9ee4:baab with SMTP id 2adb3069b0e04-539e55187c4mr7106085e87.30.1728998671049;
+        Tue, 15 Oct 2024 06:24:31 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a00006dc0sm168280e87.205.2024.10.15.06.24.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2024 06:24:30 -0700 (PDT)
+Date: Tue, 15 Oct 2024 16:24:28 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: x1e80100-crd: describe HID supplies
+Message-ID: <oj73sm4mrcdcvntyzk5pab57j7xt6x67uftt7znsc5hc66vlpx@rtzvks73hlyy>
+References: <20241015122427.15995-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,66 +85,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4ey46hxumhldwrbzalyw6xzn2l52cejggxvg6e3imus3qqzsjn@r55xpxvkpodu>
+In-Reply-To: <20241015122427.15995-1-johan+linaro@kernel.org>
 
-On Tue, Oct 15, 2024 at 07:55:10AM +0200, Krzysztof Kozlowski wrote:
-> On Mon, Oct 14, 2024 at 07:38:11AM +0000, Haylen Chu wrote:
-> > Add devicetree binding documentation for thermal sensors integrated in
-> > Sophgo CV1800 SoCs.
-> > 
-> > Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> > ---
-> >  .../thermal/sophgo,cv1800-thermal.yaml        | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml b/Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml
-> > new file mode 100644
-> > index 000000000000..14abeb7a272a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/thermal/sophgo,cv1800-thermal.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/thermal/sophgo,cv1800-thermal.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sophgo CV1800 on-SoC Thermal Sensor
-> > +
-> > +maintainers:
-> > +  - Haylen Chu <heylenay@4d2.org>
-> > +
-> > +description: Sophgo CV1800 on-SoC thermal sensor
-> > +
-> > +$ref: thermal-sensor.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - sophgo,cv1800-thermal
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  sample-rate-hz:
-> > +    minimum: 1
-> > +    maximum: 1908
-> > +    default: 1
+On Tue, Oct 15, 2024 at 02:24:27PM +0200, Johan Hovold wrote:
+> Add the missing HID supplies to avoid relying on other consumers to keep
+> them on.
 > 
-> 1. Why this is a property of a board?
-> 2. I do not see this property defined in any common schema and I am not
-> sure if it even should. Sample rate appears from time to time, but not
-> in context of thermal sensors, so this should have vendor prefix.
+> This also avoids the following warnings on boot:
+> 
+> 	i2c_hid_of 0-0010: supply vdd not found, using dummy regulator
+> 	i2c_hid_of 0-0010: supply vddl not found, using dummy regulator
+> 	i2c_hid_of 1-0015: supply vdd not found, using dummy regulator
+> 	i2c_hid_of 1-0015: supply vddl not found, using dummy regulator
+> 	i2c_hid_of 1-003a: supply vdd not found, using dummy regulator
+> 	i2c_hid_of 1-003a: supply vddl not found, using dummy regulator
+> 
+> Note that VREG_MISC_3P3 is also used for things like the fingerprint
+> reader which are not yet fully described so mark the regulator as always
+> on for now.
+> 
+> Fixes: d7e03cce0400 ("arm64: dts: qcom: x1e80100-crd: Enable more support")
+> Cc: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 34 +++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+> 
 
-Thanks, I decide to remove this property.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Best regards,
-Haylen Chu
+-- 
+With best wishes
+Dmitry
 
