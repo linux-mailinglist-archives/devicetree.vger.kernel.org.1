@@ -1,84 +1,88 @@
-Return-Path: <devicetree+bounces-111494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A591499F081
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:01:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8CB599F08B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:02:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C99521C23295
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:01:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37D89B22F8E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7657F1D5141;
-	Tue, 15 Oct 2024 14:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD99B1DD0DB;
+	Tue, 15 Oct 2024 15:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fvpjX7ln"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="H+aU9gEK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFFE1CBA11
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 14:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621F413A250
+	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 15:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729004247; cv=none; b=cgDVN5ORttXy5yh1exeBgN23TA4N9jDpDkVdPM1jWdGtbyMK412GkCBLBc6mdKOC3gs+XpRFX75PCrD18JnBIkbj1msXsqLVai9j2s4HaAjSncF54EHbEq4oY1Ayrogzc8PIYTiYzqv7uFCnnMgp8UcQvic9huAgUH4MmEDs87M=
+	t=1729004422; cv=none; b=B9CWnQcNmvoPyRcq9BZiBC1vHoiQdP3TVryvy7hMN9ft9ZwTATShlfplwCpsJEBWGa806zwwEitDxhzG+k/QlBHyowOzpplxcmF25LRXo9h2293klTGRabYxD4bQOCdoVCYB/9gGZ0rYfKgGOoE/kZE55Aq6amPpFcCy2J4EKoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729004247; c=relaxed/simple;
-	bh=SlICqBZXrQRrlbYBRBFsm9lw6h24q5u37vave91lLI4=;
+	s=arc-20240116; t=1729004422; c=relaxed/simple;
+	bh=PnhrbquGrhgBwdZIayWClMTgqMfcJs9XO5QF7fKdce4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iuHT7Q20O1Wn4Q14CrAq6v0+K8EN3VifmKYj+s4kdKezcdnDOa382giJ8+SS3Alxp60Fy3R2XkZzkTBVs+RLyT/bhTpAiK2i2BK4rLTLsZqRaYINanCsAMXxR5rh2Rs0a730HSv6crB9WYNmMnRciOmkZOXDamIRwFavbWx7/wM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fvpjX7ln; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43124843b04so30697265e9.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 07:57:25 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lyj8gk2EUM/D10pELHipaDqr1NBVd3xHyM+BJQkNaCnnRCtVtZqXaIcCCTiM/hkSoT3s9rkN39snwupOPwX9rXTsJp8OTa0TAKHlsbysW3lzzy2nuhy2UezMayzmPVGrr+uZR3Zf4/VpGgQvcHW8UJF6H7vTYgFa2FBAm3FJh+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=H+aU9gEK; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20c87b0332cso496895ad.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 08:00:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729004244; x=1729609044; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1729004421; x=1729609221; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dd/y4e5VLsv45xhA5HVGa4kwa+DBg+30cli4MtlNzRs=;
-        b=fvpjX7lni4jFERnsxFhJLjlaA2tYfaisIdv2ofeLfwqm1FZ3u8xxSqHOkrTbjjdRNe
-         vJCw502B0oTuVIltcLp0T/cSWSWjnZecR3f9TJhFwGnXhxiuPDI3syE5NpLvyasgKCEJ
-         DGM7hWFSWCcWiWL9RiHpCVR99PyWf17grU+jAC65DpyP+JAiXrlduh2dXfrdeFvHZobF
-         tZdHyt1RdI1Upmu2ImdZJfHzsu8hCGOGVgvNrMqVhoZC3qaKN/9lblSwm6zmPiqgHJ/w
-         YYjfQL7tyPATZgXogZpGfRK0QLFN/OerkPE0yyxK4bxtAZsqb7sLzwJCca1dlsPMhkyd
-         y5nw==
+        bh=9TrApoPekr73hkTm1MQpMBodsXouta6HBY56R3r8KIQ=;
+        b=H+aU9gEKbvPQBxfLza3WXaRr29ySOni9h+Kwz9XdO6mfplabBmm0JobmlJX+tSS2+a
+         CMFvfjjOOVvFRc+AZKzEkrgJ95vGYIQ8yWJxBoIfi2WbwcvquirMXpSgwxOQjGSzikAg
+         Ntl+9XFzpVPEPfCXAcFv2ANbRs5iV6o78eYpJUsrMMeCjq1sCNHMiZ8yoZ6rJhdxBxMK
+         XJGTdCxe3+u1X5vLadQm2/XXUN57A44H9/748HZz9ZvbQyHzyGnKUIHluaYM2uwDgu8e
+         246feNpNYELdgSyrga3R39VzZRum2lR4idKbGS6tnK2rDkbNkc1s6CzhwB2e+kJsWpqD
+         RXyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729004244; x=1729609044;
+        d=1e100.net; s=20230601; t=1729004421; x=1729609221;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dd/y4e5VLsv45xhA5HVGa4kwa+DBg+30cli4MtlNzRs=;
-        b=PLPyQf6dQ5Twf5LJotOyHTVYE4M/nZB0tXsYny5VVkmPxCxUUu0QaatByeK9T3fcCc
-         Gr2NksGIme68YVQhiEabei7NFoxXg9uoz3B6DRiGoeop8jyOzIHiSyoK9lOO2CW+ewZw
-         dA/an2xu3yRhWkyYTJCpma4V9hDjpzGDmUDFdbEkk907IoL/miGV+kyLvaIgPWU/lCxG
-         W6XNqT3B8E/TFAZEgT5fC2Lrs5FC0uT/OyRd4xaym3wW1wDXQNs7CvULZI3k3OpcXrLm
-         sXF0ZizzY5VhH11GPVEr/UfeRkZuOQMgUI5jnpgvFoog2DqjDzjYlBpYYzIUP3Q4gUC/
-         b40w==
-X-Forwarded-Encrypted: i=1; AJvYcCXH/HxqC8WepcM+NO8x+8tMhayBRyn9XmGTxWhFOlwJ6XtH43yXaSA1ft6LfKJpOIUGWowtXT2Qvxui@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQrROjhOQD3UDvkzdQAy34BQrEiwgiKMRlwPW0tj+9KtX9AZ6m
-	AsggOklD7JykNqtkkMZbBm85W7Mf1R+NsVI5s0P5D99OaVdLSsE8Xe0BvI7xlLQ=
-X-Google-Smtp-Source: AGHT+IHQ7R4nBExzm5obkauib5uoXD+Q+dcoKzQHxjHFC5ayr61rq+06s4us4vX2nYJ7a6xxImhbzA==
-X-Received: by 2002:a05:600c:4e46:b0:42c:b8cc:205a with SMTP id 5b1f17b1804b1-4311df5644amr149049145e9.32.1729004243748;
-        Tue, 15 Oct 2024 07:57:23 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef80:d7:7e1e:c886:6f9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fc11aefsm1765066f8f.93.2024.10.15.07.57.23
+        bh=9TrApoPekr73hkTm1MQpMBodsXouta6HBY56R3r8KIQ=;
+        b=UePLkXtTM+7ZQLPKt/iBiEn8NclM9UWh+AZRm27j9McsixJakBH4l8j4YZ/OXWDpdI
+         2fB2XKzE7Oz+A4wmZweOqw9Q7ltXhvOdC6t+lsJAWwqi4Jv7YylWCeKZo2TyHwuWZygk
+         a0sRniiBsDR28JVP3gbu/FiX80PwlEjfDTA4dRrr5R5hVpsbVvR0TvBAK3V7IL9K8IE/
+         8JGVcpKe1ejbzAfBjXsP7+wrN8Y+4aOT4fLX3GvXnmvGo2z0viySz1uscWtAH92mrDJd
+         OaeMXNUhFWwkmn7+3qmW551ZxiPX3rf4n1Sk0Jf6PaCIxMDM5eBSkw08VBejM6fIYEks
+         XcEg==
+X-Forwarded-Encrypted: i=1; AJvYcCVUJntZfb/Qh9iyE28iuqxzZmHnq+5zkHkankHiELiYLDk7qaZnR5xcBO3H7uzrn/9hoSzXTr4qlNne@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJipMsOGqSOMRAVbDQZhpt/Xl2QtMnAzgNGTG6dS76Jx1+gBva
+	ud+bhufw5gqFjZ008eP56GfqOuP7xnSaXn96oTlo6Xl313oQB72j8MTxD64UFw==
+X-Google-Smtp-Source: AGHT+IEnO8qRPAnMZSsYcAU1umBH7w7hOtggGkej45WKFStRzR/jIUoEFsR5i+TfpWF2NyzCUeroWA==
+X-Received: by 2002:a17:903:2442:b0:20c:769b:f04d with SMTP id d9443c01a7336-20cc02bd0c7mr6105425ad.7.1729004420408;
+        Tue, 15 Oct 2024 08:00:20 -0700 (PDT)
+Received: from google.com (62.166.143.34.bc.googleusercontent.com. [34.143.166.62])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20d1806c6fesm12949855ad.299.2024.10.15.08.00.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2024 07:57:23 -0700 (PDT)
-Date: Tue, 15 Oct 2024 16:57:18 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+        Tue, 15 Oct 2024 08:00:19 -0700 (PDT)
+Date: Tue, 15 Oct 2024 15:00:10 +0000
+From: Pranjal Shrivastava <praan@google.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: x1e80100-crd: describe HID supplies
-Message-ID: <Zw6CzgluMauSdl2j@linaro.org>
-References: <20241015122427.15995-1-johan+linaro@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH RFC 2/2] iommu/arm-smmu-v3: Bypass SID0 for NXP i.MX95
+Message-ID: <Zw6DekI9X7lL4f1G@google.com>
+References: <20241015-smmuv3-v1-0-e4b9ed1b5501@nxp.com>
+ <20241015-smmuv3-v1-2-e4b9ed1b5501@nxp.com>
+ <Zw4kKDFOcXEC78mb@google.com>
+ <20241015124723.GI1825128@ziepe.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,108 +91,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241015122427.15995-1-johan+linaro@kernel.org>
+In-Reply-To: <20241015124723.GI1825128@ziepe.ca>
 
-On Tue, Oct 15, 2024 at 02:24:27PM +0200, Johan Hovold wrote:
-> Add the missing HID supplies to avoid relying on other consumers to keep
-> them on.
+On Tue, Oct 15, 2024 at 09:47:23AM -0300, Jason Gunthorpe wrote:
+> On Tue, Oct 15, 2024 at 08:13:28AM +0000, Pranjal Shrivastava wrote:
 > 
-> This also avoids the following warnings on boot:
+> > Umm.. this was specific for rmr not a generic thing. I'd suggest to
+> > avoid meddling with the STEs directly for acheiving bypass. Playing
+> > with the iommu domain type could be neater. Perhaps, modify the
+> > ops->def_domain_type to return an appropriate domain?
 > 
-> 	i2c_hid_of 0-0010: supply vdd not found, using dummy regulator
-> 	i2c_hid_of 0-0010: supply vddl not found, using dummy regulator
-> 	i2c_hid_of 1-0015: supply vdd not found, using dummy regulator
-> 	i2c_hid_of 1-0015: supply vddl not found, using dummy regulator
-> 	i2c_hid_of 1-003a: supply vdd not found, using dummy regulator
-> 	i2c_hid_of 1-003a: supply vddl not found, using dummy regulator
+> Yeah, that is the expected way, to force the def_domain_type to
+> IDENTITY and refuse to attach a PAGING/BLOCKED domain.
 > 
-> Note that VREG_MISC_3P3 is also used for things like the fingerprint
-> reader which are not yet fully described so mark the regulator as always
-> on for now.
-> 
-> Fixes: d7e03cce0400 ("arm64: dts: qcom: x1e80100-crd: Enable more support")
-> Cc: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 34 +++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> index 10b28d870f08..4ab7078f76e0 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> @@ -288,6 +288,23 @@ vreg_edp_3p3: regulator-edp-3p3 {
->  		regulator-boot-on;
->  	};
->  
-> +	vreg_misc_3p3: regulator-misc-3p3 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_MISC_3P3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&pm8550ve_8_gpios 6 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&misc_3p3_reg_en>;
-> +
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
->  	vreg_nvme: regulator-nvme {
->  		compatible = "regulator-fixed";
->  
-> @@ -689,6 +706,9 @@ touchpad@15 {
->  		hid-descr-addr = <0x1>;
->  		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
->  
-> +		vdd-supply = <&vreg_misc_3p3>;
-> +		vddl-supply = <&vreg_l12b_1p2>;
-> +
->  		pinctrl-0 = <&tpad_default>;
->  		pinctrl-names = "default";
->  
-> @@ -702,6 +722,9 @@ keyboard@3a {
->  		hid-descr-addr = <0x1>;
->  		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
->  
-> +		vdd-supply = <&vreg_misc_3p3>;
-> +		vddl-supply = <&vreg_l12b_1p2>;
-> +
->  		pinctrl-0 = <&kybd_default>;
->  		pinctrl-names = "default";
->  
-> @@ -721,6 +744,9 @@ touchscreen@10 {
->  		hid-descr-addr = <0x1>;
->  		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
->  
-> +		vdd-supply = <&vreg_misc_3p3>;
-> +		vddl-supply = <&vreg_l15b_1p8>;
-> +
->  		pinctrl-0 = <&ts0_default>;
->  		pinctrl-names = "default";
->  	};
-> @@ -854,6 +880,14 @@ &pcie6a_phy {
->  	status = "okay";
->  };
->  
-> +&pm8550ve_8_gpios {
-> +	misc_3p3_reg_en: misc-3p3-reg-en-state {
-> +		pins = "gpio6";
-> +		function = "normal";
-> +		bias-disable;
+> If this is a common thing we could have the core code take on more of
+> the job.
 
-Can we add a "power-source" here? PMIC GPIOs can be either ~3.7V
-(VPH_PWR) or 1.8V, depending on which power-source is selected. Without
-that, we rely on the firmware to set the voltage level for the GPIO
-during boot.
+Yes! I've seen the IOMMU being bypassed at multiple places, primarily
+for performance, people like bypassing the iommu for "trusted" devices.
+A few examples that are publically accessible: Qcomm SoCs [1], [2].
+Seems like Qualcomm have a DT property `qcomm-s1-bypass` to achieve
+something similar.
 
-I'm not sure which one would be suitable here. I guess we can just
-replicate what the firmware configures during boot.
+In fact, *blast from the past*, I tried to do something similar sometime
+ago with [3]. Although, perhaps that wasn't the best way (and I was a
+kernel newbie :))
+
+A little off-topic, but I think there has been some interest to bypass
+the default substream as well while still maintaining PASID isolation.[4]
+
+Although, as far as arm-smmu-v3 is concerned, IIRC, I think there was a
+way to tell that the region is reserved and don't map it.
+
+> 
+> Jason
 
 Thanks,
-Stephan
+Pranjal
+
+[1]
+https://github.com/realme-kernel-opensource/realme5-kernel-source/blob/master/arch/arm64/boot/dts/qcom/sa8155-vm-qupv3.dtsi#L22
+
+[2] 
+https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/Documentation/devicetree/bindings/platform/msm/ipa.txt#28
+
+[3]
+https://lore.kernel.org/all/20230707104857.348353-1-praan@google.com/
+
+[4]
+https://lore.kernel.org/all/CAGfWUPziSWNMc_px4E-i+_V_Jxdb_WSwOLXHZ+PANz2Tv5pFPA@mail.gmail.com/
 
