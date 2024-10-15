@@ -1,108 +1,105 @@
-Return-Path: <devicetree+bounces-111477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD7BB99EF5C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:21:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C586B99EF8E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 16:27:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E038280D31
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:21:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C3591F24A42
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 14:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6CC21AF0D6;
-	Tue, 15 Oct 2024 14:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE0131B2197;
+	Tue, 15 Oct 2024 14:27:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jbkm/EVO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NUitH/qC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974C8149E16;
-	Tue, 15 Oct 2024 14:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E1F1FC7CF;
+	Tue, 15 Oct 2024 14:27:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729002108; cv=none; b=rpm6vsyELLfc/SuC1SK7QBzwD5rvuX2VmKyav1j+WPkUtj9weH86KdZ/VIHvoM/ZYA86Kjxh4XlmKT/pQBClrQXR7Agv8Ijms0NZRx8505S/0vHCdDeBYb0afv/BBu1pErrMIT+Z72O2sqiMN0xWpphLxnld6Vl0Snw8XnloIvY=
+	t=1729002424; cv=none; b=bO8y2ulQDUWwklLMy3o99bwgd9VPT/GveE4/3V+uDyu+2EmyqphUUu93GAO8ZhlGbqmLvPN+aGWPzb54ZyfTbXYO77CaZoZy+4s8wF2OAX3dBeQeE23xFbTG1+DY9oZfvNHtguW29pz51NcqpFfwEDGdhjBcoEcN/Dvp11QBN4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729002108; c=relaxed/simple;
-	bh=y9Remuzhazsl6jG4wSR5jXZQPRLnrYUCmNCQ7YesZps=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aNoPfWki6bzVpvrnlmHfK+QhAe1m9wN9X2i/sWC0G11slzMRTeMAY6CpJUv9f/h7gc/BtUbANiFFvzTW2UIFwBtcUFCYlPqggNekl1mjeTbylwoxjMo9GFhHcghHQliWOf3ynwxKepmo9L+VlJt8Z+/ZkCtdTHrKSpmGAHGTQ24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jbkm/EVO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E50C9C4CECE;
-	Tue, 15 Oct 2024 14:21:47 +0000 (UTC)
+	s=arc-20240116; t=1729002424; c=relaxed/simple;
+	bh=6ev/262Ol0s7OAdxXxHZ06Pvd3q4TF+wxwIAYjD+2R0=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=C8Lc1ltP/xPSIettm5sOefvk2MmqWJqxfNbZRPeiv+lDhnpu9Ma0SK0vJx//pU5hKYYayhJ3Cj2kGKja/JKC2svyiomxvZen/UtauBKhsgNvBfYZBEW8jCY3WbMrrKOQuKLIVEft2alGmCwzX0qWTVjyyPahYauY89T8SgxFN5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NUitH/qC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE188C4CEC6;
+	Tue, 15 Oct 2024 14:27:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729002108;
-	bh=y9Remuzhazsl6jG4wSR5jXZQPRLnrYUCmNCQ7YesZps=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jbkm/EVOBnWAwjn0Odp22gnMBUiYL6syoS5SHuyG+e4D7572qMJgnKfvVJPTL/S6w
-	 HDegeDPnibo9WmnsXAZxaeC22x5zSFSLSF5RT68Agu7KXe7eicpzvZ+FRCJbUs7UeO
-	 qxx8t2v7bukGdXXLJlWMdS1QxyKbk1qj4ZNsHwl8+AG3tJRN7A54q3xqud/1O4DxeM
-	 tGkMAzmK7ElI2fVPl2FOHbSk8FtDJcZOacm7/dkh0FJQkG4jTBvxUDCdr6SimJwO0X
-	 aoRwyHVenpuSV9SbM9FsX4huGBk5t5cDnsiuMcvOIbMd+cbH9vUUgzBXWqKoIWG4Uk
-	 9o5cJ4AlmjY6g==
-Date: Tue, 15 Oct 2024 09:21:45 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/5] dt-bindings: arm: fsl: add imx-se-fw binding doc
-Message-ID: <172900201303.807870.3079581090690762853.robh@kernel.org>
-References: <20241015-imx-se-if-v8-0-915438e267d3@nxp.com>
- <20241015-imx-se-if-v8-2-915438e267d3@nxp.com>
+	s=k20201202; t=1729002424;
+	bh=6ev/262Ol0s7OAdxXxHZ06Pvd3q4TF+wxwIAYjD+2R0=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=NUitH/qC5feNe9f8lxe/O5lEMsNSiFlXuTVd7B8yZuYBp1qbj9XzQFlCNQYxzFBNh
+	 PE/sDa98Nx88X5ff6yMC/cypsbLjLikopZa5PwsxfLNN5vmgAZD5u68FZ4PNQXkTwT
+	 HnIJGd1GOdqMnO36k/HIuFbK4TewY2OmsWYTEztWXUcpmLzMKgjTifyWRsQkEFcCMM
+	 GWzAJ9nt+qkvf8JBRuGY5GsoiWK2AWMn7QVlBYvxmo1dDN/9KDm6YeN400czC0RQm/
+	 9nIsil5cUViH9rTAfo6AMlIr3L7EO8plvkDtUYTLZjyuJqOgTeIykH/ZBs323Yasjr
+	 WJLnMYT2lp2+g==
+Date: Tue, 15 Oct 2024 09:27:02 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015-imx-se-if-v8-2-915438e267d3@nxp.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: George Chan <gchan9527@gmail.com>
+Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org, 
+ Del Regno <kholk11@gmail.com>, linux-kernel@vger.kernel.org, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20241015-nt36xxx-v1-1-3919d0bffee6@gmail.com>
+References: <20241015-nt36xxx-v1-0-3919d0bffee6@gmail.com>
+ <20241015-nt36xxx-v1-1-3919d0bffee6@gmail.com>
+Message-Id: <172900242289.881163.3310212462918589940.robh@kernel.org>
+Subject: Re: [PATCH RFC/RFT 1/3] dt-bindings: touchscreen: Add binding for
+ Novatek NT36xxx series driver
 
 
-On Tue, 15 Oct 2024 14:31:00 +0530, Pankaj Gupta wrote:
-> The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
-> creates an embedded secure enclave within the SoC boundary to enable
-> features like:
-> - HSM
-> - SHE
-> - V2X
+On Tue, 15 Oct 2024 20:53:29 +0800, George Chan wrote:
+> Add binding for the Novatek NT36xxx series touchscreen driver.
 > 
-> Secure-Enclave(s) communication interface are typically via message
-> unit, i.e., based on mailbox linux kernel driver. This driver enables
-> communication ensuring well defined message sequence protocol between
-> Application Core and enclave's firmware.
-> 
-> Driver configures multiple misc-device on the MU, for multiple
-> user-space applications, to be able to communicate over single MU.
-> 
-> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
-> 
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> Signed-off-by: George Chan <gchan9527@gmail.com>
 > ---
->  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 91 ++++++++++++++++++++++
->  1 file changed, 91 insertions(+)
+>  .../bindings/input/touchscreen/nt36xxx.yaml        | 70 ++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
 > 
 
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml:19:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
 
-If a tag was not added on purpose, please state why and what changed.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml: title: 'Novatek NT36xxx series touchscreen controller Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
 
-Missing tags:
+doc reference errors (make refcheckdocs):
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241015-nt36xxx-v1-1-3919d0bffee6@gmail.com
 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
