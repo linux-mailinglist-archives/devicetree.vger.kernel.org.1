@@ -1,64 +1,67 @@
-Return-Path: <devicetree+bounces-111192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5647D99DAC8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 02:44:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 947B699DACB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 02:44:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A3FB1C21467
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 00:44:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E319F282E42
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 00:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD771CAAC;
-	Tue, 15 Oct 2024 00:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96011101F7;
+	Tue, 15 Oct 2024 00:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Yr3vlzPP"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="PiOv2Rv5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91202101F7;
-	Tue, 15 Oct 2024 00:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE5C4B5C1;
+	Tue, 15 Oct 2024 00:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728953059; cv=none; b=ohNZUvBT90N7oB/1F3r9kNL0zvdKLcVJr4TRO4ktRs8Gr4tR/3l9Q5ChH1NSPnn7H14PNKlOdYRgHLCPuxgQr5kaHn2gS4BbrS91Ojwxta2oldXiilK01aSyJOOCGXPoXR0eeuIP05TCv1MFLJh//T+y8SeG2JSpJIQC7+wM6nk=
+	t=1728953074; cv=none; b=n+vYIQHC+3IM306Rocu/xF26Do+FtEA5qHtRkxGDV/HdySgKP/kHG48V6Ju6nZFzURLkwt7g7gYDEh0BO/BSA47lGl3YAJxKWI3t4qFsyUaaesRUDKSamYcFy9MyjRa0uBJXqdhK21VTqSCWtsJnGtw4kpk//P7F7zzakPQaN2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728953059; c=relaxed/simple;
-	bh=f0b049l8F4nitzsKdmhh/lH9EoJTcRarfvGgIKAVv8k=;
+	s=arc-20240116; t=1728953074; c=relaxed/simple;
+	bh=aaOkoglpjn8F6wIEeDrouknk6uZHXWOFgzj2wxj00GQ=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QjEP7aB4Avwd+w0DlZdVe4NECchO4uxJz6FMNGY/yXCYmYEqLPJjHeE+ApnVzyIJJIhxfvew+viZqF+Acx4ZZbfzLugymfJL7fTJvjjhJ38wFun37EzqnGGQ8GRhfr16acJMnjVEcu+Mm5Cd7w0RT3eBCiGUAk4pkQqhP0Po4G4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Yr3vlzPP; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=pTsAk/JPAJmaRLhnk3bufn22EEZmRx3T7BQSSsIJ+/FKBXeCCCWzNrOx17JOJ7fQVChHg+Uqab91gVbBOEXrhW/ZKGGoDkKn34Xn8pKwrEmO1E3ipM1MV+2gdsdPcWigQA8kmJfm1A0pvr1wFcVruWBB5Ezm9R41N+8wmJvJH9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=PiOv2Rv5; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1728952691;
-	bh=6/06bc8oCZtyUeywqMc8qTFgfwd5N7FHrM9Z7htd1G0=;
+	d=codeconstruct.com.au; s=2022a; t=1728953070;
+	bh=2nnTU/ADEM4/VUxWefc0PONe2IBy5+5Jla7mbf0EfVs=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Yr3vlzPPFYdNfF21gVd7sc9jkCqRu3O12LkVhdfZMDUdr2lIULQqlZ/m3DaEXQeB5
-	 A2O9PXWnoZKl5FqwlqPYoHLE+dCBur3+TS5TqFhnhxYOj0dI/o9sJ/ADPgJUBPvZRn
-	 w9Od7APzUPV3yJD6HOT7K/3gTCZIE/9uVV71aG1rmtuhaAWwcAi7xxrIAeDGm7Ddec
-	 ehVmgt7l/WvAqE3YHyapNPS55d6Q8Lmyi8XHcq3ukIi3kka67W1FZRM4eJ6v5nF18I
-	 +s0t9MmKu+DSMsnc0lN0O0zZSYEJlaq/m6p0yGa+AomRGk2VvJToHHa5pkE7Q8aS1M
-	 4WVbxmKP0cCiA==
+	b=PiOv2Rv5D4gz2LFQ1h7BrLF79+/3pHIZJ+tJ9BELKEx57hW33NeTxupy4Zch8v+jg
+	 jwjE5z2HOStoVOfhe3YWxqNZz8A5gzBfWKlLw2THkfMIK9yGq94HOvEGsPn1JIs5Dl
+	 NvymJ7DbZDry2bLNbBhpAnAboweXTFHT2yvSzydX6gqxSv927YB4S/NfosYcGKmhb4
+	 o1lBI3qWsHSezjrDopLqLklQflemn37Y2NR7eMxSYhLxZhmoahwt6Ebp7bf+QVmpst
+	 hF2S+ArVf6lGiBsjQAahRkhReJjQ6gUrmfJPBnM4UjqszbGa/g0LupdNDFY5A4TIIQ
+	 Z+yYLAYSTiL6A==
 Received: from [192.168.68.112] (203-173-0-39.dyn.iinet.net.au [203.173.0.39])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id F16C4649A0;
-	Tue, 15 Oct 2024 08:38:08 +0800 (AWST)
-Message-ID: <5ca25b137b955dc5e0d9607df104097e3de7b782.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: add IBM SBP1 board
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 75277649A0;
+	Tue, 15 Oct 2024 08:44:29 +0800 (AWST)
+Message-ID: <b5919d904c9f06a618a54d49bc895c3081a511e4.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
+ Jefferson BMC
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley
- <conor.dooley@microchip.com>,  Joel Stanley <joel@jms.id.au>, Conor Dooley
- <conor+dt@kernel.org>, linux-aspeed@lists.ozlabs.org
-Date: Tue, 15 Oct 2024 11:08:08 +1030
-In-Reply-To: <CABqG17gmjvBmpp2a7tgVwR+q3tsrbejVmezWaXH__txytr30hQ@mail.gmail.com>
-References: <20241010112337.3840703-1-naresh.solanki@9elements.com>
-	 <172857036038.1533242.5775916298170949713.robh@kernel.org>
-	 <4d596ac9a2215be8510369c948e0b9680ee2fce3.camel@codeconstruct.com.au>
-	 <CABqG17gmjvBmpp2a7tgVwR+q3tsrbejVmezWaXH__txytr30hQ@mail.gmail.com>
+To: Chanh Nguyen <chanh@os.amperecomputing.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Khanh Pham
+ <khpham@amperecomputing.com>, linux-arm-kernel@lists.infradead.org, Thang
+ Nguyen <thang@os.amperecomputing.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Phong Vo <phong@os.amperecomputing.com>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, OpenBMC Maillist
+ <openbmc@lists.ozlabs.org>, Open Source Submission
+ <patches@amperecomputing.com>, Quan Nguyen <quan@os.amperecomputing.com>, 
+ linux-aspeed@lists.ozlabs.org
+Date: Tue, 15 Oct 2024 11:14:28 +1030
+In-Reply-To: <172891445289.1127319.4114892374425336022.robh@kernel.org>
+References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
+	 <172891445289.1127319.4114892374425336022.robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -69,134 +72,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-Hi Naresh,
+Hi Chanh,
 
-On Fri, 2024-10-11 at 13:38 +0530, Naresh Solanki wrote:
-> Hi Andrew,
->=20
->=20
-> On Fri, 11 Oct 2024 at 05:15, Andrew Jeffery
-> <andrew@codeconstruct.com.au> wrote:
+On Mon, 2024-10-14 at 09:05 -0500, Rob Herring (Arm) wrote:
+> On Mon, 14 Oct 2024 10:50:31 +0000, Chanh Nguyen wrote:
+> > The Mt. Jefferson BMC is an ASPEED AST2600-based BMC for the Mt. Jeffer=
+son
+> > hardware reference platform with AmpereOne(TM)M processor.
 > >=20
-> > Hi Naresh,
+> > Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+> > ---
+> >  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+> >  .../aspeed/aspeed-bmc-ampere-mtjefferson.dts  | 646 ++++++++++++++++++
+> >  2 files changed, 647 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjeffer=
+son.dts
 > >=20
-> > On Thu, 2024-10-10 at 09:30 -0500, Rob Herring (Arm) wrote:
-> > > On Thu, 10 Oct 2024 16:53:31 +0530, Naresh Solanki wrote:
-> > > > Document the new compatibles used on IBM SBP1.
-> > > >=20
-> > > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > ---
-> > > > Changes in V4:
-> > > > - Retain Acked-by from v2.
-> > > > - Fix alphabetic order
-> > > > ---
-> > > >  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >=20
-> > >=20
-> > >=20
-> > > My bot found new DTB warnings on the .dts files added or changed in t=
-his
-> > > series.
-> > >=20
-> > > Some warnings may be from an existing SoC .dtsi. Or perhaps the warni=
-ngs
-> > > are fixed by another series. Ultimately, it is up to the platform
-> > > maintainer whether these warnings are acceptable or not. No need to r=
-eply
-> > > unless the platform maintainer has comments.
-> > >=20
-> > > If you already ran DT checks and didn't see these error(s), then
-> > > make sure dt-schema is up to date:
-> > >=20
-> > >  pip3 install dtschema --upgrade
-> > >=20
-> > >=20
-> > > New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-sbp1.=
-dtb' for 20241010112337.3840703-1-naresh.solanki@9elements.com:
-> > >=20
-> >=20
-> > ...
-> >=20
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mux@77: interrupts:=
- False schema does not allow [[44, 4]]
-> > >  from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.y=
-aml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-c=
-pu2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccf=
-a-cpu2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-c=
-pu1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccf=
-a-cpu1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-c=
-pu3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccf=
-a-cpu3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regu=
-lators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regu=
-lators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regu=
-lators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regu=
-lators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-c=
-pu0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccf=
-a-cpu0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> > >  from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> >=20
-> > These still must be addressed as mentioned on v3 (with more specific
-> > comments regarding the infineon,ir38263 on v4). Please look through the
-> > binding documents for the affected nodes and make sure the nodes in
-> > your DTS conform to their definitions. You can check your work with
-> > `make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-sbp1.dtb` prior to sending.
 >=20
-> These are the warnings coming for trivial devices. Even for regulator@5f
 >=20
-> grep -rsn mp2973 Documentation/
-> Documentation/devicetree/bindings/trivial-devices.yaml:286:
-> # Monolithic Power Systems Inc. multi-phase controller mp2973
-> Documentation/devicetree/bindings/trivial-devices.yaml:287: -
-> mps,mp2973
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>=20
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>=20
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>=20
+>   pip3 install dtschema --upgrade
+>=20
+>=20
+> New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ampere-mtjeff=
+erson.dtb' for 20241014105031.1963079-1-chanh@os.amperecomputing.com:
+>=20
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /: compatible=
+: 'oneOf' conditional failed, one must be fixed:
+> 	'ampere,mtjefferson-bmc' is not one of ['delta,ahe50dc-bmc', 'facebook,g=
+alaxy100-bmc', 'facebook,wedge100-bmc', 'facebook,wedge40-bmc', 'microsoft,=
+olympus-bmc', 'quanta,q71l-bmc', 'tyan,palmetto-bmc', 'yadro,vesnin-bmc']
+> 	'ampere,mtjefferson-bmc' is not one of ['amd,daytonax-bmc', 'amd,ethanol=
+x-bmc', 'ampere,mtjade-bmc', 'aspeed,ast2500-evb', 'asrock,e3c246d4i-bmc', =
+'asrock,e3c256d4i-bmc', 'asrock,romed8hm3-bmc', 'asrock,spc621d8hm3-bmc', '=
+asrock,x570d4u-bmc', 'bytedance,g220a-bmc', 'facebook,cmm-bmc', 'facebook,m=
+inipack-bmc', 'facebook,tiogapass-bmc', 'facebook,yamp-bmc', 'facebook,yose=
+mitev2-bmc', 'facebook,wedge400-bmc', 'hxt,stardragon4800-rep2-bmc', 'ibm,m=
+ihawk-bmc', 'ibm,mowgli-bmc', 'ibm,romulus-bmc', 'ibm,swift-bmc', 'ibm,with=
+erspoon-bmc', 'ingrasys,zaius-bmc', 'inspur,fp5280g2-bmc', 'inspur,nf5280m6=
+-bmc', 'inspur,on5263m5-bmc', 'intel,s2600wf-bmc', 'inventec,lanyang-bmc', =
+'lenovo,hr630-bmc', 'lenovo,hr855xg2-bmc', 'portwell,neptune-bmc', 'qcom,ce=
+ntriq2400-rep-bmc', 'supermicro,x11spi-bmc', 'tyan,s7106-bmc', 'tyan,s8036-=
+bmc', 'yadro,nicole-bmc', 'yadro,vegman-n110-bmc', 'yadro,vegman-rx20-bmc',=
+ 'yadro,vegman-sx20-bmc']
+> 	'ampere,mtjefferson-bmc' is not one of ['ampere,mtmitchell-bmc', 'aspeed=
+,ast2600-evb', 'aspeed,ast2600-evb-a1', 'asus,x4tf-bmc', 'facebook,bletchle=
+y-bmc', 'facebook,catalina-bmc', 'facebook,cloudripper-bmc', 'facebook,elbe=
+rt-bmc', 'facebook,fuji-bmc', 'facebook,greatlakes-bmc', 'facebook,harma-bm=
+c', 'facebook,minerva-cmc', 'facebook,yosemite4-bmc', 'ibm,blueridge-bmc', =
+'ibm,everest-bmc', 'ibm,fuji-bmc', 'ibm,rainier-bmc', 'ibm,system1-bmc', 'i=
+bm,tacoma-bmc', 'inventec,starscream-bmc', 'inventec,transformer-bmc', 'jab=
+il,rbp-bmc', 'qcom,dc-scm-v1-bmc', 'quanta,s6q-bmc', 'ufispace,ncplite-bmc'=
+]
+> 	'aspeed,ast2400' was expected
+> 	'aspeed,ast2500' was expected
+> 	from schema $id: http://devicetree.org/schemas/arm/aspeed/aspeed.yaml#
 >=20
 
-Right, but if they're generating warnings, then you haven't specified
-the nodes in accordance with the bindings. From here one of two things
-is the case:
+This needs to be fixed as pointed out by Krzysztof.
 
-   1. The bindings' specifications are incomplete, and you need to
-      introduce patches updating them to match how you need to use the
-      hardware
-   2. Your devicetree is incorrect, and the unexpected properties need
-      to be removed from the listed nodes.
+*snip*
 
-The only third option is "don't use the hardware how you need to" (i.e.
-remove the unexpected properties despite needing them, because you
-don't want to update the bindings).
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /ahb/apb/bus@=
+1e78a000/i2c@180/i2c-mux@70/i2c@0/psu@58: failed to match any schema with c=
+ompatible: ['pmbus']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /ahb/apb/bus@=
+1e78a000/i2c@180/i2c-mux@70/i2c@0/psu@59: failed to match any schema with c=
+ompatible: ['pmbus']
 
-Ultimately the tools are telling you something is wrong, and I need the
-warnings I've identified addressed before I can apply your patch,
-otherwise the hardware is not going to do what you might expect.
-> I've rebased it on top of for-next branch in [2]
->=20
-> I rebased on top of [1] & the volume of output did reduce for CHECK_DTBS.
-
-Great :)
+These two should also be fixed. The compatible must describe the
+physical device, not the communication/application protocol. It may be
+necessary to add a binding if there's not one already for the device.
 
 Andrew
+
 
