@@ -1,91 +1,99 @@
-Return-Path: <devicetree+bounces-111624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A400E99F7A0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 21:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A2C199F7A8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:00:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4451281A0E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 19:59:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D1402832A0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90AD61F584A;
-	Tue, 15 Oct 2024 19:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C6671B6CEF;
+	Tue, 15 Oct 2024 20:00:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z2ngDwqf"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="eOvnh2Mq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573C81F5834;
-	Tue, 15 Oct 2024 19:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5AC1B6D1E;
+	Tue, 15 Oct 2024 20:00:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729022379; cv=none; b=hZ1SawunkDwsvK04SOfX/tjXW5G0tsKM+eV8PY6mMWcpLw8sEGcMEM5Ge9Eo5lverltPobmsjhyTAKGCvv/ujMVH+Vro1uOEuqoet3mBQoLSfn0Wf99iebvzA8AnNQthTpSiH7zZXU1+J7njZoIfsyMBpkOeqBE9rDUdb5vc55M=
+	t=1729022431; cv=none; b=EhNiBochmaFfJfprDPEuX9xA6oUPdb341X/WlFDpciSmWZYjQr0tGyzoS2p/xT6MNLIGjlS0KFLmSfBwPfB0RanRCTJLfwun5pabdIPfWhx3siYYIdREgy9BvYNu2/z8aL8r2B5tr6jz2LJUp9qx6AGyQzGffBkV6gLUyFMRZ98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729022379; c=relaxed/simple;
-	bh=o5PDrtHObgP3OmjsttXcysEYMPEFODbevDbCa/VABeU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uIGq2vVZBbAvb8Y3fg4xfkWErrKzuGe/XxelSlRQIS1TxgQgAUkiCVa6effgxicBsSQ9sH8buJ2NZa2GPN+SfPtVvfQT/XbzCBCCbRj/v+Mi66f3ugdQG+RmWH2g1ANK2HqGj8vH9Ig4PTzuWKtNZ7xBJSUloqJgjWv2gjdb6ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z2ngDwqf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEB59C4CEC6;
-	Tue, 15 Oct 2024 19:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729022378;
-	bh=o5PDrtHObgP3OmjsttXcysEYMPEFODbevDbCa/VABeU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z2ngDwqftl2tK6JYPRqFTdIB9M3Nf7L2hWKvqlGo7FBf1hUaV2n2mhR9TGAPnkFoB
-	 /+STaMSfjMjd1EaoMUh4X13/jOocGJb/dMHogYG09O2Po6cQmxsO3VO5mlLXhqLrsX
-	 Uh5FqO1nuLwEhO9NzW+c/53QAjx6aVJfhMR485S4F5KXX7gregg/dzia1R2yLvjwg3
-	 m0Yo25Rg6FC22Ys6FqTW6QxK4C5n/5mV21H53oI5Uf0vtSq+SFCVmkNIIlBq1ZZ1Yx
-	 HcyB2lOZG8vdY7k77T5CjHFFKtkMJydkeFWVdJlv91NW7l5jLNYlxDG6PjYU2pGwiS
-	 344t4ohLIpm/A==
-Date: Tue, 15 Oct 2024 14:59:37 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	ansuelsmth@gmail.com, Lee Jones <lee@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-gpio@vger.kernel.org, upstream@airoha.com,
-	benjamin.larsson@genexis.eu, linux-arm-kernel@lists.infradead.org,
-	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>, devicetree@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v6 4/6] dt-bindings: mfd: Add support for Airoha EN7581
- GPIO System Controller
-Message-ID: <172902237741.1702164.15273097757598307405.robh@kernel.org>
-References: <20241013-en7581-pinctrl-v6-0-2048e2d099c2@kernel.org>
- <20241013-en7581-pinctrl-v6-4-2048e2d099c2@kernel.org>
+	s=arc-20240116; t=1729022431; c=relaxed/simple;
+	bh=+dHOqgbqxbhUKjFC8jI1isYQT2Cb7uH2nwkpTlgXvmE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TBBAUpySuBkEFsL0HSRzXfQ1rUFr3oGWZtEIw2oFDPPG1Ko02RY+bkvRXMX9DBNHwqyBYs1h9FPd8gfZ4RO+iGTjY/8Vriv4KU+EbW3ZdHH43K5lxsTSd3EOVeKe0wONEzMQlXK1LDjjGPbeZAQWWaD/aKMLetlXIcYE+FN/rTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=eOvnh2Mq; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20c714cd9c8so46884175ad.0;
+        Tue, 15 Oct 2024 13:00:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1729022429; x=1729627229; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+dHOqgbqxbhUKjFC8jI1isYQT2Cb7uH2nwkpTlgXvmE=;
+        b=eOvnh2MqI+Yc+XN08GGb9BeyXO04yyx3pKUZE4xGIjGV/6lgY3I3da9a68x47FLTFa
+         puBnRctLrtENa8ZOgGC4bmYjcIx2698nQMNrCl2aBDSInl+caG0JUMaTCyRbv/E5u1cY
+         HAJUK/+ViQBEF2HekG3mapgCn3GW0IDmd6gFm1mzfu8plr0gCwnJfnu2GHPVGbmCL6qM
+         IhkyGoWxv4lOQCBE+Xt7tA9m1/ie4eY/gF0NX/pR1hTNhJ1wGu5jWeQ+isG7GS0BIFuS
+         KhYaUXS9AswSKin4eXkKhGhpyVaJlTW3qPwLyJV2jEbWPAAqDbqW29bSa1nS3uo4ccu8
+         3KeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729022429; x=1729627229;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+dHOqgbqxbhUKjFC8jI1isYQT2Cb7uH2nwkpTlgXvmE=;
+        b=bp3WuPw8qDr3LXhkm9brUzFgIFDeV9lzS8itcIc4STm8CjTRvp6dSgxgQ4ET6V/cpX
+         594WcvBmdk3wlhrR6PQeVsKzwYTcjGJxW3+8NKS7j3arBAjLU67dCG4x1V7CF8fPMo10
+         PrvJ+jYXdEjD8fjzBjluBvW4pP1USjNJ4DDotMC/Qf+inzgijIa20X5Wd8jnLFXg4TO+
+         fVMheMgjEpYm5GwUwDrAcMwfGDa6Jy0x4QYFK6OzAEGnhEzo06ws7pkly2ikFRswRKG2
+         z1A+DGIJpE3qTmuaNBbAXzDxaOQ3amIdzXyy0n2GjmicI2jZvio9oNuYfcfwh+78f/aK
+         baAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVxDiJcjpqlQy4b3AviSOSyHsr3m0ix4MNzwjspilGRdQ7M2MCXMNqGI786bxQl4HYQhDAgQVtAy+Xy@vger.kernel.org, AJvYcCWMJnyc/kQHcbU7Fu874VBArSpRDyzcPeLyp/MgPzL7G8V+ohW2dic+OtYKD1YyggtW/zR8v4BFZbatD+Fs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7yGJI8KeT4gN9Lr8A60P0MINrKRn6ZNZpk31E7pCQGofXk1pM
+	RcyP0gDew9p6/kOosI2k2WKlqPSFHg0mLNWqRyJlWw26S/inB6gb0nLg6ybmXlMubysHPLBk6B1
+	qzpUfl5ETEt06Aycm56oEypPDNzs=
+X-Google-Smtp-Source: AGHT+IGRAmeBaacGPitE5Lu93QMjwbYqZHTlRNrjzryAWT2uMOuhpeBjdQ1lgbAhAtrQkdLy8DPNtWJJOKrbkKNNLyA=
+X-Received: by 2002:a17:903:2342:b0:202:13ca:d73e with SMTP id
+ d9443c01a7336-20cbb1a967emr211133625ad.28.1729022429235; Tue, 15 Oct 2024
+ 13:00:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241013-en7581-pinctrl-v6-4-2048e2d099c2@kernel.org>
+References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-hhi-sysctrl-meson8-v1-1-896b24e6c3c8@linaro.org>
+In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-hhi-sysctrl-meson8-v1-1-896b24e6c3c8@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 15 Oct 2024 22:00:18 +0200
+Message-ID: <CAFBinCDyfLC5uF2X0DHazPq1hwA7qZ2yjLO9awcDgHcUbYVECQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl: Document
+ the System Control registers found on early Meson SoC
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On Sun, 13 Oct 2024 00:07:10 +0200, Lorenzo Bianconi wrote:
-> From: Christian Marangi <ansuelsmth@gmail.com>
-> 
-> Add support for Airoha EN7581 GPIO System Controller which provide a
-> register map for controlling the GPIO, pinctrl and PWM of the SoC via
-> dedicated pinctrl and pwm child nodes.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    | 90 ++++++++++++++++++++++
->  1 file changed, 90 insertions(+)
-> 
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+On Mon, Oct 7, 2024 at 4:09=E2=80=AFPM Neil Armstrong <neil.armstrong@linar=
+o.org> wrote:
+>
+> The early Amlogic SoCs also has a System Control registers register set,
+> document it in the amlogic,meson-gx-hhi-sysctrl now the clock controller
+> has been converted to yaml dt-schema.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
