@@ -1,201 +1,274 @@
-Return-Path: <devicetree+bounces-111226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BD3599DE00
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:13:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9223599DE09
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:16:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CDE51F22A49
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:13:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED369B214D8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F5A188717;
-	Tue, 15 Oct 2024 06:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C001F17557E;
+	Tue, 15 Oct 2024 06:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fuEFHgQO"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zQQGTXgI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E6A178368;
-	Tue, 15 Oct 2024 06:13:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0225A175562;
+	Tue, 15 Oct 2024 06:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728972814; cv=none; b=hI3Ph8Myoh6DOmgQlWyQswoM2hGZ5+7iK1GcX0HnBS2NXd3ha26NkkCjaky2G9tFYZhm35EH1P7tVJHuD3gxYflLUfjDIInX6DAjxrU2FDG8IxRp+J2HhRvp/QukkiislBnwq5zqN9TBa3a+16ogr47ewjZZ+dUaRuGvEt/evYI=
+	t=1728972959; cv=none; b=cXk3xyrxar+IfBvBFAJuGHgFoo/6Q74QmMfR3jxt0vIeo96xNwdf8sCMncspSwNCvcZ2lpKsuJOasMMdXZyq8XiMmqLef1n04urf+dVcWHNAJFgB1mL99fcoVmcnbHqUnTv/93EmlacKWibn84+xACzhRGGUI1lzmjKUvW4oOdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728972814; c=relaxed/simple;
-	bh=nMcb720BCAExfKB6LJEWqVG38e41Du2Roz3F2hdHex8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ThGHlEHbXyPe3bvveZF8++bc7so/tFZQOtSY6EQa5Y3ZSKcMHdTg9LA2IVNzk0dmgQLahEfbayRvU4zM3ZnIB8+oniegoUtMqX00qbhK39UN5r9yDUDiEjisQut3RdoM8G7dktri7KUZ5qUb66aC/H7khcGigrRbff99Ow/4nU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fuEFHgQO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F0C5C4CEC7;
-	Tue, 15 Oct 2024 06:13:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728972813;
-	bh=nMcb720BCAExfKB6LJEWqVG38e41Du2Roz3F2hdHex8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fuEFHgQOTV95eYjoJ7Ypx+GID3EqJW0Ax/pS92IxGPTaK/08XHc5M6pxH66wpDbjT
-	 jfpMkimI9ipSxxfVASThA3nWwTRx9JFuh6teI4NRX6vFzDpmsZYdcyquTADMg1nfVx
-	 txz+x4wxegS5eOCv6GoxPAW8xkH0NY2ykATT34LVfBqbBfIQ0KI/4IG0+fwa4izHDy
-	 dGNHUvRDcmSOy0ODfaHobDLALOl9n5p0U0t5w2SopdpUsaU6CSrgWmr6aCg7cE6MWE
-	 ga0RC8Vd7v8+81c8YbCf3a6txcENixKqlbILc43hO5r0gMzjiRaFQrzrWPpVGOyirZ
-	 ZggOTfo2GPUHQ==
-Message-ID: <b0154e75-370e-4a5f-9309-6a3ae5d85b5c@kernel.org>
-Date: Tue, 15 Oct 2024 08:13:19 +0200
+	s=arc-20240116; t=1728972959; c=relaxed/simple;
+	bh=ooVp+xiwzPx5CdJBmrDqJgfDxs/V4f3wFEWAJYkABko=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aLyFaOPkZsnor6ExzC+oPny+/M3hUHqaMGQnpeqSkFCyfFkgyFWXM4O7Jd477ubCMgPBA8W96HGyEWadamZYZrZaQxX3tCaFpmQ1D646IBcQMIoyC6o/KZo7Ao4m934dKT0+t5+09fwxiasEE7hyYWvMhQkbwMx/at9s3F48Mtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zQQGTXgI; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=EL6LxVKAABxO1KNYnS0+bzWx4sk+zoR4NNlkZV/B+Gw=; b=zQQGTXgIBJ61KEJTDmi9YhW+mi
+	I6VVOJZDZXk2JbBM283fyxK35/AOuuF3nOzh4HGd7f0cn5L9Av60GXpwpow04Y7+OZQRXrYN+U+TI
+	XwXILtWsMre1e3wfI1TukYQxKbLl5li5c6n3R3TQy+2No7O2od1CVNyQUFiA8eX/vL6UmVK17aYt1
+	w7b3xLRJz7phFlknZp5aj4kwiYYnWXJoyDFsC+oTckoFQACCF50EPo491m1kpx3BXE+0QQegGVzOi
+	JzgbZ2MFGJTx2K6oQBegJbr9u8kPTR9Yjihjyna2URbxu0WKnhmpU4mUL2a4q5PF/sRVim9dBdD2h
+	W921Ahvg==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1t0aqY-000713-Hd; Tue, 15 Oct 2024 08:15:54 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, Frank Wang <frawang.cn@gmail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, Kever Yang <kever.yang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>
+Subject: Re: [PATCH 2/2] phy: rockchip-naneng-combo: Support rk3576
+Date: Tue, 15 Oct 2024 08:15:53 +0200
+Message-ID: <1981070.PYKUYFuaPT@diego>
+In-Reply-To: <20241015013351.4884-2-frawang.cn@gmail.com>
+References:
+ <20241015013351.4884-1-frawang.cn@gmail.com>
+ <20241015013351.4884-2-frawang.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] media: dt-bindings: Remove assigned-clock-* from
- various schema
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Martin Kepplinger <martink@posteo.de>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- "Paul J. Murphy" <paul.j.murphy@intel.com>,
- Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
- Tommaso Merciai <tomm.merciai@gmail.com>,
- Martin Hecht <martin.hecht@avnet.eu>, Zhi Mao <zhi.mao@mediatek.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Mikhail Rudenko <mike.rudenko@gmail.com>,
- Ricardo Ribalda <ribalda@kernel.org>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Umang Jain <umang.jain@ideasonboard.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Dongchun Zhu <dongchun.zhu@mediatek.com>,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
- <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-1-a2bb12a1796d@linaro.org>
- <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
- <20241014203441.GF5522@pendragon.ideasonboard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241014203441.GF5522@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 14/10/2024 22:34, Laurent Pinchart wrote:
-> On Mon, Oct 14, 2024 at 09:43:07AM +0200, Krzysztof Kozlowski wrote:
->> On Sat, Oct 12, 2024 at 04:02:50PM +0100, Bryan O'Donoghue wrote:
->>> Remove extraneous assigned-clock* from media/i2c/* schemas, retain in the
->>> relevant examples.
->>>
->>> Link: https://lore.kernel.org/linux-media/j7kgz2lyxnler5qwd7yiazdq6fmsv77kyozdrxf33h54ydakjz@uqjhwhoyv6re
->>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> ---
->>>  Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 8 --------
->>>  Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml | 8 --------
->>>  Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml | 8 --------
->>>  Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml | 4 ----
->>>  Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml | 4 ----
->>>  Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml | 4 ----
->>>  Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml | 4 ----
->>>  Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 4 ----
->>>  8 files changed, 44 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
->>> index 60f19e1152b33128cf3baa15b8c70a874ca6d52e..d18ead8f7fc43bfacc291aed85b5ca9166c46edb 100644
->>> --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
->>> +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
->>> @@ -28,12 +28,6 @@ properties:
->>>      items:
->>>        - description: Reference to the mclk clock.
->>>  
->>> -  assigned-clocks:
->>> -    maxItems: 1
->>> -
->>> -  assigned-clock-rates:
->>> -    maxItems: 1
->>> -
->>>    reset-gpios:
->>>      description: Reference to the GPIO connected to the RESETB pin. Active low.
->>>      maxItems: 1
->>> @@ -82,8 +76,6 @@ required:
->>>    - compatible
->>>    - reg
->>>    - clocks
->>> -  - assigned-clocks
->>> -  - assigned-clock-rates
->>
->> That's not extraneous, but has a meaning that without assigned-clocks
->> this device or driver will not operate.
+Hi Frank,
+
+Am Dienstag, 15. Oktober 2024, 03:33:51 CEST schrieb Frank Wang:
+> From: Kever Yang <kever.yang@rock-chips.com>
 > 
-> How so ? Even if we assume that the device requires a specific clock
-> frequency (which is often not the case for camera sensors, the
-> limitation usually comes from drivers, so the constraint shouldn't be
-> expressed in the bindings in that case), there is no overall requirement
-> to assign a clock rate as in many cases the clock will come from a
-> fixed-frequency oscillator. This seems to be a constraint that is
-> outside of the scope of DT bindings. It is similar to regulators, where
-> the regulator consumer doesn't have a way to express supported voltages
-> in its DT bindings.
+> phy0: pcie, sata
+> phy1: pcie, sata, usb3
+> 
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> Signed-off-by: William Wu <william.wu@rock-chips.com>
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+> ---
+>  .../rockchip/phy-rockchip-naneng-combphy.c    | 202 ++++++++++++++++++
+>  1 file changed, 202 insertions(+)
+> 
+> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> index 0a9989e41237..4c41317a8041 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> @@ -584,6 +585,203 @@ static const struct rockchip_combphy_cfg rk3568_combphy_cfgs = {
+>  	.combphy_cfg	= rk3568_combphy_cfg,
+>  };
+>  
+> +static int rk3576_combphy_cfg(struct rockchip_combphy_priv *priv)
+> +{
+> +	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
+> +	unsigned long rate;
+> +
+> +	switch (priv->type) {
+> +	case PHY_TYPE_PCIE:
+> +		/* Set SSC downward spread spectrum */
+> +		rockchip_combphy_updatel(priv, GENMASK(5, 4), BIT(4), 0x7c);
 
-This property does not say it comes from a fixed-frequency oscillator,
-so I do not understand why you think it is unreasonable constraint. I
-have no clue what the author wanted to say here, so I just explained
-that there is a meaning behind requiring such properties. If you claim
-device or implementations do not have such requirement, after
-investigating each case, feel free to drop this. I think I also stated
-this already in other reply.
+Can we get constants for those magic values please?
 
-Best regards,
-Krzysztof
+The combophys for rk3568 and rk3588 do use actual constants to at least
+somewhat describe what happens, so it would be really nice for the rk3576
+to do this as well.
+
+Same for the rockchip_combphy_updatel and other writel calls below.
+
+
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
+> +		break;
+> +	case PHY_TYPE_USB3:
+> +		/* Set SSC downward spread spectrum */
+> +		rockchip_combphy_updatel(priv, GENMASK(5, 4), BIT(4), 0x7c);
+> +
+> +		/* Enable adaptive CTLE for USB3.0 Rx */
+> +		rockchip_combphy_updatel(priv, GENMASK(0, 0), BIT(0), 0x38);
+> +
+> +		/* Set PLL KVCO fine tuning signals */
+> +		rockchip_combphy_updatel(priv, GENMASK(4, 2), BIT(3), 0x80);
+> +
+> +		/* Set PLL LPF R1 to su_trim[10:7]=1001 */
+> +		writel(0x4, priv->mmio + (0xb << 2));
+> +
+> +		/* Set PLL input clock divider 1/2 */
+> +		rockchip_combphy_updatel(priv, GENMASK(7, 6), BIT(6), 0x14);
+> +
+> +		/* Set PLL loop divider */
+> +		writel(0x32, priv->mmio + (0x11 << 2));
+> +
+> +		/* Set PLL KVCO to min and set PLL charge pump current to max */
+> +		writel(0xf0, priv->mmio + (0xa << 2));
+> +
+> +		/* Set Rx squelch input filler bandwidth */
+> +		writel(0x0d, priv->mmio + (0x14 << 2));
+> +
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
+> +		break;
+> +	case PHY_TYPE_SATA:
+> +		/* Enable adaptive CTLE for SATA Rx */
+> +		rockchip_combphy_updatel(priv, GENMASK(0, 0), BIT(0), 0x38);
+> +
+> +		/* Set tx_rterm = 50 ohm and rx_rterm = 43.5 ohm */
+> +		writel(0x8F, priv->mmio + (0x06 << 2));
+> +
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_sata, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_sata, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_sata, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_sata, true);
+> +		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_con0_for_sata, true);
+> +		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_con1_for_sata, true);
+> +		break;
+> +	default:
+> +		dev_err(priv->dev, "incompatible PHY type\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	rate = clk_get_rate(priv->refclk);
+> +
+> +	switch (rate) {
+> +	case REF_CLOCK_24MHz:
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_24m, true);
+> +		if (priv->type == PHY_TYPE_USB3 || priv->type == PHY_TYPE_SATA) {
+> +			/* Set ssc_cnt[9:0]=0101111101 & 31.5KHz */
+> +			rockchip_combphy_updatel(priv, GENMASK(7, 6), BIT(6), 0xe << 2);
+> +
+> +			rockchip_combphy_updatel(priv, GENMASK(7, 0), 0x5f, 0xf << 2);
+> +		} else if (priv->type == PHY_TYPE_PCIE) {
+> +			/* PLL KVCO tuning fine */
+> +			rockchip_combphy_updatel(priv, GENMASK(4, 2), 0x4 << 2, 0x20 << 2);
+> +
+> +			/* Set up rx_trim */
+> +			writel(0x0, priv->mmio + (0x1b << 2));
+> +
+> +			/* Set up su_trim: T0_1 */
+> +			writel(0x90, priv->mmio + (0xa << 2));
+> +			writel(0x02, priv->mmio + (0xb << 2));
+> +			writel(0x57, priv->mmio + (0xd << 2));
+> +
+> +			writel(0x5f, priv->mmio + (0xf << 2));
+
+This does includes both the value as well as the register addresses,
+because a hex-value with a bit shift makes that even less readable.
+
+Thanks a lot
+Heiko
+
+
+> +		}
+> +		break;
+> +	case REF_CLOCK_25MHz:
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_25m, true);
+> +		break;
+> +	case REF_CLOCK_100MHz:
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_100m, true);
+> +		if (priv->type == PHY_TYPE_PCIE) {
+> +			/* gate_tx_pck_sel length select work for L1SS */
+> +			writel(0xc0, priv->mmio + 0x74);
+> +
+> +			/* PLL KVCO tuning fine */
+> +			rockchip_combphy_updatel(priv, GENMASK(4, 2), 0x4 << 2, 0x20 << 2);
+> +
+> +			/* Set up rx_trim: PLL LPF C1 85pf R1 1.25kohm */
+> +			writel(0x4c, priv->mmio + (0x1b << 2));
+> +
+> +			/* Set up su_trim: T3_P1 650mv */
+> +			writel(0x90, priv->mmio + (0xa << 2));
+> +			writel(0x43, priv->mmio + (0xb << 2));
+> +			writel(0x88, priv->mmio + (0xc << 2));
+> +			writel(0x56, priv->mmio + (0xd << 2));
+> +		} else if (priv->type == PHY_TYPE_SATA) {
+> +			/* downward spread spectrum +500ppm */
+> +			rockchip_combphy_updatel(priv, GENMASK(7, 4), 0x50, 0x1f << 2);
+> +
+> +			/* ssc ppm adjust to 3500ppm */
+> +			rockchip_combphy_updatel(priv, GENMASK(3, 0), 0x7, 0x9 << 2);
+> +		}
+> +		break;
+> +	default:
+> +		dev_err(priv->dev, "Unsupported rate: %lu\n", rate);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (priv->ext_refclk) {
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_ext, true);
+> +		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_100MHz) {
+> +			writel(0x10, priv->mmio + (0x20 << 2));
+> +
+> +			writel(0x0c, priv->mmio + (0x1b << 2));
+> +
+> +			/* Set up su_trim: T3_P1 650mv */
+> +			writel(0x90, priv->mmio + (0xa << 2));
+> +			writel(0x43, priv->mmio + (0xb << 2));
+> +			writel(0x88, priv->mmio + (0xc << 2));
+> +			writel(0x56, priv->mmio + (0xd << 2));
+> +		}
+> +	}
+> +
+> +	if (priv->enable_ssc) {
+> +		rockchip_combphy_updatel(priv, GENMASK(4, 4), BIT(4), 0x7 << 2);
+> +
+> +		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_24MHz) {
+> +			/* Xin24M T0_1 650mV */
+> +			writel(0x00, priv->mmio + (0x10 << 2));
+> +			writel(0x32, priv->mmio + (0x11 << 2));
+> +			writel(0x00, priv->mmio + (0x1b << 2));
+> +			writel(0x90, priv->mmio + (0x0a << 2));
+> +			writel(0x02, priv->mmio + (0x0b << 2));
+> +			writel(0x08, priv->mmio + (0x0c << 2));
+> +			writel(0x57, priv->mmio + (0x0d << 2));
+> +			writel(0x40, priv->mmio + (0x0e << 2));
+> +			writel(0x5f, priv->mmio + (0x0f << 2));
+> +			writel(0x10, priv->mmio + (0x20 << 2));
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+
+
 
 
