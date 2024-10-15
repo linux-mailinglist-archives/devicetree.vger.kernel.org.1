@@ -1,110 +1,80 @@
-Return-Path: <devicetree+bounces-111632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02EBC99F802
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:18:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3428899F803
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 22:20:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FF041F22391
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:18:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2E13B219F3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 20:20:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F83B1F5856;
-	Tue, 15 Oct 2024 20:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556101F585C;
+	Tue, 15 Oct 2024 20:20:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PiDmF2tu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E670415699D
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 20:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.154.21.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD5315699D;
+	Tue, 15 Oct 2024 20:20:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729023518; cv=none; b=eHWI6PyWkElaver63CE1wWASoI/Ji50hVRgZVXi/taRvDBa0tfZ5mfuskWuVbNjA39eHdbXs5FcIV+Z5nl4QfCf2sJe/2x7UAosqQooZM51gJ5r6HUJh6JRLXqUJvXtzKZI6UwiFnqH45ERqXM56j/bXX0KkPenqCKWKKhNKdoo=
+	t=1729023611; cv=none; b=amAJtI8dGWWRwrALfzdBeXWbXEI4dwr54x2iFqz2S4ydrSfdPxKHUbqv0GMr00CDSy0SePmFuLuNtV/kidtyli+YWWouKt7h//Dhu541wzgpw2v5LDxwwWtkyYH/eQUDzNeya6/J7KNyDukcxes/Cx46f+bcj50qvqcaHJsnDI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729023518; c=relaxed/simple;
-	bh=Wt5m2v2E3htJ/INsDb0ySCTjr7HLsTxmrOXwzqr0b6s=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=mIDZCD9O7n7Ls2CJHD3sXD4QMb2iQvyYJI/RhNuOIag0L88zSNxBGaUaRIL2yzpy4zJUPFYyCxLT/77qCt3fJRhnujEtFJ4a+3LzS5NNlHLCyTxy9yYd4CzbaMymyT4RD1t69dCYhgqHElvnnRJTeJLCjpSuTuYT0pcFlYToC4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru; spf=pass smtp.mailfrom=omp.ru; arc=none smtp.client-ip=90.154.21.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=omp.ru
-Received: from [192.168.2.101] (213.87.90.91) by msexch01.omp.ru (10.188.4.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Tue, 15 Oct
- 2024 23:18:26 +0300
-Message-ID: <5b0ad893-60c1-422a-a935-4d4aa266214b@omp.ru>
-Date: Tue, 15 Oct 2024 23:18:25 +0300
+	s=arc-20240116; t=1729023611; c=relaxed/simple;
+	bh=x0dv1P7HzpQz4hE653c48L2iacolgQtCuY2vADBo2ew=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y+qoy75vOms0RgtRSzBqNN1ikHL8JebyHvwr3YUV6XZGG+Rn25R3VIW4obKZP3WEEMs4GCllGgTokHQGphCFZulljb5BgkzlbpnaUgW9mPLL8HQV/ITCJU64dRYZE6slCAp/gQlM/cKGfdu/RmVjhQcGm01hdWYr4x3YvPRXOto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PiDmF2tu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83BB5C4CEC6;
+	Tue, 15 Oct 2024 20:20:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729023610;
+	bh=x0dv1P7HzpQz4hE653c48L2iacolgQtCuY2vADBo2ew=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PiDmF2tuZMfM7dxtZRtLkXRo3SXilj/RlJ8d2HDlilDGK2XJPlp2PN6VY5U3chydC
+	 p26rdE6Wkj3Q+/Q69JISEV3mS2tcK8QGr7oHbB1HYjCunoqunRPdUrCxplr9AkCLnn
+	 vxzcdFA9yHYJ2/LYOn2O+J3CUM1eh3jmFUR0SnGRlWyfZqKBvVs+LPtE/ffxpC9i/Z
+	 NatGgpJFY2dv4ttdADq+eVAJ/gwxKQUA97bp2mWl/H4byBTtIjbd//o3hx8rupce2z
+	 d0UVOqCd4CXr0SgCf6hWdjlEHoKREeTGCFiVgZq11NQmfQv/97CXPxd9vDwJuhcarL
+	 o/ycSgdPH/iRA==
+Date: Tue, 15 Oct 2024 15:20:09 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Wang <frawang.cn@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, tim.chen@rock-chips.com,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	linux-phy@lists.infradead.org, krzk+dt@kernel.org,
+	william.wu@rock-chips.com, linux-rockchip@lists.infradead.org,
+	kishon@kernel.org, vkoul@kernel.org, linux-kernel@vger.kernel.org,
+	heiko@sntech.de, Frank Wang <frank.wang@rock-chips.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: rockchip: add rk3576 compatible
+Message-ID: <172902360776.1846766.3809277607860876723.robh@kernel.org>
+References: <20241015013351.4884-1-frawang.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] of: module: remove strlen() call in of_modalias()
-From: Sergey Shtylyov <s.shtylyov@omp.ru>
-To: <devicetree@vger.kernel.org>, Saravana Kannan <saravanak@google.com>, Rob
- Herring <robh@kernel.org>
-References: <471418be-5d2f-4d14-bd9e-9e8f0526241f@omp.ru>
-Content-Language: en-US
-Organization: Open Mobile Platform
-In-Reply-To: <471418be-5d2f-4d14-bd9e-9e8f0526241f@omp.ru>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 6.1.0, Database issued on: 10/15/2024 20:05:36
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 19
-X-KSE-AntiSpam-Info: Lua profiles 188459 [Oct 15 2024]
-X-KSE-AntiSpam-Info: Version: 6.1.0.4
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 39 0.3.39
- e168d0b3ce73b485ab2648dd465313add1404cce
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 213.87.90.91 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info:
-	omp.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2
-X-KSE-AntiSpam-Info: FromAlignment: s
-X-KSE-AntiSpam-Info: ApMailHostAddress: 213.87.90.91
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 19
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 10/15/2024 20:09:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 10/15/2024 6:51:00 PM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241015013351.4884-1-frawang.cn@gmail.com>
 
-On 10/15/24 11:15 PM, Sergey Shtylyov wrote:
 
-> In of_modalias(), there's no dire need to call strlen() (and then add 1
-> to its result to account for the 'C' char preceding the compat string).
-> Replace that strlen() with snprintf() (currently below it) -- this way,
-> we always try to print the compat string but then only advance the str
-> and len parameters iff the comapt string fit into the remaining buffer
-
-    Oops, compat! :-)
-
-> space...
+On Tue, 15 Oct 2024 09:33:50 +0800, Frank Wang wrote:
+> From: Frank Wang <frank.wang@rock-chips.com>
 > 
-> Signed-off-by: Sergey Shtylyov <s.shtylyov@omp.ru>
-[...]
+> Adds the compatible line to support RK3576 SoC.
+> 
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+> ---
+>  .../devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-MBR, Sergey
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
