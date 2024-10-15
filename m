@@ -1,149 +1,210 @@
-Return-Path: <devicetree+bounces-111497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD5199F0AC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:07:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25CDE99F0C2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:13:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96F2F1C20CED
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:07:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8ED1283AA9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BB01CB9F9;
-	Tue, 15 Oct 2024 15:07:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79AB21CBA0C;
+	Tue, 15 Oct 2024 15:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="vzP8M5Jc"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="GDlG9Xxr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777A81CB9E1
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 15:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E451CBA07;
+	Tue, 15 Oct 2024 15:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729004864; cv=none; b=vEyO8xQ9I9ML1JQl5HZ96AgeyBnVEXy8jOO+pTDxdyCx4e8Vf5tcwbbgxIQJ5WcBP0HdpISBDoqN+E4lseAlhDZcnswMLvPx9Cv9er5WDPk0y931w1B+R6mK4OHyD1cSxIIwUuUBcsd+U7JDoTi1LUnZHsxxk5P06WTQAE130Ag=
+	t=1729005232; cv=none; b=hnqH6U7oUHUCZKjAVYdOAgcIhAoP8EJSxrdPPflCUAEpGMwawOSU4wI0Z7V01+BOB3QXCnogOY7nxDmA38NBQTqlFIv8wtUMEeJ7kQleOmYMVCbE0OheLr2iYKJTqCwYyhU9ywrVc3RMW3hOvDDeqyp3AkOEJdq56X1GOQE8N/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729004864; c=relaxed/simple;
-	bh=f4WuBg7WlMrKS0da9MDKLt/3P+sLy8hGoRgtuR/wpwA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pd2QbrfOuMRSH6lqPU1re8quahdgf9dhW8/xQZg1PZLKTs70I/1a7k0d6P7HAWcYqejRoEt89njTbD9ZtgQYzCdYP2fnbbJgmBjhy9bb8YWA3V5Ijc41Mjop1ZWZJ/c3fNeeGet2D+lRR6WS7WReCkJ/8IHEUcUKotYk7UrY0FM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=vzP8M5Jc; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-20c8ac50b79so506865ad.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 08:07:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1729004863; x=1729609663; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PlA/wii2bh+bHrcTk784szy5HvJLhrYuLgVdXpT1LYk=;
-        b=vzP8M5JcqhbzuzunnR2SonGUJkvZUCWQZacWfn8/PrqV86plgTSDZC4Z6Zqv82ikag
-         OW1Ikw7KORUohCDqm10+XiNkXRHz0BqJoij5sPxUnZd3C7AVDKaiwMsu1iT6EBp3Pbm4
-         n39tQWDw+mtKtvavzsXkLJW0DgUwOL074N5IsbLjRDE+r62Odz+2gkYVIUgFJcMGVFWv
-         LH1jyC0YRD1S8RdCKxphhYc6ucU5b9ruAdeyzJBjYepugChQYCiaxHifwFM944l0gdcW
-         CuVlTvsTcVBUfJ1AgOrDw3kAa+Mw05+kN0nJSA3kME0sAS7ENBV4JKU7ECDU4oqYIonV
-         NYuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729004863; x=1729609663;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PlA/wii2bh+bHrcTk784szy5HvJLhrYuLgVdXpT1LYk=;
-        b=AAh6hZ913CtrgucPyZb2h722ck+5eL0mqiCuWcBzQ/68q/wpHulska6nCMchczt6g2
-         ZV+QK/aTmcPhQZmpFBMNqXM4PMlYMIfYvoBVs7Eac+itG/8Iz2UDS5nNsLOQfJ/q81+Y
-         EGu6JiZl5QwXQi24/3AuZKTEalcBNoHuLGTv6NJrjrPsogBU8Rp98KUypasRQffxHqjt
-         YmHjCyRhNmYDoqXHL4e4Wspk3gwueo3JdZTqLXBF4Qu/L6baFYKQNA2xJ/g/muG7cBu4
-         /PXn5oE96HnV4fDkLlX0ViURewh1wGRSVYgpcd6tXDFWMW7MqUFMhQAOqlfIh8eA6msQ
-         +/jg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVxgRfmJXmkeOI1eyp6yfHfr8qnqcyMLIrZTs0HJcHTlrICuXyrR8SqWQXoHQ84uJA7VXzNmg9AaQh@vger.kernel.org
-X-Gm-Message-State: AOJu0YztO9ZTWsjdvFyW+5bxQggx5ONYs4knkTLHj4ycxNqJ4ezEpG13
-	WBsCKZYaE9NjlJ4FpFURHb84WEktguts3iy88wF5AB4jRz3VtbJpix24Yxlfrg==
-X-Google-Smtp-Source: AGHT+IF1l7OR0X37A5QzB6dpGx5CADv36IvHuR768YDJl8fOGKf/Ye/4uOiLVbH4UsZhcLQQ270hKA==
-X-Received: by 2002:a17:902:e890:b0:20c:805a:22b with SMTP id d9443c01a7336-20cbced5496mr6942145ad.24.1729004862458;
-        Tue, 15 Oct 2024 08:07:42 -0700 (PDT)
-Received: from google.com (62.166.143.34.bc.googleusercontent.com. [34.143.166.62])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ea9c6ba33csm1451237a12.17.2024.10.15.08.07.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Oct 2024 08:07:41 -0700 (PDT)
-Date: Tue, 15 Oct 2024 15:07:32 +0000
-From: Pranjal Shrivastava <praan@google.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH RFC 2/2] iommu/arm-smmu-v3: Bypass SID0 for NXP i.MX95
-Message-ID: <Zw6FNCACa03nE5Cx@google.com>
-References: <20241015-smmuv3-v1-0-e4b9ed1b5501@nxp.com>
- <20241015-smmuv3-v1-2-e4b9ed1b5501@nxp.com>
- <Zw4kKDFOcXEC78mb@google.com>
- <20241015124723.GI1825128@ziepe.ca>
- <Zw6DekI9X7lL4f1G@google.com>
+	s=arc-20240116; t=1729005232; c=relaxed/simple;
+	bh=+86IxgdbxFu5HPifRMcvxvMw5j37XxVXLVL3jKuTy78=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dCXJpCXspdULzu9QPR29cr19Wued/bZNLIK42zcJebip/WZSIRWjqkZj2raNJ1azg6cl41/NGYXIns0PA49ejHvzfasBCy9ShEaL2NZCtOLN6y2fOpACZ3mZiqCiICYCUdp7TzCTRwTrRINE21GyvPsRgIIo/evCS0BOdcJMNDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=GDlG9Xxr; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49FBfd0r018076;
+	Tue, 15 Oct 2024 17:13:21 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	A880Q2OSXTrE9WU64cKIX0T+jtcm1ta1QT9Gr1T9Cjw=; b=GDlG9XxrD0ZiJF55
+	6g4imFbr0sP/QNSHD5H8aM6tnUZXaO5hzxCiAWDLVbUv3SkSL4uBBjMV8+xHlX3N
+	+KCOSHPabgorYURUTTZ6l7nZRkckiX/+iWC6vAtPaqZoICr9ve3gYP5Ya8+yHpg+
+	sTOK+rSutGZ9YwTkW4+KoGW9C+FysH+4qs8toe+ISKVXLibY3dOTCXSRBK9OKnwe
+	42Ye9HE/5SFru6rrn1K6kYiQ5LW5MVsbzBPy8pFfKiDyhpjAhIBPEEw8J8q11WjO
+	R2NlhWbxACeyzZBwRdsh9sbSp9rcKxTD/fpnHzRiXf8j+wbnDJe53aCa9cGNZuuh
+	S3MWDA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42842jb63c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Oct 2024 17:13:21 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id CFBEB40068;
+	Tue, 15 Oct 2024 17:12:04 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A917523CB46;
+	Tue, 15 Oct 2024 17:11:04 +0200 (CEST)
+Received: from [10.48.86.225] (10.48.86.225) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 15 Oct
+ 2024 17:11:03 +0200
+Message-ID: <b06b5d09-190b-4567-aecd-4be1f1dee172@foss.st.com>
+Date: Tue, 15 Oct 2024 17:10:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zw6DekI9X7lL4f1G@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] hwrng: stm32 - implement support for STM32MP25x
+ platforms
+To: Marek Vasut <marex@denx.de>, Olivia Mackall <olivia@selenic.com>,
+        Herbert
+ Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>
+CC: <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20241011-rng-mp25-v2-v2-0-76fd6170280c@foss.st.com>
+ <20241011-rng-mp25-v2-v2-2-76fd6170280c@foss.st.com>
+ <318dbd5e-f547-4d78-b42e-4dcacc08d328@denx.de>
+ <f191d034-4116-4169-8c05-201450412bbd@foss.st.com>
+ <8c13b0aa-7fb1-493c-9abc-5e5cfd982855@denx.de>
+ <d862765e-e396-4f7c-97ff-76df9aa03216@foss.st.com>
+ <dca83197-3484-4d6b-8507-118bf9e80e19@denx.de>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <dca83197-3484-4d6b-8507-118bf9e80e19@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Tue, Oct 15, 2024 at 03:00:10PM +0000, Pranjal Shrivastava wrote:
-> On Tue, Oct 15, 2024 at 09:47:23AM -0300, Jason Gunthorpe wrote:
-> > On Tue, Oct 15, 2024 at 08:13:28AM +0000, Pranjal Shrivastava wrote:
-> > 
-> > > Umm.. this was specific for rmr not a generic thing. I'd suggest to
-> > > avoid meddling with the STEs directly for acheiving bypass. Playing
-> > > with the iommu domain type could be neater. Perhaps, modify the
-> > > ops->def_domain_type to return an appropriate domain?
-> > 
-> > Yeah, that is the expected way, to force the def_domain_type to
-> > IDENTITY and refuse to attach a PAGING/BLOCKED domain.
-> > 
-> > If this is a common thing we could have the core code take on more of
-> > the job.
-> 
-> Yes! I've seen the IOMMU being bypassed at multiple places, primarily
-> for performance, people like bypassing the iommu for "trusted" devices.
-> A few examples that are publically accessible: Qcomm SoCs [1], [2].
-> Seems like Qualcomm have a DT property `qcomm-s1-bypass` to achieve
-> something similar.
-> 
-> In fact, *blast from the past*, I tried to do something similar sometime
-> ago with [3]. Although, perhaps that wasn't the best way (and I was a
-> kernel newbie :))
-> 
-> A little off-topic, but I think there has been some interest to bypass
-> the default substream as well while still maintaining PASID isolation.[4]
-> 
 
-Agh, apologies, ignore the following part about rmr,
-it won't solve the problem here.
-> Although, as far as arm-smmu-v3 is concerned, IIRC, I think there was a
-> way to tell that the region is reserved and don't map it.
 
+On 10/14/24 20:55, Marek Vasut wrote:
+> On 10/14/24 2:36 PM, Gatien CHEVALLIER wrote:
+>>
+>>
+>> On 10/14/24 10:52, Marek Vasut wrote:
+>>> On 10/14/24 10:38 AM, Gatien CHEVALLIER wrote:
+>>>>
+>>>>
+>>>> On 10/11/24 18:17, Marek Vasut wrote:
+>>>>> On 10/11/24 5:41 PM, Gatien Chevallier wrote:
+>>>>>
+>>>>> [...]
+>>>>>
+>>>>>> @@ -551,6 +565,41 @@ static int stm32_rng_probe(struct 
+>>>>>> platform_device *ofdev)
+>>>>>>       priv->rng.read = stm32_rng_read;
+>>>>>>       priv->rng.quality = 900;
+>>>>>> +    if (!priv->data->nb_clock || priv->data->nb_clock > 2)
+>>>>>> +        return -EINVAL;
+>>>>>> +
+>>>>>> +    priv->clk_bulk = devm_kzalloc(dev, priv->data->nb_clock * 
+>>>>>> sizeof(*priv->clk_bulk),
+>>>>>> +                      GFP_KERNEL);
+>>>>>> +    if (!priv->clk_bulk)
+>>>>>> +        return -ENOMEM;
+>>>>>
+>>>>> Try this:
+>>>>>
+>>>>> ret = devm_clk_bulk_get(dev, priv->data->nb_clock, priv->clk_bulk);
+>>>>> ...
+>>>>> // Swap the clock if they are not in the right order:
+>>>>> if (priv->data->nb_clock == 2 &&
+>>>>>      strcmp(__clk_get_name(priv->clk_bulk[0].clk), "core"))
+>>>>> {
+>>>>>   const char *id = priv->clk_bulk[1].id;
+>>>>>   struct clk *clk = priv->clk_bulk[1].clk;
+>>>>>   priv->clk_bulk[1].id = priv->clk_bulk[0].id;
+>>>>>   priv->clk_bulk[1].clk = priv->clk_bulk[0].clk;
+>>>>>   priv->clk_bulk[0].id = id;
+>>>>>   priv->clk_bulk[0].clk = clk;
+>>>>> }
+>>>>>
+>>>>
+>>>> Hi Marek,
+>>>>
+>>>> This won't work as the name returned by this API is clk->core->name.
+>>>> AFAICT, it doesn't correspond to the names present in the device tree
+>>>> under the "clock-names" property.
+>>>> Any other idea or are you fine with what's below?
+>>> Hmmm, it is not great, but at least it reduces the changes throughout 
+>>> the driver, so that is an improvement.
+>>>
+>>> I guess one could do some of_clk_get() and clk_is_match() in probe to 
+>>> look up the clock in OF by name and then compare which clock is which 
+>>> before swapping them in clk_bulk[] array, but that might be too 
+>>> convoluted?
+>>
+>> Yes, probably too much. What's present in the patch is not close to
+>> perfection but has the advantage of being straightforward. If we agree
+>> on that, I'll send a V3 containing the modifications in the bindings
+>> file.
+> Errr, I'm sorry, maybe there is a way to do this better. Look at 
+> drivers/clk/clk-bulk.c :
 > 
-> > 
-> > Jason
+>   15 static int __must_check of_clk_bulk_get(struct device_node *np, int 
+> num_clks,
+>   16                                         struct clk_bulk_data *clks)
+>   17 {
+>   18         int ret;
+>   19         int i;
+>   20
+>   21         for (i = 0; i < num_clks; i++) {
+>   22                 clks[i].id = NULL;
+>   23                 clks[i].clk = NULL;
+>   24         }
+>   25
+>   26         for (i = 0; i < num_clks; i++) {
+>   27                 of_property_read_string_index(np, "clock-names", i, 
+> &clks[i].id);
+>   28                 clks[i].clk = of_clk_get(np, i);
 > 
-> Thanks,
-> Pranjal
+> If I read this right, then clks[i].id should be the DT clock name. So 
+> the swap conditional above could use .id to identify whether the first 
+> position is core clock or not, like this:
 > 
-> [1]
-> https://github.com/realme-kernel-opensource/realme5-kernel-source/blob/master/arch/arm64/boot/dts/qcom/sa8155-vm-qupv3.dtsi#L22
+> if (priv->data->nb_clock == 2 &&
+>      strcmp(__clk_get_name(priv->clk_bulk[0].id), "core"))
+>                                              ^^
 > 
-> [2] 
-> https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/Documentation/devicetree/bindings/platform/msm/ipa.txt#28
+> You might need to use devm_clk_bulk_get_all() to access the 
+> of_clk_bulk_get() .
 > 
-> [3]
-> https://lore.kernel.org/all/20230707104857.348353-1-praan@google.com/
-> 
-> [4]
-> https://lore.kernel.org/all/CAGfWUPziSWNMc_px4E-i+_V_Jxdb_WSwOLXHZ+PANz2Tv5pFPA@mail.gmail.com/
+> Or am I missing something still ?
+
+Oooooh I see, devm_clk_bulk_get() and devm_clk_bulk_get_all() use
+a different path. I don't understand why, to be honest... The doc
+doesn't state this difference either.
+
+I'll give this a try while also correcting the issue that the robot
+highlighted.
+
+Best regards,
+Gatien
 
