@@ -1,104 +1,149 @@
-Return-Path: <devicetree+bounces-111954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18B9C9A0639
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:57:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E23CA9A0694
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:08:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA83E1F25A9D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:57:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72B40B26E88
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B33EF206073;
-	Wed, 16 Oct 2024 09:57:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96C12071FA;
+	Wed, 16 Oct 2024 10:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PS0AuZKY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="l93f13vT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A6F199944;
-	Wed, 16 Oct 2024 09:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0DB206063;
+	Wed, 16 Oct 2024 10:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729072637; cv=none; b=J9jKvuzrqrHFUlRTqiEr78aJUROve73v0NPRFSwsHrJg8/HD9YwT2G04uCD5yy2CSPsve0iTKq833G5VgkxsxT/pL8BxEV/2D3bZbcEem2G5R8+I07HXrq8kFtzqLF0vEN5UJ+ib/TQsgPtRs6LricmZ8MKOGpfX1ZdngnVYDJE=
+	t=1729073159; cv=none; b=ltLnM+67BmPdSnfw9J4cT8bwqrSo+btFZ4P+1CGQnybedNq1LwQ8Ksor2nVPVomir5HB9WlCPf7q0iNYVAqgqhWu6nmYbgbql4hZf0ertzoTJ/EHYrnW1AzEMLnvzq6fDih4rK2POb2oZzhlDjwSIsHXDu6DDmSwLJ+7vvhDLpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729072637; c=relaxed/simple;
-	bh=uu+U0uRS375aOOnTfp2lQZkaCO+LNb9NDegcLXMQKmI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r6TTMqW+ZLr7ehmnk0X8TFdiIhWc3KHnF92t+9cFJXjNSkHTmMkJdH5nQXNxWE0UBBqNzJMowUAMK4oGAW9EYCiZSOJ8XnwgP5CdSMH1mZt7eOSmUuHJZrqX9azhc9pcFml19vFufkLWZX9BpppDV3hGlxeI/4RuGtSnXNKz47Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PS0AuZKY; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729072634;
-	bh=uu+U0uRS375aOOnTfp2lQZkaCO+LNb9NDegcLXMQKmI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PS0AuZKYJrVCCKK3XrKXDQ2QvAaUaIhz6w/fnaVnD56CR3D7SwRzySU1u504gbkTM
-	 DftKNAs0B+AjaTuQ8nBWKarGOSOG28HEjev+LaTX/vTpunXEsGVGk6JvgbTq7wSCqu
-	 BNsrhQ670FUq+THX3CAVAoVAkQ60PXjjdo6TYdFRbk7ukUprFgiRpsTo8W/w4Y+hgu
-	 KlEeKnHWRbL8tJKFxOJN0DhTfYfaq1XmhcFFzLZtcQZBWmmi3GmUgRc7c6zhKam96T
-	 la2mItUZHVjK3JCjuUKUySZZ/RY91VyeOP+0wuP7tik/gcQJIUMOzqko4LKG0G+0gf
-	 T+jqqL4Cb0LXQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3EF4517E124E;
-	Wed, 16 Oct 2024 11:57:13 +0200 (CEST)
-Message-ID: <ad000fdb-4474-49c4-9357-f23491231b07@collabora.com>
-Date: Wed, 16 Oct 2024 11:57:12 +0200
+	s=arc-20240116; t=1729073159; c=relaxed/simple;
+	bh=j3pSe7FQjMMrX/McvHfRUETk4GsKHPg0yBTaOgDAK1o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YCtT0ZtycxLCCmISjAooUPA0OoMPHxnJ2bXJGt0m2NbUgcjQkynhIgpYG9P5L3byZ6TfY45gwyl+oSjTzaUFpS46+rY6ckB/nuvj1ftlG7rnqvlFyzi+WCdw9eJh9WN7bj/lrocBhfptBozt8ZpHDPHxbSRQbdkdaNGf8lfV+Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=l93f13vT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49G8QWYk022182;
+	Wed, 16 Oct 2024 10:05:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Ep6G7+6GjTUTsXDJ8R6LRj
+	6xleyRRN36AMDyNuVEols=; b=l93f13vTnHWYzf5AMkGYem9xB6KbuwqK1nhyFJ
+	oTbH/nbGXdHogIk3P8hmaiDCLi/XWYJxW7ZRDuH7PMotuJLMokSpNjbWj9GLpukP
+	DUJxp3w/UPpD1gSP2eW1Azi/lEgCbjCh1GcTCq4nK/kebY/d/t1VY5whnlZ0PoRJ
+	Xlg+l9xDrD8YizdZ5pmN1FFKJNf+kJJEeXSRoeevB073ISB/+a6dY+5kLBt4NJOc
+	b8lwpaqWb3rAU2wPeGIPqvC0fqJnS+EhWwiKYHt3uQ8hqRsA0M8MJD+k3dEFISxW
+	Wed1ETUWf5bvQ8i+r55FVZ7wUNpnrTIpeEo9lhuwHO8wF/Tg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 429uapavwy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Oct 2024 10:05:54 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49GA5rqi016979
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Oct 2024 10:05:53 GMT
+Received: from hu-kotarake-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 16 Oct 2024 03:05:49 -0700
+From: Rakesh Kota <quic_kotarake@quicinc.com>
+To: <dmitry.baryshkov@linaro.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_kamalw@quicinc.com>, <quic_jprakash@quicinc.com>,
+        <quic_kotarake@quicinc.com>
+Subject: [PATCH V3] arm64: dts: qcom: qcm6490-idp: Allow UFS regulators load/mode setting
+Date: Wed, 16 Oct 2024 15:35:11 +0530
+Message-ID: <20241016100511.2890983-1-quic_kotarake@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] clk: mediatek: Add drivers for MediaTek MT6735
- main clock and reset drivers
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sam Shih <sam.shih@mediatek.com>,
- Daniel Golle <daniel@makrotopia.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Yassine Oudjana <y.oudjana@protonmail.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20241010132659.81606-1-y.oudjana@protonmail.com>
- <20241010132659.81606-3-y.oudjana@protonmail.com>
- <vn466kmo2uqrf6ap54oat2bipj4lsfri7asnsrptrlthva6j5m@dop6xit2pzjk>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <vn466kmo2uqrf6ap54oat2bipj4lsfri7asnsrptrlthva6j5m@dop6xit2pzjk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: iGvjMm2C9Z_GehUdIWryTEFRFyGeHNp_
+X-Proofpoint-GUID: iGvjMm2C9Z_GehUdIWryTEFRFyGeHNp_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 mlxlogscore=599
+ phishscore=0 priorityscore=1501 suspectscore=0 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410160063
 
-Il 16/10/24 11:28, Uwe Kleine-König ha scritto:
-> Hello,
-> 
-> On Thu, Oct 10, 2024 at 04:26:57PM +0300, Yassine Oudjana wrote:
->> +static struct platform_driver clk_mt6735_apmixedsys = {
->> +	.probe = clk_mt6735_apmixed_probe,
->> +	.remove_new = clk_mt6735_apmixed_remove,
->> +	.driver = {
->> +		.name = "clk-mt6735-apmixedsys",
->> +		.of_match_table = of_match_mt6735_apmixedsys,
->> +	},
->> +};
-> 
-> After commit 0edb555a65d1 ("platform: Make platform_driver::remove()
-> return void") .remove() is (again) the right callback to implement for
-> platform drivers. Please just drop "_new".
-> 
+The UFS driver expects to be able to set load (and by extension, mode)
+on its supply regulators. Add the necessary properties to make that
+possible.
 
-Oh wow, I didn't notice that during my review. Sorry about that.
+Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
+---
+Changes V3:
+ - Somehow after fixing the compilation in last patch, i have missed to
+   do git  --amend the change. apology for that, in this change i have
+   fixed that compilation issue.
+ - Link V2 : https://lore.kernel.org/all/20241015132049.2037500-1-quic_kotarake@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Cheers,
-Angelo
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+index 5f3d4807ac43..bfb1cdc238cc 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+@@ -258,6 +258,8 @@ vreg_l6b_1p2: ldo6 {
+ 			regulator-name = "vreg_l6b_1p2";
+ 			regulator-min-microvolt = <1140000>;
+ 			regulator-max-microvolt = <1260000>;
++			regulator-allow-set-load;
++			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+@@ -265,6 +267,8 @@ vreg_l7b_2p952: ldo7 {
+ 			regulator-name = "vreg_l7b_2p952";
+ 			regulator-min-microvolt = <2400000>;
+ 			regulator-max-microvolt = <3544000>;
++			regulator-allow-set-load;
++			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+@@ -279,6 +283,8 @@ vreg_l9b_1p2: ldo9 {
+ 			regulator-name = "vreg_l9b_1p2";
+ 			regulator-min-microvolt = <1200000>;
+ 			regulator-max-microvolt = <1304000>;
++			regulator-allow-set-load;
++			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+@@ -467,6 +473,8 @@ vreg_l10c_0p88: ldo10 {
+ 			regulator-name = "vreg_l10c_0p88";
+ 			regulator-min-microvolt = <720000>;
+ 			regulator-max-microvolt = <1050000>;
++			regulator-allow-set-load;
++			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+-- 
+2.34.1
+
 
