@@ -1,214 +1,145 @@
-Return-Path: <devicetree+bounces-112115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A719A10F0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:50:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5354B9A113C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:08:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2577B1C2270A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:50:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDBD11F2717F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 18:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EA2C20F5CB;
-	Wed, 16 Oct 2024 17:50:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2A9210195;
+	Wed, 16 Oct 2024 18:08:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="IhJc8yRA"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="WS1yf97p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f65.google.com (mail-oo1-f65.google.com [209.85.161.65])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6276F20C031
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 17:50:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCF620C493
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 18:08:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729101039; cv=none; b=lZJ7XKyIFSJNTJXCpoRscdVAQfx/do8JaMwSMFdu5WWveox48weQ5GUsEPWpH+pm8pHI0TGlksKz5fKKgM9DEL22aHTjyPLzRIGxgAzuGbH2DZ+EuQWRVDBDSvX8f9wbDmpHn45uxtlNiBUxANGvK2Y0jSOqUzQIaNEDMML9Zoc=
+	t=1729102092; cv=none; b=AXxV3XFzfOV5GP2z2oIzlRNU4kAGJ8det2hD9TAwzIRYFyo09//KHsDeA4a8zFH4r3G3G6HPQFiRHuH0X+7liK8bOSjcfqPFOvYCgAwn2kgMNrsumxuKJR+Mi7Br5FsdsnmcNwERgv3NpX0MPQt474r7wCiRXiCwdRCVhxqiPBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729101039; c=relaxed/simple;
-	bh=eg4hX38TdcUFO5o+WLkV7feOE8NhJ4jv5UMNtSrIzUk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HZOCT128oj9X1fM0BakVGbXn6wf+hfEmwunIWjrm7xYTIqhha10p+iSRhJHhGDxkfbJEJVym/IzpRlP+vJM2cuZ1e8QxkcsPZWFq1e0te3Tgmdy0pNwuSZ3QppH39vyv04Py8CVFsS/YtN3GXH6NkKLXRwNasDu1PpiyDg8vAkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=IhJc8yRA; arc=none smtp.client-ip=209.85.161.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-oo1-f65.google.com with SMTP id 006d021491bc7-5e56759e6d7so93766eaf.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 10:50:38 -0700 (PDT)
+	s=arc-20240116; t=1729102092; c=relaxed/simple;
+	bh=uc/Y4bZmRuHb/CI+f7vhlsxz3SmdwdaHRBs+BAXIP+c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S7Rmq+V3zm3j/Xb6y7aeLWdzmTcaiiQy+LcTTDN5Cc5rWJz0LN/81MtCdkWeMTeTUzgugtRT4o8J/VUgUUotobMbgZ7WAU89KnjUoD0p55xD4yKD7ForcmsGa6AqcYnqQn94d2wS4YYuc2NN4+/JIDkdSmLVnBqq8kmk5HtsHlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=WS1yf97p; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-20c693b68f5so1094555ad.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 11:08:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1729101037; x=1729705837; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lCcgXYhcr1eYAzXAtgbojySY9FznxIOauj/4HQBvgNM=;
-        b=IhJc8yRAx4Dpel48dgT30+xhaW6eL3RweqvSxRQm9aS7HvLe0kiHJzf7SugSovueGm
-         g0E27Apv7XvDXDcQkofrms/LNqAJFvqmU1IgzibMrJTo37G7+IZ9f+Zn0bx9g+Xc8NuJ
-         ueLjXYgm52WT67RXCAcQV3ftgOtUQo10Z5Xa/PWJ4xluKtjp2BVNu3DoymGjKlh1xDni
-         cTMWJ5Xs/RoTOx/u9jBn+ukAE+BIn9/TjYUXsYW16Qj54mSY+MnKbQh52FlynJ0YZEmv
-         VU9P2Rw+eeuGzgnq+JVyXgNG25xmGYmmD/oNHapXj7rHWpKI+v7h69ORSrXBtCeeQgiB
-         WDmg==
+        d=tenstorrent.com; s=google; t=1729102090; x=1729706890; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Do5NZzoXtrPkRCkHPB7RbxDjXCyCXzT+J3lpLdQhsU=;
+        b=WS1yf97p5Q+o9w/K11zrBdp0jgx0wm/C/H/vdCsm8plaYFDk0j8jgLatirTdGIm1HC
+         wGVB8RfR8o0xyzOo6kBWelmTTsME/3ToAOVpnVe/EY1CvIosj4i5VEL0QqMWrDJtCL38
+         BOW2DaNqodRO9OwZzL7nolkAsY6KRLV1pw4ncu7az1RBg/oR4p9liPx3BNVwUG6MJacY
+         EQAYifMfD8wL7PcLj4JeAEjM5raN3o5yBEr36+8b89ErGl1B/PhnH5C+xB2XT9GWLKdu
+         iEmxU5LbaZcWT3rTr/29WACXJ3oxIsbaXZYb7D18tXFW9kOlzkvagwqOdcBtCw9zVJLz
+         wtQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729101037; x=1729705837;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lCcgXYhcr1eYAzXAtgbojySY9FznxIOauj/4HQBvgNM=;
-        b=JCW8r6ZteTqkmSecodps65cU9knkIinWAjate7+eXfZWlmsrJb/Bgt0LE1VvElyj+o
-         ln5yo1uUiRe6RJNbUXY8C0xeAR9X9BiQLGKsOD7dOiAuNOfG+KkcGmQcqOhOhnvn2xyl
-         cQPPLgKlK4rTYL/Tohdi7Sk1r+F0Q5AgNqlZtowRcRhhvIhedR152UYiQjbRE7haKqgI
-         8GS6YqyT2xdefjLsrwXK132QO6EWC7SsjfpuqzIt+dm9dPwSMzGhdCp3pP1O2+eXzR6y
-         z4ucVJTyO+W+U5VDDA1P1larj+VgXXraJsYBReOfYwKr0PUrDQ7ESr1ydx3pX8+qzz7r
-         lNog==
-X-Forwarded-Encrypted: i=1; AJvYcCV6KpwxQsvUon6ZGD0KwztwPRT07y7pyjFGn5brXNBEsd4/pllhaNFtEfzn8z9sihO1+AiTH/Z+kPmb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvuBJGLWRN23obvU8SjzCsqHeSoxh8vnlIuXRygZB4cHRISgvE
-	K4We8Ahb8eogRwGZ5NA7I2jInlhhIuKy9wpYWS4Z+uCDAd8NNlzHIs5XbiR8LkA=
-X-Google-Smtp-Source: AGHT+IEf67VIalr0j/WhSRDBXq34/L7p37bnPDz/zkchcrv8dP9aBwLxPOYp06Fr1fQrz3FrmybhpA==
-X-Received: by 2002:a05:6820:2212:b0:5e7:cb2e:e01c with SMTP id 006d021491bc7-5eb1a2da0f0mr11488027eaf.7.1729101036963;
-        Wed, 16 Oct 2024 10:50:36 -0700 (PDT)
-Received: from [100.64.0.1] ([147.124.94.167])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5eb4edbcf06sm802586eaf.2.2024.10.16.10.50.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Oct 2024 10:50:36 -0700 (PDT)
-Message-ID: <2e25597c-6278-4bc6-a0c2-3826841c2ac0@sifive.com>
-Date: Wed, 16 Oct 2024 12:50:32 -0500
+        d=1e100.net; s=20230601; t=1729102090; x=1729706890;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6Do5NZzoXtrPkRCkHPB7RbxDjXCyCXzT+J3lpLdQhsU=;
+        b=j+QsB8DtrggML1y1S7vSfJFiwJECcsh8rrqINYIqElK1fFBkDdhsqedxgryXiJPAH+
+         wJL3IgJWH3Qd4GzyLt6CrZyT+4FtzrUQlF9ikmm6FklK3187PjI55rfCJyF16ictKztK
+         2yACEytaaDCap+u1Y3Yvtw30jPsR7RKSHckGXHOtarhLtxao0yVwa+BvVe+/80Aicwie
+         qvfBi3Aqi2L5j9NrOc0/AEOaB5aOVKM/7yroMJoswX2oGnOrvaErn06w+OYgJ+5XNa6N
+         lQKEHFqpajSPgqWqfr16kpdNS4/YjDV6JwB5Gf2JjDrBzL1WqOZC/HvOyn3V0kjdddav
+         s4ow==
+X-Forwarded-Encrypted: i=1; AJvYcCUpmdr+PN9uEePPh0WFMU10JUceXLcW2a1aoz+DIYWfe2D6K2BEetmfwLq4KQ/9GZ1DQEYWr+/N/y9j@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLbzk8xba6XEJBr7iw3SOOvb3O8a7U9IvHuGHQ45wkDgQ+hwW0
+	F/zFPW/XZFel27qHi1JknGvaixuTDzg/xAc5Ct5TATpaF6KCF5m2OPx4iKW1/mA=
+X-Google-Smtp-Source: AGHT+IHk7EqhzNNVg4OZzagkiI9u/M85Rdln26E/pLQmb1Zz13C4O48RJDEyeV5O9x9KbH9fTQkQcg==
+X-Received: by 2002:a17:903:41c5:b0:20c:c482:1d66 with SMTP id d9443c01a7336-20cc4821f85mr213342205ad.35.1729102090025;
+        Wed, 16 Oct 2024 11:08:10 -0700 (PDT)
+Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20d18036714sm31306885ad.152.2024.10.16.11.08.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 11:08:09 -0700 (PDT)
+Date: Wed, 16 Oct 2024 11:08:08 -0700
+From: Drew Fustini <dfustini@tenstorrent.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
+	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, m.szyprowski@samsung.com,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/3] Introduce support for T-head TH1520 Mailbox
+Message-ID: <ZxABCCJcoTmxiRXB@x1>
+References: <CGME20241014123409eucas1p2a3a3f085c0630073326ca299a870f3ee@eucas1p2.samsung.com>
+ <20241014123314.1231517-1-m.wilczynski@samsung.com>
+ <Zw1jdl64f5l8N+Km@x1>
+ <431e98cd-6c53-4478-86a6-e532be4ed58e@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/10] riscv: Allow ptrace control of the tagged
- address ABI
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
- linux-kernel@vger.kernel.org, Anup Patel <anup@brainfault.org>,
- Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
- Atish Patra <atishp@atishpatra.org>, Evgenii Stepanov <eugenis@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
-References: <20240829010151.2813377-1-samuel.holland@sifive.com>
- <20240829010151.2813377-7-samuel.holland@sifive.com> <ZuOoqTfKs/7G075O@ghost>
-Content-Language: en-US
-From: Samuel Holland <samuel.holland@sifive.com>
-In-Reply-To: <ZuOoqTfKs/7G075O@ghost>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <431e98cd-6c53-4478-86a6-e532be4ed58e@samsung.com>
 
-Hi Charlie,
-
-On 2024-09-12 9:51 PM, Charlie Jenkins wrote:
-> On Wed, Aug 28, 2024 at 06:01:28PM -0700, Samuel Holland wrote:
->> This allows a tracer to control the ABI of the tracee, as on arm64.
->>
->> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
->> ---
+On Wed, Oct 16, 2024 at 12:03:05AM +0200, Michal Wilczynski wrote:
 > 
-> Since this code is identical to the arm64 port, could it be extracted
-> out into the generic ptrace.c and ifdef on either CONFIG_RISCV_ISA_SUPM
-> or CONFIG_ARM64_TAGGED_ADDR_ABI by adding some generic flag like
-> CONFIG_HAVE_ARCH_TAGGED_ADDR_ABI?
+> 
+> On 10/14/24 20:31, Drew Fustini wrote:
+> > On Mon, Oct 14, 2024 at 02:33:11PM +0200, Michal Wilczynski wrote:
+> >> The T-head TH1520 SoC supports a hardware mailbox that enables two cores
+> >> within the SoC to communicate and coordinate [1]. One example of such
+> >> coordination would be cooperation with the T-Head E902 core, which is
+> >> responsible for power, clock, and resource management. For example, in
+> >> the specific case of the BXM-4-64 GPU, it needs to be powered on by the
+> >> E902 core, and the kernel running on the E910 needs to 'ask' the
+> >> firmware running on the E902 core to enable power to the GPU island.
+> >> Given recent advancements in work on the upstream GPU driver [2], there
+> >> is an emerging need to get this code in the mainline kernel.
+> >>
+> >> Link: https://protect2.fireeye.com/v1/url?k=2021d256-7fbdfb7c-20205919-000babe598f7-ca654d1a9bc866ac&q=1&e=11e97355-e6e9-4aac-a996-cc475156b3c8&u=https%3A%2F%2Fopenbeagle.org%2Fbeaglev-ahead%2Fbeaglev-ahead%2F-%2Fblob%2Fmain%2Fdocs%2FTH1520%2520System%2520User%2520Manual.pdf [1]
+> >> Link: https://gitlab.freedesktop.org/imagination/linux-firmware/-/issues/1 [2]
+> >>
+> >> Thanks, Krzysztof and Rob, for your review! Since this series is gaining
+> >> some interest, I've dropped the RFC prefix with the v3 update.
+> > 
+> > I've applied this series and booted okay. I see the driver loaded:
+> > 
+> >  /sys/devices/platform/soc/ffffc38000.mailbox/driver points to
+> >  /sys/bus/platform/drivers/th1520-mbox
+> > 
+> > How do you test that the communication with the E902 is working
+> > correctly?
+> 
+> Thank you for your interest. To test this, I've prepared a diff that
+> includes the missing drivers utilizing the mailbox and enabled the GPU
+> node in the device tree to use the drm/imagination driver.
+> 
+> I've observed that when the power was turned off through the E902 core
+> using the mailbox, the drm/imagination driver would hang in
+> pvr_load_gpu_id() while attempting to read its BVNC from the register.
+> However, when the GPU was turned on via the mailbox, the BVNC could be
+> read correctly. Still, the firmware fails to boot due to some missing
+> programming in the drm/imagination driver, which is currently being
+> worked on. I've briefly explained this in the first commit of this
+> series.
+> 
+> If you'd like to try this yourself, I'd be happy to push these setups to
+> a GitHub repository and provide you with a link, so you can see the
+> setup in action.
 
-Yes, it could be factored out, though I don't know if it is worth the overhead
-for these two trivial functions. I don't see any other code like this outside of
-arch/.
+I think that would be helpful for myself and others to be able to see
+the interaction.
 
-Regards,
-Samuel
-
->>
->> (no changes since v1)
->>
->>  arch/riscv/kernel/ptrace.c | 42 ++++++++++++++++++++++++++++++++++++++
->>  include/uapi/linux/elf.h   |  1 +
->>  2 files changed, 43 insertions(+)
->>
->> diff --git a/arch/riscv/kernel/ptrace.c b/arch/riscv/kernel/ptrace.c
->> index 92731ff8c79a..ea67e9fb7a58 100644
->> --- a/arch/riscv/kernel/ptrace.c
->> +++ b/arch/riscv/kernel/ptrace.c
->> @@ -28,6 +28,9 @@ enum riscv_regset {
->>  #ifdef CONFIG_RISCV_ISA_V
->>  	REGSET_V,
->>  #endif
->> +#ifdef CONFIG_RISCV_ISA_SUPM
->> +	REGSET_TAGGED_ADDR_CTRL,
->> +#endif
->>  };
->>  
->>  static int riscv_gpr_get(struct task_struct *target,
->> @@ -152,6 +155,35 @@ static int riscv_vr_set(struct task_struct *target,
->>  }
->>  #endif
->>  
->> +#ifdef CONFIG_RISCV_ISA_SUPM
->> +static int tagged_addr_ctrl_get(struct task_struct *target,
->> +				const struct user_regset *regset,
->> +				struct membuf to)
->> +{
->> +	long ctrl = get_tagged_addr_ctrl(target);
->> +
->> +	if (IS_ERR_VALUE(ctrl))
->> +		return ctrl;
->> +
->> +	return membuf_write(&to, &ctrl, sizeof(ctrl));
->> +}
->> +
->> +static int tagged_addr_ctrl_set(struct task_struct *target,
->> +				const struct user_regset *regset,
->> +				unsigned int pos, unsigned int count,
->> +				const void *kbuf, const void __user *ubuf)
->> +{
->> +	int ret;
->> +	long ctrl;
->> +
->> +	ret = user_regset_copyin(&pos, &count, &kbuf, &ubuf, &ctrl, 0, -1);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return set_tagged_addr_ctrl(target, ctrl);
->> +}
->> +#endif
->> +
->>  static const struct user_regset riscv_user_regset[] = {
->>  	[REGSET_X] = {
->>  		.core_note_type = NT_PRSTATUS,
->> @@ -182,6 +214,16 @@ static const struct user_regset riscv_user_regset[] = {
->>  		.set = riscv_vr_set,
->>  	},
->>  #endif
->> +#ifdef CONFIG_RISCV_ISA_SUPM
->> +	[REGSET_TAGGED_ADDR_CTRL] = {
->> +		.core_note_type = NT_RISCV_TAGGED_ADDR_CTRL,
->> +		.n = 1,
->> +		.size = sizeof(long),
->> +		.align = sizeof(long),
->> +		.regset_get = tagged_addr_ctrl_get,
->> +		.set = tagged_addr_ctrl_set,
->> +	},
->> +#endif
->>  };
->>  
->>  static const struct user_regset_view riscv_user_native_view = {
->> diff --git a/include/uapi/linux/elf.h b/include/uapi/linux/elf.h
->> index b54b313bcf07..9a32532d7264 100644
->> --- a/include/uapi/linux/elf.h
->> +++ b/include/uapi/linux/elf.h
->> @@ -448,6 +448,7 @@ typedef struct elf64_shdr {
->>  #define NT_MIPS_MSA	0x802		/* MIPS SIMD registers */
->>  #define NT_RISCV_CSR	0x900		/* RISC-V Control and Status Registers */
->>  #define NT_RISCV_VECTOR	0x901		/* RISC-V vector registers */
->> +#define NT_RISCV_TAGGED_ADDR_CTRL 0x902	/* RISC-V tagged address control (prctl()) */
->>  #define NT_LOONGARCH_CPUCFG	0xa00	/* LoongArch CPU config registers */
->>  #define NT_LOONGARCH_CSR	0xa01	/* LoongArch control and status registers */
->>  #define NT_LOONGARCH_LSX	0xa02	/* LoongArch Loongson SIMD Extension registers */
->> -- 
->> 2.45.1
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
-
+Thanks,
+Drew
 
