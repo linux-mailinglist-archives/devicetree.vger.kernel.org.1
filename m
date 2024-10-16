@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-111994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E8709A07D6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:53:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D559A07DE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:55:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25A91287415
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:53:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF0B21F227D5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CBF2071FE;
-	Wed, 16 Oct 2024 10:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB9C206E73;
+	Wed, 16 Oct 2024 10:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="m6+rhatk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iv4sdjhI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE422071EE;
-	Wed, 16 Oct 2024 10:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC5C1CC14C;
+	Wed, 16 Oct 2024 10:55:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729075974; cv=none; b=VN5JWZyw4Atw7PInrpQ1g+Fh/W+RkPt0gHj9pVDn3TsTR0fHfUyKlnkSxIiciFr+QqCuGJ2EU3hJKW4x7PG+i2/mz3Lo4siK0LHLVbO3qa9ep1BUtV7NwCSfP+ibFEVn2tMDx3214pPNx2z2lZl5s7WIgL1zNwRKtKaZAUN4AgM=
+	t=1729076137; cv=none; b=Klhq3puVghsHKYEKmSPxbcBctJmPgbdOyctTMcL1XkAe+r1YgmiKKLxxb8u/Lo9XygkGeUdXfhGXbFvc4QEL0sTgs9tZ1W2+Xa9J/2tcwrca6xnUnMEIMdcvbLMdX+1+RYAFza5sTzzCQ540eKJH3oi5y3/p34A9XjhC5TEV42A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729075974; c=relaxed/simple;
-	bh=Mcip5Kx6I/TZnEO16HfE6x3mJQievwxkLL2RftHqPKk=;
+	s=arc-20240116; t=1729076137; c=relaxed/simple;
+	bh=BrONTpj/o7u02LWrWrtUFHI7l3YR3XcD1tRJriVuCaE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mQgBgwNL00efuYYJvwiRqn2FEV7REG8+fUsrymFs39QaQoEA5m9rrBfzR0wqLXCfn6NQVpoR3PCnriNVJ65oZS/BWe4mbIOEk3M84+asCMkImVRbuRJLCiu2q43UwWdWp+/IL6IbYFoEymaAjp+NKgp8vC7DozPveTF0gckDYvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=m6+rhatk; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729075971;
-	bh=Mcip5Kx6I/TZnEO16HfE6x3mJQievwxkLL2RftHqPKk=;
+	 In-Reply-To:Content-Type; b=TOdDJL3t/29GpAjEVsLnRuA3gXr9wNn6nfR1L6ZPdhDuNcwxMuK1BFZ3dCdV7a4fYoDOJco37ZFYL8kgHGbnt3MbDrYDmIjHLWL+HNeOsftuSW+NI9jMVJ1heFu8UtvBndoyZaAboZ6ZmBL2h8ZSCMHCfQLsWfmW8MOU13s7bgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iv4sdjhI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46592C4CEC5;
+	Wed, 16 Oct 2024 10:55:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729076136;
+	bh=BrONTpj/o7u02LWrWrtUFHI7l3YR3XcD1tRJriVuCaE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m6+rhatk3ym6roLIghMdE6YlIB4cpCEqsL7OTebXgMEMlVtwwAmU9na0VY2eDGeZn
-	 yYcngAECMKOv43li7ASMN5NZG+4TQbfsv/ERifiBUkrBBTpOESfWBqfyUAZWPZewEb
-	 utux2BWotQz1Uzs/8grjtC24WZUfbv4EcZpF6lr6kXjNdXdZIHM06ouCBeDjkb73Z6
-	 kS01ddCgoxfJLMZNKXNMOapo5QuEb3SXXZ2UqifgxR/nI1K1txrms1UdgvH3G43AST
-	 tnr+Zh118aNqtKQ7CZs+yW2Bx0kLDBRejEKao4AEje4HNNoPKzr8sHvz/C2MYu9fDJ
-	 KwVYlwu+7FgBA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6B6E717E10B5;
-	Wed, 16 Oct 2024 12:52:50 +0200 (CEST)
-Message-ID: <7865e7ee-d894-4ef4-89c4-5ea3a90ac6f1@collabora.com>
-Date: Wed, 16 Oct 2024 12:52:50 +0200
+	b=iv4sdjhIkIIQtiGL/itgMDCfkfXlnB70YIL7KV9MKJNoW79xAdimiNOdfGLhA6MOF
+	 sETLAsppP+fhGOgOvDRo+zDElOiFYWUBUg4r1pdfdkdm1qGL+Hj3HtzDqdciPHZSf2
+	 lpIuhO8BmsmH5MsVShSXiQqdQufU0uwRC5jwQREqanzy7gCjsqzq+oY19bWWZFmQz7
+	 7vg6gtd498alwHALCyBRyQshz1CJEYwOBPLEj8KuDQnLpBOmKgSVmvifEE0GM+4ccP
+	 Ss+NrMoNb/QOL7mtmaW222V2l8FpfuWw7uKNSacaZ31awwTxhnIwU6j35ceGoJd3d6
+	 C7i6liOp4d46w==
+Message-ID: <28d9b410-dcf0-4431-81a3-6c33d536d217@kernel.org>
+Date: Wed, 16 Oct 2024 12:55:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,70 +50,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: mtu3: add mediatek,usb3-drd property
-To: Rob Herring <robh@kernel.org>, Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- ChiYuan Huang <cy_huang@richtek.com>, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- Chris-qj chen <chris-qj.chen@mediatek.com>
-References: <20241015172100.15150-1-macpaul.lin@mediatek.com>
- <20241015222046.GA2164669-robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 02/22] arm64: dts: qcom: add wifi node for IPQ5332
+ based RDP441
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
+ <20241015182637.955753-3-quic_rajkbhag@quicinc.com>
+ <ftvwsizfupm7veg662adnzc6jpulk5shga3xmvbtom3saclnf6@bmatmqw5lp72>
+ <gnv7i3m5ooxtyi4ywgq4q5sq3wj6j7xtjx6puuixoulypeiwjo@65wfj657x5ug>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20241015222046.GA2164669-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <gnv7i3m5ooxtyi4ywgq4q5sq3wj6j7xtjx6puuixoulypeiwjo@65wfj657x5ug>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 16/10/24 00:20, Rob Herring ha scritto:
-> On Wed, Oct 16, 2024 at 01:21:00AM +0800, Macpaul Lin wrote:
->> Add optional 'mediatek,usb3-drd' property to MediaTek MTU3 DT Schema.
->> This flag specify whether it is a USB3 Dual-role device hardware.
+On 16/10/2024 12:30, Dmitry Baryshkov wrote:
+> On Wed, Oct 16, 2024 at 08:58:25AM +0200, Krzysztof Kozlowski wrote:
+>> On Tue, Oct 15, 2024 at 11:56:17PM +0530, Raj Kumar Bhagat wrote:
+>>> RDP441 is based on IPQ5332. It has inbuilt AHB bus based IPQ5332 WiFi
+>>> device.
+>>>
+>>> Describe and add WiFi node for RDP441. Also, reserve the memory
+>>> required by IPQ5332 firmware.
+>>>
+>>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
 >>
->> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->> ---
->>   Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> index d4e187c78a0b..1e70af0dac82 100644
->> --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> @@ -155,6 +155,12 @@ properties:
->>         property is used. See graph.txt
->>       $ref: /schemas/graph.yaml#/properties/port
->>   
->> +  mediatek,usb3-drd:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Specify whether it is a USB3 Dual-role device hardware.
->> +    type: boolean
->> +
+>> Don't send one DTS patch in 22 patchset targetting different subsystem.
+>> Imagine, how wireless maintainers are supposed to apply their bits? 21
+>> commands instead of one command?
 > 
-> Don't the standard properties such as usb-role-switch or dr_mode work
-> for you?
-> 
+> Huh? b4 shazam -P 1,3-22 should work. Or ideally the DTS should be the
 
-They do - and in fact, the upstream MTU3 driver doesn't even support parsing
-the proposed property because it does parse the standard usb-role-switch property.
+Hm indeed, it wasn't some time ago.
 
-This means that this commit is not needed at all.
+> last one, so applying all other patches should be obvious. As a reviewer
+> I find it troublesome to review bindindings / driver without an actual
+> DTS snippet.
 
-Cheers,
-Angelo
+Considering that patchsets for certain subsystem *have to skip DTS* (you
+cannot include DTS in the series), then better get used to such
+inconvenience.
 
->>     enable-manual-drd:
->>       $ref: /schemas/types.yaml#/definitions/flag
->>       description:
->> -- 
->> 2.45.2
->>
 
+Best regards,
+Krzysztof
 
 
