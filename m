@@ -1,117 +1,114 @@
-Return-Path: <devicetree+bounces-112146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91D499A137C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 22:12:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 084CA9A13B5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 22:23:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4467A1F20F63
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:12:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39A6F1C21CC0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:23:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00E91C2324;
-	Wed, 16 Oct 2024 20:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6B31216438;
+	Wed, 16 Oct 2024 20:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GQUKy8HH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I/IR0f0I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2673612E4A;
-	Wed, 16 Oct 2024 20:11:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207692144B1;
+	Wed, 16 Oct 2024 20:22:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729109518; cv=none; b=mM4NB5VcQAiBhz/TkhlkLUn3/hw7s1pobBhmWBfVf17V21HgoQRPQacoYwNx+MYkDfaZ/UOmvoXhSanAkk+ZijyuKogGgVL8bMwxmTh2mnWcIvILltR1BLFpOeNQYcy5Be/Yqn3KdirUzXRXouB+GG7FGnCMLw9rXAMr0J7Nf6E=
+	t=1729110181; cv=none; b=GgY3BTpZE404V+CZ7POn/QYFG5+l7rATZ9ueZAv+2otWLTnTWpekZZ5VWPn8HzEVdtLq6yXekTXg2G8/llqp1uYdbbQFttLNZ8XP44UsWWnzhEh3zUMvk6LvnrAgprq9jeHdnsHRrc/iDo0EGCeuyOXODjbuXxlv7SSVwqXcpIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729109518; c=relaxed/simple;
-	bh=wMMMSBEtO//hNRrqnvuJxHE7i3VytWAet/SFOjJlcPg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NgHcYYwb6POmAIBtrKZc18k8IVXB4yaAl4pQR+b4hDB3EW1fy01HulcDRox6g6mp+E0XLChH99AHbEMxMLeie5bEZGy/0GhO1S8oRIfQb7073x9PbTweiZS1wNnpuK0PfRZSrUkRwjDknuVbgqtsAbqRc5NfmCm/dA1QqOzMgoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GQUKy8HH; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729109515;
-	bh=wMMMSBEtO//hNRrqnvuJxHE7i3VytWAet/SFOjJlcPg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GQUKy8HHXHg7k/uaFBtaX446bbWo/EEXU6VejI+SL02D40oY3f7hd8BrPBJneJ49n
-	 nIqJEy+sYkmmtf7b1az/b7AqehAGL7655wy8z9kKk8mFlswhgOVESkCcB9hlYIPxKt
-	 UNo2Y/MYZq/OniClYOj+6fyg0U7ZR4wXwaSJjEExoyZRgNcLklnlTqwsDVGe/hFHfW
-	 uoCc5Q2knfDiTQU93gJipKttIHVonkViRijZ854hekKLuMg0hSJ8IWae4vj0pxSGrF
-	 kMEP+25j9Ezqu3ryUSSoy0YQR/TyNzCqPMnaHC+uV2QLPLLgUuyzUWZU9IytQ05024
-	 NvbjuwNpSueUg==
-Received: from [192.168.1.90] (unknown [188.24.146.62])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F1F5D17E36CA;
-	Wed, 16 Oct 2024 22:11:53 +0200 (CEST)
-Message-ID: <e5f1d4ea-4b8d-4f42-9025-5291baddf7e5@collabora.com>
-Date: Wed, 16 Oct 2024 23:11:53 +0300
+	s=arc-20240116; t=1729110181; c=relaxed/simple;
+	bh=l8nuP3pIzD+PoCfTGlVJkqZ3H6aSTzMtu58vztyryMQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WKbo2ZADLixAAkUNvjKyrZAVUO28qxDcygrYlpH5N6adTVehuK6dfKZuec2mGs49Z2Pxa/F5nhXoVRRDdSDlXbJQCtC6bi59hrACT+fB3s2Nl+Jf8GGMMlWnC58e6KgIClN8Z4yW6g27Fu3JteStqaz9cLLHiE1JQeCrGf9CEQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I/IR0f0I; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43152b79d25so2112395e9.1;
+        Wed, 16 Oct 2024 13:22:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729110178; x=1729714978; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aLqCeMIG9rfb79faCQ4MCCGyVJzSc3OuSfzv4Dyb3mM=;
+        b=I/IR0f0I71ufrYvBco/8GNGEoo2AcB47TiOHjf+y5qWDc7/5jPk1KoingUrCTYT3Y7
+         JBPQ0XFzwfBdgNa7XNHnh47nN8lxeJeL7Ekzv2Xf1mPSfzpUZ5qA7mjlfg4kmwfMTxhA
+         4yqsLQG3S1H2ydBMWs0UBbISYRDCsujYD/r6skNWNyVuQbnWV7qwp56GuyuyLxFqkLiJ
+         Ey2jx6P8t1FoXKoYY1b8Z1Lo/DnrD+u3fsZk36CZ+ojkyzhzSCavMNVgSFcMVrI/ajTr
+         esDWNQPGs98NuRMM1t81icdqtz9cQWav9/s2ivk/SFsKmvUbmfGmqVEGZ5ANxhsKK4y4
+         SGyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729110178; x=1729714978;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aLqCeMIG9rfb79faCQ4MCCGyVJzSc3OuSfzv4Dyb3mM=;
+        b=FoB9jgBhpzU1e6c4DsORvnCZaZ0cPIu/nGQU/IYzHd9Eys13sml63vG03F9KEOrpLD
+         QeN0EcZ8gvFuFYgCVossHexQJ7xHJ6zx0/HJfPyjmBbZaVHl36hmv87vI7JRinMJb7lS
+         tjHEuoESoXIfCFmdtqO5+A1tXUUFEoG5UFMNc1GK5r5FFR5uAnLDskbhJGQ3kzRfhWzR
+         7VkNUqmGava08mg8Fcn0vsVz4DbmyVPO3fI4bdsHrSsGbYYHwzT3s+dC7EQXddnN+iwk
+         3nEb/MHlxPkxAkSb6iSyB6T6cVP/FkmjDbutLQKFcOWB5NHa6DT78OZmx5h6xqw54n/L
+         ypdg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/xkxt51ixw2A0a9BLn+SJ74ma8ucBfYqOEhR+Na1/YI3TWUOqyvKwgCPGoOdH/2KKNpwgFH/qdTyD@vger.kernel.org, AJvYcCW3nVYnWEjlqyZhiYFA9J26du+nHAZJyoMH23vf/vG0I7iKiGQFkrMDLFV50xMmu1tAOI2lHwNlhY/XpVZOOA==@vger.kernel.org, AJvYcCXbxaA9Fe22TyQ8eBPmNo+Y7JT74QHM9Z8TUD5KES0ebvomZ0kgRJHOnYvwSksz3iurbIDRvDVcuG6AHFKm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzzwqx6L1qAU6FSbb0Gwsm17Io8BVP8H4MeH3xSCXJeK7z5G0s2
+	00W6k55PoLQowdGbWRow/U7TgBPHirg1U/K+iw2aL6OIwUIy5u0=
+X-Google-Smtp-Source: AGHT+IGn4Ko3OzeNJyXpDIIA9iuVAZF4og+jqu+9del4WBjNHbm0cxoAeC8TAiw8tqYDeHPjoSxISg==
+X-Received: by 2002:a05:600c:470e:b0:42c:b037:5f9d with SMTP id 5b1f17b1804b1-4311dea462cmr172756105e9.3.1729110178031;
+        Wed, 16 Oct 2024 13:22:58 -0700 (PDT)
+Received: from localhost.lan (adsl-178-39-53-103.adslplus.ch. [178.39.53.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43158c55a87sm3942125e9.35.2024.10.16.13.22.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 13:22:57 -0700 (PDT)
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan.Kemp@dell.com,
+	tudor.laurentiu.oss@gmail.com,
+	tephan.gerhold@linaro.org,
+	johan+linaro@kernel.org,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: [PATCH v1 0/2] X1E Dell XPS 9345 Improvements 1
+Date: Wed, 16 Oct 2024 22:15:47 +0200
+Message-ID: <20241016202253.9677-1-alex.vinarskis@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/3] drm/rockchip: Add basic RK3588 HDMI output support
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Simona Vetter <simona@ffwll.ch>,
- Simona Vetter <simona.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
-References: <20241010-b4-rk3588-bridge-upstream-v9-0-68c47dde0410@collabora.com>
- <20241010-b4-rk3588-bridge-upstream-v9-3-68c47dde0410@collabora.com>
- <3wjk75z2ozz2lg7qx6by3phjoe2brov6rz4jezpowrreedjua6@wt2js5hzqqdi>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <3wjk75z2ozz2lg7qx6by3phjoe2brov6rz4jezpowrreedjua6@wt2js5hzqqdi>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hi,
+First round of improvements.
+                                                                           
+* Add experimentally discovered edp enable gpio. Drop panel info, as it is
+now documented in [1]
+* Add Johan Hovold's fix for nvme regulator
 
-On 10/16/24 12:27 PM, Uwe Kleine-König wrote:
-> Hello,
-> 
-> On Thu, Oct 10, 2024 at 01:40:51AM +0300, Cristian Ciocaltea wrote:
->> +struct platform_driver dw_hdmi_qp_rockchip_pltfm_driver = {
->> +	.probe  = dw_hdmi_qp_rockchip_probe,
->> +	.remove_new = dw_hdmi_qp_rockchip_remove,
->> +	.driver = {
->> +		.name = "dwhdmiqp-rockchip",
->> +		.pm = &dw_hdmi_qp_rockchip_pm,
->> +		.of_match_table = dw_hdmi_qp_rockchip_dt_ids,
->> +	},
->> +};
-> 
-> After commit 0edb555a65d1 ("platform: Make platform_driver::remove()
-> return void") .remove() is (again) the right callback to implement for
-> platform drivers. Please just drop "_new".
-> 
-> Additionally I suggest to drop one of the white spaces between .probe
-> and =.
+[1] https://lore.kernel.org/all/CAD=FV=Wu3vaY4Rtw4OZwgAf_b44JpDsKJhUa-EXiuu1hn3aJoQ@mail.gmail.com/
 
-Handled both in v10 [1].
+Aleksandrs Vinarskis (2):
+  arm64: dts: qcom: x1e80100-dell-xps13-9345: route edp-panel enable
+    gpio
+  arm64: dts: qcom: x1e80100-dell-xps13-9345: fix nvme regulator boot
+    glitch
 
-Thanks,
-Cristian
+ .../boot/dts/qcom/x1e80100-dell-xps13-9345.dts     | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-[1] https://lore.kernel.org/all/20241016-b4-rk3588-bridge-upstream-v10-0-87ef92a6d14e@collabora.com/
+-- 
+2.45.2
+
 
