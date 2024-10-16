@@ -1,144 +1,117 @@
-Return-Path: <devicetree+bounces-111901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5FC9A0409
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:18:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA3E9A0414
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:21:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63B8C1F2242C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:18:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29548B26F63
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156F81BBBC8;
-	Wed, 16 Oct 2024 08:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8A31C0DF0;
+	Wed, 16 Oct 2024 08:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H/QZHYEt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JdYb5II8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF6B18B473;
-	Wed, 16 Oct 2024 08:18:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169CE190046
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 08:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729066730; cv=none; b=mS1kPYnG9LMKZMt7Vc52dPARU2CMEFyVdr6m6wNQ1NuDD+HgEgGqs1HCh0Xcu9GI3d6Tvb24U8IFP8R69zigWggRWXolWvtK74lk5lBsUADnWafn672MhuwxBJUJ6aegt5f9WgFmsD86cyXCaCVcoojht1UZD3LpvSQM2kivouU=
+	t=1729066873; cv=none; b=f4PDIu9LMrkBPv4tZcodPnPhUOT969V2mKDRyOApfzjdGFi3mawf0t/S+yxHVq2rSvKEZ05OY+ZMdmmakdC/W27zy+Vu05QAixrmQ24tNE38anpl2ThAX0fTWYMxT/lxaygiKAW8OZiqvS0f5NrkKzxH5e/rAxTn9KRDXtcnIsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729066730; c=relaxed/simple;
-	bh=tBH2x36STqh9cmakWrafMF1EITxMLNBKUgffxuWsGkQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UHinS7yUeUJick+oHMh4lbMm2whRwsH3FYSzNWhPfCuDJOUb36QwLefsHzsZVlwa9wJ7xvCRZPEqv4FXUjldAstu5EzVdM0aKf36DkgITqi8ArW7xCR907zPqovv+Pmc+xZiXyqbEq6sHem7VrRVROInEAWaDteS1kpzAf0UZDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H/QZHYEt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E682C4CEC5;
-	Wed, 16 Oct 2024 08:18:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729066729;
-	bh=tBH2x36STqh9cmakWrafMF1EITxMLNBKUgffxuWsGkQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H/QZHYEt9gBF2rRTw3hPx8i9KLizmSxKmONfbw5yTvd2vwpg7tC4bae8nybvRltku
-	 Kwnj7GheKAL+VnCCEw7nv8tde37YQ1UzcF168cSPnkdeNZeOBsQ+d8McQjbiuMhXT3
-	 EPxFBziWcfUdbR+A+whmfOM59g8kWOCXe0B+11vOW2HkPk6GOoRvFke6U2gXIPnULf
-	 3HhyjcIVdQDgH56NfeDLRHMx3bStDmYhsrVT1xTy84RkBi9hLX38HlllORntiZVgEg
-	 53Bj4TxTRe5xRjCotL9rUHjQOely+3r3pwirgj28Od/RfinZgAK1SCZWhYdbWWBuHK
-	 kX8hIZQS3RMqA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t0zF9-000000008Qe-3ZGc;
-	Wed, 16 Oct 2024 10:18:55 +0200
-Date: Wed, 16 Oct 2024 10:18:55 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: x1e80100-crd: Enable external DP
- support
-Message-ID: <Zw927-1-0xFm7xRi@hovoldconsulting.com>
-References: <20240902-x1e80100-crd-dts-add-external-dp-support-v1-0-899c264c0eb7@linaro.org>
- <20240902-x1e80100-crd-dts-add-external-dp-support-v1-1-899c264c0eb7@linaro.org>
+	s=arc-20240116; t=1729066873; c=relaxed/simple;
+	bh=UzSOWuHbZ5Ol08JLBsywiLxpxtXJWiUM0Bw5vEAdwUY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=RMeGDwfmybG4Uy6AB8Gkq6xLlYIGh/Tn05t3nqXx0o92qPR6t2oF/DpO10Qc8GpqzqwLSZTwoAGfE6MtZsVaDyDcParTtoqKrdJ5hEGVc494KABguqRORDTbvqaMmJXuce2sKaCY8ghs/7akqLYJTGUw71LpRAYSsMZRVorW9R8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JdYb5II8; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4314a26002bso10052145e9.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 01:21:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729066870; x=1729671670; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oHuHA10oz+IlUb3WFI3EHpjMKwYEau3D3WrIjZr3cMQ=;
+        b=JdYb5II8Li6JU3BDEJInlG8siyHpud1BLRxGSUF1QSEADszs/qNtNEknMGxJn90PBX
+         7LIdZa2ZpjtS1QBh5yN+I8ghTw9z3JA1x4fW6ZSxj01T75qlxIfHWwObSl4xmlCTcutn
+         3HoXcHLrI9op9zpPPLqJKFVg9JXKvlKfq9fi6BLBJchabkihGivEN/o93/XnGgHWCPYD
+         uIHI61blUCV/sw2wbsnP1dtvGE5Jk7fP+pxYIVFTSI9cTCxoENFDxm51w64EtrhJYVU9
+         XgNT2puBIm4KSlLheE3v5XbLq3R4CLLP+w+tMnIUJnE3GsSPbAkXHD6taW2qih0UN9iC
+         Zvsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729066870; x=1729671670;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oHuHA10oz+IlUb3WFI3EHpjMKwYEau3D3WrIjZr3cMQ=;
+        b=p2/YzegsErHxpk63hI/vUIZGnsMAtSbCALhppArffty7LUOVR+iAPpYCF7j+plTZJD
+         DSC5N3BDjKJkDqiZtzmvTxGnU1DkM+l0/WebHKwqjipjRNTUdJGG3j1OBhkvr4L1tUhA
+         XgcaNZFS3ESifV+3pbVdVEjiZaRR4GfwO0OCRFjcHuywsvDL0OUf8sPS+XHckKnCGvOo
+         4gJ705V7uZ+sb7EreJWPmZHvQunBSHTpUOY8EvDa+F7gCCVzh+s7+MaMNRuzjHk+UtzN
+         4tCnZp60o196pXIPvULwkgFGHWETxJIMQ5bA++Vt4awRYXcvsHi7ku73OR3WCcMmtU9E
+         bNcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX4CmcCls54ps070FukDkuJwhObCri4t/xiqUH0Xanz6Yy/AvIBAvnZn2T0QkHXrUIGpzgIy93jtm4h@vger.kernel.org
+X-Gm-Message-State: AOJu0YycSzoGAvyBUELcq1CpDnf22cS0JzgkzQ9KRa8PmDtAxAuxLsHg
+	ZhuyHnvsdIThluhfmv21/QXwPljJLals3WLi5r+oaLeKmbh9+Q6BPB0BFVkMDdc=
+X-Google-Smtp-Source: AGHT+IERLNsDKzULbD6b+VfFRVUqsn5sE8FD5wfQhGK0Pm7Idfsgba53RSTr8weraZ+y4cAyzf8GLQ==
+X-Received: by 2002:a05:600c:4f83:b0:42e:75a6:bb60 with SMTP id 5b1f17b1804b1-4314a322492mr24798595e9.19.1729066870226;
+        Wed, 16 Oct 2024 01:21:10 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4313f569eacsm41658965e9.20.2024.10.16.01.21.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 01:21:09 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: quic_jesszhan@quicinc.com, maarten.lankhorst@linux.intel.com, 
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ Danila Tikhonov <danila@jiaxyga.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux@mainlining.org
+In-Reply-To: <20241013212402.15624-1-danila@jiaxyga.com>
+References: <20241013212402.15624-1-danila@jiaxyga.com>
+Subject: Re: [PATCH 0/2] Add Samsung AMS581VF01 panel support
+Message-Id: <172906686939.3993974.10769227098345025810.b4-ty@linaro.org>
+Date: Wed, 16 Oct 2024 10:21:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240902-x1e80100-crd-dts-add-external-dp-support-v1-1-899c264c0eb7@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-On Mon, Sep 02, 2024 at 06:01:35PM +0300, Abel Vesa wrote:
-> The Qualcomm Snapdragon X Elite CRD board has 3 USB Type-C ports,
-> all of them supporting external DP altmode. Between each QMP
-> combo PHY and the corresponding Type-C port, sits one Parade PS8830
-> retimer which handles both orientation and SBU muxing. Add nodes for
-> each retimer, fix the graphs between connectors and the PHYs accordingly,
-> add the voltage regulators needed by each retimer and then enable all
-> 3 remaining DPUs.
+Hi,
 
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	typec-mux@8 {
-> +		compatible = "parade,ps8830";
-> +		reg = <0x08>;
-> +
-> +		clocks = <&rpmhcc RPMH_RF_CLK5>;
-> +		clock-names = "xo";
-> +
-> +		vdd15-supply = <&vreg_rtmr2_1p15>;
-> +		vdd18-supply = <&vreg_rtmr2_1p8>;
-> +		vdd33-supply = <&vreg_rtmr2_3p3>;
-> +
-> +		reset-gpios = <&tlmm 185 GPIO_ACTIVE_HIGH>;
+On Mon, 14 Oct 2024 00:24:00 +0300, Danila Tikhonov wrote:
+> This patch series adds support for the Samsung AMS581VF01 panel, used in
+> the Google Pixel 4a (sm7150-google-sunfish). Unlike many other devices,
+> which may use different panels in various revisions, the Pixel 4a has only
+> one possible panel option. Also this panel is not used in other devices.
+> Testing has been done by me.
+> 
+> The driver initializes the panel in normal mode (High Brightness Mode and
+> Brightness Dimming are disabled). High Brightness Mode and Brightness
+> Dimming are not supported yet.
+> 
+> [...]
 
-pincfg missing
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-> +&i2c3 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	typec-mux@8 {
-> +		compatible = "parade,ps8830";
-> +		reg = <0x08>;
-> +
-> +		clocks = <&rpmhcc RPMH_RF_CLK3>;
-> +		clock-names = "xo";
-> +
-> +		vdd15-supply = <&vreg_rtmr0_1p15>;
-> +		vdd18-supply = <&vreg_rtmr0_1p8>;
-> +		vdd33-supply = <&vreg_rtmr0_3p3>;
-> +
-> +		reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_HIGH>;
+[1/2] dt-bindings: display: panel: Add Samsung AMS581VF01
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/dca22e99706b70169534575fc82028bb6d44138a
+[2/2] drm/panel: Add Samsung AMS581VF01 panel driver
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/b330f3a069a20a5698ac840908579c325b7bdc4a
 
-Same here.
+-- 
+Neil
 
-> +&i2c7 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	typec-mux@8 {
-> +		compatible = "parade,ps8830";
-> +		reg = <0x8>;
-> +
-> +		clocks = <&rpmhcc RPMH_RF_CLK4>;
-> +		clock-names = "xo";
-> +
-> +		vdd15-supply = <&vreg_rtmr1_1p15>;
-> +		vdd18-supply = <&vreg_rtmr1_1p8>;
-> +		vdd33-supply = <&vreg_rtmr1_3p3>;
-> +
-> +		reset-gpios = <&tlmm 176 GPIO_ACTIVE_HIGH>;
-
-And here.
-
-Johan
 
