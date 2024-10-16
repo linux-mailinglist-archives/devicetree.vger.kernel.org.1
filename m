@@ -1,108 +1,174 @@
-Return-Path: <devicetree+bounces-111981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B729A0765
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:30:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD79D9A0767
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:30:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF927B21126
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:30:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 857A11F277F3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DE82071F7;
-	Wed, 16 Oct 2024 10:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD5BF2076AE;
+	Wed, 16 Oct 2024 10:29:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GAoTA0G9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2yf4lTx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74DCD2071EE
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 10:28:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E6802076AB;
+	Wed, 16 Oct 2024 10:29:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729074514; cv=none; b=c+/3R/zZ9VctgI37Fuw/+H7Wu/JaBIsO96yH6dtncAsrRWe3vX3B5pJ667pINcBnh+pjO/jbEiZAFzgt+QkDRUWoUrejXli1g0FjgaeH4udCe4Mea8LKI9QaWfWiDqXAFswUr8fdobVVo3UtQfZYlGpHaHWd+046bOLhzKB/+Qk=
+	t=1729074548; cv=none; b=JMXRpb8QJvXZCUDqhOgbCKHLx7wwOoO2i1bGK3OgT/4vKHwPHinWGG1gSgstQbmgdv+oDft3CTHfICmVublXzXym2PGASBSIPF9NQm3Wn0oNhnCe9/v9HTwTR0kvicRjko6Jy5sLSeoxfJWhukAyQVsH2ALKvaMhuSR/SPuboMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729074514; c=relaxed/simple;
-	bh=cPLPMI+yIzV0Ysp2WcB/FUdAA4R7BLdsnV3NMnx7rBg=;
+	s=arc-20240116; t=1729074548; c=relaxed/simple;
+	bh=pg7UYaMPx4mTb52bLj7hgV55+1gGge6GzAJdln6ov9c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P4sPd6ZD48JW4XFAn9GNDU8sWoekLwEKZ0HV4+5RFmfsxWhtNrK6o3HenKcn5QFI1GceY6/r0+p+6BQhNBM8TEBYogadQ79jdG6Nr0p8Grhwj0AJb0HcY7vmoysSYn130eqPOQyUmDJg4w9t0uixZUr/whowWFgbAdwTXQAPCL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GAoTA0G9; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539f6e1f756so3725515e87.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 03:28:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729074510; x=1729679310; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MAXpBaMtfWO8UJVVjb65PyHD/dGQ0kmBoOJFKkFJy0M=;
-        b=GAoTA0G9+N+nJiN1IEcM93LkU/f1vLY3uQlt04OF6pmhzIUseLmg8xCQeMvweBcl5S
-         9VozJBRHF2UGPzbRlGzP6kP1pdX8RhfTDX3xDWma3lWqs8qPJLsZXThx7oD6way2+VYe
-         CUbLMnj8oc0kqhc8l9+A1fLI4Urrx5GgtcSPxoNezqF79kUi2ezZstpQN7sJQtoB9sMn
-         c5neCtFHl/mu2RyfEqCFVxiVQ9gAiGpjy6gjVsWdfGqMB8+emeb+loNR4M1KIbAgVY8U
-         iyea+YZallaOu9SgRvSQf7XYml1LubKe/14VDteIFnvWIhcubZiDm3VZsNV9DmK2KFux
-         BMWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729074510; x=1729679310;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MAXpBaMtfWO8UJVVjb65PyHD/dGQ0kmBoOJFKkFJy0M=;
-        b=dJtBE01zgR68FIP8Mul73ByBYelJ3vMcHHRloqohzK3LW1otLQoeyeY3ydDbR/SkG7
-         YivR/8TyOF3bMA3q+N2aiEZBN7Z/jMLfSCV8fMOXpRWmlQAI7RVGuqkHA4t68rnMYZiv
-         4W+ZFubOTZuOd0+tPIeZodc8h+hs2I8kaHC4S7XJh2d6BJ61hgwWJunbopw36xcjKuxM
-         QnogzKrKLpyHBrga6hvNboE+JNkCiStPYwP1Jqsy36PIaUMHy6ZceH/0ViI6uLKvY8c1
-         nRuTCK7X0H77hZzJ6sxQm7+mHebMFx5Mb1B+xlbrkNGT/9QP/AAOLyfWeAqLahLwtBTs
-         wEHw==
-X-Forwarded-Encrypted: i=1; AJvYcCWBDptC6yZ9iEUJbe4+i6qVxS0D6cGSUr2mK6y2Y9e+RA8q43YSxHNmGNUJ/Y77CmpA8Fpv88sVS9LR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzja6gBQ8+M1pCnfhAcKGg3G38UX42Xl8vwXUZM1M+k4fTIFjSB
-	KLjy414HBPrT9h6rpDwyarEdO1rUu5MOtbvqvXMa9j0h1TzHtZY6vlp5hTzPreQ=
-X-Google-Smtp-Source: AGHT+IGtiqjFOVGlArjjfVOfTBmXeHODhday3PR0qenIrPwNidjJwD23eHbV+vCHzblqwLmnxlmcVQ==
-X-Received: by 2002:a05:6512:3c91:b0:539:f807:ada1 with SMTP id 2adb3069b0e04-53a03f97686mr2367940e87.58.1729074510575;
-        Wed, 16 Oct 2024 03:28:30 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a0000677fsm402183e87.194.2024.10.16.03.28.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 03:28:30 -0700 (PDT)
-Date: Wed, 16 Oct 2024 13:28:27 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	Kalle Valo <kvalo@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 01/22] dt-bindings: net: wireless: describe the ath12k
- AHB module
-Message-ID: <qzjgpwemwaknwbs3dwils6kaa5c3inabfvkaryvc32kblzfhy3@6yduooj4dk63>
-References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
- <20241015182637.955753-2-quic_rajkbhag@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CTSJfT4oOCeoOzrpu9Hyl8DogxEKgYiXVuHEl7VFHu3KIf3nVflypmOWCJybCHSTHBq9qzfbryyDe+QQZt7adlxvleS8qvXG4qROcQobFFECCu3QYx7mALFmaNSTCiN1JPAfX17B8500O9HfuV+AVy7fE4lHR0qMgJqzKfOyXDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2yf4lTx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CD37C4CECF;
+	Wed, 16 Oct 2024 10:29:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729074548;
+	bh=pg7UYaMPx4mTb52bLj7hgV55+1gGge6GzAJdln6ov9c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b2yf4lTx8ojmaCj5oBgFI44qnJKC5wieTTwoGMja4nTY6AiQoxiYgyEUvOgdFEM7q
+	 bXxyuRZ/LirXoOcJSfOKuO8+KWJJo/qIgTxUlehM2AUjxKpu2XHwOdcC/BVXLQ8wUM
+	 ZYIXRSxoPONaAsPDvg/FoiVNVK8MSHr+kXzcMp3rlG+VAtFApYOKOcA5o7/RkB/cuW
+	 eOOmjf7chYKDaPRIEHIz+pfla4DE4cDTrxOZSaehnHPCVibyBHK1Qp6fssXWEAQ8XV
+	 kTC5ggwOXEh6heECxbBz8/BZyo7eXll3sjtb1LBudmPZ/2wx67n1g22dYaMpcK9AZl
+	 lCTcoL2gr+GwA==
+Date: Wed, 16 Oct 2024 11:29:03 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Lewis Hanly <lewis.hanly@microchip.com>
+Subject: Re: [RFC v7 4/6] gpio: mpfs: add polarfire soc gpio support
+Message-ID: <20241016-dandelion-hypnosis-9d989bb2fdd1@spud>
+References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
+ <20240723-underage-wheat-7dd65c2158e7@wendy>
+ <CACRpkdbRE695f-+do1HYpOZ6e4qxgUBWJzEPO2hTCuZ3xxYHQg@mail.gmail.com>
+ <20241016-shallot-nerd-51eeba039ba0@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="CmBUU6+EmCtmkoM0"
 Content-Disposition: inline
-In-Reply-To: <20241015182637.955753-2-quic_rajkbhag@quicinc.com>
+In-Reply-To: <20241016-shallot-nerd-51eeba039ba0@spud>
 
-On Tue, Oct 15, 2024 at 11:56:16PM +0530, Raj Kumar Bhagat wrote:
-> Add device-tree bindings for the ATH12K module found in the IPQ5332
-> device.
-> 
-> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-> ---
->  .../net/wireless/qcom,ath12k-ahb.yaml         | 293 ++++++++++++++++++
->  1 file changed, 293 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
 
-Generic comment, please add qcom,ath12k-calibration-variant
+--CmBUU6+EmCtmkoM0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-With best wishes
-Dmitry
+On Wed, Oct 16, 2024 at 10:56:32AM +0100, Conor Dooley wrote:
+> On Mon, Aug 05, 2024 at 10:04:53AM +0200, Linus Walleij wrote:
+> > On Tue, Jul 23, 2024 at 1:28=E2=80=AFPM Conor Dooley <conor.dooley@micr=
+ochip.com> wrote:
+> >=20
+> >=20
+> > > From: Lewis Hanly <lewis.hanly@microchip.com>
+> > >
+> > > Add a driver to support the Polarfire SoC gpio controller
+> > >
+> > > Signed-off-by: Lewis Hanly <lewis.hanly@microchip.com>
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > Just a comment on second thought:
+> >=20
+> > > +config GPIO_POLARFIRE_SOC
+> > > +       bool "Microchip FPGA GPIO support"
+> > > +       depends on OF_GPIO
+> > > +       select GPIOLIB_IRQCHIP
+> >=20
+> > select GPIO_GENERIC?
+> >=20
+> > > +static int mpfs_gpio_direction_input(struct gpio_chip *gc, unsigned =
+int gpio_index)
+> > > +{
+> > > +       struct mpfs_gpio_chip *mpfs_gpio =3D gpiochip_get_data(gc);
+> > > +       u32 gpio_cfg;
+> > > +       unsigned long flags;
+> > > +
+> > > +       raw_spin_lock_irqsave(&mpfs_gpio->lock, flags);
+> > > +
+> > > +       gpio_cfg =3D readl(mpfs_gpio->base + MPFS_GPIO_CTRL(gpio_inde=
+x));
+> > > +       gpio_cfg |=3D MPFS_GPIO_EN_IN;
+> > > +       gpio_cfg &=3D ~(MPFS_GPIO_EN_OUT | MPFS_GPIO_EN_OUT_BUF);
+> >=20
+> > OK this part is unique...
+> >=20
+> > > +static int mpfs_gpio_direction_output(struct gpio_chip *gc, unsigned=
+ int gpio_index, int value)
+> > > +{
+> > > +       struct mpfs_gpio_chip *mpfs_gpio =3D gpiochip_get_data(gc);
+> > > +       u32 gpio_cfg;
+> > > +       unsigned long flags;
+> > > +
+> > > +       raw_spin_lock_irqsave(&mpfs_gpio->lock, flags);
+> > > +
+> > > +       gpio_cfg =3D readl(mpfs_gpio->base + MPFS_GPIO_CTRL(gpio_inde=
+x));
+> > > +       gpio_cfg |=3D MPFS_GPIO_EN_OUT | MPFS_GPIO_EN_OUT_BUF;
+> >=20
+> > Also here
+> >=20
+> > > +static int mpfs_gpio_get_direction(struct gpio_chip *gc,
+> > > +                                  unsigned int gpio_index)
+> > > +static int mpfs_gpio_get(struct gpio_chip *gc,
+> > > +                        unsigned int gpio_index)
+> > > +static void mpfs_gpio_set(struct gpio_chip *gc, unsigned int gpio_in=
+dex, int value)
+> >=20
+> > But these are just MMIO functions.
+> >=20
+> > Is it possible to use augmented generic MMIO, i.e just override these
+> > two functions that
+> > need special handling?
+>=20
+> So, I've been looking into this again (finally), with an eye to stripping
+> the interrupt handling bits out, and trying to upstream this in pieces.
+> I dunno if I'm making a mistake here, but I don't know if there's much
+> value in implementing this suggestion - as far as I can tell only the
+> get()/set() functions can be replaced by what's provided by gpio-mmio.c.
+> There are no controller wide registers that control direction and so
+> bgpio_get_dir() can't be used - direction is read from the same
+> mpfs_gpio->base + MPFS_GPIO_CTRL(gpio_index) registers that it is set
+> using. Adding bgpio stuff, to just go ahead and overwrite it, to save on
+> trivial get()/set() implementations seems to me like adding complication
+> rather than removing it. What am I missing here?
+
+What does bring a nice simplification though, IMO, is regmap. I am
+pretty sure that using it was one of the suggestions made last time
+Lewis submitted this - so I think I'm going to do that instead.
+
+--CmBUU6+EmCtmkoM0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZw+VbgAKCRB4tDGHoIJi
+0lJSAP4z+obM5BYOKqwKB2PbdE1VqVeBD3ETy6L0njmh6AlwGwD+Py5sBR753oNR
+tRfAkzrBjAI+sykx7zgTzwgeYg8adQg=
+=wRDg
+-----END PGP SIGNATURE-----
+
+--CmBUU6+EmCtmkoM0--
 
