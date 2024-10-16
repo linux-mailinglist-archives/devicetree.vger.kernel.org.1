@@ -1,154 +1,132 @@
-Return-Path: <devicetree+bounces-112071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 767329A0E94
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:38:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 571489A0ECB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:45:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8B371C21D3D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:38:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2C95B22DB9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C2B920F5BB;
-	Wed, 16 Oct 2024 15:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A154920C03D;
+	Wed, 16 Oct 2024 15:45:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FqjmKnTo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J865w4As"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C3220F5B3
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 15:38:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB96F20C034
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 15:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729093115; cv=none; b=IZlwu2Z+Kg1yrb9phshFe3noO5PFuVLC9gsbao1lJO5nhwVvEf4h9TXB6gFPYbiBm1aj3LbzlKeuTQF4Jp1yjbjoDmYDxoW6uqJ/4uyK4EvTpbejvvwnr8ccoZS2yxf0T7oD1tHzU4cLmfVLs95TNSg+jyvo6bwyHtC/Y37BbZY=
+	t=1729093507; cv=none; b=fE77MGiKundVBuhiP/vEcswJ5MpPSRvALNUB5CnUwsRSG/lw2S31Wko32hxE2x6xt7A7wvq96JmbFDB4a02EJxVkz2i7PyrWODy5Q3vK9aKgU7n1XIz0sf0BOZMstMPRTbbhxwPRvPqt0QfYbv580b30+SL63Z6F9ZkJFiksT44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729093115; c=relaxed/simple;
-	bh=LiJ79jN2TmlQgUBk1FG8JumW/gNgFJ2x7cU3gTfTUnM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=D5F6EnaxW5XDL4wSGp91aejkkDnVCKNxVer0tz0sopdp877Bxge4oLofrn3QZXfa/VcD47vByt3RYSB1j5fkkgL5MOjUdnxFunZ6o8fjvbKSAJN7T6k0Sq+2BnCCh3uq/C3ONKMrXeSaPqtG54dvM+jszB/ak8Vyoz2ceVqFqF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FqjmKnTo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD77C4CED4;
-	Wed, 16 Oct 2024 15:38:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729093114;
-	bh=LiJ79jN2TmlQgUBk1FG8JumW/gNgFJ2x7cU3gTfTUnM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=FqjmKnTopadPWqx5pMOdtE35QYY31UbXYULIcgeI3hR9SY8MepzVhGuytQoXUxF0d
-	 IvYliHIskkhqNUjLpjGPovuTwPm8Qc9BIm0RTTksqoIjxGPiufTyRT60bdS6ZZ7S93
-	 EZM48vFw7SNV9yy4vcl0AKhUFTqVjae/w3OU76NWJhS2ovfFWtdvJ5MuGFitcof+KV
-	 eW3Pf2JvzWyPTcUN4Pm2+7p61mBDTSPdkAP0TVD/IJYdnBGofG8G7saGz5ZFojt0SU
-	 +V0I5dW0p4XnBVl+d4tsccclObJxo0OEcu0VK9S6gI8Vlb7gAiIKV78TO5idU3WKPp
-	 RpsMUvZU9PQqg==
-Date: Wed, 16 Oct 2024 10:38:33 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1729093507; c=relaxed/simple;
+	bh=TgzrkvgyruSxp/GyWnOJ8vI2zTVE6CXKwpfh2BBM8lA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gdWus0JQWZMmftwj8giGRGag0H5wiX7Mgti0vpwbhQnzVLh30yAYbaOgKDgg1qLj3AafpuCkvE26UtwwIx0q8hsqXPh134l5RKEr2bSVc+kSIz/L7OfZS7FUb26ZKYvpit9pRsOkvJTedZpJlwC5WbJMgNppH+uK1C7+CdkJGV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J865w4As; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d3e8d923fso4627067f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 08:45:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729093504; x=1729698304; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=anU227wWD5p9c6NGfk2++dpWhZp0Cho/esdFJsOtL3w=;
+        b=J865w4AsG0d0Fkcc+tkjjfj4CTuqlWKOkxzqpoVgl4tqcBqTETSLgdVcjVoMq44R7I
+         pj3Hpo3/V59fjd88jiMjdoBo4f2QTvE1J8itkr1QkGTQg9P1y8d5LSHc6iFeyW12kY3m
+         JXxZH9ewOTy0J+Uu55BqPIVI6nyKhXGymuHxd8DMpxYpQ6bDeB4OroiOna6tYL22n63h
+         PTmEHQwHizdWUV6cq2II7XMjBWUxb5ETBcG/7WOkiZX/xBzsqI1r8n8KU6Dqt1LUu9iD
+         Gy1TBQcxd6ezYp5C3GefO5mjVI55xtwbrFHTkV+I/ktFa0WS0AlBcvBqXFWW8+HVo+Yi
+         USnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729093504; x=1729698304;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=anU227wWD5p9c6NGfk2++dpWhZp0Cho/esdFJsOtL3w=;
+        b=VpT5W58gRo9S4NZ4LZnKFaM5DoB2iXbXOHD7nj6trisGrueqW3HRsHkSOaPjAPSR8k
+         5UJs2Rud5XkXreV7AfmfwsJSGvRevnzYNmcYl06P9f40Lzt8DqESOsgTEgHzqGeTRSFK
+         bBsKDI2gxVGINSY/lGmI0wH+GD8JQyHFh1xYaxjD4EsaokDQb0TCuChyz/KXf8C18B/1
+         Wv5NiJF9tjc5VzA4RTJ84ehEUNeLSURk6EngdbyxmmD2tqWpQh83ZQ7ypbqm9Q3bAHAs
+         PYaKQMLpMvo2w+U2cytuL2kLnH4yAt3OrDWTRCs8RPK1aZilpLXTvLW4XMnkblDDBspV
+         5QOA==
+X-Forwarded-Encrypted: i=1; AJvYcCU31Kj/QSNO6GmN5kGPSTkl0b73RjZ6m5f1GotlM3Q+R2j9fk3/V5DfebsFj/eDDIJlC5UPIDVCp6H2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwALfD8xkB9R4i48t2LCO1U0pcwSs+Fz7/mDp5xPz1/+ZGKG4M3
+	vgcdsJK1JdqU9FN8HEf+0Lnqi+d0neNJLOFDliuJ41+mTqT8REzTzBxhoYadSDY=
+X-Google-Smtp-Source: AGHT+IGRr+iJ+JXBjhKHnWyJ8btrX2CzaFEg+jEL8fHLi2mI3kdazj2sf5ZCHFXS0FJnqiDhJm6dag==
+X-Received: by 2002:adf:ee44:0:b0:37d:52db:a0a1 with SMTP id ffacd0b85a97d-37d86bda4dfmr2927571f8f.30.1729093504072;
+        Wed, 16 Oct 2024 08:45:04 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef80:a75b:8bbb:91be:de0])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fc44a84sm4623361f8f.114.2024.10.16.08.45.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 08:45:03 -0700 (PDT)
+Date: Wed, 16 Oct 2024 17:44:59 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Johan Hovold <johan+linaro@kernel.org>,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/6] arm64: dts: qcom: x1e80100: fix nvme regulator boot
+ glitch
+Message-ID: <Zw_fe1tN_rdRR659@linaro.org>
+References: <20241016145112.24785-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: William Zhang <william.zhang@broadcom.com>, 
- Anand Gore <anand.gore@broadcom.com>, devicetree@vger.kernel.org, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Benjamin Larsson <benjamin.larsson@genexis.eu>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Kursad Oney <kursad.oney@broadcom.com>, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-In-Reply-To: <20241016-genexis-xg6846b-base-v2-0-6a7cc2ee57eb@linaro.org>
-References: <20241016-genexis-xg6846b-base-v2-0-6a7cc2ee57eb@linaro.org>
-Message-Id: <172909289207.1676420.4308278194478234300.robh@kernel.org>
-Subject: Re: [PATCH v2 0/9] ARM: dts: Add some BCM6846 device tree
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241016145112.24785-1-johan+linaro@kernel.org>
 
+On Wed, Oct 16, 2024 at 04:51:06PM +0200, Johan Hovold wrote:
+> The NVMe regulator has been left enabled by the boot firmware. Mark it
+> as such to avoid disabling the regulator temporarily during boot.
+> 
+> Johan
 
-On Wed, 16 Oct 2024 08:41:00 +0200, Linus Walleij wrote:
-> This adds some silicon blocks to the BCM6846 DTSI file and
-> adds a device tree for the Genexis XG6846B device that
-> make use of it.
-> 
-> This is mainly so as to get this off my hard drive and
-> share the basics with others who want to work on the
-> BCM6846.
-> 
-> I think most of the DTSI changes can be just copied verbatim
-> to the rest of the BCMBCA family (maybe extracted into a
-> common bcbca.dtsi?) but let's think about that later.
-> This will do for now.
-> 
-> The XG6846B device tree uses the new shift register bits
-> property of the BCM63138 LEDs, which is ACKed by the
-> DT maintainers albeit not yet merged in the LED tree.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> Changes in v2:
-> - Use the new "brcm,bcm6846-mdio" compatible for the MDIO block. (Merged
->   to the netdev tree).
-> - Add the ARM PrimeCell PL081 DMA controller block.
-> - Link to v1: https://lore.kernel.org/r/20241011-genexis-xg6846b-base-v1-0-f04d6f6f93ce@linaro.org
-> 
-> ---
-> Linus Walleij (9):
->       ARM: dts: bcm6846: Add iproc rng
->       ARM: dts: bcm6846: Enable watchdog
->       ARM: dts: bcm6846: Add GPIO blocks
->       ARM: dts: bcm6846: Add MDIO control block
->       ARM: dts: bcm6846: Add LED controller
->       ARM: dts: bcm6846: Add ARM PL081 DMA block
->       dt-bindings: vendor-prefixes: Add Genexis
->       dt-bindings: arm: bcmbca: Add Genexis XG6846B
->       ARM: dts: broadcom: Add Genexis XG6846B DTS file
-> 
->  .../devicetree/bindings/arm/bcm/brcm,bcmbca.yaml   |   1 +
->  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
->  arch/arm/boot/dts/broadcom/Makefile                |   1 +
->  .../boot/dts/broadcom/bcm6846-genexis-xg6846b.dts  | 244 +++++++++++++++++++++
->  arch/arm/boot/dts/broadcom/bcm6846.dtsi            | 120 ++++++++++
->  5 files changed, 368 insertions(+)
-> ---
-> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
-> change-id: 20241010-genexis-xg6846b-base-ef3fbec0be01
-> 
-> Best regards,
-> --
-> Linus Walleij <linus.walleij@linaro.org>
+These look good to me, thanks!
+
+Can you or Aleksandrs send another one for the x1e80100-dell-xps13-9345
+that was applied by Bjorn yesterday?
+
+FWIW, for these patches:
+
+Reviewed-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+
 > 
 > 
+> Johan Hovold (6):
+>   arm64: dts: qcom: x1e78100-t14s: fix nvme regulator boot glitch
+>   arm64: dts: qcom: x1e80100-crd: fix nvme regulator boot glitch
+>   arm64: dts: qcom: x1e80100-vivobook-s15: fix nvme regulator boot
+>     glitch
+>   arm64: dts: qcom: x1e80100-yoga-slim7x: fix nvme regulator boot glitch
+>   arm64: dts: qcom: x1e80100-microsoft-romulus: fix nvme regulator boot
+>     glitch
+>   arm64: dts: qcom: x1e80100-qcp: fix nvme regulator boot glitch
 > 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y broadcom/bcm6846-genexis-xg6846b.dtb' for 20241016-genexis-xg6846b-base-v2-0-6a7cc2ee57eb@linaro.org:
-
-arch/arm/boot/dts/broadcom/bcm6846-genexis-xg6846b.dtb: gpio@508: 'ngpios' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mmio.yaml#
-arch/arm/boot/dts/broadcom/bcm6846-genexis-xg6846b.dtb: mdio@2060: #address-cells: 1 was expected
-	from schema $id: http://devicetree.org/schemas/net/mdio.yaml#
-arch/arm/boot/dts/broadcom/bcm6846-genexis-xg6846b.dtb: mdio@2060: #size-cells: 0 was expected
-	from schema $id: http://devicetree.org/schemas/net/mdio.yaml#
-arch/arm/boot/dts/broadcom/bcm6846-genexis-xg6846b.dtb: /bus@ff800000/mdio@2060: failed to match any schema with compatible: ['brcm,bcm6846-mdio']
-
-
-
-
-
+>  arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts | 2 ++
+>  arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts    | 2 ++
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts                  | 2 ++
+>  arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts   | 2 ++
+>  arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi   | 2 ++
+>  arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                  | 2 ++
+>  6 files changed, 12 insertions(+)
+> 
+> -- 
+> 2.45.2
+> 
 
