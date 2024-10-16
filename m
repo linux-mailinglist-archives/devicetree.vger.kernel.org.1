@@ -1,145 +1,186 @@
-Return-Path: <devicetree+bounces-111907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E2A9A0466
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:36:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B52A9A0469
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:37:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3879B284AE4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:36:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F5141C228D4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA98E1FDFA0;
-	Wed, 16 Oct 2024 08:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F251FCC68;
+	Wed, 16 Oct 2024 08:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dh-electronics.com header.i=@dh-electronics.com header.b="mqCQhPKl"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VnG97B2a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx2.securetransport.de (mx2.securetransport.de [188.68.39.254])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68221FCC6F
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 08:36:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.68.39.254
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4CB61FCC6C
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 08:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729067795; cv=none; b=ajqaxxVi3fp932y0xZPO26r/eE73JDO/1aSczfSiCiXaIiecevvFG3PcR8sn90CRE4ZH+ietTzbhXW+3e+nNf2DXOZ95sTwWtwqLjAOiOgNhsoTXJlr1uswih04lC7BO8hN1d83K8Bik6MabEwJSgYUvTUbwicQNmVwOqe8Rxwc=
+	t=1729067820; cv=none; b=c//7aMa1ZGa+LG/5NyjJ9ADAJs5y9hq7tpO/99vJmgfcCpnPr38LKvKQpke0bcQuJ2B1MeAdGSoUa9iusRmtVXKZHe8ju4Kco/P22YlMtwU0ccdndjgotPoB07gIB80+epGTDCLWUc9RvDlFhU/6FT/Gkl2SxlWgVAA5dA1HDTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729067795; c=relaxed/simple;
-	bh=IwP04WKBaCP21en/MlLDdR9XF2WptB09LVN1jFJ0wcs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=G0/+4qtOzra/IXOlqJwefgoSbYE5NnSkXHICJlwz33fTSWlcdRSW0xhWgIkkIfOSnriRHYIq4aH2d8uAYHkVqAiGtgDZJNH5vk4UCMJdAKtNoWSjssTu2EUnRPy6/YLdVZOO4HPPHsbw+Kl5k0xTtIgsVPS7m0G5QOytDXQ8oQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dh-electronics.com; spf=pass smtp.mailfrom=dh-electronics.com; dkim=pass (2048-bit key) header.d=dh-electronics.com header.i=@dh-electronics.com header.b=mqCQhPKl; arc=none smtp.client-ip=188.68.39.254
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dh-electronics.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dh-electronics.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-	s=dhelectronicscom; t=1729067614;
-	bh=IwP04WKBaCP21en/MlLDdR9XF2WptB09LVN1jFJ0wcs=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=mqCQhPKlM9pxgugBrxlrGanrVgjCUDh9OgF0YxCtV4pL25KQyltq8AWHsimRLEFNA
-	 yLkrxnm+XLDsdHidT06SsE/pm++IS+yrsu6ZBlIJPgJqIpuzgyPnHjCdq7UJX6x87u
-	 UjfNK2IplpO6Arv+WjTVAoiYnZxd6QquJbpoTNRdB5pSQrL/AGgLGj1R2PeImHojRd
-	 XQxB5DokCLsAjxJOUpM4HNepaP6PZl2Y23MT6s1EXpv0g2hOnqN4aYPclnqbxhKtSn
-	 iJGJSupUeN+CBzefrcf6jcasKdMPc2BHlHqgWWK3angw2rwHKC6u5mG6xDyQKOWGs4
-	 oJYkIRJ6FYkAg==
-X-secureTransport-forwarded: yes
-From: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Complaints-To: abuse@cubewerk.de
-To: Marek Vasut <marex@denx.de>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-CC: Alexander Stein <alexander.stein@ew.tq-group.com>, Conor Dooley
-	<conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Gregor Herburger
-	<gregor.herburger@ew.tq-group.com>, Hiago De Franco
-	<hiago.franco@toradex.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, "Joao
- Paulo Goncalves" <joao.goncalves@toradex.com>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Mathieu Othacehe <m.othacehe@gmail.com>, Max Merchel
-	<Max.Merchel@ew.tq-group.com>, Michael Walle <mwalle@kernel.org>, "Parthiban
- Nallathambi" <parthiban@linumiz.com>, Peng Fan <peng.fan@nxp.com>,
-	"Pengutronix Kernel Team" <kernel@pengutronix.de>, Rob Herring
-	<robh@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>, Shawn Guo
-	<shawnguo@kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	kernel <kernel@dh-electronics.com>
-Subject: RE: [PATCH 2/2] ARM: dts: imx6dl: Add support for i.MX6DL DHCOM SoM
- on PDK2 carrier board
-Thread-Topic: [PATCH 2/2] ARM: dts: imx6dl: Add support for i.MX6DL DHCOM SoM
- on PDK2 carrier board
-Thread-Index: AQHbH15Xo7DcQ/Ms30iV0KSi5xSbHrKJDUUw
-Date: Wed, 16 Oct 2024 08:33:31 +0000
-Message-ID: <2f78b2c77c5f4876824759b6210874d7@dh-electronics.com>
-References: <20241015235926.168582-1-marex@denx.de>
- <20241015235926.168582-2-marex@denx.de>
-In-Reply-To: <20241015235926.168582-2-marex@denx.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1729067820; c=relaxed/simple;
+	bh=w3g0Fn5Mfd9fDtUeCzIpWV081s38HRgl5Pl5wCNQDG4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ehVaHZ/i/jzfRNF+aGSkA8+J8Ms7Vo+CTPG0ydyVELc8wD4HRBHNTPt2axCPTa9RVGWNkkdduQ4x2r3vbNKJEqYMU777PMYTC+wEPKaDVfxMR0k7hJXqGHsx87ETJLZe8UIqPQoakrNaXag10SyEYjd5S9kvcjFsQn6LfdWxDbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VnG97B2a; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4305724c12eso47968735e9.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 01:36:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729067817; x=1729672617; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gKZmMs4w+DDsatMIrnFTI7zIzR+qyauPVq2X7PfsunI=;
+        b=VnG97B2aJiGcNV4XW5AwaohFYBrIreB/nh4Zk+rfpjrH6QhXbW9VnCHDitGArmSxSD
+         YF0VuAaJSnCdQbHVlaam1QM/63vxpZOLOJJ98wxU4jWWuHGoys6060ShGFfeaeXUbr1F
+         70n+AuExU49hT0negJd5FxjWFZuWLrMHP7rbBiYf176YsDSGRLgXmlj8AZmNK0MWj1+C
+         CpRvOFJn5PODWUSoM5yZYXTf8Khp7Z/qJ/Uk6yFiQvDDX/DNMQHCc2d+VFv5wi1ZK2Is
+         gOddCNLeGLNcmHRFmbD7fy6Pgk6YvLD03lROQoKG2SxueVEoKOSsKB9+2xyLHCX3TTHC
+         5DoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729067817; x=1729672617;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gKZmMs4w+DDsatMIrnFTI7zIzR+qyauPVq2X7PfsunI=;
+        b=Yv8PNUA/o/3b+bdxRFVwJ/yB9ukGx11sLejJstPu4N22HFQtZFQz3+njvPgafBDNSQ
+         jibhnk3ZifChWzjlNfn+GHzBA2aMATclmKFuNP07f1+hIkK3ssboUiO8tb29gjGqP3TX
+         dTYcCGsH5kkVcr5odrhFW1h8TpatGrgevLOJjATcVo9GUp4kROEIjYY9woA3cKALKiHW
+         UmCwR3ZkKLb1vYAgv/xV5lrX8QfG8eTg5krLgSGxYcRY5hNa8hMPNyfWafMMrKy8+dOI
+         B8je5bmnewCyQ7zlMGJD5WeR97zhuEJwZ2XRGH0Ck+SYOE3yHmXZ5Z8DeJgnbitvX3R2
+         5PnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXFLnVBWwUhftk4f/f24pZjoj1VdBeUCALQtYxtdLqjuLL/KvTM2/3TO3n28j6ajv3Junwty2L90M+J@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbvAzJ7Fw0MMIzH3lw5yM03IcBu6c95hLTydFaqYkpvm83Ga+2
+	vX/UG8qz5kIMZp1rDMBoItVW+lrHzKJeed9X9cOzB/lEFvfNDVdGVCYHr9l8ozQ=
+X-Google-Smtp-Source: AGHT+IFRJdBQH582trH9wT6BtwYZ7vQBkNADiYoMcxo+OBtSWkYERq9wOrwJkvE9a86yjCnfmAOaxA==
+X-Received: by 2002:a05:600c:1c9d:b0:430:57f1:d6d with SMTP id 5b1f17b1804b1-431255d5099mr124678535e9.1.1729067817144;
+        Wed, 16 Oct 2024 01:36:57 -0700 (PDT)
+Received: from dfj (host-79-50-238-21.retail.telecomitalia.it. [79.50.238.21])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4313f55defbsm42571395e9.7.2024.10.16.01.36.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 01:36:56 -0700 (PDT)
+Date: Wed, 16 Oct 2024 10:35:26 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v6 7/8] iio: dac: ad3552r: add high-speed platform driver
+Message-ID: <c6emj4i56zozdpkgx6gkzgdlnwvkagll6g2yc6naumnrxqkvee@5ktdjfsem5bj>
+References: <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-0-eeef0c1e0e56@baylibre.com>
+ <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-7-eeef0c1e0e56@baylibre.com>
+ <c3d55f78-5a54-49f8-b6a1-4ed0f24f8666@baylibre.com>
+ <8642bdb546c6046e8fe1d20ef4c93e70c95c6f71.camel@gmail.com>
+ <2815c8b0-e2ad-47cb-b5aa-00297cf57899@baylibre.com>
+ <781cf5fa075e13260e1b20f5acadb70bd8107cd0.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <781cf5fa075e13260e1b20f5acadb70bd8107cd0.camel@gmail.com>
 
-RnJvbTogTWFyZWsgVmFzdXQgPG1hcmV4QGRlbnguZGU+DQpTZW50OiBXZWRuZXNkYXksIE9jdG9i
-ZXIgMTYsIDIwMjQgMTo1OSBBTQ0KPiBBZGQgc3VwcG9ydCBmb3IgdGhlIERIIGVsZWN0cm9uaWNz
-IGkuTVg2REwgREhDT00gU29NIGFuZCBhIFBESzIgZXZhbHVhdGlvbg0KPiBib2FyZC4gVGhlIGV2
-YWx1YXRpb24gYm9hcmQgZmVhdHVyZXMgdGhyZWUgc2VyaWFsIHBvcnRzLCBVU0IgT1RHLCBVU0Ig
-aG9zdA0KPiB3aXRoIGFuIFVTQiBodWIsIEZhc3Qgb3IgR2lnYWJpdCBldGhlcm5ldCwgZU1NQywg
-dVNELCBTRCwgYW5hbG9nIGF1ZGlvLA0KPiBQQ0llIGFuZCBIRE1JIHZpZGVvIG91dHB1dC4NCj4g
-DQo+IEFsbCBvZiB0aGUgYWZvcmVtZW50aW9uZWQgZmVhdHVyZXMgZXhjZXB0IGZvciBtU0FUQSBh
-cmUgc3VwcG9ydGVkLCBtU0FUQQ0KPiBpcyBub3QgYXZhaWxhYmxlIG9uIGkuTVg2REwgYW5kIGlz
-IG9ubHkgYXZhaWxhYmxlIG9uIERIQ09NIHBvcHVsYXRlZCB3aXRoDQo+IGkuTVg2USBTb0Mgd2hp
-Y2ggaXMgYWxyZWFkeSBzdXBwb3J0ZWQgdXBzdHJlYW0uDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBN
-YXJlayBWYXN1dCA8bWFyZXhAZGVueC5kZT4NCj4gLS0tDQo+IENjOiBBbGV4YW5kZXIgU3RlaW4g
-PGFsZXhhbmRlci5zdGVpbkBldy50cS1ncm91cC5jb20+DQo+IENjOiBDaHJpc3RvcGggTmllZGVy
-bWFpZXIgPGNuaWVkZXJtYWllckBkaC1lbGVjdHJvbmljcy5jb20+DQo+IENjOiBDb25vciBEb29s
-ZXkgPGNvbm9yK2R0QGtlcm5lbC5vcmc+DQo+IENjOiBGYWJpbyBFc3RldmFtIDxmZXN0ZXZhbUBn
-bWFpbC5jb20+DQo+IENjOiBHcmVnb3IgSGVyYnVyZ2VyIDxncmVnb3IuaGVyYnVyZ2VyQGV3LnRx
-LWdyb3VwLmNvbT4NCj4gQ2M6IEhpYWdvIERlIEZyYW5jbyA8aGlhZ28uZnJhbmNvQHRvcmFkZXgu
-Y29tPg0KPiBDYzogSHVnbyBWaWxsZW5ldXZlIDxodmlsbGVuZXV2ZUBkaW1vbm9mZi5jb20+DQo+
-IENjOiBKb2FvIFBhdWxvIEdvbmNhbHZlcyA8am9hby5nb25jYWx2ZXNAdG9yYWRleC5jb20+DQo+
-IENjOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnprK2R0QGtlcm5lbC5vcmc+DQo+IENjOiBNYXJl
-ayBWYXN1dCA8bWFyZXhAZGVueC5kZT4NCj4gQ2M6IE1hdGhpZXUgT3RoYWNlaGUgPG0ub3RoYWNl
-aGVAZ21haWwuY29tPg0KPiBDYzogTWF4IE1lcmNoZWwgPE1heC5NZXJjaGVsQGV3LnRxLWdyb3Vw
-LmNvbT4NCj4gQ2M6IE1pY2hhZWwgV2FsbGUgPG13YWxsZUBrZXJuZWwub3JnPg0KPiBDYzogUGFy
-dGhpYmFuIE5hbGxhdGhhbWJpIDxwYXJ0aGliYW5AbGludW1pei5jb20+DQo+IENjOiBQZW5nIEZh
-biA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gQ2M6IFBlbmd1dHJvbml4IEtlcm5lbCBUZWFtIDxrZXJu
-ZWxAcGVuZ3V0cm9uaXguZGU+DQo+IENjOiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0K
-PiBDYzogU2FzY2hhIEhhdWVyIDxzLmhhdWVyQHBlbmd1dHJvbml4LmRlPg0KPiBDYzogU2hhd24g
-R3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0KPiBDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5v
-cmcNCj4gQ2M6IGlteEBsaXN0cy5saW51eC5kZXYNCj4gQ2M6IGtlcm5lbEBkaC1lbGVjdHJvbmlj
-cy5jb20NCj4gQ2M6IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiAtLS0N
-Cj4gIGFyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvTWFrZWZpbGUgICAgICAgICAgICB8ICAxICsN
-Cj4gIC4uLi9ib290L2R0cy9ueHAvaW14L2lteDZkbC1kaGNvbS1wZGsyLmR0cyAgICB8IDIwICsr
-KysrKysrKysrKysrKysrKysNCj4gIDIgZmlsZXMgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKQ0K
-PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NmRsLWRo
-Y29tLXBkazIuZHRzDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lt
-eC9NYWtlZmlsZSBiL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvTWFrZWZpbGUNCj4gaW5kZXgg
-OTJlMjkxNjAzZWExMy4uNTQxZWViYjk2OGNmNCAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm0vYm9v
-dC9kdHMvbnhwL2lteC9NYWtlZmlsZQ0KPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9ueHAvaW14
-L01ha2VmaWxlDQo+IEBAIC03Myw2ICs3Myw3IEBAIGR0Yi0kKENPTkZJR19TT0NfSU1YNlEpICs9
-IFwNCj4gICAgICAgICBpbXg2ZGwtY3Vib3gtaS1lbW1jLXNvbS12MTUuZHRiIFwNCj4gICAgICAg
-ICBpbXg2ZGwtY3Vib3gtaS1zb20tdjE1LmR0YiBcDQo+ICAgICAgICAgaW14NmRsLWRmaS1mczcw
-MC1tNjAuZHRiIFwNCj4gKyAgICAgICBpbXg2ZGwtZGhjb20tcGRrMi5kdGIgXA0KPiAgICAgICAg
-IGlteDZkbC1kaGNvbS1waWNvaXR4LmR0YiBcDQo+ICAgICAgICAgaW14NmRsLWVja2VsbWFubi1j
-aTR4MTAuZHRiIFwNCj4gICAgICAgICBpbXg2ZGwtZW1jb24tYXZhcmkuZHRiIFwNCj4gZGlmZiAt
-LWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NmRsLWRoY29tLXBkazIuZHRzDQo+
-IGIvYXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2ZGwtZGhjb20tcGRrMi5kdHMNCj4gbmV3
-IGZpbGUgbW9kZSAxMDA2NDQNCj4gaW5kZXggMDAwMDAwMDAwMDAwMC4uMzgyMzU5MjUyNTdhNw0K
-PiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NmRs
-LWRoY29tLXBkazIuZHRzDQo+IEBAIC0wLDAgKzEsMjAgQEANCj4gKy8vIFNQRFgtTGljZW5zZS1J
-ZGVudGlmaWVyOiBHUEwtMi4wKw0KPiArLyoNCj4gKyAqIENvcHlyaWdodCAoQykgMjAyNCBNYXJl
-ayBWYXN1dCA8bWFyZXhAZGVueC5kZT4NCj4gKyAqDQo+ICsgKiBESENPTSBpTVg2IHZhcmlhbnQ6
-DQo+ICsgKiBESENNLWlNWDZETC1DMDgwLVIxMDItRjA4MTktRS1TRC1SVEMtVC1IUy1JLTAxRDIN
-Cj4gKyAqIERIQ09NIFBDQiBudW1iZXI6IDQ5My00MDAgb3IgbmV3ZXINCj4gKyAqIFBESzIgUENC
-IG51bWJlcjogNTE2LTQwMCBvciBuZXdlcg0KPiArICovDQo+ICsvZHRzLXYxLzsNCj4gKw0KPiAr
-I2luY2x1ZGUgImlteDZkbC5kdHNpIg0KPiArI2luY2x1ZGUgImlteDZxZGwtZGhjb20tc29tLmR0
-c2kiDQo+ICsjaW5jbHVkZSAiaW14NnFkbC1kaGNvbS1wZGsyLmR0c2kiDQo+ICsNCj4gKy8gew0K
-PiArICAgICAgIG1vZGVsID0gIkRIIGVsZWN0cm9uaWNzIGkuTVg2REwgREhDT00gb24gUHJlbWl1
-bSBEZXZlbG9wZXIgS2l0ICgyKSI7DQo+ICsgICAgICAgY29tcGF0aWJsZSA9ICJkaCxpbXg2ZGwt
-ZGhjb20tcGRrMiIsICJkaCxpbXg2ZGwtZGhjb20tc29tIiwNCj4gKyAgICAgICAgICAgICAgICAg
-ICAgImZzbCxpbXg2ZGwiOw0KPiArfTsNCg0KUmV2aWV3ZWQtYnk6IENocmlzdG9waCBOaWVkZXJt
-YWllciA8Y25pZWRlcm1haWVyQGRoLWVsZWN0cm9uaWNzLmNvbT4NCg==
+On 15.10.2024 17:00, Nuno Sá wrote:
+> On Tue, 2024-10-15 at 09:38 -0500, David Lechner wrote:
+> > On 10/15/24 1:37 AM, Nuno Sá wrote:
+> > > On Mon, 2024-10-14 at 16:15 -0500, David Lechner wrote:
+> > > > On 10/14/24 5:08 AM, Angelo Dureghello wrote:
+> > > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > > > 
+> > > > > Add High Speed ad3552r platform driver.
+> > > > > 
+> > > > 
+> > > > ...
+> > > > 
+> > > > > +static int ad3552r_hs_read_raw(struct iio_dev *indio_dev,
+> > > > > +			       struct iio_chan_spec const *chan,
+> > > > > +			       int *val, int *val2, long mask)
+> > > > > +{
+> > > > > +	struct ad3552r_hs_state *st = iio_priv(indio_dev);
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	switch (mask) {
+> > > > > +	case IIO_CHAN_INFO_SAMP_FREQ: {
+> > > > > +		int sclk;
+> > > > > +
+> > > > > +		ret = iio_backend_read_raw(st->back, chan, &sclk, 0,
+> > > > > +					   IIO_CHAN_INFO_FREQUENCY);
+> > > > 
+> > > > FWIW, this still seems like an odd way to get the stream mode SCLK
+> > > > rate from the backend to me. How does the backend know that we want
+> > > > the stream mode clock rate and not some other frequency value? 
+> > > 
+> > > In this case the backend has a dedicated compatible so sky is the limit :). But
+> > > yeah,
+> > > I'm also not extremely happy with IIO_CHAN_INFO_FREQUENCY. But what do you have
+> > > in
+> > > mind? Using the sampling frequency INFO or a dedicated OP?
+> > > 
+> > 
+> > It think it would be most straightforward to have something
+> > like a iio_backend_get_data_stream_clock_rate() callback since
+> > that is what we are getting.
+> 
+> Hmmm, what about exporting an actual clock? Maybe it's overkill but from a
+> correctness point of view, seems what we should actually do :)
+> 
+> > 
+> > Re: the other recent discussions about getting too many
+> > callbacks. Instead of a dedicated function like this, we
+> > could make a set of generic functions:
+> > 
+> > iio_backend_{g,s}et_property_{s,u}(8, 16, 32, 64}()
+> > 
+> 
+> Hmm interesting approach. I don't dislike it. Kind of a generic getter/setter thingy.
+> We could then still have optional inline helpers that would call the generic
+> functions with the proper enum value.
+> 
+> > that take an enum parameter for the property. This way,
+> > for each new property, we just have to add an enum member
+> > instead of creating a get/set callback pair.
+> > 
+> > Unrelated to this particular case, but taking the idea even
+> > farther, we could also do the same with enable/disable
+> > functions. We talked before about cutting the number of
+> > callbacks in half by using a bool parameter instead of
+> > separate enable/disable callbacks. But we could cut it down
+> > even more by having an enum parameter for the thing we are
+> > enabling/disabling.
+> 
+> If we don't get too strict about types it could even fall into the above u8 category.
+> 
+> Instead of lot of new simple ops we just grow an enum.
+
+so a single call for all enable/disable calls. Looks good to me.
+
+What we want to do now ?
+
+So if understand, we don't like too much IIO_CHAN_INFO_FREQUENCY
+but at the same time, we don't want to have several new calls in the
+backend proposing a design change at this stage, where the patch
+was (likely) in a good shape.
+
+What about to simply add a IIO_CHAN_INFO_BUS_CLK or similar ? 
+
+> 
+> - Nuno Sá
+> 
+
 
