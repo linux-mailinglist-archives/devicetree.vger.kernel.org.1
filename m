@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-111868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95B59A02E3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:44:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A9EC9A02F9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:47:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E17D7B21BDC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:44:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD1831C224A0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:47:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41C31C07F9;
-	Wed, 16 Oct 2024 07:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEE81C175C;
+	Wed, 16 Oct 2024 07:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I0LTPmln"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VhDDcXmT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895F7176AB6;
-	Wed, 16 Oct 2024 07:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A1518B478;
+	Wed, 16 Oct 2024 07:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729064646; cv=none; b=KxXPE1q8PJBmzbVsARzhcbHMtwscgMbQJbO0fvuYhimC3TyZTn0DeVyF++GH2QhPBTrDe10G1t5r+t5UD2CoLSCrFAKrnX2XR+fQXE4o+YhL/QA76PBUZY3pQZvy3OwbtuYT99Ff7SAXpQPgvp/ii+TzmTP8dL3r7DFya0DZPpY=
+	t=1729064865; cv=none; b=qCo/Ch1K/FaqxTWt0l0rAlvUZmKYgmJ35zHMEaRaA93eza1kSPaODFwSU7Zol5ATF4tHD0zaHTSN3ZMXLLIrtfkxiyDGZV/FcKJ7Kmx2gmxnFMHUK6/PT+wXqman6EER+6Xd714r2COC3IINPFA3g4+fqx5eNDqISHH5QUjJ+vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729064646; c=relaxed/simple;
-	bh=yb1ub7mMrEqTa7+DsZBQGy2D7A1QC9WUrYcZyOwsHUM=;
+	s=arc-20240116; t=1729064865; c=relaxed/simple;
+	bh=czXhcOILBBQYTDKkgqs9P1fyWETcj7HUoKiQBbwDsOE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QGA671GkZlbs24MXfweqEWHePHGowtnqZ7OrjRjdmRtGvXVBC4tf1+1KjuNtYAz0q5spHL3NolM6VSuPo0c9FW056QuWdsBJW94AS+QQDJzFc8ikNqMbLgohWv+vdLlux6h8cghqN6EbTX1+RcZQs4ejMBORuNkJPDiJdP0ielM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I0LTPmln; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1D06C4CEC5;
-	Wed, 16 Oct 2024 07:44:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qBnMpVhv1h4EvdMNtzCfQ0knhuDLdMXh/gtKR3rUW81KnPAu9iARmrp7DJjhiK75mspziuFd4UeOnyoAA2FX6/WXGcqrIWNmcPyuuEJJivqrRwJipXePfiK0F1Ccm6dykU/dnygcwHA4E74VU4+vS8guDNm0wC5A8Z7Va3R7ieQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VhDDcXmT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EE42C4CED3;
+	Wed, 16 Oct 2024 07:47:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729064646;
-	bh=yb1ub7mMrEqTa7+DsZBQGy2D7A1QC9WUrYcZyOwsHUM=;
+	s=k20201202; t=1729064865;
+	bh=czXhcOILBBQYTDKkgqs9P1fyWETcj7HUoKiQBbwDsOE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I0LTPmlneA0LAj9eayLwKItVCt/Uo1o3r3smGuPcX5PaFIJxT5cc6SYgPI6WEszpM
-	 r7y8y8BnhIoldLgwUyfWkYbn44tlwOP8LMWhuwkUEq5Rr6ERuL37JCxe4nK9zp6oZU
-	 qmuqMyFSd/dZ5n/XafTf+rFeyPrgNzxnHX/KQDykbAVltaK8DhN/lGEhzHJBG1rkVC
-	 vm/49Ed88nLOqEEt0wW44NBbjHYxKjTwSocFSEbZ80mvGHFBeDWAUSF9lwkak7QOOP
-	 4FuArWeQfc/Gprd0T+xC7j4cEtT5xI9QqBH4zeTwhY0W+ThOIR9i/L9HrXKvoj19Fs
-	 ABbyfJyeZauvQ==
-Message-ID: <91422bb7-9faa-4a82-9813-91a4b2191938@kernel.org>
-Date: Wed, 16 Oct 2024 09:44:00 +0200
+	b=VhDDcXmT+2obzJm+IRQuDcu9VRtL9pQFrHP1Xra3icq6fuEzLwN4MKU2xemle2xLN
+	 E1fNGqauW4VDGZG2i7pmt6guRc1EPlczoTXzk76o6MNSUY827yrbBP+s8JZgABsN8C
+	 1H5WOiKxSNVxgIja8S1yzRBF6bMzCSGfgJl+JhM2bwnp6REu0oxNPoSl2+TNjuMgaW
+	 IHMaFrML/H9z7HAQKjOBWd0Uf5QUdfYpDDmuQkHcefUWDniDubUDCWdI9vTcexQHGA
+	 wOaQdAkzRsCOT7mkWbej9LYBHDX7kiVisF44kja8oFitjRuZ72NLgehQVhwlXDQe/0
+	 q8uW/pGUmBcgQ==
+Message-ID: <17b5032b-8ad2-470b-8d92-41f2721930ac@kernel.org>
+Date: Wed, 16 Oct 2024 09:47:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
-To: Troy Mitchell <troymitchell988@gmail.com>, andi.shyti@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241015075134.1449458-1-TroyMitchell988@gmail.com>
- <20241015075134.1449458-2-TroyMitchell988@gmail.com>
- <1524dbc2-2c9a-476f-a06a-0d998c29534d@kernel.org>
- <611273f9-db44-48a1-a665-6180bed196a9@gmail.com>
+Subject: Re: [PATCH 1/2] media: dt-bindings: Remove assigned-clock-* from
+ various schema
+To: Rob Herring <robh@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Martin Kepplinger <martink@posteo.de>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ "Paul J. Murphy" <paul.j.murphy@intel.com>,
+ Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+ Tommaso Merciai <tomm.merciai@gmail.com>,
+ Martin Hecht <martin.hecht@avnet.eu>, Zhi Mao <zhi.mao@mediatek.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Mikhail Rudenko <mike.rudenko@gmail.com>,
+ Ricardo Ribalda <ribalda@kernel.org>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Umang Jain <umang.jain@ideasonboard.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Dongchun Zhu <dongchun.zhu@mediatek.com>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
+ <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-1-a2bb12a1796d@linaro.org>
+ <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
+ <20241014203441.GF5522@pendragon.ideasonboard.com>
+ <b0154e75-370e-4a5f-9309-6a3ae5d85b5c@kernel.org>
+ <20241015112922.GB2712@pendragon.ideasonboard.com>
+ <20241015164609.GA1235530-robh@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,47 +131,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <611273f9-db44-48a1-a665-6180bed196a9@gmail.com>
+In-Reply-To: <20241015164609.GA1235530-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/10/2024 04:45, Troy Mitchell wrote:
->>> +
->>> +  clock-frequency:
->>> +    description:
->>> +      Desired I2C bus clock frequency in Hz. As only fast and high-speed
->>> +      modes are supported by hardware, possible values are 100000 and 400000.
->>> +    enum: [100000, 400000]
->>> +    default: 100000
->>> +
->>> +  fifo-disable:
+On 15/10/2024 18:46, Rob Herring wrote:
+>>>>
+>>>> How so ? Even if we assume that the device requires a specific clock
+>>>> frequency (which is often not the case for camera sensors, the
+>>>> limitation usually comes from drivers, so the constraint shouldn't be
+>>>> expressed in the bindings in that case), there is no overall requirement
+>>>> to assign a clock rate as in many cases the clock will come from a
+>>>> fixed-frequency oscillator. This seems to be a constraint that is
+>>>> outside of the scope of DT bindings. It is similar to regulators, where
+>>>> the regulator consumer doesn't have a way to express supported voltages
+>>>> in its DT bindings.
+>>>
+>>> This property does not say it comes from a fixed-frequency oscillator,
+>>> so I do not understand why you think it is unreasonable constraint. I
+>>> have no clue what the author wanted to say here, so I just explained
+>>> that there is a meaning behind requiring such properties. If you claim
+>>> device or implementations do not have such requirement, after
+>>> investigating each case, feel free to drop this. I think I also stated
+>>> this already in other reply.
 >>
->> Why is this a property of a board?
-
-
-Here, this ^^^^^^
-
-
->>
->> Also, missing vendor prefix.
->>
->>
->>> +    type: boolean
->>> +    description:
->>> +      Whether to disable FIFO. If FIFO is turned on, it will be interrupted
->>> +      only when the FIFO depth is reached, which can reduce the frequency
->>> +      of interruption.
->>> +    default: false
->>
->> Drop
+>> For camera sensor drivers I'm pretty sure we can drop those properties
+>> when they're marked as required, as there's no intrinsic characteristics
+>> of camera sensors that would require assigned-clock*.
 > 
-> It's a hardware FIFO instead of software.
-> Is it unnecessary in this file?
-> If is, why dma can be written in dt-binding.
+> I tend to agree, and would take it one step further to say that applies 
+> everywhere. Whatever clock setup needed is outside the scope of a 
+> binding. The simplest case is all input clocks are fixed. The next 
+> simplest case is firmware did all clock setup needed for a specific 
+> board and the boot time default works.
 
-Because of what I asked earlier. Which 'dma' property are you asking
-about? 'use-dma'? There was rationale provided in favor. I would be more
-than happy to see similar rationale here.
+Ack.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
