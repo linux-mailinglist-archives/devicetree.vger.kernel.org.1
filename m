@@ -1,235 +1,310 @@
-Return-Path: <devicetree+bounces-111918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCB49A04E3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:58:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 564CD9A04EC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A5B61F26F6A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:58:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D89BB28A519
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024CB204F85;
-	Wed, 16 Oct 2024 08:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382511C6F55;
+	Wed, 16 Oct 2024 09:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CrynI8QC"
+	dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b="jddibJ96"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6306204F74;
-	Wed, 16 Oct 2024 08:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6978158D9C;
+	Wed, 16 Oct 2024 09:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=88.97.38.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729069113; cv=none; b=JquORrF0gUJt8n0I81wLeCT/R7uqWPYYkmfq+Qu5aS1zjvvfDx+TzgaUId81eYRWQ+5R0altP67dWdhrsZ68qR/oDimo8cvnUmkoPDGWS20PsE4ut3pBvCWtHY7RN4MDc7U/1kw+VwUcJq3+jNLJjk8uIpykY6okrt8DFAfIRbk=
+	t=1729069244; cv=none; b=SDSdQAUn47MvHiOE4Dcl34oyFXlXmiygtkd8a98vowBHHCJBVflBz61MhbKIM/ikvoJC4w5VFpPR+WvLMpvxA87fTiNQmhNpNVJkWD8nHs06/q4L+P+3HazQ/GZ3uWd+1AkY78zLCHiJBSkoYukCHysAEvFvAGNWrpJXe3k24mY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729069113; c=relaxed/simple;
-	bh=GiMJprnXspvPV/ACpRlvXGDB0qHzjjI6ZCKEXGqE6IU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bl4nVPqqhcOfSM8X7U50apGUrfonNapDT3awc10NrZ0n8BTAjsJnnq3VMPKdXXTONKK8q3TOBLyPSQFM+efrZweky8XqBlVUGffTgclZ2Cre688/r+v/G/dUdVMqJd5zAxb5ZFwttWpiOXN1Bqr+puAhL05QF052RvyWhl+DqJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CrynI8QC; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C8FAE240008;
-	Wed, 16 Oct 2024 08:58:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729069109;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x3U/ETveGyfKnjLcVyYOTm+ngXWvKY86THZrnq130qU=;
-	b=CrynI8QCFY+rV6CUfg7oqNg5Cn+axWaZvu7why2KR7lINNVmbCFmYzoaV/z7/evseoEgkG
-	CMupTxXlD0rF9cm6UkwEwGYZRoofd7GLOm9aSc5zQdX7l7EK0mIPk1p0m2slbJi/kitpY2
-	r5irEDbDgCDXsmVvpMqVen3IBSKf93tn7szEEkbY8UKTnsUxBAEmQHLnJTjzz1fpjbkPVk
-	9eOGicU+Yfa6iKRHmzRbfxJ85A8E4jvjqHOrDMeGzuFTcaAJR6SC5DoCwlopXjcilEjSXL
-	iowz7wqk8gWADsiWx5xhNSc2wthSPU3G6hjJlfOFOZEsucpUbduPKlgPlY81yg==
-Date: Wed, 16 Oct 2024 10:58:27 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
- <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Saravana Kannan
- <saravanak@google.com>, Florian Fainelli <f.fainelli@gmail.com>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lorenzo Bianconi
- <lorenzo@kernel.org>, upstream@airoha.com
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add Documentation for Airoha
- fixed-partitions
-Message-ID: <20241016105827.22a6bb45@xps-13>
-In-Reply-To: <670f6c5e.170a0220.373da5.7bb7@mx.google.com>
-References: <20240925101422.8373-3-ansuelsmth@gmail.com>
-	<20240925133003.619c40c4@xps-13>
-	<66f3f58e.5d0a0220.5d655.b48a@mx.google.com>
-	<20240925135256.32d3a0f7@xps-13>
-	<66f3fcb7.5d0a0220.3ca4c2.ba83@mx.google.com>
-	<20240930114819.609f9341@xps-13>
-	<66fa7915.050a0220.1da288.aeca@mx.google.com>
-	<20241001104225.67483dab@xps-13>
-	<66fbcee8.df0a0220.2ad0cb.4f6a@mx.google.com>
-	<20241002100006.5995fd10@xps-13>
-	<670f6c5e.170a0220.373da5.7bb7@mx.google.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729069244; c=relaxed/simple;
+	bh=6IGxvc6NwaVw4PEo4Yzm/DjnoysdqVlUpzuzFQ9taw0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hZcAwnyuWCKbjT5cg/Az2t8AmvzZujKcP32Z2v/F4e7QrY4B5NJLMjL6P2KJexR4a3TvQ0n9j+gjHHifzfduWcELAGtkJivgNGdhMvEWNWmPjnpxHl2eFV+w5wlDMgzsJmtXH+MZogtNGr7uS9r1OCoBZX28Qup9nYOffaoQx+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org; spf=pass smtp.mailfrom=mess.org; dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b=jddibJ96; arc=none smtp.client-ip=88.97.38.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mess.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+	t=1729069232; bh=6IGxvc6NwaVw4PEo4Yzm/DjnoysdqVlUpzuzFQ9taw0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jddibJ96eXrb9Oku2KNGvGmJCESxJDcSf2TDnUU9GNm8gqlFHYeywhhBLPuLXQMEy
+	 36ZjXsQeg7Uqr5lRKBXwxtGhkK546EQ3hkcmS88OzOCCpzupKO+9a6uNrDJqSkTLIx
+	 Uh7e2BSA1MuDSaIsC7EzT4Gj/K7yKX9TOKitwEjogsomP5+meiRhxl6a4nRIt78h4v
+	 24PKd7sAhYi0tuUJFtqgosSGAWea4YnG94eDaXWJnESzPLpeVmYyn0uxEMrLYiYVVq
+	 MOHZUSQEV6ncrJnd2uGO0UK9oLZdLgVRreVtpMdKpOlRLWx53p5BnRjVSajYXFB2Me
+	 eyRp4obaqiyRg==
+Received: by gofer.mess.org (Postfix, from userid 1000)
+	id 6600A1002B3; Wed, 16 Oct 2024 10:00:32 +0100 (BST)
+Date: Wed, 16 Oct 2024 10:00:32 +0100
+From: Sean Young <sean@mess.org>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, unicorn_wang@outlook.com,
+	inochiama@outlook.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
+	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
+	chunzhi.lin@sophgo.com
+Subject: Re: [PATCH v4 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
+Message-ID: <Zw-AsJjZIaa_OIfq@gofer.mess.org>
+References: <cover.1729037302.git.unicorn_wang@outlook.com>
+ <cc69b47d068ff339db4c93d3103ed80d10a172d0.1729037302.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cc69b47d068ff339db4c93d3103ed80d10a172d0.1729037302.git.unicorn_wang@outlook.com>
 
-Hi Christian,
+On Wed, Oct 16, 2024 at 08:20:18AM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+> 
+> Add a PWM driver for PWM controller in Sophgo SG2042 SoC.
+> 
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
 
-ansuelsmth@gmail.com wrote on Wed, 16 Oct 2024 09:33:46 +0200:
+LGTM.
 
-> On Wed, Oct 02, 2024 at 10:00:06AM +0200, Miquel Raynal wrote:
-> > Hi Christian,
-> >  =20
-> > > > > > > Ok probably the description isn't clear enough. The missing i=
-nfo that
-> > > > > > > require this parser is the flash end.
-> > > > > > >=20
-> > > > > > > Following the example we know the size of rootfs_data and sta=
-rt offset
-> > > > > > > AND we know the size of the ART partition.
-> > > > > > >=20
-> > > > > > > There might be a space in the middle unused between the rootf=
-s_data
-> > > > > > > partition and the art partition. What is derived is the start=
-ing offset
-> > > > > > > of the art partition that is flash end - art partition size.
-> > > > > > > (where flash end change and is not always the same due to how=
- the special
-> > > > > > > bad block managament table reserved space is handled)
-> > > > > > >=20
-> > > > > > > This is why 0xffffffff, used as a dummy offset to signal it w=
-ill be parsed at
-> > > > > > > runtime. On second tought tho maybe using this dummy offset i=
-s wrong and
-> > > > > > > I should just have something like
-> > > > > > >=20
-> > > > > > > length =3D <0x300000>;
-> > > > > > >=20
-> > > > > > > Is it clear now? Sorry for any confusion.     =20
-> > > > > >=20
-> > > > > > I'm sorry but not really. You know the end of the physical devi=
-ce and
-> > > > > > the size of the ART partition, so you must know its start as we=
-ll?
-> > > > > >     =20
-> > > > >=20
-> > > > > Before the system boot we know:
-> > > > > - size of the ART partition
-> > > > > - real size of the physical device (512mb... 1G... 64mb...)
-> > > > >=20
-> > > > > When the physical device is probed (nand) a special driver is loa=
-ded
-> > > > > (before mtd parsing logic) that change the physical size of the d=
-evice
-> > > > > (mtd->size) as at the end of the nand some space is reserved for =
-bad
-> > > > > block management and other metadata info.   =20
-> > > >=20
-> > > > Here you are explaining what you intend Linux to do, right? I would
-> > > > like to understand what you are trying to solve. I dont understand =
-why
-> > > > you need the size change, I don't understand why you don't know the
-> > > > start of the ART partition, I don't understand what the data you are
-> > > > hiding contains and who uses it :-) I'm sorry, this is too unclear =
-yet.   =20
-> > >=20
-> > > Totally not a problem and thanks a lot for you keep asking them... Mo=
-re
-> > > than happy to clear things, I'm trying to solve a problem present on
-> > > Airoha SoC and upstreaming a correct parser for it.
-> > >=20
-> > > What I'm trying to solve:
-> > >=20
-> > > Correct access to this partition at the end of the flash in an automa=
-ted
-> > > way.
-> > >=20
-> > > The content of this partition is the usual ART partition found on lot=
-s of
-> > > embedded devices. MAC address, wifi calibration data, serial. Usage is
-> > > NVMEM cells and userspace with dd command to extract data from.
-> > >=20
-> > > Airoha use something also used by some mediatek SoC. They call it BMT
-> > > and it's currently used downstream in OpenWrt and they firmware. This=
- is
-> > > also used in the bootloader.
-> > >=20
-> > > The usage of BMT is a custom way to handle bad blocks entirely by
-> > > software. At the end of the flash some space is reserved where info
-> > > about all the blocks of the flash are put. I'm not 100% sure about the
-> > > functionality of this but it can relocate block and do magic things to
-> > > handle bad blocks. For the scope of this change, the important info is
-> > > that after the BMT is probed, the operation of "reserving space" is d=
-one
-> > > by reducing the MTD flash size. So from the MTD subsystem, it does se=
-e a
-> > > smaller flash than it actually is.
-> > >=20
-> > > The reserved space change! Across SoC or even devices but the BMT is a
-> > > must where it's used as bootloader makes use of it and writing to it
-> > > might confuse the bootloader corrupting data. (one block might be
-> > > flagged as bad ad data moved, BMT driver validates his table and do
-> > > operation) =20
-> >=20
-> > Ok, I think that's way clearer now.
-> > =20
->=20
-> Hi sorry for the delay, very happy this is better now.
->=20
-> > So the BMT driver does not exist in mainline Linux, but you would like
-> > to skip this part of the MTD device to avoid smashing it. And it is in
-> > use by the vendor Bootloader I guess? =20
->=20
-> Yes correct, idea is to permit easier access to the partition. I hope
-> (and assume) this driver will come upstream.
->=20
-> >=20
-> > Is it some kind of table that is written by the chip itself in order to
-> > maintain a list of auto-replacement blocks for bad blocks? Can the size
-> > of this table move with the use of the device? (if yes, it's
-> > problematic, we don't want to resize MTD partitions without noticing,
-> > it would break eg. UBI).
-> >  =20
->=20
-> No chip hw bad block is disabled with this implementation and the table
-> size doesn't move/change so MTD partitions will stay at the same offset
-> after the first parse on boot.
->=20
-> > I believe this BMT block is going against the bad block handling in
-> > Linux, so I really wonder how one can use both mechanisms in a system.
-> > If the BMT layer takes "one random block" to map a corrupted one on it,
-> > it totally defeats the current bad block model we have in MTD/UBI
-> > and simply cannot be supported at all. Just skipping the
-> > currently-used-for-BMT blocks sounds like a very bad idea that will
-> > break your system, later.
-> > =20
->=20
-> Well we disable it and since it's reserved, from the system side you can
-> do all kind of magic since the space used for the driver is not
-> available to the system but I will try to gather more info about this in
-> the next few days.
+Signed-off-by: Sean Young <sean@mess.org>
 
-I understand, but if you cannot get rid of it, it means "someone" is
-using it, presumably the bootloader, right? How can the bootloader use
-this feature?
-
-Or maybe you need this table to show the (vendor) bootloader "nothing
-changed, use PEB normally, none of them is bad, there is no ongoing
-remapping"?
-
-In this case I guess the size of the table is a linear function against
-the size of the chip and thus can be statically derived?
-
-Thanks,
-Miqu=C3=A8l
+> ---
+>  drivers/pwm/Kconfig             |  10 ++
+>  drivers/pwm/Makefile            |   1 +
+>  drivers/pwm/pwm-sophgo-sg2042.c | 181 ++++++++++++++++++++++++++++++++
+>  3 files changed, 192 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-sophgo-sg2042.c
+> 
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 0915c1e7df16..ec85f3895936 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -584,6 +584,16 @@ config PWM_SL28CPLD
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-sl28cpld.
+>  
+> +config PWM_SOPHGO_SG2042
+> +	tristate "Sophgo SG2042 PWM support"
+> +	depends on ARCH_SOPHGO || COMPILE_TEST
+> +	help
+> +	  PWM driver for the PWM controller on Sophgo SG2042 SoC. The PWM
+> +	  controller supports outputing 4 channels of PWM waveforms.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm_sophgo_sg2042.
+> +
+>  config PWM_SPEAR
+>  	tristate "STMicroelectronics SPEAr PWM support"
+>  	depends on PLAT_SPEAR || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 9081e0c0e9e0..539e0def3f82 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -53,6 +53,7 @@ obj-$(CONFIG_PWM_RZ_MTU3)	+= pwm-rz-mtu3.o
+>  obj-$(CONFIG_PWM_SAMSUNG)	+= pwm-samsung.o
+>  obj-$(CONFIG_PWM_SIFIVE)	+= pwm-sifive.o
+>  obj-$(CONFIG_PWM_SL28CPLD)	+= pwm-sl28cpld.o
+> +obj-$(CONFIG_PWM_SOPHGO_SG2042)	+= pwm-sophgo-sg2042.o
+>  obj-$(CONFIG_PWM_SPEAR)		+= pwm-spear.o
+>  obj-$(CONFIG_PWM_SPRD)		+= pwm-sprd.o
+>  obj-$(CONFIG_PWM_STI)		+= pwm-sti.o
+> diff --git a/drivers/pwm/pwm-sophgo-sg2042.c b/drivers/pwm/pwm-sophgo-sg2042.c
+> new file mode 100644
+> index 000000000000..bed753877851
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-sophgo-sg2042.c
+> @@ -0,0 +1,181 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Sophgo SG2042 PWM Controller Driver
+> + *
+> + * Copyright (C) 2024 Sophgo Technology Inc.
+> + * Copyright (C) 2024 Chen Wang <unicorn_wang@outlook.com>
+> + *
+> + * Limitations:
+> + * - After reset, the output of the PWM channel is always high.
+> + *   The value of HLPERIOD/PERIOD is 0.
+> + * - When HLPERIOD or PERIOD is reconfigured, PWM will start to
+> + *   output waveforms with the new configuration after completing
+> + *   the running period.
+> + * - When PERIOD and HLPERIOD is set to 0, the PWM wave output will
+> + *   be stopped and the output is pulled to high.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +
+> +#include <asm/div64.h>
+> +
+> +/*
+> + * Offset RegisterName
+> + * 0x0000 HLPERIOD0
+> + * 0x0004 PERIOD0
+> + * 0x0008 HLPERIOD1
+> + * 0x000C PERIOD1
+> + * 0x0010 HLPERIOD2
+> + * 0x0014 PERIOD2
+> + * 0x0018 HLPERIOD3
+> + * 0x001C PERIOD3
+> + * Four groups and every group is composed of HLPERIOD & PERIOD
+> + */
+> +#define SG2042_HLPERIOD(chan) ((chan) * 8 + 0)
+> +#define SG2042_PERIOD(chan) ((chan) * 8 + 4)
+> +
+> +#define SG2042_PWM_CHANNELNUM	4
+> +
+> +/**
+> + * struct sg2042_pwm_ddata - private driver data
+> + * @base:		base address of mapped PWM registers
+> + * @clk_rate_hz:	rate of base clock in HZ
+> + */
+> +struct sg2042_pwm_ddata {
+> +	void __iomem *base;
+> +	unsigned long clk_rate_hz;
+> +};
+> +
+> +static void pwm_sg2042_config(void __iomem *base, unsigned int chan, u32 period, u32 hlperiod)
+> +{
+> +	writel(period, base + SG2042_PERIOD(chan));
+> +	writel(hlperiod, base + SG2042_HLPERIOD(chan));
+> +}
+> +
+> +static int pwm_sg2042_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			    const struct pwm_state *state)
+> +{
+> +	struct sg2042_pwm_ddata *ddata = pwmchip_get_drvdata(chip);
+> +	u32 hlperiod;
+> +	u32 period;
+> +
+> +	if (state->polarity == PWM_POLARITY_INVERSED)
+> +		return -EINVAL;
+> +
+> +	if (!state->enabled) {
+> +		pwm_sg2042_config(ddata->base, pwm->hwpwm, 0, 0);
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * Period of High level (duty_cycle) = HLPERIOD x Period_clk
+> +	 * Period of One Cycle (period) = PERIOD x Period_clk
+> +	 */
+> +	period = min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->period, NSEC_PER_SEC), U32_MAX);
+> +	hlperiod = min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->duty_cycle, NSEC_PER_SEC), U32_MAX);
+> +
+> +	if (hlperiod > period) {
+> +		dev_err(pwmchip_parent(chip), "period < hlperiod, failed to apply current setting\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_dbg(pwmchip_parent(chip), "chan[%u]: period=%u, hlperiod=%u\n",
+> +		pwm->hwpwm, period, hlperiod);
+> +
+> +	pwm_sg2042_config(ddata->base, pwm->hwpwm, period, hlperiod);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwm_sg2042_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> +				struct pwm_state *state)
+> +{
+> +	struct sg2042_pwm_ddata *ddata = pwmchip_get_drvdata(chip);
+> +	unsigned int chan = pwm->hwpwm;
+> +	u32 hlperiod;
+> +	u32 period;
+> +
+> +	period = readl(ddata->base + SG2042_PERIOD(chan));
+> +	hlperiod = readl(ddata->base + SG2042_HLPERIOD(chan));
+> +
+> +	if (!period && !hlperiod)
+> +		state->enabled = false;
+> +	else
+> +		state->enabled = true;
+> +
+> +	state->period = DIV_ROUND_UP_ULL((u64)period * NSEC_PER_SEC, ddata->clk_rate_hz);
+> +	state->duty_cycle = DIV_ROUND_UP_ULL((u64)hlperiod * NSEC_PER_SEC, ddata->clk_rate_hz);
+> +
+> +	state->polarity = PWM_POLARITY_NORMAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops pwm_sg2042_ops = {
+> +	.apply = pwm_sg2042_apply,
+> +	.get_state = pwm_sg2042_get_state,
+> +};
+> +
+> +static const struct of_device_id sg2042_pwm_ids[] = {
+> +	{ .compatible = "sophgo,sg2042-pwm" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, sg2042_pwm_ids);
+> +
+> +static int pwm_sg2042_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct sg2042_pwm_ddata *ddata;
+> +	struct pwm_chip *chip;
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	chip = devm_pwmchip_alloc(dev, SG2042_PWM_CHANNELNUM, sizeof(*ddata));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	ddata = pwmchip_get_drvdata(chip);
+> +
+> +	ddata->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(ddata->base))
+> +		return PTR_ERR(ddata->base);
+> +
+> +	clk = devm_clk_get_enabled(dev, "apb");
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get base clk\n");
+> +
+> +	ret = devm_clk_rate_exclusive_get(dev, clk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get exclusive rate\n");
+> +
+> +	ddata->clk_rate_hz = clk_get_rate(clk);
+> +	if (!ddata->clk_rate_hz || ddata->clk_rate_hz > NSEC_PER_SEC)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Invalid clock rate: %lu\n", ddata->clk_rate_hz);
+> +
+> +	chip->ops = &pwm_sg2042_ops;
+> +	chip->atomic = true;
+> +
+> +	ret = devm_pwmchip_add(dev, chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to register PWM chip\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver pwm_sg2042_driver = {
+> +	.driver	= {
+> +		.name = "sg2042-pwm",
+> +		.of_match_table = sg2042_pwm_ids,
+> +	},
+> +	.probe = pwm_sg2042_probe,
+> +};
+> +module_platform_driver(pwm_sg2042_driver);
+> +
+> +MODULE_AUTHOR("Chen Wang");
+> +MODULE_DESCRIPTION("Sophgo SG2042 PWM driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.34.1
+> 
 
