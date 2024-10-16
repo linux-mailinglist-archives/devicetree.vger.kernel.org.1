@@ -1,140 +1,91 @@
-Return-Path: <devicetree+bounces-111825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D379A01BD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:51:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E988A9A01BF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:51:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4EE13B24516
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:50:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CEC81C20E08
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:51:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C550193089;
-	Wed, 16 Oct 2024 06:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1560E193408;
+	Wed, 16 Oct 2024 06:51:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DM6yX04a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kXtBZ1f1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57FC918C32E
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 06:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90724409;
+	Wed, 16 Oct 2024 06:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729061451; cv=none; b=es5OA5DzxtVAlIR4Zy1XuW1ydomisLVk4Yb5F6CKKdYL9+fxZWmLhrvwvRxhwyuHv/m9FHjM6jsNQi2MKdwLG8iduwr3xT1Uo2vwxZ7dLhN8YIOwU9Da7pZM5E9O8gPp1jezWumWjro3/sunFnnFje18nvc170XFL/rLjXNvn+o=
+	t=1729061512; cv=none; b=EPQ/MVTWM6TjixTLVWIRA9TV/pMlYMw43k+GeNVB/11GOchyNqpGR9kccm2fOlv9/0Rky6ix/51+MMuBYu5ktlqvFhemnSSXAhhRiZXBZLrhBb+t1dmvK8Fisbv3wX2xwmyhb1Z2zaPQtqpTouDyBfEfraUwfIfvl5ug8uVb41s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729061451; c=relaxed/simple;
-	bh=2jUrHH5GhahHmWOKm0XOR0m1uQ6CW6EzBsf+IvUUFpQ=;
+	s=arc-20240116; t=1729061512; c=relaxed/simple;
+	bh=pzFvSrILNJvs8eutEDR8LLYEf0Fi8x3nXwNhPl2QtOA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gwHj5xz3+o22i6tUqQf1xRcNwtkboJk0GkL2PQdw8vCf8J70rW7qCXJ5I1rYcijRTGx1k2aJUAozeue1GoDoVWmi7KhX4SeB6CpjNCUkLRtJdxJ3scO143kceC4+Ea9XrugpciCA8P5725baicz52bG0SR8mqL3BgZGVhSOPdKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DM6yX04a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2551C4CEC5;
-	Wed, 16 Oct 2024 06:50:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rD1YcX2OEA8WuDgJBf8KWYWDRm/9/8fv4nUVOcDmKxJQNFk6vZaEtqnsgwBBfgPOE1uHF+8ezDsAycaZQ5jf7KPlCUAhupBBh/ITjzi8SHfRTc4sqg589XWXgjtsv0e7PRz6rGbHx1uftYyQIVTXHLzhLbfrfQXIHITRcliP5OY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kXtBZ1f1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D1E2C4CEC5;
+	Wed, 16 Oct 2024 06:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729061450;
-	bh=2jUrHH5GhahHmWOKm0XOR0m1uQ6CW6EzBsf+IvUUFpQ=;
+	s=k20201202; t=1729061511;
+	bh=pzFvSrILNJvs8eutEDR8LLYEf0Fi8x3nXwNhPl2QtOA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DM6yX04aTezkh4TaiZKoTVCDHLuF2IATV8rQOhJZwzekuABEABuOcYiyEl80C2Mwa
-	 Vyew4tlhkf3trCOnPNM12MAszCOZJutyVouwdOQqTxAwVurQw4J4uoW+IabYFiDsVK
-	 9cHs4lblQideXth405sGVg9JvLeTfeNFnNoADUUnYiD7sTBykpv82uVS9VqGyrgDDO
-	 QvMy11YIkmPevgmk0Dy11UWlicw/uD5imRHCMNnqgBxg7AjwmCuCdj5cUwUhNPclcT
-	 sxVE+l5cZm0RxAzEzwpIIDvQgMOGHOczZjS1Bzz5/voiQRnLNI7zIE6JetXD49VOdC
-	 /IAc1zBbOiNhQ==
-Date: Wed, 16 Oct 2024 08:50:46 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Markus Stockhausen <markus.stockhausen@gmx.de>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, chris.packham@alliedtelesis.co.nz
-Subject: Re: [PATCH v4 1/2] dt-bindings: phy: add realtek,rtl8380m-serdes
-Message-ID: <4eywdjkuei7itd2grhtms57p5e5bqlsg7qg6ifjmqzwfzj66o4@un662ws7thiy>
-References: <20241016054842.3435609-1-markus.stockhausen@gmx.de>
- <20241016054842.3435609-2-markus.stockhausen@gmx.de>
+	b=kXtBZ1f12KQdLorzHdASqX85nFLOXJbiBSQhdqlFwqr9pryuYiVOHe7hvRMN0Sb0U
+	 25bRym131dP15/7+IpkSjeRP+mrIXk28zzJMx8hLQ5VANWl4mcM+mnldqOTsn00fXX
+	 8KCjihGS7Y5OmwpUaegeiG37/8fT8tLh2wo/tn4UikLYmluWX+Ma23S8uuk5TMNveC
+	 +tLZTjewTcrma6vzhB62sx/EiCz5l6oPjtgpA2aDLf1EM4uvbQrv/8LohJkQR61LZ9
+	 MzBKM/rqZWzRkX5ohCbdCer66SgpoOG6KQARno+b6WZWSeLQ9W0ywA+H60kprMux8+
+	 bX2QNHs6xiJCA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t0xsz-0000000050C-3qGE;
+	Wed, 16 Oct 2024 08:51:57 +0200
+Date: Wed, 16 Oct 2024 08:51:57 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Jonathan Marek <jonathan@marek.ca>
+Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: x1e80100-crd: add rtc offset to
+ set rtc time
+Message-ID: <Zw9ijUy04cC4Qzio@hovoldconsulting.com>
+References: <20241015004945.3676-1-jonathan@marek.ca>
+ <20241015004945.3676-5-jonathan@marek.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241016054842.3435609-2-markus.stockhausen@gmx.de>
+In-Reply-To: <20241015004945.3676-5-jonathan@marek.ca>
 
-On Wed, Oct 16, 2024 at 01:48:41AM -0400, Markus Stockhausen wrote:
-> Add bindings for the SerDes of the Realtek Otto platform. These are
-> MIPS based network Switch SoCs with up to 52 ports divided into four
-> different model lines.
-> 
-> Changes in v4
-> 
+On Mon, Oct 14, 2024 at 08:47:29PM -0400, Jonathan Marek wrote:
+> See commit e67b45582c5e for explanation.
 
-You still did not respond to my feedback from v2. I reminded you this at
-v3 and you keep ignoring it.
+It's good that you reference commit e67b45582c5e ("arm64: dts: qcom:
+sc8280xp-crd: enable rtc") but your commit message still needs to be
+self-contained and provide the explanation here in some form (e.g.
+quoted or paraphrased).
 
-Limited review follows because of this.
+Also spell out the commit summary in parenthesis when referring to
+commits as I did above.
 
->  - fixed addresses in example
->  - missing firmware-name denotes "skip firmware" instead empty string
->  - fixed reg porperty
-> 
-> Changes in v3
-> 
->  - renamed to realtek,rtl8380m-serdes.yaml
->  - removed parameter controlled-ports
->  - verified with make dt_binding_check
->  - recipient list according to get_maintainers
-> 
-> Changes in v2:
-> 
->  - new subject
->  - removed patch command sequences
->  - renamed parameter controlled-ports to realtek,controlled-ports
-> 
-> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-> ---
->  .../bindings/phy/realtek,rtl8380m-serdes.yaml | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes.yaml b/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes.yaml
-> new file mode 100644
-> index 000000000000..8ccb3a34b221
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/realtek,rtl8380m-serdes.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Realtek Otto SerDes controller
-> +
-> +maintainers:
-> +  - Markus Stockhausen <markus.stockhausen@gmx.de>
-> +
-> +description:
-> +  The MIPS based Realtek Switch SoCs of the Realtek RTL838x, RTL839x, RTL930x
-> +  and RTL931x series have multiple SerDes built in. They are linked to single,
-> +  quad or octa PHYs like the RTL8218B, RTL8218D or RTL8214FC and are one of
-> +  the integral part of the up-to-52-port switch architecture. Although these
-> +  SerDes controllers have common basics they are designed differently in the
-> +  SoC families.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^phy@[0-9a-f]+$"
+> Note: the 0xbc offset is arbitrary, it just needs to not be already in use.
 
-Drop nodename.
+How did you verify that nothing is using this offset on this platform? I
+assume we need someone with access to the docs to make sure it's not in
+use as we did for sc8280xp.
 
-> +
-> +  compatible:
-> +    items:
-
-Drop items and place here enum directly.
-
-Best regards,
-Krzysztof
-
+Johan
 
