@@ -1,237 +1,170 @@
-Return-Path: <devicetree+bounces-112006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 200869A090E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:11:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B818D9A0941
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:23:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E408BB215F5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:11:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E99071C2368E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254A4207A1A;
-	Wed, 16 Oct 2024 12:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629A9208974;
+	Wed, 16 Oct 2024 12:23:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="UqEFLH55";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="fLjWDXVy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cWjzdgna"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7FD206E71;
-	Wed, 16 Oct 2024 12:11:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF8720896A;
+	Wed, 16 Oct 2024 12:23:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729080676; cv=none; b=gNVT0HFVFIH8p3t74+OOTqy0qYYsnYHJXO72JdVxdshsUdnMBxO1eL0JQSXQFKRK+gpu981tvRSbTSlYX66cSuEjqB3XO/TYpDQuMLeUOdqh4m6q7tMycljN98H5s1Gp7mV/Odfn/pnd+r67ogjNbWmJVYfStELjT7dXw1NFRTw=
+	t=1729081383; cv=none; b=qcUS6j460BhrqPpF5ewYWT0zW9WTAHDfnwJICzQWYXdVv6GCGux/yeNyCB1a4G6w3yCzmH9K3MXsunqVkujsJ8tQE2kgaGRuJh1TTVMBz0/tXfikPCdEm9hWPg0ZzLoMpeQv6/uLZ0l0rlUwnGmdhnuCF4oDXvZjvhku9vESeDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729080676; c=relaxed/simple;
-	bh=5au/Y6lHx9RILAX4XAzjvna8Dcwx0ccjy4QV4i4w1h8=;
+	s=arc-20240116; t=1729081383; c=relaxed/simple;
+	bh=GNpQFqou08L4HvvgQmtVoW2aASKtf7vi33xFSNUzSZs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gavWSA3iSaIzPnLuKlruEeyCJQXkp3ckvaKKHd6POWfXoVq+F9l7VM2TzfG6iW1PPG9H8gJYCbLSgq5vcF0hZ5TJFkI6Q3H0uqt64e5a88B9S6H7sno3NHUsto3lxU2Y5LMxmDrEotwAUlRqFe+pg2iFyt50D6iKLtA7+Rbo+Ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=UqEFLH55; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=fLjWDXVy; arc=none smtp.client-ip=5.78.89.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 8DD8E122FE21;
-	Wed, 16 Oct 2024 05:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1729080672; bh=5au/Y6lHx9RILAX4XAzjvna8Dcwx0ccjy4QV4i4w1h8=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=FcfHmVfAVJXbaTDad4VYn54fzYFiPAgmJ7v2amAwF12NDLexz2KcJEIZ43mBWSF0mJ0UUgbi/UK/nJjxxfq73d9fUniTVlXkrpOrxocoekRnDhmbp8VDoPE5ypX7ZrTosvpRbLgraLIpoed9KXO8aHTk8oOY96B08MkPekWntG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cWjzdgna; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 871D3C4CEC7;
+	Wed, 16 Oct 2024 12:22:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729081382;
+	bh=GNpQFqou08L4HvvgQmtVoW2aASKtf7vi33xFSNUzSZs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UqEFLH55uaSOX/NeuD3TfOJu5iWZLazr0D5+gLMdSSMHupSAZ79soHUA7Q84COpdh
-	 KAWJQVaT3W5sgPWnB09fC8D/kREVaiYmeOyhfgvhVWFMKE5Z2nEs3KpOM+aa8oIgy9
-	 6GejQQrBkj+qxjIY88l8pLXZHXlMRjE5wj4UCu0890+9CJimxROb4oQg33ANIGTjGk
-	 iOzimKfk3CiUPPrOo1/6fTkG1Ef4dzaPO4BOM0WBGCcZ7v/8loT7aTDoUe8V2n+Hhr
-	 S+CivcllVybAe6i/EoYV4XfxPN86E4qzNzxvInADvgNMmjRLTL04WQtGqWEmTOuwcI
-	 /0bvTdkgF+/XA==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id HfPDK2MCEsy1; Wed, 16 Oct 2024 05:11:05 -0700 (PDT)
-Received: from ketchup (unknown [110.52.220.241])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 573C5122FE1A;
-	Wed, 16 Oct 2024 05:11:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1729080665; bh=5au/Y6lHx9RILAX4XAzjvna8Dcwx0ccjy4QV4i4w1h8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fLjWDXVydOzI2+TjesEQT1OGRb+Fga4ioSMX4+jV+dPMTUhYGL1SHxeJgp7V1+Csj
-	 AoTEKw7+GVe6YQfmQgiGklKuc11pgcE1Jwpu8RPhfVtis/zUiGDqo3ZpTySTmZrAKh
-	 RhNV5dK2gg9oloym95LE6a/QH3/wllbdrfI7Wl8a30riesx5HxwnFZtc6BEGsHU7E+
-	 eYGn62p/W2lJc9lyel7pXUiKKxst/QmIV97gCKs6GdzH8PcZK962cpQ1JxyvFUoOSs
-	 J4ewNTnXZmRz5maFWo6kNx0L0CAjTgOLE/8kCoYl2EGsMxupBHxjbQVPGWAfCQTcuz
-	 BI+Afi1mVbqAQ==
-Date: Wed, 16 Oct 2024 12:10:52 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	b=cWjzdgnaZcMpXiy19gCFyyD33hQfirE7sLHUiJqd2s0Iw9icd5iwZuDCs2m3QbqeW
+	 2q8PbqVNoDsjZGR52OMlqmnr+IhcxMCN9qwRgQ+/dQe3s/wvnpqNNoBmQTA32OVO01
+	 VacWIHA2AiBftcAY3MzV1qEwgXNat67ttJVKAUOzCGmGVivali/h+tSiVuczwYkv6u
+	 /JMI+BWwGUSd7qxQ9OiVjyvz6ojbO9WDXxTp+jH2E3mkux2ipaa7pwRJDTfai9lhEk
+	 Hn/k1oHMd+of9Mt/xN1neNgr6WfVg142fQ5DIVDvuO/0SweUcTphlzIDMs2lApYAwd
+	 Z557QyjsWpRcg==
+Date: Wed, 16 Oct 2024 13:22:56 +0100
+From: Mark Brown <broonie@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: spacemit: Add clock
- controllers of Spacemit K1 SoC
-Message-ID: <Zw-tTEViagJFPFtv@ketchup>
-References: <SEYPR01MB4221829A2CD4D4C1704BABD7D7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
- <SEYPR01MB4221BDC11EE244C7D70C229DD7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
- <zsayhliz4a4fauzmvkimd4uzucuunt6gmkypjlqh4omle4uqx4@cbknudobc57g>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	asahi@lists.linux.dev, linux-sound@vger.kernel.org,
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 2/3] ASoC: cs42l84: Add new codec driver
+Message-ID: <abe88a18-28fb-40e5-8bd2-3fde5de9cb56@sirena.org.uk>
+References: <20241016-cs42l84-v1-0-8d7e9d437d2d@gmail.com>
+ <20241016-cs42l84-v1-2-8d7e9d437d2d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="maBAkUOwaatk+XRK"
+Content-Disposition: inline
+In-Reply-To: <20241016-cs42l84-v1-2-8d7e9d437d2d@gmail.com>
+X-Cookie: Snow Day -- stay home.
+
+
+--maBAkUOwaatk+XRK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <zsayhliz4a4fauzmvkimd4uzucuunt6gmkypjlqh4omle4uqx4@cbknudobc57g>
 
-On Tue, Sep 17, 2024 at 08:39:37AM +0200, Krzysztof Kozlowski wrote:
-> On Mon, Sep 16, 2024 at 10:23:09PM +0000, Haylen Chu wrote:
-> > Add definition for the clock controllers of Spacemit K1 SoC. The clock
-> > tree is managed by several SoC parts, thus different compatible strings
-> > are added for each.
-> > 
-> > spacemit,k1-syscon.yaml is updated as well to allow clock controller
-> > being its subnode.
-> > 
-> > Signed-off-by: Haylen Chu <heylenay@outlook.com>
-> 
-> Please order patches correctly. First this, then the parent so you will
-> not submit incomplete binding.
->
-> You still must test it, though :(
+On Wed, Oct 16, 2024 at 08:41:01PM +1000, James Calligeros wrote:
 
-Thanks for the tip.
+> The CS42L84 is a codec from Cirrus Logic found in Apple Silicon Macs.
+> The chip continues Apple's long tradition of compelling vendors to
+> spin out bespoke SKUs that are based on existing IP but made subtly
+> incompatible with the publicly available part. CS42L84 is very similar
+> to CS42L42, but has a different regmap.
 
-> > ---
-> >  .../bindings/clock/spacemit,k1-ccu.yaml       |  71 +++++++
-> >  .../soc/spacemit/spacemit,k1-syscon.yaml      |   4 +
-> >  include/dt-bindings/clock/spacemit,k1-ccu.h   | 198 ++++++++++++++++++
-> >  3 files changed, 273 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml
-> >  create mode 100644 include/dt-bindings/clock/spacemit,k1-ccu.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml b/Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml
-> > new file mode 100644
-> > index 000000000000..0186722cfd87
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml
-> > @@ -0,0 +1,71 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/spacemit,k1-ccu.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Spacemit K1 SoC Clock Controller
-> > +
-> > +maintainers:
-> > +  - Haylen Chu <heylenay@outlook.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - spacemit,k1-ccu-apbs
-> > +      - spacemit,k1-ccu-mpmu
-> > +      - spacemit,k1-ccu-apbc
-> > +      - spacemit,k1-ccu-apmu
-> > +
-> > +  clocks:
-> > +    minItems: 4
-> 
-> Drop
-> 
-> > +    maxItems: 4
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: clk_32k
-> > +      - const: vctcxo_1
-> > +      - const: vctcxo_24
-> > +      - const: vctcxo_3
-> > +
-> > +  spacemit,mpmu:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to the syscon managing "Main PMU (MPMU)" registers. It is used to
-> > +      check PLL lock status.
-> > +
-> > +  "#clock-cells":
-> > +    const: 1
-> > +    description:
-> > +      See <dt-bindings/clock/spacemit,k1-ccu.h> for valid indices.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - "#clock-cells"
-> > +
-> > +additionalProperties: false
-> 
-> Move it after allOf block
-> 
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: spacemit,k1-ccu-apbs
-> > +    then:
-> > +      required:
-> > +        - compatible
-> > +        - "#clock-cells"
-> 
-> Drop both, redundant
-> 
-> 
-> > +        - spacemit,mpmu
-> > +
-> > +examples:
-> > +  - |
-> > +    syscon_apbs: system-control@d4090000 {
-> 
-> Only one example, keep it in parent node.
+>  sound/soc/codecs/Makefile  |    2 +
+>  sound/soc/codecs/cs42l84.c | 1081 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>  sound/soc/codecs/cs42l84.h |  210 ++++++++++++++++++++++++++++++++
 
-Should I drop the example block in this binding completely and move it
-to its parent's binding (the syscon) or just drop the parent here?
+Something's wrong with your formatting here...
 
-> > +        compatible = "spacemit,k1-apbs-syscon", "syscon", "simple-mfd";
-> > +        reg = <0x0 0xd4090000 0x0 0x1000>;
-> > +
-> > +        clk_apbs: clock-controller {
-> > +            compatible = "spacemit,k1-ccu-apbs";
-> > +            #clock-cells = <1>;
-> > +            spacemit,mpmu = <&syscon_mpmu>;
-> > +        };
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> > index 4e3a72b48aff..08efda207101 100644
-> > --- a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> > @@ -27,6 +27,10 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> >  
-> > +  clock-controller:
-> > +    $ref: /schemas/clock/spacemit,k1-ccu.yaml#
-> > +    type: object
-> > +
-> 
-> This MUST be part of other patch.
-> 
-> Best regards,
-> Krzysztof
->
+> @@ -0,0 +1,1081 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * cs42l84.c -- CS42L84 ALSA SoC audio driver
+> + *
 
-I will adapt all the comments in next version.
+Please make the entire comment a C++ one so it's more clearly
+intentional.
 
-Best regards,
-Haylen Chu
+> +static const struct regmap_config cs42l84_regmap = {
+> +	.reg_bits = 16,
+> +	.val_bits = 8,
+> +
+> +	.volatile_reg = cs42l84_volatile_register,
+> +
+> +	.max_register = 0xffff,
+
+Does that register actually exist?
+
+> +	.cache_type = REGCACHE_RBTREE,
+
+Unless you've got a particular reason to use something else new drivers
+should use _MAPLE.
+
+> +static int cs42l84_mute_stream(struct snd_soc_dai *dai, int mute, int stream)
+> +{
+> +	struct snd_soc_component *component = dai->component;
+> +	struct cs42l84_private *cs42l84 = snd_soc_component_get_drvdata(component);
+> +	unsigned int regval;
+> +	int ret;
+
+> +				ret = regmap_read_poll_timeout(cs42l84->regmap,
+> +							       CS42L84_PLL_LOCK_STATUS,
+> +							       regval,
+> +							       (regval & CS42L84_PLL_LOCK_STATUS_LOCKED),
+> +							       CS42L84_PLL_LOCK_POLL_US,
+> +							       CS42L84_PLL_LOCK_TIMEOUT_US);
+> +				if (ret < 0)
+> +					dev_warn(component->dev, "PLL failed to lock: %d\n", ret);
+
+This is too heavyweight for a mute operation, do you really need one?
+
+> +	case 0b00: /* open */
+> +		dev_dbg(cs42l84->dev, "Detected open circuit on HS4\n");
+> +		fallthrough;
+> +	case 0b11: /* shorted */
+> +	default:
+> +		snd_soc_jack_report(cs42l84->jack, SND_JACK_HEADPHONE,
+> +				SND_JACK_HEADSET);
+> +		cs42l84->hs_type = SND_JACK_HEADPHONE;
+> +		dev_dbg(cs42l84->dev, "Detected bare headphone (no mic)\n");
+> +	}
+
+For coding style we should have a break at the end of the case.
+
+> +		default:
+> +			if (cs42l84->plug_state != CS42L84_TRANS)
+> +				cs42l84->plug_state = CS42L84_TRANS;
+> +		}
+
+Here too.
+
+--maBAkUOwaatk+XRK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcPsB8ACgkQJNaLcl1U
+h9BddAgAhJBsG36HFJDYb3ITfSZniD+YMmeHaXnJ0/NZt4kJKDV5ar0f0TqNxi9M
+naq16zKH3bgx1eu4jD4hN9mPYsRkT2Q9X/IurlEUYpE0HCm35Q4vU+1Aq3FO9UD/
+BpgkdOV9VfBU82/FVtFINBGR+rIIT+OBVrUAABtAAw3docMOY4aL4AsLNoqyEyg4
+9poBy6vDCctHPol6RAL0IuPrOHa853ZIulARXnpDwOLDeGAzuumw+qcqwekTVn3u
+VHWGDSwW1A10dWRK2xS3Xvjtp6lxerKfzoJR7CqdLVW3wkV4DXjmB+F2Zts1dwgY
+z+vt3hhpCnJzwPPq+mdx5jZVkd80jg==
+=zgvX
+-----END PGP SIGNATURE-----
+
+--maBAkUOwaatk+XRK--
 
