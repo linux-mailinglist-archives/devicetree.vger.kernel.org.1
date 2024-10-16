@@ -1,214 +1,126 @@
-Return-Path: <devicetree+bounces-111997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 411C69A07FC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:04:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C199A081E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:13:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 765E5B20EAC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:04:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAD1E1F21E33
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC59D2071ED;
-	Wed, 16 Oct 2024 11:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94DFE2076CB;
+	Wed, 16 Oct 2024 11:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="e8WH66Tm";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="XI2MQPm+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lW4v3yx9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0FB2071F8;
-	Wed, 16 Oct 2024 11:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27F4207213
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 11:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729076652; cv=none; b=dDdpjQpWG89ZM8xyqm3Y5/aRFlaVPN2zd8dtfq/9fqSp78XqwMBkPRNBqRZtV8czxEMUmFg31ETzTQSc2P5gHMilapAOO24k8ZOVBjT8wZZPA67Zf8JkhxCF1IfdBrvJU0uSsCrMUlAd8HJUEDgsBDBHuF884dhJaXnJ44Tabbc=
+	t=1729077219; cv=none; b=YlAFkCLXvNO6jGtmoBFzT7cLbEOjDqlGf4eX/K8WAIx5butfiKp7Rx563Dqy8yJ+mPOWH4LLqAnGg+ZLsVQjAxkxQHkA3VIU+WZXGwcR39FAtyFIY+/BZ3WtALakTEyeuTnEnuiRhb9JtBEIv8X0Ff7+DmgYUAnSF2K+RcotJno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729076652; c=relaxed/simple;
-	bh=j7uqkslzjH6CNz0CR36nqNmHhVeQAxFmnElgWhQTsrY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=buX2ddmtpyzOwmRbMxzN7eIotT5jEnPeAaUPJ1YEQOI8V/X2dJykXIvMicUnhuf5pg5Vvd0tPNXYtuGawiGXyfUBth/DdOVrTYowf03VyXlIjXFo56pFDx7dqeL46iPNThdXhjJiDNrcWtub3r9NLvzawRY/c6ZrkNs8P6LsfZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=e8WH66Tm; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=XI2MQPm+ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1729077219; c=relaxed/simple;
+	bh=MMbOyLTO3wGcAW166+A0Nh8rO8ikdhlxZ3EdZM2YtmU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=paT95MWh0sN0A6H90tbNGtQvRCB6bHbFU9wU6Gfo35ZqBYEo49aw1IQ8ZJDoj0CdZ6NZ1MZCLrvGhPG1H7RkokYaEVBkV5PbAhAw8XvhSvTSMR2w4AmeeGK9T1Ye0VjS0FRYOf8ImS+EZqzlNPpUK4lPlzrtEfW+6HrwYSUqFuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lW4v3yx9; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6e35bf59cf6so8097657b3.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 04:13:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1729076649; x=1760612649;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=UQnSqYqpBfUV+6/cvpHKfQx6TgwRy+1JDtpQMvdUWAY=;
-  b=e8WH66TmofbeTntJ5onHovsqJLOEu0vQu3OBsaJ210n76uIggIsRiCGI
-   4Vm0mHRjH1en0Z5No9zh3LGh8eKJ4yzYBqVa5PHp3xh7OreBpn9ipbJHO
-   vNOUy74Op6gULUBXNgyxwI4dwDXqAwu+943qAeJ52vDbEEAI8HeTogCA/
-   e9kRjPu8XTsID/d6KS/eB+vo0Cvz+7FOpRN6JDUe3dnDm7b8IfnngPted
-   k0X34tFXhyTAs/ZUkCjebDki1KL0M3ua7Gg42P9vpdMUc+HCLRXXZqDa6
-   IIPovpa3AjbUlMCL8B+mVbYGoJ8Hdh6bog4JImGSzw/xJ63x+IXMEfy/q
-   A==;
-X-CSE-ConnectionGUID: 4/UoR85oRzeG0PblB3UK6Q==
-X-CSE-MsgGUID: YU0fFkq7QwqVGtD9L/F5uw==
-X-IronPort-AV: E=Sophos;i="6.11,207,1725314400"; 
-   d="scan'208";a="39492910"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 16 Oct 2024 13:04:00 +0200
-X-CheckPoint: {670F9DA0-E-21611FC3-DAD22B0C}
-X-MAIL-CPID: 7354DE9C6207C2B376A359CA9647EA1D_4
-X-Control-Analysis: str=0001.0A682F1E.670F9DA0.00D7,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3D9C116853D;
-	Wed, 16 Oct 2024 13:03:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1729076635;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=UQnSqYqpBfUV+6/cvpHKfQx6TgwRy+1JDtpQMvdUWAY=;
-	b=XI2MQPm+Mb/NIn/vSlonjdjH9uLgzitytNffKH4fG82nU/9taJXmCN4sJ/t2FzcSPgaNP4
-	XRgidS1bmOo2sLA+p8MAGqjA6j9wAOU+rM1ufpkxT5Fi3kpMZBlICZToZPblxy5kISnejT
-	ltUEKOB2f+q3JYvaP1ebe561GvmJyVrygQOXO9swUbWkzQ34dGqAXse3nJRhBefmPya+Re
-	oV3q2cbZPzVXOST2dHeS/hT7WgCLUsLAyhVsnV4hjbpAykUth8RHN/FBPVz+e4/02ga163
-	qA6ialNJio94VChL6mUXQGKZ+GFHW72i8KIq3tt8M47szxmlG/XhFeFCk41BhQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, gregkh@linuxfoundation.org, peter.chen@kernel.org, herve.codina@bootlin.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org, jun.li@nxp.com
-Subject: Re: [PATCH v8 2/3] arm64: dts: imx95: add usb3 related nodes
-Date: Wed, 16 Oct 2024 13:03:53 +0200
-Message-ID: <3252989.5fSG56mABF@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241016104140.rjmszgplmql4hwrs@hippo>
-References: <20241015111018.2388913-1-xu.yang_2@nxp.com> <22464382.EfDdHjke4D@steina-w> <20241016104140.rjmszgplmql4hwrs@hippo>
+        d=linaro.org; s=google; t=1729077216; x=1729682016; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=t35RrnvDQXTH6WlgCiQGNdu+PPMpKHTypuZ5fkXYJTs=;
+        b=lW4v3yx93W1CHx3QzUfXgEKy4YShpkbhrLrw1zdYNBrxPpCOuW4B4pdI4LjezKnhQq
+         brcsPDoYP3kpsmrG2SvVSxcMsFiQ223iJBm8Dajv4bgrYiffblm48ggMODcddxvaKnG3
+         oJqJTQOetUWwHtrrKRuwYM9YAs4N2Ds49vwoNoL00Lb1npILyqicV+7emxXp02sK0E/r
+         sz0KMmrJyxB933CkyPJU12UgYzmUaBHlLhxLweH0+HoAKv4mqfPlSB9rNxnOu6L5SixI
+         Tc1c4wDEGrRG6jkyQeNXYphEn2mQjaW7KC4YGzSjTY51Pq3/nPJdxd6EHD+oloPpg02v
+         5t/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729077216; x=1729682016;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t35RrnvDQXTH6WlgCiQGNdu+PPMpKHTypuZ5fkXYJTs=;
+        b=M7+KXRDe3TZZqkNTokp3wWCcIz9v44tVOQFALNl0KcbhYupdjfztMk/xuEZzt1vnTP
+         1a3aft1d89yIeOYySItV8keZf3DTDZI+B4GlFpzCnZEmu288EZdwJL/weC2Jf0y56fm9
+         GcigQoqZAaoR0n4OGtptXeqEIqI3FSCPQYgI6HyFBLZ8Ld1nbeL48uxIEp3qNewTXiyq
+         YBusqKnOwQsjxT/0GIysuzwU3/t4QDml3eURVih8oU1IaevZXwpbEDRM8XQBHD/gLflK
+         9fDoxwu1qYFBds5pQ7L8Jz6CkyHxIDhk106CpwGJbb1P8MkldmbuIyexct6RPPT3i+45
+         1MQA==
+X-Forwarded-Encrypted: i=1; AJvYcCVJ+eUFebGnS2ANYL0n8HHcydhMz0UsTWN3bpHpQyIcpzAHyeASOKTk40CRi4RtGcGIrdsce33vnEnK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyW+eLYLZAgtAFsWqoltspWJrGr5c8yNhO6GivZktdCEyyR8HHh
+	hE8z3aXabk9rTNERPO7792S6Uwuaqk/uyFeaekqnKoCr25CQOy7YBlP/1sChl2uQjKn7FSd+HCQ
+	xLVXW7Nb6oY3OWyhTlWHLFUkgNIJ3uTiQ2BIGWA==
+X-Google-Smtp-Source: AGHT+IFbaQB1b7uprlpkX9leHepB8/oAO3NTYJHXyEBNTbByJjabNy9Zt6W7LL2bl36doaQxwSWNeBZZmKsWoyLbeNU=
+X-Received: by 2002:a05:690c:3587:b0:664:74cd:5548 with SMTP id
+ 00721157ae682-6e3d34ee5a7mr30758017b3.1.1729077215816; Wed, 16 Oct 2024
+ 04:13:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
+ <20241015182637.955753-3-quic_rajkbhag@quicinc.com> <ftvwsizfupm7veg662adnzc6jpulk5shga3xmvbtom3saclnf6@bmatmqw5lp72>
+ <gnv7i3m5ooxtyi4ywgq4q5sq3wj6j7xtjx6puuixoulypeiwjo@65wfj657x5ug> <28d9b410-dcf0-4431-81a3-6c33d536d217@kernel.org>
+In-Reply-To: <28d9b410-dcf0-4431-81a3-6c33d536d217@kernel.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 16 Oct 2024 14:13:24 +0300
+Message-ID: <CAA8EJpotk=pgcmFePrqESnpE5edRZVboCs-M9-nPOQcG0xa2Jg@mail.gmail.com>
+Subject: Re: [PATCH v2 02/22] arm64: dts: qcom: add wifi node for IPQ5332
+ based RDP441
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org, 
+	linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Wed, 16 Oct 2024 at 13:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 16/10/2024 12:30, Dmitry Baryshkov wrote:
+> > On Wed, Oct 16, 2024 at 08:58:25AM +0200, Krzysztof Kozlowski wrote:
+> >> On Tue, Oct 15, 2024 at 11:56:17PM +0530, Raj Kumar Bhagat wrote:
+> >>> RDP441 is based on IPQ5332. It has inbuilt AHB bus based IPQ5332 WiFi
+> >>> device.
+> >>>
+> >>> Describe and add WiFi node for RDP441. Also, reserve the memory
+> >>> required by IPQ5332 firmware.
+> >>>
+> >>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+> >>
+> >> Don't send one DTS patch in 22 patchset targetting different subsystem.
+> >> Imagine, how wireless maintainers are supposed to apply their bits? 21
+> >> commands instead of one command?
+> >
+> > Huh? b4 shazam -P 1,3-22 should work. Or ideally the DTS should be the
+>
+> Hm indeed, it wasn't some time ago.
+>
+> > last one, so applying all other patches should be obvious. As a reviewer
+> > I find it troublesome to review bindindings / driver without an actual
+> > DTS snippet.
+>
+> Considering that patchsets for certain subsystem *have to skip DTS* (you
+> cannot include DTS in the series), then better get used to such
+> inconvenience.
 
-Am Mittwoch, 16. Oktober 2024, 12:41:40 CEST schrieb Xu Yang:
-> On Wed, Oct 16, 2024 at 10:53:50AM +0200, Alexander Stein wrote:
-> > Hi,
-> >=20
-> > another thing I just noticed.
-> >=20
-> > Am Dienstag, 15. Oktober 2024, 13:10:17 CEST schrieb Xu Yang:
-> > > Add usb3 phy and controller nodes for imx95.
-> > >=20
-> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > >=20
-> > > ---
-> > > Changes in v2:
-> > >  - no changes
-> > > Changes in v3:
-> > >  - no changes
-> > > Changes in v4:
-> > >  - reorder nodes
-> > > Changes in v5:
-> > >  - no changes
-> > > Changes in v6:
-> > >  - rebase to latest
-> > > Changes in v7:
-> > >  - no changes
-> > > Changes in v8:
-> > >  - no changes
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx95.dtsi | 43 ++++++++++++++++++++++=
-++
-> > >  1 file changed, 43 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/bo=
-ot/dts/freescale/imx95.dtsi
-> > > index 03661e76550f..e3faa8462759 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > @@ -1473,6 +1473,49 @@ smmu: iommu@490d0000 {
-> > >  			};
-> > >  		};
-> > > =20
-> > > +		usb3: usb@4c010010 {
-> > > +			compatible =3D "fsl,imx95-dwc3", "fsl,imx8mp-dwc3";
-> > > +			reg =3D <0x0 0x4c010010 0x0 0x04>,
-> > > +			      <0x0 0x4c1f0000 0x0 0x20>;
-> > > +			clocks =3D <&scmi_clk IMX95_CLK_HSIO>,
-> > > +				 <&scmi_clk IMX95_CLK_32K>;
-> > > +			clock-names =3D "hsio", "suspend";
-> > > +			interrupts =3D <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			#address-cells =3D <2>;
-> > > +			#size-cells =3D <2>;
-> > > +			ranges;
-> > > +			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> > > +			dma-ranges =3D <0x0 0x0 0x0 0x0 0x10 0x0>;
-> > > +			status =3D "disabled";
-> > > +
-> > > +			usb3_dwc3: usb@4c100000 {
-> > > +				compatible =3D "snps,dwc3";
-> > > +				reg =3D <0x0 0x4c100000 0x0 0x10000>;
-> > > +				clocks =3D <&scmi_clk IMX95_CLK_HSIO>,
-> > > +					 <&scmi_clk IMX95_CLK_24M>,
-> > > +					 <&scmi_clk IMX95_CLK_32K>;
-> > > +				clock-names =3D "bus_early", "ref", "suspend";
-> > > +				interrupts =3D <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>;
-> > > +				phys =3D <&usb3_phy>, <&usb3_phy>;
-> > > +				phy-names =3D "usb2-phy", "usb3-phy";
-> > > +				snps,gfladj-refclk-lpm-sel-quirk;
-> > > +				snps,parkmode-disable-ss-quirk;
-> > > +				iommus =3D <&smmu 0xe>;
-> > > +			};
-> > > +		};
-> > > +
-> > > +		usb3_phy: phy@4c1f0040 {
-> > > +			compatible =3D "fsl,imx95-usb-phy", "fsl,imx8mp-usb-phy";
-> > > +			reg =3D <0x0 0x4c1f0040 0x0 0x40>,
-> > > +			      <0x0 0x4c1fc000 0x0 0x100>;
-> > > +			clocks =3D <&scmi_clk IMX95_CLK_HSIO>;
-> > > +			clock-names =3D "phy";
-> > > +			#phy-cells =3D <0>;
-> > > +			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> > > +			orientation-switch;
-> > > +			status =3D "disabled";
-> >=20
-> > I got these dtbs check warnings:
-> >=20
-> > arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dtb:
-> >  phy@4c1f0040: 'oneOf' conditional failed, one must be fixed:
-> >         'port' is a required property
-> >         'ports' is a required property
-> >         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-u=
-sb-phy.yaml#
-> > arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dtb:=20
-> >  phy@4c1f0040: Unevaluated properties are not allowed ('orientation-swi=
-tch' was unexpected)
-> >         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-u=
-sb-phy.yaml#
->=20
-> Are you checking on usb tree? You need below two dt-binding patch.
->=20
->  - dt-bindings: usb: dwc3-imx8mp: add compatible string for imx95
->  - dt-bindings: phy: imx8mq-usb: add compatible "fsl,imx95-usb-phy"
-
-Yes, these patches are already in linux-next. I'm on next-20241016.
-
-> >=20
-> >=20
-> > How am I supposed to specify a port when the usb3 is used in host mode,=
- thus
-> > no USB Type-C connector and no 'port' OF-graph accordingly?
->=20
-> Host-only mode with Type-A connector? No Typec-C connector?
-> Sorry, I do not get your meaning.
-
-Yes, no Type-C connector. Actually not even a Type-A as there is an
-on-board USB hub attached to this host.
-
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Yes, I'm getting used to that for some of the subsys.
 
 
+-- 
+With best wishes
+Dmitry
 
