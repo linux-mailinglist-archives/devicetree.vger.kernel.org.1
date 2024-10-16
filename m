@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-112105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5E49A1092
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B9A9A1097
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:27:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB4B51C216C5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:26:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56E0A1C21F0B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85FE20FA8B;
-	Wed, 16 Oct 2024 17:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55469210194;
+	Wed, 16 Oct 2024 17:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pXKGxwga"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bejmBuPz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58F318732A;
-	Wed, 16 Oct 2024 17:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D46620C487;
+	Wed, 16 Oct 2024 17:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729099604; cv=none; b=T8Rt8bdhF34CTYVvkEmdY3mBYls3MgGCRqW/N6PRQziAK10DARza/jc5vhPrEYeW/Shb7A80LyfyDGLryv2rSmuBIzaOVJJ1HqYnJsSGqQ4U0mbcRGQu037kJeD5HM1KFDXx2ARkr9tKJ47enyGAUj70RCG16cAQno0qLBJneM4=
+	t=1729099662; cv=none; b=DlPwp8ezIxckTvXxLeLnN7ugwkOm1IhLOteowSC3KrIEAg3A13+a89a5oKUNfJ8zbHi0SxwteXfT7W93Vy8F7xfedP87+tsE4JJNXl43P8k2qNvW5dJlu13t5tu8wzGC+RctiHW+nhJIA46UFyX5VtjoCGaiF72ISS6kITEWUew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729099604; c=relaxed/simple;
-	bh=hVlu1hU3ASIiy3+g6KLNJAuWniSogilK3Nzm74AlCoE=;
+	s=arc-20240116; t=1729099662; c=relaxed/simple;
+	bh=272Q2s1xa44MaO0n8oTBTXmRy6jsjZZweNSs8qCpZvQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bUmr78Se3oh83OGjEvrcC6/jKr5SViq0qS1rSLeMeZ+jBeW4WQe15amFqtoScJCkSHR7sDXM0qD1kocfF9QpBtwhw7SgE0Vdt4rDfLJ+ct4DdJI+148IkbEv2vNDeEsybRCgMErMPFoil6IZ9VXRSomg4qz7qTnv5KKmEWbRrAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pXKGxwga; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E384C4CEC5;
-	Wed, 16 Oct 2024 17:26:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zue6zRCyynt2PkPW+jyr9txVbl+GpKc+8kl2M3u4KOfBUmuj42AXBg/ivCH0xAVWmIq3neN19r1WCfpyQAG71OhPstg7GQsaqHmpFuhsFMbebAyKjkCv497xhGEMOFm3JY7rK/Q6c/46ia4hPJNq3E6bicR03Em/SilvnuULZZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bejmBuPz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92AF4C4CEC5;
+	Wed, 16 Oct 2024 17:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729099603;
-	bh=hVlu1hU3ASIiy3+g6KLNJAuWniSogilK3Nzm74AlCoE=;
+	s=k20201202; t=1729099661;
+	bh=272Q2s1xa44MaO0n8oTBTXmRy6jsjZZweNSs8qCpZvQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pXKGxwgah5bwH0E7RiU/V1xffhKnQabV9zZ5cSasYKnygfFLqWf0q0crRw8N1EwAr
-	 yM5F/+zzdmq4YIqfMASGO/QBFMSoiRelopd0vrZgodEMzhfVp/qtT9aT+1Y/+TulJJ
-	 KyQ/IDhCNSk7xy/dw5VF7o/RnMeVAeKyCxEUxpE74Z89d1WLZaneeu8cmombhLK5Cq
-	 +2Ey0DBWr4xLp3DQ/IRSC8NDIbXHeVQhAZveYptNeq3X8DTd8UvjMq2+B29xNlACr8
-	 W1EJkKJITRZM9HtourFnwdvTbsyRms+Q6VOgoBml+9ORgcrIs/jKRg6WhTbYfLkk9F
-	 0FehuVNr9fhTQ==
-Date: Wed, 16 Oct 2024 12:26:42 -0500
-From: Rob Herring <robh@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, imx@lists.linux.dev,
-	kernel@dh-electronics.com, linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: fsl,imx6ul-pinctrl: Convert
- i.MX35/5x/6 to YAML
-Message-ID: <20241016172642.GA1991636-robh@kernel.org>
-References: <20241015232107.100771-1-marex@denx.de>
+	b=bejmBuPzVsy4XgbhsU5iXKhZ/oFvXw9OV647k+dksp2e5R82EObDVVzlwt+ePy6ex
+	 x8ka188rIEmvUzA60c63yetG7cF/RynGSaWLgVJUFT84Q2MJuWOI8aqcVpjWo4jYrB
+	 hnJ7Xfl7QuRX2/Xg9RwHLObGBhPlTpx68EN7GdyJldt+9DFjhBavMfrnnuNX2PIi47
+	 ywKx7J6Xnb8XjnOOCBch2OlNf149br0VT8pViAOsQzL3DyXFtNJqtFo4/t2coT85Az
+	 GE+aPP6VRn9kRR0zl/MaAsqiTY/2H17ZAxgE2NA7CO6xFcVJp92YtiSIJHxo0cJ4BI
+	 2VTpnaoQ6+H9A==
+Date: Wed, 16 Oct 2024 12:27:40 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Kevin Chen <kevin_chen@aspeedtech.com>
+Cc: joel@jms.id.au, conor+dt@kernel.org, krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org, tglx@linutronix.de
+Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: Add support
+ for ASPEED AST27XX INTC
+Message-ID: <172909966003.2068484.893211890028147027.robh@kernel.org>
+References: <20241016022410.1154574-1-kevin_chen@aspeedtech.com>
+ <20241016022410.1154574-2-kevin_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +61,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241015232107.100771-1-marex@denx.de>
+In-Reply-To: <20241016022410.1154574-2-kevin_chen@aspeedtech.com>
 
-On Wed, Oct 16, 2024 at 01:20:51AM +0200, Marek Vasut wrote:
-> The IOMUXC controller description is almost identical on i.MX35/5x/6 SoCs,
-> except for the configuration bits which differ across SoCs. Rename the
-> fsl,imx6ul-pinctrl.yaml to fsl,imx35-pinctrl.yaml, fill in compatible
-> strings for the other SoCs and fill in the various bits into desciption.
-> This way, i.MX35/5x/6 series SoCs can all be converted to YAML DT. Remove
-> the old text DT bindings description.
 
-Just a nit, but I prefer 'DT schema' over using 'YAML DT' or just 
-'YAML'. YAML is just the file format we use and YAML is a lot of things 
-that's not DT schema including other uses/attempts with DT. 
+On Wed, 16 Oct 2024 10:24:09 +0800, Kevin Chen wrote:
+> The ASPEED AST27XX interrupt controller(INTC) contains second level and
+> third level interrupt controller.
+> 
+> INTC0:
+> The second level INTC, which used to assert GIC if interrupt in INTC1 asserted.
+> 
+> INTC1_x:
+> The third level INTC, which used to assert INTC0 if interrupt in modules
+> of INTC asserted.
+> 
+> The relationship is like the following:
+>   +-----+   +-------+     +---------+---module0
+>   | GIC |---| INTC0 |--+--| INTC1_0 |---module1
+>   |     |   |       |  |  |         |---...
+>   +-----+   +-------+  |  +---------+---module31
+>                        |
+>                        |   +---------+---module0
+>                        +---| INTC1_1 |---module1
+>                        |   |         |---...
+>                        |   +---------+---module31
+>                       ...
+>                        |   +---------+---module0
+>                        +---| INTC1_5 |---module1
+>                            |         |---...
+>                            +---------+---module31
+> 
+> Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
+> ---
+>  .../aspeed,ast2700-intc.yaml                  | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
+> 
 
-This generates lots of warnings (patchwork has the output) for pincfg 
-nodes which don't match 'grp$' node name convention. Do we really want 
-to "fix" all of those? We could allow anything, but then we don't 
-enforce anything on new stuff. Or this could be split between new and 
-old platforms. If we decide to fix any old ones, then just have to move 
-them to the "new" schema.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
