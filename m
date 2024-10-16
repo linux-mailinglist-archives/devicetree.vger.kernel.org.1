@@ -1,275 +1,117 @@
-Return-Path: <devicetree+bounces-111963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3484F9A06B8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F38859A06C0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:12:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BA59B27FF6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:11:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 692F6B28292
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937C9206054;
-	Wed, 16 Oct 2024 10:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="RAodgloz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD14206945;
+	Wed, 16 Oct 2024 10:11:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19C529A0;
-	Wed, 16 Oct 2024 10:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0ABC20694A;
+	Wed, 16 Oct 2024 10:11:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729073494; cv=none; b=qUlq70OBAx3fSDwf6wKMz/Z1eEEjwq9qKgpB7UGgB7EhWI+wR0T/uDxM7Qr6TdpkRKAkWXP3cpIGtS+Ds+6FvKC/pmU6jFqq0iD0lNSPHe6rq9Vuw30JolV9mjB1QZezTWnZng/4rWd7z/XBDVOY/eMDJBv4kVX6b2oLmWeGXI8=
+	t=1729073512; cv=none; b=OwZZjmiN9fWq4AmW34LStBWxTgnyel/iY8jdA9N0eOyM8lUkZ+ccVz7ZKHf+0cCYm6M/4Vyt54EtHWk3tQdO17HAKBrsGEJQoiX5FhdL44Gq+do9kMMhwAjIghcuYRpIxlDA5tf7lhCwY6HtP5bqaiR0nytnnuvR16CdqVQNHPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729073494; c=relaxed/simple;
-	bh=F2kJZIzZm26i8nnqK2Ymt2aisFINAhBthb4LO9ij7Cs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N9oIFrbmnPihAJz89klfxT37w5QGVOeZAjC4IjGnH0KcywBJMncjEeSFKHBUk9RqCmk+ZMlFMuJNQg7SXiFGkbRy9vcMv2c8bGDknzESc1wkxZq+dubsXc2pWkEKwHlNXuMNnjSY65eBSaHV2sKyGS+0ILzZyBeNJH+8vbHvdgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=RAodgloz; arc=none smtp.client-ip=67.231.156.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0431383.ppops.net [127.0.0.1])
-	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49G98fH1024811;
-	Wed, 16 Oct 2024 03:11:21 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pfpt0220; bh=OdX0x+N0H55Ay6Jz5bU5yimxH
-	ELv72e2HNowzA8u8rE=; b=RAodglozRbh8qsMdvhKJ3TpQCYLOUv9ZwhsSAu2Ts
-	P3iEvouPQXqOEQW4t7OR3rI5I+dELCzpfsUA5beVUHGho0Q496X4mBc4cWIT1DTT
-	2wvuGHp0a9vfDSo+/CNKN3UgZXwtJ3zjNTRjhFK42TNN/1KyYRGLFyvcUXZ7LL7p
-	eyOBUNX0rb4fVuCVH7VRspzsBcM5VlcSuO2ioYQLpvU2co24h85KchSkhFZmOeWK
-	wxsrNHIc+8xTFQuk2yf5yv9KqlXpIhB++0Im/Ac7piGNUMuxLDOFHVyKmYxtE7el
-	nj3qeBeKpRxZBr1pgCzwyHdxkDxoW96YJ0VOs4JAc13mw==
-Received: from dc5-exch05.marvell.com ([199.233.59.128])
-	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 42aaker42n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Oct 2024 03:11:21 -0700 (PDT)
-Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
- DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Wed, 16 Oct 2024 03:11:19 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
- (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Wed, 16 Oct 2024 03:11:19 -0700
-Received: from hyd1403.caveonetworks.com (unknown [10.29.37.84])
-	by maili.marvell.com (Postfix) with SMTP id 59C673F7053;
-	Wed, 16 Oct 2024 03:11:15 -0700 (PDT)
-Date: Wed, 16 Oct 2024 15:41:14 +0530
-From: Linu Cherian <lcherian@marvell.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>
-CC: <mike.leach@linaro.org>, <james.clark@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
-        <gcherian@marvell.com>
-Subject: Re: [PATCH v10 7/8] coresight: config: Add preloaded configuration
-Message-ID: <20241016101114.GB896339@hyd1403.caveonetworks.com>
-References: <20240916103437.226816-1-lcherian@marvell.com>
- <20240916103437.226816-8-lcherian@marvell.com>
- <53b80d4d-31f2-4abf-a0ef-f194c63280dc@arm.com>
+	s=arc-20240116; t=1729073512; c=relaxed/simple;
+	bh=XgjoL1JGKiRYyCSWTxkTF2OWBUtB9joLuVL77iOB5jk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZJncaPafDdNlFN205YEqH0uXT7gPyg5vA7nMqaRwG3a2yHxji5xu8srZTs2XUxRPFQaJWVReV2WkIQLFkQU5dRv2SXLlqydnZiXK/lzBOF05jkk3akwRSNCZvBhmsL0gkU2EDAEkKXr3whlo8FyodaZNHd+9k42+019+Udg+8yE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 37C6A201F78;
+	Wed, 16 Oct 2024 12:11:49 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 27BD7201F6F;
+	Wed, 16 Oct 2024 12:11:49 +0200 (CEST)
+Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
+	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 53259203E0;
+	Wed, 16 Oct 2024 12:11:49 +0200 (CEST)
+Date: Wed, 16 Oct 2024 12:11:49 +0200
+From: Jan Petrous <jan.petrous@oss.nxp.com>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+	Keyur Chudgar <keyur@os.amperecomputing.com>,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>
+Subject: Re: [PATCH v3 14/16] net: stmmac: dwmac-s32: add basic NXP S32G/S32R
+ glue driver
+Message-ID: <Zw+RZQDt4lopPqFW@lsv051416.swis.nl-cdc01.nxp.com>
+References: <20241013-upstream_s32cc_gmac-v3-0-d84b5a67b930@oss.nxp.com>
+ <20241013-upstream_s32cc_gmac-v3-14-d84b5a67b930@oss.nxp.com>
+ <urxfash5qmvahjubhk5knrt53j2tw7hje35qyst3x3ltg4mpgo@dw73m73o36b3>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <53b80d4d-31f2-4abf-a0ef-f194c63280dc@arm.com>
-X-Proofpoint-GUID: ANgnaqkchMdM9Bjcodfn68jla00mTR0d
-X-Proofpoint-ORIG-GUID: ANgnaqkchMdM9Bjcodfn68jla00mTR0d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.687,Hydra:6.0.235,FMLib:17.0.607.475
- definitions=2020-10-13_15,2020-10-13_02,2020-04-07_01
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <urxfash5qmvahjubhk5knrt53j2tw7hje35qyst3x3ltg4mpgo@dw73m73o36b3>
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-On 2024-10-03 at 18:59:30, Suzuki K Poulose (suzuki.poulose@arm.com) wrote:
-> On 16/09/2024 11:34, Linu Cherian wrote:
-> > Add a preloaded configuration for generating
-> > external trigger on address match. This can be
-> > used by CTI and ETR blocks to stop trace capture
-> > on kernel panic.
-> > 
-> > Kernel address for "panic" function is used as the
-> > default trigger address.
-> > 
-> > This new configuration is available as,
-> > /sys/kernel/config/cs-syscfg/configurations/panicstop
-> > 
-> > Signed-off-by: Linu Cherian <lcherian@marvell.com>
-> > Reviewed-by: James Clark <james.clark@arm.com>
-> > ---
-> > Changelog from v9:
-> > No changes
-> > 
-> >   drivers/hwtracing/coresight/Makefile          |  2 +-
-> >   .../coresight/coresight-cfg-preload.c         |  2 +
-> >   .../coresight/coresight-cfg-preload.h         |  2 +
-> >   .../hwtracing/coresight/coresight-cfg-pstop.c | 83 +++++++++++++++++++
-> >   4 files changed, 88 insertions(+), 1 deletion(-)
-> >   create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> > 
-> > diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-> > index 4ba478211b31..46ce7f39d05f 100644
-> > --- a/drivers/hwtracing/coresight/Makefile
-> > +++ b/drivers/hwtracing/coresight/Makefile
-> > @@ -25,7 +25,7 @@ subdir-ccflags-y += $(condflags)
-> >   obj-$(CONFIG_CORESIGHT) += coresight.o
-> >   coresight-y := coresight-core.o  coresight-etm-perf.o coresight-platform.o \
-> >   		coresight-sysfs.o coresight-syscfg.o coresight-config.o \
-> > -		coresight-cfg-preload.o coresight-cfg-afdo.o \
-> > +		coresight-cfg-preload.o coresight-cfg-afdo.o coresight-cfg-pstop.o \
+On Wed, Oct 16, 2024 at 11:37:27AM +0200, Uwe Kleine-König wrote:
+> Hello,
 > 
-> Please could you only build it when ETM4X is selected ? That way you
-> could drop the "CONFIG" check in the code ?
-
-coresight-cfg-pstop feature follows the approach taken in existing
-features like preload, afdo etc. Hence, shall we keep the same format ?
-Please let me know if you think otherwise.
-
-
-> >   		coresight-syscfg-configfs.o coresight-trace-id.o
-> >   obj-$(CONFIG_CORESIGHT_LINK_AND_SINK_TMC) += coresight-tmc.o
-> >   coresight-tmc-y := coresight-tmc-core.o coresight-tmc-etf.o \
-> > diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.c b/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> > index e237a4edfa09..4980e68483c5 100644
-> > --- a/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> > +++ b/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> > @@ -13,6 +13,7 @@
-> >   static struct cscfg_feature_desc *preload_feats[] = {
-> >   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
-> >   	&strobe_etm4x,
-> > +	&gen_etrig_etm4x,
-> >   #endif
-> >   	NULL
-> >   };
-> > @@ -20,6 +21,7 @@ static struct cscfg_feature_desc *preload_feats[] = {
-> >   static struct cscfg_config_desc *preload_cfgs[] = {
-> >   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
-> >   	&afdo_etm4x,
-> > +	&pstop_etm4x,
-> >   #endif
-> >   	NULL
-> >   };
-> > diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.h b/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> > index 21299e175477..291ba530a6a5 100644
-> > --- a/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> > +++ b/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> > @@ -10,4 +10,6 @@
-> >   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
-> >   extern struct cscfg_feature_desc strobe_etm4x;
-> >   extern struct cscfg_config_desc afdo_etm4x;
-> > +extern struct cscfg_feature_desc gen_etrig_etm4x;
-> > +extern struct cscfg_config_desc pstop_etm4x;
-> >   #endif
-> > diff --git a/drivers/hwtracing/coresight/coresight-cfg-pstop.c b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> > new file mode 100644
-> > index 000000000000..c2bfbd07bfaf
-> > --- /dev/null
-> > +++ b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> > @@ -0,0 +1,83 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright(C) 2023  Marvell.
-> > + * Based on coresight-cfg-afdo.c
-> > + */
-> > +
-> > +#include "coresight-config.h"
-> > +
-> > +/* ETMv4 includes and features */
-> > +#if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
-> 
-> Could we not drop this check, if we only build it when
-> CONFIG_CORESIGHT_SOURCE_ETM4X is selected. It is not useful
-> otherwise anyways.
-
-
-IIUC, this arrangement might be helpful to add register
-configurations for future ETM versions in the same file.
-
-
-> 
-> Rest looks fine to me
-> 
-> Suzuki
-> 
-> 
-> > +#include "coresight-etm4x-cfg.h"
-> > +
-> > +/* preload configurations and features */
-> > +
-> > +/* preload in features for ETMv4 */
-> > +
-> > +/* panic_stop feature */
-> > +static struct cscfg_parameter_desc gen_etrig_params[] = {
-> > +	{
-> > +		.name = "address",
-> > +		.value = (u64)panic,
+> On Sun, Oct 13, 2024 at 11:27:49PM +0200, Jan Petrous via B4 Relay wrote:
+> > +static struct platform_driver s32_dwmac_driver = {
+> > +	.probe		= s32_dwmac_probe,
+> > +	.remove_new	= stmmac_pltfr_remove,
+> > +	.driver		= {
+> > +			    .name		= "s32-dwmac",
+> > +			    .pm		= &stmmac_pltfr_pm_ops,
+> > +			    .of_match_table = s32_dwmac_match,
 > > +	},
 > > +};
-> > +
-> > +static struct cscfg_regval_desc gen_etrig_regs[] = {
-> > +	/* resource selector */
-> > +	{
-> > +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> > +		.offset = TRCRSCTLRn(2),
-> > +		.hw_info = ETM4_CFG_RES_SEL,
-> > +		.val32 = 0x40001,
-> > +	},
-> > +	/* single address comparator */
-> > +	{
-> > +		.type = CS_CFG_REG_TYPE_RESOURCE | CS_CFG_REG_TYPE_VAL_64BIT |
-> > +			CS_CFG_REG_TYPE_VAL_PARAM,
-> > +		.offset =  TRCACVRn(0),
-> > +		.val32 = 0x0,
-> > +	},
-> > +	{
-> > +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> > +		.offset = TRCACATRn(0),
-> > +		.val64 = 0xf00,
-> > +	},
-> > +	/* Driver external output[0] with comparator out */
-> > +	{
-> > +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> > +		.offset = TRCEVENTCTL0R,
-> > +		.val32 = 0x2,
-> > +	},
-> > +	/* end of regs */
-> > +};
-> > +
-> > +struct cscfg_feature_desc gen_etrig_etm4x = {
-> > +	.name = "gen_etrig",
-> > +	.description = "Generate external trigger on address match\n"
-> > +		       "parameter \'address\': address of kernel address\n",
-> > +	.match_flags = CS_CFG_MATCH_CLASS_SRC_ETM4,
-> > +	.nr_params = ARRAY_SIZE(gen_etrig_params),
-> > +	.params_desc = gen_etrig_params,
-> > +	.nr_regs = ARRAY_SIZE(gen_etrig_regs),
-> > +	.regs_desc = gen_etrig_regs,
-> > +};
-> > +
-> > +/* create a panic stop configuration */
-> > +
-> > +/* the total number of parameters in used features */
-> > +#define PSTOP_NR_PARAMS	ARRAY_SIZE(gen_etrig_params)
-> > +
-> > +static const char *pstop_ref_names[] = {
-> > +	"gen_etrig",
-> > +};
-> > +
-> > +struct cscfg_config_desc pstop_etm4x = {
-> > +	.name = "panicstop",
-> > +	.description = "Stop ETM on kernel panic\n",
-> > +	.nr_feat_refs = ARRAY_SIZE(pstop_ref_names),
-> > +	.feat_ref_names = pstop_ref_names,
-> > +	.nr_total_params = PSTOP_NR_PARAMS,
-> > +};
-> > +
-> > +/* end of ETM4x configurations */
-> > +#endif	/* IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X) */
+> > +module_platform_driver(s32_dwmac_driver);
 > 
+> After commit 0edb555a65d1 ("platform: Make platform_driver::remove()
+> return void") .remove() is (again) the right callback to implement for
+> platform drivers. Please just drop "_new".
 > 
+
+Thank you, I was not aware of it. Will be included in v4.
+
+/Jan
+
 
