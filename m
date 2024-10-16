@@ -1,223 +1,153 @@
-Return-Path: <devicetree+bounces-112029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7575F9A0C91
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:26:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F12F79A0C97
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:28:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E48281F232A6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:26:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76FE1B25869
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:28:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9820020C026;
-	Wed, 16 Oct 2024 14:26:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD68154454;
+	Wed, 16 Oct 2024 14:28:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RW157QD9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8787920ADDA;
-	Wed, 16 Oct 2024 14:26:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A59069D2B;
+	Wed, 16 Oct 2024 14:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729088795; cv=none; b=mZWxJchGAV6tUH6/udX83KlWn2FCDfFIctpN0F6IBBXza9RDBSHlb0EWr+DCOe1TtMWWzX5XeCw8TFXJc5C3uXWFS/WyNyuxBnpTBSu2xQLHy0d3BGjuz4z2PRtPW9a+h/9iTvrUJEx++TyGQ1nYjCgKY1OZFGIdbT6x0r/cCio=
+	t=1729088930; cv=none; b=m+W6Kf1XtnUAR+8rHLvEaLjPGGmJFUm+/mDB+k8CZypdA2PnzkiQbHdq7GNmgOid6ith88mjziaNJXlL71HsyRoH26p9icGY+MuyTsgHf/VQMceoZTS2GMt+iatGwJXD0kZHpQUbbrmtjXxN9ML2CuWMWa2jAbJJmuZn0jwHXOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729088795; c=relaxed/simple;
-	bh=BTpTIYQMDBwzjByt2BCxD0+WshTPDmkDdWMziv5LqKo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uMN/ZcBw42f6vRYlIMyVXP116/+0K8bYOFkITHyLl6kXyEapzrmZzERIIKzgH3G5GuGCbB/KBV8jaG13/KmVfbTbOzzC2onOeuXwM7I6/jalDy7YKck1UDB23ICQinuxKFmkmv/VFqoz0IWvF9tKWEAnYy5KgRibyp/RC5dAmW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a9a0474e70eso568932366b.0;
-        Wed, 16 Oct 2024 07:26:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729088792; x=1729693592;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9kosQyuVWG39YynNEUKXJCBxsTPwg1HVhHQTa1Z8n7k=;
-        b=pi4EIQkJqvhlSSI4WnScMkTcxna2yU4iBbiEsoIQ8LWyXz++j2xxyt08cQVUmTC0pu
-         LX2oYqo38ZwgQ1NfXsRvrheYrLVcWzrY6v91poBnepI1O4Is6dYCmhpyXFaTDyhbMToq
-         ZZIpwaQ2lmbYjbYa9YovmTwVnvKQVTdXCs4JiN4GnxiKOVusUbkSvCdNYn2BzB6tE17L
-         yf0oy5I7O5lEs/+E0ziwgTNDgGNV/PMmpUOuyyzuXDcR5pL6uZHadScgKBFqzXyT6cqJ
-         PTnELi6aIlYTjBDTxJk4HOCWUcbdJX85oKBvXh7TNN17QbCOUJAOAJKwXnHVjcpqmtiH
-         8Mpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUM+SUdPcQ5xlhA9zFvqSC5ZbBSuJ81l1dGoPSNHHqLAztaNtt0Njc0yEyWR+5UpGu7KIqgOwyyppbpxahl@vger.kernel.org, AJvYcCV+m3439rIGQLhawzCEGRM5Ov3JPVZYjU+urI94bZyHSMXgZx18Ti0DMdPS0wbBuT3xYQrMtgdtgGsk@vger.kernel.org, AJvYcCWta3hkrRUgW6guxcJ4fbN1TKmqra/nagM/GWYazMmqpdOB3S8+eSnvKsVK3i1Sc+4X6ZeBCeQMAmL0@vger.kernel.org, AJvYcCX2g5lyaq6nXY0Lmy6tZFoWNhDekwr+6VHCG0b4N8r2YDarDL7ke/N9sQgro4UlNsJMwZWDNnam@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8xuq5RZ3RmbYpFGXsQ7TZ/USrw/N4jYcflwGr2Fl/ZYnrCJ74
-	oWuRtSgg3rg+UloZLd4nKaK7xVXtYENDHmIlI29ouXXvvv9vRxmpYzQO0UJ3zbzlT+vv/K6jSfD
-	HiX761qgCLaiFbahsaXKElp5bW3fPdJ+yYSo=
-X-Google-Smtp-Source: AGHT+IHxBPBf+m6UScPiP9T7rYboW+BUqS+rSedKKCFS0zaiDPv4D0O5W7BTwDQfrFhb1gdRSpU0fFSgNbjyzR/tOYY=
-X-Received: by 2002:a17:906:6a1e:b0:a99:f2bf:7c64 with SMTP id
- a640c23a62f3a-a99f2bf8de2mr1100863466b.17.1729088791572; Wed, 16 Oct 2024
- 07:26:31 -0700 (PDT)
+	s=arc-20240116; t=1729088930; c=relaxed/simple;
+	bh=vjNjPzCeNoqJhqtCDl/b4mBQCaX7+Bu5HjiZkp4Zpso=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qVKPyl+l8NUTAnOgt5BmiudCqldU1N48bSmbLjckqAzav4pZIj58+pBRNal3zEMUmKQR/A5pFabHSy3xMoJqLYAos3sa9Y16LH2e80uD0Ij2yk6Gy67iXm97CXuhqIstanzbHRiO2ssN8O0E9I88ZKgBQLDeWFBRicJWdyLkn3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RW157QD9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA22CC4CEC5;
+	Wed, 16 Oct 2024 14:28:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729088929;
+	bh=vjNjPzCeNoqJhqtCDl/b4mBQCaX7+Bu5HjiZkp4Zpso=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RW157QD9iX704qiEqy6z6S00l51aPv3qbUNImb5xY07+yeiPGmwWo4KD6UcG8Yxek
+	 IZ8AIgDYNyhArtlvoDKf/IQ5lHhDJabUOhybiGvb/6va4eyz1JYwWHu1bjV85nNCjH
+	 IlfoeBVe8r9I7ySDS9/nZ+X9coUIQHQCxWGkgKr2wl4tf5proqobC+lOFNi1gKZCR2
+	 VqnTyeJJujd3zkPtXqBPA35pLpgjzFn+GP2wSKI9Vtctlpe9QGT/zdA96WVOx8UMiO
+	 3wHNRfblKkqNYK9Nu1ZBrJ5W0Ve+rWZLqmys8puccEkmcBoGdchouHvj5+nFFPo2+X
+	 yQvDuslpTqPGQ==
+Date: Wed, 16 Oct 2024 09:28:55 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Rakesh Kota <quic_kotarake@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, konradybcio@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_kamalw@quicinc.com, quic_jprakash@quicinc.com
+Subject: Re: [PATCH V3] arm64: dts: qcom: qcm6490-idp: Allow UFS regulators
+ load/mode setting
+Message-ID: <6wej7mt2z4e4w57niowrjmpuhzfxjxj72cyihmefzr4h6g4qkm@a54gnsfjpxwh>
+References: <20241016100511.2890983-1-quic_kotarake@quicinc.com>
+ <2tunyupop2w7brm6adkdsrytvxbr4g3ixpbmuuqljedeaehze5@se3qsbf6tb6t>
+ <e7443137-925a-4fa9-916a-7481585ad4c6@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241015-topic-mcan-wakeup-source-v6-12-v4-0-fdac1d1e7aa6@baylibre.com>
- <20241015-topic-mcan-wakeup-source-v6-12-v4-5-fdac1d1e7aa6@baylibre.com>
-In-Reply-To: <20241015-topic-mcan-wakeup-source-v6-12-v4-5-fdac1d1e7aa6@baylibre.com>
-From: Vincent MAILHOL <mailhol.vincent@wanadoo.fr>
-Date: Wed, 16 Oct 2024 23:26:22 +0900
-Message-ID: <CAMZ6Rq+NA9G=iON56vQcr5dxEMqn-FFzT5rdxc6XrtW+4ww1XQ@mail.gmail.com>
-Subject: Re: [PATCH v4 5/9] can: m_can: Support pinctrl wakeup state
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Vishal Mahaveer <vishalm@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, Simon Horman <horms@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e7443137-925a-4fa9-916a-7481585ad4c6@quicinc.com>
 
-Hi Markus,
+On Wed, Oct 16, 2024 at 05:00:43PM GMT, Rakesh Kota wrote:
+> 
+> 
+> On 10/16/2024 3:54 PM, Dmitry Baryshkov wrote:
+> > On Wed, Oct 16, 2024 at 03:35:11PM +0530, Rakesh Kota wrote:
+> > > The UFS driver expects to be able to set load (and by extension, mode)
+> > > on its supply regulators. Add the necessary properties to make that
+> > > possible.
+> > > 
+> > > Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
+> > > ---
+> > > Changes V3:
+> > >   - Somehow after fixing the compilation in last patch, i have missed to
+> > >     do git  --amend the change. apology for that, in this change i have
+> > >     fixed that compilation issue.
+> > 
+> > What actually was changed? The --amend doesn't describe changes. Nor
+> > does "fixed that compilation issue".
+> > 
+> Added missing semicolon (;) after regulator-allow-set-load prop for ldo9
+> regulator.
+> > >   - Link V2 : https://lore.kernel.org/all/20241015132049.2037500-1-quic_kotarake@quicinc.com/
+> > 
+> > Where are changes between v1 and v2?
+> > 
+> i will add changes history in V4 patch.
 
-This is a nice improvement from the v3.
+It's perfectly fine (preferred even) to just answer with the requested
+information here, and then if you need to make changes to the patch and
+do send v4 you make sure to include it there.
 
-On Wed. 16 Oct. 2024 at 04:19, Markus Schneider-Pargmann
-<msp@baylibre.com> wrote:
-> am62 requires a wakeup flag being set in pinctrl when mcan pins acts as
-> a wakeup source. Add support to select the wakeup state if WOL is
-> enabled.
->
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->  drivers/net/can/m_can/m_can.c | 68 +++++++++++++++++++++++++++++++++++++++++++
->  drivers/net/can/m_can/m_can.h |  4 +++
->  2 files changed, 72 insertions(+)
->
-> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
-> index 5a4e0ad07e9ecc82de5f1f606707f3380d3679fc..c539375005f71c88fd1f7d1a885ce890ce0e9327 100644
-> --- a/drivers/net/can/m_can/m_can.c
-> +++ b/drivers/net/can/m_can/m_can.c
-> @@ -2196,6 +2196,7 @@ static void m_can_get_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
->  static int m_can_set_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
->  {
->         struct m_can_classdev *cdev = netdev_priv(dev);
-> +       struct pinctrl_state *new_pinctrl_state = NULL;
->         bool wol_enable = !!(wol->wolopts & WAKE_PHY);
->         int ret;
->
-> @@ -2212,7 +2213,28 @@ static int m_can_set_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
->                 return ret;
->         }
->
-> +       if (wol_enable)
-> +               new_pinctrl_state = cdev->pinctrl_state_wakeup;
-> +       else
-> +               new_pinctrl_state = cdev->pinctrl_state_default;
-> +
-> +       if (IS_ERR_OR_NULL(new_pinctrl_state))
-> +               return 0;
-> +
-> +       ret = pinctrl_select_state(cdev->pinctrl, new_pinctrl_state);
-> +       if (ret) {
-> +               netdev_err(cdev->net, "Failed to select pinctrl state %pE\n",
-> +                          ERR_PTR(ret));
-> +               goto err_wakeup_enable;
-> +       }
-> +
->         return 0;
-> +
-> +err_wakeup_enable:
-> +       /* Revert wakeup enable */
-> +       device_set_wakeup_enable(cdev->dev, !wol_enable);
-> +
-> +       return ret;
->  }
->
->  static const struct ethtool_ops m_can_ethtool_ops_coalescing = {
-> @@ -2340,6 +2362,44 @@ int m_can_class_get_clocks(struct m_can_classdev *cdev)
->  }
->  EXPORT_SYMBOL_GPL(m_can_class_get_clocks);
->
-> +static int m_can_class_setup_optional_pinctrl(struct m_can_classdev *class_dev)
-> +{
-> +       struct device *dev = class_dev->dev;
-> +       int ret;
-> +
-> +       class_dev->pinctrl = devm_pinctrl_get(dev);
-> +       if (IS_ERR(class_dev->pinctrl)) {
-> +               ret = PTR_ERR(class_dev->pinctrl);
-> +               class_dev->pinctrl = NULL;
-> +
-> +               if (ret == -ENODEV)
-> +                       return 0;
-> +
-> +               return dev_err_probe(dev, ret, "Failed to get pinctrl\n");
-> +       }
-> +
-> +       class_dev->pinctrl_state_wakeup =
-> +               pinctrl_lookup_state(class_dev->pinctrl, "wakeup");
-> +       if (IS_ERR(class_dev->pinctrl_state_wakeup)) {
-> +               ret = PTR_ERR(class_dev->pinctrl_state_wakeup);
-> +               class_dev->pinctrl_state_wakeup = NULL;
-> +
-> +               if (ret == -ENODEV)
-> +                       return 0;
-> +
-> +               return dev_err_probe(dev, ret, "Failed to lookup pinctrl wakeup state\n");
-> +       }
-> +
-> +       class_dev->pinctrl_state_default =
-> +               pinctrl_lookup_state(class_dev->pinctrl, "default");
-> +       if (IS_ERR(class_dev->pinctrl_state_default)) {
-> +               ret = PTR_ERR(class_dev->pinctrl_state_default);
+> > Where is the tag that was given to you for the v2?
+> > 
+> sorry, i missed adding the Reviewed-by tag and i will add it in V4 patch.
 
-Sorry if this is a silly question, but why aren't you doing the:
+Same here, if you just reply with Dmitry's reviewd-by and a comment that
+you missed it, it will help me know that the patch has been reviewed and
+the tools will pick it up.
 
-                  class_dev->pinctrl_state_default = NULL;
+Regards,
+Bjorn
 
-                  if (ret == -ENODEV)
-                          return 0;
-
-thing the same way you are doing it for the pinctrl and the
-pinctrl_state_wakeup?
-
-> +               return dev_err_probe(dev, ret, "Failed to lookup pinctrl default state\n");
-> +       }
-> +
-> +       return 0;
-> +}
-> +
->  struct m_can_classdev *m_can_class_allocate_dev(struct device *dev,
->                                                 int sizeof_priv)
->  {
-> @@ -2380,7 +2440,15 @@ struct m_can_classdev *m_can_class_allocate_dev(struct device *dev,
->
->         m_can_of_parse_mram(class_dev, mram_config_vals);
->
-> +       ret = m_can_class_setup_optional_pinctrl(class_dev);
-> +       if (ret)
-> +               goto err_free_candev;
-> +
->         return class_dev;
-> +
-> +err_free_candev:
-> +       free_candev(net_dev);
-> +       return ERR_PTR(ret);
->  }
->  EXPORT_SYMBOL_GPL(m_can_class_allocate_dev);
->
-> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
-> index 92b2bd8628e6b31370f4accbc2e28f3b2257a71d..b75b0dd6ccc93973d0891daac07c92b61f81dc2a 100644
-> --- a/drivers/net/can/m_can/m_can.h
-> +++ b/drivers/net/can/m_can/m_can.h
-> @@ -126,6 +126,10 @@ struct m_can_classdev {
->         struct mram_cfg mcfg[MRAM_CFG_NUM];
->
->         struct hrtimer hrtimer;
-> +
-> +       struct pinctrl *pinctrl;
-> +       struct pinctrl_state *pinctrl_state_default;
-> +       struct pinctrl_state *pinctrl_state_wakeup;
->  };
->
->  struct m_can_classdev *m_can_class_allocate_dev(struct device *dev, int sizeof_priv);
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 8 ++++++++
+> > >   1 file changed, 8 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> > > index 5f3d4807ac43..bfb1cdc238cc 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> > > @@ -258,6 +258,8 @@ vreg_l6b_1p2: ldo6 {
+> > >   			regulator-name = "vreg_l6b_1p2";
+> > >   			regulator-min-microvolt = <1140000>;
+> > >   			regulator-max-microvolt = <1260000>;
+> > > +			regulator-allow-set-load;
+> > > +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+> > >   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > >   		};
+> > > @@ -265,6 +267,8 @@ vreg_l7b_2p952: ldo7 {
+> > >   			regulator-name = "vreg_l7b_2p952";
+> > >   			regulator-min-microvolt = <2400000>;
+> > >   			regulator-max-microvolt = <3544000>;
+> > > +			regulator-allow-set-load;
+> > > +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+> > >   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > >   		};
+> > > @@ -279,6 +283,8 @@ vreg_l9b_1p2: ldo9 {
+> > >   			regulator-name = "vreg_l9b_1p2";
+> > >   			regulator-min-microvolt = <1200000>;
+> > >   			regulator-max-microvolt = <1304000>;
+> > > +			regulator-allow-set-load;
+> > > +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+> > >   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > >   		};
+> > > @@ -467,6 +473,8 @@ vreg_l10c_0p88: ldo10 {
+> > >   			regulator-name = "vreg_l10c_0p88";
+> > >   			regulator-min-microvolt = <720000>;
+> > >   			regulator-max-microvolt = <1050000>;
+> > > +			regulator-allow-set-load;
+> > > +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+> > >   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > >   		};
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
 
