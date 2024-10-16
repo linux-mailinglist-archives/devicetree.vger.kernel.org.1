@@ -1,133 +1,111 @@
-Return-Path: <devicetree+bounces-112033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02F3F9A0CCF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:36:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E13A79A0D01
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:42:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59E46B280F1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:36:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A625A284A65
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8861D20C473;
-	Wed, 16 Oct 2024 14:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7356F20E00F;
+	Wed, 16 Oct 2024 14:41:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="doT98/NT"
+	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="JPu0z5jO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out-03.smtp.spacemail.com (out-03.smtp.spacemail.com [63.250.43.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F4520C039;
-	Wed, 16 Oct 2024 14:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE01120C015;
+	Wed, 16 Oct 2024 14:41:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729089355; cv=none; b=HGDwKf507ahMIdCEET55Oo+ofu9rzbrirdfwo1KfBE0zOcMRd98etbhV4QkKzSBFRFq9gTEHqWAPLG+F96YqalJXPQYOOYcI17mIpJJaSix4TR2EhsyL5BRx9DUPxoy8qxgFN8WoBezD8AwVswVbb5dBrmkQOLhTNcJjFpewy3o=
+	t=1729089714; cv=none; b=j42a+bV0w3fzuZHlB75GCDyaKksoALuuKmKqjZsd4kWO+Yf1uTcbmfXpFFJj82LASrSNpzzgcAKqIxzSslTPpcSxxwScZmfp+u2VafRZWgJYNO4QxjBM3KQrCae6L0HdLwrcJKYTZAAHrJuNrhFnDtuICxNPVINDYuuWptJ88LQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729089355; c=relaxed/simple;
-	bh=NXK/fPhGl4mqtfjEA+PZpwSNsIwN2iaBtslPz058mG4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jP8Hlr8GdAMTVVSg/C/DhFKM70Yw7zxl6Y9AorDO0E32W/ngGylxiNg6FJdBYVUABW5W1fP8XoJQnVv5yF0geB16nJtuPrSf9LQ45PgP8DRSLOOQGQ4+9ppPsQyWojvafFlqDNp5k1fINqdQX91EcdtNR+6LaU5AzgRddzU9Oas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=doT98/NT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50854C4CEC5;
-	Wed, 16 Oct 2024 14:35:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729089354;
-	bh=NXK/fPhGl4mqtfjEA+PZpwSNsIwN2iaBtslPz058mG4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=doT98/NT4FM40wYqR+SAm4CK3i00eE0ELNQ2AAFfLrDWK15sN8WmePaZVqR1S8G+j
-	 f/wMm2JKvoAX1cNiI0SVJyVRDEw9N7C4ZyZR3sXHYxmFbcZZoZZ4ggESnvaMDP3m+n
-	 aZs3c/6MfoMmv7cY/AhJ6GBa9B7VFynlW2FBe5HdJU2Y509EyQ7TFYzSX1BBiyVDMd
-	 yIPUARKazo11AoVwVfGg5nfeOtRqbU/UM+3t9IoqUcg9J1ywBE7XTXz+/bA5f61Koj
-	 psv6t/QnwXD4pMnPISVPDLyxbHEIaAVEYqLekUPdyyTejmdHulsiUBlHGGI5tskbEs
-	 ddma1Se1F5KQg==
-Date: Wed, 16 Oct 2024 09:35:59 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>, 
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
-	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com
-Subject: Re: [PATCH v1 2/5] arm64: dts: qcom: Add support for configuring
- channel TRE size
-Message-ID: <7e7ksit5ptjrcnct66v75mbxuabnzzloungockdal2dl2y6nn5@ge4mrsjmd746>
-References: <20241015120750.21217-1-quic_jseerapu@quicinc.com>
- <20241015120750.21217-3-quic_jseerapu@quicinc.com>
- <78a1c5c8-53c8-4144-b311-c34b155ca27c@kernel.org>
+	s=arc-20240116; t=1729089714; c=relaxed/simple;
+	bh=5pqAUeM+sCAUVEmtTmEbLzJQvE1ZOR58MpVxFnbuY4I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=dDydktcIvOeoYz8o6WwHq4hKffxgFVQiQCujcU/k6VZO64FLEL8SrkTqcEvYfuuwM1fKSMwh9hCpQ2aQj2WDYwZKkNXUzey3uYbRkvNGKhLbSdSnWmz4aqZ2KfsSotsfroukPIgeLTMdPSIm1fWDhaadd/AYXx3jnJvpj0BpTk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=JPu0z5jO; arc=none smtp.client-ip=63.250.43.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
+	by smtp.spacemail.com (Postfix) with ESMTPA id 4XTDF50qn7zGpSN;
+	Wed, 16 Oct 2024 14:41:45 +0000 (UTC)
+Received: from igor-systemproductname.lan (83.8.245.91.ipv4.supernova.orange.pl [83.8.245.91])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.spacemail.com (Postfix) with ESMTPSA id 4XTDDx2QSDz2x99;
+	Wed, 16 Oct 2024 14:41:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=mentallysanemainliners.org; s=spacemail; t=1729089699;
+	bh=5pqAUeM+sCAUVEmtTmEbLzJQvE1ZOR58MpVxFnbuY4I=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=JPu0z5jOyc/Ys3kRKdHWOR+JUgtpBOWjHE6M+6/FXoWoXxR+HTnRaNBMUOnjlr32o
+	 r6vmMO2U7ckI8nObdiX5oYsg/gtVxs5BYULyfjK/UQptkwiF/JH0OsdL81wC/bqCpI
+	 o++eeonoymx5eJs6hnhOALhcRL3bIGZQhGZWb0ZW1bCJjgs4csUyjK+gYFNnLXOrBc
+	 6jQ2D3cdjsFpFnZczI8gLw5S7c0ZqqeavELfMGSkjTUF7ChpVH3D1dJVJPs9Ls1YwR
+	 FFkkH26RQc7Vq3PkBMxPJdpsvLhEpeimifWdhzi8jaqKk89EoBblJHVFoH/vi6VRy1
+	 DLdq7m2cyPRMA==
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+To: krzk@kernel.org
+Cc: alim.akhtar@samsung.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linus.walleij@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	robh@kernel.org,
+	s.nawrocki@samsung.com,
+	tomasz.figa@gmail.com
+Subject: Re: Re: [PATCH v2 0/5] Add Exynos990 pinctrl and chipid drivers
+Date: Wed, 16 Oct 2024 16:41:12 +0200
+Message-ID: <20241016144112.17588-1-igor.belwon@mentallysanemainliners.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <795657e1-5232-494c-9ac5-a62455b0f6f9@kernel.org>
+References: <795657e1-5232-494c-9ac5-a62455b0f6f9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <78a1c5c8-53c8-4144-b311-c34b155ca27c@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 15, 2024 at 03:33:00PM GMT, Krzysztof Kozlowski wrote:
-> On 15/10/2024 14:07, Jyothi Kumar Seerapu wrote:
-> > When high performance with multiple i2c messages in a single transfer
-> > is required, employ Block Event Interrupt (BEI) to trigger interrupts
-> > after specific messages transfer and the last message transfer,
-> > thereby reducing interrupts.
-> > For each i2c message transfer, a series of Transfer Request Elements(TREs)
-> > must be programmed, including config tre for frequency configuration,
-> > go tre for holding i2c address and dma tre for holding dma buffer address,
-> > length as per the hardware programming guide. For transfer using BEI,
-> > multiple I2C messages may necessitate the preparation of config, go,
-> > and tx DMA TREs. However, a channel TRE size of 64 is often insufficient,
-> > potentially leading to failures due to inadequate memory space.
-> > 
-> > Adjust the channel TRE size through the device tree.
-> > The default size is 64, but clients can modify this value based on
-> > their heigher channel TRE size requirements.
-> > 
-> > Signed-off-by: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 132 +++++++++++++--------------
-> >  1 file changed, 66 insertions(+), 66 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > index 3d8410683402..c7c0e15ff9d3 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > @@ -1064,7 +1064,7 @@
-> >  		};
-> >  
-> >  		gpi_dma0: dma-controller@900000 {
-> > -			#dma-cells = <3>;
-> > +			#dma-cells = <4>;
-> >  			compatible = "qcom,sc7280-gpi-dma", "qcom,sm6350-gpi-dma";
-> >  			reg = <0 0x00900000 0 0x60000>;
-> >  			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
-> > @@ -1114,8 +1114,8 @@
-> >  							"qup-memory";
-> >  				power-domains = <&rpmhpd SC7280_CX>;
-> >  				required-opps = <&rpmhpd_opp_low_svs>;
-> > -				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
-> > -				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
-> > +				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C 64>,
-> > +				       <&gpi_dma0 1 0 QCOM_GPI_I2C 64>;
-> 
-> So everywhere is 64, thus this is fixed. Deduce it from the compatible
-> 
+On Wed, 16 Oct 2024 09:19:58 +0200, Krzysztof Kozlowski wrote:
+> On 16/10/2024 09:06, Krzysztof Kozlowski wrote:
+>> On Tue, Oct 15, 2024 at 11:04:45PM +0200, Igor Belwon wrote:
+>>> Hi folks,
+>>>
+>>> This series adds support for the drivers for the Exynos 990 SoC. It
+>>> consists of the pinctrl driver and the chipid driver. The product ID
+>>> of this chip for chipid is 0xe9830000. The pinctrl bank types are the
+>>> same as in the Exynos 850 chip.
+>>>
+>>> Changes in v2:
+>>>  - Moved bindings from SoC bringup commit
+>>>  - Moved device tree changes from SoC bringup commit
+>>>  - Ordered pinctrl nodes by unit address in SoC DT
+>>>  - Moved the exynos990-wakeup-eint binding to the correct if.
+>> 
+> Moved? That's not what I asked for. Are you sure you have this warning
+> free? That's a requirement for Samsung (see maintainer profile).
+>
+> Ah, I see now what you did - you removed the interrupt. That's
+> surprising. I don't understand why.
 
-If I understand correctly, it's a software tunable property, used to
-balance how many TRE elements that should be preallocated.
+Hi Krzysztof,
 
-If so, it would not be a property of the hardware/compatible, but rather
-a result of profiling and a balance between memory "waste" and
-performance.
+Thank you for the review.
+The interrupt was actually my oversight. This SoCs pin controller does
+not mux interrupts (much like E850 and Tensor). It's still compatible
+with the Exynos7 model as a fallback though.
 
-Regards,
-Bjorn
-
-> Best regards,
-> Krzysztof
-> 
+Best regards,
+Igor
 
