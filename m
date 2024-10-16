@@ -1,137 +1,118 @@
-Return-Path: <devicetree+bounces-112136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28DF9A12AE
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 21:35:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CF99A12B9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 21:38:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 676B9286586
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:35:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A10C71C215EC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BDEA2170A5;
-	Wed, 16 Oct 2024 19:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6465F2144A9;
+	Wed, 16 Oct 2024 19:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="hFuQPkp1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tS1OkGaV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-02.smtp.spacemail.com (out-02.smtp.spacemail.com [63.250.43.87])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF442216A1D;
-	Wed, 16 Oct 2024 19:35:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC391865ED;
+	Wed, 16 Oct 2024 19:38:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729107322; cv=none; b=npNnFr1kLLHHP8uGepFT6yZHjawjmcRdIMyXwGiM/fQ7h4aVYvWLnfYwlgw8GpKPtXUdHZVqFpHu3ESD86xEIIFx6VXSMT/6T1FYSOKR1wvTanti8jRXRZ3Bs6TRm0xqjRdPQwTYj5vsLARrMZ/NYH2h5bMTe3b5Fd6/bQGA8Bc=
+	t=1729107484; cv=none; b=BynfS8jrGog4bMOYW6iUdyZsRw7wnVLVqng8TNJEVzeUWnsQxP0tJ6bd1syZQPKmdLL1rPq5lPpfyYOobhwypbw+vB4W6Kh54gPrB1AIFr4SxHsM1sysZKKj88R1C2U3ZpjjK4yLvyXU5wnB121B2SIsZ6LUdOqOuO7SEGml8zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729107322; c=relaxed/simple;
-	bh=vEV5MrcZqqP+/2M7VPWQb86a7NQ1R7xOy5iwcfrbp3s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EQLOxSGwVacc3wQ2d52A2UVmglQUPGRHO8EdJKWUYmM0cRAeaYKowkGvPJAZpeDwEiq//qsAU6F99JuaN0An2U8yLOQSPHqCRQCGkMhbI446YIRF8kuhcvMtY/5jCS3v1YfEbNjZ1X+SmZFPI4ihrcvfBe3sfD+21eGzkyEsFXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=hFuQPkp1; arc=none smtp.client-ip=63.250.43.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
-	by smtp.spacemail.com (Postfix) with ESMTPA id 4XTLlq4d3kz4wL9;
-	Wed, 16 Oct 2024 19:35:19 +0000 (UTC)
-Received: from l-latitude7390.lan (host-80-41-166-50.as13285.net [80.41.166.50])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.spacemail.com (Postfix) with ESMTPSA id 4XTLlh1dvNz2x99;
-	Wed, 16 Oct 2024 19:35:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=mentallysanemainliners.org; s=spacemail; t=1729107314;
-	bh=vEV5MrcZqqP+/2M7VPWQb86a7NQ1R7xOy5iwcfrbp3s=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hFuQPkp1MbYdRxphIxV7Rx3HLXLGzpWmP41nrUq86tMnJiS7chn4/x0A/F29RpwB/
-	 LftFEVA6tNRXJqoYnvW/3A8M+HLq1SAjNmKYSQ/WzWxtl9hCFAaU7FPxY41IJDosAO
-	 1xmAS0NbHo9udmpJRgKZG4Neasv1hqWtZmRhojFrwMYeTKeyNceF6RjPeBcZtw1h2e
-	 ZpPGmXHUaYfSJLs6WRvAZPqZEaBuePysaKLrVQvsJ/h8upDPCWmxtYp15b6Nnamhxe
-	 jkm5i4g7U5GVAzReYWgJ9nC+vBw+uwA/rL39OSMd5Dmr+JvTtuwSyT9JBD4YQOCVaf
-	 t2Xb0ihENEsaA==
-From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	igor.belwon@mentallysanemainliners.org
-Subject: [PATCH v1 3/3] arm64: dts: exynos: Add initial support for Samsung Galaxy S20 5G (x1s)
-Date: Wed, 16 Oct 2024 20:34:51 +0100
-Message-ID: <20241016193451.28897-4-umer.uddin@mentallysanemainliners.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241016193451.28897-1-umer.uddin@mentallysanemainliners.org>
-References: <20241016193451.28897-1-umer.uddin@mentallysanemainliners.org>
+	s=arc-20240116; t=1729107484; c=relaxed/simple;
+	bh=6dGoC9a9JiCAYeGpX5fIjP+CJ42IJn9E3kkE2FQNvL0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=inyC2DyD2OqWYWJwvWc79ldVxQagOBNy0UedOPPAfAqMuODEyTx8JxXuJ4ckoVJppuCCseYOp1RHHENPdvPzNwL3GiISppkTNUM3UyrXahDeryp5unO4To/1UHpFdha7O59m+kiKGTkygWNeYGQ1h/pvcd0Weuk0tOEbAWKx8Oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tS1OkGaV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82649C4CEC5;
+	Wed, 16 Oct 2024 19:38:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729107483;
+	bh=6dGoC9a9JiCAYeGpX5fIjP+CJ42IJn9E3kkE2FQNvL0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=tS1OkGaVsIsv4ZJFraTecKZ2QFO4nUAEAoichSykLSfGjHXeNTJSjpqnrQ69xbYnh
+	 URdczNK3W+SkrSWC/V9ZyJFc9etIglHTD7o4KNBZIdKvzjqj500kca4FrMAUoIE5vT
+	 yok6MdDEoiwPwiCpUm9r8k+S3Fb9BSAzaEwWEl8vupOe9Nhlb6Eztq4LBhL2hGIOg/
+	 5z4dLaBohTguxawa/FZHPqiMK3SiTDXcrO2aMgFmprS2/knK5C7rT2wSNrVQxz0VQz
+	 PQxGoNWWyxGOQ3DZKevs1L3byjSr1qq1p3uI1zEn1PwLP8fZu5X0Y2cNMIHCmerxLr
+	 5NgHJdKtbl58A==
+Date: Wed, 16 Oct 2024 14:38:02 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Jim Quinlan <jim2101024@gmail.com>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+	Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>
+Subject: Re: [PATCH v3 04/11] PCI: brcmstb: Expand inbound size calculation
+ helper
+Message-ID: <20241016193802.GA645895@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANCKTBt17LCyvQQnOqMdu1KUY61bRKCYQC8=+HDYaddj-MAd2Q@mail.gmail.com>
 
-Add initial support for the Samsung Galaxy S20 5G (x1s/SM-G981B)
-phone. It was launched in 2020, and it's based on the Exynos 990 SoC. It
-has only one configuration with 12GB of RAM and 128GB of UFS 3.0 storage.
+On Wed, Oct 16, 2024 at 01:09:00PM -0400, Jim Quinlan wrote:
+> On Mon, Oct 14, 2024 at 1:25 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > On Mon, Oct 14, 2024 at 10:10:11AM -0700, Florian Fainelli wrote:
+> > > On 10/14/24 09:57, Bjorn Helgaas wrote:
+> > > > On Mon, Oct 14, 2024 at 04:07:03PM +0300, Stanimir Varbanov wrote:
+> > > > > BCM2712 memory map can supports up to 64GB of system
+> > > > > memory, thus expand the inbound size calculation in
+> > > > > helper function up to 64GB.
+> > > >
+> > > > The fact that the calculation is done in a helper isn't important
+> > > > here.  Can you make the subject line say something about supporting
+> > > > DMA for up to 64GB of system memory?
+> > > >
+> > > > This is being done specifically for BCM2712, but I assume it's safe
+> > > > for *all* brcmstb devices, right?
+> > >
+> > > It is safe in the sense that all brcmstb devices with this PCIe
+> > > controller will adopt the same encoding of the size, all of the
+> > > currently supported brcmstb devices have a variety of
+> > > limitations when it comes to the amount of addressable DRAM
+> > > however. Typically we have a hard limit at 4GB of DRAM per
+> > > memory controller, some devices can do 2GB x3, 4GB x2, or 4GB
+> > > x1.
+> > >
+> > > Does that answer your question?
+> >
+> > I'd like something in the commit log to the effect that while
+> > we're doing this to support more system memory on BCM2712, this
+> > change is safe for other SoCs that don't support as much system
+> > memory.
+> 
+> This setting configures the size of an RC's inbound window to system
+> memory.  Any inbound access outside of all of the inbound windows
+> will be discarded.
+> 
+> Some existing SoCs cannot support the 64GB size.  Configuring such
+> an SoC to 64GB will effectively disable the entire window.
 
-This device tree adds support for the following:
+So I *think* you're saying that this patch will break existing SoCs
+that don't support the 64GB size, right?
 
-- SimpleFB
-- 12GB RAM
-- Buttons
-
-Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
----
- arch/arm64/boot/dts/exynos/Makefile          |  1 +
- arch/arm64/boot/dts/exynos/exynos990-x1s.dts | 23 ++++++++++++++++++++
- 2 files changed, 24 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynos990-x1s.dts
-
-diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-index 7a934499b..deb8dc509 100644
---- a/arch/arm64/boot/dts/exynos/Makefile
-+++ b/arch/arm64/boot/dts/exynos/Makefile
-@@ -9,5 +9,6 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	exynos850-e850-96.dtb		\
- 	exynos8895-dreamlte.dtb		\
- 	exynos990-c1s.dtb		\
-+	exynos990-x1s.dtb		\
- 	exynosautov9-sadk.dtb		\
- 	exynosautov920-sadk.dtb
-diff --git a/arch/arm64/boot/dts/exynos/exynos990-x1s.dts b/arch/arm64/boot/dts/exynos/exynos990-x1s.dts
-new file mode 100644
-index 000000000..f7b1afd0e
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynos990-x1s.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-+/*
-+ * Samsung Galaxy S20 5G (x1s/SM-G981B) device tree source
-+ *
-+ * Copyright (c) 2024, Umer Uddin <umer.uddin@mentallysanemainliners.org>
-+ */
-+
-+/dts-v1/;
-+#include "exynos990-hubble-common.dtsi"
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	model = "Samsung Galaxy S20 5G";
-+	compatible = "samsung,x1s", "samsung,exynos990";
-+
-+	memory@9fec00000 {
-+		device_type = "memory";
-+		reg = <0x9 0xfec00000 0x0 0x01400000>,
-+		      <0xa 0x0 0x0 0xfe800000>;
-+	};
-+};
--- 
-2.46.2
-
+Bjorn
 
