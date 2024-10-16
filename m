@@ -1,117 +1,179 @@
-Return-Path: <devicetree+bounces-112031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFD09A0CA8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:31:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A709A0CB7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:32:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 892A91C2256C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:31:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9A57283147
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:32:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6164020966A;
-	Wed, 16 Oct 2024 14:31:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rWmZmRtE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D3620A5C5;
+	Wed, 16 Oct 2024 14:32:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 372891586D3;
-	Wed, 16 Oct 2024 14:31:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91D2209F59;
+	Wed, 16 Oct 2024 14:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729089105; cv=none; b=t1SJfUBvQ8pV8QAkTcxLAMf0uWcWE2046QzoZLDyPITh22YZcMP+1vTY1jfDV4+HCs8Aseg82EySjfY5HgQOZGu5C0P1drBCp0glcylAbSKGUxiLDVhCFGyljbOjQ5lhnQoV1ngJDCo8PXLfl+UL7zjke63gljt+PFBtVqTHHC0=
+	t=1729089140; cv=none; b=eum6IIF90iIbE1JI5GFLHPPBKrkP3srSIf6G2XrvZD2IBB0rA2e0QYZqbsGyOpCSk0uV1RKBXG4s7cC1ew1z4AkbMbQ6sSe9bYsUkqCMj9uQ8tgL4Fox5VQeqQmd5TEByaxxX58Fy+TTOkgTkmDSvcqbnAs0/UMPyMzrM7InkXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729089105; c=relaxed/simple;
-	bh=0xfOv0zgOtoH74E1+U5BolLrIHlK5WA+900nCd8/6m4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eMoHHbF6BN34TPTcCC7Z+NU2LuZmylFLirP5RmGYK2afso2GsVfdGAoqKF6LS/wSw+REjRKIGVzQZGcGs+1wczlrxKiWibQdjVGXW64VM93hidTCVM8huft2L+WkX4KRhuAe9+M//qzFGQvxkMMmyZtAVhOF7jj0QrFLfIzhzaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rWmZmRtE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C7F2C4CEC5;
-	Wed, 16 Oct 2024 14:31:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729089104;
-	bh=0xfOv0zgOtoH74E1+U5BolLrIHlK5WA+900nCd8/6m4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rWmZmRtEujt9bn1Vj7YsfEbqJeqaGr714tAtBsxFk787oKc27oN+6ZcdozKJ6ZGkK
-	 +Kjb9oDhnth5XW2Tbs2RVEza0EntRZDOKkBsxmXaKTqo1VF5arrCA1Rymj1a+h7kpb
-	 4NWtM68v3HhsnJwPW+2jSjf8s4MI8PtITJSl3BsStHeAI1wP0WJKfppR37VmRM//Yi
-	 PYcmZnsJgkvt1p0EL/YIQXURNouH/5ebfLGJCZio9cAm/Xo++xnZa4oZ60v0A0TBSh
-	 AgT6SRhvxy/qvlGQ8uTWJR5cqvHUNDJydIU/B+gdS44zmw/Dnmw3jKUeL2zFbzoKHM
-	 YiWvBv/q3eucw==
-Date: Wed, 16 Oct 2024 09:31:50 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Maya Matuszczyk <maccraft123mc@gmail.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jos Dehaes <jos.dehaes@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: Rename "Twitter" to "Tweeter"
-Message-ID: <423uciiaksxtyqua6w22wzdms4a53jp7v6rbvhfpfxr2uot7hd@mkb4uqehgz23>
-References: <20241015170157.2959-1-maccraft123mc@gmail.com>
+	s=arc-20240116; t=1729089140; c=relaxed/simple;
+	bh=cL6/iEITEkqI1kGR9ikJ0rjtp3Ih/i+CjMVOEFFmh4g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uNiV83DIAh25bG43ufByw04Ovz9DiYz1QoGwNWoMiD+Yv9iyyU85UAMKdB9doV4Jy0OzzqR+QpgL3vtRT5ftxxVA+h6VxvunNoVWk0xzSyGzdaW9cg9BySRItlE0+eue6jPLDjgBZYz+IsVvYXOUGzoZsvTRYm3Wv8Cti56dHus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a9a0ef5179dso467865966b.1;
+        Wed, 16 Oct 2024 07:32:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729089136; x=1729693936;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sSNiWdoyjPld1XydLnGWhx59ZAvesHEXD9q6WahTtD8=;
+        b=rE7/0CAcBj0oFHOpPX/8Iyg7ukpQMun1EgnSmyPyLt7f3hqy+MaFZFfd7H8hj9GGJo
+         Nd8yZE7PHISk5sGvqu7NnQLU1xkz2zP9kUQdZaEuMuOQhT5FumezwTagUZeI1mhA/Hn+
+         i9Ag24AOhwwVFHFNjM+PBUGqR4AQ+9alRcl0pEuyqg0BmAM3m6fxiwunlwu+wZVH3kPz
+         1vi4ZGZBtWK1dB2md5Zl0bvXaAt1rl1nYp8ylq60XNqc1znq7YdxPfJqkLSvqYqMh4ru
+         7xwmUeLW8fnBapguqkFZ9yl2AhydDFNdtGCKkpuj3vDDHF4XksSs6dloFMHyufhHSNk3
+         cutA==
+X-Forwarded-Encrypted: i=1; AJvYcCUhqbT4UQ6ooaZyNpk6zWdIqbbiO6zpLGiERbWYu7kBNk5VA9MrDl/JGHEShnikJyB1zuvAIPWBWqBQEW8l@vger.kernel.org, AJvYcCV9WERxtx59g65J8syNoE/wx128gdFlO2yvvbmiAgtrG+0D364d60PLq4BOs8DUI+JoF4QKqv3OHmYj@vger.kernel.org, AJvYcCX35nH5DsJcLOP5GmaqM/Vtu27zw96QYr6t/Iq+lRb4DS5s03bIVFW11eYAhLHr2DL2ePAWjZKohaTL@vger.kernel.org, AJvYcCX7N22Ie9F2twII6Zcib54WpSmkI6qbL5uATbdinkQxM+P3Y6Q24/sDdZfWFEp0FmTtjyCfYenY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPfWYS3Cxh+G7cRrKBNhJvqNjLNvNfB3SOKFASumwJbMPF9kgT
+	5nxh/fQNWVVNDBUmi0fBu7dfBy5a1rOuf/6FTOMPhuPt3a+B0IaTWyKgQYa8WkFWOzXYGFCk7+/
+	2xjnDRrFUuOT3Oe3GnLTxMA7t4G8=
+X-Google-Smtp-Source: AGHT+IHIRvEp4YvtVQ1ixCe8NKzoxNPRFn5DlgVaLXK5XyUINKKI62mZa6ua3k/lIFZaBGu7y/WSpqnDGSIiREWEh6c=
+X-Received: by 2002:a17:907:d85f:b0:a99:4025:82e1 with SMTP id
+ a640c23a62f3a-a9a34dfd1fbmr318914166b.41.1729089136043; Wed, 16 Oct 2024
+ 07:32:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015170157.2959-1-maccraft123mc@gmail.com>
+References: <20241015-topic-mcan-wakeup-source-v6-12-v4-0-fdac1d1e7aa6@baylibre.com>
+ <20241015-topic-mcan-wakeup-source-v6-12-v4-3-fdac1d1e7aa6@baylibre.com>
+In-Reply-To: <20241015-topic-mcan-wakeup-source-v6-12-v4-3-fdac1d1e7aa6@baylibre.com>
+From: Vincent MAILHOL <mailhol.vincent@wanadoo.fr>
+Date: Wed, 16 Oct 2024 23:32:06 +0900
+Message-ID: <CAMZ6RqJfBbFRaynjFAbi5quAvcA1bYj7Dw_vJ7rDsLRaEheZrw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/9] can: m_can: Map WoL to device_set_wakeup_enable
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Vishal Mahaveer <vishalm@ti.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, Simon Horman <horms@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Oct 15, 2024 at 07:01:56PM GMT, Maya Matuszczyk wrote:
-> This makes the name consistent with both other x1e80100 devices and the
-> dictionary. A UCM fix was merged already.
-> 
+On Wed. 16 Oct. 2024 at 04:18, Markus Schneider-Pargmann
+<msp@baylibre.com> wrote:
+> In some devices the pins of the m_can module can act as a wakeup source.
+> This patch helps do that by connecting the PHY_WAKE WoL option to
+> device_set_wakeup_enable. By marking this device as being wakeup
+> enabled, this setting can be used by platform code to decide which
+> sleep or poweroff mode to use.
+>
+> Also this prepares the driver for the next patch in which the pinctrl
+> settings are changed depending on the desired wakeup source.
+>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 
-Please, as you update the commit message, make sure that the subject
-prefix matches other changes in the particular file.
+I left a nitpick below. Regardless:
 
-Regards,
-Bjorn
+Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> index 10b28d870f08..004353220dc5 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> @@ -177,9 +177,9 @@ sound {
->  		compatible = "qcom,x1e80100-sndcard";
->  		model = "X1E80100-CRD";
->  		audio-routing = "WooferLeft IN", "WSA WSA_SPK1 OUT",
-> -				"TwitterLeft IN", "WSA WSA_SPK2 OUT",
-> +				"TweeterLeft IN", "WSA WSA_SPK2 OUT",
->  				"WooferRight IN", "WSA2 WSA_SPK2 OUT",
-> -				"TwitterRight IN", "WSA2 WSA_SPK2 OUT",
-> +				"TweeterRight IN", "WSA2 WSA_SPK2 OUT",
->  				"IN1_HPHL", "HPHL_OUT",
->  				"IN2_HPHR", "HPHR_OUT",
->  				"AMIC2", "MIC BIAS2",
-> @@ -933,7 +933,7 @@ left_tweeter: speaker@0,1 {
->  		reg = <0 1>;
->  		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
->  		#sound-dai-cells = <0>;
-> -		sound-name-prefix = "TwitterLeft";
-> +		sound-name-prefix = "TweeterLeft";
->  		vdd-1p8-supply = <&vreg_l15b_1p8>;
->  		vdd-io-supply = <&vreg_l12b_1p2>;
->  		qcom,port-mapping = <4 5 6 7 11 13>;
-> @@ -986,7 +986,7 @@ right_tweeter: speaker@0,1 {
->  		reg = <0 1>;
->  		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
->  		#sound-dai-cells = <0>;
-> -		sound-name-prefix = "TwitterRight";
-> +		sound-name-prefix = "TweeterRight";
->  		vdd-1p8-supply = <&vreg_l15b_1p8>;
->  		vdd-io-supply = <&vreg_l12b_1p2>;
->  		qcom,port-mapping = <4 5 6 7 11 13>;
-> -- 
+>  drivers/net/can/m_can/m_can.c | 37 +++++++++++++++++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>
+> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
+> index a978b960f1f1e1e8273216ff330ab789d0fd6d51..d427645a5b3baf7d0a648e3b008d7d7de7f23374 100644
+> --- a/drivers/net/can/m_can/m_can.c
+> +++ b/drivers/net/can/m_can/m_can.c
+> @@ -2185,6 +2185,36 @@ static int m_can_set_coalesce(struct net_device *dev,
+>         return 0;
+>  }
+>
+> +static void m_can_get_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
+> +{
+> +       struct m_can_classdev *cdev = netdev_priv(dev);
+> +
+> +       wol->supported = device_can_wakeup(cdev->dev) ? WAKE_PHY : 0;
+> +       wol->wolopts = device_may_wakeup(cdev->dev) ? WAKE_PHY : 0;
+> +}
+> +
+> +static int m_can_set_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
+> +{
+> +       struct m_can_classdev *cdev = netdev_priv(dev);
+> +       bool wol_enable = !!(wol->wolopts & WAKE_PHY);
+> +       int ret;
+> +
+> +       if ((wol->wolopts & WAKE_PHY) != wol->wolopts)
+
+Here, you want to check if a bit other than WAKE_PHY is set, isn't it?
+What about doing this:
+
+          if (wol->wolopts & ~WAKE_PHY)
+
+instead?
+
+> +               return -EINVAL;
+> +
+> +       if (wol_enable == device_may_wakeup(cdev->dev))
+> +               return 0;
+> +
+> +       ret = device_set_wakeup_enable(cdev->dev, wol_enable);
+> +       if (ret) {
+> +               netdev_err(cdev->net, "Failed to set wakeup enable %pE\n",
+> +                          ERR_PTR(ret));
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static const struct ethtool_ops m_can_ethtool_ops_coalescing = {
+>         .supported_coalesce_params = ETHTOOL_COALESCE_RX_USECS_IRQ |
+>                 ETHTOOL_COALESCE_RX_MAX_FRAMES_IRQ |
+> @@ -2194,10 +2224,14 @@ static const struct ethtool_ops m_can_ethtool_ops_coalescing = {
+>         .get_ts_info = ethtool_op_get_ts_info,
+>         .get_coalesce = m_can_get_coalesce,
+>         .set_coalesce = m_can_set_coalesce,
+> +       .get_wol = m_can_get_wol,
+> +       .set_wol = m_can_set_wol,
+>  };
+>
+>  static const struct ethtool_ops m_can_ethtool_ops = {
+>         .get_ts_info = ethtool_op_get_ts_info,
+> +       .get_wol = m_can_get_wol,
+> +       .set_wol = m_can_set_wol,
+>  };
+>
+>  static int register_m_can_dev(struct m_can_classdev *cdev)
+> @@ -2324,6 +2358,9 @@ struct m_can_classdev *m_can_class_allocate_dev(struct device *dev,
+>                 goto out;
+>         }
+>
+> +       if (dev->of_node && of_property_read_bool(dev->of_node, "wakeup-source"))
+> +               device_set_wakeup_capable(dev, true);
+> +
+>         /* Get TX FIFO size
+>          * Defines the total amount of echo buffers for loopback
+>          */
+>
+> --
 > 2.45.2
-> 
+>
+>
 
