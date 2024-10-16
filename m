@@ -1,156 +1,142 @@
-Return-Path: <devicetree+bounces-111741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C299499FDA7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 03:02:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC07899FE0E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 03:12:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF6D9286D93
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 01:02:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB1DA1C25562
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 01:12:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E13F3D3B3;
-	Wed, 16 Oct 2024 01:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94372433D9;
+	Wed, 16 Oct 2024 01:09:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="gLW1l2Dh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDEAE13BAE2;
-	Wed, 16 Oct 2024 01:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0A8433C0;
+	Wed, 16 Oct 2024 01:09:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729040425; cv=none; b=fdlwp5oyBp2G/CwlmHZN0+/tl28BETEyo1It0goj6K3bDlXF3w6EE2GKxyMx4yU7WQT0rmBg3tK9t0bEaYK1X9hXTWWbBjmC58GlYL12qyY3118zlP5LyANqIldKT+SEFrtdDLVert2XoiAcfVY2z+8+a2zuWJHrAS+aIzzs5f0=
+	t=1729040973; cv=none; b=LEW6rG9/rkOADNumVk+RFJyzWlIT78bHrtLUskfSUJbm2TnS+ErtRrW/FnB/gcuHyD2YWush1AXPpHXWDTd0MZerds6aikHdZAsZ0skpxAPGFAaD0p+oqUyYiBeAs5+k5G86+lJsvQ92OjzRD4RFDth5UkfxhuaetBLRO1xGnPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729040425; c=relaxed/simple;
-	bh=3f4GLOsluvHuCgnEd7+tScd/3iBGplIPsNtjui2V1jw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AQikcrqqRDYx9DtsleBpGm4X9L/sGHeR4bHVKkcrJhpm5s2kHQOBU5KCODp3KgncTtrtR42LgGs3OFsWspyszFVIMtlWEKLEGIW8vtm5f4DoTFPmIgst6GiDH4FYmPpmAAjumPxZQYWV+3xtyFzNbtZMll5T0rbHiTxemMNsdXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-From: Yixun Lan <dlan@gentoo.org>
-Date: Wed, 16 Oct 2024 08:59:43 +0800
-Subject: [PATCH v5 3/3] riscv: dts: spacemit: add pinctrl property to uart0
- in BPI-F3
+	s=arc-20240116; t=1729040973; c=relaxed/simple;
+	bh=QB8nv0mgmERydGi8qLYufLLFealMe6fq/N6zy54RpZA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Hn+79LBm2gR91tIVMXGT06P6syVfchKiS9gDo1RCsBQXwiN/WxbFq/9XUL80kmiZ5+AO4Q4wqX52fjMOJXEIVfyIi8P6hmof6tqWE8cApEEN2fpFcgl5R9l2TQbPBbeLtztx6/E+hsMQumg2YTj66nestMlGbaKej2Fm470TgmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=gLW1l2Dh; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1729040962;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=q62TzgJVkucL37i2DOtU/nMFPRmh8xCYuwUlxEw9sIs=;
+	b=gLW1l2DhyXVLupEjarCByz0tD8ShAZZzloSBhFAKSRaxZx+TVF3cxBP5F7h6wFQckjGSZt
+	yFQ4xPp1HJBivkYsPUVWbaHtnN5HZ86UKo7H18t3/8zBBETrnjcPv8XZ0Pm5nqqZV95tTM
+	y0HR1QhvZxfNnwjKZFOL6cdfKKI257FDheLAtbMHBGU32xw5DF+K8EgNNRdrQN30l0J9u9
+	xUPgBgIf5xCxBy/4ZNtWrxhi8Fc3daJRRgjqlFIzXeQeKtLqyojElj2IJ8Q/o04usCp62x
+	isdsq4tligJ6g9VPgYNdT/hyUyr4A+KdWQ/AF8FLLtcwz2dDpT9nuVP0lkZ8oA==
+Date: Wed, 16 Oct 2024 03:09:20 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Cenk Uluisik <cenk.uluisik@googlemail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Chris
+ Morgan <macromorgan@hotmail.com>, Jonas Karlman <jonas@kwiboo.se>, Andy Yan
+ <andyshrk@163.com>, Tim Lunn <tim@feathertop.org>, Jagan Teki
+ <jagan@edgeble.ai>, Michael Riesch <michael.riesch@wolfvision.net>, Jimmy
+ Hon <honyuenkwun@gmail.com>, Jing Luo <jing@jing.rocks>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] arm64: dts: rockchip: Add rk3588-orangepi-5b
+ device tree and refactor
+In-Reply-To: <CAAWLpRtOcxc7=EAw6NPtkwqCNJ0LRE50StjZ4h4ra7wvhsyeaA@mail.gmail.com>
+References: <20241015192905.28969-1-cenk.uluisik@googlemail.com>
+ <20241015192905.28969-2-cenk.uluisik@googlemail.com>
+ <CAAWLpRtOcxc7=EAw6NPtkwqCNJ0LRE50StjZ4h4ra7wvhsyeaA@mail.gmail.com>
+Message-ID: <03103381f2a356b4a23ead545e456460@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241016-02-k1-pinctrl-v5-3-03d395222e4f@gentoo.org>
-References: <20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org>
-In-Reply-To: <20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>
-Cc: Yangyu Chen <cyy@cyyself.name>, Jesse Taube <mr.bossman075@gmail.com>, 
- Jisheng Zhang <jszhang@kernel.org>, Inochi Amaoto <inochiama@outlook.com>, 
- Icenowy Zheng <uwu@icenowy.me>, Meng Zhang <zhangmeng.kevin@spacemit.com>, 
- Meng Zhang <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, Yixun Lan <dlan@gentoo.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2397; i=dlan@gentoo.org;
- h=from:subject:message-id; bh=3f4GLOsluvHuCgnEd7+tScd/3iBGplIPsNtjui2V1jw=;
- b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBnDxAUXO1zc9Ta5tpeIyJ2hq8POoNXUp36J5SWW
- j325v/ZbzCJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCZw8QFF8UgAAAAAAuAChp
- c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
- CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277fn2EACeD6FHKXHz5bLlk9
- YMe230S4sl1NDB31Ct1jK3fgjJv4E1eKpGO3Wjj696e/f13vBKIfW1VLXzncYCifOQqV1yfGrRX
- wSdZOgA8RYiq8JGNn7DBvENGHjkDcQulGNZo7kac8SpHmLTeucu3R8BuQ1hj9nY+ABgYxp/dvhV
- PQKt35+Vxnd3PqVqt6HAl3sEpzFH4JnRBPKn2SDRa65UgWJ2BDQIm2UiMVcNO5uqx0cvZZlhxVg
- XTJd24XxFH8jlv/SNIXVRebnT1AN8yzs0Gspzk4EV2p5gz1VgSoLk0u94hYE8Vkz/s3+75Fk+vY
- 2T0H4CgfhfhL0GQvWy0zOPSVNE75TdV/YAnKIkL/afOaNowm5af/l8FFHssDjcg8CKN/wIKN4N/
- y5e2hIb1oIKYs+cuLuTjT4uKq8b1p6OsGwmdDmn9X+r/69YNIrsebG8M4F5TVAQNDV2W7ZkXoMo
- Q7D0xOjUjmZmD5Y5TWJOZKkYxOd/7pZ88thSKMzUUCSGl2sqK3fjY4/j2ZBElqCnEvt8AVuM7kH
- PQKXdaU3I6yuqADx9JuGNHFMJkyTG1c2pIxqKxbdAvRqtVrdD6D6o1q0e7qiQne6jesgzewwvsI
- 35yS9RaH5xf8S+3giwv3APN7oyMvrdawRvUGCytnYFl0j8W4qOe4Ijuwh1d4rIgces0w==
-X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Before pinctrl driver implemented, the uart0 controller reply on
-bootloader for setting correct pin mux and configurations.
+Hello Cenk,
 
-Now, let's add pinctrl property to uart0 of Bananapi-F3 board.
+On 2024-10-15 21:33, Cenk Uluisik wrote:
+> I accidently didnt save the Patch Version on the first email, it's the
+> same patch but with fixed versioning. It was an accident, sorry.
 
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts |  3 +++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi    | 20 ++++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k1.dtsi            |  5 +++++
- 3 files changed, 28 insertions(+)
+As I suggested already, it's always a good idea to send patches
+to your own email address first, before sending them to the ML(s),
+to check the patches one last time and make sure everything looks
+good.  That's the way I do it, FWIW.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 023274189b492598b312d27609051a855c021d40..bc88d4de25a621f1baa5b2b96cfa0083144847af 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -4,6 +4,7 @@
-  */
- 
- #include "k1.dtsi"
-+#include "k1-pinctrl.dtsi"
- 
- / {
- 	model = "Banana Pi BPI-F3";
-@@ -15,5 +16,7 @@ chosen {
- };
- 
- &uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..a8eac5517f8578d60cb45214589ccb45ac376b9a
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (c) 2024 Yixun Lan <dlan@gentoo.org>
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#define K1_PADCONF(pin, func) (((pin) << 16) | (func))
-+
-+&pinctrl {
-+	uart0_2_cfg: uart0-2-cfg {
-+		uart0-2-pins {
-+			pinmux = <K1_PADCONF(68, 2)>,
-+				 <K1_PADCONF(69, 2)>;
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <32>;
-+		};
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 0777bf9e01183f34c1eb82525418fe1a660b25a9..a2d5f7d4a942af26b3ba991928f23b2d9943366a 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -416,6 +416,11 @@ uart9: serial@d4017800 {
- 			status = "disabled";
- 		};
- 
-+		pinctrl: pinctrl@d401e000 {
-+			compatible = "spacemit,k1-pinctrl";
-+			reg = <0x0 0xd401e000 0x0 0x400>;
-+		};
-+
- 		plic: interrupt-controller@e0000000 {
- 			compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
- 			reg = <0x0 0xe0000000 0x0 0x4000000>;
-
--- 
-2.47.0
-
+> Am Di., 15. Okt. 2024 um 21:29 Uhr schrieb Cenk Uluisik
+> <cenk.uluisik@googlemail.com>:
+> 
+>> Implements a slightly modified rk3588s-orangepi-5b.dts from the
+>> vendor.
+>> Unfortunately the &wireless_bluetooth and &wireless_wlan are not
+>> implemented yet.
+>> 
+>> Bigger parts of the rk3588s-orangepi-5.dts file were moved into a
+>> new
+>> rk3588s-orangepi-5.dtsi file, so that both device trees from the
+>> orangepi-5 and 5b include from it and avoid including from the .dts.
+>> 
+>> This changes the Orange Pi 5's sdmmc alias to be mmc1, breaking
+>> existing
+>> users if they used the /dev/mmc0 device file, so it's consistent
+>> with all
+>> the other rk3588 DTS, which, is also the new default that rockchip
+>> wants
+>> to use.
+>> https://github.com/orangepi-xunlong/linux-orangepi/commit/
+>> bce92d16b230b8e93c2831fb7768839fd7bbab04
+>> Therefore add the sdhc alias to be mmc0 on the
+>> rk3588s-orangepi-5b.dts.
+>> 
+>> The "enable-active-low" warning is addressed here:
+>> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/
+>> 
+> commit/?h=v6.12-armsoc/dtsfixes&id=f4d29bebaa6118c1e51e8f1c21ce2b34f43e1479
+>> The "leds-gpio" warning was already there because the DTS checking
+>> script
+>> might not like the ID, which is probably avoidable by renaming it,
+>> but this
+>> will be addressed in a seperate issue.
+>> 
+>> How does this board differ from the original Orange Pi 5?
+>> - the Orange Pi 5 has a M.2 NVMe M-key PCI 2.0x1
+>> slot (hooked to combphy0_ps) whereas the Orange Pi 5b uses
+>> combphy0_ps
+>> for the WiFi.
+>> - The Orange Pi 5 with the M.2 socket has a regulator defined
+>> hooked to
+>> "GPIO0_C5" (i.e. PCIE_PWREN_H) whereas the Orange Pi 5B has
+>> GPIO0_C5
+>> hooked to BT_WAKE_HOST.
+>> - builtin eMMC storage
+>> - no SPI NOR flash (u-boot, preboot etc. initiates
+>> from within the eMMC
+>> storage)
+>> - ap6275p Wifi module (like the Orange Pi 5 Plus)
+>> - builtin BlueTooth module
+>> 
+>> Signed-off-by: Cenk Uluisik <cenk.uluisik@googlemail.com>
 
