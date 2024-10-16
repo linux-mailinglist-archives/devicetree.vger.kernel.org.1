@@ -1,79 +1,113 @@
-Return-Path: <devicetree+bounces-111803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BCED9A00FB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:57:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C239A0134
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:16:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30E7D286089
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 05:57:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBA841F217B9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:16:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2BF18C32C;
-	Wed, 16 Oct 2024 05:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8BC44409;
+	Wed, 16 Oct 2024 06:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="eh5M4We4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdtNJPvO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E39B018C01A;
-	Wed, 16 Oct 2024 05:57:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E51360B8A;
+	Wed, 16 Oct 2024 06:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729058274; cv=none; b=m1WlxM1M3x8yVow8BCG/6VZ4upyxjMuPmfTtplMuCyPxrfZZXWPVB3GdRg1pgIM3t4IZG5orEb2KHxVlrZj83lcVLn2BFOSd/OZ9p/w9Yb8tsqIzMIHmG/FI1rpQg9D8/YYKYZBpB+ll8ozXcbX3ba68BHFEQbOEWSuGs2I/ZQk=
+	t=1729059317; cv=none; b=OyU91yqhoFKi3829VqBVD+ntZAqSr9nAEIznrhwV6eZOayxnnnmXbuAqy1TuOq2I5KI66XXtmMxobuQMyYaixIjNnetarO5ORHm+lR+1lW1QmJlQsLsoR1doeXe2wdXiZN7tpTBTVxbpui/l/rsY/8cAiq41d7lvEf9J+ESkPns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729058274; c=relaxed/simple;
-	bh=FBN2kl/WzmXyuFZE/grMu57N0gK5+Swu06SfieOmINA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qtv2LOjYWjbybvjOCQXr+CKCu+aRTGQoJ4jdS9zkhh8fY6yy1j2x38CYwqrf1UfMluAdKTpPuskY4Ko55iKCK1LLOamSJeQBmHf9rOF3oZCIF5tGGjigot2wOKlPuxbojvNmMo8uSVOn9pyeEcqqTNqYEnQ8cXXW0y/sUhxKZbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=eh5M4We4; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=adk+fAx+LK097goAKszCL9jLGtGKHbBuW0Xq1csUd1s=;
-	b=eh5M4We4ZrSRQ6XHkEyQOQsFrZN0zs56RS8tQJYH/F6jEj41ZoOFMDo2fOdf9s
-	V1O5a7uI0Bv7TMqYSr28ZAA0GMs5BHE/gbYo3lsjuO0Vll0/B4xn9mmSZktVV9T7
-	HBgd5jGe347X0PS654cvnHVbPIOtSY4KWFuZpavrQMa+Y=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCX3b2dVQ9nRewXAA--.356S3;
-	Wed, 16 Oct 2024 13:56:47 +0800 (CST)
-Date: Wed, 16 Oct 2024 13:56:45 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Tim Harvey <tharvey@gateworks.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw74xx: add M2SKT_GPIO10 gpio
- configuration
-Message-ID: <Zw9VnRyNss59AD/F@dragon>
-References: <20240905183228.517422-1-tharvey@gateworks.com>
+	s=arc-20240116; t=1729059317; c=relaxed/simple;
+	bh=5QlqQFbsraBNja/vvnJZK7fg7rwhZcLGk4smWz8inKE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g0Ygh1n38iB8iNypIh61K8wCcdCQMXzOFBIyiuIUoyyJxX+KxapYMmj6psIEDf1fu01eBzyv5y9q9+0S3nv/izJODRtFQ7v4yfgUwpWayWIHnSzI4wWmcRgLL+rxsXDJQxLoKAk98/Cqu5MrXog4rlQB3fjK8AJRXWCApQRYtHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdtNJPvO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B421C4CECF;
+	Wed, 16 Oct 2024 06:15:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729059316;
+	bh=5QlqQFbsraBNja/vvnJZK7fg7rwhZcLGk4smWz8inKE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pdtNJPvOsWONhQ4vGRNvdcIHe2/KnhvO2wGB3pK1MEx2OrOtuwl5OW4EVdtAsUUZ6
+	 QWWWpoesM3mvYrqJhZUx/gbLp5STTQGTuAEyXV7p3yOHmsVbyCIZEgAnyriVjcIqFm
+	 BjPkvyzBaM7BIj5zUmXhseKZC1ZP/Kg1svvOf13jtPVaT8lh7oCr5PUZw/YnorVPUG
+	 aKuoJfPw93k6v9kEVtmwOM3N/T/jienNKbeKUWtFihPmaQyeo1ZItl9xlBYogfGJMh
+	 jSdugkECURoY5qCWWPXGsW5NhojXw9wMD90ZomcucjbO++EA9J8uyQYHx71UyESIWo
+	 KXiEknxeMuFqw==
+Message-ID: <f13618a6-0922-4fc8-af01-10be1ef95f0d@kernel.org>
+Date: Wed, 16 Oct 2024 15:15:11 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240905183228.517422-1-tharvey@gateworks.com>
-X-CM-TRANSID:Ms8vCgCX3b2dVQ9nRewXAA--.356S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVpVbDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEQB6ZWcPEbbV8QAAsl
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/12] Fix and improve the Rockchip endpoint driver
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Niklas Cassel <cassel@kernel.org>
+References: <20241011121408.89890-1-dlemoal@kernel.org>
+ <CANAwSgQ+YmSTqJs3-53nmpmCRKuqfRysT37uHQNGibw5FZhRvg@mail.gmail.com>
+From: Damien Le Moal <dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <CANAwSgQ+YmSTqJs3-53nmpmCRKuqfRysT37uHQNGibw5FZhRvg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 05, 2024 at 11:32:28AM -0700, Tim Harvey wrote:
-> The GW74xx D revision has added a M2SKT_GPIO10 GPIO which routes to the
-> GPIO10 pin of the M.2 socket for compatibility with certain devices.
+On 10/16/24 2:32 PM, Anand Moon wrote:
+> Hi Damien,
 > 
-> Add the iomux and a line name for this.
+> On Fri, 11 Oct 2024 at 17:55, Damien Le Moal <dlemoal@kernel.org> wrote:
+>>
+>> This patch series fix the PCI address mapping handling of the Rockchip
+>> endpoint driver, refactor some of its code, improves link training and
+>> adds handling of the #PERST signal.
+>>
+>> This series is organized as follows:
+>>  - Patch 1 fixes the rockchip ATU programming
+>>  - Patch 2, 3 and 4 introduce small code improvments
+>>  - Patch 5 implements the .get_mem_map() operation to make the RK3399
+>>    endpoint controller driver fully functional with the new
+>>    pci_epc_mem_map() function
+>>  - Patch 6, 7, 8 and 9 refactor the driver code to make it more readable
+>>  - Patch 10 introduces the .stop() endpoint controller operation to
+>>    correctly disable the endpopint controller after use
+>>  - Patch 11 improves link training
+>>  - Patch 12 implements handling of the #PERST signal
+>>
+>> This patch series depends on the PCI endpoint core patches from the
+>> V5 series "Improve PCI memory mapping API". The patches were tested
+>> using a Pine Rockpro64 board used as an endpoint with the test endpoint
+>> function driver and a prototype nvme endpoint function driver.
 > 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> Can we test this feature on Radxa Rock PI 4b hardware with an external
+> nvme card?
 
-Applied, thanks!
+This patch series is to fix the PCI controller operation in endpoint (EP) mode.
+If you only want to use an NVMe device connected to the board M.2 M-Key slot,
+these patches are not needed. If that board PCI controller does not work as a
+PCI host (RC mode), then these patches will not help.
 
+-- 
+Damien Le Moal
+Western Digital Research
 
