@@ -1,149 +1,81 @@
-Return-Path: <devicetree+bounces-111897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C50B9A03CC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:10:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC6C9A03ED
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:16:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D1FD1C29096
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:10:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 661671F2242C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F0A1D2708;
-	Wed, 16 Oct 2024 08:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C9A1D2780;
+	Wed, 16 Oct 2024 08:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PdZeJ1jt"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ssKkyGMl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B1C1D014E;
-	Wed, 16 Oct 2024 08:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1145B641;
+	Wed, 16 Oct 2024 08:16:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729066091; cv=none; b=lhMaj0kUAgpr4nNPXPR5s3O5B+xggH6bmTKs2JpkRGuLt2lkQnzIFbxun2Ro9hpT+ltsWjELLF2PamkLB/n7h0SDn8WLNqen97NLYacB/u/7FK5DdwePeW/2GWzC02NG7Hh5sdBDIWX85Y/fHtSSrcQoucsSAf2QRMiBgk6Jxbg=
+	t=1729066565; cv=none; b=H/p3N9s9WK23b30kdTBjnBpy9W+tMhVeEJHBY/Re/BtzursKVOmf1Dz7tStW5ytjgoipdA/MxaoBJMc1oSVaI0gREBAcN/em9QenIHqRxeZ27ffDd8IwSBoxzkkyQQ4xp+tHjmrQ2lQMA5DJlifYHrXGp44dHEOvLW7hmIhtIpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729066091; c=relaxed/simple;
-	bh=FrbqntNk8ygK1+SOiz5igmldSyPodiaS/1oL3ol2S1A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VD/f441jA10T8zgi3JvTd41Gtdt+kDxstxNbS888jb4OGsalW1OuAxB0ew5T8OHDtVgTIOTaXqPSKpFjv9L3O2pYdPmKf4Xkf4lpwh4Hrg4yZU5LF9mBkuiERa6xZlWMEN3H4uE/FJah0rczdRBcMR25dByI4D1wFQo2zRbNs48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PdZeJ1jt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31986C4CEC5;
-	Wed, 16 Oct 2024 08:08:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729066090;
-	bh=FrbqntNk8ygK1+SOiz5igmldSyPodiaS/1oL3ol2S1A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PdZeJ1jtW5PIZ2Op7/a8aQi5gFTJqlfC86FEyIboGjBYZKN6e7cn239KIEFlNXr+/
-	 jc8tcG/Ahsph+GygoLXX6Do8RyZ3FgHnB754ogj3u4WDFy7KKW7uApPLEC2kUulSza
-	 djb0vtgCvqe80a7VkSE5ifD6AC5a7OpAdzX9x1n2ekYls/LRcQUEkfFbbeDJnP/hGB
-	 z/hwNU9p9UEffa2CN8ynpqbokOjVsCkYcoqwIpkQVxdoNy2watb0EW+W6a9v5FfsKi
-	 BcaxJZJQkSfZxfhbD6W1seTsQr1D4E82xrmzFe77WxeR18HHQsVXbGMhIdRY7j9u/2
-	 wg8c31R5csdxw==
-Message-ID: <0f2cf12b-3f27-403c-802e-bb8b539766b0@kernel.org>
-Date: Wed, 16 Oct 2024 17:08:06 +0900
+	s=arc-20240116; t=1729066565; c=relaxed/simple;
+	bh=4cwRglCfSwKWUPFuQauJNH5MERyf+7IWbMf6rK6p+bM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hDldV9yUacFubPp57Zm0RBywFjwCrmRTjxEXKyrElpEhPsnuEEA5QAL7dkqLvGyWayDc8wwZPjT+MxlRqqabYVE9ndIQlUmOV5GpaTUeBQHx5MeuYd7tr/jCkhYjCWiyD+hizMuWzLslng8ZCPCj5a0gqJ+vSWzGChjw5Zrx13c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=ssKkyGMl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94685C4CEC5;
+	Wed, 16 Oct 2024 08:16:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1729066565;
+	bh=4cwRglCfSwKWUPFuQauJNH5MERyf+7IWbMf6rK6p+bM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ssKkyGMl4x0o+VVjFYrx1SoDh6CLbjBUqvAxcpnbwGI4gqBtQG0UiSxo91VJuJPzJ
+	 wHAh22v6u37EB76rz/gJboYhJM7NKCN4A4MzjBXZKr2/szfeJLonvAbnF8hkm85at6
+	 SKt8I5KiDz0Q/yqvskqMOq54NakzcE3joNupGKmY=
+Date: Wed, 16 Oct 2024 10:16:01 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Joy Chakraborty <joychakr@google.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] usb: dwc3: Program USB Gen2 De-emphasis defined in
+ PIPE4 spec
+Message-ID: <2024101635-clergyman-dyslexia-9c75@gregkh>
+References: <20241007135508.3143756-1-joychakr@google.com>
+ <20241007135508.3143756-5-joychakr@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/12] Fix and improve the Rockchip endpoint driver
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Niklas Cassel <cassel@kernel.org>
-References: <20241011121408.89890-1-dlemoal@kernel.org>
- <CANAwSgQ+YmSTqJs3-53nmpmCRKuqfRysT37uHQNGibw5FZhRvg@mail.gmail.com>
- <f13618a6-0922-4fc8-af01-10be1ef95f0d@kernel.org>
- <CANAwSgRDbCCridYMciq=xSDPV0qGhs-OhCJ_uniXFbp-yM5CcQ@mail.gmail.com>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <CANAwSgRDbCCridYMciq=xSDPV0qGhs-OhCJ_uniXFbp-yM5CcQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241007135508.3143756-5-joychakr@google.com>
 
-On 10/16/24 4:22 PM, Anand Moon wrote:
-> Hi Damien,
+On Mon, Oct 07, 2024 at 01:55:08PM +0000, Joy Chakraborty wrote:
+> Set 18bit TxDeemph[17:0] in LCSR_TX_DEEMPH(n) register for USB3 Gen2
+> Normal Operation as defined in PIPE4 spec based on dt quirk
+> "snps,tx_gen2_de_emphasis_quirk" and "snps,tx_gen2_de_emphasis".
 > 
-> On Wed, 16 Oct 2024 at 11:45, Damien Le Moal <dlemoal@kernel.org> wrote:
->>
->> On 10/16/24 2:32 PM, Anand Moon wrote:
->>> Hi Damien,
->>>
->>> On Fri, 11 Oct 2024 at 17:55, Damien Le Moal <dlemoal@kernel.org> wrote:
->>>>
->>>> This patch series fix the PCI address mapping handling of the Rockchip
->>>> endpoint driver, refactor some of its code, improves link training and
->>>> adds handling of the #PERST signal.
->>>>
->>>> This series is organized as follows:
->>>>  - Patch 1 fixes the rockchip ATU programming
->>>>  - Patch 2, 3 and 4 introduce small code improvments
->>>>  - Patch 5 implements the .get_mem_map() operation to make the RK3399
->>>>    endpoint controller driver fully functional with the new
->>>>    pci_epc_mem_map() function
->>>>  - Patch 6, 7, 8 and 9 refactor the driver code to make it more readable
->>>>  - Patch 10 introduces the .stop() endpoint controller operation to
->>>>    correctly disable the endpopint controller after use
->>>>  - Patch 11 improves link training
->>>>  - Patch 12 implements handling of the #PERST signal
->>>>
->>>> This patch series depends on the PCI endpoint core patches from the
->>>> V5 series "Improve PCI memory mapping API". The patches were tested
->>>> using a Pine Rockpro64 board used as an endpoint with the test endpoint
->>>> function driver and a prototype nvme endpoint function driver.
->>>
->>> Can we test this feature on Radxa Rock PI 4b hardware with an external
->>> nvme card?
->>
->> This patch series is to fix the PCI controller operation in endpoint (EP) mode.
->> If you only want to use an NVMe device connected to the board M.2 M-Key slot,
->> these patches are not needed. If that board PCI controller does not work as a
->> PCI host (RC mode), then these patches will not help.
->>
-> 
-> Thanks for your inputs, I don't think my board supports this feature.
+> Signed-off-by: Joy Chakraborty <joychakr@google.com>
+> ---
+>  drivers/usb/dwc3/core.c | 13 +++++++++++++
+>  drivers/usb/dwc3/core.h |  6 ++++++
+>  2 files changed, 19 insertions(+)
 
-The Rock 4B board uses a RK3399 SoC. So the PCIe port should work as long as
-you have the right device tree for the board. The mainline kernel currently has
-this DT:
+Any reason why we got 2 copies of all of these in the same series?
+Please fix that up for when you send a v2 of them.
 
-rk3399-rock-pi-4b.dts
+thanks,
 
-Which uses
-
-rk3399-rock-pi-4.dtsi
-
-which has:
-
-&pcie0 {
-        ep-gpios = <&gpio4 RK_PD3 GPIO_ACTIVE_HIGH>;
-        num-lanes = <4>;
-        pinctrl-0 = <&pcie_clkreqnb_cpm>;
-        pinctrl-names = "default";
-        vpcie0v9-supply = <&vcc_0v9>;
-        vpcie1v8-supply = <&vcc_1v8>;
-        vpcie3v3-supply = <&vcc3v3_pcie>;
-        status = "okay";
-};
-
-So it looks to me like the PCIe port is supported just fine. FOr the PCIe port
-node definition look at rk3399.dtsi and rk3399-base.dtsi.
-
--- 
-Damien Le Moal
-Western Digital Research
+greg k-h
 
