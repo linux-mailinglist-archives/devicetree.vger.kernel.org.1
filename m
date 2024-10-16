@@ -1,143 +1,125 @@
-Return-Path: <devicetree+bounces-111787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556249A0014
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:17:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0292C9A0056
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:55:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D74301F24848
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 04:17:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F757B24430
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 04:55:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3CF17C98C;
-	Wed, 16 Oct 2024 04:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1644318784A;
+	Wed, 16 Oct 2024 04:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="diRL//Ls"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="spKCuFxq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FE84A0C;
-	Wed, 16 Oct 2024 04:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF2E721E3BA;
+	Wed, 16 Oct 2024 04:54:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729052262; cv=none; b=VkviF3WRflvXDtDvFsRVEn8AhfqhUXkI4tKOjvucN+WJxj9ptg5JMyrDBa4BcOMsKqyepV0KX/Jn4pxpLJNP81PdLG/ylBNDCTJY360g2m+dhjedGb5b70Td3+aeH58ts9/pl0W2qalhoHeIT8lZTO5YGA/h10kdffyKXJD7740=
+	t=1729054500; cv=none; b=R/U1RA+RSOM/hjg+ugWdK8rCiZqACf3vhB8AqvLeBrPJkpdnh1NfHVa8BPDUYpoKzs0NJ+tPMKQ5TvZDVetkb/wIJDpqxp204Fjm6M9ccoUCo+lhiEIe5vZnfZvbSfRipQX8oc6KmlGA3N5hXkhTPg7PqOORkxvPbQLZJFUkxgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729052262; c=relaxed/simple;
-	bh=YFJHhbYS31Y75rTWk27g/bb9SPMx5GuFvaJtJ59ODFo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fXUGGO2CeqgeuUL2At+aDzn8Sd1BTAyw1yrFi0efek3X7IQlmgvcKk52YXdT+LGSsXj/tU2qfqiw/fGvU7XDkep2vMrZk0XMqCQBJqN67j3K4hPojuCZg0k64H+Lq/KR7BaubQLUi+XCCupDySMgxzIx83aCzfmhDPFzTrdc3So=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=diRL//Ls; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 90fc54728b7511ef88ecadb115cee93b-20241016
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=1DCabenPzzIyCe0g7pTxKCjOOLbiMHBzb+xs4rZe8uQ=;
-	b=diRL//LscT81YGMHp1OQMg8w8XvR0XuqNXXdjO9X3Dq6nRvYqMtXs9fkPCWcGh+XZ/jgPesKbUlcrLwxqYhglGbd9fGEjyH4rDYgb7WCGkC0W3lTnag0GuN6AiljslJFA1k2xfLwEOWPHOtD+qhWHXlTe8FwPULwyq6MsgutYLY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:7a7c2788-16b5-435d-b964-0de5d69abcd6,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:fa755165-444a-4b47-a99a-591ade3b04b2,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
-	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 90fc54728b7511ef88ecadb115cee93b-20241016
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 992852966; Wed, 16 Oct 2024 12:17:33 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 16 Oct 2024 12:17:31 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Wed, 16 Oct 2024 12:17:31 +0800
-Message-ID: <f624ea86-1754-c365-ab22-a2890960b94c@mediatek.com>
-Date: Wed, 16 Oct 2024 12:17:28 +0800
+	s=arc-20240116; t=1729054500; c=relaxed/simple;
+	bh=ZAbZqueFOhysiBh+zQ8zwnfD/RNSp46lSmK1+1nFQxk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E2nKnZ0ZW7kgTf9iPjmYb02Zbg6gH8Scq0L1RUEhuMBUZaDMqX00HFpSUMzimhM1aI+CchiNT+YmHlJiZ8DJADbx/A8ukstmP+AlP7PwMys4gnG3QXGGszYhLHkz6pvWSOaluFQkKLPyK13rwDrC7yRj7eQsnNTRyXyBnUA4+PE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=spKCuFxq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7F35C4CEC5;
+	Wed, 16 Oct 2024 04:54:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729054498;
+	bh=ZAbZqueFOhysiBh+zQ8zwnfD/RNSp46lSmK1+1nFQxk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=spKCuFxqFYLLRQaxwItjw18wjF6ni0fsOJovIA8hgE4lrkgpkYgjzKY0wjP/EGaDI
+	 jijnGKTjmD+iHWPVwoq9gaoAPwZgjxXL68dYv5XWsGOOM+k8nbmNR2z/OBymU47+pV
+	 FoMpooWFZ8WadAoq4BHTPMz2KQvGET8A+3V0MPjN8cxeiLpfJUy62PGmBgo9WUyV9g
+	 Ykfp6rp2RraUcyHXpNN5P4rqEIRuAu6GKrVFfOZ0btOGa1h0PMW3/3bvb7AQX1xtm7
+	 N3gqVNPp/BcJnazGbHRJIsQMPSXfH8QL26VuvrnaX07u8fP/Hd7GgAMiczDfD1/AY0
+	 dTPItXhMLpQ6Q==
+Date: Wed, 16 Oct 2024 10:24:53 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org, quic_msavaliy@quicinc.com,
+	quic_vtanuku@quicinc.com
+Subject: Re: [PATCH v1 1/5] dt-bindings: dmaengine: qcom: gpi: Add additional
+ arg to dma-cell property
+Message-ID: <Zw9HHRyvfd66Qn4a@vaman>
+References: <20241015120750.21217-1-quic_jseerapu@quicinc.com>
+ <20241015120750.21217-2-quic_jseerapu@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: usb: mtu3: add mediatek,usb3-drd property
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: Chunfeng Yun <chunfeng.yun@mediatek.com>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, ChiYuan
- Huang <cy_huang@richtek.com>, <linux-usb@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Bear Wang
-	<bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin
-	<macpaul@gmail.com>, <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	Chris-qj chen <chris-qj.chen@mediatek.com>
-References: <20241015172100.15150-1-macpaul.lin@mediatek.com>
- <20241015222046.GA2164669-robh@kernel.org>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <20241015222046.GA2164669-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241015120750.21217-2-quic_jseerapu@quicinc.com>
 
-
-
-On 10/16/24 06:20, Rob Herring wrote:
-> 	
+On 15-10-24, 17:37, Jyothi Kumar Seerapu wrote:
+> When high performance with multiple i2c messages in a single transfer
+> is required, employ Block Event Interrupt (BEI) to trigger interrupts
+> after specific messages transfer and the last message transfer,
+> thereby reducing interrupts.
 > 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
+> For each i2c message transfer, a series of Transfer Request Elements(TREs)
+> must be programmed, including config tre for frequency configuration,
+> go tre for holding i2c address and dma tre for holding dma buffer address,
+> length as per the hardware programming guide. For transfer using BEI,
+> multiple I2C messages may necessitate the preparation of config, go,
+> and tx DMA TREs. However, a channel TRE size of 64 is often insufficient,
+> potentially leading to failures due to inadequate memory space.
 > 
-> On Wed, Oct 16, 2024 at 01:21:00AM +0800, Macpaul Lin wrote:
->> Add optional 'mediatek,usb3-drd' property to MediaTek MTU3 DT Schema.
->> This flag specify whether it is a USB3 Dual-role device hardware.
->> 
->> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->> ---
->>  Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml | 6 ++++++
->>  1 file changed, 6 insertions(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> index d4e187c78a0b..1e70af0dac82 100644
->> --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
->> @@ -155,6 +155,12 @@ properties:
->>        property is used. See graph.txt
->>      $ref: /schemas/graph.yaml#/properties/port
->>  
->> +  mediatek,usb3-drd:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Specify whether it is a USB3 Dual-role device hardware.
->> +    type: boolean
->> +
+> Add additional argument to dma-cell property for channel TRE size.
+> With this, adjust the channel TRE size via the device tree.
+> The default size is 64, but clients can modify this value based on
+> their specific requirements.
 > 
-> Don't the standard properties such as usb-role-switch or dr_mode work
-> for you?
-
-I've found there are some hardware capability registers could be read
-when probing the device. I'll try if the platform I'm using could access
-these capability registers.
-This patch can be discard. If the hardware really need specify the 
-capability in dts and there is no capability registers, I'll resend
-this patch that time.
-
->>    enable-manual-drd:
->>      $ref: /schemas/types.yaml#/definitions/flag
->>      description:
->> -- 
->> 2.45.2
->> 
+> Signed-off-by: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+> index 4df4e61895d2..002495921643 100644
+> --- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+> +++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+> @@ -54,14 +54,16 @@ properties:
+>      maxItems: 13
+>  
+>    "#dma-cells":
+> -    const: 3
+> +    minItems: 3
+> +    maxItems: 4
+>      description: >
+>        DMA clients must use the format described in dma.txt, giving a phandle
+> -      to the DMA controller plus the following 3 integer cells:
+> +      to the DMA controller plus the following 4 integer cells:
+>        - channel: if set to 0xffffffff, any available channel will be allocated
+>          for the client. Otherwise, the exact channel specified will be used.
+>        - seid: serial id of the client as defined in the SoC documentation.
+>        - client: type of the client as defined in dt-bindings/dma/qcom-gpi.h
+> +      - channel-tre-size: size of the channel TRE (transfer ring element)
 
-Thanks!
-Macpaul Lin
+This is a firmware /software property, why should this be in hardware
+description?
+
+-- 
+~Vinod
 
