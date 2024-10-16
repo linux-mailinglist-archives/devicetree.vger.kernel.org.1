@@ -1,212 +1,236 @@
-Return-Path: <devicetree+bounces-112126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0609A1209
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:55:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C03A59A121E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C18A61F22C42
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 18:55:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15967B245B8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 18:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDEC2212EFF;
-	Wed, 16 Oct 2024 18:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 203F42141C0;
+	Wed, 16 Oct 2024 18:57:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K4dD2MHY"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cJLgizQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D7E18DF97;
-	Wed, 16 Oct 2024 18:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B2220C009
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 18:57:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729104848; cv=none; b=k+Ng1bNFrdEOUXkeU06K/xWpuAzH4TXpB0NHg3VnCkJ+je7sJSOgTAmNq6x1vk4FVKJhHcRmBD0f8VbCWso8al8zH0tK3EpplLbKBAmxdIYZun+MCSt9mu4zcgyxC0eTqT8/m/OYCC4Dtzd29sVKwOiF1nc7Sw15Sf2hgrU7SEs=
+	t=1729105049; cv=none; b=RDSIy/eVkjyRXItabqxz4Alju4+bm/mR7g6+akr5R1DgoQLBYKrTi62R9BTS/otFv42zanm0XvsUeOhQviiaSxz59HuvpcA71wqVkmSJ97EtCCUO7uBbkVWKGvY+FfnhvOkDDV4YCwhcGBPLakSRb7UiXO5c3EcNsiPGrQgLfwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729104848; c=relaxed/simple;
-	bh=LauhmpdfjKVxohaWUWRIdDCAVcbZX4SRGZMXO5IqS/8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=Jkp8u37Y4p0Tl5UNaNIWgfT1HSHXXJKcNcIHPxH+AJQnCo/jq/Ks/LU2uVWmRDU4JX1hZTZ85OCG6+bSHHMoF7cydV2GQwNboLJQqa53pa1t+1RllBm2FNwBX0r9l44eZiWHOYc0mWY31/egI5vgvxM3bdJVxOfUEXT22jOPP9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K4dD2MHY; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-20c693b68f5so1551785ad.1;
-        Wed, 16 Oct 2024 11:54:06 -0700 (PDT)
+	s=arc-20240116; t=1729105049; c=relaxed/simple;
+	bh=wPhXh+r05SEEfRW+dlu3z9cBN5oJMYRSD9axo7QTfyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Eyl/EbnKGZb/hn0Ysb/K+BUmKyz19Tereb6FgwM1ZjInPzCMUOPTldTcAvMTHlfpC4yeUQP7zrBBIlI/NC4k2akVkROMv+KwrFPmaxxjU2KaLv+7EZaQSyOCO4FIDUaZsBy9T9u3g/nquhv6ds60VKHAXrod+qqTIqAycU7BrNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cJLgizQw; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a9a0f198d38so22916666b.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 11:57:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729104846; x=1729709646; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1WEbBQ2/i7lkFW0aLtN2j+zp34lAewWd7prOWA+b1kM=;
-        b=K4dD2MHYJVBqbdB9biaUDopgUeJD5RvYujLTCO3HFrTF4BTtB3N3vZb07e16Lm9kVq
-         r36Bz2kF65QGCn0uW71BqJVeDkVZd/ggwmkwLByCNRZR7snfGOu+EgK6IFEyqklLFCua
-         fMPTgFRs4pi9p0Oa73mMCBkr+zCsJKU8eGHq/XT1CWwcLgiNGWP48r9jT6CDe/1ymCTe
-         PRZhGQr4pwtHnNUPG8F+j1Y2Ze9HGqsQRrBbedM/R+etVR68V0HDH5KFncKHVrWfav0w
-         BAC0i3qmS2PQt0ymnWkGBzRgM6zguuTka6H+rqUHkDnzcFlIHxu5u45rlkoYH8esw7FM
-         kfXw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729105045; x=1729709845; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4NSjzf6BPB669SPmFQAhJmWU/60txO/dSmZRKiOfK1k=;
+        b=cJLgizQwuo343rmAyv7+Vh7bhP/YxApELozMIBM7bDV3CsMutjeZpaQkGFOrjGKT+9
+         sP/cJwPLL7+zHa3qxXqBt7PPVEYPanopy0APl6GO3Rj44/8Cj0W23RNa7u6lJoHg0EXN
+         1UqvyblayPWquQia4oyJMNbSW2gVZ/t8iY1q6vjPm2Ncg5sKjci1MKcLZ+52gVLi1QXA
+         u2X5I526OI8EdY2SFeqgugUCXK7UgKYej7cPNK+zgpq0L9844nvbo1ihiCHjr2t8YNfH
+         nZG0f6ixZB35dOuAEZCAYg5LQyVMQScb+cTyBiFgS7Yrd/vPfky1UrgTqf/MmgfESGkj
+         uyAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729104846; x=1729709646;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1WEbBQ2/i7lkFW0aLtN2j+zp34lAewWd7prOWA+b1kM=;
-        b=eIWI8XgH0WnxIkiFeG2hXFmSadKy9PvyMT3aJlwkC81PIzgnp/+ifGzCfCFCeg2POX
-         QadL4N8n4MCWDa93wC3ThhT9fj8warLCVBOW9k/b2F/LiNUmRLnDLAddXs5rQMNYWMGs
-         3w5XXBYBi2BQT6RVBU7rhKS+KutzLhEN8UGbn55DWCQ5tsa/9X3kvlZ0wEtO0rEPYiFu
-         ih4CWQg0rD0tg71jqCQR3oC/3qswdEVO4PC2IT0PhSGykFOa0LmSBK0jI4VgVUy0mjAc
-         qqzrS7UP4BT4+S3P///cKn4hEpUlm5jf9SGtTd2gbYwUCs3haR+mJjRdeZrOJevTqwmz
-         Chdg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCPd7+fitHC6J6b6qdvoQk21bWiiGBf9jxlqQrxzItw3GlJQLbv4vGPZMCYu2T4mpkgE0ltsoJuQilUBZf@vger.kernel.org, AJvYcCUEWRsVAZwNYRcbQkBGbq3qukwE4xGLZ2Rh3X2V3p4CVdfXdx+QlJpiBLLBeMWoreK1PTQZqUM2Vy2X@vger.kernel.org, AJvYcCUKCoTZVnhDb6sAWm0Dy9OUCi5yAc/sSIrxB9jo/XgOApG/DXg8H8rRWh/CDmSVTFa6ilNPoqVI+typ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxXn5bzcFkdKkTEfoCdwQYwoc34mHWOXZdPRShxv8tL2D7TKyd
-	+QGHNiwJJXIuRRl5M49gSa7+xE6dpB/N9xxSHIb0SLzVcJB0t1bk
-X-Google-Smtp-Source: AGHT+IFNUMYvFYf4p3MkHE6cA9zg4WL2xzIDxgXIGOqB3badx678F5VvqdOq/3/xoTfYOzgxjR4ntA==
-X-Received: by 2002:a17:903:120a:b0:205:3e6d:9949 with SMTP id d9443c01a7336-20ca16be7demr281535785ad.52.1729104846268;
-        Wed, 16 Oct 2024 11:54:06 -0700 (PDT)
-Received: from Emma ([2401:4900:1c97:c88d:5054:ff:fe53:2787])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20d1805e56bsm31733715ad.286.2024.10.16.11.54.05
+        d=1e100.net; s=20230601; t=1729105045; x=1729709845;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4NSjzf6BPB669SPmFQAhJmWU/60txO/dSmZRKiOfK1k=;
+        b=eASazNQpoczQI1grR0S2sXBdLyMCMyfCTpLb0R6x36uuiB5f/+JaMaoK6YP7CisxJL
+         ENOrlSQn0w/pmVuL91yQkit9tvXIm4lLCVyllTmwJbHwrGrFgEZ347PUY3OQ40sNzHB1
+         aQYGZ4010gqwa5Py8PwgbmHdau4TLdfW4RIFFF/Nj+SmAr7hF6dCvhztaxHe6qW8uIRB
+         HrHFjdpAOLWw4EWIpWnsiOIGL9zH2ze8B2LSxRN7vc4Y3J2ggc6ah7bT+a7UqOFmzxw8
+         1KyH4+YQ+e6lA9D5cMUTYzx96Ezw9kmAmWqFnUDrHbG5E2tO6WoRFeH0gZepZZLXazHi
+         mfKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVFNB6OQRMjs+KLjNcaUZsyfF8C16nPiB/SIQjuLTXzbSE06TQY/JDg42LLFOzDUpYomRDAAmXZJs3j@vger.kernel.org
+X-Gm-Message-State: AOJu0YymdpurA8grgB7KOWOxb6fscG75Qqwyt+WmKYk8iBFkGOtsAzHe
+	MYn5rlb2WX00iedoisvej55UM04cAjfH+02IAkuCczD5JfWmJg2B3DpABL4SNK0=
+X-Google-Smtp-Source: AGHT+IF5YBy+a1zYqbbQ1euqQQPHYEnpcp3B22EIBtiwIKZl3LYqWIhzQbqF0HNbo0k9eO8w1IAJRQ==
+X-Received: by 2002:a17:907:1c9b:b0:a7a:9f0f:ab18 with SMTP id a640c23a62f3a-a99e3b3329dmr1593991766b.20.1729105045045;
+        Wed, 16 Oct 2024 11:57:25 -0700 (PDT)
+Received: from localhost ([2001:4090:a244:83ae:c75a:6d73:cead:b69a])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a29816adbsm210816666b.109.2024.10.16.11.57.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 11:54:05 -0700 (PDT)
-Date: Wed, 16 Oct 2024 18:54:03 +0000
-From: Karan Sanghavi <karansanghvi98@gmail.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Karan Sanghavi <karansanghvi98@gmail.com>,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Anup <anupnewsmail@gmail.com>
-Subject: [PATCH v3] dt-bindings: spi: Convert to dtschema
-Message-ID: <ZxALy6p8m9eS9uIW@Emma>
+        Wed, 16 Oct 2024 11:57:24 -0700 (PDT)
+Date: Wed, 16 Oct 2024 20:57:23 +0200
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Vincent MAILHOL <mailhol.vincent@wanadoo.fr>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+	Marc Kleine-Budde <mkl@pengutronix.de>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
+	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+	Simon Horman <horms@kernel.org>
+Subject: Re: [PATCH v4 3/9] can: m_can: Map WoL to device_set_wakeup_enable
+Message-ID: <zas3pyfuv2f2qouctwdi6poaznobytq53mjjusificzfloafsl@q3oursy6rxjn>
+References: <20241015-topic-mcan-wakeup-source-v6-12-v4-0-fdac1d1e7aa6@baylibre.com>
+ <20241015-topic-mcan-wakeup-source-v6-12-v4-3-fdac1d1e7aa6@baylibre.com>
+ <CAMZ6RqJfBbFRaynjFAbi5quAvcA1bYj7Dw_vJ7rDsLRaEheZrw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kbge6drx2p5okdk6"
 Content-Disposition: inline
+In-Reply-To: <CAMZ6RqJfBbFRaynjFAbi5quAvcA1bYj7Dw_vJ7rDsLRaEheZrw@mail.gmail.com>
 
-Convert bcm2835-aux-spi binding to Dt schema
 
-Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
----
+--kbge6drx2p5okdk6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes since V2:
- - Modified the Patch subject
- - Removed unnecessary description and example
+Hi Vincent,
 
- .../bindings/spi/brcm,bcm2835-aux-spi.txt     | 38 --------------
- .../bindings/spi/brcm,bcm2835-aux-spi.yaml    | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
- create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
+On Wed, Oct 16, 2024 at 11:32:06PM GMT, Vincent MAILHOL wrote:
+> On Wed. 16 Oct. 2024 at 04:18, Markus Schneider-Pargmann
+> <msp@baylibre.com> wrote:
+> > In some devices the pins of the m_can module can act as a wakeup source.
+> > This patch helps do that by connecting the PHY_WAKE WoL option to
+> > device_set_wakeup_enable. By marking this device as being wakeup
+> > enabled, this setting can be used by platform code to decide which
+> > sleep or poweroff mode to use.
+> >
+> > Also this prepares the driver for the next patch in which the pinctrl
+> > settings are changed depending on the desired wakeup source.
+> >
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>=20
+> I left a nitpick below. Regardless:
+>=20
+> Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+>=20
+> > ---
+> >  drivers/net/can/m_can/m_can.c | 37 +++++++++++++++++++++++++++++++++++=
+++
+> >  1 file changed, 37 insertions(+)
+> >
+> > diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_ca=
+n.c
+> > index a978b960f1f1e1e8273216ff330ab789d0fd6d51..d427645a5b3baf7d0a648e3=
+b008d7d7de7f23374 100644
+> > --- a/drivers/net/can/m_can/m_can.c
+> > +++ b/drivers/net/can/m_can/m_can.c
+> > @@ -2185,6 +2185,36 @@ static int m_can_set_coalesce(struct net_device =
+*dev,
+> >         return 0;
+> >  }
+> >
+> > +static void m_can_get_wol(struct net_device *dev, struct ethtool_wolin=
+fo *wol)
+> > +{
+> > +       struct m_can_classdev *cdev =3D netdev_priv(dev);
+> > +
+> > +       wol->supported =3D device_can_wakeup(cdev->dev) ? WAKE_PHY : 0;
+> > +       wol->wolopts =3D device_may_wakeup(cdev->dev) ? WAKE_PHY : 0;
+> > +}
+> > +
+> > +static int m_can_set_wol(struct net_device *dev, struct ethtool_wolinf=
+o *wol)
+> > +{
+> > +       struct m_can_classdev *cdev =3D netdev_priv(dev);
+> > +       bool wol_enable =3D !!(wol->wolopts & WAKE_PHY);
+> > +       int ret;
+> > +
+> > +       if ((wol->wolopts & WAKE_PHY) !=3D wol->wolopts)
+>=20
+> Here, you want to check if a bit other than WAKE_PHY is set, isn't it?
+> What about doing this:
+>=20
+>           if (wol->wolopts & ~WAKE_PHY)
+>=20
+> instead?
 
-diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
-deleted file mode 100644
-index d7668f41b..000000000
---- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Broadcom BCM2835 auxiliary SPI1/2 controller
--
--The BCM2835 contains two forms of SPI master controller, one known simply as
--SPI0, and the other known as the "Universal SPI Master"; part of the
--auxiliary block. This binding applies to the SPI1/2 controller.
--
--Required properties:
--- compatible: Should be "brcm,bcm2835-aux-spi".
--- reg: Should contain register location and length for the spi block
--- interrupts: Should contain shared interrupt of the aux block
--- clocks: The clock feeding the SPI controller - needs to
--	  point to the auxiliary clock driver of the bcm2835,
--	  as this clock will enable the output gate for the specific
--	  clock.
--- cs-gpios: the cs-gpios (native cs is NOT supported)
--	    see also spi-bus.txt
--
--Example:
--
--spi1@7e215080 {
--	compatible = "brcm,bcm2835-aux-spi";
--	reg = <0x7e215080 0x40>;
--	interrupts = <1 29>;
--	clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI1>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	cs-gpios = <&gpio 18>, <&gpio 17>, <&gpio 16>;
--};
--
--spi2@7e2150c0 {
--	compatible = "brcm,bcm2835-aux-spi";
--	reg = <0x7e2150c0 0x40>;
--	interrupts = <1 29>;
--	clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI2>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	cs-gpios = <&gpio 43>, <&gpio 44>, <&gpio 45>;
--};
-diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
-new file mode 100644
-index 000000000..351019d68
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/brcm,bcm2835-aux-spi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM2835 Auxiliary SPI1/2 Controller
-+
-+maintainers:
-+  - Karan Sanghavi <karansanghvi98@gmail.com>
-+
-+description: The BCM2835 contains two forms of SPI master controller. One is known simply as
-+  SPI0, and the other as the "Universal SPI Master," part of the auxiliary block.
-+  This binding applies to the SPI1 and SPI2 auxiliary controllers.
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm2835-aux-spi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/bcm2835-aux.h>
-+    spi@7e215080 {
-+        compatible = "brcm,bcm2835-aux-spi";
-+        reg = <0x7e215080 0x40>;
-+        interrupts = <1 29>;
-+        clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI1>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
--- 
-2.43.0
+Yes, thanks, that is better. Thank you for your reviews!
 
+Best
+Markus
+
+>=20
+> > +               return -EINVAL;
+> > +
+> > +       if (wol_enable =3D=3D device_may_wakeup(cdev->dev))
+> > +               return 0;
+> > +
+> > +       ret =3D device_set_wakeup_enable(cdev->dev, wol_enable);
+> > +       if (ret) {
+> > +               netdev_err(cdev->net, "Failed to set wakeup enable %pE\=
+n",
+> > +                          ERR_PTR(ret));
+> > +               return ret;
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> >  static const struct ethtool_ops m_can_ethtool_ops_coalescing =3D {
+> >         .supported_coalesce_params =3D ETHTOOL_COALESCE_RX_USECS_IRQ |
+> >                 ETHTOOL_COALESCE_RX_MAX_FRAMES_IRQ |
+> > @@ -2194,10 +2224,14 @@ static const struct ethtool_ops m_can_ethtool_o=
+ps_coalescing =3D {
+> >         .get_ts_info =3D ethtool_op_get_ts_info,
+> >         .get_coalesce =3D m_can_get_coalesce,
+> >         .set_coalesce =3D m_can_set_coalesce,
+> > +       .get_wol =3D m_can_get_wol,
+> > +       .set_wol =3D m_can_set_wol,
+> >  };
+> >
+> >  static const struct ethtool_ops m_can_ethtool_ops =3D {
+> >         .get_ts_info =3D ethtool_op_get_ts_info,
+> > +       .get_wol =3D m_can_get_wol,
+> > +       .set_wol =3D m_can_set_wol,
+> >  };
+> >
+> >  static int register_m_can_dev(struct m_can_classdev *cdev)
+> > @@ -2324,6 +2358,9 @@ struct m_can_classdev *m_can_class_allocate_dev(s=
+truct device *dev,
+> >                 goto out;
+> >         }
+> >
+> > +       if (dev->of_node && of_property_read_bool(dev->of_node, "wakeup=
+-source"))
+> > +               device_set_wakeup_capable(dev, true);
+> > +
+> >         /* Get TX FIFO size
+> >          * Defines the total amount of echo buffers for loopback
+> >          */
+> >
+> > --
+> > 2.45.2
+> >
+> >
+
+--kbge6drx2p5okdk6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTd8KHufh7XoFiu4kEkjLTi1BWuPwUCZxAMjAAKCRAkjLTi1BWu
+P/5DAP4wefyrUYIEtW0zEvZcxFGGUxIhdW9X8KsYmidnPmRCMQEAu6U7HHuys0aY
+E+xLPVnlePLxFke28ta1HXjD0B5r6w4=
+=VBQg
+-----END PGP SIGNATURE-----
+
+--kbge6drx2p5okdk6--
 
