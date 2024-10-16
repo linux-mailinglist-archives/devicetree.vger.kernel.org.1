@@ -1,227 +1,161 @@
-Return-Path: <devicetree+bounces-111790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4ECC9A0069
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:07:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A58189A0079
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:13:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 146F21C219F5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 05:07:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C66991C231C6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 05:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7260B187855;
-	Wed, 16 Oct 2024 05:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8F418A95F;
+	Wed, 16 Oct 2024 05:13:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="lrGa2CNO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AFMNDagb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E0BD290F;
-	Wed, 16 Oct 2024 05:07:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C677721E3B4;
+	Wed, 16 Oct 2024 05:13:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729055243; cv=none; b=Zu51mctGPnkecNPagprxwu60W6OgUjBvwKrmIjXG+FYZGcwVpiGwsCmODKr91YX2lWNM0Sl+ft8ucsirmG9T2dbara6vt75+PQGXOhZpSnvRlpj9Okv1oH2bH30uSzlLBS5ga83GymKjfWOJS3pvxnj+LbZhxTM8RFUlWFAIxXw=
+	t=1729055627; cv=none; b=j8r3bZ3o645Bbbrw8dsyiWeCFh9mIyvG91WX5WY1pFIXZNpATWsrbMMHQB9FOIv37js2tXuiawEAfOWe47ps8/e2dJerQZrZ0Bz6GOZELYalouYzOguvSXIWezwd81692a1BXmRuf9H2jnBMSu1W+EuzaXQMfRqOuz9MvGnrLag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729055243; c=relaxed/simple;
-	bh=YciCJBY2qPX5lX/iXgttEdUz4HdCIMiwd6OogzL6oqc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gXjaCuJF7jcFxCN5IHbUwafaiR9zQCdVfr2qRdPsvQhrg7sn8C+McBOclhmb0+zKCPDgWTWPSBV1lExZvnLpffL5XNcCs05SzIwSXNpFty6pN2tBH+4h8aZnqjoVWBjXTZKZqbTn6iVYAjeHU3BygaMUa+T0cyP3lI9jxlU6684=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=lrGa2CNO; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1729055230;
-	bh=2xl6GiNHnVkURELe+WIxH38Tw0c480sjCHy4Ex2x+rA=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=lrGa2CNOs9oShkkf5L53gsq0hIF0WsD8lx77LkW0phj5nw/HhlpNvrA99hjgTGn9m
-	 kWnzgrP0SYB3f/ecuEN+ZXU4w+MXBFtR7BPrkmFFX9W+Jmrl1ueAFvXl1t1DYv51fF
-	 fS/b4dH4n6TxU/OCOgj32bsQwFad4DhZbPaGrHuZ0EXVzNMuUN6dAKfolGh6RM+vkd
-	 JuCj/I1pScJOLkLjMZ2XoJZf42dkWMnpODdi4/V7xJ17ncro0pkN5sQYK6hVqPPpwX
-	 R4+ALlqlyOyu4qp9IjGtVytLKaDBc8/JM6XglaRrRXa5kJacVLqBHY+aeTALUMQhp1
-	 sRpGQomyJMETg==
-Received: from [192.168.68.112] (203-173-0-39.dyn.iinet.net.au [203.173.0.39])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id C654767B60;
-	Wed, 16 Oct 2024 13:07:07 +0800 (AWST)
-Message-ID: <7555c528c90e6151f54d0e17c278527f95fac184.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
- Jefferson BMC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>, Chanh Nguyen
-	 <chanh@os.amperecomputing.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Khanh Pham
- <khpham@amperecomputing.com>, linux-arm-kernel@lists.infradead.org, Thang
- Nguyen <thang@os.amperecomputing.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Phong Vo <phong@os.amperecomputing.com>, Conor Dooley
- <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, OpenBMC Maillist
- <openbmc@lists.ozlabs.org>, Open Source Submission
- <patches@amperecomputing.com>, Quan Nguyen <quan@os.amperecomputing.com>, 
- linux-aspeed@lists.ozlabs.org
-Date: Wed, 16 Oct 2024 15:37:07 +1030
-In-Reply-To: <e8e31fb4-4a9f-4ea9-be4d-9ba29d824cc5@amperemail.onmicrosoft.com>
-References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
-	 <172891445289.1127319.4114892374425336022.robh@kernel.org>
-	 <b5919d904c9f06a618a54d49bc895c3081a511e4.camel@codeconstruct.com.au>
-	 <e8e31fb4-4a9f-4ea9-be4d-9ba29d824cc5@amperemail.onmicrosoft.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1729055627; c=relaxed/simple;
+	bh=pftf73/c4Yj3xjCsAfa54VCCgMSRTEbc7fLmYhfjguU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JtHcUrcKnEJus9SwIiTNdU/1p5eBNJAvaquWmgdRFPho5AYUJIHpebx3klyXa0b2ZEg+IfVKuARQwr+CVXYFMET88+ncfTL35klDvyNo9mvOynySr0RoT6rVWLQwSR50Zq7Mf+WMVlSY6h1p+0wwCiHpbwK9l3iDxmuIWd8+ZMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AFMNDagb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49G11j2b025257;
+	Wed, 16 Oct 2024 05:13:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XfONfCk+bzmPqjKhmWgzHubgBUfdV5cdIxwDOmQEMKo=; b=AFMNDagb33Y56ndw
+	HycjaCjQ1xLZIrNNTinbRvzyVaxBEjmAVYA7T1d030fn541GK98fxL48iL9CHyxX
+	p7bi2DOc2Qcqh1gjgl86pY2PuMIaejDz11VWdmcHPLjtb9Kk8UDjt7b30OyZc9rz
+	El01NZx5cW/oeCFUR7LVkeJdPbFoOcEQOelBKLP8/NXbDYqDjvx6rNg5ls1StkxD
+	AXhGFGxED8mY2ccjEW2BkaaErcNJzscraVizQE82U6ZqGOtlcUOCvFH0K0ia1x0Z
+	xFwuz4H1sTgHyxfV/Z0TlIHUgJX6jw8s/xERNpG0xjZYUra80oGU8x23GAVSNDqm
+	zpKHBA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 429t5kj9x8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Oct 2024 05:13:41 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49G5DRlZ025633
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Oct 2024 05:13:27 GMT
+Received: from [10.216.49.154] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 15 Oct
+ 2024 22:13:23 -0700
+Message-ID: <bbc900f7-eb8f-2664-2144-50a9a6ad8453@quicinc.com>
+Date: Wed, 16 Oct 2024 10:43:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_vbadigan@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_parass@quicinc.com>
+References: <CAA8EJprRF0tVFZK9c=MT8bSRcBdRvcugBaeEzpX5-wfRyNgc3Q@mail.gmail.com>
+ <c8be2bbf-a51c-a38f-6e6f-a88801f953d5@quicinc.com>
+ <20240209075716.GA12035@thinkpad>
+ <CAA8EJppfzc_dM9c9mHPVWheVxi-1gJxCmaWPvreELijEQDDSyA@mail.gmail.com>
+ <20241001101622.ys36slymgjbaz26q@thinkpad>
+ <8459161B-87B8-481F-AE71-3D5156B1CA56@linaro.org>
+ <20241001141948.g74rn6777ywvtcmx@thinkpad>
+ <CFF89D4D-8131-47C2-95B8-A0E130A16E46@linaro.org>
+ <9c24ba5d-431a-c45e-ce1c-3541eac7d017@quicinc.com>
+ <20241012124334.4gsspgtuud4uudop@thinkpad>
+ <7yzjgqitjvfwricftcpelktwjbgwkjuibwkpodjd6x4gwkjkw3@wkeqp6lqwfqv>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <7yzjgqitjvfwricftcpelktwjbgwkjuibwkpodjd6x4gwkjkw3@wkeqp6lqwfqv>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: UYdiqJwZ8aOVuaWU5tqd-kEb_xeY5UkS
+X-Proofpoint-GUID: UYdiqJwZ8aOVuaWU5tqd-kEb_xeY5UkS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ bulkscore=0 mlxscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
+ malwarescore=0 phishscore=0 clxscore=1015 suspectscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410160032
 
-On Tue, 2024-10-15 at 13:39 +0700, Chanh Nguyen wrote:
->=20
-> On 15/10/2024 07:44, Andrew Jeffery wrote:
-> > Hi Chanh,
-> >=20
-> > On Mon, 2024-10-14 at 09:05 -0500, Rob Herring (Arm) wrote:
-> > > On Mon, 14 Oct 2024 10:50:31 +0000, Chanh Nguyen wrote:
-> > > > The Mt. Jefferson BMC is an ASPEED AST2600-based BMC for the Mt. Je=
-fferson
-> > > > hardware reference platform with AmpereOne(TM)M processor.
-> > > >=20
-> > > > Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> > > > ---
-> > > >   arch/arm/boot/dts/aspeed/Makefile             |   1 +
-> > > >   .../aspeed/aspeed-bmc-ampere-mtjefferson.dts  | 646 +++++++++++++=
-+++++
-> > > >   2 files changed, 647 insertions(+)
-> > > >   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtj=
-efferson.dts
-> > > >=20
-> > >=20
-> > >=20
-> > > My bot found new DTB warnings on the .dts files added or changed in t=
-his
-> > > series.
-> > >=20
-> > > Some warnings may be from an existing SoC .dtsi. Or perhaps the warni=
-ngs
-> > > are fixed by another series. Ultimately, it is up to the platform
-> > > maintainer whether these warnings are acceptable or not. No need to r=
-eply
-> > > unless the platform maintainer has comments.
-> > >=20
-> > > If you already ran DT checks and didn't see these error(s), then
-> > > make sure dt-schema is up to date:
-> > >=20
-> > >    pip3 install dtschema --upgrade
-> > >=20
-> > >=20
-> > > New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ampere-mt=
-jefferson.dtb' for 20241014105031.1963079-1-chanh@os.amperecomputing.com:
-> > >=20
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /: compat=
-ible: 'oneOf' conditional failed, one must be fixed:
-> > > 	'ampere,mtjefferson-bmc' is not one of ['delta,ahe50dc-bmc', 'facebo=
-ok,galaxy100-bmc', 'facebook,wedge100-bmc', 'facebook,wedge40-bmc', 'micros=
-oft,olympus-bmc', 'quanta,q71l-bmc', 'tyan,palmetto-bmc', 'yadro,vesnin-bmc=
-']
-> > > 	'ampere,mtjefferson-bmc' is not one of ['amd,daytonax-bmc', 'amd,eth=
-anolx-bmc', 'ampere,mtjade-bmc', 'aspeed,ast2500-evb', 'asrock,e3c246d4i-bm=
-c', 'asrock,e3c256d4i-bmc', 'asrock,romed8hm3-bmc', 'asrock,spc621d8hm3-bmc=
-', 'asrock,x570d4u-bmc', 'bytedance,g220a-bmc', 'facebook,cmm-bmc', 'facebo=
-ok,minipack-bmc', 'facebook,tiogapass-bmc', 'facebook,yamp-bmc', 'facebook,=
-yosemitev2-bmc', 'facebook,wedge400-bmc', 'hxt,stardragon4800-rep2-bmc', 'i=
-bm,mihawk-bmc', 'ibm,mowgli-bmc', 'ibm,romulus-bmc', 'ibm,swift-bmc', 'ibm,=
-witherspoon-bmc', 'ingrasys,zaius-bmc', 'inspur,fp5280g2-bmc', 'inspur,nf52=
-80m6-bmc', 'inspur,on5263m5-bmc', 'intel,s2600wf-bmc', 'inventec,lanyang-bm=
-c', 'lenovo,hr630-bmc', 'lenovo,hr855xg2-bmc', 'portwell,neptune-bmc', 'qco=
-m,centriq2400-rep-bmc', 'supermicro,x11spi-bmc', 'tyan,s7106-bmc', 'tyan,s8=
-036-bmc', 'yadro,nicole-bmc', 'yadro,vegman-n110-bmc', 'yadro,vegman-rx20-b=
-mc', 'yadro,vegman-sx20-bmc']
-> > > 	'ampere,mtjefferson-bmc' is not one of ['ampere,mtmitchell-bmc', 'as=
-peed,ast2600-evb', 'aspeed,ast2600-evb-a1', 'asus,x4tf-bmc', 'facebook,blet=
-chley-bmc', 'facebook,catalina-bmc', 'facebook,cloudripper-bmc', 'facebook,=
-elbert-bmc', 'facebook,fuji-bmc', 'facebook,greatlakes-bmc', 'facebook,harm=
-a-bmc', 'facebook,minerva-cmc', 'facebook,yosemite4-bmc', 'ibm,blueridge-bm=
-c', 'ibm,everest-bmc', 'ibm,fuji-bmc', 'ibm,rainier-bmc', 'ibm,system1-bmc'=
-, 'ibm,tacoma-bmc', 'inventec,starscream-bmc', 'inventec,transformer-bmc', =
-'jabil,rbp-bmc', 'qcom,dc-scm-v1-bmc', 'quanta,s6q-bmc', 'ufispace,ncplite-=
-bmc']
-> > > 	'aspeed,ast2400' was expected
-> > > 	'aspeed,ast2500' was expected
-> > > 	from schema $id: http://devicetree.org/schemas/arm/aspeed/aspeed.yam=
-l#
-> > >=20
-> >=20
-> > This needs to be fixed as pointed out by Krzysztof.
-> >=20
->=20
-> Thank Andrew, I'll update that in patch v2
->=20
-> > *snip*
-> >=20
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /ahb/apb/=
-bus@1e78a000/i2c@180/i2c-mux@70/i2c@0/psu@58: failed to match any schema wi=
-th compatible: ['pmbus']
-> > > arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dtb: /ahb/apb/=
-bus@1e78a000/i2c@180/i2c-mux@70/i2c@0/psu@59: failed to match any schema wi=
-th compatible: ['pmbus']
-> >=20
-> > These two should also be fixed. The compatible must describe the
-> > physical device, not the communication/application protocol. It may be
-> > necessary to add a binding if there's not one already for the device.
-> >=20
->=20
-> Hi Andrew, My device is following the pmbus specification. So I'm using=
-=20
-> the generic pmbus driver=20
-> (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree=
-/drivers/hwmon/pmbus/pmbus.c#n237)=20
-> to probe my device.
->=20
 
-The devicetree doesn't describe drivers though, it describes devices.
-The compatible string needs to represent the device.
 
->  In arch/arm/boot/dts/aspeed/ directory, many boards=20
-> are also using this compatible to probe our devices.
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/=
-arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts#n219
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/=
-arch/arm/boot/dts/aspeed/aspeed-bmc-inventec-transformers.dts#n263
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/=
-arch/arm/boot/dts/aspeed/aspeed-bmc-tyan-s8036.dts#n260
->=20
-> Andrew, Recently I saw the ASPEED platform's maintainer accept the=20
-> "pmbus" compatible with a warning log. You can see in the below list=20
-> that patches were merged recently.
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commi=
-t/?id=3Dbb3776e564d2190db0ef45609e66f13c60ce5b48
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commi=
-t/?id=3D28cfb03afcb20a841e96e821ba20870a7c437034
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commi=
-t/?id=3D36d96827f480e90037d162098061333e279ea35f
->=20
+On 10/14/2024 4:55 AM, Dmitry Baryshkov wrote:
+> On Sat, Oct 12, 2024 at 06:13:34PM +0530, Manivannan Sadhasivam wrote:
+>> On Fri, Oct 11, 2024 at 05:24:29PM +0530, Krishna Chaitanya Chundru wrote:
+>>
+>> [...]
+>>
+>>>>> The logic here is that the fixed endpoints in the switch will get an unique SID
+>>>>> and the devices getting attached to slots will share the same SID of the bus
+>>>>> (this is the usual case with all Qcom SoCs).
+>>>>>
+>>>>> But I guess we would need 'iommu-map-mask' as well. Hope this addresses your
+>>>>> concern.
+>>>>
+>>>> Yes, thank you!
+>>>>
+>>> Hi dimitry & mani,
+>>>
+>>> This particular board variant doesn't expose any open slots to connect
+>>> a different endpoints like another switch(which might have BDF unknown
+>>> to us) so static table should be fine for this board variant.
+>>>
+>>> I tries to add iommu-map-mask property, the issue with that property is
+>>> that the driver is applying the mask to the bdf before searching for the
+>>> entry in the table. If I use a mask value which satisfies all the
+>>> entries in the table ( mask as 0x718) and if a new bdf is enumerated
+>>> lets say 0x600 due to mask 0x718 its value is again 0x600 only.
+>>>
+>>> Can we skip iommu-map-mask property and use only static table for this
+>>> board as we know this board doesn't expose any open slots.
+>>>
+>>
+>> Hmm, I was not aware that it doesn't have open slots. Fine with me then.
+> 
+> It doesn't feature open slots, but it has two PCIe connections on HS2 /
+> HS3. Users might attach external PCIe devices.
+> 
+> Krishna, could you please clarify, how those two connections are routed?
+> 
+For this qps615 board to one of the downstream port (pcie to usb) usb
+hub is connected and to the other downstream port NVMe will be
+connected.
 
-Unfortunately for your argument, I'm not trying to make the case that
-some people are allowed to do this and others (such as yourself) are
-not.
-
-Rather, this is the review process in action, where hopefully everyone,
-including myself, tries to improve their practices with feedback.
-
-You can also find discussions where other maintainers (Guenter, hwmon
-maintainer; Krzysztof, devicetree maintainer) have asked that "pmbus"
-not be used as a compatible:
-
-https://lore.kernel.org/all/f76798ea-6edd-4888-8057-c09aaed88f25@roeck-us.n=
-et/
-
-The tools are asking you to do something different via the warnings,
-and so am I :) Please define the compatible according to the device
-used in the design.
-
-Thanks,
-
-Andrew
+- Krishna Chaitanya.
 
