@@ -1,149 +1,75 @@
-Return-Path: <devicetree+bounces-111927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381FA9A0526
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:13:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BD899A04AB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:50:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0E751F25248
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:13:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A35A3B260E1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C121E20604B;
-	Wed, 16 Oct 2024 09:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F736203711;
+	Wed, 16 Oct 2024 08:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="J3N3M59F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F6C205E11;
-	Wed, 16 Oct 2024 09:13:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334AF202F63;
+	Wed, 16 Oct 2024 08:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729069985; cv=none; b=E6Doh60JcwkIh73DvCgNznoifyiPcG3Ksi3kG5Qe5MX1xEoKEBJgERhF469svCBXfhHx4zylo39X0Pkvrl/9UAWqZtt0xa/zLuPJfvw0BlCiLfa/tuoc5HpwZ7tD0GaBU6QwUO82u/iblQnPRA0mQH47qbeuzPenxwSbs28Pd8M=
+	t=1729068639; cv=none; b=GMdce7JdnH8YXB/1/c6w4UHL+3PSAVoyweUr0ADqlRrjvva93axTAuegqN5DZQtau0ZLYHFJ5F6C0xRc9wdpaTTlpn9mGwbrrG7LYskwuaoogppiDm2dy/c4q721PSKrvIRtRTNCIAriA/Zb4sVYDOWfHSkjY0fa6C0CcKeaaXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729069985; c=relaxed/simple;
-	bh=Q7YiFkq6G86CYppOK/tGA2/5+gyUMdTXdv0mAC/q77Y=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References; b=bVwuB4dZ+/q7FRkpmkC582gCIoMu7/k1RLLPteRNGN1D5iBGD2/gqm8G3NG1HtxyOdBIDTZDLalU4iX+D9dz+O5tyelprIHBOXX+icvTD5yc08lItzq2p+3XCduAWL5u9cIAgPGDHG5+nWG2h25VkEjxKn84pMNRVKYjbIaDUHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E68231A199B;
-	Wed, 16 Oct 2024 11:12:56 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AE4DF1A18D9;
-	Wed, 16 Oct 2024 11:12:56 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 187131939E62;
-	Wed, 16 Oct 2024 17:12:55 +0800 (+08)
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: [PATCH v3 3/3] arm64: dts: imx93-9x9-qsb: Add PDM microphone sound card support
-Date: Wed, 16 Oct 2024 16:49:17 +0800
-Message-Id: <1729068557-10073-4-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1729068557-10073-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1729068557-10073-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	s=arc-20240116; t=1729068639; c=relaxed/simple;
+	bh=LtVByiWSZtHR8mgWIuhwk6J8AyO9HCJMjno04GmKUF0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s7fpV+zTIrr2l5nGVHQ8eHo/iMlu4myx9zmX8kRP5jWes//VRcP71fRmrewT6hwIh8icxbuJNPevgwpOp3bJQRhPEhAua74zgOqpYDiqBzHJmOWcXYfk7u3yFOjy77XaQRP6Uneq9JmBEG63NBDKuSOUhd5Y+ERCZ+HAbPv5MwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=J3N3M59F; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Po78hYeDV+J0PQFG2Fu9nvFQPh5C5GSX/UuSGg42/T0=;
+	b=J3N3M59Fe0DM4EM7PCLZ9tvp8SzuUw7q87nZZKGo14mn6DN1n9EM6P1di3uOSO
+	tflcMGxERAAWu2bfb1qEuNbPLfgj2q2KPlBNuFuBNhmdMHoC9CzCFaPAJoOjZP+E
+	053Pqy8tTIf5dEwZRDTxzfeMwvNLLlgRz1syQuZRm1OTw=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCXWNwqfg9nJTkaAA--.410S3;
+	Wed, 16 Oct 2024 16:49:47 +0800 (CST)
+Date: Wed, 16 Oct 2024 16:49:45 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] ARM: dts: nxp: imx6ul*: add uart dma support
+Message-ID: <Zw9+KYSP69O9Hgb3@dragon>
+References: <20240918-imx6ul-sdma-v1-0-d25abd56e65c@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240918-imx6ul-sdma-v1-0-d25abd56e65c@geanix.com>
+X-CM-TRANSID:Mc8vCgCXWNwqfg9nJTkaAA--.410S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVvedUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxB6ZWcPLTjrhwABsU
 
-Add PDM micphone sound card support, configure the pinmux.
+On Wed, Sep 18, 2024 at 02:07:41PM +0200, Sean Nyekjaer wrote:
+> Sean Nyekjaer (2):
+>       ARM: dts: nxp: imx6ul: add dma support for all uarts
+>       ARM: dts: nxp: imx6ull: add dma support for uart8
 
-This sound card supports recording sound from PDM
-microphone and convert the PDM format data to PCM data.
-
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
- .../boot/dts/freescale/imx93-9x9-qsb.dts      | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-index eb872014c11d..10f931e334e2 100644
---- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-@@ -122,6 +122,20 @@ simple-audio-card,codec {
- 		};
- 	};
- 
-+	sound-micfil {
-+		compatible = "fsl,imx-audio-card";
-+		model = "micfil-audio";
-+
-+		pri-dai-link {
-+			link-name = "micfil hifi";
-+			format = "i2s";
-+
-+			cpu {
-+				sound-dai = <&micfil>;
-+			};
-+		};
-+	};
-+
- 	sound-wm8962 {
- 		compatible = "fsl,imx-audio-wm8962";
- 		model = "wm8962-audio";
-@@ -271,6 +285,12 @@ exp-sel-hog {
- 			gpios = <22 GPIO_ACTIVE_HIGH>;
- 			output-low;
- 		};
-+
-+		mic-can-sel-hog {
-+			gpio-hog;
-+			gpios = <17 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+		};
- 	};
- 
- 	pmic@25 {
-@@ -355,6 +375,15 @@ &lpuart1 { /* console */
- 	status = "okay";
- };
- 
-+&micfil {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pdm>;
-+	assigned-clocks = <&clk IMX93_CLK_PDM>;
-+	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
-+	assigned-clock-rates = <49152000>;
-+	status = "okay";
-+};
-+
- &mu1 {
- 	status = "okay";
- };
-@@ -468,6 +497,14 @@ MX93_PAD_CCM_CLKO1__GPIO3_IO26		0x31e
- 		>;
- 	};
- 
-+	pinctrl_pdm: pdmgrp {
-+		fsl,pins = <
-+			MX93_PAD_PDM_CLK__PDM_CLK			0x31e
-+			MX93_PAD_PDM_BIT_STREAM0__PDM_BIT_STREAM00	0x31e
-+			MX93_PAD_PDM_BIT_STREAM1__PDM_BIT_STREAM01	0x31e
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX93_PAD_UART1_RXD__LPUART1_RX		0x31e
--- 
-2.34.1
+Applied both, thanks!
 
 
