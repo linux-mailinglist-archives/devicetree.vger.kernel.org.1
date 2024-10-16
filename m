@@ -1,196 +1,104 @@
-Return-Path: <devicetree+bounces-111883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E81C9A038C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:05:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAE279A0373
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:01:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D44E01F21A2E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:05:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26ED51C20C70
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 189851CBA16;
-	Wed, 16 Oct 2024 08:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CDA1C8FB4;
+	Wed, 16 Oct 2024 08:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wZQ8W61S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i1xcPC1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C3A4165F1A;
-	Wed, 16 Oct 2024 08:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1553F165F1A;
+	Wed, 16 Oct 2024 08:01:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729065804; cv=none; b=j1cuTavDx1gbq1mjt20dkL/Q1P+lo889l0EhcL16q3vRsvkWgEVCrCF8hvG9yEUnOHBF+aiC2FziTj3nnbX3xYqdVTAyP6/WzBn0jBLENkkTZLGoo9CiETJ+NiQCljuUFSkLczuZFZ/e8wob2XbezcJtFAsGO1hh+fGj7PMW/zQ=
+	t=1729065705; cv=none; b=quVMVq/37/z/nGyYbr7Q7X6SBmYN40Tr6zqTju8PCt52X3Kv3lITxSxzKE68SO+dsLX+OJuCooblAdlbfuHN4ou0oiYdL1HuYHeTefQk4ZX12fDtfgtGPmrYefhKUv9HmHPKXm1k8coQ7WHERaHfVvmpqef75cZZ2gUJ9vEVJ6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729065804; c=relaxed/simple;
-	bh=DFikqo19SayUhwxpFxCxaYbGjVZY1En2Hg2xOPgktIM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=CxdRt2ezrwCgl95XFrD8mTrilHSZQZLFO9aOCWL8CdZZf6SD1fjYTIEnzzWLBhHdlEx4fOE4vuiM9+Lv80htaY49UfL3dgSCrVBKSAEPvEIUQitsbVvHDciBvfbI9mHzRxXtb5c2/ZPjDka+l+ngTYOmE+p8Dyr2oixRZnE02Ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=wZQ8W61S; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49G6sjMl018446;
-	Wed, 16 Oct 2024 10:03:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	dDbXP1ypjZvqBpQf3NNZh4juY6YR5BwVX+yEcMU8AeY=; b=wZQ8W61S+g48IfSZ
-	Xw6brGKtcXYpt7dv3cY1g6wBH/z7ifinQCnpJFyrxz21zNv66Iiykwwbi6FlUnx+
-	V7GC5q50s2ePjF2SS7ih61LJ4r8n6Wr4j99sdlvUJVwGi6qaTFLhhF//oDLaJT4Y
-	jZSW/e9SWZ7TRdGHVNmNBUaWIdMXXvp0jkNb1FFUUVT9QNeM/+YgVoZ1cFdQ0eqO
-	PC6mNTFL8jFrbALX+lY/fciBjM58IzF8R4z/qZNL7Bdu4GeWXblB/95v2pqwZayI
-	OX9PWZi5ZS431p0765koJ60H1/zPMLVMdqKoLEQVB830vY343fcBwsyXgsX5nD3f
-	qRwZ8Q==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42a8mv8bmt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Oct 2024 10:03:00 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 095D7400BD;
-	Wed, 16 Oct 2024 10:01:35 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CEF8323B7AF;
-	Wed, 16 Oct 2024 10:00:22 +0200 (CEST)
-Received: from [10.48.86.225] (10.48.86.225) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 16 Oct
- 2024 10:00:22 +0200
-Message-ID: <050d36ef-b674-4204-a731-7bcfb936e3aa@foss.st.com>
-Date: Wed, 16 Oct 2024 10:00:21 +0200
+	s=arc-20240116; t=1729065705; c=relaxed/simple;
+	bh=pgnglVAzXGWeon4rHJ4Kx6rcYL2QifFuXYmp+TSwhZE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Kzlj7Lou4BtJdWfo1YUkixzeIMp/+/wirCdMw5I7EpOKkDe3hafsLxznRKCTnoMHUFkZrdJ/kpJ26z/QfuehpQDgGAblkvGaXfNzvy4o7DVJmd+Msx0fPK/0vWZF7ZhqweKAktUI64dnBl9sd90IIx47h//dWDGQKejVjNbbpCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i1xcPC1F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44F72C4CEC5;
+	Wed, 16 Oct 2024 08:01:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729065704;
+	bh=pgnglVAzXGWeon4rHJ4Kx6rcYL2QifFuXYmp+TSwhZE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=i1xcPC1FYoDnq2vDB6Dn8+VXcxT6fsXr3uXUs6SupvmWvwUHhEinGQfkNJ/y8V/Cl
+	 SeAkmvm0WMnu0rUpBLsazdxlxraBnjvVCq3a1gtxFBnuIsT2sre1xyukHqBaoBPmij
+	 qelxExb1jKt4xXvNjZZkm5s3D+WRcZD4Rv1aVJnuoEULMbfO90G0XfytM9ONOsqCJp
+	 FmIyYoiHVGvWa8G3k5Ba7QzE/BCdPlrTY3g6rfqwQE3XVK2dKFsRcN59/Z50vMK+vo
+	 uLJgO+AsxsIzQHWqq5hUNvFJttccJfWdEMcjyjl+WsqUis6PMuuhPnnlhN78o54fVs
+	 q5q+ZbigrgHVg==
+From: Lee Jones <lee@kernel.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+ Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Vladimir Oltean <olteanv@gmail.com>, 
+ "David S . Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Sebastian Reichel <sre@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-pm@vger.kernel.org, netdev@vger.kernel.org, linux-rtc@vger.kernel.org, 
+ linux-sound@vger.kernel.org, Alexandre Mergnat <amergnat@baylibre.com>, 
+ Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>, 
+ Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>, 
+ MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>
+In-Reply-To: <20241001104145.24054-3-macpaul.lin@mediatek.com>
+References: <20241001104145.24054-1-macpaul.lin@mediatek.com>
+ <20241001104145.24054-3-macpaul.lin@mediatek.com>
+Subject: Re: (subset) [PATCH v8 3/3] dt-bindings: mfd: mediatek: mt6397:
+ Convert to DT schema format
+Message-Id: <172906569700.1146121.13634550536849127452.b4-ty@kernel.org>
+Date: Wed, 16 Oct 2024 09:01:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: rng: add st,stm32mp25-rng support
-To: Rob Herring <robh@kernel.org>
-CC: Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu
-	<herbert@gondor.apana.org.au>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>, <marex@denx.de>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20241015-rng-mp25-v2-v3-0-87630d73e5eb@foss.st.com>
- <20241015-rng-mp25-v2-v3-1-87630d73e5eb@foss.st.com>
- <20241015221740.GA2100600-robh@kernel.org>
-Content-Language: en-US
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <20241015221740.GA2100600-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
+On Tue, 01 Oct 2024 18:41:45 +0800, Macpaul Lin wrote:
+> Convert the mfd: mediatek: mt6397 binding to DT schema format.
+> 
+> MT6323, MT6358, and MT6397 are PMIC devices with multiple function
+> subdevices. They share a common PMIC design but have variations in
+> subdevice combinations.
+> 
+> Key updates in this conversion:
+> 
+> [...]
 
+Applied, thanks!
 
-On 10/16/24 00:17, Rob Herring wrote:
-> On Tue, Oct 15, 2024 at 06:48:54PM +0200, Gatien Chevallier wrote:
->> Add RNG STM32MP25x platforms compatible. Update the clock
->> properties management to support all versions.
->>
->> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->> ---
->> Changes in V3:
->> 	- Add constraint on clock-names for st,stm32mp25-rng compatible
->>
->> Changes in V2
->> 	-Fix missing min/maxItems
->> 	-Removed MP25 RNG example
->> 	-Renamed RNG clocks for mp25 to "core" and "bus"
->> ---
->>   .../devicetree/bindings/rng/st,stm32-rng.yaml      | 34 +++++++++++++++++++++-
->>   1 file changed, 33 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> index 340d01d481d12ce8664a60db42182ddaf0d1385b..c276723d566ce4a0d6deca10c491510644d842f8 100644
->> --- a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> +++ b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> @@ -18,12 +18,20 @@ properties:
->>       enum:
->>         - st,stm32-rng
->>         - st,stm32mp13-rng
->> +      - st,stm32mp25-rng
->>   
->>     reg:
->>       maxItems: 1
->>   
->>     clocks:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    items:
->> +      - const: core
->> +      - const: bus
->>   
->>     resets:
->>       maxItems: 1
->> @@ -57,6 +65,30 @@ allOf:
->>         properties:
->>           st,rng-lock-conf: false
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - st,stm32-rng
->> +              - st,stm32mp13-rng
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 1
->> +        clock-names: false
-> 
-> It makes no sense that you allowed 1 entry, but then disallow the
-> property. Either drop the 'minItems: 1' at the top level (keeping this)
-> or put 'maxItems: 1' here,
-> 
->> +    else:
->> +      properties:
->> +        clocks:
->> +          minItems: 2
->> +          maxItems: 2
-> 
-> maxItems is already 2. Only need minItems.
-> 
->> +        clock-names:
->> +          items:
->> +            - const: core
->> +            - const: bus
-> 
-> You already defined the names, don't do it again. You need either
-> nothing or 'minItems: 2' depending on the above.
-> 
+[3/3] dt-bindings: mfd: mediatek: mt6397: Convert to DT schema format
+      commit: 6e357f572638547e9c9e8d8abb7dc572c12032f3
 
-Actually, I'll do it the other way around, sorry for the noise.
-I'll remove this and remove minItems at the top level to keep the
-item list.
+--
+Lee Jones [李琼斯]
 
->> +      required:
->> +        - clock-names
->> +
->>   additionalProperties: false
->>   
->>   examples:
->>
->> -- 
->> 2.25.1
->>
 
