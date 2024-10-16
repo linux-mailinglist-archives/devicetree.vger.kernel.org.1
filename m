@@ -1,178 +1,547 @@
-Return-Path: <devicetree+bounces-112024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C38E9A0B90
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:36:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94EF49A0BDA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:49:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDAA41F26D86
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:36:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B0AD1F245F2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A81208982;
-	Wed, 16 Oct 2024 13:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDB5209F25;
+	Wed, 16 Oct 2024 13:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UVjwbspq"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="e9G81XbT";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ZHBP9zD9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a7-smtp.messagingengine.com (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20088205E3C;
-	Wed, 16 Oct 2024 13:36:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6DF208D7D;
+	Wed, 16 Oct 2024 13:48:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729085767; cv=none; b=lIKpesviM19VgRBO6jsvjsdjxiBSCdo6wpWolwau/yzDPAMALxNSAe0eUKmtid50VY1cslJ8wTkmvO0/VWc76YxqXJKT6ikqH4AHjD+56nHrgd1Sx1BraatUS+f47WuKnvH8d9c3tg+RFXEByjOZIc6H5iPQ8W6AXq6XDMRZqnM=
+	t=1729086537; cv=none; b=JFPaMXkifjoYuyYBtYdrC2yGvQ5TdAme5sC9BIymvGcVbDQJL1FlDL8QBZiC0MHpvZh+DH91ts7MIo3eRnjIb5PBilvnH2pS4PrbIcL4DhTOg3+3XjyegHjoz3Ru8rMCz613QJPEklo6sQrsVaF4aZyNik4TI1kFRoalCJj3yM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729085767; c=relaxed/simple;
-	bh=Hzk+WfXzj1Rao4KTCzrr0DHS2W/zA3JabpGR+nqZbT0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BirSctGaseZEqqe5+TuUxE17QGjVnwkyZpaClLN9AvRejroNAPuMJ5z04uWHBo/OWF44AZ9JzNU8C7j/TT0jbY8JYWP8f3QT502JtlBIdu9hyHacMOpJm9zJVsoFUIZSr1vg9nWyaGAc/S5De22pnoe2OF0dKSO6a9XSaGCT+B0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UVjwbspq; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5c96936065dso4906747a12.3;
-        Wed, 16 Oct 2024 06:36:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729085764; x=1729690564; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Hzk+WfXzj1Rao4KTCzrr0DHS2W/zA3JabpGR+nqZbT0=;
-        b=UVjwbspqKSVcAw+LOQUWDf6bGtFUzpZa3jcJVHDOiLld7K9B6OYdV93JAGpMFUz9i4
-         QfsvdB1NGkgdKt8fHHvbp3gv6l4M1HaMYmN8W5R0LUCsGJlbnXYcTXckD/flNB+iixPH
-         aa9kXtF/lLKuSl8UrYEVLKhD5Lq0dqTug/JWkAJA8AorU5nAgdgl3ZUxKMB3PSxkea7E
-         QlxHp9NK/x/yhpGw7XQoeaU31AA30Yu5gmXasoSIagc/ELW7700d84iQY00dZcHkt9lV
-         NsZVgYYXpktAZWJilA6j+qq6fwyImo0BGdoy/4rfMm5SBj6Ssy4FeVS3zt3dzZ4+UiX2
-         EfLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729085764; x=1729690564;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hzk+WfXzj1Rao4KTCzrr0DHS2W/zA3JabpGR+nqZbT0=;
-        b=bfh5ZFXb4da2WEJQOiDsHadhyY/htvrwAUcn4906wiRX6CcPtBc0vpIUfmId0DYvJk
-         KMWSsq5iRiQiOs08mRbWWqmotPaui7dAZv90FMp0H9D7SO9E3lbSYv5dz//Ah3Z6SVth
-         +EoUS7Fas0X+4u6RK2Z3LKGtHbOdVs2zLRCNxcqjjinHa/S9ZhLNPlBkIYgJx3hVZgUA
-         VPsss31r2yryzzIUuQ6nYJ9ayv5OaK/oFlzelRXwW/BoAhsnfdQNUde4EIC8D2GmNlF3
-         Mex6/dt8aAV0e2HzjdpwBWesr3rPigR9Ax7zjhhPgw6SSxgqVfJmO1SxCy3AhOeMtkSB
-         qpLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXoK6KtAzRsXe+zHnnO4ycaflreeVfdTq1KHQc9nDq+Trx+O3Mn14TmNRbI1m1pkgQ86LpstPV8haE8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGs5rorLBDqnF8fIZXufcpZiRiIEEXNcjHy4kUtSYIdUztY3ZN
-	i9fHR469axblB3KwfuRUOzagIAdBg8Go64DSBDlKrIusn96+1P/f
-X-Google-Smtp-Source: AGHT+IHUfBEf5Lp0Sfac6ZyEYZITcvtgWGcHUlOkyEMNCh7FAaVFC9eKuFAksWgLsSe4m8LJ1NpSOg==
-X-Received: by 2002:a17:907:1b94:b0:a99:daca:bed8 with SMTP id a640c23a62f3a-a99dada043cmr1075477166b.44.1729085764314;
-        Wed, 16 Oct 2024 06:36:04 -0700 (PDT)
-Received: from 9321da9b-2a50-4ed9-8c34-2480eb2669c2.fritz.box ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a2971917bsm184997566b.40.2024.10.16.06.36.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 06:36:04 -0700 (PDT)
-Message-ID: <d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com>
-Subject: Re: [PATCH 00/13] Input: adp5589: refactor and platform_data removal
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Nuno Sa <nuno.sa@analog.com>, Dmitry Torokhov
- <dmitry.torokhov@gmail.com>,  Mike Frysinger <vapier@gentoo.org>, Dmitry
- Torokhov <dtor@mail.ru>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>,  Lee Jones <lee@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Date: Wed, 16 Oct 2024 15:36:03 +0200
-In-Reply-To: <20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
-References: 
-	<20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1729086537; c=relaxed/simple;
+	bh=lXblGgsd7PdbQ2iWZoRo8vYzQCRoI43ZWPgAMMblFuI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QyW8OjkKyKuRlnvbAFMO3VFjtu1hw64fRm2tDB+2mKzHfJbaGGRn18RbJXlUMBvNJLXonMPWZCaVhzcaOFPmZ11wnQyjwXzn2u6GnJWQpP5MJ9d3S+8AbjGzzZaoyazMJwDZsD9HQYGxurzssaEw8dMMhQgHf0GWNdpL2DKGVFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=e9G81XbT; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ZHBP9zD9; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 32C441140140;
+	Wed, 16 Oct 2024 09:48:52 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-05.internal (MEProxy); Wed, 16 Oct 2024 09:48:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1729086532; x=1729172932; bh=8G
+	LykyZ/vEJH/zkcjy9DBAUQ8SAuHDjRmXtzRfkvVaA=; b=e9G81XbTcxcuiSCZTP
+	fsZ3SycwEaX2aUmuZoJCFGixx9O67H5HgXoaUekp2gGa4yRWxakN3goMYyTahUZk
+	8b7BueD2rKvrbTPZ9ysJ4pciYyieq6TJGTehggJSB5HlVmHLY84VwsEJnlUMSaN1
+	v6/DhHSMgWiL74XCSqQECciETTrsNxmkX1uboajVvATNT3gn228tI/BN9ArtBfHf
+	y5EGu4pE8pGkrrU4eTXfqvqWIwDfwctTE6tdcOYTRRCTdVKD6k/Vxt+HWbhDXaFV
+	KRhxMfk8NwlbaQe0UyGWGHzXgWdqnjXynab+pZwON5kBic9DIzWYGgKGTjwHWJUu
+	mcYw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1729086532; x=1729172932; bh=8GLykyZ/vEJH/
+	zkcjy9DBAUQ8SAuHDjRmXtzRfkvVaA=; b=ZHBP9zD92XS7OnPFY+L6OKB9gArgj
+	hHS0sYzXCOWZwKtoXr2FW3PrvwXywiPB1734RryaP0Hlr6XFEZ/89qHzwcl/bG6X
+	gID8fqVNmbB4UVane8oxXYeHFQXBbhQslR5SHi5ALj3dJpn0irTGfDNq62zxiPXt
+	MjVe6kliOh9lePcfM/qqbILFldYx19bUXAAAHr/j6azXfvxlK6QpVjVqmDFD/hDE
+	pHSJiuleAbAW3rjMft/lFTAeKzEwqtSs54ocuG7LGabHIdiJDBInmlxkEL0ZS4Et
+	KRCNchczSQEGrLHC+6dQgf5aWPpmApBijWhoMF6pw5RZRQI+CJpfmbFXQ==
+X-ME-Sender: <xms:Q8QPZ-AvcyhZQV7hmzGlhPmv9_27WkezkiZybQLHVNrEBcdk6vRycQ>
+    <xme:Q8QPZ4i-hGC_RtApTaWsZsMPqHnXWTzYPnTbHyd3-GVLrD49yLtQtXPqVl3T2r1wv
+    sGwBx08LTOiYRqjUcQ>
+X-ME-Received: <xmr:Q8QPZxmoc-gLW_rNIkpxTWr7wrj-rBHHI5twjAgkm5Qht91lSJQodY2YfHKba9jhXteoMr0mAVki_RiM3B-mE0XSBA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdegledgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecu
+    hfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrh
+    hluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgv
+    rhhnpeehudelteetkefgffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfeetge
+    enucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhk
+    lhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtth
+    hopeekpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehgvggvrhhtodhrvghnvghs
+    rghssehglhhiuggvrhdrsggvpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+    dprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegt
+    ohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrhgvnh
+    gvshgrshdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghv
+    ihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehnihhklh
+    grshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvpdhr
+    tghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhg
+X-ME-Proxy: <xmx:Q8QPZ8x0NMxT9N-_gz1I4RKK-jovmrqRFtItjYjkEDUDXv8-13uOqA>
+    <xmx:Q8QPZzTHmOPIDusvCBZU3cU_sL7RF7vqzYplZYjPzaorrkf4I6BmAw>
+    <xmx:Q8QPZ3Yl3GfR4vShaHhGOE1PA2Y3iwe3XcYwi0QZ-eNaqyiXARnozw>
+    <xmx:Q8QPZ8SIyVHBcg0Ja9GWrHPAHBptXBHw0oQa8YubZPphakv-DRGwMg>
+    <xmx:RMQPZ-HIsK-6AM4Lh8AdgI7kWqo3IyUXMUx2EekPyBC2pfs5WCGaVC1f>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 16 Oct 2024 09:48:51 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH] arm64: dts: renesas: r8a779g0: Fix graph_child_address warnings from capture pipeline
+Date: Wed, 16 Oct 2024 15:48:19 +0200
+Message-ID: <20241016134819.1434340-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.46.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, 2024-10-01 at 15:41 +0200, Nuno Sa wrote:
-> This series aims to remove platform data dependency from the adp5589
-> driver (as no platform is really using it) and instead add support for
-> FW properties. Note that rows and columns for the keypad are being given
-> as masks and that was briefly discussed with Dmitry. For context
-> on why this is being done as mask [1].
->=20
-> The first couple of patches are fixes that we may want to backport...
->=20
-> [1]:
-> https://lore.kernel.org/linux-input/9db96c99c805e615ba40ca7fd3632174d1e8d=
-11f.camel@gmail.com/
->=20
-> ---
-> Nuno Sa (13):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix NULL pointer dere=
-ference
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix adp5589_gpio_get_=
-value()
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add chip_info structu=
-re
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: support gpi key event=
-s as 'gpio keys'
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: input: Document adp5589 and s=
-imilar devices
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add support for fw pr=
-operties
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add guard() notation
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: bail out on returned =
-error
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: refactor adp5589_read=
-()
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix coding style
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: unify adp_constants i=
-n info struct
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: make use of dev_err_p=
-robe()
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add regulator support
->=20
-> =C2=A0.../devicetree/bindings/input/adi,adp5589.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 310 +++++
-> =C2=A0.../devicetree/bindings/trivial-devices.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 6 -
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 8 +
-> =C2=A0drivers/input/keyboard/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 3 +
-> =C2=A0drivers/input/keyboard/adp5589-keys.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1397 +++++++++++++------=
--
-> =C2=A0include/linux/input/adp5589.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 180 ---
-> =C2=A06 files changed, 1254 insertions(+), 650 deletions(-)
-> ---
-> base-commit: c7bf046925dc5885d9c4d8fbcbb7e4e73665bfcf
-> change-id: 20240930-b4-dev-adp5589-fw-conversion-955b2f42da70
-> --
->=20
-> Thanks!
-> - Nuno S=C3=A1
->=20
+The bindings for the R-Car video capture pipeline uses ports and
+endpoints to describe which IP is wired up and present on the different
+SoCs. It is needed to describe both which instance of an IP is
+connected, and to which port. The bindings try to be as reusable as
+possible across the different R-Car generations.
 
-Hi Dmitry,
+For example R-Car VIN IP bindings have three ports, where two of them
+can have multiple endpoints. Not all ports or endpoints are physically
+present on each generation and/or model of R-Car SoCs.
 
-Something really caught my attention now while checking 6.12 merge window. =
-It seems
-we have a new MFD device for adp5585 [1] which adds duplicated functionalit=
-y (that
-was already present in adp5589-keys.c). So, having this as MFD might makes =
-sense
-(even though it makes it harder to validate the keys and to make use of gpi=
-o-keys)
-but we are now duplicating GPIO support. Bottom line, not sure what we shou=
-ld do next
-and should I proceed for v2?
+The users of the VIN bindings needs to know not only that a port have
+one, or more, endpoints but also which particular hardware instance it
+is. The bindings defines endpoint indexes to correspond to particular
+hardware instances that can be routed to a port to describe this.
 
-Also ccing Lee and Bartosz...
+This design leads to warnings when compiling the DTB if a port that can
+describe more then one endpoint only describes a single endpoint. And
+that endpoint corresponds to be the hardware the bindings defined to
+index 0. For example compiling R-Car V4H which includes r8a779g0.dtsi,
 
-[1]: https://lore.kernel.org/lkml/20240816152738.GB5853@google.com/
+   ../r8a779g0.dtsi:1200.12-1210.7: Warning (graph_child_address): /soc/video@e6ef0000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+   ../r8a779g0.dtsi:1228.12-1238.7: Warning (graph_child_address): /soc/video@e6ef1000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+   ../r8a779g0.dtsi:1256.12-1266.7: Warning (graph_child_address): /soc/video@e6ef2000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+   ../r8a779g0.dtsi:1284.12-1294.7: Warning (graph_child_address): /soc/video@e6ef3000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+   ../r8a779g0.dtsi:1312.12-1322.7: Warning (graph_child_address): /soc/video@e6ef4000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+   ../r8a779g0.dtsi:1340.12-1350.7: Warning (graph_child_address): /soc/video@e6ef5000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+   ../r8a779g0.dtsi:1368.12-1378.7: Warning (graph_child_address): /soc/video@e6ef6000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+   ../r8a779g0.dtsi:1396.12-1406.7: Warning (graph_child_address): /soc/video@e6ef7000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+   ../r8a779g0.dtsi:2076.12-2086.7: Warning (graph_child_address): /soc/isp@fed00000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are
 
-- Nuno S=C3=A1
+To avoid these warnings define all possible endpoints for each port in
+the video capture pipeline, but only set the remote-endpoint property if
+there is hardware present. This takes care of the warnings, but it also
+adds empty endpoints that are not connected to anything on that
+particular SoC.
+
+Suggested-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+Hi Geert,
+
+This only addresses the warnings on V4H. More boards do trigger these
+warnings but before I address them I thought it was a good idea we
+agreed if this is a good way forward.
+
+In this design I have defined every possible endpoint for the ports
+involved. This might be a bit excessive as we define endpoints that are
+not physically possible for V4H. For example V4H only have 2 CSISP
+instances, while the bindings allow for up-to 4 CSISP as that is
+possible on V3U which the CSISP bindings are shared with.
+
+I'm not sure where to best draw the line. Only adding empty endpoints if
+they are possible on the SoC sounds good, but what if we get a board
+with only a single CSISP for example? That would be a single endpoint
+with an index of 0, this triggering the warning.
+
+Maybe do the minimum and only define an extra endpoint for ports that
+trigger the warning? And if it nots pysically possible for that SoC add
+a comment? This feels wrong however.
+
+Let me know what you think. But it would be nice to get rid of these
+warnings one way or another.
+
+Kind Regards,
+Niklas
+---
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 200 ++++++++++++++++++++++
+ 1 file changed, 200 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+index 61c6b8022ffd..e3079562fe65 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+@@ -1364,6 +1364,18 @@ vin00isp0: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&isp0vin00>;
+ 					};
++
++					vin00isp1: endpoint@1 {
++						reg = <1>;
++					};
++
++					vin00isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin00isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1393,6 +1405,18 @@ vin01isp0: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&isp0vin01>;
+ 					};
++
++					vin01isp1: endpoint@1 {
++						reg = <1>;
++					};
++
++					vin01isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin01isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1422,6 +1446,18 @@ vin02isp0: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&isp0vin02>;
+ 					};
++
++					vin02isp1: endpoint@1 {
++						reg = <1>;
++					};
++
++					vin02isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin02isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1451,6 +1487,18 @@ vin03isp0: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&isp0vin03>;
+ 					};
++
++					vin03isp1: endpoint@1 {
++						reg = <1>;
++					};
++
++					vin03isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin03isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1480,6 +1528,18 @@ vin04isp0: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&isp0vin04>;
+ 					};
++
++					vin04isp1: endpoint@1 {
++						reg = <1>;
++					};
++
++					vin04isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin04isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1509,6 +1569,18 @@ vin05isp0: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&isp0vin05>;
+ 					};
++
++					vin05isp1: endpoint@1 {
++						reg = <1>;
++					};
++
++					vin05isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin05isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1538,6 +1610,18 @@ vin06isp0: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&isp0vin06>;
+ 					};
++
++					vin06isp1: endpoint@1 {
++						reg = <1>;
++					};
++
++					vin06isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin06isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1567,6 +1651,18 @@ vin07isp0: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&isp0vin07>;
+ 					};
++
++					vin07isp1: endpoint@1 {
++						reg = <1>;
++					};
++
++					vin07isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin07isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1592,10 +1688,22 @@ port@2 {
+ 
+ 					reg = <2>;
+ 
++					vin08isp0: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					vin08isp1: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&isp1vin08>;
+ 					};
++
++					vin08isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin08isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1621,10 +1729,22 @@ port@2 {
+ 
+ 					reg = <2>;
+ 
++					vin09isp0: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					vin09isp1: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&isp1vin09>;
+ 					};
++
++					vin09isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin09isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1650,10 +1770,22 @@ port@2 {
+ 
+ 					reg = <2>;
+ 
++					vin10isp0: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					vin10isp1: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&isp1vin10>;
+ 					};
++
++					vin10isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin10isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1679,10 +1811,22 @@ port@2 {
+ 
+ 					reg = <2>;
+ 
++					vin11isp0: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					vin11isp1: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&isp1vin11>;
+ 					};
++
++					vin11isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin11isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1708,10 +1852,22 @@ port@2 {
+ 
+ 					reg = <2>;
+ 
++					vin12isp0: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					vin12isp1: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&isp1vin12>;
+ 					};
++
++					vin12isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin12isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1737,10 +1893,22 @@ port@2 {
+ 
+ 					reg = <2>;
+ 
++					vin13isp0: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					vin13isp1: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&isp1vin13>;
+ 					};
++
++					vin13isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin13isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1766,10 +1934,22 @@ port@2 {
+ 
+ 					reg = <2>;
+ 
++					vin14isp0: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					vin14isp1: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&isp1vin14>;
+ 					};
++
++					vin14isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin14isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -1795,10 +1975,22 @@ port@2 {
+ 
+ 					reg = <2>;
+ 
++					vin15isp0: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					vin15isp1: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&isp1vin15>;
+ 					};
++
++					vin15isp2: endpoint@2 {
++						reg = <2>;
++					};
++
++					vin15isp3: endpoint@3 {
++						reg = <3>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -2251,6 +2443,10 @@ isp0csi40: endpoint@0 {
+ 						reg = <0>;
+ 						remote-endpoint = <&csi40isp0>;
+ 					};
++
++					isp0csi41: endpoint@1 {
++						reg = <1>;
++					};
+ 				};
+ 
+ 				port@1 {
+@@ -2331,6 +2527,10 @@ port@0 {
+ 
+ 					reg = <0>;
+ 
++					isp1csi40: endpoint@0 {
++						reg = <0>;
++					};
++
+ 					isp1csi41: endpoint@1 {
+ 						reg = <1>;
+ 						remote-endpoint = <&csi41isp1>;
+-- 
+2.46.2
+
 
