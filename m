@@ -1,159 +1,132 @@
-Return-Path: <devicetree+bounces-111940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C859F9A059D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:35:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C3FE9A05A4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:37:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E331F1C21B16
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:35:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1997128A1EC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FAC205E02;
-	Wed, 16 Oct 2024 09:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66A5205E1B;
+	Wed, 16 Oct 2024 09:36:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="D9YOwz9A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EAx/kyrR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A0E1FDF90
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 09:35:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEED7205158
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 09:36:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729071327; cv=none; b=Bo59+RJah8hYsfEsaLozbB3YybbffGr7R7qknH1Q2nKhEUASQ4L9uTfThTOIq5P6/53iShMDgkKAxmrsRWzRgAan5SKok8ImEd/2Zw5PM1u1lvr7gJInwNr93MDk8I+cMbhtlaFmktNexrvhkAmiEuuORFlBGbHjCYhdzH+zdcE=
+	t=1729071414; cv=none; b=sY20qJzo4ux+2W569pVdVVdZtwiC4F7uyBQfVKH8ls2bxllYBx4s5G0yxHcupjIpw4RM9pa0U92YXKo3d8fIfokVjlyylwHQ7XdFmjvgA3aoh4/Z4no0gmOduu4aQSwCXrG5G+sfhKfIXZjFygBeiFy7yt+YgOfKdDdXEtgRhEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729071327; c=relaxed/simple;
-	bh=Sv9GOdoP5tZ8KQ/1mrOY0QDCQ+2v3F4j9yqLbFtUipQ=;
+	s=arc-20240116; t=1729071414; c=relaxed/simple;
+	bh=AF2PqunK1k+XUN3mW+Re5acyYvzfPCvF2Hb4iVv5SHM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WKS3MLQaLzCEw5TygYOgrSPwbrLkCQnU3jrK1PgISczd4DpKadVrCev114CLhaVZ7Ebt9rYTj8/HFUKfXg0Q6REnm1wv/tJGCv/BWIJ6RqEYc0JYmF0poIS/lvoiVNhBZzMQy0CHfB9+/54jXefmZGRU51vppPtoHrFQuzvUQr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=D9YOwz9A; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f7657f9f62so63054381fa.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 02:35:25 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LhSjzSm5UcOW8TTiea3kVuaclyg4JZE3dWPCrRcwjDsJsdGwDPu5scnZLnSLTVjbq2+6W+EER3BEQsV9U0yA7iE9cg8OJKXe9sD1IVKrv/Y0ZrDELuD2OGjVEa6NXTkGZ8EUQU6QxfptSrrF4sQD75Yw/vtYqJHeW/iEBfvmfaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EAx/kyrR; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43118c9a955so53790785e9.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 02:36:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729071324; x=1729676124; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729071411; x=1729676211; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=icikz+noVT+A1IghOr2dEkNmSwULz+YkGpQA6euzKVk=;
-        b=D9YOwz9AzBrahnVwCRdF2fe32upaeSibFlbuV84wzfWaPH9cr4W8RT231bxiGJZgii
-         d4OJKeJzoyhACnyvNTkOkDMQqp5FfxWK1fM4kMlxLvZsiGTbivR0LVKf/ViVvzWoWwfL
-         drSFdpwtvSmNBMWMbHB0d6JCQGNr6aY0UoadEKB2ewcNtddNJeL1vae7DcQd5JuYzUWF
-         I6r36L3sCoqAl8kzTOxkGEwrXpq2w/1NVwcpwT09O1Dnfd/NEVrUry6h0T+GybMnBxaP
-         9mPhhVwRPoKP3bOdGgHyhxY8GOSiYcqfIQByCpXOdwEhLNza2u8GwJGgdzXZHWqWrWph
-         Jiyg==
+        bh=fxIP+503HmacKr52hF4cwN6vKpq9JVczVJoJF+op9ME=;
+        b=EAx/kyrR+Av9RHjIel0Zk3ZKOguBI9KYZ6RbiPrEEYx2C+2zc6dvaNTdxpell8VDdl
+         pFWF6ADVL/tlDRE0jIXOH13tDqy1cuRUBvFHCz8CO2eYbGL/fzcsV09s2MFr2WsLupHw
+         QPOtADxtEgWUH9Cm2o2t1deJokwjiFGtcHPkW4sodffi+UGP2kqJGZDv1Jh6vl/y8Cem
+         EgO/ALORlGfXAx6ttwtVpSkyfIqvIp2zmOdSf2cdjLYAbBjIJCSRUGKeMYX7uw96pGAI
+         416T0+sobZRvZrop9E/MCsxs+SGCpjwsdoyK8kN4iSgvvCjO8ZUijJ/vJv40a+nFcISu
+         c2tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729071324; x=1729676124;
+        d=1e100.net; s=20230601; t=1729071411; x=1729676211;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=icikz+noVT+A1IghOr2dEkNmSwULz+YkGpQA6euzKVk=;
-        b=DGviqFcttOdvRlyaDS376IJ3TQG/PnNmKdiRqMtRn6MnRjgkLSbUH3bbpG6WBTObzR
-         T72kZ+pCQ8q0YrS2KIykxXzBNWNGGX8jgZolYTMrrtVAwpPNSi6pdJx/Du3RgtBppthi
-         T8G76PvYAxV1qOOO0V2FN2qGS5nl9vMlzBGpkw4jOC9LpHT6fYNBWxdD+dDK3RexBgjs
-         OqYefC4Lzj6O1WBy7TGxjMaNoiOulPkOFswBps+itJUaV9lUMjG3fc4bYmpUdlR67j4Y
-         EQpKL1UFpiu/QzOoXLnRwnT4xTkUGRTQi68qu3Xv1kkdN6ix9ZRQVjpoHfOXkSxHJzxG
-         BCxw==
-X-Forwarded-Encrypted: i=1; AJvYcCXE4Y6FvCUfrJFMZde/s3UJNdvOAuV3ZOEd4AVmxPojBEJ0HmZrUFP8LvGsxAQYFd+kfA3Htx9b19OD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOqlfIEkXsobItXoSdeQ0Swbk5i3PFQqja7NNeDmO7TbyK/1Mn
-	iZyj48AfkF2SV5T3dVtjCaJJXvPY1/yLleTMSROUVYp2FNpPG03FK76zxNJr5J4=
-X-Google-Smtp-Source: AGHT+IGdsTFBiZLsx7xeTyOWkTfBtsndYobtBU/I5Fi4D8Vk3Mbkp1GQJDuJHZgpcIfqpPb22hA7XQ==
-X-Received: by 2002:a05:6512:3d23:b0:52c:dd3d:85af with SMTP id 2adb3069b0e04-53a03f2f1ccmr2175646e87.25.1729071323803;
-        Wed, 16 Oct 2024 02:35:23 -0700 (PDT)
-Received: from localhost (p200300f65f19e3002f38cf427133ca7b.dip0.t-ipconnect.de. [2003:f6:5f19:e300:2f38:cf42:7133:ca7b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4314bf60fc4sm26528075e9.38.2024.10.16.02.35.23
+        bh=fxIP+503HmacKr52hF4cwN6vKpq9JVczVJoJF+op9ME=;
+        b=QxJfKxaxvMgybcQkU2AL9qjMS4TMFEFphOvTuyFtfZVfZJ3TrZUTnzhNwA9xO6Q6qg
+         ze6eSufny46LuRkn+dwNCY/fs6lrU63MswYqnyQVBF86yQVfK4ia81bftdsnb4PTvbOn
+         eMXJgAQCL2mzbIx57IEbynAv3QnvmxI9BDc0BUB1Zc5bxjQbv5aRMCaZIcuBxDs6ZTS7
+         xM0JOTcaNESrkIG1w985q7c8wk5Ec00LIat2Jhv0Qv35CmgfarDohYH5aDZrQDD9xiYz
+         HWCn9BXJJAtiSb/qgB3KOJo145K1v7XZJbysY6EH6Ep+qxz8WUc3iaEUbLvSdangKhdc
+         IxxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUl9kfGoi+MlkBrdSYFjAXzh4cYBFMJCtepEwISWHW0jK7NwME18NBYpd3Ol2+kBUgUW/EpR+J1MBQs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3GLnjcy/bnz/7YcWpG5fK6GJrgxWj++s9+gRIp7uJB2d7Zsbv
+	mrb8ivMkN1/4Sg2Zb2jsw7ssCnEhK/C+D9VcfvptjfXBQga69AviXyhUAh+AIzg=
+X-Google-Smtp-Source: AGHT+IG6fNHMCd9wfwMroBHIryaVFXQVYfqJpieR0jsQIFDOAiMSqq1/ES6dB3VtdNGRUPAFimGMVw==
+X-Received: by 2002:a05:600c:3555:b0:42c:bb96:340e with SMTP id 5b1f17b1804b1-4311df56158mr144236185e9.31.1729071411221;
+        Wed, 16 Oct 2024 02:36:51 -0700 (PDT)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fc123dasm3798064f8f.94.2024.10.16.02.36.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 02:35:23 -0700 (PDT)
-Date: Wed, 16 Oct 2024 11:35:22 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux@rivosinc.com, 
-	Lu Baolu <baolu.lu@linux.intel.com>
-Subject: Re: [PATCH v9 2/7] iommu/riscv: Add RISC-V IOMMU platform device
- driver
-Message-ID: <lagj6ljulmfjogrzhfd3jrf5fnngev63q2g3bmvftwfzc3s6mb@gw6oz4yriyjf>
-References: <cover.1728579958.git.tjeznach@rivosinc.com>
- <b8da2b00aec3f7b4b2e3a7cc194f7961bf656f24.1728579958.git.tjeznach@rivosinc.com>
+        Wed, 16 Oct 2024 02:36:50 -0700 (PDT)
+Date: Wed, 16 Oct 2024 12:36:48 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Pengfei Li <pengfei.li_1@nxp.com>
+Cc: krzk+dt@kernel.org, robh@kernel.org, abelvesa@kernel.org,
+	mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, ping.bai@nxp.com,
+	ye.li@nxp.com, peng.fan@nxp.com, aisheng.dong@nxp.com,
+	frank.li@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+	linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] clk: imx93: Move IMX93_CLK_END macro to clk driver
+Message-ID: <Zw+JMMUOErRKqEH1@linaro.org>
+References: <20241014182438.732444-1-pengfei.li_1@nxp.com>
+ <20241014182438.732444-2-pengfei.li_1@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3vc2emncsrj4cjb2"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b8da2b00aec3f7b4b2e3a7cc194f7961bf656f24.1728579958.git.tjeznach@rivosinc.com>
+In-Reply-To: <20241014182438.732444-2-pengfei.li_1@nxp.com>
 
-
---3vc2emncsrj4cjb2
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v9 2/7] iommu/riscv: Add RISC-V IOMMU platform device
- driver
-MIME-Version: 1.0
-
-Hello,
-
-On Thu, Oct 10, 2024 at 12:48:05PM -0700, Tomasz Jeznach wrote:
-> +static const struct of_device_id riscv_iommu_of_match[] = {
-> +	{.compatible = "riscv,iommu",},
-
-nitpick: Unusual indention:
-
-uwe@taurus:~/gsrc/linux$ git grep -l '{.compatible =' | wc -l
-192
-uwe@taurus:~/gsrc/linux$ git grep -l '{ .compatible =' | wc -l
-4197
-
-(Hu, I expected the difference to be bigger than a factor of ~20.)
-
-I'd go for a space before ".compatible" and one after the trailing
-comma.
-
-> +	{},
-> +};
+On 24-10-14 11:24:35, Pengfei Li wrote:
+> IMX93_CLK_END was previously defined in imx93-clock.h to indicate
+> the number of clocks. However, it is not part of the ABI. For starters
+> it does no really appear in DTS. But what's more important - new clocks
+> are described later, which contradicts this define in binding header.
+> So move this macro to clock driver.
+> 
+> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
+> ---
+>  drivers/clk/imx/clk-imx93.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
+> index c6a9bc8ecc1f..c8b65146e76e 100644
+> --- a/drivers/clk/imx/clk-imx93.c
+> +++ b/drivers/clk/imx/clk-imx93.c
+> @@ -15,6 +15,8 @@
+>  
+>  #include "clk.h"
+>  
+> +#define IMX93_CLK_END 202
 > +
-> +static struct platform_driver riscv_iommu_platform_driver = {
-> +	.probe = riscv_iommu_platform_probe,
-> +	.remove_new = riscv_iommu_platform_remove,
-> +	.driver = {
-> +		.name = "riscv,iommu",
-> +		.of_match_table = riscv_iommu_of_match,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +};
 
-After commit 0edb555a65d1 ("platform: Make platform_driver::remove()
-return void") .remove() is (again) the right callback to implement for
-platform drivers. Please just drop "_new".
+Sorry for this back and forth.
 
-Best regards
-Uwe
+I've been discussing this off-list with Krzysztof and others and
+now I think this is actually not wrong.
 
---3vc2emncsrj4cjb2
-Content-Type: application/pgp-signature; name="signature.asc"
+So:
 
------BEGIN PGP SIGNATURE-----
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcPiNcACgkQj4D7WH0S
-/k7leggAlsgDNwa3KOwBku5V/0eQ57YS6VqfeJom1rXbWx9kfuKXyA1X2FD5V6eH
-DEc2IdXEIy1pM/AxZbbt5gNqs2UR6L9VfWToyK+unN62it0PTXxp21dUmdjRXH6e
-1nb0PRAAknig82wzfc7EedPJZgp6E46w229pZbiIwOpDbgQOko+r7X3qBB/g9qUh
-EHzEVCZ61ySvWWlo5n6mglBmMAiAOB1K/j13oLIp5Em2ym2r+J5/Tq4FmLhe3Evb
-auslSx2a/QBlMF2jpdrxRBiCYjlDXbcU27NkVEimEgu/56llOuhZisOYCTlmnMYR
-Cr+0vmUBG3jSXmSBeNr4sS9tAy0J6g==
-=+mcI
------END PGP SIGNATURE-----
-
---3vc2emncsrj4cjb2--
+>  enum clk_sel {
+>  	LOW_SPEED_IO_SEL,
+>  	NON_IO_SEL,
+> -- 
+> 2.34.1
+> 
 
