@@ -1,162 +1,298 @@
-Return-Path: <devicetree+bounces-111976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C65BC9A0751
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 220239A0754
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:30:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E13631C25124
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:29:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CB0F1C26604
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF0E208D7D;
-	Wed, 16 Oct 2024 10:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CED1209666;
+	Wed, 16 Oct 2024 10:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uG+eRd7r"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VgzhBGog"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99CF2208D83
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 10:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44839208D97;
+	Wed, 16 Oct 2024 10:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729074294; cv=none; b=rvNZFrT4/IYca6l7EislSjkXq2fbnHozfLYgpt6aGBxTBYfrJSbCODx4KMAfkRyuvKb1yQUcfDjVphkfe55ke6Z81o4lXFw1NF5v+k6vc1b1hTSrVbUj3Ic74TYxCklQoEsfsoXoppPEtP6YhaNx1iTk+vU6EiARJGpy6bjy+p0=
+	t=1729074350; cv=none; b=L1dvKBe4XEpVR6/OCHm7sgTtgg4/cayp9byNf7B8FimUVxtKS3cpIbeAU9oIJKYgINADGYu7zgO3DJhoBd56HXZpg5RIWB7+EIafGWksTyrLpCwPgxflqFwRZPgp/GvW6dMhgaG8+hJa6/YA9DNPJubO88fzJGKRHit2jdHBx2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729074294; c=relaxed/simple;
-	bh=FaLjqtCZJOohqyEbSxz8TefACGemR3EzFd99ab6BNDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X3AakMySFzGIg4b/6odTwTZ8wLEU3DACxEseEyZef2jsCtXe/POMtbj+Tm1Kg44XR8tadsR/a6vV7sVCKYumAdVwc7eqQPVcx17KERg4e08tpSgoLylKDl2ushcCZdM5CgVDaV1Aomzm6UK76QmKhfAl33NCHcMs1rYoKa9DaW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uG+eRd7r; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-539f6e1f756so3721433e87.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 03:24:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729074291; x=1729679091; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pOErvY0XEl/tfIkNnoyyFwxd/COTHVSJLHwn2YjQu58=;
-        b=uG+eRd7r3HIhXvYpSjc/wBlWtzLnsTY7eU3O8FCH4vAtcbNmtu43vjcoNPLfbGxBmy
-         MHsbUADRr3n8E7c2ImYMst9Gz56hoyIfXQS845DDbkRqMJIANEJ+k8KTIBV9hSk7Pig0
-         ZgBTYtXI0tp2VBvWKlepEvrLJnPUlmkh+SAGi0q90RJ4qN38erse3hygZ8VGAyPB7HKV
-         hSdNnbApDtCi3qVRHn1IkTs1OVYbgq4yWavi/MYT2sg4oYnAzP4k3Xw+oTPunLbMpVai
-         U+DSfVnE/mb9u9zvrkcO0i41v0Oyiodd81MONDB+susVKsm/ods56HccTyzRyirCD/AG
-         Y1vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729074291; x=1729679091;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pOErvY0XEl/tfIkNnoyyFwxd/COTHVSJLHwn2YjQu58=;
-        b=UnQwQR6o1vsN+bz6jWpwL78MOUuPZTYRkvDNpaKRWRJEC1+O62YSfjhswDwYshbGBj
-         fbjI/2wtyUuNskabsXHX9Y3vDCkJnFmf4b/QHYAzHRGBGNJvuYCHwo+WQt6Fa4Gs5nEB
-         /AmX31ljJCxMJg5q4oKjsiRJYmymiGglW7E58nREksS9KBoz695imxyay13nhdA03h6g
-         5kLQUYgQfnzOUpm3h7QKkOjuTex8dhDB7ZLU00G5Z6GVQ2sREINwYEf+FtF2ukeA5x3f
-         thvgviATKlWxyn7qOYRxb6392J5AYKDogIkPTgmGgBUM2Ei8Hg8HP+k47D/BDahpn3jW
-         BzpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWuw7hLb/wn6JUbZ+it5ma0u3ni0WW9cUpScmfOe3X4PbmXe89du2/fCb6oiDxhmBDKHbdieRLi918G@vger.kernel.org
-X-Gm-Message-State: AOJu0YydZ4F0JGTxljiWYYVNRHHbJfCDw/67JRAkiQSO5156Q2TdhlB2
-	cmNSWngDjsgXIbQQhh3dmiXFqKvmBeh/oZ+7luGhnL0fkqjJ66iNTwvtVXVSEZs=
-X-Google-Smtp-Source: AGHT+IE7EGXTF2XFh+wfkCP05g5kYyOkDLkoTu8El4kj5A+EicBu40bFWwJftS6S+G+lSct7l+Q/BQ==
-X-Received: by 2002:a05:6512:2385:b0:530:ad7d:8957 with SMTP id 2adb3069b0e04-53a03f929a6mr2371364e87.49.1729074290576;
-        Wed, 16 Oct 2024 03:24:50 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539fffb1e21sm410499e87.84.2024.10.16.03.24.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 03:24:50 -0700 (PDT)
-Date: Wed, 16 Oct 2024 13:24:48 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rakesh Kota <quic_kotarake@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, quic_kamalw@quicinc.com, 
-	quic_jprakash@quicinc.com
-Subject: Re: [PATCH V3] arm64: dts: qcom: qcm6490-idp: Allow UFS regulators
- load/mode setting
-Message-ID: <2tunyupop2w7brm6adkdsrytvxbr4g3ixpbmuuqljedeaehze5@se3qsbf6tb6t>
-References: <20241016100511.2890983-1-quic_kotarake@quicinc.com>
+	s=arc-20240116; t=1729074350; c=relaxed/simple;
+	bh=d4QQXY9+i/N5A/05rvfJkOToMj4Y7fZnpg+8B0LFCC4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PVYfdL3UhqxGlrCbPuODhjsQrX7vMM2RntdDWOaydI10/vHzVQZ9O+xJWeIyXazsrVjgbo0j74raP3082BzG2fHpzEOn2ASxV3B1aRA/IcHtEJf/voQ5UboGOSJl86rPTC+sCjC+sOIjSJO4/SPGr9W9XDsiZDHVKChtAVAxyEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VgzhBGog; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729074346;
+	bh=d4QQXY9+i/N5A/05rvfJkOToMj4Y7fZnpg+8B0LFCC4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VgzhBGog6sO0tmdin/odGN0Sfakf1AXy5K2mG85CK1jzreMLErffdQcUv3CVIxVrd
+	 kiK1XYdb7T5D6nsh6T/T5XdH2UKJHPStmsqTBt8MTRU0ummThXV5RTO0Qel8QXwfoa
+	 4HMawR5SlaTsLdDTgFzh7jKw+jzteFV1mnm2J81eJkLT5TOgjqINiyILpv1iQx+g0G
+	 +Me0nkd16Sv4iVQ+OugWDuUw0Wvxj5Iujmmmx/UzeuqtLWtNRbGvqbIq4Lxr3cWTrE
+	 a4imXSVJ6kf+rxw1BM+BlSZRMB0PvXw2eXwvKRWJBugoBjB+PoELJomjheVeEmErPL
+	 5RHtFn5rDk47g==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A4BA917E120F;
+	Wed, 16 Oct 2024 12:25:45 +0200 (CEST)
+Message-ID: <069d220c-b682-40ba-a254-9f60167c56dd@collabora.com>
+Date: Wed, 16 Oct 2024 12:25:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241016100511.2890983-1-quic_kotarake@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 6/6] pwm: airoha: Add support for EN7581 SoC
+To: Lorenzo Bianconi <lorenzo@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com,
+ linux-pwm@vger.kernel.org
+References: <20241016-en7581-pinctrl-v7-0-4ff611f263a7@kernel.org>
+ <20241016-en7581-pinctrl-v7-6-4ff611f263a7@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241016-en7581-pinctrl-v7-6-4ff611f263a7@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 16, 2024 at 03:35:11PM +0530, Rakesh Kota wrote:
-> The UFS driver expects to be able to set load (and by extension, mode)
-> on its supply regulators. Add the necessary properties to make that
-> possible.
+Il 16/10/24 12:07, Lorenzo Bianconi ha scritto:
+> From: Benjamin Larsson <benjamin.larsson@genexis.eu>
 > 
-> Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
+> Introduce driver for PWM module available on EN7581 SoC.
+> 
+> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+> Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
-> Changes V3:
->  - Somehow after fixing the compilation in last patch, i have missed to
->    do git  --amend the change. apology for that, in this change i have
->    fixed that compilation issue.
-
-What actually was changed? The --amend doesn't describe changes. Nor
-does "fixed that compilation issue".
-
->  - Link V2 : https://lore.kernel.org/all/20241015132049.2037500-1-quic_kotarake@quicinc.com/
-
-Where are changes between v1 and v2?
-
-Where is the tag that was given to you for the v2?
-
-> ---
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>   drivers/pwm/Kconfig      |  11 ++
+>   drivers/pwm/Makefile     |   1 +
+>   drivers/pwm/pwm-airoha.c | 408 +++++++++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 420 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> index 5f3d4807ac43..bfb1cdc238cc 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> @@ -258,6 +258,8 @@ vreg_l6b_1p2: ldo6 {
->  			regulator-name = "vreg_l6b_1p2";
->  			regulator-min-microvolt = <1140000>;
->  			regulator-max-microvolt = <1260000>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> @@ -265,6 +267,8 @@ vreg_l7b_2p952: ldo7 {
->  			regulator-name = "vreg_l7b_2p952";
->  			regulator-min-microvolt = <2400000>;
->  			regulator-max-microvolt = <3544000>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> @@ -279,6 +283,8 @@ vreg_l9b_1p2: ldo9 {
->  			regulator-name = "vreg_l9b_1p2";
->  			regulator-min-microvolt = <1200000>;
->  			regulator-max-microvolt = <1304000>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> @@ -467,6 +473,8 @@ vreg_l10c_0p88: ldo10 {
->  			regulator-name = "vreg_l10c_0p88";
->  			regulator-min-microvolt = <720000>;
->  			regulator-max-microvolt = <1050000>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> -- 
-> 2.34.1
-> 
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 0915c1e7df16d451e987dcc5f10e0b57edc32ee1..99aa87136c272555c10102590fcf9f911161c3d3 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -54,6 +54,17 @@ config PWM_ADP5585
+>   	  This option enables support for the PWM function found in the Analog
+>   	  Devices ADP5585.
+>   
+> +config PWM_AIROHA
+> +	tristate "Airoha PWM support"
+> +	depends on ARCH_AIROHA || COMPILE_TEST
+> +	depends on OF
+> +	select REGMAP_MMIO
+> +	help
+> +	  Generic PWM framework driver for Airoha SoC.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-airoha.
+> +
+>   config PWM_APPLE
+>   	tristate "Apple SoC PWM support"
+>   	depends on ARCH_APPLE || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 9081e0c0e9e09713fe05479c257eebe5f02b91e9..fbf7723d845807fd1e2893c6ea4f736785841b0d 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -2,6 +2,7 @@
+>   obj-$(CONFIG_PWM)		+= core.o
+>   obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
+>   obj-$(CONFIG_PWM_ADP5585)	+= pwm-adp5585.o
+> +obj-$(CONFIG_PWM_AIROHA)	+= pwm-airoha.o
+>   obj-$(CONFIG_PWM_APPLE)		+= pwm-apple.o
+>   obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
+>   obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
+> diff --git a/drivers/pwm/pwm-airoha.c b/drivers/pwm/pwm-airoha.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..f1587ebf5adf1950cdf953600a2772b2c9ab6e73
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-airoha.c
+> @@ -0,0 +1,408 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2022 Markus Gothe <markus.gothe@genexis.eu>
+> + *
+> + *  Limitations:
+> + *  - No disable bit, so a disabled PWM is simulated by setting duty_cycle to 0
+> + *  - Only 8 concurrent waveform generators are available for 8 combinations of
+> + *    duty_cycle and period. Waveform generators are shared between 16 GPIO
+> + *    pins and 17 SIPO GPIO pins.
+> + *  - Supports only normal polarity.
+> + *  - On configuration the currently running period is completed.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/gpio.h>
+> +#include <linux/bitops.h>
+> +#include <linux/regmap.h>
+> +#include <asm/div64.h>
+> +
+> +#define REG_SGPIO_LED_DATA		0x0024
+> +#define SGPIO_LED_DATA_SHIFT_FLAG	BIT(31)
+> +#define SGPIO_LED_DATA_DATA		GENMASK(16, 0)
+> +
+> +#define REG_SGPIO_CLK_DIVR		0x0028
+> +#define REG_SGPIO_CLK_DLY		0x002c
+> +
+> +#define REG_SIPO_FLASH_MODE_CFG		0x0030
+> +#define SERIAL_GPIO_FLASH_MODE		BIT(1)
+> +#define SERIAL_GPIO_MODE		BIT(0)
+> +
+> +#define REG_GPIO_FLASH_PRD_SET(_n)	(0x003c + ((_n) << 2))
+> +#define GPIO_FLASH_PRD_MASK(_n)		GENMASK(15 + ((_n) << 4), ((_n) << 4))
+> +
+> +#define REG_GPIO_FLASH_MAP(_n)		(0x004c + ((_n) << 2))
+> +#define GPIO_FLASH_SETID_MASK(_n)	GENMASK(2 + ((_n) << 2), ((_n) << 2))
+> +#define GPIO_FLASH_EN(_n)		BIT(3 + ((_n) << 2))
+> +
+> +#define REG_SIPO_FLASH_MAP(_n)		(0x0054 + ((_n) << 2))
+> +
+> +#define REG_CYCLE_CFG_VALUE(_n)		(0x0098 + ((_n) << 2))
+> +#define WAVE_GEN_CYCLE_MASK(_n)		GENMASK(7 + ((_n) << 3), ((_n) << 3))
+> +
 
--- 
-With best wishes
-Dmitry
+Probably boils down to personal opinion, but I would do:
+
+struct airoha_pwm_bucket {
+	....stuff...
+}
+
+> +struct airoha_pwm {
+> +	struct regmap *regmap;
+> +
+> +	struct device_node *np;
+> +	u64 initialized;
+> +
+
+	struct airoha_pwm_bucket bucket[EN7581_NUM_BUCKETS];
+
+> +	struct {
+> +		/* Bitmask of PWM channels using this bucket */
+> +		u64 used;
+> +		u64 period_ns;
+> +		u64 duty_ns;
+> +	} bucket[8];
+> +};
+> +
+> +/*
+> + * The first 16 GPIO pins, GPIO0-GPIO15, are mapped into 16 PWM channels, 0-15.
+> + * The SIPO GPIO pins are 17 pins which are mapped into 17 PWM channels, 16-32.
+> + * However, we've only got 8 concurrent waveform generators and can therefore
+> + * only use up to 8 different combinations of duty cycle and period at a time.
+> + */
+> +#define PWM_NUM_GPIO	16
+> +#define PWM_NUM_SIPO	17
+> +
+> +/* The PWM hardware supports periods between 4 ms and 1 s */
+> +#define PERIOD_MIN_NS	(4 * NSEC_PER_MSEC)
+> +#define PERIOD_MAX_NS	(1 * NSEC_PER_SEC)
+> +/* It is represented internally as 1/250 s between 1 and 250 */
+> +#define PERIOD_MIN	1
+> +#define PERIOD_MAX	250
+> +/* Duty cycle is relative with 255 corresponding to 100% */
+> +#define DUTY_FULL	255
+> +
+
+..snip..
+
+> +
+> +static int airoha_pwm_sipo_init(struct airoha_pwm *pc)
+> +{
+> +	u32 clk_divr_val = 3, sipo_clock_delay = 1;
+> +	u32 val, sipo_clock_divisor = 32;
+
+u32 clk_divr_val, sipo_clock_delay, sipo_clock_divisor, val;
+int ret;
+
+> +
+> +	if (!(pc->initialized >> PWM_NUM_GPIO))
+> +		return 0;
+> +
+> +	/* Select the right shift register chip */
+> +	if (of_property_read_bool(pc->np, "hc74595"))
+
+"airoha,serial-gpio-mode"
+
+> +		regmap_set_bits(pc->regmap, REG_SIPO_FLASH_MODE_CFG,
+> +				SERIAL_GPIO_MODE);
+> +	else
+> +		regmap_clear_bits(pc->regmap, REG_SIPO_FLASH_MODE_CFG,
+> +				  SERIAL_GPIO_MODE);
+> +
+> +	if (!of_property_read_u32(pc->np, "sipo-clock-divisor",
+> +				  &sipo_clock_divisor)) {
+
+ret = of_property_read_u32(pc->np, "airoha,sipo-clock-divisor", &sipo_clock_divisor);
+if (ret)
+	sipo_clock_divisor = 32;
+
+switch (sipo_clock_divisor) {
+......
+}
+
+> +		switch (sipo_clock_divisor) {
+> +		case 4:
+> +			clk_divr_val = 0;
+> +			break;
+> +		case 8:
+> +			clk_divr_val = 1;
+> +			break;
+> +		case 16:
+> +			clk_divr_val = 2;
+> +			break;
+> +		case 32:
+> +			clk_divr_val = 3;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	}
+> +	/* Configure shift register timings */
+> +	regmap_write(pc->regmap, REG_SGPIO_CLK_DIVR, clk_divr_val);
+> +
+> +	of_property_read_u32(pc->np, "sipo-clock-delay", &sipo_clock_delay);
+
+"airoha,sipo-clock-delay"
+
+ret = ...
+if (ret)
+	sipo_clock_delay = 1;
+
+> +	if (sipo_clock_delay < 1 || sipo_clock_delay > sipo_clock_divisor / 2)
+> +		return -EINVAL;
+> +
+Everything else looks good to me.
+
+Cheers,
+Angelo
 
