@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-112070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FA349A0E8F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:38:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 767329A0E94
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:38:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB1501F21319
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:38:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8B371C21D3D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2087720E03F;
-	Wed, 16 Oct 2024 15:38:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C2B920F5BB;
+	Wed, 16 Oct 2024 15:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I6ZyP12h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FqjmKnTo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E837120E02F;
-	Wed, 16 Oct 2024 15:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C3220F5B3
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 15:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729093114; cv=none; b=uREmHzAULnOmFXRj+URJ3W801nfVwpD/a8IZQxbQHaOECdJycfpwCS6d1E17eZN2Pd2Zo5fBsvnqPNMEZt8yeCzgpg5p7EApuq7xdx/ZWpRSKgHUKd+kH0HhDonSSIx0tnvZ/d86RPwRjdIoVJyeg3GM7v3yWq4LaFt0fvSaxHc=
+	t=1729093115; cv=none; b=IZlwu2Z+Kg1yrb9phshFe3noO5PFuVLC9gsbao1lJO5nhwVvEf4h9TXB6gFPYbiBm1aj3LbzlKeuTQF4Jp1yjbjoDmYDxoW6uqJ/4uyK4EvTpbejvvwnr8ccoZS2yxf0T7oD1tHzU4cLmfVLs95TNSg+jyvo6bwyHtC/Y37BbZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729093114; c=relaxed/simple;
-	bh=dFW8u8wREC5V/rE4CPEL3TXXHyVXddI7PBsgSDXHwTM=;
+	s=arc-20240116; t=1729093115; c=relaxed/simple;
+	bh=LiJ79jN2TmlQgUBk1FG8JumW/gNgFJ2x7cU3gTfTUnM=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=rbrZqPBmccPTKFWzodDHOPvtuswVbS5iXXM4ww4Z5k6DcuJNLqmDYBvg0E4lEu9ck/ZjIBkNv4ZdyVHCJJUhzGZfRZMUE27TrQIhN4x3ywcvWVQEbQJElUdvmVX0LNb3SPGXNofl/W9AzTjc+yoTbtO+Cf13ClVV6d4FSuiZ4gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I6ZyP12h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4502EC4CEC7;
-	Wed, 16 Oct 2024 15:38:33 +0000 (UTC)
+	 Message-Id:Subject; b=D5F6EnaxW5XDL4wSGp91aejkkDnVCKNxVer0tz0sopdp877Bxge4oLofrn3QZXfa/VcD47vByt3RYSB1j5fkkgL5MOjUdnxFunZ6o8fjvbKSAJN7T6k0Sq+2BnCCh3uq/C3ONKMrXeSaPqtG54dvM+jszB/ak8Vyoz2ceVqFqF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FqjmKnTo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD77C4CED4;
+	Wed, 16 Oct 2024 15:38:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729093113;
-	bh=dFW8u8wREC5V/rE4CPEL3TXXHyVXddI7PBsgSDXHwTM=;
+	s=k20201202; t=1729093114;
+	bh=LiJ79jN2TmlQgUBk1FG8JumW/gNgFJ2x7cU3gTfTUnM=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=I6ZyP12hU9L6hiBtylHFmizE+cd2yG3IZLUQTA3nmpFMGeAdr02jM6p0dMcfaklMs
-	 Vf9+YyPNTy2j1ZkKaIKGnCG/wD7TzTD7meVPIU5kT5tO0tM5s3kcmqRP+BQRADvwGP
-	 UpC5ncTZ1BKst5FUFa2lkvY8h+TM1F1S6U1yMRAFinzR/GjUEBUteaqwJxr4XNi4kx
-	 TqFv6KMho9uPIPS0+W21HQesrR3TaB3JqQjXqfT6GasoXsIbmyMxSg+BU6bZu26UAi
-	 dke3/kEzJNQ62V8oJFGkfWI5udhRBN+frLhNIgrZpcqM/7/al+RDl4W+o3/dbKFx75
-	 m/l1Lmi7OQojA==
-Date: Wed, 16 Oct 2024 10:38:32 -0500
+	b=FqjmKnTopadPWqx5pMOdtE35QYY31UbXYULIcgeI3hR9SY8MepzVhGuytQoXUxF0d
+	 IvYliHIskkhqNUjLpjGPovuTwPm8Qc9BIm0RTTksqoIjxGPiufTyRT60bdS6ZZ7S93
+	 EZM48vFw7SNV9yy4vcl0AKhUFTqVjae/w3OU76NWJhS2ovfFWtdvJ5MuGFitcof+KV
+	 eW3Pf2JvzWyPTcUN4Pm2+7p61mBDTSPdkAP0TVD/IJYdnBGofG8G7saGz5ZFojt0SU
+	 +V0I5dW0p4XnBVl+d4tsccclObJxo0OEcu0VK9S6gI8Vlb7gAiIKV78TO5idU3WKPp
+	 RpsMUvZU9PQqg==
+Date: Wed, 16 Oct 2024 10:38:33 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,49 +51,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Jianguo Zhang <jianguo.zhang@mediatek.com>, 
- Hsuan-Yu Lin <shane.lin@canonical.com>, 
- fanyi zhang <fanyi.zhang@mediatek.com>, netdev@vger.kernel.org, 
- Macpaul Lin <macpaul.lin@mediatek.com>, Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: William Zhang <william.zhang@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>, devicetree@vger.kernel.org, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Benjamin Larsson <benjamin.larsson@genexis.eu>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>, 
- Pablo Sun <pablo.sun@mediatek.com>
-In-Reply-To: <20241015-genio700-eth-v1-0-16a1c9738cf4@collabora.com>
-References: <20241015-genio700-eth-v1-0-16a1c9738cf4@collabora.com>
-Message-Id: <172909289110.1676363.14494745221795348933.robh@kernel.org>
-Subject: Re: [PATCH 0/2] Enable Ethernet on the Genio 700 EVK board
+ Kursad Oney <kursad.oney@broadcom.com>, 
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+In-Reply-To: <20241016-genexis-xg6846b-base-v2-0-6a7cc2ee57eb@linaro.org>
+References: <20241016-genexis-xg6846b-base-v2-0-6a7cc2ee57eb@linaro.org>
+Message-Id: <172909289207.1676420.4308278194478234300.robh@kernel.org>
+Subject: Re: [PATCH v2 0/9] ARM: dts: Add some BCM6846 device tree
 
 
-On Tue, 15 Oct 2024 14:15:00 -0400, Nícolas F. R. A. Prado wrote:
-> The patches in this series add the ethernet node on mt8188 and enable it
-> on the Genio 700 EVK board.
+On Wed, 16 Oct 2024 08:41:00 +0200, Linus Walleij wrote:
+> This adds some silicon blocks to the BCM6846 DTSI file and
+> adds a device tree for the Genexis XG6846B device that
+> make use of it.
 > 
-> The changes were picked up from the downstream branch at
-> https://git.launchpad.net/~canonical-kernel/ubuntu/+source/linux-mtk/+git/jammy,
-> cleaned up and split into two commits.
+> This is mainly so as to get this off my hard drive and
+> share the basics with others who want to work on the
+> BCM6846.
 > 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> I think most of the DTSI changes can be just copied verbatim
+> to the rest of the BCMBCA family (maybe extracted into a
+> common bcbca.dtsi?) but let's think about that later.
+> This will do for now.
+> 
+> The XG6846B device tree uses the new shift register bits
+> property of the BCM63138 LEDs, which is ACKed by the
+> DT maintainers albeit not yet merged in the LED tree.
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> Nícolas F. R. A. Prado (2):
->       arm64: dts: mediatek: mt8188: Add ethernet node
->       arm64: dts: mediatek: mt8390-genio-700-evk: Enable ethernet
+> Changes in v2:
+> - Use the new "brcm,bcm6846-mdio" compatible for the MDIO block. (Merged
+>   to the netdev tree).
+> - Add the ARM PrimeCell PL081 DMA controller block.
+> - Link to v1: https://lore.kernel.org/r/20241011-genexis-xg6846b-base-v1-0-f04d6f6f93ce@linaro.org
 > 
->  arch/arm64/boot/dts/mediatek/mt8188.dtsi           | 95 ++++++++++++++++++++++
->  .../boot/dts/mediatek/mt8390-genio-700-evk.dts     | 25 ++++++
->  2 files changed, 120 insertions(+)
 > ---
-> base-commit: 7f773fd61baa9b136faa5c4e6555aa64c758d07c
-> change-id: 20241015-genio700-eth-252304da766c
+> Linus Walleij (9):
+>       ARM: dts: bcm6846: Add iproc rng
+>       ARM: dts: bcm6846: Enable watchdog
+>       ARM: dts: bcm6846: Add GPIO blocks
+>       ARM: dts: bcm6846: Add MDIO control block
+>       ARM: dts: bcm6846: Add LED controller
+>       ARM: dts: bcm6846: Add ARM PL081 DMA block
+>       dt-bindings: vendor-prefixes: Add Genexis
+>       dt-bindings: arm: bcmbca: Add Genexis XG6846B
+>       ARM: dts: broadcom: Add Genexis XG6846B DTS file
+> 
+>  .../devicetree/bindings/arm/bcm/brcm,bcmbca.yaml   |   1 +
+>  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+>  arch/arm/boot/dts/broadcom/Makefile                |   1 +
+>  .../boot/dts/broadcom/bcm6846-genexis-xg6846b.dts  | 244 +++++++++++++++++++++
+>  arch/arm/boot/dts/broadcom/bcm6846.dtsi            | 120 ++++++++++
+>  5 files changed, 368 insertions(+)
+> ---
+> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+> change-id: 20241010-genexis-xg6846b-base-ef3fbec0be01
 > 
 > Best regards,
 > --
-> Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Linus Walleij <linus.walleij@linaro.org>
+> 
 > 
 > 
 
@@ -112,10 +137,15 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y mediatek/mt8390-genio-700-evk.dtb' for 20241015-genio700-eth-v1-0-16a1c9738cf4@collabora.com:
+New warnings running 'make CHECK_DTBS=y broadcom/bcm6846-genexis-xg6846b.dtb' for 20241016-genexis-xg6846b-base-v2-0-6a7cc2ee57eb@linaro.org:
 
-arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: jpeg-decoder@1a040000: iommus: [[118, 685], [118, 686], [118, 690], [118, 691], [118, 692], [118, 693]] is too long
-	from schema $id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
+arch/arm/boot/dts/broadcom/bcm6846-genexis-xg6846b.dtb: gpio@508: 'ngpios' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-mmio.yaml#
+arch/arm/boot/dts/broadcom/bcm6846-genexis-xg6846b.dtb: mdio@2060: #address-cells: 1 was expected
+	from schema $id: http://devicetree.org/schemas/net/mdio.yaml#
+arch/arm/boot/dts/broadcom/bcm6846-genexis-xg6846b.dtb: mdio@2060: #size-cells: 0 was expected
+	from schema $id: http://devicetree.org/schemas/net/mdio.yaml#
+arch/arm/boot/dts/broadcom/bcm6846-genexis-xg6846b.dtb: /bus@ff800000/mdio@2060: failed to match any schema with compatible: ['brcm,bcm6846-mdio']
 
 
 
