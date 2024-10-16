@@ -1,127 +1,126 @@
-Return-Path: <devicetree+bounces-111949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92DFE9A05DF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:44:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28E69A061C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:52:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 448C428428D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:44:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A07A1F2334B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1195205E11;
-	Wed, 16 Oct 2024 09:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8258206975;
+	Wed, 16 Oct 2024 09:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jFk+k6Ix"
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="CGEPSZOd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2006199221;
-	Wed, 16 Oct 2024 09:44:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555831AF0DF
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 09:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729071871; cv=none; b=Cv59mTMW4e/v6V02ad/q3xyXc9rKAWOSHUUnLF41DmdJxMrZfynuK3F8biH9c8d5sMofFOTLkQNwfFAjSkG5JOYnrHgEHn38gf/kOjsy31NiefeBV51aEpVV+Ipi3bkyraFgj8Ijs1MIFhKMpy2qL+uHl6yjE8PcV9e+KQGZLBg=
+	t=1729072268; cv=none; b=vC1l8SpD7kR+xoBDK1tzvkFb69b/JsFN5QlKaj+LGSOsfb1IjmTA6M6nrXkgzWLVm/ry3I7ucGSXX0IlI/hi9TbrfCoZxLruNRFdszIGEoypsk4sJjfFMKKiXZGGnqoGPtJiQqLewWxYqY3/6WaEftYDBn0n7M2ozH56J/Ua/pQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729071871; c=relaxed/simple;
-	bh=LsyIifKu8l/xyCVS7qYxqZli9QlFHCJR3JE/VlUfY3s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sEr1I85e+omOGpgtnD0uXe0G2Ur64OAh/sc1LrpJXF7H0rFPunv3i8UAmjUOgT1PMJaFUcX4/qxCcnQzmkcaUMEZqY73x3aAoQrT7u8jXbP7hu+5PmmJ02Icxn2Tj5w+UYhxTG0Kup+9Y/55+cx318Hpa+7YohKtAf1ebjfT0Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jFk+k6Ix; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CC2CC4CEC5;
-	Wed, 16 Oct 2024 09:44:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729071871;
-	bh=LsyIifKu8l/xyCVS7qYxqZli9QlFHCJR3JE/VlUfY3s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jFk+k6IxStUrDwJVbHy48rAnseSQSO0LcpK184KQgRPV0923HiifIdmU4zpOMwEmO
-	 xZFngT2fckNiucIPHvT+hJ0jqw1RxiBesAhXbG4OSymXYbQs6tawfYqfdJYcbD0BY7
-	 lGvw+XmR2Bym/olWZZ1/JK9GZKbxVlAg7pwJF0KGLyGLGbjS4nPhAZXYHFbd67LM93
-	 o0RI2cThzhgqMhLMs5gANYDcF09fyYg/Pjo3o+B8JCk2iDbElkN+cqtO4bZ3Lc+knH
-	 EEFTROw9KPgwniae2I/AtLKNoVbWFko+jkTgnnw1uCZ3bBAN2yv3U7DHxS/ujogW/5
-	 Avyi5tdz3ejrw==
-Message-ID: <7ce0daed-1a90-482c-9521-833baceb73d0@kernel.org>
-Date: Wed, 16 Oct 2024 11:44:26 +0200
+	s=arc-20240116; t=1729072268; c=relaxed/simple;
+	bh=Cj86NyIswgKoqmx4W92A+phSXUB2YaLiIZDYapAeldo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Tm3CU3hHlqshGAXPM3Zxzz+MRxqQCyDgibxpHqiDfLpMFPKjyVcsUhXROBbMqIALjq5sFnhVooF8StDdT9gToiOp39jgLAZSzIh1UzcwVfgRZsJbfd66qcZtb9cK99gD4+FdxK54DXrTa7OwF6rmgNIaKFDRvKFviP/wHzzDMa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=CGEPSZOd; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7ea8d7341e6so2198576a12.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 02:51:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1729072267; x=1729677067; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=55z7MQbfeSSb5xwJVgndR9t0TWHNOqYIoBbegmDTohc=;
+        b=CGEPSZOdx/fiuZNgETUbHRFOd4P3A04qoFoeK1v7tnCAv05pTpUnEtPmeyNXLurQ5m
+         KZvqjfH7YjFFZ1GaJv+QmodZ2BDEkLMBhBuG2tyPdx4GVoC0AfSFHkJ7EVGbtJXhdRrI
+         VM5r0216pr3mjaSsRX/SfqMoV6buERrmI7U141c6ueAD1LJeZTClQPYt4TEE8aLQpUjs
+         2gUiGkJt8edGcxbz1+F5Cvv5NL4l55Wv+/f8xfaEP4yBsqn8XHY91BdmZCXNY0MT3goW
+         zEcglYJKeX4XqcwFJDmY+RClpg0IQpa1n1smLTik4vAflHui/wOx4ERfvuTFfw/45Xfc
+         A60Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729072267; x=1729677067;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=55z7MQbfeSSb5xwJVgndR9t0TWHNOqYIoBbegmDTohc=;
+        b=TrRbvM48ddtu1go7sqmCfY2LWeLh5nB7SimCF+tzvxOlClUOwOkyrZXG9NKe++IaFl
+         3qw01Z1/JObh9/U3cEPSpXxhrmKSFf+2U0HEyomlSjIou+8FhpZ8PgiRCAJXLfIXGNPZ
+         nYAc5x9vARWbewEvAJxgspTk05B5+6a2cy5LUCN442l+9aMjMe/f/VkFSxXPPzpxSbTL
+         6n+8p4ztTf3Gu5qmTtR8909mHR11pJAaIcg2C4ndC0R8viK5WJWDVv8+nVn3ZHvllzEK
+         ABJ4VYKM/5nIvl7LVK7TPzRuk1QThi/WmOrehj63jLdLDDZPMn/57jZlo+0v0bJ2Dt5t
+         Li7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXNrqlVwx96eHJujdO5UYzjwZfEQh6Fcrx4f0tr6ls1cf85A6sSPjr9IJ2nD3XQ4T+dJmPMomP5VLdY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6u4haKmW3M8yNEFWfxNfw9PoZUtTxQQ3QNkyhCWZfxiE1GKE+
+	9O6LoawVqzSIbmZAb6XmpyqzphtYRpXLaOwZuWbfiOAEKCnbrsHrO98qlHyDQICfryZ129WzL/k
+	SBN0ZyOdwsydzTV3c6kZs3fW39+W7uUyx43Xyuw==
+X-Google-Smtp-Source: AGHT+IEFyMfBHqpooctvg2iThMuJ2EZL7X1ymRn7DPngXS/aofDO/dY9X6Azot0jpV1C8esxg0Ncunf+8mxEudBKvL0=
+X-Received: by 2002:a05:6a21:38f:b0:1d8:a29b:8f6f with SMTP id
+ adf61e73a8af0-1d905ebfe64mr5058933637.16.1729072266720; Wed, 16 Oct 2024
+ 02:51:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: leds: pca955x: Convert text bindings to
- YAML
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
- Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Nate Case <ncase@xes-inc.com>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241016093857.925467-1-Delphine_CC_Chiu@wiwynn.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241016093857.925467-1-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241015113329.667831-1-naresh.solanki@9elements.com>
+ <20241015113329.667831-2-naresh.solanki@9elements.com> <c07435f5-af3f-46e2-8e4d-b0a42969b60a@kernel.org>
+ <30089bac-e764-45ca-b0fd-f0eb0333e632@roeck-us.net> <b981df66-2501-40ad-8064-158cf93407f7@kernel.org>
+In-Reply-To: <b981df66-2501-40ad-8064-158cf93407f7@kernel.org>
+From: Naresh Solanki <naresh.solanki@9elements.com>
+Date: Wed, 16 Oct 2024 15:20:56 +0530
+Message-ID: <CABqG17hNSOA6onnH6Bp2oOGRiS_8EMnp4fGyWYZEYG5+HQYceQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: hwmon: pmbus: pli209bc: Add bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sylvester Bauer <sylv@sylv.io>, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 16/10/2024 11:38, Delphine CC Chiu wrote:
-> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> 
-> Convert the text bindings of pca955x to YAML so it could be used to
-> validate the DTS.
-> 
-> Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Hi Krzysztof, Guenter,
 
-Thanks.
+On Tue, 15 Oct 2024 at 20:19, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 15/10/2024 16:10, Guenter Roeck wrote:
+> > On 10/15/24 04:48, Krzysztof Kozlowski wrote:
+> >> On 15/10/2024 13:33, Naresh Solanki wrote:
+> >>> Add bindings for Vicor pli1209bc.
+> >>> It a Digital Supervisor with Isolation for use with BCM Bus Converter
+> >>> Modules.
+> >>>
+> >>> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> >>> ---
+> >>>   .../bindings/hwmon/pmbus/vicor,pli1209bc.yaml | 65 +++++++++++++++++++
+> >>
+> >> This has to be squashed with previous patch.
+Ack
+> >>
+> >
+> > Neither me nor the hwmon mailing list was copied on that previous patch
+> > (or on an intro patch if there was one), so I have no idea what this
+> > is about.
+>
+> Heh... that's even worse because without that visibility you would pick
+> up this patch only leading to duplicated compatibles warnings.
+>
+> Naresh, sending such patchsets is really not correct. Be sure you
+> organize them logically and in fully bisectable way, and then you CC
+> relevant people.
+Yes this definitely causes confusion. I should have organised it better.
+Will make sure I handle it properly. Pardon me for the confusion
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Thanks
+Naresh
+>
+> Best regards,
+> Krzysztof
+>
 
