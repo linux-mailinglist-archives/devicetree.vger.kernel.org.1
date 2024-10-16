@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-112111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E97D49A10B5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E5DA9A10BC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:35:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 856B0B22385
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:33:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E2C7B247A4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 719C82101B7;
-	Wed, 16 Oct 2024 17:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70DD18B48F;
+	Wed, 16 Oct 2024 17:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bNS5eEYv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5LUU7qE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4472A18B48F;
-	Wed, 16 Oct 2024 17:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE27618660A;
+	Wed, 16 Oct 2024 17:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729100017; cv=none; b=rhM+t87LdyUh/9jlUwR/HZvMwJIEIKxo9qoo/BO7tjJ7DHj/uo+/A2BAtuHr9JjpwLy9fULf8+PW+aV2vXJHhQS4SJHgC1P1IpIz1GwCyafUdYqKXh7QD1Oc6cj6N2TQ3JvNovxfrI5Hd0aScBp0c/pJuLYi5NRW6R59mD90x6w=
+	t=1729100143; cv=none; b=SJLIcrIaToPeL6IG1yG9Ir2hPll4dHn2Yo4op+CYCHie/ZiBY4wNNNALnlqI0fcMQqXuwOX45PH5Vh9FP3woICODv+qt+zcLm/9YQ1XErwfXccnHVx6CJUBPwO32pYLuff5VUs/MEaQqlZ9pXoma9uizVNKAbLP4YZZwXa0ftBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729100017; c=relaxed/simple;
-	bh=wtfh80IvBuoxq9N6HapzeJouFtMVgk01N3a0zNQebwY=;
+	s=arc-20240116; t=1729100143; c=relaxed/simple;
+	bh=ROiqOKc+y+FMS/tbuJk2v1Iu+PyGJTcxIghGmgkwt3I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q6XaAZWWc3PNX9r7Q/UEOS3DYOHnS4fSxvPT14JSi1hXPqU5XXFDzLBWvxdgdqkUASl6ww+bMEgW+saa/7xyerfmFEXmiMF8ihZfjO3KGfC+acFbK6LNsNyRy/thg2CI/Q5oGnAzcbUcqCs628OX+hhJlY6vA6jfRF41LMLV1hw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bNS5eEYv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3F8BC4CEC5;
-	Wed, 16 Oct 2024 17:33:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rfUJW7m5fAd4ulK7c2P6xCeaqCVi4roMEr4/KZA5eldXLqepUiRheefg7+JjU+lpqN+l4QXYkTwmb7zW0WLBumhyV+6DHs+EKjA3qxZ7AwubM0FX+qsge2wjeZrjmeaV35miapA2l3weMC6J1PYRA+wUXP6shWkIn+1+96OjuSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5LUU7qE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA1BC4CEC5;
+	Wed, 16 Oct 2024 17:35:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729100017;
-	bh=wtfh80IvBuoxq9N6HapzeJouFtMVgk01N3a0zNQebwY=;
+	s=k20201202; t=1729100143;
+	bh=ROiqOKc+y+FMS/tbuJk2v1Iu+PyGJTcxIghGmgkwt3I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bNS5eEYvRqJajb3r44E/MqXiN0sPJLO9zE0WvRZwP4EViidiEvNC3vMPyVD6iH39O
-	 22/xqfZUjLo7wVqgCl27Ysy+/3Ykt5RU0c4bJzujMJI+EfNzjK8gyv8cC1msNXDMjB
-	 hQstHfqn4her+5zt4L8TDXMHf/XL4aUsUtneUlJzy67G0H6fg9Kkj1K6W0ctNhKoxv
-	 M1F8Vtsj2tnMcGYDsl0bD6cjcZMfoERgwYLDWQPa/OhoGXIAjWu8LEcUb++quCxkut
-	 y4SiEXGFJ+15lnQaPLplTbpjqjTgzaCilWAxoMpch2tGc9mByUY/hLg43N3/DgKSE4
-	 WhrKcARfumXgw==
-Date: Wed, 16 Oct 2024 12:33:36 -0500
+	b=W5LUU7qEFpvKqi3O2xhYVd43GB0ADaT7hxeehOdOcOcEi4Fog3Px8Mx6PMmURQQo3
+	 jVdfeS1Ux65MfJNnd0/7OaIu/lAmBR+wsE6/Ibhjuwxp2uLnVSsKMlmMKwpKMDeKfy
+	 aatMYhD45+l9c/az4Bbc9R4N5i4u1I7c5G8/BDlfTNmAs12NXTbqiZxnIbNVhqoGZi
+	 Z0US7eucQo6p+GFkDjl+0U6FcADFLyxc7zLaNb4uDfMJQ+FgsBVkr+mji58P50W8w2
+	 bG+v5wBwVd3caDLvUDbaSRctTGVhMbJmPgu0N7CBibfOmZxg8rGwn/j1o8Y0zL/yay
+	 h5xL438CW5JMw==
+Date: Wed, 16 Oct 2024 12:35:42 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Amelie Delaunay <amelie.delaunay@foss.st.com>
-Cc: Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/9] dt-bindings: dma: stm32-dma3: prevent additional
- transfers
-Message-ID: <172910001570.2076913.18277281938022731096.robh@kernel.org>
-References: <20241016-dma3-mp25-updates-v3-0-8311fe6f228d@foss.st.com>
- <20241016-dma3-mp25-updates-v3-4-8311fe6f228d@foss.st.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: upstream@airoha.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Olivia Mackall <olivia@selenic.com>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Aurelien Jarno <aurelien@aurel32.net>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Daniel Golle <daniel@makrotopia.org>
+Subject: Re: [PATCH 1/2] dt-bindings: rng: add support for Airoha EN7581 TRNG
+Message-ID: <172910014160.2079862.17744202694058478290.robh@kernel.org>
+References: <20241016151845.23712-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,24 +64,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241016-dma3-mp25-updates-v3-4-8311fe6f228d@foss.st.com>
+In-Reply-To: <20241016151845.23712-1-ansuelsmth@gmail.com>
 
 
-On Wed, 16 Oct 2024 14:39:56 +0200, Amelie Delaunay wrote:
-> Some devices require a single transfer. For example, reading FMC ECC status
-> registers does not support multiple transfers.
-> Add the possibility to prevent additional transfers, by setting bit 17 of
-> the 'DMA transfer requirements' bit mask.
+On Wed, 16 Oct 2024 17:18:41 +0200, Christian Marangi wrote:
+> Add support for Airoha EN7581 True Random Number generator.
 > 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> This module can generate up to 4bytes of raw data at times and support
+> self health test at startup. The module gets noise for randomness from
+> various source from ADC, AP, dedicated clocks and other devices attached
+> to the SoC producing true random numbers.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
-> Changes in v3:
-> - Refine commit description as per Rob's suggestion.
-> Changes in v2:
-> - Reword commit title/message/content as per Rob's suggestion.
-> ---
->  Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/rng/airoha,en7581-trng.yaml      | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
