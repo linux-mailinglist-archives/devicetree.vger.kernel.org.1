@@ -1,124 +1,142 @@
-Return-Path: <devicetree+bounces-112185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3209A15AA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:11:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AAA79A15D3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:33:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA7BA1F224D3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 22:11:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3D2E1C20F26
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 22:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EE41D363D;
-	Wed, 16 Oct 2024 22:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988A01D4144;
+	Wed, 16 Oct 2024 22:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ih7yTjLz"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bCuRDeju"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9764314EC47;
-	Wed, 16 Oct 2024 22:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2B21D2B13
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 22:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729116651; cv=none; b=Qz+LX2kuMZuU+H8MwxGiv6oXppHtca+kkFauyecrx5pE7y5Xs4ezXlo614KHNzzm3BoES6diwfZizf+YEpl8vPyAH4CxI/6D2f2rQ9JYxL1PNaSokpO7ONCktiI2m7ua+OG/4BbLSLI41A30YlP8PuXhSH5xiLPykyHY+wF9f58=
+	t=1729118000; cv=none; b=LnR4lzlmLeM9cDdmC+JiV3GX3Z9yjqBM5AdT5PIJDsBRidchThE4XRVI3dMs3mh/ICCjAVCCbvYzcbmUQ/uP04rXb6RfvLEo20S3HuDGvGq/z8hwKGsgU/JdDzO/lupC+HcCRcaYhvE7F2Kll7dFsyq2PxmepcFwQucggpj72b8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729116651; c=relaxed/simple;
-	bh=2BgZtfKZf2x+57QEEEVp0Z+iLVJA2GU8FZXnbuwkYz0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pu0+fnjEZETR7EuGcTPicz7m0mlgWcIfFqZ+6A0Tzur7LmuD5rEPpKt9ofLVSvPQnCu/KXgo9T1DFTok8QaqDjulla+xuiBD1lzrhbIOjUdt01CVhQjLqBPzK28C8QDXjYU1E5GjvYyu67ukESMAV2Vei2l57rsKb3wGpJ+QVtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ih7yTjLz; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729116650; x=1760652650;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2BgZtfKZf2x+57QEEEVp0Z+iLVJA2GU8FZXnbuwkYz0=;
-  b=Ih7yTjLzPNFVZvadL3PJbGRaHjC5/kTsXjEGoKfrJid0QePlF4yOdM5/
-   SZ3aFdy7olYVhLc2WH2WGxrf6eeaHMVH4UqdVRmbJmtQyzCzemOxzm0jz
-   mO8XcKJkBXLYSazQ4f35t82kCKEhOu5PnZOWbY+Bxjlj+km3SiR2F1BQN
-   kUFI5Nu9cCztS5kO7NGagYg48NdUrkmEA2ogLKukohzY+tvGp2+HJnxkZ
-   QDj1pJxCofNZcRfQ+G1xmWMPHc3UrshEJxsW1/jsLsGXckFkbpTHQzvq5
-   8p/jCA7CLGcTNBrZnfwM91wKO6nh95RI2HrvUVNpzAxfLU8yOfYVBa/Ln
-   Q==;
-X-CSE-ConnectionGUID: WaJuhtw7QeiGeWlb+CCh2A==
-X-CSE-MsgGUID: fmu/lbpQQ4OAzOuZPOZjwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11226"; a="32514392"
-X-IronPort-AV: E=Sophos;i="6.11,209,1725346800"; 
-   d="scan'208";a="32514392"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2024 15:10:49 -0700
-X-CSE-ConnectionGUID: josMHNayRhqqGc/fpFMzrA==
-X-CSE-MsgGUID: /dxwmPuXTEiivmwyqEsFMg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,209,1725346800"; 
-   d="scan'208";a="83423127"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 16 Oct 2024 15:10:46 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t1CE7-000LTJ-17;
-	Wed, 16 Oct 2024 22:10:43 +0000
-Date: Thu, 17 Oct 2024 06:10:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Per-Daniel Olsson <perdaniel.olsson@axis.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rickard.andersson@axis.com, kernel@axis.com,
-	Per-Daniel Olsson <perdaniel.olsson@axis.com>
-Subject: Re: [PATCH v3 2/2] iio: light: Add support for TI OPT4060 color
- sensor
-Message-ID: <202410170546.5rfqxnWM-lkp@intel.com>
-References: <20241015143713.2017626-3-perdaniel.olsson@axis.com>
+	s=arc-20240116; t=1729118000; c=relaxed/simple;
+	bh=cLG4XkYYJQpRf4RufsTgHDLiu0qatuItEKjSjDpDctI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PkYacbmU6AYWaGY6MIWkKNM6jDKG6PTEzpnKBCmF+dmo8imKbBZHmc4NLg/S1OGjBkmGCfSsQBPqaVLf58DEFjRfqbwtvkEqv0rhl7ODplg/a8jKstw0bBk8VQcT/YXST+lAiLbSxip+RDyGXujePsy+qxx0j+ufs8eXX/ClDcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bCuRDeju; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20c8c50fdd9so9935415ad.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 15:33:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729117998; x=1729722798; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=J0Sh3029V3MK51x11tytW0IURI4Fv8hVCwwtjTn58GU=;
+        b=bCuRDejuvh4LNc7X2LKScpj9EdmgXVk+DrYCREYaB0D+9j4TUk5f/L357JS8uSR0Mj
+         bEmaQXigP/6VYMgziOoQrtgOMa1JgUt1MLcz/Z25UNRVOmNpMpVzPzuOQmFX/nu1/P3G
+         ej8oso+MBBRzUim6BMo6o+CzPqlD8uNYGf1Wc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729117998; x=1729722798;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J0Sh3029V3MK51x11tytW0IURI4Fv8hVCwwtjTn58GU=;
+        b=tTBdLii1ALEb82SrLoz5hJt0WeFJaEXPaeOhpfC028ZrtySFjLXJFaaSCOs9tpbe23
+         75C8HKTp3Dsl9uSMt3q7CKI5oEshoP42X9UHgljDCRU7mLULzOToPpUuO7s2o0eVnDZu
+         sW/AiPki3fGlv+rQ68fpFELN+QFUEWh+BxOYdsuaY+wPGSEceyvleqThw620BmFUvhBK
+         AZPOJMNAKUckzsIcxpCyP35E8T7hjnm8oClefjEGqVNztJ3Ui0uOhFkg4ZWW/6c9CYHI
+         uXJr7/3coTngvZUZO3XY7BV7TZ8C4V/IGO1kG3afwJHVauJF5Egn2xo4vjD/1pwFSY5r
+         KEAA==
+X-Gm-Message-State: AOJu0YwGLZSoxQaBunonco732KqskAorT5a+0tv4FgZNB36rB2R8YsUy
+	PVbN4Z1o3L7um/V3LZlgxSSkC0v8NWh0NiLanTM7bf0C3rx2H6hzAr3/ZGr2xw==
+X-Google-Smtp-Source: AGHT+IG0tsd413azSd2z2aQQ6JvNbIUWii6V7rLAFfiINNm/TURRGSMl6gwvfVgmDrvrJ5OSs6C+nw==
+X-Received: by 2002:a17:903:181:b0:20c:ceaf:e65f with SMTP id d9443c01a7336-20d4797b143mr15638175ad.25.1729117998315;
+        Wed, 16 Oct 2024 15:33:18 -0700 (PDT)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:aab3:ae1c:d5a8:7fba])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20d1805b040sm33441645ad.252.2024.10.16.15.33.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 15:33:18 -0700 (PDT)
+From: Pin-yen Lin <treapking@chromium.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Jitao Shi <jitao.shi@mediatek.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Pin-yen Lin <treapking@chromium.org>
+Subject: [PATCH] arm64: dts: mt8183: Add port node to mt8183.dtsi
+Date: Thu, 17 Oct 2024 06:32:52 +0800
+Message-ID: <20241016223312.3430051-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.47.0.rc1.288.g06298d1525-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015143713.2017626-3-perdaniel.olsson@axis.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Per-Daniel,
+Add the port node to fix the binding schema check. Also update
+mt8183-kukui to reference the new port node.
 
-kernel test robot noticed the following build warnings:
+Fixes: 88ec840270e6 ("arm64: dts: mt8183: Add dsi node")
+Fixes: 27eaf34df364 ("arm64: dts: mt8183: config dsi node")
+Signed-off-by: Pin-yen Lin <treapking@chromium.org>
 
-[auto build test WARNING on eca631b8fe808748d7585059c4307005ca5c5820]
+---
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Per-Daniel-Olsson/dt-bindings-iio-light-Document-TI-OPT4060-RGBW-sensor/20241015-224128
-base:   eca631b8fe808748d7585059c4307005ca5c5820
-patch link:    https://lore.kernel.org/r/20241015143713.2017626-3-perdaniel.olsson%40axis.com
-patch subject: [PATCH v3 2/2] iio: light: Add support for TI OPT4060 color sensor
-config: x86_64-randconfig-161-20241017 (https://download.01.org/0day-ci/archive/20241017/202410170546.5rfqxnWM-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 10 +++-------
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi       |  4 ++++
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410170546.5rfqxnWM-lkp@intel.com/
-
-smatch warnings:
-drivers/iio/light/opt4060.c:932 opt4060_volatile_reg() warn: always true condition '(reg >= 0) => (0-u32max >= 0)'
-
-vim +932 drivers/iio/light/opt4060.c
-
-   929	
-   930	static bool opt4060_volatile_reg(struct device *dev, unsigned int reg)
-   931	{
- > 932		return (reg >= OPT4060_RED_MSB && reg <= OPT4060_CLEAR_LSB) ||
-   933		       (reg == OPT4060_RES_CTRL);
-   934	}
-   935	
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index 07ae3c8e897b..b7b3d8fbf1e0 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -280,14 +280,10 @@ panel_in: endpoint {
+ 			};
+ 		};
+ 	};
++};
+ 
+-	ports {
+-		port {
+-			dsi_out: endpoint {
+-				remote-endpoint = <&panel_in>;
+-			};
+-		};
+-	};
++&dsi_out {
++	remote-endpoint = <&panel_in>;
+ };
+ 
+ &dpi0 {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 1afeeb1155f5..e4899cd6fef1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -1834,6 +1834,10 @@ dsi0: dsi@14014000 {
+ 			resets = <&mmsys MT8183_MMSYS_SW0_RST_B_DISP_DSI0>;
+ 			phys = <&mipi_tx0>;
+ 			phy-names = "dphy";
++
++			port {
++				dsi_out: endpoint { };
++			};
+ 		};
+ 
+ 		dpi0: dpi@14015000 {
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.0.rc1.288.g06298d1525-goog
+
 
