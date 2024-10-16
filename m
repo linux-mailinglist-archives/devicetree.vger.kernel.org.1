@@ -1,80 +1,77 @@
-Return-Path: <devicetree+bounces-111819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C2509A01A6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:43:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5003D9A01AD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:44:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 219762891FD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:43:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F444289992
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0AF31B0F0A;
-	Wed, 16 Oct 2024 06:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4835418D633;
+	Wed, 16 Oct 2024 06:44:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gH6y+fQE"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Cq8Ooz/u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7584198856;
-	Wed, 16 Oct 2024 06:42:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAD2441C69;
+	Wed, 16 Oct 2024 06:44:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729060943; cv=none; b=BDJMJsLkcVYh7Tv9Q9MAreTIyNEuRp6HYL7MWmLKKNdcTCEKmYpYU047WTVSHiJGNIv6RACLROS7eZL978diCbplskb+gFJXwO05isriHaeOH0gfZraOh1mfK/Wv/S0eiBzr31klxtDg3fTrOzdrmqPVD19ueJ+dWRPh6jHMgFI=
+	t=1729061053; cv=none; b=tRT48KmMa9Nv2RIbnOQbAWKojoYyEKLgx8JGudNYSf88GQmWP6J7yKbGHVgkGxPRnKe2YfpQ69CdEKZlpb1W6jSj4w+F+VMGXhtABzx+1XLI5Xs3wYoUIRXOiVE7+spyTlYupvJczVl/m+wT+sMZkoNQY9SDyUYGAz/GiYv3D4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729060943; c=relaxed/simple;
-	bh=4Ex82LlFgpHyaw4FgxltJEPSWklCxg+DLUOAI+TxEWE=;
+	s=arc-20240116; t=1729061053; c=relaxed/simple;
+	bh=FVSU2WBNfgz9zSK+jKgIZGH55UJ7KG8hdJ30EJWrr7k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S+VK+L8XTZKkdWATqiS2RbNEfHlXUmn9DPWdLG+dsOlhEREoyftMXTQfPxgMlDOg22KmImoqshQGWqiiyEdVs/yhb0dY6fGHDeYYpCm5fklB0DWLD8EtmW9sY+b5k9UY4NRw64BIntTWrPgqkIKKxsqV8v80TZneO10iYpJXrYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gH6y+fQE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA827C4CEC5;
-	Wed, 16 Oct 2024 06:42:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729060943;
-	bh=4Ex82LlFgpHyaw4FgxltJEPSWklCxg+DLUOAI+TxEWE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gH6y+fQElXa+XnBopH0jeB8dffUgUFd9q/QDMSkWN8IF20rrsUmRMBTlzvMrIIMl3
-	 f8oT5G47KFpsLq8yfdGJv7MBTwgwjfqpKjkJyDipb4PD6a5yE3b/2SKFbuGt3DWnTo
-	 Z4x2Gw888PWdUkSABQvVD9e8P/LPNA3bgzbTdTwVZfzbM66cPb+FbgLQmqyqMuArjh
-	 hbg3LOtikCf8Jovy8R7yP6J1TBbFar6aXIOSuxSWZulWmm1xBPnHlShwXVFOkNN/fq
-	 7b/uPjt+ZYOrmpeL+GMbqhS1yvhN/eqWv6fGZq/zUKGBiRckPc+FlROIL8sg5dB9+D
-	 CgYM6526P43bA==
-Date: Wed, 16 Oct 2024 08:42:19 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, tsbogend@alpha.franken.de, markus.stockhausen@gmx.de, 
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: spi: Add realtek,rtl9301-snand
-Message-ID: <3pps6ayndngfvc2jflkozhdvga74fjblmfjhmmdpvxx2mpmnwv@sp4s7hgt56eo>
-References: <20241015225434.3970360-1-chris.packham@alliedtelesis.co.nz>
- <20241015225434.3970360-2-chris.packham@alliedtelesis.co.nz>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GmGosmRG52mAUuKj3/TPx4ppiApYgYZGZIN5XPhwacy9mgsng0FT8TLtuTgmh0u8UAPccyVSQW7N4MPAZj4vAWugJS0rHgUIQVp4OfwgsvP3tRnMh42Px4wrQJZUUlpuR11ERFAepkWHxjQhF1alb8UzcjKdjiAglrZ8gvi33jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Cq8Ooz/u; arc=none smtp.client-ip=1.95.21.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=6M75V2q+Tktv1OJM9mVkAGxnLytVuUPATxTb88TgW5A=;
+	b=Cq8Ooz/uoD8SQSMQmF+dtrlGvK1vgCkUlO128CgyHR5UhctrSnz1DQw/MhQdAM
+	j1TwOnOQxpcFw7HiRRSQRkjwGWmLF/f90vttqdI7BlgA/AGFuMjos1805CbYrRu4
+	TQBCLMOGS2GlssqCWv+sAJPH1wSeXFf34mOhlVimpY8nM=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCHlQWUYA9nc0kYAA--.375S3;
+	Wed, 16 Oct 2024 14:43:33 +0800 (CST)
+Date: Wed, 16 Oct 2024 14:43:31 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: peng.fan@nxp.com, shawnguo@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, festevam@gmail.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	robh@kernel.org, s.hauer@pengutronix.de
+Subject: Re: [PATCH v2 1/1] arm64: dts: imx93-9x9-qsb: add I3C overlay file
+Message-ID: <Zw9gk2jGnq4fu/+G@dragon>
+References: <20240906201501.2249242-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241015225434.3970360-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20240906201501.2249242-1-Frank.Li@nxp.com>
+X-CM-TRANSID:Mc8vCgCHlQWUYA9nc0kYAA--.375S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVpVbDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBB6ZWcPKkWcfwAAsv
 
-On Wed, Oct 16, 2024 at 11:54:32AM +1300, Chris Packham wrote:
-> Add a dtschema for the SPI-NAND controller on the RTL9300 SoCs. The
-> controller supports
->  * Serial/Dual/Quad data with
->  * PIO and DMA data read/write operation
->  * Configurable flash access timing
+On Fri, Sep 06, 2024 at 04:15:01PM -0400, Frank Li wrote:
+> Add an overlay file to enable I3C support on the i.MX93, replacing I2C1
+> with I3C. I3C is compatible with I2C, but it has not yet been enabled in
+> arm64's defconfig. This overlay allows users to conveniently utilize I3C
+> on the imx93-9x9-qsb platform until I3C and its driver become more mature
+> and ready for full switch to I3C.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Applied, thanks!
 
 
