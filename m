@@ -1,241 +1,130 @@
-Return-Path: <devicetree+bounces-112086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF009A0F53
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 18:08:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C14939A0F5C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 18:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD1D01F269C2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:08:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A901AB2516D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26DE20F5B0;
-	Wed, 16 Oct 2024 16:08:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YiV7boco"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50D8E20F5CE;
+	Wed, 16 Oct 2024 16:09:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699D920E026;
-	Wed, 16 Oct 2024 16:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8418720F5B0;
+	Wed, 16 Oct 2024 16:09:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729094915; cv=none; b=AQjIp8uY2GdG9i8+VBip/bMuIqpWolcSINchEzxu64XUl0AKI7ypse+FbMxMq6R3GR4Q/cqkZOmJ3caBYqx3oTAtix65hCiR5LX6P+pU+OCo+ZgpgkvHcN2NhD6sfIR+g1wPVxJfFOw/qA9DKbW8vIavUWyKxhmLYJ26G3W9d0c=
+	t=1729094974; cv=none; b=m7LEjik0YK6vJVTWLC7gdggjTe41G3PARlzjlE5nZBp5Ek8SXR1QSQktvb9JvjpKYCFN74piIPcymOy7RmJ09MiygUmZ+lMCach7AF9bbodFZXl+6N63TW7+byXzgtL3La4QYkwmtA5uaeui58SlOx0sbT/lIizQlEsnYVOVfzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729094915; c=relaxed/simple;
-	bh=jBooSS2vXvH048MLHGPfi8vqD/KGcWJg1Ivuptbjel0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lLr5ijpMR9vFJkp7udtU/8tI/ItUwIEbsF+SNKvGccfGIq5KCE4KV7vmEzg+vrBY1NCrDyhqCX5myFjGOUgMW4BHq87XwLBrUhM4p1bHwJHiZ7FCh6U11XPvme23SNheLvchtSk7SqLIqO+DFk9gdoEqQ7dDJrmWROcE6T7Rjuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YiV7boco; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 862AFC0007;
-	Wed, 16 Oct 2024 16:08:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729094904;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QoQSQVa/mheJjIZPZM0X9xv2P9atatHsLsTuLCYWfYw=;
-	b=YiV7bocoGYQLRsGJ590j1uk+okOPrc4k+LKlBohj0I3IvKJLwoXI7UuCcCfr5emncFwalc
-	fJS9Oc+rGFXmXCBWv41kzp/6ojER95OUlkDxehvoBY4S5fqdwvMxh/f5gEsJw3pvBH3yfh
-	hwqdvW1k01uZfcrN4JNH+WHitMqBx4zZrb07IAM6pJAU8WjkoE81lFbNnEBiTZ/Oc/h2S2
-	jqLYY/quEkyt3KGrBgS0V7dsNbX+qOfSYzsdfPIBXa5ZFKw2E1ydG4dHiAdyfRgoTCd69H
-	VlRz153F8NelpMa3VJ4S2fdzkQ28/QEGxi/8QUoP9fOqh6TKqgYAviWW8Ge1eg==
-Date: Wed, 16 Oct 2024 18:08:23 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3
- SoCs
-Message-ID: <20241016160823c22ccb22@mail.local>
-References: <20241015105133.656360-1-ciprianmarian.costea@oss.nxp.com>
- <20241015105133.656360-2-ciprianmarian.costea@oss.nxp.com>
- <20241015211540.GA1968867-robh@kernel.org>
- <20241015212717.GA1983714-robh@kernel.org>
+	s=arc-20240116; t=1729094974; c=relaxed/simple;
+	bh=vSsZqDJWpQ20mq3tHE0Fb47pANLlhNT0u6UPTtuQgeg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DvD9Zz9FUYurKlthPzGGAOJT3xcymrWLyi8otLmb+zAotPMvX6v7CXvzb4MRqVc5LqLVKFQ/Cf2j492ug0Y3bym2NOkTV3J4BxYPk3E91AvG/DjMZqOrh+Z/HrAcSQ3sRxqGGNaAk8l6sMId/eJ3KGeLZGUd3/+BDaAtQvdtN+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a99ebb390a5so211609766b.1;
+        Wed, 16 Oct 2024 09:09:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729094971; x=1729699771;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OmTlR+mvqJAz1EmxrOCGVHDAWntliLwxpGc0qQgNhZ0=;
+        b=BKBgrMchnzIJR1QsHT5xqQm5vRmEKHqjlmjUdJUAWlRG5ENXRThrVZW1d0Y6H4qntH
+         OvsWH8Wm53XzS0auV83d/133kAl+1zSeynUW7KMZwNoPD6Ufa94pFwzSAd+tTIhMefUn
+         2YNCcnhVyPZhZcLqPkSxKkE45ISSnMZLEMRX5ozkM00rARajENkZLhCnFOZIoESDepCa
+         G3WHTecQFcOKbDnbx3lGpWqr+pZeC1t1bBuQCJEnRrWdK1UN6//U9Vg8zyfieGBuAMb2
+         wcNu1YD/0NjgMUQRAaMJ8R8fS/JPwXKDs7wroW2kuwfI0wHptCT/IXAgpMl1llKAAXrQ
+         pyrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUA/itMSQK3YLZHA7B/A1ouFG8upDJW7BZ8w7UgqSYitzHQazbyFJpnGOo6/gydHc0KMJRlKQZIN7vA@vger.kernel.org, AJvYcCWFYJUkMuw/gW3mlm7DpCw2QuKCSXsaD1X8et8AZZsssiVSSUhUZbNPn23miiv0DjKvZ5uyBFPgZX8COUvn@vger.kernel.org, AJvYcCWuURtGMF2+NNwKLujAi/9rJHJrKzfR1HehZ3SobMY9OnXmvDMg2rRI7JL7XKcrPybuFwgB26eXVf0l@vger.kernel.org, AJvYcCXUmbaom7v6kqmvhAyq3etLSTokpsNcty1kj8M4nZWAwpRhQwrtrgm6+TSNgaEW8suYbKoJxo53@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyrd3LFHHoElTHUxuRk2+s9MjvUnJaB5lSpnGfS1Vf9KkjxGX53
+	9qB2CqgKYq/vBK2BG1Q8iLI/sSF1x1XAYOE4ohYGzWFhmNG0gx07v3qBHPBQ5slDPkeFaF8EI4n
+	8+VByvHfhMGZLWzqXMRHYtfPUH40=
+X-Google-Smtp-Source: AGHT+IE59HHi6RfvNl0jd60GRp+Q4oTDVjpD1WxXKT5MU1/v8dV6ZpMG9trRhhhjywvzxGohJIOt3dIwrEjC1SoM+b8=
+X-Received: by 2002:a17:906:7308:b0:a9a:3df1:436a with SMTP id
+ a640c23a62f3a-a9a4c2f3ce7mr14608566b.8.1729094970681; Wed, 16 Oct 2024
+ 09:09:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015212717.GA1983714-robh@kernel.org>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+References: <20241015-topic-mcan-wakeup-source-v6-12-v4-0-fdac1d1e7aa6@baylibre.com>
+ <20241015-topic-mcan-wakeup-source-v6-12-v4-5-fdac1d1e7aa6@baylibre.com>
+ <CAMZ6Rq+NA9G=iON56vQcr5dxEMqn-FFzT5rdxc6XrtW+4ww1XQ@mail.gmail.com> <xiptvia2w5ocs7td2zgn3pueok2nzdslf7og4ekg3o6hdxus7r@quz2v54zmhyz>
+In-Reply-To: <xiptvia2w5ocs7td2zgn3pueok2nzdslf7og4ekg3o6hdxus7r@quz2v54zmhyz>
+From: Vincent MAILHOL <mailhol.vincent@wanadoo.fr>
+Date: Thu, 17 Oct 2024 01:09:19 +0900
+Message-ID: <CAMZ6Rq+sWB_SV0gt6K8n0cw+PjoN_fifCUJXTxJ7Hp8FEAt7-w@mail.gmail.com>
+Subject: Re: [PATCH v4 5/9] can: m_can: Support pinctrl wakeup state
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Vishal Mahaveer <vishalm@ti.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, Simon Horman <horms@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 15/10/2024 16:27:17-0500, Rob Herring wrote:
-> On Tue, Oct 15, 2024 at 04:15:40PM -0500, Rob Herring wrote:
-> > On Tue, Oct 15, 2024 at 01:51:30PM +0300, Ciprian Costea wrote:
-> > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > > 
-> > > This patch adds the dt-bindings for NXP S32G2/S32G3 SoCs RTC driver.
-> > > 
-> > > Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-> > > Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-> > > Co-developed-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > > Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/rtc/nxp,s32g-rtc.yaml | 102 ++++++++++++++++++
-> > >  1 file changed, 102 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml b/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
-> > > new file mode 100644
-> > > index 000000000000..3a77d4dd8f3d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
-> > > @@ -0,0 +1,102 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/rtc/nxp,s32g-rtc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: NXP S32G2/S32G3 Real Time Clock (RTC)
-> > > +
-> > > +maintainers:
-> > > +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> > > +  - Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - enum:
-> > > +          - nxp,s32g2-rtc
-> > > +      - items:
-> > > +          - const: nxp,s32g3-rtc
-> > > +          - const: nxp,s32g2-rtc
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#clock-cells":
-> > > +    const: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: ipg clock drives the access to the
-> > > +          RTC iomapped registers
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: ipg
-> > > +
-> > > +  assigned-clocks:
-> > > +    minItems: 1
-> > > +    items:
-> > > +      - description: Runtime clock source. It must be a clock
-> > > +            source for the RTC module. It will be disabled by hardware
-> > > +            during Standby/Suspend.
-> > > +      - description: Standby/Suspend clock source. It is optional
-> > > +            and can be used in case the RTC will continue ticking during
-> > > +            platform/system suspend. RTC hardware module contains a
-> > > +            hardware mux for clock source selection.
-> > 
-> > If the RTC h/w contains a mux, then your mux inputs should be listed in 
-> > 'clocks', not here.
-> > 
-> > > +
-> > > +  assigned-clock-parents:
-> > > +    description: List of phandles to each parent clock.
-> > > +
-> > > +  assigned-clock-rates:
-> > > +    description: List of frequencies for RTC clock sources.
-> > > +            RTC module contains 2 hardware divisors which can be
-> > > +            enabled or not. Hence, available frequencies are the following
-> > > +            parent_freq, parent_freq / 512, parent_freq / 32 or
-> > > +            parent_freq / (512 * 32)
-> > 
-> > In general, assigned-clocks* do not need to be documented and should 
-> > never be required.
-> > 
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - "#clock-cells"
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - assigned-clocks
-> > > +  - assigned-clock-parents
-> > > +  - assigned-clock-rates
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +    rtc0: rtc@40060000 {
-> > > +        compatible = "nxp,s32g3-rtc",
-> > > +                   "nxp,s32g2-rtc";
-> > > +        reg = <0x40060000 0x1000>;
-> > > +        interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-> > > +        #clock-cells = <1>;
-> > > +        clocks = <&clks 54>;
-> > > +        clock-names = "ipg";
-> > > +        /*
-> > > +         * Configuration of default parent clocks.
-> > > +         * 'assigned-clocks' 0-3 IDs are Runtime clock sources
-> > > +         * 4-7 IDs are Suspend/Standby clock sources.
-> > > +         */
-> > > +        assigned-clocks = <&rtc0 2>, <&rtc0 4>;
-> > 
-> > That's weird...
-> > 
-> > > +        assigned-clock-parents = <&clks 56>, <&clks 55>;
-> > 
-> > I'd expect these should be in 'clocks'. I don't think this node should 
-> > be a clock provider unless it provides a clock to something outside the 
-> > RTC.
-> > 
-> > Looks like you are just using assigned-clocks to configure the clock mux 
-> > in the RTC. That's way over complicated. Just define a vendor specific 
-> > property with the mux settings. 
-> 
-> I just read v1 and got told use the clock framework...
-> 
-> I disagree completely. Tons of h/w blocks have the ability to select 
-> (internal to the block) from multiple clock sources. Making the block a 
-> clock provider to itself is completely pointless and an overkill, and 
-> we *never* do that. Any display controller or audio interface has 
-> mutiple clock sources as just 2 examples.
+On Thu. 17 Oct. 2024 at 00:42, Markus Schneider-Pargmann
+<msp@baylibre.com> wrote:
+> Hi Vincent,
+>
+> On Wed, Oct 16, 2024 at 11:26:22PM GMT, Vincent MAILHOL wrote:
+> > Hi Markus,
+> >
+> > This is a nice improvement from the v3.
+> >
+> > On Wed. 16 Oct. 2024 at 04:19, Markus Schneider-Pargmann
+> > <msp@baylibre.com> wrote:
+> > > am62 requires a wakeup flag being set in pinctrl when mcan pins acts as
+> > > a wakeup source. Add support to select the wakeup state if WOL is
+> > > enabled.
+> > >
+> > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 
-And in 6 months, we are going to learn that the rtc is used to clock the
-wifi chip or whatever and we are going to need to add everything in the
-CCF and we will have an unused property that we are going to have to
-support forever to avoid breaking the ABI. This already happened...
+(...)
 
-> 
-> However, I don't see why you need the divider config in DT. Can't you 
-> figure out what divider you need based on input frequency? The output 
-> frequency should be fixed, right?
-> 
-> Rob
+> > > +       class_dev->pinctrl_state_default =
+> > > +               pinctrl_lookup_state(class_dev->pinctrl, "default");
+> > > +       if (IS_ERR(class_dev->pinctrl_state_default)) {
+> > > +               ret = PTR_ERR(class_dev->pinctrl_state_default);
+> >
+> > Sorry if this is a silly question, but why aren't you doing the:
+> >
+> >                   class_dev->pinctrl_state_default = NULL;
+> >
+> >                   if (ret == -ENODEV)
+> >                           return 0;
+> >
+> > thing the same way you are doing it for the pinctrl and the
+> > pinctrl_state_wakeup?
+>
+> There are no silly questions.
+> The idea is that if the wakeup pinctrl state was already found, then the
+> default pinctrl state is required and not optional, so no check for
+> -ENODEV. Otherwise it doesn't make sense with the current binding or the
+> implementation of the driver.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+ACK. With this:
+
+Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+
+This concludes my review of your series. I am skipping the dt-bindings
+and the dts parts because I am not knowledgeable in those domains.
+
+
+Yours sincerely,
+Vincent Mailhol
 
