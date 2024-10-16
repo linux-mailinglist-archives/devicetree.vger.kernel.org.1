@@ -1,209 +1,160 @@
-Return-Path: <devicetree+bounces-111881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D04B9A0379
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:02:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 937059A038A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:04:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CD6E280402
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:02:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0A2FB257FA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 08:04:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C3B1D1E6A;
-	Wed, 16 Oct 2024 08:02:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383BA1D4169;
+	Wed, 16 Oct 2024 08:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="N12qOrVn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EdZQu0lv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1ABF1C4A2B;
-	Wed, 16 Oct 2024 08:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F045A1D1E99;
+	Wed, 16 Oct 2024 08:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729065751; cv=none; b=eN4NEXTvj2Unrxhxg5UJTzscPnPzh6zodVnYBROKpXK/wjZJ0TBCqc6aW4K0CzimLgeZWwrjJYSl2NiFVVdB73fF5HXHihK+KjlI/QDtoA4Fix4fIErQSRVsYo6YcE+EcC7Xknez0Am5hbTU3LYBOU9WLRDv6jKqMlebTHtdZlo=
+	t=1729065779; cv=none; b=DE6uYgVRiN86KbhGp3yKCDmLdKtjuWTx6jKQOKkusxUXNKVTsGceFl4UZzxdXw0fI4sF6Fpgs7H+27H5mHxo1xvIntIrBmHApNfpnLmvHDGc6Uy4s5AOgqhwqsiY1pNK2xTbfmQ9Jofe1XN2gSEx/ddegWrD6mwCRebHfMU3LyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729065751; c=relaxed/simple;
-	bh=/8EZ5d33aVstxkBsP37ajT8/LEvDSLg38YMUJYuEIJY=;
+	s=arc-20240116; t=1729065779; c=relaxed/simple;
+	bh=VQWxLbP46Yk3JT2ruUu0Qw3xjvSUtKf+K6RBYmBe+lM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R3qjd+5HM8k21G2tQTFS6jSsygDFt3PwrcQ/9BGgfVhD+JCOe2Vusjh+CakI94+pbIZUMQyW254JI6s5hojnZnBtvq5AlyRDGPQX8Eosms5QiHYyxf064WdYeFqrntTaTk/1op+cY5O/QyfBADYb+lF8w/BcWSjR/JV6aR//gOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=N12qOrVn; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=+kd8E0tUUE88A8KHdSiWw5mBRqTS3PtOuVObV/42bZ8=;
-	b=N12qOrVn0038JMV9Qb1PvaHdg0P2yezMX9lp1KGUqX9tiLyBg35+FjqqBZJ5NU
-	YW+3Nf8Q1aDGshlhg+CZl4f1DAy7tWuUluHiJJo5mUtpsn4ot2ulQXreTNxmfWlr
-	Y8eH+DCQz03UhUJ6J+gZZmjpSIQTUFy5NxwA5xyTp1Hdg=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDHxAP0cg9n8ngZAA--.391S3;
-	Wed, 16 Oct 2024 16:01:58 +0800 (CST)
-Date: Wed, 16 Oct 2024 16:01:55 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: Re: [PATCH v2 1/3] arm64: dts: imx93-9x9-qsb: Enable sound-wm8962
- sound card
-Message-ID: <Zw9y84AzNwUhUAhJ@dragon>
-References: <1726106381-1138-1-git-send-email-shengjiu.wang@nxp.com>
- <1726106381-1138-2-git-send-email-shengjiu.wang@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mPV/PDB+UNRic1w+yJ6soybzyVhgoHYyloyAVzP1cMRNVMMoIBsosv8Hd9/aFUgYWKow9cxKhv4ypPSDdcfYoJ4Qz1aT0w3jTgniVmhDZJywINcqiI2N5rzTpOLWKReUtPEkQdtCJdHU1+ItC2OXvtB9fwS469Ipt6W7GrcpE9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EdZQu0lv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25CC7C4CED0;
+	Wed, 16 Oct 2024 08:02:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729065778;
+	bh=VQWxLbP46Yk3JT2ruUu0Qw3xjvSUtKf+K6RBYmBe+lM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EdZQu0lvkqQKp6i7wnzriOv0ggkWZWcHotek7nZZSEdw35cKxZpgEDMR9IrMPXZbQ
+	 WYoop23uy1X0RnPZxv+h22a0dffsyAWGe47B3VkLwdnV46GNOwJL0i3dnbOWnL5pqV
+	 omdNB+UMVqzfLHYIcQhnCKXUFkU6z65UbCHDFkDyHmnnjxUI+O5bzUMFG8CnQdhrus
+	 XL9m9kdJ61u2FNby/2sWKy01wPxw1/DeGD4aTCMMTOmDF7gVJmeIWCVkItZEaRNeJH
+	 MyKxVJEiK6L05viEsJafMLkbLfvaL3SZzmumCECEL5gaUXlP26Z9cagMEpkoaYU6ij
+	 1iyG5JVbDWBUg==
+Date: Wed, 16 Oct 2024 09:02:48 +0100
+From: Lee Jones <lee@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+	netdev@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH v8 3/3] dt-bindings: mfd: mediatek: mt6397: Convert to DT
+ schema format
+Message-ID: <20241016080248.GN8348@google.com>
+References: <20241001104145.24054-1-macpaul.lin@mediatek.com>
+ <20241001104145.24054-3-macpaul.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1726106381-1138-2-git-send-email-shengjiu.wang@nxp.com>
-X-CM-TRANSID:Mc8vCgDHxAP0cg9n8ngZAA--.391S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxGw4kJFWkurWktw18AFW7CFg_yoWrJF1xpr
-	9xursagr1FgFyxt3sxX3ZIkrW3Gw4kKr9I9r12vrW8ArsFvasFq345Kr1ruryrGrn5Zw4Y
-	yFy5Xry7C3ZIqw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jzc_fUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCQZ6ZWcPLG3NiQABs8
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241001104145.24054-3-macpaul.lin@mediatek.com>
 
-On Thu, Sep 12, 2024 at 09:59:39AM +0800, Shengjiu Wang wrote:
-> Add wm8962 sound card which connects to sai3. The connection
-> of SAI3 and wm8962 is controlled by PCAL6524HEAZ module, add
-> gpio-hog for it.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../boot/dts/freescale/imx93-9x9-qsb.dts      | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-> index f8a73612fa05..10f3366b8253 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-> @@ -68,6 +68,15 @@ reg_vref_1v8: regulator-adc-vref {
->  		regulator-max-microvolt = <1800000>;
->  	};
->  
-> +	reg_audio_pwr: regulator-audio-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "audio-pwr";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&pcal6524 16 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
->  	reg_rpi_3v3: regulator-rpi {
->  		compatible = "regulator-fixed";
->  		regulator-name = "VDD_RPI_3V3";
-> @@ -88,6 +97,22 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
->  		enable-active-high;
->  		off-on-delay-us = <12000>;
->  	};
-> +
-> +	sound-wm8962 {
-> +		compatible = "fsl,imx-audio-wm8962";
-> +		model = "wm8962-audio";
-> +		audio-cpu = <&sai3>;
-> +		audio-codec = <&wm8962>;
-> +		hp-det-gpio = <&pcal6524 4 GPIO_ACTIVE_HIGH>;
-> +		audio-routing =
-> +			"Headphone Jack", "HPOUTL",
-> +			"Headphone Jack", "HPOUTR",
-> +			"Ext Spk", "SPKOUTL",
-> +			"Ext Spk", "SPKOUTR",
-> +			"AMIC", "MICBIAS",
-> +			"IN3R", "AMIC",
-> +			"IN1R", "AMIC";
-> +	};
->  };
->  
->  &adc1 {
-> @@ -136,6 +161,28 @@ &lpi2c1 {
->  	pinctrl-0 = <&pinctrl_lpi2c1>;
->  	status = "okay";
->  
-> +	wm8962: codec@1a {
+Argh, I couldn't bring myself to do it!  Here's a PR instead:
 
-Can we use audio-codec for node name?
+The following changes since commit 9852d85ec9d492ebef56dc5f229416c925758edc:
 
-Shawn
+  Linux 6.12-rc1 (2024-09-29 15:06:19 -0700)
 
-> +		compatible = "wlf,wm8962";
-> +		reg = <0x1a>;
-> +		clocks = <&clk IMX93_CLK_SAI3_GATE>;
-> +		DCVDD-supply = <&reg_audio_pwr>;
-> +		DBVDD-supply = <&reg_audio_pwr>;
-> +		AVDD-supply = <&reg_audio_pwr>;
-> +		CPVDD-supply = <&reg_audio_pwr>;
-> +		MICVDD-supply = <&reg_audio_pwr>;
-> +		PLLVDD-supply = <&reg_audio_pwr>;
-> +		SPKVDD1-supply = <&reg_audio_pwr>;
-> +		SPKVDD2-supply = <&reg_audio_pwr>;
-> +		gpio-cfg = <
-> +			0x0000 /* 0:Default */
-> +			0x0000 /* 1:Default */
-> +			0x0000 /* 2:FN_DMICCLK */
-> +			0x0000 /* 3:Default */
-> +			0x0000 /* 4:FN_DMICCDAT */
-> +			0x0000 /* 5:Default */
-> +		>;
-> +	};
-> +
->  	ptn5110: tcpc@50 {
->  		compatible = "nxp,ptn5110", "tcpci";
->  		reg = <0x50>;
-> @@ -194,6 +241,12 @@ pcal6524: gpio@22 {
->  		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&pinctrl_pcal6524>;
-> +
-> +		exp-sel-hog {
-> +			gpio-hog;
-> +			gpios = <22 GPIO_ACTIVE_HIGH>;
-> +			output-low;
-> +		};
->  	};
->  
->  	pmic@25 {
-> @@ -286,6 +339,17 @@ &mu2 {
->  	status = "okay";
->  };
->  
-> +&sai3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sai3>;
-> +	assigned-clocks = <&clk IMX93_CLK_SAI3>;
-> +	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
-> +	assigned-clock-rates = <12288000>;
-> +	fsl,sai-mclk-direction-output;
-> +	fsl,sai-synchronous-rx;
-> +	status = "okay";
-> +};
-> +
->  &usbotg1 {
->  	dr_mode = "otg";
->  	hnp-disable;
-> @@ -443,6 +507,16 @@ MX93_PAD_SD2_RESET_B__GPIO3_IO07	0x31e
->  		>;
->  	};
->  
-> +	pinctrl_sai3: sai3grp {
-> +		fsl,pins = <
-> +			MX93_PAD_GPIO_IO12__SAI3_RX_SYNC		0x31e
-> +			MX93_PAD_GPIO_IO18__SAI3_RX_BCLK		0x31e
-> +			MX93_PAD_GPIO_IO17__SAI3_MCLK			0x31e
-> +			MX93_PAD_GPIO_IO19__SAI3_TX_DATA00		0x31e
-> +			MX93_PAD_GPIO_IO20__SAI3_RX_DATA00		0x31e
-> +		>;
-> +	};
-> +
->  	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
->  		fsl,pins = <
->  			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
-> -- 
-> 2.34.1
-> 
+are available in the Git repository at:
 
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-dt-mfd-input-leds-power-rtc-v6.13
+
+for you to fetch changes up to 6e357f572638547e9c9e8d8abb7dc572c12032f3:
+
+  dt-bindings: mfd: mediatek: mt6397: Convert to DT schema format (2024-10-16 09:00:38 +0100)
+
+----------------------------------------------------------------
+Immutable branch between DT, MFD, Input, LEDs Power and RTC due for the v6.13 merge window
+
+----------------------------------------------------------------
+Macpaul Lin (1):
+      dt-bindings: mfd: mediatek: mt6397: Convert to DT schema format
+
+ .../bindings/input/mediatek,pmic-keys.yaml         |   2 +-
+ .../devicetree/bindings/leds/leds-mt6323.txt       |  63 ---
+ .../devicetree/bindings/mfd/mediatek,mt6397.yaml   | 588 +++++++++++++++++++++
+ Documentation/devicetree/bindings/mfd/mt6397.txt   | 110 ----
+ .../bindings/power/reset/mt6323-poweroff.txt       |  20 -
+ .../devicetree/bindings/rtc/rtc-mt6397.txt         |  31 --
+ MAINTAINERS                                        |   8 +-
+ 7 files changed, 595 insertions(+), 227 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-mt6323.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/mt6397.txt
+ delete mode 100644 Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
+ delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-mt6397.txtThe following changes since commit 9852d85ec9d492ebef56dc5f229416c925758edc:
+
+  Linux 6.12-rc1 (2024-09-29 15:06:19 -0700)
+
+are available in the Git repository at:
+
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-dt-mfd-input-leds-power-rtc-v6.13
+
+for you to fetch changes up to 6e357f572638547e9c9e8d8abb7dc572c12032f3:
+
+  dt-bindings: mfd: mediatek: mt6397: Convert to DT schema format (2024-10-16 09:00:38 +0100)
+
+----------------------------------------------------------------
+Immutable branch between DT, MFD, Input, LEDs Power and RTC due for the v6.13 merge window
+
+----------------------------------------------------------------
+Macpaul Lin (1):
+      dt-bindings: mfd: mediatek: mt6397: Convert to DT schema format
+
+ .../bindings/input/mediatek,pmic-keys.yaml         |   2 +-
+ .../devicetree/bindings/leds/leds-mt6323.txt       |  63 ---
+ .../devicetree/bindings/mfd/mediatek,mt6397.yaml   | 588 +++++++++++++++++++++
+ Documentation/devicetree/bindings/mfd/mt6397.txt   | 110 ----
+ .../bindings/power/reset/mt6323-poweroff.txt       |  20 -
+ .../devicetree/bindings/rtc/rtc-mt6397.txt         |  31 --
+ MAINTAINERS                                        |   8 +-
+ 7 files changed, 595 insertions(+), 227 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-mt6323.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/mt6397.txt
+ delete mode 100644 Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
+ delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
+
+-- 
+Lee Jones [李琼斯]
 
