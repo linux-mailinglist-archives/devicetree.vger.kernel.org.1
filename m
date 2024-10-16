@@ -1,171 +1,156 @@
-Return-Path: <devicetree+bounces-111729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75F3E99FCA4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 01:59:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0724D99FD07
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 02:19:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94EAD1C244B7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 23:59:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89A7FB22425
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 00:19:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ADD21E573A;
-	Tue, 15 Oct 2024 23:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF3421E3D8;
+	Wed, 16 Oct 2024 00:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Pdm1H70T"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bFc1FLxv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A78CD1D8A10
-	for <devicetree@vger.kernel.org>; Tue, 15 Oct 2024 23:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C09D11711;
+	Wed, 16 Oct 2024 00:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729036793; cv=none; b=BocET+AbqMp0R5Vev43BcDSs6SBi96IB4HW6B/DVdA8uK8PrrcjxVFUGrZAcq9sARlbQMrFdBK3I+6+IWT1ekh76Xy95C2Brv+aaYtDFJmrJq7twR3mRmAZPSbjKLlun6Vo4TsqUTUclXeqTkKTV+XaLr/y++wrPq+y7fSmbGEU=
+	t=1729037955; cv=none; b=iaur70aG+1bYc+j9H3BZTqJzrVYO6gZo15KG6i0JI5D+r07bCsPUfcC8uth/nnaP8UzCqVKO0s4NQPcbNCru5Z16NY/e2K8JTXTR3wcCMw7cljcwIDx9AxkG/dt2kf99ab/x7Qv2Ydlbp24PTiWan5Qw/MDkqT0n6bLJutDKJTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729036793; c=relaxed/simple;
-	bh=b5cHyWBOfyu2SFHBcdLtZIDVG2MH8i0+A7M4xuXIYaM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=foooKE10FbSVEoAvalopw2dsnVnUpTruxCDaG/1p7JOIXL+9qxv02RSwDu63kL+wu/alGK10H6PTbK6j8cJ6v2FavQeayCNCHhcaaSx0SVipR5sr7RUpO0xzJN1NhKFyYmiASebsoJzaRkJBenyNVmJwas1mDv2Wgl6FwQvkxB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Pdm1H70T; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 1FD92889AA;
-	Wed, 16 Oct 2024 01:59:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729036789;
-	bh=z7oJ4eldV++8WReLLKVVuSPOVo/xhffio4OF/7VkpCg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Pdm1H70TGICcUR0kXpV/AzyItqaZx60Wc105xAhrI2iEnHW/xnvNWQOtSLK8CK7he
-	 otk1hTOpEuQJu8CuiSGUJOKy82IEKZe3nv0510YvwplEpAXnfId0LKeTrLmdP9Xdct
-	 CdtGJbO37tAeZdvFJbeCcl5ZljT1u69cnJVreDx7T5ZN4JD2sTSzIK9na5JI29MCiE
-	 TWvBVEtJ9rCHl7l2TH7jHKTP3f0K41kKLJb6jt+IjKgCTlI0eez+KfD0Onqj8hpogL
-	 exGRaMfDy5TYXETb42eJKbMd8BUGC14QegSxTLzadBC/pGC74HtGC1F56SanGZJs1f
-	 StOD9lk8mzpNg==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Parthiban Nallathambi <parthiban@linumiz.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
+	s=arc-20240116; t=1729037955; c=relaxed/simple;
+	bh=xT43Gbv+g6D/On8PZU52CO5NxqCl2Rm9CD/i6DLRJDs=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ICzXBsG6ERtroSkx7Od/AU2KPL161WzHnC99PpG+Ish3pIKGI3jjl/4C1hdhIi5Qux27cE6uQfEPbFtf6/VMueZjGMtBfF8uFhzudIL4hYiJmqTUXIRaGWLm5jsnYX5Nkha+K9ZKew+A5XSGqKDkyY0IW/P0CjmPLVbeM7TuInY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bFc1FLxv; arc=none smtp.client-ip=209.85.161.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5e9876999cdso2972914eaf.3;
+        Tue, 15 Oct 2024 17:19:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729037953; x=1729642753; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=05Y/2FGPgyvbyYFbGsJUnsosQK0HSJiBFrb2Qq6aVrA=;
+        b=bFc1FLxvKQ+mN0+/yCWqEhhoHD34PjDfnoDPXidGVZZRO2SfLpioFXWRi3pOyjaR4i
+         2IlOKwHbrJyH0XuYac8/2THQmweLTOSboT3BK8nkg9IxDITr54Hfi93Y0wf5U9Kb0Tpb
+         15/bq8n4IPEZix3sNIz9n7PktEaXoyTE2rDdNKxKqeIHOGF5Pf0MT5v63Iw1T7PQe5L5
+         du4DTdAYkOChBF5WFqrP0LG9hbcQtBd732WXh8qMFmxqXjKKONtGNCHIbFTtfXXPDl7m
+         v3k9fW9zVDwm66thWxV3XcZO+byzcj6+28ysVhfyNxNsOMyM7ZWdUFEvivBPrKHHLsGq
+         NL/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729037953; x=1729642753;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=05Y/2FGPgyvbyYFbGsJUnsosQK0HSJiBFrb2Qq6aVrA=;
+        b=fHSMEb4qHIORIWoYUnK5vqS1XqrO3lezU05lxN9BDYMYAQlWHXjohRfLWx8h1oDjrd
+         TucJC/FK2cm2sBYpl5JNl/1BOSIIkFjRwsyHGnA6abJ2eg3VleVT7GfljD/bzqIppbv6
+         EmRpgzleWj70plOTw1pae4B4CEJ98dOWf7D6bQMR+FzJdlyi7mFznAgJpn6CyDvgrVns
+         ZWH58VDcDS1OI+IrsZy6nMauqC9zxGbXsOWc2HrUBepEqqi31ImDSiF1pLGJymT+tI/M
+         t76DZHdDGjDy1J3xvo6mJxuvrVAEHmTDaZIR4Rt1gz7Cm1rF1GEGcOFfJvQ8YYA7lG86
+         m/Dg==
+X-Forwarded-Encrypted: i=1; AJvYcCUMD12JHiZlslmuKJMDSGiuC2GLItkc4x6Jo/6FwQRHS7Rkp0FUzI2lc2QGxfF+1cPqPC4qoeDCbl6s@vger.kernel.org, AJvYcCVN034jlfIWcmHgcs6joWupWKHe5IdBQu5egshaOc8uP0riRkNPavjAwuEZnekchckQ7mbzvOfmASztXwQT@vger.kernel.org, AJvYcCXAUWRblpA8qEgaVmPsD87zme9ewDPXioreUaX3ysSEQb1ZGi2+uMIcjED1HS1BA2qW8J6uat5ar+/9@vger.kernel.org
+X-Gm-Message-State: AOJu0YymcK6LhIWgelMw7jDa5Lpb71GTBdtPkACJ75x+T4tZP5jX5z3I
+	cLK32ed8jrxWR1wxTjWBv88IXN2l9L+s8/lPkflP+DkJE4FuDwOQ
+X-Google-Smtp-Source: AGHT+IE9HgCJhRnWQptiUjrKLZ5T1fYrbMbRfHuh8vb+zUtRxBOmbU+I5UJ/VxKiwNcLxD7n/D+MFA==
+X-Received: by 2002:a05:687c:2c0f:b0:25e:940:e934 with SMTP id 586e51a60fabf-288874e3a90mr6210798fac.47.1729037953127;
+        Tue, 15 Oct 2024 17:19:13 -0700 (PDT)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-288daddf03csm621459fac.36.2024.10.15.17.19.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2024 17:19:11 -0700 (PDT)
+From: Chen Wang <unicornxw@gmail.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	unicorn_wang@outlook.com,
+	inochiama@outlook.com,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	kernel@dh-electronics.com
-Subject: [PATCH 2/2] ARM: dts: imx6dl: Add support for i.MX6DL DHCOM SoM on PDK2 carrier board
-Date: Wed, 16 Oct 2024 01:58:36 +0200
-Message-ID: <20241015235926.168582-2-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241015235926.168582-1-marex@denx.de>
-References: <20241015235926.168582-1-marex@denx.de>
+	linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	chunzhi.lin@sophgo.com
+Subject: [PATCH v4 0/3] pwm: Add pwm driver for Sophgo SG2042
+Date: Wed, 16 Oct 2024 08:19:03 +0800
+Message-Id: <cover.1729037302.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-Add support for the DH electronics i.MX6DL DHCOM SoM and a PDK2 evaluation
-board. The evaluation board features three serial ports, USB OTG, USB host
-with an USB hub, Fast or Gigabit ethernet, eMMC, uSD, SD, analog audio,
-PCIe and HDMI video output.
+From: Chen Wang <unicorn_wang@outlook.com>
 
-All of the aforementioned features except for mSATA are supported, mSATA
-is not available on i.MX6DL and is only available on DHCOM populated with
-i.MX6Q SoC which is already supported upstream.
+Add driver for pwm controller of Sophgo SG2042 SoC.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
+Thanks,
+Chen
+
 ---
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Cc: Hiago De Franco <hiago.franco@toradex.com>
-Cc: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Mathieu Othacehe <m.othacehe@gmail.com>
-Cc: Max Merchel <Max.Merchel@ew.tq-group.com>
-Cc: Michael Walle <mwalle@kernel.org>
-Cc: Parthiban Nallathambi <parthiban@linumiz.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm/boot/dts/nxp/imx/Makefile            |  1 +
- .../boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dts    | 20 +++++++++++++++++++
- 2 files changed, 21 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dts
 
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index 92e291603ea13..541eebb968cf4 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -73,6 +73,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-cubox-i-emmc-som-v15.dtb \
- 	imx6dl-cubox-i-som-v15.dtb \
- 	imx6dl-dfi-fs700-m60.dtb \
-+	imx6dl-dhcom-pdk2.dtb \
- 	imx6dl-dhcom-picoitx.dtb \
- 	imx6dl-eckelmann-ci4x10.dtb \
- 	imx6dl-emcon-avari.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dts
-new file mode 100644
-index 0000000000000..38235925257a7
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2024 Marek Vasut <marex@denx.de>
-+ *
-+ * DHCOM iMX6 variant:
-+ * DHCM-iMX6DL-C080-R102-F0819-E-SD-RTC-T-HS-I-01D2
-+ * DHCOM PCB number: 493-400 or newer
-+ * PDK2 PCB number: 516-400 or newer
-+ */
-+/dts-v1/;
-+
-+#include "imx6dl.dtsi"
-+#include "imx6qdl-dhcom-som.dtsi"
-+#include "imx6qdl-dhcom-pdk2.dtsi"
-+
-+/ {
-+	model = "DH electronics i.MX6DL DHCOM on Premium Developer Kit (2)";
-+	compatible = "dh,imx6dl-dhcom-pdk2", "dh,imx6dl-dhcom-som",
-+		     "fsl,imx6dl";
-+};
+Changes in v4:
+  The patch series is based on v6.12-rc1.
+
+  Updated driver to set property atomic of pwm_chip to true as per suggestion
+  from Sean.
+
+Changes in v3:
+  The patch series is catched up with v6.12-rc1. You can simply review or test
+  the patches at the link [3].
+
+  Add patch #3 for dts part change.
+
+Changes in v2:
+  The patch series is based on v6.11-rc6. You can simply review or test the
+  patches at the link [2].
+
+  Fixed following issues as per comments from Yixun Lan, Krzysztof Kozlowski
+  and Uwe Kleine-König, thanks.
+
+  - Some minor issues in dt-bindings.
+  - driver issues, use macros with name prefix for registers access; add
+    limitations comments; fixed potential calculation overflow problem;
+    add .get_state() callback and other miscellaneous code improvements.
+
+Changes in v1:
+  The patch series is based on v6.11-rc6. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1725536870.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1725931796.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/linux-riscv/cover.1728355974.git.unicorn_wang@outlook.com/ [3]
+---
+
+Chen Wang (3):
+  dt-bindings: pwm: sophgo: add PWM controller for SG2042
+  pwm: sophgo: add driver for Sophgo SG2042 PWM
+  riscv: sophgo: dts: add pwm controller for SG2042 SoC
+
+ .../bindings/pwm/sophgo,sg2042-pwm.yaml       |  51 +++++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   8 +
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-sophgo-sg2042.c               | 181 ++++++++++++++++++
+ 5 files changed, 251 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-sophgo-sg2042.c
+
+
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
 -- 
-2.45.2
+2.34.1
 
 
