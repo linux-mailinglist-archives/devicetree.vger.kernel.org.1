@@ -1,201 +1,268 @@
-Return-Path: <devicetree+bounces-112140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7B79A1312
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 22:00:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDE2B9A1369
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 22:09:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4BA31F22D4B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:00:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B7C3285834
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF442141CE;
-	Wed, 16 Oct 2024 20:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01864216A22;
+	Wed, 16 Oct 2024 20:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="0QnX+y+f"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lu+s/6fg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA2D12E75
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 20:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83ACB2144C4;
+	Wed, 16 Oct 2024 20:07:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729108830; cv=none; b=q0TXDvhIr8T/qvxJhcslog9YyP2PAz/03GFqJ7pb7oobFlcgJtWbf+4FebKvm53gRN5bOF0Pb6rLnZnqpQXeJM0+HxpzGvP8luKIIttXlS+uA9eXIuqmwXoQFZoUTRZ0Lz9Bu0ssHFyrpwUAM92MjFOpdP8hd/b4LfEmBwdcCFI=
+	t=1729109242; cv=none; b=NdW682aG9L8MyuxbL0/q90s1rs61odu8Z0T+zFec9mUOk3KE2nQd3DnvhwCUw5CNeifZe2kQB15YzYmS+5uQQxE5JhFY1kJ5/pKpdiUXbJa1XGKVKAndUU+uiUtExqlSSuIWLjyLbDITkJx7pKcgLBObQfrOydv26+xDV+YEgLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729108830; c=relaxed/simple;
-	bh=Yy+427w6SA0Uyrx7chHSxLxb5fuPBo1r7UcsPY7j9hA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ATzd4lLzJllhPyJOWgOCPvmQyvf5JgyV3IMuGA0Z3qFwSiRk0crI4bkPREs5AQuYWUqnjuuQ8yOThetGmlhnlQQeARSj+qy3K019V/JZnbq1CavB2x/K+suZTQYj5bG2Fp3PCbBQkL2JGrUJzF8VmBv+25V6odMjZ/fZym7i5GU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=0QnX+y+f; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	s=arc-20240116; t=1729109242; c=relaxed/simple;
+	bh=A0Q9tNyQ3iHXXqfLpZjkylS2FY8nuKymUen7oRtOtGo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Kv6ih8YISogMjk0eA5ZvoA1zry1xvuHQmbQOB87PN5wYqlK4EegNhNuvq2EBN9CMlVSEsdYHAA2ec/bRGQBlat36FVj3MNr3phH67bC/GTLkfPzaM9NboHTWGA7hiEKjMxlgx4pU8EHMI7/3gO+f1Hepxbm7no/7EeJsKHe0RSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lu+s/6fg; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729109238;
+	bh=A0Q9tNyQ3iHXXqfLpZjkylS2FY8nuKymUen7oRtOtGo=;
+	h=From:Subject:Date:To:Cc:From;
+	b=lu+s/6fg5EOnqGdZxUW8Y+0bKXROZnIM6tYtYPGQqbxnrr/RfGHC+z4y4MREkxxwS
+	 N6RO+GP2DQLTE3wDBLFygxqVIa7AslKyqPT3T0VZDCVbiVrp11J8BCkl+POMY4Hsxt
+	 qH9oniWjr/32ds9+9KENiAtl9O6ZULnmxCHsOa3zfPxl3tOUKmI88IyhETR94/luBE
+	 HoNRSvwPbmxkdvJLOD2f0R/icIsuX7f7HMWDRcJy8kD9jGz4RUEQ3vEtKVCRsw7yl8
+	 7UxDx9rPHspUrdZWnkNaEz1t0Wy41zLj8tpjlhOeSU/Elvk6zyXwghU0pIqrLRxCXF
+	 SzIoWfz5spCfQ==
+Received: from localhost (unknown [188.24.146.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A8C642C0436;
-	Thu, 17 Oct 2024 09:00:24 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1729108824;
-	bh=Yy+427w6SA0Uyrx7chHSxLxb5fuPBo1r7UcsPY7j9hA=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=0QnX+y+fGDKmNo9ux8OzlVHONdJVDwcUslIkKAa5/OP1ULgkXbmOb7X1kBRAYc7Ec
-	 42bW2ejPD3lovvci9vlUbfgYzAtxxiEd8poEnX0mbj+gpjub62wyP8Pp5yooPSTEHO
-	 Tg5YGz83xeA1CNPnMSOTNcctV1nnEYUE/2nJxkpe6rd7WibVc2qNAnDPuXqCZF5myV
-	 7Uzdg+6qK3f1O9lo/Z1Jr1sXF2jsmy9LEmR7lBD7dtN5+R2XJG4MG7z5TfVHqRUq7Z
-	 WgwtPkRktF9Cj1ULv/rC5obIX8/cuBrYDBlPY/6xo5OMhIecKudngXRm5knCkWJkJS
-	 botZYZ/BZlteA==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B67101b580001>; Thu, 17 Oct 2024 09:00:24 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1544.11; Thu, 17 Oct 2024 09:00:24 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.48; Thu, 17 Oct 2024 09:00:24 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.011; Thu, 17 Oct 2024 09:00:24 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "andi.shyti@kernel.org" <andi.shyti@kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "lee@kernel.org"
-	<lee@kernel.org>, "sre@kernel.org" <sre@kernel.org>,
-	"tsbogend@alpha.franken.de" <tsbogend@alpha.franken.de>,
-	"markus.stockhausen@gmx.de" <markus.stockhausen@gmx.de>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v6 3/6] dt-bindings: mfd: Add Realtek RTL9300 switch
- peripherals
-Thread-Topic: [PATCH v6 3/6] dt-bindings: mfd: Add Realtek RTL9300 switch
- peripherals
-Thread-Index: AQHbH1XyRCVZAOY+h0G2xpDtEx4lKrKIFFgAgADcY4CAAAK9gA==
-Date: Wed, 16 Oct 2024 20:00:23 +0000
-Message-ID: <c5f93d92-6bba-41f7-98e0-1e21d61d5941@alliedtelesis.co.nz>
-References: <20241015225948.3971924-1-chris.packham@alliedtelesis.co.nz>
- <20241015225948.3971924-4-chris.packham@alliedtelesis.co.nz>
- <5o77wkohvujnfnm4xm73b65gpx5by7chhyhdbuw3dkpota53us@5x6jlcabjoes>
- <1c7abf59-588b-4679-8638-7e9985f133d1@alliedtelesis.co.nz>
-In-Reply-To: <1c7abf59-588b-4679-8638-7e9985f133d1@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7582E3B684A33745A5E735E3207E9CBE@atlnz.lc>
-Content-Transfer-Encoding: base64
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 43C0717E36C7;
+	Wed, 16 Oct 2024 22:07:18 +0200 (CEST)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v10 0/3] Add initial support for the Rockchip RK3588 HDMI
+ TX Controller
+Date: Wed, 16 Oct 2024 23:06:50 +0300
+Message-Id: <20241016-b4-rk3588-bridge-upstream-v10-0-87ef92a6d14e@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=67101b58 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=gEfo2CItAAAA:8 a=TXPRNiiwDGDrT-YAXYQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22
-X-SEG-SpamProfiler-Score: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANocEGcC/43RS07DMBAG4KsgrzGah19hxT0QC9uxaUTbVE6JQ
+ FXvjtMFjVBksZzx+LPm90VMqQxpEs8PF1HSPEzDeKwFwuODiDt/fE9y6GtDEJACAyiDkuWDtXM
+ ylKGv55+n6VySP0hPNvicMbgcRb1/KikPXzf89a3Wu2E6j+X79taMS/c/6owSZDYEbDUTU3iJ4
+ 37vw1j8UxwPYpFnumuurVHVuuyNtl4l1JsarzXb0rhqBnoTfIA+2rilqZWGXUtTi6bQRks1S9V
+ taXqlcXNTvWyqgUOKCZDNlmbuWgempZmqeUZyOSBw2szNrjRULc1WjQKycsgWibc0t9KomZurm
+ mPNLlKMTHpL6341BISW1i2/4KKyfZ+gTv/VrtfrD8sbRsU3AwAA
+X-Change-ID: 20240601-b4-rk3588-bridge-upstream-a27baff1b8fc
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Simona Vetter <simona@ffwll.ch>, 
+ Simona Vetter <simona.vetter@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, kernel@collabora.com, 
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>, 
+ Algea Cao <algea.cao@rock-chips.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
 
-DQpPbiAxNy8xMC8yNCAwODo1MCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4NCj4gT24gMTYvMTAv
-MjQgMTk6NDEsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+PiBPbiBXZWQsIE9jdCAxNiwg
-MjAyNCBhdCAxMTo1OTo0NUFNICsxMzAwLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPj4+ICtwcm9w
-ZXJ0aWVzOg0KPj4+ICvCoCBjb21wYXRpYmxlOg0KPj4+ICvCoMKgwqAgb25lT2Y6DQo+Pj4gK8Kg
-wqDCoMKgwqAgLSBpdGVtczoNCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gZW51bToNCj4+PiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSByZWFsdGVrLHJ0bDkzMDJiLWkyYw0KPj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIHJlYWx0ZWsscnRsOTMwMmMtaTJjDQo+Pj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gcmVhbHRlayxydGw5MzAzLWkyYw0KPj4+ICvCoMKg
-wqDCoMKgwqDCoMKgwqAgLSBjb25zdDogcmVhbHRlayxydGw5MzAxLWkyYw0KPj4+ICvCoMKgwqDC
-oMKgIC0gY29uc3Q6IHJlYWx0ZWsscnRsOTMwMS1pMmMNCj4+PiArDQo+Pj4gK8KgIHJlZzoNCj4+
-PiArwqDCoMKgIGRlc2NyaXB0aW9uOiBSZWdpc3RlciBvZmZzZXQgYW5kIHNpemUgdGhpcyBJMkMg
-Y29udHJvbGxlci4NCj4+PiArDQo+Pj4gK8KgICIjYWRkcmVzcy1jZWxscyI6DQo+Pj4gK8KgwqDC
-oCBjb25zdDogMQ0KPj4+ICsNCj4+PiArwqAgIiNzaXplLWNlbGxzIjoNCj4+PiArwqDCoMKgIGNv
-bnN0OiAwDQo+Pj4gKw0KPj4+ICtwYXR0ZXJuUHJvcGVydGllczoNCj4+PiArwqAgJ15pMmNAWzAt
-N10kJzoNCj4+PiArwqDCoMKgICRyZWY6IC9zY2hlbWFzL2kyYy9pMmMtY29udHJvbGxlci55YW1s
-DQo+Pj4gK8KgwqDCoCB1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+Pj4gKw0KPj4+ICvC
-oMKgwqAgcHJvcGVydGllczoNCj4+PiArwqDCoMKgwqDCoCByZWc6DQo+Pj4gK8KgwqDCoMKgwqDC
-oMKgIGRlc2NyaXB0aW9uOiBUaGUgU0RBIHBpbiBhc3NvY2lhdGVkIHdpdGggdGhlIEkyQyBidXMu
-DQo+Pj4gK8KgwqDCoMKgwqDCoMKgIG1heEl0ZW1zOiAxDQo+Pj4gKw0KPj4+ICvCoMKgwqAgcmVx
-dWlyZWQ6DQo+Pj4gK8KgwqDCoMKgwqAgLSByZWcNCj4+PiArDQo+Pj4gK3JlcXVpcmVkOg0KPj4+
-ICvCoCAtIGNvbXBhdGlibGUNCj4+PiArwqAgLSByZWcNCj4+PiArDQo+Pj4gK3VuZXZhbHVhdGVk
-UHJvcGVydGllczogZmFsc2UNCj4+IFRoaXMgaGFzIHRvIGJlOiBhZGRpdGlvbmFsUHJvcGVydGll
-czogZmFsc2UNCj4NCj4gSG1tLCB3aGVuIEkgZG8gdGhhdCB0aGUgZHRfYmluZGluZ19jaGVjayBj
-b21wbGFpbnMNCj4NCj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yZWFs
-dGVrLHJ0bDkzMDEtc3dpdGNoLmV4YW1wbGUuZHRiOiANCj4gZXRoZXJuZXQtc3dpdGNoQDFiMDAw
-MDAwOiBpMmNAMzZjOmkyY0AwOiAnI2FkZHJlc3MtY2VsbHMnLCANCj4gJyNzaXplLWNlbGxzJywg
-J2dwaW9AMjAnIGRvIG5vdCBtYXRjaCBhbnkgb2YgdGhlIHJlZ2V4ZXM6IA0KPiAncGluY3RybC1b
-MC05XSsnDQo+IMKgwqDCoMKgwqDCoMKgIGZyb20gc2NoZW1hICRpZDogDQo+IGh0dHA6Ly9kZXZp
-Y2V0cmVlLm9yZy9zY2hlbWFzL21mZC9yZWFsdGVrLHJ0bDkzMDEtc3dpdGNoLnlhbWwjDQo+IERv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcmVhbHRlayxydGw5MzAxLXN3aXRj
-aC5leGFtcGxlLmR0YjogDQo+IGV0aGVybmV0LXN3aXRjaEAxYjAwMDAwMDogaTJjQDM2YzppMmNA
-MjogJyNhZGRyZXNzLWNlbGxzJywgDQo+ICcjc2l6ZS1jZWxscycsICdncGlvQDIwJyBkbyBub3Qg
-bWF0Y2ggYW55IG9mIHRoZSByZWdleGVzOiANCj4gJ3BpbmN0cmwtWzAtOV0rJw0KPiDCoMKgwqDC
-oMKgwqDCoCBmcm9tIHNjaGVtYSAkaWQ6IA0KPiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1h
-cy9tZmQvcmVhbHRlayxydGw5MzAxLXN3aXRjaC55YW1sIw0KPiBEb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvbWZkL3JlYWx0ZWsscnRsOTMwMS1zd2l0Y2guZXhhbXBsZS5kdGI6IA0K
-PiBldGhlcm5ldC1zd2l0Y2hAMWIwMDAwMDA6IGkyY0AzODg6aTJjQDc6ICcjYWRkcmVzcy1jZWxs
-cycsIA0KPiAnI3NpemUtY2VsbHMnLCAnZ3Bpb0AyMCcgZG8gbm90IG1hdGNoIGFueSBvZiB0aGUg
-cmVnZXhlczogDQo+ICdwaW5jdHJsLVswLTldKycNCj4gwqDCoMKgwqDCoMKgwqAgZnJvbSBzY2hl
-bWEgJGlkOiANCj4gaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvbWZkL3JlYWx0ZWsscnRs
-OTMwMS1zd2l0Y2gueWFtbCMNCj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21m
-ZC9yZWFsdGVrLHJ0bDkzMDEtc3dpdGNoLmV4YW1wbGUuZHRiOiANCj4gaTJjQDM2YzogaTJjQDA6
-ICcjYWRkcmVzcy1jZWxscycsICcjc2l6ZS1jZWxscycsICdncGlvQDIwJyBkbyBub3QgDQo+IG1h
-dGNoIGFueSBvZiB0aGUgcmVnZXhlczogJ3BpbmN0cmwtWzAtOV0rJw0KPiDCoMKgwqDCoMKgwqDC
-oCBmcm9tIHNjaGVtYSAkaWQ6IA0KPiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9pMmMv
-cmVhbHRlayxydGw5MzAxLWkyYy55YW1sIw0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvbWZkL3JlYWx0ZWsscnRsOTMwMS1zd2l0Y2guZXhhbXBsZS5kdGI6IA0KPiBpMmNAMzZj
-OiBpMmNAMjogJyNhZGRyZXNzLWNlbGxzJywgJyNzaXplLWNlbGxzJywgJ2dwaW9AMjAnIGRvIG5v
-dCANCj4gbWF0Y2ggYW55IG9mIHRoZSByZWdleGVzOiAncGluY3RybC1bMC05XSsnDQo+IMKgwqDC
-oMKgwqDCoMKgIGZyb20gc2NoZW1hICRpZDogDQo+IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hl
-bWFzL2kyYy9yZWFsdGVrLHJ0bDkzMDEtaTJjLnlhbWwjDQo+IERvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9tZmQvcmVhbHRlayxydGw5MzAxLXN3aXRjaC5leGFtcGxlLmR0YjogDQo+
-IGkyY0AzODg6IGkyY0A3OiAnI2FkZHJlc3MtY2VsbHMnLCAnI3NpemUtY2VsbHMnLCAnZ3Bpb0Ay
-MCcgZG8gbm90IA0KPiBtYXRjaCBhbnkgb2YgdGhlIHJlZ2V4ZXM6ICdwaW5jdHJsLVswLTldKycN
-Cj4gwqDCoMKgwqDCoMKgwqAgZnJvbSBzY2hlbWEgJGlkOiANCj4gaHR0cDovL2RldmljZXRyZWUu
-b3JnL3NjaGVtYXMvaTJjL3JlYWx0ZWsscnRsOTMwMS1pMmMueWFtbCMNCj4NCj4gVGhvc2UgcHJv
-cGVydGllcyBzaG91bGQgYmUgZ2V0dGluZyBkZWZpbmVkIHZpYSB0aGUgaTJjLWNvbnRyb2xsZXIu
-eWFtbCANCj4gc2NoZW1hIHNvIEkgbXVzdCBiZSBtaXNzaW5nIHNvbWV0aGluZywgSSdtIGp1c3Qg
-bm90IHN1cmUgd2hhdC4NCg0KU2lsbHkgbWUuIEkgcmVtb3ZlZCB0aGUgd3JvbmcgdW5ldmFsdWF0
-ZWRQcm9wZXJ0aWVzLiBJZiBJIGZpeCB1cCB0aGUgb25lIA0KeW91IGFjdHVhbGx5IHBvaW50ZWQg
-b3V0IGl0J3MgZmluZS4gdjcgY29taW5nIHNvb24uDQoNCj4NCj4+DQo+Pj4gKw0KPj4+ICtleGFt
-cGxlczoNCj4+PiArwqAgLSB8DQo+Pj4gK8KgwqDCoCBpMmNAMzZjIHsNCj4+PiArwqDCoMKgwqDC
-oCBjb21wYXRpYmxlID0gInJlYWx0ZWsscnRsOTMwMS1pMmMiOw0KPj4+ICvCoMKgwqDCoMKgIHJl
-ZyA9IDwweDM2YyAweDE0PjsNCj4+PiArwqDCoMKgwqDCoCAjYWRkcmVzcy1jZWxscyA9IDwxPjsN
-Cj4+PiArwqDCoMKgwqDCoCAjc2l6ZS1jZWxscyA9IDwwPjsNCj4+PiArDQo+Pj4gK8KgwqDCoMKg
-wqAgaTJjQDAgew0KPj4+ICvCoMKgwqDCoMKgwqDCoCByZWcgPSA8MD47DQo+Pj4gK8KgwqDCoMKg
-wqDCoMKgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4+ICvCoMKgwqDCoMKgwqDCoCAjc2l6ZS1j
-ZWxscyA9IDwwPjsNCj4+PiArwqDCoMKgwqDCoMKgwqAgZ3Bpb0AyMCB7DQo+Pj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoCBjb21wYXRpYmxlID0gIm54cCxwY2E5NTU1IjsNCj4+PiArwqDCoMKgwqDCoMKg
-wqDCoMKgIGdwaW8tY29udHJvbGxlcjsNCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgICNncGlvLWNl
-bGxzID0gPDI+Ow0KPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MjA+Ow0KPj4+ICvC
-oMKgwqDCoMKgwqDCoCB9Ow0KPj4+ICvCoMKgwqDCoMKgIH07DQo+Pj4gKw0KPj4+ICvCoMKgwqDC
-oMKgIGkyY0AyIHsNCj4+PiArwqDCoMKgwqDCoMKgwqAgcmVnID0gPDI+Ow0KPj4+ICvCoMKgwqDC
-oMKgwqDCoCAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+PiArwqDCoMKgwqDCoMKgwqAgI3NpemUt
-Y2VsbHMgPSA8MD47DQo+Pj4gK8KgwqDCoMKgwqDCoMKgIGdwaW9AMjAgew0KPj4+ICvCoMKgwqDC
-oMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJueHAscGNhOTU1NSI7DQo+Pj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoCBncGlvLWNvbnRyb2xsZXI7DQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoCAjZ3Bpby1j
-ZWxscyA9IDwyPjsNCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9IDwweDIwPjsNCj4+PiAr
-wqDCoMKgwqDCoMKgwqAgfTsNCj4+PiArwqDCoMKgwqDCoCB9Ow0KPj4+ICvCoMKgwqAgfTsNCj4+
-PiArwqDCoMKgIGkyY0AzODggew0KPj4+ICvCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAicmVhbHRl
-ayxydGw5MzAxLWkyYyI7DQo+Pj4gK8KgwqDCoMKgwqAgcmVnID0gPDB4Mzg4IDB4MTQ+Ow0KPj4+
-ICvCoMKgwqDCoMKgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4+ICvCoMKgwqDCoMKgICNzaXpl
-LWNlbGxzID0gPDA+Ow0KPj4+ICsNCj4+PiArwqDCoMKgwqDCoCBpMmNANyB7DQo+Pj4gK8KgwqDC
-oMKgwqDCoMKgIHJlZyA9IDw3PjsNCj4+PiArwqDCoMKgwqDCoMKgwqAgI2FkZHJlc3MtY2VsbHMg
-PSA8MT47DQo+Pj4gK8KgwqDCoMKgwqDCoMKgICNzaXplLWNlbGxzID0gPDA+Ow0KPj4+ICvCoMKg
-wqDCoMKgIH07DQo+Pj4gK8KgwqDCoCB9Ow0KPj4gWW95IGhhdmUgbm93IG11bHRpcGxlIHNhbWUg
-ZXhhbXBsZXMuIEtlZXAgb25seSBvbmUsIGNvbXBsZXRlIGluIHRoZSANCj4+IHBhcmVudA0KPj4g
-c2NoZW1hLg0KPg0KPiBPSy4gSSdsbCBrZWVwIG9uZSBleGFtcGxlIG9mIGEgY29udHJvbGxlciB3
-aXRoIGEgbm9uLXplcm8gY2hhbm5lbCBpbiANCj4gdGhlIGkyYyBiaW5kaW5nIGFuZCBsZWF2ZSBh
-IG1vcmUgY29tcGxldGUgZXhhbXBsZSBpbiB0aGUgbWZkLg0KPg0KPj4+IGRpZmYgLS1naXQgDQo+
-Pj4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3JlYWx0ZWsscnRsOTMw
-MS1zd2l0Y2gueWFtbCANCj4+PiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9t
-ZmQvcmVhbHRlayxydGw5MzAxLXN3aXRjaC55YW1sDQo+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQN
-Cj4+PiBpbmRleCAwMDAwMDAwMDAwMDAuLmYwNTMzMDNhYjFlNg0KPj4+IC0tLSAvZGV2L251bGwN
-Cj4+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3JlYWx0ZWss
-cnRsOTMwMS1zd2l0Y2gueWFtbA0KPj4+IEBAIC0wLDAgKzEsMTE0IEBADQo+Pj4gKyMgU1BEWC1M
-aWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPj4+ICsl
-WUFNTCAxLjINCj4+IEJlc3QgcmVnYXJkcywNCj4+IEtyenlzenRvZg0KPj4=
+The Rockchip RK3588 SoC family integrates the Synopsys DesignWare HDMI
+2.1 Quad-Pixel (QP) TX controller, which is a new IP block, quite
+different from those used in the previous generations of Rockchip SoCs.
+
+The controller supports the following features, among others:
+
+* Fixed Rate Link (FRL)
+* Display Stream Compression (DSC)
+* 4K@120Hz and 8K@60Hz video modes
+* Variable Refresh Rate (VRR) including Quick Media Switching (QMS)
+* Fast Vactive (FVA)
+* SCDC I2C DDC access
+* Multi-stream audio
+* Enhanced Audio Return Channel (EARC)
+
+This is the last component that needs to be supported in order to enable
+the HDMI output functionality on the RK3588 based SBCs, such as the
+RADXA Rock 5B.  The other components are the Video Output Processor
+(VOP2) and the Samsung IP based HDMI/eDP TX Combo PHY, for which basic
+support has been already made available via [1] and [2], respectively.
+
+Please note this is a reworked version of the original series, which
+relied on a commonized dw-hdmi approach.  Since the general consensus
+was to handle it as an entirely new IP, I dropped all patches related to
+the old dw-hdmi and Rockchip glue code - a few of them might still make
+sense as general improvements and will be submitted separately.
+
+It's worth mentioning the HDMI output support is currently limited to
+RGB output up to 4K@60Hz, without audio, CEC or any of the HDMI 2.1
+specific features.  Moreover, the VOP2 driver is not able to properly
+handle all display modes supported by the connected screens, e.g. it
+doesn't cope with non-integer refresh rates.
+
+A possible workaround consists of enabling the display controller to
+make use of the clock provided by the HDMI PHY PLL.  This is still work
+in progress and will be submitted later, as well as the required DTS
+updates.
+
+To facilitate testing and experimentation, all HDMI output related
+patches, including those part of this series, are available at [3].
+
+So far I could only verify this on the RADXA Rock 5B board.
+
+Thanks,
+Cristian
+
+[1]: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
+[2]: 553be2830c5f ("phy: rockchip: Add Samsung HDMI/eDP Combo PHY driver")
+[3]: https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-hdmi-bridge-v6.12-rc2
+[4]: https://lore.kernel.org/lkml/20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@collabora.com/
+
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Changes in v10:
+- Used the .remove() callback instead of .remove_new() and dropped the
+  superfluous white space after .probe assignment (Uwe)
+- Link to v9: https://lore.kernel.org/r/20241010-b4-rk3588-bridge-upstream-v9-0-68c47dde0410@collabora.com
+
+Changes in v9:
+- Introduced HOTPLUG_DEBOUNCE_MS constant and used it for both HPD
+  high/low IRQs handling (Jonas)
+- Made use of drm_hdmi_compute_mode_clock() instead of assuming TMDS
+  character rate does always match pixel clock (Maxime)
+- Collected R-b tags from Maxime
+- Rebased series onto v6.12-rc2
+- Link to v8: https://lore.kernel.org/r/20240929-b4-rk3588-bridge-upstream-v8-0-83538c2cc325@collabora.com
+
+Changes in v8:
+- Added R-b tag from Maxime on the HDMI controller library patch
+- Dropped dw_hdmi_qp_rockchip_encoder_mode_set() from the platform
+  driver according to Maxime's review, the ref_clk rate adjustment is
+  already handled in dw_hdmi_qp_rockchip_encoder_enable()
+- Link to v7: https://lore.kernel.org/r/20240914-b4-rk3588-bridge-upstream-v7-0-2b1348137123@collabora.com
+
+Changes in v7:
+- Added R-b from Krzysztof on DT binding patch (also dropped the
+  superfluous minItems property from resets)
+- Fixed a sparse warning reported by kernel test robot when returning
+  the error pointer from devm_platform_ioremap_resource() (made use of
+  ERR_CAST() helper)
+- Simplified locking in dw_hdmi_qp_i2c_xfer() via guard() (Markus)
+- Dropped high TMDS clock ratio and scrambling support for now (will be
+  submitted separately when ready)
+- Introduced dw_hdmi_qp_bridge_mode_valid() function to filter out
+  unsupported mode clocks
+- Dropped the superfluous 'display' parameter of ->init() in struct
+  dw_hdmi_qp_phy_ops
+- Improved error handling in dw_hdmi_qp_bridge_atomic_enable()
+- Handled dw_hdmi_qp_i2c_adapter() errors as fatal for bridge setup
+- Rebased series onto next-20240913
+- Updated ROCKCHIP_DW_HDMI_QP kconfig to select the recently introduced
+  DRM_BRIDGE_CONNECTOR dependency (Heiko)
+- Link to v6: https://lore.kernel.org/r/20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com
+
+Changes in v6:
+- Improved scrambling setup by using a delayed work queue in conjunction
+  with the bridge ->detect() callback to support use cases like modetest
+  where ->atomic_enable() is not called on reconnection (Maxime)
+- Explicitly include workqueue.h in platform driver
+- Dropped the common binding patch after merging its content into RK
+  specific one; also moved the clocks & irq setup from the bridge
+  library to the platform driver
+- Got rid of the phy-names property and fixed indentation in the binding
+  example (Krzysztof)
+- Link to v5: https://lore.kernel.org/r/20240831-b4-rk3588-bridge-upstream-v5-0-9503bece0136@collabora.com
+
+Changes in v5:
+- Renamed Rockchip binding file to match the SoC compatible (Conor)
+- Made all clocks mandatory (Conor)
+- Renamed rockchip,vo1-grf property to rockchip,vo-grf as future SoCs
+  (e.g. RK3576) may refer to it as vo0 instead of vo1
+- Reworked the setup of high TMDS clock ratio and scrambling
+  * Dropped curr_conn & pix_clock from struct dw_hdmi_qp
+  * Also removed exported function dw_hdmi_qp_set_high_tmds_clock_ratio()
+  * A few additional (mostly cosmetic) changes
+- Link to v4: https://lore.kernel.org/r/20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com
+
+Changes in v4:
+- Added Tested-by tag from Heiko
+- Updated "[PATCH v3 3/5] dt-bindings: display: rockchip: Add schema for
+  RK3588 HDMI TX Controller" according to Rob's review
+  * Referenced full path for synopsys,dw-hdmi-qp.yaml
+  * Moved ports to common schema and updated descriptions
+  * Renamed rockchip,vo1_grf to rockchip,vo1-grf and updated "[PATCH v3
+    5/5] drm/rockchip: Add basic RK3588 HDMI output support" accordingly
+- Dropped "[PATCH v3 4/5] drm/rockchip: Explicitly include bits header"
+  already applied by Heiko
+- Link to v3: https://lore.kernel.org/r/20240807-b4-rk3588-bridge-upstream-v3-0-60d6bab0dc7c@collabora.com
+
+Changes in v3:
+- Reintegrated bridge patchset [4] to allow automated testing and
+  simplify reviewing (Krzysztof); the after-split changes were:
+  * Made use of the new bridge HDMI helpers indicated by Dmitry
+  * Dropped connector creation to ensure driver does only support
+    DRM_BRIDGE_ATTACH_NO_CONNECTOR
+  * Updated I2C segment handling to properly handle connected DVI
+    displays (reported and fixed by Heiko)
+- Updated schema for DW HDMI QP TX IP providing some hardware details
+- Updated patch for DW HDMI QP TX Controller module referring to a
+  support library instead of a platform driver (Krzysztof)
+- Drop empty dw_hdmi_qp_unbind() export from the library and related
+  usage from RK platform driver
+- Drop Fixes tag from "drm/rockchip: Explicitly include bits header"
+  patch (Krzysztof)
+- Link to v2: https://lore.kernel.org/r/20240801-b4-rk3588-bridge-upstream-v2-0-9fa657a4e15b@collabora.com
+
+Changes in v2:
+- Reworked the glue code for RK3588 into a new Rockchip platform driver
+- Moved bridge driver patches to a separate series [4]
+- Dropped all the patches touching to the old dw-hdmi and RK platform
+  drivers
+- Added connector creation to ensure the HDMI QP bridge driver does only
+  support DRM_BRIDGE_ATTACH_NO_CONNECTOR
+- Link to v1: https://lore.kernel.org/r/20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com
+
+---
+Cristian Ciocaltea (3):
+      drm/bridge: synopsys: Add DW HDMI QP TX Controller support library
+      dt-bindings: display: rockchip: Add schema for RK3588 HDMI TX Controller
+      drm/rockchip: Add basic RK3588 HDMI output support
+
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml       | 188 +++++
+ drivers/gpu/drm/bridge/synopsys/Kconfig            |   8 +
+ drivers/gpu/drm/bridge/synopsys/Makefile           |   2 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       | 647 ++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h       | 834 +++++++++++++++++++++
+ drivers/gpu/drm/rockchip/Kconfig                   |   9 +
+ drivers/gpu/drm/rockchip/Makefile                  |   1 +
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 424 +++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   1 +
+ include/drm/bridge/dw_hdmi_qp.h                    |  32 +
+ 11 files changed, 2148 insertions(+)
+---
+base-commit: 8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b
+change-id: 20240601-b4-rk3588-bridge-upstream-a27baff1b8fc
+
 
