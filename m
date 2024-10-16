@@ -1,128 +1,178 @@
-Return-Path: <devicetree+bounces-112023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE9319A0B81
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:34:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C38E9A0B90
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:36:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C4C0286588
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:34:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDAA41F26D86
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EFC20897D;
-	Wed, 16 Oct 2024 13:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A81208982;
+	Wed, 16 Oct 2024 13:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="aOIvnR6R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UVjwbspq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A544205E3C
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 13:34:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20088205E3C;
+	Wed, 16 Oct 2024 13:36:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729085670; cv=none; b=cSV5KDfexpvMestQlra6MfB+Sr/CMKx0aqXbHpNen9NPCufPJsony64STgNojokwQO45d1RgGQCiTJXsxLt5fjQTUwZsWArDi8lAC5sW7hGaqwtWO5hzIe0FTqOv8y1h9Dqnp4/9k0XNHumUD3P19jyBRX6U4Ic9mut8T16/Fr0=
+	t=1729085767; cv=none; b=lIKpesviM19VgRBO6jsvjsdjxiBSCdo6wpWolwau/yzDPAMALxNSAe0eUKmtid50VY1cslJ8wTkmvO0/VWc76YxqXJKT6ikqH4AHjD+56nHrgd1Sx1BraatUS+f47WuKnvH8d9c3tg+RFXEByjOZIc6H5iPQ8W6AXq6XDMRZqnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729085670; c=relaxed/simple;
-	bh=4TDceqBwB5/CSA70st1bX9f2C9Pa3VHqCT+1UuQ4cko=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=knZj/FubC3I9L1lg6D1PzRzfDfrYKD0ZmEPhImPD/p/iAAPEnGuJMhnItzpUBwLbounkzUk5lQbli4aGj9G2KEjot4PXFcW62fD6A4QF1JsOWt2Qksxev9MT089jOXSL/qIF/7yyUXKIKFTO+Bi/yqMEeBkPZ7E3sG0ujjXrBkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=aOIvnR6R; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7b11692cbcfso492327085a.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 06:34:29 -0700 (PDT)
+	s=arc-20240116; t=1729085767; c=relaxed/simple;
+	bh=Hzk+WfXzj1Rao4KTCzrr0DHS2W/zA3JabpGR+nqZbT0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=BirSctGaseZEqqe5+TuUxE17QGjVnwkyZpaClLN9AvRejroNAPuMJ5z04uWHBo/OWF44AZ9JzNU8C7j/TT0jbY8JYWP8f3QT502JtlBIdu9hyHacMOpJm9zJVsoFUIZSr1vg9nWyaGAc/S5De22pnoe2OF0dKSO6a9XSaGCT+B0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UVjwbspq; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5c96936065dso4906747a12.3;
+        Wed, 16 Oct 2024 06:36:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek.ca; s=google; t=1729085668; x=1729690468; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=60BUvf9HqnbeuKt+3QuiFsp8g1MCOzdKxeoyAqr2mHQ=;
-        b=aOIvnR6RnBFlhG54TZOCTmd5zWkDcsruHzmDFHxA/cHayDDY9vjoJ+Ewz0GbdWWCwi
-         81jLcH/yfB1DIYvgiUAfMKEYjC2mfSHI3McJM99AoG0TkKG8b/lM/dhgRyy4+kSSwImD
-         euejiFlFL7apjXevpIw5bta55dtfzb99nu5V9bD+/xTyKAg7vHJieJTzZJzKat82CEE1
-         rfIJuGNInlTq18Cheu3aco4thaN+pZMKd0KQ0LVPpEYBe4cEPDQiL2x6eoWIqn8g0olS
-         yoBImiRP/l/lkhT0h768uMII0Y47JCzM6Ddhpoc4GyenI6Uk7DYQ8psiyknVkxEput/9
-         H3mg==
+        d=gmail.com; s=20230601; t=1729085764; x=1729690564; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Hzk+WfXzj1Rao4KTCzrr0DHS2W/zA3JabpGR+nqZbT0=;
+        b=UVjwbspqKSVcAw+LOQUWDf6bGtFUzpZa3jcJVHDOiLld7K9B6OYdV93JAGpMFUz9i4
+         QfsvdB1NGkgdKt8fHHvbp3gv6l4M1HaMYmN8W5R0LUCsGJlbnXYcTXckD/flNB+iixPH
+         aa9kXtF/lLKuSl8UrYEVLKhD5Lq0dqTug/JWkAJA8AorU5nAgdgl3ZUxKMB3PSxkea7E
+         QlxHp9NK/x/yhpGw7XQoeaU31AA30Yu5gmXasoSIagc/ELW7700d84iQY00dZcHkt9lV
+         NsZVgYYXpktAZWJilA6j+qq6fwyImo0BGdoy/4rfMm5SBj6Ssy4FeVS3zt3dzZ4+UiX2
+         EfLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729085668; x=1729690468;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=60BUvf9HqnbeuKt+3QuiFsp8g1MCOzdKxeoyAqr2mHQ=;
-        b=j/tTxRIH/CbR4L9QHScV3ceP6uaHzU0iRIR79qTHbrBamp57Yn08l5zPazFCKYR/L4
-         7UfSnBa5CBi85PFhE+7WjpcOuByXjS6r5USD9qb1Vo16KRb7a98liA4Ogvq04U3fc6pn
-         alAkNIUDEDKnlb/pqbu24cCE9nxhVimwVdhaI9cr+wVeoHVcKURoamu1fJeBN/77oLjN
-         A3riHApbxtbyfwOz3Bto4zatSlCKbqUzqw/rmIr8uI8I9t6jeyKQbguwd4m6Jt18RpUN
-         7aQ2iXnYIpYo7Ty212shJjL3TSSh2RFabMlybFDskrewpnzb4BWPTPG/pIDn9tb8NDTC
-         as3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX39RR3rNVKWPYp+wyF+1b7nP60RCcb5bWYq6+Vxr+QN9m4549/xcwnK8UQXdpIuETlg1RGqslmL/e/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw10dMfY/wV56Teu+wvd9HVlVLUfmDY2DjYbw1UeTod7pkL4mbF
-	BUarqH1oIwDYIgHNjSruiSGUFTqLgzDY+VP3uKa/qA4InvzpSuUG1LqZjVf01U5XMjsme2go44r
-	4ue8=
-X-Google-Smtp-Source: AGHT+IGkt9nV2zFDYZc7p68pW9RiNJVGEAerCIXZvjfqozTAP2VCLEad5feNiIsFKsPyFiMd9pqK4g==
-X-Received: by 2002:a05:6214:4987:b0:6cb:e6fa:495d with SMTP id 6a1803df08f44-6cc2b8d371dmr52417516d6.21.1729085668158;
-        Wed, 16 Oct 2024 06:34:28 -0700 (PDT)
-Received: from [192.168.0.189] (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cc22961be9sm17901106d6.114.2024.10.16.06.34.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Oct 2024 06:34:27 -0700 (PDT)
-Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: x1e80100-crd: add rtc offset to
- set rtc time
-To: Johan Hovold <johan@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20241015004945.3676-1-jonathan@marek.ca>
- <20241015004945.3676-5-jonathan@marek.ca>
- <Zw9ijUy04cC4Qzio@hovoldconsulting.com>
-From: Jonathan Marek <jonathan@marek.ca>
-Message-ID: <663cf3f6-3254-e490-d557-a12aa41a1628@marek.ca>
-Date: Wed, 16 Oct 2024 09:31:00 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        d=1e100.net; s=20230601; t=1729085764; x=1729690564;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hzk+WfXzj1Rao4KTCzrr0DHS2W/zA3JabpGR+nqZbT0=;
+        b=bfh5ZFXb4da2WEJQOiDsHadhyY/htvrwAUcn4906wiRX6CcPtBc0vpIUfmId0DYvJk
+         KMWSsq5iRiQiOs08mRbWWqmotPaui7dAZv90FMp0H9D7SO9E3lbSYv5dz//Ah3Z6SVth
+         +EoUS7Fas0X+4u6RK2Z3LKGtHbOdVs2zLRCNxcqjjinHa/S9ZhLNPlBkIYgJx3hVZgUA
+         VPsss31r2yryzzIUuQ6nYJ9ayv5OaK/oFlzelRXwW/BoAhsnfdQNUde4EIC8D2GmNlF3
+         Mex6/dt8aAV0e2HzjdpwBWesr3rPigR9Ax7zjhhPgw6SSxgqVfJmO1SxCy3AhOeMtkSB
+         qpLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXoK6KtAzRsXe+zHnnO4ycaflreeVfdTq1KHQc9nDq+Trx+O3Mn14TmNRbI1m1pkgQ86LpstPV8haE8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGs5rorLBDqnF8fIZXufcpZiRiIEEXNcjHy4kUtSYIdUztY3ZN
+	i9fHR469axblB3KwfuRUOzagIAdBg8Go64DSBDlKrIusn96+1P/f
+X-Google-Smtp-Source: AGHT+IHUfBEf5Lp0Sfac6ZyEYZITcvtgWGcHUlOkyEMNCh7FAaVFC9eKuFAksWgLsSe4m8LJ1NpSOg==
+X-Received: by 2002:a17:907:1b94:b0:a99:daca:bed8 with SMTP id a640c23a62f3a-a99dada043cmr1075477166b.44.1729085764314;
+        Wed, 16 Oct 2024 06:36:04 -0700 (PDT)
+Received: from 9321da9b-2a50-4ed9-8c34-2480eb2669c2.fritz.box ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a2971917bsm184997566b.40.2024.10.16.06.36.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 06:36:04 -0700 (PDT)
+Message-ID: <d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com>
+Subject: Re: [PATCH 00/13] Input: adp5589: refactor and platform_data removal
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Nuno Sa <nuno.sa@analog.com>, Dmitry Torokhov
+ <dmitry.torokhov@gmail.com>,  Mike Frysinger <vapier@gentoo.org>, Dmitry
+ Torokhov <dtor@mail.ru>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>,  Lee Jones <lee@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Date: Wed, 16 Oct 2024 15:36:03 +0200
+In-Reply-To: <20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
+References: 
+	<20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <Zw9ijUy04cC4Qzio@hovoldconsulting.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 
-On 10/16/24 2:51 AM, Johan Hovold wrote:
-> On Mon, Oct 14, 2024 at 08:47:29PM -0400, Jonathan Marek wrote:
->> See commit e67b45582c5e for explanation.
-> 
-> It's good that you reference commit e67b45582c5e ("arm64: dts: qcom:
-> sc8280xp-crd: enable rtc") but your commit message still needs to be
-> self-contained and provide the explanation here in some form (e.g.
-> quoted or paraphrased).
-> 
-> Also spell out the commit summary in parenthesis when referring to
-> commits as I did above.
-> 
->> Note: the 0xbc offset is arbitrary, it just needs to not be already in use.
-> 
-> How did you verify that nothing is using this offset on this platform? I
-> assume we need someone with access to the docs to make sure it's not in
-> use as we did for sc8280xp.
-> 
+On Tue, 2024-10-01 at 15:41 +0200, Nuno Sa wrote:
+> This series aims to remove platform data dependency from the adp5589
+> driver (as no platform is really using it) and instead add support for
+> FW properties. Note that rows and columns for the keypad are being given
+> as masks and that was briefly discussed with Dmitry. For context
+> on why this is being done as mask [1].
+>=20
+> The first couple of patches are fixes that we may want to backport...
+>=20
+> [1]:
+> https://lore.kernel.org/linux-input/9db96c99c805e615ba40ca7fd3632174d1e8d=
+11f.camel@gmail.com/
+>=20
+> ---
+> Nuno Sa (13):
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix NULL pointer dere=
+ference
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix adp5589_gpio_get_=
+value()
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add chip_info structu=
+re
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: support gpi key event=
+s as 'gpio keys'
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: input: Document adp5589 and s=
+imilar devices
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add support for fw pr=
+operties
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add guard() notation
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: bail out on returned =
+error
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: refactor adp5589_read=
+()
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix coding style
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: unify adp_constants i=
+n info struct
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: make use of dev_err_p=
+robe()
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add regulator support
+>=20
+> =C2=A0.../devicetree/bindings/input/adi,adp5589.yaml=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 310 +++++
+> =C2=A0.../devicetree/bindings/trivial-devices.yaml=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 6 -
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 8 +
+> =C2=A0drivers/input/keyboard/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 3 +
+> =C2=A0drivers/input/keyboard/adp5589-keys.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1397 +++++++++++++------=
+-
+> =C2=A0include/linux/input/adp5589.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 180 ---
+> =C2=A06 files changed, 1254 insertions(+), 650 deletions(-)
+> ---
+> base-commit: c7bf046925dc5885d9c4d8fbcbb7e4e73665bfcf
+> change-id: 20240930-b4-dev-adp5589-fw-conversion-955b2f42da70
+> --
+>=20
+> Thanks!
+> - Nuno S=C3=A1
+>=20
 
-AFAIK qcom allocate things from the start of the SDAM, so allocating 
-from the end of the SDAM should be safe. And AFAIK this is supposed to 
-be a general purpose HLOS (linux/windows) SDAM block, so should be 
-mostly free to use.
+Hi Dmitry,
 
-(its possible windows uses this offset for something, I don't know about 
-that)
+Something really caught my attention now while checking 6.12 merge window. =
+It seems
+we have a new MFD device for adp5585 [1] which adds duplicated functionalit=
+y (that
+was already present in adp5589-keys.c). So, having this as MFD might makes =
+sense
+(even though it makes it harder to validate the keys and to make use of gpi=
+o-keys)
+but we are now duplicating GPIO support. Bottom line, not sure what we shou=
+ld do next
+and should I proceed for v2?
 
+Also ccing Lee and Bartosz...
 
+[1]: https://lore.kernel.org/lkml/20240816152738.GB5853@google.com/
 
+- Nuno S=C3=A1
 
