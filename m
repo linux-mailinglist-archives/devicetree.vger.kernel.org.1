@@ -1,156 +1,110 @@
-Return-Path: <devicetree+bounces-112044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7819A0DB6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:11:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E3929A0DCE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:16:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AAF1281678
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:11:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0338A1F234B0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E0CE20E019;
-	Wed, 16 Oct 2024 15:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F421F206066;
+	Wed, 16 Oct 2024 15:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="Ie8Bkr/u"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EKAlv8js"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B7220C032
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 15:11:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8E315CD58;
+	Wed, 16 Oct 2024 15:16:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729091510; cv=none; b=jZiFx2SDxPgSfhQ7ag2j8uEtLE6KOlK2upMnsWodgHRbrcpd2ly2TcHX01pKkXHbqADoT97ksN0n/R4DTdxpUaCYxWqqp1Y9i3muNK2BtKpCbWGtZGo0iKUJSTpj4jN1ry2t8JD6Gv4Y2gNlM52hAB2Sn90D/TeA7SRO8zsudFc=
+	t=1729091764; cv=none; b=pliDl1UW/y3O9UUbj3klDdHWZ4rybYai/61oBOJgjJKrGclfVxd5WItmA+uhwFWOPpHtf9uHLlMO4acmRArcF84VHcQmVlvJVSCG87Wa/0nm2f5kQ+Rlyb6wPGV2+oLyLpd+yp7ZuUEtuBWw9COk6AFvE/DNq1kuVYlvAs8327E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729091510; c=relaxed/simple;
-	bh=ckxdzGByTXJUietXC5uAvZOJ6fBo9bKDj5epsvwfcw8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=lhzlS9Id+PXzMo20UStOEj8qnRdD90+OKwT/7HBisPmXW4IAnLxxQhCo5ihT2fYzg9OR6s5fGTvjAASNBTCnQs7lfOW06OggaU44Ig90Ero7ng4zB4CKTos9vkVegGQXjhJQIcBArmIBBb1CG4U26FCqXn8lLCRV/iUIxp/9gOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=Ie8Bkr/u; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-20c9978a221so60757215ad.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 08:11:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1729091508; x=1729696308; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hEOEoYJF2/Ff1J+c4cDFgOoOmZPcjeqN5UTMVGgmwos=;
-        b=Ie8Bkr/uHLDpuEruVeg5GgTUdCIaP1spd0ATZ3M+JQVBE/mscGlYVxjg3UMOoHwaX2
-         XvhOZ5EHq5cBwaPz5+1aJAdqQRkOANMxO2bmJvOuvuVagpczXctkSyMzT2hBvkrcxdRq
-         Jig3ix1/wOtEOsyadvLFk3ogfQjH6FswTrJOsXm6romKDD5chPYQmbc+dzOQKm3ZVWhf
-         EhMDC4sx3USuJ7eAgUhN6nDZ9JBcdRFcSkhk57k0R7599K1q41nEPMdWAw3Wqn+s7pkP
-         DUg4vX6jEc+LJzL+DA0V67cIHzDwC6idTYQfC/+zumF8U733Bbk7AMYi670h+Nry7PGC
-         vM9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729091508; x=1729696308;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hEOEoYJF2/Ff1J+c4cDFgOoOmZPcjeqN5UTMVGgmwos=;
-        b=RKrTo7gRwSmJCKG2uQErNcFpOBNT7p+CWFLxIRO6bdkVhuNuXRDadGdDn+wh9qIYRG
-         cntuHw7gv8hGcT7xUdVOCMZRjJCJPgt/WdNb4F8L7UjDR8vsqwhtQVY/iDTurEzIbhya
-         4HXRfoo2g9F35ZiQqtrEbQ2dN7j50dkIa26DLZZgpGUVpr8ll1uY6FgLitmrgp7oPC+a
-         xYPY2YpefY6Zc6rODOwiuB9PBeBUyMH0Ybyg3qCYiSsJTyya2vjrJkGsJ7Uo/Nbp8om8
-         padK4ajF7RKjMCi0ZSbMhzE1i3gyJgXcnLcOMAZpIl8dVYrokjXO0nYIceTjYw3n6qS/
-         rrjw==
-X-Forwarded-Encrypted: i=1; AJvYcCVrSWm+UmcnjvQLMzWk4sdmGHHx8YhUw1zIzKIQOV51MsfUnFDHTNIcSeCG6/oCLcnQaqPrTH4HaJrQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwazgKdnqh6U8Y6oMFY1m5jBicaDfAjg2ad0zEuvbuiZdV3jppG
-	S1MkVT6WeXVN5cBjQ60YMjEA+K7xGo9fCPxerxT664rzjexTn4NB3rzcQaMu0A==
-X-Google-Smtp-Source: AGHT+IHNFfZ8Imho4YOAv0s3tUMWoLPXD/ZhUSm7DPCRIhLtXTaXR3/u1W15BCKmwDmXqQPINHdiXw==
-X-Received: by 2002:a17:902:e752:b0:20c:a7d8:e428 with SMTP id d9443c01a7336-20d27e59bebmr66237125ad.7.1729091508137;
-        Wed, 16 Oct 2024 08:11:48 -0700 (PDT)
-Received: from [172.16.118.100] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20d1805d070sm29583625ad.282.2024.10.16.08.11.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 08:11:47 -0700 (PDT)
-From: Ayush Singh <ayush@beagleboard.org>
-Date: Wed, 16 Oct 2024 20:41:15 +0530
-Subject: [PATCH RESEND] arm64: dts: ti: k3-am625-beagleplay: Enable
- MikroBUS PWM
+	s=arc-20240116; t=1729091764; c=relaxed/simple;
+	bh=BFntaTSzJzGmmI/RSXtLcqodcmndVEmshHLzINQvQwU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f9nuH63ay+zUlrmOzouZtWTP+cFUbgpI3GMKDWfIp8b4eUC83Jok1Aym6lRO+xU5mWPpm9Opc/UjX1bPgLbFbLFAst77ddyW1wDKdLkfg6RwbMY6/tilZSyrh4/mmHEBYzvTjFeBMRg/MzqWAsm8KVlbGUbi8x7IKOJJ8kelUbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EKAlv8js; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49G8Pv1s002358;
+	Wed, 16 Oct 2024 15:15:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=WHRdxFh2Jk2Nzc9kyvj/FP
+	/5SzamkPk6ZEIKUZ6GQvc=; b=EKAlv8jsI4hgZa9GujnrFaoB4190ycGa3GnKeH
+	8JA3jrl1z0KrnuKuo3cG0gb3AFN2HfewhRqxFLG7DrIM7FFXBbohl0c32c4U5E25
+	yxRZsU/bIseYnOo1V7potQi6hmADARJoNcVFsZ+3rjrMtchiINrUMRLjT8s9/+8m
+	ELYBqGiOsLQDF0yaErrQvgbJPGhrhFsqwY+Gyf9jFy/B6+Hlp/lVZBC6YvbV7sk2
+	cR5vfwJJVZz/BhmfraPOPPUBTznAP5OWE2p/9gLsR7ysnXRTaIMlwCAbQAbKSsBJ
+	+bujW5dtvCeY/fxoDg1MNWzwK6LLmPHURRMZQpv7pGMh/p4g==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42a5xyj1vs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Oct 2024 15:15:58 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49GFFvFr009734
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Oct 2024 15:15:57 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 16 Oct 2024 08:15:54 -0700
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+Subject: [PATCH 0/3] Add IPQ5424 and IPQ5404 SOC IDs
+Date: Wed, 16 Oct 2024 20:45:25 +0530
+Message-ID: <20241016151528.2893599-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241016-beagleplay-pwm-v1-1-245ae88859bc@beagleboard.org>
-To: d-gole@ti.com, lorforlinux@beagleboard.org, jkridner@beagleboard.org, 
- robertcnelson@beagleboard.org, Nishanth Menon <nm@ti.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Ayush Singh <ayush@beagleboard.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1499; i=ayush@beagleboard.org;
- h=from:subject:message-id; bh=ckxdzGByTXJUietXC5uAvZOJ6fBo9bKDj5epsvwfcw8=;
- b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBnD9etsj1ViSMU4ImyLpm/OOwYvVrE1H+1dt1X+
- yROjMz+FHyJAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZw/XrQAKCRAFzvXHieVa
- dMhiD/9DfQbiuPmywZaAmQZQhL+/sx6A8UMRKa+bo/73/SBfvdL0XYvP7x2B9bbTel3Bwu5uo/c
- Guc6WLjRozoux9uz4gT12khIEAYEAqoVrTwbKH4vssOoWDlRYDfZ2jJg1l94aQ/fbe7RSafDGv+
- cM57MI2R6cO1PYkU9+pVcrCPe4IDrKJjaZW6LTn/EQM0sSCVlDVUUHhYwT0JtVo3vJlK2BFEGGw
- QHC3UPD+At1Q3MNqsfM46L4P2O+Jc7Tn7F/qvBjF696dt469glm0WTqLQgtGzLsZHXgvLk3l3ny
- G79vXl9B4qtVdRWTHujZfiIDLMZEnkIhelG8rIbFMcHtjBTK8L0NgrhOXyVjXYtdj0u91Jk0IUf
- 23oSkHBhT1xylSVZxXhnLx3eKWWoYW/vtn5Qs1l7GkCNEE5p95XzSongYjD0bAv+rRxBG5BY63x
- ZmWWXcaPT1ug72GzonpRLo7GOHxsczm6qJ+FGtoyHhXDvy2Cqo56JDvdEGidSV4jsuOtCInByFY
- jlIDPHLTasSfLVIBnU3itDlz5AjIEhNfscxmAc4toYSiMfiHbmV0VSs35SeX5nAe215sTOKuspb
- fvTT35aKQ72FfBEka3xDxynXIHu+Ld+V5nsnWgEcDA8Ynqj+6IkGTXJyA+BORl0LWezAboThC8v
- NwVuE/jYdrsvfjQ==
-X-Developer-Key: i=ayush@beagleboard.org; a=openpgp;
- fpr=DFCC131EF24F2D656FA504D605CEF5C789E55A74
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: p_R5amGkFUF6l32CeBahcikzCRniQ0ds
+X-Proofpoint-ORIG-GUID: p_R5amGkFUF6l32CeBahcikzCRniQ0ds
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=409 lowpriorityscore=0 mlxscore=0 bulkscore=0 malwarescore=0
+ suspectscore=0 priorityscore=1501 phishscore=0 clxscore=1015 adultscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410160095
 
-Add pinmux for PWM functionality of MikroBUS PWM pin and enable the pwm
-controller.
+Add SOC IDs for IPQ5424 and IPQ5404, and add smem, tcsr_mutex nodes
+for the socinfo driver probe to execute.
 
-Signed-off-by: Ayush Singh <ayush@beagleboard.org>
----
-Add pinmux for MikroBUS port PWM pin. Also enable the pwm controller.
+This series depends on the following patches
+https://lore.kernel.org/linux-arm-msm/20241004102342.2414317-1-quic_srichara@quicinc.com/
+https://lore.kernel.org/linux-arm-msm/20241016144852.2888679-1-quic_mmanikan@quicinc.com/
 
-Tested with the sysfs interface [0].
+Manikanta Mylavarapu (3):
+  dt-bindings: arm: qcom,ids: add SoC ID for IPQ5424/IPQ5404
+  soc: qcom: socinfo: add IPQ5424/IPQ5404 SoC ID
+  arm64: dts: qcom: ipq5424: Add smem and tcsr_mutex nodes
 
-[0]: https://docs.kernel.org/driver-api/pwm.html#using-pwms-with-the-sysfs-interface
----
- arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi | 14 ++++++++++++++
+ drivers/soc/qcom/socinfo.c            |  2 ++
+ include/dt-bindings/arm/qcom,ids.h    |  2 ++
+ 3 files changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-index 70de288d728e447d5053eab3c1417f23212a66e4..2dbb8930be3f2ea72f1c502233f303934c83c46c 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-@@ -419,6 +419,12 @@ AM62X_IOPAD(0x01a8, PIN_INPUT, 7) /* (D20) MCASP0_AFSX.GPIO1_12 */
- 		>;
- 	};
- 
-+	mikrobus_pwm_pins_default: mikrobus-pwm-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
-+		>;
-+	};
-+
- 	main_uart0_pins_default: main-uart0-default-pins {
- 		bootph-all;
- 		pinctrl-single,pins = <
-@@ -925,3 +931,9 @@ &mcasp1 {
- 	       0 0 0 0
- 	>;
- };
-+
-+&ecap2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mikrobus_pwm_pins_default>;
-+};
-
----
-base-commit: 57f962b956f1d116cd64d5c406776c4975de549d
-change-id: 20240913-beagleplay-pwm-b859db19318d
-
-Best regards,
 -- 
-Ayush Singh <ayush@beagleboard.org>
+2.34.1
 
 
