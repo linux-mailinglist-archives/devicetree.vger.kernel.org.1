@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-111847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 709C69A0240
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F3F59A0248
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28E671F2221E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:18:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D62D91F2653F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:20:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B5B1AF0C0;
-	Wed, 16 Oct 2024 07:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9419E1B0F3E;
+	Wed, 16 Oct 2024 07:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CC4k3Ep8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QGvfHaqY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10405FC0C;
-	Wed, 16 Oct 2024 07:18:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E46E189B91;
+	Wed, 16 Oct 2024 07:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729063089; cv=none; b=qJhxmjLchstaZQt/45Npxucp0Q11tbcwee+KqktrQK/9x9/OJcvtralfdxBDUE4VgeXgEV9+yn0ipN26lhxLNnPsEslI1H+rjlwmQpx9cHWPp+AqYrKJo+tncd/X8+0LMFcaUxC/Bf7Inr4mZBXMZySgPrTCgDIFuvLiTLvXaJI=
+	t=1729063204; cv=none; b=FVN63v0hWrcVDOaIrHmtiYO+t+Q7anSBT1XoRQrM5ISFeEDoE0up8k/UiRHmn4J+tORC8/hiX4ILuyTWpEizXUvKDJMG6jx8koRJJkx6gJVxuOiIrxz9pVbAugR1AJO1vZElXEGpXDPJHQI/2dLIwnPptnueAN0N1tkPvbeMORo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729063089; c=relaxed/simple;
-	bh=jjcyI2zHqOSIJCRIxskZpI8EN2AeGW+U5vfKONBZTo0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LEQglFDck2roSw9A/ZLYtnldLhGDZgEP1CBS3UwHSpxSCYNiQpcnyI0CfpcAWuN9eb644u+4blXZcZU1LMOVgesTh1jYAMVBp4Xum3cWKh0K8kNSzGrPx+tSjDUu/yjHCiB5nNGaaNbhoHEVgS93CzeBfEkObRvWIPoHJERkW4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CC4k3Ep8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63FD9C4CEC5;
-	Wed, 16 Oct 2024 07:18:05 +0000 (UTC)
+	s=arc-20240116; t=1729063204; c=relaxed/simple;
+	bh=Ujc+2yc2jMeZ/VzNCOM2ysZvhm+BmdYsXS5Mdc72pUs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=dQeB0YLD/1wGl3E26nNOCSiztUB4zTcP4onsJcM2IX4orus8Kpu1leLRJB22VcRnqnd3pxTVIK6jFcngJ9xT3SdkH73IU9djrJ2hN1cys4fsZHFiIuROkOSyjpbtmMHfeEbYtj6KWXTesafrU4t1zGTZwDZnLvSp0yYc1Ljn+3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QGvfHaqY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D534C4CEC5;
+	Wed, 16 Oct 2024 07:20:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729063088;
-	bh=jjcyI2zHqOSIJCRIxskZpI8EN2AeGW+U5vfKONBZTo0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CC4k3Ep8D+K+CQS90/i0RdL0wUqIWmOgNFgJ1PI36Ss+iQqZh8Wh6NtlAssFefZ9z
-	 xsu0cNvpE5xkiVvSH0Wn2b/uRE9I0JOiWI76rYnZ5dpyQqprJe79oHYwVLuBJ2MfLr
-	 DDsZJhQsLmhjigS/ZqbRRuxwekINveeyqJa3MLIwcNoHvjVdYa0aIr3MgNL4lMYpr5
-	 mBJXm0SPxxY+gu6tNcKLaXrez5gTj1ZXkgt+LxYk+AKuXFZo9NoZqn/i66taZDd1gb
-	 RDHkdMJiGb5AYvcR/C3SkIoKqetZg5Sw6LRDsDgc5P91XUl4u6zBPoIkikD0pnF+7P
-	 5AWtAOESAevTA==
-Message-ID: <c7391939-8279-4ebd-b6b6-2bc6bc4a1491@kernel.org>
-Date: Wed, 16 Oct 2024 09:18:02 +0200
+	s=k20201202; t=1729063203;
+	bh=Ujc+2yc2jMeZ/VzNCOM2ysZvhm+BmdYsXS5Mdc72pUs=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=QGvfHaqYE1IPmCYN2J1T+qJYcsg8wDSEX1LYaClNfxY9O3dYPe73zos5OET+ESPeD
+	 ody3dNaDhb0wpr1R6YOXGZE0+VcVM5qy9/xmugZHjcHTsNCkVw8XcJxLWKFp8BVany
+	 GY4E5D8tKLIHWkkg/oWo+MD4uVeTbrIOSxrFu4mknFA06aN/7MIqh/1Y196FtKDP67
+	 KdtRYWF0JM7+Xa20bGpqkIIUedd0Iu85ESD3CO9b+jAa0clxBBFEoloT6Vd2xT5ZEb
+	 1a06UtmJ4899+L1Pz3nxYRoToAhDPsR7gtsvTZ0RTZkdM5QMVOIamQCSvJFfCC/Iux
+	 qESwPyraJY/7Q==
+Message-ID: <795657e1-5232-494c-9ac5-a62455b0f6f9@kernel.org>
+Date: Wed, 16 Oct 2024 09:19:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Rename "Twitter" to "Tweeter"
-To: Maya Matuszczyk <maccraft123mc@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Jos Dehaes <jos.dehaes@gmail.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241015170157.2959-1-maccraft123mc@gmail.com>
-Content-Language: en-US
+Subject: Re: [PATCH v2 0/5] Add Exynos990 pinctrl and chipid drivers
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241015210450.964093-1-igor.belwon@mentallysanemainliners.org>
+ <m7sxqsmaczjufn2jqjmo5xribsihwy4s4w7nsybub2ji62klrm@ecwv57qogd73>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,22 +106,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241015170157.2959-1-maccraft123mc@gmail.com>
+In-Reply-To: <m7sxqsmaczjufn2jqjmo5xribsihwy4s4w7nsybub2ji62klrm@ecwv57qogd73>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/10/2024 19:01, Maya Matuszczyk wrote:
-> This makes the name consistent with both other x1e80100 devices and the
-> dictionary. A UCM fix was merged already.
+On 16/10/2024 09:06, Krzysztof Kozlowski wrote:
+> On Tue, Oct 15, 2024 at 11:04:45PM +0200, Igor Belwon wrote:
+>> Hi folks,
+>>
+>> This series adds support for the drivers for the Exynos 990 SoC. It
+>> consists of the pinctrl driver and the chipid driver. The product ID
+>> of this chip for chipid is 0xe9830000. The pinctrl bank types are the
+>> same as in the Exynos 850 chip.
+>>
+>> Changes in v2:
+>>  - Moved bindings from SoC bringup commit
+>>  - Moved device tree changes from SoC bringup commit
+>>  - Ordered pinctrl nodes by unit address in SoC DT
+>>  - Moved the exynos990-wakeup-eint binding to the correct if.
+> 
+> Moved? That's not what I asked for. Are you sure you have this warning
+> free? That's a requirement for Samsung (see maintainer profile).
 
-This will break user-space using old UCM and any other user-space
-relying on previous names, which should be mentioned in the commit msg.
-
-That's said, CRD is development platform, not available to any end user,
-thus it's perfectly fine to break it, if explained in commit msg.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Ah, I see now what you did - you removed the interrupt. That's
+surprising. I don't understand why.
 
 Best regards,
 Krzysztof
