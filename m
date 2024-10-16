@@ -1,59 +1,56 @@
-Return-Path: <devicetree+bounces-112030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F12F79A0C97
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:28:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FFD09A0CA8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:31:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76FE1B25869
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:28:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 892A91C2256C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:31:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD68154454;
-	Wed, 16 Oct 2024 14:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6164020966A;
+	Wed, 16 Oct 2024 14:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RW157QD9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rWmZmRtE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A59069D2B;
-	Wed, 16 Oct 2024 14:28:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 372891586D3;
+	Wed, 16 Oct 2024 14:31:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729088930; cv=none; b=m+W6Kf1XtnUAR+8rHLvEaLjPGGmJFUm+/mDB+k8CZypdA2PnzkiQbHdq7GNmgOid6ith88mjziaNJXlL71HsyRoH26p9icGY+MuyTsgHf/VQMceoZTS2GMt+iatGwJXD0kZHpQUbbrmtjXxN9ML2CuWMWa2jAbJJmuZn0jwHXOk=
+	t=1729089105; cv=none; b=t1SJfUBvQ8pV8QAkTcxLAMf0uWcWE2046QzoZLDyPITh22YZcMP+1vTY1jfDV4+HCs8Aseg82EySjfY5HgQOZGu5C0P1drBCp0glcylAbSKGUxiLDVhCFGyljbOjQ5lhnQoV1ngJDCo8PXLfl+UL7zjke63gljt+PFBtVqTHHC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729088930; c=relaxed/simple;
-	bh=vjNjPzCeNoqJhqtCDl/b4mBQCaX7+Bu5HjiZkp4Zpso=;
+	s=arc-20240116; t=1729089105; c=relaxed/simple;
+	bh=0xfOv0zgOtoH74E1+U5BolLrIHlK5WA+900nCd8/6m4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qVKPyl+l8NUTAnOgt5BmiudCqldU1N48bSmbLjckqAzav4pZIj58+pBRNal3zEMUmKQR/A5pFabHSy3xMoJqLYAos3sa9Y16LH2e80uD0Ij2yk6Gy67iXm97CXuhqIstanzbHRiO2ssN8O0E9I88ZKgBQLDeWFBRicJWdyLkn3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RW157QD9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA22CC4CEC5;
-	Wed, 16 Oct 2024 14:28:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eMoHHbF6BN34TPTcCC7Z+NU2LuZmylFLirP5RmGYK2afso2GsVfdGAoqKF6LS/wSw+REjRKIGVzQZGcGs+1wczlrxKiWibQdjVGXW64VM93hidTCVM8huft2L+WkX4KRhuAe9+M//qzFGQvxkMMmyZtAVhOF7jj0QrFLfIzhzaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rWmZmRtE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C7F2C4CEC5;
+	Wed, 16 Oct 2024 14:31:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729088929;
-	bh=vjNjPzCeNoqJhqtCDl/b4mBQCaX7+Bu5HjiZkp4Zpso=;
+	s=k20201202; t=1729089104;
+	bh=0xfOv0zgOtoH74E1+U5BolLrIHlK5WA+900nCd8/6m4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RW157QD9iX704qiEqy6z6S00l51aPv3qbUNImb5xY07+yeiPGmwWo4KD6UcG8Yxek
-	 IZ8AIgDYNyhArtlvoDKf/IQ5lHhDJabUOhybiGvb/6va4eyz1JYwWHu1bjV85nNCjH
-	 IlfoeBVe8r9I7ySDS9/nZ+X9coUIQHQCxWGkgKr2wl4tf5proqobC+lOFNi1gKZCR2
-	 VqnTyeJJujd3zkPtXqBPA35pLpgjzFn+GP2wSKI9Vtctlpe9QGT/zdA96WVOx8UMiO
-	 3wHNRfblKkqNYK9Nu1ZBrJ5W0Ve+rWZLqmys8puccEkmcBoGdchouHvj5+nFFPo2+X
-	 yQvDuslpTqPGQ==
-Date: Wed, 16 Oct 2024 09:28:55 -0500
+	b=rWmZmRtEujt9bn1Vj7YsfEbqJeqaGr714tAtBsxFk787oKc27oN+6ZcdozKJ6ZGkK
+	 +Kjb9oDhnth5XW2Tbs2RVEza0EntRZDOKkBsxmXaKTqo1VF5arrCA1Rymj1a+h7kpb
+	 4NWtM68v3HhsnJwPW+2jSjf8s4MI8PtITJSl3BsStHeAI1wP0WJKfppR37VmRM//Yi
+	 PYcmZnsJgkvt1p0EL/YIQXURNouH/5ebfLGJCZio9cAm/Xo++xnZa4oZ60v0A0TBSh
+	 AgT6SRhvxy/qvlGQ8uTWJR5cqvHUNDJydIU/B+gdS44zmw/Dnmw3jKUeL2zFbzoKHM
+	 YiWvBv/q3eucw==
+Date: Wed, 16 Oct 2024 09:31:50 -0500
 From: Bjorn Andersson <andersson@kernel.org>
-To: Rakesh Kota <quic_kotarake@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, konradybcio@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	quic_kamalw@quicinc.com, quic_jprakash@quicinc.com
-Subject: Re: [PATCH V3] arm64: dts: qcom: qcm6490-idp: Allow UFS regulators
- load/mode setting
-Message-ID: <6wej7mt2z4e4w57niowrjmpuhzfxjxj72cyihmefzr4h6g4qkm@a54gnsfjpxwh>
-References: <20241016100511.2890983-1-quic_kotarake@quicinc.com>
- <2tunyupop2w7brm6adkdsrytvxbr4g3ixpbmuuqljedeaehze5@se3qsbf6tb6t>
- <e7443137-925a-4fa9-916a-7481585ad4c6@quicinc.com>
+To: Maya Matuszczyk <maccraft123mc@gmail.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jos Dehaes <jos.dehaes@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: Rename "Twitter" to "Tweeter"
+Message-ID: <423uciiaksxtyqua6w22wzdms4a53jp7v6rbvhfpfxr2uot7hd@mkb4uqehgz23>
+References: <20241015170157.2959-1-maccraft123mc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,92 +59,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e7443137-925a-4fa9-916a-7481585ad4c6@quicinc.com>
+In-Reply-To: <20241015170157.2959-1-maccraft123mc@gmail.com>
 
-On Wed, Oct 16, 2024 at 05:00:43PM GMT, Rakesh Kota wrote:
+On Tue, Oct 15, 2024 at 07:01:56PM GMT, Maya Matuszczyk wrote:
+> This makes the name consistent with both other x1e80100 devices and the
+> dictionary. A UCM fix was merged already.
 > 
-> 
-> On 10/16/2024 3:54 PM, Dmitry Baryshkov wrote:
-> > On Wed, Oct 16, 2024 at 03:35:11PM +0530, Rakesh Kota wrote:
-> > > The UFS driver expects to be able to set load (and by extension, mode)
-> > > on its supply regulators. Add the necessary properties to make that
-> > > possible.
-> > > 
-> > > Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
-> > > ---
-> > > Changes V3:
-> > >   - Somehow after fixing the compilation in last patch, i have missed to
-> > >     do git  --amend the change. apology for that, in this change i have
-> > >     fixed that compilation issue.
-> > 
-> > What actually was changed? The --amend doesn't describe changes. Nor
-> > does "fixed that compilation issue".
-> > 
-> Added missing semicolon (;) after regulator-allow-set-load prop for ldo9
-> regulator.
-> > >   - Link V2 : https://lore.kernel.org/all/20241015132049.2037500-1-quic_kotarake@quicinc.com/
-> > 
-> > Where are changes between v1 and v2?
-> > 
-> i will add changes history in V4 patch.
 
-It's perfectly fine (preferred even) to just answer with the requested
-information here, and then if you need to make changes to the patch and
-do send v4 you make sure to include it there.
-
-> > Where is the tag that was given to you for the v2?
-> > 
-> sorry, i missed adding the Reviewed-by tag and i will add it in V4 patch.
-
-Same here, if you just reply with Dmitry's reviewd-by and a comment that
-you missed it, it will help me know that the patch has been reviewed and
-the tools will pick it up.
+Please, as you update the commit message, make sure that the subject
+prefix matches other changes in the particular file.
 
 Regards,
 Bjorn
 
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 8 ++++++++
-> > >   1 file changed, 8 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> > > index 5f3d4807ac43..bfb1cdc238cc 100644
-> > > --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> > > @@ -258,6 +258,8 @@ vreg_l6b_1p2: ldo6 {
-> > >   			regulator-name = "vreg_l6b_1p2";
-> > >   			regulator-min-microvolt = <1140000>;
-> > >   			regulator-max-microvolt = <1260000>;
-> > > +			regulator-allow-set-load;
-> > > +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-> > >   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > >   		};
-> > > @@ -265,6 +267,8 @@ vreg_l7b_2p952: ldo7 {
-> > >   			regulator-name = "vreg_l7b_2p952";
-> > >   			regulator-min-microvolt = <2400000>;
-> > >   			regulator-max-microvolt = <3544000>;
-> > > +			regulator-allow-set-load;
-> > > +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-> > >   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > >   		};
-> > > @@ -279,6 +283,8 @@ vreg_l9b_1p2: ldo9 {
-> > >   			regulator-name = "vreg_l9b_1p2";
-> > >   			regulator-min-microvolt = <1200000>;
-> > >   			regulator-max-microvolt = <1304000>;
-> > > +			regulator-allow-set-load;
-> > > +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-> > >   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > >   		};
-> > > @@ -467,6 +473,8 @@ vreg_l10c_0p88: ldo10 {
-> > >   			regulator-name = "vreg_l10c_0p88";
-> > >   			regulator-min-microvolt = <720000>;
-> > >   			regulator-max-microvolt = <1050000>;
-> > > +			regulator-allow-set-load;
-> > > +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
-> > >   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > >   		};
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> index 10b28d870f08..004353220dc5 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> @@ -177,9 +177,9 @@ sound {
+>  		compatible = "qcom,x1e80100-sndcard";
+>  		model = "X1E80100-CRD";
+>  		audio-routing = "WooferLeft IN", "WSA WSA_SPK1 OUT",
+> -				"TwitterLeft IN", "WSA WSA_SPK2 OUT",
+> +				"TweeterLeft IN", "WSA WSA_SPK2 OUT",
+>  				"WooferRight IN", "WSA2 WSA_SPK2 OUT",
+> -				"TwitterRight IN", "WSA2 WSA_SPK2 OUT",
+> +				"TweeterRight IN", "WSA2 WSA_SPK2 OUT",
+>  				"IN1_HPHL", "HPHL_OUT",
+>  				"IN2_HPHR", "HPHR_OUT",
+>  				"AMIC2", "MIC BIAS2",
+> @@ -933,7 +933,7 @@ left_tweeter: speaker@0,1 {
+>  		reg = <0 1>;
+>  		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
+>  		#sound-dai-cells = <0>;
+> -		sound-name-prefix = "TwitterLeft";
+> +		sound-name-prefix = "TweeterLeft";
+>  		vdd-1p8-supply = <&vreg_l15b_1p8>;
+>  		vdd-io-supply = <&vreg_l12b_1p2>;
+>  		qcom,port-mapping = <4 5 6 7 11 13>;
+> @@ -986,7 +986,7 @@ right_tweeter: speaker@0,1 {
+>  		reg = <0 1>;
+>  		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
+>  		#sound-dai-cells = <0>;
+> -		sound-name-prefix = "TwitterRight";
+> +		sound-name-prefix = "TweeterRight";
+>  		vdd-1p8-supply = <&vreg_l15b_1p8>;
+>  		vdd-io-supply = <&vreg_l12b_1p2>;
+>  		qcom,port-mapping = <4 5 6 7 11 13>;
+> -- 
+> 2.45.2
+> 
 
