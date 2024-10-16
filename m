@@ -1,65 +1,62 @@
-Return-Path: <devicetree+bounces-112170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33769A143C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 22:42:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3949A1442
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 22:43:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EEA11F22E63
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:42:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55687282350
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BD92170C3;
-	Wed, 16 Oct 2024 20:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6DC0218307;
+	Wed, 16 Oct 2024 20:42:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kdl9aNru"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NMKckwJw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B716B2170B8;
-	Wed, 16 Oct 2024 20:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B230215F5B;
+	Wed, 16 Oct 2024 20:42:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729111358; cv=none; b=KkO5SJQt29nmfLgx8ZTK2VsDel1x3VDFYtnH1u7p8FCs/cS4Uqswy5WAB+EGNbzZpYC9IqEXrLiVq06NMf4vOfltReGZ2APHheAPHrdfElf1pt2742X+ZGwM1w3gS5bKiefmtdF3i6Pkv7eltSV9U/dH3AZKzGPnxG/jB2mqZbQ=
+	t=1729111361; cv=none; b=KSLH3gT+xl7eQ5J2x2PDShO03RnAI9pJUCCxqZVClgFY4Iw06azeuAnhAMhwuAMeuc9fXFnJF7FjMV4ZO0bWMtjPIEPYGSh+bRSZ0FoEQWwCP2dJ0ym/eYAeL+lliKl7d+5YrxmBeF2zC/EDxnIrOrhhiK0xsQOOq0mQe1MjPQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729111358; c=relaxed/simple;
-	bh=Lp0AzNRAChIiw5nzARCmUqYz9LKkzl8vnhEh7rW/Lo4=;
+	s=arc-20240116; t=1729111361; c=relaxed/simple;
+	bh=wT/udwW2lr8VmAPw5UvqQWzeUjqw6GPW2K7JxJOR0cY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DqAUPJu1QHounWaT4oK9QfnTi0wXSc2mvRU8XBxXTxx6SM6Pyhe2qzt0em9cbVRtXxJet2gbAsG2zfWuLVNAHIjlU1pAAzuftY1G5jF22W3Y0afjRoS+MyoC8zICv1e2M/JnPL9fUqsjdGe2Eap1kNxE04jQTsRVTfWBDjldwSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kdl9aNru; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACD89C4CED0;
-	Wed, 16 Oct 2024 20:42:36 +0000 (UTC)
+	 MIME-Version:Content-Type; b=g2X0N25+pXuRS+hPxsLUnStCGGnMlpDiaAsOsEhB3H2YARcHLrV7ytkDr7K15+MC0+Dm0bY7CpZVtf3SANCUcCluSBTK79ywv6Jxhbg9/J7K4uNB7m0uzeSp39sEU/35uTx+ZPi1cp/agoZabzLaltpmTWB1cC+MVteybYQ5CiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NMKckwJw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BEF6C4CED9;
+	Wed, 16 Oct 2024 20:42:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729111358;
-	bh=Lp0AzNRAChIiw5nzARCmUqYz9LKkzl8vnhEh7rW/Lo4=;
+	s=k20201202; t=1729111361;
+	bh=wT/udwW2lr8VmAPw5UvqQWzeUjqw6GPW2K7JxJOR0cY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Kdl9aNruL7Santg8u5GQafXbfMckX8b6AHQDa9bHZWsOX2ZIycS7s5ZEs0V5Hx/99
-	 75G/WeKrLB81REBQv5DQYgCkZX7NJOYetRr2Cr2zVojSbFX1r5QvtwpUl9g01ivzpJ
-	 oYrGLEREpGpwnfXcZXRZLDs1ICmk4v1surX0jMwhAHerrjNmBoPiJ2GVBgwghB8ldL
-	 g9YFjziOY+3uaBpZxsSDpviEKtSCf5j01QfjgSdvmXk210N7pJmKC01EPukCE59azC
-	 J7iF+KF9EhlD9KtcolAaNRhDgYfAw/5N3HFj2V9jxZY65RY2RvhhvGSdl9rwn1MspE
-	 kvjH831kf4zYg==
+	b=NMKckwJwZdh4BDJLQ2aBJQXrYrl6cZ8990HWn/7mW9Uo5vXeQKUpA4Pd28nKtwThX
+	 2gxCeVNKXakSIWK3ilCn1Y29EFefTh44NHEUEdO0CYUl0kCHLFcSSZYlw4gaJpHvxB
+	 0Pe6q80zTUX0PVfNWOslcRUArmfVJc2x2rGtjB4zsJrUG+tqvq2eqKad6P89jtFtCC
+	 pfWHmMK1d4acBiwA1Xc9dRZrrcqD+GEiuEoF9caEwuq9qP0bOhL5+EWfmQh4XIplQ3
+	 YZKPpzR7j4l7px2g7j2xcdbbh2xZbYZXyzUI3m+nf8tHPvtTybSPxPzbygivMVHT4m
+	 IbwRu21WvviAg==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>
-Cc: Johan Hovold <johan@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	stable+noautosel@kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: x1e80100: Fix PCIe 6a lanes description
-Date: Wed, 16 Oct 2024 15:42:26 -0500
-Message-ID: <172911112247.3304.6608002416744675055.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450 fix PIPE clock specification for pcie1
+Date: Wed, 16 Oct 2024 15:42:28 -0500
+Message-ID: <172911112242.3304.7496536723240394633.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241009-x1e80100-dts-fixes-pcie6a-v3-1-14a1163e691b@linaro.org>
-References: <20241009-x1e80100-dts-fixes-pcie6a-v3-1-14a1163e691b@linaro.org>
+In-Reply-To: <20241006-fix-sm8450-pcie1-v1-1-4f227c9082ed@linaro.org>
+References: <20241006-fix-sm8450-pcie1-v1-1-4f227c9082ed@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,20 +67,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 09 Oct 2024 14:07:23 +0300, Abel Vesa wrote:
-> Fix the description and compatible for PCIe 6a, as it is in fact a
-> 4-lanes controller and PHY, but it can also be used in 2-lanes mode. For
-> 4-lanes mode, it uses the lanes provided by PCIe 6b. For 2-lanes mode,
-> PCIe 6a uses 2 lanes and then PCIe 6b uses the other 2 lanes. The number
-> of lanes in which the PHY should be configured depends on a TCSR register
-> value on each individual board.
+On Sun, 06 Oct 2024 19:47:56 +0300, Dmitry Baryshkov wrote:
+> For historical reasons on SM8450 the second PCIe host (pcie1) also keeps
+> a reference to the PIPE clock coming from the PHY. Commit e76862840660
+> ("arm64: dts: qcom: sm8450: correct pcie1 phy clocks inputs to gcc") has
+> updated the PHY to use #clock-cells = <1>, making just <&pcie1_phy>
+> clock specification invalid. Update corresponding clock entry in the
+> PCIe1 host node.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: x1e80100: Fix PCIe 6a lanes description
-      commit: 837c333f46df8ce6755ba82c53acb91948ec0072
+[1/1] arm64: dts: qcom: sm8450 fix PIPE clock specification for pcie1
+      commit: 5d3d966400d0a094359009147d742b3926a2ea53
 
 Best regards,
 -- 
