@@ -1,179 +1,133 @@
-Return-Path: <devicetree+bounces-112032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A709A0CB7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:32:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02F3F9A0CCF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:36:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9A57283147
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:32:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59E46B280F1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:36:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D3620A5C5;
-	Wed, 16 Oct 2024 14:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8861D20C473;
+	Wed, 16 Oct 2024 14:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="doT98/NT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91D2209F59;
-	Wed, 16 Oct 2024 14:32:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F4520C039;
+	Wed, 16 Oct 2024 14:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729089140; cv=none; b=eum6IIF90iIbE1JI5GFLHPPBKrkP3srSIf6G2XrvZD2IBB0rA2e0QYZqbsGyOpCSk0uV1RKBXG4s7cC1ew1z4AkbMbQ6sSe9bYsUkqCMj9uQ8tgL4Fox5VQeqQmd5TEByaxxX58Fy+TTOkgTkmDSvcqbnAs0/UMPyMzrM7InkXQ=
+	t=1729089355; cv=none; b=HGDwKf507ahMIdCEET55Oo+ofu9rzbrirdfwo1KfBE0zOcMRd98etbhV4QkKzSBFRFq9gTEHqWAPLG+F96YqalJXPQYOOYcI17mIpJJaSix4TR2EhsyL5BRx9DUPxoy8qxgFN8WoBezD8AwVswVbb5dBrmkQOLhTNcJjFpewy3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729089140; c=relaxed/simple;
-	bh=cL6/iEITEkqI1kGR9ikJ0rjtp3Ih/i+CjMVOEFFmh4g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uNiV83DIAh25bG43ufByw04Ovz9DiYz1QoGwNWoMiD+Yv9iyyU85UAMKdB9doV4Jy0OzzqR+QpgL3vtRT5ftxxVA+h6VxvunNoVWk0xzSyGzdaW9cg9BySRItlE0+eue6jPLDjgBZYz+IsVvYXOUGzoZsvTRYm3Wv8Cti56dHus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a9a0ef5179dso467865966b.1;
-        Wed, 16 Oct 2024 07:32:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729089136; x=1729693936;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sSNiWdoyjPld1XydLnGWhx59ZAvesHEXD9q6WahTtD8=;
-        b=rE7/0CAcBj0oFHOpPX/8Iyg7ukpQMun1EgnSmyPyLt7f3hqy+MaFZFfd7H8hj9GGJo
-         Nd8yZE7PHISk5sGvqu7NnQLU1xkz2zP9kUQdZaEuMuOQhT5FumezwTagUZeI1mhA/Hn+
-         i9Ag24AOhwwVFHFNjM+PBUGqR4AQ+9alRcl0pEuyqg0BmAM3m6fxiwunlwu+wZVH3kPz
-         1vi4ZGZBtWK1dB2md5Zl0bvXaAt1rl1nYp8ylq60XNqc1znq7YdxPfJqkLSvqYqMh4ru
-         7xwmUeLW8fnBapguqkFZ9yl2AhydDFNdtGCKkpuj3vDDHF4XksSs6dloFMHyufhHSNk3
-         cutA==
-X-Forwarded-Encrypted: i=1; AJvYcCUhqbT4UQ6ooaZyNpk6zWdIqbbiO6zpLGiERbWYu7kBNk5VA9MrDl/JGHEShnikJyB1zuvAIPWBWqBQEW8l@vger.kernel.org, AJvYcCV9WERxtx59g65J8syNoE/wx128gdFlO2yvvbmiAgtrG+0D364d60PLq4BOs8DUI+JoF4QKqv3OHmYj@vger.kernel.org, AJvYcCX35nH5DsJcLOP5GmaqM/Vtu27zw96QYr6t/Iq+lRb4DS5s03bIVFW11eYAhLHr2DL2ePAWjZKohaTL@vger.kernel.org, AJvYcCX7N22Ie9F2twII6Zcib54WpSmkI6qbL5uATbdinkQxM+P3Y6Q24/sDdZfWFEp0FmTtjyCfYenY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPfWYS3Cxh+G7cRrKBNhJvqNjLNvNfB3SOKFASumwJbMPF9kgT
-	5nxh/fQNWVVNDBUmi0fBu7dfBy5a1rOuf/6FTOMPhuPt3a+B0IaTWyKgQYa8WkFWOzXYGFCk7+/
-	2xjnDRrFUuOT3Oe3GnLTxMA7t4G8=
-X-Google-Smtp-Source: AGHT+IHIRvEp4YvtVQ1ixCe8NKzoxNPRFn5DlgVaLXK5XyUINKKI62mZa6ua3k/lIFZaBGu7y/WSpqnDGSIiREWEh6c=
-X-Received: by 2002:a17:907:d85f:b0:a99:4025:82e1 with SMTP id
- a640c23a62f3a-a9a34dfd1fbmr318914166b.41.1729089136043; Wed, 16 Oct 2024
- 07:32:16 -0700 (PDT)
+	s=arc-20240116; t=1729089355; c=relaxed/simple;
+	bh=NXK/fPhGl4mqtfjEA+PZpwSNsIwN2iaBtslPz058mG4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jP8Hlr8GdAMTVVSg/C/DhFKM70Yw7zxl6Y9AorDO0E32W/ngGylxiNg6FJdBYVUABW5W1fP8XoJQnVv5yF0geB16nJtuPrSf9LQ45PgP8DRSLOOQGQ4+9ppPsQyWojvafFlqDNp5k1fINqdQX91EcdtNR+6LaU5AzgRddzU9Oas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=doT98/NT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50854C4CEC5;
+	Wed, 16 Oct 2024 14:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729089354;
+	bh=NXK/fPhGl4mqtfjEA+PZpwSNsIwN2iaBtslPz058mG4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=doT98/NT4FM40wYqR+SAm4CK3i00eE0ELNQ2AAFfLrDWK15sN8WmePaZVqR1S8G+j
+	 f/wMm2JKvoAX1cNiI0SVJyVRDEw9N7C4ZyZR3sXHYxmFbcZZoZZ4ggESnvaMDP3m+n
+	 aZs3c/6MfoMmv7cY/AhJ6GBa9B7VFynlW2FBe5HdJU2Y509EyQ7TFYzSX1BBiyVDMd
+	 yIPUARKazo11AoVwVfGg5nfeOtRqbU/UM+3t9IoqUcg9J1ywBE7XTXz+/bA5f61Koj
+	 psv6t/QnwXD4pMnPISVPDLyxbHEIaAVEYqLekUPdyyTejmdHulsiUBlHGGI5tskbEs
+	 ddma1Se1F5KQg==
+Date: Wed, 16 Oct 2024 09:35:59 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>, 
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com
+Subject: Re: [PATCH v1 2/5] arm64: dts: qcom: Add support for configuring
+ channel TRE size
+Message-ID: <7e7ksit5ptjrcnct66v75mbxuabnzzloungockdal2dl2y6nn5@ge4mrsjmd746>
+References: <20241015120750.21217-1-quic_jseerapu@quicinc.com>
+ <20241015120750.21217-3-quic_jseerapu@quicinc.com>
+ <78a1c5c8-53c8-4144-b311-c34b155ca27c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241015-topic-mcan-wakeup-source-v6-12-v4-0-fdac1d1e7aa6@baylibre.com>
- <20241015-topic-mcan-wakeup-source-v6-12-v4-3-fdac1d1e7aa6@baylibre.com>
-In-Reply-To: <20241015-topic-mcan-wakeup-source-v6-12-v4-3-fdac1d1e7aa6@baylibre.com>
-From: Vincent MAILHOL <mailhol.vincent@wanadoo.fr>
-Date: Wed, 16 Oct 2024 23:32:06 +0900
-Message-ID: <CAMZ6RqJfBbFRaynjFAbi5quAvcA1bYj7Dw_vJ7rDsLRaEheZrw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/9] can: m_can: Map WoL to device_set_wakeup_enable
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Vishal Mahaveer <vishalm@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, Simon Horman <horms@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <78a1c5c8-53c8-4144-b311-c34b155ca27c@kernel.org>
 
-On Wed. 16 Oct. 2024 at 04:18, Markus Schneider-Pargmann
-<msp@baylibre.com> wrote:
-> In some devices the pins of the m_can module can act as a wakeup source.
-> This patch helps do that by connecting the PHY_WAKE WoL option to
-> device_set_wakeup_enable. By marking this device as being wakeup
-> enabled, this setting can be used by platform code to decide which
-> sleep or poweroff mode to use.
->
-> Also this prepares the driver for the next patch in which the pinctrl
-> settings are changed depending on the desired wakeup source.
->
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+On Tue, Oct 15, 2024 at 03:33:00PM GMT, Krzysztof Kozlowski wrote:
+> On 15/10/2024 14:07, Jyothi Kumar Seerapu wrote:
+> > When high performance with multiple i2c messages in a single transfer
+> > is required, employ Block Event Interrupt (BEI) to trigger interrupts
+> > after specific messages transfer and the last message transfer,
+> > thereby reducing interrupts.
+> > For each i2c message transfer, a series of Transfer Request Elements(TREs)
+> > must be programmed, including config tre for frequency configuration,
+> > go tre for holding i2c address and dma tre for holding dma buffer address,
+> > length as per the hardware programming guide. For transfer using BEI,
+> > multiple I2C messages may necessitate the preparation of config, go,
+> > and tx DMA TREs. However, a channel TRE size of 64 is often insufficient,
+> > potentially leading to failures due to inadequate memory space.
+> > 
+> > Adjust the channel TRE size through the device tree.
+> > The default size is 64, but clients can modify this value based on
+> > their heigher channel TRE size requirements.
+> > 
+> > Signed-off-by: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 132 +++++++++++++--------------
+> >  1 file changed, 66 insertions(+), 66 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > index 3d8410683402..c7c0e15ff9d3 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > @@ -1064,7 +1064,7 @@
+> >  		};
+> >  
+> >  		gpi_dma0: dma-controller@900000 {
+> > -			#dma-cells = <3>;
+> > +			#dma-cells = <4>;
+> >  			compatible = "qcom,sc7280-gpi-dma", "qcom,sm6350-gpi-dma";
+> >  			reg = <0 0x00900000 0 0x60000>;
+> >  			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
+> > @@ -1114,8 +1114,8 @@
+> >  							"qup-memory";
+> >  				power-domains = <&rpmhpd SC7280_CX>;
+> >  				required-opps = <&rpmhpd_opp_low_svs>;
+> > -				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
+> > -				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
+> > +				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C 64>,
+> > +				       <&gpi_dma0 1 0 QCOM_GPI_I2C 64>;
+> 
+> So everywhere is 64, thus this is fixed. Deduce it from the compatible
+> 
 
-I left a nitpick below. Regardless:
+If I understand correctly, it's a software tunable property, used to
+balance how many TRE elements that should be preallocated.
 
-Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+If so, it would not be a property of the hardware/compatible, but rather
+a result of profiling and a balance between memory "waste" and
+performance.
 
-> ---
->  drivers/net/can/m_can/m_can.c | 37 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->
-> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
-> index a978b960f1f1e1e8273216ff330ab789d0fd6d51..d427645a5b3baf7d0a648e3b008d7d7de7f23374 100644
-> --- a/drivers/net/can/m_can/m_can.c
-> +++ b/drivers/net/can/m_can/m_can.c
-> @@ -2185,6 +2185,36 @@ static int m_can_set_coalesce(struct net_device *dev,
->         return 0;
->  }
->
-> +static void m_can_get_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
-> +{
-> +       struct m_can_classdev *cdev = netdev_priv(dev);
-> +
-> +       wol->supported = device_can_wakeup(cdev->dev) ? WAKE_PHY : 0;
-> +       wol->wolopts = device_may_wakeup(cdev->dev) ? WAKE_PHY : 0;
-> +}
-> +
-> +static int m_can_set_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
-> +{
-> +       struct m_can_classdev *cdev = netdev_priv(dev);
-> +       bool wol_enable = !!(wol->wolopts & WAKE_PHY);
-> +       int ret;
-> +
-> +       if ((wol->wolopts & WAKE_PHY) != wol->wolopts)
+Regards,
+Bjorn
 
-Here, you want to check if a bit other than WAKE_PHY is set, isn't it?
-What about doing this:
-
-          if (wol->wolopts & ~WAKE_PHY)
-
-instead?
-
-> +               return -EINVAL;
-> +
-> +       if (wol_enable == device_may_wakeup(cdev->dev))
-> +               return 0;
-> +
-> +       ret = device_set_wakeup_enable(cdev->dev, wol_enable);
-> +       if (ret) {
-> +               netdev_err(cdev->net, "Failed to set wakeup enable %pE\n",
-> +                          ERR_PTR(ret));
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
->  static const struct ethtool_ops m_can_ethtool_ops_coalescing = {
->         .supported_coalesce_params = ETHTOOL_COALESCE_RX_USECS_IRQ |
->                 ETHTOOL_COALESCE_RX_MAX_FRAMES_IRQ |
-> @@ -2194,10 +2224,14 @@ static const struct ethtool_ops m_can_ethtool_ops_coalescing = {
->         .get_ts_info = ethtool_op_get_ts_info,
->         .get_coalesce = m_can_get_coalesce,
->         .set_coalesce = m_can_set_coalesce,
-> +       .get_wol = m_can_get_wol,
-> +       .set_wol = m_can_set_wol,
->  };
->
->  static const struct ethtool_ops m_can_ethtool_ops = {
->         .get_ts_info = ethtool_op_get_ts_info,
-> +       .get_wol = m_can_get_wol,
-> +       .set_wol = m_can_set_wol,
->  };
->
->  static int register_m_can_dev(struct m_can_classdev *cdev)
-> @@ -2324,6 +2358,9 @@ struct m_can_classdev *m_can_class_allocate_dev(struct device *dev,
->                 goto out;
->         }
->
-> +       if (dev->of_node && of_property_read_bool(dev->of_node, "wakeup-source"))
-> +               device_set_wakeup_capable(dev, true);
-> +
->         /* Get TX FIFO size
->          * Defines the total amount of echo buffers for loopback
->          */
->
-> --
-> 2.45.2
->
->
+> Best regards,
+> Krzysztof
+> 
 
