@@ -1,152 +1,127 @@
-Return-Path: <devicetree+bounces-111877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76759A034E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:57:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7E69A0357
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:58:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7551F1F22ACD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:57:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0577A1F20FA2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:58:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E671C8FB4;
-	Wed, 16 Oct 2024 07:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636AC1CB9ED;
+	Wed, 16 Oct 2024 07:58:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="EzdNoxqu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fE1nfrPW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672F01C878E;
-	Wed, 16 Oct 2024 07:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2168F189F3F;
+	Wed, 16 Oct 2024 07:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729065403; cv=none; b=VFHi2NngGZG8lcp40MNxz95B7xE8XIqLO938H3M/JCOvnpk2lL2KNr7wReTCWchbD35MzRdbGwiDDMxNFy4lqSO4gftxSh33C6SSC7ewFoOewZtr7uqTp84VxbaXD2XOkoHL0AuP2Bi9CZzGQoWabl72QMSxWFmHW9Emx1l59iY=
+	t=1729065499; cv=none; b=Fv08HjI1GUYpEaxSy2LECth8nogkuMOV02AEhSSqc6gg7JM+Mdqlsf9pONuXNFVjWmJkgt89fUHjtIFEQ9fOC6kAq3Z3FTw51ObQFmeotIBj1yHT09X3v3KtS1yxEzPDgWxBZmgEpPT+ud9WVznGSnx2edak+pVHKI1FBw9DkpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729065403; c=relaxed/simple;
-	bh=7ZGza0D4+DJc0I3mcLDXZs6PWKHYl9GrfKvQnjQrUDU=;
+	s=arc-20240116; t=1729065499; c=relaxed/simple;
+	bh=nsM60+cNuES1C+fqTbnc5ooJ0hP520KLGK9VFBCBDGI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eu5EGABa2N+nubdb9J5jfjJgDL8Jw6gE/ILvo0gz4dmkTt70HL78F2WG1VYnbwdgLnesY+/jme+pqSy9rHkElpXm311x0Ux2FdWh6RzQ2YH+2qZm+u2twdcMmuOfzGeTFCuOsOCAaKfVgaJ9XQWRuoHRIgN8YoxlmngH03OC5mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=EzdNoxqu; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=RhxSP9FPCj+a+dDaeGpQ2xdy8rq7kJ/iFQi/d8ef/w4=;
-	b=EzdNoxquQIQB6Ji5DiKy7MAGDo+H96tb6sRR6BJ9gQ/J8c5Nd1vQmlt7hMomTx
-	q9cTYnYhUOfCHUHzOBSCrjc+dAUAyc0vjJqfxQ6IEfGPTCqULslY6zpH+Avbt2PE
-	HJQTs9grCWhk+o3IlRXQ45nj7aWYAA6+manTBve6xaak8=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDH7uyPcQ9nYMAZAA--.432S3;
-	Wed, 16 Oct 2024 15:56:01 +0800 (CST)
-Date: Wed, 16 Oct 2024 15:55:59 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	gregkh@linuxfoundation.org, Frank.Li@nxp.com, jun.li@nxp.com,
-	l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com,
-	alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v5 4/5] arm64: dts: imx95: add usb3 related nodes
-Message-ID: <Zw9xj4JWHssfOtQP@dragon>
-References: <20240911061720.495606-1-xu.yang_2@nxp.com>
- <20240911061720.495606-4-xu.yang_2@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=drXepBJETda9u3LJedyxC6BqtTvNmAfhsSYOSPsjxAK99fQvg5ZNPqHEFYCgQ7XQe2Am7dcjou/AhHc/WrkaQLi5ShW4r/EQxpLckZ7YmVrsL2+ybbsSVeCx20UJGACV3TN+p7O4eDXe6V5E32Hw/VK8Kek8OGpjbIrvddYRheo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fE1nfrPW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4D67C4CEC5;
+	Wed, 16 Oct 2024 07:58:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729065498;
+	bh=nsM60+cNuES1C+fqTbnc5ooJ0hP520KLGK9VFBCBDGI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fE1nfrPWvmps83biOQkLKuOrEbyoX9F+oYZZR4MyCkhnTWXLfurI4YDDnEgp3i07b
+	 VRYqDkPXIU+qUtKDWJ717mNrRjaZqikw3+etM/jDuz+SlyxnvznHnDKrAlDX0CzJ7e
+	 fINBIZ+D9Zp09Ppusrp8Fb0ZqNgnLr3Jdt9Q8ncBHGtElLWB9ESeQ5b5BDNqyqrPHs
+	 CtV1sq/qM1ERfGyqIll+x8X3NR+ZGI4q/LTpO0Q+uyL0JEmPhyTYdi0Xyt3NDfgwb3
+	 N7NtwUeILsWm6XGFTmTz4KTjWwUil3aV5cQPTDvmG6RV280Yh47SXf5mfG97vA2mxx
+	 vkzZ51zg7DMLg==
+Date: Wed, 16 Oct 2024 08:58:08 +0100
+From: Lee Jones <lee@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+	netdev@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH v8 3/3] dt-bindings: mfd: mediatek: mt6397: Convert to DT
+ schema format
+Message-ID: <20241016075808.GM8348@google.com>
+References: <20241001104145.24054-1-macpaul.lin@mediatek.com>
+ <20241001104145.24054-3-macpaul.lin@mediatek.com>
+ <5nvshurbpmjkqysphfrfxhekq3c6od6a2uqai4rfxns64mdvf7@ftjvgjnivr3k>
+ <20241009155222.GB637580@google.com>
+ <vb324yv7s7yew6m74lfvdv6wnuo6e4rxtiu2q7okypttw46ox2@lgfdkie6o3t2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240911061720.495606-4-xu.yang_2@nxp.com>
-X-CM-TRANSID:Ms8vCgDH7uyPcQ9nYMAZAA--.432S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJry7Jry3ZFW8Kw43Kr17KFg_yoW8tFy8pr
-	yDGay5Zrs2gr1xCFWaqF48KF95J3y0kFZ5Wr1Sgryjkr9xZ347KFWIkF1S9r18XrsrXw4j
-	qFnaqr1xKrnxtw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j4mhrUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCQZ6ZWcPLG3NiQAAs9
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <vb324yv7s7yew6m74lfvdv6wnuo6e4rxtiu2q7okypttw46ox2@lgfdkie6o3t2>
 
-On Wed, Sep 11, 2024 at 02:17:19PM +0800, Xu Yang wrote:
-> Add usb3 phy and controller nodes for imx95.
+On Tue, 15 Oct 2024, Sebastian Reichel wrote:
+
+> Hi,
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> On Wed, Oct 09, 2024 at 04:52:22PM +0100, Lee Jones wrote:
+> > On Wed, 02 Oct 2024, Krzysztof Kozlowski wrote:
+> > 
+> > > On Tue, Oct 01, 2024 at 06:41:45PM +0800, Macpaul Lin wrote:
+> > > > Convert the mfd: mediatek: mt6397 binding to DT schema format.
+> > > > 
+> > > > MT6323, MT6358, and MT6397 are PMIC devices with multiple function
+> > > > subdevices. They share a common PMIC design but have variations in
+> > > > subdevice combinations.
+> > > > 
+> > > > Key updates in this conversion:
+> > > > 
+> > > > 1. RTC:
+> > > >    - Convert rtc-mt6397.txt and merge into parent MT6397 PMIC DT schema.
+> > > 
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > Everyone okay with me taking this without a pull-request?
 > 
-> ---
-> Changes in v2:
->  - no changes
-> Changes in v3:
->  - no changes
-> Changes in v4:
->  - reorder nodes
-> Changes in v5:
->  - no changes
-> ---
->  arch/arm64/boot/dts/freescale/imx95.dtsi | 43 ++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> index 425272aa5a81..2377b3ade95a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -1188,5 +1188,48 @@ pcie1_ep: pcie-ep@4c380000 {
->  			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
->  			status = "disabled";
->  		};
-> +
-> +		usb3: usb@4c010010 {
+> Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Could this be added in order of unit-address?
+Thanks Sebastian.
 
-Shawn
+I have a bunch of things that depend on this, so I'm going to whip it in.
 
-> +			compatible = "fsl,imx95-dwc3", "fsl,imx8mp-dwc3";
-> +			reg = <0x0 0x4c010010 0x0 0x04>,
-> +			      <0x0 0x4c1f0000 0x0 0x20>;
-> +			clocks = <&scmi_clk IMX95_CLK_HSIO>,
-> +				 <&scmi_clk IMX95_CLK_32K>;
-> +			clock-names = "hsio", "suspend";
-> +			interrupts = <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> +			dma-ranges = <0x0 0x0 0x0 0x0 0x10 0x0>;
-> +			status = "disabled";
-> +
-> +			usb3_dwc3: usb@4c100000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x0 0x4c100000 0x0 0x10000>;
-> +				clocks = <&scmi_clk IMX95_CLK_HSIO>,
-> +					 <&scmi_clk IMX95_CLK_24M>,
-> +					 <&scmi_clk IMX95_CLK_32K>;
-> +				clock-names = "bus_early", "ref", "suspend";
-> +				interrupts = <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>;
-> +				phys = <&usb3_phy>, <&usb3_phy>;
-> +				phy-names = "usb2-phy", "usb3-phy";
-> +				snps,gfladj-refclk-lpm-sel-quirk;
-> +				snps,parkmode-disable-ss-quirk;
-> +				iommus = <&smmu 0xe>;
-> +			};
-> +		};
-> +
-> +		usb3_phy: phy@4c1f0040 {
-> +			compatible = "fsl,imx95-usb-phy", "fsl,imx8mp-usb-phy";
-> +			reg = <0x0 0x4c1f0040 0x0 0x40>,
-> +			      <0x0 0x4c1fc000 0x0 0x100>;
-> +			clocks = <&scmi_clk IMX95_CLK_HSIO>;
-> +			clock-names = "phy";
-> +			#phy-cells = <0>;
-> +			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> +			orientation-switch;
-> +			status = "disabled";
-> +		};
->  	};
->  };
-> -- 
-> 2.34.1
-> 
-
+-- 
+Lee Jones [李琼斯]
 
