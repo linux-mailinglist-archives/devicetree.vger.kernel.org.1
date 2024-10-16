@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-112069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1B79A0E8D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:38:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA349A0E8F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:38:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A6DF288897
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:38:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB1501F21319
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE8F20C002;
-	Wed, 16 Oct 2024 15:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2087720E03F;
+	Wed, 16 Oct 2024 15:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q3pdi1pN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I6ZyP12h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5F8E54720;
-	Wed, 16 Oct 2024 15:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E837120E02F;
+	Wed, 16 Oct 2024 15:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729093112; cv=none; b=iA9scdNJhv6fvrHSg15NNkCq6eg8HtST3joZRjDcGdoe00RISLIoKPiYaFminAkcWa6nFmcZGHxNQBgbvn/2wuMD3eCmxzhNeR2X8huRafriWzT64sK/Zd7oacZR5PYAAj/emdc6UPs43Pyc1eLXKeHM0CBwp4yuAHqletoJ4UU=
+	t=1729093114; cv=none; b=uREmHzAULnOmFXRj+URJ3W801nfVwpD/a8IZQxbQHaOECdJycfpwCS6d1E17eZN2Pd2Zo5fBsvnqPNMEZt8yeCzgpg5p7EApuq7xdx/ZWpRSKgHUKd+kH0HhDonSSIx0tnvZ/d86RPwRjdIoVJyeg3GM7v3yWq4LaFt0fvSaxHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729093112; c=relaxed/simple;
-	bh=k2wypWjK1foZ+sNQTA32n3M+Lugry0K6atxdPAGsDWE=;
+	s=arc-20240116; t=1729093114; c=relaxed/simple;
+	bh=dFW8u8wREC5V/rE4CPEL3TXXHyVXddI7PBsgSDXHwTM=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=NDr5cDj31jnXoJWxHSvhxhG1uoEV4v/8kUJEphRESwkpHHgLTdL/8tWu6i2JQ6AZPXxYJZ/IlDtAJqArVXaDAXXYRjp4SCACHuveuPOBLQsqRxhs/Z1S36YCaC3XYp0Ldvvb4SozUV6kpszDVPA66CQeKTJ8AYqj9B2DaUdzaLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q3pdi1pN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6A8CC4CEC5;
-	Wed, 16 Oct 2024 15:38:31 +0000 (UTC)
+	 Message-Id:Subject; b=rbrZqPBmccPTKFWzodDHOPvtuswVbS5iXXM4ww4Z5k6DcuJNLqmDYBvg0E4lEu9ck/ZjIBkNv4ZdyVHCJJUhzGZfRZMUE27TrQIhN4x3ywcvWVQEbQJElUdvmVX0LNb3SPGXNofl/W9AzTjc+yoTbtO+Cf13ClVV6d4FSuiZ4gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I6ZyP12h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4502EC4CEC7;
+	Wed, 16 Oct 2024 15:38:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729093112;
-	bh=k2wypWjK1foZ+sNQTA32n3M+Lugry0K6atxdPAGsDWE=;
+	s=k20201202; t=1729093113;
+	bh=dFW8u8wREC5V/rE4CPEL3TXXHyVXddI7PBsgSDXHwTM=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=q3pdi1pNXWe3THWKcAdQdUY4WoZUpQOPqBtlvx6fE6Rj+ROX/gSeLNjc4czfwsiZH
-	 d6U7MRr9FLFT4hnWO6g//H5P3TAT2Q1PzCGtTXUPCj9jstk0h2/8qo18z9u32cJqml
-	 oIIw+UC6/jaefyjMhrkjlZXXKtU+7yHN3VN1796F9FvEG/q/NkwppWlq22ccGbq7yp
-	 7a2fhAtgp91WqNlu0LnNJRlD7tBacl0hyw+LfCA6gbdxGCXwnNgkdjaK/4prjtt+i7
-	 i7nJ2QSeuALy7AkLSVmOQtg7AmpucBfh0V5iTE9DkRLsXDHKrFRZ61m64XrvwQQmK8
-	 hrWg7VPrd7I5A==
-Date: Wed, 16 Oct 2024 10:38:29 -0500
+	b=I6ZyP12hU9L6hiBtylHFmizE+cd2yG3IZLUQTA3nmpFMGeAdr02jM6p0dMcfaklMs
+	 Vf9+YyPNTy2j1ZkKaIKGnCG/wD7TzTD7meVPIU5kT5tO0tM5s3kcmqRP+BQRADvwGP
+	 UpC5ncTZ1BKst5FUFa2lkvY8h+TM1F1S6U1yMRAFinzR/GjUEBUteaqwJxr4XNi4kx
+	 TqFv6KMho9uPIPS0+W21HQesrR3TaB3JqQjXqfT6GasoXsIbmyMxSg+BU6bZu26UAi
+	 dke3/kEzJNQ62V8oJFGkfWI5udhRBN+frLhNIgrZpcqM/7/al+RDl4W+o3/dbKFx75
+	 m/l1Lmi7OQojA==
+Date: Wed, 16 Oct 2024 10:38:32 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,68 +51,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>, 
- linux-arm-kernel@lists.infradead.org, Michael Walle <mwalle@kernel.org>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Christoph Niedermaier <cniedermaier@dh-electronics.com>, 
- Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
- Peng Fan <peng.fan@nxp.com>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Parthiban Nallathambi <parthiban@linumiz.com>, 
- Hiago De Franco <hiago.franco@toradex.com>, imx@lists.linux.dev, 
- kernel@dh-electronics.com, Max Merchel <Max.Merchel@ew.tq-group.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- Mathieu Othacehe <m.othacehe@gmail.com>, 
- Hugo Villeneuve <hvilleneuve@dimonoff.com>
-In-Reply-To: <20241015235926.168582-1-marex@denx.de>
-References: <20241015235926.168582-1-marex@denx.de>
-Message-Id: <172909288999.1676333.15859258003756492401.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Document i.MX6DL DHCOM SoM
- on PDK2 carrier board
+To: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Jianguo Zhang <jianguo.zhang@mediatek.com>, 
+ Hsuan-Yu Lin <shane.lin@canonical.com>, 
+ fanyi zhang <fanyi.zhang@mediatek.com>, netdev@vger.kernel.org, 
+ Macpaul Lin <macpaul.lin@mediatek.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Richard Cochran <richardcochran@gmail.com>, 
+ Pablo Sun <pablo.sun@mediatek.com>
+In-Reply-To: <20241015-genio700-eth-v1-0-16a1c9738cf4@collabora.com>
+References: <20241015-genio700-eth-v1-0-16a1c9738cf4@collabora.com>
+Message-Id: <172909289110.1676363.14494745221795348933.robh@kernel.org>
+Subject: Re: [PATCH 0/2] Enable Ethernet on the Genio 700 EVK board
 
 
-On Wed, 16 Oct 2024 01:58:35 +0200, Marek Vasut wrote:
-> Document the DH electronics i.MX6DL DHCOM SoM and a PDK2 evaluation board.
-> The evaluation board features three serial ports, USB OTG, USB host with
-> an USB hub, Fast or Gigabit ethernet, eMMC, uSD, SD, analog audio, PCIe
-> and HDMI video output.
+On Tue, 15 Oct 2024 14:15:00 -0400, Nícolas F. R. A. Prado wrote:
+> The patches in this series add the ethernet node on mt8188 and enable it
+> on the Genio 700 EVK board.
 > 
-> All of the aforementioned features except for mSATA are supported, mSATA
-> is not available on i.MX6DL and is only available on DHCOM populated with
-> i.MX6Q SoC which is already supported upstream.
+> The changes were picked up from the downstream branch at
+> https://git.launchpad.net/~canonical-kernel/ubuntu/+source/linux-mtk/+git/jammy,
+> cleaned up and split into two commits.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > ---
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-> Cc: Hiago De Franco <hiago.franco@toradex.com>
-> Cc: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Mathieu Othacehe <m.othacehe@gmail.com>
-> Cc: Max Merchel <Max.Merchel@ew.tq-group.com>
-> Cc: Michael Walle <mwalle@kernel.org>
-> Cc: Parthiban Nallathambi <parthiban@linumiz.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
+> Nícolas F. R. A. Prado (2):
+>       arm64: dts: mediatek: mt8188: Add ethernet node
+>       arm64: dts: mediatek: mt8390-genio-700-evk: Enable ethernet
+> 
+>  arch/arm64/boot/dts/mediatek/mt8188.dtsi           | 95 ++++++++++++++++++++++
+>  .../boot/dts/mediatek/mt8390-genio-700-evk.dts     | 25 ++++++
+>  2 files changed, 120 insertions(+)
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> base-commit: 7f773fd61baa9b136faa5c4e6555aa64c758d07c
+> change-id: 20241015-genio700-eth-252304da766c
+> 
+> Best regards,
+> --
+> Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
 > 
 
 
@@ -130,26 +112,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y nxp/imx/imx6dl-dhcom-pdk2.dtb' for 20241015235926.168582-1-marex@denx.de:
+New warnings running 'make CHECK_DTBS=y mediatek/mt8390-genio-700-evk.dtb' for 20241015-genio700-eth-v1-0-16a1c9738cf4@collabora.com:
 
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /ldb: failed to match any schema with compatible: ['fsl,imx6q-ldb', 'fsl,imx53-ldb']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /ldb: failed to match any schema with compatible: ['fsl,imx6q-ldb', 'fsl,imx53-ldb']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: iomuxc-gpr@20e0000: 'ipu1_csi0_mux', 'ipu1_csi1_mux' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/soc/imx/fsl,imx-iomuxc-gpr.yaml#
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/bus@2000000/pinctrl@20e0000: failed to match any schema with compatible: ['fsl,imx6dl-iomuxc']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/bus@2100000/i2c@21a8000/pmic@3c: failed to match any schema with compatible: ['lltc,ltc3676']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/bus@2100000/mipi@21dc000: failed to match any schema with compatible: ['fsl,imx6-mipi-csi2']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/bus@2100000/vdoa@21e4000: failed to match any schema with compatible: ['fsl,imx6q-vdoa']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/ipu@2400000: failed to match any schema with compatible: ['fsl,imx6q-ipu']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /capture-subsystem: failed to match any schema with compatible: ['fsl,imx-capture-subsystem']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /display-subsystem: failed to match any schema with compatible: ['fsl,imx-display-subsystem']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /disp0: failed to match any schema with compatible: ['fsl,imx-parallel-display']
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: gpio-keys: '#size-cells' does not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/input/gpio-keys.yaml#
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: gpio-keys: '#address-cells' is a dependency of '#size-cells'
-	from schema $id: http://devicetree.org/schemas/reg.yaml#
-arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: panel: 'power-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/display/panel/panel-simple.yaml#
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: jpeg-decoder@1a040000: iommus: [[118, 685], [118, 686], [118, 690], [118, 691], [118, 692], [118, 693]] is too long
+	from schema $id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
 
 
 
