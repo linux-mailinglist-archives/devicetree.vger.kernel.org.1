@@ -1,241 +1,214 @@
-Return-Path: <devicetree+bounces-111996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657B29A07F3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:01:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 411C69A07FC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:04:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DAE5284508
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:01:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 765E5B20EAC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FDA3207204;
-	Wed, 16 Oct 2024 11:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC59D2071ED;
+	Wed, 16 Oct 2024 11:04:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="c86G6YB7"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="e8WH66Tm";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="XI2MQPm+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E0E820605B;
-	Wed, 16 Oct 2024 11:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0FB2071F8;
+	Wed, 16 Oct 2024 11:04:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729076474; cv=none; b=j3kXJXUM/OkihiGD2aEn/PDlN2uzP88EkE1N6jovMeS677k1Nq0mDSF6ko64hV1RD8pTyGNwJ6uK1TkgdvFn9Ke3KXyrsKWXCiRMWTblceVJo+KxKso2DwR2pykDOmkscbMS7ZuS0S0p5AtyU1y/W4o78T44jDb1EuWG+/Zea1E=
+	t=1729076652; cv=none; b=dDdpjQpWG89ZM8xyqm3Y5/aRFlaVPN2zd8dtfq/9fqSp78XqwMBkPRNBqRZtV8czxEMUmFg31ETzTQSc2P5gHMilapAOO24k8ZOVBjT8wZZPA67Zf8JkhxCF1IfdBrvJU0uSsCrMUlAd8HJUEDgsBDBHuF884dhJaXnJ44Tabbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729076474; c=relaxed/simple;
-	bh=egoYzhX+UACWenoTpdhK0zSBTuLvjaL2MI+7rxM3Rsk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FiGe5ybtdritEx75ZdWNuVA/0lJoRNt1NppeUoLW6XyaVO4hVX3uxIz+Wv++NDPeEn+B7gcEWsLuJDEZAtsVzAZsZN64lkEe0WkgAag1T+VIS/6zkKa+u1TVVrqFln6p2p9BUaIaBW33rN2H8KW1TXw3H7gI0O5D9ogAu1yj5OQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=c86G6YB7; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729076472; x=1760612472;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=egoYzhX+UACWenoTpdhK0zSBTuLvjaL2MI+7rxM3Rsk=;
-  b=c86G6YB70/zTq8HIDHffKptTCw64tW9Xg4I+FO7NvtXkIZwK9iypxihJ
-   i6LZl20uBSzrh55u5Eefq3H+VxzpW+yC8t6srtgUBW48Bw8M9R8uiitbZ
-   BcYMd4ug4kRA3VF4iWlKb9ce11HwC8N+gur79/Dqov6JiqQlgi/tGGAvi
-   ng0rhY+Fs+xjwRPzDrwPAfQY0pvT5wEAcP86dMioW8VBN1gV/ANW94yYw
-   PseBDYzZM3IK0VaCrlLLGyS2inV5VTRLkqaI9FJoNrypky4TJ++caq5/e
-   pRtLcm2Od/GfNruHGR9+1dwEJtOEvoHETtHswKKIjphL/nGyH10A5hyav
-   Q==;
-X-CSE-ConnectionGUID: 0kh9pEfAR9qWRMTSfQ19Vg==
-X-CSE-MsgGUID: tr3NxVi4QBSEIeEq9L0J3Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="45989993"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="45989993"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2024 04:01:12 -0700
-X-CSE-ConnectionGUID: 2+JvtSVmRFaN5iVox+zBBQ==
-X-CSE-MsgGUID: 8aadeP2QQNGPIDuoQaQXdg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; 
-   d="scan'208";a="78253910"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 16 Oct 2024 04:01:08 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t11m6-000KoE-0y;
-	Wed, 16 Oct 2024 11:01:06 +0000
-Date: Wed, 16 Oct 2024 19:00:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Per-Daniel Olsson <perdaniel.olsson@axis.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rickard.andersson@axis.com,
-	kernel@axis.com, Per-Daniel Olsson <perdaniel.olsson@axis.com>
-Subject: Re: [PATCH v3 2/2] iio: light: Add support for TI OPT4060 color
- sensor
-Message-ID: <202410161852.GepOULQn-lkp@intel.com>
-References: <20241015143713.2017626-3-perdaniel.olsson@axis.com>
+	s=arc-20240116; t=1729076652; c=relaxed/simple;
+	bh=j7uqkslzjH6CNz0CR36nqNmHhVeQAxFmnElgWhQTsrY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=buX2ddmtpyzOwmRbMxzN7eIotT5jEnPeAaUPJ1YEQOI8V/X2dJykXIvMicUnhuf5pg5Vvd0tPNXYtuGawiGXyfUBth/DdOVrTYowf03VyXlIjXFo56pFDx7dqeL46iPNThdXhjJiDNrcWtub3r9NLvzawRY/c6ZrkNs8P6LsfZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=e8WH66Tm; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=XI2MQPm+ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1729076649; x=1760612649;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=UQnSqYqpBfUV+6/cvpHKfQx6TgwRy+1JDtpQMvdUWAY=;
+  b=e8WH66TmofbeTntJ5onHovsqJLOEu0vQu3OBsaJ210n76uIggIsRiCGI
+   4Vm0mHRjH1en0Z5No9zh3LGh8eKJ4yzYBqVa5PHp3xh7OreBpn9ipbJHO
+   vNOUy74Op6gULUBXNgyxwI4dwDXqAwu+943qAeJ52vDbEEAI8HeTogCA/
+   e9kRjPu8XTsID/d6KS/eB+vo0Cvz+7FOpRN6JDUe3dnDm7b8IfnngPted
+   k0X34tFXhyTAs/ZUkCjebDki1KL0M3ua7Gg42P9vpdMUc+HCLRXXZqDa6
+   IIPovpa3AjbUlMCL8B+mVbYGoJ8Hdh6bog4JImGSzw/xJ63x+IXMEfy/q
+   A==;
+X-CSE-ConnectionGUID: 4/UoR85oRzeG0PblB3UK6Q==
+X-CSE-MsgGUID: YU0fFkq7QwqVGtD9L/F5uw==
+X-IronPort-AV: E=Sophos;i="6.11,207,1725314400"; 
+   d="scan'208";a="39492910"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 16 Oct 2024 13:04:00 +0200
+X-CheckPoint: {670F9DA0-E-21611FC3-DAD22B0C}
+X-MAIL-CPID: 7354DE9C6207C2B376A359CA9647EA1D_4
+X-Control-Analysis: str=0001.0A682F1E.670F9DA0.00D7,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3D9C116853D;
+	Wed, 16 Oct 2024 13:03:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1729076635;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=UQnSqYqpBfUV+6/cvpHKfQx6TgwRy+1JDtpQMvdUWAY=;
+	b=XI2MQPm+Mb/NIn/vSlonjdjH9uLgzitytNffKH4fG82nU/9taJXmCN4sJ/t2FzcSPgaNP4
+	XRgidS1bmOo2sLA+p8MAGqjA6j9wAOU+rM1ufpkxT5Fi3kpMZBlICZToZPblxy5kISnejT
+	ltUEKOB2f+q3JYvaP1ebe561GvmJyVrygQOXO9swUbWkzQ34dGqAXse3nJRhBefmPya+Re
+	oV3q2cbZPzVXOST2dHeS/hT7WgCLUsLAyhVsnV4hjbpAykUth8RHN/FBPVz+e4/02ga163
+	qA6ialNJio94VChL6mUXQGKZ+GFHW72i8KIq3tt8M47szxmlG/XhFeFCk41BhQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, gregkh@linuxfoundation.org, peter.chen@kernel.org, herve.codina@bootlin.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org, jun.li@nxp.com
+Subject: Re: [PATCH v8 2/3] arm64: dts: imx95: add usb3 related nodes
+Date: Wed, 16 Oct 2024 13:03:53 +0200
+Message-ID: <3252989.5fSG56mABF@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20241016104140.rjmszgplmql4hwrs@hippo>
+References: <20241015111018.2388913-1-xu.yang_2@nxp.com> <22464382.EfDdHjke4D@steina-w> <20241016104140.rjmszgplmql4hwrs@hippo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015143713.2017626-3-perdaniel.olsson@axis.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Per-Daniel,
+Hi,
 
-kernel test robot noticed the following build warnings:
+Am Mittwoch, 16. Oktober 2024, 12:41:40 CEST schrieb Xu Yang:
+> On Wed, Oct 16, 2024 at 10:53:50AM +0200, Alexander Stein wrote:
+> > Hi,
+> >=20
+> > another thing I just noticed.
+> >=20
+> > Am Dienstag, 15. Oktober 2024, 13:10:17 CEST schrieb Xu Yang:
+> > > Add usb3 phy and controller nodes for imx95.
+> > >=20
+> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > >=20
+> > > ---
+> > > Changes in v2:
+> > >  - no changes
+> > > Changes in v3:
+> > >  - no changes
+> > > Changes in v4:
+> > >  - reorder nodes
+> > > Changes in v5:
+> > >  - no changes
+> > > Changes in v6:
+> > >  - rebase to latest
+> > > Changes in v7:
+> > >  - no changes
+> > > Changes in v8:
+> > >  - no changes
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx95.dtsi | 43 ++++++++++++++++++++++=
+++
+> > >  1 file changed, 43 insertions(+)
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/bo=
+ot/dts/freescale/imx95.dtsi
+> > > index 03661e76550f..e3faa8462759 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > @@ -1473,6 +1473,49 @@ smmu: iommu@490d0000 {
+> > >  			};
+> > >  		};
+> > > =20
+> > > +		usb3: usb@4c010010 {
+> > > +			compatible =3D "fsl,imx95-dwc3", "fsl,imx8mp-dwc3";
+> > > +			reg =3D <0x0 0x4c010010 0x0 0x04>,
+> > > +			      <0x0 0x4c1f0000 0x0 0x20>;
+> > > +			clocks =3D <&scmi_clk IMX95_CLK_HSIO>,
+> > > +				 <&scmi_clk IMX95_CLK_32K>;
+> > > +			clock-names =3D "hsio", "suspend";
+> > > +			interrupts =3D <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			#address-cells =3D <2>;
+> > > +			#size-cells =3D <2>;
+> > > +			ranges;
+> > > +			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
+> > > +			dma-ranges =3D <0x0 0x0 0x0 0x0 0x10 0x0>;
+> > > +			status =3D "disabled";
+> > > +
+> > > +			usb3_dwc3: usb@4c100000 {
+> > > +				compatible =3D "snps,dwc3";
+> > > +				reg =3D <0x0 0x4c100000 0x0 0x10000>;
+> > > +				clocks =3D <&scmi_clk IMX95_CLK_HSIO>,
+> > > +					 <&scmi_clk IMX95_CLK_24M>,
+> > > +					 <&scmi_clk IMX95_CLK_32K>;
+> > > +				clock-names =3D "bus_early", "ref", "suspend";
+> > > +				interrupts =3D <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>;
+> > > +				phys =3D <&usb3_phy>, <&usb3_phy>;
+> > > +				phy-names =3D "usb2-phy", "usb3-phy";
+> > > +				snps,gfladj-refclk-lpm-sel-quirk;
+> > > +				snps,parkmode-disable-ss-quirk;
+> > > +				iommus =3D <&smmu 0xe>;
+> > > +			};
+> > > +		};
+> > > +
+> > > +		usb3_phy: phy@4c1f0040 {
+> > > +			compatible =3D "fsl,imx95-usb-phy", "fsl,imx8mp-usb-phy";
+> > > +			reg =3D <0x0 0x4c1f0040 0x0 0x40>,
+> > > +			      <0x0 0x4c1fc000 0x0 0x100>;
+> > > +			clocks =3D <&scmi_clk IMX95_CLK_HSIO>;
+> > > +			clock-names =3D "phy";
+> > > +			#phy-cells =3D <0>;
+> > > +			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
+> > > +			orientation-switch;
+> > > +			status =3D "disabled";
+> >=20
+> > I got these dtbs check warnings:
+> >=20
+> > arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dtb:
+> >  phy@4c1f0040: 'oneOf' conditional failed, one must be fixed:
+> >         'port' is a required property
+> >         'ports' is a required property
+> >         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-u=
+sb-phy.yaml#
+> > arch/arm64/boot/dts/freescale/imx95-tqma9596sa-mb-smarc-2.dtb:=20
+> >  phy@4c1f0040: Unevaluated properties are not allowed ('orientation-swi=
+tch' was unexpected)
+> >         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-u=
+sb-phy.yaml#
+>=20
+> Are you checking on usb tree? You need below two dt-binding patch.
+>=20
+>  - dt-bindings: usb: dwc3-imx8mp: add compatible string for imx95
+>  - dt-bindings: phy: imx8mq-usb: add compatible "fsl,imx95-usb-phy"
 
-[auto build test WARNING on eca631b8fe808748d7585059c4307005ca5c5820]
+Yes, these patches are already in linux-next. I'm on next-20241016.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Per-Daniel-Olsson/dt-bindings-iio-light-Document-TI-OPT4060-RGBW-sensor/20241015-224128
-base:   eca631b8fe808748d7585059c4307005ca5c5820
-patch link:    https://lore.kernel.org/r/20241015143713.2017626-3-perdaniel.olsson%40axis.com
-patch subject: [PATCH v3 2/2] iio: light: Add support for TI OPT4060 color sensor
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20241016/202410161852.GepOULQn-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project bfe84f7085d82d06d61c632a7bad1e692fd159e4)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241016/202410161852.GepOULQn-lkp@intel.com/reproduce)
+> >=20
+> >=20
+> > How am I supposed to specify a port when the usb3 is used in host mode,=
+ thus
+> > no USB Type-C connector and no 'port' OF-graph accordingly?
+>=20
+> Host-only mode with Type-A connector? No Typec-C connector?
+> Sorry, I do not get your meaning.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410161852.GepOULQn-lkp@intel.com/
+Yes, no Type-C connector. Actually not even a Type-A as there is an
+on-board USB hub attached to this host.
 
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/iio/light/opt4060.c:11:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     548 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/iio/light/opt4060.c:11:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/iio/light/opt4060.c:11:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     585 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   In file included from drivers/iio/light/opt4060.c:11:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/iio/light/opt4060.c:836:2: warning: label at end of compound statement is a C23 extension [-Wc23-extensions]
-     836 |         }
-         |         ^
-   8 warnings generated.
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [m]:
-   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
-vim +836 drivers/iio/light/opt4060.c
-
-   807	
-   808	static int opt4060_write_event(struct iio_dev *indio_dev,
-   809				       const struct iio_chan_spec *chan,
-   810				       enum iio_event_type type,
-   811				       enum iio_event_direction dir,
-   812				       enum iio_event_info info,
-   813				       int val, int val2)
-   814	{
-   815		struct opt4060_chip *chip = iio_priv(indio_dev);
-   816	
-   817		switch (info) {
-   818		case IIO_EV_INFO_VALUE:
-   819			if (chan->type == IIO_INTENSITY && type == IIO_EV_TYPE_THRESH) {
-   820				u32 th_lo, th_hi;
-   821	
-   822				if (opt4060_get_thresholds(chip, &th_lo, &th_hi))
-   823					return -EFAULT;
-   824				if (dir == IIO_EV_DIR_FALLING)
-   825					th_lo = val;
-   826				else if (dir == IIO_EV_DIR_RISING)
-   827					th_hi = val;
-   828				if (opt4060_set_thresholds(chip, th_lo, th_hi))
-   829					return -EFAULT;
-   830				return 0;
-   831			}
-   832			break;
-   833		case IIO_EV_INFO_PERIOD:
-   834			return opt4060_write_ev_period(chip, val, val2);
-   835		default:
- > 836		}
-   837		return -EINVAL;
-   838	}
-   839	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
