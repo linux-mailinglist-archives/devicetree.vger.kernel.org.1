@@ -1,149 +1,188 @@
-Return-Path: <devicetree+bounces-111955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E23CA9A0694
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:08:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 034669A069A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:08:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72B40B26E88
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:08:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CA181F21126
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 10:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96C12071FA;
-	Wed, 16 Oct 2024 10:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48161206050;
+	Wed, 16 Oct 2024 10:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="l93f13vT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGJ0TjDj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0DB206063;
-	Wed, 16 Oct 2024 10:05:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D2121E3DC;
+	Wed, 16 Oct 2024 10:08:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729073159; cv=none; b=ltLnM+67BmPdSnfw9J4cT8bwqrSo+btFZ4P+1CGQnybedNq1LwQ8Ksor2nVPVomir5HB9WlCPf7q0iNYVAqgqhWu6nmYbgbql4hZf0ertzoTJ/EHYrnW1AzEMLnvzq6fDih4rK2POb2oZzhlDjwSIsHXDu6DDmSwLJ+7vvhDLpk=
+	t=1729073295; cv=none; b=udaiXwraEq3WqU56k3rUayRO2bP12cT8fSYlLK0DfIELlOC1ldOeyU+nEjb9xbzWMoUf7ypsmJTnnXLxiZY1SRryNk3TLhudhOlgFLYdCntOYaYM/8y+M9UwMSUhMabsDhY/6G3bb97I0Z1y8E59K1zHZyYxEduLFqzt80WkESI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729073159; c=relaxed/simple;
-	bh=j3pSe7FQjMMrX/McvHfRUETk4GsKHPg0yBTaOgDAK1o=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YCtT0ZtycxLCCmISjAooUPA0OoMPHxnJ2bXJGt0m2NbUgcjQkynhIgpYG9P5L3byZ6TfY45gwyl+oSjTzaUFpS46+rY6ckB/nuvj1ftlG7rnqvlFyzi+WCdw9eJh9WN7bj/lrocBhfptBozt8ZpHDPHxbSRQbdkdaNGf8lfV+Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=l93f13vT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49G8QWYk022182;
-	Wed, 16 Oct 2024 10:05:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=Ep6G7+6GjTUTsXDJ8R6LRj
-	6xleyRRN36AMDyNuVEols=; b=l93f13vTnHWYzf5AMkGYem9xB6KbuwqK1nhyFJ
-	oTbH/nbGXdHogIk3P8hmaiDCLi/XWYJxW7ZRDuH7PMotuJLMokSpNjbWj9GLpukP
-	DUJxp3w/UPpD1gSP2eW1Azi/lEgCbjCh1GcTCq4nK/kebY/d/t1VY5whnlZ0PoRJ
-	Xlg+l9xDrD8YizdZ5pmN1FFKJNf+kJJEeXSRoeevB073ISB/+a6dY+5kLBt4NJOc
-	b8lwpaqWb3rAU2wPeGIPqvC0fqJnS+EhWwiKYHt3uQ8hqRsA0M8MJD+k3dEFISxW
-	Wed1ETUWf5bvQ8i+r55FVZ7wUNpnrTIpeEo9lhuwHO8wF/Tg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 429uapavwy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Oct 2024 10:05:54 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49GA5rqi016979
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Oct 2024 10:05:53 GMT
-Received: from hu-kotarake-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 16 Oct 2024 03:05:49 -0700
-From: Rakesh Kota <quic_kotarake@quicinc.com>
-To: <dmitry.baryshkov@linaro.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_kamalw@quicinc.com>, <quic_jprakash@quicinc.com>,
-        <quic_kotarake@quicinc.com>
-Subject: [PATCH V3] arm64: dts: qcom: qcm6490-idp: Allow UFS regulators load/mode setting
-Date: Wed, 16 Oct 2024 15:35:11 +0530
-Message-ID: <20241016100511.2890983-1-quic_kotarake@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1729073295; c=relaxed/simple;
+	bh=ppSqprCoVy6EZxQ2UTOyXlYhZrip5nkfhWtYtxhn7pw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=U/qBfyl3/k9/KfUcOb6h8C/C0Hqx2j7t+0qzHwR9ZD7qMjFA5R5ugV6AOMJ5wNAKcEU/W26yuNySu3pfUG5Cg2yoLEJWhZnNLF323zyExeR299kdrGIelJM6C7yCBy6BtBJitzPEphXYqDQ/QrTxfbTGBgg4/Bv27BufYCSyFYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oGJ0TjDj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16BF8C4CEC5;
+	Wed, 16 Oct 2024 10:08:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729073294;
+	bh=ppSqprCoVy6EZxQ2UTOyXlYhZrip5nkfhWtYtxhn7pw=;
+	h=From:Subject:Date:To:Cc:From;
+	b=oGJ0TjDjPcnHyqO5YR6Tqhl8EStz53SwKc75Q7JsX+Va0BTZNHBYgSVXCV1BVzDIO
+	 4sg6Vuj2ue5kXgnuJ2vAB4DWP7UlaZitfL0UJneq/GEU9bfesGfdjSDPDKcwgc2wm9
+	 lGeN6iGasqbk+Ss2q6YW491q3S+A+t+ONAGcQSw6qGoVHcmp4fRmvAWbwtBDgmlctC
+	 MQFCmfhiS+QPCVzxRif9NuJudpAQXKRVZLVmmNCPSQSKXOl6eDCyBdVpctEeXgjT/L
+	 ONBJeNB+tnRZ0nNMANPm9ZwOLalBEFJ1KfqmO0nbvFN57DCooFe1B8Q5s6zq663VWn
+	 GQWoCjb7mUbtQ==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH v7 0/6] Add mfd, pinctrl and pwm support to EN7581 SoC
+Date: Wed, 16 Oct 2024 12:07:28 +0200
+Message-Id: <20241016-en7581-pinctrl-v7-0-4ff611f263a7@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: iGvjMm2C9Z_GehUdIWryTEFRFyGeHNp_
-X-Proofpoint-GUID: iGvjMm2C9Z_GehUdIWryTEFRFyGeHNp_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 mlxlogscore=599
- phishscore=0 priorityscore=1501 suspectscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410160063
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGCQD2cC/2XQTU7DMBAF4KtUWePIHo//uuIeiEVsj1uLkhQnR
+ EDVu+OmiBayHEvfmzc+NSOVTGOz3ZyaQnMe89DXwTxsmrDv+h2xHOvcAAfkVlhGvVFWsGPuw1Q
+ OTPgkgAuFnnhT0bFQyh9L4NNznVMZXtm0L9QtMTwqachar9Gi8QEJnVHaAzoPlGJIaJ130AoDU
+ jpAxHaXp/YwFOq/hscXKj0d2qHsfpYVenuvpafrxlvn7WZpbLhiaShMMyGYPybWSXSUArcx2e0
+ MzaXjPo/TUD6XP6hPl5zruQD/z52BceY7oZQTRnYm3Te6ZM3yzkux8rJ6Z4l88hg7rVceb96Jt
+ cfqNe+Ck9Fo7v3Kq18vOF97VX0MIpBC8Dqs9+s7L+TK6+qBoyWI3LkAf/z5fP4GW0UlLFECAAA
+ =
+X-Change-ID: 20240818-en7581-pinctrl-1bf120154be0
+To: Lorenzo Bianconi <lorenzo@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
+ linux-pwm@vger.kernel.org
+X-Mailer: b4 0.14.2
 
-The UFS driver expects to be able to set load (and by extension, mode)
-on its supply regulators. Add the necessary properties to make that
-possible.
+Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
+EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
+needs to access the same memory block (gpio memory region) to configure
+{gio,irq}_chip and pwm functionalities respectively, so model them as
+childs of a parent mfd driver.
+Current EN7581 pinctrl driver supports the following functionalities:
+- pin multiplexing via chip_scu syscon
+- pin pull-up, pull-down, open-drain, current strength,
+  {input,output}_enable, output_{low,high} via chip_scu syscon
+- gpio controller
+- irq controller
 
-Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
 ---
-Changes V3:
- - Somehow after fixing the compilation in last patch, i have missed to
-   do git  --amend the change. apology for that, in this change i have
-   fixed that compilation issue.
- - Link V2 : https://lore.kernel.org/all/20241015132049.2037500-1-quic_kotarake@quicinc.com/
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Changes in v7:
+- pinctrl: cosmetics
+- pinctrl: fix compilation warning
+- Link to v6: https://lore.kernel.org/r/20241013-en7581-pinctrl-v6-0-2048e2d099c2@kernel.org
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index 5f3d4807ac43..bfb1cdc238cc 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -258,6 +258,8 @@ vreg_l6b_1p2: ldo6 {
- 			regulator-name = "vreg_l6b_1p2";
- 			regulator-min-microvolt = <1140000>;
- 			regulator-max-microvolt = <1260000>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-@@ -265,6 +267,8 @@ vreg_l7b_2p952: ldo7 {
- 			regulator-name = "vreg_l7b_2p952";
- 			regulator-min-microvolt = <2400000>;
- 			regulator-max-microvolt = <3544000>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-@@ -279,6 +283,8 @@ vreg_l9b_1p2: ldo9 {
- 			regulator-name = "vreg_l9b_1p2";
- 			regulator-min-microvolt = <1200000>;
- 			regulator-max-microvolt = <1304000>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-@@ -467,6 +473,8 @@ vreg_l10c_0p88: ldo10 {
- 			regulator-name = "vreg_l10c_0p88";
- 			regulator-min-microvolt = <720000>;
- 			regulator-max-microvolt = <1050000>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
+Changes in v6:
+- pwm: rely on regmap APIs
+- pwm: introduce compatible string
+- pinctrl: introduce compatible string
+- remove airoha-mfd driver
+- add airoha,en7581-pinctrl binding
+- add airoha,en7581-pwm binding
+- update airoha,en7581-gpio-sysctl binding
+- Link to v5: https://lore.kernel.org/r/20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org
+
+Changes in v5:
+- use spin_lock in airoha_pinctrl_rmw instead of a mutex since it can run
+  in interrupt context
+- remove unused includes in pinctrl driver
+- since the irq_chip is immutable, allocate the gpio_irq_chip struct
+  statically in pinctrl driver
+- rely on regmap APIs in pinctrl driver but keep the spin_lock local to the
+  driver
+- rely on guard/guard_scope APIs in pinctrl driver
+- improve naming convention pinctrl driver
+- introduce airoha_pinconf_set_pin_value utility routine
+- Link to v4: https://lore.kernel.org/r/20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org
+
+Changes in v4:
+- add 'Limitation' description in pwm driver
+- fix comments in pwm driver
+- rely on mfd->base __iomem pointer in pwm driver, modify register
+  offsets according to it and get rid of sgpio_cfg, flash_cfg and
+  cycle_cfg pointers
+- simplify register utility routines in pwm driver
+- use 'generator' instead of 'waveform' suffix for pwm routines
+- fix possible overflow calculating duty cycle in pwm driver
+- do not modify pwm state in free callback in pwm driver
+- cap the maximum period in pwm driver
+- do not allow inverse polarity in pwm driver
+- do not set of_xlate callback in the pwm driver and allow the stack to
+  do it
+- fix MAINTAINERS file for airoha pinctrl driver
+- fix undefined reference to __ffsdi2 in pinctrl driver
+- simplify airoha,en7581-gpio-sysctl.yam binding
+- Link to v3: https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org
+
+Changes in v3:
+- introduce airoha-mfd driver
+- add pwm driver to the same series
+- model pinctrl and pwm drivers as childs of a parent mfd driver.
+- access chip-scu memory region in pinctrl driver via syscon
+- introduce a single airoha,en7581-gpio-sysctl.yaml binding and get rid
+  of dedicated bindings for pinctrl and pwm
+- add airoha,en7581-chip-scu.yaml binding do the series
+- Link to v2: https://lore.kernel.org/r/20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org
+
+Changes in v2:
+- Fix compilation errors
+- Collapse some register mappings for gpio and irq controllers
+- update dt-bindings according to new register mapping
+- fix some dt-bindings errors
+- Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
+
+---
+Benjamin Larsson (1):
+      pwm: airoha: Add support for EN7581 SoC
+
+Christian Marangi (1):
+      dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
+
+Lorenzo Bianconi (4):
+      dt-bindings: arm: airoha: Add the chip-scu node for EN7581 SoC
+      dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
+      dt-bindings: pwm: airoha: Add EN7581 pwm
+      pinctrl: airoha: Add support for EN7581 SoC
+
+ .../bindings/arm/airoha,en7581-chip-scu.yaml       |   42 +
+ .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    |   90 +
+ .../bindings/pinctrl/airoha,en7581-pinctrl.yaml    |  400 +++
+ .../devicetree/bindings/pwm/airoha,en7581-pwm.yaml |   34 +
+ MAINTAINERS                                        |    7 +
+ drivers/pinctrl/mediatek/Kconfig                   |   17 +-
+ drivers/pinctrl/mediatek/Makefile                  |    1 +
+ drivers/pinctrl/mediatek/pinctrl-airoha.c          | 2970 ++++++++++++++++++++
+ drivers/pwm/Kconfig                                |   11 +
+ drivers/pwm/Makefile                               |    1 +
+ drivers/pwm/pwm-airoha.c                           |  408 +++
+ 11 files changed, 3980 insertions(+), 1 deletion(-)
+---
+base-commit: e4188772459fec428bf85ce6711a0147387c1455
+change-id: 20240818-en7581-pinctrl-1bf120154be0
+prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
+
+Best regards,
 -- 
-2.34.1
+Lorenzo Bianconi <lorenzo@kernel.org>
 
 
