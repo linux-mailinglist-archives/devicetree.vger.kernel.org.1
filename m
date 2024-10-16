@@ -1,74 +1,124 @@
-Return-Path: <devicetree+bounces-112123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26CF39A117F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:26:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA2B9A119B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 20:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCDAF2881FD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 18:26:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9DD71F24E02
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 18:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2525212F1E;
-	Wed, 16 Oct 2024 18:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF56018C33E;
+	Wed, 16 Oct 2024 18:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mLI7RXIZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MnS5GF3A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78871212630;
-	Wed, 16 Oct 2024 18:26:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CCCE18BB89
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 18:32:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729103199; cv=none; b=fyuLTp2ns6ZzRtFA8GdIzpRkxNu6zGKx9acfTFHnepRzYW3dQ2IAuwpj0Nqdm2j4TW/vvEw7Rit2aFQpzW7Hob+9K1SfRyZ1/kAYjqo2t3dg5bmRLL/hbXPcg8Dme4p1JkKIfjw9tlUjMD/zw7QP2cNRljKvlUjWx3UfCgOSsOQ=
+	t=1729103533; cv=none; b=Fpevgp3Ym/DJDD5EvRYiov0O9psTTwLhiWTPohIOOzSq1kvsg5zfMqEzlouCy5v21oKWPJpzMkQjOixiNu+q+4k7xJoHB4KgHZRtJQ1Jx/O9Ezpuy7wQLAJNCB6MUrg4SRvkrj/+OESYa9iFd8QJ3vnHTyBF1WXr7KAL9LPaPPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729103199; c=relaxed/simple;
-	bh=VzEcdM7oxg8go3c06Uetl0AaBL4Nyw8umwHBNlCH7RE=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=ceh1wkIKykyYdUZoRwXhya+ocw3x8WhyiIjIYNRqjhRGuT3V7f0IrNILWuPq/Xn1HU+XgIh4T8D1KsXhvOrzMKr0X9AyFMXYWUAYgX/qllYp+c+bcvUxbX3oZbl4rYXvvIsVIfT80d4/qxHXPiuZpT5/5iGKnjrJ2xHT07iN6A4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mLI7RXIZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C58C4CEC5;
-	Wed, 16 Oct 2024 18:26:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729103199;
-	bh=VzEcdM7oxg8go3c06Uetl0AaBL4Nyw8umwHBNlCH7RE=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=mLI7RXIZ8p1Pg+Oo11M03Y0owKEKpR+zIRwNuD2phQi+AM3rpFNXNQg8fN8fxObHa
-	 i83p+4ttgkPrSHBPJfjAHXsF3ysit2WuGQZ7K7hcY3PtVsbcv3VIYWvyCM3S/XBlNJ
-	 y/nQDOPrCBbJgGjzwntVupTKZuUWvHyvyI2CxKyQMOxwlrgo3SGXvScyzynZInog1X
-	 E/+uMl0mat0kT4Do4sL4CUmqdIemyySQgSI7PADT8EJNB40zyQxLjod3RC/pOIllEC
-	 5b2xblTGCqrt2MGPS38Q3E+DbjFnTypiCTWS5+L3DGaC4eXug1TaPkG92Mx5G+fW8f
-	 1s1BECml7Gh9w==
-Message-ID: <de44454fe6d3c7238e28ec5545b2b84e.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1729103533; c=relaxed/simple;
+	bh=zLO6aZwyUl+3LfycLrqZXToqmieLhN3tIxuDQ8INOFU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LecT23+1oPayJfqeZPaPZRxqw6UX04ZJx7TvNldds+0oAUtQtvL3Z8eR1dR4uihnwWyx/+29dqKxVq0yxEisiJskMaH7DoLVYJhZLl5CZbwuUwdQIm3sAwwpmuiILTjI1gIpWE1yDHeKOHvdiO81OEtFKiGRzgBIto3c+fF2DwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MnS5GF3A; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb5fa911aaso2209621fa.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 11:32:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729103530; x=1729708330; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zLO6aZwyUl+3LfycLrqZXToqmieLhN3tIxuDQ8INOFU=;
+        b=MnS5GF3AOVtkeqhyOUF58roJxmRo2C1LWSeb3GfYEHRs1hRF64Ovsuk1ky+yQsOM8W
+         hOYLASn+bUMTXQNUmBeQtzqaWtrmCxR5wJ7umrB7rt4RUBUo7LOVL9QBrt6wstsLcKrV
+         zr7PadkX17k4zqLlpLpaBT38+rxwrEa/gB4TBLZp+Lnp+LBlNZoC/j/18qK/kpkvNE8W
+         vw6PMSREUHhntyT3WGSsPd2KjeSFc8nBaytHgMI9LiWhtEJZJ7bzXS3WWkHpXk7liLRV
+         dVsNkoMPx388J7jlp/ulyCPKgj9hrDmtb7pv39czD4Lo+51YvQ2/B2mVyiq7TqMz/nJg
+         fiFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729103530; x=1729708330;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zLO6aZwyUl+3LfycLrqZXToqmieLhN3tIxuDQ8INOFU=;
+        b=C9M3px/NdMOI65VsFHYHO9Y9YTPlvZaBtlVQA62+Kb7zb8sD0nkO93c8y5C1uyKV1p
+         QKCr/65pUBXtoMOepl3rNrzmtOGNTlEyAgDJNfwjsXLry3QZQ3EmEc3C1adqbN4jK0NT
+         vsh5UXNEzPydLSDc7zHpjRuEY5p3T6+VAlOZQEWEUAcTG7i/KY5zmkKlE3IpI8cmHW/m
+         7D+iMdzVR+pdMGK5zLYz7Xt4AZ1eGjAseYOzk3sm5CO67WhWnf67SYP+YGsUV0exuZjt
+         bsf8dkIaOH9uOHt8O5RK+d3qZOJDqae/ULqPSmHWExrtm7IMOYvw7CMLRbV702o7RyiZ
+         oqxA==
+X-Forwarded-Encrypted: i=1; AJvYcCXrBVUZBsie64uC9yfcvfRHqjopDk/3wqlruh7mBVPmxzNrrP8xH+lRVNR8yONR4nfcpa3MuDxjOIFd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5croP/CAFsSjT/j1n/EnmzBQLqFH/QHLworL5KVCFYs/m5UIw
+	gm9/ugsUKc0p5FfRkp/VLrx2dezgOCHwzPcuOmPg7dDXMacmUH8/JrHWAjlfEtZaaigq0XPvfor
+	J10Gzz+U/m/FbiJzzISWvgu9KZ57SSoCuNuV/Tg==
+X-Google-Smtp-Source: AGHT+IHpAeDWCA8i/8V+jXTEhlCjTBpvAe50DUbf+6GO3QbkdbjrySiEqxkK4J1c1Y+WN39i8NFPotc1h2p87Pt9UM4=
+X-Received: by 2002:a2e:be9c:0:b0:2fa:c5d9:105b with SMTP id
+ 38308e7fff4ca-2fb3f16fabcmr118616141fa.2.1729103530208; Wed, 16 Oct 2024
+ 11:32:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241016-gpio-ngpios-v1-0-f16cf154f715@linaro.org>
+ <20241016-gpio-ngpios-v1-1-f16cf154f715@linaro.org> <CAL_JsqK-Nd6izk6RFf4NyoOCkobDwye+QPsRKHBDwovxO9NTDQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqK-Nd6izk6RFf4NyoOCkobDwye+QPsRKHBDwovxO9NTDQ@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 16 Oct 2024 20:31:58 +0200
+Message-ID: <CACRpkdYipbtgW1odod288fEV33SqoJo8vcN7=c+tSRUsR4dE6Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: gpio-mmio: Add ngpios property
+To: Rob Herring <robh@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240906082511.2963890-5-heiko@sntech.de>
-References: <20240906082511.2963890-1-heiko@sntech.de> <20240906082511.2963890-5-heiko@sntech.de>
-Subject: Re: [PATCH v4 4/5] clk: clk-gpio: add driver for gated-fixed-clocks
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-To: Heiko Stuebner <heiko@sntech.de>, mturquette@baylibre.com
-Date: Wed, 16 Oct 2024 11:26:37 -0700
-User-Agent: alot/0.10
 
-Quoting Heiko Stuebner (2024-09-06 01:25:10)
-> In contrast to fixed clocks that are described as ungateable, boards
-> sometimes use additional oscillators for things like PCIe reference
-> clocks, that need actual supplies to get enabled and enable-gpios to be
-> toggled for them to work.
->=20
-> This adds a driver for those generic gated-fixed-clocks
-> that can show up in schematics looking like
->=20
->          ----------------
+On Wed, Oct 16, 2024 at 5:47=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Wed, Oct 16, 2024 at 2:21=E2=80=AFAM Linus Walleij <linus.walleij@lina=
+ro.org> wrote:
+> >
+> > This adds the ngpios property to MMIO GPIO. We restrict the
+> > property to 1..63 since there is no point in 0 GPIO lines and
+> > we support up to 64bits wide registers for now.
+>
+> Why does it need to be restricted? Is something bad going to happen if
+> for some reason someone tries to control a non-existent GPIO?
 
-Applied to clk-next
+Unlikely. But the biggest inconvenience is that non-existing GPIO lines
+gets exposed to userspace which causes confusion. It's a bit like
+saying you have 32 harddisks on your system just because the register
+has 32 bits.
+
+> If there
+> is, maybe there should be a specific compatible as the h/w is not so
+> generic.
+
+The gpio-mmio is quite generic, it's the most generic GPIO
+driver we have.
+
+The ngpios property is also generic, it is in:
+Documentation/devicetree/bindings/gpio/gpio.txt
+(commit aacaffd1d9a6f8e2c7369d83c21d41c3b53e2edc)
+
+At the time (2015) I just documented the already widespread use
+of this property.
+
+It is also reflected in several of the new yaml bindings, a git grep
+ngpios will show you.
+
+Yours,
+Linus Walleij
 
