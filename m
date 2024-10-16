@@ -1,126 +1,117 @@
-Return-Path: <devicetree+bounces-111950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28E69A061C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:52:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 127D69A0624
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 11:55:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A07A1F2334B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:52:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74CEC1C229F9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8258206975;
-	Wed, 16 Oct 2024 09:51:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D38F206952;
+	Wed, 16 Oct 2024 09:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="CGEPSZOd"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="Je2FlEoG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555831AF0DF
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 09:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA9F1FAF17;
+	Wed, 16 Oct 2024 09:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729072268; cv=none; b=vC1l8SpD7kR+xoBDK1tzvkFb69b/JsFN5QlKaj+LGSOsfb1IjmTA6M6nrXkgzWLVm/ry3I7ucGSXX0IlI/hi9TbrfCoZxLruNRFdszIGEoypsk4sJjfFMKKiXZGGnqoGPtJiQqLewWxYqY3/6WaEftYDBn0n7M2ozH56J/Ua/pQ=
+	t=1729072505; cv=none; b=nb7i2TXof2t71O0oyUfZQCOpiozFmuqyh1D1DDphtNWWDIknNEWSgT+II2grXdQXU30I1iuErc6j1MUhNdIaksVumo6+A87KRRsNZ8kpcwo/nGOAFZPxSoilIOc2hVDBMUsBGoDEpYngU0mT4Qh5OKEeBEXvBUb/hqgs2I0cSzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729072268; c=relaxed/simple;
-	bh=Cj86NyIswgKoqmx4W92A+phSXUB2YaLiIZDYapAeldo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Tm3CU3hHlqshGAXPM3Zxzz+MRxqQCyDgibxpHqiDfLpMFPKjyVcsUhXROBbMqIALjq5sFnhVooF8StDdT9gToiOp39jgLAZSzIh1UzcwVfgRZsJbfd66qcZtb9cK99gD4+FdxK54DXrTa7OwF6rmgNIaKFDRvKFviP/wHzzDMa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=CGEPSZOd; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7ea8d7341e6so2198576a12.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 02:51:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1729072267; x=1729677067; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=55z7MQbfeSSb5xwJVgndR9t0TWHNOqYIoBbegmDTohc=;
-        b=CGEPSZOdx/fiuZNgETUbHRFOd4P3A04qoFoeK1v7tnCAv05pTpUnEtPmeyNXLurQ5m
-         KZvqjfH7YjFFZ1GaJv+QmodZ2BDEkLMBhBuG2tyPdx4GVoC0AfSFHkJ7EVGbtJXhdRrI
-         VM5r0216pr3mjaSsRX/SfqMoV6buERrmI7U141c6ueAD1LJeZTClQPYt4TEE8aLQpUjs
-         2gUiGkJt8edGcxbz1+F5Cvv5NL4l55Wv+/f8xfaEP4yBsqn8XHY91BdmZCXNY0MT3goW
-         zEcglYJKeX4XqcwFJDmY+RClpg0IQpa1n1smLTik4vAflHui/wOx4ERfvuTFfw/45Xfc
-         A60Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729072267; x=1729677067;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=55z7MQbfeSSb5xwJVgndR9t0TWHNOqYIoBbegmDTohc=;
-        b=TrRbvM48ddtu1go7sqmCfY2LWeLh5nB7SimCF+tzvxOlClUOwOkyrZXG9NKe++IaFl
-         3qw01Z1/JObh9/U3cEPSpXxhrmKSFf+2U0HEyomlSjIou+8FhpZ8PgiRCAJXLfIXGNPZ
-         nYAc5x9vARWbewEvAJxgspTk05B5+6a2cy5LUCN442l+9aMjMe/f/VkFSxXPPzpxSbTL
-         6n+8p4ztTf3Gu5qmTtR8909mHR11pJAaIcg2C4ndC0R8viK5WJWDVv8+nVn3ZHvllzEK
-         ABJ4VYKM/5nIvl7LVK7TPzRuk1QThi/WmOrehj63jLdLDDZPMn/57jZlo+0v0bJ2Dt5t
-         Li7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXNrqlVwx96eHJujdO5UYzjwZfEQh6Fcrx4f0tr6ls1cf85A6sSPjr9IJ2nD3XQ4T+dJmPMomP5VLdY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6u4haKmW3M8yNEFWfxNfw9PoZUtTxQQ3QNkyhCWZfxiE1GKE+
-	9O6LoawVqzSIbmZAb6XmpyqzphtYRpXLaOwZuWbfiOAEKCnbrsHrO98qlHyDQICfryZ129WzL/k
-	SBN0ZyOdwsydzTV3c6kZs3fW39+W7uUyx43Xyuw==
-X-Google-Smtp-Source: AGHT+IEFyMfBHqpooctvg2iThMuJ2EZL7X1ymRn7DPngXS/aofDO/dY9X6Azot0jpV1C8esxg0Ncunf+8mxEudBKvL0=
-X-Received: by 2002:a05:6a21:38f:b0:1d8:a29b:8f6f with SMTP id
- adf61e73a8af0-1d905ebfe64mr5058933637.16.1729072266720; Wed, 16 Oct 2024
- 02:51:06 -0700 (PDT)
+	s=arc-20240116; t=1729072505; c=relaxed/simple;
+	bh=B33N9NCktEKQzY6gUrpC2zYWEtyfJKfOrZV2IutPllQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SfMEX2myv9oE3BWzNybQghbw64hRq+nVfOV8pcqPATn4J/W8bDm22qYWzqbROepabEbBKfK0VxK1Fsk30Rt4W+kst17rqInH+nscp9CCH7KWO5Zd47TwU4waWAz9QKRjtMCV/mqW52+M/dx0gfLI/nUs2ZrG8AmcYMsyY2vItbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=Je2FlEoG; arc=none smtp.client-ip=212.227.15.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1729072459; x=1729677259; i=markus.elfring@web.de;
+	bh=B33N9NCktEKQzY6gUrpC2zYWEtyfJKfOrZV2IutPllQ=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=Je2FlEoG1wn1fI2boLzaSCHA9EUoNF+dLrvNmQVKhwvyLQaab6SDfCTOC7HeVHmh
+	 nhYKmAi5n/f1lkTKGFmbMuck4ek6ag7oyTa+dgjf+Ek/v5tJM36FMXypYT8lqokBM
+	 J91tjrKBcnlxetSDpRYbGDMAiD6+hOtgmGW03ADO3jbvoYeN2M5LcUf8E09Zobutg
+	 jJqZtAqssIzuEvLcT06PUQZmJ+T/NazeSZIxtFovPF0m7prsfhhGWy/m/PkODpuWs
+	 Ke8Zd4UuO0N7xca3w7dHvEIaLQBUk1He+8RaAhGyjz3HoJ/6BO8lX1jSJTPwk6Z/q
+	 DE0enNNycmOFXgIr1w==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.89.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MGgNS-1tDiK90UFO-00Dmjj; Wed, 16
+ Oct 2024 11:54:19 +0200
+Message-ID: <42c7dfe1-451b-4f70-8358-725cf3eed549@web.de>
+Date: Wed, 16 Oct 2024 11:54:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241015113329.667831-1-naresh.solanki@9elements.com>
- <20241015113329.667831-2-naresh.solanki@9elements.com> <c07435f5-af3f-46e2-8e4d-b0a42969b60a@kernel.org>
- <30089bac-e764-45ca-b0fd-f0eb0333e632@roeck-us.net> <b981df66-2501-40ad-8064-158cf93407f7@kernel.org>
-In-Reply-To: <b981df66-2501-40ad-8064-158cf93407f7@kernel.org>
-From: Naresh Solanki <naresh.solanki@9elements.com>
-Date: Wed, 16 Oct 2024 15:20:56 +0530
-Message-ID: <CABqG17hNSOA6onnH6Bp2oOGRiS_8EMnp4fGyWYZEYG5+HQYceQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: hwmon: pmbus: pli209bc: Add bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sylvester Bauer <sylv@sylv.io>, 
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v3 2/2] irqchip/aspeed-intc: Add support for AST27XX INTC
+To: Thomas Gleixner <tglx@linutronix.de>,
+ Kevin Chen <kevin_chen@aspeedtech.com>, linux-aspeed@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org
+References: <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
+ <f65dd139-1021-47d6-93a1-1477d6b4ca1d@web.de> <874j5ddow1.ffs@tglx>
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <874j5ddow1.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:5PdP4OeLPruXhve1TsYeyQlvYAJ06iKJriezhlJsCtBxNnKyTNx
+ tNA77FMgapaBdZdjEsYh5tNukeEBponwO2/mdM2WRXYPipqo6efWLIslsPF/dmaBgTgIIHG
+ 9blNFdTKuFT41sDFmnDzkCWjPZDuGGIFPMhj00W4i5aTQxEaNeisM5aBtn3C3aDSAHnMT03
+ 5T/ms4ppv03+sfNzkZBWA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:GDpmqTIObF8=;P+X0BK25UKhmiTH5Wz/6TTqcklE
+ C/eBsj8x2ZwmC5cHvXLA49jMiMcLY12hG2naqPWceqI67SY/+2ao69O+zfdvI6GyL5qdgFNKa
+ LTgbjkxJ0ViOaR9AhJE3ImYx/Peh7TArul5Gwsmtziopxz/OsXTjTUgLQMUirnBJ3oC041jW9
+ 5cwMh2+qy/PK3AMzdWI5z9MAiGv1jywQDeoSjVO2MCqmo7mi86XIe2yPUCQ3BT5eYLTPM/Izh
+ L53gJC5EG6dSRPnEuoanGBLnVPgBVEYd2Xyhi5TeUtXzW+zA6qlJwzdr2bjRheOcfpAnYBxnZ
+ rmbnI3qUxbV2LK9C0iA3uqO14ASDbLnzZf184D9bSuIRysOwf5Kt8Ge+qBUtyqfB+8Uwt0/RT
+ EY6AzoCI9idnxpm6tdLdWucU0vp6b5BaAtXKFH9gszMLuxa5h+9lsZbmJISl6BWhz1Pri6Nxl
+ MdkBSew4sMwG8l/JB+GTlLlGYjbjCaBWwb6DxIfN/uxoGVgrm1aN3euOwZxkBh+p+AWORUOKC
+ svcwtVudNFGDc7q+1qQXRhEvj/VITCbs95AeQrTjQNSGFjVGTOaH6k7717UuKb1S/SaHVknrK
+ yjU4Re6IsAGhWDmBjJWXLNevczVm9dHuZgKTu24WK508oyp3uH8FbV6H5uMxzhv7+/BY36exo
+ JwvR7ytBkatPki8VqYeuvnVd8v7dZ7+FKWp67ZvcWclXsJ/jO5eTIeiAkkTH188V5vfFmT0Nu
+ HUIlA69XcqeZT8c0ZpIMEy2c/KV3HhH/2N8060jNdHqUJI0F2u5fJdaCYSrk8nc3Zdx82sE0M
+ FANtqddy42xjvhpS1AWw92nw==
 
-Hi Krzysztof, Guenter,
+> Making a guard variant of chained_irq_enter/exit needs some thought and
+> a general plan for cleaning the whole chained irq usage up. It's on the
+> cleanup list already with quite some other items.
 
-On Tue, 15 Oct 2024 at 20:19, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 15/10/2024 16:10, Guenter Roeck wrote:
-> > On 10/15/24 04:48, Krzysztof Kozlowski wrote:
-> >> On 15/10/2024 13:33, Naresh Solanki wrote:
-> >>> Add bindings for Vicor pli1209bc.
-> >>> It a Digital Supervisor with Isolation for use with BCM Bus Converter
-> >>> Modules.
-> >>>
-> >>> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> >>> ---
-> >>>   .../bindings/hwmon/pmbus/vicor,pli1209bc.yaml | 65 +++++++++++++++++++
-> >>
-> >> This has to be squashed with previous patch.
-Ack
-> >>
-> >
-> > Neither me nor the hwmon mailing list was copied on that previous patch
-> > (or on an intro patch if there was one), so I have no idea what this
-> > is about.
->
-> Heh... that's even worse because without that visibility you would pick
-> up this patch only leading to duplicated compatibles warnings.
->
-> Naresh, sending such patchsets is really not correct. Be sure you
-> organize them logically and in fully bisectable way, and then you CC
-> relevant people.
-Yes this definitely causes confusion. I should have organised it better.
-Will make sure I handle it properly. Pardon me for the confusion
+I became also curious how API usage will evolve further here.
 
-Thanks
-Naresh
->
-> Best regards,
-> Krzysztof
->
+
+> We are not adhoc adding a guard variant because guards are hip right now.
+
+Application interests are growing, aren't they?
+
+
+> And no this does not need a scoped variant ever.
+
+There are subsystems which seem to prefer such a programming interface occasionally.
+
+
+> guards are not the panacea for everything.
+Their usage might become more popular.
+
+Regards,
+Markus
 
