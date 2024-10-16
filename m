@@ -1,138 +1,137 @@
-Return-Path: <devicetree+bounces-111853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C3139A025F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:23:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93B839A0272
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:24:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D0B7283402
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:23:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C67D91C26202
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:24:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933F61B3923;
-	Wed, 16 Oct 2024 07:23:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32871B3923;
+	Wed, 16 Oct 2024 07:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e979JBF7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RI5j12QZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2162F1B0F3E;
-	Wed, 16 Oct 2024 07:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00A9165EF8
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 07:24:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729063390; cv=none; b=ZDlutT4mM3Ger3RViT33ip2fw3rQSptxwixZWHQgPDknvDCH9G30b7IHUN2Zf+lzng4yLU5vxc87QEqILQVhI6ErWhwg/xqv7C+oZVax/rHHGHzTquA59tRhtVTYTJLetNjnPTEF+nLVznToOic/ktIEH1wiLsj8nGWTvzoOFhw=
+	t=1729063489; cv=none; b=rD0bJ0QA58W+GIpi1y66WVAsh1p8lPBGw0r9vvqxlmbt5RbZ4Qs2ZoTGDScrANen4cIPdoeSN6MJc5tusUCuRauIb1bEGaJGRe6nCfVQlT13nIIPSj9kK9dwJ+N7NoT6Q/ZpK4PUeVrkesaMVtaaGcShXaW3uS2ICdqFsEXbyW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729063390; c=relaxed/simple;
-	bh=CeRE3z3lZdS4M1bt+JJBEe/bsjNSxG/aOxLIGUjGu+M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Wa1Ed0vXsUoA5YOQ9hIeXIPdtliK0tWBuDDKn7V5h1Vw4WjNAsfe/3woC3kcr6UT/QS4HbqIkp5lDpU3qC8LA01OCpOWvH84x0i72g5ZeHI88is7AzG/2GZQsZBff8cqLoLf0l/EWRG6pxUyrh+OEoC479MNd2SAueosFyEAXSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e979JBF7; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-277e6002b7dso1770014fac.1;
-        Wed, 16 Oct 2024 00:23:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729063388; x=1729668188; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wd8Ym5tSSwsBLwbiURSvOdqd3ghlmcVdmxI2I4tPA/M=;
-        b=e979JBF7XjKBERWC1N1Qxm84tKZFSKMCXIkKmIEtsmn5wVuUFE+75TLge/0d6bJccU
-         XSvBLC400EVsyl6V7xDHZMXviGUvYIcMLLyHx53sFncqzZlodVHUCh2X0ubx4wMa62S2
-         1b5MOiF3pfKdgxuRoHkZ+ifTrPyF7i3GVvfbJYQv6HGGn0wSs5nVZH6XhNfTMzxlAQJ9
-         lOIhzIWjAcGsfCAZKIyEix0qNL09fJPuF/nSDnWQXMe0cl/Sy4wlD5tO+qa2L9ktvSoM
-         B+xQ5wybLrfAgztKWJ4RevPzdJIcHixA+odPki+2Wt7CIQrEL79kLmgFTGa+3NY5u05l
-         gh0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729063388; x=1729668188;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wd8Ym5tSSwsBLwbiURSvOdqd3ghlmcVdmxI2I4tPA/M=;
-        b=D65LWHWTRhcXRl6z7JPn7BPiR9UXJJk+GCKTzOydWhtE0yMew7KrNq1JZDmIXHTDFv
-         idN7n0Y6fl/cWnWKwH8aKquU/PcOyLAb2YGmB+28u6FjPaYJAGO1BVX+wr8MM0JwTm8x
-         0d2wI6Z44sWFytyieqi+eeak/CEm260LZfRdUU/RYUgqcpVgOYtDx3WDUAKHhbuvqd/5
-         pLJOJsyagB5At1wM7q8mWEy5O5nVq4Ri+8wJY2O/Jkqzk4rRpWTewjgOYmM6aSTUa9az
-         36EdPefCDgdqCZ1U1DR97lXTUKxeP6f9zZWw7PTnl53246IlRbZCZXA/Wj7FsHMKpHbH
-         en5g==
-X-Forwarded-Encrypted: i=1; AJvYcCW8rpzho5Tc73rKvcu1nQEmkz0atfFV5q6gYltqsxCDrwqTqyxJ1sunUtaZMIHGciTRmuCVMowYtT+D@vger.kernel.org, AJvYcCXHGnegWERV9IWuvan4IyS2go2Bqix8paGnkFGuq1NGZpLwGTJw10fjJn4HQYPvzJHO/Mlyoc50f9cS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIeF3Fs3mDF08RdI03EZPyYl+FFu8E9HcSeBVawqOA8WeQKC2Y
-	D7k6Ld/2rlWGd42fECTMuaI06YqCX4Q4ZSgX2gfZ3cTcltB5VE20doXgZUlR3Q4uqKU0RmySF7t
-	UPUEOzvRJUjX9ostzKVrT2errbmM=
-X-Google-Smtp-Source: AGHT+IFIhDVUzESiMhhE/TlY7ASxMyIeK5VV3R4UKMzydpDPcQNVh9fJvlWSotSf20vztJje3Bo92Hxhu9h8zoCR9Hw=
-X-Received: by 2002:a05:6871:2504:b0:288:eff4:49e4 with SMTP id
- 586e51a60fabf-288eff44b5amr1179295fac.4.1729063388169; Wed, 16 Oct 2024
- 00:23:08 -0700 (PDT)
+	s=arc-20240116; t=1729063489; c=relaxed/simple;
+	bh=Iyb1TkAUPKJ81Bq0LZz//YKK4SVfac9T1Vhy7dS8gVk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gwpa03BNnydSY4m7LW4RZb290QxVEaNRNx28W/NMKRbh7c4Wczm1mXyOXQvE5ujhFpzTL2+m6kHTMGo6jKFBbEDLOOxFgwJaCQCbTEwOwJytJ/6MV/CjHCXljC+UP3SEwxn0YfBp9sNxfZILeGrvlWHYJ11ilqJvhoLFRB7MpJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RI5j12QZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AB70C4CEC5;
+	Wed, 16 Oct 2024 07:24:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729063489;
+	bh=Iyb1TkAUPKJ81Bq0LZz//YKK4SVfac9T1Vhy7dS8gVk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RI5j12QZd05MQnfg8ic+YYlNi1YyUEXX86ZRasgMAvQyRGObuwFmRBjvxw9zRlBhp
+	 Eke2xlma7teqSUkC4CGNLQsnGFeHb9X/zUfVxtPbplGvpvz3lHKabeLN7rqgBdbp94
+	 Yz0uLcnHMf1gU4O41EkZhOcyuruJV401kLl1mdYwY6vZFfNerN9SHTwgVeR6WdLx3O
+	 JTOzXArZSY0SdCpLXGjJUZS6yLE0UQey0W8MfNTPZ9iYGqX/fOUl1eEG+3AMXz5/7i
+	 6nUjXg2ZQkTqk5JhbpI2gv987FHHmi23inwiTD9bPc66MmSpXT32F0h5HeJhn8HyUs
+	 4EOimLrMUwGYw==
+Date: Wed, 16 Oct 2024 09:24:45 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Tim Harvey <tharvey@gateworks.com>, kernel@dh-electronics.com
+Subject: Re: [PATCH] dt-bindings: regulator: lltc,ltc3676: convert to YAML
+Message-ID: <oif3padobl4laflhuqyw3hdqnf4rdwlzh2twllieoelyxcgtdk@fulczljt7hwq>
+References: <20241015224343.94302-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241011121408.89890-1-dlemoal@kernel.org> <CANAwSgQ+YmSTqJs3-53nmpmCRKuqfRysT37uHQNGibw5FZhRvg@mail.gmail.com>
- <f13618a6-0922-4fc8-af01-10be1ef95f0d@kernel.org>
-In-Reply-To: <f13618a6-0922-4fc8-af01-10be1ef95f0d@kernel.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 16 Oct 2024 12:52:51 +0530
-Message-ID: <CANAwSgRDbCCridYMciq=xSDPV0qGhs-OhCJ_uniXFbp-yM5CcQ@mail.gmail.com>
-Subject: Re: [PATCH v4 00/12] Fix and improve the Rockchip endpoint driver
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, 
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>, Niklas Cassel <cassel@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241015224343.94302-1-marex@denx.de>
 
-Hi Damien,
+On Wed, Oct 16, 2024 at 12:42:51AM +0200, Marek Vasut wrote:
+> Convert Linear Technology LTC3676 8-output I2C voltage regulator IC
+> DT bindings to YAML DT. Add missing interrupts: property as this IC
+> does have interrupt line and it is used in existing DTs.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Tim Harvey <tharvey@gateworks.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> ---
+>  .../bindings/regulator/lltc,ltc3676.yaml      | 171 ++++++++++++++++++
+>  .../devicetree/bindings/regulator/ltc3676.txt |  94 ----------
+>  2 files changed, 171 insertions(+), 94 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/lltc,ltc3676.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/ltc3676.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/lltc,ltc3676.yaml b/Documentation/devicetree/bindings/regulator/lltc,ltc3676.yaml
+> new file mode 100644
+> index 0000000000000..ec9ce856a944d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/lltc,ltc3676.yaml
+> @@ -0,0 +1,171 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/lltc,ltc3676.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Linear Technology LTC3676 8-output regulators
+> +
+> +maintainers:
+> +  - Tim Harvey <tharvey@gateworks.com>
+> +
+> +description: |
+> +  LTC3676 contains eight regulators, 4 switching SW1..SW4 and four LDO1..4 .
+> +
+> +properties:
+> +  compatible:
+> +    const: lltc,ltc3676
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    type: object
 
-On Wed, 16 Oct 2024 at 11:45, Damien Le Moal <dlemoal@kernel.org> wrote:
->
-> On 10/16/24 2:32 PM, Anand Moon wrote:
-> > Hi Damien,
-> >
-> > On Fri, 11 Oct 2024 at 17:55, Damien Le Moal <dlemoal@kernel.org> wrote:
-> >>
-> >> This patch series fix the PCI address mapping handling of the Rockchip
-> >> endpoint driver, refactor some of its code, improves link training and
-> >> adds handling of the #PERST signal.
-> >>
-> >> This series is organized as follows:
-> >>  - Patch 1 fixes the rockchip ATU programming
-> >>  - Patch 2, 3 and 4 introduce small code improvments
-> >>  - Patch 5 implements the .get_mem_map() operation to make the RK3399
-> >>    endpoint controller driver fully functional with the new
-> >>    pci_epc_mem_map() function
-> >>  - Patch 6, 7, 8 and 9 refactor the driver code to make it more readable
-> >>  - Patch 10 introduces the .stop() endpoint controller operation to
-> >>    correctly disable the endpopint controller after use
-> >>  - Patch 11 improves link training
-> >>  - Patch 12 implements handling of the #PERST signal
-> >>
-> >> This patch series depends on the PCI endpoint core patches from the
-> >> V5 series "Improve PCI memory mapping API". The patches were tested
-> >> using a Pine Rockpro64 board used as an endpoint with the test endpoint
-> >> function driver and a prototype nvme endpoint function driver.
-> >
-> > Can we test this feature on Radxa Rock PI 4b hardware with an external
-> > nvme card?
->
-> This patch series is to fix the PCI controller operation in endpoint (EP) mode.
-> If you only want to use an NVMe device connected to the board M.2 M-Key slot,
-> these patches are not needed. If that board PCI controller does not work as a
-> PCI host (RC mode), then these patches will not help.
->
+Move the additionalProperties:false here.
 
-Thanks for your inputs, I don't think my board supports this feature.
+> +    description: |
+> +      List of regulators provided by this controller, must be named
+> +      after their hardware counterparts (SW|LDO)[1-4].
+> +
+> +    patternProperties:
+> +      "^(sw[1-4]|ldo[24])$":
+> +        type: object
+> +        $ref: regulator.yaml#
 
-> --
-> Damien Le Moal
-> Western Digital Research
+Move the unevaluatedProperties here, ditto in other places.
 
-Thanks
--Anand
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
