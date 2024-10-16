@@ -1,113 +1,128 @@
-Return-Path: <devicetree+bounces-112022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 195639A0B5F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:24:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9319A0B81
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:34:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B0BAB2434B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:24:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C4C0286588
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 13:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4268B20A5CA;
-	Wed, 16 Oct 2024 13:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EFC20897D;
+	Wed, 16 Oct 2024 13:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="sg76Cfyi"
+	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="aOIvnR6R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B1C208204
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 13:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A544205E3C
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 13:34:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729085030; cv=none; b=OG1epCnSa2+pNq4IZM5wLTW0eoYhscKIT9YMqYXxv/IPNxvgA+Qr1Kh8C2R/j/AJ43rojbM57/XEez25sX2AYaJSGRqWXNiemsd20xD/nHTXAclQ0fzxcJELtDKkvSv80+CSbv/DnwJDJWC1gVTjbaQR4sirg4/246ZgaVmE22c=
+	t=1729085670; cv=none; b=cSV5KDfexpvMestQlra6MfB+Sr/CMKx0aqXbHpNen9NPCufPJsony64STgNojokwQO45d1RgGQCiTJXsxLt5fjQTUwZsWArDi8lAC5sW7hGaqwtWO5hzIe0FTqOv8y1h9Dqnp4/9k0XNHumUD3P19jyBRX6U4Ic9mut8T16/Fr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729085030; c=relaxed/simple;
-	bh=dbDkIDa3GX4Zg3hAEieWmi+3rL+bB6774AhqEXmpu0o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZBfQKxW6x+BHXh8HLQiageM1TLR3z3zsVbAj3uz2k4MSb/BtAlYVjK9JQSuXuAWxwdtJ/ngP1WluxPwxijNnfMAdMMEQ4wEL6J7ufNTsznkednOvtFr9Ep+oKWGXVXWbft+8An4ZqSYatYAwRpIgRP4Q7Rs0RvJPYwB0RoUEUV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=sg76Cfyi; arc=none smtp.client-ip=209.85.160.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4608f054f83so8590811cf.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 06:23:47 -0700 (PDT)
+	s=arc-20240116; t=1729085670; c=relaxed/simple;
+	bh=4TDceqBwB5/CSA70st1bX9f2C9Pa3VHqCT+1UuQ4cko=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=knZj/FubC3I9L1lg6D1PzRzfDfrYKD0ZmEPhImPD/p/iAAPEnGuJMhnItzpUBwLbounkzUk5lQbli4aGj9G2KEjot4PXFcW62fD6A4QF1JsOWt2Qksxev9MT089jOXSL/qIF/7yyUXKIKFTO+Bi/yqMEeBkPZ7E3sG0ujjXrBkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=aOIvnR6R; arc=none smtp.client-ip=209.85.222.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7b11692cbcfso492327085a.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 06:34:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729085027; x=1729689827; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dbDkIDa3GX4Zg3hAEieWmi+3rL+bB6774AhqEXmpu0o=;
-        b=sg76CfyiwdlKvO9rKLtwgAOjtlTBwRBk1P5J5s0KAsACjD13PUooCdFHdJVW0hXglu
-         LpnaSzpj2pF9NkfaLWvnbrCZr48YIBCkUxu8Cj1o6OyvJWHPA6PW+aX54pFPrdT0fEWh
-         4P1/dBy/4YAw7lNwO/jxV+GcqkiAKg9bq9WaDgLqrB5JmzB8CS/l+u+1tSPOBW5f7P/D
-         80SRrEsDtNf+PNv1POoNfFP/pTrjc7SY4GGSPxU7KmP9Y2rhrvZc1syk3d/ADoFaRn1n
-         rQ2KGz9d83Vc/0P/iPYNISPoGznawLKVxoRbDsEd89rAXxvowEh4nDp0LReeNtDRQIXP
-         Dixw==
+        d=marek.ca; s=google; t=1729085668; x=1729690468; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=60BUvf9HqnbeuKt+3QuiFsp8g1MCOzdKxeoyAqr2mHQ=;
+        b=aOIvnR6RnBFlhG54TZOCTmd5zWkDcsruHzmDFHxA/cHayDDY9vjoJ+Ewz0GbdWWCwi
+         81jLcH/yfB1DIYvgiUAfMKEYjC2mfSHI3McJM99AoG0TkKG8b/lM/dhgRyy4+kSSwImD
+         euejiFlFL7apjXevpIw5bta55dtfzb99nu5V9bD+/xTyKAg7vHJieJTzZJzKat82CEE1
+         rfIJuGNInlTq18Cheu3aco4thaN+pZMKd0KQ0LVPpEYBe4cEPDQiL2x6eoWIqn8g0olS
+         yoBImiRP/l/lkhT0h768uMII0Y47JCzM6Ddhpoc4GyenI6Uk7DYQ8psiyknVkxEput/9
+         H3mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729085027; x=1729689827;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1729085668; x=1729690468;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dbDkIDa3GX4Zg3hAEieWmi+3rL+bB6774AhqEXmpu0o=;
-        b=v944dTFdrJ7X94U9RnlSdIJJi4xmWI1VImPfnHrX3wHUc+TI7Hu2AxjeT94pSPauYY
-         nRWm4eApWyLtqCWSfuRcMGuCwbmw/s/EAG/4sAI4ypAecYMaVGdokm+PsWIm8OC5iNqq
-         1Ukjo/rpFbje0OH3PzBrgdHXgr+/zTUZhuETf+s3J2eFzqrhB5gEhCdV+XScod5Nh3TT
-         L36EY99pnc0VU6ycPSq4eUlCK/othbASwSiyGxYA/hIE7Ar74aRqheCf9q0VlG5OLwrQ
-         /nyToM/jbw8bDbirg91PO7wmNNU4DOGTFKkPP1TN5tUVFLvIGdKty0Y253w/G87jQosp
-         5sEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXgj1ndRyhukHp4CRvX1M5JxIjO9vwosIzbZFrURPLR1m2ow0ZZycVePykoTsmJNadY3LCHMInVGV1h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+osbmb+lEzrT3V0QLNahjJGuk/3fwHuxvNmucWXoe3ukHQdp8
-	C6pm9DRFyCUsRk+iRV6T8MA37u0ZR3VY1nCfYK10dmuYBG4pHsvwQGVB7QMYIPQ=
-X-Google-Smtp-Source: AGHT+IEZJCs7JeC3qYycuknITXAGTgPkMxv/8NcrZC6M9sKoTxw2qcOZrgR0vjx/et/Nl5XilfsUGw==
-X-Received: by 2002:a05:622a:5912:b0:460:874f:f8bf with SMTP id d75a77b69052e-460874ffa63mr73466761cf.34.1729085026837;
-        Wed, 16 Oct 2024 06:23:46 -0700 (PDT)
-Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4607b232976sm17776181cf.58.2024.10.16.06.23.45
+        bh=60BUvf9HqnbeuKt+3QuiFsp8g1MCOzdKxeoyAqr2mHQ=;
+        b=j/tTxRIH/CbR4L9QHScV3ceP6uaHzU0iRIR79qTHbrBamp57Yn08l5zPazFCKYR/L4
+         7UfSnBa5CBi85PFhE+7WjpcOuByXjS6r5USD9qb1Vo16KRb7a98liA4Ogvq04U3fc6pn
+         alAkNIUDEDKnlb/pqbu24cCE9nxhVimwVdhaI9cr+wVeoHVcKURoamu1fJeBN/77oLjN
+         A3riHApbxtbyfwOz3Bto4zatSlCKbqUzqw/rmIr8uI8I9t6jeyKQbguwd4m6Jt18RpUN
+         7aQ2iXnYIpYo7Ty212shJjL3TSSh2RFabMlybFDskrewpnzb4BWPTPG/pIDn9tb8NDTC
+         as3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX39RR3rNVKWPYp+wyF+1b7nP60RCcb5bWYq6+Vxr+QN9m4549/xcwnK8UQXdpIuETlg1RGqslmL/e/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw10dMfY/wV56Teu+wvd9HVlVLUfmDY2DjYbw1UeTod7pkL4mbF
+	BUarqH1oIwDYIgHNjSruiSGUFTqLgzDY+VP3uKa/qA4InvzpSuUG1LqZjVf01U5XMjsme2go44r
+	4ue8=
+X-Google-Smtp-Source: AGHT+IGkt9nV2zFDYZc7p68pW9RiNJVGEAerCIXZvjfqozTAP2VCLEad5feNiIsFKsPyFiMd9pqK4g==
+X-Received: by 2002:a05:6214:4987:b0:6cb:e6fa:495d with SMTP id 6a1803df08f44-6cc2b8d371dmr52417516d6.21.1729085668158;
+        Wed, 16 Oct 2024 06:34:28 -0700 (PDT)
+Received: from [192.168.0.189] (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cc22961be9sm17901106d6.114.2024.10.16.06.34.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Oct 2024 06:23:46 -0700 (PDT)
-Message-ID: <ccd95fb3-1756-4d52-bb7b-881502f7ac81@baylibre.com>
-Date: Wed, 16 Oct 2024 09:23:44 -0400
+        Wed, 16 Oct 2024 06:34:27 -0700 (PDT)
+Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: x1e80100-crd: add rtc offset to
+ set rtc time
+To: Johan Hovold <johan@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20241015004945.3676-1-jonathan@marek.ca>
+ <20241015004945.3676-5-jonathan@marek.ca>
+ <Zw9ijUy04cC4Qzio@hovoldconsulting.com>
+From: Jonathan Marek <jonathan@marek.ca>
+Message-ID: <663cf3f6-3254-e490-d557-a12aa41a1628@marek.ca>
+Date: Wed, 16 Oct 2024 09:31:00 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] docs: iio: new docs for ad7625 driver
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- David Lechner <dlechner@baylibre.com>,
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20240909-ad7625_r1-v5-0-60a397768b25@baylibre.com>
- <20240909-ad7625_r1-v5-3-60a397768b25@baylibre.com>
- <20241015190034.3a6f6761@jic23-huawei>
+In-Reply-To: <Zw9ijUy04cC4Qzio@hovoldconsulting.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-From: Trevor Gamblin <tgamblin@baylibre.com>
-In-Reply-To: <20241015190034.3a6f6761@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 10/16/24 2:51 AM, Johan Hovold wrote:
+> On Mon, Oct 14, 2024 at 08:47:29PM -0400, Jonathan Marek wrote:
+>> See commit e67b45582c5e for explanation.
+> 
+> It's good that you reference commit e67b45582c5e ("arm64: dts: qcom:
+> sc8280xp-crd: enable rtc") but your commit message still needs to be
+> self-contained and provide the explanation here in some form (e.g.
+> quoted or paraphrased).
+> 
+> Also spell out the commit summary in parenthesis when referring to
+> commits as I did above.
+> 
+>> Note: the 0xbc offset is arbitrary, it just needs to not be already in use.
+> 
+> How did you verify that nothing is using this offset on this platform? I
+> assume we need someone with access to the docs to make sure it's not in
+> use as we did for sc8280xp.
+> 
 
-On 2024-10-15 14:00, Jonathan Cameron wrote:
-> On Mon, 09 Sep 2024 10:30:49 -0400
-> Trevor Gamblin <tgamblin@baylibre.com> wrote:
->
->> Add documentation for the AD7625/AD7626/AD7960/AD7961 ADCs.
->>
->> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-> Bot picked up that this wasn't added to index.rst. I fixed up.
-Thank you!
->
-> Thanks,
->
-> Jonathan
+AFAIK qcom allocate things from the start of the SDAM, so allocating 
+from the end of the SDAM should be safe. And AFAIK this is supposed to 
+be a general purpose HLOS (linux/windows) SDAM block, so should be 
+mostly free to use.
+
+(its possible windows uses this offset for something, I don't know about 
+that)
+
+
+
 
