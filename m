@@ -1,136 +1,241 @@
-Return-Path: <devicetree+bounces-112085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4F29A0F14
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:53:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF009A0F53
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 18:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BA8D1C22A8C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:53:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD1D01F269C2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 16:08:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A150820E03D;
-	Wed, 16 Oct 2024 15:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26DE20F5B0;
+	Wed, 16 Oct 2024 16:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eo94hqbZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YiV7boco"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6031384B3;
-	Wed, 16 Oct 2024 15:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699D920E026;
+	Wed, 16 Oct 2024 16:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729093983; cv=none; b=Z/E6qaxlrNVJ+IHNzlndwV4Sw1yjEukt5ij8+uhvYDzDdR4k3tJiq8Klsn1gTfJ3ENDIwWqDz3CzKTigxMCUbIGfByLCUTfRe2rp9d19widOYSK1Rdjn9tTNgceefG4lW5anxGfGc3ImiZAWTwWbrrr3RsK6PkPhTqDahBDu61M=
+	t=1729094915; cv=none; b=AQjIp8uY2GdG9i8+VBip/bMuIqpWolcSINchEzxu64XUl0AKI7ypse+FbMxMq6R3GR4Q/cqkZOmJ3caBYqx3oTAtix65hCiR5LX6P+pU+OCo+ZgpgkvHcN2NhD6sfIR+g1wPVxJfFOw/qA9DKbW8vIavUWyKxhmLYJ26G3W9d0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729093983; c=relaxed/simple;
-	bh=FPh6jZxs0IrBbZtVRvslvKBioZsmMoFNj9CMSpT4A60=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YegapKfkaArXykJb5AbHY+z07MvpYm2wNqRlwsrKzbmgqOsv8aTVfv3HFFHhg02hzcvUWJei17JKgooL2WIjPOUsyUgkRTmw8U7+7pvHAjc712pbpgGWlHkbGQLq+E1JPbFlVPaZh6kRfBXOmZmJvaRJft+KEMMsUKkllkny7Kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eo94hqbZ; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d58377339so5514568f8f.1;
-        Wed, 16 Oct 2024 08:53:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729093980; x=1729698780; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=FyCuyE5iZzyPXH4JBMeN3qOWiKSfUYQ0TZFcy+/kyVA=;
-        b=eo94hqbZHGxSt0J22JPKnb2CoW5IQrwVLG6spBa0Qu6Bi03n9TCUE+0Ya98sRNBEkb
-         24thWhS6o7/B+4GLwGts1eaXOxlFkFp+Cvtv1JAcb/o3Fxnwzj08/8T+vOTVGv92P4Ge
-         dcN1hZ4oCy6xJ2e5lmruy0FWsqs/FGb44ACbuNZ6bpc3RZ6765O/2L/FYWl6XxLPRisq
-         9qMTpzEEZO2ApRhpi/Q3FR7Hsgzj8ze99Z4gl2T9lETv2A2bSbyugHTEXQmuD3x8DcpF
-         ejufx/vOTHTWyiDMnOWCjPZvkFNC233Nva8i0nFPoMZjxc5uuaa3aegViwit+IUMpgAv
-         t0bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729093980; x=1729698780;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FyCuyE5iZzyPXH4JBMeN3qOWiKSfUYQ0TZFcy+/kyVA=;
-        b=kUvoffgvRe7rdOodKxSmQc2GuRq+jadvV8nKaHyQK2TDc6f6Ld3HEZKyqki+1HPzj3
-         Yh4QkJbRd48IVnqp/f7Cg3wkr6DsQ9DXTZY5BB7nn3duat0OJVTdXpIBk12ug6vv00T4
-         EHR7gY0CuIRCkfJCQckzUhSe708l9oHpwAj+gI6JK7xiUD+kniW+IT/5E75GNV/RmssS
-         qDN4RD/C32GaqKbxQIIzxv/4wRTJqBUzWAbx2tqFEMZGSxffRMEHn1AsMRHk67al7igR
-         z6ah9mkPdzL4/f3A+iZP68w2i4E2olT5KuJMnl3oP+fET07Lr8wCbIJtfD8E1IojqSr8
-         HcKg==
-X-Forwarded-Encrypted: i=1; AJvYcCU95d0nnFavI6qRaaZQIw05FrbqTIm7HkPn4wJSbaKFQA2RwjJiD/ZjfKese18Pj/5Y4xtvnrKRwYQfYzu0@vger.kernel.org, AJvYcCVdgyOMlecfBBHW9sGIDDKiAS3MYzsfhrV4Et5rQlglPcnRmeIfAFgbttPjrJs4p91Z3JReIJ6HWnve@vger.kernel.org, AJvYcCWCLhWXVcqM9UHSH12xSAWcZEi220Qhfwi92FkLGnP0I1FixtdNxHo22Li/IdHReppa8Iq5cbTNx2wLwlXkZA==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6orvN6PGdTh2AyLU19e/FT5jpEuIKiyGySOzPuDfdrAZzEdY7
-	2//9q88fWp2Dd2chiU3WybIkssSqipn9x9qCm9Rc+bRqEHPP114e4NH43DakohoHXzyXbw9Oqiz
-	GbIVNLJQ20bfKBPhrCqKaTPK7YQ==
-X-Google-Smtp-Source: AGHT+IF1Rg6AOnfWRJypfDVK8eVLSHuY0NpfNrk1fT7UfnivSvoafbo1oEnZGTj3z8MNQN3NvBLLMu88FfhdbvLj/t8=
-X-Received: by 2002:a5d:5e0c:0:b0:37d:61aa:67de with SMTP id
- ffacd0b85a97d-37d61aa7145mr12802074f8f.42.1729093979768; Wed, 16 Oct 2024
- 08:52:59 -0700 (PDT)
+	s=arc-20240116; t=1729094915; c=relaxed/simple;
+	bh=jBooSS2vXvH048MLHGPfi8vqD/KGcWJg1Ivuptbjel0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lLr5ijpMR9vFJkp7udtU/8tI/ItUwIEbsF+SNKvGccfGIq5KCE4KV7vmEzg+vrBY1NCrDyhqCX5myFjGOUgMW4BHq87XwLBrUhM4p1bHwJHiZ7FCh6U11XPvme23SNheLvchtSk7SqLIqO+DFk9gdoEqQ7dDJrmWROcE6T7Rjuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YiV7boco; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 862AFC0007;
+	Wed, 16 Oct 2024 16:08:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1729094904;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QoQSQVa/mheJjIZPZM0X9xv2P9atatHsLsTuLCYWfYw=;
+	b=YiV7bocoGYQLRsGJ590j1uk+okOPrc4k+LKlBohj0I3IvKJLwoXI7UuCcCfr5emncFwalc
+	fJS9Oc+rGFXmXCBWv41kzp/6ojER95OUlkDxehvoBY4S5fqdwvMxh/f5gEsJw3pvBH3yfh
+	hwqdvW1k01uZfcrN4JNH+WHitMqBx4zZrb07IAM6pJAU8WjkoE81lFbNnEBiTZ/Oc/h2S2
+	jqLYY/quEkyt3KGrBgS0V7dsNbX+qOfSYzsdfPIBXa5ZFKw2E1ydG4dHiAdyfRgoTCd69H
+	VlRz153F8NelpMa3VJ4S2fdzkQ28/QEGxi/8QUoP9fOqh6TKqgYAviWW8Ge1eg==
+Date: Wed, 16 Oct 2024 18:08:23 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3
+ SoCs
+Message-ID: <20241016160823c22ccb22@mail.local>
+References: <20241015105133.656360-1-ciprianmarian.costea@oss.nxp.com>
+ <20241015105133.656360-2-ciprianmarian.costea@oss.nxp.com>
+ <20241015211540.GA1968867-robh@kernel.org>
+ <20241015212717.GA1983714-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241016145112.24785-1-johan+linaro@kernel.org> <Zw_fe1tN_rdRR659@linaro.org>
-In-Reply-To: <Zw_fe1tN_rdRR659@linaro.org>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Wed, 16 Oct 2024 17:52:46 +0200
-Message-ID: <CAMcHhXpu_dFMvKyKO9m-Ls4nyr3HPQ8+X2HrVH_prc-1ao4NEw@mail.gmail.com>
-Subject: Re: [PATCH 0/6] arm64: dts: qcom: x1e80100: fix nvme regulator boot glitch
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241015212717.GA1983714-robh@kernel.org>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Wed, 16 Oct 2024 at 17:45, Stephan Gerhold
-<stephan.gerhold@linaro.org> wrote:
->
-> On Wed, Oct 16, 2024 at 04:51:06PM +0200, Johan Hovold wrote:
-> > The NVMe regulator has been left enabled by the boot firmware. Mark it
-> > as such to avoid disabling the regulator temporarily during boot.
-> >
-> > Johan
->
-> These look good to me, thanks!
->
-> Can you or Aleksandrs send another one for the x1e80100-dell-xps13-9345
-> that was applied by Bjorn yesterday?
+On 15/10/2024 16:27:17-0500, Rob Herring wrote:
+> On Tue, Oct 15, 2024 at 04:15:40PM -0500, Rob Herring wrote:
+> > On Tue, Oct 15, 2024 at 01:51:30PM +0300, Ciprian Costea wrote:
+> > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> > > 
+> > > This patch adds the dt-bindings for NXP S32G2/S32G3 SoCs RTC driver.
+> > > 
+> > > Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > > Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > > Co-developed-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> > > Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> > > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> > > ---
+> > >  .../devicetree/bindings/rtc/nxp,s32g-rtc.yaml | 102 ++++++++++++++++++
+> > >  1 file changed, 102 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml b/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+> > > new file mode 100644
+> > > index 000000000000..3a77d4dd8f3d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+> > > @@ -0,0 +1,102 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/rtc/nxp,s32g-rtc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: NXP S32G2/S32G3 Real Time Clock (RTC)
+> > > +
+> > > +maintainers:
+> > > +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > > +  - Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - enum:
+> > > +          - nxp,s32g2-rtc
+> > > +      - items:
+> > > +          - const: nxp,s32g3-rtc
+> > > +          - const: nxp,s32g2-rtc
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#clock-cells":
+> > > +    const: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: ipg clock drives the access to the
+> > > +          RTC iomapped registers
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: ipg
+> > > +
+> > > +  assigned-clocks:
+> > > +    minItems: 1
+> > > +    items:
+> > > +      - description: Runtime clock source. It must be a clock
+> > > +            source for the RTC module. It will be disabled by hardware
+> > > +            during Standby/Suspend.
+> > > +      - description: Standby/Suspend clock source. It is optional
+> > > +            and can be used in case the RTC will continue ticking during
+> > > +            platform/system suspend. RTC hardware module contains a
+> > > +            hardware mux for clock source selection.
+> > 
+> > If the RTC h/w contains a mux, then your mux inputs should be listed in 
+> > 'clocks', not here.
+> > 
+> > > +
+> > > +  assigned-clock-parents:
+> > > +    description: List of phandles to each parent clock.
+> > > +
+> > > +  assigned-clock-rates:
+> > > +    description: List of frequencies for RTC clock sources.
+> > > +            RTC module contains 2 hardware divisors which can be
+> > > +            enabled or not. Hence, available frequencies are the following
+> > > +            parent_freq, parent_freq / 512, parent_freq / 32 or
+> > > +            parent_freq / (512 * 32)
+> > 
+> > In general, assigned-clocks* do not need to be documented and should 
+> > never be required.
+> > 
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - "#clock-cells"
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - assigned-clocks
+> > > +  - assigned-clock-parents
+> > > +  - assigned-clock-rates
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +    rtc0: rtc@40060000 {
+> > > +        compatible = "nxp,s32g3-rtc",
+> > > +                   "nxp,s32g2-rtc";
+> > > +        reg = <0x40060000 0x1000>;
+> > > +        interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+> > > +        #clock-cells = <1>;
+> > > +        clocks = <&clks 54>;
+> > > +        clock-names = "ipg";
+> > > +        /*
+> > > +         * Configuration of default parent clocks.
+> > > +         * 'assigned-clocks' 0-3 IDs are Runtime clock sources
+> > > +         * 4-7 IDs are Suspend/Standby clock sources.
+> > > +         */
+> > > +        assigned-clocks = <&rtc0 2>, <&rtc0 4>;
+> > 
+> > That's weird...
+> > 
+> > > +        assigned-clock-parents = <&clks 56>, <&clks 55>;
+> > 
+> > I'd expect these should be in 'clocks'. I don't think this node should 
+> > be a clock provider unless it provides a clock to something outside the 
+> > RTC.
+> > 
+> > Looks like you are just using assigned-clocks to configure the clock mux 
+> > in the RTC. That's way over complicated. Just define a vendor specific 
+> > property with the mux settings. 
+> 
+> I just read v1 and got told use the clock framework...
+> 
+> I disagree completely. Tons of h/w blocks have the ability to select 
+> (internal to the block) from multiple clock sources. Making the block a 
+> clock provider to itself is completely pointless and an overkill, and 
+> we *never* do that. Any display controller or audio interface has 
+> mutiple clock sources as just 2 examples.
 
-Hi,
+And in 6 months, we are going to learn that the rtc is used to clock the
+wifi chip or whatever and we are going to need to add everything in the
+CCF and we will have an unused property that we are going to have to
+support forever to avoid breaking the ABI. This already happened...
 
-Sure, will give it a quick test and mail it later tonight (along with
-a few other fixes).
+> 
+> However, I don't see why you need the divider config in DT. Can't you 
+> figure out what divider you need based on input frequency? The output 
+> frequency should be fixed, right?
+> 
+> Rob
 
-Alex
-
->
-> FWIW, for these patches:
->
-> Reviewed-by: Stephan Gerhold <stephan.gerhold@linaro.org>
->
-> >
-> >
-> > Johan Hovold (6):
-> >   arm64: dts: qcom: x1e78100-t14s: fix nvme regulator boot glitch
-> >   arm64: dts: qcom: x1e80100-crd: fix nvme regulator boot glitch
-> >   arm64: dts: qcom: x1e80100-vivobook-s15: fix nvme regulator boot
-> >     glitch
-> >   arm64: dts: qcom: x1e80100-yoga-slim7x: fix nvme regulator boot glitch
-> >   arm64: dts: qcom: x1e80100-microsoft-romulus: fix nvme regulator boot
-> >     glitch
-> >   arm64: dts: qcom: x1e80100-qcp: fix nvme regulator boot glitch
-> >
-> >  arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts | 2 ++
-> >  arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts    | 2 ++
-> >  arch/arm64/boot/dts/qcom/x1e80100-crd.dts                  | 2 ++
-> >  arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts   | 2 ++
-> >  arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi   | 2 ++
-> >  arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                  | 2 ++
-> >  6 files changed, 12 insertions(+)
-> >
-> > --
-> > 2.45.2
-> >
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
