@@ -1,118 +1,112 @@
-Return-Path: <devicetree+bounces-112137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78CF99A12B9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 21:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 923539A12C9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 21:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A10C71C215EC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:38:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C33231C23348
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6465F2144A9;
-	Wed, 16 Oct 2024 19:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E752144B8;
+	Wed, 16 Oct 2024 19:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tS1OkGaV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I4iLvASZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC391865ED;
-	Wed, 16 Oct 2024 19:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC27F1885BB;
+	Wed, 16 Oct 2024 19:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729107484; cv=none; b=BynfS8jrGog4bMOYW6iUdyZsRw7wnVLVqng8TNJEVzeUWnsQxP0tJ6bd1syZQPKmdLL1rPq5lPpfyYOobhwypbw+vB4W6Kh54gPrB1AIFr4SxHsM1sysZKKj88R1C2U3ZpjjK4yLvyXU5wnB121B2SIsZ6LUdOqOuO7SEGml8zc=
+	t=1729107777; cv=none; b=boMAqebTJtni7RoMfiFaSEls1UZ/fmtW68SDpBkabNgGdqFCRML9sGdQrwBuLC61UCSABM2Ay5wD7yzJ1roRUHhTiyFTS1fwUMdGU6mPI/fx49r12Vth0NkIZVegtLUuVjzib5UxqHuX9ihPPNNWONEJwXsTksqcD3Rx3aHHviI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729107484; c=relaxed/simple;
-	bh=6dGoC9a9JiCAYeGpX5fIjP+CJ42IJn9E3kkE2FQNvL0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=inyC2DyD2OqWYWJwvWc79ldVxQagOBNy0UedOPPAfAqMuODEyTx8JxXuJ4ckoVJppuCCseYOp1RHHENPdvPzNwL3GiISppkTNUM3UyrXahDeryp5unO4To/1UHpFdha7O59m+kiKGTkygWNeYGQ1h/pvcd0Weuk0tOEbAWKx8Oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tS1OkGaV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82649C4CEC5;
-	Wed, 16 Oct 2024 19:38:03 +0000 (UTC)
+	s=arc-20240116; t=1729107777; c=relaxed/simple;
+	bh=mZzMcn9MbCczzX11J8+TKZRX7Uh7hjxyr0xf7rLHKQI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NVWkqe/rZHsIkdaFM4dndtgyI8uaskqHIQerA8Bcdb0GzeKTHESOSKx+tk8nskm9IKeJ2o79Y6BFr1eT7UbR7jdNaN/iWTvoiosoEOrRxF/ItDSj+YTH8pxCEUrErJvj2dBxZv3tWHRC0y3Hc0NW3i4NWgiO6AVAiUsuWhOgnm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I4iLvASZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91584C4CEC5;
+	Wed, 16 Oct 2024 19:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729107483;
-	bh=6dGoC9a9JiCAYeGpX5fIjP+CJ42IJn9E3kkE2FQNvL0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=tS1OkGaVsIsv4ZJFraTecKZ2QFO4nUAEAoichSykLSfGjHXeNTJSjpqnrQ69xbYnh
-	 URdczNK3W+SkrSWC/V9ZyJFc9etIglHTD7o4KNBZIdKvzjqj500kca4FrMAUoIE5vT
-	 yok6MdDEoiwPwiCpUm9r8k+S3Fb9BSAzaEwWEl8vupOe9Nhlb6Eztq4LBhL2hGIOg/
-	 5z4dLaBohTguxawa/FZHPqiMK3SiTDXcrO2aMgFmprS2/knK5C7rT2wSNrVQxz0VQz
-	 PQxGoNWWyxGOQ3DZKevs1L3byjSr1qq1p3uI1zEn1PwLP8fZu5X0Y2cNMIHCmerxLr
-	 5NgHJdKtbl58A==
-Date: Wed, 16 Oct 2024 14:38:02 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Jim Quinlan <jim2101024@gmail.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1729107776;
+	bh=mZzMcn9MbCczzX11J8+TKZRX7Uh7hjxyr0xf7rLHKQI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=I4iLvASZXoBveFjv8+9epyZ3FYoC2LL6NapNNmpAOzXB1KJ3kRDc54jMETDXw5YHS
+	 cmetoNHDqC83Ujklx02sR7d6YPdtEsJX5sMGdATx+U3+cDPwfgAc1gvl+PuSAe9njh
+	 ELlGAyeUVVU/xGLXeFmsssQFPdtGat14Jmru1f4Orr/1vhi/vSCXXIo6Zr8SS2d000
+	 Mva4ajJUqiYHsHTXMc1ZpThEAbr50ZKVBF+yNXLzB7rlofSfQFnRQf6CGVPcw7AKWK
+	 NKj+a23iHPnKFXmQU5SZoI1K1zw+scRrPeY6seTsFfRxCbuLA35vvQJe6Q1R7Ma1ls
+	 gen+M4eGWLaaQ==
+Date: Wed, 16 Oct 2024 20:42:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>
-Subject: Re: [PATCH v3 04/11] PCI: brcmstb: Expand inbound size calculation
- helper
-Message-ID: <20241016193802.GA645895@bhelgaas>
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Lewis Hanly <lewis.hanly@microchip.com>
+Subject: Re: [RFC v7 4/6] gpio: mpfs: add polarfire soc gpio support
+Message-ID: <20241016-cobbler-connector-9b17ec158e3a@spud>
+References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
+ <20240723-underage-wheat-7dd65c2158e7@wendy>
+ <CACRpkdbRE695f-+do1HYpOZ6e4qxgUBWJzEPO2hTCuZ3xxYHQg@mail.gmail.com>
+ <20241016-shallot-nerd-51eeba039ba0@spud>
+ <20241016-dandelion-hypnosis-9d989bb2fdd1@spud>
+ <CACRpkdbJKWcjBG5ejwsNEgnnGWj69TAtKbgaHP3NiPM5GbiGQw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="A7dnOTkzHLL/fEWQ"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbJKWcjBG5ejwsNEgnnGWj69TAtKbgaHP3NiPM5GbiGQw@mail.gmail.com>
+
+
+--A7dnOTkzHLL/fEWQ
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANCKTBt17LCyvQQnOqMdu1KUY61bRKCYQC8=+HDYaddj-MAd2Q@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 16, 2024 at 01:09:00PM -0400, Jim Quinlan wrote:
-> On Mon, Oct 14, 2024 at 1:25 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > On Mon, Oct 14, 2024 at 10:10:11AM -0700, Florian Fainelli wrote:
-> > > On 10/14/24 09:57, Bjorn Helgaas wrote:
-> > > > On Mon, Oct 14, 2024 at 04:07:03PM +0300, Stanimir Varbanov wrote:
-> > > > > BCM2712 memory map can supports up to 64GB of system
-> > > > > memory, thus expand the inbound size calculation in
-> > > > > helper function up to 64GB.
-> > > >
-> > > > The fact that the calculation is done in a helper isn't important
-> > > > here.  Can you make the subject line say something about supporting
-> > > > DMA for up to 64GB of system memory?
-> > > >
-> > > > This is being done specifically for BCM2712, but I assume it's safe
-> > > > for *all* brcmstb devices, right?
-> > >
-> > > It is safe in the sense that all brcmstb devices with this PCIe
-> > > controller will adopt the same encoding of the size, all of the
-> > > currently supported brcmstb devices have a variety of
-> > > limitations when it comes to the amount of addressable DRAM
-> > > however. Typically we have a hard limit at 4GB of DRAM per
-> > > memory controller, some devices can do 2GB x3, 4GB x2, or 4GB
-> > > x1.
-> > >
-> > > Does that answer your question?
-> >
-> > I'd like something in the commit log to the effect that while
-> > we're doing this to support more system memory on BCM2712, this
-> > change is safe for other SoCs that don't support as much system
-> > memory.
-> 
-> This setting configures the size of an RC's inbound window to system
-> memory.  Any inbound access outside of all of the inbound windows
-> will be discarded.
-> 
-> Some existing SoCs cannot support the 64GB size.  Configuring such
-> an SoC to 64GB will effectively disable the entire window.
+On Wed, Oct 16, 2024 at 09:26:13PM +0200, Linus Walleij wrote:
+> On Wed, Oct 16, 2024 at 12:29=E2=80=AFPM Conor Dooley <conor@kernel.org> =
+wrote:
+>=20
+> > What does bring a nice simplification though, IMO, is regmap. I am
+> > pretty sure that using it was one of the suggestions made last time
+> > Lewis submitted this - so I think I'm going to do that instead.
+>=20
+> If you have the time. Using GPIO_REGMAP for MMIO is not that
+> common and I think the driver is pretty neat as it stands.
 
-So I *think* you're saying that this patch will break existing SoCs
-that don't support the 64GB size, right?
+As with using the common MMIO stuff, I don't think GPIO_REGMAP provides
+that much value as I cannot use the direction stuff from it. I was
+thinking of using regmap directly, like:
+https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
+=3Dgpio-no-irq&id=3Dc8933e1e3600e3fa29efe28fbb2e343e133f9d67
+which I think reduces how ugly the two direction functions look.
 
-Bjorn
+--A7dnOTkzHLL/fEWQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxAXOwAKCRB4tDGHoIJi
+0nzLAP97X5rdMU9SMZrBe1Wh3xgBP+5nGo+g7+4bYyVhUFNghQD9HYvVX4AGihOk
+4WFF1ruWtm4KhgoJOTAXVyYdsz6M4Ak=
+=uvpR
+-----END PGP SIGNATURE-----
+
+--A7dnOTkzHLL/fEWQ--
 
