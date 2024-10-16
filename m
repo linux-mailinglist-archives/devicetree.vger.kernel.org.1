@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-112217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87FB69A16E3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:24:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 836489A16E6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:24:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AFD3286890
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:24:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44403286CA9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F99161;
-	Thu, 17 Oct 2024 00:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 512073C30;
+	Thu, 17 Oct 2024 00:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="eEmmwRCc"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="bPp/qMLO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC981F942
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 00:24:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C03320F
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 00:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729124683; cv=none; b=uZsh6HdX/O60h18jioufYuan+beodg1AZQurMcjmeNqJn+P+Sho/0Ubad91/vLmCpzUl4xWQasErGV/g05cA3yg5kPZIk3oqEOGBV925zfE1EH9yeK6B2nk/HQxJTgmdgTVsd02xmHQf4gZdBLulW0J0uovDIBN9x2rvmsJgw0Q=
+	t=1729124687; cv=none; b=qtkMkgKF7HAUgIUK3+m5N8twYWXwZJpIeD4jbT+rxYGUtqLsW56uD4yrnY1GxuECAqsfHV6gIXkGdNSxbZjncrqqxRY2OrfdU7R74LVLOBodjsMvxPoIiNPvejd9kR2AYtt3mCj8zhmFJe7iCvb0xK1l5E/x7qHACNuSQGnCAJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729124683; c=relaxed/simple;
-	bh=6oj9CeQOHzTxmczbSuY3in3kUN6TA1wSaP99HOf6cGo=;
+	s=arc-20240116; t=1729124687; c=relaxed/simple;
+	bh=S6xk3KTEVhY6bAWjK44TBxfAGGua3/k6U07RZx+0kGw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tAuUasocu4Geo6+81BGH/D3aq/LsTPdmKbv3MfnJgvuueYbUKmlrqQ9uVoqyI0zXTrVMysv/tWGH8uIgc08yfOJl57ESCsC1Av2uoumW+x1xLnINKtDdgq64aasvmiljUqkJj9K54Oi/SXKnaj+8cY2Dsfb2+Snn5wL58Rp4w/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=eEmmwRCc; arc=none smtp.client-ip=85.214.62.61
+	 In-Reply-To:Content-Type; b=SBzrMWu3aAq0lzXyu3BjMwp+9zqF40rkmerH4qiplcaC6F21O7IGC9/Kc03AUXS6iXeKjB3orc1ZhtO55f0S5YJ9lfOS+4aphDz6A0ifmWPXezcDPDaXvVgk0DdwK107TPAU/XdsPSOpuALF342HzI4QCv7YuDTPeNtwXd3I5Qw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=bPp/qMLO; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
 Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id A8A8588DD1;
-	Thu, 17 Oct 2024 02:24:39 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id B548888DE6;
+	Thu, 17 Oct 2024 02:24:40 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729124680;
-	bh=J9dWPuM1moFzn7UwaenM6QAIwd/7k3O72CW5bOKuV+s=;
+	s=phobos-20191101; t=1729124682;
+	bh=vtLESTNVUfNdc+GE1WO1rf4aioCJeinbP3+V6+iQ8Ow=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eEmmwRCcZXFKFjVxz9RBVsapjgteNeMTi8M2peZpSOZ5u45igKB1KJN28PEVWr+lt
-	 XE5tejs/zPBk/XZ5SPBZzRsSh92MLxGaSl6hGxtrhRL5z1bZIOorm0jlKvwpGlUxpP
-	 oV8AqfK14JnMr90/tROIE51JginjHDNsmsG8CTvxAMdjzLXDpL5R0SYB10vLZKW1dl
-	 UAGBYqgX+7E0+j0nNvKR/pdsz3S/BDvP1Aq4tO0XMcgQRcb1v+cbvyaDHngKj12H/I
-	 oJBOBvfpcPg6MMKhXZaFKJ8M9MyC2h8mzCiakDFe1JMF6sQSXp8hI1by/+e0cT8NU2
-	 Z85s5s7sax3yg==
-Message-ID: <2055a272-8391-4990-bc13-329247e09197@denx.de>
-Date: Thu, 17 Oct 2024 00:48:34 +0200
+	b=bPp/qMLOSDFgy64+QKaCk7OWgG8M0dWjBncfo1SCjhgaxwVYyjebpQRjOst3PqPrb
+	 K6dHGe/4PPi0eezAGqUM/JJKgPr0cH60WKWJFozdYydWf/Lm1CzHCjng0N7CX+3fbS
+	 dmqejYTX4o8QEA8RWUPC3rkUucZ/5Hg1m1H4IIN7yZypRhR4BVlrYb/sNywaPxjntG
+	 ukBxhduQktMlJ3zAvLs0V41VXX977hKU7dnl4qfdO/GF6Lf4M6n1gv7hDg+kaZtxiV
+	 1R7byNKeEkzP25wDFkdxTZK61Y1TwBQg6btJequ2tdy0yjhMwEKXFESUl2Rl3orkC0
+	 bzroeWvnIj2rg==
+Message-ID: <b82e55af-6b6d-473b-9b74-c0f0b26e12f8@denx.de>
+Date: Thu, 17 Oct 2024 00:51:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,102 +56,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: regulator: lltc,ltc3676: convert to YAML
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Tim Harvey <tharvey@gateworks.com>,
- kernel@dh-electronics.com
-References: <20241015224343.94302-1-marex@denx.de>
- <oif3padobl4laflhuqyw3hdqnf4rdwlzh2twllieoelyxcgtdk@fulczljt7hwq>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Document i.MX6DL DHCOM SoM on
+ PDK2 carrier board
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ linux-arm-kernel@lists.infradead.org, Michael Walle <mwalle@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+ Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+ Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Parthiban Nallathambi <parthiban@linumiz.com>,
+ Hiago De Franco <hiago.franco@toradex.com>, imx@lists.linux.dev,
+ kernel@dh-electronics.com, Max Merchel <Max.Merchel@ew.tq-group.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ Mathieu Othacehe <m.othacehe@gmail.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>
+References: <20241015235926.168582-1-marex@denx.de>
+ <172909288999.1676333.15859258003756492401.robh@kernel.org>
 Content-Language: en-US
 From: Marek Vasut <marex@denx.de>
-In-Reply-To: <oif3padobl4laflhuqyw3hdqnf4rdwlzh2twllieoelyxcgtdk@fulczljt7hwq>
+In-Reply-To: <172909288999.1676333.15859258003756492401.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-On 10/16/24 9:24 AM, Krzysztof Kozlowski wrote:
-> On Wed, Oct 16, 2024 at 12:42:51AM +0200, Marek Vasut wrote:
->> Convert Linear Technology LTC3676 8-output I2C voltage regulator IC
->> DT bindings to YAML DT. Add missing interrupts: property as this IC
->> does have interrupt line and it is used in existing DTs.
+On 10/16/24 5:38 PM, Rob Herring (Arm) wrote:
+> 
+> On Wed, 16 Oct 2024 01:58:35 +0200, Marek Vasut wrote:
+>> Document the DH electronics i.MX6DL DHCOM SoM and a PDK2 evaluation board.
+>> The evaluation board features three serial ports, USB OTG, USB host with
+>> an USB hub, Fast or Gigabit ethernet, eMMC, uSD, SD, analog audio, PCIe
+>> and HDMI video output.
+>>
+>> All of the aforementioned features except for mSATA are supported, mSATA
+>> is not available on i.MX6DL and is only available on DHCOM populated with
+>> i.MX6Q SoC which is already supported upstream.
 >>
 >> Signed-off-by: Marek Vasut <marex@denx.de>
 >> ---
+>> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+>> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
 >> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Fabio Estevam <festevam@gmail.com>
+>> Cc: Gregor Herburger <gregor.herburger@ew.tq-group.com>
+>> Cc: Hiago De Franco <hiago.franco@toradex.com>
+>> Cc: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+>> Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 >> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Liam Girdwood <lgirdwood@gmail.com>
->> Cc: Mark Brown <broonie@kernel.org>
+>> Cc: Marek Vasut <marex@denx.de>
+>> Cc: Mathieu Othacehe <m.othacehe@gmail.com>
+>> Cc: Max Merchel <Max.Merchel@ew.tq-group.com>
+>> Cc: Michael Walle <mwalle@kernel.org>
+>> Cc: Parthiban Nallathambi <parthiban@linumiz.com>
+>> Cc: Peng Fan <peng.fan@nxp.com>
+>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
 >> Cc: Rob Herring <robh@kernel.org>
->> Cc: Tim Harvey <tharvey@gateworks.com>
+>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+>> Cc: Shawn Guo <shawnguo@kernel.org>
 >> Cc: devicetree@vger.kernel.org
+>> Cc: imx@lists.linux.dev
 >> Cc: kernel@dh-electronics.com
+>> Cc: linux-arm-kernel@lists.infradead.org
 >> ---
->>   .../bindings/regulator/lltc,ltc3676.yaml      | 171 ++++++++++++++++++
->>   .../devicetree/bindings/regulator/ltc3676.txt |  94 ----------
->>   2 files changed, 171 insertions(+), 94 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/regulator/lltc,ltc3676.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/regulator/ltc3676.txt
+>>   Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/regulator/lltc,ltc3676.yaml b/Documentation/devicetree/bindings/regulator/lltc,ltc3676.yaml
->> new file mode 100644
->> index 0000000000000..ec9ce856a944d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/regulator/lltc,ltc3676.yaml
->> @@ -0,0 +1,171 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/regulator/lltc,ltc3676.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Linear Technology LTC3676 8-output regulators
->> +
->> +maintainers:
->> +  - Tim Harvey <tharvey@gateworks.com>
->> +
->> +description: |
->> +  LTC3676 contains eight regulators, 4 switching SW1..SW4 and four LDO1..4 .
->> +
->> +properties:
->> +  compatible:
->> +    const: lltc,ltc3676
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  regulators:
->> +    type: object
 > 
-> Move the additionalProperties:false here.
 > 
->> +    description: |
->> +      List of regulators provided by this controller, must be named
->> +      after their hardware counterparts (SW|LDO)[1-4].
->> +
->> +    patternProperties:
->> +      "^(sw[1-4]|ldo[24])$":
->> +        type: object
->> +        $ref: regulator.yaml#
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
 > 
-> Move the unevaluatedProperties here, ditto in other places.
-Fixed in V2.
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>    pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y nxp/imx/imx6dl-dhcom-pdk2.dtb' for 20241015235926.168582-1-marex@denx.de:
+> 
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /ldb: failed to match any schema with compatible: ['fsl,imx6q-ldb', 'fsl,imx53-ldb']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /ldb: failed to match any schema with compatible: ['fsl,imx6q-ldb', 'fsl,imx53-ldb']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: iomuxc-gpr@20e0000: 'ipu1_csi0_mux', 'ipu1_csi1_mux' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/soc/imx/fsl,imx-iomuxc-gpr.yaml#
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/bus@2000000/pinctrl@20e0000: failed to match any schema with compatible: ['fsl,imx6dl-iomuxc']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/bus@2100000/i2c@21a8000/pmic@3c: failed to match any schema with compatible: ['lltc,ltc3676']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/bus@2100000/mipi@21dc000: failed to match any schema with compatible: ['fsl,imx6-mipi-csi2']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/bus@2100000/vdoa@21e4000: failed to match any schema with compatible: ['fsl,imx6q-vdoa']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /soc/ipu@2400000: failed to match any schema with compatible: ['fsl,imx6q-ipu']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /capture-subsystem: failed to match any schema with compatible: ['fsl,imx-capture-subsystem']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /display-subsystem: failed to match any schema with compatible: ['fsl,imx-display-subsystem']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: /disp0: failed to match any schema with compatible: ['fsl,imx-parallel-display']
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: gpio-keys: '#size-cells' does not match any of the regexes: '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$', 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/input/gpio-keys.yaml#
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: gpio-keys: '#address-cells' is a dependency of '#size-cells'
+> 	from schema $id: http://devicetree.org/schemas/reg.yaml#
+> arch/arm/boot/dts/nxp/imx/imx6dl-dhcom-pdk2.dtb: panel: 'power-supply' is a required property
+> 	from schema $id: http://devicetree.org/schemas/display/panel/panel-simple.yaml#
+Most of them are missing DT schemas, the last two are fixed in:
 
-I wanted to ask though, there are these patternProperties here which 
-cover sw1..4 and ldo2 and ldo4, and then there is dedicated special case 
-for ldo1 (because this LDO node must always contain regulator-always-on 
-property) and ldo3 (because this LDO node must NOT contain 
-lltc,fb-voltage-divider property). Is there any way to place all the 
-sw1..4 and ldo1..4 into patternProperties, and then selectively DISABLE 
-lltc,fb-voltage-divider requirement for LDO3 and ENABLE 
-regulator-always-on for LDO1 ? I was looking at allOf:if: , but couldn't 
-find anything.
+ARM: dts: imx6qdl-dhcom-pdk2: Drop incorrect size-cells in GPIO keys
+ARM: dts: imx6qdl-dhcom-pdk2: Fill in missing panel power-supply
 
-Thanks !
+And once the LTC3676 schema gets picked up, the bot will also complain 
+about this:
+
+ARM: dts: imx6qdl-dhcom-som: Drop bogus regulator-suspend-mem-microvolt
 
