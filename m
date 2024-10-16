@@ -1,73 +1,89 @@
-Return-Path: <devicetree+bounces-112048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20AED9A0DD8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:16:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4250F9A0DF4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:19:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C081D1F23AC4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:16:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05E3B285D31
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A1F20FA9C;
-	Wed, 16 Oct 2024 15:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1CC20E016;
+	Wed, 16 Oct 2024 15:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GlmLUf8W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m1etdV2t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0136220F5DE;
-	Wed, 16 Oct 2024 15:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A14020CCD0;
+	Wed, 16 Oct 2024 15:19:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729091774; cv=none; b=p5Hb+Ac9gxYSghGfA8wjn62lqrRXx8fha9zWdS3sZqGGwiVM8wEHj7y1IjLBqFbwuKLTfwA0YTuzk2ErgaW3pV8a9kK8mA6kqq4E8Wu1xQfcWLuJ46STQBySprHd+Hlpjcr1RhadZO+epC+zTc0Ibyt9/sQsfGCmZoEJ7+xJf0M=
+	t=1729091970; cv=none; b=EjvnExoMDE2eSmn2+PcnyzsXnEPy+OMnqrJFxBOBIFEO5FZxsCXHrulVMgiqMJjUKRIjBrfisQuNP/ulE8dbPZAK2lEMU43JpwSG38ni+bYleM1sZ7IuqtgaVGGAnjvk8j6ndHjYokKzeQOwm4XiXRDUyVTQ15chcTMMzXTeGcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729091774; c=relaxed/simple;
-	bh=nLfvuGZFjYhAb5C/nrzqK7BuOVhqSe7PZwFp3Z+OcTE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i4fo43GsF0amzMbjpQ37gY0/U2r6O2jlOj+yQc05p34O5Q/ZqwbaKllaO8q81JGCIq0hs/7vSSGUrw1Ln3WkODD2XgKkqlpnyNt1nO6kdDWrvoSeaSTVRQ9/MFW3IHBU16lcF9t58g9zY++H3VJ+Q100Z3VHW/Am3/Ov6rh1KzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GlmLUf8W; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49G8Q2UW016929;
-	Wed, 16 Oct 2024 15:16:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hbYqIUOQYZAVq5tYJ4Ufys1oieC5bKHg7OSIcJOvHaU=; b=GlmLUf8W8MSn4sIA
-	dCgqZ4dbyAejbqbuz5oDCk00EscGgON3eXs5rWwSCstLLn02obaKREVnL96W9VUg
-	AgInosurKFBATBVuCBAb7cuIeDuyNdzxhpTZp5DLmLl4U/U8VfKQF6SE/Hi2GW5Y
-	lkbFKHEUp8bZyk4b0cIs3RdY417Yje29WujBa1g9aCakQJBjUCghaDs5l9pstT27
-	fd2CT6/NCGqU+sq8xiXnCsezjXoQBmjd5SNUGV/znygIm4WveyCMq5/tFGdmVH61
-	x6xyXfD6r5Gxacs5IaYKo3ynSHKWtVChWFGtN3zw8rdcfDGFXkLRFBahgPYhtWnO
-	kvNo2A==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 429mh555hr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Oct 2024 15:16:09 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49GFG8iB004636
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Oct 2024 15:16:08 GMT
-Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 16 Oct 2024 08:16:05 -0700
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: ipq5424: Add smem and tcsr_mutex nodes
-Date: Wed, 16 Oct 2024 20:45:28 +0530
-Message-ID: <20241016151528.2893599-4-quic_mmanikan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241016151528.2893599-1-quic_mmanikan@quicinc.com>
-References: <20241016151528.2893599-1-quic_mmanikan@quicinc.com>
+	s=arc-20240116; t=1729091970; c=relaxed/simple;
+	bh=9eQA7Mrnz0T/jqiPyQO6qRTIPGO522pJDaPgx3LSD18=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=HQD6bFqqPdwMu0mbL1jZAUkzcXPQwl+HcI+KAlkJv4EARimd0UuNUfzAFIJQ6bwjLwR5bKw/KVk1fcHbKsQGY2ayxYx/sze9ZPJFeMuWEfzVk5fS2GdWTDQjFMwUHySmcB9U4Jox14TVagy8yTWdBByXxvTUnDv35q/fqj2sMFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m1etdV2t; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2fb59652cb9so27114871fa.3;
+        Wed, 16 Oct 2024 08:19:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729091967; x=1729696767; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WxzJMq65NdH0fxsJEWKyKowEXDFQj7nxACznD2f8fi0=;
+        b=m1etdV2tWMC3Kgh6LyxdU2HITuB58CmnvrsuLF3VcRwGyuKV/dR2QycANFvKFvtmBv
+         OrPJ6TIO244RWxkRl2o/jRqFZ74lBTWDjzXCQKSdH2rpyWLzj5LlGpEhdSXP/ClPT4NU
+         YBSP9XcJchJ52Kk4j/T731TqqXS9RL/pCY8LP152/R+Tf+aw2ozFeIhEqjVVaq7W588L
+         gEh1KjNRpsjEcBsUEDB6YSTPqkCBgal1hfu+j7ntiGizpjhttotgh7oUgJ1l5C8p4JUI
+         bd+kSlf9xZm1l5hlnE0x6awTbgC4kiBbE7wqPRZUKu7a04uhrYdH5QjZJloHXBGoROIN
+         xv0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729091967; x=1729696767;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WxzJMq65NdH0fxsJEWKyKowEXDFQj7nxACznD2f8fi0=;
+        b=K2zl+dlbn80d4Y2sAw1ig67+73if3J2+TXxEoy7Vt6SFzXZERxJ5nfTVlf78RoUCOW
+         Qt0HITMsHzgVbYMLdVcUcBTl+XOgCVxfmEuszMDvYMtZsx8D9a5U0pP2GDCt5ZOO7Dbw
+         ovnlPkLghha6tyCF5aomcFV00kPp+5v/lpAh6EgseKhuLwjjTi6+kDyFY/2TaOifhgx5
+         A5VxwpTVtqoxnRzr+ub1po4ZW9/PxRRpX+x70BGD4kL7wf708FjNnBwXqeIQ0IkkAxJ5
+         pl/QCmAjnxwt7ZxUU2lVqOVQnAXn/ZJCh9WeHEk5U4zG0i9XFB88PFl0eSmyN/efHlMT
+         4UmA==
+X-Forwarded-Encrypted: i=1; AJvYcCU+WwOkqheZ0JiR54MiPV5Tpp4Qq51cUO1YhSigIOoyKAwx4RMvtC0Rk2QxwCn8q8iAqPSWcG4pyUKT@vger.kernel.org, AJvYcCVr3ZjJrwv6jH7Czr9MJEguCcyRk5iCxxN6MHzay0G448Rh1wfLhAZLcOfphDmR7Nbg695UE4+Fx1WW9Yhv@vger.kernel.org, AJvYcCXaqRPTuiMIj834E6V9HNLGiHUcYtUFrHJ9eh7QSbDb0dy+Es5OBIZqY50V7UaB/zKHxE0SxdbSLD711Fki@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqAluA0hTp7zvNx92yRD2RA2hcTPS6deUTfd/pr8iB4kYB9Kye
+	vcnF60Sx2QO6HGtYiXW8A5yGLqgKmzwYg1IiKOnqK6IbraRe2/w4
+X-Google-Smtp-Source: AGHT+IFOfVkPkVMGRlk3XiA/ffykapP2FRwcnWz9umNZoMiKjGYxS7tb4En/V+gVcTXv1AYtTEIVwg==
+X-Received: by 2002:a05:651c:512:b0:2fa:cd7e:3b40 with SMTP id 38308e7fff4ca-2fb3276f1d6mr88483621fa.11.1729091966809;
+        Wed, 16 Oct 2024 08:19:26 -0700 (PDT)
+Received: from localhost.localdomain ([62.19.118.125])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5c98d7b725esm1824716a12.87.2024.10.16.08.19.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 08:19:26 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Aurelien Jarno <aurelien@aurel32.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	upstream@airoha.com
+Subject: [PATCH 1/2] dt-bindings: rng: add support for Airoha EN7581 TRNG
+Date: Wed, 16 Oct 2024 17:18:41 +0200
+Message-ID: <20241016151845.23712-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,63 +91,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SslFdVi_G6zc_fnSMwcQhAHAaKlWFhL0
-X-Proofpoint-ORIG-GUID: SslFdVi_G6zc_fnSMwcQhAHAaKlWFhL0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- spamscore=0 priorityscore=1501 adultscore=0 mlxlogscore=771
- lowpriorityscore=0 mlxscore=0 phishscore=0 malwarescore=0 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410160095
 
-The smem is necessary for the socinfo driver. Additionally
-smem requires the tcsr_mutex node. Therefore add both the nodes.
+Add support for Airoha EN7581 True Random Number generator.
 
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+This module can generate up to 4bytes of raw data at times and support
+self health test at startup. The module gets noise for randomness from
+various source from ADC, AP, dedicated clocks and other devices attached
+to the SoC producing true random numbers.
+
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/ipq5424.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ .../bindings/rng/airoha,en7581-trng.yaml      | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-index 76af0d87e9a8..5e219f900412 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-@@ -129,6 +129,14 @@ tz@8a600000 {
- 			reg = <0x0 0x8a600000 0x0 0x200000>;
- 			no-map;
- 		};
+diff --git a/Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml b/Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml
+new file mode 100644
+index 000000000000..dfc6d24ee7d9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rng/airoha,en7581-trng.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		smem@8a800000 {
-+			compatible = "qcom,smem";
-+			reg = <0x0 0x8a800000 0x0 0x32000>;
-+			no-map;
++title: Airoha EN7851 True Random Number Generator
 +
-+			hwlocks = <&tcsr_mutex 3>;
-+		};
- 	};
- 
- 	soc@0 {
-@@ -170,6 +178,12 @@ gcc: clock-controller@1800000 {
- 			#interconnect-cells = <1>;
- 		};
- 
-+		tcsr_mutex: hwlock@1905000 {
-+			compatible = "qcom,tcsr-mutex";
-+			reg = <0 0x01905000 0 0x20000>;
-+			#hwlock-cells = <1>;
-+		};
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
 +
- 		qupv3: geniqup@1ac0000 {
- 			compatible = "qcom,geni-se-qup";
- 			reg = <0 0x01ac0000 0 0x2000>;
++properties:
++  compatible:
++    const: airoha,en7581-trng
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    rng@1faa1000 {
++        compatible = "airoha,en7581-trng";
++        reg = <0x1faa1000 0x1000>;
++        interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
++    };
 -- 
-2.34.1
+2.45.2
 
 
