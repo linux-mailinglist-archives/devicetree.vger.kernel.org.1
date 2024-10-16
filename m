@@ -1,145 +1,161 @@
-Return-Path: <devicetree+bounces-112066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 380B29A0E5E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:35:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3789C9A0E72
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D761D1F21CDD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:35:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A16D6B21EAF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A49420E03D;
-	Wed, 16 Oct 2024 15:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B7C20E02A;
+	Wed, 16 Oct 2024 15:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dggg9Ifg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A4hnsSRC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 655C620E033
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 15:34:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D1B107A0;
+	Wed, 16 Oct 2024 15:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729092892; cv=none; b=VFMT15xXp2lE0cblf0160+JvFCF7U2CiDaPhU4hbvOQFj988cpStHlnqRjgQNujUYUWmC93QM58fs1wM2Tz3jRL6OslCxwD7nvXLx4fRFuspjL2VrG4H056cYmtKcw/4r0gbzBGMLfTZHXHk6g54OtdMWxyYDFrhcWN7Z9g7yQU=
+	t=1729093013; cv=none; b=sAMJWUAU2oo8jyef0hVDSMtux2+8nrDSsAGIGLCd+8JxMMElECWYMpD8o4OgkuivXwKv2N34C6TAIcXOf8C9gP1SW7Po0uhiZmSxLtdjCOZtflYFEmQhfF157X26YO3Oyb3xZShUa75Qrv6vrva4tiMaXgGV/AmIsqRwT3Nlzd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729092892; c=relaxed/simple;
-	bh=/MYoco7iqlHkBNwd2rLLKTCQCwu0mSt/uupPMRkOCUo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vl5SgZCyBXssbP6oXmRL3A/UaJfmH0RFBA19UuWbXKtqE3q6CCTWXfRtXFTEqFKJLpmaNF3w5AUhSBpaYH73xRzsg1gNi1659sBoxsTRuXA/tqv4qD0ZRpgbFc1INFteOKtlt3PfeqkoPyIkrF6rXsIPiwXsgEkU1enKoSdSP4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dggg9Ifg; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-37d49a7207cso4410904f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 08:34:50 -0700 (PDT)
+	s=arc-20240116; t=1729093013; c=relaxed/simple;
+	bh=xkb8b0ItzLeiZrA+CiYd5exlClYZEZIB0U5kfNMG0cs=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=GHcFUOkX7I8KchUD+XbYsihJvdFsn/QRP3yVZKIrnqaTt43hgiKYOXQB7pt+GkThMCux9jDcMYB3aHxtbcjj/k4rrGYNDz8Zn8DY4xHETlznTtwr83DoLFRp6NwGI8ieeD1wG7RIdq+dr/BHJimeO3H9NaqqigXevDFgFyPYj5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A4hnsSRC; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a9a156513a1so440162566b.0;
+        Wed, 16 Oct 2024 08:36:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729092889; x=1729697689; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ll/2N/mDfpq1j97y8JmTrL91c71lFU2HD8C7OVqw+Ag=;
-        b=dggg9IfgywpUWVJFdWW8tQ9Jrqa16lhGHGHq4wxB28L7bGGw3g60ZcbwK7VHN3nlCw
-         Gqb2DWFb+tG1iVutW+iM+jTdMo2uJPsoVqmQZvMai9A2bSg7UA5jbeHXL3rXidlbF9hR
-         vj1st+9IheSqkp2Tt/tKcTVoZ7YcLj9aKe3SNn6OLSvha+4UdFnjel/mihMl8GvCqITv
-         9eCfD5vHq/+hdr1uWT761ak7VWnLVTJ4eydVEHbL3B9ozVd/r+Z7dncaeqwx/K4hJ/Rw
-         nwzHTtOwvtoIG0sAp8EI5R7ra5BwIoL9aJTzWs/ooE4VeHl79V5b3u7q3/3k6Vxt0wlE
-         MPRQ==
+        d=gmail.com; s=20230601; t=1729093010; x=1729697810; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5fQzn5M9AjqoW0Bg4PEUOl2UHPKd6sbQpASpgMZ5Coo=;
+        b=A4hnsSRCFWaG9Xt9x+i5Al26fI0rOzlnHLU+RWOQJVXMbTrync+bM9mZF9U5Bl4a6f
+         fKDfzsqrE4Jet1uJwLY1STefkO9MyYKIpYEGR+iAL876jnLxLOD6Rji3w6zCKxmbXV4D
+         NadidRAYpMS1TZ1ygMwk+CxTcqJBZFD1G+6djMjQtUMEkh27gxmpd8a62X1LwUilqbkR
+         hu3x4zTfSkmyBzl6/0uR6YyGbCZSNrsb8SzNg2POsIwnjW7HalF8LLwUr77HVhRN5rfQ
+         MWiuZRPZc0xu7/BBn2QNAMWhb5IMe/7OhFTmdoikBNijHXCB910HpmhexYgM63A2OOBD
+         Mupg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729092889; x=1729697689;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ll/2N/mDfpq1j97y8JmTrL91c71lFU2HD8C7OVqw+Ag=;
-        b=JRqp+v4MoWykOZ1+cJT/AC8myCMy7mOuuJLX9cGbVgROiEuOw+u0uQNDN39uhS/KWY
-         Z5xB7QPRVeqhj7NxkHDezWrvxO+32QQSbYyV/MSz71RQvQKgkKPWeBYS9qYkv/sYG/lW
-         zxoAF4isSlDoA9iSgur8cXt53POx5VyxkxRmID7YSWiA3BFkdj1mIc15L5Nkvn4IzJ1t
-         h0b/78o6P35ZumB4sPCxvEGf4wwwqNYvo9LdbHv0YP8TOZ/DRNlf/n2LM5E7+LoQ2PfT
-         zKA06oVysNB/WUKmpP73rvlU/jMmC/Pwgf/ZU8uIAzQvADRdM/sQ424h6mQnqOPZrT30
-         d+Ug==
-X-Forwarded-Encrypted: i=1; AJvYcCUn+mTfRy+ZUm8BP+GssEfMtngk5RxrZIKN2dw3SnG5pya2lNbL1WtjY11TPLWs+EiLqMW21A1qWvMC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyo8E4j2sM4sS41nuzkbiVVrFOba0tuOM5JAleN3VwEOBq+VmgV
-	VQ9oUd63ois9ORY24xbnNiHv83ugqFblb5p8hDpi45/TSTuHxWZAurXj0lT8fGA=
-X-Google-Smtp-Source: AGHT+IEaXCYOJ6euy9ckWxDZYbkCYwJ5tLzTlDpnGe0pGxFs0UdIZLc0IpEHxn5wsadO0vHSPm9wUw==
-X-Received: by 2002:a5d:4acf:0:b0:37d:461d:b1ea with SMTP id ffacd0b85a97d-37d600c8987mr9358461f8f.48.1729092888632;
-        Wed, 16 Oct 2024 08:34:48 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef80:a75b:8bbb:91be:de0])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fa7a146sm4605519f8f.22.2024.10.16.08.34.47
+        d=1e100.net; s=20230601; t=1729093010; x=1729697810;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5fQzn5M9AjqoW0Bg4PEUOl2UHPKd6sbQpASpgMZ5Coo=;
+        b=nJok6IU3JTMoOv2ikIl5dyOloKy8ZkUg5dkCQH4IKRN+bQZJpWpHyGoTZTkZh5cs15
+         7L6XLI++0hd09Yn0lUY6IvYpyy03bs9yJQH3byddRmE483qflmHKnTZvjCPG/YyHUeb5
+         2Sy30omGylyDbR96rKCvB+NcIyQIJoHoorTZRJISSN5Xs0cJVfAIRuuon5+9XtpAIW6f
+         lRF/gIWaieYnHRwRsJOZtC4CTToS0KNEnVAyblq4E2MUF3qhK0mC4xMqLC6YOxOx5eIk
+         kyYuzfm4csyNnRZB/g2lqSuR0CgS5TdOij6SjMSGbbOiQmmpHN1DmMHIPSH2zOc32Hep
+         8IYA==
+X-Forwarded-Encrypted: i=1; AJvYcCVYQSU/V3bgwMbQX2Y7dXO4r3ZzltUJZ1BCZN0Z7JhXy5FvbASzMzYaO+03IGhtWRL/iQaLXM9n3Pp/iS1b@vger.kernel.org, AJvYcCVvFSCJEVUKxAaYJLhaDQnDKLPBOipHt9OGKNAIcMj/aJgo/oK9Kf70F+1SWwq+8cJ6jKo8r4Va0Pw=@vger.kernel.org, AJvYcCW4aLtYG9g+ZFl0EVc29Y2w0hKHA+qWjVaMlxrx+H/gskAY9UU7Tl4OzHI+09VwJmdTOPOsb6Qm7vg4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrW9upi0Y/U4Sml0XOxnKLrsvMPd98KDyT6JEwVbsAdM1ef6J1
+	pup2ci5es68HvSlA55DHn9xLoN3U0ZAOGZp0vhW1zwlwa5w7FnaF
+X-Google-Smtp-Source: AGHT+IG5Ra7K8yYd8HJ9d4E2o2lEEQjASQ+GHxw8TzN9H/8ONKK7TJckyZHoENBY1fg18pub8WvD1Q==
+X-Received: by 2002:a17:906:d7c2:b0:a99:4152:1cb4 with SMTP id a640c23a62f3a-a9a34dfeb58mr371922666b.42.1729093009880;
+        Wed, 16 Oct 2024 08:36:49 -0700 (PDT)
+Received: from localhost.localdomain ([62.19.118.125])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a9a2988afa0sm195951466b.208.2024.10.16.08.36.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 08:34:48 -0700 (PDT)
-Date: Wed, 16 Oct 2024 17:34:43 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Johan Hovold <johan@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+        Wed, 16 Oct 2024 08:36:49 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100-qcp: Add WiFi/BT pwrseq
-Message-ID: <Zw_dE1rQ-Ljsh-sY@linaro.org>
-References: <20241007-x1e80100-pwrseq-qcp-v1-0-f7166510ab17@linaro.org>
- <20241007-x1e80100-pwrseq-qcp-v1-3-f7166510ab17@linaro.org>
- <ZweftESPrJNEsqGE@hovoldconsulting.com>
- <Zwj539cN2DJ7nd3A@linaro.org>
- <Zw5fzNZ_xCwPyw4G@hovoldconsulting.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	upstream@airoha.com
+Subject: [PATCH 1/2] dt-bindings: thermal: Add support for Airoha EN7581 thermal sensor
+Date: Wed, 16 Oct 2024 17:35:48 +0200
+Message-ID: <20241016153613.25501-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zw5fzNZ_xCwPyw4G@hovoldconsulting.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 15, 2024 at 02:27:56PM +0200, Johan Hovold wrote:
-> On Fri, Oct 11, 2024 at 12:11:43PM +0200, Stephan Gerhold wrote:
-> > On Thu, Oct 10, 2024 at 11:34:44AM +0200, Johan Hovold wrote:
-> 
-> > > Based on our discussions it seems we do not really need to describe the
-> > > internal PMU at all for WCN7850 (as the bluetooth and wlan blocks can be
-> > > enabled indepdendently) so perhaps we can just restore the old binding
-> > > and drop most of this boilerplate for all boards.
-> > > 
-> > 
-> > I think there is no clear conclusion on that yet. The old bindings
-> > didn't describe any power supplies for WiFi at all. The pwrseq bindings
-> > are currently the only way to do that.
-> > 
-> > We could potentially move all the "PMU supplies" to the WiFi/BT nodes
-> > and rely on reference counting to handle them. But I think it's better
-> > to wait how the M.2/generic PCI power control discussion turns out
-> > before investing any time to refactor the current solution.
-> > 
-> > There are existing users of qcom,wcn7850-pmu already in 6.11, so I think
-> > it does not hurt to take this patch as-is for now. We can clean them up
-> > together later if needed.
-> 
-> Sounds good.
-> 
-> But can you please address the following warning that I see with this
-> series:
-> 
-> 	pwrseq-qcom_wcn wcn7850-pmu: supply vddio1p2 not found, using dummy regulator
-> 
-> Not sure if it's the dtsi that's missing a supply if it's the driver
-> that needs fixing.
-> 
+Add support for Airoha EN7581 thermal sensor and monitor. This is a
+simple sensor for the CPU or SoC Package that provide thermal sensor and
+trip point for hot low and critical condition to fire interrupt and
+react on the abnormal state.
 
-It's the driver, the DT should be correct. This supply exists on the
-WCN7850 chip, but nothing is connected there on the QCP.
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ .../thermal/airoha,en7581-thermal.yaml        | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
 
-Unfortunately, it's not entirely straightforward to drop the warning
-since the pwrseq-qcom-wcn driver uses the bulk regulator APIs and
-(AFAIK) there is no good way to make only one of the regulators optional
-there.
+diff --git a/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+new file mode 100644
+index 000000000000..ca0242ef0378
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/airoha,en7581-thermal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7581 Thermal Sensor and Monitor
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++properties:
++  compatible:
++    const: airoha,en7581-thermal
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  airoha,chip-scu:
++    description: phandle to the chip SCU syscon
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  '#thermal-sensor-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - airoha,chip-scu
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    thermal-sensor@1efbd800 {
++        compatible = "airoha,en7581-thermal";
++        reg = <0x1efbd000 0xd5c>;
++        interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
++        airoha,chip-scu = <&chip_scu>;
++
++        #thermal-sensor-cells = <0>;
++    };
+-- 
+2.45.2
 
-@Bartosz: Any thoughts on this? sm8550-qrd and sm8550-hdk are also
-missing the vddio1p2-supply, so they probably have the same warning in
-latest mainline.
-
-Thanks,
-Stephan
 
