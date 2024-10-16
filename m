@@ -1,89 +1,123 @@
-Return-Path: <devicetree+bounces-111855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB2E9A0274
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2DE9A027D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:26:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D1661C26362
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:25:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C06721C263CE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6A591B4C23;
-	Wed, 16 Oct 2024 07:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2A41B6D00;
+	Wed, 16 Oct 2024 07:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X/vUdDSo"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ye6U6Q02"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F65B1B395C;
-	Wed, 16 Oct 2024 07:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89BDB1B395B
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 07:26:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729063529; cv=none; b=NjxkP6UJB+U2+XqXwVRJCvivFIfFb1F27HyL7XA2XaV8UGngWBdExRzy9CmCg9KoU7GbIFKvV4Q17LXp51taQgL1HiAFjwpfBq1C5hVx6srXrJw+6Mub1LyXr258MDb2ShANTjBvlxLSR5wa86zsyXYqfNkXKIGPOuCVlWsh+4E=
+	t=1729063568; cv=none; b=kCGKfra3EUYknMn5fMNoKeTJqNeDjz//S1CMHxfDLAsxip1KqfYbO8/KcylLWfScehPvkIryWKnCBQvQlUNTasAit3pWO5ycgvf0ICcExMIAwq0lHZ4C9B+yOG9WA6UDLkVGgXUBWWGqlqckp+Uqsww3BRjIzq3sedW5j5/YWcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729063529; c=relaxed/simple;
-	bh=kdtVigLj6YCCN5pmCgfHkrqCjhEdlB4MJFoZ10acCGA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tr58otXX9ZmqVL2tbaOR5CYa+21DgCFTao9BQnAT2saFLHXWl9DcOnaf3U2gXqJeQNNdxD/sSSXtM6s1CKoBx8rv3EQwx2CGJTsqWsbJH/c0Ta8oiN9b2/2Gt22xBukfWKwopMlRdAJBHnjRCVgkgIJ2TSaE5r2NMMmUQINIseo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X/vUdDSo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 771B0C4CEC5;
-	Wed, 16 Oct 2024 07:25:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729063529;
-	bh=kdtVigLj6YCCN5pmCgfHkrqCjhEdlB4MJFoZ10acCGA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X/vUdDSoRSRBjMly44CXsmr1H7H/GNvunmZy5t9MQi0tmPdtSA4812K5yfuZNaD6Z
-	 GakM0Q40pRizqEp9y9EvJmY0E22cJ4JyjEvfqLxWS6sDKUn/i6qMxATw4sCGYbVEqs
-	 Cd4WY4Ab417PSO6yfWB7JlZTCft81Ud+ZXxFRd/yHcMziY+xNATMb76ocNEKTSxHIe
-	 J04xT9dmuRVbcZEGCBkVzXS6KINTsVQagH8QWCSqRzZ3khENtK8gz8Es0yxJpnyD46
-	 sGT/NaC0thfVcB8XTJZkcuaOqrJyAHpPgv0URYg9waoaYbi4fPfJcCIYad0jlbRekR
-	 5XcP9g9NCXxlw==
-Date: Wed, 16 Oct 2024 09:25:25 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, Christoph Niedermaier <cniedermaier@dh-electronics.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>, Hiago De Franco <hiago.franco@toradex.com>, 
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Joao Paulo Goncalves <joao.goncalves@toradex.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Mathieu Othacehe <m.othacehe@gmail.com>, 
-	Max Merchel <Max.Merchel@ew.tq-group.com>, Michael Walle <mwalle@kernel.org>, 
-	Parthiban Nallathambi <parthiban@linumiz.com>, Peng Fan <peng.fan@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, kernel@dh-electronics.com
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Document i.MX6DL DHCOM SoM on
- PDK2 carrier board
-Message-ID: <sxw7kruw74n5462wdvpbc7uwyvudxq7hhmyy2nbk6gksq7mt5t@y2nit7t4h5ah>
-References: <20241015235926.168582-1-marex@denx.de>
+	s=arc-20240116; t=1729063568; c=relaxed/simple;
+	bh=EkUGl4udaRvqskMWNNCBeol4kDoR1IFd16zVZQo0SO4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SFMZJ6bUzUy+5VMdOm1VkIJXCxjpmmveSdA8tBwD8DQZGcCkjyImXO51mkLtisOnUQ4bXCnrMU03VwLkcG2RIzixlJpsjv8jD3tx71u3oyehD+rg8QBUz47VsNGkJo8Jw59joZNGfvIzRBXhptp++H4NkNklY//aNMXkcFBImy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ye6U6Q02; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539e1543ab8so7638245e87.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 00:26:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729063564; x=1729668364; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RhK9aEfPG1w4C02v66++bUX1W5vp3z5jqPVGAhJIjSA=;
+        b=ye6U6Q02TGaXRbjaxpQce1Z8iCLpNC25xvxpejBnHoKgyI3hIYMfptIZ02ry3KL3nK
+         YCjpsHM78gB0B7PIGGPIdIt+kW5sgKWhANXgwujdyONwsQ/lfTTi1TPfkjsDEHQCciHk
+         +hP0kU7StnpQ6WhIvtLxNeGaowSRFk/JziarOFKrpqAdXLqo5So1jozsN3JII7EGWxfE
+         E5iuEyup0gHabwwhQMhGc1kJrywQQhyBzDPEFJDF8luLJGqx7Dw6DQMKOKWt5Mkljx19
+         dkIVkcZyBai+ZW8t43zXgqlWZXrz3KjaZ10yL3q/MjOXMZ3YpAo+7ce1VRJRhbXailIl
+         ZB2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729063564; x=1729668364;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RhK9aEfPG1w4C02v66++bUX1W5vp3z5jqPVGAhJIjSA=;
+        b=G22M+DjkHZh3lfRqVo+j+pyB20cL+LK3CR55JRzFBx/N/mmQfmDJPJoVhZnGVGAtw+
+         jGlMoRu/nOnYyj3EWlyHsg5jnGpyFaPyUw+8jIxBKNBb/d6MFz2JsGwMXqsOsmkh3IS1
+         /0U/UaqG5yxBzx7iZCsW9QumWktmZdP82UQnXnfVqU52wjily741AKWDHGwgLoFEIFv3
+         6s79lZ23t7b85q73yDl+J19IAfJQtkzLxUpagOFp/VW97btYfBp15+HRoKQXh+Uiavzi
+         ofPqoCkLu/o6JbHPWKQ2G31nxYirTV0oEWA+BGG2/E4BgOoQ6KH1CSoNWx+Hh+GrE24N
+         9jbg==
+X-Forwarded-Encrypted: i=1; AJvYcCWQGgXzEMJPKWSlMmrs2dYggxALtGMkKhjUQBsHpICvZO5yqQ8wpGqZFL0dFNUfKAWZ5KO2ikAJG6l+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5lmIsdN87MSI+Zy6POMZYhFA0TkiBl3/8LOz/d8Dh+ajLUTPD
+	K5uVKVi29cOhLJ9oJj9SxAq+BVKtLiCsPyeFUP1oZW7Q1zSDSA17wMDfkBW5AZC+nWkzHgDIngu
+	ScGmXd9wNeURHlqccVXMmyXM5XMdjfwI6lPYy4w==
+X-Google-Smtp-Source: AGHT+IGeB3nfnjYOLwENvDZsj3kps6wkLWnU7XfsrF9QM9GfJpD8KbnECT8aOYo1TBp4gpcs9DRuudnglEn75xmeocU=
+X-Received: by 2002:a05:6512:350e:b0:53a:423:6ec9 with SMTP id
+ 2adb3069b0e04-53a042370c9mr1782511e87.54.1729063564225; Wed, 16 Oct 2024
+ 00:26:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241015235926.168582-1-marex@denx.de>
+References: <20241015-ad7380-add-adaq4380-4-support-v1-0-d2e1a95fb248@baylibre.com>
+ <20241015-scoreless-carwash-9ac6047092fe@spud>
+In-Reply-To: <20241015-scoreless-carwash-9ac6047092fe@spud>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Wed, 16 Oct 2024 09:25:53 +0200
+Message-ID: <CAEHHSvZ+j2DyikVQ1XYzk-Zg14FVKP1YHOm-rOimjHydxaGPaA@mail.gmail.com>
+Subject: Re: [PATCH RFC 0/4] ad7380: add adaq4370-4 and adaq4380-4 support
+To: Conor Dooley <conor@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 16, 2024 at 01:58:35AM +0200, Marek Vasut wrote:
-> Document the DH electronics i.MX6DL DHCOM SoM and a PDK2 evaluation board.
-> The evaluation board features three serial ports, USB OTG, USB host with
-> an USB hub, Fast or Gigabit ethernet, eMMC, uSD, SD, analog audio, PCIe
-> and HDMI video output.
-> 
-> All of the aforementioned features except for mSATA are supported, mSATA
-> is not available on i.MX6DL and is only available on DHCOM populated with
-> i.MX6Q SoC which is already supported upstream.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+Le mar. 15 oct. 2024 =C3=A0 18:43, Conor Dooley <conor@kernel.org> a =C3=A9=
+crit :
+>
+> On Tue, Oct 15, 2024 at 11:09:05AM +0200, Julien Stephan wrote:
+> > Hello,
+> >
+> > This series add support for adaq4370-4 (2MSPS) and adaq4380-4 (4MSPS)
+> > which are quad-channel precision data acquisition signal chain =CE=BCMo=
+dule
+> > solutions compatible with the ad738x family, with the following differe=
+nces:
+> >
+> > - configurable gain in front of each 4 adc
+> > - internal reference is 3V derived from refin-supply (5V)
+> > - additional supplies
+> >
+> > This series depends on [1] which fix several supplies issues
+> >
+> > [1]: https://lore.kernel.org/all/20241007-ad7380-fix-supplies-v1-0-badc=
+f813c9b9@baylibre.com/
+>
+> What exactly makes this series RFC rather than v1?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Conor,
+I am sorry I forgot to add some context here... There is an ongoing
+discussion on the dependent series about power supplies and Jonathan
+asked me to send this series to see how to properly handle the supply
+fix...
+See  https://lore.kernel.org/all/20241014193701.40e3785a@jic23-huawei/
 
-Best regards,
-Krzysztof
-
+Cheers,
+Julien
 
