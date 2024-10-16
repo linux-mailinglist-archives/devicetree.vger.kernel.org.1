@@ -1,84 +1,129 @@
-Return-Path: <devicetree+bounces-112113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC1F9A10C0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:36:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4CC69A10D5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 19:39:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD6161C22205
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:36:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E862C1C2243A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0DFE2101A1;
-	Wed, 16 Oct 2024 17:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ifQW81H1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E23D212EF8;
+	Wed, 16 Oct 2024 17:38:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77B0618660A;
-	Wed, 16 Oct 2024 17:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C99210C25;
+	Wed, 16 Oct 2024 17:38:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729100188; cv=none; b=m8T8EMrsbVsWraA4TKcQGGusVzxhP8tI3xzgBg0kjs+ktCvlLbCQ91cZACC1+7t2ebmTDMh2DrVLLfLyKe8h41mR6mtUxw/ujtKmd/R4GXTMjdmOgFPh7C+nndn0Fr/jAysn7R20ZglBZ59F/cGbuBHio39p3OEqqa78KU8S6GU=
+	t=1729100312; cv=none; b=uqptiZPr0RmIsxkPOQ9ZML6G4L4yGS/AZ4cK1OFinbtWHY5yHTBAyuTpFsnqWivicl1EbCpLMJZ42SwKtVR543HgSibe9g54AEg0PxayDOCfig2omP1IKsEViYPl6wNzLlECmjMkX86/PAePgOHFmHgua077mi/5/E6g4kUzlHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729100188; c=relaxed/simple;
-	bh=TmZJhCmtgNQ+uSiCm3N2f3DBsrSeO/fYVybPVkWjOEA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sto+3YApkQp9yiawm6OKaKP9Cop8Jq5+6PmamWgti6ph5EOAL8H3926ZESabrFJ6wkWZnqqjORQ8Q4/iqhpd4a+APrgK9r97eXvo6glM+tQJhzsyPgd4vp8On4E8DM/3VkXkXrfa8ZiGn/BDeo6Yi+j44LXEZLBztP3O29i/HKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ifQW81H1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1D87C4CEC5;
-	Wed, 16 Oct 2024 17:36:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729100188;
-	bh=TmZJhCmtgNQ+uSiCm3N2f3DBsrSeO/fYVybPVkWjOEA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ifQW81H1EDbOT9aP1RMxDoUm/+Kek9KD9sZz17eKEzmpj2/Q7q7UhlWFT2s9yJNnC
-	 KbJn0VorpIAbJdgnAK3yD+tUT8g0ShVGMOwftfw+uZ8dtL/F5SoO05+tDFIQU/mmba
-	 aGKxTSZ73rDERcLN+WP3tJzK4TE5SbUJI3+NxftAusMYDPSbo3tnNvkHeIENcECAP8
-	 5+dLifNhE5D80K6DAEYluIarhLEswwZr2ks3A3OCcs/CpQjxJN7sxEqz4+q7mieG0T
-	 lqe5Y0bFG0I6DJ36grOpcjUoLvzypr7fB1RqyB0ZvmVlrmv/9LoD5x3UXjtKu0z+Q7
-	 XNTw47yBYhmHw==
-Date: Wed, 16 Oct 2024 12:36:27 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	devicetree@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: thermal: Add support for Airoha EN7581
- thermal sensor
-Message-ID: <172910018648.2080954.3683531984930036070.robh@kernel.org>
-References: <20241016153613.25501-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1729100312; c=relaxed/simple;
+	bh=SEjjDzCe3fEF6Q0MD/3Ag7e9BKWXuwcxTsJ00FoOQk4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hTIdhXaOu/s41N1srdKSmHdXTz8krKrV6iVrgJWp5r4PbynseUKmwDzqfeqMdK9z+oAzBuDz28umF+Kmc5Mq24ejqYfkFImOKSA9WJw9qsGoci1wUDXr0ckHc8cRiI55tFdDZP2nm/25jFtGPyOhvuYdkdY5WXryBtWMQ6/8Yvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A6A28FEC;
+	Wed, 16 Oct 2024 10:38:58 -0700 (PDT)
+Received: from [10.57.87.74] (unknown [10.57.87.74])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 253D33F528;
+	Wed, 16 Oct 2024 10:38:25 -0700 (PDT)
+Message-ID: <b5e89288-d1c9-4c10-91b3-b1351b623ce6@arm.com>
+Date: Wed, 16 Oct 2024 18:38:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241016153613.25501-1-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 02/15] drm/rockchip: Set dma mask to 64 bit
+To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
+Cc: hjc@rock-chips.com, krzk+dt@kernel.org, robh@kernel.org,
+ conor+dt@kernel.org, s.hauer@pengutronix.de, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ derek.foreman@collabora.com, minhuadotchen@gmail.com,
+ detlev.casanova@collabora.com, Andy Yan <andy.yan@rock-chips.com>
+References: <20240920081626.6433-1-andyshrk@163.com>
+ <20240920082036.6623-1-andyshrk@163.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20240920082036.6623-1-andyshrk@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Wed, 16 Oct 2024 17:35:48 +0200, Christian Marangi wrote:
-> Add support for Airoha EN7581 thermal sensor and monitor. This is a
-> simple sensor for the CPU or SoC Package that provide thermal sensor and
-> trip point for hot low and critical condition to fire interrupt and
-> react on the abnormal state.
+On 2024-09-20 9:20 am, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> The vop mmu support translate physical address upper 4 GB to iova
+> below 4 GB. So set dma mask to 64 bit to indicate we support address
+>> 4GB.
+> 
+> This can avoid warnging message like this on some boards with DDR
+>> 4 GB:
+> 
+> rockchip-drm display-subsystem: swiotlb buffer is full (sz: 266240 bytes), total 32768 (slots), used 130 (slots)
+> rockchip-drm display-subsystem: swiotlb buffer is full (sz: 266240 bytes), total 32768 (slots), used 0 (slots)
+> rockchip-drm display-subsystem: swiotlb buffer is full (sz: 266240 bytes), total 32768 (slots), used 130 (slots)
+> rockchip-drm display-subsystem: swiotlb buffer is full (sz: 266240 bytes), total 32768 (slots), used 130 (slots)
+> rockchip-drm display-subsystem: swiotlb buffer is full (sz: 266240 bytes), total 32768 (slots), used 0 (slots)
+
+There are several things wrong with this...
+
+AFAICS the VOP itself still only supports 32-bit addresses, so the VOP 
+driver should only be setting a 32-bit DMA mask. The IOMMUs support 
+either 32-bit or 40-bit addresses, and the IOMMU driver does set its DMA 
+mask appropriately. None of those numbers is 64, so that's clearly 
+suspicious already. Plus it would seem the claim of the IOMMU being able 
+to address >4GB isn't strictly true for RK3288 (which does supposedly 
+support 8GB of RAM).
+
+Furthermore, the "display-subsystem" doesn't even exist - it does not 
+represent any actual DMA-capable hardware, so it should not have a DMA 
+mask, and it should not be used for DMA API operations. Buffers for the 
+VOP should be DMA-mapped for the VOP device itself. At the very least, 
+the rockchip_gem_alloc_dma() path is clearly broken otherwise (I guess 
+this patch possibly *would* make that brokenness apparent).
+
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Tested-by: Derek Foreman <derek.foreman@collabora.com>
 > ---
->  .../thermal/airoha,en7581-thermal.yaml        | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
 > 
+> (no changes since v1)
+> 
+>   drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> index 04ef7a2c3833..8bc2ff3b04bb 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> @@ -445,7 +445,9 @@ static int rockchip_drm_platform_probe(struct platform_device *pdev)
+>   		return ret;
+>   	}
+>   
+> -	return 0;
+> +	ret = dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(64));
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Finally as a general thing, please don't misuse 
+dma_coerce_mask_and_coherent() in platform drivers, just use normal 
+dma_set_mask_and_coherent(). The platform bus code has been initialising 
+the dev->dma_mask pointer for years now, drivers should not be messing 
+with it any more.
+
+Thanks,
+Robin.
+
+> +
+> +	return ret;
+>   }
+>   
+>   static void rockchip_drm_platform_remove(struct platform_device *pdev)
 
 
