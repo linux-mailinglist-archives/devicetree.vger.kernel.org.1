@@ -1,745 +1,143 @@
-Return-Path: <devicetree+bounces-111786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B0599FFF8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:10:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 556249A0014
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 06:17:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C74951C23A46
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 04:10:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D74301F24848
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 04:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA76A1714BD;
-	Wed, 16 Oct 2024 04:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3CF17C98C;
+	Wed, 16 Oct 2024 04:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D9gUJs9b"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="diRL//Ls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1085C487A5;
-	Wed, 16 Oct 2024 04:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FE84A0C;
+	Wed, 16 Oct 2024 04:17:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729051826; cv=none; b=TIAvS5Xkj6dpKzBK8f4IU/wtDVikQ+a9LGi6PB4IkYSfHf7elVZykWySddf/Znt3DdlqoAsXQvicShql3Ie+4weyyiuYNCWPZqOJdasGmUxB4/CIhtBPnOmBxjNqd5hgtkEd/6r3QpMvnbUUCSNz31OHnNaw2OPftSjATK8xfyg=
+	t=1729052262; cv=none; b=VkviF3WRflvXDtDvFsRVEn8AhfqhUXkI4tKOjvucN+WJxj9ptg5JMyrDBa4BcOMsKqyepV0KX/Jn4pxpLJNP81PdLG/ylBNDCTJY360g2m+dhjedGb5b70Td3+aeH58ts9/pl0W2qalhoHeIT8lZTO5YGA/h10kdffyKXJD7740=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729051826; c=relaxed/simple;
-	bh=AAmTTW2KFhphTXEvXdM4ht0v7ZnJeBvaLGd41YnyNLA=;
+	s=arc-20240116; t=1729052262; c=relaxed/simple;
+	bh=YFJHhbYS31Y75rTWk27g/bb9SPMx5GuFvaJtJ59ODFo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=eq0L0hPSTvhYSuD2adHSbFn07CN8jIGrDrOx8C5WaHv+IH9io165/AF5xtLsQ9tkLPXaej3VwUgAyfd/t0eMLe7neSpzON2KlFRiCi4QcBCwp2OmXRtpY34KupvCSJc5K8sfqto0zYPTjoxPj8xjzJL1rFdSBJYPkUztjNqZFoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D9gUJs9b; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49FHN1AZ007376;
-	Wed, 16 Oct 2024 04:10:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	I+iR22f4eKvASWOFcuEXTW0bzwvKcQNLHxjbnpDNTms=; b=D9gUJs9bP7q/Zi/d
-	TZAl9NpUOGfa8s38L93q7nwGg/XNtnLd23jI4fqcFw2jx7O5uaWrcdb8/cl13Gff
-	HbSf5TuryJJ3vzfO6XjPaXxSNmdxtm/qzJBfFKXHwP2gPKZEyZChYQ6XrvJOHWOI
-	P0PPLBitD9w87dP5boQwjWRmtpP6PJ4fzOFlOeq7azwEoK5BV8GExNVLlfqOiox/
-	o1W37WLc9yLBGaqpl46kkSL1nUG3hJkqz5u7QqvkI3dL0OfB3XTPQPOepNgueQVv
-	10MwD10Z8CITzqneZIHu7CDbCoaGhhor3Xd1l25hA9oM4ek96sMTAn4NJ9Vo1+eh
-	DsU5xw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 429mh53655-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Oct 2024 04:10:16 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49G4AFHq000600
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Oct 2024 04:10:15 GMT
-Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 15 Oct
- 2024 21:10:10 -0700
-Message-ID: <f1080f46-ed96-4360-ae91-0d5b7aa138ce@quicinc.com>
-Date: Wed, 16 Oct 2024 09:40:07 +0530
+	 In-Reply-To:Content-Type; b=fXUGGO2CeqgeuUL2At+aDzn8Sd1BTAyw1yrFi0efek3X7IQlmgvcKk52YXdT+LGSsXj/tU2qfqiw/fGvU7XDkep2vMrZk0XMqCQBJqN67j3K4hPojuCZg0k64H+Lq/KR7BaubQLUi+XCCupDySMgxzIx83aCzfmhDPFzTrdc3So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=diRL//Ls; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 90fc54728b7511ef88ecadb115cee93b-20241016
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=1DCabenPzzIyCe0g7pTxKCjOOLbiMHBzb+xs4rZe8uQ=;
+	b=diRL//LscT81YGMHp1OQMg8w8XvR0XuqNXXdjO9X3Dq6nRvYqMtXs9fkPCWcGh+XZ/jgPesKbUlcrLwxqYhglGbd9fGEjyH4rDYgb7WCGkC0W3lTnag0GuN6AiljslJFA1k2xfLwEOWPHOtD+qhWHXlTe8FwPULwyq6MsgutYLY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:7a7c2788-16b5-435d-b964-0de5d69abcd6,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:fa755165-444a-4b47-a99a-591ade3b04b2,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 90fc54728b7511ef88ecadb115cee93b-20241016
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 992852966; Wed, 16 Oct 2024 12:17:33 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 16 Oct 2024 12:17:31 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Wed, 16 Oct 2024 12:17:31 +0800
+Message-ID: <f624ea86-1754-c365-ab22-a2890960b94c@mediatek.com>
+Date: Wed, 16 Oct 2024 12:17:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] clk: qcom: gcc: Add support for QCS615 GCC clocks
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240920-qcs615-clock-driver-v2-0-2f6de44eb2aa@quicinc.com>
- <20240920-qcs615-clock-driver-v2-4-2f6de44eb2aa@quicinc.com>
- <gokgyvnunjswjdjmbhfvjzvdc6ag7r3dztj2hqk3cglwyz5f5a@aarbe4rrifme>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] dt-bindings: usb: mtu3: add mediatek,usb3-drd property
 Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <gokgyvnunjswjdjmbhfvjzvdc6ag7r3dztj2hqk3cglwyz5f5a@aarbe4rrifme>
+To: Rob Herring <robh@kernel.org>
+CC: Chunfeng Yun <chunfeng.yun@mediatek.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, ChiYuan
+ Huang <cy_huang@richtek.com>, <linux-usb@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Bear Wang
+	<bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin
+	<macpaul@gmail.com>, <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	Chris-qj chen <chris-qj.chen@mediatek.com>
+References: <20241015172100.15150-1-macpaul.lin@mediatek.com>
+ <20241015222046.GA2164669-robh@kernel.org>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20241015222046.GA2164669-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ownioEgGkcDUi3Oc7LwDUReduAQidLOm
-X-Proofpoint-ORIG-GUID: ownioEgGkcDUi3Oc7LwDUReduAQidLOm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- spamscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- lowpriorityscore=0 mlxscore=0 phishscore=0 malwarescore=0 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410160025
 
 
 
-On 9/20/2024 4:33 PM, Dmitry Baryshkov wrote:
-> On Fri, Sep 20, 2024 at 04:08:18PM GMT, Taniya Das wrote:
->> Add the global clock controller support for QCS615 SoC.
->>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+On 10/16/24 06:20, Rob Herring wrote:
+> 	
+> 
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
+> 
+> On Wed, Oct 16, 2024 at 01:21:00AM +0800, Macpaul Lin wrote:
+>> Add optional 'mediatek,usb3-drd' property to MediaTek MTU3 DT Schema.
+>> This flag specify whether it is a USB3 Dual-role device hardware.
+>> 
+>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 >> ---
->>   drivers/clk/qcom/Kconfig      |    9 +
->>   drivers/clk/qcom/Makefile     |    1 +
->>   drivers/clk/qcom/gcc-qcs615.c | 3035 +++++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 3045 insertions(+)
->>
->> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
->> index a3e2a09e2105..52a7ba6d4cbf 100644
->> --- a/drivers/clk/qcom/Kconfig
->> +++ b/drivers/clk/qcom/Kconfig
->> @@ -467,6 +467,15 @@ config QCS_GCC_404
->>   	  Say Y if you want to use multimedia devices or peripheral
->>   	  devices such as UART, SPI, I2C, USB, SD/eMMC, PCIe etc.
->>   
->> +config QCS_GCC_615
->> +	tristate "QCS615 Global Clock Controller"
->> +	depends on ARM64 || COMPILE_TEST
->> +	select QCOM_GDSC
->> +	help
->> +	  Support for the global clock controller on QCS615 devices.
->> +	  Say Y if you want to use multimedia devices or peripheral
->> +	  devices such as UART, SPI, I2C, USB, SD/eMMC, PCIe etc.
+>>  Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+>> index d4e187c78a0b..1e70af0dac82 100644
+>> --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+>> @@ -155,6 +155,12 @@ properties:
+>>        property is used. See graph.txt
+>>      $ref: /schemas/graph.yaml#/properties/port
+>>  
+>> +  mediatek,usb3-drd:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description:
+>> +      Specify whether it is a USB3 Dual-role device hardware.
+>> +    type: boolean
 >> +
->>   config SC_CAMCC_7180
->>   	tristate "SC7180 Camera Clock Controller"
->>   	depends on ARM64 || COMPILE_TEST
->> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
->> index 2b378667a63f..a46ce0723602 100644
->> --- a/drivers/clk/qcom/Makefile
->> +++ b/drivers/clk/qcom/Makefile
->> @@ -70,6 +70,7 @@ obj-$(CONFIG_QCOM_CLK_SMD_RPM) += clk-smd-rpm.o
->>   obj-$(CONFIG_QCM_GCC_2290) += gcc-qcm2290.o
->>   obj-$(CONFIG_QCM_DISPCC_2290) += dispcc-qcm2290.o
->>   obj-$(CONFIG_QCS_GCC_404) += gcc-qcs404.o
->> +obj-$(CONFIG_QCS_GCC_615) += gcc-qcs615.o
->>   obj-$(CONFIG_QCS_Q6SSTOP_404) += q6sstop-qcs404.o
->>   obj-$(CONFIG_QCS_TURING_404) += turingcc-qcs404.o
->>   obj-$(CONFIG_QDU_ECPRICC_1000) += ecpricc-qdu1000.o
->> diff --git a/drivers/clk/qcom/gcc-qcs615.c b/drivers/clk/qcom/gcc-qcs615.c
->> new file mode 100644
->> index 000000000000..7db55a5d8e80
->> --- /dev/null
->> +++ b/drivers/clk/qcom/gcc-qcs615.c
->> @@ -0,0 +1,3035 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <linux/clk-provider.h>
->> +#include <linux/module.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->> +
->> +#include <dt-bindings/clock/qcom,qcs615-gcc.h>
->> +
->> +#include "clk-alpha-pll.h"
->> +#include "clk-branch.h"
->> +#include "clk-rcg.h"
->> +#include "clk-regmap.h"
->> +#include "clk-regmap-divider.h"
->> +#include "clk-regmap-mux.h"
->> +#include "common.h"
->> +#include "gdsc.h"
->> +#include "reset.h"
->> +
->> +enum {
->> +	DT_BI_TCXO,
->> +	DT_BI_TCXO_AO,
->> +	DT_SLEEP_CLK,
->> +};
->> +
->> +enum {
->> +	P_BI_TCXO,
->> +	P_GPLL0_OUT_AUX2_DIV,
->> +	P_GPLL0_OUT_MAIN,
->> +	P_GPLL3_OUT_MAIN,
->> +	P_GPLL3_OUT_MAIN_DIV,
->> +	P_GPLL4_OUT_MAIN,
->> +	P_GPLL6_OUT_MAIN,
->> +	P_GPLL7_OUT_MAIN,
->> +	P_GPLL8_OUT_MAIN,
->> +	P_SLEEP_CLK,
->> +};
->> +
->> +static struct clk_alpha_pll gpll0 = {
->> +	.offset = 0x0,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +	.clkr = {
->> +		.enable_reg = 0x52000,
->> +		.enable_mask = BIT(0),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gpll0",
->> +			.parent_data = &(const struct clk_parent_data) {
->> +				.index = DT_BI_TCXO,
->> +			},
->> +			.num_parents = 1,
->> +			.ops = &clk_alpha_pll_ops,
->> +		},
->> +	},
->> +};
->> +
->> +static struct clk_fixed_factor gpll0_out_aux2_div = {
->> +	.mult = 1,
->> +	.div = 2,
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "gpll0_out_aux2_div",
->> +		.parent_data = &(const struct clk_parent_data) {
->> +			.hw = &gpll0.clkr.hw,
->> +		},
->> +		.num_parents = 1,
->> +		.ops = &clk_fixed_factor_ops,
->> +	},
->> +};
 > 
-> Should it be clk_alpha_pll_postdiv_foo_ops ?
+> Don't the standard properties such as usb-role-switch or dr_mode work
+> for you?
+
+I've found there are some hardware capability registers could be read
+when probing the device. I'll try if the platform I'm using could access
+these capability registers.
+This patch can be discard. If the hardware really need specify the 
+capability in dts and there is no capability registers, I'll resend
+this patch that time.
+
+>>    enable-manual-drd:
+>>      $ref: /schemas/types.yaml#/definitions/flag
+>>      description:
+>> -- 
+>> 2.45.2
+>> 
 > 
 
-This is not the PLL output, but it is a fixed divider which is placed as 
-input to the RCG.
-That is the reason to use the fixed factor.
-
->> +
->> +static struct clk_alpha_pll gpll3 = {
->> +	.offset = 0x3000,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +	.clkr = {
->> +		.enable_reg = 0x52000,
->> +		.enable_mask = BIT(3),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gpll3",
->> +			.parent_data = &(const struct clk_parent_data) {
->> +				.index = DT_BI_TCXO,
->> +			},
->> +			.num_parents = 1,
->> +			.ops = &clk_alpha_pll_ops,
->> +		},
->> +	},
->> +};
->> +
->> +static struct clk_fixed_factor gpll3_out_aux2_div = {
->> +	.mult = 1,
->> +	.div = 2,
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "gpll3_out_aux2_div",
->> +		.parent_data = &(const struct clk_parent_data) {
->> +			.hw = &gpll3.clkr.hw,
->> +		},
->> +		.num_parents = 1,
->> +		.ops = &clk_fixed_factor_ops,
->> +	},
->> +};
-> 
-> Should it be clk_alpha_pll_postdiv_foo_ops ?
-> 
-
-Same is the case here as well. This is not the PLL output, but it is a 
-fixed divider which is placed as input to the RCG.
-That is the reason to use the fixed factor.
-
->> +
->> +static struct clk_alpha_pll gpll4 = {
->> +	.offset = 0x76000,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +	.clkr = {
->> +		.enable_reg = 0x52000,
->> +		.enable_mask = BIT(4),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gpll4",
->> +			.parent_data = &(const struct clk_parent_data) {
->> +				.index = DT_BI_TCXO,
->> +			},
->> +			.num_parents = 1,
->> +			.ops = &clk_alpha_pll_ops,
->> +		},
->> +	},
->> +};
->> +
->> +static struct clk_alpha_pll gpll6 = {
->> +	.offset = 0x13000,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +	.clkr = {
->> +		.enable_reg = 0x52000,
->> +		.enable_mask = BIT(6),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gpll6",
->> +			.parent_data = &(const struct clk_parent_data) {
->> +				.index = DT_BI_TCXO,
->> +			},
->> +			.num_parents = 1,
->> +			.ops = &clk_alpha_pll_ops,
->> +		},
->> +	},
->> +};
->> +
->> +static const struct clk_div_table post_div_table_gpll6_out_main[] = {
->> +	{ 0x1, 2 },
->> +	{ }
->> +};
->> +
->> +static struct clk_alpha_pll_postdiv gpll6_out_main = {
->> +	.offset = 0x13000,
->> +	.post_div_shift = 8,
->> +	.post_div_table = post_div_table_gpll6_out_main,
->> +	.num_post_div = ARRAY_SIZE(post_div_table_gpll6_out_main),
->> +	.width = 4,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gpll6_out_main",
->> +		.parent_hws = (const struct clk_hw*[]) {
->> +			&gpll6.clkr.hw,
->> +		},
->> +		.num_parents = 1,
->> +		.ops = &clk_alpha_pll_postdiv_ops,
->> +	},
->> +};
->> +
->> +static struct clk_alpha_pll gpll7 = {
->> +	.offset = 0x1a000,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +	.clkr = {
->> +		.enable_reg = 0x52000,
->> +		.enable_mask = BIT(7),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gpll7",
->> +			.parent_data = &(const struct clk_parent_data) {
->> +				.index = DT_BI_TCXO,
->> +			},
->> +			.num_parents = 1,
->> +			.ops = &clk_alpha_pll_ops,
->> +		},
->> +	},
->> +};
->> +
->> +static struct clk_alpha_pll gpll8 = {
->> +	.offset = 0x1b000,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +	.clkr = {
->> +		.enable_reg = 0x52000,
->> +		.enable_mask = BIT(8),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gpll8",
->> +			.parent_data = &(const struct clk_parent_data) {
->> +				.index = DT_BI_TCXO,
->> +			},
->> +			.num_parents = 1,
->> +			.ops = &clk_alpha_pll_ops,
->> +		},
->> +	},
->> +};
->> +
->> +static const struct clk_div_table post_div_table_gpll8_out_main[] = {
->> +	{ 0x1, 2 },
->> +	{ }
->> +};
->> +
->> +static struct clk_alpha_pll_postdiv gpll8_out_main = {
->> +	.offset = 0x1b000,
->> +	.post_div_shift = 8,
->> +	.post_div_table = post_div_table_gpll8_out_main,
->> +	.num_post_div = ARRAY_SIZE(post_div_table_gpll8_out_main),
->> +	.width = 4,
->> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gpll8_out_main",
->> +		.parent_hws = (const struct clk_hw*[]) {
->> +			&gpll8.clkr.hw,
->> +		},
->> +		.num_parents = 1,
->> +		.ops = &clk_alpha_pll_postdiv_ops,
->> +	},
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_0[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_GPLL0_OUT_MAIN, 1 },
->> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_0[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .hw = &gpll0_out_aux2_div.hw },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_0_ao[] = {
->> +	{ .index = DT_BI_TCXO_AO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .hw = &gpll0.clkr.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_1[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_GPLL0_OUT_MAIN, 1 },
->> +	{ P_GPLL6_OUT_MAIN, 2 },
->> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_1[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .hw = &gpll6_out_main.clkr.hw },
->> +	{ .hw = &gpll0_out_aux2_div.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_2[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_GPLL0_OUT_MAIN, 1 },
->> +	{ P_SLEEP_CLK, 5 },
->> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_2[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .index = DT_SLEEP_CLK },
->> +	{ .hw = &gpll0_out_aux2_div.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_3[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_SLEEP_CLK, 5 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_3[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .index = DT_SLEEP_CLK },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_4[] = {
->> +	{ P_BI_TCXO, 0 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_4[] = {
->> +	{ .index = DT_BI_TCXO },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_5[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_GPLL0_OUT_MAIN, 1 },
->> +	{ P_GPLL7_OUT_MAIN, 3 },
->> +	{ P_GPLL4_OUT_MAIN, 5 },
->> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_5[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .hw = &gpll7.clkr.hw },
->> +	{ .hw = &gpll4.clkr.hw },
->> +	{ .hw = &gpll0_out_aux2_div.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_6[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_GPLL0_OUT_MAIN, 1 },
->> +	{ P_GPLL7_OUT_MAIN, 3 },
->> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_6[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .hw = &gpll7.clkr.hw },
->> +	{ .hw = &gpll0_out_aux2_div.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_7[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_GPLL0_OUT_MAIN, 1 },
->> +	{ P_GPLL3_OUT_MAIN_DIV, 4 },
->> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_7[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .hw = &gpll3_out_aux2_div.hw },
->> +	{ .hw = &gpll0_out_aux2_div.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_8[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_GPLL0_OUT_MAIN, 1 },
->> +	{ P_GPLL8_OUT_MAIN, 2 },
->> +	{ P_GPLL4_OUT_MAIN, 5 },
->> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_8[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .hw = &gpll8_out_main.clkr.hw },
->> +	{ .hw = &gpll4.clkr.hw },
->> +	{ .hw = &gpll0_out_aux2_div.hw },
->> +};
->> +
->> +static const struct parent_map gcc_parent_map_9[] = {
->> +	{ P_BI_TCXO, 0 },
->> +	{ P_GPLL0_OUT_MAIN, 1 },
->> +	{ P_GPLL3_OUT_MAIN, 4 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_parent_data_9[] = {
->> +	{ .index = DT_BI_TCXO },
->> +	{ .hw = &gpll0.clkr.hw },
->> +	{ .hw = &gpll3.clkr.hw },
->> +};
->> +
->> +static const struct freq_tbl ftbl_gcc_cpuss_ahb_clk_src[] = {
->> +	F(19200000, P_BI_TCXO, 1, 0, 0),
->> +	{ }
->> +};
->> +
->> +static struct clk_rcg2 gcc_cpuss_ahb_clk_src = {
->> +	.cmd_rcgr = 0x48014,
->> +	.mnd_width = 0,
->> +	.hid_width = 5,
->> +	.parent_map = gcc_parent_map_0,
->> +	.freq_tbl = ftbl_gcc_cpuss_ahb_clk_src,
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gcc_cpuss_ahb_clk_src",
->> +		.parent_data = gcc_parent_data_0_ao,
->> +		.num_parents = ARRAY_SIZE(gcc_parent_data_0_ao),
->> +		.ops = &clk_rcg2_ops,
->> +	},
->> +};
->> +
->> +static const struct freq_tbl ftbl_gcc_emac_ptp_clk_src[] = {
->> +	F(19200000, P_BI_TCXO, 1, 0, 0),
->> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
->> +	F(75000000, P_GPLL0_OUT_AUX2_DIV, 4, 0, 0),
->> +	F(125000000, P_GPLL7_OUT_MAIN, 4, 0, 0),
->> +	F(250000000, P_GPLL7_OUT_MAIN, 2, 0, 0),
->> +	{ }
->> +};
->> +
->> +static struct clk_rcg2 gcc_emac_ptp_clk_src = {
->> +	.cmd_rcgr = 0x6038,
->> +	.mnd_width = 0,
->> +	.hid_width = 5,
->> +	.parent_map = gcc_parent_map_5,
->> +	.freq_tbl = ftbl_gcc_emac_ptp_clk_src,
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gcc_emac_ptp_clk_src",
->> +		.parent_data = gcc_parent_data_5,
->> +		.num_parents = ARRAY_SIZE(gcc_parent_data_5),
->> +		.ops = &clk_rcg2_ops,
->> +	},
->> +};
->> +
->> +static const struct freq_tbl ftbl_gcc_emac_rgmii_clk_src[] = {
->> +	F(2500000, P_BI_TCXO, 1, 25, 192),
->> +	F(5000000, P_BI_TCXO, 1, 25, 96),
->> +	F(19200000, P_BI_TCXO, 1, 0, 0),
->> +	F(25000000, P_GPLL0_OUT_AUX2_DIV, 12, 0, 0),
->> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
->> +	F(75000000, P_GPLL0_OUT_AUX2_DIV, 4, 0, 0),
->> +	F(125000000, P_GPLL7_OUT_MAIN, 4, 0, 0),
->> +	F(250000000, P_GPLL7_OUT_MAIN, 2, 0, 0),
->> +	{ }
->> +};
->> +
->> +static struct clk_rcg2 gcc_emac_rgmii_clk_src = {
->> +	.cmd_rcgr = 0x601c,
->> +	.mnd_width = 8,
->> +	.hid_width = 5,
->> +	.parent_map = gcc_parent_map_6,
->> +	.freq_tbl = ftbl_gcc_emac_rgmii_clk_src,
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gcc_emac_rgmii_clk_src",
->> +		.parent_data = gcc_parent_data_6,
->> +		.num_parents = ARRAY_SIZE(gcc_parent_data_6),
->> +		.ops = &clk_rcg2_ops,
->> +	},
->> +};
->> +
->> +static const struct freq_tbl ftbl_gcc_gp1_clk_src[] = {
->> +	F(25000000, P_GPLL0_OUT_AUX2_DIV, 12, 0, 0),
->> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
->> +	F(100000000, P_GPLL0_OUT_MAIN, 6, 0, 0),
->> +	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
->> +	{ }
->> +};
->> +
->> +static struct clk_rcg2 gcc_gp1_clk_src = {
->> +	.cmd_rcgr = 0x64004,
->> +	.mnd_width = 8,
->> +	.hid_width = 5,
->> +	.parent_map = gcc_parent_map_2,
->> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gcc_gp1_clk_src",
->> +		.parent_data = gcc_parent_data_2,
->> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
->> +		.ops = &clk_rcg2_ops,
->> +	},
->> +};
->> +
->> +static struct clk_rcg2 gcc_gp2_clk_src = {
->> +	.cmd_rcgr = 0x65004,
->> +	.mnd_width = 8,
->> +	.hid_width = 5,
->> +	.parent_map = gcc_parent_map_2,
->> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gcc_gp2_clk_src",
->> +		.parent_data = gcc_parent_data_2,
->> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
->> +		.ops = &clk_rcg2_ops,
->> +	},
->> +};
->> +
->> +static struct clk_rcg2 gcc_gp3_clk_src = {
->> +	.cmd_rcgr = 0x66004,
->> +	.mnd_width = 8,
->> +	.hid_width = 5,
->> +	.parent_map = gcc_parent_map_2,
->> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gcc_gp3_clk_src",
->> +		.parent_data = gcc_parent_data_2,
->> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
->> +		.ops = &clk_rcg2_ops,
->> +	},
->> +};
->> +
->> +static const struct freq_tbl ftbl_gcc_pcie_0_aux_clk_src[] = {
->> +	F(9600000, P_BI_TCXO, 2, 0, 0),
->> +	F(19200000, P_BI_TCXO, 1, 0, 0),
->> +	{ }
->> +};
->> +
->> +static struct clk_rcg2 gcc_pcie_0_aux_clk_src = {
->> +	.cmd_rcgr = 0x6b02c,
->> +	.mnd_width = 16,
->> +	.hid_width = 5,
->> +	.parent_map = gcc_parent_map_3,
->> +	.freq_tbl = ftbl_gcc_pcie_0_aux_clk_src,
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gcc_pcie_0_aux_clk_src",
->> +		.parent_data = gcc_parent_data_3,
->> +		.num_parents = ARRAY_SIZE(gcc_parent_data_3),
->> +		.ops = &clk_rcg2_ops,
-> 
-> Should it be using shared ops?
-> I think there are other clocks here which are usually
-> clk_rcg2_shared_ops.
-> 
-
-As the source frequency is derived from 19.2MHz, so I left it as the 
-normal RCG ops. I can update it in the next patch.
-
->> +	},
->> +};
->> +
-> 
-> [...]
-> 
->> +static struct clk_rcg2 gcc_vsensor_clk_src = {
->> +	.cmd_rcgr = 0x7a018,
->> +	.mnd_width = 0,
->> +	.hid_width = 5,
->> +	.parent_map = gcc_parent_map_9,
->> +	.freq_tbl = ftbl_gcc_vsensor_clk_src,
->> +	.clkr.hw.init = &(const struct clk_init_data) {
->> +		.name = "gcc_vsensor_clk_src",
->> +		.parent_data = gcc_parent_data_9,
->> +		.num_parents = ARRAY_SIZE(gcc_parent_data_9),
->> +		.ops = &clk_rcg2_ops,
->> +	},
->> +};
->> +
->> +
-> 
-> Extra empty line
->
-Sure, will take care in the next patch.
-
-
->> +static struct clk_branch gcc_aggre_ufs_phy_axi_clk = {
->> +	.halt_reg = 0x770c0,
->> +	.halt_check = BRANCH_HALT_VOTED,
-> 
-> [...]
-> 
->> +
->> +static struct clk_branch gcc_pcie_0_pipe_clk = {
->> +	.halt_reg = 0x6b024,
->> +	.halt_check = BRANCH_HALT_SKIP,
->> +	.clkr = {
->> +		.enable_reg = 0x5200c,
->> +		.enable_mask = BIT(4),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gcc_pcie_0_pipe_clk",
->> +			.ops = &clk_branch2_ops,
->> +		},
->> +	},
->> +};
-> 
-> No corresponding gcc_pcie_0_pipe_clk_src?
-> 
-
-On QCS615 the pipe clock source is not required to be modelled as the 
-mux is default Power on reset is set to external pipe clock.
-
->> +
->> +static struct clk_branch gcc_pcie_0_slv_axi_clk = {
->> +	.halt_reg = 0x6b014,
->> +	.halt_check = BRANCH_HALT_VOTED,
->> +	.hwcg_reg = 0x6b014,
->> +	.hwcg_bit = 1,
->> +	.clkr = {
->> +		.enable_reg = 0x5200c,
->> +		.enable_mask = BIT(0),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gcc_pcie_0_slv_axi_clk",
->> +			.ops = &clk_branch2_ops,
->> +		},
->> +	},
->> +};
->> +
-> 
-> [...]
-> 
-
--- 
-Thanks & Regards,
-Taniya Das.
+Thanks!
+Macpaul Lin
 
