@@ -1,132 +1,85 @@
-Return-Path: <devicetree+bounces-112008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB25D9A09DD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:35:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F3789A0A19
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 14:39:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC7411C21CBF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:35:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C33C31C24727
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 12:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793752076C4;
-	Wed, 16 Oct 2024 12:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F824207A03;
+	Wed, 16 Oct 2024 12:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="x/b20hD0"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Ymxi+A97"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5B3207A2C
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 12:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B86321E492;
+	Wed, 16 Oct 2024 12:39:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729082143; cv=none; b=nf6yo5q490jahbb9SIuZ3FRaYwM/qYsLz7Nx3f3DglPUcIXvXkCQIik/XBMa9qt74z8ORuQvo5aTelGBeR7FJvruvqWyee0eDUTXbolyQd/dWlakeMJwmIdUi9Rcxbe8SP4jmtbJ6soUP8X9XmJUOOOe6YlDTH7ABMSyvVwxJSo=
+	t=1729082378; cv=none; b=ATmUNSWLbDW0RL9IJ7oz6UnvmPTyMq2u+Blhjd9dvSJgKIb5KoHUnkpiCY+kMVJdFNIti4ALmKfanIovNGKD82fIAPOEfIPG2R+spCiuSeOdARVy382m3ZDSfBqVlXK558XCypQnVf+eCc4We7fwDEXiB+MDwOeJFByXy4hpRk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729082143; c=relaxed/simple;
-	bh=Nr9lCqkNcOu3fRseyBeKQRrWQLUNT7ErK7fuiN6xt0o=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=bHslvTFlUN/rn6ok9PegZdHxprASUW2jDbuST4GukhqSGmmcxd4KrVIXZM0zm0FTFYCY1zd4jXnj5x6iklLq37Clscs6dnCH/LkcbXzHbROfmMD5OYRgU4alxpMn/asDQ/drlhyzBlZtKQRzOCwlgWHWK3ob7giuX+uxwlD+pfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=x/b20hD0; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1729082378; c=relaxed/simple;
+	bh=ugoRsDfMVyo4E8ISN3DMv8gYM7ZDPD/EG+fXcBwdtBM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o+iMaa2bgpkbt9nMoee8qHYD4talsRViLpDQ5asnBPAVb7PkVrVcqWCAuySP50zpx1Znn4ebxLQyymgLr80O+n3GUmhA4ImPHO6itD45Grq2sI9T3S76B864EsRlqiATNAE6CX/XxGH2yTIa7tCMEo4A9LdwddWpVJHs7e9KnJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Ymxi+A97; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=EGuL05E5OgX9qJAVFH4riiM8Kfnnqg10KB5wvTH+BpY=; b=Ym
+	xi+A97BfqvN8zlIWrNL+86QjYbn76zG3KhIbO77aY8t8/ONnjQGG9yL4+aWfXXD03iZIcpG4b2Zyx
+	TODWgkg9B+01eqpIfKZBKMrEAaeU0oFcqQn1p+H5cbgSKA45QN6oIE8+m9D5JCHzT6pKvqUnN2/JS
+	foHQaqOaheQ5k+Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t13JJ-00A9Qc-LY; Wed, 16 Oct 2024 14:39:29 +0200
+Date: Wed, 16 Oct 2024 14:39:29 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Richard Cochran <richardcochran@gmail.com>, kernel@collabora.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	Jianguo Zhang <jianguo.zhang@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Hsuan-Yu Lin <shane.lin@canonical.com>,
+	Pablo Sun <pablo.sun@mediatek.com>,
+	fanyi zhang <fanyi.zhang@mediatek.com>
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8390-genio-700-evk: Enable
+ ethernet
+Message-ID: <f7fb240c-064c-4ca9-9126-73937aca4705@lunn.ch>
+References: <20241015-genio700-eth-v1-0-16a1c9738cf4@collabora.com>
+ <20241015-genio700-eth-v1-2-16a1c9738cf4@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1729082138;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nTaj8AXpVBWrhNSy1JcE6EXS2SykZrY/1WbUR5yvdpw=;
-	b=x/b20hD0hEvfaBAi+hWs8pUvE/sfpOeqDCYrktpK1t2O/NFekaKGmAlokw5DPD4fUtDNnv
-	Fx0dArSexcydEYCoBeTElusQR4SnX1iKaqgCHb0M3yNVY+3/sAN8T536FPY7Aih3b56T4r
-	myylYYmiNBVVZ3pnsBqBYtbNdVF+JwiOhVEXTqZHhfmuUnNYIyOPVsKEnRTx7zL15tWAQN
-	hK6beHJbnnLPJEV//altlD6g9l7cX9KPnmc4igsF/Ebz+lOB9Mqrryi6AG7xgEnQBIBlNZ
-	MASHvglPFFD3DpSAq+OSa5Uwz19/h9uuwVbe4XDdGvIkxJAr328zL8qh4cO8ag==
-Content-Type: multipart/signed;
- boundary=420a352999a5f0637b0a389b86766f09be8702651d3ea0d2c89ab02af30c;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Wed, 16 Oct 2024 14:35:28 +0200
-Message-Id: <D4X8GJV0W6JL.32E469JSATFEP@cknow.org>
-Cc: <linux-rockchip@lists.infradead.org>, "Diederik de Haas"
- <didi.debian@cknow.org>, "Samuel Holland" <samuel@sholland.org>, "Dragan
- Simic" <dsimic@manjaro.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Michael Riesch"
- <michael.riesch@wolfvision.net>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: (subset) [PATCH v2 0/4] rockchip: Fix several DT validation
- errors
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Heiko Stuebner" <heiko@sntech.de>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Rob Herring" <robh@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>
-References: <20241008113344.23957-1-didi.debian@cknow.org>
- <172841572989.2562611.18254512768409976284.b4-ty@sntech.de>
- <D4X4RACGCRRH.39SMPGMZZ2GK4@cknow.org>
-In-Reply-To: <D4X4RACGCRRH.39SMPGMZZ2GK4@cknow.org>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241015-genio700-eth-v1-2-16a1c9738cf4@collabora.com>
 
---420a352999a5f0637b0a389b86766f09be8702651d3ea0d2c89ab02af30c
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Tue, Oct 15, 2024 at 02:15:02PM -0400, Nícolas F. R. A. Prado wrote:
+> Enable ethernet on the Genio 700 EVK board. It has been tested to work
+> with speeds up to 1000Gbps.
 
-Hi Heiko,
+1000Gbps? NVIDIA needs to watch out.
 
-On Wed Oct 16, 2024 at 11:41 AM CEST, Diederik de Haas wrote:
-> On Tue Oct 8, 2024 at 9:28 PM CEST, Heiko Stuebner wrote:
-> > On Tue, 8 Oct 2024 13:15:35 +0200, Diederik de Haas wrote:
-> > > This is a set of 4 small device-tree validation fixes.
-> > >=20
-> > > Patch 1 adds the power-domains property to the csi dphy node on rk356=
-x.
-> > > Patch 2 removes the 2nd interrupt from the hdmi node on rk3328.
-> > > Patch 3 replaces 'wake' with 'wakeup' on PineNote BT node.
-> > > Patch 4 replaces 'reset-gpios' with 'shutdown-gpios' on brcm BT nodes=
-.
-> >
-> > Applied, thanks!
-> >
-> > [2/4] arm64: dts: rockchip: Remove hdmi's 2nd interrupt on rk3328
-> >       commit: de50a7e3681771c6b990238af82bf1dea9b11b21
-> > [3/4] arm64: dts: rockchip: Fix wakeup prop names on PineNote BT node
-> >       commit: 87299d6ee95a37d2d576dd8077ea6860f77ad8e2
-> > [4/4] arm64: dts: rockchip: Fix reset-gpios property on brcm BT nodes
-> >       commit: 2b6a3f857550e52b1cd4872ebb13cb3e3cf12f5f
->
-> Please revert the 4th patch.
->
-> I must have messed up my testing previously, but BT does not work on the
-> PineNote with the 4th patch applied and does work with it reverted.
-
-FWIW, I figured out what went wrong.
-My testing was correct, but redo-ing the implementation to make it ready
-for submission wasn't very smart.
-
-With ``shutdown-gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;``
-it does work correctly, but I forgot to change GPIO_ACTIVE_LOW to
-GPIO_ACTIVE_HIGH before submitting.
-
-I'll first figure out a better procedure before making a new submission,
-so the revert is still the best approach IMO.
-
-Cheers,
-  Diederik
-
---420a352999a5f0637b0a389b86766f09be8702651d3ea0d2c89ab02af30c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZw+zEwAKCRDXblvOeH7b
-bjbgAP9YbTBY27TFko/D2mKhNunoxZyzGN1Ss/H9noU7e6dOtQEAkqQg/YHMODFT
-3YTB0Lngl+UqeAUuasytSAUgJxyAhQ8=
-=QZhM
------END PGP SIGNATURE-----
-
---420a352999a5f0637b0a389b86766f09be8702651d3ea0d2c89ab02af30c--
+	Andrew
 
