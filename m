@@ -1,127 +1,138 @@
-Return-Path: <devicetree+bounces-111852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED639A0259
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:22:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3139A025F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:23:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B1F71F262F0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:22:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D0B7283402
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7241B652B;
-	Wed, 16 Oct 2024 07:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933F61B3923;
+	Wed, 16 Oct 2024 07:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fJUxM1eO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e979JBF7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109511B0F3E
-	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 07:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2162F1B0F3E;
+	Wed, 16 Oct 2024 07:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729063319; cv=none; b=Q2gTHoyc1M2ozC9sFLQy+G5K/F07T/tnnKoETA3IzT+HY/RxIq1uzTiydBShvwWp7KTQ+deXHAWGIYqoMfHdvMd6Vbg8KButilA7YzEpa2zcBZuyMtvRvqXdLG5pulojP8+TFhqcaIvS/TPYE6queRz+dZ3hLtvg2lcHovCkZCs=
+	t=1729063390; cv=none; b=ZDlutT4mM3Ger3RViT33ip2fw3rQSptxwixZWHQgPDknvDCH9G30b7IHUN2Zf+lzng4yLU5vxc87QEqILQVhI6ErWhwg/xqv7C+oZVax/rHHGHzTquA59tRhtVTYTJLetNjnPTEF+nLVznToOic/ktIEH1wiLsj8nGWTvzoOFhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729063319; c=relaxed/simple;
-	bh=JBspCVFtpJjpthgUxIJaESpNK6TktgdyO35oURkfSeM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YC1L0ukqi8QntwxApQ7DFgHPDn4RQhHqciUsFQvoV7W/jzMRNihRe280qXUQC1f2pc8R1IpfdsSOdW+x7en0FGJ4Og2m8Fn41dQFo2l6XDshjc4rs2AjrsBHhlLtrHSLFu+P8SNYYbXmd4+hKJg9vOMkMMxp2dU3w1GVVyNwpf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fJUxM1eO; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2fb4af0b6beso41359941fa.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 00:21:57 -0700 (PDT)
+	s=arc-20240116; t=1729063390; c=relaxed/simple;
+	bh=CeRE3z3lZdS4M1bt+JJBEe/bsjNSxG/aOxLIGUjGu+M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Wa1Ed0vXsUoA5YOQ9hIeXIPdtliK0tWBuDDKn7V5h1Vw4WjNAsfe/3woC3kcr6UT/QS4HbqIkp5lDpU3qC8LA01OCpOWvH84x0i72g5ZeHI88is7AzG/2GZQsZBff8cqLoLf0l/EWRG6pxUyrh+OEoC479MNd2SAueosFyEAXSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e979JBF7; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-277e6002b7dso1770014fac.1;
+        Wed, 16 Oct 2024 00:23:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729063316; x=1729668116; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vX2MWErp0/u4Uf4asG1ORKJB5iRHzlOAqYylAI75SY0=;
-        b=fJUxM1eOn5AH6DMuTs9HKCViQfduKSUesf9fxjQELZTRaCcMSmAeUMFGh/EhYG547t
-         A9VeqoA7O3msTQ2i1j2x+kV1Tl9n8VS0jp98e61A76ddb5quWeEMcI0BG6V7c/5MEEIi
-         M8hLhO5G2bMKAQ/RrOGSm1ZYvB7bZnTzG3VtqiiIYQ+A1EgOMs6bGU/FuQkZwS6XNHSa
-         MxI1+7nwYk1szaxLUED4XNpd+SD+j1Askn06hdcd5uoGetCpnUqayLhk+ZzdA9559H9g
-         lWw5IZNcmOwt7aT6xysDKKL22NLP0YOCSb/3QANRgO+UEwngg02syB0VOOYWNP1ATbbj
-         Kl5A==
+        d=gmail.com; s=20230601; t=1729063388; x=1729668188; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=wd8Ym5tSSwsBLwbiURSvOdqd3ghlmcVdmxI2I4tPA/M=;
+        b=e979JBF7XjKBERWC1N1Qxm84tKZFSKMCXIkKmIEtsmn5wVuUFE+75TLge/0d6bJccU
+         XSvBLC400EVsyl6V7xDHZMXviGUvYIcMLLyHx53sFncqzZlodVHUCh2X0ubx4wMa62S2
+         1b5MOiF3pfKdgxuRoHkZ+ifTrPyF7i3GVvfbJYQv6HGGn0wSs5nVZH6XhNfTMzxlAQJ9
+         lOIhzIWjAcGsfCAZKIyEix0qNL09fJPuF/nSDnWQXMe0cl/Sy4wlD5tO+qa2L9ktvSoM
+         B+xQ5wybLrfAgztKWJ4RevPzdJIcHixA+odPki+2Wt7CIQrEL79kLmgFTGa+3NY5u05l
+         gh0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729063316; x=1729668116;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vX2MWErp0/u4Uf4asG1ORKJB5iRHzlOAqYylAI75SY0=;
-        b=owSipIykZusSXB49cgAqQqkioOfZ+mgXCgT3DS1kN+We91coV7i/EcyPN7vmX9rLjh
-         cirvnvJI7QAEwO/pGA0QGOssnp5DfDbmU7hzLmUDQNI6RvOG8zmtLRY9jYqtXg7atZHF
-         Uku45ocknNXI9K6GkdvGmmXHdFgIBxsBL4Ggo0NkZGRxlbZgifnUIeiGWJBSAXSInLoZ
-         KjbZGBP/jCHLAtE1g0NyB4LqFA9Hk7Mya3T0tJO5tN8Hwqm8xb8LOwi/YQHEGBeng989
-         /zRA0A2pVfo7f7kdxaKRSnCL3SroUJ5avOrdRQSvwO30N5nGizXrGDO6UmLUcPB5lff7
-         e4eg==
-X-Forwarded-Encrypted: i=1; AJvYcCWz7uqnbVeldZtzCYdEdXprXHm+iEPfQbg/GeQLIdALnJb2Oxk+QNP81M5u1LRm6MXMq3t4h9dv/rGr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGUjqMcbAkEU2jRharmOHcBB6Dd7Gycix2cOFEACWKR6rJUbVK
-	0DFkYs5ItW8aaNJ5vQX9o4QqT9O7OxOl9JzvgHCAPQigAkwf90Pvf0RYJYunrfk=
-X-Google-Smtp-Source: AGHT+IHbasEV4OEbnj6oWKrBr1odwTwS9/GUyVEzEp30I2Bp530ocpSedDMrkezLwO0TtyqXQOJKjw==
-X-Received: by 2002:a2e:be20:0:b0:2fb:5c84:929b with SMTP id 38308e7fff4ca-2fb5c849623mr44326191fa.36.1729063316217;
-        Wed, 16 Oct 2024 00:21:56 -0700 (PDT)
-Received: from lino.lan ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb642a8fdesm1289761fa.5.2024.10.16.00.21.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 00:21:55 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 16 Oct 2024 09:21:53 +0200
-Subject: [PATCH 2/2] gpio: mmio: Parse ngpios property
+        d=1e100.net; s=20230601; t=1729063388; x=1729668188;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wd8Ym5tSSwsBLwbiURSvOdqd3ghlmcVdmxI2I4tPA/M=;
+        b=D65LWHWTRhcXRl6z7JPn7BPiR9UXJJk+GCKTzOydWhtE0yMew7KrNq1JZDmIXHTDFv
+         idN7n0Y6fl/cWnWKwH8aKquU/PcOyLAb2YGmB+28u6FjPaYJAGO1BVX+wr8MM0JwTm8x
+         0d2wI6Z44sWFytyieqi+eeak/CEm260LZfRdUU/RYUgqcpVgOYtDx3WDUAKHhbuvqd/5
+         pLJOJsyagB5At1wM7q8mWEy5O5nVq4Ri+8wJY2O/Jkqzk4rRpWTewjgOYmM6aSTUa9az
+         36EdPefCDgdqCZ1U1DR97lXTUKxeP6f9zZWw7PTnl53246IlRbZCZXA/Wj7FsHMKpHbH
+         en5g==
+X-Forwarded-Encrypted: i=1; AJvYcCW8rpzho5Tc73rKvcu1nQEmkz0atfFV5q6gYltqsxCDrwqTqyxJ1sunUtaZMIHGciTRmuCVMowYtT+D@vger.kernel.org, AJvYcCXHGnegWERV9IWuvan4IyS2go2Bqix8paGnkFGuq1NGZpLwGTJw10fjJn4HQYPvzJHO/Mlyoc50f9cS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIeF3Fs3mDF08RdI03EZPyYl+FFu8E9HcSeBVawqOA8WeQKC2Y
+	D7k6Ld/2rlWGd42fECTMuaI06YqCX4Q4ZSgX2gfZ3cTcltB5VE20doXgZUlR3Q4uqKU0RmySF7t
+	UPUEOzvRJUjX9ostzKVrT2errbmM=
+X-Google-Smtp-Source: AGHT+IFIhDVUzESiMhhE/TlY7ASxMyIeK5VV3R4UKMzydpDPcQNVh9fJvlWSotSf20vztJje3Bo92Hxhu9h8zoCR9Hw=
+X-Received: by 2002:a05:6871:2504:b0:288:eff4:49e4 with SMTP id
+ 586e51a60fabf-288eff44b5amr1179295fac.4.1729063388169; Wed, 16 Oct 2024
+ 00:23:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241016-gpio-ngpios-v1-2-f16cf154f715@linaro.org>
-References: <20241016-gpio-ngpios-v1-0-f16cf154f715@linaro.org>
-In-Reply-To: <20241016-gpio-ngpios-v1-0-f16cf154f715@linaro.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.14.0
+References: <20241011121408.89890-1-dlemoal@kernel.org> <CANAwSgQ+YmSTqJs3-53nmpmCRKuqfRysT37uHQNGibw5FZhRvg@mail.gmail.com>
+ <f13618a6-0922-4fc8-af01-10be1ef95f0d@kernel.org>
+In-Reply-To: <f13618a6-0922-4fc8-af01-10be1ef95f0d@kernel.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Wed, 16 Oct 2024 12:52:51 +0530
+Message-ID: <CANAwSgRDbCCridYMciq=xSDPV0qGhs-OhCJ_uniXFbp-yM5CcQ@mail.gmail.com>
+Subject: Re: [PATCH v4 00/12] Fix and improve the Rockchip endpoint driver
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, 
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>, Niklas Cassel <cassel@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-This makes the MMIO GPIO driver parse the ngpios property from
-devices instatiated directly from the device tree so we can
-further restrict the number of GPIOs down from the number of
-bits on the target register.
+Hi Damien,
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/gpio/gpio-mmio.c | 4 ++++
- 1 file changed, 4 insertions(+)
+On Wed, 16 Oct 2024 at 11:45, Damien Le Moal <dlemoal@kernel.org> wrote:
+>
+> On 10/16/24 2:32 PM, Anand Moon wrote:
+> > Hi Damien,
+> >
+> > On Fri, 11 Oct 2024 at 17:55, Damien Le Moal <dlemoal@kernel.org> wrote:
+> >>
+> >> This patch series fix the PCI address mapping handling of the Rockchip
+> >> endpoint driver, refactor some of its code, improves link training and
+> >> adds handling of the #PERST signal.
+> >>
+> >> This series is organized as follows:
+> >>  - Patch 1 fixes the rockchip ATU programming
+> >>  - Patch 2, 3 and 4 introduce small code improvments
+> >>  - Patch 5 implements the .get_mem_map() operation to make the RK3399
+> >>    endpoint controller driver fully functional with the new
+> >>    pci_epc_mem_map() function
+> >>  - Patch 6, 7, 8 and 9 refactor the driver code to make it more readable
+> >>  - Patch 10 introduces the .stop() endpoint controller operation to
+> >>    correctly disable the endpopint controller after use
+> >>  - Patch 11 improves link training
+> >>  - Patch 12 implements handling of the #PERST signal
+> >>
+> >> This patch series depends on the PCI endpoint core patches from the
+> >> V5 series "Improve PCI memory mapping API". The patches were tested
+> >> using a Pine Rockpro64 board used as an endpoint with the test endpoint
+> >> function driver and a prototype nvme endpoint function driver.
+> >
+> > Can we test this feature on Radxa Rock PI 4b hardware with an external
+> > nvme card?
+>
+> This patch series is to fix the PCI controller operation in endpoint (EP) mode.
+> If you only want to use an NVMe device connected to the board M.2 M-Key slot,
+> these patches are not needed. If that board PCI controller does not work as a
+> PCI host (RC mode), then these patches will not help.
+>
 
-diff --git a/drivers/gpio/gpio-mmio.c b/drivers/gpio/gpio-mmio.c
-index d89e78f0ead3..9e944c191551 100644
---- a/drivers/gpio/gpio-mmio.c
-+++ b/drivers/gpio/gpio-mmio.c
-@@ -694,6 +694,7 @@ MODULE_DEVICE_TABLE(of, bgpio_of_match);
- static struct bgpio_pdata *bgpio_parse_fw(struct device *dev, unsigned long *flags)
- {
- 	struct bgpio_pdata *pdata;
-+	u32 ngpios;
- 
- 	if (!dev_fwnode(dev))
- 		return NULL;
-@@ -704,6 +705,9 @@ static struct bgpio_pdata *bgpio_parse_fw(struct device *dev, unsigned long *fla
- 
- 	pdata->base = -1;
- 
-+	if (!device_property_read_u32(dev, "ngpios", &ngpios))
-+		pdata->ngpios = ngpios;
-+
- 	if (device_is_big_endian(dev))
- 		*flags |= BGPIOF_BIG_ENDIAN_BYTE_ORDER;
- 
+Thanks for your inputs, I don't think my board supports this feature.
 
--- 
-2.46.2
+> --
+> Damien Le Moal
+> Western Digital Research
 
+Thanks
+-Anand
 
