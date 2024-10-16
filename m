@@ -1,306 +1,162 @@
-Return-Path: <devicetree+bounces-111839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E9B9A0200
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:00:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50AF89A0208
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 09:01:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 573CE1F21131
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:00:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5A93B250A6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 07:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DC761B395B;
-	Wed, 16 Oct 2024 06:59:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAACC1AAE17;
+	Wed, 16 Oct 2024 07:01:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="iODSIOfr";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="i1p38VoJ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eUg6gLVu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D26C193408;
-	Wed, 16 Oct 2024 06:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C23118C920
+	for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 07:01:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729061945; cv=none; b=edfqySMaUEvJGBoBc2/PxNXt+DOgWYIDyKrdJeqzZe20skqlWQS2LW9DgKrJpS7+gFTWe1wq3C9caUZ3Kt2XJAB/6bvhNwEZQxdqbiLgQeoKKFb1x9+dun7N5IyP+RkzTJjFsEZ9GX/cUsun9TwHr/RXiSa4u01WAAejYauw5vE=
+	t=1729062092; cv=none; b=QcZ4GURJSTGTXv23eYl60WvkdeFfpYDyu0naX/6zMxw2e/NS9v347guKWc+nrfPnwsEcMIXXBo6qwRy1FhBM9sFe5Qi3nLScdQDk0tIliEhSSLPJM/y7uOJcrNJC2iylAk62Nt50ipT9iOlaK1VJIZV8wcHjrK2hGi2v1W2fhfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729061945; c=relaxed/simple;
-	bh=5tTt0CYVrlFoN/zPjxeeLXJTuGrDNok35bzaWO14+Cw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CYCm/6LtHLCSwg/HgKKpVgFXqbob+WBr5gWNLQOi4/Df2Efgmb+TSBS7Eu/G1qcFvrjWkTca833osHXCJwTkIiYOhjjGKgWG1LTiKUts4+Q4yn0eMZFPEUvqUslZhAKpkX5T8yGK4vRanixwiATCuBCq1yKlXfANoww8pmxsHG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=iODSIOfr; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=i1p38VoJ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1729062092; c=relaxed/simple;
+	bh=/Hzo2SkzwwDLKXCO8ZcuSqtq5C1ljEdpc4/rzPIw/Ws=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PaxM9AejOsYstZuIq8BUiR+uMglz3KOkEq08GbasiY6khg7IuNEYP82dJrB6vPkdX5qnFBtRFoe1K7UZ7bMiGgFGVqZL2TqqhMDdNzxXs+2mSvJJpNtyHiMhL0fIwPwVwBO6/VwTeDyBPM8tQbmY+9GV43CHcQHBDpJh89MOCm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=eUg6gLVu; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539fb49c64aso4073366e87.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 00:01:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1729061940; x=1760597940;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=h3FiAS2c8YizfFhld4Gkb8iu9XdO1cCizUpi3AL9Jj0=;
-  b=iODSIOfr/swbEOI9u8XBgd8wtWEdkpExgVsXzAeB1AxLguKH0PB793zp
-   N3goVK4Xdx/2XlLtGItnuq6VKDr1LXXLRojsNBQOMLvDAHX8L/Jnqoeie
-   IhWu68+SqhcnPQcQK599o0xs1D+WiTuM40yaojBXLfTGWB1Mi1OG8S8Jj
-   VXYLem3LMEpdVppuKq2rI/XtuRMczpRVtssU5gHTfSmFhdb9KzD2En/PC
-   1jbs4Q0m3q1HsshfJOmXjtl99mY7fmknbUEuMy7JBceWFsl6FpOQX0o2Y
-   zJ5lDqp8Ix8ZafBWq6ihvT/hsMKbH8n3yclWdK0TrM1rxJpGfsf00I4mU
-   g==;
-X-CSE-ConnectionGUID: Rg86gjIzTH+50giFFivXVQ==
-X-CSE-MsgGUID: H1giANbDTES1H3Icy75oUQ==
-X-IronPort-AV: E=Sophos;i="6.11,207,1725314400"; 
-   d="scan'208";a="39483479"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 16 Oct 2024 08:58:58 +0200
-X-CheckPoint: {670F6431-33-BD84CFBF-E7C15A70}
-X-MAIL-CPID: 170C6D7412C83B37F70B93F383F63A79_3
-X-Control-Analysis: str=0001.0A682F19.670F6432.0044,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B2EB216FAFC;
-	Wed, 16 Oct 2024 08:58:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1729061933;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=h3FiAS2c8YizfFhld4Gkb8iu9XdO1cCizUpi3AL9Jj0=;
-	b=i1p38VoJ/6fn8+qB2vEr6ZIOwxGUKXApLYF2RNUVZSGTiT2GVUSIKjakXaa6InFGcTpyrF
-	CbXoU3KO6mLiYl2vy6k6OjrIzPheOE565QltyIRibok8Gx+DGGm5+ovFik/qMXAvZjWAlN
-	OOJVVfIL5+hV7vpgxubsUFCTanKL7FI+yBlM1EtJviR7aFJpYNUjTUJFDxD8gCnE65MEis
-	OjI3mGFAGIBYYSNzP94Z0IZtXygviXpZgvhg6aeLzlsuC6xo2i4xA0SaaLZ0Av8Y0pyyg6
-	op9R30679lpT+cu8Hxtcv7Bdnsfoy283dmZlYKCs6p+n1BDJUuh+4U0oeSS+qA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Cc: Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, imx@lists.linux.dev, kernel@dh-electronics.com, linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: fsl, imx6ul-pinctrl: Convert i.MX35/5x/6 to YAML
-Date: Wed, 16 Oct 2024 08:58:51 +0200
-Message-ID: <2205972.irdbgypaU6@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241015232107.100771-1-marex@denx.de>
-References: <20241015232107.100771-1-marex@denx.de>
+        d=chromium.org; s=google; t=1729062089; x=1729666889; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aPSA6U2IhZgMRSFXZK5Yj7RxoQjZFaD6SSlWNz1Yb8o=;
+        b=eUg6gLVuBC86WDl2T1PJB7ot1n118NOcGtI9tagwNB5ci0VXw2abchf0hjYHgT7Ihv
+         r+TR/AQVOk17Czf+9IMIdx+PLoRqoJoZitaqiUo0z4ltQW33vWnQPVL/Gu8FXZL/jiQi
+         G+hvU1L7GRihE00Ieh34wqSkn7IhkFOgayFGE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729062089; x=1729666889;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aPSA6U2IhZgMRSFXZK5Yj7RxoQjZFaD6SSlWNz1Yb8o=;
+        b=DOHNhqt+P7KvP7ca6AOKmAO1jBz9OPfHeFmTk5qUCsOydd6u3f6T0tk1f0uYVYg65t
+         yXQ9P4TlFSPkBpYqsMN7YjlGOiiMuf483uA0xB1WfVwvon/JgHGKafTj25xnKWPuMSON
+         c1XwtPStslqC2ELqYKiGmODroUpxJM73ZbTVaBpsRl1KUFvbm0k19XleIY/8FZFuL/HO
+         esyg4gCoIAHO5IrPY0ObzfQaZqz+7CY2q4DBn9JXKgjXDOmR9JUMD5mlSAhHl7WPzqKH
+         1tNT40gL2C7IuBnfxPEwTU3ybEeAqttbuywh2Mk6nPZnw/ojOr3sVwhF7yi3Ku3M2bMo
+         Qq6w==
+X-Forwarded-Encrypted: i=1; AJvYcCVuzsbhefXyNBgPTSGVzkSKGuQTXyJmTat7masIXA7sQnAIMLLnv+ATKKDBtXyoHGn+QSji4x7gInCE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8kRrL8imdjAV/EoeU72b0zDDF9mF41JC9de0FeBn4DWB1JZzb
+	egff73ichW1dS+Fxft+BvX4PS0wxONQAxyWYtDOcGfwtadH8Oskw9him9eQf8KghPHs9PZ8vg0J
+	0Y8PzusniUEolGpoJ/8Psc+6R5a2s3EFuKe/W
+X-Google-Smtp-Source: AGHT+IF9nGtCldCGOeLQrTN0Aa5+OFXxu1e3xzkOPVJhXANUIs3qmwtgnQsHFXF0n+2Y3Vn8cKEwmSavH38AfXohfvY=
+X-Received: by 2002:a05:6512:2398:b0:536:741a:6bc5 with SMTP id
+ 2adb3069b0e04-539e54d6122mr10014310e87.12.1729062089143; Wed, 16 Oct 2024
+ 00:01:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241008073430.3992087-1-wenst@chromium.org> <20241008073430.3992087-5-wenst@chromium.org>
+ <CAD=FV=WRSjk3U9Kau0wqkgv3KB=9jM6wCM9Gs-WxWai35sfxTg@mail.gmail.com>
+In-Reply-To: <CAD=FV=WRSjk3U9Kau0wqkgv3KB=9jM6wCM9Gs-WxWai35sfxTg@mail.gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 16 Oct 2024 15:01:17 +0800
+Message-ID: <CAGXv+5FW0UTjR_ZiqZ8VEOQkBemt54omtJe_aTj3jvScC-LuMw@mail.gmail.com>
+Subject: Re: [PATCH v8 4/8] i2c: Introduce OF component probe function
+To: Doug Anderson <dianders@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Jiri Kosina <jikos@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Marek,
+On Wed, Oct 16, 2024 at 1:58=E2=80=AFAM Doug Anderson <dianders@chromium.or=
+g> wrote:
+>
+> Hi,
+>
+> On Tue, Oct 8, 2024 at 12:35=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org>=
+ wrote:
+> >
+> > +int i2c_of_probe_component(struct device *dev, const struct i2c_of_pro=
+be_cfg *cfg, void *ctx)
+> > +{
+> > +       const struct i2c_of_probe_ops *ops;
+> > +       const char *type;
+> > +       struct i2c_adapter *i2c;
+> > +       int ret;
+> > +
+> > +       ops =3D cfg->ops ?: &i2c_of_probe_dummy_ops;
+> > +       type =3D cfg->type;
+> > +
+> > +       struct device_node *i2c_node __free(device_node) =3D i2c_of_pro=
+be_get_i2c_node(dev, type);
+> > +       if (IS_ERR(i2c_node))
+> > +               return PTR_ERR(i2c_node);
+>
+> I'm still getting comfortable with the __free() syntax so sorry if I'm
+> wrong, but I _think_ the above is buggy. I believe that the definition
+> of the free function for "device_node" is from:
+>
+> DEFINE_FREE(device_node, struct device_node *, if (_T) of_node_put(_T))
+>
+> ...which means it'll call of_node_put() to free "i2c_node" when it
+> goes out of scope. of_node_put() handles NULL pointers but _not_ ERR
+> pointers. So I think that if you get an error back and then return via
+> the PTR_ERR(i2c_node) then it'll crash because it will try to free an
+> ERR pointer. Did I get that right? Presumably you need to instead do:
+>
+>   return PTR_ERR(no_free_ptr(i2c_node));
+>
+> ...or change of_node_put() to be a noop for error pointers?
 
-thanks for the conversion.
+Good catch! As Andy suggested, it should be updated to handle both.
+I'll add a patch for this.
 
-Am Mittwoch, 16. Oktober 2024, 01:20:51 CEST schrieb Marek Vasut:
-> The IOMUXC controller description is almost identical on i.MX35/5x/6 SoCs,
-> except for the configuration bits which differ across SoCs. Rename the
-> fsl,imx6ul-pinctrl.yaml to fsl,imx35-pinctrl.yaml, fill in compatible
-> strings for the other SoCs and fill in the various bits into desciption.
-> This way, i.MX35/5x/6 series SoCs can all be converted to YAML DT. Remove
-> the old text DT bindings description.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Dong Aisheng <aisheng.dong@nxp.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-gpio@vger.kernel.org
-> ---
->  .../bindings/pinctrl/fsl,imx35-pinctrl.txt    | 33 --------
->  ...ul-pinctrl.yaml =3D> fsl,imx35-pinctrl.yaml} | 79 +++++++++++++++++--
->  .../bindings/pinctrl/fsl,imx50-pinctrl.txt    | 32 --------
->  .../bindings/pinctrl/fsl,imx51-pinctrl.txt    | 32 --------
->  .../bindings/pinctrl/fsl,imx53-pinctrl.txt    | 32 --------
->  .../bindings/pinctrl/fsl,imx6dl-pinctrl.txt   | 38 ---------
->  .../bindings/pinctrl/fsl,imx6q-pinctrl.txt    | 38 ---------
->  .../bindings/pinctrl/fsl,imx6sl-pinctrl.txt   | 39 ---------
->  .../bindings/pinctrl/fsl,imx6sll-pinctrl.txt  | 40 ----------
->  .../bindings/pinctrl/fsl,imx6sx-pinctrl.txt   | 36 ---------
->  10 files changed, 72 insertions(+), 327 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx35-p=
-inctrl.txt
->  rename Documentation/devicetree/bindings/pinctrl/{fsl,imx6ul-pinctrl.yam=
-l =3D> fsl,imx35-pinctrl.yaml} (51%)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx50-p=
-inctrl.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx51-p=
-inctrl.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx53-p=
-inctrl.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6dl-=
-pinctrl.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6q-p=
-inctrl.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6sl-=
-pinctrl.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6sll=
-=2Dpinctrl.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6sx-=
-pinctrl.txt
->=20
-> [snip]
-> diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx6ul-pinctrl=
-=2Eyaml b/Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.yaml
-> similarity index 51%
-> rename from Documentation/devicetree/bindings/pinctrl/fsl,imx6ul-pinctrl.=
-yaml
-> rename to Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.yaml
-> index 906b264a9e3cd..780d5fe0137e5 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/fsl,imx6ul-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.yaml
-> @@ -1,10 +1,10 @@
->  # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/pinctrl/fsl,imx6ul-pinctrl.yaml#
-> +$id: http://devicetree.org/schemas/pinctrl/fsl,imx35-pinctrl.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> =20
-> -title: Freescale IMX6UL IOMUX Controller
-> +title: Freescale IMX35/IMX5x/IMX6 IOMUX Controller
-> =20
->  maintainers:
->    - Dong Aisheng <aisheng.dong@nxp.com>
-> @@ -19,6 +19,15 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> +      - fsl,imx35-iomuxc
-> +      - fsl,imx50-iomuxc
-> +      - fsl,imx51-iomuxc
-> +      - fsl,imx53-iomuxc
+> > +struct i2c_of_probe_ops {
+> > +       /**
+> > +        * @enable: Retrieve and enable resources so that the component=
+s respond to probes.
+> > +        *
+> > +        * Resources should be reverted to their initial state before r=
+eturning if this fails.
+>
+> nit: might be worth explicitly noting that returning -EPROBE_DEFER is
+> OK here because this both retrieves resources and enables.
 
-imx50.dtsi is using
-> "fsl,imx50-iomuxc", "fsl,imx53-iomuxc";
+Makes sense. Will do.
 
-So either the .dtsi or this schema needs to be adjusted.
+> > +        */
+> > +       int (*enable)(struct device *dev, struct device_node *bus_node,=
+ void *data);
+> > +
+> > +       /**
+> > +        * @cleanup_early: Release exclusive resources prior to enablin=
+g component.
+>
+> nit: change the word "enabling" to "calling probe() on a detected"
+> since otherwise it could be confused with the "enable" function above.
 
-> +      - fsl,imx6dl-iomuxc
-> +      - fsl,imx6q-iomuxc
-> +      - fsl,imx6sl-iomuxc
-> +      - fsl,imx6sll-iomuxc
-> +      - fsl,imx6sx-iomuxc
->        - fsl,imx6ul-iomuxc
->        - fsl,imx6ull-iomuxc-snvs
-> =20
-> @@ -39,9 +48,9 @@ patternProperties:
->            each entry consists of 6 integers and represents the mux and c=
-onfig
->            setting for one pin. The first 5 integers <mux_reg conf_reg in=
-put_reg
->            mux_val input_val> are specified using a PIN_FUNC_ID macro, wh=
-ich can
-> -          be found in <arch/arm/boot/dts/imx6ul-pinfunc.h>. The last int=
-eger
-> +          be found in <arch/arm/boot/dts/nxp/imx/imx*-pinfunc.h>. The la=
-st integer
->            CONFIG is the pad setting value like pull-up on this pin. Plea=
-se
-> -          refer to i.MX6UL Reference Manual for detailed CONFIG settings.
-> +          refer to matching i.MX Reference Manual for detailed CONFIG se=
-ttings.
->          $ref: /schemas/types.yaml#/definitions/uint32-matrix
->          items:
->            items:
-> @@ -56,7 +65,41 @@ patternProperties:
->              - description: |
->                  "input_val" indicates the select input value to be appli=
-ed.
->              - description: |
-> -                "pad_setting" indicates the pad configuration value to b=
-e applied:
-> +                "pad_setting" indicates the pad configuration value to b=
-e applied.
-> +                Common i.MX35
-> +                  PAD_CTL_DRIVE_VOLAGAGE_18       (1 << 13)
-> +                  PAD_CTL_DRIVE_VOLAGAGE_33       (0 << 13)
-> +                  PAD_CTL_HYS                     (1 << 8)
-> +                  PAD_CTL_PKE                     (1 << 7)
-> +                  PAD_CTL_PUE                     (1 << 6)
-> +                  PAD_CTL_PUS_100K_DOWN           (0 << 4)
-> +                  PAD_CTL_PUS_47K_UP              (1 << 4)
-> +                  PAD_CTL_PUS_100K_UP             (2 << 4)
-> +                  PAD_CTL_PUS_22K_UP              (3 << 4)
-> +                  PAD_CTL_ODE_CMOS                (0 << 3)
-> +                  PAD_CTL_ODE_OPENDRAIN           (1 << 3)
-> +                  PAD_CTL_DSE_NOMINAL             (0 << 1)
-> +                  PAD_CTL_DSE_HIGH                (1 << 1)
-> +                  PAD_CTL_DSE_MAX                 (2 << 1)
-> +                  PAD_CTL_SRE_FAST                (1 << 0)
-> +                  PAD_CTL_SRE_SLOW                (0 << 0)
-> +                Common i.MX50/i.MX51/i.MX53 bits
-> +                  PAD_CTL_HVE                     (1 << 13)
-> +                  PAD_CTL_HYS                     (1 << 8)
-> +                  PAD_CTL_PKE                     (1 << 7)
-> +                  PAD_CTL_PUE                     (1 << 6)
-> +                  PAD_CTL_PUS_100K_DOWN           (0 << 4)
-> +                  PAD_CTL_PUS_47K_UP              (1 << 4)
-> +                  PAD_CTL_PUS_100K_UP             (2 << 4)
-> +                  PAD_CTL_PUS_22K_UP              (3 << 4)
-> +                  PAD_CTL_ODE                     (1 << 3)
-> +                  PAD_CTL_DSE_LOW                 (0 << 1)
-> +                  PAD_CTL_DSE_MED                 (1 << 1)
-> +                  PAD_CTL_DSE_HIGH                (2 << 1)
-> +                  PAD_CTL_DSE_MAX                 (3 << 1)
-> +                  PAD_CTL_SRE_FAST                (1 << 0)
-> +                  PAD_CTL_SRE_SLOW                (0 << 0)
-> +                Common i.MX6 bits
->                    PAD_CTL_HYS                     (1 << 16)
->                    PAD_CTL_PUS_100K_DOWN           (0 << 14)
->                    PAD_CTL_PUS_47K_UP              (1 << 14)
-> @@ -69,6 +112,11 @@ patternProperties:
->                    PAD_CTL_SPEED_MED               (1 << 6)
->                    PAD_CTL_SPEED_HIGH              (3 << 6)
->                    PAD_CTL_DSE_DISABLE             (0 << 3)
-> +                  PAD_CTL_SRE_FAST                (1 << 0)
-> +                  PAD_CTL_SRE_SLOW                (0 << 0)
-> +                i.MX6SL/MX6SLL specific bits
-> +                  PAD_CTL_LVE                     (1 << 22) (MX6SL/SLL o=
-nly)
-
-Is this comment 'MX6SL/SLL only' really needed? This bit is already in the
-i.MX6SL/MX6SLL only section.
-
-Despite that, this looks good.
-Best regards,
-Alexander
-
-> +                i.MX6SLL/i.MX6SX/i.MX6UL/i.MX6ULL specific bits
->                    PAD_CTL_DSE_260ohm              (1 << 3)
->                    PAD_CTL_DSE_130ohm              (2 << 3)
->                    PAD_CTL_DSE_87ohm               (3 << 3)
-> @@ -76,8 +124,14 @@ patternProperties:
->                    PAD_CTL_DSE_52ohm               (5 << 3)
->                    PAD_CTL_DSE_43ohm               (6 << 3)
->                    PAD_CTL_DSE_37ohm               (7 << 3)
-> -                  PAD_CTL_SRE_FAST                (1 << 0)
-> -                  PAD_CTL_SRE_SLOW                (0 << 0)
-> +                i.MX6DL/i.MX6Q/i.MX6SL specific bits
-> +                  PAD_CTL_DSE_240ohm              (1 << 3)
-> +                  PAD_CTL_DSE_120ohm              (2 << 3)
-> +                  PAD_CTL_DSE_80ohm               (3 << 3)
-> +                  PAD_CTL_DSE_60ohm               (4 << 3)
-> +                  PAD_CTL_DSE_48ohm               (5 << 3)
-> +                  PAD_CTL_DSE_40ohm               (6 << 3)
-> +                  PAD_CTL_DSE_34ohm               (7 << 3)
-> =20
->      required:
->        - fsl,pins
-> [snip]
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Makes sense. Will do.
 
 
+ChenYu
 
