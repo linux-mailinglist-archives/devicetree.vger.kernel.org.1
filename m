@@ -1,87 +1,148 @@
-Return-Path: <devicetree+bounces-112073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 535759A0ED7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:47:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5467B9A0EDF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 17:48:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 092501F21B1B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:47:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE4B7B2149E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Oct 2024 15:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B7C4206066;
-	Wed, 16 Oct 2024 15:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC8D20E013;
+	Wed, 16 Oct 2024 15:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D3GAkLgI"
+	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="QB+pov86"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out-03.smtp.spacemail.com (out-03.smtp.spacemail.com [63.250.43.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 032043FBA5;
-	Wed, 16 Oct 2024 15:47:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35BDB209687;
+	Wed, 16 Oct 2024 15:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729093644; cv=none; b=uLRd40fOP0GaeSepK9W3dFF0/Yw7ECkFKM7W4+/19P+X3TTPuXFUziY5/g9On2n44yiv4MNlrUWjWyijQ6CGfhiAH6nw2A9Vll3q0gsxGcrs2YVoXhda/1k4Vl4PBzZ/E8vnzSdS0XFAgXwzuJXX4IA0u4xCYTbNbMVkj8O33Sk=
+	t=1729093694; cv=none; b=W86NMQP0ttXo4XVW8F7XQUpDUSELizMbMQYlewa0dv5Uaplb8lijDKOo1KR20YXN170ze4nslCjxyatxxIiQMq+SiZw3zTcGbuv7de36Vq6IZy1QLtxi0RBoV4VA5zTmICjqJgAMaIyw/sSKApDlqkkDXxFQm91keM8udstzT2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729093644; c=relaxed/simple;
-	bh=7mlK3AYvgW+xE50G9eGOTHRBwxacE4lQ0GAd9yvb11Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tSuBf1n37fJ808R9iWLdJpdrdUy9jga9dguHhv7O480OSUjK2W6338bXbr0bO2HGrZbjH//jE0GFvD+oRH3uEPIsHwKkleO29zxS1+rweI3fvlAEQe40cPx8y4qYLZjS7w8aTMP8fxsj9g1ELjxCXAxeL7hY99SnazVi0MeUug4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D3GAkLgI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AA1DC4CEC5;
-	Wed, 16 Oct 2024 15:47:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729093643;
-	bh=7mlK3AYvgW+xE50G9eGOTHRBwxacE4lQ0GAd9yvb11Y=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=D3GAkLgIaft3UWyXQQtcS7utIumxbDYdQ1bS+9UMM7Eb2B2emOOb1e20AiYTkM05C
-	 kWZixasH9cXl408RRWZAz41n1GXwFRECF3aZKvpc3ZidJOIbSkqzn8o+P2wx1RvKp3
-	 CqB/qiEhpx0lRYsYtlBtMrp/POdpTLeAX28hV7aVqMrKGp/DUy+sj3wLblUy4U3A9H
-	 Is+TP/1oZgfRLwMukULety7nrxN5ISq6VZt8Ov0lBH2/a9aliiYffHee6k6UeM2tXt
-	 NpYO+Vo5+xOabSiqt2n/S/n4DcHknVFpw/Tqx154WOhNFfD+Vgbwz3T8+pDhRRr/Zn
-	 rnY9quNRrEDIA==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-539e6c754bdso4061962e87.2;
-        Wed, 16 Oct 2024 08:47:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVP+abPtQ8IDLhdtvDJuPama5GgFC+M72byFETvr0iy3wCV5+YF57KklI0vUZs+sEt5FtCZSM5Vo+931g==@vger.kernel.org, AJvYcCWHrSHhUWeOkODIlWyeI15VCW3sUJVwQV4/E+yZfah0h+uTWEaL/vmegmemf4PhwY1mljtCiPGsykb0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhJqWXZ1GINQoVTQID/WJk2xj8VotI4bf9BTJITz/+Mw3DeLPK
-	c67XFZIvDmYizlW3K0K9EearP6NrWIpwe4XE7cvBx6apiUqBY/7vPuTNtkWUGcIQ5P2iwMZYO4Z
-	+IYie4Bnypd8UrJeCig+wrKpouQ==
-X-Google-Smtp-Source: AGHT+IEo5yXHtrex9CiwcatYq3p/jl52IMHY1Z2J7wnho7MZbhvT/ZS80JSHUB7EI7fDqVcVKvqzZzTLU65t/9Q7NYw=
-X-Received: by 2002:a05:6512:3ca1:b0:52e:e3c3:643f with SMTP id
- 2adb3069b0e04-539da3c1c66mr9141014e87.2.1729093642051; Wed, 16 Oct 2024
- 08:47:22 -0700 (PDT)
+	s=arc-20240116; t=1729093694; c=relaxed/simple;
+	bh=UzReICUwjuiKmaYcPXjeBNBkJrLCOu3fJf7hC55t7gA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FtbzYfn2+MQ7u+VJTBzp3qVfr8Iz/+SlN7rFLl4NxGeECsZ2V/nyLtgWzb9FkjgLBGAxJvj15Z7eOicxgKRTSyizaix5MizTXsaByPR62VI8MFTKXd4RiIP24SjJWCjX5LoAmIaocNrrDAsPEJG+tjQy4Y5DIiaRarBFfETJOI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=QB+pov86; arc=none smtp.client-ip=63.250.43.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
+	by smtp.spacemail.com (Postfix) with ESMTPA id 4XTFjk5W3jzGpQ7;
+	Wed, 16 Oct 2024 15:48:10 +0000 (UTC)
+Received: from igor-systemproductname.lan (83.8.245.91.ipv4.supernova.orange.pl [83.8.245.91])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.spacemail.com (Postfix) with ESMTPSA id 4XTFjb5XBwz8sWQ;
+	Wed, 16 Oct 2024 15:48:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=mentallysanemainliners.org; s=spacemail; t=1729093685;
+	bh=UzReICUwjuiKmaYcPXjeBNBkJrLCOu3fJf7hC55t7gA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=QB+pov86J65XfMneAp09XeIRJd1E3+l+zmjICsAMWFrmppQ0/smimKMK1cwiPOKop
+	 uBxPG/qtVfOWPCgl23lounrxpiVjBT3UFm/3MwZ+7DEcT23g5lN3xeWbJ6OKus2WnW
+	 0dYtio+uL6wo56Jl/fCOsiCqFVTKupdvTnsYQC1g0hvwtCQpjVJXkulZDf1e1ssZK0
+	 wNm/wdAMdPMPiQKb3lcnCbnmnzv0QSKpuYoGmMm9f6yuwh1LEu9+5sa4NxBQJSdeW1
+	 3S0cwvuRFnkhiuvmRxyC3Jjjfq7Fn6Bwq7hm7I8oRdvHtUK9eFSSGi7JZ1LCcY4/3W
+	 26Zu2OkN/rlnQ==
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v3 0/6] Add minimal Exynos990 SoC and SM-N981B support
+Date: Wed, 16 Oct 2024 17:47:41 +0200
+Message-ID: <20241016154747.64343-1-igor.belwon@mentallysanemainliners.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241016-gpio-ngpios-v1-0-f16cf154f715@linaro.org> <20241016-gpio-ngpios-v1-1-f16cf154f715@linaro.org>
-In-Reply-To: <20241016-gpio-ngpios-v1-1-f16cf154f715@linaro.org>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 16 Oct 2024 10:47:08 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK-Nd6izk6RFf4NyoOCkobDwye+QPsRKHBDwovxO9NTDQ@mail.gmail.com>
-Message-ID: <CAL_JsqK-Nd6izk6RFf4NyoOCkobDwye+QPsRKHBDwovxO9NTDQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio-mmio: Add ngpios property
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 16, 2024 at 2:21=E2=80=AFAM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
->
-> This adds the ngpios property to MMIO GPIO. We restrict the
-> property to 1..63 since there is no point in 0 GPIO lines and
-> we support up to 64bits wide registers for now.
+Hi folks,
 
-Why does it need to be restricted? Is something bad going to happen if
-for some reason someone tries to control a non-existent GPIO? If there
-is, maybe there should be a specific compatible as the h/w is not so
-generic.
+This series adds initial support for the Exynos 990 SoC and also
+initial board support for the Samsung Galaxy Note20 5G (SM-N981B)
+codenamed c1s.
 
-Rob
+The Exynos 990 SoC is also used in the S20 series, as well as in the
+Note 20 Ultra phones. Currently the device trees added are for the
+Exynos 990 SoC and c1s. The device tree has been tested with 
+dtbs_check W=1 and results in no warnings.
+
+This initial bringup consists of:
+ * cpus
+ * pinctrl
+ * gpio-keys
+ * simple-framebuffer
+ 
+This is enough to reach a shell in an initramfs. More platform support
+will be added in the future.
+
+The preferred way to boot the upstream kernel is by using a shim
+bootloader, called uniLoader [1], which works around some issues with
+the stock, non-replacable Samsung S-LK bootloader. For example, the
+stock bootloader leaves the decon trigger control unset, which causes
+the framebuffer not to refresh.
+
+Device functionality depends on the 2nd patch series:
+"Add Exynos990 pinctrl and chipid drivers"
+
+[1] https://github.com/ivoszbg/uniLoader
+
+Changes in v3:
+ - Move pinctrl DT nodes from the 2nd patch series
+ - Resend patches to the correct lists.
+
+Changes in v2:
+ - Added acked-by tag by Rob Herring
+ - Fixed two stray newlines in SoC and device DTs
+ - Fixed commit message for the c1s device tree
+ - Changed osc-clock to clock-osc and ordered nodes in SoC DT
+ - Fixed ordering in the gic node in SoC DT
+ - Fixed memory node unit address
+ - Fixed memory node reg properties, to map all available RAM
+ - Moved pinctrl binding commits to the 2nd patch series.
+
+Kind regards,
+Igor
+
+Igor Belwon (6):
+  dt-bindings: arm: cpus: Add Samsung Mongoose M5
+  dt-bindings: hwinfo: exynos-chipid: Add compatible for Exynos 990
+    chipid
+  dt-bindings: arm: samsung: samsung-boards: Add bindings for Exynos 990
+    boards
+  soc: samsung: exynos-chipid: Add support for Exynos 990 chipid
+  arm64: dts: exynos: Add initial support for the Exynos 990 SoC
+  arm64: dts: exynos: Add initial support for Samsung Galaxy Note20 5G
+    (c1s)
+
+ .../devicetree/bindings/arm/cpus.yaml         |    1 +
+ .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
+ .../hwinfo/samsung,exynos-chipid.yaml         |    1 +
+ arch/arm64/boot/dts/exynos/Makefile           |    1 +
+ arch/arm64/boot/dts/exynos/exynos990-c1s.dts  |  115 +
+ .../boot/dts/exynos/exynos990-pinctrl.dtsi    | 2195 +++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos990.dtsi     |  251 ++
+ drivers/soc/samsung/exynos-chipid.c           |    1 +
+ 8 files changed, 2571 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-c1s.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990.dtsi
+
+-- 
+2.45.2
+
 
