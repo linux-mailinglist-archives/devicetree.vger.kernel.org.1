@@ -1,130 +1,91 @@
-Return-Path: <devicetree+bounces-112355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C42A9A1DF5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F7F39A1DFB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:16:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C508C1F23B0C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:15:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 356A51F23605
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759A31D88C7;
-	Thu, 17 Oct 2024 09:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033D01D3566;
+	Thu, 17 Oct 2024 09:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u7Hf8xom"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bWPSRdcm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68271442F6
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:14:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E64075CB8;
+	Thu, 17 Oct 2024 09:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729156497; cv=none; b=irB7fAXTQDm6sYtXLdotrvNRwW959A9FP/lwltfvZKwE8VIeCcKyScEKiku15tf59/8mKgsONa49WOfO5onvi1PuuaZ1hkYztclHVo7Rgijze+bjBGgOBFU+h23Co2Blbf6TtsSNp7N26kuwG6xj8rf/90VAjuj1R22E01NX5xE=
+	t=1729156578; cv=none; b=OAg47tSQW0HQ0UBugcjM/HlyZte63ejG7cd81VFTEbFdbEVdi2LU9LTsQkBAGEbbdTO67C6VOB/ktXVPsqDOXfIUkES8YkUexn2YLPTrsqz3Wle/09wW2qK+KfUsPufSW/6puoNG7rpN6Ws+xuZvJ8LHKdHbbiYOSJSZtIZ8SFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729156497; c=relaxed/simple;
-	bh=OFUTbt01W57UIzbwt1gpTo3z57X1onq8v0mSZ7fvckY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i9Ml/n7xYsLJgr7zOJSqYd+SKv1cNdMyE0F1WjpC1+pnuFjk8SfcHU8HYdt985bo0+hF5DJuLYYiYzVX5JRALsHx7wKess58F1ZykNf1j/NEZ2sCBSp8lukKM72IkgtwyLzBlRIzlcDJqxcUW/tMsG20qpQTO8XX1hAkY0Y7npc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u7Hf8xom; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-37d4ee8d15aso81072f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 02:14:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729156491; x=1729761291; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=++RZvUSYm5I0ITBIr1eDkKq7SHCu0gvOfmRf7dj2AKQ=;
-        b=u7Hf8xomKotgv0K6Fe8eh3K8uKgYJe6IPo2CeDagYQ7YEjDyr8xgodIbfm0TLWzFAS
-         Lv/fpAWDjqWiIMFszWM1LbSw5UuJC5FYIzDH7oBi8A8XM+oXm1rJqs9x1nwJEsaI9gFg
-         SDpxmIBPseOtyr0WzxiO1eutKE5ookgrfpm9/weh36PBHo8Ib6DVS4l0SuGxA/3WTav3
-         +JC3ScPIgoN+ws94VseMSKXepFB+0QRYK9ZSki/cXtfbIIHmnmJ+VwyHoUJiFvexEAZY
-         wYY5apiXZ5t2dKUQSdcvQwmhx1WG0/VuZevbIuZ5ZQEepwxT7BWBTkoiY+DdtBfLP2/h
-         yyCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729156491; x=1729761291;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=++RZvUSYm5I0ITBIr1eDkKq7SHCu0gvOfmRf7dj2AKQ=;
-        b=Jti+ME8qBWcOfGJ+jbR1S4ywaQ+DjBJX6KNp6LnFjdTxU1M0zWB41A7XpG/DLnH67J
-         jCIZUyiX7PnyXb0vFLZ7pmVNy9aKHDPTAQ9vM52InjGnnpx4LZRTdSOeA0RnhyptrtgL
-         NHe45qXchH0NoNQsTCh4/5HFYRXOuSlS79NtdiTNa3jfI8jiAyZFyVzHHwaQ1blw0tM5
-         46UlN4E3WrvrrV1dwGEfr1HXN78m/+fzWQLgCvuD1GyJAP3hfOQZ/XZGfmHkZPKtKKgf
-         bZBrkF53uJrlqwIMMzBv8HsCnBlN2nYkAjHqfxivjC1QuGCT45rLXNexfahi+zy8POms
-         02lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBm0eRWL1bX85vbgXCJDu9xYIZy664BhOyRHPbSErzRr1rpzA8YtCLQLi3fFzh9X/IbEbAdvj/GHAp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzG2sFOshMEQB4+cpTVtUqE/sLhwGTZQTg+AirGkKDnfjwtynT5
-	qKYAiZ5soKmfiIMKyJAwYBpqTKK9EZaicgJs1NwvrGFZEcHriL3gW7g3GEAX69pZepYI3l+mv4I
-	t
-X-Google-Smtp-Source: AGHT+IEE02ekLjm8TbPP6kTm+oXFzkRyX+nHueXutR7x0HjMCzdjaSTpWmIK7+MmtHTpAANlj6Cbrw==
-X-Received: by 2002:a5d:47a6:0:b0:37d:4517:acfb with SMTP id ffacd0b85a97d-37d936999e4mr953956f8f.2.1729156491016;
-        Thu, 17 Oct 2024 02:14:51 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fa8778csm6614252f8f.25.2024.10.17.02.14.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 02:14:50 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Jassi Brar <jassisinghbrar@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: mailbox: qcom,apcs-kpss-global: correct expected clocks for fallbacks
-Date: Thu, 17 Oct 2024 11:14:47 +0200
-Message-ID: <20241017091447.41450-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1729156578; c=relaxed/simple;
+	bh=JWabqzFfdfHDY5VXB1QNVz3uYR9IzYBLiOTvssAvKoM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nqsqvo0wwtxCbtL5z17ORNS8P/Abe5yXopUj2J+GHHpnmDzRcPQMn0DiKevMeDuaU4Sd5WvGjynIEF0MgD32M/6V+pvPfE6dzXiUVz+yME2emTfBjlz4fXGpTsklAc+/heb8MrTdo4q8vnbvzOuaBjjGbLhW6v7KS2wzTOImEUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bWPSRdcm; arc=none smtp.client-ip=1.95.21.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=8+YKKCmfji2YTt+NeUXJzgiQgBkMcY806Vacbq8VGt8=;
+	b=bWPSRdcmg/lB2bXoMntFK0KLofvk1KjTyfmMCdCKKcikJhDTZbOxnvVhhTmxU2
+	YujQzaWPPEtEmVR/HcUg8/1jRkhysHiL0nPI1QuI0odBubnXzNB+0R+q8mURppWP
+	pHQEEP2zLz9qzj9Rx2OAag8maqKScUzbvfzW/gcmzt88A=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgBnu+Wm1RBnkL8wAA--.1316S3;
+	Thu, 17 Oct 2024 17:15:19 +0800 (CST)
+Date: Thu, 17 Oct 2024 17:15:17 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 0/3] arm64: dts: freescale: imx8mm-verdin: Add Ivy
+ carrier board
+Message-ID: <ZxDVpbynwzKgNQtF@dragon>
+References: <20240924113048.125761-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240924113048.125761-1-francesco@dolcini.it>
+X-CM-TRANSID:Ms8vCgBnu+Wm1RBnkL8wAA--.1316S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7XFW5Kw4rAr13Ar48CFyrCrg_yoW3ArX_uF
+	WxKr10gr4DKrnrtws8Ka17Xw4vk3yFyr1Fq34vgrn3XF9xZa98AanrKryrXFnIg3Z0qF93
+	J3WfKrZ3trWYkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0tl1DUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBA97ZWcQ0T0OSAAAsI
 
-Commit 1e9cb7e007dc ("dt-bindings: mailbox: qcom,apcs-kpss-global: use
-fallbacks") and commit 34d8775a0edc ("dt-bindings: mailbox:
-qcom,apcs-kpss-global: use fallbacks for few variants") added fallbacks
-to few existing compatibles.  Neither devices with these existing
-compatibles nor devices using fallbacks alone, have clocks, so the
-"if:then:" block defining this constrain should be written as
-"contains:".
+On Tue, Sep 24, 2024 at 01:30:45PM +0200, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> Add support for the Toradex Verdin iMX8MM Ivy carrier board. Ivy is a carrier
+> board designed for industrial environments, supporting industrial
+> I/O interfaces such as CAN, RS485, RS232, Gigabit Ethernet, 0-25mA analog
+> inputs, relays, PCIe and more. The board also includes a TPM for security
+> applications.
+> 
+> https://www.toradex.com/products/carrier-board/ivy-carrier-board
+> 
+> João Paulo Gonçalves (3):
+>   dt-bindings: arm: freescale: Add verdin imx8mm ivy board
+>   arm64: dts: freescale: imx8mm-verdin: add label to som adc node
+>   arm64: dts: freescale: imx8mm-verdin: Add Ivy carrier board
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/mailbox/qcom,apcs-kpss-global.yaml     | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-index 982c741e6225..9d2dfd85b207 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-@@ -165,12 +165,13 @@ allOf:
-   - if:
-       properties:
-         compatible:
--          enum:
--            - qcom,msm8953-apcs-kpss-global
--            - qcom,msm8994-apcs-kpss-global
--            - qcom,msm8996-apcs-hmss-global
--            - qcom,qcm2290-apcs-hmss-global
--            - qcom,sdm845-apss-shared
-+          contains:
-+            enum:
-+              - qcom,msm8953-apcs-kpss-global
-+              - qcom,msm8994-apcs-kpss-global
-+              - qcom,msm8996-apcs-hmss-global
-+              - qcom,qcm2290-apcs-hmss-global
-+              - qcom,sdm845-apss-shared
-     then:
-       properties:
-         clocks: false
--- 
-2.43.0
+Applied all, thanks!
 
 
