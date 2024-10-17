@@ -1,280 +1,155 @@
-Return-Path: <devicetree+bounces-112619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A4B39A2FEB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 23:40:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 677BB9A303F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 00:00:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE85A284987
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 21:40:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 961D81C20D57
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 22:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA311D88A6;
-	Thu, 17 Oct 2024 21:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5455B1D63DA;
+	Thu, 17 Oct 2024 22:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bDWV0BFt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NlJS8hRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029661D7E3E;
-	Thu, 17 Oct 2024 21:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D241D7998
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 22:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729201181; cv=none; b=eBSImdacXbyJ3AvUMVQfwvKpt57ulTrg50ZH+nOJpYS2RcgbLxYnrUKuIeBTRCBKg6Kx2bzDwte8TJDlA/HZByjGmt98OcT3Cp7YMPkqzRp5x7n7YfzdjQiqWYaDgzURDc0dT5lEZimI4TMaUGB1iuQBODIBtfcCGfEUJxNE7Zw=
+	t=1729202416; cv=none; b=DB6xbWlw+0glkPPnytXUzAX4IwXCuBRzepw7L++FYpgmhVD4o7O3crBqSd9BSxPosHPcPpwO+Sw+wetIWRHhDdh1UvQ++m+tbSsFjyaMF5SQiZo0VysUjJ8TcnqHs9uP0r9L6l5OzdGwGhjJgA9KzLMi91661wpHx6Si2tjujHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729201181; c=relaxed/simple;
-	bh=APqvJ6aJQIzO3pKdAUeq4yhas7nl1he/ghZ3uuPSAPU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ljeGOXXxO9xKCFEgCV3SVP3zSgJMZoHLRGFI/xXJO0b8ENgYZWNIh1f7w80FpvafA+jY3AmmioQo9E131vtG2UEh1ZoQf7l2W1tr0UTloMoR+yHMFvVPD1cYT3lSCvuu8T7CzNyYFwAHnKuksJlUumEKkJvr1m8DUZYc6pI75B0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bDWV0BFt; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-37d461162b8so976535f8f.1;
-        Thu, 17 Oct 2024 14:39:39 -0700 (PDT)
+	s=arc-20240116; t=1729202416; c=relaxed/simple;
+	bh=xFORzQkJL/WcWdKZ3DVfQDkKa0jdZA97QDeet1sttTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FC1rlXPAQOOWlmgS9GnaAYAlok3KqMP+A2ZlYTlN+whtg/q0q46v5PVqlq6S/Cfbq8/Ki2Kzudi6ZoxB9maOy3Lxm1FRnrqfOd3Jif9++zPV5xSVJq9SF7ZCA5iJvlhxXVbXptNfKgW0jWErA2+CnAxl+EQ2Ym7Oc1WQFo8shzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NlJS8hRx; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fb5743074bso11230941fa.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 15:00:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729201178; x=1729805978; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K01JTLPCFhBJJHzM8KLsJttM33kABYw67HxfGcewzIo=;
-        b=bDWV0BFtJIVnVpxpa+NE/bnZDuJvM4rRbEMxnW/MBA4C0iixVTcYIgec46pxquDzYw
-         o5tOlWuqiFyprqU4uXtJxsN6Z+50xMVzMVk7Ok47Y5TFMI2z+qw8cv9C24gxVAkI2/dA
-         r9D/2vuTLCwvH9pfd0JV+gAduLAX/XwzoQQsr6Q+hKbAsW3zKV7DkqHV8vVmyrCB8ZjU
-         tClZfUcZ36AUQ85fS3TFdOGNbUkfDCSwp/LqKEIXOcJ8gDAvsH9ENhI+Bf5ysd411TeL
-         pSq7xjHyWhcR6WXc8TnfO8cplSbbump39yaIePoKzzxs+3YesYqmYlNUG8mfJTLmP+iU
-         YaLQ==
+        d=linaro.org; s=google; t=1729202409; x=1729807209; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Isw4TLSYBoy+yI8Luh4Hi+u78l3bLfiSrZ6IrpPiuvU=;
+        b=NlJS8hRx9XqJqrvYo51fBH9ruarluzpG69Ly3VxN14Hs9m9bIBsh2pHcAKoyBYkWDz
+         72TuGKefbmw7dPfYXCuyZYkZ2dJDyLnCP8364geY3MlyLNRSeEkk2868gFTq4K20JTBW
+         xtBl8ve9xZxfun5MoHGdXNNsrTwItrdhr+qEjhyb2pXWrNl2xGkP+7+mGc4OW95fjQEO
+         32T+Keol4OoWinF14DEJhkEdsto/3ZtBNo1j0Og0JB7XfBnZrQnlAh5XTa45Gjn2MHog
+         qM5Tmjz8nrfHPhKxdh2WFQTPxiau1rpCze6hBW68p3/8+6wSaJJlkoV6eGSVAIp0XXYI
+         U0Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729201178; x=1729805978;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K01JTLPCFhBJJHzM8KLsJttM33kABYw67HxfGcewzIo=;
-        b=mrnVKYGlPEP2mnlJepivTURKxZTPPpJSnbqJN5sosQAeGj0GfdpxnYUYUT8/Kt0A2p
-         vAa5/aRrv+EcGD2zyfRJ3k8rRQ/kbPtU5eNfPCsixPkub5n0WhYNcvfb6ugdQpKJjVr1
-         JsTArgpgbhfbUHPEwDVQjx68QgNnEjchtxVnVkqIXO/JjTyAnEvxaq7QHq90XNmzgIrm
-         R3pF4IkMi0Qy9BwTV2Eirl8fPNJI4QUcOdSho/tmBQZHAjpP3eveBKYGiLaTHvdQgfYM
-         HfuGBzgblsVy6W6kdvCMyDN9uTaA6lIcxrRcA6WbHKAp7hNqLk3r3Lhy+TXtxCs2wtu6
-         0Y+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUl1P+WID5MhkIQV7vgWzTjE7jyGIsX/YG6Y+wH21B288Zqd+RTTssVx8CiAPXvaJbgajzsoPEmeHUnBcUB@vger.kernel.org, AJvYcCX74lFU7zpeFhFoHCKDPJbBKn5UQNF+KP5S7/WCSDiEMuuBem3Zfd4QZ0Oienwse1xqjLAuQBD2Y3sU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYsMxyXUcFP3P3pviUxQ0NUm9le8BNxx9AZyy1MOPgP45ATlc5
-	l+THo41v/fdcOIVaTz5RL9fld0HgeEri4+uR2V2IWQJlWp4dtHen
-X-Google-Smtp-Source: AGHT+IEwb6mIO53fmJ/9AFUuyk3ahB175Co0Q8OQjRLxY92o3W4AnAKiqcUoPN8xR8LoHhRL2Iv87w==
-X-Received: by 2002:a5d:44c8:0:b0:37d:501f:483f with SMTP id ffacd0b85a97d-37eab6ee112mr175077f8f.44.1729201177990;
-        Thu, 17 Oct 2024 14:39:37 -0700 (PDT)
-Received: from [127.0.1.1] (2a02-8389-41cf-e200-bb11-f817-987f-ea1f.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:bb11:f817:987f:ea1f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ecf06a73esm99874f8f.43.2024.10.17.14.39.36
+        d=1e100.net; s=20230601; t=1729202409; x=1729807209;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Isw4TLSYBoy+yI8Luh4Hi+u78l3bLfiSrZ6IrpPiuvU=;
+        b=YBQrXAbyayV/Kgs3AFYnKRKJJTjupuw+sl+03QLuVYL9pPPwXVJ81ReYbXHm5tzMG+
+         qgAfkpAVmJ9PjwDYdgpiZi3ULGOA+KKvRXLbrcKQsuigBmlXxu6F/DkObNz1OKIf+LRZ
+         VszLVKdZRPWxEtOCkWW13QRMHT1mGD/Qboh2zwBEiJy74c6wCopJT63bSo3G1esN9CIU
+         sQIxnmacPcxrpNkyBm+CMfUnbtiRYxpdLo66CiBMAtNcUM9t4fHRzQEr6JWeTINba1FE
+         A+lnyQ5gaf6Kla29fTAT7tPqtwevnfaeH/zIFfJwysuy9G9UBA6gE52Bwr1RUWKpurji
+         77SQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUBqD9RaR+7w7q6ksGKCVwEEqK7P/RRtpL7V2QpAoRheh4g/0ZRPTTBAS8X3sOoZ3/jmvdm9JdxDiHM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsvOYZwLwIgOob/59UFWmta9JqmCy57R+wZ9O4cy2HrCECVOzD
+	vyg1k4fTEIDWH8/bAsj07jJgUsw+i8tQYh4qZth88p08tmUi0FCO6mJkb061Z2k=
+X-Google-Smtp-Source: AGHT+IGUX5FxPYm63QjEX8QSYjKY0R76CkWqYGuUb5gIaDo5gBTDkoQZABdj7YlxIwd/k53oj6Qswg==
+X-Received: by 2002:a05:651c:b1f:b0:2fb:597e:28f5 with SMTP id 38308e7fff4ca-2fb6d9ad52amr14615841fa.2.1729202409216;
+        Thu, 17 Oct 2024 15:00:09 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb809f9ad0sm426951fa.82.2024.10.17.15.00.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 14:39:37 -0700 (PDT)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Thu, 17 Oct 2024 23:39:28 +0200
-Subject: [PATCH 4/4] iio: light: veml6070: add support for integration time
+        Thu, 17 Oct 2024 15:00:06 -0700 (PDT)
+Date: Fri, 18 Oct 2024 01:00:03 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Kalpak Kawadkar <quic_kkawadka@quicinc.com>
+Subject: Re: [PATCH 07/14] clk: qcom: clk-branch: Add support for SREG branch
+ ops
+Message-ID: <we4stuv7td5jmvicsvsjowqg76merg5lmlgqj6dvqvqecsw7xk@bfz2kdjnt6kb>
+References: <20241017-sar2130p-clocks-v1-0-f75e740f0a8d@linaro.org>
+ <20241017-sar2130p-clocks-v1-7-f75e740f0a8d@linaro.org>
+ <be8639d0add779bcac0314d3c433d01b.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241017-veml6070-integration-time-v1-4-3507d17d562a@gmail.com>
-References: <20241017-veml6070-integration-time-v1-0-3507d17d562a@gmail.com>
-In-Reply-To: <20241017-veml6070-integration-time-v1-0-3507d17d562a@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1729201167; l=5086;
- i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=APqvJ6aJQIzO3pKdAUeq4yhas7nl1he/ghZ3uuPSAPU=;
- b=smgCjhGQ8c3vTx2vwpQegGfVCyR1xleuaew5cwnjxjTQAGchnHsui048dcvb5MH4N+/uabxUk
- Z4Vy0OwvJOaASmdXyttyHCiU8JOZC5B1PPkl6+CYYfXKVqDxRygriOP
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <be8639d0add779bcac0314d3c433d01b.sboyd@kernel.org>
 
-The integration time of the veml6070 depends on an external resistor
-(called Rset in the datasheet) and the value configured in the IT
-field of the command register.
+On Thu, Oct 17, 2024 at 11:10:20AM -0700, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2024-10-17 09:56:57)
+> > From: Kalpak Kawadkar <quic_kkawadka@quicinc.com>
+> > 
+> > Add support for SREG branch ops. This is for the clocks which require
+> 
+> What is SREG? Can you spell it out?
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- drivers/iio/light/veml6070.c | 109 ++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 107 insertions(+), 2 deletions(-)
+Unfortunately, no idea. This is the only register name I know.
 
-diff --git a/drivers/iio/light/veml6070.c b/drivers/iio/light/veml6070.c
-index d11ae00f61f8..87dc3295a656 100644
---- a/drivers/iio/light/veml6070.c
-+++ b/drivers/iio/light/veml6070.c
-@@ -6,7 +6,7 @@
-  *
-  * IIO driver for VEML6070 (7-bit I2C slave addresses 0x38 and 0x39)
-  *
-- * TODO: integration time, ACK signal
-+ * TODO: ACK signal
-  */
- 
- #include <linux/bitfield.h>
-@@ -29,15 +29,78 @@
- #define VEML6070_COMMAND_RSRVD	BIT(1) /* reserved, set to 1 */
- #define VEML6070_COMMAND_SD	BIT(0) /* shutdown mode when set */
- 
--#define VEML6070_IT_10	0x01 /* integration time 1x */
-+#define VEML6070_IT_05		0x00
-+#define VEML6070_IT_10		0x01
-+#define VEML6070_IT_20		0x02
-+#define VEML6070_IT_40		0x03
-+
-+#define VEML6070_MIN_RSET_KOHM	75
-+#define VEML6070_MIN_IT_US	15625 /* Rset = 75 kohm, IT = 1/2 */
- 
- struct veml6070_data {
- 	struct i2c_client *client1;
- 	struct i2c_client *client2;
- 	u8 config;
- 	struct mutex lock;
-+	u32 it[4][2];
- };
- 
-+static void veml6070_calc_it(struct device *dev, struct veml6070_data *data)
-+{
-+	u32 rset, tmp_it;
-+	int i, ret;
-+
-+	ret = device_property_read_u32(dev, "rset-kohms", &rset);
-+	if (ret) {
-+		dev_warn(dev, "no Rset specified, using default 300 kohms\n");
-+		rset = 300;
-+	}
-+
-+	if (rset < 75) {
-+		dev_warn(dev, "Rset too low, using minimum = 75 kohms\n");
-+		rset = 75;
-+	}
-+
-+	if (rset > 1200) {
-+		dev_warn(dev, "Rset too high, using maximum = 1200 kohms\n");
-+		rset = 1200;
-+	}
-+
-+	tmp_it = VEML6070_MIN_IT_US * (rset / VEML6070_MIN_RSET_KOHM);
-+	for (i = 0; i < ARRAY_SIZE(data->it); i++) {
-+		data->it[i][0] = (tmp_it << i) / 1000000;
-+		data->it[i][1] = (tmp_it << i) % 1000000;
-+	}
-+}
-+
-+static int veml6070_get_it(struct veml6070_data *data, int *val, int *val2)
-+{
-+	int it_idx = FIELD_GET(VEML6070_COMMAND_IT, data->config);
-+
-+	*val = data->it[it_idx][0];
-+	*val2 = data->it[it_idx][1];
-+
-+	return IIO_VAL_INT_PLUS_MICRO;
-+}
-+
-+static int veml6070_set_it(struct veml6070_data *data, int val, int val2)
-+{
-+	int it_idx;
-+
-+	for (it_idx = 0; it_idx < ARRAY_SIZE(data->it); it_idx++) {
-+		if (data->it[it_idx][0] == val && data->it[it_idx][1] == val2)
-+			break;
-+	}
-+
-+	if (it_idx >= ARRAY_SIZE(data->it))
-+		return -EINVAL;
-+
-+	data->config = (data->config & ~VEML6070_COMMAND_IT) |
-+		FIELD_PREP(VEML6070_COMMAND_IT, it_idx);
-+
-+	return i2c_smbus_write_byte(data->client1, data->config);
-+}
-+
- static int veml6070_read(struct veml6070_data *data)
- {
- 	int ret;
-@@ -81,10 +144,14 @@ static const struct iio_chan_spec veml6070_channels[] = {
- 		.modified = 1,
- 		.channel2 = IIO_MOD_LIGHT_UV,
- 		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME),
- 	},
- 	{
- 		.type = IIO_UVINDEX,
- 		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME),
- 	}
- };
- 
-@@ -127,6 +194,40 @@ static int veml6070_read_raw(struct iio_dev *indio_dev,
- 		else
- 			*val = ret;
- 		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_INT_TIME:
-+		return veml6070_get_it(data, val, val2);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int veml6070_read_avail(struct iio_dev *indio_dev,
-+			       struct iio_chan_spec const *chan,
-+			       const int **vals, int *type, int *length,
-+			       long mask)
-+{
-+	struct veml6070_data *data = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_INT_TIME:
-+		*vals = (int *)data->it;
-+		*length = 2 * ARRAY_SIZE(data->it);
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int veml6070_write_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      int val, int val2, long mask)
-+{
-+	struct veml6070_data *data = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_INT_TIME:
-+		return veml6070_set_it(data, val, val2);
- 	default:
- 		return -EINVAL;
- 	}
-@@ -134,6 +235,8 @@ static int veml6070_read_raw(struct iio_dev *indio_dev,
- 
- static const struct iio_info veml6070_info = {
- 	.read_raw = veml6070_read_raw,
-+	.read_avail  = veml6070_read_avail,
-+	.write_raw = veml6070_write_raw,
- };
- 
- static void veml6070_i2c_unreg(void *p)
-@@ -164,6 +267,8 @@ static int veml6070_probe(struct i2c_client *client)
- 	indio_dev->name = VEML6070_DRV_NAME;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 
-+	veml6070_calc_it(&client->dev, data);
-+
- 	ret = devm_regulator_get_enable(&client->dev, "vdd");
- 	if (ret < 0)
- 		return ret;
+> 
+> > additional register operations with the SREG register as a part of
+> > enable / disable operations.
+> > 
+> > Signed-off-by: Kalpak Kawadkar <quic_kkawadka@quicinc.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> [...]
+> > diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
+> > index 47bf59a671c3c8516a57c283fce548a6e5f16619..149d04bae25d1a54999e0f938c4fce175a7c3e42 100644
+> > --- a/drivers/clk/qcom/clk-branch.h
+> > +++ b/drivers/clk/qcom/clk-branch.h
+> > @@ -24,8 +24,11 @@
+> >  struct clk_branch {
+> >         u32     hwcg_reg;
+> >         u32     halt_reg;
+> > +       u32     sreg_enable_reg;
+> >         u8      hwcg_bit;
+> >         u8      halt_bit;
+> > +       u32     sreg_core_ack_bit;
+> > +       u32     sreg_periph_ack_bit;
+> 
+> Are these bits? Should be u8 then. Or are they a mask?
+
+masks, will rename.
+
+> 
+> >         u8      halt_check;
+> 
+> Instead of adding these new members can you wrap the struct in another
+> struct? There are usually a lot of branches in the system and this
+> bloats those structures when the members are never used.
+> 
+> 	struct clk_sreg_branch {
+> 		u32 sreg_enable_reg;
+> 		u32 sreg_core_ack_bit;
+> 		u32 sreg_periph_ack_bit;
+> 		struct clk_branch branch;
+> 	};
+> 
+> But I'm not even sure that is needed vs. just putting a clk_regmap
+> inside because the clk_ops don't seem to use any of these other members?
+
+Yes, nice idea. Is it ok to keep the _branch suffix or we'd better
+rename it dropping the _branch (and move to another source file while we
+are at it)?
+
 
 -- 
-2.43.0
-
+With best wishes
+Dmitry
 
