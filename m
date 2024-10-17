@@ -1,145 +1,130 @@
-Return-Path: <devicetree+bounces-112505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8DB9A271D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:42:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375929A273F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:46:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBBCE1C20FEA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 15:42:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0688283818
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 15:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5967B1DED66;
-	Thu, 17 Oct 2024 15:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405B11DE8BB;
+	Thu, 17 Oct 2024 15:46:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Rc7X5/7r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GJaNefFk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA551DE8A4
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 15:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C681D47AC;
+	Thu, 17 Oct 2024 15:46:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729179743; cv=none; b=b7BZancYDCFnnaW6wGBiafE5e3OE/H2eag54xAjA1+ypTgWs+abwhsAyhqiT9t2j43AlOcAO6zds1qEYVxBojrU5RmB1ERT70G9+IIrIP0TC2dedXDj3O5xGSTnJDb/rVckK+rfQT11jvJZjbgVjoJ7QTv42xs4k9eE/gLuOOMc=
+	t=1729180006; cv=none; b=t5tJghe5HfDEdQ5hiNbeDRm9ruN/+EPWO4zSUpY1G0PCkqCgBvOe+Hp0Ai97SmuegAfgOwS2PpCRY/ANQPBbB43Jb+rkg7kyaSAuW8uuQErD1CC63xoIfW9pPHhARiQ8XnSEyaiRby23oHCp+nZj6FWAbpx+uue4oUqxWZnyPyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729179743; c=relaxed/simple;
-	bh=Q5AtdPEm1PuN3XeHZLXsinD5ecrZzps7l04Ib81p5f0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=thIRorI87gC6OEA3BgK6d561G+837bWbtEtDVwrAn+v6AUYrvJeC9tDTVoRRVGRjVO0fKxebcr2ls31XHSEghnexTaAJVCgCwSD15K9DMlbxkDXL44rjehTld/n+6Xpyanr7bOYresPzvFDaamLTBaz27WGEhMjc8+oT4EQr6n8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Rc7X5/7r; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1729179740;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=V7nlaMmwkDWBlLKSYgZgz6rCQ7wh+bD5wdO571q/O5s=;
-	b=Rc7X5/7rwz/+iPUT2zios+TWYNfn4va16n0+AUUqxIB+L7ojoYaB1p7R264k9bSH0CvvSR
-	bgq40Cn68Ni5EKGBX3waAGzfuKxmFXyhTA3S0E5sO8RWRu2xxmDh5+EZdrbBrEIYV3m0o+
-	d8HXqumrrrRd84Krd0iIvehEwyL5BJ8=
-Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com
- [209.85.160.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-81--5xogkFLM_2h41tmP-zI-w-1; Thu, 17 Oct 2024 11:42:19 -0400
-X-MC-Unique: -5xogkFLM_2h41tmP-zI-w-1
-Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-2886d7f00f4so1277214fac.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 08:42:19 -0700 (PDT)
+	s=arc-20240116; t=1729180006; c=relaxed/simple;
+	bh=7fhD8DzgvnJTrPvWlqp3DLz4OkJ38n/tk8J6qYHYMwE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nLDa8cD22YUeOeRJ6bcWhBUQs7imzCTidt2lkrQw96ON4KeQ7XnelOGeXagAp9B8Blznj9j2yZxP5gJJ2aEVB/YS4MMSQfNmq0aS6dHCnf8/8OxK1nFn1AMNEYH7pzw2avD6owUYjze4SMc6OTLUSzIPLyAMdVVNpsDvxRGYPI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GJaNefFk; arc=none smtp.client-ip=209.85.167.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3e4d5aef2f8so661509b6e.2;
+        Thu, 17 Oct 2024 08:46:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729180000; x=1729784800; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qj2AtS8k+WthMhbYww8bY5MaLJ1p3Xf9L/rDjhzJSRA=;
+        b=GJaNefFkNrVuHw6tLkPBoWEiICaQbXIkaptz6HFozP1YpIISDa/+iqVEaIbKam0uC2
+         pcTv0PtkGSBuVtZ/C+tPL9QzxTcoHOyfFCDw2b0DaxUk8fZL3Jn3ZJfGpo1T2cijSJSH
+         YfaMKooog3lil033qWVJbgianeJDmPolMtiC6E7ql0N3wwpbI4kuBDtk64G6bVq8Z45H
+         eFBlemZU9qOXAJUWRvTyI3VClOukHooeMgNaqUaECbEVh367Ml21SLs/QBbPHMTtvuWJ
+         6GkhBvS9byn3hhA9oYTTF1UeM2/N5CHzLm6BjKXESKCE1n7aKu+yDFGGf/cwDzhPVPyR
+         DtEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729179739; x=1729784539;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1729180000; x=1729784800;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V7nlaMmwkDWBlLKSYgZgz6rCQ7wh+bD5wdO571q/O5s=;
-        b=SunnY9sbWXBHW9aPVEXrOWXJYFv2rnzOY1pcCKH3hXKzi8UykbSmzUkwtuzDEuMID3
-         h0PUphziuZFCQEDaIHsyzaV6C0khPcALMq5hqdSC8qkr7mB/JNeBq5/xqV5Y1saERzmS
-         MebQVLTTqL4WdqkQ+XTuVO0rDRVUGUPsh5PtvNb47dDk/gygnorSGF5AquULXqYQ8Rf2
-         Q+xEdujUbA5cErsl4AZDbpyonPD/KokKcOt7SuYpsit5mN03wRWmpLU3xdzw3hvXE5jD
-         +PKB5+u5WbEO8i5S/FdMAXAWAsPybp5cc25Dv3T5hUXqVVk1qAiYkquR8etlC2aSpmhZ
-         Wn+g==
-X-Forwarded-Encrypted: i=1; AJvYcCXFrEKmXriEkBXebvzjdskWZ7+6y3VnsPucqEzfjXH+fF0K2HjRR+6iVcKgUmTGk/Z3IjwHHTgSuE5u@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0Teh2dXqrmeLwkUz0bLmxZ+4no2uepG4jJp68ZXAP0bBXKVm9
-	bWCHd/wSCF8ihwvNhJiQ9k6FuxIizzDU+tksGjHY8lWJB67b9LOgklkLqeKcwhEIdoy16cFxFuK
-	GaVGdID02A9L+igZFy8ZRAFbQaKfWAzKfnMM/7KTuMM18zntuovfIyMpwcaA=
-X-Received: by 2002:a05:6870:4691:b0:287:3fa2:8978 with SMTP id 586e51a60fabf-2886de2fa6dmr17557329fac.27.1729179739053;
-        Thu, 17 Oct 2024 08:42:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFHTiDT+m1aEWffgqxEy8Wl41c5Qgk4pCN7PTXVak99nDs/BXI21P+GiCClP6rUO/EGE5gecg==
-X-Received: by 2002:a05:6870:4691:b0:287:3fa2:8978 with SMTP id 586e51a60fabf-2886de2fa6dmr17557306fac.27.1729179738733;
-        Thu, 17 Oct 2024 08:42:18 -0700 (PDT)
-Received: from x1 ([2600:381:fc16:a0d2:12c4:d014:b458:d7ae])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-288dac77a49sm1383337fac.29.2024.10.17.08.42.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 08:42:17 -0700 (PDT)
-Date: Thu, 17 Oct 2024 11:42:13 -0400
-From: Brian Masney <bmasney@redhat.com>
-To: Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ajit Pandey <quic_ajipan@quicinc.com>,
-	Imran Shaik <quic_imrashai@quicinc.com>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-	Shivnandan Kumar <quic_kshivnan@quicinc.com>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8775p: Add CPU OPP tables to
- scale DDR/L3
-Message-ID: <ZxEwVShJuMH4J1Hp@x1>
-References: <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-0-074e0fb80b33@quicinc.com>
- <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-2-074e0fb80b33@quicinc.com>
+        bh=qj2AtS8k+WthMhbYww8bY5MaLJ1p3Xf9L/rDjhzJSRA=;
+        b=dJ7erntUE3zKKmOr8pd37mjScn5/Cd+utNcAwBuddzdndUaMh+RvXU9cifIHJMgmDn
+         31cceQuiTfobBU2Yl+XMp9IrnPBWZxEAxQOgBI+MfG+w/55uD1yIV7oOKfMG+BjwYrmE
+         x57CNFeigpi3vATmx3hTMbxsght+tKYy8DUgXzY0yh1+9yoQlPaG2yGkG+IvA4h9tumy
+         jWQralvs3KIZ400lCH4P9G7nHGK/DCcGnwB2wyRDGu2PamiZyffZNYOAKm1A/UdHY6Ec
+         lqfngYOpGSFkFQnnKgKKqnSFSXHOhVs0MHb2Ffq9zWQZ8KgCvWvZnh+BGh6SVYBTZGZA
+         f0wg==
+X-Forwarded-Encrypted: i=1; AJvYcCU67PuWhYakOom+LgyvJUBipSFl/Yusi4/qWvC8rYU7+pG2FjPO3Y7y43bg1SYvGW1MFpd4DJ8KATbe@vger.kernel.org, AJvYcCUjH87UvSyjqCqd1CN4rjdwuqzdhuyW9a270xd76EGpP1cMQPMJOGTAahsqlFffskMQfxoTm1niE+1lX2gd@vger.kernel.org, AJvYcCWloTpxVxv8iaK8WkBO/6H+tttzpPsyV7MPyolt5ccA/yCwrwetwVQF9ujqxNyIM8RLBseb3QtWQWsXcw==@vger.kernel.org, AJvYcCXyiG9LCF3xL2XZ4f9s43UCUSSj4f11TuDftXCHY4Iyok3AqM/6E47OIA48uCFk1zzVh3ZocUtujBZ8SsmlVa1VTPI=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx61KhzcZKL7ci/tF1zjeuavKuOZtf7n+gd2jP4YJtamRpS/EVL
+	001T1y8xuROOaR2Rg/lKHrDxvtDMQyPSWosu5o2M28VqU4DAWtrF60ay6TEs0QVYHXH9LhbW+wG
+	JqdYD8GB+k5PHXWMEOfExdtY9OY4=
+X-Google-Smtp-Source: AGHT+IFfr3e2SW1rBIG74HlsEssXu0mG7pq8YCvKR7sxGUkhvAUnuoVxItiL1E3PEzrLF5mWB2fOR/bqV48xqwQ90WY=
+X-Received: by 2002:a05:6808:2f0f:b0:3e5:fd5e:6506 with SMTP id
+ 5614622812f47-3e5fd5e6667mr1738371b6e.0.1729180000072; Thu, 17 Oct 2024
+ 08:46:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-2-074e0fb80b33@quicinc.com>
-User-Agent: Mutt/2.2.12 (2023-09-09)
+References: <20241017113942.139712-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20241017113942.139712-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUBWTOzB4p-YAo_HDA4wmebUcQ7tvLFvgMXR+U9M5Zf-A@mail.gmail.com>
+In-Reply-To: <CAMuHMdUBWTOzB4p-YAo_HDA4wmebUcQ7tvLFvgMXR+U9M5Zf-A@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 17 Oct 2024 16:46:13 +0100
+Message-ID: <CA+V-a8ugYOP=-DrGvy0Nk4V=Urqx40kog_q5JO7+yYGOc5m5cw@mail.gmail.com>
+Subject: Re: [PATCH 2/7] pinctrl: renesas: rzg2l: Use gpiochip_populate_parent_fwspec_twocell
+ helper
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 17, 2024 at 02:58:31PM +0530, Jagadeesh Kona wrote:
-> +	cpu0_opp_table: opp-table-cpu0 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		cpu0_opp_1267mhz: opp-1267200000 {
-> +			opp-hz = /bits/ 64 <1267200000>;
-> +			opp-peak-kBps = <6220800 29491200>;
-> +		};
-> +
-> +		cpu0_opp_1363mhz: opp-1363200000 {
-> +			opp-hz = /bits/ 64 <1363200000>;
-> +			opp-peak-kBps = <6220800 29491200>;
-> +		};
+Hi Geert,
 
-[snip]
+Thank you for the review.
 
-> +	cpu4_opp_table: opp-table-cpu4 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		cpu4_opp_1267mhz: opp-1267200000 {
-> +			opp-hz = /bits/ 64 <1267200000>;
-> +			opp-peak-kBps = <6220800 29491200>;
-> +		};
-> +
-> +		cpu4_opp_1363mhz: opp-1363200000 {
-> +			opp-hz = /bits/ 64 <1363200000>;
-> +			opp-peak-kBps = <6220800 29491200>;
-> +		};
+On Thu, Oct 17, 2024 at 2:04=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> On Thu, Oct 17, 2024 at 1:39=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> "Because rzg2l_gpio_populate_parent_fwspec() and
+>  gpiochip_populate_parent_fwspec_twocell() are identical."
+>
+Ouch, thanks for taking care of it.
 
-There's no functional differences in the cpu0 and cpu4 opp tables. Can
-a single table be used?
+Cheers,
+Prabhakar
 
-This aligns with my recollection that this particular SoC only has the
-gold cores.
-
-Brian
-
-
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-pinctrl for v6.13.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
