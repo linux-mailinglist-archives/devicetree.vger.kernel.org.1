@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-112496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BDC59A26EE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1576F9A26F7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:38:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16C89B29E19
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 15:37:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E217B23B15
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 15:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF551DF991;
-	Thu, 17 Oct 2024 15:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2973D1DFD9F;
+	Thu, 17 Oct 2024 15:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KioPyikL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MNF8iDpY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933DC1DF98C;
-	Thu, 17 Oct 2024 15:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4DC1DEFEB;
+	Thu, 17 Oct 2024 15:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729179354; cv=none; b=M3J3HQpsSZTIFLDyywnEd2r+DQaTiMHwNwh5K4A/ZpJJH9r63EtytlfzrFyBf/X4wBYmrTpOf7nBCZDPXLbUg2lV8rR3ZDTT1Vm/H6MAavgjG9uKTOLaRQ8rm79zBWMuaYtV7/QzJyndk1EbqFn8rzV+aTGV32x9pdrFbSb6DPE=
+	t=1729179363; cv=none; b=izyatvCL78Y3LeE24mTb0zUiboWZbAlZT88eqD4QsWHp08tWdVct/0xZrWXd+VPawiNKLh+Jr7oi+zoNArjQYJsTv4BNc2mVBGOWoLrfYZZmivbrxZQK/tL+l8qOukWW2q0ERgXe17iRfQik5/YfGpM8MOVVwwVxGBQL/uMMrsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729179354; c=relaxed/simple;
-	bh=tQZtVVyCeRnI9TF1cSK9C2Pyi0D01P9dpdlS4+GOqAo=;
+	s=arc-20240116; t=1729179363; c=relaxed/simple;
+	bh=UaHTT/HCPSCBmEoLaaHxWZ8kYjvp79Mh62xxOcsCz3g=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=a1l7c6/VmIldlbM13VknvNDxy2q5N+f+5CQsXO1YUKjfixCbRQevEOVcJQ+u+DDmkcOL1v6di5m09SMl+IPQ+u4lQglLYnYvOSphXQZB1a5JaAnOb7hlUs5kuFMP+Jq2cMhemqWW7t/RAuoKWa17lKpJMwrgRwJyrVEaAfqJWYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KioPyikL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94151C4CEC7;
-	Thu, 17 Oct 2024 15:35:50 +0000 (UTC)
+	 MIME-Version:Content-Type; b=QKlLqePuDbcT+baLQ3s9w7usSKTMuppTO0CFmbY82BtvbmclNsb6nVJHHWHK7Wzzkx0UF0w9MklCqFE2GLBlBnFQ+82+oqoheSQSUZB+5V68dj458oJLitBDvpggHudyvx3GX1wtKshnIWR8NYtFRUpe7o9ABn93Dvv0YgPKRuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MNF8iDpY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A788C4CECD;
+	Thu, 17 Oct 2024 15:35:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729179354;
-	bh=tQZtVVyCeRnI9TF1cSK9C2Pyi0D01P9dpdlS4+GOqAo=;
+	s=k20201202; t=1729179362;
+	bh=UaHTT/HCPSCBmEoLaaHxWZ8kYjvp79Mh62xxOcsCz3g=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KioPyikL26+HrMcb/XoQ6mCUhqrcOWg77GM9etxhrPh2M04O1rkbspnA7DAS70dVj
-	 Npm2j6Si0m6kkpx0hqk1B+IsYJCBhcJ4FwODFiMeVtQ5IGH4vGvlAOmO4kuo8oxu4i
-	 EPPv7t4vtl/Cfav4BuRTcXqsx8f/iq4+YMbXLcOBDPqlTM+qCQ/+yx8iYZIn313RiU
-	 fIcmLKWaUrzope7I/b1xg3aZ0Lv5urH5Hyp6KHpGHOXnYk13DPwvSWv/iNyqVJqULk
-	 piQH1J6nuBOXmBWpaA8AkQqt+z8IZSJR09qwtFhLQ9GiQfaay9SOUSkdTg/mYeUYbN
-	 yk1OKEv0jWgyA==
+	b=MNF8iDpYfzr/MllJDBEf+0OjI4ejKzCH1MnIlFSj3P4DjmRkcLc722QW6DzmCk7tb
+	 1S7ib2J0Xvb1jpNMs8ytpfN5Qi0/0k0pt4cipphk4NUuSUB4jpl+Y1EAWfHf7rWRSa
+	 icZ9z1Sos4ktrwFWtVXMOXGqVnRCJT7cozsoxHWVqQjuFcQCqdVA1QI/844GH/yd+V
+	 8f1YDsifxmjrF6l1etNSasGvuP36bIXEnpVed/mSWTUqgTIctM5YWgegG1aYN1k/zp
+	 NKKkPLdfEjFrblCxAvJk0uBYR/PTRNXWlWhcg//OcuuGVzTLc7rR+XrqyJIu7cjE7z
+	 wdHyVJ1tpTIVg==
 From: Vinod Koul <vkoul@kernel.org>
-To: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, heiko@sntech.de, Frank Wang <frawang.cn@gmail.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, william.wu@rock-chips.com, 
- tim.chen@rock-chips.com, yubing.zhang@rock-chips.com, 
- Frank Wang <frank.wang@rock-chips.com>
-In-Reply-To: <20241014020342.15974-1-frawang.cn@gmail.com>
-References: <20241014020342.15974-1-frawang.cn@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: rockchip-usbdp: add rk3576
-Message-Id: <172917935024.288841.18254840723244928611.b4-ty@kernel.org>
-Date: Thu, 17 Oct 2024 21:05:50 +0530
+To: kishon@kernel.org, konradybcio@kernel.org, andersson@kernel.org, 
+ simona@ffwll.ch, dmitry.baryshkov@linaro.org, abel.vesa@linaro.org, 
+ robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
+ marijn.suijten@somainline.org, airlied@gmail.com, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ quic_khsieh@quicinc.com, quic_parellan@quicinc.com, 
+ quic_bjorande@quicinc.com, Simona Vetter <simona.vetter@ffwll.ch>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ quic_riteshk@quicinc.com, quic_vproddut@quicinc.com
+In-Reply-To: <20241004103046.22209-1-quic_mukhopad@quicinc.com>
+References: <20241004103046.22209-1-quic_mukhopad@quicinc.com>
+Subject: Re: (subset) [PATCH v4 0/5] Add support for DisplayPort on SA8775P
+ platform
+Message-Id: <172917935474.288841.13832533870290794704.b4-ty@kernel.org>
+Date: Thu, 17 Oct 2024 21:05:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,17 +73,19 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Mon, 14 Oct 2024 10:03:41 +0800, Frank Wang wrote:
-> Add compatible for the USBDP phy in the Rockchip RK3576 SoC.
-> 
+On Fri, 04 Oct 2024 16:00:41 +0530, Soutrik Mukhopadhyay wrote:
+> This series adds support for the DisplayPort controller
+> and eDP PHY v5 found on the Qualcomm SA8775P platform.
 > 
 
 Applied, thanks!
 
-[1/2] dt-bindings: phy: rockchip-usbdp: add rk3576
-      commit: b3e804ab9aad465ba7285aa5daf83656d5efc59f
-[2/2] phy: rockchip: usbdp: add rk3576 device match data
-      commit: a76de028c619dd18f89786805bcc7bb4d379ea9f
+[1/5] dt-bindings: phy: Add eDP PHY compatible for sa8775p
+      commit: 7adb3d221a4d6a4f5e0793c3bd35f1168934035c
+[2/5] phy: qcom: edp: Introduce aux_cfg array for version specific aux settings
+      commit: 913463587d528d766a8e12c7790995e273ec84fb
+[3/5] phy: qcom: edp: Add support for eDP PHY on SA8775P
+      commit: 3f12bf16213c30d8e645027efd94a19c13ee0253
 
 Best regards,
 -- 
