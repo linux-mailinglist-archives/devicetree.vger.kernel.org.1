@@ -1,124 +1,120 @@
-Return-Path: <devicetree+bounces-112225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 363B89A1754
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5833D9A1762
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:58:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4FA11F22E1E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:52:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 039631F2656F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:58:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA5D125B9;
-	Thu, 17 Oct 2024 00:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB7C18E3F;
+	Thu, 17 Oct 2024 00:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JlQ3f1PQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wdAMqi4N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4ECC10F2;
-	Thu, 17 Oct 2024 00:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF89182D2
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 00:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729126365; cv=none; b=tUFz+X2zljzOLwdM0/2qsva0ReZeIQ7wQC73ZyLstxuN/XazGM0o9GLqMLjiqRFPjpGoFd+eUhaFoDM5lQ96MbOcyKFSBHsBvLJVM/WCkhBC4xuKSUbBszE+p8vTo7+qoVEuY8zr2Xpu6Pz4VzyABuDXs8/OlLtJdixBydhJ9uc=
+	t=1729126686; cv=none; b=hXjtbzN0FWgUy02uWyFNKbeyUpfzLoAhW/XppQnu+jsklIb+Bux1LK58nakSQri7ad6LGzRRpDM52zwk3d1e/Bfdw6m/tzf8ZeR61Ke8ycwQmJoCTmeTy+/8CiZuS25tj52p2qkSqQVKyQAGV9lNTL4TJzwVjYyFh4Ve1H5JTGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729126365; c=relaxed/simple;
-	bh=XV5pdlUSFEp4A8UQmD5d4AG1BolLauc6GYZCxQjojrw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hCRu+zzv0rnmdNDWdcRPOR6pt5XE6ChAl4DgmkGbQoHOet2zKPOAzGDFlQdNYTU676KrqzVet4rP0i+5wC5EXLVEoB1e8ZKxU59nPQW18ArkDqtkIIGRAHV0RmTrY/d+iF6eAw4Ry5QalkFlzzLxZz8oiIacV0Snipqyz4jgrSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JlQ3f1PQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46208C4CEC5;
-	Thu, 17 Oct 2024 00:52:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729126364;
-	bh=XV5pdlUSFEp4A8UQmD5d4AG1BolLauc6GYZCxQjojrw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JlQ3f1PQuv07sfNVGx2imhc4U6DbbRRj4v5lPNCQCteQ2xgVJQieISz+yYWjXsFMD
-	 Cq5YEkaIe9SxKNY0RHiyhoT5cZ1NTA14Dmh86JryqWvwyc2ZhFhvLUQHEn/vXxA3X9
-	 f+M2pPp63GPQoU/ytDvRTY435PNrZkABU9H2fq/LChL1N5lBWsgE21Z17uf3r4Wl9O
-	 89ygcGjAceEHo4OXgIjOAtYRvkMdBV0ZvHGtQk0e9SoPFtyPDrazHbbikZ38qw92Ys
-	 lnLUOaOE2GYhMHI3ZtFFaiqRj8vtI1lJtDgsdbM0vV16taqeA6w28pK+rppQDLRnv4
-	 4Eb1t3iOqVGWw==
-Message-ID: <b3640074-a8e5-4f1d-8e9d-78b508378990@kernel.org>
-Date: Thu, 17 Oct 2024 09:52:41 +0900
+	s=arc-20240116; t=1729126686; c=relaxed/simple;
+	bh=o/hKjkpIXN5X9YEh3aqgzH3lbQ/mZRL25pDg6BvBfrw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EiyeWvWd01H6Lqqp7XK7iSJWSDr09TVqMancK4btCLeZUxLhxPZDcz7fLf1MCRnc5RFMpNFJIX5xPpmhzOM4vMl7FDQe1zEk7U9zoZ8EvoxW8RbGy8OEHyJN7WhP8Kk/7jhEac+rKzpb6OWnMKB5ucQtv3emd/lYLYIrmGLRTNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wdAMqi4N; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43117ed8adbso5462535e9.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 17:58:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729126683; x=1729731483; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k1maisugeZXRPQVK8E0aCsP5z+6Oqs6IPuJ8CXduzX8=;
+        b=wdAMqi4NpIkv3+wQQddefEBlIA+ca6dfI8RW/OIoZ6poMb8K/uIZHYfFnPE6ZcbTee
+         L+5gReaS/9nY49ZoGJQrC+bkZr2BEHTPTLzWfmlsoYFZ8wOWdvVBS5hxkRWPyGJ1iuhD
+         Ffz3tGKC9R4vLPhq/CmJHtY/RMK1lgC+qd10SCbP3CBPwFvHVc8cEKDF7CVL7Bjs+AmR
+         RMsPGAaq3xs4/Eo1daCQGTiqDgd4KSm7C+drjU1Mktje0BWM91aSWJ4hwRphtphNO2MD
+         8XRx64SwP8m99wtAOAwE1mqBMjeJvI5C/3NENuTvlOsavx99Sw1T/gZtz+yZv7vNA1ch
+         /ajg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729126683; x=1729731483;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k1maisugeZXRPQVK8E0aCsP5z+6Oqs6IPuJ8CXduzX8=;
+        b=jX6RRe6fD7MOVKUQt/cTXDJfAfcKw644KopIPrAnzn2HFQhzv5SvHx6tFMIVTQNln7
+         jNA6muVgl72fTLYdpMMSGgaOMJWXDBoH1IwVJAF3h1UGTKWjxHxBc9cjE6ivj20icK+l
+         WwGOWoN7NTO3v/VpzVqEwepxPk9SV5GUYpbsJFLpbMd5J5Lp6VMx3PSO+l5rC6wVnrzx
+         6h56qOvdGT0/9hvdHA5xk59t71IW7uYeE/Z8EY2tnzGnNAPo6v2xdcptHBrwDzxkJQgg
+         jDrirU/8GNKg0Oe4n6fJhv28kYXmt1xf82pWaqwnwbviKeWWM1pmZHEDk/3L1yabXITN
+         U2rA==
+X-Forwarded-Encrypted: i=1; AJvYcCWB8rQrE4UzXyQVOANU0ClltDYmvyuu5x69pLkjZ7mmeo7XfTxfmV8rOEs7FQNVfEM50fsAMVuULV/D@vger.kernel.org
+X-Gm-Message-State: AOJu0YwK32vA+3lBgwrK7aEHcfzr/lkQSx5IWqej85vrDMuu62l1aEyN
+	BL0iEpcvUUQQnHnUfENlNTV/gfnM07DX8DP5zSDlArYF+1Xd3MB4mEpcdvlT3RA=
+X-Google-Smtp-Source: AGHT+IHQOZdoVHwdDnPmYo0BPHF99KOUTkgQrhJaQe7J8+H2TN4TWG6rm3GApCnqm8iB7/Op/pBa0Q==
+X-Received: by 2002:a05:600c:1c9e:b0:42c:b508:750e with SMTP id 5b1f17b1804b1-431255dae1bmr185559755e9.11.1729126683234;
+        Wed, 16 Oct 2024 17:58:03 -0700 (PDT)
+Received: from localhost.localdomain ([2.125.184.148])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fa9053csm5657259f8f.59.2024.10.16.17.58.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 17:58:02 -0700 (PDT)
+From: Alexey Klimov <alexey.klimov@linaro.org>
+To: konradybcio@kernel.org,
+	konrad.dybcio@oss.qualcomm.com,
+	andersson@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	krzk+dt@kernel.org
+Cc: robh@kernel.org,
+	conor+dt@kernel.org,
+	srinivas.kandagatla@linaro.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Qualcomm sm6115 LPASS clock controller
+Date: Thu, 17 Oct 2024 01:57:58 +0100
+Message-ID: <20241017005800.1175419-1-alexey.klimov@linaro.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 10/12] PCI: rockchip-ep: Improve link training
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-11-dlemoal@kernel.org>
- <20241010103550.elwd2k35t4k4cypu@thinkpad>
- <84efa346-c1de-44d5-8b27-2481043e9102@kernel.org>
- <20241012121622.owkg5geqp5jqtjod@thinkpad>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <20241012121622.owkg5geqp5jqtjod@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/12/24 21:16, Manivannan Sadhasivam wrote:
-> On Fri, Oct 11, 2024 at 05:55:25PM +0900, Damien Le Moal wrote:
->> On 10/10/24 19:35, Manivannan Sadhasivam wrote:
->>>> +static void rockchip_pcie_ep_link_training(struct work_struct *work)
->>>> +{
->>>> +	struct rockchip_pcie_ep *ep =
->>>> +		container_of(work, struct rockchip_pcie_ep, link_training.work);
->>>> +	struct rockchip_pcie *rockchip = &ep->rockchip;
->>>> +	struct device *dev = rockchip->dev;
->>>> +	u32 val;
->>>> +	int ret;
->>>> +
->>>> +	/* Enable Gen1 training and wait for its completion */
->>>> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
->>>> +				 val, PCIE_LINK_TRAINING_DONE(val), 50,
->>>> +				 LINK_TRAIN_TIMEOUT);
->>>> +	if (ret)
->>>> +		goto again;
->>>> +
->>>> +	/* Make sure that the link is up */
->>>> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CLIENT_BASIC_STATUS1,
->>>> +				 val, PCIE_LINK_UP(val), 50,
->>>> +				 LINK_TRAIN_TIMEOUT);
->>>> +	if (ret)
->>>> +		goto again;
->>>> +
->>>> +	/* Check the current speed */
->>>> +	val = rockchip_pcie_read(rockchip, PCIE_CORE_CTRL);
->>>> +	if (!PCIE_LINK_IS_GEN2(val) && rockchip->link_gen == 2) {
->>>
->>> PCIE_LINK_IS_GEN2()?
->>
->> This is defined in drivers/pci/controller/pcie-rockchip.h. What is it exactly
->> you would like to know about this ?
->>
-> 
-> !PCIE_LINK_IS_GEN2 means check is for non-Gen2 mode, isn't it? I guess the check
-> should be 'if (PCIE_LINK_IS_GEN2...)
+This is one of the required dependencies for audio support on sm6115 and
+its derivatives SoCs. This was written by Konrad Dybcio, however his linaro
+email is already invalid. Konrad suggested sending it as-is and keeping
+him in c/c. Some updates may be still required, for instance the
+maintainers line in DT bindings file.
 
-Nope, the negative test is correct. The condition means: if we are not at GEN2
-speed yet AND gen2 was requested, then initiate training again to get gen2.
-So !PCIE_LINK_IS_GEN2() is correct.
+This was tested on QRB4210 (Qualcomm RB2 board). The only changes from my
+side were fixing compilation errors and small changes in commit messages.
+
+Konrad Dybcio (2):
+  dt-bindings: clock: Add Qualcomm SM6115 LPASS clock controller
+  clk: qcom: Add SM6115 LPASSCC
+
+ .../bindings/clock/qcom,sm6115-lpasscc.yaml   | 53 ++++++++++++
+ drivers/clk/qcom/Kconfig                      |  9 ++
+ drivers/clk/qcom/Makefile                     |  1 +
+ drivers/clk/qcom/lpasscc-sm6115.c             | 85 +++++++++++++++++++
+ .../dt-bindings/clock/qcom,sm6115-lpasscc.h   | 15 ++++
+ 5 files changed, 163 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6115-lpasscc.yaml
+ create mode 100644 drivers/clk/qcom/lpasscc-sm6115.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm6115-lpasscc.h
 
 -- 
-Damien Le Moal
-Western Digital Research
+2.45.2
+
 
