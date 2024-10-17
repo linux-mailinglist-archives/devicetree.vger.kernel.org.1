@@ -1,139 +1,148 @@
-Return-Path: <devicetree+bounces-112555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F96D9A2B48
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 19:45:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748BE9A2B5B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 19:50:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14B5B281EC6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:45:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 236991F23195
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBED1DFE3E;
-	Thu, 17 Oct 2024 17:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RUv2pkaQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533501DF97B;
+	Thu, 17 Oct 2024 17:50:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18631DFDA5
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 17:43:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3FDC1D95BE;
+	Thu, 17 Oct 2024 17:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729186986; cv=none; b=ueo2PN65okThGsfpvOQbFofagW6KUMKt8QZAFCfZfNjSKJ6TYqzV4Pat0xPZkc04grn+I0+ISsGCoEPceIfN1zBKVjfXEBRvHrpDI6Wfd6U7pdbXHz0y+4VOgja99bngZHb4NMgac4sfI1N2xUSd+DjqpRPiMesc9hDmSOT7S48=
+	t=1729187403; cv=none; b=H3IrhXAvi2a7hKEFVr9mU3mu47fK0e8qxEVxDJsuBVvaKHCUoB73ALqewh/AdswrL15Jb4y8gnq/Q1tppHRN53oT/wgHmrwgnvmsp5VTwN4t3yp5UTDoigkKleSVuQYV599mBYblWAqXL4SO2piOzMwjTajNGUAzUVevv24m7TM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729186986; c=relaxed/simple;
-	bh=BoBjfw0fU/xy8FjiTHTpEHDtNOHCOcmc+T+HEPyrVxE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=UupDREZ3oGuBEN4grmBdukzeDQCxE7ynti9rxzBx8qbmXZnlAI83jqc9lM4fJoS65VfG6AwivoAbrJnniWIgFumxx3VJoqB2BAZMjm/JT2p5vNSBV3jg+cb82sXiNhVHfhENfgJ70Es/NIYifk9pYBRw/N+rq0ukQI6lXrvEeK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RUv2pkaQ; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539fe02c386so2367525e87.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 10:43:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729186979; x=1729791779; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/aSUfPUctKuyVYotI8cvDlkFbLMA1IA5EpCMDOgbGlE=;
-        b=RUv2pkaQzG4kiBfWgOpSQKGn8wO3g2nAWkNcoULzHCyOs70OZSJJNx7+jbBB/wLsna
-         jACRHOqSxewXwfIOInm+9njOkUQI1U8n6bGHFRGAGV8aZeL3hGcnk7CTwyNw2ZWeOciN
-         3Cvol+uPn6GO06DmBwPshkfFm9c23SYAYbZHOl7QReL1ZJ49jhBK7G1WHCwZB72rpsf0
-         +0TSrU1E+xQTrI2bj3DuKbf8NWTx2dt6TMnv/78hZLLtG5/rw61cxcx43a6SFtC/fokG
-         A4xgyUTkGTHVNhybXTwQesKCcj5E2DUeIJVpfUzzRr45fK3BQ0KDYzbOJKQ6bd31Ayhk
-         uiAw==
+	s=arc-20240116; t=1729187403; c=relaxed/simple;
+	bh=+Lf3iObRGR3MI/gTOD1+me3xCFYuOFP73NluVCrLeIw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GQJRz/Stow6mRVGn8aTSJqUc8t8dqMqh7juInpqz39aQqSt0KsTxaTP50c5vOQk4PuPJ0eAsXI+Rv5fM04QCbbCWBvo/A6HQxSRvLFX7zLnSKXYkTor+Att7B0istBFg9aF6bCwghBIZUorRsqTBInpCs2E4qZc3NeDpg5ecn74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a9a2209bd7fso148187466b.2;
+        Thu, 17 Oct 2024 10:49:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729186979; x=1729791779;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/aSUfPUctKuyVYotI8cvDlkFbLMA1IA5EpCMDOgbGlE=;
-        b=O3xuje3XVwfir+6PUY+kKmIsy2Rcyk3NCAdLQEni5E0pWrSXi+/qROyd8NMBerel4T
-         68RvaT4M/LacEEcgJi+W/jzbo9WxLPeGO6ltRLIRHy47yAdHWGYt+SUy+3oBIE03XiIn
-         /w/edTQJAB4jzRGNuGCcnR73+y3GLTr6pIcJjybiIfAcK6xpGInULNEQ/Zx58tuRdogI
-         3akBl7/TaLigKFy84u5baSXvR9Xf5jcYL3yZln+UzJ3wN1Utb+pEYCaOP4luG7kmAKlI
-         cMvfghtbHhWv1I5H+KagkeEtXf5jEgwgIH81ls4zXLx0AqYnZTtyojZMvyToRY5nWYNe
-         mXew==
-X-Forwarded-Encrypted: i=1; AJvYcCUehUIhh4M9OsTOS+gt5pJs35+5I/cum2KNHjmtSO24OB4IMX2VTOe/GgrHAbCcaa07zKLCBnvpNSV1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDTnBaB3PnKxTJoMwR+UCuVEGNjNxEan5x1/CNqJvMMkZ78Lb6
-	wtTqd0TISUPYIQjzTJ/SxkDG4ezhtHACNaYAHRqDBeLt6f2r/+OKeB7P7v95nxs=
-X-Google-Smtp-Source: AGHT+IF9KKIW/DYFefPefzknNxsKitQDJlwcbCioVSRgFuiR55EP6VFEkcjHuU7Puj6K12qnGsd+4w==
-X-Received: by 2002:a05:6512:3184:b0:539:fcf0:268e with SMTP id 2adb3069b0e04-53a0c6dae70mr1454586e87.14.1729186979187;
-        Thu, 17 Oct 2024 10:42:59 -0700 (PDT)
-Received: from [127.0.1.1] (2001-14ba-a0c3-3a00-70b-e6fc-b322-6a1b.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:70b:e6fc:b322:6a1b])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a0000700bsm829835e87.204.2024.10.17.10.42.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 10:42:57 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 17 Oct 2024 20:42:56 +0300
-Subject: [PATCH] dt-bindings: phy: qcom: snps-eusb2: Add SAR2130P
- compatible
+        d=1e100.net; s=20230601; t=1729187395; x=1729792195;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wCloPbF7r5yRjYTtM6i8/cVXSwmwXC9Un1r2ajxc5jk=;
+        b=hzdOrfPAcEzJzd+pMtpdbKwxrY2HxeZ/KbInmd4bKnfGtQPn81V24pjiuMZWfq5pNR
+         ApL4NfCFGBNheovITXQ/i02c18NKCweylGMNldv9vTY6GdT9tCMa+rH86SCmfmAycAED
+         kVMdzE6wEPqTpzPyAYKbFjx/iarQl2KhgPjhZlJ9/NXIxMJ1w7oytNk4LKUfrtYvJvPB
+         krMIsXD1EhGZlCnNGX15r/o8mtZW3tEc0fPPCHoyfvX6M2kMxPiTL9mLELlqDR+ZGGKX
+         GBMeujNRqDgVdS86h35WitFUUDuixO2M203K+DP9A4aWuIlIBU8asTjRVpjOrzsmuGqf
+         Bh4A==
+X-Forwarded-Encrypted: i=1; AJvYcCU5uTZWlYPWF5oznZrv8NcpoZlx3/0P8BdvFcKi9T8k48Be4f+xLYPK28eic5E7Orq6030UZjgy8rBRHu4w@vger.kernel.org, AJvYcCUrJa1NaLFL5c2kSDkGEJDj4mp49K9k1HzlNYGI0+iuygt5R+ykxfO//ceQfr4yq1rKN0nXJX3svKDV@vger.kernel.org, AJvYcCVg1WsHJ7QCMwGfJPYtGu8vKI0hnBRXJqVQllfbtX7YzgbsEG+lYpRr1tuMeMR8ssvMQyMDCTttgHf15zA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDG9vk5v7rNbvME8YDZjusnm1PU9JQOEPhaYsc7Z0ze+0cNcOc
+	9VullHQEX3nloK/Sp5EhlJpX4I4go8ErOEnxZdJ1edq1jdMjht/D3Q7yRIiFsjE=
+X-Google-Smtp-Source: AGHT+IElnYNAm6Alq76dH3mwyEPBunkxieKVgLJJ2B6bUWTU1AxwH9Q3R7OK90JWvtJpr96eZeTPXg==
+X-Received: by 2002:a17:907:7243:b0:a9a:5b78:cddc with SMTP id a640c23a62f3a-a9a5b78ce2bmr280632766b.64.1729187394939;
+        Thu, 17 Oct 2024 10:49:54 -0700 (PDT)
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com. [209.85.218.50])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a298433a1sm315837566b.162.2024.10.17.10.49.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Oct 2024 10:49:54 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9a4031f69fso171180866b.0;
+        Thu, 17 Oct 2024 10:49:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUTYNTHz2SGXzMafJOZYD7kIg0Zzseh9zq5/eBw/jqwjRXH5eK9qspnO37inqpYGZWCY4ch63b1I6y8@vger.kernel.org, AJvYcCVlfN9lxjqP8U7CkHOO2fh1S6jP0LnIfjvebBmhYmtz6IctE3ZSJ5/EXTt2L4mpsFO0tuxYer2KjZpbIcg=@vger.kernel.org, AJvYcCXQVuh50XRDNqqqkMR7JGhi0h21xq70WIw2vOM6anTe9RuXDa18xigISMfPezkEn5WyfwJ7y9qF5SRviXnp@vger.kernel.org
+X-Received: by 2002:a17:907:f1ea:b0:a99:fc3d:7c76 with SMTP id
+ a640c23a62f3a-a9a34e15a00mr754925366b.37.1729187393982; Thu, 17 Oct 2024
+ 10:49:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241017-sar2130p-eusb2-v1-1-1cedd674ec64@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAJ9MEWcC/x3MMQqAMAxA0atIZgtNahG9ijhUTTWLSoMiSO9uc
- XzD/y8oJ2GFvnoh8S0qx16AdQXzFvaVjSzFQJYatNgaDYnQ2dPwpROZzrcxovORkKFEZ+Iozz8
- cxpw/EHLI0WAAAAA=
-X-Change-ID: 20241017-sar2130p-eusb2-957ff135f21e
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1092;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=BoBjfw0fU/xy8FjiTHTpEHDtNOHCOcmc+T+HEPyrVxE=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnEUygKNfypKjMR7XDJQUiq04vA630ffBe2jDF7
- v5eS2kYV5+JAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxFMoAAKCRAU23LtvoBl
- uBLHEAC/QDflh0ZFLAJT5MjcuUf1Nci4caRT7rDsV/qWRc2vA4a2i3hjPa4SPTs6HG0wjptJIv3
- ocuIOBwmB03dcId0JVX77rbgaO3bR6uO1eBFXiWS3KFtuENFMGAkUEUi3Kta6/YtF0JN0h3+9g1
- gb2guknqIjJI4a72qWDR3ue8tolOfGaEz6s8a/d88pb/VlYgC5KtZGyG1P24gpzQ5kULHOZoxrA
- Bs1c8dcEP8W7+66+9wYOiCoshhzrJ03mBUmIPCDfoLsBfPFj4GKFgQoNjBP9+Bql0Z9HrA7Thhx
- 8mibC5CKd/7rS3v61fDbH+DQL/L3ThibWMnlZk42pCLQNlzFYc0KB6oPRM8bWX6ZUkm9YI1rQMS
- kHKluHWpqDmlUkdzhLudPty/HiIHLCz7LKc1yoVi0iOcU/zBT885wecvtg/AsoRoFre/wXhXPTo
- kcGUa0hDkA9fDbrmupLzRGXe/Ts+5egLw98Af9eiqqBuwtQSumxQK/LLL56ldVF6hnj+xAMwjBq
- go4a/eg/DybeWvvucrvl98J5IhNAsN5Cv7eiP5sl9/9Vz7nmfmPIy5fRXE9Lh01TVRZvEOYirIB
- UuvQ5Zc9c5jFVmhMu6rhrkpp9n8nq6FXxkFxgNV4qH64NNMxE00NPtT0XPlvM0btTaZyx1rlkah
- cgfM1bfiQV1nOiQ==
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+References: <20241016-cs42l84-v1-0-8d7e9d437d2d@gmail.com>
+In-Reply-To: <20241016-cs42l84-v1-0-8d7e9d437d2d@gmail.com>
+From: Neal Gompa <neal@gompa.dev>
+Date: Thu, 17 Oct 2024 13:49:17 -0400
+X-Gmail-Original-Message-ID: <CAEg-Je9Oh2WOR7B-LrPOo6C30HH7ENisCKHvTm3MuKiBdswppQ@mail.gmail.com>
+Message-ID: <CAEg-Je9Oh2WOR7B-LrPOo6C30HH7ENisCKHvTm3MuKiBdswppQ@mail.gmail.com>
+Subject: Re: [PATCH 0/3] ASoC: add CS42L84 codec driver
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+	David Rhodes <david.rhodes@cirrus.com>, Richard Fitzgerald <rf@opensource.cirrus.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, asahi@lists.linux.dev, 
+	linux-sound@vger.kernel.org, patches@opensource.cirrus.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Hector Martin <marcan@marcan.st>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Document the Synopsys eUSB2 PHY on the SAR2130P platform by using
-the SM8550 as fallback.
+On Wed, Oct 16, 2024 at 6:42=E2=80=AFAM James Calligeros
+<jcalligeros99@gmail.com> wrote:
+>
+> Hi all,
+>
+> This patch set adds a driver for the Cirrus Logic CS42L84 codec. This chi=
+p
+> is (so far) found only on Apple Silicon Macs. In keeping with proud Apple
+> tradition, the CS42L84 is essentially just a CS42L42 with a different
+> regmap and no publicly available datasheet. It may also be missing its
+> parent's S/PDIF capabilities as none of Apple's devices support S/PDIF ou=
+t,
+> however this cannot be positively confirmed.
+>
+> This driver has lived in the downstream Asahi tree for quite a while now,
+> and gained some refinements along the way. I have squashed most of these
+> into the initial driver commit as they were small changes like tweaking
+> msleep()s or filling out TLVs, but left seperate a larger change to
+> tip/ring sense IRQ handling as it differs significantly from what is foun=
+d
+> in the CS42L42 driver.
+>
+> ---
+> James Calligeros (1):
+>       ASoC: cs42l84: leverage ring sense IRQs to correctly detect headset=
+s
+>
+> Martin Povi=C5=A1er (2):
+>       dt-bindings: sound: Add CS42L84 codec
+>       ASoC: cs42l84: Add new codec driver
+>
+>  Documentation/devicetree/bindings/sound/cirrus,cs42l84.yaml |   60 +++++=
+++
+>  MAINTAINERS                                                 |    2 +
+>  sound/soc/codecs/Kconfig                                    |    7 +
+>  sound/soc/codecs/Makefile                                   |    2 +
+>  sound/soc/codecs/cs42l84.c                                  | 1110 +++++=
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
++++++++++++++++++++++++++++++++++++++++++++++++++
+>  sound/soc/codecs/cs42l84.h                                  |  210 +++++=
+++++++++++++++++++++
+>  6 files changed, 1391 insertions(+)
+> ---
+> base-commit: 469819cc17368702a6f68cec2148f518d3f3679b
+> change-id: 20241016-cs42l84-f38348d21c88
+>
+> Best regards,
+> --
+> James Calligeros <jcalligeros99@gmail.com>
+>
+>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Used and reviewed over multiple revisions in Fedora Asahi Remix. :)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
-index b82f7f5731ed4a6879ffbdc1b970fdfe0557f944..142b3c8839d62d91377061ade3a7c400eb970609 100644
---- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
-@@ -17,6 +17,7 @@ properties:
-     oneOf:
-       - items:
-           - enum:
-+              - qcom,sar2130p-snps-eusb2-phy
-               - qcom,sdx75-snps-eusb2-phy
-               - qcom,sm8650-snps-eusb2-phy
-               - qcom,x1e80100-snps-eusb2-phy
+Reviewed-by: Neal Gompa <neal@gompa.dev>
 
----
-base-commit: 7df1e7189cecb6965ce672e820a5ec6cf499b65b
-change-id: 20241017-sar2130p-eusb2-957ff135f21e
 
-Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+--=20
+=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
+=BC=81/ Always, there's only one truth!
 
