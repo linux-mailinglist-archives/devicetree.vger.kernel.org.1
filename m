@@ -1,123 +1,169 @@
-Return-Path: <devicetree+bounces-112434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0559A21B5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 14:01:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9129A21E3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 14:11:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B3EC2894EE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 12:01:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 901A31F21C8D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 12:11:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F151DC07D;
-	Thu, 17 Oct 2024 12:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12C31DCB31;
+	Thu, 17 Oct 2024 12:11:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4w6yPT3"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="rnKlCPku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4EE91D88D7;
-	Thu, 17 Oct 2024 12:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047D51D517D;
+	Thu, 17 Oct 2024 12:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729166460; cv=none; b=A+OgY5BbPCPei/duHbF9QwGE150QiPVPt8BFMQtZlpU28e41opLqpgw//mrBf7nUj9WT3jG5Rb/RNDNLUm1CA5WdeZ7TmrQSBsbekT+qkuzs/LKbI/5nZ2dezXpKp99xvtU9t2ziqOgHTBSjyTGqgfQmUy/xIyD6vw+K5u2nVFw=
+	t=1729167075; cv=none; b=t+4eNdVCK9+sonu2VpsH6tLDJmMb3npOigCzAixcAEsmKENkI8ohF68i1C18S7QjVU5rberEtU5Ew5pOISpBKUZ8H1j7HLTr6c+OleWUtyrhGvvJweCFM4pVo2Q2w9HHm/Pyk6QNBa4gTgUIUw/zLIcRWG4h+h085eVELkLZYu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729166460; c=relaxed/simple;
-	bh=Lq5bsJFDUWvad5T0uiQGeRMenMI6v23zITJKBVgyHDg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q1kY8zbSYSNOCwBCemluvFWTmAjJBvweeS0Qzw5W0DDkc4+/wF/XlgUUwv+Rk2wnODlRGdRT8dW+b8MTya71JYvHX4QYvnlNReL1z325FQJ7UxyBz8jaKt2+g1RgDEWFE1/4h8+OQsg1223kGTN90rZeLqGaMfegQNV12XAYtLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4w6yPT3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEBB9C4CEC3;
-	Thu, 17 Oct 2024 12:00:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729166459;
-	bh=Lq5bsJFDUWvad5T0uiQGeRMenMI6v23zITJKBVgyHDg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P4w6yPT3yJD/bsJd/ZkvhRqMyhio2cBqy5iP0mNDnLcuy2s22iQi/Tmwelva2R81P
-	 +mqjVdBPnshDXO+v6sPzaUNvqJYaPTFSLaKyWlvX+PPJ00zg02CRXwbbqUDi29jk8N
-	 UxUmAXKpRDKnEBzlNxoCH+qpI8kFlgIAMje0vnrbuFAKLbBDW2ZZSHaBmn2q9EmwRq
-	 MPkhUH49Tadsbt7btJ8B18vs2yJ8g5lHcg/CWUErSndyCLMZZBfbhGo0AcOWgRsX0c
-	 aCDlhw+x5sYrlUPX7xnidxjgMcZY2mnnnFPPh3bFibUcsIZEC90AxhnP9qA+sl8uHl
-	 jJKaRl60UiHyg==
-Date: Thu, 17 Oct 2024 13:00:53 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Johan Hovold <johan@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100-qcp: Add WiFi/BT pwrseq
-Message-ID: <a14e5488-d0e8-4f04-b419-0b4c566219bf@sirena.org.uk>
-References: <20241007-x1e80100-pwrseq-qcp-v1-0-f7166510ab17@linaro.org>
- <20241007-x1e80100-pwrseq-qcp-v1-3-f7166510ab17@linaro.org>
- <ZweftESPrJNEsqGE@hovoldconsulting.com>
- <Zwj539cN2DJ7nd3A@linaro.org>
- <Zw5fzNZ_xCwPyw4G@hovoldconsulting.com>
- <Zw_dE1rQ-Ljsh-sY@linaro.org>
- <CAMRc=MfUEfKHkAVvtGODxvJ-BdL+kX7uDgW+1y4QW3Kc5mpX+w@mail.gmail.com>
- <cde15d83-6059-47bc-94d6-2a88ba95e5ae@sirena.org.uk>
- <CAMRc=MddPDFaw6vYo1FzXHbUsLyr2QKT6oy2i68ZCdJdFWCJww@mail.gmail.com>
+	s=arc-20240116; t=1729167075; c=relaxed/simple;
+	bh=umiIc90rdlGa+qSu7VpHqWG7qgxrnUgzBz1afaP27n0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T4p+UCJXjCTjYWtLeYG6Qk+9NVbIXjoetcGZDUSrtmprzqX8KTkgi7MjY5zr1q7i9B7SQD7BtUYDRart0mR4xjvjz60KX293EYfYLyRpIwJIDowMt+vsxPwuK/nez1329jLToDyLg1HYpY5j/P7m4VS2eUUkgXspLuuWqQKR8S4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=rnKlCPku; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1729167041; x=1729771841; i=wahrenst@gmx.net;
+	bh=tGM77oWO99ehp8oxalUiBrAfzs6GPmlEtUm5Eeqlmcc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=rnKlCPkuTyz8LWLMSgiJBmGaZZz+1vdCkmwnzetYTMwNgjtKv4a7K8zzTYfXRuPa
+	 /Ht+i1AWcy8zJKbjqcOqcsCgDKmzd6vaEmNCryjfCfwZZTnTEft6vWY2C00Es81Dl
+	 UzYd6dDieX+GF5OOyeeayM84Qy2/Q3T4DjwM7thgtC3+Xgm+uUvIHFGD0AVXDsi8H
+	 OshqRNSq89gZKNKUC/uMCoOYSYsD0tf6mIy8+XezUzpujLJj0fydsami8ZhZZpmWX
+	 1f7TUUUO+V0Y+kfwxjaMph553zfiYydQKD5WLB/nn9ROgms4p/MRhNtnKk2hF/9Fd
+	 OIKA/1TC+0QMkUOaXg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.104] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MtwZ4-1tvHgL2wWq-00zBKv; Thu, 17
+ Oct 2024 14:10:41 +0200
+Message-ID: <37c2d19b-b2b2-4f60-b057-90953c5f9958@gmx.net>
+Date: Thu, 17 Oct 2024 14:10:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wDvrxtDPKSAoYDD5"
-Content-Disposition: inline
-In-Reply-To: <CAMRc=MddPDFaw6vYo1FzXHbUsLyr2QKT6oy2i68ZCdJdFWCJww@mail.gmail.com>
-X-Cookie: One picture is worth 128K words.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] ARM: dts: mxs: Add descriptions for imx287 based
+ btt3-[012] devices
+To: Lukasz Majewski <lukma@denx.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241010081719.2993296-1-lukma@denx.de>
+ <20241010081719.2993296-2-lukma@denx.de> <20241017103534.259584f6@wsk>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20241017103534.259584f6@wsk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:sdXtrEaUz9LR383/6xDzsWZhw8c49oAmETMHmmRIE+LIqTd7nkF
+ otu8UznnGmZrJdEPKL4A4S+jaYQsaTWMJm4Bn12jmJBjqV0m8eZKszqFgUdfSoHQyIMk0mX
+ aBpw9/qZ7ch/KsbhusrUWbPtgmIyhPqtZIG+2KTW1/0DlCrwvQPIu3sxD0ytif3AfWfd+ju
+ vH+KoNyQr95bsp0aBCdWg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:O8Fzvmg/ZOk=;w5+HCHEi5qtLmrcoSnPhhni49l5
+ G6Unn1mn0lHpvkVAmntp4wOSHhR07uROu2G2EhVuWEhSDK8mTuRVQOjxDZZ/UYLYzdigbH07i
+ 79IENlpni3tZ+n6Zbd8G9hsceV2W3soj7y6OvjRxNOzXejqEO8rOXMoJ8EFvBOLqeFhHPmXn5
+ 2kLl1VYDHKwAum5WHE1ONKjnBpi9IjSEFR5ol6x95D3JwxEM7GJBTap5a4LpiJ1Jo3/0uydfU
+ BTslP29UKFYE2Lz7eznBcrT1b2b7PVzfkCPOKwZGCkbc50FF3p7Dvd/+6O5xsPdZheuMG35b6
+ FzdKwRhXh/7V9k9YJivyhYVTMdrt1SSFrucN2yb0ZyKaEPrU8SDavN7xW34/qB7DYJ9scNGzw
+ k2XSP8g0gC7ZYbzX6k7AJE4/5a7ZwcsVcInXd9+5tOIfEl4uwHxEn2ApaGs2UtCoCPawJC6fp
+ PMTEuoqAX5WikFmypTjybOgBd2iGsItj8/K0iWMly0SLiBPxiiIm4JtKko668X7HqeNQGNqko
+ Yrq8pYB1Y4z76SR9z6uh/0Qn4x5H6gbCNkEuV0UDFdBk2+9gvoRgyKPRK/nv5MOPieJheBTVm
+ w0hpixxIO/DdfRzIxm0QtHmrQd9amSiPUhNLU/uGmyhkO0RnpAT/ypg+fumylCxKkrpimEs1R
+ 3kN66tBXd9/V9jxSrRTXhAZZ68ZNKILzJ/IHedEwQrZzkG0aTLcAiDG6Mj4cnpWC8wVFEdv1J
+ 5HIjqJUFmbVL7GHXfXWe1aw407gBlA5c2GiPrjjA1NzWkf9bBfdRsnXIDtKMzXklsejyUrjbd
+ 2d9lR6B3Qblrg0QOusN+Wy7w==
 
+Hi Lukasz,
 
---wDvrxtDPKSAoYDD5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Am 17.10.24 um 10:35 schrieb Lukasz Majewski:
+> Hi Stefan,
+>
+>> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
+>> some extend similar to already upstreamed XEA devices, hence are
+>> using common imx28-lwe.dtsi file.
+>>
+>> New, imx28-btt3.dtsi has been added to embrace common DTS
+>> properties for different HW revisions for this device.
+>>
+>> As a result - changes introduced in imx28-btt3-[012].dts are
+>> minimal.
+>>
+> Stefan, do you have comments for this version?
+>
+>> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+>>
+>> ---
+>> Changes for v2:
+>> - Rename dts file from btt3-[012] to imx28-btt3-[012] to match current
+>>    linux kernel naming convention
+>> - Remove 'wlf,wm8974' from compatible for codec@1a
+>>
+>> Changes for v3:
+>> - Keep alphabethical order for Makefile entries
+>>
+>> Changes for v4:
+>> - Change compatible for btt3 board (to 'lwn,imx28-btt3')
+>>
+>> Changes for v5:
+>> - Combine patch, which adds btt3-[012] with one adding board entry to
+>>    fsl.yaml
+>>
+>> Changes for v6:
+>> - Make the patch series for adding entry in fsl.yaml and btt3
+>>
+>> Changes for v7:
+>> - Use "panel" property as suggested by the community
+>> - Use panel-timing to specify the display parameters
+>> - Update subject line with correct tags
+>>
+>> Changes for v8:
+>> - Use GPIO_ACTIVE_HIGH instead of '0'
+>> - Add the comment regarding mac address specification
+>> - Remove superfluous comment
+>> - Change wifi-en-pin node name
+>> ---
+>>   arch/arm/boot/dts/nxp/mxs/Makefile         |   3 +
+>>   arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts |  12 +
+>>   arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts |   8 +
+>>   arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts |  40 +++
+>>   arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi  | 313
+>> +++++++++++++++++++++ 5 files changed, 376 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
+>>   create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
+>>   create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
+>>   create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
+>>
+...
+>> +
+>> +&ssp1 {
+>> +	compatible = "fsl,imx28-mmc";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&ssp1_sdio_pins_a>;
+>> +	bus-width = <4>;
+>> +	no-1-8-v;       /* force 3.3V VIO */
+>> +	pm-ignore-notify;
+I think this slipped through?
 
-On Thu, Oct 17, 2024 at 01:28:00PM +0200, Bartosz Golaszewski wrote:
-> On Thu, Oct 17, 2024 at 12:59=E2=80=AFPM Mark Brown <broonie@kernel.org> =
-wrote:
-
-> > Fix your driver to request the supplies that actually exist on the
-> > device rather than just some random supplies you hope will work?
-
-> Let me rephrase: the device has this supply but on this particular
-> board nothing is connected to it. It does sound to me like an example
-> of an "optional" supply. Do you have anything against making it
-> possible to define optional supplies when using the bulk regulator
-> APIs?
-
-Oh, right - please if asking questions ask a complete question rather
-than having a long email thread and adding an "any thoughts" at the end
-which makes it unclear what the actual question is.  In general the
-expectation for optional supplies is that you will need to do something
-different depending on if the supply is there, that will tend to mean
-that it's fairly natural to do a separate request for it as well.
-What's the concrete use case here?
-
---wDvrxtDPKSAoYDD5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcQ/HUACgkQJNaLcl1U
-h9AlUgf/a+6QvMECSleIoCzj/+SOHAB3hBaVVWT7nAhgXOlczOug9t4lcpUBurlw
-ULMhgu0MNz8bHMYHb22hnKBbfE+tIlGo8l3yb/hK3zszHfJiRwj68puiLs9n0ltK
-XPMvUTPZunyFIZHL+HgdQcY1AynelXawMvfZRIAPoz0KfEOy1EEoleVUoAcdF0Nk
-R2ppe32gbm9wzWAjFELRc+E/TWC/r457KYaNz+k75iEhrWmG3+CyjG+3FYlfVgXs
-zhndkfjHKHzdM/wApj0Zhrfp+zXTELyzK1TO2qkPRCYa7X06fYjIStPl/aAG9ufm
-V1mjvh7VtXFDVO6w9ovkFuCZR/oecg==
-=NiuG
------END PGP SIGNATURE-----
-
---wDvrxtDPKSAoYDD5--
+Regards
 
