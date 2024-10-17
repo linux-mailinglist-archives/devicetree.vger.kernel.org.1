@@ -1,131 +1,130 @@
-Return-Path: <devicetree+bounces-112205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFACD9A168C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:09:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12CAC9A167E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:08:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68C97285226
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:09:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2AAD1F23900
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E76C101C8;
-	Thu, 17 Oct 2024 00:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD5D2CA8;
+	Thu, 17 Oct 2024 00:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Na78Rte+"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="PdIzXG2o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC0D184D;
-	Thu, 17 Oct 2024 00:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF0E10F1;
+	Thu, 17 Oct 2024 00:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729123720; cv=none; b=hV2lMXtZFjT66xUwGL2auYXQtd8s/02tvRb/7Titnb3ZGz8P8L8F55a3D7wRHYBNdMp6GG0Rz9OBWoeaLfeJuYjoaoqPPccM023YSJp3LRAF68NE9y8OZvNDTswyFXO1JBoYYd5cgca4fY9eupaLGBgqFqVt4MUmlhT5YHGICoE=
+	t=1729123715; cv=none; b=JovLLILVZOaEkTB5Y6hXarQSaPifnCgF8/0J5bh+70t3sPFSUgSk7vgD04M8eWlYhWTEUd1aBQMJobdSntqbPSXtmMZwe6r3xoqbx13NR2SFOXp7fwP3GdC/sj9gvnx32xGmziHOVZfS7en1oSM9MCENMm2EQhJd6LaPgKCAi+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729123720; c=relaxed/simple;
-	bh=MeweiKooJ6uVvq0NEWrZYqTFp5OOCPxHXRqsXdmpDVs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mYOk7zxhzfOUzlyRMsYOA79J+BDxg/B8A9BMeeZnMy633V5Vtdsu88WCQNi5nOcX7AxeoT8mSUUU/Q1Y+VyQ1WdL2vaaSkdMc1iOK2nF0/Enr3in3DBNuP1zWsicwVreV/jk6AuyaLJg2pbwwjqKlzP2Imz5UY7AgCz1udiNtl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Na78Rte+; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 9E8EE88E5F;
-	Thu, 17 Oct 2024 02:08:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729123716;
-	bh=rVUNiDsl8qiK0QNZu4GKqjxmkuTSCEzw2w+x4jgqAgk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Na78Rte+rPHgt7jkp3bneJ5c5MwN3879XhdYtBX04FXkHRf0w8B7zLlYb+v3QRa6S
-	 ENQIHPBtrcDB078GagQnyIU9dDfo+toztNybT88hcWiFi+h+0l1PzYRyGG5JTVRPCZ
-	 mIjz2bTJnBW/CJQDOjysPVCVqWP7UhCkBbgGjBqSIjN4GjzqaRGRdhsM7erO+Pfk/S
-	 rRFlbVKi6tzWHA+swYTqd93tu6QHr5Dj34XXwOlb6SPz1eqOqC4bPIeIEKUdYhyWRM
-	 2+oN59Lv0QzexK20tpAduIYt3ExNNpyXdxfgLPx10+6QY08+gZxkNhvWMXLVWltiyG
-	 cuY4wDXv7aRNg==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jacky Bai <ping.bai@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	kernel@dh-electronics.com,
-	linux-gpio@vger.kernel.org
-Subject: [PATCH v2 12/12] ARM: dts: imx6ul: Align pin config nodes with bindings
-Date: Thu, 17 Oct 2024 02:06:58 +0200
-Message-ID: <20241017000801.149276-12-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241017000801.149276-1-marex@denx.de>
-References: <20241017000801.149276-1-marex@denx.de>
+	s=arc-20240116; t=1729123715; c=relaxed/simple;
+	bh=MJLV0tcHDxYrAJWRYnY4HRU2T9JXBQ/Ox19qpn6RCQY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZvLUJq/WuqnqmV/kyemB53FGOyEefv0ZSocbeqpb8FOcexYwD2+dxEa2fcSM5R2Ni5Q7Y7JeRZGDwhm++ysBdnawGBTvcSXHIq7wwb9A19hXjNUpq06SsRj6NdD/41gSF9DgosuiQSzsfdA8pivaN5fDFmN9ICMBVqHNSJwTY08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=PdIzXG2o; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1729123710;
+	bh=MJLV0tcHDxYrAJWRYnY4HRU2T9JXBQ/Ox19qpn6RCQY=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=PdIzXG2oo8nlIjIt6YdEvK79moJ6OhTLC/559NkVkW3MmTY58QSR7gPQ2bMIHvFPP
+	 K0jYXX6ycnnuKPOQrAUJeXy6ScnODBUZNqR8dMda4SDR9uglT/iFxny9G3M41bYOpc
+	 X7Ic9ngP3FWtxLnyhAK29dxGRG5XcISMN1L4Z51H2nZ7c+G9tMRMhgP+PiM+VV1XoA
+	 20HeD6o6Hikr84Z4Pr2tfKanhrxUbO7LT03hNeSt9ClkUIvB+6moOuJTHcQga5u3As
+	 5+Ucba5h9Cw30ZS3/6cwBRcxAKBVgYE/y6HDHu0vkmhsf06bI+PO56Qx1DJUrSQWhW
+	 Cet5g3j+8MMbA==
+Received: from [192.168.68.112] (203-173-0-39.dyn.iinet.net.au [203.173.0.39])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 913C667E1F;
+	Thu, 17 Oct 2024 08:08:27 +0800 (AWST)
+Message-ID: <f833ef3b873d0e71581dd138f046b19fa3fdeaf2.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
+ Jefferson BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>, Chanh Nguyen
+	 <chanh@os.amperecomputing.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Khanh Pham
+ <khpham@amperecomputing.com>, linux-arm-kernel@lists.infradead.org, Thang
+ Nguyen <thang@os.amperecomputing.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Phong Vo <phong@os.amperecomputing.com>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, OpenBMC Maillist
+ <openbmc@lists.ozlabs.org>, Open Source Submission
+ <patches@amperecomputing.com>, Quan Nguyen <quan@os.amperecomputing.com>, 
+ linux-aspeed@lists.ozlabs.org
+Date: Thu, 17 Oct 2024 10:38:26 +1030
+In-Reply-To: <c42be4ea-9902-4fac-8b1e-afc38fe04bad@amperemail.onmicrosoft.com>
+References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
+	 <172891445289.1127319.4114892374425336022.robh@kernel.org>
+	 <b5919d904c9f06a618a54d49bc895c3081a511e4.camel@codeconstruct.com.au>
+	 <e8e31fb4-4a9f-4ea9-be4d-9ba29d824cc5@amperemail.onmicrosoft.com>
+	 <7555c528c90e6151f54d0e17c278527f95fac184.camel@codeconstruct.com.au>
+	 <c42be4ea-9902-4fac-8b1e-afc38fe04bad@amperemail.onmicrosoft.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-Bindings expect pin configuration nodes in pinctrl to match certain
-naming and not be part of another fake node:
+Hi Chanh,
 
-pinctrl@30330000: '...' does not match any of the regexes: 'grp$', 'pinctrl-[0-9]+'
+On Wed, 2024-10-16 at 17:26 +0700, Chanh Nguyen wrote:
+>=20
+> On 16/10/2024 12:07, Andrew Jeffery wrote:
+> > You can also find discussions where other maintainers (Guenter, hwmon
+> > maintainer; Krzysztof, devicetree maintainer) have asked that "pmbus"
+> > not be used as a compatible:
+> >=20
+> > https://lore.kernel.org/all/f76798ea-6edd-4888-8057-c09aaed88f25@roeck-=
+us.net/
+> >=20
+>=20
+> Hi Andrew,
+> I checked the discussion at=20
+> https://lore.kernel.org/all/f76798ea-6edd-4888-8057-c09aaed88f25@roeck-us=
+.net/=20
+> . It seems the maintainers don't want to use the "pmbus" compatible for=
+=20
+> specific devices. The maintaners require an explicitly compatible from=
+=20
+> device list in drivers/hwmon/pmbus/pmbus.c .
+>=20
 
-Drop the wrapping node and adjust the names to have "grp" prefix.
-Diff looks big but this should have no functional impact, use e.g.
-git show -w to view the diff.
+There are two problems:
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Jacky Bai <ping.bai@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-gpio@vger.kernel.org
----
-V2: New patch
----
- arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+1. Describing your _hardware_ (not drivers) in the devicetree
+2. Binding a driver to your device
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
-index 118df2a457c95..4c09bb3126966 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
-@@ -322,7 +322,7 @@ MX6UL_PAD_JTAG_TRST_B__SAI2_TX_DATA	0x120b0
- 		>;
- 	};
- 
--	pinctrl_stmpe: stmpegrp  {
-+	pinctrl_stmpe: stmpegrp {
- 		fsl,pins = <
- 			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18 0x1b0b0
- 		>;
--- 
-2.45.2
+You ultimately care about both 1 and 2 as you want Linux to do
+something useful with the device, but for the purpose of this patch
+adding the devicetree, 1 is what matters and 2 is not really a part of
+the considerations.
 
+What needs to be the case is that the devicetree describes the device
+via an appropriate compatible string for the device (manufacturer and
+part number). Prior to that, the compatible string for the device needs
+to be documented in a devicetree binding. This may be the trivial-
+devices binding if there are no extra properties that need to be
+described, or you may need to write your own binding document for the
+device if it's more complex and one doesn't yet exist.
+
+So whatever is in pmbus.c needs to be fixed later on if your device is
+not yet supported by it, but that's a separate problem (2) to the
+problem you have here (1).
+
+Who is the manufacturer and what is the part number?
+
+
+Andrew
 
