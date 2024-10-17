@@ -1,133 +1,136 @@
-Return-Path: <devicetree+bounces-112249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC819A1896
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 04:25:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E2EA9A18CA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 04:52:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6952C1F21CA5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:25:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31835281A33
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B7642ABE;
-	Thu, 17 Oct 2024 02:25:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF864D9FB;
+	Thu, 17 Oct 2024 02:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o0ez1MOt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Svi4T/zJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 518EE42056;
-	Thu, 17 Oct 2024 02:25:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4031F1805E;
+	Thu, 17 Oct 2024 02:52:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729131908; cv=none; b=Vv79tuB9ZkIrEyhQlgcBwqKYJZbcN2JoXtFmzRo+h25KrmwOgwkdYaR9AFM4CizmXoaDWVw8EQDShT0BPydOz+hqwiN6edK7cKbkEEPm/f5e7eg5FndaqPZHLcjPLFDNNP8MRPnXmJcS9pmpt+4myeNaHeZTA+SSEcb0x3TYTbI=
+	t=1729133562; cv=none; b=RnXX9wYPJRt93XmgB785xAfj8k4LC1P519onnYuk60NP9M4xjPHBazmSLWG+gZp+LZ/H3xzFMPEu4VJyXiTWjkvyNtW8IwJN/9uk/lP7vOfyKk9jEAuc9nDxI0Oz9gycu5qPdEQrGGN1cQuVF050TmtEIYCoV3mFH3t7muULjzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729131908; c=relaxed/simple;
-	bh=5NMPDhf/E8i+g+gcq6+KuI94K+BxmbwJGEsewTDaCX4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Ca1+sMWS9ah/LVHl23Shk4paq5Vl3kg1XMJd35/Kj0XRNQgGPkvZndHwRKlF37tjE2UbnHZaH0b+q1L6LAOhEmpXl9ycA5SBlwU8uKEGC8Pnzn+ZZkrTL6Bh/SPePNA48wJRtT/Fe/VzWn8zXmUJ89H6qqOyDsiYrHqPnqF00NY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o0ez1MOt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49GIoW8h011837;
-	Thu, 17 Oct 2024 02:25:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EZXaIrOtNXKt+a6vGxy0OY8kvivjCsBaCy5jFUoU27Y=; b=o0ez1MOtSLAYysmB
-	TSPiullrJZiNksKT1qDMyuX58DQMWv0z0jq9PDvi507j2Q08NXM0gkcXgvvDY2G8
-	0vr0Qa/CKp8t7TpJNMdyMiM+JuKsV/0yKaoIvSqLV6HTv08tFhURhfrcLNbE2pHR
-	IGRXBn+0lU50RLOCLVbVz60K8s1U8+9pz62GsULP5/q2XlHphuiBFPyDIRwvbjpp
-	SahPU1zbBrAvY2oj5fgfw/AP9Dd5z/XrZW0XthJNIV4DNjzfnIssvK6Gzp8rf+Sd
-	7KiOLOqQFSZTN4dHZrKEvcfyZhbpysfniRgGkBdl8dofmKDL5Fcg1M2AhG19Jmt7
-	y/OlZQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42abm5jeup-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 02:25:00 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49H2OxWD031600
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 02:24:59 GMT
-Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 16 Oct
- 2024 19:24:56 -0700
-Message-ID: <abbea1df-4aaa-4012-95f9-ea1419a22414@quicinc.com>
-Date: Thu, 17 Oct 2024 10:24:54 +0800
+	s=arc-20240116; t=1729133562; c=relaxed/simple;
+	bh=YeJsNoHDNgrGGZdatAqIveQuwNOffoXVjT48thayfgk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qEp+6b+1ZO+qbsBrcpa9nc9jH32l3bsd3KtIppRR90+vTfbZ2a/T+CvL76b4Go8u6p8p4DUvkaoliSz+o4BGihOVu9+uUGsnxLp9SE+hpp16pGKdlLZSupu4+AWp60weaprByySnqNdAINq4VjwlZlVIHtVoseAlMmaJQqQLmRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Svi4T/zJ; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2e2d83f15f3so78902a91.0;
+        Wed, 16 Oct 2024 19:52:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729133558; x=1729738358; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=anEJomHrsRlwp4bT7Y/2bAO0FBPIolgYlKqfNbjU7Sw=;
+        b=Svi4T/zJWMVlDbJs8SiZOz5nRXV5vOe9UJDSbpFPysMbIVCZX0GMKBaUwspVOjWGIt
+         i2BjQSzABK9MTQpX1FqnmFGb6hAlJUXbuBn+SORg1KmqeBDbbdE5rr7o82/8j4meI7Aj
+         SQXB4Yyi8TX7muAUfbLEQIMjt4Q/5IB6iMxOgHZVYEbfl7mbKB8rA9PWrRYQw6Es9tgn
+         IVzqbnqzgNktQk1VVJCdOolRYzT5JVUr4EpuSfxCg1OYv3mRKwGrke2enQlCmpx8iLFE
+         +7eyIdJmvER9XoJVdvHzdgXYEvgLQ3mWoWAKG5WAUsdEPTnkpOm159onnROJf/7IBJJK
+         UbxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729133558; x=1729738358;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=anEJomHrsRlwp4bT7Y/2bAO0FBPIolgYlKqfNbjU7Sw=;
+        b=n3vRCRx5RS4anw3TAYUpZj10YQyT2MTa71uCNXykfwTvVZoaYRZhOcHLxpX+b59Sml
+         gIkmugORNxgAGFvX9gFBeFOQZrgDBzwxTbBf7Afwpo2ZuuOL9IoIMsHfgE6M1wq/TB5M
+         BYQKDppworJIpWcuFxUHbANS1jMZAOnDu9hk1kV8RBtD9nH84k6pLKx1iW+Y0VJUDZyO
+         ZBH2xxWUn0Y1DEdM+95Q8NrR/LAdymQMmJVfdwPSOzY+vocI0LoSdXe+Z8XUmTu1MzCG
+         36yua/7s7HMA+DuqNGVTEmtHXWFp/FPRDE/dbZkZ/R8/GWuI9bxqxiUEZu/OEDdau7XJ
+         DVlA==
+X-Forwarded-Encrypted: i=1; AJvYcCUR/GnZibKVTgO4oyBzi5pE9hb5EZ7pNGTArubBPCBkIBTkbNpLPG9MRWQFZqTAjn6uurxnA+nEERFCGwL8@vger.kernel.org, AJvYcCVdKCfeW8d/4uTOaq+gSLAN3mMHAqrSlKoQyCeaN/+BmquFPeTNICyBXbJvxVak+YROUNOx9toySkqF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYiJj1XBVtLjEaR2WdqRXA1ecHrU9i4Uv27E2iGcbbZQ4E8EyS
+	11pcROsPDM3QYVc7Xp6Itw/WKb/QFysCDiziF1p5OqmJ+8Z7+pVmx/jKdA==
+X-Google-Smtp-Source: AGHT+IGzn1MbFJSDxZL13wExxR6YzH79TcUSYhLQOHgaB/BQ6FXcMXvtdf5p7sXpTbHEEivTkILiNA==
+X-Received: by 2002:a17:903:228d:b0:20b:99cd:c27e with SMTP id d9443c01a7336-20d47ea03cfmr8564085ad.3.1729133558431;
+        Wed, 16 Oct 2024 19:52:38 -0700 (PDT)
+Received: from localhost.localdomain ([103.29.142.67])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e3e08d8b6esm628537a91.29.2024.10.16.19.52.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 19:52:38 -0700 (PDT)
+From: Frank Wang <frawang.cn@gmail.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de
+Cc: linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	william.wu@rock-chips.com,
+	tim.chen@rock-chips.com,
+	yubing.zhang@rock-chips.com,
+	Frank Wang <frank.wang@rock-chips.com>
+Subject: [PATCH v2 1/3] dt-bindings: soc: rockchip: add rk3576 vo1-grf syscon
+Date: Thu, 17 Oct 2024 10:52:28 +0800
+Message-Id: <20241017025230.28752-1-frawang.cn@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] pinctrl: qcom: add the tlmm driver for QCS8300
- platforms
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Richard
- Cochran" <richardcochran@gmail.com>,
-        <quic_tengfan@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>
-References: <20241009-qcs8300_tlmm-v2-0-9e40dee5e4f1@quicinc.com>
- <20241009-qcs8300_tlmm-v2-2-9e40dee5e4f1@quicinc.com>
- <c7ahyrbo3bw6vgfwqaubricap52muhxyhsnb5cfhzvo3n67dsr@gp6vehlfwblo>
-Content-Language: en-US
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-In-Reply-To: <c7ahyrbo3bw6vgfwqaubricap52muhxyhsnb5cfhzvo3n67dsr@gp6vehlfwblo>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: WdVh8HvXjf81gECUHt7qKc0aX9ynZ7nY
-X-Proofpoint-GUID: WdVh8HvXjf81gECUHt7qKc0aX9ynZ7nY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- clxscore=1011 impostorscore=0 mlxscore=0 bulkscore=0 suspectscore=0
- lowpriorityscore=0 phishscore=0 priorityscore=1501 spamscore=0
- mlxlogscore=852 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410170016
 
+From: Frank Wang <frank.wang@rock-chips.com>
 
+Add rockchip,rk3576-vo1-grf syscon compatible, the vo1-grf is
+configured in usbdp phy driver.
 
-On 10/16/2024 5:25 PM, Uwe Kleine-König wrote:
-> Hello,
-> 
-> On Wed, Oct 09, 2024 at 03:13:34PM +0800, Jingyi Wang wrote:
->> +static struct platform_driver qcs8300_pinctrl_driver = {
->> +	.driver = {
->> +		.name = "qcs8300-tlmm",
->> +		.of_match_table = qcs8300_pinctrl_of_match,
->> +	},
->> +	.probe = qcs8300_pinctrl_probe,
->> +	.remove_new = msm_pinctrl_remove,
->> +};
-> 
-> After commit 0edb555a65d1 ("platform: Make platform_driver::remove()
-> return void") .remove() is (again) the right callback to implement for
-> platform drivers. Please just drop "_new".
-> 
-Will update that, thx!
-> Best regards
-> Uwe
+Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+---
+Changelog:
+v2:
+ - This is a new patch adds rk3576-vo1-grf syscon.
 
-Thanks,
-Jingyi
+v1:
+ - none
+
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 50d727f4b76c6..fd42217ab85e7 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -33,6 +33,7 @@ properties:
+               - rockchip,rk3576-usb-grf
+               - rockchip,rk3576-usbdpphy-grf
+               - rockchip,rk3576-vo0-grf
++              - rockchip,rk3576-vo1-grf
+               - rockchip,rk3576-vop-grf
+               - rockchip,rk3588-bigcore0-grf
+               - rockchip,rk3588-bigcore1-grf
+@@ -283,6 +284,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - rockchip,rk3576-vo1-grf
+               - rockchip,rk3588-vo-grf
+               - rockchip,rk3588-vo0-grf
+               - rockchip,rk3588-vo1-grf
+-- 
+2.25.1
 
 
