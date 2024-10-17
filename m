@@ -1,156 +1,98 @@
-Return-Path: <devicetree+bounces-112273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA799A19CD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:44:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 559839A1A12
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 07:13:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93E9C1F24B88
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 04:44:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 875FB1C20D3F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 05:13:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F32D143895;
-	Thu, 17 Oct 2024 04:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF5818651;
+	Thu, 17 Oct 2024 05:13:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C70H4M8W"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bXurL2c2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D6921E3C1;
-	Thu, 17 Oct 2024 04:44:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB4A259C
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 05:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729140244; cv=none; b=sUN65ihQLnP9KVSxqkEb63BKsYrpyErQYjMIMaSKAIrSK4YcKbezfNjFMRV7skHAp/X+xTNbkgCRhU9f3QTvXknKB7kafmagKj6xQboJg6I4gjHBOzrI6HGls3L8tdVaTZOHQK+KFtNbEdqtKR/fLgoPpM9+r0zjbCAd788RUNk=
+	t=1729142012; cv=none; b=DfXQjm62iCvxwem6JfrCoCgqEkBpZH/rcHXtzVT+xQ9OzqjRPp4xcB1pw4cCvhwdLVxpFpcMN3aBI1NzrXq+w3nPtAHiFAMHlZ0JFAWPq1CU/+0YxwouRnMYXpKE9Z91PNQSVk6sV8DsyHpRJAu4qMVzVwFo1sc1vF9wNwTxK3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729140244; c=relaxed/simple;
-	bh=11YArkhZQS4c8MQnbYUnU5KYPuWA3mgk5RTZHB/jkR0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OyWqQ51t03g1Lrj4/psmIx2TpdNltnLZCBal3ywpuqW0mQTJIhMuKmq+U5EHUg8ZMn/sWIp54ZiGdMCR4OfebkBtpj6d5iswntD4wDUEVrAjZkMHVb8YRME69jOa0Sj7cK9qZZck4MBoBroEtQc8IJjv1ApLTGR39o/mq7U1cAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C70H4M8W; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729140240; x=1760676240;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=11YArkhZQS4c8MQnbYUnU5KYPuWA3mgk5RTZHB/jkR0=;
-  b=C70H4M8Wiv7JA0SEM65j8wBwo2ExBPmHHQeIDMDWnIlozhFBVvRQfjs+
-   HVug1zGLJmVn0LsZxxZm5AnEViFMD2Q5LbMq3F5VRSW9LFdH6tX08djvO
-   5Je3WQMMIj5khDHG9osdjzCnrNuEe47MahHdMA8Iu+5E2MSMMD/XQhaMJ
-   1pi29FwJfczsrKejJugvKvT/dtI8ir4b9P8D+gNos49BdJjwqEK8cWGn2
-   37YqkB94R0WU071lVs3ahxTftEJUPCQcVn6mzI4zWNlmkPQLutl4SzSNC
-   BOS6vGhtSIAHUSZ08ZiiQVe4PjwkB7CN/90xQXrnspsh3TU1qoFF0sc1h
-   A==;
-X-CSE-ConnectionGUID: Y51geHx5QVWysjeGMffP0g==
-X-CSE-MsgGUID: JJOjcyqBSWGo/6uzqbUYBQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11226"; a="32538601"
-X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; 
-   d="scan'208";a="32538601"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2024 21:44:00 -0700
-X-CSE-ConnectionGUID: RaXAfCgKTmeFaoCq0c1HyA==
-X-CSE-MsgGUID: JgNiXR5kQXGN1ipyHrpcEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; 
-   d="scan'208";a="78585172"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 16 Oct 2024 21:43:56 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t1IMc-000Ljj-17;
-	Thu, 17 Oct 2024 04:43:54 +0000
-Date: Thu, 17 Oct 2024 12:43:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: Per-Daniel Olsson <perdaniel.olsson@axis.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rickard.andersson@axis.com, kernel@axis.com,
-	Per-Daniel Olsson <perdaniel.olsson@axis.com>
-Subject: Re: [PATCH v3 2/2] iio: light: Add support for TI OPT4060 color
- sensor
-Message-ID: <202410171258.CFrNPzC1-lkp@intel.com>
-References: <20241015143713.2017626-3-perdaniel.olsson@axis.com>
+	s=arc-20240116; t=1729142012; c=relaxed/simple;
+	bh=6V6eNGdE0SPvqcSpqgKb+DQULJcURDQCfkY0VUPRIas=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tq1Ze5DXw4hWQjRWCweRPyu0KVcSsltbYfqhoMyagLztDkjb8rJHkFMjP7AREex8GLXrvB7qq6EuIj/I6KKnaQ3bQERyfUzFYkb+tYRK0YKww3X8vi0FQBMiuKWNOlAqlxPD45PfdvLFuiwWdBjlB5AxYjh3XV/qW5QTJgyfsj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bXurL2c2; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539e13375d3so558831e87.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 22:13:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729142009; x=1729746809; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6V6eNGdE0SPvqcSpqgKb+DQULJcURDQCfkY0VUPRIas=;
+        b=bXurL2c2zXRW1vZ6OfSZLMolriV7qrpw5pGwH1BNh3VOrGYBlsvmx3fNPjzMAj4EJn
+         ZfOwiocEDKv2/Y4NfmxGzqfVmp164w7MTxkxiQaeelHAS2GP0JS6AhAVTrCTsbhyoAoj
+         Pr2VqiZNktsSSClkXjjRFUvusWI7qaaB6DAKk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729142009; x=1729746809;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6V6eNGdE0SPvqcSpqgKb+DQULJcURDQCfkY0VUPRIas=;
+        b=JEh/hMM41o2iCEuWiL/oc3kDsg82QKb9g9FiDavE0MktjL6fpthEFUDwsQf+ZiGdDY
+         WuWSCOtxKdcJlnUtWOPvnDjzPLHfBCpINwl97rJu5dHgXk+82YHPnEbj9T9CSkQ3z6DL
+         uD1iq0RWCVbFkg0uPC+ucPGgCEt5ZUlCXcQXlyTQ9abbRpR2XVBv6kajPXQusWOB6bED
+         pL4Iu18gctmiU1yYtZWYzpinEXT62tu7ZV87KgVyRLUGK9JL0OfJqYeRLmMPyw2NFKbY
+         MlGhCLi0zR/gvIol0Z0i6Z19hdUNuA0RBdVkMtfSDcLlk34hGXKYVdi3/GHZjXC4PTLY
+         vFsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW7gYORraGsIv1DC+4ojhYYkvX57mahLQfksxJXzs65ymYas1A+qcaKZTpg20Ouf4eBpp7NrL5mnayx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPs1mA843AXJQiTsLqxfyw+cIcU8kKJ1kOBjXoWac+YnfVE+XV
+	tnrWL68L0mONoF9PW0gx4H70Itm2g34hEo6FBaj0h7TkDB9UtM0udRI1V7rWkK/SFROYIii2s+l
+	XXfZ/8KDclDxVMdR/1JK1QzLfUaoVF5aiESvU
+X-Google-Smtp-Source: AGHT+IFjzb2wpcnGWFDBZjNo1M6JPjsOZT8OvpkoK5cl54wpJ09jbG8ZH+YgyEBJvP+ZZVXYFVWt2kcbszuvdny5JUo=
+X-Received: by 2002:a05:6512:1292:b0:53a:bb9:b54a with SMTP id
+ 2adb3069b0e04-53a0bb9b6f0mr1366138e87.48.1729142008876; Wed, 16 Oct 2024
+ 22:13:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015143713.2017626-3-perdaniel.olsson@axis.com>
+References: <20241016223312.3430051-1-treapking@chromium.org>
+In-Reply-To: <20241016223312.3430051-1-treapking@chromium.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 17 Oct 2024 13:13:17 +0800
+Message-ID: <CAGXv+5FEEXYu_h=_cnLGfwVQh5kdf0KpRFKfUYgFsR5oV9s=nQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8183: Add port node to mt8183.dtsi
+To: Pin-yen Lin <treapking@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Jitao Shi <jitao.shi@mediatek.com>, 
+	Hsin-Yi Wang <hsinyi@chromium.org>, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Per-Daniel,
+On Thu, Oct 17, 2024 at 6:33=E2=80=AFAM Pin-yen Lin <treapking@chromium.org=
+> wrote:
+>
+> Add the port node to fix the binding schema check. Also update
+> mt8183-kukui to reference the new port node.
+>
+> Fixes: 88ec840270e6 ("arm64: dts: mt8183: Add dsi node")
+> Fixes: 27eaf34df364 ("arm64: dts: mt8183: config dsi node")
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on eca631b8fe808748d7585059c4307005ca5c5820]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Per-Daniel-Olsson/dt-bindings-iio-light-Document-TI-OPT4060-RGBW-sensor/20241015-224128
-base:   eca631b8fe808748d7585059c4307005ca5c5820
-patch link:    https://lore.kernel.org/r/20241015143713.2017626-3-perdaniel.olsson%40axis.com
-patch subject: [PATCH v3 2/2] iio: light: Add support for TI OPT4060 color sensor
-config: powerpc64-randconfig-r063-20241017 (https://download.01.org/0day-ci/archive/20241017/202410171258.CFrNPzC1-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241017/202410171258.CFrNPzC1-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410171258.CFrNPzC1-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/iio/light/opt4060.c:836:2: warning: label at end of compound statement is a C2x extension [-Wc2x-extensions]
-     836 |         }
-         |         ^
-   1 warning generated.
-
-
-vim +836 drivers/iio/light/opt4060.c
-
-   807	
-   808	static int opt4060_write_event(struct iio_dev *indio_dev,
-   809				       const struct iio_chan_spec *chan,
-   810				       enum iio_event_type type,
-   811				       enum iio_event_direction dir,
-   812				       enum iio_event_info info,
-   813				       int val, int val2)
-   814	{
-   815		struct opt4060_chip *chip = iio_priv(indio_dev);
-   816	
-   817		switch (info) {
-   818		case IIO_EV_INFO_VALUE:
-   819			if (chan->type == IIO_INTENSITY && type == IIO_EV_TYPE_THRESH) {
-   820				u32 th_lo, th_hi;
-   821	
-   822				if (opt4060_get_thresholds(chip, &th_lo, &th_hi))
-   823					return -EFAULT;
-   824				if (dir == IIO_EV_DIR_FALLING)
-   825					th_lo = val;
-   826				else if (dir == IIO_EV_DIR_RISING)
-   827					th_hi = val;
-   828				if (opt4060_set_thresholds(chip, th_lo, th_hi))
-   829					return -EFAULT;
-   830				return 0;
-   831			}
-   832			break;
-   833		case IIO_EV_INFO_PERIOD:
-   834			return opt4060_write_ev_period(chip, val, val2);
-   835		default:
- > 836		}
-   837		return -EINVAL;
-   838	}
-   839	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
