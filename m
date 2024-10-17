@@ -1,86 +1,72 @@
-Return-Path: <devicetree+bounces-112265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1A79A1915
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 05:06:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 559E69A1937
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 05:12:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 692481F2149C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 03:06:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0058A1F214AA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 03:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E845618C350;
-	Thu, 17 Oct 2024 03:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE817E583;
+	Thu, 17 Oct 2024 03:12:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="et5cHCHT"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="NsddcrC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A9F017E46E;
-	Thu, 17 Oct 2024 03:04:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C08351F94D;
+	Thu, 17 Oct 2024 03:12:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729134282; cv=none; b=pJh01+RrB3D4NV1/lV86pGrrCYvBhvMK6P/YRxUbg/vIPW50UdZjU5WEGNLtO97NLdvyMpF9ZMZnc28NFhb8DGRxho+L78lgUztsejtfrdCJRrCBKUqaUTGMcHA6qyFSmEOCn0SoKuh7LwxjYqUthfc4SGkOL2ZuKRs+6P6YcCs=
+	t=1729134729; cv=none; b=Do7s8/429AyEKtYKyRY0FF0KpgP5UIxSZwNin4PxD2xlZsdFyWon//XGIG58A6XfTPP77nQ0LM6b0w4f5N7SR6MVj1p8cukUjWS9dwhG+OGV5oN1qxzAO/LrQQrqht+MXFMBAaN1bF7+hYnVBLR63WdqfTigwuKa6IcciOR4ShQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729134282; c=relaxed/simple;
-	bh=eBFW8CfQ3gEDPL7ZftKPyZ/FKbZzXRdT+yLK3E1jol0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=vGd12qDeKvhO17urW9ry+d5C4vEiw6FloGNoTZ10UY2oStDqM1aHWewKFR0u7Q78ma+gtVfWphw5Et183ZEfE3nP5uU/XjUA2UL39JBKNL84dwfurNBLUUIHeY4u1MM407zFzWvYdSBrvujPVBg00VwKy6hmYQKsZLSkIlhrCHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=et5cHCHT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49GIoWCe011837;
-	Thu, 17 Oct 2024 03:04:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=ksjmpu+gP6F
-	6t3NW+fwH7MutOFcoJ/x3YG3lGuhFixw=; b=et5cHCHTlBgcDQJG0TKTEjU74tW
-	hAoJwziJ2sk180Zz185Io7eYSyn5eTk1RM0OcB0p/mAnD/FvC9xeicmZNRHej0Cz
-	VRzmQqy/MeqTEe0Ew87R21PHCqhTsxPxF+94mz4MMfpllRZmlk5ZS938micUdQFm
-	x8vhfB8hhRN6NyE0D0iT979MCKeL2oCxdmfkciFY0AOKBTp+TlP9JQPIr0WClZW0
-	akwLSI93jVMT5kKgVGQF5eClpjiNf34atdChhZF/icaKMMmmJP0AOx3ULDa7bZnW
-	XvMySEPcwsLkrqd9zKMzZrPyt/FBSL16LaVXcpQp3YWO0+0GelnfUwd7DLw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42abm5jhqd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 03:04:22 +0000 (GMT)
-Received: from pps.filterd (NALASPPMTA05.qualcomm.com [127.0.0.1])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 49H34JWW028360;
-	Thu, 17 Oct 2024 03:04:21 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 42aj55ku18-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 03:04:21 +0000
-Received: from NALASPPMTA05.qualcomm.com (NALASPPMTA05.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 49H301hi021671;
-	Thu, 17 Oct 2024 03:04:21 GMT
-Received: from hu-devc-lv-u22-c.qualcomm.com (hu-qianyu-lv.qualcomm.com [10.81.25.114])
-	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 49H34L1A028403
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 03:04:21 +0000
-Received: by hu-devc-lv-u22-c.qualcomm.com (Postfix, from userid 4098150)
-	id 164CB650; Wed, 16 Oct 2024 20:04:21 -0700 (PDT)
-From: Qiang Yu <quic_qianyu@quicinc.com>
-To: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
-        robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
-        quic_devipriy@quicinc.com
-Cc: dmitry.baryshkov@linaro.org, kw@linux.com, lpieralisi@kernel.org,
-        neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, johan+linaro@kernel.org,
-        Qiang Yu <quic_qianyu@quicinc.com>
-Subject: [PATCH v7 7/7] arm64: dts: qcom: x1e80100: Add support for PCIe3 on x1e80100
-Date: Wed, 16 Oct 2024 20:04:12 -0700
-Message-Id: <20241017030412.265000-8-quic_qianyu@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241017030412.265000-1-quic_qianyu@quicinc.com>
-References: <20241017030412.265000-1-quic_qianyu@quicinc.com>
+	s=arc-20240116; t=1729134729; c=relaxed/simple;
+	bh=0IkbNxOYpWXhsI2aop9kBqve+SFPotsqZp42C7oEock=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=auOO+USocBeAG7MTq7xyGVem2DUBZ3XBkeVpQB2+BHLZF16AXxokI1+9be365lRdaIfhnvGvhkBSf5Fr9mSDSHA1ZdXy/bnzmvO7DGKeN/wKQo2CzoS1FJPFS3oNS/kUdAACUAefQwTF77VKZOsrXTy+N+it4XgOTL1PVslEA9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=NsddcrC1; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 802D488E1B;
+	Thu, 17 Oct 2024 05:12:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1729134723;
+	bh=wNosOTgIHyHlJ/O2cQTioP0e+HMKQiAOT0yUIRwpr7Q=;
+	h=From:To:Cc:Subject:Date:From;
+	b=NsddcrC1DsO83rFLHFQf8qad3Q1V5IN/EmarqxLMCadbeB/sdN9DUMhS8e9CRflJC
+	 uAj8pZesrs1YsVx6xy8thEDeJxYm1RdzrCuWK3I18wL4RpKQ8RU4fqHPWjMwMxo/uW
+	 mHowOGo9iJTQ+fBE6Xk6O806PKKniWhbtvJ16fpCcrzgIsDcRyP5DwAHGu4ofy0+r9
+	 I7A3qBMhGAJlw3H7putLDAVMkAG4YdkL9am/bId8l6tNSnivNSd7T/BpHfmSn3J3hV
+	 cnSmySnknIEbyoF2WNBdUvi1KutxxbeJAhUJ0EzyHxHpItphHkWyOHI0DphevzhyaK
+	 PeWixrh6iAgrw==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: kernel@dh-electronics.com,
+	Marek Vasut <marex@denx.de>,
+	Isaac Scott <isaac.scott@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liu Ying <victor.liu@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Yannic Moog <y.moog@phytec.de>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp-phyboard-pollux: Set Video PLL1 frequency to 506.8 MHz
+Date: Thu, 17 Oct 2024 05:11:20 +0200
+Message-ID: <20241017031146.157996-1-marex@denx.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,254 +74,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cTtxH9lpYaWT60EftiX-FzgVQLFh_two
-X-Proofpoint-GUID: cTtxH9lpYaWT60EftiX-FzgVQLFh_two
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- clxscore=1015 impostorscore=0 mlxscore=0 bulkscore=0 suspectscore=0
- lowpriorityscore=0 phishscore=0 priorityscore=1501 spamscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410170021
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Describe PCIe3 controller and PHY. Also add required system resources like
-regulators, clocks, interrupts and registers configuration for PCIe3.
+The LVDS panel on this device uses 72.4 MHz pixel clock, set IMX8MP_VIDEO_PLL1
+to 72.4 * 7 = 506.8 MHz so the LDB serializer and LCDIFv3 scanout engine can
+reach accurate pixel clock of exactly 72.4 MHz.
 
-Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Without this patch, the Video PLL1 frequency is the default set in imx8mp.dtsi
+which is 1039.5 MHz, which divides down to inaccurate pixel clock of 74.25 MHz
+which works for this particular panel by sheer chance.
+
+Stop taking that chance and set correct accurate pixel clock frequency instead.
+
+Fixes: 326d86e197fc ("arm64: dts: imx8mp-phyboard-pollux-rdk: add etml panel support")
+Reported-by: Isaac Scott <isaac.scott@ideasonboard.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 204 ++++++++++++++++++++++++-
- 1 file changed, 203 insertions(+), 1 deletion(-)
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Isaac Scott <isaac.scott@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Liu Ying <victor.liu@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Yannic Moog <y.moog@phytec.de>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+Note: I do not have the board, but Isaac reported they tested it successfully.
+      TB would be nice.
+---
+ .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts     | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index a36076e3c56b..c615c930cf0c 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -744,7 +744,7 @@ gcc: clock-controller@100000 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+index 50debe821c421..9c102acb8052c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+@@ -218,6 +218,18 @@ ldb_lvds_ch1: endpoint {
+ 	};
+ };
  
- 			clocks = <&bi_tcxo_div2>,
- 				 <&sleep_clk>,
--				 <0>,
-+				 <&pcie3_phy>,
- 				 <&pcie4_phy>,
- 				 <&pcie5_phy>,
- 				 <&pcie6a_phy>,
-@@ -2907,6 +2907,208 @@ mmss_noc: interconnect@1780000 {
- 			#interconnect-cells = <2>;
- 		};
- 
-+		pcie3: pcie@1bd0000 {
-+			device_type = "pci";
-+			compatible = "qcom,pcie-x1e80100";
-+			reg = <0x0 0x01bd0000 0x0 0x3000>,
-+			      <0x0 0x78000000 0x0 0xf1d>,
-+			      <0x0 0x78000f40 0x0 0xa8>,
-+			      <0x0 0x78001000 0x0 0x1000>,
-+			      <0x0 0x78100000 0x0 0x100000>,
-+			      <0x0 0x01bd3000 0x0 0x1000>;
-+			reg-names = "parf",
-+				    "dbi",
-+				    "elbi",
-+				    "atu",
-+				    "config",
-+				    "mhi";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			ranges = <0x01000000 0x0 0x00000000 0x0 0x78200000 0x0 0x100000>,
-+				 <0x02000000 0x0 0x78300000 0x0 0x78300000 0x0 0x3d00000>,
-+				 <0x03000000 0x7 0x40000000 0x7 0x40000000 0x0 0x40000000>;
-+			bus-range = <0x00 0xff>;
++&media_blk_ctrl {
++	/*
++	 * The LVDS panel on this device uses 72.4 MHz pixel clock,
++	 * set IMX8MP_VIDEO_PLL1 to 72.4 * 7 = 506.8 MHz so the LDB
++	 * serializer and LCDIFv3 scanout engine can reach accurate
++	 * pixel clock of exactly 72.4 MHz.
++	 */
++	assigned-clock-rates = <500000000>, <200000000>,
++			       <0>, <0>, <500000000>,
++			       <506800000>;
++};
 +
-+			dma-coherent;
-+
-+			linux,pci-domain = <3>;
-+			num-lanes = <8>;
-+
-+			interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 769 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 671 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi0",
-+					  "msi1",
-+					  "msi2",
-+					  "msi3",
-+					  "msi4",
-+					  "msi5",
-+					  "msi6",
-+					  "msi7",
-+					  "global";
-+
-+			#interrupt-cells = <1>;
-+			interrupt-map-mask = <0 0 0 0x7>;
-+			interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 2 &intc 0 0 GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 3 &intc 0 0 GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 4 &intc 0 0 GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			clocks = <&gcc GCC_PCIE_3_AUX_CLK>,
-+				 <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
-+				 <&gcc GCC_PCIE_3_MSTR_AXI_CLK>,
-+				 <&gcc GCC_PCIE_3_SLV_AXI_CLK>,
-+				 <&gcc GCC_PCIE_3_SLV_Q2A_AXI_CLK>,
-+				 <&gcc GCC_CFG_NOC_PCIE_ANOC_NORTH_AHB_CLK>,
-+				 <&gcc GCC_CNOC_PCIE_NORTH_SF_AXI_CLK>;
-+			clock-names = "aux",
-+				      "cfg",
-+				      "bus_master",
-+				      "bus_slave",
-+				      "slave_q2a",
-+				      "noc_aggr",
-+				      "cnoc_sf_axi";
-+
-+			assigned-clocks = <&gcc GCC_PCIE_3_AUX_CLK>;
-+			assigned-clock-rates = <19200000>;
-+
-+			interconnects = <&pcie_south_anoc MASTER_PCIE_3 QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+					 &cnoc_main SLAVE_PCIE_3 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "pcie-mem",
-+					     "cpu-pcie";
-+
-+			resets = <&gcc GCC_PCIE_3_BCR>,
-+				 <&gcc GCC_PCIE_3_LINK_DOWN_BCR>;
-+			reset-names = "pci",
-+				      "link_down";
-+
-+			power-domains = <&gcc GCC_PCIE_3_GDSC>;
-+
-+			phys = <&pcie3_phy>;
-+			phy-names = "pciephy";
-+
-+			operating-points-v2 = <&pcie3_opp_table>;
-+
-+			status = "disabled";
-+
-+			pcie3_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				/* GEN 1 x1 */
-+				opp-2500000 {
-+					opp-hz = /bits/ 64 <2500000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+					opp-peak-kBps = <250000 1>;
-+				};
-+
-+				/* GEN 1 x2 and GEN 2 x1 */
-+				opp-5000000 {
-+					opp-hz = /bits/ 64 <5000000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+					opp-peak-kBps = <500000 1>;
-+				};
-+
-+				/* GEN 1 x4 and GEN 2 x2 */
-+				opp-10000000 {
-+					opp-hz = /bits/ 64 <10000000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+					opp-peak-kBps = <1000000 1>;
-+				};
-+
-+				/* GEN 1 x8 and GEN 2 x4 */
-+				opp-20000000 {
-+					opp-hz = /bits/ 64 <20000000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+					opp-peak-kBps = <2000000 1>;
-+				};
-+
-+				/* GEN 2 x8 */
-+				opp-40000000 {
-+					opp-hz = /bits/ 64 <40000000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+					opp-peak-kBps = <4000000 1>;
-+				};
-+
-+				/* GEN 3 x1 */
-+				opp-8000000 {
-+					opp-hz = /bits/ 64 <8000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+					opp-peak-kBps = <984500 1>;
-+				};
-+
-+				/* GEN 3 x2 and GEN 4 x1 */
-+				opp-16000000 {
-+					opp-hz = /bits/ 64 <16000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+					opp-peak-kBps = <1969000 1>;
-+				};
-+
-+				/* GEN 3 x4 and GEN 4 x2 */
-+				opp-32000000 {
-+					opp-hz = /bits/ 64 <32000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+					opp-peak-kBps = <3938000 1>;
-+				};
-+
-+				/* GEN 3 x8 and GEN 4 x4 */
-+				opp-64000000 {
-+					opp-hz = /bits/ 64 <64000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+					opp-peak-kBps = <7876000 1>;
-+				};
-+
-+				/* GEN 4 x8 */
-+				opp-128000000 {
-+					opp-hz = /bits/ 64 <128000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+					opp-peak-kBps = <15753000 1>;
-+				};
-+			};
-+		};
-+
-+		pcie3_phy: phy@1be0000 {
-+			compatible = "qcom,x1e80100-qmp-gen4x8-pcie-phy";
-+			reg = <0 0x01be0000 0 0x10000>;
-+
-+			clocks = <&gcc GCC_PCIE_3_PHY_AUX_CLK>,
-+				 <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
-+				 <&tcsr TCSR_PCIE_8L_CLKREF_EN>,
-+				 <&gcc GCC_PCIE_3_PHY_RCHNG_CLK>,
-+				 <&gcc GCC_PCIE_3_PIPE_CLK>,
-+				 <&gcc GCC_PCIE_3_PIPEDIV2_CLK>;
-+			clock-names = "aux",
-+				      "cfg_ahb",
-+				      "ref",
-+				      "rchng",
-+				      "pipe",
-+				      "pipediv2";
-+
-+			resets = <&gcc GCC_PCIE_3_PHY_BCR>,
-+				 <&gcc GCC_PCIE_3_NOCSR_COM_PHY_BCR>;
-+			reset-names = "phy",
-+				      "phy_nocsr";
-+
-+			assigned-clocks = <&gcc GCC_PCIE_3_PHY_RCHNG_CLK>;
-+			assigned-clock-rates = <100000000>;
-+
-+			power-domains = <&gcc GCC_PCIE_3_PHY_GDSC>;
-+
-+			#clock-cells = <0>;
-+			clock-output-names = "pcie3_pipe_clk";
-+
-+			#phy-cells = <0>;
-+
-+			status = "disabled";
-+		};
-+
- 		pcie6a: pci@1bf8000 {
- 			device_type = "pci";
- 			compatible = "qcom,pcie-x1e80100";
+ &snvs_pwrkey {
+ 	status = "okay";
+ };
 -- 
-2.34.1
+2.45.2
 
 
