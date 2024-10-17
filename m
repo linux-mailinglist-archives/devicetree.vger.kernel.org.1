@@ -1,170 +1,203 @@
-Return-Path: <devicetree+bounces-112285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17C779A1AD5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 08:41:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 508499A1ADA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 08:44:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D15AD285A2F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:41:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C89431F21450
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E70B1922CF;
-	Thu, 17 Oct 2024 06:41:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B74B192594;
+	Thu, 17 Oct 2024 06:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dBxVzCEs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EWcJDhEQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEDE318E04E;
-	Thu, 17 Oct 2024 06:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E1714A91;
+	Thu, 17 Oct 2024 06:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729147280; cv=none; b=S4BJ50h+IrqElh+uLvydI03cir2qGjtocvRRYs4JGenBxpEi4AvVKLmZ8hNsxCOWCTEkBESoGFc2SflkaU9wBT+bFX2X8yPkis/7PbADZpbg01R5w1sTBBGWv9mxCTilhc+stIL8fryoUSWDrNaduJCY5EsrExQTcDR8tC5rWqQ=
+	t=1729147438; cv=none; b=C4r6ubNxfRqZanO1Xq5pU1I9pKElJxA3KzTfp8A7rM3Zs8hfOJLfMGuNwgjrd1H+UNRxr02n+m9VUg1TBOWA767WgMk9M3tTcidPOF9yzc4pzAefLkGh/xiKluNNvmo89NhpmR9zjzWvPMl5E8Z1vhLsf1SECjrhFjvKLHW7Hvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729147280; c=relaxed/simple;
-	bh=UKK7eZz1Pu+wcpVxUWu2FCVh5OPes/KX5YioqbbLOzU=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P3NOwWhxcSmS4dO+7V2iqDGpFO6iYAfOv4IxDOSADmgcw28tRVt4iXT7f+g/UIt/b0ZkVhJYGaQgD0a6TR/ACj75JdTQytMTdCIGeA5Gkdr662XqDVCPEw3fagLP4bJC02QB2yoqTJGq6d4lN9Jsz/xuGugiAkwpjG28ydQE+KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dBxVzCEs; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49H6ekfq002881;
-	Thu, 17 Oct 2024 01:40:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1729147246;
-	bh=SXZs1tZeO5dv/QQF+M6mQqAm8Zl6lz5X0ZWRJcpLVxk=;
-	h=From:To:CC:Subject:Date;
-	b=dBxVzCEs2VvkJCD2urQId1wklK1n+2wtc2w8ir0YWIIeBir1TETj4ycdYD6lZDbT5
-	 qL9NsL/YbfwcGjiWn3r0gy/fqJu8AkSY2qkfPyxeyweKM7nawmsIV/gFR2+uxIdZTa
-	 TnePGIBG9H0/79a2SsGgq5DMnageGauCKI/olpyE=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49H6ek3J030539
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 17 Oct 2024 01:40:46 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 17
- Oct 2024 01:40:45 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 17 Oct 2024 01:40:45 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49H6efL4009875;
-	Thu, 17 Oct 2024 01:40:42 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j784s4-evm: Add overlay for USB2.0 Type A functionality
-Date: Thu, 17 Oct 2024 12:10:41 +0530
-Message-ID: <20241017064041.880119-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.40.1
+	s=arc-20240116; t=1729147438; c=relaxed/simple;
+	bh=Iz4Etax56QYWeKwlS7GNbcrEUuMkc+Ke6Ajc6SwFfxw=;
+	h=Date:From:Subject:To:Cc:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CHUxkk1mGl20nzkWgYjEmVa6W0RMXiOp0zsMnyKsl0T4lehiHV1133bech/RT5Glwk9vJUQmJognhOLJI7kTSNxSIS/IBYIlKdp8mcPaQW6TG1GIUJ0xaJC65Sv8NxkpBllXJiIGwrpIIMfL0p1M7XCNngfknHUPe09N2bBBSqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EWcJDhEQ; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5c9428152c0so756032a12.1;
+        Wed, 16 Oct 2024 23:43:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729147433; x=1729752233; darn=vger.kernel.org;
+        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mYcD/jtdAJ+4/L32a30+2vo9k1U4HQBEXCOgxpnG3RM=;
+        b=EWcJDhEQBW3Delc2s7pr3Zpy1GqDECzk75azx/74QloWXukZVuMRWLVFDXCH5I4Khm
+         rRdt9OIT6fdfiJhbR0NO/1I+kqHe33aiDI30cYoPBoze6hI+chJ3rJKmSaNJZ/gP23M7
+         dR/ue6zm9QM8IdlKQDZAV8iYcOVtk3sfJiFF42SWL1uXpCiInsjW9xLBnyHJ3MNiQPcK
+         /oKvnplukWPAm1DfaVZJA+HVD+G/7oVVOsSih+0ZTk8+pgp0ID1WuYtcTdqqDiq3DMHg
+         m0xPvaDDX5Uw0lZicAq26QtAL+eUG/G/SN2FXBVRg3lStYYViIpZlyPByLeiYNbK8W+S
+         oQbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729147433; x=1729752233;
+        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mYcD/jtdAJ+4/L32a30+2vo9k1U4HQBEXCOgxpnG3RM=;
+        b=QTeCw/DMab+6WN/+11JcDPqZQRUhV1VusdX16BA1pAtHw/tTM3li+MWEFTHkDe0uIW
+         dX4A9XklklcAZE0RFORDQuqNM3C37JCDiN+WkhaCCP4tGYchXrlnE3YegE7LGld80eHV
+         yk6K5DcLetnrwB0lAsSX3Pb6dMeBF41CIR86BO4SjjQNmJTU6jk6k4j5WWuEasNYSBsu
+         zhqG554jUiOr4hbbWvQYOLBJmioHT5ip31uee2RKTUc3VRFgu/5M/prGFtgLlQ2DF8sV
+         fw+gRHC/7ba/TuVd7+gN3OkzIVnUZHtX2cwQkZcfiRDVFPumWv3B0dKPr3ZNskgg0qgA
+         t7ag==
+X-Forwarded-Encrypted: i=1; AJvYcCVzJfzNBNiTG+EztDOeAcbQ8vVEBsssejTnj8f66XkZx2rrCQkdQRqjHwsqMceyYR6Qwi7DOmSW+gPJhPmSzWg=@vger.kernel.org, AJvYcCWwiT0571A7bvpFkrqjiNBXxELKH4tLE+be7B8R8iqE1aIXBYP/5W7VVvdFSR9mdHlOuhryCUIxaXXJmW1c@vger.kernel.org, AJvYcCXbj/OA3E9WSRRXgJYL+5h73A/ryzNT2zAy3pgjEzOzO+QzbJMa/5to/y5SWG4hbhozdR86480sRC32@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcYt8cXzF3x2h0EVCk4fxrxjG/LzCKs4YuOnxGK4LALQamr5er
+	e7KvBqv6cJHHM1wgPCDn+NbzgYpKyVilCwQn1r8SQHaQPVXi6NPX
+X-Google-Smtp-Source: AGHT+IFZsVgs21n7csKGlALlguHVpL+24Dw635J/TiEfmVftcGCaSNRhB5+QSoo3kSsvKr84n2LrXA==
+X-Received: by 2002:a17:907:96a7:b0:a9a:6d7:9c4 with SMTP id a640c23a62f3a-a9a34d3b465mr668339966b.12.1729147433207;
+        Wed, 16 Oct 2024 23:43:53 -0700 (PDT)
+Received: from [10.31.14.61] ([95.183.227.31])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a29740e1fsm252028766b.51.2024.10.16.23.43.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 23:43:52 -0700 (PDT)
+Date: Thu, 17 Oct 2024 09:43:44 +0300
+From: yassine.oudjana@gmail.com
+Subject: Re: [PATCH 2/2] watchdog: mtk_wdt: Add support for MT6735 WDT
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+	<linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Yassine Oudjana <y.oudjana@protonmail.com>, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Message-Id: <WOMHLS.HLNVQWWVER5T1@gmail.com>
+In-Reply-To: <9bd327fb-5f67-453d-947d-4742134b32b1@collabora.com>
+References: <20230302124015.75546-1-y.oudjana@protonmail.com>
+	<20230302124015.75546-3-y.oudjana@protonmail.com>
+	<0398e95e-dbb8-2e41-7b36-12e36b8729f0@collabora.com>
+	<f9b09f59-a222-4b75-a6ef-c7fb7c2cff9e@gmail.com>
+	<9bd327fb-5f67-453d-947d-4742134b32b1@collabora.com>
+X-Mailer: geary/46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii; format=flowed
 
-The USB0 instance of the USB controller on the J784S4 SoC supports a single
-USB interface with the possible choices being:
-1. USB3.1 Gen1 Type C interface
-2. Two USB2.0 Type A interfaces via an on-board USB Hub.
 
-Add overlay to enable USB2.0 Type A functionality by:
-1. Configuring the "USB2.0_MUX_SEL" mux to enable the USB Hub connected to
-   the two USB2.0 Type A interfaces on the J784S4-EVM.
-2. Set the Dual-Role Mode to Host.
+On Wed, Oct 16 2024 at 11:56:31 +02:00:00, AngeloGioacchino Del Regno 
+<angelogioacchino.delregno@collabora.com> wrote:
+> Il 16/10/24 11:26, Yassine Oudjana ha scritto:
+>> On 02/03/2023 6:15 pm, AngeloGioacchino Del Regno wrote:
+>>> Il 02/03/23 13:40, Yassine Oudjana ha scritto:
+>>>> From: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>> 
+>>>> Add support for the watchdog timer/top reset generation unit found 
+>>>> on MT6735.
+>>>> Disable WDT_MODE_IRQ_EN in mtk_wdt_restart in order to make TOPRGU 
+>>>> assert
+>>>> the SYSRST pin instead of issuing an IRQ. This change may be 
+>>>> needed in other
+>>>> SoCs as well.
+>>>> 
+>>>> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>> ---
+>>>>   drivers/watchdog/mtk_wdt.c | 12 ++++++++++++
+>>>>   1 file changed, 12 insertions(+)
+>>>> 
+>>>> diff --git a/drivers/watchdog/mtk_wdt.c 
+>>>> b/drivers/watchdog/mtk_wdt.c
+>>>> index a9c437598e7e..5a7a7b2b3727 100644
+>>>> --- a/drivers/watchdog/mtk_wdt.c
+>>>> +++ b/drivers/watchdog/mtk_wdt.c
+>>>> @@ -10,6 +10,7 @@
+>>>>    */
+>>>>   #include <dt-bindings/reset/mt2712-resets.h>
+>>>> +#include <dt-bindings/reset/mediatek,mt6735-wdt.h>
+>>>>   #include <dt-bindings/reset/mediatek,mt6795-resets.h>
+>>>>   #include <dt-bindings/reset/mt7986-resets.h>
+>>>>   #include <dt-bindings/reset/mt8183-resets.h>
+>>>> @@ -82,6 +83,10 @@ static const struct mtk_wdt_data mt2712_data = {
+>>>>       .toprgu_sw_rst_num = MT2712_TOPRGU_SW_RST_NUM,
+>>>>   };
+>>>> +static const struct mtk_wdt_data mt6735_data = {
+>>>> +    .toprgu_sw_rst_num = MT6735_TOPRGU_RST_NUM,
+>>>> +};
+>>>> +
+>>>>   static const struct mtk_wdt_data mt6795_data = {
+>>>>       .toprgu_sw_rst_num = MT6795_TOPRGU_SW_RST_NUM,
+>>>>   };
+>>>> @@ -187,9 +192,15 @@ static int mtk_wdt_restart(struct 
+>>>> watchdog_device *wdt_dev,
+>>>>   {
+>>>>       struct mtk_wdt_dev *mtk_wdt = watchdog_get_drvdata(wdt_dev);
+>>>>       void __iomem *wdt_base;
+>>>> +    u32 reg;
+>>>>       wdt_base = mtk_wdt->wdt_base;
+>>>> +    /* Enable reset in order to issue a system reset instead of 
+>>>> an IRQ */
+>>>> +    reg = readl(wdt_base + WDT_MODE);
+>>>> +    reg &= ~WDT_MODE_IRQ_EN;
+>>>> +    writel(reg | WDT_MODE_KEY, wdt_base + WDT_MODE);
+>>> 
+>>> This is unnecessary and already done in mtk_wdt_start().
+>>> If you think you *require* this snippet, you most likely 
+>>> misconfigured the
+>>> devicetree node for your device :-)
+>> 
+>> Ok so mtk_wdt_start is never called.
+> 
+> mtk_wdt_init() says
+> 
+> 	if (readl(wdt_base + WDT_MODE) & WDT_MODE_EN) {
+> 		set_bit(WDOG_HW_RUNNING, &wdt_dev->status);
+> 		mtk_wdt_set_timeout(wdt_dev, wdt_dev->timeout);
+> 	}
+> 
+> Your bootloader starts the watchdog. This driver will set 
+> WDOG_HW_RUNNING and
+> will hence prevent calling the .start() callback - that's why.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+It doesn't.
 
-Hello,
+WDT_MODE reads 0x5c in mtk_wdt_init if you want to see exactly how the 
+bootloader is configuring it.
 
-This patch is based on linux-next tagged next-20241016.
+> 
+>> I'm still not quite sure how the watchdog works but it seems to me 
+>> like it's supposed to be started from userspace.
+> 
+> No, it's not meant to be just only used in userspace.
+> 
+>> I also see some drivers calling it in probe.
+>> 
+>> Say I don't want to use the watchdog (which I don't, all I need from 
+>> TOPRGU is the resets, I don't care about the watchdog). Not 
+>> starting the watchdog means I can't reset the system because all 
+>> mtk_wdt_restart will do is make TOPRGU send me an IRQ that I have 
+>> no use for.
+> 
+> If you don't want to use the watchdog, then you don't need to care 
+> about bark
+> interrupts and you don't need any mtk_wdt_restart() functionality at 
+> all :-)
 
-Logs validating USB2.0 Type A interface on the J784S4-EVM:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/41bbcb39f331aa3bb6fd4dd694015189
+I need mtk_wdt_restart to restart my system. I shouldn't need to take 
+off my phone's back cover and remove the battery every time :)
 
-Regards,
-Siddharth.
+> 
+I think what Guenter said makes sense. We should make sure the watchdog 
+is started when calling mtk_wdt_restart or at least configured in such 
+a way that we are sure it will issue a system reset.
 
- arch/arm64/boot/dts/ti/Makefile               |  4 +++
- .../arm64/boot/dts/ti/k3-j784s4-evm-usb2.dtso | 26 +++++++++++++++++++
- 2 files changed, 30 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usb2.dtso
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index bcd392c3206e..fc75d0365558 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -124,6 +124,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-pcie0-pcie1-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usb2.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
- 
- # Build time test only, enabled by CONFIG_OF_ALL_DTBS
-@@ -200,6 +201,8 @@ k3-j784s4-evm-pcie0-pcie1-ep-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-pcie0-pcie1-ep.dtbo
- k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtbo
-+k3-j784s4-evm-usb2-dtbs := k3-j784s4-evm.dtb \
-+	k3-j784s4-evm-usb2.dtbo
- k3-j784s4-evm-usxgmii-exp1-exp2-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
- dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
-@@ -227,6 +230,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtb \
- 	k3-j784s4-evm-pcie0-pcie1-ep.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtb \
-+	k3-j784s4-evm-usb2.dtbo \
- 	k3-j784s4-evm-usxgmii-exp1-exp2.dtb
- 
- # Enable support for device-tree overlays
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm-usb2.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-evm-usb2.dtso
-new file mode 100644
-index 000000000000..02f97819aa82
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-usb2.dtso
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT overlay for USB2.0 Type A functionality on J784S4-EVM.
-+ *
-+ * J784S4 EVM Product Link: https://www.ti.com/tool/J784S4XEVM
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&exp2 {
-+	p12-hog {
-+		/* P12 - USB2.0_MUX_SEL */
-+		gpio-hog;
-+		gpios = <12 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+	};
-+};
-+
-+&usb0 {
-+	dr_mode = "host";
-+};
--- 
-2.40.1
 
 
