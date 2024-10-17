@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-112492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E499A26D0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:35:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC35E9A26D4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:35:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A5041F274C9
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 15:35:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ECE41F27B85
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 15:35:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8A21DE8AE;
-	Thu, 17 Oct 2024 15:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E13D1DEFD2;
+	Thu, 17 Oct 2024 15:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AH4t8oE5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="brNnxV2A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19601D47AC;
-	Thu, 17 Oct 2024 15:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264C51DEFCD;
+	Thu, 17 Oct 2024 15:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729179328; cv=none; b=oZ39Wn2D8BTLI8p/e0GuBsPQrTDYXs51QsMZXbSdZqMFwMopBJ6xOFnOJDDGdpzvF4SYFeK8bDKhAjECmrshXJRoM9xuG2I9UE7hCk/0vq/TB0Fu09p+K5qtTZQryX1rb5ecogPUOS8l6P4mSB+wZwoak/QtalHNfkBMIjY+DJo=
+	t=1729179332; cv=none; b=DKYtMFzo0ha/TG7yrrmjEluZewyhVDXpt561wqRlsOb3D48uD6M5CiREqLuHcqmA/b3cnsNKoN4EX66N79tkBBIUzaTNK1BM1XWAoYCP1/lYvPOI+dsqSX0Ra7/gTVJ6l6YHfKKFpwGwFBr4/T8A6mcn3swu7aqYtruXLHaZ/dE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729179328; c=relaxed/simple;
-	bh=29C4R99idAS+9fjDuZxCEpSiqsa1ZkROAapiNJBI0K8=;
+	s=arc-20240116; t=1729179332; c=relaxed/simple;
+	bh=poBaeIXGhWrOXxHqNDXA9/SiaWES5p961HT2/STyJzQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=skH++nJywn+Snh2l8nZg8zCzJn6zbWWGk0kd07AObi15XCTjLy2/f2mKgjNbhSGqME2hCNlMiIfeTpIaWYuCvAy6Kf0O8jCqOGGKJqPgMzlgL6BqJ8aX0dyb5hJmcuFcA/N4rbt3DAiifdJkEnTxpcHksxMumKLpgySBqqYF7J0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AH4t8oE5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DF4EC4CEC3;
-	Thu, 17 Oct 2024 15:35:22 +0000 (UTC)
+	 MIME-Version:Content-Type; b=NPvNaog4xl2PqQw0qoOmyBKnV1z6upNDzEIR9E4lwoGFTa1CUDLscGO5Cx9zbOwgL5bASE+IcA8Cvxs4LJEAhh5BQ+I2Ut3wb1ONtEJd5fhzoww7ghKPVX4ThgSvd2M4P728rJHVU8auVNmkXZDEbGC10nv/L9YrV5xU53CA0SM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=brNnxV2A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E9C3C4CEC3;
+	Thu, 17 Oct 2024 15:35:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729179327;
-	bh=29C4R99idAS+9fjDuZxCEpSiqsa1ZkROAapiNJBI0K8=;
+	s=k20201202; t=1729179332;
+	bh=poBaeIXGhWrOXxHqNDXA9/SiaWES5p961HT2/STyJzQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AH4t8oE50oilu20L51yoRxl7nbn6SldUjiTaCcXf57QuMK2pTEXaLPOAtYsDCXXuX
-	 XBWA/mdkeO3HxmpieRLRuWfZM6iJ5cJvnAnNjUr80JDwRbQRqrgNYllKnizEa/vmDe
-	 CcNxaYctg+m0AYuqWSoCbaCOi0znCKWAnNMzPfTb+H2lzgS65mKmzp6jS9qROgLeGb
-	 iGoi0w9jPl1h6Z+ZAM2BqMQ7gdyBphBg5Di2EQTxVqCuXlDjwE8ION/oNYvmwIBCU2
-	 m8d2fH+EqUDuKYI+Hcc9Wcg05J1yeumBa+hwEaFYTnREEFyl5thNflcDtugH+AHL8S
-	 VgAsOEi9FwokA==
+	b=brNnxV2APJL6CDVOruAOYWetiD0wY1K6o7Im04dQsDiBlwDAzik83b0miXsZ1sYKY
+	 tppdn3RcGe28cwVl4GbYpWHuFyqZ15U0wYLSCz/D3npInK4hsuuU+vNj/PlaZMYgeC
+	 6relWYfvShMr/MdoOM+AvUNtzoXrE3IC3GrcYgVqISUMd7Au7PbbYdww+/Uig2K76S
+	 xNPM99SjWsSlAs5Vsk8vKwL/wo3iBesF1KaAAGrVc1pjyz0fymaxnGw6Xd+8/FLT13
+	 g0w0kcpL59Q9z1CA6jyIWKZ0o6xn83ZwcHyQzEfkfrFPfoyZuTRWmbgrnR58c2Wpi6
+	 ZfwQoNJsfcr1g==
 From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Xin Liu <quic_liuxin@quicinc.com>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
- Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, 
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-scsi@vger.kernel.org, quic_jiegan@quicinc.com, 
- quic_aiquny@quicinc.com, quic_tingweiz@quicinc.com, 
- quic_sayalil@quicinc.com
-In-Reply-To: <20241017042300.872963-1-quic_liuxin@quicinc.com>
-References: <20241017042300.872963-1-quic_liuxin@quicinc.com>
-Subject: Re: (subset) [PATCH v1 0/4] Enable UFS on QCS615
-Message-Id: <172917932189.288841.5463892176207403335.b4-ty@kernel.org>
-Date: Thu, 17 Oct 2024 21:05:21 +0530
+To: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, heiko@sntech.de, Frank Wang <frawang.cn@gmail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com, 
+ tim.chen@rock-chips.com, yubing.zhang@rock-chips.com, 
+ Frank Wang <frank.wang@rock-chips.com>
+In-Reply-To: <20241017025230.28752-1-frawang.cn@gmail.com>
+References: <20241017025230.28752-1-frawang.cn@gmail.com>
+Subject: Re: (subset) [PATCH v2 1/3] dt-bindings: soc: rockchip: add rk3576
+ vo1-grf syscon
+Message-Id: <172917932783.288841.4239096557035814697.b4-ty@kernel.org>
+Date: Thu, 17 Oct 2024 21:05:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,18 +66,20 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Thu, 17 Oct 2024 12:22:56 +0800, Xin Liu wrote:
-> Add UFS support to the QCS615 Ride platform. The UFS host controller and
-> QMP UFS PHY hardware of QCS615 are derived from SM6115. Include the
-> relevant binding documents accordingly. Additionally, configure UFS-related
-> clock, power, and interconnect settings in the device tree.
+On Thu, 17 Oct 2024 10:52:28 +0800, Frank Wang wrote:
+> From: Frank Wang <frank.wang@rock-chips.com>
+> 
+> Add rockchip,rk3576-vo1-grf syscon compatible, the vo1-grf is
+> configured in usbdp phy driver.
 > 
 > 
 
 Applied, thanks!
 
-[1/4] dt-bindings: phy: Add QMP UFS PHY comptible for QCS615
-      commit: 6a612c86c8a5805c85fde359aa9c8aac6d5cba7a
+[2/3] dt-bindings: phy: rockchip-usbdp: add rk3576
+      commit: b3e804ab9aad465ba7285aa5daf83656d5efc59f
+[3/3] phy: rockchip: usbdp: add rk3576 device match data
+      commit: a76de028c619dd18f89786805bcc7bb4d379ea9f
 
 Best regards,
 -- 
