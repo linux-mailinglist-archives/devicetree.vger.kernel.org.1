@@ -1,151 +1,159 @@
-Return-Path: <devicetree+bounces-112455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8914B9A228A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 14:40:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB389A22AA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 14:45:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 088DBB2557D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 12:40:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93AA61C21075
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 12:45:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D5A1DDC23;
-	Thu, 17 Oct 2024 12:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C39E1DC1BD;
+	Thu, 17 Oct 2024 12:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ODnFXsYu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Et9Batdd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF8E1DDC0E
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 12:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFEA1D8E01;
+	Thu, 17 Oct 2024 12:45:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729168756; cv=none; b=XaJpe0jqcqejfuhO5yfuensR51/I/3dpX27J2RL67ZJzJcfwho8GegRd8IqiZR1xOrwWfWfPY7s/lISab3RnsxO4D/GVPetOtYSiV5XPsF7cUh7gc4nfxT+txjTavoYTMDluoaYDKY1IAXBRFHkJblfSQRWe6YxnemmOoGEZo/s=
+	t=1729169131; cv=none; b=STBiSj6lblmzRinXSF+qg4W7jZV9E2j7uhLbEXEeqHutwIC9FY7BjzQOYKsL8Xv0qrxmWDD3kcGsKPdA4QyKtnekhHHaGaCItKfCD9Kogbi70H3JTcZ8xw1W+WS+2NbPibEXUXJZ79JoIvkYeTU329pwdMc5Bg73Bb30W9S0HYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729168756; c=relaxed/simple;
-	bh=CmSgG8dgDVGowYqWp/vzfob7NQfDeXXWilwWB40CND8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=YjqCyQSCyzKMdpzdXAtgPuZxZRb7JeXEZW6shTYog8Ik440qlGSsAxusc7Izr6dBES4E2XSvkLPolvzLHIVK5clZORxiAN2UBJ+/FdFUeA0PjbnaJYIEsWQHd59iM6BsGaLxLfj/UkA7oFC37o02QpLG+dzMIQDBm4s4UIrDB3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ODnFXsYu; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37d50fad249so617152f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 05:39:11 -0700 (PDT)
+	s=arc-20240116; t=1729169131; c=relaxed/simple;
+	bh=deE5KMTn4KaOTECboAmoIAG9aFGuieYcidqotDmDEx4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=Dwg5Wgnx5BYhom253Qu6O4Bz1iEo8IHOOAUeeotk+Xlxjv5WwV7iMdboZ17f4p2UI+n391cw4n74kW6vPOmjfvxz6n2WJcIDp/DbQLcoFSQZ7jMHWAfn7MyE2jGD58Be8ws77BuCWsQf/mo1xn337O3zFJsjY5KabiAXR9+ePGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Et9Batdd; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43115887867so6427115e9.0;
+        Thu, 17 Oct 2024 05:45:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729168750; x=1729773550; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eLKbd68RzcxlFXK7q4vrGEd+fffJ1TMM8zv/7HYDcsQ=;
-        b=ODnFXsYuVqeN5imNxMuTsXP49rINnfJwbqB6dqlPqXJF1QCS4flU6hHbEdzl9vkPoD
-         JhiXnXVpauDasz71/s1st4xCUEJQyd056XN5/GCmTtwCfHCHEDsbsXVrx1ZzV1tL45LD
-         WdwnIGuoKHJH+WtB34GBxgJsCphjW6AFTpgAqCMm12tnGgGdOsUufQ0fyUuYh71tpMwD
-         emUto0uD3B4WUUNMv3y2yHaD7vclvjNuJi+S/8rLP6pW97i2J81iH0NoGgiAGp1LBvxJ
-         BRWr9YI/XkBEGO6V1wUY5bNyQ85l6I3H8nsIQnsAhbmTotKtoRvVRkhJZFnV6H6lWsXy
-         ZBeA==
+        d=gmail.com; s=20230601; t=1729169126; x=1729773926; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H/+innDKOF43hyWEtHatUGWD9jwLhMbIAvPNTvaYpoo=;
+        b=Et9BatddkRYKW2qTuN5bzVcYgoATkhSNYLCqnvlnsHvXfAZNc7UF5tSl3FBgyMD06D
+         IeCliyduGGc3LRRywjNNyUsKVmE6JUdpsVRi7gxkO8btHmB0nBn12gPlqDOyPW7aHnlc
+         YzD0/1E1qzhGbY1G1JNJUHresm0/TXmP3rTIfZmKuP8ikk6iZNAA6qmmrAR9GAxxuqwO
+         9Jw8NgSyH6RoxdIR31T7cbd6n9u+9O755LBa8qe7KiJVc4l50Np3yko8RRUrKaKiO7Ru
+         WrGd61RlB++2PmRmKoL/0aXyLD8XfbIPRLgiG+eHIReji4vVcb/xM/n8OMJBVrOT+sb8
+         +jtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729168750; x=1729773550;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eLKbd68RzcxlFXK7q4vrGEd+fffJ1TMM8zv/7HYDcsQ=;
-        b=euwEiC0doRgHFwfWznt+xqrzxLeS/lK40stxvYujBJM5Ax60BZfl+MH66AGFa0EKA0
-         BpAloD1Vv6kajvLY5SaAJXtZbA8HVpanO3eD7Ebs/LOIzw7BJudhUgzoAWlsWkCAB6qF
-         YsmQfxiBDCLOw2u+AvxzFinTTK83a5lb6NPN5N62ariq0CvMEzni+HoumJiMO00LP0U8
-         ZAgim2r+WXaik5YpCRTm/qpuZO/7Hbp8FUgOA/hPhd5ROp+plYBepdRtCA4fRtbv2YIE
-         kWWqxEC5A0a/jfJ6XlIzZkkLjA5+vc7RITPGGa/YL0vEYNky6makK4dXtQ7zc7WSleLI
-         alyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVBtUSCxhZG2D86e+g5U9XjAnyoGCBlaiE3yHhSocfoDsR8OOUDsrSrxdsYyFKNAcd/kD8gPlg2qjaW@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywr+O4opHRiFNA853X/0MT+IeRBdPWjKKvjo7LoU7Wq/6OEhecm
-	EjMnwvh0zRtkRSSEO1jXrU+Vg3p8Q3+zjRRMwJ4uKEQLWtT2mI6PWGjm4N4v85c=
-X-Google-Smtp-Source: AGHT+IG7ejxJJUoO3H77hYt2WNQRu3rm4oMZyvw11lFYzsiOaPe5DscdwmGO2D+HP8vSEzTm8Trfkg==
-X-Received: by 2002:a5d:5051:0:b0:37d:4fab:c194 with SMTP id ffacd0b85a97d-37d86bd59b0mr4879360f8f.25.1729168750204;
-        Thu, 17 Oct 2024 05:39:10 -0700 (PDT)
-Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fbf80a4sm7156250f8f.87.2024.10.17.05.39.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Oct 2024 05:39:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729169126; x=1729773926;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H/+innDKOF43hyWEtHatUGWD9jwLhMbIAvPNTvaYpoo=;
+        b=wwm1zjQ51L6lrCogQx0RHLUPIcxrrU3YJafadPokF28niAWiWxOjZVmTIf6D3gxfc1
+         2cOMGxeONZqZwVs0a80WsDbYMPUSdZSWC8CX6HO1ce3vfWLmcJD4U0Aj+BzSGxXgPJcA
+         0hWyQ6ZbHm1151Jq6cNedtT0g9xxaiLkHM7OjI8wl6kXQCdEEQkQsFZHWcyG0ayx/6tz
+         U1sVHzcd7QI54EJjMxr/HFZUS6/h++TFKIZQn8t7mgBunWxJVm0aKNDwejZRCUEE93b/
+         QdvBHVQbR31o0aP0YLvpI6b5BcnPWCiFcSEVx5E5S9YJT4DQ8zUaOXGeN0P/B/ubnR6Z
+         P60w==
+X-Forwarded-Encrypted: i=1; AJvYcCUDFP6d9WRjwUj/AgjVPXDTuUMQTF8QjLJ93ESjhBNs/4mx9tjjf7HxuAtDDHeSQNoJtwe7cNUtyCzT@vger.kernel.org, AJvYcCV22fTSdtWhatTRPhZnjZD+0Nz9rnZHfzX56W82PWgPHUcJCbV6sAEeyBN0b+TCsc+7gpKWDB7LKTEsODT6@vger.kernel.org, AJvYcCVqeSIE9/0onVCwWUN3oH9e/y/Iwf98m6Wahqvjk+IA15nd6wmjnyzhN7YzzVF8agKHPc2Ri+lcmrEJDvJp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwN3jIgYAfH34QGw9H8enUXrPq0UYreQOxU/AUzpxt/0BHRtna
+	n48k6diqOn1d6DyhxqWFhF/j8HI7CvL8WjQGeIyfFW0aIoJtd3JzCKxXnw==
+X-Google-Smtp-Source: AGHT+IGZ8dknLqmk2GIy76wfXtTPGGUCSieGuvFLj4VG2MBO+7hsC4vxw8BnP7Gb9PXqB8CVMYVTGQ==
+X-Received: by 2002:a05:600c:3109:b0:431:3b80:6ca7 with SMTP id 5b1f17b1804b1-43158756ee3mr20576845e9.13.1729169126055;
+        Thu, 17 Oct 2024 05:45:26 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43158c4d9desm24972935e9.35.2024.10.17.05.45.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2024 05:45:24 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Aurelien Jarno <aurelien@aurel32.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	upstream@airoha.com
+Subject: [PATCH v2 1/2] dt-bindings: rng: add support for Airoha EN7581 TRNG
+Date: Thu, 17 Oct 2024 14:44:37 +0200
+Message-ID: <20241017124456.32584-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 17 Oct 2024 13:39:08 +0100
-Message-Id: <D4Y35WNU7MWN.2Q3RHCLLZ69Y@linaro.org>
-Cc: <konradybcio@kernel.org>, <konrad.dybcio@oss.qualcomm.com>,
- <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
- <krzk+dt@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
- <srinivas.kandagatla@linaro.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: clock: Add Qualcomm SM6115 LPASS
- clock controller
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-X-Mailer: aerc 0.18.2
-References: <20241017005800.1175419-1-alexey.klimov@linaro.org>
- <20241017005800.1175419-2-alexey.klimov@linaro.org>
- <n4nbzwostn6i5ygskjfr4o7haqujodadxd2kspvlk2gccxoaen@pk3qj7rxvspf>
-In-Reply-To: <n4nbzwostn6i5ygskjfr4o7haqujodadxd2kspvlk2gccxoaen@pk3qj7rxvspf>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu Oct 17, 2024 at 9:39 AM BST, Krzysztof Kozlowski wrote:
-> On Thu, Oct 17, 2024 at 01:57:59AM +0100, Alexey Klimov wrote:
-> > From: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >=20
-> > SM6115 (and its derivatives or similar SoCs) has an LPASS clock
-> > controller block which provides audio-related resets.
-> >=20
-> > Add bindings for it.
->
-> That's a v2.
->
-> >=20
-> > Cc: Konrad Dybcio <konradybcio@kernel.org>
-> > Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > [alexey.klimov] slightly changed the commit message
-> > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->
-> My tag?
->
-> > ---
-> >  .../bindings/clock/qcom,sm6115-lpasscc.yaml   | 53 +++++++++++++++++++
-> >  .../dt-bindings/clock/qcom,sm6115-lpasscc.h   | 15 ++++++
-> >  2 files changed, 68 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6115=
--lpasscc.yaml
-> >  create mode 100644 include/dt-bindings/clock/qcom,sm6115-lpasscc.h
-> > +examples:
-> > +  - |
-> > +    lpass_audiocc: clock-controller@a6a9000 {
-> > +        compatible =3D "qcom,sm6115-lpassaudiocc";
-> > +        reg =3D <0x0a6a9000 0x1000>;
-> > +        #reset-cells =3D <1>;
-> > +    };
-> > +
-> > +  - |
-> > +    lpasscc: clock-controller@a7ec000 {
-> > +        compatible =3D "qcom,sm6115-lpasscc";
-> > +        reg =3D <0x0a7ec000 0x1000>;
-> > +        #reset-cells =3D <1>;
-> > +    };
->
-> Not much improved. Don't send same code from whatever repo you got, but
-> go via mailing list.
+Add support for Airoha EN7581 True Random Number generator.
 
-Ok, thanks! I was not aware that there was a previous version on
-maillist ~ a year ago. My impression was that this was never sent for
-review. I'll update and resend it as v2 if there are no objections so it
-will become a proper v2. I am more interested what should be done
-regarding older email addresses or maybe .mailmap will handle it correctly.
+This module can generate up to 4bytes of raw data at times and support
+self health test at startup. The module gets noise for randomness from
+various source from ADC, AP, dedicated clocks and other devices attached
+to the SoC producing true random numbers.
 
-Best regards,
-Alexey
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes v2:
+- Add Reviewed-by tag
+
+ .../bindings/rng/airoha,en7581-trng.yaml      | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml
+
+diff --git a/Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml b/Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml
+new file mode 100644
+index 000000000000..dfc6d24ee7d9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rng/airoha,en7581-trng.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7851 True Random Number Generator
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++properties:
++  compatible:
++    const: airoha,en7581-trng
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    rng@1faa1000 {
++        compatible = "airoha,en7581-trng";
++        reg = <0x1faa1000 0x1000>;
++        interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
++    };
+-- 
+2.45.2
 
 
