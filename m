@@ -1,119 +1,137 @@
-Return-Path: <devicetree+bounces-112221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 172CC9A16EA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:24:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A89A49A1739
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:44:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D028E286F6D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:24:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BD841F26EC4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 00:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 783CD161;
-	Thu, 17 Oct 2024 00:24:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711893C30;
+	Thu, 17 Oct 2024 00:44:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="dgljaq/6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KV9S2X/P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECEC8B660;
-	Thu, 17 Oct 2024 00:24:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9E01F942;
+	Thu, 17 Oct 2024 00:44:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729124690; cv=none; b=FizZd7EESE08K6RWDrHcEXzVCcG7+DgHLuTQyLSlnUo1GylF/2JnyFWLQgv/8U/t8h3miUBbQCV3vEYXgRdS1NWpJdqcOv4LaGHaGFcGbIXJ6dSrraIbxnL8olml5wLRg4M2Mt85RKisjBfIKCZFe54HweWXlPQ2wld6vdZnI24=
+	t=1729125853; cv=none; b=GRMwd+MO2Ncg5FWW4BX2AOrpA58t0/mwSBp2eQzkSVFKaSdxnMnJOXQ7m5SxYYPB1UJmHvG0wz2a7ftCDJOVt1+XsPvPrPn8B3GHsT8I3rL9tDzMi2e4+WqH01J25LFTwx1XVGGL3smRfHh9XGjjCa6tvpixpW/413Wcyi7jjoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729124690; c=relaxed/simple;
-	bh=A/IqO8K6EFlPSYsWJ4Qpsk6V+kuikeOlBQai75+rwcE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=tNnw6t7+Z7Lec8irT0QkKfY2juPcUVmOteoumwV8MFow5LsdkxEkkWheVOHtfWVP3IiIljGig0Bmh7/IqxESf+AmQ51E557vi80DH4ufz+0xD+ldWePDKfmFM8L3cMf8FRRoe6gae+jQigQ9lcMlq5hXyBnZapCs19YsYGbV2Bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=dgljaq/6; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 5C02088E39;
-	Thu, 17 Oct 2024 02:24:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729124687;
-	bh=Ej059yhD8UQ7rHWLZdDrM5XQ9BKv6qsJ3wCC0H41ABY=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=dgljaq/6Pw+ojbHeGw4GDxiUrxMx9Vko5W/sm2M+lzRQq4epaNaG43DK78Ue0EzRg
-	 pDoNwOOf72ku5H3pYWNCtG/XEFSYw0qYA3qS1F3OvelGX0K0TRf66f9uKTZrI959xD
-	 ic8UsbwqcatqIfeyuk4CMkwNrMncP/PbrBLYjR9k2yLUDMKzg0Ri9/fb/fcwkt8ytW
-	 jistIL6x2TZa9kpNe5BLFqGuydvt+jL/7ClGLiwPkWLO+ff5zBsipZIJYm37AL5RF3
-	 eQ9NJnSy1to0sg1aRomJIQgCtfVvNFkNEoWBGhML3wsqtURtEMxxp36o3Yj1Pw+fn2
-	 P+0XAkId7stjQ==
-Message-ID: <b757f4b5-b6c7-4a0e-b362-56375d1ada79@denx.de>
-Date: Thu, 17 Oct 2024 02:23:34 +0200
+	s=arc-20240116; t=1729125853; c=relaxed/simple;
+	bh=rrAFgt7MmFcWWN8PLPvDb7FLmqPUwpsbvQDeeE0PzlE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=Z6ttKkhJQmU4+ROBZFD43kKqDSndR9fz/KFWHuJdfnMBwzg9q9dT8eedwRbTR4jJBjVdZt6MFg/ATKGgiBfy/jsfS1gv5bGG5Dgx4KNTBiovZyAJlPeoT/3HlLgKMR8O1jLkjj7rN84VW5RUd+1Mh6i5YEDy+1/CFw2wX8mq4UE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KV9S2X/P; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d41894a32so224551f8f.1;
+        Wed, 16 Oct 2024 17:44:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729125850; x=1729730650; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=y3Hb5EF2QXHTPkKjiIQ0VTrF8MSdq781n7gJ5VZ5vSg=;
+        b=KV9S2X/PmypgzvbiaNzzlO5ugIipmvPiL+r4qU4hzmJMHImliIYDgjppmIQbCPSvck
+         FX+z2JUVg/hUkJBgKTvSdlzKbbts6lvYXmoE1R2HJVD1bzLpklgQ6zBVnep3Eq5EXYMk
+         pDpFcoztYsMK0V+kjfru9BR170j00CqBEmmQTMkN8IsZ+F85PzZ/RxaSY82UIxb6SV0S
+         QPpbWf9vjdNhEZDJ0kWU5btHJTmTbvGmQY2/q1+Mgxz/eZoQEc0JM0iNfEMEuRYH2Vm7
+         q5a7ghn1bcnJ6QP+iqO3yyRl/DvF7miORK/x+ZWwofFTpzogNokCV+BFuy1W7ISfi1mV
+         enBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729125850; x=1729730650;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y3Hb5EF2QXHTPkKjiIQ0VTrF8MSdq781n7gJ5VZ5vSg=;
+        b=MwBAKT9UuWV20fNSI1+lrarFOlvcmTA9+0o2AuEPC7UD1D6uY+tcn9Hgf7qeV7ycRn
+         TvXlOmCAAVrF4vxkOQDB6lMkehfOAwXTSF3fS9hQ1JvZuSwbVw9ey0yk7YfX60mGJZKy
+         vQyd0pwQlqf8LHZ3pObt236rzdDNd+UG1eIUu266HCN9rOcKPFqrk+8MfTgsurq4rsQT
+         x5C32JvgDuW9L451crwYZ+Krc78I3x8v51KrSK+8o6bUVmHofFGYtPEWsaVlD7qD+a93
+         TmA5/w9ZZJQBupJqIGE3y7OKrH7hbKey0SRPgfBc+fMKPgZoTiP6vbNHtPBOW/SM4bTU
+         2OGw==
+X-Forwarded-Encrypted: i=1; AJvYcCUGCHBuxCjcDtMHElG45m3hPUqUy3hulMlkis15ZipY83k9+hX4k3LkL8pONuLwuHiEvGsExBoudYRA@vger.kernel.org, AJvYcCV+KFsLMi5YCKTJvTeLSrcSeqDrNnKqDnkYqGZN8JFJ9AU7TOWLupglG2acPu1rb3kJ0VD1k/2Dc96aEF+1@vger.kernel.org, AJvYcCWIctmlDLxMu6UVhskJLbbBPhlFr2sPWYPDil4U3MkdrbXPMuwN74UWA/LgI6HI+KCm17Bj+2pvmnph9smI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJfIHbt7d5Il1vCJATMFXL/mmRUVUlNIUrs7zBAhmKqDZ/sXq5
+	JIwwfAWYBqyJx6yqGdahgbs1yEDGNm7hMu96k/Fgj/uwYuAkHpam
+X-Google-Smtp-Source: AGHT+IGdBKabY17pkuhk5yWFmI5laYYTxziqcNsqEErFpXogkxzv8n0d8IYCqMT+dRHAo2kXyu541g==
+X-Received: by 2002:a5d:6703:0:b0:37d:34e7:6d24 with SMTP id ffacd0b85a97d-37d93e25a4fmr750472f8f.18.1729125849607;
+        Wed, 16 Oct 2024 17:44:09 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-37d7fa7a1a3sm5617172f8f.12.2024.10.16.17.44.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 17:44:08 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Richard van Schagen <vschagen@icloud.com>,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v2 1/3] spinlock: extend guard with spinlock_bh variants
+Date: Thu, 17 Oct 2024 02:43:17 +0200
+Message-ID: <20241017004335.27471-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pinctrl: fsl,imx6ul-pinctrl: Convert
- i.MX35/5x/6 to YAML
-From: Marek Vasut <marex@denx.de>
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
- Jacky Bai <ping.bai@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- imx@lists.linux.dev, kernel@dh-electronics.com,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-References: <20241015232107.100771-1-marex@denx.de>
- <20241016172642.GA1991636-robh@kernel.org>
- <9265a263-ccf3-4e9f-b7e0-69f62ec61eba@denx.de>
-Content-Language: en-US
-In-Reply-To: <9265a263-ccf3-4e9f-b7e0-69f62ec61eba@denx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 
-On 10/17/24 1:16 AM, Marek Vasut wrote:
-> On 10/16/24 7:26 PM, Rob Herring wrote:
->> On Wed, Oct 16, 2024 at 01:20:51AM +0200, Marek Vasut wrote:
->>> The IOMUXC controller description is almost identical on i.MX35/5x/6 
->>> SoCs,
->>> except for the configuration bits which differ across SoCs. Rename the
->>> fsl,imx6ul-pinctrl.yaml to fsl,imx35-pinctrl.yaml, fill in compatible
->>> strings for the other SoCs and fill in the various bits into desciption.
->>> This way, i.MX35/5x/6 series SoCs can all be converted to YAML DT. 
->>> Remove
->>> the old text DT bindings description.
->>
->> Just a nit, but I prefer 'DT schema' over using 'YAML DT' or just
->> 'YAML'. YAML is just the file format we use and YAML is a lot of things
->> that's not DT schema including other uses/attempts with DT.
-> 
-> Fixed in V2 and also in the LTC3676 conversion, thanks.
-> 
->> This generates lots of warnings (patchwork has the output) for pincfg
->> nodes which don't match 'grp$' node name convention. Do we really want
->> to "fix" all of those?
-> 
-> I had a look and many of those are simple, so I would say yes.
-> 
->> We could allow anything, but then we don't
->> enforce anything on new stuff.
-> 
-> We do enforce grp$ on iMX8M , it just wasn't enforced on old DTs yet.
-> 
->> Or this could be split between new and
->> old platforms. If we decide to fix any old ones, then just have to move
->> them to the "new" schema.
-> Strictly speaking, iMX6 and older are all old platforms, but I think it 
-> should be easy to fix them up.
+Extend guard APIs with missing raw/spinlock_bh variants.
 
-So, it seems like fixing most of them DTs up wasn't that hard.
-But I am worried I might've broken a few in the process. I guess users 
-will complain and then we fix them up ?
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ include/linux/spinlock.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/include/linux/spinlock.h b/include/linux/spinlock.h
+index 3fcd20de6ca8..e016b27f64c4 100644
+--- a/include/linux/spinlock.h
++++ b/include/linux/spinlock.h
+@@ -550,6 +550,12 @@ DEFINE_LOCK_GUARD_1(raw_spinlock_irq, raw_spinlock_t,
+ 
+ DEFINE_LOCK_GUARD_1_COND(raw_spinlock_irq, _try, raw_spin_trylock_irq(_T->lock))
+ 
++DEFINE_LOCK_GUARD_1(raw_spinlock_bh, raw_spinlock_t,
++		    raw_spin_lock_bh(_T->lock),
++		    raw_spin_unlock_bh(_T->lock))
++
++DEFINE_LOCK_GUARD_1_COND(raw_spinlock_bh, _try, raw_spin_trylock_bh(_T->lock))
++
+ DEFINE_LOCK_GUARD_1(raw_spinlock_irqsave, raw_spinlock_t,
+ 		    raw_spin_lock_irqsave(_T->lock, _T->flags),
+ 		    raw_spin_unlock_irqrestore(_T->lock, _T->flags),
+@@ -571,6 +577,13 @@ DEFINE_LOCK_GUARD_1(spinlock_irq, spinlock_t,
+ DEFINE_LOCK_GUARD_1_COND(spinlock_irq, _try,
+ 			 spin_trylock_irq(_T->lock))
+ 
++DEFINE_LOCK_GUARD_1(spinlock_bh, spinlock_t,
++		    spin_lock_bh(_T->lock),
++		    spin_unlock_bh(_T->lock))
++
++DEFINE_LOCK_GUARD_1_COND(spinlock_bh, _try,
++			 spin_trylock_bh(_T->lock))
++
+ DEFINE_LOCK_GUARD_1(spinlock_irqsave, spinlock_t,
+ 		    spin_lock_irqsave(_T->lock, _T->flags),
+ 		    spin_unlock_irqrestore(_T->lock, _T->flags),
+-- 
+2.45.2
+
 
