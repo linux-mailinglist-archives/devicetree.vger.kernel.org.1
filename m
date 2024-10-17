@@ -1,166 +1,149 @@
-Return-Path: <devicetree+bounces-112381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39A119A1F13
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:54:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D6539A1F1A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE09CB24088
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:54:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2135928A12F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F7631D9598;
-	Thu, 17 Oct 2024 09:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09AFC1DB37B;
+	Thu, 17 Oct 2024 09:54:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PIN/UOb+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ft2mVXL4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44699165F08;
-	Thu, 17 Oct 2024 09:52:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7EBD1D9327;
+	Thu, 17 Oct 2024 09:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729158761; cv=none; b=Spd5ZnfoH2eLUHx0SbHiIY1a7wSX4rxR8NGmYvtWc5BEx+5VJ8bys289g4yL3o9WqF2lrQIFC1Y8R2mFe0AkHjP3LFLNOc1tEVjLFenTA3lWi0c701EQo+A1zz0Rh8ye0vzYuvEPuKJGPWMJn9NPDO3oYCHfekiVU+5MzROs1h8=
+	t=1729158839; cv=none; b=I4z3nSlzPE8d7CmPOMtmNspu3naw80DsAjAtWnXi+DjLiJsX27U2dlZisEHYAXQXiM23kOPCNVcYaiDyLvKG17lT3fPHGuoSG6A6Iypn02hsqsx2u5TKQNMbOsvB+5BTz4b43Hjz9U06lM7xLW0ldc/n7Dd4CVMms9N4I1hgosA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729158761; c=relaxed/simple;
-	bh=uukEasIQNFgjyA46j6yP84HfXniUu+fVrEHA2EgplSs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mPGhqlWZnDcmuL+BV0Mz9obIz4LpXgspFot8nQRCLrzla6k5tuBDxszVJ5SRqvlqK21WwpCMubmiSZz0uAkN7sT1h5rO46MhqyGVLoBc9AKQuyOEkilGEt/xQBmlBosnTpF5Vm9j5CxP3OTK5kmro/s5MLnjUEQKa1eejF0Vin0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PIN/UOb+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B701EC4CED1;
-	Thu, 17 Oct 2024 09:52:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729158760;
-	bh=uukEasIQNFgjyA46j6yP84HfXniUu+fVrEHA2EgplSs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PIN/UOb+jYQdtHShMKSEAPVkRiEk3O+matAyczVNRM/9cCII3p41QM1Vh1LRUWBew
-	 Dkn62I7kl0iao9jlrXinm4nG/n/JeU0HsxGwZa4befRw/12t8EferCYJLCDGMWCPuW
-	 9GvNu2F6dm39IZqm4WXmzDfbkSuDhhmhB2KN2YB4nXU8uOAdFrPju31DH/TI/ZQQ6C
-	 puvtBGDxKIlbvV/8g6rxVp/3lTvuu55B/FJU3DTudJwfr63QjuvkLWgA5AxANfFoBT
-	 Y4ZzJDH3db3zdHHx0rhAStjm5NU9ktl7uCMBhkMtwelN+LutLnQRbI6gvE/fBzwfaF
-	 lGdtEzb3OxwSg==
-Date: Thu, 17 Oct 2024 11:52:34 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Subject: Re: [PATCH v5 06/14] PCI: rockchip-ep: Fix MSI IRQ data mapping
-Message-ID: <ZxDeYqfti0iiK8D2@ryzen.lan>
-References: <20241017015849.190271-1-dlemoal@kernel.org>
- <20241017015849.190271-7-dlemoal@kernel.org>
+	s=arc-20240116; t=1729158839; c=relaxed/simple;
+	bh=xpLpgNh/Fcl1KHaTpUD2Ve3Qp0GVP7rZR2RA+cT5KXM=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=uRztYQQsYRC2K8XZHlpetrtmSlWURke5DtTyr+MJTti5vn3WGbXrfOPSk5JGVmrTCfcfRlYOtUmEnofFTLVM+DEka4qzwiB4aqTWP5yNHdanpG6rFXDJ9DMhV51GNC6RIJwcqXgw7Jz0DwpABAAOxN/UTb6VCBJOWQSmOUKmbtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ft2mVXL4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49H7klgU007441;
+	Thu, 17 Oct 2024 09:53:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=5sgKq7wBsg3T8XBzJ5p0rF
+	hEUSJeZMZlKeAEGpmwYgw=; b=ft2mVXL4H3qapLd76cvJeYooK+hWkuvquX/R5d
+	X7zzxpCSLYa7Y0Yg7560mNXd2AkbyVXyaxKruxrPFDlGKlb6xugCu77byVB8hzNj
+	yqJg9R9p5YD04P0Xett3XMPADFe5ZeDaC5VMeIRD6gIQfTm7rwVd+J91v2w3zM6C
+	+XSmQukZea1NdEmpfu3/sGAdNGdvGTv2C3JUIKlShjSTWsUvOrXk+xbsz/xyscXt
+	z8Ulq8O/ysCOZhZ6oToFwiSJjkKBMGtkln1Mm6dy8hnjtiZFG+GoCYWHHDILq5jv
+	sWypcTHpjHrWwkAXj1ftjw1e3YRVBYwArXOS1kesOAL2Mv7Q==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 429mjy7q7f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Oct 2024 09:53:38 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49H9rbmA017959
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Oct 2024 09:53:37 GMT
+Received: from yijiyang-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 17 Oct 2024 02:53:31 -0700
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+Subject: [PATCH v2 0/3] Add ethernet dts schema for qcs615/qcs8300
+Date: Thu, 17 Oct 2024 17:52:36 +0800
+Message-ID: <20241017-schema-v2-0-2320f68dc126@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241017015849.190271-7-dlemoal@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGXeEGcC/2WNQZKDIBBFr2KxHlIN4hCzmnuksoCmGXqhZsBYS
+ aW8e1CXs/zd7//3FoUyUxGX5i0yLVx4GmvQX43A5MZfkhxqFhq0UaBAFkw0ONmBB2+tRX32osL
+ 3TJGf+9D1VrN3haTPbsS01WlOG5W4zFN+7bZFbey/4UVJkP3Z6wBOR+v0z9+DkUc84TSI23q4M
+ tVr4fkQHrb6H3i+NAYIsA9GmdjZYDqg1gVoUWn73ZHtbcQ2UqA6tn4ACciw9AABAAA=
+X-Change-ID: 20241010-schema-50b0b777c28b
+To: Vinod Koul <vkoul@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        "Paolo
+ Abeni" <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bhupesh
+ Sharma <bhupesh.sharma@linaro.org>,
+        Kishon Vijay Abraham I
+	<kishon@kernel.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+CC: <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_tingweiz@quicinc.com>,
+        <quic_aiquny@quicinc.com>, Yijie Yang <quic_yijiyang@quicinc.com>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1729158811; l=1441;
+ i=quic_yijiyang@quicinc.com; s=20240408; h=from:subject:message-id;
+ bh=xpLpgNh/Fcl1KHaTpUD2Ve3Qp0GVP7rZR2RA+cT5KXM=;
+ b=qr4/PBeRt3CNFrPeHOvhH7hnImi56ebmoXuh3AePL4LXJFKaYEdryKotTdyAZLCmh3qMKbwFI
+ Uy3uAEnyiA0AhynONUf4azKBMtb9mtDG7k1EwdPt280OWt9+hgNtUIh
+X-Developer-Key: i=quic_yijiyang@quicinc.com; a=ed25519;
+ pk=XvMv0rxjrXLYFdBXoFjTdOdAwDT5SPbQ5uAKGESDihk=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jRfys1Oyqrehh5-5bQKgqzWzNONvb5qM
+X-Proofpoint-ORIG-GUID: jRfys1Oyqrehh5-5bQKgqzWzNONvb5qM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
+ mlxscore=0 lowpriorityscore=0 malwarescore=0 priorityscore=1501
+ impostorscore=0 clxscore=1011 spamscore=0 suspectscore=0 adultscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410170067
 
-On Thu, Oct 17, 2024 at 10:58:41AM +0900, Damien Le Moal wrote:
-> The call to rockchip_pcie_prog_ep_ob_atu() used to map the PCI address
-> of MSI data to the memory window allocated on probe for IRQs is done
-> in rockchip_pcie_ep_send_msi_irq() assuming a fixed alignment to a
-> 256B boundary of the PCI address.  This is not correct as the alignment
-> constraint for the RK3399 PCI mapping depends on the number of bits of
-> address changing in the mapped region. This leads to an unstable system
-> which sometimes work and sometimes does not (crashing on paging faults
-> when memcpy_toio() or memcpy_fromio() are used).
-> 
-> Similar to regular data mapping, the MSI data mapping must thus be
-> handled according to the information provided by
-> rockchip_pcie_ep_align_addr(). Modify rockchip_pcie_ep_send_msi_irq()
-> to use rockchip_pcie_ep_align_addr() to correctly program entry 0 of
-> the ATU for sending MSI IRQs.
-> 
-> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
-> ---
->  drivers/pci/controller/pcie-rockchip-ep.c | 22 +++++++++++++---------
->  1 file changed, 13 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
-> index f6959f9b94b7..dcd1b5415602 100644
-> --- a/drivers/pci/controller/pcie-rockchip-ep.c
-> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
-> @@ -379,9 +379,10 @@ static int rockchip_pcie_ep_send_msi_irq(struct rockchip_pcie_ep *ep, u8 fn,
->  {
->  	struct rockchip_pcie *rockchip = &ep->rockchip;
->  	u32 flags, mme, data, data_mask;
-> +	size_t irq_pci_size, offset;
-> +	u64 irq_pci_addr;
->  	u8 msi_count;
->  	u64 pci_addr;
-> -	u32 r;
->  
->  	/* Check MSI enable bit */
->  	flags = rockchip_pcie_read(&ep->rockchip,
-> @@ -417,18 +418,21 @@ static int rockchip_pcie_ep_send_msi_irq(struct rockchip_pcie_ep *ep, u8 fn,
->  				       PCI_MSI_ADDRESS_LO);
->  
->  	/* Set the outbound region if needed. */
-> -	if (unlikely(ep->irq_pci_addr != (pci_addr & PCIE_ADDR_MASK) ||
-> +	irq_pci_size = ~PCIE_ADDR_MASK + 1;
-> +	irq_pci_addr = rockchip_pcie_ep_align_addr(ep->epc,
-> +						   pci_addr & PCIE_ADDR_MASK,
-> +						   &irq_pci_size, &offset);
-> +	if (unlikely(ep->irq_pci_addr != irq_pci_addr ||
->  		     ep->irq_pci_fn != fn)) {
-> -		r = rockchip_ob_region(ep->irq_phys_addr);
-> -		rockchip_pcie_prog_ep_ob_atu(rockchip, fn, r,
-> -					     ep->irq_phys_addr,
-> -					     pci_addr & PCIE_ADDR_MASK,
-> -					     ~PCIE_ADDR_MASK + 1);
-> -		ep->irq_pci_addr = (pci_addr & PCIE_ADDR_MASK);
-> +		rockchip_pcie_prog_ep_ob_atu(rockchip, fn,
-> +					rockchip_ob_region(ep->irq_phys_addr),
-> +					ep->irq_phys_addr,
-> +					irq_pci_addr, irq_pci_size);
-> +		ep->irq_pci_addr = irq_pci_addr;
->  		ep->irq_pci_fn = fn;
->  	}
->  
-> -	writew(data, ep->irq_cpu_addr + (pci_addr & ~PCIE_ADDR_MASK));
-> +	writew(data, ep->irq_cpu_addr + offset + (pci_addr & ~PCIE_ADDR_MASK));
->  	return 0;
->  }
->  
-> -- 
-> 2.47.0
-> 
+Document the ethernet and SerDes compatible for qcs8300. This platform
+shares the same EMAC and SerDes as sa8775p, so the compatible fallback to
+it.
+Document the ethernet compatible for qcs615. This platform shares the
+same EMAC as sm8150, so the compatible fallback to it.
+Document the compatible for revision 2 of the qcs8300-ride board.
 
-Nice catch.
+Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+---
+This patch series depends on below patch series:
+https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
+https://lore.kernel.org/all/20240926-add_initial_support_for_qcs615-v3-0-e37617e91c62@quicinc.com/
 
-For DWC, in dw_pcie_ep_raise_msi_irq()
-https://github.com/torvalds/linux/blob/v6.12-rc3/drivers/pci/controller/dwc/pcie-designware-ep.c#L519-L522
+Changes in v2:
+- Adjust the position of the EMAC compatible fallback for qcs8300 in the YAML file according to the order. 
+- Link to v1: https://lore.kernel.org/r/20241010-schema-v1-0-98b2d0a2f7a2@quicinc.com
 
-and in dw_pcie_ep_raise_msix_irq()
-https://github.com/torvalds/linux/blob/v6.12-rc3/drivers/pci/controller/dwc/pcie-designware-ep.c#L603-L606
+---
+Yijie Yang (3):
+      dt-bindings: net: qcom,ethqos: add description for qcs615
+      dt-bindings: phy: describe the Qualcomm SGMII PHY
+      dt-bindings: net: qcom,ethqos: add description for qcs8300
 
-We also make sure that the address that we map is aligned,
-and then write to the correct offset within that mapping:
-ep->msi_mem + aligned_offset;
-in order to write to the actual MSI address.
+ .../devicetree/bindings/net/qcom,ethqos.yaml          | 19 ++++++++++++++-----
+ .../bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml    |  7 ++++++-
+ 2 files changed, 20 insertions(+), 6 deletions(-)
+---
+base-commit: 40e0c9d414f57d450e3ad03c12765e797fc3fede
+change-id: 20241010-schema-50b0b777c28b
 
-To me, it looks like doing a similar change as this patch does,
-to dw_pcie_ep_raise_msi_irq() and dw_pcie_ep_raise_msix_irq(),
-would make the PCI endpoint code more consistent overall.
+Best regards,
+-- 
+Yijie Yang <quic_yijiyang@quicinc.com>
 
-Thoughts?
-
-
-Kind regards,
-Niklas
 
