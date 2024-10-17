@@ -1,192 +1,139 @@
-Return-Path: <devicetree+bounces-112391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C699A1FDF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 12:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1EA69A1FEF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 12:28:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83A4A2866C0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 10:27:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9015B286328
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 10:28:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEB41DA61B;
-	Thu, 17 Oct 2024 10:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8374E1DC04C;
+	Thu, 17 Oct 2024 10:28:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CTzWXfEg"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kElxpw21"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E30161DA618;
-	Thu, 17 Oct 2024 10:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDBF1DB940;
+	Thu, 17 Oct 2024 10:28:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729160844; cv=none; b=Qny5jvb/Swzcm1c2XSRCXxR120Gns8pGVaBwyah1EWklcvxrjJzF097BGBQEkwMCg7LkeYbCCtsw+nhvvC3HV7CCtFxGRHtlxluzzoMEnuF0cc6y21DF4fVQ3ONRXkzHw425LjGtUS7RL3RybNjUbRFjguvH0qo2bmZ0EpgQMgo=
+	t=1729160883; cv=none; b=pje3OIMHAbliSMSDc7QBcW9EkPeT1pkJsR0hFJg6c0ovKcAYryS9DbMRPSJOrl8TF1QQqyH/A/kEy2Mst0LZKk8K2Xc1jBAddrZ7Nj4/01G2NUez+I+0Sil0tTX1SLGqwPiJl2u+1jgyJvx2mkqHH0Id+VLmjFll4X3ROSwHSu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729160844; c=relaxed/simple;
-	bh=Wg6rF3xq4Ey0oW4iGbKDhGAMlW4BmliJZ60Z/nadhtQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YYZVptXbbw8ZK0HqBUn/ycd17kv8VjcDJSQ2W3pz+zu+R0EtT5rQQ7XQFMe2ILbA8K9+u2gEZS/e+N8mnZKFY/mDv6WmdTZxWf5XCZgeWOnAWJ5JR9vEz5/Jg36GCwpk6aRG5xQuD2xVvi8RQOYaqZbWKsYDgJ13l5SvfB4c6HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CTzWXfEg; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729160840; x=1760696840;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Wg6rF3xq4Ey0oW4iGbKDhGAMlW4BmliJZ60Z/nadhtQ=;
-  b=CTzWXfEgPKcUPf2WV/JmmmHXcs+22ifwwSUIKs0oUwKqzBGgZzmgbk7d
-   0hgzsB/xY1c54SfvbRlFDNB2nEh6BUWlvqjIg0AW6DE/ztlFS/qmLE+e2
-   imRekljlxcpuRW8LsT8U5IPqBvNPGa4KPYKqUpMAMfEunMBl0EulUXdSv
-   I/AKn+Tt01W9AXcMxZTpOenClAKHVPcEpVuR6qu3Scjn8Qv1E5axtkEb/
-   Rxd/YEX9qIuGw42YLomG4qXvmwUC7FVpaffWt/HNJAhKs5MPIVdR342TG
-   FgZbqhSzpumsg/ZgT4q8E2I08K0nCimxZulfM/fOfL/NHd+jfx6ps9NbR
-   w==;
-X-CSE-ConnectionGUID: xtWNDV0VSCi5VHWx9JDi5w==
-X-CSE-MsgGUID: K9+/52yqR+ulCuODLk87lg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11227"; a="32569247"
-X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; 
-   d="scan'208";a="32569247"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2024 03:27:19 -0700
-X-CSE-ConnectionGUID: BgghfPaLSXie9thWfmyVgA==
-X-CSE-MsgGUID: NGryFgCARN26/cVntol++g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; 
-   d="scan'208";a="78111661"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 17 Oct 2024 03:27:16 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t1Nir-000MCZ-1N;
-	Thu, 17 Oct 2024 10:27:13 +0000
-Date: Thu, 17 Oct 2024 18:26:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>,
-	upstream@airoha.com
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/2] hwrng: add support for Airoha EN7581 TRNG
-Message-ID: <202410171822.152Yno42-lkp@intel.com>
-References: <20241016151845.23712-2-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1729160883; c=relaxed/simple;
+	bh=vHxOPdb7E+AmmVdo6npuKzs2hcgBYcF6BG7HiCbCLCg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=IcPZZlo07ATtcOdOxdKBD1mlq1iuJY4iibF1aRK2iNRINJJE38p6TwVGkFglDjwFYaVZtpqxRJIn3OE8ZiJ6pvg8hSRhRmepxQlTPBKXB9RGVLgTdLbBhWeHDth84mm6GXllm8CnGhhq+XgwLpJdi4+Z+ngDU4DmFo9REzOrnL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kElxpw21; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49HAMfAD019911;
+	Thu, 17 Oct 2024 10:27:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=wTCH1XG8cJWfXcNjT1fyem
+	Cv6FwsrZJWCjKcm5NJ3w4=; b=kElxpw21fWNu2YZ+M9M5RjNZH6lPulQdIvalCA
+	9fsuAco+KFh3wj8w1q6xV6VF4oSguz+pDhnTlTYKKARiWCjnJGTReVzeShZJETYx
+	jaVo95DXiSbK57JuAtSu9Ze6PSzBPEfJQiWWueIVYXAkx/eyU8MXl6tVT5U7LxMl
+	hLrunfwuq/skJyx0juNM4ZqObIq2aNraJI6WDgdc5jAsLOhkad0PSlPADXAecpim
+	3r0VIAbL4RmL9MmXe/aVuIxt7z4ySFLdzG4a3EUp31bpzgqlX5k1PBXs720NA+XU
+	pbSuusVixeNzgeD2cbsUo7Gpx1eP6prMjpzZosOPBhQKEmIA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42b0rx00f9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Oct 2024 10:27:42 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49HARfca007402
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 17 Oct 2024 10:27:41 GMT
+Received: from yijiyang-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 17 Oct 2024 03:27:37 -0700
+From: YijieYang <quic_yijiyang@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Richard Cochran
+	<richardcochran@gmail.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
+        Yijie Yang
+	<quic_yijiyang@quicinc.com>
+Subject: [PATCH v2 0/5] Enable ethernet for qcs8300
+Date: Thu, 17 Oct 2024 18:27:23 +0800
+Message-ID: <20241017102728.2844274-1-quic_yijiyang@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241016151845.23712-2-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: X4Wb4XEFg3bRkg6WGgIr_pvyrZG4mG-Y
+X-Proofpoint-ORIG-GUID: X4Wb4XEFg3bRkg6WGgIr_pvyrZG4mG-Y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
+ mlxscore=0 priorityscore=1501 spamscore=0 suspectscore=0 impostorscore=0
+ mlxlogscore=877 malwarescore=0 lowpriorityscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410170071
 
-Hi Christian,
+From: Yijie Yang <quic_yijiyang@quicinc.com>
 
-kernel test robot noticed the following build errors:
+Add dts nodes to enable ethernet interface on qcs8300-ride and
+Rev 2 platforms.
+The EMAC, SerDes and EPHY version are the same as those in sa8775p.
 
-[auto build test ERROR on char-misc/char-misc-testing]
-[also build test ERROR on char-misc/char-misc-next char-misc/char-misc-linus robh/for-next herbert-cryptodev-2.6/master linus/master v6.12-rc3 next-20241016]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+---
+This patch series depends on below patch series:
+https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
+https://lore.kernel.org/all/20241010-schema-v1-0-98b2d0a2f7a2@quicinc.com/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/hwrng-add-support-for-Airoha-EN7581-TRNG/20241016-232144
-base:   char-misc/char-misc-testing
-patch link:    https://lore.kernel.org/r/20241016151845.23712-2-ansuelsmth%40gmail.com
-patch subject: [PATCH 2/2] hwrng: add support for Airoha EN7581 TRNG
-config: arc-randconfig-001-20241017 (https://download.01.org/0day-ci/archive/20241017/202410171822.152Yno42-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241017/202410171822.152Yno42-lkp@intel.com/reproduce)
+Changes in v2:
+- Detect rename and rewrite of changes, and break down changes for easier understanding
+- Document the difference between qcs8300 ride and revision 2 in commit message
+- Link to v1: https://lore.kernel.org/r/20241010-dts_qcs8300-v1-0-bf5acf05830b@quicinc.com
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410171822.152Yno42-lkp@intel.com/
+Yijie Yang (5):
+  dt-bindings: arm: qcom: add qcs8300-ride Rev 2
+  arm64: dts: qcom: qcs8300: add the first 1Gb ethernet
+  arm64: dts: qcom: qcs8300-ride: enable ethernet0
+  arm64: dts: qcom: move common parts for qcs8300-ride variants into a
+    .dtsi
+  arm64: dts: qcom: qcs8300-ride-r2: add new board file
 
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/char/hw_random/airoha-trng.c:9:
-   drivers/char/hw_random/airoha-trng.c: In function 'airoha_trng_init':
->> drivers/char/hw_random/airoha-trng.c:115:34: error: implicit declaration of function 'FIELD_GET' [-Werror=implicit-function-declaration]
-     115 |                                  FIELD_GET(CNT_TRANS, val) == TRNG_CNT_TRANS_VALID,
-         |                                  ^~~~~~~~~
-   include/linux/iopoll.h:47:21: note: in definition of macro 'read_poll_timeout'
-      47 |                 if (cond) \
-         |                     ^~~~
-   include/linux/iopoll.h:170:9: note: in expansion of macro 'readx_poll_timeout'
-     170 |         readx_poll_timeout(readl, addr, val, cond, delay_us, timeout_us)
-         |         ^~~~~~~~~~~~~~~~~~
-   drivers/char/hw_random/airoha-trng.c:114:15: note: in expansion of macro 'readl_poll_timeout'
-     114 |         ret = readl_poll_timeout(trng->base + TRNG_IP_RDY, val,
-         |               ^~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride-r2.dts  |  33 ++
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts     | 299 ++----------------
+ .../{qcs8300-ride.dts => qcs8300-ride.dtsi}   | 107 ++++++-
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         |  43 +++
+ 6 files changed, 212 insertions(+), 272 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs8300-ride-r2.dts
+ rewrite arch/arm64/boot/dts/qcom/qcs8300-ride.dts (95%)
+ copy arch/arm64/boot/dts/qcom/{qcs8300-ride.dts => qcs8300-ride.dtsi} (78%)
 
 
-vim +/FIELD_GET +115 drivers/char/hw_random/airoha-trng.c
-
-    75	
-    76	static int airoha_trng_init(struct hwrng *rng)
-    77	{
-    78		struct airoha_trng *trng = container_of(rng, struct airoha_trng, rng);
-    79		int ret;
-    80		u32 val;
-    81	
-    82		val = readl(trng->base + TRNG_NS_SEK_AND_DAT_EN);
-    83		val |= RNG_EN;
-    84		writel(val, trng->base + TRNG_NS_SEK_AND_DAT_EN);
-    85	
-    86		/* Set out of SW Reset */
-    87		airoha_trng_irq_unmask(trng);
-    88		writel(0, trng->base + TRNG_HEALTH_TEST_SW_RST);
-    89	
-    90		ret = wait_for_completion_timeout(&trng->rng_op_done, BUSY_LOOP_TIMEOUT);
-    91		if (ret <= 0) {
-    92			dev_err(trng->dev, "Timeout waiting for Health Check\n");
-    93			airoha_trng_irq_mask(trng);
-    94			return -ENODEV;
-    95		}
-    96	
-    97		/* Check if Health Test Failed */
-    98		val = readl(trng->base + TRNG_HEALTH_TEST_STATUS);
-    99		if (val & (RST_STARTUP_AP_TEST_FAIL | RST_STARTUP_RC_TEST_FAIL)) {
-   100			dev_err(trng->dev, "Health Check fail: %s test fail\n",
-   101				val & RST_STARTUP_AP_TEST_FAIL ? "AP" : "RC");
-   102			return -ENODEV;
-   103		}
-   104	
-   105		/* Check if IP is ready */
-   106		ret = readl_poll_timeout(trng->base + TRNG_IP_RDY, val,
-   107					 val & SAMPLE_RDY, 10, 1000);
-   108		if (ret < 0) {
-   109			dev_err(trng->dev, "Timeout waiting for IP ready");
-   110			return -ENODEV;
-   111		}
-   112	
-   113		/* CNT_TRANS must be 0x80 for IP to be considered ready */
-   114		ret = readl_poll_timeout(trng->base + TRNG_IP_RDY, val,
- > 115					 FIELD_GET(CNT_TRANS, val) == TRNG_CNT_TRANS_VALID,
-   116					 10, 1000);
-   117		if (ret < 0) {
-   118			dev_err(trng->dev, "Timeout waiting for IP ready");
-   119			return -ENODEV;
-   120		}
-   121	
-   122		return 0;
-   123	}
-   124	
-
+base-commit: cea5425829f77e476b03702426f6b3701299b925
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
