@@ -1,127 +1,155 @@
-Return-Path: <devicetree+bounces-112411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE12E9A2083
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 13:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CFC69A20B7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 13:12:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B25B9288544
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:04:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B2E0288F43
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:12:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6525D1DC07B;
-	Thu, 17 Oct 2024 11:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B324E1DBB21;
+	Thu, 17 Oct 2024 11:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="O61kXz6V"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fK9Ry1Nd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C8AE1DB928
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:04:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A5B1DB52A
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:12:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729163049; cv=none; b=qlxISIPvt3e1rHFOEnlT5wKvWVk+kJqsk4MdyY/2crXo2y5DuKp0haXq8QBAZRxlKBDk575XoZh+SnpEqbbRKzaw7/zQfgCTNhSIwrBqxIaMhJ1YYpW6Ud/+nzF9pL/Y2GD25vZaYQZ/dQRTcxuyMWzXDXOeGl2gS/bNS0ZSbTw=
+	t=1729163528; cv=none; b=tt0Owh1FdtL2NoZWm8FZOdUmk2+rtWHj5LFWljzqKhFDU4Py065YHXq5oN7iylCALPGHBGAWCss8epJva7fZcOWeYb59z78jolJxSJ00wmoE2WWH89eghmGzvYc3JtNpwneINW7y7+spCWqzFhtt91atxlbgWBGGyObuqJLvBis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729163049; c=relaxed/simple;
-	bh=M02vPbZefKtzgbtnglUdvhk8inJ/586iO3nEwG12f9A=;
+	s=arc-20240116; t=1729163528; c=relaxed/simple;
+	bh=naS6qP0vKwEe1o6U7dAcb3z4jX5hBsDEpVWMdzrVJ+w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JDNgPAMyaujvO6QN6K52ykWpbL4UdrLB+vMB+vvIe6oBq5KWE/25fuKrrYjaRkYY0OR3h4h+iy1ijzJGny67rNyQ4llPIjSKToKbR6JesOD80pRFKcBUFzGJrZM1eN8aQuRNNjZ5Kr9rmytHyoTsuq1d/byL6cqspII/1qOVE6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=O61kXz6V; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=M02v
-	PbZefKtzgbtnglUdvhk8inJ/586iO3nEwG12f9A=; b=O61kXz6VJz9lGprNXARt
-	RZ9Cg4RlmikIp0nJ6cfrHZ7FmYvJC5gXF/deT+gaZdEGBKKQU7VR0c8L1fPHqJ5t
-	fStipJ26Xn3A0v2eMNNWIz+MTxZVktZLZrNbfwk3BRXXFUdRYNoEegyhw9dt2lg0
-	unZdKHwHl13jLH02q6jDLXt5hPFuZJqaFfgcJpf5SafnXqtB7nVD99G1AgeYyGpO
-	FBYiYW6MGWx5CMfGCJu0PIOkazucB9tpwGxfOH8D1TnqauLXYrWgstI9SKJc20qP
-	ZrQqXiILOdiDdM38jahSvIkGmy1ocSNm0jXSEL5vGVNF4cCJfhu4wOA8p5J3VrAD
-	BA==
-Received: (qmail 3358213 invoked from network); 17 Oct 2024 13:04:05 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Oct 2024 13:04:05 +0200
-X-UD-Smtp-Session: l3s3148p1@l0sMJaokT31tKPEX
-Date: Thu, 17 Oct 2024 13:04:04 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	alexandre.belloni@bootlin.com, magnus.damm@gmail.com,
-	p.zabel@pengutronix.de, linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v3 06/12] rtc: renesas-rtca3: Add driver for RTCA-3
- available on Renesas RZ/G3S SoC
-Message-ID: <ZxDvJCq_GOBm8nUC@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, alexandre.belloni@bootlin.com,
-	magnus.damm@gmail.com, p.zabel@pengutronix.de,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	kernel test robot <lkp@intel.com>
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
- <20240830130218.3377060-7-claudiu.beznea.uj@bp.renesas.com>
- <ZxDqzeA2mz0Ml6cZ@shikoro>
- <CAMuHMdU=o0MzQUoEs5-HrEVP-snXN-hUef1K3U8Ppj18P6HVCg@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l1+LNH0PPCpId2/Hcw+F3kBstGknlAFPSwmlT72poxlzdZVii7Q2CDPe+cIOhWhJan6YvDeXLSaFt/vW2+XIC8061g9ZAirJ2IHjsiJeej3zoRdDVIETxiKnLdAB8dDwawzU3JwIdCGcx5uV9VPByTIMtOUOGS/+gjs0gIrEhd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fK9Ry1Nd; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-539983beb19so879689e87.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 04:12:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729163525; x=1729768325; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=I01kJoMcb3paKBSp+LkjL4WJ/SXZW2fawtH+MKsukNw=;
+        b=fK9Ry1NdvN4vLKib8icBrqXdETUJT4rjil9rPv+IFPeBKpLVeOlZ6f06VxnOh2B3Yk
+         j6WRzSEfemn+ZphkvL9gdkPV4aer399s3YA6CicvgTNB9rUFZUPjpJT26mcNuJr8pmM1
+         Jqv4FmfxGrbN1AxnfyKTmfz1cim1pYV5c1xd1qHpo9KqJZTdOFTFil4L8Fdcy1Y7Loxe
+         QKSxXoC934KsVpkvgt3i1dWgyOkrUt2Vps31jMfwlr7N3GKRbWMhJoMlPtX1tf+2bd5C
+         K3M0o/u241nROvuJlRVo59wvW3UXLam8XjzskLg96RxwVM831zqZrgUGekKCS5b83zvQ
+         oueQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729163525; x=1729768325;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I01kJoMcb3paKBSp+LkjL4WJ/SXZW2fawtH+MKsukNw=;
+        b=J1M41ZrchcueDkdGMnwOsLQ1s/Agd2DDIDWmjUof06dH3O1XLBEoQliQhQQz/XhNcW
+         zj1Pa2oC0qHletyD/lI9Zy7UaqlXEcYdXQ0W9x7tHTHAp8ra1KSk3d/uO7/31BIg/8Y5
+         +fp7J1npx+iFL4mOJjVrkPn1cWjf67dEfN2CD30jPmSZa7ZVCr0jw9fnV57PIREdnmdP
+         kHHUM50vvTXYiz6Mbm+YkIoLze9unkRqwlRmNvkylZyn16zg5PPHgOvp3/sPAWQm3C8k
+         7X2MtSV0Xk6UzVR3sIQqmYwFt10ZykHcoiHqVKI5zuz3LR32xQrGP/CpRG567NFSPf2n
+         0MNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWsPPvXnpXXfFhe8Xuc2eups2YyXYMn4rz/SbRiSBi1VOPtpILl02b3l/+wFp2GLxN37M3o+o+g0XEN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdZtUjsUkFUb+zv3H51ocrpqlLeUr/UGKzqvV/yxa8Ww9SZ8IC
+	vzBsUjbwYFm6lbTIllTgZTKIvzQGQ4k0rwbVInRlFOg/Wdn7fyN7su391jNPk2s=
+X-Google-Smtp-Source: AGHT+IFiNFENRIQD9pOtFdyQhPcQV/5ezbByMZVYiVFSktA1gZgDzgrr0EeV3eQLQpEHVuZ2WzE1iw==
+X-Received: by 2002:ac2:4c4c:0:b0:539:8e77:9129 with SMTP id 2adb3069b0e04-539da583e0fmr12041614e87.44.1729163524933;
+        Thu, 17 Oct 2024 04:12:04 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539fffb1eb3sm746710e87.81.2024.10.17.04.12.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2024 04:12:03 -0700 (PDT)
+Date: Thu, 17 Oct 2024 14:12:00 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com, 
+	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com, quic_parass@quicinc.com
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
+Message-ID: <qevhitaa47fd77jrrs4viv6mctkhedoz5jy33ruqvv62qrb44y@owzfxnxrapvf>
+References: <20240209075716.GA12035@thinkpad>
+ <CAA8EJppfzc_dM9c9mHPVWheVxi-1gJxCmaWPvreELijEQDDSyA@mail.gmail.com>
+ <20241001101622.ys36slymgjbaz26q@thinkpad>
+ <8459161B-87B8-481F-AE71-3D5156B1CA56@linaro.org>
+ <20241001141948.g74rn6777ywvtcmx@thinkpad>
+ <CFF89D4D-8131-47C2-95B8-A0E130A16E46@linaro.org>
+ <9c24ba5d-431a-c45e-ce1c-3541eac7d017@quicinc.com>
+ <20241012124334.4gsspgtuud4uudop@thinkpad>
+ <7yzjgqitjvfwricftcpelktwjbgwkjuibwkpodjd6x4gwkjkw3@wkeqp6lqwfqv>
+ <bbc900f7-eb8f-2664-2144-50a9a6ad8453@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lNCG8WzO0TPLyYgP"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdU=o0MzQUoEs5-HrEVP-snXN-hUef1K3U8Ppj18P6HVCg@mail.gmail.com>
-
-
---lNCG8WzO0TPLyYgP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <bbc900f7-eb8f-2664-2144-50a9a6ad8453@quicinc.com>
 
+On Wed, Oct 16, 2024 at 10:43:19AM +0530, Krishna Chaitanya Chundru wrote:
+> 
+> 
+> On 10/14/2024 4:55 AM, Dmitry Baryshkov wrote:
+> > On Sat, Oct 12, 2024 at 06:13:34PM +0530, Manivannan Sadhasivam wrote:
+> > > On Fri, Oct 11, 2024 at 05:24:29PM +0530, Krishna Chaitanya Chundru wrote:
+> > > 
+> > > [...]
+> > > 
+> > > > > > The logic here is that the fixed endpoints in the switch will get an unique SID
+> > > > > > and the devices getting attached to slots will share the same SID of the bus
+> > > > > > (this is the usual case with all Qcom SoCs).
+> > > > > > 
+> > > > > > But I guess we would need 'iommu-map-mask' as well. Hope this addresses your
+> > > > > > concern.
+> > > > > 
+> > > > > Yes, thank you!
+> > > > > 
+> > > > Hi dimitry & mani,
+> > > > 
+> > > > This particular board variant doesn't expose any open slots to connect
+> > > > a different endpoints like another switch(which might have BDF unknown
+> > > > to us) so static table should be fine for this board variant.
+> > > > 
+> > > > I tries to add iommu-map-mask property, the issue with that property is
+> > > > that the driver is applying the mask to the bdf before searching for the
+> > > > entry in the table. If I use a mask value which satisfies all the
+> > > > entries in the table ( mask as 0x718) and if a new bdf is enumerated
+> > > > lets say 0x600 due to mask 0x718 its value is again 0x600 only.
+> > > > 
+> > > > Can we skip iommu-map-mask property and use only static table for this
+> > > > board as we know this board doesn't expose any open slots.
+> > > > 
+> > > 
+> > > Hmm, I was not aware that it doesn't have open slots. Fine with me then.
+> > 
+> > It doesn't feature open slots, but it has two PCIe connections on HS2 /
+> > HS3. Users might attach external PCIe devices.
+> > 
+> > Krishna, could you please clarify, how those two connections are routed?
+> > 
+> For this qps615 board to one of the downstream port (pcie to usb) usb
+> hub is connected and to the other downstream port NVMe will be
+> connected.
 
-> > ... if it has been considered to expand the existing rtc-sh driver? The
+The board has two PCIe links routed to the HS2 and HS3 connectors. Are
+they routed to the PCIe switch?
 
-...
+Yes, they are not standard slots, but still the board is expandable and
+it is possible to connect external PCIe devices. As such it is not
+possible to have static SID mapping.
 
-> Yes it has ;-)
-
-Thanks for the pointer. Well, a few of the limitations apply for RZA1 as
-well but they are not handled in the rtc-sh driver yet (from a glimpse).
-
-Nonetheless, given the other limitations and the bit shuffling in the
-control registers, I agree that a new driver makes sense here.
-
-
---lNCG8WzO0TPLyYgP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmcQ7yQACgkQFA3kzBSg
-Kbbb9A//YJ9DUgYEiBVtqS/ma7iA7F8MGfIClcoTBk3HhHlJIaxdXSRQ9Ld19DTB
-5fXKn9jRUQwsOK/O6WU62VW+jr9b70D+EXu0PEEAI2qUI9/LX1acdHwTdp9EVhGg
-JPp1Hn0CGPGQVwgTbe/veNTXMUakpHWP2h+QbSMwRka+a+skEDshgiyZZqeo2l1E
-+o1wseF8obYpb2+iydJA4Vp+DdEEJoHpMJZ0DZbgrIGicnVhDRi1O0tiQ+RIqiBP
-XcP5VWGb9ceABCJuBaXxW3uSJ+2fdJy6Q7f4Tmh7DP+r1R5q5lTO4wEQ9QiGVjvx
-S4JAA2hJskl6wQVcfHeG/tCWByahC3APq2PFGV/4YtvysyK7mke3GEhPknT/aIfu
-UZTkqZottd6vNcHJM+knvTuT+5WJ7Y5kOUpVZ8Ed83Oa3LtuVjTRg7iG+VT01plo
-yaLY0++R5uZNF+ABlM5lO91BSl5VpRAb6xWYOzCq7vU8U99fpXnwGwWw3Wmk7Z/f
-fDMDEz1XhpmR6ETIjCVtIGu9t/Deyyg5tC9esoDe6FP80hhdFps6Mi0/sKW//iiA
-/NaB2XsnC7H1GV7yCSQKCGTKcJNvzSdGFQnsq0DWWHloOfl6nbFdfpjiy/lAcolU
-N2X59O6146VnHrhWtwaC2rt2nBz6qPVobXn+d1L6TA6Xx3ww6kg=
-=bTvk
------END PGP SIGNATURE-----
-
---lNCG8WzO0TPLyYgP--
+-- 
+With best wishes
+Dmitry
 
