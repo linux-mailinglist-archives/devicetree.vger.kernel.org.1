@@ -1,76 +1,77 @@
-Return-Path: <devicetree+bounces-112539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8038F9A2A00
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 19:03:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D9649A2A0A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 19:03:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E9671F218DA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:03:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B63471C20FE8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908851EBA17;
-	Thu, 17 Oct 2024 16:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57BB1FA244;
+	Thu, 17 Oct 2024 16:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PKF5lMTl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yO1az8kD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A1D1E503C
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 16:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB7BA1EABBC
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 16:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729184238; cv=none; b=Xsxb8xbU3qHzuuumwU+N3PGoZIIirxx3gtJ288vTcK4/FM1h8+PezkcjkcT8XBmV9WTyScwP43aY7RbF8W75DHNeEj6D2iqWSJlgHK10ESycVEReCSphmNLhQQa8/SMc/d2+ahrRo2ielMCA0RS4yq33oEadzPtF+RB6YYUR/qU=
+	t=1729184243; cv=none; b=gDGsgeZU5yMeBiEOh6pHeABiW3QoYhyzznVTauGP5Ldf1ySNLj398y0kheEfo0Y0aChAUfQ7FEHm2EV6c0AllcPshzcw9X449TYt8FiCHlwh5vSTYGjypUFdxlN624AqoSmAG+IwYoXX4L1cpEdcE+mjhJdXt4vEjzgx56Trpfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729184238; c=relaxed/simple;
-	bh=q52kDtQWr3a6jRQ72chwsmsv4LweNlImHThaTs+tLJI=;
+	s=arc-20240116; t=1729184243; c=relaxed/simple;
+	bh=IrkjMQ7RH+oR98f5gh1F2pyya/YzwCwypAUZHAFGYso=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kT2dh6fRB/r7VCq46pcEDhApuLdEH6gqen3aGN6Zu4xnPZ1etYGGRMOM0RaAMSuqO3NA+XhQz+WH6xKYd2phsGnZJvlImjt4h/nlslDTRpZI36nF1JWbyaevruMb/Lb3jLAlTZxW9dpzZYHlkA4vKLKajv+XVo3/H53MUqyIZAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PKF5lMTl; arc=none smtp.client-ip=209.85.167.52
+	 In-Reply-To:To:Cc; b=pBIGXr7ZFawquBl6Iw/rHzm2Mzbv9uFksLGymAbQ+l4SEf9f8UHpfhuZ9urh6RXeI+xnFMBnHQ5Ec77k7+q83MwYoOmCTwGki5hc2v2yLtNM344hWvLJr2tk5XX3tav9uXtDwEnaMhok/7JY+SxHn2/wpc9NXtrsjtImQXuZ0s8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yO1az8kD; arc=none smtp.client-ip=209.85.208.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539e4b7409fso1254084e87.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:57:14 -0700 (PDT)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2fb501492ccso13523301fa.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:57:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729184233; x=1729789033; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729184236; x=1729789036; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rczbuPuSoXDjz392UZTjxNwGYgR4VrE5Q0rE5KegHkI=;
-        b=PKF5lMTl82rjVPoj9cADJy7+KfBl9JLyE/+PYzjKJxTzqTKtUv2z8jj/U/zGDGc/JD
-         yOcSfuXNlYnwP1KIhCqiyphuEugkUKsYg6UChemz602l/O87LwlZ7Znh/cgmA6gg/OX/
-         I7pixTEC1N/X4BZW3+gZRuu91B5WHfpKz0cGT2Nr22Qj683BqNUd7ezS6ON3DWUBiU2D
-         RZaKTFKOpcAgu4eFoj8Mro+LLIIm7uUbW4fXGRtrZJrP3wR2to2bq5sMAWaEs8AoeKiw
-         fK56BGr15hQgsSH7ydJ6qZqJXi10q6uBIiEoAmJiJE0ktCCo6ZmXaHJMfO/01XrCfqJx
-         EgGA==
+        bh=WU7Pijydi+sHx/XtPKLXbQVt3AZtfZFORsZqT/64C/k=;
+        b=yO1az8kDCf3XAlKkDMael9xui9NW93SMcACzSIRyYSEcViGQiKxmsBHebeKBVdGoyr
+         tLJEKA422RnjGsUsi7egYSWJz7mrHAGvKydLjZ0srItIrwWtYovzCWCjkojLjgxZfiML
+         0jepVjTdQJlSar2aXDc/1dKUpL+iGsGteJ7zccNo2Rwp45AGrY0pNxM7PMwFGadrjAc0
+         oAoAqYvegV3oPD4wJ/+A+EfNPO75F9jFAVObRIvjlMvmT+kn8UlFVHV97VyaH1VbsxGI
+         ihTKAbvNbmBcl6FkzMbDAAFNpZmvUocZEzQJ1kdw/gdwsZ0pIR2vj63kdQDQSoZWr2v2
+         pZbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729184233; x=1729789033;
+        d=1e100.net; s=20230601; t=1729184236; x=1729789036;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rczbuPuSoXDjz392UZTjxNwGYgR4VrE5Q0rE5KegHkI=;
-        b=iaU9HJ4c3FTtIQxcMIL+luEoRJn40zeDJ31l/R4ENjDWG4F/40Il7V0HoCojVSyeH2
-         Is7sI2DmB371om6J749BKP6x2tdUE5EwPCEu4PsRqB5D2FG2ReEmXmUFC6bKrSDuUaUn
-         IK5LiztR2s2m2fSiwIBziq9Zju/UaYylJ6DkxglegweLI/AH+MV97Mted1huGjHvvZG6
-         iHY+dDcqaGL2QJR63qKXuX6dHSJ5irs59XLAEI2qpo3ccUhmitfBBHoez/ajBpf/lqUC
-         mSXEwbM7zgFdoJuVJDsSMU/zwoji8XjghvqMcB87UeZpkazsqLbKv6ybtJB6ZfiL9gbh
-         wTaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWy5gU8wc/GvNtFp3D+axq0o8YMXUViMGU5xeW2q8w++TfSnZ74xuMu2bQJ7g40Uk+IYW3z0ByXYkdu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxV5Kj4p7e4vpj4HfQzLQP+hpq7YgkVQ5/TkbaZthubNDTjD8EK
-	CY/Dpc/7TTpEdgFKWOpT2FrC5NjrolO3NMJScq+N9YAMtZuADBoa/gbziearp9E=
-X-Google-Smtp-Source: AGHT+IGlJ9XzLBvkBB9F6/qWPn68fdptnNwEyOS+4ClqZhcTTfDFLHx0Pi9kvU4/9Enn7K9r2ZIhYw==
-X-Received: by 2002:a05:6512:3184:b0:539:e873:6d4 with SMTP id 2adb3069b0e04-53a0c6ed010mr1447693e87.22.1729184233246;
-        Thu, 17 Oct 2024 09:57:13 -0700 (PDT)
+        bh=WU7Pijydi+sHx/XtPKLXbQVt3AZtfZFORsZqT/64C/k=;
+        b=i3/4LMttBV581KBerGUbsHKIfy4cFmagHgF3kvi/ZDcRZ26nuM1RHZMBeSNwBAvx5X
+         lzHXd6gJzMh5tCbdDZvIlX+122YJvWmixwTPvGzM/s+y+3W3XHjkbR/aAM5D5XuC1u7l
+         TXimp51A6Q1y3taj3DiToggilCY/BFx5J+ca6K9a1VgtLRFPTcQtvlpx66EH2bAvlhmp
+         myCl4sBRXP/fuG5I+VRCbxLPfW4soeAGEkR/A8uh6ahnxQ+C7DAr+G0ls0U9nz9RP2bk
+         o++hd6G29KS8zZIeq8B2PppH3OoB4MfydYmJ59tfe1UzGjrrBCRTIutZp/PpBeNyUtZo
+         k7Xg==
+X-Forwarded-Encrypted: i=1; AJvYcCWEpcmzQwIFpIpScJOftSP+DiAZEmRnELwGQdATSrWtn66j4nHGIywnAlaXajMTQ3x1lx2MwEwG/4EU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRytLuCB6G7p35WvIZKF5H/RjKGbix90zdVLBKDV7pmNu8yBcW
+	VDfMmHypXZ4VYNfcMUAbYP29a8k+WxUXQ7tOtXLvYutp96n4tm9sChllcfLNytbqs48RKQX2JDV
+	QYSk=
+X-Google-Smtp-Source: AGHT+IEzEdvDk1bKinShhCEGaRDwEUs5ILPk8w4msKlOlBROEaXL9PDpvshNYbQeVzx/cceNge1P2w==
+X-Received: by 2002:a05:6512:684:b0:539:f699:bb2a with SMTP id 2adb3069b0e04-539f699bc9amr8740519e87.20.1729184235961;
+        Thu, 17 Oct 2024 09:57:15 -0700 (PDT)
 Received: from [127.0.1.1] (2001-14ba-a0c3-3a00-70b-e6fc-b322-6a1b.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:70b:e6fc:b322:6a1b])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a00007078sm821563e87.212.2024.10.17.09.57.12
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a00007078sm821563e87.212.2024.10.17.09.57.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 09:57:12 -0700 (PDT)
+        Thu, 17 Oct 2024 09:57:14 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 17 Oct 2024 19:56:55 +0300
-Subject: [PATCH 05/14] dt-bindings: clk: qcom,sm8450-gpucc: add SAR2130P
- compatibles
+Date: Thu, 17 Oct 2024 19:56:56 +0300
+Subject: [PATCH 06/14] clk: qcom: clk-branch: Add support for
+ BRANCH_HALT_POLL flag
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +80,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241017-sar2130p-clocks-v1-5-f75e740f0a8d@linaro.org>
+Message-Id: <20241017-sar2130p-clocks-v1-6-f75e740f0a8d@linaro.org>
 References: <20241017-sar2130p-clocks-v1-0-f75e740f0a8d@linaro.org>
 In-Reply-To: <20241017-sar2130p-clocks-v1-0-f75e740f0a8d@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -92,117 +93,84 @@ To: Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>
+ Kalpak Kawadkar <quic_kkawadka@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3312;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2255;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=bjde+ZFAcHmYisT3FSvyvenYq0Fi9l3ZckWkZSLl6og=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnEUHaw7fLAuxDWFHCu0o0sN6Fj+roDvJrZzT7A
- qoXvi+92puJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxFB2gAKCRAU23LtvoBl
- uPKID/9wsm8h7qHQY20sX9HFCyFnlUv7QziHb3TjV2Lx4SjsDnluqg8p5tifgold/4GgCVpDu0h
- dv2UZ+s0i0vCBxtcOw6w5LN6o56sN0P8DiY4YK13akvM3IjI4p+LW31FglafB444TdKLxaN1bPt
- cA5Av88qT+cgsPJwTGiBTFGCEjAQA3hAySEfh1iGLqr6BroSgLKH2gj9mUbmyhsxAUxf+IyQFfF
- F0MVpCcjjZPUWor1U7BIAV9INpZtfW9higlp9Ifd4KXspLWAGwvSu9c3RvFTpQEJfMt0tY/Q6ED
- MwWn2QwRKXpDZTDRbJELtvO2zEtZdRNge68gr4WSAFYW/AbUF5XfoOlaKqsuRkRxZSlD/LOsTI3
- 1hi6pETpV4IKJfj4eijrKDCgVFvEezcGmdEfIsf6Y8awDZvJSH7M2qRFKr8WizMQv2fc00eze4Z
- PJgBBmKwv3DpVsJF6854GKnM+8yZrPbBUWwEm1iNAOi8VvsAkKvztgAjfju+OhWtNVUUQ2MIO7S
- mtb/QOe2kzOoCkYqkHlE85jNV/1RtoeKH76xG7vVdEIxI2pP95M6tuedqca8KeXP2/BrpcbrKSs
- +fHAb2TvQ1RaL6/rA2BKyTymjuHzZUPBBCvQSRx9TBVd+xjYd8SOdTXbMIupPnGWwLBuq2ycPnb
- ndv7zHobnPLxOTQ==
+ bh=WCKh9ozPzFq+qKXhVDmEYZoe2DfonGQ7wytIhUMoLDI=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnEUHbwAeRc3m0jgK+FNqlTNJv37Ha5x02AJRfd
+ yRChuQTI9aJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxFB2wAKCRAU23LtvoBl
+ uE/aD/0YY1+GNYyofwWH6W4DIAyTdRcl/BBdbXFYyiBNLDLaeTBLfeSjWS88k8tAJ3js18F7Of1
+ aQzJjkGvnjXIs1UqLfoQphuNkQmoRMg3K2AJ8znHa0EI/Ytpre5UgBJee2Ps3RwQEptmUzZCQ5H
+ 4KzBAJbyXPyEeELztJvV+1F+o507pBQSEZHkRQJ0jG4+n3hbdxxgM+hvK+V1j4w6Xgw8KBER0qz
+ 5HPQq1+BYQHvS+S73MPYpZAdhiyEYsuyJnu+9zrM0JuB/PMa7ICYNIcvK9M46taXfFY17ZqPZKF
+ ehE3zUuX8KFbaS2ciyxNjh9cyoZAkeMl2h4i6G21IyVyM6edchDqqa5DeGXl/d+6U6V8K74iXgT
+ kJSmeXXc0si5Au8LCdQJbu1c0Xz/YdbbpuEmaLHDJAoXRkDT+Oj5xKMlIDZWBbeTxz2tDWXvMPJ
+ 2NDh9R1ysXbIks+qZPWJrSrQ/MRGISBOzn1m2Byl1+HDXWhzwfVIqaP3GBpBZlWU3mbYKm0qvrz
+ 5WL5GgBeraLNTgCq8WiymeDNUGf7ZZd6rhPkiBbjk5s858sBUNzjdcQ4T++xZ6rMCB9JFVo8WCL
+ QlQTNaFJLyPvhxp83d3BAVQKHxNj7SCGw18EAXj+BQXn0fMxxPegw4yXJV1qlD6XS80x1fYhRWM
+ oxxwwBM2dvD+WAw==
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-From: Konrad Dybcio <konradybcio@kernel.org>
+From: Kalpak Kawadkar <quic_kkawadka@quicinc.com>
 
-Expand qcom,sm8450-gpucc bindings to include SAR2130P.
+On some platforms branch clock will be enabled before Linux.
+It is expectated from the clock provider is to poll on the clock
+to ensure it is indeed enabled and not HW gated, thus add
+the BRANCH_HALT_POLL flag.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Kalpak Kawadkar <quic_kkawadka@quicinc.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../bindings/clock/qcom,sm8450-gpucc.yaml          |  2 ++
- include/dt-bindings/clock/qcom,sar2130p-gpucc.h    | 33 ++++++++++++++++++++++
- include/dt-bindings/reset/qcom,sar2130p-gpucc.h    | 14 +++++++++
- 3 files changed, 49 insertions(+)
+ drivers/clk/qcom/clk-branch.c | 7 ++++++-
+ drivers/clk/qcom/clk-branch.h | 1 +
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-index b9d29e4f65ded538c0ac8caae5acb541c9f01f41..5c65f5ecf0f387f30ae70a8f2b25d292f6092133 100644
---- a/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-gpucc.yaml
-@@ -14,6 +14,7 @@ description: |
-   domains on Qualcomm SoCs.
+diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
+index 229480c5b075a0e70dc05b1cb15b88d29fd475ce..c4c7bd565cc9a3926e24bb12ed6355ec6ddd19fb 100644
+--- a/drivers/clk/qcom/clk-branch.c
++++ b/drivers/clk/qcom/clk-branch.c
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+  * Copyright (c) 2013, The Linux Foundation. All rights reserved.
+- * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2022, 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
  
-   See also::
-+    include/dt-bindings/clock/qcom,sar2130p-gpucc.h
-     include/dt-bindings/clock/qcom,sm4450-gpucc.h
-     include/dt-bindings/clock/qcom,sm8450-gpucc.h
-     include/dt-bindings/clock/qcom,sm8550-gpucc.h
-@@ -24,6 +25,7 @@ description: |
- properties:
-   compatible:
-     enum:
-+      - qcom,sar2130p-gpucc
-       - qcom,sm4450-gpucc
-       - qcom,sm8450-gpucc
-       - qcom,sm8475-gpucc
-diff --git a/include/dt-bindings/clock/qcom,sar2130p-gpucc.h b/include/dt-bindings/clock/qcom,sar2130p-gpucc.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..a2204369110a585394d175193dce8bf9f63439d2
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sar2130p-gpucc.h
-@@ -0,0 +1,33 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved
-+ * Copyright (c) 2024, Linaro Limited
-+ */
+ #include <linux/kernel.h>
+@@ -76,6 +76,7 @@ static int clk_branch_wait(const struct clk_branch *br, bool enabling,
+ 		udelay(10);
+ 	} else if (br->halt_check == BRANCH_HALT_ENABLE ||
+ 		   br->halt_check == BRANCH_HALT ||
++		   br->halt_check == BRANCH_HALT_POLL ||
+ 		   (enabling && voted)) {
+ 		int count = 200;
+ 
+@@ -97,6 +98,10 @@ static int clk_branch_toggle(struct clk_hw *hw, bool en,
+ 	struct clk_branch *br = to_clk_branch(hw);
+ 	int ret;
+ 
++	if (br->halt_check == BRANCH_HALT_POLL) {
++		return  clk_branch_wait(br, en, check_halt);
++	}
 +
-+#ifndef _DT_BINDINGS_CLK_QCOM_GPU_CC_SAR2130P_H
-+#define _DT_BINDINGS_CLK_QCOM_GPU_CC_SAR2130P_H
-+
-+/* GPU_CC clocks */
-+#define GPU_CC_AHB_CLK				0
-+#define GPU_CC_CRC_AHB_CLK			1
-+#define GPU_CC_CX_FF_CLK			2
-+#define GPU_CC_CX_GMU_CLK			3
-+#define GPU_CC_CXO_AON_CLK			4
-+#define GPU_CC_CXO_CLK				5
-+#define GPU_CC_FF_CLK_SRC			6
-+#define GPU_CC_GMU_CLK_SRC			7
-+#define GPU_CC_GX_GMU_CLK			8
-+#define GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK		9
-+#define GPU_CC_HUB_AON_CLK			10
-+#define GPU_CC_HUB_CLK_SRC			11
-+#define GPU_CC_HUB_CX_INT_CLK			12
-+#define GPU_CC_MEMNOC_GFX_CLK			13
-+#define GPU_CC_PLL0				14
-+#define GPU_CC_PLL1				15
-+#define GPU_CC_SLEEP_CLK			16
-+
-+/* GDSCs */
-+#define GPU_GX_GDSC				0
-+#define GPU_CX_GDSC				1
-+
-+#endif
-diff --git a/include/dt-bindings/reset/qcom,sar2130p-gpucc.h b/include/dt-bindings/reset/qcom,sar2130p-gpucc.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..99ba5f092e2a43fb7b7b2a9f78d9ac4ae0bfea18
---- /dev/null
-+++ b/include/dt-bindings/reset/qcom,sar2130p-gpucc.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024, Linaro Limited
-+ */
-+
-+#ifndef _DT_BINDINGS_RESET_QCOM_GPU_CC_SAR2130P_H
-+#define _DT_BINDINGS_RESET_QCOM_GPU_CC_SAR2130P_H
-+
-+#define GPUCC_GPU_CC_GX_BCR			0
-+#define GPUCC_GPU_CC_ACD_BCR			1
-+#define GPUCC_GPU_CC_GX_ACD_IROOT_BCR		2
-+
-+#endif
+ 	if (en) {
+ 		ret = clk_enable_regmap(hw);
+ 		if (ret)
+diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
+index 292756435f53648640717734af198442a315272e..47bf59a671c3c8516a57c283fce548a6e5f16619 100644
+--- a/drivers/clk/qcom/clk-branch.h
++++ b/drivers/clk/qcom/clk-branch.h
+@@ -34,6 +34,7 @@ struct clk_branch {
+ #define BRANCH_HALT_ENABLE_VOTED	(BRANCH_HALT_ENABLE | BRANCH_VOTED)
+ #define BRANCH_HALT_DELAY		2 /* No bit to check; just delay */
+ #define BRANCH_HALT_SKIP		3 /* Don't check halt bit */
++#define BRANCH_HALT_POLL		4 /* Don't enable the clock, poll for halt */
+ 
+ 	struct clk_regmap clkr;
+ };
 
 -- 
 2.39.5
