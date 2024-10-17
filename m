@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-112494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19A0E9A26D8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F379A26E2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:36:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B00061F27C6B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 15:36:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 333CC1F26908
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 15:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021CA1DEFDB;
-	Thu, 17 Oct 2024 15:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BB81DF723;
+	Thu, 17 Oct 2024 15:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R7ytg1AJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I43IDB33"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5BC41DED5D;
-	Thu, 17 Oct 2024 15:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED7781DF721;
+	Thu, 17 Oct 2024 15:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729179338; cv=none; b=lzSI9hYDEcaIzomfI3A2jXo96uUknLbVEqkxL9V5RuPqO2DS9MRESzPSDwy9u514KJQy/YmyWw6D1P7C5ch5ass193AzDmC4Hwl6HpVUvDeFNdnY6HViet5Yg0rM3aSZG0rfQghXVF2nBUK5MSGmmK2LwDbNmSYfNR5Sw7s+abI=
+	t=1729179346; cv=none; b=ZRHW/ENnwRASuW/NVPXmVGkrt6tZnc16bL29w3H67P+Dw6/zSQ7w39t8c3re9TJEYplUeccxlDWp/j1gY70jtfiEyhzCoX7TTWip0ed7ZfrlSBgzZ0cdFQr8jcjTRXLoI94tpemUQlcnP+l0CcUTtNZ6Gc0bHERkLr/RZ32udw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729179338; c=relaxed/simple;
-	bh=GxocGuKcbIGEx2OEDqTOLN6rngMeEtVz4a6NJzfq1zw=;
+	s=arc-20240116; t=1729179346; c=relaxed/simple;
+	bh=B+abq4J2qxeK8JBY/cAF42RFyKzjO6n4dj5krRyRfkg=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=iTF6YZqqixbr93gbNvXwndI2r8e7o7HnIE3oO1TAO353z7eTezhs/T0O1y7KZV01TGfj5yVfd7EYaUNmYh0ZXqFT+jZSH8VDPZCmKVvWax4TUfDujNyNUo48ctpCYLF/c38d4xKofdpj6QgKHNMstaGYSyAq5H3Lg2dcmvx5rF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R7ytg1AJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A01E2C4CEC3;
-	Thu, 17 Oct 2024 15:35:32 +0000 (UTC)
+	 MIME-Version:Content-Type; b=DtBrGEwfXT9amSZqD5JbmuIyHkttfAB0z5E708S9O/vwhfS11iPET5w8b814mtHUBMvx7DVQApXbbvFmktTJ2wl8YnW7hE3wb8Qs0p8mg2Fwcan9/EPyc66CyaGMeYwpJs93mgN9Ir0b05qUhHob6hJAbi8GEmoeglF75AmXBvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I43IDB33; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A864C4CEC3;
+	Thu, 17 Oct 2024 15:35:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729179338;
-	bh=GxocGuKcbIGEx2OEDqTOLN6rngMeEtVz4a6NJzfq1zw=;
+	s=k20201202; t=1729179345;
+	bh=B+abq4J2qxeK8JBY/cAF42RFyKzjO6n4dj5krRyRfkg=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=R7ytg1AJbSnPVZF2ZcZEVXHNMWMEfKwvN8d6+gfd7wR7ziY2c2yGF/LxUb4L4JmQa
-	 5904WhymBCu6C23yZzVOoCv3o3SE1w0ElTkQ1Lz9UASoAICWcIQhM/kk4LLEFHAFPG
-	 vLTAFOo5KZf0X2keITbpuvxthhF8E3xFsH7sOulhLimsnLd8B00jFLw38zd3m/AxPq
-	 4uJcsx08NQXUYmgp1gcFmlw/u2A7+XVo5HPomNNrfwlfT4bYWWhDpNcZG90HS2fD61
-	 9QvozZ1Kil1SikiJCcJxDq6DcJNccP68+Wim02jJ9U5at1e+3vt9o0ws8dCBk5A5Cb
-	 JH501nUIk6flA==
+	b=I43IDB33AoTqRiUwxSTauBr0Juo9Zh2yfZW8Kf89blTuRYUucR78nXaU3DxnZKPmY
+	 CDgeo9Pdu/S4lLAKof2KECZ/43tboTN9x15xcR0OGYGbRs0hmt/gSIxKsiQ21m2xRf
+	 K2hoQktDHD5i+RJ+VvLNVZaubXFuQmErUo3mKMdekiJKUH8ktiM+sAbn5sUB+ZNI2e
+	 iugqRknpdqV6JEsRg5I+wcDLieV4jG9ObKU4eAIeTwn6tpYdC48XPYqIEhNeMfoUPm
+	 z2qT2mBP3YW/qzkaFFRlNqHKRW+at4v1nuHsK7oPxbcKYQrcO2ayZ2EnJUsmhzkqFe
+	 LoeQYTWTz3LyQ==
 From: Vinod Koul <vkoul@kernel.org>
-To: manivannan.sadhasivam@linaro.org, kishon@kernel.org, robh@kernel.org, 
- andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
- abel.vesa@linaro.org, quic_msarkar@quicinc.com, quic_devipriy@quicinc.com, 
- Qiang Yu <quic_qianyu@quicinc.com>
-Cc: dmitry.baryshkov@linaro.org, kw@linux.com, lpieralisi@kernel.org, 
- neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-clk@vger.kernel.org, johan+linaro@kernel.org
-In-Reply-To: <20241017030412.265000-1-quic_qianyu@quicinc.com>
-References: <20241017030412.265000-1-quic_qianyu@quicinc.com>
-Subject: Re: (subset) [PATCH v7 0/7] Add support for PCIe3 on x1e80100
-Message-Id: <172917933229.288841.5057372838921207960.b4-ty@kernel.org>
-Date: Thu, 17 Oct 2024 21:05:32 +0530
+To: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, heiko@sntech.de, Frank Wang <frawang.cn@gmail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com, 
+ tim.chen@rock-chips.com, Frank Wang <frank.wang@rock-chips.com>
+In-Reply-To: <20241016073713.14133-1-frawang.cn@gmail.com>
+References: <20241016073713.14133-1-frawang.cn@gmail.com>
+Subject: Re: (subset) [PATCH v6 1/4] phy: rockchip: inno-usb2: convert
+ clock management to bulk
+Message-Id: <172917934187.288841.9418215937562601531.b4-ty@kernel.org>
+Date: Thu, 17 Oct 2024 21:05:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,30 +65,21 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Wed, 16 Oct 2024 20:04:05 -0700, Qiang Yu wrote:
-> This series add support for PCIe3 on x1e80100.
+On Wed, 16 Oct 2024 15:37:10 +0800, Frank Wang wrote:
+> Since some Rockchip SoCs (e.g RK3576) have more than one clock,
+> this converts the clock management from single to bulk method to
+> make the driver more flexible.
 > 
-> PCIe3 needs additional set of clocks, regulators and new set of PCIe QMP
-> PHY configuration compare other PCIe instances on x1e80100. Hence add
-> required resource configuration and usage for PCIe3.
 > 
-> v6->v7:
-> 1. Add Acked-by and Reviewed-by tags
-> 2. Use 70574511f3f ("PCI: qcom: Add support for SC8280XP") in Fixes tag
-> 3. Keep minItem of interrupt as 8 in buindings
-> 4. Reword commit msg
-> 5. Remove [PATCH v6 5/8] clk: qcom: gcc-x1e80100: Fix halt_check for
->    pipediv2 clocks as it was applied
-> 6. Link to v6: https://lore.kernel.org/linux-pci/20241011104142.1181773-1-quic_qianyu@quicinc.com/
-> 
-> [...]
 
 Applied, thanks!
 
-[1/7] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the X1E80100 QMP PCIe PHY Gen4 x8
-      commit: 26fb23ce35e2d2233f810069ab11210851acbf54
-[4/7] phy: qcom: qmp: Add phy register and clk setting for x1e80100 PCIe3
-      commit: e961ec81a39bc57119f165cf2e994fc29637fd97
+[1/4] phy: rockchip: inno-usb2: convert clock management to bulk
+      commit: 86e2ed4e9a9680013ec9ab7c0428c9b8c5108efe
+[3/4] dt-bindings: phy: rockchip,inno-usb2phy: add rk3576
+      commit: 0217f4aef0b07a57086baeed9c0ac05160435a45
+[4/4] phy: rockchip: inno-usb2: Add usb2 phys support for rk3576
+      commit: 3d7de6e870ece5a32153382df9df6fb87613335e
 
 Best regards,
 -- 
