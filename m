@@ -1,227 +1,657 @@
-Return-Path: <devicetree+bounces-112595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509609A2F20
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 23:03:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6994B9A2F53
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 23:13:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA4F81F2419B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 21:03:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2853428317E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 21:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9422281DC;
-	Thu, 17 Oct 2024 21:03:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5C81EE025;
+	Thu, 17 Oct 2024 21:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FIuf+XZr"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="nIjY7teh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6BB1D3182
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 21:02:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CA31EE004;
+	Thu, 17 Oct 2024 21:13:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729198982; cv=none; b=shwR1/QA39dDNB4NZ7qOzdnkO+cAM491qIFCgFTRfhreIzO2Cu09QM/RSLjYSO20Gs3Ze+zJooaGBQRFZsGNVD3oAHdxDpempdWinZcdrFRZqrwF/XurqY73SI0wtHHZ6lST8BygCkXogsvvNXmwYBZak6etbS7SP4kFtRP/QA4=
+	t=1729199594; cv=none; b=ODopHBvKax9G7hHV1gz1eNUdEOabpe+8/kB7o4KiSl/uc9JhQ3Gzlx44ZbH4DOL9sTwTMLOd4cQhAo9LBtBofW4svwzcgQd6aD+JplUw1KBudeO0DeV41y3l64c06aPXyDB5hs0b2abate9oSTgeKnep6ekcOZXgeSB/fGAiwKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729198982; c=relaxed/simple;
-	bh=qwfWpxeyhpiPKYSudRqo5jr8XsgShlrd1VLDFv5fJFc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GD9Ti8khvWCrjDjn7FQtb6S0fgJA9WMZalnTrSlMbSS/qr6kiI4XeaumzssI2QJYT++rVP77XnVsM3AcAyPKCozBzApn/vAG3q6srei16eWdK/J6rERoiBgQsZkgUweX9Nejk0OTdGC9J7c4Iikbq7b1F75r8niPN7ImTL9ayCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=FIuf+XZr; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a99cc265e0aso185986266b.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 14:02:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729198971; x=1729803771; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PplG7VVviuXhuSv+Ud3YH+rqp5m5boGul+BQVv7DV/Q=;
-        b=FIuf+XZrjKP+ntGy/CF6qeRMKty8GlzjO4kIv313obyeLiFT4JMZnwB0DNpjoe09tv
-         6KZ+kKRtiOjXp4TmgvcV62SY7N+4C5714Zi6hMp1uhA1MqZvnq9nxkfzGAf8JT60uldd
-         EPcu0XVH1d9qBcRNQX5vnv571xeuCUEPJyHO0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729198971; x=1729803771;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PplG7VVviuXhuSv+Ud3YH+rqp5m5boGul+BQVv7DV/Q=;
-        b=veVUHNQmEDYRnoklX15YEvApu9fxVWh6MZod6a9Sykuf904oM7cCzAV85KMZmREhq5
-         W8pmpuSS62Chf+vm95Z9tosLmMmnwA60bOSHrFs3jN0TgpU+biF3o+6TO0nltr0uXgPE
-         UXKitMQzM4uqqBWUWPjf6bRbiJK4e7qB0wRvgMfeEXq9L/mJO7sLvHX4Pfuh07+G+Nsa
-         xjWcauFc3Wl7vbzUdvUiK8Eq02PPtRooZ+o52bja/vQDcFTEoTJTGCQzdB+1O6UZVsyW
-         3DjfG/dmPTGcGqK2L6wnLNw8KxCfp9ozK/BI4FTjwpjLhy9nSbWlCrRmczFDEakTKLgt
-         x3sA==
-X-Forwarded-Encrypted: i=1; AJvYcCWy948dTyIGkZ5qk4KRRIyctKuFNhK4yBM3UzktgftwrQRQu2MdQ1G17vRmbuhmbsBAR4g8MDj80nEw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5oRJrXFE/dVpV5hNQ6Lmt/by680tRolqnt75nSy47we96yWPF
-	fTJFMGMtWZMPnBn6AbuDBvvsm+4P/Ofs/Wle18OpylZc/qDUz9pME05ek7iobtM0W3/h7CBCXRk
-	jJg==
-X-Google-Smtp-Source: AGHT+IE8EYidOCo9SMHqJfAMWNbn6Uo6TMz6BwEGyK8JAmJ/sLGWAkr8OWiM1pGWhqsQdGHNSHeBdw==
-X-Received: by 2002:a17:907:3f1e:b0:a99:60c8:f2c4 with SMTP id a640c23a62f3a-a9a69a668c1mr9533466b.15.1729198971038;
-        Thu, 17 Oct 2024 14:02:51 -0700 (PDT)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a68a8d9e4sm13361466b.9.2024.10.17.14.02.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Oct 2024 14:02:50 -0700 (PDT)
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37d4821e6b4so894125f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 14:02:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWsWn31gwiwWv6ea7jFFfIwJUiIXHTVrJl9f/567ROsBOXzvX5Xfos0kSTKFmjSd/hKuVZVo2OjmScc@vger.kernel.org
-X-Received: by 2002:a5d:45cd:0:b0:37d:39c1:4d3 with SMTP id
- ffacd0b85a97d-37ea21de065mr215420f8f.6.1729198968725; Thu, 17 Oct 2024
- 14:02:48 -0700 (PDT)
+	s=arc-20240116; t=1729199594; c=relaxed/simple;
+	bh=T6mRgOOOmHOu+F4RCwhVxiEHncy+CT7YEwcT4HIUt/g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eLRH7eAUXgosRygFeVbLpZyv6ev951f3ogDFdCPLc87OdlAJo2GUOromQU4DeDdEb9LdRB/5ama/B0/IOh/vAKh1i70SdW5hNGItI+kBuqRf9QlX47HOHFhI+2Ah/XmJ7rKqZVRrhVqezDbhjHCsJchnFUjNIOovi2VNfU2SoTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=nIjY7teh; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id C086B89093;
+	Thu, 17 Oct 2024 23:13:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1729199585;
+	bh=GCXtTxIkHUT2j1+StjgSLHzcz+UFIxo2+IrG/8tq/kY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=nIjY7tehnxv5s+cHCbAEOWu4YdRZf+LZJpwtZNvL/QBfn/GowV77Z71I0ZG80ZbSB
+	 hXpS+SUxGlTa9DdWk9c90QHHPIW1FZHXUazsaHZN8BaVFKttqPq16xJsBRxNBCXEd0
+	 4L67CLhbHQXUQZ39XtDNrFaX4qXf3aNjZCJJfPQjaA7y+fMO8naSNmiUMo0B1FEBDD
+	 fkCtKROkju1CJaIqfcbdDJCPP5OLXd9tAwhnz9aEFxr9EILyP9EsrOJuY/t5tPtO1v
+	 +qdLIEScIPaqkezN26R8aoyL2Qok/CvaFSW4Fzrg1gD/H9PqrNazWVbKBB3Um9Qg4O
+	 qEzZnEUbk64QQ==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	Rob Herring <robh@kernel.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jacky Bai <ping.bai@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@dh-electronics.com,
+	linux-gpio@vger.kernel.org
+Subject: [PATCH v3 01/12] dt-bindings: pinctrl: fsl,imx6ul-pinctrl: Convert i.MX35/5x/6 to YAML
+Date: Thu, 17 Oct 2024 23:11:18 +0200
+Message-ID: <20241017211241.170861-1-marex@denx.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241017094222.1014936-1-wenst@chromium.org> <20241017094222.1014936-4-wenst@chromium.org>
-In-Reply-To: <20241017094222.1014936-4-wenst@chromium.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 17 Oct 2024 14:02:36 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vy6q-nPZ99k7t8-G_osefg=0jxPUWm8F1uhtVw0xDvxg@mail.gmail.com>
-Message-ID: <CAD=FV=Vy6q-nPZ99k7t8-G_osefg=0jxPUWm8F1uhtVw0xDvxg@mail.gmail.com>
-Subject: Re: [PATCH v9 3/7] i2c: Introduce OF component probe function
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
-	Jiri Kosina <jikos@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi,
+The IOMUXC controller description is almost identical on i.MX35/5x/6 SoCs,
+except for the configuration bits which differ across SoCs. Rename the
+fsl,imx6ul-pinctrl.yaml to fsl,imx35-pinctrl.yaml, fill in compatible
+strings for the other SoCs and fill in the various bits into desciption.
+This way, i.MX35/5x/6 series SoCs can all be converted to DT schema.
+Remove the old text DT bindings description.
 
-On Thu, Oct 17, 2024 at 2:42=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> Some devices are designed and manufactured with some components having
-> multiple drop-in replacement options. These components are often
-> connected to the mainboard via ribbon cables, having the same signals
-> and pin assignments across all options. These may include the display
-> panel and touchscreen on laptops and tablets, and the trackpad on
-> laptops. Sometimes which component option is used in a particular device
-> can be detected by some firmware provided identifier, other times that
-> information is not available, and the kernel has to try to probe each
-> device.
->
-> This change attempts to make the "probe each device" case cleaner. The
-> current approach is to have all options added and enabled in the device
-> tree. The kernel would then bind each device and run each driver's probe
-> function. This works, but has been broken before due to the introduction
-> of asynchronous probing, causing multiple instances requesting "shared"
-> resources, such as pinmuxes, GPIO pins, interrupt lines, at the same
-> time, with only one instance succeeding. Work arounds for these include
-> moving the pinmux to the parent I2C controller, using GPIO hogs or
-> pinmux settings to keep the GPIO pins in some fixed configuration, and
-> requesting the interrupt line very late. Such configurations can be seen
-> on the MT8183 Krane Chromebook tablets, and the Qualcomm sc8280xp-based
-> Lenovo Thinkpad 13S.
->
-> Instead of this delicate dance between drivers and device tree quirks,
-> this change introduces a simple I2C component probe function. For a
-> given class of devices on the same I2C bus, it will go through all of
-> them, doing a simple I2C read transfer and see which one of them responds=
-.
-> It will then enable the device that responds.
->
-> This requires some minor modifications in the existing device tree. The
-> status for all the device nodes for the component options must be set
-> to "fail-needs-probe". This makes it clear that some mechanism is
-> needed to enable one of them, and also prevents the prober and device
-> drivers running at the same time.
->
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
-> Changes since v8:
-> - Added missing include of <linux/kconfig.h> to i2c-of-prober.h
-> - Expanded description of i2c_of_probe_ops::enable to mention that
->   returning -EPROBE_DEFER is valid (Doug)
-> - Reworded descrption of i2c_of_probe_ops::cleanup_early to avoid
->   confusion with i2c_of_probe_ops::enable (Doug)
-> - Reworked i2c_of_probe_get_i2c_node() to return NULL on failure,
->   matching most functions that return |struct device_node *|.
->
-> Changes since v7:
-> - Dropped log level of "enabling component" to debug
-> - Dropped file name from header file
-> - Reverted to __free() cleanup for i2c bus node
-> - Corrected "failed-needs-probe" to "fail-needs-probe" in commit message
-> - Fixed incorrectly positioned period ('.') in commit message
-> - Expanded description of i2c_of_probe_component()
-> - Expanded comment explaining check for "available" devices to note that
->   if such a device is found then the i2c probe function becomes a no-op
-> - Simplified check for "available" devices for-each loop
-> - Expanded description of @free_resources_early callback to explicitly
->   state that it is not called if no working components are found
-> - Dropped !cfg check
-> - Replaced "fail" with "fail-needs-probe" in i2c_of_probe_component()
->   kernel doc
-> - Combined callbacks (.get_resources with .enable; .cleanup with
->   .free_resources_late); .free_resources_early renamed to .cleanup_early
->
-> Changes since v6:
-> - Correctly replaced for_each_child_of_node_scoped() with
->   for_each_child_of_node_with_prefix()
-> - Added namespace for exported symbol
-> - Made the probe function a framework with hooks
-> - Split out a new header file
-> - Added MAINTAINERS entry
-> - Reworded kernel-doc
-> - Dropped usage of __free from i2c_of_probe_component() since error
->   path cleanup is needed anyway
->
-> Changes since v5:
-> - Fixed indent in Makefile
-> - Split regulator and GPIO TODO items
-> - Reversed final conditional in i2c_of_probe_enable_node()
->
-> Changes since v4:
-> - Split code into helper functions
-> - Use scoped helpers and __free() to reduce error path
->
-> Changes since v3:
-> - Complete kernel-doc
-> - Return different error if I2C controller is disabled
-> - Expand comment to explain assumptions and constraints
-> - Split for-loop finding target node and operations on target node
-> - Add missing i2c_put_adapter()
-> - Move prober code to separate file
->
-> Rob also asked why there was a limitation of "exactly one touchscreen
-> will be enabled across the whole tree".
->
-> The use case this prober currently targets is a component on consumer
-> electronics (tablet or laptop) being swapped out due to cost or supply
-> reasons. Designs with multiple components of the same type are pretty
-> rare. The way the next patch is written also assumes this for efficiency
-> reasons.
->
-> Changes since v2:
-> - New patch split out from "of: Introduce hardware prober driver"
-> - Addressed Rob's comments
->   - Move i2c prober to i2c subsystem
->   - Use of_node_is_available() to check if node is enabled.
->   - Use OF changeset API to update status property
-> - Addressed Andy's comments
->   - Probe function now accepts "struct device *dev" instead to reduce
->     line length and dereferences
->   - Move "ret =3D 0" to just before for_each_child_of_node(i2c_node, node=
-)
-> ---
->  MAINTAINERS                      |   8 ++
->  drivers/i2c/Makefile             |   1 +
->  drivers/i2c/i2c-core-of-prober.c | 182 +++++++++++++++++++++++++++++++
->  include/linux/i2c-of-prober.h    |  75 +++++++++++++
->  4 files changed, 266 insertions(+)
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Jacky Bai <ping.bai@nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Stefan Wahren <wahrenst@gmx.net>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-gpio@vger.kernel.org
+---
+V2: - Use DT schema to refer to the fsl,imx35-pinctrl.yaml file
+    - Special-case the iMX50 compatible string
+V3: Add RB from Rob
+---
+ .../bindings/pinctrl/fsl,imx35-pinctrl.txt    | 33 -------
+ ...ul-pinctrl.yaml => fsl,imx35-pinctrl.yaml} | 88 ++++++++++++++++---
+ .../bindings/pinctrl/fsl,imx50-pinctrl.txt    | 32 -------
+ .../bindings/pinctrl/fsl,imx51-pinctrl.txt    | 32 -------
+ .../bindings/pinctrl/fsl,imx53-pinctrl.txt    | 32 -------
+ .../bindings/pinctrl/fsl,imx6dl-pinctrl.txt   | 38 --------
+ .../bindings/pinctrl/fsl,imx6q-pinctrl.txt    | 38 --------
+ .../bindings/pinctrl/fsl,imx6sl-pinctrl.txt   | 39 --------
+ .../bindings/pinctrl/fsl,imx6sll-pinctrl.txt  | 40 ---------
+ .../bindings/pinctrl/fsl,imx6sx-pinctrl.txt   | 36 --------
+ 10 files changed, 78 insertions(+), 330 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.txt
+ rename Documentation/devicetree/bindings/pinctrl/{fsl,imx6ul-pinctrl.yaml => fsl,imx35-pinctrl.yaml} (50%)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx50-pinctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx51-pinctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx53-pinctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6dl-pinctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6q-pinctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6sl-pinctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6sll-pinctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx6sx-pinctrl.txt
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.txt
+deleted file mode 100644
+index c083dfd25db93..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-* Freescale IMX35 IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx35-iomuxc"
+-- fsl,pins: two integers array, represents a group of pins mux and config
+-  setting. The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is a
+-  pin working on a specific function, CONFIG is the pad setting value like
+-  pull-up for this pin. Please refer to imx35 datasheet for the valid pad
+-  config settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_DRIVE_VOLAGAGE_18	(1 << 13)
+-PAD_CTL_DRIVE_VOLAGAGE_33	(0 << 13)
+-PAD_CTL_HYS			(1 << 8)
+-PAD_CTL_PKE			(1 << 7)
+-PAD_CTL_PUE			(1 << 6)
+-PAD_CTL_PUS_100K_DOWN		(0 << 4)
+-PAD_CTL_PUS_47K_UP		(1 << 4)
+-PAD_CTL_PUS_100K_UP		(2 << 4)
+-PAD_CTL_PUS_22K_UP		(3 << 4)
+-PAD_CTL_ODE_CMOS		(0 << 3)
+-PAD_CTL_ODE_OPENDRAIN		(1 << 3)
+-PAD_CTL_DSE_NOMINAL		(0 << 1)
+-PAD_CTL_DSE_HIGH		(1 << 1)
+-PAD_CTL_DSE_MAX			(2 << 1)
+-PAD_CTL_SRE_FAST		(1 << 0)
+-PAD_CTL_SRE_SLOW		(0 << 0)
+-
+-Refer to imx35-pinfunc.h in device tree source folder for all available
+-imx35 PIN_FUNC_ID.
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx6ul-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.yaml
+similarity index 50%
+rename from Documentation/devicetree/bindings/pinctrl/fsl,imx6ul-pinctrl.yaml
+rename to Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.yaml
+index 906b264a9e3cd..265c43ab76f4c 100644
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx6ul-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/fsl,imx35-pinctrl.yaml
+@@ -1,10 +1,10 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/pinctrl/fsl,imx6ul-pinctrl.yaml#
++$id: http://devicetree.org/schemas/pinctrl/fsl,imx35-pinctrl.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Freescale IMX6UL IOMUX Controller
++title: Freescale IMX35/IMX5x/IMX6 IOMUX Controller
+ 
+ maintainers:
+   - Dong Aisheng <aisheng.dong@nxp.com>
+@@ -18,9 +18,21 @@ allOf:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - fsl,imx6ul-iomuxc
+-      - fsl,imx6ull-iomuxc-snvs
++    oneOf:
++      - enum:
++          - fsl,imx35-iomuxc
++          - fsl,imx51-iomuxc
++          - fsl,imx53-iomuxc
++          - fsl,imx6dl-iomuxc
++          - fsl,imx6q-iomuxc
++          - fsl,imx6sl-iomuxc
++          - fsl,imx6sll-iomuxc
++          - fsl,imx6sx-iomuxc
++          - fsl,imx6ul-iomuxc
++          - fsl,imx6ull-iomuxc-snvs
++      - items:
++          - const: fsl,imx50-iomuxc
++          - const: fsl,imx53-iomuxc
+ 
+   reg:
+     maxItems: 1
+@@ -39,9 +51,9 @@ patternProperties:
+           each entry consists of 6 integers and represents the mux and config
+           setting for one pin. The first 5 integers <mux_reg conf_reg input_reg
+           mux_val input_val> are specified using a PIN_FUNC_ID macro, which can
+-          be found in <arch/arm/boot/dts/imx6ul-pinfunc.h>. The last integer
++          be found in <arch/arm/boot/dts/nxp/imx/imx*-pinfunc.h>. The last integer
+           CONFIG is the pad setting value like pull-up on this pin. Please
+-          refer to i.MX6UL Reference Manual for detailed CONFIG settings.
++          refer to matching i.MX Reference Manual for detailed CONFIG settings.
+         $ref: /schemas/types.yaml#/definitions/uint32-matrix
+         items:
+           items:
+@@ -56,7 +68,41 @@ patternProperties:
+             - description: |
+                 "input_val" indicates the select input value to be applied.
+             - description: |
+-                "pad_setting" indicates the pad configuration value to be applied:
++                "pad_setting" indicates the pad configuration value to be applied.
++                Common i.MX35
++                  PAD_CTL_DRIVE_VOLAGAGE_18       (1 << 13)
++                  PAD_CTL_DRIVE_VOLAGAGE_33       (0 << 13)
++                  PAD_CTL_HYS                     (1 << 8)
++                  PAD_CTL_PKE                     (1 << 7)
++                  PAD_CTL_PUE                     (1 << 6)
++                  PAD_CTL_PUS_100K_DOWN           (0 << 4)
++                  PAD_CTL_PUS_47K_UP              (1 << 4)
++                  PAD_CTL_PUS_100K_UP             (2 << 4)
++                  PAD_CTL_PUS_22K_UP              (3 << 4)
++                  PAD_CTL_ODE_CMOS                (0 << 3)
++                  PAD_CTL_ODE_OPENDRAIN           (1 << 3)
++                  PAD_CTL_DSE_NOMINAL             (0 << 1)
++                  PAD_CTL_DSE_HIGH                (1 << 1)
++                  PAD_CTL_DSE_MAX                 (2 << 1)
++                  PAD_CTL_SRE_FAST                (1 << 0)
++                  PAD_CTL_SRE_SLOW                (0 << 0)
++                Common i.MX50/i.MX51/i.MX53 bits
++                  PAD_CTL_HVE                     (1 << 13)
++                  PAD_CTL_HYS                     (1 << 8)
++                  PAD_CTL_PKE                     (1 << 7)
++                  PAD_CTL_PUE                     (1 << 6)
++                  PAD_CTL_PUS_100K_DOWN           (0 << 4)
++                  PAD_CTL_PUS_47K_UP              (1 << 4)
++                  PAD_CTL_PUS_100K_UP             (2 << 4)
++                  PAD_CTL_PUS_22K_UP              (3 << 4)
++                  PAD_CTL_ODE                     (1 << 3)
++                  PAD_CTL_DSE_LOW                 (0 << 1)
++                  PAD_CTL_DSE_MED                 (1 << 1)
++                  PAD_CTL_DSE_HIGH                (2 << 1)
++                  PAD_CTL_DSE_MAX                 (3 << 1)
++                  PAD_CTL_SRE_FAST                (1 << 0)
++                  PAD_CTL_SRE_SLOW                (0 << 0)
++                Common i.MX6 bits
+                   PAD_CTL_HYS                     (1 << 16)
+                   PAD_CTL_PUS_100K_DOWN           (0 << 14)
+                   PAD_CTL_PUS_47K_UP              (1 << 14)
+@@ -69,6 +115,11 @@ patternProperties:
+                   PAD_CTL_SPEED_MED               (1 << 6)
+                   PAD_CTL_SPEED_HIGH              (3 << 6)
+                   PAD_CTL_DSE_DISABLE             (0 << 3)
++                  PAD_CTL_SRE_FAST                (1 << 0)
++                  PAD_CTL_SRE_SLOW                (0 << 0)
++                i.MX6SL/MX6SLL specific bits
++                  PAD_CTL_LVE                     (1 << 22) (MX6SL/SLL only)
++                i.MX6SLL/i.MX6SX/i.MX6UL/i.MX6ULL specific bits
+                   PAD_CTL_DSE_260ohm              (1 << 3)
+                   PAD_CTL_DSE_130ohm              (2 << 3)
+                   PAD_CTL_DSE_87ohm               (3 << 3)
+@@ -76,8 +127,14 @@ patternProperties:
+                   PAD_CTL_DSE_52ohm               (5 << 3)
+                   PAD_CTL_DSE_43ohm               (6 << 3)
+                   PAD_CTL_DSE_37ohm               (7 << 3)
+-                  PAD_CTL_SRE_FAST                (1 << 0)
+-                  PAD_CTL_SRE_SLOW                (0 << 0)
++                i.MX6DL/i.MX6Q/i.MX6SL specific bits
++                  PAD_CTL_DSE_240ohm              (1 << 3)
++                  PAD_CTL_DSE_120ohm              (2 << 3)
++                  PAD_CTL_DSE_80ohm               (3 << 3)
++                  PAD_CTL_DSE_60ohm               (4 << 3)
++                  PAD_CTL_DSE_48ohm               (5 << 3)
++                  PAD_CTL_DSE_40ohm               (6 << 3)
++                  PAD_CTL_DSE_34ohm               (7 << 3)
+ 
+     required:
+       - fsl,pins
+@@ -114,3 +171,14 @@ examples:
+         >;
+       };
+     };
++  - |
++    iomuxc_mx6q: pinctrl@20e0000 {
++        compatible = "fsl,imx6q-iomuxc";
++        reg = <0x20e0000 0x4000>;
++
++        pinctrl_uart4: uart4grp {
++            fsl,pins =
++                <0x288 0x658 0x000 0x3 0x0	0x140>,
++                <0x28c 0x65c 0x938 0x3 0x3	0x140>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx50-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx50-pinctrl.txt
+deleted file mode 100644
+index 6da01d619d33e..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx50-pinctrl.txt
++++ /dev/null
+@@ -1,32 +0,0 @@
+-* Freescale IMX50 IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx50-iomuxc"
+-- fsl,pins: two integers array, represents a group of pins mux and config
+-  setting. The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is a
+-  pin working on a specific function, CONFIG is the pad setting value like
+-  pull-up for this pin. Please refer to imx50 datasheet for the valid pad
+-  config settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_HVE			(1 << 13)
+-PAD_CTL_HYS			(1 << 8)
+-PAD_CTL_PKE			(1 << 7)
+-PAD_CTL_PUE			(1 << 6)
+-PAD_CTL_PUS_100K_DOWN		(0 << 4)
+-PAD_CTL_PUS_47K_UP		(1 << 4)
+-PAD_CTL_PUS_100K_UP		(2 << 4)
+-PAD_CTL_PUS_22K_UP		(3 << 4)
+-PAD_CTL_ODE			(1 << 3)
+-PAD_CTL_DSE_LOW			(0 << 1)
+-PAD_CTL_DSE_MED			(1 << 1)
+-PAD_CTL_DSE_HIGH		(2 << 1)
+-PAD_CTL_DSE_MAX			(3 << 1)
+-PAD_CTL_SRE_FAST		(1 << 0)
+-PAD_CTL_SRE_SLOW		(0 << 0)
+-
+-Refer to imx50-pinfunc.h in device tree source folder for all available
+-imx50 PIN_FUNC_ID.
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx51-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx51-pinctrl.txt
+deleted file mode 100644
+index 4d1408fcc99cf..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx51-pinctrl.txt
++++ /dev/null
+@@ -1,32 +0,0 @@
+-* Freescale IMX51 IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx51-iomuxc"
+-- fsl,pins: two integers array, represents a group of pins mux and config
+-  setting. The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is a
+-  pin working on a specific function, CONFIG is the pad setting value like
+-  pull-up for this pin. Please refer to imx51 datasheet for the valid pad
+-  config settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_HVE			(1 << 13)
+-PAD_CTL_HYS			(1 << 8)
+-PAD_CTL_PKE			(1 << 7)
+-PAD_CTL_PUE			(1 << 6)
+-PAD_CTL_PUS_100K_DOWN		(0 << 4)
+-PAD_CTL_PUS_47K_UP		(1 << 4)
+-PAD_CTL_PUS_100K_UP		(2 << 4)
+-PAD_CTL_PUS_22K_UP		(3 << 4)
+-PAD_CTL_ODE			(1 << 3)
+-PAD_CTL_DSE_LOW			(0 << 1)
+-PAD_CTL_DSE_MED			(1 << 1)
+-PAD_CTL_DSE_HIGH		(2 << 1)
+-PAD_CTL_DSE_MAX			(3 << 1)
+-PAD_CTL_SRE_FAST		(1 << 0)
+-PAD_CTL_SRE_SLOW		(0 << 0)
+-
+-Refer to imx51-pinfunc.h in device tree source folder for all available
+-imx51 PIN_FUNC_ID.
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx53-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx53-pinctrl.txt
+deleted file mode 100644
+index 25dcb77cfaf74..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx53-pinctrl.txt
++++ /dev/null
+@@ -1,32 +0,0 @@
+-* Freescale IMX53 IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx53-iomuxc"
+-- fsl,pins: two integers array, represents a group of pins mux and config
+-  setting. The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is a
+-  pin working on a specific function, CONFIG is the pad setting value like
+-  pull-up for this pin. Please refer to imx53 datasheet for the valid pad
+-  config settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_HVE			(1 << 13)
+-PAD_CTL_HYS			(1 << 8)
+-PAD_CTL_PKE			(1 << 7)
+-PAD_CTL_PUE			(1 << 6)
+-PAD_CTL_PUS_100K_DOWN		(0 << 4)
+-PAD_CTL_PUS_47K_UP		(1 << 4)
+-PAD_CTL_PUS_100K_UP		(2 << 4)
+-PAD_CTL_PUS_22K_UP		(3 << 4)
+-PAD_CTL_ODE			(1 << 3)
+-PAD_CTL_DSE_LOW			(0 << 1)
+-PAD_CTL_DSE_MED			(1 << 1)
+-PAD_CTL_DSE_HIGH		(2 << 1)
+-PAD_CTL_DSE_MAX			(3 << 1)
+-PAD_CTL_SRE_FAST		(1 << 0)
+-PAD_CTL_SRE_SLOW		(0 << 0)
+-
+-Refer to imx53-pinfunc.h in device tree source folder for all available
+-imx53 PIN_FUNC_ID.
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx6dl-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx6dl-pinctrl.txt
+deleted file mode 100644
+index 0ac5bee875056..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx6dl-pinctrl.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-* Freescale IMX6 DualLite/Solo IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx6dl-iomuxc"
+-- fsl,pins: two integers array, represents a group of pins mux and config
+-  setting. The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is a
+-  pin working on a specific function, CONFIG is the pad setting value like
+-  pull-up for this pin. Please refer to imx6dl datasheet for the valid pad
+-  config settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_HYS                     (1 << 16)
+-PAD_CTL_PUS_100K_DOWN           (0 << 14)
+-PAD_CTL_PUS_47K_UP              (1 << 14)
+-PAD_CTL_PUS_100K_UP             (2 << 14)
+-PAD_CTL_PUS_22K_UP              (3 << 14)
+-PAD_CTL_PUE                     (1 << 13)
+-PAD_CTL_PKE                     (1 << 12)
+-PAD_CTL_ODE                     (1 << 11)
+-PAD_CTL_SPEED_LOW               (1 << 6)
+-PAD_CTL_SPEED_MED               (2 << 6)
+-PAD_CTL_SPEED_HIGH              (3 << 6)
+-PAD_CTL_DSE_DISABLE             (0 << 3)
+-PAD_CTL_DSE_240ohm              (1 << 3)
+-PAD_CTL_DSE_120ohm              (2 << 3)
+-PAD_CTL_DSE_80ohm               (3 << 3)
+-PAD_CTL_DSE_60ohm               (4 << 3)
+-PAD_CTL_DSE_48ohm               (5 << 3)
+-PAD_CTL_DSE_40ohm               (6 << 3)
+-PAD_CTL_DSE_34ohm               (7 << 3)
+-PAD_CTL_SRE_FAST                (1 << 0)
+-PAD_CTL_SRE_SLOW                (0 << 0)
+-
+-Refer to imx6dl-pinfunc.h in device tree source folder for all available
+-imx6dl PIN_FUNC_ID.
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx6q-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx6q-pinctrl.txt
+deleted file mode 100644
+index 546610cf2ae71..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx6q-pinctrl.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-* Freescale IMX6Q IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx6q-iomuxc"
+-- fsl,pins: two integers array, represents a group of pins mux and config
+-  setting. The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is a
+-  pin working on a specific function, CONFIG is the pad setting value like
+-  pull-up for this pin. Please refer to imx6q datasheet for the valid pad
+-  config settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_HYS                     (1 << 16)
+-PAD_CTL_PUS_100K_DOWN           (0 << 14)
+-PAD_CTL_PUS_47K_UP              (1 << 14)
+-PAD_CTL_PUS_100K_UP             (2 << 14)
+-PAD_CTL_PUS_22K_UP              (3 << 14)
+-PAD_CTL_PUE                     (1 << 13)
+-PAD_CTL_PKE                     (1 << 12)
+-PAD_CTL_ODE                     (1 << 11)
+-PAD_CTL_SPEED_LOW               (1 << 6)
+-PAD_CTL_SPEED_MED               (2 << 6)
+-PAD_CTL_SPEED_HIGH              (3 << 6)
+-PAD_CTL_DSE_DISABLE             (0 << 3)
+-PAD_CTL_DSE_240ohm              (1 << 3)
+-PAD_CTL_DSE_120ohm              (2 << 3)
+-PAD_CTL_DSE_80ohm               (3 << 3)
+-PAD_CTL_DSE_60ohm               (4 << 3)
+-PAD_CTL_DSE_48ohm               (5 << 3)
+-PAD_CTL_DSE_40ohm               (6 << 3)
+-PAD_CTL_DSE_34ohm               (7 << 3)
+-PAD_CTL_SRE_FAST                (1 << 0)
+-PAD_CTL_SRE_SLOW                (0 << 0)
+-
+-Refer to imx6q-pinfunc.h in device tree source folder for all available
+-imx6q PIN_FUNC_ID.
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx6sl-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx6sl-pinctrl.txt
+deleted file mode 100644
+index e5f6d1f065a42..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx6sl-pinctrl.txt
++++ /dev/null
+@@ -1,39 +0,0 @@
+-* Freescale IMX6 SoloLite IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx6sl-iomuxc"
+-- fsl,pins: two integers array, represents a group of pins mux and config
+-  setting. The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is a
+-  pin working on a specific function, CONFIG is the pad setting value like
+-  pull-up for this pin. Please refer to imx6sl datasheet for the valid pad
+-  config settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_LVE                     (1 << 22)
+-PAD_CTL_HYS                     (1 << 16)
+-PAD_CTL_PUS_100K_DOWN           (0 << 14)
+-PAD_CTL_PUS_47K_UP              (1 << 14)
+-PAD_CTL_PUS_100K_UP             (2 << 14)
+-PAD_CTL_PUS_22K_UP              (3 << 14)
+-PAD_CTL_PUE                     (1 << 13)
+-PAD_CTL_PKE                     (1 << 12)
+-PAD_CTL_ODE                     (1 << 11)
+-PAD_CTL_SPEED_LOW               (1 << 6)
+-PAD_CTL_SPEED_MED               (2 << 6)
+-PAD_CTL_SPEED_HIGH              (3 << 6)
+-PAD_CTL_DSE_DISABLE             (0 << 3)
+-PAD_CTL_DSE_240ohm              (1 << 3)
+-PAD_CTL_DSE_120ohm              (2 << 3)
+-PAD_CTL_DSE_80ohm               (3 << 3)
+-PAD_CTL_DSE_60ohm               (4 << 3)
+-PAD_CTL_DSE_48ohm               (5 << 3)
+-PAD_CTL_DSE_40ohm               (6 << 3)
+-PAD_CTL_DSE_34ohm               (7 << 3)
+-PAD_CTL_SRE_FAST                (1 << 0)
+-PAD_CTL_SRE_SLOW                (0 << 0)
+-
+-Refer to imx6sl-pinfunc.h in device tree source folder for all available
+-imx6sl PIN_FUNC_ID.
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx6sll-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx6sll-pinctrl.txt
+deleted file mode 100644
+index 175e8939a3018..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx6sll-pinctrl.txt
++++ /dev/null
+@@ -1,40 +0,0 @@
+-* Freescale i.MX6 SLL IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx6sll-iomuxc"
+-- fsl,pins: each entry consists of 6 integers and represents the mux and config
+-  setting for one pin.  The first 5 integers <mux_reg conf_reg input_reg mux_val
+-  input_val> are specified using a PIN_FUNC_ID macro, which can be found in
+-  imx6sll-pinfunc.h under device tree source folder.  The last integer CONFIG is
+-  the pad setting value like pull-up on this pin.  Please refer to i.MX6SLL
+-  Reference Manual for detailed CONFIG settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_LVE			(1 << 22)
+-PAD_CTL_HYS                     (1 << 16)
+-PAD_CTL_PUS_100K_DOWN           (0 << 14)
+-PAD_CTL_PUS_47K_UP              (1 << 14)
+-PAD_CTL_PUS_100K_UP             (2 << 14)
+-PAD_CTL_PUS_22K_UP              (3 << 14)
+-PAD_CTL_PUE                     (1 << 13)
+-PAD_CTL_PKE                     (1 << 12)
+-PAD_CTL_ODE                     (1 << 11)
+-PAD_CTL_SPEED_LOW               (0 << 6)
+-PAD_CTL_SPEED_MED               (1 << 6)
+-PAD_CTL_SPEED_HIGH              (3 << 6)
+-PAD_CTL_DSE_DISABLE             (0 << 3)
+-PAD_CTL_DSE_260ohm              (1 << 3)
+-PAD_CTL_DSE_130ohm              (2 << 3)
+-PAD_CTL_DSE_87ohm               (3 << 3)
+-PAD_CTL_DSE_65ohm               (4 << 3)
+-PAD_CTL_DSE_52ohm               (5 << 3)
+-PAD_CTL_DSE_43ohm               (6 << 3)
+-PAD_CTL_DSE_37ohm               (7 << 3)
+-PAD_CTL_SRE_FAST                (1 << 0)
+-PAD_CTL_SRE_SLOW                (0 << 0)
+-
+-Refer to imx6sll-pinfunc.h in device tree source folder for all available
+-imx6sll PIN_FUNC_ID.
+diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,imx6sx-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,imx6sx-pinctrl.txt
+deleted file mode 100644
+index b1b595220f1bd..0000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/fsl,imx6sx-pinctrl.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-* Freescale i.MX6 SoloX IOMUX Controller
+-
+-Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
+-and usage.
+-
+-Required properties:
+-- compatible: "fsl,imx6sx-iomuxc"
+-- fsl,pins: each entry consists of 6 integers and represents the mux and config
+-  setting for one pin.  The first 5 integers <mux_reg conf_reg input_reg mux_val
+-  input_val> are specified using a PIN_FUNC_ID macro, which can be found in
+-  imx6sx-pinfunc.h under device tree source folder.  The last integer CONFIG is
+-  the pad setting value like pull-up on this pin.  Please refer to i.MX6 SoloX
+-  Reference Manual for detailed CONFIG settings.
+-
+-CONFIG bits definition:
+-PAD_CTL_HYS                     (1 << 16)
+-PAD_CTL_PUS_100K_DOWN           (0 << 14)
+-PAD_CTL_PUS_47K_UP              (1 << 14)
+-PAD_CTL_PUS_100K_UP             (2 << 14)
+-PAD_CTL_PUS_22K_UP              (3 << 14)
+-PAD_CTL_PUE                     (1 << 13)
+-PAD_CTL_PKE                     (1 << 12)
+-PAD_CTL_ODE                     (1 << 11)
+-PAD_CTL_SPEED_LOW               (0 << 6)
+-PAD_CTL_SPEED_MED               (1 << 6)
+-PAD_CTL_SPEED_HIGH              (3 << 6)
+-PAD_CTL_DSE_DISABLE             (0 << 3)
+-PAD_CTL_DSE_260ohm              (1 << 3)
+-PAD_CTL_DSE_130ohm              (2 << 3)
+-PAD_CTL_DSE_87ohm               (3 << 3)
+-PAD_CTL_DSE_65ohm               (4 << 3)
+-PAD_CTL_DSE_52ohm               (5 << 3)
+-PAD_CTL_DSE_43ohm               (6 << 3)
+-PAD_CTL_DSE_37ohm               (7 << 3)
+-PAD_CTL_SRE_FAST                (1 << 0)
+-PAD_CTL_SRE_SLOW                (0 << 0)
+-- 
+2.45.2
+
 
