@@ -1,78 +1,140 @@
-Return-Path: <devicetree+bounces-112347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 208629A1D8B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 10:49:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E0F9A1D90
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 10:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47FCA1C2336C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 08:49:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F81B1F26B5F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 08:52:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A2A1D2F73;
-	Thu, 17 Oct 2024 08:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDEEF1D47CD;
+	Thu, 17 Oct 2024 08:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="IAPob5fr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NUyIi/fD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6CD1D3560;
-	Thu, 17 Oct 2024 08:49:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC021D2F73;
+	Thu, 17 Oct 2024 08:51:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729154965; cv=none; b=XFSmD3MhXAEFPmpwaWIadAdija9qtN2j78UDRXFWo/xIA6Glj9UFr18ULBfK2bx6ZdFFWAe7qg+GFXK8N01F1UuO+Nf2XiaS9wnc6722yFF+h5P3ig+xGRwSgoQ4CTu/ZfAM6+jjmpKp5EM50b0PczDCaAAfjQG2/YvL00r3mqU=
+	t=1729155118; cv=none; b=i71Ewsu69sa3Ijlcj4f39CpyhfLxFh1XBaiz8716rIhktvi4vCDMs4C0wwhMkIAzkHNsdJtXJfzzmMOP13EpZw3JjnNJ8XhNigK/0ah3xoTVoFbVBMNBL5EEias0rzrMhy77eTQKoDEo5OVMmbiSDUrli3b1CkkH5viDj2DdR1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729154965; c=relaxed/simple;
-	bh=1ESagQClO2AWMP+Hg8twSTNPEQ1rgZEFFyRT9VoZX/0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tI/axXUbv+cR74RsFIH2X1hwS0UHR8jiT8LD9BX7T2eDtXP0bwNHBX+qwtlbR4cZR05CSbBjXERFjIX80UgKNwEViRCXUSurfx/jjnVrlGSQN/ZaKxqE5kCgoDp0gop6+ed8PYNDQYwG3K2S85rTbX0JbBVRs7XHH1xMkGUgDbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=IAPob5fr; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=4lsm30lYRi4dwTD4J9fQ9TfYvcm5Gfz4W7SeXm0DybE=;
-	b=IAPob5frcFBuh99vbolYyAQRuUGs+LMfdFHOyCGoB0bqq7loVBX3OgOt4jtOaw
-	YxqUIqzYYcBccwSAE5k0YXpNxX/O+2w3O8dmQ84XVxYyR5+RD0Vn64HDDl3yM2EE
-	qldzw1wTidHgsL3mHWhuVpqjWS3y96WJxHMHdxxDISMOM=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3fgP3zhBnfzswAA--.1282S3;
-	Thu, 17 Oct 2024 16:46:49 +0800 (CST)
-Date: Thu, 17 Oct 2024 16:46:47 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Yannic Moog <y.moog@phytec.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-Subject: Re: [PATCH] arm64: dts: imx8mp-phyboard-pollux-rdk: add gpio-fan
-Message-ID: <ZxDO9wPQZOsXcJ6b@dragon>
-References: <20240924-wip-y-moog-phytec-de-phyboard-pollux-fan-v1-1-9ea6ec43f27b@phytec.de>
+	s=arc-20240116; t=1729155118; c=relaxed/simple;
+	bh=BhU4E9AJwscy0vU8NfowYqAoC9yMGqa3kfr7MgNXyLs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QZWL4/I82egg++7g9iUM8PYiEjshV/mYEGi+ZWF24O049xTGZzXZbnupACH+ziUyA4ETLffTb9oIzHRUf/Gtv4JdDqinymrgvAL374CF8pE1LQnSzf9ErUEqCKTPjFbyo7KVCpXrALPmspvS2W1+rG4Pkp3a+JiM8E2BcuTtvF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NUyIi/fD; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a9a0c7abaa6so78883266b.2;
+        Thu, 17 Oct 2024 01:51:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729155114; x=1729759914; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qmmjYCeB18CbyqQJcVn0ADXJ6qrNFmHuW7KL3HqRqgo=;
+        b=NUyIi/fDj2XwX/euKGLt4C6Nh70T7D8XXuGsPts16QC0qsQcdYCB48PALoBFlnQ/1F
+         w0vf4WDcyW6WCa95vIAddZkUB9XC6LNlkFJad0sTccpvljE433QsqLcttCti8vFRUNCt
+         3Y9p0gZwGvxb9ng9IsYARPN8OBhe0kTnKhhr8NiunyQIAiw+qOJqk++2leLakZ0n4X5G
+         HyyYolnhUW+vGTngQRXMM78mcfMbWMi4hW2HVvRzb4iBbqMIpDzP2qi/b4y+msW3pqEK
+         NHfLdFSGxzd5TzAGnEhatVG8x0mMk9nyLYnV+kJTXi3d69pvs81OZ2WmcwpGsoHJncRr
+         nicw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729155114; x=1729759914;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qmmjYCeB18CbyqQJcVn0ADXJ6qrNFmHuW7KL3HqRqgo=;
+        b=NetlKeDS6dMoBYXGBoNXL59TcgwaJeE7kFiTPLpc9Ch0eWbpmXYrgg9nv6g4ebqLuf
+         BqPWLzOvumOEHj9CWnp7siTBXkpTZ2Uefqvy2gWxNvX48qnWV8zPSD96jGX1wsgAPIBp
+         y6v0W7I43l0GOjVtUcTCq/5+lyS+5dkuBRCLrTYk7952nMBg4b6mZs9Cc96/YwUFBzGX
+         OPzfCLhF6woi55EVa9B4Uvj1McuFpPfhYa6IeiU/HWRrnz0893HSAVEHp+PBTn2VJIsN
+         kMuhc58HyPu+Uk073cogNvMKG3P9Az6Rny0CNHQTYXHi+1jsvm/ocv3G5vvHcsOXH0P4
+         hy7A==
+X-Forwarded-Encrypted: i=1; AJvYcCV1K57u1ja3TXje6s+9lLZRfGeyfwCCjb0J0ibIacyK5W+EXtnSCdHj/SXJMvLAPcpwYsSAYuX1VIU=@vger.kernel.org, AJvYcCVY4Ens+nllhNLAZyRgcRROWv1m7gPo8se6txmu0wPaIoH6/zS0RpXHkGGd+12DDV9jw4VXed9dn9Yz@vger.kernel.org, AJvYcCXbgZ74qBnDdJQVDgCr2bnm6q14M46VRgD1jMjPDULFy4567SZbhXlyKTLnbPuerWgWhwPAUHPmW0htQ+lS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMQ9L6oIjkYiCahACt951BqoM5T2wfBtv0dhqLeMeo7aJri0N3
+	8MxMed/39sYGBTnl+548qHPXW03uZpHSeeCb3iTNp+gqbn+ATpS4
+X-Google-Smtp-Source: AGHT+IHvrx94gDRBDzTK1SQ1fRhoIwm949VyNvL5+yIRliyURYMzRlOD6rRrQPmQzzu2BY5fCvgDow==
+X-Received: by 2002:a17:907:86a3:b0:a9a:522a:ba70 with SMTP id a640c23a62f3a-a9a522ac213mr175985466b.32.1729155113699;
+        Thu, 17 Oct 2024 01:51:53 -0700 (PDT)
+Received: from zenbook.agu.edu.tr ([95.183.227.32])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a29816c24sm267045266b.110.2024.10.17.01.51.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2024 01:51:53 -0700 (PDT)
+From: Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Fabien Parent <fparent@baylibre.com>,
+	Markus Schneider-Pargmann <msp@baylibre.com>,
+	Alexandre Bailon <abailon@baylibre.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Eugen Hristev <eugen.hristev@collabora.com>,
+	MandyJH Liu <mandyjh.liu@mediatek.com>
+Cc: Yassine Oudjana <y.oudjana@protonmail.com>,
+	Yassine Oudjana <yassine.oudjana@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 0/2] MediaTek MT6735 SCPSYS support
+Date: Thu, 17 Oct 2024 11:51:33 +0300
+Message-ID: <20241017085136.68053-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240924-wip-y-moog-phytec-de-phyboard-pollux-fan-v1-1-9ea6ec43f27b@phytec.de>
-X-CM-TRANSID:Ms8vCgD3fgP3zhBnfzswAA--.1282S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxCJmUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgl7ZWcQs0ZXfgAAsu
 
-On Tue, Sep 24, 2024 at 09:53:04AM +0200, Yannic Moog wrote:
-> A GPIO fan may be connected to Pollux fan header. The fan should
-> activate at 60°C and stay active until critical SoC temperature is
-> reached and the board shuts down.
-> 
-> Signed-off-by: Yannic Moog <y.moog@phytec.de>
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-Applied, thanks!
+These patches are part of a larger effort to support the MT6735 SoC family in
+mainline Linux. More patches (unsent or sent and pending review or revision)
+can be found here[1].
+
+This series adds support for most SCPSYS power domains on MT6735. See patches
+for details.
+
+Changes since v2:
+- Rename DT bindings header to mediatek,mt6735-power-controller.h
+- Remove comment citing header from DT bindings
+Changes since v1:
+- Squash DT binding patches
+- Dual-licence DT binding as GPL/BSD
+- Switch to mtk-pm-domains driver
+- Add MFG bus protection bit
+
+[1] https://gitlab.com/mt6735-mainline/linux/-/commits/mt6735-staging
+
+Yassine Oudjana (2):
+  dt-bindings: power: Add binding for MediaTek MT6735 power controller
+  soc: mediatek: pm-domains: Add support for MT6735
+
+ .../power/mediatek,power-controller.yaml      |  1 +
+ .../bindings/soc/mediatek/scpsys.txt          |  1 +
+ drivers/pmdomain/mediatek/mt6735-pm-domains.h | 96 +++++++++++++++++++
+ drivers/pmdomain/mediatek/mtk-pm-domains.c    |  5 +
+ drivers/pmdomain/mediatek/mtk-pm-domains.h    |  2 +
+ .../power/mediatek,mt6735-power-controller.h  | 14 +++
+ include/linux/soc/mediatek/infracfg.h         |  5 +
+ 7 files changed, 124 insertions(+)
+ create mode 100644 drivers/pmdomain/mediatek/mt6735-pm-domains.h
+ create mode 100644 include/dt-bindings/power/mediatek,mt6735-power-controller.h
+
+-- 
+2.47.0
 
 
