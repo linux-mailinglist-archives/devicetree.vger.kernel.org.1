@@ -1,467 +1,181 @@
-Return-Path: <devicetree+bounces-112515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBAC59A288F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 18:25:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C2BC9A28BE
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 18:27:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F383B22648
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 16:25:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2EBE8B27733
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 16:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716711DF253;
-	Thu, 17 Oct 2024 16:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A791DF725;
+	Thu, 17 Oct 2024 16:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kp3nz0jY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V/BEC4bJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618041DEFFC
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 16:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15981DF26A;
+	Thu, 17 Oct 2024 16:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729182317; cv=none; b=USgpk5pOgr/rbhLDfUMQ3O5oRNfPJ+3NiqTXyHy0X8yJxsQTxYQmYLi9sGYWaq71kpOjiAX/OBzPkkyaOoz3jjkiXX650rNEsBVeqUAGxrb9PeO0UJ+ic7sYkBNlAVsMm085F1ZRyZZ34RLUeFszPGJn/A1R60FRbZeidLlv3eU=
+	t=1729182375; cv=none; b=ijkwY9CmsUA55X73x1eg/dZGlcqD5lYup/ZHpkNI+aBhGXV3EOdePocnMymhPhnbxcabobwyepHZiwAemcVyLEapemVhQjnxpwMsfyEUv9gXB0tsHrFMnK/egSZ6u/EHiIOrytKi017VImbzTPvCwRuiJvvIYXFYzRnN2eKM8ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729182317; c=relaxed/simple;
-	bh=/FaY1lFvVjH9QwLETjeGCFR+Fp8VYdm7FtlLJk8rELo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lKBSxryNsZ9ghyJioku4CSmZiWiI156SCXU0GOOD1JeHjMqsxQXjTwqKtST4zikq3tV7bOtsikVKpFgTKhDfNfDI5Gl/wB9D4vuOHOu8DQdQ/hawEEvcz2eW/f5xAHWn+lfgq4PeA1yneCQpiLWdhc0349fdOku/dia/Qsh2C9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kp3nz0jY; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e396a69062so11339037b3.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:25:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729182311; x=1729787111; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TZwh7t78Vk465g82TwHaDZNony7B/4eq7p1Xpp2l3tU=;
-        b=Kp3nz0jY6FxTuJ8wt9gYObm7JO0H3LFTsSFM1vd3oqCr76ayHWe8qGE+iJAp0c0eD3
-         TQIPfPhC+/0xqi7bsnlNfdQKUNM2k0iP90PFeSXfpkqkfDqYpUbIdTCOHtXKshnt1kWY
-         mJ3hgPPSyl1iaoxlVTOX0DV8cUGd/x0hIHMjT/ALJrwT07LsJqVcWOi19NDmEIbq1est
-         2Mws86yX7fddiuGXk48Bq9gZOtiGdnB/GnWsXI6gZN5pjl8G8QhR//crwzKtCL0GYmrS
-         BpY5tA+3hxJU1zt+2Q704KtTQse0wJ7rVvY/4ljMfQyRCKwvZKP3dQgCZq/soIU6kAim
-         9Asg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729182311; x=1729787111;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TZwh7t78Vk465g82TwHaDZNony7B/4eq7p1Xpp2l3tU=;
-        b=JJdZiWqWAtgVYOCdv1qE/khIxWqy8rK0VTVpooU3gCLMh45tR3xIDo47Kx2O1eFd4s
-         D3EfXqmZ3wKEr9921cL2x6MFkZuBTrWD4cdLN9GNG6kLPdoFD6wy2y3ebPj7+DDpp7Lv
-         BN87KqocTujMc2CQjGkRGkAT5UW9apTDQvHsKmFS+TXC4KBadz8SqjtEnYjeEoiFty9Y
-         bEHhRtY463r1yyQ294ckTxBeE5nVIUuIMN3Szd7TawV0iFNslIUX240d2V+UnqvKBwBg
-         GK3Q0BdEUJcOt51uwLRJHK8ZSIfxtr4GuDv2jrVmcSiBHPJTVvIw7D8cQzSxFfTK00W0
-         9ycw==
-X-Forwarded-Encrypted: i=1; AJvYcCVAAOplew3PNJKb3iULZmN+opT/TwPDctK/Nxm4EeVltmma/61nq+B2AE/PEcl3XoCqpoomSvFYwVq/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTUke7PqcNa6Xv/3FjSfgvcBakzxknMLk6AyXMCFYBIeAUqSdv
-	Sv5iJWAs7BTjZzTv6x7u2IYvvbeFjR7wMjgdUh4uaRuIMl08sh247wnZWUP3OJhVk1g6OpqsSmn
-	IBWA3Vt/xxxVL9DjGIk0ymf/EeTIhAAM468PDqQ==
-X-Google-Smtp-Source: AGHT+IG+z7JiwbpvRkeGgL4nIC2w1Qb71J+yKnmH+5Tz5yAXgK5P14q3seBm+iVaUT9iKi72+W6fA607pnAQOICUX/w=
-X-Received: by 2002:a05:690c:680c:b0:6e3:dc4a:34b0 with SMTP id
- 00721157ae682-6e3dc4ad12dmr67881107b3.22.1729182311276; Thu, 17 Oct 2024
- 09:25:11 -0700 (PDT)
+	s=arc-20240116; t=1729182375; c=relaxed/simple;
+	bh=VF8QIqn/4pfgrEstD6So2AH/mIP2xJc5DvAFvI3mGVQ=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Aberpgl8h5di6yHfoem/mlGNVU+SdqFdAqX7IsOA8lLz+2CqRl+K/+CPLfkASIgB0Y/qpyUyNKBmg72R5B9P34vKTlXK0rkQuf2+D7s4bG/5tXNDemHvQGDsF62whRpFq0XoqcrZj9BQPYq55+96IiNGgI0nG6YviZ5+Kj5/EdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V/BEC4bJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 100BDC4CEC3;
+	Thu, 17 Oct 2024 16:26:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729182374;
+	bh=VF8QIqn/4pfgrEstD6So2AH/mIP2xJc5DvAFvI3mGVQ=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=V/BEC4bJH+gE5MtiIZwnnBpdmieE69ZEbTaebfVUjhOOIGkuCS2Dbqnvuu0/j4eXg
+	 pFC3CDq9Z94l7pFvoDFlD7Xw7kD0oZvIdbbC7bobiE8Af6tqfmPHf7gDpxgHR5nbrN
+	 XhTuo157DEwAlSJkNqZ3jZq8PjEAi7+L/dYf9QHC5Q7nTeFfNe2VkLqNjgGBwD88yz
+	 a9ONgY6fFUKKSjQCBdIOST9Wm+czbzU5hHn6cWquF0p6ostRXRukHGdZxrA5D6GmnN
+	 wY1Fx2E3ybeS2DyHQkqQGLd1/OrhyCg1y0fxUKGICSaFkmsdqU09j7IVyYq3miaAP1
+	 goXJqvQxkO8oQ==
+Date: Thu, 17 Oct 2024 11:26:13 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
- <20240803-qps615-v2-8-9560b7c71369@quicinc.com> <spaudnuoam3cj7glxmnlw7y3m46d2vsm42s576jqwrcrmywl2n@oyrynorzhddg>
- <872e1c39-4547-7cd3-ba49-bbbe59e52087@quicinc.com> <32488500-05B7-4D25-9AAF-06A249CC6B1D@linaro.org>
- <d0c8b466-5df2-853c-608d-ab67af1a9f32@quicinc.com> <CAA8EJpo7J9ZXC9uERg=WkjMbDD-fDTOO2VXaRVOCVZXiN18oSw@mail.gmail.com>
- <4d67915a-d57d-0a33-cdef-3bdf05961d16@quicinc.com> <CAA8EJppa2Z-h0vH2Cmeem_1Cw8C+53q7pXkJ03mut4Bsn+Vm7A@mail.gmail.com>
- <4c111681-03b8-9b4c-6b5b-ebfa4c5a7377@quicinc.com> <w547dmmxqqa4atd62jqiqcfzhlnpjc7n64btjmre5pmbsci4br@w45tuny3mcmn>
- <9b2831a4-b2c5-2282-a7bc-497a7a215ffa@quicinc.com>
-In-Reply-To: <9b2831a4-b2c5-2282-a7bc-497a7a215ffa@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 17 Oct 2024 19:24:59 +0300
-Message-ID: <CAA8EJpqFhpAZtCCwDz9GBcPKwrdOFBmypajL0Sd7wKUwp=seKg@mail.gmail.com>
-Subject: Re: [PATCH v2 8/8] PCI: pwrctl: Add power control driver for qps615
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, cros-qcom-dts-watchers@chromium.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Jingoo Han <jingoohan1@gmail.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, andersson@kernel.org, 
-	quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Cc: devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20241016154747.64343-1-igor.belwon@mentallysanemainliners.org>
+References: <20241016154747.64343-1-igor.belwon@mentallysanemainliners.org>
+Message-Id: <172917870796.3589876.17005849369898378683.robh@kernel.org>
+Subject: Re: [PATCH v3 0/6] Add minimal Exynos990 SoC and SM-N981B support
 
-On Thu, 17 Oct 2024 at 18:48, Krishna Chaitanya Chundru
-<quic_krichai@quicinc.com> wrote:
->
->
->
-> On 9/3/2024 12:07 AM, Dmitry Baryshkov wrote:
-> > On Mon, Sep 02, 2024 at 04:17:06PM GMT, Krishna Chaitanya Chundru wrote:
-> >>
-> >>
-> >> On 9/2/2024 3:42 PM, Dmitry Baryshkov wrote:
-> >>> On Mon, 2 Sept 2024 at 11:32, Krishna Chaitanya Chundru
-> >>> <quic_krichai@quicinc.com> wrote:
-> >>>>
-> >>>>
-> >>>>
-> >>>> On 9/2/2024 12:50 PM, Dmitry Baryshkov wrote:
-> >>>>> On Mon, 2 Sept 2024 at 10:13, Krishna Chaitanya Chundru
-> >>>>> <quic_krichai@quicinc.com> wrote:
-> >>>>>>
-> >>>>>>
-> >>>>>>
-> >>>>>> On 8/8/2024 9:00 AM, Dmitry Baryshkov wrote:
-> >>>>>>> On August 5, 2024 1:14:47 PM GMT+07:00, Krishna Chaitanya Chundru <quic_krichai@quicinc.com> wrote:
-> >>>>>>>>
-> >>>>>>>>
-> >>>>>>>> On 8/3/2024 5:04 PM, Dmitry Baryshkov wrote:
-> >>>>>>>>> On Sat, Aug 03, 2024 at 08:52:54AM GMT, Krishna chaitanya chundru wrote:
-> >>>>>>>>>> QPS615 switch needs to be configured after powering on and before
-> >>>>>>>>>> PCIe link was up.
-> >>>>>>>>>>
-> >>>>>>>>>> As the PCIe controller driver already enables the PCIe link training
-> >>>>>>>>>> at the host side, stop the link training. Otherwise the moment we turn
-> >>>>>>>>>> on the switch it will participate in the link training and link may come
-> >>>>>>>>>> up before switch is configured through i2c.
-> >>>>>>>>>>
-> >>>>>>>>>> The device tree properties are parsed per node under pci-pci bridge in the
-> >>>>>>>>>> driver. Each node has unique bdf value in the reg property, driver
-> >>>>>>>>>> uses this bdf to differentiate ports, as there are certain i2c writes to
-> >>>>>>>>>> select particular port.
-> >>>>>>>>>>
-> >>>>>>>>>> Based up on dt property and port, qps615 is configured through i2c.
-> >>>>>>>>>>
-> >>>>>>>>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> >>>>>>>>>> ---
-> >>>>>>>>>>       drivers/pci/pwrctl/Kconfig             |   7 +
-> >>>>>>>>>>       drivers/pci/pwrctl/Makefile            |   1 +
-> >>>>>>>>>>       drivers/pci/pwrctl/pci-pwrctl-qps615.c | 638 +++++++++++++++++++++++++++++++++
-> >>>>>>>>>>       3 files changed, 646 insertions(+)
-> >>>>>>>>>>
-> >
-> >>>>>>>>>> +
-> >>>>>>>>>> +  return qps615_pwrctl_i2c_write(ctx->client,
-> >>>>>>>>>> +                                 is_l1 ? QPS615_PORT_L1_DELAY : QPS615_PORT_L0S_DELAY, units);
-> >>>>>>>>>> +}
-> >>>>>>>>>> +
-> >>>>>>>>>> +static int qps615_pwrctl_set_tx_amplitude(struct qps615_pwrctl_ctx *ctx,
-> >>>>>>>>>> +                                    enum qps615_pwrctl_ports port, u32 amp)
-> >>>>>>>>>> +{
-> >>>>>>>>>> +  int port_access;
-> >>>>>>>>>> +
-> >>>>>>>>>> +  switch (port) {
-> >>>>>>>>>> +  case QPS615_USP:
-> >>>>>>>>>> +          port_access = 0x1;
-> >>>>>>>>>> +          break;
-> >>>>>>>>>> +  case QPS615_DSP1:
-> >>>>>>>>>> +          port_access = 0x2;
-> >>>>>>>>>> +          break;
-> >>>>>>>>>> +  case QPS615_DSP2:
-> >>>>>>>>>> +          port_access = 0x8;
-> >>>>>>>>>> +          break;
-> >>>>>>>>>> +  default:
-> >>>>>>>>>> +          return -EINVAL;
-> >>>>>>>>>> +  };
-> >>>>>>>>>> +
-> >>>>>>>>>> +  struct qps615_pwrctl_reg_setting tx_amp_seq[] = {
-> >>>>>>>>>> +          {QPS615_PORT_ACCESS_ENABLE, port_access},
-> >>>>>>>>>
-> >>>>>>>>> Hmm, this looks like another port selection, so most likely it should
-> >>>>>>>>> also be under the same lock.
-> >>>>>>>>>
-> >>>>>>>>>> +          {QPS615_PORT_LANE_ACCESS_ENABLE, 0x3},
-> >>>>>>>>>> +          {QPS615_TX_MARGIN, amp},
-> >>>>>>>>>> +  };
-> >>>>>>>>>> +
-> >>>>>>>>>> +  return qps615_pwrctl_i2c_bulk_write(ctx->client, tx_amp_seq, ARRAY_SIZE(tx_amp_seq));
-> >>>>>>>>>> +}
-> >>>>>>>>>> +
-> >>>>>>>>>> +static int qps615_pwrctl_disable_dfe(struct qps615_pwrctl_ctx *ctx,
-> >>>>>>>>>> +                               enum qps615_pwrctl_ports port)
-> >>>>>>>>>> +{
-> >>>>>>>>>> +  int port_access, lane_access = 0x3;
-> >>>>>>>>>> +  u32 phy_rate = 0x21;
-> >>>>>>>>>> +
-> >>>>>>>>>> +  switch (port) {
-> >>>>>>>>>> +  case QPS615_USP:
-> >>>>>>>>>> +          phy_rate = 0x1;
-> >>>>>>>>>> +          port_access = 0x1;
-> >>>>>>>>>> +          break;
-> >>>>>>>>>> +  case QPS615_DSP1:
-> >>>>>>>>>> +          port_access = 0x2;
-> >>>>>>>>>> +          break;
-> >>>>>>>>>> +  case QPS615_DSP2:
-> >>>>>>>>>> +          port_access = 0x8;
-> >>>>>>>>>> +          lane_access = 0x1;
-> >>>>>>>>>> +          break;
-> >>>>>>>>>> +  default:
-> >>>>>>>>>> +          return -EINVAL;
-> >>>>>>>>>> +  };
-> >>>>>>>>>> +
-> >>>>>>>>>> +  struct qps615_pwrctl_reg_setting disable_dfe_seq[] = {
-> >>>>>>>>>> +          {QPS615_PORT_ACCESS_ENABLE, port_access},
-> >>>>>>>>>> +          {QPS615_PORT_LANE_ACCESS_ENABLE, lane_access},
-> >>>>>>>>>> +          {QPS615_DFE_ENABLE, 0x0},
-> >>>>>>>>>> +          {QPS615_DFE_EQ0_MODE, 0x411},
-> >>>>>>>>>> +          {QPS615_DFE_EQ1_MODE, 0x11},
-> >>>>>>>>>> +          {QPS615_DFE_EQ2_MODE, 0x11},
-> >>>>>>>>>> +          {QPS615_DFE_PD_MASK, 0x7},
-> >>>>>>>>>> +          {QPS615_PHY_RATE_CHANGE_OVERRIDE, 0x10},
-> >>>>>>>>>> +          {QPS615_PHY_RATE_CHANGE, phy_rate},
-> >>>>>>>>>> +          {QPS615_PHY_RATE_CHANGE, 0x0},
-> >>>>>>>>>> +          {QPS615_PHY_RATE_CHANGE_OVERRIDE, 0x0},
-> >>>>>>>>>> +
-> >>>>>>>>>> +  };
-> >>>>>>>>>> +
-> >>>>>>>>>> +  return qps615_pwrctl_i2c_bulk_write(ctx->client,
-> >>>>>>>>>> +                                      disable_dfe_seq, ARRAY_SIZE(disable_dfe_seq));
-> >>>>>>>>>> +}
-> >>>>>>>>>> +
-> >>>>>>>>>> +static int qps615_pwrctl_set_nfts(struct qps615_pwrctl_ctx *ctx,
-> >>>>>>>>>> +                            enum qps615_pwrctl_ports port, u32 nfts)
-> >>>>>>>>>> +{
-> >>>>>>>>>> +  int ret;
-> >>>>>>>>>> +  struct qps615_pwrctl_reg_setting nfts_seq[] = {
-> >>>>>>>>>> +          {QPS615_NFTS_2_5_GT, nfts},
-> >>>>>>>>>> +          {QPS615_NFTS_5_GT, nfts},
-> >>>>>>>>>> +  };
-> >>>>>>>>>> +
-> >>>>>>>>>> +  ret =  qps615_pwrctl_i2c_write(ctx->client, QPS615_PORT_SELECT, BIT(port));
-> >>>>>>>>>> +  if (ret)
-> >>>>>>>>>> +          return ret;
-> >>>>>>>>>> +
-> >>>>>>>>>> +  return qps615_pwrctl_i2c_bulk_write(ctx->client, nfts_seq, ARRAY_SIZE(nfts_seq));
-> >>>>>>>>>> +}
-> >>>>>>>>>> +
-> >>>>>>>>>> +static int qps615_pwrctl_assert_deassert_reset(struct qps615_pwrctl_ctx *ctx, bool deassert)
-> >>>>>>>>>> +{
-> >>>>>>>>>> +  int ret, val = 0;
-> >>>>>>>>>> +
-> >>>>>>>>>> +  if (deassert)
-> >>>>>>>>>> +          val = 0xc;
-> >>>>>>>>>> +
-> >>>>>>>>>> +  ret = qps615_pwrctl_i2c_write(ctx->client, QPS615_GPIO_CONFIG, 0xfffffff3);
-> >>>>>>>>>
-> >>>>>>>>> It's a kind of magic
-> >>>>>>>>>
-> >>>>>>>> I will add a macro in next patch.
-> >>>>>>>>>> +  if (ret)
-> >>>>>>>>>> +          return ret;
-> >>>>>>>>>> +
-> >>>>>>>>>> +  return qps615_pwrctl_i2c_write(ctx->client, QPS615_RESET_GPIO, val);
-> >>>>>>>>>> +}
-> >>>>>>>>>> +
-> >>>>>>>>>> +static int qps615_pwrctl_parse_device_dt(struct qps615_pwrctl_ctx *ctx, struct device_node *node)
-> >>>>>>>>>> +{
-> >>>>>>>>>> +  enum qps615_pwrctl_ports port;
-> >>>>>>>>>> +  struct qps615_pwrctl_cfg *cfg;
-> >>>>>>>>>> +  struct device_node *np;
-> >>>>>>>>>> +  int bdf, fun_no;
-> >>>>>>>>>> +
-> >>>>>>>>>> +  bdf = of_pci_get_bdf(node);
-> >>>>>>>>>> +  if (bdf < 0) {
-> >>>>>>>>>
-> >>>>>>>>> This is incorrect, it will fail if at any point BDF uses the most
-> >>>>>>>>> significant bit (which is permitted by the spec, if I'm not mistaken).
-> >>>>>>>>>
-> >>>>>>>> As per the reg property as described in the binding document we are not
-> >>>>>>>> expecting any change here.
-> >>>>>>>> https://elixir.bootlin.com/linux/v6.10.3/source/Documentation/devicetree/bindings/pci/pci.txt#L50.
-> >>>>>>>
-> >>>>>>> What will this function return if the bus no is 256?
-> >>>>>>> The supported PCI bus number is from 0x0 to 0xff only. so we
-> >>>>>> are not expecting any numbers greater than 0xff.
-> >>>>>>> Also please either move the function to the generic PCI code is change its name to match the rest of the driver. The of_pci_ prefix is reserved for the generic code.
-> >>>>>>>
-> >>>>>> ack.
-> >>>>>>>
-> >>>>>>>>>> +          dev_err(ctx->pwrctl.dev, "Getting BDF failed\n");
-> >>>>>>>>>> +          return 0;
-> >>>>>>>>>> +  }
-> >>>>>>>>>> +
-> >>>>>>>>>> +  fun_no = bdf & 0x7;
-> >>>>>>>>>
-> >>>>>>>>> I assume that ARI is not supported?
-> >>>>>>>>>
-> >>>>>>>> Yes this doesn't support ARI.
-> >>>>>>>>>> +
-> >>>>>>>>>> +  /* In multi function node, ignore function 1 node */
-> >>>>>>>>>> +  if (of_pci_get_bdf(of_get_parent(node)) == ctx->bdf->dsp3_bdf && !fun_no)
-> >>>>>>>>>> +          port = QPS615_ETHERNET;
-> >>>>>>>>>> +  else if (bdf == ctx->bdf->usp_bdf)
-> >>>>>>>>>> +          port = QPS615_USP;
-> >>>>>>>>>
-> >>>>>>>>> The function is being called for child device nodes. Thus upstream
-> >>>>>>>>> facing port (I assume that this is what USP means) can not be enumerated
-> >>>>>>>>> in this way.
-> >>>>>>>> Sorry, but I didn't your question.
-> >>>>>>>>
-> >>>>>>>> These settings will not affect the enumeration sequence these are
-> >>>>>>>> for configuring ports only.
-> >>>>>>>
-> >>>>>>> You are handling the case of bdf equal to the USP. Is it possible at all?
-> >>>>>>>
-> >>>>>> at the time of the configuration the PCI link is not enabled yet,
-> >>>>>> once we are done with the configurations only we are resumeing the link
-> >>>>>> training. so when we start this configuration the link is not up yet.
-> >>>>>
-> >>>>> Is your answer relevant to the question I have asked?
-> >>>>>
-> >>>> sorry dmitry I might got your question wrong. what I understood is
-> >>>> "you are configuring USP port before the link is up, is that possible?"
-> >>>> I might read your statement wrongly.
-> >>>>
-> >>>> If the question is "why do we need to configure USP?" I will try to
-> >>>> respond below.
-> >>>> "USP also will have l0s, L1 entry delays, nfts etc which can be
-> >>>> configured".
-> >>>>
-> >>>> Sorry once again if your question doesn't fall in both can you tell
-> >>>> me your question.
-> >>>
-> >>> My question was why the function gets executed for the root port. But
-> >>> after reading the qps615_pwrctl_parse_device_dt() I have another
-> >>> question: you are parsing DT nodes recursively. You should stop
-> >>> parsing at the first level, so that grandchildren nodes can not
-> >>> override your data (and so that the time isn't spent on parsing
-> >>> useless data). Also I have the feeling that BDF parsing isn't so
-> >>> correct. Will it work if QPS is sitting behind a PCI-PCI bridge?
-> >>>
-> >> we are not executing for root port. we are configuring for USP
-> >> since there are some features of USP which can be configured.
-> >
-> > What is USP? Upstream side port?
-> >
-> >>
-> >> we are trying to store each configurations in below line.
-> >> cfg = &ctx->cfg[port];
-> >>
-> >> port will have enum value based upon the bdf. after filling
-> >> the parent node we calling recursive function for child nodes.
-> >> As the BDF is unique value for each node we not expecting to get
-> >> same enum value for child or grand child nodes and there will
-> >> be no overwrite. If the BDF is not matched we are just returning
-> >> instead of looking for the properties.
-> >>
-> >> QPS615 node is defined as child of the pci-pci bridge only.
-> >> The pwrctl framework is designed to work if the device
-> >> is represented as child node in the pci-pci bridge only.
-> >
-> > Of course. Each PCIe device is either a child of the root port or a
-> > child of a pci-pci bridge. So are the BDFs specific to the case of
-> > QPS615 being a child of the root PCIe bridge?
-> >
-> yes these are specific to qps615 being a child of the root PCIe bridge.
 
-Then your approach doesn't scale. Please reimplement it in a way that
-doesn't require knowing what is the actual topology of the bus. The
-driver must work with no changes if you have another PCI-to-PCI bridge
-between RC and QPS615.
+On Wed, 16 Oct 2024 17:47:41 +0200, Igor Belwon wrote:
+> Hi folks,
+> 
+> This series adds initial support for the Exynos 990 SoC and also
+> initial board support for the Samsung Galaxy Note20 5G (SM-N981B)
+> codenamed c1s.
+> 
+> The Exynos 990 SoC is also used in the S20 series, as well as in the
+> Note 20 Ultra phones. Currently the device trees added are for the
+> Exynos 990 SoC and c1s. The device tree has been tested with
+> dtbs_check W=1 and results in no warnings.
+> 
+> This initial bringup consists of:
+>  * cpus
+>  * pinctrl
+>  * gpio-keys
+>  * simple-framebuffer
+> 
+> This is enough to reach a shell in an initramfs. More platform support
+> will be added in the future.
+> 
+> The preferred way to boot the upstream kernel is by using a shim
+> bootloader, called uniLoader [1], which works around some issues with
+> the stock, non-replacable Samsung S-LK bootloader. For example, the
+> stock bootloader leaves the decon trigger control unset, which causes
+> the framebuffer not to refresh.
+> 
+> Device functionality depends on the 2nd patch series:
+> "Add Exynos990 pinctrl and chipid drivers"
+> 
+> [1] https://github.com/ivoszbg/uniLoader
+> 
+> Changes in v3:
+>  - Move pinctrl DT nodes from the 2nd patch series
+>  - Resend patches to the correct lists.
+> 
+> Changes in v2:
+>  - Added acked-by tag by Rob Herring
+>  - Fixed two stray newlines in SoC and device DTs
+>  - Fixed commit message for the c1s device tree
+>  - Changed osc-clock to clock-osc and ordered nodes in SoC DT
+>  - Fixed ordering in the gic node in SoC DT
+>  - Fixed memory node unit address
+>  - Fixed memory node reg properties, to map all available RAM
+>  - Moved pinctrl binding commits to the 2nd patch series.
+> 
+> Kind regards,
+> Igor
+> 
+> Igor Belwon (6):
+>   dt-bindings: arm: cpus: Add Samsung Mongoose M5
+>   dt-bindings: hwinfo: exynos-chipid: Add compatible for Exynos 990
+>     chipid
+>   dt-bindings: arm: samsung: samsung-boards: Add bindings for Exynos 990
+>     boards
+>   soc: samsung: exynos-chipid: Add support for Exynos 990 chipid
+>   arm64: dts: exynos: Add initial support for the Exynos 990 SoC
+>   arm64: dts: exynos: Add initial support for Samsung Galaxy Note20 5G
+>     (c1s)
+> 
+>  .../devicetree/bindings/arm/cpus.yaml         |    1 +
+>  .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
+>  .../hwinfo/samsung,exynos-chipid.yaml         |    1 +
+>  arch/arm64/boot/dts/exynos/Makefile           |    1 +
+>  arch/arm64/boot/dts/exynos/exynos990-c1s.dts  |  115 +
+>  .../boot/dts/exynos/exynos990-pinctrl.dtsi    | 2195 +++++++++++++++++
+>  arch/arm64/boot/dts/exynos/exynos990.dtsi     |  251 ++
+>  drivers/soc/samsung/exynos-chipid.c           |    1 +
+>  8 files changed, 2571 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/exynos/exynos990-c1s.dts
+>  create mode 100644 arch/arm64/boot/dts/exynos/exynos990-pinctrl.dtsi
+>  create mode 100644 arch/arm64/boot/dts/exynos/exynos990.dtsi
+> 
+> --
+> 2.45.2
+> 
+> 
+> 
 
-> >>
-> >> Hope it clarifies all the queries.
-> >
-> > Yes. Please drop recursive parsing and add explicit single
-> > for_each_child_of_node().
-> >
-> Dimitry, the ethernet nodes which are child of dsp3 need extra
-> for_each_child_of_node and also we are going to add support for cascade
-> switch once this patch lands, in that cascade switch one more QPS615
-> switch will be connected to the one of the downstream port of the first
-> switch in that case we might need to do for_each_child_of_node twice
-> from  the dsp node where cascade switch is connected.
-> So it will good if we have this recursive parsing.
 
-Well, unless I miss something, your child bridge should be handled by
-the driver for that bridge, not by the driver for the root bridge. So
-recursive parsing should not be necessary.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
->
-> - Krishna Chaitanya.
-> >
-> >> - Krishna chaitanya.
-> >>>>>>>
-> >>>>>>>>>
-> >>>>>>>>>> +  else if (bdf == ctx->bdf->dsp1_bdf)
-> >>>>>>>>>> +          port = QPS615_DSP1;
-> >>>>>>>>>> +  else if (bdf == ctx->bdf->dsp2_bdf)
-> >>>>>>>>>> +          port = QPS615_DSP2;
-> >>>>>>>>>> +  else if (bdf == ctx->bdf->dsp3_bdf)
-> >>>>>>>>>> +          port = QPS615_DSP3;
-> >>>>>>>>>> +  else
-> >>>>>>>>>> +          return 0;
-> >>>>>>>>>
-> >>>>>>>>> -EINVAL >
-> >>>>>>>> There are can be nodes describing endpoints also,
-> >>>>>>>> for those nodes bdf will not match and we are not
-> >>>>>>>> returning since it is expected for endpoint nodes.
-> >>>>>>>
-> >>>>>>> Which endpoints? Bindings don't describe them.
-> >>>>>>>
-> >>>>>> The client drivers like ethernet will add them once
-> >>>>>> this series is merged. Their drivers are not present
-> >>>>>> in the linux as of now.
-> >>>>>
-> >>>>> The bindings describe the hardware, not the drivers. Also the driver
-> >>>>> should work with the bindings that you have submitted, not some
-> >>>>> imaginary to-be-submitted state. Please either update the bindings
-> >>>>> within the patchset or fix the driver to return -EINVAL.
-> >>>>>
-> >>>> The qps615 bindings describes only the PCIe switch part,
-> >>>> the endpoints binding connected to the switch should be described by the
-> >>>> respective clients like USB hub, NVMe, ethernet etc bindings should
-> >>>> describe their hardware and its properties. And these bindings will
-> >>>> defined in seperate bindinds file not in qps615 bindings.
-> >>>>
-> >>>> for example:-
-> >>>>
-> >>>> in the following example pcie@0,0 describes usp and
-> >>>> pcie@1,0 & pcie@2,0 describes dsp's of the switch.
-> >>>> now if we say usb hub is connected to dsp1 i.e to the
-> >>>> node pcie@1,0 there will be a child node to the pcie@1,0
-> >>>> to denote usb hub hardware.
-> >>>> And that node is external to the switch and we are not
-> >>>> configuring it through i2c. As these are pcie devices
-> >>>> representation is generic one we can't say if the client
-> >>>> nodes(in this case usb hub) will be present or not. if the child
-> >>>> node( for example usb hub) is present we can't return -EINVAL
-> >>>> because qps615 will not configure it.
-> >>>>
-> >>>> &pcieport {
-> >>>>           pcie@0,0 {
-> >>>>                   pcie@1,0 {
-> >>>>                           reg = <0x20800 0x0 0x0 0x0 0x0>;
-> >>>>                           #address-cells = <3>;
-> >>>>                           #size-cells = <2>;
-> >>>>
-> >>>>                           device_type = "pci";
-> >>>>                           ranges;
-> >>>>                           usb_hub@0,0 {
-> >>>>                                   //describes USB hub
-> >>>>                           };
-> >>>>                   };
-> >>>>
-> >>>>                   pcie@2,0 {
-> >>>>                           reg = <0x21000 0x0 0x0 0x0 0x0>;
-> >>>>                           #address-cells = <3>;
-> >>>>                           #size-cells = <2>;
-> >>>>
-> >>>>                           device_type = "pci";
-> >>>>                           ranges;
-> >>>>                   };
-> >>>>           };
-> >>>> };
-> >
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y exynos/exynos990-c1s.dtb' for 20241016154747.64343-1-igor.belwon@mentallysanemainliners.org:
+
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: /soc@0/pinctrl@10430000: failed to match any schema with compatible: ['samsung,exynos990-pinctrl']
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: /soc@0/pinctrl@10730000: failed to match any schema with compatible: ['samsung,exynos990-pinctrl']
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: /soc@0/pinctrl@13040000: failed to match any schema with compatible: ['samsung,exynos990-pinctrl']
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: /soc@0/pinctrl@13c30000: failed to match any schema with compatible: ['samsung,exynos990-pinctrl']
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: /soc@0/pinctrl@15580000: failed to match any schema with compatible: ['samsung,exynos990-pinctrl']
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: /soc@0/pinctrl@15850000: failed to match any schema with compatible: ['samsung,exynos990-pinctrl']
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: wakeup-interrupt-controller: compatible: 'oneOf' conditional failed, one must be fixed:
+	['samsung,exynos990-wakeup-eint', 'samsung,exynos850-wakeup-eint', 'samsung,exynos7-wakeup-eint'] is too long
+	'samsung,exynos990-wakeup-eint' is not one of ['samsung,s3c2410-wakeup-eint', 'samsung,s3c2412-wakeup-eint', 'samsung,s3c64xx-wakeup-eint', 'samsung,s5pv210-wakeup-eint', 'samsung,exynos4210-wakeup-eint', 'samsung,exynos7-wakeup-eint', 'samsung,exynosautov920-wakeup-eint']
+	'samsung,exynos990-wakeup-eint' is not one of ['samsung,exynos5433-wakeup-eint', 'samsung,exynos7885-wakeup-eint', 'samsung,exynos850-wakeup-eint', 'samsung,exynos8895-wakeup-eint']
+	'samsung,exynos990-wakeup-eint' is not one of ['google,gs101-wakeup-eint', 'samsung,exynosautov9-wakeup-eint']
+	'samsung,exynos7-wakeup-eint' was expected
+	from schema $id: http://devicetree.org/schemas/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml#
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: /soc@0/pinctrl@15850000/wakeup-interrupt-controller: failed to match any schema with compatible: ['samsung,exynos990-wakeup-eint', 'samsung,exynos850-wakeup-eint', 'samsung,exynos7-wakeup-eint']
+arch/arm64/boot/dts/exynos/exynos990-c1s.dtb: /soc@0/pinctrl@15c30000: failed to match any schema with compatible: ['samsung,exynos990-pinctrl']
 
 
 
--- 
-With best wishes
-Dmitry
+
+
 
