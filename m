@@ -1,152 +1,153 @@
-Return-Path: <devicetree+bounces-112612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AB729A2FA5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 23:18:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 578989A2FCC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 23:25:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B25C028696C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 21:18:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16E3C283E8C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 21:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C2C1EE028;
-	Thu, 17 Oct 2024 21:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0B51D3182;
+	Thu, 17 Oct 2024 21:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="WkDLdxfR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KhRHIMdN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC67E1DFD99
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 21:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E141D5CD3
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 21:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729199778; cv=none; b=q+oK9uSyhNfBENw7tIBXIF1fBSETbtNZ/3jxlMfPye/NHPc5G2qg+UO2v96ItEHnpgrEed0EBib+unDN7dLyQ0ngtkvGP/d3VVHYE+BSASJNBq4RUqkhoi7mJNIw0uCaMu2WMbekaVJYDvqc8GI0D3DqFcUaqBMIWhRQItpk5JE=
+	t=1729200313; cv=none; b=mdr3/xDFjmCZAZTPyoIKKBm9VGlekUTS0/cq0iaoJL6vE13Pl5t/r6z9jjw8dECe96mWjsdQ8FJv++CNX1hDaxhJ4f8MihqnCCidZ55C2Kxz642B65VJRKxsrlvrotl8qsuehDenjVQJzjvoXinsAAnSfg2ifGyl+r1Y9H7CAS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729199778; c=relaxed/simple;
-	bh=wQydXNcWdpTBzZQKKEPkKWCSlf0fQmLAmN+bYKHMIS8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O4BosHvzT9IhRkeolg3e1ricMb2Bi+PaZb887bBLbLNSOW4MhUspx/j/XwyumX26gGYKXZEAaO4td4wcFdi+DUXR4pFiu+wyQ48WFD4Q4mCQvp/RgWLErceU4wnJWbrNzHb5Y2tWtW0p2ub6lM238MapKuvE++HC6tk7Xxib4Xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=WkDLdxfR; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-539e5c15fd3so1418812e87.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 14:16:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729199770; x=1729804570; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zwSGZxm0nPOCcXElvwF4s1O3dQZtjR+E7hVy6q0TNNI=;
-        b=WkDLdxfRNmzz/RUaT3MmQrKfyxHoYfEp3fY2aoJjW/N9u/UQ51DZLLfp4+bTruvQJS
-         brIlOhh9rjn4oJhJuU5wCAni81wNs1yrAsSGmfjQ3dzHvCyWBnHYFiesugjYjE6R0dE+
-         FLZMJcufZcnfqspqse7Cenb82Aw9xCfqR8bkQ=
+	s=arc-20240116; t=1729200313; c=relaxed/simple;
+	bh=f3XSZjpMW+4pSNSq+5t+nHginY6jLJSrXAO6nlE9cZs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t4ovgeBZ5bCMl5Cp69vEVrU8eOJ3MEKUvfP2nTcR3S+zojWAJj5O5cGz1nWagiLV2rMr6UJ9ggZ023G7EEb8fLC/glh4rj3KryddlLN23bq9bVz8eCYuiwGDCjLOHo//tn4yuH4K+jtE7GhXtI0wWPEFovxMStNKHtE91XFuNSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KhRHIMdN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49HFw1oE026711
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 21:25:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6V0PA1pbHT6De/zvPtGOGGXjIB2qbOpp2xwkNgIwcO4=; b=KhRHIMdNcsvOhkPe
+	uItromkmi1BWhuNFe7ea7rs0UcJV5hPGHqI45i3gDdwAEuyrdpOANU9Ui4pCxzAw
+	Pzu8DgEYp66uiyGoCEqAGfSmMbwr1FyGFXW2hiSeVjoyVcaC/46c7HvcP1PlalZa
+	XbNr+kvKEpVUXQjx2uSv1EDMkOTmSFLOuAlZD8DZKPkB2n9Fyj7X7IR2OmwEid/7
+	dWLJiuFuMONCZ6boU98S7zGV3OtaU1q9Qy7jUsul4FSmfHHZuMumYkGiw3bYaQCe
+	hradrwluD4PgswzGuBn01zFYHFnX/VKc9D4wFy0h8OGvVpF8FujOHAq7yQc78zhG
+	0trcHw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42a8w6p3wv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 21:25:06 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-46049d0c4b0so1766641cf.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 14:25:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729199770; x=1729804570;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zwSGZxm0nPOCcXElvwF4s1O3dQZtjR+E7hVy6q0TNNI=;
-        b=V6/37myKJG2XdUCIBtA1zvZy2y+5ElAIPyyW7mDSdSzGDwivj7hmbRKbXF8YbFSpv0
-         FqEidlDPqZ7ATDJFg/6omFJruF2wk8nOvOuqQPRqWzRyL+9gowFxwM35z81Iiaah6IWB
-         ybDYvCuQJ0jBZa6ITUBqiFC9z3AvXH3U1WiIohiVF5E8WqJ86456HKkzbC9okCOSM0CE
-         E1RUUYElNs0xLl8NBTUZkAR3lyly1RTwH2rhTFnoP2X1v5l5QdA/GfaBmLwyMiF364FB
-         O/1kLEWfJRd5uf9T2T7Glx257kyiXzUNHU5AZIEqDWAgJ7fjdEfVbRNqpMvxFJzHOUem
-         dw6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXhj/Egr/kv+ji058WSg9eVXAzWCtB0uN/YDc4ojmMOK42hijvOlRlxjpZmP9nG/7+ts1l0bTCf/7Dk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCSM+4P3+/WuvKvgKKeh/pLx9k7ku9ZIrpOh69pytUsVM/HqG0
-	u2DqsKsa38+s+OdLK3CenJHOJORvsvaiBaVnPTaxHVfBtJ/doEyoBVIBYMXataKkyYsrRWt5LqM
-	3ylmx
-X-Google-Smtp-Source: AGHT+IFRbnGYRjki2btD0bjZ32lN+DzJb3pCxEHM3DXS5ov26x+24qVODJqtnsA9iG7sWA2i6pRqjg==
-X-Received: by 2002:a05:6512:230f:b0:539:f4a6:ef40 with SMTP id 2adb3069b0e04-53a15470492mr173405e87.54.1729199770274;
-        Thu, 17 Oct 2024 14:16:10 -0700 (PDT)
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com. [209.85.208.172])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a151b92ecsm31337e87.96.2024.10.17.14.16.09
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1729200305; x=1729805105;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6V0PA1pbHT6De/zvPtGOGGXjIB2qbOpp2xwkNgIwcO4=;
+        b=P9xGs2uoSANacm0v0vySzBLP3ZQ2IKb5mEp/3csA0xAIAq/k/mLMId5nmQjO2uig8K
+         6mIZWR07++EKCwK8sXdEAi3dQQ4od1DSTeG6NcynUZ4KOkev4DNPqsmmu9lV1wnES0J7
+         IUUMlPrVuhnQCSQs0W6DG15H0QpUMJfL/GjJEs/eWD/E753QLCv97fU1ZutOcMVkNefA
+         nHQec6OUdQc3XQVyq3uSM3TvibSPa+tyLQ7ta4vdycNy/T/DhPwG7faJDZab9CzpvyzL
+         XYS9yVmst6+SqKKnAFvdS2W88/h1UBAvVQGQlj1hW8MRIeag+uB3Qo1guXGxuNrfl6XT
+         Mgqg==
+X-Forwarded-Encrypted: i=1; AJvYcCXySquyTJCQiGM27VdJPtd/rCX4zjb4UC6tDEHwMHTE3FmqxWVnjXXGZ9zdxKJr9AO7HPICb0x4jlQr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNd7GtSe0R/14MP78O8S4njf/Q7eLxhyz3Bwas+Ak54vG5CS/f
+	5gUkuVTfGvP4ENNFXtMbzHwcqFzjEij4mMg8RHmoBJoN4VgV1NTrImtlDauFMrCsQJxQaHTa9ZB
+	Dywq1B63mF4VYc2u7fWhw4jHexrH9RKEyTonC+sSmaAB5OFyitHTJNzGGbaRP
+X-Received: by 2002:a05:622a:1790:b0:460:a584:7b14 with SMTP id d75a77b69052e-460aece96b6mr1405971cf.1.1729200305446;
+        Thu, 17 Oct 2024 14:25:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHGk/ZQpFtr4eYXVelF1QQ9saPRD8rq5WepP31nYkQliEgOxyubghQM68LJwB+eWOr/Ye4wNA==
+X-Received: by 2002:a05:622a:1790:b0:460:a584:7b14 with SMTP id d75a77b69052e-460aece96b6mr1405691cf.1.1729200305035;
+        Thu, 17 Oct 2024 14:25:05 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ca0b08bc27sm24203a12.45.2024.10.17.14.25.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Oct 2024 14:16:09 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2fb51f39394so16768761fa.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 14:16:09 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU19PidkNMyogEKnxOL2pv6yIX6rznw/CVPt9p34nmHPizFuFouR0dw2/C4aWJ58Io6v+TkXGbmlBgx@vger.kernel.org
-X-Received: by 2002:a05:6512:308b:b0:539:f754:ae15 with SMTP id
- 2adb3069b0e04-53a15445ebfmr181364e87.41.1729199768852; Thu, 17 Oct 2024
- 14:16:08 -0700 (PDT)
+        Thu, 17 Oct 2024 14:25:03 -0700 (PDT)
+Message-ID: <6787fffa-642a-4099-ba00-445dd2b865ef@oss.qualcomm.com>
+Date: Thu, 17 Oct 2024 23:25:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241017094222.1014936-1-wenst@chromium.org> <20241017094222.1014936-8-wenst@chromium.org>
-In-Reply-To: <20241017094222.1014936-8-wenst@chromium.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 17 Oct 2024 14:15:54 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=X-YzEGEc+tp-uB6vdPMEC-V9M=Gb60H69=_XY9w4R8nw@mail.gmail.com>
-Message-ID: <CAD=FV=X-YzEGEc+tp-uB6vdPMEC-V9M=Gb60H69=_XY9w4R8nw@mail.gmail.com>
-Subject: Re: [PATCH v9 7/7] arm64: dts: mediatek: mt8173-elm-hana: Mark
- touchscreens and trackpads as fail
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
-	Jiri Kosina <jikos@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] remoteproc: qcom: Add helper function to support
+ IOMMU devmem translation
+To: neil.armstrong@linaro.org, Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shiraz Hashim <quic_shashim@quicinc.com>
+References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+ <20241004212359.2263502-4-quic_mojha@quicinc.com>
+ <83e23090-0390-4c2e-91e3-e222baaa889a@linaro.org>
+ <ZwPyE/rQOH181rqz@hu-mojha-hyd.qualcomm.com>
+ <5fc9d581-14a6-45e8-8eda-4df49b81f15d@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <5fc9d581-14a6-45e8-8eda-4df49b81f15d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: dwS4eQGHccyMqztNnSPi1ikpy_Dy88o5
+X-Proofpoint-ORIG-GUID: dwS4eQGHccyMqztNnSPi1ikpy_Dy88o5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 mlxlogscore=723
+ malwarescore=0 impostorscore=0 priorityscore=1501 suspectscore=0
+ bulkscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410170143
 
-Hi,
+On 10.10.2024 8:59 AM, neil.armstrong@linaro.org wrote:
+> Hi,
+> 
+> On 07/10/2024 16:37, Mukesh Ojha wrote:
+>> On Mon, Oct 07, 2024 at 10:08:16AM +0200, neil.armstrong@linaro.org wrote:
+>>> On 04/10/2024 23:23, Mukesh Ojha wrote:
+>>>> From: Shiraz Hashim <quic_shashim@quicinc.com>
+>>>>
+>>>> Qualcomm SoCs runnning with Qualcomm EL2 hypervisor(QHEE), IOMMU
+>>>> translation set up for remote processors is managed by QHEE itself
+>>>> however, for a case when these remote processors has to run under KVM
+>>>
+>>> This is not true, KVM is a Linux hypervisor, remote processors have
+>>> nothing to do with KVM, please rephrase.
+>>
+>> Thanks, perhaps something like this,
+>>
+>> "However, when same SoC runs with KVM configuration, remoteproc IOMMU
+>> translation needs to be set from Linux host running remoteproc PAS
+>> driver"
+> 
+> Thanks but I still don't see what KVM has to do here, KVM is an an optional
+> Linux kernel feature, Linux can be configured without KVM and still perfectly
+> startup those remoteprocs.
 
-On Thu, Oct 17, 2024 at 2:42=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> Instead of having them all available, mark them all as "fail-needs-probe"
-> and have the implementation try to probe which one is present.
->
-> Also remove the shared resource workaround by moving the pinctrl entry
-> for the trackpad interrupt line back into the individual trackpad nodes.
+Mukesh, KVM is a very specific use case. What you're referring to is
+really "no QHEE / Gunyah". We can do s/KVM/Hyper-V (or almost any
+other software running at EL2) and your claims still hold.
 
-It could be worth noting in the description that it's a really bad
-idea to pick this patch if you don't also have the patch
-("platform/chrome: Introduce device tree hardware prober").
-
-
-> @@ -35,6 +37,7 @@ touchscreen@40 {
->                 hid-descr-addr =3D <0x0001>;
->                 interrupt-parent =3D <&pio>;
->                 interrupts =3D <88 IRQ_TYPE_LEVEL_LOW>;
-> +               status =3D "fail-needs-probe";
-
-It's a little weird that there's no pinctrl definition for the
-touchscreens but there is one for the trackpad, but that predates your
-patch and is unlikely to be a big deal.
-
->         };
->  };
->
-> @@ -47,6 +50,8 @@ &i2c4 {
->         trackpad2: trackpad@2c {
->                 compatible =3D "hid-over-i2c";
->                 interrupts-extended =3D <&pio 117 IRQ_TYPE_LEVEL_LOW>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&trackpad_irq>;
->                 reg =3D <0x2c>;
-
-I should have noticed before, but officially the order above is
-slightly off. According to:
-
-https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
-
-The "reg" property should be higher (right after compatible). It's not
-a new problem with your patch but since you're inserting a new
-property you might as well match the new dts style.
-
-
-In any case, nothing is a huge deal.
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Konrad
 
