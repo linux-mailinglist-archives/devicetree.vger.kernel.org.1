@@ -1,131 +1,144 @@
-Return-Path: <devicetree+bounces-112529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91EDC9A2956
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 18:45:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 335709A296B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 18:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 417241C25FBE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 16:45:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECAE62877B8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 16:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95EC41DFE23;
-	Thu, 17 Oct 2024 16:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 928DA1DFE14;
+	Thu, 17 Oct 2024 16:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="JA+f8Nhi"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="1tOFOFfg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-02.smtp.spacemail.com (out-02.smtp.spacemail.com [63.250.43.87])
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EDBF1DFE16;
-	Thu, 17 Oct 2024 16:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84DAC1DF244
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 16:45:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729183437; cv=none; b=i88pzD8nCA1BmnPJMQ1Wl2p0d4SKZ1klfW1uDQQb44HKbqi9yB4ElWVok0QKT9T/w7SY/O49nbzR7G79xrMWSItpeZ48bX1Ia439QUjYi50dXhhtmvqpf4ggsMxe+wWt5Aj8COc8Vi3on43NFt4K7Rl8euUpusn6bbsv2hhfW9o=
+	t=1729183531; cv=none; b=ZXb919ulROUUZW1BcOK+dfGkR6d2n3U4fPfNPd/aYX6BwOzj1anO5thjSlXBpMizKKI4Tft0bCiWagqWPOT4E4aYAxPfbTBgezzyGFvHcnP5Ca45gAhyHm5sPMkalJ9dzD8IsNS9AOB/RiM/1b/yygC2JuoonFjvfO0HudJwzB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729183437; c=relaxed/simple;
-	bh=6pRsPnkD7QklEmezrrAWGGBF9feai6FOCBnf7MplZ+4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ow0S9RJPxpiG/weXrBa6h7lEtNPHGOyJpGkzaB8N+IK3mOn0xbxZlZcF6bIiCKor4WF0KscIQ7l/JkNWVpapkXSTdnpwKeNL8WgvTE1VDaM1wfpJBehKoj3aE2O6zABLblMsYuGYtEHxb4aPsicPOcHMjFjx6WcC1+zhB/cuXus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=JA+f8Nhi; arc=none smtp.client-ip=63.250.43.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
-	by smtp.spacemail.com (Postfix) with ESMTPA id 4XTtvT20h7z4wfk;
-	Thu, 17 Oct 2024 16:43:49 +0000 (UTC)
-Received: from l-latitude7390.lan (host-80-41-166-50.as13285.net [80.41.166.50])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.spacemail.com (Postfix) with ESMTPSA id 4XTtvK5rvqz6tkR;
-	Thu, 17 Oct 2024 16:43:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=mentallysanemainliners.org; s=spacemail; t=1729183424;
-	bh=6pRsPnkD7QklEmezrrAWGGBF9feai6FOCBnf7MplZ+4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JA+f8Nhi57zIlsmzrqHxs91BODV10lRZWOJ1Z24FKO6xHPeKVNH2/3sBOBu/mJPPn
-	 iIOqboeM5p2bJLnuOzB/9MXodXHRrHmmNSqJZJyc8ZyqOPsCqQCIFko/T7ipiUNQy/
-	 dbpDFA2KZoNVbjTiC8jLaeXiIUGi6zWCDOpfYHnkt6E68gH9f8rmachWzn/dxHx57S
-	 8alJj0oMUEpAAnfxMktd+UtArtuuL3WXJ3lakgpGW1rVVYfD3Wc71BCAk/hrLmmD1Y
-	 Vci8eCfn0ZSOKyt03tvZZV/Rr3w3ILs0n3ZOSA6MA2962gaCBp0QOihgFp/aO08f9g
-	 /LzAkO31gxibQ==
-From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	igor.belwon@mentallysanemainliners.org
-Subject: [PATCH v2 4/4] arm64: dts: exynos: Add initial support for Samsung Galaxy S20 (x1slte)
-Date: Thu, 17 Oct 2024 17:43:27 +0100
-Message-ID: <20241017164328.17077-5-umer.uddin@mentallysanemainliners.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241017164328.17077-1-umer.uddin@mentallysanemainliners.org>
-References: <20241017164328.17077-1-umer.uddin@mentallysanemainliners.org>
+	s=arc-20240116; t=1729183531; c=relaxed/simple;
+	bh=5dtmDLd3dalHwVEgcR+tiAH42FjFSBJ+JMILFC1R808=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dB27NQqP79hv5BITsueuIXhlGuBD55Ur4wTjBlJofh1owSwurxBBzV+3wYgxTJgs+3FuibCUZLTPpoQ3TZF3sEJ7ukYFjtec7QapHc/LHPo1alBmhPbuDzS2FwPSybmDudqI0Yu0Y0GmqyKM7n4lZ+NzJBVmARzzH+idmmcNOPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=1tOFOFfg; arc=none smtp.client-ip=209.85.166.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3a39cabb9b8so4331075ab.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:45:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1729183525; x=1729788325; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D/+hKz9Utv8LPO0aGsn01ZA038qHbKiaHK+Sj+rHiIo=;
+        b=1tOFOFfgiAbHGzHpposiiM2BS5nFxpMxDFB3iQsglSCzVnkEwsUh0YVV/qG+w7iGrC
+         C25YZpxO3Ax/g9HtT/LXLOI6YULerp0L7ioqLYN26tk55c/2Wdvf3B6TuWEpbSRMnPtn
+         hnRRyeQiPf3HsKq0/T01HzRj0aeeoV6lBtvQj4c3b6M2SgNpthbLb7qTJ1gBPwxMowY0
+         0TkMre4PIXOd2e/r63AZs6JLH/iamdmi4HMY7JS3rmztogijmyuw3lM/M+z95+z45BOb
+         f+4V1lomq++085mimq1IzijjMNzgQC4b1Nmx8DTqUwrqvobSSHpztXvDmlpstOaVLvdI
+         UvVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729183525; x=1729788325;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=D/+hKz9Utv8LPO0aGsn01ZA038qHbKiaHK+Sj+rHiIo=;
+        b=cD+8j1LbbgR3+QRBljRpuAHrbjciBwb/3SyB38SknXuM6OJJ6KCmeWsHDqQnHoLGLk
+         S2IWF5CchBxQ9GJ6Ks9hnC2xSV1KW1igw/tcmriCV89WVhMZyeNS2g4MsThW7+hEqZaQ
+         GdLbYSskM7PoJeF24Y1C7xFKPg0szX152J2SfAQQWTawAW0rg1QIDYcbM5v6gqhz1HnK
+         /fjqnf+hqe5J6VNCKalqvcSoWAlld2JHFq76OYsWuP1MPI+HdKkQQjyFeHiRDHsg2CCm
+         QA5zuNoxqkdod9Twf8UB0dnjEo4WCcJZgPXIsmvGZJuZ3BZB5YbmKkeFJFzeSv3XfhU9
+         lZBg==
+X-Forwarded-Encrypted: i=1; AJvYcCUj+GUEQVNAataWMw+QkQsySPyJ1JVTt1ryIIwKyvH4qZF4T0FLe8o+z5/3RGLCg2KBkeXELyCsvNbh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGthB33R4258AhdErnXt18p4IfLbl56MvrvJn/QaQ+/0ohkFmt
+	WcsCrSDxopL2IRBQudUlSQvQ111ShfQoeYCpLJ3hopYpHz/8FWhbE1TZxk6a42TBpV7kkszxYn1
+	QrdUIBXE7E/JLe/9/ZDTX83uQ1DYiIK+iwA1PCEv9xI0nOHiC
+X-Google-Smtp-Source: AGHT+IEyjFo+SIWSJWyVZBGV5zs/J+99C1GHNHOGAoKVR2hwF/wgFiuTrcZJ9nhmSqqLjMiUKewGgdAueOpzvhLZuL0=
+X-Received: by 2002:a05:6e02:1786:b0:3a0:7687:8c2d with SMTP id
+ e9e14a558f8ab-3a3dc5030b3mr70463775ab.26.1729183525560; Thu, 17 Oct 2024
+ 09:45:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1728579958.git.tjeznach@rivosinc.com> <b8da2b00aec3f7b4b2e3a7cc194f7961bf656f24.1728579958.git.tjeznach@rivosinc.com>
+ <lagj6ljulmfjogrzhfd3jrf5fnngev63q2g3bmvftwfzc3s6mb@gw6oz4yriyjf>
+In-Reply-To: <lagj6ljulmfjogrzhfd3jrf5fnngev63q2g3bmvftwfzc3s6mb@gw6oz4yriyjf>
+From: Tomasz Jeznach <tjeznach@rivosinc.com>
+Date: Thu, 17 Oct 2024 09:45:14 -0700
+Message-ID: <CAH2o1u4BYyHhi3dVcBrB8T2JpXdxStsfYodmOT-6a8KMHAot8w@mail.gmail.com>
+Subject: Re: [PATCH v9 2/7] iommu/riscv: Add RISC-V IOMMU platform device driver
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux@rivosinc.com, 
+	Lu Baolu <baolu.lu@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add initial support for the Samsung Galaxy S20 (x1slte/SM-G980F)
-phone. It was launched in 2020, and it's based on the Exynos 990 SoC. It
-has only one configuration with 8GB of RAM and 128GB of UFS 3.0 storage.
+Hello Uwe,
 
-This device tree adds support for the following:
+On Wed, Oct 16, 2024 at 2:35=E2=80=AFAM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@baylibre.com> wrote:
+>
+> Hello,
+>
+> On Thu, Oct 10, 2024 at 12:48:05PM -0700, Tomasz Jeznach wrote:
+> > +static const struct of_device_id riscv_iommu_of_match[] =3D {
+> > +     {.compatible =3D "riscv,iommu",},
+>
+> nitpick: Unusual indention:
+>
+> uwe@taurus:~/gsrc/linux$ git grep -l '{.compatible =3D' | wc -l
+> 192
+> uwe@taurus:~/gsrc/linux$ git grep -l '{ .compatible =3D' | wc -l
+> 4197
+>
+> (Hu, I expected the difference to be bigger than a factor of ~20.)
+>
+> I'd go for a space before ".compatible" and one after the trailing
+> comma.
+>
+> > +     {},
+> > +};
+> > +
+> > +static struct platform_driver riscv_iommu_platform_driver =3D {
+> > +     .probe =3D riscv_iommu_platform_probe,
+> > +     .remove_new =3D riscv_iommu_platform_remove,
+> > +     .driver =3D {
+> > +             .name =3D "riscv,iommu",
+> > +             .of_match_table =3D riscv_iommu_of_match,
+> > +             .suppress_bind_attrs =3D true,
+> > +     },
+> > +};
+>
+> After commit 0edb555a65d1 ("platform: Make platform_driver::remove()
+> return void") .remove() is (again) the right callback to implement for
+> platform drivers. Please just drop "_new".
+>
 
-- SimpleFB
-- 8GB RAM
-- Buttons
+Thank you for those comments, they look reasonable.
+Can we postpone those changes after v10 is merged into the iommu subsystem =
+tree?
 
-Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
----
- arch/arm64/boot/dts/exynos/Makefile             |  1 +
- arch/arm64/boot/dts/exynos/exynos990-x1slte.dts | 17 +++++++++++++++++
- 2 files changed, 18 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynos990-x1slte.dts
+> Best regards
+> Uwe
 
-diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-index deb8dc509..783807249 100644
---- a/arch/arm64/boot/dts/exynos/Makefile
-+++ b/arch/arm64/boot/dts/exynos/Makefile
-@@ -10,5 +10,6 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	exynos8895-dreamlte.dtb		\
- 	exynos990-c1s.dtb		\
- 	exynos990-x1s.dtb		\
-+	exynos990-x1slte.dtb		\
- 	exynosautov9-sadk.dtb		\
- 	exynosautov920-sadk.dtb
-diff --git a/arch/arm64/boot/dts/exynos/exynos990-x1slte.dts b/arch/arm64/boot/dts/exynos/exynos990-x1slte.dts
-new file mode 100644
-index 000000000..9e6a1a060
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynos990-x1slte.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-+/*
-+ * Samsung Galaxy S20 (x1slte/SM-G980F) device tree source
-+ *
-+ * Copyright (c) 2024, Umer Uddin <umer.uddin@mentallysanemainliners.org>
-+ */
-+
-+/dts-v1/;
-+#include "exynos990-hubble-common.dtsi"
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	model = "Samsung Galaxy S20";
-+	compatible = "samsung,x1slte", "samsung,exynos990";
-+};
--- 
-2.47.0
-
+Best regards,
+- Tomasz
 
