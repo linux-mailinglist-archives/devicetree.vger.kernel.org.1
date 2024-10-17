@@ -1,130 +1,91 @@
-Return-Path: <devicetree+bounces-112368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8E159A1E5E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:29:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46BCB9A1E6A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:30:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BE9B28923D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:29:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7845E1C2717F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033681DA0E9;
-	Thu, 17 Oct 2024 09:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C10B71D8E01;
+	Thu, 17 Oct 2024 09:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NiT7yLqb"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bYhcebF9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E49441D967B;
-	Thu, 17 Oct 2024 09:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E84AC1D8A0B;
+	Thu, 17 Oct 2024 09:30:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729157343; cv=none; b=kUwUE9aEpmarP+JyaRLl1U81zz82ECvkI++RdVWTromk0jghTQdjg5tJLGJ9Gu6Nj4dHJY8d0KNmoU+n7Ib51w0+SAprr8MZniRQ8KaY5TM6NR91uzCwBA/jkBmyYDXGVnHs5CGkGl/9CRsm492+EnmGoytZUX+yg1xfinEBh7Q=
+	t=1729157435; cv=none; b=lP0rhnme0CLED6HVjNwPFB1JFP2OrpMQDZi7fRz6+ePp7U1STrh3I6Iwvihsg1/bGHRloQQWm1HT4XEq2SFOj3nfq1ZHExEUU0LWD3z8J2zwJgujhWCw4rC3qen4fRD716oU5ry4BMOmA/p5UxkAgbJ7FsI6pgJrqBVnuEdudRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729157343; c=relaxed/simple;
-	bh=LZ7arE2zENVRpiRV4fUDmnOpMnAZxOmOWTuuKFtwakw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Vqv5VI1Cw14gkgZtHRMsjQDj/KGSBCi3NgswjxVLl384503UWQl7A22/bJg87pEaNLuqCqdDaUcNQ5rZjzsiThD8jgo1lm2/zFAR8pabAVKWD+aD7lZpl7Yp6iW8yZyYUPRyKqIz0GV44bNuPbUfa0sHByv5ij7G9WCczxHWKZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NiT7yLqb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49H8wEUZ011689;
-	Thu, 17 Oct 2024 09:28:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c4l8Iwd5n46ZVZkT7ENdNpERZrgT96FsQzKEmQh2Gfw=; b=NiT7yLqbO5J3bQRG
-	05o0S5GQ5euvTrCtSiiTkMjmpgF4JN7WdNWRqa4vuXKW92Gt+h7u+331+x1YFaCW
-	HrwI5tKB826xgQv7WXKl7U65lfrV2bBstajWr8PQHZn3jpDVQNR6Xy2Bvb9vJcRt
-	AOGNCVTd1Vs8bpzW9l0GlK8bYTmF5ZsoN6rvgfQ1PICrhLfXhmmi9ZnfHWhM92+5
-	vatRE2nuPAgl1BTjZFii5Apj/OOdmvOuDF8K/tLqsE3fSDazuTH4OF/NTGIu6UoP
-	LNw9I6zeEoasSFpu5+49LsC/WG9tsI7YX7F57CFROVUVru+XvVhu+c8pDaDfuD/m
-	vBfZFQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42abm5kgbd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 09:28:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49H9StpA015714
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 09:28:55 GMT
-Received: from [10.213.98.28] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 17 Oct
- 2024 02:28:51 -0700
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-Date: Thu, 17 Oct 2024 14:58:32 +0530
-Subject: [PATCH 3/3] arm64: dts: qcom: sa8775p: Add LMH interrupts support
+	s=arc-20240116; t=1729157435; c=relaxed/simple;
+	bh=tpjG1VzlcbKlqImlMTci/wT9sMew797mn03v3At5H4w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lLWRDpetLz2KAcqu1eHrmT/JDWUui+fa96wg51HGXy9AkHEaN5Y5omrdQu7wCZcMcY4dm07hKH3elXerSJZPMhbi9bj8n2nsnopS7Xq7Izp60ukr2yp9yPm9yZmc/nO3bY3k+/12ZpoRxQ6z7KLQ2i0bs3OCjjwDUOfCdo7N7MM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bYhcebF9; arc=none smtp.client-ip=220.197.32.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=5RNGgtfTwAvQY9/y046REOp1czW+WTASXN0YNwPj/G8=;
+	b=bYhcebF9oG89CR6a3vDpBFiUROxHgE6xJfKDyEniiSIwKTsuhEvXIwLWUt7uu3
+	qGQBEhYO3+2KvXfOdLu/TFNtp0JbcF2Ag0zkbXdnEYxGF++j1Vm1gExV6qAbFQA8
+	ULjA3Hu84i8L9o1YvIAjfyo1zHxzUeoXt96JNEbSRAc4w=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXW7D92BBndAAxAA--.1315S3;
+	Thu, 17 Oct 2024 17:29:35 +0800 (CST)
+Date: Thu, 17 Oct 2024 17:29:33 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 0/3] arm64: dts: freescale: imx8mp-verdin: Add Ivy
+ carrier
+Message-ID: <ZxDY/SiDSaz0HcsJ@dragon>
+References: <20240924114053.127737-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-3-074e0fb80b33@quicinc.com>
-References: <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-0-074e0fb80b33@quicinc.com>
-In-Reply-To: <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-0-074e0fb80b33@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
-        "Imran
- Shaik" <quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        Jagadeesh Kona
-	<quic_jkona@quicinc.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: AjdT6Kx3PwsMfTVspd5zFxaj_J4uv3rr
-X-Proofpoint-GUID: AjdT6Kx3PwsMfTVspd5zFxaj_J4uv3rr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=2
- clxscore=1015 impostorscore=0 mlxscore=0 bulkscore=0 suspectscore=0
- lowpriorityscore=0 phishscore=0 priorityscore=1501 spamscore=0
- mlxlogscore=554 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410170063
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240924114053.127737-1-francesco@dolcini.it>
+X-CM-TRANSID:Ms8vCgDXW7D92BBndAAxAA--.1315S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7JFWftFykCr4DKw4ktFW5Jrb_yoW3ArgE9F
+	WFgr10gr4DKrnxtws8KF47Xw1vkw4Fyr10q3sFgr1fXF97Za98Ja9rKryrXFnIgan8tF93
+	J3WSgrZ3trWYkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0t8nUUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEQl7ZWcQs3R00QAAsT
 
-Add LMH interrupts support to indicate if there is any
-thermal throttle.
+On Tue, Sep 24, 2024 at 01:40:50PM +0200, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> Add support for the Toradex Verdin iMX8MP Ivy carrier board. Ivy is a carrier
+> board designed for industrial environments, supporting industrial
+> I/O interfaces such as CAN, RS485, RS232, Gigabit Ethernet, 0-25mA analog
+> inputs, relays, PCIe and more. The board also includes a TPM for security
+> applications.
+> 
+> https://www.toradex.com/products/carrier-board/ivy-carrier-board
+> 
+> João Paulo Gonçalves (3):
+>   dt-bindings: arm: freescale: Add verdin imx8mp ivy board
+>   arm64: dts: freescale: imx8mp-verdin: add labels to som nodes
+>   arm64: dts: freescale: imx8mp-verdin: Add Ivy carrier board
 
-Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 47eca50b30ffa38a652706014d35ef9e833003ec..bd86bc2cb6c304aa0b4000f3226639bef57a9b9a 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -4005,6 +4005,10 @@ cpufreq_hw: cpufreq@18591000 {
- 			      <0x0 0x18593000 0x0 0x1000>;
- 			reg-names = "freq-domain0", "freq-domain1";
- 
-+			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "dcvsh-irq-0", "dcvsh-irq-1";
-+
- 			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
- 			clock-names = "xo", "alternate";
- 
-
--- 
-2.34.1
+Applied all, thanks!
 
 
