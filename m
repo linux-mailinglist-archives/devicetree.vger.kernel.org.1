@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-112297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4619A1B39
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:02:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A419A1B51
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:06:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D65821F28C1C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 07:02:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAD201C21E22
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 07:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F04C13AD06;
-	Thu, 17 Oct 2024 07:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438291C1AD3;
+	Thu, 17 Oct 2024 07:05:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ED4EyqAe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SBiq9cTZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429B91B0F3D
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 07:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1532D194A4B;
+	Thu, 17 Oct 2024 07:05:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729148519; cv=none; b=pBCq5wCN+tRuwSNxdQDKpGcAI56tLwcbI1cUqSIReDGQ9OMzsLsUQexmoHEN1rZV8w/XL+GeI7CxKkZwOrljqAPj9xmRZm/SXNrAI4qFMBPuIvdI6V1n8VAZJ0T7aVZcpspWdmSRXLeljpSGilMtVu8ZKLzOxOx8UZqGf+MBgis=
+	t=1729148759; cv=none; b=oXC1yFLf31qyT+j4g2qVx2siHT86uifVpjMmq0BDR714u6ASeAQ4caURGwOxZIED4Mz/MsPSjiMC3eF5GNq+evA0OIDoNq+yTpKdAT7q/kzpiEg6d+hCopDmA0+ip1ov0n6I+uQQBrvc8kEFRcbjwcy82IofJtzc7MdLpsRMN0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729148519; c=relaxed/simple;
-	bh=D8ec8fy1/aPNtDTr5Yadq8X8ttXmlkdpzrNy1hvZF0E=;
+	s=arc-20240116; t=1729148759; c=relaxed/simple;
+	bh=SgFpsbC6Tqy3VGi3P39l2FUvNyodARhjLejF5vHrNI8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QSIGVysNufG4GZIUVVWa/4FTVEu+OimJa54CzoD9Oht0vVKR4LqRMeqdET1d50TxZ+d3jdsbuJ5FFpWf26+p69PouSD9cflKm7kfeS4IEzTijqvrsAkA9dL4vBCXnKSyRhJUlPWqhy21+jvFyIuxK4Yy+eZLmJRh+dRPbmDaHvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ED4EyqAe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D73DCC4CEC3;
-	Thu, 17 Oct 2024 07:01:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Te00oM8ytD+xntoTAoqKyDJGjD2dm64rhypmz3zhMokKSoeFkFc5aBroRs9fZxtkFcg+NUi1HntPGY2/QP2YrqWxX0aTOBJMConoKHlk5TBgVzxh7/gxHcgTnovofojGJOvT2fpvgU2K8ozClsR9QXjR6w6jceq77+6ozFaLpOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SBiq9cTZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26DA9C4CEC3;
+	Thu, 17 Oct 2024 07:05:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729148518;
-	bh=D8ec8fy1/aPNtDTr5Yadq8X8ttXmlkdpzrNy1hvZF0E=;
+	s=k20201202; t=1729148758;
+	bh=SgFpsbC6Tqy3VGi3P39l2FUvNyodARhjLejF5vHrNI8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ED4EyqAev6r0/veeXPwtEvsI7y5OA11b/aBD8e5jhIEVO3ysgQh3ZN6+I+pm/bGf6
-	 nlr1FJMrI7NWh651PnUkoPMHpIQdzTjY+53LxKL/1LeLkKQA8DBHbat6XdW+omF7Du
-	 2EBKdkaqBzXFv9XZGmsrZiyPJOunR/P87dZ5VrALs8jwnK3nEwbMlcpmPmWblPBSwC
-	 jvsQS5T1+ibwCnMobydwM05xQrs6GGGQE8yS++6QzvnvEDfiERE1csmbt7tMFwXFv7
-	 sUrlvjokVMB1rnYOyoydZIru4liI34IkQoenezUN1iJQpVLEfF3POH+Q5Jx+/WUDie
-	 b0BHuAlQFhmqQ==
-Message-ID: <aca453f0-6cf7-4fab-8b0d-ce455affb62b@kernel.org>
-Date: Thu, 17 Oct 2024 09:01:52 +0200
+	b=SBiq9cTZ1A8xPrct3fK/+oI4NN2GEibr/B8kJCEZNOsPE8mD/1zlVSlShLx+DVEIw
+	 GYbNxYrE9eU/T2LkyLm0SkCQQQqA94df3vBxdCjmME5ZtHnaBqpnZcdNoSzVSF9qhk
+	 aQA2ouVIwt3URWtJxgM0kKAtNwRKPgfT7fz2AHGzh39E9h4AJObAc1z5Xl3uUgEOHl
+	 BQUOenlS/1/t77+I0Z92LxsCQKQUEqn/d9v1CRf6Lq9HE7tsvpQKAFvshMZXMra+iw
+	 mm7mZFzxC0Cw+TxHG3l/F7BB0DLG2JTx3YfcYBDgr9T8IaVUyBY9GMa1wqyXMQvKoG
+	 4D6/2m7xmGVRw==
+Message-ID: <9ac861ae-b0b1-4f7a-a002-7d2048132ef3@kernel.org>
+Date: Thu, 17 Oct 2024 09:05:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: regulator: lltc,ltc3676: convert to YAML
-To: Marek Vasut <marex@denx.de>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Tim Harvey <tharvey@gateworks.com>,
- kernel@dh-electronics.com
-References: <20241015224343.94302-1-marex@denx.de>
- <oif3padobl4laflhuqyw3hdqnf4rdwlzh2twllieoelyxcgtdk@fulczljt7hwq>
- <2055a272-8391-4990-bc13-329247e09197@denx.de>
+Subject: Re: [PATCH RFC 3/3] arm64: dts: qcom: x1e80100: Add ACD levels for
+ GPU
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241012-gpu-acd-v1-0-1e5e91aa95b6@quicinc.com>
+ <20241012-gpu-acd-v1-3-1e5e91aa95b6@quicinc.com>
+ <5axuqj4hetfkgg2f53ph4um24b7xfyumktreglxqyzfsdhy25e@deucq7vqxq5l>
+ <20241015193540.mcpp2dvkmikruncj@hu-akhilpo-hyd.qualcomm.com>
+ <921d3a39-d95c-4156-b376-44e8dc6a6467@kernel.org>
+ <20241017061217.mmq27egyg5cdlubb@hu-akhilpo-hyd.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,36 +117,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <2055a272-8391-4990-bc13-329247e09197@denx.de>
+In-Reply-To: <20241017061217.mmq27egyg5cdlubb@hu-akhilpo-hyd.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/10/2024 00:48, Marek Vasut wrote:
+On 17/10/2024 08:12, Akhil P Oommen wrote:
+> On Wed, Oct 16, 2024 at 09:50:04AM +0200, Krzysztof Kozlowski wrote:
+>> On 15/10/2024 21:35, Akhil P Oommen wrote:
+>>> On Mon, Oct 14, 2024 at 09:40:13AM +0200, Krzysztof Kozlowski wrote:
+>>>> On Sat, Oct 12, 2024 at 01:59:30AM +0530, Akhil P Oommen wrote:
+>>>>> Update GPU node to include acd level values.
+>>>>>
+>>>>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 11 ++++++++++-
+>>>>>  1 file changed, 10 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>>>> index a36076e3c56b..e6c500480eb1 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>>>>> @@ -3323,60 +3323,69 @@ zap-shader {
+>>>>>  			};
+>>>>>  
+>>>>>  			gpu_opp_table: opp-table {
+>>>>> -				compatible = "operating-points-v2";
+>>>>> +				compatible = "operating-points-v2-adreno";
+>>>>
+>>>> This nicely breaks all existing users of this DTS. Sorry, no. We are way
+>>>> past initial bringup/development. One year past.
 > 
-> I wanted to ask though, there are these patternProperties here which 
-> cover sw1..4 and ldo2 and ldo4, and then there is dedicated special case 
-> for ldo1 (because this LDO node must always contain regulator-always-on 
-> property) and ldo3 (because this LDO node must NOT contain 
-> lltc,fb-voltage-divider property). Is there any way to place all the 
-> sw1..4 and ldo1..4 into patternProperties, and then selectively DISABLE 
-> lltc,fb-voltage-divider requirement for LDO3 and ENABLE 
-> regulator-always-on for LDO1 ? I was looking at allOf:if: , but couldn't 
-> find anything.
+> How do I identify when devicetree is considered stable? An arbitrary
+> time period doesn't sound like a good idea. Is there a general consensus
+> on this?
+> 
+> X1E chipset is still considered under development at least till the end of this
+> year, right?
 
-Maybe this would work:
-    patternPropeties:
-      "^(sw[1-4]|ldo[1-4])$":
-         ......
-         ......
-         allOf:
-           - if:
-             $nodename:
-               const: ldo3
-             then:
-               ...
+Stable could be when people already get their consumer/final product
+with it. I got some weeks ago Lenovo T14s laptop and since yesterday
+working fine with Ubuntu:
+https://discourse.ubuntu.com/t/ubuntu-24-10-concept-snapdragon-x-elite/48800
 
-but I am not sure if this would be readable and beneficial. Current code
-is OK.
+All chipsets are under development, even old SM8450, but we avoid
+breaking it while doing that.
+
+
 
 Best regards,
 Krzysztof
