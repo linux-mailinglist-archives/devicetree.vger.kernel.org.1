@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-112571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D4D9A2BFB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 20:18:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE4109A2C12
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 20:21:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A90BE1C2686A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 18:18:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33A42B2A269
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 18:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A771DEFE1;
-	Thu, 17 Oct 2024 18:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8361E25F2;
+	Thu, 17 Oct 2024 18:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ja5jutce"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UO8XiaA1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BBE1E0483
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 18:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE381DFDBA
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 18:17:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729189010; cv=none; b=P0rIegQzhUwTUYlwz18MJf4QY+OIEi6xoF818yT+9hhKKtyhx3eKpmT5TzHuoEy7owNbco+Gue/kyk2phHnOZ+3yvIPxfWuRhtGfDO/eBD7NkSeZlM1KOHtVsXnvKQ+LCX89NwnAt5+Qx5/SebIWQZpuivNiBHz/52qqPGQdCTg=
+	t=1729189057; cv=none; b=pRO1D9kAuQp7+cJF4E4hT+5Gj8eTuERDJmg9ZaiGFOgPURuYxRtbJbYKKlk9Vhx/eNVx3c/LBU+mKe5XIA3k9vj8brZdwQTEGDHhKRu0IbebqlNGIJ5wayYuP6TFNzgI7Y5Tsc5gHyiJyq6cao9+1wkOp42JHiNQKYEUfCjTEOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729189010; c=relaxed/simple;
-	bh=ZeRMjlnVRmUDMpk2EIrTz9d7+YE0KuktlP3WHGpYyNQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=m1w9+wM/cS+cye3fPISejhSUWMtYptmLohzAWETCA8kQksVNO36ae10D1ZiNBm36kiQoKRKy9874cViweJqQmmNStDA+KeR5sZPSB2xm8shQPWqRRwzFuCKarEGWeqoJC3b9KLCNeBbvlLvrpyV2tKuFS8kGRyE4xmQ2xN8C21w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ja5jutce; arc=none smtp.client-ip=209.85.167.42
+	s=arc-20240116; t=1729189057; c=relaxed/simple;
+	bh=Miucq8VLCWqiTzS4kJL67kqIiPf9VeXJfYu0JM/d1ew=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=taVXbFXf5uQ48hVcB4mgYsmYEzaBDbYABSZpKD5eqGhXFkvYD7fd3+YGfKK1QuUW1Y60RYFJ3gvIZGNa4ZOTy4oQM75R0f9/jz3VY1lvWLdTwWpmAolbmQg3Kb8qNxldo1RHUdGQSNCetRTE8+3W8Gbl5Dw40Ez6CCxrhUkTL1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UO8XiaA1; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-539fbe22ac0so1573667e87.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:16:43 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539fbbadf83so1649754e87.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:17:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729189002; x=1729793802; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729189048; x=1729793848; darn=vger.kernel.org;
         h=cc:to:message-id:content-transfer-encoding:mime-version:subject
          :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/T7dWrrKHgZSyTLwnbzb1jxT+fEL4K0nUEDN61fcwoA=;
-        b=Ja5jutce16WsxffkFyMmT2s1q8Zm3hD1juZWWq5SfK2Y9bEKGgwWxpIHw+RHQvsxn6
-         b/6/cDVI8qyw3woQMwYBy/0RA9+a+N3rUF1pl0vA2lBmxt6AFA8eY5WwPdaMAM8q7Egv
-         32WZAwRJsofB/8ErCVPCjFynxwozuifVs5Uj+bjj77g0wv8y5L7Vgr6XpBqkI49d/jPI
-         419OI122sfaBEzQ8LZtNoshlS22TaxUFngoHKClQy0Sc/rBWOFCpFHRQqOc3MkCBdYGQ
-         qNpig32qHqmraWSBgk0+tQrONs69MsFncK671/k9a7gPRfQGEzEVOduVeOsqBC1HEmKT
-         v93Q==
+        bh=+qOsuwcgQSsJnPDkGK6d2ocwGrsRseQ/HXsMwhslTwI=;
+        b=UO8XiaA17DS8ht885ukmECp84CIs8fy5U5uYzKT3aEaSmgilw7eljzhhsiiU8GnUMm
+         c8AtYUPtl+ijKHexA7sZuvDvRZdg10fxc5TtY5cSF4DR/Kg/YImgK5EYLYPB8cVuYXkc
+         gnx6ROh9EBRiIBum1gdkbwtP5AitXy4vpb4xTeMMcdgnBSQi68S+qp38xf8/X78ow2Pb
+         9QLzxaMZKVXjKXAANdeKCKVOfCp3ko43iUXn8K1elscGTgYDQOJJ0QBV6XOtuTUbbFHB
+         5fpNGODr0+KwLfom+O5lv7UdCczjZy4ZWG668yQpueb5Yp2Th3TQPfCgKmVv4Sg2Gig5
+         D3Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729189002; x=1729793802;
+        d=1e100.net; s=20230601; t=1729189048; x=1729793848;
         h=cc:to:message-id:content-transfer-encoding:mime-version:subject
          :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/T7dWrrKHgZSyTLwnbzb1jxT+fEL4K0nUEDN61fcwoA=;
-        b=R1pkWR8ZmVwiYs2f33rZo4Nc0a3UCt6pnVjjxYzHd2KGs1RfWNejv56l+Ru9ujh+3F
-         824cgutvzzsZ3jG0N4xUQ/zdykrFh6tvwnDLXA4zDwBTFvfzO64VFJzFW2mXb73J9A5q
-         G37hgkavhC25e7rEi8UW/i5K7xek04Eewm5ZdJN+XTATDaXAaLNqKdEKG/IfCmfg8RM6
-         9MORL/zb5QAEzMA3TPJpejYDRdMhDAdN18gpk+tVPq2l4VIPbSsvOB6HGmBXqWwFp3fm
-         3vZlQNLhRGeGsv7z/Z0fC0f/tTTqmYEMjDuvLsIJnEJL6f6izNU/KvxKaSndkjeSAkb4
-         O3Jw==
-X-Forwarded-Encrypted: i=1; AJvYcCXvlzFt/P8FB2xcIleBf015nxTyzNuJ+GVKZWIDhfQrmRVVvuAKq6hdoiezO05JnIrcMorZs/rb/01N@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfFTcnWuhQPcX040Lej84A0Z9M4T+iGSIvvZkJPBvJVyQlNDcr
-	MrepxTbwN6Hz1t3OGe51bkfRo+hacbgWw4CprTB1x5s46BFTEf8vs1pTQDIMVg8=
-X-Google-Smtp-Source: AGHT+IHAsmORAs9oNS+DfVSc3081ySAtsUrU2wNzoGE/lFlV3it3q1KaF5n6uqGqzYmopAsRyZtklQ==
-X-Received: by 2002:a05:6512:3091:b0:539:f65b:401 with SMTP id 2adb3069b0e04-53a03f96b1dmr5898841e87.57.1729189002105;
-        Thu, 17 Oct 2024 11:16:42 -0700 (PDT)
+        bh=+qOsuwcgQSsJnPDkGK6d2ocwGrsRseQ/HXsMwhslTwI=;
+        b=LmM5fkCOV9xmFO/ztlQuDzXTO7XH5KvvcbETfKjQdEyGVnhZV0Gen0zNa29C4dYedb
+         pl/RB57uU4YLW0soPPKPRr+Y6mjrN7LjDeR72KT95KUKsCt7DWFSB4ujIZr2RZqBpw+O
+         0+YzCzJihWC4twt03NzAOPqPTGY77a/On0j/KnCmueoh/nfGtO29YzR1nK1DqaMAVyz+
+         DYTGchl1O9r2Q8TSTVPCCGYvuoUScF4aytDuKH5voqyZ+/+T8lkfJgKrkUjQdOYTMBUL
+         CjXY8pKAhhSuaYEe3+nQDdJiyI/7U578y6Xyr2YlnAM9nO9Amj7q9BZlutLEL7Jtfx8y
+         ULgg==
+X-Forwarded-Encrypted: i=1; AJvYcCW1RLlpY1hPmMDGrr9fQrIlCOm5aw/Her2W1FMPTI2amv17ceIU4WCnTu8J0OYZm1QGeyhQcjwQaY9c@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdFlDZcaMv2jCEUs+VrLlgil4ePpPwY/z3DzbHxpdqsVY9Po6d
+	BHLiTAi9qVxvrElPeCg7R6mSBs2K+zZb5AtSZ4pskWZC4r2kvBYsirUKQekZceM=
+X-Google-Smtp-Source: AGHT+IGngDdh2FndVlF9fYJcoAFk/MLKuL3QYreIs2O0vvPF/2/s5eDBrnVQbJbZHR7ezleLOWFsGA==
+X-Received: by 2002:a05:6512:4010:b0:539:f035:e158 with SMTP id 2adb3069b0e04-539f035e2abmr9828956e87.18.1729189048475;
+        Thu, 17 Oct 2024 11:17:28 -0700 (PDT)
 Received: from [127.0.1.1] (2001-14ba-a0c3-3a00-70b-e6fc-b322-6a1b.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:70b:e6fc:b322:6a1b])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539fffb1f81sm834571e87.80.2024.10.17.11.16.39
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539fffa891csm833707e87.8.2024.10.17.11.17.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 11:16:41 -0700 (PDT)
+        Thu, 17 Oct 2024 11:17:26 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 17 Oct 2024 21:16:38 +0300
-Subject: [PATCH] dt-bindings: usb: qcom,dwc3: Add SAR2130P compatible
+Date: Thu, 17 Oct 2024 21:17:23 +0300
+Subject: [PATCH] dt-bindings: mailbox: qcom-ipcc: Add SAR2130P compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,67 +76,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241017-sar2130p-usb-v1-1-21e01264b70e@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAIVUEWcC/x3MMQqAMAxA0atIZgNNFUWvIg61jZpFS4MiSO9uc
- XzD/y8oJ2GFsXoh8S0q51FAdQV+d8fGKKEYrLEtGepRXbLUmIiXLmh48D7w2lHooCQx8SrPv5v
- mnD8cO3h6XgAAAA==
-X-Change-ID: 20241017-sar2130p-usb-0e9ccdef61d6
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <20241017-sar2130p-mbox-v1-1-906aa78b1358@linaro.org>
+X-B4-Tracking: v=1; b=H4sIALJUEWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDA0Nz3eLEIiNDY4MC3dyk/Apdw7Q0c6MUi9Qk02QLJaCegqLUtMwKsHn
+ RsbW1ABMxtzhfAAAA
+X-Change-ID: 20241017-sar2130p-mbox-1ff72d8eb5c8
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1274;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1034;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=ZeRMjlnVRmUDMpk2EIrTz9d7+YE0KuktlP3WHGpYyNQ=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnEVSHTuXZ7hxnJUrblpVRDQMedes6L+ioPa2bT
- AVnUOSvDMWJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxFUhwAKCRAU23LtvoBl
- uBqMD/4i8l1zbQwsVc65HTzYq+0wYy1q/PtfjhAlG9fyT/O0jkCSdg6Xhrg4n4u1ZaBoApfgbRt
- Y/Z4yQj//Imt4JTwWg8npog6Hq8P4d8iAdTZMmAMNIxwo5cOnzoOlnoSuRRkT6WXs2zf1lZsap2
- 8MHBVW+OeeSZMqNEu+AN3iiH9TMyFCzv4KnvKjd8nwyd3l/HkUHxEuxTIdGa12XhreZ2yKGITdE
- eP/rkPXh5HC3AN6S4IAtuPOlIHBJPFsFBcNwSO+bLtQkSHQQ4N5acQEJal43ZaWTE+cJ6EmqYRV
- YmBOqiLoGPzLY2+UP5wqHmHoG7b9zkgGr9DWhQliluw6J7sYEMpMDo2K12Pd/o2amf/7LDBuh8t
- 4cdbMjN/N1SjPL0ks1jM7mVCt9NIq7twsY+Ak28cZoF/dYPuORf1nBOK32XNuRC6qeAT16Seh+p
- Ph5IPVJR6FijuB3dpntB7iLR7H3Tjm2Glf9VvsLR+t6kU/NX29ZEb2fOGnvL5v5pv1xh+Dqwpqu
- 9U+KQqHq/7Urw5NQzfKHquq7rMGKpCzt/gGfS/zbrc4xqpOk/EUc5QRbCyQloIg8v8YQz9NMNtU
- mIcjoMPiAecH5Ihwa/2+qSqbV3cWUnPWnEEXeOhrwIQFouF5TWUi8DjX5edWgLWdm0I6ucT/adE
- gzVbCmKWhXBJwyQ==
+ bh=Miucq8VLCWqiTzS4kJL67kqIiPf9VeXJfYu0JM/d1ew=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnEVS0NAo+ofnP4RS7+aq/4KtKq67A/OvX0qZm9
+ +Ugcp7XliqJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxFUtAAKCRAU23LtvoBl
+ uO3pD/4nT370SLq9ydnyk1taz+2CJ8AiWaicbI6XGIfalgF41J9DBUr3iK61bkJ9/D1dD++fgsw
+ RnC+pEHmnj1eLgK7OtvNG5OBdMPtxjf/sdZ00HblV5/ttp4i36YI7+DfYX75tXc/um8BLFOLt0q
+ pQVh7bmOGLZXSZtnHBY5iCDMIy8QJNdD8vlolQ7wk78Z6bpGeOycZVRWoEN1xhdeO+huwHwCpgO
+ KWM2z0PVAqZ8Bu7UxXYpJJV8v7oKxqNEATIntjqi9s3R5B+ug1pkymPBHorAb+gaoCrETbVV0ue
+ S9eutegzXURqvNnOmnpfSVWs8pWwnwDuVIlzkcTt+675JRZzFjD2HCACOUXd7FW8W4hIqhfF84I
+ Jof1wYIyY63TDUuLDyl1X8AMAndp7Gukjbg/GpskTUYeUEZpyXhCTrmp41L76JDZKNubd4qLVxa
+ NGcEEOQf7/TQAi7YhrmUNF39pa+KThkBNIBwa+7xgSq8oWfp+MXk6v7U33aHS+l8kJxOVltawm2
+ 45lpT/ZeMSLyJIKQcyc8NHtwXMGJ38UGjdC4hfQJer6kFSwyquCRvndbNOTXOm7e9K4TD6yIvwa
+ Qz4btsOEP8idakq2wCCyEOAtL0t3T3OCZ4H7jzBSqqVrdhZ3+MNL/CaZnTA1p1H1IBXv7/Ja28Z
+ VwJVEWTTP7qXYVA==
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Document compatible for the Synopsys DWC3 USB Controller on SAR2130P
-platform.
+Document compatible for the IPCC mailbox controller on SAR2130P platform.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-index f7be056419307069c67b8f2d53bc88417a19b9ce..935e204b607bbd3bc9bfbdcd03519202197c9eb4 100644
---- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-@@ -29,6 +29,7 @@ properties:
-           - qcom,qcs8300-dwc3
-           - qcom,qdu1000-dwc3
-           - qcom,sa8775p-dwc3
-+          - qcom,sar2130p-dwc3
-           - qcom,sc7180-dwc3
-           - qcom,sc7280-dwc3
-           - qcom,sc8180x-dwc3
-@@ -340,6 +341,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,qcm2290-dwc3
-+              - qcom,sar2130p-dwc3
-               - qcom,sc8180x-dwc3
-               - qcom,sc8180x-dwc3-mp
-               - qcom,sm6115-dwc3
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+index 2d66770ed3612fd4bf9e28c334b273033e13684f..ecb4ec1e0a82856581f16391813b3c533c4f6f90 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
++++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+@@ -28,6 +28,7 @@ properties:
+           - qcom,qdu1000-ipcc
+           - qcom,sa8255p-ipcc
+           - qcom,sa8775p-ipcc
++          - qcom,sar2130p-ipcc
+           - qcom,sc7280-ipcc
+           - qcom,sc8280xp-ipcc
+           - qcom,sdx75-ipcc
 
 ---
 base-commit: 7df1e7189cecb6965ce672e820a5ec6cf499b65b
-change-id: 20241017-sar2130p-usb-0e9ccdef61d6
+change-id: 20241017-sar2130p-mbox-1ff72d8eb5c8
 
 Best regards,
 -- 
