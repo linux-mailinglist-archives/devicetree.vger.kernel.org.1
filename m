@@ -1,139 +1,139 @@
-Return-Path: <devicetree+bounces-112295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1519A1B19
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 08:55:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE39C9A1B2C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 08:58:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96B9E1F238FC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:55:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 872431F28510
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EB21991C3;
-	Thu, 17 Oct 2024 06:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D70194A4B;
+	Thu, 17 Oct 2024 06:58:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="VCOiX7s+";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="SSQdTJ+r"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zh1wdYFZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FCC919409C;
-	Thu, 17 Oct 2024 06:55:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CBDA1C1AAF
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 06:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729148129; cv=none; b=BrkgmXXlorp/Llsn0vsaMqkn4DeiGDLyya82MmSM2/z7l9BO1+DCF/Kq8wkeX1QEYcEX9J56nU/pEJaFINggqGc5aVhG+xAKf3Q7Jo+HRKHgsQVsm61DSrlyZ+nBTXlhTCUOLUv0lLmaU/kENO1ZuB0cNjaERUvj+dNf0Ze0ZXg=
+	t=1729148307; cv=none; b=bIpQblWR9QfnlyXecbjpEL5VHHM/eyusrIUHx9G+x+eBnio36cJP/0zeqKV1DS5/0knym/v9ueCQGIsQb/xHDt5vHHOL/8ueHmGEKfDbNZc7Kdd7TS6J7KQ36eJeo1JGZQ+smMuB8XsN7LB0Oqp20oiEYbgXpcUBvIj9Ci/WHk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729148129; c=relaxed/simple;
-	bh=6YD5Cpi+w5UzlJe8jXh9Eokm8yqHtO7+XpX7JpvbRrc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CQeDMm5X1fMeRmpI5P23qs87gTcizYMQzHBBqdR5EbkgfU4NT7Z+78GKCbnadvM55h8KmB+p/1bLytuxaxeqkRg6MJc96Y0Y52SVsohWnCpVL5exBHAO381BsRLpDht4nkvu5eeyNWVRRD2RgO8GTwv4HmPUkEdxvOYlHhoYHvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=VCOiX7s+; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=SSQdTJ+r reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1729148307; c=relaxed/simple;
+	bh=eikXMQQTQFtDuJEmxx594Z1tR3sjWpjfu06Fxs5TST8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kWvlikJR83aVY88H6SGxkzxo0wwiLouyZeNNn4ohLKGCu+B/3jvjWw1bnIqJvKssESIR+6vWcnKqN25QvNN4mYObbMlMP2+yQSQ81R5LK6ELE+36JhT8jDFO+NKF9lRuemvxrvVuhrhVMbe6+aIbGKyDnbfS7f3tv5+Prqj/FTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zh1wdYFZ; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43118c9a955so5996705e9.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 23:58:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1729148125; x=1760684125;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=gvM3ylQqJpV87mr3f63xQKKWoegM6/qRcERu3MpW1Rk=;
-  b=VCOiX7s+CAZIxTXdwP+1hgpB6O7BMtoYLNA9kXmt6FDrsQBlPg7JSjFz
-   X60KAvTJdKLE9BH/mUkdSai7Yh9FRkslK9whlXrCwfqr7T8y86WMBvYC7
-   H1XxmuWXBevFyNjWoVJYBHQGXnpkP644B7ve6ERP4BztJlMiOTmgYFVHn
-   juyw7VEISNV92ccHexU2J7uGJ3Dah0zMJVy2jQZZHrT7m/CkoFIq3A96O
-   x8H0HNiq0wOiuJx6Sx6pncjOLRwnV2a78lzJ1W0ilZCDoN438DKlR5de0
-   blJXS7S2YXuT/L0yItUMF6n/e75X8dK6kndZT7cUgJ3KuKo+VPE3cVBMn
-   Q==;
-X-CSE-ConnectionGUID: Ymo5EWPfRfS0qgAvOdrI9w==
-X-CSE-MsgGUID: PIfOfzyLRiedtZbMLCiKKA==
-X-IronPort-AV: E=Sophos;i="6.11,210,1725314400"; 
-   d="scan'208";a="39509098"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 17 Oct 2024 08:55:21 +0200
-X-CheckPoint: {6710B4D9-27-21611FC3-DAD22B0C}
-X-MAIL-CPID: 9CBEAB64C40454D6C197246A96EC91C0_4
-X-Control-Analysis: str=0001.0A682F1A.6710B4D8.007E,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9072A167B0B;
-	Thu, 17 Oct 2024 08:55:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1729148117;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=gvM3ylQqJpV87mr3f63xQKKWoegM6/qRcERu3MpW1Rk=;
-	b=SSQdTJ+rAYW1U9hBi0ygz/AEsbS/rgh/gaUBxWc/bdQZb7J5JwvIHf36JH4WHcgrYuu50l
-	WOOCzipZg0OU8992x85QtsNVENnlM4YLGL2zq4UVTBNpT/tWDfSGSyqO6lPNuMUi7tNt87
-	OWamhhixbPeRTkVO+ky3iTcVs02LJSG9h7zlNKPh+yyhCHUPyUr4k4VgWRjLch6gjz+7HN
-	nbnGjnENnc5krzrJOzZFOm3CBsFe3yC3ZqDweYtHeYVg+abDPcxmrYk/Q/FGLt3U9g1Dlz
-	U0xTOdby7KPXPqj1QH2/M9QpVy4o1XUX9ka9uRF666jZinu2Gvc3pvOWwlBnQw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
-Cc: Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, kernel@dh-electronics.com, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 07/12] ARM: dts: imx6q: Align pin config nodes with bindings
-Date: Thu, 17 Oct 2024 08:55:15 +0200
-Message-ID: <23695903.6Emhk5qWAg@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241017000801.149276-7-marex@denx.de>
-References: <20241017000801.149276-1-marex@denx.de> <20241017000801.149276-7-marex@denx.de>
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729148303; x=1729753103; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yeLvVHAahzMmmigQ0rhyHbTviJd4gJG97Yv+5p31+60=;
+        b=zh1wdYFZBQPJ6pjSSBS08fGuYjlZ3C5VjGuCU+FGXvuZYeevQPS0bZ1KnZV7xn0L07
+         bnc8HsfRQjG1mp/GfF1HwROVduZK7KwfBwB6dXWRGTp8Oicq/NxKRys56CEqIarfz6Cz
+         fFJUdIBA9q6CylIKWTFdrt0IX0cHeOWyKDFlxF0xndrvyXZfwBFeoABl6+Z4PzKW+8Tl
+         7Zr0Th+PA9ya2y1/icJHlgHy2ySdaAgpWELHw7MIaxwZlTtTjsTNxBluhBSDr0KUyBKI
+         rJVZv5QI9OlTokTBNA6FOtwlAOeeJi/LFOGUQ+DAcc0ypz9dx5+VzXKmwpYnUcMFpJUT
+         v5Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729148303; x=1729753103;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yeLvVHAahzMmmigQ0rhyHbTviJd4gJG97Yv+5p31+60=;
+        b=CvZQlJQfVKr9vTOXHB7qRjCSOhyAN2JS4cx1QbA8se/pdmkMEMiDR8oBV1RWoI1M16
+         zxgTauPPn5WS0ScZUyJptEJC236NyA6KAG6zplYPnlrW3gdUGViWOJn9ODHyL0LpvcvZ
+         4JyzlXPaHfQanAbDdydTTqvt848botqXQotFS8LJZGuVO7NgkulDCAPPTLkbctLaYOJZ
+         J6BIOk59vTIfcPORNGvASylmVGpAuameoFsfE1duqYqfgEErSUzd6+ip0LaMEXT43gas
+         Ob/mEeEcEPopl1/LX161KkSNcCMYML9eH4SRDatc5Tae2kfepjGcE7RUXpMg1woxcaCR
+         RdNw==
+X-Forwarded-Encrypted: i=1; AJvYcCW8TQhAOFAndVHKSl6paqgEbmESdfeCsFtFLcUHgt0Utwg3eoshNtzjwwHqUt3X0V6PnAnMVNIQ6ebu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3G98PIYJB5BPqolvjwc+fbAZGjpQNLotkZQkywHNCVOKzivCR
+	vKeIhaxnBVzartx6WhH9SNjhd6VvgcEd0GFdq9AQ//OGTDP/yyny10pn0Equq0ua0elHPIxc+Tx
+	SutI=
+X-Google-Smtp-Source: AGHT+IE3taqIWL9QmJ5JHNSmCD5QX4JIPb6rHSNX0e4A6iWAkyFY2s5keuSgw/xpQbIvUxwI/i+2GA==
+X-Received: by 2002:adf:fe89:0:b0:37d:5129:f454 with SMTP id ffacd0b85a97d-37d551d4fd9mr13656287f8f.15.1729148303407;
+        Wed, 16 Oct 2024 23:58:23 -0700 (PDT)
+Received: from localhost (p509151f9.dip0.t-ipconnect.de. [80.145.81.249])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fa87bbesm6283069f8f.41.2024.10.16.23.58.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Oct 2024 23:58:22 -0700 (PDT)
+Date: Thu, 17 Oct 2024 08:58:21 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com, 
+	francesco@dolcini.it, imx@lists.linux.dev, jun.li@nxp.com, kernel@pengutronix.de, 
+	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, marex@denx.de, p.zabel@pengutronix.de, 
+	pratikmanvar09@gmail.com, robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org, 
+	xiaoning.wang@nxp.com
+Subject: Re: [PATCH v8 1/1] pwm: imx27: workaround of the pwm output bug when
+ decrease the duty cycle
+Message-ID: <pz267mfsmohgthip52s7qeeo6xvw6w65eug23jw2qoghfnudzo@kjbp3brumgy3>
+References: <20241008194123.1943141-1-Frank.Li@nxp.com>
+ <Zw/maOfa12uoJlO6@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
-
-Hi Marek,
-
-Am Donnerstag, 17. Oktober 2024, 02:06:53 CEST schrieb Marek Vasut:
-> Bindings expect pin configuration nodes in pinctrl to match certain
-> naming and not be part of another fake node:
->=20
-> pinctrl@30330000: '...' does not match any of the regexes: 'grp$', 'pinct=
-rl-[0-9]+'
->=20
-> Drop the wrapping node and adjust the names to have "grp" prefix.
-> Diff looks big but this should have no functional impact, use e.g.
-> git show -w to view the diff.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Dong Aisheng <aisheng.dong@nxp.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-gpio@vger.kernel.org
-> ---
-> V2: New patch
-> ---
->  arch/arm/boot/dts/nxp/imx/imx6q-ba16.dtsi     |   2 +-
->  .../boot/dts/nxp/imx/imx6q-dmo-edmqmx6.dts    | 232 +++++++++---------
->  arch/arm/boot/dts/nxp/imx/imx6q-gk802.dts     |  92 ++++---
->  arch/arm/boot/dts/nxp/imx/imx6q-h100.dts      | 200 ++++++++-------
->  arch/arm/boot/dts/nxp/imx/imx6q-logicpd.dts   |   4 +-
->  arch/arm/boot/dts/nxp/imx/imx6q-mba6.dtsi     |   2 +-
-
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com> # imx6q-mba6
-
-Thanks and best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vtagf2jnmwccljol"
+Content-Disposition: inline
+In-Reply-To: <Zw/maOfa12uoJlO6@lizhi-Precision-Tower-5810>
 
 
+--vtagf2jnmwccljol
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v8 1/1] pwm: imx27: workaround of the pwm output bug when
+ decrease the duty cycle
+MIME-Version: 1.0
+
+Hello Frank,
+
+On Wed, Oct 16, 2024 at 12:14:32PM -0400, Frank Li wrote:
+> 	Do you satisfy for what my merged comments's results and do you
+> have other comments about this workaround?
+
+I think it's good enough even without the comment that Marek requested
+and applied it to
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-next
+as-is.
+
+(Although the mathematical pedant inside me shivers when reading things like
+
+	2us = 500 kHz
+
+:-) .)
+
+Best regards
+Uwe
+
+--vtagf2jnmwccljol
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcQtYoACgkQj4D7WH0S
+/k4bBwf/ZEIHwRC7YoX/I8XH4VxCiCkGMwD9TeUVYDdhckzALnmiXnP+2zqBHwk4
+9Z0G/bDToAY9yy/hDPxvjcZAmlZFKesEJhX+yUQC9O2xxmmTsDO9iq23brROR3ce
+yzmVt/HMVPdZmXLkZHAOeGN5R7OkC2cSLcCeQ7sHuKS2X+K5fSPahweUGmw/OT+Q
+a0OxO/bBIkCA8H5JdG5E0zg7e10WCFqbP+HtqQxF0mcJNcKmlGNjr2LkxB/2PXUD
+GxuhwRr8Yl5bYjEq+dmUQN2v26jCyizjDLXMaRyPJKfSF3OArfz/17QLPtKy0Rk3
+OdYSAeOz0ag/O42mOaDPegULR4B7Yw==
+=KwPb
+-----END PGP SIGNATURE-----
+
+--vtagf2jnmwccljol--
 
