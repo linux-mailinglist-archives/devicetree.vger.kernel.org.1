@@ -1,111 +1,161 @@
-Return-Path: <devicetree+bounces-112363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82CB9A1E4B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:27:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 265C89A1E53
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:28:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E4D7B25D4E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:27:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A2781C27110
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEEC61D9598;
-	Thu, 17 Oct 2024 09:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE321D8DFB;
+	Thu, 17 Oct 2024 09:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OXo+6YsN"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="bApJLpo8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F01F1D90D1
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:26:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9AE11D432D
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729157208; cv=none; b=HVd4gS4Xclt7mzNUB/7KU1vqyajRt9QNXn3M5UJ19Nw4cvY7mweJUA3phmKb4K7NOjYAq4zEiGrXsH1QLvQYmkEtgM1Ci5qGcawwdBqWTz+KqxKcVPBuhILRKE7+B4EOEoav4kxt4pzLFeplPjqjO1EPkkXTCIRVLrfz1miv/yI=
+	t=1729157316; cv=none; b=ZEiCwPCUYGzO5D+QO7/JsfCf5mWr5USvgkrViJmkKC9Uw6rc1Y4pEMKCJnl9738yiIGilyUarE3UW2SzE23dj02PGy679XnpytSVK6uuc5SCuLLpL5cliIuzQrkTjABrT2oLAIekzwUGQInhoS6Zbzj0mJzMzOWJlQqS0dHeUfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729157208; c=relaxed/simple;
-	bh=eZBm3Bmz++hihfRtzii17zgBOodk66D4801Oz6yo8z4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dA1WEOpSvapNyLpM0IpI/9NxnQC7zfqr1Dow6TUO7HFazjjM745Sul3vfYUSqEtql2XHE+k86qitRte6EpB+xNgf3HL3fuCaJ094GJ/MdZ/t+NEm18GKTdd2f8sHdd9rrue+zZBicex23bZCvOo1LHIW1Fj2ZIlMW4J9Oe7r8HQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OXo+6YsN; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43159555f29so771395e9.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 02:26:43 -0700 (PDT)
+	s=arc-20240116; t=1729157316; c=relaxed/simple;
+	bh=3JxCbA3plKuWlzh3DdAcu/EpWlbWdGPeJJNsgc/8v/E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IUo0TCNmJtQI8COtAeNuEsacG+XZJ1M8MUUVXJlSUJT2U79GpMa2mgcWYgoy2YTeMBl+XSxC/aLBAjtndj7RgypsZJ28odxGq5BHYb5C1HqBMeVpp5d5q0Q+Wyck60DGVInXsYpUqxFZ/W4UEVCNpUJimBMYSVK5DJpQFag88kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=bApJLpo8; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-539f2b95775so924649e87.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 02:28:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729157202; x=1729762002; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1729157311; x=1729762111; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/oSOyG8g8KayNyF7yKwR1IFSwarhWkC0f5N43ovDss8=;
-        b=OXo+6YsNzm5VMYgCFvIND7Yt+OeUKDO8xJ3dQLWqtkfBSkcSVjlH7It1JkdJOllAh9
-         ZuiPG1B+qUA+GtCUaRWqowAJxoJLHp9/Mc5N7FftgoGfACPdusO/Qvfi7iTQcFUNQg4g
-         JMWy5+hLnxgiF0zV66yPpQz3lHnJgebgyqHAhYjNXzS6fvOo/7AEWBMQwGTCyStcs7W7
-         AUu3/anK+3mYSNNhHZgun3ztLZ3fVipmjJerNwcLn5jHjSmyLRFXj/YRccU+Xvsv8zCC
-         mC7XONPlBaVuNNt4HrqPr7FBfGP8PsYFQw874LdkMt2fdZxvhYTF2QwaVo0gZbpYa75m
-         1yOg==
+        bh=ujlKFoZAU3IuBC3XvqlZ9TW01zV3UE3c49sjcx7h6Tk=;
+        b=bApJLpo8stG+PnxoVQN9Z7UXxBGGKiZTkZ1Bfpy7uBPmV0OfvFeB9IY2BHK4G5zByh
+         gFBL51KFptJKtkcPuwC6VmsO8RN+3yg8NHqA4WzPtKyMz8t2AjM6kNAuYCqcEVDP8bHy
+         4tTtK8v+fzIzFbU8v32AyQABCacE8jNur5qCnLkg4OcDVvTqQ23TWVE8HdEEK4G0wAL5
+         A0/ytuo+IcKu0IH1FK+J1WjKiOdsOrIBY/7LQT7LGirKINtuGGeC0apjS7x0NZ72VgpS
+         kO5CXxZ4sR0yB024/SrHlMgxdCb5bX4pdWedf2yw8zaXBt6AtkVoCXNuffTmAaUzYakb
+         q/qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729157202; x=1729762002;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1729157311; x=1729762111;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/oSOyG8g8KayNyF7yKwR1IFSwarhWkC0f5N43ovDss8=;
-        b=SWUkzFKU/OaXQRFmAoITX11Gadb6t+akHQDRawEcUdDnuXqTzoBqNNhEw4COB9k0MZ
-         m3kZVuBf9O7SEbLElezpQiRJXAJmtoyeLGl6r6OLeW/fEvTkOkchYimoEYDeUCDcIqbe
-         mBatJSpvehjzbtkw2z36qss/lYI7CdHE1NI3JyscbxqALhm4CB1j2EN29d8Usr5stTob
-         2WAol/6fpp5jov3niA2btCxNL29gwernKYzNL+soW7DxqUM//dVNxkR0vColIX2y7f9n
-         Zb3RcZ/ak2MZlfu/94XFrrFKOcrP+hxl6wPKug+BVZiVfOSm8esH2egYBj92C0m5THEd
-         PD+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUuo/RKxllP1Dk0aEAsie1quiKUEOSC/c5THBaH+wX2Ptjp/7as/fFPKwdThK3B+axfy+lAB5otU76R@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXXBhNyF8ymV72xc61XFv2cCmFfACmqD8G8nJ1sxREA4aIE2H6
-	4GjvX8ckNYWK+6dWgqnvFiiSrbXHqdHq4C1tav9vz7osDKdoQlDS8+UtvX+G0II=
-X-Google-Smtp-Source: AGHT+IFXs/h7xW57eOUZ/W1Yg/aH+/KUT7TvMC5vfnv02CZTX7VM1dT/0OuOkE9HtNp8A2hz/c5wEw==
-X-Received: by 2002:a05:600c:4508:b0:42c:b55f:f4f with SMTP id 5b1f17b1804b1-431507e9753mr20178565e9.6.1729157202411;
-        Thu, 17 Oct 2024 02:26:42 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43158c620c5sm19769465e9.48.2024.10.17.02.26.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 02:26:41 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: (subset) [PATCH v3 3/6] dt-bindings: arm: samsung: samsung-boards: Add bindings for Exynos 990 boards
-Date: Thu, 17 Oct 2024 11:26:39 +0200
-Message-ID: <172915711503.42287.18322892549440683443.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241016154747.64343-4-igor.belwon@mentallysanemainliners.org>
-References: <20241016154747.64343-1-igor.belwon@mentallysanemainliners.org> <20241016154747.64343-4-igor.belwon@mentallysanemainliners.org>
+        bh=ujlKFoZAU3IuBC3XvqlZ9TW01zV3UE3c49sjcx7h6Tk=;
+        b=n9qbNuiBRDIE39GlKVSastjtaL4RCOe0dLgc3zxjEI4n4GPD/3UfU9Ej9+n5CjYA0+
+         Hkc8rzb2D66Cv11nan696jOARffia6BzRPXc05kPRGWbaC/jBPr8qA8XnkhywSe0U8g9
+         u0JsNACFxaLIuP4bM0Z+R9hkhlF73HPt1bIxyQ+0x7+iNEdwJLF3XDDSii1Cs4jonKvY
+         InFdeUPgmH+aqvoIkEaD0f7ak1cr1m5YHJlaxmRtIRPwuW+DC+WRS8kw43ryAzVWSd7f
+         2Hj5Thp1LeLjV0Ma6Ov6/Yw2Al0krJByLfqvP/HjvYEhF4qAYiAbJfYXvYy6FYwrvHot
+         ziIA==
+X-Forwarded-Encrypted: i=1; AJvYcCVL1Y+rDFvSeGMJCSZMTOHmMWw7DHJide53ged8tKwcdyJ+o6cAmsfecQ0X6ioShVKIYi5XLE3UYaPp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlQlru7lFZaJNJR3omYK7y/WnPwrOveHDaMi3gAEwym648W+Cq
+	7OtdWEBJSUUc6lTrd1O+kDXDEqf4VJKfn/kpRJR9Yaz9mSxWOhIEN7nKCAvNFGjlTz/Mo9y1MGi
+	ALQYqRcARbOTshnDGZdLu2kgIp//w4wul+b8Ic/VD4gXcnf0LS/s=
+X-Google-Smtp-Source: AGHT+IEY+3SV+hBJUgIpM1mrD/VMIPjwYqeTMMlR7fhnpB2nNrdPkRRvzY3JDQvwDcgUwUgOg9XphlUR4GGduZiSn9o=
+X-Received: by 2002:a05:6512:e9d:b0:535:6a34:b8c3 with SMTP id
+ 2adb3069b0e04-539e54d772bmr13956584e87.5.1729157310716; Thu, 17 Oct 2024
+ 02:28:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20241007-x1e80100-pwrseq-qcp-v1-0-f7166510ab17@linaro.org>
+ <20241007-x1e80100-pwrseq-qcp-v1-3-f7166510ab17@linaro.org>
+ <ZweftESPrJNEsqGE@hovoldconsulting.com> <Zwj539cN2DJ7nd3A@linaro.org>
+ <Zw5fzNZ_xCwPyw4G@hovoldconsulting.com> <Zw_dE1rQ-Ljsh-sY@linaro.org>
+In-Reply-To: <Zw_dE1rQ-Ljsh-sY@linaro.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 17 Oct 2024 11:28:18 +0200
+Message-ID: <CAMRc=MfUEfKHkAVvtGODxvJ-BdL+kX7uDgW+1y4QW3Kc5mpX+w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100-qcp: Add WiFi/BT pwrseq
+To: Stephan Gerhold <stephan.gerhold@linaro.org>, Mark Brown <broonie@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Oct 16, 2024 at 5:34=E2=80=AFPM Stephan Gerhold
+<stephan.gerhold@linaro.org> wrote:
+>
+> On Tue, Oct 15, 2024 at 02:27:56PM +0200, Johan Hovold wrote:
+> > On Fri, Oct 11, 2024 at 12:11:43PM +0200, Stephan Gerhold wrote:
+> > > On Thu, Oct 10, 2024 at 11:34:44AM +0200, Johan Hovold wrote:
+> >
+> > > > Based on our discussions it seems we do not really need to describe=
+ the
+> > > > internal PMU at all for WCN7850 (as the bluetooth and wlan blocks c=
+an be
+> > > > enabled indepdendently) so perhaps we can just restore the old bind=
+ing
+> > > > and drop most of this boilerplate for all boards.
+> > > >
+> > >
+> > > I think there is no clear conclusion on that yet. The old bindings
+> > > didn't describe any power supplies for WiFi at all. The pwrseq bindin=
+gs
+> > > are currently the only way to do that.
+> > >
+> > > We could potentially move all the "PMU supplies" to the WiFi/BT nodes
+> > > and rely on reference counting to handle them. But I think it's bette=
+r
+> > > to wait how the M.2/generic PCI power control discussion turns out
+> > > before investing any time to refactor the current solution.
+> > >
+> > > There are existing users of qcom,wcn7850-pmu already in 6.11, so I th=
+ink
+> > > it does not hurt to take this patch as-is for now. We can clean them =
+up
+> > > together later if needed.
+> >
+> > Sounds good.
+> >
+> > But can you please address the following warning that I see with this
+> > series:
+> >
+> >       pwrseq-qcom_wcn wcn7850-pmu: supply vddio1p2 not found, using dum=
+my regulator
+> >
+> > Not sure if it's the dtsi that's missing a supply if it's the driver
+> > that needs fixing.
+> >
+>
+> It's the driver, the DT should be correct. This supply exists on the
+> WCN7850 chip, but nothing is connected there on the QCP.
+>
+> Unfortunately, it's not entirely straightforward to drop the warning
+> since the pwrseq-qcom-wcn driver uses the bulk regulator APIs and
+> (AFAIK) there is no good way to make only one of the regulators optional
+> there.
+>
+> @Bartosz: Any thoughts on this? sm8550-qrd and sm8550-hdk are also
+> missing the vddio1p2-supply, so they probably have the same warning in
+> latest mainline.
+>
 
-On Wed, 16 Oct 2024 17:47:44 +0200, Igor Belwon wrote:
-> Add devicetree bindings for Exynos 990 boards. Currently the Galaxy
-> Note20 5G (c1s).
-> 
-> 
+How do others deal with it? I'm asking because I've been seeing these
+warnings for years on many platforms which makes me think they are not
+a high priority for anyone.
 
-Applied, thanks!
+The best approach would be to provide an optional bulk get for the
+regulator API. Or extend struct regulator_bulk_data with bool optional
+and take this into account.
 
-[3/6] dt-bindings: arm: samsung: samsung-boards: Add bindings for Exynos 990 boards
-      https://git.kernel.org/krzk/linux/c/f7aeff28f2768443a49600625b6f3d0aad1fdd52
+Mark: Any thoughts on this?
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Bart
 
