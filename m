@@ -1,154 +1,127 @@
-Return-Path: <devicetree+bounces-112410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 440689A206E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 13:01:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE12E9A2083
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 13:04:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2631D1F216E9
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:01:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B25B9288544
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B141DACBE;
-	Thu, 17 Oct 2024 11:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6525D1DC07B;
+	Thu, 17 Oct 2024 11:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="uPWXaMm3"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="O61kXz6V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6D8259C
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C8AE1DB928
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:04:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729162899; cv=none; b=VoRaNu5VqpLugRqh19/B2HnhpgF1Veuw6fqMKT2niLqS5m3LHAob1EES7/a2YvR7lvl5PTDSkJ9oGW2FGbnRIBF5t4CUDU0frlxbs53GuCkij6oPtx7cow+SeespUnnJcqK6Js5qxSIumuOaMZSUVcXyV87VblfeypdggZ1AM58=
+	t=1729163049; cv=none; b=qlxISIPvt3e1rHFOEnlT5wKvWVk+kJqsk4MdyY/2crXo2y5DuKp0haXq8QBAZRxlKBDk575XoZh+SnpEqbbRKzaw7/zQfgCTNhSIwrBqxIaMhJ1YYpW6Ud/+nzF9pL/Y2GD25vZaYQZ/dQRTcxuyMWzXDXOeGl2gS/bNS0ZSbTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729162899; c=relaxed/simple;
-	bh=+MrT++Scx29PaRgKv58oxzVZcqzx7TYELWD2t6Fb0D0=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O+xCh+ajrSmbptIqGSrXQvwDEqst9pCjtXTeASnXAPf8SoaHHOMEWM0ne34IHi3q7gZaG9HOy1h16FzXj5AAVmo6dsaWKp62YS79y9PU4fcIWaGEKGtBRAFGRW5Nd9Juf/vsQBN7R8V71FbvKm7alVNUXhpnLa7COZ+rWDs9LjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=uPWXaMm3; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-oa1-f70.google.com (mail-oa1-f70.google.com [209.85.160.70])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6EE093F28C
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:01:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1729162893;
-	bh=rBZFdT3MLsNU1ABGIaObRFXCBfywuT/8DVsj8czEnD0=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=uPWXaMm3Tin3JL+SPrLU5hNvx0oNzxbN/3vcOvcg/uTSDj5qmS9LuPiK/xjbdwCS8
-	 Yg7R1PaWMishErWtJwRgJme1GPC80BQqTPOkRgGcdff7pkkY0XRd5xcHH3pdJdwSvS
-	 UINzDzSyzbhUNAKpANht83uKt0+2Rcx+b99yasIvNVQPLhzJ04Vs416yEUUMm2mg6s
-	 y/MFcb5mBhTUg+2aCOaJkCBL+mjD9DrhknRa50paSWkhYou+zg61mBq68TIrZ0UEvv
-	 nf3XGuE2XTs4UrmuzIUFq+E8UcClVVbxhBCSP07uvNqYuAqPGuNjWPUr93BLsmUZK7
-	 i/0xf+zGGeWOQ==
-Received: by mail-oa1-f70.google.com with SMTP id 586e51a60fabf-2885c643f6bso944747fac.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 04:01:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729162892; x=1729767692;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rBZFdT3MLsNU1ABGIaObRFXCBfywuT/8DVsj8czEnD0=;
-        b=IiXTL3btEf1KZHk/hcHDqOhkZF4DecqDOih2OAhtFPyYvje8Bk1v88y5etnGlWlgS0
-         4EIsGS7Hj9AOqKq5u+/nNNCmZJQu9KGSxDdPFasupB/GVmizegRfY+LI/9fYnHzL7zSI
-         Hgpu+xbAkzq93p+pDmt557YgJDOMxasfWRzOSpX/1SEbmJa61TUBODF2DusRNROlpPIW
-         Tkyzz1ArUfHqmIh7/o5VEW8B8ytm4q8rXdlNx3/i6xO+N/NkC3djxxfHQEdcOFUqOXl5
-         p2bhSlQurQuf0aaMrHQS2/HIuKEhK8a9LhTJpLbI3NWV5vBopyu8aphcp5EFQCVbfnZ/
-         bpTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVWpBJoSoqaUHPR/FxMBHxTfnwgTiKSrAfO2Y7c/X11x+BkFyiT0Lalebi9gfd+M8vfmrxAXFZ/WgkJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6PoEGf+Yqc5/dwPmcjf4Moy8f+nOXhKqbapah4KBPr6lvfX8k
-	WwfchMPrbkW+Yk8KfvAjq3UV1XVSWL6c866wB+dxsrL5IX/4tabx9hPsthrGzEJqsSmKO4lSHV8
-	yaMh67cQ+Bnj9fKMYYiRf3Cav+ms/TdGFaGyzm2RLSNjxonReaZe2Ixrm5725roYofGEXROriwZ
-	kffU3yvik7bHiZmtVndFoIVIcH9NaiFzLD+StI79nr9R6e3o9lDg==
-X-Received: by 2002:a05:6870:6b8b:b0:288:6220:fe18 with SMTP id 586e51a60fabf-288ede29989mr5858219fac.15.1729162892276;
-        Thu, 17 Oct 2024 04:01:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFHMQG+kH208gfIiCgVMibniBpJ9STBwlor/4oG77CWFuIW/8xPcr2jPuy853NfEotH6tqZk6Hzqg2xW/WrByQ=
-X-Received: by 2002:a05:6870:6b8b:b0:288:6220:fe18 with SMTP id
- 586e51a60fabf-288ede29989mr5858187fac.15.1729162891890; Thu, 17 Oct 2024
- 04:01:31 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 17 Oct 2024 04:01:31 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20241016-moonscape-tremor-8d41e6f741ff@spud>
-References: <20241016-moonscape-tremor-8d41e6f741ff@spud>
+	s=arc-20240116; t=1729163049; c=relaxed/simple;
+	bh=M02vPbZefKtzgbtnglUdvhk8inJ/586iO3nEwG12f9A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JDNgPAMyaujvO6QN6K52ykWpbL4UdrLB+vMB+vvIe6oBq5KWE/25fuKrrYjaRkYY0OR3h4h+iy1ijzJGny67rNyQ4llPIjSKToKbR6JesOD80pRFKcBUFzGJrZM1eN8aQuRNNjZ5Kr9rmytHyoTsuq1d/byL6cqspII/1qOVE6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=O61kXz6V; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=M02v
+	PbZefKtzgbtnglUdvhk8inJ/586iO3nEwG12f9A=; b=O61kXz6VJz9lGprNXARt
+	RZ9Cg4RlmikIp0nJ6cfrHZ7FmYvJC5gXF/deT+gaZdEGBKKQU7VR0c8L1fPHqJ5t
+	fStipJ26Xn3A0v2eMNNWIz+MTxZVktZLZrNbfwk3BRXXFUdRYNoEegyhw9dt2lg0
+	unZdKHwHl13jLH02q6jDLXt5hPFuZJqaFfgcJpf5SafnXqtB7nVD99G1AgeYyGpO
+	FBYiYW6MGWx5CMfGCJu0PIOkazucB9tpwGxfOH8D1TnqauLXYrWgstI9SKJc20qP
+	ZrQqXiILOdiDdM38jahSvIkGmy1ocSNm0jXSEL5vGVNF4cCJfhu4wOA8p5J3VrAD
+	BA==
+Received: (qmail 3358213 invoked from network); 17 Oct 2024 13:04:05 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Oct 2024 13:04:05 +0200
+X-UD-Smtp-Session: l3s3148p1@l0sMJaokT31tKPEX
+Date: Thu, 17 Oct 2024 13:04:04 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	alexandre.belloni@bootlin.com, magnus.damm@gmail.com,
+	p.zabel@pengutronix.de, linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v3 06/12] rtc: renesas-rtca3: Add driver for RTCA-3
+ available on Renesas RZ/G3S SoC
+Message-ID: <ZxDvJCq_GOBm8nUC@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>, mturquette@baylibre.com,
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, alexandre.belloni@bootlin.com,
+	magnus.damm@gmail.com, p.zabel@pengutronix.de,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	kernel test robot <lkp@intel.com>
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240830130218.3377060-7-claudiu.beznea.uj@bp.renesas.com>
+ <ZxDqzeA2mz0Ml6cZ@shikoro>
+ <CAMuHMdU=o0MzQUoEs5-HrEVP-snXN-hUef1K3U8Ppj18P6HVCg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Thu, 17 Oct 2024 04:01:31 -0700
-Message-ID: <CAJM55Z-3R5tbvpQB7mLF6b=FD9Wg-78_KPww2nqOLr566WPOFg@mail.gmail.com>
-Subject: Re: [PATCH v1] riscv: dts: starfive: disable unused csi/camss nodes
-To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor.dooley@microchip.com>, stable@vger.kernel.org, 
-	Aurelien Jarno <aurelien@aurel32.net>, Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Changhuang Liang <changhuang.liang@starfivetech.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lNCG8WzO0TPLyYgP"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdU=o0MzQUoEs5-HrEVP-snXN-hUef1K3U8Ppj18P6HVCg@mail.gmail.com>
 
-Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Aurelien reported probe failures due to the csi node being enabled
-> without having a camera attached to it. A camera was in the initial
-> submissions, but was removed from the dts, as it had not actually been
-> present on the board, but was from an addon board used by the
-> developer of the relevant drivers. The non-camera pipeline nodes were
-> not disabled when this happened and the probe failures are problematic
-> for Debian. Disable them.
->
-> CC: stable@vger.kernel.org
-> Fixes: 28ecaaa5af192 ("riscv: dts: starfive: jh7110: Add camera subsystem nodes")
-> Closes: https://lore.kernel.org/all/Zw1-vcN4CoVkfLjU@aurel32.net/
-> Reported-by: Aurelien Jarno <aurelien@aurel32.net>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks!
+--lNCG8WzO0TPLyYgP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-> ---
-> CC: Emil Renner Berthing <kernel@esmil.dk>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Changhuang Liang <changhuang.liang@starfivetech.com>
-> CC: devicetree@vger.kernel.org
-> CC: linux-riscv@lists.infradead.org
-> CC: linux-kernel@vger.kernel.org
-> ---
->  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> index c7771b3b64758..d6c55f1cc96a9 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> @@ -128,7 +128,6 @@ &camss {
->  	assigned-clocks = <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
->  			  <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>;
->  	assigned-clock-rates = <49500000>, <198000000>;
-> -	status = "okay";
->
->  	ports {
->  		#address-cells = <1>;
-> @@ -151,7 +150,6 @@ camss_from_csi2rx: endpoint {
->  &csi2rx {
->  	assigned-clocks = <&ispcrg JH7110_ISPCLK_VIN_SYS>;
->  	assigned-clock-rates = <297000000>;
-> -	status = "okay";
->
->  	ports {
->  		#address-cells = <1>;
-> --
-> 2.45.2
->
+> > ... if it has been considered to expand the existing rtc-sh driver? The
+
+...
+
+> Yes it has ;-)
+
+Thanks for the pointer. Well, a few of the limitations apply for RZA1 as
+well but they are not handled in the rtc-sh driver yet (from a glimpse).
+
+Nonetheless, given the other limitations and the bit shuffling in the
+control registers, I agree that a new driver makes sense here.
+
+
+--lNCG8WzO0TPLyYgP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmcQ7yQACgkQFA3kzBSg
+Kbbb9A//YJ9DUgYEiBVtqS/ma7iA7F8MGfIClcoTBk3HhHlJIaxdXSRQ9Ld19DTB
+5fXKn9jRUQwsOK/O6WU62VW+jr9b70D+EXu0PEEAI2qUI9/LX1acdHwTdp9EVhGg
+JPp1Hn0CGPGQVwgTbe/veNTXMUakpHWP2h+QbSMwRka+a+skEDshgiyZZqeo2l1E
++o1wseF8obYpb2+iydJA4Vp+DdEEJoHpMJZ0DZbgrIGicnVhDRi1O0tiQ+RIqiBP
+XcP5VWGb9ceABCJuBaXxW3uSJ+2fdJy6Q7f4Tmh7DP+r1R5q5lTO4wEQ9QiGVjvx
+S4JAA2hJskl6wQVcfHeG/tCWByahC3APq2PFGV/4YtvysyK7mke3GEhPknT/aIfu
+UZTkqZottd6vNcHJM+knvTuT+5WJ7Y5kOUpVZ8Ed83Oa3LtuVjTRg7iG+VT01plo
+yaLY0++R5uZNF+ABlM5lO91BSl5VpRAb6xWYOzCq7vU8U99fpXnwGwWw3Wmk7Z/f
+fDMDEz1XhpmR6ETIjCVtIGu9t/Deyyg5tC9esoDe6FP80hhdFps6Mi0/sKW//iiA
+/NaB2XsnC7H1GV7yCSQKCGTKcJNvzSdGFQnsq0DWWHloOfl6nbFdfpjiy/lAcolU
+N2X59O6146VnHrhWtwaC2rt2nBz6qPVobXn+d1L6TA6Xx3ww6kg=
+=bTvk
+-----END PGP SIGNATURE-----
+
+--lNCG8WzO0TPLyYgP--
 
