@@ -1,125 +1,148 @@
-Return-Path: <devicetree+bounces-112246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BAB49A184C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 03:59:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2ACF9A185B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 04:06:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE97AB2368C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 01:59:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7A9E286336
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 02:06:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF78F2E3EE;
-	Thu, 17 Oct 2024 01:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143AA2C1A2;
+	Thu, 17 Oct 2024 02:05:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OuGE6ufX"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Uy0QJwcI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D41224F6;
-	Thu, 17 Oct 2024 01:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8285481D5;
+	Thu, 17 Oct 2024 02:05:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729130360; cv=none; b=tL4TAHOCmb+U0eLy9n+6Tya3vxbXmiUONboMk0IU7RvwGcMzSR1l2+1Yeek+W+L/lLxl67+Tb+z6HyKTc6sa8YS/OLNxNwgiK9dfIAU4oyOi6P/5GFrSRIlmjECIf+AYAhMMa7Uj3GzwnpAYWAg2Yp16YLI305l/RmguUPkuZFQ=
+	t=1729130758; cv=none; b=SX1aozY6v1jS+qTe8z2LVfWJFSSi+M+YMo8WdFhR74hvWjDhLBxppG8Ho1UyDMeQ+nsmYCUrjFQMhH8oHPTpxxnaso3lxz9hHKEgqQU0d11gTkg6o5CxWuP8Awlt/71KG2RangZwsmQJNGA0go8s7QRGIxBZ4UhbWXMjEM1D4Ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729130360; c=relaxed/simple;
-	bh=9A4ebH99NqbJvu4o7NsI8CnYt8jbJv19+dSmlm3CaL8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PeGfQ36rGobDlz0TBVievpWk2eZYUNzzr7Z/jKZyFoA1Lq83uMDWGEQUl291i/MNvAcnWCAwbPdJ0jySzD2dqc4vcYT49vBDbYkFKiddoMZpfninv+Cw+34qd+pxKj7aBzNY2nVaOYdYbuW4jdd/41cV2pg2hc6SiRbyYSpxYKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OuGE6ufX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC6F5C4CECF;
-	Thu, 17 Oct 2024 01:59:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729130360;
-	bh=9A4ebH99NqbJvu4o7NsI8CnYt8jbJv19+dSmlm3CaL8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=OuGE6ufXFUE0NeStZ4HdNsa491n1fWoJuoK951HoIXZRUIWBGzO2Ny3fRjElgcEds
-	 vzJGuaXNQIw/ReQ2rR/sYMpueQhjTM3jEZP4NA7vSWV5aXSEW9CLccXYqkJTre4f9r
-	 alB4kDTNFwpgRIM0y20cW9fF3DXah7KZvois+zQUTqaTdxoSm0RPxwzGsRcQ9R09TZ
-	 jMqPrPULOO4WUTWMnvPGaUVd1hiOrhYw1hgC1ZMiSWQz0cV5Us/iPq/heQKRt9DOl8
-	 V/+WzkpNHSGJuRp2O5ApzAZnHFSDD2r8N4Vz1y8DKDk4oPpFxp5ilI0H9+2KBmLS+u
-	 zdm8sRIgXJnrg==
-From: Damien Le Moal <dlemoal@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: [PATCH v5 14/14] arm64: dts: rockchip: Add rockpro64 overlay for PCIe endpoint mode
-Date: Thu, 17 Oct 2024 10:58:49 +0900
-Message-ID: <20241017015849.190271-15-dlemoal@kernel.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241017015849.190271-1-dlemoal@kernel.org>
-References: <20241017015849.190271-1-dlemoal@kernel.org>
+	s=arc-20240116; t=1729130758; c=relaxed/simple;
+	bh=sB/eF3N7Yt4FBhU5bdNaw5ferB5BUtf2dhXB9V+NOWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UB4BY8JzQc8YUzJn4iQZVpD8uroc9i9H/GRG+aEnI9pWrmyQQxiVPpQ5LawJ0lEK+muWA9/saDau50eYfs/HSpXugZ0TMuZZYiJwW2BPEjXJCq9rR9fs+97pdVydbykoEpmxmSt7zeCEicewrXlFJIZlQ6LepSVzfQFQeedJV4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Uy0QJwcI; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729130756; x=1760666756;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sB/eF3N7Yt4FBhU5bdNaw5ferB5BUtf2dhXB9V+NOWY=;
+  b=Uy0QJwcIYRKqiUEjFgsno5yjUvGJhcXFK/ho/f7U6d64+W1pYJM+zerU
+   LVWNS2VXJWizA8V720+h3bb8zBg8HXoBKjVRbk91S+uC5d0LhkXEK6ar2
+   6h3bgzI3VZl/zPYE5qlQ8J/jb/HzQL7e015oGJOsRNPPRI5zaCMLDYGhb
+   zmKrvjRoUVtUXEU7b+bGUAbx5ZHJdf4f0wlNX2PSSXEwqiMncwDK3xu4o
+   oVY9D5oMTl4gB/plSNGLcwvBMAPWSghf6lG/N59JJCTsBg1QruCtJoVwN
+   3c759ZiSQh4JETN7Rjy19TGCdIaDu8mAv2qt+nTv1GLnHabc9hxiNGeLt
+   w==;
+X-CSE-ConnectionGUID: bIXcDvvhS6CjzvEEp47aHw==
+X-CSE-MsgGUID: PZC5Bpq7Qn2IvvGmmKBRCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11226"; a="28693149"
+X-IronPort-AV: E=Sophos;i="6.11,209,1725346800"; 
+   d="scan'208";a="28693149"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2024 19:05:55 -0700
+X-CSE-ConnectionGUID: xLpmNLZJR3u3R/W7UbZ9aw==
+X-CSE-MsgGUID: 2Zp3sZPATlqe0HhQyYMLjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,209,1725346800"; 
+   d="scan'208";a="83467936"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 16 Oct 2024 19:05:52 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t1Ftd-000Lcf-2V;
+	Thu, 17 Oct 2024 02:05:49 +0000
+Date: Thu, 17 Oct 2024 10:05:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 2/2] gpio: mmio: Parse ngpios property
+Message-ID: <202410170940.c317EO5s-lkp@intel.com>
+References: <20241016-gpio-ngpios-v1-2-f16cf154f715@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241016-gpio-ngpios-v1-2-f16cf154f715@linaro.org>
 
-Add a DTS overlay file for the rk3399-rockpro64 DT for enabling PCIe
-endpoint mode support.
+Hi Linus,
 
-Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
----
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../rockchip/rk3399-rockpro64-pcie-ep.dtso    | 20 +++++++++++++++++++
- 2 files changed, 21 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rockpro64-pcie-ep.dtso
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 09423070c992..184131a58704 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -73,6 +73,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock960.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-v2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-pcie-ep.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire-excavator.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-pcie-ep.dtso b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-pcie-ep.dtso
-new file mode 100644
-index 000000000000..cebfb71bebfc
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-pcie-ep.dtso
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * DT-overlay to run the PCIe Dual Mode controller in Endpoint mode
-+ * with the #PERST signal handled with gpio2.
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&pcie0 {
-+	status = "disabled";
-+};
-+
-+&pcie0_ep {
-+	reset-gpios = <&gpio2 RK_PD4 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
+[auto build test ERROR on 9852d85ec9d492ebef56dc5f229416c925758edc]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Linus-Walleij/dt-bindings-gpio-mmio-Add-ngpios-property/20241016-152354
+base:   9852d85ec9d492ebef56dc5f229416c925758edc
+patch link:    https://lore.kernel.org/r/20241016-gpio-ngpios-v1-2-f16cf154f715%40linaro.org
+patch subject: [PATCH 2/2] gpio: mmio: Parse ngpios property
+config: i386-buildonly-randconfig-001-20241017 (https://download.01.org/0day-ci/archive/20241017/202410170940.c317EO5s-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241017/202410170940.c317EO5s-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410170940.c317EO5s-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/gpio/gpio-mmio.c: In function 'bgpio_parse_fw':
+>> drivers/gpio/gpio-mmio.c:709:24: error: 'struct bgpio_pdata' has no member named 'ngpios'; did you mean 'ngpio'?
+     709 |                 pdata->ngpios = ngpios;
+         |                        ^~~~~~
+         |                        ngpio
+
+
+vim +709 drivers/gpio/gpio-mmio.c
+
+   693	
+   694	static struct bgpio_pdata *bgpio_parse_fw(struct device *dev, unsigned long *flags)
+   695	{
+   696		struct bgpio_pdata *pdata;
+   697		u32 ngpios;
+   698	
+   699		if (!dev_fwnode(dev))
+   700			return NULL;
+   701	
+   702		pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
+   703		if (!pdata)
+   704			return ERR_PTR(-ENOMEM);
+   705	
+   706		pdata->base = -1;
+   707	
+   708		if (!device_property_read_u32(dev, "ngpios", &ngpios))
+ > 709			pdata->ngpios = ngpios;
+   710	
+   711		if (device_is_big_endian(dev))
+   712			*flags |= BGPIOF_BIG_ENDIAN_BYTE_ORDER;
+   713	
+   714		if (device_property_read_bool(dev, "no-output"))
+   715			*flags |= BGPIOF_NO_OUTPUT;
+   716	
+   717		return pdata;
+   718	}
+   719	
+
 -- 
-2.47.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
