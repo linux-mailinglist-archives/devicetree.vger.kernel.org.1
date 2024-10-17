@@ -1,104 +1,158 @@
-Return-Path: <devicetree+bounces-112477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 831BE9A24A0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 16:12:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AD729A24F8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 16:28:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21DB11F22414
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 14:12:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32A671F21871
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 14:28:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFBE11DE3D6;
-	Thu, 17 Oct 2024 14:11:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F891DE4D2;
+	Thu, 17 Oct 2024 14:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GfkODlVK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ozDrKY+x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980231DE3AB;
-	Thu, 17 Oct 2024 14:11:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480A21DE3DA;
+	Thu, 17 Oct 2024 14:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729174284; cv=none; b=Ot69Pt6M3hjgz/vZjj/lypfI6Q8LGTdiI8BdnsmXeFfSYOEDsTxBSC41X3ou5DXWi3W0QQ/Uc9NQsr3tIlu4bw9udbH5dHBJoHhE76ELbKw2D/rvfIn0GWv+yrE+Q0JtH22t3EAmHpohdTITG2izJYmS7qCwUMeTY264EjNEXJE=
+	t=1729175289; cv=none; b=p1GhdCaxGEK9cUtbUTPLFjcq25rQ6Ssd4fwiiS6XKqWE1nMhpdkfQFyxe/Ysi0B3i+zT6YCG7Ue9xL/87qDT+8XnF4kjcmQNfKnryYMzPV26hAndEv8Lfevh0w81s9U6WGTM3sgRbF+PUZeOTWuYyqHBXk8Ol9WIL1/6XVa+3nU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729174284; c=relaxed/simple;
-	bh=P7LRMT5V/UAyFIi2zjmQ8b9UCs/nHWtLwIpUD5KHXEk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=mHFq0PiIGgxR4R7KRDsOzZJNUT9IQSlh/KDRsnxr3uSAAql4xN95/+SrwX68wVo75X7KfINKliBV58BJtVdth6dA3UB6xW3PjqvvTGMHqg6JJ41MjS1utrFUY1C6wnXuRSaDHE0n8f7KwONYiX4yQFMU83hmn0Sl6C3G4bgXuSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GfkODlVK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1D9CC4CEC7;
-	Thu, 17 Oct 2024 14:11:23 +0000 (UTC)
+	s=arc-20240116; t=1729175289; c=relaxed/simple;
+	bh=cG1ujo3dHNKa9WqVdQiAckTISmwm/fCx/SWHY+8ljuQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PhPrhTLaGYpqqBvryFKYFwWv+/u+ilVKhfoGjsaYnm0ltthCmH9Wc5jFO9EJAub1baUpMHygdHa/MdPzIyJrf3chSheaT4ijxvOBBC5i6M9T/Ozja/tvZiGCrjXJTk7sVb6SYQxlNHQwC5582q0Trq9YJll4/fzSip56glRgYcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ozDrKY+x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E54DC4CEC7;
+	Thu, 17 Oct 2024 14:28:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729174284;
-	bh=P7LRMT5V/UAyFIi2zjmQ8b9UCs/nHWtLwIpUD5KHXEk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=GfkODlVKHsJs4WEAUl905tfbJfpPdYBTdfoCoXofZmItiDs/4HizBJj9RBBE48ih4
-	 W/Bw42A/lq2IeoXZimuhybKEs82zyRTvZ2hQavgauH4bYRUpq9qCJXsrScAXdQd55G
-	 LTcTeJk4AWepF1iEiBuMrsgT/Gv8jOdPIFG2ifE5OdizRABk/MXNwWf10w70yXmnZJ
-	 lg/0JK44YH1o8vC8sr6Tvk4V0ZcrG5iteD+p0fDStyxAllIS3RNrzzf4MSDWnVEglL
-	 crgkUosfeNtf1VmdwcV8CaMztC+8OS9ox8qc8abN24hGoiBBkP1+be/pT+n8Rcu0aF
-	 cltg8Ev5uxTdQ==
-From: Maxime Ripard <mripard@kernel.org>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Simona Vetter <simona@ffwll.ch>, 
- Simona Vetter <simona.vetter@ffwll.ch>, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- devicetree@vger.kernel.org, kernel@collabora.com, 
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>, 
- Algea Cao <algea.cao@rock-chips.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20241016-b4-rk3588-bridge-upstream-v10-0-87ef92a6d14e@collabora.com>
-References: <20241016-b4-rk3588-bridge-upstream-v10-0-87ef92a6d14e@collabora.com>
-Subject: Re: [PATCH v10 0/3] Add initial support for the Rockchip RK3588
- HDMI TX Controller
-Message-Id: <172917428139.3344404.160573495360164649.b4-ty@kernel.org>
-Date: Thu, 17 Oct 2024 16:11:21 +0200
+	s=k20201202; t=1729175288;
+	bh=cG1ujo3dHNKa9WqVdQiAckTISmwm/fCx/SWHY+8ljuQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ozDrKY+xx8pM3y0YaTW/FDyLDweOtlQ19ddNuFDlkNz1Cl5bNZWmVXDpdCOs7ji4l
+	 iXdT2PD4s0LoC+ptlSSi+qblh2Bz6k0cfhaKYsMkk5HHNJcN76yZSAP5Rtzl/ormwl
+	 cPFPs+Mff5tgW3bbx1HyHM+4hNEvPTrsp8EThQzhhba/2HwNzMSSLvp3i1tkV5cen8
+	 xyC7iAN7IM7VeOJ9GJipIMzggmx15Si3H+hnYrD1476SMa4P6iBXBtxGH/CHKO/8Xw
+	 vtblIOnKuCZK8BwvDm2IUv47V5HIPjhEjEEiK8XBrSCCireYX/DbJkjsKU1h2nzudP
+	 i6WQBcP1iJ9Cg==
+Date: Thu, 17 Oct 2024 16:28:06 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Lee Jones <lee@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v7 3/6] dt-bindings: pwm: airoha: Add EN7581 pwm
+Message-ID: <ZxEe9gGd1qW4ksEo@lore-desk>
+References: <20241016-en7581-pinctrl-v7-0-4ff611f263a7@kernel.org>
+ <20241016-en7581-pinctrl-v7-3-4ff611f263a7@kernel.org>
+ <834bfc12-4ce7-4ce1-a0c7-5bc8be3587b7@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uoePblPqdHNb3UAq"
+Content-Disposition: inline
+In-Reply-To: <834bfc12-4ce7-4ce1-a0c7-5bc8be3587b7@collabora.com>
 
-On Wed, 16 Oct 2024 23:06:50 +0300, Cristian Ciocaltea wrote:
-> The Rockchip RK3588 SoC family integrates the Synopsys DesignWare HDMI
-> 2.1 Quad-Pixel (QP) TX controller, which is a new IP block, quite
-> different from those used in the previous generations of Rockchip SoCs.
-> 
-> The controller supports the following features, among others:
-> 
-> * Fixed Rate Link (FRL)
-> * Display Stream Compression (DSC)
-> * 4K@120Hz and 8K@60Hz video modes
-> * Variable Refresh Rate (VRR) including Quick Media Switching (QMS)
-> * Fast Vactive (FVA)
-> * SCDC I2C DDC access
-> * Multi-stream audio
-> * Enhanced Audio Return Channel (EARC)
-> 
-> [...]
 
-Applied to misc/kernel.git (drm-misc-next).
+--uoePblPqdHNb3UAq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks!
-Maxime
+> Il 16/10/24 12:07, Lorenzo Bianconi ha scritto:
+> > Introduce device-tree binding documentation for Airoha EN7581 pwm
+> > controller.
+> >=20
+> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >   .../devicetree/bindings/pwm/airoha,en7581-pwm.yaml | 34 +++++++++++++=
++++++++++
+> >   1 file changed, 34 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.ya=
+ml b/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..f36387572a9781636aeacdb=
+cc8947017c7ca75a0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml
+> > @@ -0,0 +1,34 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pwm/airoha,en7581-pwm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Airoha EN7581 PWM Controller
+> > +
+> > +maintainers:
+> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> > +
+> > +allOf:
+> > +  - $ref: pwm.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: airoha,en7581-pwm
+> > +
+> > +  "#pwm-cells":
+> > +    const: 3
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#pwm-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    pwm {
+> > +      compatible =3D "airoha,en7581-pwm";
+> > +
+> > +      #pwm-cells =3D <3>;
+> > +    };
+> >=20
+>=20
+> There are undocumented properties that the driver tries to parse. Please =
+fix.
+>=20
+> Regards,
+> Angelo
 
+ack, I will fix them.
+
+Regards,
+Lorenzo
+
+--uoePblPqdHNb3UAq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZxEe9gAKCRA6cBh0uS2t
+rDpoAQC2ELyAKCz2bRRpe2BaRF6RYKIf0qfZ6xsbD9FbUklpFAD/Yy963j4FOSpU
+JxqA9L3uYDf/UeDg2nJTj3ZUokwBQQg=
+=HeFD
+-----END PGP SIGNATURE-----
+
+--uoePblPqdHNb3UAq--
 
