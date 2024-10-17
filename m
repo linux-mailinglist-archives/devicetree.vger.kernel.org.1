@@ -1,145 +1,148 @@
-Return-Path: <devicetree+bounces-112379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D13F19A1EF3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:51:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3495C9A1F10
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:54:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FF231C203F8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:51:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EADB928A315
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 09:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403701DACA9;
-	Thu, 17 Oct 2024 09:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF771D9665;
+	Thu, 17 Oct 2024 09:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="KqcUXZ7b"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oKzyx59z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCF71D9660;
-	Thu, 17 Oct 2024 09:49:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D93165F08;
+	Thu, 17 Oct 2024 09:52:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729158590; cv=none; b=W3q8kKxUbZ1sGVzSk3kPkDWZ4gyLqxJ1cYdkykhZfNWlLbFfDKcf2InR9gtJYifEG+P7pdt6/1w150M5q18v/k/Z6TB3jIO8Iwoi0vZSfA7fqLoZfimhW2S2eqliLexXgAk9c74Sjxcq2BxaWmkOUWQkVCbN8fNw5HKPkekEWOM=
+	t=1729158730; cv=none; b=rmB/hGvZ5QSTY86h7a8hboUw79CqPOskz17/Qp06zDv5PJB1kfkyDBY+XKENlDFZK+MGD9RpqmfqRiCHGQ0Q91u1yOoM/sXMKH8veCKngWnvzHVgkENG2nHTszVOiMBwbcC3Fm8R5klZaKnyLY3NcSKKhC7bJDt5b5oVi8MgMX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729158590; c=relaxed/simple;
-	bh=2wZg0oXgvbXJdjVnabs2hqotKgpbefNELHGNr8c2O9c=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F8RU01iLdMzUwl03Oqw4Xqo58aYOISU4v4aCq3kiBnPlLEbFKJeWQYE6mL4g2o71UIKp3NzFRuTqXgJbdXsZ09oR+W5P+DoCXN5FUpf6Lda4keFjQLzgmxqETaMWEvAsCRISuvbApzspZtbgnNYxbRjFvuNDhcYiVF0J3Yn+xQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=KqcUXZ7b; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=PAmgwQ9HJVkLBL3nAuwtVWU4GsXSFcbwnusbC9mK3S0=; b=KqcUXZ7bvW99bnhv6i+JE/H7Z5
-	niw3SJXX7OuDcYkt6McP1BULZZIyMTvoy4c8Xmv+1gsDh0HoJd/RMa4aamzsYFheREVXG5gnm85CC
-	dGdByyXmdv+fUMdmGXNut7YYREjxLu5MMPShwwMJwU/b5VMHrVuUitShYRO4fHH39vrCzTxMmIEgn
-	OB40/RhpAj86/QL1dADAdsF9nphGCnNyGKnf9yZUDss09qfH4TWxJUvcYjYz5xv9oSpnPeg2L7JY1
-	yp2B6TZA0qiSyp00E33tNkOirwMQdFXtBWqkLDxaQxsR7IMDX40XRVV7qI//Yc+F1oV0Gqr20wR49
-	90+tHBwQ==;
-Date: Thu, 17 Oct 2024 11:49:34 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: aaro.koskinen@iki.fi, khilman@baylibre.com, rogerq@kernel.org,
- linux-omap@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- linux-kernel@vger.kernel.org, tony@atomide.com
-Subject: Re: [PATCH v2 0/4] ARM: dts: omap: omap4-epson-embt2ws: misc gpio
- definitions
-Message-ID: <20241017114934.240d35b4@akair>
-In-Reply-To: <172857036157.1533290.9663617637580743712.robh@kernel.org>
-References: <20241010122957.85164-1-andreas@kemnade.info>
-	<172857036157.1533290.9663617637580743712.robh@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729158730; c=relaxed/simple;
+	bh=qOkRZ7dA9PBpum+aq1ZRnwF90KyGgZL2XumS6gLtwOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BriFxHnhuxnVF+pk1z/xlGErBJWGXKgsp7opbopMsYGgvHBAdRDHd/rdVcbEfNsnZQ+P9w5LkjxgQMBRicEt0TmuaQUiYqL9h4gN1o8T2Z85j0FkDsvQIxQ4yR3LH6o+utB97bJxI3qt/4ElLWTtgIKTWvC/oV8OnUu0EiTSD7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oKzyx59z; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729158729; x=1760694729;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qOkRZ7dA9PBpum+aq1ZRnwF90KyGgZL2XumS6gLtwOI=;
+  b=oKzyx59zjxLRimDT1NUjNmATowc81BP6hxtIaVmVLbKgT7B1BxlCvSkv
+   ANzN+IVd3ncKyTGizNn8IO+u+ifUhdh61OZ/xYt0s9bq3KZoNehnWVRZj
+   jyIm+g9x63u/VJCV8+klt4eG3ec1RqryxgtrjI3kr5ebJo8RLUJLyjc6i
+   YIirX+ivb7LRFFJ50tqZL2Y8NxHYmtJxfIg4ltvfrAglT430Q1Swszr6t
+   RIChZBuQ6xx+jkwaH4KwcZtWKkZjwcMMMM0mTgs7aXgpoVW3uqvCrop3B
+   cSphtAp9MxeWTp2CCvU3wzqoPvfG5aM2w15R9m9zRmkSvrlL9JL50/o9s
+   A==;
+X-CSE-ConnectionGUID: Ef/UW/ykQ7SlewZj/URRhA==
+X-CSE-MsgGUID: KLgITmJ5QbOiSY5c9YIrLw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11227"; a="16254562"
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; 
+   d="scan'208";a="16254562"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2024 02:52:08 -0700
+X-CSE-ConnectionGUID: PFFFUSpWQdyCQtOZxuGdoA==
+X-CSE-MsgGUID: 2P9XLtXyRTCx1SyNHhTWHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; 
+   d="scan'208";a="83567930"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2024 02:52:04 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1t1NAn-000000044du-1N8X;
+	Thu, 17 Oct 2024 12:52:01 +0300
+Date: Thu, 17 Oct 2024 12:52:01 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v9 3/7] i2c: Introduce OF component probe function
+Message-ID: <ZxDeQcLVR1LK24Zr@smile.fi.intel.com>
+References: <20241017094222.1014936-1-wenst@chromium.org>
+ <20241017094222.1014936-4-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241017094222.1014936-4-wenst@chromium.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Am Thu, 10 Oct 2024 09:30:09 -0500
-schrieb "Rob Herring (Arm)" <robh@kernel.org>:
+On Thu, Oct 17, 2024 at 05:34:38PM +0800, Chen-Yu Tsai wrote:
+> Some devices are designed and manufactured with some components having
+> multiple drop-in replacement options. These components are often
+> connected to the mainboard via ribbon cables, having the same signals
+> and pin assignments across all options. These may include the display
+> panel and touchscreen on laptops and tablets, and the trackpad on
+> laptops. Sometimes which component option is used in a particular device
+> can be detected by some firmware provided identifier, other times that
+> information is not available, and the kernel has to try to probe each
+> device.
+> 
+> This change attempts to make the "probe each device" case cleaner. The
+> current approach is to have all options added and enabled in the device
+> tree. The kernel would then bind each device and run each driver's probe
+> function. This works, but has been broken before due to the introduction
+> of asynchronous probing, causing multiple instances requesting "shared"
+> resources, such as pinmuxes, GPIO pins, interrupt lines, at the same
+> time, with only one instance succeeding. Work arounds for these include
+> moving the pinmux to the parent I2C controller, using GPIO hogs or
+> pinmux settings to keep the GPIO pins in some fixed configuration, and
+> requesting the interrupt line very late. Such configurations can be seen
+> on the MT8183 Krane Chromebook tablets, and the Qualcomm sc8280xp-based
+> Lenovo Thinkpad 13S.
+> 
+> Instead of this delicate dance between drivers and device tree quirks,
+> this change introduces a simple I2C component probe function. For a
+> given class of devices on the same I2C bus, it will go through all of
+> them, doing a simple I2C read transfer and see which one of them responds.
+> It will then enable the device that responds.
+> 
+> This requires some minor modifications in the existing device tree. The
+> status for all the device nodes for the component options must be set
+> to "fail-needs-probe". This makes it clear that some mechanism is
+> needed to enable one of them, and also prevents the prober and device
+> drivers running at the same time.
 
-> On Thu, 10 Oct 2024 14:29:53 +0200, Andreas Kemnade wrote:
-> > Bring the system into a more defined state and do not rely
-> > on things being initialized by bootloader.
-> > 
-> > Changes in V2:
-> > - better comment strange GPIOs
-> > - proper names for regulator nodes
-> > 
-> > Andreas Kemnade (4):
-> >   ARM: dts: omap: omap4-epson-embt2ws: define GPIO regulators
-> >   ARM: dts: omap: omap4-epson-embt2ws: wire up regulators
-> >   ARM: dts: omap: omap4-epson-embt2ws: add unknown gpio outputs
-> >   ARM: dts: omap: omap4-epson-embt2ws: add GPIO expander
-> > 
-> >  .../boot/dts/ti/omap/omap4-epson-embt2ws.dts  | 183
-> > +++++++++++++++++- 1 file changed, 179 insertions(+), 4 deletions(-)
-> > 
-> > --
-> > 2.39.5
-> > 
-> > 
-> >   
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in
-> this series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the
-> warnings are fixed by another series. Ultimately, it is up to the
-> platform maintainer whether these warnings are acceptable or not. No
-> need to reply unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->   pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y
-> ti/omap/omap4-epson-embt2ws.dtb' for
-> 20241010122957.85164-1-andreas@kemnade.info:
-> 
-> arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dtb: serial@0:
-> {'compatible': ['ti,omap4-uart'], 'reg': [[0, 256]], 'interrupts':
-> [[0, 74, 4]], 'clock-frequency': 48000000, 'pinctrl-names':
-> ['default'], 'pinctrl-0': [[115]], 'interrupts-extended': [[1, 0, 74,
-> 4], [116, 260]], '$nodename': ['serial@0']} is valid under each of
-> {'required': ['interrupts-extended']}, {'required': ['interrupts']}
-> from schema $id: http://devicetree.org/schemas/serial/8250_omap.yaml#
-> arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dtb: serial@0:
-> {'compatible': ['ti,omap4-uart'], 'reg': [[0, 256]], 'interrupts':
-> [[0, 73, 4]], 'clock-frequency': 48000000, 'pinctrl-names':
-> ['default'], 'pinctrl-0': [[118, 119]], 'interrupts-extended': [[1,
-> 0, 73, 4], [116, 220]], 'bluetooth-gnss': {'compatible':
-> ['ti,wl1283-st'], 'enable-gpios': [[120, 25, 0]], 'clocks': [[121,
-> 1]], 'clock-names': ['ext_clock']}, '$nodename': ['serial@0']} is
-> valid under each of {'required': ['interrupts-extended']},
-> {'required': ['interrupts']} from schema $id:
-> http://devicetree.org/schemas/serial/8250_omap.yaml#
->
-To make sure I am getting this right: According to wdiff, the
-difference is:
+...
 
- 'pinctrl-0': [-[[116, 117]],-] {+[[118, 119]],+}
-'interrupts-extended': [[1, 0, 73, 4], [-[114,-] {+[116,+} 220]]
+> +#include <linux/cleanup.h>
+> +#include <linux/device.h>
+> +#include <linux/dev_printk.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/i2c-of-prober.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/slab.h>
 
-So my understanding is that phandle numbers are reordered and one
-of the reordered numbers pops up in a warning message and cannot
-easily be filtered away. Are there any tools or procedures in general to
-filter out phandle reenumeration noise? Also when reordering things
-expecting no functional change and diffing dtbs that would be helpful.
+In case you need a new version, also add stddef.h for NULL definition.
 
-Regards,
-Andreas
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
