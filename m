@@ -1,146 +1,147 @@
-Return-Path: <devicetree+bounces-112579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D6239A2C5C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 20:42:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A547C9A2C5E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 20:43:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C4111C21771
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 18:42:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6913B28173F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 18:43:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DA120111B;
-	Thu, 17 Oct 2024 18:42:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2445A2010E2;
+	Thu, 17 Oct 2024 18:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="tLT8mLdc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUbnJ5va"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44EED1FDF9A;
-	Thu, 17 Oct 2024 18:42:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA76318133F;
+	Thu, 17 Oct 2024 18:43:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729190538; cv=none; b=cAWzlythBNONL4sx2QRbVSbVVNH4UFfP47kAb4o6BqqQBnP6XMOMu64iQlPT8zFjTlM/WcDfCdTsrnlPNok5lyYSj9tjVPno6gv4d4pzAZfUHOPRY04io1FkTbKBsOnFGU5VGfMFBV9QmTDiBLfUAXs5ayWg2uaRt3lm3aur8vo=
+	t=1729190583; cv=none; b=S4ZNDSF6Z5PAkMbkDrdsXj1S563+fxXQA7sDcaVX9rUotrAQXk+u1dCCsNlRBCgpOC4igMGRvFXyapxIUdHyn3MbvztFrXUM9R7gVu+hYDDd9WfRF3ti1TbmZGazPuqhTB6r4E41qzNC6893yst4qBFZ3eDmTVtUQdiZ3U8EPvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729190538; c=relaxed/simple;
-	bh=GXZfrRTXT9LrrAjevCYm2C81k35PY0aGEBqJy7gL/Xw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sPKd8fXLHheiW9c5yqHYfzUWL1NLxDwVUcLYNf1LX7s4X3p5p39l1PBeYVL6zN+Fx1e0QZd+8pSOIKZk+U1URB+0KsH3RhwxpqvoDpzHYryUpgBNUAzqXJJ3nWqEoiMs01TS4P+JRhssJUv0Itib9GfOkXKFw4p5RegzHQAEii0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=tLT8mLdc; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 0CE0B88FBA;
-	Thu, 17 Oct 2024 20:42:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729190531;
-	bh=cAmNngeOSAv5WfCygbk0KTKNcyQTmYx4zKXtpklGhNY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tLT8mLdcP7L18Rc4jR9XL1JIImQIbEwcHhkUh5fCiMDq+Pa15LpoMzaNhcUqKJzcw
-	 ZQafj0gM+dUURIVfrIIiIA+EiyZ6TuOkrJXYBD7hcrk2+tc1Lf+orFVyC/bA7U+Z38
-	 /SfJxuDiOPfdfAu0X64nmijD/Ln/5bXIKZq/NJklBGvVBsrcPu3qoNDduEX5q5Hjqt
-	 vWhg7KcbQqKfVOPBgwQMKL8S4JSYlUGTIfT/Ii8iNzswjJ+H/d46SibdPaUh91ksYI
-	 z5iQpSs24QMYWIanfqMuXuVn0g7w4J59csVMSZhmAd6STE60wP0hp+uFcRxYgrMo6O
-	 PKAN/PNrIRDsA==
-From: Marek Vasut <marex@denx.de>
-To: linux-i2c@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com
-Subject: [PATCH 2/2] eeprom: at24: add ST M24256E Additional Write lockable page support
-Date: Thu, 17 Oct 2024 20:41:26 +0200
-Message-ID: <20241017184152.128395-2-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241017184152.128395-1-marex@denx.de>
-References: <20241017184152.128395-1-marex@denx.de>
+	s=arc-20240116; t=1729190583; c=relaxed/simple;
+	bh=PcQXk4kA+O+U2bVu5sDiymybdRXz3rGK1neJUq0+tyU=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=EluEER1SySfTZPKA0mtrJ7rk2jC9Ap5huDl0+JLpHx5ibiaLngC/FpwKNRJQUdbfc2x1/PfTXMBZWDqay53bNMDTg/6I/zof+VEdz4/Ucg2k+IlNPqoB5VgW9w+V6EVAU8QupQ9uzG3Xmdd9Pb6ngNNT3idky/lgQHBkRKskvG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUbnJ5va; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 853E0C4CEC3;
+	Thu, 17 Oct 2024 18:43:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729190582;
+	bh=PcQXk4kA+O+U2bVu5sDiymybdRXz3rGK1neJUq0+tyU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=nUbnJ5vajUPC0jmPEmsFVx+1DO/R1FPQqChPvjEWoAQxUoTpL819cQ7nzI9FS6Ud2
+	 J3P1NNt8AtmQ1hzFcOmFyGjTP0wwYVWVYMz6YFAv1VFw0StniVq/H+Xpl9j+9PjXff
+	 9D7SpEwjiV5In+T31SHbzg51+W2m1VU55okPGzS/2aocIly262DuGBHLonj2BUesRw
+	 gA3yt+TEHJQYHghYjD1qbi4Ps/ekr8/wvAUsgnx/MFz+y0HFtjRl5U2e4DA7kV+X9a
+	 A+qttaTCW/cjPJmqOYt6e13kdby7UdMyhgI/Tut4G4aBuhe1tIiI9bzppietkOwTYG
+	 DTcglYOh1CCgA==
+Message-ID: <3412c930fdb120032478c65e90e4b971.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <D4W91PHV3238.3SL8CZLC15V5O@bootlin.com>
+References: <20241007-mbly-clk-v5-0-e9d8994269cb@bootlin.com> <D4W91PHV3238.3SL8CZLC15V5O@bootlin.com>
+Subject: Re: [PATCH v5 0/4] Add Mobileye EyeQ clock support
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
+Date: Thu, 17 Oct 2024 11:42:59 -0700
+User-Agent: alot/0.10
 
-The ST M24256E behaves as a regular M24C256, except for the E variant
-which uses up another I2C address for Additional Write lockable page.
-This page is 64 Bytes long and can contain additional data. Add entry
-for it, so users can describe that page in DT. Note that users still
-have to describe the main M24C256 area separately as that is on separate
-I2C address from this page.
+Quoting Th=C3=A9o Lebrun (2024-10-15 01:50:26)
+> Hello Stephen,
+>=20
+> On Mon Oct 7, 2024 at 3:49 PM CEST, Th=C3=A9o Lebrun wrote:
+> > This series adds a platform driver dealing with read-only PLLs derived
+> > from the main crystal, and some divider clocks based on those PLLs. It
+> > also acts at the one instantiating reset and pinctrl auxiliary devices.
+>=20
+> I'd be curious to get feedback on this series?
+> Could it make it before the next merge window?
+>=20
+> V4 fixed all your comments but one. You implied the linked list might be
+> useless, but I am not convinced:
+>=20
+> > I had a pending question [0], asking for confirmation that the static
+> > linked list to inherit cells from of_clk_init() stage to platform
+> > device probe is indeed the right solution. As -rc1 got released I sent
+> > the new revision anyway.
+> >
+> > [0]: https://lore.kernel.org/lkml/D4ELMFAUQYZ7.3LXGQZJSX68UF@bootlin.co=
+m/
+>=20
+> Quoting here the original email for full context:
 
-Unlike M24C32-D and M24C64-D, this part is specifically ST and does not
-have any comparable M24* counterparts from other vendors, hence the st,
-vendor prefix. Furthermore, the part name is M24256E without C between
-the 24 and 256, this is not a typo. Finally, there is M24C256-D part,
-which does contain 32 Bytes long Additional Write lockable page, which
-is a different part and not supported by this patch.
+Thanks!
 
-Datasheet: https://www.st.com/resource/en/datasheet/m24256e-f.pdf
+>=20
+> On Tue Sep 24, 2024 at 4:53 PM CEST, Th=C3=A9o Lebrun wrote:
+> > On Wed Sep 18, 2024 at 7:28 AM CEST, Stephen Boyd wrote:
+> > > Quoting Th=C3=A9o Lebrun (2024-07-30 09:04:46)
+> > > > +       list_add_tail(&priv->list, &eqc_list);
+> > >
+> > > The list is also kind of unnecessary. Set a bool in the match_data and
+> > > move on? We could have some sort of static_assert() check to make sure
+> > > if there's a CLK_OF_DECLARE_DRIVER() then the bool is set in the
+> > > match_data for the driver. Such a design is cheaper than taking a loc=
+k,
+> > > adding to a list.
+> >
+> > This list's main goal is not to know what was early-inited. Its only
+> > reason for existence is that we want to get, at eqc_probe(), the cells
+> > pointer allocated at eqc_init().
+> >
+> > struct eqc_priv {
+> >       /* this field is why we store priv inside a linked list: */
+> >       struct clk_hw_onecell_data      *cells;
+> >       /* the rest, we don't care much: */
+> >       const struct eqc_early_match_data *early_data;
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-i2c@vger.kernel.org
----
- drivers/misc/eeprom/at24.c | 4 ++++
- 1 file changed, 4 insertions(+)
+This is __initconst and won't be valid after init, which is possible if
+the driver probe is delayed beyond the time that init memory is freed.
 
-diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-index ca872e3465ed9..0a7c7f29406c7 100644
---- a/drivers/misc/eeprom/at24.c
-+++ b/drivers/misc/eeprom/at24.c
-@@ -207,6 +207,8 @@ AT24_CHIP_DATA(at24_data_24cs64, 16,
- 	AT24_FLAG_ADDR16 | AT24_FLAG_SERIAL | AT24_FLAG_READONLY);
- AT24_CHIP_DATA(at24_data_24c128, 131072 / 8, AT24_FLAG_ADDR16);
- AT24_CHIP_DATA(at24_data_24c256, 262144 / 8, AT24_FLAG_ADDR16);
-+/* M24256E Additional Write lockable page (M24256E-F order codes) */
-+AT24_CHIP_DATA(at24_data_24256e_wlp, 64, AT24_FLAG_ADDR16);
- AT24_CHIP_DATA(at24_data_24c512, 524288 / 8, AT24_FLAG_ADDR16);
- AT24_CHIP_DATA(at24_data_24c1024, 1048576 / 8, AT24_FLAG_ADDR16);
- AT24_CHIP_DATA_BS(at24_data_24c1025, 1048576 / 8, AT24_FLAG_ADDR16, 2);
-@@ -240,6 +242,7 @@ static const struct i2c_device_id at24_ids[] = {
- 	{ "24cs64",	(kernel_ulong_t)&at24_data_24cs64 },
- 	{ "24c128",	(kernel_ulong_t)&at24_data_24c128 },
- 	{ "24c256",	(kernel_ulong_t)&at24_data_24c256 },
-+	{ "24256e-wl",	(kernel_ulong_t)&at24_data_24256e_wlp },
- 	{ "24c512",	(kernel_ulong_t)&at24_data_24c512 },
- 	{ "24c1024",	(kernel_ulong_t)&at24_data_24c1024 },
- 	{ "24c1025",	(kernel_ulong_t)&at24_data_24c1025 },
-@@ -278,6 +281,7 @@ static const struct of_device_id __maybe_unused at24_of_match[] = {
- 	{ .compatible = "atmel,24c2048",	.data = &at24_data_24c2048 },
- 	{ .compatible = "microchip,24aa025e48",	.data = &at24_data_24aa025e48 },
- 	{ .compatible = "microchip,24aa025e64",	.data = &at24_data_24aa025e64 },
-+	{ .compatible = "st,24256e-wl",		.data = &at24_data_24256e_wlp },
- 	{ /* END OF LIST */ },
- };
- MODULE_DEVICE_TABLE(of, at24_of_match);
--- 
-2.45.2
+> >       const struct eqc_match_data     *data;
+> >       void __iomem                    *base;
+> >       struct device_node              *np;
+> >       struct list_head                list;
+> > };
+> >
+> > I do not see how to do that with a bool. We could put the pointer into
+> > the match data, but that would mean we'd have to make them writable
+> > (currently static const data). We are talking about a linked list with
+> > two items in the worst case (EyeQ6H), accessed twice.
 
+Ah I missed that you were trying to stash the onecell data away. You can
+register a clk provider for the same node more than once. The first
+"early" one can return an error pointer for the clk indices that will be
+registered later. The second onecell data can be registered in the
+regular driver probe and return the clks that are registered later. See
+of_clk_get_hw_from_clkspec() and how it keeps trying to find a clk if
+the provider that matches the node didn't return a valid pointer.
+
+> >
+> > The reason we store the whole of priv: simpler code and we avoid mapping
+> > registers twice (once at eqc_init() and once at eqc_probe()).
+
+The IO mapping code handles duplicate mappings internally by returning
+the previous virtual address. It doesn't hurt to call it again.
+
+> >
+> > Can you confirm the current static linked list approach (without any
+> > spinlock) will be good for next revision?
+>=20
+
+Getting rid of the list will make the code simpler and avoid the driver
+probe path from accessing the early data. Please do it!
 
