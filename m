@@ -1,77 +1,76 @@
-Return-Path: <devicetree+bounces-112541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9649A2A0A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 19:03:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B79139A2A6E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 19:11:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B63471C20FE8
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0767DB227A9
 	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 17:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57BB1FA244;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D5E1F9ED8;
 	Thu, 17 Oct 2024 16:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yO1az8kD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wYzjG2cf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB7BA1EABBC
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 16:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F7B21F9436
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 16:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729184243; cv=none; b=gDGsgeZU5yMeBiEOh6pHeABiW3QoYhyzznVTauGP5Ldf1ySNLj398y0kheEfo0Y0aChAUfQ7FEHm2EV6c0AllcPshzcw9X449TYt8FiCHlwh5vSTYGjypUFdxlN624AqoSmAG+IwYoXX4L1cpEdcE+mjhJdXt4vEjzgx56Trpfo=
+	t=1729184243; cv=none; b=AJ+qjNvsAmABqk9+vrqJRYFDDd26rX54KQ5VdSpvm+Ix8622UpslbBdiVxo6n1uS6RjkGumq1Fd2u1j4eZgd4KBFqgHjwJVcHQTXlFf6YrZjTqfynMQ6mFmDNQXSoWRbgpCA61BTmqt7pEEgolYuxzpwgKG1mI2ITwYBuOg5rdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1729184243; c=relaxed/simple;
-	bh=IrkjMQ7RH+oR98f5gh1F2pyya/YzwCwypAUZHAFGYso=;
+	bh=t7hDrtx4kJ5DeVsIbZmhYCNSETknrAFehSlgXsa/aQo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pBIGXr7ZFawquBl6Iw/rHzm2Mzbv9uFksLGymAbQ+l4SEf9f8UHpfhuZ9urh6RXeI+xnFMBnHQ5Ec77k7+q83MwYoOmCTwGki5hc2v2yLtNM344hWvLJr2tk5XX3tav9uXtDwEnaMhok/7JY+SxHn2/wpc9NXtrsjtImQXuZ0s8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yO1az8kD; arc=none smtp.client-ip=209.85.208.181
+	 In-Reply-To:To:Cc; b=Z3jcXx/ggGna+DeQVKVPza48mnlKGUXwxVWCD0fw/Bhg9KlKVpXetts6sxWH4z92Rua4QErsahHFUIispQ/97UC2uqBdaoxIl74CxJ9lYpxPxDeJD9qxaa16Lr+DICfcKiEavnyIRxH4t3+N6fn9TeTIS7saakPuJRYy7/1n90g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wYzjG2cf; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2fb501492ccso13523301fa.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:57:17 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539e8607c2aso1483392e87.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 09:57:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729184236; x=1729789036; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729184238; x=1729789038; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WU7Pijydi+sHx/XtPKLXbQVt3AZtfZFORsZqT/64C/k=;
-        b=yO1az8kDCf3XAlKkDMael9xui9NW93SMcACzSIRyYSEcViGQiKxmsBHebeKBVdGoyr
-         tLJEKA422RnjGsUsi7egYSWJz7mrHAGvKydLjZ0srItIrwWtYovzCWCjkojLjgxZfiML
-         0jepVjTdQJlSar2aXDc/1dKUpL+iGsGteJ7zccNo2Rwp45AGrY0pNxM7PMwFGadrjAc0
-         oAoAqYvegV3oPD4wJ/+A+EfNPO75F9jFAVObRIvjlMvmT+kn8UlFVHV97VyaH1VbsxGI
-         ihTKAbvNbmBcl6FkzMbDAAFNpZmvUocZEzQJ1kdw/gdwsZ0pIR2vj63kdQDQSoZWr2v2
-         pZbQ==
+        bh=zUEt9TXBCKzq7zig2rJbZI6eJjpDUgZF5RCBfHnO/I8=;
+        b=wYzjG2cfE1PtDDXEf4iQoTFJRG8aE5flZrwKDZenLO7mFU5kDG6r/fcdrf8ust/uf0
+         ikQEEg9HSl6XMLX47/94GiFOAJpX92hqhDL0dWSZO8P4Ir+J1DksNfeTsqdGVoGBLDA6
+         I9tFS92R8QhyA0hk7NlLhRmBKOSaoZHLKxeYUTW5VbGn8t/uq90UhTp7XgCUs92cSGLe
+         k5zemYNWBp0ZYPYcvVwrIE+chFOmMOerzG7D5teG7hGKemLZSQ+MztHtb/O0MEoNqBva
+         2e4coCSaaWv0+OvdVLumCiH2PDPXvDANl23k8Kj/muCkkW5dS5MIlDIpCKQVeatRxCcD
+         +4PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729184236; x=1729789036;
+        d=1e100.net; s=20230601; t=1729184238; x=1729789038;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WU7Pijydi+sHx/XtPKLXbQVt3AZtfZFORsZqT/64C/k=;
-        b=i3/4LMttBV581KBerGUbsHKIfy4cFmagHgF3kvi/ZDcRZ26nuM1RHZMBeSNwBAvx5X
-         lzHXd6gJzMh5tCbdDZvIlX+122YJvWmixwTPvGzM/s+y+3W3XHjkbR/aAM5D5XuC1u7l
-         TXimp51A6Q1y3taj3DiToggilCY/BFx5J+ca6K9a1VgtLRFPTcQtvlpx66EH2bAvlhmp
-         myCl4sBRXP/fuG5I+VRCbxLPfW4soeAGEkR/A8uh6ahnxQ+C7DAr+G0ls0U9nz9RP2bk
-         o++hd6G29KS8zZIeq8B2PppH3OoB4MfydYmJ59tfe1UzGjrrBCRTIutZp/PpBeNyUtZo
-         k7Xg==
-X-Forwarded-Encrypted: i=1; AJvYcCWEpcmzQwIFpIpScJOftSP+DiAZEmRnELwGQdATSrWtn66j4nHGIywnAlaXajMTQ3x1lx2MwEwG/4EU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRytLuCB6G7p35WvIZKF5H/RjKGbix90zdVLBKDV7pmNu8yBcW
-	VDfMmHypXZ4VYNfcMUAbYP29a8k+WxUXQ7tOtXLvYutp96n4tm9sChllcfLNytbqs48RKQX2JDV
-	QYSk=
-X-Google-Smtp-Source: AGHT+IEzEdvDk1bKinShhCEGaRDwEUs5ILPk8w4msKlOlBROEaXL9PDpvshNYbQeVzx/cceNge1P2w==
-X-Received: by 2002:a05:6512:684:b0:539:f699:bb2a with SMTP id 2adb3069b0e04-539f699bc9amr8740519e87.20.1729184235961;
-        Thu, 17 Oct 2024 09:57:15 -0700 (PDT)
+        bh=zUEt9TXBCKzq7zig2rJbZI6eJjpDUgZF5RCBfHnO/I8=;
+        b=rtX/JW+jNLCk+ZmyczknQzZc0VjGA+9tMjsyZn2rb/S8dnONykM4b3Gc0RHcS9hcuC
+         j1YK0pcXRtA+8iUPm1u1uojQaBqEsEl5Yg0OnR264PmzQQnayxxQqpuHOLhfrSTVIcTa
+         uITUyzQx6NQhhgIGs+9qZQYt24AMfk+IkWchxo1T2WTX5VMcaY6dQu8C5276F9d3gQRL
+         7ZlWtdo3WLFjKW2M9ShY+rdrFJRImCjoPH4zwIobw5J7/lrLVdD+EGLsm4cfOX4l26dh
+         fAjB1D6Op8A7ybZTfVocXtgUdoj4z0yfnLEcti7OTR3hzxh0BOWY0A1SfCEtbgkWVD1L
+         /ASA==
+X-Forwarded-Encrypted: i=1; AJvYcCWiVon8nRiIz1iMVXq73EGLWkja9s/Am/pzuv4r0SMVnOph5fIYhLTj1sVGnPCodnFZxE6T5DFd8XXc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwZSPJ0e84SAokh+LLU4mIiTMb1seQQTXZ9nIvvgUhe4nuYINQ
+	+JCWXOjvl6enaCs1vsaRJ7s/LeZvP9cEzWlK2ZAkcAcSfHObySyHa5a5zS0htDw=
+X-Google-Smtp-Source: AGHT+IGOWUB561YpWd2tKA2ndsbQ0khheOBYIP3sTwBbZ59vgcrCXMue15aZloAAQ/GDwAeSAU8wdg==
+X-Received: by 2002:a05:6512:2313:b0:539:edbe:ac86 with SMTP id 2adb3069b0e04-53a03f0739amr5883447e87.10.1729184237543;
+        Thu, 17 Oct 2024 09:57:17 -0700 (PDT)
 Received: from [127.0.1.1] (2001-14ba-a0c3-3a00-70b-e6fc-b322-6a1b.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:70b:e6fc:b322:6a1b])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a00007078sm821563e87.212.2024.10.17.09.57.13
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a00007078sm821563e87.212.2024.10.17.09.57.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 09:57:14 -0700 (PDT)
+        Thu, 17 Oct 2024 09:57:16 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 17 Oct 2024 19:56:56 +0300
-Subject: [PATCH 06/14] clk: qcom: clk-branch: Add support for
- BRANCH_HALT_POLL flag
+Date: Thu, 17 Oct 2024 19:56:57 +0300
+Subject: [PATCH 07/14] clk: qcom: clk-branch: Add support for SREG branch
+ ops
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241017-sar2130p-clocks-v1-6-f75e740f0a8d@linaro.org>
+Message-Id: <20241017-sar2130p-clocks-v1-7-f75e740f0a8d@linaro.org>
 References: <20241017-sar2130p-clocks-v1-0-f75e740f0a8d@linaro.org>
 In-Reply-To: <20241017-sar2130p-clocks-v1-0-f75e740f0a8d@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -95,82 +94,108 @@ Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Kalpak Kawadkar <quic_kkawadka@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2255;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2868;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=WCKh9ozPzFq+qKXhVDmEYZoe2DfonGQ7wytIhUMoLDI=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnEUHbwAeRc3m0jgK+FNqlTNJv37Ha5x02AJRfd
- yRChuQTI9aJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxFB2wAKCRAU23LtvoBl
- uE/aD/0YY1+GNYyofwWH6W4DIAyTdRcl/BBdbXFYyiBNLDLaeTBLfeSjWS88k8tAJ3js18F7Of1
- aQzJjkGvnjXIs1UqLfoQphuNkQmoRMg3K2AJ8znHa0EI/Ytpre5UgBJee2Ps3RwQEptmUzZCQ5H
- 4KzBAJbyXPyEeELztJvV+1F+o507pBQSEZHkRQJ0jG4+n3hbdxxgM+hvK+V1j4w6Xgw8KBER0qz
- 5HPQq1+BYQHvS+S73MPYpZAdhiyEYsuyJnu+9zrM0JuB/PMa7ICYNIcvK9M46taXfFY17ZqPZKF
- ehE3zUuX8KFbaS2ciyxNjh9cyoZAkeMl2h4i6G21IyVyM6edchDqqa5DeGXl/d+6U6V8K74iXgT
- kJSmeXXc0si5Au8LCdQJbu1c0Xz/YdbbpuEmaLHDJAoXRkDT+Oj5xKMlIDZWBbeTxz2tDWXvMPJ
- 2NDh9R1ysXbIks+qZPWJrSrQ/MRGISBOzn1m2Byl1+HDXWhzwfVIqaP3GBpBZlWU3mbYKm0qvrz
- 5WL5GgBeraLNTgCq8WiymeDNUGf7ZZd6rhPkiBbjk5s858sBUNzjdcQ4T++xZ6rMCB9JFVo8WCL
- QlQTNaFJLyPvhxp83d3BAVQKHxNj7SCGw18EAXj+BQXn0fMxxPegw4yXJV1qlD6XS80x1fYhRWM
- oxxwwBM2dvD+WAw==
+ bh=lk5Jzsxf7Q9DWyX31WiRZKJBTl6ko04MqIlsJap0u5w=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnEUHbBZPdRgefZdHDDT5GfTwUsmLMj9DYGrvuj
+ 4JJYFnfOtaJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxFB2wAKCRAU23LtvoBl
+ uJvLD/41ycyKcCJzBRuYDx7+AZNHXyvhVcbB6+X99Ny43LGteSj8H9z9c8SVkOL6ZziSmGXq7tW
+ HmpipYEwHdwUH+2tKUro7XoEwfLDN/DzTVnBr5FQmWdwH/+FPMUwVHK1xsMXtjCDam0Vhmm2i76
+ VJw7rCU2HfruUuxBKuUg24TpEPxHX0KelUtDxozr98odKOhHW454zNWlmMAgp26RMVoRh93+zHw
+ snxEFxaE4xV4P2MVwwX9XZmThwxZgocUxxupDx3EV+Fey8+iH0sJcJxDHuw/xvR8DmWJDte8I2S
+ Dw+po1Od9c06k5KxPSLkF+LSNc9//gtzzxOI9pd2nDwZncmvGkmQQ0hY9WAXyEf8WdQ5I9epUg5
+ CORLDZ1A6pGS3F5DTw5+xG1e9w8O7bfY3h05cE2uzz97eL+73MmTLOYl9bWBavNlJKhYROZsc2z
+ jKhEbtUpfK+Zg4CjIeVOUd+juoGq9vH377vCqN0GqgTWVwlqfE+NXmQ+5GcT9LeWta6hd8P5yHW
+ 46hV98zIOA5zcqfViQB94LPx4YOpwZ+Kn2K4b6tk88FrU8mKBGxVHwcqGgb9JQc0QOqGGJ6PC1+
+ V6WZnsww6S15D1jJEboMq93JvWLEJL7HKsSqNeXa4/CW4sz6YiUFDAmOThaPyQ3WNzRgj5UI5S1
+ luye7dxSMGDvhmw==
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
 From: Kalpak Kawadkar <quic_kkawadka@quicinc.com>
 
-On some platforms branch clock will be enabled before Linux.
-It is expectated from the clock provider is to poll on the clock
-to ensure it is indeed enabled and not HW gated, thus add
-the BRANCH_HALT_POLL flag.
+Add support for SREG branch ops. This is for the clocks which require
+additional register operations with the SREG register as a part of
+enable / disable operations.
 
 Signed-off-by: Kalpak Kawadkar <quic_kkawadka@quicinc.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/clk-branch.c | 7 ++++++-
- drivers/clk/qcom/clk-branch.h | 1 +
- 2 files changed, 7 insertions(+), 1 deletion(-)
+ drivers/clk/qcom/clk-branch.c | 32 ++++++++++++++++++++++++++++++++
+ drivers/clk/qcom/clk-branch.h |  4 ++++
+ 2 files changed, 36 insertions(+)
 
 diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
-index 229480c5b075a0e70dc05b1cb15b88d29fd475ce..c4c7bd565cc9a3926e24bb12ed6355ec6ddd19fb 100644
+index c4c7bd565cc9a3926e24bb12ed6355ec6ddd19fb..9142a33b6b3ba72a7dd9ff80a64c17f2a1746e8c 100644
 --- a/drivers/clk/qcom/clk-branch.c
 +++ b/drivers/clk/qcom/clk-branch.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (c) 2013, The Linux Foundation. All rights reserved.
-- * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2022, 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
+@@ -170,6 +170,31 @@ static void clk_branch2_mem_disable(struct clk_hw *hw)
+ 	return clk_branch2_disable(hw);
+ }
  
- #include <linux/kernel.h>
-@@ -76,6 +76,7 @@ static int clk_branch_wait(const struct clk_branch *br, bool enabling,
- 		udelay(10);
- 	} else if (br->halt_check == BRANCH_HALT_ENABLE ||
- 		   br->halt_check == BRANCH_HALT ||
-+		   br->halt_check == BRANCH_HALT_POLL ||
- 		   (enabling && voted)) {
- 		int count = 200;
- 
-@@ -97,6 +98,10 @@ static int clk_branch_toggle(struct clk_hw *hw, bool en,
- 	struct clk_branch *br = to_clk_branch(hw);
- 	int ret;
- 
-+	if (br->halt_check == BRANCH_HALT_POLL) {
-+		return  clk_branch_wait(br, en, check_halt);
-+	}
++static int clk_branch2_sreg_enable(struct clk_hw *hw)
++{
++	struct clk_branch *br = to_clk_branch(hw);
++	u32 val;
++	int ret;
 +
- 	if (en) {
- 		ret = clk_enable_regmap(hw);
- 		if (ret)
++	ret = clk_enable_regmap(hw);
++	if (ret)
++		return -EINVAL;
++
++	return regmap_read_poll_timeout(br->clkr.regmap, br->sreg_enable_reg,
++					val, !(val & br->sreg_core_ack_bit), 1, 200);
++}
++
++static void clk_branch2_sreg_disable(struct clk_hw *hw)
++{
++	struct clk_branch *br = to_clk_branch(hw);
++	u32 val;
++
++	clk_disable_regmap(hw);
++
++	regmap_read_poll_timeout(br->clkr.regmap, br->sreg_enable_reg,
++				 val, val & br->sreg_periph_ack_bit, 1, 200);
++}
++
+ const struct clk_ops clk_branch2_mem_ops = {
+ 	.enable = clk_branch2_mem_enable,
+ 	.disable = clk_branch2_mem_disable,
+@@ -203,3 +228,10 @@ const struct clk_ops clk_branch2_prepare_ops = {
+ 	.is_prepared = clk_is_enabled_regmap,
+ };
+ EXPORT_SYMBOL_GPL(clk_branch2_prepare_ops);
++
++const struct clk_ops clk_branch2_sreg_ops = {
++	.enable = clk_branch2_sreg_enable,
++	.disable = clk_branch2_sreg_disable,
++	.is_enabled = clk_is_enabled_regmap,
++};
++EXPORT_SYMBOL(clk_branch2_sreg_ops);
 diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
-index 292756435f53648640717734af198442a315272e..47bf59a671c3c8516a57c283fce548a6e5f16619 100644
+index 47bf59a671c3c8516a57c283fce548a6e5f16619..149d04bae25d1a54999e0f938c4fce175a7c3e42 100644
 --- a/drivers/clk/qcom/clk-branch.h
 +++ b/drivers/clk/qcom/clk-branch.h
-@@ -34,6 +34,7 @@ struct clk_branch {
- #define BRANCH_HALT_ENABLE_VOTED	(BRANCH_HALT_ENABLE | BRANCH_VOTED)
- #define BRANCH_HALT_DELAY		2 /* No bit to check; just delay */
- #define BRANCH_HALT_SKIP		3 /* Don't check halt bit */
-+#define BRANCH_HALT_POLL		4 /* Don't enable the clock, poll for halt */
+@@ -24,8 +24,11 @@
+ struct clk_branch {
+ 	u32	hwcg_reg;
+ 	u32	halt_reg;
++	u32	sreg_enable_reg;
+ 	u8	hwcg_bit;
+ 	u8	halt_bit;
++	u32	sreg_core_ack_bit;
++	u32	sreg_periph_ack_bit;
+ 	u8	halt_check;
+ #define BRANCH_VOTED			BIT(7) /* Delay on disable */
+ #define BRANCH_HALT			0 /* pol: 1 = halt */
+@@ -111,6 +114,7 @@ extern const struct clk_ops clk_branch_simple_ops;
+ extern const struct clk_ops clk_branch2_aon_ops;
+ extern const struct clk_ops clk_branch2_mem_ops;
+ extern const struct clk_ops clk_branch2_prepare_ops;
++extern const struct clk_ops clk_branch2_sreg_ops;
  
- 	struct clk_regmap clkr;
- };
+ #define to_clk_branch(_hw) \
+ 	container_of(to_clk_regmap(_hw), struct clk_branch, clkr)
 
 -- 
 2.39.5
