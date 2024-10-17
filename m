@@ -1,145 +1,156 @@
-Return-Path: <devicetree+bounces-112272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75DEF9A19B3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:25:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA799A19CD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:44:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35BFE288B57
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 04:25:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93E9C1F24B88
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 04:44:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89AD1531DC;
-	Thu, 17 Oct 2024 04:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F32D143895;
+	Thu, 17 Oct 2024 04:44:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="auU2zEQm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C70H4M8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3514A14EC47;
-	Thu, 17 Oct 2024 04:24:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D6921E3C1;
+	Thu, 17 Oct 2024 04:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729139058; cv=none; b=HuqUyzG4R8DOuuJrJ+/Fw9et/4RVE9G3YKqHCo+/A5J5rO8+pqXnX6B0TKWbPg435yFHckHVMjJcx3S8Aj1OfV6l1ZP6aCMbP8su6V2pL2hPs7jQh55+atjy9v6S+N7iC7ek3hHkAloDeBkFXDD7x0xe1HflA6/V4FRLus5fUNc=
+	t=1729140244; cv=none; b=sUN65ihQLnP9KVSxqkEb63BKsYrpyErQYjMIMaSKAIrSK4YcKbezfNjFMRV7skHAp/X+xTNbkgCRhU9f3QTvXknKB7kafmagKj6xQboJg6I4gjHBOzrI6HGls3L8tdVaTZOHQK+KFtNbEdqtKR/fLgoPpM9+r0zjbCAd788RUNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729139058; c=relaxed/simple;
-	bh=5xrNbbFFDws2uq7R2gKaPuL4tq6viTh1KIoqlb5XMSA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R678jxsvYW6L84iW7j+05BSp+Us5epMEQ5TFJxuJqUpMNZ8BHLv3qidM39JuhmThwEG68+YYTVXrUcpLWGQ6bHilzlnFOttLvIZJlIYlRKU/lLGAv/JBcahhUVbe3gVVJMWgvH7wf51hW5rKv70R6FzYCdaGup2xHqVvcA8FvcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=auU2zEQm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49H3GK4P007525;
-	Thu, 17 Oct 2024 04:24:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NgsnLZoGp4GrlmJs7ca5WneE9Mr6Cbb5pliUxrswiTI=; b=auU2zEQmhJGD7ZtU
-	p+Sll5j9VR0YntEeDV51gFaJDW+Ljq14LdA/p4a03/vK/wTMkOBbKEBdgQ1aS7Re
-	yP3KYo7pvpo3Ca7hKd4TDOFhMZIP4GbhgvQu8ge4BCZT2M8sAesx98s7pQ3T22Cq
-	jnuUAVKVEvf9ycFee7ppOn73MgLdc6TpfhZq+IikMWETlJsbPvmHGTPd04YmzDGz
-	ZlkPvPxg+625uXZ0XacqtbFeP+8VrwyvaenXabEwh6k5Xtv4B2VF2FTpFUz1KZUp
-	vttmri/5NMxWldwLPCOllagUBd5jMHJ13ILGd5MOQjdWQQLe2bgzmx7M97ElgdOw
-	p2OfFQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42athc04fa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 04:24:03 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49H4O21O009345
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 17 Oct 2024 04:24:02 GMT
-Received: from liuxin-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 16 Oct 2024 21:23:55 -0700
-From: Xin Liu <quic_liuxin@quicinc.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>, <quic_jiegan@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_sayalil@quicinc.com>
-Subject: [PATCH v1 4/4] arm64: dts: qcom: qcs615-ride: Enable UFS node
-Date: Thu, 17 Oct 2024 12:23:00 +0800
-Message-ID: <20241017042300.872963-5-quic_liuxin@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241017042300.872963-1-quic_liuxin@quicinc.com>
-References: <20241017042300.872963-1-quic_liuxin@quicinc.com>
+	s=arc-20240116; t=1729140244; c=relaxed/simple;
+	bh=11YArkhZQS4c8MQnbYUnU5KYPuWA3mgk5RTZHB/jkR0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OyWqQ51t03g1Lrj4/psmIx2TpdNltnLZCBal3ywpuqW0mQTJIhMuKmq+U5EHUg8ZMn/sWIp54ZiGdMCR4OfebkBtpj6d5iswntD4wDUEVrAjZkMHVb8YRME69jOa0Sj7cK9qZZck4MBoBroEtQc8IJjv1ApLTGR39o/mq7U1cAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C70H4M8W; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729140240; x=1760676240;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=11YArkhZQS4c8MQnbYUnU5KYPuWA3mgk5RTZHB/jkR0=;
+  b=C70H4M8Wiv7JA0SEM65j8wBwo2ExBPmHHQeIDMDWnIlozhFBVvRQfjs+
+   HVug1zGLJmVn0LsZxxZm5AnEViFMD2Q5LbMq3F5VRSW9LFdH6tX08djvO
+   5Je3WQMMIj5khDHG9osdjzCnrNuEe47MahHdMA8Iu+5E2MSMMD/XQhaMJ
+   1pi29FwJfczsrKejJugvKvT/dtI8ir4b9P8D+gNos49BdJjwqEK8cWGn2
+   37YqkB94R0WU071lVs3ahxTftEJUPCQcVn6mzI4zWNlmkPQLutl4SzSNC
+   BOS6vGhtSIAHUSZ08ZiiQVe4PjwkB7CN/90xQXrnspsh3TU1qoFF0sc1h
+   A==;
+X-CSE-ConnectionGUID: Y51geHx5QVWysjeGMffP0g==
+X-CSE-MsgGUID: JJOjcyqBSWGo/6uzqbUYBQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11226"; a="32538601"
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; 
+   d="scan'208";a="32538601"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2024 21:44:00 -0700
+X-CSE-ConnectionGUID: RaXAfCgKTmeFaoCq0c1HyA==
+X-CSE-MsgGUID: JgNiXR5kQXGN1ipyHrpcEA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; 
+   d="scan'208";a="78585172"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 16 Oct 2024 21:43:56 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t1IMc-000Ljj-17;
+	Thu, 17 Oct 2024 04:43:54 +0000
+Date: Thu, 17 Oct 2024 12:43:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: Per-Daniel Olsson <perdaniel.olsson@axis.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	rickard.andersson@axis.com, kernel@axis.com,
+	Per-Daniel Olsson <perdaniel.olsson@axis.com>
+Subject: Re: [PATCH v3 2/2] iio: light: Add support for TI OPT4060 color
+ sensor
+Message-ID: <202410171258.CFrNPzC1-lkp@intel.com>
+References: <20241015143713.2017626-3-perdaniel.olsson@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _a0CTUSNEPTnFsFAj-h7sSYTMIcbSAfw
-X-Proofpoint-ORIG-GUID: _a0CTUSNEPTnFsFAj-h7sSYTMIcbSAfw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- mlxscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999 impostorscore=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410170029
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241015143713.2017626-3-perdaniel.olsson@axis.com>
 
-From: Sayali Lokhande <quic_sayalil@quicinc.com>	
-	
-Enable UFS on the Qualcomm QCS615 Ride platform.
+Hi Per-Daniel,
 
-Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
-Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
-Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index 4ef969a6af15..408cc41458c9 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -217,6 +217,22 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	vcc-supply = <&vreg_l17a>;
-+	vcc-max-microamp = <600000>;
-+	vccq2-supply = <&vreg_s4a>;
-+	vccq2-max-microamp = <600000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l12a>;
-+
-+	status = "okay";
-+};
-+
- &watchdog {
- 	clocks = <&sleep_clk>;
- };
+[auto build test WARNING on eca631b8fe808748d7585059c4307005ca5c5820]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Per-Daniel-Olsson/dt-bindings-iio-light-Document-TI-OPT4060-RGBW-sensor/20241015-224128
+base:   eca631b8fe808748d7585059c4307005ca5c5820
+patch link:    https://lore.kernel.org/r/20241015143713.2017626-3-perdaniel.olsson%40axis.com
+patch subject: [PATCH v3 2/2] iio: light: Add support for TI OPT4060 color sensor
+config: powerpc64-randconfig-r063-20241017 (https://download.01.org/0day-ci/archive/20241017/202410171258.CFrNPzC1-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241017/202410171258.CFrNPzC1-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410171258.CFrNPzC1-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/light/opt4060.c:836:2: warning: label at end of compound statement is a C2x extension [-Wc2x-extensions]
+     836 |         }
+         |         ^
+   1 warning generated.
+
+
+vim +836 drivers/iio/light/opt4060.c
+
+   807	
+   808	static int opt4060_write_event(struct iio_dev *indio_dev,
+   809				       const struct iio_chan_spec *chan,
+   810				       enum iio_event_type type,
+   811				       enum iio_event_direction dir,
+   812				       enum iio_event_info info,
+   813				       int val, int val2)
+   814	{
+   815		struct opt4060_chip *chip = iio_priv(indio_dev);
+   816	
+   817		switch (info) {
+   818		case IIO_EV_INFO_VALUE:
+   819			if (chan->type == IIO_INTENSITY && type == IIO_EV_TYPE_THRESH) {
+   820				u32 th_lo, th_hi;
+   821	
+   822				if (opt4060_get_thresholds(chip, &th_lo, &th_hi))
+   823					return -EFAULT;
+   824				if (dir == IIO_EV_DIR_FALLING)
+   825					th_lo = val;
+   826				else if (dir == IIO_EV_DIR_RISING)
+   827					th_hi = val;
+   828				if (opt4060_set_thresholds(chip, th_lo, th_hi))
+   829					return -EFAULT;
+   830				return 0;
+   831			}
+   832			break;
+   833		case IIO_EV_INFO_PERIOD:
+   834			return opt4060_write_ev_period(chip, val, val2);
+   835		default:
+ > 836		}
+   837		return -EINVAL;
+   838	}
+   839	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
