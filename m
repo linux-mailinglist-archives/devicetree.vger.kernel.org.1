@@ -1,203 +1,121 @@
-Return-Path: <devicetree+bounces-112286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508499A1ADA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 08:44:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD32A9A1AEC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 08:46:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C89431F21450
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:44:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E52EE1C21502
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 06:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B74B192594;
-	Thu, 17 Oct 2024 06:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29861192D69;
+	Thu, 17 Oct 2024 06:46:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EWcJDhEQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="blb20qXQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E1714A91;
-	Thu, 17 Oct 2024 06:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A0441A8E
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 06:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729147438; cv=none; b=C4r6ubNxfRqZanO1Xq5pU1I9pKElJxA3KzTfp8A7rM3Zs8hfOJLfMGuNwgjrd1H+UNRxr02n+m9VUg1TBOWA767WgMk9M3tTcidPOF9yzc4pzAefLkGh/xiKluNNvmo89NhpmR9zjzWvPMl5E8Z1vhLsf1SECjrhFjvKLHW7Hvw=
+	t=1729147576; cv=none; b=CUucyho8IfuUAB+XUf4ANhITQUbWWlz58cZh4/sbhmH+KhOJLyC98dBpSVjLVxsBzbvC3M+0I/1Ij20ykhY4VwEnBIxwnHY3yIWuIQ+YQrqRMkFIo7qvVrRsbvrwkm59sDTwpCWVEtbP7cT0qzuFobgwYYumy/x4yVCNy0U7aMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729147438; c=relaxed/simple;
-	bh=Iz4Etax56QYWeKwlS7GNbcrEUuMkc+Ke6Ajc6SwFfxw=;
-	h=Date:From:Subject:To:Cc:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CHUxkk1mGl20nzkWgYjEmVa6W0RMXiOp0zsMnyKsl0T4lehiHV1133bech/RT5Glwk9vJUQmJognhOLJI7kTSNxSIS/IBYIlKdp8mcPaQW6TG1GIUJ0xaJC65Sv8NxkpBllXJiIGwrpIIMfL0p1M7XCNngfknHUPe09N2bBBSqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EWcJDhEQ; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5c9428152c0so756032a12.1;
-        Wed, 16 Oct 2024 23:43:55 -0700 (PDT)
+	s=arc-20240116; t=1729147576; c=relaxed/simple;
+	bh=cznAp+JgrB3doCdj+5MJN1TTIwvEeqxJ1f6EYDagSAI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TS3PXoZm7QgKEea3nAy0W7aDZBE/OQwqJpf93xZxU1aDvS9EqNq/OLAYrNy4cp4MORfyluNbf2fJ8RhetRmdoGuZes7UvF3IdCVb6u04j0NV9KF/AvatnnNu5QdXM3p8AgigDYQgqz/kpC6IPPFX7GI6nyslykb3poaVPWMCPsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=blb20qXQ; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2fb5f647538so6061591fa.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Oct 2024 23:46:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729147433; x=1729752233; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mYcD/jtdAJ+4/L32a30+2vo9k1U4HQBEXCOgxpnG3RM=;
-        b=EWcJDhEQBW3Delc2s7pr3Zpy1GqDECzk75azx/74QloWXukZVuMRWLVFDXCH5I4Khm
-         rRdt9OIT6fdfiJhbR0NO/1I+kqHe33aiDI30cYoPBoze6hI+chJ3rJKmSaNJZ/gP23M7
-         dR/ue6zm9QM8IdlKQDZAV8iYcOVtk3sfJiFF42SWL1uXpCiInsjW9xLBnyHJ3MNiQPcK
-         /oKvnplukWPAm1DfaVZJA+HVD+G/7oVVOsSih+0ZTk8+pgp0ID1WuYtcTdqqDiq3DMHg
-         m0xPvaDDX5Uw0lZicAq26QtAL+eUG/G/SN2FXBVRg3lStYYViIpZlyPByLeiYNbK8W+S
-         oQbg==
+        d=linaro.org; s=google; t=1729147570; x=1729752370; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HhYL896u1DRyEX1oXIQrKsmBcAkIkCPnJlGLrVOrEVs=;
+        b=blb20qXQjTbw6v0rzHyWIIV4acFTuS4In7/+8OlPXdJZzbi24qzuYkkJ/o5o/gr7j0
+         3VwktJCryn+NO1aF9fFcXd7XLkk16rH/GdUXNikXIQytcramPvByi3r7Em5V//hcClLh
+         WlnlBjQT7E834x/x3WFFh2cJBcO5MO3doBzdyyov5HBLvHK4fZvoWXAjB01Z4Nr9bm3G
+         9a/1/fJS498T0q74cfI+5GQtb5GuK3mQs1grFPFyQQF1inR0+6uxD4081skgtlyOSMN9
+         bm385RXOpbkmuP8rsdfuQ8PRfPA5AVEy8XNiNUQ4CSiEQ5OLvEkY9arHSVZrsbJYUAUO
+         4QGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729147433; x=1729752233;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mYcD/jtdAJ+4/L32a30+2vo9k1U4HQBEXCOgxpnG3RM=;
-        b=QTeCw/DMab+6WN/+11JcDPqZQRUhV1VusdX16BA1pAtHw/tTM3li+MWEFTHkDe0uIW
-         dX4A9XklklcAZE0RFORDQuqNM3C37JCDiN+WkhaCCP4tGYchXrlnE3YegE7LGld80eHV
-         yk6K5DcLetnrwB0lAsSX3Pb6dMeBF41CIR86BO4SjjQNmJTU6jk6k4j5WWuEasNYSBsu
-         zhqG554jUiOr4hbbWvQYOLBJmioHT5ip31uee2RKTUc3VRFgu/5M/prGFtgLlQ2DF8sV
-         fw+gRHC/7ba/TuVd7+gN3OkzIVnUZHtX2cwQkZcfiRDVFPumWv3B0dKPr3ZNskgg0qgA
-         t7ag==
-X-Forwarded-Encrypted: i=1; AJvYcCVzJfzNBNiTG+EztDOeAcbQ8vVEBsssejTnj8f66XkZx2rrCQkdQRqjHwsqMceyYR6Qwi7DOmSW+gPJhPmSzWg=@vger.kernel.org, AJvYcCWwiT0571A7bvpFkrqjiNBXxELKH4tLE+be7B8R8iqE1aIXBYP/5W7VVvdFSR9mdHlOuhryCUIxaXXJmW1c@vger.kernel.org, AJvYcCXbj/OA3E9WSRRXgJYL+5h73A/ryzNT2zAy3pgjEzOzO+QzbJMa/5to/y5SWG4hbhozdR86480sRC32@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcYt8cXzF3x2h0EVCk4fxrxjG/LzCKs4YuOnxGK4LALQamr5er
-	e7KvBqv6cJHHM1wgPCDn+NbzgYpKyVilCwQn1r8SQHaQPVXi6NPX
-X-Google-Smtp-Source: AGHT+IFZsVgs21n7csKGlALlguHVpL+24Dw635J/TiEfmVftcGCaSNRhB5+QSoo3kSsvKr84n2LrXA==
-X-Received: by 2002:a17:907:96a7:b0:a9a:6d7:9c4 with SMTP id a640c23a62f3a-a9a34d3b465mr668339966b.12.1729147433207;
-        Wed, 16 Oct 2024 23:43:53 -0700 (PDT)
-Received: from [10.31.14.61] ([95.183.227.31])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a29740e1fsm252028766b.51.2024.10.16.23.43.50
+        d=1e100.net; s=20230601; t=1729147570; x=1729752370;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HhYL896u1DRyEX1oXIQrKsmBcAkIkCPnJlGLrVOrEVs=;
+        b=G+q04qDiKD88WYzO11mNZfIBnlsQti/Y52Gm1zZpA0VgjujGd6Md3QUFROQDRZG8QZ
+         YCo5TiANW4UU5BUCR6t4I4pcBhEf+HvyXp9scOP5aQm41CStOvubFo0HZV/vxCmoj3DV
+         QERRIhSsVmUVBs+9wc/WAYH+DsMPVwzpD3UbJp6bAqivY9baK5sLh7+5K/KxTDud2b6Q
+         MEYdXJzuDg0GqSznQmWo1z/qMP1jHCkfGLHTsbiNMIrxug29ysIZsj33XKQCupqRu/6m
+         xVrGGzThfbnMgUUb/rRGmaOMLlu3CeZfuzE4FfnI38hV4UEt5WFLYMyGQc4oVMSkIYjG
+         HR5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUIveqyfa28DZIEzkBUI1hLv6/b1xC4a43K5mcZfO+Orrd0xF4F6HeWNlcLCVxJIc82uSvxRiRIEKCi@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfzpJM9ZEm3Y+kw7jpHmq51Dh2lC4mQqyfnnqsOKhFZnLdriFC
+	ozO+shC7t6UehjyqErBXLRC7zTt2LqLS8AFrJdCLIjt7U/ldaYTJ9AXGA0oPyhA6PGjoQrLsq0Y
+	l
+X-Google-Smtp-Source: AGHT+IGQ4xSked6ymD4hOiHmE3SzpQMpAoQ7EdxijGwAZmU15ExOznfzAr8Gmpwpc/ECs1IGV2rk3A==
+X-Received: by 2002:a2e:bc26:0:b0:2fb:5034:e18d with SMTP id 38308e7fff4ca-2fb6d9c5a08mr5587401fa.1.1729147569686;
+        Wed, 16 Oct 2024 23:46:09 -0700 (PDT)
+Received: from lino.lan ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb5d1a7398sm6139271fa.105.2024.10.16.23.46.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Oct 2024 23:43:52 -0700 (PDT)
-Date: Thu, 17 Oct 2024 09:43:44 +0300
-From: yassine.oudjana@gmail.com
-Subject: Re: [PATCH 2/2] watchdog: mtk_wdt: Add support for MT6735 WDT
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
-	<linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Yassine Oudjana <y.oudjana@protonmail.com>, linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Message-Id: <WOMHLS.HLNVQWWVER5T1@gmail.com>
-In-Reply-To: <9bd327fb-5f67-453d-947d-4742134b32b1@collabora.com>
-References: <20230302124015.75546-1-y.oudjana@protonmail.com>
-	<20230302124015.75546-3-y.oudjana@protonmail.com>
-	<0398e95e-dbb8-2e41-7b36-12e36b8729f0@collabora.com>
-	<f9b09f59-a222-4b75-a6ef-c7fb7c2cff9e@gmail.com>
-	<9bd327fb-5f67-453d-947d-4742134b32b1@collabora.com>
-X-Mailer: geary/46.0
+        Wed, 16 Oct 2024 23:46:09 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v2 0/2] gpio: mmio: Support ngpios property
+Date: Thu, 17 Oct 2024 08:46:07 +0200
+Message-Id: <20241017-gpio-ngpios-v2-0-cecfdb38d40e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK+yEGcC/22MQQrDIBBFrxJmXYsjMUJXvUfJQoyagaJhLJISv
+ HtN1t18eB/eO6B4Jl/gMRzAvlKhnDqo2wButSl6QUtnUFKNKHEScaMs0rlFSGcXbYK0RhvoxsY
+ +0H7VXnPnlcon8/eKVzzf/52KQoqAkwuox2BQP9+ULOd75ghza+0HNIv7PKcAAAA=
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.0
 
+I thought this generic property was already supported by the
+generic MMIO bindings and code, but no.
 
-On Wed, Oct 16 2024 at 11:56:31 +02:00:00, AngeloGioacchino Del Regno 
-<angelogioacchino.delregno@collabora.com> wrote:
-> Il 16/10/24 11:26, Yassine Oudjana ha scritto:
->> On 02/03/2023 6:15 pm, AngeloGioacchino Del Regno wrote:
->>> Il 02/03/23 13:40, Yassine Oudjana ha scritto:
->>>> From: Yassine Oudjana <y.oudjana@protonmail.com>
->>>> 
->>>> Add support for the watchdog timer/top reset generation unit found 
->>>> on MT6735.
->>>> Disable WDT_MODE_IRQ_EN in mtk_wdt_restart in order to make TOPRGU 
->>>> assert
->>>> the SYSRST pin instead of issuing an IRQ. This change may be 
->>>> needed in other
->>>> SoCs as well.
->>>> 
->>>> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>>> ---
->>>>   drivers/watchdog/mtk_wdt.c | 12 ++++++++++++
->>>>   1 file changed, 12 insertions(+)
->>>> 
->>>> diff --git a/drivers/watchdog/mtk_wdt.c 
->>>> b/drivers/watchdog/mtk_wdt.c
->>>> index a9c437598e7e..5a7a7b2b3727 100644
->>>> --- a/drivers/watchdog/mtk_wdt.c
->>>> +++ b/drivers/watchdog/mtk_wdt.c
->>>> @@ -10,6 +10,7 @@
->>>>    */
->>>>   #include <dt-bindings/reset/mt2712-resets.h>
->>>> +#include <dt-bindings/reset/mediatek,mt6735-wdt.h>
->>>>   #include <dt-bindings/reset/mediatek,mt6795-resets.h>
->>>>   #include <dt-bindings/reset/mt7986-resets.h>
->>>>   #include <dt-bindings/reset/mt8183-resets.h>
->>>> @@ -82,6 +83,10 @@ static const struct mtk_wdt_data mt2712_data = {
->>>>       .toprgu_sw_rst_num = MT2712_TOPRGU_SW_RST_NUM,
->>>>   };
->>>> +static const struct mtk_wdt_data mt6735_data = {
->>>> +    .toprgu_sw_rst_num = MT6735_TOPRGU_RST_NUM,
->>>> +};
->>>> +
->>>>   static const struct mtk_wdt_data mt6795_data = {
->>>>       .toprgu_sw_rst_num = MT6795_TOPRGU_SW_RST_NUM,
->>>>   };
->>>> @@ -187,9 +192,15 @@ static int mtk_wdt_restart(struct 
->>>> watchdog_device *wdt_dev,
->>>>   {
->>>>       struct mtk_wdt_dev *mtk_wdt = watchdog_get_drvdata(wdt_dev);
->>>>       void __iomem *wdt_base;
->>>> +    u32 reg;
->>>>       wdt_base = mtk_wdt->wdt_base;
->>>> +    /* Enable reset in order to issue a system reset instead of 
->>>> an IRQ */
->>>> +    reg = readl(wdt_base + WDT_MODE);
->>>> +    reg &= ~WDT_MODE_IRQ_EN;
->>>> +    writel(reg | WDT_MODE_KEY, wdt_base + WDT_MODE);
->>> 
->>> This is unnecessary and already done in mtk_wdt_start().
->>> If you think you *require* this snippet, you most likely 
->>> misconfigured the
->>> devicetree node for your device :-)
->> 
->> Ok so mtk_wdt_start is never called.
-> 
-> mtk_wdt_init() says
-> 
-> 	if (readl(wdt_base + WDT_MODE) & WDT_MODE_EN) {
-> 		set_bit(WDOG_HW_RUNNING, &wdt_dev->status);
-> 		mtk_wdt_set_timeout(wdt_dev, wdt_dev->timeout);
-> 	}
-> 
-> Your bootloader starts the watchdog. This driver will set 
-> WDOG_HW_RUNNING and
-> will hence prevent calling the .start() callback - that's why.
+It's a pretty obvious usecase to just use some from 0..n
+of a MMIO GPIO bank, so add support for this.
 
-It doesn't.
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v2:
+- Collect Rob's ACK on patch 1
+- The pdata member is called ngpio not ngpios which shows up if
+  I compile the gpio-mmio driver with the *right* flags.
+- Link to v1: https://lore.kernel.org/r/20241016-gpio-ngpios-v1-0-f16cf154f715@linaro.org
 
-WDT_MODE reads 0x5c in mtk_wdt_init if you want to see exactly how the 
-bootloader is configuring it.
+---
+Linus Walleij (2):
+      dt-bindings: gpio-mmio: Add ngpios property
+      gpio: mmio: Parse ngpios property
 
-> 
->> I'm still not quite sure how the watchdog works but it seems to me 
->> like it's supposed to be started from userspace.
-> 
-> No, it's not meant to be just only used in userspace.
-> 
->> I also see some drivers calling it in probe.
->> 
->> Say I don't want to use the watchdog (which I don't, all I need from 
->> TOPRGU is the resets, I don't care about the watchdog). Not 
->> starting the watchdog means I can't reset the system because all 
->> mtk_wdt_restart will do is make TOPRGU send me an IRQ that I have 
->> no use for.
-> 
-> If you don't want to use the watchdog, then you don't need to care 
-> about bark
-> interrupts and you don't need any mtk_wdt_restart() functionality at 
-> all :-)
+ Documentation/devicetree/bindings/gpio/gpio-mmio.yaml | 13 ++++++++++++-
+ drivers/gpio/gpio-mmio.c                              |  4 ++++
+ 2 files changed, 16 insertions(+), 1 deletion(-)
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20241016-gpio-ngpios-0cad57f0a757
 
-I need mtk_wdt_restart to restart my system. I shouldn't need to take 
-off my phone's back cover and remove the battery every time :)
-
-> 
-I think what Guenter said makes sense. We should make sure the watchdog 
-is started when calling mtk_wdt_restart or at least configured in such 
-a way that we are sure it will issue a system reset.
-
-
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
 
 
