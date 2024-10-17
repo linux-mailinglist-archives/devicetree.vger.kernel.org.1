@@ -1,56 +1,54 @@
-Return-Path: <devicetree+bounces-112437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486A49A21F0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 14:14:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 329F59A223F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 14:31:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C042DB24B6F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 12:14:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D82F1C225CC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 12:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB0381DD0DE;
-	Thu, 17 Oct 2024 12:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135FF1DD52D;
+	Thu, 17 Oct 2024 12:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="fL4A1oEs"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="tM1Bkw9x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1C21D416B;
-	Thu, 17 Oct 2024 12:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C18B1D45F2;
+	Thu, 17 Oct 2024 12:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729167280; cv=none; b=QNAqx7HFICdZ4Q4n/NjG385znMut1VoNVKHB8nYFniNOpmtRkckC3FkYAr/TrSqYzl/Hby3oU4g5Wdskr8xTGF3KoHy4Uln8ufMGjtbY+MrsZ3Jadaql3MjP/YbI3BcMlGrvHJ1MQ0OQdAVN4vdjSc9+DoGId1ZB2wzHYTRoAtI=
+	t=1729168280; cv=none; b=upBQZp6nHYGSy8PmZR3+e1pw06oAEWwXxsXmJuSC3lKLZRhrrjKsSvRMqZDQAZQzdfSC7frOARXbY4eSYv+db91CnrRI91ez5FrX4ObzYV/5hLe3HdmX4SKVF3JPwojgZM6bs38mrIptnM+ZxmBVsj2xP61JKTNmbIs9RvQsGwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729167280; c=relaxed/simple;
-	bh=MQjWC9R68FIC4n96k+Qsw6MRHboxnulPNKMAka25G88=;
+	s=arc-20240116; t=1729168280; c=relaxed/simple;
+	bh=UCHkoWv0f7C6RcPeKm6BpQfxLrwr9T18h2wATPAVOoQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vB3x3z9ZJjcZRdqqa2Zp25BJ+AOezzIoo3DG5EyOjcpq0i+qrNRCtEosA/9sh7Cp/Zs19Ml6VI+YMYpPFClMBqM+QGf4xtKmSIjskvoXxTlw2H25mcaSo29G8vdPsgLxYiFeUS+wG4L3tJZCN3fH4h9nbai+iGy4iiTZgSNuhCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=fL4A1oEs; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1729167250; x=1729772050; i=wahrenst@gmx.net;
-	bh=gBB3aiL4SNubJk9xPUE27U3qzet/MkpBlhhNCDKANgA=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=fL4A1oEsAjgrCR6A6CTaTB63plKqmnYAPLuB7MXkjKglX4e/wHMitePOUYbcNPPy
-	 +VU6+XL6s2Sis7pSH6GY/oigxv9SyCJhAvIPIJZjFmPjDj58XjOJiYRweOGTM37sM
-	 VqR5RqgGPHnYdTRRb/NhnCwrrgQ5McvMzzWbPSYqW0Az9gY0qPeDL+C94OSE8zVNQ
-	 rbPhTOCh2oCzPxeZTHcwhKurDy0rptNz1Wamvw0xOwjSdLgaupvqWwCnpgrGvien7
-	 zuDqj1pIUmzD//tR+RQ/vW8MzBjVZM1vwUUshgkB0KB7y1oEm73CutWULDvfs5Az/
-	 NwJFZ4Vymx9OiK+MBQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.104] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MTABZ-1tVoSL0u2J-00YboN; Thu, 17
- Oct 2024 14:14:10 +0200
-Message-ID: <aa21db7a-5b05-4529-ba75-e2111e9e6362@gmx.net>
-Date: Thu, 17 Oct 2024 14:14:09 +0200
+	 In-Reply-To:Content-Type; b=bQfsaIgvu86vDblIvOITshLGMJ4PSe0+hMXf0viub4Hx0InM0WEUWI3Iult8/ZVyS/EbSKXGmpshf4OV/fP4Cm/p4n8p7nN3Jz/FHsBbJEAunF/GChiimptekKEZCauBxhZT9OCI6i4ewx3Ppjh4FR+dvzhOuNQAAOTHJ7Sqhjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=tM1Bkw9x; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 93D1E88FA4;
+	Thu, 17 Oct 2024 14:31:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1729168274;
+	bh=Qi5y9EZv18ibABwGnmoS2RLBz9Wj7c4GFFGidKHjp6c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tM1Bkw9x2w20/Ojj3Tr0AE9o7xuu9EOOQgyj4xMP9Aindvue51ag2vm6Xssgd28D3
+	 p2jaH8CgRcOC2dOkoBeZLjBZWs8j1WFSDw+8SeLQ2UT0XARbytakcxR/8mOd3nmzuX
+	 9HxLprYegZGwQPuJssV6hoFoBCsQyumko4u09IiM9WaaohvWI39pKXPL/5h3GWPOiA
+	 kDXWVlNoAtKeO5XU9JGEIJWIVNxnVN6eqTVTQ/VgENF81QPKerLUMYRlH9bTTs4kKq
+	 wPfwyEkXTZdACqq/+cUipVwBNWnv9YQZD8v5Kpbb7uZBTQq8OEb3h9i1n+au7mycet
+	 XI5kFq1tcvKBA==
+Message-ID: <f8b129c3-aea1-4f28-bf14-dd281cc09ade@denx.de>
+Date: Thu, 17 Oct 2024 14:17:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,9 +56,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/12] ARM: dts: imx6ul: Align pin config nodes with
+Subject: Re: [PATCH v2 07/12] ARM: dts: imx6q: Align pin config nodes with
  bindings
-To: Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
+To: Alexander Stein <alexander.stein@ew.tq-group.com>,
+ linux-arm-kernel@lists.infradead.org
 Cc: Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
  Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -70,82 +69,55 @@ Cc: Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
  Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
  imx@lists.linux.dev, kernel@dh-electronics.com, linux-gpio@vger.kernel.org
 References: <20241017000801.149276-1-marex@denx.de>
- <20241017000801.149276-12-marex@denx.de>
+ <20241017000801.149276-7-marex@denx.de> <23695903.6Emhk5qWAg@steina-w>
 Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20241017000801.149276-12-marex@denx.de>
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <23695903.6Emhk5qWAg@steina-w>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:RDxKxPnSLngw8cBz3AOu1b1RiK7KyyptKl9OeDWpb+WZurIxpNV
- H4kj+3HWKnFW2QWjIlXUILuiY6zzIzP7TdVI4Yuw8NyeCo7QYeBBPXheHUcIi3bkB3WO8Fa
- B+F19j7EHyQQPl+xONF01dfEaY+7oRDTzHL1RRze1PVcpDGfTPIcBlEHjwYYJ6pCiOH2mXJ
- FlsG5WAcnUz4cB6DtvK7w==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:UTjQc5B7Bpw=;G2tLoMv1rCgcbPtPfr1vTQYR9xi
- Zb9og38yedcImscRivBGRZH2E6cFO+OW5Ng0kpMcrnBk0Kf/Ft/DbN7pCaypL28L6n1p0sXQc
- iZHe3NhWAAOQqPLjtdFuVJ7yL1Ux0lWKnZPkginFUuOWHwB1NXnXV0zcUxcyIuUaBdAklt+lz
- sZ77/7oyh4mSOAAOE3IKRsprQwsAhAaJTRjNiWuqdesXnqfwzG7pDRKxSAF69hnMZGCKP1NEb
- ljD7GHqANdUfrk+09+O4AGFJGFf7a/oJ5zz+8NUhjqGeoeXtuChrhkGD0xShkh3JeVUCtLG13
- xcyyqtH2sCXqucGLuHqntVRxPWDH9S4LGzEPkwkfxWYFXalycBqufLZA0SdeijCSZzq0kvjj1
- WatYRkVx3uxxEKzfPr2TXg0QdPt/oiQXnZAnlr75T6HypHTwzr36DnfgOefEUett1+ALmOY/r
- hkyrke/2I4SaheIekPRoetUdra5aF6x4If666eyPCYSASxOp6aXHiBs3Wc3lWLi37U/les2Hp
- pkWqGU+hKRvGUXzyiK4y8bIW5ncxJelbqFkkyKNW0v6D4GSmy6Eab9KnhtpLw83K8Bw8peNbH
- WLDSyKr6MyyNz/US84mbM7mTwRwpW5CBKUGufujMBG0J8AspPHsIhOIFKZp0NWlZ7VOMJ0RCJ
- FaOyo7VQvGG4RGDP5oybw9IvEkMQo2tJIdMUCFUnHAmFOvtY6lzA9IlQBFofPDZgyTGxroQ5Q
- g4ze3I+Pe0gS3ifT6i8dKtCFeIKgneYCkNbyfW8jbigNrWVHef+Ovk5mkoVTBp++MsDrDwkcK
- a6NFWKAUe1XkAk6L9deQzHLg==
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Marek,
-
-Am 17.10.24 um 02:06 schrieb Marek Vasut:
-> Bindings expect pin configuration nodes in pinctrl to match certain
-> naming and not be part of another fake node:
->
-> pinctrl@30330000: '...' does not match any of the regexes: 'grp$', 'pinc=
-trl-[0-9]+'
->
-> Drop the wrapping node and adjust the names to have "grp" prefix.
-> Diff looks big but this should have no functional impact, use e.g.
-> git show -w to view the diff.
-thanks for addressing the YAML conversion, but this specific commit
-message doesn't seems to match the change?
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Dong Aisheng <aisheng.dong@nxp.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-gpio@vger.kernel.org
-> ---
-> V2: New patch
-> ---
->   arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi b/arch/arm/boot=
-/dts/nxp/imx/imx6ul-isiot.dtsi
-> index 118df2a457c95..4c09bb3126966 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
-> @@ -322,7 +322,7 @@ MX6UL_PAD_JTAG_TRST_B__SAI2_TX_DATA	0x120b0
->   		>;
->   	};
->
-> -	pinctrl_stmpe: stmpegrp  {
-> +	pinctrl_stmpe: stmpegrp {
->   		fsl,pins =3D <
->   			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18 0x1b0b0
->   		>;
-
+On 10/17/24 8:55 AM, Alexander Stein wrote:
+> Hi Marek,
+> 
+> Am Donnerstag, 17. Oktober 2024, 02:06:53 CEST schrieb Marek Vasut:
+>> Bindings expect pin configuration nodes in pinctrl to match certain
+>> naming and not be part of another fake node:
+>>
+>> pinctrl@30330000: '...' does not match any of the regexes: 'grp$', 'pinctrl-[0-9]+'
+>>
+>> Drop the wrapping node and adjust the names to have "grp" prefix.
+>> Diff looks big but this should have no functional impact, use e.g.
+>> git show -w to view the diff.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Dong Aisheng <aisheng.dong@nxp.com>
+>> Cc: Fabio Estevam <festevam@gmail.com>
+>> Cc: Jacky Bai <ping.bai@nxp.com>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Linus Walleij <linus.walleij@linaro.org>
+>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+>> Cc: Shawn Guo <shawnguo@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: imx@lists.linux.dev
+>> Cc: kernel@dh-electronics.com
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: linux-gpio@vger.kernel.org
+>> ---
+>> V2: New patch
+>> ---
+>>   arch/arm/boot/dts/nxp/imx/imx6q-ba16.dtsi     |   2 +-
+>>   .../boot/dts/nxp/imx/imx6q-dmo-edmqmx6.dts    | 232 +++++++++---------
+>>   arch/arm/boot/dts/nxp/imx/imx6q-gk802.dts     |  92 ++++---
+>>   arch/arm/boot/dts/nxp/imx/imx6q-h100.dts      | 200 ++++++++-------
+>>   arch/arm/boot/dts/nxp/imx/imx6q-logicpd.dts   |   4 +-
+>>   arch/arm/boot/dts/nxp/imx/imx6q-mba6.dtsi     |   2 +-
+> 
+> Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com> # imx6q-mba6
+Thanks for keeping an eye on these large changes, it is much appreciated.
 
