@@ -1,155 +1,203 @@
-Return-Path: <devicetree+bounces-112412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFC69A20B7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 13:12:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314FB9A20CE
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 13:20:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B2E0288F43
-	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:12:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 548291C20961
+	for <lists+devicetree@lfdr.de>; Thu, 17 Oct 2024 11:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B324E1DBB21;
-	Thu, 17 Oct 2024 11:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59BA71DA636;
+	Thu, 17 Oct 2024 11:20:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fK9Ry1Nd"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="CQAHaUw0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A5B1DB52A
-	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:12:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F8C1D89E2
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729163528; cv=none; b=tt0Owh1FdtL2NoZWm8FZOdUmk2+rtWHj5LFWljzqKhFDU4Py065YHXq5oN7iylCALPGHBGAWCss8epJva7fZcOWeYb59z78jolJxSJ00wmoE2WWH89eghmGzvYc3JtNpwneINW7y7+spCWqzFhtt91atxlbgWBGGyObuqJLvBis=
+	t=1729164041; cv=none; b=a7p8wJLuQiiiF5Wns3sRbkkJoOXD/vX3E8qPaubCSZtIHqPUf9Ulr5N+pOqlMhMqYHK2h4qT+Ue4zePjWYowuFB7aJWLzxysg68zrnD6+hIkiBcipWe1G7KW9Q+30WDe7SSYWy/iigD/HfrpLNB15+Dill8SudYUYdYHXDXY4sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729163528; c=relaxed/simple;
-	bh=naS6qP0vKwEe1o6U7dAcb3z4jX5hBsDEpVWMdzrVJ+w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l1+LNH0PPCpId2/Hcw+F3kBstGknlAFPSwmlT72poxlzdZVii7Q2CDPe+cIOhWhJan6YvDeXLSaFt/vW2+XIC8061g9ZAirJ2IHjsiJeej3zoRdDVIETxiKnLdAB8dDwawzU3JwIdCGcx5uV9VPByTIMtOUOGS/+gjs0gIrEhd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fK9Ry1Nd; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-539983beb19so879689e87.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 04:12:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729163525; x=1729768325; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=I01kJoMcb3paKBSp+LkjL4WJ/SXZW2fawtH+MKsukNw=;
-        b=fK9Ry1NdvN4vLKib8icBrqXdETUJT4rjil9rPv+IFPeBKpLVeOlZ6f06VxnOh2B3Yk
-         j6WRzSEfemn+ZphkvL9gdkPV4aer399s3YA6CicvgTNB9rUFZUPjpJT26mcNuJr8pmM1
-         Jqv4FmfxGrbN1AxnfyKTmfz1cim1pYV5c1xd1qHpo9KqJZTdOFTFil4L8Fdcy1Y7Loxe
-         QKSxXoC934KsVpkvgt3i1dWgyOkrUt2Vps31jMfwlr7N3GKRbWMhJoMlPtX1tf+2bd5C
-         K3M0o/u241nROvuJlRVo59wvW3UXLam8XjzskLg96RxwVM831zqZrgUGekKCS5b83zvQ
-         oueQ==
+	s=arc-20240116; t=1729164041; c=relaxed/simple;
+	bh=HN1HR+UdC4N01QHsndbtKIvSOhSW3ezQeIacLjlunp4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tpXfjZhJ0QAJRNz4OLGdZ3c6XMRJjymX2QRb2vLe0yFWHpeMrit60HJIpAvGv9LxjBHvXwUucIplmnlTFQseZekvY0j4Yf/6BQOU6oUQbi2zAf6ajDwrUSFtwSdVl2gxENrpB+B6yFfOgui6C029f14WlmGk3aYj4f/FZ4l1ei0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=CQAHaUw0; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com [209.85.161.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 1A0F83F2A0
+	for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 11:20:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1729164036;
+	bh=M4YjcEVV7tGGHQM4SLZ+Rw0/aoFPAr1zOE/e6IcC6g4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=CQAHaUw0GdSeLkCoARag73bfg/PDgMJWIiJzUvisFthX810nNEHwtSRiZzN3Omwsb
+	 00He6eUXtQ5cacv6sw2t31mcO8Hxi1CL/ppYFPWCfuUybZgKvhzUDNf9+zHWbCav7N
+	 VDOi5ucSD2aq8v2K8zgOMOVTGxeSYiL7BsHCHc1E6cuct3avoffexJAJuDl4ZtvXgz
+	 cAQkdjifAiH6OnevNVv2j4CkyKSWVqWr510tXmcDBliqhAcct8Z6cq693GCjnCay0N
+	 Q6NsakbSNzAEyVHFz8yeeUyGuZqbg4fupZtQLYwmz2gtLbQvutl2INIeRxk/iU5rr9
+	 jWhUzkOsl5MrA==
+Received: by mail-oo1-f71.google.com with SMTP id 006d021491bc7-5eb60cc6d66so790323eaf.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 04:20:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729163525; x=1729768325;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I01kJoMcb3paKBSp+LkjL4WJ/SXZW2fawtH+MKsukNw=;
-        b=J1M41ZrchcueDkdGMnwOsLQ1s/Agd2DDIDWmjUof06dH3O1XLBEoQliQhQQz/XhNcW
-         zj1Pa2oC0qHletyD/lI9Zy7UaqlXEcYdXQ0W9x7tHTHAp8ra1KSk3d/uO7/31BIg/8Y5
-         +fp7J1npx+iFL4mOJjVrkPn1cWjf67dEfN2CD30jPmSZa7ZVCr0jw9fnV57PIREdnmdP
-         kHHUM50vvTXYiz6Mbm+YkIoLze9unkRqwlRmNvkylZyn16zg5PPHgOvp3/sPAWQm3C8k
-         7X2MtSV0Xk6UzVR3sIQqmYwFt10ZykHcoiHqVKI5zuz3LR32xQrGP/CpRG567NFSPf2n
-         0MNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWsPPvXnpXXfFhe8Xuc2eups2YyXYMn4rz/SbRiSBi1VOPtpILl02b3l/+wFp2GLxN37M3o+o+g0XEN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdZtUjsUkFUb+zv3H51ocrpqlLeUr/UGKzqvV/yxa8Ww9SZ8IC
-	vzBsUjbwYFm6lbTIllTgZTKIvzQGQ4k0rwbVInRlFOg/Wdn7fyN7su391jNPk2s=
-X-Google-Smtp-Source: AGHT+IFiNFENRIQD9pOtFdyQhPcQV/5ezbByMZVYiVFSktA1gZgDzgrr0EeV3eQLQpEHVuZ2WzE1iw==
-X-Received: by 2002:ac2:4c4c:0:b0:539:8e77:9129 with SMTP id 2adb3069b0e04-539da583e0fmr12041614e87.44.1729163524933;
-        Thu, 17 Oct 2024 04:12:04 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539fffb1eb3sm746710e87.81.2024.10.17.04.12.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 04:12:03 -0700 (PDT)
-Date: Thu, 17 Oct 2024 14:12:00 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com, 
-	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com, quic_parass@quicinc.com
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
-Message-ID: <qevhitaa47fd77jrrs4viv6mctkhedoz5jy33ruqvv62qrb44y@owzfxnxrapvf>
-References: <20240209075716.GA12035@thinkpad>
- <CAA8EJppfzc_dM9c9mHPVWheVxi-1gJxCmaWPvreELijEQDDSyA@mail.gmail.com>
- <20241001101622.ys36slymgjbaz26q@thinkpad>
- <8459161B-87B8-481F-AE71-3D5156B1CA56@linaro.org>
- <20241001141948.g74rn6777ywvtcmx@thinkpad>
- <CFF89D4D-8131-47C2-95B8-A0E130A16E46@linaro.org>
- <9c24ba5d-431a-c45e-ce1c-3541eac7d017@quicinc.com>
- <20241012124334.4gsspgtuud4uudop@thinkpad>
- <7yzjgqitjvfwricftcpelktwjbgwkjuibwkpodjd6x4gwkjkw3@wkeqp6lqwfqv>
- <bbc900f7-eb8f-2664-2144-50a9a6ad8453@quicinc.com>
+        d=1e100.net; s=20230601; t=1729164035; x=1729768835;
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=M4YjcEVV7tGGHQM4SLZ+Rw0/aoFPAr1zOE/e6IcC6g4=;
+        b=lv4bLd98j5pE6RBM01UzEN5TbNQxXPARPH3eToDKyBtyCJ0vaCrXPL2WvpwfZf3s5b
+         eeDRhWjX1gNMVGDMNzYq0qQNvUQL4muO5m6x3T457Oag7zvrEAw9zQIOOOASwSyU+umV
+         sBlhWBlq7hr+/rfPYgPvRorEUknJlrV09QiK/wJtvh0loyON3TEYrZKvqRYO11yf9MaU
+         +H+1f+VAzw9SZSmMgY0Z39cKXn/l3zWskGgH5Pmiat+CmqZ2ofkXI13u+TJsqio8WM2a
+         2HDpgoL6hubbaJ7AE4kVVH9dimUHCfUrVV9vOHkTdJc/itN1WRig5Ee4uukjyc8+p0aK
+         fSeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWTMCmQhnBbYFoL3HuX1ny/wgDAoayQwfOOK3ttqqzUb6lsyxanZFCBdy3Qjs7NJjTpVx8NCPvHpkSF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3+wauOLGx/tQ7ZT1MSTuEFUyYKAiR8RJbSGRFL8prSul9FqFh
+	LhwJ7m3c/MPT5xMkpVH042GIypbbCaz5nPdvUsFM3MtlpJlK3k03EcchMb0C+ugG/AnPjUmrfYN
+	w4yjkr2zwh798crID3udsS0/5F36C9/uy5K+4N54s1HP0osj8wgKl/lMys3qPuG9isCmVkL2za4
+	ZGaN3e6HCQpRNz0sAUrxQAB1kArat3Y4e1Bege8aBF6o6s3fEVEg==
+X-Received: by 2002:a05:6871:b0c:b0:277:fbac:1f71 with SMTP id 586e51a60fabf-288eddb2c9bmr5430264fac.3.1729164034980;
+        Thu, 17 Oct 2024 04:20:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFfU2Lplv8hxPRM8N7voJy7lh3n9cW1UVrwgOb9RsD0H7yH3H0NpoWnlE93REmfGdPNvgkvNlDe3u07LYOkoSo=
+X-Received: by 2002:a05:6871:b0c:b0:277:fbac:1f71 with SMTP id
+ 586e51a60fabf-288eddb2c9bmr5430251fac.3.1729164034683; Thu, 17 Oct 2024
+ 04:20:34 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 17 Oct 2024 04:20:34 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <4825037e-08e6-4946-9aee-a19512fb2346@samsung.com>
+References: <20241014123314.1231517-1-m.wilczynski@samsung.com>
+ <CGME20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328@eucas1p2.samsung.com>
+ <20241014123314.1231517-4-m.wilczynski@samsung.com> <CAJM55Z-bzivMZWUsHiii+2tw2-kdRe7kqtVa+MvPEAVTmOvChg@mail.gmail.com>
+ <4825037e-08e6-4946-9aee-a19512fb2346@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bbc900f7-eb8f-2664-2144-50a9a6ad8453@quicinc.com>
+Mime-Version: 1.0
+Date: Thu, 17 Oct 2024 04:20:34 -0700
+Message-ID: <CAJM55Z913WhGUVHR8e2GhS=x56hqrAMzGmRgLLNMFEWTguxgYA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] riscv: dts: thead: Add mailbox node
+To: Michal Wilczynski <m.wilczynski@samsung.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, drew@pdp7.com, guoren@kernel.org, 
+	wefu@redhat.com, jassisinghbrar@gmail.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, m.szyprowski@samsung.com
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 16, 2024 at 10:43:19AM +0530, Krishna Chaitanya Chundru wrote:
-> 
-> 
-> On 10/14/2024 4:55 AM, Dmitry Baryshkov wrote:
-> > On Sat, Oct 12, 2024 at 06:13:34PM +0530, Manivannan Sadhasivam wrote:
-> > > On Fri, Oct 11, 2024 at 05:24:29PM +0530, Krishna Chaitanya Chundru wrote:
-> > > 
-> > > [...]
-> > > 
-> > > > > > The logic here is that the fixed endpoints in the switch will get an unique SID
-> > > > > > and the devices getting attached to slots will share the same SID of the bus
-> > > > > > (this is the usual case with all Qcom SoCs).
-> > > > > > 
-> > > > > > But I guess we would need 'iommu-map-mask' as well. Hope this addresses your
-> > > > > > concern.
-> > > > > 
-> > > > > Yes, thank you!
-> > > > > 
-> > > > Hi dimitry & mani,
-> > > > 
-> > > > This particular board variant doesn't expose any open slots to connect
-> > > > a different endpoints like another switch(which might have BDF unknown
-> > > > to us) so static table should be fine for this board variant.
-> > > > 
-> > > > I tries to add iommu-map-mask property, the issue with that property is
-> > > > that the driver is applying the mask to the bdf before searching for the
-> > > > entry in the table. If I use a mask value which satisfies all the
-> > > > entries in the table ( mask as 0x718) and if a new bdf is enumerated
-> > > > lets say 0x600 due to mask 0x718 its value is again 0x600 only.
-> > > > 
-> > > > Can we skip iommu-map-mask property and use only static table for this
-> > > > board as we know this board doesn't expose any open slots.
-> > > > 
-> > > 
-> > > Hmm, I was not aware that it doesn't have open slots. Fine with me then.
-> > 
-> > It doesn't feature open slots, but it has two PCIe connections on HS2 /
-> > HS3. Users might attach external PCIe devices.
-> > 
-> > Krishna, could you please clarify, how those two connections are routed?
-> > 
-> For this qps615 board to one of the downstream port (pcie to usb) usb
-> hub is connected and to the other downstream port NVMe will be
-> connected.
+Michal Wilczynski wrote:
+>
+>
+> On 10/14/24 16:57, Emil Renner Berthing wrote:
+> > Michal Wilczynski wrote:
+> >> Add mailbox device tree node. This work is based on the vendor kernel =
+[1].
+> >>
+> >> Link: https://protect2.fireeye.com/v1/url?k=3D0bc95f25-545267d8-0bc8d4=
+6a-000babff317b-85a52eab21db9d22&q=3D1&e=3D63a49acd-e343-43d2-a57d-b4f6fcd2=
+3b61&u=3Dhttps%3A%2F%2Fgithub.com%2Frevyos%2Fthead-kernel.git [1]
+> >>
+> >> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> >> ---
+> >>  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
+> >>  1 file changed, 12 insertions(+)
+> >>
+> >> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/d=
+ts/thead/th1520.dtsi
+> >> index 6992060e6a54..435f0ab0174d 100644
+> >> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> @@ -555,5 +555,17 @@ portf: gpio-controller@0 {
+> >>  				interrupts =3D <55 IRQ_TYPE_LEVEL_HIGH>;
+> >>  			};
+> >>  		};
+> >> +
+> >> +		mbox_910t: mailbox@ffffc38000 {
+> >
+> > Hi Michal,
+> >
+> > Thanks for your patch! Please sort this by address similar to the other=
+ nodes.
+>
+> Thank you for your review. Will do.
 
-The board has two PCIe links routed to the HS2 and HS3 connectors. Are
-they routed to the PCIe switch?
+Thanks!
 
-Yes, they are not standard slots, but still the board is expandable and
-it is possible to connect external PCIe devices. As such it is not
-possible to have static SID mapping.
+> >
+> >> +		       compatible =3D "thead,th1520-mbox";
+> >> +		       reg =3D <0xff 0xffc38000 0x0 0x4000>,
+> >
+> > The documentation[1] calls this area MBOX0_T, but it says it's 24kB lon=
+g.
+> >
+> > [1]: https://protect2.fireeye.com/v1/url?k=3D182b68d6-47b0502b-182ae399=
+-000babff317b-d2b05f97b85a09ff&q=3D1&e=3D63a49acd-e343-43d2-a57d-b4f6fcd23b=
+61&u=3Dhttps%3A%2F%2Fgit.beagleboard.org%2Fbeaglev-ahead%2Fbeaglev-ahead%2F=
+-%2Fblob%2Fmain%2Fdocs%2FTH1520%2520System%2520User%2520Manual.pdf
+> >
+> >> +			     <0xff 0xffc44000 0x0 0x1000>,
+> >
+> > According to the documentation this is inside the 24kB MBOX1_T area.
+> >
+> >> +			     <0xff 0xffc4c000 0x0 0x1000>,
+> >
+> > This is callod MBOX2_T, but is 8kB long.
+> >
+> >> +			     <0xff 0xffc54000 0x0 0x1000>;
+> >
+> > This is callod MBOX3_T, but is 8kB long.
+> >
+> >> +		       reg-names =3D "local", "remote-icu0", "remote-icu1", "remote=
+-icu2";
+> >
+> > Maybe these should match the MBOXn_T names in the documentation?
+>
+> Indeed, those are excellent points. I wondered about this today, trying
+> to understand why the mapping was done this way.
+>
+> For the MBOX0_T mapping, the mailbox driver needs to map the M0_*
+> registers, including the M0_Cn registers, where other cores write their
+> messages. This setup requires a total of 16KB, with an additional 8KB
+> that remains unused.
+>
+> Regarding MBOX1_T, MBOX2_T, and MBOX3_T, only one set of registers is
+> necessary - specifically, Mn_C0 since the kernel always sends messages
+> from the 910t core with CPU_IDX=3D0.
+>
+> The MBOX1_T mapping is particularly confusing, as the relevant
+> registers, M1_C0*, start with an offset of 0x4000 relative to the
+> beginning of the mapping.
+>
+> For MBOX2_T and MBOX3_T, the necessary register sets, M2_C0 and M3_C0,
+> each occupy 4KB of address space, leaving extra 4kB unused.
+>
+> I assume the hardware designers found these mappings more
+> straightforward to implement this way. I=E2=80=99m fairly confident that =
+these
+> numbers are accurate, as I have tested them and confirmed they work.
 
--- 
-With best wishes
-Dmitry
+I don't doubt these mappings work, but usually the device tree should descr=
+ibe
+the hardware and not the driver. So unless you think the documentation is
+wrong, I'd still suggest you do the bindings and device tree so they descri=
+be
+the hardware, and then let the driver handle the irregular register offsets=
+.
+
+/Emil
 
