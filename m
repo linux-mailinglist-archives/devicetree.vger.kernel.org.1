@@ -1,253 +1,339 @@
-Return-Path: <devicetree+bounces-112991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B509A4238
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 17:22:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF4DC9A4254
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 17:28:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D61961C209AD
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:22:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 545621F256B9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99FC1FF7C2;
-	Fri, 18 Oct 2024 15:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262F9201271;
+	Fri, 18 Oct 2024 15:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="AIZnqn0c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="byWgYVJi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 567581D7989;
-	Fri, 18 Oct 2024 15:22:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8AB1200B88
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 15:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729264962; cv=none; b=bh2Icj4EGlLfs3JVUDzc34f9j/pJ1SK3QwfFDA/JOHmU/ISC4/+1uK6YJLWja+a2gRr17yx9jrvT8SzV+P7ZtfBR0d7oYmAA0mkYaSdX3L4H7KArtSVrLpCgp3sYWtKzXvOapfHZYrB9sb2oI8o5aybt/DdjoEQVFoHOoU21Qbo=
+	t=1729265286; cv=none; b=bZMMKtne/BvD1tfJLYD6odESIqx7K+KJ5s6KNZJwePNRmp5hlIj6EM72X//EoWKHTjejBTIyTFejIZWX4NUYYastgCb6uHff/xFmlUVAMYOsVcYzTPJsC1LltF9wSZxt5z0Y4MpVJNzg3ASnSwfV6BNERKpSKmuWusafu1VaAw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729264962; c=relaxed/simple;
-	bh=SSpKaVaCX27nL5SxgyzizMtsMVImkADVzoBCLGb09Mk=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=CYZ83zziAZhGG6eI/nCyNpIdeosSbVn+5UNBNUgcl3hiF2lP37g/kDk3RDc8R1xndcf9GJSv9YQ8erIUBGPtShPeKsvP5wr1qGLsBkdRWsfe+lJkJFfCmcVCPqLsnL7hVDJZUq+k24bv+pcCQ21NHUKWttzob+oiA5lrdnuHRnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=AIZnqn0c; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1729264937; x=1729869737; i=frank-w@public-files.de;
-	bh=nYO/ZWwzw37Yw09J81DGKU8898+LB3M5uGlP4gdXjqU=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=AIZnqn0cRCQTHsnWPwGY1EisV+fQDC0WkiPE76y2Ze3JfwdCfNLWcV1UeGe0dkSx
-	 MCFIYCdol7BqAj4jPprgIaHdwu5oXu9zorbcIdKWWB4oQCHwKjmf51gPGVc7uBWh2
-	 G6p9cqAImrD0P8jQEB0MyvIhuNgtv0eUjn4d9mBftkyYojyrAehCA8VveUcFSb1+y
-	 SbTeeTLGoUin0QcjgXIk407gBmz0uOo00yRxVE9T8SBui4ihHAuPI9wQF8fCQThb2
-	 CiL9chUWVUaUZNeEHz5EIvzbFwOZ+FX2KGy37DfsBC7qhmBG9NVDF2MRSU2eVHe0h
-	 m42Bc5iH+KM/Bp0JMA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.156.70] ([217.61.156.70]) by web-mail.gmx.net
- (3c-app-gmx-bs21.server.lan [172.19.170.73]) (via HTTP); Fri, 18 Oct 2024
- 17:22:17 +0200
+	s=arc-20240116; t=1729265286; c=relaxed/simple;
+	bh=C3Ec4ZywUcLyl7Ti+mO1A9lNTZgcdltNTaZhreoAULM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W04WPw9LWcGq0cmytCe0ReHZtfrd2AvW0yhXGZ9dcrVBlmOAOAu0kpEI4rshfSKzl7tlKyWZz+Xbl/kbrYVkRLP+W+R9XlfgbEmJORxBmNvNp8yVlfL0xxXSIUcioDylaI8K/dtW+ZkXwC9Y/l3HN91O6/lk7RX6oiuPXxe8DFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=byWgYVJi; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-539e8586b53so2776110e87.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 08:28:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729265281; x=1729870081; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=J9igagZbTZpOqBkc1gSwcBtmtCoyin8WrPAiBEamjxE=;
+        b=byWgYVJirVA78jLxelInPwy0RFFF5I44WvQACJMR7+9fgjRtoXWmzR87McQimFljfJ
+         vXoYOb/1BCCO59hUgvSuGpMvvo54C1940GvGU7yzKe6vO4zEcaL9CcuOeCWfrLW8/BJz
+         YTz5sNLnfPNVEWWS0F0lBX4MfDu1j2rxO3j7MRqc1zjvBRZB/PtvMNM3G+rvfVdWwbw8
+         +uTQ9rM3H1h+do+zhZ5zzSHWVoD7s9O0jlqw19N3a+AlLTyICalZlPaNVCJzVD3AjpNz
+         FEuzNCtcPqUZ+a74eDVxxtBmx38X/GqwMyc9XCqvQnOp9brK6DqBPYqHAoeYzpJN3XDk
+         C+CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729265281; x=1729870081;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J9igagZbTZpOqBkc1gSwcBtmtCoyin8WrPAiBEamjxE=;
+        b=pONti79wO0p+8msuRsyo2dMkd+Oxe7U/1hOKZPT7DB7zIYnqRG3GJbuunwcN5hs1O3
+         u/KETM9eazp9JoTxyxO0dw2WmrjiGjNKA/7n4oCdpYo4EYQvHaxgC7KaH06zB8BhRoyN
+         lKmposDlX09rcimZVqdicQjCNV+UyiP1qOKOgvJu3JW/e5OT8/Qeisd49hz48E1UsNYv
+         forJ0Bz73ekBi3zkOd38wp3JHI31dzBFCrbkFo6+oUQjWBvvBzpXa7VZJG5XKLNOrrz3
+         CnnpIbdwAkDmL02HKiCWzR0jNEj2wuzpA7IP6J+pHuOfLWLq4H52MMxs36X9mtc2ub1R
+         uLDg==
+X-Forwarded-Encrypted: i=1; AJvYcCW2tB1NeSiirhP6MIkGJqTu7tsbh5GF4KO6U+1hOrMOYyLPJ/tzU3oxdy35Rf+M3IaSsDkN3wbXrguQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+1Sw3UF9AEmnSTWY8239hXncQCztHjeKjw+fjat94Mk/H4NE0
+	/xDmLSoEgHx6uLKS6snytjfqYUBpLofZHgAy1qWBHNL7xPb0U08ZXe/Ab97M1+M=
+X-Google-Smtp-Source: AGHT+IGDVIqQv+Tpup9SNBWVuFswxN7imPsyI0MtXA1lYFXP+bneTPZNYGhJPSJ0LOIALSlKt5IQvg==
+X-Received: by 2002:a05:6512:2813:b0:539:f6b1:2d05 with SMTP id 2adb3069b0e04-53a0c6ad3a5mr2462432e87.9.1729265280579;
+        Fri, 18 Oct 2024 08:28:00 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a15211b27sm245443e87.256.2024.10.18.08.27.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 08:28:00 -0700 (PDT)
+Date: Fri, 18 Oct 2024 18:27:57 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] usb: typec: mux: Add support for the TUSB1046
+ crosspoint switch
+Message-ID: <4y5zvdauy4wg6gjkd2pnenamnc4rkoo4ilrm5lftopwbc2kifk@4lwtyo72ewaa>
+References: <20241018-tusb1046-v1-0-a38312f18691@bootlin.com>
+ <20241018-tusb1046-v1-2-a38312f18691@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-c4ba2a12-a350-4681-b2f5-e04c27bb3630-1729264937213@3c-app-gmx-bs21>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <linux@fw-web.de>, Linus Walleij
- <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Sean Wang
- <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- daniel@makrotopia.org, john@phrozen.org, ansuelsmth@gmail.com,
- eladwf@gmail.com, Sam Shih <sam.shih@mediatek.com>,
- =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Subject: Aw: Re: [PATCH v4 2/4] pinctrl: mediatek: add MT7988 pinctrl driver
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 18 Oct 2024 17:22:17 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <d1a9f533-3a9e-47c2-9476-c54653b56e68@collabora.com>
-References: <20241009165222.5670-1-linux@fw-web.de>
- <20241009165222.5670-3-linux@fw-web.de>
- <d1a9f533-3a9e-47c2-9476-c54653b56e68@collabora.com>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:LhGHiJlaXI887Ob46HR55sDLtu+gghtsz7L1HjmF/g2v//30/Su9ziz6UJFD51KjA2b8h
- MOOtaYbkh3YWrl752DWj6BWxAFq8n1ffWe1cBnFDAM2BYoGsqLUQyjEYDoiBYeNeS0j0L2FoycJP
- NI/giYUHQ3RXj8LSSzb6KrhJCW/iUCcqWXxgODtLaVcAW4+hxlfNa/vG0afkmt+P5mIP3PRwigvR
- zhFWPV0jluHR8dOWX31a0QHdq+bE01ldfDW47Xqhu6RA91qmFb2Ky/I2cdb4hrWXKQLY4aUPH0gU
- BI=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:L2sIoFh25S4=;5fTiyybGU9Ehmit0sEVxGFXQvqP
- y3IlCKOyyZpabjtj9f2QPKH7uH46/p3Q2cOdcnaDaXt93hhjnT7hCIiFFvF5DDxovcPxna20w
- JgH1Ejg+BpzEzY7GnLwT56LNVS29KJ1oF4pC5n2wd2Nr9NvOHMbIE5BwlWdKUXWX6OKw/PbBF
- t2hvXCuWnXpVdvYFCmGSP4p4fWXQVl5RWVlxRJ1rJUYockZ9EppNPTz0pe3t/VillfznQ3tfV
- yG9GdhNneph7U5oY27kRZ83dgQjasFTgAQu5faRdqphxWft65wA/bK5zsNFgH8FPXM7RrOs+v
- b5GQLZUjerUHE+JjGP86/Yhqdc+yjoum7L8tCiPFu0c3F2kT1ZiQXhb9ULlfpg2vSbZqa1Gnh
- CDRp+66GtUcfnh8nqSBEyUdy4u1jI5JuBEYUtq1l8a0KA+Bp15Y9/2SiOuWvB9acDtLwgeWwz
- 4kCEqW2MtCoBKGur2B0nOe3j776xlyRyiUPn6auPo26XvN1sStqZP6NA0Za2hC/tlGUSOG/Fk
- kRNwTyovrIkm9I9vs+aGlw9Ee8ThP4Rg1WCTU5qHc2WzgLA5R/Oxzq2iZINTX7SSvINivfMJP
- /wDVN2dfnem44VLEq5dV81w9aiDIaalEHThdfkGRymqNDFGMsFzkB4R+vTM7V3Y6T8/aitspT
- fZog3nDkTZ5e6nPCxMmhS0wSo/pj1AhqPgGV3T3V0g==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241018-tusb1046-v1-2-a38312f18691@bootlin.com>
 
-Hi Angelo
+On Fri, Oct 18, 2024 at 03:30:49PM +0200, Romain Gantois wrote:
+> The TUSB1046-DCI is a USB-C linear redriver crosspoint switch, which can
+> mux SuperSpeed lanes from a Type-C connector to a USB3.0 data lane or up to
+> 4 display port lanes.
+> 
+> Add support for driving the TUSB1046 as a Type-C orientation switch and
+> DisplayPort altmode multiplexer.
+> 
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> ---
+>  MAINTAINERS                      |   7 ++
+>  drivers/usb/typec/mux/Kconfig    |   9 +++
+>  drivers/usb/typec/mux/Makefile   |   1 +
+>  drivers/usb/typec/mux/tusb1046.c | 161 +++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 178 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c27f3190737f8b85779bde5489639c8b899f4fd8..c880588b63f27d628edeec09fa7d904eeabbde92 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -24142,6 +24142,13 @@ L:	linux-usb@vger.kernel.org
+>  S:	Orphan
+>  F:	drivers/usb/typec/tcpm/
+>  
+> +USB TYPEC TUSB1046 MUX DRIVER
+> +M:	Romain Gantois <romain.gantois@bootlin.com>
+> +L:	linux-usb@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/usb/ti,tusb1046.yaml
+> +F:	drivers/usb/typec/mux/tusb1046.c
+> +
+>  USB UHCI DRIVER
+>  M:	Alan Stern <stern@rowland.harvard.edu>
+>  L:	linux-usb@vger.kernel.org
+> diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
+> index ce7db6ad30572a0a74890f5f11944fb3ff07f635..67381b4ef4f68f4a6e73f157365ee24d0ab7109a 100644
+> --- a/drivers/usb/typec/mux/Kconfig
+> +++ b/drivers/usb/typec/mux/Kconfig
+> @@ -66,6 +66,15 @@ config TYPEC_MUX_PTN36502
+>  	  Say Y or M if your system has a NXP PTN36502 Type-C redriver chip
+>  	  found on some devices with a Type-C port.
+>  
+> +config TYPEC_MUX_TUSB1046
+> +	tristate "TI TUSB1046 Type-C crosspoint switch driver"
+> +	depends on I2C
+> +	help
+> +	  Driver for the Texas Instruments TUSB1046-DCI crosspoint switch.
+> +	  Supports flipping USB-C SuperSpeed lanes to adapt to orientation
+> +	  changes, as well as muxing DisplayPort and sideband signals to a
+> +	  common Type-C connector.
+> +
+>  config TYPEC_MUX_WCD939X_USBSS
+>  	tristate "Qualcomm WCD939x USBSS Analog Audio Switch driver"
+>  	depends on I2C
+> diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
+> index bb96f30267af05b33b9277dcf1cc0e1527d2dcdd..60879446da9365183567d3374a2fb7b5171fb3d7 100644
+> --- a/drivers/usb/typec/mux/Makefile
+> +++ b/drivers/usb/typec/mux/Makefile
+> @@ -7,4 +7,5 @@ obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
+>  obj-$(CONFIG_TYPEC_MUX_IT5205)		+= it5205.o
+>  obj-$(CONFIG_TYPEC_MUX_NB7VPQ904M)	+= nb7vpq904m.o
+>  obj-$(CONFIG_TYPEC_MUX_PTN36502)	+= ptn36502.o
+> +obj-$(CONFIG_TYPEC_MUX_TUSB1046)	+= tusb1046.o
+>  obj-$(CONFIG_TYPEC_MUX_WCD939X_USBSS)	+= wcd939x-usbss.o
+> diff --git a/drivers/usb/typec/mux/tusb1046.c b/drivers/usb/typec/mux/tusb1046.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..76edb83c057a764ccee7d717852c3eaaf02d808f
+> --- /dev/null
+> +++ b/drivers/usb/typec/mux/tusb1046.c
+> @@ -0,0 +1,161 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Driver for the TUSB1046-DCI USB Type-C crosspoint switch
+> + *
+> + * Copyright (C) 2024 Bootlin
+> + */
+> +
+> +#include <linux/bits.h>
+> +#include <linux/i2c.h>
+> +#include <linux/usb/typec_mux.h>
+> +#include <linux/usb/typec_dp.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/err.h>
+> +#include <linux/of_device.h>
+> +#include <linux/device.h>
+> +
+> +#define TUSB1046_REG_GENERAL 0xa
+> +
+> +/* General register bits */
+> +#define TUSB1046_GENERAL_FLIPSEL BIT(2)
+> +#define TUSB1046_GENERAL_CTLSEL  GENMASK(1, 0)
+> +
+> +/* Mux modes */
+> +#define TUSB1046_CTLSEL_DISABLED          0x0
+> +#define TUSB1046_CTLSEL_USB3              0x1
+> +#define TUSB1046_CTLSEL_4LANE_DP          0x2
+> +#define TUSB1046_CTLSEL_USB3_AND_2LANE_DP 0x3
+> +
+> +struct tusb1046_priv {
+> +	struct i2c_client *client;
+> +	struct typec_switch_dev *sw;
+> +	struct typec_mux_dev *mux;
+> +};
+> +
+> +static int tusb1046_mux_set(struct typec_mux_dev *mux,
+> +			    struct typec_mux_state *state)
+> +{
+> +	struct tusb1046_priv *priv = typec_mux_get_drvdata(mux);
+> +	struct i2c_client *client = priv->client;
+> +	struct device *dev = &client->dev;
+> +	int mode, val;
+> +
+> +	dev_dbg(dev, "mux mode requested: %lu\n", state->mode);
+> +
 
-> Gesendet: Donnerstag, 10=2E Oktober 2024 um 14:28 Uhr
-> Betreff: Re: [PATCH v4 2/4] pinctrl: mediatek: add MT7988 pinctrl driver
->
-> Il 09/10/24 18:52, Frank Wunderlich ha scritto:
-> > From: Daniel Golle <daniel@makrotopia=2Eorg>
-> >=20
-> > Add pinctrl driver for the MediaTek MT7988 SoC=2E
-> >=20
-> > Signed-off-by: Sam Shih <sam=2Eshih@mediatek=2Ecom>
-> > Signed-off-by: Daniel Golle <daniel@makrotopia=2Eorg>
-> > [correctly initialise for the function_desc structure]
-> > Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc=2Eunal@arinc9=2Ecom>
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
-> > ---
-> >   drivers/pinctrl/mediatek/Kconfig          |    7 +
-> >   drivers/pinctrl/mediatek/Makefile         |    1 +
-> >   drivers/pinctrl/mediatek/pinctrl-mt7988=2Ec | 1526 +++++++++++++++++=
-++++
-> >   3 files changed, 1534 insertions(+)
-> >   create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt7988=2Ec
-> >=20
-> > diff --git a/drivers/pinctrl/mediatek/Kconfig b/drivers/pinctrl/mediat=
-ek/Kconfig
-> > index 7af287252834=2E=2E952110c783d4 100644
-> > --- a/drivers/pinctrl/mediatek/Kconfig
-> > +++ b/drivers/pinctrl/mediatek/Kconfig
-> > @@ -187,6 +187,13 @@ config PINCTRL_MT7986
-> >   	default ARM64 && ARCH_MEDIATEK
-> >   	select PINCTRL_MTK_MOORE
-> >  =20
-> > +config PINCTRL_MT7988
-> > +	bool "Mediatek MT7988 pin control"
-> > +	depends on OF
-> > +	depends on ARM64 || COMPILE_TEST
-> > +	default ARM64 && ARCH_MEDIATEK
-> > +	select PINCTRL_MTK_MOORE
-> > +
-> >   config PINCTRL_MT8167
-> >   	bool "MediaTek MT8167 pin control"
-> >   	depends on OF
-> > diff --git a/drivers/pinctrl/mediatek/Makefile b/drivers/pinctrl/media=
-tek/Makefile
-> > index 680f7e8526e0=2E=2E2b47ce030b54 100644
-> > --- a/drivers/pinctrl/mediatek/Makefile
-> > +++ b/drivers/pinctrl/mediatek/Makefile
-> > @@ -27,6 +27,7 @@ obj-$(CONFIG_PINCTRL_MT7623)		+=3D pinctrl-mt7623=2E=
-o
-> >   obj-$(CONFIG_PINCTRL_MT7629)		+=3D pinctrl-mt7629=2Eo
-> >   obj-$(CONFIG_PINCTRL_MT7981)		+=3D pinctrl-mt7981=2Eo
-> >   obj-$(CONFIG_PINCTRL_MT7986)		+=3D pinctrl-mt7986=2Eo
-> > +obj-$(CONFIG_PINCTRL_MT7988)		+=3D pinctrl-mt7988=2Eo
-> >   obj-$(CONFIG_PINCTRL_MT8167)		+=3D pinctrl-mt8167=2Eo
-> >   obj-$(CONFIG_PINCTRL_MT8173)		+=3D pinctrl-mt8173=2Eo
-> >   obj-$(CONFIG_PINCTRL_MT8183)		+=3D pinctrl-mt8183=2Eo
-> > diff --git a/drivers/pinctrl/mediatek/pinctrl-mt7988=2Ec b/drivers/pin=
-ctrl/mediatek/pinctrl-mt7988=2Ec
-> > new file mode 100644
-> > index 000000000000=2E=2E5479f4fa47a7
-> > --- /dev/null
-> > +++ b/drivers/pinctrl/mediatek/pinctrl-mt7988=2Ec
-> > @@ -0,0 +1,1526 @@
-> > +// SPDX-License-Identifier: GPL-2=2E0
-> > +/*
-> > + * The MT7988 driver based on Linux generic pinctrl binding=2E
-> > + *
-> > + * Copyright (C) 2020 MediaTek Inc=2E
-> > + * Author: Sam Shih <sam=2Eshih@mediatek=2Ecom>
-> > + */
-> > +
-> > +#include "pinctrl-moore=2Eh"
-> > +
-> > +enum MT7988_PINCTRL_REG_PAGE {
->=20
-> Lowercase name for the enumeration, please=2E
+RMW cycles should be protected by a mutex, so that mux and switch
+operations don't rewrite the register concurrently.
 
-will do in next version
+> +	val = i2c_smbus_read_byte_data(client, TUSB1046_REG_GENERAL);
+> +	if (val < 0) {
+> +		dev_err(dev, "failed to read ctlsel status, err %d\n", val);
+> +		return val;
+> +	}
+> +
+> +	switch (state->mode) {
+> +	case TYPEC_STATE_USB:
+> +		mode = TUSB1046_CTLSEL_USB3;
+> +		break;
+> +	case TYPEC_DP_STATE_C:
 
-> > +	GPIO_BASE,
-> > +	IOCFG_TR_BASE,
-> > +	IOCFG_BR_BASE,
-> > +	IOCFG_RB_BASE,
-> > +	IOCFG_LB_BASE,
-> > +	IOCFG_TL_BASE,
-> > +};
-> > +
->=20
-> =2E=2Esnip=2E=2E
->=20
-> > +static const struct mtk_eint_hw mt7988_eint_hw =3D {
-> > +	=2Eport_mask =3D 7,
-> > +	=2Eports =3D 7,
-> > +	=2Eap_num =3D ARRAY_SIZE(mt7988_pins),
-> > +	=2Edb_cnt =3D 16,
->=20
-> Are you sure that the EINT controller in this SoC doesn't have the
-> DBNC_SET and DBNC_CLR registers?
->=20
-> Another way of asking the same thing: are you sure that this SoC does
-> not support interrupt debounce?
+The TYPEC_DP_STATE_n states are valid only after checking altmode's
+SVID. Otherwise it might be that some other altmode has been selected.
 
-Got information from MTK, that hw debounce is only available for pins 0 to=
- 15,
-and does not support pins with numbers 16 or higher and definition here is=
- correct=2E
+> +	case TYPEC_DP_STATE_E:
+> +		mode = TUSB1046_CTLSEL_4LANE_DP;
+> +		break;
+> +	case TYPEC_DP_STATE_D:
+> +		mode = TUSB1046_CTLSEL_USB3_AND_2LANE_DP;
+> +		break;
+> +	case TYPEC_STATE_SAFE:
+> +	default:
+> +		mode = TUSB1046_CTLSEL_DISABLED;
+> +		break;
+> +	}
+> +
+> +	val &= ~TUSB1046_GENERAL_CTLSEL;
+> +	val |= mode;
+> +
+> +	return i2c_smbus_write_byte_data(client, TUSB1046_REG_GENERAL, val);
+> +}
+> +
+> +static int tusb1046_switch_set(struct typec_switch_dev *sw,
+> +			       enum typec_orientation orientation)
+> +{
+> +	struct tusb1046_priv *priv = typec_switch_get_drvdata(sw);
+> +	struct i2c_client *client = priv->client;
+> +	struct device *dev = &client->dev;
+> +	int val;
+> +
+> +	dev_dbg(dev, "setting USB3.0 lane flip for orientation %d\n", orientation);
+> +
+> +	val = i2c_smbus_read_byte_data(client, TUSB1046_REG_GENERAL);
+> +	if (val < 0) {
+> +		dev_err(dev, "failed to read flipsel status, err %d\n", val);
+> +		return val;
+> +	}
+> +
+> +	if (orientation == TYPEC_ORIENTATION_REVERSE)
+> +		val |= TUSB1046_GENERAL_FLIPSEL;
+> +	else
+> +		val &= ~TUSB1046_GENERAL_FLIPSEL;
+> +
+> +	return i2c_smbus_write_byte_data(client, TUSB1046_REG_GENERAL, val);
+> +}
+> +
+> +static int tusb1046_i2c_probe(struct i2c_client *client)
+> +{
+> +	struct typec_switch_desc sw_desc = { };
+> +	struct typec_mux_desc mux_desc = { };
+> +	struct device *dev = &client->dev;
+> +	struct tusb1046_priv *priv;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return dev_err_probe(dev, -ENOMEM, "failed to allocate driver data\n");
+> +
+> +	priv->client = client;
+> +
+> +	sw_desc.drvdata = priv;
+> +	sw_desc.fwnode = dev_fwnode(dev);
+> +	sw_desc.set = tusb1046_switch_set;
+> +
+> +	priv->sw = typec_switch_register(dev, &sw_desc);
+> +	if (IS_ERR(priv->sw))
+> +		return dev_err_probe(dev, PTR_ERR(priv->sw), "failed to register type-c switch\n");
+> +
+> +	mux_desc.drvdata = priv;
+> +	mux_desc.fwnode = dev_fwnode(dev);
+> +	mux_desc.set = tusb1046_mux_set;
+> +
+> +	priv->mux = typec_mux_register(dev, &mux_desc);
+> +	if (IS_ERR(priv->mux)) {
+> +		typec_switch_unregister(priv->sw);
+> +		return dev_err_probe(dev, PTR_ERR(priv->mux), "failed to register type-c mux\n");
+> +	}
+> +
+> +	i2c_set_clientdata(client, priv);
+> +
+> +	return 0;
+> +}
+> +
+> +static void tusb1046_i2c_remove(struct i2c_client *client)
+> +{
+> +	struct tusb1046_priv *priv = i2c_get_clientdata(client);
+> +
+> +	typec_switch_unregister(priv->sw);
+> +	typec_mux_unregister(priv->mux);
+> +}
+> +
+> +static const struct of_device_id tusb1046_match_table[] = {
+> +	{.compatible = "ti,tusb1046"},
+> +	{},
+> +};
+> +
+> +static struct i2c_driver tusb1046_driver = {
+> +	.driver = {
+> +		.name = "tusb1046",
+> +		.of_match_table = tusb1046_match_table,
+> +	},
+> +	.probe = tusb1046_i2c_probe,
+> +	.remove = tusb1046_i2c_remove,
+> +};
+> +
+> +module_i2c_driver(tusb1046_driver);
+> +
+> +MODULE_DESCRIPTION("TUSB1046 USB Type-C switch driver");
+> +MODULE_AUTHOR("Romain Gantois <romain.gantois@bootlin.com>");
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.47.0
+> 
 
-> > +};
-> > +
-> > +static const char * const mt7988_pinctrl_register_base_names[] =3D {
-> > +	"gpio",	 "iocfg_tr", "iocfg_br",
-> > +	"iocfg_rb", "iocfg_lb", "iocfg_tl",
-> > +};
-> > +
-> > +static struct mtk_pin_soc mt7988_data =3D {
-> > +	=2Ereg_cal =3D mt7988_reg_cals,
-> > +	=2Epins =3D mt7988_pins,
-> > +	=2Enpins =3D ARRAY_SIZE(mt7988_pins),
-> > +	=2Egrps =3D mt7988_groups,
-> > +	=2Engrps =3D ARRAY_SIZE(mt7988_groups),
-> > +	=2Efuncs =3D mt7988_functions,
-> > +	=2Enfuncs =3D ARRAY_SIZE(mt7988_functions),
-> > +	=2Eeint_hw =3D &mt7988_eint_hw,
-> > +	=2Egpio_m =3D 0,
-> > +	=2Eies_present =3D false,
-> > +	=2Ebase_names =3D mt7988_pinctrl_register_base_names,
-> > +	=2Enbase_names =3D ARRAY_SIZE(mt7988_pinctrl_register_base_names),
-> > +	=2Ebias_disable_set =3D mtk_pinconf_bias_disable_set,
-> > +	=2Ebias_disable_get =3D mtk_pinconf_bias_disable_get,
-> > +	=2Ebias_set =3D mtk_pinconf_bias_set,
-> > +	=2Ebias_get =3D mtk_pinconf_bias_get,
-> > +	=2Epull_type =3D mt7988_pull_type,
-> > +	=2Ebias_set_combo =3D mtk_pinconf_bias_set_combo,
-> > +	=2Ebias_get_combo =3D mtk_pinconf_bias_get_combo,
-> > +	=2Edrive_set =3D mtk_pinconf_drive_set_rev1,
-> > +	=2Edrive_get =3D mtk_pinconf_drive_get_rev1,
-> > +	=2Eadv_pull_get =3D mtk_pinconf_adv_pull_get,
-> > +	=2Eadv_pull_set =3D mtk_pinconf_adv_pull_set,
-> > +};
-> > +
-> > +static const struct of_device_id mt7988_pinctrl_of_match[] =3D {
->=20
-> Please compress that to a single line=2E
->=20
-> { =2Ecompatible =3D "mediatek,mt7988-pinctrl" },
-
-will do in next version
-
-> Cheers,
-> Angelo
-
-regards Frank
+-- 
+With best wishes
+Dmitry
 
