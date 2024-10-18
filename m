@@ -1,328 +1,305 @@
-Return-Path: <devicetree+bounces-112766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852B89A3755
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:37:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF2C79A375C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:38:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB40CB21B1C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:37:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DED5284A73
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D2418858C;
-	Fri, 18 Oct 2024 07:37:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B96118BC16;
+	Fri, 18 Oct 2024 07:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CVyw4H2U"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="NfC/TkPq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2065.outbound.protection.outlook.com [40.107.20.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848C117C7C2
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 07:37:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729237030; cv=none; b=pG1DQ7u72/VrAHbZtRj5cUE35Y4wJBb8juh83TLIsTz72EvEIVZFXarEiRuSWQNJBDmX/3uDl1z6nNBu0MLQTbPaxKvO0Fxv9ir9KH+fPOPyA6uH2CVkTREOBd12yzpobgQ6OehEsll3tptaTfxBXVTmRHa/L3DrahMR31aP91Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729237030; c=relaxed/simple;
-	bh=J/2P0Qjo4Pi1oxevSNksyDuXieZuyJYEGU2KpqhBDkY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rvuPILj5Asrqr6aQ0+Dn55Bb6x2r85gpDiPGlsje38oWkr+yvusxbUfeAfLTj9oPMRhngrCCx1pD9vv/3En8/34L26CvtxyR/VvxU1cDTfMYU+Gx0NPojt1aCe98FeMau+8VqaOhGflYX/atG1j1iUJWbWEhxUmiVkTTZ8KLnVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CVyw4H2U; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539f2b95775so2261231e87.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 00:37:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729237026; x=1729841826; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FQ8SdkLsCIJNhBVmfW5932i8NaML5sg9nvB1KSarBPA=;
-        b=CVyw4H2UWtdhSajVc42QWON1wDRRDqiUh8on3uIiryOA8Y5K6Fjx61bx7WoKoXLx24
-         AHKRMNSes1GNgunfJWrnY67OBIpHQx0ce5DHLbV7wIz1YeZPx/yZfOV0IuKu41Rce0Dx
-         WhjCjbYYJNnUV2yChPRYthVKnxX52XOeVq6fGp7ZnG/ce1O6727XMX/kN7UVM1Xvs+Z5
-         EH3gSVXk3lB9LBqFez5Zol51E7e9C7vsClrTfJyJL0JO8/XsE7ZAEnEc1I899VArscgk
-         Np5q/qIQLyS7gliT/hT4m8fuDnMABznMATon6nbbnHMhtZTLwTh6Ob0AS1MHyT04xr88
-         iy8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729237026; x=1729841826;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FQ8SdkLsCIJNhBVmfW5932i8NaML5sg9nvB1KSarBPA=;
-        b=aZFQo69AIL4QSQnMUHavPn4gc6oiOW5PY6+Plr7Nr3UBBukuePmk7goY4Hf8pVAe3V
-         yTCqztkCH/LiqwE48NVTZfDe15IUtG6BeNC8nXukF/3GSR0OMTBaDN4fai5L4/TuPjRu
-         7o2iVoQfuLMsyLPykJjJTwT5v938BKP3YOC6TrSrH8faoVAAcBJx1JbKmky3QyZTBdnq
-         zd/CMUkE/jJXKn0QaTFxsmg4zRI01/h28k3x8EXStVieZ5Oww9MTJ5b3hPCq7P91sMuG
-         p0bSJaa3rsXYXgHPeqOUSlk2oLr5JBXiRmKrp/VJFspaKQ/zX483Q9IfpV1WB6/xo5rG
-         WonA==
-X-Forwarded-Encrypted: i=1; AJvYcCXXVjGlntc4+4arzk/2ExWXAZZswEm9Z0KH43k9BT/7a72SVPmR+COXah7UVsarD+gIjdJFfAtCiRXz@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwXvwE1khxqsHzOiBr8Sbx5YWYT0PTRLD+UYWNt1FYcaSuN7p4
-	wHYvFAuL4mnODRyWQKxtz5/grqDF6nuv3RJ/r0HjYj/Lea0s5Y4HV+XO2dhstlE4iV16F/UD6qB
-	Lu1pDIn0JHln78PEiAqChrimLLTNARvhlnWaJXQ/hODTVa87PXGM=
-X-Google-Smtp-Source: AGHT+IFwONEnb117sVQ31CVX2MhwK+WpK1e9jDFmK9d88cHvnLc4jpqFjUwCVajdCZBWq38iLQOWMzxWC22WcOsJ8HE=
-X-Received: by 2002:a05:6512:1585:b0:539:8f68:e036 with SMTP id
- 2adb3069b0e04-53a154964a1mr1226810e87.34.1729237024774; Fri, 18 Oct 2024
- 00:37:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3DEB1885BE;
+	Fri, 18 Oct 2024 07:37:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729237055; cv=fail; b=O+v8PPTZ6uoeyvF05SvBADo4ItJSLgnVRygZyyTzjrtESHCtke05B6XSF5uu+rNGQl3gcq6OJEei16BwWxxX14nTICEYSuskTAXQizhsQAWyHmziQhwofpnThI2oteD3H0mwpQo5ikROaeoVRyzRmMFJjSFP7pWbIOT/TSxh5pY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729237055; c=relaxed/simple;
+	bh=dY4jqeFiLztMBpKPFcZ0zto0OhKx4XaPqZOBLDtVD8U=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=o5k6xigqdTCE2euakW2RV3FlzIaAB2fwyUQxlHAGrKAm0g6glX5ARPPS5g5Qa0m+UI6eE2vO2TxD0tIA4A0cssqrfT8NuCUUtnWqKm5IUXXbe/lT6XJNc/EKBuJkrZT1A9jIMl/BLK28k3hGI6r2FEIihDwTLmhkXzOBU6OREj0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=NfC/TkPq; arc=fail smtp.client-ip=40.107.20.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uUrKeUBog+0isUgKQtqsH0+/cCPY7XM9r1rW5Bhu07ZYKjhs+OLAvTSAEUB/Wk8FBsDFyr70gh3AHEjohFKcQ6Lc6rczXz+BpFIfESQq13T17T3s9uI7C4IhUp0VYM42QWkClpm74Hce+FRRDkfE9Hq19F/LCRYOVtc+OIal9I+yt0ifNHHwHpb3oWmUXvuhz3NFZRX0f+ukmcdcahiPZaQtHC9sbO13Ob2sCCCyrfvrVVRSjrDB0+9IvcbiRijs7wpBwo0RcFe1Ibwcxdf4FvFjYENi2lqWhMV3e4PhYckUpmlABiRer0Pr3OwcA8eNwA5wP9g3zVIrbglo5qIaiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GoLCmQXsAh8fJnrrR1LAqmyiDHAJiDeC+aWGOJYPa/A=;
+ b=uC/ymEDFW2XI07kCzZu7eo5S9LFUwdTYLKYT+DT94BSKHWLA9nkAibTEcFUvRqkSuGcsI+S4fRxXHNj9CSOkgiBSSUMjIMuB6ewQS3iPVD6SgLNQBmqu7wIesC8EOmfxt7n9TFmOmT5lakKPnMQlD5twc2AZVgTbkuCWUhza82dTd9yjYbA8Z17m3+li1LcbcRfvLIXlwGZRBN+swNGqfZ+mQheaWpPGsJ68Byd8CutTv7ojqMDHL6Ma+UxvdJRKQgp8s44tTUG8CUA3u9qE+K4orf5UvjVg2TGQRQOijrhOyokZzr74XoGridFClb0MwCLr/ETKXpoynXB8dxJhcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GoLCmQXsAh8fJnrrR1LAqmyiDHAJiDeC+aWGOJYPa/A=;
+ b=NfC/TkPqMr7tSTXAeupNOvXEmi2nQcNghZ8mVv/E5m37fa816YTcYn5lRLql/+uqlUo4QrTjAJY97PO/kuadql6F2T1FPzw08FK7yAtp/13tNfPrpSs0tFmOodo/92co9PaA+J5IBVjptUJCjCxFjF3rzSS9EWd1mkg9pGSfACYe/ElUKQ7Ijt4J7st1JArncp+OxS9dey2stmXZvR3ehSQRArvt/O4mYk94/5puPAfYkX8t08s54yI5jwM69Qt/w4Z90jDPGbthdwv1oAHJwu2B+Er4JUWBjsDjGVnn/JwX2sII/Vsx1DnaacnRn3dFEKWlCrifDC+uYn3Hda0ovg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AS5PR04MB9942.eurprd04.prod.outlook.com (2603:10a6:20b:67e::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.18; Fri, 18 Oct
+ 2024 07:37:30 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%4]) with mapi id 15.20.8069.020; Fri, 18 Oct 2024
+ 07:37:30 +0000
+Message-ID: <bed0ee89-8a53-44bd-b531-edfc74438cd9@nxp.com>
+Date: Fri, 18 Oct 2024 15:37:57 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] drm: lcdif: Use drm_bridge_connector
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>,
+ "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "rfoss@kernel.org" <rfoss@kernel.org>,
+ "laurent.pinchart" <laurent.pinchart@ideasonboard.com>,
+ "jonas@kwiboo.se" <jonas@kwiboo.se>,
+ "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
+ <simona@ffwll.ch>, "marex@denx.de" <marex@denx.de>,
+ "stefan@agner.ch" <stefan@agner.ch>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>
+References: <20241018064813.2750016-1-victor.liu@nxp.com>
+ <20241018064813.2750016-6-victor.liu@nxp.com>
+ <TYCPR01MB113325E42E2E31FB953B1CDF586402@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <TYCPR01MB113325E42E2E31FB953B1CDF586402@TYCPR01MB11332.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR03CA0129.apcprd03.prod.outlook.com
+ (2603:1096:4:91::33) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241015-ad7380-add-adaq4380-4-support-v1-0-d2e1a95fb248@baylibre.com>
- <20241015-ad7380-add-adaq4380-4-support-v1-1-d2e1a95fb248@baylibre.com> <20241017190500.215b895e@jic23-huawei>
-In-Reply-To: <20241017190500.215b895e@jic23-huawei>
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Fri, 18 Oct 2024 09:36:52 +0200
-Message-ID: <CAEHHSvZrXNrh_DsyrnjjBfZJ3STYmA+HdysakO-54T6qYwTfrQ@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/4] dt-bindings: iio: adc: ad7380: add adaq4370-4 and
- adaq4380-4 compatible parts
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS5PR04MB9942:EE_
+X-MS-Office365-Filtering-Correlation-Id: 89f31f63-504b-40d2-a9c8-08dcef47b8e0
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?N3UzOUtPSytiRndwZGlMZkdSUFQ2WVcvNGRFMmlYTUdDaUt3anZxU01pYjd5?=
+ =?utf-8?B?SWtjcDNSZnZDdkJRWVFpY1dlZWJVNTZjaWJhYTNIcFhJUUdkV1lPaml1aHVa?=
+ =?utf-8?B?Ym9TTXE3QjBOZ3dTYlRDcU5WVWZVOEJCMURieGY0ZHN2RFZkcytqYWpoblFL?=
+ =?utf-8?B?THN6Wm5JckZwcGkzbHVlUGUvd3dBVW1mUkxVVXhoRmdGVWRvUzdvcCs3UllR?=
+ =?utf-8?B?UDJFWUdLSjRmbWo5eGFHR2toN2toQlJDVGkyY0ZNdldlL04yME1DdUFjSXJT?=
+ =?utf-8?B?TXE1VHZuNDB0dlNpZTB4VHkyelFDaWM5WTNlNGVIUmRJMXlLYkRzWGNPOTdU?=
+ =?utf-8?B?MDJWR1VobFpQWXJqRHd3aGN4UWNHN2NJMS9ZTE9GbURJSCtRL21LcnNqMExi?=
+ =?utf-8?B?NW1CNVNIYnRCM2J4eHdPTnRYL2RhQUFseUtSRG1jQm1FdDNDdHNGSVpkOEFC?=
+ =?utf-8?B?MjlPYUdkdk9FSzYrb3Vxa0RRdFZvNWwxbkNBZStnbTNJRXJUMWRSSVpTZ1Nu?=
+ =?utf-8?B?eERBTmI3QzczQTZTT0dIeGd2MzJVdUJEbVkzWktRSjNBb1NWdjR2ajFGUGZp?=
+ =?utf-8?B?engrcjlwTENkQW5TZHRJMXhLbVloSjZGUUxSYncyRGkzbTlham55bHRMckRJ?=
+ =?utf-8?B?K3J5Nm5KVEZTZVExOEZuWkFaQjkrSFBKaGprMkR5S00yS1IrZDRWcjl6Zmtr?=
+ =?utf-8?B?NlU3WXJOQ1NuNnVDUllOdDlUV3l1bnI0R21rZXpWaFVHMHZMNjAzNlNSSVVX?=
+ =?utf-8?B?VVhHaU5rZ1JTYVZ0amlHOHdZZzFtZkl3dEJNL2V6bXZkTVNhNEhnd0h6dVJq?=
+ =?utf-8?B?L2xZZ2lKWXZnbzFpOUtEdkhabW5FNUVaVnhxR3BzOWVvWnlsUGtGMjhzOFRG?=
+ =?utf-8?B?dzh4WG9JUHFoNWREUlAxb2N1b1h5MC9rSk8ybTVhc084UUlLd2xLZVJpODA5?=
+ =?utf-8?B?UVJwamJrbU9rVDhoZXp6MEQwYktIc081ZEZBRXdlOHR4bk94TGxVME00L0Jt?=
+ =?utf-8?B?NEhvOW81K3hkcDQ0ZTZxRS9sRlhJUG4zWFN1L0pRNVZ0d2lOQk9LMWlrQllZ?=
+ =?utf-8?B?WURPUkJrNUk5Z1J5VlFLV3NPZjhGQnBuVzNZMFd4TDdZdzg2ek9jQWloWjZ3?=
+ =?utf-8?B?K1RsOHEyMFB0cHloUFlQRVpqUG01TkE0alo1UkZoOUhUaTBoVzNWeVJkMmdx?=
+ =?utf-8?B?R3Jod2VibFlhR2Yva00xeGZDa2w4eEIveTVwSThVU2l0cU1DTGEyditSTUpR?=
+ =?utf-8?B?cXY4eXkwR0p1RFBMWWtGNmxDYWVkQ0JCaDhTdU43N2wvYldJbjVRRzVBdWlo?=
+ =?utf-8?B?OVAvMy9xaFpyOXpONlBISUZtS1lsTTZCZ2taSjdHK0RVcFJiS0M2Q2pzc0Va?=
+ =?utf-8?B?MTF2MExhUVZmS3pIblJwQUkxVlVyeUVpNU9FOFBleXVyNW8xeFZmbVlEUTdK?=
+ =?utf-8?B?bXY2NjdqYU9PMzJ1VFE5TXdBaTVTVVBGUjhESDVDbXh2SURKdTZ0KzFJM21K?=
+ =?utf-8?B?NnhYRUoyVlhiekQrTW45a3BiZkR2aS9qOTNleXZvWjcrNGIwem1KZE1UOWU5?=
+ =?utf-8?B?NmMrSlJjaXFDVkZVenM1ZE9GWjVDTkM2TlhNVmoxeHI0Um5NZXQ3NENWQ25C?=
+ =?utf-8?B?cjJjeUxodEtVOE9PRENNaEd2b3d3VkV4U2hsZGRpdkVRWTJNSEs1cW5JZmpR?=
+ =?utf-8?B?UG9nUk8xRmR4MlJiNXpVejIvSGd6QXlYSzdhNWZ5TUpPK0h4QTE1UkNlaEVH?=
+ =?utf-8?Q?EfvQ2jB8+31e1hN1SRFCZUeFScqBgMKuCgZzZWy?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?eTNGSEF4bzgya0gvM1l1cmRBV3lWcFQ3ZjBkaHRJQkFPZk9najh2QjJvZENW?=
+ =?utf-8?B?UktvUC9icWUyR2NKZ09sZXNRdjNra2JITEdrYnoyRnNnODJBcXM3REwxR0dN?=
+ =?utf-8?B?VHErbUx6YUZPMlc3ZUhISlJZTnhyM1VZaXN1UThWWjUrd3hPclp0VWV2SnJk?=
+ =?utf-8?B?Ui9ndjArSHRuTHVBQ25iUms0VG1YalBuKytubmxzbWlFZmwzQWV1eWx4YTRY?=
+ =?utf-8?B?WDVUekdHTXZ5R3haNTI2RGFzQ0FVaGR0dHdNVmYxbzBMZnVwckk1T3lWQ3hi?=
+ =?utf-8?B?bDVGR3F4RzhPaE1YemFPS3RtQ0IyQXN2S2tPL3JDVzdFNkNzejQvSFZzdTV0?=
+ =?utf-8?B?S0I2blJmKzAwOGU2S1JLQ0NSRk95V0o2ZzZFUmRFa3NTaEpYb2tHM3lRekJS?=
+ =?utf-8?B?d1k1SkVlN3ArY3hLZVFyS3haSUtRcWFJTzc0ZXBNNm1oemxrZy8zNUZod2xu?=
+ =?utf-8?B?NnFXenAxWHkrTUFNNFY0UURkZlB3UkhJdFlWTGl3NkhGVkt5eFRTSFI2ZERk?=
+ =?utf-8?B?aERkZi80UXkraVB4K3B3eHNVQkk5VmdRVzZFWmlSTVE5b096c1hCTW5PVXZt?=
+ =?utf-8?B?dElzK2RSY0toZjByRnpra3N1ZnRYYzBhU1lMYmltWGYwdFFFSEdoN2VwNnJx?=
+ =?utf-8?B?Ym9QeVRGZGlPOVVBcEUyWjJOMzE2ZVZEMXJrVDUyVnRMWTdDUm1FSkN0NlRY?=
+ =?utf-8?B?QkJoRmNYSVBtbW0xS2Q4VlJPL2hWUkpnTEpqZHg1a2FQbHlsd3FyNjI3bUx6?=
+ =?utf-8?B?TkFBNmp4SFFab0RXQ2lRWWdXaHQwS2JxRGZybnNIcDFyWnBKbFlSc3RrVDZR?=
+ =?utf-8?B?UWMxaDRpcDhNM2g2T2srNU9GazZFanEvamN5UkRvN0xWTXhiZWdVK2p2a2ZT?=
+ =?utf-8?B?dTBQUEpyY0hRdlE5MGxDM1o5YmEvajEwLytSY3Bab2RpeWRJSHY3K1Y0OWxE?=
+ =?utf-8?B?Z1ZxRElCSFQ5NE1WdFVOZzhhcTRXa2NKSVpvbElmeTZhNVlVRGpDdmk2ZEVN?=
+ =?utf-8?B?R1h6ODltUkdNVFluaGkrOHlkRWxXSnFScStpQk1raTNXcFNOMGhtblJnMnZO?=
+ =?utf-8?B?MndSSjlxbms3TlpXbUVyUVB0RlZ2THJxTXpBejRCZUVySVdPbmgzSjZEcDNS?=
+ =?utf-8?B?ZEVUaVhPWjJUVXNZcFBXR0RrU1F2V0k5Szdqb3I1VDhtWVBsNUZRbWRCejdi?=
+ =?utf-8?B?dmZqaDdaeStiR25lWEUrRXI0Wno4c3g0L0ZJNXVMZEhDQlVQWWpvZkF2MmhW?=
+ =?utf-8?B?b2lKQXNXc3F6NXJvVjhEaW5TYXphaytxVTNaYkl6elA1SXlMcjVWMzdKR2RI?=
+ =?utf-8?B?aUdFRTB0Zit5WkQwcVVWV3ZEMkhOd0FoeHhpOXhQNFZmRFlhK0ZmVjQyU3hK?=
+ =?utf-8?B?VUZtQjhMUzV6MGYwalZuZUhlRCtDeE5IWGFCL0kreEhLQzFySlUydjg2ck5L?=
+ =?utf-8?B?aXdtelEzKzFBYjF6TVAvcWYrbVppS0ZuWUUzUEVLSm9wZHhVS2JaNlltUXZr?=
+ =?utf-8?B?NjJCZUVSbmF1cjNTV0NvWkVSYUphTWQ4eEtJdTI4cjFoWEdRTGpUMWlHaTNo?=
+ =?utf-8?B?TmJ1anFCT0pIM0xxWFNUWUdDajJzVk1jTGhFUlBLc3NReHVOL05rVmZQVFVJ?=
+ =?utf-8?B?Mm9rcFV2Yk1EZHFIUFFxMnlJNnppdEloeDhpQ0FKYWl4ZW5IY3lyRjVWZlFq?=
+ =?utf-8?B?a3hwN0tCeGVyanI1ZVE2Rzk5ZFZxQVRKcXdaU0xpM0MveDI0eWFxclpjWENO?=
+ =?utf-8?B?NlZpdjlTakNITGVXZUVwTWpBU3RMWGdNOU5XT29KUE9nekdvRitHWHIzZkFN?=
+ =?utf-8?B?L09CS3FBM01mRGVIUmM5K29GKzdnWFVaa2pyOURVZExLYmV0cW4wZC9GMmJj?=
+ =?utf-8?B?YlNBMjhZMFlGYUJ0U3FjTllDS3hDdXA0aHRPSVhrR1c1Y3d5aFpPQm9XSjFo?=
+ =?utf-8?B?VnpDMVNGWXAvQ1ZHajAzMXVQYmFGa1dFRmhGMjFMUUlIekFvUUplUE5wUHdC?=
+ =?utf-8?B?bWp6akd2blVDVFpIK0Z2d3FxaVRkTUExcGtRNFQ1bXBWVVNQcTZCemhHb2Mr?=
+ =?utf-8?B?OFBuK0FYRjVlL0lCc3R3TUNGak5Hd09VSE1OZitNSmlKcGdpRlBOanFPV1E2?=
+ =?utf-8?Q?98/yA5VeQ77fbOnV2Qs3X3h8i?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89f31f63-504b-40d2-a9c8-08dcef47b8e0
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2024 07:37:30.6138
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3LAuwLySitzoK1ObzlKTpdDpGMBm5EureCS1kPFwJK5Xy28Qir1CeoyFlDrcWxdNRg2yYkx6TQNAcxCpnjYGzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9942
 
-Le jeu. 17 oct. 2024 =C3=A0 20:05, Jonathan Cameron <jic23@kernel.org> a =
-=C3=A9crit :
->
-> On Tue, 15 Oct 2024 11:09:06 +0200
-> Julien Stephan <jstephan@baylibre.com> wrote:
->
-> > adaq4370-4 (2MSPS) and adaq4380-4 (4MSPS) are quad-channel precision da=
-ta
-> > acquisition signal chain =CE=BCModule solutions compatible with the ad7=
-38x
-> > family, with the following differences:
-> >
-> > - configurable gain in front of each 4 adc
-> > - internal reference is 3V derived from refin-supply (5V)
->
-> Now I'm confused.
->
-> The earlier refin-supply change appears unused in this patch.
-> I was expecting it to be required for the additional devices.
-> With additions to the docs from the fix to explain the new
-> cases.  I'm not seeing that in here.
->
->
-> > - additional supplies
-> >
-> > To configure the gain a new patternProperties is added to describe each
-> > channel. It is restricted to adaq devices.
-> >
-> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> > ---
-> >  .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 117 +++++++++++++=
-++++++++
-> >  1 file changed, 117 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml =
-b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> > index 74d82721637c..3007d8e39684 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> > @@ -25,6 +25,8 @@ description: |
-> >    * https://www.analog.com/en/products/ad7386-4.html
-> >    * https://www.analog.com/en/products/ad7387-4.html
-> >    * https://www.analog.com/en/products/ad7388-4.html
-> > +  * https://www.analog.com/en/products/adaq4370-4.html
-> > +  * https://www.analog.com/en/products/adaq4380-4.html
-> >
-> >
-> >  $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > @@ -46,6 +48,8 @@ properties:
-> >        - adi,ad7386-4
-> >        - adi,ad7387-4
-> >        - adi,ad7388-4
-> > +      - adi,adaq4370-4
-> > +      - adi,adaq4380-4
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -59,6 +63,9 @@ properties:
-> >    vlogic-supply: true
-> >    refio-supply: true
-> >    refin-supply: true
-> > +  vs-p-supply: true
-> > +  vs-n-supply: true
-> > +  ldo-supply: true
-> >
-> >    aina-supply:
-> >      description:
-> > @@ -86,12 +93,43 @@ properties:
-> >        specify the ALERT interrupt.
-> >      maxItems: 1
-> >
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> >    - vcc-supply
-> >    - vlogic-supply
-> >
-> > +patternProperties:
-> > +  "^channel@([0-3])$":
-> > +    $ref: adc.yaml
-> > +    type: object
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description:
-> > +          The channel number. From 0 to 3 corresponding to channels A,=
-B,C,D
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 3
-> > +
-> > +      adi,gain-milli:
-> > +        description:
-> > +          The hardware gain applied to the ADC input (in milli units).
-> > +          If not present, default to 1000 (no actual gain applied).
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        default: 1000
-> > +
-> > +    required:
-> > +      - reg
-> > +
-> > +    additionalProperties: false
-> > +
-> >  unevaluatedProperties: false
-> >
-> >  allOf:
-> > @@ -128,7 +166,21 @@ allOf:
-> >          ainc-supply: false
-> >          aind-supply: false
-> >
-> > +  # Using channel to declare gain property only applies to adaq device=
-s
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          not:
-> > +            contains:
-> > +              enum:
-> > +                - adi,adaq4370-4
-> > +                - adi,adaq4380-4
-> > +    then:
-> > +      patternProperties:
-> > +        "^channel@([0-3])$": false
-> > +
-> >    # ad7380-4 uses refin-supply as external reference.
-> > +  # adaq devices use internal reference only, derived from refin-suppl=
-y
+On 10/18/2024, Biju Das wrote:
+> Hi Liu Ying,
 
-Hi Jonathan,
+Hi Biju,
 
-here I add a quick description on how adaq devices are using refin-supply .=
-..
+> 
+> Thanks for the patch.
 
-> >    # All other chips from ad738x family use refio as optional external =
-reference.
-> >    # When refio-supply is omitted, internal reference is used.
-> >    - if:
-> > @@ -136,6 +188,8 @@ allOf:
-> >          compatible:
-> >            enum:
-> >              - adi,ad7380-4
-> > +            - adi,adaq4370-4
-> > +            - adi,adaq4380-4
+Thanks for your review.
 
-... and adaq devices are added here to require refin-supply.
+> 
+>> -----Original Message-----
+>> From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On Behalf Of Liu Ying
+>> Sent: Friday, October 18, 2024 7:48 AM
+>> Subject: [PATCH 5/5] drm: lcdif: Use drm_bridge_connector
+>>
+>> Initialize a connector by calling drm_bridge_connector_init() for each encoder so that down stream
+>> bridge drivers don't need to create connectors any more.
+>>
+>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+>> ---
+>>  drivers/gpu/drm/mxsfb/Kconfig     |  1 +
+>>  drivers/gpu/drm/mxsfb/lcdif_drv.c | 17 ++++++++++++++++-
+>>  2 files changed, 17 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig index
+>> 264e74f45554..06c95e556380 100644
+>> --- a/drivers/gpu/drm/mxsfb/Kconfig
+>> +++ b/drivers/gpu/drm/mxsfb/Kconfig
+>> @@ -27,6 +27,7 @@ config DRM_IMX_LCDIF
+>>  	depends on DRM && OF
+>>  	depends on COMMON_CLK
+>>  	depends on ARCH_MXC || COMPILE_TEST
+>> +	select DRM_BRIDGE_CONNECTOR
+>>  	select DRM_CLIENT_SELECTION
+>>  	select DRM_MXS
+>>  	select DRM_KMS_HELPER
+>> diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+>> index 58ccad9c425d..d4521da6675e 100644
+>> --- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
+>> +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+>> @@ -16,7 +16,9 @@
+>>
+>>  #include <drm/drm_atomic_helper.h>
+>>  #include <drm/drm_bridge.h>
+>> +#include <drm/drm_bridge_connector.h>
+>>  #include <drm/drm_client_setup.h>
+>> +#include <drm/drm_connector.h>
+>>  #include <drm/drm_drv.h>
+>>  #include <drm/drm_encoder.h>
+>>  #include <drm/drm_fbdev_dma.h>
+>> @@ -56,6 +58,7 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+>>  		struct device_node *remote;
+>>  		struct of_endpoint of_ep;
+>>  		struct drm_encoder *encoder;
+>> +		struct drm_connector *connector;
+>>
+>>  		remote = of_graph_get_remote_port_parent(ep);
+>>  		if (!of_device_is_available(remote)) { @@ -97,13 +100,25 @@ static int
+>> lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+>>  			return ret;
+>>  		}
+>>
+>> -		ret = drm_bridge_attach(encoder, bridge, NULL, 0);
+>> +		ret = drm_bridge_attach(encoder, bridge, NULL,
+>> +					DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+>>  		if (ret) {
+>>  			of_node_put(ep);
+>>  			return dev_err_probe(dev, ret,
+>>  					     "Failed to attach bridge for endpoint%u\n",
+>>  					     of_ep.id);
+>>  		}
+>> +
+>> +		connector = drm_bridge_connector_init(lcdif->drm, encoder);
+>> +		if (IS_ERR(connector)) {
+>> +			ret = PTR_ERR(connector);
+>> +			dev_err(dev, "Failed to initialize bridge connector: %d\n",
+>> +				ret);
+>> +			of_node_put(ep);
+>> +			return ret;
+> 
+> Maybe same error path style like above??
+> 		of_node_put(ep);
+> 		return dev_err_probe(dev, PTR_ERR(connector),"Failed to initialize bridge connector");
 
-Maybe I am missing your point? or I still need to improve the description?
+I thought about that and decided not to use dev_err_probe()
+because I don't think drm_bridge_connector_init() may return
+-EPROBE_DEFER, no?
 
-Cheers
-Julien
+> 
+> Cheers,
+> Biju
+> 
+>> +		}
+>> +
+>> +		drm_connector_attach_encoder(connector, encoder);
+>>  	}
+>>
+>>  	return 0;
+>> --
+>> 2.34.1
+>>
+> 
 
-> >      then:
-> >        properties:
-> >          refio-supply: false
-> > @@ -145,6 +199,24 @@ allOf:
-> >        properties:
-> >          refin-supply: false
-> >
-> > +  # adaq devices need more supplies
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - adi,adaq4370-4
-> > +            - adi,adaq4380-4
-> > +    then:
-> > +      required:
-> > +        - vs-p-supply
-> > +        - vs-n-supply
-> > +        - ldo-supply
-> > +    else:
-> > +      properties:
-> > +        vs-p-supply: false
-> > +        vs-n-supply: false
-> > +        ldo-supply: false
-> > +
-> >  examples:
-> >    - |
-> >      #include <dt-bindings/interrupt-controller/irq.h>
-> > @@ -169,3 +241,48 @@ examples:
-> >              refio-supply =3D <&supply_2_5V>;
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    spi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        adc@0 {
-> > +            compatible =3D "adi,adaq4380-4";
-> > +            reg =3D <0>;
-> > +
-> > +            spi-cpol;
-> > +            spi-cpha;
-> > +            spi-max-frequency =3D <80000000>;
-> > +
-> > +            interrupts =3D <27 IRQ_TYPE_EDGE_FALLING>;
-> > +            interrupt-parent =3D <&gpio0>;
-> > +
-> > +            vcc-supply =3D <&supply_3_3V>;
-> > +            vlogic-supply =3D <&supply_3_3V>;
-> > +            refin-supply =3D <&supply_5V>;
-> > +            vs-p-supply =3D <&supply_5V>;
-> > +            vs-n-supply =3D <&supply_0V>;
-> > +            ldo-supply =3D <&supply_5V>;
-> > +
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            channel@0 {
-> > +                reg =3D <0>;
-> > +                adi,gain-milli =3D <300>;
-> > +            };
-> > +
-> > +            channel@2 {
-> > +                reg =3D <2>;
-> > +                adi,gain-milli =3D <600>;
-> > +            };
-> > +
-> > +            channel@3 {
-> > +                reg =3D <3>;
-> > +                adi,gain-milli =3D <1000>;
-> > +            };
-> > +        };
-> > +    };
-> >
->
+-- 
+Regards,
+Liu Ying
+
 
