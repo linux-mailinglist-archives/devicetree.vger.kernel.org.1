@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-112749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D25899A36F9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:21:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1DB9A36FC
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:21:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77E921F219D2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:21:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85329281990
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E263518628F;
-	Fri, 18 Oct 2024 07:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D0A187322;
+	Fri, 18 Oct 2024 07:21:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YKQ0p1d/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IXBNxpwi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B837D185B6F;
-	Fri, 18 Oct 2024 07:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A507186284;
+	Fri, 18 Oct 2024 07:21:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729236072; cv=none; b=Bvf2nsRm6dTGrX0w3f9WKCNYs/myZs1ZiSbzYQTpaUKukkhaYnvx9h0m2YpZmRY44l+nmX8mDGN25bOz22E10PP7khoIuRQvzNhFYkKHFELbu6Mb7fsl7mMdSCuBEtLF9vmNRC6OQPS+LjCYbWTNtx1uqAZD/w5L9yNnS3Vjfxs=
+	t=1729236088; cv=none; b=lStNj+IP/6dLnDotf/dWBMrXosYrAbuTHeDkAXPNRmptnYYUFV02MX+aSNbTGHVqgWQzPM+ZjbVKYwUnD21KnC6yYR1n8duHIJBb0DaxKRSyOhSTEI7WTg1WH51EARHFlVGDzZHjj6+FqwXUyCT+kroORwQQDDhTqAqWTP95D+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729236072; c=relaxed/simple;
-	bh=RBpBaLrgUrWyCzlWxpbI2oXQCxrf9xWJZi2qSEG43hY=;
+	s=arc-20240116; t=1729236088; c=relaxed/simple;
+	bh=gjhO2fB4TN7F/i0LDb8ZvEwTCFrjhrrk/Q2kozKnmMc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YOO85IebkHzwg8Fx6By5v2t77SQt6fJWrq8VNX/peDXD1I9FPzPjALwjakUFUd6AMyNYcWlprQ4R/Q45wiNNDnPebUe0Ik4uf2RpTNUQUVhJm++ZW1dF0OVW43uMlgl7B4b7RgWvi2G1EbMdB2LWj852Um/1EczK/Hn3pghRxcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YKQ0p1d/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81D66C4CEC3;
-	Fri, 18 Oct 2024 07:21:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fFy1e1EWSjzr8V/+mE7C5zPf3TWihZL6PhCpGHFOYJc/r9XmCsVC6TcrgwVFEWeMPG+3KT4joJDthODwr8HA/UerJF+8jj1PKuCR3BTvVVocA/UKs0CzCw91tEXCVdtFsxqbvLH6cYbVqnV2w+HGw+9qVEZxB4C7JfaIqOB0ukc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IXBNxpwi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0003C4CEC3;
+	Fri, 18 Oct 2024 07:21:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729236072;
-	bh=RBpBaLrgUrWyCzlWxpbI2oXQCxrf9xWJZi2qSEG43hY=;
+	s=k20201202; t=1729236087;
+	bh=gjhO2fB4TN7F/i0LDb8ZvEwTCFrjhrrk/Q2kozKnmMc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YKQ0p1d/X97NWSG+C5Tr9oRRyxFIjUbaUEmxNGrJ266K4oHEQoLEIAkZP0DAJtwfP
-	 o3gOXHlnm0iVH4/qWvqKPqlpvwL/ETC9DXoJc7Ve9zALw+XHxFHDXUxO3CCOu8OsJ4
-	 Bstgy32q0RJR+ZPF60CPhUESEtq7YFIHRCCL+YHQG5iSzzIsoABwOYM0s+bb0MZo1+
-	 oNM3MeGfGA3X9b6E24GLCXV+we6AnlXjaJeB/xlTlqLx+nvfs+SQyEeOq64Wpes5US
-	 VRaCIQvANpDUrnmJZxXFvQ+oS3dF6xr4Iq52GhzDIXsDZL63kmNGHT8Fps79WNO2/v
-	 HsdJs04g+v4TA==
-Date: Fri, 18 Oct 2024 09:21:08 +0200
+	b=IXBNxpwiIieoRgLIqpXdCdV9gHoUYIgPfRveR5QyrXxiPe2Yd2pEUZfTRbgYtJeas
+	 PFELF97cXHpDPeY2f7rpJs2KM7cCPy+8W3SvESoVyoeJTlY67WQHBPcJWJjt4SSDjM
+	 mn/RUQjmYfgEaIy/GJOQEtbUuHikZds/PqFsrr0XgLZvnKULx22YKeUTu7uqnuJQQi
+	 xlBHcBmKKlsVjT/3vrQlgL7qal/uAjveg2w24YxSV74WPEHms/amCReCd1l8ThdiBW
+	 lJ6fZQd44TqY8f3rizON6+CbyBWrcyM8tk7sEJgxejARGOJmEe586EKmbGFP5v7Yyp
+	 9q5KJ8s06iPAA==
+Date: Fri, 18 Oct 2024 09:21:24 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: sdhci-msm: Add SAR2130P compatible
-Message-ID: <6iqvng3barptkl24lxetqkjbdx5b6zelnf7toc7xocj64kswbj@bov5636rlqyn>
-References: <20241017-sar2130p-mmc-v1-1-c84da16a001e@linaro.org>
+Subject: Re: [PATCH] dt-bindings: usb: qcom,dwc3: Add SAR2130P compatible
+Message-ID: <shzy24hayj6ee72pwc5lxk7yflzawx5f3uaqql4fwb55idbxci@qgi2fr7pvb5m>
+References: <20241017-sar2130p-usb-v1-1-21e01264b70e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,15 +60,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241017-sar2130p-mmc-v1-1-c84da16a001e@linaro.org>
+In-Reply-To: <20241017-sar2130p-usb-v1-1-21e01264b70e@linaro.org>
 
-On Thu, Oct 17, 2024 at 09:15:37PM +0300, Dmitry Baryshkov wrote:
-> Document compatible for the SDHCI Controller on SAR2130P platform.
+On Thu, Oct 17, 2024 at 09:16:38PM +0300, Dmitry Baryshkov wrote:
+> Document compatible for the Synopsys DWC3 USB Controller on SAR2130P
+> platform.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
