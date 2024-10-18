@@ -1,269 +1,141 @@
-Return-Path: <devicetree+bounces-112922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A4A9A3E96
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:41:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D079A3EA7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:43:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB0021C20C8B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:41:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7C2528621E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E974206E;
-	Fri, 18 Oct 2024 12:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DAF26AFA;
+	Fri, 18 Oct 2024 12:43:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="UBsdd+Ac"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kakf+EEt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E852C182
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 12:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70E523D2;
+	Fri, 18 Oct 2024 12:43:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729255255; cv=none; b=EMF5oiRos6xgyO+KTrBA67B/aI6HYpd6N4BiWAarewtLKC760jNyXJDQCZj2ANJllOJWztK3o6y7H+nernXo5nRvb1yn0+qSg5iWlZ+n2Zca/J5imKCIRV/ZVIdTB8hAuzosf6IRkAKxJGTL/1t2X1OxRz5CkLMSOicmufj49FE=
+	t=1729255392; cv=none; b=iAj8R64OTQfzYzwSOm7km82lA6Amij0Apexqvrt1kCwYvshfRa47aV2Z10JRKlsjb1XNqEQMRXteh6/X1ARyngGPIZjkJZ+HSKxactlS5+xiwNVClg63xmeu1QJC//FCcFgIPymx2bBAQefNNMrDz6mcorTlG0wzJIHgrFqdzhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729255255; c=relaxed/simple;
-	bh=NepPP9+EUJkQE6AAFekh9hvZnrPeDE2ASN5F2g/sxaQ=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IjovcqlgmnuOFr27zXD1Rj364H5gQ+VFPhBW4Y99uzvnEOCudQmcsjWW09DzsTKPG/uQYWeauf0k0cOpuIFsYjYVUwjRI3q/DQjVVaTwx7YMpls0Q1q8DsM6ALm0NMdcyuTUO9QweY4MPH6BabxwHLFU6EML2QZyfPr4KMBYwas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=UBsdd+Ac; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a99f3a5a44cso237074566b.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 05:40:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1729255252; x=1729860052; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9DykL4kRhQMn7Cbt8yrjSApwATRDvV4AIHohgrmqOh0=;
-        b=UBsdd+AcJeTPSj7VbDDbVayFFlXZEceFq+/3BzPSGVEd/vqIQ1Xo7f24O8TX9JYYJX
-         2uKOpn2wggd9+3uwrDa1FdqY+j/MdsZjlY4KKebecfW2xuNJnp5NjaaFczFrBFKmpXA2
-         5V/L0TI4GwuDTbdpHutCyoSnArESUECp8EBEYEx5FdUYa/OpdlfTi5UaWYAzURH22Toj
-         glP0mVzYNvaDNBTOuVqKcQmd/JluRvWygUycKTa+wvCFrqCUsbNq9ImkRQmK+iFXZwKP
-         snrH8Lho4I7A5slljx30zdGrTO+4JnlRHtI1/7ZukalCy6atc5M+U3943fiUh9M1hMP/
-         QhhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729255252; x=1729860052;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9DykL4kRhQMn7Cbt8yrjSApwATRDvV4AIHohgrmqOh0=;
-        b=U3Si2ax00wiVWy+DQ8EXRuWRIClE91vRA3EfRjQVXmCYQzB6uOM7pm+lVynaH8S5G/
-         sEL1nSB3EvISqrriB3rqHDZ3tBYTYRGAanwnCE+jvMK0+bbAgLq3CUOtVyKErjHOQNs4
-         UqkCuIN/jPwJeWPIGCZTLOO0xNHhXX3v8YgP2/Q/ieQfvWWOeocuEUjEb7elEYVsOWPy
-         sSagtp+tGpnyEkgKin85a+wLG58KLtrnj/kIY7bghwueK/ikiKurIuTGCIKpuwgWU+Sl
-         q/FuJUWWNGx64Lv5VlEenPFWLA0SDz0dSun7nII3x+ocoO0qAam1XoEViWex2hOMAdu9
-         dQvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbkd1+4KfKqa98NCyaFbmoFdGM5n79nBwGp0rkl4jksfUJwHqvAjmKQrY/DMcD8lppzoUxB+ftuMJv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIvRcEUrHfdygjJAG2AZC8wUG7ADSrfqWd5vV7ude7p9aPUjw1
-	dQQCKuIYayk9nEqLFVLN8PhzMCQ3TqqggXjULFZH6OFLLhnkI0KVdZs116GaoGg=
-X-Google-Smtp-Source: AGHT+IGKGlI5U6acm0UPw/vtEqZLZZNRs4tL7ATU0Wt6GltRPSfjPzSBXo/n0wxDoTzpCi5atrc0Sw==
-X-Received: by 2002:a17:907:94d2:b0:a99:ec3c:15cd with SMTP id a640c23a62f3a-a9a69ccf8a4mr209343466b.54.1729255251547;
-        Fri, 18 Oct 2024 05:40:51 -0700 (PDT)
-Received: from localhost (host-95-234-228-50.retail.telecomitalia.it. [95.234.228.50])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a68bf5f4asm91053466b.157.2024.10.18.05.40.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 05:40:51 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Fri, 18 Oct 2024 14:41:11 +0200
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>, Lizhi Hou <lizhi.hou@amd.com>
-Subject: Re: [PATCH 03/11] PCI: of_property: Sanitize 32 bit PCI address
- parsed from DT
-Message-ID: <ZxJXZ9R-Qp9CNmJk@apocalypse>
-References: <ZwJyk9XouLfd24VG@apocalypse>
- <20241008010808.GA455773@bhelgaas>
+	s=arc-20240116; t=1729255392; c=relaxed/simple;
+	bh=Cv7xyEXZOZSDG9J9x31VtLuQMUSsl7TRNopNGyFGFaU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KKmzi84cAZ9d97V+0869zmD0Z/AU4qYJYv5GYM5no3hxG+RECvX2E5wLR8cWAfxhlsAnEmHNO8n/2WaBogdvBIC5HsI56akn5dd+3AHW1W16etwVFLrqA6sKmuszPDYSLezJI0HwFACdP/8QJ9j0r6s7IpGyVcBasxLwIe3eOYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Kakf+EEt; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49ICF0oX007760;
+	Fri, 18 Oct 2024 12:43:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=FSTB4VKhE654z+9CRlmFf3Ue5XCmln0JR3cTPFdChfc=; b=Ka
+	kf+EEts+O081vLN2oNd3nks6fERuBcZ9PG3VCTbHRv0DzhC2pGCfYDZyzxo+VoKQ
+	tFtjQAaPJsQjVInyxrGhhjeqdwoLz3ft81I0lCUnXWzjLDrXzE0ssgwgyhrWvvn9
+	BYiLcm+vRcILc1V8+xfLSUmeyGGlQYJ0WBDG9bhUJr11RfXM2c2JYo/aymYNnRWH
+	Ymft3M9KNi4BtKKr293XvJPuCM3JaoMr3UANIJ1qpq+/a9YB6aJY+lPoTrefI7qk
+	aMWD9+dKjwWDL//nF18t+wq4Gd2Ab0cGo9x7reX21P8b0N+epwyjVNiYovIT4vc2
+	Jn/Cx4SndFPawQePL8kQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42athc555m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 12:43:06 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49ICh5XO003002
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 12:43:05 GMT
+Received: from hu-mapa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 18 Oct 2024 05:43:02 -0700
+From: Manish Pandey <quic_mapa@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_nitirawa@quicinc.com>
+Subject: [PATCH V3] arm64: dts: qcom: qcm6490-idp: Add UFS nodes
+Date: Fri, 18 Oct 2024 18:12:52 +0530
+Message-ID: <20241018124252.5326-1-quic_mapa@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241008010808.GA455773@bhelgaas>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZsRRQ3GbXmCbrRq_33HK3bEYpWbPhAkn
+X-Proofpoint-ORIG-GUID: ZsRRQ3GbXmCbrRq_33HK3bEYpWbPhAkn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ mlxscore=0 clxscore=1011 malwarescore=0 mlxlogscore=599 impostorscore=0
+ lowpriorityscore=0 spamscore=0 suspectscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410180080
 
-Hi Bjorn,
+Add UFS host controller and Phy nodes for Qualcomm qcm6490 board.
 
-On 20:08 Mon 07 Oct     , Bjorn Helgaas wrote:
-... 
-> It's common that PCI bus addresses are identical to CPU physical
-> addresses, but by no means universal.  More details in
-> Documentation/core-api/dma-api-howto.rst
-> 
-> > [2] I still think that the of_pci_set_address() function should be amended
-> > to avoid generating invalid 64 address when 32 bit flag is set.
-> > 
-> > As you noted, fixing [2] will incidentally also let [1] work: I think
-> > we can try to solve [1] the proper way and maybe defer [2] for a separate
-> > patch.
-> > To solve [1] I've dropped this patch and tried to solve it from devicetree,
-> > modifying the following mapping:
-> > 
-> > pcie@120000: <0x3000000 0x1f 0x00    0x1f 0x00                0x00 0xfffffffc>;
-> > 
-> > so we now have a 1:1 64 bit mapping from 0x1f_00000000 to 0x1f_00000000.
-> 
-> That's the wrong thing to change.  pcie@120000 is fine; it's pci@0
-> that's incorrect.
-> 
-> pcie@120000 is the host bridge, and its "ranges" must describe the
-> address translation it performs between the primary (CPU) side and the
-> secondary (PCI) side.  Either this offset is built into the hardware
-> and can't be changed, or the offset is configured by firmware and the
-> DT has to match.
-> 
-> So I think this description is correct:
-> 
->   pcie@120000: <0x2000000 0x0 0x00000000 0x1f 0x00000000 0x0 0xfffffffc>;
-> 
-> which means we have an aperture from CPU physical addresses to PCI bus
-> addresses like this:
-> 
->   Host bridge: [mem 0x1f_00000000-0x1f_fffffffb window] (bus address 0x00000000-0xfffffffb)
-> 
-> > I thought it would result in something like this:
-> > 
-> > pcie@120000: <0x3000000 0x1f 0x00    0x1f 0x00                0x00 0xfffffffc>;
-> > pci@0      : <0x82000000 0x1f 0x00   0x82000000 0x1f 0x00     0x00 0x600000>;
-> > dev@0,0    : <0x01 0x00 0x00         0x82010000 0x1f 0x00     0x00 0x400000>;
-> > rp1@0      : <0xc0 0x40000000        0x01 0x00 0x00           0x00 0x400000>;
-> > 
-> > but it fails instead (err: "can't assign; no space") in pci_assign_resource()
-> > function trying to match the size using pci_clip_resource_to_region(). It turned
-> > out that the clipping is done against 32 bit memory region 'pci_32_bit',and
-> > this is failing because the original region addresses to be clipped wxxiereas 64
-> > bit wide. The 'culprit' seems to be the function devm_of_pci_get_host_bridge_resources()
-> > dropping IORESOURCE_MEM_64 on any memory resource, which seems to be a change
-> > somewhat specific to a RK3399 case (see commit 3bd6b8271ee66), but I'm not sure
-> > whether it can be considered generic.
-> 
-> I think the problem is that we're building the pci@0 (Root Port)
-> "ranges" incorrectly.  pci@0 is a PCI-PCI bridge, which cannot do any
-> address translation, so its parent and child address spaces must both
-> be inside the pcie@120000 *child* address space.
-> 
-> > Also, while taking a look at the resulting devicetree, I'm a bit confused by the
-> > fact that the parent address generated by of_pci_prop_ranges() for the pci@0,0
-> > bridge seems to be taken from the parent address of the pcie@120000 node. Shouldn't
-> > it be taken from the child address of pcie@120000, instead?
-> 
-> Yes, this is exactly the problem.  The pci@0 parent and child
-> addresses in "ranges" are both in the PCI address space.  But we
-> start with pdev->resource[N], which is a CPU address.  To get the PCI
-> address, we need to apply pci_bus_address().  If the host bridge
-> windows are set up correctly, the window->offset used in
-> pcibios_resource_to_bus() should yield the PCI bus address.
+Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
+---
 
-You mean something like this, I think:
+Changes from v2:
+ - Included the board name qcm6490-idp in the subject (Thanks Konrad).
+ - 'regulator-allow-set-load' for UFS regulator has been raised in
+   https://lore.kernel.org/linux-arm-msm/20241016100511.2890983-1-quic_kotarake@quicinc.com/
 
-@@ -129,7 +129,7 @@ static int of_pci_prop_ranges(struct pci_dev *pdev, struct of_changeset *ocs,
-                if (of_pci_get_addr_flags(&res[j], &flags))
-                        continue;
+Changes from v1:
+ - updated correct patchset number.
+
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+---
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+index 5f3d4807ac43..c5fb153614e1 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+@@ -702,6 +702,25 @@
+ 	status = "okay";
+ };
  
--               val64 = res[j].start;
-+               val64 = pci_bus_address(pdev, &res[j] - pdev->resource);
-                of_pci_set_address(pdev, rp[i].parent_addr, val64, 0, flags,
-                                   false);
-                if (pci_is_bridge(pdev)) {
++&ufs_mem_hc {
++	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
++	vcc-supply = <&vreg_l7b_2p952>;
++	vcc-max-microamp = <800000>;
++	vccq-supply = <&vreg_l9b_1p2>;
++	vccq-max-microamp = <900000>;
++	vccq2-supply = <&vreg_l9b_1p2>;
++	vccq2-max-microamp = <900000>;
++
++	status = "okay";
++};
++
++&ufs_mem_phy {
++	vdda-phy-supply = <&vreg_l10c_0p88>;
++	vdda-pll-supply = <&vreg_l6b_1p2>;
++
++	status = "okay";
++};
++
+ &usb_1 {
+ 	status = "okay";
+ };
+-- 
+2.17.1
 
-> 
-> I think it should look like this:
-> 
->   pci@0: <0x82000000 0x0 0x00000000 0x82000000 0x0 0x00000000 0x0 0x600000>;
-
-indeed, with the above patch applied, the result is exactly as you expected.
-
-> 
-> By default lspci shows you the CPU addresses for BARs, so you should
-> see something like this:
-> 
->   00:02.0 PCI bridge
->     Memory behind bridge: 1f00000000-1ffffffffb
->     Capabilities: [40] Express Root Port
-> 
-> If you run "lspci -b", it will show you PCI bus addresses instead,
-> which should look like this:
-> 
->   00:02.0 PCI bridge
->     Memory behind bridge: 00000000-fffffffb
->     Capabilities: [40] Express Root Port
-> 
-> > > But I don't think it works in general because there's no requirement
-> > > that the host bridge address translation be that simple.  For example,
-> > > if we have two host bridges, and we want each to have 2GB of 32-bit
-> > > PCI address space starting at 0x0, it might look like this:
-> > > 
-> > >   0x00000002_00000000 -> PCI 0x00000000 (subtract 0x00000002_00000000)
-> > >   0x00000002_80000000 -> PCI 0x00000000 (subtract 0x00000002_80000000)
-> > > 
-> > > In this case simply ignoring the high 32 bits of the CPU address isn't
-> > > the correct translation for the second host bridge.  I think we should
-> > > look at each host bridge's "ranges", find the difference between its
-> > > parent and child addresses, and apply the same difference to
-> > > everything below that bridge.
-> > 
-> > Not sure I've got this scenario straight: can you please provide the topology
-> > and the bit setting (32/64 bit) for those ranges? Also, is this scenario coming
-> > from a real use case or is it hypothetical?
-> 
-> This scenario is purely hypothetical, but it's a legal topology that
-> we should handle correctly.  It's two host bridges, with independent
-> PCI hierarchies below them:
-> 
->   Host bridge A: [mem 0x2_00000000-0x2_7fffffff window] (bus address 0x00000000-0x7fffffff)
->   Host bridge B: [mem 0x2_80000000-0x2_ffffffff window] (bus address 0x00000000-0x7fffffff)
-> 
-> Bridge A has an MMIO aperture at CPU addresses
-> 0x2_00000000-0x2_7fffffff, and when it initiates PCI transactions on
-> its secondary side, the PCI address is CPU_addr - 0x2_00000000.
-> 
-> Similarly, bridge B has an MMIO aperture at CPU addresses 
-> 0x2_80000000-0x2_ffffffff, and when it initiates PCI transactions on 
-> its secondary side, the PCI address is CPU_addr - 0x2_80000000.
-> 
-> Both hierarchies use PCI bus addresses in the 0x00000000-0x7fffffff
-> range.  In a topology like this, you can't convert a bus address back
-> to a CPU address unless you know which hierarchy it's in.
-> pcibios_bus_to_resource() takes a pci_bus pointer, which tells you
-> which hierarchy (and which host bridge address translation) to use.
-
-Agreed. While I think about how to adjust that specific patch,i let's drop it from
-this patchset since the aforementioned change is properly fixing the translation
-issue.
-
-> 
-> Bjora
-
-Many thanks,
-Andrea
 
