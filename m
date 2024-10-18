@@ -1,86 +1,85 @@
-Return-Path: <devicetree+bounces-112916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD489A3DE1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:08:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B7B39A3DF4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:15:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D03C1C22874
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:08:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 129081F24300
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:15:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF7918028;
-	Fri, 18 Oct 2024 12:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA30517578;
+	Fri, 18 Oct 2024 12:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YdNaA7ZC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qacFLmdb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4A718EAB
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 12:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B02CA5B
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 12:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729253324; cv=none; b=kNlzWifbs86QS2y6AVC58qIbBJShQs8e93/Q/IcEFYab7m6o+FnDh58dVbq7fFUw+NiGlMKnS+irrTczitQYmgFX0YIbPqf2F1TZtYNaAhTRsqSCSufeQgpEwpXXNXx0tJTS2kUD6AZrNtwN7YfW9JwxR7J5rgJCwx0fUMZ2b+8=
+	t=1729253709; cv=none; b=Ay9eF+KGTda2MVrLIXlhePITJF5RdYLJctGW3Om50Q0k2EgvB62pFyk0OJZmFPZzmjeR9yEYvUsJtV70Uo/+NHpYnfFsUdKQWWta2rCu6HLAxix7ViCXdrDFLEtessRxtPDMFqG9GrHP6zH84fteChBo8nKvLxDfE9V4I3VHXMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729253324; c=relaxed/simple;
-	bh=YbqulcNrKaoe+EnMEt2XGpFtZJZT2rx1KICvibHOoq8=;
+	s=arc-20240116; t=1729253709; c=relaxed/simple;
+	bh=now3J6G/3UbZHE/WU7lQXQuwfG3tyrUmFgArj673/oY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e18GeKA27J2nfp5cnbKFfWeK8vUkwAsnlbDMHzD/OoME45WMITuSrFV61XGpD0kx6A3jP+r274gxt/iJnMmJa71t5MZklAyR3KD8fZRvVXdNGuxdcI9oGsIRnMSRL8sxqm8G48jp2eTmoPDfyueprstWJOf1AlC6hSOKtZp3Vd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YdNaA7ZC; arc=none smtp.client-ip=209.85.208.179
+	 Content-Type:Content-Disposition:In-Reply-To; b=L4/sFMdeCsG1oJI7IAK9kE63Lb/tExkaWPTFZUOlMrLPfN6DOrcUroVxGbzbhFh7sPuM9nalsxxv2usiP/+rn4edS6FSRhpmD+AtXFcnzxT/TiockySrZ2yRA/sTl9EYzmEZibrSatTwY+PtzzNxExwl47xVdrac1K5+EGt0a2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qacFLmdb; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2fb5fa911aaso32223501fa.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 05:08:43 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb5740a03bso24289341fa.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 05:15:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729253321; x=1729858121; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729253706; x=1729858506; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=w9CEyOXycZo0GAH066lZHL9x0GBdHQ/RJtrNNbuW8wM=;
-        b=YdNaA7ZCIEZR3ou61LZ977hIvA4kyqmvPiSfRQdP4O7HaX7NpAb/w71/cxW5h9aXqS
-         BlRmYaetMo4kZAMxEIjXAMqako16dweZGSP3bwKQRSUeJQgsRBZDSGL/pAl3BU+vKjzl
-         M1nfDnehd4c/dovJoVJZ9L8DnbWsLP9Ai5X3inKJVHTLa0hqb2bTF2c9H8B7y1G6faWS
-         o3P1bste1DUfNH7yafDPKswBifMZC3ZaiFrsjQebHfEVGVeLw9nYjaUjMW0UeAwe3MHM
-         GrNcxNBHjrV0i15sxi445WEY3Bi5PULruBPuqkh2SmAQ5yr148Tu+TrJu9n6e20aw937
-         7MvQ==
+        bh=QjL3pHhlawZmked9cDer2cCqaq7RfeznftLlGVpNcgU=;
+        b=qacFLmdbv3M6lPk1Zl4m0BJwqmNpjCKaMDd3Ujga13csVqAa7MZAOxazsyLuFSSGZU
+         xP6D7Uh3dKSYB4vhd7freRCHBXWAnUfbU39dRFY2BQGntuJAoNUqSpWZJ7b+Zm3cg1qh
+         FG0ZZNZ+75u583IfvhaUh15Bvlh+9AenoozSNDn0Rv7Beve9fT+URw9MxOPrtaf3c1ao
+         Do0+yLpIT1Bd+Vt7Uh/96t6e2C7SB0YJq0zryCXHf7o1CfjVeKp92DshMRxSeC2eOmvz
+         uAFvJJ6LIPEfeLzJpetX/HG76mb1B96d5YNR4qs39RGGKbCwGRLtAb/0Cr8WPNxZiNX8
+         qwNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729253321; x=1729858121;
+        d=1e100.net; s=20230601; t=1729253706; x=1729858506;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=w9CEyOXycZo0GAH066lZHL9x0GBdHQ/RJtrNNbuW8wM=;
-        b=OpOp1IJp4pf+QY4WIVbkN7L8jl2JaQuyYRweavS0JVKJnTeLds3cW90RPpHHmbSPuO
-         B4YBl0h1u82PnwnWwAYYyVESsDZeichsQXRYz2JYAgSFtZ1AeHLcY1j03FgeTZEw37gl
-         Q+wiEoYDNdjSLiv8vqf/iDoNumkRm2/BPYYJOckvLhedWEF7azJohoefg88bZGvDkXzJ
-         8NLtkVWqmDVUzUwakgc/kvbr8/c9yjdMET+n5kSZXuGu354DJgGO4sMJRdraDqseqAq+
-         o2j+P88H0FGrQqUNlSzkewGn2jPNE5DdDI8iEHA8Z69T3Q55W5Zp36BnSUo+GITYkAUB
-         34Wg==
-X-Forwarded-Encrypted: i=1; AJvYcCXezZAmX7hIOuM0Cu0DvX/pp1MdFlqi5TlhRsBpnnBWT7MchCBudCUNiXK1iFXpgR+ZlD0JgabGFId/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHa1UYGTHUUUjG81tiN+aUxHTeTEpaeT4yeH0dmz3MYWDDzWBN
-	MM6g9D6GUk7G60SMjo4cprj2IAU7BhcCKumLnkqxy/VneKwaDvjQr9zB2+mHYXw=
-X-Google-Smtp-Source: AGHT+IET87521GR+Ncypj8kYlpZXAqXop//a42wje36HMmpSaJ1UQJi3Vj3+Hvduz4mk5BgZRtxPyg==
-X-Received: by 2002:a05:651c:1547:b0:2fa:d84a:bda5 with SMTP id 38308e7fff4ca-2fb82e90e03mr16854441fa.7.1729253321351;
-        Fri, 18 Oct 2024 05:08:41 -0700 (PDT)
+        bh=QjL3pHhlawZmked9cDer2cCqaq7RfeznftLlGVpNcgU=;
+        b=PcWD0dCUlJyqSCkgxaqgArl/ZKDlMfAxuz1sFbRNjcqq1bRYblJf3ueVwDKZ8knoXQ
+         N1MSS/wg7Tbqi+LNW7qvTGWMk7IBT1Y+e6Cnd8Og8UywPlKA1DDjga6eU8q/AMPoanB8
+         1GElPT3UAjM3D787YErhA4r1b7JBIiOAbe8bwXviwIj4Z+d5nltjurIHioG8uvH49+nc
+         UNOW0Dz4yFZDLJczpCK0FcvkGj8eAyvHd3KekgnocpgFX/FF0vxcmy5ScW5AlJ5SVQAR
+         0BBqGcleryn4WlYVP0CmDO8xP0QvFMowXyG3oFqxxxCcQIg35QHLyyRz61sMU3WL7ev2
+         f/rw==
+X-Gm-Message-State: AOJu0YyDs5B8F/MaBEHnvAYh7HYhf/alXmBAa7ugOZDJIyCsnlOMLYaj
+	AlXBc0JFvOQQkkGgKE7aUSWB3rPz5c2bnjnon/fH9sPFtEQA3ZGRixmVEK4GNPE=
+X-Google-Smtp-Source: AGHT+IF5eDKvPUdoitD+7fdWywacF4U/7oQTrEfnwaNWZvVwt8eJAqa0dkV02VzR/63JN4AWDeU6JA==
+X-Received: by 2002:a05:651c:b13:b0:2fb:569a:553d with SMTP id 38308e7fff4ca-2fb8323b1fdmr11544041fa.42.1729253705640;
+        Fri, 18 Oct 2024 05:15:05 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb809a6a88sm1997451fa.7.2024.10.18.05.08.39
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb809f9b62sm2015311fa.96.2024.10.18.05.15.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 05:08:40 -0700 (PDT)
-Date: Fri, 18 Oct 2024 15:08:38 +0300
+        Fri, 18 Oct 2024 05:15:04 -0700 (PDT)
+Date: Fri, 18 Oct 2024 15:15:01 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Imran Shaik <quic_imrashai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] clk: qcom: Add support for Video Clock Controller on
- QCS8300
-Message-ID: <2wahtcgpz7juse325f6vp5od75pwrwyl5v3c2ln2xa64qzpvid@f43c7uxx34r6>
-References: <20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com>
- <20241018-qcs8300-mm-patches-v1-6-859095e0776c@quicinc.com>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, marex@denx.de, stefan@agner.ch
+Subject: Re: [PATCH 5/5] drm: lcdif: Use drm_bridge_connector
+Message-ID: <7isauhmti3vtyseanqveizlhrwmg2iade6kixhhx27edfk4bbm@yj4mekgbvpj4>
+References: <20241018064813.2750016-1-victor.liu@nxp.com>
+ <20241018064813.2750016-6-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,49 +88,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241018-qcs8300-mm-patches-v1-6-859095e0776c@quicinc.com>
+In-Reply-To: <20241018064813.2750016-6-victor.liu@nxp.com>
 
-On Fri, Oct 18, 2024 at 04:42:34PM +0530, Imran Shaik wrote:
-> Add support to the QCS8300 Video clock controller by extending
-> the SA8775P Video clock controller, which is mostly identical
-> but QCS8300 has minor difference.
+On Fri, Oct 18, 2024 at 02:48:13PM +0800, Liu Ying wrote:
+> Initialize a connector by calling drm_bridge_connector_init() for
+> each encoder so that down stream bridge drivers don't need to create
+> connectors any more.
 > 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
->  drivers/clk/qcom/videocc-sa8775p.c | 4 ++++
->  1 file changed, 4 insertions(+)
+>  drivers/gpu/drm/mxsfb/Kconfig     |  1 +
+>  drivers/gpu/drm/mxsfb/lcdif_drv.c | 17 ++++++++++++++++-
+>  2 files changed, 17 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/clk/qcom/videocc-sa8775p.c b/drivers/clk/qcom/videocc-sa8775p.c
-> index bf5de411fd5d..d0494ba81f5f 100644
-> --- a/drivers/clk/qcom/videocc-sa8775p.c
-> +++ b/drivers/clk/qcom/videocc-sa8775p.c
-> @@ -524,6 +524,7 @@ static struct qcom_cc_desc video_cc_sa8775p_desc = {
+> diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig
+> index 264e74f45554..06c95e556380 100644
+> --- a/drivers/gpu/drm/mxsfb/Kconfig
+> +++ b/drivers/gpu/drm/mxsfb/Kconfig
+> @@ -27,6 +27,7 @@ config DRM_IMX_LCDIF
+>  	depends on DRM && OF
+>  	depends on COMMON_CLK
+>  	depends on ARCH_MXC || COMPILE_TEST
+> +	select DRM_BRIDGE_CONNECTOR
+>  	select DRM_CLIENT_SELECTION
+
+Missing `select DRM_DISPLAY_HELPER`. LGTM otherwise.
+
+>  	select DRM_MXS
+>  	select DRM_KMS_HELPER
+> diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+> index 58ccad9c425d..d4521da6675e 100644
+> --- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
+> +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+> @@ -16,7 +16,9 @@
 >  
->  static const struct of_device_id video_cc_sa8775p_match_table[] = {
->  	{ .compatible = "qcom,sa8775p-videocc" },
-> +	{ .compatible = "qcom,qcs8300-videocc" },
-
-Sorted, please.
-
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, video_cc_sa8775p_match_table);
-> @@ -550,6 +551,9 @@ static int video_cc_sa8775p_probe(struct platform_device *pdev)
->  	clk_lucid_evo_pll_configure(&video_pll0, regmap, &video_pll0_config);
->  	clk_lucid_evo_pll_configure(&video_pll1, regmap, &video_pll1_config);
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_bridge.h>
+> +#include <drm/drm_bridge_connector.h>
+>  #include <drm/drm_client_setup.h>
+> +#include <drm/drm_connector.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_encoder.h>
+>  #include <drm/drm_fbdev_dma.h>
+> @@ -56,6 +58,7 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+>  		struct device_node *remote;
+>  		struct of_endpoint of_ep;
+>  		struct drm_encoder *encoder;
+> +		struct drm_connector *connector;
 >  
-
-Comment?
-
-> +	if (of_device_is_compatible(pdev->dev.of_node, "qcom,qcs8300-videocc"))
-> +		regmap_write(regmap, video_cc_mvs0c_div2_div_clk_src.reg, 2);
+>  		remote = of_graph_get_remote_port_parent(ep);
+>  		if (!of_device_is_available(remote)) {
+> @@ -97,13 +100,25 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+>  			return ret;
+>  		}
+>  
+> -		ret = drm_bridge_attach(encoder, bridge, NULL, 0);
+> +		ret = drm_bridge_attach(encoder, bridge, NULL,
+> +					DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+>  		if (ret) {
+>  			of_node_put(ep);
+>  			return dev_err_probe(dev, ret,
+>  					     "Failed to attach bridge for endpoint%u\n",
+>  					     of_ep.id);
+>  		}
 > +
->  	/* Keep some clocks always enabled */
->  	qcom_branch_set_clk_en(regmap, 0x80ec); /* VIDEO_CC_AHB_CLK */
->  	qcom_branch_set_clk_en(regmap, 0x8144); /* VIDEO_CC_SLEEP_CLK */
-> 
+> +		connector = drm_bridge_connector_init(lcdif->drm, encoder);
+> +		if (IS_ERR(connector)) {
+> +			ret = PTR_ERR(connector);
+> +			dev_err(dev, "Failed to initialize bridge connector: %d\n",
+> +				ret);
+> +			of_node_put(ep);
+> +			return ret;
+> +		}
+> +
+> +		drm_connector_attach_encoder(connector, encoder);
+>  	}
+>  
+>  	return 0;
 > -- 
-> 2.25.1
+> 2.34.1
 > 
 
 -- 
