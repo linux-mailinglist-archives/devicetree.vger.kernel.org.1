@@ -1,65 +1,97 @@
-Return-Path: <devicetree+bounces-112981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB7259A40F7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 16:19:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0589A4115
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 16:25:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 767311F247FB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:19:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81E85286C9B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18AEF1D5CC7;
-	Fri, 18 Oct 2024 14:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8E71EE03D;
+	Fri, 18 Oct 2024 14:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="lVIzDg8I"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KZRfPz9Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C7D6BFCA;
-	Fri, 18 Oct 2024 14:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61DE518E351
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 14:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729261141; cv=none; b=fNthKOBW/Ze+QCVbdgeOpiTcE+y2vGZJFE1thjkx3Z+iHDr6dLtlyzyvDZY7o3IqS65hsWMa5axODTXDiJDJtSKdW6hGsr6TQWL0gNUb/XU/eSdpWg480GoR4AQeOB0Oy2Chbwylp3KdZetlXLMvpowfwHU/ilgpyMHd6C+BwwU=
+	t=1729261518; cv=none; b=H81ZK4G77kS6L4bob7jmq5GzU2PtFiptHNQql7NnekLLDiLSdOuyFkTX3mbfL030hrmzFtkDj2z4BTLHjIgt5e22ku/Hc2Joc2BznP0zyXcCFYbwmZowZd62y6QKWWrw9Q7VHJAr/HYEFgsmftSjwNHm5NHPs4KwRGjzNSNbd2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729261141; c=relaxed/simple;
-	bh=8Ay7Hj5OZgQ7MGqy5i7LUi6fdznUG66vs92kGE3WWYE=;
+	s=arc-20240116; t=1729261518; c=relaxed/simple;
+	bh=MiTxtfFmNVJzlSdi6n1ROJUXDLfg21r+HY2z9GUrmeY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZOYRiisZPma4zQELGQ3AuIM34WWL6R6Q8tfiumNysd8fSUsxw/WIMOXB1YSlhJUsumcb6F8Hcd6sr2IyUtoekLTAhBAiohjtNn4tbqoDtojkXr+/soOq1tyCBbXo5A7wFTKH8NkrPICWU5ns5GXuKa5ILGxCTyA7kDPv/8WLsMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=lVIzDg8I; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id C43E222909;
-	Fri, 18 Oct 2024 16:18:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1729261127;
-	bh=kMMaRKGZ6ngPRcX/Zv1+XoEwbVnv1U3vYYkh/ZUsUq0=; h=From:To:Subject;
-	b=lVIzDg8IpqceAxis4t3wHm1bshLDCxgQPc5pmoqr2JPPeiSaNw5L3Ve46BZy8+3ke
-	 ycfUJ4U0U3vp/ixn38OEX4uH0d+Eb0cTYaaoNBo2O0vzMuw+TrSJ4x5ntoxZLx0Hqu
-	 tZBh1RDZHy4lTk0IojP80p/RhJroVtAf2LNBVV7TWyZhmeRIojL88qEvN30KJXHxj8
-	 ggUhurQe5IzDObqOKt03yl+2ScczfA0HJ/sK81tskGwUXbyGTtMDQ9ozjhxRUJNrqi
-	 zM3kVl1i/LtLg5sFN3S3IastDgMx5QZAntIw5jvsmQ0y0NyzXheTWBpcOCNk4SMAB5
-	 SOrF8qidLj9Lw==
-Date: Fri, 18 Oct 2024 16:18:42 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Parth Pancholi <parth.pancholi@toradex.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: add TUSB73x0 PCIe
-Message-ID: <20241018141825.GA46391@francesco-nb>
-References: <20241018105505.28005-1-francesco@dolcini.it>
- <20241018105505.28005-2-francesco@dolcini.it>
- <20241018140743.GA98324-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BorKXKBTgqd0j6Na+WY7w+Pfy+AbH/EhLF4G4u4xU/b5b9lUM4M4xECYoVuXi8U8kqPzBhTTpDm5V2Bb4y+FEkKp2hiY3MGTlT0UZOKRc4trZ57JZsZP2h/2YfZOYtA1142NFSCSbVeawsVqBk1TE9YJbIIG6zIbmhQKv/pP1WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KZRfPz9Y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49IB9H3x005830
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 14:25:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=950Gln3oRkg1xxQo2JyWMANI
+	C2EJJqj9QDHlhqTRV1c=; b=KZRfPz9YOGZfb09zR8K9MKwDk8XUiCKlABimkDHO
+	5t6MwiYb0S+ZX5wMzyunKdR8vZ3uJuyQeOGZa59HyTDmqkoh3Y+D9TMPVu97JqUT
+	OnTIXzLW//qAJMjo5PJO97Ae4aO7P4tpN0jhUvMfOQIdoxNjcGOMR/FFPoOgXiq6
+	+6CXBeIV6s+vV+rMhA9LHi2axH1NCzgwCOeByt9lJ1iMJHxBjT5eqEuqvcxtWrdC
+	QpQoZqMyguYuP5w0XvFi61uHQn9YMfDNP6JbDZ6EFzZj4ChMqKgCSCjzK/xngW9U
+	t+TDKaIt8Ey4C8Hnd9uDF94zVljBYeqQ9lW8iEbaG8Bmyw==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42bd3at4sj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 14:25:15 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-2e3d74e5962so2526892a91.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 07:25:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729261514; x=1729866314;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=950Gln3oRkg1xxQo2JyWMANIC2EJJqj9QDHlhqTRV1c=;
+        b=eWZpXUSbQ6ZyBa6+wK9VXc47KTydTx4zat6mjHxfxpFzB23kIRWfKkyN3plRWOUFf3
+         VtHbtHX4pVZNRyx7tU3WhL4SDaQIJuPombquVhdu16YD27+4WwR1+IaZY77Xy1XXylY+
+         GfC8RitbZu5r3YvpDDaasQFS62MDMfkmUFr82EEsOUutcyI2rTX4Z5pZuQMg3YLk7WL5
+         WYhZRnw4B2VfTZb/gYVqbBJUEAI80vc+vzZkFxXh2/QazLYXGHVjQP78h2PHS0wh+fXn
+         iXH53/FzhmDVDgCA51DFP3N6N3kKhb2XpzLuct9i7QhFL5qYWU5hD+u+7NYmwekt8uq7
+         vlTg==
+X-Forwarded-Encrypted: i=1; AJvYcCW3+jp3PHGJ6FqNcB8Tds+tRLXcOhvwrnCYCdZBunKzkDH2K40UDwHCmjDG60p02bWtk5m5Dy1hrky3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeiRe7P9ZNYRJMzLsYzkoU4DtEL9eithSgpiM82WnWCnnGaYfV
+	lQUkHIqxCTWRQdtIknHWFpEkp4Xzpqa23vhDCvzh0CCKy19P8w++kLtQ/ru4cqaqeze5SmWnhha
+	zintwbkHZj7gvvaVUfO2G8S88mPiQvz4UOAvX2l1sVN0XUL4LJKDKq7HoFUwg
+X-Received: by 2002:a17:90b:814:b0:2e2:a96c:f00d with SMTP id 98e67ed59e1d1-2e56185d15bmr2906156a91.21.1729261514644;
+        Fri, 18 Oct 2024 07:25:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGkUHVLnMvv22CyRp7iu7KBlZgU4Zl3vVLKMotZZtrb/b1+LPaa7xhxw91j8nR5f5tNmQ8acg==
+X-Received: by 2002:a17:90b:814:b0:2e2:a96c:f00d with SMTP id 98e67ed59e1d1-2e56185d15bmr2906118a91.21.1729261514252;
+        Fri, 18 Oct 2024 07:25:14 -0700 (PDT)
+Received: from hu-bjorande-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e55ffd3014sm1934643a91.0.2024.10.18.07.25.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 07:25:13 -0700 (PDT)
+Date: Fri, 18 Oct 2024 07:25:10 -0700
+From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+        robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
+        quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org, kw@linux.com,
+        lpieralisi@kernel.org, neil.armstrong@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        johan+linaro@kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v7 6/7] PCI: qcom: Disable ASPM L0s and remove BDF2SID
+ mapping config for X1E80100 SoC
+Message-ID: <ZxJvxvxlHuQ9Zze5@hu-bjorande-lv.qualcomm.com>
+References: <20241017030412.265000-1-quic_qianyu@quicinc.com>
+ <20241017030412.265000-7-quic_qianyu@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,79 +100,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241018140743.GA98324-robh@kernel.org>
+In-Reply-To: <20241017030412.265000-7-quic_qianyu@quicinc.com>
+X-Proofpoint-GUID: zZxG0bqSgcpN2cKEFztleshhfsoaZEHt
+X-Proofpoint-ORIG-GUID: zZxG0bqSgcpN2cKEFztleshhfsoaZEHt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 suspectscore=0 impostorscore=0 clxscore=1015 mlxlogscore=999
+ malwarescore=0 adultscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410180091
 
-Hello Rob,
-thanks for the review.
+On Wed, Oct 16, 2024 at 08:04:11PM -0700, Qiang Yu wrote:
+> Currently, the cfg_1_9_0 which is being used for X1E80100 has config_sid
+> callback in its ops and doesn't disable ASPM L0s. However, as same as
+> SC8280X, PCIe controllers on X1E80100 are connected to SMMUv3, hence don't
 
-On Fri, Oct 18, 2024 at 09:07:43AM -0500, Rob Herring wrote:
-> On Fri, Oct 18, 2024 at 12:55:04PM +0200, Francesco Dolcini wrote:
-> > From: Parth Pancholi <parth.pancholi@toradex.com>
-> > 
-> > Add device tree bindings for TI's TUSB73x0 PCIe-to-USB 3.0 xHCI
-> > host controller. The controller supports software configuration
-> > through PCIe registers, such as controlling the PWRONx polarity
-> > via the USB control register (E0h).
-> > 
-> > Similar generic PCIe-based bindings can be found as qcom,ath11k-pci.yaml
-> > as an example.
-> > 
-> > Datasheet: https://www.ti.com/lit/ds/symlink/tusb7320.pdf
-> > Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > ---
-> > v3: use lowercase hex in compatible
-> > v2: rename property to ti,tusb7320-pwron-active-high and change type to flag
-> > ---
-> >  .../bindings/usb/ti,tusb73x0-pci.yaml         | 60 +++++++++++++++++++
-> >  1 file changed, 60 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml b/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
-> > new file mode 100644
-> > index 000000000000..7083e24d279c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/ti,tusb73x0-pci.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TUSB73x0 USB 3.0 xHCI Host Controller (PCIe)
-> > +
-> > +maintainers:
-> > +  - Francesco Dolcini <francesco.dolcini@toradex.com>
-> > +
-> > +description:
-> > +  TUSB73x0 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
-> > +  The TUSB7320 supports up to two downstream ports, the TUSB7340 supports up
-> > +  to four downstream ports.
+Would be nice to document the connection between SMMUv3 and "don't need
+config_sid()" is because we don't have support for the SMMUv3.
+
+> need config_sid() callback and hardware team has recommended to disable
+> L0s as it is broken in the controller. Hence reuse cfg_sc8280xp for
+
+I expect that config_sid() and "disable L0s" are two separate issues.
+I'm fine with you solving both in a single commit, but I'd prefer the
+two subjects to be covered in at least two separate sentences.
+
+Regards,
+Bjorn
+
+> X1E80100.
 > 
-> XHCI controller, should be referencing usb-xhci.yaml.
+> Fixes: 6d0c39324c5f ("PCI: qcom: Add X1E80100 PCIe support")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: pci104c,8241
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 468bd4242e61..c533e6024ba2 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -1847,7 +1847,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>  	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
+>  	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
+>  	{ .compatible = "qcom,pcie-sm8550", .data = &cfg_1_9_0 },
+> -	{ .compatible = "qcom,pcie-x1e80100", .data = &cfg_1_9_0 },
+> +	{ .compatible = "qcom,pcie-x1e80100", .data = &cfg_sc8280xp },
+>  	{ }
+>  };
+>  
+> -- 
+> 2.34.1
 > 
-> 2 parts mentioned above, but only 1 PCI ID?
-
-Exactly. Let me know if there is something we should do in this regard
-(something in the commit message? or in the description?).
-
-From the datasheet:
-  This 16-bit read only register contains the value 8241h,
-  which is the device ID assigned by TI to the TUSB73X0
-
-And one more confirmation, in the Linux code you have quirks for this
-device that just check for a single device id:
-
-drivers/usb/host/xhci-pci.c:459
-  if (pdev->vendor == PCI_VENDOR_ID_TI && pdev->device == 0x8241)         
-    xhci->quirks |= XHCI_LIMIT_ENDPOINT_INTERVAL_7;                 
-
-Francesco
-
+> 
+> -- 
+> linux-phy mailing list
+> linux-phy@lists.infradead.org
+> https://lists.infradead.org/mailman/listinfo/linux-phy
 
