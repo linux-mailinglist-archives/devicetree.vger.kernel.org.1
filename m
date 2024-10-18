@@ -1,139 +1,82 @@
-Return-Path: <devicetree+bounces-112714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43B39A358B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:37:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4379A35E4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:47:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F11C1F226EE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:37:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F11AA280D8E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F106A17DFEB;
-	Fri, 18 Oct 2024 06:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBDD6155C97;
+	Fri, 18 Oct 2024 06:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="a3bd3Lv+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSdBCTCh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B91152E1C;
-	Fri, 18 Oct 2024 06:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76EF2905;
+	Fri, 18 Oct 2024 06:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729233462; cv=none; b=pD5awvfI50c+VWADrL4k6EJqWDw7D/8YrdSPyLwLZD/4kCzeLItLr52oRbc2VBH5bNCjpQ75jleU2/cg1nWpbp93caMk5v/+5TKLVxnCm4H9aWQtoSSpkUwYgJxd89RlCXPm41JHyojBrPqp4BHgb/iBGoHKDK2GT474SQBgMKY=
+	t=1729234027; cv=none; b=bwQmeLK9K8nzDhqyeLGbY+9zd2gcylZr9ofY1+TnOSifQWKt7zSY8m6MFNlDWB460w/FEH9qQhBgQ5RJjCrMpaLpZz9pNuT61SC8YVVnz3YAqP4V5WlEHpAIadDGU1HQdhTHkVHViKv0UxVfc9pFfL6cRBWHdY10V97Z0vuHofw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729233462; c=relaxed/simple;
-	bh=zIeW0kxLgeAsqirnaKhjgUcE28ulwX06MiU/EtFkVLA=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=aV2CqEf+9o3EaH/r6mwVKIUnwcvadkJtzoir4pB6Xk0bNfJ1yUFJeDIZDINRASpFIHfxLaUzBcmHLl9QmXCKbT6TG9qa/PGqT4phXF+tUQqbkWxlmId6afcf/nsR/0g+GRinE1T1yAYSwIh+7K78jhgGAkpUMm/Fo6BaD1YWVZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=a3bd3Lv+; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1729234027; c=relaxed/simple;
+	bh=gX/IUdt019KD/c4CXMaU9npLiTa913XkU7TUHcAFtGY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tytz+9Nk9Na9DdbAOw67rsYo/9CZwa6iefsT2b8pmyHqYeBzq2SRaPLk8iS5kb3WgNCpnqzgCFtogi6lUVKJUWPVBxVSOFZbBU0lxC8sif7O2zaB+aMQIYjRYQxjwY2nVU/zuh7HHFatHv3HF/wVd02JKLGC+1FdPLsLTd+YNMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSdBCTCh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA981C4CEC3;
+	Fri, 18 Oct 2024 06:47:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729234027;
+	bh=gX/IUdt019KD/c4CXMaU9npLiTa913XkU7TUHcAFtGY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iSdBCTChmwE5duojmw0KExeqdR/3QJowvX0DLhA2KMysolN/YhjYKSmxt14nbuRnQ
+	 DHPEZhTGIP2oetu9RZCCGGg+PGGABumKzCygNa8GtxXnsM/GcBMELAbrnE6uM13bKg
+	 Ux3dPNwkWLfQ5apdZwSaa2ndP2JbM/etDwbGj+RVLdnikl41DYT6HiSsYiYFwU0e8G
+	 0yCOR3HFt97P0VGUaXUdxscPFl3GUvKUyATOeXuK6JyTNu7XHwr+UEeOFtU8ze9W1k
+	 HB1zKwj3MBgDw6oPWv40UeX1jzn8LSjSEAxVWeEk/NHFa2BEhWJ7r+OnDZxIgLJg8K
+	 Vw2iQhQFUckYg==
+Date: Fri, 18 Oct 2024 08:47:03 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
+Cc: Thara Gopinath <thara.gopinath@gmail.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_sravank@quicinc.com
+Subject: Re: [PATCH V1 1/2] dt-bindings: crypto: qcom-qce: document the
+ SA8775P crypto engine
+Message-ID: <p4tp55z5ju36qkasqcdbeeiaw6lptqdokzembhvh6p53emtxzt@fb2w4gww4vle>
+References: <20241017144500.3968797-1-quic_yrangana@quicinc.com>
+ <20241017144500.3968797-2-quic_yrangana@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1729233457;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tQrAlybDcm+BHN6KghRbFaYYrJAEKr0934b1OCxB7wU=;
-	b=a3bd3Lv+1DcGM36LvuPPteYTY9SOB1DUVXjq+8nimatWpeQZ3TvAucM5Zb2aDdP5Shnarc
-	40EeKhlpz+VGOeD029yG8kDGHIkYgYu0HSyc4uiqPhKf6oQDkE9d8akhY5g4cnUi1qNKme
-	q8NZ8OBiCy2o2PLLeGOXjmyFlAG/3njyiERdqKbs+qTwomFUudc4HuaPfpDsiVbGCOI1FT
-	xWe2hdkDSPPD/PMfDa/C7apyjcnIxwEqvxR/xE0z2PlZphGlh043hPTA7e6BDzk9MxHtlg
-	30nPyeURDSdzJgIUAwSvLhaOmyhmhgAlGwANaq7tg4z6eX5Y2Rh/4gJ4xR0wkw==
-Date: Fri, 18 Oct 2024 08:37:36 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Frank Wang <frawang.cn@gmail.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
- tim.chen@rock-chips.com, yubing.zhang@rock-chips.com, Frank Wang
- <frank.wang@rock-chips.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: soc: rockchip: add rk3576 vo1-grf
- syscon
-In-Reply-To: <d2a200aa-1301-4940-a39c-0412fe741994@gmail.com>
-References: <20241017025230.28752-1-frawang.cn@gmail.com>
- <ca0ee8752791f53bac23933e1582dd86@manjaro.org>
- <d2a200aa-1301-4940-a39c-0412fe741994@gmail.com>
-Message-ID: <ee27926c06bedd62f417dbd7d01ce8b3@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241017144500.3968797-2-quic_yrangana@quicinc.com>
 
-Hello Frank,
-
-On 2024-10-18 08:18, Frank Wang wrote:
-> On 2024/10/18 13:02, Dragan Simic wrote:
->> On 2024-10-17 04:52, Frank Wang wrote:
->>> From: Frank Wang <frank.wang@rock-chips.com>
->>> 
->>> Add rockchip,rk3576-vo1-grf syscon compatible, the vo1-grf is
->>> configured in usbdp phy driver.
->>> 
->>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
->>> ---
->>> Changelog:
->>> v2:
->>>  - This is a new patch adds rk3576-vo1-grf syscon.
->> 
->> Could you, please, clarify a bit why is this additional patch
->> needed in this series?
+On Thu, Oct 17, 2024 at 08:14:59PM +0530, Yuvaraj Ranganathan wrote:
+> Document the crypto engine on the SA8775P Platform.
 > 
-> I mentioned in the commit content. The usbdp-phy driver select dp
-> lanes via configuring the vo1-grf.
+> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Yes, I already saw that in the patch description.  Though, and
-I apologize if I'm missing something obvious, I can't see where
-is it actually used in the code?  Is it yet to be used in the
-dts(i) files?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I'd appreciate if you could clarify that just a bit further, so
-I can hopefully understand it better.
+Best regards,
+Krzysztof
 
->>> v1:
->>>  - none
->>> 
->>>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
->>>  1 file changed, 2 insertions(+)
->>> 
->>> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->>> b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->>> index 50d727f4b76c6..fd42217ab85e7 100644
->>> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->>> @@ -33,6 +33,7 @@ properties:
->>>                - rockchip,rk3576-usb-grf
->>>                - rockchip,rk3576-usbdpphy-grf
->>>                - rockchip,rk3576-vo0-grf
->>> +              - rockchip,rk3576-vo1-grf
->>>                - rockchip,rk3576-vop-grf
->>>                - rockchip,rk3588-bigcore0-grf
->>>                - rockchip,rk3588-bigcore1-grf
->>> @@ -283,6 +284,7 @@ allOf:
->>>          compatible:
->>>            contains:
->>>              enum:
->>> +              - rockchip,rk3576-vo1-grf
->>>                - rockchip,rk3588-vo-grf
->>>                - rockchip,rk3588-vo0-grf
->>>                - rockchip,rk3588-vo1-grf
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
