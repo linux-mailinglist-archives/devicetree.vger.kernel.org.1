@@ -1,70 +1,61 @@
-Return-Path: <devicetree+bounces-112966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C670D9A4049
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:45:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F699A405C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:47:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F5CE1F27743
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:45:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89ACD287D58
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB861433B5;
-	Fri, 18 Oct 2024 13:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DDCF1D9686;
+	Fri, 18 Oct 2024 13:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RWTPB9DJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TFJo4vrn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5483383A5;
-	Fri, 18 Oct 2024 13:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07AF442ABD;
+	Fri, 18 Oct 2024 13:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729259155; cv=none; b=sBt5v9DQWd+zR3PK65nkUWGYvVlUGTfMtFtUNt+h/MQzEJIUXE/0uil2C9KxVcGhfw15+QgeislEqbNFJW7E/PEOAu/XQD7MzThQbbkCPgfMg6mLiCM5Sazdew9s93DUhp1kCqA6XONcw0xugMGO/3m832ATsl1O3wG39PKxM5M=
+	t=1729259243; cv=none; b=nTrUtTF0qfyojkta7Fa2QJSHDuWd0pk3+cLFN9xx7DirQQ7ovAATUZG48c007teTzGn13FcSsmbyWjjvtbshk++Gtm3tLymveQdlefUJ+aiwgB8i3/bOLVrwwzP8ckoPyz/qPNGyRZ2cKQ2wABLAfKXxOQeqDsz5KvDnUqrSFXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729259155; c=relaxed/simple;
-	bh=CklTe/sXewxTep/j2tX2kpLI/u7HR37XRwOnv0QXBoA=;
+	s=arc-20240116; t=1729259243; c=relaxed/simple;
+	bh=ad1r6xJeTIakYrG+ZigfRB3Jbt0z1F0o6v5ISXwzHs8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BL2kSNdBEtld7bEKS58EsUXozuaqu05T2FJXR6VB3jJigTsuxV/sSqVdDjMduser9UhvtK4ASShXAMzJY76ETwWphYjqh1sCcYSmy3ypxmo+3V/5Za2Pcp88IPnOoE6XdhGOPBpIhLN7FkXUqMmyRpQEsNFE2EvmYQZfq7j8TzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RWTPB9DJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27AB9C4CEC6;
-	Fri, 18 Oct 2024 13:45:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bnlvrKY0MZMk7dglyzO1ypIJnT6BMLbxIbwJOqU3ZWkPqatIxxDasjEtbsjEqQUa6xULDqXQ8YI9StmN2nqJmJmEXPR37PmzDf6rgok1FOmMsdaBMt2jE2aRfDLLtYVbs2UHe4Wm2QeoZdqpVxDJNfnuCq+ffTOcYw9fLOARaa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TFJo4vrn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EBB1C4CEC6;
+	Fri, 18 Oct 2024 13:47:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729259155;
-	bh=CklTe/sXewxTep/j2tX2kpLI/u7HR37XRwOnv0QXBoA=;
+	s=k20201202; t=1729259242;
+	bh=ad1r6xJeTIakYrG+ZigfRB3Jbt0z1F0o6v5ISXwzHs8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RWTPB9DJFYBjqHATlsU3j74Kyfijd/bxM6XtTF7Kv2aZdrgndLqrHZwSyOWljZiQ7
-	 P7XVNQ9L9tQJ+rGU4UtxqtUDfTPfst3MxzEc2/hjnPkZtxcoj0VJ5xVt6uK55iS4fK
-	 gQf8xY2KMCN6gyuyyHppQ5u8w7d2fAJOQ4RBRqONYnTU2agYBTP6sqBfmLgu/Egqd/
-	 E5A7teDhUM84DxbKG+ksnccow8rmRFkCvCEtjt1pbdxDvaqo13RzjuSnmZ2hKBPe+y
-	 66jxPFULuf0+/Gh9Sjl0QOgr3BwA2LtugZprgF1sJnmQkk18J5rgi56UVGWjWjn1GT
-	 FTg+zwEpCkq6Q==
-Date: Fri, 18 Oct 2024 08:45:54 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Michael Walle <mwalle@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>, krzk+dt@kernel.org,
-	imx@lists.linux.dev, Tim Harvey <tharvey@gateworks.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	shawnguo@kernel.org,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH 2/2] dt-bindings: arm: fsl: Add Boundary Device
- Nitrogen8MP Universal SMARC Carrier Board
-Message-ID: <172925915337.90053.2297657985749667518.robh@kernel.org>
-References: <20241018091023.29286-1-bhavin.sharma@siliconsignals.io>
- <20241018091023.29286-3-bhavin.sharma@siliconsignals.io>
+	b=TFJo4vrn4tnFRukoYbGx8OI6/M2sT3OqUTr8ub1b2yA6AqYuwbN3eWkr+heTm/CPr
+	 dwBff5wxhJknaasJRHsIA2+PP0BQW6oQVaIgs/1KxqYr9QTkJZSl+7D2Kwc7E+9suU
+	 9gLGIcKITCgTkk5mJgx7sS4E4bnhlu6G7NNYPCpvnTSM/4kzkEjLAvaRKx+eU+I4cd
+	 ePfSPrqU/lYzwUoWE2MEMEf0nv3ejCjfAvEhcGmSfODTzLM4bWwqyu2mQs6nypdukr
+	 6Clzo+89c2+7t8WhJKv8Fs/i0/aSStrqNrMvpIxbxadB0UuvhJfzzZpyb86yGNPElj
+	 T+lc7yDdNxiZg==
+Date: Fri, 18 Oct 2024 08:47:21 -0500
+From: Rob Herring <robh@kernel.org>
+To: wangweidong.a@awinic.com
+Cc: lgirdwood@gmail.com, broonie@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+	rf@opensource.cirrus.com, neil.armstrong@linaro.org,
+	pierre-louis.bossart@linux.dev, luca.ceresoli@bootlin.com,
+	arnd@arndb.de, quic_pkumpatl@quicinc.com, herve.codina@bootlin.com,
+	masahiroy@kernel.org, shenghao-ding@ti.com,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, yijiangtao@awinic.com
+Subject: Re: [PATCH V1 1/2] ASoC: dt-bindings: Add schema for "awinic,aw88081"
+Message-ID: <20241018134721.GA90231-robh@kernel.org>
+References: <20241018094320.113477-1-wangweidong.a@awinic.com>
+ <20241018094320.113477-2-wangweidong.a@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,19 +64,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241018091023.29286-3-bhavin.sharma@siliconsignals.io>
+In-Reply-To: <20241018094320.113477-2-wangweidong.a@awinic.com>
 
-
-On Fri, 18 Oct 2024 14:39:28 +0530, Bhavin Sharma wrote:
-> Adds support for the Nitrogen8MP SMARC System on Module and
-> the Nitrogen8MP Universal SMARC Carrier Board.
+On Fri, Oct 18, 2024 at 05:43:18PM +0800, wangweidong.a@awinic.com wrote:
+> From: Weidong Wang <wangweidong.a@awinic.com>
 > 
-> Signed-off-by: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+> Add the awinic,aw88081 property to the awinic,aw88395.yaml file.
+
+That is obvious from reading the diff. Please say something about how 
+this new part compares to the existing parts.
+
+> 
+> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/sound/awinic,aw88395.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+> diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
+> index ac5f2e0f42cb..b39c76b685f4 100644
+> --- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
+> +++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
+> @@ -20,6 +20,7 @@ properties:
+>        - awinic,aw88395
+>        - awinic,aw88261
+>        - awinic,aw88399
+> +      - awinic,aw88081
+>  
+>    reg:
+>      maxItems: 1
+> @@ -57,6 +58,7 @@ allOf:
+>            contains:
+>              enum:
+>                - awinic,aw88261
+> +              - awinic,aw88081
+>      then:
+>        properties:
+>          reset-gpios: false
+> -- 
+> 2.47.0
+> 
 
