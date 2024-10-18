@@ -1,82 +1,48 @@
-Return-Path: <devicetree+bounces-112856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 043319A3AFC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 405C49A3B03
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:11:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C6841F240B1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:11:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDA511F269C2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:11:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47AD9201030;
-	Fri, 18 Oct 2024 10:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2205201038;
+	Fri, 18 Oct 2024 10:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="o5E0K5oF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aO9TfMlo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA761D86FB
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 10:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A791D86FB;
+	Fri, 18 Oct 2024 10:11:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729246260; cv=none; b=RHwzsEoY57M36YTiA5SrecEzPTksXDya5AKJnlPivca1owXj36HJPb8vuX/jEJ53lV/lEjl7jzfGSJme6HhbJF+srbKYxJ7A16j9sB4uiSxrj/PyqlxXyFYDC0Su2UdHskR9xhYvQA/B45bMr4hVbhcaiG8+zhPAgZAdDLSjL8U=
+	t=1729246278; cv=none; b=LvZ+iPfVHm7phww1y+Oodz+0iHxSKzLnLnxhYJZh7yUbHYwytwAT5AZKB/KD0fBfAaTw+1tVqVswMKeib1mW4CzLk3+oioYnatJFc2kaDllP4P0MLwm9Kl7ylQwni6EvrNYAkyYYK4znQ4FF448csPiDo/qfOuAbmbOsJ0f/GBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729246260; c=relaxed/simple;
-	bh=ocsqfXChWEgBHZDxan7oYRTvYYt8oUieGxp7eYZQ634=;
+	s=arc-20240116; t=1729246278; c=relaxed/simple;
+	bh=nTNNmhyh+Cpec7JzOJdngJFqf3onGXsAldDqdTsJIVo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mjhgFXb64hahy9+YEkOZWtPr3qPh+2PCvoV5ckVEoczTcdWgSFPxwtbfotRnrixYBhb2ITBKb/prenognkC3FLeprLPXNNTJ1DxJTmvSISSRaxSUaRudYRCS679jt8JcaJtqFQGca37OYlAzVUtUFHhX4Vc7eiuYDkShBRhXBHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=o5E0K5oF; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49I9LjNO005377
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 10:10:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OXPIMmd9oqpiU+5EJi5igCXiHCqmSyos23ulQ9gEwq4=; b=o5E0K5oFjiSKTcOX
-	9gdp3dfxDqExP6bQ31GIjBJ8hCnA1VujrvA1bwGWq90IWTWFjz8Lpmh5RxQP7rTZ
-	LA5PNTE9Tae7W5tRErXWvDh+LeBRx0pnckBWd6cXDv49yzM3Zd0q7EQQRP+Fl/XM
-	ah1JBG8TSD9ko1gU+yKXyijL0avJBrH5rZURXjOSBNdOYA+G+A+cbMPsKSM76MMr
-	3JnWYcvm4QC6g7dvUV1JZE2wclwo5UI6ZSJyoD9wPM+e8rJ7a08sLkgbKYoWhtvS
-	Cypv1KrNbkOi3dKoQCiC2ouTONSxjLoANyEuOs3C+2oaLKlotSDHf+CWQ6kBRavj
-	XLBU5Q==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42bmys86y4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 10:10:57 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6cbd0a3f253so3752816d6.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 03:10:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729246256; x=1729851056;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OXPIMmd9oqpiU+5EJi5igCXiHCqmSyos23ulQ9gEwq4=;
-        b=U3TYV6ICvG2oEFix7AfMQgZPCHViViyrg0IFeI7OLzuqcBdXtOHnvxCU2e3WyZClPw
-         Qc0Lj4jrYCPOE6JXRj6LxGILHiTRxNnAbLs4geo+UvvEEtGEvi5XSgNZzxvVo0vNdVjy
-         WeNbWne3LE5zVVaNt/U1LAPSVqzMskgdwOQkomkEtEFTEwtJ4uNoNBLsSil6uDRaUB36
-         ksQK5yOdmo7sJGRNbPfAZ/IyKiylCDVDQM8qjXtNqP+/CPjFgYj8luE7ad/wod8QTGBl
-         7sJzMPQ95Z4fY6u3qTs+S38TFh/ELBNGRxRaxYuZEm7qjLEiYizZ02ifD+KRlJQ0WduB
-         BMrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJdrZC1PvopqNqoRNyrS7qfcyvyWw2u19BbD37wLYJssFvw2+pShipXTDwODOn9QqXGiDjuliTFUCd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPsfMMC/HdBGATe+KMzhWZt0qmtSk5I5s86+TMs91BmBQVPl2e
-	RuyFcS0Jn8hWzaChOI/G51KmcXKKk0dh4H3ZnutXRbx7hHmeuRDx/F6udghu3NpSJYEdro+Leqx
-	+XUZoEpqyli5WXQ5bKRlE0lWLPglTbob7ie5bom9pWYgYoKrotXlQ8ntfV2dv
-X-Received: by 2002:a05:6214:20e2:b0:6cb:c67a:efe8 with SMTP id 6a1803df08f44-6cde1669439mr9594686d6.12.1729246256660;
-        Fri, 18 Oct 2024 03:10:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF8jTJw5JnqOjmxBso/awk/XKCbh2dxRKjYIFmIjcpQmKruPvbZM706UA18QnHB/2tWFCQ8IA==
-X-Received: by 2002:a05:6214:20e2:b0:6cb:c67a:efe8 with SMTP id 6a1803df08f44-6cde1669439mr9594456d6.12.1729246256249;
-        Fri, 18 Oct 2024 03:10:56 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a68bf7173sm72992066b.167.2024.10.18.03.10.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Oct 2024 03:10:55 -0700 (PDT)
-Message-ID: <bb73e6ce-537a-413e-87ea-ac8256313c46@oss.qualcomm.com>
-Date: Fri, 18 Oct 2024 12:10:52 +0200
+	 In-Reply-To:Content-Type; b=a8jpzulPUPtTIhPtJSYUSYIF3PkuQ1MGUuR2AO8cWrhNZ5f8ZvBgtK/XTpTBUIgTRGbYz0bl3ZZrVocUupCYePnZ7zQkzBEI1ccKzmFQhAOS1+Lg9+y38yXxReGppFcQkpaoeEXvGYhhGAUSs8aBOan/33YJC+4OdlI19FQitAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aO9TfMlo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 230ABC4CEC3;
+	Fri, 18 Oct 2024 10:11:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729246278;
+	bh=nTNNmhyh+Cpec7JzOJdngJFqf3onGXsAldDqdTsJIVo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aO9TfMlorMY5b5c0lmYaSwiW5N3AuHq6udm2z7rMAsiTtXVhWUb0RnJT+JEsvQPLH
+	 ANSj0aw0LZFLRDT7pKi5b1pmOY0JnMoXOfBiv8wBGy3hSbN2rdAUdNr/5x/sZjXorg
+	 OgotoxLENEgiT5scuJyD3+tDj+X6DTvIvKssCIFT+yXF1fmKj/agQAt42eAi5QiCce
+	 8gEJjCBqTB4LeXyvvSJ0D+zWKmz86EbMcRgvVHe4Gtg5uOWuQAfO1efHZHbjGCR+z3
+	 wWcdta4DTcTk4pnGrf+2EEzNCAPpWdUiAz9zuSxWf1xUHRwRg1ut7rEsQwBkDfQRT6
+	 aLPc5KeKMCCyA==
+Message-ID: <dffb5226-7d57-406b-b20b-991deebfc295@kernel.org>
+Date: Fri, 18 Oct 2024 12:11:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,78 +50,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] Add support for DisplayPort on SA8775P platform
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, konradybcio@kernel.org,
-        andersson@kernel.org, simona@ffwll.ch, abel.vesa@linaro.org,
-        robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
-        marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_khsieh@quicinc.com, konrad.dybcio@linaro.org,
-        quic_parellan@quicinc.com, quic_bjorande@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        quic_riteshk@quicinc.com, quic_vproddut@quicinc.com
-References: <20241018070706.28980-1-quic_mukhopad@quicinc.com>
- <vtfz5vteaedwrqw5cpggmd3esi2rky3f2axubxukh74wdux4uy@zdac7miws5lu>
+Subject: Re: [PATCH] arm64: dts: rockchip: Correct GPIO polarity on brcm BT
+ nodes
+To: Diederik de Haas <didi.debian@cknow.org>, Heiko Stuebner
+ <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, Samuel Holland <samuel@sholland.org>,
+ Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20241018092237.6774-1-didi.debian@cknow.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <vtfz5vteaedwrqw5cpggmd3esi2rky3f2axubxukh74wdux4uy@zdac7miws5lu>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241018092237.6774-1-didi.debian@cknow.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 7n8bpYQk3S1nAD_ngukICYZzMHEAy8nN
-X-Proofpoint-ORIG-GUID: 7n8bpYQk3S1nAD_ngukICYZzMHEAy8nN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- impostorscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0 phishscore=0
- mlxlogscore=827 malwarescore=0 adultscore=0 priorityscore=1501 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410180065
 
-On 18.10.2024 12:08 PM, Dmitry Baryshkov wrote:
-> On Fri, Oct 18, 2024 at 12:37:01PM +0530, Soutrik Mukhopadhyay wrote:
->> This series adds support for the DisplayPort controller
->> and eDP PHY v5 found on the Qualcomm SA8775P platform.
->>
->> ---
->> v2: Fixed review comments from Dmitry and Bjorn
->> 	- Made aux_cfg array as const.
->> 	- Reused edp_swing_hbr_rbr and edp_swing_hbr2_hbr3 for v5.
->>
->> v3: Fixed review comments from Dmitry, Konrad and Bjorn
->> 	- Used a for loop to write the dp_phy_aux_cfg registers.
->> 	- Pre-defined the aux_cfg size to prevent any magic numbers.
->> 	- Added all the necessary DPTX controllers for this platform.
->>
->> v4: Fixed review comments from Dmitry and Krzysztof
->> 	- Removed the "reviewed by" and kept only the "acked by" for 
->> 	  patch 1.
->> 	- Updated the commit message of patch 5 to mention specifically
->> 	  about the validation of "only" MDSS0 DPTX0 and DPTX1.
->>
->> v5: Fixed review comment from Dmitry in patch 5
->> 	- Aligned the register starting address for display port as part 
->> 	  of device description with respect to other targets.
->>
->> Below patches are applied:
->>
->> [1/5] dt-bindings: phy: Add eDP PHY compatible for sa8775p
->>       commit: 7adb3d221a4d6a4f5e0793c3bd35f1168934035c
->> [2/5] phy: qcom: edp: Introduce aux_cfg array for version specific aux settings
->>       commit: 913463587d528d766a8e12c7790995e273ec84fb
->> [3/5] phy: qcom: edp: Add support for eDP PHY on SA8775P
->>       commit: 3f12bf16213c30d8e645027efd94a19c13ee0253
-> 
-> Please in future skip applied patches instead of including them into the
-> series.  No need to resend the series just for this issue though.
+On 18/10/2024 11:22, Diederik de Haas wrote:
+> The GPIO polarity of the 'shutdown-gpios' property needs to be
+> ACTIVE_HIGH or the Bluetooth device won't work.
+> This also matches what other devices with the same BT device have.
 
-(you would normally do this by rebasing your tree against -next
-and having git rebase-skip the ones already present)
+This should match the hardware. What if the Linux driver is just buggy?
 
-Konrad
+Best regards,
+Krzysztof
+
 
