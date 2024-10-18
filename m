@@ -1,68 +1,56 @@
-Return-Path: <devicetree+bounces-112978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43089A40BD
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 16:08:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F089A40CC
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 16:10:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2A421C25C45
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:08:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63C6E1F24E69
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330EC1DF24F;
-	Fri, 18 Oct 2024 14:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ld7pIYdK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D96F18E37A;
+	Fri, 18 Oct 2024 14:10:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E293955887;
-	Fri, 18 Oct 2024 14:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F7384D02;
+	Fri, 18 Oct 2024 14:10:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729260475; cv=none; b=lKaN+HgzLykv1uHzWjs9phLMtr4FjIKRKi0V9U8aiidp9hsaceWmbKTiiehvGdYa9KI/vuJt7zsOorbjS/VntNkpY8Cft5vWi9Ye5UlpvBywMNZG6z5msmlOqXbQCOy+akkvNmhypgxSB7qW8/HbDMeQYLQiq6Gc0klpWr/axPc=
+	t=1729260632; cv=none; b=dv8EGs9Jg6ecBY9M+qFw9TyOefj5nrk5zNlaqifYaU4ZzbBOPPMwGd6ikZO1ehLiUBQFGv87qNOOpiI7WrIdvOtwn3EyG5nE6+7ttLZ9zaxU8f/R2RNFWF4ITjHZkfgzyYHZ5qj8YOXUni81PtgZeSylg8MSgfLol3DOfT+50BQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729260475; c=relaxed/simple;
-	bh=KoTOyaOYxqjWuJ0H2HvnvhPl7uAzpooAhPcSM0whM7o=;
+	s=arc-20240116; t=1729260632; c=relaxed/simple;
+	bh=LAQgeEAlcW2yjN1UqXgmAghx/dQhsP8nXKDlbuyHbC4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nJ41bbXmjZdhTfbc3iNjSHqgGa4/qWSrbP8auKf67FPNMliaUiPajR3OcJeMqatUAiCQvgS1Kc102g72UuUzKFVXXja5jTzpJ0KkLiE5tVIeGLBotpH38AJnfbhzEn4ozwa8VW+TMkXjiivQUUWaufkyCynRTrcxcIHag+S4ImA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ld7pIYdK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7781FC4CEC3;
-	Fri, 18 Oct 2024 14:07:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729260474;
-	bh=KoTOyaOYxqjWuJ0H2HvnvhPl7uAzpooAhPcSM0whM7o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ld7pIYdKMKPRjWV5dCBpYxSV70GUzeXMnVBpFMgbmX1x70ojqIf+w3zO3mTZvkTq2
-	 7M1vJPWC/ab+LLM7v9U4rQ+nhagTCQpyJLi6nnuZaUDgvZbP7sAfxq6bvPxM6yn2mg
-	 +PXzxI931GOA9aNmjYd+WZPNk19vwmQ9S4Eooa/E6HnvDB9/lGPVoOu5p2GDBE2Cg/
-	 ZPFVArGMGHKlq/n55XlN3UIYuo301Itzi9Qknbh1WTMw4etkv/O+XZZzBz1IlHWIfO
-	 1jTt8viuZ6lPPlHRCu6nhOwfEQBbWgBeOp9Ba65aqriGCnDc/j4iLMYXV2WGO2+bwH
-	 v/M6MRvqQWsKg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t1ne8-000000007K1-2QbU;
-	Fri, 18 Oct 2024 16:08:04 +0200
-Date: Fri, 18 Oct 2024 16:08:04 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
-	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
-	sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
-	quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org,
-	kw@linux.com, lpieralisi@kernel.org, neil.armstrong@linaro.org,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	johan+linaro@kernel.org
-Subject: Re: [PATCH v7 7/7] arm64: dts: qcom: x1e80100: Add support for PCIe3
- on x1e80100
-Message-ID: <ZxJrxDLSoQpYNtYC@hovoldconsulting.com>
-References: <20241017030412.265000-1-quic_qianyu@quicinc.com>
- <20241017030412.265000-8-quic_qianyu@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NzSaHXMJrDPXc9wasnf9+TkzajHoc7OTRVxlss41ggRo9nKLqAg4At/Mm4uDQhJFwUEjN+RFB9TOzePpxGUzI1y7jnXEMKHj/au9xRoz4Y0CeShdQS16XBEqVZk4yRCSYzZts+LrFvh2AvnAS6QT45Z++kND4CpNpMUW0Wffcfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E4C5497;
+	Fri, 18 Oct 2024 07:10:59 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED8593F58B;
+	Fri, 18 Oct 2024 07:10:26 -0700 (PDT)
+Date: Fri, 18 Oct 2024 15:10:18 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, sudeep.holla@arm.com,
+	james.quinlan@broadcom.com, f.fainelli@gmail.com,
+	vincent.guittot@linaro.org, etienne.carriere@st.com,
+	peng.fan@oss.nxp.com, michal.simek@amd.com, quic_sibis@quicinc.com,
+	quic_nkela@quicinc.com, dan.carpenter@linaro.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 3/5] dt-bindings: firmware: arm,scmi: Introduce more
+ transport properties
+Message-ID: <ZxJsSggCLCCoaC2m@pluto>
+References: <20241018080602.3952869-1-cristian.marussi@arm.com>
+ <20241018080602.3952869-4-cristian.marussi@arm.com>
+ <20241018133340.GA72220-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,17 +59,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241017030412.265000-8-quic_qianyu@quicinc.com>
+In-Reply-To: <20241018133340.GA72220-robh@kernel.org>
 
-On Wed, Oct 16, 2024 at 08:04:12PM -0700, Qiang Yu wrote:
-> Describe PCIe3 controller and PHY. Also add required system resources like
-> regulators, clocks, interrupts and registers configuration for PCIe3.
+On Fri, Oct 18, 2024 at 08:33:40AM -0500, Rob Herring wrote:
+> On Fri, Oct 18, 2024 at 09:06:00AM +0100, Cristian Marussi wrote:
+> > Depending on specific hardware and firmware design choices, it may be
+> > possible for different platforms to end up having different requirements
+> > regarding the same transport characteristics.
+> > 
+
+Hi Rob,
+
+thanks for having a look.
+
+> > Introduce max-msg-size and max-msg properties to describe such platform
+> > specific transport constraints, since they cannot be discovered otherwise.
+> > 
+> > Cc: devicetree@vger.kernel.org
+> > Cc: Rob Herring (Arm) <robh@kernel.org>
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> > ---
+> >  .../devicetree/bindings/firmware/arm,scmi.yaml   | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > index 54d7d11bfed4..42852ed887f2 100644
+> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > @@ -131,6 +131,22 @@ properties:
+> >        be a non-zero value if set.
+> >      minimum: 1
+> >  
+> > +  max-msg-size:
 > 
-> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Vendor prefix needed.
 
-Looks good to me now:
+Ok, but these are common properties like max-rx-timeout-ms and others in this
+bindings so I did not expect to have to explicit set a vendor...well I
+really dont know what's the rule here, so I went for similarity.
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> 
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      An optional value, expressed in bytes, representing the maximum size
+> > +      allowed for the payload of messages transmitted on this transport.
+> > +      If set it is recommended to be greater or equal than the minimum size
+> > +      required to support all the messages defined by the set of protocols
+> > +      implemented on this platform.
+> 
+> Sounds kind of broken if less than the minimum...
+> 
+
+Well, absolutely but the minimum payload really depends on how many
+protocols the SCMI server in firmware supports on this platform...the
+set of implemented messages (some are optional) AND the spec version
+number...so I cannot state really a fixed safe minimum here...it was
+just a polite warning for the user not to shot himself in the foot...
+..but whoever missteps over this will see a lot of comms errors
+indeed...I will drop the warning in V2
+
+> > +
+> > +  max-msg:
+> 
+> Vendor prefix and could be a bit more specific what this is.
+
+Ok I will explain more in v2.
+
+Thanks,
+Cristian
 
