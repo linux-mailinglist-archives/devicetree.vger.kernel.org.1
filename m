@@ -1,134 +1,91 @@
-Return-Path: <devicetree+bounces-112686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD889A33DF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:34:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA4189A33E4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:34:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94E50B21E6B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 04:34:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87AAA1F23C51
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 04:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A4901714C0;
-	Fri, 18 Oct 2024 04:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D710173326;
+	Fri, 18 Oct 2024 04:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fuH4GOcd"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="XBWSeuFA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0FC20E31F
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 04:34:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D7F154C00;
+	Fri, 18 Oct 2024 04:34:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729226079; cv=none; b=qE+7h0xPZ4tBDgqqLWPhpNWDhD0zxF+VZMJt1GZLWrl2Ew5FQY40iW09yuzQFuZ8ZYps61IW3/DX3BlTwYcUG6HHvEn9RUEw/qZiZ/F8OAJkaFl0PFt0jvWGcpJN557fvN+M8ECk7RhMihZHmJ4ZDzsXTfXbAQC+Gazywcd+5pY=
+	t=1729226087; cv=none; b=tZ1DSl0lmotTUeGXAUNWYHuTk2VuFqpQiplYRqn6+m7jkZCEt0LLprgndlS8x/1I2aISKLIuxa/Rkvp0whG3CdkFU6FbvDLaVNTSzOf5PMH78FlYqpTgnhA7ZlGpPtXRW6mZTCmj0g3kmhvDqctrMzmpoSE82nb08aoldRxXmUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729226079; c=relaxed/simple;
-	bh=NS1Sz0LKTyjYliuiu+0xBv5Zm35cbmqxiZ7Ygf1MonQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u37zXhabAmfcDfA43cjzGSY9yQodC4PsogqlJbl83qkcYy+c/UuX3p38WbqLqjvNOeyanAHUE8Z6MBKwovFfFybQi7MrtP7aW3ehRO5imAcEpDSNiZHTjuUYPn/tANpDv3t6EcDz4tb79jyfm2CDFhP5Lh6bkg/JT0FANKeOne4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fuH4GOcd; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5c948c41edeso1927012a12.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 21:34:36 -0700 (PDT)
+	s=arc-20240116; t=1729226087; c=relaxed/simple;
+	bh=NVgrL2WOQph8wmsbm7UkzIk2HTAgFgli91BjoMiJlY4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=eORTHhs4i8GoiDijB7+q/yJpAvHUxCE2Drx/CDMrKOqWrk+BSBTuEoHaHtZeqwhmkJ/jNTxn6Upuyfx5U+5WOg6hwP+LT+/7JCnb0dQtgGozaZGWdXTorOKMbwzdWGLEjobKGPr2/UjCKytSO+/aiAqe9O/WtuDTG9oswJUJt/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=XBWSeuFA; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729226075; x=1729830875; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PS/ACDurPb5nBFPu0Cxs3/OwSWilo1gi2atw+wbDQts=;
-        b=fuH4GOcdT5qDJjr8//o4Ua7mEg5zi1ZED4AMuiTtu6W+dxNH3tJotCtDCvIx05pDtz
-         trlSvBbs1LGMJCjnhuG6069k0pO4+g8Gg8qdkgWjXyP5RD2xAzix8mMzx58b1jfjQGx7
-         J7ufrrPelCeMFxuqTBr1tKdDreNZl7lNZEVkpQ1ohCGGEwTzYW1hs6csA1MRRf5+zFWi
-         r7+ZWLFQATSAXAbfUMnANoOgGSyMiPTNWsdEi+tgQm/nMXqEFzrP3PA+Dssg9SnGTkPK
-         62X46Vt5DqPUd53Nj0XeoP8MZdbEFQaQf4Yl4sf4S/LTXcwOS1lLXpbAURUlDv2vR6ju
-         dNoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729226075; x=1729830875;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PS/ACDurPb5nBFPu0Cxs3/OwSWilo1gi2atw+wbDQts=;
-        b=nilSzBqThoe2sumc9Y8HOwpooDgqVmeFRWcXDizOjmIpDsu8HU/wre4fcqY6qAmuKV
-         FbCvFzJfGBzrYjcOAHH0p+4/4eB6hH368bjiGUg7D7lKE0P2BsTLHUaocft3Sw0iNl1l
-         d3AVFiG5808w8r1m87REMxsWwhzCpulTlJv++nznDUclKvoaoTcKwKHvXUJ9aW2d48Gl
-         Ety44tTZkCKfVfnF5R8Jalu4k7DsvZ5jDkfgqDzRN3Y91dSktPP9Y5wDECc53hz8iWnl
-         7Jkd+rk+plD/8GyS7i3Ud8v9klX07FFXZaj8XxNc3deNqTs4BIl9CFU19R5CzE3YY+ew
-         SxIA==
-X-Forwarded-Encrypted: i=1; AJvYcCXe9bsWmroEx8HesfzJROspYQD1tD58GzLll3GjmdXeRypuuNCicNgPIn22sZN844e2dTjxe1qi9GNQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNTCtNWFz9zS/gCPt3B37qjOl/NcsC1dZISd8Uoow33USSF2fP
-	tNmcPuU0eSM8JH9lrSD9BF7TdfzK0NAgPMf8NXao/HGAt/ahl528sDj+qVocQws=
-X-Google-Smtp-Source: AGHT+IGV/Z8Bp7RztnJ7HB2MP1CdFHDEON9SMuUS/lFIUwfh1mG6rxGz6XUEs5/I1mUZYyC0WuNPbA==
-X-Received: by 2002:a05:6402:4343:b0:5c8:8cf5:e979 with SMTP id 4fb4d7f45d1cf-5ca0ac627efmr662722a12.19.1729226074948;
-        Thu, 17 Oct 2024 21:34:34 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:7ac4:30cf:c3f3:f544])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ca0b0809acsm236785a12.25.2024.10.17.21.34.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 21:34:33 -0700 (PDT)
-Date: Fri, 18 Oct 2024 06:34:30 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Mayank Grover <groverm@codeaurora.org>
-Subject: Re: [PATCH 2/2] pinctrl: qcom: add support for TLMM on SAR2130P
-Message-ID: <s7tc7cq42qeuj3d63is2dmq2szzq3ezlvv7zpd26qc7boyldnk@yvofxbx3kfbr>
-References: <20241017-sar2130p-tlmm-v1-0-8d8f0bd6f19a@linaro.org>
- <20241017-sar2130p-tlmm-v1-2-8d8f0bd6f19a@linaro.org>
+	d=codeconstruct.com.au; s=2022a; t=1729226083;
+	bh=aMcQO5d9C/nTsULBi3LiUoDLWN+3h+b/LE+WPCf0930=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=XBWSeuFA/JuoPWflWqKnmR92HIpUD8bW4xds9zkIzwt+MmWm6hYm8Gpn1js1Uq3K7
+	 KL2PuiNo5vO5bQTAiRgORiYTq1jZ8O8k/tR7Mnk+P+FMMTTCnhEAoDIsCivm71nxqS
+	 hFUMJq9jHk6lXgptAsZP0EwYaGYffv2UufEPt5SXNbZbhg4pA0rLbnR+S+URuwlKIm
+	 L4MKumijPdJMXYB1iCRW/ErzIEltZAU6UZhZHw6H2ySYFiddH+t+m2wKgJKeJAau3d
+	 byCM2M2/KawLwp3D3VhqnS2/PLhGv4B5BjIsWicdmClrzZMyVTf+KZG93UZA2MjkfX
+	 VPQZoDzGCZWtg==
+Received: from [192.168.68.112] (203-173-0-39.dyn.iinet.net.au [203.173.0.39])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id C6D24681B9;
+	Fri, 18 Oct 2024 12:34:41 +0800 (AWST)
+Message-ID: <d514fd066353c529052e59c564d1d15f91b6a8b5.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
+ Jefferson BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Chanh Nguyen <chanh@os.amperecomputing.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+ <joel@jms.id.au>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>, 
+ Open Source Submission <patches@amperecomputing.com>, Phong Vo
+ <phong@os.amperecomputing.com>, Thang Nguyen
+ <thang@os.amperecomputing.com>, Quan Nguyen <quan@os.amperecomputing.com>, 
+ Khanh Pham <khpham@amperecomputing.com>
+Date: Fri, 18 Oct 2024 15:04:40 +1030
+In-Reply-To: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
+References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2upy5tozsq3jeqzu"
-Content-Disposition: inline
-In-Reply-To: <20241017-sar2130p-tlmm-v1-2-8d8f0bd6f19a@linaro.org>
 
+Hi Chanh,
 
---2upy5tozsq3jeqzu
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH 2/2] pinctrl: qcom: add support for TLMM on SAR2130P
-MIME-Version: 1.0
+On Mon, 2024-10-14 at 10:50 +0000, Chanh Nguyen wrote:
+>=20
+> +&mac3 {
+> +	status =3D "okay";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_rmii4_default>;
+> +	clock-names =3D "MACCLK", "RCLK";
 
-Hello Dmitry,
+Should this be overriding `clocks` also? There's only one clock
+specified in the dtsi.
 
-On Thu, Oct 17, 2024 at 07:15:46PM +0300, Dmitry Baryshkov wrote:
-> +static struct platform_driver sar2130p_tlmm_driver = {
-> +	.driver = {
-> +		.name = "sar2130p-tlmm",
-> +		.of_match_table = sar2130p_tlmm_of_match,
-> +	},
-> +	.probe = sar2130p_tlmm_probe,
-> +	.remove_new = msm_pinctrl_remove,
+Andrew
+
+> +	use-ncsi;
 > +};
-
-After commit 0edb555a65d1 ("platform: Make platform_driver::remove()
-return void") .remove() is (again) the right callback to implement for
-platform drivers. Please just drop "_new".
-
-Best regards
-Uwe
-
---2upy5tozsq3jeqzu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcR5VMACgkQj4D7WH0S
-/k7rkAf/WOmVvrbdnIv2b6TVVs1F57W1EtfcUsTwbm/S4/JtEMmsrDgBAeoTR9M9
-OSdnfeODfzj86xVRLAm4QidGl6oFxgu0+Xhedl8xBL26B93N7tXOAsnDKbF2PmOW
-KOLZ6VSWdcch9Ap9I1ayB9GhUZPBLy7tasy44QAlb353SHQmWrRrAgNxrYcRZTvA
-UpNojlhqK+5MbZkhjDQJgq+m0J7i5lY3z2UVk6fR9MWUXSOhfTe3YOdoSC2ugyQK
-zCFIicgUAdkoJZQoVMMRUrbK4AvBrTW1tj1310wQmQziBgi3Qw9xt9fdFdHgLiXT
-ClEZiztG2vQdNTQjFJg8gScTPSYofQ==
-=fMIF
------END PGP SIGNATURE-----
-
---2upy5tozsq3jeqzu--
 
