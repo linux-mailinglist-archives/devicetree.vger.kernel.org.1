@@ -1,149 +1,175 @@
-Return-Path: <devicetree+bounces-112858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815E69A3B06
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:12:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0699A3B0F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D2D1F270E8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:12:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0965281CEF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 110022010EA;
-	Fri, 18 Oct 2024 10:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACBDE200CB1;
+	Fri, 18 Oct 2024 10:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lY7c+Abl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X9r/RHX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15AAD201033
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 10:11:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80683188A18;
+	Fri, 18 Oct 2024 10:13:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729246319; cv=none; b=N5ptZPbLa5hTOqb4+pmDaOmiNCLu1gCiXqpNcV/axQXfZTx3CYT4xcnrmMWArUu75OcmIb1U6RZ5/kmnGxETiYCZJE3ZIVgjixJwis3gnQqc+yM6sD4STABMfxXxPAeyf/3gSp/cPOtXPDsAhVNL1GTOwWl0HC7oiEwDiHWWuNc=
+	t=1729246401; cv=none; b=gPdl3GziQAGrOI+uCm+GY4q/V8ml1lGI9CIDwOvRcvYF2lBkCJznYqUcSmUYkYmOjxgrBtIAB02vpJy/rOe/NdsNE8wu3qajXZxLWu1JzD/au+TP+hXjNMGoHXnnVmZVre9lHCoHy6qq3/oSsUuJRWSnzqy2AbcmbhS2CvueCyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729246319; c=relaxed/simple;
-	bh=kRK4/BKBi0JXML0QAlq/7TuHFKd7W2th9qWUj6ShHEY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RUAh3gRja3QNCy2BnVFFaqQBq0+S7qUwQopgPTiBSz94G1sr7hqgYYEcrG+aXZMcpJSMqro2Ul0QykNawMEGoPiOpr661/fxp5l+muW6HPgM4++gtWFt40JRSUJ9OmPKRDUKPc6Fw3VQzcvzLs+k79BT/NoOLyAKaT+tpUYdCIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lY7c+Abl; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fb3c3d5513so21132001fa.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 03:11:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729246315; x=1729851115; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jvY8KYiHaZqzdfBn2meM7L0X9I9zbwo+MC/72l11qcc=;
-        b=lY7c+AblIJR5m6SRvIf1y47AIC0qHNJtNGeWTodpotUKSlDk3u2n+RNrBKK5RcZ3uD
-         DYAPqkGN+9pQeeaYb77no7B1oEfhX8lHLgEBWzfrbItq6VCfCDwyfb/AkbIS2Aihr47e
-         yfLV+8AfXPUN6TKCy2slTuzgS6EtB64gzP6UU6Iksk6ELiUR6K2F4lYRO7a0j1zFbFTn
-         lSYC+CaFYYim2W9HPAX8iWrwN/fXS96PCnIrw9OjLDrbINl2OGm03pJsIpiCY02WTZUA
-         pYezMiuKoN7ejzcGXZsPDjweDeYk7njapikDBzZUBtPyB705UOiWY8VEd5DDg78p13o5
-         8fow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729246315; x=1729851115;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jvY8KYiHaZqzdfBn2meM7L0X9I9zbwo+MC/72l11qcc=;
-        b=hSSTZKneXTNCSarVW9kdcav+Y4E/P0KMmerNFt0b+qOwjdL+VtACDqrEqXLTdzZcGh
-         opa8zU/HyM72eSYGMZ38FKJlPg1lm7utWCYj+DVpC6vXNi+Z2q7kSLmD2aps05l5sKSN
-         donGowTkUAr8sqMxfeZ2xn5IUiM3hUCfhl8mKO0/HWiqYZGR2hRRJCEgof2+93SSnOES
-         ATflEmxNat3v6DKO6fLCOhWVgYvBNIm0jPa3DGYbVhuCAS4NUC2QDfcjMFLl/xUq2dsF
-         WpUGowwUgX2S0VVcAqt63nZVrQ+gWsQXvRN+PrUNVc0HHgRdq753HGtPDgS42TIaUhhp
-         u1uA==
-X-Forwarded-Encrypted: i=1; AJvYcCVxmfhO15a11mGtvCHXzIvmkyOX7xd7O/sRBSSrrU7DPhvVipyE9AfFTtldWcKgscR09oKFQ2meV752@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywup9TgLKGUXcfrKuGymMkUr8EbHYOvGxOGJOu03V8E6ME/kDjh
-	8nNoVCPxDxnOYgcQlsSminmg00K6BKOamKjRiUtxRKd96W0g4FxdjhzOy/knWIA=
-X-Google-Smtp-Source: AGHT+IG3sYPji9qicEvtFNlcAs92ChQJkMrU6bQriug80NS0HFO4UZ/qbgCf38X9ZiV302DAIpmCeg==
-X-Received: by 2002:a05:651c:542:b0:2fb:2e27:5334 with SMTP id 38308e7fff4ca-2fb82e98f77mr7417511fa.15.1729246315128;
-        Fri, 18 Oct 2024 03:11:55 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb809b2ab8sm1878671fa.48.2024.10.18.03.11.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 03:11:53 -0700 (PDT)
-Date: Fri, 18 Oct 2024 13:11:51 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Tingwei Zhang <quic_tingweiz@quicinc.com>
-Cc: Krishna Kurapati <quic_kriskura@quicinc.com>, 
-	Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Bjorn Andersson <quic_bjorande@quicinc.com>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-phy@lists.infradead.org, quic_ppratap@quicinc.com, 
-	quic_jackp@quicinc.com
-Subject: Re: [PATCH v2 5/5] phy: qcom: qmp-usbc: Add qmp configuration for
- QCS615
-Message-ID: <l4wpt5qin3ezkowf3puvodrm5wjsptd4a32f4qrzcuuquo6kq6@j2orv5z5quln>
-References: <20241017130701.3301785-1-quic_kriskura@quicinc.com>
- <20241017130701.3301785-6-quic_kriskura@quicinc.com>
- <CAA8EJprcOU6qeJvHH+MVoPnQ+mGcos=pDOVBSeSUfBGw-KR6tA@mail.gmail.com>
- <aa68e5ab-86a6-430e-92d8-ed89b4eb37f7@quicinc.com>
- <CAA8EJprkq-Cct9Uk1Jwqc5Rn8mx8THTRgwCzDx=8ZgbCpwD7qw@mail.gmail.com>
- <684582c3-3559-4c54-8257-cb952bbfe2ec@quicinc.com>
+	s=arc-20240116; t=1729246401; c=relaxed/simple;
+	bh=St3nCfOjo9jtJL76E2mLjOhnIbBX+u/MPwBXbF0HZLM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TCNepciawkFzUI4lEoAsa1ERLsAgJ/3/QttseIWSsHke2nB1uTj9KsSKQ67zfflVUNvW7OgkuUgLy0viXQ2UeU139PmslVrvlDxfaHDCrXycdWKLsH0QOj7xT4RqGmPKGTBGrIME/25CSB+Xybg6HMYEbBcPD/V7AhyUU44cXa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X9r/RHX0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2E8DC4CEC3;
+	Fri, 18 Oct 2024 10:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729246401;
+	bh=St3nCfOjo9jtJL76E2mLjOhnIbBX+u/MPwBXbF0HZLM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X9r/RHX0qi8BE1fqxoMkS2TuMVA83B/qRPvDT4OkEGmjhs1v3yQoI5wymx2IqadD9
+	 fYTx90O4Z5dt6MHXdoTcp477mLOyOI7QUwVlQaQkwI9EuSv6bgg0dRo/dURBkGA7yZ
+	 Ebcv0rQFJCp3GHmuTZDOd2nUEuoqrg8/stKz/2cakxX4JcQTfkLZVzSqK0zmMA3YWp
+	 acth2n2+30/h6uyz2WsW08W2/ICivoTGWh9tp4YsKRmidlxrrpoYhM6/bg8Ha+chHR
+	 mX/kVjWByXZqxgRTx4MdVikyKT24tzMgPPKYQ1dhS8wV4iISfAID0yYTaU/lbCrbxc
+	 S2V4+rXgnAHAQ==
+Message-ID: <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
+Date: Fri, 18 Oct 2024 12:13:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <684582c3-3559-4c54-8257-cb952bbfe2ec@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
+ SoCs
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
+ <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
+ <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
+ <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
+ <4127b448-a914-4c69-b938-29512995326f@amlogic.com>
+ <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 18, 2024 at 05:01:48PM +0800, Tingwei Zhang wrote:
-> On 10/18/2024 4:06 PM, Dmitry Baryshkov wrote:
-> > On Fri, 18 Oct 2024 at 10:48, Tingwei Zhang <quic_tingweiz@quicinc.com> wrote:
-> > > 
-> > > On 10/18/2024 2:27 AM, Dmitry Baryshkov wrote:
-> > > > On Thu, 17 Oct 2024 at 16:07, Krishna Kurapati
-> > > > <quic_kriskura@quicinc.com> wrote:
-> > > > > 
-> > > > > Provide PHY configuration for the USB QMP PHY for QCS615 Platform.
-> > > > > 
-> > > > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > 
-> > > > After checking platform details,
-> > > > 
-> > > > Unreviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > 
-> > > > Please perform global s/QCS615/SM6150/ and s/qcs615/sm6150/
-> > > 
-> > > QCS615 and SM6150 are different variants of the same SoC. QCS615 is an
-> > > IoT variant, while SM6150 is a mobile variant. We are currently adding
-> > > QCS615 SoC support to the upstream Kernel, as it is in an active
-> > > development stage and we anticipate many products based on this SoC. On
-> > > the other hand, the SM6150 is an older mobile platform that is unlikely
-> > > to be used in new designs. For a product introduction of the QCS615,
-> > > please refer to
-> > > https://docs.qualcomm.com/bundle/publicresource/87-83838-1_REV_A_Qualcomm_IQ6_Series_Product_Brief.pdf
-> > 
-> > Yes, I guessed so. It would have been nice if it was documented this
-> > way from the beginning.
-> > 
-> > Please note that we usually get support for the mobile SoC first. So
-> > in most of the cases devices use mobile compatible even for IoT
-> > platforms, see qrb5165, qrb4210, qcm6490 and other similar platforms.
-> > I simply asked to follow the established pattern.
+On 18/10/2024 11:20, Jerome Brunet wrote:
+> On Fri 18 Oct 2024 at 17:01, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
 > 
-> Yes, we start from mobile variant for most of the platforms. There are some
-> exceptions like sc7180 and sc7280 which we started from compute variant
-> since they are widely used by compute platform on upstream Kernel. I think
-> we have similar case here. QCS615 will be widely used by IOT products on
-> upstream Kernel. We should have clarified this from beginning so there's no
-> ambiguity.
+>> Hi Jerome,
+>>    Thanks for your reply.
+>>
+>> On 2024/10/18 16:39, Jerome Brunet wrote:
+>>> [ EXTERNAL EMAIL ]
+>>> On Fri 18 Oct 2024 at 10:28, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>
+>>>> On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
+>>>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>>
+>>>>> Add the new compatible name for Amlogic A4 pin controller, and add
+>>>>> a new dt-binding header file which document the detail pin names.
+>>> the change does not do what is described here. At least the description
+>>> needs updating.
+>>>
+>>
+>> Will do.
+>>
+>>> So if the pin definition is now in the driver, does it mean that pins have
+>>> to be referenced in DT directly using the made up numbers that are
+>>> created in pinctrl-amlogic-a4.c at the beginning of patch #2 ?
+>>>
+>>
+>> Yes.
+>>
+>>> If that's case, it does not look very easy a read.
+>>>
+>>
+>> It does happen. The pin definition does not fall under the category of
+>> binding.
+>>
+>> https://lore.kernel.org/all/106f4321-59e8-49b9-bad3-eeb57627c921@amlogic.com/
+> 
+> So the expectation is that people will write something like:
+> 
+>  reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
+> 
+> And others will go in the driver to see that is maps to GPIOX_10 ? the number
+> being completly made up, with no link to anything HW/Datasheet
+> whatsoever ?
+> 
+> This is how things should be done now ?
 
-After offline discussion with Krzysztof, I'll lift my objection, so
-still Reviewed-by.
+Why would you need to do this? Why it cannot be <&gpio 10
+GPIO_ACTIVE_LOW>, assuming it is GPIO 10?
 
--- 
-With best wishes
-Dmitry
+Bindings have absolutely nothing to do with it. You have GPIO 10, not
+42, right?
+
+Best regards,
+Krzysztof
+
 
