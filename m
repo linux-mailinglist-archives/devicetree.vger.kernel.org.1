@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-112932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4538F9A3EDE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:52:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C35F9A3EE1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:53:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 061992875EF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:52:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AAA61C20E09
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E851C242D;
-	Fri, 18 Oct 2024 12:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF83F1D95B5;
+	Fri, 18 Oct 2024 12:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aTduBSeM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d4Dp4b1b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B20B18EFD4;
-	Fri, 18 Oct 2024 12:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871A41D86ED;
+	Fri, 18 Oct 2024 12:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729255949; cv=none; b=IF9Y639luXcPQr/HNOwvHgiWkx+BV3JJhcF04U/bIZU+5swawA2PvFIuExk1jOOq/j7NUHqHy7qvtGmzq3A8r1tNROddlRyUj5wKj1cR5CWix65mx3//CJZOlAkaztyu2eWoYvWz0iuH+H9PJo253q2J8X8JzV6n5x2D7n71MHw=
+	t=1729255951; cv=none; b=gpyEzUL+K/M/3G6hxp5DlFey0ba+wrHzJDhRp9LPu3Kge6uJXfg+KFub5RLJFy90TQdopccvKZXJvqws0faWFPKG2Lk9/OWQHeBsUvkzmsS22ITCesQ8/HEm9LLrSLBiDsHYcWFeQ12PbriColH9FpBd81Y0L92rwoc6S5AsyzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729255949; c=relaxed/simple;
-	bh=zLhGtq2kJG928zd4YJeFVl0IvPVNahC24fHAKUF0Dgc=;
+	s=arc-20240116; t=1729255951; c=relaxed/simple;
+	bh=UZ7u6Rc9FfmOf9m8EMUtl5zNNPrd8QgWBd/z2NMe2/4=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=jooPon5dV3ylNfBeeNdhuAS6MPCkKt0RKa2cgIZIzkXfItaoeOJuPxfPmM2TIoubH3TKXngirltm/xDuQGXWVSYs2OmEF35McpcK0/dDPREzumO/kL4I4iJZzjOThN7guHIZ/upWfAPJDTP5otoaO0NNCeEnyUR1UjRPzbq5aN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aTduBSeM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C693C4CED2;
-	Fri, 18 Oct 2024 12:52:28 +0000 (UTC)
+	 Message-Id:Subject; b=Z29EsF2n+m4+XT6TB/GGPfOExNwB3S17WSJLOjjzIIlP9C1ioEDy5kMmkihLvgcbw+X9AnFRgLUG3LsPh/TdfWY+qk+jgI+M5POE4hSxvIFau8uMrfvt0LhGtQ2ehUHGG+wH5wlwPJAO+1y+wxqeo0NAJ8z/XKSfa0C5mixgDYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d4Dp4b1b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3C83C4CED5;
+	Fri, 18 Oct 2024 12:52:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729255948;
-	bh=zLhGtq2kJG928zd4YJeFVl0IvPVNahC24fHAKUF0Dgc=;
+	s=k20201202; t=1729255951;
+	bh=UZ7u6Rc9FfmOf9m8EMUtl5zNNPrd8QgWBd/z2NMe2/4=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=aTduBSeM3EdRwNx+UqrtVxZmOm/mfIwcO+MtLFSbrNt3SpNqol86MwCpTFxzo3x1V
-	 lQxDYeP8x/zD4HwYuLfbHFKcnPGFRQgS1ZaV+GEVl1bSPQ8OxnfVXB1iHClWpEPSSl
-	 /mxajpq0vXz5nfg3UShvj3C8zRQqAhrmGMmTdxfJDgGYuuCMk0DS8cmYQdtN7Ia/7C
-	 h88Mbc3Yzb6sSo0dZSuPOF5bF6AwMSYewLB8VtjVBpSAfaWJFeY8KHLMhkUcMCrlH5
-	 UE0ki3QziMmfQIrJBTxOCT3rgJpydPnlyLIVTYz16nliuih2OvJTzmeLP90e/9P3Ua
-	 RoC64uQsdHIGw==
-Date: Fri, 18 Oct 2024 07:52:27 -0500
+	b=d4Dp4b1bhEoSEo8VPxz5mdVm/h2XfneCMhHY1ULlfDpzajAjvBxHHAeP4pRnvfQci
+	 CPahwtCoYkCZvNUHVEmqwv7bLEEkMb3/f0R5dYeRvCcDtkxWBXPYq5T8abV6uv976w
+	 AQ9Lq1oC83NCl99T3/psWrKa2Fct2dT/jnFCH7Ke9EzusScZFGJhM9ikduhvyZdwml
+	 anF0HUaXcMNzhuBBvaON7AtWxV3MFxwrCnjlWOGkepbqG50PwKsQnKkR84AgxJRi4J
+	 7emgm8smTa/NZwRz+PhZTtMHqrFx7Iswag893Hf6TQowKt5+Ds4J9xuu5FSc2CDcmt
+	 hRHVbMk4eeHVw==
+Date: Fri, 18 Oct 2024 07:52:30 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,48 +51,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-Cc: shawnguo@kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Peng Fan <peng.fan@nxp.com>, krzk+dt@kernel.org, 
- linux-kernel@vger.kernel.org, Hiago De Franco <hiago.franco@toradex.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Max Merchel <Max.Merchel@ew.tq-group.com>, 
- Fabio Estevam <festevam@gmail.com>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Tim Harvey <tharvey@gateworks.com>, Mathieu Othacehe <m.othacehe@gmail.com>, 
- Joao Paulo Goncalves <joao.goncalves@toradex.com>, imx@lists.linux.dev, 
- Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
- Michael Walle <mwalle@kernel.org>, 
- Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Pengutronix Kernel Team <kernel@pengutronix.de>
-In-Reply-To: <20241018091023.29286-1-bhavin.sharma@siliconsignals.io>
-References: <20241018091023.29286-1-bhavin.sharma@siliconsignals.io>
-Message-Id: <172925539932.17706.4264141268818363923.robh@kernel.org>
-Subject: Re: [PATCH 0/2] Add support Boundary Device Nitrogen8MP Universal
- SMARC Carrier Board
+To: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ devicetree@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>, 
+ Benjamin Tissoires <bentiss@kernel.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Enric Balletbo i Serra <eballetbo@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20241018-post-reset-v1-0-5aadb7550037@chromium.org>
+References: <20241018-post-reset-v1-0-5aadb7550037@chromium.org>
+Message-Id: <172925540096.17773.4550001283125132036.robh@kernel.org>
+Subject: Re: [PATCH 0/2] Using i2c-hid-of-elan driver instead of i2c-hid-of
+ driver
 
 
-On Fri, 18 Oct 2024 14:39:26 +0530, Bhavin Sharma wrote:
-> Add initial support for Nitrogen8MP Universal SMARC Carrier Board with
-> Nitrogen8MP SMARC System on Module.
+On Fri, 18 Oct 2024 12:03:03 +0000, Hsin-Te Yuan wrote:
+> After commit 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to
+> i2c-hid-of"), i2c-hid-of driver resets the touchscreen without having
+> proper post-reset delay on OF platform.  From the commit message of that
+> commit, not to decribe poset-reset delay in device tree is intended.
+> Instead, describing the delay in platform data and changing to use
+> specialized driver is more preferable solution.
 > 
-> Bhavin Sharma (2):
->   arm64: dts: imx8mp: Add Boundary Device Nitrogen8MP Universal SMARC
->     Carrier Board
->   dt-bindings: arm: fsl: Add Boundary Device Nitrogen8MP Universal SMARC
->     Carrier Board
+> Also workaround the race condition of pinctrl used by touchscreen and
+> trackpad in this series to avoid merge conflict.
 > 
->  .../devicetree/bindings/arm/fsl.yaml          |   6 +
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../freescale/imx8mp-nitrogen-smarc-som.dtsi  | 349 ++++++++++++++++++
->  .../imx8mp-nitrogen-smarc-universal-board.dts |  17 +
->  4 files changed, 373 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-nitrogen-smarc-som.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-nitrogen-smarc-universal-board.dts
+> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+> ---
+> Hsin-Te Yuan (2):
+>       arm64: dts: mediatek: mt8183: Fix race condition of pinctrl
+>       arm64: dts: mediatek: mt8183: Switch to Elan touchscreen driver
 > 
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts |  2 --
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts  |  3 ---
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts   | 12 +++---------
+>  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts   | 11 ++---------
+>  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts   | 11 ++---------
+>  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts   | 11 ++---------
+>  .../arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi |  3 ---
+>  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper.dtsi      |  3 ---
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts   |  3 ---
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts  |  3 ---
+>  .../arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi |  3 ---
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi       | 10 +++-------
+>  12 files changed, 12 insertions(+), 63 deletions(-)
+> ---
+> base-commit: eca631b8fe808748d7585059c4307005ca5c5820
+> change-id: 20241018-post-reset-ac66b0351613
+> 
+> Best regards,
 > --
-> 2.43.0
+> Hsin-Te Yuan <yuanhsinte@chromium.org>
 > 
 > 
 > 
@@ -112,9 +124,18 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y freescale/imx8mp-nitrogen-smarc-universal-board.dtb' for 20241018091023.29286-1-bhavin.sharma@siliconsignals.io:
+New warnings running 'make CHECK_DTBS=y mediatek/mt8183-kukui-jacuzzi-burnet.dtb mediatek/mt8183-kukui-jacuzzi-cozmo.dtb mediatek/mt8183-kukui-jacuzzi-damu.dtb mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dtb mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dtb mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dtb mediatek/mt8183-kukui-jacuzzi-pico.dtb mediatek/mt8183-kukui-jacuzzi-pico6.dtb' for 20241018-post-reset-v1-0-5aadb7550037@chromium.org:
 
-arch/arm64/boot/dts/freescale/imx8mp-nitrogen-smarc-universal-board.dtb: /soc@0/bus@30800000/i2c@30ae0000/gpio@20: failed to match any schema with compatible: ['microchip,mcp23018']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dtb: dpi@14015000: power-domains: False schema does not allow [[92, 7]]
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: dpi@14015000: power-domains: False schema does not allow [[94, 7]]
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb: dpi@14015000: power-domains: False schema does not allow [[92, 7]]
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dtb: dpi@14015000: power-domains: False schema does not allow [[90, 7]]
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb: dpi@14015000: power-domains: False schema does not allow [[92, 7]]
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
 
 
 
