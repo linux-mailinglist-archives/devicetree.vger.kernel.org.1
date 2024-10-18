@@ -1,69 +1,56 @@
-Return-Path: <devicetree+bounces-113012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F799A4489
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 19:24:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06FCD9A44CD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 19:36:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B72B1F21EDE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 17:24:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96AD9B23526
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 17:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345E3204010;
-	Fri, 18 Oct 2024 17:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jtLQakga"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B171202F6B;
+	Fri, 18 Oct 2024 17:36:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F312038A3;
-	Fri, 18 Oct 2024 17:24:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD1620262E;
+	Fri, 18 Oct 2024 17:36:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729272278; cv=none; b=lRzJvKrU4e0dT+Oq30sOKvaRQA0BRvxSbcPhkZFZt6jLGodLY3YBK1S0n2RYmIIQTJfYjlMVmH2N4R9JOA0wgxi71Soq54iHPYMfBpl3LctACb+3LBKX7d5C2BU4ZH7vr6hmN8nI/FF1hMG4YffJHykFBngzRKdfM+qPN1DMI80=
+	t=1729272978; cv=none; b=PZj2tm0hGqNU7wRCr9w5JeZchY3NaHDhtQs/4f1qOjDFcmFW6CXEpo6NM8QEP4rE+BZ8QfKI7NAdWbpo9EyZR7uYCmQPbCySpBLHy5UhqU7i9FOCQvfcyg6ivUtgnIqW1rcaNePFIu8CGo6Vq/gzcUwLoYjXEo3fX0QPOiD6RN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729272278; c=relaxed/simple;
-	bh=fWTUGUbvtxGgdUl3mI+I8UiYVV3ELG6T2ASGw2R93Dg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R4brSEcEl3qT5+ac23rZnEkbABltvcJd7OqFn0qoIrKaO2+CMNhDevrtGq090gqK1VNvlRsHO4H3vkCRdADepALi5kpr+fV8wPiflIOwcSHAIgl1SVHVCTYUHRE63HN/NciDyL9ucXmfoPKDLFZ7uaTZWcNpnBmEzW/PnmNVaMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jtLQakga; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729272274;
-	bh=fWTUGUbvtxGgdUl3mI+I8UiYVV3ELG6T2ASGw2R93Dg=;
-	h=From:To:Cc:Subject:Date:From;
-	b=jtLQakgatYLOAtYpLqyRV51Un6cbN7cvmnh4hy+F2b3cHB9kxk0IyDIwBX+rR+3+J
-	 h2o198viNsa0rHJIEWTtm4clJuQKpe4eTherydBqnz0caYTDV82UAiNnEuWV1hRDcq
-	 oj5pjUBOyzAceB8biQ90QdaF2rAd1iT2zYyVXeVbEHFAUdLR9Ls80SW3cKVhezsFDF
-	 p2BY4MberRL5alzfJTILUlG0e9K9N9cTvUXIcwdHreWvPBa7Iqd1jjsxipQgqlWR0B
-	 GPWvgXNWWGI+xlmjc/sP1KxtrVuUUuvqiCoctEtN+UQWLxPP5NYThGlmoZdEllFTl8
-	 lyzR8GC3QScuQ==
-Received: from jupiter.universe (dyndsl-091-248-211-226.ewe-ip-backbone.de [91.248.211.226])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0451217E367D;
-	Fri, 18 Oct 2024 19:24:34 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 9A6764800EA; Fri, 18 Oct 2024 19:24:33 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1729272978; c=relaxed/simple;
+	bh=cpjtLhNwKyFaaIwtnbQjoebKf3gL8XG9kk/gIxRT7y0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HPqXTdWWzGdE4JwfPG8E2ffVY8Pd0SMhQMQ5s06GqRNJjdks3yUwDRRBhZNMeoR4pwnWJBqdy6yV9wC6JLyRJBGw6R8MjF2LvjTSfTR9fAfmNp2kZ/Ul3pDCEu7Jrmo8uZSMy3ef/t+Ouy9u7D/PtaivbSdGRLRq26PbqKNx3Aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+	by finn.localdomain with esmtp (Exim 4.95)
+	(envelope-from <tharvey@gateworks.com>)
+	id 1t1qtW-0013O1-L2;
+	Fri, 18 Oct 2024 17:36:10 +0000
+From: Tim Harvey <tharvey@gateworks.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-rockchip@lists.infradead.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Li Yang <leoyang.li@nxp.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com
-Subject: [PATCH v1 1/1] arm64: dts: rockchip: rk3588-evb1: add WLAN controller
-Date: Fri, 18 Oct 2024 19:24:21 +0200
-Message-ID: <20241018172432.53182-1-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.45.2
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH v3] arm64: dts: imx8m*-venice-gw75xx: add Accelerometer device
+Date: Fri, 18 Oct 2024 10:36:08 -0700
+Message-Id: <20241018173608.810073-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,137 +59,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The RK3588 EVB1 has an onboard AP6275P WLAN/BT module. This adds
-support for the WLAN side, which is connected to the second
-PCIe bus. The Bluetooth side is connected to UART and handled
-separately.
+The GW75xx has a LIS2DE12TR 3-axis accelerometer on the I2C bus with an
+interrupt pin. Add it to the device-tree.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+----
+v3: move reg directly after compatible and before pinctrl
+v2: make sure compatible is on top and vendor specific props are at the
+    end per:
+    https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
 ---
- .../boot/dts/rockchip/rk3588-evb1-v10.dts     | 82 +++++++++++++++++++
- 1 file changed, 82 insertions(+)
+ .../boot/dts/freescale/imx8mm-venice-gw75xx.dtsi | 16 ++++++++++++++++
+ .../boot/dts/freescale/imx8mp-venice-gw75xx.dtsi | 16 ++++++++++++++++
+ 2 files changed, 32 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-index df44dbc394ca..f55ab8f59d65 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-@@ -237,12 +237,48 @@ vcc5v0_usb: vcc5v0-usb-regulator {
- 		regulator-max-microvolt = <5000000>;
- 		vin-supply = <&vcc5v0_usbdcin>;
- 	};
-+
-+	vccio_wl: vccio-wl {
-+		compatible = "regulator-fixed";
-+		regulator-name = "wlan-vddio";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc_1v8_s0>;
-+	};
-+
-+	vcc3v3_pciewl_vbat: vcc3v3-pciewl-vbat {
-+		compatible = "regulator-fixed";
-+		regulator-name = "wlan-vbat";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc_3v3_s0>;
-+	};
-+
-+	vcc3v3_wlan: vcc3v3-wlan {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx.dtsi
+index 5eb92005195c..53004c4a13aa 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx.dtsi
+@@ -116,6 +116,16 @@ &i2c2 {
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
+ 
++	accelerometer@19 {
++		compatible = "st,lis2de12";
++		reg = <0x19>;
 +		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_pwren>;
-+		regulator-name = "wlan-en";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpios = <&gpio3 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		vin-supply = <&vcc3v3_pciewl_vbat>;
++		pinctrl-0 = <&pinctrl_accel>;
++		interrupt-parent = <&gpio5>;
++		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
++		st,drdy-int-pin = <1>;
 +	};
- };
++
+ 	eeprom@52 {
+ 		compatible = "atmel,24c32";
+ 		reg = <0x52>;
+@@ -198,6 +208,12 @@ MX8MM_IOMUXC_SPDIF_RX_GPIO5_IO4		0x40000040 /* GPIOC */
+ 		>;
+ 	};
  
- &combphy0_ps {
++	pinctrl_accel: accelgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_ECSPI1_MISO_GPIO5_IO8	0x159
++		>;
++	};
++
+ 	pinctrl_gpio_leds: gpioledgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SAI1_RXFS_GPIO4_IO0	0x6	/* LEDG */
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx.dtsi
+index 0d40cb0f05f6..f90b293c85fc 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx.dtsi
+@@ -104,6 +104,16 @@ &i2c2 {
+ 	pinctrl-0 = <&pinctrl_i2c2>;
  	status = "okay";
- };
  
-+&combphy1_ps {
-+	status = "okay";
-+};
-+
- &combphy2_psu {
- 	status = "okay";
- };
-@@ -408,6 +444,30 @@ rgmii_phy: ethernet-phy@1 {
- 	};
- };
- 
-+&pcie2x1l0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_0_rst>, <&pcie2_0_wake>, <&pcie2_0_clkreq>, <&wifi_host_wake_irq>;
-+	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_wlan>;
-+	status = "okay";
-+
-+	pcie@0,0 {
-+		reg = <0x200000 0 0 0 0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		ranges;
-+		device_type = "pci";
-+		bus-range = <0x20 0x2f>;
-+
-+		wifi: wifi@0,0 {
-+			compatible = "pci14e4,449d";
-+			reg = <0x210000 0 0 0 0>;
-+			clocks = <&hym8563>;
-+			clock-names = "lpo";
-+		};
++	accelerometer@19 {
++		compatible = "st,lis2de12";
++		reg = <0x19>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_accel>;
++		interrupt-parent = <&gpio5>;
++		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
++		st,drdy-int-pin = <1>;
 +	};
-+};
 +
- &pcie2x1l1 {
- 	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
- 	pinctrl-names = "default";
-@@ -462,6 +522,18 @@ hym8563_int: hym8563-int {
+ 	eeprom@52 {
+ 		compatible = "atmel,24c32";
+ 		reg = <0x52>;
+@@ -204,6 +214,12 @@ MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28	0x40000106 /* PCI_WDIS# */
+ 		>;
  	};
  
- 	pcie2 {
-+		pcie2_0_rst: pcie2-0-rst {
-+			rockchip,pins = <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		pcie2_0_wake: pcie2-0-wake {
-+			rockchip,pins = <4 RK_PA4 4 &pcfg_pull_none>;
-+		};
-+
-+		pcie2_0_clkreq: pcie2-0-clkreq {
-+			rockchip,pins = <4 RK_PA3 4 &pcfg_pull_none>;
-+		};
-+
- 		pcie2_1_rst: pcie2-1-rst {
- 			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-@@ -492,6 +564,16 @@ usbc0_int: usbc0-int {
- 			rockchip,pins = <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 	};
-+
-+	wlan {
-+		wifi_host_wake_irq: wifi-host-wake-irq {
-+			rockchip,pins = <3 RK_PA7 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		wifi_pwren: wifi-pwren {
-+			rockchip,pins = <3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
++	pinctrl_accel: accelgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_ECSPI1_MISO__GPIO5_IO08	0x159
++		>;
 +	};
- };
- 
- &pwm2 {
++
+ 	pinctrl_gpio_leds: gpioledgrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SAI2_RXC__GPIO4_IO22	0x6	/* LEDG */
 -- 
-2.45.2
+2.25.1
 
 
