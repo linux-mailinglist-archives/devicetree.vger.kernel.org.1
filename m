@@ -1,303 +1,165 @@
-Return-Path: <devicetree+bounces-112773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7EC9A3782
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:46:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F48E9A378F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44BCF1C21213
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:46:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E001128208A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACBEA18A94D;
-	Fri, 18 Oct 2024 07:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95A7B18C01D;
+	Fri, 18 Oct 2024 07:48:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b="YQZxR0fD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i1Zp4HnA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4029818A928;
-	Fri, 18 Oct 2024 07:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=88.97.38.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8BF218BBAE;
+	Fri, 18 Oct 2024 07:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729237593; cv=none; b=RhXB7HewNf8Gn2v2ZbhOmeQ1BbQ39Hbj8/1DOUUCzBUnTo8PjQYnudWGEELhgkm5pasrDcsfoLEg4aHMQ9T/5pqmyWG5UCJv9gOlZ4d7VaSTK2SE+BGaQuVbxjgvxC+MWoGSS4D3QKzrNDJtarBO7gHMue+lwmZ7Mez+BY4eDRw=
+	t=1729237723; cv=none; b=j4GsKFIRxaByJQlg+xqA9tUMSLFha/82A1so4GpEExln9mOO0tN/yXL3dxVYuoH0TbK1p2bpPbw5Y8rgl4ghmQC3et22OUkXH3fyq6/pNueSsi1fbRXatjqM0q7eIfxXiDrueyrAznCIW6L7fOoV0y9KXVvdt4CWQhc+YZp6PrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729237593; c=relaxed/simple;
-	bh=sfxyH3CCteK+m0zEA4Sv5bH7E5P6haA9Zbq45UkQSsw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZWr3kVbFZ60yc4WVt5p0U3yx2Qqv6AhsWiWNs3NfEyMkKHxSbBmiT1swUHmJifkvSoCTtOYh4ry0R+Yv9HEZ1k2f1V0GAN0ZBBd0uuUOGt/I49gvLsCbd35FSLW8wxl8I52dRDsEkiEGhcgFf8hGt0h8J/tUnTUXpMs5RiWAroA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org; spf=pass smtp.mailfrom=mess.org; dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b=YQZxR0fD; arc=none smtp.client-ip=88.97.38.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mess.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1729237588; bh=sfxyH3CCteK+m0zEA4Sv5bH7E5P6haA9Zbq45UkQSsw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YQZxR0fDyeSEp83aZMTJm3ilN0wy4kQi1mkaESPEtg2fUN70ZnrlVBG7eq2W7KvLB
-	 EW6vj2h7+Nte6+9bTpkWopfLNfWreOjDJQam1wSB5MR853BxueZ8+YGWFfQRcTNiqR
-	 iMLL2ZXy5rQ9occLNa8DbbB6g5M8AJXxNqXHHg+psaw2bQkTsefDHzi/R2wLU/ZHNs
-	 3Gl36ZeSi7h3uoj11xvTjZZaN+g1KafMfvycU/XGUh2QGsAIoWoPvFf+2eip3fDLID
-	 PmUt/gNFDlkPAHHSsfShF5YfGsQw7q/45Wxvi/e2razbPSDmxh9qyZ+G4p8fgLCGGl
-	 QyQgEuRYl+Z+w==
-Received: by gofer.mess.org (Postfix, from userid 1000)
-	id 5C7031002B3; Fri, 18 Oct 2024 08:46:28 +0100 (BST)
-Date: Fri, 18 Oct 2024 08:46:28 +0100
-From: Sean Young <sean@mess.org>
-To: Chi-Wen Weng <cwweng.linux@gmail.com>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	ychuang3@nuvoton.com, schung@nuvoton.com
-Subject: Re: [PATCH 2/2] pwm: Add Nuvoton PWM controller support
-Message-ID: <ZxISVBz1Os0T4eqP@gofer.mess.org>
-References: <20241018034857.568-1-cwweng.linux@gmail.com>
- <20241018034857.568-3-cwweng.linux@gmail.com>
+	s=arc-20240116; t=1729237723; c=relaxed/simple;
+	bh=WVylbjbYsnKi037x0sH/IGcZHyEhM4o6hbSPFJ3eWpk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AGaVHBKrol+jFJnjbvIZapAcTss4kD3PH33HGuiymu2oEdNntFTwEIxEf/LM+hTeIH50BHmMFEX3fX6dW7HtEGhx17T3y1R9IlFhhSp25Z/Dzt1GhobAPDhOtEBoHkTTc7x4A2pUYBVPs5P9gs8HrcPM9yF4TPWW5+d4ZkRWOtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i1Zp4HnA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49I4vEJf016598;
+	Fri, 18 Oct 2024 07:48:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OzoaWvCEqfRjWD3bU1bsw3GKto7yOeJ28P0BvJsYBQE=; b=i1Zp4HnAQ1QTPLxd
+	CMkVvPD9J8nRKUgLSfzslY2GUNKSy5P+QywV0qE1iwL5BdSjQr2XiZXUUGsq60C8
+	/bDVBQmRQCrSjwOny9S77ItecdiPlvx0uI9q0gIh9qTC6jJBObblB1PQXwz+NKx2
+	jf5/KDhWHRzSLq/+9SyMbylo0HKqfYPtRRJjaTr0F5AWKEyk5lyDVX+OY/T2wqPz
+	+HFm3OZwmP9cbowszKO9MzwvOYAHtL16x0P4KSj7JtnNvnDrx9jQ6p3cO4KnJICB
+	ONcpwx/ZBvZdYRcfqAvrlRapJUVK6Zna5yImrTsmUhEbulTB7wsZIux56pjHUrwT
+	n4br0w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42bh3p8eu2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 07:48:34 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49I7mXeL015257
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 07:48:33 GMT
+Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 18 Oct
+ 2024 00:48:27 -0700
+Message-ID: <aa68e5ab-86a6-430e-92d8-ed89b4eb37f7@quicinc.com>
+Date: Fri, 18 Oct 2024 15:48:24 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241018034857.568-3-cwweng.linux@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] phy: qcom: qmp-usbc: Add qmp configuration for
+ QCS615
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krishna Kurapati
+	<quic_kriskura@quicinc.com>
+CC: Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Wesley Cheng
+	<quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>
+References: <20241017130701.3301785-1-quic_kriskura@quicinc.com>
+ <20241017130701.3301785-6-quic_kriskura@quicinc.com>
+ <CAA8EJprcOU6qeJvHH+MVoPnQ+mGcos=pDOVBSeSUfBGw-KR6tA@mail.gmail.com>
+From: Tingwei Zhang <quic_tingweiz@quicinc.com>
+In-Reply-To: <CAA8EJprcOU6qeJvHH+MVoPnQ+mGcos=pDOVBSeSUfBGw-KR6tA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Pvo3hA6bTlT-uZ_6lKCKZElyxBT6emfK
+X-Proofpoint-ORIG-GUID: Pvo3hA6bTlT-uZ_6lKCKZElyxBT6emfK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 bulkscore=0 lowpriorityscore=0 mlxscore=0 malwarescore=0
+ clxscore=1011 phishscore=0 priorityscore=1501 spamscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410180048
 
-On Fri, Oct 18, 2024 at 03:48:57AM +0000, Chi-Wen Weng wrote:
-> This commit adds a generic PWM framework driver for Nuvoton MA35D1
-> PWM controller.
+On 10/18/2024 2:27 AM, Dmitry Baryshkov wrote:
+> On Thu, 17 Oct 2024 at 16:07, Krishna Kurapati
+> <quic_kriskura@quicinc.com> wrote:
+>>
+>> Provide PHY configuration for the USB QMP PHY for QCS615 Platform.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
-> Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
-> ---
->  drivers/pwm/Kconfig      |   9 +++
->  drivers/pwm/Makefile     |   1 +
->  drivers/pwm/pwm-ma35d1.c | 169 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 179 insertions(+)
->  create mode 100644 drivers/pwm/pwm-ma35d1.c
+> After checking platform details,
 > 
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 0915c1e7df16..97b9e83af020 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -411,6 +411,15 @@ config PWM_LPSS_PLATFORM
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-lpss-platform.
->  
-> +config PWM_MA35D1
-> +	tristate "Nuvoton MA35D1 PWM support"
-> +	depends on ARCH_MA35 || COMPILE_TEST
-> +	help
-> +	  Generic PWM framework driver for Nuvoton MA35D1.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-ma35d1.
-> +
->  config PWM_MESON
->  	tristate "Amlogic Meson PWM driver"
->  	depends on ARCH_MESON || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 9081e0c0e9e0..c1d3a1d8add0 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -36,6 +36,7 @@ obj-$(CONFIG_PWM_LPC32XX)	+= pwm-lpc32xx.o
->  obj-$(CONFIG_PWM_LPSS)		+= pwm-lpss.o
->  obj-$(CONFIG_PWM_LPSS_PCI)	+= pwm-lpss-pci.o
->  obj-$(CONFIG_PWM_LPSS_PLATFORM)	+= pwm-lpss-platform.o
-> +obj-$(CONFIG_PWM_MA35D1)	+= pwm-ma35d1.o
->  obj-$(CONFIG_PWM_MESON)		+= pwm-meson.o
->  obj-$(CONFIG_PWM_MEDIATEK)	+= pwm-mediatek.o
->  obj-$(CONFIG_PWM_MICROCHIP_CORE)	+= pwm-microchip-core.o
-> diff --git a/drivers/pwm/pwm-ma35d1.c b/drivers/pwm/pwm-ma35d1.c
-> new file mode 100644
-> index 000000000000..dc2f1f494a91
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-ma35d1.c
-> @@ -0,0 +1,169 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Driver for the Nuvoton MA35D1 PWM controller
-> + *
-> + * Copyright (C) 2024 Nuvoton Corporation
-> + *               Chi-Wen Weng <cwweng@nuvoton.com>
-> + */
-> +
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/io.h>
-> +#include <linux/clk.h>
-> +#include <linux/math64.h>
-> +
-> +/* The following are registers for PWM controller */
-> +#define REG_PWM_CTL0            (0x00)
-> +#define REG_PWM_CNTEN           (0x20)
-> +#define REG_PWM_PERIOD0         (0x30)
-> +#define REG_PWM_CMPDAT0         (0x50)
-> +#define REG_PWM_WGCTL0          (0xB0)
-> +#define REG_PWM_POLCTL          (0xD4)
-> +#define REG_PWM_POEN            (0xD8)
-> +
-> +#define PWM_TOTAL_CHANNELS      6
-> +#define PWM_CH_REG_SIZE         4
-> +
-> +struct nuvoton_pwm {
-> +	void __iomem *base;
-> +	u64 clkrate;
-> +};
-> +
-> +static inline struct nuvoton_pwm *to_nuvoton_pwm(struct pwm_chip *chip)
-> +{
-> +	return pwmchip_get_drvdata(chip);
-> +}
-> +
-> +static int nuvoton_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			     const struct pwm_state *state)
-> +{
-> +	struct nuvoton_pwm *nvtpwm;
-> +	unsigned int ch = pwm->hwpwm;
-> +
-> +	nvtpwm = to_nuvoton_pwm(chip);
-> +	if (state->enabled) {
-> +		u64 duty_cycles, period_cycles;
-> +
-> +		/* Calculate the duty and period cycles */
-> +		duty_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
-> +						  state->duty_cycle, NSEC_PER_SEC);
-> +		if (duty_cycles > 0xFFFF)
-> +			duty_cycles = 0xFFFF;
-> +
-> +		period_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
-> +						    state->period, NSEC_PER_SEC);
-> +		if (period_cycles > 0xFFFF)
-> +			period_cycles = 0xFFFF;
-
-If a period is not supported, return -EINVAL - maybe even do a dev_err().
-Same for the duty cycle above. It might make sense to calculate the period
-first, so that the error is more likely to be about the period than the
-duty cycle.
-
-Then again I don't know if all the drivers do this, but at least some of
-them do.
-
-> +
-> +		/* Write the duty and period cycles to registers */
-> +		writel(duty_cycles, nvtpwm->base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE));
-> +		writel(period_cycles, nvtpwm->base + REG_PWM_PERIOD0 + (ch * PWM_CH_REG_SIZE));
-> +		/* Enable counter */
-> +		writel(readl(nvtpwm->base + REG_PWM_CNTEN) | BIT(ch),
-> +		       nvtpwm->base + REG_PWM_CNTEN);
-> +		/* Enable output */
-> +		writel(readl(nvtpwm->base + REG_PWM_POEN) | BIT(ch),
-> +		       nvtpwm->base + REG_PWM_POEN);
-> +	} else {
-> +		/* Disable counter */
-> +		writel(readl(nvtpwm->base + REG_PWM_CNTEN) & ~BIT(ch),
-> +		       nvtpwm->base + REG_PWM_CNTEN);
-> +		/* Disable output */
-> +		writel(readl(nvtpwm->base + REG_PWM_POEN) & ~BIT(ch),
-> +		       nvtpwm->base + REG_PWM_POEN);
-> +	}
-> +
-> +	/* Set polarity state to register */
-> +	if (state->polarity == PWM_POLARITY_NORMAL)
-> +		writel(readl(nvtpwm->base + REG_PWM_POLCTL) & ~BIT(ch),
-> +		       nvtpwm->base + REG_PWM_POLCTL);
-> +	else
-> +		writel(readl(nvtpwm->base + REG_PWM_POLCTL) | BIT(ch),
-> +		       nvtpwm->base + REG_PWM_POLCTL);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nuvoton_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> +				 struct pwm_state *state)
-> +{
-> +	struct nuvoton_pwm *nvtpwm;
-> +	unsigned int duty_cycles, period_cycles, cnten, outen, polarity;
-> +	unsigned int ch = pwm->hwpwm;
-> +
-> +	nvtpwm = to_nuvoton_pwm(chip);
-> +
-> +	cnten = readl(nvtpwm->base + REG_PWM_CNTEN);
-> +	outen = readl(nvtpwm->base + REG_PWM_POEN);
-> +	duty_cycles = readl(nvtpwm->base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE));
-> +	period_cycles = readl(nvtpwm->base + REG_PWM_PERIOD0 + (ch * PWM_CH_REG_SIZE));
-> +	polarity = readl(nvtpwm->base + REG_PWM_POLCTL) & BIT(ch);
-> +
-> +	state->enabled = (cnten & BIT(ch)) && (outen & BIT(ch));
-> +	state->polarity = polarity ? PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
-> +	state->duty_cycle = DIV64_U64_ROUND_UP((u64)duty_cycles * NSEC_PER_SEC, nvtpwm->clkrate);
-> +	state->period = DIV64_U64_ROUND_UP((u64)period_cycles * NSEC_PER_SEC, nvtpwm->clkrate);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct pwm_ops nuvoton_pwm_ops = {
-> +	.apply = nuvoton_pwm_apply,
-> +	.get_state = nuvoton_pwm_get_state,
-> +};
-> +
-> +static int nuvoton_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct pwm_chip *chip;
-> +	struct nuvoton_pwm *nvtpwm;
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	chip = devm_pwmchip_alloc(&pdev->dev, PWM_TOTAL_CHANNELS, sizeof(*nvtpwm));
-> +	if (IS_ERR(chip))
-> +		return PTR_ERR(chip);
-> +
-> +	nvtpwm = to_nuvoton_pwm(chip);
-> +
-> +	nvtpwm->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(nvtpwm->base))
-> +		return PTR_ERR(nvtpwm->base);
-> +
-> +	clk = devm_clk_get_enabled(&pdev->dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(clk), "unable to get the clock");
-> +
-> +	nvtpwm->clkrate = clk_get_rate(clk);
-> +	if (nvtpwm->clkrate > NSEC_PER_SEC)
-> +		return dev_err_probe(&pdev->dev, -EINVAL, "pwm clock out of range");
-> +
-> +	chip->ops = &nuvoton_pwm_ops;
-
-I think you can add chip->atomic = true; here
-
-
-Sean
-
-> +
-> +	ret = devm_pwmchip_add(&pdev->dev, chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(&pdev->dev, ret, "unable to add pwm chip");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id nuvoton_pwm_of_match[] = {
-> +	{ .compatible = "nuvoton,ma35d1-pwm" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, nuvoton_pwm_of_match);
-> +
-> +static struct platform_driver nuvoton_pwm_driver = {
-> +	.probe = nuvoton_pwm_probe,
-> +	.driver = {
-> +		.name = "nuvoton-pwm",
-> +		.of_match_table = nuvoton_pwm_of_match,
-> +	},
-> +};
-> +module_platform_driver(nuvoton_pwm_driver);
-> +
-> +MODULE_ALIAS("platform:nuvoton-pwm");
-> +MODULE_AUTHOR("Chi-Wen Weng <cwweng@nuvoton.com>");
-> +MODULE_DESCRIPTION("Nuvoton MA35D1 PWM driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.25.1
+> Unreviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
+> Please perform global s/QCS615/SM6150/ and s/qcs615/sm6150/
+
+QCS615 and SM6150 are different variants of the same SoC. QCS615 is an 
+IoT variant, while SM6150 is a mobile variant. We are currently adding 
+QCS615 SoC support to the upstream Kernel, as it is in an active 
+development stage and we anticipate many products based on this SoC. On 
+the other hand, the SM6150 is an older mobile platform that is unlikely 
+to be used in new designs. For a product introduction of the QCS615, 
+please refer to 
+https://docs.qualcomm.com/bundle/publicresource/87-83838-1_REV_A_Qualcomm_IQ6_Series_Product_Brief.pdf
+
+> 
+>> ---
+>>   drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
+>> index d4fa1063ea61..c56ba8468538 100644
+>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
+>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
+>> @@ -1123,6 +1123,9 @@ static const struct of_device_id qmp_usbc_of_match_table[] = {
+>>          }, {
+>>                  .compatible = "qcom,qcm2290-qmp-usb3-phy",
+>>                  .data = &qcm2290_usb3phy_cfg,
+>> +       }, {
+>> +               .compatible = "qcom,qcs615-qmp-usb3-phy",
+>> +               .data = &qcm2290_usb3phy_cfg,
+>>          }, {
+>>                  .compatible = "qcom,sdm660-qmp-usb3-phy",
+>>                  .data = &sdm660_usb3phy_cfg,
+>> --
+>> 2.34.1
+>>
+> 
+> 
+
+
+-- 
+Thanks,
+Tingwei
 
