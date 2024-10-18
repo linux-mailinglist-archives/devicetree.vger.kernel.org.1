@@ -1,144 +1,174 @@
-Return-Path: <devicetree+bounces-112691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A54A09A3441
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:31:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A755B9A3487
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:50:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 673F6285D23
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 05:31:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 305E71F24990
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 05:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE8B17B50B;
-	Fri, 18 Oct 2024 05:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0B717C7BE;
+	Fri, 18 Oct 2024 05:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oZ3ckdg6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aRl36x8/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB591714BF
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 05:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBE717279E;
+	Fri, 18 Oct 2024 05:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729229500; cv=none; b=nBPMJ8p/xPMbJgW94+IosVLnHokM6y1suqK5y6b3kyXAswMdvZLN9rPN47QXAvMQz7BbfhDjtpVds2wobm2YiAQgAVcJ8g+65kgQaijUgLdnOEtHbrsWr3Gf4GxTRPB81JcDzW6g7I6QxX5WHXpOKOzwGtD7tD/AGli/JwqBGG8=
+	t=1729230494; cv=none; b=iqiVZ2f4T8SBZm39sFtfaTr/g+Susztvfs4IsGFfz+9fqClmZIica8CJfNsUsNI5kBKfNRNOlpSnNzQcqxVoma4fzNffthbisUjZV2cvzC0dhB1EFCcuLwj2k24rcRbNSyyee5QTFct6yFyE7xYMAjK9ppUUgJxEllMcUJxiuCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729229500; c=relaxed/simple;
-	bh=c6pJR17Cx+vhBdPlKGr1glBzn0/Huh2wZWajDJPJL9g=;
+	s=arc-20240116; t=1729230494; c=relaxed/simple;
+	bh=5ed+YXIRKt4R1p86u7Yp1C2teLt4n1R3+K0CLW/7p24=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VPBHpX/Z2fobwZ9gAbAxmsPKxvG6ELazJeb6TrAvTPMIFpQriV8fjEablloCaifMqTom+TPhuTFKQyIW5zzRv29QT+4KvWzk2VMxhnDxeN2B0irB8kQorhPyKeu0CrP8CDF0uWOQhTi5iBCSkrcd3ba7HqOIWS+RCN+1MclP7Co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oZ3ckdg6; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d462c91a9so1164907f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 22:31:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729229496; x=1729834296; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=c6pJR17Cx+vhBdPlKGr1glBzn0/Huh2wZWajDJPJL9g=;
-        b=oZ3ckdg6CoKMWMyrrquRg1bWUmPzVMnO7Pt1ZOEccAtmT0rF32QKcqzDwzKmiZJX7o
-         2HggUPmruVvYMW2d/mwZHMBLp/FQn3o3Y5VoYusnjuNYR8Mb/tNPJNTGQJUwaY8ZE894
-         UfGBFxDj1cExPA0Wo0Kvh0dclxzNcRHvTmjR6I8ePSEAJfJUs92asLL32+MmM9LWNMlg
-         1AiKNIxgNFiLDTILU00J/7Wil01/hVZ9trh2cIlu3SlqNHZImMigfxu5Ho1Wsn47brFp
-         oPfM+rp8wiybMRk1a0IU55Ed0EMCG58csykSXAfTVUKIs49LuKd2c01NXW5Y0FM1bkKD
-         Ig4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729229496; x=1729834296;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c6pJR17Cx+vhBdPlKGr1glBzn0/Huh2wZWajDJPJL9g=;
-        b=rSG/lfJ2bMLMBAreSfJ/3LDbOi6dXq3HELYPB/3a19b9R8DAisBEWfNrnCgrgWyUhs
-         mVV1yX96WnZ87ruq87f4G4n2JTlwEQK1H1syHvLxMLFmKlJUeUHO+k75KGoR0P5unoSI
-         n+hmpmwBIECRbaQsCqgfw8pbs0hZXED22X6W0bnfC0WBQdXBDrjDKgu1MDQDBEpps0Bs
-         B87ljr6mRLDpqPcu6Va2sAHTql9K8kBjM6vwFgHt8/8TPCOGchSSmC7FfE6iHcEjmvCl
-         kYySAsPzom74K3xfkTeEmE1WKyL/fR3hJ2uG1uFyw7zE9K0PBRj573jY9LNyB+N4RDSW
-         9xXw==
-X-Forwarded-Encrypted: i=1; AJvYcCXH5EJ1PJxXhCnJXFZuUQ7g+XZx1Wcu9anqHD0Imi1Wd2LyAvxiry2QLKF5N8+ME5sUqj5IWLIXxFsZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0csfyF+rPDhBvdcAEelt9WODXH5q/I7n1Nq9aaqjsxbjkXVXX
-	N6tjV77eE/2o2kJu1s7C1iGni+4kZlQ8KN4m5BKzcjoGhKtscQ7kTui/z6tJYAg=
-X-Google-Smtp-Source: AGHT+IG8Ld3kpTB/rwLsIFn3KMclllCP6Lx/tf5/1/edc8B38j82iBjzH0rHnvWAB7r6efnRAWqU6A==
-X-Received: by 2002:adf:e008:0:b0:37d:3735:8fe7 with SMTP id ffacd0b85a97d-37eab70bbf3mr720253f8f.32.1729229496469;
-        Thu, 17 Oct 2024 22:31:36 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:c04e:758c:2eb5:eeda])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a68c29ddasm44973866b.211.2024.10.17.22.31.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Oct 2024 22:31:35 -0700 (PDT)
-Date: Fri, 18 Oct 2024 07:31:33 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux@rivosinc.com, 
-	Lu Baolu <baolu.lu@linux.intel.com>
-Subject: Re: [PATCH v9 2/7] iommu/riscv: Add RISC-V IOMMU platform device
- driver
-Message-ID: <5jxxlmvyyennvrg5w6l3ma5pg7ythzo6z65nhs3lhpscmcl5sc@w22emfmvf2rg>
-References: <cover.1728579958.git.tjeznach@rivosinc.com>
- <b8da2b00aec3f7b4b2e3a7cc194f7961bf656f24.1728579958.git.tjeznach@rivosinc.com>
- <lagj6ljulmfjogrzhfd3jrf5fnngev63q2g3bmvftwfzc3s6mb@gw6oz4yriyjf>
- <CAH2o1u4BYyHhi3dVcBrB8T2JpXdxStsfYodmOT-6a8KMHAot8w@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZRiswBOYD8NmMtpIeIo6Z2Uwb+rogKCHoLrK1Ev6htRyzBUtx5SdYubJyZYGZquD2ji3+GTHr4O5W18SAOEJUXyQbzDCyz1sc13h9tejqPRIE0/Hb7NVl0FHnVaSemWRuuEaajOCblVJcPBMTqApEI9EL+uaLuSnQqHAfq9w4c0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aRl36x8/; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729230493; x=1760766493;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5ed+YXIRKt4R1p86u7Yp1C2teLt4n1R3+K0CLW/7p24=;
+  b=aRl36x8/D1h9NsBWJN8xWlVoAXSen3uH/8fG9zf1LoNl+KPeUFer9brq
+   G2d2hhG6sd/spdVrdt4Cr/BlBsMFJXXdmiStLHegX6t1hRzPVU13xLKt9
+   J6pQdnEgADVIx6sKguk8EhoRiE3yvOCRT8evhqb8WCyD2rtz9ALa16LtC
+   YDEoae2qVY6qVQs5dv/7We4G5+U0fvg+Mb09jx/tfyhEqi/BpWumHhbAj
+   P75pZhqB5Sgi8GtzmyGqA6YIWEtCUaDGBtbXdvlZda/VbnbMKQFoM4VSQ
+   z0TAND3pRU7Edfg7J3XNd/+ZQqHa5Vb/2FZo7BaH9FrDWfOOUqx9AWBWF
+   w==;
+X-CSE-ConnectionGUID: k1eHSKoyTIm9kY0Z57x/DQ==
+X-CSE-MsgGUID: mE/v2xKdRwi+OBvC4PB+SA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28847431"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="28847431"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2024 22:48:13 -0700
+X-CSE-ConnectionGUID: fqPiXShaQuKN4thSghkR9w==
+X-CSE-MsgGUID: r8blsmJFSrCj+OKC6tfH1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="83596370"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 17 Oct 2024 22:48:09 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t1fqI-000NK7-1Q;
+	Fri, 18 Oct 2024 05:48:06 +0000
+Date: Fri, 18 Oct 2024 13:47:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 2/2] thermal: Add support for Airoha EN7581 thermal
+ sensor
+Message-ID: <202410181340.S74lBfUS-lkp@intel.com>
+References: <20241017143830.1656-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fbh7gyoiozliysgu"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAH2o1u4BYyHhi3dVcBrB8T2JpXdxStsfYodmOT-6a8KMHAot8w@mail.gmail.com>
+In-Reply-To: <20241017143830.1656-2-ansuelsmth@gmail.com>
+
+Hi Christian,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on rafael-pm/thermal]
+[also build test ERROR on linus/master v6.12-rc3 next-20241017]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/thermal-Add-support-for-Airoha-EN7581-thermal-sensor/20241017-224102
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
+patch link:    https://lore.kernel.org/r/20241017143830.1656-2-ansuelsmth%40gmail.com
+patch subject: [PATCH v2 2/2] thermal: Add support for Airoha EN7581 thermal sensor
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20241018/202410181340.S74lBfUS-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241018/202410181340.S74lBfUS-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410181340.S74lBfUS-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/thermal/airoha_thermal.c: In function 'airoha_thermal_get_temp':
+>> drivers/thermal/airoha_thermal.c:239:46: error: invalid use of undefined type 'struct thermal_zone_device'
+     239 |         struct airoha_thermal_priv *priv = tz->devdata;
+         |                                              ^~
+   drivers/thermal/airoha_thermal.c: In function 'airoha_thermal_set_trips':
+   drivers/thermal/airoha_thermal.c:268:46: error: invalid use of undefined type 'struct thermal_zone_device'
+     268 |         struct airoha_thermal_priv *priv = tz->devdata;
+         |                                              ^~
+   drivers/thermal/airoha_thermal.c: In function 'airoha_thermal_probe':
+   drivers/thermal/airoha_thermal.c:466:17: error: invalid use of undefined type 'struct thermal_zone_device'
+     466 |         priv->tz->tzp->offset = priv->default_offset;
+         |                 ^~
+   drivers/thermal/airoha_thermal.c:467:17: error: invalid use of undefined type 'struct thermal_zone_device'
+     467 |         priv->tz->tzp->slope = priv->default_slope;
+         |                 ^~
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
 
 
---fbh7gyoiozliysgu
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v9 2/7] iommu/riscv: Add RISC-V IOMMU platform device
- driver
-MIME-Version: 1.0
+vim +239 drivers/thermal/airoha_thermal.c
 
-Hello Tomasz,
+   236	
+   237	static int airoha_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+   238	{
+ > 239		struct airoha_thermal_priv *priv = tz->devdata;
+   240		int min, max, avg_temp, temp_adc;
+   241		int i;
+   242	
+   243		/* Get the starting temp */
+   244		temp_adc = airoha_get_thermal_ADC(priv);
+   245		min = temp_adc;
+   246		max = temp_adc;
+   247		avg_temp = temp_adc;
+   248	
+   249		/* Make 5 more measurement and average the temp ADC difference */
+   250		for (i = 0; i < 5; i++) {
+   251			temp_adc = airoha_get_thermal_ADC(priv);
+   252			avg_temp += temp_adc;
+   253			if (temp_adc > max)
+   254				max = temp_adc;
+   255			if (temp_adc < min)
+   256				min = temp_adc;
+   257		}
+   258		avg_temp = avg_temp - max - min;
+   259		avg_temp /= 4;
+   260	
+   261		*temp = RAW_TO_TEMP(priv, avg_temp);
+   262		return 0;
+   263	}
+   264	
 
-On Thu, Oct 17, 2024 at 09:45:14AM -0700, Tomasz Jeznach wrote:
-> Thank you for those comments, they look reasonable.
-> Can we postpone those changes after v10 is merged into the iommu
-> subsystem tree?
-
-If the patch is already scheduled to go in, that's fine.
-
-My motivation to reply is the .remove_new thing and just pointed the
-indention as I noticed it while replying to your patch. So I don't care
-about the indention. Do as you please.
-
-drivers/iommu is still on my todo list to convert from .remove_new to
-.remove, so you can just wait until I come around. I'll push it a bit to
-the end to be sure to have your patch in next already so it will get
-converted in a catch-all patch for drivers/iommu.
-
-Thanks
-Uwe
-
---fbh7gyoiozliysgu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcR8rIACgkQj4D7WH0S
-/k54eQf/YHC2YibpwUipmuB41HqAHsAljGTGCjGvubnogU3Jg8+TQNsVCfGqZXiu
-si3jNg2XK8hVkXTPzdSH0nIRx+Be7vhMJWMyKr894iU5YDrDDV2n1Y+isdYzrUal
-rzz5N1eG26FaxM4czeRU064oACyOKuyPIYY10yrkQiko3A3sWVa5SMHS4fm4IWIV
-2KXXGUkx5ctFSaCtJCseENcFdV/yAmQ/Y83sQrle/sqrou8wkm7WIegZHMEe22cT
-nG3GMref6aC4I4kLjFhQKdUKEkqJuqkhcYzqhuq+TGSUGet/ZkN6AR8N0+QA3RDr
-6iM6q7fDc1d3XirP6chF+olWVozGxQ==
-=jEvi
------END PGP SIGNATURE-----
-
---fbh7gyoiozliysgu--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
