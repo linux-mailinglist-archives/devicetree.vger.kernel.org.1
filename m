@@ -1,83 +1,63 @@
-Return-Path: <devicetree+bounces-112692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A755B9A3487
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:50:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6E229A34A1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 305E71F24990
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 05:50:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 183F31C237EB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 05:53:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0B717C7BE;
-	Fri, 18 Oct 2024 05:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528CC183CA9;
+	Fri, 18 Oct 2024 05:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aRl36x8/"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="cSyiPMGN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBE717279E;
-	Fri, 18 Oct 2024 05:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C8E1822E5;
+	Fri, 18 Oct 2024 05:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729230494; cv=none; b=iqiVZ2f4T8SBZm39sFtfaTr/g+Susztvfs4IsGFfz+9fqClmZIica8CJfNsUsNI5kBKfNRNOlpSnNzQcqxVoma4fzNffthbisUjZV2cvzC0dhB1EFCcuLwj2k24rcRbNSyyee5QTFct6yFyE7xYMAjK9ppUUgJxEllMcUJxiuCU=
+	t=1729230759; cv=none; b=KLaxR2uap01bStcKZ4NNN9NRVzKAha2Yw3UBDxvVryDVWCQl5IrVA6E0KHzEd6vX+zy7nx999hx4gygOBK9DneXc8DL7Xxbix8xfAMchN9RcLdffbPQvdcneMDOGJrUJ2aSr4ZfzmcNZafHI6aqzxaXoLDbZPkOpghvjEnzO3gc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729230494; c=relaxed/simple;
-	bh=5ed+YXIRKt4R1p86u7Yp1C2teLt4n1R3+K0CLW/7p24=;
+	s=arc-20240116; t=1729230759; c=relaxed/simple;
+	bh=t72qPYFH5qW9CSTUoUWBfe21Vq2ukayl51YEp/oosEA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZRiswBOYD8NmMtpIeIo6Z2Uwb+rogKCHoLrK1Ev6htRyzBUtx5SdYubJyZYGZquD2ji3+GTHr4O5W18SAOEJUXyQbzDCyz1sc13h9tejqPRIE0/Hb7NVl0FHnVaSemWRuuEaajOCblVJcPBMTqApEI9EL+uaLuSnQqHAfq9w4c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aRl36x8/; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729230493; x=1760766493;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5ed+YXIRKt4R1p86u7Yp1C2teLt4n1R3+K0CLW/7p24=;
-  b=aRl36x8/D1h9NsBWJN8xWlVoAXSen3uH/8fG9zf1LoNl+KPeUFer9brq
-   G2d2hhG6sd/spdVrdt4Cr/BlBsMFJXXdmiStLHegX6t1hRzPVU13xLKt9
-   J6pQdnEgADVIx6sKguk8EhoRiE3yvOCRT8evhqb8WCyD2rtz9ALa16LtC
-   YDEoae2qVY6qVQs5dv/7We4G5+U0fvg+Mb09jx/tfyhEqi/BpWumHhbAj
-   P75pZhqB5Sgi8GtzmyGqA6YIWEtCUaDGBtbXdvlZda/VbnbMKQFoM4VSQ
-   z0TAND3pRU7Edfg7J3XNd/+ZQqHa5Vb/2FZo7BaH9FrDWfOOUqx9AWBWF
-   w==;
-X-CSE-ConnectionGUID: k1eHSKoyTIm9kY0Z57x/DQ==
-X-CSE-MsgGUID: mE/v2xKdRwi+OBvC4PB+SA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28847431"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="28847431"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2024 22:48:13 -0700
-X-CSE-ConnectionGUID: fqPiXShaQuKN4thSghkR9w==
-X-CSE-MsgGUID: r8blsmJFSrCj+OKC6tfH1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="83596370"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 17 Oct 2024 22:48:09 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t1fqI-000NK7-1Q;
-	Fri, 18 Oct 2024 05:48:06 +0000
-Date: Fri, 18 Oct 2024 13:47:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v2 2/2] thermal: Add support for Airoha EN7581 thermal
- sensor
-Message-ID: <202410181340.S74lBfUS-lkp@intel.com>
-References: <20241017143830.1656-2-ansuelsmth@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KP8m7lUDSGSs+1YiUVSA0Q/FSK63GCzmNXK0sz3/hJ17lYNrRYWMjxQuYKRP1v0IIVsk9h/+ILwYRTEKR+JSL0bQfBCzpOAZPmvTjpwIP0vxyPmw6pvoF21FscAt8xknOauKK9g/F8bsUwbZlqC3iFm5uDdGC8OKA/XV6psX/Tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=cSyiPMGN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB8EAC4CEC3;
+	Fri, 18 Oct 2024 05:52:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1729230758;
+	bh=t72qPYFH5qW9CSTUoUWBfe21Vq2ukayl51YEp/oosEA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cSyiPMGNKU212TJ+q0GtMzycjpfO32+6AkR/8bwoCghlU21012x0Aoki6eVJI1/U+
+	 6iELNc2vLqcqt7GQZsDvXNrVAYO8yAWTNuDglWB8WFpY0dGOUQxr22xiyNl/HZRJ2C
+	 zYMq/2SyFRgLmomkI7ENxVvBoXwiCQGZBe4D5gqY=
+Date: Fri, 18 Oct 2024 07:52:35 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz,
+	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net,
+	lgirdwood@gmail.com, tiwai@suse.com, krzk+dt@kernel.org,
+	pierre-louis.bossart@linux.intel.com, Thinh.Nguyen@synopsys.com,
+	broonie@kernel.org, bgoswami@quicinc.com, robh@kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-doc@vger.kernel.org, alsa-devel@alsa-project.org,
+	Mathias Nyman <mathias.nyman@linux.intel.com>
+Subject: Re: [PATCH v29 01/33] xhci: support setting interrupt moderation
+ IMOD for secondary interrupters
+Message-ID: <2024101824-hammock-elastic-8d38@gregkh>
+References: <20241015212915.1206789-1-quic_wcheng@quicinc.com>
+ <20241015212915.1206789-2-quic_wcheng@quicinc.com>
+ <2024101747-defog-squiggly-ef54@gregkh>
+ <5847c380-75ce-492a-9a30-0899b7ebe98c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,89 +66,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241017143830.1656-2-ansuelsmth@gmail.com>
+In-Reply-To: <5847c380-75ce-492a-9a30-0899b7ebe98c@quicinc.com>
 
-Hi Christian,
+On Thu, Oct 17, 2024 at 05:07:12PM -0700, Wesley Cheng wrote:
+> Hi Greg,
+> 
+> On 10/16/2024 11:40 PM, Greg KH wrote:
+> > On Tue, Oct 15, 2024 at 02:28:43PM -0700, Wesley Cheng wrote:
+> >> From: Mathias Nyman <mathias.nyman@linux.intel.com>
+> >>
+> >> Allow creators of xHCI secondary interrupters to specify the interrupt
+> >> moderation interval value in nanoseconds when creating the interrupter.
+> >>
+> >> If not sure what value to use then use the xhci driver default
+> >> xhci->imod_interval
+> >>
+> >> Suggested-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> >> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+> >> Link: https://lore.kernel.org/r/20240905143300.1959279-13-mathias.nyman@linux.intel.com
+> >> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> >> ---
+> >>  drivers/usb/host/xhci-mem.c | 8 +++++++-
+> >>  drivers/usb/host/xhci.c     | 4 ++--
+> >>  drivers/usb/host/xhci.h     | 5 ++++-
+> >>  3 files changed, 13 insertions(+), 4 deletions(-)
+> > This is already in 6.12-rc1, which makes me confused as to what tree you
+> > made this series against.
+> 
+> Sorry, I didn't fetch the latest changes from usb-next.
 
-kernel test robot noticed the following build errors:
+It wasn't even usb-next, it was 6.12-rc1, so I don't know what tree you
+based this on :(
 
-[auto build test ERROR on rafael-pm/thermal]
-[also build test ERROR on linus/master v6.12-rc3 next-20241017]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> In this case, should I rebase and resbumit?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/thermal-Add-support-for-Airoha-EN7581-thermal-sensor/20241017-224102
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
-patch link:    https://lore.kernel.org/r/20241017143830.1656-2-ansuelsmth%40gmail.com
-patch subject: [PATCH v2 2/2] thermal: Add support for Airoha EN7581 thermal sensor
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20241018/202410181340.S74lBfUS-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241018/202410181340.S74lBfUS-lkp@intel.com/reproduce)
+As the series can't be applied as-is, probably.  But I think you might
+want to collect some acks from the sound people and xhci developers, as
+I can't do anything with this until they look at the changes.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410181340.S74lBfUS-lkp@intel.com/
+thanks,
 
-All errors (new ones prefixed by >>):
-
-   drivers/thermal/airoha_thermal.c: In function 'airoha_thermal_get_temp':
->> drivers/thermal/airoha_thermal.c:239:46: error: invalid use of undefined type 'struct thermal_zone_device'
-     239 |         struct airoha_thermal_priv *priv = tz->devdata;
-         |                                              ^~
-   drivers/thermal/airoha_thermal.c: In function 'airoha_thermal_set_trips':
-   drivers/thermal/airoha_thermal.c:268:46: error: invalid use of undefined type 'struct thermal_zone_device'
-     268 |         struct airoha_thermal_priv *priv = tz->devdata;
-         |                                              ^~
-   drivers/thermal/airoha_thermal.c: In function 'airoha_thermal_probe':
-   drivers/thermal/airoha_thermal.c:466:17: error: invalid use of undefined type 'struct thermal_zone_device'
-     466 |         priv->tz->tzp->offset = priv->default_offset;
-         |                 ^~
-   drivers/thermal/airoha_thermal.c:467:17: error: invalid use of undefined type 'struct thermal_zone_device'
-     467 |         priv->tz->tzp->slope = priv->default_slope;
-         |                 ^~
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [m]:
-   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
-
-
-vim +239 drivers/thermal/airoha_thermal.c
-
-   236	
-   237	static int airoha_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
-   238	{
- > 239		struct airoha_thermal_priv *priv = tz->devdata;
-   240		int min, max, avg_temp, temp_adc;
-   241		int i;
-   242	
-   243		/* Get the starting temp */
-   244		temp_adc = airoha_get_thermal_ADC(priv);
-   245		min = temp_adc;
-   246		max = temp_adc;
-   247		avg_temp = temp_adc;
-   248	
-   249		/* Make 5 more measurement and average the temp ADC difference */
-   250		for (i = 0; i < 5; i++) {
-   251			temp_adc = airoha_get_thermal_ADC(priv);
-   252			avg_temp += temp_adc;
-   253			if (temp_adc > max)
-   254				max = temp_adc;
-   255			if (temp_adc < min)
-   256				min = temp_adc;
-   257		}
-   258		avg_temp = avg_temp - max - min;
-   259		avg_temp /= 4;
-   260	
-   261		*temp = RAW_TO_TEMP(priv, avg_temp);
-   262		return 0;
-   263	}
-   264	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+greg k-h
 
