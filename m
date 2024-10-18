@@ -1,67 +1,58 @@
-Return-Path: <devicetree+bounces-112659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CBEB9A32F4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 04:38:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8838E9A32F6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 04:43:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A6C01C20CEA
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 02:38:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 319C81F221C7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 02:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851C214D280;
-	Fri, 18 Oct 2024 02:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F1514EC7E;
+	Fri, 18 Oct 2024 02:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="fjQ+gT1U"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="FWLH4Go5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7BF1E493
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 02:38:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F722CA5;
+	Fri, 18 Oct 2024 02:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729219086; cv=none; b=eZao4LwxIGx7WHoqDLSb5ih5YtkOtLuf/MbW7ckF5DEmAJa+S1BkCK6/6NtKst/j6j5G31xTLkr0BhvoLO+OTW3xMQD3X03coJ3/YZx/nilaB5qUoNcxAsTWRZ7akm5rzPXB8X6HDKBMz1bTosEdphmHVrYpoDe8BgGcs0adaqE=
+	t=1729219418; cv=none; b=LkIz6HEBUyH5WoaYMFMv2mCr0oT0J2qbIj8hRNusYF/9zClP8xeoht4ynJDTAx4RvBreaTymFBdzAGN5Ws/ny1fEtV1xojAM6VrucQzRQTHECr436kMHf9dGTVyB3/HhQsxqung4IxAuX9SpmdRCtZ87x5hCBJjyzqKY4u0i1g4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729219086; c=relaxed/simple;
-	bh=heaQKw11hc5qaB2d2vqyU7RbGjHobJf5uqsQOlVXllw=;
+	s=arc-20240116; t=1729219418; c=relaxed/simple;
+	bh=gDpTerw8HpqCtWNZwAtMPRgxbLPsqXWZDuimu7QRBy0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pEOl8QuU2hkdaDHc9TyYji0P+BfHkn0oAQbU5jL71oJIFAH7XWToGyORn//5FkrALN8Uf0ZjbtBMHSuuMhBxIj0FaKrA7bgvpCrrfmOtVWKINOAcoKNgXLJ/JuMajGYEklF9vHDam5/bQiOYo7ucFUEhPjBbHeSh5QOnTx1o+RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=fjQ+gT1U; arc=none smtp.client-ip=1.95.21.15
+	 Content-Type:Content-Disposition:In-Reply-To; b=XCOqN+bUDHHl3P87PKqjqoHDzElfX77C5sx/IThFjGEaL5wOu4evhB+sc/jQwoSSjAg5Tso1qs6+9UiW5vt+6CnVHF0a7sPItsYw4MTaDFa6JJcrTUicO6DkMrqZ04sKjGMHf2taKTmNT13rH+eMGbC7LCWwSqOvCM4E3vlK2SA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=FWLH4Go5; arc=none smtp.client-ip=1.95.21.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Xnef9Z8LbbSH2/K9Am5e8TSqtnTg+6+pGRuUnrHcKbk=;
-	b=fjQ+gT1UUHHU+hdBfTMI94/sMuW3Dye9R0hpeaCvKPMGWH+q5CWjfiHGBSjGk/
-	bYbkDjzB11mBpcjn5hkLX8ReDMxGC8qI1iJCxae9SpRsavxE95pMbaqIB3+WS2Gw
-	DtXCCMUCGhlGeYKIYP9j+XxmpEfyXftKgVAVJ52Gy1TgU=
+	Content-Type; bh=6FiyOV1NzqEGFBu6tBoFwS8FcBgdWmn5Api3fwFEEFE=;
+	b=FWLH4Go5UMA/bMp7Q7vthQSSzqEdwVqAZNQAUUZNtGKewyEy1tbYmDsL/uWc6g
+	gU1yuys3a0RPn1WpRnrl0dtqdo4nLlJD4XGLqDbE7IKUOCf3s9oP1ZBxu+Tq1paM
+	V/5ad/lO61DmIjdOgkJH/4cspPD6z1U4cX/cRJAgnAsLU=
 Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgBHFPfAyRFnNG0_AA--.1855S3;
-	Fri, 18 Oct 2024 10:36:50 +0800 (CST)
-Date: Fri, 18 Oct 2024 10:36:47 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDnD8IoyxFnCf8_AA--.1970S3;
+	Fri, 18 Oct 2024 10:42:50 +0800 (CST)
+Date: Fri, 18 Oct 2024 10:42:48 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org, kernel@dh-electronics.com,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>,
-	Michael Walle <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
+To: Benjamin Hahn <B.Hahn@phytec.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: Document DH i.MX8MP DHCOM
- SoM on DRC02 carrier board
-Message-ID: <ZxHJv4zstr0BK2m6@dragon>
-References: <20240925160343.84388-1-marex@denx.de>
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Teresa Remmet <t.remmet@phytec.de>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+Subject: Re: [PATCH] arm64: dts: imx8mp-phyboard-pollux-rdk: update
+ gpio-line-names
+Message-ID: <ZxHLKP+jXl/sbL16@dragon>
+References: <20240927-wip-bhahn-update_gpio_lines-v1-1-49aca212e25a@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,19 +61,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240925160343.84388-1-marex@denx.de>
-X-CM-TRANSID:M88vCgBHFPfAyRFnNG0_AA--.1855S3
+In-Reply-To: <20240927-wip-bhahn-update_gpio_lines-v1-1-49aca212e25a@phytec.de>
+X-CM-TRANSID:Mc8vCgDnD8IoyxFnCf8_AA--.1970S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUsRRRDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRx7ZWcQ0mcYuAABso
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxCJmUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBZ8ZWcRVdzy9AAAsy
 
-On Wed, Sep 25, 2024 at 06:03:07PM +0200, Marek Vasut wrote:
-> Document support for DH electronics i.MX8MP DHCOM SoM on DRC02 carrier board.
-> This system is populated with two ethernet ports, two CANs, RS485 and RS232,
-> USB, capacitive buttons and an OLED display.
+On Fri, Sep 27, 2024 at 01:34:16PM +0200, Benjamin Hahn wrote:
+> Update gpio-line-names. Add missing and remove unused.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
 
-Applied both, thanks!
+Applied, thanks!
 
 
