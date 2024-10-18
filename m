@@ -1,161 +1,108 @@
-Return-Path: <devicetree+bounces-113089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51B69A490F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 23:41:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5671E9A491C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 23:48:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E64CB2560C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 21:41:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60E5B1C216E6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 21:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB8A191F87;
-	Fri, 18 Oct 2024 21:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A401C18D65C;
+	Fri, 18 Oct 2024 21:47:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CdIJ5Awg"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="xU+mrdqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F801190664;
-	Fri, 18 Oct 2024 21:40:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C996916D4E6;
+	Fri, 18 Oct 2024 21:47:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729287628; cv=none; b=daxNNWWDDOBqCvEpNDaiiwlbKm2Nz/nQ9G4OTB598EhWeOLcUqzU8T43wRUu/6SASU4Ge+OZ3Eb8cFjBILAVcceqjWcY66ZdjB6sKH+TqZCnqaPXxeX+n4Ntk+9RpmL6gFc/ujRkz7fg+or2IvaeoevDdmHx1LiFYLNcq9KD7M4=
+	t=1729288076; cv=none; b=cJe6UZ/JSjH4CZKr+dgL0Y36tS5rR0TtRS6hMcuKOLkXoG9ZTivhvumw3iUGaEYrtZLdVT5fxT5Fq7Cev6CRyfPWs6reSzRtapjnYhlWcvMSvzJWn07d9N3A7eEU4AyA+xWEijF8z5YdMJrjhMoZ4NogbSlxGtIV5zbr73vOWoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729287628; c=relaxed/simple;
-	bh=7X4VXD2CoeN6HcEiAGY/FCKJsj9HVJI36AIU9sGDip4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FZ6qdZ2a9rHL0wrjqIs+KAPtjWtUx99fjBZbzauBqA2I6gDbi9GszZ6W7crVUaG7AlLhTI05GR3WLMCxbxNaD22TXv8jfTyVXE1tochUMfMhrX63DC7uXaqkziCMwAtPnZG6bMWgGmGjyos3WJL7nL2+t9Ojxmbiha/9p2EW1q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CdIJ5Awg; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729287624;
-	bh=7X4VXD2CoeN6HcEiAGY/FCKJsj9HVJI36AIU9sGDip4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=CdIJ5Awghbn08lGkdq2mbYjQs/GQHnM3FkM1Lv1XQQO6+wAep8vvW/1gNG6rZW971
-	 4QUdKX6J13FSGYRwYPMV+UkbgCy3ZIx88gG8ErG5tfVDuPkig3UocnlYjwuTYXLifR
-	 tOeiGy9OyU5LWqnuqwxBKiQr2ndFgJhLUB97eVlTpIHt9CbY5NT0dpOFh/TKy8ojyQ
-	 rvuZMy1Eq9cLGwANcQikIoLHc1M1YYRm6o5cr66gPVbYQBM1hOmnXCHUe6uoyKKHo+
-	 GtIAKZg3ZvnxDmRZn1QNCAMjpkfLuq6h6I+06P605S34oNgQHQZ3WuNl8Iy4KlGf4+
-	 tl6nGbgIxcc5Q==
-Received: from localhost (unknown [188.24.146.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 058F617E3763;
-	Fri, 18 Oct 2024 23:40:23 +0200 (CEST)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Sat, 19 Oct 2024 00:39:53 +0300
-Subject: [PATCH UNTESTED 5/5] arm64: dts: rockchip: Enable HDMI0 on rock-5a
+	s=arc-20240116; t=1729288076; c=relaxed/simple;
+	bh=GCembOxXqoxGHyKB6sZTgd5drl5OE2YOvO0Wl2XLd7E=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TFZqSit3zE3LVtNHS9EWXTirLJ5lXEt1L3ZdOnQ9/HyZd4mf/iNI8G0twCcwKPhl+DNFb3vL2xBPUcfcK5ZX+bTTBKp4mGwuOF8+67+ftLQJ6PmZD97zr/wfF1TphplP9J6NCaTBZsU+Zy0lR8DaFN86tqJYH20b++b5UmimQ10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=xU+mrdqr; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=K5aAZ4qh0AEAbu5qvWu/4QCvE+diJotq5vEmByCm7xk=; b=xU+mrdqrcM3zxXqe1PV5eBfrQ6
+	eWl5vuzcRRFUqDmlOKUwlfVUNTpQ+mW3iugHuHCuZvrOCn+ewRiOEH8Nxi21GgbwqqjMTb1IRSAuK
+	YR8x1xyb/L/3XLWEFrl3Ay7CInmRrm3q4Zit1uzDBIpzXyXBezIoxHO/hXHysZsbZx5f2QHURsWdC
+	c6M3bnM2fJAfpFgR6XghgPQTWcG6kV7VQwTiDORA0dSNIx3LfoteQfSMo4KE8pUWWJYwn7OI77ccY
+	FZixz1eUVOeUJ2wnl2y836dHZx6NohAZEQB8q0H+TvEFG3FddIt5Iv9cDxdUO/smUiYIH+iVvF+0V
+	vUJaojMg==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	aford173@gmail.com,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	aaro.koskinen@iki.fi,
+	khilman@baylibre.com,
+	Roger Quadros <rogerq@kernel.org>
+Cc: Andreas Kemnade <andreas@kemnade.info>,
+	Stable@vger.kernel.org
+Subject: [PATCH] ARM: dts: omap36xx: declare 1GHz OPP as turbo again
+Date: Fri, 18 Oct 2024 23:47:27 +0200
+Message-Id: <20241018214727.275162-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241019-rk3588-hdmi0-dt-v1-5-bd8f299feacd@collabora.com>
-References: <20241019-rk3588-hdmi0-dt-v1-0-bd8f299feacd@collabora.com>
-In-Reply-To: <20241019-rk3588-hdmi0-dt-v1-0-bd8f299feacd@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Luis de Arquer <ldearquer@gmail.com>, Alexandre ARNOUD <aarnoud@me.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
-Add the necessary DT changes to enable HDMI0 on Rock 5A.
+Operating stable without reduced chip life at 1Ghz needs several
+technologies working: The technologies involve
+- SmartReflex
+- DVFS
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+As this cannot directly specified in the OPP table as dependecies in the
+devicetree yet, use the turbo flag again to mark this OPP as something
+special to have some kind of opt-in.
+
+So revert commit
+5f1bf7ae8481 ("ARM: dts: omap36xx: Remove turbo mode for 1GHz variants")
+
+Practical reasoning:
+At least the GTA04A5 (DM3730) has become unstable with that OPP enabled.
+Furthermore nothing enforces the availability of said technologies,
+even in the kernel configuration, so allow users to rather opt-in.
+
+Cc: Stable@vger.kernel.org
+Fixes: 5f1bf7ae8481 ("ARM: dts: omap36xx: Remove turbo mode for 1GHz variants")
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
- arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 47 ++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ arch/arm/boot/dts/ti/omap/omap36xx.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-index 87fce8d9a964cd53d179ce214ae1c0ff505a2dce..1fd122250b0c70e729b7a2239ab5f288a6387a70 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-@@ -5,6 +5,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include "rk3588s.dtsi"
- 
- / {
-@@ -35,6 +36,17 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
+diff --git a/arch/arm/boot/dts/ti/omap/omap36xx.dtsi b/arch/arm/boot/dts/ti/omap/omap36xx.dtsi
+index c3d79ecd56e39..c217094b50abc 100644
+--- a/arch/arm/boot/dts/ti/omap/omap36xx.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap36xx.dtsi
+@@ -72,6 +72,7 @@ opp-1000000000 {
+ 					 <1375000 1375000 1375000>;
+ 			/* only on am/dm37x with speed-binned bit set */
+ 			opp-supported-hw = <0xffffffff 2>;
++			turbo-mode;
+ 		};
  	};
  
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi0_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -296,6 +308,26 @@ &gmac1_rgmii_clk
- 	status = "okay";
- };
- 
-+&hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi0_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi0 {
-+	status = "okay";
-+};
-+
- &mdio1 {
- 	rgmii_phy1: ethernet-phy@1 {
- 		/* RTL8211F */
-@@ -788,3 +820,18 @@ &usb_host1_ohci {
- &usb_host2_xhci {
- 	status = "okay";
- };
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
-
 -- 
-2.47.0
+2.39.2
 
 
