@@ -1,67 +1,61 @@
-Return-Path: <devicetree+bounces-112667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CE19A331C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 04:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 548AB9A3328
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 05:05:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C56428221C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 02:56:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 177FA2851E1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 03:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8405126C10;
-	Fri, 18 Oct 2024 02:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2058615442D;
+	Fri, 18 Oct 2024 03:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="dgC29Ko8"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bRvIxH+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3166414E2E8
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 02:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DBC143888;
+	Fri, 18 Oct 2024 03:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729220167; cv=none; b=FZRLH1xs4bDmOhU+as56LL9hNtpL6Vw+in5kv1OJLw83K+IAGDhDeoEinLo5Jte2EEhMPlv+DX/Y99QBGfTXIBWqNFDP9wkHMzc74rW2W0f2lLCUP2hY8JazFlHCQauysdGnatX4zz5CF7FZH83vKoZC27m9SZuFWBUS75JSqac=
+	t=1729220724; cv=none; b=W/PRuNgPkg8tIv5WLrtkbReHDKrE9FqEDDJu76vOqKKJnaEbPKo//SEbA8W7CbQ9p91ByD3K05hy/MzUhDmR1daoOWBROI5ut73vj4gc/Eh4T6uEOjL6dkEHWYIxoXXBTB6IuxzxHgvxO247uyddF8sM2VFKnPwZAyd0ilJ5+PM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729220167; c=relaxed/simple;
-	bh=Q8R7iDFXQwCRECjo3ld+768xBlP+Bja+MFhGCUI6ZxY=;
+	s=arc-20240116; t=1729220724; c=relaxed/simple;
+	bh=sKd9P8jTOJeM166Iz7PoYor7fm4C5ermi2U42p2utes=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h1uho/WLQq7LO3U+TqK026wAucOeiNupd2HFblLRTEZ7AS94I6nbIndakMhp1OQZrGlZOkX5FQ/WUX9QIgYTOIGGAu46/J/Yb7GJ2YcKIib5ORKzQtTAA3xSHSUjF5p7/VYQYC03Mw6Tx05eIBRSeR1Vuc+QxkJYHbwW+K6B9ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=dgC29Ko8; arc=none smtp.client-ip=1.95.21.15
+	 Content-Type:Content-Disposition:In-Reply-To; b=DdgexnBE9AmBTcR9lrY/NMoHpLnIgyJMHruzKdhHglOWv63uUwj3GVPFLt8sZsm9oUIFA9NRPjd8poRiaK4Nnwwh2zvpNzPbFAGY5CK8XEYjTXp10HpkbgO3ujOq1cTRn4uQ5PtFPLEMFwopG/H6pW6/q10vKNNUOfW0z7jxPi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bRvIxH+m; arc=none smtp.client-ip=220.197.32.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=13wuN4XD2wzt1dmsOfk8eULzyvU+BXjxE+nzHwIP3y4=;
-	b=dgC29Ko8hR3CS/ylcc0XOj/0GGlBDUC7W/XMEwc56Ts5lR7XrYUxSmDnOcDkzQ
-	HfJGYT9IzmbYW+jbigTFgE/kqs6nh1Uf8V5EaxSNXu0JqQkfZH2x0RFnUlA0V0XQ
-	2Ij3h2twA/U5uhK6exWTXxfajnLOdMF+vJaHdpPvNCM8s=
+	Content-Type; bh=i3Cg69Q0bahCHm6u4HeVjWPJfCKMx1F2c/XVlhq5uNQ=;
+	b=bRvIxH+mLDVYL+lFOOPYI652Tpor7Q6ii9g9/HVe7Z6JFdf1o2t89u/siQnNCg
+	pa5j7dfXWOJRwjnaE7yxwBNRsxeqMZKMQDsHFebUraBdbD3qMji8iz4GsHCaqMA0
+	zYV/BmhMCR7BLJPGZjBfRAp8nJ+DMHD90YD6Ki7+wCHF4=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDH6KABzhFnNA1BAA--.1912S3;
-	Fri, 18 Oct 2024 10:55:00 +0800 (CST)
-Date: Fri, 18 Oct 2024 10:54:57 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgCnjwr1zxFn0dU_AA--.1978S3;
+	Fri, 18 Oct 2024 11:03:19 +0800 (CST)
+Date: Fri, 18 Oct 2024 11:03:17 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org, kernel@dh-electronics.com,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>,
-	Michael Walle <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Olof Johansson <olof@lixom.net>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	imx@lists.linux.dev
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Document DH electronics
- i.MX8M Plus DHCOM PicoITX
-Message-ID: <ZxHOAc8EXIcsr6XL@dragon>
-References: <20240928234949.357893-1-marex@denx.de>
+Subject: Re: [PATCH 2/3] arm64: dts: fsl-lx2160a: add rev2 support
+Message-ID: <ZxHP9XEiIMHuv1TB@dragon>
+References: <20240826-2160r2-v1-0-106340d538d6@nxp.com>
+ <20240826-2160r2-v1-2-106340d538d6@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,19 +64,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240928234949.357893-1-marex@denx.de>
-X-CM-TRANSID:Ms8vCgDH6KABzhFnNA1BAA--.1912S3
+In-Reply-To: <20240826-2160r2-v1-2-106340d538d6@nxp.com>
+X-CM-TRANSID:M88vCgCnjwr1zxFn0dU_AA--.1978S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUsEfOUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiERN8ZWcRtk1MvQAAsn
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxCJmUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAhh8ZWcRl-6bMQAAs2
 
-On Sun, Sep 29, 2024 at 01:48:08AM +0200, Marek Vasut wrote:
-> Document support for DH electronics i.MX8M Plus DHCOM SoM on PicoITX carrier
-> board. This system is populated with serial console, EQoS ethernet, eMMC, SD,
-> SPI NOR, LEDs and USB 3.0 host used in USB 2.0 mode on PicoITX.
+On Mon, Aug 26, 2024 at 05:38:33PM -0400, Frank Li wrote:
+> Add rev2 dtsi. Although uboot fixup can change compatible string
+> fsl,lx2160a-pcie to fsl,ls2088a-pcie since 2019, it is quite confused and
+> should correctly reflect hardware status. So add fsl-lx2160a-rev2.dtsi to
+> overwrite pcie's compatible string.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Add PCIe EP nodes.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Applied both, thanks!
+Applied, thanks!
 
 
