@@ -1,122 +1,226 @@
-Return-Path: <devicetree+bounces-112803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9AD9A38BC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:39:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B5819A38EE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:43:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C47041C23AF9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:39:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2A3AB22A8D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D03A188CD8;
-	Fri, 18 Oct 2024 08:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF736190049;
+	Fri, 18 Oct 2024 08:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RJh21MkO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iJy7JzdG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5151618EFCD
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 08:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BBE018EFCD;
+	Fri, 18 Oct 2024 08:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729240773; cv=none; b=bBdRVrJDqJIvx12+Zm4phH2SNDkBhJVNH/4XUPNgJLrotQ3VqI9TScJ2NlszwSaiIOjt3A45wSRlWhQHVdnFfl+X4lovZeCUmut+z87XUwQUeavnjBdw3FSdufZEUijPxp37+L/Jw+B1bPUC3aUGE7WFQg4NvLbzVvYUjD6uJ54=
+	t=1729240975; cv=none; b=Xp+28VqiEL5RphhPoJimmiFrc6dIObmyLS27qMP/DYQbWu0PFjkzuao4VpgKCMGB3Px+zdsxUmhzJiO/R+sRwPlV0odvmVTGxIDWbTS0Tpo4Pf2WCnaDzZlgYaCPp0nbDUI3/yrhilA3jYNqpFWyaRPjO6Mj6SrWChjyWZPpjMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729240773; c=relaxed/simple;
-	bh=mc6L5X0DUWLJW/OkuS9ePuMADpz3zlh4zv/WCAV31FM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=bawivEbgBPlbTlm83zwnkhDyzPxCyF7vxesiFuCf1e5h0lDaUpIu8aVQabgh/SbcMuufLTWF6ayVFcud/zDsmWCYWiFbyNKn1yJENS6VQTKH6EbYRzYwjhT/BfanJL4/DfLtRad1w4rvYQTbNFKHX4+EiLMRbjrPLWp3tiHDXM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RJh21MkO; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-430ee5c9570so24010165e9.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 01:39:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729240770; x=1729845570; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HrncWdVx0bleY/RhYi61o0nRl8Zpr6NCNC/up3U4baE=;
-        b=RJh21MkOuPaNjAw+3zN8rsI9EKXWte9YZ5uck6aCoPB4it2ioUXE+mSSbSrBHNGVZP
-         auaqKWone7EmTMnx3GuVWjsrqWuShVVBerE40bbKvGGuwIO0IpKaXh9XNK+HDTQy4hNR
-         h5yJF1e3otUZ5WSRY4JTwlfjE2kmRExDc29UzPk4iZkFyRlZ+9ajDIVAP6JcWcUJ3gxk
-         IQ3WNpr4So9joz4WtS8GO5f85H//zuCY981qQYlNDnUAI1Q8Tlb/oUxAAMAyLJq7a70K
-         3zOElhQ07n2EVCstbWBXRe5xzyScR98RMrxo7ydd2UBidVy76nlEjIUbIodViiyG+/ka
-         XJ/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729240770; x=1729845570;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HrncWdVx0bleY/RhYi61o0nRl8Zpr6NCNC/up3U4baE=;
-        b=Uz9tLH0ovj7MFw3XC8t0x+z/H2aWZNUi7FvyMqkJ2f5FsFOBy7XuF/ai9JDDtbNCYE
-         D4ihXEaY3egRbNj1sR7bkSv2HtnO4n05rpoWXJlF9OfwqJm26tpyGKjUZc0/yoYTPfw2
-         b/AYoxkDCLiegdS8YTIZz1qCE0jGbkNBs6SU0ydTNTpXAL+XFrZ0x6kIB0YcSgxJVchb
-         klFg+VqeekILuZCw+UOq2zuMir6TDAeztNEtK9nm4ZB2rNYVDibjIfpIXNpGDa68KtKN
-         idExghVchVtkE59s61W5s5MeKy/pVMupf7kvjrwyztSSaSvCdQ6dWtnMUIZhszqDFhfs
-         DpVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUMOfwhGTsn7uzc2646d/K0jZbU2EFpcx/qeJCa1Yzvzj1kPJPvWa7YP6D3/6t5vWl3H98vOt91iYAA@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywl9SmH0GQqvqeRf/EQ1GvjM+Wuxf/DwGhqdTLxb7Es4oxkfflZ
-	Cxq0rasOVTDs6jKNyyDuVus6d1jmidnRi178oItkdY38ujbglRYtOjtAl9hpUYA=
-X-Google-Smtp-Source: AGHT+IEtT0VrGwMXWD3f3PNN6+mMk8Niqje0hsKtwQA0iMPfyIkaGazeJqRT2ugGAgBVN1yXC2tZog==
-X-Received: by 2002:a05:600c:4e8b:b0:431:5c3d:1700 with SMTP id 5b1f17b1804b1-43161642386mr15793305e9.21.1729240769641;
-        Fri, 18 Oct 2024 01:39:29 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:6e2b:4562:2d66:575e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43160e4fd55sm17360595e9.45.2024.10.18.01.39.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 01:39:29 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: xianwei.zhao@amlogic.com,  Linus Walleij <linus.walleij@linaro.org>,
-  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,  Bartosz Golaszewski
- <brgl@bgdev.pl>,  linux-gpio@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
- SoCs
-In-Reply-To: <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org> (Krzysztof
-	Kozlowski's message of "Fri, 18 Oct 2024 10:28:51 +0200")
-References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
-	<20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
-	<4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
-Date: Fri, 18 Oct 2024 10:39:28 +0200
-Message-ID: <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1729240975; c=relaxed/simple;
+	bh=BdMBaQxYzDCh9oXXcvEW+MhoR9zeas/rRDhUK7erWFQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GORuWDRFYzvcZ7tBhK7tbdeuR1GsFR2lzGMwOvn7lCyZjkypRB/CTc0UHUP+77xubbXHNIAw8nkTRPWOiXy7XJrf9aPqinjwx/ziEbGryWXn8e7wYhUr5C/b937drQwqyOmRT7QOtxSSRf/T3gVftyAdZBZmmQUdGaqJJcyLa0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iJy7JzdG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49I8JqaY004780;
+	Fri, 18 Oct 2024 08:42:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LUdS08Y80LEpjHk98+eNL2cvVZW7E88UWfB0dPfndeY=; b=iJy7JzdGtzQAVdPf
+	xBxdaAwkAIrgWgrDlD8bzZzsl5fEuElWPLyb7ztxz+bbjk1GCpYhpq/BweKuTgcy
+	QeiiwkTfgWxomDjZFlOHUyr/DDAnUpphxrBorqQMcm6owLsq1M1GvDIYzGJfXhx6
+	L+n9ecthIyAQP4v+yCw1gjkjsgcCzi8axTERjK8a5kzVdaFfG0FOG29/9EDq63+o
+	+SdILe3jPYfd6bx2OpnOc3KXjFv35qe5pNW3fRLwL2E1q8PSY2h0piruZgAD/02J
+	OGIMPxCxC3hErXyDTOAD+hMdps9HTJUv7u/yAn677Dz5vTf394G8OTIHu0yDNWnX
+	nzhfQw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ajm5dfwr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 08:42:41 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49I8ge3n030109
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 08:42:40 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 18 Oct
+ 2024 01:42:36 -0700
+Message-ID: <5dcce78a-d7e5-4a61-a165-05b9efe11052@quicinc.com>
+Date: Fri, 18 Oct 2024 16:42:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] coresight: core: Add device name support
+To: Mike Leach <mike.leach@linaro.org>
+CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        James Clark
+	<james.clark@arm.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        "Tingwei
+ Zhang" <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang
+	<quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        songchai
+	<quic_songchai@quicinc.com>,
+        Jie Gan <quic_jiegan@quicinc.com>
+References: <20240703122340.26864-1-quic_jinlmao@quicinc.com>
+ <CAJ9a7VhwD6kFHPTgrfs+7fNx4nXZPqXTLK0ObmJM3A6mQfmuyQ@mail.gmail.com>
+Content-Language: en-US
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <CAJ9a7VhwD6kFHPTgrfs+7fNx4nXZPqXTLK0ObmJM3A6mQfmuyQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Qpb_kxROQKkP6KfY8rf_PM-C7Q6Wcuao
+X-Proofpoint-ORIG-GUID: Qpb_kxROQKkP6KfY8rf_PM-C7Q6Wcuao
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ mlxscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 suspectscore=0 clxscore=1015 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410180055
 
-On Fri 18 Oct 2024 at 10:28, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
->> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> 
->> Add the new compatible name for Amlogic A4 pin controller, and add
->> a new dt-binding header file which document the detail pin names.
 
-the change does not do what is described here. At least the description
-needs updating.
+On 2024/7/31 23:15, Mike Leach wrote:
+> Hi,
+> 
+> 1) As per Krzysztof comment - use the standard "label" property
+> 
+> 2) Do not use the label string as the node name - there is no
+> guarantee of uniqueness which will cause issues. Please add the label
+> as a sysfs file to the standard node.
+> This uses the existing standard names, allowing any scripting based on
+> this to continue to work, and will not cause issues with uniqueness
+> 
+> e.g.
+> This will allow :
+> 
+> cat cti_cpu0/label
+> 
+> to extract the additional hardware context information that you need.
+> 
+> Thanks
+> 
+> Mike
 
-So if the pin definition is now in the driver, does it mean that pins have
-to be referenced in DT directly using the made up numbers that are
-created in pinctrl-amlogic-a4.c at the beginning of patch #2 ?
+Hi Mike,
 
-If that's case, it does not look very easy a read.
+I tried to get the label in the driver code. But I don't find any
+function for it. Do you know the function to get the label of the device
+tree node ?
 
->> 
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
+label: node_name@node_address
 
--- 
-Jerome
+Thanks
+Jinlong Mao
+
+> 
+> 
+> On Wed, 3 Jul 2024 at 13:24, Mao Jinlong <quic_jinlmao@quicinc.com> wrote:
+>>
+>> With current design, the name of the non-cpu bounded coresight
+>> component is the device type with the number. And with 'ls' command
+>> we can get the register address of the component. But from these
+>> information, we can't know what the HW or system the component belongs
+>> to. Add device-name in DT to support it.
+>>
+>> cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
+>> cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
+>> tpdm0 -> ../../../devices/platform/soc@0/10b0d000.tpdm/tpdm0
+>> tpdm1 -> ../../../devices/platform/soc@0/10c28000.tpdm/tpdm1
+>> tpdm2 -> ../../../devices/platform/soc@0/10c29000.tpdm/tpdm2
+>>
+>> Change since V3:
+>> 1. Change device-name to arm,cs-dev-name.
+>> 2. Add arm,cs-dev-name to only CTI and sources' dt-binding.
+>>
+>> Change since V2:
+>> 1. Fix the error in coresight core.
+>> drivers/hwtracing/coresight/coresight-core.c:1775:7: error: assigning to 'char *' from 'const char *' discards qualifiers
+>>
+>> 2. Fix the warning when run dtbinding check.
+>> Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml: device-name: missing type definition
+>>
+>> Change since V1:
+>> 1. Change coresight-name to device name.
+>> 2. Add the device-name in coresight dt bindings.
+>>
+>>
+>> Mao Jinlong (2):
+>>    coresight: core: Add device name support
+>>    dt-bindings: arm: Add device-name in the coresight components
+>>
+>>   .../bindings/arm/arm,coresight-catu.yaml      |  6 +++
+>>   .../bindings/arm/arm,coresight-cpu-debug.yaml |  6 +++
+>>   .../bindings/arm/arm,coresight-cti.yaml       |  6 +++
+>>   .../arm/arm,coresight-dummy-sink.yaml         |  6 +++
+>>   .../arm/arm,coresight-dummy-source.yaml       |  6 +++
+>>   .../arm/arm,coresight-dynamic-funnel.yaml     |  6 +++
+>>   .../arm/arm,coresight-dynamic-replicator.yaml |  6 +++
+>>   .../bindings/arm/arm,coresight-etb10.yaml     |  6 +++
+>>   .../bindings/arm/arm,coresight-etm.yaml       |  6 +++
+>>   .../arm/arm,coresight-static-funnel.yaml      |  6 +++
+>>   .../arm/arm,coresight-static-replicator.yaml  |  6 +++
+>>   .../bindings/arm/arm,coresight-stm.yaml       |  6 +++
+>>   .../bindings/arm/arm,coresight-tmc.yaml       |  6 +++
+>>   .../bindings/arm/arm,coresight-tpiu.yaml      |  6 +++
+>>   .../bindings/arm/qcom,coresight-tpda.yaml     |  6 +++
+>>   .../bindings/arm/qcom,coresight-tpdm.yaml     |  6 +++
+>>   drivers/hwtracing/coresight/coresight-core.c  | 37 ++++++++++---------
+>>   .../hwtracing/coresight/coresight-platform.c  | 31 ++++++++++++++++
+>>   include/linux/coresight.h                     |  3 +-
+>>   19 files changed, 149 insertions(+), 18 deletions(-)
+>>
+>> Mao Jinlong (2):
+>>    dt-bindings: arm: Add device-name in the coresight components
+>>    coresight: core: Add device name support
+>>
+>>   .../bindings/arm/arm,coresight-cti.yaml       |  6 +++
+>>   .../arm/arm,coresight-dummy-source.yaml       |  6 +++
+>>   .../bindings/arm/arm,coresight-stm.yaml       |  6 +++
+>>   .../bindings/arm/qcom,coresight-tpdm.yaml     |  6 +++
+>>   drivers/hwtracing/coresight/coresight-core.c  | 37 ++++++++++---------
+>>   .../hwtracing/coresight/coresight-platform.c  | 30 +++++++++++++++
+>>   include/linux/coresight.h                     |  3 +-
+>>   7 files changed, 76 insertions(+), 18 deletions(-)
+>>
+>> --
+>> 2.41.0
+>>
+> 
+> 
+> --
+> Mike Leach
+> Principal Engineer, ARM Ltd.
+> Manchester Design Centre. UK
+
 
