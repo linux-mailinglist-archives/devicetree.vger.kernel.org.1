@@ -1,73 +1,49 @@
-Return-Path: <devicetree+bounces-112946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BCB9A3F46
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:14:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 682469A3F54
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:19:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B28A82871FC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:14:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BD361F21615
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB15F1F4280;
-	Fri, 18 Oct 2024 13:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7FD42077;
+	Fri, 18 Oct 2024 13:19:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LYZ3jHr8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tXLqJwXe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7BE1EE000
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 13:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A667B1E49F;
+	Fri, 18 Oct 2024 13:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729257241; cv=none; b=fJHTcOIuXZaEE9OTsvCMUzAcIXkfg/Z0dunYb3p0W/YFQ8tc2Bn5Lj+cYoqO3O6K1FUQLcZPDEgtF+8U3Rzd7/yNieeHrujcXTqEykx2aG1Do/7hMwEPw1mVhWDYBcOiuMZSMSxYM8LB2LVrKktOQVvYbK4YmG/qUnwSlG4esY0=
+	t=1729257572; cv=none; b=odIOnoAm54CSLPnFKJxf5O+6tC3H1ulbFK7EuxtPUlB01bbkyUqelrrSIPLvMrzUSMglGi20HGnoXvFpi+ZryYLDuiniwYvf4t6Ny+IdYJzXBoblmPuw76M4x5qYOhOgvS3nquBFByoVkcELnVTxKym0adIGGPzA+9YBG1VqZuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729257241; c=relaxed/simple;
-	bh=ug5jCdtMI0+B4bUF/QGKMlM43w7o11eBByOdR2+MeSY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=fa5I/KxnSAwOzGDzy1OHmllVN3LE6wU0PQPjqJyNc+6EhDpAwFaeX+tlyRQYI/xTrBQKS5GyPYuK/z5WcdJDxQhUJVF9WPDD/v1GKpZwZPKEupCXEzEaSEZLGY8pSRwzh5gvGEQZ7cgulEnUjJH0KudaSK+7fnwJWc+96vWCRwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LYZ3jHr8; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4315eac969aso10046855e9.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 06:13:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729257238; x=1729862038; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=slJkaosW6XMQOpTqyPk6rQj2FnZm8OhDSZzBFstpf7g=;
-        b=LYZ3jHr8LovtvZ8sFTVTrvoRaXWKgbHN2vTGep4ej8Fs+eQ4Z1Fa/mK3ix/h+o9Aa5
-         6xhGMyaNrH2dL3sxJHKqI8B7lg31N9Z0BtGXIaNBg5/IWMVim8awKJBUc3biwuDerCFt
-         GHCbIfC3CV0tb/cJXOmZadPaJsotYhkA3zPedoEhrGgDzroqoLBtpLeR5C3TK2519KyM
-         6fvF7PgJVOO5T3hdZLhVLkBzz1OPt35NJn8mlZNFkNC0p8tnsOjUrbTkXPjNfJHzm+uE
-         Luhlgdiy2H3JbFZJQ2NDNriP026DDsVjw3CZmY0GT17mbThUgfu5xtCBHwc5ig7B04PF
-         Zqvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729257238; x=1729862038;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=slJkaosW6XMQOpTqyPk6rQj2FnZm8OhDSZzBFstpf7g=;
-        b=lUb2mBg0l6Eu7uT+/46zhVqLUZV7Xpizn+RoRYMq6q2Ey8ur++fNsxsCOg/Y+LzZXl
-         q96zSF0wT8gYChbc380F6jxoT/Xbn0OmXgd4fESWADG6J9A3/FneJ8w9Z2uJKK2PIRJL
-         nZzSw5TVm8Gl5lmKmK1BnMDBoSNrXGTJLO4iRkFPVFaHrkzY2vlg/6WSQ7LXqn3D2SVb
-         JPEOppKhqtx1HZb79Hggy3AYfPu4Q9/ognUVGP5MAmDDWdmmFoR4UKLK1NgF06svEdWw
-         GbUHhfwrCF3UeYnVyQvc1zHLgfZt+P9FbMOcioYZD2kEOt+iFbgSSm/0MC3Jbieejv6k
-         H08g==
-X-Forwarded-Encrypted: i=1; AJvYcCXyIJfNSXFGzyRTZ6Piup+bVQZpXuOYhPXP7N8CTDK7XU/WbgBI1//LHSeq7pVg9ST8O8/wWT2Cef4e@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxa1hCLlN6NFirV7addg+vZyiCjnzmXyAyGLlD+fmvmb+UMDyXZ
-	/7WkhFVJDK86jWduQa1Bp5indm2i9+IITuBQYoFNFfSsJBuJRC53zrTZrSetAaE=
-X-Google-Smtp-Source: AGHT+IHTaWCjtMZo2yvANXCpoAT6BwaQPtKmWGyPC3YgUVT4hU9B4bthUkDj2W6aDK83oYueMqn31Q==
-X-Received: by 2002:a05:600c:5489:b0:42c:b8c9:16c8 with SMTP id 5b1f17b1804b1-431616415f4mr15802505e9.10.1729257236139;
-        Fri, 18 Oct 2024 06:13:56 -0700 (PDT)
-Received: from [127.0.1.1] ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ecf027e3csm1948418f8f.4.2024.10.18.06.13.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 06:13:55 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Fri, 18 Oct 2024 16:13:47 +0300
-Subject: [PATCH] dt-bindings: cache: qcom,llcc: Fix X1E80100 reg entries
+	s=arc-20240116; t=1729257572; c=relaxed/simple;
+	bh=dNESMw4yGXRuQCex6utRMbGLz39CnUHW11KM6eIz4dA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BtxuzW68V1SaJov0yJ1FQQzPszr3MhoyLm7n1KY0lAUz0Y88NV7hJAvTDraqIhROrSi9pQDK9KupqAogL+pPglGGpWhMwaOOms5tz/r2yHPltzdkxDC5ALJtD79rUBiTfUYo3E9MVO0Vx+rwzLwO1wb92D8WTU2XRSzdl3bEYBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tXLqJwXe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E214C4CEC3;
+	Fri, 18 Oct 2024 13:19:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729257572;
+	bh=dNESMw4yGXRuQCex6utRMbGLz39CnUHW11KM6eIz4dA=;
+	h=From:Subject:Date:To:Cc:From;
+	b=tXLqJwXetwyMcmYjpkE0Orho2ns7gz5n9BaOj5a///6clyC3sz5sNQpGIfdDZrTm8
+	 4v1c6DTcdwOgnSGuHKAGnYLubM/u0cCoTQof6hcCZBrypQbM3bqdrPL/PJsymhezCs
+	 +4cgOSw4ZHxi38FQQciS+HBvMsVXI0e6ynqqHL2YhFMVze6TrTPE87zQ87qMx8k46U
+	 tYiPHhqHSZcY3bkk3+zrEG1nvLl+ULeNBPCx+AHq9IxPJyJ01y1hzczigMDsPir/1M
+	 y5lLTxRPf6xuwZ8XSgea5/mfVJPZUKIOcE1INv/ufMZfm3LXZuUGvFcdibwrDq8tiK
+	 S19Urfdwn/xJQ==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH v8 0/6] Add mfd, pinctrl and pwm support to EN7581 SoC
+Date: Fri, 18 Oct 2024 15:19:01 +0200
+Message-Id: <20241018-en7581-pinctrl-v8-0-b676b966a1d1@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,126 +52,141 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241018-qcom-llcc-bindings-reg-ranges-fix-v1-1-88693cb7723b@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAApfEmcC/x2NywqDQAxFf0WybsDRoT5+pXShMTMGdNQEiiD+e
- 6ddnsvhnguMVdigLy5Q/ojJljK4RwE0DykyypQZqrLyrnQtHrStuCxEOEqaJEVD5Yj6cw2DnNg
- 8fd2E4KnrAuSfXTnP/8brfd9fNsYd03MAAAA=
-X-Change-ID: 20241018-qcom-llcc-bindings-reg-ranges-fix-76437ff4c99f
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Sibi Sankar <quic_sibis@quicinc.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3002; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=ug5jCdtMI0+B4bUF/QGKMlM43w7o11eBByOdR2+MeSY=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnEl8OTxusoEVgjXaF4HSD/+24Ni900zRicjnpp
- 9BaNgYZg7qJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZxJfDgAKCRAbX0TJAJUV
- VpG/D/9f1kLhKvYULAvtFAeBM0q3KXExs1O3l5xUFcS7l+r8LEhtC0hxzlIKicZjSErMUO9QQUI
- fmuOQJS9k2dEux0opox0LujHxyxEVyYjyH+JGI0UsQg+r8d9gN1Pl0zqMbusY/Cpbgv6dhTJTYU
- ZbOGFyK1QyRt6WjgUhShsNxi3OUmKefMir5uMo69+1Q+Ac7BXfhXQoGwQy0uMtgQzBk74EQvmcH
- gYZp10I/wpWdTfjfKCLpW4rDVzym0czeyXASkK+4nnkRKSZphdZgL0XpM0TryyALg/mDHDs8GYt
- 3Xl8GO3izqo1sKvz4E/KgPjXeJVxlGpCedNHGZ9+cljKpBY/2dfAwrzx6fhCHRhjPwt1VfPBMca
- d7/Rs9UCC+m4oC5oxcd3rnKIft8Yb5BJQe04WkXu5xyATg80j8zjJQjY9ozkP9LdDsS3Cp5dNyL
- 9GUz01O0ust3L+C5K/xKar54khJVM3sV3NSYj/dlXjIbpPo/SB89v64tHVa5REHP68A1uGxqdfU
- 3814dohqLlGXy5YVN8uU+wu3ws1I8JcAKCCu86sjYVjey008jYWPg6szNVrWyKTJYPu8X+zbn+/
- u3puwoPS90tZRYtwnTbAXdZbZuOt3Bz+S/+wzwYMJD/7xMRrMrfrHGup85szuQlcLnhC7FSKesb
- hiDJSQd7PTzIRow==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-B4-Tracking: v=1; b=H4sIAEVgEmcC/2XQTU7DMBAF4KtUWePIMx7/dcU9EIvYGbcRJSluq
+ ICqd8dtEQ14OZa+N89zag6cBz4069WpyXwcDsM0lsE9rJq47cYNi6Evc4MSSTpwgkerHYj9MMY
+ 57wSEBChBU2DZFLTPnIaPa+DTc5lTnl7FvM3cXWNkr5Vl54IhRzZEYvJWm4DkA3LqYyLng8cWL
+ CrlkYjazTC3uynz+DU9vnAeeddOefOzLPPbeyk93zbeO69X18ZWapGmLIwAEGGfRKfIc4rS9cm
+ tj9hcOm6Hwzzlz+sNytMl5/ZdxP/fPaKQInSgtQerOpuWjS5ZR7XwCiqviveOOaRAfWdM5enuP
+ dSeijeyi1711sgQKq9/PUhZe118HyGyJgwm1vvNwoOqvCkeJTnGXnofsfJ26U3lbfGUkgFIaMo
+ B//jz+fwNz+6Hg5ECAAA=
+X-Change-ID: 20240818-en7581-pinctrl-1bf120154be0
+To: Lorenzo Bianconi <lorenzo@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
+ linux-pwm@vger.kernel.org
+X-Mailer: b4 0.14.2
 
-Document the missing Broadcast_AND region for x1e80100.
-
-Fixes: e9ceb595c2d3 ("dt-bindings: cache: qcom,llcc: Add X1E80100 compatible")
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202410181235.L7MF7z48-lkp@intel.com/
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- .../devicetree/bindings/cache/qcom,llcc.yaml       | 36 ++++++++++++++++++++--
- 1 file changed, 34 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
-index 68ea5f70b75f031cd8b23cf48d566c3a760dab77..ee7edc6f60e2b4bf39ddc7c7ba8a8447c990c7bb 100644
---- a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
-+++ b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
-@@ -39,11 +39,11 @@ properties:
- 
-   reg:
-     minItems: 2
--    maxItems: 9
-+    maxItems: 10
- 
-   reg-names:
-     minItems: 2
--    maxItems: 9
-+    maxItems: 10
- 
-   interrupts:
-     maxItems: 1
-@@ -134,6 +134,36 @@ allOf:
-               - qcom,qdu1000-llcc
-               - qcom,sc8180x-llcc
-               - qcom,sc8280xp-llcc
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - description: LLCC0 base register region
-+            - description: LLCC1 base register region
-+            - description: LLCC2 base register region
-+            - description: LLCC3 base register region
-+            - description: LLCC4 base register region
-+            - description: LLCC5 base register region
-+            - description: LLCC6 base register region
-+            - description: LLCC7 base register region
-+            - description: LLCC broadcast base register region
-+        reg-names:
-+          items:
-+            - const: llcc0_base
-+            - const: llcc1_base
-+            - const: llcc2_base
-+            - const: llcc3_base
-+            - const: llcc4_base
-+            - const: llcc5_base
-+            - const: llcc6_base
-+            - const: llcc7_base
-+            - const: llcc_broadcast_base
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-               - qcom,x1e80100-llcc
-     then:
-       properties:
-@@ -148,6 +178,7 @@ allOf:
-             - description: LLCC6 base register region
-             - description: LLCC7 base register region
-             - description: LLCC broadcast base register region
-+            - description: LLCC broadcast AND register region
-         reg-names:
-           items:
-             - const: llcc0_base
-@@ -159,6 +190,7 @@ allOf:
-             - const: llcc6_base
-             - const: llcc7_base
-             - const: llcc_broadcast_base
-+            - const: llcc_broadcast_and_base
- 
-   - if:
-       properties:
+Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
+EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
+needs to access the same memory block (gpio memory region) to configure
+{gio,irq}_chip and pwm functionalities respectively, so model them as
+childs of a parent mfd driver.
+Current EN7581 pinctrl driver supports the following functionalities:
+- pin multiplexing via chip_scu syscon
+- pin pull-up, pull-down, open-drain, current strength,
+  {input,output}_enable, output_{low,high} via chip_scu syscon
+- gpio controller
+- irq controller
 
 ---
-base-commit: d61a00525464bfc5fe92c6ad713350988e492b88
-change-id: 20241018-qcom-llcc-bindings-reg-ranges-fix-76437ff4c99f
+Changes in v8:
+- pwm: add missing properties documentation
+- Link to v7: https://lore.kernel.org/r/20241016-en7581-pinctrl-v7-0-4ff611f263a7@kernel.org
+
+Changes in v7:
+- pinctrl: cosmetics
+- pinctrl: fix compilation warning
+- Link to v6: https://lore.kernel.org/r/20241013-en7581-pinctrl-v6-0-2048e2d099c2@kernel.org
+
+Changes in v6:
+- pwm: rely on regmap APIs
+- pwm: introduce compatible string
+- pinctrl: introduce compatible string
+- remove airoha-mfd driver
+- add airoha,en7581-pinctrl binding
+- add airoha,en7581-pwm binding
+- update airoha,en7581-gpio-sysctl binding
+- Link to v5: https://lore.kernel.org/r/20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org
+
+Changes in v5:
+- use spin_lock in airoha_pinctrl_rmw instead of a mutex since it can run
+  in interrupt context
+- remove unused includes in pinctrl driver
+- since the irq_chip is immutable, allocate the gpio_irq_chip struct
+  statically in pinctrl driver
+- rely on regmap APIs in pinctrl driver but keep the spin_lock local to the
+  driver
+- rely on guard/guard_scope APIs in pinctrl driver
+- improve naming convention pinctrl driver
+- introduce airoha_pinconf_set_pin_value utility routine
+- Link to v4: https://lore.kernel.org/r/20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org
+
+Changes in v4:
+- add 'Limitation' description in pwm driver
+- fix comments in pwm driver
+- rely on mfd->base __iomem pointer in pwm driver, modify register
+  offsets according to it and get rid of sgpio_cfg, flash_cfg and
+  cycle_cfg pointers
+- simplify register utility routines in pwm driver
+- use 'generator' instead of 'waveform' suffix for pwm routines
+- fix possible overflow calculating duty cycle in pwm driver
+- do not modify pwm state in free callback in pwm driver
+- cap the maximum period in pwm driver
+- do not allow inverse polarity in pwm driver
+- do not set of_xlate callback in the pwm driver and allow the stack to
+  do it
+- fix MAINTAINERS file for airoha pinctrl driver
+- fix undefined reference to __ffsdi2 in pinctrl driver
+- simplify airoha,en7581-gpio-sysctl.yam binding
+- Link to v3: https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org
+
+Changes in v3:
+- introduce airoha-mfd driver
+- add pwm driver to the same series
+- model pinctrl and pwm drivers as childs of a parent mfd driver.
+- access chip-scu memory region in pinctrl driver via syscon
+- introduce a single airoha,en7581-gpio-sysctl.yaml binding and get rid
+  of dedicated bindings for pinctrl and pwm
+- add airoha,en7581-chip-scu.yaml binding do the series
+- Link to v2: https://lore.kernel.org/r/20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org
+
+Changes in v2:
+- Fix compilation errors
+- Collapse some register mappings for gpio and irq controllers
+- update dt-bindings according to new register mapping
+- fix some dt-bindings errors
+- Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
+
+---
+Benjamin Larsson (1):
+      pwm: airoha: Add support for EN7581 SoC
+
+Christian Marangi (1):
+      dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
+
+Lorenzo Bianconi (4):
+      dt-bindings: arm: airoha: Add the chip-scu node for EN7581 SoC
+      dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
+      dt-bindings: pwm: airoha: Add EN7581 pwm
+      pinctrl: airoha: Add support for EN7581 SoC
+
+ .../bindings/arm/airoha,en7581-chip-scu.yaml       |   42 +
+ .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    |   90 +
+ .../bindings/pinctrl/airoha,en7581-pinctrl.yaml    |  400 +++
+ .../devicetree/bindings/pwm/airoha,en7581-pwm.yaml |   61 +
+ MAINTAINERS                                        |    7 +
+ drivers/pinctrl/mediatek/Kconfig                   |   17 +-
+ drivers/pinctrl/mediatek/Makefile                  |    1 +
+ drivers/pinctrl/mediatek/pinctrl-airoha.c          | 2970 ++++++++++++++++++++
+ drivers/pwm/Kconfig                                |   11 +
+ drivers/pwm/Makefile                               |    1 +
+ drivers/pwm/pwm-airoha.c                           |  421 +++
+ 11 files changed, 4020 insertions(+), 1 deletion(-)
+---
+base-commit: e4188772459fec428bf85ce6711a0147387c1455
+change-id: 20240818-en7581-pinctrl-1bf120154be0
+prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
 
 Best regards,
 -- 
-Abel Vesa <abel.vesa@linaro.org>
+Lorenzo Bianconi <lorenzo@kernel.org>
 
 
