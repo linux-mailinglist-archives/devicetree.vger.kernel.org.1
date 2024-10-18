@@ -1,181 +1,328 @@
-Return-Path: <devicetree+bounces-112765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0D09A374F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 852B89A3755
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:37:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1AFEAB21952
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:35:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB40CB21B1C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF07185B6F;
-	Fri, 18 Oct 2024 07:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D2418858C;
+	Fri, 18 Oct 2024 07:37:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="MTogEdOF";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="C/9tldq+"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CVyw4H2U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8108917995E;
-	Fri, 18 Oct 2024 07:35:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848C117C7C2
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 07:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729236943; cv=none; b=fFmZ//dFiqDTc6w0R65/PQ+pGh5rd2cY2P2ute3EIZn5729A95/rosWSzWzR/dBubapUPTfjqu3D2CgnK/Hqi8RAzO+mUYYhOkllP2q0kkCst1SURZp9t65p76/L23sedz8gf4m6LZxMuQT8yCKqIkDrzIuK+KgdhwnQ9phrEI8=
+	t=1729237030; cv=none; b=pG1DQ7u72/VrAHbZtRj5cUE35Y4wJBb8juh83TLIsTz72EvEIVZFXarEiRuSWQNJBDmX/3uDl1z6nNBu0MLQTbPaxKvO0Fxv9ir9KH+fPOPyA6uH2CVkTREOBd12yzpobgQ6OehEsll3tptaTfxBXVTmRHa/L3DrahMR31aP91Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729236943; c=relaxed/simple;
-	bh=0Gooezc1n4JXZZxtD7mUMjscOnDGB7ur9jS9T1Uy5lc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hZQ/Bh5AHraSM4oXtnp9ZgS0ARDWNh+Q8Mu6srDkD638mgutQWauEQ+1pvO8NB4o8UQf/k+ZpKdEkV67DMQ8FdEouBrYU9+/rng9KLllBZFrJ97KRZxGnY2dF1kTw5PaFiNJDj+l3TegwWbf9zOF9q99nhiN6Axk6lbAspoE5ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=MTogEdOF; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=C/9tldq+ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1729237030; c=relaxed/simple;
+	bh=J/2P0Qjo4Pi1oxevSNksyDuXieZuyJYEGU2KpqhBDkY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rvuPILj5Asrqr6aQ0+Dn55Bb6x2r85gpDiPGlsje38oWkr+yvusxbUfeAfLTj9oPMRhngrCCx1pD9vv/3En8/34L26CvtxyR/VvxU1cDTfMYU+Gx0NPojt1aCe98FeMau+8VqaOhGflYX/atG1j1iUJWbWEhxUmiVkTTZ8KLnVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CVyw4H2U; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539f2b95775so2261231e87.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 00:37:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1729236941; x=1760772941;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=walgQrYsx2K6SNbX75Alxg4lonGvdunLhiFtANmzpEQ=;
-  b=MTogEdOF25eRzS17bATtckzRdBXcf36yySGX3EjIzLNWlrh4AViIiJVg
-   1uBi9WbmvS0vQiWW2Wy8kCa4ECWV8rH8H9VeCBcsUEoB48lU4vvunvJnu
-   KByIX++MTUi5KM2REbQSm6CMXYX3H81NX21SaA8GKoaBkJKaVgNvqukTT
-   L+SwRKshHwdqz82J3rN6Mrs7uhg1wxF7KMemebyZBPN92RzhIPWofighD
-   bt2Nh4ZWbPR35xRK+ZmLjcwNtaNOFf4Kagl+EIO1LdUL5cvi/ywSnsfZC
-   X9bOoTAUwxOjYmhIsB2ekxe7TP2Z0IfAh4v7NblXoZUYiGrJ2GejpPlDY
-   g==;
-X-CSE-ConnectionGUID: wxo6vh60TouhDoUSUNpA6A==
-X-CSE-MsgGUID: nV5Wt5n6SmGCjoyB3TasyQ==
-X-IronPort-AV: E=Sophos;i="6.11,213,1725314400"; 
-   d="scan'208";a="39534896"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 18 Oct 2024 09:35:39 +0200
-X-CheckPoint: {67120FCB-18-65F98A6A-FADAF7F3}
-X-MAIL-CPID: BB5A6EDFDA6ADCB51361E5462E0B8185_5
-X-Control-Analysis: str=0001.0A682F1B.67120FCB.00B7,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DFBB71702C7;
-	Fri, 18 Oct 2024 09:35:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1729236934;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=walgQrYsx2K6SNbX75Alxg4lonGvdunLhiFtANmzpEQ=;
-	b=C/9tldq+9xAXRIoLZuR2V0irNPBk2bsUudeYYOnz+Jg0Hcbgr0qm88dyMzfBpmn7udO1qD
-	+FMgw4mnYvM9Ngv49Kr6wGfYvE7ag+8x02V4uOg/F+w1YluIER4C9XNCE0VQ9ua0AIX5fP
-	sLDtoOatpD+5CGXrgL0c5XwYLG6YVqQpxo3vRxVwm3o24UrhCWQZxGWH1Zvp9aMMy81e0c
-	zHI7RJ9xQfw1OuuglzgGkHQ+ip08XXjxHsvcoXd76pKAW89VBZJ/VK4AuoknflTJOOBmPt
-	cFDlY/vRDeYtMZ43n8lrTPQGhlm8E5bZ1gXxvV3hNq+iR5oEQFuWs0qMXbzvNQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, marex@denx.de, stefan@agner.ch, dmitry.baryshkov@linaro.org, Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH 5/5] drm: lcdif: Use drm_bridge_connector
-Date: Fri, 18 Oct 2024 09:35:32 +0200
-Message-ID: <2486359.jE0xQCEvom@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241018064813.2750016-6-victor.liu@nxp.com>
-References: <20241018064813.2750016-1-victor.liu@nxp.com> <20241018064813.2750016-6-victor.liu@nxp.com>
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729237026; x=1729841826; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FQ8SdkLsCIJNhBVmfW5932i8NaML5sg9nvB1KSarBPA=;
+        b=CVyw4H2UWtdhSajVc42QWON1wDRRDqiUh8on3uIiryOA8Y5K6Fjx61bx7WoKoXLx24
+         AHKRMNSes1GNgunfJWrnY67OBIpHQx0ce5DHLbV7wIz1YeZPx/yZfOV0IuKu41Rce0Dx
+         WhjCjbYYJNnUV2yChPRYthVKnxX52XOeVq6fGp7ZnG/ce1O6727XMX/kN7UVM1Xvs+Z5
+         EH3gSVXk3lB9LBqFez5Zol51E7e9C7vsClrTfJyJL0JO8/XsE7ZAEnEc1I899VArscgk
+         Np5q/qIQLyS7gliT/hT4m8fuDnMABznMATon6nbbnHMhtZTLwTh6Ob0AS1MHyT04xr88
+         iy8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729237026; x=1729841826;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FQ8SdkLsCIJNhBVmfW5932i8NaML5sg9nvB1KSarBPA=;
+        b=aZFQo69AIL4QSQnMUHavPn4gc6oiOW5PY6+Plr7Nr3UBBukuePmk7goY4Hf8pVAe3V
+         yTCqztkCH/LiqwE48NVTZfDe15IUtG6BeNC8nXukF/3GSR0OMTBaDN4fai5L4/TuPjRu
+         7o2iVoQfuLMsyLPykJjJTwT5v938BKP3YOC6TrSrH8faoVAAcBJx1JbKmky3QyZTBdnq
+         zd/CMUkE/jJXKn0QaTFxsmg4zRI01/h28k3x8EXStVieZ5Oww9MTJ5b3hPCq7P91sMuG
+         p0bSJaa3rsXYXgHPeqOUSlk2oLr5JBXiRmKrp/VJFspaKQ/zX483Q9IfpV1WB6/xo5rG
+         WonA==
+X-Forwarded-Encrypted: i=1; AJvYcCXXVjGlntc4+4arzk/2ExWXAZZswEm9Z0KH43k9BT/7a72SVPmR+COXah7UVsarD+gIjdJFfAtCiRXz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwXvwE1khxqsHzOiBr8Sbx5YWYT0PTRLD+UYWNt1FYcaSuN7p4
+	wHYvFAuL4mnODRyWQKxtz5/grqDF6nuv3RJ/r0HjYj/Lea0s5Y4HV+XO2dhstlE4iV16F/UD6qB
+	Lu1pDIn0JHln78PEiAqChrimLLTNARvhlnWaJXQ/hODTVa87PXGM=
+X-Google-Smtp-Source: AGHT+IFwONEnb117sVQ31CVX2MhwK+WpK1e9jDFmK9d88cHvnLc4jpqFjUwCVajdCZBWq38iLQOWMzxWC22WcOsJ8HE=
+X-Received: by 2002:a05:6512:1585:b0:539:8f68:e036 with SMTP id
+ 2adb3069b0e04-53a154964a1mr1226810e87.34.1729237024774; Fri, 18 Oct 2024
+ 00:37:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241015-ad7380-add-adaq4380-4-support-v1-0-d2e1a95fb248@baylibre.com>
+ <20241015-ad7380-add-adaq4380-4-support-v1-1-d2e1a95fb248@baylibre.com> <20241017190500.215b895e@jic23-huawei>
+In-Reply-To: <20241017190500.215b895e@jic23-huawei>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Fri, 18 Oct 2024 09:36:52 +0200
+Message-ID: <CAEHHSvZrXNrh_DsyrnjjBfZJ3STYmA+HdysakO-54T6qYwTfrQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/4] dt-bindings: iio: adc: ad7380: add adaq4370-4 and
+ adaq4380-4 compatible parts
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Le jeu. 17 oct. 2024 =C3=A0 20:05, Jonathan Cameron <jic23@kernel.org> a =
+=C3=A9crit :
+>
+> On Tue, 15 Oct 2024 11:09:06 +0200
+> Julien Stephan <jstephan@baylibre.com> wrote:
+>
+> > adaq4370-4 (2MSPS) and adaq4380-4 (4MSPS) are quad-channel precision da=
+ta
+> > acquisition signal chain =CE=BCModule solutions compatible with the ad7=
+38x
+> > family, with the following differences:
+> >
+> > - configurable gain in front of each 4 adc
+> > - internal reference is 3V derived from refin-supply (5V)
+>
+> Now I'm confused.
+>
+> The earlier refin-supply change appears unused in this patch.
+> I was expecting it to be required for the additional devices.
+> With additions to the docs from the fix to explain the new
+> cases.  I'm not seeing that in here.
+>
+>
+> > - additional supplies
+> >
+> > To configure the gain a new patternProperties is added to describe each
+> > channel. It is restricted to adaq devices.
+> >
+> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 117 +++++++++++++=
+++++++++
+> >  1 file changed, 117 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+> > index 74d82721637c..3007d8e39684 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+> > @@ -25,6 +25,8 @@ description: |
+> >    * https://www.analog.com/en/products/ad7386-4.html
+> >    * https://www.analog.com/en/products/ad7387-4.html
+> >    * https://www.analog.com/en/products/ad7388-4.html
+> > +  * https://www.analog.com/en/products/adaq4370-4.html
+> > +  * https://www.analog.com/en/products/adaq4380-4.html
+> >
+> >
+> >  $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > @@ -46,6 +48,8 @@ properties:
+> >        - adi,ad7386-4
+> >        - adi,ad7387-4
+> >        - adi,ad7388-4
+> > +      - adi,adaq4370-4
+> > +      - adi,adaq4380-4
+> >
+> >    reg:
+> >      maxItems: 1
+> > @@ -59,6 +63,9 @@ properties:
+> >    vlogic-supply: true
+> >    refio-supply: true
+> >    refin-supply: true
+> > +  vs-p-supply: true
+> > +  vs-n-supply: true
+> > +  ldo-supply: true
+> >
+> >    aina-supply:
+> >      description:
+> > @@ -86,12 +93,43 @@ properties:
+> >        specify the ALERT interrupt.
+> >      maxItems: 1
+> >
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> >    - vcc-supply
+> >    - vlogic-supply
+> >
+> > +patternProperties:
+> > +  "^channel@([0-3])$":
+> > +    $ref: adc.yaml
+> > +    type: object
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description:
+> > +          The channel number. From 0 to 3 corresponding to channels A,=
+B,C,D
+> > +        items:
+> > +          minimum: 0
+> > +          maximum: 3
+> > +
+> > +      adi,gain-milli:
+> > +        description:
+> > +          The hardware gain applied to the ADC input (in milli units).
+> > +          If not present, default to 1000 (no actual gain applied).
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        default: 1000
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +    additionalProperties: false
+> > +
+> >  unevaluatedProperties: false
+> >
+> >  allOf:
+> > @@ -128,7 +166,21 @@ allOf:
+> >          ainc-supply: false
+> >          aind-supply: false
+> >
+> > +  # Using channel to declare gain property only applies to adaq device=
+s
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          not:
+> > +            contains:
+> > +              enum:
+> > +                - adi,adaq4370-4
+> > +                - adi,adaq4380-4
+> > +    then:
+> > +      patternProperties:
+> > +        "^channel@([0-3])$": false
+> > +
+> >    # ad7380-4 uses refin-supply as external reference.
+> > +  # adaq devices use internal reference only, derived from refin-suppl=
+y
 
-Am Freitag, 18. Oktober 2024, 08:48:13 CEST schrieb Liu Ying:
-> Initialize a connector by calling drm_bridge_connector_init() for
-> each encoder so that down stream bridge drivers don't need to create
-> connectors any more.
->=20
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+Hi Jonathan,
 
-I've tested this using HDMI output. HPD and CEC is still working.
-Also output using a DSI->DP bridge (tc358767) also works.
-My platform: imx8mp-tqma8mpql-mba8mpxl.dts
+here I add a quick description on how adaq devices are using refin-supply .=
+..
 
-Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  drivers/gpu/drm/mxsfb/Kconfig     |  1 +
->  drivers/gpu/drm/mxsfb/lcdif_drv.c | 17 ++++++++++++++++-
->  2 files changed, 17 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig
-> index 264e74f45554..06c95e556380 100644
-> --- a/drivers/gpu/drm/mxsfb/Kconfig
-> +++ b/drivers/gpu/drm/mxsfb/Kconfig
-> @@ -27,6 +27,7 @@ config DRM_IMX_LCDIF
->  	depends on DRM && OF
->  	depends on COMMON_CLK
->  	depends on ARCH_MXC || COMPILE_TEST
-> +	select DRM_BRIDGE_CONNECTOR
->  	select DRM_CLIENT_SELECTION
->  	select DRM_MXS
->  	select DRM_KMS_HELPER
-> diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lc=
-dif_drv.c
-> index 58ccad9c425d..d4521da6675e 100644
-> --- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> @@ -16,7 +16,9 @@
-> =20
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
-> +#include <drm/drm_bridge_connector.h>
->  #include <drm/drm_client_setup.h>
-> +#include <drm/drm_connector.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_encoder.h>
->  #include <drm/drm_fbdev_dma.h>
-> @@ -56,6 +58,7 @@ static int lcdif_attach_bridge(struct lcdif_drm_private=
- *lcdif)
->  		struct device_node *remote;
->  		struct of_endpoint of_ep;
->  		struct drm_encoder *encoder;
-> +		struct drm_connector *connector;
-> =20
->  		remote =3D of_graph_get_remote_port_parent(ep);
->  		if (!of_device_is_available(remote)) {
-> @@ -97,13 +100,25 @@ static int lcdif_attach_bridge(struct lcdif_drm_priv=
-ate *lcdif)
->  			return ret;
->  		}
-> =20
-> -		ret =3D drm_bridge_attach(encoder, bridge, NULL, 0);
-> +		ret =3D drm_bridge_attach(encoder, bridge, NULL,
-> +					DRM_BRIDGE_ATTACH_NO_CONNECTOR);
->  		if (ret) {
->  			of_node_put(ep);
->  			return dev_err_probe(dev, ret,
->  					     "Failed to attach bridge for endpoint%u\n",
->  					     of_ep.id);
->  		}
-> +
-> +		connector =3D drm_bridge_connector_init(lcdif->drm, encoder);
-> +		if (IS_ERR(connector)) {
-> +			ret =3D PTR_ERR(connector);
-> +			dev_err(dev, "Failed to initialize bridge connector: %d\n",
-> +				ret);
-> +			of_node_put(ep);
-> +			return ret;
-> +		}
-> +
-> +		drm_connector_attach_encoder(connector, encoder);
->  	}
-> =20
->  	return 0;
->=20
+> >    # All other chips from ad738x family use refio as optional external =
+reference.
+> >    # When refio-supply is omitted, internal reference is used.
+> >    - if:
+> > @@ -136,6 +188,8 @@ allOf:
+> >          compatible:
+> >            enum:
+> >              - adi,ad7380-4
+> > +            - adi,adaq4370-4
+> > +            - adi,adaq4380-4
 
+... and adaq devices are added here to require refin-supply.
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Maybe I am missing your point? or I still need to improve the description?
 
+Cheers
+Julien
 
+> >      then:
+> >        properties:
+> >          refio-supply: false
+> > @@ -145,6 +199,24 @@ allOf:
+> >        properties:
+> >          refin-supply: false
+> >
+> > +  # adaq devices need more supplies
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          enum:
+> > +            - adi,adaq4370-4
+> > +            - adi,adaq4380-4
+> > +    then:
+> > +      required:
+> > +        - vs-p-supply
+> > +        - vs-n-supply
+> > +        - ldo-supply
+> > +    else:
+> > +      properties:
+> > +        vs-p-supply: false
+> > +        vs-n-supply: false
+> > +        ldo-supply: false
+> > +
+> >  examples:
+> >    - |
+> >      #include <dt-bindings/interrupt-controller/irq.h>
+> > @@ -169,3 +241,48 @@ examples:
+> >              refio-supply =3D <&supply_2_5V>;
+> >          };
+> >      };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +    spi {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        adc@0 {
+> > +            compatible =3D "adi,adaq4380-4";
+> > +            reg =3D <0>;
+> > +
+> > +            spi-cpol;
+> > +            spi-cpha;
+> > +            spi-max-frequency =3D <80000000>;
+> > +
+> > +            interrupts =3D <27 IRQ_TYPE_EDGE_FALLING>;
+> > +            interrupt-parent =3D <&gpio0>;
+> > +
+> > +            vcc-supply =3D <&supply_3_3V>;
+> > +            vlogic-supply =3D <&supply_3_3V>;
+> > +            refin-supply =3D <&supply_5V>;
+> > +            vs-p-supply =3D <&supply_5V>;
+> > +            vs-n-supply =3D <&supply_0V>;
+> > +            ldo-supply =3D <&supply_5V>;
+> > +
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
+> > +
+> > +            channel@0 {
+> > +                reg =3D <0>;
+> > +                adi,gain-milli =3D <300>;
+> > +            };
+> > +
+> > +            channel@2 {
+> > +                reg =3D <2>;
+> > +                adi,gain-milli =3D <600>;
+> > +            };
+> > +
+> > +            channel@3 {
+> > +                reg =3D <3>;
+> > +                adi,gain-milli =3D <1000>;
+> > +            };
+> > +        };
+> > +    };
+> >
+>
 
