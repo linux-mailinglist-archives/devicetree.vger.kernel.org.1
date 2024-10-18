@@ -1,190 +1,175 @@
-Return-Path: <devicetree+bounces-112791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 892559A3864
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B1B59A3868
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:22:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7A9FB2219D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:21:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FDFCB2237E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE5018C93C;
-	Fri, 18 Oct 2024 08:21:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BAF218C937;
+	Fri, 18 Oct 2024 08:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="j0ke+elu"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Pi0eGeX2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8ED718BBAE
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 08:21:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE9EB15445B
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 08:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729239687; cv=none; b=UiyDLBG0puUHMNaZsD/xYNWXBDH7CoRu/RJENTCbO66CEn1MGVyCF/J8jH6oQ3S6oDfCaT6eo4NWGFxoWDXJWO0etNe+t7L9mZSpC364DK3oe+odoB9GM3fNoFZuxgauryDUngxKNjeclZJBKnYxUlvfhfS2gD54QC9///m/cQg=
+	t=1729239732; cv=none; b=h4Kn4eNH69qCKBauU7/vr8IOAN/kh+bH2OFJg4X3j8Cbg43MCdE5B+qroIaBmBxjleerWWkjoB9DopPk0+YGZXtOlBLb6gl2JX+AoZI5SqbVtEUWFSg8zPZJihfCe0jLEV59TRHYMWJUMTBg1Dt1e3Qyfl9RhdW/bnkgdHdMYo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729239687; c=relaxed/simple;
-	bh=+b1cMWRvd2/m165u4jRfl6bdFWmMjC5X8GKJ0se5ktk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=paobO7bGshPfMCHHmRg9xJEXegN6nw2RYPca8IRf8RWGlWF3TIo7k9EXyZbAsKZVLuUVYGCIKNqwmpHypHc4Gwfg07J+cvZyswg6rRMGamATTH7m2HpFKa4FXaxi0bJY+I3KSsZsuyN2bujJ3Rc2ck1TpZtjlpZC3tu8m7f24ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=j0ke+elu; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2e2fb304e7dso1575311a91.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 01:21:25 -0700 (PDT)
+	s=arc-20240116; t=1729239732; c=relaxed/simple;
+	bh=PfoSX0vcdBGqEulNMTI8N3WIvciODyJ+lN0v+XJikqU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sdjB74e9RZnzM/5031Am/6nO1XSdy6zjuB6z6i+r0y3b151ESIIGqWgWGUaCOvEMe33LK0Oq5EKxdvPi7Kcw3TzZozxIhjvzXyZpme+fU+/yiAxfRGuicguaTYXPCF38MnX8FFoQpRFaASfg/VoWeTUGr/zRyxT0regxmNwIliE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Pi0eGeX2; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4314b316495so17442915e9.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 01:22:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729239685; x=1729844485; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2sw2cnvD53O5L8zKGOZV5sbNVDe/+IEjxX86rJilqAk=;
-        b=j0ke+elu0OGjMHJZKJ1aG2SpcsTrrfMvjw6NL7rEsL1w1LkjZjpPbqxilX2wbkIpk9
-         cmJKA0AIrz09fbFyrINYIbETOVEzdm4uYtrS+lOYqoUXC3NEcN4lRUWyH0DnMMg9KXDl
-         /xuSsUT4W/LfHHR8PKU5j5UxPqRvbgKUDdLNE=
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729239728; x=1729844528; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=srHDDYC+Ycf+RS8B2njBjHCnByCJ7cEy0nSCZb8/0go=;
+        b=Pi0eGeX2yN1eiiiICXUvntNDk6+mkyNwQfNiP7gQAXvXlLTHVkgvB2gBk4/56l0nDP
+         R681eJUNV+7SAxujjd0MXUgyxXM4vlaoZfq+JOlNlt620K2A5qIMUw/BalzmxxEtwT1v
+         uhYFnmnzsfvaibvSplL9KAXPZBrDVR0WliV4KrSKnQAi+cxz+C3f3XFM0BbxrGjTvP9B
+         Ti1hDH95//Tek0TMSwaeC+esX7CyckkolE5l83LeKQhagtfBAQQvDmn80J0OILhK+bYL
+         AFVYJFA3cZuggmoEsjp5md4M2unIldng/b2xBfBQ67+7pP/NWZ6Kv6Y4buFyX5vDsTV0
+         eppQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729239685; x=1729844485;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2sw2cnvD53O5L8zKGOZV5sbNVDe/+IEjxX86rJilqAk=;
-        b=DjWQLrtYPd/KGOTlNlsNRy683Y1YwtiKf6Ly7QAAT5du7CCuTayqiVWdHvBHcpEcrW
-         rb7HU68EunqV+Z2XaFXRMtf79i2odoBmilICKlVzZ15KVYJmHuR3lQll6msLZBloR5dE
-         WbtaeFNwDQebukAJlcEqRLGQviKD+6aY+YoepUuks3+FJhmN2CfRuAwQhear+tGOigBn
-         dYFJXxO/TNXguoHFZl3Z0YrDWdwtdOuFp4qYqDppuEgnpgL2YDJl1TaE8thArffJ6rp6
-         nr+0+f1GyTp6ftFyYFBXrdAeFV9F6n/cJHXui/CvNN3AZxwjI7k3khV91KmA0ZL7/bHG
-         gjtA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRV+mDGKd/CNCh9C9kLZL6qmEL8q6y8tsHyKA2WdIDSHRe2IY9I4lgl2yvIwuh6fZIhiwYp+9jdQnk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtQ+DPe4aJGEsD3Ut9A8vnyHWt4qr9B/eNg9MHDv/sEJiN6w2G
-	fEduDhx6ECvYPwIrFLlDbE1lRwnwn3FWOlmQTMZiNYY0Neu70MDDQcLFX5EkIDHsW5Jm30RSti8
-	=
-X-Google-Smtp-Source: AGHT+IFOJPmAyaUnxkdtc6GJUuyr1a/qUKidE/urORfJ7bfMi/Vu+97DNhgccSxR9H9P6CXOMHrp/w==
-X-Received: by 2002:a17:90b:814:b0:2e2:a96c:f00d with SMTP id 98e67ed59e1d1-2e56185d15bmr1863982a91.21.1729239684929;
-        Fri, 18 Oct 2024 01:21:24 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:5e77:354e:2385:7baa])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e55da79303sm1315149a91.52.2024.10.18.01.21.22
+        d=1e100.net; s=20230601; t=1729239728; x=1729844528;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=srHDDYC+Ycf+RS8B2njBjHCnByCJ7cEy0nSCZb8/0go=;
+        b=VjpfqFqC0xLZETM0RHES3ymh/uX3rmtqwq9X5PVDQEXC3AYrTtoh2FqxTQ3PATG0zi
+         LhYWJKIaYFQBr9Gr/jiYsH3/EAooTbQLYm+aegv5rY3JI04kOdQtYlNjx27IqHxujj0H
+         cYzSzeTQu3+enBUc1WUp9lwhppxHe1sFVYyy2b3svT7qYoxw+7AGR1rk+5EwRBLmx4GE
+         7jQDmRug0KuuutI656mtrheH8ZST6Iqn2wHUCtcl0W9o9XE8+CunouGesvV9ux3C8zfq
+         RRjslxlOHfM5EcO88w9IND971RJrlzoPkgNj0LCZgKlG3yds5i3tABZ31V1A9885nIUq
+         KT4g==
+X-Forwarded-Encrypted: i=1; AJvYcCXGDDIHYT/wZwocK7qBrMnBCzo6syzAlIfB8qPRPxfuv0yisMerzjCy8U/1kxlQC36b6J0CGqAgFi5y@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHMGpnzHJJk45z8QpJbopWDwsVG1v3/vMEsQI/jA58DgU6ziBa
+	emT0dqCzlYyqxlTIUXRNM6Q4gHSCp0iKG7ThGxfuH5ouUcDHljV/0+RdTn4WW1dFVoywQp3psUW
+	q
+X-Google-Smtp-Source: AGHT+IGq/Xim2TdDYfZf2FCKjA4VwApeCGC93blGWI3Ut+huAOlhSQ88nXziiEC+W5XrM+cQyw5AYg==
+X-Received: by 2002:a05:600c:1c0a:b0:431:40ca:ce5d with SMTP id 5b1f17b1804b1-4316169a5c0mr11344205e9.23.1729239728199;
+        Fri, 18 Oct 2024 01:22:08 -0700 (PDT)
+Received: from localhost (p509151f9.dip0.t-ipconnect.de. [80.145.81.249])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431606ab65fsm14691865e9.1.2024.10.18.01.22.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 01:21:24 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: mediatek: mt8186-corsola-voltorb: Merge speaker codec nodes
-Date: Fri, 18 Oct 2024 16:21:11 +0800
-Message-ID: <20241018082113.1297268-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.47.0.rc1.288.g06298d1525-goog
+        Fri, 18 Oct 2024 01:22:07 -0700 (PDT)
+Date: Fri, 18 Oct 2024 10:22:06 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Sean Young <sean@mess.org>
+Cc: Chi-Wen Weng <cwweng.linux@gmail.com>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, ychuang3@nuvoton.com, 
+	schung@nuvoton.com
+Subject: Re: [PATCH 2/2] pwm: Add Nuvoton PWM controller support
+Message-ID: <obu4hy7dwioinyn3npwy42lwmijd2sctdsy4b3lad3d6bfvaq5@gzbcnua3unuv>
+References: <20241018034857.568-1-cwweng.linux@gmail.com>
+ <20241018034857.568-3-cwweng.linux@gmail.com>
+ <ZxISVBz1Os0T4eqP@gofer.mess.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gelwutqfbadgpdny"
+Content-Disposition: inline
+In-Reply-To: <ZxISVBz1Os0T4eqP@gofer.mess.org>
 
-The Voltorb device uses a speaker codec different from the original
-Corsola device. When the Voltorb device tree was first added, the new
-codec was added as a separate node when it should have just replaced the
-existing one.
 
-Merge the two nodes. The only differences are the compatible string and
-the GPIO line property name. This keeps the device node path for the
-speaker codec the same across the MT8186 Chromebook line. Also rename
-the related labels and node names from having rt1019p to speaker codec.
+--gelwutqfbadgpdny
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/2] pwm: Add Nuvoton PWM controller support
+MIME-Version: 1.0
 
-Cc: <stable@vger.kernel.org> # v6.11+
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
-This is technically not a fix, but having the same device tree structure
-in stable kernels would be more consistent for consumers of the device
-tree. Hence the request for a stable backport.
+Hello Sean,
 
-Changes since v1:
-- Dropped Fixes tag, since this is technically a cleanup, not a fix
-- Rename existing rt1019p related node names and labels to the generic
-  "speaker codec" name
----
- .../dts/mediatek/mt8186-corsola-voltorb.dtsi  | 21 +++++--------------
- .../boot/dts/mediatek/mt8186-corsola.dtsi     |  8 +++----
- 2 files changed, 9 insertions(+), 20 deletions(-)
+On Fri, Oct 18, 2024 at 08:46:28AM +0100, Sean Young wrote:
+> > +static int nuvoton_pwm_apply(struct pwm_chip *chip, struct pwm_device =
+*pwm,
+> > +			     const struct pwm_state *state)
+> > +{
+> > +	struct nuvoton_pwm *nvtpwm;
+> > +	unsigned int ch =3D pwm->hwpwm;
+> > +
+> > +	nvtpwm =3D to_nuvoton_pwm(chip);
+> > +	if (state->enabled) {
+> > +		u64 duty_cycles, period_cycles;
+> > +
+> > +		/* Calculate the duty and period cycles */
+> > +		duty_cycles =3D mul_u64_u64_div_u64(nvtpwm->clkrate,
+> > +						  state->duty_cycle, NSEC_PER_SEC);
+> > +		if (duty_cycles > 0xFFFF)
+> > +			duty_cycles =3D 0xFFFF;
+> > +
+> > +		period_cycles =3D mul_u64_u64_div_u64(nvtpwm->clkrate,
+> > +						    state->period, NSEC_PER_SEC);
+> > +		if (period_cycles > 0xFFFF)
+> > +			period_cycles =3D 0xFFFF;
+>=20
+> If a period is not supported, return -EINVAL - maybe even do a dev_err().
+> Same for the duty cycle above. It might make sense to calculate the period
+> first, so that the error is more likely to be about the period than the
+> duty cycle.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
-index 52ec58128d56..b495a241b443 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
-@@ -10,12 +10,6 @@
- 
- / {
- 	chassis-type = "laptop";
--
--	max98360a: max98360a {
--		compatible = "maxim,max98360a";
--		sdmode-gpios = <&pio 150 GPIO_ACTIVE_HIGH>;
--		#sound-dai-cells = <0>;
--	};
- };
- 
- &cpu6 {
-@@ -59,19 +53,14 @@ &cluster1_opp_15 {
- 	opp-hz = /bits/ 64 <2200000000>;
- };
- 
--&rt1019p{
--	status = "disabled";
--};
--
- &sound {
- 	compatible = "mediatek,mt8186-mt6366-rt5682s-max98360-sound";
--	status = "okay";
-+};
- 
--	spk-hdmi-playback-dai-link {
--		codec {
--			sound-dai = <&it6505dptx>, <&max98360a>;
--		};
--	};
-+&speaker_codec {
-+	compatible = "maxim,max98360a";
-+	sdmode-gpios = <&pio 150 GPIO_ACTIVE_HIGH>;
-+	/delete-property/ sdb-gpios;
- };
- 
- &spmi {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index c7580ac1e2d4..cf288fe7a238 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -259,15 +259,15 @@ spk-hdmi-playback-dai-link {
- 			mediatek,clk-provider = "cpu";
- 			/* RT1019P and IT6505 connected to the same I2S line */
- 			codec {
--				sound-dai = <&it6505dptx>, <&rt1019p>;
-+				sound-dai = <&it6505dptx>, <&speaker_codec>;
- 			};
- 		};
- 	};
- 
--	rt1019p: speaker-codec {
-+	speaker_codec: speaker-codec {
- 		compatible = "realtek,rt1019p";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&rt1019p_pins_default>;
-+		pinctrl-0 = <&speaker_codec_pins_default>;
- 		#sound-dai-cells = <0>;
- 		sdb-gpios = <&pio 150 GPIO_ACTIVE_HIGH>;
- 	};
-@@ -1195,7 +1195,7 @@ pins {
- 		};
- 	};
- 
--	rt1019p_pins_default: rt1019p-default-pins {
-+	speaker_codec_pins_default: speaker-codec-default-pins {
- 		pins-sdb {
- 			pinmux = <PINMUX_GPIO150__FUNC_GPIO150>;
- 			output-low;
--- 
-2.47.0.rc1.288.g06298d1525-goog
+That's a wrong advice. Drivers are supposed to implement the highest
+period possible that is not bigger than the requested one. So clamping
+the value to 0xFFFF looks right.
 
+However I wonder what happens in hardware if period_cycles =3D=3D 0. If that
+disables the hardware that is something to catch and return an error
+for.
+
+> Then again I don't know if all the drivers do this, but at least some of
+> them do.
+
+Yeah, and I hesitate to align them because their behaviour might be
+relied on. But for new drivers the above rule applies.
+
+(And with the new waveform stuff, consumers can rely on the rounding
+rule and even query the resulting waveform before calling the equivalent
+of pwm_apply_might_sleep().
+
+
+> > +	chip->ops =3D &nuvoton_pwm_ops;
+>=20
+> I think you can add chip->atomic =3D true; here
+
+ack.
+
+Best regards
+Uwe
+
+--gelwutqfbadgpdny
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcSGqsACgkQj4D7WH0S
+/k5R/Qf+OhKRH7FMIqfL+DOoX2BNksRDESeq3YgIfF/4QcgEHT+rqkeAMyx4ogd1
+A53Z2Ctl83dbogKFMbkh/T6mIjoUBldHzJCtXnHKPkBX+O9G5ZfmUdxhdOfflM6f
+qse1Nw1AFAOsSDMB6pA3SQdFiqTrCoJhvSH6/JGU91SqhqlV5CEV41UEbC0LmixG
+GoVA9CLC+nXpIF3XdqNODyHm3W0Wd5ISbRYEMNuAm1fTWReZfSkESPiVPINeitfA
+O1fqKI+XvLMloIiVm8c2hmQk8Ey+aBh+4k5k4/eqxWx2A+T0G2tgx0i4ClvdKvkz
+0MfiT/P4Zorru85PUPiJLFu5Q0E95g==
+=ezQS
+-----END PGP SIGNATURE-----
+
+--gelwutqfbadgpdny--
 
