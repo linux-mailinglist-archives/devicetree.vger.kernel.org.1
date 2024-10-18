@@ -1,121 +1,149 @@
-Return-Path: <devicetree+bounces-112857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 405C49A3B03
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 815E69A3B06
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:12:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDA511F269C2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:11:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D2D1F270E8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2205201038;
-	Fri, 18 Oct 2024 10:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 110022010EA;
+	Fri, 18 Oct 2024 10:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aO9TfMlo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lY7c+Abl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A791D86FB;
-	Fri, 18 Oct 2024 10:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15AAD201033
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 10:11:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729246278; cv=none; b=LvZ+iPfVHm7phww1y+Oodz+0iHxSKzLnLnxhYJZh7yUbHYwytwAT5AZKB/KD0fBfAaTw+1tVqVswMKeib1mW4CzLk3+oioYnatJFc2kaDllP4P0MLwm9Kl7ylQwni6EvrNYAkyYYK4znQ4FF448csPiDo/qfOuAbmbOsJ0f/GBc=
+	t=1729246319; cv=none; b=N5ptZPbLa5hTOqb4+pmDaOmiNCLu1gCiXqpNcV/axQXfZTx3CYT4xcnrmMWArUu75OcmIb1U6RZ5/kmnGxETiYCZJE3ZIVgjixJwis3gnQqc+yM6sD4STABMfxXxPAeyf/3gSp/cPOtXPDsAhVNL1GTOwWl0HC7oiEwDiHWWuNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729246278; c=relaxed/simple;
-	bh=nTNNmhyh+Cpec7JzOJdngJFqf3onGXsAldDqdTsJIVo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a8jpzulPUPtTIhPtJSYUSYIF3PkuQ1MGUuR2AO8cWrhNZ5f8ZvBgtK/XTpTBUIgTRGbYz0bl3ZZrVocUupCYePnZ7zQkzBEI1ccKzmFQhAOS1+Lg9+y38yXxReGppFcQkpaoeEXvGYhhGAUSs8aBOan/33YJC+4OdlI19FQitAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aO9TfMlo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 230ABC4CEC3;
-	Fri, 18 Oct 2024 10:11:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729246278;
-	bh=nTNNmhyh+Cpec7JzOJdngJFqf3onGXsAldDqdTsJIVo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aO9TfMlorMY5b5c0lmYaSwiW5N3AuHq6udm2z7rMAsiTtXVhWUb0RnJT+JEsvQPLH
-	 ANSj0aw0LZFLRDT7pKi5b1pmOY0JnMoXOfBiv8wBGy3hSbN2rdAUdNr/5x/sZjXorg
-	 OgotoxLENEgiT5scuJyD3+tDj+X6DTvIvKssCIFT+yXF1fmKj/agQAt42eAi5QiCce
-	 8gEJjCBqTB4LeXyvvSJ0D+zWKmz86EbMcRgvVHe4Gtg5uOWuQAfO1efHZHbjGCR+z3
-	 wWcdta4DTcTk4pnGrf+2EEzNCAPpWdUiAz9zuSxWf1xUHRwRg1ut7rEsQwBkDfQRT6
-	 aLPc5KeKMCCyA==
-Message-ID: <dffb5226-7d57-406b-b20b-991deebfc295@kernel.org>
-Date: Fri, 18 Oct 2024 12:11:12 +0200
+	s=arc-20240116; t=1729246319; c=relaxed/simple;
+	bh=kRK4/BKBi0JXML0QAlq/7TuHFKd7W2th9qWUj6ShHEY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RUAh3gRja3QNCy2BnVFFaqQBq0+S7qUwQopgPTiBSz94G1sr7hqgYYEcrG+aXZMcpJSMqro2Ul0QykNawMEGoPiOpr661/fxp5l+muW6HPgM4++gtWFt40JRSUJ9OmPKRDUKPc6Fw3VQzcvzLs+k79BT/NoOLyAKaT+tpUYdCIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lY7c+Abl; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fb3c3d5513so21132001fa.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 03:11:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729246315; x=1729851115; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jvY8KYiHaZqzdfBn2meM7L0X9I9zbwo+MC/72l11qcc=;
+        b=lY7c+AblIJR5m6SRvIf1y47AIC0qHNJtNGeWTodpotUKSlDk3u2n+RNrBKK5RcZ3uD
+         DYAPqkGN+9pQeeaYb77no7B1oEfhX8lHLgEBWzfrbItq6VCfCDwyfb/AkbIS2Aihr47e
+         yfLV+8AfXPUN6TKCy2slTuzgS6EtB64gzP6UU6Iksk6ELiUR6K2F4lYRO7a0j1zFbFTn
+         lSYC+CaFYYim2W9HPAX8iWrwN/fXS96PCnIrw9OjLDrbINl2OGm03pJsIpiCY02WTZUA
+         pYezMiuKoN7ejzcGXZsPDjweDeYk7njapikDBzZUBtPyB705UOiWY8VEd5DDg78p13o5
+         8fow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729246315; x=1729851115;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jvY8KYiHaZqzdfBn2meM7L0X9I9zbwo+MC/72l11qcc=;
+        b=hSSTZKneXTNCSarVW9kdcav+Y4E/P0KMmerNFt0b+qOwjdL+VtACDqrEqXLTdzZcGh
+         opa8zU/HyM72eSYGMZ38FKJlPg1lm7utWCYj+DVpC6vXNi+Z2q7kSLmD2aps05l5sKSN
+         donGowTkUAr8sqMxfeZ2xn5IUiM3hUCfhl8mKO0/HWiqYZGR2hRRJCEgof2+93SSnOES
+         ATflEmxNat3v6DKO6fLCOhWVgYvBNIm0jPa3DGYbVhuCAS4NUC2QDfcjMFLl/xUq2dsF
+         WpUGowwUgX2S0VVcAqt63nZVrQ+gWsQXvRN+PrUNVc0HHgRdq753HGtPDgS42TIaUhhp
+         u1uA==
+X-Forwarded-Encrypted: i=1; AJvYcCVxmfhO15a11mGtvCHXzIvmkyOX7xd7O/sRBSSrrU7DPhvVipyE9AfFTtldWcKgscR09oKFQ2meV752@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywup9TgLKGUXcfrKuGymMkUr8EbHYOvGxOGJOu03V8E6ME/kDjh
+	8nNoVCPxDxnOYgcQlsSminmg00K6BKOamKjRiUtxRKd96W0g4FxdjhzOy/knWIA=
+X-Google-Smtp-Source: AGHT+IG3sYPji9qicEvtFNlcAs92ChQJkMrU6bQriug80NS0HFO4UZ/qbgCf38X9ZiV302DAIpmCeg==
+X-Received: by 2002:a05:651c:542:b0:2fb:2e27:5334 with SMTP id 38308e7fff4ca-2fb82e98f77mr7417511fa.15.1729246315128;
+        Fri, 18 Oct 2024 03:11:55 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb809b2ab8sm1878671fa.48.2024.10.18.03.11.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 03:11:53 -0700 (PDT)
+Date: Fri, 18 Oct 2024 13:11:51 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Tingwei Zhang <quic_tingweiz@quicinc.com>
+Cc: Krishna Kurapati <quic_kriskura@quicinc.com>, 
+	Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Bjorn Andersson <quic_bjorande@quicinc.com>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-phy@lists.infradead.org, quic_ppratap@quicinc.com, 
+	quic_jackp@quicinc.com
+Subject: Re: [PATCH v2 5/5] phy: qcom: qmp-usbc: Add qmp configuration for
+ QCS615
+Message-ID: <l4wpt5qin3ezkowf3puvodrm5wjsptd4a32f4qrzcuuquo6kq6@j2orv5z5quln>
+References: <20241017130701.3301785-1-quic_kriskura@quicinc.com>
+ <20241017130701.3301785-6-quic_kriskura@quicinc.com>
+ <CAA8EJprcOU6qeJvHH+MVoPnQ+mGcos=pDOVBSeSUfBGw-KR6tA@mail.gmail.com>
+ <aa68e5ab-86a6-430e-92d8-ed89b4eb37f7@quicinc.com>
+ <CAA8EJprkq-Cct9Uk1Jwqc5Rn8mx8THTRgwCzDx=8ZgbCpwD7qw@mail.gmail.com>
+ <684582c3-3559-4c54-8257-cb952bbfe2ec@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Correct GPIO polarity on brcm BT
- nodes
-To: Diederik de Haas <didi.debian@cknow.org>, Heiko Stuebner
- <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rockchip@lists.infradead.org, Samuel Holland <samuel@sholland.org>,
- Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20241018092237.6774-1-didi.debian@cknow.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241018092237.6774-1-didi.debian@cknow.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <684582c3-3559-4c54-8257-cb952bbfe2ec@quicinc.com>
 
-On 18/10/2024 11:22, Diederik de Haas wrote:
-> The GPIO polarity of the 'shutdown-gpios' property needs to be
-> ACTIVE_HIGH or the Bluetooth device won't work.
-> This also matches what other devices with the same BT device have.
+On Fri, Oct 18, 2024 at 05:01:48PM +0800, Tingwei Zhang wrote:
+> On 10/18/2024 4:06 PM, Dmitry Baryshkov wrote:
+> > On Fri, 18 Oct 2024 at 10:48, Tingwei Zhang <quic_tingweiz@quicinc.com> wrote:
+> > > 
+> > > On 10/18/2024 2:27 AM, Dmitry Baryshkov wrote:
+> > > > On Thu, 17 Oct 2024 at 16:07, Krishna Kurapati
+> > > > <quic_kriskura@quicinc.com> wrote:
+> > > > > 
+> > > > > Provide PHY configuration for the USB QMP PHY for QCS615 Platform.
+> > > > > 
+> > > > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > 
+> > > > After checking platform details,
+> > > > 
+> > > > Unreviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > 
+> > > > Please perform global s/QCS615/SM6150/ and s/qcs615/sm6150/
+> > > 
+> > > QCS615 and SM6150 are different variants of the same SoC. QCS615 is an
+> > > IoT variant, while SM6150 is a mobile variant. We are currently adding
+> > > QCS615 SoC support to the upstream Kernel, as it is in an active
+> > > development stage and we anticipate many products based on this SoC. On
+> > > the other hand, the SM6150 is an older mobile platform that is unlikely
+> > > to be used in new designs. For a product introduction of the QCS615,
+> > > please refer to
+> > > https://docs.qualcomm.com/bundle/publicresource/87-83838-1_REV_A_Qualcomm_IQ6_Series_Product_Brief.pdf
+> > 
+> > Yes, I guessed so. It would have been nice if it was documented this
+> > way from the beginning.
+> > 
+> > Please note that we usually get support for the mobile SoC first. So
+> > in most of the cases devices use mobile compatible even for IoT
+> > platforms, see qrb5165, qrb4210, qcm6490 and other similar platforms.
+> > I simply asked to follow the established pattern.
+> 
+> Yes, we start from mobile variant for most of the platforms. There are some
+> exceptions like sc7180 and sc7280 which we started from compute variant
+> since they are widely used by compute platform on upstream Kernel. I think
+> we have similar case here. QCS615 will be widely used by IOT products on
+> upstream Kernel. We should have clarified this from beginning so there's no
+> ambiguity.
 
-This should match the hardware. What if the Linux driver is just buggy?
+After offline discussion with Krzysztof, I'll lift my objection, so
+still Reviewed-by.
 
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
 
