@@ -1,56 +1,61 @@
-Return-Path: <devicetree+bounces-112700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E579C9A351C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:11:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 981DE9A3525
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E9522851FF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:11:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C3ECB216F3
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF59F17C208;
-	Fri, 18 Oct 2024 06:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48DC2185B54;
+	Fri, 18 Oct 2024 06:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GBtgFLtt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgD3ztGf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B07620E30C
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 06:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09B2184539;
+	Fri, 18 Oct 2024 06:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729231862; cv=none; b=YDFs7DuJX9WlVk4hODOveiYTsV4Pn4WzTi/9X/1DjcUJZw7il1i4gkHM0zsUBafpimZRnodihOM73ikXFQ2SWGSZchWh9TfIDL05i1p6k2VlAjna5e5KGXMm8oK0Ki7ZXNBDvVY61feFMwfnorv2yuDL7nktpJJFzgVpdOnmNRA=
+	t=1729231988; cv=none; b=myAAXMOd6Bfz8TKUPGgwZD5VZ/mRjb6xsNejKnOBDHD4ZlAjc7SZPn7vBPfLwzg6deqfM+pbTKqyfh4GpWOEe3Ns+HuKUZ4y4Nlmx13S52zXDO8g1lkE5t+tWGtT0BxRRM3LaaiJKRwobuUg9f5NI18vmvtTBEYh/rCJ5v08zyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729231862; c=relaxed/simple;
-	bh=dEU7JVgsSSXUnouwOGrjzVa2zsi/LvY9smBUluomUkw=;
+	s=arc-20240116; t=1729231988; c=relaxed/simple;
+	bh=f/5yZzyoQwcXgVSm7jfxqmgjDko+M5Tsgn35ebfSdh4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H1vEQdeTNyjZ/dEah60shi1WxHXIUL59Y0g94xA2Qk8arnk36Pf9z6lHgqgU6jy33Q3AbsKUgyn5TIh3c/mnxLok0NWS3C1an9mmjYLDqsEsN2sup7KmtU/FkRPVY1ZwWs7VuT6nabB+0Ef29Ed46O6ioR4MyoOl/SMEdpcRFxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GBtgFLtt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F7EBC4CEC3;
-	Fri, 18 Oct 2024 06:11:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UHZtOqG42I/GXfTpncNkqzQnhYH/XC+6xWBVK24yjjUQe56SSaHS67eOx+3aKaRfktNdmq3WcJ7HsBCouGHPtr9uNRA/hpaxdDfosIvibW288VuOs5DnPHF8LSWcXgpaX6pGvFmz/H54qjfvcjA/IDLFr4r36GDuofsyRLMkA7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgD3ztGf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1977C4CEC3;
+	Fri, 18 Oct 2024 06:13:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729231862;
-	bh=dEU7JVgsSSXUnouwOGrjzVa2zsi/LvY9smBUluomUkw=;
+	s=k20201202; t=1729231987;
+	bh=f/5yZzyoQwcXgVSm7jfxqmgjDko+M5Tsgn35ebfSdh4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GBtgFLttY6KjPml5P7kJbYveiFC4fQFqYeR8HdOKMxrhBMkhQ0TIUlRCUokpJ/IQU
-	 Q4bJKUCqiFg3Jf7vsj7usUhi6gqinp3lszurKwVF8yVJ8X+A0Pyx2uawpJeIYFzLQE
-	 DsMMmBLYTz8KbOx7ll4iBRLJceN+S8xdLuZmLK/ujQsGNh5TRw0HPyvq3bJmzNk4hS
-	 wauPfQXcOA6wVrIslFZgA1C1D5s/iVZOiauu5YRbX7FbjsIe+rmjRczR+VB4NwW++v
-	 K5GZR9jpWq4/bMzSsTbMofG6eAaqpf/WYazJGWd92Rj8/zs3Ty+p5Gj0G3lm6HhUmA
-	 q8FFObhxf3rjA==
-Date: Fri, 18 Oct 2024 08:10:58 +0200
+	b=PgD3ztGfIGwfMqkBDBwYC3jy3OY5KeqWLnH2DU9dfF9d1yDCQA9SJ3ZSwK8aZ6s7X
+	 +mIOl/53ycEQ8Kzy8hGOiO9rsfgOdg3kDmgi93f7wQ9jupAu5LyghEU+bor7cI6JPw
+	 wo8PHmoa7boLcDA+kekKemlcyS5i2Da3gupL/CIkg5tN8cJlN3IAn1t0MNApxPlvUl
+	 w6kT0fOk6Wh8DBWzC0d6/cvW+j5HCz69+GCgJUrMsszUSKGNLqqlXN2aRJPWUPXeUq
+	 BD9pN7OtgqHJtX8qmsEauO+X9wk26DiWpC4xMWP2ENkUOLpyfIZ3FC32WKilYOl+7K
+	 P23vMu2+iDHwQ==
+Date: Fri, 18 Oct 2024 08:13:03 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Markus Stockhausen <markus.stockhausen@gmx.de>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, chris.packham@alliedtelesis.co.nz
-Subject: Re: [PATCH v5 1/2] dt-bindings: phy: add realtek,rtl8380m-serdes
-Message-ID: <sh34yi5j6vjpl2lbs5osttsi2kdgwjhrw6fipxzqndg3gk3day@aoebakdn3i2d>
-References: <20241017162400.3881609-1-markus.stockhausen@gmx.de>
- <20241017162400.3881609-2-markus.stockhausen@gmx.de>
+To: Sricharan R <quic_srichara@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	ulf.hansson@linaro.org, linus.walleij@linaro.org, catalin.marinas@arm.com, 
+	p.zabel@pengutronix.de, geert+renesas@glider.be, dmitry.baryshkov@linaro.org, 
+	neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, quic_varada@quicinc.com
+Subject: Re: [PATCH V4 2/6] dt-bindings: clock: Add Qualcomm IPQ5424 GCC
+ binding
+Message-ID: <nznisr4aqpe65fovvk3q3r6capmqj4jm4xsqufjib2b7vax4xx@6r3tzaar2w3p>
+References: <20241017123626.204421-1-quic_srichara@quicinc.com>
+ <20241017123626.204421-3-quic_srichara@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,35 +64,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241017162400.3881609-2-markus.stockhausen@gmx.de>
+In-Reply-To: <20241017123626.204421-3-quic_srichara@quicinc.com>
 
-On Thu, Oct 17, 2024 at 12:23:59PM -0400, Markus Stockhausen wrote:
-> Add bindings for the SerDes of the Realtek Otto platform. These are
-> MIPS based network Switch SoCs with up to 52 ports divided into four
-> different model lines.
+On Thu, Oct 17, 2024 at 06:06:22PM +0530, Sricharan R wrote:
+> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > 
-> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+> Add binding for the Qualcomm IPQ5424 Global Clock Controller
+> 
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > ---
+>  [V4] Added 2 new PCIE clks to end of the list, preserving default order
+> 
+>  .../bindings/clock/qcom,ipq5332-gcc.yaml      |  40 ++-
+>  include/dt-bindings/clock/qcom,ipq5424-gcc.h  | 156 +++++++++
+>  include/dt-bindings/reset/qcom,ipq5424-gcc.h  | 310 ++++++++++++++++++
+>  3 files changed, 499 insertions(+), 7 deletions(-)
+>  create mode 100644 include/dt-bindings/clock/qcom,ipq5424-gcc.h
+>  create mode 100644 include/dt-bindings/reset/qcom,ipq5424-gcc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+> index 9193de681de2..ef1fd9d9f8da 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+> @@ -4,31 +4,35 @@
+>  $id: http://devicetree.org/schemas/clock/qcom,ipq5332-gcc.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Qualcomm Global Clock & Reset Controller on IPQ5332
+> +title: Qualcomm Global Clock & Reset Controller on IPQ5332 and IPQ5424
+>  
+>  maintainers:
+>    - Bjorn Andersson <andersson@kernel.org>
+>  
+>  description: |
+>    Qualcomm global clock control module provides the clocks, resets and power
+> -  domains on IPQ5332.
+> +  domains on IPQ5332 and IPQ5424.
+>  
+> -  See also:: include/dt-bindings/clock/qcom,gcc-ipq5332.h
+> -
+> -allOf:
+> -  - $ref: qcom,gcc.yaml#
+> +  See also:
+> +    include/dt-bindings/clock/qcom,gcc-ipq5332.h
+> +    include/dt-bindings/clock/qcom,gcc-ipq5424.h
+>  
+>  properties:
+>    compatible:
+> -    const: qcom,ipq5332-gcc
+> +    enum:
+> +      - qcom,ipq5332-gcc
+> +      - qcom,ipq5424-gcc
+>  
+>    clocks:
+> +    minItems: 5
+>      items:
+>        - description: Board XO clock source
+>        - description: Sleep clock source
+>        - description: PCIE 2lane PHY pipe clock source
+>        - description: PCIE 2lane x1 PHY pipe clock source (For second lane)
+>        - description: USB PCIE wrapper pipe clock source
+> +      - description: PCIE 2-lane PHY2 pipe clock source
+> +      - description: PCIE 2-lane PHY3 pipe clock source
+>  
+>    '#power-domain-cells': false
+>    '#interconnect-cells':
+> @@ -38,6 +42,28 @@ required:
+>    - compatible
+>    - clocks
+>  
+> +allOf:
+> +  - $ref: qcom,gcc.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,ipq5332-gcc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 5
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,ipq5424-gcc
+> +    then:
+> +      properties:
+> +        clocks:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+This needs minItems: 7, unless clocks are really optional (but they
+shouldn't be optional). I think I missed this part last time.
 
 Best regards,
 Krzysztof
