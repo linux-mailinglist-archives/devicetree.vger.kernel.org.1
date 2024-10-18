@@ -1,136 +1,103 @@
-Return-Path: <devicetree+bounces-112908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F9D09A3D83
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:50:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4709A3D97
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:54:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4823284A9E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:50:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71985284B2E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144798F6B;
-	Fri, 18 Oct 2024 11:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E4D8F6B;
+	Fri, 18 Oct 2024 11:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u45hZqJo"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="3Ui2cQSy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B41118028
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 11:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4019015C3
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 11:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729252196; cv=none; b=GAq1/Se1uEI24CLQSUH7v4u4pFDHJUsJFyB+Cbg/PqYi8YG/FyOMTjXLJHJCMeziEeHnZirCplA9NRt+pkoIC8QsSPQClfN2tmmbCjwdUp3CUWn4wtCwXflUxh7z5SgVLFzQLIrhyWM9MAMULkjEJhVxvLJQChX/3y8HMwMfMns=
+	t=1729252455; cv=none; b=GTsiJOakhG48iHeXXHOC2GLN5uwYsmuIF5MYSCH/AmjZgGCpsQCPoxv69QMyLgF5liALxIsg0mDWJJ7Uu/mj7VQRxSjEzdXMvkURqvH5E/iPTqz5biff7xedAE1PbLL+aS4fF2QG45WG8QgHL5pHcrH0KlZ6Qa8q/ByBiFJPf/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729252196; c=relaxed/simple;
-	bh=x8264GlX4CVxen110AJuRI1evTFgL5Lnszek+ggi2+4=;
+	s=arc-20240116; t=1729252455; c=relaxed/simple;
+	bh=R+AOxf+aDYAfdzS/iwTw8wPE4Fu+7CXl+K2uObemX4s=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jeVhHVI/O1M+0jJyhIjCahx8t4gtiPkGCo2HHIdkGvN/DuyxI9IkyA3Qq5EiBF5y5+x0QiUNRZl1i1c5aXe+Q4GjFou1/BNzm7y5AsK0i1nyc8kQrkXhKR+qNnlm85abVDUeKt15FfZdw3Pcda0tTIBOd1+vZSMPPmArliWGX8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u45hZqJo; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-539f76a6f0dso1862405e87.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 04:49:53 -0700 (PDT)
+	 To:Cc:Content-Type; b=R8ygLizxagSza/Kzkhi27sSn7avmMKu9vnU2kAldJXd9dzT/H3cHb4j+79drsAbxyTwIXp9n7KOwwkZhv0yv/hkjTGQkxrHDqGl5J1M0MBzkOE1LVCvnEvNB1rimH6FWa6xZgpFIPy77DOPyQLJQv1T5FmuKLt/Ii3Z2QEdP7eM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=3Ui2cQSy; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539fbbadf83so2668156e87.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 04:54:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729252192; x=1729856992; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1729252451; x=1729857251; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gruTW7IeagTi5sJeA9ebW1N47SmkEh16ZSSnf4PRDcU=;
-        b=u45hZqJo/mnV07Hb+aM5xehgB19OmQZMeqjKnWsGvceBUC4haTGyvI70xgPNg6+XU3
-         rwwtyqwKhPmfizJD1mT+oWN5WaIzqPpwOtJKT6SY3PC+OE8oi4CqPpNp5OoF5VtuZ+Fo
-         VgoCEcTyfyxQYtTVcFGj2TyIVQKwVAqA45VEfG8r2qFJVNZ1Bay4fQvixqJpEn9JHf/G
-         f/fZa6WC6/8KtEI8BoMl7jHVpAo9y3jVK3/76oua9MB+Lsxv5vIfD+kY9iIwnQNJrUoV
-         CrRXqDM1FbqkNJqsHxUT7aKEmWB+8tVPHeuMM6KmMHRlbzps+KhleImFi3+qvg9OLS1Z
-         Xg+Q==
+        bh=R+AOxf+aDYAfdzS/iwTw8wPE4Fu+7CXl+K2uObemX4s=;
+        b=3Ui2cQSyW9pIJd1XL5mgRFMPlRxQAIx3qK55HrIaDaJlrVd7kDCpS7Igy3slfPKGtj
+         hMfClJkDys8JjplhGTUMEEOqxqB5DjVG9wo2GgIA/VQ2qNf9RawYCdJYMC5aoWu6ZGEv
+         2nLY2ufz8BrcMVQsNuXQLZOo2jQ4vCGMwljyqvEatbCvuv2GhP62t7qiFgGvEg88UrTV
+         jYw4FBX0lYAuk7ysLspvRuJkBSO+B8zLmOl7gjAYMQCLzy8/KietPKzRH8SFkGkjaTs0
+         riyKE6Jrbr1yu8RMjjDX8ujNM55LAM6pGWCEekhHi53hUUvC4BGreYUOQrn0KPVgSWsH
+         D6Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729252192; x=1729856992;
+        d=1e100.net; s=20230601; t=1729252451; x=1729857251;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gruTW7IeagTi5sJeA9ebW1N47SmkEh16ZSSnf4PRDcU=;
-        b=wSucah8gHXpn1TW06gCAgd/qTv27aQwzomb4IWIYdhw6x/sgmZDDiwa4oxZt96s/zg
-         qByNTwSa2S/JVPv6Kvd3eyXZAhpLL4aiZVzlYKujfIy+C/qtW76HONMfuSqTssK341lf
-         fT/PlcN8MjUaLjYVUWxi03l6YYkEJQSoafbEHewnKQf2WJDxRHCHuH21ov4TCIvuF+dV
-         PZEhPIAXjvwZt4yzRSBqdFJT+lHDuf7AIb+r2at6fO1PNqTFM5tgvsEsV4D1/6LKAAdj
-         IrBGz/eJoQdP/962jJaKURmXfObWFGQMjT2Eih9D7JxvjUkgc2Q6J9HA3jxckOVYOK83
-         ERXw==
-X-Forwarded-Encrypted: i=1; AJvYcCV21fV60o8ZEph7x6AWFCxq2vySgP7VIcvqguXjUpUR6uT5Y9tFvK52pz+BnAyFs9a4vjlypOPpa0uF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlRoOS9doZ1+kPd3OEU3QRwVefLoEDnZMKh4hcdbIISnw17ZA8
-	V1B3sVpLZJG3gkxzBhGK/8a5GrJxsaMDVaGeDdlI4dG9U4+Tx5Whkf6sz+6B+IPSbq1NPGLuHSa
-	N5QVWh3WnMUdGynXMmJyLKNj7TxOoaSiJoTcTmg==
-X-Google-Smtp-Source: AGHT+IETWUqpU2b4hJOBO5m4uSTjDpaAKxv2uRGjcBCV9v7PRYsS1a3uFwxq8tX0amrHIGW5u3uHPP2Je/u50YZ6WYI=
-X-Received: by 2002:a05:6512:1291:b0:539:f035:e158 with SMTP id
- 2adb3069b0e04-53a15467874mr1363901e87.18.1729252192243; Fri, 18 Oct 2024
- 04:49:52 -0700 (PDT)
+        bh=R+AOxf+aDYAfdzS/iwTw8wPE4Fu+7CXl+K2uObemX4s=;
+        b=i2JQtRK4vyohyJAkChq3PaKwk0Y5rTs8Cqw5WcAAiuNE/vGX1R9Qhnj6LWSpHk4Vb9
+         ixquHonodQiaABj5aeamOOm8zv76yv0W5gjz8+o9Rae/MtrhvYjO5DJoaQQamhdILqVH
+         Kgg8n+afkeIUD+IsCEZ7ZMmQKi1JA9SrU93ip/jkEYY5EnyxnkDom95cLJeEq7oO/Kt4
+         qkMVBjwkoq1/Gbz+08abwI32kTVv5z8c17p8slcriBVIovSQWNjLjv2yP3tJwmHISwVB
+         wT/SZf43nnH3GGoczhZepTsouwP4e6RV7Tg9DMAUsZ33vkpYDazwDgC14kwkIlz9MTOH
+         N2CQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXlx1o4GCY+rI+evDcMuCEl4RMXI1EXLTcKCLQ1yZp660PUGUZYmTCwgGKUlisXveRTWx8AwhGrsLIw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwusZZThnLdg12VPplvilXhDoV+ezh8/Qsn+L5ZQUUjP7jus6YW
+	6xx7Ii8gbYiY01X8oaBN8QmoN18B0GMnTgyEOeCHBYi+Gjqj0OklHA3fV2BqxcRs7gWw5ve9jsi
+	M7flvqtrAYsdU1BvGZZArsZI1YSFDVmRjmbeD+g==
+X-Google-Smtp-Source: AGHT+IGUQgH2LgImLhYYgCYRyZ1eHg5DziD1U825uTMvdAnFcqxTubAakIf4JTFLzwcMTyXcbSOuzLUP70wTACWniRQ=
+X-Received: by 2002:a05:6512:1244:b0:539:e9f8:d45d with SMTP id
+ 2adb3069b0e04-53a154f9980mr1277516e87.52.1729252451143; Fri, 18 Oct 2024
+ 04:54:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241017-gpio-ngpios-v2-0-cecfdb38d40e@linaro.org> <ZxJGxXNl29i8d_fA@black.fi.intel.com>
-In-Reply-To: <ZxJGxXNl29i8d_fA@black.fi.intel.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 18 Oct 2024 13:49:40 +0200
-Message-ID: <CACRpkdafFs-p6ikk7cfSWc6=C=8J6Gh+oe4TagAJh0EypWg3Og@mail.gmail.com>
+References: <20241017-gpio-ngpios-v2-0-cecfdb38d40e@linaro.org>
+ <ZxJGxXNl29i8d_fA@black.fi.intel.com> <CACRpkdafFs-p6ikk7cfSWc6=C=8J6Gh+oe4TagAJh0EypWg3Og@mail.gmail.com>
+In-Reply-To: <CACRpkdafFs-p6ikk7cfSWc6=C=8J6Gh+oe4TagAJh0EypWg3Og@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 18 Oct 2024 13:53:59 +0200
+Message-ID: <CAMRc=MdA+=ejKx6SR+-_30kCgeFX3fUFReLR7+tOT+8+O9_gFA@mail.gmail.com>
 Subject: Re: [PATCH v2 0/2] gpio: mmio: Support ngpios property
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
 	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 18, 2024 at 1:30=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@intel.com> wrote:
-
-
-> First one is why? What the *practical* issue you have? Can you elaborate
-> on that?
-
-Sure, there are these hardwares that probe directly from the
-gpio-mmio driver:
-Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
-properties:
-  compatible:
-    enum:
-      - brcm,bcm6345-gpio
-      - ni,169445-nand-gpio
-      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO contro=
-ller
-
-
-The practical issue is (similar to what was responded to Rob
-in patch 2/2) that non-existing GPIOs will get exposed to userspace.
-
-For patch 1/2 (adding the DT binding) it would be that without
-ngpios we do not model the hardware properly.
-
-The objection "it makes no harm to register GPIO lines
-for all bits in the register" can likewise be raised to the
-other 28 (if I count correctly) GPIO drivers that use this
-property (git grep ngpios drivers/gpio) and I think the train left the
-station long ago to object to the property in general, people
-don't want to expose non-existing GPIOs to the GPIO
-framework.
-
-> Second one, is there any other way to avoid duplication of the code so
-> we have one place of the property parsing?
+On Fri, Oct 18, 2024 at 1:49=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
+.org> wrote:
 >
-> For the background I have to mention this commit:
-> 55b2395e4e92 ("gpio: mmio: handle "ngpios" properly in bgpio_init()")
+> Oh well spotted! I completely missed the fact that we already
+> added ngpios parsing elsewhere in the driver.
+>
+> Bartosz, can you please drop patch 2/2?
+>
+> Patch 1/2 is needed however: it is just documenting the behaviour
+> that is already implemented.
+>
 
-Oh well spotted! I completely missed the fact that we already
-added ngpios parsing elsewhere in the driver.
+Done.
 
-Bartosz, can you please drop patch 2/2?
-
-Patch 1/2 is needed however: it is just documenting the behaviour
-that is already implemented.
-
-Yours,
-Linus Walleij
+Bart
 
