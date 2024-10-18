@@ -1,56 +1,84 @@
-Return-Path: <devicetree+bounces-112818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A32429A393F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5239A38B4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:38:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C53AA1C25906
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:55:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFE631C23D09
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C67190058;
-	Fri, 18 Oct 2024 08:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013C318EFEB;
+	Fri, 18 Oct 2024 08:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VS6B8UE2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from akranes.kaiser.cx (akranes.kaiser.cx [152.53.16.207])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E890C18E773;
-	Fri, 18 Oct 2024 08:55:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=152.53.16.207
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1C6186E3F
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 08:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729241707; cv=none; b=ccnLGXRlEVDd1awKIKHqT/wAMMgTgGiSLybjXo4AdddsaKKX9vgqHNn7TaVGOzqVLES3QkJNVpx+uIOG0+EBvwluU2v6S/2gvUI7YJdt88uiNBUMfP2kHa7fNRYynV6B4+LTVfjgx8romxNLaf+9Jrm/2LDUfk7Y4WduUilQ1TM=
+	t=1729240720; cv=none; b=FURuLWmtabTGI9nEuXMbitSvFb03gmj5V8pPGf7LF3LuthkxgMXUYUGGvksj7XvX6hcz51Zqx1NItGMsIuOdAj+azDDoFniABADmnasBgpD7JOeXxO9vWPhZpmqbAdwHY5VpI0JXM/jCIhQGJYfRSzch6uJ8zQpisiNeHQf1u7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729241707; c=relaxed/simple;
-	bh=yTQaO+pZKg8NCO4FTSbrrB1+s5S4hYRqIImR5bavexE=;
+	s=arc-20240116; t=1729240720; c=relaxed/simple;
+	bh=wB6rJgDXWyQmAI2cPIO2Bs8AyLymaUBqEb0titk5ToI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ovMqxPsluYO2jFTqLS7hR/XOMeBLzcGNvhDViptsD8jyhmlk7R2WbSCTQ2HUno9azegZs9YLVx59mteiJ64Pz3zNsnPTLwRKnXvGCCi10gSLHWedwRyIYK/LC8Yl0o4u5GI/xafVaRYmbWCqTlmTrq7gzo4YZjpaqB89e/dbRSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kaiser.cx; spf=pass smtp.mailfrom=kaiser.cx; arc=none smtp.client-ip=152.53.16.207
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kaiser.cx
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kaiser.cx
-Received: from martin by akranes.kaiser.cx with local (Exim 4.96)
-	(envelope-from <martin@akranes.kaiser.cx>)
-	id 1t1iTl-000Nos-2u;
-	Fri, 18 Oct 2024 10:37:01 +0200
-Date: Fri, 18 Oct 2024 10:37:01 +0200
-From: Martin Kaiser <martin@kaiser.cx>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Daniel Golle <daniel@makrotopia.org>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
-Subject: Re: [PATCH v2 2/2] hwrng: add support for Airoha EN7581 TRNG
-Message-ID: <ZxIeLdWSV0IR-qUt@akranes.kaiser.cx>
-References: <20241017124456.32584-1-ansuelsmth@gmail.com>
- <20241017124456.32584-2-ansuelsmth@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ldJ13FlC65j+Zj3QsngALTCOP3TGVT8lGkI/NmYgG0rboZ53mlpQoD0ebG5mm4OWs1Q/Xwh0DuQ7Fxj+LELwXFQQMROxANDq8kvts9YOIiZzz8UFzm4iHF+4SMQ9ykYyjMmO8wfIQXDJP/3J5yr2EdmkRIV7zU06im8D4CTRqpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VS6B8UE2; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539983beb19so2095571e87.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 01:38:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729240717; x=1729845517; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9UrD9uUISUicyV77FCZtIHadfgQC6lKYurkwJjq1HNE=;
+        b=VS6B8UE2yJQB/j770cxZNF3J9A0Rijdbo55TMaEzF9kjxOzRL2fJB5dkyjv41n63v8
+         yehFP+wA3UWXqKbqQBeg2n5i2HN9fOPSNmF5qia3CH7EOdotkgs92v15zctn9vV1RicM
+         dDK/H5V3ZQk1bWeTLZnw9ji6FFaGglcx1kzF+pEinf/HDeItXGmZeiMQUEsAE2EzCjpA
+         gUOp6+09GrkAUUaWr9P7w68WYWz0fVvXfSunMTDQJXquI4juCpWZTN8uZo5kblSd5pli
+         Q7swVZpItnfTv+uJiKBGyIUDSrtwpRZKJcG1VYsIAzEp/yI42KJFCu9/EogprbTfbhC5
+         usLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729240717; x=1729845517;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9UrD9uUISUicyV77FCZtIHadfgQC6lKYurkwJjq1HNE=;
+        b=oRR3gPuYLTpCxxzudSrrrgOZdUigqzL75qz1Nw0s7kBfTgoZtYji2H2zsF77P04Q7T
+         a5cEzL3OgquyZYhItIdCvHxT+WRBcx2OGMb3qY3kKUBZewoATEjh1WkIDFqrsr9UFNwh
+         nV5TYeNgrJa7UEyAo3yVUHm2Q05s0LEceEThzWasMyTanKqIH+fSRgCbIG4Y4JXRqy2u
+         Ob/RJy8/CE+HoDlXSAPzSKL5JyZwQMjAyQafEv5uuPo/XyUWOvyQ1Cgmt0zqlG5UL0ML
+         M7wqXVfZ4WCyP9FrG6Fpb7HFv9SVqn7CkE6XobuARUV5o5YjfVDgH8pix/qQblEIe/rF
+         p/Pg==
+X-Forwarded-Encrypted: i=1; AJvYcCVP34PtZh4CNCyR2QPAtikPW3YFCUy0mesGaTc4x4BhGmZRyXDv7uyxtZP4A3qWRDthc33KxGhcu8hA@vger.kernel.org
+X-Gm-Message-State: AOJu0YySLvx4IEQrbPxtNSNGyqrkOCSR9NcsdEt9BsrlH+zeGpf7TG6h
+	NNxLf9A5K3je3QoiGVq3J89/xmfNL2Sl0UA130o76vS211c6BC5uPudUdl5n2dk=
+X-Google-Smtp-Source: AGHT+IGmgQ9MMDeNrBBU/z3b8S19gtWOFXt5jhyrSbyAR1fhQxWW9GPqe1/RawVBBM8MqhrGoQEi4A==
+X-Received: by 2002:a05:6512:12d6:b0:53a:aea:a9e1 with SMTP id 2adb3069b0e04-53a154f9c46mr819940e87.54.1729240717149;
+        Fri, 18 Oct 2024 01:38:37 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a151f0c7csm158587e87.173.2024.10.18.01.38.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 01:38:36 -0700 (PDT)
+Date: Fri, 18 Oct 2024 11:38:34 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl : qcom: document SAR2130P TLMM
+Message-ID: <ecdp4bkbpkdprzfvrve4jlpirc63ruejr5cfm5tkqkq736p7wh@ibqjbq22nvve>
+References: <20241017-sar2130p-tlmm-v1-0-8d8f0bd6f19a@linaro.org>
+ <20241017-sar2130p-tlmm-v1-1-8d8f0bd6f19a@linaro.org>
+ <u2yel7ych7esqlr732x6x424rxcolb22k6fgw5t6yyuurgneyf@5hnqyc3iqdvv>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,196 +87,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241017124456.32584-2-ansuelsmth@gmail.com>
-Sender: "Martin Kaiser,,," <martin@akranes.kaiser.cx>
+In-Reply-To: <u2yel7ych7esqlr732x6x424rxcolb22k6fgw5t6yyuurgneyf@5hnqyc3iqdvv>
 
-Hi,
+On Fri, Oct 18, 2024 at 08:49:09AM +0200, Krzysztof Kozlowski wrote:
+> On Thu, Oct 17, 2024 at 07:15:45PM +0300, Dmitry Baryshkov wrote:
+> > Add bindings for the pin controller (TLMM) present on the
+> > Qualcomm SAR2130P platform.
+> > 
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  .../bindings/pinctrl/qcom,sar2130p-tlmm.yaml       | 138 +++++++++++++++++++++
+> >  1 file changed, 138 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sar2130p-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sar2130p-tlmm.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..a8daa96936599e459c801b6685a42659271604ee
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sar2130p-tlmm.yaml
+> > @@ -0,0 +1,138 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pinctrl/qcom,sar2130p-tlmm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Technologies, Inc. SAR2130P TLMM block
+> > +
+> > +maintainers:
+> > +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > +
+> > +description:
+> > +  Top Level Mode Multiplexer pin controller in Qualcomm SAR2130P SoC.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,sar2130p-tlmm
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  gpio-reserved-ranges:
+> > +    minItems: 1
+> > +    maxItems: 105
+> > +
+> > +  gpio-line-names:
+> > +    maxItems: 156
+> 
+> Don't you have 210 GPIOs? At least reserved-ranges and pins pattern
+> suggest it.
 
-Thus wrote Christian Marangi (ansuelsmth@gmail.com):
+No. I will fix the pins pattern.
 
-> Add support for Airoha TRNG. The Airoha SoC provide a True RNG module
-> that can output 4 bytes of raw data at times.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-> The module makes use of various noise source to provide True Random
-> Number Generation.
-
-> On probe the module is reset to operate Health Test and verify correct
-> execution of it.
-
-> The module can also provide DRBG function but the execution mode is
-> mutually exclusive, running as TRNG doesn't permit to also run it as
-> DRBG.
-
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v2:
-> - Sort include header
-> - Add missing bitfield.h
-
->  drivers/char/hw_random/Kconfig       |  13 ++
->  drivers/char/hw_random/Makefile      |   1 +
->  drivers/char/hw_random/airoha-trng.c | 243 +++++++++++++++++++++++++++
->  3 files changed, 257 insertions(+)
->  create mode 100644 drivers/char/hw_random/airoha-trng.c
-
-> diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
-> index 5912c2dd6398..bda283f290bc 100644
-> --- a/drivers/char/hw_random/Kconfig
-> +++ b/drivers/char/hw_random/Kconfig
-> @@ -62,6 +62,19 @@ config HW_RANDOM_AMD
-
->  	  If unsure, say Y.
-
-> +config HW_RANDOM_AIROHA
-> +	tristate "Airoha True HW Random Number Generator support"
-> +	depends on ARCH_AIROHA || COMPILE_TEST
-> +	default HW_RANDOM
-> +	help
-> +	  This driver provides kernel-side support for the True Random Number
-> +	  Generator hardware found on Airoha SoC.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called airoha-rng.
-> +
-> +	  If unsure, say Y.
-> +
->  config HW_RANDOM_ATMEL
->  	tristate "Atmel Random Number Generator support"
->  	depends on (ARCH_AT91 || COMPILE_TEST)
-> diff --git a/drivers/char/hw_random/Makefile b/drivers/char/hw_random/Makefile
-> index 01f012eab440..dfb717b12f0b 100644
-> --- a/drivers/char/hw_random/Makefile
-> +++ b/drivers/char/hw_random/Makefile
-> @@ -8,6 +8,7 @@ rng-core-y := core.o
->  obj-$(CONFIG_HW_RANDOM_TIMERIOMEM) += timeriomem-rng.o
->  obj-$(CONFIG_HW_RANDOM_INTEL) += intel-rng.o
->  obj-$(CONFIG_HW_RANDOM_AMD) += amd-rng.o
-> +obj-$(CONFIG_HW_RANDOM_AIROHA) += airoha-trng.o
->  obj-$(CONFIG_HW_RANDOM_ATMEL) += atmel-rng.o
->  obj-$(CONFIG_HW_RANDOM_BA431) += ba431-rng.o
->  obj-$(CONFIG_HW_RANDOM_GEODE) += geode-rng.o
-> diff --git a/drivers/char/hw_random/airoha-trng.c b/drivers/char/hw_random/airoha-trng.c
-> new file mode 100644
-> index 000000000000..1dbfa9505c21
-> --- /dev/null
-> +++ b/drivers/char/hw_random/airoha-trng.c
-> @@ -0,0 +1,243 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/* Copyright (C) 2024 Christian Marangi */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/hw_random.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define TRNG_IP_RDY			0x800
-> +#define   CNT_TRANS			GENMASK(15, 8)
-> +#define   SAMPLE_RDY			BIT(0)
-> +#define TRNG_NS_SEK_AND_DAT_EN		0x804
-> +#define	  RNG_EN			BIT(31) /* referenced as ring_en */
-> +#define	  RAW_DATA_EN			BIT(16)
-> +#define TRNG_HEALTH_TEST_SW_RST		0x808
-> +#define   SW_RST			BIT(0) /* Active High */
-> +#define TRNG_INTR_EN			0x818
-> +#define   INTR_MASK			BIT(16)
-> +#define   CONTINUOUS_HEALTH_INITR_EN	BIT(2)
-> +#define   SW_STARTUP_INITR_EN		BIT(1)
-> +#define   RST_STARTUP_INITR_EN		BIT(0)
-> +/* Notice that Health Test are done only out of Reset and with RNG_EN */
-> +#define TRNG_HEALTH_TEST_STATUS		0x824
-> +#define   CONTINUOUS_HEALTH_AP_TEST_FAIL BIT(23)
-> +#define   CONTINUOUS_HEALTH_RC_TEST_FAIL BIT(22)
-> +#define   SW_STARTUP_TEST_DONE		BIT(21)
-> +#define   SW_STARTUP_AP_TEST_FAIL	BIT(20)
-> +#define   SW_STARTUP_RC_TEST_FAIL	BIT(19)
-> +#define   RST_STARTUP_TEST_DONE		BIT(18)
-> +#define   RST_STARTUP_AP_TEST_FAIL	BIT(17)
-> +#define   RST_STARTUP_RC_TEST_FAIL	BIT(16)
-> +#define   RAW_DATA_VALID		BIT(7)
-> +
-> +#define TRNG_RAW_DATA_OUT		0x828
-> +
-> +#define TRNG_CNT_TRANS_VALID		0x80
-> +#define BUSY_LOOP_SLEEP			10
-> +#define BUSY_LOOP_TIMEOUT		(BUSY_LOOP_SLEEP * 10000)
-> +
-> +struct airoha_trng {
-> +	void __iomem *base;
-> +	struct hwrng rng;
-> +	struct device *dev;
-> +
-> +	struct completion rng_op_done;
-> +};
-> +
-> +static int airoha_trng_irq_mask(struct airoha_trng *trng)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(trng->base + TRNG_INTR_EN);
-> +	val |= INTR_MASK;
-> +	writel(val, trng->base + TRNG_INTR_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int airoha_trng_irq_unmask(struct airoha_trng *trng)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(trng->base + TRNG_INTR_EN);
-> +	val &= ~INTR_MASK;
-> +	writel(val, trng->base + TRNG_INTR_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int airoha_trng_init(struct hwrng *rng)
-> +{
-> +	struct airoha_trng *trng = container_of(rng, struct airoha_trng, rng);
-> +	int ret;
-> +	u32 val;
-> +
-> +	val = readl(trng->base + TRNG_NS_SEK_AND_DAT_EN);
-> +	val |= RNG_EN;
-> +	writel(val, trng->base + TRNG_NS_SEK_AND_DAT_EN);
-> +
-> +	/* Set out of SW Reset */
-> +	airoha_trng_irq_unmask(trng);
-> +	writel(0, trng->base + TRNG_HEALTH_TEST_SW_RST);
-> +
-> +	ret = wait_for_completion_timeout(&trng->rng_op_done, BUSY_LOOP_TIMEOUT);
-> +	if (ret <= 0) {
-> +		dev_err(trng->dev, "Timeout waiting for Health Check\n");
-> +		airoha_trng_irq_mask(trng);
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* Check if Health Test Failed */
-> +	val = readl(trng->base + TRNG_HEALTH_TEST_STATUS);
-> +	if (val & (RST_STARTUP_AP_TEST_FAIL | RST_STARTUP_RC_TEST_FAIL)) {
-> +		dev_err(trng->dev, "Health Check fail: %s test fail\n",
-> +			val & RST_STARTUP_AP_TEST_FAIL ? "AP" : "RC");
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* Check if IP is ready */
-> +	ret = readl_poll_timeout(trng->base + TRNG_IP_RDY, val,
-> +				 val & SAMPLE_RDY, 10, 1000);
-> +	if (ret < 0) {
-> +		dev_err(trng->dev, "Timeout waiting for IP ready");
-> +		return -ENODEV;
-> +	}
-
-You could use dev_err_probe instead of dev_err + return here and in other
-similar places.
-
-Apart from this small remark, the driver looks good to me.
-
-Reviewed-by: Martin Kaiser <martin@kaiser.cx>
+-- 
+With best wishes
+Dmitry
 
