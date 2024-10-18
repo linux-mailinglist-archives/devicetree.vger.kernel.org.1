@@ -1,135 +1,139 @@
-Return-Path: <devicetree+bounces-112713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96CD09A3571
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:32:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B43B39A358B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:37:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E76E1F223AA
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:32:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F11C1F226EE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E778417B4FC;
-	Fri, 18 Oct 2024 06:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F106A17DFEB;
+	Fri, 18 Oct 2024 06:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GcrpCD8K"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="a3bd3Lv+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA34920E30E;
-	Fri, 18 Oct 2024 06:32:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B91152E1C;
+	Fri, 18 Oct 2024 06:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729233156; cv=none; b=iQhshzoIkGDxEgsnFbYRlTe42v6k8MN3PPJiQw24MTyErySl1XXYoCoQz1Wm7JGq+ZynBpEl5SGqdJ5oD3/+q1GXiR8k7q7FDCY4KhI+Q18ZwyYO2prpdv1clBQz6ta8S8Re347C9b0BweeAw7ltuUOiHkfLA9wkRFPkigHhmiU=
+	t=1729233462; cv=none; b=pD5awvfI50c+VWADrL4k6EJqWDw7D/8YrdSPyLwLZD/4kCzeLItLr52oRbc2VBH5bNCjpQ75jleU2/cg1nWpbp93caMk5v/+5TKLVxnCm4H9aWQtoSSpkUwYgJxd89RlCXPm41JHyojBrPqp4BHgb/iBGoHKDK2GT474SQBgMKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729233156; c=relaxed/simple;
-	bh=EnUwPW7HoPLOfLN2+uJ+xCsmQHstEx9fnNHE5H5mR0s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pI/E5WTu0SjVJ17AKKg/t2rvIiUAGVPrc9Ro5OEHfsRzykWrgTbvNmzX+WpfdEsRiwxtcWkUP70S7DYp9gHYd4SSpSmNkA8DHqd2hPDrd0ahzzrbVSewczJl+ht7j0LTLo1c+WJtKu+lfQGmPmrtdgPpRaOzm9llPMSfv/I4c5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GcrpCD8K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59C4CC4CEC3;
-	Fri, 18 Oct 2024 06:32:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729233156;
-	bh=EnUwPW7HoPLOfLN2+uJ+xCsmQHstEx9fnNHE5H5mR0s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GcrpCD8K5de0gfBddqhcRaulw2jdw7B+CZrIOjcQYlq/5bA4rDB3dyhlnujmXAzvt
-	 QTsDYiPLPrp/x7wBaHuO2Ji5KcIHXnPor0MfbqN3CCfJfRcoMxM2ldiwYxIi3cSmRL
-	 RJGKr0Jetfm3bKpJ1q3tYL3+yKzp7BlqqdvdvKDE/LCuVBzQGrZHYeu9eSyD8XUu0n
-	 d8ccWsamOb3AJqF3XDwQFouhZZluNsDiPPP2vZOjBxKepzSSdcGh7pIbGSmpALdDY6
-	 +Yu1T4ItATMHYkc/VfqNTAy/sfqNHVUTgN1AxOIvUHyv4wKfpGwZPROWxdDhIpi8iu
-	 smigCvrtn/5wQ==
-Date: Fri, 18 Oct 2024 08:32:32 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	igor.belwon@mentallysanemainliners.org
-Subject: Re: [PATCH v2 2/4] arm64: dts: exynos: Add initial support for
- Samsung Galaxy S20 Series boards (hubble)
-Message-ID: <px4lfzrmgppve7rhwihjg3fbejemxtufoxlxu6r4igvuynuim7@vu2w746zuxlk>
-References: <20241017164328.17077-1-umer.uddin@mentallysanemainliners.org>
- <20241017164328.17077-3-umer.uddin@mentallysanemainliners.org>
+	s=arc-20240116; t=1729233462; c=relaxed/simple;
+	bh=zIeW0kxLgeAsqirnaKhjgUcE28ulwX06MiU/EtFkVLA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=aV2CqEf+9o3EaH/r6mwVKIUnwcvadkJtzoir4pB6Xk0bNfJ1yUFJeDIZDINRASpFIHfxLaUzBcmHLl9QmXCKbT6TG9qa/PGqT4phXF+tUQqbkWxlmId6afcf/nsR/0g+GRinE1T1yAYSwIh+7K78jhgGAkpUMm/Fo6BaD1YWVZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=a3bd3Lv+; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241017164328.17077-3-umer.uddin@mentallysanemainliners.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1729233457;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tQrAlybDcm+BHN6KghRbFaYYrJAEKr0934b1OCxB7wU=;
+	b=a3bd3Lv+1DcGM36LvuPPteYTY9SOB1DUVXjq+8nimatWpeQZ3TvAucM5Zb2aDdP5Shnarc
+	40EeKhlpz+VGOeD029yG8kDGHIkYgYu0HSyc4uiqPhKf6oQDkE9d8akhY5g4cnUi1qNKme
+	q8NZ8OBiCy2o2PLLeGOXjmyFlAG/3njyiERdqKbs+qTwomFUudc4HuaPfpDsiVbGCOI1FT
+	xWe2hdkDSPPD/PMfDa/C7apyjcnIxwEqvxR/xE0z2PlZphGlh043hPTA7e6BDzk9MxHtlg
+	30nPyeURDSdzJgIUAwSvLhaOmyhmhgAlGwANaq7tg4z6eX5Y2Rh/4gJ4xR0wkw==
+Date: Fri, 18 Oct 2024 08:37:36 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Frank Wang <frawang.cn@gmail.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, yubing.zhang@rock-chips.com, Frank Wang
+ <frank.wang@rock-chips.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: soc: rockchip: add rk3576 vo1-grf
+ syscon
+In-Reply-To: <d2a200aa-1301-4940-a39c-0412fe741994@gmail.com>
+References: <20241017025230.28752-1-frawang.cn@gmail.com>
+ <ca0ee8752791f53bac23933e1582dd86@manjaro.org>
+ <d2a200aa-1301-4940-a39c-0412fe741994@gmail.com>
+Message-ID: <ee27926c06bedd62f417dbd7d01ce8b3@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Thu, Oct 17, 2024 at 05:43:25PM +0100, Umer Uddin wrote:
-> Add initial support for the Samsung Galaxy S20 Series (hubble) phones.
-> They were launched in 2020, and are based on the Exynos 990 SoC.
-> The devices have multiple RAM configurations,
-> starting from 8GB going all the way up to 16GB for the S20 Ultra devices.
+Hello Frank,
+
+On 2024-10-18 08:18, Frank Wang wrote:
+> On 2024/10/18 13:02, Dragan Simic wrote:
+>> On 2024-10-17 04:52, Frank Wang wrote:
+>>> From: Frank Wang <frank.wang@rock-chips.com>
+>>> 
+>>> Add rockchip,rk3576-vo1-grf syscon compatible, the vo1-grf is
+>>> configured in usbdp phy driver.
+>>> 
+>>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>>> ---
+>>> Changelog:
+>>> v2:
+>>>  - This is a new patch adds rk3576-vo1-grf syscon.
+>> 
+>> Could you, please, clarify a bit why is this additional patch
+>> needed in this series?
 > 
-> This device tree adds support for the following:
+> I mentioned in the commit content. The usbdp-phy driver select dp
+> lanes via configuring the vo1-grf.
+
+Yes, I already saw that in the patch description.  Though, and
+I apologize if I'm missing something obvious, I can't see where
+is it actually used in the code?  Is it yet to be used in the
+dts(i) files?
+
+I'd appreciate if you could clarify that just a bit further, so
+I can hopefully understand it better.
+
+>>> v1:
+>>>  - none
+>>> 
+>>>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>> 
+>>> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>> b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>> index 50d727f4b76c6..fd42217ab85e7 100644
+>>> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>> @@ -33,6 +33,7 @@ properties:
+>>>                - rockchip,rk3576-usb-grf
+>>>                - rockchip,rk3576-usbdpphy-grf
+>>>                - rockchip,rk3576-vo0-grf
+>>> +              - rockchip,rk3576-vo1-grf
+>>>                - rockchip,rk3576-vop-grf
+>>>                - rockchip,rk3588-bigcore0-grf
+>>>                - rockchip,rk3588-bigcore1-grf
+>>> @@ -283,6 +284,7 @@ allOf:
+>>>          compatible:
+>>>            contains:
+>>>              enum:
+>>> +              - rockchip,rk3576-vo1-grf
+>>>                - rockchip,rk3588-vo-grf
+>>>                - rockchip,rk3588-vo0-grf
+>>>                - rockchip,rk3588-vo1-grf
 > 
-> - SimpleFB
-> - 8GB RAM (Any more will be mapped in device trees)
-> - Buttons
 > 
-> Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-> ---
->  .../dts/exynos/exynos990-hubble-common.dtsi   | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/exynos/exynos990-hubble-common.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos990-hubble-common.dtsi b/arch/arm64/boot/dts/exynos/exynos990-hubble-common.dtsi
-> new file mode 100644
-> index 000000000..2c634e4bb
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynos990-hubble-common.dtsi
-> @@ -0,0 +1,109 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-> +/*
-> + * Samsung Galaxy S20 Series device tree source
-> + *
-> + * Copyright (c) 2024, Umer Uddin <umer.uddin@mentallysanemainliners.org>
-> + */
-> +
-> +/dts-v1/;
-> +#include "exynos990.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer0: framebuffer@f1000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0xf1000000 0 (1440 * 3200 * 4)>;
-> +			width = <1440>;
-> +			height = <3200>;
-> +			stride = <(1440 * 4)>;
-> +			format = "a8r8g8b8";
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0x0 0x3ab00000>,
-> +		      /* Memory hole */
-> +		      <0x0 0xc1200000 0x0 0x1ee00000>,
-> +		      /* Memory hole */
-> +		      <0x0 0xe1900000 0x0 0x1e700000>,
-> +		      /* Memory hole */
-> +		      <0x8 0x80000000 0x1 0x7ec00000>;
-
-
-If I am counting correctly, that's only 8 GB, not 12.
-
-Best regards,
-Krzysztof
-
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
