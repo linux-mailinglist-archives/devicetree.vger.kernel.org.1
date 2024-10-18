@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-112695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DB7B9A34F9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:01:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C26CE9A3504
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EC021C2359F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:01:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F07D2816CE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9058318755F;
-	Fri, 18 Oct 2024 05:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C666114B941;
+	Fri, 18 Oct 2024 06:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AR2td/4l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JhxzLlld"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DF017C21B;
-	Fri, 18 Oct 2024 05:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE9120E30C;
+	Fri, 18 Oct 2024 06:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729231192; cv=none; b=g4yshD1WUFnSyTY+1MNEnGILET6kL2+OMPFvvgpDt222k7+X5foNX4UnKoVW1qa2RCBbdEnkNoV4OLUG0uj5Oal9C7dj01hrS5XhqBwFKW63JxLlJXU42BEwKXgWuXYwpaNQsswYKpAGAvejHTJfzWHR4irUYM/6+T9WApcq/Fg=
+	t=1729231293; cv=none; b=J4LmTiBYNrsEo8ug+RZ2n0T8eFwFQa1CzdTMGLNBKrG7PhtK+C0ud/B8R1n6QQw9ANR3iONW59KMvlvVC908wBUbWeSfvzF6Wv97sBU0Yndy0oEEh6/yj3vW6gDGJyRMMQMc5ymyLHNepOQnx/L4HgIgL3IcdjKuiIEG6/fBHgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729231192; c=relaxed/simple;
-	bh=PtiUemoookjjoOFV+aD0HLviVxFuYkbS5bhDLvEESQM=;
+	s=arc-20240116; t=1729231293; c=relaxed/simple;
+	bh=IHz/5c/bmxyb1gSSaBJ+FfMboaBAW8TT1l8VU237WdI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NNDjNeqxHo3QyIYOaB0D79bCtmiVXcSpWif0/mmaoJ52uoSUnIwNb45HSwvoLbvROi0oks71s1ZJmlMlu5W1Mm5ZWIsK1sTKlaMP58g7j4Vy1QeUP/uROOoQesq1xo0VVZmnOEdHOyX6gKULg4Gg/arw4LBj4AEZh73zD0Ip3Ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AR2td/4l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FA40C4CEC3;
-	Fri, 18 Oct 2024 05:59:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mn+B+EBdKBTvCFzHUv9faTUKZUxucBQVuZgs0biJTlGgo5AFZzDhbL8Bp4cRP0S5fplMlL5iGsVLU04oZHekdwzJnrBdWpqGRXttlsJghMIGP85Zwsvxi2lcCYeuxI7aCkGmrEK6eAuPE4a9l+1GwsdeDVnVqAGLo389EmTC2Uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JhxzLlld; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3347AC4CEC3;
+	Fri, 18 Oct 2024 06:01:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729231191;
-	bh=PtiUemoookjjoOFV+aD0HLviVxFuYkbS5bhDLvEESQM=;
+	s=k20201202; t=1729231293;
+	bh=IHz/5c/bmxyb1gSSaBJ+FfMboaBAW8TT1l8VU237WdI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AR2td/4ldzYQCwZII2chf9V6U33bswgpqm+PUW+FknpxbXaV7g9o2B1ZDADRfewSl
-	 nROkvUSKWQYCuQpykVJ2kTw5YvDoF7MmxPjrhKXjce3FVNLgJhN+Bz+J7kveprXDeI
-	 7KK3usK1jsM0JZw6L7YzGvBU/z9uFtDJoFcGP4NJzohb12Kz/+lAeLz/Mv+POBtTL9
-	 xQ9C1lwi8YMXc22miDcOs5fovwgV1fR7ccP4IzgYdYC1fp4mBTf3DKM2PfzNMfB0B9
-	 lZxu5hKkJFwSBYseqD7U4Q7drJ6sRUpD8RksVpwc/K35NFPbxXfGfZQeVkFO5PlV4j
-	 VXLHyIaSsxeAA==
-Message-ID: <06151891-a260-450c-b688-fff18638e627@kernel.org>
-Date: Fri, 18 Oct 2024 07:59:46 +0200
+	b=JhxzLlldRVY6PJ38FGtZ2RISruVUqoIFwztA5lI0fnQsMY+m9RW7lCFU1uJ/9VKr+
+	 +MSmMA7vGB+C8OXM5t/DtzVtz78kBJtkk/4mhBWKDxFdACoM9m1lR+L4pUNSjVIdk5
+	 mmy6gmTAGn2gHv+3JN6Qic6azYSnKsW1HR7UrT85BdsU9zGZHPbifuL6vm+KjzUmIS
+	 jf6sE5rKzqiy8n9avbCVLuTEXiE4LtSkaZKGZDwyVIjkIdUj3Px+5QjbnoFZ6BosHQ
+	 05jRxjgPjOMMI68IJQdU6Ifz6ERQtUx5x1lnENVnkSuBM7ZbF/FpA54ptIpl4SjPld
+	 czJntBycxjQyw==
+Message-ID: <57f9093e-9f45-413a-bfd7-68f10e960fa3@kernel.org>
+Date: Fri, 18 Oct 2024 08:01:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-To: Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com,
- hbarnor@chromium.org, dianders@chromium.org, conor.dooley@microchip.com
-Cc: jikos@kernel.org, bentiss@kernel.org, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241018020815.3098263-2-charles.goodix@gmail.com>
+Subject: Re: [PATCH 2/2] pwm: Add Nuvoton PWM controller support
+To: Chi-Wen Weng <cwweng.linux@gmail.com>, ukleinek@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20241018034857.568-1-cwweng.linux@gmail.com>
+ <20241018034857.568-3-cwweng.linux@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,130 +102,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241018020815.3098263-2-charles.goodix@gmail.com>
+In-Reply-To: <20241018034857.568-3-cwweng.linux@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/10/2024 04:08, Charles Wang wrote:
-> The Goodix GT7986U touch controller report touch data according to the
-> HID protocol through the SPI bus. However, it is incompatible with
-> Microsoft's HID-over-SPI protocol.
+On 18/10/2024 05:48, Chi-Wen Weng wrote:
+> This commit adds a generic PWM framework driver for Nuvoton MA35D1
+> PWM controller.
 > 
-> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> ---
->  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
->  1 file changed, 58 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> index 358cb8275..184d9c320 100644
-> --- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> +++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> @@ -8,27 +8,27 @@ title: Goodix GT7375P touchscreen
->  
->  maintainers:
->    - Douglas Anderson <dianders@chromium.org>
-> +  - Charles Wang <charles.goodix@gmail.com>
->  
->  description:
-> -  Supports the Goodix GT7375P touchscreen.
-> -  This touchscreen uses the i2c-hid protocol but has some non-standard
-> -  power sequencing required.
-> -
-> -allOf:
-> -  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-> +  The Goodix GT7375P and GT7986U touchscreens support both SPI and I2C interfaces.
-> +  With the I2C interface, they use the i2c-hid protocol but require non-standard
-> +  power sequencing. With the SPI interface, they use a custom HID protocol that
-> +  is incompatible with Microsoft's HID-over-SPI protocol.
->  
->  properties:
->    compatible:
->      oneOf:
-> -      - const: goodix,gt7375p
-> +      - items:
-> +          - const: goodix,gt7375p
+> Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
 
-That's not a necessary change. Keep old code here.
 
->        - items:
->            - const: goodix,gt7986u
->            - const: goodix,gt7375p
-> +      - items:
-> +          - const: goodix,gt7986u
+...
 
-Hm? This does not make much sense. Device either is or is not compatible
-with gt7375p. Cannot be both.
-
->  
->    reg:
-> -    enum:
-> -      - 0x5d
-> -      - 0x14
-> +    maxItems: 1
->  
->    interrupts:
->      maxItems: 1
-> @@ -57,6 +57,15 @@ properties:
->        This property is used to avoid the back-powering issue.
->      type: boolean
->  
-> +  goodix,hid-report-addr:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The register address for retrieving HID report data.
-> +      This address is related to the device firmware and may
-> +      change after a firmware update.
-
-How is this supposed to work? DTS will stay fixed, you cannot change it
-just because firmware changed. User loads new firmware with different
-address, but DTS will have to use old address - so broken property.
 
 > +
-> +  spi-max-frequency: true
-
-Drop
-
+> +static const struct of_device_id nuvoton_pwm_of_match[] = {
+> +	{ .compatible = "nuvoton,ma35d1-pwm" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, nuvoton_pwm_of_match);
 > +
->  required:
->    - compatible
->    - reg
-> @@ -64,6 +73,25 @@ required:
->    - reset-gpios
->    - vdd-supply
->  
-> +allOf:
-> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +static struct platform_driver nuvoton_pwm_driver = {
+> +	.probe = nuvoton_pwm_probe,
+> +	.driver = {
+> +		.name = "nuvoton-pwm",
+> +		.of_match_table = nuvoton_pwm_of_match,
+> +	},
+> +};
+> +module_platform_driver(nuvoton_pwm_driver);
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          items:
-> +            - const: goodix,gt7986u
-> +    then:
-> +      required:
-> +        - goodix,hid-report-addr
-> +    else:
-> +      properties:
-> +        goodix,hid-report-addr: false
-> +        spi-max-frequency: false
+> +MODULE_ALIAS("platform:nuvoton-pwm");
 
-Why? GT7375P also supports SPI.
+Drop, not needed and not correct either. If you need platform alias for
+non-OF binds, this is supposed to match OF ID table.
 
-> +        reg:
-> +          enum: [0x5d, 0x14]
-> +
->  additionalProperties: false
-
-This becomes now: unevaluatedProperties: false
-
->  
->  examples:
-> @@ -87,3 +115,23 @@ examples:
->          vdd-supply = <&pp3300_ts>;
->        };
->      };
-> +
+> +MODULE_AUTHOR("Chi-Wen Weng <cwweng@nuvoton.com>");
+> +MODULE_DESCRIPTION("Nuvoton MA35D1 PWM driver");
+> +MODULE_LICENSE("GPL");
 
 Best regards,
 Krzysztof
