@@ -1,118 +1,104 @@
-Return-Path: <devicetree+bounces-113023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2749F9A458B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 20:11:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 797D69A45D1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 20:25:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55BD61C220AC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 18:11:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 191032822F1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 18:25:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD562040BF;
-	Fri, 18 Oct 2024 18:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070B620CCE3;
+	Fri, 18 Oct 2024 18:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XYZaA4zI"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="OBafmOnS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 600BC2040BE;
-	Fri, 18 Oct 2024 18:11:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4892040BE
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 18:22:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729275098; cv=none; b=ULCCWo6NsgD50KXVSRiGnJaNQ3S3YyCSFNiafdlXnM8P8TP8uBQiUZmc6XkXfTtgo+SEIrI030ZnXHA4N4gxobeK4o7Gu+g90cja7NBzhj9iIOvq6SwN60BO+BV2sDooibUyYVo+pTXY2n/94ML5T4FTXPzoFyDxiRho29+W2m4=
+	t=1729275775; cv=none; b=N6loaQZoMJVUT1H7NfF9qJt1YKZRhbrtmCvt0evt0Eu+L2wxBfkXzrHf2IZDxEpaXwV80Zbhht9F6ZChfX/0BL3u06aJUGWPmGalV1n76+2bCqI/cZ7nfM9KabjrvPZfYBjw66OclLSkndc6soJsmPNAQPWBUZmFBIcirJ4jAko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729275098; c=relaxed/simple;
-	bh=2TPOvfABd0T2cKUYUm3jMCFxZQlzTTeFqVbwQk1vh8Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FODlW/jysXCfVxyuSTZUDoBstpXOx9sK6UEC08NHUWJFfs0wBvZZ70DmxwZVwI8LStwxCJtTP56egrBFAwL0Tsv93DrOo0oN8GP33RvWh4VQ1NU8kGc0oaxMToO/BpTh+ezokNClOUaG5v0D3T4ks3d5i8pNl2U7EMelsR0o924=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XYZaA4zI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FB36C4CEC3;
-	Fri, 18 Oct 2024 18:11:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729275097;
-	bh=2TPOvfABd0T2cKUYUm3jMCFxZQlzTTeFqVbwQk1vh8Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=XYZaA4zI+pGUYL+aM+4dYjQvMkUG60DwL7B3vZb8yKUcDoEbh27D1EEnc9Wi8rNVF
-	 kjEoOYIYGsD+UDS23BWKSLYveKMB58SoqW+2kgrJ1P884hiZYEYxKsa6H3hovCXAVX
-	 rfZpLnsidgiJA4IxuQVo3bO4hPh2J+ALn5QttQbqI7GL3NE2pav+oPNbn/KDUQ4G0B
-	 dYMfF7hZcEny516kTBpojxQbAuLKxINncjLJGzfvFquQN3n6s04yHhDGoK64V+r+6s
-	 K7cPFTrvS7NYezW+ffJGfgXrQPg84pxLDukqQnCySuPxZKXnwR/1m3pZzJ0VwMM7tX
-	 VBIE3vaKUsFDg==
-Date: Fri, 18 Oct 2024 19:11:28 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Conor Dooley <conor@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH RFC 0/4] ad7380: add adaq4370-4 and adaq4380-4 support
-Message-ID: <20241018191128.50502c4e@jic23-huawei>
-In-Reply-To: <CAEHHSvZ+j2DyikVQ1XYzk-Zg14FVKP1YHOm-rOimjHydxaGPaA@mail.gmail.com>
-References: <20241015-ad7380-add-adaq4380-4-support-v1-0-d2e1a95fb248@baylibre.com>
-	<20241015-scoreless-carwash-9ac6047092fe@spud>
-	<CAEHHSvZ+j2DyikVQ1XYzk-Zg14FVKP1YHOm-rOimjHydxaGPaA@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729275775; c=relaxed/simple;
+	bh=YPE2wfgFUpfGjCt7I7YEVirC1JDFDUT1zUe9c6pGcAQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f5O9UX09cY8M9jLSSbVVvyYDgC0smaq/AfxdseXIN1VgRJm8S5gdjcfMNGlCPsrKH98gPgMPXrNfQ+1l+Bp6dd0zfv9QzDbnJsZapt6skiBzywr5X+uSSSroPsuO3CI59h7im4B3L7FDiTwdQlGDKSxiV7GigpMYTkUCiTkiunY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=OBafmOnS; arc=none smtp.client-ip=209.85.222.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7b13bf566c0so149097585a.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 11:22:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1729275772; x=1729880572; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QoeLr+Env9OxeJz6wgxQ3SDKr6mSRXZtgxBKlhvoc7U=;
+        b=OBafmOnS/6vCZwnDJ7rIbRgB33qnP0gg081Mr/jH6SNDvwfvMY+DC4asd6nBk3HfEZ
+         mJL/WGoJLn7ujKqgzzfJxlm1XDsF+w+kwIklN0XHERx1L+xpHGgJ56GRygbuZrFcIlUL
+         7xEY/3sg+Q0fVYUjOu26CM2vZVL0nBXqoDTGY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729275772; x=1729880572;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QoeLr+Env9OxeJz6wgxQ3SDKr6mSRXZtgxBKlhvoc7U=;
+        b=dPjPmoA3fwA0YfLhJMeJaSkwsavpVcDLoD+oAQPOB0a+jQvTHaWX0T5Rfn1Ga12qY6
+         xsrWVJvcLvw9xDlfUzy+Nt2ZagAaNvThZt6uF7U5FU1sfovJJBeYZKTs7WKaI/cN+ne2
+         YoEEdazo9Ng4Y2US49fkHh0BsZnQuqdjMRWixiYzm5XNGIFKlJIfSdkerreklYCWsXqg
+         nmvT86uL/w3CwRQ+a6hMYp/f1e9u9pveacs7lWLBIhQre4m6yXXQXAHMZQfzlVRX4zpg
+         YVAfvH1fr3DlJbsUtQe733SGbf+Dq/aRZC+QhmBrBZxW8HtDTIDK2KMOUoh/2BK9FYKw
+         3u6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVUay9/4XYAwpa0s1d41PfXYpWPSG4/vnJyePL1RNkUFdfs2P83jg7hn4HNtwddgdm34yPns6kehwpZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxb7eSiqM7ftUY/NU0q/8uP7IGDxxx+uLsOm21kfg9f7neGIko/
+	vZnhC58YleMnnF9esHH4MPsdGZI40UC48GU/hZDBJlgXiZA2cnKXXr7PBc6ARw==
+X-Google-Smtp-Source: AGHT+IHc/HKas0ASDn+E7LNSiE4UY9i52NAvrSum+6BgLJ0cc3r86rr1PHaN99ZIt0zPccg2V59prQ==
+X-Received: by 2002:a05:6214:4984:b0:6cb:d583:3765 with SMTP id 6a1803df08f44-6cde14c2817mr34582426d6.1.1729275770517;
+        Fri, 18 Oct 2024 11:22:50 -0700 (PDT)
+Received: from stbsrv-and-02.and.broadcom.net ([192.19.144.250])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cde114d782sm9307616d6.46.2024.10.18.11.22.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 11:22:49 -0700 (PDT)
+From: Jim Quinlan <james.quinlan@broadcom.com>
+To: linux-pci@vger.kernel.org,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	jim2101024@gmail.com,
+	james.quinlan@broadcom.com
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list),
+	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE)
+Subject: [PATCH 0/1] RFC: Need feedback on PCI dt binding property
+Date: Fri, 18 Oct 2024 14:22:44 -0400
+Message-ID: <20241018182247.41130-1-james.quinlan@broadcom.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, 16 Oct 2024 09:25:53 +0200
-Julien Stephan <jstephan@baylibre.com> wrote:
+We'd like to get early feedback on a dt binding property.  We cannot
+submit the code with it as there is a backlog of commits that must
+be submitted first.  We are just looking for some initial comments.
 
-> Le mar. 15 oct. 2024 =C3=A0 18:43, Conor Dooley <conor@kernel.org> a =C3=
-=A9crit :
-> >
-> > On Tue, Oct 15, 2024 at 11:09:05AM +0200, Julien Stephan wrote: =20
-> > > Hello,
-> > >
-> > > This series add support for adaq4370-4 (2MSPS) and adaq4380-4 (4MSPS)
-> > > which are quad-channel precision data acquisition signal chain =CE=BC=
-Module
-> > > solutions compatible with the ad738x family, with the following diffe=
-rences:
-> > >
-> > > - configurable gain in front of each 4 adc
-> > > - internal reference is 3V derived from refin-supply (5V)
-> > > - additional supplies
-> > >
-> > > This series depends on [1] which fix several supplies issues
-> > >
-> > > [1]: https://lore.kernel.org/all/20241007-ad7380-fix-supplies-v1-0-ba=
-dcf813c9b9@baylibre.com/ =20
-> >
-> > What exactly makes this series RFC rather than v1? =20
->=20
-> Hi Conor,
-> I am sorry I forgot to add some context here... There is an ongoing
-> discussion on the dependent series about power supplies and Jonathan
-> asked me to send this series to see how to properly handle the supply
-> fix...
-> See  https://lore.kernel.org/all/20241014193701.40e3785a@jic23-huawei/
+Jim Quinlan (1):
+  RFC: dt bindings: Add property "brcm,gen3-eq-presets"
 
-Thanks,
+ .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-It did the job for that.  Given it's on list, do you want a review
-of the rest of the patch set, or is it still enough of a work in progress
-that we should hold off?
-
-Thanks,
-
-Jonathan
-
->=20
-> Cheers,
-> Julien
->=20
+-- 
+2.43.0
 
 
