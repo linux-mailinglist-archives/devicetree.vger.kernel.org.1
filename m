@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-112697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D85759A3509
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:03:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4189A3510
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:03:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9523A280F34
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:03:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3E96B219C4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13D917A5A4;
-	Fri, 18 Oct 2024 06:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424A217BB34;
+	Fri, 18 Oct 2024 06:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X/TBhu9q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hR3YEgz9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C786014B941;
-	Fri, 18 Oct 2024 06:03:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCBB820E30C;
+	Fri, 18 Oct 2024 06:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729231380; cv=none; b=GadRG8AeXo1Tt6vx5KEUPwiZgA+HnVQS6c27rPaIgTKUXIXg0xyGP6VmFxiv5aEHukEoE9qoUrgL6eK6Y5D8uFNDHs0wH+RXBKfm0bNeUstl7lvckLqy/uYs+HPrIavT7Htc/IRrwnxsDwGk7w07n7vU6IPC4zuhfQd9FY3Zf0A=
+	t=1729231419; cv=none; b=YjQr8Fwro8s62kqqNxlk/HW3hB1eoKswlqJPDCxqG+9M4/P4lcTuEvrX+MaXscbm82gS1L7ZFwY3D3ozdp3pja4FXfz8Es+TgFlSuE5IPIzbuDxU2P0KzL2Ayd/yk+24VAw175NqYgEzdQQjhF44GmP8cSzXGFTw29MCk5Qc7po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729231380; c=relaxed/simple;
-	bh=A/+1uORbg0LH//T1T/rLq+3zSzcOukSYdFUqBJMdftg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pkSmACBR6ifllqwMv8VSg3rmdv1fzU8qdbH+XqLtuQ/bgIlmFxU47HOtBe7+M4AWEfJ0Pn/h8X9U9/CVF+gUNM+9s+2fUvILxsChpBg+ywKGcirKcat3ZTbNEwZEBSGVd3eO9fe462nzfjxHCGeimSW84ziONBuGwxM6T0jEmpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X/TBhu9q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AA81C4CEC5;
-	Fri, 18 Oct 2024 06:02:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729231380;
-	bh=A/+1uORbg0LH//T1T/rLq+3zSzcOukSYdFUqBJMdftg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X/TBhu9qlfO6qm4IwQSSyNMUpRg+NwILBOVS9m9/lZy7ueCElK4DMtN3favGhq6PD
-	 H72reDmq8q5zOiReanG235JZijFJEr4roH8ZVs76edHdQCYKIx0W+vdkn6inkdKqvV
-	 FeiC5uwjJ7XmyGX8AuniURfD7SKLn2JNhWxVx4eauQ62og5vdTTs6QQNzH5UgIyLVr
-	 kAqdBpAqbd+rdl/pJ03lhiT8gR76cd/MvuJXuY0DpmXjYebnb4wOdf/6KezogRW/Ev
-	 Iwdb2NaHvean2DZEET+nAbPeI9d9p7GI1EbUXNzisigSmfz1Rxfk4KtayORYbxrmIX
-	 1aHMqtfmgu62A==
-Message-ID: <a06afa20-8f69-45dd-8dce-272ae7da6d39@kernel.org>
-Date: Fri, 18 Oct 2024 08:02:53 +0200
+	s=arc-20240116; t=1729231419; c=relaxed/simple;
+	bh=jPLG1CftNpWUhv7jxaOGebVKJzL1HmSh7n8XXQVUHjE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JRbSlF/4pGd9JggAq4btGO6Bw/Z48uFavaTaha6mF4vACJjEmHY22WfPOcINFqcWTABRlZb7UUvg1c9JlrcNk8fP2vVotB1exA25XI7bn2466DwZn9VtsOQXkpoHMI4h62yMUjIU3OI4dhZOjD9l3cLyugtwT4ZInaJ8pc2Yiik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hR3YEgz9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49I5VHB5008326;
+	Fri, 18 Oct 2024 06:03:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KXLpKYN49y4rKL7G0LbS+Vl1+kkbYLJz03m+GIhkGZA=; b=hR3YEgz9Sw7yBxt8
+	V6SBWIJCPVneiLo7ZrHj8si8jwE7idiuLHCUX2162ce4+hukEbKodPOOgRV4DgZ0
+	v2F1lAzlNkIxaOnve1eE3rqxkzicvqP03broGhaP3D522My0cejJNtGpIT6Ngw5p
+	xgUwMSKstIRnfP2XIemBL9vRPSBrryH/gVUG4vjndEjrTA0rPhShCJLgEqKNbuUf
+	GX+korqXURFQVl4xxXACHmyE/m04wmrvRXicWo0YJFd/tXJAXoiBI7dqLqcA8Mwo
+	LXZYsTyRgk3t5WgJZWu0MrmQTdvhisD/b4Z6CU8egDLRmVmMZX6BPcdX5VIh/+qv
+	ckFdmA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42b5hssxrg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 06:03:18 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49I63H0Y009481
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 06:03:17 GMT
+Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 17 Oct
+ 2024 23:03:14 -0700
+Message-ID: <c57c31bd-401b-4d98-a514-df53fd1775c1@quicinc.com>
+Date: Fri, 18 Oct 2024 14:03:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,139 +65,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: Add dt-bindings for Nuvoton MA35D1
- SoC PWM Controller
-To: Chi-Wen Weng <cwweng.linux@gmail.com>, ukleinek@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20241018034857.568-1-cwweng.linux@gmail.com>
- <20241018034857.568-2-cwweng.linux@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: phy: Add QMP UFS PHY compatible for
+ QCS8300
+To: Vinod Koul <vkoul@kernel.org>
+CC: Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <quic_tengfan@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Xin Liu <quic_liuxin@quicinc.com>
+References: <20240925-qcs8300_ufs_phy_binding-v3-1-c1eb5c393b09@quicinc.com>
+ <ZxEp2Aca037br2yt@vaman>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241018034857.568-2-cwweng.linux@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+In-Reply-To: <ZxEp2Aca037br2yt@vaman>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PR67CZ2qxF5FRD1eZQSP6ZeiUL4Pmojb
+X-Proofpoint-ORIG-GUID: PR67CZ2qxF5FRD1eZQSP6ZeiUL4Pmojb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ mlxscore=0 malwarescore=0 mlxlogscore=349 spamscore=0 adultscore=0
+ lowpriorityscore=0 suspectscore=0 bulkscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410180036
 
-On 18/10/2024 05:48, Chi-Wen Weng wrote:
-> Add documentation to describe nuvoton ma35d1 PWM controller.
 
-A nit, subject: drop second/last, redundant "dt-bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
+On 10/17/2024 11:14 PM, Vinod Koul wrote:
+> On 25-09-24, 15:34, Jingyi Wang wrote:
+>> From: Xin Liu <quic_liuxin@quicinc.com>
+>>
+>> Document the QMP UFS PHY compatible for Qualcomm QCS8300 to support
+>> physical layer functionality for UFS found on the SoC. Use fallback to
+>> indicate the compatibility of the QMP UFS PHY on the QCS8300 with that
+>> on the SA8775P.
 > 
-> Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
-> ---
->  .../bindings/pwm/nuvoton,ma35d1-pwm.yaml      | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
+> This does not apply on phy/next, can you please rebase
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml b/Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
-> new file mode 100644
-> index 000000000000..95f0a0819f53
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/nuvoton,ma35d1-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton MA35D1 PWM controller
-> +
-> +maintainers:
-> +  - Chi-Wen Weng <cwweng@nuvoton.com>
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,ma35d1-pwm
-> +
-> +  reg:
-> +    maxItems: 2
+patch rebased, link: https://lore.kernel.org/all/20241018-qcs8300_ufs_phy_binding-v4-1-261c7c5fb8ff@quicinc.com/
 
-Instead list and describe the items.
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
-> +
-> +    pwm0: pwm@40580000 {
-
-Drop unused label.
-
-> +      compatible = "nuvoton,ma35d1-pwm";
-> +      reg = <0 0x40580000 0 0x400>;
-
-But you have only one item here? No, that's just incorrect.
-
-
-> +      clocks = <&clk EPWM0_GATE>;
-
-Best regards,
-Krzysztof
+Thanks,
+Jingyi
 
 
