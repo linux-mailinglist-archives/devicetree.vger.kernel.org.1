@@ -1,145 +1,98 @@
-Return-Path: <devicetree+bounces-112937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CDE29A3F0A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:01:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 843AD9A3F1F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:04:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC1461F23ECE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:01:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3C041C217A3
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E0817C220;
-	Fri, 18 Oct 2024 13:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D0618C34C;
+	Fri, 18 Oct 2024 13:04:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VUUBO1Cc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0F82AEE4;
-	Fri, 18 Oct 2024 13:01:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFE84084C;
+	Fri, 18 Oct 2024 13:04:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729256476; cv=none; b=OIbINgNcC7LvmbDCIvZXTh6ZdkoFUvnhWu+dLKFCDTmYE8UW5JKwSzXR1dLOWBJgAF/hMkOitA3SU47PIeAMu3xQRhZPWGsd41FFYWHsVPQi40LH/3swe8ejsZomistS7GQ+LVsV8ItLdLBqOCvBarJpQksGOKa6jvNiOZXIXVE=
+	t=1729256689; cv=none; b=n7L4s8gDOaGvjcr7TLZrBc9P/Z19UL5p+PYIMZnOs5a/aBF92Ji8sdiKiTrgYW874fXYIpkMVxoATqLMli6VpUbSlSNxvt4n3bFG5iPyvY3Mkn1/Ie6GGKsnDRz9QlKFUKnsBxHJTA6CaUFj9tuG+YVtviK4eOyxE1rG3SZpFeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729256476; c=relaxed/simple;
-	bh=hDTRy5LUr4RVLaEKgbXF7JVY9XEdpGR3B5o10DkgUKI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Qa6+ZVcwgFB0bcKZOlF+8R+ZITzJ1yQ9JaVIwUX4Ks+iZDESg5R+d1Bqd24s7ZyPN6PhL1MyHlxwPvEChoq9vmr2mDDJ55S9/KAxXe3tVP1+boCxt6ZMMUnNDqATNELa2+PYayJmsUl3lZkdK2I+Z8K0w2r9Xutjb73lXC2S5RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.11,213,1725289200"; 
-   d="scan'208";a="226319663"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 18 Oct 2024 22:01:04 +0900
-Received: from localhost.localdomain (unknown [10.226.93.163])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5C6E34009BEB;
-	Fri, 18 Oct 2024 22:01:01 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v22 2/4] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date: Fri, 18 Oct 2024 14:00:43 +0100
-Message-ID: <20241018130049.138775-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241018130049.138775-1-biju.das.jz@bp.renesas.com>
-References: <20241018130049.138775-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1729256689; c=relaxed/simple;
+	bh=vkeST0HZ6U+cwIuAiBvC+R+grfkTjVnzYe4h2PQfbOE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bA+2pyTlNe7A31bFekbSZ6eyliXjusfof4FoBIIafqjlAVZhqACSnnSKxQbHxs5WmCiSEK6N6HqDINxCc/JoU7cW7dIRRh6HGClhmCEIoHoQI2VwJ6Kr1NsseoJj1V4sYYsJrutQ5wdBKkORFopkpgZ96xPD9L9B2IHH9DD22nE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VUUBO1Cc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C360AC4CEC3;
+	Fri, 18 Oct 2024 13:04:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729256689;
+	bh=vkeST0HZ6U+cwIuAiBvC+R+grfkTjVnzYe4h2PQfbOE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VUUBO1CcQhBJB+h6W6Gm279RltOANp0SfGRIBvZvWFXSXeCjFisJ7THDubZTwPys8
+	 VxG2gU8D42EFx5LnQvgoj9CF6NGmVcpMpZqMveuNq60v2K8jBmcg/mBiG7RAapSGYb
+	 QlMrMzNCMuQmXUq+e1A5quORz/4jrEPd2SaNAv+iwwcL658dcUy3aeUYsDvp3y28J+
+	 J2cXhsEa2YqZdCKDIO7TQ8368EckT06mzGpDSRkrWUUTovA6XeRDb51AxkQHbG9j6r
+	 uPlyPjJAkJflhoFFU7uZnSeGAGU2q9R8CYJxyTkkTfVIcKnodpWPNWzVWAwVbai2tM
+	 jVp70oB3OkDZg==
+Date: Fri, 18 Oct 2024 08:04:47 -0500
+From: Rob Herring <robh@kernel.org>
+To: Andrew Davis <afd@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: soc: ti: ti,j721e-system-controller:
+ Add PCIe ctrl property
+Message-ID: <20241018130447.GA40439-robh@kernel.org>
+References: <20241016233044.240699-1-afd@ti.com>
+ <20241016233044.240699-2-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241016233044.240699-2-afd@ti.com>
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
+On Wed, Oct 16, 2024 at 06:30:40PM -0500, Andrew Davis wrote:
+> Add a pattern property for pcie-ctrl which can be part of this controller.
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>  .../bindings/soc/ti/ti,j721e-system-controller.yaml          | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+> index 378e9cc5fac2a..2a64fc61d1262 100644
+> --- a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+> +++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+> @@ -68,6 +68,11 @@ patternProperties:
+>      description:
+>        The node corresponding to SoC chip identification.
+>  
+> +  "^pcie-ctrl@[0-9a-f]+$":
+> +    type: object
+> +    description:
+> +      This is the PCIe control region.
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+What goes in this node?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v21->v22:
- * No change.
-v20->v21:
- * No change.
-v19->v20:
- * No change.
-v18->v19:
- * No change.
-v17->v18:
- * No change.
-v16->v17:
- * No change.
-v15->v16:
- * No change.
-v14->v15:
- * No change.
-v3->v14:
- * Add Rb tag from Rob.
- * Moved the patch from series[1] to here.
- [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
-v2->v3:
- * Moved minItems/MaxItems one level up.
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index d9374144d82d..957cf28b2c4c 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    minItems: 1
-+    maxItems: 8
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <2>;
-+        renesas,poegs = <&poeggd 4>;
-     };
--- 
-2.43.0
-
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.39.2
+> 
 
