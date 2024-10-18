@@ -1,59 +1,64 @@
-Return-Path: <devicetree+bounces-113014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422CF9A4536
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 19:45:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E1D9A4538
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 19:45:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB510287CC7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 17:45:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AA381F24483
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 17:45:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAA12040B3;
-	Fri, 18 Oct 2024 17:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25D75204023;
+	Fri, 18 Oct 2024 17:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UuHLoSAD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CpwYkfgU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C510720697C
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 17:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50FC203710;
+	Fri, 18 Oct 2024 17:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729273444; cv=none; b=hWmnwGoyhksMCYT3yN7AAgs7LCyH4Gytw8dMNDATzUm7F/nOIkIRYLkjBDwWGb7xQx3EMC61WJ9TR1zd4nNjXq9XHR+MFUvnHtCtpcDyKdE3benSTh6qqv3bHNe3dnp88tVB8laEcDmE6K4CB1lkU1SZVsH28u4TldqhaEvZvFY=
+	t=1729273452; cv=none; b=E+P/Ad0aYxNlsq2Qo5KvihxTpu75HdBzPjR/bs7q3tdPC/FFflI8ayd1sSD9gw85bfJlfj8D4VBsokiC1tIrf256HX5ZF5ga/DG3DeA2utKm6J3wiXeCNyR0De9Vbs9XYINEcrhXaAVKIWXZr5/CvuGz7cFzD8ER5FxdrXwVBzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729273444; c=relaxed/simple;
-	bh=SGf93Q+76khMyzHMC3+u3hAwkzaedACTmxlUAF45694=;
+	s=arc-20240116; t=1729273452; c=relaxed/simple;
+	bh=BFKPAnzwdO1AH3rmZAFsqWn7POZbwr7tsMwaOi51JSY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=PJcfuCP1q1IjMqXpfjYYg82ZQfuQEgUeiBf+tPnQCApnT72C/4G6xz1PjxgldNYJp72ss07FiaXj7CFbTo6yKsM1zb9bGrPJoGj4/A986z5KAeYmh3V0y9a2tJUypzJfYrJyJKwNfRC7R6c6diuN0hjnlpeYoVV4FLZJRdsNtQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UuHLoSAD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 760C8C4CEC3;
-	Fri, 18 Oct 2024 17:44:02 +0000 (UTC)
+	 MIME-Version:Content-Type; b=gxlmgtYgDCNZJVnxB7mSFbteZvemsRsfV93FLjLXXECXPj4ztFwIcH82fR0OYFHcP1f99IS0eZPpCBEyv2sVel96MgmVBHfuWl14S1RhHboAbbiEih5XfYHlIq4vABOy56Rry2np1/7iENrksBIbO4MGjnvAumxF5pWlQM35lHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CpwYkfgU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA4F1C4CEC5;
+	Fri, 18 Oct 2024 17:44:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729273444;
-	bh=SGf93Q+76khMyzHMC3+u3hAwkzaedACTmxlUAF45694=;
+	s=k20201202; t=1729273451;
+	bh=BFKPAnzwdO1AH3rmZAFsqWn7POZbwr7tsMwaOi51JSY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=UuHLoSADUxNK6UIXosnMEYWiCLEIIRtWUasRoDvtqhLVC2991wGtW++CJdiVjaEMk
-	 qzcZxmeMgF6VZxBp7Az0IbTESEpkLpVx0/NxaI+2lLF+xrq94T95iGkQfiaCo2951V
-	 i8rIKVEv3VpJWVNFnLZbU9kRFqAunCVjkTJAM2lp/YH2mUTmaoU7NhJ/h/6srqH6g6
-	 dI/hxKQKeIMGnCjxmAnCOpQfk3gcto2qgb4bAuMxCz600XU+Vb0R4W0vb30XK+6SDp
-	 lwF9zqBmNNB/K4focJam42kzvltRY90rsfFRISkwOingXg9UGR0cAhH1fYYWKCGSvt
-	 uM/BA6FdaIo0Q==
+	b=CpwYkfgUxqIYbqSESyYfyUtUqAZonfDMS3clSiMOMT30z2AACSed2Hx8SrHQa/NbT
+	 jY4TD+OLpD1XsP5rb9+1IRi7EOanKh1TZbxcAyT1KjO6jej+nxf2A6tmM3NSpmDCZD
+	 VotleVAj9w9NAr9hmb5sMPqX5TX2FElu+VwQFBvCG8N7n/YExNu650n7mXIIymJ2OA
+	 h486EozrgFsX2wbd+TG7EuwQ3QwbfPIj8HK8KUu8Pemv24Lfgs4iNMgyjU+yLLDBZz
+	 R0MhKBQEElR5qJlsnxLenRxgm40cyodRwSI5OqwSZz0VVOhD6x1gWKT0v8tTA+wc98
+	 xF3SWhB5eEBeA==
 From: Mark Brown <broonie@kernel.org>
-To: devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Tim Harvey <tharvey@gateworks.com>, kernel@dh-electronics.com
-In-Reply-To: <20241016225235.114635-1-marex@denx.de>
-References: <20241016225235.114635-1-marex@denx.de>
-Subject: Re: [PATCH v2] dt-bindings: regulator: lltc,ltc3676: convert to
- YAML
-Message-Id: <172927344214.163811.14575887164687764859.b4-ty@kernel.org>
-Date: Fri, 18 Oct 2024 18:44:02 +0100
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Karan Sanghavi <karansanghvi98@gmail.com>
+Cc: Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>, 
+ Anup <anupnewsmail@gmail.com>
+In-Reply-To: <ZxEm-H-PjlQyXeOH@Emma>
+References: <ZxEm-H-PjlQyXeOH@Emma>
+Subject: Re: [PATCH v4] spi: dt-bindings: brcm,bcm2835-aux-spi: Convert to
+ dtschema
+Message-Id: <172927344849.163853.3041214371823345182.b4-ty@kernel.org>
+Date: Fri, 18 Oct 2024 18:44:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,21 +69,27 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-9b746
 
-On Thu, 17 Oct 2024 00:52:17 +0200, Marek Vasut wrote:
-> Convert Linear Technology LTC3676 8-output I2C voltage regulator IC
-> DT bindings to DT schema. Add missing interrupts: property as this
-> IC does have interrupt line and it is used in existing DTs.
+On Thu, 17 Oct 2024 15:02:16 +0000, Karan Sanghavi wrote:
+> Convert bcm2835-aux-spi binding to Dt schema
 > 
+> Changes since v3:
+>  - Updated the patch subject line
+>  - Reformatted the description to fit within 80 characters
 > 
+> Changes since V2:
+>  - Modified the Patch subject
+>  - Removed unnecessary description and example
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/1] dt-bindings: regulator: lltc,ltc3676: convert to YAML
-      commit: eab92ea3c1c31b6917fa1665ac8a30c21d9eabfa
+[1/1] spi: dt-bindings: brcm,bcm2835-aux-spi: Convert to dtschema
+      commit: 4de1cdb3c299bb98d70198c1fa20c71f0893835c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
