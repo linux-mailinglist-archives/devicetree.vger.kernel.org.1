@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-112704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37C79A3539
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20E509A353D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:20:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D41471C22222
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:18:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F0201C23BD8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:20:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DB3173326;
-	Fri, 18 Oct 2024 06:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09067184535;
+	Fri, 18 Oct 2024 06:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GMuCuTa7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TS/mQuex"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFE115C144;
-	Fri, 18 Oct 2024 06:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D193185940;
+	Fri, 18 Oct 2024 06:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729232325; cv=none; b=ZaiHEZNqeapWeH0Ewtncg3PhT8DpeaG8ZB79TeSs5iy/EbCtsFvvrD4fy3loYvK1TWwWSvBm7mjI2QN0sfCGRvNW0WePQy9Y5w3soesxluzQjYeTNcGZf5HtMaQ1xZnDAMh6n65dPm2mSRMmdCtr/E+hvmUAOvE3TlHefxjtwqo=
+	t=1729232438; cv=none; b=NE4ZxLjXWakepy97KTKPRMFTCTGtm9kYqAjfofjczNJHU1dCv+L49v5ytbdgsQwEiUTFbPAID3jLZ/9oHr4peJIxK+nV7Wgcv8+XMvUipguYiIgky2jczGoOzUItIeaOQk9YIfOy2zxSOgqu1W3nDpRZHmI1mB2YYcvVVaeUwAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729232325; c=relaxed/simple;
-	bh=NzeMR7erdNWgJu71wd43ok/PJEvMdq8EmPPUMY13qLg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ikdk0MyLXTIdutZSXRq6ClWBipldinhu07uvVHfy0113sJrALI0NOA6HO1/rjx7zs6x9+Ekh6n18KyTgvQHz0jY/ttj0ay4QI+Bh1aSS22nsklv5M5BvdgwuMILAzw2OgMxp0x9Qj7yveOEZ+JCkowMR5C97pIMzWiHMte8NE3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GMuCuTa7; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2e56750bb13so48007a91.2;
-        Thu, 17 Oct 2024 23:18:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729232323; x=1729837123; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ouUINbwY2JBh/LI60xwCfEtsQIXolR7Vwp/EQ6dj3+o=;
-        b=GMuCuTa7dJfbJ2Lg9UKOKhWq9467HQ3tbf3iqoWVLqkK5u4lh2T/G1692DARrNpzLn
-         gOrOazGE4gIYxm+yEglqctLkDrfd3x/ROGF1XHK8nX/NY08uivObiBTDj8U4dewcdJO4
-         jJxBgTTPzr7z+MjP6wzf4VeZLYSIaO9U18gzZddsaFG8HdTG4swkEP6GPxYlqBJ8phK8
-         7T4uz33dy4jbCawDQETH9WCdOSjqPK1/U6lRS6LeuEwHrUBDw6fparfA7ep3CqPBeYeN
-         efo3ZATC2/mqygkChqwzRHqywcbn5xmzY0R61AaGmATHYVkcoOMy+blI4UnpzSI/NdUP
-         GJyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729232323; x=1729837123;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ouUINbwY2JBh/LI60xwCfEtsQIXolR7Vwp/EQ6dj3+o=;
-        b=RFxgV6wQFEnAngw02fjCp/6qN3B8xd6yXZ3zQgvTqQjz1Wiydx/k1t5bcXONOpVwIz
-         8JmV9mHxBKnFESIUcmZDSQkBIU90S3nEDK7CXjQpKGBkvGxBcgrjDsVRn7GXCYlF17im
-         nlLtRsiMYva03FZh8BlMffxQ3+6n2l4zIjZQhKiNdQ5givGryX5jyMXSN7n1MBxYOwLE
-         uDB1uMW5UsB6nADzSwf4wVGN8JHGrq2kHEn1cCUgfFm6vom0deTG3cSlBM3kVHMD2ZBl
-         HuTOcK4gOZgmE4PrT7jy7UeyGb6in+sFDIvA9osu+7Cwxx2UZPVgEE79ICBYK9vNjEb4
-         3PaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXANVBTkxnaMrHqElC9q2YuJ7vWRp/q/r/LYvJCnY4Z428JtW5x3abGKuiRSRjaswDG3EkDcV4Klnue@vger.kernel.org, AJvYcCXK53K8ySzKEn+GNjXkawbLelmG1Su67uzamQzXIN/QrCB0qyk2JeI8+6/v6w0oTSr1/dyRschrZ54uUfab@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywj8ZXZW3XWcrj5h3BkTHGwG8Re4zDvPbU3/QA4SwRYYrUAf/m9
-	fAkwfRyTSGXDxlqp74yZabY39yY1FhBx5VFfWWCkaWoNZaDLbaAcd1xLYw==
-X-Google-Smtp-Source: AGHT+IHTa4o1U0/RWcsBQd2x+1sXi55hJr+ER1bPmWHpKN8wglThFLNxkxKayVdgTq2xyvVigaVFug==
-X-Received: by 2002:a17:90b:1a81:b0:2e2:ada8:2984 with SMTP id 98e67ed59e1d1-2e5618d5990mr787518a91.4.1729232323248;
-        Thu, 17 Oct 2024 23:18:43 -0700 (PDT)
-Received: from [192.168.60.56] ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e5a8d6cf9sm5875815ad.143.2024.10.17.23.18.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Oct 2024 23:18:41 -0700 (PDT)
-Message-ID: <d2a200aa-1301-4940-a39c-0412fe741994@gmail.com>
-Date: Fri, 18 Oct 2024 14:18:35 +0800
+	s=arc-20240116; t=1729232438; c=relaxed/simple;
+	bh=xu+jS3B9BumegwpGTJUP/35naim9XMDQS2UkCTpvZc8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SfAfT/4CqmszXYsIS6S4wq4hm4hQIc9vXcyp7NckLU75cex01zDAr1Lo9oVyi2P0DlOV01JHkdmHe5uHLSXTY+HNhFl18ILoHXYUP8A5DNJG5Nv5BonzOGRO9Qrw+2Ge1xcyhrO1eeimhjT71uhOXYPXOBSNGOsxar4YscWto5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TS/mQuex; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49HINIVu001599;
+	Fri, 18 Oct 2024 06:20:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	aeoZjJOUtXcClbaluWeCJ1NdBvrinphCpZdaTSo19EY=; b=TS/mQuexw6rxbHCL
+	9rPmkcvesMCz1319HcvKt+Uv9OSWm8Pwi1D8xjwbYxRYb7CJCRXU95Ma3DU2rkUk
+	fvYu5HfmkdCqpQCzvzMSv8Pp49fN/EmHtQOYvRFkHZyDxMdiU2OJtVkQN05DNo0J
+	Fpkkh1tabrkSZktOevC8EWf4qbv0cABcXABjsIZLcEK08igZMexwAJmIXcjfWomM
+	6WB92bL8CE97gpWYNLZnTBUnr3tC1Ck7/BnogvkYcrTYhBjMpdE2VMbM5+f50z4o
+	wXOJyT0vUvM0PrXr8pDE4HFyZOK1h2ScL7jfAVb+U87Oq/OmdhRWy1y++Vi6wWwK
+	FJJcqg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ajm5d2kv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 06:20:27 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49I6KQqb002882
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 06:20:26 GMT
+Received: from [10.239.132.41] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 17 Oct
+ 2024 23:20:23 -0700
+Message-ID: <ed4209a8-fb37-4354-a717-60dc1b5c29ab@quicinc.com>
+Date: Fri, 18 Oct 2024 14:20:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,76 +65,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: soc: rockchip: add rk3576 vo1-grf
- syscon
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- william.wu@rock-chips.com, tim.chen@rock-chips.com,
- yubing.zhang@rock-chips.com, Frank Wang <frank.wang@rock-chips.com>
-References: <20241017025230.28752-1-frawang.cn@gmail.com>
- <ca0ee8752791f53bac23933e1582dd86@manjaro.org>
-Content-Language: en-US
-From: Frank Wang <frawang.cn@gmail.com>
-In-Reply-To: <ca0ee8752791f53bac23933e1582dd86@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: qcs615: add the APPS SMMU node
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <robimarko@gmail.com>, <will@kernel.org>,
+        <robin.murphy@arm.com>, <joro@8bytes.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>
+References: <20241015081603.30643-1-quic_qqzhou@quicinc.com>
+ <20241015081603.30643-5-quic_qqzhou@quicinc.com>
+ <ac5081ce-e2e4-4201-bd7c-eb4ec2cf7e2d@oss.qualcomm.com>
+From: Qingqing Zhou <quic_qqzhou@quicinc.com>
+In-Reply-To: <ac5081ce-e2e4-4201-bd7c-eb4ec2cf7e2d@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PGT6mhWlywbQJ9cEAVkhvXQ6NHJkptkk
+X-Proofpoint-ORIG-GUID: PGT6mhWlywbQJ9cEAVkhvXQ6NHJkptkk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ mlxscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 suspectscore=0 clxscore=1015 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410180038
 
-Hi Dragan,
 
-On 2024/10/18 13:02, Dragan Simic wrote:
-> Hello Frank,
->
-> On 2024-10-17 04:52, Frank Wang wrote:
->> From: Frank Wang <frank.wang@rock-chips.com>
+
+在 10/18/2024 4:05 AM, Konrad Dybcio 写道:
+> On 15.10.2024 10:16 AM, Qingqing Zhou wrote:
+>> Add the APPS SMMU node for QCS615 platform. Add the dma-ranges
+>> to limit DMA address range to 36bit width to align with system
+>> architecture.
 >>
->> Add rockchip,rk3576-vo1-grf syscon compatible, the vo1-grf is
->> configured in usbdp phy driver.
->>
->> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
 >> ---
->> Changelog:
->> v2:
->>  - This is a new patch adds rk3576-vo1-grf syscon.
->
-> Could you, please, clarify a bit why is this additional patch
-> needed in this series?
->
-
-I mentioned in the commit content. The usbdp-phy driver select dp lanes 
-via configuring the vo1-grf.
-
-Best regards,
-Frank
-
->> v1:
->>  - none
+>>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 74 ++++++++++++++++++++++++++++
+>>  1 file changed, 74 insertions(+)
 >>
->>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->> b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->> index 50d727f4b76c6..fd42217ab85e7 100644
->> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
->> @@ -33,6 +33,7 @@ properties:
->>                - rockchip,rk3576-usb-grf
->>                - rockchip,rk3576-usbdpphy-grf
->>                - rockchip,rk3576-vo0-grf
->> +              - rockchip,rk3576-vo1-grf
->>                - rockchip,rk3576-vop-grf
->>                - rockchip,rk3588-bigcore0-grf
->>                - rockchip,rk3588-bigcore1-grf
->> @@ -283,6 +284,7 @@ allOf:
->>          compatible:
->>            contains:
->>              enum:
->> +              - rockchip,rk3576-vo1-grf
->>                - rockchip,rk3588-vo-grf
->>                - rockchip,rk3588-vo0-grf
->>                - rockchip,rk3588-vo1-grf
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> index 027c5125f36b..fcba83fca7cf 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>> @@ -379,6 +379,7 @@
+>>  	soc: soc@0 {
+>>  		compatible = "simple-bus";
+>>  		ranges = <0 0 0 0 0x10 0>;
+>> +		dma-ranges = <0 0 0 0 0x10 0>;
+>>  		#address-cells = <2>;
+>>  		#size-cells = <2>;
+>>  
+>> @@ -524,6 +525,79 @@
+>>  			reg = <0x0 0x0c3f0000 0x0 0x400>;
+>>  		};
+>>  
+>> +		apps_smmu: iommu@15000000 {
+>> +			compatible = "qcom,qcs615-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+>> +			reg = <0x0 0x15000000 0x0 0x80000>;
+>> +			#iommu-cells = <2>;
+>> +			#global-interrupts = <1>;
+>> +
+>> +			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
+>> +					<GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+>> +					<GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
+> 
+> The list seems perfectly sorted, which is suspicious.. if we set
+> i = n - #global-interrupts, interrupt[i] signifies an error in the i-th
+> context bank. If the order is wrong, we'll get bogus reports
+Thanks for the review, the list refers to Qualcomm Interrupts design spec, checking this platform again, the list is right, first line is global interrupt and the others are context interrupts with right order.
+> 
+> Also, this is not aligned properly ('<' under '<')
+Got it, will update and align the spaces in next version.
+> 
+> Konrad
 
 
