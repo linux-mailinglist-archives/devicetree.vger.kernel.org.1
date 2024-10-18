@@ -1,197 +1,165 @@
-Return-Path: <devicetree+bounces-112877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BFEE9A3BE5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:47:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DA879A3C01
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:50:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 375BA280DF8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:47:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C9111C22328
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:50:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9207320102B;
-	Fri, 18 Oct 2024 10:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B502022E0;
+	Fri, 18 Oct 2024 10:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kMvYjveM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE66218628F;
-	Fri, 18 Oct 2024 10:47:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA472010FC;
+	Fri, 18 Oct 2024 10:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729248438; cv=none; b=XXg7DqHD44YCVOIPCPCzrvvymZhxsamVnEJE9UwN/WH0NMtj/eNP7eCQEMD91aQfD8n1vjaLbyZLQ9xaPzcSRX17cCDt/evBxTACgelZIV2tG+9MkHKA/hxn0iMFirDNjaGifjUX+Z4DDrQLLdOHH5uu65vF2CPn9WiQCgpgYiI=
+	t=1729248559; cv=none; b=vD4AMQ7xRyGWjtLRFvffAWH1Rqg7nQ5PPDsVDU2ISzfq+v0nzClf0SdnSnkrkl5DrbS0rpc182dEw2PRZZQIAE1FIHXwp4PyBDlVwe0DTyoyQ2TzUac8H5Kg33Isl5mNeoCg3ofvPk9UFv9NkuRI/YimtrnIR5wwSZ6OWkFjjO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729248438; c=relaxed/simple;
-	bh=U4MO43y2QutJRYvdGmha9sXJSbkX+wcJwKLnrxg41lg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IA1GLqJ2fsaZR06zeWmy2GGj5JWWigTUEy10LkPzu3j/SJThJydoVwe5tU3ECrYurFTKfgblbX523gumtCr/iHRM6NcSC1tW/LvhElAvFTu8BEOrcCvvXjhggO89RQmRHU1393YlyTHhjfEdnZIRXcxbu1My8UHTRTZZYh7udSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EDD47FEC;
-	Fri, 18 Oct 2024 03:47:44 -0700 (PDT)
-Received: from [10.57.22.188] (unknown [10.57.22.188])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 072503F58B;
-	Fri, 18 Oct 2024 03:47:11 -0700 (PDT)
-Message-ID: <23828c8d-633d-4705-9ec6-f15a6fdeea41@arm.com>
-Date: Fri, 18 Oct 2024 11:47:10 +0100
+	s=arc-20240116; t=1729248559; c=relaxed/simple;
+	bh=RSdMFumWyD7Mx4sKNxKfjNlsDJaTB6uemxsTmcKyHuo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=qLRxjkJmxG3b/XPrWKB91wTQf8D0+ky4zZetx12dhWzKsPS/ntPxWvoCnwrNaUw3ns/FT44tyrlx4nYYLvbNaJQjzwMjaxsHn/YRXvH3fBlVp79Oi2pJvvdUKNurAkMwclrIELDvMn9Lg9NFYS8JKApEbnFY0boXw/9wMDqEIIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kMvYjveM; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d4c1b1455so1480416f8f.3;
+        Fri, 18 Oct 2024 03:49:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729248556; x=1729853356; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NRHQQGm7cGssgdoLEtNCNKA/IiRlPKI/cHGPt5rH+50=;
+        b=kMvYjveMotunGr76a6OsgU1LFpRaH3V8PBaOZb4UXj74nwe6Zk6cR1gTHeeXY/cjeY
+         eoJSmFxrBdr0PO9i2cLdmGyo4wRFQJneAhT/+1/Df/QtsY0JWljeUEWjOSz9GJyalMp1
+         h5mj3cc+6kjyyfAQ8dUYOrj8UCikoVJdkZbt/iXKkW+KSQ5ILNFhmSA6xqqse7jpWpc1
+         SLMk7MgW1JFgKjNGgOlm+haL83EZDbsndkhDwvO3Evmaty3m9Mx03inEqBL1oRs21Cnl
+         gXYItJFwP47gZBTaR33fzvvx8aD3kleCl72AN57aYXwrEFmyEreQZ0MUp+t83mF8RSiC
+         40gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729248556; x=1729853356;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NRHQQGm7cGssgdoLEtNCNKA/IiRlPKI/cHGPt5rH+50=;
+        b=JE3r8ojcwRi4wq9CdNCelwyE2nwyEViJnZwJswmEOE1tjZCTAtayft26ZWMbbzMRli
+         mXGKpi7pbcQsR5Y9QkpxT0shtMz+REvgLEbIcY3v3RT+BUsn+9+F8kgpnU/xJ31X5lYj
+         e8i/ju/m2aQ4yFyZapVZYoGMlQ8JwSFttUrHhpssG8PXU2+cLOSQfUYUnhgYdRIYwKjR
+         cCxFzbJcX8jV3qJEb9Waa+AG3QHShdAnWdWFVU7ZxypHC2vbT9AaM1vQ1oLqdBF7DRyl
+         nJFdMblK3zHzPVI7Y/lpKxlWNXzQXQRSOSMQsV+6vM7rC62xfviLzsUOsZbY7Q4BSJRS
+         bsuA==
+X-Forwarded-Encrypted: i=1; AJvYcCUNPp1lGsiirXDQkI/LItMijBXBgioMfQs+g0uXEmpV8njf61laT4bcqXHNAudLCepq+Lkm7qr5Rvk5xTfB@vger.kernel.org, AJvYcCUU1qRZRqqYhiNaEHqfAEFjtxNMpQTkopcbxY7IdwgbxJhjCCfKsLbOAGNz2edQJ9pAfbtRFj7au/K0@vger.kernel.org, AJvYcCUc1hjiyEGoPK3k6qEa24qbwcK4TxfKd0JNKh0YINSJdAHr5ufyT8GriyDw7NqViTdJdKAmTmq9ym8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YykYN7+UIFD/XuNSahhBPs8Wfmq+5VehdY0hY8rM3QE4uHvEPqn
+	tvLZgg/TZOfETYI7b2sat//pUKC5sod+fcD/MrjJwjrbNEBYqicA
+X-Google-Smtp-Source: AGHT+IH8LYkBdN9+FI+6EBaR0iOr2VBsrCSKHDoBM+xZIc2oRAjfNBoXbr4SfQESdAqEnwFRN/G9IQ==
+X-Received: by 2002:a5d:4ec9:0:b0:371:8319:4dcc with SMTP id ffacd0b85a97d-37eaa48f8b5mr1570068f8f.2.1729248555773;
+        Fri, 18 Oct 2024 03:49:15 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-37ecf0ed5f4sm1606240f8f.68.2024.10.18.03.49.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 03:49:15 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	upstream@airoha.com
+Subject: [PATCH v3 1/3] dt-bindings: thermal: Add support for Airoha EN7581 thermal sensor
+Date: Fri, 18 Oct 2024 12:48:04 +0200
+Message-ID: <20241018104839.13296-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm:
- qcom,coresight-static-replicator: Add property for source filtering
-Content-Language: en-GB
-To: Krzysztof Kozlowski <krzk@kernel.org>, Tao Zhang <quic_taozha@quicinc.com>
-Cc: Mike Leach <mike.leach@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>,
- Leo Yan <leo.yan@linux.dev>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240821031348.6837-1-quic_taozha@quicinc.com>
- <20240821031348.6837-2-quic_taozha@quicinc.com>
- <a01d2f2f-d963-4eb1-98ee-3dc6f86c9397@arm.com>
- <xmijaayxveghxx76nnudo5mlpxv6tpxvooiox7wj2jyojf3xpe@ntm67lxikfop>
- <44e2617c-62b0-436f-ac6a-0bd3e3855473@arm.com>
- <53ec46af-3438-44e0-82b2-9432fc7f0fcb@arm.com>
- <4a6066ed-ead4-4387-8c66-b3e7631c5e90@arm.com>
- <6e408062-9a74-4a2a-8b67-b83244c4ca95@quicinc.com>
- <ce439616-072b-463f-b293-8a186f8282bd@kernel.org>
- <b62435d7-8f25-4555-9e50-3e03e249e0b7@arm.com>
- <3dee4753-9df1-4fc5-8805-34a5d05beaa4@kernel.org>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <3dee4753-9df1-4fc5-8805-34a5d05beaa4@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 18/10/2024 11:31, Krzysztof Kozlowski wrote:
-> On 18/10/2024 12:08, Suzuki K Poulose wrote:
->> On 18/10/2024 11:05, Krzysztof Kozlowski wrote:
->>> On 17/10/2024 09:23, Tao Zhang wrote:
->>>>
->>>> On 10/9/2024 6:52 PM, Suzuki K Poulose wrote:
->>>>> Krzysztof
->>>>>
->>>>> On 22/08/2024 12:50, Suzuki K Poulose wrote:
->>>>>> On 22/08/2024 11:34, Suzuki K Poulose wrote:
->>>>>>> On 22/08/2024 08:08, Krzysztof Kozlowski wrote:
->>>>>>>> On Wed, Aug 21, 2024 at 11:38:55AM +0100, Suzuki K Poulose wrote:
->>>>>>>>> On 21/08/2024 04:13, Tao Zhang wrote:
->>>>>>>>>> The is some "magic" hard coded filtering in the replicators,
->>>>>>>>>> which only passes through trace from a particular "source". Add
->>>>>>>>>> a new property "filter-src" to label a phandle to the coresight
->>>>>>>>>> trace source device matching the hard coded filtering for the port.
->>>>>>>>>
->>>>>>>>> Minor nit: Please do not use abbreviate "source" in the bindings.
->>>>>>>>> I am not an expert on other changes below and will leave it to
->>>>>>>>> Rob/Krzysztof to comment.
->>>>>>>>>
->>>>>>>>> Rob, Krzysztof,
->>>>>>>>>
->>>>>>>>> We need someway to "link" (add a phandle) from a "port". The patch
->>>>>>>>> below
->>>>>>>>> is extending "standard" port to add a phandle. Please let us know if
->>>>>>>>> there is a better way.
->>>>>>>>>
->>>>>>>>> e.g.:
->>>>>>>>>
->>>>>>>>> filters = list of tuples of port, phandle. ?
->>>>>>>>>
->>>>>>>>> e.g.:
->>>>>>>>>
->>>>>>>>> filters = < 0, <&tpdm_video>,
->>>>>>>>>                1, <&tpdm_mdss>
->>>>>>>>>          >
->>>>>>>>>
->>>>>>>>
->>>>>>>> Current solution feels like band-aid - what if next time you need some
->>>>>>>> second filter? Or "wall"? Or whatever? Next property?
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>>
->>>>>>>> Isn't filter just one endpoint in the graph?
->>>>>>>>
->>>>>>>> A <--> filter <--> B
->>>>>>>
->>>>>>> To be more precise, "Filter" is a "port (p0, p1, p2 below)" (among a
->>>>>>> multi output ports).
->>>>>>>
->>>>>>> For clearer example:
->>>>>>>
->>>>>>> A0 <--> .. <--> ..\                  p0  / --> Filtered for (A1)
->>>>>>> <--> B1
->>>>>>> A1 <--> .. <--> .. - < L(filters>    p1  - --> Filtered for (A2)
->>>>>>> <--> B2
->>>>>>> A2 <--> .. <--> ../                  p2  \ --> Unfiltered
->>>>>>> <--> B0
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>> Instead of
->>>>>>>>
->>>>>>>> A <----through-filter----> B?
->>>>>>>
->>>>>>> The problem is we need to know the components in the path from A0 to X
->>>>>>> through, (Not just A0 and L). And also we need to know "which port
->>>>>>> (p0 vs p1 vs p2)" does the traffic take from a source (A0/A1/A2) out
->>>>>>> of the
->>>>>>> link "L".
->>>>>>>
->>>>>>> So ideally, we need a way to tie p0 -> A1, p1 -> A2.
->>>>>>>
->>>>>>> would we need something else in the future ? I don't know for sure.
->>>>>>> People could design their own things ;-). But this was the first time
->>>>>>> ever in the last 12yrs since we supported coresight in the kernel.
->>>>>>> (there is always a first time).
->>>>>>>
->>>>>>> Fundamentally, the "ports" cannot have additional properties today.
->>>>>>> Not sure if there are other usecases (I don't see why). So, we have
->>>>>>> to manually extend like above, which I think is not nice.
->>>>>>
->>>>>> Replying to the other thread [0], made me realize that the above is not
->>>>>> true. Indeed it is possible to add properties for endpoints, e.g:
->>>>>>
->>>>>> e.g.: media/video-interfaces.yaml
->>>>>>
->>>>>> So extending the endpoint node is indeed acceptable (unlike I thought).
->>>>>> May be the we it is achieved in this patch is making it look otherwise.
->>>>>>
->>>>>> Suzuki
->>>>>> [0]
->>>>>> https://lkml.kernel.org/r/4b51d5a9-3706-4630-83c1-01b01354d9a4@arm.com
->>>>>
->>>>> Please could you let us know if it is acceptable to extend "endpoint"
->>>>> node to have an optional property ?
->>>>
->>>> Hi Krzysztof,
->>>>
->>>>
->>>> Kindly reminder, could you help comment on this?
->>>
->>> I don't have any smart ideas and with earlier explanation sounds ok.
->>
->> Just to confirm, are you OK with adding a property to the "endpoint"
->> node that will indicate a phandle that the device allows on this
->> endpoint ?
-> 
-> You mean the filter property in endpoint? if so, then yes.
+Add support for Airoha EN7581 thermal sensor and monitor. This is a
+simple sensor for the CPU or SoC Package that provide thermal sensor and
+trip point for hot low and critical condition to fire interrupt and
+react on the abnormal state.
 
-Thanks for confirming !
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes v2:
+- Add Reviewed-by tag
 
-Cheers
-Suzuki
+ .../thermal/airoha,en7581-thermal.yaml        | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
 
-
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+new file mode 100644
+index 000000000000..ca0242ef0378
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/airoha,en7581-thermal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7581 Thermal Sensor and Monitor
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++properties:
++  compatible:
++    const: airoha,en7581-thermal
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  airoha,chip-scu:
++    description: phandle to the chip SCU syscon
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  '#thermal-sensor-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - airoha,chip-scu
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    thermal-sensor@1efbd800 {
++        compatible = "airoha,en7581-thermal";
++        reg = <0x1efbd000 0xd5c>;
++        interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
++        airoha,chip-scu = <&chip_scu>;
++
++        #thermal-sensor-cells = <0>;
++    };
+-- 
+2.45.2
 
 
