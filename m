@@ -1,197 +1,279 @@
-Return-Path: <devicetree+bounces-112826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F293C9A3995
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:13:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FDC99A399E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:14:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66E121F26774
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:13:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B68A1C20B4F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08E70191F84;
-	Fri, 18 Oct 2024 09:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62CD4190486;
+	Fri, 18 Oct 2024 09:12:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UMgmeiRO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01on2125.outbound.protection.outlook.com [40.107.222.125])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A669190058;
-	Fri, 18 Oct 2024 09:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.222.125
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729242677; cv=fail; b=Uy7Cp6dyPG396iNyTiyMsrRUNgDlIua9gpl2pozbFRxNVy1aTD/m1ViErc5viVUZP6wsd/ItaOrJHobyMEkdNmQku5q1xfNz+aj3gUx8d0DYmb1cRMHIdAk4BsKtfoNz/YkSTFMVJl7qkVFFK2ytFPq/oDsu92+qicFnYRgRMRE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729242677; c=relaxed/simple;
-	bh=trVrpI9mAyH5HIHQU18bgCaeDV3E/clwshsjK+fW+j8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MIMYNcZSwCQk+i+98sK/H9qVfntt7uAUAdSlybho0vnmo6aXd5bFKOFMyWbR3L6opPCBF9e9ZPlWHOMjIWd2NRHUcZm2k9v1pPDuDYmsEYeZTTjkFccN6I/RIr8dyeFcBeGKXNBX/wDa9nUHiZxQ2wF4yMswQ7hAn6pE/r/u/hs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.222.125
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uzOpz/GrFBPSTNZGHhTpJ24KD04uHqRrr38QmqUDta11pzFQetID8FElICxifyUG88pqidDG7LLljoLtFUpSjJHNdEqnkk/84T3Z3KVhkYQCqAYvqe2dnMypY71I6e4K4hWnx4/r6gHcbYGe0D/TVJIWnitwsRAVDJi9D90KGmMcGbGV74y+sAQ6ogUOjGrKLnNojMUC/fu7rBI0Bjngh/+3GuMqUTX2JTK+xWsIIRGPUisijmlCguW1464CnbxvLSVZaS/aSTAm7Ud2Mor5tKvQV6OpVIJp8z4Wn4FPkWYDTSMJ+8CiAvRkLqYMZGrNixyKtO3+Y6w49w9GBpklfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9/+yxUPiK2n3VRCUkckt2iypvZ2U4EOfe5koLX6n7u4=;
- b=RxY7beSe3/s2/Gzkc/nHBpXhfyPz/j/so+QMXTpGzAtGyneX6xHhr0lpyQe6lQki1ngAndl7UBAX4kdo/6YTHqTjvvgEeuP+iRlmhIILjz67eUkq+UejAa4gIfirsCKMng9HFl9f+H8/my+25T1BlPxtmIALRBckGqmvfmk1H8te0v/U2eUFVwxK9iCL9BHWI8r58VWXdSSeR3mn76MkO/ixckqUx0btbuv0ghcBkttK0n5sQoYgE+GmIznAMklCEFNKGDVOScTjL7ekQhop2VY8qKJ5RURLJFkri9m8iRM86EFKyvq4crmrZJeTujcJQmNT+ixAa+q9SeH1uePI1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
- header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siliconsignals.io;
-Received: from PN3P287MB1171.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1a1::5)
- by PN2P287MB0738.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:f5::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.18; Fri, 18 Oct
- 2024 09:11:12 +0000
-Received: from PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
- ([fe80::12a8:c951:3e4b:5a8a]) by PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
- ([fe80::12a8:c951:3e4b:5a8a%4]) with mapi id 15.20.8069.020; Fri, 18 Oct 2024
- 09:11:12 +0000
-From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-To: shawnguo@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org
-Cc: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>,
-	Tim Harvey <tharvey@gateworks.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] dt-bindings: arm: fsl: Add Boundary Device Nitrogen8MP Universal SMARC Carrier Board
-Date: Fri, 18 Oct 2024 14:39:28 +0530
-Message-ID: <20241018091023.29286-3-bhavin.sharma@siliconsignals.io>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241018091023.29286-1-bhavin.sharma@siliconsignals.io>
-References: <20241018091023.29286-1-bhavin.sharma@siliconsignals.io>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PN3PR01CA0143.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:bf::7) To PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:1a1::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E516188CC6;
+	Fri, 18 Oct 2024 09:12:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729242765; cv=none; b=NcIqymvvjEd3tFq4CSz37rGo7aLFUUNzSuWpkdW7lKYFUEpmlIpbTZ2t4nR8pAUxuq8c6S3E+aXP32Hr+XEN1IQHNm7cl7fooeusSrR61pe/pi1swc87BuN8Rj40IafXGEGx/O4DAERmfd6wMKU4b44/yn8/6+qD7jx728jX5dI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729242765; c=relaxed/simple;
+	bh=Vmt/tLCKPp05m/LExD5dAuzin4PuAy8xz8gx/rMI53w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OTURZLsH8Olm9ygRB7rm8BsMmg5p9BmwAY1yhZQjr6PUtIOz1+D+tUr0nylaievf3Kr4U9mxDCuHN/ddn+vq36rte16WQSPoNPoZ1vO9524ESgNctt62RQOpklSIxcUZUVma3qlCmFzPc9fjJmAa9Kvq99pWEnsW8e+NUQB1xMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UMgmeiRO; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-539f2b95775so2371548e87.1;
+        Fri, 18 Oct 2024 02:12:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729242761; x=1729847561; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Ym2XxYPta4PmjeInIbnDM1RgCbJY0OW1VeC9meShLg=;
+        b=UMgmeiROcNxdPzLeuiIFt7caLzklIUP+Iwz4v0euX17Kcaxvt2Qrpp8FGPrkCY6LbR
+         jyq24sDC6tdulyDPZPaWKygX66tU80t+fTptyKon3iqun49SJUBbAwe2ZBaFaZNc+bza
+         gbzWOOokAZZPpuw5VdnMmi1MAyRGnR9IJVwd6IJoK1Ow5MHedjtlKGyrWbdRf6OeEgQS
+         nY1iSQWj57Lni+RjmLWr5l5mZcxi0vcfYoMbYeF7Bf/PqP/wU3jrDv/awOaHm3xIntma
+         n/+X/c1CbIv92pUDxPhQ3cyppknH3hP5L9FVHlrJog2sMC496gjsfEXiIVilOfQxznz2
+         D0eQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729242761; x=1729847561;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1Ym2XxYPta4PmjeInIbnDM1RgCbJY0OW1VeC9meShLg=;
+        b=d/X6B12CZ4jF/5VvHlfXOiykGAniuBSiXMdrAq2SCDyFhCG0uWSrIf/4Qy+Fx6TVit
+         OXlREMuXRJZhZMdrioP7oAGxSCrPftzVd54V3TysS/tZYEeV0SmTWNFElGQqe8ajcjVl
+         WNezESCd6rr3w72Rq78QHWKleTb11XA8wUEni3fc3Wk0OZhIuwLQ/aQNXkFKL+UPg56H
+         yauGD5BJz4q0Ikw0Mk6WMSezb7DfxZV1X1t3EUOYS5MmDqtVNOH4v4KsVr/JMwTvmdHa
+         Jf2vkP9BO6r2fOXZAAG5mFmMAdt05HREBPW8IbMdN+STBUl5v9KfSnAnxsbfLxt/o2Ol
+         /Q3g==
+X-Forwarded-Encrypted: i=1; AJvYcCV/K9tXJwimu+5I4uPMVknzMhlLd3ljWr3XUMtcTw26eNTN/16luzRFGFvRqV0bG8zjnehZqIct1CU3R9lc@vger.kernel.org, AJvYcCVHgXWpXThlEfQoj4yrJrmt6PYhQPWtChQDbAHgIEjgdLITuL9VVT7wH3HkN0tu/UkAPZjDgTfOdf5j@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfVUOsH0MQPVnWgahFaxGmSx/nx2ZEzihgtgbvfUr46+JXvOp2
+	1pwpmV4+ohfrtYrjtaytk9HFIcKz/vBQobdsBj/rvQILBHyrwIj4
+X-Google-Smtp-Source: AGHT+IEe4fpKcbTP0utZlfCeaG4i5zdJ6KSnB2whgWOsH0NR8KjxDlESNwpYCR60GxyfPHM05do4vw==
+X-Received: by 2002:a05:6512:4009:b0:530:b773:b4ce with SMTP id 2adb3069b0e04-53a15494e40mr1635748e87.33.1729242761221;
+        Fri, 18 Oct 2024 02:12:41 -0700 (PDT)
+Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a15211a3esm166190e87.272.2024.10.18.02.12.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 02:12:40 -0700 (PDT)
+Date: Fri, 18 Oct 2024 11:12:38 +0200
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] dt-bindings: mtd: davinci: convert to yaml
+Message-ID: <ZxImhhPhOWuYqSfK@gmail.com>
+References: <20241008-ondie-v5-0-041ca4ccc5ee@gmail.com>
+ <20241008-ondie-v5-2-041ca4ccc5ee@gmail.com>
+ <4u5iv24enpz46funfvbo2aggx6yiqxy7beaa3ldt5ai5wf65kl@bnlm4eyuwkui>
+ <Zw0Ixx9Qu9tgGXGP@gmail.com>
+ <10a0efab-83a8-4168-993a-c4482a568c96@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PN3P287MB1171:EE_|PN2P287MB0738:EE_
-X-MS-Office365-Filtering-Correlation-Id: 35341440-f2d3-4c33-3803-08dcef54cff7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|366016|1800799024|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4n7EvCttGN+b8DxjALZkHMVguJx6tiXmZaBWxKUrV73FY/NL1VT090Ptkr2Z?=
- =?us-ascii?Q?NW/vjkwyu/N9WuDu0QMBMsRkoN1uCGVRrj3nN4aScxE05g/1WnrJItet18gj?=
- =?us-ascii?Q?XLXmNNdi9t+mynT+6e2SPF189j8g3wd+BIKPiiUcxtS1Ln/2vG3kTodt76yT?=
- =?us-ascii?Q?cUBMfhQ0vqu1zoVF4Ur5wqiARDCd4BfQ5k0iAi4AM8NVR7M/ppOGy7jUZyIg?=
- =?us-ascii?Q?HanqWplAnwTnFaWvZ9fnOIpe1TkwBHfsuCesqJH4sgqTUJhwNPigNT/ZMNcO?=
- =?us-ascii?Q?N7c1ZYaCklYgKNAyw6uTe3YkvEEw+Dta8jCK5FutW5hqBF990Qft65dBILos?=
- =?us-ascii?Q?0tY564dYxakCKD9L5d+jPiobD2QdgaIjgTnVwoeNDmx+4RK1KQLDRxugj8wE?=
- =?us-ascii?Q?9Q6ANWWgus0YTUx5PM7kAHBKt64CgrXCDun5cLgCjv7VLA2EaCdARDm30KRQ?=
- =?us-ascii?Q?XIu1e/GyLz+ChK2naTUSvX/L3KMTxYY8c+MWTTbmHQzRTYU0gaS9r0uUI/ds?=
- =?us-ascii?Q?Ha3luGVimrDtb4Us1X2/fxFlcIdtIAW0v6TfBFQyMxYTCugPQMDpZJ2lJQlW?=
- =?us-ascii?Q?bNMPtBO5lCS/wGtShMyokJWcT75fbpBgTrh1GKHP3wj4KNy1UKRgDav6XQ7s?=
- =?us-ascii?Q?lMTmckhHSogSgIC8XgmFNfFBRFAKknHPZ+l2MF2ukd4tSvFBMZO4cFO7+9nI?=
- =?us-ascii?Q?ogwUfbWpege+Orf8Hsy8u191JhjbcJUp5OiBzKKzV03ZFILdEaWDtiSc572r?=
- =?us-ascii?Q?69y040xz7zuzHUX+IaYya4bheOwhABZB2RvPr+HJaYfHxU0K4LqMA6jfqXke?=
- =?us-ascii?Q?ruLggL/mooQVXORzucle0Mnv/M1TJM11sTOpY8muUgV6i4RdaFUoFH6I1GYO?=
- =?us-ascii?Q?vI+dK1Kr0fZnTp+NvdrdRNV3ip5CfpfaZJ1uwMJtJD6lfXHHWXTeqcFPkQf1?=
- =?us-ascii?Q?n6b/HomjmZjt9RQrTVUUotJtsll6ZCXSDWbHpFDhA3ERtxyJ9LByToPLL2cd?=
- =?us-ascii?Q?kq3M2r6f9IrGYenbG9FOTBixvUkyrZTMsSVg1xFVQ0F2SxqXVanBPoCYqc27?=
- =?us-ascii?Q?wdyTBah6bRCyflvBP3cfSlc/3iz4zDbWOshiXZrgaYUd4en4qfdx9hi1Jaxj?=
- =?us-ascii?Q?jN0HFBabD1r/b7GjjmrY7Iioya+lDZre7zGxKVm5FR2DRSY+Cd5+EKjwqEwK?=
- =?us-ascii?Q?ppkQgSvJSfHLLH/xDOr30NxCJAlmfdylgGwENsbHv1D11Su3fCj6ze5+fXdI?=
- =?us-ascii?Q?kQ+3JxQZEtN5S048VMPt6sUcui7jvOHu1tuTfxvcTC5QS/EBfcoDIG4gxx8w?=
- =?us-ascii?Q?8nd6M2CwXgPRSL74fh0CV8C7bX/ocgYWA1LQKkn/A8yeNMBjuWpKgzEZiAR4?=
- =?us-ascii?Q?SqgBImA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB1171.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(52116014)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?7ots0jAGF/9A/XOLuchqXXPQfUBQZc54yM3CzH6KbHPZU1E+GayJW1+JxdON?=
- =?us-ascii?Q?xv05gH8lgauCm91yLbqcdSPia2uH35CqLWNzykMGJzr/pPAs/q/vLyz1RUkU?=
- =?us-ascii?Q?2IhZSc/O9zEFwnR/6tC+EgBjx0w2nEugxcSpYkwEZblH1FVXzcQ4uRTvhxZO?=
- =?us-ascii?Q?66CBcpIO2W4GZIO9Hng9PLIH3k7z9Te0i8JGL5NNyZPe6xbF6txLNiEk1bf0?=
- =?us-ascii?Q?0AMhh0ccC9eeBLlP1u8G0X+VaPjSsf/1QRJkgt2KN6J8LcFFTsuBw2/f7QnI?=
- =?us-ascii?Q?M/xytGF/H8Zrl4DKtlCj30injFb8pClc9at5ve/21fNt3lCRIOkFgzktSRzJ?=
- =?us-ascii?Q?o9W1UMlMqpn4wZWjrsAHvPkdiW5BFThjPFC9otdt07XLE8RUB+Q0IGTu1mrd?=
- =?us-ascii?Q?vCNOP7J66A68OHdu1Pinp1MRNzkherxKzpnCnRBIQvn7EqO6B65KNm98SBYi?=
- =?us-ascii?Q?b5q3Qai2BS0yBnp7/nao7G9Y3TBotRbaokIeIqqecoj5qN5tX82c8nWzkHeS?=
- =?us-ascii?Q?qCebzei/q8Llrvssuvta8MKd20JfoSdXAyBtz1wZLI05IU5NkoZFj21K7vuw?=
- =?us-ascii?Q?jo/u9w+6oleuMqa1xSU+vdJrl8evt6S85QB9gLNcXDBJqxBPv/DbN7mIHnAM?=
- =?us-ascii?Q?cXN1fSoDV9prSJ8HGFrY4kw7osQUNu7B8TfVc2+9bnwpby3+WcADGYTxfpSm?=
- =?us-ascii?Q?8pnwK5wXy+xR83azFAJwsvKg0GqWzsHwZGZNoCENy/+EyjhwNttTbn9pKPTk?=
- =?us-ascii?Q?+3Ujz4xDHFPdn7aYXZAsw/3nNoX9HZh23zfYNTUtBDwi45P38u53u8OSvZzj?=
- =?us-ascii?Q?LH3JFYYqNSdesP0zixGeKp7S1lY6U0HFx4N3eOPqEeL39ifUuZtIMhuHfydx?=
- =?us-ascii?Q?Psv5pEIFD8piRBhZCkH1MFljvz2lDrK3hksLTMC5uk5tO3aCAwfDTJuZm86c?=
- =?us-ascii?Q?Tsj1XNuJeK4mo8CzNHMAxloQLMtR8JXEMLU8FT7jmH9ehl14csdxDV0ojRlC?=
- =?us-ascii?Q?YdUwL4SIyzcg4dVGky9gcBM39tM972uCRgyf+ipaUzUfZIlmBb8nlsF9f57B?=
- =?us-ascii?Q?2i3/ITGSs9z7fGrc9eYBKoY2v31S0rHYHuF82kug1c/qmL9KXmNz2+Zgid8t?=
- =?us-ascii?Q?cnwcneDgdZJaN6hUSJpRhyOK+yRb5OKirUUDNpuYh20yZNQPNJMDPtUlWOtB?=
- =?us-ascii?Q?eFCx+Na3fOxDm7fSbfS9V4prO2PzhrFgSZnkhj2k6HMC11AHSmc1ReZZNZnz?=
- =?us-ascii?Q?fNdErrk9EByMrjZDFwMaHSpz2+4wbFv4swusMBI/HO8jiQHBEKiwmDBJklhF?=
- =?us-ascii?Q?IbAIN/HT4XhWwlEpuFH+7fSyKMAlrWroMLjPl1IEsa191bpgGzvdDIeDf1GC?=
- =?us-ascii?Q?8i3lu7BTpg4DWulPNYh7xoWDdghFtqT5dpWMCPwtKau1N591h/sKFgevmhUa?=
- =?us-ascii?Q?eIHsTwqhhjL9dmXS0wl6+hJn2EVrIakZzKEcgjK+BD09uUSGJ76hhJvD7cC7?=
- =?us-ascii?Q?ywytKszgqjqTs4wktZBBRCOGjAim4bebnzcEtN2zZ/w7poRmwpHpylOLqX7d?=
- =?us-ascii?Q?g2kX0Vf6z4tfX4VK5sY5cu+mLZWeQNeb9Ymrmc1BXEZiLQcY2LHCwb1RIb+2?=
- =?us-ascii?Q?om+iYp+2Tkr75QAeNuXnt2g=3D?=
-X-OriginatorOrg: siliconsignals.io
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35341440-f2d3-4c33-3803-08dcef54cff7
-X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2024 09:11:12.5921
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rzoQ1mom5mixveBd6aElmvT78BNjr8Tb0eZ2rNwlKtaEsTPbklJE7nOSxbELCvgBGz1T80gHDD2AccCyV2PN73h0oq5ufs4zy4CjpujDCV8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0738
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="0wxXT3JH117vcORs"
+Content-Disposition: inline
+In-Reply-To: <10a0efab-83a8-4168-993a-c4482a568c96@kernel.org>
 
-Adds support for the Nitrogen8MP SMARC System on Module and
-the Nitrogen8MP Universal SMARC Carrier Board.
 
-Signed-off-by: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+--0wxXT3JH117vcORs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index b39a7e031177..58979c030519 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1097,6 +1097,12 @@ properties:
-           - const: avnet,sm2s-imx8mp              # SM2S-IMX8PLUS SoM
-           - const: fsl,imx8mp
- 
-+      - description: Boundary Device Nitrogen8MP Universal SMARC Carrier Board
-+        items:
-+          - const: boundary,imx8mp-nitrogen-smarc-universal-board
-+          - const: boundary,imx8mp-nitrogen-smarc-som
-+          - const: fsl,imx8mp
-+
-       - description: i.MX8MP DHCOM based Boards
-         items:
-           - enum:
--- 
-2.43.0
 
+Kryzstof,
+
+On Mon, Oct 14, 2024 at 08:08:15PM +0200, Krzysztof Kozlowski wrote:
+> On 14/10/2024 14:04, Marcus Folkesson wrote:
+
+[...]
+
+> >=20
+> >   reg:
+> >     items:
+> >       - description: |
+> >         Contains 2 offset/length values:
+> >         - offset and length for the access window.
+> >         - offset and length for accessing the AEMIF
+> >         control registers.
+>=20
+> You need to list two items, so two times "- description:"
+> (and drop redundant parts like "offset and length" because this cannot
+> be anything else)
+>=20
+> and this should be pointed out by testing, so open the example and try
+> to explain why it is so different than expected.
+>=20
+>=20
+> Unless, it is supposed to be one item... but how do I know? You are
+> looking at the device and its driver, not  me.
+
+Ok, thank you.
+
+I will go for:
+
+  reg:
+    items:
+      - description:
+          Access window
+      - description:
+          AEMIF control registers
+
+
+
+[...]
+
+> >=20
+> > But I'm getting the following errors:
+> >=20
+> > ```
+> > .../ti,davinci-nand.example.dtb: nand-controller@2000000,0: #size-cells=
+: 0 was expected
+> >         from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-n=
+and.yaml#
+> > .../ti,davinci-nand.example.dtb: nand-controller@2000000,0: reg: [[0, 3=
+3554432], [33554432, 1], [0, 32768]] is too long
+> >         from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-n=
+and.yaml#
+> > .../ti,davinci-nand.example.dtb: nand-controller@2000000,0: Unevaluated=
+ properties are not allowed ('reg' was unexpected)
+> >         from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-n=
+and.yaml#
+> > ```
+>=20
+> Well, obviously. That's the point of the schema. The example part is
+> embedded in node with some address/size cells, which might fit your case
+> or might not.
+>=20
+> >=20
+> > The resuling 'ti,davinci-nand.example.dts' contains the following:
+> >=20
+> > ```
+> >     example-0 {
+> >         #address-cells =3D <1>;
+> >         #size-cells =3D <1>;
+> >=20
+> >         nand-controller@2000000,0 {
+> >           compatible =3D "ti,davinci-nand";
+> >           #address-cells =3D <1>;
+> >           #size-cells =3D <1>;
+> >           reg =3D <0 0x02000000 0x02000000
+> >           1 0x00000000 0x00008000>;
+> > ```
+> >        =20
+> >=20
+> > How do I set #address-cells in example-0 to 2?
+> > I guess that is the problem.
+>=20
+>=20
+>=20
+> You just set it... There are dozens/hundreds of schemas doing it, what
+> is exactly a problem here?
+
+I think I will solve the problem by including the parent nodes.
+What do you think about this?
+
+examples:
+  - |
+    aemif: aemif@68000000 {
+      compatible =3D "ti,da850-aemif";
+      #address-cells =3D <2>;
+      #size-cells =3D <1>;
+
+      reg =3D <0x68000000 0x00008000>;
+      ranges =3D <0 0 0x60000000 0x08000000
+      1 0 0x68000000 0x00008000>;
+      clocks =3D <&psc0 3>;
+      clock-names =3D "aemif";
+      clock-ranges;
+
+      cs3 {
+        #address-cells =3D <2>;
+        #size-cells =3D <1>;
+        clock-ranges;
+        ranges;
+
+        ti,cs-chipselect =3D <3>;
+
+        nand-controller@2000000,0 {
+          compatible =3D "ti,davinci-nand";
+          #address-cells =3D <1>;
+          #size-cells =3D <0>;
+          reg =3D <0 0x02000000 0x02000000
+          1 0x00000000 0x00008000>;
+
+          ti,davinci-chipselect =3D <1>;
+          ti,davinci-mask-ale =3D <0>;
+          ti,davinci-mask-cle =3D <0>;
+          ti,davinci-mask-chipsel =3D <0>;
+
+          ti,davinci-nand-buswidth =3D <16>;
+          ti,davinci-ecc-mode =3D "hw";
+          ti,davinci-ecc-bits =3D <4>;
+          ti,davinci-nand-use-bbt;
+
+          partitions {
+            compatible =3D "fixed-partitions";
+            #address-cells =3D <1>;
+            #size-cells =3D <1>;
+
+            partition@0 {
+              label =3D "u-boot env";
+              reg =3D <0 0x020000>;
+            };
+          };
+        };
+      };
+    };
+
+
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+Best regards,
+Marcus Folkesson
+
+--0wxXT3JH117vcORs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmcSJoEACgkQiIBOb1ld
+UjJZTQ//bDKxPptc8++o//upFWgxG9oOifAmrLAXKb3+6XFdoefvQ4WiMycu0tV1
+ggCzxO0JNudz0TUzmTEC3Z09NEM1uyeUhhjo81EPOxye7xhO6MOw5UhOy8SKNNQF
+1gQ5lsfva6YMnAL4TFPlSkCST2y/GpXnzUQs+l/enkVWqUcSCMx1VS/kJugCkYcQ
+yZxDmjF1dUJZuf0vSlp7VydlL/hR/ahGmFQh+nx1cuHcnXaX421Ds0WwlfyZOjAW
+tr4Kdp2rJfnWsas9iG5HuQna1WHAAKGtCeoFXffGfUmm5x/bs8FL1s8AfizHUsTu
+r2vR7J8A+AbkbfHEnhweI/Py1SwgfnPxpeHxl05TpWA5ii90pDMZdUzwVPmauwrT
+jE9skZ9lp+PNmgWeuszBdpdk6/yYalq8nahFeQvjoGCouybpE4PjoqIP9Xzpybs9
+iQ3b/WtiItlT4vIUVaPUB+0TLhvgbNnWWZGuTZI+F7TD04A0OdX7MdOPPUMoFJKc
+3enTiSra1+YW0QKOE+JA5vNafTFUqgsUQ7a3n6g/hgaS1LMbHnnzUA+NxWOQhIBA
+aJJLVOo1791oefpglKaCTVkah7bTcY+VTZ+lnosj7EYcDNYshkl+OXajSSUPxZZQ
+L3Rg28GK1ctGb0CiAV2BkQs68MteVD0vypim24htHs1umEbPgkU=
+=sofE
+-----END PGP SIGNATURE-----
+
+--0wxXT3JH117vcORs--
 
