@@ -1,83 +1,75 @@
-Return-Path: <devicetree+bounces-112904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E5D09A3D2D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:18:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D479A3D4F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:30:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C99CF1F24C49
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:18:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21CB31C20E3F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645AA201029;
-	Fri, 18 Oct 2024 11:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED057A47;
+	Fri, 18 Oct 2024 11:30:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JSZoXEtP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j0LuIDjs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E5F15CD74;
-	Fri, 18 Oct 2024 11:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D250A1878;
+	Fri, 18 Oct 2024 11:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729250298; cv=none; b=czAoCDb1NFSB+Dl14OLemnLi3RwR80p1VEKv/fYOkb7sh8C1T7QVCRUwTW8tKJIFKPRIC8pCGWdvex8jT0aB4mZHJ7RiEdWRdreEC9kiaKrSyjX9vkK/Qez77Cz8FsWHIyMejiqbTkY+MXfc1LNZ/cAVOp01u9a2Z1bSR/Wchq4=
+	t=1729251018; cv=none; b=Y7Crav+82cokW8Ab6ZLPrGFt/qt9ZbLyuWXX94ilJVriiC2B4hyASYu1J9PwnViS4xsXPSZZdTYb6bbxLulhRN3IVMW2eILEkc/PYL4oEPxxJGS0aPAygGEOekKAC0HCHnLWlIbkfD870MIYEW7AM6d+gQr3cY2KjkWkX2S5uxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729250298; c=relaxed/simple;
-	bh=31wnohWQ+bxg27sQPxHsxxLO3o0/2om6sMnqboJXIo8=;
+	s=arc-20240116; t=1729251018; c=relaxed/simple;
+	bh=Ej3yAWHr7fbgdNubao4f5dJg0zJXpryb2qGZenUOA9c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PgfPdTjGkH/Z/J29br9NSgHsCKSrbj54HhH9d0f3vuWiQ8UBtTHBHeqXWy05ha7c1nugaSylTa1Bp/yqlsfYA9SMzk2jwBLFkIBtYSjtntIj+OfR4SoxChFFgqQnZSQHv80RSv0nb4+2shilWuQrLfNxN1kv+1VFsCHP3pAV8UA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JSZoXEtP; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-20cdb889222so20607395ad.3;
-        Fri, 18 Oct 2024 04:18:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729250296; x=1729855096; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AD9xrwy8AQVug5A4qhxj8S+oD2WPcuOf0xgjF6JZQiA=;
-        b=JSZoXEtPwgGuwvRdxsYqF42o0YIwKwSgWXxz5qmxSAW3fKEitivRIt8iKXLgU026xE
-         L9FTCJ72wjn6vl9KzkrFWjXPKwQkLd7ICUmM0tNXYA36dgopWrcdNotV7Foxji5u+vv6
-         riHdV0smVNXroAsHuoNx1EEWXvIpDU84L94vQXLdR1FOqnwaS9HX0msfTMZVc8cqHWun
-         ML7S+92OBgz4Z8+ZQv6Yv7FRFkdkVJm5tBVbvnN7I3/NX+q3VQzK5gWSL935co1asJFE
-         fCVCvm30JZUje4ffRf/PDenN5XhyJka88PUoDD4kBTRcHvyxzUFwhaeebLoJ+X+WAkJu
-         CEzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729250296; x=1729855096;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AD9xrwy8AQVug5A4qhxj8S+oD2WPcuOf0xgjF6JZQiA=;
-        b=XF22xDsPt8cTAAdwwDy8Ddo3IZxmNo2rL7L4jwSukuF0u1rNHQr9pKvDKUQ1SY7hBG
-         9FyCW4weMAfQuoYQF0xOrKGz1j2i3yye0Tdn5TkTcI/xLKacseOKQkoXtJFKCoGFE4dY
-         9BJ9QnnZWI94Pkptv9DdunrnsSgS67z4a6xQEPPdAUYvSfcpVN8wF41beuufvT1pKxk8
-         aThGo4ORE5DDSxZ1h8wLSbm1MB+a1/5rYIQnHTSbGZgplie2A/uh1ucr8Qa2WRcqvCwy
-         Y8957bfvzzNOQ/6StI8laLCM4Z8oknu9w5bp9fir9S0a+GkEZxUUep7BQwsEQoMMOZd8
-         4L4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVsHdL4UXQ5rLVNAHh5xRc21G8R+I7SEkijap39vPqlQ4XFSDfBFGIjsoes+RZa18P2x9TbUIibNJSlR16y@vger.kernel.org, AJvYcCVy9AznQ7ATfqw0r1PflqfNGo/e/9Ys3Fvj9ligVUpsM9LX77TF9KIhMW0n61ATx6GWzd44C+Ok4ZSSGkA=@vger.kernel.org, AJvYcCWF0yAUW2oseXAAFxIscFjTULzVlyYNyj+ZmauBSUYVj4TNHCeN/CgUPSv/iNM/u8kDHsyl88cOKe2v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxta6Y3qg05z72lMtxNHG5aokD0vq2NHLqgVWO5uOBkP5F7C5yB
-	9vrqwOeAyqJS2Fk64M75lWVsCvqEQQ6gK5MikiWXYR5U21ck1PtI
-X-Google-Smtp-Source: AGHT+IEVZI9VguOIUy++m8V3bQDBofvSkPkutmCkt1I/ydjuQsi5ZfdokTvb+4cXSXZT7hmIlQiAog==
-X-Received: by 2002:a17:903:1104:b0:20b:7be8:8eb9 with SMTP id d9443c01a7336-20e5a93d705mr20019655ad.54.1729250295855;
-        Fri, 18 Oct 2024 04:18:15 -0700 (PDT)
-Received: from ux-UP-WHL01 ([240e:47e:2ed0:f711:83b7:17b8:5fad:d135])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e5a8f04f2sm10524545ad.185.2024.10.18.04.18.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 04:18:15 -0700 (PDT)
-Date: Fri, 18 Oct 2024 19:18:05 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com,
-	hbarnor@chromium.org, dianders@chromium.org,
-	conor.dooley@microchip.com
-Cc: jikos@kernel.org, bentiss@kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <ZxJCvwxwamvRZ3m9@ux-UP-WHL01>
-References: <20241018020815.3098263-2-charles.goodix@gmail.com>
- <06151891-a260-450c-b688-fff18638e627@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z45BmmOU5sKAjdJoZGKC9sVSIEC/ZIJieyih/+XBGUQozHMMbezKlgD3tu9yffL1U7N9h8GMKObmaI5W5frqS66EalqEY5y2kFi7bmEEbEU3KiyKfZ6ttu/gbdJ4KTmOPjVNN05Hu7wYcoSgkzvdz+6mwZqmwKzFRf28UN4/H50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j0LuIDjs; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729251017; x=1760787017;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ej3yAWHr7fbgdNubao4f5dJg0zJXpryb2qGZenUOA9c=;
+  b=j0LuIDjsUKE9hKUY2jkrh8rp2CaBz//+HueDW1MaXlLkSrMWABbJPUmh
+   Sb6GKWhdFrKEO3pznOL0cQILoixTjTlVY85QS1BztAJhE0AmgV8JFiul7
+   Qqlk8r59sLD1Vjz/BwqkHOCvTrlSjWvr60KnG/fGiP2e9/vbba717CDRU
+   uwj4uZZ3c36jvonPwCXkdCSeGdOAl4kuDY22n1hK+cQ6f2kktC+a87eOK
+   D6/vr2O9YiG040IjZeoeaHDQzLg0iDbWUvd9pKuPaJ+CyFQF7Ci7XHUMw
+   K48Vi1lwoWtNtnLk+N0apHvywGSS1MM27tdVl9zcaCdpQ1x4+Zqre7XcQ
+   Q==;
+X-CSE-ConnectionGUID: ao72CHuHTaKKSx99bR5xYg==
+X-CSE-MsgGUID: co7F6TwEQuCFSQlUB2xahw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11228"; a="40139719"
+X-IronPort-AV: E=Sophos;i="6.11,213,1725346800"; 
+   d="scan'208";a="40139719"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2024 04:30:16 -0700
+X-CSE-ConnectionGUID: tIKXeHGsQHWrrHWtKHyfrA==
+X-CSE-MsgGUID: LRlr3seTR5yZctmrPc2ejg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,213,1725346800"; 
+   d="scan'208";a="102148533"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by fmviesa002.fm.intel.com with ESMTP; 18 Oct 2024 04:30:14 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+	id 5F323343; Fri, 18 Oct 2024 14:30:13 +0300 (EEST)
+Date: Fri, 18 Oct 2024 14:30:13 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] gpio: mmio: Support ngpios property
+Message-ID: <ZxJGxXNl29i8d_fA@black.fi.intel.com>
+References: <20241017-gpio-ngpios-v2-0-cecfdb38d40e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,151 +78,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <06151891-a260-450c-b688-fff18638e627@kernel.org>
+In-Reply-To: <20241017-gpio-ngpios-v2-0-cecfdb38d40e@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Krzysztof,
+On Thu, Oct 17, 2024 at 08:46:07AM +0200, Linus Walleij wrote:
+> I thought this generic property was already supported by the
+> generic MMIO bindings and code, but no.
 
-On Fri, Oct 18, 2024 at 07:59:46AM +0200, Krzysztof Kozlowski wrote:
-> On 18/10/2024 04:08, Charles Wang wrote:
-> > The Goodix GT7986U touch controller report touch data according to the
-> > HID protocol through the SPI bus. However, it is incompatible with
-> > Microsoft's HID-over-SPI protocol.
-> > 
-> > Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> > ---
-> >  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
-> >  1 file changed, 58 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> > index 358cb8275..184d9c320 100644
-> > --- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> > +++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-> > @@ -8,27 +8,27 @@ title: Goodix GT7375P touchscreen
-> >  
-> >  maintainers:
-> >    - Douglas Anderson <dianders@chromium.org>
-> > +  - Charles Wang <charles.goodix@gmail.com>
-> >  
-> >  description:
-> > -  Supports the Goodix GT7375P touchscreen.
-> > -  This touchscreen uses the i2c-hid protocol but has some non-standard
-> > -  power sequencing required.
-> > -
-> > -allOf:
-> > -  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-> > +  The Goodix GT7375P and GT7986U touchscreens support both SPI and I2C interfaces.
-> > +  With the I2C interface, they use the i2c-hid protocol but require non-standard
-> > +  power sequencing. With the SPI interface, they use a custom HID protocol that
-> > +  is incompatible with Microsoft's HID-over-SPI protocol.
-> >  
-> >  properties:
-> >    compatible:
-> >      oneOf:
-> > -      - const: goodix,gt7375p
-> > +      - items:
-> > +          - const: goodix,gt7375p
-> 
-> That's not a necessary change. Keep old code here.
->
+I have two issues with the second patch here.
 
-Ack,
+First one is why? What the *practical* issue you have? Can you elaborate
+on that?
 
-> >        - items:
-> >            - const: goodix,gt7986u
-> >            - const: goodix,gt7375p
-> > +      - items:
-> > +          - const: goodix,gt7986u
-> 
-> Hm? This does not make much sense. Device either is or is not compatible
-> with gt7375p. Cannot be both.
->
+Second one, is there any other way to avoid duplication of the code so
+we have one place of the property parsing?
 
-Ack,
+For the background I have to mention this commit:
+55b2395e4e92 ("gpio: mmio: handle "ngpios" properly in bgpio_init()")
 
-> >  
-> >    reg:
-> > -    enum:
-> > -      - 0x5d
-> > -      - 0x14
-> > +    maxItems: 1
-> >  
-> >    interrupts:
-> >      maxItems: 1
-> > @@ -57,6 +57,15 @@ properties:
-> >        This property is used to avoid the back-powering issue.
-> >      type: boolean
-> >  
-> > +  goodix,hid-report-addr:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      The register address for retrieving HID report data.
-> > +      This address is related to the device firmware and may
-> > +      change after a firmware update.
-> 
-> How is this supposed to work? DTS will stay fixed, you cannot change it
-> just because firmware changed. User loads new firmware with different
-> address, but DTS will have to use old address - so broken property.
-> 
-> > +
-> > +  spi-max-frequency: true
-> 
-> Drop
->
+If there is an issue, it should be fixed rather than adding a shortcut
+with not fully known consequences.
 
-Ack,
+TL;DR: on a brief look the second patch should be reverted (or simply
+dropped as it's easy to do while it's on top of the branch.
 
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -64,6 +73,25 @@ required:
-> >    - reset-gpios
-> >    - vdd-supply
-> >  
-> > +allOf:
-> > +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          items:
-> > +            - const: goodix,gt7986u
-> > +    then:
-> > +      required:
-> > +        - goodix,hid-report-addr
-> > +    else:
-> > +      properties:
-> > +        goodix,hid-report-addr: false
-> > +        spi-max-frequency: false
-> 
-> Why? GT7375P also supports SPI.
->
+> It's a pretty obvious usecase to just use some from 0..n
+> of a MMIO GPIO bank, so add support for this.
 
-No, only GT7986U support SPI. What I'm trying to express here is that
-the GT7375P does not support the properties 'goodix,hid-report-addr'
-and 'spi-max-frequency. Is there any issue with writing it this way?
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> > +        reg:
-> > +          enum: [0x5d, 0x14]
-> > +
-> >  additionalProperties: false
-> 
-> This becomes now: unevaluatedProperties: false
->
-
-Ack,
-
-> >  
-> >  examples:
-> > @@ -87,3 +115,23 @@ examples:
-> >          vdd-supply = <&pp3300_ts>;
-> >        };
-> >      };
-> > +
->
-
-Best regards,
-Charles
 
 
