@@ -1,144 +1,105 @@
-Return-Path: <devicetree+bounces-112933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C35F9A3EE1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:53:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C820C9A3EF4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:57:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AAA61C20E09
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:52:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E3F2287162
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF83F1D95B5;
-	Fri, 18 Oct 2024 12:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d4Dp4b1b"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C63E42AA3;
+	Fri, 18 Oct 2024 12:57:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871A41D86ED;
-	Fri, 18 Oct 2024 12:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F12F9DF;
+	Fri, 18 Oct 2024 12:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729255951; cv=none; b=gpyEzUL+K/M/3G6hxp5DlFey0ba+wrHzJDhRp9LPu3Kge6uJXfg+KFub5RLJFy90TQdopccvKZXJvqws0faWFPKG2Lk9/OWQHeBsUvkzmsS22ITCesQ8/HEm9LLrSLBiDsHYcWFeQ12PbriColH9FpBd81Y0L92rwoc6S5AsyzE=
+	t=1729256238; cv=none; b=Si4lZZTmGUxpinX1NxbTdjYHnBrWQH64zKQHE4AHliRRvWCi72UNNXEQUeW5kyHiTcq5fkXeVPtqRTg+L1R0mY0g1OgwVaO6zHXLtwkTn+7DNNe3SPthIHJODrChzbtcoITwycqomX3yGlsuZe/oTu06vhbibNuzPrsz4yQf/bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729255951; c=relaxed/simple;
-	bh=UZ7u6Rc9FfmOf9m8EMUtl5zNNPrd8QgWBd/z2NMe2/4=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Z29EsF2n+m4+XT6TB/GGPfOExNwB3S17WSJLOjjzIIlP9C1ioEDy5kMmkihLvgcbw+X9AnFRgLUG3LsPh/TdfWY+qk+jgI+M5POE4hSxvIFau8uMrfvt0LhGtQ2ehUHGG+wH5wlwPJAO+1y+wxqeo0NAJ8z/XKSfa0C5mixgDYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d4Dp4b1b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3C83C4CED5;
-	Fri, 18 Oct 2024 12:52:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729255951;
-	bh=UZ7u6Rc9FfmOf9m8EMUtl5zNNPrd8QgWBd/z2NMe2/4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=d4Dp4b1bhEoSEo8VPxz5mdVm/h2XfneCMhHY1ULlfDpzajAjvBxHHAeP4pRnvfQci
-	 CPahwtCoYkCZvNUHVEmqwv7bLEEkMb3/f0R5dYeRvCcDtkxWBXPYq5T8abV6uv976w
-	 AQ9Lq1oC83NCl99T3/psWrKa2Fct2dT/jnFCH7Ke9EzusScZFGJhM9ikduhvyZdwml
-	 anF0HUaXcMNzhuBBvaON7AtWxV3MFxwrCnjlWOGkepbqG50PwKsQnKkR84AgxJRi4J
-	 7emgm8smTa/NZwRz+PhZTtMHqrFx7Iswag893Hf6TQowKt5+Ds4J9xuu5FSc2CDcmt
-	 hRHVbMk4eeHVw==
-Date: Fri, 18 Oct 2024 07:52:30 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1729256238; c=relaxed/simple;
+	bh=u8YJsDjnXx6waZcqswFEzrNIa9LHOweKyJMecaGgmz4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LyO/Ngmb4+ioNL/2sfBWp0k05ND7XPV+rRp245nYOTLgKGHmIHavz0+6VvGz4RpxxjNTRBffAI6hwSu+bxt+ex1eAHQbPk6gdvw92VqCYUx7qmygBCzaeAflhQOsBfXH5ev8rm0r06RoujO/S7Hl5dLB67M0oV/xeSu9GuL7/xU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5E4A5106F;
+	Fri, 18 Oct 2024 05:57:44 -0700 (PDT)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8EBC63F7F5;
+	Fri, 18 Oct 2024 05:57:12 -0700 (PDT)
+Date: Fri, 18 Oct 2024 13:57:09 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
+	justin.chen@broadcom.com, opendmb@gmail.com,
+	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v4 2/2] firmware: arm_scmi: Support 'reg-io-width'
+ property for shared memory
+Message-ID: <ZxJbJa8Q3V02yf_z@bogus>
+References: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
+ <20240827182450.3608307-3-florian.fainelli@broadcom.com>
+ <20240903154000.GA2080277@bogus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- devicetree@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>, 
- Benjamin Tissoires <bentiss@kernel.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Enric Balletbo i Serra <eballetbo@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20241018-post-reset-v1-0-5aadb7550037@chromium.org>
-References: <20241018-post-reset-v1-0-5aadb7550037@chromium.org>
-Message-Id: <172925540096.17773.4550001283125132036.robh@kernel.org>
-Subject: Re: [PATCH 0/2] Using i2c-hid-of-elan driver instead of i2c-hid-of
- driver
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240903154000.GA2080277@bogus>
 
-
-On Fri, 18 Oct 2024 12:03:03 +0000, Hsin-Te Yuan wrote:
-> After commit 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to
-> i2c-hid-of"), i2c-hid-of driver resets the touchscreen without having
-> proper post-reset delay on OF platform.  From the commit message of that
-> commit, not to decribe poset-reset delay in device tree is intended.
-> Instead, describing the delay in platform data and changing to use
-> specialized driver is more preferable solution.
+On Tue, Sep 03, 2024 at 04:40:00PM +0100, Sudeep Holla wrote:
+> On Tue, Aug 27, 2024 at 11:24:50AM -0700, Florian Fainelli wrote:
+> > Some shared memory areas might only support a certain access width,
+> > such as 32-bit, which memcpy_{from,to}_io() does not adhere to at least
+> > on ARM64 by making both 8-bit and 64-bit accesses to such memory.
+> >
+> > Update the shmem layer to support reading from and writing to such
+> > shared memory area using the specified I/O width in the Device Tree. The
+> > various transport layers making use of the shmem.c code are updated
+> > accordingly to pass the I/O accessors that they store.
+> >
 > 
-> Also workaround the race condition of pinctrl used by touchscreen and
-> trackpad in this series to avoid merge conflict.
+> This looks good to me now, much simpler. I will push this to -next soon,
+> but it won't be for v6.12. I have already sent PR for that. I want this
+> to be in -next for longer just to see if anyone has any comments and
+> doesn't break any platform(which it shouldn't anyways).
 > 
-> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
-> ---
-> Hsin-Te Yuan (2):
->       arm64: dts: mediatek: mt8183: Fix race condition of pinctrl
->       arm64: dts: mediatek: mt8183: Switch to Elan touchscreen driver
-> 
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts |  2 --
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts  |  3 ---
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts   | 12 +++---------
->  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts   | 11 ++---------
->  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts   | 11 ++---------
->  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts   | 11 ++---------
->  .../arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi |  3 ---
->  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper.dtsi      |  3 ---
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts   |  3 ---
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts  |  3 ---
->  .../arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi |  3 ---
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi       | 10 +++-------
->  12 files changed, 12 insertions(+), 63 deletions(-)
-> ---
-> base-commit: eca631b8fe808748d7585059c4307005ca5c5820
-> change-id: 20241018-post-reset-ac66b0351613
-> 
-> Best regards,
-> --
-> Hsin-Te Yuan <yuanhsinte@chromium.org>
-> 
-> 
+> Just hoping if anyone looks at it and have feedback once it is in -next.
+> I will apply formally at v6.12-rc1 and report back if no one complains
+> until then.
 > 
 
+Hi Florian,
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Just thought I will check with you if the content is -next are fine as I now
+recall I did the rebase as this patch was original posted before the rework
+of transport as modules were merged. Please confirm if you are happy with the
+rebase as you see in -next. I also had to rebase it on recent fixes that
+Justin added as there were trivial conflicts.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Another thing I wanted to check is if [1] series has any impact on this.
+IIUC no, but it would be good to give a go in terms of testing just in case
+that as well lands in -next.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+--
+Regards,
+Sudeep
 
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y mediatek/mt8183-kukui-jacuzzi-burnet.dtb mediatek/mt8183-kukui-jacuzzi-cozmo.dtb mediatek/mt8183-kukui-jacuzzi-damu.dtb mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dtb mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dtb mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dtb mediatek/mt8183-kukui-jacuzzi-pico.dtb mediatek/mt8183-kukui-jacuzzi-pico6.dtb' for 20241018-post-reset-v1-0-5aadb7550037@chromium.org:
-
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dtb: dpi@14015000: power-domains: False schema does not allow [[92, 7]]
-	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: dpi@14015000: power-domains: False schema does not allow [[94, 7]]
-	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb: dpi@14015000: power-domains: False schema does not allow [[92, 7]]
-	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dtb: dpi@14015000: power-domains: False schema does not allow [[90, 7]]
-	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb: dpi@14015000: power-domains: False schema does not allow [[92, 7]]
-	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
-
-
-
-
-
+[1] https://lore.kernel.org/all/20241010123627.695191-1-jvetter@kalrayinc.com
 
