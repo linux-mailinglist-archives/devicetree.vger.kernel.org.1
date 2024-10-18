@@ -1,137 +1,381 @@
-Return-Path: <devicetree+bounces-112836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181329A3A3F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:41:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F37109A3A4A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:42:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91182B25245
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:41:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 746311F28DBE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645C31FF7CC;
-	Fri, 18 Oct 2024 09:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3351D1FF7C4;
+	Fri, 18 Oct 2024 09:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Ls/AhFx3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com [209.85.219.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C263F18CBF1
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 09:41:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EEB11F4263
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 09:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729244484; cv=none; b=TnExq2/E3GW0Jf1LfQrDMjlipsC9XVVyPhpBw5ydQySjKcKp5I/GFLymQ7Nip5oHpB7+MT6WXUh5P86aaz6wlQot4SrjmwuH21z+1axK8tK9KlDWTclXYsEEvb4cBfD+1wTt8FiWj0AZ+iF5M9vAkYjsdD0huiInBLC5h3vDiT8=
+	t=1729244575; cv=none; b=Z5dB6z9luiL2gm53z05mZX/oOCCVfgnZ4p+4m040igKndyfOuJiiPPmnrd1Js007Jg2o5h0NLpi29c9fOvuokm0NY3VdeC4qCx4eKK28dHfJnbgGV3T/Zf/C971rTxELwCzVo0Es1X1JZEaX+XwfhQJQOhFJ51gRfrcWIGfy2hE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729244484; c=relaxed/simple;
-	bh=wffCtmN6ytO8CqC4XzgTLHinARfHMCGXGwK1kHB+yJA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GBGpKlOVR4nkvtlWOKvD2QotFN8npyJdywmgrY3n8zIl7PjqXo1WyE4clyXi8BaeVMpxvZkoLOqA0W/x66VRI4y8RCwqiQ/Fvya/C1KazQTfcEgAlfJh1hfMVpS0FVHpAY9WDO7rPXz14lDXDbWjsN3kcG1x874lztpKMtESWrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1t1jTS-0006BO-Et; Fri, 18 Oct 2024 11:40:46 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1t1jTP-000Bil-2D;
-	Fri, 18 Oct 2024 11:40:43 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1t1jTP-000Qi1-1r;
-	Fri, 18 Oct 2024 11:40:43 +0200
-Date: Fri, 18 Oct 2024 11:40:43 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Hui-Ping Chen <hpchen0nvt@gmail.com>
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	nikita.shubin@maquefel.me, arnd@arndb.de, vkoul@kernel.org,
-	esben@geanix.com, linux-arm-kernel@lists.infradead.org,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] mtd: rawnand: nuvoton: add new driver for the
- Nuvoton MA35 SoC
-Message-ID: <ZxItGw0m_w0jgtAq@pengutronix.de>
-References: <20241018022519.721914-1-hpchen0nvt@gmail.com>
- <20241018022519.721914-3-hpchen0nvt@gmail.com>
+	s=arc-20240116; t=1729244575; c=relaxed/simple;
+	bh=goetKS06Cs0zBry8+Bo9tHIjGbRiGmdmJDgP7hIR1M4=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=jVrk/1CxhlO3VR5AHnxnhdiRc6oerEB2FDqwEouMeBOUnevPo062VxjqmNn07XXMAeDWdPdh0aABD2xtTIspvmV/M3bBOcquoJJE9KJpXeeXaluY/WwpzKiG149XuNNIpK3zgjbNNrZrC7nTY1q2gCyagGmImzcZ9jZmHQpLA1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--jakiela.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Ls/AhFx3; arc=none smtp.client-ip=209.85.219.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--jakiela.bounces.google.com
+Received: by mail-yb1-f201.google.com with SMTP id 3f1490d57ef6-e28fdb4f35fso3255069276.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 02:42:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1729244572; x=1729849372; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:from:subject:message-id
+         :mime-version:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLLeXqOR+j4J5K80kKtmagY5cg9UQK6bpjzIEEsrbRk=;
+        b=Ls/AhFx3qrllPWq6X7s9YAt8yjS/QQquDUGjdXa7Gj4zGLtUN2t0Tm25xu9p69LO3O
+         i5PxljGrjTUUyS99coSIGMb7mN9gQvc1Gfh5Lp9DCfVQ/SF4tEZirO4nXj0FEa6RScO+
+         w+gYr6Oo93oHKfjEGQzg/AAaaEvifNleS06d2YBrLAHCt3Ti0m29KvI7qeA8BOYECC5u
+         S3nb5u54TLiN6CwaQXatufeoYUVXRtYqLho/8ATZms8tqJdOepyeACQhRln+JAreojRi
+         0VYFJhqsKEaKVqY7IKvdUVD1ACpZD2+ud+Gv3kfNJrd5KgqtOeuFjiN57gwTwni8fKA8
+         p+Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729244572; x=1729849372;
+        h=content-transfer-encoding:cc:to:from:subject:message-id
+         :mime-version:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZLLeXqOR+j4J5K80kKtmagY5cg9UQK6bpjzIEEsrbRk=;
+        b=f8mQG7tLyIY3qLlRdiEgd2fDQu0ikMZGZggTTsB5kB40bwSWpnFwrM2PVB99Xykdiu
+         y1CJuDp4Ur5ZogCw+H/n2drKBmn/QjXzzNI32cC3RHOVQ639fh1l29pXOqfl//OKlcdh
+         ZPQ2n/CMttaDxu/hd6SNY5bCSNzrKaDayxwt3f3m+50jiXtEhdz9hlu5onJ9Zv0pvP3e
+         pyt4kn0szPXAVKKLB8goFNGDA/5DFqWSWfq0q399wInzmP3mTCdLV59YQ2/s0snKb1bp
+         7oxMYC7yj91qrXixOaEA/fotaTI9IxojLbWbQbYDobxYDdoOqPwBgA54sJ045ZC0scJG
+         fLLA==
+X-Gm-Message-State: AOJu0Yz2dw6Qvex8N6aPyZmCLXdEpxGySndR5jOZyP6TLJNhb5HOPdf7
+	dX6B3XivMKU1txs2I4VPSOnK2j97903mQruzrET+MpvQiyJxGRnw5osP3Tdhq3F0vDVPzmkeIU5
+	J8KUGBg==
+X-Google-Smtp-Source: AGHT+IGSb0cw0pG+y/p+bObtKjZ2/Bbc3rekx20QPwcvKWAaCsQSzG1nltOqjouiHxq2r34MIkLGayvZUvNB
+X-Received: from malysz.c.googlers.com ([fda3:e722:ac3:cc00:cb:de80:ac1c:6aa9])
+ (user=jakiela job=sendgmr) by 2002:a5b:702:0:b0:e0e:8b26:484e with SMTP id
+ 3f1490d57ef6-e2bb1699b0fmr1108276.8.1729244572306; Fri, 18 Oct 2024 02:42:52
+ -0700 (PDT)
+Date: Fri, 18 Oct 2024 09:42:34 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241018022519.721914-3-hpchen0nvt@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.47.0.rc1.288.g06298d1525-goog
+Message-ID: <20241018094234.2633366-1-jakiela@google.com>
+Subject: [PATCH] arm64: dts: mt8186: Update regulators voltages
+From: "=?UTF-8?q?Albert=20Jakie=C5=82a?=" <jakiela@google.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	"=?UTF-8?q?Albert=20Jakie=C5=82a?=" <jakiela@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 18, 2024 at 02:25:19AM +0000, Hui-Ping Chen wrote:
-> +static int ma35_nfi_ecc_check(struct nand_chip *chip, u8 *addr)
-> +{
-> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
-> +	struct mtd_info *mtd = nand_to_mtd(chip);
-> +	int i, j, nchunks = 0;
-> +	int report_err = 0;
-> +	int err_cnt = 0;
-> +	u32 status;
-> +
-> +	nchunks = mtd->writesize / chip->ecc.steps;
-> +	if (nchunks < 4)
-> +		nchunks = 1;
-> +	else
-> +		nchunks /= 4;
-> +
-> +	for (j = 0; j < nchunks; j++) {
-> +		status = readl(nand->regs + MA35_NFI_REG_NANDECCES0 + j * 4);
-> +		if (!status)
-> +			continue;
-> +
-> +		for (i = 0; i < 4; i++) {
-> +			if ((status & ECC_STATUS_MASK) == 0x01) {
-> +				/* Correctable error */
-> +				err_cnt = (status >> 2) & ECC_ERR_CNT_MASK;
-> +				ma35_nfi_correct(chip, j * 4 + i, err_cnt, addr);
-> +				report_err += err_cnt;
+Update minimum and maximum voltages and add
+missing regulators.
 
-This is still wrong. This should be
+Signed-off-by: Albert Jakie=C5=82a <jakiela@google.com>
+---
+ .../boot/dts/mediatek/mt8186-corsola.dtsi     | 107 +++++++++++-------
+ 1 file changed, 63 insertions(+), 44 deletions(-)
 
-				report_err = max(report_err, err_cnt);
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/=
+boot/dts/mediatek/mt8186-corsola.dtsi
+index 682c6ad2574d..62158eac45d0 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+@@ -1302,8 +1302,8 @@ mt6366_regulators: regulators {
+=20
+ 			vcore {
+ 				regulator-name =3D "pp0750_dvdd_core";
+-				regulator-min-microvolt =3D <550000>;
+-				regulator-max-microvolt =3D <800000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <1293750>;
+ 				regulator-ramp-delay =3D <6250>;
+ 				regulator-enable-ramp-delay =3D <200>;
+ 				regulator-allowed-modes =3D <MT6397_BUCK_MODE_AUTO
+@@ -1313,8 +1313,8 @@ vcore {
+=20
+ 			mt6366_vdram1_reg: vdram1 {
+ 				regulator-name =3D "pp1125_emi_vdd2";
+-				regulator-min-microvolt =3D <1125000>;
+-				regulator-max-microvolt =3D <1125000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <2087500>;
+ 				regulator-ramp-delay =3D <12500>;
+ 				regulator-enable-ramp-delay =3D <0>;
+ 				regulator-allowed-modes =3D <MT6397_BUCK_MODE_AUTO
+@@ -1322,6 +1322,16 @@ mt6366_vdram1_reg: vdram1 {
+ 				regulator-always-on;
+ 			};
+=20
++			mt6366_vpa_reg: vpa {
++				regulator-name =3D "ppvar_dvdd_vpa";
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <3650000>;
++				regulator-ramp-delay =3D <50000>;
++				regulator-enable-ramp-delay =3D <250>;
++				regulator-allowed-modes =3D <MT6397_BUCK_MODE_AUTO
++							   MT6397_BUCK_MODE_FORCE_PWM>;
++			};
++
+ 			mt6366_vgpu_reg: vgpu {
+ 				/*
+ 				 * Called "ppvar_dvdd_gpu" in the schematic.
+@@ -1330,19 +1340,17 @@ mt6366_vgpu_reg: vgpu {
+ 				 */
+ 				regulator-name =3D "ppvar_dvdd_vgpu";
+ 				regulator-min-microvolt =3D <500000>;
+-				regulator-max-microvolt =3D <950000>;
++				regulator-max-microvolt =3D <1293750>;
+ 				regulator-ramp-delay =3D <6250>;
+ 				regulator-enable-ramp-delay =3D <200>;
+ 				regulator-allowed-modes =3D <MT6397_BUCK_MODE_AUTO
+ 							   MT6397_BUCK_MODE_FORCE_PWM>;
+-				regulator-coupled-with =3D <&mt6366_vsram_gpu_reg>;
+-				regulator-coupled-max-spread =3D <10000>;
+ 			};
+=20
+ 			mt6366_vproc11_reg: vproc11 {
+ 				regulator-name =3D "ppvar_dvdd_proc_bc_mt6366";
+-				regulator-min-microvolt =3D <600000>;
+-				regulator-max-microvolt =3D <1200000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <1293750>;
+ 				regulator-ramp-delay =3D <6250>;
+ 				regulator-enable-ramp-delay =3D <200>;
+ 				regulator-allowed-modes =3D <MT6397_BUCK_MODE_AUTO
+@@ -1352,8 +1360,8 @@ mt6366_vproc11_reg: vproc11 {
+=20
+ 			mt6366_vproc12_reg: vproc12 {
+ 				regulator-name =3D "ppvar_dvdd_proc_lc";
+-				regulator-min-microvolt =3D <600000>;
+-				regulator-max-microvolt =3D <1200000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <1293750>;
+ 				regulator-ramp-delay =3D <6250>;
+ 				regulator-enable-ramp-delay =3D <200>;
+ 				regulator-allowed-modes =3D <MT6397_BUCK_MODE_AUTO
+@@ -1361,10 +1369,21 @@ mt6366_vproc12_reg: vproc12 {
+ 				regulator-always-on;
+ 			};
+=20
++			mt6366_vmodem_reg: vmodem {
++				regulator-name =3D "ppvar_vmodem";
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <1293750>;
++				regulator-ramp-delay =3D <6250>;
++				regulator-enable-ramp-delay =3D <900>;
++				regulator-allowed-modes =3D <MT6397_BUCK_MODE_AUTO
++							   MT6397_BUCK_MODE_FORCE_PWM>;
++				regulator-always-on;
++			};
++
+ 			mt6366_vs1_reg: vs1 {
+ 				regulator-name =3D "pp2000_vs1";
+-				regulator-min-microvolt =3D <2000000>;
+-				regulator-max-microvolt =3D <2000000>;
++				regulator-min-microvolt =3D <1000000>;
++				regulator-max-microvolt =3D <2587500>;
+ 				regulator-ramp-delay =3D <12500>;
+ 				regulator-enable-ramp-delay =3D <0>;
+ 				regulator-always-on;
+@@ -1372,8 +1391,8 @@ mt6366_vs1_reg: vs1 {
+=20
+ 			mt6366_vs2_reg: vs2 {
+ 				regulator-name =3D "pp1350_vs2";
+-				regulator-min-microvolt =3D <1350000>;
+-				regulator-max-microvolt =3D <1350000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <2087500>;
+ 				regulator-ramp-delay =3D <12500>;
+ 				regulator-enable-ramp-delay =3D <0>;
+ 				regulator-always-on;
+@@ -1397,7 +1416,7 @@ mt6366_vaud28_reg: vaud28 {
+ 			mt6366_vaux18_reg: vaux18 {
+ 				regulator-name =3D "pp1840_vaux18";
+ 				regulator-min-microvolt =3D <1800000>;
+-				regulator-max-microvolt =3D <1840000>;
++				regulator-max-microvolt =3D <1800000>;
+ 				regulator-enable-ramp-delay =3D <270>;
+ 			};
+=20
+@@ -1410,8 +1429,8 @@ mt6366_vbif28_reg: vbif28 {
+=20
+ 			mt6366_vcn18_reg: vcn18 {
+ 				regulator-name =3D "pp1800_vcn18_x";
+-				regulator-min-microvolt =3D <1800000>;
+-				regulator-max-microvolt =3D <1800000>;
++				regulator-min-microvolt =3D <600000>;
++				regulator-max-microvolt =3D <2100000>;
+ 				regulator-enable-ramp-delay =3D <270>;
+ 			};
+=20
+@@ -1424,8 +1443,8 @@ mt6366_vcn28_reg: vcn28 {
+=20
+ 			mt6366_vefuse_reg: vefuse {
+ 				regulator-name =3D "pp1800_vefuse";
+-				regulator-min-microvolt =3D <1800000>;
+-				regulator-max-microvolt =3D <1800000>;
++				regulator-min-microvolt =3D <1700000>;
++				regulator-max-microvolt =3D <1900000>;
+ 				regulator-enable-ramp-delay =3D <270>;
+ 			};
+=20
+@@ -1438,15 +1457,15 @@ mt6366_vfe28_reg: vfe28 {
+=20
+ 			mt6366_vemc_reg: vemc {
+ 				regulator-name =3D "pp3000_vemc";
+-				regulator-min-microvolt =3D <3000000>;
+-				regulator-max-microvolt =3D <3000000>;
++				regulator-min-microvolt =3D <2900000>;
++				regulator-max-microvolt =3D <3300000>;
+ 				regulator-enable-ramp-delay =3D <60>;
+ 			};
+=20
+ 			mt6366_vibr_reg: vibr {
+ 				regulator-name =3D "pp2800_vibr_x";
+-				regulator-min-microvolt =3D <2800000>;
+-				regulator-max-microvolt =3D <2800000>;
++				regulator-min-microvolt =3D <1200000>;
++				regulator-max-microvolt =3D <3300000>;
+ 				regulator-enable-ramp-delay =3D <60>;
+ 			};
+=20
+@@ -1482,30 +1501,30 @@ mt6366_vmc_reg: vmc {
+=20
+ 			mt6366_vmddr_reg: vmddr {
+ 				regulator-name =3D "pm0750_emi_vmddr";
+-				regulator-min-microvolt =3D <700000>;
+-				regulator-max-microvolt =3D <750000>;
++				regulator-min-microvolt =3D <600000>;
++				regulator-max-microvolt =3D <2100000>;
+ 				regulator-enable-ramp-delay =3D <325>;
+ 				regulator-always-on;
+ 			};
+=20
+ 			mt6366_vmch_reg: vmch {
+ 				regulator-name =3D "pp3000_vmch";
+-				regulator-min-microvolt =3D <3000000>;
+-				regulator-max-microvolt =3D <3000000>;
++				regulator-min-microvolt =3D <2900000>;
++				regulator-max-microvolt =3D <3300000>;
+ 				regulator-enable-ramp-delay =3D <60>;
+ 			};
+=20
+ 			mt6366_vcn33_reg: vcn33 {
+ 				regulator-name =3D "pp3300_vcn33_x";
+ 				regulator-min-microvolt =3D <3300000>;
+-				regulator-max-microvolt =3D <3300000>;
++				regulator-max-microvolt =3D <3500000>;
+ 				regulator-enable-ramp-delay =3D <270>;
+ 			};
+=20
+ 			vdram2 {
+ 				regulator-name =3D "pp0600_emi_vddq";
+ 				regulator-min-microvolt =3D <600000>;
+-				regulator-max-microvolt =3D <600000>;
++				regulator-max-microvolt =3D <1800000>;
+ 				regulator-enable-ramp-delay =3D <3300>;
+ 				regulator-always-on;
+ 			};
+@@ -1518,6 +1537,7 @@ mt6366_vrf12_reg: vrf12 {
+ 			};
+=20
+ 			mt6366_vrf18_reg: vrf18 {
++				compatible =3D "regulator-fixed";
+ 				regulator-name =3D "pp1800_vrf18_x";
+ 				regulator-min-microvolt =3D <1800000>;
+ 				regulator-max-microvolt =3D <1800000>;
+@@ -1526,8 +1546,8 @@ mt6366_vrf18_reg: vrf18 {
+=20
+ 			vsim1 {
+ 				regulator-name =3D "pp1860_vsim1_x";
+-				regulator-min-microvolt =3D <1800000>;
+-				regulator-max-microvolt =3D <1860000>;
++				regulator-min-microvolt =3D <1700000>;
++				regulator-max-microvolt =3D <3100000>;
+ 				regulator-enable-ramp-delay =3D <540>;
+ 			};
+=20
+@@ -1540,18 +1560,17 @@ mt6366_vsim2_reg: vsim2 {
+=20
+ 			mt6366_vsram_gpu_reg: vsram-gpu {
+ 				regulator-name =3D "pp0900_dvdd_sram_gpu";
+-				regulator-min-microvolt =3D <850000>;
+-				regulator-max-microvolt =3D <1050000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <1293750>;
+ 				regulator-ramp-delay =3D <6250>;
+ 				regulator-enable-ramp-delay =3D <240>;
+-				regulator-coupled-with =3D <&mt6366_vgpu_reg>;
+-				regulator-coupled-max-spread =3D <10000>;
++				regulator-always-on;
+ 			};
+=20
+ 			mt6366_vsram_others_reg: vsram-others {
+ 				regulator-name =3D "pp0900_dvdd_sram_core";
+-				regulator-min-microvolt =3D <900000>;
+-				regulator-max-microvolt =3D <900000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <1293750>;
+ 				regulator-ramp-delay =3D <6250>;
+ 				regulator-enable-ramp-delay =3D <240>;
+ 				regulator-always-on;
+@@ -1559,8 +1578,8 @@ mt6366_vsram_others_reg: vsram-others {
+=20
+ 			mt6366_vsram_proc11_reg: vsram-proc11 {
+ 				regulator-name =3D "pp0900_dvdd_sram_bc";
+-				regulator-min-microvolt =3D <850000>;
+-				regulator-max-microvolt =3D <1120000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <1293750>;
+ 				regulator-ramp-delay =3D <6250>;
+ 				regulator-enable-ramp-delay =3D <240>;
+ 				regulator-always-on;
+@@ -1568,8 +1587,8 @@ mt6366_vsram_proc11_reg: vsram-proc11 {
+=20
+ 			mt6366_vsram_proc12_reg: vsram-proc12 {
+ 				regulator-name =3D "pp0900_dvdd_sram_lc";
+-				regulator-min-microvolt =3D <850000>;
+-				regulator-max-microvolt =3D <1120000>;
++				regulator-min-microvolt =3D <500000>;
++				regulator-max-microvolt =3D <1293750>;
+ 				regulator-ramp-delay =3D <6250>;
+ 				regulator-enable-ramp-delay =3D <240>;
+ 				regulator-always-on;
+@@ -1578,7 +1597,7 @@ mt6366_vsram_proc12_reg: vsram-proc12 {
+ 			vusb {
+ 				regulator-name =3D "pp3070_vusb";
+ 				regulator-min-microvolt =3D <3000000>;
+-				regulator-max-microvolt =3D <3070000>;
++				regulator-max-microvolt =3D <3100000>;
+ 				regulator-enable-ramp-delay =3D <270>;
+ 				regulator-always-on;
+ 			};
+@@ -1586,7 +1605,7 @@ vusb {
+ 			vxo22 {
+ 				regulator-name =3D "pp2240_vxo22";
+ 				regulator-min-microvolt =3D <2200000>;
+-				regulator-max-microvolt =3D <2240000>;
++				regulator-max-microvolt =3D <2200000>;
+ 				regulator-enable-ramp-delay =3D <120>;
+ 				/* Feeds DCXO internally */
+ 				regulator-always-on;
+--=20
+2.47.0.rc1.288.g06298d1525-goog
 
-You have to search for the subpage that has the most bitflips and return
-the number of bitflips on that subpage, *not* the total amount of errors
-on the whole page.
-
-That said, the statistic counter should still count the total number of
-bitflips occurred.
-
-Sascha
-
-> +			} else {
-> +				/* Uncorrectable error */
-> +				dev_warn(nand->dev, "uncorrectable error! 0x%4x\n", status);
-> +				return -EBADMSG;
-> +			}
-> +			status >>= 8;
-> +		}
-> +	}
-> +	return report_err;
-> +}
-> +
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
