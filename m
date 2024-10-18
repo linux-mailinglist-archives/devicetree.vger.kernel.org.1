@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-112942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A324E9A3F3C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:13:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF149A3F3E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C46871C248E5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:13:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83C3F1C24851
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 13:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEB418C34C;
-	Fri, 18 Oct 2024 13:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E461D5CC7;
+	Fri, 18 Oct 2024 13:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="c5heL++I"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="e67Ot/DN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF41D1F947
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 13:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABA41D043D
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 13:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729257230; cv=none; b=UOzpOAiPGF6uM9eUjrrswPfHbC64tX1gsL4lIn/AypUDrhde070AHKTY6ymec4U93Y6CcSgc2ek5YhYilXfrASbbuk9xr23dbwbLYcPfwf7uuNJdysU/eCNMTok36Gl746UNc/Vy/eyYEKhlka/EI55yWqqNGUhULaZwl2gzDW4=
+	t=1729257233; cv=none; b=MZdHVri8hFXssHkufPbKg79wi225VvXb5J8BFHhuvsKsROsbmtRhSyskkmQt3Z+oZsk93HvQNgCAzhVaxZsXEhD5oW61MbNfcruYdsW7xcpOjjZvqYhJqJcY928bvIdbY1hz6RU+Bwlj3MbQW+ZodIZPrtmFhJc7UkBeDgbePJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729257230; c=relaxed/simple;
-	bh=XJsufPU8oDUNT2IVUxN0YngUgeNFIQN/QtzNcOQLQoA=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oD6PZOmneTXIdL6C9yII8P9AJLuJ+KvVP9B8hNpkQMUL5I+7kZ9P1072ixTqVnYwecXnOeS/azutE7y4+Kc7h4NPlJraz7upxBBiRL5zC/TxTgf1he7uFfftWpeD80xqqyGayRPj1hSgVsfVS2OW+SgZQKZpsP+LTUw5SBd4czM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=c5heL++I; arc=none smtp.client-ip=209.85.166.173
+	s=arc-20240116; t=1729257233; c=relaxed/simple;
+	bh=hNoTBErVoPI3sr4GvnFFK7rrLhzYBTpq+ocPOGBcaKU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=t1c+ipS1u6P7FYjkNsslVBKyWCVksSDDtIAQ/hkoAQ2tvbjkQmAUzYe8/vQeAaf2eHMICUaaYlLX4lX+h75/n0Nr6I/7o+FNYTj8UrFDWEe4EdShgLcSJTRxs5RBmBTwAsmrciH16fuHIQ05+NA0rZtqRboEAo7y6t9gbsgl6U8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=e67Ot/DN; arc=none smtp.client-ip=209.85.215.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-3a39cabb9b8so7472295ab.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 06:13:48 -0700 (PDT)
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-7ea7ad1e01fso1486389a12.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 06:13:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729257228; x=1729862028; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/IpCOxbbfuWTu34K+8DA6jyFkd8ceqHknAK97seFFAo=;
-        b=c5heL++IqhWwPQME0+13DvayfGUO2s+tcYutI+VRn4hLUb70WdqfS5rn0905UK39RI
-         H9ZqbGXvW9o3jjNk7skn6foF3O2hsLHTnpusknuv31lOQVi0lWfT8/mpadjudGX8oblN
-         xEmm8e0Fc6IIU6woXLXB0UmwZMc0vn48OEosw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729257228; x=1729862028;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=chromium.org; s=google; t=1729257231; x=1729862031; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/IpCOxbbfuWTu34K+8DA6jyFkd8ceqHknAK97seFFAo=;
-        b=dGbZ2yTtfWoeI35uauCJWaq2U+Yoiq1C9BXlbCiCIeI/UCwHB6Ax/s8R6tRWfTjE5w
-         diHoXHEquZ0R+KtiEShYK2uPRf5G69w3f6ttIJrj8KxzIz7vF/mTaz1QZX+QeGoyMxGh
-         dGGwI9mbxYty1gCTbpKaFItKD2+xvpHXeT28JYIe0EjKT261XJNS070d7W1kyTh1HIcQ
-         slmykQslCIs7DHtDFSML8AMYpkhX+jmK5toAiA8Bo56hFhyGUaSu6s3SrqQkwyjR3B6F
-         N4yA3yakcdEkLeFKcAMPD/XRkivhhU747kZ5zD0DuEgImS8by5mUZGsAYvO7BiorM4bU
-         jqHg==
-X-Gm-Message-State: AOJu0YxO6599O6LG3+u5D61TkCXa+ErUhy47pEp1Cvl7OL3dZfVcmFGC
-	zxVqG6acOpzuU6LGOZB609tl1i2Nz0uARML2dHb+2C5xcVAdmqZOr8wrBv//lg==
-X-Google-Smtp-Source: AGHT+IFBfEFVY3g0oM2/BGGdZ3Q6Mpfn3MSyJk6cOSoXomUIoUgVnQhq517tPvH61wPvt73sh3wORw==
-X-Received: by 2002:a05:6e02:1389:b0:3a0:ac0d:22b9 with SMTP id e9e14a558f8ab-3a3f4058abamr22270665ab.6.1729257227812;
-        Fri, 18 Oct 2024 06:13:47 -0700 (PDT)
+        bh=EYlu7kUyVVFvizFrzeSTtKVIpspDxNh9CaA9Lpt1VR8=;
+        b=e67Ot/DNvUHr/YoJrR7DmMYHbdbBX6l2BNGJLtEp5SbGm+s+aMIg+XTtW72PaI6VpY
+         +/dfoq5ui7MUZW9IcN/lIBVgAUBnEZ+yJkxYajpZr6uBsL+CS5ecI6VUS4QDXJ5Q1uEz
+         YgO9qH1eeuArd8PXf6TotHaD6V1nYalT3ns40=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729257231; x=1729862031;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EYlu7kUyVVFvizFrzeSTtKVIpspDxNh9CaA9Lpt1VR8=;
+        b=XICU4zRTHprqnHY5dpMuXgcdz+D+fWXwW1jzWtDOSVQQ6CPwWXo/oL6d4GR3+211QU
+         73lmjtIovQaum9EqW1EOWolX1uvAXm5+TaEdABVP72lPgiob6YkiJXTpeT+n5THOvfIe
+         ogfcIGoYRuR18S9Ayi0NCf2oxPuGO0FFHCUW7vK5fwDDzmK9pCeIlK35lmXobG1VKeCg
+         7FW3tPp7wWkrwf9CpywrVbcqmynoTyRAlehYXhaC1lszBn7q3D2Ikth6/+/JcyM6IgAF
+         EUSWL1Dn+riFvkGBmDCzHNJXNirTm7gsQwWAiBEJDaC4FRugCIL25Ls8G2mL2km/jGFy
+         mAWw==
+X-Gm-Message-State: AOJu0YzmLPztSuONQ9mUrX/ml5bqZNudHyzE+ao5El7uLlOYfvwLtlt/
+	cSzlz/rUF8VPT/YbN5+4JX2kpbUVs1w+SvO8XQyGy4LUVrjvHAZMd3tKBIJNlw==
+X-Google-Smtp-Source: AGHT+IEDUPRn/bzbMJ8DyKrz1ReJDDUNeGqaDjl8NzOmbWtG9DdHYJFJg8JoLxVGWwxzk1sjUr6ruQ==
+X-Received: by 2002:a05:6a21:458a:b0:1d9:19bc:9085 with SMTP id adf61e73a8af0-1d92ca5a160mr3934470637.14.1729257230773;
+        Fri, 18 Oct 2024 06:13:50 -0700 (PDT)
 Received: from yuanhsinte.c.googlers.com (176.220.194.35.bc.googleusercontent.com. [35.194.220.176])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7eacc256cc8sm1120222a12.56.2024.10.18.06.13.45
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7eacc256cc8sm1120222a12.56.2024.10.18.06.13.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 06:13:47 -0700 (PDT)
+        Fri, 18 Oct 2024 06:13:50 -0700 (PDT)
 From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Subject: [PATCH v2 0/4] Using i2c-hid-of-elan driver instead of i2c-hid-of
- driver
-Date: Fri, 18 Oct 2024 13:13:40 +0000
-Message-Id: <20241018-post-reset-v2-0-28d539d79e18@chromium.org>
+Date: Fri, 18 Oct 2024 13:13:41 +0000
+Subject: [PATCH v2 1/4] arm64: dts: mediatek: mt8183: Fix race condition of
+ pinctrl
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,10 +75,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAARfEmcC/23MQQ6CMBCF4auQWVvTobYYV97DsChlhFlAyRSJh
- vTuVtYu/5e8b4dEwpTgVu0gtHHiOJeoTxWE0c8DKe5LQ63rC2q8qiWmVQklWpUPznXaWHRooBw
- WoSe/D+zRlh45rVE+h73hb/3LbKi0st73XWOt1qa5h1HixK/pHGWANuf8Bb7o+m2nAAAA
-X-Change-ID: 20241018-post-reset-ac66b0351613
+Message-Id: <20241018-post-reset-v2-1-28d539d79e18@chromium.org>
+References: <20241018-post-reset-v2-0-28d539d79e18@chromium.org>
+In-Reply-To: <20241018-post-reset-v2-0-28d539d79e18@chromium.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -90,53 +90,226 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  Hsin-Te Yuan <yuanhsinte@chromium.org>
 X-Mailer: b4 0.15-dev-7be4f
 
-After commit 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to
-i2c-hid-of"), i2c-hid-of driver resets the touchscreen without having
-proper post-reset delay on OF platform.  From the commit message of that
-commit, not to decribe poset-reset delay in device tree is intended.
-Instead, describing the delay in platform data and changing to use
-specialized driver is more preferable solution.
+Some mt8183 devices use second source touchscreen/trackpad and share the
+same pinctrl property with the original touchscreen/trackpad. Currently,
+multiple touchscreen/trackpad drivers might probe simultaneously,
+causing a race condition of getting the same pin.
 
-Also workaround the race condition of pinctrl used by touchscreen and
-trackpad in this series to avoid merge conflict.
+Move the pinctrl property to the i2c node to workaround this issue.
 
-Adding other second source touchscreen used by some mt8183 devices in
-this series since this should be based on the workaround of pinctrl
-issue.
-
+Fixes: dd6e3b06214f ("arm64: dts: mt8183: Add kukui-jacuzzi-burnet board")
+Fixes: 52e84f233459 ("arm64: dts: mt8183: Add kukui-jacuzzi-cozmo board")
+Fixes: 6cd7fdc8c530 ("arm64: dts: mt8183: Add kukui-jacuzzi-fennel board")
+Fixes: 124d64392de2 ("arm64: dts: mt8183: Add kukui-jacuzzi-juniper board")
+Fixes: f006bcf1c972 ("arm64: dts: mt8183: Add kukui-jacuzzi-willow board")
+Fixes: 055ef10ccdd4 ("arm64: dts: mt8183: Add jacuzzi pico/pico6 board")
 Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
 ---
-Changes in v2:
-- Add second source touchscreen patches since they should based on the
-  first patch of this series.
-- Link to v1: https://lore.kernel.org/r/20241018-post-reset-v1-0-5aadb7550037@chromium.org
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts   |  2 --
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts    |  3 ---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts     |  2 --
+ .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts     |  2 --
+ .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts     |  2 --
+ .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts     |  2 --
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi  |  3 ---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper.dtsi |  3 ---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts     |  3 ---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts    |  3 ---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi  |  3 ---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi         | 10 +++-------
+ 12 files changed, 3 insertions(+), 35 deletions(-)
 
----
-Hsin-Te Yuan (4):
-      arm64: dts: mediatek: mt8183: Fix race condition of pinctrl
-      arm64: dts: mediatek: mt8183: Switch to Elan touchscreen driver
-      arm64: dts: mediatek: mt8183: kenzo: Support second source touchscreen
-      arm64: dts: mediatek: mt8183: willow: Support second source touchscreen
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
+index 19c1e2bee494c98c0db87308494713a26e304cd2..32ec6fd30fdb7449e9e606f69d16556bcdecc369 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
+@@ -21,8 +21,6 @@ &i2c0 {
+ 	touchscreen@2c {
+ 		compatible = "hid-over-i2c";
+ 		reg = <0x2c>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&touchscreen_pins>;
+ 		interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		post-power-on-delay-ms = <200>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts
+index f34964afe39b5353de7b17e82d14d1fba88551ab..b75ab2d33550808196f2d1d4bf0d34ccb713a07a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts
+@@ -23,9 +23,6 @@ trackpad@2c {
+ 		reg = <0x2c>;
+ 		hid-descr-addr = <0x20>;
+ 
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&trackpad_pins>;
+-
+ 		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		wakeup-source;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+index 0b45aee2e29953b6117b462034a00dff2596b9ff..ebe6e161354c414d91859494ec9295db75a3baf9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+@@ -19,8 +19,6 @@ &touchscreen {
+ 	compatible = "hid-over-i2c";
+ 	reg = <0x10>;
+ 	interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&touchscreen_pins>;
+ 
+ 	post-power-on-delay-ms = <10>;
+ 	hid-descr-addr = <0x0001>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
+index 72852b7600383972d98d9b0edd40b6e99e34a85b..2dc64cc539f815b9848b8243e5b487f22d605a6d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
+@@ -32,8 +32,6 @@ &touchscreen {
+ 	compatible = "hid-over-i2c";
+ 	reg = <0x10>;
+ 	interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&touchscreen_pins>;
+ 
+ 	post-power-on-delay-ms = <10>;
+ 	hid-descr-addr = <0x0001>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts
+index 757d0afd14fb064fc1de4608e65eb1a561c4dfa6..53e996f9c605dc36df03d4b0051a91e19fefb38d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts
+@@ -19,8 +19,6 @@ &touchscreen {
+ 	compatible = "hid-over-i2c";
+ 	reg = <0x10>;
+ 	interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&touchscreen_pins>;
+ 
+ 	post-power-on-delay-ms = <10>;
+ 	hid-descr-addr = <0x0001>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts
+index 6641b087e7c5f3a957e43ac985137dfd84ac7878..d7db621383c6b823af08ca07e0794758d062e211 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts
+@@ -19,8 +19,6 @@ &touchscreen {
+ 	compatible = "hid-over-i2c";
+ 	reg = <0x10>;
+ 	interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&touchscreen_pins>;
+ 
+ 	post-power-on-delay-ms = <10>;
+ 	hid-descr-addr = <0x0001>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi
+index bbe6c338f465ee7c11bfbfc30767bdb142706480..e5b51b27980ae90a8f1099f71a891bb0562a375a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi
+@@ -16,9 +16,6 @@ trackpad@2c {
+ 		reg = <0x2c>;
+ 		hid-descr-addr = <0x20>;
+ 
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&trackpad_pins>;
+-
+ 		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		wakeup-source;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper.dtsi
+index 078bc765646f57fd8c55e97325893ab50e4dac51..a96c64a9251044b2c1ba4289467b411e6c744abe 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper.dtsi
+@@ -12,9 +12,6 @@ trackpad@2c {
+ 		reg = <0x2c>;
+ 		hid-descr-addr = <0x20>;
+ 
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&trackpad_pins>;
+-
+ 		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		wakeup-source;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
+index 8ce9568fee95a6faba0c238f6c43f43948c26d9b..2c740b3e5d3d91980ed89e07a6be70ff51906145 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
+@@ -25,9 +25,6 @@ trackpad@2c {
+ 		reg = <0x2c>;
+ 		hid-descr-addr = <0x20>;
+ 
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&trackpad_pins>;
+-
+ 		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		wakeup-source;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+index cce326aec1aa594deb6f5b14340d3552d110b160..bce368fcc884008086c091a29e3f69e541215ee5 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+@@ -38,9 +38,6 @@ trackpad@2c {
+ 		reg = <0x2c>;
+ 		hid-descr-addr = <0x20>;
+ 
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&trackpad_pins>;
+-
+ 		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		wakeup-source;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi
+index 76d33540166f900c99c419c4f97ca0a56cf658f5..9b1600d5c4c1247c97fd59aa7603eaa835420117 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi
+@@ -12,9 +12,6 @@ trackpad@2c {
+ 		reg = <0x2c>;
+ 		hid-descr-addr = <0x20>;
+ 
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&trackpad_pins>;
+-
+ 		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		wakeup-source;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+index 783c333107bcbf7368398feae0a29e5f0ee50c19..65f70627f2dcc4af832b8a08f7cdce354c800fae 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+@@ -100,14 +100,13 @@ &dsi_out {
+ 
+ &i2c0 {
+ 	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&touchscreen_pins>;
+ 
+ 	touchscreen: touchscreen@10 {
+ 		compatible = "elan,ekth3500";
+ 		reg = <0x10>;
+ 
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&touchscreen_pins>;
+-
+ 		interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		reset-gpios = <&pio 156 GPIO_ACTIVE_LOW>;
+@@ -116,7 +115,7 @@ touchscreen: touchscreen@10 {
+ 
+ &i2c2 {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&i2c2_pins>;
++	pinctrl-0 = <&i2c2_pins>, <&trackpad_pins>;
+ 	status = "okay";
+ 	clock-frequency = <400000>;
+ 
+@@ -124,9 +123,6 @@ trackpad@15 {
+ 		compatible = "elan,ekth3000";
+ 		reg = <0x15>;
+ 
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&trackpad_pins>;
+-
+ 		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		wakeup-source;
 
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts |  2 --
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts  |  3 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts   | 12 +++---------
- .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts   | 11 ++---------
- .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts   | 11 ++---------
- .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts   | 11 ++---------
- .../arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi |  3 ---
- .../boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper.dtsi      |  3 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts   |  3 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts  |  3 ---
- .../arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow.dtsi |  3 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi       | 10 +++-------
- 12 files changed, 12 insertions(+), 63 deletions(-)
----
-base-commit: eca631b8fe808748d7585059c4307005ca5c5820
-change-id: 20241018-post-reset-ac66b0351613
-
-Best regards,
 -- 
-Hsin-Te Yuan <yuanhsinte@chromium.org>
+2.47.0.rc1.288.g06298d1525-goog
 
 
