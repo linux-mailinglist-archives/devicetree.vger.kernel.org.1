@@ -1,138 +1,120 @@
-Return-Path: <devicetree+bounces-113080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ACBB9A483E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 22:39:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D604C9A486E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 22:49:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A8791C2096B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 20:39:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8317D1F20FD1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 20:49:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8367F20694D;
-	Fri, 18 Oct 2024 20:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B683118CC18;
+	Fri, 18 Oct 2024 20:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ga4kn+CN"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Hss/a/DJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA5618801F;
-	Fri, 18 Oct 2024 20:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9078D18D625
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 20:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729283947; cv=none; b=YXwVarFbG24qmJFPLjk3ffnMB86e3po0WjmZ5UpR0t+nSApCxBOz6VnunkXTR5eVA0iXu+g0EKoxke4JeDXbbcDTyLCRUZndoIm21/8bCJKthu/herIff4bu8j6UyH0XbB9xJzfo8BNXCnbVc/pxXhTKn7G+lh+JIeOZj9ZiDOA=
+	t=1729284557; cv=none; b=ihko9YZrL71cbAU26IysFNoQC8nb3mYy8NNDwcRJdELjYa42tv8Ip5UL1sal1j3iX6jDHJLD9LmNqS1DTW6OLn7ULJKvSl1xBGgWOGpTKKYMiu94DuCfpdzGhAnL5lgKCbDKvOX9HTfZywhzXQc5dkakmBonJ0VUEy9X0B0sVEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729283947; c=relaxed/simple;
-	bh=UFgY7nQ/+9Kk9FAvomP/z0BzB/J5FmyIv+Qtu5xS03g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tko4zFAGDMwDyhE5t9Uuc5sT1W8uVBgzhvjkbyIE0Z9HXDsMHggJZUe/rCIAYXI96xy2wKJncax9E7Yhs2PD2CMRfo3dqtqVBhyKQDnXGgxnV5m5oyw35U20/Tjurs8vZuAixZRv0PWu35t1HeKkpHKanHaKHu78FUyHLdLJs54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ga4kn+CN; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729283946; x=1760819946;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UFgY7nQ/+9Kk9FAvomP/z0BzB/J5FmyIv+Qtu5xS03g=;
-  b=Ga4kn+CNWq49SAIVIA4wcapxm8Vsj+41BFYuq9bKZ3iOh1MsHFt4xFYO
-   6LNiO8F7j/YRfXq8KhH2XzhqsTySh/zHCsAngyXj1Z768lFCnI7JjJ5Ba
-   98iIUFdFXSM3NR/YdOvOysNdtPwMxa+b0kJIJ4kFxYSrD8AZT3XGRR0kD
-   EgDWwN2y8Q8qv7AhUFcoTVB5I6li3SJ3AYSWwIlORb4Wlm4QVf0HO0Pjb
-   81SohH223t6bU0ZRIgbI7a2HatHcC/W4QGQRhZvsdrDRWtQM+ZCg6m3cF
-   3Qe1CJ7DLtCyoYtDL/LFLL0GSH2S+Lb+383SGGrxYrqM6f1nHyt8q2NFq
-   g==;
-X-CSE-ConnectionGUID: /H5wU2VTT3mi/GERzY4zMw==
-X-CSE-MsgGUID: O+IVOup9Q3ulmRK/oTXeAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="32515118"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="32515118"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2024 13:39:05 -0700
-X-CSE-ConnectionGUID: rAB6xkV6RViK06qQGjQlrg==
-X-CSE-MsgGUID: XZBQz+AGRmuplNxQnYCQxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; 
-   d="scan'208";a="109796431"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 18 Oct 2024 13:39:02 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t1tkR-000OI1-11;
-	Fri, 18 Oct 2024 20:38:59 +0000
-Date: Sat, 19 Oct 2024 04:38:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 6/7] pinctrl: pinmux: Introduce API to check if a pin is
- requested
-Message-ID: <202410190448.yDDAKyxt-lkp@intel.com>
-References: <20241017113942.139712-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1729284557; c=relaxed/simple;
+	bh=sq2lBEx/oPK3mFck2yfdIPZDDYu11WVFdH4z5opWiaw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NGQ7wLcmSe/ocZ4waiR7HlE3JPBAb4dIAbgcz2Mu04midAwX0iDIJd4zK8kh8Div40s4hMnjRoGZU7qKrDSS0gdzo3j1vLW29m8L9NjDFEOsvdEzzT+ZC2D/7j2svMQL68zDa+qtpDxJx98VWKK9Zqewj+7Yuw8MsAzBLmpwQW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Hss/a/DJ; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fb501492ccso28433351fa.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 13:49:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729284552; x=1729889352; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SM/k2Z4ZPVx9AnrPUOX6+i0klklaqbDryXRJgrrJdkw=;
+        b=Hss/a/DJ5Nb2+8tInkvIJbaLgJJh1RD7vbWaSnNXp2cq1xAvJQYrpyIZ9/g8Py8pvH
+         +WTGD0V63yvstX/5452TXTqqMTgfnzloPI+Xy1NyF8RWqYMdKSTCn3VsJjqCPUzpRj2w
+         kP4SXFR3HfE78NhpS51UW3OOSRh0zgjehQ/J8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729284552; x=1729889352;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SM/k2Z4ZPVx9AnrPUOX6+i0klklaqbDryXRJgrrJdkw=;
+        b=HOXK/+FAn9kJ/FYMo/HZyr9QXwqE1EL7KQCzVEq23ulluLzVYDjeuGqtgOOeGCPlJz
+         08PeB2/OVmhRSpkzmQiXPuCEXD/vI9QsBoDdMVTMU/EUKilnV13C4b17csqyPUAP2t2p
+         bNpzt1qTkWm1z4znaq6hpl39GWmHdPgvyTn//hRuFQ6ITPfiyWtk9ayIDismJoQjmFxu
+         Zi++KRVXAn1JnHG9I2mM+ctmN/sWW3j/AqMBEBzDs/kwh5ytFcTYKNKwzofvsFfbsSgi
+         wQiWIuaqJcIPCWH9PNgEwNXqx4lEZiLtFC2eChKiy6ZOE+k+mPb9h4jDT8UQAj0HvX64
+         7HHg==
+X-Forwarded-Encrypted: i=1; AJvYcCUob9Yumj5OhNS3CdryPvso0BTAAhu5mzhDMEVreZdpTk6WBt8pgvtZ2mrquqQDkUsQW32iZPAsPDYu@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKcU+BCOxzDJw6Dwr0D0rI3ee6irhnMlCX+wvDy2wQ3WB+bxVw
+	4StKZ/lvtH6rZa+0akfWGiBgpe+7TBB2e10OsTmXhBwM/yOxnEhKpmxlCThKscFRZlz4RggTtbL
+	7G5Qv
+X-Google-Smtp-Source: AGHT+IHIz6RdBF/Ko6XlyX+NNFYlVk8Zy3wh+cKdrKSsxvnUmCCbPNQB8o6mKGmBIirbnfaq0Gmqww==
+X-Received: by 2002:a05:651c:1990:b0:2f7:4d86:5dcf with SMTP id 38308e7fff4ca-2fb831e8e2fmr17387511fa.35.1729284551949;
+        Fri, 18 Oct 2024 13:49:11 -0700 (PDT)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb809b21a3sm2935581fa.30.2024.10.18.13.49.10
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Oct 2024 13:49:10 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb3c3d5513so28920451fa.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 13:49:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV8LIMF3SQVGcZdMOjhM0nRrR07eJTbEdtwMZ+J5mKlhvAxdyiuuLguqqMqtVflgW62JJ0FQYYbsI44@vger.kernel.org
+X-Received: by 2002:a05:6512:3985:b0:539:f23b:59c3 with SMTP id
+ 2adb3069b0e04-53a154b3094mr2178158e87.34.1729284550257; Fri, 18 Oct 2024
+ 13:49:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241017113942.139712-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20241018020815.3098263-2-charles.goodix@gmail.com>
+In-Reply-To: <20241018020815.3098263-2-charles.goodix@gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Fri, 18 Oct 2024 13:48:56 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
+Message-ID: <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: krzk@kernel.org, dmitry.torokhov@gmail.com, hbarnor@chromium.org, 
+	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
+Hi,
 
-kernel test robot noticed the following build warnings:
+On Thu, Oct 17, 2024 at 7:09=E2=80=AFPM Charles Wang <charles.goodix@gmail.=
+com> wrote:
+>
+> The Goodix GT7986U touch controller report touch data according to the
+> HID protocol through the SPI bus. However, it is incompatible with
+> Microsoft's HID-over-SPI protocol.
+>
+> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> ---
+>  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
+>  1 file changed, 58 insertions(+), 10 deletions(-)
 
-[auto build test WARNING on geert-renesas-drivers/renesas-pinctrl]
-[also build test WARNING on linusw-pinctrl/devel linusw-pinctrl/for-next geert-renesas-devel/next linus/master v6.12-rc3 next-20241018]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I'm happy to let device tree folks make the call here, but IMO it
+would be much cleaner to just consider the I2C-connected GT7986U and
+the SPI-connected GT7986U to be different things and just use a
+different compatible string for them. So essentially go back to your
+v7 patch from before [1] but change the compatible to
+"goodix,gt7986u-spi". If, for instance, this device also had a USB
+interface then I don't think we'd try to cram it into the same
+bindings even though the same physical chip was present...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Prabhakar/arm64-dts-renesas-rzg3s-smarc-Drop-hogging-of-GPIO-pins/20241017-194200
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git renesas-pinctrl
-patch link:    https://lore.kernel.org/r/20241017113942.139712-7-prabhakar.mahadev-lad.rj%40bp.renesas.com
-patch subject: [PATCH 6/7] pinctrl: pinmux: Introduce API to check if a pin is requested
-config: arm-pxa3xx_defconfig (https://download.01.org/0day-ci/archive/20241019/202410190448.yDDAKyxt-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241019/202410190448.yDDAKyxt-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410190448.yDDAKyxt-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/pinctrl/core.c:38:
->> drivers/pinctrl/pinmux.h:104:6: warning: no previous prototype for 'pin_requested' [-Wmissing-prototypes]
-     104 | bool pin_requested(struct pinctrl_dev *pctldev, int pin)
-         |      ^~~~~~~~~~~~~
-
-
-vim +/pin_requested +104 drivers/pinctrl/pinmux.h
-
-   103	
- > 104	bool pin_requested(struct pinctrl_dev *pctldev, int pin)
-   105	{
-   106		return false;
-   107	}
-   108	#endif
-   109	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-Doug
 
