@@ -1,112 +1,86 @@
-Return-Path: <devicetree+bounces-112829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7CA09A39DF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:23:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 188C29A39EF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:25:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 791BF28587D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:23:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47BD51C20BB0
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22DB1E22F8;
-	Fri, 18 Oct 2024 09:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C721EF0A3;
+	Fri, 18 Oct 2024 09:25:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="qjJc2l+G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s43u2vtB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04601192B98
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 09:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFCE1EE030;
+	Fri, 18 Oct 2024 09:25:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729243381; cv=none; b=b3hyYkbgUHoJzOH27/seMdWKgnRmQbG4KrBDrY90UllZ14mm+OP8YbokPlhXXFhD58JGAEdou6IdUHmXEsAOk2LxxyKOzGukToINvbdyJsx1ZI0kDig9QKxeuyzuYfuP/fiwbFD2m1aqVJlXnSfWPXBVwrAag1y1uv4Lcat5W2s=
+	t=1729243500; cv=none; b=W1sgb3o4INcRDqYIHMgRlRc5pOhggp6HShU/6CyMyJe26UXAPu/vdep9AfbxeWR1+H7kMhFOOUkq2z5gLs3TqjFguabmNSoD9kqK3GuO63dKLRSJyYPI4uWrY5k0yy1T2X76ua1/m0oAdnNDCZXwisG/T3jAVuIJiEWs0imyU24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729243381; c=relaxed/simple;
-	bh=rTqntKDVf0EfoOxPycYjN4EHhnzbh96V64uFLJzfjmg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lxB+ZxfEGafM4cQ5Nl/QzuPMKct6tvuO1xIxwr48/5+oAx55cVe93saDdfbU84YL7QZux4mGHjxno/Ebd9/h0OjIWc3zivTTTzx6NFttF3o9RBZzi4ehXQ99vf+Yt6d3sxINi1U3Trr9n64tgSXt6f2Stpo86F2V2trX5SpJQ0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=qjJc2l+G; arc=none smtp.client-ip=91.218.175.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1729243376;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=yPWX9mnHF8dLFEMgA3FdWK9Mm/mngUWWAofNS10id9Q=;
-	b=qjJc2l+GGaJm72JmtKwzwS0EMiB4dtw0Z5gmx6TAMjvGOe3JfcbjeYWnq9eqV9rW5JKIJu
-	9PUauhgQI2LmVYgv9q7cfMLjGBGyFl0fxWKeNboGfYy0fpmChgblexG9rPd/OPB7T7afwF
-	DwThEEDwt1ZRycE29hbuwKLR1DTC2ezg65mF1Hr0RDzAdhFmExlBc5Mk/mrTkDYpEuHR7O
-	hlzJ5nzbM3d3tlciE8/f+5vmNTx7c9yMEL1sx7+JVFf4YfdRcIV20iHLHa7aBm69KN2f21
-	o7at7raJoTd6SxldQBRrlTFSz0a7KqURvu2r11e/iSUUvu/KYgui4cIUCPLSFA==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1729243500; c=relaxed/simple;
+	bh=2IMdaA8ul6gM8hgkv6IdrYUC/CNJrqmd/NFRkemFyM0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UTysTFCCEOl4VEGSyM/BxcXMK2TKkCP8jFnjq10fdIFwhdRGBAwBJZTXXYMNeCDOOiQjCdAG0KQHhEi4oxIwP6lubeekZ901OY0lMPoxUDucafUW6EKA39xF8LMtjmlbAmY2NedetlSPxQb1D4zTKarbHwmeeNC/D3kEwYn6XH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s43u2vtB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 148DBC4CEC3;
+	Fri, 18 Oct 2024 09:25:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729243500;
+	bh=2IMdaA8ul6gM8hgkv6IdrYUC/CNJrqmd/NFRkemFyM0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s43u2vtBzmN+A0XC9MtQq6SKKNqp1j6aPDmrkTTSeQaf3R5y+/KY6t3RU+rMnd/TD
+	 6JBPLDC9WOXxdMun4Et3t6f1uttvAWBKggoVRioLSZCv0lqXy2jiuVxGph4kycIc9D
+	 P6Tw/P0qtXPSy+XWdvkWXnOHPPv78YXvlWv4Vm+e4gqsnQa2GpPM8D8+FSLmKHkuTO
+	 rR+MhivQ2ymx7+IOtsd4unjPmTq+Y/trUJKMgl2xGEcJYJ2RjMpGZel3GaRrFPFHDm
+	 T4DHsrOBCMxGIIF5/TXGRnT0TnKwHJBU6HJrHwd8C3jw/YIu3ZRpunSZro2BGKtiNc
+	 uxooaQe6Kgw5Q==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t1jEL-0000000028A-1p5I;
+	Fri, 18 Oct 2024 11:25:09 +0200
+Date: Fri, 18 Oct 2024 11:25:09 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rockchip@lists.infradead.org,
-	Samuel Holland <samuel@sholland.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH] arm64: dts: rockchip: Correct GPIO polarity on brcm BT nodes
-Date: Fri, 18 Oct 2024 11:22:18 +0200
-Message-ID: <20241018092237.6774-1-didi.debian@cknow.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Bryan.Kemp@dell.com,
+	tudor.laurentiu.oss@gmail.com, tephan.gerhold@linaro.org,
+	johan+linaro@kernel.org
+Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: x1e80100-dell-xps13-9345: fix
+ nvme regulator boot glitch
+Message-ID: <ZxIpdW16t0T2Ou8z@hovoldconsulting.com>
+References: <20241016202253.9677-1-alex.vinarskis@gmail.com>
+ <20241016202253.9677-3-alex.vinarskis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241016202253.9677-3-alex.vinarskis@gmail.com>
 
-The GPIO polarity of the 'shutdown-gpios' property needs to be
-ACTIVE_HIGH or the Bluetooth device won't work.
-This also matches what other devices with the same BT device have.
+On Wed, Oct 16, 2024 at 10:15:49PM +0200, Aleksandrs Vinarskis wrote:
+> The NVMe regulator has been left enabled by the boot firmware. Mark it
+> as such to avoid disabling the regulator temporarily during boot.
+> 
+> Based on https://lore.kernel.org/all/20241016145112.24785-1-johan+linaro@kernel.org/
+> 
+> Fixes: f5b788d0e8cd ("arm64: dts: qcom: Add support for X1-based Dell XPS 13 9345")
+> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
 
-When changing from 'reset-gpios' to 'shutdown-gpios', I forgot to also
-correct the GPIO polarity, so do that now.
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
-Fixes: a3a625086192 ("arm64: dts: rockchip: Fix reset-gpios property on brcm BT nodes")
-Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
----
- arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi  | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-index a477bd992b40..0131f2cdd312 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-@@ -688,7 +688,7 @@ bluetooth {
- 		host-wakeup-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
- 		pinctrl-0 = <&bt_enable_h>, <&bt_host_wake_l>, <&bt_wake_h>;
- 		pinctrl-names = "default";
--		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
-+		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
- 		vbat-supply = <&vcc_wl>;
- 		vddio-supply = <&vcca_1v8_pmu>;
- 	};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-index e9fa9bee995a..1e36f73840da 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-@@ -404,7 +404,7 @@ bluetooth {
- 		host-wakeup-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&bt_host_wake_h &bt_reg_on_h &bt_wake_host_h>;
--		shutdown-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_LOW>;
-+		shutdown-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
- 		vbat-supply = <&vcc_3v3>;
- 		vddio-supply = <&vcc_1v8>;
- 	};
--- 
-2.45.2
-
+Johan
 
