@@ -1,199 +1,110 @@
-Return-Path: <devicetree+bounces-112912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07359A3DC3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:03:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 398A79A3DC6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:04:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AB1F283172
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:03:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA5AE1F231E9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F3417ADF0;
-	Fri, 18 Oct 2024 12:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC55C29A1;
+	Fri, 18 Oct 2024 12:04:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nLKi+J+X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P863KZue"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C98ACE555
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 12:03:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09105E555
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 12:04:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729252998; cv=none; b=O1Wg45DWqngnwVas+jKps17BlL4JcIY1bW6qArNtmPdgNuYHJBtEaQGa2Q54Y15UCsLtdoAeDZ4mdzmHIS8IlhehuLD8XUZEykYm9K10dgR9qOx9FNikKf2hyjoSQ3TogSRieezMgY75BzHHxXdeGJ52Eq/0PKuJ6qI2LIGg7Uc=
+	t=1729253047; cv=none; b=HfdmCIg5xFRIlGz7HfQhXxHBw6pLuNueFSVSNMeZfMHYIZQcUGSn0Gey1fjIR+IUxm5exFUnrW3f4tA7FReM8bGHIO6jfOymaKbospMbC68GXv4TYCwtTElTzOdPbIkkOPAtNGhZEvdius81tIgAdRKJ/y26r/Ce0u+6PhLboWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729252998; c=relaxed/simple;
-	bh=8Klwv7FKRpCBVZDGms6vZqbLr10aymsVwSzujYvPBP4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ThzMrW1K2ldwz9Wod71Jp6tOgmIv/FVeiwnNeMQsC4grXlWDpMHga7bDZfXEkBmt/2pZe+o5xIUOzxkt3TKNnrRsZGXT18tN4Ew/ah3n34O9xRDWkrKI+VOAG61y28C0Dn2YxAiilQ17cwowdpZBKymv2HLgNyeLJT/CA7XzwXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nLKi+J+X; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-71e625b00bcso1534398b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 05:03:16 -0700 (PDT)
+	s=arc-20240116; t=1729253047; c=relaxed/simple;
+	bh=G16VMFkYo1lJYiUjqoV5uhRSbc4X8d7pUahQxY3PU5E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dAoR+fKQlHpAX/f7Sh9fjo7dEVHiKLgNRivsdCQGjqscSgZ/32/k1Gibnf63V1ajnFdbTHduCmjPICLGlidkpb8covRJwMYTUTzdlCCo2DHrSZ87f3tjdaiNIheBF5/om0MqnylSlH3HYSWZCuFe4EYYrN/THyJzVhIWHIi9NQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P863KZue; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539e13375d3so2364506e87.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 05:04:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729252996; x=1729857796; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pKGlVab4i7DHl/ffkFGpIlho3hvAo5V5WFM3UhTHe/o=;
-        b=nLKi+J+XytYXQKwQPMDRY/OROdVY0NpnDNyFu6wd+ll/qIWnYk9lmAF9zsTRIC3DVQ
-         r/QORbpsqN6tsl2hKq5JwZidILsLYkpRFySID8XQtSkZleLQ8R9oZznwInCVggbgFoQM
-         LQi6IOjPgeWBdSC28udfIK4f3i9TSRiGpu8jw=
+        d=linaro.org; s=google; t=1729253044; x=1729857844; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bfCb0bhd7A40KUaBz9hRRbX867xrYglHoInu7Xbi7mI=;
+        b=P863KZuerXkZdbLl5rJ/cHc3/qW1KoLQ/hNwp1zw22XA0Rqu26VhMQNshyHfcSvAO4
+         WydpmmSZgTuAmoFauANM6hZ9/NfDXWp4tYmmF89zijPUfDcDabBaMkhqPpQ73HAUDskW
+         AWMOI/TmCK192E/8P5XJ5qK5A2KzcTqPmAdLAhFQyRQrcJRSnvc+qjMDWgP/NVUcdhPz
+         bZ8/fFZr5xwK8MdwUG6FY+24GNyalMs1Qod3C9QFpe1+v5MpMDrlCJoTmO4l/SV9LU90
+         9kUWhYltEOfip8qPvfRvF7G3kLRoW4tPJvypVR6bPtjFHPprCMUqq+vDyeOF3KgFDh6J
+         uxoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729252996; x=1729857796;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pKGlVab4i7DHl/ffkFGpIlho3hvAo5V5WFM3UhTHe/o=;
-        b=Dqt/1F3STz/ANt52QZADrzE0mxi0bJGP73hbZ969KKBw4bCeDzhbRrgtdMUS054602
-         nyVPltS89x5z/ux9wDAfPkXGJOkZYP8bezmfpf2YgfkuaOG/QbDtZVhcMkHeH4QbUMsy
-         363toeUkIQAmvSmpXR5BCinLTKwXbJwk62xhH7Bl6jYKx4E8hFRHGSzJqRjRZUG12sbP
-         YCB7s0yqG0kBsjXjX1Vfch6X75kCI8g6cbRTdYoOGHmx53rNazsZRMMhhGejy874G59S
-         01Sx5jBOqBUPav1HbAnlpXBhVgksIUhlT/OnrkwQiy9rlQTS1w0+h1WRynC0nzK+baq4
-         upKQ==
-X-Gm-Message-State: AOJu0YybaLicv2HrereuEDSqjNERdWwOTaov9MFJBJzBXdsw6kOwJsVG
-	ZsuPk0Qtwmza9190AegEa0U9W4T3Jkv1CNRrsvGPGtLW3wi+dYZCCJysxrcdxpPZgQTXf30WgZo
-	=
-X-Google-Smtp-Source: AGHT+IEMoyV6BqxdhGrDIRhbQDdZfec7fHmtNYn4YW1cd/EZHjfSnxgL4d4cV9mzhYNOQP54WR2zaw==
-X-Received: by 2002:a05:6a00:cc4:b0:71e:3b8:666b with SMTP id d2e1a72fcca58-71ea325b489mr2897763b3a.15.1729252995698;
-        Fri, 18 Oct 2024 05:03:15 -0700 (PDT)
-Received: from yuanhsinte.c.googlers.com (176.220.194.35.bc.googleusercontent.com. [35.194.220.176])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ea34ae672sm1274014b3a.204.2024.10.18.05.03.13
+        d=1e100.net; s=20230601; t=1729253044; x=1729857844;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bfCb0bhd7A40KUaBz9hRRbX867xrYglHoInu7Xbi7mI=;
+        b=R33Ocg4ekIaMOf+3aWELMiJ8S2xUltBhdCJ+BRI6AR5HrUZ6fUU8eTtT4ZF9kVOJ/7
+         tTpkLLccnbr196qCuW850HEGAkGx5G5ZeL4gtL1LWq57qFRt3g5kw7cQ0MSXgpKifrFn
+         GgAB5ao9dKLh+k4k/b0uV9yloFvBTFfQGyMoaGpSotj6d021QMswlNswsVC3apfyi01P
+         INGiFKAFAuGTlIijQ2pMQRXMTBXfumaHRBV9GazYdNSGQpDbFSmRf8fhqXI/7VPawGVK
+         V9lH5pdLQAxXnl0PKZnS+1SQFi9QwyW8hSUrO41OxtsiNikDp9l2jP2oggHYcfdG893A
+         muZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXI79iOgZE4QwkSZKhB1GdX3EP6lBE6qCVYTLMYGqVx69UszvvJEWhqKsta+o0MpWJzS92g1CzqhrJt@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKKEa0EBI8TmrJGssFGGtigxY0gdJ28A6HxEd52DyKidCB/yWD
+	n9jotQekaUoWtuXRkgzDxl+KvL7qO1i2z3NT4fOaGzVfXJgbHCw2agpfaGxwTwk=
+X-Google-Smtp-Source: AGHT+IF0p+EHb3y6Bb15TCfxTx2WBchcnW+np0ZaXW6dvAlcadVgamxMd0Nd/+bgKh+CYw0YxRaxNQ==
+X-Received: by 2002:a05:6512:39cd:b0:535:699b:b076 with SMTP id 2adb3069b0e04-53a15467b88mr1514958e87.16.1729253044002;
+        Fri, 18 Oct 2024 05:04:04 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a151b00fbsm203981e87.31.2024.10.18.05.04.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 05:03:15 -0700 (PDT)
-From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Date: Fri, 18 Oct 2024 12:03:05 +0000
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8183: Switch to Elan
- touchscreen driver
+        Fri, 18 Oct 2024 05:04:03 -0700 (PDT)
+Date: Fri, 18 Oct 2024 15:04:02 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Imran Shaik <quic_imrashai@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/6] clk: qcom: Add support for GPU Clock Controller on
+ QCS8300
+Message-ID: <l53g7hbjxg2fe2rezghearuf4bllem5ubn2pn6f4qf2nd3wthg@v2a7pd5zquns>
+References: <20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com>
+ <20241018-qcs8300-mm-patches-v1-2-859095e0776c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241018-post-reset-v1-2-5aadb7550037@chromium.org>
-References: <20241018-post-reset-v1-0-5aadb7550037@chromium.org>
-In-Reply-To: <20241018-post-reset-v1-0-5aadb7550037@chromium.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Enric Balletbo i Serra <eballetbo@kernel.org>, 
- Hsin-Yi Wang <hsinyi@chromium.org>, Benjamin Tissoires <bentiss@kernel.org>, 
- Hans de Goede <hdegoede@redhat.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Hsin-Te Yuan <yuanhsinte@chromium.org>
-X-Mailer: b4 0.15-dev-7be4f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241018-qcs8300-mm-patches-v1-2-859095e0776c@quicinc.com>
 
-After commit 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to
-i2c-hid-of"), the i2c-hid-of driver used by some mt8183 devices resets
-the touchscreen without having enough post-reset delay. This makes those
-touchscreen fail to get probed.
+On Fri, Oct 18, 2024 at 04:42:30PM +0530, Imran Shaik wrote:
+> Add support to the QCS8300 GPU clock controller by extending
+> the SA8775P GPU clock controller, which is mostly identical
+> but QCS8300 has few additional clocks and minor differences.
+> 
+> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> ---
+>  drivers/clk/qcom/gpucc-sa8775p.c | 47 ++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+> 
 
-Switch to Elan touchscreen driver, which has enough post-reset delay.
-
-Fixes: 2be404486c05 ("HID: i2c-hid-of: Add reset GPIO support to i2c-hid-of")
-Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts     | 10 +++-------
- .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts     |  9 ++-------
- .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts     |  9 ++-------
- .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts     |  9 ++-------
- 4 files changed, 9 insertions(+), 28 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-index ebe6e161354c414d91859494ec9295db75a3baf9..b98a3530511e576347a4ed291d37d45dd42fec97 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-@@ -14,14 +14,10 @@ / {
- };
- 
- &touchscreen {
--	status = "okay";
-+	compatible = "elan,ekth6a12nay";
- 
--	compatible = "hid-over-i2c";
--	reg = <0x10>;
--	interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
--
--	post-power-on-delay-ms = <10>;
--	hid-descr-addr = <0x0001>;
-+	vcc33-supply = <&pp3300_alw>;
-+	vccio-supply = <&pp1800_alw>;
- };
- 
- &qca_wifi {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-index 2dc64cc539f815b9848b8243e5b487f22d605a6d..9fb329626a82034e44fb5fbd2d0ad9675c0a5afa 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-@@ -27,14 +27,9 @@ &cros_ec_pwm {
- };
- 
- &touchscreen {
--	status = "okay";
--
--	compatible = "hid-over-i2c";
--	reg = <0x10>;
--	interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
-+	compatible = "elan,ekth6a12nay";
- 
--	post-power-on-delay-ms = <10>;
--	hid-descr-addr = <0x0001>;
-+	vcc33-supply = <&pp3300_alw>;
- };
- 
- &qca_wifi {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts
-index 53e996f9c605dc36df03d4b0051a91e19fefb38d..6d547361fc4f9d2ab1f9b048af443495c9bed323 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dts
-@@ -14,14 +14,9 @@ / {
- };
- 
- &touchscreen {
--	status = "okay";
-+	compatible = "elan,ekth6a12nay";
- 
--	compatible = "hid-over-i2c";
--	reg = <0x10>;
--	interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
--
--	post-power-on-delay-ms = <10>;
--	hid-descr-addr = <0x0001>;
-+	vcc33-supply = <&pp3300_alw>;
- };
- 
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts
-index d7db621383c6b823af08ca07e0794758d062e211..39ab09ce28aa2ed4335d5279a965f23a8458688e 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dts
-@@ -14,14 +14,9 @@ / {
- };
- 
- &touchscreen {
--	status = "okay";
-+	compatible = "elan,ekth6a12nay";
- 
--	compatible = "hid-over-i2c";
--	reg = <0x10>;
--	interrupts-extended = <&pio 155 IRQ_TYPE_LEVEL_LOW>;
--
--	post-power-on-delay-ms = <10>;
--	hid-descr-addr = <0x0001>;
-+	vcc33-supply = <&pp3300_alw>;
- };
- 
- 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
-2.47.0.rc1.288.g06298d1525-goog
-
+With best wishes
+Dmitry
 
