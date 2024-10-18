@@ -1,84 +1,116 @@
-Return-Path: <devicetree+bounces-112711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679D69A356A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:31:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB28C9A356E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:32:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96C961C21199
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:31:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D0221C2180A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE0615FD13;
-	Fri, 18 Oct 2024 06:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A709817B4FC;
+	Fri, 18 Oct 2024 06:32:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dAGL2MuV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FZsHjnxp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6AC220E30E;
-	Fri, 18 Oct 2024 06:30:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280DF187339;
+	Fri, 18 Oct 2024 06:32:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729233059; cv=none; b=ShK48NLbO9GHTCZSbCBJTKdYSex3fw0NMMWZhtjJ59ESmWLqrj/Cemkj83oSZcVu8G+DqqFxfETRV4T8rZFGLIfJdddhCbiyvV/8a35GxUAp76KzQ1wJe2hP3tNGZR0CYz91LFYo1aXIXgmX/I5vWh9gR1GBKN5kWJvKQ4Ozdl0=
+	t=1729233142; cv=none; b=jyDCs/DoPKyfBR5yNL0pCuFCA0mRJQSSYdfi6/S+2y5Ex6YKK5v3gbtriLh+s9CO4IJ2ssVuTYPO2Jun/L/aM/s1TJ34fvaZ0LTTjOxuZkmamfEln4QO3p2qcuYiDacAWxlKu0xb8UdHNV3uYxcZ9r+Cz0ENvtLYzlvrDrg9Qgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729233059; c=relaxed/simple;
-	bh=DxBz2pZsmQ3FjwAkGPUZ0lXykxpqpRnMMo4p4Gg9vjU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z5MDM7wC7kIgjNkJbFlQ+cFZJausqmXtCBWtbinRvgsbpn2XkvYM/kGFJRCzsDLm63LOK/xpfwVf5aQoNIFnRHo8PkcYrt3RqOQVW9a4U4kcluCPz6oUFNJU9qBVaRFiiS7wzLS/VbVIMMougElCYdGPIRDUw4Ob3TN1RdrRItE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dAGL2MuV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D2FCC4CEC3;
-	Fri, 18 Oct 2024 06:30:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729233058;
-	bh=DxBz2pZsmQ3FjwAkGPUZ0lXykxpqpRnMMo4p4Gg9vjU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dAGL2MuVFM1vz0E1ilO7NgiL08nAPFuBID5WsyXJ1AdQeGYm70OCS/BgNsI8DDRg6
-	 frUb3smQ9VLpvZlCRNqSniGfYmaqaMgaAQo26b/YdxJ+/emnfAZrTpRfGegi6E/Pzl
-	 gZLq9m+HJNPtXW8EpJxyfzvRkggjA4BntSxBotIxxc6q3LjQzqCbeUkJZJqNdeirX7
-	 04xIdrCM22B7LSh0iAwOxzrMblvBwy+AykyIpWWuXu2Sd5NVF49WJxIcEk2iPJ3CES
-	 XO1WRDM3GQVomRWyU7zQPqXgCiT7hBfVvMFe4gS2u0MS4qtC5TOLbrl8Tcr++l6TAz
-	 E4tCQPdQQp7Kw==
-Date: Fri, 18 Oct 2024 08:30:54 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	igor.belwon@mentallysanemainliners.org
-Subject: Re: [PATCH v2 4/4] arm64: dts: exynos: Add initial support for
- Samsung Galaxy S20 (x1slte)
-Message-ID: <ncckonzlc7fjt6vhw543iqoua4qx7hjgexj6lxyaldzcvbtutx@luazzw3rmjcd>
-References: <20241017164328.17077-1-umer.uddin@mentallysanemainliners.org>
- <20241017164328.17077-5-umer.uddin@mentallysanemainliners.org>
+	s=arc-20240116; t=1729233142; c=relaxed/simple;
+	bh=RBbsmy0pgd1yHEdvREC300nWIODYwIgTapne369AcU4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=da5eVh1SbBQmuGK6lo0fjUODIOyo+eRC4J1ViUnPZXo8KVS5B19I6F6chifVDZy3J/+PolYNjf73eO/J0iuEYZtzM4gb6wSdz5YqjeBTy0VvI/Us6PTc8TDiYDc3driMVqMfjRQqymFOj5CRUj2r9dSdQPULcHFpE++QPz+W2sY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FZsHjnxp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49I0NHCa005830;
+	Fri, 18 Oct 2024 06:32:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NAsB94Uf/B5zfHWiXlHuP2BRqsvtHgo1G8A+Lzo/QG0=; b=FZsHjnxpyYHDiZIQ
+	52WakfK1yBeEd2hCpKpCOIoAyTD5BVmXZBp/joDCl4oCRCHRiIo7zlTzedfu7gXj
+	Y6egA6mdNmtUU4yK4zTE9OhKmAqwYQReuFZcaLhjDclDp5le5lAC32sWQ2qIr3Sb
+	aU5mPatIxrW0toWiG4g3xT14N52dQOQuWQ9ZBFhTr1pQ8yAVebA1uA8K5rq8hOnX
+	z4IhqVYs2Q3MA4t89TGD86gyTK00NtReXKP9k0eSHW2mGwrF58ZLzVnCieGMBMPt
+	8oFf5KXoZUBXcUl4QlOq0S+yoVT2nJrlBMwI5Y7eveSvXTp5ejXuZ3Uk65++e8dW
+	Z49aMA==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42bd3arrrw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 06:32:16 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49I6WGvx031587
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 06:32:16 GMT
+Received: from [10.253.73.121] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 17 Oct
+ 2024 23:32:12 -0700
+Message-ID: <abdb209a-3328-46f0-98d4-1a03e8da96d1@quicinc.com>
+Date: Fri, 18 Oct 2024 14:32:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241017164328.17077-5-umer.uddin@mentallysanemainliners.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: aoss: qcom: Document the qcs615 AOSS_QMP
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_tingweiz@quicinc.com>,
+        <quic_aiquny@quicinc.com>, <quic_sudeepgo@quicinc.com>,
+        <quic_taozhan@quicinc.com>, <quic_jiegan@quicinc.com>
+References: <20241017025313.2028120-1-quic_chunkaid@quicinc.com>
+ <20241017025313.2028120-3-quic_chunkaid@quicinc.com>
+ <u7y2eu6t4ljk42rigfgxylpzpog2ygbwcou7e6jalnfqsqxsfy@ifezf2435be4>
+Content-Language: en-US
+From: Kyle Deng <quic_chunkaid@quicinc.com>
+In-Reply-To: <u7y2eu6t4ljk42rigfgxylpzpog2ygbwcou7e6jalnfqsqxsfy@ifezf2435be4>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NQ3mTraN_s6LAXjHz4GdM3Esfq1Pewvg
+X-Proofpoint-ORIG-GUID: NQ3mTraN_s6LAXjHz4GdM3Esfq1Pewvg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 suspectscore=0 impostorscore=0 clxscore=1011 mlxlogscore=811
+ malwarescore=0 adultscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410180039
 
-On Thu, Oct 17, 2024 at 05:43:27PM +0100, Umer Uddin wrote:
-> Add initial support for the Samsung Galaxy S20 (x1slte/SM-G980F)
-> phone. It was launched in 2020, and it's based on the Exynos 990 SoC. It
-> has only one configuration with 8GB of RAM and 128GB of UFS 3.0 storage.
 
-8 GB RAM, so the memory map should not be the same (and should not be in
-DTSI file).
 
+On 2024/10/17 17:18, Krzysztof Kozlowski wrote:
+> On Thu, Oct 17, 2024 at 10:53:12AM +0800, Kyle Deng wrote:
+>> Document the Always-On Subsystem Qualcomm Message Potocol(AOSS_QMP)
 > 
-> This device tree adds support for the following:
+> typo: Protocol
+Okay,I will fix it in the next version.
 > 
-> - SimpleFB
-> - 8GB RAM
-> - Buttons
-
-Best regards,
-Krzysztof
+>> on the Qualcomm qcs615 platform.
+>>
+>> Signed-off-by: Kyle Deng <quic_chunkaid@quicinc.com>
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
