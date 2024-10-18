@@ -1,110 +1,138 @@
-Return-Path: <devicetree+bounces-113079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31EE09A482A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 22:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ACBB9A483E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 22:39:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B28F1C2240D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 20:35:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A8791C2096B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 20:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF95C2101B9;
-	Fri, 18 Oct 2024 20:33:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8367F20694D;
+	Fri, 18 Oct 2024 20:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SOoyZEA8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ga4kn+CN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC45220FABD;
-	Fri, 18 Oct 2024 20:33:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA5618801F;
+	Fri, 18 Oct 2024 20:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729283610; cv=none; b=fwTT40AkPta5KKUneLbFvcHiBGbAwK7WaI2ARTPCYST5QlipW7b7yNnWVHv3r/a9AuWGt28KSnajnRtZtHqkxurPQ4orZ0j/+PHS0qfxsk0N8qbgf7XFETCX/POIVEcd0lNoW4jTPw0FyKurUezPNMhHTFH6w5C8qWx2N+tJtHY=
+	t=1729283947; cv=none; b=YXwVarFbG24qmJFPLjk3ffnMB86e3po0WjmZ5UpR0t+nSApCxBOz6VnunkXTR5eVA0iXu+g0EKoxke4JeDXbbcDTyLCRUZndoIm21/8bCJKthu/herIff4bu8j6UyH0XbB9xJzfo8BNXCnbVc/pxXhTKn7G+lh+JIeOZj9ZiDOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729283610; c=relaxed/simple;
-	bh=8RgkMHQnDnTBhwJbh+8HOHYaoBgkjMwi/ekHrLB3vbc=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=mLzjvFg8mg/AriaWVBHsX3WVMFWKp15HyWCqRMyHZSFmD/IqkOJQG41g71roU5HKNWccqqja0NeVUMIwXCOm7zO/x+izqKuoOPls5V6WHFlWc0sXJm5dvXOLQ3ORc53HfbIFy9EzywYEsT3vfIHfqRuh7RtCnGi+65pY11IZ6PM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SOoyZEA8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09EBEC4CEC7;
-	Fri, 18 Oct 2024 20:33:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729283610;
-	bh=8RgkMHQnDnTBhwJbh+8HOHYaoBgkjMwi/ekHrLB3vbc=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=SOoyZEA8xvIZBiuSXTEaxnxMVSpBI6XjkBcMpPS7pKkn+N6CeHDHw69EZC4hAZ2nm
-	 zykeWZJSigEY3kGbNz7c6Ribqv+OiCgdgbj1UVY4fKV1UYH7kawFmxdV/XxlBpNUWu
-	 ZCOhGhXTpy8JgSGNd9I1dVGUJXxpurgOkIWqyp8RcgjqKxDkMuzZvymPGYgdmbR8X2
-	 5ajcBFVqC926MybrGyow9fuiFfQt2iG6b+pFsuXCT0QFf/rb5BiNAJIcuevyZqFneA
-	 R0DGsWVHHPyAvUK7yRFecPXN/DDqku5fD8uoT3D9Mnq0VZNsu1i6w8NdJST7jmnS/8
-	 RbV2FalMP70tQ==
-Date: Fri, 18 Oct 2024 15:33:28 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1729283947; c=relaxed/simple;
+	bh=UFgY7nQ/+9Kk9FAvomP/z0BzB/J5FmyIv+Qtu5xS03g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tko4zFAGDMwDyhE5t9Uuc5sT1W8uVBgzhvjkbyIE0Z9HXDsMHggJZUe/rCIAYXI96xy2wKJncax9E7Yhs2PD2CMRfo3dqtqVBhyKQDnXGgxnV5m5oyw35U20/Tjurs8vZuAixZRv0PWu35t1HeKkpHKanHaKHu78FUyHLdLJs54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ga4kn+CN; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729283946; x=1760819946;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UFgY7nQ/+9Kk9FAvomP/z0BzB/J5FmyIv+Qtu5xS03g=;
+  b=Ga4kn+CNWq49SAIVIA4wcapxm8Vsj+41BFYuq9bKZ3iOh1MsHFt4xFYO
+   6LNiO8F7j/YRfXq8KhH2XzhqsTySh/zHCsAngyXj1Z768lFCnI7JjJ5Ba
+   98iIUFdFXSM3NR/YdOvOysNdtPwMxa+b0kJIJ4kFxYSrD8AZT3XGRR0kD
+   EgDWwN2y8Q8qv7AhUFcoTVB5I6li3SJ3AYSWwIlORb4Wlm4QVf0HO0Pjb
+   81SohH223t6bU0ZRIgbI7a2HatHcC/W4QGQRhZvsdrDRWtQM+ZCg6m3cF
+   3Qe1CJ7DLtCyoYtDL/LFLL0GSH2S+Lb+383SGGrxYrqM6f1nHyt8q2NFq
+   g==;
+X-CSE-ConnectionGUID: /H5wU2VTT3mi/GERzY4zMw==
+X-CSE-MsgGUID: O+IVOup9Q3ulmRK/oTXeAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="32515118"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="32515118"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2024 13:39:05 -0700
+X-CSE-ConnectionGUID: rAB6xkV6RViK06qQGjQlrg==
+X-CSE-MsgGUID: XZBQz+AGRmuplNxQnYCQxw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; 
+   d="scan'208";a="109796431"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 18 Oct 2024 13:39:02 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t1tkR-000OI1-11;
+	Fri, 18 Oct 2024 20:38:59 +0000
+Date: Sat, 19 Oct 2024 04:38:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 6/7] pinctrl: pinmux: Introduce API to check if a pin is
+ requested
+Message-ID: <202410190448.yDDAKyxt-lkp@intel.com>
+References: <20241017113942.139712-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Will Deacon <will@kernel.org>, 
- linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Catalin Marinas <catalin.marinas@arm.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jagadeesh Kona <quic_jkona@quicinc.com>, 
- linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Abhishek Sahu <absahu@codeaurora.org>, 
- Ajit Pandey <quic_ajipan@quicinc.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Stephen Boyd <sboyd@codeaurora.org>, 
- Imran Shaik <quic_imrashai@quicinc.com>, Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20241019-qcs615-mm-clockcontroller-v1-9-4cfb96d779ae@quicinc.com>
-References: <20241019-qcs615-mm-clockcontroller-v1-0-4cfb96d779ae@quicinc.com>
- <20241019-qcs615-mm-clockcontroller-v1-9-4cfb96d779ae@quicinc.com>
-Message-Id: <172928360590.1569447.6799165783921516176.robh@kernel.org>
-Subject: Re: [PATCH 09/11] dt-bindings: clock: Add Qualcomm QCS615 Video
- clock controller
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241017113942.139712-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Hi Prabhakar,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on geert-renesas-drivers/renesas-pinctrl]
+[also build test WARNING on linusw-pinctrl/devel linusw-pinctrl/for-next geert-renesas-devel/next linus/master v6.12-rc3 next-20241018]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Prabhakar/arm64-dts-renesas-rzg3s-smarc-Drop-hogging-of-GPIO-pins/20241017-194200
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git renesas-pinctrl
+patch link:    https://lore.kernel.org/r/20241017113942.139712-7-prabhakar.mahadev-lad.rj%40bp.renesas.com
+patch subject: [PATCH 6/7] pinctrl: pinmux: Introduce API to check if a pin is requested
+config: arm-pxa3xx_defconfig (https://download.01.org/0day-ci/archive/20241019/202410190448.yDDAKyxt-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241019/202410190448.yDDAKyxt-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410190448.yDDAKyxt-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/pinctrl/core.c:38:
+>> drivers/pinctrl/pinmux.h:104:6: warning: no previous prototype for 'pin_requested' [-Wmissing-prototypes]
+     104 | bool pin_requested(struct pinctrl_dev *pctldev, int pin)
+         |      ^~~~~~~~~~~~~
 
 
-On Sat, 19 Oct 2024 00:45:45 +0530, Taniya Das wrote:
-> Add DT bindings for the Video clock on QCS615 platforms. Add the
-> relevant DT include definitions as well.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  .../bindings/clock/qcom,qcs615-videocc.yaml        | 64 ++++++++++++++++++++++
->  include/dt-bindings/clock/qcom,qcs615-videocc.h    | 30 ++++++++++
->  2 files changed, 94 insertions(+)
-> 
+vim +/pin_requested +104 drivers/pinctrl/pinmux.h
 
-My bot found errors running 'make dt_binding_check' on your patch:
+   103	
+ > 104	bool pin_requested(struct pinctrl_dev *pctldev, int pin)
+   105	{
+   106		return false;
+   107	}
+   108	#endif
+   109	
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/clock/qcom,qcs615-gpucc.example.dts:19:18: fatal error: dt-bindings/clock/qcom,qcs615-gcc.h: No such file or directory
-make[2]: *** [scripts/Makefile.dtbs:129: Documentation/devicetree/bindings/clock/qcom,qcs615-gpucc.example.dtb] Error 1
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241019-qcs615-mm-clockcontroller-v1-9-4cfb96d779ae@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
