@@ -1,151 +1,136 @@
-Return-Path: <devicetree+bounces-112844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232E69A3A9C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:57:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C37E9A3AB9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:01:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0E521F22003
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:57:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF6D7289AFE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A44F620100B;
-	Fri, 18 Oct 2024 09:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F45F1E883F;
+	Fri, 18 Oct 2024 10:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BIM3AfgM"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="zARhtP6g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0CA200CB8
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 09:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A8D17D378
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 10:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729245415; cv=none; b=axrRPZxRaOVyaJm/r99u1Iil7mFucHUPlXEa5/IiZvayANU9qHfiJSTSzsmEy0r+SBz57puZhSdMzkD9pqNuy26ilibZUhyBIL+A8I5zLUY979kCcFOyTI0eV1RKa2N1QeNSlkMs/4vgcNuKYIXCN4jKyZR9b4bWY4O6+vnH9zE=
+	t=1729245703; cv=none; b=hD2J2NaZPsqX9kaoJxs0U1wJaKPoIqXEMhF0DIa+fklqavxHEdTHoUcb1foDwahtMUjt81cZY3cSmAiGmeulEaLrtb3vt06eRM9GwUFLNbcAgsZALW26fqt1hRJkL0OcX63xV+viHpoc+MRddQyAJCfvezllGVN8rhwhHkPaagM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729245415; c=relaxed/simple;
-	bh=7F02LSuaYG6QJFBmCRDKkgg4PK0fEcpJQMSscDg7UlE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ft9gZ/zYkqPfWvqv88dzzIgJDwjgCamVngaaGTvoofJ3ynbog7Oa7vmVKQ19dq0RNreom7uk81koV7w9/yJQY7o2rE9dxAbwzD6q93NXSmWQDT/Y+RYCDxhowuJaN9yRZ8VTtc9bNtlo2fiVH040x7r/qXHVsLq4Trcv83jtA98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BIM3AfgM; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2fb559b0b00so18222191fa.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 02:56:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729245412; x=1729850212; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7LNTOM/u0GLXGMOI0m9ADZhvsMR3Q86VPixhtk5oFIY=;
-        b=BIM3AfgMvpJS9rTaYmiGjRV26sQbxtxXSenjIjGpWs9EsiCbI64jdLUP3cuNkjK+Ag
-         6kuEi3GZg8X87YyOGjBwJkUSP4ISP4nye58NfH8GU0Kmg9T1BsRJqG87qwg5Rx8EP9c2
-         qkLOQvVdopL+v4k7lvXnuu3D+AdZN8YpHv818PYI+yqw5r/UUe+bSmNldKvqFOiPkUS7
-         7yEKf8MLDn+yG6mp9bQmpH9e8waoXstOUK6EnAT18eUAiFxpqORiEuRq4zYgTDSu952B
-         DW2AWmlJLL5pCzeUiaxgncBGZ9iQH6sQ1kbVZcK1AcnpzuMjXCoiHV3Wv7ZUL/tMKCX3
-         oEtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729245412; x=1729850212;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7LNTOM/u0GLXGMOI0m9ADZhvsMR3Q86VPixhtk5oFIY=;
-        b=SfUkQN640iZbnue9n5P0benJAkEdk+oBcJBXPlniCq2KEZ8SjFCaxuJIGijkGVSVez
-         3q0nYsXJbcW/VtokIUenNQWqH+z5TKQpe9ZYdjxIZOICWSI2a993kka1gMjLnFAIeR1n
-         CHQrfT+zwC2GB9Y33Quzpn1B3WlnrMtFvCz2BsSJRDZUzGTrVxPbzXNNVAEVi4raOfny
-         UWxrHlzGG7UkJriFWjoQONcHYPaQ/PW3hSWUPhPkydw5KnfTUdrjGddJSO+C7b178xOq
-         N8rJ5ZoUNhkYQsOoFiCS1TTeZEgMbv/ZCUVVL02PsrBRKcsZNyetx0n+84NIqycjcblI
-         lY8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVSJ6jUx6Q9jiCkHhx9b/FK72Sq4VKJz5fAotYEgmxXSNdKvOzuxDV8ntEsj+c43xpIbbEBXiUZyTPK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCvYOMqa/T4bZpGR2p1R+tlOx+oEm/rY2ySKSevNEh96Zs/Lpe
-	4kmutrWzHydKYo3otSBhm5vyYqbX/46Xl69l6dr/IEJIXi6iAESxHNlVpOqqERI=
-X-Google-Smtp-Source: AGHT+IGeK8KzMr9lXPmuFDOy4a4IgVl3STdpDnUlPNvFi3vc36Dx0SsuLqG1dmfqX8sdyi9pbmxBAg==
-X-Received: by 2002:a05:651c:211d:b0:2fa:cc12:67de with SMTP id 38308e7fff4ca-2fb83208e04mr9201491fa.32.1729245411950;
-        Fri, 18 Oct 2024 02:56:51 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb809a6a7dsm1776881fa.10.2024.10.18.02.56.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 02:56:50 -0700 (PDT)
-Date: Fri, 18 Oct 2024 12:56:48 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Kalpak Kawadkar <quic_kkawadka@quicinc.com>
-Subject: Re: [PATCH 07/14] clk: qcom: clk-branch: Add support for SREG branch
- ops
-Message-ID: <scwpcovoazmd4yrwtczghx4e5eopqoknknqzcr23wjve65bmxh@ih5efkh53g3h>
-References: <20241017-sar2130p-clocks-v1-0-f75e740f0a8d@linaro.org>
- <20241017-sar2130p-clocks-v1-7-f75e740f0a8d@linaro.org>
- <be8639d0add779bcac0314d3c433d01b.sboyd@kernel.org>
- <we4stuv7td5jmvicsvsjowqg76merg5lmlgqj6dvqvqecsw7xk@bfz2kdjnt6kb>
- <5904599efffa7ce747772c0dcc1c897b.sboyd@kernel.org>
+	s=arc-20240116; t=1729245703; c=relaxed/simple;
+	bh=kpVs6QNuH4t46SoaItN6OY7yKe1EfynK3SlqSS5AI0w=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=AWe7hxXTwTJLRpl9yasSkTIPXVl+IRxSZcitxGErGJSr9B4I1OSKADWDELuvOR3ULc1GZkKQcRnO/ckmqq/QLm0kVTOPxxZYTKwYapTn8dNVsnP/nx4lDCzPgcPrWCgxDcUCuLo0qKnCwghlbCjHGQCftT+UvmgBf8l3Iq04AZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=zARhtP6g; arc=none smtp.client-ip=91.218.175.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5904599efffa7ce747772c0dcc1c897b.sboyd@kernel.org>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1729245699;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vq44XNSVqgHa/XdP4NFnLGc5+igXGHK+t/VxbE7OtsE=;
+	b=zARhtP6gRoKin5kG2ZnJBZbv96O3U2ZSa/PGkCLH/fcf5CX88L2gh5hWbFXPG77XIWSFFw
+	5OkITriS7d0SQOWbZ1hVw8r8U7/7MtJeN1lirpHCADvF072HPESLQVtSKVm0PidTFpwwF3
+	0/zQ302uM8dhMjS3TeFjIDyb6PGGbCwnGa0J2iXAXiirC5JG8DQeTOk/tQGtQhuzdMt8yN
+	crX6WK3RoUmjPqQdgMp33lZgUIbQ5EdvZYHz1sQUC5QewlCqXqwdbK5nmjy/7wgPJJm1JT
+	wuCyiQLqQyQGJISEoqWvihLAEhBQimw4vOAXoGyLG0WmmNSGsvydvVx6O2BsTw==
+Content-Type: multipart/signed;
+ boundary=257bc4f7e0a51fb6aba1bc06018e6c2e1bcf34f65203598562bde9d8737d;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Fri, 18 Oct 2024 12:01:29 +0200
+Message-Id: <D4YUFQSAR6RX.LS5RY03XCV3J@cknow.org>
+Subject: Re: (subset) [PATCH v2 0/4] rockchip: Fix several DT validation
+ errors
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20241008113344.23957-1-didi.debian@cknow.org>
+ <D4X8GJV0W6JL.32E469JSATFEP@cknow.org>
+ <D4YTW4DVRT68.1Z97ZHDYWTKHT@cknow.org> <4604343.LvFx2qVVIh@diego>
+In-Reply-To: <4604343.LvFx2qVVIh@diego>
+X-Migadu-Flow: FLOW_OUT
 
-On Thu, Oct 17, 2024 at 03:28:13PM -0700, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2024-10-17 15:00:03)
-> > On Thu, Oct 17, 2024 at 11:10:20AM -0700, Stephen Boyd wrote:
-> > > Quoting Dmitry Baryshkov (2024-10-17 09:56:57)
-> > > > From: Kalpak Kawadkar <quic_kkawadka@quicinc.com>
-> > > > 
-> > > > Add support for SREG branch ops. This is for the clocks which require
-> > > 
-> > > What is SREG? Can you spell it out?
-> > 
-> > Unfortunately, no idea. This is the only register name I know.
-> > 
-> 
-> Can someone inside qcom tell us?
+--257bc4f7e0a51fb6aba1bc06018e6c2e1bcf34f65203598562bde9d8737d
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Taniya, could you possibly help us? This is for gcc_video_axi0_sreg /
-gcc_video_axi1_sreg / gcc_iris_ss_hf_axi1_sreg /
-gcc_iris_ss_spd_axi1_sreg clocks on the SAR2130P platform.
+Hi,
 
-> 
-> > 
-> > > 
-> > > >         u8      halt_check;
-> > > 
-> > > Instead of adding these new members can you wrap the struct in another
-> > > struct? There are usually a lot of branches in the system and this
-> > > bloats those structures when the members are never used.
-> > > 
-> > >       struct clk_sreg_branch {
-> > >               u32 sreg_enable_reg;
-> > >               u32 sreg_core_ack_bit;
-> > >               u32 sreg_periph_ack_bit;
-> > >               struct clk_branch branch;
-> > >       };
-> > > 
-> > > But I'm not even sure that is needed vs. just putting a clk_regmap
-> > > inside because the clk_ops don't seem to use any of these other members?
-> > 
-> > Yes, nice idea. Is it ok to keep the _branch suffix or we'd better
-> > rename it dropping the _branch (and move to another source file while we
-> > are at it)?
-> > 
-> 
-> I don't really care. Inside qcom they called things branches in the
-> hardware and that name was carried into the code. If sreg is a branch
-> then that would make sense. From the 'core_ack' and 'periph_ack' it
-> actually looks like some sort of power switch masquerading as a clk.
+On Fri Oct 18, 2024 at 11:37 AM CEST, Heiko St=C3=BCbner wrote:
+> Am Freitag, 18. Oktober 2024, 11:35:51 CEST schrieb Diederik de Haas:
+> > On Wed Oct 16, 2024 at 2:35 PM CEST, Diederik de Haas wrote:
+> > > On Wed Oct 16, 2024 at 11:41 AM CEST, Diederik de Haas wrote:
+> > > > Please revert the 4th patch.
+> > > >
+> > > > I must have messed up my testing previously, but BT does not work o=
+n the
+> > > > PineNote with the 4th patch applied and does work with it reverted.
+> > >
+> > > FWIW, I figured out what went wrong.
+> > > My testing was correct, but redo-ing the implementation to make it re=
+ady
+> > > for submission wasn't very smart.
+> > >
+> > > With ``shutdown-gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;``
+> > > it does work correctly, but I forgot to change GPIO_ACTIVE_LOW to
+> > > GPIO_ACTIVE_HIGH before submitting.
+> > >
+> > > I'll first figure out a better procedure before making a new submissi=
+on,
+> > > so the revert is still the best approach IMO.
+> >=20
+> > I've now done a new submission:
+> > https://lore.kernel.org/linux-rockchip/20241018092237.6774-1-didi.debia=
+n@cknow.org/
+> >=20
+> > So please don't revert the 4th patch now.
+>
+> hehe ok :-) .
+> I meant to ask if the fix wasn't simply toggling the gpio polarity, and
+> I guess with your patch you were faster than my question.
 
-Ack.
+I already knew that was the fix the moment I opened the other dts(i)
+files with the same wireless+bt module.
+While it was tempting to immediately sent the fix, I realized that
+being (too) eager to sent it out would be a recipe for another screw up.
 
+And I wanted to think through why it happened in the first place and
+that's because my submission process is all manual with an 'insane' long
+`git send-email` command, hand-crafted.
+So I better learn `b4` (properly) so my focus can be on the patches and
+less on the submission process.
 
--- 
-With best wishes
-Dmitry
+Making a mistake/screw up sucks, but not learning from them is bad.
+
+Cheers,
+  Diederik
+
+--257bc4f7e0a51fb6aba1bc06018e6c2e1bcf34f65203598562bde9d8737d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZxIx/AAKCRDXblvOeH7b
+blibAQDCucJM71C9TwS9Yr98OdbZHEg1kv4+sXW9YlDFAfaGQwD/fYlIrQ8AxlTb
+Om8V7JZLgB2t4JwXokIVFR1o0O06NwM=
+=HJWw
+-----END PGP SIGNATURE-----
+
+--257bc4f7e0a51fb6aba1bc06018e6c2e1bcf34f65203598562bde9d8737d--
 
