@@ -1,156 +1,112 @@
-Return-Path: <devicetree+bounces-112828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DED59A39CD
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:21:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7CA09A39DF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:23:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 174901F24BAA
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:21:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 791BF28587D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E7AB1E883A;
-	Fri, 18 Oct 2024 09:21:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22DB1E22F8;
+	Fri, 18 Oct 2024 09:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iZWU85ec"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="qjJc2l+G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E31018E748
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 09:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04601192B98
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 09:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729243263; cv=none; b=HsxTFQ+mkpmnb/OcV7aSQapLS2EvF7EEdq5Bmly0kmoJM9b45JT3kS7SrTVm74/IRYYtrTkq4aINN9S/fMvOyW2nAs6KU1bfgLB4yGML4EnTbsP+qqZvfRabiOYdQUfBTs3xS6IKyLcAeCIMqrVosaxSjEUHdN/grbn029IBJ2A=
+	t=1729243381; cv=none; b=b3hyYkbgUHoJzOH27/seMdWKgnRmQbG4KrBDrY90UllZ14mm+OP8YbokPlhXXFhD58JGAEdou6IdUHmXEsAOk2LxxyKOzGukToINvbdyJsx1ZI0kDig9QKxeuyzuYfuP/fiwbFD2m1aqVJlXnSfWPXBVwrAag1y1uv4Lcat5W2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729243263; c=relaxed/simple;
-	bh=2m70Uo5edm0oou27BOFno3Tc7nrR3KC/y7H2rhdo2cI=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=m3BKsktQT5DDdTmswUtjCUE7xpy9fEyMhjTjgNKyPZ/ZRLTFEcb10F2sbmLEVPXN3/BBT9pvT5la1NMPicy5QPHO89kVXDqgCr0YNFv2XL5678fGenskmP5HlSeIwLO7xoVVhH5yKap/9S76eW9nczRyje/H3jXD28AS8AlcI0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iZWU85ec; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-42f6bec84b5so19868695e9.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 02:21:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729243260; x=1729848060; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/6CJlVFCdkLnXR5mIG5TznNaMuOGXx1zBL9Ig1xKknA=;
-        b=iZWU85ecUfM5JfobrqRPohtE6Qaq+tJ4NSord7rOJxlYRdln2IuKS6HVBKTNMHDsp3
-         gmp9ghZn3PSSunfL5ExtHg0FSdVDzrfz9+RY2cSBT9cCZsM9U2wPGEu2sCP4sUvL6EAn
-         E0qB4OpnkJNeDd/y4Fy0FlS70JerECngT4o3n8UrgU62H947D4SHKJjC4tNPR/TaVJl4
-         fOhoRS+b3oihaoNNlp9VSD+sWG8lEOKwpDotonmNP5EBIxsx3P1MENKu3yPVYW7y8Kj0
-         9u1ByKHB/dhFIhnm6OEQ0MsVa1NScCVgFysJfroTCOVC7kvpNOUItbMWLORfjdiyTUqX
-         4b0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729243260; x=1729848060;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/6CJlVFCdkLnXR5mIG5TznNaMuOGXx1zBL9Ig1xKknA=;
-        b=gGiZYOFwj2UYCO6kn/4rYV070cQo0nB4ePVo9PDHaCWb5wXHrv/SZ4o6iXOe16x7Gk
-         21RfxBZ9UEct5xsy7/NOppP+0XpXQNIt4t5RdzQR63hJpQTZ8wErHqMCcS9XGPtfw6NE
-         YutDWdvebRQTt/nKcg4hjbUrzjDO9I+zcSl3td+8LmL/1fG6fYYl0IkYOOLJJkClRUW+
-         7VyXUVQ3LEhEYaThYZFJFJBuY41iZHotM+J5QSlvvjpcRTpXSNeIxFeUQd5D6tUWAh9u
-         /qEsX733t/dLf/GgWtNK/YZDrvajMSNQdPoUmnghCkk8YPg0wRbIaheabHiHTJW9sXOE
-         0KcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWFO6OqtV1TSw5WvtzX9G8N5JWvHTCfTtLQ8TTfTaMvxd7LIBeMlbJ5h5baxEUXcj6DcbQ4zstwGLjk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgPc6Bw6FyzUKZB/EeJV5+ZXX1GgpWaX48S+lQOXhXgGyj/gBY
-	uFBZ1Gn4XQcFHrNGFpSqndw9M4cKDFFrHJvu+Q1ei+Bfr5UqGIZnxRcVjsLPp1A=
-X-Google-Smtp-Source: AGHT+IEjc8x6P1fiXZXvuy0RRWf3NASza2rMgKQJv+Xo7tziKvwCXEKE7ppPcNk2dKWu+ZlA7d9gqg==
-X-Received: by 2002:adf:9bce:0:b0:374:c3e4:d6de with SMTP id ffacd0b85a97d-37eb47693ebmr1176601f8f.41.1729243259689;
-        Fri, 18 Oct 2024 02:20:59 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:6e2b:4562:2d66:575e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ecf0eccbasm1390562f8f.81.2024.10.18.02.20.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 02:20:59 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,  Linus Walleij
- <linus.walleij@linaro.org>,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil
- Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
- <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  Bartosz Golaszewski
- <brgl@bgdev.pl>,  linux-gpio@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
- SoCs
-In-Reply-To: <4127b448-a914-4c69-b938-29512995326f@amlogic.com> (Xianwei
-	Zhao's message of "Fri, 18 Oct 2024 17:01:09 +0800")
-References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
-	<20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
-	<4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
-	<1jttd9rein.fsf@starbuckisacylon.baylibre.com>
-	<4127b448-a914-4c69-b938-29512995326f@amlogic.com>
-Date: Fri, 18 Oct 2024 11:20:58 +0200
-Message-ID: <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1729243381; c=relaxed/simple;
+	bh=rTqntKDVf0EfoOxPycYjN4EHhnzbh96V64uFLJzfjmg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lxB+ZxfEGafM4cQ5Nl/QzuPMKct6tvuO1xIxwr48/5+oAx55cVe93saDdfbU84YL7QZux4mGHjxno/Ebd9/h0OjIWc3zivTTTzx6NFttF3o9RBZzi4ehXQ99vf+Yt6d3sxINi1U3Trr9n64tgSXt6f2Stpo86F2V2trX5SpJQ0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=qjJc2l+G; arc=none smtp.client-ip=91.218.175.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1729243376;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=yPWX9mnHF8dLFEMgA3FdWK9Mm/mngUWWAofNS10id9Q=;
+	b=qjJc2l+GGaJm72JmtKwzwS0EMiB4dtw0Z5gmx6TAMjvGOe3JfcbjeYWnq9eqV9rW5JKIJu
+	9PUauhgQI2LmVYgv9q7cfMLjGBGyFl0fxWKeNboGfYy0fpmChgblexG9rPd/OPB7T7afwF
+	DwThEEDwt1ZRycE29hbuwKLR1DTC2ezg65mF1Hr0RDzAdhFmExlBc5Mk/mrTkDYpEuHR7O
+	hlzJ5nzbM3d3tlciE8/f+5vmNTx7c9yMEL1sx7+JVFf4YfdRcIV20iHLHa7aBm69KN2f21
+	o7at7raJoTd6SxldQBRrlTFSz0a7KqURvu2r11e/iSUUvu/KYgui4cIUCPLSFA==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rockchip@lists.infradead.org,
+	Samuel Holland <samuel@sholland.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH] arm64: dts: rockchip: Correct GPIO polarity on brcm BT nodes
+Date: Fri, 18 Oct 2024 11:22:18 +0200
+Message-ID: <20241018092237.6774-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On Fri 18 Oct 2024 at 17:01, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
+The GPIO polarity of the 'shutdown-gpios' property needs to be
+ACTIVE_HIGH or the Bluetooth device won't work.
+This also matches what other devices with the same BT device have.
 
-> Hi Jerome,
->    Thanks for your reply.
->
-> On 2024/10/18 16:39, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->> On Fri 18 Oct 2024 at 10:28, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> 
->>> On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
->>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>>
->>>> Add the new compatible name for Amlogic A4 pin controller, and add
->>>> a new dt-binding header file which document the detail pin names.
->> the change does not do what is described here. At least the description
->> needs updating.
->> 
->
-> Will do.
->
->> So if the pin definition is now in the driver, does it mean that pins have
->> to be referenced in DT directly using the made up numbers that are
->> created in pinctrl-amlogic-a4.c at the beginning of patch #2 ?
->> 
->
-> Yes.
->
->> If that's case, it does not look very easy a read.
->> 
->
-> It does happen. The pin definition does not fall under the category of
-> binding.
->
-> https://lore.kernel.org/all/106f4321-59e8-49b9-bad3-eeb57627c921@amlogic.com/
+When changing from 'reset-gpios' to 'shutdown-gpios', I forgot to also
+correct the GPIO polarity, so do that now.
 
-So the expectation is that people will write something like:
+Fixes: a3a625086192 ("arm64: dts: rockchip: Fix reset-gpios property on brcm BT nodes")
+Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi  | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
- reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
-
-And others will go in the driver to see that is maps to GPIOX_10 ? the number
-being completly made up, with no link to anything HW/Datasheet
-whatsoever ?
-
-This is how things should be done now ?
-
->
->>>>
->>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> Best regards,
->>> Krzysztof
->> --
->> Jerome
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+index a477bd992b40..0131f2cdd312 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+@@ -688,7 +688,7 @@ bluetooth {
+ 		host-wakeup-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-0 = <&bt_enable_h>, <&bt_host_wake_l>, <&bt_wake_h>;
+ 		pinctrl-names = "default";
+-		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
++		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
+ 		vbat-supply = <&vcc_wl>;
+ 		vddio-supply = <&vcca_1v8_pmu>;
+ 	};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
+index e9fa9bee995a..1e36f73840da 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
+@@ -404,7 +404,7 @@ bluetooth {
+ 		host-wakeup-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bt_host_wake_h &bt_reg_on_h &bt_wake_host_h>;
+-		shutdown-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_LOW>;
++		shutdown-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+ 		vbat-supply = <&vcc_3v3>;
+ 		vddio-supply = <&vcc_1v8>;
+ 	};
 -- 
-Jerome
+2.45.2
+
 
