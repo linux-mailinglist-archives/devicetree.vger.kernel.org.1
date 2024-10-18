@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-112863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240369A3B79
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:27:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 749289A3B83
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:29:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDC03B20FC4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:27:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0ACDDB24263
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:29:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFBA1FCF73;
-	Fri, 18 Oct 2024 10:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41D7E2010EC;
+	Fri, 18 Oct 2024 10:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cIZm/1eG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PG32EBmv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374FA168C3F;
-	Fri, 18 Oct 2024 10:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9475F168C3F;
+	Fri, 18 Oct 2024 10:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729247272; cv=none; b=sVF+zRf6GQk7iT8kFvBxmQnBvwIAp/SNh+pnDLkRGbYj40j1GUJyaJ9gRpH/5mTZZj6kJ0vnTPzaxWR0YvmyLpNUW8d1Duu8Uv2etMoeXwoyytc6Hr9BHJUeoaw+srsAmQ+roKR9iiL9WKEVPeQFe7C4FjFO5mK175Onc/viZSk=
+	t=1729247335; cv=none; b=AYw+dL1aks3zLbVYDUBrjFf3YBYuQZOXEQYYidQclPTHMMBIsjv7WZH1WOom5of1oT6wxqyNZYdZx8HH7UhKfOHFzPShHk1uFk1cOHGa5KMgTg3p+r2OTcIhZFbJiC3PWXaCOyMKYlnTqi7c0eUUrNNqi9vvl9WKkfNV9fAQTnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729247272; c=relaxed/simple;
-	bh=D+k61GlGmp9xnyeEweCLRQhF29NqI4DCRl0Dei3Ft/U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I+EQp1fmIlVGbe6DS5keUTDNud1+MSsbw9isWSazUwqLLRNNKlealvb7kh3dQymEFNv9bOCTmbP61UObOOord9YaDN08cy03UPzDNTwsoWPYFNw+4cqgPaLxZBO0vt42gpzicyYuAUUPaIeWGepGbZvB0A1wZEfCtucZoNARYbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cIZm/1eG; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-71e72db7bb1so1432335b3a.0;
-        Fri, 18 Oct 2024 03:27:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729247271; x=1729852071; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KzGrat2AIxNp3RzAvcvun8G0SGCMp1qpX1sAcp7NBo0=;
-        b=cIZm/1eGqLP2tKm4N6T/azaZL+SZ69tQTxnFyZmqW+iuFKqaSDsTh5K8qCsNCEK9vu
-         yZLMsZXUKVSfd8DcFNlPjYo4PrwbpvWsAtsZCW7lmOEcnfAT/QXvM41T8+kDUhaN31Te
-         0GgXj4QnYqjj4kKrKJUICn3vFDYYgI/cRsIp5GPiFHT49WaEDgRQrfli4m3bHolo3Yqr
-         iSEcf5mZKiOSfXiKJJGWIF1uV071sKaWwjKZZYQHGFiUD/rXcHgtF/oU+ENO22eecfxB
-         DAQ/nrrEq8Ox6Z9FKzgMrSchW7HKVgNpNxGXhZpbxCf9DR2Z41RikjAeoGkCZ9bjBOvz
-         B77A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729247271; x=1729852071;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KzGrat2AIxNp3RzAvcvun8G0SGCMp1qpX1sAcp7NBo0=;
-        b=LWbfFg0bfzkYexCk33eSjoheg7MxpNjjNw+oPKARcxqDwp9mI0MwLkepAD+m/geqgZ
-         U7tUR5wchzTHmfIu8IuVS4MK+rNYMMGVugUj3QzgMhh7PVSX/A1mE1jgVCHyoiwTZDTO
-         fM7cZCIFKAmjCs8i2ba/fkBlYzw31b6oBLx2A9ZsyfGGaeLD+559wpeT8UdZbp/3cRSd
-         hC38vZM2/JWYBHOvGFTp9Ecr7/RkPoQIcOQfY4pEjPStpIhN4iUqMCAZYTHLksLr+jfV
-         L5Y4jxHml97zysSFhWe+Wqnv18TWJ/dmklzYj3J30pTHYyE59Pj+p72Pivf9p2Ld2lPq
-         qD1w==
-X-Forwarded-Encrypted: i=1; AJvYcCUDWWs0arL7cAyXIBDd1JalJqtFT/d4eVIQDMY20auNtwh2Sk8MyMuhYxaJhr++mzPjfczM/V6D3ILj@vger.kernel.org, AJvYcCWQc6oRZZkd1MdPcYe0pYV1J6C5ug61UAGIhl1ddSdjKtaNO5cupAGo3eN5hmsdFEYTzkYVMWrENgLr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJG0dH3mxdMbtXLrMaBrwtuEomAQ9RmojfdLm1KiRXV66p3nQY
-	sQEkBV6glfcLwvgR2f+G5/NSU5lojHbn4rVrQ1upvHXrDAWRHGbX9C/wixvi
-X-Google-Smtp-Source: AGHT+IHJFKH8VgX2jlAj3LDOHGle4eJKxnJIYbP1K/0wx6aabQpq0puQdRE4PgDjKb9NaNz+F1B6Og==
-X-Received: by 2002:a05:6a00:1a8a:b0:71e:60fc:ad11 with SMTP id d2e1a72fcca58-71ea325b1acmr2619040b3a.16.1729247270448;
-        Fri, 18 Oct 2024 03:27:50 -0700 (PDT)
-Received: from [172.19.1.42] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ea34098f9sm1114907b3a.112.2024.10.18.03.27.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Oct 2024 03:27:50 -0700 (PDT)
-Message-ID: <3a3f5c78-f85c-4dd1-a559-3ce2dd8dcb25@gmail.com>
-Date: Fri, 18 Oct 2024 18:27:48 +0800
+	s=arc-20240116; t=1729247335; c=relaxed/simple;
+	bh=OSesrguYvyqg8R32d0MHn/mdbmOkWXQq9jcqdL3WtLE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IdFb0jhtWdCLC4ODPdrytYHpRcdivzlpoapbF/DIfjgNqyFSDYhC6sj8vZiJM5d7PTBuEA72wIxYfw+3J2HShWB5irVIlCPSr79Ct4mAaDm1oJjY4zPtrT1XORJ+yuCZajDHwgAERsqlzWvJgOth++eiSxW8A0mkuQhIs31dG4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PG32EBmv; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49I1gEH9021848;
+	Fri, 18 Oct 2024 10:28:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0gLTCO+h4aAm3dUwXoca9iRtdvgVcY88kBHgtMoRt+E=; b=PG32EBmvcEoiXehf
+	g2O80IcgvidnA3yNPWfPe5ZVPizuT52zFCoOkcaybdWgfjqzpoRI7Sj9aNvp+ebR
+	OAtxYHxX0rqKGAWqBm5kObnwSATfgAtQEZTaLm4JAmvxSBn2Vtklo+ovH9WldtTd
+	iUKBHbkgq8lwQ61/fu1m3KSLZRD1p6xP4eVatz46rerNE7yBOnh3/1ZwuCIKZfQ7
+	nk5SMDCLFOsAxdDD7V47r74zsPZjgjiNXDdwSd7t2pI16f3xDZ4uTXXSPy9dcWC9
+	I6g5nSAEQC7UVIxRRfr3OAFZde9b7GtSEpsBDCiwuYlJxqAR3xu/wVOcqOpB1FLA
+	wB+Skw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42be8c9cks-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 10:28:33 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49IASWZX000489
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 10:28:32 GMT
+Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 18 Oct
+ 2024 03:28:28 -0700
+Message-ID: <1d74b699-8463-4885-b30a-d4f1eeb7b3db@quicinc.com>
+Date: Fri, 18 Oct 2024 15:58:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,100 +65,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: Add dt-bindings for Nuvoton MA35D1
- SoC PWM Controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, ukleinek@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20241018034857.568-1-cwweng.linux@gmail.com>
- <20241018034857.568-2-cwweng.linux@gmail.com>
- <a06afa20-8f69-45dd-8dce-272ae7da6d39@kernel.org>
+Subject: Re: [PATCH 09/14] clk: qcom: gdsc: add separate sleep state collapse
+ vote support
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen
+ Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Konrad
+ Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241017-sar2130p-clocks-v1-0-f75e740f0a8d@linaro.org>
+ <20241017-sar2130p-clocks-v1-9-f75e740f0a8d@linaro.org>
 Content-Language: en-US
-From: Chi-Wen Weng <cwweng.linux@gmail.com>
-In-Reply-To: <a06afa20-8f69-45dd-8dce-272ae7da6d39@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <20241017-sar2130p-clocks-v1-9-f75e740f0a8d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: gmhx78ShU4ABUnAIpIG4FaOGi_UceL9P
+X-Proofpoint-ORIG-GUID: gmhx78ShU4ABUnAIpIG4FaOGi_UceL9P
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ spamscore=0 bulkscore=0 phishscore=0 mlxscore=0 suspectscore=0
+ mlxlogscore=999 lowpriorityscore=0 impostorscore=0 priorityscore=1501
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410180066
 
-Hi Krzysztof,
 
-Thank you for your reply.
 
-On 2024/10/18 下午 02:02, Krzysztof Kozlowski wrote:
-> On 18/10/2024 05:48, Chi-Wen Weng wrote:
->> Add documentation to describe nuvoton ma35d1 PWM controller.
-> A nit, subject: drop second/last, redundant "dt-bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-Ok. I will fix it.
->> Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
->> ---
->>   .../bindings/pwm/nuvoton,ma35d1-pwm.yaml      | 45 +++++++++++++++++++
->>   1 file changed, 45 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml b/Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
->> new file mode 100644
->> index 000000000000..95f0a0819f53
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
->> @@ -0,0 +1,45 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pwm/nuvoton,ma35d1-pwm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Nuvoton MA35D1 PWM controller
->> +
->> +maintainers:
->> +  - Chi-Wen Weng <cwweng@nuvoton.com>
->> +
->> +allOf:
->> +  - $ref: pwm.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - nuvoton,ma35d1-pwm
->> +
->> +  reg:
->> +    maxItems: 2
-> Instead list and describe the items.
-Sorry, it should be 1. I will fix it.
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  "#pwm-cells":
->> +    const: 2
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
->> +
->> +    pwm0: pwm@40580000 {
-> Drop unused label.
-Ok. I will drop it.
->> +      compatible = "nuvoton,ma35d1-pwm";
->> +      reg = <0 0x40580000 0 0x400>;
-> But you have only one item here? No, that's just incorrect.
->
-Ok. I will fix it.
->> +      clocks = <&clk EPWM0_GATE>;
-> Best regards,
-> Krzysztof
+On 10/17/2024 10:26 PM, Dmitry Baryshkov wrote:
+> Some platforms use separate collapse vote registers for the active and
+> sleep states. Extend gdsc_update_collapse_bit() to support separate
+> collapse_sleep_ctrl register.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/clk/qcom/gdsc.c | 8 ++++++++
+>   drivers/clk/qcom/gdsc.h | 2 ++
+>   2 files changed, 10 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
+> index fa5fe4c2a2ee7786c2e8858f3e41301f639e5d59..95f8e90a8d25673c8a97a03f92cbdad25c3259db 100644
+> --- a/drivers/clk/qcom/gdsc.c
+> +++ b/drivers/clk/qcom/gdsc.c
+> @@ -133,6 +133,14 @@ static int gdsc_update_collapse_bit(struct gdsc *sc, bool val)
+>   	if (ret)
+>   		return ret;
+>   
+> +	if (sc->collapse_sleep_ctrl) {
+> +		ret = regmap_update_bits(sc->regmap, sc->collapse_sleep_ctrl, mask, val ? mask : 0);
+> +		if (ret) {
+> +			regmap_update_bits(sc->regmap, reg, mask, val ? 0 : mask);
+> +			return ret;
+> +		}
+> +	}
+> +
 
-Thanks.
+Dimtry, based on our discussions with design, we understand that this is 
+a one time setting and can be done from the Global clock controller probe.
+Thus, this patch can be dropped.
 
-Chi-Wen Weng
+     /* Clear GDSC_SLEEP_ENA_VOTE to stop votes being auto-removed in 
+sleep. */
+         regmap_write(regmap, 0x62204, 0x0);
 
+>   	return 0;
+>   }
+>   
+> diff --git a/drivers/clk/qcom/gdsc.h b/drivers/clk/qcom/gdsc.h
+> index 1e2779b823d1c8ca077c9b4cd0a0dbdf5f9457ef..dab2e31be8f65408d6d29df42ad5105830760d3e 100644
+> --- a/drivers/clk/qcom/gdsc.h
+> +++ b/drivers/clk/qcom/gdsc.h
+> @@ -19,6 +19,7 @@ struct reset_controller_dev;
+>    * @regmap: regmap for MMIO accesses
+>    * @gdscr: gsdc control register
+>    * @collapse_ctrl: APCS collapse-vote register
+> + * @collapse_sleep_ctrl: APCS collapse-vote register for the sleep state
+>    * @collapse_mask: APCS collapse-vote mask
+>    * @gds_hw_ctrl: gds_hw_ctrl register
+>    * @cxcs: offsets of branch registers to toggle mem/periph bits in
+> @@ -37,6 +38,7 @@ struct gdsc {
+>   	struct regmap			*regmap;
+>   	unsigned int			gdscr;
+>   	unsigned int			collapse_ctrl;
+> +	unsigned int			collapse_sleep_ctrl;
+>   	unsigned int			collapse_mask;
+>   	unsigned int			gds_hw_ctrl;
+>   	unsigned int			clamp_io_ctrl;
+> 
+
+-- 
+Thanks & Regards,
+Taniya Das.
 
