@@ -1,157 +1,158 @@
-Return-Path: <devicetree+bounces-112885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 189509A3C33
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:53:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0901E9A3C3B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:54:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC9F72825C6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:53:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3860E1C20C0F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C4852022EE;
-	Fri, 18 Oct 2024 10:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ACCB202F90;
+	Fri, 18 Oct 2024 10:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wlpu/tI8"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="sW2za9oG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E4320110B
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 10:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B08E202F7B;
+	Fri, 18 Oct 2024 10:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729248720; cv=none; b=JJ/9hbrqtiUVBh7bQFZIwDLUxzlycDVbyQvUa9/0cPOC53gU+knI8QE4EwN2ntHKm2P3aWS1R5lUcOYKCPy3Og9E6fngzc2W+VrxPSf3STWjUMxIgXVMQ02mlt8Oyb/DbKsYAeQLt8sm6PwKtITTftdBqApAdcuBfLC52Ghj/I0=
+	t=1729248761; cv=none; b=OKEU/t7Agb+yvQ6p3FDVvBZAQ5Oqq1V2ogm3TeDoIatp6K1OBzS604fpQqOYNjr35CrYGU9QGcLIs/QiYYfo30s15A9lvwi1rJOwme8VGikkXI3YpxvFX4EzOsSG5jinrNs67fIR5tceCn+6AuHHUUMCoOzQr7kJznhJ9syfYc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729248720; c=relaxed/simple;
-	bh=13RJL78aQDntwPZ4PtUlARuj1xajjStPJh26trgJ86Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wa7xZPrgqbQ3jBYiahs7BOKcHexmLZpZ6h+GxqVzRgNP2AgkrKx/tEps07XeL9oEX2H26AhTCVXmEMXT+HzXuo3QaCXMOla3EyW0eUZvOeSRPLGEw6qABE8ohY8pMWazKcYmJQlrZC2AZCKUs/ZHTtNzISyWVKjVu4VvCWZWDYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wlpu/tI8; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb59652cb9so20269031fa.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 03:51:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729248716; x=1729853516; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=E4mQ6eh72Pp3VjxoRxuIsZprFLvY0i0ybat0S6qmaPc=;
-        b=Wlpu/tI8AbReFGXG15UbdIxZLYiCgGqIwDTRfUMG0PNA3Ww0VbdZDwuqsqpWaPeh85
-         pMK4CBJYBgP/GNbYFyIbRQcSic1wKbQckjQlX/USMzFYafZL80GEbY+9D/iy47MnQmla
-         LVmSOJASKGVOq5loY8sefnX4/eosyuYHluOkF1NBc6JJOc1cUgyhL5h3Gqk9OiBjLMit
-         bMx3eV0t7c4+NbhPiwdolJSQmcrpJOBZC2XlLgDCLDMEnG4r3F3bFT4ohbyPvTBk0ve2
-         5aK04QaKEfURMDqT+pkEFhzhWA/uKH38+UOj6Mm+cXDJSTqV1955C8XeI+wQo2Iy3Qgd
-         cGKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729248716; x=1729853516;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E4mQ6eh72Pp3VjxoRxuIsZprFLvY0i0ybat0S6qmaPc=;
-        b=elepB6kjkYGuvLZQ2Nn9GGJMB1T6MJm1WkHKBQp2KeZFzSkJu81Qkw6NJGbTsCCugh
-         +bAYb+kqokG0YC6vGgdd2Dh8AJPA6HNQqsPCx6Qnkd0riUK1HOvB0uwvxenzWOlQxZPe
-         IQ2uT1DWQ6ooznbiWQaQwu9QYM9RP4DeqInrZCXioxFifNsZCWI2vlZQx8U/r4kNZvCE
-         aPqo6c4mT8SRx1hIDIcXivXVfjQgq14bna4KEG6MyclZ46r+IkObN4TtTrkIigGd7Bfr
-         K4BHfay1Q7xO0aFTfsALf+hqPtHZgTT+HVCmDgIfoP2autFFEWBAGMVA+m3fCp2MUqSe
-         oTkw==
-X-Forwarded-Encrypted: i=1; AJvYcCUhINTdqBeAv/A0Pp50EfQAJPLJlYhY0ceYFWfPresQmCPyfSon7OnMRNBzYAhVElTejLm0f2/EzH5d@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVb+W1fbIjNAXphpdHECpdfZ9eVACcrbEdm5r9IP+Kqac2QILQ
-	4AeWnwoLe6kV1zNJ72bVmoBI9C03SqIProG3vUlhpcJMLMtevWY0RxAzfuObxMo=
-X-Google-Smtp-Source: AGHT+IECcngN0+7c78hOzshVlovF6OLXcd+ee0flemVjcZCCn6f3Yr8ycO5q+1WZZwd4Q6yeAMfmQw==
-X-Received: by 2002:a05:651c:1543:b0:2fb:30d5:669a with SMTP id 38308e7fff4ca-2fb82da59camr8775201fa.0.1729248716388;
-        Fri, 18 Oct 2024 03:51:56 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb80a235d6sm1856161fa.129.2024.10.18.03.51.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 03:51:55 -0700 (PDT)
-Date: Fri, 18 Oct 2024 13:51:52 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-Cc: Rob Herring <robh@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mailbox: qcom,cpucp-mbox: Add sc7280
- cpucp mailbox instance
-Message-ID: <mxc6jsm5k3l5jc3txmltchja2yn6e7vmwo5i6bw5l5jcj6lzoo@tcb5f5qgqxz3>
-References: <20240924050941.1251485-1-quic_kshivnan@quicinc.com>
- <20240924050941.1251485-2-quic_kshivnan@quicinc.com>
- <20240924232526.GA563039-robh@kernel.org>
- <2d4e47fd-0aaf-4533-a96f-95ada853d9a0@quicinc.com>
- <kzlhhovfffvg227oxbpl3nv6q2lyn53pz2fyqis22brkd4bkkz@vqprudcdfunb>
- <7bf56716-886d-4e2c-9a90-e31b0bfa4a89@quicinc.com>
+	s=arc-20240116; t=1729248761; c=relaxed/simple;
+	bh=WeLj5Q6mLGVX6uIa0uQK/eue8seMS98Gd0FVJcgXVpQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=HKynWi9ezp/nPJhc89mmHoOgt+COeEdVnjoP2DLh+q6QOYCqY3ADXTVwMq8nfuI3pHbX+eL1glA12EN4mWNf8/6FSPG+pPvI0n626mwSLevMwMiwO8vQ89XrQyj/Bcjj2p/QmB4q12RDkWdhmplFbZTpcj5wy6zJmig7B8HnLss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=sW2za9oG; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7bf56716-886d-4e2c-9a90-e31b0bfa4a89@quicinc.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1729248756;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oSgaCXhYCTyaqW7QXeST4qmKxHMaP1eI9yKLIfIiBVU=;
+	b=sW2za9oGS9xzHI/cAhOXgA55SqvcaRZd4ZjEW9S05evi598emFFzmbR51pWaFAqaxgSFT6
+	cmwASG3LXRhOaqKHfE2M4ppss24PwAUIiFjs6FfFQz2Xtz6nQPtQp5q7yha6Nch253qcb6
+	8M9r3ssLT9MQPu8t7VwvYTLlBKDBM2Ggd+2jdiT7gs+1u+TgeT50Yf2LDZN0quT7xPU14y
+	KBmkgvLU2ovN9kRpRuUYmtLsyatdSsGljMPKYrASNqwz+2yELdr0OekF9pX8ad5H6BpEFF
+	U2mDEPKY0E5LfDdUuYCyrWoPOeBVlYkh+nh8Xg2LaBLeaaEIXKvR+VhDIRKDiw==
+Date: Fri, 18 Oct 2024 12:52:35 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Frank Wang <frawang.cn@gmail.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, yubing.zhang@rock-chips.com, Frank Wang
+ <frank.wang@rock-chips.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: soc: rockchip: add rk3576 vo1-grf
+ syscon
+In-Reply-To: <3cd260c8-86e5-4833-b23e-b73dc6417f81@gmail.com>
+References: <20241017025230.28752-1-frawang.cn@gmail.com>
+ <ca0ee8752791f53bac23933e1582dd86@manjaro.org>
+ <d2a200aa-1301-4940-a39c-0412fe741994@gmail.com>
+ <ee27926c06bedd62f417dbd7d01ce8b3@manjaro.org>
+ <3cd260c8-86e5-4833-b23e-b73dc6417f81@gmail.com>
+Message-ID: <5175d8a9b007ce1c6c12bcc09d78dfda@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Thu, Oct 17, 2024 at 10:48:32AM +0530, Shivnandan Kumar wrote:
-> Thanks Dmitry for reviewing the patch
+Hello Frank,
+
+On 2024-10-18 09:34, Frank Wang wrote:
+> On 2024/10/18 14:37, Dragan Simic wrote:
+>> On 2024-10-18 08:18, Frank Wang wrote:
+>>> On 2024/10/18 13:02, Dragan Simic wrote:
+>>>> On 2024-10-17 04:52, Frank Wang wrote:
+>>>>> From: Frank Wang <frank.wang@rock-chips.com>
+>>>>> 
+>>>>> Add rockchip,rk3576-vo1-grf syscon compatible, the vo1-grf is
+>>>>> configured in usbdp phy driver.
+>>>>> 
+>>>>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>>>>> ---
+>>>>> Changelog:
+>>>>> v2:
+>>>>>  - This is a new patch adds rk3576-vo1-grf syscon.
+>>>> 
+>>>> Could you, please, clarify a bit why is this additional patch
+>>>> needed in this series?
+>>> 
+>>> I mentioned in the commit content. The usbdp-phy driver select dp
+>>> lanes via configuring the vo1-grf.
+>> 
+>> Yes, I already saw that in the patch description.  Though, and
+>> I apologize if I'm missing something obvious, I can't see where
+>> is it actually used in the code?  Is it yet to be used in the
+>> dts(i) files?
+>> 
+>> I'd appreciate if you could clarify that just a bit further, so
+>> I can hopefully understand it better.
 > 
-> On 10/6/2024 10:41 PM, Dmitry Baryshkov wrote:
-> > On Thu, Oct 03, 2024 at 11:13:02AM GMT, Shivnandan Kumar wrote:
-> > > thanks Rob for reviewing this patch.
-> > > 
-> > > 
-> > > On 9/25/2024 4:55 AM, Rob Herring wrote:
-> > > > On Tue, Sep 24, 2024 at 10:39:39AM +0530, Shivnandan Kumar wrote:
-> > > > > sc7280 has a cpucp mailbox. Document them.
-> > > > 
-> > > > And is different from the existing device how?
-> > > 
-> > > It is different with respect to the register placement.
-> > 
-> > Register placement in the global map or the internal register structure?
+> Yes, the usbdp_phy node in dts(i) will assign the vo1-grf phandle like 
+> this:
 > 
-> the register placement varies both internally and globally as well.
-
-Please mention in the commit message that internal regiter map is
-different.
-
+> usbdp_phy: phy@2b010000 {
+>         ...
+>         rockchip,vo-grf = <&vo1_grf>;
+> };
 > 
-> > 
-> > > 
-> > > Thanks,
-> > > Shivnandan
-> > > 
-> > > > 
-> > > > > 
-> > > > > Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> > > > > ---
-> > > > >    .../devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml         | 5 +++--
-> > > > >    1 file changed, 3 insertions(+), 2 deletions(-)
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
-> > > > > index f7342d04beec..4a7ea072a3c1 100644
-> > > > > --- a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
-> > > > > @@ -15,8 +15,9 @@ description:
-> > > > > 
-> > > > >    properties:
-> > > > >      compatible:
-> > > > > -    items:
-> > > > > -      - const: qcom,x1e80100-cpucp-mbox
-> > > > > +    enum:
-> > > > > +      - qcom,x1e80100-cpucp-mbox
-> > > > > +      - qcom,sc7280-cpucp-mbox
-> > > > > 
-> > > > >      reg:
-> > > > >        items:
-> > > > > --
-> > > > > 2.25.1
-> > > > > 
-> > 
+> And the usbdp-phy driver parses it and assign to udphy->vogrf, it uses
+> in rk_udphy_dplane_select().
+> 
+> The related codes have already existed in the current driver, so for
+> RK3576, just only need to do a configuration.
 
--- 
-With best wishes
-Dmitry
+Great, thanks for the detailed explanation!  This confirms
+my latest assumption and everything is looking good, so please
+free to include:
+
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+
+>>>>> v1:
+>>>>>  - none
+>>>>> 
+>>>>>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
+>>>>>  1 file changed, 2 insertions(+)
+>>>>> 
+>>>>> diff --git 
+>>>>> a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>>>> b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>>>> index 50d727f4b76c6..fd42217ab85e7 100644
+>>>>> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>>>> @@ -33,6 +33,7 @@ properties:
+>>>>>                - rockchip,rk3576-usb-grf
+>>>>>                - rockchip,rk3576-usbdpphy-grf
+>>>>>                - rockchip,rk3576-vo0-grf
+>>>>> +              - rockchip,rk3576-vo1-grf
+>>>>>                - rockchip,rk3576-vop-grf
+>>>>>                - rockchip,rk3588-bigcore0-grf
+>>>>>                - rockchip,rk3588-bigcore1-grf
+>>>>> @@ -283,6 +284,7 @@ allOf:
+>>>>>          compatible:
+>>>>>            contains:
+>>>>>              enum:
+>>>>> +              - rockchip,rk3576-vo1-grf
+>>>>>                - rockchip,rk3588-vo-grf
+>>>>>                - rockchip,rk3588-vo0-grf
+>>>>>                - rockchip,rk3588-vo1-grf
 
