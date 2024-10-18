@@ -1,346 +1,360 @@
-Return-Path: <devicetree+bounces-112842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8929B9A3A64
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:46:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F3309A3A93
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 11:56:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C38C1F28435
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:46:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D821B20D03
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 09:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922B0200108;
-	Fri, 18 Oct 2024 09:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2166201005;
+	Fri, 18 Oct 2024 09:56:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C569018872A;
-	Fri, 18 Oct 2024 09:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63889168C3F;
+	Fri, 18 Oct 2024 09:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729244784; cv=none; b=hW6vJv0NR6YmDGVxLuTvD3aCDfCGDfnb+7KW3uCHUyQhPVQUs1oewG1MfzcZxptnSPUh7nRKvDeXhI/WKzrhZbFniVQwYgjJR763pQ5JAjwtWLA4xlbpwZtYXRAmOlaPbrLS2YtNwFc+mpIpUOleZjHJkjP29dbTXgLJZ+cWh5M=
+	t=1729245365; cv=none; b=b6hJkRX790b1KAXbYjbu+NvfIsmcRH8hKPuv5b+GnErJ9vRAmKK+nnBeTXeACRFQTEb36UNeNjamViuP7h3fDdbDPupW5h+IgX81GPSzCzBQPNqpRKW8HXYjcwaTnpVulT3silxPRTLmWgoK2VQd4t3zRuZeBEUlbBS7hKMULuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729244784; c=relaxed/simple;
-	bh=azHhQksD+K7NQxomrk2erox1QKFqxrV59ouOXwU43Ck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u5tM0XATIOZrMWxQ9N0XT0SoJ6sVYOEslFw/T4HdJTPGLFaG/QXCvut/DpLDpCfAxVOwqUUwsqV4eV+Ys8gLL+X39IVr4Ix5WLglKocWDLHMXF4huWczMCZ1mz9ZEAxhLVi3tur48j3uiv18Z7/hfLjJOuDNsKMOoySX90E6FNg=
+	s=arc-20240116; t=1729245365; c=relaxed/simple;
+	bh=FCfKFbgtJMTym6x5hfGzM48GU25gdJXbwjdqbk4LBv8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MbgpFN/7pqqlYe/gYnXwVlxnMi70Lv0uObZNduKFGmbeBh1o/Z7MhfTvKptVPU+FVhhzHCZCP0gV8SmbnxkAhe20QwGZu6dU8jUxyz543yfqhaIEUTlE26A3hFqoyqQa4IhrgdePyKzgtL0ld0ByefpTV5uPgg/Y0pH1WdytXZ0=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CCC2EFEC;
-	Fri, 18 Oct 2024 02:46:50 -0700 (PDT)
-Received: from [10.57.22.188] (unknown [10.57.22.188])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A06B93F58B;
-	Fri, 18 Oct 2024 02:46:18 -0700 (PDT)
-Message-ID: <05ed4a6f-cb41-4953-a654-9988f0fcd373@arm.com>
-Date: Fri, 18 Oct 2024 10:46:17 +0100
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E29CFEC;
+	Fri, 18 Oct 2024 02:56:32 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CEDF73F58B;
+	Fri, 18 Oct 2024 02:56:00 -0700 (PDT)
+Date: Fri, 18 Oct 2024 10:55:57 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Chen-Yu
+ Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 5/6] ASoC: sun4i-codec: support allwinner H616 codec
+Message-ID: <20241018105557.516779bd@donnerap.manchester.arm.com>
+In-Reply-To: <20240929100750.860329-6-ryan@testtoast.com>
+References: <20240929100750.860329-1-ryan@testtoast.com>
+	<20240929100750.860329-6-ryan@testtoast.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 5/8] coresight: tmc: Add support for reading crash
- data
-Content-Language: en-GB
-To: Linu Cherian <lcherian@marvell.com>
-Cc: mike.leach@linaro.org, james.clark@arm.com,
- linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- Anil Kumar Reddy <areddy3@marvell.com>, Tanmay Jagdale <tanmay@marvell.com>
-References: <20240916103437.226816-1-lcherian@marvell.com>
- <20240916103437.226816-6-lcherian@marvell.com>
- <f1acfd07-7317-4b7e-bb81-ea9a894f25ac@arm.com>
- <20241017114054.GC896339@hyd1403.caveonetworks.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20241017114054.GC896339@hyd1403.caveonetworks.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 17/10/2024 12:40, Linu Cherian wrote:
-> On 2024-10-03 at 18:55:54, Suzuki K Poulose (suzuki.poulose@arm.com) wrote:
->> Hi Linu
->>
->> On 16/09/2024 11:34, Linu Cherian wrote:
->>> * Add support for reading crashdata using special device files.
->>>     The special device files /dev/crash_tmc_xxx would be available
->>>     for read file operation only when the crash data is valid.
->>>
->>> * User can read the crash data as below
->>>
->>>     For example, for reading crash data from tmc_etf sink
->>>
->>>     #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
->>
->> There are some comments below, please take a look.
->>
->>>
->>> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
->>> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
->>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
->>> ---
->>> Changelog from v9:
->>> - Removed READ_CRASHDATA mode meant for special casing crashdata read
->>> - Added new fields full, len, offset to struct tmc_resrv_buf
->>
->> Why do we need "full" ? See more on that below.
->>
->>>     so as to have a common read function for ETR and ETF
->>> - Introduced read file operation, tmc_crashdata_read
->>>     specific to crashdata reads common for both ETR and ETF
->>> - Introduced is_tmc_crashdata_valid function
->>>     Special device file /dev/crash_tmc_xxx will be available only when
->>>     crashdata is valid.
->>> - Version checks added to crashdata validity checks
->>> - Mark crashdata as invalid when user starts tracing with ETR sink in
->>>     "resrv" buffer mode
->>>
->>>    .../hwtracing/coresight/coresight-tmc-core.c  | 206 +++++++++++++++++-
->>>    .../hwtracing/coresight/coresight-tmc-etf.c   |  36 +++
->>>    .../hwtracing/coresight/coresight-tmc-etr.c   |  63 ++++++
->>>    drivers/hwtracing/coresight/coresight-tmc.h   |  18 +-
->>>    include/linux/coresight.h                     |  12 +
->>>    5 files changed, 333 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
->>> index 54bf8ae2bff8..47b6b3f88750 100644
->>> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
->>> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
->>> @@ -105,6 +105,125 @@ u32 tmc_get_memwidth_mask(struct tmc_drvdata *drvdata)
->>>    	return mask;
->>>    }
->>> +bool is_tmc_crashdata_valid(struct tmc_drvdata *drvdata)
->>> +{
->>> +	struct tmc_crash_metadata *mdata;
->>> +
->>> +	if (!tmc_has_reserved_buffer(drvdata) ||
->>> +	    !tmc_has_crash_mdata_buffer(drvdata))
->>> +		return false;
->>> +
->>> +	mdata = drvdata->crash_mdata.vaddr;
->>> +
->>> +	/* Check version match */
->>> +	if (mdata->version != CS_CRASHDATA_VERSION)
->>> +		return false;
->>> +
->>> +	/* Check data integrity of metadata */
->>> +	if (mdata->crc32_mdata != find_crash_metadata_crc(mdata)) {
->>> +		dev_dbg(&drvdata->csdev->dev,
->>> +			"CRC mismatch in tmc crash metadata\n");
->>> +		return false;
->>> +	}
->>> +	/* Check data integrity of tracedata */
->>> +	if (mdata->crc32_tdata != find_crash_tracedata_crc(drvdata, mdata)) {
->>> +		dev_dbg(&drvdata->csdev->dev,
->>> +			"CRC mismatch in tmc crash tracedata\n");
->>> +		return false;
->>> +	}
->>> +	/* Check for valid metadata */
->>> +	if (!mdata->valid) {
->>
->> minor nit: This could be checked right after the VERSION and we verify
->> the CRC anyway later and thus could skip all the CRC calculations if
->> !valid.
-> 
-> 
-> Ack.
-> 
->>
->>> +		dev_dbg(&drvdata->csdev->dev,
->>> +			"Data invalid in tmc crash metadata\n");
->>> +		return false;
->>> +	}
->>> +
->>> +	return true;
->>> +}
->>> +
->>> +int tmc_read_prepare_crashdata(struct tmc_drvdata *drvdata)
->>> +{
->>> +	int ret = 0;
->>> +	unsigned long flags;
->>> +	struct tmc_crash_metadata *mdata;
->>> +	struct coresight_device *csdev = drvdata->csdev;
->>> +
->>> +	spin_lock_irqsave(&drvdata->spinlock, flags);
->>> +
->>> +	if (!is_tmc_crashdata_valid(drvdata)) {
->>> +		ret = -ENXIO;
->>> +		goto out;
->>> +	}
->>> +
->>> +	mdata = drvdata->crash_mdata.vaddr;
->>> +	/*
->>> +	 * Buffer address given by metadata for retrieval of trace data
->>> +	 * from previous boot is expected to be same as the reserved
->>> +	 * trace buffer memory region provided through DTS
->>> +	 */
->>> +	if (drvdata->resrv_buf.paddr != mdata->trace_paddr) {
->>> +		dev_dbg(&csdev->dev, "Trace buffer address of previous boot invalid\n");
->>
->> Couldn't this be made part of the "is_tmc_crashdata_valid()" and not
->> repeated everytime we do the read ? Surely, this can't change after
->> boot.
-> 
-> Ack. Will move.
-> 
->>
->>> +		ret = -EINVAL;
->>> +		goto out;
->>> +	}
->>> +
->>> +	/* Sink specific crashdata mode preparation */
->>> +	ret = crashdata_ops(csdev)->prepare(csdev);
->>> +	if (ret)
->>> +		goto out;
->>> +
->>> +	if (mdata->sts & 0x1)
->>> +		coresight_insert_barrier_packet(drvdata->buf);
->>> +
->>> +	drvdata->reading = true;
->>
->> Why are we dealing with drvdata->reading ? That is supposed to be only
->> for the normal trace reading ?
-> 
-> Ack. Will remove, we dont need this.
-> 
->>
->>> +out:
->>> +	spin_unlock_irqrestore(&drvdata->spinlock, flags);
->>> +	return ret;
->>> +}
->>> +
->>> +int tmc_read_unprepare_crashdata(struct tmc_drvdata *drvdata)
->>> +{
->>> +	int ret;
->>> +	unsigned long flags;
->>> +	struct coresight_device *csdev = drvdata->csdev;
->>> +
->>> +	spin_lock_irqsave(&drvdata->spinlock, flags);
->>> +
->>> +	/* Sink specific crashdata mode preparation */
->>> +	ret = crashdata_ops(csdev)->unprepare(csdev);
->>> +
->>> +	drvdata->reading = false;
->>
->>
->>
->>> +	spin_unlock_irqrestore(&drvdata->spinlock, flags);
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +static inline ssize_t tmc_get_resvbuf_trace(struct tmc_drvdata *drvdata,
->>> +					  loff_t pos, size_t len, char **bufpp)
->>> +{
->>> +	s64 offset;
->>> +	ssize_t actual = len;
->>> +	struct tmc_resrv_buf *rbuf = &drvdata->resrv_buf;
->>> +
->>> +	if (pos + actual > rbuf->len)
->>> +		actual = rbuf->len - pos;
->>> +	if (actual <= 0)
->>> +		return actual;
->>
->> return 0 ? Because, we went beyond the file position, not because there was
->> an error. So, that it doesn't look like we are suppressing an ERROR ?
-> 
-> 
-> return 0 looks fine to me. Will recheck on this.
-> 
->>
->>
->>> +
->>> +	/* Compute the offset from which we read the data */
->>> +	offset = rbuf->offset + pos;
->>> +	if (offset >= rbuf->size)
->>> +		offset -= rbuf->size;
->>> +
->>> +	/* Adjust the length to limit this transaction to end of buffer */
->>> +	actual = (actual < (rbuf->size - offset)) ?
->>> +		actual : rbuf->size - offset;
->>> +
->>> +	*bufpp = (char *)rbuf->vaddr + offset;
->>> +
->>> +	return actual;
->>> +}
->>> +
->>>    static int tmc_read_prepare(struct tmc_drvdata *drvdata)
->>>    {
->>>    	int ret = 0;
->>> @@ -224,6 +343,70 @@ static const struct file_operations tmc_fops = {
->>>    	.llseek		= no_llseek,
->>>    };
->>> +static int tmc_crashdata_open(struct inode *inode, struct file *file)
->>> +{
->>> +	int ret;
->>> +	struct tmc_drvdata *drvdata = container_of(file->private_data,
->>> +						   struct tmc_drvdata,
->>> +						   crashdev);
->>> +
->>> +	ret = tmc_read_prepare_crashdata(drvdata);
->>
->> I don't see the point of this "prepare" and unprepare callbacks, as they
->> can be made generic by populating the mdata->rrp,rwp fields accordingly ?
->>
->> i.e., while populating the mdata-> fields, for ETR, do what you do now.
->> For ETF you could :
->>
->> mdata->rrp = 0;
->> mdata->dba = 0;
->> mdata->rwp = drvdata->len;
->> mdata->size = drvdata->len >> 2;
->> mdata->sts = TMC_STS_FULL;
-> 
-> Agree with your point that this would get rid of sink specific
-> callbacks.
-> 
-> But few points to consider before we go with the above approach,
-> 
-> * mdata register snapshots wont be true to their definition,
->    with such encodings.
-> 
->    We had a similar discussion on this earlier regarding mdata->size,
->    ie. We decided to stick to register format instead of storing bytes.
->    https://lore.kernel.org/linux-arm-kernel/20240620041054.GC125816@hyd1403.caveonetworks.com/
+On Sun, 29 Sep 2024 23:06:06 +1300
+Ryan Walklin <ryan@testtoast.com> wrote:
 
-Understood. But whoever fills in the metdata does need to fill the
-mdata information above ? Including calculating the hash. So, I think it
-is fair to say that mdata is populated in a way that makes sense
-just by looking at it. In fact, we should :
+Hi,
 
+so I have no clue about Linux' audio subsystem or ASoC, so don't dare to
+review this patch. I had a look through the register list in the manual,
+though, and compared the bits and offsets against the constants defined:
+they match. And I can confirm that it works (TM). One small thing, though:
 
-mdata->dba = <address of the tracedata>
-mdata->rrp = mdata->dba;
-mdata->rwp = mdata->rrp + drvdata->len;
-mdata->size = drvdata->len >> 2;
-mdata->sts = TMC_STS_FULL;
+> The H616 SoC codec is playback-only with a single line-out route, and
+> has some register differences from prior codecs.
+>=20
+> Add the required compatible string, registers, quirks, DAPM widgets,
+> codec controls and routes, based on existing devices and the H616
+> datasheet.
+>=20
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> ---
+>  sound/soc/sunxi/sun4i-codec.c | 202 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 202 insertions(+)
+>=20
+> diff --git a/sound/soc/sunxi/sun4i-codec.c b/sound/soc/sunxi/sun4i-codec.c
+> index 312d2655c3f4e..1cdda20e8ed59 100644
+> --- a/sound/soc/sunxi/sun4i-codec.c
+> +++ b/sound/soc/sunxi/sun4i-codec.c
+> @@ -226,6 +226,43 @@
+>  #define SUN8I_H3_CODEC_DAC_DBG			(0x48)
+>  #define SUN8I_H3_CODEC_ADC_DBG			(0x4c)
+> =20
+> +/* H616 specific registers */
+> +#define SUN50I_H616_CODEC_DAC_FIFOC		(0x10)
+> +
+> +#define SUN50I_DAC_FIFO_STA			(0x14)
+> +#define SUN50I_DAC_TXE_INT			(3)
+> +#define SUN50I_DAC_TXU_INT			(2)
+> +#define SUN50I_DAC_TXO_INT			(1)
+> +
+> +#define SUN50I_DAC_CNT				(0x24)
+> +#define SUN50I_DAC_DG_REG			(0x28)
+> +#define SUN50I_DAC_DAP_CTL			(0xf0)
+> +
+> +#define SUN50I_H616_DAC_AC_DAC_REG		(0x310)
+> +#define SUN50I_H616_DAC_LEN			(15)
+> +#define SUN50I_H616_DAC_REN			(14)
+> +#define SUN50I_H616_LINEOUTL_EN			(13)
+> +#define SUN50I_H616_LMUTE			(12)
+> +#define SUN50I_H616_LINEOUTR_EN			(11)
+> +#define SUN50I_H616_RMUTE			(10)
+> +#define SUN50I_H616_RSWITCH			(9)
+> +#define SUN50I_H616_RAMPEN			(8)
+> +#define SUN50I_H616_LINEOUTL_SEL		(6)
+> +#define SUN50I_H616_LINEOUTR_SEL		(5)
+> +#define SUN50I_H616_LINEOUT_VOL			(0)
+> +
+> +#define SUN50I_H616_DAC_AC_MIXER_REG		(0x314)
+> +#define SUN50I_H616_LMIX_LDAC			(21)
+> +#define SUN50I_H616_LMIX_RDAC			(20)
+> +#define SUN50I_H616_RMIX_RDAC			(17)
+> +#define SUN50I_H616_RMIX_LDAC			(16)
+> +#define SUN50I_H616_LMIXEN			(11)
+> +#define SUN50I_H616_RMIXEN			(10)
+> +
+> +#define SUN50I_H616_DAC_AC_RAMP_REG		(0x31c)
+> +#define SUN50I_H616_RAMP_STEP			(4)
+> +#define SUN50I_H616_RDEN			(0)
+> +
+>  /* TODO H3 DAP (Digital Audio Processing) bits */
+> =20
+>  struct sun4i_codec {
+> @@ -1520,6 +1557,149 @@ static struct snd_soc_card *sun8i_v3s_codec_creat=
+e_card(struct device *dev)
+>  	return card;
+>  };
+> =20
+> +static const struct snd_kcontrol_new sun50i_h616_codec_codec_controls[] =
+=3D {
+> +	SOC_SINGLE_TLV("DAC Playback Volume", SUN4I_CODEC_DAC_DPC,
+> +		       SUN4I_CODEC_DAC_DPC_DVOL, 0x3f, 1,
+> +		       sun6i_codec_dvol_scale),
+> +	SOC_SINGLE_TLV("Line Out Playback Volume",
+> +		       SUN50I_H616_DAC_AC_DAC_REG,
+> +		       SUN50I_H616_LINEOUT_VOL, 0x1f, 0,
+> +		       sun6i_codec_lineout_vol_scale),
+> +	SOC_DOUBLE("Line Out Playback Switch",
+> +		   SUN50I_H616_DAC_AC_DAC_REG,
+> +		   SUN50I_H616_LINEOUTL_EN,
+> +		   SUN50I_H616_LINEOUTR_EN, 1, 0),
+> +};
+> +
+> +static const struct snd_kcontrol_new sun50i_h616_codec_mixer_controls[] =
+=3D {
+> +	SOC_DAPM_DOUBLE("DAC Playback Switch",
+> +			SUN50I_H616_DAC_AC_MIXER_REG,
+> +			SUN50I_H616_LMIX_LDAC,
+> +			SUN50I_H616_RMIX_RDAC, 1, 0),
+> +	SOC_DAPM_DOUBLE("DAC Reversed Playback Switch",
+> +			SUN50I_H616_DAC_AC_MIXER_REG,
+> +			SUN50I_H616_LMIX_RDAC,
+> +			SUN50I_H616_RMIX_LDAC, 1, 0),
+> +};
+> +
+> +static SOC_ENUM_DOUBLE_DECL(sun50i_h616_codec_lineout_src_enum,
+> +			    SUN50I_H616_DAC_AC_DAC_REG,
+> +			    SUN50I_H616_LINEOUTL_SEL,
+> +			    SUN50I_H616_LINEOUTR_SEL,
+> +			    sun6i_codec_lineout_src_enum_text);
+> +
+> +static const struct snd_kcontrol_new sun50i_h616_codec_lineout_src[] =3D=
+ {
+> +		SOC_DAPM_ENUM("Line Out Source Playback Route",
+> +			      sun50i_h616_codec_lineout_src_enum),
+> +};
+> +
+> +static const struct snd_soc_dapm_widget sun50i_h616_codec_codec_widgets[=
+] =3D {
+> +	/* Digital parts of the DACs */
+> +	SND_SOC_DAPM_SUPPLY("DAC Enable", SUN4I_CODEC_DAC_DPC,
+> +			    SUN4I_CODEC_DAC_DPC_EN_DA, 0,
+> +			    NULL, 0),
+> +
+> +	/* Analog parts of the DACs */
+> +	SND_SOC_DAPM_DAC("Left DAC", "Codec Playback",
+> +			 SUN50I_H616_DAC_AC_DAC_REG,
+> +			 SUN50I_H616_DAC_LEN, 0),
+> +	SND_SOC_DAPM_DAC("Right DAC", "Codec Playback",
+> +			 SUN50I_H616_DAC_AC_DAC_REG,
+> +			 SUN50I_H616_DAC_REN, 0),
+> +
+> +	/* Mixers */
+> +	SOC_MIXER_ARRAY("Left Mixer", SUN50I_H616_DAC_AC_MIXER_REG,
+> +			SUN50I_H616_LMIXEN, 0,
+> +			sun50i_h616_codec_mixer_controls),
+> +	SOC_MIXER_ARRAY("Right Mixer", SUN50I_H616_DAC_AC_MIXER_REG,
+> +			SUN50I_H616_RMIXEN, 0,
+> +			sun50i_h616_codec_mixer_controls),
+> +
+> +	/* Line Out path */
+> +	SND_SOC_DAPM_MUX("Line Out Source Playback Route",
+> +			 SND_SOC_NOPM, 0, 0, sun50i_h616_codec_lineout_src),
+> +	SND_SOC_DAPM_OUT_DRV("Line Out Ramp Controller",
+> +			     SUN50I_H616_DAC_AC_RAMP_REG,
+> +			     SUN50I_H616_RDEN, 0, NULL, 0),
+> +	SND_SOC_DAPM_OUTPUT("LINEOUT"),
+> +};
+> +
+> +static const struct snd_soc_component_driver sun50i_h616_codec_codec =3D=
+ {
+> +	.controls   =3D sun50i_h616_codec_codec_controls,
+> +	.num_controls   =3D ARRAY_SIZE(sun50i_h616_codec_codec_controls),
+> +	.dapm_widgets   =3D sun50i_h616_codec_codec_widgets,
+> +	.num_dapm_widgets =3D ARRAY_SIZE(sun50i_h616_codec_codec_widgets),
+> +	.idle_bias_on   =3D 1,
+> +	.use_pmdown_time  =3D 1,
+> +	.endianness   =3D 1,
+> +};
+> +
+> +static const struct snd_kcontrol_new sun50i_h616_card_controls[] =3D {
+> +	SOC_DAPM_PIN_SWITCH("LINEOUT"),
+> +};
+> +
+> +static const struct snd_soc_dapm_widget sun50i_h616_codec_card_dapm_widg=
+ets[] =3D {
+> +	SND_SOC_DAPM_LINE("Line Out", NULL),
+> +	SND_SOC_DAPM_SPK("Speaker", sun4i_codec_spk_event),
+> +};
+> +
+> +/* Connect digital side enables to analog side widgets */
+> +static const struct snd_soc_dapm_route sun50i_h616_codec_card_routes[] =
+=3D {
+> +	/* DAC Routes */
+> +	{ "Left DAC", NULL, "DAC Enable" },
+> +	{ "Right DAC", NULL, "DAC Enable" },
+> +
+> +	/* Left Mixer Routes */
+> +	{ "Left Mixer", "DAC Playback Switch", "Left DAC" },
+> +	{ "Left Mixer", "DAC Reversed Playback Switch", "Right DAC" },
+> +
+> +	/* Right Mixer Routes */
+> +	{ "Right Mixer", "DAC Playback Switch", "Right DAC" },
+> +	{ "Right Mixer", "DAC Reversed Playback Switch", "Left DAC" },
+> +
+> +	/* Line Out Routes */
+> +	{ "Line Out Source Playback Route", "Stereo", "Left Mixer" },
+> +	{ "Line Out Source Playback Route", "Stereo", "Right Mixer" },
+> +	{ "Line Out Source Playback Route", "Mono Differential", "Left Mixer" },
+> +	{ "Line Out Source Playback Route", "Mono Differential", "Right Mixer" =
+},
+> +	{ "Line Out Ramp Controller", NULL, "Line Out Source Playback Route" },
+> +	{ "LINEOUT", NULL, "Line Out Ramp Controller" },
+> +};
+> +
+> +static struct snd_soc_card *sun50i_h616_codec_create_card(struct device =
+*dev)
+> +{
+> +	struct snd_soc_card *card;
+> +	int ret;
+> +
+> +	card =3D devm_kzalloc(dev, sizeof(*card), GFP_KERNEL);
+> +	if (!card)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	card->dai_link =3D sun4i_codec_create_link(dev, &card->num_links);
+> +	if (!card->dai_link)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	card->dai_link->playback_only =3D true;
+> +	card->dai_link->capture_only =3D false;
+> +
+> +	card->dev		=3D dev;
+> +	card->owner		=3D THIS_MODULE;
+> +	card->name		=3D "H616 Audio Codec";
 
-Rather than filling in 0's.
+I get an error message, complaining about this name being too long:
 
+[    3.343325] ASoC: driver name too long 'H616 Audio Codec' -> 'H616_Audio=
+_Code'
 
-> 
-> * We will have more comparable code between normal trace buffer reading
->    and reading trace buffer after panic with sink specific callbacks,
->    even though we keep the code seperate.
+This happens when "name" is used as a fallback for a missing "driver_name"
+member. But its storage is limited to 16 characters, so we are short by
+one (for the NUL byte). I could fix that by adding:
 
-Lets not create "customs" here. We have a callback for a reason. i.e,
-the ETF has an internal SRAM which is not accessible directly by the CPU
-and ETR uses normal RAM.
+	card->driver_name	=3D "sun4i-codec";
 
-While in this case, we have the data in CPU accessible RAM and the
-"driver" in this case is crash handling and can be agnostic of where
-the data was captured (ETF vs ETR)
+Cheers,
+Andre
 
-
-Suzuki
-
-
-> 
-> Please let me know your thoughts on this.
-
+> +	card->controls		=3D sun50i_h616_card_controls;
+> +	card->num_controls	=3D ARRAY_SIZE(sun50i_h616_card_controls);
+> +	card->dapm_widgets	=3D sun50i_h616_codec_card_dapm_widgets;
+> +	card->num_dapm_widgets	=3D ARRAY_SIZE(sun50i_h616_codec_card_dapm_widge=
+ts);
+> +	card->dapm_routes	=3D sun50i_h616_codec_card_routes;
+> +	card->num_dapm_routes	=3D ARRAY_SIZE(sun50i_h616_codec_card_routes);
+> +	card->fully_routed	=3D true;
+> +
+> +	ret =3D snd_soc_of_parse_audio_routing(card, "allwinner,audio-routing");
+> +	if (ret)
+> +		dev_warn(dev, "failed to parse audio-routing: %d\n", ret);
+> +
+> +	return card;
+> +};
+> +
+>  static const struct regmap_config sun4i_codec_regmap_config =3D {
+>  	.reg_bits	=3D 32,
+>  	.reg_stride	=3D 4,
+> @@ -1562,6 +1742,14 @@ static const struct regmap_config sun8i_v3s_codec_=
+regmap_config =3D {
+>  	.max_register	=3D SUN8I_H3_CODEC_ADC_DBG,
+>  };
+> =20
+> +static const struct regmap_config sun50i_h616_codec_regmap_config =3D {
+> +	.reg_bits	=3D 32,
+> +	.reg_stride	=3D 4,
+> +	.val_bits	=3D 32,
+> +	.max_register	=3D SUN50I_H616_DAC_AC_RAMP_REG,
+> +	.cache_type	=3D REGCACHE_NONE,
+> +};
+> +
+>  struct sun4i_codec_quirks {
+>  	const struct regmap_config *regmap_config;
+>  	const struct snd_soc_component_driver *codec;
+> @@ -1647,6 +1835,15 @@ static const struct sun4i_codec_quirks sun8i_v3s_c=
+odec_quirks =3D {
+>  	.has_reset	=3D true,
+>  };
+> =20
+> +static const struct sun4i_codec_quirks sun50i_h616_codec_quirks =3D {
+> +	.regmap_config	=3D &sun50i_h616_codec_regmap_config,
+> +	.codec		=3D &sun50i_h616_codec_codec,
+> +	.create_card	=3D sun50i_h616_codec_create_card,
+> +	.reg_dac_fifoc	=3D REG_FIELD(SUN50I_H616_CODEC_DAC_FIFOC, 0, 31),
+> +	.reg_dac_txdata	=3D SUN8I_H3_CODEC_DAC_TXDATA,
+> +	.has_reset	=3D true,
+> +};
+> +
+>  static const struct of_device_id sun4i_codec_of_match[] =3D {
+>  	{
+>  		.compatible =3D "allwinner,sun4i-a10-codec",
+> @@ -1672,6 +1869,10 @@ static const struct of_device_id sun4i_codec_of_ma=
+tch[] =3D {
+>  		.compatible =3D "allwinner,sun8i-v3s-codec",
+>  		.data =3D &sun8i_v3s_codec_quirks,
+>  	},
+> +	{
+> +		.compatible =3D "allwinner,sun50i-h616-codec",
+> +		.data =3D &sun50i_h616_codec_quirks,
+> +	},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, sun4i_codec_of_match);
+> @@ -1860,4 +2061,5 @@ MODULE_AUTHOR("Emilio L=C3=B3pez <emilio@elopez.com=
+.ar>");
+>  MODULE_AUTHOR("Jon Smirl <jonsmirl@gmail.com>");
+>  MODULE_AUTHOR("Maxime Ripard <maxime.ripard@free-electrons.com>");
+>  MODULE_AUTHOR("Chen-Yu Tsai <wens@csie.org>");
+> +MODULE_AUTHOR("Ryan Walklin <ryan@testtoast.com");
+>  MODULE_LICENSE("GPL");
 
 
