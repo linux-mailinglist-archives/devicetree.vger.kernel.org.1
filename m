@@ -1,105 +1,144 @@
-Return-Path: <devicetree+bounces-112690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8B19A3419
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:17:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A54A09A3441
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:31:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1B3BB21A8E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 05:17:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 673F6285D23
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 05:31:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D808917332C;
-	Fri, 18 Oct 2024 05:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE8B17B50B;
+	Fri, 18 Oct 2024 05:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q7gHx+DS"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oZ3ckdg6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401F33BB24;
-	Fri, 18 Oct 2024 05:17:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB591714BF
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 05:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729228656; cv=none; b=E9L5UiEnG9jp/1fkaVWl7JjY9ZP6Wn8iFnQUzVn6kwjKvHGtgwLom+cLLQ1ribzc2v1aeIOaLiU8QL3J3LBp2E39+Y3N+ozVFbIf4OpoHH72sJo5iBW2zI3y7XvN5b5vWvh54qrInXBKY+aYxXc/0c48eAiZkenpCKbTMppKkBE=
+	t=1729229500; cv=none; b=nBPMJ8p/xPMbJgW94+IosVLnHokM6y1suqK5y6b3kyXAswMdvZLN9rPN47QXAvMQz7BbfhDjtpVds2wobm2YiAQgAVcJ8g+65kgQaijUgLdnOEtHbrsWr3Gf4GxTRPB81JcDzW6g7I6QxX5WHXpOKOzwGtD7tD/AGli/JwqBGG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729228656; c=relaxed/simple;
-	bh=0ZIV5ukQjY30pNaNo7kW7TW8B5X2VOAy6DL6Pc6wwM8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FpDTQ3AA2VIWhxIWWklHa2BKQtl6UpSIo3iOTDT4Iet70wajOUrD6IHUeWZNvFB4hl8Z6k1f5bC8YbqZWm8TuPQF8isziwV+xOF5Ze39h3Cz4fScU5xK0x3xwVU7fCqD/5xFZQZyqFNjHYemByBpoglWmY2Xx5I57X0LGCKQHqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q7gHx+DS; arc=none smtp.client-ip=209.85.128.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-431481433bdso17085115e9.3;
-        Thu, 17 Oct 2024 22:17:35 -0700 (PDT)
+	s=arc-20240116; t=1729229500; c=relaxed/simple;
+	bh=c6pJR17Cx+vhBdPlKGr1glBzn0/Huh2wZWajDJPJL9g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VPBHpX/Z2fobwZ9gAbAxmsPKxvG6ELazJeb6TrAvTPMIFpQriV8fjEablloCaifMqTom+TPhuTFKQyIW5zzRv29QT+4KvWzk2VMxhnDxeN2B0irB8kQorhPyKeu0CrP8CDF0uWOQhTi5iBCSkrcd3ba7HqOIWS+RCN+1MclP7Co=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oZ3ckdg6; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d462c91a9so1164907f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Oct 2024 22:31:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729228654; x=1729833454; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LHREBNBNkmxhQ4JEcUk4PRuNqtZtmOAk0KjHkTVt/ao=;
-        b=Q7gHx+DSwnkPyysKn99NZ/baKIF4U3bexzKkysGrILNa5ewvc/c65lGm3dPxOmM4bo
-         tDtz7i8wOvKo7a4NTJRBktFN7h13G2XSHISbj66P5y9V5AXPFxNvLoVi1CB9jtixz2Qa
-         gKr/Z8yux1B9hIFoWtJOWpTw16baXYb4Cz8kCpUxvl47VM4tmCWlL2eP046nJODdE49j
-         wKsF+avluwgV4qpOrm2lBpXsejE0AVnXudCKDmE9090yrXLZRlt6J7Qj2O8Krmq6gAaX
-         7EPYlugK89peStoLxYFBOYxEkcJ6aZS2jxjFOx6jzEsvfJ+RgnHWCu/3snpLHnZ1IZiE
-         tGjw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729229496; x=1729834296; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=c6pJR17Cx+vhBdPlKGr1glBzn0/Huh2wZWajDJPJL9g=;
+        b=oZ3ckdg6CoKMWMyrrquRg1bWUmPzVMnO7Pt1ZOEccAtmT0rF32QKcqzDwzKmiZJX7o
+         2HggUPmruVvYMW2d/mwZHMBLp/FQn3o3Y5VoYusnjuNYR8Mb/tNPJNTGQJUwaY8ZE894
+         UfGBFxDj1cExPA0Wo0Kvh0dclxzNcRHvTmjR6I8ePSEAJfJUs92asLL32+MmM9LWNMlg
+         1AiKNIxgNFiLDTILU00J/7Wil01/hVZ9trh2cIlu3SlqNHZImMigfxu5Ho1Wsn47brFp
+         oPfM+rp8wiybMRk1a0IU55Ed0EMCG58csykSXAfTVUKIs49LuKd2c01NXW5Y0FM1bkKD
+         Ig4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729228654; x=1729833454;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LHREBNBNkmxhQ4JEcUk4PRuNqtZtmOAk0KjHkTVt/ao=;
-        b=jigiYAW2HRGqyOrke+pSMmtXaKI6kx3f7JMzY/CWZdpv08tA9bcdBJGhMDxcpQp1DF
-         Dk4vTwsWyOIPicOIlm8ERg7ODDC2GM8lBlVFXmwEO/OyWOm9Lv9wDuKis2po3Rs74MAE
-         A5mA+szoYyZ5qdR2GC+d/SdZxHd1A5W2rMM7WMcEFYsINJm0dJMtsEhzngiJ+lbo4pEn
-         0okTP3oATV/RWzop55SobtgoL/FZKtp3cQnoCa9GXdWUcW771lUn0cOKPxrmkDxniPMu
-         92sWzdbMxA8WQ5gnBmpw9LH26ReeWqvjCKR4fgdT9TBhmL7QYqW4rVrZuxLiWLZEErJa
-         sbHw==
-X-Forwarded-Encrypted: i=1; AJvYcCWHU41l/CJEtWkhSDtFP1fSXoaz4jnLFAxgXjIbH/J34OVDeNciuxwMNBKA8azhrc/tGKRlhwlEY37Pqa5L@vger.kernel.org, AJvYcCWk3mv50B4gxghXffYP7WRC+OyQIlQD6fF/4Jz1MVbu9eCA7QiK5VypSBhmiK1lmIIGMDSvJvPd7JsU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxma+hN1QINiC9kZuK4jxuqE92CBHAEnAdQ6bNPG2WqfSza/TAl
-	N1NSUFX3cMnjpZdosovWoHEJuyONt/+DUbv/tXaURmZ5KotGp+zg
-X-Google-Smtp-Source: AGHT+IG7s8U0f9tFkkXvfr0+7AmebmQTQZpzng7cnmh8G56lS3RDeORnjaN1eRnoG0PtrdqwJxvyPg==
-X-Received: by 2002:a05:600c:3b9b:b0:431:5aea:969 with SMTP id 5b1f17b1804b1-43161627fdemr7240165e9.8.1729228653324;
-        Thu, 17 Oct 2024 22:17:33 -0700 (PDT)
-Received: from [127.0.0.1] ([94.131.108.69])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43160dbe80bsm13166195e9.5.2024.10.17.22.17.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Oct 2024 22:17:32 -0700 (PDT)
-Message-ID: <193b9781-8782-42f6-8a43-2f17ca5a28e1@gmail.com>
-Date: Fri, 18 Oct 2024 13:17:25 +0800
+        d=1e100.net; s=20230601; t=1729229496; x=1729834296;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c6pJR17Cx+vhBdPlKGr1glBzn0/Huh2wZWajDJPJL9g=;
+        b=rSG/lfJ2bMLMBAreSfJ/3LDbOi6dXq3HELYPB/3a19b9R8DAisBEWfNrnCgrgWyUhs
+         mVV1yX96WnZ87ruq87f4G4n2JTlwEQK1H1syHvLxMLFmKlJUeUHO+k75KGoR0P5unoSI
+         n+hmpmwBIECRbaQsCqgfw8pbs0hZXED22X6W0bnfC0WBQdXBDrjDKgu1MDQDBEpps0Bs
+         B87ljr6mRLDpqPcu6Va2sAHTql9K8kBjM6vwFgHt8/8TPCOGchSSmC7FfE6iHcEjmvCl
+         kYySAsPzom74K3xfkTeEmE1WKyL/fR3hJ2uG1uFyw7zE9K0PBRj573jY9LNyB+N4RDSW
+         9xXw==
+X-Forwarded-Encrypted: i=1; AJvYcCXH5EJ1PJxXhCnJXFZuUQ7g+XZx1Wcu9anqHD0Imi1Wd2LyAvxiry2QLKF5N8+ME5sUqj5IWLIXxFsZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0csfyF+rPDhBvdcAEelt9WODXH5q/I7n1Nq9aaqjsxbjkXVXX
+	N6tjV77eE/2o2kJu1s7C1iGni+4kZlQ8KN4m5BKzcjoGhKtscQ7kTui/z6tJYAg=
+X-Google-Smtp-Source: AGHT+IG8Ld3kpTB/rwLsIFn3KMclllCP6Lx/tf5/1/edc8B38j82iBjzH0rHnvWAB7r6efnRAWqU6A==
+X-Received: by 2002:adf:e008:0:b0:37d:3735:8fe7 with SMTP id ffacd0b85a97d-37eab70bbf3mr720253f8f.32.1729229496469;
+        Thu, 17 Oct 2024 22:31:36 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:c04e:758c:2eb5:eeda])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a68c29ddasm44973866b.211.2024.10.17.22.31.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2024 22:31:35 -0700 (PDT)
+Date: Fri, 18 Oct 2024 07:31:33 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux@rivosinc.com, 
+	Lu Baolu <baolu.lu@linux.intel.com>
+Subject: Re: [PATCH v9 2/7] iommu/riscv: Add RISC-V IOMMU platform device
+ driver
+Message-ID: <5jxxlmvyyennvrg5w6l3ma5pg7ythzo6z65nhs3lhpscmcl5sc@w22emfmvf2rg>
+References: <cover.1728579958.git.tjeznach@rivosinc.com>
+ <b8da2b00aec3f7b4b2e3a7cc194f7961bf656f24.1728579958.git.tjeznach@rivosinc.com>
+ <lagj6ljulmfjogrzhfd3jrf5fnngev63q2g3bmvftwfzc3s6mb@gw6oz4yriyjf>
+ <CAH2o1u4BYyHhi3dVcBrB8T2JpXdxStsfYodmOT-6a8KMHAot8w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] i2c: spacemit: add support for SpacemiT K1 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>, andi.shyti@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- troymitchell988@gmail.com
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241015075134.1449458-1-TroyMitchell988@gmail.com>
- <20241015075134.1449458-3-TroyMitchell988@gmail.com>
- <eb4112aa-21d0-4537-a18c-940d8832711a@kernel.org>
-Content-Language: en-US
-From: Troy Mitchell <troymitchell988@gmail.com>
-In-Reply-To: <eb4112aa-21d0-4537-a18c-940d8832711a@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fbh7gyoiozliysgu"
+Content-Disposition: inline
+In-Reply-To: <CAH2o1u4BYyHhi3dVcBrB8T2JpXdxStsfYodmOT-6a8KMHAot8w@mail.gmail.com>
 
 
-On 2024/10/15 16:08, Krzysztof Kozlowski wrote:
->> +	disable_irq(i2c->irq);
-> Why?
+--fbh7gyoiozliysgu
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v9 2/7] iommu/riscv: Add RISC-V IOMMU platform device
+ driver
+MIME-Version: 1.0
 
-I just want to turn on the interrupt when the transmission starts,
-and turn off the interrupt after the transmission ends.
-The interrupt shutdown in the probe is a starting point
-before the transmission starts.
+Hello Tomasz,
 
-Is this reasonable? If not, I will modify it.
+On Thu, Oct 17, 2024 at 09:45:14AM -0700, Tomasz Jeznach wrote:
+> Thank you for those comments, they look reasonable.
+> Can we postpone those changes after v10 is merged into the iommu
+> subsystem tree?
+
+If the patch is already scheduled to go in, that's fine.
+
+My motivation to reply is the .remove_new thing and just pointed the
+indention as I noticed it while replying to your patch. So I don't care
+about the indention. Do as you please.
+
+drivers/iommu is still on my todo list to convert from .remove_new to
+.remove, so you can just wait until I come around. I'll push it a bit to
+the end to be sure to have your patch in next already so it will get
+converted in a catch-all patch for drivers/iommu.
+
+Thanks
+Uwe
+
+--fbh7gyoiozliysgu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcR8rIACgkQj4D7WH0S
+/k54eQf/YHC2YibpwUipmuB41HqAHsAljGTGCjGvubnogU3Jg8+TQNsVCfGqZXiu
+si3jNg2XK8hVkXTPzdSH0nIRx+Be7vhMJWMyKr894iU5YDrDDV2n1Y+isdYzrUal
+rzz5N1eG26FaxM4czeRU064oACyOKuyPIYY10yrkQiko3A3sWVa5SMHS4fm4IWIV
+2KXXGUkx5ctFSaCtJCseENcFdV/yAmQ/Y83sQrle/sqrou8wkm7WIegZHMEe22cT
+nG3GMref6aC4I4kLjFhQKdUKEkqJuqkhcYzqhuq+TGSUGet/ZkN6AR8N0+QA3RDr
+6iM6q7fDc1d3XirP6chF+olWVozGxQ==
+=jEvi
+-----END PGP SIGNATURE-----
+
+--fbh7gyoiozliysgu--
 
