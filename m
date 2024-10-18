@@ -1,165 +1,118 @@
-Return-Path: <devicetree+bounces-112688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F7AE9A33E7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:35:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA7A9A3409
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 07:02:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60A411C21EBD
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 04:35:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82F4B1F240CE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 05:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1541160884;
-	Fri, 18 Oct 2024 04:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BAC15C156;
+	Fri, 18 Oct 2024 05:02:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="b5zFpXEj"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="LooUSCfM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4830120E31F;
-	Fri, 18 Oct 2024 04:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66A933987;
+	Fri, 18 Oct 2024 05:02:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729226151; cv=none; b=aqZoaAwRtfjTTZDsAkJnidvquLg0Gtp8LakzCeTOALSmDxTxwFUDwMHTMrxPe1S8fzWKFf/Kg5V67Zc+7aNUrjEJKwaeG/dkFkKNH2yr/bIWuHHaQgG83FthxIMtq3dBDM68rTgsxtfIwcPiNFCKqHgaHue90JLugF/fy+UUdjs=
+	t=1729227767; cv=none; b=KD1fp6gzIlIA+dp9jrMUMMyLzGO4goMXtLZbktvIX/L4DCrh+wfEpRUmFHzIeYc/129plcLZEVIS26lh8bs6Nu6DxhVev5TGaB0YH054MG/cIOR++rBlhZSjVOwt2bs9e/cSzwjT3NPxSPxKNkNjyBDgDVRavArDD+JfqTOT4IM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729226151; c=relaxed/simple;
-	bh=NP6NRlGAEnQ5DtECIzxbpzRPTglwkI6hJiT85COeZ08=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZBMaJnxkgPaGtKxB7suPBoaadHLYcs6UhzeeNMNys/cv9/e43POv+uwoq//yGDK3ik5OHIdACt4Arl4Xdyu670Y6U+XpEfaJueuSYUFBIq4QiGdUzlLfUYDuTNeh8q594xDQgzLNAM83ddGuQovb5C6pzxTUNmnC1McfxEbhs6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=b5zFpXEj; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1729226148;
-	bh=NP6NRlGAEnQ5DtECIzxbpzRPTglwkI6hJiT85COeZ08=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=b5zFpXEjm4MUZAcbjgBPLYTCResrTNytMosa0d77qnI+oRFx4+Lx/Fbqp+I1PdGMy
-	 WkCK+ulvFt6yvnspwxFkm8q++0f/A4VQJ6XJfs75LXG4Jl8T9+FQ/eVzgRGbBQdaDa
-	 vm4s4i6LjuTEWH4LkOFp98t4IygoiaCXjFXL0StvJEGW+48QTVKnvlfl53agABsUck
-	 Roo1uKq7MM+qrYCRJ75Rbdu8rHELyMIjpF6iwFjlfcTWJEc0WVweC/UT35ucuNxUbB
-	 cFtofEqrt+NEL0wqn+xF39N0Qz4VSV5ZkaI4RA/Rhr7C6/ldTkDoICzEsGluod8tGR
-	 Ip2jyKQFt5yOA==
-Received: from [192.168.68.112] (203-173-0-39.dyn.iinet.net.au [203.173.0.39])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 243FE681B1;
-	Fri, 18 Oct 2024 12:35:47 +0800 (AWST)
-Message-ID: <0361287ca986cb6101fae2b269b2fe14eea84158.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
- Jefferson BMC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>, Chanh Nguyen
-	 <chanh@os.amperecomputing.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Khanh Pham
- <khpham@amperecomputing.com>, linux-arm-kernel@lists.infradead.org, Thang
- Nguyen <thang@os.amperecomputing.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Phong Vo <phong@os.amperecomputing.com>, Conor Dooley
- <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, OpenBMC Maillist
- <openbmc@lists.ozlabs.org>, Open Source Submission
- <patches@amperecomputing.com>, Quan Nguyen <quan@os.amperecomputing.com>, 
- linux-aspeed@lists.ozlabs.org
-Date: Fri, 18 Oct 2024 15:05:46 +1030
-In-Reply-To: <b16b82d7-60e1-428d-bc7a-8a236ebb98ca@amperemail.onmicrosoft.com>
-References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
-	 <172891445289.1127319.4114892374425336022.robh@kernel.org>
-	 <b5919d904c9f06a618a54d49bc895c3081a511e4.camel@codeconstruct.com.au>
-	 <e8e31fb4-4a9f-4ea9-be4d-9ba29d824cc5@amperemail.onmicrosoft.com>
-	 <7555c528c90e6151f54d0e17c278527f95fac184.camel@codeconstruct.com.au>
-	 <c42be4ea-9902-4fac-8b1e-afc38fe04bad@amperemail.onmicrosoft.com>
-	 <f833ef3b873d0e71581dd138f046b19fa3fdeaf2.camel@codeconstruct.com.au>
-	 <b16b82d7-60e1-428d-bc7a-8a236ebb98ca@amperemail.onmicrosoft.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1729227767; c=relaxed/simple;
+	bh=qBt0DeGZ/e1q0jP7+M7lt+s7YlOFJDrpHI+vFiBdSeY=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=sgB7q6T9XLZCUV1AFVo8UWJlpDs7FX74yPwWeQ0PvBWhhniSnrObBKBkDPFnVHwQLkzY087akhywOP3ACojA2glGswOtijOY2Q0NiEnSO5piD37fnnFotZq7b90V+0gDpJ3vgQl11N+50c//8EuN5XiJT7hJDjtHkrilLBOHq2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=LooUSCfM; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1729227755;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BJWILMVfgDcAgwD1GXhEWso78YUpRlKwkxHJzQiuPHg=;
+	b=LooUSCfMS20nW1+kMD16XatHnO5DWvpkihvGSKzw65oyL2CyPPIof843W9XPpwPc6guK0Y
+	MJVoL6p6kAJymYGWUJvE3NshwhYKqtaT6IniG7w5qFbC627eYsAWEpK6lrXDbx4AY27+/5
+	4ucxA18bkmzHrs83tx2W/PGHyYRXIOr6Tuxq3rIwwDhFdBojavci/sZoxaCYwogTu7fBW7
+	0U4EPWYJl6OdL0Gtz7QuNwqHEnK8Jg73bvk3ItYl7f8Pfea4JJO+33lhKf2qz6mHDxQF4B
+	ABYWSsWw3+54Y5eb+NkcVfVBxiBjPO9YDjQwCCgocyHljBb4jK2sWMyIbD0Kqg==
+Date: Fri, 18 Oct 2024 07:02:33 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Frank Wang <frawang.cn@gmail.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, yubing.zhang@rock-chips.com, Frank Wang
+ <frank.wang@rock-chips.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: soc: rockchip: add rk3576 vo1-grf
+ syscon
+In-Reply-To: <20241017025230.28752-1-frawang.cn@gmail.com>
+References: <20241017025230.28752-1-frawang.cn@gmail.com>
+Message-ID: <ca0ee8752791f53bac23933e1582dd86@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Thu, 2024-10-17 at 17:02 +0700, Chanh Nguyen wrote:
->=20
-> On 17/10/2024 07:08, Andrew Jeffery wrote:
-> > [EXTERNAL EMAIL NOTICE: This email originated from an external sender. =
-Please be mindful of safe email handling and proprietary information protec=
-tion practices.]
-> >=20
-> >=20
-> > Hi Chanh,
-> >=20
-> > On Wed, 2024-10-16 at 17:26 +0700, Chanh Nguyen wrote:
-> > >=20
-> > > On 16/10/2024 12:07, Andrew Jeffery wrote:
-> > > > You can also find discussions where other maintainers (Guenter, hwm=
-on
-> > > > maintainer; Krzysztof, devicetree maintainer) have asked that "pmbu=
-s"
-> > > > not be used as a compatible:
-> > > >=20
-> > > > https://lore.kernel.org/all/f76798ea-6edd-4888-8057-c09aaed88f25@ro=
-eck-us.net/
-> > > >=20
-> > >=20
-> > > Hi Andrew,
-> > > I checked the discussion at
-> > > https://lore.kernel.org/all/f76798ea-6edd-4888-8057-c09aaed88f25@roec=
-k-us.net/
-> > > . It seems the maintainers don't want to use the "pmbus" compatible f=
-or
-> > > specific devices. The maintaners require an explicitly compatible fro=
-m
-> > > device list in drivers/hwmon/pmbus/pmbus.c .
-> > >=20
-> >=20
-> > There are two problems:
-> >=20
-> > 1. Describing your _hardware_ (not drivers) in the devicetree
-> > 2. Binding a driver to your device
-> >=20
-> > You ultimately care about both 1 and 2 as you want Linux to do
-> > something useful with the device, but for the purpose of this patch
-> > adding the devicetree, 1 is what matters and 2 is not really a part of
-> > the considerations.
-> >=20
-> > What needs to be the case is that the devicetree describes the device
-> > via an appropriate compatible string for the device (manufacturer and
-> > part number). Prior to that, the compatible string for the device needs
-> > to be documented in a devicetree binding. This may be the trivial-
-> > devices binding if there are no extra properties that need to be
-> > described, or you may need to write your own binding document for the
-> > device if it's more complex and one doesn't yet exist.
-> >=20
-> > So whatever is in pmbus.c needs to be fixed later on if your device is
-> > not yet supported by it, but that's a separate problem (2) to the
-> > problem you have here (1).
-> >=20
-> > Who is the manufacturer and what is the part number?
-> >=20
-> >=20
-> > Andrew
->=20
-> Thank Andrew for your explanation! I'm so happy to receive comments from=
-=20
-> you.
->=20
-> I'll remove the PSU node with "pmbus" compatible in the patch v2. We'll=
-=20
-> discuss more to have a suitable PSU node later.
->=20
-> I'm preparing the patch v2. Summary, I need to update as the below list.
-> 1. Add Mt. Jefferson board compatible binding as Krzysztof pointed.
-> 2. Remove the PSU node with "pmbus" compatible.
+Hello Frank,
 
-Sounds good. Thanks.
+On 2024-10-17 04:52, Frank Wang wrote:
+> From: Frank Wang <frank.wang@rock-chips.com>
+> 
+> Add rockchip,rk3576-vo1-grf syscon compatible, the vo1-grf is
+> configured in usbdp phy driver.
+> 
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+> ---
+> Changelog:
+> v2:
+>  - This is a new patch adds rk3576-vo1-grf syscon.
 
->=20
-> If you have any other comments on patch v1 please don't hesitate to=20
-> point out; I'll update that in patch v2.
+Could you, please, clarify a bit why is this additional patch
+needed in this series?
 
-I had one query on v1.
-
-Andrew
-
+> v1:
+>  - none
+> 
+>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> index 50d727f4b76c6..fd42217ab85e7 100644
+> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> @@ -33,6 +33,7 @@ properties:
+>                - rockchip,rk3576-usb-grf
+>                - rockchip,rk3576-usbdpphy-grf
+>                - rockchip,rk3576-vo0-grf
+> +              - rockchip,rk3576-vo1-grf
+>                - rockchip,rk3576-vop-grf
+>                - rockchip,rk3588-bigcore0-grf
+>                - rockchip,rk3588-bigcore1-grf
+> @@ -283,6 +284,7 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - rockchip,rk3576-vo1-grf
+>                - rockchip,rk3588-vo-grf
+>                - rockchip,rk3588-vo0-grf
+>                - rockchip,rk3588-vo1-grf
 
