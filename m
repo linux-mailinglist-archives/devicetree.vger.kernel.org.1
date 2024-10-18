@@ -1,84 +1,151 @@
-Return-Path: <devicetree+bounces-112703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B7FD9A3533
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:15:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C37C79A3539
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:18:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A9941C20A5A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:15:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D41471C22222
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35301168C3F;
-	Fri, 18 Oct 2024 06:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DB3173326;
+	Fri, 18 Oct 2024 06:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cnfp2lxz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GMuCuTa7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6FFA2D;
-	Fri, 18 Oct 2024 06:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFE115C144;
+	Fri, 18 Oct 2024 06:18:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729232132; cv=none; b=W8OkfE4fvg+cshNRRCzAqSxjYgFXl+Tpf3qc2/kMTFPT8HHN7GG9cWvGMxh2oWwBlLhp8elIfy1i8jywN8Ir4Ycx4XQuvdwmQRTI5d6MgxC0dsxn2198QYyHEK8byspe/uGo9Zxmc6TbHyGpPvAkK+ehkXkFfkiC//HB7I8nacU=
+	t=1729232325; cv=none; b=ZaiHEZNqeapWeH0Ewtncg3PhT8DpeaG8ZB79TeSs5iy/EbCtsFvvrD4fy3loYvK1TWwWSvBm7mjI2QN0sfCGRvNW0WePQy9Y5w3soesxluzQjYeTNcGZf5HtMaQ1xZnDAMh6n65dPm2mSRMmdCtr/E+hvmUAOvE3TlHefxjtwqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729232132; c=relaxed/simple;
-	bh=6M6kNuQkv1KZSwfaWc/t2QEfSgBi8V5I8EBEhHPPuXg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rwl0ZBlMkX2h1I4P1J0kkUy4tPlz42ILE3/jh/Z/mSlp730024l/Mu3wmWc6AoNapt8bF0Ae4Gcl1MAspkv7AXGxJfNTdi0Q3N96hVxXs8b0it1HC6R5yOTgFCx49IwUxRw5GpKjjQYhPJ7PHl+x+XDPiQ2iiqduidEp/ycYKoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cnfp2lxz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDC74C4CEC3;
-	Fri, 18 Oct 2024 06:15:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729232131;
-	bh=6M6kNuQkv1KZSwfaWc/t2QEfSgBi8V5I8EBEhHPPuXg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cnfp2lxzmyhGDgkVgPNqX/zLvY1I51HXCYPPhcmDv0eJIgeoUEyF0OUefj46Vk+S2
-	 jMV+hXgMKzqJwtzDtgIwWntIiyr0wgIBjd7Bd544Czk7g9o8ppK3rEkbiDSJycpQyI
-	 Ae5nmI9mAjbtPp3h3ZDHPge5LSFXd1YPCUfZ54mlijNySG6iioyUyNBhWlrPJ6Ty6C
-	 7ZCbgJW4/Wlic4ven3lc7pcceHjTxXNuq27romS1yHsUiWJ6OGg7jDdoxGSRtyQINi
-	 xwdXJBD+ncPuillu4R6x5euP7g568dI9r9ACYYfI7BKMw4V/svtGp6F/vbIB5Wrmy6
-	 zr2CYpva1F2UA==
-Date: Fri, 18 Oct 2024 08:15:28 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Alexandre Mergnat <amergnat@baylibre.com>, 
-	Fabien Parent <fparent@baylibre.com>, Markus Schneider-Pargmann <msp@baylibre.com>, 
-	Alexandre Bailon <abailon@baylibre.com>, Chen-Yu Tsai <wenst@chromium.org>, 
-	Eugen Hristev <eugen.hristev@collabora.com>, MandyJH Liu <mandyjh.liu@mediatek.com>, 
-	Yassine Oudjana <y.oudjana@protonmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: power: Add binding for MediaTek
- MT6735 power controller
-Message-ID: <gdksnrs34k5ypuvdxp6vecqakhxrjcswkxjmfwnbiyi24m42ix@4aekpbfy56pt>
-References: <20241017085136.68053-1-y.oudjana@protonmail.com>
- <20241017085136.68053-2-y.oudjana@protonmail.com>
+	s=arc-20240116; t=1729232325; c=relaxed/simple;
+	bh=NzeMR7erdNWgJu71wd43ok/PJEvMdq8EmPPUMY13qLg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ikdk0MyLXTIdutZSXRq6ClWBipldinhu07uvVHfy0113sJrALI0NOA6HO1/rjx7zs6x9+Ekh6n18KyTgvQHz0jY/ttj0ay4QI+Bh1aSS22nsklv5M5BvdgwuMILAzw2OgMxp0x9Qj7yveOEZ+JCkowMR5C97pIMzWiHMte8NE3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GMuCuTa7; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2e56750bb13so48007a91.2;
+        Thu, 17 Oct 2024 23:18:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729232323; x=1729837123; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ouUINbwY2JBh/LI60xwCfEtsQIXolR7Vwp/EQ6dj3+o=;
+        b=GMuCuTa7dJfbJ2Lg9UKOKhWq9467HQ3tbf3iqoWVLqkK5u4lh2T/G1692DARrNpzLn
+         gOrOazGE4gIYxm+yEglqctLkDrfd3x/ROGF1XHK8nX/NY08uivObiBTDj8U4dewcdJO4
+         jJxBgTTPzr7z+MjP6wzf4VeZLYSIaO9U18gzZddsaFG8HdTG4swkEP6GPxYlqBJ8phK8
+         7T4uz33dy4jbCawDQETH9WCdOSjqPK1/U6lRS6LeuEwHrUBDw6fparfA7ep3CqPBeYeN
+         efo3ZATC2/mqygkChqwzRHqywcbn5xmzY0R61AaGmATHYVkcoOMy+blI4UnpzSI/NdUP
+         GJyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729232323; x=1729837123;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ouUINbwY2JBh/LI60xwCfEtsQIXolR7Vwp/EQ6dj3+o=;
+        b=RFxgV6wQFEnAngw02fjCp/6qN3B8xd6yXZ3zQgvTqQjz1Wiydx/k1t5bcXONOpVwIz
+         8JmV9mHxBKnFESIUcmZDSQkBIU90S3nEDK7CXjQpKGBkvGxBcgrjDsVRn7GXCYlF17im
+         nlLtRsiMYva03FZh8BlMffxQ3+6n2l4zIjZQhKiNdQ5givGryX5jyMXSN7n1MBxYOwLE
+         uDB1uMW5UsB6nADzSwf4wVGN8JHGrq2kHEn1cCUgfFm6vom0deTG3cSlBM3kVHMD2ZBl
+         HuTOcK4gOZgmE4PrT7jy7UeyGb6in+sFDIvA9osu+7Cwxx2UZPVgEE79ICBYK9vNjEb4
+         3PaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXANVBTkxnaMrHqElC9q2YuJ7vWRp/q/r/LYvJCnY4Z428JtW5x3abGKuiRSRjaswDG3EkDcV4Klnue@vger.kernel.org, AJvYcCXK53K8ySzKEn+GNjXkawbLelmG1Su67uzamQzXIN/QrCB0qyk2JeI8+6/v6w0oTSr1/dyRschrZ54uUfab@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywj8ZXZW3XWcrj5h3BkTHGwG8Re4zDvPbU3/QA4SwRYYrUAf/m9
+	fAkwfRyTSGXDxlqp74yZabY39yY1FhBx5VFfWWCkaWoNZaDLbaAcd1xLYw==
+X-Google-Smtp-Source: AGHT+IHTa4o1U0/RWcsBQd2x+1sXi55hJr+ER1bPmWHpKN8wglThFLNxkxKayVdgTq2xyvVigaVFug==
+X-Received: by 2002:a17:90b:1a81:b0:2e2:ada8:2984 with SMTP id 98e67ed59e1d1-2e5618d5990mr787518a91.4.1729232323248;
+        Thu, 17 Oct 2024 23:18:43 -0700 (PDT)
+Received: from [192.168.60.56] ([103.29.142.67])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e5a8d6cf9sm5875815ad.143.2024.10.17.23.18.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Oct 2024 23:18:41 -0700 (PDT)
+Message-ID: <d2a200aa-1301-4940-a39c-0412fe741994@gmail.com>
+Date: Fri, 18 Oct 2024 14:18:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241017085136.68053-2-y.oudjana@protonmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: soc: rockchip: add rk3576 vo1-grf
+ syscon
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, heiko@sntech.de, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ william.wu@rock-chips.com, tim.chen@rock-chips.com,
+ yubing.zhang@rock-chips.com, Frank Wang <frank.wang@rock-chips.com>
+References: <20241017025230.28752-1-frawang.cn@gmail.com>
+ <ca0ee8752791f53bac23933e1582dd86@manjaro.org>
+Content-Language: en-US
+From: Frank Wang <frawang.cn@gmail.com>
+In-Reply-To: <ca0ee8752791f53bac23933e1582dd86@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 17, 2024 at 11:51:34AM +0300, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Add DT binding for MediaTek MT6735 SCPSYS power controller.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+Hi Dragan,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 2024/10/18 13:02, Dragan Simic wrote:
+> Hello Frank,
+>
+> On 2024-10-17 04:52, Frank Wang wrote:
+>> From: Frank Wang <frank.wang@rock-chips.com>
+>>
+>> Add rockchip,rk3576-vo1-grf syscon compatible, the vo1-grf is
+>> configured in usbdp phy driver.
+>>
+>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>> ---
+>> Changelog:
+>> v2:
+>>  - This is a new patch adds rk3576-vo1-grf syscon.
+>
+> Could you, please, clarify a bit why is this additional patch
+> needed in this series?
+>
+
+I mentioned in the commit content. The usbdp-phy driver select dp lanes 
+via configuring the vo1-grf.
 
 Best regards,
-Krzysztof
+Frank
+
+>> v1:
+>>  - none
+>>
+>>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>> b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>> index 50d727f4b76c6..fd42217ab85e7 100644
+>> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>> @@ -33,6 +33,7 @@ properties:
+>>                - rockchip,rk3576-usb-grf
+>>                - rockchip,rk3576-usbdpphy-grf
+>>                - rockchip,rk3576-vo0-grf
+>> +              - rockchip,rk3576-vo1-grf
+>>                - rockchip,rk3576-vop-grf
+>>                - rockchip,rk3588-bigcore0-grf
+>>                - rockchip,rk3588-bigcore1-grf
+>> @@ -283,6 +284,7 @@ allOf:
+>>          compatible:
+>>            contains:
+>>              enum:
+>> +              - rockchip,rk3576-vo1-grf
+>>                - rockchip,rk3588-vo-grf
+>>                - rockchip,rk3588-vo0-grf
+>>                - rockchip,rk3588-vo1-grf
 
 
