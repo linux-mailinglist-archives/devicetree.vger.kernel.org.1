@@ -1,171 +1,110 @@
-Return-Path: <devicetree+bounces-113083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1A769A48E4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 23:30:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2592D9A4905
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 23:40:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FA501F2254A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 21:30:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9277B225B8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 21:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085BC188CC6;
-	Fri, 18 Oct 2024 21:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423DD18E756;
+	Fri, 18 Oct 2024 21:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JYg2qMzF"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hs9w+OYG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA0676C61;
-	Fri, 18 Oct 2024 21:30:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0094218C332;
+	Fri, 18 Oct 2024 21:40:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729287026; cv=none; b=fohjp93o741oSZG6rdF1iLcAJu1NinlpR/WTpMVRAegUpjaOABAuGngB0k/3zHfgxLBdyLneddiapXKVeKfghZ7PWS5c2WYEL7XTvb8EQE0BFGOQm5rA2saXwMQdn8wkuS4g+hnOrQ+m6Y1Vp5Bn0/BQnIkAqC4wAxigHB75NUA=
+	t=1729287624; cv=none; b=m2r6hbdeigFvND2PrB8v1CSM5bwDNIKNoq5SrWLAzDd0TRH048ubwpzfUoQv/U0Pwk0wb+JFnBrdXImRB/7a6Hlo148+Rzx9r13wCvov/ov/e/65r0ViTwoCdW6qxt0S2cQ2dY9uaCASsVeq1is+yfE8F5X1bO0neteXG9rA4+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729287026; c=relaxed/simple;
-	bh=juMLTOEXCDK6gOZ5HRyd5DhG8xehQaK+cumKDO47+Tg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RSGtuhrsb0NggbHKvDE1i9/2cnw7aRbSuaDXplq/y+0r1THEeHvsjLcyJ4bKDXBrHLi3j15yuMHFT4Tlb8c+EN3zzzRTfLt6gNJfo9wQjsvt1pB8y1sZgHmL6IlwLA7fWBa9X0LNiRf9mq6udAXwStVOMuG2ZW/D6AHhr7hH61w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JYg2qMzF; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e2dc61bc41so1864008a91.1;
-        Fri, 18 Oct 2024 14:30:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729287024; x=1729891824; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8ULZXBudPIUUAeLpkQ/mrazZgZRZ5q0jGrrP2oCW70E=;
-        b=JYg2qMzFLwMdeVigRrXHZMnXRMJ/BHh/BsDUjZD/pSxc0OgZZNhwmDiCgn3tzqdotI
-         lTVvcyRyI19+nCStnRogU/kXrmr+RUG4PTrJj29KL8FLgbfoGHx/GFBBBLCvEkn2njpp
-         XLdH0A2XBspZ3zM8bM+rPhR9ii8s1riMWV4cvkE4fstvBPN/QRr/2RMgkrK0hrQknISN
-         f0dWGnD0Wm7Ri0Nnwe3LjXq0GBi5CeFRjEbOay/tVnCD0Ee1uFiqJruqadyKRjgdwWDK
-         6+0k8jfqe9jC3v7Vcyj4bO92ZKb5TqG3OyEVzGjWFOaPuu+8y3fcQmg1/zfsJXnplbT/
-         85Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729287024; x=1729891824;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ULZXBudPIUUAeLpkQ/mrazZgZRZ5q0jGrrP2oCW70E=;
-        b=SpqRvv+6GIC1L0MFuDV3kCLCX6b+hVOWwhn67QHAiosMCPZcM8F2KyxLn9L5KUTxl/
-         utpUD+qVS30GQ64E+6zg/OCDfeTnoj830CVc7dys5J0fxWr2NU2hIizMwRLhoAUXrM6Y
-         ViPJ2Jv5Yed4/DG+/W8qHz73vPoiDUqPk+eRsJjOfvxe8I2ebDITYVxZj4wGH0oZVWXF
-         9IEJq4WK1YeeltI9CjAP/GU6zjbyM8iSkpByaN0V1L7MOmHOqw8/cgLyvckYINRlcme8
-         uJ89XZpfs16wyjzENEjtB1PEdalyVxKWtlOR8JDKf7jLMHbBte9WkIlfS9H9fa7K7AdA
-         0hRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4e4KQDVSovxHO3HNLRnOkWEoOy+pmAuAIHHQ+Gm99Pgi6Tq27Lbm/usf38d3vYFOTBq88bLsfH+z4@vger.kernel.org, AJvYcCX6ar0RJ0LxhQQuz0cOff3z65zW131K09N3nOYaPoiiP/1Zd+9K4yqlBMs//iG8L4rPtY0pjw8Xyv0OQDg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuUuPkOL4apJKfYUyMmCS2376tTOnW3T8/49Ulra9PMDawaEgx
-	ngkbK/E3NUuh5rWqR0xJ8mDkfqgNNFKMtwkmKw08E0AVfALF2Bji
-X-Google-Smtp-Source: AGHT+IFvqrBxX4d/rwMCiUacscknQ2LyCpVeT/+of4waLQ76S8imVk0J4g22RKvUlTO3Q62fVVhXhQ==
-X-Received: by 2002:a17:90a:c587:b0:2e2:e597:6cd3 with SMTP id 98e67ed59e1d1-2e561721138mr3911230a91.17.1729287024105;
-        Fri, 18 Oct 2024 14:30:24 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:351c:e27f:10e5:484c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5611d6da4sm2519932a91.18.2024.10.18.14.30.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 14:30:23 -0700 (PDT)
-Date: Fri, 18 Oct 2024 14:30:20 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, Mike Frysinger <vapier@gentoo.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Lee Jones <lee@kernel.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 00/13] Input: adp5589: refactor and platform_data removal
-Message-ID: <ZxLTbBGqQLrsDLWv@google.com>
-References: <20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
- <d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com>
+	s=arc-20240116; t=1729287624; c=relaxed/simple;
+	bh=jzMY5ROrS69sk17xI0Wa3em7WxCWgNTftdL4b/p4/Po=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KX0QXSY27kojxHj1oUiZiyuam+W3FDZ2rKGh0Te4Iu+tNMvcYKtewyLeiB7S7eUGsdDghiWew/isAeY/Z93/zrkmvN71W2QjsQIDOmHjh6CXniXcm5Bn8p2WyjlDoMchLZIkdFIi+tuqQzSTMC63UVfbhuiSfGg5chcuL52Khwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hs9w+OYG; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729287619;
+	bh=jzMY5ROrS69sk17xI0Wa3em7WxCWgNTftdL4b/p4/Po=;
+	h=From:Subject:Date:To:Cc:From;
+	b=hs9w+OYGnrPcqkRLJ/Gth7If4b1/T4/Q5rkkSGFfHn5l3TDjsaZhpmXK6t8U+2NOY
+	 990gMBfW12IfEUT8F52QEUeU9KsJ3KFGrXl0cnZDaftNCijfq78soiYhnJN9iDGe05
+	 deA6EDexQxqjaFOIxCsJyUhGd3vhrLK7pI0CvI6H0yLAhlTFwqgoJHQwkua7Ze5fxg
+	 38w2cYv7qhSLb1XFnVdHsjVhpbtttGvEQ96KwxOv1OWKtbEDqXYYd6noqdQB/t/rva
+	 QpP+tzRe3m0BFuVvjl3CkW//tKO/UPf0EjisxVcOfYulW5LwQZ72XozbfML5s+trMl
+	 P0y67ucPp8Sfw==
+Received: from localhost (unknown [188.24.146.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B935C17E3759;
+	Fri, 18 Oct 2024 23:40:19 +0200 (CEST)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH 0/5] Enable HDMI0 on several RK3588 based boards
+Date: Sat, 19 Oct 2024 00:39:48 +0300
+Message-Id: <20241019-rk3588-hdmi0-dt-v1-0-bd8f299feacd@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKTVEmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDA0ML3aJsY1MLC92MlNxMA92UEl3DRENj0xQDA3OzxDQloK6CotS0zAq
+ widGxtbUAeCa8V2EAAAA=
+X-Change-ID: 20241018-rk3588-hdmi0-dt-1a135d0076af
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Luis de Arquer <ldearquer@gmail.com>, Alexandre ARNOUD <aarnoud@me.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
 
-On Wed, Oct 16, 2024 at 03:36:03PM +0200, Nuno Sá wrote:
-> On Tue, 2024-10-01 at 15:41 +0200, Nuno Sa wrote:
-> > This series aims to remove platform data dependency from the adp5589
-> > driver (as no platform is really using it) and instead add support for
-> > FW properties. Note that rows and columns for the keypad are being given
-> > as masks and that was briefly discussed with Dmitry. For context
-> > on why this is being done as mask [1].
-> > 
-> > The first couple of patches are fixes that we may want to backport...
-> > 
-> > [1]:
-> > https://lore.kernel.org/linux-input/9db96c99c805e615ba40ca7fd3632174d1e8d11f.camel@gmail.com/
-> > 
-> > ---
-> > Nuno Sa (13):
-> >       Input: adp5589-keys: fix NULL pointer dereference
-> >       Input: adp5589-keys: fix adp5589_gpio_get_value()
-> >       Input: adp5589-keys: add chip_info structure
-> >       Input: adp5589-keys: support gpi key events as 'gpio keys'
-> >       dt-bindings: input: Document adp5589 and similar devices
-> >       Input: adp5589-keys: add support for fw properties
-> >       Input: adp5589-keys: add guard() notation
-> >       Input: adp5589-keys: bail out on returned error
-> >       Input: adp5589-keys: refactor adp5589_read()
-> >       Input: adp5589-keys: fix coding style
-> >       Input: adp5589-keys: unify adp_constants in info struct
-> >       Input: adp5589-keys: make use of dev_err_probe()
-> >       Input: adp5589-keys: add regulator support
-> > 
-> >  .../devicetree/bindings/input/adi,adp5589.yaml     |  310 +++++
-> >  .../devicetree/bindings/trivial-devices.yaml       |    6 -
-> >  MAINTAINERS                                        |    8 +
-> >  drivers/input/keyboard/Kconfig                     |    3 +
-> >  drivers/input/keyboard/adp5589-keys.c              | 1397 +++++++++++++-------
-> >  include/linux/input/adp5589.h                      |  180 ---
-> >  6 files changed, 1254 insertions(+), 650 deletions(-)
-> > ---
-> > base-commit: c7bf046925dc5885d9c4d8fbcbb7e4e73665bfcf
-> > change-id: 20240930-b4-dev-adp5589-fw-conversion-955b2f42da70
-> > --
-> > 
-> > Thanks!
-> > - Nuno Sá
-> > 
-> 
-> Hi Dmitry,
-> 
-> Something really caught my attention now while checking 6.12 merge window. It seems
-> we have a new MFD device for adp5585 [1] which adds duplicated functionality (that
-> was already present in adp5589-keys.c). So, having this as MFD might makes sense
-> (even though it makes it harder to validate the keys and to make use of gpio-keys)
-> but we are now duplicating GPIO support. Bottom line, not sure what we should do next
-> and should I proceed for v2?
-> 
-> Also ccing Lee and Bartosz...
+Since the initial support for the RK3588 HDMI TX Controller [1] has been
+merged as of next-20241018, let's enable the HDMI0 output port for the
+following boards: Radxa ROCK 5A & 5B, Rockchip RK3588 EVB1 V10, Xunlong
+Orange Pi 5+.
 
-Let's add Laurent and Krzysztof too please.
+@Luis: Could you please verify this series still works as expected on
+your Orange Pi device?
 
-I am surprised we do not see warnings for various bots because
-"adi,adp5585" compatible is present in trivial devices.
+The ROCK 5A related patch is currently untested, but we might be able to
+validate it beginning of next week.
 
-I think moving it all to MFD makes sense (I think original drivers were
-added well before we had MFD infrastructure), but we need to make sure
-the device tree binding is complete and allows describing keypad (and if
-not maybe we can pull it from the release and work on it so that it
-describes the hardware fully).
+Thanks,
+Cristian
 
-Hopefully next time folks try to add drivers to Analog devices they will
-remember that Analog is pretty active upstream and they will reach out
-to you guys so that work can be coordinated better.
+[1]: https://lore.kernel.org/all/20241016-b4-rk3588-bridge-upstream-v10-0-87ef92a6d14e@collabora.com/
 
-Thanks.
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Cristian Ciocaltea (5):
+      arm64: dts: rockchip: Add HDMI0 node to rk3588
+      arm64: dts: rockchip: Enable HDMI0 on rock-5b
+      arm64: dts: rockchip: Enable HDMI0 on rk3588-evb1
+      arm64: dts: rockchip: Enable HDMI0 on orangepi-5-plus
+      [UNTESTED] arm64: dts: rockchip: Enable HDMI0 on rock-5a
 
--- 
-Dmitry
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      | 41 +++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts   | 47 ++++++++++++++++++++++
+ .../boot/dts/rockchip/rk3588-orangepi-5-plus.dts   | 47 ++++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    | 47 ++++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts   | 47 ++++++++++++++++++++++
+ 5 files changed, 229 insertions(+)
+---
+base-commit: f2493655d2d3d5c6958ed996b043c821c23ae8d3
+change-id: 20241018-rk3588-hdmi0-dt-1a135d0076af
+
 
