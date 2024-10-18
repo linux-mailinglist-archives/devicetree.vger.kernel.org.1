@@ -1,223 +1,124 @@
-Return-Path: <devicetree+bounces-113031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2094C9A466C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 21:02:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1C8D9A4673
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 21:03:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A13EF1F24304
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 19:02:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 443FBB230D9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 19:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5C1204083;
-	Fri, 18 Oct 2024 19:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3CD20408A;
+	Fri, 18 Oct 2024 19:03:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fbFDe/FC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aU90RmA2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A641919005F;
-	Fri, 18 Oct 2024 19:02:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76412188733;
+	Fri, 18 Oct 2024 19:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729278137; cv=none; b=J+BCeiv356dLOkJE1KtQfON6ug51zUe7APYURQqJZnvyJvi2HRzGbhcdeH56IfKsD7ZwGavmslQESvv9EysonMBsXSfRZ2xHPMA71cskFf5Ht7cTFkUk3XpsuNVdpBmjyc+2Swio+n5uZ3G5XtMV9acofPJyIZ+wwu8DMTsOJaA=
+	t=1729278212; cv=none; b=Qk7NEpOaF47ZlZL5ttZ0p3gvuDRd9RLG8mSLeFqc982inT7+RwC8kkZnweyLRsQoU9y8duf0+15hWUroCx4Py9aMigUhLoSYNSX0G3f2i5z8BaAj/PW8uYmjgG2aGhEfLj79qVOankgZon8xHKFqa3gj61FFLRDGS8k/+aLq4NM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729278137; c=relaxed/simple;
-	bh=3qLJGJgwQmZKF7R9v5mGHWf94lA+iHOHhwvE5Re4eEo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FeZcmvzyY+l6y6YnhTzDTTG0Gtt0LV8jmnbdFqWgiCvmM/Lm0b6n/ZpBALmGKZXjKYwwafFcuBoRuHaolqMtB+qska61PFUtXVad8Uz4A9SnolCrQxs5MFYRCNiL8bplukgCf1rjBA9UDlsQ3Qgwa4F6rClt1/U6dmpLSMMhpNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fbFDe/FC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49IFEgvo010311;
-	Fri, 18 Oct 2024 19:02:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5o28EwKwvwq6Tm7acsHeu9uHZtypZoM4nGj/A4stTiQ=; b=fbFDe/FC8utanOtv
-	tW6FLcdIyFxOcjD8q62dUX/ki+cKdAEJeUBTQHxDZGMbC9wFh9jlZM4X6+XEqr1R
-	8fgQgBeOAWTOeGh/I0B8Yes8ks1XBbn0rZecGq3K1Le07XePxOSRSnf8bVzEFPF0
-	w7OSy4RXIvDrS0JfOgx7CRmE3in3VwIRt4wVTld7pm+Ngujn+Mywb5fe/M1ryjvE
-	BVMrXTiRqYqIpIUFwShpn8MpJmAAfvq+E63LV5AlFlTIbkrRxRFAILmA/pXmpxJb
-	cEW7y1E71G2UZgYs+p8ayC8VGpZqE8ptXPQKM+7K/Pm/EjTOXD0I3Ha1jnJHbvco
-	VkPZZQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42bt540k1h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Oct 2024 19:02:07 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49IJ26dU014982
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Oct 2024 19:02:06 GMT
-Received: from [10.216.16.9] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 18 Oct
- 2024 12:02:02 -0700
-Message-ID: <d58dec6e-f77a-4663-9aca-706a462a5686@quicinc.com>
-Date: Sat, 19 Oct 2024 00:31:59 +0530
+	s=arc-20240116; t=1729278212; c=relaxed/simple;
+	bh=wwxkrXeUFvfcE/cTHwhzsmHDNbS8UoTSLlf3lhIJw8c=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=j6f5mSj8uUy+qsUOPH9WscV1fMV2GaJbjytMdYKZ9CXL9fl6utcgQK+HMF0o7nNMOrQDmBoZwtDmB55BzS9CExN9z7xT3YPXtGZz843FEilT94jHsIEa2SDrw+NQNjpVYPIOugZm4TTQu2+MHe5fWCQgf5akZ6/xM3srIZN9b0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aU90RmA2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DED6C4CEC3;
+	Fri, 18 Oct 2024 19:03:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729278212;
+	bh=wwxkrXeUFvfcE/cTHwhzsmHDNbS8UoTSLlf3lhIJw8c=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=aU90RmA275lZmmTZLkJsAtP3CcfFEbOc84pILLx6gNAz8hyqipyjPk1GH2ENeiZ3B
+	 KzJXDlGkspwazitVeYWT88VYv0BIkvS56TditbD+gqjmTbhheVhpEWl2YEx62Jb2vR
+	 uya28HFx3D7IsStvIWxNd22P9u5l4N09abnHHX0NxU/yD8L5q69j3jBFCKh9iZMIAd
+	 3xZREh+OfadYgsKJuRFcyA4YNfyYR++Tt6q+dz0EsmguoGrFDMIvNonKlru7pAt25n
+	 wjD01M1UgTx0l5ZjqGeeEqC6yxwUcB6sQUcNmSzNYDR16o/CLJcM9KIGfKLvQOiV76
+	 seMGzRIGb1Pkg==
+Date: Fri, 18 Oct 2024 14:03:30 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Jim Quinlan <james.quinlan@broadcom.com>
+Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] RFC: dt bindings: Add property "brcm,gen3-eq-presets"
+Message-ID: <20241018190330.GA757230@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] clk: qcom: gcc: Add support for QCS615 GCC clocks
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240920-qcs615-clock-driver-v2-0-2f6de44eb2aa@quicinc.com>
- <20240920-qcs615-clock-driver-v2-4-2f6de44eb2aa@quicinc.com>
- <gokgyvnunjswjdjmbhfvjzvdc6ag7r3dztj2hqk3cglwyz5f5a@aarbe4rrifme>
- <f1080f46-ed96-4360-ae91-0d5b7aa138ce@quicinc.com>
- <kgtg7seem6jhidn4svxttobwvs44uwezsj2f6hydjm7er4qt5d@kehfmwi437wg>
- <bdd2a873-3d5b-4986-a79c-d2bb54997b43@quicinc.com>
- <7bumydtmwbd7tecurxioqqzw4xj4rkm6mpm527fpwgetai5xzh@rdekj226xfbr>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <7bumydtmwbd7tecurxioqqzw4xj4rkm6mpm527fpwgetai5xzh@rdekj226xfbr>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: AGHmRrbnOVuQvy95MzP4JB2BY6UfLFBv
-X-Proofpoint-GUID: AGHmRrbnOVuQvy95MzP4JB2BY6UfLFBv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
- impostorscore=0 phishscore=0 spamscore=0 mlxscore=0 suspectscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410180121
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241018182247.41130-2-james.quinlan@broadcom.com>
 
-
-
-On 10/19/2024 12:16 AM, Dmitry Baryshkov wrote:
-> On Fri, Oct 18, 2024 at 11:14:00PM +0530, Taniya Das wrote:
->>
->>
->> On 10/16/2024 3:46 PM, Dmitry Baryshkov wrote:
->>> On Wed, Oct 16, 2024 at 09:40:07AM +0530, Taniya Das wrote:
->>>>
->>>>
->>>> On 9/20/2024 4:33 PM, Dmitry Baryshkov wrote:
->>>>> On Fri, Sep 20, 2024 at 04:08:18PM GMT, Taniya Das wrote:
->>>>>> Add the global clock controller support for QCS615 SoC.
->>>>>>
->>>>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>>>> ---
->>>>>>     drivers/clk/qcom/Kconfig      |    9 +
->>>>>>     drivers/clk/qcom/Makefile     |    1 +
->>>>>>     drivers/clk/qcom/gcc-qcs615.c | 3035 +++++++++++++++++++++++++++++++++++++++++
->>>>>>     3 files changed, 3045 insertions(+)
->>
->>>>>> +};
->>>>>> +
->>>>>> +static struct clk_alpha_pll gpll0 = {
->>>>>> +	.offset = 0x0,
->>>>>> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->>>>>> +	.clkr = {
->>>>>> +		.enable_reg = 0x52000,
->>>>>> +		.enable_mask = BIT(0),
->>>>>> +		.hw.init = &(const struct clk_init_data) {
->>>>>> +			.name = "gpll0",
->>>>>> +			.parent_data = &(const struct clk_parent_data) {
->>>>>> +				.index = DT_BI_TCXO,
->>>>>> +			},
->>>>>> +			.num_parents = 1,
->>>>>> +			.ops = &clk_alpha_pll_ops,
->>>>>> +		},
->>>>>> +	},
->>>>>> +};
->>>>>> +
->>>>>> +static struct clk_fixed_factor gpll0_out_aux2_div = {
->>>>>> +	.mult = 1,
->>>>>> +	.div = 2,
->>>>>> +	.hw.init = &(struct clk_init_data) {
->>>>>> +		.name = "gpll0_out_aux2_div",
->>>>>> +		.parent_data = &(const struct clk_parent_data) {
->>>>>> +			.hw = &gpll0.clkr.hw,
->>>>>> +		},
->>>>>> +		.num_parents = 1,
->>>>>> +		.ops = &clk_fixed_factor_ops,
->>>>>> +	},
->>>>>> +};
->>>>>
->>>>> Should it be clk_alpha_pll_postdiv_foo_ops ?
->>>>>
->>>>
->>>> This is not the PLL output, but it is a fixed divider which is placed as
->>>> input to the RCG.
->>>> That is the reason to use the fixed factor.
->>>
->>> Usually OUT_AUX2 is the PLL output, isn't it? Even by its name. See
->>> gcc-qcm2290 / gcc-sm6115 and most of other clock controller drivers,
->>> except gcc-sm6125. Maybe I don't understand the difference between the
->>> two usecases. Is there a difference in the GCC / PLL design?
->>>
->>
->> Yes, your understanding is correct out_aux2/out_main are the PLL leaf
->> outputs. But on QCS615 the PLL dividers are not used and thus the aux2 and
->> the other leaf outputs are at the same frequency as the main output of the
->> VCO and instead there was a fixed divider placed after the PLL to divide the
->> VCO output. There was a GCC design change required to meet timing closures.
+On Fri, Oct 18, 2024 at 02:22:45PM -0400, Jim Quinlan wrote:
+> Support configuration of the GEN3 preset equalization settings, aka the
+> Lane Equalization Control Register(s) of the Secondary PCI Express
+> Extended Capability.  These registers are of type HwInit/RsvdP and
+> typically set by FW.  In our case they are set by our RC host bridge
+> driver using internal registers.
 > 
-> Ack, please add a comment that this PLL uses fixed divider instead of
-> a normal postdiv (and to other out_aux2 clocks too).
+> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> ---
+>  .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> index 0925c520195a..f965ad57f32f 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> @@ -104,6 +104,18 @@ properties:
+>      minItems: 1
+>      maxItems: 3
+>  
+> +  brcm,gen3-eq-presets:
+> +    description: |
+> +      A u16 array giving the GEN3 equilization presets, one for each lane.
+> +      These values are destined for the 16bit registers known as the
+> +      Lane Equalization Control Register(s) of the Secondary PCI Express
+> +      Extended Capability.  In the array, lane 0 is first term, lane 1 next,
+> +      etc. The contents of the entries reflect what is necessary for
+> +      the current board and SoC, and the details of each preset are
+> +      described in Section 7.27.4 of the PCI base spec, Revision 3.0.
 
-Thank you. Sure, will update the comment in the next patch set.
+s/equilization/equalization/
 
->>>>>
->>>>>> +
->>>>>> +static struct clk_branch gcc_pcie_0_pipe_clk = {
->>>>>> +	.halt_reg = 0x6b024,
->>>>>> +	.halt_check = BRANCH_HALT_SKIP,
->>>>>> +	.clkr = {
->>>>>> +		.enable_reg = 0x5200c,
->>>>>> +		.enable_mask = BIT(4),
->>>>>> +		.hw.init = &(const struct clk_init_data) {
->>>>>> +			.name = "gcc_pcie_0_pipe_clk",
->>>>>> +			.ops = &clk_branch2_ops,
->>>>>> +		},
->>>>>> +	},
->>>>>> +};
->>>>>
->>>>> No corresponding gcc_pcie_0_pipe_clk_src?
->>>>>
->>>>
->>>> On QCS615 the pipe clock source is not required to be modelled as the mux is
->>>> default Power on reset is set to external pipe clock.
->>>
->>> And do we need to toggle the source of the clk_src together with the
->>> GDSC toggling?
->>>
->>
->> AFAIR, QCS615 didn't require toggling for GDSC, as even on downstream kernel
->> we do not have the pipe_clk_src modelled in our driver.
-> 
-> OK, thanks for the explanation.
-> 
+The spec citation ("PCI base spec r3.0") isn't quite right since
+Conventional PCI doesn't have lanes.  These registers *are* defined in
+PCIe r3.0, sec 7.27.4, but that's 14 years old.  It would be more
+helpful to use a current spec version like PCIe r6.2, sec 7.7.3.4.
 
--- 
-Thanks & Regards,
-Taniya Das.
+Since there's nothing about these registers that is brcm-specific
+(other than the fact that they are typically set by firmware on
+non-brcm platforms), it would be nice if we could give it a non-brcm
+name.
+
+Similarly, I think it would be nice to drop "gen3" from the name (and
+the description).  The registers *were* added in PCIe r3.0, which also
+added the 8 GT/s rate, and the description in PCIe r6.2, sec 7.7.3.4
+does mention 8.0 GT/s specifically, but sec 4.2.4 says equalization
+applies to "8.0 GT/s and higher data rates," so it's definitely not
+limited to gen3.
+
+Bjorn
 
