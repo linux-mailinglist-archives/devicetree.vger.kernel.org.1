@@ -1,209 +1,125 @@
-Return-Path: <devicetree+bounces-112783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C309A3825
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:12:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8CDC9A385B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 10:20:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77607B22FC0
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:12:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78F97285BEC
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 510F118DF6D;
-	Fri, 18 Oct 2024 08:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367A118C92D;
+	Fri, 18 Oct 2024 08:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k+zWHGC7"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZSdVSchv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F2AC18D65D
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 08:11:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2CF18C902
+	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 08:20:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729239102; cv=none; b=uXPAYanZYVmfUiT9y29nWJMDg8TuyrU6HmPxRDCfF+0WHNe8gex2xGIIJsPWSF4dfzS4L8Q/HhVK6orrk5HQcg/gXw3OO8Nb0h5TIlZ1VDj6TexbYmXaXTUuwlKZ0cv6LKXITWSttgUb6sN92QffOANSJ/CGaz+ZP6hGv0OS5+o=
+	t=1729239608; cv=none; b=sd1/74wN+0cgDdnm/w3C48YzXtP2hyV6ls3kHa5d9z+iS9ZF2n/sKXWfnqJvOUHJLB/R0S1xD+RW7+ASuvvha6gkCFITVJVX5kj5p0pe5gZT1rtCf3y8xaK2cd3zjtlEn8wtWhvna1/NTNW7ksD7S/SbzTKCzEhhALiuqC5jGpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729239102; c=relaxed/simple;
-	bh=THf4KpV76/OhTc22GttJi0bmW4uwbaHKlkUjG8Ztius=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t1TAmtxhLPQf36Mpj19Xd3bUhPX6fJUK6VzXXSoRoQyzBOMijY/FjPWiqBQYTnLtVkAh7iTH0EtgOOtofDTeT1F7WxDbM5RkIX4JOBbe3A93xNx4q3/6o8a6nc+zoD4seJG8CN8eJXHgQqrXIEnN73SfsZaJFTzqn95fHPcYWq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k+zWHGC7; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6e2e3e4f65dso21354797b3.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 01:11:40 -0700 (PDT)
+	s=arc-20240116; t=1729239608; c=relaxed/simple;
+	bh=nUeYxjFSTj5Ewg8DTNGbjcYFtI/FRFxM2OjqUh2NBF8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XCIwHfsOY0WZthtES/+a1K7bPfiFsrbbGHpvKwgGhE6iYgMFhhLS0aqCRwfUvNInSMIZRFeG1nNWhY1Z7GwYDWKD/khTHkT3MiOP3BnirJ+K0WHUGxHjvjLcFOVv7BB7vScW/cm3woHr/znpl++aEexTw1pw8P1GqPBQF1BlYsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZSdVSchv; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-7ea80863f12so880227a12.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 01:20:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729239099; x=1729843899; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UwG3rDefpa7BtqQZIIQ/EL3ucM2UZ1ZTkh5NrgP84oQ=;
-        b=k+zWHGC7MioLS+/zwjw5f5lY3312oOq2+taXNNIHBMVJ27UjTtXiUcehfyyCnTiyEi
-         0msFoxGHxHg60kHW4mEji0T1qMSwPRyCVa0zXXpupnDd6jkCjXZ/t0L4Z4sk4eFhYISW
-         haKC1yzrmPQlf3e6qj3XWjHoOKbFgMi/DsaSKK5pxWzus+GAYsLTbLlFr8OMBxED5uhM
-         pw5L7oPADdCJPqSeEZunzZ7uko3EnGvNZzit+NqbfCjYjs3uN/SlLQjo061CDogAceTD
-         xHX3rVs0xLYTWT/0JVTiB0AGFBUOxv+6DGrNtlCANMxQ8HnL9vPzS1DgNY8UHv3D6hK1
-         Eh2Q==
+        d=chromium.org; s=google; t=1729239606; x=1729844406; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YD/BrAcHdAIIMXA1jUzknbvHmeKtjxe69u37Q8I7CtU=;
+        b=ZSdVSchvO76yqw0xXlMT3KheBo4SGJyQ4jkyDIpnV8Y0KQmNYnlzYEoV81l27fGdlW
+         MnMgWw/0i/LUNAPf6cab6FPLocfdwz+di3OPRUXSST0zpswIjGNcqqu2AMhlitJjCoTr
+         D0K/3wFSFq+uvAgGhLz+MwX8/UvnZx6kdZhjk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729239099; x=1729843899;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1729239606; x=1729844406;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UwG3rDefpa7BtqQZIIQ/EL3ucM2UZ1ZTkh5NrgP84oQ=;
-        b=OqZYUM0vXPY7u03bJGp+EFSMYWG6wjXG4xEsKFaSF1GbwNt6lKsGxj7J/0KkFlyP0r
-         ucX7nKWstrb1SiRDCtsw/1KPiHmIgLxO1zjfgVsU254bFLYnViOcDAIr5LrpyrFQDuK2
-         iITnFL2bo0wfLrtZ0Avqar3Wo4wr1/KZiO83aivpU1xT/2YlY7f6wMwubPTfnohPpdzB
-         dim/ER7N8L6ulblha7JZeJw1iDwlC1IoScLQjD9b/Zt8llwPxaVg8QTd81fsjTIUPqBA
-         X9kO7DS5A5jAHMhhrhWw6sD19emNwd8lngJj7PPUZoLY5wLhB07hl8Wm+AvowcBKf3zS
-         GGog==
-X-Forwarded-Encrypted: i=1; AJvYcCVt9Ep902imfPLCDI8YhkzXNwLe1Kp72qHiKbbzqpLmZbTjNpAjDWWGui+m2wKU78z/q8YlwBrnMbi2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmSjqOywkebqd5mppUU5wto/A4QNSOZq6HdYBdtKOIV80TvFO0
-	yaolGGSua7f0ywDUqlegOBQSmVGtwXuN3g41LKA4+oSYiV9hjIDoJjkCPxbM49KFY+xZ8/KVv0I
-	vuQTF6a6DUiwDFf54RZJ1dF0dTnYWXzqMuBCVvw==
-X-Google-Smtp-Source: AGHT+IERPg6UNxdVW0V80x9bHiyvgx2Bw2B9lVFXGaP686cuW8Kv+mqAKZtXcsHxfWStzu6OGYokH34VuZ2WHvyeszE=
-X-Received: by 2002:a05:690c:46c7:b0:6e3:2c80:5413 with SMTP id
- 00721157ae682-6e5bfc8e733mr17629497b3.23.1729239099463; Fri, 18 Oct 2024
- 01:11:39 -0700 (PDT)
+        bh=YD/BrAcHdAIIMXA1jUzknbvHmeKtjxe69u37Q8I7CtU=;
+        b=R3uNf2oTUjTUYwHtH8Z/0crtTssQy3JUH0w0wEZCbLKk5GznJXpVB8nml1k9bJL5Vb
+         dlE+WcAQYKkSihkbgRndaBlEEESodWyXl/r1VeK07KS0CIKARc8cqIHUV14hJeC7tk4P
+         /EbacR6rKOgGch/ivTS0PdDpipWIOIPehynKQglZ1mWN2810msVFB27rH2ICu2Ui2sIP
+         gIQ3BEwkJoXLpUMqzQNZa0NMRLMYa7t2EmQr4mygL3IfNYX/64Oc35z/bnzSMaHWag4F
+         4g9mk+EhBNs0ZZr/oxN9GE6mFPxS3xNv0aJ7SXdDkn1m9EEhMRfuTDczW8XvcQjx8ujy
+         nrUg==
+X-Forwarded-Encrypted: i=1; AJvYcCX5bKuv7OiXWk4zIN2FxFJ/c0kWF4ICTB3ahDy8wq1RnxFHp3nbyWyXXqypRolS9PMKZGtZeAW2UhS9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQImC6TvzkWgZkkBCEn0Qc15xLCk6y+/wY++w57jPzAj5qlh24
+	zp0X/k/z2cWQDsFEa7NZt8ePRwsGB7wuIbwZDCcA+V2ykrNtkrXwirNeLecOLg==
+X-Google-Smtp-Source: AGHT+IFwfYN5qZ6/UTJrq9b9zMKrlE4sxFnfRkL/+LlT9NlUwm0QDBK5n84qYUmrvBAFwk3vL771Fw==
+X-Received: by 2002:a05:6a20:e605:b0:1d8:ae07:c06 with SMTP id adf61e73a8af0-1d92c583d4dmr2151480637.48.1729239606136;
+        Fri, 18 Oct 2024 01:20:06 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:5e77:354e:2385:7baa])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ea3459348sm900418b3a.155.2024.10.18.01.20.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 01:20:05 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: mediatek: mt8173-elm-hana: Add vdd-supply to second source trackpad
+Date: Fri, 18 Oct 2024 16:20:00 +0800
+Message-ID: <20241018082001.1296963-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.47.0.rc1.288.g06298d1525-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241015-qcom_ipq_cmnpll-v4-0-27817fbe3505@quicinc.com>
- <20241015-qcom_ipq_cmnpll-v4-4-27817fbe3505@quicinc.com> <abro3enahzbugcwokcyyhwybbokestbigvzhywxhnfrdjihni3@7ej2hkgbgtf6>
- <b336724c-1fea-4e1e-9477-66f53d746f09@quicinc.com>
-In-Reply-To: <b336724c-1fea-4e1e-9477-66f53d746f09@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 18 Oct 2024 11:11:30 +0300
-Message-ID: <CAA8EJprVNOLO-CoorNhvKrrSD1bNKdFrzth5BL0GHXffPv62jw@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_pavir@quicinc.com, 
-	quic_linchen@quicinc.com, quic_leiwei@quicinc.com, 
-	bartosz.golaszewski@linaro.org, srinivas.kandagatla@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, 18 Oct 2024 at 09:55, Jie Luo <quic_luoj@quicinc.com> wrote:
->
->
->
-> On 10/18/2024 6:32 AM, Dmitry Baryshkov wrote:
-> > On Tue, Oct 15, 2024 at 10:16:54PM +0800, Luo Jie wrote:
-> >> The CMN PLL clock controller allows selection of an input
-> >> clock rate from a defined set of input clock rates. It in-turn
-> >> supplies fixed rate output clocks to the hardware blocks that
-> >> provide ethernet functions such as PPE (Packet Process Engine)
-> >> and connected switch or PHY, and to GCC.
-> >>
-> >> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> >> ---
-> >>   arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi |  6 +++++-
-> >>   arch/arm64/boot/dts/qcom/ipq9574.dtsi            | 20 +++++++++++++++++++-
-> >>   2 files changed, 24 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> >> index 91e104b0f865..77e1e42083f3 100644
-> >> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> >> @@ -3,7 +3,7 @@
-> >>    * IPQ9574 RDP board common device tree source
-> >>    *
-> >>    * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-> >> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> >> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> >>    */
-> >>
-> >>   /dts-v1/;
-> >> @@ -164,6 +164,10 @@ &usb3 {
-> >>      status = "okay";
-> >>   };
-> >>
-> >> +&cmn_pll_ref_clk {
-> >> +    clock-frequency = <48000000>;
-> >> +};
-> >> +
-> >>   &xo_board_clk {
-> >>      clock-frequency = <24000000>;
-> >>   };
-> >> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> >> index 14c7b3a78442..93f66bb83c5a 100644
-> >> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> >> @@ -3,10 +3,11 @@
-> >>    * IPQ9574 SoC device tree source
-> >>    *
-> >>    * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-> >> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> >> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> >>    */
-> >>
-> >>   #include <dt-bindings/clock/qcom,apss-ipq.h>
-> >> +#include <dt-bindings/clock/qcom,ipq-cmn-pll.h>
-> >>   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-> >>   #include <dt-bindings/interconnect/qcom,ipq9574.h>
-> >>   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >> @@ -19,6 +20,11 @@ / {
-> >>      #size-cells = <2>;
-> >>
-> >>      clocks {
-> >> +            cmn_pll_ref_clk: cmn-pll-ref-clk {
-> >> +                    compatible = "fixed-clock";
-> >> +                    #clock-cells = <0>;
-> >> +            };
-> >
-> > Which block provides this clock? If it is provided by the external XO
-> > then it should not be a part of the SoC dtsi.
->
-> The on-chip WiFi block supplies this reference clock. So keeping it in
-> the SoC DTSI is perhaps appropriate.
+The Hana device has a second source option trackpad, but it is missing
+its regulator supply. It only works because the regulator is marked as
+always-on.
 
-Then maybe it should be provided by the WiFi device node? At least you
-should document your design decisions in the commit message.
+Add the regulator supply, but leave out the post-power-on delay. Instead,
+document the post-power-on delay along with the reason for not adding
+it in a comment.
 
-Also, I don't think this node passes DT schema validation. Did you check it?
+Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+Changes since v1:
+- Drop the commented post-power-on-delay-ms property
+- Document the delay in a comment
+---
+ arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
->
-> >
-> >> +
-> >>              sleep_clk: sleep-clk {
-> >>                      compatible = "fixed-clock";
-> >>                      #clock-cells = <0>;
-> >> @@ -243,6 +249,18 @@ mdio: mdio@90000 {
-> >>                      status = "disabled";
-> >>              };
-> >>
-> >> +            cmn_pll: clock-controller@9b000 {
-> >> +                    compatible = "qcom,ipq9574-cmn-pll";
-> >> +                    reg = <0x0009b000 0x800>;
-> >> +                    clocks = <&cmn_pll_ref_clk>,
-> >> +                             <&gcc GCC_CMN_12GPLL_AHB_CLK>,
-> >> +                             <&gcc GCC_CMN_12GPLL_SYS_CLK>;
-> >> +                    clock-names = "ref", "ahb", "sys";
-> >> +                    #clock-cells = <1>;
-> >> +                    assigned-clocks = <&cmn_pll CMN_PLL_CLK>;
-> >> +                    assigned-clock-rates-u64 = /bits/ 64 <12000000000>;
-> >> +            };
-> >> +
-> >>              qfprom: efuse@a4000 {
-> >>                      compatible = "qcom,ipq9574-qfprom", "qcom,qfprom";
-> >>                      reg = <0x000a4000 0x5a1>;
-> >>
-> >> --
-> >> 2.34.1
-> >>
-> >
->
-
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+index 8d1cbc92bce3..ae0379fd42a9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+@@ -49,6 +49,14 @@ trackpad2: trackpad@2c {
+ 		interrupts-extended = <&pio 117 IRQ_TYPE_LEVEL_LOW>;
+ 		reg = <0x2c>;
+ 		hid-descr-addr = <0x0020>;
++		/*
++		 * The trackpad needs a post-power-on delay of 100ms,
++		 * but at time of writing, the power supply for it on
++		 * this board is always on. The delay is therefore not
++		 * added to avoid impacting the readiness of the
++		 * trackpad.
++		 */
++		vdd-supply = <&mt6397_vgp6_reg>;
+ 		wakeup-source;
+ 	};
+ };
 -- 
-With best wishes
-Dmitry
+2.47.0.rc1.288.g06298d1525-goog
+
 
