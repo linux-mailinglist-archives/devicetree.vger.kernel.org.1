@@ -1,84 +1,169 @@
-Return-Path: <devicetree+bounces-113094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E0E9A4998
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 00:21:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E92B99A49A3
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 00:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C21A1C22903
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 22:21:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A95F828483F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 22:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14A718FC67;
-	Fri, 18 Oct 2024 22:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527E619047A;
+	Fri, 18 Oct 2024 22:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iMQoa/qo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TgTGP/U7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77725188010;
-	Fri, 18 Oct 2024 22:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B1218CBF5;
+	Fri, 18 Oct 2024 22:28:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729290090; cv=none; b=J9INd72rTS1PWSwrbFaG5H3M1i/BEvLI0htYNeXEEsU41vkOt9Ib6md5XPo2EGzoKxd/RBcGrft0n0pLT6Q6VsPgmZgiq/UqJGH1sJvCbBOgBm7FiF++WkUN+fwxDFKQrybwVDWE1Tn0dTaWVRZwmoPrkBUuGApzC91HUMGBObc=
+	t=1729290533; cv=none; b=XbVA/gzCiXgedhg0uV8PkR0WG2Y+5fYGb/k674ud9qpG6K9RPJLUQnG47F59tDKR8n9ZRDrOqV/yezC99bGfgoeGA0sLQX99xCVLVyBoZ1ge7qGNQvbdrvETjTJdDnmwSqAS7mram8+EGUnkBwe06V86TQiWHHsOsdcN6zN9Yc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729290090; c=relaxed/simple;
-	bh=4n1E6zsPjzDBUO6wxiwsX5e+eLod/+yScuo03zOPR40=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=uO4NsQFEivxdqSWwXpTvkeUb3VWCz0AS1Il/dtVXCD0mYknp6pIFSkr2T2QpStSIal4XI68HC0mDrTLTYauS9qSUgOShiDIg8wkBS/7iXeoC70hCPTcbVjFqUJ9iRSk9MhHfheRx9pM/8cl4mcwVGOCp5DCMKwPeLRRp/Klaf4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iMQoa/qo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC0A1C4CEC3;
-	Fri, 18 Oct 2024 22:21:29 +0000 (UTC)
+	s=arc-20240116; t=1729290533; c=relaxed/simple;
+	bh=G7Ash0PGoqdQ1AiafmIA65zN/S2zqb3jjZ3jwkABAmI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=J/h+5MnbWEJ2cEmbXFbc3MLoVuAJGfvQaja0GbOUfVHWmChsxkTb6lBwQeg9g9URq6yLOliakZKlllA2ivEY1IecO7MZjWa06ylCPhkwVfxv7yM8WpIAJY54uaga++uU+JVotcw1FyN2snqnmrXNnW6CspTGOI8qvKfthIavcFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TgTGP/U7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83466C4CEC3;
+	Fri, 18 Oct 2024 22:28:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729290090;
-	bh=4n1E6zsPjzDBUO6wxiwsX5e+eLod/+yScuo03zOPR40=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=iMQoa/qoSjlkez69IQUfIaQg55pR7xccB5L//NsWX/f+2c9eYSkuB0gkNJgmnipVL
-	 gdSVXm7ZdVFVQjXanjro6UWW8FdEGwXCcizrrnhVpKtr/QBaejcB/drZulXaoeknq9
-	 ys4nvVE3KEYAKRN6VZ52xXErVdZ0gNRWayCrSdGp3TPALMJenjlsV+G+QytbqAYBGc
-	 ah6qKr+EKBKO6xnqzXUCn06jXweLTn4x74Cd91h1iJ0GhnhceLx0PxDQ97eRP+vPzP
-	 6gVw+AFUP8meeemHJhB/mPJ5SFksEFgWmpb7S6q1na0ASXhGQIHUs6MNhNc7i0ci7k
-	 fvrtx+BOQfNxQ==
-Message-ID: <38153cbf2616a4a6706412952778eec1.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1729290532;
+	bh=G7Ash0PGoqdQ1AiafmIA65zN/S2zqb3jjZ3jwkABAmI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=TgTGP/U7RKKcvPPDH/bduN4P+U9gnrm0Owu3NhDvqbrFzpKYGJofveh67iMhF47gx
+	 DxVHWjcKgwrn0iaN76NwGiQWk7/xxcY4rQ+L7pp1Nd2Kkk8TtzJo0YFYXbvIMxdEF0
+	 J98vlhBXDMn0lJZ7WllGBfhRVDNosEI0FDeDXB/ThdbS9hWCIKjA2foUu2K9he0EGJ
+	 S+NQxiL+7x4VLYidgjOMEj9kW0pDFYr1mO2ilHgqV71iwnLywxOWjlcAupEJSfjrS9
+	 2j1cm0fzRHFBQBJ78vHz0A0bjwC5hD5OBpJSPRFaKgLnRJcC4ltNXYLLZf1cuA+LuL
+	 BJ2cjkBNl6jwg==
+Date: Fri, 18 Oct 2024 17:28:50 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>, Lizhi Hou <lizhi.hou@amd.com>
+Subject: Re: [PATCH 03/11] PCI: of_property: Sanitize 32 bit PCI address
+ parsed from DT
+Message-ID: <20241018222850.GA766393@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241017203810.GA814469-robh@kernel.org>
-References: <20241016212016.887552-1-sboyd@kernel.org> <20241017203810.GA814469-robh@kernel.org>
-Subject: Re: [PATCH] of: Allow overlay kunit tests to run CONFIG_OF_OVERLAY=n
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, devicetree@vger.kernel.org, kunit-dev@googlegroups.com
-To: Rob Herring <robh@kernel.org>
-Date: Fri, 18 Oct 2024 15:21:27 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZxJXZ9R-Qp9CNmJk@apocalypse>
 
-Quoting Rob Herring (2024-10-17 13:38:10)
-> On Wed, Oct 16, 2024 at 02:20:15PM -0700, Stephen Boyd wrote:
-> > Some configurations want to enable CONFIG_KUNIT without enabling
-> > CONFIG_OF_OVERLAY. The kunit overlay code already skips if
-> > CONFIG_OF_OVERLAY isn't enabled, so this select here isn't really doing
-> > anything besides making it easier to run the tests without them
-> > skipping. Remove the select and move the config setting to the
-> > drivers/of/.kunitconfig file so that the overlay tests can be run with
-> > or without CONFIG_OF_OVERLAY set to test either behavior.
-> >=20
-> > Fixes: 5c9dd72d8385 ("of: Add a KUnit test for overlays and test manage=
-d APIs")
->=20
-> Doesn't really seem like a fix.
+On Fri, Oct 18, 2024 at 02:41:11PM +0200, Andrea della Porta wrote:
+> On 20:08 Mon 07 Oct     , Bjorn Helgaas wrote:
+> ... 
 
-Ok. Feel free to drop the tag.
+> > Yes, this is exactly the problem.  The pci@0 parent and child
+> > addresses in "ranges" are both in the PCI address space.  But we
+> > start with pdev->resource[N], which is a CPU address.  To get the PCI
+> > address, we need to apply pci_bus_address().  If the host bridge
+> > windows are set up correctly, the window->offset used in
+> > pcibios_resource_to_bus() should yield the PCI bus address.
+> 
+> You mean something like this, I think:
+> 
+> @@ -129,7 +129,7 @@ static int of_pci_prop_ranges(struct pci_dev *pdev, struct of_changeset *ocs,
+>                 if (of_pci_get_addr_flags(&res[j], &flags))
+>                         continue;
+>  
+> -               val64 = res[j].start;
+> +               val64 = pci_bus_address(pdev, &res[j] - pdev->resource);
+>                 of_pci_set_address(pdev, rp[i].parent_addr, val64, 0, flags,
+>                                    false);
+>                 if (pci_is_bridge(pdev)) {
 
-> Does this need to go into 6.12?
+Yes.
 
-It's only important for 6.12 if kernel configurators want to build the
-kernel with OF_OVERLAY_KUNIT_TEST enabled and not be forced to enable
-CONFIG_OF_OVERLAY. I don't mind if it waits a while.
+> > I think it should look like this:
+> > 
+> >   pci@0: <0x82000000 0x0 0x00000000 0x82000000 0x0 0x00000000 0x0 0x600000>;
+> 
+> indeed, with the above patch applied, the result is exactly as you expected.
+> ...
+
+> > > > But I don't think it works in general because there's no
+> > > > requirement that the host bridge address translation be that
+> > > > simple.  For example, if we have two host bridges, and we want
+> > > > each to have 2GB of 32-bit PCI address space starting at 0x0,
+> > > > it might look like this:
+> > > > 
+> > > >   0x00000002_00000000 -> PCI 0x00000000 (subtract 0x00000002_00000000)
+> > > >   0x00000002_80000000 -> PCI 0x00000000 (subtract 0x00000002_80000000)
+> > > > 
+> > > > In this case simply ignoring the high 32 bits of the CPU
+> > > > address isn't the correct translation for the second host
+> > > > bridge.  I think we should look at each host bridge's
+> > > > "ranges", find the difference between its parent and child
+> > > > addresses, and apply the same difference to everything below
+> > > > that bridge.
+> > > 
+> > > Not sure I've got this scenario straight: can you please provide
+> > > the topology and the bit setting (32/64 bit) for those ranges?
+> > > Also, is this scenario coming from a real use case or is it
+> > > hypothetical?
+> > 
+> > This scenario is purely hypothetical, but it's a legal topology
+> > that we should handle correctly.  It's two host bridges, with
+> > independent PCI hierarchies below them:
+> > 
+> >   Host bridge A: [mem 0x2_00000000-0x2_7fffffff window] (bus address 0x00000000-0x7fffffff)
+> >   Host bridge B: [mem 0x2_80000000-0x2_ffffffff window] (bus address 0x00000000-0x7fffffff)
+> > 
+> > Bridge A has an MMIO aperture at CPU addresses
+> > 0x2_00000000-0x2_7fffffff, and when it initiates PCI transactions on
+> > its secondary side, the PCI address is CPU_addr - 0x2_00000000.
+> > 
+> > Similarly, bridge B has an MMIO aperture at CPU addresses 
+> > 0x2_80000000-0x2_ffffffff, and when it initiates PCI transactions on 
+> > its secondary side, the PCI address is CPU_addr - 0x2_80000000.
+> > 
+> > Both hierarchies use PCI bus addresses in the 0x00000000-0x7fffffff
+> > range.  In a topology like this, you can't convert a bus address back
+> > to a CPU address unless you know which hierarchy it's in.
+> > pcibios_bus_to_resource() takes a pci_bus pointer, which tells you
+> > which hierarchy (and which host bridge address translation) to use.
+> 
+> Agreed. While I think about how to adjust that specific patch,i
+> let's drop it from this patchset since the aforementioned change is
+> properly fixing the translation issue.
+
+OK.  I assume you mean to drop the "PCI: of_property: Sanitize 32 bit
+PCI address parsed from DT" patch?  Or replace it with the
+pci_bus_address() addition above?
+
+Bjorn
 
