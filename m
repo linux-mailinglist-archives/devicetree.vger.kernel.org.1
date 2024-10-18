@@ -1,160 +1,232 @@
-Return-Path: <devicetree+bounces-112694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5125E9A34E9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DB7B9A34F9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 08:01:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 725D41C2258C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:00:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EC021C2359F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 06:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B41D17E472;
-	Fri, 18 Oct 2024 05:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9058318755F;
+	Fri, 18 Oct 2024 05:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dW7QnvPA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AR2td/4l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B47B17E8F7;
-	Fri, 18 Oct 2024 05:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DF017C21B;
+	Fri, 18 Oct 2024 05:59:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729231095; cv=none; b=aQcx8KoiNMQ7hi9/A6fHu9ieWuMj3Y28l+clePHTVLDV8m0oUOPnEBmTlJiKZtaVgBPdNPy+MeHwyg4B6+ud9Ee5Xc+KKeugZQ/p4+ECYmrzsH5IrThiEbM0yFJ17X6e4rod0qAggY2i158uAxbDksLM5vmDrZYSjhwRiW1L25E=
+	t=1729231192; cv=none; b=g4yshD1WUFnSyTY+1MNEnGILET6kL2+OMPFvvgpDt222k7+X5foNX4UnKoVW1qa2RCBbdEnkNoV4OLUG0uj5Oal9C7dj01hrS5XhqBwFKW63JxLlJXU42BEwKXgWuXYwpaNQsswYKpAGAvejHTJfzWHR4irUYM/6+T9WApcq/Fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729231095; c=relaxed/simple;
-	bh=oEJh1xlSB22HJCS1ZKkQmKnfjZlVSf3lq14Jvj0fp1g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=k1BhpQvRXHJV+TRU+7QaBIFsWBkBD9ilu97D/85iTR705y5bZwcv5Dyf662wZxKuMdOqOM7JUdwE9Sks9mQbmkbxuedMrZt3DuIRgW9Qv+tU4MeOWM9YJA1HLCmU8yp0SZJgorzkMq9hI2hyh83tn720aAPmJ0nm3KGtdFeu+3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dW7QnvPA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49I5EMkk029274;
-	Fri, 18 Oct 2024 05:58:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=p/JHAqoSPPM2jV7PdOuSa/
-	5iBcBdFdh3+wTD2LiVbeU=; b=dW7QnvPAKDVFcqF8OvSjFwVuwm+dZR8oPu956t
-	qSPs7e61eK8bwaw4F9GHZHHzOyieni3VfXAogFXen0t53XI1vP+TMbhM/FuZ9Iu8
-	mVMGEgEG5XzcxpuJAdpomuegfH1ovSnK2qgkxtvxpR5wzFEbju/d/3Lb177bPrpV
-	BbGN7jvx5eI8sFDvVxwPVn85bS6LCq+/8uSLaPqTjDR0x5ObisfpWOmUZDLW/EZp
-	+WKmqJEuL2oi78TfFIEkUdqEVpv6Ou54jh2SQLNBNtanhl2FANAi2YyAL7heQoot
-	ZazCd8TGIRDG8bczIPs/+gcWpWYBG9/OJ6KTbgvi4rXQUIPA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42bhbq83e8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Oct 2024 05:58:08 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49I5w8di030884
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Oct 2024 05:58:08 GMT
-Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 17 Oct 2024 22:58:04 -0700
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-Date: Fri, 18 Oct 2024 13:57:50 +0800
-Subject: [PATCH v4] dt-bindings: phy: Add QMP UFS PHY compatible for
- QCS8300
+	s=arc-20240116; t=1729231192; c=relaxed/simple;
+	bh=PtiUemoookjjoOFV+aD0HLviVxFuYkbS5bhDLvEESQM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NNDjNeqxHo3QyIYOaB0D79bCtmiVXcSpWif0/mmaoJ52uoSUnIwNb45HSwvoLbvROi0oks71s1ZJmlMlu5W1Mm5ZWIsK1sTKlaMP58g7j4Vy1QeUP/uROOoQesq1xo0VVZmnOEdHOyX6gKULg4Gg/arw4LBj4AEZh73zD0Ip3Ag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AR2td/4l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FA40C4CEC3;
+	Fri, 18 Oct 2024 05:59:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729231191;
+	bh=PtiUemoookjjoOFV+aD0HLviVxFuYkbS5bhDLvEESQM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AR2td/4ldzYQCwZII2chf9V6U33bswgpqm+PUW+FknpxbXaV7g9o2B1ZDADRfewSl
+	 nROkvUSKWQYCuQpykVJ2kTw5YvDoF7MmxPjrhKXjce3FVNLgJhN+Bz+J7kveprXDeI
+	 7KK3usK1jsM0JZw6L7YzGvBU/z9uFtDJoFcGP4NJzohb12Kz/+lAeLz/Mv+POBtTL9
+	 xQ9C1lwi8YMXc22miDcOs5fovwgV1fR7ccP4IzgYdYC1fp4mBTf3DKM2PfzNMfB0B9
+	 lZxu5hKkJFwSBYseqD7U4Q7drJ6sRUpD8RksVpwc/K35NFPbxXfGfZQeVkFO5PlV4j
+	 VXLHyIaSsxeAA==
+Message-ID: <06151891-a260-450c-b688-fff18638e627@kernel.org>
+Date: Fri, 18 Oct 2024 07:59:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com,
+ hbarnor@chromium.org, dianders@chromium.org, conor.dooley@microchip.com
+Cc: jikos@kernel.org, bentiss@kernel.org, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241018020815.3098263-2-charles.goodix@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241018020815.3098263-2-charles.goodix@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241018-qcs8300_ufs_phy_binding-v4-1-261c7c5fb8ff@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAN34EWcC/3XOzWrDMAzA8VcpPs9Dsl1i79T3GCP4K41gc9I4N
- Q0h794kh9FSevwL9JNmluNAMbOvw8yGWChTl9ZQHwfmW5vOkVNYmwkQCgE1v/isJUB9bXLdt1P
- tKAVKZ26dVFJXRlbOsnW7H2JDt13+/lm7pTx2w7QfKrhNdxMMqH+TEo1kf+swZuIFOfAA0RrbB
- A9QnS5X8pT8p+/+2EYW8cAgvn2tCI7ca0ArgqisVq+SfJDE8b0kNwmjO3pppAPzLC3LcgeZ8vN
- aUQEAAA==
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Xin Liu <quic_liuxin@quicinc.com>,
-        "Krzysztof
- Kozlowski" <krzk@kernel.org>,
-        Jingyi Wang <quic_jingyw@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1729231084; l=1925;
- i=quic_jingyw@quicinc.com; s=20240910; h=from:subject:message-id;
- bh=cIzsS7WtAgG8RrKLAxp0haNwd4XREYe1ge3YjdcH9XA=;
- b=c7Uik0Z95t6IvSIP83Hw8odE2Dd07OVzfMe3IMRCwCIKIojOhFGlQ6iq+mxGIH04QCYdwuUyT
- To71V+deLaNCGHk0SZsaIGfsB2tIo6vIzbzsm6YxMog5A9fPPTkjsoL
-X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
- pk=ZRP1KgWMhlXXWlSYLoO7TSfwKgt6ke8hw5xWcSY+wLQ=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: GuLA74vhDjOqofX165Tgo8Wj6vEB9Dyl
-X-Proofpoint-GUID: GuLA74vhDjOqofX165Tgo8Wj6vEB9Dyl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 spamscore=0 phishscore=0 mlxscore=0 bulkscore=0
- clxscore=1011 suspectscore=0 mlxlogscore=990 priorityscore=1501
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410180035
 
-From: Xin Liu <quic_liuxin@quicinc.com>
+On 18/10/2024 04:08, Charles Wang wrote:
+> The Goodix GT7986U touch controller report touch data according to the
+> HID protocol through the SPI bus. However, it is incompatible with
+> Microsoft's HID-over-SPI protocol.
+> 
+> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> ---
+>  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
+>  1 file changed, 58 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> index 358cb8275..184d9c320 100644
+> --- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> +++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> @@ -8,27 +8,27 @@ title: Goodix GT7375P touchscreen
+>  
+>  maintainers:
+>    - Douglas Anderson <dianders@chromium.org>
+> +  - Charles Wang <charles.goodix@gmail.com>
+>  
+>  description:
+> -  Supports the Goodix GT7375P touchscreen.
+> -  This touchscreen uses the i2c-hid protocol but has some non-standard
+> -  power sequencing required.
+> -
+> -allOf:
+> -  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> +  The Goodix GT7375P and GT7986U touchscreens support both SPI and I2C interfaces.
+> +  With the I2C interface, they use the i2c-hid protocol but require non-standard
+> +  power sequencing. With the SPI interface, they use a custom HID protocol that
+> +  is incompatible with Microsoft's HID-over-SPI protocol.
+>  
+>  properties:
+>    compatible:
+>      oneOf:
+> -      - const: goodix,gt7375p
+> +      - items:
+> +          - const: goodix,gt7375p
 
-Document the QMP UFS PHY compatible for Qualcomm QCS8300 to support
-physical layer functionality for UFS found on the SoC. Use fallback to
-indicate the compatibility of the QMP UFS PHY on the QCS8300 with that
-on the SA8775P.
+That's not a necessary change. Keep old code here.
 
-Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
----
-Changes in v4:
-- rebase on phy/next
-- Link to v3: https://lore.kernel.org/r/20240925-qcs8300_ufs_phy_binding-v3-1-c1eb5c393b09@quicinc.com
+>        - items:
+>            - const: goodix,gt7986u
+>            - const: goodix,gt7375p
+> +      - items:
+> +          - const: goodix,gt7986u
 
-Changes in v3:
-- remove redundant compatible.
-- Link to v2: https://lore.kernel.org/r/20240911-qcs8300_ufs_phy_binding-v2-1-c801a2d27a84@quicinc.com
+Hm? This does not make much sense. Device either is or is not compatible
+with gt7375p. Cannot be both.
 
-Changes in v2:
-- decoupled from the original series.
-- Use fallback to indicate compatibility with SA8775P.
-- typo fixup
-- Link to v1: https://lore.kernel.org/r/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com
----
- Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+>  
+>    reg:
+> -    enum:
+> -      - 0x5d
+> -      - 0x14
+> +    maxItems: 1
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -57,6 +57,15 @@ properties:
+>        This property is used to avoid the back-powering issue.
+>      type: boolean
+>  
+> +  goodix,hid-report-addr:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The register address for retrieving HID report data.
+> +      This address is related to the device firmware and may
+> +      change after a firmware update.
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-index a93d64d1c55b..72bed2933b03 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-@@ -20,6 +20,10 @@ properties:
-           - enum:
-               - qcom,qcs615-qmp-ufs-phy
-           - const: qcom,sm6115-qmp-ufs-phy
-+      - items:
-+          - enum:
-+              - qcom,qcs8300-qmp-ufs-phy
-+          - const: qcom,sa8775p-qmp-ufs-phy
-       - enum:
-           - qcom,msm8996-qmp-ufs-phy
-           - qcom,msm8998-qmp-ufs-phy
+How is this supposed to work? DTS will stay fixed, you cannot change it
+just because firmware changed. User loads new firmware with different
+address, but DTS will have to use old address - so broken property.
 
----
-base-commit: 26ac85e3adb4775df42d94b310276b06c0898d3d
-change-id: 20241018-qcs8300_ufs_phy_binding-ab34387937ba
+> +
+> +  spi-max-frequency: true
+
+Drop
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -64,6 +73,25 @@ required:
+>    - reset-gpios
+>    - vdd-supply
+>  
+> +allOf:
+> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          items:
+> +            - const: goodix,gt7986u
+> +    then:
+> +      required:
+> +        - goodix,hid-report-addr
+> +    else:
+> +      properties:
+> +        goodix,hid-report-addr: false
+> +        spi-max-frequency: false
+
+Why? GT7375P also supports SPI.
+
+> +        reg:
+> +          enum: [0x5d, 0x14]
+> +
+>  additionalProperties: false
+
+This becomes now: unevaluatedProperties: false
+
+>  
+>  examples:
+> @@ -87,3 +115,23 @@ examples:
+>          vdd-supply = <&pp3300_ts>;
+>        };
+>      };
+> +
 
 Best regards,
--- 
-Jingyi Wang <quic_jingyw@quicinc.com>
+Krzysztof
 
 
