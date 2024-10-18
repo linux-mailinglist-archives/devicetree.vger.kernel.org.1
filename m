@@ -1,110 +1,144 @@
-Return-Path: <devicetree+bounces-112913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 398A79A3DC6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:04:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC769A3DC9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:04:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA5AE1F231E9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:04:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A3951F23FC1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 12:04:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC55C29A1;
-	Fri, 18 Oct 2024 12:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F2F317555;
+	Fri, 18 Oct 2024 12:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P863KZue"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QBl1NMlM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09105E555
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 12:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF4AD530;
+	Fri, 18 Oct 2024 12:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729253047; cv=none; b=HfdmCIg5xFRIlGz7HfQhXxHBw6pLuNueFSVSNMeZfMHYIZQcUGSn0Gey1fjIR+IUxm5exFUnrW3f4tA7FReM8bGHIO6jfOymaKbospMbC68GXv4TYCwtTElTzOdPbIkkOPAtNGhZEvdius81tIgAdRKJ/y26r/Ce0u+6PhLboWo=
+	t=1729253070; cv=none; b=I0snNK1Vspz7/+dwohuTbbgj66SQTIgo2WczAJiFssqdyJI/MG8A3yByWlpnk+6tC7bHV2yjMQ69hmY42obcOj+QDt+EDSjiYoHw68bpE4maKTXrZPAxbBVJtHVKYegGpJsLJZnOPP5W0kwxXDEMkWO0t18JINgbFcpn1KhO3Ps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729253047; c=relaxed/simple;
-	bh=G16VMFkYo1lJYiUjqoV5uhRSbc4X8d7pUahQxY3PU5E=;
+	s=arc-20240116; t=1729253070; c=relaxed/simple;
+	bh=YuKXHmMGBImdocY/xOUW7vNAe3C7UoDbaPaKfKneCUU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dAoR+fKQlHpAX/f7Sh9fjo7dEVHiKLgNRivsdCQGjqscSgZ/32/k1Gibnf63V1ajnFdbTHduCmjPICLGlidkpb8covRJwMYTUTzdlCCo2DHrSZ87f3tjdaiNIheBF5/om0MqnylSlH3HYSWZCuFe4EYYrN/THyJzVhIWHIi9NQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P863KZue; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539e13375d3so2364506e87.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 05:04:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729253044; x=1729857844; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bfCb0bhd7A40KUaBz9hRRbX867xrYglHoInu7Xbi7mI=;
-        b=P863KZuerXkZdbLl5rJ/cHc3/qW1KoLQ/hNwp1zw22XA0Rqu26VhMQNshyHfcSvAO4
-         WydpmmSZgTuAmoFauANM6hZ9/NfDXWp4tYmmF89zijPUfDcDabBaMkhqPpQ73HAUDskW
-         AWMOI/TmCK192E/8P5XJ5qK5A2KzcTqPmAdLAhFQyRQrcJRSnvc+qjMDWgP/NVUcdhPz
-         bZ8/fFZr5xwK8MdwUG6FY+24GNyalMs1Qod3C9QFpe1+v5MpMDrlCJoTmO4l/SV9LU90
-         9kUWhYltEOfip8qPvfRvF7G3kLRoW4tPJvypVR6bPtjFHPprCMUqq+vDyeOF3KgFDh6J
-         uxoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729253044; x=1729857844;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bfCb0bhd7A40KUaBz9hRRbX867xrYglHoInu7Xbi7mI=;
-        b=R33Ocg4ekIaMOf+3aWELMiJ8S2xUltBhdCJ+BRI6AR5HrUZ6fUU8eTtT4ZF9kVOJ/7
-         tTpkLLccnbr196qCuW850HEGAkGx5G5ZeL4gtL1LWq57qFRt3g5kw7cQ0MSXgpKifrFn
-         GgAB5ao9dKLh+k4k/b0uV9yloFvBTFfQGyMoaGpSotj6d021QMswlNswsVC3apfyi01P
-         INGiFKAFAuGTlIijQ2pMQRXMTBXfumaHRBV9GazYdNSGQpDbFSmRf8fhqXI/7VPawGVK
-         V9lH5pdLQAxXnl0PKZnS+1SQFi9QwyW8hSUrO41OxtsiNikDp9l2jP2oggHYcfdG893A
-         muZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXI79iOgZE4QwkSZKhB1GdX3EP6lBE6qCVYTLMYGqVx69UszvvJEWhqKsta+o0MpWJzS92g1CzqhrJt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKKEa0EBI8TmrJGssFGGtigxY0gdJ28A6HxEd52DyKidCB/yWD
-	n9jotQekaUoWtuXRkgzDxl+KvL7qO1i2z3NT4fOaGzVfXJgbHCw2agpfaGxwTwk=
-X-Google-Smtp-Source: AGHT+IF0p+EHb3y6Bb15TCfxTx2WBchcnW+np0ZaXW6dvAlcadVgamxMd0Nd/+bgKh+CYw0YxRaxNQ==
-X-Received: by 2002:a05:6512:39cd:b0:535:699b:b076 with SMTP id 2adb3069b0e04-53a15467b88mr1514958e87.16.1729253044002;
-        Fri, 18 Oct 2024 05:04:04 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a151b00fbsm203981e87.31.2024.10.18.05.04.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 05:04:03 -0700 (PDT)
-Date: Fri, 18 Oct 2024 15:04:02 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Imran Shaik <quic_imrashai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/6] clk: qcom: Add support for GPU Clock Controller on
- QCS8300
-Message-ID: <l53g7hbjxg2fe2rezghearuf4bllem5ubn2pn6f4qf2nd3wthg@v2a7pd5zquns>
-References: <20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com>
- <20241018-qcs8300-mm-patches-v1-2-859095e0776c@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=neAHYY52ZzNBZDytYMNM0Hy/NS0h5O2Qocr4EOavg7mH99ipVzzKl4mWIBEnAR8OyvmQ0XihF+B0qNCwGzZWxsXsSb2Yq8ISAY5z4i1cMyGSEeGasoOOAvHRY3YbOCQU9+6spZib6RjcUCaxod0XaOiA9wVx6K2TPFCPCjbqRFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QBl1NMlM; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729253070; x=1760789070;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=YuKXHmMGBImdocY/xOUW7vNAe3C7UoDbaPaKfKneCUU=;
+  b=QBl1NMlMekytWGlO+Y003cDxQOb54A/3jUbaTRzCErQ18pIDsJFeHgEG
+   GtffRHzNC2iC22U3UxoXmK4IN8/vR+myhB8qPIC14ESqS+UCOtmiEaIrC
+   czUM5awli3J/iT8oKbsfxaV+GoE123pNcKvjkLnY1FrHWGOIZvYKhRgFd
+   EgZNJmG2NykR3V1zG6PoFQwo+S8LZ7EL8WhUY6bi3htEBZJlIABQ3xJ4i
+   wvLgWO2Rx/sKejQpMHrAlQGye4876EonffZ1e/cxKK3T0kGgJ2yZ3ausB
+   RThl6g62MrRn4j7fs7e9cOlFjlC4oLTSHnn8N9v8hBUiuYKydCfM0x5yW
+   g==;
+X-CSE-ConnectionGUID: qF+1wRYaTgunO2gutObipA==
+X-CSE-MsgGUID: U/TzBEGjS2OdbT7m+iClgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28886715"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="28886715"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2024 05:04:29 -0700
+X-CSE-ConnectionGUID: SOkCtnF7SjOn8XMkKguWwA==
+X-CSE-MsgGUID: jUf2WeY6QryxKZXZHoDB5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,213,1725346800"; 
+   d="scan'208";a="78455159"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by fmviesa006.fm.intel.com with ESMTP; 18 Oct 2024 05:04:26 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+	id 569E8256; Fri, 18 Oct 2024 15:04:25 +0300 (EEST)
+Date: Fri, 18 Oct 2024 15:04:25 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] gpio: mmio: Support ngpios property
+Message-ID: <ZxJOyVV7nWaNkeyb@black.fi.intel.com>
+References: <20241017-gpio-ngpios-v2-0-cecfdb38d40e@linaro.org>
+ <ZxJGxXNl29i8d_fA@black.fi.intel.com>
+ <CACRpkdafFs-p6ikk7cfSWc6=C=8J6Gh+oe4TagAJh0EypWg3Og@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241018-qcs8300-mm-patches-v1-2-859095e0776c@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdafFs-p6ikk7cfSWc6=C=8J6Gh+oe4TagAJh0EypWg3Og@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Oct 18, 2024 at 04:42:30PM +0530, Imran Shaik wrote:
-> Add support to the QCS8300 GPU clock controller by extending
-> the SA8775P GPU clock controller, which is mostly identical
-> but QCS8300 has few additional clocks and minor differences.
+On Fri, Oct 18, 2024 at 01:49:40PM +0200, Linus Walleij wrote:
+> On Fri, Oct 18, 2024 at 1:30 PM Andy Shevchenko
+> <andriy.shevchenko@intel.com> wrote:
 > 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> ---
->  drivers/clk/qcom/gpucc-sa8775p.c | 47 ++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 47 insertions(+)
+> > First one is why? What the *practical* issue you have? Can you elaborate
+> > on that?
 > 
+> Sure, there are these hardwares that probe directly from the
+> gpio-mmio driver:
+> Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> properties:
+>   compatible:
+>     enum:
+>       - brcm,bcm6345-gpio
+>       - ni,169445-nand-gpio
+>       - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+> 
+> The practical issue is (similar to what was responded to Rob
+> in patch 2/2) that non-existing GPIOs will get exposed to userspace.
+> 
+> For patch 1/2 (adding the DT binding) it would be that without
+> ngpios we do not model the hardware properly.
+> 
+> The objection "it makes no harm to register GPIO lines
+> for all bits in the register" can likewise be raised to the
+> other 28 (if I count correctly) GPIO drivers that use this
+> property (git grep ngpios drivers/gpio) and I think the train left the
+> station long ago to object to the property in general, people
+> don't want to expose non-existing GPIOs to the GPIO
+> framework.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Sorry that I likely wasn't clear enough. My question was if you really
+experienced any bugs in practice. The above is the theory part and
+I completely agree with.
+
+> > Second one, is there any other way to avoid duplication of the code so
+> > we have one place of the property parsing?
+> >
+> > For the background I have to mention this commit:
+> > 55b2395e4e92 ("gpio: mmio: handle "ngpios" properly in bgpio_init()")
+> 
+> Oh well spotted! I completely missed the fact that we already
+> added ngpios parsing elsewhere in the driver.
+> 
+> Bartosz, can you please drop patch 2/2?
+
+> Patch 1/2 is needed however: it is just documenting the behaviour
+> that is already implemented.
+
+I'm not agianst this, the first patch is the correct advertisement.
+My questioning was related solely to the second patch in the series.
 
 -- 
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
+
 
