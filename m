@@ -1,127 +1,116 @@
-Return-Path: <devicetree+bounces-112987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-112988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3B8E9A41BD
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 16:52:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E6D09A4223
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 17:19:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45BBD28A79F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 14:52:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A1961C22844
+	for <lists+devicetree@lfdr.de>; Fri, 18 Oct 2024 15:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A661FF60B;
-	Fri, 18 Oct 2024 14:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1927200C89;
+	Fri, 18 Oct 2024 15:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="lrX4z7cN"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BiQHe7Ip"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D7B10E4
-	for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 14:52:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83EDD1F4264;
+	Fri, 18 Oct 2024 15:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729263156; cv=none; b=bDbGdJEfFZQ3m6yPlMmIqtEIeP9IrHMpW/YC9kgvj7sc7WsCXNXqsVPDjL5hQO2igZQGyrEQNm/tz2osDSzMJAkQ6fNZstAp2NR/lQ+Ax8wBJohCThoZ4i3C0G+eAjruVn5yPKcYuVLsXSUukpdBOUSmBYalBLp4iytDPiyiarI=
+	t=1729264757; cv=none; b=rCNU7nxnSQk+jb12W1tBd3nQ2olWTxy51VdSACQZtYtPiFgJJ7zUF9NwQ0S2O8BBcs/G5M16YPU4Hr7WY7WQ1EI3gakDbqv45hDPLwzCYq5CWCXImD2R/ZzbFzNX0ntDpek0w6mNJL4nvRoajqg+7aFszqSYdfx3/mYHkrA8dJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729263156; c=relaxed/simple;
-	bh=4n+xC1OqSR+FiSxSwPKtJfP3Ja0fohHQxfTzsNFf//c=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jzEtAorpLb/q7vRiZKuYca2ANgKWjIWjfYwWkioxX0CMQToNrBtv9Kq8cXpjEeG8Nr2871qxabDnm0wGKARNl+qMuOklHmDnZjFA4YLYNhMt+G0UD0u4ttetjOKWqIyMP3O0c8Fbb103+q74FHczJ9IOrG45GL7P2lz70dfE71k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=lrX4z7cN; arc=none smtp.client-ip=91.218.175.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1729263150;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=6Op0z2Z8YZdmLDf5Ekh5OWfa4CyRppADnsh714GMqJU=;
-	b=lrX4z7cNsWFHB1b4QGI0oeP4D0vNqiylloxToHWTN/qBJa5G2aydNc7ejWX4oJPgcfkrKb
-	QG4MvU36zsQLG9PozbCDciiMDf5CkaDviRvzgV32H7cln2zacvnn/RKTfVXb3Clnsqef8W
-	S+Bs8IfyPIEvJ87Ou6JCKk+FGbWOg6KzsdhT37kAgtq2XcKUPNfR4AZHeskHi+ryL6rcCS
-	XK5pDSTwfz4k7Jo+BIn+R2xpV2syQQQp0Ws0gy5idSfY0lDp9YtEb5Lr2h6E+/mgDBuJtU
-	6raG+qwTFvb4yWIQ7H+Ou6zrXGKwlVmVYq0E085B2dY2lqGeRiCU+PVyJWln+A==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rockchip@lists.infradead.org,
-	Samuel Holland <samuel@sholland.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH v2] arm64: dts: rockchip: Correct GPIO polarity on brcm BT nodes
-Date: Fri, 18 Oct 2024 16:45:50 +0200
-Message-ID: <20241018145053.11928-2-didi.debian@cknow.org>
+	s=arc-20240116; t=1729264757; c=relaxed/simple;
+	bh=UwPMKCaQO5+n3ciIjqo+WINUTZDFj4k3xLL2XjGRbos=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ihcF7CxjIfLCUrPPoqchg3ol4qK23heVzyR0ZQTDMB0qSNmC7u9W8ewgTs6Jx/qLbz+NiDyEc03MVqiw5PTmIxqNL8rW3+jKARp5FJuLVMXCPuKtTOAAREhA1dCHdd3QEUMG0+p7VVaI7u99CrSlxVdH8NjLWMDGpE2j8aTQyDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BiQHe7Ip; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729264746;
+	bh=UwPMKCaQO5+n3ciIjqo+WINUTZDFj4k3xLL2XjGRbos=;
+	h=From:Subject:Date:To:Cc:From;
+	b=BiQHe7IpC/W859WGSqcVMCN+JhALi2oC/xaRLcHyMyChZv/CZfybHqHs1NWRhtFVB
+	 sGhV1+PFan29sig7N9qI9T+URF6PA3CVby+Po1CNB88AixI89bso8fR2gPsnnyAGAf
+	 kyBYHiO5fu7c41By8SWRxnSMF7LPccxkz3sX+/Im/iArhNxYlU3q8vVVGzq2iyNqLA
+	 nAmtD7TUSIsxPSwjg2s4/2ST1iFXAAWQ8j5RlVAfvcqLsAMOyeF8FWgVdOSEjYJzBQ
+	 ERHksr5zQ/OJihw4ufVGFGO6n00bvhi87z3G2m/EOxsgggBDD2lwVr3OSExHHQ4DFF
+	 /RuELhFsBc6Jw==
+Received: from [192.168.1.218] (pool-100-2-116-133.nycmny.fios.verizon.net [100.2.116.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5DF1117E361A;
+	Fri, 18 Oct 2024 17:19:04 +0200 (CEST)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Subject: [PATCH v2 0/2] Enable Ethernet on the Genio 700 EVK board
+Date: Fri, 18 Oct 2024 11:19:01 -0400
+Message-Id: <20241018-genio700-eth-v2-0-f3c73b85507b@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+X-B4-Tracking: v=1; b=H4sIAGV8EmcC/3XMQQ7CIBCF4as0sxYDlIK68h6mC6TTMkmFBppG0
+ 3B3sXuX/0vet0PGRJjh1uyQcKNMMdSQpwact2FCRkNtkFwqwUXHJgwUDecMV89kJ1uuBmu0dlA
+ vS8KR3gf36Gt7ymtMn0PfxG/9A22CcSa0Fe5q2osb1d3FebbPmOzZxRf0pZQviR7OJ6wAAAA=
+X-Change-ID: 20241015-genio700-eth-252304da766c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Richard Cochran <richardcochran@gmail.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+ Andrew Lunn <andrew@lunn.ch>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
+ Jianguo Zhang <jianguo.zhang@mediatek.com>, 
+ Macpaul Lin <macpaul.lin@mediatek.com>, 
+ Hsuan-Yu Lin <shane.lin@canonical.com>, Pablo Sun <pablo.sun@mediatek.com>, 
+ fanyi zhang <fanyi.zhang@mediatek.com>
+X-Mailer: b4 0.14.2
 
-Paragraph "3.4 Power up Timing Sequence" of the AzureWave-CM256SM
-datasheet mentions the following about the BT_REG_ON pin, which is
-connected to GPIO0_C4_d:
+The patches in this series add the ethernet node on mt8188 and enable it
+on the Genio 700 EVK board.
 
-  When this pin is low and WL_REG_ON is high,
-  the BT section is in reset.
+The changes were picked up from the downstream branch at
+https://git.launchpad.net/~canonical-kernel/ubuntu/+source/linux-mtk/+git/jammy,
+cleaned up and split into two commits.
 
-Therefor set that pin to GPIO_ACTIVE_HIGH so that it can be pulled low
-for a reset.
-If set to GPIO_ACTIVE_LOW, the following errors are observed:
-
-  Bluetooth: hci0: command 0x0c03 tx timeout
-  Bluetooth: hci0: BCM: Reset failed (-110)
-
-So fix the GPIO polarity by setting it to ACTIVE_HIGH.
-This also matches what other devices with the same BT device have.
-
-Fixes: a3a625086192 ("arm64: dts: rockchip: Fix reset-gpios property on brcm BT nodes")
-Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 ---
 Changes in v2:
-- Better commit description with references to the datasheet
-- Dropped the (self-)blame as it's not useful to evaluate the usefulness
-  of this patch
+- Moved mdio bus to mt8188.dtsi
+- Changed phy-mode: rgmii-rxid -> rgmii-id
+- Removed mediatek,tx-delay-ps
+- style: Reordered vendor properties alphabetically 
+- style: Used fewer lines for clock-names
+- Fixed typo in commit message: 1000 Gbps -> 1000 Mbps
+- Link to v1: https://lore.kernel.org/r/20241015-genio700-eth-v1-0-16a1c9738cf4@collabora.com
 
- arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi  | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+---
+Nícolas F. R. A. Prado (2):
+      arm64: dts: mediatek: mt8188: Add ethernet node
+      arm64: dts: mediatek: mt8390-genio-700-evk: Enable ethernet
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-index a477bd992b40..0131f2cdd312 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-@@ -688,7 +688,7 @@ bluetooth {
- 		host-wakeup-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
- 		pinctrl-0 = <&bt_enable_h>, <&bt_host_wake_l>, <&bt_wake_h>;
- 		pinctrl-names = "default";
--		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
-+		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
- 		vbat-supply = <&vcc_wl>;
- 		vddio-supply = <&vcca_1v8_pmu>;
- 	};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-index e9fa9bee995a..1e36f73840da 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-@@ -404,7 +404,7 @@ bluetooth {
- 		host-wakeup-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&bt_host_wake_h &bt_reg_on_h &bt_wake_host_h>;
--		shutdown-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_LOW>;
-+		shutdown-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
- 		vbat-supply = <&vcc_3v3>;
- 		vddio-supply = <&vcc_1v8>;
- 	};
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi           | 97 ++++++++++++++++++++++
+ .../boot/dts/mediatek/mt8390-genio-700-evk.dts     | 20 +++++
+ 2 files changed, 117 insertions(+)
+---
+base-commit: 7f773fd61baa9b136faa5c4e6555aa64c758d07c
+change-id: 20241015-genio700-eth-252304da766c
+
+Best regards,
 -- 
-2.45.2
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
 
