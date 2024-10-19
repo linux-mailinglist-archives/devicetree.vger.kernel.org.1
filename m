@@ -1,148 +1,122 @@
-Return-Path: <devicetree+bounces-113270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEEC9A5035
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 20:09:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 006C79A503B
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 20:16:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B900C1C21108
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 18:09:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AD412857A6
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 18:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EFBA18D65C;
-	Sat, 19 Oct 2024 18:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3066A18CBFE;
+	Sat, 19 Oct 2024 18:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="AQsNfew+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SKK1sKiz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1987416F0E8
-	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 18:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B17B647
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 18:16:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729361362; cv=none; b=cTFWahYGxoaMOdzGULlE76jXj71MIPgkUY4PwSo0ZWc3o97w6V18GXvRSn2kZSMVjudbZPHRAv7RWqJ0uGAdD6lUSy2e6oZ9G/PxVH32s2M+iGsNtx52hPOlC7xRsrD8qaa4NX5X2gKppyQJcFaTYPJ06n7nS2aMtTOw25+WlHw=
+	t=1729361803; cv=none; b=uNbz2eUEt7ja6MR3AWGN0CpSah8XcXwzouMeEDLS7DHmBzHlXNruGApiFV4Nkk6LwfzVrdiNfQhdPKGeRkNz6R5uijmTUet0/ZBPqEENUhyvXzGeLG72QLmzMU5u8cke4Cmpwc1fjFiuwZK3vKUQa8cfeRBGiNlZBRaV6VNndno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729361362; c=relaxed/simple;
-	bh=EWobNxr/fu8G78jXjGTzejsIyUdAaSkwE4u8iTfF/nc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=c7mDnxIGIPoVchjSywPmcgnyYcoWd3aCovuUCax7mxjViI28nsXgOC4wTz2zyEo8GX1hRdQ6xiNolMkgF2VyC0lB838aY+uI/A2SI4KdvbjoYzn8pHOjiCqLiz5cC7KYMhPlfyaqAv2+WId2Jc1p4Y0QHAAa32FX5Sx+H9BbC60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=AQsNfew+; arc=none smtp.client-ip=95.215.58.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1729361803; c=relaxed/simple;
+	bh=fm4/TW/XP6VyjNkR7aVNVPKpRM/+37sn/T2jS9WV0ik=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J6cbpP/vWwC4v7fxdQzyjYbc20VydXdB1RY4gt1I6s4g/1d266GoaUGOjjTIhPpUJjrYZZa0HO2nn8pyL9gYBdxFPhs91uFmPoILRaBYYHGVigAPqtWMIAMJuNoagVI57pb7iqGqzoEURO1WD7xYQZox7/hTkKVx7ks3VEBVqkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SKK1sKiz; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2fb3da341c9so32566101fa.2
+        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 11:16:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729361799; x=1729966599; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fm4/TW/XP6VyjNkR7aVNVPKpRM/+37sn/T2jS9WV0ik=;
+        b=SKK1sKizczEgTHfecxOhWciuXpxmAIQT6V2QIa7024IHh+swSNpX1QFtF4MlvTa+d+
+         ERC5whxdqoxknZxbFuh+5z57LIQaMy8SS2ZqtCqCInFhd3xoDDOlIcsz8U/FccKiWEoQ
+         V2WnPqfM70supDwmrfUEMo6cEBowDHXHyliqCubgDW10NL6pcU/8jRuHlFsJrgx/Bp7F
+         1+lEGvCmbOSVLEfmE0G0pM0tZmosfdKF3s4HlNwjDtfQMxqWZpbfaxFmtTvcVpwB/AKp
+         u+hxir/uKaoyLZ/NcrJKt23fYPngPRxiIIKMR9NMNnhXzA3KqhuPn4fDH8oixXNgHyek
+         8fhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729361799; x=1729966599;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fm4/TW/XP6VyjNkR7aVNVPKpRM/+37sn/T2jS9WV0ik=;
+        b=l4UzqeAay8AamReZu4+P98QPmD44rKVGLdC5oY7SeqRGFuzE00YMDCAYMRpezkHUew
+         H9Kshf5YcTSsVrpcuRX0QbXhwMyzDugwJPQOZ5FUY9DM8tcB11c9vfbcVvwXus5uHyUL
+         LXjN4Zko9Bypk9p7/kH34m1t4Sl3R/40KJ66A3nJD+teDY8FZK5L9FuGDjIRTXMsAnMa
+         wzz+GWdERynung9NFLazUyBLPvbX13lf8R8BJTLPILcopPwJnR7YxGfaIjMm9DboDBtc
+         fJUQ/ILbZMtgE77pDnSwdIqCBxxlApETv4r+B8Hnp7L08/8xZFksCtyxUbPegMFWZmRJ
+         tMpw==
+X-Forwarded-Encrypted: i=1; AJvYcCWBephdoCKU92z4l4rgw4czbchAF1/MRqJA529owRTRir57OxEsmnaupBu/Urir2FR1Tz2MZyET3LV+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwyPSyOz53i91KBAOFNW5Xd2qrz/kC9aGbVaxqG/H+22HLpDDsH
+	CUt5xC6Ptnm0AahaYfBki3Hao4bHjf47IMXxawngvbbbvs5TSY+7LsMOokplBiuKrF6oFmkCpsC
+	ackJU72HyP/8THk4L0fp8lMIDIK1WSgsfoYE+1A==
+X-Google-Smtp-Source: AGHT+IGUIof/qmUxPJlydOgfWxZ3IUmvMmAPDvHqH5LTK6/M1DHw70PzZPpjH+qyF5nhY1Ls17fpniLDuexAWk7NRWk=
+X-Received: by 2002:a05:6512:1582:b0:52c:9e82:a971 with SMTP id
+ 2adb3069b0e04-53a15441e9bmr3361553e87.7.1729361798914; Sat, 19 Oct 2024
+ 11:16:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1729361355;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f3RtjINZGSgrKRy2wNDqwWrIHrIIPJ53FJ8P+x6DkhI=;
-	b=AQsNfew+K6F+CLgKgr50utpQXBypfTUxchrOeI73zMAcWok/7hgMhCo6fub0UnDP6iuk5d
-	ZutrSF4lZ5udnjXawQlruQMscn5kBPnMmo1oBfOpCu+wW68/QujudwXWre10YG4AD1vj8j
-	Cz5ZOjRz+xwUEhUCEYXsnPJme9hUa3DABRy4c7ypl0BcmJAzWRPT7n3udouF89ohdHBCVC
-	i4/6mGEHDVrbMtmh/v6HKjrwxqyfkT3jfGi8R99cBpi+eAxk9HRv0kFBqsBeqoITrqq1ya
-	3OjTbRJemUVysfTQbgYf1LvJ8i1Af0xMBNNQFjB2gxCVywk8mf1pyN/Ye/Y5nA==
-Content-Type: multipart/signed;
- boundary=eb9158f3fd3022c747c09e202d1d0a175e416ede785f1ca7d155a4b18fff;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Sat, 19 Oct 2024 20:09:02 +0200
-Message-Id: <D4ZZFL98AMFI.1TDPL2DJPSQ3D@cknow.org>
-Cc: <heiko@sntech.de>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Prepare RK356x SoC dtsi files
- for per-variant OPPs
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Dragan Simic" <dsimic@manjaro.org>,
- <linux-rockchip@lists.infradead.org>
-References: <cover.1728752527.git.dsimic@manjaro.org>
- <cc2aed3116a57dd50e2bb15ab41b12784adfafe3.1728752527.git.dsimic@manjaro.org> <D4U30AUOH6UR.1QPH47KN5EWE4@cknow.org>
-In-Reply-To: <D4U30AUOH6UR.1QPH47KN5EWE4@cknow.org>
-X-Migadu-Flow: FLOW_OUT
-
---eb9158f3fd3022c747c09e202d1d0a175e416ede785f1ca7d155a4b18fff
+MIME-Version: 1.0
+References: <20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org>
+In-Reply-To: <20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Sat, 19 Oct 2024 20:16:28 +0200
+Message-ID: <CACRpkdYnaJsKKfcdhHeMGTTp86M+wNODzZx2e=OYbxQ4Jc4Rjw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/3] riscv: spacemit: add pinctrl support to K1 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Yangyu Chen <cyy@cyyself.name>, 
+	Jesse Taube <mr.bossman075@gmail.com>, Jisheng Zhang <jszhang@kernel.org>, 
+	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Meng Zhang <zhangmeng.kevin@spacemit.com>, Meng Zhang <kevin.z.m@hotmail.com>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-Hi Dragan,
+On Wed, Oct 16, 2024 at 3:00=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
 
-On Sat Oct 12, 2024 at 9:41 PM CEST, Diederik de Haas wrote:
-> On Sat Oct 12, 2024 at 7:04 PM CEST, Dragan Simic wrote:
-> > =20
-> > -&pipegrf {
-> > -	compatible =3D "rockchip,rk3566-pipe-grf", "syscon";
+> This series adds pinctrl support to SpacemiT's K1 SoC, the controller
+> uses a single register to describe all pin functions, including
+> bias pull up/down, drive strength, schmitter trigger, slew rate,
+> strong pull-up, mux mode. In patch #3, we add the pinctrl property of
+> uart device for the Bananapi-F3 board.
 >
-> This seems unrelated?
+> You can find the pinctrl docs of K1 here[1], and the original vendor's
+> pinctrl dts data here[2].
 >
-> > +&cpu0 {
-> > +	operating-points-v2 =3D <&cpu0_opp_table>;
-> >  };
-> > =20
-> > -&power {
-> > -	power-domain@RK3568_PD_PIPE {
-> > -		reg =3D <RK3568_PD_PIPE>;
-> > -		clocks =3D <&cru PCLK_PIPE>;
-> > -		pm_qos =3D <&qos_pcie2x1>,
-> > -			 <&qos_sata1>,
-> > -			 <&qos_sata2>,
-> > -			 <&qos_usb3_0>,
-> > -			 <&qos_usb3_1>;
-> > -		#power-domain-cells =3D <0>;
-> > -	};
+> Note, we rewrite this series as an independent pinctrl driver for K1 SoC,
+> which means it does not use pinctrl-single driver as the model anymore,
+> see the suggestion from Krzysztof at [3].
 >
-> This seems unrelated to me and possibly a functional change?
-> If this was intended, then a description in the commit message would be
-> nice why this is appropriate and possibly moved to a separate patch?
->
-> > +&cpu1 {
-> > +	operating-points-v2 =3D <&cpu0_opp_table>;
-> > +};
-> > +
-> > +&cpu2 {
-> > +	operating-points-v2 =3D <&cpu0_opp_table>;
-> >  };
-> > =20
-> > -&usb_host0_xhci {
-> > -	phys =3D <&usb2phy0_otg>;
-> > -	phy-names =3D "usb2-phy";
-> > -	extcon =3D <&usb2phy0>;
-> > -	maximum-speed =3D "high-speed";
->
-> This also looks unrelated and a functional change?
->
-> > +&cpu3 {
-> > +	operating-points-v2 =3D <&cpu0_opp_table>;
-> >  };
-> > =20
-> > -&vop {
-> > -	compatible =3D "rockchip,rk3566-vop";
->
-> This also looks unrelated?
+> Link: https://developer.spacemit.com/documentation?token=3DAn1vwTwKaigaXR=
+kYfwmcznTXned [1]
+> Link: https://gitee.com/bianbu-linux/linux-6.1/blob/bl-v1.0.y/arch/riscv/=
+boot/dts/spacemit/k1-x_pinctrl.dtsi [2]
+> Link: https://lore.kernel.org/all/b7a01cba-9f68-4a6f-9795-b9103ee81d8b@ke=
+rnel.org/ [3]
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 
-It turns out I was wrong.
-The elements I thought were removed, aren't removed.
+Patches 1 & 2 applied to the pin control tree for v6.13!
 
-Sorry for the noise.
+Please take patch 3 through the SoC tree.
 
-Diederik
-
---eb9158f3fd3022c747c09e202d1d0a175e416ede785f1ca7d155a4b18fff
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZxP1wwAKCRDXblvOeH7b
-bnomAQCauVO5HYPsaXNdYa5Tz50X1ZlJC7CDUvnlwWrQif3qFQEApyYcsmXRi4Xv
-ePPHwirwTWwZXt6w4Rr5ksGu3kE2Rg4=
-=NC6L
------END PGP SIGNATURE-----
-
---eb9158f3fd3022c747c09e202d1d0a175e416ede785f1ca7d155a4b18fff--
+Yours,
+Linus Walleij
 
