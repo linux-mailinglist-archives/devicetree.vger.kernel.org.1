@@ -1,675 +1,137 @@
-Return-Path: <devicetree+bounces-113260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 557CD9A4FC5
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 18:27:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D419A4FD5
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 18:29:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6B161F25BEF
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 16:27:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9745C1C25452
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 16:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0583319046E;
-	Sat, 19 Oct 2024 16:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3880F18CC0B;
+	Sat, 19 Oct 2024 16:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qaWnqYaS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pUZJKrLl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5159818DF6B
-	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 16:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A6617C228
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 16:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729355213; cv=none; b=V5UnT0AF2/bj3dtFgZzG8xrg7fVFBE8CIwTf0JkVmRmofLIcm/HeLQbeP5ZMUcnPsmKIZeasMs8lMI/Bx/RR3LrXlSfxh1JaenHzeao0cKvu0EywQ3HqlXE4AP8FhtOov7JANtX1I3KdQ3h5xgWaA8PJ0jKdTal+MAFtLl4FHDg=
+	t=1729355372; cv=none; b=G2VMoKxF1ciXh7GHG1OjMzsmvUjSCZzCXRgOH3a4oBv0oB59d3D9cEEj92p88CMJJdPR97+44NNCrsTOJud5/c6LPlsqZWCzdIrXf//yuTb6hjHOGXOPVe24QIXJEI6MD+0eHikZzQN95MrS4NI5IX3MOslMz1dUuGkGEi8WeDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729355213; c=relaxed/simple;
-	bh=9IJyzCE4GaHn616VyWC1aCINwEhMZfazYzFsYxs/DqI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=d6bKYP95HvLAtajknRWPpR/rcqk0I/Iy7xFHwkXOEz+XgjNS/djtdoHp0sLpEsN06O26xhsIKGXll0aOQ7QuEfQyRFDVdYDxjUbK7QLnN8/gWOqZII+QpCjrgxPTAdIxMxnDuNEp70bt5ijIyIKqmaR1kJI0gw4KojkHf/eh2WU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qaWnqYaS; arc=none smtp.client-ip=209.85.167.42
+	s=arc-20240116; t=1729355372; c=relaxed/simple;
+	bh=c5F++auZi2YoIj//vELiQ2ypILgrwOetr/NqqDMRDBw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AnkK33HRsOpUMA/SQhR1YgoaXNIE53uae6UQGiIrtuiaYEbMZVX/NL+kuOOUDpvnV1NpqDWIbVmd6GD7LOD8EuxpZlr0s2qZh4C0MR2AEpg9wWPg+15dbxL+jiCoJbtN5nVHVw0pBEKGdH3qxjvjtIQyzK6LMPYzO8wAgbHozJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pUZJKrLl; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53a007743e7so3796260e87.1
-        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 09:26:51 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb3debdc09so25411621fa.3
+        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 09:29:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729355209; x=1729960009; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=16G8+YLdPReYNbCbPPpWhAvrlzQ+kcERenlbkmZcLtU=;
-        b=qaWnqYaSLz/pThmGlvGHvxO7krkNniLKhC1J7TQ1iWffeiZl8bbFyIxW/zxNSHm717
-         lg0hSJGJX36jHGqwJh5i31CP/kj+P/zamu/mhSoskx/bH3fp9uKdN8yQOArL+LOfJb9s
-         GVGmVPxrNhB4Ikh0xrhwmX1RBm5riIxBByFJCij7s4f4XTTg7TM+nFDC4/fOJGYT2f/N
-         2eNA05cQLl/4npCCImSMhIU0pZVO+G8IiFQNN6i4X7oV0ZYoHZTszl4j71ytPHj6I7FO
-         cwjF0EhUu1mePeWK6KlJO8gPdY7IxAIlqjgM6pQUdeXsWDJosPKFBxDiljJzcJY426xX
-         02OA==
+        d=linaro.org; s=google; t=1729355368; x=1729960168; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UnhPZOU7UUH1HoSGL559dxSCJP8oqBaVwb2UhbtDqc8=;
+        b=pUZJKrLlANNsynn8ORr6bYCIxl28fZnybqBQukZWRqJbqaM5LBZhomt6/qTQbNoIej
+         AGxloOTqbTgNhuy2RA6YPMHXILufXTpLr3HndXXteXkdl2b+tT/91QKlYMC9cAmnFI60
+         ZmcitkY0PA0cHCgY4lqflrYkw2WqPbo6z5ubWvUZY8mwrr26BDz6dFZ5MCS5+c8qDVMx
+         lvbqaOggZztT2BcAeRS72Iwa/3+dE8L3A5Tnev6HNtQXfegjq+gy3tBB1oWW9zAAAGJ8
+         kd+DAMySOQNVmn8zN7kiUJYKBKknFfFpQNoIVq+xyXVSxXMsDyceCMBZICdou7Ev4tC2
+         ABjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729355209; x=1729960009;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=16G8+YLdPReYNbCbPPpWhAvrlzQ+kcERenlbkmZcLtU=;
-        b=gjlzvOsAZ88+Jzd+OndwxLA+wrr89yuKcvquQQof+40qyECxBXzwo2HauYjgma7nii
-         ZYgtfUpeVPgMBhRBRDi6Q4NdsxVgKE94q7nU9Vuf8vwjOs6tfXaH5FzI+GapV8POvdSN
-         KbW4mDJRR0e3nmmTSPbn6YG5kZ5SsFAq3YTs6h5Enm4tX9FWJ9vpkh3SkKjMwdx8W8Be
-         2FM1ii0jbOW0MnAnDNzgw0YnEhtfB8mKNnrUcHMp+3tpWr3GV5PWTYxGcwuOnBbpuDpH
-         6V+rm9m3TSOGjK71jDQLWwxhlKlOF8/h8IxeCa6TYoEqErDs5smuuhQSbqKnacVtrtPh
-         amUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjyXt7F8jJwzx/K1URFAPNgXDbu/P1KuZOhwh25IackZUQYuJDUA2oMQWtPV22zDMu2SSZwMn1g+oB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeB7I/O4Gr1+jbfw5o9m7083WKwQ45nfwQe4XwnMW70qBUmUjc
-	hgwjhAQX51cByhhAjF6AwTM5Ua3RzPO0tg3A6wlR+Uysc74sWysVB+YzMuUvM08=
-X-Google-Smtp-Source: AGHT+IGtQFwyylIOslHO+u2spOzWxKXOJ59teT4Gen6bVfg+Wb60THn0JlAUqa8cgOhePPz2UUrssQ==
-X-Received: by 2002:a05:6512:3b82:b0:539:fc23:1497 with SMTP id 2adb3069b0e04-53a154410ebmr2984572e87.9.1729355209174;
-        Sat, 19 Oct 2024 09:26:49 -0700 (PDT)
-Received: from [127.0.1.1] (2001-14ba-a0c3-3a00-70b-e6fc-b322-6a1b.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:70b:e6fc:b322:6a1b])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a151f0c65sm576590e87.125.2024.10.19.09.26.47
+        d=1e100.net; s=20230601; t=1729355368; x=1729960168;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UnhPZOU7UUH1HoSGL559dxSCJP8oqBaVwb2UhbtDqc8=;
+        b=UodS2innoXvY8cEf0bsLFpzpbQjIstuKqUEdtrBQl3fbbd5bUesA7Q9gSvsGK2jtcn
+         2+p9g6x2myMv7u+VoqhxcG+24wDQDAHro1c/BEY7CJUWT473s5w6RiqgvY/IN5GyAZqx
+         un/dE+NyTPuAxrG3AqYUmShnGMPaZ1LsLiVk+xgUaXn+omKT3X7qNs++NfjN1aprKZ4u
+         xOjgFhawowMJd8OlPQMWOr+R8/je9zt/xeOACMD99a4cU8na930s3OTM/o08WET7YlNy
+         8wgCpI5rF1MOsVOksIZrvsMNSkFX+bHl8FUcPB7wzjHAqz2HYlluDDu4k+/EYpJFAlF7
+         cjRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUJHNIWzw3tfJcfd+Ho3O/NW9LIELNItq75t1a8EpJzimq6wpfwVNHGLOlGV24eq4ItJeKzHvqzGHhR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIzxXF+1E6UR8xzqvk2FFwNBuBnIjg4lcDOtotJL1fqrfGfvDz
+	Hl4RcFOhyen8rrhEN/m1qVpdDljJya3883H1NPlPa7SG6K2hLd6vG02KCkGI8tM=
+X-Google-Smtp-Source: AGHT+IEM0vuztFWZJLrY3x9Ptwp1YKrsO2wSlokW+PM1+qzucLkSShtUc5y5QHzMLT4+vy2o8RAkSg==
+X-Received: by 2002:a05:6512:1383:b0:53a:aea:81cc with SMTP id 2adb3069b0e04-53a1550bdaemr3213330e87.57.1729355368053;
+        Sat, 19 Oct 2024 09:29:28 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a15211401sm573378e87.249.2024.10.19.09.29.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Oct 2024 09:26:47 -0700 (PDT)
+        Sat, 19 Oct 2024 09:29:26 -0700 (PDT)
+Date: Sat, 19 Oct 2024 19:29:24 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 19 Oct 2024 19:26:42 +0300
-Subject: [PATCH 2/2] soc: qcom: llcc: add support for SAR2130P and SAR1130P
+To: Jingyi Wang <quic_jingyw@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, quic_tengfan@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com
+Subject: Re: [PATCH v2 2/3] soc: qcom: llcc: Add LLCC configuration for the
+ QCS8300 platform
+Message-ID: <v73v4qniygxvqgdjcuydgpir2fgxmnltqaxcexoktzesnqfxod@55k43u2gmqqt>
+References: <20241010-qcs8300_llcc-v2-0-d4123a241db2@quicinc.com>
+ <20241010-qcs8300_llcc-v2-2-d4123a241db2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241019-sar2130p-llcc-v1-2-4e09063d04f2@linaro.org>
-References: <20241019-sar2130p-llcc-v1-0-4e09063d04f2@linaro.org>
-In-Reply-To: <20241019-sar2130p-llcc-v1-0-4e09063d04f2@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=14449;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=9IJyzCE4GaHn616VyWC1aCINwEhMZfazYzFsYxs/DqI=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnE93ChdRgcGcy1StCcOqdbrzX1XQ7bAfWV7lXt
- QWzfprHOVeJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxPdwgAKCRAU23LtvoBl
- uIjcD/91iaxwyPN09zf37Dw1Z9JD6lfhxpce9Mn1iqpdaIOQTlztbZQe5YuRxmrNEWRBBRdunJ5
- lDB02e7xai2w3X2nqRBQKzcvzABkR344huF9EVNt2YvWXiepWaW9B/SQzxz3oggOx4EdUvBN3jE
- iiXi9lhOmNTLth2AUBcO/aBFkGIJ+ZJ3UWK8cJNnLPTKKOJzRv7GsxY+UqSSYaTynCNpKEFpMV1
- GZG6TaQbxgVcMmAv3h2+TM5Jf/bEscKEH6CZ+eaRY+b32lbTJt7vzn7lJkrwRNaVzt9XTN4xcvC
- /C1K4R4GShUZ2IfNDJ91qnSY2GFZ87H818WjX8pZQWcsGNfhuiR+7IfadWXQrtsSTwk/0W3BlO8
- yHKnsYZg/YihEiZ7yXl15ASg2XFiEiSa+EPQGG7lHgbNSBHYMhtAoJ0a9lZYBeIhOls7xDidJeh
- SHpRjKv6YFAr5dkcxU1XrmCTQmW3vSs/1u0oFRsHy8dkLJkItb6sl5KWKWKh/MMXjMS6NJZ2aRT
- fNVe6U9tKsytfSZY6Wi0MKy0NUd8amBwg3ojWpu5yKOHaZXzfaKOMhFDCm1ibxeurlFudl0/Kr+
- DWDUfetQ8ukHayBU+qNg0fKQGqCZk7zIHhkRwSNxUAGpCd5bXo46c2/vBnplI0tvagC26UZVFdi
- +5b2GXSK04f5xMA==
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241010-qcs8300_llcc-v2-2-d4123a241db2@quicinc.com>
 
-Implement necessary support for the LLCC control on the SAR1130P and
-SAR2130P platforms. These two platforms use different ATTR1_MAX_CAP
-shift and also require manual override for num_banks.
+On Thu, Oct 10, 2024 at 06:08:47PM +0800, Jingyi Wang wrote:
+> Add LLCC configuration for the QCS8300 platform. There is an errata on
+> LB_CNT information on QCS8300 platform, override the value to get the
+> right number of banks.
+> 
+> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+> ---
+>  drivers/soc/qcom/llcc-qcom.c | 72 ++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+> 
+> @@ -3391,6 +3456,12 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>  	num_banks >>= LLCC_LB_CNT_SHIFT;
+>  	drv_data->num_banks = num_banks;
+>  
+> +	/* LB_CNT information is wrong on QCS8300, override the value */
+> +	if (of_device_is_compatible(dev->of_node, "qcom,qcs8300-llcc")) {
+> +		num_banks = 4;
+> +		drv_data->num_banks = 4;
+> +	}
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/soc/qcom/llcc-qcom.c       | 468 ++++++++++++++++++++++++++++++++++++-
- include/linux/soc/qcom/llcc-qcom.h |  12 +
- 2 files changed, 474 insertions(+), 6 deletions(-)
+Nit: I think it might be better to skip reading LLCC_COMMON_STATUS0
+register completely and just set num_banks instead. See [1]
 
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index a470285f54a875bf2262aac7b0f84ed8fd028ef1..ef84fe3b2af4e777126a8308bfd4ec47b28aeae2 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -32,6 +32,7 @@
- #define ATTR1_FIXED_SIZE_SHIFT        0x03
- #define ATTR1_PRIORITY_SHIFT          0x04
- #define ATTR1_MAX_CAP_SHIFT           0x10
-+#define ATTR1_MAX_CAP_SHIFT_sar       0x0e
- #define ATTR0_RES_WAYS_MASK           GENMASK(15, 0)
- #define ATTR0_BONUS_WAYS_MASK         GENMASK(31, 16)
- #define ATTR0_BONUS_WAYS_SHIFT        0x10
-@@ -140,6 +141,11 @@ struct qcom_llcc_config {
- 	bool need_llcc_cfg;
- 	bool no_edac;
- 	bool irq_configured;
-+	/*
-+	 * special workarounds for SAR2130P and similar platforms which have
-+	 * slightly different register mapping.
-+	 */
-+	bool is_sar_chip;
- };
- 
- struct qcom_sct_config {
-@@ -298,6 +304,408 @@ static const struct llcc_slice_config sa8775p_data[] =  {
- 	},
- };
- 
-+static const struct llcc_slice_config sar1130p_data[] = {
-+	{
-+		.usecase_id = LLCC_CPUSS,
-+		.slice_id = 1,
-+		.max_cap = 4096,
-+		.priority = 1,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_VIDSC0,
-+		.slice_id = 2,
-+		.max_cap = 512,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_AUDIO,
-+		.slice_id = 6,
-+		.max_cap = 1024,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_CMPT,
-+		.slice_id = 10,
-+		.max_cap = 1024,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_GPUHTW,
-+		.slice_id = 11,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_GPU,
-+		.slice_id = 12,
-+		.max_cap = 3072,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+		.write_scid_en = true,
-+	}, {
-+		.usecase_id = LLCC_MMUHWT,
-+		.slice_id = 13,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+	}, {
-+		.usecase_id = LLCC_DISP,
-+		.slice_id = 16,
-+		.max_cap = 12800,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_CVP,
-+		.slice_id = 28,
-+		.max_cap = 256,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_APTCM,
-+		.slice_id = 26,
-+		.max_cap = 2048,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x3,
-+		.cache_mode = true,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_WRCACHE,
-+		.slice_id = 31,
-+		.max_cap = 256,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_AENPU,
-+		.slice_id = 30,
-+		.max_cap = 3072,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x1fff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_DISP_LEFT,
-+		.slice_id = 17,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_DISP_RIGHT,
-+		.slice_id = 18,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_EVCS_LEFT,
-+		.slice_id = 22,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_EVCS_RIGHT,
-+		.slice_id = 23,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	},
-+};
-+
-+static const struct llcc_slice_config sar2130p_data[] = {
-+	{
-+		.usecase_id = LLCC_CPUSS,
-+		.slice_id = 1,
-+		.max_cap = 6144,
-+		.priority = 1,
-+		.fixed_size = 0,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_VIDSC0,
-+		.slice_id = 2,
-+		.max_cap = 128,
-+		.priority = 2,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_AUDIO,
-+		.slice_id = 6,
-+		.max_cap = 1024,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_CMPT,
-+		.slice_id = 10,
-+		.max_cap = 1024,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_GPUHTW,
-+		.slice_id = 11,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_GPU,
-+		.slice_id = 12,
-+		.max_cap = 1536,
-+		.priority = 2,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+		.write_scid_en = true,
-+	}, {
-+		.usecase_id = LLCC_MMUHWT,
-+		.slice_id = 13,
-+		.max_cap = 1024,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_DISP,
-+		.slice_id = 16,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_APTCM,
-+		.slice_id = 26,
-+		.max_cap = 2048,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x3,
-+		.cache_mode = true,
-+		.dis_cap_alloc = true,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_WRCACHE,
-+		.slice_id = 31,
-+		.max_cap = 256,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_VIEYE,
-+		.slice_id = 7,
-+		.max_cap = 7168,
-+		.priority = 4,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_VIDPTH,
-+		.slice_id = 8,
-+		.max_cap = 7168,
-+		.priority = 4,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_GPUMV,
-+		.slice_id = 9,
-+		.max_cap = 2048,
-+		.priority = 2,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_EVA_LEFT,
-+		.slice_id = 20,
-+		.max_cap = 7168,
-+		.priority = 5,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3ffffffc,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_EVA_RIGHT,
-+		.slice_id = 21,
-+		.max_cap = 7168,
-+		.priority = 5,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3ffffffc,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_EVAGAIN,
-+		.slice_id = 25,
-+		.max_cap = 1024,
-+		.priority = 2,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_AENPU,
-+		.slice_id = 30,
-+		.max_cap = 3072,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_VIPTH,
-+		.slice_id = 29,
-+		.max_cap = 1024,
-+		.priority = 4,
-+		.fixed_size = true,
-+		.bonus_ways = 0x3fffffff,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_DISP_LEFT,
-+		.slice_id = 17,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_DISP_RIGHT,
-+		.slice_id = 18,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_EVCS_LEFT,
-+		.slice_id = 22,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_EVCS_RIGHT,
-+		.slice_id = 23,
-+		.max_cap = 0,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	}, {
-+		.usecase_id = LLCC_SPAD,
-+		.slice_id = 24,
-+		.max_cap = 7168,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.cache_mode = 0,
-+		.retain_on_pc = true,
-+	},
-+};
-+
- static const struct llcc_slice_config sc7180_data[] =  {
- 	{
- 		.usecase_id = LLCC_CPUSS,
-@@ -2687,6 +3095,28 @@ static const struct qcom_llcc_config sa8775p_cfg[] = {
- 	},
- };
- 
-+static const struct qcom_llcc_config sar1130p_cfg[] = {
-+	{
-+		.sct_data	= sar1130p_data,
-+		.size		= ARRAY_SIZE(sar1130p_data),
-+		.need_llcc_cfg	= true,
-+		.reg_offset	= llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+		.is_sar_chip	= true,
-+	},
-+};
-+
-+static const struct qcom_llcc_config sar2130p_cfg[] = {
-+	{
-+		.sct_data	= sar2130p_data,
-+		.size		= ARRAY_SIZE(sar2130p_data),
-+		.need_llcc_cfg	= true,
-+		.reg_offset	= llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+		.is_sar_chip	= true,
-+	},
-+};
-+
- static const struct qcom_llcc_config sc7180_cfg[] = {
- 	{
- 		.sct_data	= sc7180_data,
-@@ -2839,6 +3269,16 @@ static const struct qcom_sct_config sa8775p_cfgs = {
- 	.num_config	= ARRAY_SIZE(sa8775p_cfg),
- };
- 
-+static const struct qcom_sct_config sar1130p_cfgs = {
-+	.llcc_config	= sar1130p_cfg,
-+	.num_config	= ARRAY_SIZE(sar1130p_cfg),
-+};
-+
-+static const struct qcom_sct_config sar2130p_cfgs = {
-+	.llcc_config	= sar2130p_cfg,
-+	.num_config	= ARRAY_SIZE(sar2130p_cfg),
-+};
-+
- static const struct qcom_sct_config sc7180_cfgs = {
- 	.llcc_config	= sc7180_cfg,
- 	.num_config	= ARRAY_SIZE(sc7180_cfg),
-@@ -3146,7 +3586,10 @@ static int _qcom_llcc_cfg_program(const struct llcc_slice_config *config,
- 	 */
- 	max_cap_cacheline = max_cap_cacheline / drv_data->num_banks;
- 	max_cap_cacheline >>= CACHE_LINE_SIZE_SHIFT;
--	attr1_val |= max_cap_cacheline << ATTR1_MAX_CAP_SHIFT;
-+	if (cfg->is_sar_chip)
-+		attr1_val |= max_cap_cacheline << ATTR1_MAX_CAP_SHIFT_sar;
-+	else
-+		attr1_val |= max_cap_cacheline << ATTR1_MAX_CAP_SHIFT;
- 
- 	attr1_cfg = LLCC_TRP_ATTR1_CFGn(config->slice_id);
- 
-@@ -3383,12 +3826,23 @@ static int qcom_llcc_probe(struct platform_device *pdev)
- 		goto err;
- 	cfg = &cfgs->llcc_config[cfg_index];
- 
--	ret = regmap_read(regmap, cfg->reg_offset[LLCC_COMMON_STATUS0], &num_banks);
--	if (ret)
--		goto err;
-+	/*
-+	 * For some reason register returns incorrect value here.
-+	 * List compatibles instead of using .is_sar_chip since there might be
-+	 * SAR-like chips which have other number of banks.
-+	 */
-+	if (of_device_is_compatible(dev->of_node, "qcom,sar1130p-llcc") ||
-+	    of_device_is_compatible(dev->of_node, "qcom,sar2130p-llcc")) {
-+		num_banks = 2;
-+	} else {
-+		ret = regmap_read(regmap, cfg->reg_offset[LLCC_COMMON_STATUS0], &num_banks);
-+		if (ret)
-+			goto err;
-+
-+		num_banks &= LLCC_LB_CNT_MASK;
-+		num_banks >>= LLCC_LB_CNT_SHIFT;
-+	}
- 
--	num_banks &= LLCC_LB_CNT_MASK;
--	num_banks >>= LLCC_LB_CNT_SHIFT;
- 	drv_data->num_banks = num_banks;
- 
- 	drv_data->regmaps = devm_kcalloc(dev, num_banks, sizeof(*drv_data->regmaps), GFP_KERNEL);
-@@ -3486,6 +3940,8 @@ static int qcom_llcc_probe(struct platform_device *pdev)
- static const struct of_device_id qcom_llcc_of_match[] = {
- 	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
- 	{ .compatible = "qcom,sa8775p-llcc", .data = &sa8775p_cfgs },
-+	{ .compatible = "qcom,sar1130p-llcc", .data = &sar1130p_cfgs },
-+	{ .compatible = "qcom,sar2130p-llcc", .data = &sar2130p_cfgs },
- 	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
- 	{ .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfgs },
- 	{ .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfgs },
-diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
-index 2f20281d4ad4352ef59e7b19148cd324c7991012..8e5d78fb4847a232ab17a66c2775552dcb287752 100644
---- a/include/linux/soc/qcom/llcc-qcom.h
-+++ b/include/linux/soc/qcom/llcc-qcom.h
-@@ -54,7 +54,19 @@
- #define LLCC_CAMEXP4	 52
- #define LLCC_DISP_WB	 53
- #define LLCC_DISP_1	 54
-+#define LLCC_VIEYE	 57
-+#define LLCC_VIDPTH	 58
-+#define LLCC_GPUMV	 59
-+#define LLCC_EVA_LEFT	 60
-+#define LLCC_EVA_RIGHT	 61
-+#define LLCC_EVAGAIN	 62
-+#define LLCC_VIPTH	 63
- #define LLCC_VIDVSP	 64
-+#define LLCC_DISP_LEFT	 65
-+#define LLCC_DISP_RIGHT	 66
-+#define LLCC_EVCS_LEFT	 67
-+#define LLCC_EVCS_RIGHT	 68
-+#define LLCC_SPAD	 69
- 
- /**
-  * struct llcc_slice_desc - Cache slice descriptor
+[1] https://lore.kernel.org/linux-arm-msm/20241019-sar2130p-llcc-v1-2-4e09063d04f2@linaro.org/
+
+> +
+>  	drv_data->regmaps = devm_kcalloc(dev, num_banks, sizeof(*drv_data->regmaps), GFP_KERNEL);
+>  	if (!drv_data->regmaps) {
+>  		ret = -ENOMEM;
+> @@ -3484,6 +3555,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id qcom_llcc_of_match[] = {
+> +	{ .compatible = "qcom,qcs8300-llcc", .data = &qcs8300_cfgs},
+>  	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
+>  	{ .compatible = "qcom,sa8775p-llcc", .data = &sa8775p_cfgs },
+>  	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
+> 
+> -- 
+> 2.25.1
+> 
 
 -- 
-2.39.5
-
+With best wishes
+Dmitry
 
