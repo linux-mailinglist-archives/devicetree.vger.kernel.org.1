@@ -1,92 +1,104 @@
-Return-Path: <devicetree+bounces-113124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF6B9A4B6E
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 08:01:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 348DC9A4B9F
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 09:05:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 720071F22F13
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 06:01:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B7FD284251
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 07:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CC21CF2BD;
-	Sat, 19 Oct 2024 06:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WU8mA0dy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965661D45E5;
+	Sat, 19 Oct 2024 07:05:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gainsboro.cherry.relay.mailchannels.net (gainsboro.cherry.relay.mailchannels.net [23.83.223.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADBB728EF;
-	Sat, 19 Oct 2024 06:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729317695; cv=none; b=RDyk7ggpj2lbQVKX2HemrmYII0NU52ROZUPRXpqVJfsHqbYEN0p9cKo0JUyW3BTLlJsXPhawGu96uTIgljp3NWNiWqH5K/iiVTHEpgvnsxm5bK4bmF8BedgQJkuUEmQJzj2bgjnBBo/NV85YxJo+Coh4Pie0Q874MEvpE+NBS7I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729317695; c=relaxed/simple;
-	bh=+Fnqmn6BOqKAZ8dtvHzU7eGaxF36LgiOVums7PQkoCk=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=NPkJYl7c1pQMKZ7lQgHoFhPNx3gtjphqwBX8kfdatu1xy/XBYUujRPCbned7Mw55YZT1DNz75cJbt+YcX1r2UlBZXSiCMdhEUvhXdtDsTX/07zXrlFTjBX5PPu4p9+R1LfZi7Ae3aUPHw2R/Cpk71fPZfYJqeuS1Tmsg8evQoAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WU8mA0dy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24962C4CEC5;
-	Sat, 19 Oct 2024 06:01:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729317695;
-	bh=+Fnqmn6BOqKAZ8dtvHzU7eGaxF36LgiOVums7PQkoCk=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=WU8mA0dycis5BqRUdQ++nWW3OcFmBpMlJR+DaH+tEC4SviJ0LEFw/QWKtTxKjXAdd
-	 q24nSw7hPOkFL6IEHtpFRk1+ucVc93Hum5KvJ3BzN/ri4emOhVeksvaQU/DUdcPDpQ
-	 YZye4SHzCfvd/C5d1o2RHXxLY7VL+FQCYOzyw8WB+1VvqxtRMk3STd6SxG8PMXmEDH
-	 n/2ZDeG9h/71xFAfXWWPHoJJ4qeybNmk2SsaKlhYU+DhOZ1PlWfvBgkAiIanPuqy33
-	 R9az8D0Tmm29OhCmmArNlJaRuqgwyOLbHQ/5uP5hNU85RR5N4I92IYaKFm8Ls/LNRK
-	 SfnmM+3CD9mFA==
-Message-ID: <26a9c9278d66511238e11eac619db9fa.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5EA18E756
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 07:05:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729321551; cv=pass; b=j8lExxsuBTy0cweZ4a5i3AyZyZtpcQCiHYxtet8iOA7nLslbJLg0BhGq6KK6lAdDFtSXmY+nx/WkPt1X5l37IgfqDrjnG/GCr756fCecgU8sFRKyQ0zSQmGSBPJ/T4Cyho/Pn7uMsQr8wgNi8PKTCcrMY7oLWY+oQzah8g0tJL4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729321551; c=relaxed/simple;
+	bh=5GQk3+LhQGqrOCgDol98iXhV9a66xL+J6Y21FDVFmTU=;
+	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=DLRu6RZJhSDXU0Kf7oiwA4kGGQPPhq8Gz5whx/deE+wXsJ1Dwbo71kg6jjHaJSH2nshFSp+6d446ktqUOabrRAT6pd4kuZ702WCfGEwU/dbAJ1dGCu0zXkYow+rTuBSnMJpbgbdJLf5OlyVYEhEOFGOHSNGE1ZrHgLi5a3c9//4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=lekker.qodeinteractive.com; spf=pass smtp.mailfrom=srv482.main-hosting.eu; arc=pass smtp.client-ip=23.83.223.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=lekker.qodeinteractive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srv482.main-hosting.eu
+X-Sender-Id: hostingershared|x-authuser|u567518262@srv482.main-hosting.eu
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 9C6BC1852D7
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 01:28:51 +0000 (UTC)
+Received: from srv482.main-hosting.eu (trex-1.trex.outbound.svc.cluster.local [100.99.175.217])
+	(Authenticated sender: hostingershared)
+	by relay.mailchannels.net (Postfix) with ESMTPA id DFE7318532F
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 01:28:50 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1729301331; a=rsa-sha256;
+	cv=none;
+	b=V5DPWqEpb3IMLAGT3gQwyEd1zu4zjZ67IqsSACBIY2AwffSgUK5IoQD/SFVjTpJX59niFE
+	490AkuFsCcmx6OQiqYb5/GvW+9ghESTRv6v/iIJWw0oeaBzFLx8uUSoUCSz04vZqpt8JvZ
+	9GgbpaycQBVkSSH352ZbicW603R7UbPLI0x4aDdkDR7NYsWH1kMbVpRItoTfj2yRLhzeNX
+	y6HIfgbeJ8iv4IhfkFfiZfQaRLU8oI6gJ25Gf/F7ZZCK9YpsymzuWwM8ahchxzjvq8uDvK
+	CnxUJYP4ZBr2bx6+bebglmoZvn4DeTPfK6/MbPJdR0NP5SRVWGY5NRIaoQb5Pg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1729301331;
+	h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:mime-version:mime-version:
+	 content-type:content-type; bh=5GQk3+LhQGqrOCgDol98iXhV9a66xL+J6Y21FDVFmTU=;
+	b=SuOX3rZ3AqDN9p/ng60A0hhDNrUPoSQPdY5cRqodrQfH13LLIlPrawxROvnTrlDDl1ZbEW
+	7MJpTVjtWbptMSYjZ32SIOdhDMoln3mSJ8ymLkO8Eah3BwDJZkKPDrJGqUVkN927wp+tio
+	6qCO++U9cX5YORxgL6appUSaj7ePwj27ictn7a1xbLfC9JOKKP/Wk9uiX+Z9kqVD9tZXg1
+	G+Y6uzlfTMKyQqrUBnMPkkKtTy4gbyzrZk5BxDsWJuoAETkdkD4GGIHIrdvP7qlmAaVVzf
+	DecBKw0PS34sChTALzuRnzK2sBt4b/jtS6wjmuvI2PuNF7np0XsSEp3rLMzclw==
+ARC-Authentication-Results: i=1;
+	rspamd-75d86777c9-m4jlz;
+	auth=pass smtp.auth=hostingershared
+ smtp.mailfrom=u567518262@srv482.main-hosting.eu
+X-Sender-Id: hostingershared|x-authuser|u567518262@srv482.main-hosting.eu
+X-MC-Relay: Junk
+X-MailChannels-SenderId:
+ hostingershared|x-authuser|u567518262@srv482.main-hosting.eu
+X-MailChannels-Auth-Id: hostingershared
+X-Coil-Shade: 75280abe23cbc0e5_1729301331458_3845269117
+X-MC-Loop-Signature: 1729301331458:2845322735
+X-MC-Ingress-Time: 1729301331458
+Received: from srv482.main-hosting.eu ([UNAVAILABLE]. [151.106.124.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384)
+	by 100.99.175.217 (trex/7.0.2);
+	Sat, 19 Oct 2024 01:28:51 +0000
+Received: from u567518262 by srv482.main-hosting.eu with local (Exim 4.97.1)
+	(envelope-from <u567518262@srv482.main-hosting.eu>)
+	id 1t1yGu-000000006jL-3FCe
+	for devicetree@vger.kernel.org;
+	Sat, 19 Oct 2024 01:28:48 +0000
+To: devicetree@vger.kernel.org
+Subject: Custom Made "[your-subject]"
+X-PHP-Script: k3goldcrafts.in/index.php for 165.231.182.48
+X-PHP-Filename: /home/u567518262/domains/k3goldcrafts.in/public_html/index.php REMOTE_ADDR: 165.231.182.48
+X-PHP-Originating-Script: 567518262:class-phpmailer.php
+Date: Sat, 19 Oct 2024 01:28:48 +0000
+From: WordPress <wordpress@lekker.qodeinteractive.com>
+Reply-To: devicetree@vger.kernel.org
+Message-ID: <78a784fae261c2139d121be61af1ccd3@k3goldcrafts.in>
+X-Mailer: PHPMailer 5.2.27 (https://github.com/PHPMailer/PHPMailer)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ab1fa4c9-6b4d-41a4-b337-ce9d7f5052ec@tuxon.dev>
-References: <20240916-lan969x-clock-v1-0-0e150336074d@microchip.com> <a20e6927d38aed4e5b1cb1f49346ca29.sboyd@kernel.org> <ab1fa4c9-6b4d-41a4-b337-ce9d7f5052ec@tuxon.dev>
-Subject: Re: [PATCH 0/4] clk: lan966x: add support for lan969x SoC clock driver
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To: Conor Dooley <conor+dt@kernel.org>, Daniel Machon <daniel.machon@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Steen Hegelund <Steen.Hegelund@microchip.com>, claudiu beznea <claudiu.beznea@tuxon.dev>
-Date: Fri, 18 Oct 2024 23:01:32 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=UTF-8
+Sender:  <u567518262@srv482.main-hosting.eu>
+X-AuthUser: u567518262@srv482.main-hosting.eu
 
-Quoting claudiu beznea (2024-10-18 01:34:16)
->=20
->=20
-> On 18.10.2024 01:59, Stephen Boyd wrote:
-> > Quoting Daniel Machon (2024-09-16 02:49:18)
-> >> Add support for the lan969x SoC clock driver in the existing lan966x
-> >> driver. The lan969x clock controller contains 3 PLLs - cpu_clk, ddr_clk
-> >> and sys_clk which generates and supplies the clock to various
-> >> peripherals within the SoC.
-> >>
-> >> Patch #1 adds compatible strings for lan969x SKU's in the dt-bindings
-> >>
-> >> Patch #2 makes the clk_names var const char * const
-> >>
-> >> Patch #3 prepares the lan966x driver for lan969x, by adding private
-> >>          match data.
-> >>
-> >> Patch #4 adds support for lan969x
-> >>
-> >> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
-> >>
-> >> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
-> >=20
-> > Am I supposed to pick up microchip clk patches myself this time?
->=20
-> It's on my track. I already have it on my local queue for a while. Sorry
-> for not mentioning it yet. I need to run some tests.
->=20
+From: Your account has been inactive for 364 days. To stop removal and retrieve your balance, please access your account and initiate a withdrawal within 24 hours. For support, join our Telegram group: https://t.me/+ErdfEexQjCw0ZmRl <devicetree@vger.kernel.org>
+Subject: [your-subject]
 
-Cool. Thanks for taking care of it!
+Message Body:
+N7swhTg e2m4 NbWCB9e 8qEg9Hc jTWS N28qLVF
+
 
