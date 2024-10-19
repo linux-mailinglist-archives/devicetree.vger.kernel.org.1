@@ -1,204 +1,138 @@
-Return-Path: <devicetree+bounces-113225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0ED9A4EF0
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 17:02:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57A759A4EF5
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 17:08:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 670201C225F6
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 15:02:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CD741C244A8
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 15:08:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11222AD15;
-	Sat, 19 Oct 2024 15:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E4848CDD;
+	Sat, 19 Oct 2024 15:08:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DQiasaRV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y/T5qP4t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C063211
-	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 15:02:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F3426AFB;
+	Sat, 19 Oct 2024 15:08:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729350129; cv=none; b=UJkED6W7PLUoXQsrjJycWW06ehC9gRnquIWurvdaz26nlb3PfqiDWsMUwcsrwDYWOygdizpoVnPZJcheO4d28tDZUsxiv3aAqbRH62F1e5jw1wMnK38SC4zUV3WwhdvE4dkt90UGE0bNeZQTmNDNoghphMvWFsTxP0XCuwJ6/ag=
+	t=1729350533; cv=none; b=MsyXksmmSOlqxDUDW+/CT/PbaiGp2MwMeodXIyR63+o1R6i/CfzV+KH2vz7x64QXtZLaNKAA5PJ748YViqB4Rl77f/q6N/ENNunRimZtu86cvim4vDHLB1Yj9lZLeki5LQCfvBWh6B4qnK6aIjjZJde/QUrKmA6FCwYGWPt3QnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729350129; c=relaxed/simple;
-	bh=L81Uwg5QAwGyLWqG6oakgNAZY5JuTRVlih06p7pC4H4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VMH80oQbfkVZry1T6/3Niv5glQgcbhJe2AuN6qavDXvx4c6pDlPw3jEKhdiZvZfb8X8+q/awoAX6mihVDxnO9/SsjCLFx2UJtz5H/ZtPZF3aCoQj9YDrd7RLsvgU+i/umNAK+5WbE/XcoGRx7bhHWahfuukCTaKM/1Z/RhxD4Mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DQiasaRV; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539e6c754bdso3079584e87.2
-        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 08:02:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729350126; x=1729954926; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=guYBgtCfnmt51vtq+wHLI7UJ/djLSpHCurYx8X+7pZI=;
-        b=DQiasaRVSMYgUnguOr1DZw2QanqcMplUL2uO36j/qTWPo79G/YwRYLtXVxqLK7A1o8
-         OQvLhln4sQlBLijlEXlb/QE7oJp00Mt06M1X0rmENFayMicX/3mIoeuY5zc+Pt3mhBnd
-         EdKnZWrRUkEP4jhvFCgfTMXIZ+xftRg/M3zAQA0TPktM0kViMYGtvzBuAKfckxWxEG21
-         Ek2HthB+0G3MLJDeO8wfsft0VBkxKKfBF9uFgidFVAd1bqrM1GJ1M9UFsIj+aQiNigGQ
-         g7HAaIXOwjZzRkf+v3RhLka4oKlcBKQouDLJNsqvUbqatd3zv7ThM38+Gt7Ac0XpEFuW
-         tXCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729350126; x=1729954926;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=guYBgtCfnmt51vtq+wHLI7UJ/djLSpHCurYx8X+7pZI=;
-        b=iqnzaWi/Uy6/PFXg2mxhtWRvU8ZIMQO+uhcQfeC10WmarsmD7WnL4Ifzte5Ew96Z24
-         tA3MOR8S34vn3BkQLFbtmzAhn56QO3mByAz5c6gN5T9BDh2UVf7HgRh3ybjBWbOEi3/w
-         mweoVZqMl4yltV0nRkFtGRHDnLMh7An5JXukakEYjUElyExzXDvWGHikXmLWli39d0Pd
-         vZL1wjpgCVNe8NLP8hq8bAIPgZw00RfTi+rX4iQFGWhDmc8kZJl0OgpTa4oHLd7hnq8h
-         CFjhkAagONhImKS8qSIJY6uB1+DIIbOr7apzbR2lb2EdZFG4I7ucGrnj2gSXIMHI1JE9
-         KJgA==
-X-Forwarded-Encrypted: i=1; AJvYcCUB7ZBxmJSB7v93psVf1LDyjqcmN6GgS9bCdnrTzERogYfJCLThlUavt/Ph3mAzLlknR1KF8I6ggXgL@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywr8tFkVNq4hOp6L7UZ4xqub9ZFKIsgRbL9sutvKlRnmbocSJc/
-	Bie7gpKl97jerWpIIbr7FO5rje07MJNCcVt3dmeTOD5Tw0q/T161eSotSO9cY9Y=
-X-Google-Smtp-Source: AGHT+IFbD6430EduLAIFbkBXC5OVAGAbpWnd5KeVwCBq+BGsG53L9SnFx86xDc2NemUuq1czLOzHlw==
-X-Received: by 2002:a05:6512:b1a:b0:539:f2b9:560d with SMTP id 2adb3069b0e04-53a15512b16mr2803980e87.61.1729350125699;
-        Sat, 19 Oct 2024 08:02:05 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a151b02e4sm552705e87.29.2024.10.19.08.02.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Oct 2024 08:02:04 -0700 (PDT)
-Date: Sat, 19 Oct 2024 18:02:01 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Sandor Yu <sandor.yu@nxp.com>, 
-	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>, 
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, "airlied@gmail.com" <airlied@gmail.com>, 
-	"daniel@ffwll.ch" <daniel@ffwll.ch>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
-	"vkoul@kernel.org" <vkoul@kernel.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
-	dl-linux-imx <linux-imx@nxp.com>, Oliver Brown <oliver.brown@nxp.com>, 
-	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>, "sam@ravnborg.org" <sam@ravnborg.org>
-Subject: Re: [PATCH v17 4/8] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
-Message-ID: <l27rc2lo4pt3mfwknjyy755li3q7vgqesoev25ulapwsenkkuj@w26ts47a2llz>
-References: <cover.1727159906.git.Sandor.yu@nxp.com>
- <8bdf573bfd7e3feb45d7ccb53765a978a685ce2d.1727159906.git.Sandor.yu@nxp.com>
- <20240924-mottled-psychedelic-lorikeet-ef8f4c@houat>
- <DB9PR04MB945284B95FAE4FE127E6568FF4752@DB9PR04MB9452.eurprd04.prod.outlook.com>
- <wdelo4zco6v5qchdupfvbrqin4n7fyjyo6yaqbpfihdkkhceoi@ja4zxmhk5isq>
+	s=arc-20240116; t=1729350533; c=relaxed/simple;
+	bh=1zoGatUV0szsy3n6OGzZTifLwUWLh1RgjlzgjoOPEO4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HGhuOLJB/9cuRwYmnqJkQKKfbfYBouRQ95hLjt+ppooo9FrRNqwWWcPA9mN8XX+8aXxpHv4Xn6urlLuEN7U8Eg7ujlK7PiUpb0que8Ed9bXWHeh9sHJ1gNJXksvHhxc6sC5bvBHx8SGWR580/ZIt6Rabd06brTK5mN1GAMmW6PQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y/T5qP4t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D469CC4CEC5;
+	Sat, 19 Oct 2024 15:08:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729350532;
+	bh=1zoGatUV0szsy3n6OGzZTifLwUWLh1RgjlzgjoOPEO4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Y/T5qP4tl6Tr7F58l5hYXNhQzXgpsDP0+qrJK2XZXwzEM3oz5FQPMvcMxRH9WPnEf
+	 PLVuLn2Mh2amipsvuuyGZZ4xZgYar1sSKczcW3tR2zTYN8myAgv8lg8i3FPdJBpLBd
+	 j0l6AX3PtDYumKoMN4A+9eg7X1JLYNTthmWo0ZGQHWo5TdcaFsVBwuvj7FMxo+W3bM
+	 ahAq6oyTswV7aaeYP2nnVsYkW11E8Pn3NKBflRTV7hc9AfuBtsKJl6PTZVpyCyyVf2
+	 n+4c3sLCkO7uCqAnqeuoMYDuOiM9O2p61i9OBNJRoppybV4L10fTORozEVX2sj4nnM
+	 8uGnrvMYZ3sCw==
+Date: Sat, 19 Oct 2024 16:08:17 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Angelo Dureghello <adureghello@baylibre.com>, David Lechner 
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Lars-Peter Clausen  <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski  <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Olivier Moysan  <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Mark Brown 
+ <broonie@kernel.org>
+Subject: Re: [PATCH v6 4/8] iio: dac: adi-axi-dac: extend features
+Message-ID: <20241019160817.10c3a2bf@jic23-huawei>
+In-Reply-To: <ca3bb7c87a15ebb8e1284aa2da312cd00de49159.camel@gmail.com>
+References: <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-0-eeef0c1e0e56@baylibre.com>
+	<20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-4-eeef0c1e0e56@baylibre.com>
+	<ab559026-7e95-4adc-9978-6db30982b2a6@baylibre.com>
+	<bw2ldm54tg6klzfod5t5y6eb34dr4mcttojz4uulxqm5stk2hw@rmgpibnx6xsd>
+	<ca3bb7c87a15ebb8e1284aa2da312cd00de49159.camel@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <wdelo4zco6v5qchdupfvbrqin4n7fyjyo6yaqbpfihdkkhceoi@ja4zxmhk5isq>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 30, 2024 at 10:18:06AM +0200, Maxime Ripard wrote:
-> On Sun, Sep 29, 2024 at 02:34:36AM GMT, Sandor Yu wrote:
-> > > > +static void cdns_hdmi_sink_config(struct cdns_mhdp8501_device *mhdp)
-> > > > +{
-> > > > +	struct drm_display_info *display = &mhdp->curr_conn->display_info;
-> > > > +	struct drm_connector_state *conn_state = mhdp->curr_conn->state;
-> > > 
-> > > That looks a bit hackish to me. We should probably provide a helper to get the
-> > > connector state the bridge is attached to.
-> > 
-> > How about code change to followed, is it more clear?
-> > 370         struct drm_connector *connector = mhdp->curr_conn;
-> > 371         struct drm_connector_state *conn_state = connector->state;
-> > 372         struct drm_display_info *display = &connector->display_info;
-> > 373         struct drm_scdc *scdc = &display->hdmi.scdc;
-> 
-> What I meant was that I wish bridges had a way to get their connector
-> pointer. It doesn't look like it's possible with drm_bridge_connector,
-> and we don't have access to drm_display_info anymore.
-> 
-> I don't really see a good way to do this yet, so maybe that kind of
-> workaround is ok. Eventually, I guess we'll have the scrambler setup in
-> the HDMI connector helpers anyway.
-> 
-> Dmitry, any idea?
 
-Unfortunately nothing significant, I didn't have time to look at the
-scrambler yet. The platforms that I'm working with either do not support
-HDMI 2.0 or require no additional setup there.
+> > > > =C2=A0static int axi_dac_probe(struct platform_device *pdev)
+> > > > =C2=A0{
+> > > > -	const unsigned int *expected_ver;
+> > > > =C2=A0	struct axi_dac_state *st;
+> > > > =C2=A0	void __iomem *base;
+> > > > =C2=A0	unsigned int ver;
+> > > > @@ -566,15 +793,26 @@ static int axi_dac_probe(struct platform_devi=
+ce *pdev)
+> > > > =C2=A0	if (!st)
+> > > > =C2=A0		return -ENOMEM;
+> > > > =C2=A0
+> > > > -	expected_ver =3D device_get_match_data(&pdev->dev);
+> > > > -	if (!expected_ver)
+> > > > +	st->info =3D device_get_match_data(&pdev->dev);
+> > > > +	if (!st->info)
+> > > > =C2=A0		return -ENODEV;
+> > > > =C2=A0
+> > > > -	clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+> > > > +	clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk"); =20
+> > >=20
+> > > This will break existing users that don't have clock-names
+> > > in the DT. It should be fine to leave it as NULL in which
+> > > case it will get the clock at index 0 in the clocks array
+> > > even if there is more than one clock.
+> > >  =20
+> >=20
+> > mm, are there existing users except this hs driver right now ?
+> >=20
+> > Clock names are actually described in the example, and if missing,
+> > also retrieving "dac_clk" would fail.
+> >  =20
+>=20
+> There's already a frontend DAC using the generic DAC implementation. So, =
+in theory,
+> yes... We can already have users not setting clock-names in DT that would=
+ now fail to
+> probe with this patch. David is only suggesting leaving this call to NULL=
+. For
+> dac_clk we do need the *id in devm_clk_get_enabled().
+>=20
+> Maybe it would also be worth mentioning in the bindings that s_axi_aclk n=
+eeds to be
+> the first entry in clocks and clock-names for backward compatibility.
 
-Regarding the drm_connector_state, I had to go via the bridge->encoder,
-then drm_atomic_get_new_connector_for_encoder() and finally
-drm_atomic_get_new_connector_state(). I don't like the idea of storing
-the connector in drm_bridge driver data, it seems like a bad idea to me.
+Usual trick for this is match on clk name first and then fallback to no name
+to pick up old DT that didn't set clk names.
 
-> 
-> > > > +static enum drm_mode_status
-> > > > +cdns_hdmi_tmds_char_rate_valid(const struct drm_bridge *bridge,
-> > > > +			       const struct drm_display_mode *mode,
-> > > > +			       unsigned long long tmds_rate) {
-> > > > +	struct cdns_mhdp8501_device *mhdp = bridge->driver_private;
-> > > > +	union phy_configure_opts phy_cfg;
-> > > > +	int ret;
-> > > > +
-> > > > +	phy_cfg.hdmi.tmds_char_rate = tmds_rate;
-> > > > +
-> > > > +	ret = phy_validate(mhdp->phy, PHY_MODE_HDMI, 0, &phy_cfg);
-> > > > +	if (ret < 0)
-> > > > +		return MODE_CLOCK_RANGE;
-> > > > +
-> > > > +	return MODE_OK;
-> > > > +}
-> > > > +
-> > > > +static enum drm_mode_status
-> > > > +cdns_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
-> > > > +			    const struct drm_display_info *info,
-> > > > +			    const struct drm_display_mode *mode) {
-> > > > +	unsigned long long tmds_rate;
-> > > > +
-> > > > +	/* We don't support double-clocked and Interlaced modes */
-> > > > +	if (mode->flags & DRM_MODE_FLAG_DBLCLK ||
-> > > > +	    mode->flags & DRM_MODE_FLAG_INTERLACE)
-> > > > +		return MODE_BAD;
-> > > > +
-> > > > +	if (mode->hdisplay > 3840)
-> > > > +		return MODE_BAD_HVALUE;
-> > > > +
-> > > > +	if (mode->vdisplay > 2160)
-> > > > +		return MODE_BAD_VVALUE;
-> > > > +
-> > > > +	tmds_rate = mode->clock * 1000ULL;
-> > > > +	return cdns_hdmi_tmds_char_rate_valid(bridge, mode, tmds_rate); }
-> > > 
-> > > Didn't we agree on creating a mode_valid helper?
-> > 
-> > In fact, now I'm no idea where should add the mode_valid helper function.
-> > 
-> > In struct drm_bridge_funcs, it had mode_valid() and hdmi_tmds_char_rate_valid().
-> > 
-> > If create a new mode_valid helper function in struct drm_connector_hdmi_funcs,
-> > Is it appropriate to call another API function(tmds_char_rate_valid)
-> > at the same level within this API function?
-> 
-> I'm not quite sure what you mean, but a reasonable approach to me would
-> be to turn drm_hdmi_state_helper.c hdmi_clock_valid into a public
-> function, and then call it from drm_bridge_connector mode_valid hook.
-> 
-> It's a similar discussion to the previous one really: in order to
-> implement it properly, we need access to drm_display_info.
+That way should be no need constrain the order when it is specified.
+Slight hicup is new DT, old kernel. In which case maybe the wrong clock is =
+started
+but I think you only have the multiple clocks for new cases so this should =
+be fine.
 
-I've sent a proposal, [1]. I don't think we should be using
-hdmi_clock_valid() directly (at least not before sorting out the EDID /
-hotplug handling in the HDMI Connector code) exactly because of the
-info->max_tmds_clock. If it gets stale, we might filter modes
-incorrectly. Also, I'm not sure if it should be left at 0 by default (or
-in drm_parse_hdmi_forum_scds()).
+Just sprinkle some comments alongside the fallback code to say why it is th=
+ere.
 
-[1] https://lore.kernel.org/dri-devel/20241018-hdmi-mode-valid-v1-0-6e49ae4801f7@linaro.org/
 
--- 
-With best wishes
-Dmitry
+Jonathan
+
+>=20
+> - Nuno S=C3=A1
+> > >  =20
+>=20
+
 
