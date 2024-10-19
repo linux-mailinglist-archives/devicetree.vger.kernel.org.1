@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-113263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A8FE9A4FCC
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 18:28:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A63179A4FCE
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 18:28:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 740AC1C24E0A
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 16:28:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33E9C1F259D9
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 16:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8C118E028;
-	Sat, 19 Oct 2024 16:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0469618C333;
+	Sat, 19 Oct 2024 16:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="UY9izS8k"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="N6M3KsM1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1207724A08
-	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 16:27:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 064FE18C937
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 16:28:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729355271; cv=none; b=Ud3kN94qKhu740U96U1onWCWfL5wOjnquEXw5c5w30YRAy0KLDltZ1XVoerOePrhQq2/qsxEfDEVkLJf5CcfAWxMyxWIp7S530g/u9sRlykUlj4wRjpmPbXlFOeOQVF9XiCmJiIb1TWrcOyY+g/FdSbisqUBQfq4PhEFwi+VD+M=
+	t=1729355292; cv=none; b=MpGHOcvDoQz/IqwZ6FWomMAA1J3t8FGKB/3Wrqpjzu/+kB1kOfWz11XKKl6L8qwaoSuZjcWdaTa0rsAtw4X3pyjvvyh1BFS1uCD8b4ZxvzxThfhscfckUUMbrVm098MFWU56Or6+aBpIa5ANFNLjXZVKn2TeU5Q9omCYYZSmO+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729355271; c=relaxed/simple;
-	bh=2QWlxf7+gAhVvRG3k5VPkJmnqUBJn3gQSo3pXC3zq2s=;
+	s=arc-20240116; t=1729355292; c=relaxed/simple;
+	bh=KVKR8rdAu1bTmM0Do0pe/BPyW1sGsETs56bfwx3gRAA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IFOUyNuPm1LcrM7S7pJI8o2J6ntk9WtXHLUHDwuomeaCDEAevGF5waAaLmgv8aK7iOAjE4oHO9fSjpBRAAPQzZzh9/Jke82+SRoamKnPIIEi3e8Oe0IVE8QCILdUtd+r/UfZc7og+5FsUeP/TP+hziQcZPXiMwzr7o7+8JGDwiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=UY9izS8k; arc=none smtp.client-ip=209.85.214.173
+	 MIME-Version; b=EmUbkuWqYr9VZx+10srrUDbAykMZkicTUvr7TkddMZY3YmaUvaULDHjaRQTcVmtdHZ4HNA5tmLJpE9FkR32nXbtjsskOUjrNKVUFFLgJ9790wGk2kaK7PJ1Szt0b6PBMf7neZY57vJDaei/fM2mJagXPG7riavYHc9L4djYfLMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=N6M3KsM1; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20c6f492d2dso36817925ad.0
-        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 09:27:47 -0700 (PDT)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20cf3e36a76so31868805ad.0
+        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 09:28:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1729355267; x=1729960067; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1729355290; x=1729960090; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PSdP3C8YdR1jmbqfSauKDLLYk+KUcp0Cb8mVBlRfeWA=;
-        b=UY9izS8kjOfVVhyVSqIY+LEpLeGW+ONAjrf3SKyeCKp4Ed++L8pMyeLiShJS0zQ9hL
-         E+FuXcMkie06vbhhFqo9NC7Dt48xM4L0bqkuXEBo/TZLNw+ao6S8XNGth25ifja4FVq2
-         +nA8D/MAHo6v5Sq6CKh85/FeNUAAP6tt1UpH4+6g8eqgObrR7jK4pm16thuB4o6/PiCf
-         OfWmMdafMDX7dzrXk/o0KHqaKqVkdMwnpQV5TRzdKZNjMOoU6Q9w23/kR98wz9vxaYlg
-         DEXhTXXG5SpF5ND7EI2YHXppzaLDBJRqhkPjVw0sXb5KCr5vEMX2m6YRv006PNxRSgAD
-         g9OA==
+        bh=OsH0cNinQslXDyIRyfl/9O7pxc4UGpoe6shl8RLD0+8=;
+        b=N6M3KsM1DQk4yWUToGPPlMSt3C8/EcBDPg9QXtc+T1MXZP8AOsIH5U6q53bWFCaW/7
+         kTBeF/jwS6p/ZspxMNaW4E+JZg+myEQxCrK6ABvQuMm82GVjWaVKUTRx9oEyR3TUedAV
+         txnSObjqzk6lGywomYXGRdsbMtumCpCjtBKTdIbJaFHmgNeSe3nfHjIAT5jbuL9Gv0VW
+         QQ+UOgnOzxYLZq9DWcLa5ZgxPU2JN3h/FvFwT86awOttS0ChOw1/tDCuoYo0a86xgk0+
+         t8ur5LwwBVxhjjotPH2/L5kAfWUEpcY30R+NzDfWooK0hnrqkccAILQLiCSDIkrqQkr8
+         oV+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729355267; x=1729960067;
+        d=1e100.net; s=20230601; t=1729355290; x=1729960090;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PSdP3C8YdR1jmbqfSauKDLLYk+KUcp0Cb8mVBlRfeWA=;
-        b=L1JNbhBngz2UCpDO6ZenjJVkEmI2wuhaeOT9Rhaq9WTGMsxpnv62bGKvvur8rab+e9
-         iK31susYSFaSpTNgjA4xaxGdCM5mt2bbOl2bWJvyBmNWjZ0kLEayfJSFORmmmKecXPVK
-         wRb9Pe7z3yRRxNnpTGq4F3xAbX/76dcFi8iXfRzjPxJGUBHIN+osCjCaknUiU7gAdGPs
-         9ashBu8EUoVv21QbJlZR8YQLJ4FdvT+0ejWgA/aKL+fpOGW/We4kAa6QLN3b2T7oAaJg
-         3Dd6ktUzFKe06HedjS77nFBUZQCjwEKV5M+F/RWjSRU/jDhGFKUOa9NVlULuMIR2h4d+
-         NFjA==
-X-Forwarded-Encrypted: i=1; AJvYcCUoPcFSLkGioOMlDQZPkj0vr3wxR9c6HPWN5GYE8JInQoPc2Lajy7JYHhUzM+yhIIh7x3zZUsaFJj5G@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUgrdcxDEOpQXZv19rSBW43S6TD6VXSIme4XUG8kHLXLioYcAU
-	3DqTsW8a2NORctQbvYt4vWlwRHXQOJWQv40/kyugg/fVwY3FxMS5C1RsGEEaH/g=
-X-Google-Smtp-Source: AGHT+IFB/lgLKenWFczXSTZ1QqSP6gxMxesJeEKkKsnhxr1xTnsZpi3fsqyNQ8NSXbyKQ9CWcBpXjA==
-X-Received: by 2002:a17:902:db04:b0:20c:9062:fb88 with SMTP id d9443c01a7336-20e5a70d863mr80409155ad.1.1729355267302;
-        Sat, 19 Oct 2024 09:27:47 -0700 (PDT)
+        bh=OsH0cNinQslXDyIRyfl/9O7pxc4UGpoe6shl8RLD0+8=;
+        b=UPgJW/4me7NlyPdD8nPY5HLqT76ZYuTzY4B3AFSXrX+EsKSLLg8GNLoAKxK0obGXoj
+         hMWfTi5wtqrTRwyzIajsdEkKz4BJ3YNpsFfbvFpyvTh+zJub8Wy3foURhjtrQ2VV6MHv
+         oWeICRafjmnTa2+0anJca2+PuGDZAVATRkrmJ9EmaCmS/yVn0+KV7RVM0ewWLRcI/1i7
+         RWfiOP5av3kHUwU8HxDwsVPdoKdKxacI0CzrS2yNF6YoPjQ0feVSt6+KBegjKZpLDKu6
+         nRVWOxFOAOz4MLPYIP35hNY6uxwrGzICufTZ7L3eA7iApXGrsRxU4OjctQ0AIm+mgUdr
+         juMw==
+X-Forwarded-Encrypted: i=1; AJvYcCXk88HlN8Xjpb+xxHwcQuv8aEYX83VWKcvQk+gVP7SHteKXsizKCR0dEeqAehueXumPowOzUnEwS8oe@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAxWP+Od12eXIDsQ6bNVK+07e15qMch6WSgPnXB8zYbBOI7GFM
+	P0RooorgdISwnqrBR1NGv99C7Z4mIBQlL4joXMOE2QXbP0vszlRnC+wTZHG1zGs=
+X-Google-Smtp-Source: AGHT+IGYR5eUJwXGMxy7HdyPRDQKE3DHw/4XPlT1k5OHVZitlhHw/yWOFKmVSy270AIpQ0J0HATvDg==
+X-Received: by 2002:a17:902:e892:b0:20b:bac2:88f3 with SMTP id d9443c01a7336-20e5a93ab46mr65799075ad.53.1729355290154;
+        Sat, 19 Oct 2024 09:28:10 -0700 (PDT)
 Received: from localhost.localdomain ([2a11:3:200::30df])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e5a8de4bdsm29567625ad.180.2024.10.19.09.27.30
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e5a8de4bdsm29567625ad.180.2024.10.19.09.27.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Oct 2024 09:27:46 -0700 (PDT)
+        Sat, 19 Oct 2024 09:28:09 -0700 (PDT)
 From: Guodong Xu <guodong@riscstar.com>
 To: Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -92,9 +92,9 @@ Cc: Paul Walmsley <paul.walmsley@sifive.com>,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Guodong Xu <guodong@riscstar.com>
-Subject: [PATCH v4 2/3] dt-bindings: riscv: starfive: add deepcomputing,fml13v01
-Date: Sun, 20 Oct 2024 00:26:04 +0800
-Message-Id: <20241019162605.308475-3-guodong@riscstar.com>
+Subject: [PATCH v4 3/3] riscv: dts: starfive: add DeepComputing FML13V01 board device tree
+Date: Sun, 20 Oct 2024 00:26:05 +0800
+Message-Id: <20241019162605.308475-4-guodong@riscstar.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241019162605.308475-1-guodong@riscstar.com>
 References: <20241019162605.308475-1-guodong@riscstar.com>
@@ -108,41 +108,107 @@ Content-Transfer-Encoding: 8bit
 
 From: Sandie Cao <sandie.cao@deepcomputing.io>
 
-From: Sandie Cao <sandie.cao@deepcomputing.io>
+The FML13V01 board from DeepComputing incorporates a StarFive JH7110 SoC.
+It is a mainboard designed for the Framework Laptop 13 Chassis, which has
+(Framework) SKU FRANHQ0001.
 
-Add "deepcomputing,fml13v01" as a StarFive SoC-based board.
+The FML13V01 board features:
+- StarFive JH7110 SoC
+- LPDDR4 8GB
+- eMMC 32GB or 128GB
+- QSPI Flash
+- MicroSD Slot
+- PCIe-based Wi-Fi
+- 4 USB-C Ports
+ - Port 1: PD 3.0 (60W Max), USB 3.2 Gen 1, DP 1.4 (4K@30Hz/2.5K@60Hz)
+ - Port 2: PD 3.0 (60W Max), USB 3.2 Gen 1
+ - Port 3 & 4: USB 3.2 Gen 1
 
-The DeepComputing FML13V01 board incorporates a StarFive JH7110 SoC, and
-it's designed for the Framework Laptop 13 Chassis, which has (Framework)
-SKU FRANHQ0001.
+Create the DTS file for the DeepComputing FML13V01 board. Seven device
+nodes have been verified functional and remain enabled: i2c2, i2c5, i2c6
+qspi, mmc0, mmc1 and usb0.  All others remain disabled, or are disabled
+by nodes in "jh7110-deepcomputing-fml13v01.dts".
 
 Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-[elder@riscstar.com: considerably shortened the description]
+[elder@riscstar.com: revised the description, updated some nodes]
 Signed-off-by: Alex Elder <elder@riscstar.com>
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
-v4: Added Rob's Ack
-    Updated description
-    Changed board name from fm7110 to fml13v01
-v3: No change
-v2: Add deepcomputing,fm7110 into model compatible list
+v4: Changed model string to "DeepComputing FML13V01"
+    Changed dts filename and Makefile accordingly to reflect the change
+    Updated device nodes status, and verified functional
+    Revised the commit message
+v3: Updated the commit message
+v2: Changed the model and copmatible strings
+    Updated the commit message with board features
 
- Documentation/devicetree/bindings/riscv/starfive.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/riscv/boot/dts/starfive/Makefile         |  1 +
+ .../jh7110-deepcomputing-fml13v01.dts         | 44 +++++++++++++++++++
+ 2 files changed, 45 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
 
-diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
-index 4d5c857b3cac..7ef85174353d 100644
---- a/Documentation/devicetree/bindings/riscv/starfive.yaml
-+++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
-@@ -26,6 +26,7 @@ properties:
+diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+index 7a163a7d6ba3..b3bb12f78e7d 100644
+--- a/arch/riscv/boot/dts/starfive/Makefile
++++ b/arch/riscv/boot/dts/starfive/Makefile
+@@ -8,6 +8,7 @@ DTC_FLAGS_jh7110-starfive-visionfive-2-v1.3b := -@
+ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-beaglev-starlight.dtb
+ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
  
-       - items:
-           - enum:
-+              - deepcomputing,fml13v01
-               - milkv,mars
-               - pine64,star64
-               - starfive,visionfive-2-v1.2a
++dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
+ dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+ dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+ dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+new file mode 100644
+index 000000000000..b515b7d04c37
+--- /dev/null
++++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+@@ -0,0 +1,44 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/*
++ * Copyright (C) 2024 DeepComputing (HK) Limited
++ */
++
++/dts-v1/;
++#include "jh7110-common.dtsi"
++
++/ {
++	model = "DeepComputing FML13V01";
++	compatible = "deepcomputing,fml13v01", "starfive,jh7110";
++};
++
++&camss {
++	status = "disabled";
++};
++
++&csi2rx {
++	status = "disabled";
++};
++
++&gmac0 {
++	status = "disabled";
++};
++
++&i2c0 {
++	status = "disabled";
++};
++
++&pwm {
++	status = "disabled";
++};
++
++&pwmdac {
++	status = "disabled";
++};
++
++&spi0 {
++	status = "disabled";
++};
++
++&usb0 {
++	dr_mode = "host";
++};
 -- 
 2.34.1
 
