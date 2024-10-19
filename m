@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-113123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C46C89A4B61
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 07:46:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF6B9A4B6E
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 08:01:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E0AC2844DB
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 05:46:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 720071F22F13
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 06:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB091D798B;
-	Sat, 19 Oct 2024 05:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CC21CF2BD;
+	Sat, 19 Oct 2024 06:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EPLyJG5P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WU8mA0dy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 745791D5AC6;
-	Sat, 19 Oct 2024 05:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADBB728EF;
+	Sat, 19 Oct 2024 06:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729316787; cv=none; b=HDRGuSibVyAZrdo5xchwmqsbWmoGccWz3Vz3/pd2JH1jy3DEAB5vXI9nPlrLSzp9zuevWoG33Ntr5+wDlprVUbW0OBQ1RthJOxFAenEBsX5wmOj50/KX6s/3LW7J8dT3L6VQVsBhrcWxslK0zIBQGu22gsUlpun1TLkYQUvF+HI=
+	t=1729317695; cv=none; b=RDyk7ggpj2lbQVKX2HemrmYII0NU52ROZUPRXpqVJfsHqbYEN0p9cKo0JUyW3BTLlJsXPhawGu96uTIgljp3NWNiWqH5K/iiVTHEpgvnsxm5bK4bmF8BedgQJkuUEmQJzj2bgjnBBo/NV85YxJo+Coh4Pie0Q874MEvpE+NBS7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729316787; c=relaxed/simple;
-	bh=EgetYIpgfpK7YmRAwBVwIZeFmcKxRnjFAEuWjcwEPQg=;
+	s=arc-20240116; t=1729317695; c=relaxed/simple;
+	bh=+Fnqmn6BOqKAZ8dtvHzU7eGaxF36LgiOVums7PQkoCk=;
 	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:To:Date; b=ADH4tenBjuXxlswOZ6BEIJ1WPqhpk4Jq9QQe1dneqMTMwjJU3eAf5/1+QhXaUlXH4fEkKA1FZi0VzxjT0Lp//C36ehhbB470moP0fneLae5bz+h5n2wIG+gaLebJaLHKUn+SrP4J44QTJ9jkdOxDYjkF8DgkA9zZXjJuc3erfbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EPLyJG5P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30574C4CEC7;
-	Sat, 19 Oct 2024 05:46:27 +0000 (UTC)
+	 Subject:From:Cc:To:Date; b=NPkJYl7c1pQMKZ7lQgHoFhPNx3gtjphqwBX8kfdatu1xy/XBYUujRPCbned7Mw55YZT1DNz75cJbt+YcX1r2UlBZXSiCMdhEUvhXdtDsTX/07zXrlFTjBX5PPu4p9+R1LfZi7Ae3aUPHw2R/Cpk71fPZfYJqeuS1Tmsg8evQoAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WU8mA0dy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24962C4CEC5;
+	Sat, 19 Oct 2024 06:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729316787;
-	bh=EgetYIpgfpK7YmRAwBVwIZeFmcKxRnjFAEuWjcwEPQg=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=EPLyJG5Pkqmh5kDVxWuVhB1PSN6ynt2RjM5rnRdkHyzQz1w7r4vj9k2BAEETOVzrW
-	 RZRYqTxKehYfKmvoe9rUVn5HMWzswufMrbaJh3NXzzxVgRL46EkXY4U9r5D8IwBFhT
-	 JK4LibAtSO24nT6nKfIayXC+UuuSwNtuhVCusXAaIL8bCopKbIiUN3WL1XcAuYa/DE
-	 aMgsqA3VL8Ve1GWzygukXScRs98/UPEaQDuQv8+RBbi+xqejNVj3qUoKDRmP68aETD
-	 ktefJ4roGjY2s5T1PkvxuPG2OdWAvlbG0Qkh7yqlkS9BvPoiWCN9ah8ebGnlwOYZWl
-	 DP8DL8tBTi9aw==
-Message-ID: <e06c8991a365766a325cabe3ce2bcdc5.sboyd@kernel.org>
+	s=k20201202; t=1729317695;
+	bh=+Fnqmn6BOqKAZ8dtvHzU7eGaxF36LgiOVums7PQkoCk=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=WU8mA0dycis5BqRUdQ++nWW3OcFmBpMlJR+DaH+tEC4SviJ0LEFw/QWKtTxKjXAdd
+	 q24nSw7hPOkFL6IEHtpFRk1+ucVc93Hum5KvJ3BzN/ri4emOhVeksvaQU/DUdcPDpQ
+	 YZye4SHzCfvd/C5d1o2RHXxLY7VL+FQCYOzyw8WB+1VvqxtRMk3STd6SxG8PMXmEDH
+	 n/2ZDeG9h/71xFAfXWWPHoJJ4qeybNmk2SsaKlhYU+DhOZ1PlWfvBgkAiIanPuqy33
+	 R9az8D0Tmm29OhCmmArNlJaRuqgwyOLbHQ/5uP5hNU85RR5N4I92IYaKFm8Ls/LNRK
+	 SfnmM+3CD9mFA==
+Message-ID: <26a9c9278d66511238e11eac619db9fa.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -50,20 +50,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241018085347.95071-3-andreas@kemnade.info>
-References: <20241018085347.95071-1-andreas@kemnade.info> <20241018085347.95071-3-andreas@kemnade.info>
-Subject: Re: [PATCH v3 2/2] dt-bindings: clock: ti: Convert divider.txt to json-schema
+In-Reply-To: <ab1fa4c9-6b4d-41a4-b337-ce9d7f5052ec@tuxon.dev>
+References: <20240916-lan969x-clock-v1-0-0e150336074d@microchip.com> <a20e6927d38aed4e5b1cb1f49346ca29.sboyd@kernel.org> <ab1fa4c9-6b4d-41a4-b337-ce9d7f5052ec@tuxon.dev>
+Subject: Re: [PATCH 0/4] clk: lan966x: add support for lan969x SoC clock driver
 From: Stephen Boyd <sboyd@kernel.org>
-To: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>, Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Date: Fri, 18 Oct 2024 22:46:25 -0700
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Conor Dooley <conor+dt@kernel.org>, Daniel Machon <daniel.machon@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Steen Hegelund <Steen.Hegelund@microchip.com>, claudiu beznea <claudiu.beznea@tuxon.dev>
+Date: Fri, 18 Oct 2024 23:01:32 -0700
 User-Agent: alot/0.10
 
-Quoting Andreas Kemnade (2024-10-18 01:53:47)
-> Convert the OMAP divider clock device tree binding to json-schema.
-> Specify the creator of the original binding as a maintainer.
+Quoting claudiu beznea (2024-10-18 01:34:16)
 >=20
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
+>=20
+> On 18.10.2024 01:59, Stephen Boyd wrote:
+> > Quoting Daniel Machon (2024-09-16 02:49:18)
+> >> Add support for the lan969x SoC clock driver in the existing lan966x
+> >> driver. The lan969x clock controller contains 3 PLLs - cpu_clk, ddr_clk
+> >> and sys_clk which generates and supplies the clock to various
+> >> peripherals within the SoC.
+> >>
+> >> Patch #1 adds compatible strings for lan969x SKU's in the dt-bindings
+> >>
+> >> Patch #2 makes the clk_names var const char * const
+> >>
+> >> Patch #3 prepares the lan966x driver for lan969x, by adding private
+> >>          match data.
+> >>
+> >> Patch #4 adds support for lan969x
+> >>
+> >> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+> >>
+> >> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+> >=20
+> > Am I supposed to pick up microchip clk patches myself this time?
+>=20
+> It's on my track. I already have it on my local queue for a while. Sorry
+> for not mentioning it yet. I need to run some tests.
+>=20
 
-Applied to clk-next
+Cool. Thanks for taking care of it!
 
