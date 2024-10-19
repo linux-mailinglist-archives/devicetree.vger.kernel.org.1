@@ -1,190 +1,130 @@
-Return-Path: <devicetree+bounces-113166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC979A4D23
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 13:36:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB7F39A4D27
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 13:38:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91ECE281DF2
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 11:36:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD85C1C214D5
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 11:38:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA25B1DFD8A;
-	Sat, 19 Oct 2024 11:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F423E1E0084;
+	Sat, 19 Oct 2024 11:38:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WhYcqAjN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GY9QP4Y5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9186218FDA3;
-	Sat, 19 Oct 2024 11:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90A0B1DFDB6;
+	Sat, 19 Oct 2024 11:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729337791; cv=none; b=nBZoGA2cNg3/RVRlKtIInfe4EMTijquIhRmXyssUA8YALXm7MtLE9E5sD8Pzvlsig3tB5VUr36A7xgUcqeA0+Rb6wssYN6lVkBZyD2G5xSP58sVKjY3t5iUQdwMslIg3l8kzAqSXGs3CMpPa1ppfgd5bsKPwo9As9thIu0mD62Q=
+	t=1729337917; cv=none; b=Z2mYt+InSHZ/WSALTwuY18OpyphdIwURd1NFvPVerVv/0m2SbzgJKMU6FlmqF8iMpn+IEZRdfkmoYNU8maOtKPc/r/AWmJipSSFbNOvPemcNtUAX3o2iWpTZlf/58/uQVPWNfVZN2BLd+GLab/KcjLwzfZfQ/53wI5gMuIv4TPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729337791; c=relaxed/simple;
-	bh=AoYUksVy1/NcyqpEo/Od4emIysf0jcpyQy+I/XrN6Vw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qNRmye9CGNGl2uBoVoTnMZarh6C4EEOyjdXYvZeK+zlYdHd+mjOH+9Jvs1MKVxVnHyCEkNNDmIHNQIgNrDOQIHfEKr3MxLM2XUcMyNNjjWVWlzAfz+TcUwyDTt7xqTB9JVVPb35la7Du+uSKlQ5VjMiu1Su5tOYuV1AcUqPrYzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WhYcqAjN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3393C4CEC5;
-	Sat, 19 Oct 2024 11:36:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729337791;
-	bh=AoYUksVy1/NcyqpEo/Od4emIysf0jcpyQy+I/XrN6Vw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WhYcqAjN9ndlY0a1CVIXsefWOX9y4FlJHmtpcxYUG2UvSHLWI5hnB/+tDa6qGVOUk
-	 7fXB0EmIh5MHMy12X/Bfuk0aYdplAH0qwfLRPgcdXseT4fKxRmhBTi6ld3ME1+mb+F
-	 n+EiBChBu4qjOnMYzQl9Pwbjv6sIUyZVXMqDX1Y2cSnLOGkb4/iyr6jqbx/PrxUigZ
-	 YLNNnGH+Hxh22YHl6JocYDjnYcZ3LBlYaQK6NtnG/jVfuuOI4vzv2Mm4vTWiKoCM+1
-	 vnT9paIvD4N4WBBLsx2eneEGOgbRAgaBfnQkXP25Qzr4+EVfs/RBv3nNvq9Q2Tre0l
-	 b2HQHmNZ5vpSA==
-Date: Sat, 19 Oct 2024 12:36:23 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Justin Weiss <justin@justinweiss.com>
-Cc: Alex Lanzano <lanzano.alex@gmail.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, "Derek J . Clark"
- <derekjohn.clark@gmail.com>, Philip =?UTF-8?B?TcO8bGxlcg==?=
- <philm@manjaro.org>
-Subject: Re: [PATCH v2 3/6] dt-bindings: iio: imu: Add Bosch BMI260
-Message-ID: <20241019123623.210ac09d@jic23-huawei>
-In-Reply-To: <20241018233723.28757-4-justin@justinweiss.com>
-References: <20241018233723.28757-1-justin@justinweiss.com>
-	<20241018233723.28757-4-justin@justinweiss.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729337917; c=relaxed/simple;
+	bh=marhkCyYZCh3NCtWnDi9k3n1MPLfEDhO9JL7aJPEMs8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oWM76UhvieZ0QjK7tbG0mFZfMsstb3I2pKV+Yu1WOTrEt5siL33+6EAt5ltctQZ2Ayb4mhy4GU6RYYAAYJWW+cnUWPGBOpyw97Ym4IwLy+Eivd8N/5pN7+rnzdUiwrgxbjHmF8/CcnTMdG6qQy+VXgqBmneqfVU1bTUsvRB4hVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GY9QP4Y5; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729337914; x=1760873914;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=marhkCyYZCh3NCtWnDi9k3n1MPLfEDhO9JL7aJPEMs8=;
+  b=GY9QP4Y5Em1tMCniss+5kCeBuCOonwc7nJTc2FD84q6YgujiDiwUUbxp
+   iUDbVgbyF7LbdkCLYD5I5qBSEPfy/Ds5b8NdYTS/XxkzMxDDu4m/wS4eW
+   +YYpV01ppFM7LNVEGqrbICjlsBf5xez9MkxHfE4pRlFWx3m2RSeyzaCM+
+   jyRK0C+OQ5hTzdDLYD+J/ctJWTurIFrrR/tk5eYYANkP3ckgNDLZqwcyx
+   KTnaz6Q5Se0MjT7zViKNA4Dki7KSiitOtnZQl7vSuG/sL/nXQu7A4SIE7
+   ty6IznXxmNxhec1s1TFCL+Z31Ij82vyYs8vqJiXUz4fRujtTjl6th7khf
+   g==;
+X-CSE-ConnectionGUID: 2S8yN2zwQ8aRhTZOKZdIeA==
+X-CSE-MsgGUID: Av5koOjxT5qmlreOVZoGNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46328538"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="46328538"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2024 04:38:34 -0700
+X-CSE-ConnectionGUID: jknId/GiSzil637xYRnm0A==
+X-CSE-MsgGUID: IKV8DZGdRXu0KWTBqrP/2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,216,1725346800"; 
+   d="scan'208";a="79067264"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 19 Oct 2024 04:38:31 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t27mu-000OwT-0m;
+	Sat, 19 Oct 2024 11:38:28 +0000
+Date: Sat, 19 Oct 2024 19:38:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+	Vikash Garodia <quic_vgarodia@quicinc.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dikshita Agarwal <quic_dikshita@quicinc.com>,
+	Vedang Nagar <quic_vnagar@quicinc.com>
+Subject: Re: [PATCH v4 25/28] media: iris: implement power scaling for vpu2
+ and vpu3
+Message-ID: <202410191943.XTP992Za-lkp@intel.com>
+References: <20241014-qcom-video-iris-v4-v4-25-c5eaa4e9ab9e@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241014-qcom-video-iris-v4-v4-25-c5eaa4e9ab9e@quicinc.com>
 
-On Fri, 18 Oct 2024 16:36:09 -0700
-Justin Weiss <justin@justinweiss.com> wrote:
+Hi Dikshita,
 
-> Add devicetree description document for Bosch BMI260, a 6-Axis IMU.
->=20
-> Signed-off-by: Justin Weiss <justin@justinweiss.com>
-Looks like this would be much better as an additional compatible id
-in the existing bosch,bmi270.yaml binding doc.
+kernel test robot noticed the following build errors:
 
-=46rom a quick comparison they look nearly identical.
-Even if there are small differences the dt binding schema allows
-those to be expressed in a single file.
+[auto build test ERROR on 67cefecf2a039b9ed0030b9213ceafcd45e6f9e3]
 
-Jonathan
+url:    https://github.com/intel-lab-lkp/linux/commits/Dikshita-Agarwal/dt-bindings-media-Add-video-support-for-QCOM-SM8550-SoC/20241014-171950
+base:   67cefecf2a039b9ed0030b9213ceafcd45e6f9e3
+patch link:    https://lore.kernel.org/r/20241014-qcom-video-iris-v4-v4-25-c5eaa4e9ab9e%40quicinc.com
+patch subject: [PATCH v4 25/28] media: iris: implement power scaling for vpu2 and vpu3
+config: microblaze-allyesconfig (https://download.01.org/0day-ci/archive/20241019/202410191943.XTP992Za-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241019/202410191943.XTP992Za-lkp@intel.com/reproduce)
 
-> ---
->  .../bindings/iio/imu/bosch,bmi260.yaml        | 77 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bmi26=
-0.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi260.yaml =
-b/Documentation/devicetree/bindings/iio/imu/bosch,bmi260.yaml
-> new file mode 100644
-> index 000000000000..6786b5e4d0fa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi260.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/imu/bosch,bmi260.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bosch BMI260 6-Axis IMU
-> +
-> +maintainers:
-> +  - Justin Weiss <justin@justinweiss.com>
-> +
-> +description: |
-> +  BMI260 is a 6-axis inertial measurement unit that can measure accelera=
-tion and
-> +  angular velocity. The sensor also supports configurable interrupt even=
-ts such
-> +  as motion detection and step counting. The sensor can communicate over
-> +  I2C or SPI.
-> +  https://www.bosch-sensortec.com/products/motion-sensors/imus/bmi260/
-> +
-> +properties:
-> +  compatible:
-> +    const: bosch,bmi260
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +  vddio-supply: true
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      enum:
-> +        - INT1
-> +        - INT2
-> +
-> +  drive-open-drain:
-> +    description:
-> +      set if the specified interrupt pins should be configured as
-> +      open drain. If not set, defaults to push-pull.
-> +
-> +  mount-matrix:
-> +    description:
-> +      an optional 3x3 mounting rotation matrix.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +  - vddio-supply
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        imu@68 {
-> +            compatible =3D "bosch,bmi260";
-> +            reg =3D <0x68>;
-> +            vdd-supply =3D <&vdd>;
-> +            vddio-supply =3D <&vddio>;
-> +            interrupt-parent =3D <&gpio1>;
-> +            interrupts =3D <16 IRQ_TYPE_EDGE_RISING>;
-> +            interrupt-names =3D "INT1";
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6011af70c12e..73b6b7721dd8 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -4047,6 +4047,7 @@ BOSCH SENSORTEC BMI270 IMU IIO DRIVER
->  M:	Alex Lanzano <lanzano.alex@gmail.com>
->  L:	linux-iio@vger.kernel.org
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/imu/bosch,bmi260.yaml
->  F:	Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
->  F:	drivers/iio/imu/bmi270/
-> =20
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410191943.XTP992Za-lkp@intel.com/
 
+All errors (new ones prefixed by >>):
+
+   microblaze-linux-ld: drivers/media/platform/qcom/iris/iris_vpu3.o: in function `iris_vpu3_calculate_frequency':
+>> .tmp_gl_iris_vpu3.o:(.text+0x52c): undefined reference to `__divdi3'
+>> microblaze-linux-ld: .tmp_gl_iris_vpu3.o:(.text+0x568): undefined reference to `__udivdi3'
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [y]:
+   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
