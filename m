@@ -1,96 +1,123 @@
-Return-Path: <devicetree+bounces-113186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74ADD9A4D90
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 13:58:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CBA9A4E09
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 15:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 992E41C2061A
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 11:58:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D013A1F22B05
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 13:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35D91DFDB6;
-	Sat, 19 Oct 2024 11:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B889DF44;
+	Sat, 19 Oct 2024 13:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="aV2e8Q/G"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="uKTrbrDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D6A18FC65;
-	Sat, 19 Oct 2024 11:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162E120DF4
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 13:02:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729339069; cv=none; b=sIFccwfCe+zRCYilyI8S37cZxYaCjhf9ltet4/LqkSPqaRsaMwE4CTjEX1MSp0IKJY1n1hfKapvsvck9JGeROZjW+0JTKe/yO+na6bu7LdUeankdzRQ83Go9Paw4l0yx+HcEBnj92VEU2J/w0IATbnFfF51znd444cRcv71U7NY=
+	t=1729342965; cv=none; b=jkWvBeF0BVx82/fSHf5/ddACUL3XWOeTKJOwzRJb8tixiNKXf7s3VD8KN0APaaA94YT+5sVZqM9uKwKmz2KG/0/aR2vissuQPQBpegqttvJsnCFWQ8zWgv+07Jx1S+v6IJYP7wOtfR1/MMqMqv65mZxJiHPDrKQRQdzJJTdyB1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729339069; c=relaxed/simple;
-	bh=iETj25H7QVa4F6/0psIuMJnovR1bRZh8hICT1EDnBzk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nIUFf6C5wTMI+bmX+1cd9S5sc6EWECPb2dJKjmz+sqi/45ksSgea9G2lPGFV7f1e/n3I3KtEG7jBTlxpJ8nHHWqxy11tDmlPFMmn6hV2pqZyJrV4A8+VHV+xh1HAoKyGYLbwQSEqU5Bu+BdOaavxXSHWsWQPrW2dVNW6Xy1ahEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=aV2e8Q/G; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=FMti5Vvdcxs1CnJI7hqh/vDh9drywIZdRBi00//GNss=; b=aV2e8Q/GX0SzCvwmOaEo5LaR7X
-	7jEXld+vIKqFWNs8qaH9vMo9QEVrZu/wxrRc09GnjTLGy/mMFX4HCXtGx9kx+mByM7Rbad3KIJt6F
-	eY1mvSFymbgdkyTO9zYacoTDdN+72aFj4n0Ck809nYlrPJOcJvkHnGxMmamDhyHkfGHuADl9/eZHO
-	DZPWNiszp8nWTjyexl/khC0TQzl0yOtct47q8HdGIOeCVPCKRzR/vM2LmYDtIsk8UHi1a8pZnwXEu
-	RKOfFSAKBRwC++yjkmAqSc7Kqm/bHjO2Ld5Tv/XrYTQVDSJ+h9f2m49p0buNxRBo1h4dO7qCirwco
-	zkD4eyaQ==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1t285S-00AaOn-26;
-	Sat, 19 Oct 2024 19:57:39 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 19 Oct 2024 19:57:38 +0800
-Date: Sat, 19 Oct 2024 19:57:38 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: olivia@selenic.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] dt-bindings: imx-rng: Allow passing only "fsl,imx31-rnga"
-Message-ID: <ZxOesppT4RxLI8-L@gondor.apana.org.au>
-References: <20241009125144.560941-1-festevam@gmail.com>
+	s=arc-20240116; t=1729342965; c=relaxed/simple;
+	bh=cq8AxrWvNmYG9fbGB6CIB6T1zjisQZnjVBmChc7qe0o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cLglSbyrWYHU43lHectUHxkaRmSInPdgQ6bpOnEXZlR9B74ODCQ7nOHfdhKICmFOYL/7Ds9h8dDcOGx1gnMuVYhgxAd3kxhtPVhPnx5un/PYdJJStnY/jKyJm8lxUcv40Vmgwz/MFjLq2+5RcX9IwOvyxjfA/GI9lxyEYdWxfXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=uKTrbrDh; arc=none smtp.client-ip=207.246.76.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1729342933;
+ bh=lFVey/vmL79CFl6aqyjl9RKcgfPnkmjg2Z7v8kUFxG4=;
+ b=uKTrbrDhgdsNw1cnm8/yhtZ0ZrQxa7nx0frcrCSfw6REiKPF8im/UR7G3ko2BqjgwNosruUFC
+ 7gzRqal/vpZRi4VDxXuHovVN8yS0pUnVRIIMU+My73o1f3L4lcmMncNHUTkCN0kf428I6NIxtia
+ X9reEEFm9pRIXpk8M9J59IFCHu92KROH/8XtDDTaDjeQnx1uRJn8LDH+pVFV1fvOB/NYXOazn6I
+ 53YZaV9FoVee19i9fT9wkh/dyM6kAZ/FagAz2BKoUjrJt3qKVNql4Y7VZrPy5QIUL4A75NhYJoZ
+ VLmUcDAoUAyYEXJuUbW05ANleav9Tx0uvplAmqSWWQuw==
+Message-ID: <a90437be-eae6-4dc9-93fa-fd4af8ad9bed@kwiboo.se>
+Date: Sat, 19 Oct 2024 15:02:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241009125144.560941-1-festevam@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] arm64: dts: rockchip: Enable HDMI0 on rock-5a
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Luis de Arquer <ldearquer@gmail.com>, Alexandre ARNOUD <aarnoud@me.com>,
+ kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241019-rk3588-hdmi0-dt-v2-0-466cd80e8ff9@collabora.com>
+ <20241019-rk3588-hdmi0-dt-v2-5-466cd80e8ff9@collabora.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20241019-rk3588-hdmi0-dt-v2-5-466cd80e8ff9@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 207.246.76.47
+X-ForwardEmail-ID: 6713add56ab72d6a578a01d7
 
-On Wed, Oct 09, 2024 at 09:51:44AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+Hi Cristian,
+
+On 2024-10-19 12:12, Cristian Ciocaltea wrote:
+> Add the necessary DT changes to enable HDMI0 on Radxa ROCK 5A.
 > 
-> On imx31.dtsi the rng compatible string contains "fsl,imx31-rnga" only.
-> 
-> Adjust the binding to accept passing "fsl,imx31-rnga" only.
-> 
-> This fixes the following dt-schema warning:
-> 
-> imx31-lite.dtb: rng@53fb0000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['fsl,imx31-rnga'] is too short
-> 	'fsl,imx21-rnga' was expected
-> 	'fsl,imx25-rngb' was expected
-> 	'fsl,imx31-rnga' is not one of ['fsl,imx6sl-rngb', 'fsl,imx6sll-rngb', 'fsl,imx6ull-rngb']
-> 	'fsl,imx35-rngc' was expected
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 > ---
->  Documentation/devicetree/bindings/rng/imx-rng.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 52 ++++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+> index 87fce8d9a964cd53d179ce214ae1c0ff505a2dce..2b141af5e709b0bc2193dbfb2327e6bc1fdaa502 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+> @@ -5,6 +5,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/soc/rockchip,vop2.h>
+>  #include "rk3588s.dtsi"
+>  
+>  / {
+> @@ -35,6 +36,17 @@ chosen {
+>  		stdout-path = "serial2:1500000n8";
+>  	};
+>  
+> +	hdmi0-con {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
 
-Patch applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+ROCK 5A use micro HDMI connector type, so this should be type = "d".
+
+Regards,
+Jonas
+
+> +
+> +		port {
+> +			hdmi0_con_in: endpoint {
+> +				remote-endpoint = <&hdmi0_out_con>;
+> +			};
+> +		};
+> +	};
+> +
+
+[snip]
+
 
