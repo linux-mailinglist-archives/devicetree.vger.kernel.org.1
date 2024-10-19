@@ -1,88 +1,89 @@
-Return-Path: <devicetree+bounces-113205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05CF19A4E85
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 16:11:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F769A4E87
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 16:12:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCD28287637
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 14:11:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23C06287619
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 14:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF2CC73477;
-	Sat, 19 Oct 2024 14:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96772405F7;
+	Sat, 19 Oct 2024 14:12:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bsniC4Mi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MfSkb7o3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87FBB47F53
-	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 14:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89EB52207A;
+	Sat, 19 Oct 2024 14:12:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729347070; cv=none; b=KVYWWkGTnHRvvDykc4mGwVdLhCwiJR+5enRgnpgfuezPcx5xAxEFY/Gjru+GQUKckF76gUPGd4yzjT+Jh6gBt7o+KPFTVMEtU5afwOexjjqBNz6+Zab9LYQMD4L/0t7SdrgA6a0TTEfFAwFk32TsMcUrAijMWaqjP3noVg4L7as=
+	t=1729347160; cv=none; b=UMm5i+6apdRRPYCFy41vH+E1lmUjRoZkDKmDmQ3dQ0Y4F60Xm4D7lbnkjS6GyyYb0BX+QPQty+exkZog4alIxaIfB2BK6qFupllXJsPb0dQU8Gp3vUFVvQ7XKvvbBnLRxVKkHADH/ZDt5C/pnKtI+85CRq0noFIC/r6tYjfKSdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729347070; c=relaxed/simple;
-	bh=FpuzHWVrvatpfwMJ1QvSD5uJ4cdZ+VeHi0kf8jBIBPA=;
+	s=arc-20240116; t=1729347160; c=relaxed/simple;
+	bh=ZrHmr5VaECy8UuvZjqQ6voSNPqYS2zNatLG+hRePEVY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RzxPUNniaBGuXbXYtzNxAVox1PzXnLLLNqchr+84At2mXVjnTDOdD+ek+5ShOAOE8xd3wWPNXiunQYp2jv/E1PzTsQpEfBpJQQn/WzoWjSSKOSr9oGd2gBBS+il5WOBKhXmtzo1GCvwSbB8N6pdzgl3QuIRjY1eLrxXfR84CNCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bsniC4Mi; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539f4d8ef66so4212852e87.1
-        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 07:11:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729347066; x=1729951866; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KFyqMGDzEiD8SJfgSIuL6OhjikfOSZdJxwOOF791tUo=;
-        b=bsniC4Mi4iqv6/Kz5ExZeF6/jI71zIJLLUpZndp1KYyg+LILQB9+O+BFA2CPwPrrX5
-         kQ0KWe3/oeDZpALqsLE0dDfDuCSLaweFXVXjJQH/8l7lb5y5fxzPIv7FetoqwObF8krF
-         Z4Vu+7qaQAdIn74XUa3xUbWx7l1Giu3IziPzKfvvG9ypl7QKsVZXhGLDtJjPIN0duB1w
-         ftJO9fTYEu6T8J/7V7jZocwOlivKP6BP43ocxEs7jhT5rBS9TO33eE0wdpBT20oT+Fg4
-         9i+RbleA+9FVVj8BO3NpMZAkY/l/sifw3mHqjqUSWGoxUkYne3XGNfOyvTIOkGwiKy2k
-         0pJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729347066; x=1729951866;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KFyqMGDzEiD8SJfgSIuL6OhjikfOSZdJxwOOF791tUo=;
-        b=ighJKV0SVhowURpl1c/bkrHeg6rgPHsSz/guQyPOqpQeoSbz1uR66vWiQV3p43LZw4
-         7U8DdBj/fTJ+l2SDKjUReJnYpvNqls6lyg6bpKMnObZySHhxufl722eerz4JxPDnxdo0
-         Pbo2biEzXR8rKNBmnyDOwD+8xbZBjbcki670titDBqGOkEl/ykvkWt45lUG2orXnmARx
-         M1HPnDh5IfTzgjeHEEfn0pVzFrNpToC66AuHoMb1/iQOLQGYvNcNhT0N7Yie/GZecC9H
-         06VYJWyuz2bxA/qk+9X4iV5uZdOcMuifsEOFrRm9o2y8ylTg3PCKw8u38SG0mnw2Ibk8
-         Ngvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUmv2awgFpksmZS1wAyTlaKqvQpiHmwYSRz6jFIQvNHO+hMXt+bClIAxCAruHUmC8L8CEAb7sXE3vJ6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZ+5CCmgTKbl6zaw4F2lkvfAKcHb3zxwXRRNPOvtM35aL6je5H
-	SN2HwsAsBc8eMi36kAtXXRJDKOOLF9WMwVCD0o5/vB462CFfW5rfpb4BX8Zl77s=
-X-Google-Smtp-Source: AGHT+IHpUlM2mb4sZE/F8kO/aL/+SbKMUhUOFGlRdpwHPf22GTTWehOQZojukTZmgNNOEorXiPGafQ==
-X-Received: by 2002:a05:6512:3e0b:b0:539:eb44:7ec3 with SMTP id 2adb3069b0e04-53a1522d8bfmr3412287e87.31.1729347066370;
-        Sat, 19 Oct 2024 07:11:06 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a152203c2sm543967e87.299.2024.10.19.07.11.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Oct 2024 07:11:05 -0700 (PDT)
-Date: Sat, 19 Oct 2024 17:11:03 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
-	Chris Morgan <macroalpha82@gmail.com>, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 01/26] drm: sun4i: de2/de3: Change CSC argument
-Message-ID: <635hn2vkmoyna7fxzgrzp7q3tlk76aoggssjbt2mpkhpvvo4fx@2pmvvxgvmfpq>
-References: <20240929091107.838023-1-ryan@testtoast.com>
- <20240929091107.838023-2-ryan@testtoast.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GXhjQ69TtoHOlUttpejv1Q5npRY8gG/+0U7k4DqQMUoHyBsoVgxqMc+tFu+0B0wnBcqdUlSgPMkyFOnhjF3SXWSC1tS7JyRbbl6TNJYQ1ayF07XXxwrYx/d1yKjzCKoi9JbLEyfJ1VQjSNn/zrdo9YNrx/CLBA7W+Nrwpo5ErZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MfSkb7o3; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729347159; x=1760883159;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZrHmr5VaECy8UuvZjqQ6voSNPqYS2zNatLG+hRePEVY=;
+  b=MfSkb7o3kJ60c90kz+h8zChXJPDXB8xYe4VNX2Cg/c7uZqO7z/m9qUtr
+   FIHFLN0Vw5LluXbujvTot7VM8CCxsQnJufwl/n7VA0NyiOkcThbhVn1jK
+   U94ApDP4TPxlf1r3JO21YPcLwWpi36nw50A4niHclnbAuKu2qi3SaaSuA
+   7U72LmXM2Om4OkwhkTUVqujYOedeOoth/+Xv+alHvB9Y0hf5Dt17gn6nz
+   oWVYfvvvw9b14GTDY2oWjtEHnWOnW/LVox52aQCrh/TaAFj1xok2DZ2S+
+   zSf+8FeIuR5MKMHbBu4LV4k9+5MRAwfvFiZVtzyM9Hyb5RpPCCQaw2pMh
+   w==;
+X-CSE-ConnectionGUID: ordxXbAnSSOZ9FSZJgp7DA==
+X-CSE-MsgGUID: P+t0i6GzRKiSERMCl77Tyw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11230"; a="16487351"
+X-IronPort-AV: E=Sophos;i="6.11,216,1725346800"; 
+   d="scan'208";a="16487351"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2024 07:12:38 -0700
+X-CSE-ConnectionGUID: VHCoxef/St+94kG9sdfBiQ==
+X-CSE-MsgGUID: jMPDadBJSN+1E4RqjaIKOw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,216,1725346800"; 
+   d="scan'208";a="102423448"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 19 Oct 2024 07:12:33 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t2ABz-000P3P-36;
+	Sat, 19 Oct 2024 14:12:31 +0000
+Date: Sat, 19 Oct 2024 22:12:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
+	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
+	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+Subject: Re: [PATCH v2 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
+Message-ID: <202410192150.qZi3WkG1-lkp@intel.com>
+References: <20241015105133.656360-3-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,59 +92,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240929091107.838023-2-ryan@testtoast.com>
+In-Reply-To: <20241015105133.656360-3-ciprianmarian.costea@oss.nxp.com>
 
-On Sun, Sep 29, 2024 at 10:04:33PM +1300, Ryan Walklin wrote:
-> From: Jernej Skrabec <jernej.skrabec@gmail.com>
-> 
-> Currently, CSC module takes care only for converting YUV to RGB.
-> However, DE3 is more suited to work in YUV color space. Change CSC mode
-> argument to format type to be more neutral. New argument only tells
-> layer format type and doesn't imply output type.
-> 
-> This commit doesn't make any functional change.
-> 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  drivers/gpu/drm/sun4i/sun8i_csc.c      | 22 +++++++++++-----------
->  drivers/gpu/drm/sun4i/sun8i_csc.h      | 10 +++++-----
->  drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 16 ++++++++--------
->  3 files changed, 24 insertions(+), 24 deletions(-)
-> 
->  void sun8i_csc_enable_ccsc(struct sun8i_mixer *mixer, int layer, bool enable)
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.h b/drivers/gpu/drm/sun4i/sun8i_csc.h
-> index 828b86fd0cabb..7322770f39f03 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_csc.h
-> +++ b/drivers/gpu/drm/sun4i/sun8i_csc.h
-> @@ -22,14 +22,14 @@ struct sun8i_mixer;
->  
->  #define SUN8I_CSC_CTRL_EN		BIT(0)
->  
-> -enum sun8i_csc_mode {
-> -	SUN8I_CSC_MODE_OFF,
-> -	SUN8I_CSC_MODE_YUV2RGB,
-> -	SUN8I_CSC_MODE_YVU2RGB,
-> +enum format_type {
+Hi Ciprian,
 
-enum sun8i_format_type, unless there is a strong reason to name it
-otherwise.
+kernel test robot noticed the following build errors:
 
-> +	FORMAT_TYPE_RGB,
-> +	FORMAT_TYPE_YUV,
-> +	FORMAT_TYPE_YVU,
->  };
->  
->  void sun8i_csc_set_ccsc_coefficients(struct sun8i_mixer *mixer, int layer,
-> -				     enum sun8i_csc_mode mode,
-> +				     enum format_type fmt_type,
->  				     enum drm_color_encoding encoding,
->  				     enum drm_color_range range);
->  void sun8i_csc_enable_ccsc(struct sun8i_mixer *mixer, int layer, bool enable);
-> 
+[auto build test ERROR on abelloni/rtc-next]
+[also build test ERROR on robh/for-next arm64/for-next/core linus/master v6.12-rc3 next-20241018]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ciprian-Costea/dt-bindings-rtc-add-schema-for-NXP-S32G2-S32G3-SoCs/20241015-185302
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20241015105133.656360-3-ciprianmarian.costea%40oss.nxp.com
+patch subject: [PATCH v2 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
+config: powerpc-randconfig-001-20241019 (https://download.01.org/0day-ci/archive/20241019/202410192150.qZi3WkG1-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241019/202410192150.qZi3WkG1-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410192150.qZi3WkG1-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   powerpc-linux-ld: drivers/rtc/rtc-s32g.o: in function `s32g_rtc_get_time_or_alrm':
+>> drivers/rtc/rtc-s32g.c:105:(.text+0x1a0): undefined reference to `__udivdi3'
+   powerpc-linux-ld: drivers/rtc/rtc-s32g.o: in function `get_time_left':
+   drivers/rtc/rtc-s32g.c:105:(.text+0x6a8): undefined reference to `__udivdi3'
+   powerpc-linux-ld: drivers/rtc/rtc-s32g.o: in function `sec_to_rtcval':
+   drivers/rtc/rtc-s32g.c:105:(.text+0xbfc): undefined reference to `__udivdi3'
+   powerpc-linux-ld: drivers/rtc/rtc-s32g.o: in function `rtc_clk_src_switch':
+   drivers/rtc/rtc-s32g.c:387:(.text+0x1630): undefined reference to `__udivdi3'
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [y]:
+   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
+
+
+vim +105 drivers/rtc/rtc-s32g.c
+
+   102	
+   103	static u64 cycles_to_sec(u64 hz, u64 cycles)
+   104	{
+ > 105		return cycles / hz;
+   106	}
+   107	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
