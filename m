@@ -1,202 +1,245 @@
-Return-Path: <devicetree+bounces-113114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141559A4AFA
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 04:44:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 967889A4AFF
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 04:46:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABD3B2831FA
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 02:44:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6928B216E9
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 02:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F45F1CCB38;
-	Sat, 19 Oct 2024 02:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC41F1CC88D;
+	Sat, 19 Oct 2024 02:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Er/EvWlR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FrgwoTSn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFFE1C232A
-	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 02:44:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC270A47;
+	Sat, 19 Oct 2024 02:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729305878; cv=none; b=CeMQFB39Xhvo+jTniGB0ZK6VAEkppW8BP8JhjkO7KMrxMPFr1cjFldNVya3vvj1F+jyiiewIkzcZUPsLB0NEVyKEoTAoO6pINGiPW7OXI9sHaVl/jvoBYL4QO0rqAI1iOCsR8wQivdK4bhVZTGq9iuoB9m9YFRWz0epCSRWq5jk=
+	t=1729305992; cv=none; b=KSVIgGkc6C83EgFdmTymSUR6cOuZRr2+LQFclQEhpWi3dahFKoSEHEQlTbHQ0sgOTBIV8qA6Cf/z7FtNNBdr636lG/YL1LP3Xeys0EkCHb2jVaS2iavMxxlCIBtDCrl4YQ2lr7HmQTgVhwkdrsLTJX+b8PJfbxv6I2bonyFKnqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729305878; c=relaxed/simple;
-	bh=3Y4rIZqNrh6l40orc03l2GAGIWW2NKOwVZ/4xRp9llM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Lh4wefqF6nmpbhp1AYOUgto6C8VA8B9vvs7toVnrl9iUV+6ckGa+pq4mdzU7N62zDNm1GCS7iZat8x589LJjOAyzXwPOEaNSNdEkAC0Xp/ln0fH4JnK8Lq6t7HP8FZQsc+rwomDdlRZKsA+NK1MtPnyyotj9hyOrJFxYESQX7Pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Er/EvWlR; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6e2e427b07dso23637137b3.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 19:44:36 -0700 (PDT)
+	s=arc-20240116; t=1729305992; c=relaxed/simple;
+	bh=jrwxkCuv2eNuxcX1z3pk+vMqR6y4+1kULUw14/5t3H8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iLtVKYc2Yo0OPAPn8wxevVg6gXBsXMYKkukg7JLNvSxxW3AbpA9/WP8oysVa1xirD6Q8oCVTd2R1XerRdPRM2qOVWDdme7ZKWojIuMwhn3slwMjhlCv4heQlyVqBJuBS3cdZb4wGltEYpu6FRrSsovVA3Bz2V7r7EmRCHWQvjGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FrgwoTSn; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2b549799eso2081566a91.3;
+        Fri, 18 Oct 2024 19:46:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729305875; x=1729910675; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=miaF/bzpaXxt5iwAcqBRvDZdA63BMI9c1o0s4Dvr9rc=;
-        b=Er/EvWlRwvbnYp3MJuyf1diJ15+d08q6A93wfjPIA0K4aqT6Gwro3ff1KMmXl0EfoA
-         qYhUZwqAeJfCgjFZDX4O81e8+nI/qJInVCPKR24A7AlwL4yyz1bpyOMpFIhVBAwcsHES
-         UW1K1SmacI/0Dh0KL4BhIjwIof2xVc4rDeenxe1aD0nIulndHX+mtAIheMYL0rn+Wbj9
-         GM3Lqkm88S63WbEKFLrxfxC2WEkWmLyGeseqLgylyTGPDcyxJUqkjKIcmdLBapWPhQ7k
-         EqP0nTDPQxdLuybTNcYaEuzbC8/8oW7dbODNnMOpI/77VzjFyj6Xl1yx85bYWV6B9NaI
-         5b/Q==
+        d=gmail.com; s=20230601; t=1729305990; x=1729910790; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=liiZ6/mTtCTwcggTEm/PxluGi984aAMQ8n44IAE9t88=;
+        b=FrgwoTSnmZTcK4nWyphSICus1Ujlp2C/lmE3PTSy70I1la/ukZEdBOAQuLmQpWYJXu
+         M/pbsT6xtQ0B8CRlnx78P1al3vtUVcmSOVwNwazWluyb+WtPOgtQzplfGBZ/d9imCDAr
+         3be2nXemoKWzJsd45i9SEE5lzwb893G+Ak0f4bwhnChLyNSzWrRAjVKjF2icoC5D1WcP
+         pM8+PTagOJSt1XRP9VAdR5rPPO3h+s9DBMQBK/woVNmMCBVuAdBhxsz8zXtpvpO/vwgm
+         yCu4ONKqMzxr1X/uIGMsBLTjv4JYAMs9CSALe4SOY5dsmFIhR+ILmAz9pMPHCB+ycvNH
+         Mbfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729305875; x=1729910675;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=miaF/bzpaXxt5iwAcqBRvDZdA63BMI9c1o0s4Dvr9rc=;
-        b=IiLhkHbnmJr2ECGdIPzUwdkpSEZEJFDXFLe6YAPBqwocksZxsK0z45wU8rwPiTlXfM
-         IerBzFvRfok1HvTVK79ezJEtvy5VGSvXBqWKjD+YDq8kPjwESkJPjB9Mee1aIYj5Fadx
-         ArN6o5GHku7X8gAO0bWoZujWoCty3qbzvQSd4EiBFuvoEKMgyPIBg/qBcsATHTNKR3on
-         xt1Dnv8/+4VD+0cYQONZUBg/sjD97sHdqFwM44w3tcygqI2u0CBOwftoYtoVn1SCGQIX
-         HE/2cVe2e+Ss5sF1RRqoEXMzvYID16ZSkbvuPskSr2z6b4SZ5hpN8lhSgMCdxBgrnN3g
-         qz1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUBDVD+OBuyFmkEHHOPl8XDxeZUcO4Fj4hcHp8Iu+Yyetsvbrc79vgjqZrxBTk8wwy9dtLQpk0yUiY9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzaej4E63wP78p/QLcGhFwM9fq+Gwf8GfTAfgBnmBl4OGczeiP8
-	htqS7XBlHOQ3xdxF2qKX05MIvRiGEKFjBb3+aB+AM1krbFCVpkBvBUAGJ6nPM0lgfG3UmEzCDrk
-	+oyzBWToRZkIkuH76rHq9rTeX7GQvYM67rsR7AQ==
-X-Google-Smtp-Source: AGHT+IET/AXMNwoRFwVXHuhBACWA9SQCiFexSXwoY0rVTaRw1no0IViR/dKMbVXvof5PtqZm9DbMaQZ30RW3YSLJrLM=
-X-Received: by 2002:a05:690c:ecc:b0:65f:a0e5:8324 with SMTP id
- 00721157ae682-6e5bf72bf64mr50318227b3.4.1729305875248; Fri, 18 Oct 2024
- 19:44:35 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729305990; x=1729910790;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=liiZ6/mTtCTwcggTEm/PxluGi984aAMQ8n44IAE9t88=;
+        b=usvoxZCGak1bNsYUeLU/Wy0vvKOK9hkw47hwTfqhx3sl2cpjdwddbAxoJOlhMFk70t
+         9BPb8767LGCh2lZ45rG71I3gD2UesC0eGaGSQpnd2RzQLw1vJiDy//N9yfG+cyD1OgyV
+         BVSgzNZbTufnG+vdylDoWRDUciAWxW5IASoIxSE8JeJEOUoVRgA0Zdmh0Ljc2JvkZI30
+         bhmAle9cS/jcwzJAGINi3WiODBy9bXzuxyLVo9jrzp5UoVfHs2E0M1zSXiAzp0z7qJUr
+         NYM1+sV34dZdXc9cy/rAt0TLXvnLMBu6HU8h6fKWyETCRY+ZqB+vNnWLbgJc1QK2se0j
+         FKDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCryY4pd4Cr4vr0GCQkoFPPFIAe9QpOj/q2htQANLPZnMJCZhRod8F7UN9Shlaa7S30kBJVgmem0zqUdk=@vger.kernel.org, AJvYcCUSZ6dkb+Vxw6NVbykjF37kTJgZSagfyV0xfhzNIOu7pkXbYITV9WslXEN5ECcbxuK6kyGcPbVuMu16@vger.kernel.org, AJvYcCVUjzLB9chXFhMuBxENMvI57qBLY8s8vL5ZnYbvUQdFHPfSjYGXFZR2Ev5xhb2xVaedX/Sw1dOLg4zWVXiG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCA3+cwbTdUf8lep5oTXbZjAr+Dr1teU0Yu2JGGFC95YXtkeo1
+	oLYGOy53QEaAx2dWck7p8Zz3zKS3ATPsdFfZXdPURcmDFc/2crTT
+X-Google-Smtp-Source: AGHT+IEh8QEkrwts79kw1BLVJs6w0RO310+Kdn6szhuKm/F/iamDaKnvyDt4QqghRgPzSTls5Ue+2Q==
+X-Received: by 2002:a17:90a:a615:b0:2cf:c9ab:e747 with SMTP id 98e67ed59e1d1-2e5616c4300mr5501245a91.1.1729305990004;
+        Fri, 18 Oct 2024 19:46:30 -0700 (PDT)
+Received: from ux-UP-WHL01 ([240e:47e:2e70:ca2:a7a2:d21d:dfaf:c0b3])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5610b59c7sm2797513a91.3.2024.10.18.19.46.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 19:46:29 -0700 (PDT)
+Date: Sat, 19 Oct 2024 10:46:21 +0800
+From: Charles Wang <charles.goodix@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, dmitry.torokhov@gmail.com,
+	hbarnor@chromium.org, dianders@chromium.org,
+	conor.dooley@microchip.com
+Cc: jikos@kernel.org, bentiss@kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+Message-ID: <ZxMc-HP8o_qHKhKI@ux-UP-WHL01>
+References: <20241018020815.3098263-2-charles.goodix@gmail.com>
+ <06151891-a260-450c-b688-fff18638e627@kernel.org>
+ <ZxJCvwxwamvRZ3m9@ux-UP-WHL01>
+ <f8ffc231-6961-44f8-ad61-3a07ab22e849@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241012073543.1388069-1-victor.liu@nxp.com> <20241012073543.1388069-6-victor.liu@nxp.com>
- <4a7rwguypyaspgr5akpxgw4c45gph4h3lx6nkjv3znn32cldrk@k7qskts7ws73>
- <07b47f70-5dab-4813-97fa-388a0c0f42e9@nxp.com> <dvcdy32dig3w3r3a7eib576zaumsoxw4xb5iw6u6b2rds3zaov@lvdevbyl6skf>
- <90e0c4ac-1636-4936-ba40-2f7693bc6b32@nxp.com> <lcogrc6uztckwwwsuag5tlk5otidmo7rudsl7zshe3wpfot3wc@ziljns5phhfe>
- <d5d62f61-808f-4c40-bc71-4e168baf4b1b@nxp.com>
-In-Reply-To: <d5d62f61-808f-4c40-bc71-4e168baf4b1b@nxp.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 19 Oct 2024 05:44:23 +0300
-Message-ID: <CAA8EJpqcm66+3d6Qi02pjmiBipFeV7dDdY8m=NR2Q=L9EgRVcA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/9] dt-bindings: display: bridge: Add ITE IT6263 LVDS
- to HDMI converter
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com, 
-	will@kernel.org, quic_bjorande@quicinc.com, geert+renesas@glider.be, 
-	arnd@arndb.de, nfraprado@collabora.com, o.rempel@pengutronix.de, 
-	y.moog@phytec.de, marex@denx.de, isaac.scott@ideasonboard.com, 
-	biju.das.jz@bp.renesas.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f8ffc231-6961-44f8-ad61-3a07ab22e849@kernel.org>
 
-On Tue, 15 Oct 2024 at 09:27, Liu Ying <victor.liu@nxp.com> wrote:
->
-> On 10/14/2024, Dmitry Baryshkov wrote:
-> > On Mon, Oct 14, 2024 at 01:33:44PM +0800, Liu Ying wrote:
-> >> On 10/14/2024, Dmitry Baryshkov wrote:
-> >>> On Sat, Oct 12, 2024 at 05:14:13PM +0800, Liu Ying wrote:
-> >>>> On 10/12/2024, Dmitry Baryshkov wrote:
-> >>>>> On Sat, Oct 12, 2024 at 03:35:39PM +0800, Liu Ying wrote:
-> >>>>>> Document ITE IT6263 LVDS to HDMI converter.
-> >>>>>>
-> >>>>>> Product link:
-> >>>>>> https://www.ite.com.tw/en/product/cate1/IT6263
-> >>>>>>
-> >>>>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> >>>>>> ---
-> >>>>>> v2:
-> >>>>>> * Document number of LVDS link data lanes.  (Biju)
-> >>>>>> * Simplify ports property by dropping "oneOf".  (Rob)
-> >>>>>>
-> >>>>>>  .../bindings/display/bridge/ite,it6263.yaml   | 276 ++++++++++++++++++
-> >>>>>>  1 file changed, 276 insertions(+)
-> >>>>>>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
-> >>>>>>
-> >>>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
-> >>>>>> new file mode 100644
-> >>>>>> index 000000000000..bc2bbec07623
-> >>>>>> --- /dev/null
-> >>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
-> >>>>>> @@ -0,0 +1,276 @@
-> >>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>>>> +%YAML 1.2
-> >>>>>> +---
-> >>>>>> +$id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml#
-> >>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>>> +
-> >>>>>> +title: ITE IT6263 LVDS to HDMI converter
-> >>>>>> +
-> >>>>>> +maintainers:
-> >>>>>> +  - Liu Ying <victor.liu@nxp.com>
-> >>>>>> +
-> >>>>>> +description: |
-> >>>>>> +  The IT6263 is a high-performance single-chip De-SSC(De-Spread Spectrum) LVDS
-> >>>>>> +  to HDMI converter.  Combined with LVDS receiver and HDMI 1.4a transmitter,
-> >>>>>> +  the IT6263 supports LVDS input and HDMI 1.4 output by conversion function.
-> >>>>>> +  The built-in LVDS receiver can support single-link and dual-link LVDS inputs,
-> >>>>>> +  and the built-in HDMI transmitter is fully compliant with HDMI 1.4a/3D, HDCP
-> >>>>>> +  1.2 and backward compatible with DVI 1.0 specification.
-> >>>>>> +
-> >>>>>> +  The IT6263 also encodes and transmits up to 8 channels of I2S digital audio,
-> >>>>>> +  with sampling rate up to 192KHz and sample size up to 24 bits. In addition,
-> >>>>>> +  an S/PDIF input port takes in compressed audio of up to 192KHz frame rate.
-> >>>>>> +
-> >>>>>> +  The newly supported High-Bit Rate(HBR) audio by HDMI specifications v1.3 is
-> >>>>>> +  provided by the IT6263 in two interfaces: the four I2S input ports or the
-> >>>>>> +  S/PDIF input port.  With both interfaces the highest possible HBR frame rate
-> >>>>>> +  is supported at up to 768KHz.
-> >>>>>> +
-> >>>>>> +properties:
-> >>>>>
-> >>>>> No LVDS data-mapping support?
-> >>>>
-> >>>> It is enough to document number of LVDS link data lanes
-> >>>> because OS should be able to determine the data-mapping
-> >>>> by looking at the number and the data-mapping capability
-> >>>> of the other side of the LVDS link.
+Hi Krzysztof,
+
+On Fri, Oct 18, 2024 at 01:41:41PM +0200, Krzysztof Kozlowski wrote:
+> On 18/10/2024 13:18, Charles Wang wrote:
+> > 
+> > On Fri, Oct 18, 2024 at 07:59:46AM +0200, Krzysztof Kozlowski wrote:
+> >> On 18/10/2024 04:08, Charles Wang wrote:
+> >>> The Goodix GT7986U touch controller report touch data according to the
+> >>> HID protocol through the SPI bus. However, it is incompatible with
+> >>> Microsoft's HID-over-SPI protocol.
 > >>>
-> >>> From what I can see, data-mapping is specified on the consumer sink side
-> >>> of the LVDS link. This means it should go to the bridge's device node.
+> >>> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> >>> ---
+> >>>  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
+> >>>  1 file changed, 58 insertions(+), 10 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> >>> index 358cb8275..184d9c320 100644
+> >>> --- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> >>> +++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+> >>> @@ -8,27 +8,27 @@ title: Goodix GT7375P touchscreen
+> >>>  
+> >>>  maintainers:
+> >>>    - Douglas Anderson <dianders@chromium.org>
+> >>> +  - Charles Wang <charles.goodix@gmail.com>
+> >>>  
+> >>>  description:
+> >>> -  Supports the Goodix GT7375P touchscreen.
+> >>> -  This touchscreen uses the i2c-hid protocol but has some non-standard
+> >>> -  power sequencing required.
+> >>> -
+> >>> -allOf:
+> >>> -  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> >>> +  The Goodix GT7375P and GT7986U touchscreens support both SPI and I2C interfaces.
+> >>> +  With the I2C interface, they use the i2c-hid protocol but require non-standard
+> >>> +  power sequencing. With the SPI interface, they use a custom HID protocol that
+> >>> +  is incompatible with Microsoft's HID-over-SPI protocol.
+> >>>  
+> >>>  properties:
+> >>>    compatible:
+> >>>      oneOf:
+> >>> -      - const: goodix,gt7375p
+> >>> +      - items:
+> >>> +          - const: goodix,gt7375p
 > >>
-> >> Then, I won't define data-lanes, because data-mapping implies it,
-> >> e.g., jeida-24 implies data lanes 0/1/2/3, see lvds-data-mapping.yaml.
+> >> That's not a necessary change. Keep old code here.
 > >>
-> >> Please let me know which one you prefer.
-> >
-> > I'd prefer data-mapping.
+> > 
+> > Ack,
+> > 
+> >>>        - items:
+> >>>            - const: goodix,gt7986u
+> >>>            - const: goodix,gt7375p
+> >>> +      - items:
+> >>> +          - const: goodix,gt7986u
+> >>
+> >> Hm? This does not make much sense. Device either is or is not compatible
+> >> with gt7375p. Cannot be both.
+> >>
+> > 
+> > Ack,
+> > 
+> >>>  
+> >>>    reg:
+> >>> -    enum:
+> >>> -      - 0x5d
+> >>> -      - 0x14
+> >>> +    maxItems: 1
+> >>>  
+> >>>    interrupts:
+> >>>      maxItems: 1
+> >>> @@ -57,6 +57,15 @@ properties:
+> >>>        This property is used to avoid the back-powering issue.
+> >>>      type: boolean
+> >>>  
+> >>> +  goodix,hid-report-addr:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    description:
+> >>> +      The register address for retrieving HID report data.
+> >>> +      This address is related to the device firmware and may
+> >>> +      change after a firmware update.
+> >>
+
+> How is this supposed to work? DTS will stay fixed, you cannot change it
+> just because firmware changed. User loads new firmware with different
+> address, but DTS will have to use old address - so broken property.
 >
-> Before I go ahead to use it, I'd like to get confirmation that
-> it'll cover data mapping which supports 30-bit RGB pixel transmission,
-> because it is something supported by IT6263 as I mentioned in v1
-> dt-binding discussion.  For now, data-mapping only supports jeida-18,
-> jeida-24 and vesa-24, see lvds-data-mapping.yaml.  And, I'm not
-> sure the 30-bit data mappings specified in IT6263 datasheet are
-> standard or not.
 
-It is not. At the time the standards were written, nobody was actually
-thinking about the 30bpp panels.
+Sorry for missing this issue in my previous response.
+Honestly, although the likelihood of this address changing is low, it is
+indeed possible for it to change due to a firmware update during the factory
+debugging phase. However, for machines that users have, we will ensure that
+this address will not be altered as a result of a firmware upgrade.
 
-> Note that if we use data-lanes instead, then this is not a concern
-> from DT PoV, as data mapping can be inferred by OS.
+> >>> +
+> >>> +  spi-max-frequency: true
+> >>
+> >> Drop
+> >>
+> > 
+> > Ack,
+> > 
+> >>> +
+> >>>  required:
+> >>>    - compatible
+> >>>    - reg
+> >>> @@ -64,6 +73,25 @@ required:
+> >>>    - reset-gpios
+> >>>    - vdd-supply
+> >>>  
+> >>> +allOf:
+> >>> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> >>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> >>> +
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          items:
+> >>> +            - const: goodix,gt7986u
+> >>> +    then:
+> >>> +      required:
+> >>> +        - goodix,hid-report-addr
+> >>> +    else:
+> >>> +      properties:
+> >>> +        goodix,hid-report-addr: false
+> >>> +        spi-max-frequency: false
+> >>
+> >> Why? GT7375P also supports SPI.
+> >>
+> > 
+> > No, only GT7986U support SPI. What I'm trying to express here is that
+> 
+> Description earlier said:
+> "The Goodix GT7375P and GT7986U touchscreens support both SPI and I2C
+> interfaces."
+> 
+> so both support?
+> 
 
-It can not. There is no way to determine if JEIDA or VESA / SPWG
-format is being used if it is not declared.
-Moreover, <uapi/linux/media-bus-format.h> doesn't declare 1X7X5
-formats. If you are to support 30bpp LVDS, you'd need to define two
-corresponding constants, then extend data-mapping definition and code
-by documenting 5-lane LVDS as standards extension to support 30bpp
-transfers.
+Sorry, there is an error in the description. Currently, only the GT7986U
+supports SPI, I will change the description.
 
+>
+> > the GT7375P does not support the properties 'goodix,hid-report-addr'
+> > and 'spi-max-frequency. Is there any issue with writing it this way?
+> 
+> spi-max-frequency could stay, assuming device does not support SPI.
+> 
 
--- 
-With best wishes
-Dmitry
+Ack,
+
+Best regards,
+Charles
 
