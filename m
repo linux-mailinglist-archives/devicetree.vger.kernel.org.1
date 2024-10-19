@@ -1,113 +1,385 @@
-Return-Path: <devicetree+bounces-113110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24BB9A4AB8
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 02:43:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E32BD9A4AC5
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 02:53:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92B2C283D2E
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 00:43:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EFA71F22F32
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 00:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4547B1922E9;
-	Sat, 19 Oct 2024 00:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8DD11990A2;
+	Sat, 19 Oct 2024 00:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="A/gTqk81"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wDpRG3mX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD5329CF6;
-	Sat, 19 Oct 2024 00:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FCDA191F94
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 00:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729298604; cv=none; b=CdI4ClV/9pgX0HeHN6m/DTqwTywtrIQjocTnq6lKn97ggLJoURa/VMx0++Wb+I0m6FRdaF3z/EXdfYl7oHhdHPY367sJX75/PLM8VLA5uAILzoRmveE1mLOtwYB5Z+Nj9jVIbAmpTzGGuxn5ZSrdtFEh38LCRltvkg04C5d3AgM=
+	t=1729299212; cv=none; b=oGHSkAw7h9gByTvQ0zqUhOKokbv/6/xtZq31Y9LULLjMuJmFJZWZLXQI7leDZ9ZWfG+QdOR6wGl0XhltU7vrLjkZRjez2SDTKaBUU4FImYfYjMTlgjD+aX58BCc/OwgcvoLM/ickMPxLgrj9htQeOa3N5n5T/siA65kv8IPKmlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729298604; c=relaxed/simple;
-	bh=nqf8q4GUqAZCCdp2wBZWAnoftYc47n6AWiSbMm+iR9U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=UX/9jXm1OCnj6dK3Rmdg0t2iSZ6VsCMXO4xMnt5zCbs4SgyYY+bVIwmHyGbnzc5rouCZTU2FecDnH0sbXqoqpT9NRpXNt+ucKNsM3WbaAzsh+WuCL67opf1h9xxDsDR1hwTEB87cH4qe/1Ffb2a1JCTLVIu88BOruyv7wKp8bS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=A/gTqk81; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729298600;
-	bh=nqf8q4GUqAZCCdp2wBZWAnoftYc47n6AWiSbMm+iR9U=;
-	h=From:Date:Subject:To:Cc:From;
-	b=A/gTqk81zv4BjzTzHHkwld7nMQ9bnWiZ6SOhQEKz3gZtlvy9cJKJzJklnlFyPKG3F
-	 Mfgd01+FgrIbA5ka1jQlYTvEBdMv1q+yDkktWaQn08ymGAsdubwn031fBCLZG6BrJ5
-	 1De2supJN89KEqxJWPeGRe0axbe1WvLZa0c/J9FVxncWrkJsLpn2Cecbmrpgk7w2/8
-	 MfXMjrZb/IqvaRSJRkPFXPGsjON5o2t97lEwc3I9DbvUFX9FG6lgZndD++x/Re5tLL
-	 9qksKPNZQa8Fd1Grktkhx3VyqT5SHTECEDHUHci3Dl6hD0tPmduJdVnpD3nbzywzLl
-	 iQJ4xB6CXPHog==
-Received: from localhost (unknown [188.24.146.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1B8F317E0F6C;
-	Sat, 19 Oct 2024 02:43:20 +0200 (CEST)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Sat, 19 Oct 2024 03:43:14 +0300
-Subject: [PATCH] ASoC: dt-bindings: everest,es8328: Document audio graph
- port
+	s=arc-20240116; t=1729299212; c=relaxed/simple;
+	bh=fxJP6TH0Kf88Cju3h2DOUOHhzoA+0mHGNQ0kONReDZI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sJLFDMee4BjzeJXNn7Ho+WYVt9QDwya0vIViUGeOV2wlMZsaZFFDz9N3twK/zumI4QoxlUxULpTXMmYmMsVQK7pItxlyzDhuYmuGMkwGCACeVv/FV15uNl5cwOmtLjTza8UY53PIiGkT0UBzoIH0p4Q7zkViM9+EVcXEJMtxx5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wDpRG3mX; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a9a0474e70eso357262966b.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 17:53:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729299208; x=1729904008; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lC+kKjnHN4Mbf8H0HShnBhmWgFVk4d57CzYOuvwy+Pk=;
+        b=wDpRG3mXu96pvWXP5EQOWkK3kFmMnydXQtdYHymWI5UEwtnpL0kWH7FPiL4lebnMAu
+         b0++Sci56XXFfr4NasrxM1SGy2y0nLdcVOgoeeCkKtnMxhSvlo7LBl1Y46/a8sfS3/BU
+         27gvXFdSUx2txqdvMtsbOtYIDibUsjFC7mySDmH3bOJm2UvAU8L199sqUvY7sHdl1/2K
+         KwKe6p6FwOJNVUujd0NIlFBi8nlxByMfn2rFncE2aeQKnYpN2RsSpkbaQ9Ilt8czdTNP
+         7ByWUyXxcS0UjjFFXlH8/+ThhAhVm8LzAdPaa0j7rEt+DNUt9nm29LLMi2W1S4sWvelD
+         Nnjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729299208; x=1729904008;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lC+kKjnHN4Mbf8H0HShnBhmWgFVk4d57CzYOuvwy+Pk=;
+        b=Fh6tNg8KwDoOakgFKhofQu61V5w9bP5L9CL8kKBK6Q0Ui8CUDsB1YvQANkTpdkS4To
+         wJq12jzk9CvrrtG9OLmRkGzZqgrP8ov9MUg80NMQSYBOdpRuMYHo6o1631b9nea+tIZE
+         TtB+bam1//bqXBvVG3YVZnrxwLqJKMHm9ce+7J3kBE/2oYPqPpHYG0mQ8/R5YGRouJ/J
+         qhba0WYkEoNRvLy651Z+tbRYGt7P41DSSlWt77NhbRID4V07kCX4L7FSWJOcbu511Hr/
+         glZYYrb61PZowFFsGWaQ5SL1lfGmRkrz6h83Hp46bYZjZ1y64Jhd5+ULVMtOfZIiEuae
+         +vcA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwl92btoB1mBfn3fULZ78djQI8J+0QShcswq2ruxS2CzA0KX6MY2cUqtkesrb1tdBMuCkLsMFN9dCl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8Wf7++LhGDJh43+tNiBzDuljQ7U1BVw9Z0gMkbKyaFtqG35WZ
+	p/XabTLLeVkc3EVsN59+Ierl2rCGB6gEbrrJWGgas1b2Cm+iltQsDpdXF7zxHao=
+X-Google-Smtp-Source: AGHT+IHf/aIS9ByQ7hRwPT8KFuGH1SyFkxmybGXDN9u0/DXROuk9s58q/ntAna6EEjs0NGHCd4R2Nw==
+X-Received: by 2002:a17:907:9284:b0:a99:4601:b9d8 with SMTP id a640c23a62f3a-a9a69de8cbbmr336906366b.63.1729299208375;
+        Fri, 18 Oct 2024 17:53:28 -0700 (PDT)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a68bc49bfsm152566166b.101.2024.10.18.17.53.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Oct 2024 17:53:27 -0700 (PDT)
+Message-ID: <752f6195-335f-453d-b449-898b0a924126@linaro.org>
+Date: Sat, 19 Oct 2024 01:53:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/12] clk: qcom: camcc-qcs615: Add QCS615 camera clock
+ controller driver
+To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>, Stephen Boyd
+ <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20241019-qcs615-mm-clockcontroller-v1-0-9f1ca2048287@quicinc.com>
+ <20241019-qcs615-mm-clockcontroller-v1-4-9f1ca2048287@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20241019-qcs615-mm-clockcontroller-v1-4-9f1ca2048287@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241019-es8328-doc-port-v1-1-25c1d1b5c65c@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAKEAE2cC/x3MywqAIBBA0V+RWTfgo4f2K9EicqzZpGhEEP170
- vIs7n2gUGYqMIoHMl1cOB4VqhGw7suxEbKvBi11q6RySMUabdHHFVPMJyrZd8EaN5B2UKuUKfD
- 9H6f5fT8IFNxRYQAAAA==
-X-Change-ID: 20241019-es8328-doc-port-1065f8397e29
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- David Yang <yangxiaohua@everest-semi.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
 
-The ES8328/ES8388 audio codec is currently used in conjunction with
-audio-graph-card to provide an endpoint for binding with the other side
-of the audio link.
+On 18/10/2024 20:12, Taniya Das wrote:
+> Add support for the camera clock controller for camera clients to
+> be able to request for camcc clocks on QCS615 platform.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>   drivers/clk/qcom/Kconfig        |   10 +
+>   drivers/clk/qcom/Makefile       |    1 +
+>   drivers/clk/qcom/camcc-qcs615.c | 1588 +++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 1599 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 30eb8236c9d80071a87e0332cfac7b667a08824a..bdb1c672dd90d96814b214afd234341e37e3c470 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -460,6 +460,16 @@ config QCM_DISPCC_2290
+>   	  Say Y if you want to support display devices and functionality such as
+>   	  splash screen.
+>   
+> +config QCS_CAMCC_615
+> +	tristate "QCS615 Camera Clock Controller"
+> +	depends on ARM64 || COMPILE_TEST
+> +	select QCS_GCC_615
+> +	help
+> +	  Support for the camera clock controller on Qualcomm Technologies, Inc
+> +	  QCS615 devices.
+> +	  Say Y if you want to support camera devices and functionality such as
+> +	  capturing pictures.
+> +
+>   config QCS_GCC_404
+>   	tristate "QCS404 Global Clock Controller"
+>   	help
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index 2b378667a63ff6eca843d7bef638a5422d35c3d3..f69c1bc13d3eca1859d9e849399e55175df869c3 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -69,6 +69,7 @@ obj-$(CONFIG_QCOM_CLK_RPMH) += clk-rpmh.o
+>   obj-$(CONFIG_QCOM_CLK_SMD_RPM) += clk-smd-rpm.o
+>   obj-$(CONFIG_QCM_GCC_2290) += gcc-qcm2290.o
+>   obj-$(CONFIG_QCM_DISPCC_2290) += dispcc-qcm2290.o
+> +obj-$(CONFIG_QCS_CAMCC_615) += camcc-qcs615.o
+>   obj-$(CONFIG_QCS_GCC_404) += gcc-qcs404.o
+>   obj-$(CONFIG_QCS_Q6SSTOP_404) += q6sstop-qcs404.o
+>   obj-$(CONFIG_QCS_TURING_404) += turingcc-qcs404.o
+> diff --git a/drivers/clk/qcom/camcc-qcs615.c b/drivers/clk/qcom/camcc-qcs615.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2341ddb57598eaaa7fa35300ae6635ff40da99ae
+> --- /dev/null
+> +++ b/drivers/clk/qcom/camcc-qcs615.c
+> @@ -0,0 +1,1588 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/qcom,qcs615-camcc.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-pll.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "clk-regmap-divider.h"
+> +#include "clk-regmap-mux.h"
+> +#include "common.h"
+> +#include "gdsc.h"
+> +#include "reset.h"
+> +
+> +enum {
+> +	DT_BI_TCXO,
+> +	DT_BI_TCXO_AO,
+> +};
+> +
+> +enum {
+> +	P_BI_TCXO,
+> +	P_CAM_CC_PLL0_OUT_AUX,
+> +	P_CAM_CC_PLL1_OUT_AUX,
+> +	P_CAM_CC_PLL2_OUT_AUX2,
+> +	P_CAM_CC_PLL2_OUT_EARLY,
+> +	P_CAM_CC_PLL3_OUT_MAIN,
+> +};
+> +
+> +static const struct pll_vco brammo_vco[] = {
+> +	{ 500000000, 1250000000, 0 },
+> +};
+> +
+> +static const struct pll_vco spark_vco[] = {
+> +	{ 1000000000, 2100000000, 0 },
+> +	{ 750000000, 1500000000, 1 },
+> +	{ 500000000, 1000000000, 2 },
+> +	{ 300000000, 500000000, 3 },
+> +	{ 550000000, 1100000000, 4 },
+> +};
+> +
+> +/* 600MHz configuration */
+> +static const struct alpha_pll_config cam_cc_pll0_config = {
+> +	.l = 0x1f,
+> +	.alpha_hi = 0x40,
+> +	.alpha_en_mask = BIT(24),
+> +	.vco_val = 0x2 << 20,
+> +	.vco_mask = 0x3 << 20,
+> +	.aux_output_mask = BIT(1),
+> +	.config_ctl_val = 0x4001055b,
+> +	.test_ctl_hi_val = 0x1,
+> +	.test_ctl_hi_mask = 0x1,
+> +};
+> +
+> +static struct clk_alpha_pll cam_cc_pll0 = {
+> +	.offset = 0x0,
+> +	.vco_table = spark_vco,
+> +	.num_vco = ARRAY_SIZE(spark_vco),
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "cam_cc_pll0",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.index = DT_BI_TCXO,
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +/* 808MHz configuration */
+> +static struct alpha_pll_config cam_cc_pll1_config = {
+> +	.l = 0x2A,
+> +	.alpha_hi = 0x15,
+> +	.alpha = 0x55555555,
+> +	.alpha_en_mask = BIT(24),
+> +	.vco_val = 0x2 << 20,
+> +	.vco_mask = 0x3 << 20,
+> +	.aux_output_mask = BIT(1),
+> +	.config_ctl_val = 0x4001055b,
+> +	.test_ctl_hi_val = 0x1,
+> +	.test_ctl_hi_mask = 0x1,
+> +};
+> +
+> +static struct clk_alpha_pll cam_cc_pll1 = {
+> +	.offset = 0x1000,
+> +	.vco_table = spark_vco,
+> +	.num_vco = ARRAY_SIZE(spark_vco),
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "cam_cc_pll1",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.index = DT_BI_TCXO,
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +/* 960MHz configuration */
+> +static struct alpha_pll_config cam_cc_pll2_config = {
+> +	.l = 0x32,
+> +	.vco_val = 0x0 << 20,
 
-This is achieved via the 'port' property, which is not supported by the
-binding:
+zero shifted any direction is still zero
 
-  rk3588s-indiedroid-nova.dtb: audio-codec@11: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-    from schema $id: http://devicetree.org/schemas/sound/everest,es8328.yaml#
+zed.c
 
-Document the missing property.
+#include <stdio.h>
+#include <stdint.h>
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+int main(int argc, char *argv[])
+{
+	uint32_t a = 0, b = 0 << 20;
+
+	printf("a = %d b = %d\n", a, b);
+
+	return 0;
+}
+
+gcc -o zed zed.c
+
+a = 0 b = 0
+
+> +static struct gdsc bps_gdsc = {
+> +	.gdscr = 0x6004,
+> +	.en_rest_wait_val = 0x2,
+> +	.en_few_wait_val = 0x2,
+> +	.clk_dis_wait_val = 0xf,
+> +	.pd = {
+> +		.name = "bps_gdsc",
+> +	},
+> +	.pwrsts = PWRSTS_OFF_ON,
+> +	.flags = HW_CTRL_TRIGGER | POLL_CFG_GDSCR,
+> +};
+> +
+> +static struct gdsc ife_0_gdsc = {
+> +	.gdscr = 0x9004,
+> +	.en_rest_wait_val = 0x2,
+> +	.en_few_wait_val = 0x2,
+> +	.clk_dis_wait_val = 0xf,
+> +	.pd = {
+> +		.name = "ife_0_gdsc",
+> +	},
+> +	.pwrsts = PWRSTS_OFF_ON,
+> +	.flags = POLL_CFG_GDSCR,
+> +};
+> +
+> +static struct gdsc ife_1_gdsc = {
+> +	.gdscr = 0xa004,
+> +	.en_rest_wait_val = 0x2,
+> +	.en_few_wait_val = 0x2,
+> +	.clk_dis_wait_val = 0xf,
+> +	.pd = {
+> +		.name = "ife_1_gdsc",
+> +	},
+> +	.pwrsts = PWRSTS_OFF_ON,
+> +	.flags = POLL_CFG_GDSCR,
+> +};
+
+Shouldn't these have RETAIN flags ?
+
+> +
+> +static struct gdsc ipe_0_gdsc = {
+> +	.gdscr = 0x7004,
+> +	.en_rest_wait_val = 0x2,
+> +	.en_few_wait_val = 0x2,
+> +	.clk_dis_wait_val = 0xf,
+> +	.pd = {
+> +		.name = "ipe_0_gdsc",
+> +	},
+> +	.pwrsts = PWRSTS_OFF_ON,
+> +	.flags = HW_CTRL_TRIGGER | POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
+> +};
+
+I'd say those flags are very aspirational suggest POLL_CFG_GDSCR | 
+RETAIN_FF_ENABLE.
+
+
+> +
+> +static struct gdsc titan_top_gdsc = {
+> +	.gdscr = 0xb134,
+> +	.en_rest_wait_val = 0x2,
+> +	.en_few_wait_val = 0x2,
+> +	.clk_dis_wait_val = 0xf,
+> +	.pd = {
+> +		.name = "titan_top_gdsc",
+> +	},
+> +	.pwrsts = PWRSTS_OFF_ON,
+> +	.flags = POLL_CFG_GDSCR,
+> +};
+> 
+
+As Dmitry queried, TOP_GDSC should almost certainly be the parent of the 
+IFE/IPE/BPS and others.
+
+> +static int cam_cc_qcs615_probe(struct platform_device *pdev)
+> +{
+> +	struct regmap *regmap;
+> +
+> +	regmap = qcom_cc_map(pdev, &cam_cc_qcs615_desc);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	clk_alpha_pll_configure(&cam_cc_pll0, regmap, &cam_cc_pll0_config);
+> +	clk_alpha_pll_configure(&cam_cc_pll1, regmap, &cam_cc_pll1_config);
+> +	clk_alpha_pll_configure(&cam_cc_pll2, regmap, &cam_cc_pll2_config);
+> +	clk_alpha_pll_configure(&cam_cc_pll3, regmap, &cam_cc_pll3_config);
+
+Got to be missing something like
+
+         /* Keep some clocks always-on */
+         qcom_branch_set_clk_en(regmap, 0xc1e4); /* CAMCC_GDSC_CLK */
+
+If the GDSC gets declocked everything beneath it - including the stuff 
+in RETAIN goes away...
+
+Smells wrong.
+
 ---
- Documentation/devicetree/bindings/sound/everest,es8328.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8328.yaml b/Documentation/devicetree/bindings/sound/everest,es8328.yaml
-index a0f4670fa38c8435b63566f7383c940b4950caa4..ed18e40dcaacf7eed39fa659795efb1518678379 100644
---- a/Documentation/devicetree/bindings/sound/everest,es8328.yaml
-+++ b/Documentation/devicetree/bindings/sound/everest,es8328.yaml
-@@ -50,6 +50,10 @@ properties:
-   HPVDD-supply:
-     description: Regulator providing analog output voltage 3.3V
- 
-+  port:
-+    $ref: audio-graph-port.yaml#
-+    unevaluatedProperties: false
-+
- required:
-   - compatible
-   - clocks
-
----
-base-commit: f2493655d2d3d5c6958ed996b043c821c23ae8d3
-change-id: 20241019-es8328-doc-port-1065f8397e29
-
+bod
 
