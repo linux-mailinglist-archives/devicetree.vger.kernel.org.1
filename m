@@ -1,117 +1,181 @@
-Return-Path: <devicetree+bounces-113267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4134F9A5020
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 19:45:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D81419A5028
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 19:51:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA8E5284830
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 17:45:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B58FB26E66
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 17:51:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE6E18A926;
-	Sat, 19 Oct 2024 17:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 375B618D629;
+	Sat, 19 Oct 2024 17:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ncLvRWwy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BHYxyhHH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B72C18FC9D;
-	Sat, 19 Oct 2024 17:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F8A2F2F;
+	Sat, 19 Oct 2024 17:51:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729359905; cv=none; b=BOT31fIztWkeniyfkTPho1rgpIYhziGOzcC30dOsAOsulg17vr1jmm0WjVWHPjeun79bw7o0lgLmRZ09p76gSWgaTeocts7HjifakWJ+ZGiZGU7/mo265uniX0MV/2w1v45Jd5hZy+9GmyMcESO8ihcuTd/h0VKk0Gnez/loonI=
+	t=1729360302; cv=none; b=FlOa/b7QPUBEIqlpwMUBJs6dnCmcXi+2a9992Xby5wWGiDdp5mFEmATDcqzJOSykGT52HpgwqrJ6AjulkF9aRRW7xR5nmiqJR3VPo6L4uMuHyu/BJ2iLQKjwzoZ39MLfnE0RQQ6yK2eXtehX3GgGUYLJWBSM48unMkx3ZUO4ekk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729359905; c=relaxed/simple;
-	bh=NZE8zSnUWmDXLsUVhD56gHK8qtI4r/t43Zp/rgthYv4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z5dJJnfcADyyeU4YUY6/1Jay49QKyR7hRb9MbE4gOKZSlzIm+C6o/MoanIBZqWxlg7zo67wqZc33V1FuAEJPcPAKuzIsa+dEdQvbLs+qngoLXYjW2lfkrtmnMKpe1YFIbQkR7vLhV6X7MnXvAu0uvhI6ATJRyYKWe4fw/VgEzFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ncLvRWwy; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729359896;
-	bh=NZE8zSnUWmDXLsUVhD56gHK8qtI4r/t43Zp/rgthYv4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ncLvRWwyS8rIrN2bKTiI/fsu2q66JQH4rEBbEW/WUACLWcqYhrbV2WQ7f87gi/aVN
-	 VKlBxPCk3c6V6KXoFU47xRhYk0lU9bjAu0fpCokbvbHRcatfoKtT+Pah+scR4tblfv
-	 Ih7tIBIqwLi7kuTpGmcP1TIXkkRCnKYuOs0r/FhnhHbOX304xlvHJhIm9gQywLIZmd
-	 yQfNTwxeXUu36dCDlfxr+Hrw3aABFKjjBMz6mLqgx4tb4A0OXotwPwJTvfhXBKlT0r
-	 IdgNGZVUY9MSo+6bXpW5I6kv4en23W6ZhXEtgwSRlt2kGAZG/1NhXJZkyivPLEZE8y
-	 0ysbkTdNiyBiw==
-Received: from [192.168.1.90] (unknown [188.24.146.62])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DF67517E3692;
-	Sat, 19 Oct 2024 19:44:55 +0200 (CEST)
-Message-ID: <d4dd6971-7a01-40d3-a25b-dc56a9630442@collabora.com>
-Date: Sat, 19 Oct 2024 20:44:55 +0300
+	s=arc-20240116; t=1729360302; c=relaxed/simple;
+	bh=xfnVYrKIt+bLmXHcpF9/4MhLrYtAlT6cYyysrPbOezc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V7D9/08CwWuf4A472x9BzURBnvjTe3WXdl+/8ZCdPkI7yZpu0JRpe0zlMQ9ieguPtmwGEPlaTOFRpBUjti0LCJZtq8n0U486Rk37nDcQzXyjRfeSZrQeQQof/Sp9z+MJ1x+fi2dAeo9QgqlUAM86+IgfAa9PDMCgrekcd7BRsxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BHYxyhHH; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5c9634c9160so3488355a12.2;
+        Sat, 19 Oct 2024 10:51:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729360298; x=1729965098; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pn3M5fUk/wJyqiD1FXrvV6fDx+AjO03mIiW4thSfDm8=;
+        b=BHYxyhHHtDF4+JGn/AupYhr2liiZ04w7eD44Z+w6bionHHfvLEjy2xAUyYC6KPNDDU
+         Ce1L3VFU8T3VlSIaH1GZbVL2URGXFwbgQBhF4dhAvTAFfGKrFmgKJvwyr56sjjEu/ff6
+         Pqo8nVhvOVITDYyAMZ42CIZoLK/rixExCjXWcivbJyX8nbKm5abwnv+wnRYPluMJ1Bph
+         ZjACcmaK1kNSAhopGhqQFwce82GQFd60YHrAH6B72HTNWGb24j9IHPXtREjJbTcwxCf/
+         l1NitXg0V4za6K2sLYRW7w9tm7YJLDjZoGEKO0VZrFBiOBKtM7R+QYjxQw1ReYEsP1d2
+         Nnng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729360298; x=1729965098;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pn3M5fUk/wJyqiD1FXrvV6fDx+AjO03mIiW4thSfDm8=;
+        b=cmhEJkvicYqFyjsYMTUCogTpZlwYF95UHzmHex4Uv9+XXXXS/PJ2PoBAFu33USno2A
+         F+YFfbiBuWVt5V3mynJQ4tuT9dETllQyG3Aas/WgEdcgMCkWVuLwlG7U4XjLgRQDk8HS
+         kMg6eVAKbKRtG0e+7kmlk37qZGWoYfImulvPh4zkI2NyItJvIQ0/iy7qioVqEeQ+a6jI
+         S3p0EzTDdcFVKtRuvMa5auIFJbsUDhHsUloXO7iUSMKaNSCsp444YDAGERw451OeFRmt
+         6R0OUeVttk3p17gLamdWguurG4Mu3ae38OZ/fi5Rk3+cD8M3g8CCRFkRbh0n4S0DWS1a
+         nR7A==
+X-Forwarded-Encrypted: i=1; AJvYcCUcGNigIx9+HTA/SrfV6C+F0+Ezylow9qIqzbDraPCwvfVwhuao10FtCxIGupdP4C7UJ82AnsQ5fLMi@vger.kernel.org, AJvYcCVyyWCys5TxtVvGxPWtQrOBmqmEwrKxi9792mTdbBmaxTtoyO2RzfdyyeEj412ShfwJFMIejSLFRWARFZ9o@vger.kernel.org, AJvYcCWA/ad2EjBmb+TlZoWJlRDJOm8I/jLDyLMd7w6NGKxgoqRNS1pa9s1ptRTfpuXw1leVXKOD+WrThrpw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsoyIMvPFzoIa90hsSBvyzSTkQBX7VfrAfbJLMSBCqnqbvOTfl
+	2A3QxgEMhXekZE2CqXtFzhh2tlD1TRwKnxvexxA3lFq6AiekfAPj
+X-Google-Smtp-Source: AGHT+IEhj4tFtSF00LV9YExwRUX5TyggDcTqlAX9G8b72VDgmvScDE5pBlU3AAIVKzb72C1MExAgdA==
+X-Received: by 2002:a05:6402:40cf:b0:5c9:a664:99c0 with SMTP id 4fb4d7f45d1cf-5ca0af9ab0cmr4313936a12.30.1729360297989;
+        Sat, 19 Oct 2024 10:51:37 -0700 (PDT)
+Received: from vamoirid-laptop (mob-194-230-148-150.cgn.sunrise.net. [194.230.148.150])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb6696b647sm16947a12.18.2024.10.19.10.51.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Oct 2024 10:51:36 -0700 (PDT)
+Date: Sat, 19 Oct 2024 19:51:32 +0200
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, anshulusr@gmail.com, gustavograzs@gmail.com,
+	andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 09/13] iio: chemical: bme680: Move ambient temperature
+ to attributes
+Message-ID: <ZxPxpD8gtikOxzOe@vamoirid-laptop>
+References: <20241010210030.33309-1-vassilisamir@gmail.com>
+ <20241010210030.33309-10-vassilisamir@gmail.com>
+ <20241012130124.44c69521@jic23-huawei>
+ <Zw17n7DB2LdgDct3@vamoirid-laptop>
+ <20241019145925.5d54e7b4@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: rockchip: Enable HDMI0 on rock-5a
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Luis de Arquer <ldearquer@gmail.com>, Alexandre ARNOUD <aarnoud@me.com>,
- kernel@collabora.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241019-rk3588-hdmi0-dt-v2-0-466cd80e8ff9@collabora.com>
- <20241019-rk3588-hdmi0-dt-v2-5-466cd80e8ff9@collabora.com>
- <a90437be-eae6-4dc9-93fa-fd4af8ad9bed@kwiboo.se>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <a90437be-eae6-4dc9-93fa-fd4af8ad9bed@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241019145925.5d54e7b4@jic23-huawei>
 
-Hi Jonas,
-
-On 10/19/24 4:02 PM, Jonas Karlman wrote:
-> Hi Cristian,
+On Sat, Oct 19, 2024 at 02:59:25PM +0100, Jonathan Cameron wrote:
+> On Mon, 14 Oct 2024 22:14:23 +0200
+> Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
 > 
-> On 2024-10-19 12:12, Cristian Ciocaltea wrote:
->> Add the necessary DT changes to enable HDMI0 on Radxa ROCK 5A.
->>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 52 ++++++++++++++++++++++++
->>  1 file changed, 52 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> index 87fce8d9a964cd53d179ce214ae1c0ff505a2dce..2b141af5e709b0bc2193dbfb2327e6bc1fdaa502 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> @@ -5,6 +5,7 @@
->>  #include <dt-bindings/gpio/gpio.h>
->>  #include <dt-bindings/leds/common.h>
->>  #include <dt-bindings/pinctrl/rockchip.h>
->> +#include <dt-bindings/soc/rockchip,vop2.h>
->>  #include "rk3588s.dtsi"
->>  
->>  / {
->> @@ -35,6 +36,17 @@ chosen {
->>  		stdout-path = "serial2:1500000n8";
->>  	};
->>  
->> +	hdmi0-con {
->> +		compatible = "hdmi-connector";
->> +		type = "a";
+> > On Sat, Oct 12, 2024 at 01:01:24PM +0100, Jonathan Cameron wrote:
+> > > On Thu, 10 Oct 2024 23:00:26 +0200
+> > > vamoirid <vassilisamir@gmail.com> wrote:
+> > >   
+> > > > From: Vasileios Amoiridis <vassilisamir@gmail.com>
+> > > > 
+> > > > Remove the ambient temperature from being a macro and implement it as
+> > > > an attribute. This way, it is possible to dynamically configure the
+> > > > ambient temperature of the environment to improve the accuracy of the
+> > > > measurements.
+> > > > 
+> > > > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>  
+> > > New ABI? Would need docs.
+> > > 
+> > > However, I 'think' we have a few cases where we handle this via the slightly
+> > > odd interface of out_temp_processed / _raw with a label saying it's
+> > > ambient temperature.
+> > > 
+> > > The tenuous argument is that we have heaters that actually control the
+> > > temperature and the affect of either heating the thing or just happening
+> > > to know the external temperature ends up being the same. Hence use
+> > > an output channel for this control.
+> > > 
+> > > Jonathan  
+> > 
+> > Hi Jonathan,
+> > 
+> > Thanks for taking the time to review this. I saw your previous messages,
+> > and I am not responding to all of them so as to not flood you with ACK
+> > messages.
+> > 
+> > For this one though I have to ask. The last commit of this series is
+> > adding support for an output current channel that controls the current
+> > that is being inserted into an internal plate that is heated up in order
+> > to have more precise acquisition of humidity and gas measurement. Does
+> > it makes sense to add an ambient temp output channel as well?
 > 
-> ROCK 5A use micro HDMI connector type, so this should be type = "d".
+> If we need to know that temperature to calculate the meaning of the pressure
+> channels then I think it does.
+> 
+> I am a little confused though as this device measures the temperature.
+> Why isn't that the right value to use?  Is that because the heater
+> is confusing things?
+> 
+>
 
-Indeed, good catch, will fix in v3.
+Hi Jonathan,
 
-Thanks,
-Cristian
+Thank you very much for your message! So, I digged a bit more into the
+device datasheet and I found out that the ambient temperature can
+actually be taken directly from the measured temperature (p.22 of [1]),
+I can use this one. This means, that the ambient temp can be fully
+dropped since the temperature of the sensor is the information we need.
+Is it ok to drop it fully since it is an ABI change? If not how should I
+approach this?
+
+Another thing that I had missed because of the way the code was written
+is that actually we can (and should) use output channel for setting the
+temperature of the internal heater plate. This sensor essentially has an
+internal heater plate that allows it to measure the VOC. Currently if
+you check the driver [2], the value of the requested temperature of the
+heater is set only once in the probe function and stays all the time
+like this. This doesn't allow for much flexibility. But it is something
+that I will do in another series and not this one, since this one is
+already quite heavy.
+
+Cheers,
+Vasilis
+
+PS: I don't understand why Bosch designed the sensor in this way. Since
+the value of the ambient temp can be either hardcoded or the actual
+value of the temperature sensor, they could have had all this logic in
+hardware. They could actually even implement the compensation functions
+in hardware and just return RAW values to us. It's kind of the same
+situation with the BME280 and BMP{1,2,3,5}80 drivers that we have.
+
+[1]: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf
+[2]: https://elixir.bootlin.com/linux/v6.11.4/source/drivers/iio/chemical/bme680_core.c#L989
+> > 
+> > Cheers,
+> > Vasilis
+> > 
+>
 
