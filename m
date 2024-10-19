@@ -1,107 +1,107 @@
-Return-Path: <devicetree+bounces-113197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C2C9A4E4B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 15:23:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C3339A4E53
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 15:42:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 695311C23351
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 13:23:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72A1E1C21606
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 13:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC8B19067C;
-	Sat, 19 Oct 2024 13:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDBF8837;
+	Sat, 19 Oct 2024 13:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KDRdH2Vj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cWWOMvV9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2409B190074;
-	Sat, 19 Oct 2024 13:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4407462;
+	Sat, 19 Oct 2024 13:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729344081; cv=none; b=Zpbq3h2T+zWOielULeH/in+igpCclw3YwNZz/A4aopjfC6HEWOF92368VlxR3rI2v4xE44cUvTFrvZMfST6OTTm2FK8KqDreAsWD/5y0Mfgmdo9VwL6EuohPR1QKgDCdSYMhMwvZa55plnjzvDgPksat+Z/04qYIYnfEb+GiVCQ=
+	t=1729345329; cv=none; b=t6NSb9H39avExOCpBz+tq6uy9lgmLMzKCmzwx//RmWRTc3olCnMJojSEIu9ySwS5eQ6LzJt8y0LOT/sccRORX0IUALoI1NkHAZBZleTvyXXwAXM8nDrueTKaLKVZ68fIRCkFyTkzANwpmmC+H8lAAdb8WeMSDLWiKv/+rDlmoUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729344081; c=relaxed/simple;
-	bh=or3247cKJ1jKd4U/sgvypGpqvn18gzAUK+zAzepboWc=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=RasJ9m73VDGUY11rN9m3EcVBNYZPZ3l9QZsfroOnaBB+7X27cpxNGXWdqWD6bvXcCuLSvAB6OPYlDZzXw3Rk+yl5w69Hqi5rEHEUv1DkX0FeU1HO5QXSAVTcIEjs4Jhl46jg1HezKRIYa53/7DwYMdSn3LtTmB1JWrDFQGgsHAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KDRdH2Vj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90B64C4CED1;
-	Sat, 19 Oct 2024 13:21:20 +0000 (UTC)
+	s=arc-20240116; t=1729345329; c=relaxed/simple;
+	bh=M1qJgMas5VSngnyEihdlgKK/FSQHc9ultfWTJgDRwq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aksGNwMQrtcqJNIrDVKPMiOo1pIsa1Pifr8zk3lqomoZJdwV51wrYxWvGQbb4EJ3JSHOn0y/HfiGsqYm2GkxOFqtpxS4m1n4sLCtuXnxc3sY2Z7WlKuSmKPsHIusXuVlLBgDxs5IpV7d2ax9VtRnPBE72bzMEjAMD30kdHpVsfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cWWOMvV9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26D9AC4CEC5;
+	Sat, 19 Oct 2024 13:42:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729344080;
-	bh=or3247cKJ1jKd4U/sgvypGpqvn18gzAUK+zAzepboWc=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=KDRdH2VjyfkDPGVIvimt99E565twkG3eVFjqmTSCjYICabR7cl3Xl0YZVdOYDGwS4
-	 wJFUJKvGuQeFOlYDvEnXujaj4tSG3kKdJ8L0oOOh9+uOm0P7TWybkjTyMUYzLte3JM
-	 u1LSFQKbg9mQf9vyTDuCaZk1DOQ6cVCJlr1zHWzXy2+jlMfWQ46I9tDDjf0MoyD/Kz
-	 KBkEbXJrPNZ3HHBwVA9jUjannhvRFOup7HqO1+f7nfyPyJrH+pp36T35/8c8KPAWyr
-	 wkNlvb8NLx+mG7hVwRg0J4+mo8nuYV2KgRutTVnQXbkTMMsVY1FrJwpZl3LEJC7m9b
-	 X9m+Y9levIQ3w==
-Date: Sat, 19 Oct 2024 08:21:19 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1729345328;
+	bh=M1qJgMas5VSngnyEihdlgKK/FSQHc9ultfWTJgDRwq4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cWWOMvV98sPcUFt9DS0QqOV2j6Roy+IS7XdBJt8CZgbRJlomHS3BhmMFv4zKBkn8m
+	 Dd7ZXTN3T4g1/aACpDN4X83uVRoFTVgmdtVt+/WCfGGSIp5paXXgXjLD7G7ouKm30g
+	 VkoN8qijRj1NfaHvIwPwnULbUf3bJMA8EPhX4GxJ3CQ2WLRgxmncs+7crRFGFSPuON
+	 OumcG3d+1FiPnR2pxdgF7kTlviKzyPuV3kYN/DD8J5oq0yYH9JlUJdjw26ZQMNTNV3
+	 dmNBnodX0SaDMREKVz9+F2Nr9ncBD1m34drUwN9wMhdrbAxeSN+7i592mc2iFot+Pt
+	 71/Ju5+hot2ow==
+Date: Sat, 19 Oct 2024 14:42:01 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <nuno.sa@analog.com>,
+ <conor+dt@kernel.org>, <ukleinek@kernel.org>, <dragos.bogdan@analog.com>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>, Conor Dooley
+ <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 5/6] dt-bindings: iio: adc: add ad4851
+Message-ID: <20241019144201.7f274e09@jic23-huawei>
+In-Reply-To: <20241018104210.51659-5-antoniu.miclaus@analog.com>
+References: <20241018104210.51659-1-antoniu.miclaus@analog.com>
+	<20241018104210.51659-5-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org, 
- Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
- Will Deacon <will@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Amit Kucheria <amitk@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- devicetree@vger.kernel.org, Daniel Lezcano <daniel.lezcano@linaro.org>, 
- linux-gpio@vger.kernel.org, Thara Gopinath <thara.gopinath@gmail.com>, 
- linux-arm-msm@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>, 
- Joerg Roedel <joro@8bytes.org>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, iommu@lists.linux.dev, 
- linux-pm@vger.kernel.org, Lukasz Luba <lukasz.luba@arm.com>, 
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20241019-msm8917-v1-13-f1f3ca1d88e5@mainlining.org>
-References: <20241019-msm8917-v1-0-f1f3ca1d88e5@mainlining.org>
- <20241019-msm8917-v1-13-f1f3ca1d88e5@mainlining.org>
-Message-Id: <172934407034.3231899.7392899989980103960.robh@kernel.org>
-Subject: Re: [PATCH RFC 13/14] dt-bindings: arm: qcom: Add Xiaomi Redmi 5A
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Fri, 18 Oct 2024 13:42:09 +0300
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-On Sat, 19 Oct 2024 13:50:50 +0200, Barnabás Czémán wrote:
-> Document Xiaomi Remi 5A (riva).
+> Add devicetree bindings for ad485x family.
 > 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+One question inline.
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@0{
+> +            compatible = "adi,ad4858";
+> +            reg = <0>;
+> +            spi-max-frequency = <10000000>;
+> +            vcc-supply = <&vcc>;
+> +            vdd-supply = <&vdd>;
+> +            vee-supply = <&vee>;
+> +            vddh-supply = <&vddh>;
+> +            vddl-supply = <&vddh>;
+I was curious what these supplies are giving h and l naming.
+Seems vddh is the supply for an LDO and vddhl is a way of supplying
+an alternative 1.8V to the output from that LDO.
 
-yamllint warnings/errors:
+Superficially it looks like an either or situation.  I'm not that
+worried if the binding enforces that detail though it would be nice
+to do so.  However this example seems misleading as I don't think you
+would ever connect them to the same supply.
 
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241019-msm8917-v1-13-f1f3ca1d88e5@mainlining.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> +            vio-supply = <&vio>;
+> +            pwms = <&pwm_gen 0 0>;
+> +            io-backends = <&iio_backend>;
+> +        };
+> +    };
+> +...
 
 
