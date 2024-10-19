@@ -1,147 +1,122 @@
-Return-Path: <devicetree+bounces-113108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7A469A4AB0
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 02:38:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CEE79A4AB2
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 02:39:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E6661F217C4
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 00:38:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08D84283CCB
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 00:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB381922E4;
-	Sat, 19 Oct 2024 00:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D0A81922E9;
+	Sat, 19 Oct 2024 00:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pU6GiByr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u2Se86gg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF3F29CF6;
-	Sat, 19 Oct 2024 00:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EBF1922E3
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 00:38:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729298328; cv=none; b=tbq+RDhkmkrV8dLB7610YGv/GXu3yxbNsf4D8Jed8jQ0A4AhP4YfggVWD37nCKJaSYxmAuPAy1DZDt5r09ZdDDq23dgscTe5RZf79UKsJBiesxygSKoLr39f1LmPK9ShrvMfj584FWB3/MVtDxsYpZJVZljh9R9zI+GOOxPBygk=
+	t=1729298337; cv=none; b=Ik4BEkoXe4AEd1tJgqTrUXjcgZ+45NmtqWNhiKYZanBx2lvJhNvAupACs30VtPYJn+yj2/t4lkjn50lob2sna+bbSapEwA0FAUN+GFQ1PzQoeNxmd3svnqj7X6svSu32mkNXATIM45MtuDz+AkO9ZWwgSEmrkMFDPRELn98Cod8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729298328; c=relaxed/simple;
-	bh=lyUmwSP2Z3VUSJb/ROJNqLwP+S/dVxdakV7oW54hie4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=umoGxdOc/24BxRwlH7v0bvwCzaIyrGXmyzbGLNOcCuF7dbp/1m1b/p2dx4FoE1ftxfbVn3Sualg1Slvq/XtcSF9l1S/eMGZngSjWevUbHPkFZymUHQTjy67s1gJ3CAQTi4NUBpdqSUcAaqTFBspKrAHhfLN1CDwErfLvZc5D5KU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pU6GiByr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729298324;
-	bh=lyUmwSP2Z3VUSJb/ROJNqLwP+S/dVxdakV7oW54hie4=;
-	h=From:Date:Subject:To:Cc:From;
-	b=pU6GiByrYU3Mgtu7xjor6dsWgBnGxiocIDECQBCBTFvOQ60IVyT/MJnTYmB3p5hgm
-	 Tc021m9Dof+36499ThGi1tvPbp/J0HPUcfmCTctw/i77WWR7gthNCJzCn6f6NZqemy
-	 YXwNCv4W3sGMtnEEjCAMJRobie3+0iFzMtGJDBRE1dujE9K9E0vvHKMp45GFylhZpt
-	 iwmeBLuzuls6FOU1hJJsXZmV4N2t25L5I2zHxSN0CaNO2ollJxqbce3iy0bwrzM+9y
-	 f7pkI6W7st9TQyqyoeYB9JasIGcu+MFHuW8LvgQQ6ZXbN6z5lIk+4f4jGfmOtaYrJQ
-	 L/RFyzyGBm0bw==
-Received: from localhost (unknown [188.24.146.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 429C817E0F6B;
-	Sat, 19 Oct 2024 02:38:44 +0200 (CEST)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Sat, 19 Oct 2024 03:38:10 +0300
-Subject: [PATCH] arm64: dts: rockchip: Drop invalid clock-names from es8388
- codec nodes
+	s=arc-20240116; t=1729298337; c=relaxed/simple;
+	bh=Mewcl59dRlGPPCpRuSRwPywr6ycIDIWaUH/SfdWIQ8Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=omID6e3kTkr+bblO+UgKsTNORUg0/vVl8Ssnl/CLC+lP+056xBHkNOc9fZ+eh3k37EEQIUKo6bAoXeMRwpMClIaOSKczho5AyatQ23BNVrSzSzTYsxDHMkWn408Icz1Y/iRXUqBNKUBF4wuVPISjB9Svyb/zGbfT962dpiZPG48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u2Se86gg; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-539f0f9ee49so3095851e87.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 17:38:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729298333; x=1729903133; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0M41lobMzDtVDXSER1bmN9AsQKoidShYGX+Z+FE6IRg=;
+        b=u2Se86ggxXhSy3+mSEOGZxWNPamUQzT3i6si7Xi+iBE6XsK1OlkAoS8qvkiBybH5fg
+         rB/wEn+Q1KalHsEHGQPAJX+LcR38Wqcp8jor1kRV4/8ZhzIa7n5Bdae6mKFeVblPD7zL
+         6fs2jb98Rcjnyxmgwz4eMK0I4gPvILYgD9U0eW81HDkVzIB7P9PHAAWX7l6adRATkaOf
+         c/cjJ2VCZlU2VYEAKiunx/Taf8g62Kgod9fME1P92PuyTiCmh2Ftk3Y0iKrV/6DKsn9U
+         OCM4Q2Qgw/gVkIwwyqQXi0NEmpW9zSLgAMuL7qH39bWwCjHNjvrSjYxPKetTd2TLh7Iy
+         VHpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729298333; x=1729903133;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0M41lobMzDtVDXSER1bmN9AsQKoidShYGX+Z+FE6IRg=;
+        b=vN+srni6GHs1/ry7jXUvHYLW7yRBMPQMisnBQOxxXHdKmvOLMwHi94uVWH6jw6qCkX
+         O3m4NhquFVVMX/3gGNtOQheGew0bf6bxMgEPA/F+kaG/FlfGrmsKkhVHNp7gQP5LwM9z
+         b41NLyo8BpEcpvDMx/ngKDrl8l+8Hyp1egrB53sj0d528s3cueNH8abXsASD9L2Tu7SO
+         kHSYJ28x5hZXC82qLgy3rQEeQVwpofYZI2ozWG+SYPqj/9GYQ6bPwOB9dYllogwvAm7p
+         lilhkTeI+7d17Nv8nPkXzMDyPRSs8S5/C5iJQu3bh7MZGutSNNaFvYNTbCjc2npQJGSh
+         5oKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVMEEGYxL0Wlx2X2M6KgYqzOynGyv4rb/b5dmOduUaVGpusce8Xzf3oxpAQ0hxcg5A3gJdrjklCIu9K@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwyySp6mNgSot/cKLDvPS3nUqqE6skxPKu7coRzSbE/3BoU++l
+	RxwqBTE13cJsrFQA/5O9749lqA3V+l0EIsHJOolTc5uE0L3mSpyJXR6MpnTgyw8=
+X-Google-Smtp-Source: AGHT+IF7fBEeWmNkccNzd31LUcjDvOyf3yMzraYUGO6AugKRPwkcFosfUe4YdEuEFjihSL5BW7Y+2g==
+X-Received: by 2002:a05:6512:4009:b0:52c:fd46:bf07 with SMTP id 2adb3069b0e04-53a154ce86amr3097967e87.49.1729298333228;
+        Fri, 18 Oct 2024 17:38:53 -0700 (PDT)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ca0b076d0asm1272577a12.16.2024.10.18.17.38.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Oct 2024 17:38:52 -0700 (PDT)
+Message-ID: <d3658f34-c24a-47c4-a8fc-989de009b4fb@linaro.org>
+Date: Sat, 19 Oct 2024 01:38:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/11] clk: qcom: camcc-qcs615: Add QCS615 camera clock
+ controller driver
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>, Stephen Boyd
+ <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20241019-qcs615-mm-clockcontroller-v1-0-4cfb96d779ae@quicinc.com>
+ <20241019-qcs615-mm-clockcontroller-v1-4-4cfb96d779ae@quicinc.com>
+ <f5exjvacw4gz7s7byxz6aux7jt3kczn5waio3f3dukpdvzmkvi@c65xjssv4aqy>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <f5exjvacw4gz7s7byxz6aux7jt3kczn5waio3f3dukpdvzmkvi@c65xjssv4aqy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241019-es8328-dt-fixes-v1-1-ca77d5ce21ad@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAHH/EmcC/x3LMQqAMAxA0atIZgNtFKxeRRyqjZqlSiMiSO9uc
- Xx8/gvKSVhhqF5IfIvKEQtsXcGy+7gxSigGMtRaY3tkdQ05DBeu8rAi07wE8s74roVynYn/UKZ
- xyvkDxOWZ8GEAAAA=
-X-Change-ID: 20241019-es8328-dt-fixes-e2bcd2a80a74
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
 
-The binding for Everest ES8328/ES8388 audio CODEC doesn't support the
-'clock-names' property:
+On 18/10/2024 21:22, Dmitry Baryshkov wrote:
+>> +static struct gdsc ife_1_gdsc = {
+>> +	.gdscr = 0xa004,
+>> +	.en_rest_wait_val = 0x2,
+>> +	.en_few_wait_val = 0x2,
+>> +	.clk_dis_wait_val = 0xf,
+>> +	.pd = {
+>> +		.name = "ife_1_gdsc",
+>> +	},
+>> +	.pwrsts = PWRSTS_OFF_ON,
+>> +	.flags = POLL_CFG_GDSCR,
+>> +};
+> Shouldn't IFE GDSCs have titan_top as a parent?
 
-  rk3588-orangepi-5-plus.dtb: audio-codec@11: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-    from schema $id: http://devicetree.org/schemas/sound/everest,es8328.yaml#
-
-Since the related audio driver is also not making use of it, drop the
-invalid property from all es8388 codec nodes.
-
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
-Several DT fixes involving the usage of the Everest ES8328/ES8388 audio
-CODEC.
----
- arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts      | 1 -
- arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts  | 1 -
- arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts      | 1 -
- arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts | 1 -
- 4 files changed, 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
-index 2c41e017f4f402e9c7eea80955219ee23f2f582d..ca1d3253d3e1f4c6f272a27737b5660c099538e5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
-@@ -114,7 +114,6 @@ &i2c1 {
- 	es8388: es8388@11 {
- 		compatible = "everest,es8388";
- 		reg = <0x11>;
--		clock-names = "mclk";
- 		clocks = <&cru SCLK_I2S_8CH_OUT>;
- 		#sound-dai-cells = <0>;
- 	};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-index c73fecf1c73c94944bb25e1243d5390b84241338..4cfce107be73652ba5eb2c03e3e2ca0c65ed5d50 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-@@ -328,7 +328,6 @@ es8388: audio-codec@11 {
- 		compatible = "everest,es8388";
- 		reg = <0x11>;
- 		clocks = <&cru I2S0_8CH_MCLKOUT>;
--		clock-names = "mclk";
- 		AVDD-supply = <&vcc_1v8_s0>;
- 		DVDD-supply = <&vcc_1v8_s0>;
- 		HPVDD-supply = <&vcc_3v3_s0>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-index 50c7a5e9af1904b87925bc526752a87deb3460a6..177e00d45b3d19e91525e62b5ce40d1079bea330 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-@@ -316,7 +316,6 @@ es8388: audio-codec@11 {
- 		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
- 		assigned-clock-rates = <12288000>;
- 		clocks = <&cru I2S0_8CH_MCLKOUT>;
--		clock-names = "mclk";
- 		AVDD-supply = <&avcc_1v8_codec_s0>;
- 		DVDD-supply = <&avcc_1v8_codec_s0>;
- 		HPVDD-supply = <&vcc_3v3_s0>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index d8c50fdcca3b57e50d70325e1d7a7efad2e314bd..8ba111d9283fefcf77093be7f74705d06f67edfa 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -377,7 +377,6 @@ es8388: audio-codec@11 {
- 		assigned-clock-rates = <12288000>;
- 		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
- 		AVDD-supply = <&vcc_3v3_s3>;
--		clock-names = "mclk";
- 		clocks = <&cru I2S0_8CH_MCLKOUT>;
- 		DVDD-supply = <&vcc_1v8_s3>;
- 		HPVDD-supply = <&vcc_3v3_s3>;
+Ack, usually, this looks wrong.
 
 ---
-base-commit: f2493655d2d3d5c6958ed996b043c821c23ae8d3
-change-id: 20241019-es8328-dt-fixes-e2bcd2a80a74
-
+bod
 
