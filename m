@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-113206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F769A4E87
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 16:12:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76A29A4E8E
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 16:14:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23C06287619
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 14:12:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C51428629A
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 14:14:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96772405F7;
-	Sat, 19 Oct 2024 14:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBFCC47A60;
+	Sat, 19 Oct 2024 14:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MfSkb7o3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cPm96Gq/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89EB52207A;
-	Sat, 19 Oct 2024 14:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC7839ADD
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 14:14:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729347160; cv=none; b=UMm5i+6apdRRPYCFy41vH+E1lmUjRoZkDKmDmQ3dQ0Y4F60Xm4D7lbnkjS6GyyYb0BX+QPQty+exkZog4alIxaIfB2BK6qFupllXJsPb0dQU8Gp3vUFVvQ7XKvvbBnLRxVKkHADH/ZDt5C/pnKtI+85CRq0noFIC/r6tYjfKSdU=
+	t=1729347267; cv=none; b=YdYa9DdJ6Ml4qEW2Co2ML+JjUm4rR29tOM1HjAanT8N0xz8iJOxxishpxn6iwWJVmN+FwIiwCsjIXzCh6F4yyXT5OHyHtrOvYXC5iQQBOu3/J/VENLelXfGOaSmAkClshlwb2/dNOkbldVZ3CrFhZnVJO9z9hTsk9XWbynAF+Ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729347160; c=relaxed/simple;
-	bh=ZrHmr5VaECy8UuvZjqQ6voSNPqYS2zNatLG+hRePEVY=;
+	s=arc-20240116; t=1729347267; c=relaxed/simple;
+	bh=K/FugdwtDsOBQVpWzEqCm4CMqjmDrl2cnTsdg6+InVs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GXhjQ69TtoHOlUttpejv1Q5npRY8gG/+0U7k4DqQMUoHyBsoVgxqMc+tFu+0B0wnBcqdUlSgPMkyFOnhjF3SXWSC1tS7JyRbbl6TNJYQ1ayF07XXxwrYx/d1yKjzCKoi9JbLEyfJ1VQjSNn/zrdo9YNrx/CLBA7W+Nrwpo5ErZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MfSkb7o3; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729347159; x=1760883159;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZrHmr5VaECy8UuvZjqQ6voSNPqYS2zNatLG+hRePEVY=;
-  b=MfSkb7o3kJ60c90kz+h8zChXJPDXB8xYe4VNX2Cg/c7uZqO7z/m9qUtr
-   FIHFLN0Vw5LluXbujvTot7VM8CCxsQnJufwl/n7VA0NyiOkcThbhVn1jK
-   U94ApDP4TPxlf1r3JO21YPcLwWpi36nw50A4niHclnbAuKu2qi3SaaSuA
-   7U72LmXM2Om4OkwhkTUVqujYOedeOoth/+Xv+alHvB9Y0hf5Dt17gn6nz
-   oWVYfvvvw9b14GTDY2oWjtEHnWOnW/LVox52aQCrh/TaAFj1xok2DZ2S+
-   zSf+8FeIuR5MKMHbBu4LV4k9+5MRAwfvFiZVtzyM9Hyb5RpPCCQaw2pMh
-   w==;
-X-CSE-ConnectionGUID: ordxXbAnSSOZ9FSZJgp7DA==
-X-CSE-MsgGUID: P+t0i6GzRKiSERMCl77Tyw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11230"; a="16487351"
-X-IronPort-AV: E=Sophos;i="6.11,216,1725346800"; 
-   d="scan'208";a="16487351"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2024 07:12:38 -0700
-X-CSE-ConnectionGUID: VHCoxef/St+94kG9sdfBiQ==
-X-CSE-MsgGUID: jMPDadBJSN+1E4RqjaIKOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,216,1725346800"; 
-   d="scan'208";a="102423448"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 19 Oct 2024 07:12:33 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t2ABz-000P3P-36;
-	Sat, 19 Oct 2024 14:12:31 +0000
-Date: Sat, 19 Oct 2024 22:12:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-Subject: Re: [PATCH v2 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
-Message-ID: <202410192150.qZi3WkG1-lkp@intel.com>
-References: <20241015105133.656360-3-ciprianmarian.costea@oss.nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=B1MVbaxdEAsHlhPFlNcu+dfzpveoToVa4dUehtl9OwijhhGY/5rsS/1kzyS/P1dGDRceulMln9XacfuCgTbkIYX2qnv+cSIGlEv2uAwoSUyBGiUjtbrt0pjIfx3xhcYzH87jndS6EPRnNiLs5IKu4xdiqZFYiyF96KR1ezs0Rvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cPm96Gq/; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2fb559b0b00so27406461fa.0
+        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 07:14:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729347264; x=1729952064; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=sZQKGhids4Q82uDym0yxnTsBolQaUr1BmnikbSV6eUY=;
+        b=cPm96Gq/re5yw4iGDGOZ7Yy5htAPiSGbZ9IjgATfBE1ZtFMJKq56IBC/OhwZYDSw5T
+         1WmcWznp4Kr9/nt7HqoLWjnQNj0euTKHZZyANFbMfCJ6buxaPRmVNeJFA/H38OIPEpQX
+         N5IXueSNjV3OsbUTjqN0KtMvs4nkt3W9YkevMXNL7SnpmM8adCTn/kMkaV0yJGiezsBX
+         isANDQ81cf/Srs4dN9Ss2D53khbd0g14afqHBsBXdQTOk4MymEASvjEuC/f2ddLpFTA9
+         vr24RLj0DlM2Mi0ViojIcOCmH5kj+xBYm7J9BKr6GJeBRuFOvpJKfV83ZiEKl09mGw6P
+         8V2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729347264; x=1729952064;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sZQKGhids4Q82uDym0yxnTsBolQaUr1BmnikbSV6eUY=;
+        b=cEwfB8tiC9dqGBLfNilSxSM010GrgazjvXU68W/21S13IDGjXponAAwyaboPTQlBWE
+         1ESdyEEA7yUKnPLvpOSguuEqCoSA1clEgmVC0J5cZHb8Dhq5UfE2zH4VZ5pTb18peupP
+         wt8vrDW78vMyTHEGNrk2NccbKaf62UuB4qDQX02m9QLdSVTljMMlD5nviNOWkyy5N63N
+         EAjBoxZgjuTM6OmkqGEQt8JoFiJ2SYJQP8sZGy/j2NgMRCOcZZLwVGBeAVvh7zdOVf51
+         pumI9mdraeX02bvkpVh3MFnPX0sgc2c0tg9FON0JuirD69Yj7GDGrP3SnrSzeMCg6aRB
+         3m5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW69L7/m+rezBFDqYJEfoOkBycU8q8zvWxbBlEHfDpTjpL8X0JWZpcLFgV+NmbMMpZeX7TLMG3RsYKj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1UMKYF0tkvNkAkYvLcRKzcwjIlhaIlgqNhqcvfqw/33vPlf5n
+	ibM+ZM6NNO52uxJxa4tHRVqdUaSBJO1eGLrSh4W1Fr6pM8OFemni/LFyMj+jZik=
+X-Google-Smtp-Source: AGHT+IGzHb1rffWyHrZTm2xiGlwmytyCfNCauniR0HmfW31srODVd8fWJi7jNSl4XxdH6Wu9L+Un6g==
+X-Received: by 2002:a2e:1309:0:b0:2fb:8df3:2291 with SMTP id 38308e7fff4ca-2fb8df322ddmr11397241fa.16.1729347263486;
+        Sat, 19 Oct 2024 07:14:23 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb80a082b8sm5061001fa.101.2024.10.19.07.14.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Oct 2024 07:14:23 -0700 (PDT)
+Date: Sat, 19 Oct 2024 17:14:20 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
+	Chris Morgan <macroalpha82@gmail.com>, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 08/26] drm: sun4i: de3: add YUV support to the DE3
+ mixer
+Message-ID: <4cumvwkhmbi7fecjeq6r7elon63u3ytootqcvavjg5vfnargy3@wrjpy6pnphmb>
+References: <20240929091107.838023-1-ryan@testtoast.com>
+ <20240929091107.838023-9-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,59 +92,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241015105133.656360-3-ciprianmarian.costea@oss.nxp.com>
+In-Reply-To: <20240929091107.838023-9-ryan@testtoast.com>
 
-Hi Ciprian,
+On Sun, Sep 29, 2024 at 10:04:40PM +1300, Ryan Walklin wrote:
+> From: Jernej Skrabec <jernej.skrabec@gmail.com>
+> 
+> The mixer in the DE3 display engine supports YUV 8 and 10 bit
+> formats in addition to 8-bit RGB. Add the required register
+> configuration and format enumeration callback functions to the mixer,
+> and store the in-use output format (defaulting to RGB) and color
+> encoding in engine variables.
+> 
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> 
+> ---
+> Changelog v4..v5:
+> - Remove trailing whitespace
+> ---
+>  drivers/gpu/drm/sun4i/sun8i_mixer.c  | 53 ++++++++++++++++++++++++++--
+>  drivers/gpu/drm/sun4i/sunxi_engine.h |  5 +++
+>  2 files changed, 55 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> index 252827715de1d..a50c583852edf 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> @@ -23,7 +23,10 @@
+>  #include <drm/drm_gem_dma_helper.h>
+>  #include <drm/drm_probe_helper.h>
+>  
+> +#include <uapi/linux/media-bus-format.h>
+> +
+>  #include "sun4i_drv.h"
+> +#include "sun50i_fmt.h"
+>  #include "sun8i_mixer.h"
+>  #include "sun8i_ui_layer.h"
+>  #include "sun8i_vi_layer.h"
+> @@ -390,12 +393,52 @@ static void sun8i_mixer_mode_set(struct sunxi_engine *engine,
+>  
+>  	DRM_DEBUG_DRIVER("Switching display mixer interlaced mode %s\n",
+>  			 interlaced ? "on" : "off");
+> +
+> +	if (engine->format == MEDIA_BUS_FMT_RGB888_1X24)
+> +		val = SUN8I_MIXER_BLEND_COLOR_BLACK;
+> +	else
+> +		val = 0xff108080;
+> +
+> +	regmap_write(mixer->engine.regs,
+> +		     SUN8I_MIXER_BLEND_BKCOLOR(bld_base), val);
+> +	regmap_write(mixer->engine.regs,
+> +		     SUN8I_MIXER_BLEND_ATTR_FCOLOR(bld_base, 0), val);
+> +
+> +	if (mixer->cfg->has_formatter)
+> +		sun50i_fmt_setup(mixer, mode->hdisplay,
+> +				 mode->vdisplay, mixer->engine.format);
+> +}
+> +
+> +static u32 *sun8i_mixer_get_supported_fmts(struct sunxi_engine *engine, u32 *num)
+> +{
+> +	struct sun8i_mixer *mixer = engine_to_sun8i_mixer(engine);
+> +	u32 *formats, count;
+> +
+> +	count = 0;
+> +
+> +	formats = kcalloc(5, sizeof(*formats), GFP_KERNEL);
+> +	if (!formats)
+> +		return NULL;
+> +
+> +	if (mixer->cfg->has_formatter) {
+> +		formats[count++] = MEDIA_BUS_FMT_UYYVYY10_0_5X30;
+> +		formats[count++] = MEDIA_BUS_FMT_YUV8_1X24;
+> +		formats[count++] = MEDIA_BUS_FMT_UYVY8_1X16;
+> +		formats[count++] = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
+> +	}
+> +
+> +	formats[count++] = MEDIA_BUS_FMT_RGB888_1X24;
+> +
+> +	*num = count;
+> +
+> +	return formats;
+>  }
+>  
+>  static const struct sunxi_engine_ops sun8i_engine_ops = {
+> -	.commit		= sun8i_mixer_commit,
+> -	.layers_init	= sun8i_layers_init,
+> -	.mode_set	= sun8i_mixer_mode_set,
+> +	.commit			= sun8i_mixer_commit,
+> +	.layers_init		= sun8i_layers_init,
+> +	.mode_set		= sun8i_mixer_mode_set,
+> +	.get_supported_fmts	= sun8i_mixer_get_supported_fmts,
+>  };
+>  
+>  static const struct regmap_config sun8i_mixer_regmap_config = {
+> @@ -456,6 +499,10 @@ static int sun8i_mixer_bind(struct device *dev, struct device *master,
+>  	dev_set_drvdata(dev, mixer);
+>  	mixer->engine.ops = &sun8i_engine_ops;
+>  	mixer->engine.node = dev->of_node;
+> +	/* default output format, supported by all mixers */
+> +	mixer->engine.format = MEDIA_BUS_FMT_RGB888_1X24;
+> +	/* default color encoding, ignored with RGB I/O */
+> +	mixer->engine.encoding = DRM_COLOR_YCBCR_BT601;
+>  
+>  	if (of_property_present(dev->of_node, "iommus")) {
+>  		/*
+> diff --git a/drivers/gpu/drm/sun4i/sunxi_engine.h b/drivers/gpu/drm/sun4i/sunxi_engine.h
+> index c48cbc1aceb80..ffafc29b3a0c3 100644
+> --- a/drivers/gpu/drm/sun4i/sunxi_engine.h
+> +++ b/drivers/gpu/drm/sun4i/sunxi_engine.h
+> @@ -6,6 +6,8 @@
+>  #ifndef _SUNXI_ENGINE_H_
+>  #define _SUNXI_ENGINE_H_
+>  
+> +#include <drm/drm_color_mgmt.h>
+> +
+>  struct drm_plane;
+>  struct drm_crtc;
+>  struct drm_device;
+> @@ -151,6 +153,9 @@ struct sunxi_engine {
+>  
+>  	int id;
+>  
+> +	u32				format;
+> +	enum drm_color_encoding		encoding;
 
-kernel test robot noticed the following build errors:
+Should these be a part of the state instead of being a part of the
+sunxi_engine?
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on robh/for-next arm64/for-next/core linus/master v6.12-rc3 next-20241018]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ciprian-Costea/dt-bindings-rtc-add-schema-for-NXP-S32G2-S32G3-SoCs/20241015-185302
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20241015105133.656360-3-ciprianmarian.costea%40oss.nxp.com
-patch subject: [PATCH v2 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
-config: powerpc-randconfig-001-20241019 (https://download.01.org/0day-ci/archive/20241019/202410192150.qZi3WkG1-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241019/202410192150.qZi3WkG1-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410192150.qZi3WkG1-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   powerpc-linux-ld: drivers/rtc/rtc-s32g.o: in function `s32g_rtc_get_time_or_alrm':
->> drivers/rtc/rtc-s32g.c:105:(.text+0x1a0): undefined reference to `__udivdi3'
-   powerpc-linux-ld: drivers/rtc/rtc-s32g.o: in function `get_time_left':
-   drivers/rtc/rtc-s32g.c:105:(.text+0x6a8): undefined reference to `__udivdi3'
-   powerpc-linux-ld: drivers/rtc/rtc-s32g.o: in function `sec_to_rtcval':
-   drivers/rtc/rtc-s32g.c:105:(.text+0xbfc): undefined reference to `__udivdi3'
-   powerpc-linux-ld: drivers/rtc/rtc-s32g.o: in function `rtc_clk_src_switch':
-   drivers/rtc/rtc-s32g.c:387:(.text+0x1630): undefined reference to `__udivdi3'
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [y]:
-   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
-
-
-vim +105 drivers/rtc/rtc-s32g.c
-
-   102	
-   103	static u64 cycles_to_sec(u64 hz, u64 cycles)
-   104	{
- > 105		return cycles / hz;
-   106	}
-   107	
+> +
+>  	/* Engine list management */
+>  	struct list_head		list;
+>  };
+> -- 
+> 2.46.1
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
