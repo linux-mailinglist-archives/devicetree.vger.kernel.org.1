@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-113280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 224559A50C2
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 22:39:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 999449A50C0
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 22:39:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65700B22464
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 20:39:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43F251F229E8
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 20:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF151917E7;
-	Sat, 19 Oct 2024 20:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89C1191F78;
+	Sat, 19 Oct 2024 20:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CdbSJ7uJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VzkvxLTY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B271922DB
-	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 20:39:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5F0C18EFD8
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 20:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729370382; cv=none; b=RfKLzjAXsw7G/EZvhzSosZ5ywcBCJdg8qDNp05fGQ7heimoUUCy5TxY9blPO/F2mJKtXetDYISXY567AvwQ5G2/8/+uk4hdJf/nnEY0HFSkB7Heb50wWdr2+7NWIbMPKnhWRjDycxt3wCeUfeCO/QkpFjUIJs/My8DlrOmFfzYc=
+	t=1729370384; cv=none; b=o8M3obwtvHHM+k1zRkFxoq7iNTvZxq7cITjV3Gxe3KTADNj3txCWNAbwWHmmWXhiUVywUKlFD1t+59olKXXxpBGJHjpV4rml+tf/u3UZgZk4eb0Uu8XRKvNokt6Yhjnxt6qLPf5vocx8hjBMw573aV3DtJLbAniZfAglCltmsEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729370382; c=relaxed/simple;
-	bh=/xnscvTEGtPlmUwodqJdMVeOQ1BPzbaLDl3BslWRi88=;
+	s=arc-20240116; t=1729370384; c=relaxed/simple;
+	bh=uztz/uHp+otMspiz7o2PcCsCP65AdP6Lh3wOjaiwnQM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZInf6xigM8SRRdBmE3hx4RhIHvb2kvTtUlUWA01Ne9wf+VZ36FC2DwftCEHMDSNM/zo0pNTVYaoHMwJ9rXTVUIKND0lmYUbhaYb+Akv+SzXm6+AvliarFFiUc/mPz5Mne6BL+wULJjJZwmm1uihRskne3PY1iPCVV2ooC4HPGh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CdbSJ7uJ; arc=none smtp.client-ip=209.85.167.52
+	 In-Reply-To:To:Cc; b=QOb3NlxxnbihZzXxvAtaOTtOLnFqL3WEdSWVswSIVLwtL/pApV8z8SyYF18kPjsm6fKouhyffWxWYRZC5wmp6whN+YZ4XWmVyhJGWaHD1ZQoFwhKbwx1/C1A/w+5p28obd5/jVV4b5S7POHcxnZSHDxIUjCXI92MEDckhoMJ8+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VzkvxLTY; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539fbbadf83so4109081e87.0
-        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 13:39:40 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539fe76e802so3726959e87.1
+        for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 13:39:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729370379; x=1729975179; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729370381; x=1729975181; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OhWQnF8BCkwCGLa8qrcOGNDmv8gEfnDZzrj7T2kyZh0=;
-        b=CdbSJ7uJp3EfV3MYxBAylZPxHX+y44wd+5C6mluQrdvQ5xVIJNRwsA1XvM0Rh6udR7
-         gH/KjvQXGURmb0qHzbUH+ohz+L2r/WiOy0zKJfHGQ7mXgn0YqlDxp5PcisWWwnwegWOx
-         9eRzh9DXicQ4+Lcqi8mmsjTbFGu3EY9JfCQg+UdKeT8PybK5LIU1M4Bgx1rR52vcxZdh
-         DIqk+47afltWnoFSgcKFd6xE4WOtNBkMr21B5Z1EICEeUCbQpBFXR/itr/YLwcPNJ8Qc
-         vtn/++D1wdkzzrFXZbtjdoaYcKRacmiccQgRQ/0mI0pOpUDv2zdYdsJcOe0OubCUwuJz
-         hHdw==
+        bh=CM/UNHN9v/TEr4fnRLKm3BTDGD3gG97Lc8xw4//SLkE=;
+        b=VzkvxLTYFfJPqljknWVpT9tpAZs8sUUOYanQp6uVV9w81qx5614hygBv6yZ7kgpbfN
+         UO/Fir559bOfrpqU9EK13NT9j28QhUCywychETT0as3Pdelh/8IW3cz8XwwYfRFqDbW2
+         qnXCoQmXpeQ0KEaRxzeZ/vUOaIvjzvkPsaOJx49s/HwRBZas0nKtqxeeOLVIo45GZUIO
+         MOrEBJNpMIOlsUSeZIBbs124zQokvGAOkmOXCGhIH2TmYUjD/8ZwN0llo6izgcTuiYX3
+         K9MrWAzk4go5JA/NOP48KVxKw19bYPLvsI5gqBcI5DOKVVsmldshlGdFxQ8RxAK9TWEQ
+         J1FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729370379; x=1729975179;
+        d=1e100.net; s=20230601; t=1729370381; x=1729975181;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OhWQnF8BCkwCGLa8qrcOGNDmv8gEfnDZzrj7T2kyZh0=;
-        b=bZg0hk7rBx8ViZ6ctkHXj2u/Cgs4X7Xa/twXb755Pit8k9XaUkdOh17gOOTkjWcWVZ
-         Nl696xcmXHpwv4NaAxYrpvwRnVQ14+JA9OvrZL/b0IgDCajGfzMvFR06NQF2fggX4l22
-         OK3Fa1jPAdtNLTugoaB9gVaPGKJLJywL1jh1GtVJVzRDOFxEr1CiUulHK9EJ1DCUTkCk
-         CI3GdWvT94EI1l8KGi6eC19Ihq44p31x1Wskiaryg+g3XOiS4OyqnXFOSzwqlNImUhBS
-         iZZJXKITusZfYkcB8QwtWBnQ73nM9N5iawxKbniJvDfqmPFvDU3Hiv6RLOUxAxqhD3LQ
-         EN/g==
-X-Gm-Message-State: AOJu0Yz32kW2NsMC4r07A6lxV7vE9tRjQsHIZ8eonPLMz9Y5DGfBWSzj
-	Gn3dRtfUgw4HFsVwwOFaY1OKB1y7VIKCw4FbOTeHdii/BC4x5pIcrnnLoldUJfA=
-X-Google-Smtp-Source: AGHT+IFJTlkKUsd8fSIH7OhL9HlvFmA7N2n8O6YZN6HfOEwdfUBIDpZAU2T/ltVuYeCJclGfgNlF4A==
-X-Received: by 2002:a05:6512:3b12:b0:539:f807:ad93 with SMTP id 2adb3069b0e04-53a154e76acmr3573673e87.38.1729370378539;
-        Sat, 19 Oct 2024 13:39:38 -0700 (PDT)
+        bh=CM/UNHN9v/TEr4fnRLKm3BTDGD3gG97Lc8xw4//SLkE=;
+        b=nvqVqiRES2mhTuhm/8ECsccdsImNb2hfhl+8cGgIkn2gzaGxGkgOrgOWBWIgsp0F5Q
+         Vx8WofMA1OtXIkVxdwPXzIRhvZnALIWbxrtgPU5jnk+qNzsIVgIeE4d/nMyAUT1D3JgW
+         XKk0oZagaO5I3bG1WU1WL4MlASQ6TWTBqdwpkbtx0EMmA/n8F/BmgDWMo6ilJvb4Ho4V
+         8XCWCZK7M5ZHteHRE5OG2t3qcG5vW+jMcK4cwgc/vBoLMppcsyWCehB4IdsYUldHa/GH
+         SV/SZTqPPsn+4BsVT9Rudt44cTOGVwQEcyERNQfAXzznUO0LbPM+0ToR51wD9AmPmtDf
+         IZhA==
+X-Gm-Message-State: AOJu0YyerGOfwuHMHZ1AjeAaJHyQAtWrA2CFf2MTcCa6hT7582Og6bZ1
+	m5nqC843oL1wri1gYBGJzDocgOvnuNf75zHDlAtSxjYwQ1lQw30Y7epA9DZjNNM=
+X-Google-Smtp-Source: AGHT+IFvU8hfYKd5cejGE+kiGfXrZs0nVqeK1uKT/GoOxz7puFjmJl2dEIFyZPhP66edY+6dyP7FiA==
+X-Received: by 2002:a05:6512:12cd:b0:539:968a:91a8 with SMTP id 2adb3069b0e04-53a154f8eafmr3603882e87.47.1729370380651;
+        Sat, 19 Oct 2024 13:39:40 -0700 (PDT)
 Received: from lino.lan ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a224202d5sm37564e87.136.2024.10.19.13.39.36
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a224202d5sm37564e87.136.2024.10.19.13.39.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Oct 2024 13:39:36 -0700 (PDT)
+        Sat, 19 Oct 2024 13:39:38 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sat, 19 Oct 2024 22:39:33 +0200
-Subject: [PATCH v3 4/9] ARM: dts: bcm6846: Add MDIO control block
+Date: Sat, 19 Oct 2024 22:39:34 +0200
+Subject: [PATCH v3 5/9] ARM: dts: bcm6846: Add LED controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241019-genexis-xg6846b-base-v3-4-8375a0e1f89f@linaro.org>
+Message-Id: <20241019-genexis-xg6846b-base-v3-5-8375a0e1f89f@linaro.org>
 References: <20241019-genexis-xg6846b-base-v3-0-8375a0e1f89f@linaro.org>
 In-Reply-To: <20241019-genexis-xg6846b-base-v3-0-8375a0e1f89f@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -93,34 +93,32 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Linus Walleij <linus.walleij@linaro.org>
 X-Mailer: b4 0.14.0
 
-This adds the MDIO block found in the BCM6846. Use the new
-"brcm,bcm6846-mdio" compatible (merged to the networking tree)
-for this block.
+Add the BCMBCA LED controller to the BCM6846 DTSI.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- arch/arm/boot/dts/broadcom/bcm6846.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm/boot/dts/broadcom/bcm6846.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm/boot/dts/broadcom/bcm6846.dtsi b/arch/arm/boot/dts/broadcom/bcm6846.dtsi
-index dc0c87c79569..d6f5fe740ca5 100644
+index d6f5fe740ca5..378dbd1b41b3 100644
 --- a/arch/arm/boot/dts/broadcom/bcm6846.dtsi
 +++ b/arch/arm/boot/dts/broadcom/bcm6846.dtsi
-@@ -223,5 +223,14 @@ nandcs: nand@0 {
- 				reg = <0>;
- 			};
+@@ -198,6 +198,14 @@ rng@b80 {
+ 			reg = <0xb80 0x28>;
  		};
-+
-+		mdio: mdio@2060 {
-+			compatible = "brcm,bcm6846-mdio";
-+			reg = <0x02060 0x10>, <0x5a068 0x4>;
-+			reg-names = "mdio", "mdio_indir_rw";
+ 
++		leds: led-controller@800 {
 +			#address-cells = <1>;
 +			#size-cells = <0>;
++			compatible = "brcm,bcm63138-leds";
++			reg = <0x800 0xdc>;
 +			status = "disabled";
 +		};
- 	};
- };
++
+ 		hsspi: spi@1000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
 
 -- 
 2.46.2
