@@ -1,122 +1,132 @@
-Return-Path: <devicetree+bounces-113116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 420C99A4B06
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 04:56:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D1F9A4B0D
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 05:13:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBC4CB225BC
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 02:56:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A169B1C214F7
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 03:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2206A1CF2A9;
-	Sat, 19 Oct 2024 02:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DC71D2785;
+	Sat, 19 Oct 2024 03:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K3JxgK2h"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F+9WOhEF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 496A61CF29D;
-	Sat, 19 Oct 2024 02:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC041D0E34;
+	Sat, 19 Oct 2024 03:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729306575; cv=none; b=X6LWA/0FtWSFhmYdnHM6FQCzS0PKSj43Kgsuu1yd4vLBj2IrFnKAy6VflC4cdrtrwJKCqDWYPnidkO7lgy51W+QHphoURx0y/99QhkQbcON+dREfzXOrf+NCarE128rNXuDr1A9WA3KU40O9dWQxzE2OIDHNNXnUat1heDRmXHg=
+	t=1729307607; cv=none; b=VyWKeJT1UPirMnzEPP6ytvOjSWgZl7blCo2ZL9AfJ7PtvzlDA03DisunEp00CV2c8PFgHhYazsYkWrcJ8LtEC991rpnc7xfxZ8ONzPwMhny2NT0dHhr+fkgRhUligAqgyh4BamLDlcvPnHULqbT6LzTtDYqlntM8J0CIfyQtf38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729306575; c=relaxed/simple;
-	bh=nTS034SYwHdOV6HK3jk24gldUiLShQrlRT+Tbt5bLt0=;
+	s=arc-20240116; t=1729307607; c=relaxed/simple;
+	bh=Nw3ZARuhUlLWhZ7CyTkiVyEjbUt6Fu7cg8I9r+R5VI0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O06U5zi8rqlW7BnXPAxU3AY4bY3xqqJMI1kTdzeYD1dBjKoELfEMXeD61R3p+9ES5pBLmyHLvLm6SESG4AZqnhUCchSEGIbyeXsnFtUPXvhzy4Csw2BfQzafUU/JejFcNCDFnKFTR2t0ZUFUujsZsyUD+fztkogzAwTRfbFw574=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K3JxgK2h; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20c803787abso21764135ad.0;
-        Fri, 18 Oct 2024 19:56:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729306572; x=1729911372; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LR/qVJWm69xL37u/FTFJ4b/eyl6G3SttNK/YN7uXhfQ=;
-        b=K3JxgK2hFaqhh0XTCmxv0mgk/DUOuhBt2iEst9b9Bddqa4PcoqKxksGJ8r7p6MEg2P
-         /Vxgh2k/D+Z2Eefrr9whWZ9HNVpaqdsg0trwSzrrCmGzFxFopSAP4FfkdwtutmPS2cSr
-         HSDCrw+LhYsTLGlAMwW5M6qnB2qJuTiRI8DMNI5CYZMnPQmIu2q9YCHtC8iw/RNEUbsY
-         JumqU9a8VgxDhVC6jfVX1j7xl2rITPsruHhc8Srcax1IotNuD85t0UnccIZwiXkMHY6c
-         5oE+tSpZANPETN0xllTv1HpVKGUXJwqhP3+XK++QNy4EVLpPuN9ZUhgrMxVtGyOpzUy4
-         M6EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729306572; x=1729911372;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LR/qVJWm69xL37u/FTFJ4b/eyl6G3SttNK/YN7uXhfQ=;
-        b=Gi3BekZC7zA7MUVwNT8JK/f0+g5naF8WdnNc7CaSMd5K4xPCTT5I7U5u7BUchW3oBo
-         1CmRmrSmLAsAxbnAnnKEuDovP6YoLW/2mFYnSHOamJFWzYy7Y7NjoWe5TEHnC0hDhOxr
-         /P/dGnU5wmAI8uxoN9VeXMws/Y2P6VSdFe/ox+rNQxeF+619JVMdj6gRMcBdliIrz9s2
-         jeX+HLha0DfznsGpv0/IUUrTo9CM0E0ZyGbdQnn1gpORgyGISRydtg3EkJtf8sb66iGX
-         SysE4OGBoQok/1V9WLWSOqkTSJxBOkYVVV+eCgVhSh+g4TpQKdYaml28GOtMm4jdpJ4T
-         y9Gw==
-X-Forwarded-Encrypted: i=1; AJvYcCUUEXivpDKNuQb5sSt6CAAmXFKYns8kx5yLF64BAMssIZd2wF50ZzYqPyFRG0Yms2ddzV9mxb9pkF4I@vger.kernel.org, AJvYcCW8lExBDSvk0mfM2L7sEGjyxySpieiglLDyBDEB1mWgzBjkFW0nXas2WWXaanx845AdwtDJX6xXRUUIgmpJ@vger.kernel.org, AJvYcCWZVUBeOOoDb7KikOgEeSnB+/X9TKjw8ISRS6kyFfa06aFqe1auDw2yEEpN3WJOB/1/pgjL3SnSmXELLhs=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBUM3+osMvfi88MSI8/Bt02rcd33NyZr8/yJGV2nLvnhdcLTXL
-	BqpB/NAHhetm9TNLf07J23bLkfjwzJI+K93cBS+eSIwKW5HHVQc5
-X-Google-Smtp-Source: AGHT+IHeEe3mm/8rpLqYRoj9nMzkIH5w4NmN8fzepjnVMeMUupa5m1tlbZtoAOW1ScA1wderM3ua2g==
-X-Received: by 2002:a17:902:ec85:b0:20c:b3ea:9006 with SMTP id d9443c01a7336-20d471ecbfamr144521605ad.6.1729306572386;
-        Fri, 18 Oct 2024 19:56:12 -0700 (PDT)
-Received: from ux-UP-WHL01 ([240e:47e:2e70:ca2:a7a2:d21d:dfaf:c0b3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e5a8d66d6sm19342245ad.125.2024.10.18.19.56.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Oct 2024 19:56:11 -0700 (PDT)
-Date: Sat, 19 Oct 2024 10:55:55 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: Doug Anderson <dianders@chromium.org>
-Cc: krzk@kernel.org, dmitry.torokhov@gmail.com, hbarnor@chromium.org,
-	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <ZxMfu4yxk961mZWB@ux-UP-WHL01>
-References: <20241018020815.3098263-2-charles.goodix@gmail.com>
- <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YjZvrRXt2n2csO6AxOesSQafKhNhah8KizF9R3nYXq0qynt6pC3AtnlU1H7DDc/xiYmmXWlX8O11WqyVtoArskonC9HG3qPds2BF0OfD2/gkfqBmMCTi+JZFX2HoKiv5xsbD4KUUtC3Z40GTVHeO5slHGNW8LW5H7AEwrpqZ6mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=F+9WOhEF; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729307605; x=1760843605;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Nw3ZARuhUlLWhZ7CyTkiVyEjbUt6Fu7cg8I9r+R5VI0=;
+  b=F+9WOhEF7JE9AptVUqGeoy2WJoM9Q/E2EhdyalWYxePsRv7dNNPolg9M
+   1U/PwD0i1pJJnei2+xUkEw1r9xZYU3BC5UgCe+/f9KKhuH8VqmdhakC2q
+   d/xLxhUgNcGecKdQh0nrocodg3MV7jLiv6dkThj4aokvfefAKwpu/vcVe
+   xi64ciM0DwckAeBFqjjjuIsJH5WUjmm0Mqik76xHqp+r0hdIdB7y24gsK
+   3kxFpJOH/ZyMwhUsJe/pzvQqTIbVWd5gUlbisPVG4ZmJCszwSVLIEXc37
+   aQZDiPBL7lr4q8hJo0IpT8m+Xzx2uxmq0Fvg/YS9trGRlHPsY552XYVev
+   g==;
+X-CSE-ConnectionGUID: 9/gI0+d8QACzS423nS358Q==
+X-CSE-MsgGUID: 491QVfXdSIuklZhhNPT6iw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39407541"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="39407541"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2024 20:13:25 -0700
+X-CSE-ConnectionGUID: zU/2lXNsSzONR+XlL9WhmA==
+X-CSE-MsgGUID: Qo61ij+pQxybXMvAQ6hbMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,215,1725346800"; 
+   d="scan'208";a="83827604"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 18 Oct 2024 20:13:20 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t1zu1-000Ode-1s;
+	Sat, 19 Oct 2024 03:13:17 +0000
+Date: Sat, 19 Oct 2024 11:12:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: oe-kbuild-all@lists.linux.dev, cros-qcom-dts-watchers@chromium.org,
+	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-media@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com
+Subject: Re: [PATCH v1 5/5] i2c: i2c-qcom-geni: Add Block event interrupt
+ support
+Message-ID: <202410191055.bi1pWTAY-lkp@intel.com>
+References: <20241015120750.21217-6-quic_jseerapu@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
+In-Reply-To: <20241015120750.21217-6-quic_jseerapu@quicinc.com>
 
-Hi Doug
+Hi Jyothi,
 
-On Fri, Oct 18, 2024 at 01:48:56PM -0700, Doug Anderson wrote:
-> 
-> On Thu, Oct 17, 2024 at 7:09 PM Charles Wang <charles.goodix@gmail.com> wrote:
-> >
-> > The Goodix GT7986U touch controller report touch data according to the
-> > HID protocol through the SPI bus. However, it is incompatible with
-> > Microsoft's HID-over-SPI protocol.
-> >
-> > Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> > ---
-> >  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
-> >  1 file changed, 58 insertions(+), 10 deletions(-)
-> 
-> I'm happy to let device tree folks make the call here, but IMO it
-> would be much cleaner to just consider the I2C-connected GT7986U and
-> the SPI-connected GT7986U to be different things and just use a
-> different compatible string for them. So essentially go back to your
-> v7 patch from before [1] but change the compatible to
-> "goodix,gt7986u-spi". If, for instance, this device also had a USB
-> interface then I don't think we'd try to cram it into the same
-> bindings even though the same physical chip was present...
-> 
+kernel test robot noticed the following build errors:
 
-Honestly, I agree with this approach, but Krzysztof seems to prefer
-extending the existing binding.
+[auto build test ERROR on 55bcd2e0d04c1171d382badef1def1fd04ef66c5]
 
-Best regards,
-Charles
+url:    https://github.com/intel-lab-lkp/linux/commits/Jyothi-Kumar-Seerapu/dt-bindings-dmaengine-qcom-gpi-Add-additional-arg-to-dma-cell-property/20241015-202637
+base:   55bcd2e0d04c1171d382badef1def1fd04ef66c5
+patch link:    https://lore.kernel.org/r/20241015120750.21217-6-quic_jseerapu%40quicinc.com
+patch subject: [PATCH v1 5/5] i2c: i2c-qcom-geni: Add Block event interrupt support
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20241019/202410191055.bi1pWTAY-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241019/202410191055.bi1pWTAY-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410191055.bi1pWTAY-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "gpi_multi_desc_process" [drivers/i2c/busses/i2c-qcom-geni.ko] undefined!
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
+   WARNING: unmet direct dependencies detected for OMAP2PLUS_MBOX
+   Depends on [n]: MAILBOX [=y] && (ARCH_OMAP2PLUS || ARCH_K3)
+   Selected by [m]:
+   - TI_K3_M4_REMOTEPROC [=m] && REMOTEPROC [=y] && (ARCH_K3 || COMPILE_TEST [=y])
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
