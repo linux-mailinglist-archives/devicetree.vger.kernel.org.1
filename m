@@ -1,198 +1,142 @@
-Return-Path: <devicetree+bounces-113118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB5CE9A4B33
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 06:42:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3919A4B4C
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 07:30:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFBCE1C21757
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 04:42:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C3502844AD
+	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 05:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADDD1CC16A;
-	Sat, 19 Oct 2024 04:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67B21D63CD;
+	Sat, 19 Oct 2024 05:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="h9YJIla7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DBC20334;
-	Sat, 19 Oct 2024 04:42:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87D93187848
+	for <devicetree@vger.kernel.org>; Sat, 19 Oct 2024 05:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729312958; cv=none; b=GyHrYldWSqiGo9bT52r/FsqklA5SPQtkwicihKnStGmCEgKTaX904nszRyP3c0ntg03ZjOiw0glPmLdEWJXfAxQiD8k0Zm6YiQ5TpHOZPJj8BLLTjdgeYfdMymC57Ab6/tM6l8BZkyzADWB3YRdvYGbkdEGRF101ASljDUCztxY=
+	t=1729315811; cv=none; b=i+ZXAFnWVQF/rPpDh0iq1glV5rOBGjvpLgEaIYHH+4imAStFUMZBBeITPOQFnMd28wkLAivbjPqiC2nTV3BStxkqpTGpMCbZhiHbDK3pKanMvdYWNTbktZqUX9noiitM9vJFzrg91mTFliASY3b1iG2cVTsz24WUUahA9eGRslQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729312958; c=relaxed/simple;
-	bh=BSFVuHYTGSJ63lyXEHZPmyeWVlrsWwib87kwLinyM2s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HeMEJjwz2EH2cbyZb5cgrFfsiJ/KtPV9i1iBumZpTAmJqgmEE2p4HSErWxiT2Ae4ljCe8SbbylwIV0g8pxH6WZt2ry5w949w4pHyShL6LvqPa4z2kCkW6edhE98pHarxLD1Fs9Zs2TnD3Xd1o7sbgQVOmrdEGqPczHZDMF3rvGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip2t1729312930tfrg5ja
-X-QQ-Originating-IP: PFgNwIWMhEtDdVnAuM0TWSxgSVMwkKW1c0HSyTf66pU=
-Received: from [IPV6:240f:10b:7440:1:8680:8ad4 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sat, 19 Oct 2024 12:42:06 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 17043883481862814476
-Message-ID: <6FF0CF3856870371+bbebd66b-e19c-40c2-863b-1d6c5c30c461@radxa.com>
-Date: Sat, 19 Oct 2024 13:42:05 +0900
+	s=arc-20240116; t=1729315811; c=relaxed/simple;
+	bh=2rABYizdoNQ/oKIRusin4/uvQCSNqBZYhvbp98Qmdd8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ctBSKmUXROUdagZSH1P79TfZ9ePi/hb5YxCzGyU1wLanP02xYXVyU9uwJuN2DMflLui+hVbaOz++JJsTf3Cl3gkT56ktMyFLRqrwhl5l+jT8lllxiiX9pYxM8s28jCaCfzAWNgS3hIxbpNk/D/9sZD2iz38lF6GjAQ9Yoq5gwxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=h9YJIla7; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-7ea8de14848so2073273a12.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Oct 2024 22:30:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729315809; x=1729920609; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cJNuS83mrwWL8W8iH3SFWUNmmnjimhgt4bHtgaT67XI=;
+        b=h9YJIla7KViGmD1a4TTR1+wdAMewo/FRAlQze81FHNheXcqccKBqWoWvOCmSWsx3Nc
+         OOX0SSDljo1VpEzTRLI+mugkLaK+7ztvm4Lj+WcSyF5OPskOVyNtD1Dtx8FEF6BvLvxk
+         A5z0AgrdYFwQrFi53yDLAROOjrS+3TjCRc6kg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729315809; x=1729920609;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cJNuS83mrwWL8W8iH3SFWUNmmnjimhgt4bHtgaT67XI=;
+        b=VFD7EagmnLyVNNd5ukIXWTEgamnThktjs0BluwLQeHsTjoRRNgt4XdWwe7xR8IZNjv
+         9SehpzpBiy7GGJ+gUpRtg+M4tZ9vvaISjbvc3tR/K57Yv1ZiGL0r9lAqvgG4yhi1mQWE
+         nEczXDpurVRVl73hRaNb4k25CfxKsRewR4G/C0/7HAowTYqC6gGqoTOpTTLx55zfGGSx
+         3rWTNezGNu9KD9qrOQqTt2olI4PG2EtnYOOMgOvtZB+gbWskvVPqLCDXiUS5kxmhDB01
+         YmrKa57hSyidXnQdyfLoLliWAgzxqu5NjUJFD5T0r6Etg7It/4LVDGaNYdZ0Db+DNJud
+         8UiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVfly6fkDBcDRuOjexYzW0n7EDOVrDpwv5/bcbVh+eFRmYqpZp0WVAgeueqSZZ7PG9VOQ+7J11uiWbe@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCdrVoei9rDxbHFwxqjSnW0FvA6RTyObHTRxlj9oaWANVs9UdC
+	TV8odiWJVf4jl6OF51IbmvYJ3LJpiFRWs0z/1VSXsR1sNIN9PTYnamRahnEu2A==
+X-Google-Smtp-Source: AGHT+IH7n9UXYo5nlALMpZiRBbTQ8pp4m9cx7aacSoU54soAc/R6mjW8EzAU5xHiakUlodnb2D1f8Q==
+X-Received: by 2002:a05:6a21:458a:b0:1d7:118a:327b with SMTP id adf61e73a8af0-1d92c4a1d2emr6720501637.9.1729315808788;
+        Fri, 18 Oct 2024 22:30:08 -0700 (PDT)
+Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:baba:fa50:ff3b:337])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ea333bea3sm2370438b3a.57.2024.10.18.22.30.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 22:30:08 -0700 (PDT)
+From: Fei Shao <fshao@chromium.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc: Fei Shao <fshao@chromium.org>,
+	CK Hu <ck.hu@mediatek.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH] dt-bindings: display: mediatek: dpi: Update device list with power-domains
+Date: Sat, 19 Oct 2024 13:26:56 +0800
+Message-ID: <20241019052935.553886-1-fshao@chromium.org>
+X-Mailer: git-send-email 2.47.0.rc1.288.g06298d1525-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH UNTESTED 5/5] arm64: dts: rockchip: Enable HDMI0 on
- rock-5a
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Luis de Arquer <ldearquer@gmail.com>, Alexandre ARNOUD <aarnoud@me.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241019-rk3588-hdmi0-dt-v1-0-bd8f299feacd@collabora.com>
- <20241019-rk3588-hdmi0-dt-v1-5-bd8f299feacd@collabora.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20241019-rk3588-hdmi0-dt-v1-5-bd8f299feacd@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: NDNaZgy3Og6AVKgQVTxFidsaRoCyXc63tVaCYdrWjcDaTkiVw9LLITI2
-	vHZkOJvWvztfWw63/nZcYwPR89GxtlFofAflQO7HQCxEhTnNul5BwNDDIjrYnLKuoKBcktS
-	UfdKX0CrCMgGFsTqBFIBmsVsD2zzLS6K/vjplR99flLUXsia9ZmWbICWkpsclK+ATJ+06Jn
-	aNX549QimuOLHHtWFarottcANZ6DbLjr+lJMkO2DfoE7XvOXqyFoJCGMY5AjPWFXKN3ADLF
-	1hVjeegIBUtZ9AuJJXB6bExXcPAQV8fAzLi4OAOlSMcqiJA+NEVgC/OnddA0mZt2axKDU37
-	t31uMpmhcy5Bin31QXBnWIqTrdaLiHGtC0YLvTu6fbUPXq00Uwpn15YFsKAkwDftu8WL60b
-	3FKyGvOBjPqrXnrRhhmJoYahcpiz20IjQ7rKxbRSLcUNTPp7qQyZHXVDCIZ3zlkLJ4X8+Wb
-	LqEMdOGIIlAVMRWDLml6p/IVU5oRp76JSwnBhD92AFCAJcc63iW8Y1dMJSie78Ecwc3x8OS
-	VQL4XlzMVwijrkaHf4axgF/Uq+tpHjqqDdSO+QPLbqk70iodoAmcKqmz/KRZYNFNxwo3xP8
-	q9eEvy2Gx5qODHC8I55ZEWEFMow+xepTReIX78hCBMZ+a5LOcDwjC5c6gv0J2wXhzOdoWnN
-	ThwrGueapARecBeajb+DhVxQaBxVgyVvDzNpLEahAdtYXhcSMgkrrgJg+P+4G43ByrGEGU3
-	HQf/wSkq2DY/PGPSIVUctbsOtCCJ1sdtNpESGF8K1qP05khD6GG2jY4CqWOWssgTOWv0ov/
-	93DhAa2lSwRCqVZy5hZurBe6tIBYKiDewWyTSr5YP2BfnAisE1P6joj7mwx6+QGInUOH/lf
-	R0OyGJ7DOO7okGcfe5a8eRZzYDmlzUXuqwhkj99+Q9yzOVlVqMqCaw==
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: 8bit
 
-Hi,
+There are two kinds of MediaTek DPI devices in the tree: the ones with a
+power domain and those without (or missing). The former are the majority
+and are more common in newer DTs. Only three older DTs fall into the
+latter category: MT2701, MT7623 and MT8192.
 
-On 10/19/24 06:39, Cristian Ciocaltea wrote:
-> Add the necessary DT changes to enable HDMI0 on Rock 5A.
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->   arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 47 ++++++++++++++++++++++++
->   1 file changed, 47 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> index 87fce8d9a964cd53d179ce214ae1c0ff505a2dce..1fd122250b0c70e729b7a2239ab5f288a6387a70 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> @@ -5,6 +5,7 @@
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/leds/common.h>
->   #include <dt-bindings/pinctrl/rockchip.h>
-> +#include <dt-bindings/soc/rockchip,vop2.h>
->   #include "rk3588s.dtsi"
->   
->   / {
-> @@ -35,6 +36,17 @@ chosen {
->   		stdout-path = "serial2:1500000n8";
->   	};
->   
-> +	hdmi0-con {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi0_con_in: endpoint {
-> +				remote-endpoint = <&hdmi0_out_con>;
-> +			};
-> +		};
-> +	};
-> +
->   	leds {
->   		compatible = "gpio-leds";
->   		pinctrl-names = "default";
-> @@ -296,6 +308,26 @@ &gmac1_rgmii_clk
->   	status = "okay";
->   };
->   
-> +&hdmi0 {
-> +	status = "okay";
-> +};
+However, the current binding only allows particular DPI devices to have
+power domains, which results in spurious binding check errors against
+existing and new DTs.
 
-on ROCK 5A, HPD pin is different.
+Instead of diligently maintaining the allowed list, let's do it the
+other way around - create an exception list for devices that are fine
+not specifying a power domain. This list is expected to be fixed, and it
+encourages new MTK DPI devices to describe their power domain whenever
+possible; if not, those should be listed with proper rationale.
 
-how about this?
+Signed-off-by: Fei Shao <fshao@chromium.org>
+---
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts 
-b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-index f4293d666368..600028fcad88 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-@@ -314,6 +314,9 @@ &gmac1_rgmii_clk
-  };
+ .../bindings/display/mediatek/mediatek,dpi.yaml   | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
 
-  &hdmi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hdmim0_tx0_cec &hdmim1_tx0_hpd
-+		     &hdmim0_tx0_scl &hdmim0_tx0_sda>;
-  	status = "okay";
-  };
-
-
-(I don't know why HDMI worked on ROCK 5C... it should be same as 5A)
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> +&hdmi0_in {
-> +	hdmi0_in_vp0: endpoint {
-> +		remote-endpoint = <&vp0_out_hdmi0>;
-> +	};
-> +};
-> +
-> +&hdmi0_out {
-> +	hdmi0_out_con: endpoint {
-> +		remote-endpoint = <&hdmi0_con_in>;
-> +	};
-> +};
-> +
-> +&hdptxphy_hdmi0 {
-> +	status = "okay";
-> +};
-> +
->   &mdio1 {
->   	rgmii_phy1: ethernet-phy@1 {
->   		/* RTL8211F */
-> @@ -788,3 +820,18 @@ &usb_host1_ohci {
->   &usb_host2_xhci {
->   	status = "okay";
->   };
-> +
-> +&vop_mmu {
-> +	status = "okay";
-> +};
-> +
-> +&vop {
-> +	status = "okay";
-> +};
-> +
-> +&vp0 {
-> +	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-> +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-> +		remote-endpoint = <&hdmi0_in_vp0>;
-> +	};
-> +};
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+index 3a82aec9021c..c464642bbfb6 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+@@ -81,14 +81,13 @@ required:
+ 
+ allOf:
+   - if:
+-      not:
+-        properties:
+-          compatible:
+-            contains:
+-              enum:
+-                - mediatek,mt6795-dpi
+-                - mediatek,mt8173-dpi
+-                - mediatek,mt8186-dpi
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt2701-dpi
++              - mediatek,mt7623-dpi
++              - mediatek,mt8192-dpi
+     then:
+       properties:
+         power-domains: false
+-- 
+2.47.0.rc1.288.g06298d1525-goog
 
 
