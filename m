@@ -1,118 +1,152 @@
-Return-Path: <devicetree+bounces-113408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A609A5756
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 00:21:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F559A5764
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 00:57:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3297B20C42
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 22:21:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC3131F21417
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 22:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2368183CA6;
-	Sun, 20 Oct 2024 22:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8631198A08;
+	Sun, 20 Oct 2024 22:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hh0N4c3i"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="G30yqef8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1AD420E31D;
-	Sun, 20 Oct 2024 22:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33965197A77
+	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 22:57:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729462865; cv=none; b=okqmVJvvz+EF3FFg5xQ66H4OrIHmlVFgFMAedAdP4WKODAvyzvvsnSGNPXMMkdtNwETA9nzZBHFXJ55KqcSpM+cCVYkNn+lH8XLuw2FG3/52HICvTqGmKPtaiSisKAXau61xirgDiWU9Gu/8ziPu5WeiQq8Deal09dS5POGkSiI=
+	t=1729465054; cv=none; b=hJmGuhnBoiFzYTCFuYjhS9bNPUf9/maAlqzr6c+W+81J9C3GM1Mt/3Ie+j3C5Qy4lXrY7T7+hYH+Dfi6UjwErcD8bDFtWdtXLd+4j0wz+zZA1rS8omoC1X5F7DnezmSfV41+4DJRN5LAdkQNY92gNqi+pwmJ62J3xAJBujiIp6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729462865; c=relaxed/simple;
-	bh=c0RD5aWPHcjvk8dz7LpAgGFrpVHOGZS40wi7nAmg4+w=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=mjzcLvGCbowYvRznuyEHiIKBTVmAbn2REXS8JPoKvIVdwcmKGRaBlKWbzVl2kaZlzfLukVykzBiqYoboCSrHRyRvFusme29pmLdkTsp+tSPOoq0K3juegj2eimtIh9hm7iPHIyqjzm/EluOpd0DmtWMEDyD0X2trsP+Bl3L107w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hh0N4c3i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82447C4CEC6;
-	Sun, 20 Oct 2024 22:21:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729462865;
-	bh=c0RD5aWPHcjvk8dz7LpAgGFrpVHOGZS40wi7nAmg4+w=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=Hh0N4c3iYOTFd4ikgZL3NU2NcMnBQiZSPowyrbVPnGWkZOCd9/ZklhlZSdMhI8KK6
-	 WfmAbiBcslabi9pC7FH3CrzAqyuTnDqc9qc4nKz5McVSp9c8SyQ2BcrXn1vedGsEHD
-	 L+EhBIBpCD8FfzOVEap1sRV0ctd8CbR5RTGcL7kcNJAGJSd6/RP79YE/S+euMfCzbf
-	 DgRCWT5rOYMjsqcHEoReYbUoJLXCjWkZdad23FIVbeSknrwV/VT4VVvNzSSp4iNfCy
-	 Li+1aoBmpPHM9slvs4uIKrPzAyV2JTNuGwFpHdm56xdN3hR2XxFeXYaH0FkhjBcY9n
-	 Z+Z3WaJbx7JGw==
-Date: Sun, 20 Oct 2024 17:21:03 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1729465054; c=relaxed/simple;
+	bh=0+R9M0CpieGkne/gcdb/HaD48CMKqgqpHAjXV9Gr7qA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a/tkQs7cIrUxhSxA+UEP6OSvnPGaLBu9EQ006QNBQlRzRlWXsE3Cc3HAcH5IuVyGY7ZRqpLyjrJfTLITaKTTiVGpWB+/A6Sk813qFVge8zlhb8VgxMIzcp3oF06ZlUk0zlDYDGl1x9POcTHpJXLWkAn7WvfkjzHFXuDMo1QUCDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=G30yqef8; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1BCFC2C04C6;
+	Mon, 21 Oct 2024 11:57:24 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1729465044;
+	bh=wlgnVORc8VmazlIHF0M6sTSdf4wJFTiEPBgMRnw7cOA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=G30yqef8372lehEvTvIqdLZT8J1VFk1wmO4MEQHfSyZy1qi36MCW0KqwebQmYmA5G
+	 LD9s3yjyolxFToWOVc/VItCoRSpljqMQnTz2uYmHpCT9R8wRA60Rc3jBBS29XBhcPa
+	 GpV04nqgSAcSnSG+xhMwe8PSxLv7sw/2+wxcL68as+ARfcU70/x1WmKsGXPd9tEx0y
+	 J97nYI2XF/nZvFBAjOth3takGxnihayU6ke4Mz1f3lQPRedxsibgaqOUFCmGAYoJra
+	 2SfUvA2SOWHZYAN8DJxXMNzJQIm3N3raRvc4/J7xxXNm5yZZGGxXTVuLsA388rWmWO
+	 M6VjaY/q27V3g==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B67158ad40000>; Mon, 21 Oct 2024 11:57:24 +1300
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 062EC13ED7B;
+	Mon, 21 Oct 2024 11:57:24 +1300 (NZDT)
+Message-ID: <bca44b71-d002-4dac-8c53-6b7dd90ffce1@alliedtelesis.co.nz>
+Date: Mon, 21 Oct 2024 11:57:23 +1300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: dinguyen@kernel.org, s.trumtrar@pengutronix.de, krzk+dt@kernel.org, 
- marex@denx.de, conor+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20241020194028.2272371-13-l.rubusch@gmail.com>
-References: <20241020194028.2272371-1-l.rubusch@gmail.com>
- <20241020194028.2272371-13-l.rubusch@gmail.com>
-Message-Id: <172945976879.2209098.12973837165878393589.robh@kernel.org>
-Subject: Re: [PATCHv2 12/23] ARM: socfpga: dts: add a10 clock binding yaml
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v2] kbuild: Restore the ability to build out of tree dtbs
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: nathan@kernel.org, nicolas@fjasle.eu, linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20241016194149.4178898-1-chris.packham@alliedtelesis.co.nz>
+ <CAK7LNAR4h6NZ+D0BK+q4VQBeHWpjzRBQFQ9ovBrftM=6dHRcUg@mail.gmail.com>
+Content-Language: en-US
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <CAK7LNAR4h6NZ+D0BK+q4VQBeHWpjzRBQFQ9ovBrftM=6dHRcUg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=67158ad4 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=nLVBVlUmovVwbiQ-:21 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=pVO9QfLW94fXXyuqY9gA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
++cc devicetree
 
-On Sun, 20 Oct 2024 19:40:17 +0000, Lothar Rubusch wrote:
-> Convert content of the altera socfpga.txt to match clock bindings for
-> the Arria10 SoC devicetrees. Currently all altr,* bindings appear as
-> error at dtbs_check, since these bindings are only written in .txt
-> format.
-> 
-> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> ---
->  .../bindings/clock/altr,socfpga-a10.yaml      | 107 ++++++++++++++++++
->  1 file changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml
-> 
+Hi Masahiro,
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On 19/10/24 00:19, Masahiro Yamada wrote:
+> On Thu, Oct 17, 2024 at 4:59=E2=80=AFAM Chris Packham
+> <chris.packham@alliedtelesis.co.nz> wrote:
+>> A build pattern to handle out of tree dtbs is to copy the .dts file in=
+to
+>> the kernel source tree and run `make myboard.dtb`. This is supported b=
+y
+>> the wildcard %.dtb rule in the Makefile but recent changes to split th=
+e
+>> dtb handling out of scripts/Makefile.build stopped this from working.
+>> Restore this functionality by looking for .dtb in $(MAKECMDGOALS) as
+>> well as $(targets).
+>>
+>> Fixes: e7e2941300d2 ("kbuild: split device tree build rules into scrip=
+ts/Makefile.dtbs")
+>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> ---
+> This is not a use-case in upstream.
+>
+> If you drop-in your downstream DT to the kernel tree,
+> you need to associate it with Makefile.
 
-yamllint warnings/errors:
+I agree that this is Hyrum's Law at work.=C2=A0 I still feel that handlin=
+g=20
+out-of-tree dtbs is something that would be in the best interest of the=20
+Linux kernel. It doesn't necessarily need to be done by allowing copying=20
+arbitrary .dts files into the tree, a mechanism like the way out of tree=20
+kernel modules are handled would be workable.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: fixed-divider: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: clk-gate: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: div-reg: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: clk-phase: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: title: "Device Tree Clock bindings for Altera's SoCFPGA platform" should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
-	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: properties:#clock-cells: 'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dts:25.11-24: Warning (reg_format): /example-0/main_pll@40:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: main_pll@40: '#address-cells', '#size-cells', 'main_noc_base_clk' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/clock/altr,socfpga-a10.yaml#
+Often supporting a new hardware platform is just a matter of writing a=20
+dts that describes the board. Particularly when that board is based on=20
+an existing one. The way most dts/dtsi files are arranged in-tree=20
+requires a non trivial amount of handling by the C processor. So while=20
+one could produce a dtb file by invoking cc -E and dtc with the right=20
+options pointing at the right paths, having the kernel build system=20
+provide something that abstracts that would be beneficial for developers=20
+and even end users.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241020194028.2272371-13-l.rubusch@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>> Notes:
+>>      Changes in v2:
+>>      - keep $(target) and search for .dtb in $(MAKECMDGOALS)
+>>
+>>   scripts/Makefile.build | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/scripts/Makefile.build b/scripts/Makefile.build
+>> index 8f423a1faf50..78763a4bc58a 100644
+>> --- a/scripts/Makefile.build
+>> +++ b/scripts/Makefile.build
+>> @@ -449,7 +449,7 @@ ifneq ($(userprogs),)
+>>   include $(srctree)/scripts/Makefile.userprogs
+>>   endif
+>>
+>> -ifneq ($(need-dtbslist)$(dtb-y)$(dtb-)$(filter %.dtb %.dtb.o %.dtbo.o=
+,$(targets)),)
+>> +ifneq ($(need-dtbslist)$(dtb-y)$(dtb-)$(filter %.dtb %.dtb.o %.dtbo.o=
+,$(targets))$(filter %.dtb,$(MAKECMDGOALS)),)
+>>   include $(srctree)/scripts/Makefile.dtbs
+>>   endif
+>>
+>> --
+>> 2.47.0
+>>
+>>
+>
+> --
+> Best Regards
+> Masahiro Yamada
 
