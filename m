@@ -1,160 +1,95 @@
-Return-Path: <devicetree+bounces-113291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1552F9A50DF
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 22:52:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A6EF9A51D4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 03:07:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 231DEB22374
-	for <lists+devicetree@lfdr.de>; Sat, 19 Oct 2024 20:52:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4C631F21A60
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 01:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD62C1925A1;
-	Sat, 19 Oct 2024 20:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF3DEBE;
+	Sun, 20 Oct 2024 01:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=justinweiss.com header.i=@justinweiss.com header.b="dqHT970T";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="VdE2rGHn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CP5lx5ND"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a7-smtp.messagingengine.com (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B337E192590;
-	Sat, 19 Oct 2024 20:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705051373;
+	Sun, 20 Oct 2024 01:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729371170; cv=none; b=GDfR14HgpC0UPYQr8vZNNZnxzKuRf7SdXp8SDicsdLRq3JGFXkJ++Vwq3Q0csXUjDju7FK5TY95mCjJ/HR9uJRGYqs90Kuqf4HyYWVJd/qZ+jqX/AK4fWfe+GoLG3fRXxPKJFcPYY9GOQaXpEX8NQ38GxjlfmGVmd4UNtrho0UI=
+	t=1729386418; cv=none; b=Jwp4hw28CYI1A61amTXefaxpOxPjQakc1yXObVAy40ZCeswAVEpXdPPuO7Z9XgiN3H6Cm7KInoicZEcxivs4C57HS+Ea95218tQmKFfSkg8JVn3EBe0sNOcMLm8iSAy4WGZQYE4PfVZd+X0Lq6Vap3TTWOWJ1IO8n45w2wGAWyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729371170; c=relaxed/simple;
-	bh=RILFvJ1yN7ZOx3mxQgMiXLAeiX/lGY7Mf2wYswky2cI=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=KUle6gFyEAHfAYPeHUbbw/T8NkKUWq1jTU8af18OBFj1S9ehiM1C4HIv4UrixjBroEx3hAJcmb3SQBCGR4NzXyhmpS+Wuc25HOkHoYJumrcc9hSnMmIuO1DiSkY4wUKgT+nTdQZaRVfWF0q5IG9Jyss/E+rIGh4sRjE2iLvyino=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=justinweiss.com; spf=pass smtp.mailfrom=justinweiss.com; dkim=pass (2048-bit key) header.d=justinweiss.com header.i=@justinweiss.com header.b=dqHT970T; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=VdE2rGHn; arc=none smtp.client-ip=103.168.172.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=justinweiss.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=justinweiss.com
-Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id E229B11400DC;
-	Sat, 19 Oct 2024 16:52:47 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-01.internal (MEProxy); Sat, 19 Oct 2024 16:52:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=justinweiss.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm1; t=1729371167; x=
-	1729457567; bh=8FqHG8aptUYyCqhU4kHt9RmDYElKUOHIxru8Xwnj2dc=; b=d
-	qHT970T3ztsm3uBnB9Ykc3r+eXfy0exZndvQluHwIkxeAmK3voUAjO6na/mE0q6y
-	iCDOFFv8d8+VfVoSuNFdQ1XZ8DDCg9POnejUbgrR2jqBFoBR8QlSeDezsuZnQSqy
-	9yQia9MRr5n/RduOsmvmBKLppuDKTKzpeCrlGfnEDeDTWwswW8wmwha1N4aox6Ou
-	ZsjBqRmif76E9LD49Zn5iFw9Wfn7tqKto7QvGv5WIeExi4gT7oIdwPVsfUEY4ZF/
-	INFh6UyurajQ/Ly9QxLY2ytfOftIBLnYSQNTuywMv5hky/cn02zDBAMl+msyg9i/
-	iSRm1BqInKHtJ64+k0fEQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1729371167; x=1729457567; bh=8FqHG8aptUYyCqhU4kHt9RmDYElK
-	UOHIxru8Xwnj2dc=; b=VdE2rGHnan1NYUYdYGmCqHrB/jRbOwXnxLdW0xIL2xzs
-	1pAeQ2LLnjqqEGky3qX3wFZvmm2DtI1BC4nmFRhAzDyPRwbkqAVF+D/jyipuw0E4
-	w/W5tpbAfqrh9Zl0t4k/CCXHfVLaTcxeMox112yqMpiSDTnECjH5/PW7cfPDi1UJ
-	2MiI1M7XDNs2K/0MCvC41bhujxy/cWt5nhnMCANRYvIcOq4UZaAUQj3BtkTJsHMi
-	0JJoZD90CymN34iAPM+Qs8X/Wt6nSV8p5a4+NeHmyUm8JoxGZexJFeds+xvDAa21
-	rZ/CRZuIjtrWBQDwriZwKp3ETIS0P4uXRCT4DxUsrQ==
-X-ME-Sender: <xms:HxwUZ6mHmCGgi2YZu1TBjKMy8z0HiusnLOiiZpd1AdAdEIBjELICkQ>
-    <xme:HxwUZx21lT2tXfMAXAeZywm1BY_nEH8UDNa1-mj050mLrymf70znWUuUx6p1iO5Zf
-    bkXfPuO6G_TSP6A0Q>
-X-ME-Received: <xmr:HxwUZ4qDks0UibuAM9Ow4i5TnfWBT87HNPKKDb4C0NTOsHQVVPLrfniYsWNsYKgmaJC7J3hFkfkTddpAuuj2xnENLEeBL7UeOic>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdehhedgudehjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhffkfgfgggtsehttdertddtredt
-    necuhfhrohhmpefluhhsthhinhcuhggvihhsshcuoehjuhhsthhinhesjhhushhtihhnfi
-    gvihhsshdrtghomheqnecuggftrfgrthhtvghrnhepgfeugeeuieehffekkedtteffgfff
-    ueeikedvfeeijedvfeeigfevhfeihfefgfevnecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepjhhushhtihhnsehjuhhsthhinhifvghishhsrdgt
-    ohhmpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoh
-    epphhhihhlmhesmhgrnhhjrghrohdrohhrghdprhgtphhtthhopeguvghrvghkjhhohhhn
-    rdgtlhgrrhhksehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvg
-    hlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggv
-    sehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihhiohesvh
-    hgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhn
-    vghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtg
-    hpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlrghrshesmhgv
-    thgrfhhoohdruggv
-X-ME-Proxy: <xmx:HxwUZ-lpq119Kb2aX8bt__paM7GnMF9MaCSE78nFfEyvH_sl98jxWA>
-    <xmx:HxwUZ40yM9BayPGWtTRSc_880y5FtqucH3k5moUuEN0NV845CeJtBw>
-    <xmx:HxwUZ1vQGQbQu4Vjb710esH3vlyaMvo3j1UwOHQJbRS_3eT0ycURUg>
-    <xmx:HxwUZ0UKsTpeET_pHyN4B9fQUh0B0G8TUGp7ihK_krTQzD1K0QUX5w>
-    <xmx:HxwUZ9uvAIjcHpgy7MX9xShTpGLohxsJZBQ8srqT_OeJEqtFFbKCZ2bD>
-Feedback-ID: icf614246:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 19 Oct 2024 16:52:46 -0400 (EDT)
-From: Justin Weiss <justin@justinweiss.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Alex Lanzano <lanzano.alex@gmail.com>,  Lars-Peter Clausen
- <lars@metafoo.de>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-iio@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  "Derek J . Clark"
- <derekjohn.clark@gmail.com>,  Philip =?utf-8?Q?M=C3=BCller?=
- <philm@manjaro.org>
-Subject: Re: [PATCH v2 6/6] iio: imu: bmi270: Add scale and sampling
- frequency to BMI270 IMU
-In-Reply-To: <20241019124410.554c2817@jic23-huawei> (Jonathan Cameron's
-	message of "Sat, 19 Oct 2024 12:44:10 +0100")
-References: <20241018233723.28757-1-justin@justinweiss.com>
-	<20241018233723.28757-7-justin@justinweiss.com>
-	<20241019124410.554c2817@jic23-huawei>
-Date: Sat, 19 Oct 2024 13:52:45 -0700
-Message-ID: <87h697ak82.fsf@justinweiss.com>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1729386418; c=relaxed/simple;
+	bh=QykmPv/BE6IkDfW5xnvum0kBf+OEw3Cv6VurB2ePnZU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T2rnRblaAe0qiOXoCC28f12VlRP48s9CVYm5V40HW1Je0iTXl0cMr6vz4Ux84lPRKTiNyxbEainp0EN1ySiJDT84Ddl2rfx0CUXfzBgboT3ESGbI92RXJlBd0/3Ij9naMXCEuTHrt15esDK+Mb6KXrCFLoLvPQRPgN09Q9DQIVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CP5lx5ND; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C04FC4CEC5;
+	Sun, 20 Oct 2024 01:06:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729386418;
+	bh=QykmPv/BE6IkDfW5xnvum0kBf+OEw3Cv6VurB2ePnZU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CP5lx5NDeHvNn1dsSX9/F0Nl0iOQemMFzRDokTKuQD90OB5AC8Gyb8/cu/az29bX+
+	 yRp4Pr6Ydv4aSBtadDIXn4bG/M0kv7v4nBMG51XglANyLJ730E4nlwl4vFfcT6SJd/
+	 GmF4TqhWcvUEV0UJo8/N2rWTNw/rVXnguKGdsZc7HWhTkEEqzOnnqTnwCaUpWh3R6V
+	 4VxZB5rJjgsbZX5WqtlVQtmLrVQv1dzEpkp2NFLQO7TDiRxpKUcVNcEZVyEg92ms2N
+	 uH+ZamMstcWnbIvYTND0oisZ7C2XH39drySY0QEmrQf2b0c+8WfgCLzaKmcoahMM+y
+	 kctDBFacgFexg==
+Message-ID: <6aa0a404-9bc8-4b0c-b6f9-a455a3033670@kernel.org>
+Date: Sun, 20 Oct 2024 10:06:54 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/12] Fix and improve the Rockchip endpoint driver
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Niklas Cassel <cassel@kernel.org>
+References: <20241011121408.89890-1-dlemoal@kernel.org>
+ <CANAwSgQ+YmSTqJs3-53nmpmCRKuqfRysT37uHQNGibw5FZhRvg@mail.gmail.com>
+ <f13618a6-0922-4fc8-af01-10be1ef95f0d@kernel.org>
+ <CANAwSgRDbCCridYMciq=xSDPV0qGhs-OhCJ_uniXFbp-yM5CcQ@mail.gmail.com>
+ <0f2cf12b-3f27-403c-802e-bb8b539766b0@kernel.org>
+ <CANAwSgRXfZ9hgdJpSrwucHQfMToZwSC8N-b4MYLZjsryid=Fpw@mail.gmail.com>
+From: Damien Le Moal <dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <CANAwSgRXfZ9hgdJpSrwucHQfMToZwSC8N-b4MYLZjsryid=Fpw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Jonathan Cameron <jic23@kernel.org> writes:
+On 10/19/24 15:24, Anand Moon wrote:
+> I have a question can new test external low power GPU with external cables
+> which supports PCI host (RC mode) with external power supply for GPU card.
 
-> On Fri, 18 Oct 2024 16:36:12 -0700
-> Justin Weiss <justin@justinweiss.com> wrote:
->
->> Add read and write functions and create _available entries.
->> 
->> Signed-off-by: Justin Weiss <justin@justinweiss.com>
-> Hi Justin,
->
-> Just one trivial comment from me.
->
-> Jonathan
->
->
->
->> +
->> +static int bmi270_write_raw(struct iio_dev *indio_dev,
->> +			    struct iio_chan_spec const *chan,
->> +			    int val, int val2, long mask)
->> +{
->> +	struct bmi270_data *data = iio_priv(indio_dev);
->> +
->> +	switch (mask) {
->> +	case IIO_CHAN_INFO_SCALE:
->> +		return bmi270_set_scale(data, chan->type, val2);
->> +	case IIO_CHAN_INFO_SAMP_FREQ:
->> +		return bmi270_set_odr(data, chan->type, val, val2);
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +
-> Unreachable code, so drop this return.
+I do not understand this sentence.
 
-Will remove in v3.
+> Which mode is suitable for the PCIe endpoint controller or PCIe host controller?
 
-Justin
+If you do not know/understand what PCI endpoint is, you probably do not need it
+at all. If you are using your board to simply connect and use regular PCI
+devices, you do not need the PCI endpoint framework/drivers.
 
->> +	return 0;
->> +}
->>
+-- 
+Damien Le Moal
+Western Digital Research
 
