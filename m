@@ -1,82 +1,212 @@
-Return-Path: <devicetree+bounces-113298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34AF19A52E0
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 08:21:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 614CE9A52E4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 08:38:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FD27B22646
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 06:21:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D3A9282047
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 06:38:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E96FBF6;
-	Sun, 20 Oct 2024 06:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11274101E6;
+	Sun, 20 Oct 2024 06:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="QzlDjAg6"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="XCTbbKxH";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OyD4P1k7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF422FB2;
-	Sun, 20 Oct 2024 06:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A853BFC0B;
+	Sun, 20 Oct 2024 06:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729405308; cv=none; b=aJHVjxo8CjMa/GTEXKpQuSkZYumq56afmxuBAHJdui55ZhzFntjAq1p9z5hRqGXb65OCslG2egWihkOeA4RZAbvbgfYhHoHaa5G7ZAtMTx2K8aEYJWcBgQNDgY/zIkCD6QTFURgtVBVUUJekWjwihwScTmmLTS+gu8HGLB4GSgE=
+	t=1729406314; cv=none; b=cvkj+fRt2z5/XrUbgaVJX3pvyKdzSfN1FpE/q43Mr94Lk48SvgPjNsrBo5yPSjduVQ+vgWaZF6o0tU2o4/Cizj6iAwip7LOMVwzn6+N4ScZaCDgtTzSG0p2/NDijtIDsH6YyxuMBZY30Rv1o1ca4CDhWBtNt5So9GoKVmie2nLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729405308; c=relaxed/simple;
-	bh=e7xRo9gmhueeLOjCCKxAJGpcvRvhQjI8rltTlifZ1+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kbPa/EiXUnNhw9vmx7PMJ3o2JeSm49rPkzhYsYxSH6ikZ+8xfBFuYVr7b4d8pUvIUoLTyJvJSy0faXaTsDpedBvSUB4G1VGp49TJ5ZD1roNIbc2O7CTuqZiKVyFMcgcKDQHN3c1ydDClJaZz3Kz8Y3giVDczYMEtJqYuns5NffA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=QzlDjAg6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50149C4CEC6;
-	Sun, 20 Oct 2024 06:21:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1729405308;
-	bh=e7xRo9gmhueeLOjCCKxAJGpcvRvhQjI8rltTlifZ1+0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QzlDjAg68fhoOHL13QmA3c+PVqWW/APS1QFGL7zIIGtK6G3i4B+deiUjZO9xeaCIN
-	 sC7skAuM2qNBWXUp4ZchhJoBW3lPnrfpiexxxfmy8X80tjQ2kJiagUEB+yj9YBWD9B
-	 +hlDjLyrogovK+p7w306k6e7LLxsUIrf/Fs3Fp/Y=
-Date: Sun, 20 Oct 2024 08:21:44 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>, rafal@milecki.pl,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Michael Zhu <michael.zhu@starfivetech.com>,
-	Drew Fustini <drew@beagleboard.org>,
-	Alexandru Stan <ams@frame.work>, Daniel Schaefer <dhs@frame.work>,
-	Sandie Cao <sandie.cao@deepcomputing.io>,
-	Yuning Liang <yuning.liang@deepcomputing.io>,
-	Huiming Qiu <huiming.qiu@deepcomputing.io>,
-	Alex Elder <elder@riscstar.com>, linux@frame.work,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: vendor: add deepcomputing
-Message-ID: <2024102029-populate-footage-755a@gregkh>
-References: <20241019162605.308475-1-guodong@riscstar.com>
- <20241019162605.308475-2-guodong@riscstar.com>
+	s=arc-20240116; t=1729406314; c=relaxed/simple;
+	bh=KXnPm9vIZwoC6JaCORU4/P2WZLvLDcadghl9ifr12X4=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=EeUpY6u71xeof+UHBJekGvxqvOUPdgfyLAqwQlk5BII9OpsFmNnlfVyGeAPImDpcKkM+jzjbXfmbm2S7e4boRwGp5v/M0Odq6ha+ZZmHCixgz0fqXpyNilBIMNVO1mVNN06F7Pc5T/gg9Ox2hzckIXkNZAvxRhaRnsN0eHkJrZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=XCTbbKxH; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OyD4P1k7; arc=none smtp.client-ip=103.168.172.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id C40BF138022C;
+	Sun, 20 Oct 2024 02:38:30 -0400 (EDT)
+Received: from phl-imap-07 ([10.202.2.97])
+  by phl-compute-04.internal (MEProxy); Sun, 20 Oct 2024 02:38:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1729406310; x=1729492710; bh=L+n/dgPeNQ+5xX5eQ0CHq90T4/FMoM/s
+	+1gnEfSMX0U=; b=XCTbbKxHaSwiteCNxow8fF7tzyg+1GDIOEYHfQaI8/hRriMN
+	iVoh1PJ0kJImuqfwKjORXxn1cyy0C6PDHnZVlExifXCJDEGeaBb5toGng4y6wccn
+	j7ZEr2cadlJ7FT5LEoME2GGG3lLhVWdFg+N40cICuY6vtSd5aZP9ODYQs4FrM83e
+	bwpL6OK+N5u8Hil6z8K4N7PN/1Ux/sQUF3oMQo4N0S0fYu2UQY5AIPAOaWkFOMD9
+	S7LI5Ni+yR3Wd9NjkBceNE4lHLkrCp07LTmecDC57mv6DRwro2AV+kxtGYkeMlLv
+	jI0rPMl9V+j0ne0Gcs7c+12wsfMiYhkdf0St8w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1729406310; x=
+	1729492710; bh=L+n/dgPeNQ+5xX5eQ0CHq90T4/FMoM/s+1gnEfSMX0U=; b=O
+	yD4P1k7T+t7LcEH7rkrUeaXnJw1Vpj3TH05i7CCypHU9RHYVWTj0Fr4aaHPf7x3M
+	5L632Mt/VFSdCI1W5VVSY4hMrrAqy0FkuigJRYP1p9LfaB5T37z7RP9A88WWCEh/
+	GSKYskQtMGGS9aKud2NYBiXi8A/5CnLfPDj0GxY5SZL3si/lSkyq8YQNGEgLSIbf
+	xxzbNAEVyMiAQLBb03AI6V6GHV0MtMwfPKI3afeSHTzqF/SG1cFU/vS1edh/p3Zq
+	sW6dslVMoRrgwowFGINx9Vd4sD3u+Xww0oxJgCezSqIenL0uh4DOTZ7pWoKwTbLN
+	NP63yzVr+9tzBsOLRIERQ==
+X-ME-Sender: <xms:ZaUUZ8Rmr40gpspj07XAf7mLbac-ktz7SLH4Un4Jj4VGYYPTGdka-Q>
+    <xme:ZaUUZ5z1qOYPB2XMz0rOiV-6epkHcxTKwz6FmMLBMa_BFU3uGaCEHf34FWRIbpVKh
+    AU785-hEGBGuuFapA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdehiedgudduvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredt
+    tdenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
+    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeejhfeukeejjefguddvffehveevjefh
+    tddutdfhudduvdevfeejfffgvdelfeeugfenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
+    pghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnhgurh
+    gvrdhprhiihiifrghrrgesrghrmhdrtghomhdprhgtphhtthhopeifvghnshestghsihgv
+    rdhorhhgpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhlrdgtoh
+    hmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthho
+    pegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrh
+    hmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthho
+    pehlihhnuhigqdhsuhhngihisehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtoh
+    epphgvrhgvgiesphgvrhgvgidrtgiipdhrtghpthhtohepshgrmhhuvghlsehshhholhhl
+    rghnugdrohhrgh
+X-ME-Proxy: <xmx:ZaUUZ50Ty61DgHaUzZdkUZeGi7ntpP0oACXu7HQpvfzJO5fZZuZ-4w>
+    <xmx:ZaUUZwDUtfI7dnoppIF6bPtQCNc1Kjm-iX2JnyuINIJS_hMF4dnMfQ>
+    <xmx:ZaUUZ1gIJ2AFkpxIxduzLf1BOnr1fT-pHDCBb3GYZu1vho-Co-rlKA>
+    <xmx:ZaUUZ8o5JISuuHOB95ptltraeDjJyMM3584iB8OeE4Vv2iJDSGL1ow>
+    <xmx:ZqUUZ-baNB_zWDjuV04vbLLL3LDxcjwVA4OOi8EXo3aboDC7OqGsKupb>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id C96AABA006F; Sun, 20 Oct 2024 02:38:29 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241019162605.308475-2-guodong@riscstar.com>
+Date: Sun, 20 Oct 2024 19:38:09 +1300
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Andre Przywara" <andre.przywara@arm.com>
+Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
+ "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ "Chen-Yu Tsai" <wens@csie.org>, "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Message-Id: <d7f782ae-9d66-4d9b-ba51-d55f307d658a@app.fastmail.com>
+In-Reply-To: <20241018102929.0eda3fc8@donnerap.manchester.arm.com>
+References: <20240929100750.860329-1-ryan@testtoast.com>
+ <20240929100750.860329-4-ryan@testtoast.com>
+ <20241001142850.1c275f78@donnerap.manchester.arm.com>
+ <20241018102929.0eda3fc8@donnerap.manchester.arm.com>
+Subject: Re: [PATCH 3/6] clk: sunxi-ng: h616: Add sigma-delta modulation settings for
+ audio PLL
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-On Sun, Oct 20, 2024 at 12:26:03AM +0800, Guodong Xu wrote:
-> From: Sandie Cao <sandie.cao@deepcomputing.io>
-> 
-> From: Sandie Cao <sandie.cao@deepcomputing.io>
 
-Nit, for some reason this shows up twice, same for patch 2/3 :(
 
+On Fri, 18 Oct 2024, at 10:29 PM, Andre Przywara wrote:
+> On Tue, 1 Oct 2024 14:28:50 +0100
+> Andre Przywara <andre.przywara@arm.com> wrote:
+>
+> Hi Ryan,
+
+>> 
+>> Can you try to add a .fixed_post_div = 2 in the ccu_nm definition, and
+>> then put the real dividers in the fixed-factor clocks?
+>
+> So I tested this change, and it seemed to work for me. Please don't
+> forget to add CCU_FEATURE_FIXED_POSTDIV - as I did initially ;-)
+
+Thanks, have updated the patch as above and the manual-described multipliers are working.
+>
+>> And please explain all this in comments ...
+
+Will do.
+
+>> 
+>> >  #define SUN50I_H616_PLL_AUDIO_REG	0x078
+>> > +  
+>> 
+>> Can you please (re-)add a comment here explaining the sources of these
+>> parameters? Because the values deviate from the ones in the manual.
+>> And also please mention here that there are two more divider bits (named
+>> m0 and m1 in the manual), that we cannot model in our ccu_nm struct, and
+>> thus force them to fixed values in the probe routine below?
+
+Thanks, noted.
+
+>> 
+>> > +static struct ccu_sdm_setting pll_audio_sdm_table[] = {
+>> > +	{ .rate = 90316800, .pattern = 0xc001288d, .m = 3, .n = 22 },
+>> > +	{ .rate = 98304000, .pattern = 0xc001eb85, .m = 5, .n = 40 },
+>> > +};
+>> > +
+>> >  static struct ccu_nm pll_audio_hs_clk = {
+>> >  	.enable		= BIT(31),
+>> >  	.lock		= BIT(28),
+>> > -	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+>> > -	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+>> > +	.n			= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+>> > +	.m			= _SUNXI_CCU_DIV(16, 6),  
+>> 
+>> Can you please keep the original indentation? You could add a "post-div"
+>> comment after the .m parameter, to map to the manual.
+>> 
+>> And add that ".fixed_post_div = 2," here.
+
+Corrected for v2.
+>> 
+>> > +	.sdm		= _SUNXI_CCU_SDM(pll_audio_sdm_table,
+>> > +				  BIT(24), 0x178, BIT(31)),
+>> > +
+>> >  	.common		= {
+>> > +		.features = CCU_FEATURE_SIGMA_DELTA_MOD,  
+>> 
+>> Please indent like the other parameters below.
+>> 
+>> >  		.reg		= 0x078,
+>> >  		.hw.init	= CLK_HW_INIT("pll-audio-hs", "osc24M",
+>> >  					      &ccu_nm_ops,
+>> > @@ -690,13 +693,13 @@ static const struct clk_hw *clk_parent_pll_audio[] = {
+>> >   */
+>                      ^^^^
+> There is a comment up here, not shown in this diff, which doesn't apply
+> anymore. Please update it.
+
+Fixed, ta.
+
+>> >  static const struct clk_hw *pll_periph0_parents[] = {
+>> >  	&pll_periph0_clk.common.hw
+>> > @@ -1135,13 +1138,10 @@ static int sun50i_h616_ccu_probe(struct platform_device *pdev)
+>> >  		writel(val, reg + usb2_clk_regs[i]);
+>> >  	}
+>> >  
+>> > -	/*
+>> > -	 * Force the post-divider of pll-audio to 12 and the output divider
+>> > -	 * of it to 2, so 24576000 and 22579200 rates can be set exactly.
+>> > -	 */  
+>> 
+>> Can you please keep the comment, and adjust it accordingly? Saying that
+>> the recommended BSP parameters for the PLL audio recommend M0 to be 1, and
+>> M1 to be 0, and that we enforce this here?
+
+Thanks, have updated.
+
+Regards,
+
+Ryan
 
