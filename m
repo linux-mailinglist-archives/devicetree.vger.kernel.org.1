@@ -1,108 +1,175 @@
-Return-Path: <devicetree+bounces-113347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D9F9A54CB
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 17:39:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C63789A5531
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 18:27:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E2101C20E14
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 15:39:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 666002820B3
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 16:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBED31940B0;
-	Sun, 20 Oct 2024 15:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F6319343B;
+	Sun, 20 Oct 2024 16:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="pNDq0dJt"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="XjPAGumF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE36E19343F
-	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 15:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B8C19306F
+	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 16:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729438771; cv=none; b=Xt4zCiFp3eg/lvJEiROg4U8OEWmrMv8fktI7n1k+33jK9eN4Y2MCItMWgG2PawCTwwliHHn6ILYH2yKvrL9fabPzXQ5Edv1RzhdekX/wHf/iQ14ASMERsb1Y0Ki0YpI18pF2/mk0rOXchQkFO0ECNDIoxB+q4NCTl3A4QNHgIE0=
+	t=1729441632; cv=none; b=LOqE0/FyH7msBp983avBDo4YBSxd+q5H5A/iTcrLAf1B9D74z4rHm8a6hlh3EzFm4BBPMj1HeF0DMqBPVVkuUn/0kQKnzrzYio51V14TetAK6yMKCT12VtqgFA5EomsX9FLfUgOYzrnpDk17SojpWC4umlSHBAmglxche37xrnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729438771; c=relaxed/simple;
-	bh=oh7rhB/4cQ0vZjQlOAp+6Sk98Va72mmT7J7DoldCnOM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R/XSxFYGL6zdA0/E5BBW7LKZ+iK4XszRKrFWFedKQUUNwlmcFy9eHZwBtOvAr/5Lq0TvUYibmwSxsPftRebszoNOjZbS8ulIfkcg9Q2AJ5L9/kX6x77ljyNYRFPAHXX0YYyRvBH6jPdnfyKCuMV/VxCCI8m6JLONGtUH42FQF/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=pNDq0dJt; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37ed3bd6114so1372451f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 08:39:29 -0700 (PDT)
+	s=arc-20240116; t=1729441632; c=relaxed/simple;
+	bh=ZJWn3/ME7/PKMVdnFU/59dN2zZj9ws4GTRkgqj3wGV4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f5iG8l8hxY4qiSJceyDg3fDdduZi8EIyXxkKAS0p7xU0lpsPum9AB/BFhh2oLZLgfyA8bmfWzvyBXIURIf2Z6o/yZrfaabHTbZryawQj1N02ze6ys/C4PJ76jSJCitAaMcnoRBU1k6s5UkbEfMX+QOlztlx4kC6gyZ96f1+Ak9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=XjPAGumF; arc=none smtp.client-ip=209.85.166.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
+Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-3a39f73a2c7so15251525ab.0
+        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 09:27:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1729438768; x=1730043568; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QTfu8x6uKuXBMf4pSuPyv5OmBQv74/q8muUU6L+EfSI=;
-        b=pNDq0dJttm2wBMhxxivVYK7j8VdMu6iMAD7tVQcy+rC9eWjNMxafIvYBdkJOQMC0JU
-         vEPyg9D7KqWqUNR9O/RI6Dm/lIgrQDaRj1ugElsxyiFHXPjzjbnSVn+PpM/EpcUxQBD0
-         UBT7mKQnfAQpVZEh5sErNKu45Ezr1KzapW3YwIM+6sC6dzsXkNsQZH7zWcknbouKpCFG
-         VRSa/d/oPQGwxXFL7X/kjiONFPwFCrjDc5jgsVlmzOtuMfWxs2RtUbRf5YThUQVP6n4O
-         hTQbVYTCINlMgmED+Qmx4AncXwl43pd+YxGHO3h4+EdmckpKFqX4QpeaQENRxfZG5CUk
-         w53Q==
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1729441630; x=1730046430; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vlJnZ2dnH0yKZQoVb1MYW1Cw6i1APoJ7tUtFkvOa8R4=;
+        b=XjPAGumFjzgOouOvI19TBHCSzJZmvD8s1d2a8pm/9QmXxxLP0mpSHXJBpqG4e6MV0e
+         89F5IhQQocXqa3miw2TSzrawL+wu/gSOxbX8+WLleKs3qgzUwRaN0fZsG/kL15uxl2f2
+         VxA0hOtQuFVQpH8Nu/0pE+eRDmKsu8meobqWOhadkJqBD/DPoSU7USwSk97w+/CaIpQV
+         YxS/rZwL5iEHe6Jm+ESyUBFjCbALjL/lKPM3VC3ZCpuhwk9KpU2lqljVqSIGYiUDiax9
+         xqbM55EdIXIEd7BaSQZL6o1rv7AAsMF9URg6xWa1hFiF3i3gGHcyT2jHhHrLqawRJ96s
+         cdrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729438768; x=1730043568;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QTfu8x6uKuXBMf4pSuPyv5OmBQv74/q8muUU6L+EfSI=;
-        b=cGaqE6SpuVhJmxD7O335J6xht8xbN1t0IVqYvC3aloyL1g9TF58dLk/zRLLq8IfXBG
-         syEsHpLyNf9KHt80WggnjcyQpljqM4CQfxJhSK1y7NqoinWzOF5tWO+5MltgVrKKx0s4
-         MNCZj4QAzG4HEgXlaWuK+oBBiWsqrhBa5boWcrDj98CxcbcHTIPCnyzK1vXI1j93Rpy+
-         XldkGOzL46nNVj1UwCfafXQLmiQTUMrcjEGGkE889OHrKGetOzAIBesq3ky9X0ED5TDz
-         QbyFYAG7MdqGY55tDEc8a1QIawXBKJfhqWZTa/F/KvBUNggOb7Zh/LaTTIwKZy2lmFYH
-         AsVg==
-X-Forwarded-Encrypted: i=1; AJvYcCW3SZ472bCKE3v6ys8FHq6UWH/TdnLHI8H0kimQ3xqkEMSuMHjipfh8yckxwPjKOpfFX41PLrDK2wD4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRlYJxXTOhdcLcH62ue60VBKC8RPvQ905eSpmpJQpSR47hLd2A
-	CIxMwMQQ6iXMf9f13Sf+bQn9Ja5okyuI+FTzYyteSBEfcXMAwATXfSLNl2R5HQY=
-X-Google-Smtp-Source: AGHT+IHFx3PRdDtbVUn5kPKTsjG6UXE2U6eeJtsRm5EYGJmiBxmhBHsDIkmuWmrT497fYr4RM75eAA==
-X-Received: by 2002:a5d:4e49:0:b0:37d:3301:9891 with SMTP id ffacd0b85a97d-37ea2164d8bmr5663873f8f.17.1729438768085;
-        Sun, 20 Oct 2024 08:39:28 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.23])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2fa7sm26897165e9.34.2024.10.20.08.39.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Oct 2024 08:39:27 -0700 (PDT)
-Message-ID: <0143a3bf-a912-4ea6-b57c-5b7af79fe5ed@tuxon.dev>
-Date: Sun, 20 Oct 2024 18:39:26 +0300
+        d=1e100.net; s=20230601; t=1729441630; x=1730046430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vlJnZ2dnH0yKZQoVb1MYW1Cw6i1APoJ7tUtFkvOa8R4=;
+        b=maB1p4p11Joppn/rnZivK3oTHfFHsl4qu+R30qVeGR14CcqS8Zd1nVoTEM3FZlOvj7
+         vz1zcfjCCThqtPnNLY2iNdePVPCCBY840CzQAmnn9DJ+NlL+K4DG7XJhihR1c4p/Wfxj
+         h2XfgEYk0vOk5Ssh977S84TYNBaWTD8a5+ItR2OWE6akKFld+xXHHiTEDdJCY6k46dls
+         IndBumLTphTvGjg1nmylMz3/pnEyFntGbPlgC03MpopQVd3aE0cRDNsZRdsejko8edbL
+         VlY5uefmKtdpt9z7iCpMz0NsTfsk448M8DBdT1KMx78hGr3ommFtQN0gyxnCveLXdzly
+         CPRg==
+X-Forwarded-Encrypted: i=1; AJvYcCW7NjZHXlHcMCVWGw+SnudqvLsJjyPbym7OXzwukgjQg8kjiKE4q6QXDOu3kPEmRcMQwg1N0PxegWUP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxERpEXYWZDC59qV5qPOyGD88KZUsmRfm5QiPAIwc02BERyFKAg
+	o7MwZuXX2lf6H9182w4gszh5A6Iaib8DRj9F6HNbIAb2iMgvY0R8mMPI5Bglp5GnOpxEaYuy0Pl
+	WMeXoP8Au1eeaB/v4K26LNmvP1ExQ31dkFB8iW5HvSjQaUksu2VuTZw==
+X-Google-Smtp-Source: AGHT+IHut51aPnA4HRNe+5sFOzWqMYIfb+uEzsIdOlVQy40Ze9JNhMPONaOQfYNIMN+UGYB+CfdjzsYqyLXhrhld8kI=
+X-Received: by 2002:a92:cd83:0:b0:3a3:96c4:29bc with SMTP id
+ e9e14a558f8ab-3a3f406fe98mr81302935ab.11.1729441629798; Sun, 20 Oct 2024
+ 09:27:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] clk: lan966x: add support for lan969x SoC clock
- driver
-Content-Language: en-US
-To: Daniel Machon <daniel.machon@microchip.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kavyasree Kotagiri
- <kavyasree.kotagiri@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240916-lan969x-clock-v1-0-0e150336074d@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240916-lan969x-clock-v1-0-0e150336074d@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241016202814.4061541-1-samuel.holland@sifive.com> <20241016202814.4061541-10-samuel.holland@sifive.com>
+In-Reply-To: <20241016202814.4061541-10-samuel.holland@sifive.com>
+From: Anup Patel <anup@brainfault.org>
+Date: Sun, 20 Oct 2024 21:56:58 +0530
+Message-ID: <CAAhSdy3FTjVUDBJtbsFwj6+DWjrQh3nWwvsm_1edDUO9SkXB2A@mail.gmail.com>
+Subject: Re: [PATCH v5 09/10] RISC-V: KVM: Allow Smnpm and Ssnpm extensions
+ for guests
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, Atish Patra <atishp@atishpatra.org>, 
+	linux-kselftest@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+	"Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>, Shuah Khan <shuah@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jonathan Corbet <corbet@lwn.net>, kvm-riscv@lists.infradead.org, 
+	Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com, linux-doc@vger.kernel.org, 
+	Evgenii Stepanov <eugenis@google.com>, Charlie Jenkins <charlie@rivosinc.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Oct 17, 2024 at 1:58=E2=80=AFAM Samuel Holland
+<samuel.holland@sifive.com> wrote:
+>
+> The interface for controlling pointer masking in VS-mode is henvcfg.PMM,
+> which is part of the Ssnpm extension, even though pointer masking in
+> HS-mode is provided by the Smnpm extension. As a result, emulating Smnpm
+> in the guest requires (only) Ssnpm on the host.
+>
+> The guest configures Smnpm through the SBI Firmware Features extension,
+> which KVM does not yet implement, so currently the ISA extension has no
+> visible effect on the guest, and thus it cannot be disabled. Ssnpm is
+> configured using the senvcfg CSR within the guest, so that extension
+> cannot be hidden from the guest without intercepting writes to the CSR.
+>
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 
+LGTM.
 
-On 16.09.2024 12:49, Daniel Machon wrote:
-> Daniel Machon (4):
->       dt-bindings: clock: add support for lan969x
->       clk: lan966x: make clk_names const char * const
->       clk: lan966x: prepare driver for lan969x support
->       clk: lan966x: add support for lan969x SoC clock driver
+Reviewed-by: Anup Patel <anup@brainfault.org>
 
-Applied to clk-microchip, thanks!
+Regards,
+Anup
+
+> ---
+>
+> Changes in v5:
+>  - Do not allow Smnpm to be disabled, as suggested by Anup
+>
+> Changes in v2:
+>  - New patch for v2
+>
+>  arch/riscv/include/uapi/asm/kvm.h | 2 ++
+>  arch/riscv/kvm/vcpu_onereg.c      | 4 ++++
+>  2 files changed, 6 insertions(+)
+>
+> diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/=
+asm/kvm.h
+> index e97db3296456..4f24201376b1 100644
+> --- a/arch/riscv/include/uapi/asm/kvm.h
+> +++ b/arch/riscv/include/uapi/asm/kvm.h
+> @@ -175,6 +175,8 @@ enum KVM_RISCV_ISA_EXT_ID {
+>         KVM_RISCV_ISA_EXT_ZCF,
+>         KVM_RISCV_ISA_EXT_ZCMOP,
+>         KVM_RISCV_ISA_EXT_ZAWRS,
+> +       KVM_RISCV_ISA_EXT_SMNPM,
+> +       KVM_RISCV_ISA_EXT_SSNPM,
+>         KVM_RISCV_ISA_EXT_MAX,
+>  };
+>
+> diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
+> index b319c4c13c54..5b68490ad9b7 100644
+> --- a/arch/riscv/kvm/vcpu_onereg.c
+> +++ b/arch/riscv/kvm/vcpu_onereg.c
+> @@ -34,9 +34,11 @@ static const unsigned long kvm_isa_ext_arr[] =3D {
+>         [KVM_RISCV_ISA_EXT_M] =3D RISCV_ISA_EXT_m,
+>         [KVM_RISCV_ISA_EXT_V] =3D RISCV_ISA_EXT_v,
+>         /* Multi letter extensions (alphabetically sorted) */
+> +       [KVM_RISCV_ISA_EXT_SMNPM] =3D RISCV_ISA_EXT_SSNPM,
+>         KVM_ISA_EXT_ARR(SMSTATEEN),
+>         KVM_ISA_EXT_ARR(SSAIA),
+>         KVM_ISA_EXT_ARR(SSCOFPMF),
+> +       KVM_ISA_EXT_ARR(SSNPM),
+>         KVM_ISA_EXT_ARR(SSTC),
+>         KVM_ISA_EXT_ARR(SVINVAL),
+>         KVM_ISA_EXT_ARR(SVNAPOT),
+> @@ -127,8 +129,10 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsig=
+ned long ext)
+>         case KVM_RISCV_ISA_EXT_C:
+>         case KVM_RISCV_ISA_EXT_I:
+>         case KVM_RISCV_ISA_EXT_M:
+> +       case KVM_RISCV_ISA_EXT_SMNPM:
+>         /* There is not architectural config bit to disable sscofpmf comp=
+letely */
+>         case KVM_RISCV_ISA_EXT_SSCOFPMF:
+> +       case KVM_RISCV_ISA_EXT_SSNPM:
+>         case KVM_RISCV_ISA_EXT_SSTC:
+>         case KVM_RISCV_ISA_EXT_SVINVAL:
+>         case KVM_RISCV_ISA_EXT_SVNAPOT:
+> --
+> 2.45.1
+>
 
