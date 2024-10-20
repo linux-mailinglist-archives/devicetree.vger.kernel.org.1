@@ -1,115 +1,118 @@
-Return-Path: <devicetree+bounces-113412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7636C9A579A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 02:13:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2A609A5756
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 00:21:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA2F12822A5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 00:13:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3297B20C42
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 22:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1085638C;
-	Mon, 21 Oct 2024 00:13:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2368183CA6;
+	Sun, 20 Oct 2024 22:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="fMCVAgQD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hh0N4c3i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E12173;
-	Mon, 21 Oct 2024 00:13:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1AD420E31D;
+	Sun, 20 Oct 2024 22:21:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729469612; cv=none; b=s9n3Zi56gSkH7+WTXsf9xNwqGzN9vcVrKofzDDlJEQk6+MSYJ1KL2KM7yfF2UzHVlDdc0nhBJ0u+zgxoIABG+2nOEq5iwWy7teWrHIA0fMH0k8XpjIGKRAMvnAq6HvN7HTXYGtAzNWpN0zbjI/xH0lRYu9Up+gB2s/nYKsMuPVE=
+	t=1729462865; cv=none; b=okqmVJvvz+EF3FFg5xQ66H4OrIHmlVFgFMAedAdP4WKODAvyzvvsnSGNPXMMkdtNwETA9nzZBHFXJ55KqcSpM+cCVYkNn+lH8XLuw2FG3/52HICvTqGmKPtaiSisKAXau61xirgDiWU9Gu/8ziPu5WeiQq8Deal09dS5POGkSiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729469612; c=relaxed/simple;
-	bh=R/k9uYQHSpDcpi50VvUloJGEk0H00iqdXI18v4ZuqNI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W9ReH9lquF5Tv0rgpbfF8LgfhoFxNHt3YUz2psY2sC2TC4rFX51iv1VKYgwFHam46bBZpDdS6Xsyrgb6fKeNX8veT/B5ahDE2N4+N0kOjt6ivVwvjcGy7x80dPr1ninH8cFgxxpBGS9HKCv30ajSAf7+RnCNnGeE+ooAd2cchHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=fMCVAgQD; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 760CF88278;
-	Mon, 21 Oct 2024 02:13:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729469608;
-	bh=IRVAUBinxbX/l4Lyk6VhE6sA/V8JI+dBGkk5jqRChqU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fMCVAgQDpMge1KO/GJgCBiwcRh+6/QybCLogajgvCvmTsnK1NE7eOAcd5ZIxFoOTD
-	 heyF1ge1ieIMGCM7SIAfGxF30DkYGoVR6cDftHg/ZBSbOKicXGv2d8BNdZ+V3zxS0O
-	 LeNZxB/oBB3GPCozNF/tUHv8pX9Ekcsa4dL7OZZkL7jzCtaQuTpkJeT1Snj1pIEYsK
-	 lfz2dn7kPFFcPsr00ELCk0chI5goWfXRxarfmL9W9GLGTg13MJkEJU7aPqHOSLqfNg
-	 9IW2v6ji2p8IUtWS/tXegTcDa1gwi9pRFOVw11v5xWUPfjl1cx/Nng2sf/3KT3zMIO
-	 KSnnySi0vtVUw==
-Message-ID: <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de>
-Date: Mon, 21 Oct 2024 00:16:54 +0200
+	s=arc-20240116; t=1729462865; c=relaxed/simple;
+	bh=c0RD5aWPHcjvk8dz7LpAgGFrpVHOGZS40wi7nAmg4+w=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=mjzcLvGCbowYvRznuyEHiIKBTVmAbn2REXS8JPoKvIVdwcmKGRaBlKWbzVl2kaZlzfLukVykzBiqYoboCSrHRyRvFusme29pmLdkTsp+tSPOoq0K3juegj2eimtIh9hm7iPHIyqjzm/EluOpd0DmtWMEDyD0X2trsP+Bl3L107w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hh0N4c3i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82447C4CEC6;
+	Sun, 20 Oct 2024 22:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729462865;
+	bh=c0RD5aWPHcjvk8dz7LpAgGFrpVHOGZS40wi7nAmg4+w=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=Hh0N4c3iYOTFd4ikgZL3NU2NcMnBQiZSPowyrbVPnGWkZOCd9/ZklhlZSdMhI8KK6
+	 WfmAbiBcslabi9pC7FH3CrzAqyuTnDqc9qc4nKz5McVSp9c8SyQ2BcrXn1vedGsEHD
+	 L+EhBIBpCD8FfzOVEap1sRV0ctd8CbR5RTGcL7kcNJAGJSd6/RP79YE/S+euMfCzbf
+	 DgRCWT5rOYMjsqcHEoReYbUoJLXCjWkZdad23FIVbeSknrwV/VT4VVvNzSSp4iNfCy
+	 Li+1aoBmpPHM9slvs4uIKrPzAyV2JTNuGwFpHdm56xdN3hR2XxFeXYaH0FkhjBcY9n
+	 Z+Z3WaJbx7JGw==
+Date: Sun, 20 Oct 2024 17:21:03 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
- to mdio node
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
- <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
- <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
- <50b37c36-643c-4307-9d4e-ad49b306ba8a@denx.de>
- <20241015144810.GD2838422@ragnatech.se>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20241015144810.GD2838422@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: dinguyen@kernel.org, s.trumtrar@pengutronix.de, krzk+dt@kernel.org, 
+ marex@denx.de, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20241020194028.2272371-13-l.rubusch@gmail.com>
+References: <20241020194028.2272371-1-l.rubusch@gmail.com>
+ <20241020194028.2272371-13-l.rubusch@gmail.com>
+Message-Id: <172945976879.2209098.12973837165878393589.robh@kernel.org>
+Subject: Re: [PATCHv2 12/23] ARM: socfpga: dts: add a10 clock binding yaml
 
-On 10/15/24 4:48 PM, Niklas Söderlund wrote:
 
-Hi,
-
->>> However, the reset signal may be in asserted state when the PHY is
->>> probed (e.g. after unbind from the Ethernet driver, or during kexec).
->>> Identifying the PHY by reading the ID register requires deasserting
->>> the reset first.
->> That may not be the entire precondition. For example the SMSC LAN87xx PHYs
->> also require PHY clock to be enabled before the reset is toggled, but such
->> information is available only to the specific PHY driver.
->>
->> The MDIO-level reset GPIO handling, as far as I understand it, applies in
->> case there are more PHYs on the MDIO bus which share the same reset GPIO
->> line.
->>
->> In this case there is only one PHY on the MDIO bus, so the only bit which
->> applies is the potential PHY-specific reset requirement handling. If the PHY
->> driver ever gets extended with such a thing in the future, then having the
->> reset-gpios in the PHY node is beneficial over having it in MDIO node.
->>
->> It will always be a compromise between the above and best-effort PHY
->> auto-detection though.
+On Sun, 20 Oct 2024 19:40:17 +0000, Lothar Rubusch wrote:
+> Convert content of the altera socfpga.txt to match clock bindings for
+> the Arria10 SoC devicetrees. Currently all altr,* bindings appear as
+> error at dtbs_check, since these bindings are only written in .txt
+> format.
 > 
-> I agree this is not needed if the PHY is identified by the compatible
-> string, but might be if it is not. In this case it works and the reason
-> for this patch was just to align the style used here.
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> ---
+>  .../bindings/clock/altr,socfpga-a10.yaml      | 107 ++++++++++++++++++
+>  1 file changed, 107 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml
 > 
-> I'm happy to drop this patch, or send a rebased version that applies
-> since the context changed ;-) Marek, Geert what is your view? I'm happy
-> with either option.
-I was hoping Geert would comment on this first, but seems like maybe no. 
-I think, since the PHY node does have a compatible string AND the reset 
-is connected to the PHY, I would keep the reset property in the PHY 
-node. Sorry.
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: fixed-divider: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: clk-gate: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: div-reg: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: clk-phase: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: title: "Device Tree Clock bindings for Altera's SoCFPGA platform" should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml: properties:#clock-cells: 'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dts:25.11-24: Warning (reg_format): /example-0/main_pll@40:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/altr,socfpga-a10.example.dtb: main_pll@40: '#address-cells', '#size-cells', 'main_noc_base_clk' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/clock/altr,socfpga-a10.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241020194028.2272371-13-l.rubusch@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
