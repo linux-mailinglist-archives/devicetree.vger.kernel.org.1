@@ -1,139 +1,118 @@
-Return-Path: <devicetree+bounces-113342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4539A5483
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 16:36:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5E19A54C1
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 17:34:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B7F51F21ADB
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 14:36:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0924F1C20E23
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 15:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532A4192B99;
-	Sun, 20 Oct 2024 14:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE5C193409;
+	Sun, 20 Oct 2024 15:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="TaVt67gg"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="bVl5JsDw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF3D192B79
-	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 14:36:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8EB13232
+	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 15:34:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729434971; cv=none; b=EfxFpL0+V2ivy/BSvegXRzTRpTBfc/o/23B3W2CNFA5P+79fVFdDIh0mx3WkUXA2tQX7tAUl52sLwax41muw4LIDudngM/8uo7Yobrq5WJdSBtEtPo6ctaVS85K2GxwnYANAqM2zE3iXEcg0ynwVhLRe7u07ncTIL6EdNiToQn8=
+	t=1729438450; cv=none; b=lW98E1b6IhZljKvhKGrFBR1F3srRVoYB3gN7IyfxovAMs5RPj8yOYw73VXr9mL8povumLF6PsgeqTXzabCmOqbWTQbh/x5EjZnoJ6Eg4m/l6bSD0q+IaUUzaWbKtq2YFye9ytXTZkqy9wga4ARCPKRDkdobI0UBKIPNnH2Bg9Uk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729434971; c=relaxed/simple;
-	bh=nI7CzD0dROhg5LFR+SbTGgNA8U3esGCj22cTRyP1R+k=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=oorG5oiXFKIrk0bzfX2/9bfrirDfv8mqWD1b+B31keNeD39ucS3WzFLAFwW4Tff3mp4mbbTajgSLXlwKfLlkDxvow8ONvgN6acntBE0n3eG7JaIBkVQtadVSJYAkLw311uVyTOh9sdoQZ5+OjYy8W+w5THXa0dxkqLPG3r2fo8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=TaVt67gg; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-7e6ed072cdaso2514009a12.0
-        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 07:36:09 -0700 (PDT)
+	s=arc-20240116; t=1729438450; c=relaxed/simple;
+	bh=0xjvtoloZfE9E4bN7ATN5VNPFrMJa0b9V65OPffNRDE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tDTg6FzFRy29X3XOGRo0V6bsghTWV+Sm/jLX9sb6CYYZlE3lAUzBRZI/S+wyz42lHzQwPo88+9QT+I8cC9YgWd7h5aXmALGIOx1Wfuqdgwx8hHKIzgUSg2cmHBi8/f4eRNM70ksF8w6GtKnnp25LXvRJK8BTEav9ZWcR2Ta/niI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=bVl5JsDw; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d3ecad390so3371899f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 08:34:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1729434969; x=1730039769; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+        d=tuxon.dev; s=google; t=1729438446; x=1730043246; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kKUwNFi+RGRukUqB0kD8s+grnaOyo0LZlXvjUDFIUlI=;
-        b=TaVt67ggiO8TII9/hxMikq/0rOqWFNrSgEyb65y38OwGJlJbAPCDO1m15+dYaXOcPV
-         jZ1nA/l3+s13FQzChmbtX2H0ookV8ruvTAvoHyp2M3bglha1tq/FyXlA91QvCzjU/Kg3
-         fwsSSnt160hEig656Kb4t/pR/kKcV83K1979UlwajpDRgs/ByAhscugJBDjkAlP/NkWp
-         1qEfYz0/2/+Ug7cHaL6y8dtxcyk20qb4zB1P7lZbttXlRiFtz7J3Dr6Vub4AnN3Gah5M
-         26xeB3mWfuJDWOhxSCxMJZiiixBWgr4tIQ6m7PWmj4CzwgagpzPZZyWgAXFxRdnVovnQ
-         7MuQ==
+        bh=lHoF0+jy08+d0tzw5wdsCud86iYNSnmDm7vWUTpb7kM=;
+        b=bVl5JsDwsjetVHIgWQi8cEmLd5Gxi+zE3mxicL2lhqPRp68X2mgHxGQhE7X3tcgSQP
+         ZlppY7loXEbwbMpCF9vQBmdV1ivje3PAbdmoUO9J9+eX6HeYCmopWcEqPkRt9Y+RXXf+
+         IgzCqeptZcnNTIXx6Q54g6y9nW4dF+orG/e+zrtBKAYH+uQODDszdkIg+lN3MxQpGJba
+         TbJ5KbkQVb5uEGef9ETqqxVHCeop1t9MlOIyVezlHBZWTdL013Nv1pamiVPqVlFAOFuD
+         iF7a0xGPklLU4thSHCaCHd3ihG0Up+8ZpgkmTYr1zAyBh7EkCVq53eBQ6NHzlONJD1j+
+         iwcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729434969; x=1730039769;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1729438446; x=1730043246;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kKUwNFi+RGRukUqB0kD8s+grnaOyo0LZlXvjUDFIUlI=;
-        b=dn+yol5+rJeNeF8gm+i6V6HY2hSR57tY0HyaR+A3qDRIsvHglVSGxzY/2BmvYXD3DH
-         sIarXsCQSU2flOsrsABWdoqhPUKfV8W93yPof9vUUb6t9y7z2s1POMmb64HZwIp5Hnj+
-         sTdOlwEz+1OlLhgGxx2KOPfX/8xDtbNbgIsYIuVtDCutRt90LtAyAz97AcpcDpkYlWiU
-         cP9eOav1yYIZftUt6XyvZ4qv2iGIl3XvLHQnS94x7tj75IsmAZLvJ/s9PAPYmlji9Z95
-         RClmxymH7ah6506+USdMA6HULl2qDPL6pR/asdbH1J2eXkMDyni12fZ+bmaxUlS4wlzf
-         IblA==
-X-Forwarded-Encrypted: i=1; AJvYcCWD1QlC3Z6BOY/gWo5PQxShHlutFDi2wCzsPyLdym+fO3RN6VB3SyTSGCFXeIp+3JNlOHlpfEcAjAJ3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzY515gsE/Df9IpkBe75rtIJuNR2LbuAsDNEA5dIyvtSXMiHZ+N
-	/VSXiFTigZiqVCs3PXlHXGrbGkI/9GetTvfVH0t2c81EyvkoPa64lA3V9zg/OBw=
-X-Google-Smtp-Source: AGHT+IGJNYH1gN14k1HjiG8KMaOw8wGH7bmIO29hzeC6OSNwC+ZYDPZ5SQj59jaNoa9SfDiMXNrNKg==
-X-Received: by 2002:a17:90a:e392:b0:2e2:cd5e:7eef with SMTP id 98e67ed59e1d1-2e5618d9edamr9931854a91.27.1729434968747;
-        Sun, 20 Oct 2024 07:36:08 -0700 (PDT)
-Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad4ed825sm1572538a91.35.2024.10.20.07.36.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Oct 2024 07:36:08 -0700 (PDT)
-Date: Sun, 20 Oct 2024 07:36:06 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: soc@kernel.org
-Cc: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [GIT PULL] RISC-V T-HEAD Devicetrees for v6.13
-Message-ID: <ZxUVVk9gWJAVrp0g@x1>
+        bh=lHoF0+jy08+d0tzw5wdsCud86iYNSnmDm7vWUTpb7kM=;
+        b=i18UvVYQB7iAiZ2AompPAZIW3bTzzMV+i06ERmVMKiTVd6VF2B8RdJw0UToM5XX2Vy
+         bk1qfXTcQtpnOLsFqaHPokLVijAE2FxmS7u1ksADQ42f5rASBP4HYT/38Ur+6QVTbrns
+         5JoG4VWHV1tOLt8TDbZ4eHjr5AORF/oh20LSJj7W9me5pPmTnhkA241NXwHdD8UwnPxU
+         d06nz9bDs17zi54B56DphPk/Spaj7gaDdONX5WfB5kS9kmJqsOG6RpVvTFGwHqYt93QH
+         ianAA7BJ9xWdbSXe6ispgKRqJkAnJUAghBTww7DWYizCZ/UnHPL4yPzg1zAS1mDZTtIe
+         fD1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWWD6IZIw1252RBXikFp4R5v7zhrLNBSgtG4giA5iM7SvnWssnzIzhsp2UQUma73W9N02M16dpkI9Rs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2/EwOQ6in1q1i3HqSb/c6fOwDT2SiXdVEBM5o/kfUUnb9q2q0
+	iYitGEoCytEoT83/G65EiPLs2LBMxmL/MNsqMLVUDcVrKGYfQGT2k/h9jVKtHsU=
+X-Google-Smtp-Source: AGHT+IEWdM3R1s0Duv6iO8wCESNGfP4LSs7tVFDEZBXcZpXSwYCb4zP4707JgH7ciHfeDYs0Xb3lcg==
+X-Received: by 2002:adf:e84f:0:b0:37c:cce8:4acc with SMTP id ffacd0b85a97d-37d93da3dd9mr9248445f8f.13.1729438445641;
+        Sun, 20 Oct 2024 08:34:05 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.23])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0b9432fsm1961891f8f.83.2024.10.20.08.34.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Oct 2024 08:34:05 -0700 (PDT)
+Message-ID: <b35e66b9-2748-4d2d-abcb-69c780df0912@tuxon.dev>
+Date: Sun, 20 Oct 2024 18:34:01 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ARM: dts: microchip: sam9x60: Add missing property
+ atmel,usart-mode
+Content-Language: en-US
+To: Andrei Simion <andrei.simion@microchip.com>, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240912093307.40488-1-andrei.simion@microchip.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20240912093307.40488-1-andrei.simion@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Arnd,
 
-Please pull these thead dts changes. I've run W=1 dtbs_check and they
-have been in linux-next since October 15th.
 
-Thanks,
-Drew
+On 12.09.2024 12:33, Andrei Simion wrote:
+> Add the atmel,usart-mode property to the UART nodes. This ensures
+> compliance with the atmel,at91-usart.yaml schema and resolves the errors
+> below:
+> serial@200: $nodename:0: 'serial@200' does not match
+> '^spi(@.*|-([0-9]|[1-9][0-9]+))?$'
+> serial@200: atmel,use-dma-rx: False schema does not allow True
+> serial@200: atmel,use-dma-tx: False schema does not allow True
+> serial@200: atmel,fifo-size: False schema does not allow [[16]]
+> 
+> These errors indicate that the property
+> atmel,usart-mode = <AT91_USART_MODE_SERIAL> is missing for
+> UART nodes 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, and 12.
+> 
+> Fixes: 99c808335877 ("ARM: dts: at91: sam9x60: Add missing flexcom definitions")
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
 
-The following changes since commit 8e929cb546ee42c9a61d24fae60605e9e3192354:
+Applied to at91-dt, thanks!
 
-  Linux 6.12-rc3 (2024-10-13 14:33:32 -0700)
-
-are available in the Git repository at:
-
-  git@github.com:pdp7/linux.git tags/thead-dt-for-v6.13
-
-for you to fetch changes up to 2a3bf75a9408c40403aab39336274c8010b4c815:
-
-  riscv: dts: thead: remove enabled property for spi0 (2024-10-15 10:01:18 -0700)
-
-----------------------------------------------------------------
-T-HEAD Devicetrees for v6.13
-
-Add nodes for pin controllers on the T-Head TH1520 RISC-V SoC. The
-yaml binding and pinctrl-th1520 driver has been merged into next by
-Linus W and will be included in the 6.13 pinctrl PR.
-
-The TH1520 GPIO controllers are already supported by the gpio-dwapb
-driver. This PR improves GPIO support by adding GPIO ranges and GPIO
-line names for the BeagleV Ahead and LicheePi 4A boards. Support is
-added for the built-in LEDs on the Ahead board.
-
-Signed-off-by: Drew Fustini <drew@pdp7.com>
-
-----------------------------------------------------------------
-Drew Fustini (1):
-      riscv: dts: thead: remove enabled property for spi0
-
-Emil Renner Berthing (7):
-      riscv: dts: thead: Add TH1520 pin control nodes
-      riscv: dts: thead: Add TH1520 GPIO ranges
-      riscv: dts: thead: Adjust TH1520 GPIO labels
-      riscv: dts: thead: Add Lichee Pi 4M GPIO line names
-      riscv: dts: thead: Add TH1520 pinctrl settings for UART0
-      riscv: dtb: thead: Add BeagleV Ahead LEDs
-      riscv: dts: thead: Add missing GPIO clock-names
-
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 86 +++++++++++++++++++++-
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi    | 39 ++++++++++
- arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts  | 30 +++++++-
- arch/riscv/boot/dts/thead/th1520.dtsi              | 70 ++++++++++++++----
- 4 files changed, 202 insertions(+), 23 deletions(-)
+I moved the newly added properties near the other vendor specific
+properties to cope with DT coding style. Please have a look and let me know
+if something is wrong.
 
