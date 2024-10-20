@@ -1,152 +1,156 @@
-Return-Path: <devicetree+bounces-113409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F559A5764
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 00:57:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C2979A577B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 01:30:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC3131F21417
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 22:57:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBF6A1F21638
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 23:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8631198A08;
-	Sun, 20 Oct 2024 22:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF4B183CD5;
+	Sun, 20 Oct 2024 23:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="G30yqef8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CtriHKw2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33965197A77
-	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 22:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8ED2260C;
+	Sun, 20 Oct 2024 23:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729465054; cv=none; b=hJmGuhnBoiFzYTCFuYjhS9bNPUf9/maAlqzr6c+W+81J9C3GM1Mt/3Ie+j3C5Qy4lXrY7T7+hYH+Dfi6UjwErcD8bDFtWdtXLd+4j0wz+zZA1rS8omoC1X5F7DnezmSfV41+4DJRN5LAdkQNY92gNqi+pwmJ62J3xAJBujiIp6Q=
+	t=1729467029; cv=none; b=YpdwY3hazbZcsZcRhLnxCeaF1tTDEGl1c/TkEdYNFkVjzooPipRvEqC35IyaSNU853w9t6Ap8xMGluFvoxmCSlb8PiOqnk4Qcf8VFIu9eMvMTmPAfoQB0dovBZssHtToWyPruvyV27WpttCsZ98cO9YF7GMpE9stN0DZh1Mh6Zs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729465054; c=relaxed/simple;
-	bh=0+R9M0CpieGkne/gcdb/HaD48CMKqgqpHAjXV9Gr7qA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a/tkQs7cIrUxhSxA+UEP6OSvnPGaLBu9EQ006QNBQlRzRlWXsE3Cc3HAcH5IuVyGY7ZRqpLyjrJfTLITaKTTiVGpWB+/A6Sk813qFVge8zlhb8VgxMIzcp3oF06ZlUk0zlDYDGl1x9POcTHpJXLWkAn7WvfkjzHFXuDMo1QUCDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=G30yqef8; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1BCFC2C04C6;
-	Mon, 21 Oct 2024 11:57:24 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1729465044;
-	bh=wlgnVORc8VmazlIHF0M6sTSdf4wJFTiEPBgMRnw7cOA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G30yqef8372lehEvTvIqdLZT8J1VFk1wmO4MEQHfSyZy1qi36MCW0KqwebQmYmA5G
-	 LD9s3yjyolxFToWOVc/VItCoRSpljqMQnTz2uYmHpCT9R8wRA60Rc3jBBS29XBhcPa
-	 GpV04nqgSAcSnSG+xhMwe8PSxLv7sw/2+wxcL68as+ARfcU70/x1WmKsGXPd9tEx0y
-	 J97nYI2XF/nZvFBAjOth3takGxnihayU6ke4Mz1f3lQPRedxsibgaqOUFCmGAYoJra
-	 2SfUvA2SOWHZYAN8DJxXMNzJQIm3N3raRvc4/J7xxXNm5yZZGGxXTVuLsA388rWmWO
-	 M6VjaY/q27V3g==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B67158ad40000>; Mon, 21 Oct 2024 11:57:24 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 062EC13ED7B;
-	Mon, 21 Oct 2024 11:57:24 +1300 (NZDT)
-Message-ID: <bca44b71-d002-4dac-8c53-6b7dd90ffce1@alliedtelesis.co.nz>
-Date: Mon, 21 Oct 2024 11:57:23 +1300
+	s=arc-20240116; t=1729467029; c=relaxed/simple;
+	bh=Kz1NHj5ItKEdf8tMz+c3LHflG9kb1GvIXDVJI6QUaw8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G2a/j0sYWdUZQn8r6NHd6B0bSrZXOq9oOU/zbXKcVMe9F7cPkFpIrij4hYfX0vzyp07rQiXhTJCvJF3mBT1/6I8Xgo0a/f86IthKe79M9DJfiuT4bvUnUKL3LyORU6oPZRxRBa1KxPHjybw79X0trtklYMstnbQOAlSQkB51dS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CtriHKw2; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729467027; x=1761003027;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Kz1NHj5ItKEdf8tMz+c3LHflG9kb1GvIXDVJI6QUaw8=;
+  b=CtriHKw2rD/Lr6AQNnLw+zwGZH4fL2quU5leVX10fv8xtS1H07tO1sTO
+   O4VccSqh8az1lVTnHNxCL5kS1xxZypG81ODjUJPAPkeqnzxxvlqB8OWMe
+   uzcK7FY3a6DgLb5aiROpDokMeyjQbSFM7PnJH4Rj1DncEJnTx36WHztNp
+   65YxDvb/kxIOB2KmG1urrwXGhTs1ILxsLnZVb5GX2uqVD48ZLubTjQjtG
+   mZvSBTpQ8/NmLc9pFicv6FdjNL3vLRaTkoU6V0F+Ym0CaCl6Vadp+LnPJ
+   fmrzStW8A9+lnvAbK2Eh4Jo3b4HlZ9SM1sQCxQJmuNUAe8XwOqTYJ8snu
+   Q==;
+X-CSE-ConnectionGUID: /XgY52rmQR62Tv8AmBu+lg==
+X-CSE-MsgGUID: x3kfdDN1TD2YBp+va5SDaQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="31801389"
+X-IronPort-AV: E=Sophos;i="6.11,219,1725346800"; 
+   d="scan'208";a="31801389"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2024 16:30:26 -0700
+X-CSE-ConnectionGUID: TRYXLaZQS6iTM3Ws5weyAA==
+X-CSE-MsgGUID: ZE26uQnrSH6OO8a5PFhIdg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,219,1725346800"; 
+   d="scan'208";a="79010962"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 20 Oct 2024 16:30:22 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t2fNM-000QtJ-0h;
+	Sun, 20 Oct 2024 23:30:20 +0000
+Date: Mon, 21 Oct 2024 07:30:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Kalpak Kawadkar <quic_kkawadka@quicinc.com>
+Subject: Re: [PATCH 11/14] clk: qcom: add support for GCC on SAR2130P
+Message-ID: <202410210706.cTMYfYvA-lkp@intel.com>
+References: <20241017-sar2130p-clocks-v1-11-f75e740f0a8d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v2] kbuild: Restore the ability to build out of tree dtbs
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: nathan@kernel.org, nicolas@fjasle.eu, linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20241016194149.4178898-1-chris.packham@alliedtelesis.co.nz>
- <CAK7LNAR4h6NZ+D0BK+q4VQBeHWpjzRBQFQ9ovBrftM=6dHRcUg@mail.gmail.com>
-Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <CAK7LNAR4h6NZ+D0BK+q4VQBeHWpjzRBQFQ9ovBrftM=6dHRcUg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=67158ad4 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=nLVBVlUmovVwbiQ-:21 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=pVO9QfLW94fXXyuqY9gA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241017-sar2130p-clocks-v1-11-f75e740f0a8d@linaro.org>
 
-+cc devicetree
+Hi Dmitry,
 
-Hi Masahiro,
+kernel test robot noticed the following build warnings:
 
-On 19/10/24 00:19, Masahiro Yamada wrote:
-> On Thu, Oct 17, 2024 at 4:59=E2=80=AFAM Chris Packham
-> <chris.packham@alliedtelesis.co.nz> wrote:
->> A build pattern to handle out of tree dtbs is to copy the .dts file in=
-to
->> the kernel source tree and run `make myboard.dtb`. This is supported b=
-y
->> the wildcard %.dtb rule in the Makefile but recent changes to split th=
-e
->> dtb handling out of scripts/Makefile.build stopped this from working.
->> Restore this functionality by looking for .dtb in $(MAKECMDGOALS) as
->> well as $(targets).
->>
->> Fixes: e7e2941300d2 ("kbuild: split device tree build rules into scrip=
-ts/Makefile.dtbs")
->> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->> ---
-> This is not a use-case in upstream.
->
-> If you drop-in your downstream DT to the kernel tree,
-> you need to associate it with Makefile.
+[auto build test WARNING on 7df1e7189cecb6965ce672e820a5ec6cf499b65b]
 
-I agree that this is Hyrum's Law at work.=C2=A0 I still feel that handlin=
-g=20
-out-of-tree dtbs is something that would be in the best interest of the=20
-Linux kernel. It doesn't necessarily need to be done by allowing copying=20
-arbitrary .dts files into the tree, a mechanism like the way out of tree=20
-kernel modules are handled would be workable.
+url:    https://github.com/intel-lab-lkp/linux/commits/Dmitry-Baryshkov/dt-bindings-clock-qcom-rpmhcc-Add-SAR2130P-compatible/20241018-010608
+base:   7df1e7189cecb6965ce672e820a5ec6cf499b65b
+patch link:    https://lore.kernel.org/r/20241017-sar2130p-clocks-v1-11-f75e740f0a8d%40linaro.org
+patch subject: [PATCH 11/14] clk: qcom: add support for GCC on SAR2130P
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20241021/202410210706.cTMYfYvA-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241021/202410210706.cTMYfYvA-lkp@intel.com/reproduce)
 
-Often supporting a new hardware platform is just a matter of writing a=20
-dts that describes the board. Particularly when that board is based on=20
-an existing one. The way most dts/dtsi files are arranged in-tree=20
-requires a non trivial amount of handling by the C processor. So while=20
-one could produce a dtb file by invoking cc -E and dtc with the right=20
-options pointing at the right paths, having the kernel build system=20
-provide something that abstracts that would be beneficial for developers=20
-and even end users.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410210706.cTMYfYvA-lkp@intel.com/
 
->> Notes:
->>      Changes in v2:
->>      - keep $(target) and search for .dtb in $(MAKECMDGOALS)
->>
->>   scripts/Makefile.build | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/scripts/Makefile.build b/scripts/Makefile.build
->> index 8f423a1faf50..78763a4bc58a 100644
->> --- a/scripts/Makefile.build
->> +++ b/scripts/Makefile.build
->> @@ -449,7 +449,7 @@ ifneq ($(userprogs),)
->>   include $(srctree)/scripts/Makefile.userprogs
->>   endif
->>
->> -ifneq ($(need-dtbslist)$(dtb-y)$(dtb-)$(filter %.dtb %.dtb.o %.dtbo.o=
-,$(targets)),)
->> +ifneq ($(need-dtbslist)$(dtb-y)$(dtb-)$(filter %.dtb %.dtb.o %.dtbo.o=
-,$(targets))$(filter %.dtb,$(MAKECMDGOALS)),)
->>   include $(srctree)/scripts/Makefile.dtbs
->>   endif
->>
->> --
->> 2.47.0
->>
->>
->
-> --
-> Best Regards
-> Masahiro Yamada
+All warnings (new ones prefixed by >>):
+
+>> drivers/clk/qcom/gcc-sar2130p.c:269:37: warning: 'gcc_parent_data_5' defined but not used [-Wunused-const-variable=]
+     269 | static const struct clk_parent_data gcc_parent_data_5[] = {
+         |                                     ^~~~~~~~~~~~~~~~~
+>> drivers/clk/qcom/gcc-sar2130p.c:264:32: warning: 'gcc_parent_map_5' defined but not used [-Wunused-const-variable=]
+     264 | static const struct parent_map gcc_parent_map_5[] = {
+         |                                ^~~~~~~~~~~~~~~~
+>> drivers/clk/qcom/gcc-sar2130p.c:259:37: warning: 'gcc_parent_data_4' defined but not used [-Wunused-const-variable=]
+     259 | static const struct clk_parent_data gcc_parent_data_4[] = {
+         |                                     ^~~~~~~~~~~~~~~~~
+>> drivers/clk/qcom/gcc-sar2130p.c:254:32: warning: 'gcc_parent_map_4' defined but not used [-Wunused-const-variable=]
+     254 | static const struct parent_map gcc_parent_map_4[] = {
+         |                                ^~~~~~~~~~~~~~~~
+
+
+vim +/gcc_parent_data_5 +269 drivers/clk/qcom/gcc-sar2130p.c
+
+   253	
+ > 254	static const struct parent_map gcc_parent_map_4[] = {
+   255		{ P_PCIE_0_PIPE_CLK, 0 },
+   256		{ P_BI_TCXO, 2 },
+   257	};
+   258	
+ > 259	static const struct clk_parent_data gcc_parent_data_4[] = {
+   260		{ .index = DT_PCIE_0_PIPE },
+   261		{ .index = DT_BI_TCXO },
+   262	};
+   263	
+ > 264	static const struct parent_map gcc_parent_map_5[] = {
+   265		{ P_PCIE_1_PIPE_CLK, 0 },
+   266		{ P_BI_TCXO, 2 },
+   267	};
+   268	
+ > 269	static const struct clk_parent_data gcc_parent_data_5[] = {
+   270		{ .index = DT_PCIE_1_PIPE },
+   271		{ .index = DT_BI_TCXO },
+   272	};
+   273	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
