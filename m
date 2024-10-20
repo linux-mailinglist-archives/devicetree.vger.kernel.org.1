@@ -1,64 +1,56 @@
-Return-Path: <devicetree+bounces-113324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3FA9A53E9
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 13:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E03219A53EF
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 13:58:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F9A2281E50
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 11:56:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C5A72821CC
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 11:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 343331922FA;
-	Sun, 20 Oct 2024 11:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rCPRz0/i"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0D21925B8;
+	Sun, 20 Oct 2024 11:57:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1455EEC5;
-	Sun, 20 Oct 2024 11:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4443D19259B;
+	Sun, 20 Oct 2024 11:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729425383; cv=none; b=uoTJdPg92r1ZLY/QtW+GJYVWm6GRvJjmtUom+m1LRuPL2Bhie5LmIMHP8pvaOqfnaMebte319l/l/uPbLs8D+lK0P1xb6myWqlecDGEuLxWX/enLkBLgVvirT/oGdd6i4XEXlMsZSBra49xuG90H8XS9WRwdxfY0DvPZee45dog=
+	t=1729425474; cv=none; b=nQYaQRME4XDmUbXIFjmtCScNw2ZWb4Iat1kUDh7yLE8wGwIUqh/ojfoMM1u6JV1lfFvDESpswW0OupUv9MgS6L0Y64dPLkg7hqavdDspF53HRtMOn/pqBpQEEJeL5UV1GH/Rmga+KTYJdqxVB/xRdmd6Rwp2itQJJC5hQJoXlNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729425383; c=relaxed/simple;
-	bh=+0p5NkerOmvHfi35QPuQhFjpevnJp/owSssWdYHgSGM=;
+	s=arc-20240116; t=1729425474; c=relaxed/simple;
+	bh=gbpmEsQrInjTsQllEL0d+1ipYxosLUDGzwVqo6mC+NQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JRJ0QhRgG+LmkLdDePuT5AY0Z8dCjfQDOhllFwq+3BIwzVHqaY+2IOHE4dFtyk3LtHJIB3zqu80IYZ4GXI3gGV3p6DGYnlnVbs3WfIqzhwAdHxaSXHGYowpdHwlwTGTNn/ufCPUTFyRDXLT2C9G61/Mtknlpf1BlUoiPRkaS0U0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rCPRz0/i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB26BC4CEC6;
-	Sun, 20 Oct 2024 11:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729425382;
-	bh=+0p5NkerOmvHfi35QPuQhFjpevnJp/owSssWdYHgSGM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=rCPRz0/iXnI9k/4NroLOaILStRwtaHc60W60TVkQczROmUVPGfyvETOQDxNMvIYbD
-	 yTLEJi0vX7vSD/ooet7e59kMrwLprqFUEiTO+/yOBMCP1HoYdZKnTEKcE/nacAcj+0
-	 87l/o84GdkwxNNitIK+yX9XQyNgJAglKm1mfLZCEmQ5qr6FjLya4PMgfGGJxEgA9Z9
-	 GI8hniQwmdREMyohHrDxNsbDIZyBiCOk+jVvKRPzJsmX7Rsh4jKx+GIplVWdsjZc+m
-	 Rtt2k0p2kmK/yBiyALS2AjVD4mgcU7c4mXyskAV65yjr44XBARCT56mgw19oUAKYeV
-	 rXObioLHHMdkw==
-Date: Sun, 20 Oct 2024 12:56:12 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Cosmin Tanislav
- <cosmin.tanislav@analog.com>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Alexandru Ardelean
- <alexandru.ardelean@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Nuno Sa
- <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, George Mois
- <george.mois@analog.com>, Ana-Maria Cusco <ana-maria.cusco@analog.com>,
- <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v7 3/3] drivers: iio: adc: add support for ad777x family
-Message-ID: <20241020125437.72c1de38@jic23-huawei>
-In-Reply-To: <20241014143204.30195-4-ramona.nechita@analog.com>
-References: <20241014143204.30195-1-ramona.nechita@analog.com>
-	<20241014143204.30195-4-ramona.nechita@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	 MIME-Version:Content-Type; b=TQnUECeEdoYkqoFDSUu/gZGX4s25I6t1PIz3dIphHFZDWVSuwXYM74ms/czNVkKuTF8Fqz2ZMW9UZU+O8LakZAiyqTQHn8zOSQ4R3pE2uXPdPmJaOmrGnOqkhf+AR7Z1oEfVVQF7esGK1kJbWPnLSwnw8gLH0XgDSoj51BSBs9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 490A0DA7;
+	Sun, 20 Oct 2024 04:58:20 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AD8FD3F58B;
+	Sun, 20 Oct 2024 04:57:48 -0700 (PDT)
+Date: Sun, 20 Oct 2024 12:56:54 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Chen-Yu
+ Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Chris Morgan <macroalpha82@gmail.com>,
+ Philippe Simons <simons.philippe@gmail.com>, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] clk: sunxi-ng: h616: Add sigma-delta modulation
+ settings for audio PLL
+Message-ID: <20241020125654.6bf3e86b@minigeek.lan>
+In-Reply-To: <20241020083124.174724-2-ryan@testtoast.com>
+References: <20241020083124.174724-1-ryan@testtoast.com>
+	<20241020083124.174724-2-ryan@testtoast.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,126 +60,172 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 14 Oct 2024 17:32:00 +0300
-Ramona Alexandra Nechita <ramona.nechita@analog.com> wrote:
+On Sun, 20 Oct 2024 21:30:51 +1300
+Ryan Walklin <ryan@testtoast.com> wrote:
 
-> Add support for AD7770, AD7771, AD7779 ADCs. The device is capable of
-> sending out data both on DOUT lines interface,as on the SDO line.
-> The driver currently implements only the SDO data streaming mode. SPI
-> communication is used alternatively for accessing registers and streaming
-> data. Register accesses are protected by crc8.
+Hi,
+
+> Allwinner has previously released a H616 audio driver which also
+> provides sigma-delta modulation for the audio PLL clocks. This approach
+> is used in other Allwinner SoCs, including the H3 and A64.
 > 
-> Signed-off-by: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+> The manual-provided clock values are:
+> PLL_AUDIO(hs) = 24 MHz*N/M1
+> PLL_AUDIO(4X) = 24 MHz*N/M0/M1/P
+> PLL_AUDIO(2X) = 24 MHz*N/M0/M1/P/2
+> PLL_AUDIO(1X) = 24 MHz*N/M0/M1/P/4
+> 
+> A fixed post-divider of 2 is used to account for a fixed M0 divider of
+> 2 (taken from the vendor BSP driver).
 
-A few comments inline.  I also tweaked white space in a few places
-whilst applying.  Target in IIO is still sub 80 chars whenever it
-doesn't hurt readability.
+The real reason seems to be that our existing macros and struct cannot
+model those extra dividers, and using M0=2 gives better results, so we
+fix that in the probe routine and account for that using the fixed
+post-div.
 
-Also, you had unusual formatting for some of the macros. Avoid mixing
-tabs then spaces for indentation of the \ 
+> Using SDM allows correction of the PLL_AUDIO_(4,2,1)X clock fixed
+> dividers to the datasheet-specified values of 1/2/4 respectively.
 
-series applied to the togreg branch of iio.git and initially pushed
-out as testing so 0-day can take a look.
+As mentioned below, SDM has nothing to do with those simple dividers
+clocks, it's just there to reach the "odd" base audio frequency more
+accurately.
 
-One missing return in the debugfs register access as well. Please
-check I fixed that up correctly.
+> 
+> Add SDM to the H616 clock control unit driver.
+> 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> 
+> ---
+> Changelog v1..v2:
+> - Add fixed_post_div to high-speed audio clock to correct M0 value to 1 (ie divide by 2) based on manual
+> - Correct PLL_AUDIO_(4/2/1)X clocks to manual-provided values
+> - Add/correct inline comments for the above.
+> - add CCU_FEATURE_FIXED_POSTDIV to pll_audio_hs_clk.common.features
+> ---
+>  drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 44 ++++++++++++++++----------
+>  1 file changed, 28 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> index 6c7623d4c59ea..42feaaf5a59c6 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> @@ -215,20 +215,28 @@ static struct ccu_nkmp pll_de_clk = {
+>  	},
+>  };
+>  
+> -/*
+> - * TODO: Determine SDM settings for the audio PLL. The manual suggests
+> - * PLL_FACTOR_N=16, PLL_POST_DIV_P=2, OUTPUT_DIV=2, pattern=0xe000c49b
+> - * for 24.576 MHz, and PLL_FACTOR_N=22, PLL_POST_DIV_P=3, OUTPUT_DIV=2,
+> - * pattern=0xe001288c for 22.5792 MHz.
+> - * This clashes with our fixed PLL_POST_DIV_P.
+> +/* 
+> + * Sigma-delta modulation settings table obtained from the vendor SDK driver.
+> + * There are additional M0 and M1 divider bits not modelled here, so forced to
+> + * fixed values in the probe routine.
+>   */
+> +static struct ccu_sdm_setting pll_audio_sdm_table[] = {
+> +	{ .rate = 90316800, .pattern = 0xc001288d, .m = 3, .n = 22 },
+> +	{ .rate = 98304000, .pattern = 0xc001eb85, .m = 5, .n = 40 },
 
-Thanks,
+It's a bit strange to see odd dividers here, since the manual "warns"
+against this, because it's causing a non-50% duty cycle. But apparently
+the audio codec is fine with this (given it works)? Or does this apply
+to the product of all the dividers (m * m0 * m1), so our m0=2 fixes
+that?
 
-Jonathan
+And for the records, the numbers calculate like this (with SDM):
+rate = 24MHz * (n + pattern[16:0] / 2^17) / m / m0 / m1
+which gives 90316802 Hz and 98303997 Hz with those numbers,
+respectively.
 
-> diff --git a/drivers/iio/adc/ad7779.c b/drivers/iio/adc/ad7779.c
-> new file mode 100644
-> index 000000000000..5904cc669f3a
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7779.c
-> @@ -0,0 +1,909 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * AD7770, AD7771, AD7779 ADC
-> + *
-> + * Copyright 2023-2024 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bitmap.h>
-> +#include <linux/clk.h>
-> +#include <linux/crc8.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irq.h>
-> +#include <linux/math.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/string.h>
-> +#include <linux/types.h>
-> +#include <linux/units.h>
-> +
-> +#include <asm/unaligned.h>
-
-This moved, I'll fix up.
-
-> +	{								       \
-> +		.type = IIO_VOLTAGE,					       \
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_CALIBSCALE)  |	       \
-> +				      BIT(IIO_CHAN_INFO_CALIBBIAS),	       \
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),       \
-
-It's not technically an ABI issue, but ususual to have an ADC driver that provides
-no direct readings via sysfs and also provides no indication of channel scaling.
-
-A quick glance at the datasheet suggests there is a PGA in the path, so perhaps
-you plan to add scaling later.  Raw reads of single channels would I think
-have to just select from the bulk channel read back so not that trivial to implement.
-Maybe worth doing longer term though as that is a useful debug interface if nothing
-else.
-
-Anyhow, I'm fine with taking the driver with the current feature set
-I was just a bit surprised at which features were implemented.
-
-> +		.address = (index),					       \
-> +		.indexed = 1,						       \
-> +		.channel = (index),					       \
-> +		.scan_index = (index),					       \
-> +		.ext_info = (_ext_info),				       \
-> +		.scan_type = {						       \
-> +			.sign = 's',					       \
-> +			.realbits = 24,					       \
-> +			.storagebits = 32,				       \
-> +			.endianness = IIO_BE,				   \
-> +		},								\
-> +	}
-> +
-> +#define AD777x_CHAN_NO_FILTER_S(index)					       \
-> +	AD777x_CHAN_S(index, NULL)
-> +
-> +#define AD777x_CHAN_FILTER_S(index)					       \
-> +	AD777x_CHAN_S(index, ad7779_ext_filter)
-> +static const struct iio_chan_spec ad7779_channels[] = {
-> +	AD777x_CHAN_NO_FILTER_S(0),
-> +	AD777x_CHAN_NO_FILTER_S(1),
-> +	AD777x_CHAN_NO_FILTER_S(2),
-> +	AD777x_CHAN_NO_FILTER_S(3),
-> +	AD777x_CHAN_NO_FILTER_S(4),
-> +	AD777x_CHAN_NO_FILTER_S(5),
-> +	AD777x_CHAN_NO_FILTER_S(6),
-> +	AD777x_CHAN_NO_FILTER_S(7),
-> +	IIO_CHAN_SOFT_TIMESTAMP(8),
 > +};
 > +
-> +static const struct iio_chan_spec ad7779_channels_filter[] = {
-> +	AD777x_CHAN_FILTER_S(0),
-> +	AD777x_CHAN_FILTER_S(1),
-> +	AD777x_CHAN_FILTER_S(2),
-> +	AD777x_CHAN_FILTER_S(3),
-> +	AD777x_CHAN_FILTER_S(4),
-> +	AD777x_CHAN_FILTER_S(5),
-> +	AD777x_CHAN_FILTER_S(6),
-> +	AD777x_CHAN_FILTER_S(7),
-> +	IIO_CHAN_SOFT_TIMESTAMP(8),
-> +};
+>  #define SUN50I_H616_PLL_AUDIO_REG	0x078
+>  static struct ccu_nm pll_audio_hs_clk = {
+>  	.enable		= BIT(31),
+>  	.lock		= BIT(28),
+>  	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+> -	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
+> +	.m		= _SUNXI_CCU_DIV(16, 6),
+> +	.sdm		= _SUNXI_CCU_SDM(pll_audio_sdm_table,
+> +					 BIT(24), 0x178, BIT(31)),
+> +	.fixed_post_div = 2,
+>  	.common		= {
+> +		.features	= CCU_FEATURE_FIXED_POSTDIV | 
+> +				  CCU_FEATURE_SIGMA_DELTA_MOD,
+>  		.reg		= 0x078,
+>  		.hw.init	= CLK_HW_INIT("pll-audio-hs", "osc24M",
+>  					      &ccu_nm_ops,
+> @@ -701,18 +709,20 @@ static const struct clk_hw *clk_parent_pll_audio[] = {
+>  };
+>  
+>  /*
+> - * The divider of pll-audio is fixed to 24 for now, so 24576000 and 22579200
+> - * rates can be set exactly in conjunction with sigma-delta modulation.
+> + * The PLL_AUDIO_4X clock defaults to 24.5714 MHz according to the manual, with 
+
+The manual says that PLL_AUDIO_1X defaults to 24.5714 MHz (24.576,
+really?), so PLL_AUDIO_4X (the actual PLL output) should be four times
+that.
+
+> + * a final divider of 1. The 2X and 1X clocks use 2 and 4 respectively. The 1x 
+> + * clock is set to either 24576000 or 22579200 for 48Khz and 44.1Khz (and 
+> + * multiples) in conjunction with sigma-delta modulation.
+
+That last part sounds a bit vague, what about:
+" ... (and multiples). The Sigma-delta modulation bits allow providing a
+fractional-N divider in the PLL, to help reaching those specific
+frequencies with less error."
+
+But then again this probably belongs more to the PLL_AUDIO_HS clock
+comment above? Since this here is just to model the simple divider
+clocks.
+
+Anyway, the technical bits seem to add up, and that's what I came up
+with in my experiments as well. But there are better combinations of N,
+fractional N, and M to reach the target frequency with less error, and
+M is also even in those cases. This could be a later optimisation,
+though.
+
+Cheers,
+Andre
+
+
+>   */
+>  static CLK_FIXED_FACTOR_HWS(pll_audio_1x_clk, "pll-audio-1x",
+>  			    clk_parent_pll_audio,
+> -			    96, 1, CLK_SET_RATE_PARENT);
+> +			    4, 1, CLK_SET_RATE_PARENT);
+>  static CLK_FIXED_FACTOR_HWS(pll_audio_2x_clk, "pll-audio-2x",
+>  			    clk_parent_pll_audio,
+> -			    48, 1, CLK_SET_RATE_PARENT);
+> +			    2, 1, CLK_SET_RATE_PARENT);
+>  static CLK_FIXED_FACTOR_HWS(pll_audio_4x_clk, "pll-audio-4x",
+>  			    clk_parent_pll_audio,
+> -			    24, 1, CLK_SET_RATE_PARENT);
+> +			    1, 1, CLK_SET_RATE_PARENT);
+>  
+>  static const struct clk_hw *pll_periph0_parents[] = {
+>  	&pll_periph0_clk.common.hw
+> @@ -1162,12 +1172,14 @@ static int sun50i_h616_ccu_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	/*
+> -	 * Force the post-divider of pll-audio to 12 and the output divider
+> -	 * of it to 2, so 24576000 and 22579200 rates can be set exactly.
+> +	 * Set the output-divider for the pll-audio clocks (M0) to 2 and the
+> +	 * input divider (M1) to 1 as recommended by the manual when using 
+> +	 * SDM. 
+>  	 */
+>  	val = readl(reg + SUN50I_H616_PLL_AUDIO_REG);
+> -	val &= ~(GENMASK(21, 16) | BIT(0));
+> -	writel(val | (11 << 16) | BIT(0), reg + SUN50I_H616_PLL_AUDIO_REG);
+> +	val &= ~BIT(1);
+> +	val |= BIT(0);
+> +	writel(val, reg + SUN50I_H616_PLL_AUDIO_REG);
+>  
+>  	/*
+>  	 * First clock parent (osc32K) is unusable for CEC. But since there
+
 
