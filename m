@@ -1,95 +1,170 @@
-Return-Path: <devicetree+bounces-113292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A6EF9A51D4
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 03:07:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CEF9A51F8
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 04:05:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4C631F21A60
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 01:07:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02B7FB2287E
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 02:05:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF3DEBE;
-	Sun, 20 Oct 2024 01:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2082119;
+	Sun, 20 Oct 2024 02:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CP5lx5ND"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I/iShMfq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705051373;
-	Sun, 20 Oct 2024 01:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8484A28E7;
+	Sun, 20 Oct 2024 02:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729386418; cv=none; b=Jwp4hw28CYI1A61amTXefaxpOxPjQakc1yXObVAy40ZCeswAVEpXdPPuO7Z9XgiN3H6Cm7KInoicZEcxivs4C57HS+Ea95218tQmKFfSkg8JVn3EBe0sNOcMLm8iSAy4WGZQYE4PfVZd+X0Lq6Vap3TTWOWJ1IO8n45w2wGAWyM=
+	t=1729389919; cv=none; b=EQQs3hhToXMAsBr2JnDmsctEQ5g3B+wXOyTUph29d4MBUx+K3wW0cz+/jIz7mgigyWujKc6zXB0oVlcTkVIQY9hkjKLm8jg35QSNJC0j9fLycpTBMFIxiR+uZKZpydWydSLLHxpaQEUutL9+kgtB+XR2q3vWM7fjzSfK/VksjVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729386418; c=relaxed/simple;
-	bh=QykmPv/BE6IkDfW5xnvum0kBf+OEw3Cv6VurB2ePnZU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T2rnRblaAe0qiOXoCC28f12VlRP48s9CVYm5V40HW1Je0iTXl0cMr6vz4Ux84lPRKTiNyxbEainp0EN1ySiJDT84Ddl2rfx0CUXfzBgboT3ESGbI92RXJlBd0/3Ij9naMXCEuTHrt15esDK+Mb6KXrCFLoLvPQRPgN09Q9DQIVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CP5lx5ND; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C04FC4CEC5;
-	Sun, 20 Oct 2024 01:06:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729386418;
-	bh=QykmPv/BE6IkDfW5xnvum0kBf+OEw3Cv6VurB2ePnZU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CP5lx5NDeHvNn1dsSX9/F0Nl0iOQemMFzRDokTKuQD90OB5AC8Gyb8/cu/az29bX+
-	 yRp4Pr6Ydv4aSBtadDIXn4bG/M0kv7v4nBMG51XglANyLJ730E4nlwl4vFfcT6SJd/
-	 GmF4TqhWcvUEV0UJo8/N2rWTNw/rVXnguKGdsZc7HWhTkEEqzOnnqTnwCaUpWh3R6V
-	 4VxZB5rJjgsbZX5WqtlVQtmLrVQv1dzEpkp2NFLQO7TDiRxpKUcVNcEZVyEg92ms2N
-	 uH+ZamMstcWnbIvYTND0oisZ7C2XH39drySY0QEmrQf2b0c+8WfgCLzaKmcoahMM+y
-	 kctDBFacgFexg==
-Message-ID: <6aa0a404-9bc8-4b0c-b6f9-a455a3033670@kernel.org>
-Date: Sun, 20 Oct 2024 10:06:54 +0900
+	s=arc-20240116; t=1729389919; c=relaxed/simple;
+	bh=83M22/fJyGB1tR9/miY2c43dp32t29qIpAheq1Shv50=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JEYLbObj4UKfjXbDdulgGdCLTIPUgN3y65gFbLzDqLlDR41ylXW/VRgMOeJLcFe5Vt/aTF5R5PbLGgZ3UNGLv4R5uXmCpKQOb0djGuK3wgnGV6GrksD4Sj8nckiI/DOGAeeavLyezGPe0EdyTyr9aKo0anxzzUaAjxNEis6WjHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I/iShMfq; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729389916; x=1760925916;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=83M22/fJyGB1tR9/miY2c43dp32t29qIpAheq1Shv50=;
+  b=I/iShMfqbx/5f6ItSc731NO/agK2hD6BxjT1ELZUIFLW20hiW0rN8KwE
+   axoNUciY3DxKPOhp4E4jwbJGGHerWsAFKsTRByiUR/r0DSsYWnsKaj00T
+   6OFtMLyhCjK2p6DQZGa53cOHSShe7AxYOyJvfPFKgtkLGWspZXgJO1KKC
+   XhctvW+6dQxtjpCremHGFtXQMyLLsXqcyWYxj3AQQ3CkoPrsccGUuAI7w
+   Kc9A4SRY3CZYDZ33ep5iapWvoVrjYVE4ktiiCYE1pdWXtpTCa4cGT/emO
+   NpP34M/jHsrVGrC32+qCCrp5nZgE80bjjmCg4Yh/Ut74AgAvABkPWfPcr
+   A==;
+X-CSE-ConnectionGUID: AzfcmKExTZGjfxIe+LvhDw==
+X-CSE-MsgGUID: elnmzJ2HRyKhWTGY642cjQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11230"; a="39517322"
+X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; 
+   d="scan'208";a="39517322"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Oct 2024 19:05:15 -0700
+X-CSE-ConnectionGUID: 3XsXIaETS8iLPcmLmKlhqA==
+X-CSE-MsgGUID: mL48R6XcR/2dOcW6NfDUFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; 
+   d="scan'208";a="79351368"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 19 Oct 2024 19:05:11 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t2LJc-000Pm9-1K;
+	Sun, 20 Oct 2024 02:05:08 +0000
+Date: Sun, 20 Oct 2024 10:04:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Zhao Qunqin <zhaoqunqin@loongson.cn>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, chenhuacai@kernel.org,
+	bp@alien8.de, tony.luck@intel.com, james.morse@arm.com,
+	mchehab@kernel.org, rric@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-edac@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel@xen0n.name, loongarch@lists.linux.dev,
+	Jonathan.Cameron@huawei.com, Zhao Qunqin <zhaoqunqin@loongson.cn>
+Subject: Re: [PATCH v6 RESEND 2/2] EDAC: Add EDAC driver for loongson memory
+ controller
+Message-ID: <202410200949.GpnHSLfV-lkp@intel.com>
+References: <20241018014542.27283-3-zhaoqunqin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/12] Fix and improve the Rockchip endpoint driver
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Niklas Cassel <cassel@kernel.org>
-References: <20241011121408.89890-1-dlemoal@kernel.org>
- <CANAwSgQ+YmSTqJs3-53nmpmCRKuqfRysT37uHQNGibw5FZhRvg@mail.gmail.com>
- <f13618a6-0922-4fc8-af01-10be1ef95f0d@kernel.org>
- <CANAwSgRDbCCridYMciq=xSDPV0qGhs-OhCJ_uniXFbp-yM5CcQ@mail.gmail.com>
- <0f2cf12b-3f27-403c-802e-bb8b539766b0@kernel.org>
- <CANAwSgRXfZ9hgdJpSrwucHQfMToZwSC8N-b4MYLZjsryid=Fpw@mail.gmail.com>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <CANAwSgRXfZ9hgdJpSrwucHQfMToZwSC8N-b4MYLZjsryid=Fpw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241018014542.27283-3-zhaoqunqin@loongson.cn>
 
-On 10/19/24 15:24, Anand Moon wrote:
-> I have a question can new test external low power GPU with external cables
-> which supports PCI host (RC mode) with external power supply for GPU card.
+Hi Zhao,
 
-I do not understand this sentence.
+kernel test robot noticed the following build warnings:
 
-> Which mode is suitable for the PCIe endpoint controller or PCIe host controller?
+[auto build test WARNING on 61124f42dcaa30f58a8b47a2b69ddb80260677c7]
 
-If you do not know/understand what PCI endpoint is, you probably do not need it
-at all. If you are using your board to simply connect and use regular PCI
-devices, you do not need the PCI endpoint framework/drivers.
+url:    https://github.com/intel-lab-lkp/linux/commits/Zhao-Qunqin/dt-bindings-EDAC-for-ls3a5000-memory-controller/20241018-094803
+base:   61124f42dcaa30f58a8b47a2b69ddb80260677c7
+patch link:    https://lore.kernel.org/r/20241018014542.27283-3-zhaoqunqin%40loongson.cn
+patch subject: [PATCH v6 RESEND 2/2] EDAC: Add EDAC driver for loongson memory controller
+config: arm64-randconfig-r113-20241019 (https://download.01.org/0day-ci/archive/20241020/202410200949.GpnHSLfV-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.1.0
+reproduce: (https://download.01.org/0day-ci/archive/20241020/202410200949.GpnHSLfV-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410200949.GpnHSLfV-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/edac/loongson_edac.c:100:15: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected unsigned long long [usertype] *vbase @@     got void [noderef] __iomem * @@
+   drivers/edac/loongson_edac.c:100:15: sparse:     expected unsigned long long [usertype] *vbase
+   drivers/edac/loongson_edac.c:100:15: sparse:     got void [noderef] __iomem *
+
+vim +100 drivers/edac/loongson_edac.c
+
+    91	
+    92	static int edac_probe(struct platform_device *pdev)
+    93	{
+    94		struct edac_mc_layer layers[2];
+    95		struct loongson_edac_pvt *pvt;
+    96		struct mem_ctl_info *mci;
+    97		u64 *vbase;
+    98		int ret;
+    99	
+ > 100		vbase = devm_platform_ioremap_resource(pdev, 0);
+   101		if (IS_ERR(vbase))
+   102			return PTR_ERR(vbase);
+   103	
+   104		/* allocate a new MC control structure */
+   105		layers[0].type = EDAC_MC_LAYER_CHANNEL;
+   106		layers[0].size = 1;
+   107		layers[0].is_virt_csrow = false;
+   108		layers[1].type = EDAC_MC_LAYER_SLOT;
+   109		layers[1].size = 1;
+   110		layers[1].is_virt_csrow = true;
+   111		mci = edac_mc_alloc(0, ARRAY_SIZE(layers), layers, sizeof(*pvt));
+   112		if (mci == NULL)
+   113			return -ENOMEM;
+   114	
+   115		mci->mc_idx = edac_device_alloc_index();
+   116		mci->mtype_cap = MEM_FLAG_RDDR4;
+   117		mci->edac_ctl_cap = EDAC_FLAG_NONE;
+   118		mci->edac_cap = EDAC_FLAG_NONE;
+   119		mci->mod_name = "loongson_edac.c";
+   120		mci->ctl_name = "loongson_edac_ctl";
+   121		mci->dev_name = "loongson_edac_dev";
+   122		mci->ctl_page_to_phys = NULL;
+   123		mci->pdev = &pdev->dev;
+   124		mci->error_desc.grain = 8;
+   125		/* Set the function pointer to an actual operation function */
+   126		mci->edac_check = edac_check;
+   127	
+   128		pvt_init(mci, vbase);
+   129		get_dimm_config(mci);
+   130	
+   131		ret = edac_mc_add_mc(mci);
+   132		if (ret) {
+   133			edac_dbg(0, "MC: failed edac_mc_add_mc()\n");
+   134			edac_mc_free(mci);
+   135			return ret;
+   136		}
+   137		edac_op_state = EDAC_OPSTATE_POLL;
+   138	
+   139		return 0;
+   140	}
+   141	
 
 -- 
-Damien Le Moal
-Western Digital Research
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
