@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-113345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419DE9A54C5
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 17:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 807A09A54C7
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 17:37:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE0CA1F20219
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 15:35:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21B051F20F75
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 15:37:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4CC8193086;
-	Sun, 20 Oct 2024 15:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA4C193409;
+	Sun, 20 Oct 2024 15:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="RawwGfzY"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="BUWddTA5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59873232
-	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 15:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5095C3232
+	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 15:37:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729438552; cv=none; b=m5+5N6PT496n92paSXLJ0JwU31KCq9hxmUY6NIg0MwxFujw2Z/oUXGUzIQgkeUKWaIvKN+8j/VgNyugt8aVM72T0CYA88L5sh78SEQD7GxA8ZmB/IjfDM/4L0vgjTl9cgqDngCWYCj9/CiSoazCUMvSIXDynISEAmY33fIjePMw=
+	t=1729438674; cv=none; b=Bm5pNyoe7kugfa0HlWVH95hkE2mS1U3rW7Pu/LQUk2dYQrQDrDci5cHw4ShI39R9VGZtJzrgXz7ZypTaQKkCeLo4hroybUjcvqGqUb6k+aiuwYeJiTBadgfNS4FOp4pZwZfyCpTwGkFSOi9MTaG5+xKuCDNE7zTEyZCxEpcAnK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729438552; c=relaxed/simple;
-	bh=/PYwXEiDstZMGEQhnOqiz52pNH704/eHayQp9KjHnLk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=P7Av9SqE4/pIMrnnZaHGKkHLj/ju7pPNFoPnCU6182URgnX8dfH3zaNx7EpSbF26lcGdjdmiti/vt9U2KPk1lFR9fw0umUwAkS7xqMZFQqcsx9QSU8lh6RzQdFrRKo9bbavL2uelxc4yNpV0Y3KK6pu31/RX92F8fphWl0A4Uos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=RawwGfzY; arc=none smtp.client-ip=209.85.221.45
+	s=arc-20240116; t=1729438674; c=relaxed/simple;
+	bh=uoNg85Ag+KFLmBK+RgXXImw7w/3jg2Lk36qObx2+MUE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YNVmAud+vtX90T1bPKrxylxN0YhTpGOu8W24WRjDtoKeVCbB2TLB7EDK3QDk8BK2c7nA+GYRvJmN3r1iWD9CmZWiXjXIQcJ590D2TEkQA2K59CHXiHwQz0CkrSeJxxh0UNZeSqi22SzlLC/r+hX9LsQVi9Qqm4RxtVsoavfOymk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=BUWddTA5; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d50fad249so2747351f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 08:35:50 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43163667f0eso20494785e9.0
+        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 08:37:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1729438549; x=1730043349; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=tuxon.dev; s=google; t=1729438670; x=1730043470; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=N75GCuQKKdZ2Q+iXDHUmp8l2Xt5deW/h0B9rGsG540c=;
-        b=RawwGfzYgzeN3ZYwCYEAEZ5nhSxlm9aLgkE0vlXxv024gjJnK5eZYA5TxHKIiP8q8i
-         2cve4RjWMmEbhHyJy+8DcbwZSD3elxRiEEiwpFjIRL23nC3vr0E1kXMWJwKditUW4Ji2
-         GARl2Tvwx7P7o9K+fQl5hoCrLOH+LIVWmVtHUnU1vGVZ/6jd6thAbR+MxuuAxtEk1+Wr
-         QKBPNM0/mPdwb5kpnZ1c/YhN2rmLsloa5LwN5APprsCyhHAAmix6LpsdvRdQ+M5BRi2S
-         EFBrLMYu5MkWiJW/FABL1RWW6AQJL9iepgqTOqYQtpjC9v4QKsy11Tnnwa4fBlCUqbmM
-         ALJA==
+        bh=2WavwzK0bqufM69Hwd+k+b7uRcfbB2YR9N9t7/L+UBs=;
+        b=BUWddTA50trXvsUSYqv5NLLYLvGGIgy5PoZUbkM6+dmKW+P3kKSnCstJm6A09X+4q1
+         eqij7i2dKxymMwpoSdMNtxxf9S7EXKm3TVyqMhL8a4f1LPs0PX8tyf9+AG8gosNeR/q9
+         CwKVG6vBhXUb+qxXEeDa7JWaWPeSSkEWqv/RGPrrZCXHc2vxMAd1Wv1UYe2tz5DiIRAk
+         oKedoXDO77u8yrGNtRsskBIpd92PakmLFnyeJVLKxU2w9mQWlbclM4ujQusa90gJvBfJ
+         d1C9MCbGPOT407T8OaCEZEo7OV/KWW/imX6CHMMj9/5hI/G21J4Wm5gUfDMsWyGQ/cnX
+         iqRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729438549; x=1730043349;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20230601; t=1729438670; x=1730043470;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N75GCuQKKdZ2Q+iXDHUmp8l2Xt5deW/h0B9rGsG540c=;
-        b=L2wtMSBBd2v204exrirwp17PmbdHRgz2t46L7LFkFPOL3kJcYnrqlxzGYtEC+394hL
-         mAM3/6hbX/0XwYsHHTP9+aci2JEEH3DHVPDjVkMWZOCk9IFQ4DjYvPB2pqjtMsAvShim
-         CHxS6D8NvkAbUxxM5oFnvivSaY2otOu5Ikjz3G2EdeVCDUV2B+k2jUzOsHWwn3JmM345
-         PDDcZ5BVIXLrPWWbbBIe853cP6cGAbP/2SUNOozignZQLS80ChqSxvUsyNN6CCtZ6Ds+
-         SSrQvbRgCiAnwYS6bT6rubKKxt5HA2Z1j9fLhdeGuLJ/DzrYjTn5U7kQYmj9gcLAf+5b
-         OmSw==
-X-Forwarded-Encrypted: i=1; AJvYcCXbay0cCLnaM4ug7AskVfGdU6Y3j2w7obP61qxkp6az7jkCdVXXO+wrQ+DZ8xfBa9NxIBsL6Mv/Vjr+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9Ht26zL3tKMFrvm0IVdWi7Q/u/ip7nLJgGlIUA7vi1tuiWyDy
-	Ztfmm/A1So1XbagAVpsCrhyAi8bJbP2yEDhIHdCRJIOFAfqr6cLlxbTYIlVrZzM=
-X-Google-Smtp-Source: AGHT+IEq6YB4wm60xSuRb20NFHLTXF9xHNheNnSiXAwbNiIRo5NVs3JbegQ8C/NHYtVHj9mgefHVDw==
-X-Received: by 2002:a05:6000:bd1:b0:37d:2de4:d64 with SMTP id ffacd0b85a97d-37eab70f8d7mr5200492f8f.35.1729438549187;
-        Sun, 20 Oct 2024 08:35:49 -0700 (PDT)
+        bh=2WavwzK0bqufM69Hwd+k+b7uRcfbB2YR9N9t7/L+UBs=;
+        b=TT7qx3gaW+b6zsVF+fWD9DC03Is6bt6UCkIe7X4gbOXt4HVbwrehJ98fVJFs360zj4
+         b0PeDx5w7U7yc179OOh+hy+gF1bofrE7GsidU5AHQbnbngsacpI0wv+Xv7MHqYAsEdth
+         NzS5BMz603aNxQOI3QtD4zZ1gmOYJ6ywBpVVNSGFokCQEiySnTbvS2eE8Z0dLhO+4BOn
+         k6sJoA32+41p4wiY4EjH0Rgk6faqTGqDYLcwSZEemd7hHlQsHFOGcJkkNmCXcjLjPZDO
+         KqiR+jE35fLAYN17+F3CsqMxA/8bY7N+zkLMbcS7LvwSeIKOc9wCqbQ3MuhpsoUhnnQZ
+         bFrw==
+X-Forwarded-Encrypted: i=1; AJvYcCXTx01Wvp7XhL4Ho8I+PikT8lDKAEQMbFqIAX2ppoOz0w/XYVLQYOUbXAox1OUhyyiwS8exNbftqekY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEm4lGGBRF+Z+ES81xdle1Hlq6AZDpIo0sBcVcjUl2dt2Abm+/
+	z95SnTaF2wKKsQPsuZLMy1Nk+oto4uxZexf/LCVH6fk9TjBgcBIwa1whVVBf7Xs=
+X-Google-Smtp-Source: AGHT+IGlYM3NUdp7BHRsCl/ZOY8kj5PcjPN0aTcfuH+5+lsIO1NiX1Iq2JpbXP2Z9XirQkS8H7BsUA==
+X-Received: by 2002:a05:600c:1c0d:b0:42f:7ed4:4c25 with SMTP id 5b1f17b1804b1-4316164d809mr71233185e9.14.1729438670590;
+        Sun, 20 Oct 2024 08:37:50 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.23])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0b9432fsm1961891f8f.83.2024.10.20.08.35.47
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2fa7sm26897165e9.34.2024.10.20.08.37.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Oct 2024 08:35:48 -0700 (PDT)
-Message-ID: <11af2db9-ee23-41f4-ae05-d593df7b8bb4@tuxon.dev>
-Date: Sun, 20 Oct 2024 18:35:47 +0300
+        Sun, 20 Oct 2024 08:37:50 -0700 (PDT)
+Message-ID: <473c35d0-974c-464d-b690-b0ca49eb530c@tuxon.dev>
+Date: Sun, 20 Oct 2024 18:37:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,28 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Add power monitor support on Microchip boards
+Subject: Re: [PATCH v3 0/3] Cosmetic Work for ARM/Microchip (AT91)
 Content-Language: en-US
-To: Mihai Sain <mihai.sain@microchip.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, linux@armlinux.org.uk,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240923064932.5797-1-mihai.sain@microchip.com>
+To: Andrei Simion <andrei.simion@microchip.com>, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20241002123010.111028-1-andrei.simion@microchip.com>
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240923064932.5797-1-mihai.sain@microchip.com>
+In-Reply-To: <20241002123010.111028-1-andrei.simion@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
-On 23.09.2024 09:49, Mihai Sain wrote:
-> Mihai Sain (5):
->   ARM: dts: microchip: sam9x60ek: Add power monitor support
->   ARM: dts: microchip: sama5d2_icp: Add power monitor support
->   ARM: dts: microchip: sama7g54_curiosity: Add power monitor support
->   ARM: dts: microchip: sama7g5ek: Add power monitor support
->   ARM: configs: at91: enable PAC1934 driver as module
+On 02.10.2024 15:30, Andrei Simion wrote:
+> Andrei Simion (4):
+>   ARM: dts: microchip: Rename the eeprom nodename
+>   ARM: dts: microchip: Rename the pmic node
+>   ARM: dts: microchip: Rename LED sub nodes name
 
 Applied to at91-dt, thanks!
 
