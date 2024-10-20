@@ -1,96 +1,146 @@
-Return-Path: <devicetree+bounces-113296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD4049A5284
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 07:02:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D89D09A52D4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 08:05:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ED081C21603
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 05:02:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91C09282FBB
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 06:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64474322E;
-	Sun, 20 Oct 2024 05:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF23F28FF;
+	Sun, 20 Oct 2024 06:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="i+35v878"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="2QlMLBjk";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="bwIL8t6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654F4CA6F;
-	Sun, 20 Oct 2024 05:02:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 830493D6D;
+	Sun, 20 Oct 2024 06:05:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729400578; cv=none; b=celVgVZ9bYMOvvKKpK1ip28C9jI2myh2XzEL3rG8mp2vXY0NUeEUXDAmXtBQ7bQSI5xSw0H9oGoWF83WupEQtTdCcW11ZcwB2m4u1on0xrTFmTw05FC5Q10/CYm6fn5xQf4x/T3r68O0wxD7cYdtU2pCKts2Iu0tTslDe2YybPk=
+	t=1729404315; cv=none; b=G7chdZTJ9QvbySg4zgLObd/3e45fwsGp76ocZZbtvVRQRUrGpy0iD0iXneelJBCTYlGQ7ubG5g4xNobAuMev3i8E7iQ2bYHLV6n/AU8WdvQnbmAhbR3CQcswNpkU5Y7+ZBNvoYplKAvDBrfytXXx3djt25E9cgMlZknC1XhujYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729400578; c=relaxed/simple;
-	bh=bFkmHsub+ArssEkk1ccVXWxK8F7Fdp9v2gDg2fRo8DQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AZ9UjaKwb1g3nxj5NsLBxLyifR6Qt0yxE54igCFqle2cZkl1ChmZq3rbwnCd6vF7U7Q3p7XDrfvVapelU5QVGwczM12OXgBA+AgfFp2HRN9Y2ViHeLGHmYo4YAP2KIK2iJk8QMGy5sfHMUGUSj0m5HvcxMmzP6hohuWjbyJWlJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=i+35v878; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id B770A88E6B;
-	Sun, 20 Oct 2024 07:02:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729400568;
-	bh=5Q9nlovKw/kqDdAjsD1yRTKyXSebN/44IKLBJF5kyQ8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i+35v878Xu/4TdTm/oiKRAZd4MJBhgHkvn1tzeEkYsCKJKtV7GLNe569Pax5sUT1F
-	 629KudQB+JgVippnFs60c1+PZksZocE4oPWMf09f9bEVPO9yPM9VisQD+Wk2n8qCNv
-	 GVtEN2USnfvpOvPhzUqjW7Cnq4pjrv3jEIRTE/cvijIT8+uZEUubFqAUi+Ayy+/c9T
-	 AgI7ttENR0EYUfdMFIo7xD7KexxMpdrko6sWgd17RD3F5fpo/ockgsUosNr9eUqNXg
-	 tcrP95hahD2ooADhWg9WRgoDvsnAAGw0o5x3MeKxA/Twrz59KPHWkNZvloiX63wwVW
-	 3HDUnGKQtk+0w==
-Message-ID: <3aa9e2f4-b1ad-46bf-a8c3-0d57cd3a7075@denx.de>
-Date: Sun, 20 Oct 2024 06:29:13 +0200
+	s=arc-20240116; t=1729404315; c=relaxed/simple;
+	bh=edoSP7vgcWmHXm/JA9hZrNjLEbY+Vr4KbOd5G7BoYNU=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=Et4CEBDGuZpDjZjWmgtBOgYIl9JpyMiLn0v4b9FylrH2JmtGEFfMBW0aXaDeoheadtUseH5HpogXOBAkTxmDXxUEo3l219e3STXjZKOB4uQ6l3oPlxg37wqhGcKl12P20jo8GP4ZVStehFOTE45caNoG57vYECBVYjPUUIAlU2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=2QlMLBjk; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=bwIL8t6n; arc=none smtp.client-ip=103.168.172.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id 9C538138013E;
+	Sun, 20 Oct 2024 02:05:12 -0400 (EDT)
+Received: from phl-imap-07 ([10.202.2.97])
+  by phl-compute-04.internal (MEProxy); Sun, 20 Oct 2024 02:05:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1729404312; x=1729490712; bh=hDZkJFrkEBlfJZm2OsTapntCfy+Z6v+O
+	bKUtrPGKF7c=; b=2QlMLBjkUaU9jH4nnrSNeTn0XhSNDcQyl1UwbewTIi/EW9ov
+	uItZcej3T3Eukg8GCgj+xdOcd2wUsNF/wM/6j3H82FjLA1llWE2MUZb1M9VbDQUI
+	DcPB2mtSJNxH0FsfKc1X9vwtJrj+TpKd2Al+G7MD7Ax+mqVeoC61OibbmoNHhf33
+	c6coVAByY+6+gOH7HbjCkiP5hiHh8xNsOAKnGCsZ3aPgAiBjVbHZWWVWaxezA2BO
+	naj2KAb+myto0hTFRNGrlEbbFmQ9GWQ3T/V1JPC/fvGrJJnGlN2gohLUY9RsoiWG
+	PfEWQD2q7VJYyYhG7Qgv/veAAj/HwfHSujA5dg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1729404312; x=
+	1729490712; bh=hDZkJFrkEBlfJZm2OsTapntCfy+Z6v+ObKUtrPGKF7c=; b=b
+	wIL8t6nwd8pygFMFAitBTL5Jcbg/WgHJT9P5Zjvo2vLu4ds57YfM/g3UOlGoNLqf
+	Y+KEEorxGSen/xyntI4IjvRf/W3BbzAwUJ95j/ZoisWZykqjbc/aaLgcRLA0uAgv
+	5B9GXPTBu1AgvJnihYpAdLK5wYBDBGP85fxV3kta98uerzBA+KvJdNol8V5K4dKa
+	/d8IopEMv/YfnHaXbDOYdtydgK7+siDW0TOhuaQlceoV16sYY424gHKUQtAwip0H
+	KeYrmLmgdfC9PnEiM6V2OJjwiu2BwzJOy4yl4YeRWddsFIYFlBscpDhH947kICh2
+	jU16E1WC2mbS9J2yvseeA==
+X-ME-Sender: <xms:lp0UZ0vCgCVS1Jx1Rwt6SpAroc1cEsXzMYM3G98zEeLwwyoSNt6GaQ>
+    <xme:lp0UZxc4fBX-tZcYOYLelqUphkSGJAvlH9DnBRo8Hsn4zVjML_WGxzguNDyDlIbGz
+    jKyVfxEzMAkbDBEyA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdehiedguddtiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredt
+    tdenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
+    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeejhfeukeejjefguddvffehveevjefh
+    tddutdfhudduvdevfeejfffgvdelfeeugfenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
+    pghrtghpthhtohepudegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnhgurh
+    gvrdhprhiihiifrghrrgesrghrmhdrtghomhdprhgtphhtthhopeifvghnshestghsihgv
+    rdhorhhgpdhrtghpthhtoheptghouggvkhhiphhpvghrsehgmhgrihhlrdgtohhmpdhrtg
+    hpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhlrdgtohhmpdhrtghpthht
+    oheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnih
+    gvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgv
+    lheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqd
+    hsuhhngihisehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepphgvrhgvgies
+    phgvrhgvgidrtgii
+X-ME-Proxy: <xmx:lp0UZ_zj3F4fDNCSz8sfEmtDznqvauG6ua7ow9Qv_xJBBYrHAe0KxQ>
+    <xmx:lp0UZ3PmFNKy0OWfqANg4nMdTszzl72GTJD-SYnP3Eew8Fsqpqdo8w>
+    <xmx:lp0UZ081OaLAVEKxRJYELQ-zwWFg8ZzG9OIOh9yzndJ2xdE1Wxtqlg>
+    <xmx:lp0UZ_VI-58_TY_FZpapvHLTFDQ7j_g8kDXHqjwxvT1miUbffKw2Eg>
+    <xmx:mJ0UZ-coZSVmiNShlHCGO76zGAq0gKPhb5XefdHDQXosLg_ithLfJ_aV>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id CEE74BA006F; Sun, 20 Oct 2024 02:05:10 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: at24: add ST M24256E Additional Write
- lockable page support
-To: Rob Herring <robh@kernel.org>
-Cc: linux-i2c@vger.kernel.org,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Arnd Bergmann <arnd@arndb.de>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Christoph Niedermaier <cniedermaier@dh-electronics.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- kernel@dh-electronics.com
-References: <20241017184152.128395-1-marex@denx.de>
- <20241018132754.GA54765-robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20241018132754.GA54765-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Date: Sun, 20 Oct 2024 19:04:24 +1300
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Andre Przywara" <andre.przywara@arm.com>
+Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
+ "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ "Chen-Yu Tsai" <wens@csie.org>, "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ "Code Kipper" <codekipper@gmail.com>
+Message-Id: <87d9e653-a7d1-4611-9e9a-724bfd1be029@app.fastmail.com>
+In-Reply-To: <20241008133204.3ea38338@donnerap.manchester.arm.com>
+References: <20240929100750.860329-1-ryan@testtoast.com>
+ <20240929100750.860329-3-ryan@testtoast.com>
+ <20241008133204.3ea38338@donnerap.manchester.arm.com>
+Subject: Re: [PATCH 2/6] ASoC: sun4i-codec: Add playback only flag to quirks
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-On 10/18/24 3:27 PM, Rob Herring wrote:
-> On Thu, Oct 17, 2024 at 08:41:25PM +0200, Marek Vasut wrote:
->> The ST M24256E behaves as a regular M24C256, except for the E variant
->> which uses up another I2C address for Additional Write lockable page.
->> This page is 64 Bytes long and can contain additional data. Add entry
->> for it, so users can describe that page in DT. Note that users still
->> have to describe the main M24C256 area separately as that is on separate
->> I2C address from this page.
-> 
-> I think this should be modelled as 1 node having 2 addresses, not 2
-> nodes.
-We had the exact same discussion regarding M24C32D, see:
 
-https://lore.kernel.org/all/CAMRc=MdTu1gagX-L4_cHmN9aUCoKhN-b5i7yEeszKSdr+BuROg@mail.gmail.com/
+
+On Wed, 9 Oct 2024, at 1:32 AM, Andre Przywara wrote:
+
+Hi Andre, thanks for reviewing! 
+
+> On Sun, 29 Sep 2024 23:06:03 +1300
+> Ryan Walklin <ryan@testtoast.com> wrote:
+>
+>> From: Marcus Cooper <codekipper@gmail.com>
+>> 
+>> Some devices only have the playback side of the codec implemented
+>> so add a quirk to check for this.
+>
+> That's odd, is this really the only place where we need to 
+> consider the lack of sampling functionality? I mean it just prevents the
+> fields to be populated in our internal struct, how does the rest of the
+> kernel know that there is no capture? Is that magically achieved by those
+> fields being zero now?
+
+Yes this is only used internally by the codec driver. The playback only nature of an individual codec is communicated to the DAI when the machine driver is created, for example in sun50i_h616_codec_create_card():
+
+	card->dai_link->playback_only = true;
+	card->dai_link->capture_only = false;
+
+Regards,
+
+Ryan
 
