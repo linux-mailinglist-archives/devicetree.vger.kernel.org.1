@@ -1,162 +1,206 @@
-Return-Path: <devicetree+bounces-113300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7671C9A52F6
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 08:58:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F354F9A5302
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 09:32:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A12628292F
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 06:58:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A994228298D
+	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 07:32:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1252F17C9E;
-	Sun, 20 Oct 2024 06:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F4DE21345;
+	Sun, 20 Oct 2024 07:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="ECMtwnWg";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="diRpU7Jx"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="kM67r00b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a5-smtp.messagingengine.com (fhigh-a5-smtp.messagingengine.com [103.168.172.156])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5531863F;
-	Sun, 20 Oct 2024 06:58:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89767179A3
+	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 07:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729407526; cv=none; b=XJoldT79KbbKmlOwf75H7zQ8fckiX+ezotvxS+0nZqxEIQk1ycZSaWaPMcH6rOGBL2s0R6FzI5jsv22QbMT9uerQhflN36cuLUznxhQGeMCwfyjINm9B3njjTtclhPqSyxayvxTDud68xOXloriS+AfU/leDcuIvjczayCZCc7Q=
+	t=1729409520; cv=none; b=HUP7CpZb2BKp61yrn47e6u5zOTCYyrsUQn5VhQsuIHOfdlSB5hsnnxUzuZfOAXIiRjNzKyfD6gRoe6vOrcYdRuds4mFme6PZv24Vtxa5IfCz1EQ/hZRDsAfSD6rr8s9nmvuYcz7gX8xRP0L2uGgTlrCT17Zl6R3bp29qs65+zvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729407526; c=relaxed/simple;
-	bh=e1jC3kCGXVFP6yG/A2EMJ/CcUeTkg2TnLCsRm0JlL64=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=Tf+iLpPNENWpqLdJ4wTWGXaqm2GLhxH2rMGk+fVazX25i8XLSBROAyEnS1MVNe9/w/Z5nPjcpRredic3oAOHaI1I3KqLe9xSqseD7RJDnXkLeZ0ZLcf6EmM+ovsIlBgkuvXCDuMWc77/4upxEyJUinxIfsSXdJjPZh1w89Eo1Iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=ECMtwnWg; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=diRpU7Jx; arc=none smtp.client-ip=103.168.172.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id E92FB1140133;
-	Sun, 20 Oct 2024 02:58:42 -0400 (EDT)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-04.internal (MEProxy); Sun, 20 Oct 2024 02:58:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1729407522; x=1729493922; bh=Vxb29ne06TRdRyHH/Q3LilEsLkVyQZbu
-	sIsSDPpBR/E=; b=ECMtwnWgDRs9yhVI2uZbJ4UjT1O5kDcKK8gKXAjarNjL4XNr
-	UuyN5Osg1fyTVCuMI+YRHJIAG0bL0TQ56cWoAbDZMcK/ntvSAj6coOyk5Pun2xFf
-	wTecRk+0eVVtO8ufdNJ+fABoRw45CHwTIFSOTLn4XpOybhgKWNR1yWxxprGOLlI5
-	yzzC1yKGfAB+na5jbe/TsqJfbT4iWVWZPsZnjtjVubAMsONgD7xhRThNaxM21VSz
-	crBPz6Yx9sL49rfgz3TuHSjabXkaIbokPskcHyUCWlZdUuhTF2a0/r/QIoTWoO2F
-	O5L+pSaNC4hO4Hy6ETzspvOYmU+x4MEeo13Ytw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1729407522; x=
-	1729493922; bh=Vxb29ne06TRdRyHH/Q3LilEsLkVyQZbusIsSDPpBR/E=; b=d
-	iRpU7JxMXnUUdyTnOdGleNL2BnRPTmIst0RovhpU8u+CIge03mdnJUn+4/gXdu+t
-	6KCsbai5aEtSctKjwnms99jIaFTRuB+SYaNuK6JVt5qAhe49HREf9A8StWRSVZk4
-	5JlWIVOakSu43Ysb3x8DQIdjtUQpgzBuLJ0LU13Pws1kbEwIgtoEcHChC43MhYOq
-	Hmf+T3WystDdINCPbLfowHuNqvHQ0zu3A4FMnIUn2UOzT1mLjJUKy69G6xuPs30h
-	G9odkKALx00KmUtjCKNi3sDcManPdNSsMcpL8WFVpfQj0LPkJy9gShI9O1MNEqMI
-	XBW8PhwRFl08BUT0sLTMA==
-X-ME-Sender: <xms:IqoUZ4rXTHTOfGpqIWwnwA5fTqZ6O-S-h8LHtZ3SKyF1b5INkA_XeQ>
-    <xme:IqoUZ-rdizUi_rX1yGgAe05-S63HSiRjnRBI7bWWf6-HuzlfR71YjV9yZFj5vSt-A
-    JO36ygJdPGx9pnBXA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdehiedgudduiecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredt
-    tdenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
-    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeejhfeukeejjefguddvffehveevjefh
-    tddutdfhudduvdevfeejfffgvdelfeeugfenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
-    pghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeifvghnsh
-    estghsihgvrdhorhhgpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgr
-    ihhlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprh
-    gtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhii
-    kheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvg
-    hlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinhhugidq
-    shhunhigiheslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehpvghrvgigse
-    hpvghrvgigrdgtiidprhgtphhtthhopehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:IqoUZ9MQBu2SwWi5AMgW-Lm9wMpnJYJNpqHhFvHM1QIgad5a_n4WAg>
-    <xmx:IqoUZ_4nGiB9eFRHLlDGOmWAnX4Bc82bPTPIWrgFddcySfBG_bhnPg>
-    <xmx:IqoUZ37_fImOhwgRd20xL2bBmpP8OZGNNWe7fcKfnA83COaL0b-9Fw>
-    <xmx:IqoUZ_iY0iQuLlKscEVV3Llx3fC_ihLXGLjJLrI4_SepJ4bn2WXseQ>
-    <xmx:IqoUZ_yGgv_kx25UWkDzd8-vv-f0UBGwjoNg-b2HDNBs3ka_o3LIPs21>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 1F4C7BA006F; Sun, 20 Oct 2024 02:58:42 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1729409520; c=relaxed/simple;
+	bh=Q2ZHJ+LxYU+m24rQTEZbeaEfG1wT+aXZzzXlRxde4uU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=iXaQUzUWy3vnqxecRbz/dUZRbeC0Mucp3+jkBlJC3lPj5XDJpmdRsEc4SvY3sr6Cj+9lAHkHWUDjko8pMoYnP6R0Q7tYSn9cqZulDSpLEUSBYm3v55FgWZx57cZkB1u0YvAR/RkT+etKcmInJlZOkJ4OiE0+DnM8GyWSeWSiqQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=kM67r00b; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20241020073150euoutp011d00db132b527c4811d317b6a9c5e9db~AGMlduEuD3222432224euoutp01x
+	for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 07:31:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20241020073150euoutp011d00db132b527c4811d317b6a9c5e9db~AGMlduEuD3222432224euoutp01x
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1729409510;
+	bh=e5elJH5IxGZkyMMY5cfuk2jRIIiMmB1HblIjxtL2Frg=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=kM67r00bGviGMufjiLPEidEXiWUNAqeWhLbLv1zFIO4Q0rHkQ/0z+57fv0skaOmWk
+	 ca1cfAukL2ltwHeSjUJ4SIMYuhw2bFGgSnpRLh/PMHCZfcjJiCS+Bddc3nJp0X4Cbn
+	 FuVyjZFava55ElUUH+pblqYHmpzmR4j76DQ2RFnY=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20241020073149eucas1p2f0b8fa13c4dc4155d90dbd8484bf71bb~AGMlBpaJS2431224312eucas1p2t;
+	Sun, 20 Oct 2024 07:31:49 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id B8.DD.20397.5E1B4176; Sun, 20
+	Oct 2024 08:31:49 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20241020073148eucas1p1bf6fef28932441e8a1bcfbe68b027e55~AGMkc94J82949829498eucas1p1a;
+	Sun, 20 Oct 2024 07:31:48 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20241020073148eusmtrp2649b6ceada66985c0ec9bba0e291c678~AGMkcUaHA1126911269eusmtrp2M;
+	Sun, 20 Oct 2024 07:31:48 +0000 (GMT)
+X-AuditID: cbfec7f5-e59c770000004fad-23-6714b1e5c322
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id F4.13.19920.4E1B4176; Sun, 20
+	Oct 2024 08:31:48 +0100 (BST)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20241020073148eusmtip14289d6ab273e0e1766691c11a5519299~AGMjlU89j2150321503eusmtip1b;
+	Sun, 20 Oct 2024 07:31:47 +0000 (GMT)
+Message-ID: <c586a0e9-2bd1-4580-8bf4-bc59f1af0c51@samsung.com>
+Date: Sun, 20 Oct 2024 09:31:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sun, 20 Oct 2024 19:58:21 +1300
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
- "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- "Chen-Yu Tsai" <wens@csie.org>, "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>, linux-sound@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Message-Id: <3588e904-a511-4e6f-83fe-8be9856ce081@app.fastmail.com>
-In-Reply-To: 
- <dwp5z7ioahw7hb5celwhmeooaku2sgj4srzq7z4xmb3i3sa7y6@27rnjl72a2fo>
-References: <20240929100750.860329-1-ryan@testtoast.com>
- <20240929100750.860329-5-ryan@testtoast.com>
- <dwp5z7ioahw7hb5celwhmeooaku2sgj4srzq7z4xmb3i3sa7y6@27rnjl72a2fo>
-Subject: Re: [PATCH 4/6] dt-bindings: allwinner: add H616 sun4i audio codec binding
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] dt-bindings: mailbox: Add thead,th1520-mailbox
+ bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>, Samuel Holland
+	<samuel.holland@sifive.com>
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>, drew@pdp7.com, guoren@kernel.org,
+	wefu@redhat.com, jassisinghbrar@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, m.szyprowski@samsung.com
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <54fd467b-8077-454f-ae6c-14bb782cbe3a@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrFKsWRmVeSWpSXmKPExsWy7djPc7pPN4qkG7y+LWmx9fcsdos1e88x
+	Wcw/co7V4t6lLUwWL/Y2slhcWzGX3eLlrHtsFufPb2C32Pt6K7vF5V1z2Cy2fW5hs1h75C5Q
+	9nIPs0XbLH6L/3t2sFusPneFxaJl/xQWB0GPNy9fsngc7vjC7rFz1l12j02rOtk87lzbw+ax
+	eUm9R8vaY0we7/ddZfPo27KK0eNS83V2j8+b5AK4o7hsUlJzMstSi/TtErgy2t7GFfwXqHjZ
+	/JSxgXEhTxcjJ4eEgInEi3sb2LoYuTiEBFYwSnxc0QjlfGGUWPBpNyOE85lRYvPXBiaYll8v
+	uphBbCGB5YwSOw+YQxS9ZZRYO2E1WIJXwE6i48ZqRhCbRUBVYv/u01BxQYmTM5+wgNiiAvIS
+	92/NYAexhQVCJQ6ceAJmiwiES8y98IgFZCizQDOzxMk7X9hAEswC4hK3nswHu4JNwEjiwfL5
+	rCA2J9Cy+b8WQtXISzRvnc0M0iwhcI5T4u3LXjaIs10kms9MZIGwhSVeHd/CDmHLSPzfOR/q
+	tXyJB1s/MUPYNRI7e45D2dYSd879AprDAbRAU2L9Ln2IsKPEnuaLjCBhCQE+iRtvBSFO4JOY
+	tG06M0SYV6KjTQiiWk1iak8v3NJzK7YxTWBUmoUUKrOQPDkLyTOzEPYuYGRZxSieWlqcm55a
+	bJyXWq5XnJhbXJqXrpecn7uJEZgcT/87/nUH44pXH/UOMTJxMB5ilOBgVhLhTaoXTBfiTUms
+	rEotyo8vKs1JLT7EKM3BoiTOq5oinyokkJ5YkpqdmlqQWgSTZeLglGpg0v7E+q3pMMedFYZs
+	Qv2dC7cyJmX+nM5gE7y5/OP3EwU/9tm6bdw6+dn+0mVh+c9Fl6/+KVeYO90sPq8pcZ/S3bQD
+	7Ds+mdjtf9Ll47rn93OjB0smsqzp7o34EJPGwc/4+NOlWccP3JplePHp3IYeAd/o3aG2n7Y0
+	P/59rmbT1vUmaRdtKtlfWlYsvxT0iXmZZZms8q2nfXc2qXw877Vi4gMmt7SUCo4j9y0k/1xc
+	I7Js30WFy5ZnW2Ju3r6onljOMJstb25cM6vEc4s90ZtT2BnV68s3Tvyc2rdm4/P8yrauVWvk
+	eJoM9CZvDfSqmb5/WqWLg1O+38TuZveu/yFzOed7iYRZnLzeyNEzk69qjxJLcUaioRZzUXEi
+	AA+FiJL9AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrDIsWRmVeSWpSXmKPExsVy+t/xu7pPNoqkG3y4ZGix9fcsdos1e88x
+	Wcw/co7V4t6lLUwWL/Y2slhcWzGX3eLlrHtsFufPb2C32Pt6K7vF5V1z2Cy2fW5hs1h75C5Q
+	9nIPs0XbLH6L/3t2sFusPneFxaJl/xQWB0GPNy9fsngc7vjC7rFz1l12j02rOtk87lzbw+ax
+	eUm9R8vaY0we7/ddZfPo27KK0eNS83V2j8+b5AK4o/RsivJLS1IVMvKLS2yVog0tjPQMLS30
+	jEws9QyNzWOtjEyV9O1sUlJzMstSi/TtEvQy2t7GFfwXqHjZ/JSxgXEhTxcjJ4eEgInErxdd
+	zF2MXBxCAksZJVqefmWBSMhIXOt+CWULS/y51sUGUfSaUaJ54lJGkASvgJ1Ex43VYDaLgKrE
+	/t2nmSHighInZz4BaxYVkJe4f2sGO4gtLBAqceDEEzBbRCBc4tKijWC9zAKtzBL3J8tDLNjI
+	JDFn0jNmiIS4xK0n85lAbDYBI4kHy+ezgticQIvn/1oIdBEHUI26xPp5QhDl8hLNW2czT2AU
+	moXkjFlIJs1C6JiFpGMBI8sqRpHU0uLc9NxiQ73ixNzi0rx0veT83E2MwGSw7djPzTsY5736
+	qHeIkYmD8RCjBAezkghvUr1guhBvSmJlVWpRfnxRaU5q8SFGU2BQTGSWEk3OB6ajvJJ4QzMD
+	U0MTM0sDU0szYyVxXrfL59OEBNITS1KzU1MLUotg+pg4OKUamEQOpyh1fzzZP/1FlkSS5tXH
+	aZ8uXL27IX7VugMyMzabrxRYGLbAcMab6G+9SaxGsx9eeHClte9E1Ao/v/x7GcbXN051MfVi
+	yTsjeyVxybwZMwIcXNacnNr7l7GpSKdg4ueDApvzmKy+B3Xv3fn7m0N06pb7UR7/vc9m1utx
+	ic76N2/CLWFfg9cm37cUXTvmZf862O35EdWrkysnXr+zuX1i7H5Rfm+nb8YpxUcMd6T8mRG7
+	mKO1s3Yb948NSjU8oq0z3u0tK+pkud+Ut8C45PoBiSkm/Zd73itlrj99+EGI09Ife5Y/mBL3
+	Z72Fsuqq6Gf/eXh+7S5xmx0eE7hjTYGFj2dx9cX7PMm2S5RnmiopsRRnJBpqMRcVJwIAZw4t
+	X48DAAA=
+X-CMS-MailID: 20241020073148eucas1p1bf6fef28932441e8a1bcfbe68b027e55
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20241014123411eucas1p1f93d64ac9db9a6f77982500d4a0157f7
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20241014123411eucas1p1f93d64ac9db9a6f77982500d4a0157f7
+References: <20241014123314.1231517-1-m.wilczynski@samsung.com>
+	<CGME20241014123411eucas1p1f93d64ac9db9a6f77982500d4a0157f7@eucas1p1.samsung.com>
+	<20241014123314.1231517-3-m.wilczynski@samsung.com>
+	<f1c1af8c-18e0-433d-a61c-90080919378f@sifive.com>
+	<54fd467b-8077-454f-ae6c-14bb782cbe3a@kernel.org>
 
 
-On Mon, 30 Sep 2024, at 8:56 AM, Krzysztof Kozlowski wrote:
-> On Sun, Sep 29, 2024 at 11:06:05PM +1300, Ryan Walklin wrote:
 
->>  
->>    clocks:
->> -    items:
->> -      - description: Bus Clock
->> -      - description: Module Clock
->> +    oneOf:
->> +      - items:
->> +          - description: Bus Clock
->> +          - description: Module Clock
->> +      - items:
->> +          - description: Bus Clock
->> +          - description: Module Clock
->> +          - description: Module Clock (4X)
->
-> No, grow the list and add minItems instead.
+On 10/16/24 08:31, Krzysztof Kozlowski wrote:
+> On 16/10/2024 01:14, Samuel Holland wrote:
+>>> +  reg-names:
+>>> +    items:
+>>> +      - const: local
+>>> +      - const: remote-icu0
+>>> +      - const: remote-icu1
+>>> +      - const: remote-icu2
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  '#mbox-cells':
+>>> +    const: 2
+>>> +    description: |
+>>> +      Specifies the number of cells needed to encode the mailbox specifier.
+>>> +      The mailbox specifier consists of two cells:
+>>> +        - Destination CPU ID.
+>>> +        - Type, which can be one of the following:
+>>> +            - 0:
+>>> +                - TX & RX channels share the same channel.
+>>> +                - Equipped with 7 info registers to facilitate data sharing.
+>>> +                - Supports IRQ for signaling.
+>>> +            - 1:
+>>> +                - TX & RX operate as doorbell channels.
+>>> +                - Does not have dedicated info registers.
+>>> +                - Lacks ACK support.
+>>
+>> It appears that these types are not describing hardware, but the protocol used
+>> by the Linux driver to glue two unidirectional hardware channels together to
+>> make a virtual bidirectional channel. This is really the responsibility of the
+>> mailbox client to know what protocol it needs, not the devicetree.
+>>
+> 
+> Hm, where is the DTS with consumers of this mailbox provider?
 
-Thanks, turns out the 4x clock is not actually required by the driver so will remove this and the clock-names change for v2.
+The DTS with consumers of this mailbox provider is not included in this
+series. Since the mailbox users depend on this driver being upstreamed,
+I decided to submit this driver first to gather feedback on whether it
+can be accepted upstream. If successful, I will follow up with another
+series for the aon driver, which will use this mailbox to send commands
+to the E902 core, such as powering the GPU on or off.
 
->> +    then:
->> +      properties:
->> +        allwinner,audio-routing:
->> +          items:
->> +            enum:
->> +              - LINEOUT
->> +              - Line Out
->
-> That's odd, why two same names?
+The consumer DTS would look something like this:
 
-These are the input and output sides respectively, the LINEOUT is the SoC pinout, the Line Out is the board connector as per the routing description above. Just looks odd because the H616 codec has only this single route.
+aon: aon {
+	compatible = "thead,th1520-aon";
+	mbox-names = "aon";
+	mboxes = <&mbox_910t 1 0>;
+	status = "okay";
 
->
-> You must restrict the properties you just changed per each variant.
->
-Thanks, will do .
+	pd: light-aon-pd {
+		compatible = "thead,light-aon-pd";
+		#power-domain-cells = <1>;
+	};
+};
 
+Thanks,
+Michał
+
+> 
 > Best regards,
 > Krzysztof
-
-Regards,
-
-Ryan
+> 
+> 
 
