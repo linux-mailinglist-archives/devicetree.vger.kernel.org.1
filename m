@@ -1,132 +1,153 @@
-Return-Path: <devicetree+bounces-113642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1182A9A67F8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:19:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4938B9A67FB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF26AB250FA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:19:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E96F5283805
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C44B1F893C;
-	Mon, 21 Oct 2024 12:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F85C1F4FB3;
+	Mon, 21 Oct 2024 12:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tVJJHWnT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5NvzLEn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438861F8903
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4963A1F4FB0;
+	Mon, 21 Oct 2024 12:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729513077; cv=none; b=uJ3ep5S/26D168yR5vT3P6Ro1AUumGcsKDyjr/W3jnAsExCAvvWk5cPdq8YQLqW/ClR3rRBN883eVuP+5D31i5xm623fu/AQAOsTWuxbFWNG7wxste4htQIMECcDJdu/OYOGpIVYEjc2MyZQiqY728HkMUOccZJvV+x8ff1j7xk=
+	t=1729513091; cv=none; b=nJK9I3SMqoOdWQWb/n+Whb9PSWIeOFXtHCnIEkQ7SyPtFY2d/TdIOIaTJiR3rUBFobRhf1II287eEhhYK8Ao0NkuWJGSF+O9t6tV7Uug4t4a1SXHHYLJCnWD/QWKM8jgC6jwXiSDpGs+CqFGh1OvV3zHMYKg/K7stqWEXrpnwa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729513077; c=relaxed/simple;
-	bh=D9V+xTdETJ8ksaQ5r5b/gY+O3zvjqoic5a/qlmpRsW8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T3hgEJIFsRriafXtMDox/JZawEcS0adH7Gol1rq4pBVlhAs+ikBwCqFGrSalH5e0XtomThC5TqYIuU+lEkc2LwpBmtaZIIpUE3Aj7G5LJ3+F6ze6LAy8ZLw+B0x+mueTauKnO4TypXStDr153dwppcBFvdtK/Pfi0SmkHke47b4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tVJJHWnT; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb443746b8so44697441fa.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:17:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729513073; x=1730117873; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=++p6IK2xyUkmxIiDtF8Kg/j4cQViLTJqoFU8d2o1atw=;
-        b=tVJJHWnTrNT8cTlWKDsDbJVxXw1wsxXI5hXj0vdxiCq4qpGbOX0zG47qGvJDkudmZM
-         uoTBKcGj73Be6DYytuGCsCfQHhWB27WgAim2dxmFsjWjh6lQAkduDgv0QDRaLZpH9YQj
-         +5BoUZOBL9blJ8+1Bf7sHd10HVcBiStpRgiku18EKjaK4kXb33BN8d05ZyjAjs31pxBx
-         NlKphNml6dqTGf305Uuwc/XdHL93iIxfm5ABDU9+JpFp2btLeZtXnAQeBOCXbAbC+zfK
-         Xb6sHMr33D9zsiS3rDwTFqQ59HQ5Od8sIHV3urxH2BNGQ+XgbAozGLJkt7RjGbk/2aau
-         KUFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729513073; x=1730117873;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=++p6IK2xyUkmxIiDtF8Kg/j4cQViLTJqoFU8d2o1atw=;
-        b=mm0HltcuQ1qcu5avQPmEyXeCsr0D92o4UCtrHyClpeyFJFpW2VEBVtCbXkriNmYwXU
-         aAPnlTwXleiky+sZIGHIEXdgm5taPvvqgaWeSVeDK5tZ0VsWATY2ZKGLi35GIImSF+h9
-         tPFuYxjdU2BHDVO3/ITukIRFEnDrzj0mfEyrst7uIX33kvNWnhTX0vVUCsCUuWPWId0Z
-         FqUBXvh7F8eVeLsTI5/lc+l3g6RfzprUzCA37Css9/SyeSZspRRfrU/eSfUzjOPl5MP9
-         Zd7k6uiBo4pFu+hAVNVrAhO8Zb9YL4xw7aFWqsv5DToMDEEIx7HJoRJ+uQWH2RwyYJKb
-         2lWA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3E4teiaafz3gM2ASZzZIpZrC6GIrvpnFnzW3ObcLAiZ+/EXINnXjISEFYHdgaI4tAQgblzmyOOIUw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmR+BplHavLhrWwcW74nixJLomtZsVLeKQp6U9si1/J/O9k60o
-	H80kfDKtzRrOyJre7NPobeqVQLqeA8xc15G24I3CBE0BV+klDXlPtbvDMi02dYU=
-X-Google-Smtp-Source: AGHT+IEaBDgO0bJNd009iFuyYoVj9ZrfomLRDAMi/yxMGgNzbZQlm++57S0iUYR+s+bCy7ZAO9vNng==
-X-Received: by 2002:a05:6512:2356:b0:539:e317:b05f with SMTP id 2adb3069b0e04-53a15229d00mr5612912e87.28.1729513073320;
-        Mon, 21 Oct 2024 05:17:53 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a22431454sm464210e87.212.2024.10.21.05.17.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 05:17:52 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	konradybcio@kernel.org,
-	andersson@kernel.org,
-	simona@ffwll.ch,
-	abel.vesa@linaro.org,
-	robdclark@gmail.com,
-	quic_abhinavk@quicinc.com,
-	sean@poorly.run,
-	marijn.suijten@somainline.org,
-	airlied@gmail.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	quic_khsieh@quicinc.com,
-	quic_parellan@quicinc.com,
-	quic_bjorande@quicinc.com,
-	Simona Vetter <simona.vetter@ffwll.ch>,
-	Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	quic_riteshk@quicinc.com,
-	quic_vproddut@quicinc.com
-Subject: Re: [PATCH v5 0/5] Add support for DisplayPort on SA8775P platform
-Date: Mon, 21 Oct 2024 15:17:42 +0300
-Message-Id: <172950935864.2053501.518573859877352853.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241018070706.28980-1-quic_mukhopad@quicinc.com>
-References: <20241018070706.28980-1-quic_mukhopad@quicinc.com>
+	s=arc-20240116; t=1729513091; c=relaxed/simple;
+	bh=fJF3sv1WK29g491H9+hsq1JOT1porgzkvgomaG6Ledw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DVNY+immZTyL/Xc39ETenLHBkvG94cNE6ZSejcO+Wndl74c5k5Fq9orpK/kNZs+zj690Yb441x6Jq3ifXn8B7U/Z2GJXw2r9PWaanzNTuleY4RF0likgVbrk4N0VoYLG2uJDQU3yXncMREAv+ky+B2hVbXFErMzJVuxHCHxZPzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5NvzLEn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5B0AC4CEC3;
+	Mon, 21 Oct 2024 12:18:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729513090;
+	bh=fJF3sv1WK29g491H9+hsq1JOT1porgzkvgomaG6Ledw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M5NvzLEnUIfSqKtpJxwNDMzakIDzjY7CACpZ/ItWVCBMAppqUukiTWn21NbgAgPuO
+	 /EdtycJo+5CkYX0osKx1t1bfv/uvbnOTvTQw40ZlYRG2PO4Z5m8YSEn1IIQVeCA5UW
+	 8I4EsKn9JmEhP0AUNOXtlakZbSomGTo5prJdr5c/rlRlBT/LYtVBoLoj3znWcMVnNc
+	 ygfKpAbsag0y3B03PbHHpkK3qJ0tiwA96ZWsCZFH4/tReON0RB8Z6bRA6NnYRmJmjf
+	 WU8ltnuf3sFSpNykC7ejhoI9y276DrIp5pGKkqJ+VRq670+mrGpQ4IYfc8foWc46US
+	 7JBeelvJY7eMA==
+Date: Mon, 21 Oct 2024 13:18:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Xu Yilun <yilun.xu@linux.intel.com>
+Cc: iansdannapel@gmail.com, mdf@kernel.org, hao.wu@intel.com,
+	yilun.xu@intel.com, trix@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
+	heiko.stuebner@cherry.de, rafal@milecki.pl,
+	linus.walleij@linaro.org, linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] fpga: Add Efinix Trion & Titanium serial SPI
+ programming driver
+Message-ID: <20241021-depravity-scale-6123da541538@spud>
+References: <20240927141445.157234-1-iansdannapel@gmail.com>
+ <ZxG70kzjsvT3UBlQ@yilunxu-OptiPlex-7050>
+ <20241018-chump-juvenile-dc368d3d2f2c@spud>
+ <ZxW4DJOES77ifOC9@yilunxu-OptiPlex-7050>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Wt9DGYSdOGciyjI4"
+Content-Disposition: inline
+In-Reply-To: <ZxW4DJOES77ifOC9@yilunxu-OptiPlex-7050>
 
 
-On Fri, 18 Oct 2024 12:37:01 +0530, Soutrik Mukhopadhyay wrote:
-> This series adds support for the DisplayPort controller
-> and eDP PHY v5 found on the Qualcomm SA8775P platform.
-> 
+--Wt9DGYSdOGciyjI4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+On Mon, Oct 21, 2024 at 10:10:20AM +0800, Xu Yilun wrote:
+> On Fri, Oct 18, 2024 at 05:58:44PM +0100, Conor Dooley wrote:
+> > On Fri, Oct 18, 2024 at 09:37:22AM +0800, Xu Yilun wrote:
+> > > On Fri, Sep 27, 2024 at 04:14:42PM +0200, iansdannapel@gmail.com wrot=
+e:
+> > > > From: Ian Dannapel <iansdannapel@gmail.com>
+> > > >=20
+> > > > Add a new driver for loading binary firmware to volatile
+> > > > configuration RAM using "SPI passive programming" on Efinix FPGAs.
+> > > >=20
+> > > > Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
+> > > > ---
+> > > >  drivers/fpga/Kconfig                    |  10 ++
+> > > >  drivers/fpga/Makefile                   |   1 +
+> > > >  drivers/fpga/efinix-trion-spi-passive.c | 211 ++++++++++++++++++++=
+++++
+> > > >  3 files changed, 222 insertions(+)
+> > > >  create mode 100644 drivers/fpga/efinix-trion-spi-passive.c
+> > > >=20
+> > > > diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> > > > index 37b35f58f0df..eb1e44c4e3e0 100644
+> > > > --- a/drivers/fpga/Kconfig
+> > > > +++ b/drivers/fpga/Kconfig
+> > > > @@ -83,6 +83,16 @@ config FPGA_MGR_XILINX_SPI
+> > > >  	  FPGA manager driver support for Xilinx FPGA configuration
+> > > >  	  over slave serial interface.
+> > > > =20
+> > > > +config FPGA_MGR_EFINIX_SPI
+> > > > +	tristate "Efinix FPGA configuration over SPI passive"
+> > > > +	depends on SPI
+> > > > +	help
+> > > > +	  This option enables support for the FPGA manager driver to
+> > > > +	  configure Efinix Trion and Titanium Series FPGAs over SPI
+> > > > +	  using passive serial mode.
+> > > > +	  Warning: Do not activate this if there are other SPI devices
+> > > > +	  on the same bus as it might interfere with the transmission.
+> > >=20
+> > > Sorry, this won't work. As you can see, the conflict usage of CS caus=
+es
+> > > several concerns. Just a text here is far from enough.
+> > >=20
+> > > You need to actively work with SPI core/controller drivers to find a
+> > > solution that coordinate the usage of this pin.
+> >=20
+> > Why does it even impact other SPI devices on the bus? It's not /their/
+> > CS line that is being modified here, it is the line for the FPGA's
+> > programming interface, right?
+> > What am I missing here that makes it any different to any other SPI
+> > device that may need it's CS toggled?
+>=20
+> IIUC, now spi core or controller driver should fully responsible for
+> HW operations of CS. And every good behaved spi device driver should
+> declare their logical CS index defined by SPI controller and let SPI
+> core/controller driver to proxy the CS change.
+>=20
+> But if this spi device driver directly aquires CS, it conflicts with
+> the controller and just fails.
 
-[4/5] dt-bindings: display: msm: dp-controller: document SA8775P compatible
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/c51ff89a8139
-[5/5] drm/msm/dp: Add DisplayPort controller for SA8775P
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/dcb380d19e58
+Right, I don't think you answered my question here at all, but just
+reading over the kconfig text again I think I understand what it means.
+I'd interpreted this as other devices being impacted by what this driver
+is doing, but actually it is talking about other devices on the bus
+interfering with this one because of how it handles the chip select.
 
-Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+--Wt9DGYSdOGciyjI4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxZGfQAKCRB4tDGHoIJi
+0orWAQDW1clt+xNoVd8+K4hwkETBaQSqcDeo3EyjcnhtdNtidAD/Tyrn1QgIt56w
+C4eWfh6Id3Pl5G2xcXBOJXfI3Ese1Qk=
+=Ue1A
+-----END PGP SIGNATURE-----
+
+--Wt9DGYSdOGciyjI4--
 
