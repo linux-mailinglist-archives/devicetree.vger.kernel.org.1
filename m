@@ -1,162 +1,132 @@
-Return-Path: <devicetree+bounces-113715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988F89A6ACB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:44:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73C539A6AF7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:48:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C77761C228D9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:44:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1184B258C5
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:48:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27CF1F891F;
-	Mon, 21 Oct 2024 13:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445A71F4FDE;
+	Mon, 21 Oct 2024 13:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="YoQrJlMf"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="q0M+l5LX";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="IktmwYTY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26F31F76C1;
-	Mon, 21 Oct 2024 13:43:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA8F1F130A;
+	Mon, 21 Oct 2024 13:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729518206; cv=none; b=UOW8lW9CVYQS1AJ8i627YkRnUrEZtJvpiSizg6v4d1aXrexUhsdQY0uyv+VKh1UmLKU63TEZKd4t3c770xr1CAeuegszuxgEc+BBlYoKd+LFdZqzYVy3wa5LwjELy/KT1BuIDGgu6/cGGeVwiawQIhGGQ7Iv+h5MYUJMZgkqn6w=
+	t=1729518503; cv=none; b=RTH4fUwyidtDu2QZiWioG3WMCHxV8A7SMF+jn5xgTwWLB3Vd+XpEHhfd1yMJkl8iXo6qADdVTzaUMCKro8YRpsL7hN7VDThpoJ4DKu1Hz3KZ7LXlFHgDbQE2xRLiWnHbYMbYEhrOdfnsqvU/h4iEYy/hfsSIMSk2COa8iHj2uoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729518206; c=relaxed/simple;
-	bh=ji4xpsdauq4eL2UowXQVPh9V4Omji2HPbuJqCuXO3Lw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=GrtwIpmdEZaO0G41en7E4mQNhOSzoIFw3yNWug1fhfs1YAN69VJ3PERbV26a/gJWI2haw/SOsffUjJqnm0AB4QdUaZIyI4gQBJIPJoAkMiUwVn3RevBCNWk89voZIho68XLuIBr3vGnR91/4OPy8OY9n6QUg/547ssnObUa/nJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=YoQrJlMf; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LDYWoT019790;
-	Mon, 21 Oct 2024 09:42:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=xTTLu
-	/OlHYE+6sDiudTP9ZXXxgkxjScBGiy6SuAyF/Q=; b=YoQrJlMfWOT9NNAVgLj0H
-	p/oZ8WorUmSyBQECRyQdRNl9hgaPdRLPPQH/YsjpyWaIsiKzrG+3uUg7TplKYB3/
-	T8tUklUegImJppC0nRCtbRt6tr2N4x/zfB3dyQER1jkywpvDEcQ5UVgjx0aCzTcL
-	k9dhNwNj1ML8CnSrUOgBUHL5SWDTqoRtQE4VBltqcE7TLGET5jjPtijfYBKoVMI5
-	UY30ulISrDHLttzuLPW9gtU53O4L7GajrrCrlDV5f0/MAXGMhKayZ62Bs9psQ66o
-	Vdp5gp4R8/n2FyFFnQPfgLBwBMMhgFRrnpDt5BjZ/uXEpxzdptUcoByrX+V2ZudC
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42dk5dh6qb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Oct 2024 09:42:51 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 49LDgnQu038540
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 21 Oct 2024 09:42:49 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 21 Oct
- 2024 09:42:49 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 21 Oct 2024 09:42:49 -0400
-Received: from [127.0.0.1] ([10.44.3.60])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49LDgU7a017079;
-	Mon, 21 Oct 2024 09:42:44 -0400
-From: Nuno Sa <nuno.sa@analog.com>
-Date: Mon, 21 Oct 2024 15:46:48 +0200
-Subject: [PATCH 4/4] ASoC: codecs: adau1373: add powerdown gpio
+	s=arc-20240116; t=1729518503; c=relaxed/simple;
+	bh=Zv+uXFl0RQcRbDUrQN5TBTqjzzSX7jumC0m+kpAaEZk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WF+MjBiVmwQc9tjx+mPy5GFi+pWxHoC/zd30GukmixLg3yT3hlVD5Q93VcoF/CyxH8tATCgSvhZy+uEYX7j9M208kQzZ0jLu5VC31v8ZUVZHL60VLcnVcduvOQBtEWdIgdJ8Vh2V/1fqi/bX/7fFCuTmyPhKuj3c+U+SnmobaU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=q0M+l5LX; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=IktmwYTY reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1729518499; x=1761054499;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=KEFV90NtjKhk5WP7S+oF07G1Q6k1s2xpduU//Ae0D2s=;
+  b=q0M+l5LX0z4uSY1eoIeZJ+MLg5rh3oCvRELQoGnUkUhAriuUdflIW3o0
+   ydlqYOLPZLhbZGRMXRLGDpLMUWEwqqNRE5DctzJlouIdgt9lT9BmR1SCC
+   tWwANhTG8cNuZqp5NmXBywv2DjCwrMBEIyUzRiHC0OTTQcJod0GYFK6TQ
+   FgxMCPRA2b+H7QADZGJAH6NP8X7c9UbcDqAToQ4dSFTdhdEwEGs6mM+c4
+   /3xBBXMRQiitiszbr0JG9u0iUkisW6WZJJR3haXVyYRLqLnWtypyi2b2b
+   ZRMyLn6On5JYZl7TVPRNRQGzX+SteWtfIdFFe+TduqQchnw+AmFYa/401
+   g==;
+X-CSE-ConnectionGUID: HFLFfOkzTreLiUJYWJ10yQ==
+X-CSE-MsgGUID: jkaZF85fTAGn0EnQ8v2ucQ==
+X-IronPort-AV: E=Sophos;i="6.11,221,1725314400"; 
+   d="scan'208";a="39576079"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 21 Oct 2024 15:48:17 +0200
+X-CheckPoint: {67165BA1-F-69FF9A8E-EE9CEDAF}
+X-MAIL-CPID: 5835941C4BD768457DA0DE859DEFCF6C_0
+X-Control-Analysis: str=0001.0A682F18.67165BA1.005B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BB15D16B491;
+	Mon, 21 Oct 2024 15:48:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1729518492;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=KEFV90NtjKhk5WP7S+oF07G1Q6k1s2xpduU//Ae0D2s=;
+	b=IktmwYTY1/ITpIkYod18GzpOJd2buw1RXiqxY5+mJQlX2WDPqs2RFxrNIHkvUc42DpYe7z
+	O4u0t1at+eER5RHHvhf7NEVdLtxeE8T0Hm9F54XBQHRKOn4N9s/KHkfDldT/ftsah7Vrqo
+	+j/K2fTrQGTjUr9zXs3fnTdmBAIOoFTUlSCD3AYj+vCKkbUsvfZOcOrcHy8YRSusrhKu7U
+	bpY+kZ0XxF0lOuwqc7jTaWVDib/2FX3e4ilDVVWdnwR4FcdsgVOxOXIp4bXWRnJIIJdiuW
+	wysouKNGijPive6QIccT6Ux/kIppJd3KMY3qOkHzG0ZQL6bGuqEwfLYJwE/SCg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: Re: [PATCH v3 1/7] arm64: dts: imx95: set max-rx-timeout-ms
+Date: Mon, 21 Oct 2024 15:48:11 +0200
+Message-ID: <2755523.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20241012-imx95-dts-new-v3-1-edfab0054c71@nxp.com>
+References: <20241012-imx95-dts-new-v3-0-edfab0054c71@nxp.com> <20241012-imx95-dts-new-v3-1-edfab0054c71@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241021-adau1373-shutdown-v1-4-bec4ff9dfa16@analog.com>
-References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
-In-Reply-To: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
-To: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1729518408; l=1685;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=ji4xpsdauq4eL2UowXQVPh9V4Omji2HPbuJqCuXO3Lw=;
- b=JhxM6BIKcF/Mgy6Mj+vuyqltUcWqSun7Zep47ulNiBeY3w6OqtCWfgPVc12ohEyVtUbDVAC3C
- QM6n/vj+cUcCuqdXzGXANRvpzN/ig0ZTFdF1WW1zPPypm4bXSFKUZ71
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: pz9StNY-R34H6gsmw7V007FdOlc-zhiX
-X-Proofpoint-GUID: pz9StNY-R34H6gsmw7V007FdOlc-zhiX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=778 adultscore=0
- spamscore=0 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
- mlxscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410210097
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-If the powerdown GPIO is specified, we use it for reset. Otherwise,
-fallback to a software reset.
+Am Samstag, 12. Oktober 2024, 13:19:08 CEST schrieb Peng Fan (OSS):
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> With 'max-rx-timeout-ms' property added in 'Documentation/devicetree/
+> indings/firmware/arm,scmi.yaml', set the value for i.MX95.
+>=20
+> NXP i.MX95 SCMI Firmware designation does not allow timeout, it will not
+> recover if the Agents use timeout design. So set a large value (5000ms)
+> here.
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx95.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
+ts/freescale/imx95.dtsi
+> index 03661e76550f4d5b8e5e706ad51d6f7620cb1dc3..9c802c2344fcfb2802e5d52c7=
+62b0178a2a88ba8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -293,6 +293,7 @@ scmi {
+>  			shmem =3D <&scmi_buf0>, <&scmi_buf1>;
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <0>;
+> +			max-rx-timeout-ms =3D <5000>;
 
-Signed-off-by: Nuno Sa <nuno.sa@analog.com>
----
- sound/soc/codecs/adau1373.c | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-diff --git a/sound/soc/codecs/adau1373.c b/sound/soc/codecs/adau1373.c
-index 9568ff933e12ba939134a696c8d9c16a2ef04795..d5566b4c444f3a8be07cc17fbdbb5fee1b6442e9 100644
---- a/sound/soc/codecs/adau1373.c
-+++ b/sound/soc/codecs/adau1373.c
-@@ -8,6 +8,7 @@
- 
- #include <linux/module.h>
- #include <linux/init.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/delay.h>
- #include <linux/pm.h>
- #include <linux/property.h>
-@@ -1547,6 +1548,7 @@ static int adau1373_parse_fw(struct device *dev, struct adau1373 *adau1373)
- static int adau1373_i2c_probe(struct i2c_client *client)
- {
- 	struct adau1373 *adau1373;
-+	struct gpio_desc *gpiod;
- 	int ret;
- 
- 	adau1373 = devm_kzalloc(&client->dev, sizeof(*adau1373), GFP_KERNEL);
-@@ -1558,7 +1560,21 @@ static int adau1373_i2c_probe(struct i2c_client *client)
- 	if (IS_ERR(adau1373->regmap))
- 		return PTR_ERR(adau1373->regmap);
- 
--	regmap_write(adau1373->regmap, ADAU1373_SOFT_RESET, 0x00);
-+	/*
-+	 * If the powerdown GPIO is specified, we use it for reset. Otherwise
-+	 * a software reset is done.
-+	 */
-+	gpiod = devm_gpiod_get_optional(&client->dev, "powerdown",
-+					GPIOD_OUT_HIGH);
-+	if (IS_ERR(gpiod))
-+		return PTR_ERR(gpiod);
-+
-+	if (gpiod) {
-+		gpiod_set_value_cansleep(gpiod, 0);
-+		fsleep(10);
-+	} else {
-+		regmap_write(adau1373->regmap, ADAU1373_SOFT_RESET, 0x00);
-+	}
- 
- 	dev_set_drvdata(&client->dev, adau1373);
- 
+Best regards,
+Alexander
+>  			scmi_devpd: protocol@11 {
+>  				reg =3D <0x11>;
+>=20
+>=20
 
--- 
-2.47.0
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
