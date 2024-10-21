@@ -1,71 +1,85 @@
-Return-Path: <devicetree+bounces-113814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE52E9A71AC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:00:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 039E49A7211
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E42428416F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:00:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A28A91F25C81
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B241EBA03;
-	Mon, 21 Oct 2024 18:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB721F707F;
+	Mon, 21 Oct 2024 18:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7Stmwr5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cjCAVKMU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FA8A1E5705;
-	Mon, 21 Oct 2024 18:00:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DFF31C461C;
+	Mon, 21 Oct 2024 18:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729533640; cv=none; b=L3aISBIOJyzPs15z40ihTTstBqEsiQNBxN23fWyofmCYp4zdD9z0fdLmsh52Nrrr5i/cLMRRWoWS8ce07P+hUnAKduv8hBU9NJTNexiopAJFT92FowS+U4KbifAXL6eX1hx1SRTdzdWfCnsotFy/dOBbGWFiERUVQqG9bRuQdmA=
+	t=1729534409; cv=none; b=RY0IoIA8HCQHFRHfwDFKf49Hc4NIAgHy/wd/x/xHusiSwhsHxU8pfA2fgYgBhUHe/Emj+mugujmm7PkNQ0bhBJO6nLGYNtx7sL3LS1ncTsxgICFdnMDsATr/TPIp5XGHrQe2nLCa6e8r5SQ7ox6IpSAICCm5BDxuKVvw5U6tTXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729533640; c=relaxed/simple;
-	bh=fgWxk2nymv2R0eYb6z56JNmzGGen8Gh9a4cYgGr2o2o=;
+	s=arc-20240116; t=1729534409; c=relaxed/simple;
+	bh=yzpd+NWU+lQgRKSF0RCKk2mtb0Hr9paDxhG9P+HbKrs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PZIt6PLCL2B6GlnDcIMN0SermE8fjnq38JqESn9pPXYHtCFXujX6CTqkdIXyaCVQDkbZf/ByyoBBLqsb5MdhRtuhffbAUxJSQDq+7/kYhBG9Jq8F7f9HuMaLOlI5gSJsvsYfmiaHoragKzOVMMphU40Z27fDss1haErjLDgTTEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7Stmwr5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D68FC4CEC3;
-	Mon, 21 Oct 2024 18:00:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729533639;
-	bh=fgWxk2nymv2R0eYb6z56JNmzGGen8Gh9a4cYgGr2o2o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L7Stmwr5YXDcTvbGjTGnDUQhQ2DXd6REQBki6PSTTHdv94HZ/tGU5QADRmyR6/KO2
-	 Wx7uD/aWbFRkDtTA89ef5ijSaxuwn9ax3xd7PAbcFt5s3ZOWAaSx0RQHSjqRzWh6qF
-	 JwMvmMZOMpkaZDUHu/VsW3bYGM/5ag/9anF+rupIcyf4dU92cFKTwpWC85WTUlBxqN
-	 ZaUpxpXHqbiQswF98gew+ctCLeTYmQr4bH4CbTY9wQFD4R+JCDCJC4KyoyLPac1BdK
-	 9+Dx4DtOkjFOo5OyVRCez/wc2e8WtLuZI514Qwzd1VUbYLJzJh+TUDGyPJ+5DMm4hZ
-	 adGzwgSsVdX+A==
-Date: Mon, 21 Oct 2024 13:00:38 -0500
-From: Rob Herring <robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CHTa8uWABsocZXt9HMaVydpk746us+g+yzTm4ufDW36WalvsPOJCJXbHaHwMf/AV0qur7XfkcrE9QJiR3b/DgKV3pyYm91y3JJKcMu4FuFvon9FLlW+KePoLmmwWMQuwWWnrE5sJrpuK6QJBla/7o3EkdmWqM2QUc50HWXHJDnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cjCAVKMU; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7cd8803fe0aso3144817a12.0;
+        Mon, 21 Oct 2024 11:13:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729534406; x=1730139206; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bK+Kb3CRrwNbEI7Yu3/DCQS3QmfzFI39y8oZaNmtEhI=;
+        b=cjCAVKMUSXeE2hyuqrU7jyiedoUbNeR99mp+gBzmnt23bsB4MWFko8gr4lwqQ4NXf6
+         hvp2hp8EamISoK243s5fm4eA6yOeHr5bNFXK/eCvIrhKh3g4712Gmp05jhXen03froCq
+         0lSZh+3dXLp5uEwndsNEz1tvZwqlEfwyPUp2vNPTZs0X/E3cH1Lhj3GN2q72ne/Q7Lca
+         KxoUJb0SBuUWSUgrRQpPC7QRx7eKEd1eB7XgHiOUS+UNJyx3QL8TqsMbpxKHor+gvR8l
+         PmrInW0XPPHgD92jCz974d4uuUeR8s/40ZUGDG3qnbYUaijjfT4aMDIcMuwvSbBeSrK/
+         Zeqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729534406; x=1730139206;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bK+Kb3CRrwNbEI7Yu3/DCQS3QmfzFI39y8oZaNmtEhI=;
+        b=Si02orcBREsIi07/ZWJANxhuDFh4Lb0Q9RQXrxsMtgOZ1Uv41LR6E8gSkHxVDca87T
+         s6K37CUiq3Do5b8WUCuiISViC9IdcPysT8k0bpm8an89vt9LkT18f2KG+XbHVsyW9dJv
+         byPjQQJPwyCbgEWrBokzPzqUYXBitJyw0qWSWJX0ataq0CrF2dtvI+wlt76Ac1dbcGjC
+         OzsyuA8ny9Lg2RrFWL694lzqO1sRFipH4lFrMc/nnwto3rVvV7d0hZduGDKP9oEBSpbO
+         j7bAIl5JSZi+tEkwT2JMcLw8qKwrjI+1655ThBcwoDJyanu9ZaG8EjmXkx7am+gpCbB9
+         OWOw==
+X-Forwarded-Encrypted: i=1; AJvYcCUPokg0njHahJp8dgr0+A2neWmzBaIAhTNVA+WKOGpTH9W435st5CrkUfTnWuTFCjygX2StSMsDDi5rHCPM@vger.kernel.org, AJvYcCVCX41msppBCH9L8JmmYsiDoVnbi/RO8I/ePQjppN5iJSwvVB3v/l1L+HoZGNNhpjEWv9CRgLmqRFCG@vger.kernel.org
+X-Gm-Message-State: AOJu0YznBtJgQJkD1JcL+BE6EEZQsDtP4rvFqB+0ximUzErLfNUzcSSo
+	MHvOQoDXytQ4bD8E/wibmgCcfEpS7M7jrbOY2M/gVf+/In9AzWBf
+X-Google-Smtp-Source: AGHT+IE3n6zAepKFOnyn7up/M/0WjnX4CfERv9bMqeBZc9N19TjDL/xo9B5jJ8ZSGfpVA7yXAPNFHA==
+X-Received: by 2002:a05:6a21:8ccc:b0:1d8:b060:37c6 with SMTP id adf61e73a8af0-1d96b4554fbmr1255679637.0.1729534406361;
+        Mon, 21 Oct 2024 11:13:26 -0700 (PDT)
+Received: from Emma ([2401:4900:1c96:190:5054:ff:fe53:2787])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad4ed248sm4199168a91.36.2024.10.21.11.13.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 11:13:25 -0700 (PDT)
+Date: Mon, 21 Oct 2024 18:13:17 +0000
+From: Karan Sanghavi <karansanghvi98@gmail.com>
 To: Conor Dooley <conor@kernel.org>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Inochi Amaoto <inochiama@outlook.com>, Yixun Lan <dlan@gentoo.org>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: snps-dw-apb-uart: Add Sophgo
- SG2044 uarts
-Message-ID: <20241021180038.GA738756-robh@kernel.org>
-References: <20241021072606.585878-1-inochiama@gmail.com>
- <20241021072606.585878-2-inochiama@gmail.com>
- <20241021-outlying-washday-8f171dedc703@spud>
- <r5ngs2j776jcy6sfirwzmtsoljotatfvgmlmv4sj4xksye2bff@xtn7adafbpfz>
- <20241021-rosy-drove-1ae3c8985405@spud>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH] dt-bindings: soc: bcm: Convert to Dt schema
+Message-ID: <pyizqjpxjgd6zdrhh65fklmyrxgxmlu2wmv7tzpdhdkwh7ifn6@efvaxhpekxtb>
+References: <20241019-raspberrypi-bcm2835-power-v1-1-75e924dc3745@gmail.com>
+ <20241021-exposable-seventh-baed2b1442b6@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,48 +88,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241021-rosy-drove-1ae3c8985405@spud>
+In-Reply-To: <20241021-exposable-seventh-baed2b1442b6@spud>
 
-On Mon, Oct 21, 2024 at 01:21:58PM +0100, Conor Dooley wrote:
-> On Mon, Oct 21, 2024 at 08:18:58PM +0800, Inochi Amaoto wrote:
-> > On Mon, Oct 21, 2024 at 01:10:52PM +0100, Conor Dooley wrote:
-> > > On Mon, Oct 21, 2024 at 03:26:05PM +0800, Inochi Amaoto wrote:
-> > > > The UART of SG2044 is modified version of the standard Synopsys
-> > > > DesignWare UART. The UART on SG2044 relys on the internal divisor
-> > > > and can not set right clock rate for the common bitrates.
-> > > > 
-> > > > Add compatibles string for the Sophgo SG2044 uarts.
-> > > > 
-> > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > > > ---
-> > > >  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 ++++
-> > > >  1 file changed, 4 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > index 4cdb0dcaccf3..6963f89a1848 100644
-> > > > --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > @@ -58,6 +58,10 @@ properties:
-> > > >                - brcm,bcm11351-dw-apb-uart
-> > > >                - brcm,bcm21664-dw-apb-uart
-> > > >            - const: snps,dw-apb-uart
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - sophgo,sg2044-uart
-> > > > +          - const: snps,dw-apb-uart
-> > > 
-> > > Why does each vendor have an items entry of its own? Seems like needless
-> > > clutter of the file IMO, except for the renesas bit.
-> > 
-> > I just follow others when writing this binding. I think it may need
-> > another patch to fix this problem, right?
+On Mon, Oct 21, 2024 at 12:39:28PM +0100, Conor Dooley wrote:
+> On Sat, Oct 19, 2024 at 07:51:18PM +0000, Karan Sanghavi wrote:
 > 
-> Yeah. But I'd hold off to see if someone gives a rationale for it being
-> done this way before sending that. I've not deleted this thread, and
-> will send an ack if someone justifies why the binding is written like
-> this.
+> $subject: dt-bindings: soc: bcm: Convert to Dt schema
+> 
+> That's not specific enough about what binding you're converting here.
+> 
+Sure will make the changes. 
 
-No reason to be separate.
+> > +maintainers:
+> > +  - Karan Sanghavi <karansanghvi98@gmail.com>
+> 
+> Why not the maintainer of the original binding?
+>
 
-Rob
+I had read somewhere that who ever converts the binding file becomes
+its maintainer thus added my name but will add the original binding
+file's maintainer name which can actually help in maintaining this file.
+
+> > +
+> > +description: |
+> 
+> The | here serves no purpose, as you have no formatting to preserve.
+> 
+Sure will make the changes.
+> > +  The Raspberry Pi power domain driver manages power for various subsystems
+> > +  in the Raspberry Pi BCM2835 SoC.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - raspberrypi,bcm2835-power
+> > +
+> > +  firmware:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +
+> > +  '#power-domain-cells':
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - firmware
+> > +  - "#power-domain-cells"
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/power/raspberrypi-power.h>
+> 
+> What do you use from this header?
+>
+Example for power node
+power: power {
+        compatible = "raspberrypi,bcm2835-power";
+        firmware = <&firmware>;
+        #power-domain-cells = <1>;
+   };
+
+Example for using the power domain
+
+&usb {
+        power-domains = <&power RPI_POWER_DOMAIN_USB>;
+   };
+
+We need the header for referring the power domain defines in the sub
+nodes.
+
+I didn't understood exactly how should I include the usb example thus
+omitted it but if required can you please let me know how to add them.
+
+> > +    power: power {
+> 
+> The label here should be removed, it is never referenced.
+> 
+> Cheers,
+> Conor.
+
+Thank you,
+Karan.
 
