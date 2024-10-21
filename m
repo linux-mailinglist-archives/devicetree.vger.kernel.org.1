@@ -1,135 +1,313 @@
-Return-Path: <devicetree+bounces-113644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468589A67FF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:20:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A26E99A681D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE2DF1F23E6F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:20:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C38881C225EB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894CA1F4725;
-	Mon, 21 Oct 2024 12:19:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B77A1F76DF;
+	Mon, 21 Oct 2024 12:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YJQ6lwLU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dh4EBEmj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC1E1E7C13;
-	Mon, 21 Oct 2024 12:19:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FE01F1318
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729513160; cv=none; b=DdstkqL35uAnvCF3ARS2euAqwp6sI9fbEBq/k/TIux4W44njZnuY8B5LIUGgv5+Evq+CHirWuxV8yllEB0VEgIbm0MLFcOYpcEZeD+ROWKYeemtj5K96IUHfVmfhRa1cnvL8CVditzJVPaFPKqLoUg5n4Jt3cjBTY3xPTxW1HLo=
+	t=1729513311; cv=none; b=Eq1HdFyjrnNiyQwanNJzZjFKM164NU8AIMYmZXY/3xftRWbTtuXtxs/50VxKtJI5ctEvfAbpViNG1TA/PeGMSBA0QGPDcjaK+ZzKvATGNHMXGif3wcGmrtt1zQCkjOGX0potDtmniBPZeVBrmvuN4tG8dT8QQHWFgrXeFCr/s/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729513160; c=relaxed/simple;
-	bh=7mrhqlzLU/8yE2Bl6++pdNx3AsmIHi/tmHTMQIHyy7s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E9vZooA/v3ckuzsa54fo1cDJcdHh26kmIiaQDh1B639hVUA25JF2qplaKskfNi3q84ZXDQAF+JbNuYLJQtWCbq+PehNgLrH6L0TmppAQvLV/8pKGuD+Q06vAo8Mfs/hHFc8aNL6VfXzHm9Cpex6fw9xyjNXtCU05Tx7zQsCM5C4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YJQ6lwLU; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-71e4fa3ea7cso3370975b3a.0;
-        Mon, 21 Oct 2024 05:19:18 -0700 (PDT)
+	s=arc-20240116; t=1729513311; c=relaxed/simple;
+	bh=WZlxIaormjNBAmpVA3OSHxhEAdbnXU/CxUaZ0vpsPt8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Joy5K5gHA3BnmHR+jmbqbCB96k3foIwfbIMLXeOHd+3Lf6VLVUSBrIxQnaOSmwlHtw/EN2jwoNPiiWC4A3j/7WS0PR8aHd0vTEvIB3QxnUFDFpZJZhtrTNgxDd7Nl4uZdIFYc6o4O8t48nDav7Y+GT4bbX0d9DvK/nD1SF+HzRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dh4EBEmj; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4316f3d3c21so13814785e9.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:21:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729513158; x=1730117958; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GzXAN/kGFLyZ6KoxQYaMyN8WIW7O/chKPrM0YUwT+2Y=;
-        b=YJQ6lwLU7n04PJmAJNZ/HtMDtWl4vYmqS9qQDCtE1imYoqsVVwSooUUiUWrRDLcgkq
-         64DXxemN+fnA6FTWwa57Y2N/o9pf3WcJUYV34lkG9v6qUrIU2KSvJqXEAejAN7Jz4X0U
-         pfp+UbBwpUZdwMwl35tXPTh1PxZyRJjZWGfNaAgDg2UPXccMKKyS8qEgdWtwOUYaIab9
-         eH+KrtBGNf8M4IStTKJrYolbf9C7ImzFHsy0Mho4IWqkwkSM6VqBijLn+d0PSXPeM8Ur
-         26+l6vnvwUuccRHb3IF3J1/4wW98wM8Uz5LsVY4gROHM3VKurENv4RjLmRH51WbJmbJk
-         xR9g==
+        d=linaro.org; s=google; t=1729513306; x=1730118106; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=L8PXh0dAOwDKmgSRcSg3e05JHCblzWTRNfVzKItfysk=;
+        b=Dh4EBEmjf8s+EsHG5pZmzJa1h13FUJYaG44bVZiEIsu1PgT3TAObAeEHVXiXrCg2Ee
+         m5CgtbKv2C7x1gKQ+jnKVfnbEBylIzzbTvLoj1h8HTqZ7tFU+/uHmEKgUiwFH4j8Av21
+         3wBgPjSluiaPnChc6RDPtyYftuc9+oT4aOi45IqKzGSjjyT4LUFzCDGlByatGzabC1o5
+         GypieX4Zd/4GHKjbhLoqscc+PodHZ/T0zNjJmNbi6c+0exBx33asN2sxBVg5NtqoX4az
+         c9ksrn6jFYubtZvP68PMXjkq3SP0jfjBvhfjUpVIJX6KHREV7motmMtmlX7lt8GlZ6Ok
+         002w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729513158; x=1730117958;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GzXAN/kGFLyZ6KoxQYaMyN8WIW7O/chKPrM0YUwT+2Y=;
-        b=iO/mbJA9DqUJu0NZJUa/HbBCgFz75KVXgALKVIvKEHvlqQr6gL+9IlkrZzf/CylIR+
-         x40v/5sRZo3odwKaQq6je4QlT73hLV1Mi+rHQr2z4f8lhxm5FxPMm2Lnt88TSkG80LSt
-         LVh6wwWteDRgkuK+6QqATvnvQyf1OlI59tvJQ+ihyNqh7dxV0LXwK5UXGq/4ArKT4W0x
-         GS+U0dx6bFz2vHLfJ1/BiCMeiI3sXw5zQxXFxp3DH/0ukzLxeD8GpZGlKyQ5gDRtDOaH
-         +2fQG1oxqeQV3c8EDZV7QCvCLgTOejpsD71+R6uriSVeU6RqivxxbIAkkkkoWQlL2iEC
-         fvDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU2u8IB+CEWNjZXq69QGd9cbB3MgMO/ZwidZLl00BapSKKwQTV7N9tGTf6YmuViLnBoSv+z6WyVsXnlVQJ7@vger.kernel.org, AJvYcCU8HDKqd5RlfWHNXsRsWIGcpKH0vKhJKdFdhxAVhj4HifrS4IT9M6toswtFyc57vKLHSt+N7J1Ny9HzTVn0@vger.kernel.org, AJvYcCVoscgNohim02VHjrf146jF2/QOoHdFANrtuF5d9e4vw3TugQlpCOJQNIZwaoCWiP46WOVKupZA1qhU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBpVCxpqxpMCwL3TRsTY2h6p5BOkCvCjWGJ0eZKMzv+oaVeDI+
-	GGTx/OKDto4h65QlzZpxSGx3m2qqZlYgpeTgGEt96INKazF9m9bq
-X-Google-Smtp-Source: AGHT+IG3E9DRACYh7UWi0DZZrBl+qKyuSDA06T/8MVTylVvYqdgNfbdh8aJBhwejFWfecdHUmg2QQQ==
-X-Received: by 2002:a05:6a00:98d:b0:71e:1201:636a with SMTP id d2e1a72fcca58-71ea31a5886mr15484512b3a.1.1729513157747;
-        Mon, 21 Oct 2024 05:19:17 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7eaeabdb75esm2907976a12.89.2024.10.21.05.19.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 05:19:17 -0700 (PDT)
-Date: Mon, 21 Oct 2024 20:18:58 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Inochi Amaoto <inochiama@outlook.com>, 
-	Yixun Lan <dlan@gentoo.org>, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: snps-dw-apb-uart: Add Sophgo
- SG2044 uarts
-Message-ID: <r5ngs2j776jcy6sfirwzmtsoljotatfvgmlmv4sj4xksye2bff@xtn7adafbpfz>
-References: <20241021072606.585878-1-inochiama@gmail.com>
- <20241021072606.585878-2-inochiama@gmail.com>
- <20241021-outlying-washday-8f171dedc703@spud>
+        d=1e100.net; s=20230601; t=1729513306; x=1730118106;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=L8PXh0dAOwDKmgSRcSg3e05JHCblzWTRNfVzKItfysk=;
+        b=Vc/ZMcSxD8UqasF8iGcHlPrDVTFBJQt8KrwLfXUVmQcYqsgKc5dAaIVuL0itjMYUss
+         Zrhcag8M4pM6azzqzFdgHXMo0nH9pCKTvlSMB8W1fqodAsB2UWq4wSouzM4XIr+JCCVT
+         kGGiqYCsYCoGVWbQAfEUvh6JXZr+0w7ActkX9tQSNGiFm+q3ZVpw3P9z1gkZfub8n30W
+         J+prxpL8UE9i2TPzi3YtcmvXLreiQF641IhfWwoU0zEQp3TblUAyqHoWkUnNC3i6oEmN
+         DeLec9T6SmwNJvZipX0u6u3ckySog87ovmTtAwd+b3G41t+t1OsL+3YiGULk4ZNboyEk
+         LFFA==
+X-Forwarded-Encrypted: i=1; AJvYcCWdjg2qUySjpPCCdn2QSi7hewplbTpRxN7SX0HlRi30oUATcA3TjlC3V3JvDWEG8N8W9FN0aObYaoTT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/KkRTPM66WF77x6C1EVQ55lFQUWBwWwfJV7ZQh8JdpFGiz5RP
+	ZvTNLv+q+/2jot8VEg3a/R2tq1JssNWsWWs9bPbT0nUn45u7ESpoxtZW+mu+Nes=
+X-Google-Smtp-Source: AGHT+IHkCdDLs8a3oPYVJ00k2pUqgkYfiwWhPd4FYGvTMUrxEd+Of4MdGYYoSjjW2mKfmtYrwxqvxg==
+X-Received: by 2002:a05:600c:34cc:b0:431:5d89:6465 with SMTP id 5b1f17b1804b1-43161697980mr86968265e9.34.1729513305634;
+        Mon, 21 Oct 2024 05:21:45 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:3908:dea6:2ddd:be97? ([2a01:e0a:982:cbb0:3908:dea6:2ddd:be97])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5cc921sm55374295e9.46.2024.10.21.05.21.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Oct 2024 05:21:45 -0700 (PDT)
+Message-ID: <efdcdd4b-c5ca-42cc-beed-e92201bc07e9@linaro.org>
+Date: Mon, 21 Oct 2024 14:21:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241021-outlying-washday-8f171dedc703@spud>
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 4/6] phy: qualcomm: qmp-pcie: split PCS_LANE1 region
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241021-sar2130p-phys-v2-0-d883acf170f7@linaro.org>
+ <20241021-sar2130p-phys-v2-4-d883acf170f7@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241021-sar2130p-phys-v2-4-d883acf170f7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 21, 2024 at 01:10:52PM +0100, Conor Dooley wrote:
-> On Mon, Oct 21, 2024 at 03:26:05PM +0800, Inochi Amaoto wrote:
-> > The UART of SG2044 is modified version of the standard Synopsys
-> > DesignWare UART. The UART on SG2044 relys on the internal divisor
-> > and can not set right clock rate for the common bitrates.
-> > 
-> > Add compatibles string for the Sophgo SG2044 uarts.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > index 4cdb0dcaccf3..6963f89a1848 100644
-> > --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > @@ -58,6 +58,10 @@ properties:
-> >                - brcm,bcm11351-dw-apb-uart
-> >                - brcm,bcm21664-dw-apb-uart
-> >            - const: snps,dw-apb-uart
-> > +      - items:
-> > +          - enum:
-> > +              - sophgo,sg2044-uart
-> > +          - const: snps,dw-apb-uart
+On 21/10/2024 12:33, Dmitry Baryshkov wrote:
+> The PCS_LANE1 region isn't a part of the PCS_PCIE region. It was handled
+> this way as it simplified handled of devices with the old bindings.
+> Nowadays it can be handled as is, without hacks.
 > 
-> Why does each vendor have an items entry of its own? Seems like needless
-> clutter of the file IMO, except for the renesas bit.
+> Split the PCS_LANE1 region from the PCS_PCIE / PCS_MISC region space.
 > 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 32 ++++++++++++++++++----
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v4_20.h |  5 ++--
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h |  5 ++--
+>   3 files changed, 33 insertions(+), 9 deletions(-)
 > 
-> Cheers,
-> Conor.
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index 873f2f9844c66d7bd0b3bb3ab4bbd8be9a37cebd..1ca1f21b1cc225f435da9c775c97dfa142117f95 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> @@ -1773,7 +1773,7 @@ static const struct qmp_phy_init_tbl sdx55_qmp_pcie_rc_pcs_misc_tbl[] = {
+>   	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_PCIE_OSC_DTCT_ACTIONS, 0x00),
+>   };
+>   
+> -static const struct qmp_phy_init_tbl sdx55_qmp_pcie_ep_pcs_misc_tbl[] = {
+> +static const struct qmp_phy_init_tbl sdx55_qmp_pcie_ep_pcs_lane1_tbl[] = {
+>   	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_LANE1_INSIG_SW_CTRL2, 0x00),
+>   	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_LANE1_INSIG_MX_CTRL2, 0x00),
+>   };
+> @@ -1907,6 +1907,9 @@ static const struct qmp_phy_init_tbl sdx65_qmp_pcie_pcs_misc_tbl[] = {
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_PCIE_G4_EQ_CONFIG2, 0x0d),
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_PCIE_G4_EQ_CONFIG5, 0x02),
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_PCIE_G4_PRE_GAIN, 0x2e),
+> +};
+> +
+> +static const struct qmp_phy_init_tbl sdx65_qmp_pcie_pcs_lane1_tbl[] = {
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_LANE1_INSIG_SW_CTRL2, 0x00),
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_LANE1_INSIG_MX_CTRL2, 0x00),
+>   };
+> @@ -2582,8 +2585,6 @@ static const struct qmp_phy_init_tbl sa8775p_qmp_gen4_pcie_rc_pcs_misc_tbl[] = {
+>   static const struct qmp_phy_init_tbl sa8775p_qmp_gen4x2_pcie_pcs_alt_tbl[] = {
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_EQ_CONFIG4, 0x16),
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_EQ_CONFIG5, 0x22),
+> -	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_LANE1_INSIG_SW_CTRL2, 0x00),
+> -	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_LANE1_INSIG_MX_CTRL2, 0x00),
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_G3S2_PRE_GAIN, 0x2e),
+>   	QMP_PHY_INIT_CFG(QPHY_V5_20_PCS_RX_SIGDET_LVL, 0x66),
+>   };
+> @@ -2728,6 +2729,7 @@ struct qmp_pcie_offsets {
+>   	u16 serdes;
+>   	u16 pcs;
+>   	u16 pcs_misc;
+> +	u16 pcs_lane1;
+>   	u16 tx;
+>   	u16 rx;
+>   	u16 tx2;
+> @@ -2752,6 +2754,8 @@ struct qmp_phy_cfg_tbls {
+>   	int pcs_num;
+>   	const struct qmp_phy_init_tbl *pcs_misc;
+>   	int pcs_misc_num;
+> +	const struct qmp_phy_init_tbl *pcs_lane1;
+> +	int pcs_lane1_num;
+>   	const struct qmp_phy_init_tbl *ln_shrd;
+>   	int ln_shrd_num;
+>   };
+> @@ -2811,6 +2815,7 @@ struct qmp_pcie {
+>   	void __iomem *serdes;
+>   	void __iomem *pcs;
+>   	void __iomem *pcs_misc;
+> +	void __iomem *pcs_lane1;
+>   	void __iomem *tx;
+>   	void __iomem *rx;
+>   	void __iomem *tx2;
+> @@ -2927,6 +2932,7 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v4_20 = {
+>   	.serdes		= 0x1000,
+>   	.pcs		= 0x1200,
+>   	.pcs_misc	= 0x1600,
+> +	.pcs_lane1	= 0x1e00,
+>   	.tx		= 0x0000,
+>   	.rx		= 0x0200,
+>   	.tx2		= 0x0800,
+> @@ -2957,6 +2963,7 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v5_20 = {
+>   	.serdes		= 0x1000,
+>   	.pcs		= 0x1200,
+>   	.pcs_misc	= 0x1400,
+> +	.pcs_lane1	= 0x1e00,
+>   	.tx		= 0x0000,
+>   	.rx		= 0x0200,
+>   	.tx2		= 0x0800,
+> @@ -3440,8 +3447,8 @@ static const struct qmp_phy_cfg sdx55_qmp_pciephy_cfg = {
+>   	.tbls_ep = &(const struct qmp_phy_cfg_tbls) {
+>   		.serdes		= sdx55_qmp_pcie_ep_serdes_tbl,
+>   		.serdes_num	= ARRAY_SIZE(sdx55_qmp_pcie_ep_serdes_tbl),
+> -		.pcs_misc	= sdx55_qmp_pcie_ep_pcs_misc_tbl,
+> -		.pcs_misc_num	= ARRAY_SIZE(sdx55_qmp_pcie_ep_pcs_misc_tbl),
+> +		.pcs_lane1	= sdx55_qmp_pcie_ep_pcs_lane1_tbl,
+> +		.pcs_lane1_num	= ARRAY_SIZE(sdx55_qmp_pcie_ep_pcs_lane1_tbl),
+>   	},
+>   
+>   	.reset_list		= sdm845_pciephy_reset_l,
+> @@ -3540,6 +3547,8 @@ static const struct qmp_phy_cfg sdx65_qmp_pciephy_cfg = {
+>   			.pcs_num        = ARRAY_SIZE(sdx65_qmp_pcie_pcs_tbl),
+>   			.pcs_misc       = sdx65_qmp_pcie_pcs_misc_tbl,
+>   			.pcs_misc_num   = ARRAY_SIZE(sdx65_qmp_pcie_pcs_misc_tbl),
+> +			.pcs_lane1       = sdx65_qmp_pcie_pcs_lane1_tbl,
+> +			.pcs_lane1_num   = ARRAY_SIZE(sdx65_qmp_pcie_pcs_lane1_tbl),
+>   		},
+>   	.reset_list             = sdm845_pciephy_reset_l,
+>   	.num_resets             = ARRAY_SIZE(sdm845_pciephy_reset_l),
+> @@ -3739,6 +3748,8 @@ static const struct qmp_phy_cfg sa8775p_qmp_gen4x2_pciephy_cfg = {
+>   		.pcs_num		= ARRAY_SIZE(sa8775p_qmp_gen4x2_pcie_pcs_alt_tbl),
+>   		.pcs_misc		= sa8775p_qmp_gen4_pcie_pcs_misc_tbl,
+>   		.pcs_misc_num	= ARRAY_SIZE(sa8775p_qmp_gen4_pcie_pcs_misc_tbl),
+> +		.pcs_lane1	= sdx65_qmp_pcie_pcs_lane1_tbl,
+> +		.pcs_lane1_num	= ARRAY_SIZE(sdx65_qmp_pcie_pcs_lane1_tbl),
+>   	},
+>   
+>   	.tbls_rc = &(const struct qmp_phy_cfg_tbls) {
+> @@ -3945,6 +3956,7 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
+>   	void __iomem *rx2 = qmp->rx2;
+>   	void __iomem *pcs = qmp->pcs;
+>   	void __iomem *pcs_misc = qmp->pcs_misc;
+> +	void __iomem *pcs_lane1 = qmp->pcs_lane1;
+>   	void __iomem *ln_shrd = qmp->ln_shrd;
+>   
+>   	if (!tbls)
+> @@ -3969,6 +3981,7 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
+>   
+>   	qmp_configure(qmp->dev, pcs, tbls->pcs, tbls->pcs_num);
+>   	qmp_configure(qmp->dev, pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
+> +	qmp_configure(qmp->dev, pcs_lane1, tbls->pcs_lane1, tbls->pcs_lane1_num);
+>   
+>   	if (cfg->lanes >= 4 && qmp->tcsr_4ln_config) {
+>   		qmp_configure(qmp->dev, serdes, cfg->serdes_4ln_tbl,
+> @@ -4420,6 +4433,14 @@ static int qmp_pcie_parse_dt_legacy(struct qmp_pcie *qmp, struct device_node *np
+>   		}
+>   	}
+>   
+> +	/*
+> +	 * For all platforms where legacy bindings existed, PCS_LANE1 was
+> +	 * mapped as a part of the PCS_MISC region.
+> +	 */
+> +	if (!IS_ERR(qmp->pcs_misc) && cfg->offsets->pcs_lane1 != 0)
+> +		qmp->pcs_lane1 = qmp->pcs_misc +
+> +			(cfg->offsets->pcs_lane1 - cfg->offsets->pcs_misc);
+> +
+>   	clk = devm_get_clk_from_child(dev, np, NULL);
+>   	if (IS_ERR(clk)) {
+>   		return dev_err_probe(dev, PTR_ERR(clk),
+> @@ -4487,6 +4508,7 @@ static int qmp_pcie_parse_dt(struct qmp_pcie *qmp)
+>   	qmp->serdes = base + offs->serdes;
+>   	qmp->pcs = base + offs->pcs;
+>   	qmp->pcs_misc = base + offs->pcs_misc;
+> +	qmp->pcs_lane1 = base + offs->pcs_lane1;
+>   	qmp->tx = base + offs->tx;
+>   	qmp->rx = base + offs->rx;
+>   
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v4_20.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v4_20.h
+> index ac872a9eff9a8fe7fc3307759288aee15d17bd24..ab892d1067c219e8db0ba0591921b38a9cebebe7 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v4_20.h
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v4_20.h
+> @@ -13,7 +13,8 @@
+>   #define QPHY_V4_20_PCS_PCIE_G4_RXEQEVAL_TIME		0x0f4
+>   #define QPHY_V4_20_PCS_PCIE_G4_EQ_CONFIG2		0x0fc
+>   #define QPHY_V4_20_PCS_PCIE_G4_EQ_CONFIG5		0x108
+> -#define QPHY_V4_20_PCS_LANE1_INSIG_SW_CTRL2		0x824
+> -#define QPHY_V4_20_PCS_LANE1_INSIG_MX_CTRL2		0x828
+> +
+> +#define QPHY_V4_20_PCS_LANE1_INSIG_SW_CTRL2		0x024
+> +#define QPHY_V4_20_PCS_LANE1_INSIG_MX_CTRL2		0x028
+>   
+>   #endif
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
+> index cdf8c04ea078a985be82d561ad0918dfdece9987..283d63c8159338b57a5026b6c2a86e3cce21097c 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
+> @@ -17,7 +17,8 @@
+>   #define QPHY_V5_20_PCS_PCIE_G4_EQ_CONFIG5		0x108
+>   #define QPHY_V5_20_PCS_PCIE_G4_PRE_GAIN			0x15c
+>   #define QPHY_V5_20_PCS_PCIE_RX_MARGINING_CONFIG3	0x184
+> -#define QPHY_V5_20_PCS_LANE1_INSIG_SW_CTRL2		0xa24
+> -#define QPHY_V5_20_PCS_LANE1_INSIG_MX_CTRL2		0xa28
+> +
+> +#define QPHY_V5_20_PCS_LANE1_INSIG_SW_CTRL2		0x024
+> +#define QPHY_V5_20_PCS_LANE1_INSIG_MX_CTRL2		0x028
+>   
+>   #endif
+> 
 
+Looks good
 
-I just follow others when writing this binding. I think it may need
-another patch to fix this problem, right?
-
-Regards,
-Inochi
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
