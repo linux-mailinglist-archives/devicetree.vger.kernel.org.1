@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-113504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35F8A9A5D7D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:49:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E743B9A5D8D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3A651F2160A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:49:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A70E1C20F41
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69BD1E0E05;
-	Mon, 21 Oct 2024 07:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F068F1E0DF3;
+	Mon, 21 Oct 2024 07:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="rMZ/x6z0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tN4Rl7Jf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55681E0B67
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 07:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D471E0DD7;
+	Mon, 21 Oct 2024 07:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729496947; cv=none; b=KjkkmpCzwH79G8uYJDy4aB/tCA6EUbbl2OhvKukfS0oSAqAZH9bc9UKPYQ981png6gHyuJpT9nMm9e81OXF8bFnJDBpgGTB6l0sRnPa6ITq/Po218dDir/VXuOlYhLtQ2ZsZGyOe3TCA/p+cSVBBMKWQsvnd8Ys/73kDEljC8hM=
+	t=1729497051; cv=none; b=MpkfQMpArNzZxmBjfg4VYavDnABXILRfksulDBVrjdxBkNFu7EV7oLMqVlbekn5EYSFyS6R2uNVeEz44rzHFoT4xqZC5dDWjM7oNL8f71a57jYObtmApWp0meM4N/xceN6/AfdWyR4Y67YjrdaAgWhuT3H6N2hnfAm4j0r3Kjy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729496947; c=relaxed/simple;
-	bh=rffjgAP5ZW88uPUrtaJRFYw7UB1XrEHtwZdvD7+yIv8=;
+	s=arc-20240116; t=1729497051; c=relaxed/simple;
+	bh=5yG1wAUGt/ltY2yssfS8ZkIcj1BmS/igZ8q9ZvX+qCA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eWOokqX5idmZLNkzxFzkd02MJCKgiVswqfAEdCws2XcDdgPFuaLZszK0+P4g6hMVBK1zok84R5aSNqWUz9Ac/FOkmTZik99SloXerCR5ZjPYY7Glpel35rt9fCjtpFRm1EHdgysYNTFfVzmnK+VLo1cilOUbGNdZDJkl3qiQAs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=rMZ/x6z0; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-431548bd1b4so40196805e9.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 00:49:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1729496944; x=1730101744; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=58kG6E9taHK6TTsZfdidB/P2/Hcxp/vWM653t/Aj+tg=;
-        b=rMZ/x6z0IHP1GC/SL4MpNjxOJUV4hJ9+9U1c6iA8pmJFsTVjhsxiM5DBzWJwvykaU0
-         05GABRaIudHCFZ81wDK4zInJ7hGJ8l8DXmlrPyD/za6YLufEYtTypMS39M09KfE9/9ch
-         u65GYXAPs58zK3RmT9TT7Jblbz921ViSyh7BuqtylYHtPUeFneJwq1OYUU2EDi/41rX2
-         dC5Uu//X0b7EyX8YjfVvn/fJLVcM5nOg03D5vmmhNe1OksDouIsEitzrZuEGxS0cxsNJ
-         SBB5BTU+Fso0ZdUppH4RNDc0yi87J5w2LLbXH/vUhEE6xRJwkV0wUU/zF503I3hxT80p
-         8dkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729496944; x=1730101744;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=58kG6E9taHK6TTsZfdidB/P2/Hcxp/vWM653t/Aj+tg=;
-        b=AvI0tEmOhzVGViyofIE7jc+n0YyXiGFDJsjj0gmdHvzAhKH0CV9vhC7b1TJGwYmqsT
-         UhjgRYkqH0WlzM/DHYD1k9ntBeJ2CBsk5sLuywNutAKZ8ox8xt6PDNl5/ajl8jEXtuaC
-         NKV7BHP0vnKzn4zmEi2TIhBcRetAgqOaWJ5snBaJbMefoGGth9TEqnKsB8vxkhzTwtI4
-         6UPwshCxTsLpMpXHPJEupMFOyD5ZO+Fg2lNCFnWpiwm4cUtUnuV4af6nR4no19u1pKqy
-         LSc5pFrZvm9uT4QnOtudmlvY+De1iOTtvA+zPcINa/iyr/Zjy5+pmsJTN9gdOv2omngQ
-         py+A==
-X-Forwarded-Encrypted: i=1; AJvYcCUPui0jE3fKPDncSW0tRSFrBpAVzurlukcnXlRDqvibvoFrUQIBwgSW/1yaVsIv7xBbsMiOCQAre8JJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmNiC/CZD7ui3y8j8a5jI6ZkuXbuZ+NcMIaATGsu7nfDtvfTkw
-	ewpiif+q3iWKQzxLNYKQv1Mhqk7McP6Jul0bqOog/pmugWL3uOOgDRGu/m440MM=
-X-Google-Smtp-Source: AGHT+IFvgo6qt2vB4D+5CxWmwBneFTMm7VvkmB3DADmGjcvJnOJUVQG58Cd4uUg0J+6QI23+xFjXxA==
-X-Received: by 2002:a05:600c:4595:b0:431:3b53:105e with SMTP id 5b1f17b1804b1-4316163bccfmr91296875e9.9.1729496943898;
-        Mon, 21 Oct 2024 00:49:03 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.23])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5cc921sm47137075e9.46.2024.10.21.00.49.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 00:49:02 -0700 (PDT)
-Message-ID: <ac5a6f77-cd71-4e79-973e-8ee00cd762ff@tuxon.dev>
-Date: Mon, 21 Oct 2024 10:49:01 +0300
+	 In-Reply-To:Content-Type; b=Lh9pO/vvn3o8y0W/nfJek/guCcLM2Zs7VQaRRRnlDu+KWa48ANAGw09/1gDyyn31PRlyEu8OeCeR6ONLiPJGyHlRvf2qyk9DghpRCPcCtWQPo8g3EKxuadVihq6dit2QC8fl6NITwWK7U/urojxQYe4pnixWw1WZJQMlWZA0SLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tN4Rl7Jf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ECA4C4CEC3;
+	Mon, 21 Oct 2024 07:50:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729497051;
+	bh=5yG1wAUGt/ltY2yssfS8ZkIcj1BmS/igZ8q9ZvX+qCA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tN4Rl7JfV8AzD26b8U3sBe9Ud+AlD5PCsT1c/FiXxb9a3LsIVnLKfxbamrTl7f0ML
+	 U3MBOVQCQH2rxywGWVk0acPs6qZyra1JAMtIpoxwHB9tb9Sr9vTSuG/7CpwZCYLa0H
+	 L1x35Tnrx1y8X8DwUl9NgV3LOszGfQojQpaDrHj0uebncjy1SPqU50HIpo1rx2v1w6
+	 F5F126ViY2CR0Ie5H+sxbfSJqoZbv4MQnDmvTFkqNTl1mCYaLJiP0q3WqlFDCWxF5T
+	 mn/l+9+0I4xY90BHNfW8Wk/ybC2qE7uWKfaicHAbljDoTX4k9TRUWTr6g0s0/zEqhW
+	 7VIuqXNZrQuog==
+Message-ID: <bb34f4ae-92b3-48b7-b0d6-5937756cdbb9@kernel.org>
+Date: Mon, 21 Oct 2024 09:50:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,71 +50,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/12] dt-bindings: clock: renesas,r9a08g045-vbattb:
- Document VBATTB
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+ Sherry Sun <sherry.sun@nxp.com>, Amitkumar Karwar
+ <amitkumar.karwar@nxp.com>, Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+ "marcel@holtmann.org" <marcel@holtmann.org>,
+ "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+References: <20241004113557.2851060-1-catalin.popescu@leica-geosystems.com>
+ <DB9PR04MB8429B4535422D3AE07D8EE79927C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
+ <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
+ <0d460226-4ea7-4a9b-a119-468343727996@kernel.org>
+ <20241021064129.trchqa2oickna7pc@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- alexandre.belloni@bootlin.com, magnus.damm@gmail.com,
- p.zabel@pengutronix.de, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20241019084738.3370489-1-claudiu.beznea.uj@bp.renesas.com>
- <20241019084738.3370489-4-claudiu.beznea.uj@bp.renesas.com>
- <m4kxv7cba6qd67ahhh4cal6sgieohgow6f3tdvqoxvheemtp4j@gpxbkxd3tvat>
- <5fddjnvzu2e74rtmqw6o2w5upxn6dpih3hmdbgiky75qyuvyum@ilch2rahnmih>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <5fddjnvzu2e74rtmqw6o2w5upxn6dpih3hmdbgiky75qyuvyum@ilch2rahnmih>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241021064129.trchqa2oickna7pc@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 21.10.2024 10:34, Krzysztof Kozlowski wrote:
-> On Mon, Oct 21, 2024 at 09:32:37AM +0200, Krzysztof Kozlowski wrote:
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
->>> +    #include <dt-bindings/clock/renesas,r9a08g045-vbattb.h>
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +    clock-controller@1005c000 {
->>> +        compatible = "renesas,r9a08g045-vbattb";
->>> +        reg = <0x1005c000 0x1000>;
->>> +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
->>> +        clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&vbattb_xtal>;
->>> +        clock-names = "bclk", "rtx";
->>> +        assigned-clocks = <&vbattb VBATTB_MUX>;
->>> +        assigned-clock-parents = <&vbattb VBATTB_XC>;
+On 21/10/2024 08:41, Marco Felsch wrote:
+> On 24-10-07, Krzysztof Kozlowski wrote:
+>> On 07/10/2024 14:58, POPESCU Catalin wrote:
+>>>>>>
+>>>>>> +  vcc-supply:
+>>>>>> +    description:
+>>>>>> +      phandle of the regulator that provides the supply voltage.
+>>>>>> +
+>>>>>> +  reset-gpios:
+>>>>>> +    description:
+>>>>>> +      Chip powerdown/reset signal (PDn).
+>>>>>> +
+>>>>> Hi Catalin,
+>>>>>
+>>>>> For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means that both wifi and BT controller will be powered on and off at the same time.
+>>>>> Taking the M.2 NXP WIFI/BT module as an example, pin56(W_DISABLE1) is connected to the WIFI/BT chip PDn pin, we has already controlled this pin in the corresponding PCIe/SDIO controller dts nodes.
+>>>>> It is not clear to me what exactly pins for vcc-supply and reset-gpios you describing here. Can you help understand the corresponding pins on M.2 interface as an example? Thanks.
+>>>
+>>> Hi Sherry,
+>>>
+>>> Regulators and reset controls being refcounted, we can then implement 
+>>> powerup sequence in both bluetooth/wlan drivers and have the drivers 
+>>> operate independently. This way bluetooth driver would has no dependance 
+>>> on the wlan driver for :
+>>>
+>>> - its power supply
+>>>
+>>> - its reset pin (PDn)
+>>>
+>>> - its firmware (being downloaded as part of the combo firmware)
+>>>
+>>> For the wlan driver we use mmc power sequence to drive the chip reset 
+>>> pin and there's another patchset that adds support for reset control 
+>>> into the mmc pwrseq simple driver.
+>>>
+>>>> Please wrap your replies.
+>>>>
+>>>> It seems you need power sequencing just like Bartosz did for Qualcomm WCN.
+>>>
+>>> Hi Krzysztof,
+>>>
+>>> I'm not familiar with power sequencing, but looks like way more 
+>>> complicated than reset controls. So, why power sequencing is recommended 
+>>> here ? Is it b/c a supply is involved ?
 >>
->> Why are you configuring internal clocks to internal parents? That's part
->> internal to this device, not DTS... or at least some explanation would
->> be useful.
+>> Based on earlier message:
+>>
+>> "For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means
+>> that both wifi and BT controller will be powered on and off at the same
+>> time."
+>>
+>> but maybe that's not needed. No clue, I don't know the hardware. But be
+>> carefully what you write in the bindings, because then it will be ABI.
 > 
-> From DTS I see this belongs to the board, not SoC, so makes sense.
+> We noticed the new power-sequencing infrastructure which is part of 6.11
+> too but I don't think that this patch is wrong. The DT ABI won't break
+> if we switch to the power-sequencing later on since the "reset-gpios"
+> are not marked as required. So it is up to the driver to handle it
+> either via a separate power-sequence driver or via "power-supply" and
+> "reset-gpios" directly.
 
-That's true. This configuration depends on the type of the input clock
-connected to the RTXIN, RTXOUT pins which is board specific (see below
-diagram):
+That's not the point. We expect correct hardware description. If you say
+now it has "reset-gpios" but later say "actually no, because it has
+PMU", I respond: no. Describe the hardware, not current Linux.
 
-           +----------+ XC   `\
-RTXIN  --->|          |----->| \       +----+  VBATTCLK
-           | 32K clock|      |  |----->|gate|----------->
-	   | osc      | XBYP |  |      +----+
-RTXOUT --->|          |----->| /
-           +----------+      ,/
+Best regards,
+Krzysztof
 
-Thank you,
-Claudiu Beznea
-
-> 
-> Best regards,
-> Krzysztof
-> 
 
