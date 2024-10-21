@@ -1,120 +1,117 @@
-Return-Path: <devicetree+bounces-113517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE6C9A5DE7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:03:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F749A5E52
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:13:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F098E1F231D1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 08:03:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D9FA1F21C13
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 08:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B1B81E1A1E;
-	Mon, 21 Oct 2024 08:03:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3221E1C19;
+	Mon, 21 Oct 2024 08:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dF3GVBCk"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="K8A3XPin"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 646641E1A10;
-	Mon, 21 Oct 2024 08:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6159E1E1A33
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 08:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729497823; cv=none; b=mRGkZ0CdKq+wyVNsAz1Ke6xteaW9W/1U4oKBOHicMeAvTktZeF+ob+8F5+gLxzjwCSL2mRqnKSUoPv/45rW3SZlNQ59oTFFqgx65rVNfJYirEwnwfnigcBDYG9uw+EYBxQjR6usDYSEb/ddEy2i4lz1mDxbBm5YnNHKzsp9PNfA=
+	t=1729498423; cv=none; b=HJ5T0cImgYCsPNFPNOCJMHADzjELePR6xTLiRjgievmVHG4WOOCJ6/QxKhhdYMbSFRHB2HomWbKfRSkZdXJyeUNu1O3uNrDgk1KhO8CqNfvoVHdGDyO3UFOfTKzWfLCunAM93uUtL84Yy4qw+A/xioTU9rm/jfzHJ1MZ9MK4lUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729497823; c=relaxed/simple;
-	bh=KgAIXUs05191QaNtu9pGGKwFB2SqVezhtO6euGlPyFg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IP5f/FNsfu+8OcNiF67Mt8YtLT6S8Cu7BYILYIaIeU1s+amR+ufeKBwEJP12Nmrf0RdFoYYsXY12opULfPFSstFH1HFN4XIAVsjjoN+oLiwkYdH1sbSxHye81eqLHUCIuVHqOcw0iKSF4+Kv8OFjRJjn2J2vQjMEC0UArpiFzWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dF3GVBCk; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-50d564df009so984638e0c.0;
-        Mon, 21 Oct 2024 01:03:41 -0700 (PDT)
+	s=arc-20240116; t=1729498423; c=relaxed/simple;
+	bh=Au4bEQICCx4ikxrtnMJ+NLrW9YgB5XolPwwuPIaaXdQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZNmmd6x6E7bmRbKXEye9WMf7tWq/p3ape5YgS1nXAKBt1Elnr23Fczehlxy01VCiPSuBQiCnIpELJ9kFSoAR7rmPX/AwHD8ZtbUfqn3iFJFfK8Q6KrkIKhoROK0XmwuZ4sHTKyw88ID2WDR9v7hISm7cAjlSw0KEc6wpPTN7EeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=K8A3XPin; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-71e61b47c6cso3261165b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 01:13:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729497820; x=1730102620; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LmLiVjCm6BrpElJZFJzCFlvvrKj+ExXxnl83gGrmXew=;
-        b=dF3GVBCkDGZ8LUQ76MvzmNgGJhNG7yXO29/ea1Nn7J1VwbsG1u2/hVqYEb7BWUY/d7
-         JdkDhP0guNfi3VB8ArQUT7/pFQ0Q9y4azLmYT0lvGvV+0y5xTUL5KtFwHuHMmmnxQcYi
-         Mienbc3o89EU2YD4jsULg7rzU6mtUjJ6vMpWmpiiRqOUJNxb2FYNBUU3sEFdfk77uSUk
-         0MO2Uz2CcpYhqaeJEh11rmZnIH3NtZaBYwaN8kmHgLeJ5S+qL0VR4MRgPHuoIPMWHsi7
-         UOFe5a4JzH5ZzTT3HEy5bJRmOMKVnmG7MKVrIbPcGQZFSRbKpYcn9k1mbNjVaGlc7WXw
-         yxGg==
+        d=chromium.org; s=google; t=1729498420; x=1730103220; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AnvHyOnj93OGsSuS3Yy5YdOPX+qDA4+kJEwXl0YhTUg=;
+        b=K8A3XPinCNIVZLYIMLGW8+r+I7ZBguBm+4mlRebMqDz0IzF5HQX9xITIpAg3Xo+V0/
+         RbRR/2cx8cBaJIIZIkLrmxfdEVPBryFc4Hzo5RZZ1Br3Aqp+hvXxPEbt+Ylx9Bs65ZIg
+         UP5lDZnvrH3G/cQNwovv14JErKCEYUNshlx+c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729497820; x=1730102620;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LmLiVjCm6BrpElJZFJzCFlvvrKj+ExXxnl83gGrmXew=;
-        b=dOL2g8B5P1NwKGsdkWhueWbdDmfvBHbsZHNNxqXLUL2OtdC5HyCzaCuvkCvFP2yC8u
-         uC6SCVYXegJ1eD8a6oxK060QO/6ocL35A/56Mbq3o9F/iGSES2fPOoJ656Lef8eXfKxL
-         A/VQWNghpg7qamxkhXRXP6pL+CJ75iZ3qV+na1fJ4C0JwQURhISGJpng8QEs91hX7az6
-         Pci9ulSQIdyuzGMN3zo+BbSHHxg0A59+kF7jsA5p9ZuAkFNqa9kY4zGEOcsV3vjAJ8nF
-         KzwZmg415vu01Ms2S3BUhSuu7WfVEd+AJxMtuFimnRk9q1tSz6W+ZBNCvxfCG4Tidwtp
-         Ea3w==
-X-Forwarded-Encrypted: i=1; AJvYcCV0QSkSbUT1CVvDFQkIM6HRrIfIx+WyU0FqBmMYbkfmJQEiPKcDn8iD28Bt6prg3CzDqTug3R81FDV5@vger.kernel.org, AJvYcCVeYa2SL/TclbkTMk6J6XzG3TDX8//qdBsthMIeYVP2QZbNO5zaRjFj8fc2uliiI/To1EGHlI5CxkD9EjLR/g9dt20=@vger.kernel.org, AJvYcCXzaWkBm3sCMqyJt/L2GbLEzhVfpPwg9lKpuXcpIGlRuNrZT+yIuullv+6dtRwGjgL8YcuKXId8EwoLOnZe@vger.kernel.org, AJvYcCXzr5t0ubpQ3nBbdkYwazi10UdhkcrzJIzXMFH2kLY0Akfy56YtoypCodVyI0trhmcPwb4zPTYN+tJIHQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCNmvMSGrNgF3GZyTEJb7Yfvz7AkCjxhmWB8iRLEu9o06WjOBo
-	meeSibUzoB3UD2+qeCJK3GEWeb1lrfa3pGsPIqvTTPdH9LCPl0NyPKvIKnOnvoeaNIIvcyw9u3Q
-	8beXQJOkQ1/XaaHIsQNi3DaOJL28=
-X-Google-Smtp-Source: AGHT+IFaf5QXzgvX4q8OtkMMLm0vqchKeiRBZxbB4QCD32p4ybwwulaCZrAphTIjSIGjvpmbA+2UKBB8hP9/SD7rZF4=
-X-Received: by 2002:a05:6122:2a4d:b0:50d:6756:5464 with SMTP id
- 71dfb90a1353d-50dda2eb997mr7139854e0c.4.1729497820241; Mon, 21 Oct 2024
- 01:03:40 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729498420; x=1730103220;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AnvHyOnj93OGsSuS3Yy5YdOPX+qDA4+kJEwXl0YhTUg=;
+        b=JNRL1Qi6CS5Lc/Db32n0xNo7YI39hBptEsGPwQGuu+ADuFBsTYxrWKKnvSaF2xpxHQ
+         1joUvf7dQUYIkYEGy2t8E/2octoEGvhoXlA0aEw3CWPZZNRDhl+j6mINvytFH3j8wYPr
+         yCIxBJjvUBorzfRApCNtRW5k6T3L7BDXOoDZlA+LPZMavC5WE/9pRmMWNPwKov/CZv99
+         46Mk36/YjZAKK+W6adSPO+gFsd6iyEXIqxNXKqk2MwOjwmm3y5Zi8emP/0YeEUdE58bT
+         bd90s/FiK970Awej7bdTy33d4Z7oya3MrY8LrO0rUNksafSEhcbX5Ft+R837MSS2rEFx
+         wELg==
+X-Forwarded-Encrypted: i=1; AJvYcCXMxabDW5+LlFmlH/yFjcRvEF3ZM8dNzm3mvloKnAhFvZbmL36r1hVrStcd7yfRu+R2LuhA8JbewAX6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9pQwyACTvDrxEVwvqs6euHgh6GQjWQ5PcurqsTGDz+EX+b6be
+	cN2du5e9nZt2ACc8X2Spifc9ZgZQs7b/f2hlAaWX0gOfSOsc+5j4tio7ZWBDLqzXvhIZm6SC8Z0
+	=
+X-Google-Smtp-Source: AGHT+IHTst4CzwxlMo6qckbiC0esr8PkpKeIcvOCjqA/wtxgMHgUKyWplxQGBAiUUbJyZZiGDF4Cxw==
+X-Received: by 2002:a05:6a00:2e1d:b0:71e:744a:3fbd with SMTP id d2e1a72fcca58-71ea31d3048mr14987728b3a.20.1729498420532;
+        Mon, 21 Oct 2024 01:13:40 -0700 (PDT)
+Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:66d2:3298:fcb4:c6c9])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec13336f1sm2291945b3a.81.2024.10.21.01.13.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 01:13:40 -0700 (PDT)
+From: Fei Shao <fshao@chromium.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Fei Shao <fshao@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH] arm64: dts: mediatek: mt8188: Fix USB3 PHY port default status
+Date: Mon, 21 Oct 2024 16:10:47 +0800
+Message-ID: <20241021081311.543625-1-fshao@chromium.org>
+X-Mailer: git-send-email 2.47.0.rc1.288.g06298d1525-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241017113942.139712-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20241017113942.139712-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <CACRpkdYAynE2k6LEYrmcvJcO1gJW+NH4wv-S7F_xa-SvsueDZQ@mail.gmail.com>
-In-Reply-To: <CACRpkdYAynE2k6LEYrmcvJcO1gJW+NH4wv-S7F_xa-SvsueDZQ@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 21 Oct 2024 09:03:14 +0100
-Message-ID: <CA+V-a8vq4K1R_uPW5yf5gX85pO=LNU6_GT4xSLSWZaVqAMewFw@mail.gmail.com>
-Subject: Re: [PATCH 6/7] pinctrl: pinmux: Introduce API to check if a pin is requested
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Linus,
+The T-PHY controller at 0x11e40000 controls two underlying USB2 and USB3
+PHY ports. The USB3 port works normally just like the others, so there's
+no point in disabling it separately. Otherwise, board DTs would have to
+enable both the T-PHY controller and one of its sub-nodes in particular,
+which is slightly redundant and confusing.
 
-On Sat, Oct 19, 2024 at 7:22=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
->
-> On Thu, Oct 17, 2024 at 1:39=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
-.com> wrote:
->
-> > @@ -100,6 +101,10 @@ static inline void pinmux_disable_setting(const st=
-ruct pinctrl_setting *setting)
-> >  {
-> >  }
-> >
-> > +bool pin_requested(struct pinctrl_dev *pctldev, int pin)
-> > +{
-> > +       return false;
-> > +}
-> >  #endif
->
-> You need "static inline" in front of the stub, that's why the robot is
-> complaining.
->
-Agreed, If there are no other comments for the rest of the patches
-I'll just send an updated patch for this or include it as part of the
-whole series.
+Remove the status line in the u3port1 node, so it's ready to be used
+once the T-PHY controller is enabled.
 
-Cheers,
-Prabhakar
+Fixes: 9461e0caac9e ("arm64: dts: Add MediaTek MT8188 dts and evaluation board and Makefile")
+Signed-off-by: Fei Shao <fshao@chromium.org>
+---
+
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+index 2710e18ce696..3d11a989f39f 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+@@ -1961,7 +1961,6 @@ u3port1: usb-phy@700 {
+ 					 <&clk26m>;
+ 				clock-names = "ref", "da_ref";
+ 				#phy-cells = <1>;
+-				status = "disabled";
+ 			};
+ 		};
+ 
+-- 
+2.47.0.rc1.288.g06298d1525-goog
+
 
