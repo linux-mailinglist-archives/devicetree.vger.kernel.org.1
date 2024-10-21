@@ -1,139 +1,195 @@
-Return-Path: <devicetree+bounces-113651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA169A6850
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:27:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 420B49A6867
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:29:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D8161C22747
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:27:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03B5B284951
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F4E1F7099;
-	Mon, 21 Oct 2024 12:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C231EABBF;
+	Mon, 21 Oct 2024 12:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ler/M14P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sdHW6l5j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8909D1F7089;
-	Mon, 21 Oct 2024 12:23:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D680F1E8851
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:28:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729513431; cv=none; b=pY2B8XmyNQGfBSM784i890Um1mm5j73wi/OaF8YNS3cbQxvWqxU+3s+fGAV8/Wwgxc2ft/0fSW8v9kvDQCvvXmr7jyTwYbMdf/WCHUeh5YEDKWI5mBOM4O0w0hJ1yeme8dT3yPQVJveqtGiG5kaI8AFdRKESahVLv+eE4/FqAxA=
+	t=1729513721; cv=none; b=Bf3P/u45kLkRVgzauiaXQ9vRUwvkHtFUb7M2P9d3/zKm4n6l7I31hMiiczU81s50/LszofUEyns1/slnsVft9Q9R0Vvy+mlpi/zrwAIHhJYQwdvTArGeTVDTlYYhR2UtMzExtLTuFY1wyCPWIOlpB0kJPydeWiMLuRzAD+E+YuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729513431; c=relaxed/simple;
-	bh=x9slBDnJ/jFLTcaoGTUOyBDa28EHs3QGP8fa7TcQpqU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jhpe2dmLQaPOigmA37qv5G/6sGM/LUkKoVgnIGqhJ2jcqRRn02VFEMR3q2aSrZ6mY43l/071ML2Hkc3R/YZdSyZ/U03bF4xeKf6AG9jhx7sBOXOZrqC0bpybtgfzZkzeZoJ2gHM/5mfP5Ot75Rqqeq3SIyZ8cqQvfKGcJ+G9d/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ler/M14P; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3e602a73ba1so1471170b6e.2;
-        Mon, 21 Oct 2024 05:23:49 -0700 (PDT)
+	s=arc-20240116; t=1729513721; c=relaxed/simple;
+	bh=DBP0OOsTE11Yj47xHdts1PZQNqjVqwOWeu36dsdeH00=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=qZwVxurDo9vvX9j5DNpWzGlLX6embIqrrpF8+1ZTiTxQPgf7jg2Ab5kZMnVxlls2JjBIamj8UjNT/g6Tdx+26iexItUvJkAR0lvwL9YOFVY9ltRCRdG5a5kA9yT1gtuL8UyrQRzczRNy+SIoRJTFVx8cIYcJ03gh1kJcuxvTdEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sdHW6l5j; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d462c91a9so3185418f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:28:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729513428; x=1730118228; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OgXSaFGWlsNd0CbHWwjqIDW8aVdA/ighcZzKc7cVXd0=;
-        b=ler/M14Pvr+PqN1I2le5IzHjACmFeDxPSgKIPZiJGiAJfKSrp4AxqBsdT1kyg8apW1
-         m7CfvcP0lm3LwOK5zeBhfj4eRO7ZepC+5MZYVFF/uLiIIesLtQPfpKyBIM4sZ0IevhLk
-         v60ZG8NSsrLZqp29wzrFElVeYQ3VM0l9GOGqE43Pe2P0de0K9uTJ7SmVqUY3+T4sLGOg
-         yhNqrZem9K/LOL0J/Is62HRic9Vnr0WE2NJHg0l6GJh6EcwdpU8Zi1vb7EvMkD1LjNmM
-         5x8fWR6JWQ0A4nEt/HsoxF2oFJCKONNFXOmKh/Vm2mp/Go+uCedUkKBxjrUEGyu6dmgK
-         E9Iw==
+        d=linaro.org; s=google; t=1729513717; x=1730118517; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rFKVbBVSy5Twz2NJrd7MX/x/tbjvook+SkghctSTy6Y=;
+        b=sdHW6l5j/tEvrYSAfUUFeBZ0V0qQyQeBOS9Pd9QnQCIIGwgUDh+Z5U1yOkUa7eMp1T
+         F/LAOOFqXSW3tn1AmB2l/Xa3fcx1lCPJMc6BWQ9lJGtrTRBJiKHZxX+hvd01FLmhH3v7
+         nvLt+Q2A4iohVABaZbqf82J7ZLczGH5ZMrUjY9FhO6at/aeob55aWhglag+XHftABiMm
+         WzIvDXuJ8XCBkqPblquUw18pZMVawTSeolI6D72xUS0RgCRwyIQofGTkOceSZVwYva27
+         NpCVi5C/YlGfkR3QekzTsrm2CY3kE/FAVsdSicepS/IZRbVEbLbji0Y0hkb9ksHRB5s+
+         z25Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729513428; x=1730118228;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OgXSaFGWlsNd0CbHWwjqIDW8aVdA/ighcZzKc7cVXd0=;
-        b=X174Us7KiX919R1N/e7Drh/4Yp3t5BLVai7GLyy3uSZae0CHxVkpjJyYzvshidTPuQ
-         F+HU1tfPpRGY+M0eT2QfG0Pdib674Sxa4s/uoZh8yyEyfWqNnXVytqf1IE3I0oO1NPC+
-         WbWUR+eTawIlv5Amv5EeV5DZSrFfe7LHF5414hY3X5lNOfmh5tFJsYU88ZpWNKQuIH3V
-         i4yesS642nQzNCSEubQCnPG3OJ4fY3o4/tWn/HhYhM0h4Hh6LsdamhbN/t3lmW/EW42C
-         j1mN9h3juxnWxP0HabGnAVTvoibhtBLskfYUWr1XCQfMeMtyamLby7rFNcCrAijmWbHR
-         uboQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU3ZDsaNsYfbSZTFSKI015scFl+1MvJ9RNUIl4EIcJwMEM78BjvbCNQJCQ6Mejqt5jmnpEGHAgpDsas@vger.kernel.org, AJvYcCWj5qMpWRGdh2KDNGzskPWspcfUuambngDWosYLm4v0FpVkwUSDna6W6RzDqJ09J+0mdoAtFuTGm+1T7VCu@vger.kernel.org, AJvYcCXSrCCvAwqthx6vw9SPsTht5/hcfOimJd4AlpNDqCINuTSSx36aaTQKtzsA5OejJrb55gnM9xs9LOBqqv0P@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlUmjeJfRv4BVDwwXH27nRj/Q/AGVBugg1Wj5aN8DUbMbfse2S
-	dCxkXvyXv7x9s8Agb+tOUBKu8NDZi1kg/7QNoddGQY3k66mA7Pm6
-X-Google-Smtp-Source: AGHT+IG6AbXnc+JnTbQtqAFHScJgxFYihFzpe/ayUKl45Zmwl2fKaZXsfhokHl5gSrgPWj7HcVOoDQ==
-X-Received: by 2002:a05:6808:2f0a:b0:3e6:1170:a58f with SMTP id 5614622812f47-3e61170a67cmr3003068b6e.5.1729513428463;
-        Mon, 21 Oct 2024 05:23:48 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7eaebd061c1sm2332892a12.19.2024.10.21.05.23.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 05:23:48 -0700 (PDT)
-Date: Mon, 21 Oct 2024 20:23:30 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Inochi Amaoto <inochiama@outlook.com>, 
-	Yixun Lan <dlan@gentoo.org>, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: snps-dw-apb-uart: Add Sophgo
- SG2044 uarts
-Message-ID: <2zawe64brm3sfuslh443352wfupgnhb4xw7jragkzxu6kgg6t7@b4qiya3jdij4>
-References: <20241021072606.585878-1-inochiama@gmail.com>
- <20241021072606.585878-2-inochiama@gmail.com>
- <20241021-outlying-washday-8f171dedc703@spud>
- <r5ngs2j776jcy6sfirwzmtsoljotatfvgmlmv4sj4xksye2bff@xtn7adafbpfz>
- <20241021-rosy-drove-1ae3c8985405@spud>
+        d=1e100.net; s=20230601; t=1729513717; x=1730118517;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rFKVbBVSy5Twz2NJrd7MX/x/tbjvook+SkghctSTy6Y=;
+        b=K4iOnVtYni2IuGTvoLWJvLGVUDAmGbHMwkMDUg1VPPajoN3ZJ2ZxacqTMsay1RaaNk
+         5w+RFO8I4EM8TF3l+8v80N/ryOYOmjk/TM1YflM47cZkrDaVH2QNSJW9ZMJgnNYJ6qzz
+         j61f+JVLm5Z+Nq+8jydvwu3z7jPIiejHk5toWlIuVTPtlwXwBSFeGQbfJ3vNH35gDl0o
+         B1C5I758BaSWe8hz2RCaI+1vqBt/wPp/S5Eyh5gsay5RmMZN7f6DfA1G/vxyWbMzckJ0
+         Sa8xLDjhz5nerIo5ESucYKBpZTYiVkdGgbfZdIIOFKfObmsw04R+RhGSHZJpeLGtOgC4
+         WuYg==
+X-Forwarded-Encrypted: i=1; AJvYcCU7q7d5Y97B1qKJERSs6UI3HiSo7/91/Xi78Q9vtUaQwWTYem8nFk1Y+c6Kj02RjnKxd7MItS9ZWOvU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkuRAS9UIVbUaJ/iVJfQ5PHWM+pzneEHC3rjvjDGhaTCr1r+jG
+	peuA9xKjMJnCoj/LppNEyJcCXGqggx0xlXWeMiIPC7kXVXHsjnpIRLVrv8AA71Y=
+X-Google-Smtp-Source: AGHT+IHd+FXgHes3NYjH4MUcohJQ4f1USWSGT5Tv0j4+9vI1t2uAw+Rm9IHAvbdkd+rWKuLb0d0vUA==
+X-Received: by 2002:a5d:4b05:0:b0:377:6073:48df with SMTP id ffacd0b85a97d-37eb489b413mr6556418f8f.58.1729513716937;
+        Mon, 21 Oct 2024 05:28:36 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:3908:dea6:2ddd:be97? ([2a01:e0a:982:cbb0:3908:dea6:2ddd:be97])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5cc4ebsm55654815e9.41.2024.10.21.05.28.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Oct 2024 05:28:36 -0700 (PDT)
+Message-ID: <56b66841-e60b-4dd7-8b96-cf67628fc0e6@linaro.org>
+Date: Mon, 21 Oct 2024 14:28:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241021-rosy-drove-1ae3c8985405@spud>
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 2/2] drm/bridge: sii902x: Set input bus format based on
+ bus-width
+To: Wadim Egorov <w.egorov@phytec.de>, andrzej.hajda@intel.com,
+ rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, bbrezillon@kernel.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, upstream@lists.phytec.de
+References: <20241017085556.3045686-1-w.egorov@phytec.de>
+ <20241017085556.3045686-3-w.egorov@phytec.de>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241017085556.3045686-3-w.egorov@phytec.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 21, 2024 at 01:21:58PM +0100, Conor Dooley wrote:
-> On Mon, Oct 21, 2024 at 08:18:58PM +0800, Inochi Amaoto wrote:
-> > On Mon, Oct 21, 2024 at 01:10:52PM +0100, Conor Dooley wrote:
-> > > On Mon, Oct 21, 2024 at 03:26:05PM +0800, Inochi Amaoto wrote:
-> > > > The UART of SG2044 is modified version of the standard Synopsys
-> > > > DesignWare UART. The UART on SG2044 relys on the internal divisor
-> > > > and can not set right clock rate for the common bitrates.
-> > > > 
-> > > > Add compatibles string for the Sophgo SG2044 uarts.
-> > > > 
-> > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > > > ---
-> > > >  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 ++++
-> > > >  1 file changed, 4 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > index 4cdb0dcaccf3..6963f89a1848 100644
-> > > > --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > @@ -58,6 +58,10 @@ properties:
-> > > >                - brcm,bcm11351-dw-apb-uart
-> > > >                - brcm,bcm21664-dw-apb-uart
-> > > >            - const: snps,dw-apb-uart
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - sophgo,sg2044-uart
-> > > > +          - const: snps,dw-apb-uart
-> > > 
-> > > Why does each vendor have an items entry of its own? Seems like needless
-> > > clutter of the file IMO, except for the renesas bit.
-> > 
-> > I just follow others when writing this binding. I think it may need
-> > another patch to fix this problem, right?
+On 17/10/2024 10:55, Wadim Egorov wrote:
+> Introduce a bus-width property to define the number of parallel RGB
+> input pins connected to the transmitter. The input bus formats are updated
+> accordingly. If the property is not specified, default to 24-bit bus-width.
 > 
-> Yeah. But I'd hold off to see if someone gives a rationale for it being
-> done this way before sending that. I've not deleted this thread, and
-> will send an ack if someone justifies why the binding is written like
-> this.
+> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+> ---
+> v3: Ensure bus_width is set/defaults to 24 even if an endpoint is not defined
+> ---
+>   drivers/gpu/drm/bridge/sii902x.c | 24 +++++++++++++++++++++++-
+>   1 file changed, 23 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
+> index 7f91b0db161e..9be9cc5b9025 100644
+> --- a/drivers/gpu/drm/bridge/sii902x.c
+> +++ b/drivers/gpu/drm/bridge/sii902x.c
+> @@ -180,6 +180,8 @@ struct sii902x {
+>   	struct gpio_desc *reset_gpio;
+>   	struct i2c_mux_core *i2cmux;
+>   	bool sink_is_hdmi;
+> +	u32 bus_width;
+> +
+>   	/*
+>   	 * Mutex protects audio and video functions from interfering
+>   	 * each other, by keeping their i2c command sequences atomic.
+> @@ -477,6 +479,8 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
+>   						     u32 output_fmt,
+>   						     unsigned int *num_input_fmts)
+>   {
+> +
+> +	struct sii902x *sii902x = bridge_to_sii902x(bridge);
+>   	u32 *input_fmts;
+>   
+>   	*num_input_fmts = 0;
+> @@ -485,7 +489,20 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
+>   	if (!input_fmts)
+>   		return NULL;
+>   
+> -	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
+> +	switch (sii902x->bus_width) {
+> +	case 16:
+> +		input_fmts[0] = MEDIA_BUS_FMT_RGB565_1X16;
+> +		break;
+> +	case 18:
+> +		input_fmts[0] = MEDIA_BUS_FMT_RGB666_1X18;
+> +		break;
+> +	case 24:
+> +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
+> +		break;
+> +	default:
+> +		return NULL;
+> +	}
+> +
+>   	*num_input_fmts = 1;
+>   
+>   	return input_fmts;
+> @@ -1167,6 +1184,11 @@ static int sii902x_probe(struct i2c_client *client)
+>   		return PTR_ERR(sii902x->reset_gpio);
+>   	}
+>   
+> +	sii902x->bus_width = 24;
+> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
+> +	if (endpoint)
+> +		of_property_read_u32(endpoint, "bus-width", &sii902x->bus_width);
+> +
+>   	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
+>   	if (endpoint) {
+>   		struct device_node *remote = of_graph_get_remote_port_parent(endpoint);
 
-Thanks.
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
