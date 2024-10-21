@@ -1,76 +1,70 @@
-Return-Path: <devicetree+bounces-113787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA2D29A700D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:48:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B3439A7013
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:50:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75A8C2848CE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:48:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59B801C2154A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:50:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A041E9089;
-	Mon, 21 Oct 2024 16:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6556C19939E;
+	Mon, 21 Oct 2024 16:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tg9AormP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C+0aSFQd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3CAF1E906E;
-	Mon, 21 Oct 2024 16:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247C347A73;
+	Mon, 21 Oct 2024 16:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729529309; cv=none; b=UGetsx5sq+PW2TxPr9K/hHF6NrsBCAITmbCWLsg06yDaTrziWK5VDpqH1h64PHkETqJl9CpBbI+xFqvEsy7940s3YQJzUQwliP52Dgcc5sy26FJk+7T+x8vtRyDBKfxzEYcEG6Vknea/dGLlG9h1+6bQxaeEm91qNzDNfdcxBr4=
+	t=1729529432; cv=none; b=LoucU66qZeyO3Ogjl70Q0us7P1vFg3HxKpiJJnU95fR23dJcgOvHfrgIUqX9f+dCcraZk5WGTlgBfN5lD/tkJRtIK5R/Q8w2fdQZX3o/6qR/NG0K0VGCjse73LfVSlTNO6PveLfh8w4QMJTMvpPNumWcc9m47cJ+mcgdd95w6ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729529309; c=relaxed/simple;
-	bh=y88CpT+n2HdoRrfctihIvqBAw/nq7qai6p50KHNi9PI=;
+	s=arc-20240116; t=1729529432; c=relaxed/simple;
+	bh=bkVG9qLYw3ABhfdAM9/KxI+HYYRzwNI98LvRSY++XDE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WGhCX1QpprnRrk6l+hSL165sU6ymX2Byj0RuyxSEsJ3Ft5DIhpgJ8QSAcAGV2PjGmhguypi70oYwvR6moEyvd0amXM4WHM2+kh4eww/xBV9BVECQnQx/9VvBtL3inaPEV++4p0d3dmj2U4duOfA2Xh6OaTs9zNMYGTu9VbiGKeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tg9AormP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4FBBC4CEC3;
-	Mon, 21 Oct 2024 16:48:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B7u/c6TmKYyJQ8JYKsNXSTKLQpwyRwoN7lZ5+KKUvtR616a94j6NT/rCX71SXtafY2H9ESQg4Jx8unGiDwHayok9FZ94jinAUr4Po/8xciVs+WYRNUjVafWZQ/+IdwWHx+a0bafWo+Y5Vn4cfIaXAQsJBl26XSEjqMLgj6S/ofA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+0aSFQd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09CCAC4CECD;
+	Mon, 21 Oct 2024 16:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729529309;
-	bh=y88CpT+n2HdoRrfctihIvqBAw/nq7qai6p50KHNi9PI=;
+	s=k20201202; t=1729529432;
+	bh=bkVG9qLYw3ABhfdAM9/KxI+HYYRzwNI98LvRSY++XDE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tg9AormP7oj96Nxs3Hyh2cbZX/WEiqqxEmm+RWJB8AzCWl7pwu7FKZAJ9YUiBY6Eb
-	 O5qRi6WYvMfb15NkUuyCjBItfUyi6LHK7tdujb5j6GnK6UpmsHZKq9fGfHl9JmMEXj
-	 7yxEwxfNiBvb77sZYvY9oIwdzMtfoELesLuwvXbdQccqJgu/nAHpW230oDq+To01+m
-	 5TMGNCrlyeXRT7nKObiVEhbU/mnXai4GaQLyC5pOQvtduRLrQgJY5K1PHGFAIwjicX
-	 YIQzR/+OqxkMjXvL7C8hfrN2m+jmJlPHkzddAOMtLEkAhokoODjGCEhF2/YNrc1RBz
-	 Ij944FdRnuh4g==
-Date: Mon, 21 Oct 2024 17:48:22 +0100
+	b=C+0aSFQdIXH0WMVIeTlFBk9DgdNd1w/BUXl1Nk8Ghl6/zvsBbTDMCuPXlE7U5UC8V
+	 D+f5omY3VEe3Ftsw1UoQ+a2Wl9tbvBb9m2frsxk5X/sVyn+45gQLMYgHVHlBd46dtP
+	 HJRBpiPKxHn9bYmC4cb0H8pFF5VBFtQJiWym06ROO5VX+ufHr2No/47zz1k3Fma+SQ
+	 17CzvIPUVY5zcOx8DoubLsjyKXEaUaC18UaWDJyOC0ApzDCjW5XQoHnt5S9qkK+1AE
+	 xtqLzNufvwkEt3iNfO6TPT4PtMCFy31ULFEFZ4Pol+FDsbimbwpZF09MjMbtA/U0iG
+	 kohBCYG/Bjinw==
+Date: Mon, 21 Oct 2024 17:50:25 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Guodong Xu <guodong@riscstar.com>, Rob Herring <robh@kernel.org>,
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>, rafal@milecki.pl,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Michael Zhu <michael.zhu@starfivetech.com>,
-	Drew Fustini <drew@beagleboard.org>,
-	Alexandru Stan <ams@frame.work>, Daniel Schaefer <dhs@frame.work>,
-	Sandie Cao <sandie.cao@deepcomputing.io>,
-	Yuning Liang <yuning.liang@deepcomputing.io>,
-	Huiming Qiu <huiming.qiu@deepcomputing.io>, linux@frame.work,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] riscv: dts: starfive: add DeepComputing FML13V01
- board device tree
-Message-ID: <20241021-crimson-translate-291eaba4e640@spud>
-References: <20241020134959.519462-1-guodong@riscstar.com>
- <20241020134959.519462-4-guodong@riscstar.com>
- <ae5gels34ozgzrcrwz53wj22hoy5cq3crn3dmkhitxlffmnavt@6lbmrcpjmqyd>
- <20241021-unroll-empower-3ab903615d6d@spud>
- <c048d270-7a07-4807-b816-0f4e0aeb67f7@kernel.org>
- <2b449955-6596-4c9a-9799-f15d186e260f@riscstar.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Richard van Schagen <vschagen@icloud.com>,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev
+Subject: Re: [RFC PATCH v3 2/3] dt-bindings: crypto: Add Inside Secure
+ SafeXcel EIP-93 crypto engine
+Message-ID: <20241021-extenuate-glue-fa98a4c7f695@spud>
+References: <20241021145642.16368-1-ansuelsmth@gmail.com>
+ <20241021145642.16368-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,106 +72,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HM8xtjn6x2CDD6Fw"
+	protocol="application/pgp-signature"; boundary="XnYX0dOYK3nMEEbA"
 Content-Disposition: inline
-In-Reply-To: <2b449955-6596-4c9a-9799-f15d186e260f@riscstar.com>
+In-Reply-To: <20241021145642.16368-2-ansuelsmth@gmail.com>
 
 
---HM8xtjn6x2CDD6Fw
+--XnYX0dOYK3nMEEbA
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 21, 2024 at 08:44:16AM -0500, Alex Elder wrote:
-> On 10/21/24 7:47 AM, Krzysztof Kozlowski wrote:
-> > On 21/10/2024 13:16, Conor Dooley wrote:
-> > > On Mon, Oct 21, 2024 at 09:17:59AM +0200, Krzysztof Kozlowski wrote:
-> > > > On Sun, Oct 20, 2024 at 09:49:59PM +0800, Guodong Xu wrote:
-> > > > > From: Sandie Cao <sandie.cao@deepcomputing.io>
-> > > > > +&camss {
-> > > > > +	status =3D "disabled";
-> > > > > +};
-> > > > > +
-> > > > > +&csi2rx {
-> > > > > +	status =3D "disabled";
-> > > > > +};
-> > >=20
-> > > You can drop these two, I marked them disabled in the common file
-> > > earlier this week.
-> > > 1
-> > > > > +
-> > > > > +&gmac0 {
-> > > > > +	status =3D "disabled";
-> > > > > +};
-> > > > > +
-> > > > > +&i2c0 {
-> > > > > +	status =3D "disabled";
-> > > > > +};
-> > > > > +
-> > > > > +&pwm {
-> > > > > +	status =3D "disabled";
-> > > > > +};
-> > > > > +
-> > > > > +&pwmdac {
-> > > > > +	status =3D "disabled";
-> > > > > +};
-> > > > > +
-> > > > > +&spi0 {
-> > > > > +	status =3D "disabled";
-> > > >=20
-> > > > If your board has to disable all these, then they should not have b=
-een
-> > > > enabled in DTSI in the first place. Only blocks present and working=
- in
-> > > > the SoC (without amny external needs) should be enabled.
-> > > >=20
-> > > > I suggest to fix that aspect first.
-> > >=20
-> > > Eh, I don't think I agree. Having 5 disables here is a lesser evil th=
-an
-> > > reproducing 90% of jh7110-common.dtsi or shunting a bunch of stuff
-> > > around. Emil?
-> >=20
-> > Why reproducing 90%? Only enable would be here, no? Or you want to say
-> > the common DTSI has things which do not exist?
+On Mon, Oct 21, 2024 at 04:56:38PM +0200, Christian Marangi wrote:
+> Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
 >=20
-> For what it's worth, I agree with Krzysztof.  In the (long) cover
-> page we pointed this out, and offered to do it in a followup patch.
-> But if requested we can do it now.
+> The IP is present on Airoha SoC and on various Mediatek devices and
+> other SoC under different names like mtk-eip93 or PKTE.
 >=20
-> So in v6, a new patch would be inserted before the other three,
-> and it would:
-> - Remove the status =3D "okay" lines for those nodes that are not enabled
->   in this new platform, in "jh7110-common.dtsi"
-> - Add nodes where appropriate in:
->     jh7110-milkv-mars.dts
->     jh7110-pine64-star64.dts
->     jh7110-starfive-visionfive-2.dtsi
->   They'll look like this, to enable the ones disabled above, e.g.:
->     &gmac0 {
->         status =3D "okay";
->     };
->=20
->     &i2c0 {
->         status =3D "okay";
->     };
->=20
-> You guys should come to agreement, but I do think what Krzysztof says
-> is the right approach.  And unless convinced otherwise, this will be
-> what shows up in the next version of this series.
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> Changes v3:
+> - Add SoC compatible with generic one
+> Changes v2:
+> - Change to better compatible
+> - Add description for EIP93 models
 
-Ultimately, it is up to Emil how he wants these laid out.
+RFC v3, but I don't see any comments explaining what you're seeking
+comments on.
 
---HM8xtjn6x2CDD6Fw
+--XnYX0dOYK3nMEEbA
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxaF1gAKCRB4tDGHoIJi
-0n25AP9w+mgLPG37PWo0lketQlmgfBvb0mnm/q/uq+DyENNPiwEA0d6noRdXHH1D
-VAVdOopja8BtMCTOjnpc/8inYN+MbQQ=
-=T8RS
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxaGUQAKCRB4tDGHoIJi
+0hncAQDhWH3eBSBaL0KJABO5zc3ZCf9xeXA9yXleXdSOPqMFYQEAugCZgQ99Anky
+RCGazzpmE1QglGc+IiLDgYdvaQcoowo=
+=Ee6T
 -----END PGP SIGNATURE-----
 
---HM8xtjn6x2CDD6Fw--
+--XnYX0dOYK3nMEEbA--
 
