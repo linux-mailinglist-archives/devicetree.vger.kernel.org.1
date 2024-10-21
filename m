@@ -1,121 +1,102 @@
-Return-Path: <devicetree+bounces-113805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ED6B9A7166
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5529A7194
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:58:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34D641F231C6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:51:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ECAB1F234CA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED501F4FA0;
-	Mon, 21 Oct 2024 17:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48CA71F4FD6;
+	Mon, 21 Oct 2024 17:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CSNYIcgR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LrK/QYz2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11EE1F4713;
-	Mon, 21 Oct 2024 17:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113B61F131C;
+	Mon, 21 Oct 2024 17:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729533108; cv=none; b=XObttCq9aULoArB43rVhhFBx6QHPkec7dojHc8X8eVWyQ/Hv4WFjkSvZ6CBpVnzsHZCf3W+DRYfraZBvjAoSVDog3jjhD6lVQsTY+s2gT3CfFaeJMKofBNqLxcJRmV9OYW8kUfsdUsKjgl3pxdxuz8Gb8SffQuNLo1OTERBE7fI=
+	t=1729533511; cv=none; b=YYBTBz9+9u/jmMegADpYTZXv+5wrwlFeVS8mndlHL3olGbFyTvsVXeNtbd7HW5zxbl9dVQXlQbvAkVRlwgFx53PvH3ukm15MFZR+KV6UVU+lYOnZ16U2PoCo5JtjDV8v07i3qYhCu+0Tl6uagoOwbSlhd5tzuiTkfjpUrfdXAaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729533108; c=relaxed/simple;
-	bh=NN+bH9881EA8sg1SujZZ3hBU9bZvRpN4021uMbPuSFc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZphWpBiHKEQEmYXfUlSL22qW2tEATGP32A4V+WRJd3KVyoqJUzUbU+UpLw2EUnc04kP/huRcWWcy9bbFNd94ubLpm118fugW8dJH1FZaTF2bTe5NPcfN7wDT48oyHB1BaeMffFQouj+ra8dp5y0DLN83xinJfKZPR4ThAzcyQxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CSNYIcgR; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CFD1C60002;
-	Mon, 21 Oct 2024 17:51:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729533103;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=84FFr9VQLa1SJol6stO39srQY57ZOMWmg6GfF4bl0Us=;
-	b=CSNYIcgRmuuf08U+jaMLL6qq0AiUL/Z4S1vC02DdI1FXjOR64SayRr+x7k9BC9lcFlK/km
-	hsl+yo3Nwh+uRbatrh3kzZi2uoeajKSASH4MFRfolP+K8qlczqY4yOtmEMTVoSoxnKS4vW
-	tC+vkXIeKPBKV2IXi86CvQl7IWDmF49EZJMce4g4/fa8yUFP1H4kvEPUzgEn+klaGTqtKG
-	PHxVmg/QJpc2tGb32YR8mcbmyCO3XS9xxrebS9xwEuS94gu2j77OHj/3o1AS3uyUfzM0r7
-	3/CUqn3C/gbKdm8ytb88wU/9TbRz2YyDiKhQ300627px+w0yPYL0ylcq1x5Tiw==
-Date: Mon, 21 Oct 2024 19:51:40 +0200
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, <andrew@lunn.ch>, Lars Povlsen
- <lars.povlsen@microchip.com>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, <horatiu.vultur@microchip.com>,
- <jensemil.schulzostergaard@microchip.com>,
- <Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
- <UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
- <ast@fiberby.net>, <netdev@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next 11/15] net: lan969x: add function for
- calculating the DSM calendar
-Message-ID: <20241021195140.442c0a4f@device-21.home>
-In-Reply-To: <20241021-sparx5-lan969x-switch-driver-2-v1-11-c8c49ef21e0f@microchip.com>
-References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
-	<20241021-sparx5-lan969x-switch-driver-2-v1-11-c8c49ef21e0f@microchip.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1729533511; c=relaxed/simple;
+	bh=4PjbEw1WHe2byrx6rgRj932kUF7KpoXEY8hA0mTormw=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=C0jjVa/R19j8FlIXvjTcXW+w7X+b65DqSqeeevFsoMp1YFqz945XXHNcEec3CLKkpoAC+apNDPxXb/KdobB1yu1eU7MsnfpVsjJi46qcbAo+rgCPq5z4q3NzUvWdjAbaAa5nGjrqM1BKP4bZZUA2Sp+8hndqV2cnEwtXba13Eas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LrK/QYz2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AD11C4CEC7;
+	Mon, 21 Oct 2024 17:58:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729533510;
+	bh=4PjbEw1WHe2byrx6rgRj932kUF7KpoXEY8hA0mTormw=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=LrK/QYz2Z52/mNh5/0IP06LC15qWJZOAa/dCgA2ltP8mEfIQG6WCCgY0Xqr8HxEVb
+	 NtQDNsfHfjUGFaCRly2p9y4SzhULkgCmuK/t2MWZbo35QonTLk5Kws3gcrHclW4jrK
+	 Jh2CNlDqN4GIg+eqkrzPOKF2T9TWJjrdCLhm6nqL4Uzx8SH6mHAM8TdiFw1IafanVA
+	 bLsQod1rciIXbzRWi4z4qG8OmhNDSoRLorwMwXXpaW4xR+9JwBJ7CMQAhSoShjLQ7i
+	 tc/4ufobEQXk6KFVwpHwP+b/N4332qpKB57DEjMI/7bx68Upv61e80OPWd0FQ5BseO
+	 XPBXFD/R7Zcpw==
+Date: Mon, 21 Oct 2024 12:58:29 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Tim Harvey <tharvey@gateworks.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, Fabio Estevam <festevam@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241018182444.817848-1-tharvey@gateworks.com>
+References: <20241018182444.817848-1-tharvey@gateworks.com>
+Message-Id: <172953336997.748149.3894675959431217817.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add Gateworks GW82XX-2x dev
+ kit
 
-Hi Daniel,
 
-On Mon, 21 Oct 2024 15:58:48 +0200
-Daniel Machon <daniel.machon@microchip.com> wrote:
-
-> Lan969x has support for RedBox / HSR / PRP (not implemented yet). In
-> order to accommodate for this in the future, we need to give lan969x it's
-> own function for calculating the DSM calendar.
+On Fri, 18 Oct 2024 11:24:45 -0700, Tim Harvey wrote:
+> Adds support for the Gateworks GW82XX-2X development kit
+> based on a GW82XX baseboard and a GW702X System On Module.
 > 
-> The function calculates the calendar for each taxi bus. The calendar is
-> used for bandwidth allocation towards the ports attached to the taxi
-> bus. A calendar configuration consists of up-to 64 slots, which may be
-> allocated to ports or left unused. Each slot accounts for 1 clock cycle.
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Also expose sparx5_cal_speed_to_value(), sparx5_get_port_cal_speed,
-> sparx5_cal_bw and SPX5_DSM_CAL_EMPTY for use by lan969x.
-> 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
 
-[...]
 
-> +	/* Place the remaining devices */
-> +	for (u32 i = 0; i < DSM_CAL_DEV_MAX; i++) {
-> +		speed = &dev_speeds[i];
-> +		for (u32 dev = 0; dev < speed->n_devs; dev++) {
-> +			u32 idx = 0;
-> +
-> +			for (n_slots = 0; n_slots < speed->n_slots; n_slots++) {
-> +				lan969x_dsm_cal_idx_find_next_free(data->schedule,
-> +								   cal_len,
-> +								   &idx);
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-You're not checking the return of lan969x_dsm_cal_idx_find_next_free(),
-can this be a problem ?
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Thanks,
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-Maxime
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y freescale/imx8mp-venice-gw82xx-2x.dtb' for 20241018182444.817848-1-tharvey@gateworks.com:
+
+arch/arm64/boot/dts/freescale/imx8mp-venice-gw82xx-2x.dtb: magnetometer@1e: st,drdy-int-pin: False schema does not allow 1
+	from schema $id: http://devicetree.org/schemas/iio/st,st-sensors.yaml#
+
+
+
+
+
 
