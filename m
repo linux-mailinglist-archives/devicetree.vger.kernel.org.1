@@ -1,86 +1,101 @@
-Return-Path: <devicetree+bounces-113470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C70B9A5C5E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B559A5C7E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:17:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B7F21C21DBD
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:16:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 743181C21C53
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6681D130E;
-	Mon, 21 Oct 2024 07:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A32C1D14F4;
+	Mon, 21 Oct 2024 07:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QY5t/FED"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ifvADmV3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E571D0F7E;
-	Mon, 21 Oct 2024 07:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D7651D07A3;
+	Mon, 21 Oct 2024 07:17:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729494997; cv=none; b=Kipv9AQ87ybu4pisSzo289Q4v9hjOkiJZZjGrd9acrn/uE5D31JgJ7LxpCR1AAcTd2eNGj98UGQL25PukacIYkdvGqCYX0YAGo2WlG0olYxge8jdOvgLfK14u9hkfwAzqs4Viij8G1J5aoJbM1fcp+T+kS/WNT5x7au9EF4Xgjo=
+	t=1729495045; cv=none; b=QwShAW+yBiV4V0NoTMPIp+VvUw+srnMKOHRQOKooHh0ZX6AVVZ+zPwFshjUH8lHMO1zwbyj7rW3NSaPNvLXuNXi83vWMBSlWRom30QzDeXy/MZbC3O/oDghlTb/HW5hm+VivinGGWUdcVUDTbeAvwRlcwNSgLeQdan7mm1Cning=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729494997; c=relaxed/simple;
-	bh=wQ1YsES1KsH6eJcjGe71asXjZGM4hRj8D/5aV4t80Aw=;
+	s=arc-20240116; t=1729495045; c=relaxed/simple;
+	bh=yNkzjvJHErMr5ItWr86Ff1LdwbAplket3nAXC6LDs5g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mvgiWlLdq/MliHFiRiYGokesXCXwgn2YFo0ZBNyX+wVZVKx7aLp/V5DDVK3ylycYYe+TpeEkL45DM1V9JEmFAKmZKIsFXuUJixmf4k7lrRCYQ/IOvrQxE4hTfnjU8s+kG6T2J+7PMqTjSZMXDNzQDst0O3x7egjh5NM608i2M98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QY5t/FED; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E387C4CEC3;
-	Mon, 21 Oct 2024 07:16:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729494997;
-	bh=wQ1YsES1KsH6eJcjGe71asXjZGM4hRj8D/5aV4t80Aw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QY5t/FEDLe5fDtOyT3IcJBxS4EYmCXHMfGbD2E/lryj8DxZGosVIFOZmFo7J7r8A0
-	 y2vP9ghHM4f6km0PU5stGbfB1x8kjprEIVgdtPMtJhBW0VplBwj9EnkLnwC1NzicfJ
-	 Jc9Zr+8MNkFruqv1MobQTvLsUYSMKQlql8EiHbtAvYQWpk5OUyzlLtWB5kyn7wm47K
-	 DfV4KBd8abs8nWeC2qGRIl0QgrzQr5mklvDeCAJOivRUzFVPsj6AbIUA9BpUSeLz7f
-	 LKioEK5KVTE8GdGk5UpD7QbzV5ldkjUYB4Cexowp9Fzh8K8iO/2vG3GqM4gbnoGXoG
-	 bkkdY5Uw64qyg==
-Date: Mon, 21 Oct 2024 09:16:34 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mahadevan <quic_mahap@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Kalyan Thota <quic_kalyant@quicinc.com>, Jayaprakash Madisetty <quic_jmadiset@quicinc.com>
-Subject: Re: [PATCH v5 2/5] dt-bindings: display/msm: Document the DPU for
- SA8775P
-Message-ID: <rskz2jgw44fxkv4vuflro4zkdoinitdpjbc7fm7ql2xvkwhzm7@n5ggqubf3grx>
-References: <20241019-patchv3_1-v5-0-d2fb72c9a845@quicinc.com>
- <20241019-patchv3_1-v5-2-d2fb72c9a845@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=N4ePZ/O+ledm3TXgXWC+QJMtDj0/oa9H9IfQVFIqV5jE5Ibhldt3pu9fNR+SomftxaLeyggDT78c/CerB7p/EStUZ9PGGVGERgqlk58SXbfitdrPp3vvj56r2PfVWhT4C9AtEE4yBhC8oH4sv/or7MSsETcsupbB5sJunqogGqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ifvADmV3; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e2a97c2681so3003163a91.2;
+        Mon, 21 Oct 2024 00:17:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729495042; x=1730099842; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cAUk5W98O64U9IZMaqTyyBAdnws1M/z10hXkJohh3N0=;
+        b=ifvADmV3nynRpi87NSCJ2PHwcHPaqU8HxV23aCQ6wCuxl8aLAGBC56PckiWf8EKwom
+         wDW8yRuZlK9TXnDH8GZ6o/p5f7+iO3Jfpp4rZBOwA1+hQKNcqEsu5ieVL+3rZmQ3i2VI
+         t3pfM8JYsAY8a8IJC0dzn7fZT6u2xtu+/JIHwHcPRJUi2J+DFuwR2EO2h8cW95fJAVkq
+         8Czs1bMbXcunJZ7fLadQG8xz6KQPz5S+nKFqu+TLvq+bFXKJJNih3Qw9+cS6dnoQIN3u
+         dSvBqdqI5fF5TWXnGMSHZBqQdGtOh4vtJ4Kck+DfeqZ0ADJhhIs4XNc09/n1pDXIXG9Y
+         5IpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729495042; x=1730099842;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cAUk5W98O64U9IZMaqTyyBAdnws1M/z10hXkJohh3N0=;
+        b=LBNj076JdiJhC1fRcTcJN0lAbT84B+fz7wZcXLOwEoPSsAdSG48424/PFudU7nr+z7
+         4uX5J74Got0IXmisIn496/7dt57fjtLrf5heAZb/KVVtuN7l3AF/pCerWDOOv3cDesay
+         pJ0hCz84oiv9UFAT5cLLwzJCZ10OSEYxxBdPd/9HDudUhE6I47VclwWjnebUZval/1Xe
+         w1YpTKj6Q+zOvLqLBmXGItGKmiDZdVSMU2IAJ6nCNBRZ222acFlSu9cHN1tyLmngmoQD
+         AmH6Nqg6vRBGHXii4o4PfOhCNz3sZU8sozsjpnIbD2X2y5m66O/rKChMRc6iDjdg0VAK
+         +lMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUquk/6VUrGufTFGMvpvJ7WY8bC87ukOV8O3G5IbXVfObS8hVLbZ/XRoD1AfEmdrRbhfL7CYfX1X6Tw@vger.kernel.org, AJvYcCUzX5tGme4kTxoqfNQ9u3IqjPcuW5pajOm3icRQdAc7mCCarSihu8splLOPtpyslX5LTbUcCBNTqSYpF5I=@vger.kernel.org, AJvYcCXZikzZBLZob58IlVpeE3gHz+RTKfdSr5GEBhMmdDxOE9iIsjcZ96xNVwGb8CUDW0cy89B3v4/xRwwMVfny@vger.kernel.org
+X-Gm-Message-State: AOJu0YxunbulIMigeDQTQ1RN36pHX4jMxgU2qrs7u6/FlXWCEGBlVJUS
+	U6qZt7DwodDMpHN31ignqs4ezoxidodNEqdPz3R8itaPCPecBbiS
+X-Google-Smtp-Source: AGHT+IGneQjtaluKEP/Dr7JWISPzjl8lPXj+gklNXWwqzoxaJiGA1EN7a1TRxGE1qWenqDLpbFxmXA==
+X-Received: by 2002:a17:90a:8d14:b0:2e2:c00c:cb79 with SMTP id 98e67ed59e1d1-2e5616db842mr11923766a91.3.1729495042427;
+        Mon, 21 Oct 2024 00:17:22 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:6e21:7092:f7c7:3951])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad389146sm2818628a91.26.2024.10.21.00.17.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 00:17:22 -0700 (PDT)
+Date: Mon, 21 Oct 2024 00:17:19 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, chen.zhong@mediatek.com,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, macpaul.lin@mediatek.com,
+	kernel@collabora.com
+Subject: Re: [PATCH] dt-bindings: input: mediatek,pmic-keys: Add compatible
+ for MT6359 keys
+Message-ID: <ZxX__86dGl5QNsYE@google.com>
+References: <20241008074137.20269-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241019-patchv3_1-v5-2-d2fb72c9a845@quicinc.com>
+In-Reply-To: <20241008074137.20269-1-angelogioacchino.delregno@collabora.com>
 
-On Sat, Oct 19, 2024 at 09:14:54PM +0530, Mahadevan wrote:
-> Document the DPU for Qualcomm SA8775P platform.
+On Tue, Oct 08, 2024 at 09:41:37AM +0200, AngeloGioacchino Del Regno wrote:
+> Add a compatible for the keys found on the MT6359 PMIC.
 > 
-> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Applied, thank you.
 
-Best regards,
-Krzysztof
-
+-- 
+Dmitry
 
