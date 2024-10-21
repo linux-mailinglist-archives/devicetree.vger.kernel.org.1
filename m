@@ -1,177 +1,161 @@
-Return-Path: <devicetree+bounces-113438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F009A5A65
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 08:32:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7854A9A5A8B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 08:39:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1CF91C20A80
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 06:32:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E11C1F21424
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 06:39:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41A41CF5C8;
-	Mon, 21 Oct 2024 06:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E2B1D0BA2;
+	Mon, 21 Oct 2024 06:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TwOAlGvI"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="NxrwEmQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA41DDA8;
-	Mon, 21 Oct 2024 06:32:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6C11CF2B3
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 06:39:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729492367; cv=none; b=L6f4GmhV5qpJeehwE4EM1lbvaohqeVLeIEonj8tpXeX3EMayntjQvCZGr0fwk7LT6SBhTmJWgAvUswyvdrT5NMOUMT/Xga+wNEzXc//wA/H95ViRPLHdHKXmAmwlFV9x9y7s+wWwb+BOM4K9QcUaLT5fThOyItTl9U+ASx6e5bI=
+	t=1729492785; cv=none; b=n68wpak/h0Idfc9nqY56Es9oPMoWX3HAisC6QPwcT8w0fqHJMaVjU7lx2pZiX8tjpKubJ4PodpavMsiZgrKHF0rVDRXBy72xdCvy8wptvcIYu2jsRCH33spWdA27PXeLsWiXkvIqXrE6fS2U/XaNRqqIF+fnkef8jmQSexDYcpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729492367; c=relaxed/simple;
-	bh=zpa4Fatg54DYqfk5OKylbowe0195Hg2MiUo5EvTyIxU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=AfA6bkPjc5O0eT9XGzAKmxqufgpIzyM/EtXZV/flaUGJPhJoZsPoz9bbdM7UnQ1c8mWHzTc3dzfGz/27KGDQVHkGQdf4qBD7RDrtT+2T0XTX4wSM/P9ZCNUlgBqK+PVyfchzUJQuwrUoAmyYjlJnP/Ksmc21zGEcMlLjg0g4rKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TwOAlGvI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C21DAC4CEC3;
-	Mon, 21 Oct 2024 06:32:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729492367;
-	bh=zpa4Fatg54DYqfk5OKylbowe0195Hg2MiUo5EvTyIxU=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=TwOAlGvIimmLdmkiDg5An7a7QN2gYBWQlH7uQ4T4SYgv0YNzvllK6AFyh2ShcFSuL
-	 D6kmQ5cncjwb0XIeVeONMgieydjPXjnQOwz8LTZB6efQycibaJ9EtLpSDifaAJMKCs
-	 DKbaPauZLfevKN8FrlE9HBj3FsvSrjcujGqPl2TgLwrRPwNkjF0V3Pd0Ssqy3dPdpP
-	 eVocuS52+J6pgmOscGh0QBH/QhAvdw/xMO4uTKF1O3YjsHmnaxuRYWRfHPmew0eUcR
-	 C9ugl0PgbhXvvubwTsGAFv8XqaNT+x8AY/CteGS02v/nhk327dyQPjvrGi5k8qhNAE
-	 i/SFtJKrcJDMw==
-Message-ID: <119e86e4-acb4-455d-9b0b-ee851b621c91@kernel.org>
-Date: Mon, 21 Oct 2024 08:32:40 +0200
+	s=arc-20240116; t=1729492785; c=relaxed/simple;
+	bh=ajbFbHHpOVPA0dp0NNtEh0muAPuQegpimc6yE2wDQAY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=P5AJeqKkBiANT0bTZtnpUuSE8u74RypBzUusAFkj71/eFPeqYe3JUYF8ZDELYtfnFv5odsTd8HVVQ3ElrqRf5P5doHeu0zQjtXW5TpzG+ZZL08f6XYmmxyrZbGBM8s0LDqDvWME8WpjroqKCHG9+BmWIjbgsDjwqcs/l3kckRnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=NxrwEmQw; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20241021063939epoutp048793bf64f9549c46490e9c2ac1f67c6e~AZIUK_4o30956809568epoutp04z
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 06:39:39 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20241021063939epoutp048793bf64f9549c46490e9c2ac1f67c6e~AZIUK_4o30956809568epoutp04z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1729492779;
+	bh=eEEtOXJJjAb7bF1Fe2H3d/IPXJDpaQqOWy/rzHRxLps=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=NxrwEmQw91MlUH6Yw64KkV1CfYgIZflzqgmmVs3Aah6tShKvYff5RRJeVt/11jmjl
+	 xIPMsEgs5CuZ1JBiE+36pfF61iUVAP/x49EdOobO3ClKS1u6/AdfCQZ7csU5VQehya
+	 QVjylwNfyuAHbBvP2bShuu57/iTroo+YcJDye7jE=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+	20241021063938epcas2p2706a5f24bcfbfa4c18d07a9b40934978~AZITneCru2063720637epcas2p27;
+	Mon, 21 Oct 2024 06:39:38 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.68]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4XX5JV3XCmz4x9QK; Mon, 21 Oct
+	2024 06:39:38 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+	DB.57.09770.A27F5176; Mon, 21 Oct 2024 15:39:38 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20241021063937epcas2p40b368212fc236cd916492f0ed342671d~AZISrCiM72426824268epcas2p4L;
+	Mon, 21 Oct 2024 06:39:37 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241021063937epsmtrp127c78473dd22f56aac772be287e4692e~AZISqAur91158911589epsmtrp1R;
+	Mon, 21 Oct 2024 06:39:37 +0000 (GMT)
+X-AuditID: b6c32a46-da9ff7000000262a-0e-6715f72ac51d
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	83.F8.08227.927F5176; Mon, 21 Oct 2024 15:39:37 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.55]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20241021063937epsmtip24e9cf6147b28f521849ef59a6471e284~AZISdGEPM1924819248epsmtip2f;
+	Mon, 21 Oct 2024 06:39:37 +0000 (GMT)
+From: Taewan Kim <trunixs.kim@samsung.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+	<linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, Taewan Kim <trunixs.kim@samsung.com>
+Subject: [PATCH v3 0/3] support watchdog for exynosautov920
+Date: Mon, 21 Oct 2024 15:39:00 +0900
+Message-ID: <20241021063903.793166-1-trunixs.kim@samsung.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
- SoCs
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
- <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
- <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
- <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
- <4127b448-a914-4c69-b938-29512995326f@amlogic.com>
- <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
- <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
- <1jiktpr40d.fsf@starbuckisacylon.baylibre.com>
- <8cb615cf-1b4e-49ba-91fc-6e1f5f57cd3c@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <8cb615cf-1b4e-49ba-91fc-6e1f5f57cd3c@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDJsWRmVeSWpSXmKPExsWy7bCmua7Wd9F0gzUn+CwezNvGZrFm7zkm
+	i/lHzrFavJx1j81i0+NrrBaXd81hs5hxfh+TxY11+9gtniw8w2Txf88OdotJi88zWTx++Y/Z
+	gcdj06pONo+Va9awemxeUu+x83sDu0ffllWMHp83yQWwRWXbZKQmpqQWKaTmJeenZOal2yp5
+	B8c7x5uaGRjqGlpamCsp5CXmptoqufgE6Lpl5gDdqKRQlphTChQKSCwuVtK3synKLy1JVcjI
+	Ly6xVUotSMkpMC/QK07MLS7NS9fLSy2xMjQwMDIFKkzIzjjz+j9jwS32irNtN5gbGCezdTFy
+	ckgImEis6P7N1MXIxSEksINR4uPvw6wQzidGic67x9khnG+MElfnnmOGadm0uoMZIrGXUeJL
+	4wI2COcjo8TvPa+ZQKrYBLQkth1+BTZYROA1o0RT7zuwFmaB84wShw41sXQxcnAIC1hLrF0R
+	C9LAIqAqMe/jRLBmXgFbidVXP0NdKC9x/s1/Noi4oMTJmU9YQGxmoHjz1tlgMyUEfrJLNP65
+	BXWfi8TpN8vYIWxhiVfHt0DZUhIv+9ug7HyJlStPMEHYNRL32naxQNj2EovO/GQHuY1ZQFNi
+	/S59EFNCQFniyC2otXwSHYf/skOEeSU62oQgTFWJ6csCIGZIS0ycsRbqeA+Jo7NegNlCArES
+	p6ZvZp7AKD8LyS+zkPwyC2HtAkbmVYxiqQXFuempxUYFRvBITc7P3cQITqZabjsYp7z9oHeI
+	kYmD8RCjBAezkgivUolouhBvSmJlVWpRfnxRaU5q8SFGU2DoTmSWEk3OB6bzvJJ4QxNLAxMz
+	M0NzI1MDcyVx3nutc1OEBNITS1KzU1MLUotg+pg4OKUamFSPlPrwv65gOWG8MPDn6/DjB2P7
+	19WeDvp8tSGmYoOHscKV1LDQBtW8PUbJB6pS75/8pPXJV3yCsui8bZ0zFI1DIzjD7qV9Y33U
+	kPrb3f/x/39HdRqfqTye9rby+NNXGdeTb34wlpfjMdhytTFuHkPRu1UynMwCR7de3DRFScJ9
+	i1HE5rBr32cIXPkvP7WvjHPrgvUPPhVW8hdOkvIIf5O5/8ccwYWvz/IHtC/6+i53yuSZP+3W
+	G0QsVbm8XVhXO8XUwSSs6c7kzsW5Xf2C4t+Df2g7sj1xvmbvcdj0UUqkaNzFBHbG0oK1j1S3
+	7SrLv29qd3TO1TD+pLCd0xvYt1wRs9lZ6al/zkrD5HKgvBJLcUaioRZzUXEiAKkkSSwvBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrLLMWRmVeSWpSXmKPExsWy7bCSvK7md9F0g2mHDSwezNvGZrFm7zkm
+	i/lHzrFavJx1j81i0+NrrBaXd81hs5hxfh+TxY11+9gtniw8w2Txf88OdotJi88zWTx++Y/Z
+	gcdj06pONo+Va9awemxeUu+x83sDu0ffllWMHp83yQWwRXHZpKTmZJalFunbJXBlnHn9n7Hg
+	FnvF2bYbzA2Mk9m6GDk5JARMJDat7mDuYuTiEBLYzShxdVI/VEJa4sjvF1C2sMT9liOsEEXv
+	GSVuvdzMDpJgE9CS2Hb4FRNIQgQkcfbLL0YQh1ngKqPEj0XvgKo4OIQFrCXWrogFaWARUJWY
+	93EiE4jNK2ArsfrqZ6gN8hLn3/xng4gLSpyc+YQFxGYGijdvnc08gZFvFpLULCSpBYxMqxgl
+	UwuKc9Nziw0LjPJSy/WKE3OLS/PS9ZLzczcxgkNcS2sH455VH/QOMTJxMB5ilOBgVhLhVSoR
+	TRfiTUmsrEotyo8vKs1JLT7EKM3BoiTO++11b4qQQHpiSWp2ampBahFMlomDU6qB6ejVQwe3
+	6t+MPrOlXkZA5GvkjEUBVdExe0WihMz/GN7qFtI19/Z+t0BW4Lf8kbwjvaluNxy3V7+LDJVg
+	W/CTZWleh8RU6RVTQ3ZveDUj7uXEwqf/JSNPP1kcr5Tx9HFvq4NSaNyeXrdlUvN5mp48j06d
+	snF3kRjzqRyf/KlGSS87Fu8QYkuUOMc9t/zso7MZE1dUr85w/R/cZGJ/fNO6s4auCSFtwsxx
+	jDf9gz1vfXj/h9uK+WnKcg8Ts69W/3utvScvYJs3wVYvbs6NT2s3mi66F+uqqL9uqXus5Iwp
+	nHM+hOz58NU5VzW6oFRa5fpza/7HxcuPslW4FrikKBmLvHsszmrY2fvqT6KvdWaxEktxRqKh
+	FnNRcSIA2Rsp6+ACAAA=
+X-CMS-MailID: 20241021063937epcas2p40b368212fc236cd916492f0ed342671d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241021063937epcas2p40b368212fc236cd916492f0ed342671d
+References: <CGME20241021063937epcas2p40b368212fc236cd916492f0ed342671d@epcas2p4.samsung.com>
 
-On 21/10/2024 08:31, Krzysztof Kozlowski wrote:
->>>>
->>>>  reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
->>>>
->>>> And others will go in the driver to see that is maps to GPIOX_10 ? the number
->>>> being completly made up, with no link to anything HW/Datasheet
->>>> whatsoever ?
->>>>
->>>> This is how things should be done now ?
->>>
->>> Why would you need to do this? Why it cannot be <&gpio 10
->>> GPIO_ACTIVE_LOW>, assuming it is GPIO 10?
->>>
->>> Bindings have absolutely nothing to do with it. You have GPIO 10, not
->>> 42, right?
->>
->> That's what being proposed here, as far as I can see.
->>
->> GPIOX_10 (not GPIO 10) maps to 42. If this goes through, for DTs to be
->> valid in any OS, all need to share the same definition. That looks like
->> a binding to me.
->>
->> On these SOC, gpios in each controller are organized in bank with
->> different number of pins. So far, this was represented as single linear
->> array and that was not a problem since the mapping was part of the binding.
->>
->> Are you suggesting 2 params instead of one ? something like this maybe ?
->>
->> reset-gpios = <&gpio BANK_X 10 GPIO_ACTIVE_LOW>;
-> 
-> No, I propose the same as you wrote:
-> <&gpio 10 GPIO_ACTIVE_LOW>
-> 
-> but I don't mind putting bank there.
-> 
->>
->> This means this A4 controller will be software incompatible with the
->> previous generation. It will need to handled differently eventhough the
->> HW is exactly the same.
->>
->> Note that some form of binding would still be required to define the
->> banks which are referenced by arbitrary letter in doc, not numbers.
-> 
-> Usually banks are considered separate gpio controllers, so numbering
-> always start from 0 because phandle encodes the bank.
-> 
-> And this is exactly what Rob already asked in v1 review.
+Add support for the ExynosAutoV920 SoC. Basically this is almost
+similar to ExynosAuto V9 or Exynos850 such as two watchdog instance for
+each cluster but some CPU configuration are quite different.
+Therefore device tree, compatibles and drvdata should be added.
 
-Ha, actually I misread his reply, I think he proposed your syntax:
-<&gpio BANK_X 10 GPIO_ACTIVE_LOW>
+---
+Changes in v2:
+- Add a space before }
+- Fix worng variant condition (cl1 -> cl0)
+- Move the location declaring watchdog node
+  to the correct location that fits the DTS coding rules
+---
+Changes in v3:
+- Add Acked-by/Reviewed-by tags 
+---
 
-Best regards,
-Krzysztof
+Byoungtae Cho (3):
+  dt-bindings: watchdog: Document ExynosAutoV920 watchdog bindings
+  watchdog: s3c2410_wdt: add support for exynosautov920 SoC
+  arm64: dts: exynosautov920: add watchdog DT node
+
+ .../bindings/watchdog/samsung-wdt.yaml        |  3 ++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 ++++++++++
+ drivers/watchdog/s3c2410_wdt.c                | 37 ++++++++++++++++++-
+ 3 files changed, 59 insertions(+), 1 deletion(-)
+
+-- 
+2.47.0
 
 
