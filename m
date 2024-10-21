@@ -1,113 +1,99 @@
-Return-Path: <devicetree+bounces-113612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E4C9A66A5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:34:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61FE29A66A3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:33:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DE25B21C3D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:34:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87A5B1C216CA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3AF1E5713;
-	Mon, 21 Oct 2024 11:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E801E7C18;
+	Mon, 21 Oct 2024 11:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z0skQusc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JHMBHgj/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 181A0946C;
-	Mon, 21 Oct 2024 11:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E18381E7C0D
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 11:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729510451; cv=none; b=t0LCmsGhqI+8XEqjKYw3ZB0u6H99+i0OG5pLy6O/0T6iGCtvm8y8EvcjHVG0TTHD18KEAtK6QyxsI0aFoeMwO2MaRuaV2ZjfSaIpSrJMFZB65n1laDxKT+dqICIfRfAgRVi6PulBSlY9od+qr7ejVccpETyAKQgcDAxRx+1mZLU=
+	t=1729510397; cv=none; b=REV/+z4DeJCOlkwCknv6VIY86aPUHsLMopawDP7v+nWhf2Up4EAL+3MbPSbX5QFr+M8eUo4YpblKM3ynEalZFbqYcRzTpi95khajK/4Qhb8USx1zkl6pG3V7kLFMBIx8K4wRlCGXenFb1B1t+/cVsgP1rX1OikO0edc2wuICGzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729510451; c=relaxed/simple;
-	bh=tQq0AcugWJikO4qAz6G4zvSe6n0MN+aqiIaEvzVU4bw=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=LVNirWEL4HXK3eLhFyWHE6X2XwlbEox0hzYCFuFZHzPBhGLxQoEsVjU/vIph8kb4cngV4gf9R7B28SGFEgNtMWgWvXqtQSHAUcRbv4y/1oQ2AkOYU++9SM9Sk/LyfqgjYjxaWW311zXDoH2YnqLkPmDCTnYmArwRnq527zBr2A8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z0skQusc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 556EDC4CEC3;
-	Mon, 21 Oct 2024 11:32:09 +0000 (UTC)
+	s=arc-20240116; t=1729510397; c=relaxed/simple;
+	bh=2LLQxOMuf9S0buYD37Y2OfQFkxWkRTFVskJkOkf/ANo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ecVmpG+VarsmK1zi5TD2KNiK/kO6g2I3Mm971epKlVm4FX7CL3lpfNpuuQf+ED2uEpXRuzSyfzDMQj3WbiMiZ5+maAuw024lDAKke21rssQax8v4uFFWLKxjJysTOAlNU7UZMhgCZukPcNRXiisx+8u7STVIWZe1t32uzei3z1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JHMBHgj/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CEE7C4CEE5;
+	Mon, 21 Oct 2024 11:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729510450;
-	bh=tQq0AcugWJikO4qAz6G4zvSe6n0MN+aqiIaEvzVU4bw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=Z0skQuscOBi0vzATaKpzvTvPrr5QW0YhzlNZ0yzhQQkmIQyYEIL72KgXHn5OCS4fc
-	 M8hyRIgQyf3y0SymL9DNs/1VbXUVmZo9+GM1NrmgFV9s+IMyqY4YALZyU4hfBRPtT+
-	 xNxeKd7XJtw7xn3U6lL6+KorsDDw53BAIOkxWaZHVRSOHRI2oOfiXouLbfSmsB+czO
-	 krNfCyhPeclmgDs/sO8eRRrm9FmHGEum75K4SctC49woxGD9VQ7zclifayRGEOJiNy
-	 bnWUr5zIkD3G1f4TSFlnd7SgLODGUNOOaJKJT+PyRnhikZW5EI4fQqXA7jHwtMH505
-	 8YI5Q9bpngeNg==
-Date: Mon, 21 Oct 2024 06:32:03 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1729510396;
+	bh=2LLQxOMuf9S0buYD37Y2OfQFkxWkRTFVskJkOkf/ANo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JHMBHgj/lr1QyAXFbhMyeYU04qy9+QyasbiSgGl57LpIHYlTyGMVe4XPg9yPI3BdS
+	 rLarWgs0rRO0O1UarSGdovUQ7CT+lg6R3CfVKpPcn5cMXhSCfIfjVvvgmd3tBDhC2J
+	 zuFyW6R8F+J3Ys1KLdbuJc1bWykchWeDFp5w9FYRAUejQCt3YZHKHQxKcP3UvrUYpu
+	 ycIPG5wPYXNqIb+mWP+Htr2gvbZBlGFC/V/XY7x7HxMGuxSHHM/hcPF5eou+bk0ocW
+	 yg89dgdbCKmwubniOfAocDaUxSMAong6DHeXdSgK1mS+a0RepyrG5/TEgyoo1HgScQ
+	 AhbFDQt6HKeIA==
+Date: Mon, 21 Oct 2024 12:33:10 +0100
+From: Conor Dooley <conor@kernel.org>
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, macromorgan@hotmail.com, jonas@kwiboo.se,
+	andyshrk@163.com, tim@feathertop.org, jagan@edgeble.ai,
+	dsimic@manjaro.org, michael.riesch@wolfvision.net,
+	sebastian.reichel@collabora.com, cfsworks@gmail.com,
+	kever.yang@rock-chips.com, jing@jing.rocks,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 RESEND 1/3] dt-bindings: arm: rockchip: add Radxa ROCK
+ 5C
+Message-ID: <20241021-extruding-cupping-6fca716833a0@spud>
+References: <20241021090548.1052-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: jdelvare@suse.com, linux-kernel@vger.kernel.org, linux@roeck-us.net, 
- devicetree@vger.kernel.org, sylv@sylv.io, linux-hwmon@vger.kernel.org, 
- conor+dt@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20241021091430.3489816-1-naresh.solanki@9elements.com>
-References: <20241021091430.3489816-1-naresh.solanki@9elements.com>
-Message-Id: <172951032336.3278738.7867634069843302759.robh@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: hwmon: pmbus: Add bindings for Vicor
- pli1209bc
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7uwwh/bCr4BSDb1p"
+Content-Disposition: inline
+In-Reply-To: <20241021090548.1052-1-naoki@radxa.com>
 
 
-On Mon, 21 Oct 2024 14:44:29 +0530, Naresh Solanki wrote:
-> Remove vicor,pli1209bc from trivial-devices as it requires additional
-> properties and does not fit into the trivial devices category.
-> 
-> Add new bindings for Vicor pli1209bc, a Digital Supervisor with
-> Isolation for use with BCM Bus Converter Modules.
-> 
-> VR rails are defined under regulator node as expected by pmbus driver.
-> 
-> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> ---
-> Changes in V2:
-> - Squash the two patch in patch into one.
-> - Update commit message.
-> ---
->  .../bindings/hwmon/pmbus/vicor,pli1209bc.yaml | 62 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  2 -
->  2 files changed, 62 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
-> 
+--7uwwh/bCr4BSDb1p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Mon, Oct 21, 2024 at 09:05:46AM +0000, FUKAUMI Naoki wrote:
+> Add devicetree binding for the Radxa ROCK 5C.
+>=20
+> Radxa ROCK 5C is a 8K computer for everything[1] using the Rockchip
+> RK3588S2 chip.
+>=20
+> [1] https://radxa.com/products/rock5/5c
+>=20
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 
-yamllint warnings/errors:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml: properties: 'additionalProperties' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
-	hint: A json-schema keyword was found instead of a DT property name.
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml: regulators: Missing additionalProperties/unevaluatedProperties constraint
+--7uwwh/bCr4BSDb1p
+Content-Type: application/pgp-signature; name="signature.asc"
 
-doc reference errors (make refcheckdocs):
+-----BEGIN PGP SIGNATURE-----
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241021091430.3489816-1-naresh.solanki@9elements.com
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxY79gAKCRB4tDGHoIJi
+0lSlAQDRzeczWrw1XQGDAA7uX+xSJ5LdX7m2VJBTy/lI1gpvUwD/TPpnCw5EGeKE
+/xtOxbsXD8HPxqu7m6MQWh2c15yo5w4=
+=qdYZ
+-----END PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--7uwwh/bCr4BSDb1p--
 
