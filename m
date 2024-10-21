@@ -1,150 +1,181 @@
-Return-Path: <devicetree+bounces-113676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BF109A6919
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:51:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E50159A6943
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:57:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA5281F2152D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:51:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9165FB2260B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:54:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80C91F4736;
-	Mon, 21 Oct 2024 12:51:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11811F4FDA;
+	Mon, 21 Oct 2024 12:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="htfcfLWN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tZfQf9Sb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D64DE1D1E7A;
-	Mon, 21 Oct 2024 12:51:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C061F4736
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729515099; cv=none; b=V9AYfKMD8+1qhdR+JdXmHGii57tIbX1sduPFs+BnvjUjZFp1TKXGyLvTP5i/668X9z9O3uHRsAwfhXqvThjo+TGLZuFBgWThiCvHBCEjQd1OT4RbQ0mwRTncXWrxP55xtAK/24Hhn0mp/pfHPA3UkcvcN9W4Xs5fCpgu9u94VLE=
+	t=1729515251; cv=none; b=jjGe+FEc+Qm+WbJCJt/NjBxt9MdVgE3bsWLyhCElQF2JaBg1vkeSSC4y/wPtR51TW9KrPH2gLj0A4rtYsHOtBr6BwIg9XMZOVbvludl5AAxqqvx1xQPS6FRdgw3KZrubtxcfxE0aZ9LMvn1r2iPGDOa4IazmwluffUAwdWVvouA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729515099; c=relaxed/simple;
-	bh=Lv9VrjmXHa8PT28MwNQ7rdLj1ClF1IBCgpDEoygVeNE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OoYWHIgqCj+PXp9CQo7MgCo7iqL65nFIycF5+UPTrb8ELbunK002IzJ9mXc5jIA60PbApB9XLrICuxJ+6ctAa1bt4D8sliIxsZkze6YqIp1i0Pd8+n7Fnllw8oFchoawPE9qAfAq5sMAzE19AOMVfLA8Ovb9piVbTYLF7/QFMPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=htfcfLWN; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42f6bec84b5so49682355e9.1;
-        Mon, 21 Oct 2024 05:51:37 -0700 (PDT)
+	s=arc-20240116; t=1729515251; c=relaxed/simple;
+	bh=DyWxLKiydqEOonS9mZeITo4s7rpB/FLXd8owqshBsQM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sDUkYnan7QiXCyEpB+IraqMoRE/QUzMq5yc6MztKcarZRDXIb2ixHnZ+mE8aV/xvc6lOZIf9A2xiRNe6l9WQDlAg3HeyDj2dDbTZUn3s44X5mkO36w52LdkiUrl288j4jmMNBp/qqiDSLylH/UzFmcLBt+iYSA4UHSrPc9Mj2qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tZfQf9Sb; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fb5014e2daso44052041fa.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:54:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729515096; x=1730119896; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fWgOmOfi/coO/g3WzFFtfVpzbPBXbofxJwFTWwltwcA=;
-        b=htfcfLWNW2vi1yLHg9r1ptPrxgdaMZ1sLPg45suI6tRx8WwLCzFlQoALnohkIg6NJz
-         qIyYfNkpXmmM90rVbyEnOFrQnYpoe/AnKVCfAyqp9sh6OZYIIgTS1kWLj1OHLyiW8U38
-         tAG4VNG81PECZ+Ah/6l6RA6ncfXPafGW2V6Nz158QVETT/HUg2I0EXH3wEXEzZHHxXgM
-         awFf8eT1aNZiNYw0D/dYR41HXmHn76/LSvTacH4tw+qbdhabIZyu3JsCHMEKxgFqD635
-         D09bO6H9u5z4pWAzVTCHHNrlJXmbJT7Ei7OQyetdHOfw0uKoomQ0hT6XXTWgHEzIcvxm
-         4UnA==
+        d=linaro.org; s=google; t=1729515247; x=1730120047; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=I2s35/3heGmToRyOYXVolNum+L9YFMF7ccDrRpO5RZ0=;
+        b=tZfQf9Sb4iEvkWs6NrfaZAdVp90KSBkmjG1l8VVQUSfk7GatsBY2qih3+zRSzeG+LN
+         7J8yWxdP0IoFPLBt+KnhXDT5mWFmwFPsFYZcRIdCOWzODF+512cEI93+/4Kn2sAvkiPB
+         87PxOUU/utf+4U1p0iP+HlW4kC7RSr4E/Bdm75BreaSoNslnugwsrWVeLJYTqzYeSbOz
+         UEA3PmkmPNbtffcTqLhrX5FVLDHBBfk1b4bCNsS0FHyxaJOo9ZBkjGVpmcjge45nQChx
+         Qiwl6bVf371tmPuCcofcNq+vQ9+MvZgM26/q8x5lPVHn31p9PQuj9uD7OvvJw5lGpcvV
+         peqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729515096; x=1730119896;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fWgOmOfi/coO/g3WzFFtfVpzbPBXbofxJwFTWwltwcA=;
-        b=cEfojQQxethiFNSzf5Gw0jue3sam3Ly2NQKC93mMq8Z/zMlEkaeO/asSQcba0+bsl2
-         cBNyeeJ8tsH8EayylcITdje2tWCkfogw94k/SnI/bglS4PFnwMwKqfGD3YzyTLZ+Dl6t
-         oc7KOJeq/Te5tT5YrAzNwnvq302m2nSaiJGkaEYo1LaKzd3HKVLx9ze6ll9ccN5hq70K
-         MPDLEHpPVHTsxdJ5K/p0CEaQl21hpmm+nVS0Bp5BaLCghzYGPo9u02ybyWjZHDMq1euC
-         QOZ6doXIbMW/MIkpG6l7YNDrdpclgPeNTuVBKXrX5flh5TeTgAv/8+s6IR6ZbXMtL7jF
-         n8oQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUqwCPP/eeEhthFy4z1PrK+OuKYPlQnYaXIV+jVHCeshi5C7cqiTG85HAC/1ZTZCT6kJfCDbmtaizLhER1s@vger.kernel.org, AJvYcCV90IrgksoS9BGE7An/OHJ+xR6uhH9UCcHBfEtkVfWNsh2nIuplJfRFQ7l4Vlm40I523IS97yrAR79IElWL@vger.kernel.org, AJvYcCVnf7XnWMefAJYDBzkEhtGEs9js+flAKAbXQvsNpm0LBdaZ/TqCEbf4g2UcBgPbUNqWURj8Pxdpptqt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyVlFbx08Ki1++IZ+7zWrBP+ovAN0eFlFmUsd1gH/v2IC8a4PK
-	zsqgT0lO6Z35c/AaTZqgYr8NW+LTID/8OqlJe36bLc966GfS7zEu
-X-Google-Smtp-Source: AGHT+IE5W1CAoDs1sVbKlEaGdGprifJoywoWBYxAmpwzSv+xmCNh9vaXDVP3VMWtWv+l2NUfwnQTlg==
-X-Received: by 2002:a05:600c:474e:b0:431:47d4:19bd with SMTP id 5b1f17b1804b1-431616287aamr99170455e9.9.1729515095885;
-        Mon, 21 Oct 2024 05:51:35 -0700 (PDT)
-Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f58f2c3sm56826175e9.27.2024.10.21.05.51.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 05:51:35 -0700 (PDT)
-Message-ID: <d20c05a7-5411-4a2a-950a-8a48b0c2e127@gmail.com>
-Date: Mon, 21 Oct 2024 15:51:33 +0300
+        d=1e100.net; s=20230601; t=1729515247; x=1730120047;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I2s35/3heGmToRyOYXVolNum+L9YFMF7ccDrRpO5RZ0=;
+        b=cWgnYHmA7j0pLm99YxeVGjmYQa38BtMHekvzv6poUsIpsKi1Vy7zh8j701h6nP5FYt
+         A+N33klxrlhW4Fy4e/Rp7kTmTeUG0flqDZgfw0NoqM9sxxh9T8nZqRZfw4N+6WaerqER
+         IbYKP37t0TpaNDrDXCdMv4suue6JVp+pn3Oy5iMmX/ERPMUGJCR5PNX8aI24wCzV9S2T
+         NQFbDNfb+bXUfBa3yYbyVITAUvHquA9lMjmN4fH6+BOW89cwq6WrtwJroIlx40NZn7mS
+         lB/75LQAitsTADXnpSdF1DpVysOAdHATTC4fEbQxQB3S8dt5S8Qlmi4B7IREyrlkcXlh
+         xe7w==
+X-Forwarded-Encrypted: i=1; AJvYcCXvtcOXqXmViS3J8d6bq6fvR7FiV0IhPUNrqO8ifGEU+3B07IU3ubFBw5PIN0Pa8JhLH5N51J52eQZy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8cYmFTqZZmd6jMH89CrHKXiRG57cla4PJDdMJJ8up/VSzZhYd
+	AKU7/uBxH9Aqn/V2140zlR+eYWqLSiimr4fMyvt3dYGLA3Zjqsi6Xumh1tL9XJY=
+X-Google-Smtp-Source: AGHT+IEz4ViWfBMtEMxwNV3/I552f0CNAjJ7YSgMEZYhkW6iNBJSB8GpfuJiztKEovvTD9JY1l14kw==
+X-Received: by 2002:a05:6512:3e1f:b0:539:8bc6:694a with SMTP id 2adb3069b0e04-53a154f8ec6mr4583475e87.43.1729515247279;
+        Mon, 21 Oct 2024 05:54:07 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef80:b7f5:199d:c177:8c47])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66c6b12dsm1924908a12.77.2024.10.21.05.54.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 05:54:06 -0700 (PDT)
+Date: Mon, 21 Oct 2024 14:54:00 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Jonathan Marek <jonathan@marek.ca>
+Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: x1e80100-crd: enable otg on usb
+ ports
+Message-ID: <ZxZO6Prrm2ITUZMQ@linaro.org>
+References: <20241011231624.30628-1-jonathan@marek.ca>
+ <20241011231624.30628-2-jonathan@marek.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: serial: samsung: Add
- samsung,exynos8895-uart compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241020180201.376151-1-ivo.ivanov.ivanov1@gmail.com>
- <20241020180201.376151-2-ivo.ivanov.ivanov1@gmail.com>
- <09c1e8a0-f669-42ef-bbd2-44649fad35d8@kernel.org>
-Content-Language: en-US
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <09c1e8a0-f669-42ef-bbd2-44649fad35d8@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241011231624.30628-2-jonathan@marek.ca>
 
++Cc Abel and Johan
 
-On 10/21/24 12:29, Krzysztof Kozlowski wrote:
-> On 20/10/2024 20:02, Ivaylo Ivanov wrote:
->> Add dedicated samsung,exynos8895-uart compatible to the dt-schema for
->> representing uart of the Exynos8895 SoC.
->>
->> Like GS101, it has a required DT property samsung,uart-fifosize, but
->> it does not exhibit the 32 bit register access limit.
->>
->> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->> ---
->>  .../bindings/serial/samsung_uart.yaml           | 17 +++++++++++++++++
->>  1 file changed, 17 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
->> index 788c80e47..2491b6048 100644
->> --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
->> +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
->> @@ -27,6 +27,7 @@ properties:
->>            - samsung,exynos4210-uart
->>            - samsung,exynos5433-uart
->>            - samsung,exynos850-uart
->> +          - samsung,exynos8895-uart
->>        - items:
->>            - enum:
->>                - samsung,exynos7-uart
->> @@ -172,6 +173,22 @@ allOf:
->>          clock-names:
->>            maxItems: 2
->>  
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - samsung,exynos8895-uart
-> This looks exactly like gs101, so please grow the enum there.
+FYI, this landed in qcom for-next last week for CRD and T14s.
 
-It's missing the reg-io-width property. My initial idea was to add a
+On Fri, Oct 11, 2024 at 07:16:22PM -0400, Jonathan Marek wrote:
+> The 3 USB ports on x1e80100-crd are OTG-capable, remove the dr_mode
+> override to enable OTG.
+> 
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 
-completely new entry, so new exynos platforms that don't exhibit
+This is a bit problematic, because dr_mode = "otg" seems to imply
+gadget/peripheral mode by default and we are currently unable to detect
+the role at runtime until the ADSP is started. Being in peripheral mode
+by default will break USB installers; they won't be able find the rootfs
+via USB. Unfortunately, they wouldn't be able to detect it once in the
+rootfs either, because usually you first need to copy the ADSP firmware
+from Windows (at least on the laptops).
 
-the same issue could grow the enum there.
+I think the best quick fix would be to set
 
-Although now that I think about it, I could grow the gs101 enum and set
+	role-switch-default-mode = "host";
 
-the  reg-io-width property for gs101 after that list.
+for now to restore the old behavior in initrd, while still allowing to
+switch to peripheral mode once detected by the ADSP later.
 
-Best regards, Ivo.
+It would be nice to have gadget mode in initrd as well, since e.g.
+postmarketOS needs that to set up the USB debug shell. But I'm not sure
+how we could support that:
 
-> Best regards,
-> Krzysztof
->
+ - We could designate some of the ports as "peripheral by default" and
+   some as "host by default". E.g. usb_1_ss0 is also used for EDL and
+   Fastboot on CRD, so it's more likely to be used in peripheral mode.
+   But there still would be users confused about why they cannot plug in
+   their USB installer into one of the ports...
+
+ - Long term, I wonder if there is any way we could reuse the reduced
+   ADSP firmware from UEFI for USB detection until we start the full one
+   later? Perhaps it provides a similar interface?
+
+Thanks,
+Stephan
+
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 12 ------------
+>  1 file changed, 12 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> index eb6b735c41453..bc66f4713b231 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> @@ -1568,10 +1568,6 @@ &usb_1_ss0 {
+>  	status = "okay";
+>  };
+>  
+> -&usb_1_ss0_dwc3 {
+> -	dr_mode = "host";
+> -};
+> -
+>  &usb_1_ss0_dwc3_hs {
+>  	remote-endpoint = <&pmic_glink_ss0_hs_in>;
+>  };
+> @@ -1600,10 +1596,6 @@ &usb_1_ss1 {
+>  	status = "okay";
+>  };
+>  
+> -&usb_1_ss1_dwc3 {
+> -	dr_mode = "host";
+> -};
+> -
+>  &usb_1_ss1_dwc3_hs {
+>  	remote-endpoint = <&pmic_glink_ss1_hs_in>;
+>  };
+> @@ -1632,10 +1624,6 @@ &usb_1_ss2 {
+>  	status = "okay";
+>  };
+>  
+> -&usb_1_ss2_dwc3 {
+> -	dr_mode = "host";
+> -};
+> -
+>  &usb_1_ss2_dwc3_hs {
+>  	remote-endpoint = <&pmic_glink_ss2_hs_in>;
+>  };
+> -- 
+> 2.45.1
+> 
 
