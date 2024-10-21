@@ -1,140 +1,117 @@
-Return-Path: <devicetree+bounces-113678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E0D99A6948
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:58:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E0899A6955
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:59:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A6411C20456
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:58:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F13211F2572B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130811F706A;
-	Mon, 21 Oct 2024 12:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B543A1F7090;
+	Mon, 21 Oct 2024 12:59:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="PF7qz/av"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n2JKhJiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191C91F6681
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D1C1F4FB9
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:59:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729515414; cv=none; b=otOlpRZLUOb8BpoO5Sj9p34VQ4IQ+zukth96Q2PIzqpGKR12wkzkN4qSarBj8NOgToSDZjOt/V76M94VlYHMW1HoTWxr5NpQnWXqI/Ct8qqppp5NOG5zlFZSgBL52aaChYMu7lUyocqja4kj4JKbW6M49+zRyulQOhloxgxU7lo=
+	t=1729515548; cv=none; b=idCc7lbrBQD/Kl8Q10xNa3rJOi1FNj/EW+nmwUt0XMYwh1g+w6Efd5rd4EZ2lutUEgYMdNCppDMLGtZf4xgHtpuXS64J8XcQi6E5zM3AfdCOBWiaOTvlHQm1CMZ1hfL/l8JyvfN3dFNj6lG5AW2R+jOdpCHNeC4xW9PSu2av0L8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729515414; c=relaxed/simple;
-	bh=iF5kSi2+h7yYoqW72il1fTTVPVpJA+9T3CejaiQWTmI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tRcZpaGNUcaRjmcpDOjwWfRJjKN4yUGfzpgTUXGOck4KZFQ1ZX297NGNncmsT9gYdpTCMwxzRp9Rf8DG921jJaW31X9xRv6xK9IPNdp/vQ4RwEUYrL2GrF1A4unXxfRTEQkSDt+vkNhegFo76MDmbrHLaDaJcLlu05DvNn4biVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=PF7qz/av; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-50d5795c0f8so1174722e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:56:52 -0700 (PDT)
+	s=arc-20240116; t=1729515548; c=relaxed/simple;
+	bh=Vjhg7gca7YhiLzw2WAxTGMU+8oJpt8lE5jiECjRNVLo=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ld5IiYJUKpg69MQznsVIjysPG0P30B+n5vWwXtdcJU2AMNyLWz8SxD7VsR75TD81O/mjPsa/+0n8gFTdzC9SDlravEo1mwfoEAiBOMg3+FbrUtg85ePyG3lvworH0yQqFRdofyU5cFCZtlO+/FkUlC7LM01bcgFZO9E24bBI4G4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n2JKhJiM; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4314fa33a35so45630525e9.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:59:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1729515412; x=1730120212; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iF5kSi2+h7yYoqW72il1fTTVPVpJA+9T3CejaiQWTmI=;
-        b=PF7qz/avHVUh5mwtIC0o2a6n1Lf1NGoZvIOQ8MGyQxAMziHevHEuiww4Bgs5ZQsB7Y
-         DsjORwJ8p58v0cAyJIk2t6M0iyMLSLFLMuVx3ZGb0ILPY//apddMRNfQdrCG6aSZUO7Z
-         3cOHd9COB3kJ6tzEiED+sJgbazepcZnF59wPUQ8H7vvMi29obwnKe37Ls7latRssuM+B
-         4EaCXVi2VduFIZ+hpDtuDU4frfz4g4SP9WeaQm2YN04cD3mjrAc2e+GzsW7brRgTxJzJ
-         Q/qyJkrx7oRt+2TvH5ACO2spQgUPW+vr1WB0UwW0Vf29R3cBaPffrbXNqMkbYfZ8Y4Ds
-         lE0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729515412; x=1730120212;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1729515545; x=1730120345; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=iF5kSi2+h7yYoqW72il1fTTVPVpJA+9T3CejaiQWTmI=;
-        b=AZ4mUHb8D61Lk+QGvRY7nb+TAcbkp+KoLtJnbw9yCthUivJ+kAgtKZq43wr86xWTMh
-         rrmm3OG/VgeuXIxaD1/OXx6Bb/7yYYvL1kKMqUr34NcxX+H+aB0zMDMaDr9lefXAKOWK
-         Ml9pztvwZYVA7rimdz8Yz+dejZILkNHe1iXW5g/+f7SQjImnrlm+XBiVI/dMS+P8RXrj
-         3o0zM3KcgCK+5QdiUvw2K6266lBFRCUaimzhHjwcWSeA84NbX9Fc+jVu1RiFD074sLGt
-         S0gB4XFqMyPxb83H6V0ieFVW0IglOUAJgc7bB7bZUyP9D9+AC+RCBxHATrhR81/WlH9r
-         CpWw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5hnB447i/eNRFTdpV/DgODUoqSUlIfydZr1ViHEOJfANaqSiOFjaMpgwW8oUDdIrT5iNosFiRnZUu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoL3//Vrk8wZP9dhLzLykLpjTr1Y7k2mAi8Wk0laWeX+d0TpCQ
-	FAFzRsr6TNLmUXEf9vuQ2MxwwJxbs0PbZNfoHpn5FQe6JHK7AjEmSUCLAaOIoMMMWqIlyVD4IYp
-	kIxAYNYukdQvh2dJas4ME8abUaVhwywugjLdM3y0PW6LrG8zLCys=
-X-Google-Smtp-Source: AGHT+IFEq5ENcXQdOuBxqKLqxxVONLn/0UE6KpwIFKd/1HrI7jrMRxE3oii80pR3eyKJmbtlfIzoD+cwV3PlryjrWTE=
-X-Received: by 2002:a05:6102:5089:b0:4a5:6f41:211e with SMTP id
- ada2fe7eead31-4a5d6bd361amr9160919137.24.1729515411915; Mon, 21 Oct 2024
- 05:56:51 -0700 (PDT)
+        bh=lExjalvfmMpq5gwOfsIudp0zxSzrAVtFOo5di0TIink=;
+        b=n2JKhJiMST6R5BLVxpqyrcDDXkhImyFYELNjfh/PdfvIJrSS3l8L0QGqKdqnkj6L/a
+         57m4Lyw7mFPXDGT20kDyo17ybpGsqCX8jv624y4iSdGwU+sucdEHIPvtlavWd1HYaABq
+         CZM79aUzmmDrl0N39Vckgc2/ifzXSRVoBHqPsu4sS/CJ0e57KKZhteJkO0I6yMmioTDu
+         BQ0Q++rtwP73v1L/leExYLfAhfhbT3P7iv8OJVBWGo13mQmWyS6RZgPgYT4Yz/jXHVnL
+         Xt3LU4ykbu7To2c1DqFakR1oFI/QCjHKlrXlZ+hQMcPeDaXf9zTrtUWEM67f+2AQMGpH
+         s0Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729515545; x=1730120345;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lExjalvfmMpq5gwOfsIudp0zxSzrAVtFOo5di0TIink=;
+        b=uyNsTwYGFh+mhung2jwzMGjEBuhyLq0WkUt54ADmx5fTOOycqrzuAgE6rdBpUa1pnh
+         In6zlKflp9RtoWyeUO9Do3nTIHaKbhMBqj/R0HvBePFQyc53eyr0dxF+U/2+ywPRrRRC
+         Z2JdFnSpSOEiZYDoD6E071uX6ZwvEWd+DpTLP1V47GiaxdPsdEk5cQQdp4K5972tnopX
+         ugb0pMulpxhGbnbSWjbfl4+8g4XQha2CrlVfkOpN1BYSXy9FJ6myzv5bD4Y6Vwhd/hn2
+         kB3kv1ql6MKg+jY2fIbRF8Xhx/52FNgR5auJRzu5TXlncfapoJ9PRdlyNEku1GGI4ydm
+         4Yyw==
+X-Forwarded-Encrypted: i=1; AJvYcCXL6qHHSHF5I5zkn0APwbpBvtM6SIrRBlWKZ4lbS9fzfIQNDs+Zu2RHdVOEe1NcbPj4EJ4U83h+dNAP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIzLHPh9EhoIMX0voiI2R8BeTYpxDggYCSJomzqO1gAmNU2gxX
+	MoMD+9GjPPQvg4l5z5PgH3ojjUViVU7UWvAc5Bf44U+JStb0oe/5wuV8c0R0O0Y=
+X-Google-Smtp-Source: AGHT+IELOxD1yYGmtKz5NVs7Cif1bPDnq58GzcXrZcoKhOuT3MoVscto3WdxUTfJOlW5oxtkimx4dA==
+X-Received: by 2002:a05:600c:1d8d:b0:431:55af:a230 with SMTP id 5b1f17b1804b1-431616977d8mr85207285e9.33.1729515544800;
+        Mon, 21 Oct 2024 05:59:04 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5cc4dfsm57452995e9.45.2024.10.21.05.59.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 05:59:04 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20241003133904.69244-1-krzysztof.kozlowski@linaro.org>
+References: <20241003133904.69244-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: tc358768: switch to
+ bus-width
+Message-Id: <172951554381.1240386.8857314666442848881.b4-ty@linaro.org>
+Date: Mon, 21 Oct 2024 14:59:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241014130710.413-1-svarbanov@suse.de> <20241014130710.413-10-svarbanov@suse.de>
- <60de2ae5-af4b-4c31-bc63-9f62b08be2fc@broadcom.com> <bed7b0ea-494b-429e-8130-12d12eb11bf0@suse.de>
-In-Reply-To: <bed7b0ea-494b-429e-8130-12d12eb11bf0@suse.de>
-From: Jonathan Bell <jonathan@raspberrypi.com>
-Date: Mon, 21 Oct 2024 13:56:41 +0100
-Message-ID: <CADQZjwdO6ifEMBwh15EVPsxm4XtSYGRs==hVCZ0HmcUbADh6hw@mail.gmail.com>
-Subject: Re: [PATCH v3 09/11] PCI: brcmstb: Adjust PHY PLL setup to use a
- 54MHz input refclk
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jim Quinlan <jim2101024@gmail.com>, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Andrea della Porta <andrea.porta@suse.com>, 
-	Phil Elwell <phil@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Thu, 17 Oct 2024 at 15:42, Stanimir Varbanov <svarbanov@suse.de> wrote:
->
-> Hi Florian,
->
-> On 10/14/24 20:07, Florian Fainelli wrote:
-> > On 10/14/24 06:07, Stanimir Varbanov wrote:
-> >> Use canned MDIO writes from Broadcom that switch the ref_clk output
-> >> pair to run from the internal fractional PLL, and set the internal
-> >> PLL to expect a 54MHz input reference clock.
-> >>
-> >> Without this RPi5 PCIe cannot enumerate endpoint devices on
-> >> extension connector.
-> >
-> > You could say that the default reference clock for the PLL is 100MHz,
-> > except for some devices, where it is 54MHz, like 2712d0. AFAIR, 2712c1
-> > might have been 100MHz as well, so whether we need to support that
-> > revision of the chip or not might be TBD.
->
-> I'm confused now, according to [1] :
->
-> BCM2712C1 - 4GB and 8GB RPi5 models
-> BCM2712D0 - 2GB RPi5 models
->
-> My device is 4GB RPi5 model so I would expect it is BCM2712C1, thus
-> according to your comment the PLL PHY adjustment is not needed. But I
-> see that the PCIex1 RC cannot enumerate devices on ext PCI connector
-> because of link training failure. Implementing PLL adjustment fixes the
-> failure.
->
->
-> ~Stan
->
-> [1]
-> https://www.raspberrypi.com/documentation/computers/processors.html#bcm2712
+Hi,
 
-The MDIO writes for 2712C1 are required because platform firmware
-arranges for the reference input clock to be 54MHz.
-2712D0 can't generate a 100MHz reference input, it's 54MHz only. The
-MDIO register defaults are also changed to suit, but there's no harm
-in applying the writes anyway.
-Both steppings need to behave identically for compliance and interop reasons.
-RP1 is very tolerant of out-of-spec reference clocks, which is why
-only the expansion connector appears to be affected.
+On Thu, 03 Oct 2024 15:39:03 +0200, Krzysztof Kozlowski wrote:
+> "data-lines" property is way too similar to "data-lanes".  It is also
+> duplicating "bus-width" from video-interfaces.yaml schema.  Deprecate
+> "data-lines" and use the common property.
+> 
+> 
 
-Regards
-Jonathan
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+
+[1/2] dt-bindings: display: bridge: tc358768: switch to bus-width
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/d704a2fe530caa7023949b513b8d1c364b5832fb
+[2/2] drm/bridge: tc358768: switch to bus-width
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/bf7c079902c34f8b16ea3484de080a7bb4ad0367
+
+-- 
+Neil
+
 
