@@ -1,122 +1,126 @@
-Return-Path: <devicetree+bounces-113825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8569A7284
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:39:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E809A72A1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:51:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C02A328358A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:39:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 404A41F221D9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64241FAC20;
-	Mon, 21 Oct 2024 18:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547D81F707F;
+	Mon, 21 Oct 2024 18:51:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IlvP5uRD"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UUFdLXU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3D91DF754;
-	Mon, 21 Oct 2024 18:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDEB81D07A1;
+	Mon, 21 Oct 2024 18:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729535981; cv=none; b=OD4aIosMJDah+VDr/dE+Asz5tUVhXGMD9GmQQD2B1EFSvOt+6akxTIJArcF8dzrLBwPFBRqzK4nEJ5xNVKAmdiYUcowXTcGd1+69A8Q9Sn+XiVL54uPUiUv+PutfOCAE+D3nusRb/wsfVwlOgKf4J558Uu0v10g9rEw1b9sklU8=
+	t=1729536665; cv=none; b=hTj2CXUoBbzMwV2u/HWc65shy3h0DNZO4oVmRvg+Tj22z8wMRql4I2vYkyFRlUu/0T4eRdODD9rzVGdpYTAwJkxp/n5Cf19/epDpB0zp/f/QG2Z9EG5MNpJsFl7O/U7OPgid8W6kApjBmCMIlrhumjEqTQYE+xKNtB0qqY55yMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729535981; c=relaxed/simple;
-	bh=gqiLiE9bKe2zKK/B0GMPEQArDkJ82dcLNkYhMn29Lhw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RzwOJEoCKc6KFDjlc96yW75B1Zj6p2ZxR/tCjYFCMDtCTWpjMSNIX0DP0rjxrzzpSw5s7nkxp3ELTjdGtMo0KsLc0D/tYJ7GNnQWcwo1AHtEeUfWLFdrkBHB7kLXVrruS8TDjetw3sqlAtiMfm5ylEa5KQc4CygxAq5YdWYIhbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IlvP5uRD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE681C4CEC3;
-	Mon, 21 Oct 2024 18:39:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729535981;
-	bh=gqiLiE9bKe2zKK/B0GMPEQArDkJ82dcLNkYhMn29Lhw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=IlvP5uRDNgIIDDFoRC/zKiPRfBbBPEaTMI166oIJAJ8jl8Ci4rRNogAxQUiVmK+mE
-	 oFzqyWnPNjg2WxKG5LIEQgStUB8FPqqmLhjn75K4GB74g28Cv8i0e76h3RzS5VnkhT
-	 QEsaSlTpv9y16BovcbncRTHdY4vERZr8GyphCS1+J4euxAoEt6RAFnuu5AkN71asJQ
-	 SEQFs3Vhx1QvGy3nsO5FPTIjVORNDH/toaioJZ0i80H7kOgIMls/2NCs+sro0/yH6k
-	 ssonJ+0OVoIneAYBXZHnTCS52Y4MhGW8Xes2HNtk7hB4X5MaMXhmYAdTkdjhfUinJ+
-	 Ax47KKk7fTQ+A==
-Date: Mon, 21 Oct 2024 19:39:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: light: add support for veml3235
-Message-ID: <20241021193933.59c2d2b6@jic23-huawei>
-In-Reply-To: <20241020-veml3235-v2-2-4bc7cfad7e0b@gmail.com>
-References: <20241020-veml3235-v2-0-4bc7cfad7e0b@gmail.com>
-	<20241020-veml3235-v2-2-4bc7cfad7e0b@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729536665; c=relaxed/simple;
+	bh=c1L7b4KjHyaDOWTiFdUHcYaqE6QeCKPONNoMW8jTU44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kU3pkcqwhC7+1P9YHivjEJNfGKsqjWzACahgpgRYG0ansgMr0i9aoAPyKDVY8Wg+9VKuu+dITQJEMClqnDf8cYP4Synzb2KQ3KrLBDVOd2ecsiIiK0vInya+FYL6Rkk+SH6Nup3r12j3MTgqfoe8lALuOfHEZTUO0DxnsQyxp4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UUFdLXU2; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729536657;
+	bh=c1L7b4KjHyaDOWTiFdUHcYaqE6QeCKPONNoMW8jTU44=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UUFdLXU2XZwN1mO16qE1B3uaHX5rMiu0aoBttN4RjqbwgNq7tohGS0bO8yt0l5pxR
+	 ya/yJic/jqu4RNC7lFwZ1lqTxegm2XsH44PssiA0OL7a0/MY4lyeZ3mGGhFUyuPedm
+	 rD/8wI9TM+Z+1TSsGu5oXxCsgc+aBxvdnWK9YlU34vrHglu0xzovxtMeioHIJfyQw4
+	 F4vM39jENZSuNo6Cr2cGBcOd4hJ5wCtXrVjdIIqm6/gsolZE9SQXQjU35dvsISZ00O
+	 DkphpJyBSYcAgXoZwxyZiprXfC0QFC8x09yWZfhR1KzUUASdm8Y9nOJS8hBCyW743g
+	 vflQOmX59dH4w==
+Received: from [192.168.1.90] (unknown [188.24.146.62])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8724217E362A;
+	Mon, 21 Oct 2024 20:50:57 +0200 (CEST)
+Message-ID: <1624395d-f4e9-4c82-a5ef-c05e2f3505db@collabora.com>
+Date: Mon, 21 Oct 2024 21:50:56 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: Drop invalid clock-names from
+ es8388 codec nodes
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241019-es8328-dt-fixes-v1-1-ca77d5ce21ad@collabora.com>
+ <172953337556.748331.14779753664880128918.robh@kernel.org>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Content-Language: en-US
+In-Reply-To: <172953337556.748331.14779753664880128918.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Sun, 20 Oct 2024 21:12:17 +0200
-Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
-
-> The Vishay veml3235 is a low-power ambient light sensor with I2C
-> interface. It provides a minimum detectable intensity of
-> 0.0021 lx/cnt, configurable integration time and gain, and an additional
-> white channel to distinguish between different light sources.
+On 10/21/24 8:58 PM, Rob Herring (Arm) wrote:
 > 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Hi Javier,
+> On Sat, 19 Oct 2024 03:38:10 +0300, Cristian Ciocaltea wrote:
+>> The binding for Everest ES8328/ES8388 audio CODEC doesn't support the
+>> 'clock-names' property:
+>>
+>>   rk3588-orangepi-5-plus.dtb: audio-codec@11: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>     from schema $id: http://devicetree.org/schemas/sound/everest,es8328.yaml#
+>>
+>> Since the related audio driver is also not making use of it, drop the
+>> invalid property from all es8388 codec nodes.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>> Several DT fixes involving the usage of the Everest ES8328/ES8388 audio
+>> CODEC.
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts      | 1 -
+>>  arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts  | 1 -
+>>  arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts      | 1 -
+>>  arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts | 1 -
+>>  4 files changed, 4 deletions(-)
+>>
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y rockchip/rk3399-roc-pc-plus.dtb rockchip/rk3588-orangepi-5-plus.dtb rockchip/rk3588-quartzpro64.dtb rockchip/rk3588s-indiedroid-nova.dtb' for 20241019-es8328-dt-fixes-v1-1-ca77d5ce21ad@collabora.com:
+> 
+> arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dtb: audio-codec@11: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/sound/everest,es8328.yaml#
+ 
+This warning is unrelated, but eventually fixed via:
 
-I missed one thing on previous review...
-There is no obvious reason this driver needs to provide raw and processed
-values.  Unless I'm missing something, just provide raw and let userspace
-do the maths for us.
+https://lore.kernel.org/lkml/20241019-es8328-doc-port-v1-1-25c1d1b5c65c@collabora.com/
 
-Jonathan
-
-> diff --git a/drivers/iio/light/veml3235.c b/drivers/iio/light/veml3235.c
-> new file mode 100644
-> index 000000000000..fa2141cced8f
-> --- /dev/null
-> +++ b/drivers/iio/light/veml3235.c
-
-> +static const struct iio_chan_spec veml3235_channels[] = {
-> +	{
-> +		.type = IIO_LIGHT,
-> +		.channel = CH_ALS,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +				      BIT(IIO_CHAN_INFO_PROCESSED),
-Why both raw + scale and processed?
-
-We normally only provide raw and processed for light sensors if:
-1) The conversion is non linear and hard to reverse.
-2) There are events that are thresholds on the raw value.
-
-Here it is linear so just provide _RAW.
-
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SCALE),
-> +	},
-> +	{
-> +		.type = IIO_INTENSITY,
-> +		.channel = CH_WHITE,
-> +		.modified = 1,
-> +		.channel2 = IIO_MOD_LIGHT_BOTH,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SCALE),
-> +	},
-> +};
+Regards,
+Cristian
 
