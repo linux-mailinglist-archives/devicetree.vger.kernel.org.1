@@ -1,110 +1,149 @@
-Return-Path: <devicetree+bounces-113881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 540399A9259
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 23:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E3669A9305
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 00:10:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EBD7282B99
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:51:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE8D6282AB4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 22:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC96C1E284A;
-	Mon, 21 Oct 2024 21:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556521E32BD;
+	Mon, 21 Oct 2024 22:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SUWeuid6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SD2QvFNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87EE1990C8;
-	Mon, 21 Oct 2024 21:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D385E433D8;
+	Mon, 21 Oct 2024 22:09:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729547459; cv=none; b=rIbRaQzlPwY3bBliChHybz6UKJZaYp4vTGQgbYeL8fbO8E9yrdbJIZw/bAsBCFYhs3nMfzTB+2t0W3nUDjRW4K5C0yeUCrfsRs23mLAFXBM8xL8aSEINzq+DFua6y6wTbsmniTZLMIhb/LoEkc3ubeTjEqjMWLY/fKLRxN+ClT8=
+	t=1729548595; cv=none; b=BJzugd/+NQR6ahExkERHt8mo6Rz44/cUowtcY1u/HrXoLVzzzOF7NIBSxvW7BPrGPyFNZ1tS1hFf265+AJuUkkVuO7z2ch9yZhjTR2CQQCnovpuuZ7JxmsLsdxJmeLadF+5/HDEd/XVsrSd9/un5/xEQnKNtgz9hjR1dHIlgvqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729547459; c=relaxed/simple;
-	bh=MEFAmhWYCYIUO6J5UjvEp2P8ExLk7R2JFK8tfioHqe0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jaS/nay9ICTpTFwXitIUuyhCU0Apj4mRtOvSUmRGSWE686yonOFswuoE86r3FqXOU17AthfVDx1VjxmXdIcNdZpV6fy89tny1PaP5IexRRPbG64MPvvGs65w+oSzZdtHFQpx/0h6uKI6FRqGbTuxXetY1AAicRYUWCMUrW5fN/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SUWeuid6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C160C4CEC3;
-	Mon, 21 Oct 2024 21:50:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729547459;
-	bh=MEFAmhWYCYIUO6J5UjvEp2P8ExLk7R2JFK8tfioHqe0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=SUWeuid60jUMJhiqaF3iJPOOCxV0OHU020fbpYoPhzRH8h7fa7gWejBB1gsXHspok
-	 OeQdi8O4v6XY/VSS9ac7ONVNhEI1mxEdyVOsR0uTdolMb9vFKQdQeA+PIQfkkNzASc
-	 sC4c4WBME708FZyt+ni9tI2+j3G2fkZ3I4SPezOOBKaeFOkxtrlcu9I9wQn930RilS
-	 uZ1stw/dB+i5xtdZ/QXKvuCTKxDdwLLW3w6+ZWwCcS1MGREJA1S1c/uT4nSq+ZbsQs
-	 ZKgFZ8sLTUudQ/Cj3NlwDngUBy+8ot3V7cQIvUMm4k0FpxY0oXEcFcj6HseSV6Yjne
-	 Tr/ixRy/O8J3g==
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Andi Shyti <andi.shyti@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20241020182121.377969-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20241020182121.377969-1-ivo.ivanov.ivanov1@gmail.com>
-Subject: Re: (subset) [PATCH v1 0/6] arm64: dts: exynos8895: Add cmu, mct,
- serial_0/1 and spi_0/1
-Message-Id: <172954745600.159374.15357037324380412409.b4-ty@kernel.org>
-Date: Mon, 21 Oct 2024 22:50:56 +0100
+	s=arc-20240116; t=1729548595; c=relaxed/simple;
+	bh=J5fOJ58JTriO00v8vqyJUW4f3Ol9azJwTH6+fgim+dw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kx5kfLxdHhtUoMWfPt/K6MpZdIDiETdBh279E8I34iRR9AKq5gjtFyUGhx6AzDdvpNA3CPU7vVtGdfzrj4Fe4QLQq6PwQHbJjAbtgQu/v3vD52afodQNqmdScCpxS5D/Yi/VKrkvYst1To60fN2fOowvD6S8JBHvgbOSmmOqEHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SD2QvFNj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LKfrJ0029542;
+	Mon, 21 Oct 2024 22:09:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=wpi7o+07TDt9MzAXwaqEjlsG
+	7+hYbr7RYO3nHtxlHmo=; b=SD2QvFNjfRKCxEmdlgivknQwgtNpKaChveNeCVqg
+	oaYYKP0Q+wS7V+d/F0ZA/B3vaaph6ZO/8zK/kyiQcYXbGIQi7QIRoC0+XD4t/AG8
+	aA3zJSoLv34YwX3uZTrYnTBaAEADleKh9HsMiG+xzl414/3rUQ6KjxsrCrhPRe6l
+	wjMzULcJhSGLaPjJAbHd5FffmTzFU4yAcuoABU2oSnsOElyCZr7z0vXGZtU9byoB
+	VHtIVSgoZV6HkafQTqDHPZtkdDBT9e+B88Mvx0YdiS5CLFeXawgE7QyQWMDLC7YD
+	70xE7olMEH8e/r31qbza/tQyquRl6HMIwb1AM/z7MQn6yg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42c6vc67be-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Oct 2024 22:09:41 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49LM9OXp029974
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Oct 2024 22:09:24 GMT
+Received: from hu-akhilpo-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 21 Oct 2024 15:09:18 -0700
+Date: Tue, 22 Oct 2024 03:39:14 +0530
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
+	<nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH RFC 1/3] drm/msm/adreno: Add support for ACD
+Message-ID: <20241021220914.vrxiyeoxjyxweovu@hu-akhilpo-hyd.qualcomm.com>
+References: <20241012-gpu-acd-v1-0-1e5e91aa95b6@quicinc.com>
+ <20241012-gpu-acd-v1-1-1e5e91aa95b6@quicinc.com>
+ <1543ae2a-76ff-4b36-adae-37076e48b7f8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1543ae2a-76ff-4b36-adae-37076e48b7f8@oss.qualcomm.com>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NsB4opqiPqmhR1jwMIwzlPqCN0S6yBOw
+X-Proofpoint-ORIG-GUID: NsB4opqiPqmhR1jwMIwzlPqCN0S6yBOw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ spamscore=0 phishscore=0 bulkscore=0 mlxscore=0 adultscore=0
+ mlxlogscore=985 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410210158
 
-On Sun, 20 Oct 2024 21:21:15 +0300, Ivaylo Ivanov wrote:
-> Hey folks,
-> 
-> This patchset adds device tree nodes for multiple clock management unit
-> blocks, MCT, SPI and UART for Exynos8895.
-> 
-> Exynos8895 uses USIv1 for most of its serial buses, except a few that
-> have been implemented in this series. Support for USIv1 and HSI2C will
-> be added in the future.
+On Mon, Oct 21, 2024 at 11:38:41AM +0200, Konrad Dybcio wrote:
+> On 11.10.2024 10:29 PM, Akhil P Oommen wrote:
+> > ACD a.k.a Adaptive Clock Distribution is a feature which helps to reduce
+> > the power consumption. In some chipsets, it is also a requirement to
+> > support higher GPU frequencies. This patch adds support for GPU ACD by
+> > sending necessary data to GMU and AOSS. The feature support for the
+> > chipset is detected based on devicetree data.
+> > 
+> > Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> > ---
 > 
 > [...]
+> 
+> > +
+> > +	/* Initialize qmp node to talk to AOSS */
+> > +	gmu->qmp = qmp_get(gmu->dev);
+> > +	if (IS_ERR(gmu->qmp)) {
+> > +		cmd->enable_by_level = 0;
+> > +		return dev_err_probe(gmu->dev, PTR_ERR(gmu->qmp), "Failed to initialize qmp\n");
+> > +	}
+> 
+> I'm still in favor of keeping qmp_get where it currently is, so that
+> probe can fail/defer faster
 
-Applied to
+Sorry, I somehow missed this email from you until now.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+If it fails, then it probably doesn't matter if it is a bit late. But for defer, isn't there
+some optimizations to track the dependency from devicetree data? I am
+not entirely sure!
 
-Thanks!
+Since qmp node is related to ACD, I felt it is better to:
+  1. Keep all acd probe related code in a single place.
+  2. Be more opportunistic in skipping qmp_get() wherever possible.
 
-[2/6] spi: dt-bindings: samsung: Add a compatible for samsung,exynos8895-spi
-      commit: f45a4399c1b582c6ddc179cc940aed73907b9453
+But if you still have strong opinion on this, I can move it back in the
+next revision (v3).
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+-Akhil
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+> 
+> Konrad
 
