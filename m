@@ -1,149 +1,117 @@
-Return-Path: <devicetree+bounces-113882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E3669A9305
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 00:10:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3557E9A9320
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 00:16:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE8D6282AB4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 22:09:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0E2F1F22DA1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 22:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556521E32BD;
-	Mon, 21 Oct 2024 22:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2871E2846;
+	Mon, 21 Oct 2024 22:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SD2QvFNj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="URjA5o8g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D385E433D8;
-	Mon, 21 Oct 2024 22:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CBB41CBEA1;
+	Mon, 21 Oct 2024 22:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729548595; cv=none; b=BJzugd/+NQR6ahExkERHt8mo6Rz44/cUowtcY1u/HrXoLVzzzOF7NIBSxvW7BPrGPyFNZ1tS1hFf265+AJuUkkVuO7z2ch9yZhjTR2CQQCnovpuuZ7JxmsLsdxJmeLadF+5/HDEd/XVsrSd9/un5/xEQnKNtgz9hjR1dHIlgvqg=
+	t=1729548957; cv=none; b=XjxHpWDg/rwEPW/PgS1RZsnS8M4GaVp95GXCxwC91UHJo2bo3qgVtOfOrCZleMEycrv9VfHaDccjk18O/H8naAJIDU3okIijERqjqpENoPsA8h9BrASI/A+5Oxjp+fVAF1BExzetK78zP5T0HLOTMgcQYsPxpuR5smyiPxXnbfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729548595; c=relaxed/simple;
-	bh=J5fOJ58JTriO00v8vqyJUW4f3Ol9azJwTH6+fgim+dw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kx5kfLxdHhtUoMWfPt/K6MpZdIDiETdBh279E8I34iRR9AKq5gjtFyUGhx6AzDdvpNA3CPU7vVtGdfzrj4Fe4QLQq6PwQHbJjAbtgQu/v3vD52afodQNqmdScCpxS5D/Yi/VKrkvYst1To60fN2fOowvD6S8JBHvgbOSmmOqEHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SD2QvFNj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LKfrJ0029542;
-	Mon, 21 Oct 2024 22:09:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=wpi7o+07TDt9MzAXwaqEjlsG
-	7+hYbr7RYO3nHtxlHmo=; b=SD2QvFNjfRKCxEmdlgivknQwgtNpKaChveNeCVqg
-	oaYYKP0Q+wS7V+d/F0ZA/B3vaaph6ZO/8zK/kyiQcYXbGIQi7QIRoC0+XD4t/AG8
-	aA3zJSoLv34YwX3uZTrYnTBaAEADleKh9HsMiG+xzl414/3rUQ6KjxsrCrhPRe6l
-	wjMzULcJhSGLaPjJAbHd5FffmTzFU4yAcuoABU2oSnsOElyCZr7z0vXGZtU9byoB
-	VHtIVSgoZV6HkafQTqDHPZtkdDBT9e+B88Mvx0YdiS5CLFeXawgE7QyQWMDLC7YD
-	70xE7olMEH8e/r31qbza/tQyquRl6HMIwb1AM/z7MQn6yg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42c6vc67be-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Oct 2024 22:09:41 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49LM9OXp029974
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Oct 2024 22:09:24 GMT
-Received: from hu-akhilpo-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 21 Oct 2024 15:09:18 -0700
-Date: Tue, 22 Oct 2024 03:39:14 +0530
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
-	<nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH RFC 1/3] drm/msm/adreno: Add support for ACD
-Message-ID: <20241021220914.vrxiyeoxjyxweovu@hu-akhilpo-hyd.qualcomm.com>
-References: <20241012-gpu-acd-v1-0-1e5e91aa95b6@quicinc.com>
- <20241012-gpu-acd-v1-1-1e5e91aa95b6@quicinc.com>
- <1543ae2a-76ff-4b36-adae-37076e48b7f8@oss.qualcomm.com>
+	s=arc-20240116; t=1729548957; c=relaxed/simple;
+	bh=tlzS8OUaGKKM5mELn1RLA+UMFi/tFuqHtRRxd4kXqJs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RucCQfbVVSWuxIwNcmbTKCnhj1LHzyyxNBUxT9c/AYqe0wK3E3Yz5l8tfChvLpCe7IKRLjyNDsEdwp+/7nrDAGiJJ4q5Si6QoKDS0vgJodi7E0u5AJpYIHCADbp3qm4lxWGmh0HOH3JxWoOGkw5hOz0iXnxnsnT2rt1ZIxKvSYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=URjA5o8g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99A33C4CEC3;
+	Mon, 21 Oct 2024 22:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729548957;
+	bh=tlzS8OUaGKKM5mELn1RLA+UMFi/tFuqHtRRxd4kXqJs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=URjA5o8gwhVBxpzGXyx0rnXf3C/QswFyUUSwpGvUv/UBKeWb0sjIxB3MYkxs0dYQv
+	 9dpe6Xcltn1JEVsfORiJfKZdZYHN/b5FtG3ucsHGz3wLZpocimGKA8vXUcXampTBjd
+	 LP12RPeCfq5UPp3vmCbh0V8UbLV+l7+FCC24xc77hLH2zIUDDk+OZOqV+CseTO65Qz
+	 HA7mDtOviNHk4WKCasAEDM/mNR+3PpeLAbbiKwJXONon+7IbaGqcAQs2l0sYxj9jV1
+	 Wfz7J+JWC+QIl7+OdX/Al3MhxeIoJPPzeMmZMYiZEQ6/IUjyx97g+Jva6/3fXmdvCu
+	 37baddp7RVfoQ==
+Date: Mon, 21 Oct 2024 23:15:50 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: James Calligeros <jcalligeros99@gmail.com>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	asahi@lists.linux.dev, linux-sound@vger.kernel.org,
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+	Neal Gompa <neal@gompa.dev>
+Subject: Re: [PATCH v2 1/3] dt-bindings: sound: Add CS42L84 codec
+Message-ID: <e1d35dc6-4c58-490a-87d3-1e9694b3c650@sirena.org.uk>
+References: <20241020-cs42l84-v2-0-37ba2b6721d9@gmail.com>
+ <20241020-cs42l84-v2-1-37ba2b6721d9@gmail.com>
+ <20241021192632.GA965116-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="AuSqP+ZlqEY4r3Ug"
 Content-Disposition: inline
-In-Reply-To: <1543ae2a-76ff-4b36-adae-37076e48b7f8@oss.qualcomm.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: NsB4opqiPqmhR1jwMIwzlPqCN0S6yBOw
-X-Proofpoint-ORIG-GUID: NsB4opqiPqmhR1jwMIwzlPqCN0S6yBOw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 suspectscore=0
- spamscore=0 phishscore=0 bulkscore=0 mlxscore=0 adultscore=0
- mlxlogscore=985 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410210158
+In-Reply-To: <20241021192632.GA965116-robh@kernel.org>
+X-Cookie: Most people prefer certainty to truth.
 
-On Mon, Oct 21, 2024 at 11:38:41AM +0200, Konrad Dybcio wrote:
-> On 11.10.2024 10:29 PM, Akhil P Oommen wrote:
-> > ACD a.k.a Adaptive Clock Distribution is a feature which helps to reduce
-> > the power consumption. In some chipsets, it is also a requirement to
-> > support higher GPU frequencies. This patch adds support for GPU ACD by
-> > sending necessary data to GMU and AOSS. The feature support for the
-> > chipset is detected based on devicetree data.
-> > 
-> > Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> > ---
-> 
-> [...]
-> 
-> > +
-> > +	/* Initialize qmp node to talk to AOSS */
-> > +	gmu->qmp = qmp_get(gmu->dev);
-> > +	if (IS_ERR(gmu->qmp)) {
-> > +		cmd->enable_by_level = 0;
-> > +		return dev_err_probe(gmu->dev, PTR_ERR(gmu->qmp), "Failed to initialize qmp\n");
-> > +	}
-> 
-> I'm still in favor of keeping qmp_get where it currently is, so that
-> probe can fail/defer faster
 
-Sorry, I somehow missed this email from you until now.
+--AuSqP+ZlqEY4r3Ug
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If it fails, then it probably doesn't matter if it is a bit late. But for defer, isn't there
-some optimizations to track the dependency from devicetree data? I am
-not entirely sure!
+On Mon, Oct 21, 2024 at 02:26:32PM -0500, Rob Herring wrote:
+> On Sun, Oct 20, 2024 at 12:47:31AM +1000, James Calligeros wrote:
 
-Since qmp node is related to ACD, I felt it is better to:
-  1. Keep all acd probe related code in a single place.
-  2. Be more opportunistic in skipping qmp_get() wherever possible.
+> > CS42L84 is a headphone jack codec made by Cirrus Logic and seen in Apple
+> > computer models starting with 2021 Macbook Pros. It is not a publicly
+> > documented part. To a degree the part is similar to the public CS42L42.
+> > (The L84 superseded L83 seen in earlier Apple models, and the L83 was
+> > pretty much the same as L42.)
 
-But if you still have strong opinion on this, I can move it back in the
-next revision (v3).
+> Why can't this be added to=20
+> Documentation/devicetree/bindings/sound/cirrus,cs42l42.yaml?
 
--Akhil
+> I guess perhaps you don't know what the supplies look like? Do any of=20
+> the custom properties apply?
 
-> 
-> Konrad
+I don't know if the Cirrus people who are listed as maintainers of that
+binding might have concerns about doing things that acknowledge this
+particular part.
+
+--AuSqP+ZlqEY4r3Ug
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcW0pYACgkQJNaLcl1U
+h9BZFAf+MkynQkP7ahny4beQjJnCITxsbLUXDPAGR+wG/KKSSbtlgtwaDh9n0KS8
+XBaUhZRgJoImr4uV6+0Nw8NHgsCEoQw/5E6vS2f7614m0H2j5FqZVwgK1L14HwbD
+bJgpZp/Hd1GJSKSwj7mr354p6n7S3TlL8zDsTkTxXHhFwPh+j82aSTdffYG96q9r
+TqfHCFrXRV1Am5DK+WOskUduHAGUXzXo/1HlQldi9Bu0Hn/LCfj9q94ZbrfCGL+P
+xvwYAVpnsRqDyiwusLLDO+AvpsZENN3+eUGOy18CNy3ioxODjEqnyfusnW2VyXUq
+bSRvUQpI7boxZrZtz13nHX5kPBT++Q==
+=KMNB
+-----END PGP SIGNATURE-----
+
+--AuSqP+ZlqEY4r3Ug--
 
