@@ -1,79 +1,101 @@
-Return-Path: <devicetree+bounces-113566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1AD59A616E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:07:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 502859A6180
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16A6C1C24F8B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:07:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F67B1C2515E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC321E47B9;
-	Mon, 21 Oct 2024 10:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6EA1E7C11;
+	Mon, 21 Oct 2024 10:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="kSie+Ket"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ekeUIhGo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70DF71E376D;
-	Mon, 21 Oct 2024 10:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746811E47DC
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:06:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729505111; cv=none; b=T2uj0jm48zSasSERMdhYRFtpZdGraAU1nSYhdqk3X2Pr68QdTR7P7rWiJmGSawXOoKmHwP1Fod/AFktLfFIQBK7Eerdh3lFTkzGfmAF3TJu3i6Sl2au6Xrzif8UucdnGkIXk0BYup9d8ooyU1cJGCBvyGt2BsiO7T3KspG3oZ9I=
+	t=1729505178; cv=none; b=RhX3OxOab4gJ3k/2gkc1UE/Cjng4WFXRenxjquUgiS1HLDahqeiDZRheZItgRcyRZIKOcDueygGuct/1VqoFhv+smj6EBujsuDPZ//dqJ5zM/TS4vZZgK+7ublLfPsWXIAebiHi4Ba6PyG1u6oAgQCsw7GhXr6KeDu9RARF1Zgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729505111; c=relaxed/simple;
-	bh=QGKOfojuGwA8bk3kyiBttuSlO5EB+1utUkRRPtuOQH4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UOTCOaiOQhSkAz9/BDJ39fEMT6KnpP94Qh5yjQRnOR16FBqncEC0KiQoiwITzEE5t2Ft7lItt7A9NLYzJzTiAmhhQ9LmHQM4VXcehXFgW8tvjVn45VonaarFXWqUroOg15WRKhigUgBCpsRRPYnPLdLwNn9Y630GAvkaOEki/A0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=kSie+Ket; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=u72vB56gVZXy+GebQCE/4uynmgB2s9u3gqTbtiTGTcA=;
-	b=kSie+KetPIIQ9ik4pFKsdxHs2MoPIIvHEfrQoLnocl43LZfw6EWGvE0sz6imYW
-	HhF67h/pFBnf1vKaSyXfs4L+WDpv8w7MZblrI2avWdtGuknrJTsr2UTe0mcGao0n
-	8xDZS92Q34a7yzhDZtgRudRwmuhl5NDgLRjuVCTYaBjoY=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBHl9UnJxZngIeFAA--.4804S3;
-	Mon, 21 Oct 2024 18:04:25 +0800 (CST)
-Date: Mon, 21 Oct 2024 18:04:23 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v1 1/1] arm64: dts: layerscape: remove cooling-max-state
- and cooling-min-state
-Message-ID: <ZxYnJyMCP0jFSSLJ@dragon>
-References: <20241007220542.897605-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1729505178; c=relaxed/simple;
+	bh=IkIwaxiVQnThLvGv0yyixcoZ/tGJwbeD68R0Qi8SrPk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=D5OJGesvVe5s0Ard2JbcEv2qaEmIZoglH9U4aQZJGVLT9+uJqt9s+A90jwNG2xWRdah9P48eU9KXEcYJzkiOnoiNiXwSCevvWhdAWpP/NqCPlHXaFUi86chG2PQx3B75XxjKz1krcb7aECMjgnj6KjwsH1ZpcZGQ53RhHa9bJxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ekeUIhGo; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e2e3e4f65dso45263337b3.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:06:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729505175; x=1730109975; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GsmefuCLy3782StxBxP88Vmmv8aDiOgUgCUBIcd2Ybk=;
+        b=ekeUIhGoDf1doLlsnYp/mpGeZEL1nbiYAXWbfae3/TjZazJRB9b4/yyvsO1N9QOY1s
+         aaXAtt0sUHf8HYF4YIWp/KejB6N1FTzdgaYOrUxK0sSF71eIZEX5ohmWh6l4S5YAihjT
+         M0vLaIku9mP6rdoNUCVkKsVtBga9sbPSudSUEIXQGtMdckiLqnvb5HlBO/IAQfZB5Qkk
+         ujidnX6RpDUqI9BXMDHRU+PrvTSOCFHhQkjbh/5be86cmTW+Ypr2faQWz4Zj4PAB1Hfa
+         vdZYslrrZ2ZLQprSzoAjfzvC7pt8gw1IVDxzwQ6bYi+Vq+JHINHfh/QFNGWeFlZJyLYI
+         2eUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729505175; x=1730109975;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GsmefuCLy3782StxBxP88Vmmv8aDiOgUgCUBIcd2Ybk=;
+        b=vN8OV/8VXpWDeXU8Bz7uq3G417XDAVTb6z+5saJZ3GsZeAsbFoSNUHfUTtA7+FQLOm
+         3PyzbQMc06wvXOzixgmJqH/a0YFC/lwJ6pGOuNpak4fH8rs69RDCRJEr7b1iopsE/X5g
+         pR1r1gpp0+sPH0Cba9GDaGUqEkJGbbtoXDXDJ2ojwihejJ/kTCj0XhCf25CoBCNwWjaN
+         9QkABHw54NNJizh6x73PUzEQBhMf0z25Fa4tpd2ybgJ+PIGhNx4nng2O24t+/no8Q159
+         rpZuFXrfcOfp0yutWd7h5I1RNzHVZ9GV3tn3jMmpxCCrSwsGEVMIn8o3iHtdLhpVjykH
+         Gxhw==
+X-Forwarded-Encrypted: i=1; AJvYcCU7FmlrI7XEyvyeytAeicS0MQvYUHHa3/FwiyM6yqJdf7K5t5jc7mmLKsZ8Yaw3B/agmyiBG5mkO6Ug@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNlN+Thr56CgJomvtPL7d5MxJRecBNiuHDNWwCWgBpkWz50tnJ
+	UuEg7ohEWwXOExMy5oGdNT2BZpg6dZ3lHHySlW9hGGCNLG+vsZNgg7HUzcHho73QFhtJfRSzbva
+	suq3y0n69UoLGjZ+pDBbmGBkP7+G5bIv5jMcZ2g==
+X-Google-Smtp-Source: AGHT+IGOSTY2exEdjJUwtklxk91bFNLum+uKyLKxuCCBfJbzs2BqXrT/kAOjREMkniMhG0JWTTfDut+gz1PbEoQ0YQ0=
+X-Received: by 2002:a05:690c:87:b0:6e3:29ae:a3a5 with SMTP id
+ 00721157ae682-6e5bfd4f8c6mr101900967b3.34.1729505175322; Mon, 21 Oct 2024
+ 03:06:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007220542.897605-1-Frank.Li@nxp.com>
-X-CM-TRANSID:Mc8vCgBHl9UnJxZngIeFAA--.4804S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4b10UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgt-ZWcWDelKcQAAst
+References: <20241019-sar2130p-phys-v1-0-bf06fcea2421@linaro.org>
+ <20241019-sar2130p-phys-v1-1-bf06fcea2421@linaro.org> <ZxYEV-hS9NhlnhYZ@hovoldconsulting.com>
+In-Reply-To: <ZxYEV-hS9NhlnhYZ@hovoldconsulting.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 21 Oct 2024 13:06:08 +0300
+Message-ID: <CAA8EJpo++Oo2CfG3E56piuyFW4yBSC1qzcFwJMV2TizcrxZN5g@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: phy: qcom,sc8280xp-qmp-usb32dp: Add
+ SAR2130P compatible
+To: Johan Hovold <johan@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Oct 07, 2024 at 06:05:42PM -0400, Frank Li wrote:
-> Remove unused property cooling-max-state and cooling-min-state.
-> Remove undocument property #cooling-cells for ti,amc6821.
-> Fix below dtb_check warning:
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: fan-temperature-ctrlr@18: '#cooling-cells', 'cooling-max-state', 'cooling-min-state' do not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/hwmon/ti,amc6821.yaml
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On Mon, 21 Oct 2024 at 10:35, Johan Hovold <johan@kernel.org> wrote:
+>
+> On Sat, Oct 19, 2024 at 06:44:50PM +0300, Dmitry Baryshkov wrote:
+> > Document compatible for the USB+DP Combo PHY on SAR2130P platform.
+>
+> Looks like you got the patch prefix wrong (it should include 'usb43dp').
 
-Applied, thanks!
+Right...
 
+
+-- 
+With best wishes
+Dmitry
 
