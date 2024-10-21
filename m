@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-113559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA9E9A60F1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:01:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6446A9A60F8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:02:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B1DE1F2127E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:01:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24BFC282F07
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5475A1E570A;
-	Mon, 21 Oct 2024 10:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C7D1E6DFC;
+	Mon, 21 Oct 2024 10:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zqrxBMTa"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eYp4iOoV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C671E47C3
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6861E5708
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729504820; cv=none; b=s865uSLgA+NLzGy+Adp0Nje262dBfy38epSkwTqGVqTecdQ++hqYAHMGc8wpxuH8+oQK321oMfQ7NHuSDeTiknxyCV0UD7+9LcoenXjL+VDPxwH10Ts+/JxOX8U8uuKax4iT3ySBJ3dwuAY05MXe8qDze7G6Mf5J7wyeVSu/VGw=
+	t=1729504822; cv=none; b=p9UUMA5NHSPC5D4r8lP/ZS0/eLHN6YpWji/NoFJF//uRjOT7LAOxPrwFxLhXKl8Gs2hjiig7eSMsEUcZq2Ihw4ycfBvfZN9Pa8R97dlA9aXtCArDh/1bD1qtzv3ljbnD/XcOqCu2SA7VIv61Y3W+bp5aPLtbDgwdY7UlPxyjpXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729504820; c=relaxed/simple;
-	bh=g5cZOk2TBRdNqBRRxIPoU5chsYH4Ym3JbGrRyU4zj2o=;
+	s=arc-20240116; t=1729504822; c=relaxed/simple;
+	bh=JVqTtX2R5tgI5AgbA4RUFWdiRHGbpSlYbypt0KFdYVI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AifMrjjYyTdcu4FRUGNuXlakNXIH+NNZ4Q9JFloGbfmet1bwlxj8D3bFpWwe9WOqYLXs2LN3DXwQUBAr03r59zqMV/1CGuj6La9gOKX2NVM8rH69eiKYPnuWZMyNHsTBla9tt/QRjrdsmgoaCSzzVFskNBPmr6/v4yGzrV4a7j0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zqrxBMTa; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:To:Cc; b=hojnaoW4gS9T+6zLysuOohDewH8oXffeGaYMbXNVbaAp73nSvyhsmWuiwXZ/1HXEcTWddsG5prCTCh3kA/8CiEtyFA/kZBjPFSZvO/IG57m2FJhniQlEmzd4P7hCBmRqr2oTXM5rvsYAHlfL7pOpUvP8sbzN54Y+sCUKyW5XhOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eYp4iOoV; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43169902057so18002115e9.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:00:17 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d4b0943c7so3146645f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:00:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729504816; x=1730109616; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729504818; x=1730109618; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GPOrVtTUtrTNGw1M2sJsQdVYLeAplWcJ5G6hfZza2f8=;
-        b=zqrxBMTaza9gmCIugvDKA28+0PPQqa8RJYzO9CaShDxAzZAYNfvKMDw/9toJwXJNN9
-         WcaQoDzWq6Y1nVadAHiTjovp+6o2zKKsJAlIi1ZuoeLMB14uJJrlbyhL6i2VxSJYFPHY
-         tZniExwR0F6/6sKmPM1AUpXLrO0e4TTT0m2mljRAxFX2m4K82jl+eyEo2sPa/yd/CLNi
-         ECQwFvgwRfBTlcqIC83PrQOl1bmT8sxfGVlrdF3A4Oq5PTCUNk6Jcz4atX/HgzwJTN+W
-         1wV/5vpYlY7SXLzehG0lWwP//eEvK1OWDQCgRZooF8sN1KpWRp+XH/Xg11/O/gNJjmCP
-         aPaw==
+        bh=y2t5+GdX8LkCEmUcnfMgk3trAyT7R5nzR/wNUS1TNBk=;
+        b=eYp4iOoVIUlQdZubB9EHihRjM89bOqrYWf3HP2erVXi02iFeDUFkiF7NWHGXXkB7mk
+         gRi94g0Y1ZKHUL62if5mkalzcZ8UpTc9qeKXhOiLcpZVEEFArV3FZN/Q6LJLAQNHB6mp
+         eGub/aYantxYDSxn1ou9RrP42nVFSDd50EwzYGzWhdGWQl4af1O9pIBJESLAQbrxmew4
+         GjjJARhJDrCMe5N3s7M2NJ7t+BNatG2eBT4ZnHKyxsUK5ukV4HKUXQ6gRkn1M/9J8tl9
+         P6kVVixjP4RvYv0RX5/OIDSeya+Ch/NE4rEUzIpZnF6mY/123u1oNzSX+aFhirLA6PTD
+         Z3rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729504816; x=1730109616;
+        d=1e100.net; s=20230601; t=1729504818; x=1730109618;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GPOrVtTUtrTNGw1M2sJsQdVYLeAplWcJ5G6hfZza2f8=;
-        b=FQzi2z2l3x7ZOmgoOom1Uj9vkYw28aGh/PPHW7IkHn6WvpwwbIB9USl5ZJ88W/CLG7
-         YtmD9h8Hvs+qRz2xXl5khW81yR5zg+i5+OmNIX4cO3glc8oYQx4+WylgcMz3MoW6vrG4
-         BgRl/UcZ5dUnoAEjHO0QpZ7wdL3fehMDjPjo3gYEV6Ul7dx/Dpy0Qy3Eiqz7Uene9tOn
-         E/sbucKOyok+X6b4ttVFFw4pC4tFK3UmVCfd4tSUeQDy0EHZKZA1iekPUQdw1W05rgW7
-         TMUxKS9cpmCYw9TIEW1PJYnR4RXxbD7fB5C3M9aM1AV/qKgUkYOwiS4OKRzD4n3G9QpL
-         c3BA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZYWli9XkPggQeLdxX+zn85738Gu7IRiuml2HT+jzJh8o4bB8x3beAvIDNnoa3k9lajHwlQEblIds8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTnjCTgo7Px64JOQrSm5gVAgeQCnBp196DMQL9SUx8BJkGYEDD
-	KwnxC/oAn5Lm4idPww5gnwuclY5TzSXWs6KGXCBGCpg9nc4kec6evB176fQkx+w=
-X-Google-Smtp-Source: AGHT+IF07HOumQy50gBkQaWj0y5iUsQm/oWvfTD2vdo86U7e3YHPzzmO2E6zfR2esGYs7FlPdkcG0A==
-X-Received: by 2002:a05:600c:4fc4:b0:42f:8287:c24d with SMTP id 5b1f17b1804b1-43161667fdfmr89174005e9.21.1729504816134;
-        Mon, 21 Oct 2024 03:00:16 -0700 (PDT)
+        bh=y2t5+GdX8LkCEmUcnfMgk3trAyT7R5nzR/wNUS1TNBk=;
+        b=t4N64cv0ZJ/4yhkuHTf8+2JHAL5uk5VeyrskLmhasmB7kQSWml7P5mKk0/zIUUe35S
+         xfuGcyJnvkUm3vAR2h6EnWYikHoTgRBHEw6GEt2UmQDY9+29tvaBgx+IMH9rsrpK+jwM
+         PA0wEvKdFVO69BYssfIG456pzv+fRUpqgsc4NbLeRCjtIHEc+9+ZFV528nTcqfjIHV1q
+         8DTEummlEkPNaBkiCabVUFO/ABoVu2as/5dXdRwgx8OtztqVUDaZfXOT8h84VTYbyA/t
+         PTBT87hqUqrHca7G3f5fPVRWtLYxvKm68FnHfrhyQq0eKJGjD5letHd1FHN6ShSGYZuo
+         soJg==
+X-Forwarded-Encrypted: i=1; AJvYcCX/bA7W1dd8EAdS6YtBqLGoQ0Bp8k8V2SzJb/3FHtELgGxi0yBhUfRmyE2IlKixkFDzA6eg//6OCH0g@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtvsRqrYWcSgqpglVgb0hsmzDofXBDvzm02/RXwjdkHD8MeMxV
+	ovKkxtMTM4rLJhvu0iyiem75SCjjLm1LziaWJrgGZZtGHZV5WEVRFXvYaArU/Ho=
+X-Google-Smtp-Source: AGHT+IHvplc2wMXT1OorBIg0HcGCuXTDErHL+CnzciKozIpFOxqNccmTzrhFCLXXNzwzzh3RuSgWHA==
+X-Received: by 2002:adf:ed11:0:b0:37d:45c3:3459 with SMTP id ffacd0b85a97d-37eab75b5cbmr7425151f8f.21.1729504817015;
+        Mon, 21 Oct 2024 03:00:17 -0700 (PDT)
 Received: from [192.168.1.64] (2a02-842a-d52e-6101-6fd0-06c4-5d68-f0a5.rev.sfr.net. [2a02:842a:d52e:6101:6fd0:6c4:5d68:f0a5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f58bbaasm52375995e9.23.2024.10.21.03.00.15
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f58bbaasm52375995e9.23.2024.10.21.03.00.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 03:00:15 -0700 (PDT)
+        Mon, 21 Oct 2024 03:00:16 -0700 (PDT)
 From: Julien Stephan <jstephan@baylibre.com>
-Date: Mon, 21 Oct 2024 12:00:12 +0200
-Subject: [PATCH v2 4/5] iio: adc: ad7380: fix supplies for ad7380-4
+Date: Mon, 21 Oct 2024 12:00:13 +0200
+Subject: [PATCH v2 5/5] docs: iio: ad7380: fix supply for ad7380-4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241021-ad7380-fix-supplies-v2-4-2ca551b3352a@baylibre.com>
+Message-Id: <20241021-ad7380-fix-supplies-v2-5-2ca551b3352a@baylibre.com>
 References: <20241021-ad7380-fix-supplies-v2-0-2ca551b3352a@baylibre.com>
 In-Reply-To: <20241021-ad7380-fix-supplies-v2-0-2ca551b3352a@baylibre.com>
 To: Lars-Peter Clausen <lars@metafoo.de>, 
@@ -94,79 +94,46 @@ Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  Julien Stephan <jstephan@baylibre.com>
 X-Mailer: b4 0.14.2
 
-ad7380-4 is the only device in the family that does not have an internal
-reference. It uses "refin" as a required external reference.
-All other devices in the family use "refio"" as an optional external
-reference.
+ad7380-4 is the only device from ad738x family that doesn't have an
+internal reference. Moreover it's external reference is called REFIN in
+the datasheet while all other use REFIO as an optional external
+reference. Update documentation to highlight this.
 
-Fixes: 737413da8704 ("iio: adc: ad7380: add support for ad738x-4 4 channels variants")
+Fixes: 3e82dfc82f38 ("docs: iio: new docs for ad7380 driver")
 Signed-off-by: Julien Stephan <jstephan@baylibre.com>
 ---
- drivers/iio/adc/ad7380.c | 36 ++++++++++++++++++++++++++----------
- 1 file changed, 26 insertions(+), 10 deletions(-)
+ Documentation/iio/ad7380.rst | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-index e257f78d63edd7910fcb936ec5344922f8e70b99..65096717f0dd3ea6a4ff7020bc544d62b84cb8fd 100644
---- a/drivers/iio/adc/ad7380.c
-+++ b/drivers/iio/adc/ad7380.c
-@@ -89,6 +89,7 @@ struct ad7380_chip_info {
- 	bool has_mux;
- 	const char * const *supplies;
- 	unsigned int num_supplies;
-+	bool external_ref_only;
- 	const char * const *vcm_supplies;
- 	unsigned int num_vcm_supplies;
- 	const unsigned long *available_scan_masks;
-@@ -431,6 +432,7 @@ static const struct ad7380_chip_info ad7380_4_chip_info = {
- 	.num_simult_channels = 4,
- 	.supplies = ad7380_supplies,
- 	.num_supplies = ARRAY_SIZE(ad7380_supplies),
-+	.external_ref_only = true,
- 	.available_scan_masks = ad7380_4_channel_scan_masks,
- 	.timing_specs = &ad7380_4_timing,
- };
-@@ -1047,17 +1049,31 @@ static int ad7380_probe(struct spi_device *spi)
- 				     "Failed to enable power supplies\n");
- 	msleep(T_POWERUP_MS);
+diff --git a/Documentation/iio/ad7380.rst b/Documentation/iio/ad7380.rst
+index 9c784c1e652e9afc116fd206a6cdb70fa6e2adf0..6f70b49b9ef27c1ac32acaefecd1146e5c8bd6cc 100644
+--- a/Documentation/iio/ad7380.rst
++++ b/Documentation/iio/ad7380.rst
+@@ -41,13 +41,22 @@ supports only 1 SDO line.
+ Reference voltage
+ -----------------
  
--	/*
--	 * If there is no REFIO supply, then it means that we are using
--	 * the internal 2.5V reference, otherwise REFIO is reference voltage.
--	 */
--	ret = devm_regulator_get_enable_read_voltage(&spi->dev, "refio");
--	if (ret < 0 && ret != -ENODEV)
--		return dev_err_probe(&spi->dev, ret,
--				     "Failed to get refio regulator\n");
-+	if (st->chip_info->external_ref_only) {
-+		ret = devm_regulator_get_enable_read_voltage(&spi->dev,
-+							     "refin");
-+		if (ret < 0)
-+			return dev_err_probe(&spi->dev, ret,
-+					     "Failed to get refin regulator\n");
+-2 possible reference voltage sources are supported:
++ad7380-4
++~~~~~~~~
 +
-+		st->vref_mv = ret / 1000;
- 
--	external_ref_en = ret != -ENODEV;
--	st->vref_mv = external_ref_en ? ret / 1000 : AD7380_INTERNAL_REF_MV;
-+		/* these chips don't have a register bit for this */
-+		external_ref_en = false;
-+	} else {
-+		/*
-+		 * If there is no REFIO supply, then it means that we are using
-+		 * the internal reference, otherwise REFIO is reference voltage.
-+		 */
-+		ret = devm_regulator_get_enable_read_voltage(&spi->dev,
-+							     "refio");
-+		if (ret < 0 && ret != -ENODEV)
-+			return dev_err_probe(&spi->dev, ret,
-+					     "Failed to get refio regulator\n");
++ad7380-4 supports only an external reference voltage (2.5V to 3.3V). It must be
++declared in the device tree as ``refin-supply``.
 +
-+		external_ref_en = ret != -ENODEV;
-+		st->vref_mv = external_ref_en ? ret / 1000 : AD7380_INTERNAL_REF_MV;
-+	}
++All other devices from ad738x family
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++All other devices from ad738x support 2 possible reference voltage sources:
  
- 	if (st->chip_info->num_vcm_supplies > ARRAY_SIZE(st->vcm_mv))
- 		return dev_err_probe(&spi->dev, -EINVAL,
+ - Internal reference (2.5V)
+ - External reference (2.5V to 3.3V)
+ 
+ The source is determined by the device tree. If ``refio-supply`` is present,
+-then the external reference is used, else the internal reference is used.
++then it is used as external reference, else the internal reference is used.
+ 
+ Oversampling and resolution boost
+ ---------------------------------
 
 -- 
 2.47.0
