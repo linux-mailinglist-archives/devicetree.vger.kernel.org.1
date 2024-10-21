@@ -1,105 +1,93 @@
-Return-Path: <devicetree+bounces-113797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05D99A711B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:34:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F21419A7122
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:37:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEB431C229DA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:34:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28E9C1C22929
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA371EBA1E;
-	Mon, 21 Oct 2024 17:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742A91EF0AA;
+	Mon, 21 Oct 2024 17:37:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="b8vcOpxU"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="385f+IkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7651EABC4;
-	Mon, 21 Oct 2024 17:33:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FC4199239;
+	Mon, 21 Oct 2024 17:37:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729532037; cv=none; b=qW0EDYBRVsnPgSBeT++uyiGWXDyeyz7ON0xfb4rfzBtTTYr/5wgUrcDKfzg0h847vKa29zSjHDMUEaZiP4H9Gii/GFFo48DfcnZEqVoQ7KOuf0RgdYAlMg4OTVRa9v9RpAwSA7tAoq6AnKv8fOnav60l4zVv55zcBGyXIVY40Xg=
+	t=1729532233; cv=none; b=LRmEBGsX4tMjoEXeM/MzxYwNc+++Q3A7PtaWJrtdy91rYor/lcz2DOegqc4HZwC42SNEYVRHjdEkiSOOlbV02fjbkA+5zrTTbHZy9iQI4neZSOL6DA+qlrfpJgWKxq4A8rlV2I+IlrtMwnNX+LM6vaZAz1C/3y8ZREEl7eM+DTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729532037; c=relaxed/simple;
-	bh=0BX5ye4uZiCaRI8uVOg4Db78leJWxE2sRuvRzXmmbH0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ged1M53ybDC4eC8BDceHnAsQDcj83mMIAwADOHFVmB8YWwaPBPOX1yA42BYe4KtO7z70eMtlHNNn2H3pIpZaNI6rsHAjOWWYDEiy777tNCX+bSv6yqD5a4VcjayJMIf8RDF7Ou4wyCdV2vx6XuNv9oiWQbfOGvuTRS9mfgr5K1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=b8vcOpxU; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2514220004;
-	Mon, 21 Oct 2024 17:33:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729532032;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8MaX199Fe4JfeRIaLriBDyMlENqkxgT9mj03plpAUcs=;
-	b=b8vcOpxUOqkvXvlW4E6uo4uhuj8dmNLMYbV4ZPzueVPwRlg4uqmbdkOV15bonawranp5Q0
-	j1OiENoBYDckFqlcoKsglnrPJs+ccvsnTcABD8JmpXiOmXdR/C4twSTWJL7QEOfBwliBKQ
-	y1xE0r9jGrOUAuLnCE0rme9tqm+Y+Z8g5hV8QiiJ0YOQFpMP+JlLdjMiaQw87Pdq1+MObq
-	ec9eDtrUavWhhsbCGG3+kc+HnzUqwV8XoRHXODoN2jz3uK5uBjGfiIM6WNwYjM1Kdv15dw
-	guDNO6ORQltp9QHMDVzqEfgzG84jQuY8HAny69ux2ti1Ws+bHdhxYPllnuCg2w==
-Date: Mon, 21 Oct 2024 19:33:48 +0200
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, <andrew@lunn.ch>, Lars Povlsen
- <lars.povlsen@microchip.com>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, <horatiu.vultur@microchip.com>,
- <jensemil.schulzostergaard@microchip.com>,
- <Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
- <UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
- <ast@fiberby.net>, <netdev@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next 05/15] net: sparx5: add registers required by
- lan969x
-Message-ID: <20241021193348.7a2423db@device-21.home>
-In-Reply-To: <20241021-sparx5-lan969x-switch-driver-2-v1-5-c8c49ef21e0f@microchip.com>
-References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
-	<20241021-sparx5-lan969x-switch-driver-2-v1-5-c8c49ef21e0f@microchip.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1729532233; c=relaxed/simple;
+	bh=0ssP+/C45v+G+qhQEUwDcfAMflnQ9ClkL/fOR4zIRX4=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=X8QzdZchv3ZwxsozzJE8n+/LdC1LE9A5WizcsHv0VOXAklKgCwBtl0CMup5coqeVXLiz6KXhbgL8cMN3OjR8wIzjkDnCCbdfSYZtL6E8v4iLNjEQk8RhmvhWys6WLeyZL9dntfD8nUUWgcR8NqVueivEiPejJlsiKoSiAnT2oyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=385f+IkR; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=y7dzIerB/KI11ADRmN80B/zGm4FVlX7K4IYPNpBrSck=; b=385f+IkRCbWxq59mxLMVgH21Wb
+	YDipVHsEzRS8CEZEbEu527EEEoBo17dv0eOTkAW1Ivt44/E9htOhk538HdAT+JSQylZbxD+j1CHl5
+	+6b9dJ9TvwxY6+mq9yxFy0oz8fhUBMHovau6reGScFw8jfYEWw2CQHdW2RAqMtum6KKYOjLfoqMpq
+	FiwhNI2QDCF5ZEiYD7bPZxPXKWL4n1n+nY933Zfck/XF729NsJoBu+hpWLM40rwETDbz1Zc56PmyR
+	dx98rEe/sy0R4bQyDJv0uAmyR1Gsvkjn8UyYdi6WXkCIu/z7g/UQUaKRE+AsHrZ3uh4WzcQf9Qqw/
+	DRm5b7wg==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Cc: Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH 0/3] ARM: dts: add Kobo Clara 2E
+Date: Mon, 21 Oct 2024 19:36:28 +0200
+Message-Id: <20241021173631.299143-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.5
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Hello Daniel,
+Add a basic device tree for the Kobo Clara 2E Ebook reader.
+It is equipped with an i.MX6SLL SoC. EPDC PMIC drivers
+are not ready for mainline yet.
 
-On Mon, 21 Oct 2024 15:58:42 +0200
-Daniel Machon <daniel.machon@microchip.com> wrote:
+Andreas Kemnade (3):
+  dt-bindings: arm: fsl: add compatible strings for Kobo Clara 2E
+  ARM: dts: imx: Add devicetree for Kobo Clara 2E
+  ARM: imx_v6_v7_defconfig: Enable drivers for Kobo Clara 2E
 
-> Lan969x will require a few additional registers for certain operations.
-> Some are shared, some are not. Add these.
-> 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+ .../devicetree/bindings/arm/fsl.yaml          |   8 +
+ arch/arm/boot/dts/nxp/imx/Makefile            |   2 +
+ .../dts/nxp/imx/imx6sll-kobo-clara2e-a.dts    |  23 +
+ .../dts/nxp/imx/imx6sll-kobo-clara2e-b.dts    |  23 +
+ .../nxp/imx/imx6sll-kobo-clara2e-common.dtsi  | 514 ++++++++++++++++++
+ arch/arm/configs/imx_v6_v7_defconfig          |   2 +
+ 6 files changed, 572 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-a.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-b.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-common.dtsi
 
-[...]
-
-> +#define PTP_PTP_TWOSTEP_STAMP_SUBNS_STAMP_SUB_NSEC GENMASK(7, 0)
-
-I understand that this is partly autogenerated, however the naming for
-this register in particular seems very redundant... Is there any way
-this could be improved ?
-
-Thanks,
-
-Maxime
+-- 
+2.39.5
 
 
