@@ -1,79 +1,128 @@
-Return-Path: <devicetree+bounces-113561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AAB59A60FE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:02:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA1529A6128
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:04:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A35E81C215CA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:02:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BF371F22948
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFBFB1E3779;
-	Mon, 21 Oct 2024 10:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F8F1E8858;
+	Mon, 21 Oct 2024 10:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ji3H7+2q"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CpcMNYkP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2B21E2854
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:01:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BDB51E8839;
+	Mon, 21 Oct 2024 10:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729504896; cv=none; b=mGPmKa3HRJYxxhP/M/f0AhpLwtC6nAJ3H41+rtZcvZw52Sda1YzV/9D0jZh+TZDRPshQmtFpRrwRf4VmHhpzrTbyxReW+nc8NqgqO2alBiFG1O86ClxbFVEKxJ877mPOMdYXuYjhxjukmT2PSv3PI5M1uCvZBhzI1ViUfrVEH/0=
+	t=1729504980; cv=none; b=QM6vUknLmpCSgXN6VD84TvRWnyeiz0+4vQTTnGSzRcphEgwDtjwt1q28Ci5b/oo5O7C5f/XqHeXDJXBZE4urY9OV3aukEeNgUA9mTJQzljHCRfY+hwAv2ehA+Kg9JOShx4wKKyUvKqkUUqrJVc1/4npRXZjoAlBokKRTNNWprdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729504896; c=relaxed/simple;
-	bh=ObGji+VpeiBlD8yG5csc2xrc883qj5jnMMm0K2kjqGY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tPnfm1YzXmN9NNEiM/5T3zT/R7psleQ+/1ImrsToADdZRO3DGjYqZdZNOjTVIt1FselbFa+spuM3F34xcrwEI2aHnvifOU0/eWj3NTivVhMmFVOh4BQQjkpiTGkSKBCTforwHUaugIov0jUiX8QtL/AREPL3Sj0fZB3c2WyDeLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ji3H7+2q; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Nr0Qb4mi+ev48H2kOnl6cXqXokfjag9D5tJnRQARqQ0=;
-	b=ji3H7+2qoa+IqT8HYhYzDy5dW4VKB+8y1Ku1zs3VwhynMHk/Zgf6tYLbS4mPZP
-	6+o3+8UUh2T0C+F4JCky3tHPl0c/qHN/f07i/igp2mJvvNQSaAGcTthtUlM0GRpk
-	40AIPmvoZFA4IjyCWOTTUjgFvJqNtS6efE1MgikPT0Bso=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgCH+_Q7JhZn2mWEAA--.4609S3;
-	Mon, 21 Oct 2024 18:00:29 +0800 (CST)
-Date: Mon, 21 Oct 2024 18:00:27 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
+	s=arc-20240116; t=1729504980; c=relaxed/simple;
+	bh=LuzQMd5c5rIJT9b0Tr3YlHr3bxVGW3LrpWTh9NNnfAQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kSRb/y9Gcq0mOk/GJ+3Tb+G4iNVq4AqIIH/8L5C85OyQOsXFgrMtqolVU06bHPlymCZXm6hNjVPg6iAcPO0AWky3KJFx6SBauPQwJ8kG1Dlu4afS/hKAQAEeqFmSIi9f6VEocyzbyZdpnUAt1culoF1TkSxBqHTYPxoWlOapx8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=CpcMNYkP; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id B4F658897F;
+	Mon, 21 Oct 2024 12:02:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1729504971;
+	bh=NhQvGbZsbfudWr34g22520NXKCahdWOQh+NLhrtrAQM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=CpcMNYkPMDx06gpMiqy3fUHfr+eSCfUCnnpxr5XnSYEFaA10Nep6Y0/IYFhOsiqiq
+	 uS6ClkgYQ1Ryprw7Zm0URi2raNvVNgVwSoErcmT4lRRUOfQ1CBrwnvnFy0xHNpwMO0
+	 pkkLsLglp4vlAZvISS3s5KvFdEqqYzSgWZQ/X6OGi/f2fqiDyFJupTX2ET9N4UHiz9
+	 1dD1R4Aeo1IHc6u73cJN7Ypwz2f1RYL7SenGQ/hAFG0AaLHFO63dMW2vVfZ8IiXB+P
+	 EGGYnb7otuIm2Z8zjLiwnpBtIAzMaOn0mJU/FECIsQ8bHDbburKZkx/fdlR+m98ppG
+	 QYxFU4ID+WEfQ==
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, kernel@dh-electronics.com
-Subject: Re: [PATCH] ARM: dts: imx6qdl-dhcom: Fix model typo for i.MX6 DHSOM
-Message-ID: <ZxYmOzTYBv0CvooS@dragon>
-References: <20241007135030.30559-1-marex@denx.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH v9 1/4] dt-bindings: display: Add powertip,st7272 as DT Schema description
+Date: Mon, 21 Oct 2024 12:02:21 +0200
+Message-Id: <20241021100224.116129-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007135030.30559-1-marex@denx.de>
-X-CM-TRANSID:M88vCgCH+_Q7JhZn2mWEAA--.4609S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUa89NUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBAl-ZWcV6t2pkwABsp
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, Oct 07, 2024 at 03:49:58PM +0200, Marek Vasut wrote:
-> Each DHSOM uses three digits in the Cnnn part, drop the trailing zero.
-> This is a change in comment, no functional change.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+This patch provides the DT Schema description of powertip,st7272 320 x
+240 LCD display.
 
-Applied, thanks!
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+---
+
+Changes for v9:
+- New patch
+---
+ .../display/panel/powertip,st7272.yaml        | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+new file mode 100644
+index 000000000000..f09450da44a2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+@@ -0,0 +1,29 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/powertip,st7272.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Powertip Electronic Technology Co."320 x 240 LCD panel"
++
++maintainers:
++  - Lukasz Majewski <lukma@denx.de>
++
++allOf:
++  - $ref: panel-dpi.yaml#
++
++properties:
++  compatible:
++    items:
++      - const: powertip,st7272
++      - {} # panel-dpi, but not listed here to avoid false select
++
++  height-mm: true
++  panel-timing: true
++  port: true
++  power-supply: true
++  width-mm: true
++
++additionalProperties: false
++
++...
+-- 
+2.39.5
 
 
