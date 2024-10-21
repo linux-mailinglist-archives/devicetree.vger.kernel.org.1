@@ -1,100 +1,114 @@
-Return-Path: <devicetree+bounces-113769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05DDE9A6E8A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:45:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9C59A6EA6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:47:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E6E51C22A72
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:45:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E38CBB22F48
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:47:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F12751C579B;
-	Mon, 21 Oct 2024 15:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D3D61C68AB;
+	Mon, 21 Oct 2024 15:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="J45pCSWo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mqQCmwU3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA291C4603;
-	Mon, 21 Oct 2024 15:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFCE1C6889;
+	Mon, 21 Oct 2024 15:47:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729525496; cv=none; b=F04XRAqfZdA9ykKbOMPR5OkITDVCB4K+EuTl2QE60e/Yg7mNN95mLE7uYzuWy6hhvqg/boqQ+cRCWMn0Ad8RiFG0lQRTm6n53ZqXLRehNBl23r72ks/4EtezQMjtlpFTeU5AOtP4Up7ZoQRP7scOsjVdAzMTyAAgQ88bp4k7cD8=
+	t=1729525622; cv=none; b=FxUOL0nqZ59RzJB5SO2OemrRXUbDHrMY7vSTIGOlWiK5vCYYfsQSWNLZNo1LMgEoUdRw2ZT9VVXgb6iHURICjR2gcrr53ukgCIGUCITss8BqSHjPB77gBvyv6D6rWCEWmg7IC2XNXcM7hZ4jHY3GMN04kaBOtRxJcnnC8nAIYEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729525496; c=relaxed/simple;
-	bh=KtfmJPWnrcbXSiJE0Kaw1+diIhh4RBqz9OKHdfGI5R4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YJRxaNgmOhdZ3bxrBVMiX+MvbE/ZYb3W8/wEsbwPaeC1Zq3bEX894qAPsJlLe1Skt48blMfhhbsbQ9aOGbPsBBDK8Y866wMmhKDLA/PTFcxXoDRpiGnyaZK6ZwqtXXCMT0awRidWtj0nxuiAaGGI6r2K8qFsIhGVH9UTX+eX2pM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=J45pCSWo; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=xDCNswJHdW1wcr7CUV4vOH+mR7TSmuOCdCXWRnBHbDc=; b=J45pCSWoGzrGV2fskzmr6i2tWI
-	f48wcvIrVhi55k4hst9H8RBHd9xMHoZgZcqJLHwmeqJmsOtO5tNGkIqne2SYK8ugbuq18rixOAfxM
-	650QBw3xlDrfhGCgIBCiIVwVgqHfVe7gIk5H04IrDXdLfPTf1bwZHhdVmE2FyYuyC4oj7D+xU1WTR
-	rAqr9iyQi3A8f0vKK+v3zGpp8n6eBbdxjWBLBP2m0+mxGFgfCpOg8TMyMmxHdlhDMPXr85bh3nF1h
-	lARDT2ovIOPdm774vZBzLLzNnyhrW4lhm9/Tp6ilkH8nvZnr+Wc8tsA2mr6+PgNOzWJaUARtsQnO/
-	psPXw2jQ==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1t2uaJ-0005jR-4m; Mon, 21 Oct 2024 17:44:43 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: vkoul@kernel.org,
-	Frank Wang <frawang.cn@gmail.com>,
-	kishon@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-phy@lists.infradead.org,
-	Frank Wang <frank.wang@rock-chips.com>,
-	linux-rockchip@lists.infradead.org,
-	william.wu@rock-chips.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	tim.chen@rock-chips.com
-Subject: Re: (subset) [PATCH v6 1/4] phy: rockchip: inno-usb2: convert clock management to bulk
-Date: Mon, 21 Oct 2024 17:44:36 +0200
-Message-ID: <172952545664.1342338.17900988548616491240.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241016073713.14133-1-frawang.cn@gmail.com>
-References: <20241016073713.14133-1-frawang.cn@gmail.com>
+	s=arc-20240116; t=1729525622; c=relaxed/simple;
+	bh=LAekGIeCxqFBsfXtUjXPbf5aYbs1uWx/zlGBbN3G9Yo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=REiFtr6JS66qS7yPQO7G9U7HDhczmLsVyXq8li8uoZQbgtEoz3qc8UFeSp9aB4mBy1g84whT5mONISC06zslScX6AJzUWe2xZioAsZrmPumY+gK4bylJ7QhJU+lpGAqiWx6SwGuqmUr6v/IExOIZMBYQR3AZ8i3naz7Vb6WWFgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mqQCmwU3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D03F9C4CEC3;
+	Mon, 21 Oct 2024 15:46:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729525621;
+	bh=LAekGIeCxqFBsfXtUjXPbf5aYbs1uWx/zlGBbN3G9Yo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mqQCmwU3+/gWn1qqzEb4l76p8QXlJvgci8TveEK/G2/WXlYpi6FUsvZb3vHURlWdA
+	 wDoABcDPZPMWGR3gpxGYmvlvAHy0V86BR1VT5dmf11cvtJUaSvrIUe6gDFgUEvMdCK
+	 j0Zvk3fYUDl/cCCuskoNBe0J9U+DXgV7VaQM7K/ZsD6X4LvqEo+DFNpGUA4768iTH7
+	 hGByRsu9vKpnNg+kYDPZ58/FlI43Lds1NCoteZSuSYior3j7G7L14P9GCNXoXWSQ29
+	 XretChBeBwT1RBLW8S9e1o31Ks1TdqY4sIksOKLW6hI8s+r1pCcM/9rcES8qzuceIB
+	 yw0kdKk+onW7g==
+Date: Mon, 21 Oct 2024 16:46:56 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Ryan Walklin <ryan@testtoast.com>, Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 5/7] ASoC: sun4i-codec: support allwinner H616 codec
+Message-ID: <182fcf58-26d9-4485-bf0e-89e4def8b5e7@sirena.org.uk>
+References: <20241020083124.174724-1-ryan@testtoast.com>
+ <20241020083124.174724-6-ryan@testtoast.com>
+ <20241020125948.44c27e9e@minigeek.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Y4z+P7MYMG3OWZjq"
+Content-Disposition: inline
+In-Reply-To: <20241020125948.44c27e9e@minigeek.lan>
+X-Cookie: Most people prefer certainty to truth.
 
-On Wed, 16 Oct 2024 15:37:10 +0800, Frank Wang wrote:
-> From: Frank Wang <frank.wang@rock-chips.com>
-> 
-> Since some Rockchip SoCs (e.g RK3576) have more than one clock,
-> this converts the clock management from single to bulk method to
-> make the driver more flexible.
-> 
-> 
-> [...]
 
-Applied, thanks!
+--Y4z+P7MYMG3OWZjq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[2/4] dt-bindings: soc: rockchip: add rk3576 usb2phy syscon
-      commit: 3b8a7753131a9db25e81dd3f5c0ecae96400f334
+On Sun, Oct 20, 2024 at 12:59:48PM +0100, Andre Przywara wrote:
+> On Sun, 20 Oct 2024 21:30:55 +1300
+> Ryan Walklin <ryan@testtoast.com> wrote:
+>=20
+> Hi,
+>=20
+> > The H616 SoC codec is playback-only with a single line-out route, and
+> > has some register differences from prior codecs.
+> >=20
+> > Add the required compatible string, registers, quirks, DAPM widgets,
+> > codec controls and routes, based on existing devices and the H616
+> > datasheet.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Please delete unneeded context from mails when replying.  Doing this
+makes it much easier to find your reply in the message, helping ensure
+it won't be missed by people scrolling through the irrelevant quoted
+material.
+
+--Y4z+P7MYMG3OWZjq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcWd28ACgkQJNaLcl1U
+h9CM/Af+OFrlR9Haa99Zf7HxdpvfXDEmc4YfB8qZBbVTA/kxkcj58a8iCZq6sy/S
+r3+j6jUo4Qj/sPIesZvXN4S6bhUyHdWeB+0IQaYFqPv29uiJK0tNGxLAqMXcMUZZ
+Wb9IqpnEdSf8LDxIwY0/+o6CYKPll+q8F3+pCpYy/8PHoknKeLsf+42CdqNTdMCt
+qbR8H1d8thnSiaserfL/sKDo835LQtNM6QA7wEXRWFo3sGcHfgK6ugAY7VgJS4Fg
+nPX2sP29QpCJezci0IFIX+Wzo7ARw9L3zrog1WtrHWYxjIl/lFnBtJTuVYO3T0kI
+hatpFUKO8OKllTibWCpQMnTzLxCz4g==
+=lwft
+-----END PGP SIGNATURE-----
+
+--Y4z+P7MYMG3OWZjq--
 
