@@ -1,514 +1,181 @@
-Return-Path: <devicetree+bounces-113431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C31F29A594E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 05:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F38E9A5960
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 06:00:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2296FB229E9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 03:45:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 983BFB2127F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 04:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C41208A9;
-	Mon, 21 Oct 2024 03:45:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E5A1CF287;
+	Mon, 21 Oct 2024 04:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NmWdDzTq"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="prbskjbr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B89414A90
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:45:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BD11CF5F0
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 04:00:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729482352; cv=none; b=FcrFV6CI+Rz4xtYfe1GSrejlFD0T6phc67JoQz4MIsmstBqDLFTqoNI2sGoj/kkHfnzKbuKbtT0bddF5Z26qzSWW2wCNo9Fr6iD/b4zfYknqNERGPj6BLg/Vr6xIPBnIyAZdlhWLTURkH1t3Bhir0Gq/NpCGyUlp5cra0Sfsgs4=
+	t=1729483208; cv=none; b=rdQCy+MhfM7FgDDjmpBmRTTT6I8yaRIL32VmuMAxdUjnVC9oqpuUZgTmxr1EWy1z7JYXDZ/p0EjKH999ufucQppYKHZKzgOxuQdsuWAod95hz0LtXXpMfmD8NtCuH/0+QLgGIdkkfzDlqEJkFxZ55dpYoF+oTrfhsH6mzkggYjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729482352; c=relaxed/simple;
-	bh=48iY/6ng3rTzT7U04tDz7oSoPrX/GbikNPGW32/rZAA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=as5A4DrrkKS4KQM4s5K5/2KUv5DX5ANhxKuR8DtXIWvSH4QsX7hFehbXyGcAL71Aav59pH4SNKfMZ4uSv+59/Xu4TTAY8fxfCdDuhTXmPGRYu8NauM2nTjkC6++SPBHlXDszNiM4h1ikOHgLpexz3ZbbYfd2EVvKOTJbDaUqAfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NmWdDzTq; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-539e13375d3so4240672e87.3
-        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 20:45:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729482348; x=1730087148; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=89Lxjo33WwYCyROnc52VTFVbjS1T4gfA10xmJgnrxhg=;
-        b=NmWdDzTqrJPsSNZtkgBY9I+4vBcVXDRTTUWPhSX0V0hpX+7zIz1bjqYe/xA73bpaEA
-         h3unMx/ThOT5iczvngGbgPBDvG4BXSTt7uL+L7uQi4MuoGECYtoiA3391ShWi8cDJvns
-         g1WbMfwluIsCAqhNtoWrqiU/+FwFJE+Z6WKA4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729482348; x=1730087148;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=89Lxjo33WwYCyROnc52VTFVbjS1T4gfA10xmJgnrxhg=;
-        b=t4cPEBDLeGqSIHO3iJ8XSbYOfvwO8vl9YSdZU2CYdzzEhq7lHpZybCkOPFVF4FIgLI
-         LdIVD/ZT5zcB8mdY4Y+wPboqinPP86Xom/k47Q/0uJLNAuN9QtqvH0gRmTcfxUXzdSH5
-         DkPWAPDYlbX2rcPSU6OWrKPdOAL//aAZFGeLQwEYLUOzLQsCaSpe7/HNMdF4XxZ/DT1E
-         6HGp4HhBlLAY51KvIvB+UGKupE8k4KqdvoDN8A0PbgkFc9ZxtSvqh22XmPRe21mvvf8j
-         EAVuGqLsXMpuItqsCnuvPYzo9E/00xsgNPx1I/+cBHiDhSMwR1CAVR645BrjudrLwcFw
-         vowQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQbQjxSpytc/GuKopkBkbP+HNO4z2T93Ksr+fyRtdTRsfBw23chs6TCk8dlzNBzp28myuWw4DnZ4XY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzJ7m5mpgjFghlHFzN8OEShQ8yr8HuB6ZIrZySHnvUyHgZCVQR
-	4bRvJZS27MZnbWJ0zRJRR4i5DBkVJQ0969/Lrx3AHVk7SIidTZ6fUOWbGIi+GODIJo+wez3ZKCR
-	T3At2Zj5XfMD7+k8DcT6j1FhkPBEWa6boQ3wc
-X-Google-Smtp-Source: AGHT+IFr3BTScNBvrlXGBOGqM+cE1Teqf7FcPXjAUV8dGB205MgAEef5pC1n9sNjZsWzyh87run40PkmJjJ9p+SS0Hs=
-X-Received: by 2002:a05:6512:3b93:b0:539:fb49:c48e with SMTP id
- 2adb3069b0e04-53a15441716mr4720141e87.11.1729482347886; Sun, 20 Oct 2024
- 20:45:47 -0700 (PDT)
+	s=arc-20240116; t=1729483208; c=relaxed/simple;
+	bh=DrckcV2kxWdF4O8bs2o6wk3We2ows/aBCuLkrYyGf8E=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=jS6cjwdF3F2SZdCMmaAiK0C1o11qE/xdrW28LD3R1eZhfAU/epvrTud9I05Z1vBt9GhV1HKgsfJHkT74FzPMn62IxzOvTT7mpFW0bvBligIaQ2BWswbApzyVq6qCpYFXh+rZaJCpbOq65y6iPduy6d2PcZ2oWCEY+r4mVRO+xbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=prbskjbr; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241021035959epoutp02665eb395c8a90010939fac660ea6d671~AW85swdc41599715997epoutp021
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:59:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241021035959epoutp02665eb395c8a90010939fac660ea6d671~AW85swdc41599715997epoutp021
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1729483199;
+	bh=DrckcV2kxWdF4O8bs2o6wk3We2ows/aBCuLkrYyGf8E=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=prbskjbruzN/N3wMXSqN6mbtHVcfizlxljqN6BIyT0SglKP6krFchF++7LjZskNsF
+	 eFr8+nuxRdMJuK205aKy0/BiMncmnEHK5uxPk369Xo783Z9DUW6Rd7hxaIpzwNkc28
+	 NMlTm0zNDy3fbnafss5FU0Yv9BMw8QJM5ghdHStU=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+	20241021035958epcas2p36b1336c717708daf8c2475905002991e~AW85P4xQY2977329773epcas2p3J;
+	Mon, 21 Oct 2024 03:59:58 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.102]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4XX1mG1lccz4x9Pp; Mon, 21 Oct
+	2024 03:59:58 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+	epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+	0E.07.09811.EB1D5176; Mon, 21 Oct 2024 12:59:58 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20241021035957epcas2p12cb34aa86daaa4ad40dfc3e9ffa0bd4f~AW84hyfeK0308303083epcas2p1Q;
+	Mon, 21 Oct 2024 03:59:57 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20241021035957epsmtrp2bc2076bb8b41b96211b8b5ab2110d72a~AW84hAF1c2662026620epsmtrp2h;
+	Mon, 21 Oct 2024 03:59:57 +0000 (GMT)
+X-AuditID: b6c32a48-84fb870000002653-6f-6715d1be3ef0
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A7.07.07371.DB1D5176; Mon, 21 Oct 2024 12:59:57 +0900 (KST)
+Received: from KORCO119526 (unknown [10.229.18.158]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241021035957epsmtip1e4df4989b9e2b0b6d50a96005193f9f5~AW84TW1Ya1845318453epsmtip1j;
+	Mon, 21 Oct 2024 03:59:57 +0000 (GMT)
+From: =?utf-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
+To: "'Alim Akhtar'" <alim.akhtar@samsung.com>, "'Sam	Protsenko'"
+	<semen.protsenko@linaro.org>
+Cc: "'Wim Van Sebroeck'" <wim@linux-watchdog.org>, "'Guenter Roeck'"
+	<linux@roeck-us.net>, "'Rob Herring'" <robh@kernel.org>, "'Krzysztof
+ Kozlowski'" <krzk+dt@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
+	<linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, "'Byoungtae Cho'" <bt.cho@samsung.com>
+In-Reply-To: <005c01db1ae8$544a1e40$fcde5ac0$@samsung.com>
+Subject: RE: [PATCH 2/3] watchdog: s3c2410_wdt: add support for
+ exynosautov920 SoC
+Date: Mon, 21 Oct 2024 12:59:57 +0900
+Message-ID: <000001db236d$b18432c0$148c9840$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241018094234.2633366-1-jakiela@google.com>
-In-Reply-To: <20241018094234.2633366-1-jakiela@google.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 21 Oct 2024 11:45:36 +0800
-Message-ID: <CAGXv+5G2kc5vkAuMC2JqLRSdjCeHMCpu8_E7DccJd2VoCqY1VQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mt8186: Update regulators voltages
-To: =?UTF-8?Q?Albert_Jakie=C5=82a?= <jakiela@google.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIPcUUdHl+Ei7bfUILxdnz4wpISqAFKfb4qAog0DUQCf1lgZgMTgJO5AgAvTqixzJ6GIA==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNJsWRmVeSWpSXmKPExsWy7bCmue6+i6LpBk8Xclk8mLeNzeL+pz4m
+	izV7zzFZzD9yjtXi5ax7bBabHl9jtbi8aw6bxYzz+5gsbqzbx27xZOEZJov/e3awWzzvA4o9
+	fvmP2YHXY9OqTjaPO9f2sHmsXLOG1WPzknqPnd8b2D36tqxi9Pi8SS6APSrbJiM1MSW1SCE1
+	Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoWiWFssScUqBQQGJxsZK+
+	nU1RfmlJqkJGfnGJrVJqQUpOgXmBXnFibnFpXrpeXmqJlaGBgZEpUGFCdkbvxjfsBd0iFefu
+	tTI1MG4U7mLk5JAQMJF43XWTtYuRi0NIYAejROvx80wQzidGiVcvDzJDON8YJY7u/8kO0/Li
+	9WsWiMReRomXE86zQzgvGSW2v2tgA6liE7CQWHLtA9AsDg4RgXiJfW+VQWqYBTYyS2xobweL
+	cwpYSfxZywhSLiwQIrGkazETiM0ioCrx4dpnFhCbV8BSorfrMyuELShxcuYTsDizgLbEsoWv
+	mSEOUpD4+XQZWI2IQJjEjQ2nmSFqRCRmd7ZB1ZzhkFh+JALCdpE4f/U81DPCEq+Ob4GypSQ+
+	v9vLBmHnS6xceYIJwq6RuNe2iwXCtpdYdAYUEBxA8zUl1u/SBzElBJQljtyCuoxPouPwX3aI
+	MK9ER5sQhKkqMX1ZAMQMaYmJM9ayTWBUmoXkrVlI3pqF5PxZCKsWMLKsYhRLLSjOTU8tNiow
+	gcd0cn7uJkZwKtby2ME4++0HvUOMTByMhxglOJiVRHiVSkTThXhTEiurUovy44tKc1KLDzGa
+	AgN6IrOUaHI+MBvklcQbmlgamJiZGZobmRqYK4nz3mudmyIkkJ5YkpqdmlqQWgTTx8TBKdXA
+	1LLKPGPf8i9B+zYeC7i/Q37261uL7MXmvhb8Mq2U65ThtPzX870+2P1s2Zc4YZdSze6FMa+k
+	nXcGSzyM8r3q4fPQIPTKPzEN8ble5/cuFZNl1bE+z3Xpv4OOH3Pn19IpnJNOachdXbJCi+GX
+	tdinDd2Tt5vUtIe22TxNLFd5t23DOfeFL2d12lXd+7NHwUq8VfDTkRf7D0yYG7Npq16N+uy+
+	WIXQ3BMxPWfXnYs63OPYJLMzc7F0nppga6WvqdpywbPrG6Ss3KznzD59aSrrX4ONM9bXxTAL
+	HLvgprnsXmbM8sf7j5zJ+5uiYqKyf0OArYSAeUkng9XJFaYZnIcS+xdu9Hplx3rg9qoztdpl
+	QUosxRmJhlrMRcWJAKRhgKNOBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNIsWRmVeSWpSXmKPExsWy7bCSnO7ei6LpBjMuaVk8mLeNzeL+pz4m
+	izV7zzFZzD9yjtXi5ax7bBabHl9jtbi8aw6bxYzz+5gsbqzbx27xZOEZJov/e3awWzzvA4o9
+	fvmP2YHXY9OqTjaPO9f2sHmsXLOG1WPzknqPnd8b2D36tqxi9Pi8SS6APYrLJiU1J7MstUjf
+	LoEr49fm16wFb/kq3p65xtLAeJKni5GTQ0LAROLF69csXYxcHEICuxklln09xgKRkJY48vsF
+	G4QtLHG/5QgrRNFzRonupitgRWwCFhJLrn1gArFFBOIl/l84zwZSxCywm1li849lUGOfMEms
+	P9zJ3sXIwcEpYCXxZy0jSIOwQJBEy/mlrCA2i4CqxIdrn8GG8gpYSvR2fWaFsAUlTs58AhZn
+	FtCWeHrzKZy9bOFrZojrFCR+Pl3GCnFEmMSNDaeZIWpEJGZ3tjFPYBSehWTULCSjZiEZNQtJ
+	ywJGllWMkqkFxbnpucmGBYZ5qeV6xYm5xaV56XrJ+bmbGMHxqaWxg/He/H96hxiZOBgPMUpw
+	MCuJ8CqViKYL8aYkVlalFuXHF5XmpBYfYpTmYFES5zWcMTtFSCA9sSQ1OzW1ILUIJsvEwSnV
+	wNR9avY5t6Zz5/f9vZV+JG+6pllFQaPNWm3jKoHTByZkWIamvF10ovpe8ME/2yuNf835UR64
+	n1WKtc9LKjK/2PnpfM/F7f19lboHBXXUb/X5PZPO7Cu4c64hraT44ZKHJveYqldsEp897f88
+	t0CvV3MP6W+5/WfzjwO6Nf7cUxPN918Qu679qGNasor82k3FJxfpKoqyRsb7eZ8UZOlaYN99
+	ke2G76TnVg0zzz4oOsboICLwiOvb3/0xDVMefEuJe7WI79QlrsK683J/vzy9IJ6qdfhc/epj
+	C1gF/lmkfah3eiWa1aTOZs/8nP1RgAbHkwMzkr+IH9a2LpS74hcb4mUgG5D0Wvw5s4rDBq7L
+	65RYijMSDbWYi4oTASwKGuE+AwAA
+X-CMS-MailID: 20241021035957epcas2p12cb34aa86daaa4ad40dfc3e9ffa0bd4f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240913080347epcas2p4b5694797cff88a22fd815a9de989d20b
+References: <CGME20240913080347epcas2p4b5694797cff88a22fd815a9de989d20b@epcas2p4.samsung.com>
+	<20240913080325.3676181-1-trunixs.kim@samsung.com>
+	<20240913080325.3676181-3-trunixs.kim@samsung.com>
+	<CAPLW+4k0rpS0F14sqMGPbq_m=aMqK+g=PZewtZYYroQ+OQBeOQ@mail.gmail.com>
+	<000101db1ae5$96c111f0$c44335d0$@samsung.com>
+	<005c01db1ae8$544a1e40$fcde5ac0$@samsung.com>
 
-On Fri, Oct 18, 2024 at 5:44=E2=80=AFPM Albert Jakie=C5=82a <jakiela@google=
-.com> wrote:
->
-> Update minimum and maximum voltages and add
-> missing regulators.
->
-> Signed-off-by: Albert Jakie=C5=82a <jakiela@google.com>
-> ---
->  .../boot/dts/mediatek/mt8186-corsola.dtsi     | 107 +++++++++++-------
->  1 file changed, 63 insertions(+), 44 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm6=
-4/boot/dts/mediatek/mt8186-corsola.dtsi
-> index 682c6ad2574d..62158eac45d0 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> @@ -1302,8 +1302,8 @@ mt6366_regulators: regulators {
->
->                         vcore {
->                                 regulator-name =3D "pp0750_dvdd_core";
-> -                               regulator-min-microvolt =3D <550000>;
-> -                               regulator-max-microvolt =3D <800000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <1293750>;
+Hi Alim,
 
-No. The voltage range has been correctly limited to the consumer's range.
-The voltage constraints are supposed to be the voltage range supported
-by all its consumers, not what the regulator can actually provide. The
-latter is already implied by the compatible string and the regulator
-node name.
-
->                                 regulator-ramp-delay =3D <6250>;
->                                 regulator-enable-ramp-delay =3D <200>;
->                                 regulator-allowed-modes =3D <MT6397_BUCK_=
-MODE_AUTO
-> @@ -1313,8 +1313,8 @@ vcore {
->
->                         mt6366_vdram1_reg: vdram1 {
->                                 regulator-name =3D "pp1125_emi_vdd2";
-> -                               regulator-min-microvolt =3D <1125000>;
-> -                               regulator-max-microvolt =3D <1125000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <2087500>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-ramp-delay =3D <12500>;
->                                 regulator-enable-ramp-delay =3D <0>;
->                                 regulator-allowed-modes =3D <MT6397_BUCK_=
-MODE_AUTO
-> @@ -1322,6 +1322,16 @@ mt6366_vdram1_reg: vdram1 {
->                                 regulator-always-on;
->                         };
->
-> +                       mt6366_vpa_reg: vpa {
-> +                               regulator-name =3D "ppvar_dvdd_vpa";
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <3650000>;
-> +                               regulator-ramp-delay =3D <50000>;
-> +                               regulator-enable-ramp-delay =3D <250>;
-> +                               regulator-allowed-modes =3D <MT6397_BUCK_=
-MODE_AUTO
-> +                                                          MT6397_BUCK_MO=
-DE_FORCE_PWM>;
-> +                       };
-> +
-
-This regulator is not used in the design and was purposefully omitted
-when the board was upstreamed.
-
->                         mt6366_vgpu_reg: vgpu {
->                                 /*
->                                  * Called "ppvar_dvdd_gpu" in the schemat=
-ic.
-> @@ -1330,19 +1340,17 @@ mt6366_vgpu_reg: vgpu {
->                                  */
->                                 regulator-name =3D "ppvar_dvdd_vgpu";
->                                 regulator-min-microvolt =3D <500000>;
-> -                               regulator-max-microvolt =3D <950000>;
-> +                               regulator-max-microvolt =3D <1293750>;
-
-Why? The datasheet has a lower value and the OPPs only go up to 0.95V.
-
->                                 regulator-ramp-delay =3D <6250>;
->                                 regulator-enable-ramp-delay =3D <200>;
->                                 regulator-allowed-modes =3D <MT6397_BUCK_=
-MODE_AUTO
->                                                            MT6397_BUCK_MO=
-DE_FORCE_PWM>;
-> -                               regulator-coupled-with =3D <&mt6366_vsram=
-_gpu_reg>;
-> -                               regulator-coupled-max-spread =3D <10000>;
-
-Definitely not. Please read
-
-    https://lore.kernel.org/all/20230301095523.428461-1-angelogioacchino.de=
-lregno@collabora.com/
-
-and understand that things have been solved differently compared to the
-ChromeOS downstream kernel.
-
->                         };
->
->                         mt6366_vproc11_reg: vproc11 {
->                                 regulator-name =3D "ppvar_dvdd_proc_bc_mt=
-6366";
-> -                               regulator-min-microvolt =3D <600000>;
-> -                               regulator-max-microvolt =3D <1200000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <1293750>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-ramp-delay =3D <6250>;
->                                 regulator-enable-ramp-delay =3D <200>;
->                                 regulator-allowed-modes =3D <MT6397_BUCK_=
-MODE_AUTO
-> @@ -1352,8 +1360,8 @@ mt6366_vproc11_reg: vproc11 {
->
->                         mt6366_vproc12_reg: vproc12 {
->                                 regulator-name =3D "ppvar_dvdd_proc_lc";
-> -                               regulator-min-microvolt =3D <600000>;
-> -                               regulator-max-microvolt =3D <1200000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <1293750>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-ramp-delay =3D <6250>;
->                                 regulator-enable-ramp-delay =3D <200>;
->                                 regulator-allowed-modes =3D <MT6397_BUCK_=
-MODE_AUTO
-> @@ -1361,10 +1369,21 @@ mt6366_vproc12_reg: vproc12 {
->                                 regulator-always-on;
->                         };
->
-> +                       mt6366_vmodem_reg: vmodem {
-> +                               regulator-name =3D "ppvar_vmodem";
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <1293750>;
-> +                               regulator-ramp-delay =3D <6250>;
-> +                               regulator-enable-ramp-delay =3D <900>;
-> +                               regulator-allowed-modes =3D <MT6397_BUCK_=
-MODE_AUTO
-> +                                                          MT6397_BUCK_MO=
-DE_FORCE_PWM>;
-> +                               regulator-always-on;
-> +                       };
-> +
-
-This regulator is not used in the design and was purposefully omitted
-when the board was upstreamed.
-
->                         mt6366_vs1_reg: vs1 {
->                                 regulator-name =3D "pp2000_vs1";
-> -                               regulator-min-microvolt =3D <2000000>;
-> -                               regulator-max-microvolt =3D <2000000>;
-> +                               regulator-min-microvolt =3D <1000000>;
-> +                               regulator-max-microvolt =3D <2587500>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-ramp-delay =3D <12500>;
->                                 regulator-enable-ramp-delay =3D <0>;
->                                 regulator-always-on;
-> @@ -1372,8 +1391,8 @@ mt6366_vs1_reg: vs1 {
->
->                         mt6366_vs2_reg: vs2 {
->                                 regulator-name =3D "pp1350_vs2";
-> -                               regulator-min-microvolt =3D <1350000>;
-> -                               regulator-max-microvolt =3D <1350000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <2087500>;
-
-Same thing about the voltage ranges. Furthermore, the power rail says
-"pp1350", which is a big hint why this change is wrong.
-
->                                 regulator-ramp-delay =3D <12500>;
->                                 regulator-enable-ramp-delay =3D <0>;
->                                 regulator-always-on;
-> @@ -1397,7 +1416,7 @@ mt6366_vaud28_reg: vaud28 {
->                         mt6366_vaux18_reg: vaux18 {
->                                 regulator-name =3D "pp1840_vaux18";
->                                 regulator-min-microvolt =3D <1800000>;
-> -                               regulator-max-microvolt =3D <1840000>;
-> +                               regulator-max-microvolt =3D <1800000>;
-
-The correct voltage is 1.84 V, however since earlier kernels did not
-support the 0.01 steps, the minimum was kept at 1.8V. The 0.04V offset
-is set either by bootloader or is the hardware default.
-
->                                 regulator-enable-ramp-delay =3D <270>;
->                         };
->
-> @@ -1410,8 +1429,8 @@ mt6366_vbif28_reg: vbif28 {
->
->                         mt6366_vcn18_reg: vcn18 {
->                                 regulator-name =3D "pp1800_vcn18_x";
-> -                               regulator-min-microvolt =3D <1800000>;
-> -                               regulator-max-microvolt =3D <1800000>;
-> +                               regulator-min-microvolt =3D <600000>;
-> +                               regulator-max-microvolt =3D <2100000>;
-
-Same thing about the voltage ranges. Furthermore, the power rail
-says "pp1800", which is a big hint why this change is wrong.
-
->                                 regulator-enable-ramp-delay =3D <270>;
->                         };
->
-> @@ -1424,8 +1443,8 @@ mt6366_vcn28_reg: vcn28 {
->
->                         mt6366_vefuse_reg: vefuse {
->                                 regulator-name =3D "pp1800_vefuse";
-> -                               regulator-min-microvolt =3D <1800000>;
-> -                               regulator-max-microvolt =3D <1800000>;
-> +                               regulator-min-microvolt =3D <1700000>;
-> +                               regulator-max-microvolt =3D <1900000>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-enable-ramp-delay =3D <270>;
->                         };
->
-> @@ -1438,15 +1457,15 @@ mt6366_vfe28_reg: vfe28 {
->
->                         mt6366_vemc_reg: vemc {
->                                 regulator-name =3D "pp3000_vemc";
-> -                               regulator-min-microvolt =3D <3000000>;
-> -                               regulator-max-microvolt =3D <3000000>;
-> +                               regulator-min-microvolt =3D <2900000>;
-> +                               regulator-max-microvolt =3D <3300000>;
-
-Same thing about the voltage ranges. Furthermore, the power rail
-says "pp3000", which is a big hint why this change is wrong.
-
->                                 regulator-enable-ramp-delay =3D <60>;
->                         };
->
->                         mt6366_vibr_reg: vibr {
->                                 regulator-name =3D "pp2800_vibr_x";
-> -                               regulator-min-microvolt =3D <2800000>;
-> -                               regulator-max-microvolt =3D <2800000>;
-> +                               regulator-min-microvolt =3D <1200000>;
-> +                               regulator-max-microvolt =3D <3300000>;
-
-Same thing about the voltage ranges. Furthermore, the power rail
-says "pp2800", which is a big hint why this change is wrong.
-
->                                 regulator-enable-ramp-delay =3D <60>;
->                         };
->
-> @@ -1482,30 +1501,30 @@ mt6366_vmc_reg: vmc {
->
->                         mt6366_vmddr_reg: vmddr {
->                                 regulator-name =3D "pm0750_emi_vmddr";
-> -                               regulator-min-microvolt =3D <700000>;
-> -                               regulator-max-microvolt =3D <750000>;
-> +                               regulator-min-microvolt =3D <600000>;
-> +                               regulator-max-microvolt =3D <2100000>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-enable-ramp-delay =3D <325>;
->                                 regulator-always-on;
->                         };
->
->                         mt6366_vmch_reg: vmch {
->                                 regulator-name =3D "pp3000_vmch";
-> -                               regulator-min-microvolt =3D <3000000>;
-> -                               regulator-max-microvolt =3D <3000000>;
-> +                               regulator-min-microvolt =3D <2900000>;
-> +                               regulator-max-microvolt =3D <3300000>;
-
-Same thing about the voltage ranges. Furthermore, the power rail
-says "pp3000", which is a big hint why this change is wrong.
-
->                                 regulator-enable-ramp-delay =3D <60>;
->                         };
->
->                         mt6366_vcn33_reg: vcn33 {
->                                 regulator-name =3D "pp3300_vcn33_x";
->                                 regulator-min-microvolt =3D <3300000>;
-> -                               regulator-max-microvolt =3D <3300000>;
-> +                               regulator-max-microvolt =3D <3500000>;
-
-Same thing about the voltage ranges. Furthermore, the power rail
-says "pp3300", which is a big hint why this change is wrong.
-
->                                 regulator-enable-ramp-delay =3D <270>;
->                         };
->
->                         vdram2 {
->                                 regulator-name =3D "pp0600_emi_vddq";
->                                 regulator-min-microvolt =3D <600000>;
-> -                               regulator-max-microvolt =3D <600000>;
-> +                               regulator-max-microvolt =3D <1800000>;
-
-Same thing about the voltage ranges. Furthermore, the power rail
-says "pp0600", which is a big hint why this change is wrong.
-
->                                 regulator-enable-ramp-delay =3D <3300>;
->                                 regulator-always-on;
->                         };
-> @@ -1518,6 +1537,7 @@ mt6366_vrf12_reg: vrf12 {
->                         };
->
->                         mt6366_vrf18_reg: vrf18 {
-> +                               compatible =3D "regulator-fixed";
-
-No. This is incorrect.
-
->                                 regulator-name =3D "pp1800_vrf18_x";
->                                 regulator-min-microvolt =3D <1800000>;
->                                 regulator-max-microvolt =3D <1800000>;
-> @@ -1526,8 +1546,8 @@ mt6366_vrf18_reg: vrf18 {
->
->                         vsim1 {
->                                 regulator-name =3D "pp1860_vsim1_x";
-> -                               regulator-min-microvolt =3D <1800000>;
-> -                               regulator-max-microvolt =3D <1860000>;
-> +                               regulator-min-microvolt =3D <1700000>;
-> +                               regulator-max-microvolt =3D <3100000>;
-
-The correct voltage is 1.86 V, however since earlier kernels did not
-support the 0.01 steps, the minimum was kept at 1.8V. The 0.06V offset
-is set either by bootloader or is the hardware default.
-
->                                 regulator-enable-ramp-delay =3D <540>;
->                         };
->
-> @@ -1540,18 +1560,17 @@ mt6366_vsim2_reg: vsim2 {
->
->                         mt6366_vsram_gpu_reg: vsram-gpu {
->                                 regulator-name =3D "pp0900_dvdd_sram_gpu"=
-;
-> -                               regulator-min-microvolt =3D <850000>;
-> -                               regulator-max-microvolt =3D <1050000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <1293750>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-ramp-delay =3D <6250>;
->                                 regulator-enable-ramp-delay =3D <240>;
-> -                               regulator-coupled-with =3D <&mt6366_vgpu_=
-reg>;
-> -                               regulator-coupled-max-spread =3D <10000>;
-> +                               regulator-always-on;
-
-No and no. See above about why it is coupled, and there is no need to
-keep the GPU always on.
-
->                         };
->
->                         mt6366_vsram_others_reg: vsram-others {
->                                 regulator-name =3D "pp0900_dvdd_sram_core=
-";
-> -                               regulator-min-microvolt =3D <900000>;
-> -                               regulator-max-microvolt =3D <900000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <1293750>;
-
-Same thing about the voltage ranges. Furthermore, the power rail
-says "pp0900", which is a big hint why this change is wrong.
-
->                                 regulator-ramp-delay =3D <6250>;
->                                 regulator-enable-ramp-delay =3D <240>;
->                                 regulator-always-on;
-> @@ -1559,8 +1578,8 @@ mt6366_vsram_others_reg: vsram-others {
->
->                         mt6366_vsram_proc11_reg: vsram-proc11 {
->                                 regulator-name =3D "pp0900_dvdd_sram_bc";
-> -                               regulator-min-microvolt =3D <850000>;
-> -                               regulator-max-microvolt =3D <1120000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <1293750>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-ramp-delay =3D <6250>;
->                                 regulator-enable-ramp-delay =3D <240>;
->                                 regulator-always-on;
-> @@ -1568,8 +1587,8 @@ mt6366_vsram_proc11_reg: vsram-proc11 {
->
->                         mt6366_vsram_proc12_reg: vsram-proc12 {
->                                 regulator-name =3D "pp0900_dvdd_sram_lc";
-> -                               regulator-min-microvolt =3D <850000>;
-> -                               regulator-max-microvolt =3D <1120000>;
-> +                               regulator-min-microvolt =3D <500000>;
-> +                               regulator-max-microvolt =3D <1293750>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-ramp-delay =3D <6250>;
->                                 regulator-enable-ramp-delay =3D <240>;
->                                 regulator-always-on;
-> @@ -1578,7 +1597,7 @@ mt6366_vsram_proc12_reg: vsram-proc12 {
->                         vusb {
->                                 regulator-name =3D "pp3070_vusb";
->                                 regulator-min-microvolt =3D <3000000>;
-> -                               regulator-max-microvolt =3D <3070000>;
-> +                               regulator-max-microvolt =3D <3100000>;
-
-The correct voltage is 3.07 V, however since earlier kernels did not
-support the 0.01V steps, the minimum was kept at 3.0V. The 0.07V offset
-is set either by bootloader or is the hardware default.
-
->                                 regulator-enable-ramp-delay =3D <270>;
->                                 regulator-always-on;
->                         };
-> @@ -1586,7 +1605,7 @@ vusb {
->                         vxo22 {
->                                 regulator-name =3D "pp2240_vxo22";
->                                 regulator-min-microvolt =3D <2200000>;
-> -                               regulator-max-microvolt =3D <2240000>;
-> +                               regulator-max-microvolt =3D <2200000>;
-
-Same thing about the voltage ranges.
-
->                                 regulator-enable-ramp-delay =3D <120>;
->                                 /* Feeds DCXO internally */
->                                 regulator-always-on;
-
-So basically you are undoing all the cleanups that I did to get the
-dtsi to fit upstream conventions and solutions that we have.
-
-
-ChenYu
+> -----Original Message-----
+> From: Alim Akhtar <alim.akhtar=40samsung.com>
+> Sent: Thursday, October 10, 2024 4:45 PM
+> To: '=EA=B9=80=ED=83=9C=EC=99=84'=20<trunixs.kim=40samsung.com>;=20'Sam=
+=20Protsenko'=0D=0A>=20<semen.protsenko=40linaro.org>=0D=0A>=20Cc:=20'Wim=
+=20Van=20Sebroeck'=20<wim=40linux-watchdog.org>;=20'Guenter=20Roeck'=0D=0A>=
+=20<linux=40roeck-us.net>;=20'Rob=20Herring'=20<robh=40kernel.org>;=20'Krzy=
+sztof=20=0D=0A>=20Kozlowski'=20<krzk+dt=40kernel.org>;=20'Conor=20Dooley'=
+=20<conor+dt=40kernel.org>;=0D=0A>=20linux-watchdog=40vger.kernel.org;=20de=
+vicetree=40vger.kernel.org;=20linux-=0D=0A>=20kernel=40vger.kernel.org;=20l=
+inux-arm-kernel=40lists.infradead.org;=20linux-=0D=0A>=20samsung-soc=40vger=
+.kernel.org;=20'Byoungtae=20Cho'=20<bt.cho=40samsung.com>=0D=0A>=20Subject:=
+=20RE:=20=5BPATCH=202/3=5D=20watchdog:=20s3c2410_wdt:=20add=20support=20for=
+=0D=0A>=20exynosautov920=20SoC=0D=0A>=20=0D=0A>=20Hi=20Taewan=0D=0A>=20=0D=
+=0A>=20>=20-----Original=20Message-----=0D=0A>=20>=20From:=20=EA=B9=80=ED=
+=83=9C=EC=99=84=20<trunixs.kim=40samsung.com>=0D=0A>=20>=20Sent:=20Thursday=
+,=20October=2010,=202024=2012:56=20PM=0D=0A>=20>=20To:=20'Sam=20Protsenko'=
+=20<semen.protsenko=40linaro.org>=0D=0A>=20>=20Cc:=20'Wim=20Van=20Sebroeck'=
+=20<wim=40linux-watchdog.org>;=20'Guenter=20Roeck'=0D=0A>=20>=20<linux=40ro=
+eck-us.net>;=20'Rob=20Herring'=20<robh=40kernel.org>;=20'Krzysztof=0D=0A>=
+=20>=20Kozlowski'=20<krzk+dt=40kernel.org>;=20'Conor=20Dooley'=20<conor+dt=
+=40kernel.org>;=0D=0A>=20>=20'Alim=20Akhtar'=20<alim.akhtar=40samsung.com>;=
+=20linux-=0D=0A>=20>=20watchdog=40vger.kernel.org;=20devicetree=40vger.kern=
+el.org;=20linux-=0D=0A>=20>=20kernel=40vger.kernel.org;=20linux-arm-kernel=
+=40lists.infradead.org;=20linux-=0D=0A>=20>=20samsung-soc=40vger.kernel.org=
+;=20'Byoungtae=20Cho'=20<bt.cho=40samsung.com>=0D=0A>=20>=20Subject:=20RE:=
+=20=5BPATCH=202/3=5D=20watchdog:=20s3c2410_wdt:=20add=20support=20for=0D=0A=
+>=20>=20exynosautov920=20SoC=0D=0A>=20>=0D=0A>=20>=20Hi,=0D=0A>=20>=0D=0A>=
+=20>=20Thank=20you=20for=20your=20review.=0D=0A>=20>=20Yes,=20cl0=20is=20co=
+rrect=20not=20cl1.=0D=0A>=20>=20I=20will=20apply=20it=20to=20v2=20patch.=0D=
+=0A>=20>=0D=0A>=20Don=E2=80=99t=20send=20a=20top=20up=20reply,=20context=20=
+get=20lost.=20Configure=20your=20email=20client=0D=0A>=20properly=20to=20se=
+nd=20a=20inline=20reply.=0D=0A=0D=0AThanks.=20I'll=20bear=20that=20in=20min=
+d.=0D=0A>=20=0D=0A>=20>=20Best=20regards,=0D=0A>=20>=20Taewan=20Kim.=0D=0A>=
+=20>=0D=0A>=20=0D=0A=0D=0A=0D=0A
 
