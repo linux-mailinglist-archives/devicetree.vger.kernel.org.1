@@ -1,141 +1,169 @@
-Return-Path: <devicetree+bounces-113416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B2369A58A6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 03:51:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C96879A58C2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 04:09:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CA52280D66
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 01:51:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 038C11C20FAE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 02:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28EB15E90;
-	Mon, 21 Oct 2024 01:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C651773A;
+	Mon, 21 Oct 2024 02:09:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EnScaqx5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SnRue/+q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CD99463;
-	Mon, 21 Oct 2024 01:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B97514263;
+	Mon, 21 Oct 2024 02:09:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729475511; cv=none; b=pwHeF/gY5TZfi3ZUhrh16tmuC9r4UTn0ROEPY1KES2oq3aUVM8pVAKXNXs7BEDV1J8X2tuCnGVBn6483sdPMKLlXwZ+dZVy1DUn6P9eR8Tc6gMV5nP49UzgZSG7zXHI97N8E41LtlKl6QKU4rNSZst/L8xrvgZE5GqAplhhkYMQ=
+	t=1729476584; cv=none; b=Ae8KKTBsntMfOe89R75ARysszNW8eUJmnwrlE0tfO8M1w3XMxnNWjwG9hXxOxSIn+891MHrT9EJB/+XqXgJQfzVeyvnW+7UneRWfxwigQEyn95pspUxmmE4b31WsualsGHGzZnPVshKJMc+Rm/owu0RrXWz0AtoirLOFaDP0FXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729475511; c=relaxed/simple;
-	bh=Cwq503/UWDDXDldw1Nq07IcX4gW8nBt0dj17dfpUtGM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sf7TBoIB9wo6qXjwM17Kc3e3URrRRUbSfi1dzy4qkeFCYu55Hqtf1St69WdyNXbYMde31sGqX9HvCyfbl+Acs2ts/Z5qKdx5cw+JoWgRCRT6bgM11oI7/Fb8X1doyGUthyv+s248AO8oQ7V9sLDtGFTXaKMumP1W2CweijK9yb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EnScaqx5; arc=none smtp.client-ip=209.85.215.177
+	s=arc-20240116; t=1729476584; c=relaxed/simple;
+	bh=24Le3eiapDQH83aOtSutIRNiu1Es7vn9zmebqUHO/PQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m4ZfxQRCIkr9wXDe7cfb71jDm9O0Jw/JYHHsoo4sZBLQA7lAHnOC3h6PJHIUuAadHyvVKCZi2jLBrrtBm4aS8PpAL7QL0WvohSlg+jr24XhKi/ri9ZBkLQJT/HbLp3kKAFQsbAs2rr6JEt6JfYAnNV4jAVcRXJEOiRRRmcvBz5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SnRue/+q; arc=none smtp.client-ip=209.85.210.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-7ea68af2f62so3083819a12.3;
-        Sun, 20 Oct 2024 18:51:49 -0700 (PDT)
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71e681bc315so2457734b3a.0;
+        Sun, 20 Oct 2024 19:09:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729475509; x=1730080309; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2lZ90rM/yl95gasunq8MHFMTMKnOJPDjLru9yVW213o=;
-        b=EnScaqx5OWM63cXnG7UzhBmCwSYlzzElRuWTKQPkGink5+PdN5Xvd9lPmKPIXGt39U
-         9r/2iAIipKyXTVqCo+zE53z61pwleOBZFcYNvJGFpF0833/YJf4LenVpsloyiTRq0+dg
-         vSnvGgi+qQ8WRTQkDOSF7C4B0ZLxUruRlss+dJw3yH/Z60bvxzjgmPkHv0H9+ZtM/Xjb
-         /CKKE9u46tKPuI2XkbEcUQ9GglCxftz6tzDHRdGwkih9zzzsdDaoT2X2TSZuf4khkUUg
-         M7zRx8/9fUNAUp9LcKa5R+kn+L7x5mGshGM0g25TcbbQdesVRV4B3bEKHD6XkdFB7kL0
-         EuAg==
+        d=gmail.com; s=20230601; t=1729476581; x=1730081381; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bf7ZQ2vXj6JorqEGjz7XEV1A94uZWCECK/fe9E3SPTo=;
+        b=SnRue/+qCQq5Ny5TQjYtz/OJMxTkHejN30TZ4dYyfLd2QfMM2fTbkmVkCUFNujSO5u
+         922739oAsHhGTm8oitDfgIqfUOCVyWfc9WoyPYoyg+cgbeDm1DkkM8ejfLzF1GFXz5Q+
+         5OH0RrTooS1YFKExyJt+r1V3MtRhe7e6JWmEfAg7KBsZHkj2jy6oQQflzH4Y6U07H0gi
+         rlWOvhcuBLAFpArgirQM/uPTaO//PpDLQaAwnkM0cOlrpj9OZOMf8uYz+OVeGqy/GDhP
+         mgrLdnU3amVQ1UPVJ6t4w7G6zR1CzrxmQ4K4uikJJ+8U/hEceoKPq9QwvB3P9BBla4Al
+         6taA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729475509; x=1730080309;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2lZ90rM/yl95gasunq8MHFMTMKnOJPDjLru9yVW213o=;
-        b=ciykf7zyoz3oEiWkUM3PpFscv1HhviycvsDqujjMoNVcMTHufIfRR9Wy+5hu1OIr7J
-         5pmET/hv24qmAQIv51BXp6X6LnXCLSgPsC3pCdp2Hqx8eTdpEB7rnT8pdtifFc5du8Xs
-         b+g38YxyYV38IVQcA/Fxgzt9t9o1A4NewiLw+dfZwZbSCdlkImICgE6sf2O6/78Wtao5
-         1JUoaDSj3zDx6A3094p/JddgYIGdlWzc4zl7auZttw3qpCPqkwSuotfcfya9aRKIJxYS
-         1u3AXn3hzxh/UuR5QFTTbRCwGo1153jikTfZYSowA46E3hao1vYf66OvA/9Ce6q7bCMw
-         ok7w==
-X-Forwarded-Encrypted: i=1; AJvYcCU+iVe8pV5dYnx9Q6O/KKB34ewy4+sNzG4h4TLLE9E5wi8i8mcyPuZGbXkoERX1Gpa7/nzH/D+TP1ZFblg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUiYHFmK0q2v0BtQNiHqfNFCve6UA+qKdxL6/VEg+TeLsu6KcT
-	8aUc5Ukl5+ndBqX9diXga7U5WsDrbWq8meNDnpcJx/4qk2y8UtOl15yY+g+a
-X-Google-Smtp-Source: AGHT+IHUMxAUf7zs1ZStiEaTzi+8zOdBCaWC9s2oqqARtuMi42TKkyKkVInMzf79Kn4CD0iYuUi9zg==
-X-Received: by 2002:a05:6a21:6e41:b0:1d9:2954:5817 with SMTP id adf61e73a8af0-1d92c50fef3mr16322541637.23.1729475509143;
-        Sun, 20 Oct 2024 18:51:49 -0700 (PDT)
-Received: from ryzen.lan ([2601:644:8200:dab8::a86])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec141505bsm1747413b3a.219.2024.10.20.18.51.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Oct 2024 18:51:48 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Hauke Mehrtens <hauke@hauke-m.de>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM5301X ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] ARM: dts: meraki-mr26: set mac address for gmac0
-Date: Sun, 20 Oct 2024 18:51:47 -0700
-Message-ID: <20241021015147.172700-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.47.0
+        d=1e100.net; s=20230601; t=1729476581; x=1730081381;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bf7ZQ2vXj6JorqEGjz7XEV1A94uZWCECK/fe9E3SPTo=;
+        b=egaCNW5qbZnt8+VOas/cxfg3w+hViT3bS5Ys/o72FXl9t0EpKYflCutvb3UyuwRts8
+         ZOmCSfAOiiYc06WD/ZH6X26M69acRc5R3mvHFXXf6VSmL4q75aCa7zCdeAcZHEjBui5G
+         IxPa7VRArws4WxQ5Pbd485GtISVe6z8EmX+Ge65kvwzgK8JEGSY9mqlRJ2PEgAd6fnRG
+         MTtfKDFxIMYesBe4iVowlRPRHhcNiawOGg76FAcOvR8eg5vOK+lCczsQdNFHm5NcYg+0
+         YeWb7cr1TGFMgOLP+SN+HmRistQCqkdhe6Vs/OpY0mdyRU+dmn+kACk2WQyBQDFKqqTO
+         MYWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUi12M3eUUZauNqDzN/t9UiEDIy5X1LOIIqmT5XJ9WZW57hbAmRJpoT5G/SEPw+V5PK9qWmxZyW/8csk6gF@vger.kernel.org, AJvYcCVLCx241EWBQL4tQpMrbqbbpTdiAINC1VglmfI9EEt3V1X8v5Qdf6gcNFWR0ROSvYSiqTsveuuHPerb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrhLguqB7NBcfciCiTBzBcL23Wu8/KIV0+EO9QFL7EG7Q9BvNe
+	NsAMDPLeOAUuN6Ciem/EaXi5My0xUP5nLiOdG4nD7JUdF+QzlaCP
+X-Google-Smtp-Source: AGHT+IFq7IOvWK3WEZq7H92NJ9rZFuPaZ3gta4tblIVUEdLtLS9whI4zUy8XlVEj522zW40a785d0A==
+X-Received: by 2002:a05:6a00:1d15:b0:71e:591d:cb4c with SMTP id d2e1a72fcca58-71e8fd43bc5mr26167952b3a.1.1729476581198;
+        Sun, 20 Oct 2024 19:09:41 -0700 (PDT)
+Received: from [172.19.1.53] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec1332f6asm1775801b3a.69.2024.10.20.19.09.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Oct 2024 19:09:40 -0700 (PDT)
+Message-ID: <c89f11c0-e0f3-4a28-9de4-341d0238f8cb@gmail.com>
+Date: Mon, 21 Oct 2024 10:09:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/2] mtd: rawnand: nuvoton: add new driver for the
+ Nuvoton MA35 SoC
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nikita.shubin@maquefel.me, arnd@arndb.de, vkoul@kernel.org,
+ esben@geanix.com, linux-arm-kernel@lists.infradead.org,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241018022519.721914-1-hpchen0nvt@gmail.com>
+ <20241018022519.721914-3-hpchen0nvt@gmail.com>
+ <ZxItGw0m_w0jgtAq@pengutronix.de>
+Content-Language: en-US
+From: Hui-Ping Chen <hpchen0nvt@gmail.com>
+In-Reply-To: <ZxItGw0m_w0jgtAq@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Currently this needs to be done in userspace.
+Dear Sascha,
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- .../dts/broadcom/bcm53015-meraki-mr26.dts     | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm53015-meraki-mr26.dts b/arch/arm/boot/dts/broadcom/bcm53015-meraki-mr26.dts
-index 0bf5106f7012..08abfdc63d18 100644
---- a/arch/arm/boot/dts/broadcom/bcm53015-meraki-mr26.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm53015-meraki-mr26.dts
-@@ -59,6 +59,9 @@ &uart1 {
- 
- &gmac0 {
- 	status = "okay";
-+
-+	nvmem-cells = <&macaddr_board_config_66>;
-+	nvmem-cell-names = "mac-address";
- };
- 
- &gmac1 {
-@@ -102,8 +105,25 @@ partition@600000 {
- 		};
- 
- 		partition@800000 {
-+			compatible = "linux,ubi";
- 			label = "ubi";
- 			reg = <0x800000 0x7780000>;
-+
-+			volumes {
-+				ubi-volume-board-config {
-+					volname = "board-config";
-+
-+					nvmem-layout {
-+						compatible = "fixed-layout";
-+						#address-cells = <1>;
-+						#size-cells = <1>;
-+
-+						macaddr_board_config_66: macaddr@66 {
-+							reg = <0x66 0x6>;
-+						};
-+					};
-+				};
-+			};
- 		};
- 	};
- };
--- 
-2.47.0
+Thank you for your reply.
+
+
+On 2024/10/18 下午 05:40, Sascha Hauer wrote:
+> On Fri, Oct 18, 2024 at 02:25:19AM +0000, Hui-Ping Chen wrote:
+>> +static int ma35_nfi_ecc_check(struct nand_chip *chip, u8 *addr)
+>> +{
+>> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
+>> +	struct mtd_info *mtd = nand_to_mtd(chip);
+>> +	int i, j, nchunks = 0;
+>> +	int report_err = 0;
+>> +	int err_cnt = 0;
+>> +	u32 status;
+>> +
+>> +	nchunks = mtd->writesize / chip->ecc.steps;
+>> +	if (nchunks < 4)
+>> +		nchunks = 1;
+>> +	else
+>> +		nchunks /= 4;
+>> +
+>> +	for (j = 0; j < nchunks; j++) {
+>> +		status = readl(nand->regs + MA35_NFI_REG_NANDECCES0 + j * 4);
+>> +		if (!status)
+>> +			continue;
+>> +
+>> +		for (i = 0; i < 4; i++) {
+>> +			if ((status & ECC_STATUS_MASK) == 0x01) {
+>> +				/* Correctable error */
+>> +				err_cnt = (status >> 2) & ECC_ERR_CNT_MASK;
+>> +				ma35_nfi_correct(chip, j * 4 + i, err_cnt, addr);
+>> +				report_err += err_cnt;
+> This is still wrong. This should be
+>
+> 				report_err = max(report_err, err_cnt);
+>
+> You have to search for the subpage that has the most bitflips and return
+> the number of bitflips on that subpage, *not* the total amount of errors
+> on the whole page.
+>
+> That said, the statistic counter should still count the total number of
+> bitflips occurred.
+
+I re-examined the return value of read_page, and it indeed needs to 
+return the
+
+maximum bitflips for the subpage. I will correct this return value.
+
+Thank you.
+
+
+> Sascha
+>
+>> +			} else {
+>> +				/* Uncorrectable error */
+>> +				dev_warn(nand->dev, "uncorrectable error! 0x%4x\n", status);
+>> +				return -EBADMSG;
+>> +			}
+>> +			status >>= 8;
+>> +		}
+>> +	}
+>> +	return report_err;
+>> +}
+>> +
+
+Best regards,
+
+Hui-Ping Chen
+
 
 
