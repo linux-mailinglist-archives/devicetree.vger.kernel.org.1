@@ -1,132 +1,129 @@
-Return-Path: <devicetree+bounces-113721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C539A6AF7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:48:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 690829A6AFA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:50:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1184B258C5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:48:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A9E22847EF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445A71F4FDE;
-	Mon, 21 Oct 2024 13:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2F91F4712;
+	Mon, 21 Oct 2024 13:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="q0M+l5LX";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="IktmwYTY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SM/1J1Xq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA8F1F130A;
-	Mon, 21 Oct 2024 13:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D071DC04C;
+	Mon, 21 Oct 2024 13:50:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729518503; cv=none; b=RTH4fUwyidtDu2QZiWioG3WMCHxV8A7SMF+jn5xgTwWLB3Vd+XpEHhfd1yMJkl8iXo6qADdVTzaUMCKro8YRpsL7hN7VDThpoJ4DKu1Hz3KZ7LXlFHgDbQE2xRLiWnHbYMbYEhrOdfnsqvU/h4iEYy/hfsSIMSk2COa8iHj2uoE=
+	t=1729518607; cv=none; b=ir4GB8nV3MXWftL71c+SFqJWCuaGZm9Td5+w/lucic+mXP4jJcltEtotflY3ZAux8atnHktrQN8ZG9t/iPlW1BTts9U/bXBqHecVnq354nHZCaXNQ2C+KlA5bcb9H7jaJONSoOikQiR4yfUYM/A5oA40WxjxZOYiGLJLKrZTec8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729518503; c=relaxed/simple;
-	bh=Zv+uXFl0RQcRbDUrQN5TBTqjzzSX7jumC0m+kpAaEZk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WF+MjBiVmwQc9tjx+mPy5GFi+pWxHoC/zd30GukmixLg3yT3hlVD5Q93VcoF/CyxH8tATCgSvhZy+uEYX7j9M208kQzZ0jLu5VC31v8ZUVZHL60VLcnVcduvOQBtEWdIgdJ8Vh2V/1fqi/bX/7fFCuTmyPhKuj3c+U+SnmobaU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=q0M+l5LX; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=IktmwYTY reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1729518607; c=relaxed/simple;
+	bh=KtprUJLXkjuzcGdoL/QA73UOT8briZQ69IS5tC6po2U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oHlwTysnRHOLdK5hRO3YlJr7qFi4bZjk2eED9F/vDol4Vlj74517ZbH4mSvkm3DfOcajHktzbU68Y4JuST7Tf2KAP0ywmc53W6LReWk158MrUC9FbAGYQvVsSt2gFgo5/9eQ/101ZFAGEogUFZpPgUMWlY9hgTCP97cnDyQkvvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SM/1J1Xq; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a9a68480e3eso38993066b.1;
+        Mon, 21 Oct 2024 06:50:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1729518499; x=1761054499;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=KEFV90NtjKhk5WP7S+oF07G1Q6k1s2xpduU//Ae0D2s=;
-  b=q0M+l5LX0z4uSY1eoIeZJ+MLg5rh3oCvRELQoGnUkUhAriuUdflIW3o0
-   ydlqYOLPZLhbZGRMXRLGDpLMUWEwqqNRE5DctzJlouIdgt9lT9BmR1SCC
-   tWwANhTG8cNuZqp5NmXBywv2DjCwrMBEIyUzRiHC0OTTQcJod0GYFK6TQ
-   FgxMCPRA2b+H7QADZGJAH6NP8X7c9UbcDqAToQ4dSFTdhdEwEGs6mM+c4
-   /3xBBXMRQiitiszbr0JG9u0iUkisW6WZJJR3haXVyYRLqLnWtypyi2b2b
-   ZRMyLn6On5JYZl7TVPRNRQGzX+SteWtfIdFFe+TduqQchnw+AmFYa/401
-   g==;
-X-CSE-ConnectionGUID: HFLFfOkzTreLiUJYWJ10yQ==
-X-CSE-MsgGUID: jkaZF85fTAGn0EnQ8v2ucQ==
-X-IronPort-AV: E=Sophos;i="6.11,221,1725314400"; 
-   d="scan'208";a="39576079"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 21 Oct 2024 15:48:17 +0200
-X-CheckPoint: {67165BA1-F-69FF9A8E-EE9CEDAF}
-X-MAIL-CPID: 5835941C4BD768457DA0DE859DEFCF6C_0
-X-Control-Analysis: str=0001.0A682F18.67165BA1.005B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BB15D16B491;
-	Mon, 21 Oct 2024 15:48:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1729518492;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=KEFV90NtjKhk5WP7S+oF07G1Q6k1s2xpduU//Ae0D2s=;
-	b=IktmwYTY1/ITpIkYod18GzpOJd2buw1RXiqxY5+mJQlX2WDPqs2RFxrNIHkvUc42DpYe7z
-	O4u0t1at+eER5RHHvhf7NEVdLtxeE8T0Hm9F54XBQHRKOn4N9s/KHkfDldT/ftsah7Vrqo
-	+j/K2fTrQGTjUr9zXs3fnTdmBAIOoFTUlSCD3AYj+vCKkbUsvfZOcOrcHy8YRSusrhKu7U
-	bpY+kZ0XxF0lOuwqc7jTaWVDib/2FX3e4ilDVVWdnwR4FcdsgVOxOXIp4bXWRnJIIJdiuW
-	wysouKNGijPive6QIccT6Ux/kIppJd3KMY3qOkHzG0ZQL6bGuqEwfLYJwE/SCg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Subject: Re: [PATCH v3 1/7] arm64: dts: imx95: set max-rx-timeout-ms
-Date: Mon, 21 Oct 2024 15:48:11 +0200
-Message-ID: <2755523.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241012-imx95-dts-new-v3-1-edfab0054c71@nxp.com>
-References: <20241012-imx95-dts-new-v3-0-edfab0054c71@nxp.com> <20241012-imx95-dts-new-v3-1-edfab0054c71@nxp.com>
+        d=gmail.com; s=20230601; t=1729518604; x=1730123404; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xvZACKQE5A63kgrvXCHxaARVoSrgC3Hgpn7T6LENiug=;
+        b=SM/1J1XqvtyC7BlhgZGc81QbYYXwv5gl2buh4SwiEWUFMt85wvq1Tky70mAhH8aI7o
+         AwQPV54a+chnZnbcUbsv3tCxiUtMXcFkt5foORtf14+ZdOVjRYDb+adeIVBxjfgOC7Wy
+         7sB/FWfF4gpmWhj9lQQgwejWwFjiAy1QRGF3BQ7y3USNIraR+C5gEQbY/FUJNK1F+AHo
+         UrrrPqV6V/k4m1BMMwZ6TShGlJbNVgTDZy+7ZlyrQddrXnGYdxomntzaP9srEY2mjGyg
+         Hpgzme6u1O0P/8kJlXucqO94oXxTi1VGnNUOD4AZIbAMpn+pJf7L0LmCzg8r0ciqGRxq
+         3WJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729518604; x=1730123404;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xvZACKQE5A63kgrvXCHxaARVoSrgC3Hgpn7T6LENiug=;
+        b=WFjzgnfDqONMPtQV8dF5YFIBwG/xPOni1YRrvuTgV5+XMMoX8qYHN6dpzWtElFHiCp
+         mHRkNipkgW0O6sHSQJI/Re8+cpIdEK4ExqtySNwVwiziqgyCxrwYFCgglUXbPYF6D6H3
+         wgTcxp7zE1raroQUC1RcinS3uRVftYva4/KZJTYwC9q5rp4cF75dCpCDX1KjH0FR36Y6
+         L292/OYv1WJ6ro3x4iLtjxVc807+dl3/ZcdbQz7BhiYxMimBYP47CybI6NdRF+mSXUja
+         ClGqoNF5D+CcMNfejI6htwlk4Tr7rgOVN4T5NFjxwb0CW8SdQv9sa+BaQGxlCCu/e3/5
+         v84A==
+X-Forwarded-Encrypted: i=1; AJvYcCULYTk8ZnqUwZq1IbuRdUit9IXUKtp53GpixG045uIG2qvsg/czLsl/giPurgsaq5J9xkBUuu6eeTwj@vger.kernel.org, AJvYcCUQOTl/jBARKzNzrrinAwWCWNPhq3z7Vcg4sybRnJ2IbNViB4naWAFrrME+qZ2TNvopxbtBW2xmNp/zuL3P@vger.kernel.org, AJvYcCVaAezqflFHRFQ636PdPKB4rvYDVAVF1uJ4CkPliXg4Tsexj6ICg8IlPMAyfDbW3yX+xwAKRLDw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKlNIGPJyUxYaiBp6FBbuk7Nx8OJouKTjMjVAcFSQQSyDH667q
+	iuNfKUADEbpzyGok9ty9gx8ATFNb4PgYVR1r0VdJ94qtfwh//AFl
+X-Google-Smtp-Source: AGHT+IFkvdi1xXb440X3ZM1lEN+rP4lRDSyWGbbS/gXXJfBpY4FWgfR+FUuyyXY5eiShRJa3bmU8Tg==
+X-Received: by 2002:a17:906:7951:b0:a9a:6700:1ee5 with SMTP id a640c23a62f3a-a9a69a7b2efmr420841666b.5.1729518603659;
+        Mon, 21 Oct 2024 06:50:03 -0700 (PDT)
+Received: from skbuf ([188.25.134.29])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a9137060fsm205673366b.103.2024.10.21.06.50.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 06:50:03 -0700 (PDT)
+Date: Mon, 21 Oct 2024 16:50:00 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>, Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH 0/4] net: dsa: Add Airoha AN8855 support
+Message-ID: <20241021135000.ygele6x64xvfzntl@skbuf>
+References: <20241021130209.15660-1-ansuelsmth@gmail.com>
+ <20241021133605.yavvlsgp2yikeep4@skbuf>
+ <67165992.df0a0220.170dc.b117@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <67165992.df0a0220.170dc.b117@mx.google.com>
 
-Am Samstag, 12. Oktober 2024, 13:19:08 CEST schrieb Peng Fan (OSS):
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> With 'max-rx-timeout-ms' property added in 'Documentation/devicetree/
-> indings/firmware/arm,scmi.yaml', set the value for i.MX95.
->=20
-> NXP i.MX95 SCMI Firmware designation does not allow timeout, it will not
-> recover if the Agents use timeout design. So set a large value (5000ms)
-> here.
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx95.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
-ts/freescale/imx95.dtsi
-> index 03661e76550f4d5b8e5e706ad51d6f7620cb1dc3..9c802c2344fcfb2802e5d52c7=
-62b0178a2a88ba8 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -293,6 +293,7 @@ scmi {
->  			shmem =3D <&scmi_buf0>, <&scmi_buf1>;
->  			#address-cells =3D <1>;
->  			#size-cells =3D <0>;
-> +			max-rx-timeout-ms =3D <5000>;
+On Mon, Oct 21, 2024 at 03:39:26PM +0200, Christian Marangi wrote:
+> On Mon, Oct 21, 2024 at 04:36:05PM +0300, Vladimir Oltean wrote:
+> > On Mon, Oct 21, 2024 at 03:01:55PM +0200, Christian Marangi wrote:
+> > > It's conceptually similar to mediatek switch but register and bits
+> > > are different.
+> > 
+> > Is it impractical to use struct regmap_field to abstract those
+> > differences away and reuse the mt7530 driver's control flow? What is the
+> > relationship between the Airoha and Mediatek IP anyway? The mt7530
+> > maintainers should also be consulted w.r.t. whether code sharing is in
+> > the common interest (I copied them).
+> 
+> Some logic are similar for ATU or VLAN handling but then they added bits
+> in the middle of the register and moved some in other place.
+> 
+> Happy of being contradicted but from what I checked adapting the mtk
+> code would introduce lots of condition and wrapper and I feel it would
+> be actually worse than keeping the 2 codebase alone.
+> 
+> Would love some help by mt7530 to catch some very common case.
 
-Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-Best regards,
-Alexander
->  			scmi_devpd: protocol@11 {
->  				reg =3D <0x11>;
->=20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+As long as the control flow is reasonably similar, the REG_FIELD() macro
+is able to deal with register fields which have moved from one place to
+another between hardware variants.
 
