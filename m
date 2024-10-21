@@ -1,167 +1,170 @@
-Return-Path: <devicetree+bounces-113572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F96C9A626C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE869A62CF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:27:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C66731C21996
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:18:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 302271C21BA7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05BB1E3784;
-	Mon, 21 Oct 2024 10:18:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lDOCHzje"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1961E572A;
+	Mon, 21 Oct 2024 10:26:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7D0DDC1;
-	Mon, 21 Oct 2024 10:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB291E47C6
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729505887; cv=none; b=Edx7iNCqFVqWrVYKfcr9N0DpiNVDBU2CuanaJQA8W6TMWSYGNO4gcDW7Jxv5r3QzCTE7UrzsFMzbFeYjt+Q0jG5Pshvn7AEx4UjDwcUqI+L/v0on82nohf0FxSXZa+3dKGMXBsPOdlMw8MbPyQr5CwgFlWHD4jGFQhrzF9YbXuA=
+	t=1729506385; cv=none; b=KZ9YypoYCns2UXkl5N8UOf/rt8zErM4J8JMxqjXy7NuUmMG6On3oieKiSh/8VwcBDCM9Q/38rcL6VQ00fVzqPzk7sfzoKH/zQYuEptpYw744+cU5IrZKc4QLvbD6pEQDz0C4QryKMWbPeGF07Rhagb2OkMhQTbkLKU2OTtekWp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729505887; c=relaxed/simple;
-	bh=Q4czTQPI4Z5Zy8B+MQf/hc42cmnbOK1BUsG1bn7iWN0=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=nKE6/sH1YdtwjcLlBasHTmrIv4zCr4PXjD4DmCycyo8JiZGETkTwkmexCK5C+swGjSacppBeSK+/G9+iJH0m+DWOw+9P7AZClEixQcgw7gWkNRkTximnZxtcI9q+kCLOqRi03rf0xtD1WEveU3V8O67sqYf8gAHJfndI1VzXSk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lDOCHzje; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729505885; x=1761041885;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=Q4czTQPI4Z5Zy8B+MQf/hc42cmnbOK1BUsG1bn7iWN0=;
-  b=lDOCHzje5IhvA1MeG7zXbxwuasOZOt2Nk6d+ltl0q//sydvmV6T3dWmf
-   OEvNPhCDXvxfxl0vcm4X3K76HSdGNWpruZGobpqP7GHoAiCUaTbWz+eJ6
-   HtEDfn0Cj2vUI5THx6xrHcW9TOQ9QL3cWDOMcUQ0UYdvweCO4suJ15hsc
-   s2hjrpOfOiN9QTf1brbYh2VieMAzAK+fxT4xxffF/gYBoqhJ6+CnuqO2S
-   exZ+M/WQTRIsYMHKooDYS8HS2CDb2XijTaNIccoypvYf0kD9kUMnH77JW
-   l1BhenXoEfKNScVw2EwDQlUeJir5VaCs64N0h65QBC63g1W4Zri0lIair
-   Q==;
-X-CSE-ConnectionGUID: PX8QDsR+S/qcIVnEbh8hZw==
-X-CSE-MsgGUID: VScUnll6Taqx5Rn84hwfcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="40353347"
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; 
-   d="scan'208";a="40353347"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2024 03:18:05 -0700
-X-CSE-ConnectionGUID: TqhSGXDcQz67JFSfHQ8t7Q==
-X-CSE-MsgGUID: CAUsUVz8TZmzpZ0FmnJhzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; 
-   d="scan'208";a="80302518"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.201])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2024 03:17:59 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Mon, 21 Oct 2024 13:17:55 +0300 (EEST)
-To: Inochi Amaoto <inochiama@gmail.com>
-cc: Chen Wang <unicorn_wang@outlook.com>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-    Paul Walmsley <paul.walmsley@sifive.com>, 
-    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-    Inochi Amaoto <inochiama@outlook.com>, Yixun Lan <dlan@gentoo.org>, 
-    LKML <linux-kernel@vger.kernel.org>, 
-    linux-serial <linux-serial@vger.kernel.org>, devicetree@vger.kernel.org, 
-    linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] serial: 8250_dw: Add Sophgo SG2044 quirk
-In-Reply-To: <tm7jtf3swggiilznwo3xcqjlhd2a7cguwk3nay3bhmaxo23mf5@qw2fyjwapoxe>
-Message-ID: <3dafd285-f56f-de2a-1544-b6ce092607b5@linux.intel.com>
-References: <20241021072606.585878-1-inochiama@gmail.com> <20241021072606.585878-3-inochiama@gmail.com> <29d8e2a6-d0e7-0f74-1f5c-4f285ec1e9ee@linux.intel.com> <tm7jtf3swggiilznwo3xcqjlhd2a7cguwk3nay3bhmaxo23mf5@qw2fyjwapoxe>
+	s=arc-20240116; t=1729506385; c=relaxed/simple;
+	bh=HyinHEDUltMnnylEuLyH5EMvjAcRtvUx0YHleWhIe5c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CQLmAkPYWPnPr3CjtG5Tis2a/mdxxd+fpCGLMaA+T0T1uYdmyeGy7H2bZrsTY+MOMHpk9fS+u3CbEZvL1iO+nFg8BMSZrPMg0E6zziIueC1koVznx+YQuzwJyseG2TQg9+fvmjR/8Z08Qb8fzmOKgBRzz0/6wUC9YmGBpGyEYAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t2pbr-0000gD-2X; Mon, 21 Oct 2024 12:25:59 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t2pbq-000g9Q-22;
+	Mon, 21 Oct 2024 12:25:58 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t2pbq-005k06-1g;
+	Mon, 21 Oct 2024 12:25:58 +0200
+Date: Mon, 21 Oct 2024 12:25:58 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+	Sherry Sun <sherry.sun@nxp.com>,
+	Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+	Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+	"marcel@holtmann.org" <marcel@holtmann.org>,
+	"luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+Message-ID: <20241021102558.rfnz7nxcg5knibxs@pengutronix.de>
+References: <20241004113557.2851060-1-catalin.popescu@leica-geosystems.com>
+ <DB9PR04MB8429B4535422D3AE07D8EE79927C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
+ <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
+ <0d460226-4ea7-4a9b-a119-468343727996@kernel.org>
+ <20241021064129.trchqa2oickna7pc@pengutronix.de>
+ <bb34f4ae-92b3-48b7-b0d6-5937756cdbb9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-2055814311-1729505875=:1065"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bb34f4ae-92b3-48b7-b0d6-5937756cdbb9@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On 24-10-21, Krzysztof Kozlowski wrote:
+> On 21/10/2024 08:41, Marco Felsch wrote:
+> > On 24-10-07, Krzysztof Kozlowski wrote:
+> >> On 07/10/2024 14:58, POPESCU Catalin wrote:
+> >>>>>>
+> >>>>>> +  vcc-supply:
+> >>>>>> +    description:
+> >>>>>> +      phandle of the regulator that provides the supply voltage.
+> >>>>>> +
+> >>>>>> +  reset-gpios:
+> >>>>>> +    description:
+> >>>>>> +      Chip powerdown/reset signal (PDn).
+> >>>>>> +
+> >>>>> Hi Catalin,
+> >>>>>
+> >>>>> For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means that both wifi and BT controller will be powered on and off at the same time.
+> >>>>> Taking the M.2 NXP WIFI/BT module as an example, pin56(W_DISABLE1) is connected to the WIFI/BT chip PDn pin, we has already controlled this pin in the corresponding PCIe/SDIO controller dts nodes.
+> >>>>> It is not clear to me what exactly pins for vcc-supply and reset-gpios you describing here. Can you help understand the corresponding pins on M.2 interface as an example? Thanks.
+> >>>
+> >>> Hi Sherry,
+> >>>
+> >>> Regulators and reset controls being refcounted, we can then implement 
+> >>> powerup sequence in both bluetooth/wlan drivers and have the drivers 
+> >>> operate independently. This way bluetooth driver would has no dependance 
+> >>> on the wlan driver for :
+> >>>
+> >>> - its power supply
+> >>>
+> >>> - its reset pin (PDn)
+> >>>
+> >>> - its firmware (being downloaded as part of the combo firmware)
+> >>>
+> >>> For the wlan driver we use mmc power sequence to drive the chip reset 
+> >>> pin and there's another patchset that adds support for reset control 
+> >>> into the mmc pwrseq simple driver.
+> >>>
+> >>>> Please wrap your replies.
+> >>>>
+> >>>> It seems you need power sequencing just like Bartosz did for Qualcomm WCN.
+> >>>
+> >>> Hi Krzysztof,
+> >>>
+> >>> I'm not familiar with power sequencing, but looks like way more 
+> >>> complicated than reset controls. So, why power sequencing is recommended 
+> >>> here ? Is it b/c a supply is involved ?
+> >>
+> >> Based on earlier message:
+> >>
+> >> "For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means
+> >> that both wifi and BT controller will be powered on and off at the same
+> >> time."
+> >>
+> >> but maybe that's not needed. No clue, I don't know the hardware. But be
+> >> carefully what you write in the bindings, because then it will be ABI.
+> > 
+> > We noticed the new power-sequencing infrastructure which is part of 6.11
+> > too but I don't think that this patch is wrong. The DT ABI won't break
+> > if we switch to the power-sequencing later on since the "reset-gpios"
+> > are not marked as required. So it is up to the driver to handle it
+> > either via a separate power-sequence driver or via "power-supply" and
+> > "reset-gpios" directly.
+> 
+> That's not the point. We expect correct hardware description. If you say
+> now it has "reset-gpios" but later say "actually no, because it has
+> PMU", I respond: no. Describe the hardware, not current Linux.
 
---8323328-2055814311-1729505875=:1065
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+I know that DT abstracts the HW. That said I don't see the problem with
+this patch. The HW is abstracted just fine:
 
-On Mon, 21 Oct 2024, Inochi Amaoto wrote:
+shared PDn          -> reset-gpios
+shared power-supply -> vcc-supply
 
-> On Mon, Oct 21, 2024 at 11:52:38AM +0300, Ilpo J=E4rvinen wrote:
-> > On Mon, 21 Oct 2024, Inochi Amaoto wrote:
-> >=20
-> > > SG2044 relys on an internal divisor when calculating bitrate, which
-> > > means a wrong clock for the most common bitrates. So add a quirk for
-> > > this uart device to skip the set rate call and only relys on the
-> > > internal UART divisor.
-> > >=20
-> > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> >=20
-> > Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
-> >=20
-> > I wonder though does this mean the numbers userspace can read from kern=
-el=20
-> > are bogus and if something can be done about that?
-> >=20
->=20
-> I am not sure whether the clock rate can be read by the userspace.
-> At least it report the right baud speed by using stty.
+Right now the DT ABI for the BT part is incomplete since it assume a
+running WLAN part or some hog-gpios to pull the device out-of-reset
+which is addressed by this patchset.
 
-Okay, I meant baud & other settings. Thanks for checking it.
+Making use of the new power-sequencing fw is a Linux detail and I don't
+see why the DT can't be extended later on. We always extend the DT if
+something is missing or if we found a better way to handle devices.
 
---=20
- i.
-
-> Regards,
-> Inochi
->=20
-> >=20
-> > > ---
-> > >  drivers/tty/serial/8250/8250_dw.c | 5 +++--
-> > >  1 file changed, 3 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8=
-250/8250_dw.c
-> > > index ab9e7f204260..51894c93c8a3 100644
-> > > --- a/drivers/tty/serial/8250/8250_dw.c
-> > > +++ b/drivers/tty/serial/8250/8250_dw.c
-> > > @@ -750,7 +750,7 @@ static const struct dw8250_platform_data dw8250_r=
-enesas_rzn1_data =3D {
-> > >  =09.quirks =3D DW_UART_QUIRK_CPR_VALUE | DW_UART_QUIRK_IS_DMA_FC,
-> > >  };
-> > > =20
-> > > -static const struct dw8250_platform_data dw8250_starfive_jh7100_data=
- =3D {
-> > > +static const struct dw8250_platform_data dw8250_skip_set_rate_data =
-=3D {
-> > >  =09.usr_reg =3D DW_UART_USR,
-> > >  =09.quirks =3D DW_UART_QUIRK_SKIP_SET_RATE,
-> > >  };
-> > > @@ -760,7 +760,8 @@ static const struct of_device_id dw8250_of_match[=
-] =3D {
-> > >  =09{ .compatible =3D "cavium,octeon-3860-uart", .data =3D &dw8250_oc=
-teon_3860_data },
-> > >  =09{ .compatible =3D "marvell,armada-38x-uart", .data =3D &dw8250_ar=
-mada_38x_data },
-> > >  =09{ .compatible =3D "renesas,rzn1-uart", .data =3D &dw8250_renesas_=
-rzn1_data },
-> > > -=09{ .compatible =3D "starfive,jh7100-uart", .data =3D &dw8250_starf=
-ive_jh7100_data },
-> > > +=09{ .compatible =3D "sophgo,sg2044-uart", .data =3D &dw8250_skip_se=
-t_rate_data },
-> > > +=09{ .compatible =3D "starfive,jh7100-uart", .data =3D &dw8250_skip_=
-set_rate_data },
-> > >  =09{ /* Sentinel */ }
-> > >  };
-> > >  MODULE_DEVICE_TABLE(of, dw8250_of_match);
-> > >=20
->=20
---8323328-2055814311-1729505875=:1065--
+Regards,
+  Marco
 
