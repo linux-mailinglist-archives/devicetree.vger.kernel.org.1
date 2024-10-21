@@ -1,138 +1,153 @@
-Return-Path: <devicetree+bounces-113549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95D939A6068
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCD6F9A6070
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:43:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3935A1F223DE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:43:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C4421F2246C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3B1B1E32D6;
-	Mon, 21 Oct 2024 09:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 007B11E32D2;
+	Mon, 21 Oct 2024 09:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="TT11sIJs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DOgJh/ia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CA11E2832;
-	Mon, 21 Oct 2024 09:42:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729503773; cv=pass; b=nJoUSEo6MzNe8pgxhHozUR3VoMJTwLkvBIXLeP/XR6OWZoREIFUACvweacVMm8/Z24HEmmVkdkYTuGzz0HseADmoPusi/GtKTYQ1Bw2FC8xrMsrTptNQ4vbNZannhWG9Kqx/pPxEGY7UUJAxfDLantNgDiW4mPPerEOqAWfCAGw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729503773; c=relaxed/simple;
-	bh=Dgn4BIMgi2uJUo6HDYEO3rNdBm10LDPvAFVEi4WVIJs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dhjV60mdbu0ZO/bAtMSo8kxUsx4CrTMiMvQdHPoVzm0YvSnxe685nVhS6prbAjs6FEYnVpduRejwMpitydPMCv1Qnszo8ECzbsN1WNHDKudnln/TDJYcDL6WUJB+M9GMOMe+c4eFy7fICJuNhcuCVjw3nzJjI3E/8jXwvdW4V+g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=TT11sIJs; arc=pass smtp.client-ip=195.140.195.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4XX9Mh1c2kzyS6;
-	Mon, 21 Oct 2024 12:42:40 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1729503763;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iItfBry1csHzGqUNbyVvEH2vzYvKChbmjbYESjm867M=;
-	b=TT11sIJskyRx4EEr+KaB1vS9ZH1SrCpLkOsmpLXhV+msJ8nnG/c+KvasmmZkysT/XmnZSF
-	yzI1WuUO2SX3wT0J+rpBDVKiWNTyzy+UbHSQOIEjaKqHupcEcstRyggRrZ89bJ/pCW6MjT
-	E1gF2WbPBegINFg/pG7UZVa227DDmg8=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1729503763; a=rsa-sha256; cv=none;
-	b=dAu7+pIdIlghojNCKKb7WLzQDsJuVijf/a7ZiZcBa3UA0XHPe/kht+wAwuGAtiUGqpd4Te
-	LfWGHY+l6PAYM9iVxr/PvQS7IEAJYX2426q2duOLHAS+HnQV5/TLv/P2PjNAInD2SIs2mA
-	VmHE41wmRy6Gy3+u9bU6C4EA22IgZbk=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1729503763;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iItfBry1csHzGqUNbyVvEH2vzYvKChbmjbYESjm867M=;
-	b=bVCLNoC2TXGV7eAh0a6ceMJHIaPpJJU1ZaP4jA0ZfxVTtkfzdDdnxcM0fVFHXDiBvvll/R
-	NYiTURklrRn0pW+Wj4zdDxekI5VlHJkikY5JLAyrUcNxC6Kac8dWOivI6OMsfq/uZ4Fr52
-	R79/Djv0r4sJdwZfbt0SWAbsfKTtT4A=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 6DC52634C93;
-	Mon, 21 Oct 2024 12:42:39 +0300 (EEST)
-Date: Mon, 21 Oct 2024 09:42:39 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v7 1/9] of: property: add of_graph_get_next_port()
-Message-ID: <ZxYiD5CCzcrwbD1o@valkosipuli.retiisi.eu>
-References: <87wmiirqwy.wl-kuninori.morimoto.gx@renesas.com>
- <87v7y2rqwf.wl-kuninori.morimoto.gx@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE2F21E283D;
+	Mon, 21 Oct 2024 09:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729503822; cv=none; b=ICnTxc0YUdkNb7u+W5E57YwnNDf2xEtr91vex0WPROsYCV78HLCmWWe8Z2KxEWorIpqjQe2U6R3nKp/w7LASxQUBbIG09Et/1f+TpwLuaCk0O3v8xgpUDrvCR1cCSl1wOla4dAXOnq55qxuhBUK2eBIKIuVL0yJy1yyfO6Cjy40=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729503822; c=relaxed/simple;
+	bh=DocfnqodpECHeTU7WzOZ8o9ZwceqaD+JMKAhWcybg7g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZlkIsu3oBg9qvOfRswXbGSJqGSCrwFOUwqcUdsnoaowz7DWzkhT3pEO5+BbCBN7xskuqkCl63L0eLfj1Nt8AqJ8fFsaAvckhK+/7+nFQ328Pp5A//WNIVFqqk7F36AOKLFU63tZjeK/uBvLVxgTbCtSS7cpTRC2AGPVW1OW0orU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DOgJh/ia; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F232C4CEC3;
+	Mon, 21 Oct 2024 09:43:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729503822;
+	bh=DocfnqodpECHeTU7WzOZ8o9ZwceqaD+JMKAhWcybg7g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DOgJh/iab918XNUp6ZzTERCymq7jkBNkGI9G3LUununJvoVxX2FpPcoAdE1hzxayZ
+	 KvkWsugqp/KiXlQ+rRMMBN9OZp5VA6PeMBO43HKGbYIofzBamdVvatNlw9iiMj0Tfj
+	 ELugB8yXQPcb793QSgDKWG/HONCCQwTnBfJ9lDzioAjfRyrNORrdIl0eYF4sHUlHzc
+	 OngBmmVyfZuiwRs44Vfxntua/FIV9JBhk0t9hlRbfEdmtrWfTiG7TxCJ3vBTuZaiUN
+	 uJZoLwu04bBl/x7lNpevGhHAN/1FvT55OJ9jID6mluTHHp0yKHBKJKwG2IdUF5/Yxr
+	 BxOcj5NpE19Cw==
+Message-ID: <fbde8a3a-3adc-4c1a-8529-fde0fa149c8e@kernel.org>
+Date: Mon, 21 Oct 2024 11:43:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87v7y2rqwf.wl-kuninori.morimoto.gx@renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>,
+ Doug Anderson <dianders@chromium.org>
+Cc: dmitry.torokhov@gmail.com, hbarnor@chromium.org,
+ conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241018020815.3098263-2-charles.goodix@gmail.com>
+ <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
+ <ZxMfu4yxk961mZWB@ux-UP-WHL01>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZxMfu4yxk961mZWB@ux-UP-WHL01>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Dead Morimoto-san,
+On 19/10/2024 04:55, Charles Wang wrote:
+> Hi Doug
+> 
+> On Fri, Oct 18, 2024 at 01:48:56PM -0700, Doug Anderson wrote:
+>>
+>> On Thu, Oct 17, 2024 at 7:09 PM Charles Wang <charles.goodix@gmail.com> wrote:
+>>>
+>>> The Goodix GT7986U touch controller report touch data according to the
+>>> HID protocol through the SPI bus. However, it is incompatible with
+>>> Microsoft's HID-over-SPI protocol.
+>>>
+>>> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+>>> ---
+>>>  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
+>>>  1 file changed, 58 insertions(+), 10 deletions(-)
+>>
+>> I'm happy to let device tree folks make the call here, but IMO it
+>> would be much cleaner to just consider the I2C-connected GT7986U and
+>> the SPI-connected GT7986U to be different things and just use a
 
-On Wed, Oct 09, 2024 at 01:44:48AM +0000, Kuninori Morimoto wrote:
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 11b922fde7af..6a5d27dd0c64 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -630,6 +630,43 @@ struct device_node *of_graph_get_port_by_id(struct device_node *parent, u32 id)
->  }
->  EXPORT_SYMBOL(of_graph_get_port_by_id);
->  
-> +/**
-> + * of_graph_get_next_port() - get next port node.
-> + * @parent: pointer to the parent device node, or parent ports node
-> + * @prev: previous port node, or NULL to get first
-> + *
-> + * Parent device node can be used as @parent whether device node has ports node or not.
+Same device, you cannot have different compatibles. The way how the same
+(literally same chip) device sits on the bus is not part of the binding,
+thus no different compatibles.
 
-This line should be wrapped, no reason to have it longer than 80 chars.
+>> different compatible string for them. So essentially go back to your
+>> v7 patch from before [1] but change the compatible to
+>> "goodix,gt7986u-spi". If, for instance, this device also had a USB
+>> interface then I don't think we'd try to cram it into the same
+>> bindings even though the same physical chip was present...
+>>
+> 
+> Honestly, I agree with this approach, but Krzysztof seems to prefer
+> extending the existing binding.
 
-Maybe this could be done while applying?
+I prefer not to have warnings and that was the problem with original
+patchset. I am fine with splitting different models between different
+binding schemas/files, but not the same device in two files.
 
-> + * It will work same as ports@0 node.
-> + *
-> + * Return: A 'port' node pointer with refcount incremented. Refcount
-> + * of the passed @prev node is decremented.
-> + */
+Best regards,
+Krzysztof
 
--- 
-Kind regards,
-
-Sakari Ailus
 
