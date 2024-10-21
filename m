@@ -1,128 +1,97 @@
-Return-Path: <devicetree+bounces-113543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C339A6010
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:32:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 624639A602C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:34:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6932D1C21EAB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:32:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23193286317
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988111E3DC0;
-	Mon, 21 Oct 2024 09:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C731E3DFA;
+	Mon, 21 Oct 2024 09:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNowFPeX"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="FcTQec5S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5707F1E3779;
-	Mon, 21 Oct 2024 09:31:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72301E3DC9;
+	Mon, 21 Oct 2024 09:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729503086; cv=none; b=e8kZwuXyOEVOGnVWS4GfQh43Wz4vBWU8U5ukUMYhUPK4e5B9TpB/+e9NJYNBDCJoRmcyu16QLy4dfDXZ+LuwtcLvZlqIYgwoAaMwB9jQZskxNHmEaJfZrcVY37SZfIbT3TkLqWscL0KYjU4mgvWbIR/CDwyF+72qXUjuIcJMRoM=
+	t=1729503239; cv=none; b=bXtnFXe+VAYTBjO42Jh4ZN0SQdzlRDIryFiZ8SfGoc+lJshAPWUQ1VHDi5/qCPf8cJ+FqyEqHdWAc57//NPHJDHGikPn2UNhRZJ3cw64DSDU4tGLt+hfCEke9kNBAaB57f6+xl3Q9DD+I9DQhgTF4YoRSjWCJi1vVt+nMZKidQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729503086; c=relaxed/simple;
-	bh=14gLEXzYPJ2mkJ4+l7UphcbwfQJ7L0h1cweXAkAc7mQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G3A63t8kz1WatsxnMOTSOOjzVsNNNwrx1jMxMufNXhIvMNUBqnifREG81yEOFp0UFpohX59AKXuTY+wTsdgx5CJ11RcBXfkHpVCg1WrrMQv8CSIXyzEZ9riARRTjWDCd33hxBJ1pbVJLJ1HyvhkPZlSCMtaKrOdMFbey4+PHvww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNowFPeX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D069C4CEC3;
-	Mon, 21 Oct 2024 09:31:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729503085;
-	bh=14gLEXzYPJ2mkJ4+l7UphcbwfQJ7L0h1cweXAkAc7mQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SNowFPeXOsIWCkuLoj4PZqCvbtU59r8/oDHzXgcip2q5718B1eFtt3gq01BTeoP4x
-	 H6cuhlbVANkiI+UJc84lYjuzt7TPtW6VYFXMK4eS4gcJISguHE69085U0XZMS7zScP
-	 xGQHdoruTqYbaOXmyDHp7vPI/2AYoRFgtMs4LeYz4mAmORDuZHznnaVMMsDkna+oZ4
-	 FTbYKeVAY7n9JUS+WMuBwV6o9JPoHWuB+Jl7Y5NlrPySksm5g3G6Ma4cxMt4acJ1hC
-	 wKbaeq3GWNTAs2wRLUiyHSfGnmI+95UbU6Xo3k8sN2wlHmwxuQLaD5a6TDy+xnfE+G
-	 p66ouryOi2DUQ==
-Message-ID: <6ad87494-b4e9-4f05-93f3-dcfc65310159@kernel.org>
-Date: Mon, 21 Oct 2024 11:31:19 +0200
+	s=arc-20240116; t=1729503239; c=relaxed/simple;
+	bh=lt4MyRKSRDATgIILLvQBERHTvt0iMENs897PEB75t5s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U6OOJ0MGmtfqg8KUyxhbBrzVixZ7JXsnIFiZ0KUXk2mIed5TDPUudnZMeRxBb0RE0KvdN8b+coJrwC6/0N0+qhYJj0eThdn4kOQFpUZbB8OZYzAA8BAu1tzq+vmhh8eyQ/ku0+CUX3XcsgYynAtL1976Xe7q5eDMmeddZZ+s+8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=FcTQec5S; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id E662F1F910;
+	Mon, 21 Oct 2024 11:33:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1729503235;
+	bh=eJXnu31+KUwObtPMQI/tdF00wkFhCU+yalKssA5xKhc=;
+	h=Received:From:To:Subject;
+	b=FcTQec5SbDkOpuLJvOFzdYzEGGCZOQ13xmRb/wCI0Av+k2ODoqIF1UMOmiWxP07/8
+	 h4CsGMHrmLHmjSzEJHgvcEbBQIXQ8LdmP6NTI1HO6TcPEhpqEAYrG7oeg5koxoUTnq
+	 OexK1UhlZNGTihs447k1jPpF4VWksMqfsz3zHqY/kHNYNFmFr8keEJ+hoJfidoVmsU
+	 MWTxTgcLkyeWOR+wpQXT6MrMaMDglJSOWAD+xSV7Bv9XsWT5lELWEhPwpiW+inWSZj
+	 Hveb9xxsGR7d3sCCFciVQ5HjzN0rESESM9oKQn1K4TtII7YiI1dlMjYnPuIdPKF+38
+	 sH1PibwksrkMA==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id A0AE97FA52; Mon, 21 Oct 2024 11:33:54 +0200 (CEST)
+Date: Mon, 21 Oct 2024 11:33:54 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: Conor Dooley <conor@kernel.org>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: arm: fsl: drop usage of Toradex SOMs
+ compatible alone
+Message-ID: <ZxYgAijbgKJyKpkC@gaggiata.pivistrello.it>
+References: <20241004160842.110079-1-francesco@dolcini.it>
+ <20241004-enforcer-absently-e3a056284991@spud>
+ <ZxYfHMViwfCQEdNY@dragon>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] tty: serial: samsung: Add Exynos8895 compatible
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241020180201.376151-1-ivo.ivanov.ivanov1@gmail.com>
- <20241020180201.376151-3-ivo.ivanov.ivanov1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241020180201.376151-3-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZxYfHMViwfCQEdNY@dragon>
 
-On 20/10/2024 20:02, Ivaylo Ivanov wrote:
-> Add serial driver data for Exynos8895 SoC. The main difference from
-> other platforms is that fifosize is only specified via the
-> samsung,uart-fifosize DT property.
+On Mon, Oct 21, 2024 at 05:30:04PM +0800, Shawn Guo wrote:
+> On Fri, Oct 04, 2024 at 05:24:11PM +0100, Conor Dooley wrote:
+> > On Fri, Oct 04, 2024 at 06:08:42PM +0200, Francesco Dolcini wrote:
+> > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > 
+> > > The Toradex SOMs cannot be used alone without a carrier board, so drop
+> > > the usage of its compatible alone.
+> > 
+> > FYI, alot of what you're removing here appears in the $som.dtsi files.
+> > I don't think that matters at all, since the dtsi files need to be
+> > included somewhere - but figured I'd point it out in case the platform
+> > maintainer for fsl cares.
 > 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->  drivers/tty/serial/samsung_tty.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+> Thanks for pointing it out, Conor!
 > 
+> I would say we should remove the compatible from dtsi files before
+> dropping it from bindings.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I'll send a v2 to address this.
 
-Best regards,
-Krzysztof
+Francesco
 
 
