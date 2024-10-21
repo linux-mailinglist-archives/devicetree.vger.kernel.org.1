@@ -1,78 +1,68 @@
-Return-Path: <devicetree+bounces-113707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC579A6A2B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:27:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 566359A6A3E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:28:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A96011C22212
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:27:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 017CD1F248C0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:28:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3B51F4FAE;
-	Mon, 21 Oct 2024 13:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D04A1F7061;
+	Mon, 21 Oct 2024 13:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Vf7B2c8q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JXXfwab4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9394194C62;
-	Mon, 21 Oct 2024 13:27:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAB6B1DFFB;
+	Mon, 21 Oct 2024 13:28:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729517258; cv=none; b=XHdNsCvJDCtK1qsEyfhDGk6CeqbU/qy15F3nfo/LHkjG+CLSspIgYKE6q4dfWj8+eXeerrvJZDTyArky0/MAgqu87n5fklnV31if+aFY4RhFWFihfbBaKESnohe6xRg4lXstu8suyhmNdup8NkTfDq35xC+I7m4Wqz7Ubv8UkJY=
+	t=1729517326; cv=none; b=q3LnQZZWXNbU/wvs5CuEFqk5p6dmIAVVbXZLS9JMZLLFqEADBpbM8f8LiX1oHnkwhV7BIv+bM6baE820SF7eXr4x2qeLhxIFlRjxwoPnOPp4re1cAg0VpQnBRlLs4FFj5SI/0TmCfkDx5mNl9lATBkbDMrTPN+wMRtQV4drTN+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729517258; c=relaxed/simple;
-	bh=tpUMAOXEdQHMV/LTUs7UVRMGe8vwcmFVR8ILTP6wDLA=;
+	s=arc-20240116; t=1729517326; c=relaxed/simple;
+	bh=I/lqGfR6DjRwRm7x77Ce84OzvDVzs3+1+CsEADwNolo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rgjJ39/SPbkfxoEEvKp6Outra8aYaTb1aAwpvSTeMYDJWof2Jp1oiveCJ5pMiN6RPvrC5GROseioX1Eruql29KmaFoGMFv+g6EN9HWsyZ/GxzsdqqarXm0oJSNhdAbWZD5mlqRwlLy5DuQJX7v5zd7cWG9VN01rxje78dOro05M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Vf7B2c8q; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=oyGvjz3/Hib5fIbnXMnThAnbAp+YfY0g/qjJuNmpK4E=; b=Vf7B2c8qiEwkPVEwyBcYyfO60W
-	ioO34B4XYd++tnetkNAqExZEqPVXB5v/j6vULA/sT4YpCzZMazXIqcCo/A8XKYr0pvhjeRmAujCHP
-	uEQiS7X6XEbId/OSkwXV1uow9Eku1mO7mWIrIf174yXI9Lp4onWcoSU3gm4sfrnNbrLA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t2sRK-00Aj01-4D; Mon, 21 Oct 2024 15:27:18 +0200
-Date: Mon, 21 Oct 2024 15:27:18 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=p8j+igZ5BxHGBJicRmv2d6ZQuQJimrHvbs117DEAyeLEjXcsA3Efna9w+T2RE08kTUTaRQ1VWGyx2Jjy25kPWWL9Coe5mQVG20agwTXrcfuk/Mni2SqBMW+oUDqgmSLk3iAS8yF0sz/vsCwyvret0PZCac320KrK4raH4LyfXNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JXXfwab4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80200C4CEC3;
+	Mon, 21 Oct 2024 13:28:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729517325;
+	bh=I/lqGfR6DjRwRm7x77Ce84OzvDVzs3+1+CsEADwNolo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JXXfwab4dNShaGhHGRWIl//4ACrC9bDO2LurXIq+yB26mxrFkuaJh8yl9VnF3G8Va
+	 jw1VH8el1Akp5ByhaXYe/m/fByNwNmM6DRRW1z1mBaKmVsZRRXD9NQ3fI0KABx0GV0
+	 KZOp605UfqLoLlZMnamVV9C6Gl3dIXFl5Qd3xleNzS2Y2cH1KTUTcnkJJeIvSye2qO
+	 oFRxvjLC/pUMr2Fj9gkJIAxLqqxfr4+I85y5rxWiAO8MyVJjojLE9jpb0A8KLY1aR5
+	 Y4q7uMf/yU3j7lOElSiLfab9o3Ei8So+bvLhaK5QmGV6Mu0YSbjlaetx+MDWxlzWje
+	 /uAwumpfztBlw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t2sSt-000000001Bv-2NzU;
+	Mon, 21 Oct 2024 15:28:55 +0200
+Date: Mon, 21 Oct 2024 15:28:55 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-Message-ID: <65720a16-d165-4379-a01f-54340fb907df@lunn.ch>
-References: <20241021103617.653386-1-inochiama@gmail.com>
- <20241021103617.653386-5-inochiama@gmail.com>
- <227daa87-1924-4b0b-80db-77507fc20f19@lunn.ch>
- <gwtiuotmwj2x3d5rhfrploj7o763yjye4jj7vniomv77s7crqx@5jwrpwrlwn4s>
+	kernel test robot <lkp@intel.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Fix
+ X1E80100 resets entries
+Message-ID: <ZxZXFx9T-9Uw0Ndw@hovoldconsulting.com>
+References: <20241021-phy-qcom-qmp-pcie-fix-x1e80100-gen4x4-resets-v2-1-1b11a40baad1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,19 +71,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <gwtiuotmwj2x3d5rhfrploj7o763yjye4jj7vniomv77s7crqx@5jwrpwrlwn4s>
+In-Reply-To: <20241021-phy-qcom-qmp-pcie-fix-x1e80100-gen4x4-resets-v2-1-1b11a40baad1@linaro.org>
 
-> It is related to the RGMII delay. On sg2044, when the phy 
-> sets rx-delay, the interal mac is not set the same delay, 
-> so this is needed to be set.
+On Mon, Oct 21, 2024 at 04:10:21PM +0300, Abel Vesa wrote:
+> The PCIe 6a PHY is actually Gen4 4-lanes capable. So the gen4x4 compatible
+> describes it. But according to the schema, currently the gen4x4 compatible
+> doesn't require both PHY and PHY-nocsr resets, while the HW does. So fix
+> that by adding by adding the gen4x4 compatible alongside gen4x2 for the
 
-This is the wrong way to do it. Please look at how phy-mode should be
-used, the four different "rgmii" values. Nearly everybody gets this
-wrong, so there are plenty of emails from me in the netdev list about
-how it should be done.
+nit: s/by adding//
 
-    Andrew
+> resets description.
+> 
+> Fixes: 0c5f4d23f776 ("dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the X1E80100 QMP PCIe PHY Gen4 x4")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202410182029.n2zPkuGx-lkp@intel.com/
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> Changes in v2:
+> - Picked up Krzysztof's R-b tag
+> - Re-worded commit message according to Johan's
+>   suggestion
+> - Link to v1: https://lore.kernel.org/r/20241018-phy-qcom-qmp-pcie-fix-x1e80100-gen4x4-resets-v1-1-f543267a2dd8@linaro.org
 
----
-pw-bot: cr
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
