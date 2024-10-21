@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-113836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C9A9A72FB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:10:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 804A89A730C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:13:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35DEC2839ED
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:10:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41D38283CE7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0B11FBC87;
-	Mon, 21 Oct 2024 19:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5FDF1FCC57;
+	Mon, 21 Oct 2024 19:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="sgOKrCFU"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Kxux+rof"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3CCC2209B;
-	Mon, 21 Oct 2024 19:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73231FBC9F;
+	Mon, 21 Oct 2024 19:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729537856; cv=none; b=uJlYMHJQpCjmJMxQ0npWNbxMmMfmzKeJlCCNFvFv/3j5hDvurk749+o14PCBbLtdxzqgQHHvyNI1LMQh10t49eGv4oGl+KYpxXDaIpK56k6ivJ7Br8vHiH99k8Zv1zA4F5Y3TqXZfB10UPIo/rohiWATuqRmCeI0ZddeiFiNI2s=
+	t=1729537975; cv=none; b=MqOG6o2RheQKkkr2cH9mlFb+G7UJoikc//+3nTkkpVb5pw2RwPfQFHZRkN9t6tHqw1J4YiLen9ZFl371VHSliRuOys0uY0+4meHCI8S+g8lgBNp6fb74vIB/a+97criFHNCKBzOAmoVhFv6m/DcBdhfEgouvSzLeK5C2NG79PO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729537856; c=relaxed/simple;
-	bh=5Npb0UB3xjxu34VLa/hXfqiKXjp+NHGyBf4A2zbCrLw=;
+	s=arc-20240116; t=1729537975; c=relaxed/simple;
+	bh=71MvAum+6d78RYFlLQaF+K24ogaifmLcj8CMqlCWKXE=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dAiiFFZNnMQrkQo9fr/cw3PVu7pl5NE/oeq1ykJxzgEXqrwdNhqS+pMegl8CX4f3HHXKjHzPunS+YObsvOxh85UR8YW0JgXCs+yLKRO3j7InkRgk5GwDDIIwz3wX2U/G1lu+u07VcRAwlmJR4JKiSgPu86tJkvOJpFmfjEloc6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=sgOKrCFU; arc=none smtp.client-ip=68.232.153.233
+	 Content-Type:Content-Disposition:In-Reply-To; b=WmYNuUvFxNA4p+Bo/ozC7sF9+ZR6nkHWL7PX/aIU2Qf0x00GANJ2DSKkTeKX9NZAbWocYOKqe0tCzfu2ET0M6OeaTenCaUW0728HNXoHgDbgfZe1BG7rLm/5ddPUFgXuvxFw8vhltwr08FVo7wKrogrQBQww85Lo7ARbr/0racA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Kxux+rof; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1729537854; x=1761073854;
+  t=1729537973; x=1761073973;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=5Npb0UB3xjxu34VLa/hXfqiKXjp+NHGyBf4A2zbCrLw=;
-  b=sgOKrCFUFresoonOtetxw744HzBfZ5b3WY4c2cpty4SoSZmEU8cxHB6G
-   aS2JdIP/lzgiJZLAxo2VWPk5phx9bvLOrEYvUhzVuq0bGqxjyxSIejScs
-   Zgta4Ga5ux9hunDcQTYdXbzUPJZYdYUsnDjgLjnuVgrbRYbzVbujK87Ss
-   YoUoKkVf0PCsmygN4UULECASK6wQ4ewWzbB3gfJ6BIvi3oG8Gykz+lyQj
-   GExjWyt03Do8o+zgAGU4iy6wM2HW43dt70VUUHL41w+jsdPSWElcX1o80
-   YFatwSgBCkyNhzCMYy0GOyR37jQkt5FCLyUIekhHnJVZbujmx8T0T/GMK
+  bh=71MvAum+6d78RYFlLQaF+K24ogaifmLcj8CMqlCWKXE=;
+  b=Kxux+rofVHucCaVfSb6UY899ioSyZYn38DdrLw+u+nq2sE6TTOy9fspv
+   OYiIE+WEyoFJngkORFDUyqXkD+6AkSweji671/dRDBRqUNeh90/LPn5N+
+   yj7rcKFRektik0durQvh5V0nQLs9hZUOPyEo0e5fUFbyYJX3vvK4/wTaq
+   nPSsGZMFYQnJP92jBjnNIHKCP4Yt6/sLuygRdXQkwmLnovFyv5CAAB5EX
+   BkDP9UQRWixdbGr8SeuSjeCWyVzVhOf5t4ftx7AjgpCNAjhhjLCx651hL
+   mUln5MMZmwHGGKUAS0mqVUR47wWzvbbMW7UHHnbJpPTVoC5BvrWfsvBVv
    A==;
-X-CSE-ConnectionGUID: AY5F0AEfSvWQ3nuwGvWjFA==
-X-CSE-MsgGUID: GZEoHNsmRTe4gsUIApM8fg==
+X-CSE-ConnectionGUID: 8pX8BFJzRaej4ADE6ll6eg==
+X-CSE-MsgGUID: t+5YL8yTQN+zeQL/C8b/Ew==
 X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; 
-   d="scan'208";a="36683189"
+   d="scan'208";a="36683250"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Oct 2024 12:10:53 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Oct 2024 12:12:52 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
  chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 21 Oct 2024 12:10:32 -0700
-Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 21 Oct 2024 12:10:28 -0700
-Date: Mon, 21 Oct 2024 19:10:27 +0000
+ 15.1.2507.35; Mon, 21 Oct 2024 12:12:32 -0700
+Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Mon, 21 Oct 2024 12:12:28 -0700
+Date: Mon, 21 Oct 2024 19:12:27 +0000
 From: Daniel Machon <daniel.machon@microchip.com>
 To: Maxime Chevallier <maxime.chevallier@bootlin.com>
 CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
@@ -73,12 +73,11 @@ CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
 	<ast@fiberby.net>, <netdev@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next 05/15] net: sparx5: add registers required by
- lan969x
-Message-ID: <20241021191027.wgtyhy53ect2xhko@DEN-DL-M70577>
+Subject: Re: [PATCH net-next 10/15] net: lan969x: add PTP handler function
+Message-ID: <20241021191227.dxfqli6uoeoxbhzj@DEN-DL-M70577>
 References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
- <20241021-sparx5-lan969x-switch-driver-2-v1-5-c8c49ef21e0f@microchip.com>
- <20241021193348.7a2423db@device-21.home>
+ <20241021-sparx5-lan969x-switch-driver-2-v1-10-c8c49ef21e0f@microchip.com>
+ <20241021194638.585a9870@device-21.home>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,44 +86,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20241021193348.7a2423db@device-21.home>
+In-Reply-To: <20241021194638.585a9870@device-21.home>
 
-> Hello Daniel,
+Hi Maxime,
+
+> Hi Daniel,
 > 
-> On Mon, 21 Oct 2024 15:58:42 +0200
+> On Mon, 21 Oct 2024 15:58:47 +0200
 > Daniel Machon <daniel.machon@microchip.com> wrote:
 > 
-> > Lan969x will require a few additional registers for certain operations.
-> > Some are shared, some are not. Add these.
+> > Add PTP IRQ handler for lan969x. This is required, as the PTP registers
+> > are placed in two different targets on Sparx5 and lan969x. The
+> > implementation is otherwise the same as on Sparx5.
+> >
+> > Also, expose sparx5_get_hwtimestamp() for use by lan969x.
 > >
 > > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
 > > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
 > 
 > [...]
 > 
-> > +#define PTP_PTP_TWOSTEP_STAMP_SUBNS_STAMP_SUB_NSEC GENMASK(7, 0)
+> > diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.h b/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
+> > index 15f5d38776c4..3f66045c57ef 100644
+> > --- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
+> > +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
+> > @@ -114,6 +114,8 @@ enum sparx5_vlan_port_type {
+> >  #define SPX5_DSM_CAL_LEN               64
+> >  #define SPX5_DSM_CAL_MAX_DEVS_PER_TAXI 13
+> >
+> > +#define SPARX5_MAX_PTP_ID    512
+> > +
 > 
-> I understand that this is partly autogenerated, however the naming for
-> this register in particular seems very redundant... Is there any way
-> this could be improved ?
+> Sorry if I somehow missed it, but if you define SPARX5_MAX_PTP_ID here,
+> you probably don't need it to be also defined in sparx5_ptp.c as well ?
 > 
 > Thanks,
 > 
 > Maxime
-> 
 
-Yes, this might be a new candidate for "the longest name in the kernel"
-award.
+You are right. It should definitely be removed from sparx5_ptp.c
 
-This particular register is a concatenation of: PTP (target) PTP_TS_FIFO
-(register group) PTP_TWOSTEP_STAMP_SUBNS (register) STAMP_SUB_NSEC
-(field), and as you can see the register group part is already removed.
-That said, the tool for generating this, can be tweaked to rename
-registers if required - I will do that here :-)
-
-Thanks!
+Will fix it in v2. Thanks!
 
 /Daniel
-
-
 
