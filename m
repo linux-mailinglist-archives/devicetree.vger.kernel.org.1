@@ -1,362 +1,105 @@
-Return-Path: <devicetree+bounces-113794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6334F9A70B0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:10:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34EF59A70B8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:13:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1ECB92846B6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:10:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 639C11C229B9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB511CBE89;
-	Mon, 21 Oct 2024 17:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF07E1E9089;
+	Mon, 21 Oct 2024 17:13:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="jx1wrq2m"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="s8zO2rvV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-23.smtpout.orange.fr [80.12.242.23])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AC547A73;
-	Mon, 21 Oct 2024 17:10:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF2B47A73
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 17:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729530631; cv=none; b=su8eyJp+pIVQrDOS5srBRbPl/H0N5TGKWMzNz1p2YG8D236WlwfYJa6oPqfYw53scGgXSKUwm+Nx9ZWuTiiosvJ23z3g8RBqx4eqS1RY76+LHAN1XmjWwkg29HIkU25aIhPGiyqQ8t12EU9jgkJqwBBZ6/N/a/nL+wgqQG4LW5M=
+	t=1729530781; cv=none; b=Lxy8xqBF+p6uDN6SGLSlqCFkAswIF5JgI+cnEm7H4y2F/hVT/U/1UMer+a/96p6k60xGME8Oj2TGIDKvhzH9wZwwgQm8NiQ1ea30UbsRErog7N8LAFe5CZzgLVlfOr8n2Fwb7yVDLDuXWMnNolcYcMJ4k3jwa8cSwvquyvnlB0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729530631; c=relaxed/simple;
-	bh=1c4PdRriiS/iBNfIH4SwhgYqlrt7Y3TPuqnGiKSh1eU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zogc4ZM9dUxd9IA+4akIk5vcKf+uCN3hP+9Syp4ZCOOfpbIjJlFVLwafC0iR2xn16x/A1dkjrUyfWQ4ahcViIC8jD+Jc1ro19F//FliXan3hcQa6h49H8eyOnNgMZFJ29s/0Y+HahKWCD6YHv8gjUVAssPvdfW8/bIzM7aN7ok4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=jx1wrq2m; arc=none smtp.client-ip=80.12.242.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id 2vtrtah4RQI3S2vtrtiuDL; Mon, 21 Oct 2024 19:09:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1729530546;
-	bh=mw2F5SJ/CHyQYWKNFVkI3SI/zipNvCqITe7rm4FQeuU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=jx1wrq2mL6gLmw2KideZ3NykWqIGyoSnkguxnch8WVCHaRBvt1cYFA7BJnCJssvaN
-	 RIv8KymBkyLQENV5+kW1aonnV/FQ6BnoNn0LhwIZ0mi5CRBnVUfS/jipQOUKydZzZW
-	 2lCTFQbqSvIU81reXWB6xO1U6FIFr+ITDGVlJ5KYh+guLrl+O8T2Ux51HtHSSulFLM
-	 CzGXUDLvoASaHCLnlX5K/KCSdk8MA7zBrdVQsx6O+h3VALp+MvbsxTPI6vuiUUcdNY
-	 QKqhcNMNnXADOxorX+9ueOeaSXQMumwtVRH7jRcH5F33yYRSpXFGOnbO8j5GGA7e/C
-	 dtL0mT3DRDcOQ==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Mon, 21 Oct 2024 19:09:06 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <ab57dbee-59b8-4ec0-91dd-4818b6b28446@wanadoo.fr>
-Date: Mon, 21 Oct 2024 19:08:58 +0200
+	s=arc-20240116; t=1729530781; c=relaxed/simple;
+	bh=K0daLSF+0afKDESpJQutcIQsM+eqc+xlyPBd8VxIw9I=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=j2289C3gBzROA9JSaRPWzIvYd7Psav+B9CaGbRVoBC89DNOeW+CqKJ+SexeRT3QStmMDUjrjSMEW6C4rCaDsPV9/Ffdo2rRI3ItQN7SdtA+2+0BRmExZd2klJI23SyUgnCC8wDpQSGsHo8Oh+O71JJMqjKdoDQ2Vq3sSsNKSBVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=s8zO2rvV; arc=none smtp.client-ip=91.218.175.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 2/2] ASoC: codecs: Add aw88081 amplifier driver
-To: wangweidong.a@awinic.com
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
- rf@opensource.cirrus.com, neil.armstrong@linaro.org,
- pierre-louis.bossart@linux.dev, luca.ceresoli@bootlin.com,
- wangweidong.a@awinic.com, arnd@arndb.de, quic_pkumpatl@quicinc.com,
- herve.codina@bootlin.com, masahiroy@kernel.org, shenghao-ding@ti.com,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, yijiangtao@awinic.com
-References: <20241018094320.113477-1-wangweidong.a@awinic.com>
- <20241018094320.113477-3-wangweidong.a@awinic.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20241018094320.113477-3-wangweidong.a@awinic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1729530777;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kvPmkBIx/ivw7uZCk44IFYWnah6/cVTz/JW1FGbUjKI=;
+	b=s8zO2rvVtVD9CcaprtGFQ8LrPdb+bLZPCUnGnDpJrlrzP31NQbPavxxG85JIUnshOL1fu7
+	roln1zihmHEhiquKA0w745DFuHjIIzPBrndW6xngmpR9w9OOI69F3RV2r6VbEOaj0BLyXN
+	l/sY8ixZP8hoSFgp3Usj4a5WJ5YQYIq0pDv/m7Hysxiq7OC4ggHrGRhZKALBDGnF4rbsvW
+	BMzlQMkVWun94YLt1HEeqd27yKYQ+JrL0FYbgPYBbFxyfyesnVOFyn6TMB94700IjBhWnF
+	8THHa4aYFOaag07mCzwy7yQGfx6VIM8ZLty59CRkdw34/CilVeL+TK01kAAA0w==
+Content-Type: multipart/signed;
+ boundary=bf042a1c9c42b97560b590a0475495dc3bbc5c4b2774aa824be576d86101;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Mon, 21 Oct 2024 19:12:53 +0200
+Message-Id: <D51NHOTBIUZO.3A40UBLT2ZXCN@cknow.org>
+Subject: Re: [PATCH v2 0/5] Enable HDMI0 on several RK3588 based boards
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Cristian Ciocaltea" <cristian.ciocaltea@collabora.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>,
+ "Sebastian Reichel" <sebastian.reichel@collabora.com>, "Luis de Arquer"
+ <ldearquer@gmail.com>, "Alexandre ARNOUD" <aarnoud@me.com>
+Cc: <kernel@collabora.com>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ "FUKAUMI Naoki" <naoki@radxa.com>
+References: <20241019-rk3588-hdmi0-dt-v2-0-466cd80e8ff9@collabora.com>
+In-Reply-To: <20241019-rk3588-hdmi0-dt-v2-0-466cd80e8ff9@collabora.com>
+X-Migadu-Flow: FLOW_OUT
 
-Le 18/10/2024 à 11:43, 
-wangweidong.a-tUEr1MkLeujQT0dZR+AlfA@public.gmane.org a écrit :
-> From: Weidong Wang <wangweidong.a-tUEr1MkLeujQT0dZR+AlfA@public.gmane.org>
-> 
-> The driver is for amplifiers aw88081 of Awinic Technology Corporation.
-> The awinic AW88081 is an I2S/TDM input, high efficiency digital
-> Smart K audio amplifier
-> 
-> Signed-off-by: Weidong Wang <wangweidong.a-tUEr1MkLeujQT0dZR+AlfA@public.gmane.org>
-> ---
+--bf042a1c9c42b97560b590a0475495dc3bbc5c4b2774aa824be576d86101
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On Sat Oct 19, 2024 at 12:12 PM CEST, Cristian Ciocaltea wrote:
+> Since the initial support for the RK3588 HDMI TX Controller [1] has been
+> merged as of next-20241018, let's enable the HDMI0 output port for the
+> following boards: Radxa ROCK 5A & 5B, Rockchip RK3588 EVB1 V10, Xunlong
+> Orange Pi 5+.
 
-...
+Would the DT changes be the same for the ROCK 5 ITX?
+I don't have the board (yet), but apparently some bought it on my
+'recommendation' (I only mentioned its existence) and it would be cool
+if HDMI out would work for them too.
 
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/firmware.h>
+Cheers,
+  Diederik
 
-Sometimes, alphabecal order is prefered.
+> [1]: https://lore.kernel.org/all/20241016-b4-rk3588-bridge-upstream-v10-0=
+-87ef92a6d14e@collabora.com/
 
-> +#include <linux/regmap.h>
-> +#include <sound/soc.h>
-> +#include "aw88081.h"
-> +#include "aw88395/aw88395_device.h"
-> +
-> +static const struct regmap_config aw88081_regmap_config = {
-> +	.val_bits = 16,
-> +	.reg_bits = 8,
-> +	.max_register = AW88081_REG_MAX,
-> +	.reg_format_endian = REGMAP_ENDIAN_LITTLE,
-> +	.val_format_endian = REGMAP_ENDIAN_BIG,
-> +};
+--bf042a1c9c42b97560b590a0475495dc3bbc5c4b2774aa824be576d86101
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> +static int aw88081_dev_check_syspll(struct aw_device *aw_dev)
-> +{
-> +	int ret;
-> +
-> +	ret = aw88081_dev_check_mode1_pll(aw_dev);
-> +	if (ret) {
-> +		dev_dbg(aw_dev->dev, "mode1 check iis failed try switch to mode2 check");
-> +		ret = aw88081_dev_check_mode2_pll(aw_dev);
-> +		if (ret) {
-> +			dev_err(aw_dev->dev, "mode2 check iis failed");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return ret;
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZxaLmAAKCRDXblvOeH7b
+bh1SAQDblaBTFNz+sCdobwzX/XFw/7vjsd8y5vTigDHV9wRqtQEA2+t2bUSsMAxR
+Fr6eO+/kszZiWxFDBBRrMxzb5GouVQ0=
+=4uwl
+-----END PGP SIGNATURE-----
 
-Here and in some other places, return 0; could be used to be more explicit.
-
-> +}
-
-...
-
-> +static int aw88081_reg_update(struct aw88081 *aw88081, bool force)
-> +{
-> +	struct aw_device *aw_dev = aw88081->aw_pa;
-> +	int ret;
-> +
-> +	if (force) {
-> +		ret = regmap_write(aw_dev->regmap,
-> +					AW88081_ID_REG, AW88081_SOFT_RESET_VALUE);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = aw88081_dev_fw_update(aw88081);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		if (aw_dev->prof_cur != aw_dev->prof_index) {
-> +			ret = aw88081_dev_fw_update(aw88081);
-> +			if (ret)
-> +				return ret;
-> +		} else {
-> +			ret = 0;
-
-This else could be removed, and an explicit return 0; used below at the 
-end of the function.
-
-> +		}
-> +	}
-> +
-> +	aw_dev->prof_cur = aw_dev->prof_index;
-> +
-> +	return ret;
-> +}
-
-...
-
-> +static int aw88081_profile_info(struct snd_kcontrol *kcontrol,
-> +			 struct snd_ctl_elem_info *uinfo)
-> +{
-> +	struct snd_soc_component *codec = snd_soc_kcontrol_component(kcontrol);
-> +	struct aw88081 *aw88081 = snd_soc_component_get_drvdata(codec);
-> +	char *prof_name, *name;
-> +	int count, ret;
-> +
-> +	uinfo->type = SNDRV_CTL_ELEM_TYPE_ENUMERATED;
-> +	uinfo->count = 1;
-> +
-> +	count = aw88081->aw_pa->prof_info.count;
-> +	if (count <= 0) {
-> +		uinfo->value.enumerated.items = 0;
-> +		return 0;
-> +	}
-> +
-> +	uinfo->value.enumerated.items = count;
-> +
-> +	if (uinfo->value.enumerated.item >= count)
-> +		uinfo->value.enumerated.item = count - 1;
-> +
-> +	name = uinfo->value.enumerated.name;
-> +	count = uinfo->value.enumerated.item;
-> +
-> +	ret = aw88081_dev_get_prof_name(aw88081->aw_pa, count, &prof_name);
-> +	if (ret) {
-> +		strscpy(uinfo->value.enumerated.name, "null",
-> +						strlen("null") + 1);
-
-Np real use fot this hand computed length. Using the 2 parameters 
-version of strscpy() should just be fine, I think.
-
-> +		return 0;
-> +	}
-> +
-> +	strscpy(name, prof_name, sizeof(uinfo->value.enumerated.name));
-
-If  uinfo->value.enumerated.name was used directly as in the if block 
-above, then 'name' could be removed and the 2 parameters only variant of 
-strscpy() coulb be used instead, I think.
-
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int aw88081_init(struct aw88081 *aw88081, struct i2c_client *i2c, struct regmap *regmap)
-> +{
-> +	struct aw_device *aw_dev;
-> +	unsigned int chip_id;
-> +	int ret;
-> +
-> +	/* read chip id */
-> +	ret = regmap_read(regmap, AW88081_ID_REG, &chip_id);
-> +	if (ret) {
-> +		dev_err(&i2c->dev, "%s read chipid error. ret = %d", __func__, ret);
-> +		return ret;
-> +	}
-> +	if (chip_id != AW88081_CHIP_ID) {
-> +		dev_err(&i2c->dev, "unsupported device");
-> +		return -ENXIO;
-> +	}
-> +
-> +	dev_dbg(&i2c->dev, "chip id = %x\n", chip_id);
-> +
-> +	aw_dev = devm_kzalloc(&i2c->dev, sizeof(*aw_dev), GFP_KERNEL);
-> +	if (!aw_dev)
-> +		return -ENOMEM;
-> +
-> +	aw88081->aw_pa = aw_dev;
-> +	aw_dev->i2c = i2c;
-> +	aw_dev->regmap = regmap;
-> +	aw_dev->dev = &i2c->dev;
-> +	aw_dev->chip_id = AW88081_CHIP_ID;
-> +	aw_dev->acf = NULL;
-> +	aw_dev->prof_info.prof_desc = NULL;
-> +	aw_dev->prof_info.count = 0;
-
-No need to init here, and channel below, unless an explicit 0 is more 
-informative than the kzalloc() above.
-
-> +	aw_dev->prof_info.prof_type = AW88395_DEV_NONE_TYPE_ID;
-> +	aw_dev->channel = 0;
-> +	aw_dev->fw_status = AW88081_DEV_FW_FAILED;
-> +	aw_dev->fade_step = AW88081_VOLUME_STEP_DB;
-> +	aw_dev->volume_desc.ctl_volume = AW88081_VOL_DEFAULT_VALUE;
-> +	aw_dev->volume_desc.mute_volume = AW88081_MUTE_VOL;
-> +	aw88081_parse_channel_dt(aw88081);
-> +
-> +	return ret;
-> +}
-
-...
-
-> +static int aw88081_request_firmware_file(struct aw88081 *aw88081)
-> +{
-> +	const struct firmware *cont = NULL;
-> +	int ret;
-> +
-> +	aw88081->aw_pa->fw_status = AW88081_DEV_FW_FAILED;
-> +
-> +	ret = request_firmware(&cont, AW88081_ACF_FILE, aw88081->aw_pa->dev);
-> +	if (ret)
-> +		return dev_err_probe(aw88081->aw_pa->dev, ret,
-> +					"load [%s] failed!", AW88081_ACF_FILE);
-> +
-> +	dev_dbg(aw88081->aw_pa->dev, "loaded %s - size: %zu\n",
-> +			AW88081_ACF_FILE, cont ? cont->size : 0);
-> +
-> +	aw88081->aw_cfg = devm_kzalloc(aw88081->aw_pa->dev, cont->size + sizeof(int), GFP_KERNEL);
-> +	if (!aw88081->aw_cfg) {
-> +		release_firmware(cont);
-> +		return -ENOMEM;
-> +	}
-> +	aw88081->aw_cfg->len = (int)cont->size;
-> +	memcpy(aw88081->aw_cfg->data, cont->data, cont->size);
-> +	release_firmware(cont);
-> +
-> +	ret = aw88395_dev_load_acf_check(aw88081->aw_pa, aw88081->aw_cfg);
-> +	if (ret) {
-> +		dev_err(aw88081->aw_pa->dev, "load [%s] failed !", AW88081_ACF_FILE);
-
-return dev_err_probe() to be consistent and less verbose.
-
-> +		return ret;
-> +	}
-> +
-> +	mutex_lock(&aw88081->lock);
-> +	/* aw device init */
-> +	ret = aw88081_dev_init(aw88081, aw88081->aw_cfg);
-> +	if (ret)
-> +		dev_err(aw88081->aw_pa->dev, "dev init failed");
-
-return dev_err_probe() to be consistent?
-
-> +	mutex_unlock(&aw88081->lock);
-> +
-> +	return ret;
-> +}
-
-
-...
-
-> +static int aw88081_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct aw88081 *aw88081;
-> +	int ret;
-> +
-> +	ret = i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C);
-> +	if (!ret)
-> +		return dev_err_probe(&i2c->dev, -ENXIO, "check_functionality failed");
-> +
-> +	aw88081 = devm_kzalloc(&i2c->dev, sizeof(*aw88081), GFP_KERNEL);
-> +	if (!aw88081)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&aw88081->lock);
-> +
-> +	i2c_set_clientdata(i2c, aw88081);
-> +
-> +	aw88081->regmap = devm_regmap_init_i2c(i2c, &aw88081_regmap_config);
-> +	if (IS_ERR(aw88081->regmap)) {
-> +		ret = PTR_ERR(aw88081->regmap);
-> +		return dev_err_probe(&i2c->dev, ret, "failed to init regmap: %d\n", ret);
-
-No need to repeat 'ret' at theend of the message.
-
-> +	}
-> +
-> +	/* aw pa init */
-> +	ret = aw88081_init(aw88081, i2c, aw88081->regmap);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_snd_soc_register_component(&i2c->dev,
-> +			&soc_codec_dev_aw88081,
-> +			aw88081_dai, ARRAY_SIZE(aw88081_dai));
-> +	if (ret)
-> +		dev_err(&i2c->dev, "failed to register aw88081: %d", ret);
-
-dev_err_probe() to be consistent?
-
-> +
-> +	return ret;
-> +}
-
-...
-
-CJ
+--bf042a1c9c42b97560b590a0475495dc3bbc5c4b2774aa824be576d86101--
 
