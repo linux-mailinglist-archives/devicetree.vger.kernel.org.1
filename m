@@ -1,176 +1,221 @@
-Return-Path: <devicetree+bounces-113763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C65DA9A6E56
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E23A19A6E60
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:40:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53672283A55
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:37:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EA3C280D90
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B473A1C3F29;
-	Mon, 21 Oct 2024 15:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBCD131182;
+	Mon, 21 Oct 2024 15:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="YU9x/v7T"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="mmNc7fZ/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="fCTXftZz";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="mmNc7fZ/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="fCTXftZz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C8391C32E5
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 15:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96DB9126C0B;
+	Mon, 21 Oct 2024 15:40:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729525074; cv=none; b=GRMSAwU7dTBKS52LQWjwMHqp/Y+pK55mWBLXLAGajyKuBlrTQc3fLw0aBVqONRhL+tK4626/H9TP4pyzSjB8MMsJFbgTT5BGMvBscBbKxde/4wOR0jIZDc8Oc1Zlig1+O4KCdr1vmQgxkKGXVioqmw5nVKCvcvdc6+MH2QNBWS4=
+	t=1729525210; cv=none; b=FyvHOHkqFgsf99QVr840MDR2C4azMBY6bmnMP5wt4fQh7UTFdsXaBa1T9ohTAO2KPZ0TokNTyYTFwsui1lBV6LNNv6qt0gr2vwuMWEartLUcvEKtQfQ+WCxAJUhdALmSmn/QXwWGbPJUntMMh74/GhkmEt2VJ3SyPqUlUR31U44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729525074; c=relaxed/simple;
-	bh=Ka6mklgy7qYeIVGYAbIlvp8rtFWnyTCK8ThTP+zPs7c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sm0OMK184dgufFKJqQ+/m4mkSqzPp62A60eSxtjusgGAlMSJptvpIQUoKH2N+mjMW/8FFPHfLHHBOPT/y5hkOwqlGjHO2n29wSHHkBcgsdY+DWrPZ0JD9JiILoi586sxEn8OqCQMVYF8RtEHgc79Q9TBvcggJ7xb0JDqFTk0M0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=YU9x/v7T; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53a007743e7so5497568e87.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 08:37:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729525070; x=1730129870; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9SZe6zG9rMtti3pHsV1rKUUqXjcUGY1EE3gWa9PO/mg=;
-        b=YU9x/v7TZPETQ4gOmhdjaBmZlXqmRV13eKJloiVpzpUfc5S2B9IMS5Iwt5dZh7h5wm
-         gnR7NIlh8b3l+f7AJONhhNj2PIdQOmCpi5TPH0xW3FC7NBWx0S+y4SnYQOsD52L70JTT
-         IKJYH4x/A7ECibv1H9JmytnrQF6gt5WxNiZq0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729525070; x=1730129870;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9SZe6zG9rMtti3pHsV1rKUUqXjcUGY1EE3gWa9PO/mg=;
-        b=ZgI2aztpoabHaOFOfOZm+J96EDtxt0nwC75vBxFqmrivsIctyCFU0mXrb85zycrbfl
-         AaHKF3HZFZ4eukBCt2i/6MEmtPKVhsE1elZdFmaVGzBhJaJSY9iWY92pzhHsmnpwZ0Gn
-         EfINjRc4bM0A65ht82IorhrAoJsvJ3y/uXu9h7ozzVcqj496zLH1Wr0Vz0Cwe3HAi2YW
-         2Y2bl1PLq2EoILRiKwm2YG/HJ+IAklcoAaHd2UjkUaj/bGlyGiFcfFP2PShk940mev/d
-         4a/Z4ZNfLfkxmHkxitBP7LJBOGZvRANIJJD/8Go3Pi1ytfhNyF9ALSxKpQE76RJgaDco
-         ambA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkUqu2d04k4VFgWUbMSePS8SX3RumfZPOyjxGIMEVX+Ri7IJ0Xkv+NvpgkWWFhRYgCz36fiAcIHCLf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxx9F7LMN104TFtA5767LifSb/W+SYhVvqZjfa3K0SvNuUdCu5A
-	ecvJI8SlKsJtZ4p/6vm/IaJFgPsFzhYum0VQxzjxEO+A0Q9IpRZIlVR1so/5VjeB48799ZpToMO
-	d2A==
-X-Google-Smtp-Source: AGHT+IE+D+it57eHtjO4YZHmBIzwWBKhIc/JfI0w+6Br3OCdArHsEC5QykXgPfLDCHNqOcVNr1+NgA==
-X-Received: by 2002:a05:6512:1598:b0:536:54c2:fb7c with SMTP id 2adb3069b0e04-53a154a23e0mr5728479e87.25.1729525069782;
-        Mon, 21 Oct 2024 08:37:49 -0700 (PDT)
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a2209f6a9sm508208e87.0.2024.10.21.08.37.48
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 08:37:48 -0700 (PDT)
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb501492ccso46103631fa.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 08:37:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV00xEGCJKBDS/TfMCU7HS1fDhYl302f5EQJxSVpodKVfpgPAoGbzff+e2LkjUVvdhTGc6h8+tTBf9u@vger.kernel.org
-X-Received: by 2002:a05:6512:b89:b0:539:e98c:c33b with SMTP id
- 2adb3069b0e04-53a154fa775mr6367998e87.41.1729525068227; Mon, 21 Oct 2024
- 08:37:48 -0700 (PDT)
+	s=arc-20240116; t=1729525210; c=relaxed/simple;
+	bh=1W5B/sDDnCJ6y86lSH7pAHZK4QqYHPygiWJjNpbO+6U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gwdx2xCiRV1HtPt43DEV860LwNvbfrPaNsUCPJPE3zYN/AM72JkDl2wbMvKAjxG1wAxm4PP6YgQpOstcwv7iMqOgpe98qHgbZ6PldWnRxAOac2c9iE7XE2WKaB+mXYzk9JkMAaJnI9Dd8tpb6wgybrBrtx9wo5DdrjOcz4kSXUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=mmNc7fZ/; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=fCTXftZz; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=mmNc7fZ/; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=fCTXftZz; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 9E2A81F7E9;
+	Mon, 21 Oct 2024 15:40:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1729525204; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IrVNHHt0mG7LfTUbIY78i9Fn0M5UyUoiUWrwGWCGroQ=;
+	b=mmNc7fZ/SBFfmwhY33t8nV28H+U+4VBprC2U7Bm8HnioNHgslcnB380iYIMrO1VzcR9Ho8
+	h1RyVXgU2wObETww3mZc7jzvwpqQ4kX411vUC/M3E80D1T6vPQr9E6GalsORcC3icO0RJY
+	qjkCgzWHFGGiIu0B23Wlh+C+JbwXDqY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1729525204;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IrVNHHt0mG7LfTUbIY78i9Fn0M5UyUoiUWrwGWCGroQ=;
+	b=fCTXftZz6SDsfFmnAFU6IrBfoPDwnEREwCHZ7OS3qSItN2lHTYy5JK5FY2tC1oIIK0PbzO
+	FlcRnCT7yOLCmWBA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1729525204; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IrVNHHt0mG7LfTUbIY78i9Fn0M5UyUoiUWrwGWCGroQ=;
+	b=mmNc7fZ/SBFfmwhY33t8nV28H+U+4VBprC2U7Bm8HnioNHgslcnB380iYIMrO1VzcR9Ho8
+	h1RyVXgU2wObETww3mZc7jzvwpqQ4kX411vUC/M3E80D1T6vPQr9E6GalsORcC3icO0RJY
+	qjkCgzWHFGGiIu0B23Wlh+C+JbwXDqY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1729525204;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IrVNHHt0mG7LfTUbIY78i9Fn0M5UyUoiUWrwGWCGroQ=;
+	b=fCTXftZz6SDsfFmnAFU6IrBfoPDwnEREwCHZ7OS3qSItN2lHTYy5JK5FY2tC1oIIK0PbzO
+	FlcRnCT7yOLCmWBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A4445139E0;
+	Mon, 21 Oct 2024 15:40:03 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id A/wyINN1FmdzbgAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Mon, 21 Oct 2024 15:40:03 +0000
+Message-ID: <a5a4ce33-3c32-4e43-a39b-7a3514339e37@suse.de>
+Date: Mon, 21 Oct 2024 18:39:59 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241018020815.3098263-2-charles.goodix@gmail.com>
- <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
- <ZxMfu4yxk961mZWB@ux-UP-WHL01> <fbde8a3a-3adc-4c1a-8529-fde0fa149c8e@kernel.org>
-In-Reply-To: <fbde8a3a-3adc-4c1a-8529-fde0fa149c8e@kernel.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 21 Oct 2024 08:37:32 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VphXewyk_mpGHUZKw8_aK8HnH8T-YumwM70eyz22S+Aw@mail.gmail.com>
-Message-ID: <CAD=FV=VphXewyk_mpGHUZKw8_aK8HnH8T-YumwM70eyz22S+Aw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com, 
-	hbarnor@chromium.org, conor.dooley@microchip.com, jikos@kernel.org, 
-	bentiss@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 09/11] PCI: brcmstb: Adjust PHY PLL setup to use a
+ 54MHz input refclk
+To: Jonathan Bell <jonathan@raspberrypi.com>,
+ Stanimir Varbanov <svarbanov@suse.de>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Thomas Gleixner
+ <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>
+References: <20241014130710.413-1-svarbanov@suse.de>
+ <20241014130710.413-10-svarbanov@suse.de>
+ <60de2ae5-af4b-4c31-bc63-9f62b08be2fc@broadcom.com>
+ <bed7b0ea-494b-429e-8130-12d12eb11bf0@suse.de>
+ <CADQZjwdO6ifEMBwh15EVPsxm4XtSYGRs==hVCZ0HmcUbADh6hw@mail.gmail.com>
+Content-Language: en-US
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <CADQZjwdO6ifEMBwh15EVPsxm4XtSYGRs==hVCZ0HmcUbADh6hw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -2.80
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	RCVD_TLS_ALL(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	ARC_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[broadcom.com,vger.kernel.org,lists.infradead.org,linutronix.de,kernel.org,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid,suse.de:email]
+X-Spam-Flag: NO
+X-Spam-Level: 
 
 Hi,
 
-On Mon, Oct 21, 2024 at 2:43=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 19/10/2024 04:55, Charles Wang wrote:
-> > Hi Doug
-> >
-> > On Fri, Oct 18, 2024 at 01:48:56PM -0700, Doug Anderson wrote:
-> >>
-> >> On Thu, Oct 17, 2024 at 7:09=E2=80=AFPM Charles Wang <charles.goodix@g=
-mail.com> wrote:
-> >>>
-> >>> The Goodix GT7986U touch controller report touch data according to th=
-e
-> >>> HID protocol through the SPI bus. However, it is incompatible with
-> >>> Microsoft's HID-over-SPI protocol.
-> >>>
-> >>> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> >>> ---
-> >>>  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++-=
---
-> >>>  1 file changed, 58 insertions(+), 10 deletions(-)
-> >>
-> >> I'm happy to let device tree folks make the call here, but IMO it
-> >> would be much cleaner to just consider the I2C-connected GT7986U and
-> >> the SPI-connected GT7986U to be different things and just use a
->
-> Same device, you cannot have different compatibles. The way how the same
-> (literally same chip) device sits on the bus is not part of the binding,
-> thus no different compatibles.
+On 10/21/24 15:56, Jonathan Bell wrote:
+> On Thu, 17 Oct 2024 at 15:42, Stanimir Varbanov <svarbanov@suse.de> wrote:
+>>
+>> Hi Florian,
+>>
+>> On 10/14/24 20:07, Florian Fainelli wrote:
+>>> On 10/14/24 06:07, Stanimir Varbanov wrote:
+>>>> Use canned MDIO writes from Broadcom that switch the ref_clk output
+>>>> pair to run from the internal fractional PLL, and set the internal
+>>>> PLL to expect a 54MHz input reference clock.
+>>>>
+>>>> Without this RPi5 PCIe cannot enumerate endpoint devices on
+>>>> extension connector.
+>>>
+>>> You could say that the default reference clock for the PLL is 100MHz,
+>>> except for some devices, where it is 54MHz, like 2712d0. AFAIR, 2712c1
+>>> might have been 100MHz as well, so whether we need to support that
+>>> revision of the chip or not might be TBD.
+>>
+>> I'm confused now, according to [1] :
+>>
+>> BCM2712C1 - 4GB and 8GB RPi5 models
+>> BCM2712D0 - 2GB RPi5 models
+>>
+>> My device is 4GB RPi5 model so I would expect it is BCM2712C1, thus
+>> according to your comment the PLL PHY adjustment is not needed. But I
+>> see that the PCIex1 RC cannot enumerate devices on ext PCI connector
+>> because of link training failure. Implementing PLL adjustment fixes the
+>> failure.
+>>
+>>
+>> ~Stan
+>>
+>> [1]
+>> https://www.raspberrypi.com/documentation/computers/processors.html#bcm2712
+> 
 
-I don't want to belabour the point too much, but this doesn't feel
-completely black and white here.
+Thanks for jumping in, Jon.
 
-"Same chip": a whole lot of laptops and phones all use the "same chip"
-(same SoC) yet are different products. ...or you can look at the fact
-that many peripherals have the same STM32 or Nuvoton chip in them but
-are wildly different peripherals.
+> The MDIO writes for 2712C1 are required because platform firmware
+> arranges for the reference input clock to be 54MHz.
+> 2712D0 can't generate a 100MHz reference input, it's 54MHz only. The
+> MDIO register defaults are also changed to suit, but there's no harm
 
-In this case, Goodix may have made an ASIC called "GT7986U" that has
-some type of CPU on it that can run firmware that can talk as an I2C
-device or a SPI device. This ASIC may be intended to be used as a
-touchscreen controller, but fundamentally it doesn't feel that
-different from an STM32. You can build different boards designs with
-the "GT7986U" on it and those boards are intended to run different
-firmware.
+I see that MDIO register defaults for pcie2 (where RP1 is connected) are
+changed to suit to 54Mhz but this is not true for pcie1 (expansion
+connector). And that could explain why the link training is failing on
+pcie1.
 
-People manufacturing touch controller boards presumably put this
-"GT7986U" on their touch controller board, maybe set certain
-strappings telling it that it's talking over SPI or I2C or maybe just
-decide which pins they're going to wire out to the board-to-board
-connector on the touch controller board. A touch controller board
-intended to talk over SPI may look 98% the same as a touch controller
-board intended to talk over I2C, but what percentage of "sameness"
-means that we need the same compatible string?
+> in applying the writes anyway.
+> Both steppings need to behave identically for compliance and interop reasons.
 
-Would things be different if Goodix decided to manufacture touch
-controller boards themselves and sold two SKUs: a GT7986U-S and a
-GT7986U-I?
+Yes, for sure.
 
-I would also note that (reading back in previous conversations) I
-think Charles said that they run different firmware on the SPI vs. I2C
-touch controllers. As I understand it, the firmware running on a
-device can make it a different device from a device tree perspective.
-The device tree does its best to describe just the hardware but it can
-get fuzzy. For instance the "VID/PID" of a USB device is usually
-something programmable and could be updateable by a firmware change
-but we still may need to encode the VID/PID of the firmware that is
-intended to run on the device in the device tree.
+> RP1 is very tolerant of out-of-spec reference clocks, which is why
+> only the expansion connector appears to be affected.
 
-Anyway, I'm happy to be quiet about this and fine if folks want to
-continue to work towards a "unified" binding. It makes me a little
-uncomfortable that I'll still end up listed as a "maintainer" of the
-unified binding because I don't totally agree with it, but I'm also
-pragmatic and I'd rather have something that can land.
+Thank you for clarifications.
 
--Doug
+~Stan
+
+[1] Firmware version: RPi: BOOTSYS release VERSION:790da7ef DATE:
+2024/07/30 TIME: 15:25:46
 
