@@ -1,89 +1,90 @@
-Return-Path: <devicetree+bounces-113609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 042EB9A6671
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:18:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5FD59A6688
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:22:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF867B249BC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:18:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D65751C208A2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D99611E5738;
-	Mon, 21 Oct 2024 11:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792E31E47BB;
+	Mon, 21 Oct 2024 11:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eLaH7Jer"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V6707OZN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61EC1D221A;
-	Mon, 21 Oct 2024 11:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54AF7198E6F;
+	Mon, 21 Oct 2024 11:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729509487; cv=none; b=KOyWCfY6q5p5D+yFj3YU9S0Up09USOJFL+OCX8twzIwxnhlrGwmo/Kb32ZG6lRihOmzB3M5FVBNOBuN6IO4bdvX3VUzMRg8YlvJmU2eVQpzCYzlVdfV0jL1WmhyYOAkrR9pngY99AklCGlivHD8stt1kF9/6jSXE/96Qw6QHD4k=
+	t=1729509731; cv=none; b=PPNlRwg+GZcPw6ZfkZJ7gJsR4olM6xgFZoDr0zG/YGVPBWo/Gojq8/f5gNwdGuPzQ3aHu1gSoSfZ3vAdnPnthLY3puqWLMggtFUnEYEaB6bX2jwn3xsInFirwvtCUH9EQZ1e6LM7WPWTFpuzYI0SkIHV2jDZOh8NUP5kTwIQMtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729509487; c=relaxed/simple;
-	bh=YLAvMjhW1HB7PsV5gBYZNiIntTf5JhMxPwr43QqPZCs=;
+	s=arc-20240116; t=1729509731; c=relaxed/simple;
+	bh=ouYF4clg1g57Dt++Tg2iW7qBltDCzRkhKuRhzIp1iQk=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ccNT7Toy7txGtn1k2T6pj5V7CDFgNvhbI24ntgCZAK4XaJqxCXCF3pt37PSfRsno7xKYSsPbYN/Q21T/I7mE+j48k+LeUKV2eV7+zJ9z1lwTCbr/M8lF5LzMbJ0BC94Q89E6y9QST0AQIyiWSKOHOhvojVkZpnch/DLKacMCm0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eLaH7Jer; arc=none smtp.client-ip=209.85.167.48
+	 Content-Type:MIME-Version; b=JwSJAixjiu5TDEFeEUg2r4XXVXp7lkaeKu2/pH/1MdMa1MDExW/Q1XWneysEiNvzrIpSFuo0OlznlVl8zHvOaLsyy3Ixj7GyrDKsOFXN7gec6l7t+Vg6GvCl+q51AoOJC6d7cLR3OBzNZR8O6sKZCIs7TcwcQVFo1yz7BN8J0OM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V6707OZN; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-539983beb19so4688718e87.3;
-        Mon, 21 Oct 2024 04:18:05 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c935d99dc5so4625746a12.1;
+        Mon, 21 Oct 2024 04:22:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729509484; x=1730114284; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1729509727; x=1730114527; darn=vger.kernel.org;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Xfj/EnKxXdQvjQtOfFijWCS2fwYORZ845i4D/RptAbo=;
-        b=eLaH7Jer9y4J7SA7s2/0Akv5L6JPIaE/cjblGeitJRcGf4CCoidlMkG0qv+SU/BYxu
-         jPRUhVEVoZaBNHSNIS3brnexGt1DSYrAzrQxFR/zFu5xrmV9hWpUqck/2JjtKBCpAH82
-         92rrS0CgIsn3kMU81zcE7YCnQ9mFFY4FwxbOPGg6aILnqqlW2DE7LxmqWMkAmYSjNaHk
-         jTPw9Kmn0aTsLgMGfBtDGvv1jt6ytelVtnBftiPJsh23ZKuozC2Lg+iX5SRvjKQFV977
-         pCu5AqNzWRmQqN/jx383HGBUJtUk/9zmrI35gPKEoGHZogUss/4IqEey8Nj9VpCFWbo4
-         H3pw==
+        bh=3NQ+flCukfnuhPjkRvVrmnoPHQw6PCn91uWxRQwmPzs=;
+        b=V6707OZNw05vG6BM2caqxULQ8pHFmaqMPVvLjNam44aLQEzAfQKUa1hNGZq1wWCgD5
+         MEFMey7v7TJ8hSH7qQ2XDCR0hj9GpgWXDkAKPFUOBSGAX2Pv9alPlSeAYUFSKXfxT1zW
+         rA2yMTMxxQipuT7pKtbT52pl37D0lY72oO/0UGXb5VCwBbslGjLvIW3es+aYLukq40QK
+         8z4RlJhefS33fcHTocCUg1TzPAOb6+LUULA3ytRf0XCjMR9Nql6kfKZajvlwJMRuITRl
+         dnno7aBF0FZmlsRIveGH6cjqoYapo9vcux+oXi/yUW2+KoBjv79f3L0x3UaKoqmdV/Mc
+         OUHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729509484; x=1730114284;
+        d=1e100.net; s=20230601; t=1729509727; x=1730114527;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xfj/EnKxXdQvjQtOfFijWCS2fwYORZ845i4D/RptAbo=;
-        b=ZEEhVPGLCS/lsgJhFdFWdlCz6h3P38X6vUfz+xMMs+O2VLWD+gq+xGrnoOkN0gfgPu
-         xbTuFPyKgICx4/QoW1hsBlSV6r0KuiQWscdvTHknSDsgsHSFqITMQpLCTLGm20UXT/cK
-         I847btyKeEQah9CdCzenzg2k+ODjzIrvSFN73YlqFFsAOlvPFA3/uEAshEguNhLPJqHZ
-         Ky26TIFC/PDAsIPSCaeydZmOGpss/jzhQoJ/Ztpw2Izs2pwMYJNrQJALqNlagGRUvcH9
-         xH0ROuNoqNRDdgKgyylbzd40BRijZxpkkaryFIh4UJM1I0o1T4CrxBMT+WWyg5xPY1/Q
-         VjCw==
-X-Forwarded-Encrypted: i=1; AJvYcCVc9nTZArqop4FUPLfuzY6VK5cjYy+nmV/Jw2Wnu9PuHPM19X+aC/XAwAOy8z7kYzKkC8XnSxAbN70Gn5Qu@vger.kernel.org, AJvYcCVvzHVfswcg/IeqOeN/MJXMUr1D490Ael85KeSfItmCXhYnKA9KCZsVLUIqbkyo4hlZJO/jJfieLipM@vger.kernel.org, AJvYcCWHJxLWWbor5KvXg+QZudFJ4YE6mqVr0IwHXX/xarYGCUmby5pXJkmHe8YWBMz7oX6T7E+ILs4nO/oD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyu8+s7y5pPRxRf80TiXKDgN0sINjx3m3NxftUD5J9v028iJZsW
-	pxoFJ3PXFS+8pCLPVIP3zCTbHMCuRchB17SMytpxTUo/wuHZLJaddOp0yK3L0NG9zi1C
-X-Google-Smtp-Source: AGHT+IHDeK0DwiMkPDbC0HMtjNt1Y+661gRF6ZAnCpztH0AGj/ZblZ//B49e4j2AvMw4oSApJIsfNA==
-X-Received: by 2002:a05:6512:23a0:b0:53a:40e:d55f with SMTP id 2adb3069b0e04-53a1545382cmr5067882e87.15.1729509483281;
-        Mon, 21 Oct 2024 04:18:03 -0700 (PDT)
+        bh=3NQ+flCukfnuhPjkRvVrmnoPHQw6PCn91uWxRQwmPzs=;
+        b=JxXYErNzXfzmAjX/7GtZKgJ/lEzDGtoM7jT7iqzXEhFXvjOHtiNivSf3KWn9wZBCRJ
+         dk4MA3XrZZbtUobbvS/EXZEBeX0PlbxTX+Imepmt1ZzzSaUVIU+dL95KzcRzPTjPYhyz
+         EVF7xXkR0gMw+qb2AlNm4FiTkW5VRY+IXiRYbuJUYJdCLjJfVtu7YPZp0cwcqrJBt5DH
+         XzCbbHuDngNm10+fstz3zU6pdCKccl+tRaA25XS3UMf2/t8Gu6z9mibSHqQdg6880E+Y
+         mU3YLJQUthEqDJqMtSRc8LfNEfUoZMWIjULg4raQSAJJ1Icvm9gWH0C3k+rmNFm4tZN8
+         4uNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX0ZbMWHDO9ZitQo6SuP/e/nEw8U38CahJRpL8OZVo6FpLRQgNu5bx+DJqTSpeJiyBDQv3XsjD6BUW8@vger.kernel.org, AJvYcCXhVv8nY1UdltrrDALnbnhMTnMMZpTfN/dVsL5ye6MYL+FxOi34tuyb8t9mLn2IV4gpv3y3tsPZYhqPLQA=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyfk20+R3rOyG4E68KNc7J93/TJP0/ndXtE74MEKHKA+26RaEib
+	ytamlOmWXO/k+ASeUoKnkvHm2c0BL1SN+k0Lt5G6F/gQTpFskzky
+X-Google-Smtp-Source: AGHT+IGzFNY+XuXhi0t0FuSiSBAXr0K7xfluXUNRBc3Xt0ndfkECgwDzSKGFf0ePYj4wJoUnLBGWuQ==
+X-Received: by 2002:a05:6402:448c:b0:5c9:76b6:d14e with SMTP id 4fb4d7f45d1cf-5ca0ac778bcmr9622442a12.16.1729509727250;
+        Mon, 21 Oct 2024 04:22:07 -0700 (PDT)
 Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a91571e3asm191957666b.147.2024.10.21.04.18.02
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66a6a468sm1912252a12.47.2024.10.21.04.22.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 04:18:02 -0700 (PDT)
-Message-ID: <037d7ebb4d037edb32f9d717e456ab545621ea94.camel@gmail.com>
-Subject: Re: [PATCH v2 4/5] iio: adc: ad7380: fix supplies for ad7380-4
+        Mon, 21 Oct 2024 04:22:06 -0700 (PDT)
+Message-ID: <597033e06206d11597494af6f65d2006200adc15.camel@gmail.com>
+Subject: Re: [PATCH 00/13] Input: adp5589: refactor and platform_data removal
 From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, David Lechner	
- <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown	
- <broonie@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-doc@vger.kernel.org
-Date: Mon, 21 Oct 2024 13:22:19 +0200
-In-Reply-To: <20241021-ad7380-fix-supplies-v2-4-2ca551b3352a@baylibre.com>
-References: <20241021-ad7380-fix-supplies-v2-0-2ca551b3352a@baylibre.com>
-	 <20241021-ad7380-fix-supplies-v2-4-2ca551b3352a@baylibre.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Dmitry Torokhov
+	 <dmitry.torokhov@gmail.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, Mike Frysinger <vapier@gentoo.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley	 <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Lee
+ Jones	 <lee@kernel.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org,  Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Date: Mon, 21 Oct 2024 13:26:24 +0200
+In-Reply-To: <20241019171833.GB13357@pendragon.ideasonboard.com>
+References: 
+	<20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
+	 <d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com>
+	 <ZxLTbBGqQLrsDLWv@google.com>
+	 <20241019171833.GB13357@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.54.0 
@@ -94,104 +95,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Mon, 2024-10-21 at 12:00 +0200, Julien Stephan wrote:
-> ad7380-4 is the only device in the family that does not have an internal
-> reference. It uses "refin" as a required external reference.
-> All other devices in the family use "refio"" as an optional external
-> reference.
+On Sat, 2024-10-19 at 20:18 +0300, Laurent Pinchart wrote:
+> On Fri, Oct 18, 2024 at 02:30:20PM -0700, Dmitry Torokhov wrote:
+> > On Wed, Oct 16, 2024 at 03:36:03PM +0200, Nuno S=C3=A1 wrote:
+> > > On Tue, 2024-10-01 at 15:41 +0200, Nuno Sa wrote:
+> > > > This series aims to remove platform data dependency from the adp558=
+9
+> > > > driver (as no platform is really using it) and instead add support =
+for
+> > > > FW properties. Note that rows and columns for the keypad are being =
+given
+> > > > as masks and that was briefly discussed with Dmitry. For context
+> > > > on why this is being done as mask [1].
+> > > >=20
+> > > > The first couple of patches are fixes that we may want to backport.=
+..
+> > > >=20
+> > > > [1]:
+> > > > https://lore.kernel.org/linux-input/9db96c99c805e615ba40ca7fd363217=
+4d1e8d11f.camel@gmail.com/
+> > > >=20
+> > > > ---
+> > > > Nuno Sa (13):
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix NULL pointe=
+r dereference
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix adp5589_gpi=
+o_get_value()
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add chip_info s=
+tructure
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: support gpi key=
+ events as 'gpio keys'
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: input: Document adp5589=
+ and similar devices
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add support for=
+ fw properties
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add guard() not=
+ation
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: bail out on ret=
+urned error
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: refactor adp558=
+9_read()
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: fix coding styl=
+e
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: unify adp_const=
+ants in info struct
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: make use of dev=
+_err_probe()
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Input: adp5589-keys: add regulator s=
+upport
+> > > >=20
+> > > > =C2=A0.../devicetree/bindings/input/adi,adp5589.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 310 +++++
+> > > > =C2=A0.../devicetree/bindings/trivial-devices.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 6 -
+> > > > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 8 +
+> > > > =C2=A0drivers/input/keyboard/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 3 +
+> > > > =C2=A0drivers/input/keyboard/adp5589-keys.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1397
+> > > > +++++++++++++-------
+> > > > =C2=A0include/linux/input/adp5589.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 180 ---
+> > > > =C2=A06 files changed, 1254 insertions(+), 650 deletions(-)
+> > > > ---
+> > > > base-commit: c7bf046925dc5885d9c4d8fbcbb7e4e73665bfcf
+> > > > change-id: 20240930-b4-dev-adp5589-fw-conversion-955b2f42da70
+> > > > --
+> > > >=20
+> > > > Thanks!
+> > > > - Nuno S=C3=A1
+> > >=20
+> > > Hi Dmitry,
+> > >=20
+> > > Something really caught my attention now while checking 6.12 merge wi=
+ndow.
+> > > It seems
+> > > we have a new MFD device for adp5585 [1] which adds duplicated
+> > > functionality (that
+> > > was already present in adp5589-keys.c). So, having this as MFD might =
+makes
+> > > sense
+> > > (even though it makes it harder to validate the keys and to make use =
+of
+> > > gpio-keys)
+> > > but we are now duplicating GPIO support. Bottom line, not sure what w=
+e
+> > > should do next
+> > > and should I proceed for v2?
+> > >=20
+> > > Also ccing Lee and Bartosz...
+> >=20
+> > Let's add Laurent and Krzysztof too please.
+> >=20
+> > I am surprised we do not see warnings for various bots because
+> > "adi,adp5585" compatible is present in trivial devices.
+> >=20
+> > I think moving it all to MFD makes sense (I think original drivers were
+> > added well before we had MFD infrastructure), but we need to make sure
+> > the device tree binding is complete and allows describing keypad (and i=
+f
+> > not maybe we can pull it from the release and work on it so that it
+> > describes the hardware fully).
 >=20
-> Fixes: 737413da8704 ("iio: adc: ad7380: add support for ad738x-4 4 channe=
-ls
-> variants")
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> ---
+> Keypad support is nice. I didn't include it in my adp5585 driver
+> submission because I had no way to test it. Would it be more difficult
+> to add it to the MFD driver, compared to what is done in this series ?
 
-Hi Julien,
+Well, I still wonder about the GPIO part of it... It's duplicating somethin=
+g
+that existed before even if we all agree that MFD makes more sense.
 
-Patch looks good. Sorry if this already came out in the previous version or=
- in
-the other patchset you mention but shouldn't this fix come first in the ser=
-ies?
+Anyways, there's no point in over discussing this... I'll see how it works
+sending  my v2 on top of the MFD implementations. This means that adp5589 a=
+lso
+needs to be added.
 
-Anyways, for the patch itself:
+- Nuno S=C3=A1
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
 
-> =C2=A0drivers/iio/adc/ad7380.c | 36 ++++++++++++++++++++++++++----------
-> =C2=A01 file changed, 26 insertions(+), 10 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-> index
-> e257f78d63edd7910fcb936ec5344922f8e70b99..65096717f0dd3ea6a4ff7020bc544d6=
-2b84c
-> b8fd 100644
-> --- a/drivers/iio/adc/ad7380.c
-> +++ b/drivers/iio/adc/ad7380.c
-> @@ -89,6 +89,7 @@ struct ad7380_chip_info {
-> =C2=A0	bool has_mux;
-> =C2=A0	const char * const *supplies;
-> =C2=A0	unsigned int num_supplies;
-> +	bool external_ref_only;
-> =C2=A0	const char * const *vcm_supplies;
-> =C2=A0	unsigned int num_vcm_supplies;
-> =C2=A0	const unsigned long *available_scan_masks;
-> @@ -431,6 +432,7 @@ static const struct ad7380_chip_info ad7380_4_chip_in=
-fo =3D
-> {
-> =C2=A0	.num_simult_channels =3D 4,
-> =C2=A0	.supplies =3D ad7380_supplies,
-> =C2=A0	.num_supplies =3D ARRAY_SIZE(ad7380_supplies),
-> +	.external_ref_only =3D true,
-> =C2=A0	.available_scan_masks =3D ad7380_4_channel_scan_masks,
-> =C2=A0	.timing_specs =3D &ad7380_4_timing,
-> =C2=A0};
-> @@ -1047,17 +1049,31 @@ static int ad7380_probe(struct spi_device *spi)
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to enable power supplies\n");
-> =C2=A0	msleep(T_POWERUP_MS);
-> =C2=A0
-> -	/*
-> -	 * If there is no REFIO supply, then it means that we are using
-> -	 * the internal 2.5V reference, otherwise REFIO is reference voltage.
-> -	 */
-> -	ret =3D devm_regulator_get_enable_read_voltage(&spi->dev, "refio");
-> -	if (ret < 0 && ret !=3D -ENODEV)
-> -		return dev_err_probe(&spi->dev, ret,
-> -				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to get refio regulator\n");
-> +	if (st->chip_info->external_ref_only) {
-> +		ret =3D devm_regulator_get_enable_read_voltage(&spi->dev,
-> +							=C2=A0=C2=A0=C2=A0=C2=A0 "refin");
-> +		if (ret < 0)
-> +			return dev_err_probe(&spi->dev, ret,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to get refin
-> regulator\n");
-> +
-> +		st->vref_mv =3D ret / 1000;
-> =C2=A0
-> -	external_ref_en =3D ret !=3D -ENODEV;
-> -	st->vref_mv =3D external_ref_en ? ret / 1000 : AD7380_INTERNAL_REF_MV;
-> +		/* these chips don't have a register bit for this */
-> +		external_ref_en =3D false;
-> +	} else {
-> +		/*
-> +		 * If there is no REFIO supply, then it means that we are
-> using
-> +		 * the internal reference, otherwise REFIO is reference
-> voltage.
-> +		 */
-> +		ret =3D devm_regulator_get_enable_read_voltage(&spi->dev,
-> +							=C2=A0=C2=A0=C2=A0=C2=A0 "refio");
-> +		if (ret < 0 && ret !=3D -ENODEV)
-> +			return dev_err_probe(&spi->dev, ret,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to get refio
-> regulator\n");
-> +
-> +		external_ref_en =3D ret !=3D -ENODEV;
-> +		st->vref_mv =3D external_ref_en ? ret / 1000 :
-> AD7380_INTERNAL_REF_MV;
-> +	}
-> =C2=A0
-> =C2=A0	if (st->chip_info->num_vcm_supplies > ARRAY_SIZE(st->vcm_mv))
-> =C2=A0		return dev_err_probe(&spi->dev, -EINVAL,
->=20
 
 
