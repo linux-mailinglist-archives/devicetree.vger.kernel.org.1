@@ -1,195 +1,197 @@
-Return-Path: <devicetree+bounces-113652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 420B49A6867
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 632809A686E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:31:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03B5B284951
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:29:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F3E22862EF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:31:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C231EABBF;
-	Mon, 21 Oct 2024 12:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACEBB1EF0A2;
+	Mon, 21 Oct 2024 12:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sdHW6l5j"
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="A+f4afAs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D680F1E8851
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:28:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F8C1E573C
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729513721; cv=none; b=Bf3P/u45kLkRVgzauiaXQ9vRUwvkHtFUb7M2P9d3/zKm4n6l7I31hMiiczU81s50/LszofUEyns1/slnsVft9Q9R0Vvy+mlpi/zrwAIHhJYQwdvTArGeTVDTlYYhR2UtMzExtLTuFY1wyCPWIOlpB0kJPydeWiMLuRzAD+E+YuE=
+	t=1729513853; cv=none; b=ZKRw7vzPMx9wQBNx66PJoeddvaixceCog/LEbCjpuyiQUaAUQnU0LNznm3k93yPYEkeywBu+2LnM1J2Nonq9gfgTZlibqb26teaGhZpb3xdGWozMbmGY2CYxz3aoZysGRrQCCldCzZxp5A+JBXppjd9os94AL9k7RecUxDI3hgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729513721; c=relaxed/simple;
-	bh=DBP0OOsTE11Yj47xHdts1PZQNqjVqwOWeu36dsdeH00=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=qZwVxurDo9vvX9j5DNpWzGlLX6embIqrrpF8+1ZTiTxQPgf7jg2Ab5kZMnVxlls2JjBIamj8UjNT/g6Tdx+26iexItUvJkAR0lvwL9YOFVY9ltRCRdG5a5kA9yT1gtuL8UyrQRzczRNy+SIoRJTFVx8cIYcJ03gh1kJcuxvTdEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sdHW6l5j; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d462c91a9so3185418f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:28:38 -0700 (PDT)
+	s=arc-20240116; t=1729513853; c=relaxed/simple;
+	bh=dNHYhLYnCz57OOLIrQpTU04I6U4G+9ia8mwDBYvE6Hk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=rsahQjE5p62zCnmi/HEsqpwxM96vhKmWrdWJfcbBQ47zS0zJNup+mbm9P56l5pPXvpdndmFi2CfML+qEprUgi7pKcZ+Fe49OG3Hxp+EoDBHsZ+wmrbassoBsqOCX9VEHU4GlutEbPTeEAyVlKXVOM+NGA9cZfiCwArD+HJAUynY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=A+f4afAs; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37ed3bd6114so1920587f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:30:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729513717; x=1730118517; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rFKVbBVSy5Twz2NJrd7MX/x/tbjvook+SkghctSTy6Y=;
-        b=sdHW6l5j/tEvrYSAfUUFeBZ0V0qQyQeBOS9Pd9QnQCIIGwgUDh+Z5U1yOkUa7eMp1T
-         F/LAOOFqXSW3tn1AmB2l/Xa3fcx1lCPJMc6BWQ9lJGtrTRBJiKHZxX+hvd01FLmhH3v7
-         nvLt+Q2A4iohVABaZbqf82J7ZLczGH5ZMrUjY9FhO6at/aeob55aWhglag+XHftABiMm
-         WzIvDXuJ8XCBkqPblquUw18pZMVawTSeolI6D72xUS0RgCRwyIQofGTkOceSZVwYva27
-         NpCVi5C/YlGfkR3QekzTsrm2CY3kE/FAVsdSicepS/IZRbVEbLbji0Y0hkb9ksHRB5s+
-         z25Q==
+        d=9elements.com; s=google; t=1729513848; x=1730118648; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rOcgV31d+YnFQlRPolkUo1sUslborEWsikCkSJr1UrA=;
+        b=A+f4afAsFM5VkAq1TwBJgkgoK9XE2D7oUR+KmmYv+LNsuOTmShp+sfR9znJoNQ7U8b
+         WyS91aU8zhwBVNpxdmxG+aly8xeZOaWq8gMOodau98MEuPBZpeZc0mugJsAxWobG+5oS
+         r9poQyOruveWa3v6GWDGHNOjfIEQ1AElm65IU6lTjJFtHy6vqOT2CBVWr3z1fKcCYoMe
+         9yG06biMbPhTTjqPQOwgpFalPXvDaJpW1Pf2uCW2ZIfZdSly21mbhLDAtVOr82yRdUw0
+         LTrtfoGdHIjaNpUQqWIZs48EeMHoXFWtGKQ4x6s+W6Vv1F8oFhWBlqrjYC4jSH8PjGHt
+         8iNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729513717; x=1730118517;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rFKVbBVSy5Twz2NJrd7MX/x/tbjvook+SkghctSTy6Y=;
-        b=K4iOnVtYni2IuGTvoLWJvLGVUDAmGbHMwkMDUg1VPPajoN3ZJ2ZxacqTMsay1RaaNk
-         5w+RFO8I4EM8TF3l+8v80N/ryOYOmjk/TM1YflM47cZkrDaVH2QNSJW9ZMJgnNYJ6qzz
-         j61f+JVLm5Z+Nq+8jydvwu3z7jPIiejHk5toWlIuVTPtlwXwBSFeGQbfJ3vNH35gDl0o
-         B1C5I758BaSWe8hz2RCaI+1vqBt/wPp/S5Eyh5gsay5RmMZN7f6DfA1G/vxyWbMzckJ0
-         Sa8xLDjhz5nerIo5ESucYKBpZTYiVkdGgbfZdIIOFKfObmsw04R+RhGSHZJpeLGtOgC4
-         WuYg==
-X-Forwarded-Encrypted: i=1; AJvYcCU7q7d5Y97B1qKJERSs6UI3HiSo7/91/Xi78Q9vtUaQwWTYem8nFk1Y+c6Kj02RjnKxd7MItS9ZWOvU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkuRAS9UIVbUaJ/iVJfQ5PHWM+pzneEHC3rjvjDGhaTCr1r+jG
-	peuA9xKjMJnCoj/LppNEyJcCXGqggx0xlXWeMiIPC7kXVXHsjnpIRLVrv8AA71Y=
-X-Google-Smtp-Source: AGHT+IHd+FXgHes3NYjH4MUcohJQ4f1USWSGT5Tv0j4+9vI1t2uAw+Rm9IHAvbdkd+rWKuLb0d0vUA==
-X-Received: by 2002:a5d:4b05:0:b0:377:6073:48df with SMTP id ffacd0b85a97d-37eb489b413mr6556418f8f.58.1729513716937;
-        Mon, 21 Oct 2024 05:28:36 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:3908:dea6:2ddd:be97? ([2a01:e0a:982:cbb0:3908:dea6:2ddd:be97])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5cc4ebsm55654815e9.41.2024.10.21.05.28.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 05:28:36 -0700 (PDT)
-Message-ID: <56b66841-e60b-4dd7-8b96-cf67628fc0e6@linaro.org>
-Date: Mon, 21 Oct 2024 14:28:34 +0200
+        d=1e100.net; s=20230601; t=1729513848; x=1730118648;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rOcgV31d+YnFQlRPolkUo1sUslborEWsikCkSJr1UrA=;
+        b=V0tPpIXA+7hK2P7pQGo4dshgSWTIjGzmq5LmWyikws88Q8XfzQ3jMq954A6o8dSjt9
+         zGPfD3yMynUfkQp96XA3Y5C/EO0q+mHimSXRncWCQ3/aOPRf1rQvBJhNd3LyLyKFL0/Q
+         LNloedDx+MMyjnPD/vkGVGHmWJA2M0KL6QYiF1VMkmVWOnWo7ikKpWL1aZrqGRKvttij
+         biyZclRTieb+05lfmNAvh6b22Lx6MeQRPuJ77azNP5TdnchwQN94W4jJDW7wLsMch2Ap
+         mb/UDjPiCKQmsM+X9gaquqU8cxPegZegnnTL9TTcqlaO+mzgo7qNSAILLnPjDkqoNkJj
+         CQ1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUsc2RQj3h/eM6OHtK4GWzc7qfdbNjtffxm+tw+lFolx4/6P/wFOOgiG0q2JMMmO+NHAT9PtWT1DloB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMtMXqA3yxZkKq3z1U0n7xfmhRvvZoWYRQOOE4OuCnQN10hjS5
+	J9KDtKTYvDbCvCMc++mMVHSaILUNyXRrXuIGhFJM4riN8sFdw6KAeWMJff/TQd0=
+X-Google-Smtp-Source: AGHT+IEtF3bT2QfrG/FSR80A5nCmoFdFM8oPeqFnxIfisEJZ31HCLKiDspKSvJLCb+LbGqlwdYfqJg==
+X-Received: by 2002:a05:6000:b45:b0:37d:54d0:1f20 with SMTP id ffacd0b85a97d-37ea218b5ecmr7169863f8f.24.1729513848383;
+        Mon, 21 Oct 2024 05:30:48 -0700 (PDT)
+Received: from stroh80.lab.9e.network (ip-078-094-000-050.um19.pools.vodafone-ip.de. [78.94.0.50])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37df9sm4237363f8f.19.2024.10.21.05.30.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 05:30:47 -0700 (PDT)
+From: Naresh Solanki <naresh.solanki@9elements.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	jdelvare@suse.com,
+	linux@roeck-us.net,
+	sylv@sylv.io,
+	linux-hwmon@vger.kernel.org,
+	Naresh Solanki <naresh.solanki@9elements.com>
+Subject: [PATCH v3] dt-bindings: hwmon: pmbus: Add bindings for Vicor pli1209bc
+Date: Mon, 21 Oct 2024 18:00:43 +0530
+Message-ID: <20241021123044.3648960-1-naresh.solanki@9elements.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 2/2] drm/bridge: sii902x: Set input bus format based on
- bus-width
-To: Wadim Egorov <w.egorov@phytec.de>, andrzej.hajda@intel.com,
- rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, bbrezillon@kernel.org, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, upstream@lists.phytec.de
-References: <20241017085556.3045686-1-w.egorov@phytec.de>
- <20241017085556.3045686-3-w.egorov@phytec.de>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20241017085556.3045686-3-w.egorov@phytec.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/10/2024 10:55, Wadim Egorov wrote:
-> Introduce a bus-width property to define the number of parallel RGB
-> input pins connected to the transmitter. The input bus formats are updated
-> accordingly. If the property is not specified, default to 24-bit bus-width.
-> 
-> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
-> ---
-> v3: Ensure bus_width is set/defaults to 24 even if an endpoint is not defined
-> ---
->   drivers/gpu/drm/bridge/sii902x.c | 24 +++++++++++++++++++++++-
->   1 file changed, 23 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-> index 7f91b0db161e..9be9cc5b9025 100644
-> --- a/drivers/gpu/drm/bridge/sii902x.c
-> +++ b/drivers/gpu/drm/bridge/sii902x.c
-> @@ -180,6 +180,8 @@ struct sii902x {
->   	struct gpio_desc *reset_gpio;
->   	struct i2c_mux_core *i2cmux;
->   	bool sink_is_hdmi;
-> +	u32 bus_width;
-> +
->   	/*
->   	 * Mutex protects audio and video functions from interfering
->   	 * each other, by keeping their i2c command sequences atomic.
-> @@ -477,6 +479,8 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
->   						     u32 output_fmt,
->   						     unsigned int *num_input_fmts)
->   {
-> +
-> +	struct sii902x *sii902x = bridge_to_sii902x(bridge);
->   	u32 *input_fmts;
->   
->   	*num_input_fmts = 0;
-> @@ -485,7 +489,20 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
->   	if (!input_fmts)
->   		return NULL;
->   
-> -	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-> +	switch (sii902x->bus_width) {
-> +	case 16:
-> +		input_fmts[0] = MEDIA_BUS_FMT_RGB565_1X16;
-> +		break;
-> +	case 18:
-> +		input_fmts[0] = MEDIA_BUS_FMT_RGB666_1X18;
-> +		break;
-> +	case 24:
-> +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-> +		break;
-> +	default:
-> +		return NULL;
-> +	}
-> +
->   	*num_input_fmts = 1;
->   
->   	return input_fmts;
-> @@ -1167,6 +1184,11 @@ static int sii902x_probe(struct i2c_client *client)
->   		return PTR_ERR(sii902x->reset_gpio);
->   	}
->   
-> +	sii902x->bus_width = 24;
-> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
-> +	if (endpoint)
-> +		of_property_read_u32(endpoint, "bus-width", &sii902x->bus_width);
-> +
->   	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
->   	if (endpoint) {
->   		struct device_node *remote = of_graph_get_remote_port_parent(endpoint);
+Remove vicor,pli1209bc from trivial-devices as it requires additional
+properties and does not fit into the trivial devices category.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Add new bindings for Vicor pli1209bc, a Digital Supervisor with
+Isolation for use with BCM Bus Converter Modules.
+
+VR rails are defined under regulator node as expected by pmbus driver.
+
+Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+---
+Changes in V3:
+- Fix indentation
+Changes in V2:
+- Squash the two patch in patch into one.
+- Update commit message.
+---
+ .../bindings/hwmon/pmbus/vicor,pli1209bc.yaml | 62 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ 2 files changed, 62 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
+new file mode 100644
+index 000000000000..4aa62d67e1a9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/pmbus/vicor,pli1209bc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Vicor PLI1209BC Power Regulator
++
++maintainers:
++  - Marcello Sylvester Bauer <sylv@sylv.io>
++  - Naresh Solanki <naresh.solanki@9elements.com>
++
++description:
++  The Vicor PLI1209BC is a Digital Supervisor with Isolation for use
++  with BCM Bus Converter Modules.
++
++properties:
++  compatible:
++    enum:
++      - vicor,pli1209bc
++
++  reg:
++    maxItems: 1
++
++  regulators:
++    type: object
++    description:
++      List of regulators provided by this controller.
++
++    properties:
++      vout2:
++        $ref: /schemas/regulator/regulator.yaml#
++        type: object
++        unevaluatedProperties: false
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        regulator@5f {
++            compatible = "vicor,pli1209bc";
++            reg = <0x5f>;
++
++            regulators {
++                p12v_d: vout2 {
++                    regulator-name = "bcm3";
++                    regulator-boot-on;
++                };
++            };
++        };
++    };
++
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 15f89d7ecf73..00361b5cfc3c 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -404,8 +404,6 @@ properties:
+           - ti,tps546d24
+             # I2C Touch-Screen Controller
+           - ti,tsc2003
+-            # Vicor Corporation Digital Supervisor
+-          - vicor,pli1209bc
+             # Winbond/Nuvoton H/W Monitor
+           - winbond,w83793
+ 
+
+base-commit: d79616b04f0e08178ceb716a5d2ef60ab723d532
+-- 
+2.42.0
+
 
