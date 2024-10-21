@@ -1,188 +1,133 @@
-Return-Path: <devicetree+bounces-113720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243459A6AD9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:45:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B6869A6ACA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:44:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4481C1C22604
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:45:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A1BD1F21E71
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 268A21F9EA3;
-	Mon, 21 Oct 2024 13:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22B91F8908;
+	Mon, 21 Oct 2024 13:43:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="WwlovjZ6"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="OHS5G4qJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F243F1F9A91
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 13:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C274E1F80B8;
+	Mon, 21 Oct 2024 13:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729518263; cv=none; b=rY32b7ToB1lByImj2LPsEMxXoS7bzPL0ES5v6ajiXoNuub3f2Ss6Gd5D0zshCVVhe8D6+J6AVMWGsCCy9wrle3zbKe5B99n3+ouKMwHxdKlV8JVzYsjYUPHLcFggnepK5+WLQvooZCuI+T8FI8PWGiDUvBpci40p3hwfe7V7gGY=
+	t=1729518206; cv=none; b=qBt+U0u1a1ZoUqtpMqYOkJBquNomtwXb6b5NzzrD7u3EkcSgku9jL7NAxZe/3tM/N3FQI7KGf49w5ibUaLcf+hLFAxEJzrep5nRuwA//7+K8WgX3U3cypH3LU+S71yAaN49+T6WZ5TOr04Ar543NfECN/1EDX/C/RojiIXGhz5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729518263; c=relaxed/simple;
-	bh=BAFBA3PSylWKEW63BdR/LWiXoxleLdw7dvkAgNGemzI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TgBXaHovH8zMQHkV9y3/VIqnE8J4Pl81bmepXGYZKcUm44r8HLlsFTxxLnrYjFV944gT9sGAk65BJLU6/+et/KESc/1KDHli/Qymqc2bbeH+6ImhUHBGqee9tVZwFo7tkXjKoKOydgps/1+lRqXGCGjyq9jCWNFGPMgiYa4cMhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=WwlovjZ6; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-20cb7139d9dso40099625ad.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 06:44:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1729518260; x=1730123060; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rEnajADAbGhm3M1pNyKurdElPnt+aWsHL33PQ0Q7Gvs=;
-        b=WwlovjZ6pDY2FQvWAJuusjt6o9AjBfDJPIS7b3ik8JP3zfeGy8Fu5m6oQY2qAatr/K
-         Je+uQXkSs/s/gQqSZmYJluYzoOlGu24pBZbaWIp7LFqzB8MxLvEeir/ZfSapN9ZCVTuW
-         G7CTjlRYkWOYfmf/4hOWaKp2zFjYfp+s8R/lfhVsOlsdjlwpgzisLdmZ84TfBg3vhXUv
-         IvgZhOVMdPh8FHfXWbpvigZcsxEiEwWkJib9uWrRjKV0toFMfUU8BU481+amUuO+huze
-         QTmGQhsER2tLjx4F5ug11hB7Cqx2qvMlEoJ8TYDIrWgc/bVGIl5DB2PKXWGf5UFLROfm
-         JcDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729518260; x=1730123060;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rEnajADAbGhm3M1pNyKurdElPnt+aWsHL33PQ0Q7Gvs=;
-        b=BokegXc6naNEJSIm6mEw9RMs5xOLfQ3D7W2Xssfgc6C7OYoK14KMys2dz1rn+0Q4Uj
-         NA48QtD/Uc9EEgGTzOc5men0RvV+OM0HX4JZLkSjJPqd2usvfpgp/1BXw7S1Dv7SERvX
-         kqLCpx228tY92YgiGRu7QnBc+kF/8iFYZEk4qK2drW27rk00ypbIYovrNrIek4HSflx1
-         3BTQViUwSLmAohFKRt9xyHj9IC/nTeJ1JXO4lI3Y9J2lBSw+6Bx0WfCdU+xvQ7PyzzTs
-         NLnhiZve1GLzB3i+UKovBGYpEzzLl7e0jPddb/lb0nl3tNH5LXNQdHeNTE72GLJsqJZ6
-         FUxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUigNic1edjDlJb7oLYyWaiF1y0Vxs//9RC4yCYu5Wwit38lNCqPkmNssFDk385Wf2ZR/DKSjgbBKTL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxAO9/owlU0dIaxBjv9y77pTgUA8yInjVpdk/qzjzt30HjZMRH
-	2Fy/EO/hfsEZqBy7a6jN2zkuCHu6GCRgG+M8XN10fM+YZ4uCmXGP8bVuRXN/dH8=
-X-Google-Smtp-Source: AGHT+IHN/ehUoWz4nWNTcpRpWVKsXcIc7vWF74OZtujCoQlKZC39nGhEfqrrlaKVy+NS5GzpK/RF+Q==
-X-Received: by 2002:a17:903:1d1:b0:20c:e262:2580 with SMTP id d9443c01a7336-20e5a8fb25amr172757925ad.44.1729518260070;
-        Mon, 21 Oct 2024 06:44:20 -0700 (PDT)
-Received: from [10.211.55.3] ([4.28.11.157])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7ef1a953sm26029185ad.112.2024.10.21.06.44.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 06:44:19 -0700 (PDT)
-Message-ID: <2b449955-6596-4c9a-9799-f15d186e260f@riscstar.com>
-Date: Mon, 21 Oct 2024 08:44:16 -0500
+	s=arc-20240116; t=1729518206; c=relaxed/simple;
+	bh=rDvs1CxqVAzeYVMSGhs2gik+4bnLUS6qsOMHn/0ea3o=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=CRDS58j+cN3hh3Ub84ONFkckQYcGQQzKLMsZCnahNDH0onaj6POlmYWQ0HMrffvnSeZ7ZCPZnezTuPyYTSLRgBy3mR0Ckgy3qPmyNdm+A7ijkLm557erBbLSI2jpYK0Lkr9BqqHSclZKhndr7HcWfv6B/z7h7GbH332het10eXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=OHS5G4qJ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LC2tGp015881;
+	Mon, 21 Oct 2024 09:42:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=J+ShBUz+F3k1OHNB/ky1BEGXz6G
+	b4uNGdFMQRWPazGw=; b=OHS5G4qJmIYDST4Z643GQliYQ83kBxzJjctCiYIO6uR
+	M85PUsfBQay7IxZ1bXLGTxYjb7uirMldw0sMRUmgJPTxGWngTYFrsmpV5M5nPhVX
+	SgM2CbId8fZh5LJVZJmBqvywmRO1ToYnlnR18PDw35agor8gsjyfbcY8PWL2IOr4
+	+Ku3icHymtQ/mg30Q8j89aqFqGlLnT52WQgOHS5NbRX56OCKP41y5bRfN0KIMznV
+	c5KDzJAfu+Z5p1daf85cfCQkx57SflPJwHv/0mdotSGUeKl2mDi6WXbn0t7fDN1M
+	hxYoPF77KWU5c2YRdbQnuoUBuVud93deIWDR5fQxpLQ==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42dj4vsfrd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Oct 2024 09:42:47 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 49LDge6R055732
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 21 Oct 2024 09:42:45 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 21 Oct
+ 2024 09:42:42 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 21 Oct 2024 09:42:42 -0400
+Received: from [127.0.0.1] ([10.44.3.60])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49LDgU7W017079;
+	Mon, 21 Oct 2024 09:42:32 -0400
+From: Nuno Sa <nuno.sa@analog.com>
+Subject: [PATCH 0/4] ASoC: codecs: adau1373: drop platform data
+Date: Mon, 21 Oct 2024 15:46:44 +0200
+Message-ID: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] riscv: dts: starfive: add DeepComputing FML13V01
- board device tree
-To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc: Guodong Xu <guodong@riscstar.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Emil Renner Berthing <kernel@esmil.dk>, rafal@milecki.pl,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Michael Zhu <michael.zhu@starfivetech.com>,
- Drew Fustini <drew@beagleboard.org>, Alexandru Stan <ams@frame.work>,
- Daniel Schaefer <dhs@frame.work>, Sandie Cao <sandie.cao@deepcomputing.io>,
- Yuning Liang <yuning.liang@deepcomputing.io>,
- Huiming Qiu <huiming.qiu@deepcomputing.io>, linux@frame.work,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241020134959.519462-1-guodong@riscstar.com>
- <20241020134959.519462-4-guodong@riscstar.com>
- <ae5gels34ozgzrcrwz53wj22hoy5cq3crn3dmkhitxlffmnavt@6lbmrcpjmqyd>
- <20241021-unroll-empower-3ab903615d6d@spud>
- <c048d270-7a07-4807-b816-0f4e0aeb67f7@kernel.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <c048d270-7a07-4807-b816-0f4e0aeb67f7@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAERbFmcC/x3MQQqAIBBA0avErBNSK6WrRAtpppqNhmYF0d2Tl
+ m/x/wOJIlOCoXog0smJgy+QdQXz5vxKgrEYVKNa2UgrHLostdEibfnAcHmBs8bWds6g7aF0e6S
+ F7/85Tu/7AdbGeWJjAAAA
+X-Change-ID: 20241018-adau1373-shutdown-dc3d485a7d86
+To: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1729518408; l=985;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=rDvs1CxqVAzeYVMSGhs2gik+4bnLUS6qsOMHn/0ea3o=;
+ b=cWvhL9zypRmhbO4j1v1nMpS8xmH6o24HBpjj+InMDSu21EoPDulI6nhhQEF4jYAgtSaEnIsZL
+ N+2N3VAzu2VCQTPeBC3LvsXsjyeHdBk4erZO6r62nKuNrS2YuftUuay
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: TDb83TFkCs9Lej6XcRfs1mdvG17ca_V4
+X-Proofpoint-ORIG-GUID: TDb83TFkCs9Lej6XcRfs1mdvG17ca_V4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 phishscore=0 mlxscore=0 suspectscore=0 clxscore=1011
+ malwarescore=0 mlxlogscore=719 adultscore=0 spamscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410210098
 
-On 10/21/24 7:47 AM, Krzysztof Kozlowski wrote:
-> On 21/10/2024 13:16, Conor Dooley wrote:
->> On Mon, Oct 21, 2024 at 09:17:59AM +0200, Krzysztof Kozlowski wrote:
->>> On Sun, Oct 20, 2024 at 09:49:59PM +0800, Guodong Xu wrote:
->>>> From: Sandie Cao <sandie.cao@deepcomputing.io>
->>>> +&camss {
->>>> +	status = "disabled";
->>>> +};
->>>> +
->>>> +&csi2rx {
->>>> +	status = "disabled";
->>>> +};
->>
->> You can drop these two, I marked them disabled in the common file
->> earlier this week.
->> 1
->>>> +
->>>> +&gmac0 {
->>>> +	status = "disabled";
->>>> +};
->>>> +
->>>> +&i2c0 {
->>>> +	status = "disabled";
->>>> +};
->>>> +
->>>> +&pwm {
->>>> +	status = "disabled";
->>>> +};
->>>> +
->>>> +&pwmdac {
->>>> +	status = "disabled";
->>>> +};
->>>> +
->>>> +&spi0 {
->>>> +	status = "disabled";
->>>
->>> If your board has to disable all these, then they should not have been
->>> enabled in DTSI in the first place. Only blocks present and working in
->>> the SoC (without amny external needs) should be enabled.
->>>
->>> I suggest to fix that aspect first.
->>
->> Eh, I don't think I agree. Having 5 disables here is a lesser evil than
->> reproducing 90% of jh7110-common.dtsi or shunting a bunch of stuff
->> around. Emil?
-> 
-> Why reproducing 90%? Only enable would be here, no? Or you want to say
-> the common DTSI has things which do not exist?
+Main motivation for this was to just add support for a powerdown GPIO.
+Then, I realized the driver was using platdata which is not being used by 
+any platform. Hence, move to support FW properties and add bindings
+docs.
 
-For what it's worth, I agree with Krzysztof.  In the (long) cover
-page we pointed this out, and offered to do it in a followup patch.
-But if requested we can do it now.
+---
+Nuno Sa (4):
+      ASoC: codecs: adau1373: add some kconfig text
+      ASoC: dt-bindings: document the adau1373 Codec
+      ASoC: codecs: adau1373: drop patform_data
+      ASoC: codecs: adau1373: add powerdown gpio
 
-So in v6, a new patch would be inserted before the other three,
-and it would:
-- Remove the status = "okay" lines for those nodes that are not enabled
-   in this new platform, in "jh7110-common.dtsi"
-- Add nodes where appropriate in:
-     jh7110-milkv-mars.dts
-     jh7110-pine64-star64.dts
-     jh7110-starfive-visionfive-2.dtsi
-   They'll look like this, to enable the ones disabled above, e.g.:
-     &gmac0 {
-         status = "okay";
-     };
+ .../devicetree/bindings/sound/adi,adau1373.yaml    | 102 +++++++++++
+ MAINTAINERS                                        |   1 +
+ include/sound/adau1373.h                           |  33 ----
+ sound/soc/codecs/Kconfig                           |   2 +-
+ sound/soc/codecs/adau1373.c                        | 198 ++++++++++++++++-----
+ 5 files changed, 253 insertions(+), 83 deletions(-)
+---
+base-commit: cab655772416379a925af9ea85769a9d3eecdba0
+change-id: 20241018-adau1373-shutdown-dc3d485a7d86
+--
 
-     &i2c0 {
-         status = "okay";
-     };
-
-You guys should come to agreement, but I do think what Krzysztof says
-is the right approach.  And unless convinced otherwise, this will be
-what shows up in the next version of this series.
-
-					-Alex
-
-> Best regards,
-> Krzysztof
-> 
+Thanks!
+- Nuno Sá
 
 
