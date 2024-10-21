@@ -1,124 +1,113 @@
-Return-Path: <devicetree+bounces-113747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C5B9A6C5F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:40:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF779A6C6A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:41:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1414B24452
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:40:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30A8C1F21226
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:41:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB871FA24A;
-	Mon, 21 Oct 2024 14:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 158651F9AB0;
+	Mon, 21 Oct 2024 14:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RjcJR89Q"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="l1NZndhc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6D41FA245;
-	Mon, 21 Oct 2024 14:39:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6485A26ACD;
+	Mon, 21 Oct 2024 14:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729521601; cv=none; b=HROehtWyhhGtg/Bx8mKnaw6RPwbRNMNx9cz5FxY0CwhbpDqdAN5mEniAE3AF06Mrb+QQsZt8IJICgcoh+Z3v0riLaRUEcndbryyT/9OBNK/F+sIV2ytswRGHhDEp2NwfkKkHo/Pv4pfPj7miomYycPuBK1vD2Gb4/Bq4e4ombqY=
+	t=1729521703; cv=none; b=Nr4Dc7ATvnq0FPPFfPRUY7LOq2d52pZiflgxC5DS92ZQEqEBs/BQzde9i80zggLjjoobwfmuEFl8GQD/R0HBOyaqDlghOCC/JVAiYsAs7yCbs4cu9wtD3oUE4vVK+KcT63oBmQEgIDH9Q7tzqAeApmNDVPVSV30cTxz4zNR4d60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729521601; c=relaxed/simple;
-	bh=srAtMSjBSzwRyI4CrAwKM3mPjctYEK/k/pj45vbucFA=;
-	h=Date:From:Subject:To:Cc:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gy+y3AfsvpRCCbIVVWnQn708A6Ke7sPv6W8JsBx86q4XZ2SOHolxdfPKOOGi1fEBWhP/JjBeIjGiFCXnIjPJrViVA3Pb0pHi/kDwTsrkAytBLEvb+Xy3zzeDtigYAk3yzQoefMh4Ubp5hvI8nMn55bVuzK7ZCCBgmjMxi4bmaek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RjcJR89Q; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-539e1543ab8so7600761e87.2;
-        Mon, 21 Oct 2024 07:39:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729521597; x=1730126397; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jdnEF4MP3z9LmQ+YWnGEuDQLrVcu+Y+YkXjsN21Vacw=;
-        b=RjcJR89Qq25H/b8mLDVQfFr31mMLZoxjVRrjC8bD0lXhCZT6DIOGTQQfqUAd11JvWq
-         U2U3RWSM43DiZBkm8v3wCFG31HI/IR1JRbDc7lkIz6nYrfZ8OnMS/mz7sipUlPkF0nFx
-         7Qq3QSl2/dCOmSPbxqpwKp23PRUzN8w2QFiVbaIJ860CEcmVLmp2wpTVO+5wUWKGGXLu
-         FE+m5lSjqGnUrLASTbUBMXCSi6f9czAxczSHF+e0IW48HcCtz4nsb7fYzDSjjr9GbOV7
-         IF54utK/Z0rdDQ0dZtlQ4b85MjUCmvpq9rpBE357lVHjo2yB/zlBwg5ZjwAoRiE7629S
-         +CIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729521597; x=1730126397;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jdnEF4MP3z9LmQ+YWnGEuDQLrVcu+Y+YkXjsN21Vacw=;
-        b=J9jMytF8QCbcdGe2Ve2wT+jRrtnCluZJ/+UepIZAuSskBi1QCxfS7Pg3G35UIvmdRy
-         qo6Qze5+xwv9/V5cFA9T22c1p3+unggxmA15kt8tuyWyPR65bQl9ho70GbKmCtBz7om7
-         3ygD57TcRJBhtAZHFDcacjsjoysyqMxqRnY1CaJq5gtQ2LJeewdSFy0aF6+FKPfksYNm
-         CWFqSgyjROxNRaR3zP+55+z2nTAv6p8gxy3wGn2PXAZciRei9HL7k7R3Daec3gQP+vzl
-         Gq4+u4WvA7Tsqdfrat9Csc4fqBfSXERmVVuEgjq6vGBvKmcjmwaCBZsbA/LBUP+fiR2p
-         ZfSA==
-X-Forwarded-Encrypted: i=1; AJvYcCVaIFVEwoYZoXXen0wght53QD2msBsv3xfV+ZX1xrovqrAXf3k8tBdv+rSqZxzTezXeYbbDUz4FyAuzu41C@vger.kernel.org, AJvYcCWdlqZgcCx9TR2mO7Aslu73MPD9qMjNmpu26PiI3qI9U6zvrARd7/a0M2lxnAdjF9DwDv/Aa/+zZKI=@vger.kernel.org, AJvYcCWp5po+8cowy9NcrBiV7pQZst9oEVrqbXTxBMDgB3EmkJIdg9ZsF+pD5wIpV9uNWeyen49BWlgGv8SMeD8=@vger.kernel.org, AJvYcCXT8OANiJRp8O8z7j3Ag1kdoqXOyafpr8E5aozNZitL3IFt6aCx+oJ43Y9oIVvkwEz7UwZHdZL3/jGi@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVciVV3QUp64WIv04fim4Nih7OVlHgLoRFmoMTw7UgeG1VEZLS
-	BEzvTPmvjllBt2SLPOnZZFnZKn8wsXJkoVUI6N5she/pOAW539gu
-X-Google-Smtp-Source: AGHT+IFL60DydO7Av+sfeNcrf7sWojkZTRh14YqR9IlCxxqK5nbQT1J0lusnZXVd2ELtK5zqE3wQSQ==
-X-Received: by 2002:a05:6512:e9a:b0:535:6951:9e1c with SMTP id 2adb3069b0e04-53a15444616mr8301354e87.15.1729521596991;
-        Mon, 21 Oct 2024 07:39:56 -0700 (PDT)
-Received: from [10.50.4.74] ([95.183.227.50])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a912f67e6sm209033166b.82.2024.10.21.07.39.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 07:39:56 -0700 (PDT)
-Date: Mon, 21 Oct 2024 17:39:48 +0300
-From: Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH 4/6] mfd: mt6397: Add initial support for MT6328
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>, Sean Wang
-	<sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones
-	<lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, jason-ch chen
-	<Jason-ch.Chen@mediatek.com>, Chen Zhong <chen.zhong@mediatek.com>, Flora Fu
-	<flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Message-Id: <CENPLS.CE17IF58CL3J@gmail.com>
-In-Reply-To: <9fbe6e8e-623a-4c8c-b6ea-c3aea8a5a56d@collabora.com>
-References: <20241018081050.23592-1-y.oudjana@protonmail.com>
-	<20241018081050.23592-5-y.oudjana@protonmail.com>
-	<9fbe6e8e-623a-4c8c-b6ea-c3aea8a5a56d@collabora.com>
-X-Mailer: geary/46.0
+	s=arc-20240116; t=1729521703; c=relaxed/simple;
+	bh=oES9w02HsNO+wAdgGTKwa5IUNCRPd0m/e8VFJjy8Y6E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sOM/fs0DxDo82KcfjBwl5PSe2FSytOtNlqOFWO/yzYOGzHQj7YF9c0kKmOHeiDTKpCZxEDty54yhjRS4KazWNom0dbo9ueQQRLgouxfxzmTugA3ID1U5guE7MBvFZpk7eHjSOjwEGLXgzg4xLtGYuFzHPfFCMUC+ZiSTQPh+WPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=l1NZndhc; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C1E1660003;
+	Mon, 21 Oct 2024 14:41:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1729521698;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HWKKfevfqq3xTQx/qm5VhEu0R1W8s/2FfrkGVfXaCqU=;
+	b=l1NZndhcmmiFNAfOeaopATuWCDhot1mJIYIJNqbwnUDhfcG+fSZwrPO3K+LKKi1VuAKCva
+	F1XcD3cp8ikbu1KgiUyGHW3NhsuAi/a7L7vK5Ii0AMJYpEeBAWcMoNMTqSaLIkc3cDw1Vq
+	o0ochi2t0hSFRAjfr531mBmOSYHH+I//wjmQNp3rDbDDpRiloKt/kLQZrYqZsAx1O886Wk
+	L12XTFZMg0eHP4GXV8BWpe9YcF3nU1b+1pHbADu88IvXV/MWaEMs2xv0tF+LIvzb/vA3T6
+	j0JE4uEgGi9icat4PhlAuxS+BDSDzDLoJEw71RmrQusyBk00/i3tW52e7My8ag==
+Date: Mon, 21 Oct 2024 16:41:35 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Lee Jones
+ <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan
+ <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Herve Codina
+ <herve.codina@bootlin.com>, Bjorn Helgaas <bhelgaas@google.com>, Philipp
+ Zabel <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew
+ Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
+ Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v10 0/6] Add support for the LAN966x PCI device using a
+ DT overlay
+Message-ID: <20241021164135.494c8ff6@bootlin.com>
+In-Reply-To: <20241014124636.24221-1-herve.codina@bootlin.com>
+References: <20241014124636.24221-1-herve.codina@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Greg, Philip, Maintainers,
 
-On Mon, Oct 21 2024 at 15:24:54 +02:00:00, AngeloGioacchino Del Regno 
-<angelogioacchino.delregno@collabora.com> wrote:
-> Il 18/10/24 10:10, Yassine Oudjana ha scritto:
->> From: Yassine Oudjana <y.oudjana@protonmail.com>
->> 
->> The MT6328 PMIC is commonly used with the MT6735 SoC. Add initial
->> support for this PMIC.
->> 
->> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+On Mon, 14 Oct 2024 14:46:29 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
+
+> Hi,
 > 
-> You're sending this from another email... and you have to add or 
-> change the signoff
-> to the other email....
+> This series adds support for the LAN966x chip when used as a PCI
+> device.
+> 
+...
 
-I was using that email for a while to send patches but then I started 
-having issues with it so I switched to the current email. Since I 
-already had the old email in a few places in MAINTAINERS and I was 
-always signing off with it I kept doing so while sending with the new 
-email. I had this conversation with another maintainer when I first 
-switched and they suggested that I add the From tag with the same email 
-as the signoff, and I've been doing that ever since and it has been 
-fine.
+All patches have received an 'Acked-by' and I didn't receive any
+feedback on this v10.
 
+Is there anything that blocks the whole series merge?
 
+Let me know if I need to do something else to have the series applied.
 
+Best regards,
+Hervé
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
