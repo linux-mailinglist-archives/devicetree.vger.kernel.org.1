@@ -1,82 +1,123 @@
-Return-Path: <devicetree+bounces-113820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78239A722B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:18:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 592279A722E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:20:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A29E1F25D1E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:18:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 842CB1F25C97
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 607F01F1307;
-	Mon, 21 Oct 2024 18:18:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446301F1309;
+	Mon, 21 Oct 2024 18:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ATnty0cM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hRo1sqyS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A9471991D7;
-	Mon, 21 Oct 2024 18:18:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230781C3F04;
+	Mon, 21 Oct 2024 18:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729534688; cv=none; b=nqZ4aY8+/XhdMGFgS5BVdShKYDuQQ1n84Z6Y9KisiYhny+JuiXj+u/HILzjagKWsCZ4mfL1ypyIYmvMB/SFNUKwZhMXtSpfcZLRaWHMcLYa6nSIt/XekOjzYD10gKf8ifbkIPe35+DcHBRhzsz2s51H/9ircjyFPjYz03CYEfs0=
+	t=1729534812; cv=none; b=cNZ4yqnOfpUD3Z59zCJ97J5yPPhBOc6HnQGKVEWK9TqXtiqrA91o5U+tAKRsnzdksAZo/6DdaqCVF3vKFenQ7m5gASjxUeeReX7RQAAQ2P2sSdfLsuIXgszoKj+X/IlTJWXNhBxthLEWzjwr8igi6K95irocYXwZGImnkW5+8DI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729534688; c=relaxed/simple;
-	bh=DelKPsg/gdkXW4pmPXHI8KyZww5jWxkQrb7liNX5VaY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EVNZahOo2TrqcygFbv7SqGh02mri0kFmXKwBfdTQud12AGl0o+H6swnb73GRZZ75Lc+FkGTp404YBoxarKWNsXTxrm7tSR1iLlUAOE2TsfxnHBT5r4s9PPYlyqg9xjOORZ5uANLhOFqFUTodRCdQkRj4fg3w8AcwkeeZbcCrftU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ATnty0cM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED970C4CEC3;
-	Mon, 21 Oct 2024 18:18:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729534687;
-	bh=DelKPsg/gdkXW4pmPXHI8KyZww5jWxkQrb7liNX5VaY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ATnty0cMqXzG8VmkgP03ttLsT0VQ7xKbNohxlm+O4COifeiMK/EoqA6oWvOdYUXfS
-	 zzy9D8mOAsp3gdazaSIFQSpP8gF6zDpdUL14KicK57erA2ivZu7wq7jtHAxojAKTSe
-	 ly7r5PntMEHxEx+ZBcfWHlYJ2B/8DtkQWs7h0/99gXIC7A7Z9OGWSbkuPpe0rXTviV
-	 jjm7NgycY0hsDeQwWICJyzuAqUY+CWuxoA/Pi5HBfADlqA6p8+UP2kYsZqXL34wi/x
-	 xEW7DrYVe3Ki2rRfsFracgnBq/3ivV5R8YPQUhfBbTCIUoP04AnwOPR5IqXRwbteWV
-	 BzLcRH4cE/0/A==
-Date: Mon, 21 Oct 2024 23:48:03 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com,
-	gregkh@linuxfoundation.org, peter.chen@kernel.org,
-	herve.codina@bootlin.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-	jun.li@nxp.com
-Subject: Re: [PATCH v8 1/3] phy: fsl-imx8mq-usb: add tca function driver for
- imx95
-Message-ID: <Zxaa25TTIgDwOItL@vaman>
-References: <20241015111018.2388913-1-xu.yang_2@nxp.com>
+	s=arc-20240116; t=1729534812; c=relaxed/simple;
+	bh=GlPX+KtWJH8I2hdfrLtHvDpj0eL7bZVupSjgXXp60UQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tN60JtpKZjMyAyWN/F0Z8zlSytPZJjv806mapNRj87Myqm4mC5lJO0I9cjJTAjRByC/phswIOSPeV1xoqRj7rsWf4Kwa+S1BaQBP3Mu0Qfy4uvXm6NzbFPUz2PP5Miwc856ptS+ukNBrl8qFiSyoeyWDJDxZl7vD9oWt9D/+lD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hRo1sqyS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LAlHxI012350;
+	Mon, 21 Oct 2024 18:19:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SBA+LZg+3ZcEFM0R25WL7du5150FkxKzdf/CXN7CqTw=; b=hRo1sqySidl/ke6w
+	iyVKvIz0X/kv2WlSF6PhnbYa6s3PzZZp0iLrwpvN5JmcUuaMQjAxD9hA8X7IW9n8
+	NVUuTENN4q5t+TeyhR8CDazj4q6txde2xen6+IJivYPIhHbtWPgOKq6l0WvlpuMN
+	vqq7Ro5egzaUyyHIJMUUh82HdwwHPDgKhd9ji5VivL3vJbYGK9Ma5QHDb/hMCCD6
+	O7IeBGdCCeePxxQr4Wg3i2Mc0N0gVjpWWhBZbBnYHmGZcp3xJausw734lWL4+ZVa
+	SZRYyy491JDshNmnP+SKHj5ac7Hni0xG6s/OQn6DUQcjLXzSF/AuhpQ3rpjvA8ts
+	jfNXlA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42c6tsnm7j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Oct 2024 18:19:37 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49LIJZxQ012413
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Oct 2024 18:19:35 GMT
+Received: from [10.81.24.74] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Oct
+ 2024 11:19:35 -0700
+Message-ID: <41db541a-4de1-409b-bfec-7b9456fc200f@quicinc.com>
+Date: Mon, 21 Oct 2024 11:19:34 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015111018.2388913-1-xu.yang_2@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 4/8] mtd: nand: Add qpic_common API file
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, <broonie@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20241021115620.1616617-1-quic_mdalam@quicinc.com>
+ <20241021115620.1616617-5-quic_mdalam@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20241021115620.1616617-5-quic_mdalam@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SD8HV_K6uhAb3197RF7-KumeTaXLtH8X
+X-Proofpoint-ORIG-GUID: SD8HV_K6uhAb3197RF7-KumeTaXLtH8X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 spamscore=0 mlxlogscore=977 phishscore=0 adultscore=0
+ mlxscore=0 clxscore=1011 bulkscore=0 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410210132
 
-On 15-10-24, 19:10, Xu Yang wrote:
+On 10/21/24 04:56, Md Sadre Alam wrote:
+...
+> diff --git a/drivers/mtd/nand/qpic_common.c b/drivers/mtd/nand/qpic_common.c
+> new file mode 100644
+> index 000000000000..570ab59ca12b
+> --- /dev/null
+> +++ b/drivers/mtd/nand/qpic_common.c
+> @@ -0,0 +1,757 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2016, The Linux Foundation. All rights reserved.
 
-> @@ -359,6 +587,8 @@ static const struct of_device_id imx8mq_usb_phy_of_match[] = {
->  	 .data = &imx8mq_usb_phy_ops,},
->  	{.compatible = "fsl,imx8mp-usb-phy",
->  	 .data = &imx8mp_usb_phy_ops,},
-> +	{.compatible = "fsl,imx95-usb-phy",
-> +	 .data = &imx8mp_usb_phy_ops,},
+I'm surprised you aren't adding a 2024 Qualcomm Innovation Center copyright 
+...
+> +MODULE_LICENSE("GPL");
 
-Where is fsl,imx95-usb-phy documented?
+Since commit 1fffe7a34c89 ("script: modpost: emit a warning when the
+description is missing"), a module without a MODULE_DESCRIPTION() will
+result in a warning when built with make W=1. Recently, multiple
+developers have been eradicating these warnings treewide, and very few
+(if any) are left, so please don't introduce a new one :)
 
--- 
-~Vinod
+Please add the missing MODULE_DESCRIPTION()
+
 
