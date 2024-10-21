@@ -1,70 +1,58 @@
-Return-Path: <devicetree+bounces-113788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3439A7013
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:50:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 811A89A7020
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:52:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59B801C2154A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:50:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 328931F21775
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6556C19939E;
-	Mon, 21 Oct 2024 16:50:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BD11E1C22;
+	Mon, 21 Oct 2024 16:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C+0aSFQd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H/dzPpI0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247C347A73;
-	Mon, 21 Oct 2024 16:50:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E508E19939E;
+	Mon, 21 Oct 2024 16:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729529432; cv=none; b=LoucU66qZeyO3Ogjl70Q0us7P1vFg3HxKpiJJnU95fR23dJcgOvHfrgIUqX9f+dCcraZk5WGTlgBfN5lD/tkJRtIK5R/Q8w2fdQZX3o/6qR/NG0K0VGCjse73LfVSlTNO6PveLfh8w4QMJTMvpPNumWcc9m47cJ+mcgdd95w6ms=
+	t=1729529564; cv=none; b=E9/nZni/jP4pfTAhHOn0xXcFHWOFQ29EMNlb0l0J30c+sgnOS/d0040x9VFv4q5ITuupO1JOOdihFc9gTMWjDw6hmcdF6pXpT2G+DypIZQsvTfnec3yZUu8+nB/gipa01FvMKkLY/3Pn6hogRBeuRpM943hTUoiX5HC03hMdZzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729529432; c=relaxed/simple;
-	bh=bkVG9qLYw3ABhfdAM9/KxI+HYYRzwNI98LvRSY++XDE=;
+	s=arc-20240116; t=1729529564; c=relaxed/simple;
+	bh=pqXNyNGeM/0Hm4mgO7hEHXwOgAA/DyXeGAQoAQxRx0c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B7u/c6TmKYyJQ8JYKsNXSTKLQpwyRwoN7lZ5+KKUvtR616a94j6NT/rCX71SXtafY2H9ESQg4Jx8unGiDwHayok9FZ94jinAUr4Po/8xciVs+WYRNUjVafWZQ/+IdwWHx+a0bafWo+Y5Vn4cfIaXAQsJBl26XSEjqMLgj6S/ofA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+0aSFQd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09CCAC4CECD;
-	Mon, 21 Oct 2024 16:50:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QpDhaVgrzX453LYrmodnZgsq3qLbgJ7MK9qNuMvtoTbErTmebE/Sviic2pQCXNRP6wrWFgwmqkAkQHpE5UGth0PsYZd00rTV0xjkTAkrnCBUQ2/miXHR5Bqg6XFBvkF33s97fi6/ijKxad5AoJ1A2An6h791vsOCuNAaE/m3+LU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H/dzPpI0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86C4EC4CEC3;
+	Mon, 21 Oct 2024 16:52:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729529432;
-	bh=bkVG9qLYw3ABhfdAM9/KxI+HYYRzwNI98LvRSY++XDE=;
+	s=k20201202; t=1729529563;
+	bh=pqXNyNGeM/0Hm4mgO7hEHXwOgAA/DyXeGAQoAQxRx0c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C+0aSFQdIXH0WMVIeTlFBk9DgdNd1w/BUXl1Nk8Ghl6/zvsBbTDMCuPXlE7U5UC8V
-	 D+f5omY3VEe3Ftsw1UoQ+a2Wl9tbvBb9m2frsxk5X/sVyn+45gQLMYgHVHlBd46dtP
-	 HJRBpiPKxHn9bYmC4cb0H8pFF5VBFtQJiWym06ROO5VX+ufHr2No/47zz1k3Fma+SQ
-	 17CzvIPUVY5zcOx8DoubLsjyKXEaUaC18UaWDJyOC0ApzDCjW5XQoHnt5S9qkK+1AE
-	 xtqLzNufvwkEt3iNfO6TPT4PtMCFy31ULFEFZ4Pol+FDsbimbwpZF09MjMbtA/U0iG
-	 kohBCYG/Bjinw==
-Date: Mon, 21 Oct 2024 17:50:25 +0100
+	b=H/dzPpI0bDdRiH/hHJdv0VBLV9hgOy0lv8c29r75uz3JY5zua2i7r9D1nRZGVEwNX
+	 DVkrMTMkQQ+WTfSyagJkP5PDOoaiudSrXcB6bYr94FFWpDf/BX7nVmxF+8IBTXDSdx
+	 CCkVJUHqZ/lYdOHpQqRRJzHlGrjpAUNaBpfRa3bWZWM8XA/8Ss9xXIT+/+Pg6uQJkw
+	 HUb1jGWPCapG6gYidgplUV3ODongYBVLe+SQOBLt9GYsbOb2IyPo775FWSUgtrUwDR
+	 BkfCAsbYwEYpPsXvfCDh3J9mOIjG9YtRyZteWrY1M96RVNTxIe5YO4w4i0pbFJM3/e
+	 EQ40sNTsxazeg==
+Date: Mon, 21 Oct 2024 17:52:39 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>,
-	Richard van Schagen <vschagen@icloud.com>,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, llvm@lists.linux.dev
-Subject: Re: [RFC PATCH v3 2/3] dt-bindings: crypto: Add Inside Secure
- SafeXcel EIP-93 crypto engine
-Message-ID: <20241021-extenuate-glue-fa98a4c7f695@spud>
-References: <20241021145642.16368-1-ansuelsmth@gmail.com>
- <20241021145642.16368-2-ansuelsmth@gmail.com>
+To: Alexandru Ardelean <aardelean@baylibre.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org,
+	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com,
+	gstols@baylibre.com, dlechner@baylibre.com
+Subject: Re: [PATCH 5/6] dt-bindings: iio: adc: adi,ad7606: document
+ AD760{7,8,9} parts
+Message-ID: <20241021-shading-overeager-dd0a6c15c672@spud>
+References: <20241021130221.1469099-1-aardelean@baylibre.com>
+ <20241021130221.1469099-6-aardelean@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,43 +60,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XnYX0dOYK3nMEEbA"
+	protocol="application/pgp-signature"; boundary="V0fED2AYWKWHQzGl"
 Content-Disposition: inline
-In-Reply-To: <20241021145642.16368-2-ansuelsmth@gmail.com>
+In-Reply-To: <20241021130221.1469099-6-aardelean@baylibre.com>
 
 
---XnYX0dOYK3nMEEbA
+--V0fED2AYWKWHQzGl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 21, 2024 at 04:56:38PM +0200, Christian Marangi wrote:
-> Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
+On Mon, Oct 21, 2024 at 04:02:20PM +0300, Alexandru Ardelean wrote:
+> This change adds the AD7607, AD7608 & AD7609 parts to the binding doc of
+> the ad7606 driver.
 >=20
-> The IP is present on Airoha SoC and on various Mediatek devices and
-> other SoC under different names like mtk-eip93 or PKTE.
->=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v3:
-> - Add SoC compatible with generic one
-> Changes v2:
-> - Change to better compatible
-> - Add description for EIP93 models
+> Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
 
-RFC v3, but I don't see any comments explaining what you're seeking
-comments on.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---XnYX0dOYK3nMEEbA
+--V0fED2AYWKWHQzGl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxaGUQAKCRB4tDGHoIJi
-0hncAQDhWH3eBSBaL0KJABO5zc3ZCf9xeXA9yXleXdSOPqMFYQEAugCZgQ99Anky
-RCGazzpmE1QglGc+IiLDgYdvaQcoowo=
-=Ee6T
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxaG1wAKCRB4tDGHoIJi
+0mxcAQDqZH7gXVcWJZX4GK91lOWZWF7EDMqAYTianX0lSrIdgQEAxw3RagPqqx3c
+GxwiEdmEXeMP+hMyI1wXSupZoeof9wU=
+=e3L9
 -----END PGP SIGNATURE-----
 
---XnYX0dOYK3nMEEbA--
+--V0fED2AYWKWHQzGl--
 
