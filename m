@@ -1,117 +1,145 @@
-Return-Path: <devicetree+bounces-113840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E04119A8FD1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:31:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D739A8FD7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:33:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53E34B219D1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:31:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B4291C21C30
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B5FC1CF5FF;
-	Mon, 21 Oct 2024 19:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43A8F1F1304;
+	Mon, 21 Oct 2024 19:32:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="QfyNN+2I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XxvmOwlB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14126146A66
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 19:31:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D931D0F73;
+	Mon, 21 Oct 2024 19:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729539082; cv=none; b=tP4nxbNTYhjHWDULbhNN3NPyw9PBytxMikeXzGMzXjZUYbiVl21ixN9qW/BICUsJ83QNcZ3ryfFmwqShPtb2VduH8HtnwsdNJ+en9Et9RfRMv5VC7nOqoo3G4I5cIiWDwI3OEYJO320lNXeV+35udIh7BaMdf4sOy7LQ1yCEzb8=
+	t=1729539176; cv=none; b=qfNKsIcTXF8G6R0TIRGUD5U0WPT42EZ7xPMHdldKaN7HjMVioF+oIzDmX32LJdbz8/prrTl7U00bCenQYaWnN3h/k+T6xQB+8Q3JdGxLE3xCC3w8WsO4Cl/uRdkypN0VcDZEuPHPV2RfwHOHom/obW/26/PgG3S9lHmDRFDVFIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729539082; c=relaxed/simple;
-	bh=3EWgHc592+Mga34PVRoNecbdBz5HVaYwI+iMGjqCWmY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=rW2zrcx5oXKVLR+lqUgWC/Y3sqnaIv08Wtr5bdcUZach7GubNYJpmZg1lIPjt7oU7ZSVnrXL2V+pIrl2CtBHUdp1c6b1jcXI+h9ts76fWjQf9lAuqdMy3swODBWDs70THPFra6OaaBzybIxJSnClE+3acqr432T9MV3WGaUJ0RU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=QfyNN+2I; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-288916b7fceso2408453fac.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:31:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729539079; x=1730143879; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=p0/WpS2qRb6CVWNPpC7YhTrCcU9WXqsS6VwTJB//wjI=;
-        b=QfyNN+2Ie2+WZELmNMIq0J5aCsmiWWpcHFpETNguYEhDIkmYKCrb/8/fPfWC9Rt0HS
-         BlFMESGVT25sfIxcfp/oFpt5xUdDYaW9Fpju6udZ30RTPC+zZFBf5WrwOKUJ6l1EtkWm
-         9UaYCs6g1m8g2IiXMtGCljTVkcn0UueL4SwDKXM5sD0otsnGCDgkN+GD780BHet743Qj
-         RyJi4wT6LKVm5kbrP97E0g0cSOFtDJuFWePO9Ohgns/VA1n3Xv/6KCKBrfrNhWoIDGeZ
-         E9AvgZyM4zqX2OpReyy8dpiqEkNyDuduohC/FF43zpZDXFwWri0zKiKJ+RgTZuBTdw/I
-         FdFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729539079; x=1730143879;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p0/WpS2qRb6CVWNPpC7YhTrCcU9WXqsS6VwTJB//wjI=;
-        b=AC34wuK/hbIS7AG4gCKpuZA7exEGK7IJY/tUlgznGfPcb0otvOMZ4+rXQPciO6mJsF
-         5Yor15Yxh4wnKiVY9Jo+nRpi4ovigyZi+lPh47WiSbpv/18wj0u1788rpDK6GbUwUgbC
-         NJPsZTDHvLz3dPfvE+StvWAaZ6o+gXjB+/w9qJ9yBRf0Mm3ZbjDkra8UxFcUoaQGUVTz
-         ZK7Kk5ySxKc3691HDPn5jLPSzu1Hd+vQUqjjmboYwUctGodKjE8hcvrsU5Pdw0CtdAWm
-         wME71mQ0FzBs1Age+rLl98OfIxsbPw9qlT1n+4q9CuL/KdzeO1NsvVCE/JmpD+KsP9IU
-         oQTA==
-X-Forwarded-Encrypted: i=1; AJvYcCWYp+A1zp54JHTlYYnwhp51qa3eToEXUXLmZcBjj5+rk8xm5mzMzE7CCT/TRtX7Gvxju2nhhn6fykM9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxpdj9ndrPZFAWBMy+ADcoS4fgA6yCG3KTKyTrLV4xVhWV+GfYN
-	OI1jaUAZK8p3/9IbT9/xYqGupNLknXXUFX2oIJHdHW3DDQcP1AF6YwEALLU3EHs=
-X-Google-Smtp-Source: AGHT+IEyOxjwwUrsOEmDwkwJPBUJStAekQGUL3vnae7jaD5J0VYvQNUnrEgaW0zebq3M2e+WlBTxRw==
-X-Received: by 2002:a05:6870:6488:b0:28c:8476:dd76 with SMTP id 586e51a60fabf-28cb00ff030mr178834fac.29.1729539079102;
-        Mon, 21 Oct 2024 12:31:19 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-28c792046ebsm1268246fac.11.2024.10.21.12.31.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 12:31:17 -0700 (PDT)
-Message-ID: <1dbc8e19-d6fd-42dd-b116-f08c408b6a5c@baylibre.com>
-Date: Mon, 21 Oct 2024 14:31:15 -0500
+	s=arc-20240116; t=1729539176; c=relaxed/simple;
+	bh=gD0ZzmIV4/MlGmBFySRwVIU98Rh6f1sZhpdiCLGXqRc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hcgsnIuxCKeRfB8YDQ0P9aRBRHUo38TfgtwRuUnqPq5sF79YZG1msk/ucSv6HY6uxZoWZa/3ORPHejcxWcQqkeK01oNCirwquZOvbHmCCp+rdHivBqyUhX8mq3wIrJrlR0l7c05847/LVpPLSx426LCMdv7TZ6hZqeyV+Y+HKJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XxvmOwlB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 565E5C4CEC3;
+	Mon, 21 Oct 2024 19:32:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729539175;
+	bh=gD0ZzmIV4/MlGmBFySRwVIU98Rh6f1sZhpdiCLGXqRc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XxvmOwlBbLAX+xo8z1ab8vZL4BACarSmTkN6zt0cPNNSShyJMRr+DJyyfrMjdQ669
+	 pTRTgse8o7rOOFXN061RSxBGlZ8P6b2lC6ygE3Loj5BzBjBsW4wk4UCGkJRLHcjQ5i
+	 H4ZSC+i6vNs6XTKAmunYtdmYFzRImMJ7O800DbTt/ZCqqE9pWdIIDXuoTO47AgFmPl
+	 C6J2Z1J5Yk3vy5q4ynjhwstIeZv5TI7utkBC4W3RbeHoZiFw8JzjncjUFXgmAdbGzR
+	 sq66sy8LKoQcL1gfEw+IG2PbqaGVPyWNTJ+lc4ifiQEWSX4s00sudm6CaGXzmKGTJJ
+	 4SQucOUubnD4g==
+Date: Mon, 21 Oct 2024 14:32:54 -0500
+From: Rob Herring <robh@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, krzk+dt@kernel.org, conor+dt@kernel.org,
+	quic_jesszhan@quicinc.com, mchehab@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	catalin.marinas@arm.com, will@kernel.org,
+	sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
+	tomi.valkeinen@ideasonboard.com, quic_bjorande@quicinc.com,
+	geert+renesas@glider.be, dmitry.baryshkov@linaro.org, arnd@arndb.de,
+	nfraprado@collabora.com, thierry.reding@gmail.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org,
+	marex@denx.de, biju.das.jz@bp.renesas.com
+Subject: Re: [PATCH v3 08/15] dt-bindings: display: Document dual-link LVDS
+ display common properties
+Message-ID: <20241021193254.GA1000195-robh@kernel.org>
+References: <20241021064446.263619-1-victor.liu@nxp.com>
+ <20241021064446.263619-9-victor.liu@nxp.com>
+ <y6xpffdtpd4baczoatbotghhes3owh44tzdqvdgv3id4jj6jhj@nrqjn6d3wndx>
+ <8f63ae16-f484-401c-a3e7-6c12a2343cc3@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] iio: adc: ad7606: fix issue/quirk with find_closest()
- for oversampling
-From: David Lechner <dlechner@baylibre.com>
-To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
- michael.hennerich@analog.com, gstols@baylibre.com
-References: <20241021130221.1469099-1-aardelean@baylibre.com>
- <20241021130221.1469099-3-aardelean@baylibre.com>
- <2842cbb5-680e-483a-af62-4c08e7818a85@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <2842cbb5-680e-483a-af62-4c08e7818a85@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8f63ae16-f484-401c-a3e7-6c12a2343cc3@nxp.com>
 
-On 10/21/24 2:03 PM, David Lechner wrote:
-> On 10/21/24 8:02 AM, Alexandru Ardelean wrote:
->> There's a small issue with setting oversampling-ratio that seems to have
->> been there since the driver was in staging.
->> Trying to set an oversampling value of '2' will set an oversampling value
->> of '1'. This is because find_closest() does an average + rounding of 1 + 2,
->> and we get '1'.
->>
->> This is the only issue with find_closest(), at least in this setup. The
->> other values (above 2) work reasonably well. Setting 3, rounds to 2, so a
->> quick fix is to round 'val' to 3 (if userspace provides 2).
+On Mon, Oct 21, 2024 at 04:19:52PM +0800, Liu Ying wrote:
+> On 10/21/2024, Krzysztof Kozlowski wrote:
+> > On Mon, Oct 21, 2024 at 02:44:39PM +0800, Liu Ying wrote:
+> >> Dual-link LVDS displays receive odd pixels and even pixels separately from
+> >> dual LVDS links.  One link receives odd pixels and the other receives even
+> >> pixels.  Some of those displays may also use only one LVDS link to receive
+> >> all pixels, being odd and even agnostic.  Document common properties for
+> >> those displays by extending LVDS display common properties defined in
+> >> lvds.yaml.
+> >>
+> >> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> >> ---
+> >> v3:
+> >> * New patch.  (Dmitry)
+> >>
+> >>  .../bindings/display/lvds-dual-ports.yaml     | 76 +++++++++++++++++++
+> >>  1 file changed, 76 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/display/lvds-dual-ports.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/lvds-dual-ports.yaml
+> >> new file mode 100644
+> >> index 000000000000..0ac4c06d0a17
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/display/lvds-dual-ports.yaml
+> >> @@ -0,0 +1,76 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/display/lvds-dual-ports.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Dual-link LVDS Display Common Properties
+> >> +
+> >> +maintainers:
+> >> +  - Liu Ying <victor.liu@nxp.com>
+> >> +
+> >> +description: |
+> >> +  This binding documents common properties for LVDS displays with dual LVDS
+> > 
+> > s/This binding documents//
 > 
-> This sounds like a bug in find_closest() instead of in this driver.
+> Ack.
 > 
-> If there is an exact match in the list, it seems reasonable to expect
-> that the exact match is returned by find_closest().
+> > 
+> > But anyway there is a binding for common properties used in dual-link
+> > panels: panel-common-dual. How is it different? Why this is not suitable
+> > there? Why entirely different file name?
 > 
+> This one references lvds.yaml, which allows data-mapping and data-mirror.
+> They are not something common for dual-link panels.
+> 
+> Also, this one is supposed to cover all dual-link LVDS displays including
+> display panels and display bridges, while pane-common-dual.yaml is for
+> panels only.
 
-Likely also affected by this bug since they have values 1, 2 in the list:
+That's all fine, but refactor what is there, don't just duplicate 
+things.
 
-* rtq6056_adc_set_average()
-* si1133_scale_to_swgain()
+If we have the same property name defined (with a type) in 2 or more 
+places, then that's a problem.
 
+Rob
 
