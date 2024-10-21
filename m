@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-113511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99F069A5DC7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:58:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 859F19A5DCA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47E4C1F213A4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:58:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31A6BB20EFF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFEAF1E102C;
-	Mon, 21 Oct 2024 07:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A1D1E104F;
+	Mon, 21 Oct 2024 07:59:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uYad8ACA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PdlGZJXw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4181E1028;
-	Mon, 21 Oct 2024 07:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF12A1E102F;
+	Mon, 21 Oct 2024 07:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729497515; cv=none; b=CDh6DTyQY5UZ8B+WP4DOfvGBcuNJAtIomlbbsg3l99kLjin1xvLB53RsOgHeYCkQSCnoeIck1WVri4wGCwK1FbKiCj/fYl2kY3N/KXiz0WbE8suB+jxD6CtXZaSmhTLnSkosGHUURaDhyI97C7y6xsinEo0NqfzhdgCh2xLS3l8=
+	t=1729497587; cv=none; b=UTYiLPpiQyz2ZHTOyzR7iF25J7KjUnpGesqXnJ1/LRgoO5WSceg6dTRwW/yIuKzC4NbidVzMEhS1uiqh6821NSCqZDlpWrNFi1P5FIHAHXYHFPoMi6R1EdC9XHIiIXhuDdCI7wYbf0lePJRO38vTYp4rCuNmFQwJx4N0vUr0yQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729497515; c=relaxed/simple;
-	bh=BF6N0Tw9m2cqoYjZKr6+wjglNc9USslZtMlpF8ZL0F8=;
+	s=arc-20240116; t=1729497587; c=relaxed/simple;
+	bh=E7oSvUhYW6MNdf02zoVmwx/KBu5SAQgUaDf+IyzGsUI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CVv/9cOo6vLcVxEGggcqEQjbG6jUAI3SUUeafAC2HU7XV2IJzJ+DQ22adRJMylJ9JPFWGtiHp/eohpjUzWXCEhcqpaBpTU+M6jMvAMZ67mdztt21ktVRr+Eo9sMKYmPPxDs/MFCsxV+/KvGkmLIs7yJONMPIOrzDV0sql8s+Dd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uYad8ACA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38E7C4CEC3;
-	Mon, 21 Oct 2024 07:58:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=f4Kves0gGElo8/rmoOka6lyVTiLFMyDGMdN+xpqr3eUdKn1FDzO5PZ0irVaOjaI+NykfKEwlPy+3nwjK3d0sVLczSMZ3lsBnbDWvHZEVMCKDCrjTqrinx3LOPQaT5/tBS8z+KPfv8SqvsC0auTovdrl7SRZ4o+gWU/NUx+FFvBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PdlGZJXw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92C39C4CEC3;
+	Mon, 21 Oct 2024 07:59:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729497515;
-	bh=BF6N0Tw9m2cqoYjZKr6+wjglNc9USslZtMlpF8ZL0F8=;
+	s=k20201202; t=1729497586;
+	bh=E7oSvUhYW6MNdf02zoVmwx/KBu5SAQgUaDf+IyzGsUI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uYad8ACA85Qv0eqX9qLoavhjKucHVcdevtM1iV4B40hhzw9Lna6vN1xrYWbnx1V6T
-	 STPxuhI1UC9dm/Xtmp3ljrC2c9cN960SPGh/N8z0VBgw9+1FJif8PF5KrZsQK7ntH9
-	 asS7kwyqKZxn9V6mWoDEA9FOp4mukvjsuPAjhoiTsatK1IBT7ax2LQphkuUSAI5cdi
-	 gN70/j5Ie1vYWHqQNemRCF4HXvaVaJ5/x+AvkBzA/+Bj4Mo58rqZwbmzBnopqVeL7k
-	 VDLfkKXGQJtK3CldsijDl6PHIwur6S1mdBKH9c32DExJ+SqlUD4CR+bXjdjmP+OJ1R
-	 hsuSq4VS+gUyQ==
-Date: Mon, 21 Oct 2024 09:58:32 +0200
+	b=PdlGZJXwxRSWyAIikk3HVjeAHjQQ5EeXWcTliV7GiLUQOADWparZjHjCHVOoK2rOP
+	 RF77xQ8OiNC4w/05Vu4gV4XdcKqssqJhrzABOA5Dm2X5ErZ+MqQ4OR2y8f3nsANdEt
+	 WVZj6GhPf4xbTVApUuj+CXlyl+lESQaloYavAxGh1ouPqgUA5OOBimkW833v+ak/KM
+	 6MpmZOqJQWhyq+EofII7O/2ZYCx7NU5rUBTX+FOqcg82K5gBjCx3dRbJU/fdkTdK+9
+	 z5aKiZg4zcvLj+h9jIKquHH2aNPD+hDvC8HEWLkEaU6/LpaMJIs+Gljbr/9e47uShH
+	 NZgQxPdbalgPg==
+Date: Mon, 21 Oct 2024 09:59:42 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Describe TUSB1046 crosspoint switch
-Message-ID: <l5guykbgo23s4fw52cen3vuewqe4lqtf2zbdt6gxmlkatm4ecx@wpi6so6okizf>
-References: <20241018-tusb1046-v1-0-a38312f18691@bootlin.com>
- <20241018-tusb1046-v1-1-a38312f18691@bootlin.com>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Fix
+ X1E80100 resets entries
+Message-ID: <f4y7dyd3mpejha6vwpweena5g56ifchhzricqqfxvbk52ye4rq@kig2kukx4vif>
+References: <20241018-phy-qcom-qmp-pcie-fix-x1e80100-gen4x4-resets-v1-1-f543267a2dd8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,29 +61,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241018-tusb1046-v1-1-a38312f18691@bootlin.com>
+In-Reply-To: <20241018-phy-qcom-qmp-pcie-fix-x1e80100-gen4x4-resets-v1-1-f543267a2dd8@linaro.org>
 
-On Fri, Oct 18, 2024 at 03:30:48PM +0200, Romain Gantois wrote:
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        typec-mux@44 {
-> +            compatible = "ti,tusb1046";
-> +            reg = <0x44>;
-> +
-> +            mode-switch;
-> +            orientation-switch;
-> +
-> +            port {
-> +              endpoint {
-> +                remote-endpoint = <&typec_controller>;
+On Fri, Oct 18, 2024 at 04:37:36PM +0300, Abel Vesa wrote:
+> The PCIe 6a PHY on X1E80100 uses both resets in 4-lanes mode as well.
+> So fix the resets entries for it by adding the Gen4 4-lanes compatible
+> alongside the 2-lanes one.
 
-Use consistent indentation for DTS, preferred is 4 space.
-
-With above fixed:
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
