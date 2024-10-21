@@ -1,97 +1,112 @@
-Return-Path: <devicetree+bounces-113761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBAF09A6E22
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:30:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D13FD9A6E2F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9371F282BBB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:30:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C1A81C2133E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5390C199FC1;
-	Mon, 21 Oct 2024 15:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379CC13C69E;
+	Mon, 21 Oct 2024 15:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TrrWUl2I"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BpWe5frt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E4919993B;
-	Mon, 21 Oct 2024 15:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B121C32EC;
+	Mon, 21 Oct 2024 15:32:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729524606; cv=none; b=cCDvv32pgh2QWFXKR7FrkngNSy6RmHIOCVO+yPdwpnOSMaFcFM2lJsQ3i+jhgDUAdKpxkaukPaOxYqr4PjrWNWD2vFPCSR+v9aIvcSO06evBQXaW41FNbLsYlRQPi8Z78LoPuY8xNjfEd4Afs3c7JZha2jeHjngPsNOhmW7SJCw=
+	t=1729524777; cv=none; b=DTla6Hl18sOEJqhCWsAr7bEs6XFWil9FeNNzoQBX6zBnhpQfWE19Urx56SqnQ5tC2tQKRJmu48PL/1xI38Bvzm8M3uYDvMHlL3OSmAL6NZdqa73XsyT5yvqigmycQ6speIdmF8gw47TDBfx4oQBIrqKLulREUGIrQ8gBdd5wMhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729524606; c=relaxed/simple;
-	bh=dUE1dC0WwbpGBprubj5Oa/K/Zq+fLvL/hbO2fJ3OC0A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZV6cfIP7hlJ8MYdRPFRSPpOfuLdhOEaN2mjpU5vX/1zrIrCOU8HFFUOaloJxtcaSups+JkYPjI5jiSn2GbPYDzuxGpP9BQd6EVIshQtBuJIEZNMfVOLAua+i42FzurAzorC82msfpapTbRcjgqbOv0+ksf6Ep/b2DPEilKVlqvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TrrWUl2I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20FC4C4CEE7;
-	Mon, 21 Oct 2024 15:30:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729524605;
-	bh=dUE1dC0WwbpGBprubj5Oa/K/Zq+fLvL/hbO2fJ3OC0A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TrrWUl2Ib7417eQMevFaS820wah8bNcR6PUC6wxXl+187SeMREbsyOZ9X841phdXe
-	 GQ4+jb3YX4kL8Ahw4stU/wdXjjxey92rcYiN4e/3On/Oc3h/W6msL8I7Xe/C2bknL7
-	 SgKnpRrz4f5MEL4prD6Ibib8c2tjb0PF7+T/NY/9keTg6/Qngv9/H+hZIxyymXt4oH
-	 XNBLEL3kkbBgVgu8pJYNxUNWmf5IV3sTKAQedp3oKjIgrtgNUMS/UnQSvBq3ohRBr+
-	 DPO2tgcGhOgxZX9nieMOC1R7tFawhvsDUqPCt/zwoSuJxbAsRM2cMvBnngPML+ksaj
-	 SLne1jxz0dY5A==
-Date: Mon, 21 Oct 2024 16:30:00 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 4/4] ASoC: codecs: adau1373: add powerdown gpio
-Message-ID: <7a8b1560-c091-4e87-a6f4-7ca7453b7414@sirena.org.uk>
-References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
- <20241021-adau1373-shutdown-v1-4-bec4ff9dfa16@analog.com>
+	s=arc-20240116; t=1729524777; c=relaxed/simple;
+	bh=6KqBrAM2rowiy+BRqWdxd75yZdcwS8oxbQCE1r36X+8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=APQL3a+q1LiHpo5H08emFtPSRIdepKUmxjV4FJohST32fYGxBrt0R4UzUnEx6YFbxQ1NGbBC4WZmC5D4rzVBFnCaJ7k/JMRNyE16CK2tCjz614oh/sIaPklmbbRN01Y4FjQv1YrcDQMClVDDnkbMllot5BdHlnBXi7d3eIDLzN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BpWe5frt; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 51BF540003;
+	Mon, 21 Oct 2024 15:32:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1729524772;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2JM1lkviEBAN8knYxaV/WvdX5AeMGlXwcLME1sHr2g4=;
+	b=BpWe5frtyig2XRBNqfPwnq9QVM+wy3y7O2efHsExuA29kSKCLycPh84p3K0OV/5XXWKsfo
+	9HgJG1JK0nGXO9c1u7Fag9dU6EfxgjCVbcZ8mz1N6Oqlgl62gTciU09OrzPl63iQJFV0rP
+	3CTtMxw6ZGp04d5l+r9V5DCjKYj3ClDO7VZk1wDc2hp4BPG7xJreYeyjgSsjQk+WMMZmln
+	fWJFOWNLrlOb+M153tPMpQ7eT/yT6ruVO6WWW8N9aFJi+ZkuepI5jKCfAJrIUK9wZZSCGj
+	7BKt9C+6hRotH+tz8XI1+RjBKzxXMGkBrBK8KOCb/jT0s0A8tfdNhvXNCYSevA==
+Date: Mon, 21 Oct 2024 17:32:49 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Lee Jones
+ <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan
+ <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
+ Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v10 0/6] Add support for the LAN966x PCI device using a
+ DT overlay
+Message-ID: <20241021173249.297c3ad5@bootlin.com>
+In-Reply-To: <f85a263ed5290fc999d04521f4e70f4c698d9bd3.camel@pengutronix.de>
+References: <20241014124636.24221-1-herve.codina@bootlin.com>
+	<20241021164135.494c8ff6@bootlin.com>
+	<f85a263ed5290fc999d04521f4e70f4c698d9bd3.camel@pengutronix.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+AkS0J1OYCKGy4EZ"
-Content-Disposition: inline
-In-Reply-To: <20241021-adau1373-shutdown-v1-4-bec4ff9dfa16@analog.com>
-X-Cookie: Most people prefer certainty to truth.
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Philipp,
 
---+AkS0J1OYCKGy4EZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, 21 Oct 2024 17:02:24 +0200
+Philipp Zabel <p.zabel@pengutronix.de> wrote:
 
-On Mon, Oct 21, 2024 at 03:46:48PM +0200, Nuno Sa wrote:
-> If the powerdown GPIO is specified, we use it for reset. Otherwise,
-> fallback to a software reset.
+...
 
-Ideally we'd also put the device into reset when we unload, but that's
-not essential.
+> > All patches have received an 'Acked-by' and I didn't receive any
+> > feedback on this v10.
+> >
+> > Is there anything that blocks the whole series merge?
+> > 
+> > Let me know if I need to do something else to have the series applied.  
+> 
+> Not that I am aware of. If there are no objections, I'll interpret the
+> Acked-bys on patch 1 as permission to merge the whole series into
+> reset/next.
 
---+AkS0J1OYCKGy4EZ
-Content-Type: application/pgp-signature; name="signature.asc"
+Seems consistent.
 
------BEGIN PGP SIGNATURE-----
+Thanks Philipp.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcWc3cACgkQJNaLcl1U
-h9BoUAf9FBzDMBHEP/DrPr1FQhJmlHdRZ7rwz64tMzMiMvrPsrSoIY/MlJrgT+go
-r4FIDAYqgzbiqZQZbKkjFvFo8RBD/acwoDG0KS06hNJZXmvUu+v5y/FB5/mMBHB9
-it0RmAYuLPg82Bbi0FkNGc1Cd0Hq+nJWk5VKxNH1lP8mHobLr0mEfnYpz/PTmk8j
-XvvrEEtSML4lRgJwhz7qV1UiQWZ+ECGwAAWeNBdaplpCHcveoUpFeYqRQqh43zMb
-/tlN79oslaIzpaU4Yypb1tKKXe+35Sa2VLg/DZTg1JaumyqHg3oHfdPcYZ84FJJV
-4Qt/JFXf5gmqa7B1D6b6IdaWWliaZA==
-=tVFr
------END PGP SIGNATURE-----
-
---+AkS0J1OYCKGy4EZ--
+Best regards,
+Hervé
 
