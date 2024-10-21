@@ -1,140 +1,179 @@
-Return-Path: <devicetree+bounces-113838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B517F9A730E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:14:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 309C19A8FC2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:26:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46D391F226A3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:14:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2143B21599
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A3091FB3DD;
-	Mon, 21 Oct 2024 19:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9491FBC8C;
+	Mon, 21 Oct 2024 19:26:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="pYg/iRxJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B6z3oItO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764E02209B;
-	Mon, 21 Oct 2024 19:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD2D1FBC87;
+	Mon, 21 Oct 2024 19:26:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729538065; cv=none; b=A7mYm+zO09KZllTw89Mmx2NBdjKlxrdgDoF4AySk5ilE5LUMNB3iP0t1RdZ0r7OfpTC4i2v4/7doXkAG+tW9ph9Tej9+ZKAZQl0P9r1DCtXcDfyWnDuSdGv/3TEBrSieH1BIYj+S5fNwA49sZ7p4GUWBJ1pMMGa2yQX19BxVltA=
+	t=1729538793; cv=none; b=BLp+NOB1pe7YklSOZFX1UH5e5PTI3dtzWKoaRkUF9d0VtOyK+7enAMq+3GAWBbHdG+q4fICdGZxxLdkHOCfIsqgekhZedscaM7XMykCrIFOt9J0hU7pBEow5PkKP6ciBAPfKm8y5bVNX7zKgspZOgIh0m36eU+Ydh6sOFnvj73w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729538065; c=relaxed/simple;
-	bh=7wFMp0HxrbR9VJ8qywVbEmIhYSvSbwVhJ8LjTG/7fTs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NSqCBpPuOq/ielaICRHRhclLrgZEcabwjSQ6yBTrdUIzeXml6PFamxOUPQdpvHcIA+gbIzfwnMd4gCNNVN1d/2/ARhD5StF4uqKX5nWIOL/KPbwa3qbCgcY50MVzd2dqGEOTi7YiNlicgPInDabLpxqAMeVVcTqqZWtj1rwaaXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=pYg/iRxJ; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1729538063; x=1761074063;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7wFMp0HxrbR9VJ8qywVbEmIhYSvSbwVhJ8LjTG/7fTs=;
-  b=pYg/iRxJZbwePJSpvc86czzyZ1uF5CxmurtoPO8P2Vqo26DqxH2kxb5Q
-   cb8bR//z+qwMKxdWfrp2exZIZW5LCqjgIUILBdW1yi5YS+prXaSUnVHNY
-   rUdw4Y/4gkg0Xxgz20bedMN85Ivb7JtLKZlZ0SxTiuLRqtuGwtlKJS5AC
-   mA3rT1eCGiGI6QA7lBk+J0K3nq3DAIUIjdha9pVg2vGU4wNR2qnJAGQxH
-   9tevLsvDUsekqjVx/p39ln+85kkAow7nWO6hXq89KPZZzrQC6XR/RCeou
-   iwidjj6EEGroXo0fQ4rO5iOY8N6G06vnLZTPR+Zek4HLYrgsZjf3FiBu6
-   w==;
-X-CSE-ConnectionGUID: 8BSVVT0GSq6qC8d419X4YA==
-X-CSE-MsgGUID: +168UpgjR1eYpnndNkotiw==
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; 
-   d="scan'208";a="33842623"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Oct 2024 12:14:22 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 21 Oct 2024 12:13:53 -0700
-Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 21 Oct 2024 12:13:49 -0700
-Date: Mon, 21 Oct 2024 19:13:48 +0000
-From: Daniel Machon <daniel.machon@microchip.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, <andrew@lunn.ch>, Lars Povlsen
-	<lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
-	<horatiu.vultur@microchip.com>, <jensemil.schulzostergaard@microchip.com>,
-	<Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
-	<ast@fiberby.net>, <netdev@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next 11/15] net: lan969x: add function for
- calculating the DSM calendar
-Message-ID: <20241021191348.sd5k5qnxya734muc@DEN-DL-M70577>
-References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
- <20241021-sparx5-lan969x-switch-driver-2-v1-11-c8c49ef21e0f@microchip.com>
- <20241021195140.442c0a4f@device-21.home>
+	s=arc-20240116; t=1729538793; c=relaxed/simple;
+	bh=zA4sZ0GOCefJgtUsyAnLlD0LbsF0ALVbHDC66/Uv15A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JkW3rwbFqV6lutgGVh4Te2sxYshdfFrsEtwdt6oyCS3wWDp+wQK0XA5cAUWlihwhWMOtIBbgZdtpQoy9yUX3jSijeVEBf8J06w3Kgp3WPTNiwHUuyovvIaj8Yd6hgk1CX1AT+fydcIilMVgikNP9jtn9Q4w54rVMq3fK/vl2oGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B6z3oItO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46B03C4CEC3;
+	Mon, 21 Oct 2024 19:26:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729538793;
+	bh=zA4sZ0GOCefJgtUsyAnLlD0LbsF0ALVbHDC66/Uv15A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B6z3oItOv3LMfLuqZ+r7kMjS7DXUolmGT0kIZPxHbo01Xj9/9lisFQ05LrFohJ1Sp
+	 eqX1ziV7LZIN1ypa+h+Co2wvuNs3q4PGM6nAQhHY/8plmSaS/YX15jlM9lpm0KmRIW
+	 YhKBxwNDKgYQc2+myG3YD8vqnzSDbBbQToO6ms1c7TBuM7gQe6Lelr+btLIhg7i3ZP
+	 tGdqf7/I/ikEU4sLJCyXHdGEQn0qprClyFVCqQROaHyVxT1BnTRBHFfVmyFJeUPlst
+	 F23X3dHrPfeO/LsGe3a3DGC4qGGDPa66DBv5U2Q/Bs+KjLpiUuaEBYQIQMdEAvdRMx
+	 fRENLuqAmEHiw==
+Date: Mon, 21 Oct 2024 14:26:32 -0500
+From: Rob Herring <robh@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	asahi@lists.linux.dev, linux-sound@vger.kernel.org,
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+	Neal Gompa <neal@gompa.dev>
+Subject: Re: [PATCH v2 1/3] dt-bindings: sound: Add CS42L84 codec
+Message-ID: <20241021192632.GA965116-robh@kernel.org>
+References: <20241020-cs42l84-v2-0-37ba2b6721d9@gmail.com>
+ <20241020-cs42l84-v2-1-37ba2b6721d9@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241021195140.442c0a4f@device-21.home>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241020-cs42l84-v2-1-37ba2b6721d9@gmail.com>
 
-Hi Maxime,
+On Sun, Oct 20, 2024 at 12:47:31AM +1000, James Calligeros wrote:
+> From: Martin Povišer <povik+lin@cutebit.org>
+> 
+> CS42L84 is a headphone jack codec made by Cirrus Logic and seen in Apple
+> computer models starting with 2021 Macbook Pros. It is not a publicly
+> documented part. To a degree the part is similar to the public CS42L42.
+> (The L84 superseded L83 seen in earlier Apple models, and the L83 was
+> pretty much the same as L42.)
 
-> Hi Daniel,
-> 
-> On Mon, 21 Oct 2024 15:58:48 +0200
-> Daniel Machon <daniel.machon@microchip.com> wrote:
-> 
-> > Lan969x has support for RedBox / HSR / PRP (not implemented yet). In
-> > order to accommodate for this in the future, we need to give lan969x it's
-> > own function for calculating the DSM calendar.
-> >
-> > The function calculates the calendar for each taxi bus. The calendar is
-> > used for bandwidth allocation towards the ports attached to the taxi
-> > bus. A calendar configuration consists of up-to 64 slots, which may be
-> > allocated to ports or left unused. Each slot accounts for 1 clock cycle.
-> >
-> > Also expose sparx5_cal_speed_to_value(), sparx5_get_port_cal_speed,
-> > sparx5_cal_bw and SPX5_DSM_CAL_EMPTY for use by lan969x.
-> >
-> > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
-> 
-> [...]
-> 
-> > +     /* Place the remaining devices */
-> > +     for (u32 i = 0; i < DSM_CAL_DEV_MAX; i++) {
-> > +             speed = &dev_speeds[i];
-> > +             for (u32 dev = 0; dev < speed->n_devs; dev++) {
-> > +                     u32 idx = 0;
-> > +
-> > +                     for (n_slots = 0; n_slots < speed->n_slots; n_slots++) {
-> > +                             lan969x_dsm_cal_idx_find_next_free(data->schedule,
-> > +                                                                cal_len,
-> > +                                                                &idx);
-> 
-> You're not checking the return of lan969x_dsm_cal_idx_find_next_free(),
-> can this be a problem ?
-> 
-> Thanks,
-> 
-> Maxime
+Why can't this be added to 
+Documentation/devicetree/bindings/sound/cirrus,cs42l42.yaml?
 
-Yes, it should be checked as we have a finite number of calendar slots.
+I guess perhaps you don't know what the supplies look like? Do any of 
+the custom properties apply?
 
-Will fix in v2. Thanks!
+> 
+> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> Reviewed-by: Neal Gompa <neal@gompa.dev>
+> ---
+>  .../bindings/sound/cirrus,cs42l84.yaml   | 56 +++++++++++++++++++++++++
+>  MAINTAINERS                              |  1 +
+>  2 files changed, 57 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs42l84.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs42l84.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..7f8338e8ae369bc529ac3cf35041d5a7b9f3e6d1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs42l84.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/cirrus,cs42l84.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logic CS42L84 audio CODEC
+> +
+> +maintainers:
+> +  - Martin Povišer <povik+lin@cutebit.org>
+> +
+> +description: |
 
-/Daniel
+Don't need '|' if no formatting.
 
+> +  The CS42L84 is a headphone jack codec made by Cirrus Logic and embedded
+> +  in personal computers sold by Apple. It was first seen in 2021 Macbook
+> +  Pro models. It has stereo DAC for playback, mono ADC for capture, and
+> +  is somewhat similar to CS42L42 but with a different regmap.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cirrus,cs42l84
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      jack_codec: codec@4b {
+> +          compatible = "cirrus,cs42l84";
+> +          reg = <0x4b>;
+> +          reset-gpios = <&pinctrl_nub 4 GPIO_ACTIVE_LOW>;
+> +          interrupts-extended = <&pinctrl_ap 180 IRQ_TYPE_LEVEL_LOW>;
+> +          #sound-dai-cells = <0>;
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c1a2c296446c0724a0c6e70c845e5e5e1e693fd5..f5f85714dc4e8ca9c60b3f6963b2cec1ea33fdd0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2132,6 +2132,7 @@ L:	asahi@lists.linux.dev
+>  L:	linux-sound@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/sound/adi,ssm3515.yaml
+> +F:	Documentation/devicetree/bindings/sound/cirrus,cs42l84.yaml
+>  F:	Documentation/devicetree/bindings/sound/apple,*
+>  F:	sound/soc/apple/*
+>  F:	sound/soc/codecs/cs42l83-i2c.c
+> 
+> -- 
+> 2.47.0
+> 
 
