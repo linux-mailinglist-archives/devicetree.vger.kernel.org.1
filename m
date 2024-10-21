@@ -1,195 +1,145 @@
-Return-Path: <devicetree+bounces-113750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F2A9A6D59
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:55:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD2A09A6D65
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:58:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EE1F280A24
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:55:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDC291C22867
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:57:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430581F9AAF;
-	Mon, 21 Oct 2024 14:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4E51FA245;
+	Mon, 21 Oct 2024 14:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f289kk1n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WqGdtjHG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125C51D517D;
-	Mon, 21 Oct 2024 14:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A238F1DE88C;
+	Mon, 21 Oct 2024 14:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729522530; cv=none; b=MyWwUpFM1TKrgiMDFemUkEwEikkjiLJdlA4iyX9JZ8AX6kLU3Iq6xLUc+29x9F0zbMcO4puZm7QJ9dHFwhkWXiS7krW0CC/OgHew5f5eaBqyC9nNrEWC/4z2b5hVtS4GKKqAXPusUAE4mfRU3Ls8jJ55tphVitPLWMegablo+DU=
+	t=1729522675; cv=none; b=pf8SfsLTVS66ks6L/BGIS3uKCLezgCpupsDHZNOgQzPQV3+jy2if0VUCC6pfEKhRYSjKSYViiJbGCiNeSh+T79vd5jgYo5KmqAMl6fTgXLhoGb4byKvdDonpjIxCqnb621E38ScmOX9Vfe5zxa6PEGSc8QZnGCxfwzumWvbEJks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729522530; c=relaxed/simple;
-	bh=XYYOuKK7N4AhTh521C2sLHl1eimfPwywP5dRv+Qj9CE=;
-	h=Date:From:Subject:To:Cc:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MKgylmY7Ra8BgtZyexNA5nCWtEWkUp4v7wshJ8WRCv3EkCpijigRrKdim1xlaRLSTueIKKk+SwkLIzKl67XjiEDFPEnXt6/Db53c2gO3LL8PgrxAyfYZ1ObyNzJsZ4k++cz8ZL+dTnvMvXiShf4h7mpT4+GPYt5Aaib9NbLJ/Bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f289kk1n; arc=none smtp.client-ip=209.85.167.47
+	s=arc-20240116; t=1729522675; c=relaxed/simple;
+	bh=kJOUFMj6PXyuxDe3YoC2Je0/IAK0gMUIltuZ7HfFDHo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=Uayxhk6lEQABh+hdyQ32c7tsdsE8jBt/2UyvKPPEhR4yI7opXNDaLw1J41M+VcqBruBH1uoBHJ65oygzfzF0cwufD/907lje9lXkEKYJuNx4D4FTDHjFXIEtWJ34soqR9W6CIz14C5sDBJAqnjTRh8puI5rCUWtPl1aXvSSoaO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WqGdtjHG; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539fbe22ac0so5054185e87.2;
-        Mon, 21 Oct 2024 07:55:27 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4315abed18aso42396805e9.2;
+        Mon, 21 Oct 2024 07:57:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729522526; x=1730127326; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=g3Rgg0MJCMkfbcr4Si6GxlCe2/XCe13lLM5Bd5Kjvvw=;
-        b=f289kk1nu61paxTLE8aFw4xa+9WdF+K+umWg3i7HraVVPdc0EOJBXf4NeEEoW1uZlb
-         G6Q3bhMoaGhNcnUEV4pErVf+jhPzzvwPAENUnfwgHIJcvKLYgjtJZyxKKRdHJ3yxhoXV
-         4DY8UddODaPJj48jIj9BiZBaL9VdZ4aN6kfqGpAujqOxLvsAMpjosgbBfJhD5hrKu0DD
-         uzKCu4kisFEU+4bPmY1NDkDQcakvOEpuVEOsRKn3Fq0QQAbetOz+CSCjWWiIweqdQiHL
-         X1LC9b/ITunGS+zRzsBMCe1so8l+VCyiFLgW45EPb4BsNxqdD0Rfw67aaaXEI4s2gfjS
-         VgDw==
+        d=gmail.com; s=20230601; t=1729522672; x=1730127472; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3owwwcHs1MDpHN+omOmsedchFOMoG1OAJp1p2+rcmMM=;
+        b=WqGdtjHGkn33b6/RFeUTbRK94W3wmpP+qazNx7hjrzlyQzXu1SSk7jUBsRrWVsJx1u
+         6dHuWNuEFRhjLnp8V779MHnmx1j8mVL4NgtcL6jhddaFGY2D+g2gffrbfJZAzyXFaPHM
+         gfcFFkeCVXVUMW9H81jN1QcTMPYnDGBmZ7/kBnAIyFXE7gOz3TKIpaFhNcECbjxuucMy
+         KgGFIoChTnOGJJVO8URvMVNMafI4VT3mDPzwJTIT/Q3+dOOfBXmTUm1bRTy9AizVIGYT
+         CGH1Pc5tjOkETmk6gsVJHaqBkIJYWkgHW+fiJKuekqLxG+KEkOaixGoeiCBQR747XLj6
+         Ax0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729522526; x=1730127326;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g3Rgg0MJCMkfbcr4Si6GxlCe2/XCe13lLM5Bd5Kjvvw=;
-        b=rDGYqjLUAMBNiuC9CEFnaQYtOVwUam8EoNZsNw/lVK6rmaQQlQtIAQ4DKdGXJ+Se54
-         CL1gah2qJZhuojjHcl+gNPddg7u/uTI+wnXaJQtZs0161b8bYfwDw22jT+CqKv70mSDW
-         6wHUwdaZowgV/WczrGpam4GNlMCrfFCmOTIJFan0m4YMpv50d3KHMYRung6t/3QpExKB
-         +8wybJdKCuIWArqZ3kfXYPZEBJ0ziTfiAcSTPaNVBT4Fr8nbmaGdlXbtO3dm1/WM7JsO
-         Vh4qzY//DfwcqtGAxXcFmpahDkf9h+iK9rk6Hkl/IPLYFUqN9Zie777X3mN7MXBpGNoA
-         rkFw==
-X-Forwarded-Encrypted: i=1; AJvYcCV3pwNX2ySbwDd0TdD2bZCI7IV9aIHhQz8n0pO+PM7wDh7+XFSn8DI4dW3V4eGXuyNwEX1X37dZ4pEq0JF/@vger.kernel.org, AJvYcCWqb9qAXgj5fMay1x8MxxjXBFrqy8yTU0ku6Ncw/IzvleAqrgKywRpTpa5Mug5Tw99ji6XcI/jIVIysOh0=@vger.kernel.org, AJvYcCXVywrf8Rxlg33SVYlELr53qcEfWQUYWetBjQwrTrMoaXpiccTAJ4XuaC2MoKCivEl879jwKgwURJih@vger.kernel.org, AJvYcCXsPT0XVFH3aIxKmDk+Uj94PTfR4pdjJxqzAiWkM3sAjeHwpkIfPTPotmGz5EpO0pzN2W7ya48+EtQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxz7BLv5leTpSNxRh4De/LogTLzSz3jVeQyBRp6r9xGw04/4WM1
-	Ie+5tIJT+TY7w0jaNtOu/JqyKO6sh5VsODTCZTEzyToeHSuPwUBb
-X-Google-Smtp-Source: AGHT+IE+YyScAjvYSe25yG8D2UmU8Xnhqk2eOEorogl+DBh/qWGlnW8rmng8G47tnMj4whqFWuze/w==
-X-Received: by 2002:a05:6512:2316:b0:533:711:35be with SMTP id 2adb3069b0e04-53a15229c20mr5991228e87.26.1729522525660;
-        Mon, 21 Oct 2024 07:55:25 -0700 (PDT)
-Received: from [10.50.4.74] ([95.183.227.50])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a9137053csm210335266b.115.2024.10.21.07.55.19
+        d=1e100.net; s=20230601; t=1729522672; x=1730127472;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3owwwcHs1MDpHN+omOmsedchFOMoG1OAJp1p2+rcmMM=;
+        b=laigyENrAxTNqfoIQwga1ByevdV+2x5/YI/1m/ECWgUZUdQmIrIM6DOOlOmaF5c3Mf
+         A7upgKM1N26yKTGFDaO9+3qczU0j1eef/9vyl4TlcwK0r0xvxhbXIx60BR6uq7r9KQEe
+         qQmCcAZJ2T5Q1LQ+4Izd6otzpHkTAWLED8IM5gIq+wGqtc/VqEEhnzv7BliuyFj9JgaY
+         2UEHKD4hi4hZrchvQmpJB1qO9lAFRAqoNubM4cAlb7xt99iVc2NfMxFu4T2s0eOoWNB5
+         C8OL8ErdbYhqo/nfTGK/Fjju8R533P/CdsdUj4/8LVvOeeMzrtMW0hW3qR2wD++nNjfv
+         jSXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUTn8ZhixNhQL6JpCdCO9YM6UrKczolZjaDSRYJC70aLGAzZa0ra72O7pFnrn/u6Zx/FenOXV0JQdZqWhG3@vger.kernel.org, AJvYcCV3iFwytLcJt7SnL6SZ3hLotuIFaIV6b8jD2taue2Boh4w0CX9y2a9tqkZ/Xesfh/aPeRZLJJk92aXl@vger.kernel.org, AJvYcCXSp26BQ04phSf/cuVjMaQbGH76BA2llo3pCSkKmv32b609gZda8KQ4c6BRNwi2y++GnwvfGpZLl63m58lv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvLpvM739K++vbIcaq1gYlYhuZRz1p5uailvOLX5Ft4JEFZxOt
+	qwacQS/NAUYiD3sTtx01D0obb2VMgQCS9xUCD6YHbmFmvw/qpoG/w/Syhw==
+X-Google-Smtp-Source: AGHT+IEmU9LyD7il74oyZHDJiaTohk0WzR0tAbNyuFwffiexLZFKYQGfHAyBwaGs3mcOURxZ9Jl+IA==
+X-Received: by 2002:a05:600c:1c95:b0:431:6083:cd2a with SMTP id 5b1f17b1804b1-43161659c02mr100797525e9.15.1729522671501;
+        Mon, 21 Oct 2024 07:57:51 -0700 (PDT)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4316f58adffsm60303545e9.22.2024.10.21.07.57.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 07:55:21 -0700 (PDT)
-Date: Mon, 21 Oct 2024 17:55:12 +0300
-From: Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH 5/6] regulator: Add driver for MediaTek MT6328 PMIC
- regulators
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>, Sean Wang
-	<sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones
-	<lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, jason-ch chen
-	<Jason-ch.Chen@mediatek.com>, Chen Zhong <chen.zhong@mediatek.com>, Flora Fu
-	<flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Message-Id: <04OPLS.YYQIIIW9J73R3@gmail.com>
-In-Reply-To: <4cf5a3d0-97a2-4a43-a91a-0a35aa2bc7e4@collabora.com>
-References: <20241018081050.23592-1-y.oudjana@protonmail.com>
-	<20241018081050.23592-6-y.oudjana@protonmail.com>
-	<4cf5a3d0-97a2-4a43-a91a-0a35aa2bc7e4@collabora.com>
-X-Mailer: geary/46.0
+        Mon, 21 Oct 2024 07:57:51 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Richard van Schagen <vschagen@icloud.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev
+Subject: [RFC PATCH v3 1/3] spinlock: extend guard with spinlock_bh variants
+Date: Mon, 21 Oct 2024 16:56:37 +0200
+Message-ID: <20241021145642.16368-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Extend guard APIs with missing raw/spinlock_bh variants.
 
-On Mon, Oct 21 2024 at 15:24:51 +02:00:00, AngeloGioacchino Del Regno 
-<angelogioacchino.delregno@collabora.com> wrote:
-> Il 18/10/24 10:10, Yassine Oudjana ha scritto:
->> From: Yassine Oudjana <y.oudjana@protonmail.com>
->> 
->> Add a driver for the regulators on the MT6328 PMIC.
->> 
->> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->> ---
->>   drivers/regulator/Kconfig                  |   9 +
->>   drivers/regulator/Makefile                 |   1 +
->>   drivers/regulator/mt6328-regulator.c       | 479 
->> +++++++++++++++++++++
->>   include/linux/regulator/mt6328-regulator.h |  49 +++
->>   4 files changed, 538 insertions(+)
->>   create mode 100644 drivers/regulator/mt6328-regulator.c
->>   create mode 100644 include/linux/regulator/mt6328-regulator.h
->> 
->> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
->> index 249933d6388dd..e9b9faff67f3a 100644
->> --- a/drivers/regulator/Kconfig
->> +++ b/drivers/regulator/Kconfig
->> @@ -862,6 +862,15 @@ config REGULATOR_MT6323
->>   	  This driver supports the control of different power rails of 
->> device
->>   	  through regulator interface.
->>   +config REGULATOR_MT6328
->> +	tristate "MediaTek MT6328 PMIC"
->> +	depends on MFD_MT6397
->> +	help
->> +	  Say y here to select this option to enable the power regulator of
->> +	  MediaTek MT6328 PMIC.
->> +	  This driver supports the control of different power rails of 
->> device
->> +	  through regulator interface.
->> +
->>   config REGULATOR_MT6331
->>   	tristate "MediaTek MT6331 PMIC"
->>   	depends on MFD_MT6397
->> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
->> index 9b69546fb3f65..c1a5a44413198 100644
->> --- a/drivers/regulator/Makefile
->> +++ b/drivers/regulator/Makefile
->> @@ -103,6 +103,7 @@ obj-$(CONFIG_REGULATOR_MPQ7920) += mpq7920.o
->>   obj-$(CONFIG_REGULATOR_MT6311) += mt6311-regulator.o
->>   obj-$(CONFIG_REGULATOR_MT6315) += mt6315-regulator.o
->>   obj-$(CONFIG_REGULATOR_MT6323)	+= mt6323-regulator.o
->> +obj-$(CONFIG_REGULATOR_MT6328)	+= mt6328-regulator.o
->>   obj-$(CONFIG_REGULATOR_MT6331)	+= mt6331-regulator.o
->>   obj-$(CONFIG_REGULATOR_MT6332)	+= mt6332-regulator.o
->>   obj-$(CONFIG_REGULATOR_MT6357)	+= mt6357-regulator.o
->> diff --git a/drivers/regulator/mt6328-regulator.c 
->> b/drivers/regulator/mt6328-regulator.c
->> new file mode 100644
->> index 0000000000000..e15a64404f494
->> --- /dev/null
->> +++ b/drivers/regulator/mt6328-regulator.c
->> @@ -0,0 +1,479 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * MediaTek MT6328 regulator driver
->> + * Based on MT6323 driver.
->> + *
->> + * Copyright (c) 2016 MediaTek Inc.
->> + * Copyright (c) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
->> + */
->> +
-> 
-> ..snip..
-> 
->> +/* The array is indexed by id(MT6328_ID_XXX) */
->> +static struct mt6328_regulator_info mt6328_regulators[] = {
->> +	MT6328_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
->> +		buck_volt_range1, MT6328_VPA_CON9, MT6328_VPA_CON11, 0x3f,
->> +		MT6328_VPA_CON12, MT6328_VPA_CON7),
-> 
-> Can you please fix the indentation?
-> 
-> Also, all of those entries do fit in two lines, I checked a couple of 
-> those
-> and always ended up with less than 90 columns anyway.
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+Changes v2:
+- Add this patch
 
-I can't seem to fit even the first one in 2 lines in under 90 columns :/
-That is unless I don't indent the second line:
+ include/linux/spinlock.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-	MT6328_BUCK("buck_vpa", VPA, 500000, 3650000, 50000, buck_volt_range1,
-	MT6328_VPA_CON9, MT6328_VPA_CON11, 0x3f, MT6328_VPA_CON12, 
-MT6328_VPA_CON7),
-
-Which I don't think is what you meant by fixing the indentation. Can 
-you show me an example? With 100 columns on the other hand it seems 
-like they should fit.
-> 
-
+diff --git a/include/linux/spinlock.h b/include/linux/spinlock.h
+index 63dd8cf3c3c2..d3561c4a080e 100644
+--- a/include/linux/spinlock.h
++++ b/include/linux/spinlock.h
+@@ -548,6 +548,12 @@ DEFINE_LOCK_GUARD_1(raw_spinlock_irq, raw_spinlock_t,
+ 
+ DEFINE_LOCK_GUARD_1_COND(raw_spinlock_irq, _try, raw_spin_trylock_irq(_T->lock))
+ 
++DEFINE_LOCK_GUARD_1(raw_spinlock_bh, raw_spinlock_t,
++		    raw_spin_lock_bh(_T->lock),
++		    raw_spin_unlock_bh(_T->lock))
++
++DEFINE_LOCK_GUARD_1_COND(raw_spinlock_bh, _try, raw_spin_trylock_bh(_T->lock))
++
+ DEFINE_LOCK_GUARD_1(raw_spinlock_irqsave, raw_spinlock_t,
+ 		    raw_spin_lock_irqsave(_T->lock, _T->flags),
+ 		    raw_spin_unlock_irqrestore(_T->lock, _T->flags),
+@@ -569,6 +575,13 @@ DEFINE_LOCK_GUARD_1(spinlock_irq, spinlock_t,
+ DEFINE_LOCK_GUARD_1_COND(spinlock_irq, _try,
+ 			 spin_trylock_irq(_T->lock))
+ 
++DEFINE_LOCK_GUARD_1(spinlock_bh, spinlock_t,
++		    spin_lock_bh(_T->lock),
++		    spin_unlock_bh(_T->lock))
++
++DEFINE_LOCK_GUARD_1_COND(spinlock_bh, _try,
++			 spin_trylock_bh(_T->lock))
++
+ DEFINE_LOCK_GUARD_1(spinlock_irqsave, spinlock_t,
+ 		    spin_lock_irqsave(_T->lock, _T->flags),
+ 		    spin_unlock_irqrestore(_T->lock, _T->flags),
+-- 
+2.45.2
 
 
