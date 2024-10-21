@@ -1,111 +1,86 @@
-Return-Path: <devicetree+bounces-113743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 660AF9A6BC7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:12:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062C89A6BDA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:15:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2747D28167B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:12:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA7B1280FB0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B950B1F9408;
-	Mon, 21 Oct 2024 14:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20CC01EBA1A;
+	Mon, 21 Oct 2024 14:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="r4kvZTeQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KPx6R/4P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF6451F427B;
-	Mon, 21 Oct 2024 14:11:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5171EABDC;
+	Mon, 21 Oct 2024 14:15:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729519900; cv=none; b=EsUnpJFl2UkbSJbvVSJnVlLDrVQy34nMwDqqVZFOR0oelBbRsNRqj8tFpLtgkN1jm/TiRBUymLZA4zVwzHu7HIlVnVOnRrLPU+djSzG7VcOmUD28mDy/i0RavxTgX8Kl9eauPqe8HUpU0ZuLJKfGt6PuVnhq+q5N80PnLhegOEQ=
+	t=1729520126; cv=none; b=ETlW3+GXO00xWbTXgLOx5L4Xfcmy6M4KzJo4XRz6RflW/GTra9hTPEl959rgWpLaJsk4XF7XkcsoTm69VvPFfrTSaqTLVCM9F0beg+3iCwcjHx4ZQDjFh1cYC/x/ho6JjgK/xZbx0PFyua/uXoG5NR3eeNXmBJP4kIm3KDW3CdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729519900; c=relaxed/simple;
-	bh=r12XCv7wGjmgJ0EEIi5AyKG2WXF2DeRO+CdRaxJvlks=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NhgZnEmp4s0J3azxZ9InIUgrIhgmwkOelg4i0ESFnzAyHqHx/CgQrKVTs1N0dMPE2BWxuVfOV6rEQsBqXf5uzH8PRX+xXa6TDhYiqt0O64C+Itdr7hYAfz5G8kA+QaRe8yYWbSNZRD0YKAZtIhrMbLplhU+FzzmhkvBJy/YJeTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=r4kvZTeQ; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=7K5v5ZY4zeUHGzQFv6PebieE5LwgNrwfdhsPGijF2ik=; b=r4kvZTeQKPzFsBGVTHgUYy+0YZ
-	ppHjYn/ra/ADYAFKKcXttGtKerJ0yHoFkifnPIDSWcbYyen3gPlZEsb5pfadAclUgpZ1S95wWPp5z
-	zj7eCkHk3gGPdtKeWXF8Bjt3ZQlZwk49URuG9iBm0VgI7/SL01YYkxBB9gIBq+elopD0mm1bsY4qn
-	U4445THvEsbgpn7Chu5aBzbbLF6/eebtS7EgN1cYHd4nhjss5Ciz02OPw27K9nRAROvjEfhflzDGf
-	0/2yiYpzzn7ho0MMzChf6ErEfEy4i8V7vZP44n2tOY5LNEGmufxRddaadDF70Ebglscw59n6xN6pT
-	RGK1uTPQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51242)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1t2t7w-0003V4-0Z;
-	Mon, 21 Oct 2024 15:11:20 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1t2t7p-0001n9-0G;
-	Mon, 21 Oct 2024 15:11:13 +0100
-Date: Mon, 21 Oct 2024 15:11:12 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>, Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH 0/4] net: dsa: Add Airoha AN8855 support
-Message-ID: <ZxZhADBe6UtdCTsu@shell.armlinux.org.uk>
-References: <20241021130209.15660-1-ansuelsmth@gmail.com>
- <20241021133605.yavvlsgp2yikeep4@skbuf>
+	s=arc-20240116; t=1729520126; c=relaxed/simple;
+	bh=pHf5twCTnnJnfQtRd2qMSTYSiWrNRBO3RQNcXpO/2E0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jgI/hHyULpvnFYlZgf8tNc1RbV4SLT20bUvo5ZSffkNg4PNDStnXBXSftyfLA4DBcA+WLcWYsyYQ1QnHvQOYW7iaHbyWCXoll6ys2JFfnN7M4kqtCxxTB0KOi+k9HTtOzq2hKsBp/KDuwM01xUbpJXx7ABgR3zpkMCJEI32q1mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KPx6R/4P; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729520122;
+	bh=pHf5twCTnnJnfQtRd2qMSTYSiWrNRBO3RQNcXpO/2E0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KPx6R/4PiHZUyF7n8wGcXnnV2x85EriAD8S+BM+eA3Q4CEj3onekWZW1AsjtP5noN
+	 pxUPRFt+wCQLXNA2i+WeW/9SIagFaP3ndf8iT0vd/aSpDIF0NYuxtRAgR93uFkkodf
+	 d4tXFpx2LgQdkgFj57sDL2n4gWkAOuz8/s9ntrcUP75aFtTPcyLOZnKS6hwR4dQ6zK
+	 9FA6C4UVa56+Yvb5GwxvociS6wpdhAYvGiwjddSepI6MjuNDGc2IlfINu99q6yRhuv
+	 QYxEcWPtjsNSGjdry4zSWKkUxsjcyaRG1Gmgk17v8DzPuUi7gFEpJp4SSUlwa69fbV
+	 tZrXtgT7kK5Ow==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E6D7517E3621;
+	Mon, 21 Oct 2024 16:15:21 +0200 (CEST)
+Message-ID: <b403ea3c-6a03-43fd-a9fb-daee6e1c425c@collabora.com>
+Date: Mon, 21 Oct 2024 16:15:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241021133605.yavvlsgp2yikeep4@skbuf>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8186-corsola: Fix GPU supply
+ coupling max-spread
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20241021140537.3049232-1-wenst@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241021140537.3049232-1-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 21, 2024 at 04:36:05PM +0300, Vladimir Oltean wrote:
-> On Mon, Oct 21, 2024 at 03:01:55PM +0200, Christian Marangi wrote:
-> > It's conceptually similar to mediatek switch but register and bits
-> > are different.
+Il 21/10/24 16:05, Chen-Yu Tsai ha scritto:
+> The GPU SRAM supply is supposed to be always at least 0.1V higher than
+> the GPU supply. However when the DT was upstreamed, the spread was
+> incorrectly set to 0.01V.
 > 
-> Is it impractical to use struct regmap_field to abstract those
-> differences away and reuse the mt7530 driver's control flow? What is the
-> relationship between the Airoha and Mediatek IP anyway? The mt7530
-> maintainers should also be consulted w.r.t. whether code sharing is in
-> the common interest (I copied them).
+> Fixes: 8855d01fb81f ("arm64: dts: mediatek: Add MT8186 Krabby platform based Tentacruel / Tentacool")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
-That thought crossed my mind while reviewing patch 3. I compared the
-PMCR and PMSR, a lot of the bits are in completely different places
-between the two. I didn't check further, but I got the feeling that
-would invite more complexity.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+
 
