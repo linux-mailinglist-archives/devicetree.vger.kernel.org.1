@@ -1,54 +1,98 @@
-Return-Path: <devicetree+bounces-113550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A464E9A606B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:43:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D939A6068
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:43:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D02191C21231
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:43:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3935A1F223DE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DF61E283D;
-	Mon, 21 Oct 2024 09:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3B1B1E32D6;
+	Mon, 21 Oct 2024 09:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ZWAykMsO"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="TT11sIJs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1886F946C;
-	Mon, 21 Oct 2024 09:43:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729503794; cv=none; b=G59br9PpmMUy5c0z0k84as5+gFizdXuAYInpH7Cn8L+uUnU/mtPeRoXq7cEkq/GeUHtkg4owUkG/VSoYrKntR76iPDuqDDf3KGpTPPFEq1Obxn8vGysgiQQ5BbrtZXehytnbYgHF8mbxtfSBfedcOibjkxzp8i1cB0NPiyXjL9Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729503794; c=relaxed/simple;
-	bh=OL44tXeoxalIZKSmbvd+NvtT+kQ8M6pJ8t8GR13R0wk=;
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CA11E2832;
+	Mon, 21 Oct 2024 09:42:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729503773; cv=pass; b=nJoUSEo6MzNe8pgxhHozUR3VoMJTwLkvBIXLeP/XR6OWZoREIFUACvweacVMm8/Z24HEmmVkdkYTuGzz0HseADmoPusi/GtKTYQ1Bw2FC8xrMsrTptNQ4vbNZannhWG9Kqx/pPxEGY7UUJAxfDLantNgDiW4mPPerEOqAWfCAGw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729503773; c=relaxed/simple;
+	bh=Dgn4BIMgi2uJUo6HDYEO3rNdBm10LDPvAFVEi4WVIJs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YRhQIdGFITiieKeEQEYD76vdXhjshhj4h5+oN108poiFJ1CX94XbcO5KCIcC1ht0GUf2ljMsumTI+4SbDyq138mKjqJmdnFBP2h0DEtv2UmMMF4J/ehY/6QRyeTbx8Rvjl7wG67lAy+5qBO1tk7v1YP87n5zIFsxAGH63HBUx34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ZWAykMsO; arc=none smtp.client-ip=1.95.21.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=YkZ4qiiMuubjDD/b8aOn38w6UrzOXZrqBqxzSQrF+Dk=;
-	b=ZWAykMsOQ1ljAeLPFa6AMNUqHm4addGoow458FJRQAMYUV87+3GQ39jxuXDiTa
-	zd0LsHDf1UZAQfL85pxNKZVBZvFXA50uDqm7s9emYptozxJ7hfWBcFLiTjMHqas0
-	14wKJokvmomA5efRh37o+L+kFWolzEU+do7lqxgcJQjeA=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgBHr9ULIhZnXh+EAA--.4753S3;
-	Mon, 21 Oct 2024 17:42:36 +0800 (CST)
-Date: Mon, 21 Oct 2024 17:42:34 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	m.felsch@pengutronix.de, bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
-Message-ID: <ZxYiCv6SpLq9uh08@dragon>
-References: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dhjV60mdbu0ZO/bAtMSo8kxUsx4CrTMiMvQdHPoVzm0YvSnxe685nVhS6prbAjs6FEYnVpduRejwMpitydPMCv1Qnszo8ECzbsN1WNHDKudnln/TDJYcDL6WUJB+M9GMOMe+c4eFy7fICJuNhcuCVjw3nzJjI3E/8jXwvdW4V+g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=TT11sIJs; arc=pass smtp.client-ip=195.140.195.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4XX9Mh1c2kzyS6;
+	Mon, 21 Oct 2024 12:42:40 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1729503763;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iItfBry1csHzGqUNbyVvEH2vzYvKChbmjbYESjm867M=;
+	b=TT11sIJskyRx4EEr+KaB1vS9ZH1SrCpLkOsmpLXhV+msJ8nnG/c+KvasmmZkysT/XmnZSF
+	yzI1WuUO2SX3wT0J+rpBDVKiWNTyzy+UbHSQOIEjaKqHupcEcstRyggRrZ89bJ/pCW6MjT
+	E1gF2WbPBegINFg/pG7UZVa227DDmg8=
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1729503763; a=rsa-sha256; cv=none;
+	b=dAu7+pIdIlghojNCKKb7WLzQDsJuVijf/a7ZiZcBa3UA0XHPe/kht+wAwuGAtiUGqpd4Te
+	LfWGHY+l6PAYM9iVxr/PvQS7IEAJYX2426q2duOLHAS+HnQV5/TLv/P2PjNAInD2SIs2mA
+	VmHE41wmRy6Gy3+u9bU6C4EA22IgZbk=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1729503763;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iItfBry1csHzGqUNbyVvEH2vzYvKChbmjbYESjm867M=;
+	b=bVCLNoC2TXGV7eAh0a6ceMJHIaPpJJU1ZaP4jA0ZfxVTtkfzdDdnxcM0fVFHXDiBvvll/R
+	NYiTURklrRn0pW+Wj4zdDxekI5VlHJkikY5JLAyrUcNxC6Kac8dWOivI6OMsfq/uZ4Fr52
+	R79/Djv0r4sJdwZfbt0SWAbsfKTtT4A=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 6DC52634C93;
+	Mon, 21 Oct 2024 12:42:39 +0300 (EEST)
+Date: Mon, 21 Oct 2024 09:42:39 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH v7 1/9] of: property: add of_graph_get_next_port()
+Message-ID: <ZxYiD5CCzcrwbD1o@valkosipuli.retiisi.eu>
+References: <87wmiirqwy.wl-kuninori.morimoto.gx@renesas.com>
+ <87v7y2rqwf.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,19 +101,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
-X-CM-TRANSID:M88vCgBHr9ULIhZnXh+EAA--.4753S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4IJmUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBAl-ZWcV6t2pkwAAso
+In-Reply-To: <87v7y2rqwf.wl-kuninori.morimoto.gx@renesas.com>
 
-On Mon, Oct 07, 2024 at 03:44:24PM +0200, Catalin Popescu wrote:
-> So far, only WFI is supported on i.MX8mp platform. Add support for
-> deeper cpuidle state "cpu-pd-wait" that would allow for better power
-> usage during runtime. This is a port from NXP downstream kernel.
-> 
-> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Dead Morimoto-san,
 
-Applied, thanks!
+On Wed, Oct 09, 2024 at 01:44:48AM +0000, Kuninori Morimoto wrote:
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 11b922fde7af..6a5d27dd0c64 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -630,6 +630,43 @@ struct device_node *of_graph_get_port_by_id(struct device_node *parent, u32 id)
+>  }
+>  EXPORT_SYMBOL(of_graph_get_port_by_id);
+>  
+> +/**
+> + * of_graph_get_next_port() - get next port node.
+> + * @parent: pointer to the parent device node, or parent ports node
+> + * @prev: previous port node, or NULL to get first
+> + *
+> + * Parent device node can be used as @parent whether device node has ports node or not.
 
+This line should be wrapped, no reason to have it longer than 80 chars.
+
+Maybe this could be done while applying?
+
+> + * It will work same as ports@0 node.
+> + *
+> + * Return: A 'port' node pointer with refcount incremented. Refcount
+> + * of the passed @prev node is decremented.
+> + */
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
