@@ -1,73 +1,66 @@
-Return-Path: <devicetree+bounces-113843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C9689A900F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:43:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FE059A901F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:50:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0658BB20E88
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:43:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 156B41F22591
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD1A1FCC6D;
-	Mon, 21 Oct 2024 19:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE551CC152;
+	Mon, 21 Oct 2024 19:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tfyH/MeZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uyhZIGvk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3160B1CF5FF;
-	Mon, 21 Oct 2024 19:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E07A1CBE8E;
+	Mon, 21 Oct 2024 19:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729539785; cv=none; b=b7aduapKfMAZZuhcDC+VmBVDl7M/cc0dRMS4QqORssNDKMWkJaN6mdRFHrm9KuWPxAc/euFdJSB+tegLp2yxKmoVFca3icyqMLGwvIZvt3GOZV4q3UWmZL5yvcdsERMbI6HQ+gdifSUsTWrhSTpnpeekvBnGp9ke91UkLBHosh0=
+	t=1729540213; cv=none; b=mu+2vrfVX3GpxQUNtVQelxultllgsGlp8BM87IEE8ryTGcdaEmNYxz9rJ2EVaipk8x0kQlaBJT/onJ0YGq8JSlaHxcDtZsR/GE/UZrppJU9Gf+y0SVLNZksPyCLjq41EoEqzdKR2F4rnBt3nl3rpzw50LlOEs9Nv0zRytzk2M0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729539785; c=relaxed/simple;
-	bh=VXBOAmMAjpPkxgiV5fUd2MGCtUW+3HpG1l7mOtlSixQ=;
+	s=arc-20240116; t=1729540213; c=relaxed/simple;
+	bh=eZYf3GJHPEiM9OohyeCcgFDCaHIVP50U9kyroIh1Xm4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yr3vkBDc8dD3lfRpe1yHibCoaPUEDA8Qdxk3kU3NUjfLjLC4zaex4lzQqvc46fUvff8nhfx+BJlp6mueSgPjxwS1siD5S4B71c8974du3/vZy6r6MpA9lQJKpRkbCtNPZSeBfX3K71v2R0/cpRPwWxDornqDT+AaVGjEIv6LlYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tfyH/MeZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE29CC4CEC3;
-	Mon, 21 Oct 2024 19:43:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EJCik6I+qY1SOd41hCMgU2TTFTRSTBllQ5FUZN54QeJ8gXBAV+z1yGQrmVDzEtHIDM81FI+PIzXmsFETHEjAv/ok5P5hXkdmyx3Mq6DIn9Uch+Hx32tkFsvEWNn75Wk8pisHJnJVAwtdvTleVHglF81e2mMf8dSks0M9MqnmuFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uyhZIGvk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64046C4CEE5;
+	Mon, 21 Oct 2024 19:50:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729539785;
-	bh=VXBOAmMAjpPkxgiV5fUd2MGCtUW+3HpG1l7mOtlSixQ=;
+	s=k20201202; t=1729540212;
+	bh=eZYf3GJHPEiM9OohyeCcgFDCaHIVP50U9kyroIh1Xm4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tfyH/MeZ3DFVKTIiQSNSuKWkuZkIxmLUIedzRZ1In1w/zF9un/21ZlteujsQ2kYKu
-	 HnhZL1F3qXgIyFE78SMvhBRlG1jIPLPaqsXccZ8/qhKJ/cgoszkqc8FwVlvobVPac2
-	 mZQ4t2dpV4kNEQaz5GzGLsqDz4OyXtON2QzvQ1EU5b4uck5phuZWnPrjUEjF3A7AHl
-	 b6d28Qlq2I0OJrT8yvrGyChEjbZd/gh5ejqJ3X6hsovW1GdxDLbZONQEieH7kVNNlz
-	 +rSP0psFSfkkGwNXjBTBIoWOlHBZna3O4iXhoFPt42ssSp6vjCFQ6KMP3g2N9StZJI
-	 Z1m9OPu2qTY1Q==
-Date: Mon, 21 Oct 2024 14:43:03 -0500
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, krzk+dt@kernel.org, conor+dt@kernel.org,
-	quic_jesszhan@quicinc.com, mchehab@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	catalin.marinas@arm.com, will@kernel.org,
-	sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
-	tomi.valkeinen@ideasonboard.com, quic_bjorande@quicinc.com,
-	geert+renesas@glider.be, dmitry.baryshkov@linaro.org, arnd@arndb.de,
-	nfraprado@collabora.com, thierry.reding@gmail.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org,
-	marex@denx.de, biju.das.jz@bp.renesas.com
-Subject: Re: [PATCH v3 09/15] dt-bindings: display:
- panel-simple-lvds-dual-ports: Reference lvds-dual-ports.yaml
-Message-ID: <20241021194303.GB1011261-robh@kernel.org>
-References: <20241021064446.263619-1-victor.liu@nxp.com>
- <20241021064446.263619-10-victor.liu@nxp.com>
- <3qrtknxsgxzyhwivd7d4eqqg7v6twgtczxotg7rhkdumjkl3p7@u2fso5hexiu4>
+	b=uyhZIGvkS2Onm//7dOxuVzku5f4l75aicLhlLCLxV+xc4DCV6MbYTlEHMhpiFK2/D
+	 Ig2V5GO1I20kaQOYfAVPjexFqjmrR154+RmH92/WvOro4oUR88cZpdpdWTXcU5e54o
+	 xVBOGpqmtSpcWovV45eGhiAk0EyFAuXnJ1oDm7TGWfPJQykSut9PIXa3E2T8Y5Fnyt
+	 w63ClYON3N/XKApIdPju660n8Ddig3FGo6JZ598U2i3vXsH+TR89/uBhL0aaVWn4GD
+	 M/4/oivOKvJ6DBk3Y8LX60FdFoQm5dcIR5H4H+PB/ekWDBaEgqfPsTDBTOxMv9iaNX
+	 5+N44evzinVTQ==
+Date: Mon, 21 Oct 2024 14:50:11 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chanh Nguyen <chanh@os.amperecomputing.com>
+Cc: OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+	linux-kernel@vger.kernel.org, Joel Stanley <joel@jms.id.au>,
+	linux-arm-kernel@lists.infradead.org,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	Open Source Submission <patches@amperecomputing.com>,
+	Phong Vo <phong@os.amperecomputing.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Thang Nguyen <thang@os.amperecomputing.com>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Khanh Pham <khpham@amperecomputing.com>,
+	linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: aspeed: add Mt. Jefferson board
+Message-ID: <172954021092.1028025.10007351603543504033.robh@kernel.org>
+References: <20241021083702.9734-1-chanh@os.amperecomputing.com>
+ <20241021083702.9734-2-chanh@os.amperecomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,39 +69,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3qrtknxsgxzyhwivd7d4eqqg7v6twgtczxotg7rhkdumjkl3p7@u2fso5hexiu4>
+In-Reply-To: <20241021083702.9734-2-chanh@os.amperecomputing.com>
 
-On Mon, Oct 21, 2024 at 09:43:30AM +0200, Krzysztof Kozlowski wrote:
-> On Mon, Oct 21, 2024 at 02:44:40PM +0800, Liu Ying wrote:
-> > This schema documents LVDS panels with dual links.  lvds-dual-ports.yaml
-> > documents dual-link LVDS display common properties.  Reference the ports
-> > property defined in lvds-dual-ports.yaml to save lines.
-> > 
-> > Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > ---
-> > v3:
-> > * New patch.  (Dmitry)
-> > 
-> >  .../panel/panel-simple-lvds-dual-ports.yaml   | 20 +------------------
-> >  1 file changed, 1 insertion(+), 19 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > index 10ed4b57232b..e80fc7006984 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > @@ -22,6 +22,7 @@ description: |
-> >    If the panel is more advanced a dedicated binding file is required.
-> >  
-> >  allOf:
-> > +  - $ref: /schemas/display/lvds-dual-ports.yaml#
-> >    - $ref: panel-common.yaml#
+
+On Mon, 21 Oct 2024 08:37:01 +0000, Chanh Nguyen wrote:
+> Document Ampere's Mt. Jefferson BMC board compatible.
 > 
-> So dual link panels common binding does not fit here? sorry, this is
-> just introducing mess and confusion.
+> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+> ---
+> Changes in v2:
+>   - Document Mt. Jefferson board compatible                   [Krzysztof]
+> ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Unfortunately, we put 'lvds' in the name of the properties and 
-panel-common-dual.yaml is used by non-LVDS devices.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
