@@ -1,188 +1,100 @@
-Return-Path: <devicetree+bounces-113822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1224C9A7257
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CEF39A7266
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:33:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40C5D1C22AEF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:29:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 436011C22C76
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6231FBC98;
-	Mon, 21 Oct 2024 18:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50DC1FA24B;
+	Mon, 21 Oct 2024 18:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NPQijWH7"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="LJyr2sVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 635E41FBC92;
-	Mon, 21 Oct 2024 18:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A171CCB49;
+	Mon, 21 Oct 2024 18:33:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729535323; cv=none; b=Zt06zV/FU9PbZ5UTZM+o7tHoPQGjXW0iKIGK1M/uFlm/mxfuITx4dfyZgrymSVMnMh3smVD6c4EtCiCvTyAq6NdCiNWU1dQsDhWnIykSIKq6Os7PQwaNmASyJvgbRHvurBD4KADVqvxwF2HZiLCUTf5PB3GjTWOJ27+Erh0MUsk=
+	t=1729535593; cv=none; b=JzGONigLlad7UbC3P04RgmmCQfAEDZ0QZMWiKZYfCWT3Jos5PoKVp9LRsRte/2NuDyPSy+fuJpKUfHds3AMUEARpMEjLEyojFBiSSpHk5gJwQuz5H60WfTUZJXIaloPiTOqtuTSRG0Xh6Vwm/dXeDjJSm4iZb9aKj/YEYr9gskk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729535323; c=relaxed/simple;
-	bh=ptS4hB+9g5tLJ6Y3Ir0ex1ToynFjAmAhdZirQ2dCAcM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ou6ioiLjjOWk7pyZmStAfbGdQMuDc5Bf3e7URZk27hQiH8bfPqlHetAJraD69YRtx1lYAcZewvH7Lo92V8hNEQIYyP8haGjb3uIPbpjKSOQUUkXNnHs9jX/r5cJr6hQ9inwSikkCJRVgFO1xY4T2R8wRgusYDOYFTPIIXaJRMmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NPQijWH7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD1CC4CEC7;
-	Mon, 21 Oct 2024 18:28:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729535323;
-	bh=ptS4hB+9g5tLJ6Y3Ir0ex1ToynFjAmAhdZirQ2dCAcM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=NPQijWH7dtdQfWQ3VINcIBs68dM7uYDwqDcC2DOqmkjAh885TxxLXIXa6K6JXTqIj
-	 vLYbM9aSLPVzuqEGu9n47tRZL6yC5W6IuoeQAv3gEtpKVM24dQD2UTQfxIC9iJ72aT
-	 iaL92gS8GtScPW0VQ6NHnhn0X3kJSLq6yz/sKf5ri6TVXklasyrOUYB7vbY5NPGHHB
-	 DnT/UhfYWB3SqtpQJOY3poCa4WKT4yHrI6EICqV2radISv18EU7dBnPMMqEjuybaTo
-	 HwOkckHVkRvA26k2S7SW/moHtwPMsTdWCEWamezYhDASvCdaXc0AndJrHt2jl3a2w2
-	 kTT5OjpPZffSg==
-Date: Mon, 21 Oct 2024 19:28:36 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Emil Gedenryd <Emil.Gedenryd@axis.com>
-Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "dannenberg@ti.com" <dannenberg@ti.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "lars@metafoo.de"
- <lars@metafoo.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Kernel
- <Kernel@axis.com>
-Subject: Re: [PATCH v4 2/2] iio: light: opt3001: add support for TI's
- opt3002 light sensor
-Message-ID: <20241021192836.1b1fe68d@jic23-huawei>
-In-Reply-To: <9e93042237c3c9815d7b1be5ba85be61239b76e8.camel@axis.com>
-References: <20241003-add_opt3002-v4-0-c550dc4591b4@axis.com>
-	<20241003-add_opt3002-v4-2-c550dc4591b4@axis.com>
-	<20241006141624.3fa5bf34@jic23-huawei>
-	<b40d22b5bdf487b40207e676d35a0507c47cbb26.camel@axis.com>
-	<20241010184742.1747bfe2@jic23-huawei>
-	<fab164228b4d567a147cd8d93150e687c6db0c70.camel@axis.com>
-	<20241012161040.1506a7a4@jic23-huawei>
-	<9e93042237c3c9815d7b1be5ba85be61239b76e8.camel@axis.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729535593; c=relaxed/simple;
+	bh=ldSljFUgHC/jZW2/jP+tfUP4P0nz/U6+N/kF4+C9HDE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DCPhvp3dG2566JWnq+3xyGSJu96bAEyVw2s79KyNt4JLkfNt9l7SgUdLCtA7HhP2Vvuut7E/8qInWlgwkWgb4LcUVMLau9Uy05O18U0JrDBCpxbGraeHyql/YgqpGKPKi0enka3jdvDmxKXQn+h/IB2xvaXd/aWrXbsIlzEnINM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=LJyr2sVU; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=4wBoy8F3haHHx4ybdfyg9fd5kQDxZzexbzd2kAVWh4Y=; b=LJyr2sVUKJl3a1FOO8ZqgWResy
+	BMSRGjJvPXehgiiivujYXStvVC5XAUjQWbkmUZNQ5nieHkD+L892C93l6sy4BIR5DqAeiLVgUrt2A
+	Wum2xzEzsKZZAgSh3SWkRz0GbmlBPusNteuYgZY1V5Z1F37l/+AofWLP/0zv3Bmiffzn7S8fn8yBH
+	lLgVxMpIAu8maM4qQ9bBMybImLq5CXUHYsZHQbtJEFPLyWJLuqFrRLq3590lZ/hqcyRfiB68JWvOD
+	nYR+eKSZkhUEcXSczYZ9Ixbu9vuhLstL/QeIHYigCMCmSTMCRt6dw+TqGcWaswmmMl5NLRUQGJvoz
+	zV95rorQ==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH] ARM: dts: imx6sll: fix anatop thermal dtbs_check warnings
+Date: Mon, 21 Oct 2024 20:32:44 +0200
+Message-Id: <20241021183244.303329-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, 14 Oct 2024 06:18:29 +0000
-Emil Gedenryd <Emil.Gedenryd@axis.com> wrote:
+Fix anatop thermal related dtbs_check warnings about node name
+and missing thermal-cells property.
 
-> On Sat, 2024-10-12 at 16:10 +0100, Jonathan Cameron wrote:
-> > On Fri, 11 Oct 2024 07:12:05 +0000
-> > Emil Gedenryd <Emil.Gedenryd@axis.com> wrote:
-> >  =20
-> > > On Thu, 2024-10-10 at 18:47 +0100, Jonathan Cameron wrote: =20
-> > > > On Mon, 7 Oct 2024 07:19:06 +0000
-> > > > Emil Gedenryd <Emil.Gedenryd@axis.com> wrote:
-> > > >    =20
-> > > > > On Sun, 2024-10-06 at 14:16 +0100, Jonathan Cameron wrote:   =20
-> > > > > > On Thu, 3 Oct 2024 14:22:17 +0200
-> > > > > > Emil Gedenryd <emil.gedenryd@axis.com> wrote:     =20
-> > > > > > >=20
-> > > > > > > +struct opt3001_chip_info {
-> > > > > > > +	const struct iio_chan_spec (*channels)[2];
-> > > > > > > +	enum iio_chan_type chan_type;
-> > > > > > > +	int num_channels;
-> > > > > > > +
-> > > > > > > +	const struct opt3001_scale (*scales)[12];     =20
-> > > > > > This doesn't compile for me as one of the two options only
-> > > > > > has 11 entries.  You could either force them to be 12
-> > > > > > entries each or use a pointer without the size and
-> > > > > > add a num_scales entry in here.
-> > > > > >=20
-> > > > > > Jonathan     =20
-> > > > >=20
-> > > > > Hi Jonathan,
-> > > > >=20
-> > > > > Are you building on top of the patch that was accepted in earlier=
- versions of this
-> > > > > patch set? That patch adds the twelfth missing scale value for th=
-e opt3001.
-> > > > > See:=C2=A0https://lore.kernel.org/all/20240916-add_opt3002-v3-1-9=
-84b190cd68c@axis.com/
-> > > > >=20
-> > > > > Should I have added some tag to highlight the dependency for this=
- version of the
-> > > > > patch set?   =20
-> > > > Ah.  Yes, I was half asleep.
-> > > > They are going via different branches (slow and fast) so I'll have =
-to
-> > > > sit on this series until after that fix is in the upstream for the =
-togreg
-> > > > branch of iio.git.
-> > > >=20
-> > > > If I seem to have lost it after that is the case feel free to give =
-me a poke.
-> > > >=20
-> > > > Jonathan
-> > > >    =20
-> > > Hi,
-> > >=20
-> > > No worries. Just to clarify, do you mean sit on it as that you will c=
-ontinue reviewing
-> > > the code after the fix is in upstream, or should I consider this patc=
-h to be approved? =20
-> > Assuming not other review comes in, I consider this ready to go. =20
->=20
-> Great, thank you!
->=20
-> > >=20
-> > > Also, do you have an approximation of what time frame we're talking a=
-bout? =20
-> > 2 weeks most likely.
-> >=20
-> > I've just sent Greg KH a pull request with the fix in it. He will hopef=
-ully
-> > pick that up and then send a pull request on to Linus.  Then we wait fo=
-r the
-> > next rc after that at which point Greg will probably pull it into char-=
-misc-next or
-> > I can always merge it into my togreg branch once it is in a release can=
-didate of
-> > Linus' tree.
-> >=20
-> > In parallel with that I'll probably do a pull request for what is alrea=
-dy in the
-> > togreg tree to get a lot of stuff in char-misc-next for the next cycle.=
- That makes
-> > the history a little cleaner as I can fast forward my tree and end up w=
-ith
-> > whatever is in char-misc-next (hopefully including this).
-> >=20
-> > Anyhow, a bit of tree juggling for me, but we have plenty of time as rc=
-3 will probably
-> > be out tomorrow and it normally goes to rc7 at one rc a week =20
->=20
-> Thank you for the information and for the help during the review process =
-for this patch.
-> Best regards,
-> Emil
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+ arch/arm/boot/dts/nxp/imx/imx6sll.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Applied to the togreg branch of iio.git and pushed out initially as testing=
- to
-let the build bots see if they can find anything we missed.
-
-I'll push it out for linux-next to pick up in a few days.
-
-Jonathan
-
-> >=20
-> > Thanks,
-> >=20
-> > Jonathan =20
-> > > Best Regards,
-> > > Emil=20
-> > >  =20
-> >  =20
->=20
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
+index ddeb5b37fb78b..85fe2a4ab97a0 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
+@@ -525,7 +525,7 @@ reg_3p0: regulator-3p0@20c8120 {
+ 					anatop-enable-bit = <0>;
+ 				};
+ 
+-				tempmon: temperature-sensor {
++				tempmon: tempmon {
+ 					compatible = "fsl,imx6sll-tempmon", "fsl,imx6sx-tempmon";
+ 					interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
+ 					interrupt-parent = <&gpc>;
+@@ -533,6 +533,7 @@ tempmon: temperature-sensor {
+ 					nvmem-cells = <&tempmon_calib>, <&tempmon_temp_grade>;
+ 					nvmem-cell-names = "calib", "temp_grade";
+ 					clocks = <&clks IMX6SLL_CLK_PLL3_USB_OTG>;
++					#thermal-sensor-cells = <0>;
+ 				};
+ 			};
+ 
+-- 
+2.39.5
 
 
