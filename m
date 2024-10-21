@@ -1,201 +1,97 @@
-Return-Path: <devicetree+bounces-113760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E979A6E14
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:27:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBAF09A6E22
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 17:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1529CB20DA8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:27:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9371F282BBB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02AA313664E;
-	Mon, 21 Oct 2024 15:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5390C199FC1;
+	Mon, 21 Oct 2024 15:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mbchp1xY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TrrWUl2I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFB18BE5;
-	Mon, 21 Oct 2024 15:27:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E4919993B;
+	Mon, 21 Oct 2024 15:30:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729524428; cv=none; b=FrWzmThjo7ne/edK6Hr1zEx8QDlLJI0/ifDXcIxPH4MDH5dS1eUd9r9+VCndbCt7rfJhvCreopHaKjU4Oa0aI+SmWkAL9OToviIxED2hmbCL1mVkITjr7298VN6lA0/dUJbgtcMaIm/Bbg6aZZZsBAw5/vSFBKaDbw53/omZJa8=
+	t=1729524606; cv=none; b=cCDvv32pgh2QWFXKR7FrkngNSy6RmHIOCVO+yPdwpnOSMaFcFM2lJsQ3i+jhgDUAdKpxkaukPaOxYqr4PjrWNWD2vFPCSR+v9aIvcSO06evBQXaW41FNbLsYlRQPi8Z78LoPuY8xNjfEd4Afs3c7JZha2jeHjngPsNOhmW7SJCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729524428; c=relaxed/simple;
-	bh=i0gCLQbSWW2zJuk+L9S/yA68nCNDdhPNcv6ZpU4ITwg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Np7tA/rxpOgXj6+qHufp4XoFnYiZMLbPsbrvSwiNix0q1mpGwfJ6SCZH0c0XUNoaQ8En4fWqMauIG0BTlrXx2eYt7OVCq/5t1wDdUP+c994wHxELhLyNgoWE1CNV5URywSNDVAoxtAlaJKDqy6ja2NwZco7mbZJOp+ho3mTl4xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mbchp1xY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F2B4C4CEC3;
-	Mon, 21 Oct 2024 15:27:02 +0000 (UTC)
+	s=arc-20240116; t=1729524606; c=relaxed/simple;
+	bh=dUE1dC0WwbpGBprubj5Oa/K/Zq+fLvL/hbO2fJ3OC0A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZV6cfIP7hlJ8MYdRPFRSPpOfuLdhOEaN2mjpU5vX/1zrIrCOU8HFFUOaloJxtcaSups+JkYPjI5jiSn2GbPYDzuxGpP9BQd6EVIshQtBuJIEZNMfVOLAua+i42FzurAzorC82msfpapTbRcjgqbOv0+ksf6Ep/b2DPEilKVlqvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TrrWUl2I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20FC4C4CEE7;
+	Mon, 21 Oct 2024 15:30:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729524428;
-	bh=i0gCLQbSWW2zJuk+L9S/yA68nCNDdhPNcv6ZpU4ITwg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mbchp1xYDM4vuFZs21olLj3uzkrM18S4eZvtbRt0ExhY/T+dx+nzI85V+eoSu6drd
-	 iaSSHxatZ+Cga9xgNjw/AvatYQWvkkGJMTMEzBuN/dez9czYCK01tFerBxo/3k2IbV
-	 sEIoO2BlhvSNcdpqyTWqBvnO7j9cN9csApr77Ms5FxSMJ4QQqVhFz0XDMjoSBGcNld
-	 o63FO8sSVquvOJD47sW47sP5R3+POtUxKV9bz+x0GKtLO/WWaQWxQf4m+SH7V8kuD1
-	 lSv3VeHgbZsud+BTxld5GePUL+RZJ2PvDtdOj8IJqkZQH3k+uDmRsA+Vb+rHX+KZWj
-	 xat3zGlJOJPBQ==
-Message-ID: <91bcc765-2e56-433d-a629-c5255fc8d256@kernel.org>
-Date: Mon, 21 Oct 2024 17:27:00 +0200
+	s=k20201202; t=1729524605;
+	bh=dUE1dC0WwbpGBprubj5Oa/K/Zq+fLvL/hbO2fJ3OC0A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TrrWUl2Ib7417eQMevFaS820wah8bNcR6PUC6wxXl+187SeMREbsyOZ9X841phdXe
+	 GQ4+jb3YX4kL8Ahw4stU/wdXjjxey92rcYiN4e/3On/Oc3h/W6msL8I7Xe/C2bknL7
+	 SgKnpRrz4f5MEL4prD6Ibib8c2tjb0PF7+T/NY/9keTg6/Qngv9/H+hZIxyymXt4oH
+	 XNBLEL3kkbBgVgu8pJYNxUNWmf5IV3sTKAQedp3oKjIgrtgNUMS/UnQSvBq3ohRBr+
+	 DPO2tgcGhOgxZX9nieMOC1R7tFawhvsDUqPCt/zwoSuJxbAsRM2cMvBnngPML+ksaj
+	 SLne1jxz0dY5A==
+Date: Mon, 21 Oct 2024 16:30:00 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 4/4] ASoC: codecs: adau1373: add powerdown gpio
+Message-ID: <7a8b1560-c091-4e87-a6f4-7ca7453b7414@sirena.org.uk>
+References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
+ <20241021-adau1373-shutdown-v1-4-bec4ff9dfa16@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
- SoCs
-To: neil.armstrong@linaro.org, Jerome Brunet <jbrunet@baylibre.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
- <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
- <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
- <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
- <4127b448-a914-4c69-b938-29512995326f@amlogic.com>
- <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
- <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
- <5ad8f396-84a5-486d-b90d-98fbf8882d1b@linaro.org>
- <e6cd13b5-2f7a-4ab1-899c-5867bc0ea64f@kernel.org>
- <fdb4d0eb-a5e5-4061-b3cc-14958473baf3@linaro.org>
- <c8a03fa6-9ac5-434f-ba13-78e47ad341b8@kernel.org>
- <f6c4cee8-dd22-4b30-a3b2-aee48e2c3611@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <f6c4cee8-dd22-4b30-a3b2-aee48e2c3611@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="+AkS0J1OYCKGy4EZ"
+Content-Disposition: inline
+In-Reply-To: <20241021-adau1373-shutdown-v1-4-bec4ff9dfa16@analog.com>
+X-Cookie: Most people prefer certainty to truth.
 
-On 21/10/2024 12:38, neil.armstrong@linaro.org wrote:
->>> ====><=================
->>> +/* Standard port */
->>> +#define GPIOB_START	0
->>> +#define GPIOB_NUM	14
->>> +
->>> +#define GPIOD_START	(GPIOB_START + GPIOB_NUM)
->>> +#define GPIOD_NUM	16
->>> +
->>> +#define GPIOE_START	(GPIOD_START + GPIOD_NUM)
->>> +#define GPIOE_NUM	2
->>> +
->>> +#define GPIOT_START	(GPIOE_START + GPIOE_NUM)
->>> +#define GPIOT_NUM	23
->>> +
->>> +#define GPIOX_START	(GPIOT_START + GPIOT_NUM)
->>> +#define GPIOX_NUM	18
->>> +
->>> +#define PERIPHS_PIN_NUM	(GPIOX_START + GPIOX_NUM)
->>> +
->>> +/* Aobus port */
->>> +#define GPIOAO_START	0
->>> +#define GPIOAO_NUM	7
->>> +
->>> +/* It's a special definition, put at the end, just 1 num */
->>> +#define	GPIO_TEST_N	(GPIOAO_START +  GPIOAO_NUM)
->>> +#define	AOBUS_PIN_NUM	(GPIO_TEST_N + 1)
->>> +
->>> +#define AMLOGIC_GPIO(port, offset)	(port##_START + (offset))
->>> ====><=================
->>>
->>> is exactly what rob asked for, and you nacked it.
->>
->> No, this is not what was asked, at least according to my understanding.
->> Number of GPIOs is not an ABI. Neither is their relationship, where one
->> starts and other ends.
-> 
-> I confirm this need some work, but it moved the per-pin define to start
-> and ranges, so what did rob expect ?
-> 
->>
->> Maybe I missed something, but I could not find any users of these in the
->> DTS. Look:
->>
->> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-3-3e74a65c285e@amlogic.com/
-> 
-> So you want consumers before the bindings ? strange argument
-> 
->>
->> Where is any of above defines?
->>
->> Maybe they will be visible in the consumer code, but I did not imagine
->> such use. You expect:
->> reset-gpios = <&ctrl GPIOAO_START 1>???
-> 
-> No I expect:
-> reset-gpios = <&ctrl AMLOGIC_GPIO(B, 0) 1>;
-> 
-> but the macro should go along the dts like we did for the reset defines,
-> so perhaps this is the solution ?
 
-OK, so I said it was not a binding:
-https://lore.kernel.org/all/u4afxqc3ludsic4n3hs3r3drg3ftmsbcwfjltic2mb66foo47x@xe57gltl77hq/
+--+AkS0J1OYCKGy4EZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-and you here confirm, if I understood you correctly, that it goes with
-the DTS like reset defines (I assume non-ID like defines?), so also not
-a binding?
+On Mon, Oct 21, 2024 at 03:46:48PM +0200, Nuno Sa wrote:
+> If the powerdown GPIO is specified, we use it for reset. Otherwise,
+> fallback to a software reset.
 
-What are we disagreeing with?
+Ideally we'd also put the device into reset when we unload, but that's
+not essential.
 
-Just to recall, Jerome asked whether you have to now use arbitrary
-numbers in DTS and my answer was: not. It's still the same answer.
+--+AkS0J1OYCKGy4EZ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcWc3cACgkQJNaLcl1U
+h9BoUAf9FBzDMBHEP/DrPr1FQhJmlHdRZ7rwz64tMzMiMvrPsrSoIY/MlJrgT+go
+r4FIDAYqgzbiqZQZbKkjFvFo8RBD/acwoDG0KS06hNJZXmvUu+v5y/FB5/mMBHB9
+it0RmAYuLPg82Bbi0FkNGc1Cd0Hq+nJWk5VKxNH1lP8mHobLr0mEfnYpz/PTmk8j
+XvvrEEtSML4lRgJwhz7qV1UiQWZ+ECGwAAWeNBdaplpCHcveoUpFeYqRQqh43zMb
+/tlN79oslaIzpaU4Yypb1tKKXe+35Sa2VLg/DZTg1JaumyqHg3oHfdPcYZ84FJJV
+4Qt/JFXf5gmqa7B1D6b6IdaWWliaZA==
+=tVFr
+-----END PGP SIGNATURE-----
+
+--+AkS0J1OYCKGy4EZ--
 
