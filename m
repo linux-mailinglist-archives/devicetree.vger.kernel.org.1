@@ -1,157 +1,182 @@
-Return-Path: <devicetree+bounces-113411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B17E9A5784
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 01:52:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 315969A587D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 03:22:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B17CB281D39
-	for <lists+devicetree@lfdr.de>; Sun, 20 Oct 2024 23:52:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 697791C20C2D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 01:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D67C3192B66;
-	Sun, 20 Oct 2024 23:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD63BBE65;
+	Mon, 21 Oct 2024 01:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZWyHz8BQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CG7+E6Vz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6457E28689;
-	Sun, 20 Oct 2024 23:52:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A622C4C70;
+	Mon, 21 Oct 2024 01:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729468351; cv=none; b=FmQkGYGfYkSHSBpX5GlAQf4/PI6WXa0qjSYLB6F7K9qdZnHiL1yFblDld8kmIXO0Y8wShalXkdTLoOCYLRxj6fbwJDOklRybsPxsblBFm2/X8jW0hNDOiTD1rUVS++FKu3Xru9R47bkQgwuQginv+5SqN91bCJdXAYEAMZzKV1U=
+	t=1729473763; cv=none; b=KIeUKa6JFmTBEA83JXYRHC8ch5d8wJ3fzZNnJXWd2Nj/195nY3g6MR6ibXLZbX+VVYEtb+oi+ep50OBa/xkU9ghx30XqZ3skqAtYf6Oy3OB2jkvr6VwMGMlyT946WTUXBI/M/hAjVvsl42U1yUWekL2xFVkPbZE+8C1u6KeFDLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729468351; c=relaxed/simple;
-	bh=r5t6ezWrj8tM5XbRLWl015a2nIv4PHGA1l1F7OKUVyU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lLOvk3fjV0h8vEYftqfO4SclpkoIg9QgLsbhjuzMK8zUrNIKsNjNSWjUwPAgHTWHYfwQTFtNe3T9yJ7bFxrLXk2ArpEG6JhD5dcdpqz8dDFEdhwgZnGBONhK6/a464Qxsj53WjAGa/vj6nlT0PNypC41CUBpc7HKZIUimYUkTDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZWyHz8BQ; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729468348; x=1761004348;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=r5t6ezWrj8tM5XbRLWl015a2nIv4PHGA1l1F7OKUVyU=;
-  b=ZWyHz8BQR9GCEZcQLZkEPFlu+zmia2us2U6sDQCCB4mNhoHAHH+Islik
-   dTzdpHPJ9JVfQAhuXvu6BzmYqrXtPxuePoj2dyskj79QH+rmV/1BsxX5O
-   Q17fpC6z3GW4EsszAasZsR3FVnQIKkIbTkbXkA08wmGmQmshVqiReTIpR
-   hEjPNYFYEcI1S4j4PTV4woU9lSW2WuIF4c8KOUWCMTRVaXJV+Gwf47KUH
-   7xJO9tijtrRUPk+V1vL+3fTJWJnZ8DUTc7Dt+atBECpb+/fYsBJ9fsCXv
-   cIMlFkbo1+3QVv56mrvfldM5w/YO0GGlQJQCw48jNKi74EONJmkRFflau
-   w==;
-X-CSE-ConnectionGUID: 422SdtzSQh+Dxu+W6xxcYw==
-X-CSE-MsgGUID: LEfAN0SNTfOjLwscPgMkNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11231"; a="28366954"
-X-IronPort-AV: E=Sophos;i="6.11,219,1725346800"; 
-   d="scan'208";a="28366954"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2024 16:52:28 -0700
-X-CSE-ConnectionGUID: prbo0Ih9TIGcZb3dmFM1RA==
-X-CSE-MsgGUID: gFiR32AlQgGK71jkFRmtag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,219,1725346800"; 
-   d="scan'208";a="83944143"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 20 Oct 2024 16:52:24 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t2fif-000Qtr-2v;
-	Sun, 20 Oct 2024 23:52:21 +0000
-Date: Mon, 21 Oct 2024 07:52:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kalpak Kawadkar <quic_kkawadka@quicinc.com>
-Subject: Re: [PATCH 11/14] clk: qcom: add support for GCC on SAR2130P
-Message-ID: <202410210734.7rGICRUi-lkp@intel.com>
-References: <20241017-sar2130p-clocks-v1-11-f75e740f0a8d@linaro.org>
+	s=arc-20240116; t=1729473763; c=relaxed/simple;
+	bh=jlCzg7egAixbWdgUefAl7xo5OOX4XAUpPQw4CNFUOIo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Wt1MS4iyIs+rgn5UIu4vbyf0J7svmy8sEORztD6YTGBe+XyPRyw2WVtyIFeqnHqIRrJMi/apitrn8IyPX1urKfvDg2r8iKgWuXn8V/09mNAd7XLIiMmcI17A2L6HtsrUf7txebrACCspt8EKabH3U4DaC3v4ax5sm14LCAVGQG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CG7+E6Vz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35EC7C4CEC7;
+	Mon, 21 Oct 2024 01:22:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729473763;
+	bh=jlCzg7egAixbWdgUefAl7xo5OOX4XAUpPQw4CNFUOIo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=CG7+E6VzrSrwBrhwvoSrkmrlXQtOW8B22B8eFwlRO9GrJyrW/jHD8SztOSd3JNflR
+	 u5tSATP4Y+I3hP1gVAZgTGFSgBvyuM7B2FmO5q0ERSf70fo3evLrEkNvnvE+dAbkZ5
+	 iYywmNzmXytC9xC6MVv0xBjEt3pe4I7RbTbf8icw+v+rs1WWDC0GLu5hbQjddHG1MN
+	 DTrXnwFr0phT/a3dLgu18+KxUKJBzf4ZMuNCNl95zX5lhXqa0tYPmZ+CjZQHkvZFP6
+	 UsyjpeCtvHyyrT5bCMb1CclRstx7xmcCConnRVyGlH0IgcfD9Khw9YcW1yvYwXonYU
+	 46UlX9NtYR2Hg==
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb3ce15172so45328601fa.0;
+        Sun, 20 Oct 2024 18:22:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVCbXIf2qw2SY/7XOrA6jkBBQJLAC0U9cdJNctCRc52clgiOJRp46vffVNKq6lOxoosmoSaLQyM5+Ac4xM9@vger.kernel.org, AJvYcCVDb950Q7ilKE1hnJAc0FJztdTIptRLQyNITIdDtnWPFKSmn8tVvRT4bxousrbXWuwsP2zJwovAVNDzTHKp@vger.kernel.org, AJvYcCXP05sKMD8O5prAwSiCC0NAuwblXAjc6qBbBtb1F2o1HkFKeod/doFS8TI6aouPXrfN05m0aXLWmNDX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUvp4778UxTgp1pgky7sbBaSn5C1RoBu6k+xGnbRIS9qxmAEh9
+	WHFmmvLhjzkqbQapfsYQNVH1ZMEWGiTpTAhS4dghQ6Rlf+Xva5aXSt+MUQl64qH2aDx8xM8NJuW
+	AbVbJSwER/B7SKc0NJ4t03bACpfE=
+X-Google-Smtp-Source: AGHT+IHKEipf35MYVwH+nk6bWLaxQ2XVrgwntLhq6reCsCyEjeQfuvEfGfKQ2g8ZLOkWK0d/FcaxQkfXbS6HX1Iz10k=
+X-Received: by 2002:a2e:a545:0:b0:2fb:50e9:34cc with SMTP id
+ 38308e7fff4ca-2fb6dc74e7bmr44845751fa.17.1729473761693; Sun, 20 Oct 2024
+ 18:22:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241017-sar2130p-clocks-v1-11-f75e740f0a8d@linaro.org>
+References: <20241016194149.4178898-1-chris.packham@alliedtelesis.co.nz>
+ <CAK7LNAR4h6NZ+D0BK+q4VQBeHWpjzRBQFQ9ovBrftM=6dHRcUg@mail.gmail.com> <bca44b71-d002-4dac-8c53-6b7dd90ffce1@alliedtelesis.co.nz>
+In-Reply-To: <bca44b71-d002-4dac-8c53-6b7dd90ffce1@alliedtelesis.co.nz>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Mon, 21 Oct 2024 10:22:05 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASZSSkUOTGeCB-JsSyX8a7EbKOD5UdQPqN4pVnG5rXeKg@mail.gmail.com>
+Message-ID: <CAK7LNASZSSkUOTGeCB-JsSyX8a7EbKOD5UdQPqN4pVnG5rXeKg@mail.gmail.com>
+Subject: Re: [PATCH v2] kbuild: Restore the ability to build out of tree dtbs
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: nathan@kernel.org, nicolas@fjasle.eu, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Dmitry,
+On Mon, Oct 21, 2024 at 7:57=E2=80=AFAM Chris Packham
+<chris.packham@alliedtelesis.co.nz> wrote:
+>
+> +cc devicetree
+>
+> Hi Masahiro,
+>
+> On 19/10/24 00:19, Masahiro Yamada wrote:
+> > On Thu, Oct 17, 2024 at 4:59=E2=80=AFAM Chris Packham
+> > <chris.packham@alliedtelesis.co.nz> wrote:
+> >> A build pattern to handle out of tree dtbs is to copy the .dts file in=
+to
+> >> the kernel source tree and run `make myboard.dtb`. This is supported b=
+y
+> >> the wildcard %.dtb rule in the Makefile but recent changes to split th=
+e
+> >> dtb handling out of scripts/Makefile.build stopped this from working.
+> >> Restore this functionality by looking for .dtb in $(MAKECMDGOALS) as
+> >> well as $(targets).
+> >>
+> >> Fixes: e7e2941300d2 ("kbuild: split device tree build rules into scrip=
+ts/Makefile.dtbs")
+> >> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> >> ---
+> > This is not a use-case in upstream.
+> >
+> > If you drop-in your downstream DT to the kernel tree,
+> > you need to associate it with Makefile.
+>
+> I agree that this is Hyrum's Law at work.  I still feel that handling
+> out-of-tree dtbs is something that would be in the best interest of the
+> Linux kernel. It doesn't necessarily need to be done by allowing copying
+> arbitrary .dts files into the tree, a mechanism like the way out of tree
+> kernel modules are handled would be workable.
+>
+> Often supporting a new hardware platform is just a matter of writing a
+> dts that describes the board. Particularly when that board is based on
+> an existing one. The way most dts/dtsi files are arranged in-tree
+> requires a non trivial amount of handling by the C processor. So while
+> one could produce a dtb file by invoking cc -E and dtc with the right
+> options pointing at the right paths, having the kernel build system
+> provide something that abstracts that would be beneficial for developers
+> and even end users.
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on 7df1e7189cecb6965ce672e820a5ec6cf499b65b]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Dmitry-Baryshkov/dt-bindings-clock-qcom-rpmhcc-Add-SAR2130P-compatible/20241018-010608
-base:   7df1e7189cecb6965ce672e820a5ec6cf499b65b
-patch link:    https://lore.kernel.org/r/20241017-sar2130p-clocks-v1-11-f75e740f0a8d%40linaro.org
-patch subject: [PATCH 11/14] clk: qcom: add support for GCC on SAR2130P
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241021/202410210734.7rGICRUi-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241021/202410210734.7rGICRUi-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410210734.7rGICRUi-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/clk/qcom/gcc-sar2130p.c:254:32: warning: unused variable 'gcc_parent_map_4' [-Wunused-const-variable]
-     254 | static const struct parent_map gcc_parent_map_4[] = {
-         |                                ^~~~~~~~~~~~~~~~
->> drivers/clk/qcom/gcc-sar2130p.c:259:37: warning: unused variable 'gcc_parent_data_4' [-Wunused-const-variable]
-     259 | static const struct clk_parent_data gcc_parent_data_4[] = {
-         |                                     ^~~~~~~~~~~~~~~~~
->> drivers/clk/qcom/gcc-sar2130p.c:264:32: warning: unused variable 'gcc_parent_map_5' [-Wunused-const-variable]
-     264 | static const struct parent_map gcc_parent_map_5[] = {
-         |                                ^~~~~~~~~~~~~~~~
->> drivers/clk/qcom/gcc-sar2130p.c:269:37: warning: unused variable 'gcc_parent_data_5' [-Wunused-const-variable]
-     269 | static const struct clk_parent_data gcc_parent_data_5[] = {
-         |                                     ^~~~~~~~~~~~~~~~~
-   4 warnings generated.
 
 
-vim +/gcc_parent_map_4 +254 drivers/clk/qcom/gcc-sar2130p.c
+I also handle a bunch of yet-to-upstream device tree files.
 
-   253	
- > 254	static const struct parent_map gcc_parent_map_4[] = {
-   255		{ P_PCIE_0_PIPE_CLK, 0 },
-   256		{ P_BI_TCXO, 2 },
-   257	};
-   258	
- > 259	static const struct clk_parent_data gcc_parent_data_4[] = {
-   260		{ .index = DT_PCIE_0_PIPE },
-   261		{ .index = DT_BI_TCXO },
-   262	};
-   263	
- > 264	static const struct parent_map gcc_parent_map_5[] = {
-   265		{ P_PCIE_1_PIPE_CLK, 0 },
-   266		{ P_BI_TCXO, 2 },
-   267	};
-   268	
- > 269	static const struct clk_parent_data gcc_parent_data_5[] = {
-   270		{ .index = DT_PCIE_1_PIPE },
-   271		{ .index = DT_BI_TCXO },
-   272	};
-   273	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+I have them in the proper directory location, and add
+
+  dtb-$(CONFIG_ARCH_FOO)  +=3D foo-downstream-custom1.dtb
+  dtb-$(CONFIG_ARCH_FOO)  +=3D foo-downstream-custom2.dtb
+    ...
+
+jutt like how they would look when they were upstreamed.
+
+
+
+I do not understand why the drop-in way is supported.
+
+
+
+
+
+
+
+
+
+
+
+> >> Notes:
+> >>      Changes in v2:
+> >>      - keep $(target) and search for .dtb in $(MAKECMDGOALS)
+> >>
+> >>   scripts/Makefile.build | 2 +-
+> >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/scripts/Makefile.build b/scripts/Makefile.build
+> >> index 8f423a1faf50..78763a4bc58a 100644
+> >> --- a/scripts/Makefile.build
+> >> +++ b/scripts/Makefile.build
+> >> @@ -449,7 +449,7 @@ ifneq ($(userprogs),)
+> >>   include $(srctree)/scripts/Makefile.userprogs
+> >>   endif
+> >>
+> >> -ifneq ($(need-dtbslist)$(dtb-y)$(dtb-)$(filter %.dtb %.dtb.o %.dtbo.o=
+,$(targets)),)
+> >> +ifneq ($(need-dtbslist)$(dtb-y)$(dtb-)$(filter %.dtb %.dtb.o %.dtbo.o=
+,$(targets))$(filter %.dtb,$(MAKECMDGOALS)),)
+> >>   include $(srctree)/scripts/Makefile.dtbs
+> >>   endif
+> >>
+> >> --
+> >> 2.47.0
+> >>
+> >>
+> >
+> > --
+> > Best Regards
+> > Masahiro Yamada
+>
+
+
+--=20
+Best Regards
+Masahiro Yamada
 
