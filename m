@@ -1,139 +1,129 @@
-Return-Path: <devicetree+bounces-113479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 832F29A5CF0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:27:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DCA59A5CF4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:28:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37A03283537
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:27:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D14A1C217EF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:28:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CEFA1DE887;
-	Mon, 21 Oct 2024 07:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BA71D1F6F;
+	Mon, 21 Oct 2024 07:27:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AdrZ2IPH"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="jikVwEz3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B141DD861;
-	Mon, 21 Oct 2024 07:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC631D1519
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 07:27:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729495613; cv=none; b=p/MzLN10fvVvS9klifK99+c8LQS7VifGEBcabd6uiaqe8blz/YRQAsmmFFY/gQdcKKBsheTGxu2vRPTYUPWKwXuzphZxtWHDsV+B0+2OG0eKS3Are4ji9Ffxj0jPvznB4+nhnHdO6j7timJTMGsdb0RRynzOuoXKttm1IrA4OJ8=
+	t=1729495643; cv=none; b=sl/yN+bcddg7zO0YBqKJ3GdWILfc4wmtFe36acxGpY9t3kQzD5WKWu8efIY4xLVRRa9XPYLhK3OA2PTUWXFJdJFe0qQbHX7zQGz6fM/GHjO8sL8eW8L5nEducIPvF/ddrjb82RZvF/CmUdFB13ecAxLg7hyYWOayN4cLJkVTvlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729495613; c=relaxed/simple;
-	bh=PzJNTdYSs0OAVQ8efdZZ/OKBDTgmDH8V79AciwReyus=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=j5WSBZy0reZ1JdzZEBPO47YiSMNmr77IUQv2F9CDNVYIGig1o8sHgy1ubSnFCF+0/VmP7kNnpRtx/rsqybf5gtMqRPPU8KZ6WVf7CLxWiow86Qup4i49GXq+VBEDGGPiS5HQ7SId2lBNtsPLRkzIC8DkOjjMTFW/rzLpSi1TNtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AdrZ2IPH; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20cb7139d9dso36462415ad.1;
-        Mon, 21 Oct 2024 00:26:51 -0700 (PDT)
+	s=arc-20240116; t=1729495643; c=relaxed/simple;
+	bh=7d387XbGv+JuPxcJAyDfP2Ybl78d5z+BX2IzPCKXLUg=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Ja2Qt/X54CP9UWGV8bvCZfS6xMOxQBHvQcDNUW3Vqh43DtItGA62vwiP2P6qUiaTL0by6CXj7oYP1ajr5zXw507CaVbs9UKhkwN0FJxYlEjPygKA0iXglMOR5QZIA6dlRn5pqpL2sXcS9rRUj4G/KR2K/uU9XyOAdxHrKAf6bKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=jikVwEz3; arc=none smtp.client-ip=209.85.216.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2e2d1b7bd57so648310a91.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 00:27:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729495611; x=1730100411; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1729495638; x=1730100438; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CXvcCpfsJOPp154vFwKXQKRadddvDYDxZELGpa9JLd4=;
-        b=AdrZ2IPHUWFAyDVf1QlXrMjygLInrrfBspJQ/uc0NP9ZM46qn2GKqhwMaNa/hqPU2l
-         j0px/H773Nx5ILORvL1im4Wo85g4O5W4V+YvNhhhqHxFnTNL7kMgFQp52OYlCYxVYJUJ
-         sz223zr/ytIO6fvboktqhd0WLC0JPcHU9plulQFi1mW7xOmSnJlgWWMeWER72bvgYN1L
-         S82IqAYD/gQS0h2Yeo6SYds6OAt9LrgjEzDcmY1Sid4STTy/wFL2bhJdCtOVt1f7GYbU
-         d9y+cwt14rQltVu/naV29e/PvzxOKCIvrWV7QH6IxyY+++P0yXEcT0eYLUIrB8Q/mN9d
-         Un5g==
+        bh=4RuLV+gJE30OXtNyG+M95n2ScV6KSGMzKjcPSGYqH7I=;
+        b=jikVwEz3GCL4HBohozgPcWVb3oLbbL54/TPfkIQCPkicJK6VYXZhFmWFWxYuy+xekB
+         fdAJ0mKaCrup20OxKLWDRX2tuvTnkMGi2MtIZM3Dq94ws5xpOnGoEh1zqTZd7NCorYTt
+         iMc+lvfkTCl7Kqs9uN/teLJY25ey7ElP1vhe34BFSgX+kJAtSkgJjP9cn9opYf8cmvIA
+         7p8UTW7mj0X71Ef+tMb9T2P5DDuEabHtxrW7gE54tTWB/akuZ/cDdWof9f4o+UoMndqC
+         F6Kadsik8TsKq04dp57UCK2AEsWUmRNvAnImdBaaa0I65G/KfRSMMb0DvfOE6UYo9byE
+         rgqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729495611; x=1730100411;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1729495638; x=1730100438;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CXvcCpfsJOPp154vFwKXQKRadddvDYDxZELGpa9JLd4=;
-        b=KWJPRmBcYypfAAU8VKRPB1wg55t7nQXQrWUd1vha0MjriAqz7JxNN3RdvoSByJcCTh
-         2j20ryuNoliS7E8rz3Lsi9DID7DSwyqd7vhK2wYBaih2SVsxj5SLXMjhVShYPhU6o8UP
-         mdu5diPC6C48NB52Y8mhuUegJjmca4+3XwlyG3uS0oJVNi1cfI4l6o2MAjAsvodZCR2+
-         5vfOAw6XbIS4Xp6qMCd7BCaU+npiuk0MjmyYBIem57LxWtUqPC7tn5RVd8M1Hs+1/r+v
-         NLPmZOxo/aRFPNkWm3VPcPius4Uy9ZDKAmpEd7Empt3z96YgNQRCklWc0culbBSjrHqa
-         +nPw==
-X-Forwarded-Encrypted: i=1; AJvYcCVG6lDDTOd2lSUdfLO7ovyO0GlOER8OxWsUn+8eL96K80sh9pO2b2QKyNtTsijWBCHcehScVYSFd01KvGgS@vger.kernel.org, AJvYcCVzxjsp7hquYWFFDXMea8Z9nM5lbVaThf07bGEQ/k32N8sn3VnYInsOAkjB8e4zMbtLeuNIiMt+WOgP@vger.kernel.org, AJvYcCXq2YMYkPQoiXeh3iVQrfTmGQIGSwlUKL2uHI3ghC8YXEaRYfJYC2RJ2jQelOoLeRLZrsJz5Ejybh6mBA0Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCOnPe/iT5gjRf3ip93gwPvLqr5W1u/UgvbZ1gYI+W6dArYVsE
-	Ihk7cIrT5xTSJFxYCSKdk9T05nlOuHkf+xcTyuDS63uIqS0Lxael
-X-Google-Smtp-Source: AGHT+IEsGe+lBz2zwyzbRMjnO083MGG92UylU4sVnq+SoC37wyN6vFExnIVCz0Vn/kD0D2CooUtaXQ==
-X-Received: by 2002:a17:902:db04:b0:20e:5997:c107 with SMTP id d9443c01a7336-20e5a8fb320mr151344175ad.39.1729495610968;
-        Mon, 21 Oct 2024 00:26:50 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7eee884dsm19919975ad.9.2024.10.21.00.26.50
+        bh=4RuLV+gJE30OXtNyG+M95n2ScV6KSGMzKjcPSGYqH7I=;
+        b=ZbSomkjRDK6DTHAf9nDdYUs8Y1m2jfhcWome/oLvZop/N8mu9LIzU7BOizSwIxQVtK
+         MObSuzhg3QAijwManq29QaoCJ7v0o8rekdTY18iaK/hlQ/oO12eVRjAbGFQKeCY4f56k
+         yBCPoWMWrx8jYhjH/KN8Ys1FrokNY8TkacVDQMA9stnH7fYZKM2Vt4no/EOXRAlPWwjL
+         Mk6V4yWw6FRjemn57NciduY+fgsNBG3O+vKwU2E7+CplAf+bBV9OKiL0ehSn1XkJofWP
+         Nghyy1bwBF7PYcgXtVNDrBel31Y2OJN+yNkZ/JklSzWPTLGgXce6JK4KbLOifORjXaU1
+         pVPg==
+X-Gm-Message-State: AOJu0Yy88o+eJRkqrWEGrgJIS3X+3zG+HO8NHg7pWTI33o2MxouEIyzG
+	iQMBPrQuuViPx8wNOCA9RUntpiH1lkVe1XVz6pgY4rUlsOxDPlnFYHpPseKDjwM=
+X-Google-Smtp-Source: AGHT+IFpx0iTKEAwT3WlvkO5e1PC1FRTIM+OU/OYf9CVrGfExwAKk4Zt8qzMrBocxp4f1FZgpGEoUQ==
+X-Received: by 2002:a17:902:da8f:b0:20c:9285:e951 with SMTP id d9443c01a7336-20e5a71b46dmr62711105ad.3.1729495637905;
+        Mon, 21 Oct 2024 00:27:17 -0700 (PDT)
+Received: from ubuntu.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0db2desm19749595ad.203.2024.10.21.00.27.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 00:26:50 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicorn_wang@outlook.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	Inochi Amaoto <inochiama@gmail.com>,
+        Mon, 21 Oct 2024 00:27:17 -0700 (PDT)
+From: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	wenst@chromium.org,
+	hsinyi@chromium.org,
+	sean.wang@mediatek.com
+Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v2 2/2] serial: 8250_dw: Add Sophgo SG2044 quirk
-Date: Mon, 21 Oct 2024 15:26:06 +0800
-Message-ID: <20241021072606.585878-3-inochiama@gmail.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241021072606.585878-1-inochiama@gmail.com>
-References: <20241021072606.585878-1-inochiama@gmail.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
+Subject: [PATCH v3 RESEND 0/4] arm64: dts: mediatek: Add MT8186 Chinchou
+Date: Mon, 21 Oct 2024 15:26:22 +0800
+Message-Id: <20241021072626.15102-1-xiazhengqiao@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-SG2044 relys on an internal divisor when calculating bitrate, which
-means a wrong clock for the most common bitrates. So add a quirk for
-this uart device to skip the set rate call and only relys on the
-internal UART divisor.
+This is v3 of the MT8186 Chromebook device tree series to support
+MT8186 chinchou platform. It is based on the "corsola" design.
+It includes chinchou and chinchou360, including LTE, stylus,
+touchscreen combinations.
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- drivers/tty/serial/8250/8250_dw.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Changes in v3:
+- Add a patch to change codec in pmic (in mt8186-corsola.dtsi) to audio-codec
+- Link to v2: https://lore.kernel.org/all/20241018091135.17075-1-xiazhengqiao@huaqin.corp-partner.google.com/
 
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index ab9e7f204260..51894c93c8a3 100644
---- a/drivers/tty/serial/8250/8250_dw.c
-+++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -750,7 +750,7 @@ static const struct dw8250_platform_data dw8250_renesas_rzn1_data = {
- 	.quirks = DW_UART_QUIRK_CPR_VALUE | DW_UART_QUIRK_IS_DMA_FC,
- };
- 
--static const struct dw8250_platform_data dw8250_starfive_jh7100_data = {
-+static const struct dw8250_platform_data dw8250_skip_set_rate_data = {
- 	.usr_reg = DW_UART_USR,
- 	.quirks = DW_UART_QUIRK_SKIP_SET_RATE,
- };
-@@ -760,7 +760,8 @@ static const struct of_device_id dw8250_of_match[] = {
- 	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
- 	{ .compatible = "marvell,armada-38x-uart", .data = &dw8250_armada_38x_data },
- 	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
--	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_starfive_jh7100_data },
-+	{ .compatible = "sophgo,sg2044-uart", .data = &dw8250_skip_set_rate_data },
-+	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_skip_set_rate_data },
- 	{ /* Sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, dw8250_of_match);
+Changes in v2:
+- Modify location of "const: google,chinchou-sku17" in mediatek.yaml
+- rename "pin-report" to "pin-report-pins"
+- add "vcc33-supply" and "vcc33-supply" 
+- rename "cbj-sleeve-gpio" to "cbj-sleeve-gpios"
+- modify subnode of sound 
+- Link to v1: https://lore.kernel.org/all/172900161180.733089.8963543745385219831.robh@kernel.org/
+
+Zhengqiao Xia (4):
+  dt-bindings: arm: mediatek: Add MT8186 Chinchou Chromebook
+  arm64: dts: mediatek: Add MT8186 Chinchou Chromebooks
+  arm64: dts: mediatek: Add exton node for DP bridge
+  arm64: dts: mediatek: Modify audio codec name for pmic
+
+ .../devicetree/bindings/arm/mediatek.yaml     |  28 ++
+ arch/arm64/boot/dts/mediatek/Makefile         |   3 +
+ .../mediatek/mt8186-corsola-chinchou-sku0.dts |  18 +
+ .../mediatek/mt8186-corsola-chinchou-sku1.dts |  35 ++
+ .../mt8186-corsola-chinchou-sku16.dts         |  29 ++
+ .../dts/mediatek/mt8186-corsola-chinchou.dtsi | 321 ++++++++++++++++++
+ .../boot/dts/mediatek/mt8186-corsola.dtsi     |   8 +-
+ 7 files changed, 441 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku0.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku16.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou.dtsi
+
 -- 
-2.47.0
+2.17.1
 
 
