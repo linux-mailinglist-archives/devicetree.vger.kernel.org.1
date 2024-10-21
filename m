@@ -1,197 +1,210 @@
-Return-Path: <devicetree+bounces-113653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 632809A686E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:31:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1DA9A6872
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:31:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F3E22862EF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:31:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE8BC28695B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACEBB1EF0A2;
-	Mon, 21 Oct 2024 12:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="A+f4afAs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025121EF0A2;
+	Mon, 21 Oct 2024 12:31:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F8C1E573C
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C442A1D7E52;
+	Mon, 21 Oct 2024 12:31:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729513853; cv=none; b=ZKRw7vzPMx9wQBNx66PJoeddvaixceCog/LEbCjpuyiQUaAUQnU0LNznm3k93yPYEkeywBu+2LnM1J2Nonq9gfgTZlibqb26teaGhZpb3xdGWozMbmGY2CYxz3aoZysGRrQCCldCzZxp5A+JBXppjd9os94AL9k7RecUxDI3hgI=
+	t=1729513911; cv=none; b=fygaTn6A+f30DUdod27VvJqoU3ruIs2PffIKN+mnelwBkvikRZmaYgRGHVUuCKGIOQpXn3W7SiSTojbj9LRztu2kudxWGfQB00Hm32m4ANxkzr4ovZVvnJwOm8KoaO7CWcXDJ+/ySKTkYOmZyRkcMSVIq60v0rP6fgn5hxCyL44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729513853; c=relaxed/simple;
-	bh=dNHYhLYnCz57OOLIrQpTU04I6U4G+9ia8mwDBYvE6Hk=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=rsahQjE5p62zCnmi/HEsqpwxM96vhKmWrdWJfcbBQ47zS0zJNup+mbm9P56l5pPXvpdndmFi2CfML+qEprUgi7pKcZ+Fe49OG3Hxp+EoDBHsZ+wmrbassoBsqOCX9VEHU4GlutEbPTeEAyVlKXVOM+NGA9cZfiCwArD+HJAUynY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=A+f4afAs; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37ed3bd6114so1920587f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:30:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1729513848; x=1730118648; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOcgV31d+YnFQlRPolkUo1sUslborEWsikCkSJr1UrA=;
-        b=A+f4afAsFM5VkAq1TwBJgkgoK9XE2D7oUR+KmmYv+LNsuOTmShp+sfR9znJoNQ7U8b
-         WyS91aU8zhwBVNpxdmxG+aly8xeZOaWq8gMOodau98MEuPBZpeZc0mugJsAxWobG+5oS
-         r9poQyOruveWa3v6GWDGHNOjfIEQ1AElm65IU6lTjJFtHy6vqOT2CBVWr3z1fKcCYoMe
-         9yG06biMbPhTTjqPQOwgpFalPXvDaJpW1Pf2uCW2ZIfZdSly21mbhLDAtVOr82yRdUw0
-         LTrtfoGdHIjaNpUQqWIZs48EeMHoXFWtGKQ4x6s+W6Vv1F8oFhWBlqrjYC4jSH8PjGHt
-         8iNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729513848; x=1730118648;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOcgV31d+YnFQlRPolkUo1sUslborEWsikCkSJr1UrA=;
-        b=V0tPpIXA+7hK2P7pQGo4dshgSWTIjGzmq5LmWyikws88Q8XfzQ3jMq954A6o8dSjt9
-         zGPfD3yMynUfkQp96XA3Y5C/EO0q+mHimSXRncWCQ3/aOPRf1rQvBJhNd3LyLyKFL0/Q
-         LNloedDx+MMyjnPD/vkGVGHmWJA2M0KL6QYiF1VMkmVWOnWo7ikKpWL1aZrqGRKvttij
-         biyZclRTieb+05lfmNAvh6b22Lx6MeQRPuJ77azNP5TdnchwQN94W4jJDW7wLsMch2Ap
-         mb/UDjPiCKQmsM+X9gaquqU8cxPegZegnnTL9TTcqlaO+mzgo7qNSAILLnPjDkqoNkJj
-         CQ1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUsc2RQj3h/eM6OHtK4GWzc7qfdbNjtffxm+tw+lFolx4/6P/wFOOgiG0q2JMMmO+NHAT9PtWT1DloB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMtMXqA3yxZkKq3z1U0n7xfmhRvvZoWYRQOOE4OuCnQN10hjS5
-	J9KDtKTYvDbCvCMc++mMVHSaILUNyXRrXuIGhFJM4riN8sFdw6KAeWMJff/TQd0=
-X-Google-Smtp-Source: AGHT+IEtF3bT2QfrG/FSR80A5nCmoFdFM8oPeqFnxIfisEJZ31HCLKiDspKSvJLCb+LbGqlwdYfqJg==
-X-Received: by 2002:a05:6000:b45:b0:37d:54d0:1f20 with SMTP id ffacd0b85a97d-37ea218b5ecmr7169863f8f.24.1729513848383;
-        Mon, 21 Oct 2024 05:30:48 -0700 (PDT)
-Received: from stroh80.lab.9e.network (ip-078-094-000-050.um19.pools.vodafone-ip.de. [78.94.0.50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37df9sm4237363f8f.19.2024.10.21.05.30.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 05:30:47 -0700 (PDT)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	jdelvare@suse.com,
-	linux@roeck-us.net,
-	sylv@sylv.io,
-	linux-hwmon@vger.kernel.org,
-	Naresh Solanki <naresh.solanki@9elements.com>
-Subject: [PATCH v3] dt-bindings: hwmon: pmbus: Add bindings for Vicor pli1209bc
-Date: Mon, 21 Oct 2024 18:00:43 +0530
-Message-ID: <20241021123044.3648960-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1729513911; c=relaxed/simple;
+	bh=MnWzGo7DwqyMcq42G1nBex5rtgvT6WVtHq5ZyeomlBc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=slgMavTZ75QnxR2qySDQkKEp8s1YJOXvnwQAbBRYg6JqjmQ37HG5wjCG6bE6XRw6b4OSak6vcqKYGchm+1vDis38PUUasC0ih4P7SMK1jJVVQAAnb9sMQlftYNJN6wOaxsicE5eUwkx8kz+/8Pk1grPc+55f2sZY5K8+1nzR+6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9897DA7;
+	Mon, 21 Oct 2024 05:32:18 -0700 (PDT)
+Received: from [10.57.64.219] (unknown [10.57.64.219])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 3C6753F528;
+	Mon, 21 Oct 2024 05:31:47 -0700 (PDT)
+Message-ID: <b2f9aa93-a50a-4bfd-9df0-9e3a170404f8@arm.com>
+Date: Mon, 21 Oct 2024 13:31:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/3] coresight: dummy: Add static trace id support for
+ dummy source
+Content-Language: en-GB
+To: Mao Jinlong <quic_jinlmao@quicinc.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20241018032217.39728-1-quic_jinlmao@quicinc.com>
+ <20241018032217.39728-4-quic_jinlmao@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20241018032217.39728-4-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Remove vicor,pli1209bc from trivial-devices as it requires additional
-properties and does not fit into the trivial devices category.
+On 18/10/2024 04:22, Mao Jinlong wrote:
+> Some dummy source has static trace id configured in HW and it cannot
+> be changed via software programming. Configure the trace id in device
+> tree and reserve the id when device probe.
+> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>   .../sysfs-bus-coresight-devices-dummy-source  | 15 +++++
+>   drivers/hwtracing/coresight/coresight-dummy.c | 59 +++++++++++++++++--
+>   2 files changed, 70 insertions(+), 4 deletions(-)
+>   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> new file mode 100644
+> index 000000000000..c7d975e75d85
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> @@ -0,0 +1,15 @@
+> +What:		/sys/bus/coresight/devices/dummy_source<N>/enable_source
+> +Date:		Oct 2024
+> +KernelVersion:	6.13
+> +Contact:	Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:	(RW) Enable/disable tracing of dummy source. A sink should be activated
+> +		before enabling the source. The path of coresight components linking
+> +		the source to the sink is configured and managed automatically by the
+> +		coresight framework.
+> +
+> +What:		/sys/bus/coresight/devices/dummy_source<N>/traceid
+> +Date:		Oct 2024
+> +KernelVersion:	6.13
+> +Contact:	Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:	(R) Show the trace ID that will appear in the trace stream
+> +		coming from this trace entity.
+> diff --git a/drivers/hwtracing/coresight/coresight-dummy.c b/drivers/hwtracing/coresight/coresight-dummy.c
+> index bb85fa663ffc..602a7e89e311 100644
+> --- a/drivers/hwtracing/coresight/coresight-dummy.c
+> +++ b/drivers/hwtracing/coresight/coresight-dummy.c
+> @@ -11,10 +11,12 @@
+>   #include <linux/pm_runtime.h>
+>   
+>   #include "coresight-priv.h"
+> +#include "coresight-trace-id.h"
+>   
+>   struct dummy_drvdata {
+>   	struct device			*dev;
+>   	struct coresight_device		*csdev;
+> +	u8				traceid;
+>   };
+>   
+>   DEFINE_CORESIGHT_DEVLIST(source_devs, "dummy_source");
+> @@ -72,6 +74,32 @@ static const struct coresight_ops dummy_sink_cs_ops = {
+>   	.sink_ops = &dummy_sink_ops,
+>   };
+>   
+> +/* User can get the trace id of dummy source from this node. */
+> +static ssize_t traceid_show(struct device *dev,
+> +			    struct device_attribute *attr, char *buf)
+> +{
+> +	unsigned long val;
+> +	struct dummy_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +
+> +	val = drvdata->traceid;
+> +	return scnprintf(buf, PAGE_SIZE, "%#lx\n", val);
+> +}
+> +static DEVICE_ATTR_RO(traceid);
+> +
+> +static struct attribute *coresight_dummy_attrs[] = {
+> +	&dev_attr_traceid.attr,
+> +	NULL,
+> +};
+> +
+> +static const struct attribute_group coresight_dummy_group = {
+> +	.attrs = coresight_dummy_attrs,
+> +};
+> +
+> +static const struct attribute_group *coresight_dummy_groups[] = {
+> +	&coresight_dummy_group,
+> +	NULL,
+> +};
+> +
+>   static int dummy_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> @@ -79,6 +107,11 @@ static int dummy_probe(struct platform_device *pdev)
+>   	struct coresight_platform_data *pdata;
+>   	struct dummy_drvdata *drvdata;
+>   	struct coresight_desc desc = { 0 };
+> +	int ret, trace_id;
+> +
+> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+> +	if (!drvdata)
+> +		return -ENOMEM;
+>   
+>   	if (of_device_is_compatible(node, "arm,coresight-dummy-source")) {
+>   
+> @@ -90,6 +123,25 @@ static int dummy_probe(struct platform_device *pdev)
+>   		desc.subtype.source_subtype =
+>   					CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS;
+>   		desc.ops = &dummy_source_cs_ops;
+> +		desc.groups = coresight_dummy_groups;
+> +
+> +		ret = coresight_get_static_trace_id(dev, &trace_id);
+> +		if (!ret) {
+> +			/* Get the static id if id is set in device tree. */
+> +			ret = coresight_trace_id_get_static_system_id(trace_id);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +		} else {
+> +			/* Get next available id if id is not set in device tree. */
+> +			trace_id = coresight_trace_id_get_system_id();
+> +			if (trace_id < 0) {
+> +				ret = trace_id;
+> +				return ret;
+> +			}
+> +		}
+> +		drvdata->traceid = (u8)trace_id;
+> +
+>   	} else if (of_device_is_compatible(node, "arm,coresight-dummy-sink")) {
+>   		desc.name = coresight_alloc_device_name(&sink_devs, dev);
+>   		if (!desc.name)
+> @@ -108,10 +160,6 @@ static int dummy_probe(struct platform_device *pdev)
+>   		return PTR_ERR(pdata);
+>   	pdev->dev.platform_data = pdata;
+>   
+> -	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+> -	if (!drvdata)
+> -		return -ENOMEM;
+> -
+>   	drvdata->dev = &pdev->dev;
+>   	platform_set_drvdata(pdev, drvdata);
+>   
+> @@ -131,7 +179,10 @@ static void dummy_remove(struct platform_device *pdev)
+>   {
+>   	struct dummy_drvdata *drvdata = platform_get_drvdata(pdev);
+>   	struct device *dev = &pdev->dev;
+> +	struct device_node *node = dev->of_node;
 
-Add new bindings for Vicor pli1209bc, a Digital Supervisor with
-Isolation for use with BCM Bus Converter Modules.
+^^ Why is this needed ? The rest looks fine to me
 
-VR rails are defined under regulator node as expected by pmbus driver.
-
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
----
-Changes in V3:
-- Fix indentation
-Changes in V2:
-- Squash the two patch in patch into one.
-- Update commit message.
----
- .../bindings/hwmon/pmbus/vicor,pli1209bc.yaml | 62 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  2 -
- 2 files changed, 62 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
-
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
-new file mode 100644
-index 000000000000..4aa62d67e1a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/vicor,pli1209bc.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/pmbus/vicor,pli1209bc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Vicor PLI1209BC Power Regulator
-+
-+maintainers:
-+  - Marcello Sylvester Bauer <sylv@sylv.io>
-+  - Naresh Solanki <naresh.solanki@9elements.com>
-+
-+description:
-+  The Vicor PLI1209BC is a Digital Supervisor with Isolation for use
-+  with BCM Bus Converter Modules.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - vicor,pli1209bc
-+
-+  reg:
-+    maxItems: 1
-+
-+  regulators:
-+    type: object
-+    description:
-+      List of regulators provided by this controller.
-+
-+    properties:
-+      vout2:
-+        $ref: /schemas/regulator/regulator.yaml#
-+        type: object
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        regulator@5f {
-+            compatible = "vicor,pli1209bc";
-+            reg = <0x5f>;
-+
-+            regulators {
-+                p12v_d: vout2 {
-+                    regulator-name = "bcm3";
-+                    regulator-boot-on;
-+                };
-+            };
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 15f89d7ecf73..00361b5cfc3c 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -404,8 +404,6 @@ properties:
-           - ti,tps546d24
-             # I2C Touch-Screen Controller
-           - ti,tsc2003
--            # Vicor Corporation Digital Supervisor
--          - vicor,pli1209bc
-             # Winbond/Nuvoton H/W Monitor
-           - winbond,w83793
- 
-
-base-commit: d79616b04f0e08178ceb716a5d2ef60ab723d532
--- 
-2.42.0
+>   
+> +	if (IS_VALID_CS_TRACE_ID(drvdata->traceid))
+> +		coresight_trace_id_put_system_id(drvdata->traceid);
+>   	pm_runtime_disable(dev);
+>   	coresight_unregister(drvdata->csdev);
+>   }
 
 
