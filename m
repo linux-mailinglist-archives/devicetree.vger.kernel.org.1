@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-113551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCD6F9A6070
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:43:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 754789A607C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:45:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C4421F2246C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:43:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F2591C21D64
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:45:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 007B11E32D2;
-	Mon, 21 Oct 2024 09:43:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187531E3DD8;
+	Mon, 21 Oct 2024 09:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DOgJh/ia"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nk44N8Qg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE2F21E283D;
-	Mon, 21 Oct 2024 09:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2EF79CC;
+	Mon, 21 Oct 2024 09:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729503822; cv=none; b=ICnTxc0YUdkNb7u+W5E57YwnNDf2xEtr91vex0WPROsYCV78HLCmWWe8Z2KxEWorIpqjQe2U6R3nKp/w7LASxQUBbIG09Et/1f+TpwLuaCk0O3v8xgpUDrvCR1cCSl1wOla4dAXOnq55qxuhBUK2eBIKIuVL0yJy1yyfO6Cjy40=
+	t=1729503922; cv=none; b=LYSrCP8mGQKCy0ZyIewU2jL8C/PMDINMrdevKKzuSEuUMrLMgQpk8MNb+jABNh8T72zaaAMwE3e94f7Ew/jz5IJ/c21xXDmnuvb8wfvga7h63A72NlGN2kAgqRlxwHlKS4vzyR0/FIuVT8sgUNPnnHDESNrE4o8ZAylgkpEPXz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729503822; c=relaxed/simple;
-	bh=DocfnqodpECHeTU7WzOZ8o9ZwceqaD+JMKAhWcybg7g=;
+	s=arc-20240116; t=1729503922; c=relaxed/simple;
+	bh=phRLmFMcDuwY5RezP7osvGR6f0yCVvfrTPl2Au6E7rY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZlkIsu3oBg9qvOfRswXbGSJqGSCrwFOUwqcUdsnoaowz7DWzkhT3pEO5+BbCBN7xskuqkCl63L0eLfj1Nt8AqJ8fFsaAvckhK+/7+nFQ328Pp5A//WNIVFqqk7F36AOKLFU63tZjeK/uBvLVxgTbCtSS7cpTRC2AGPVW1OW0orU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DOgJh/ia; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F232C4CEC3;
-	Mon, 21 Oct 2024 09:43:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hsf/v8PVSEZ1s0hOxm6GCVSzAF7qwuMsBWyw41GWUSZek80T0mnG5fTSgXJ9XxFkGyldCUqBYK9MKd1PlJWPWHvgxGK0yt5mlpkpKt2aAmTb69ZVVHO36f8rmcR5UNbug9H+JCk5WM2xTkXeyuoe7hed8bepiZdHdmEAgX5O4E8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nk44N8Qg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2F89C4CEC7;
+	Mon, 21 Oct 2024 09:45:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729503822;
-	bh=DocfnqodpECHeTU7WzOZ8o9ZwceqaD+JMKAhWcybg7g=;
+	s=k20201202; t=1729503921;
+	bh=phRLmFMcDuwY5RezP7osvGR6f0yCVvfrTPl2Au6E7rY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DOgJh/iab918XNUp6ZzTERCymq7jkBNkGI9G3LUununJvoVxX2FpPcoAdE1hzxayZ
-	 KvkWsugqp/KiXlQ+rRMMBN9OZp5VA6PeMBO43HKGbYIofzBamdVvatNlw9iiMj0Tfj
-	 ELugB8yXQPcb793QSgDKWG/HONCCQwTnBfJ9lDzioAjfRyrNORrdIl0eYF4sHUlHzc
-	 OngBmmVyfZuiwRs44Vfxntua/FIV9JBhk0t9hlRbfEdmtrWfTiG7TxCJ3vBTuZaiUN
-	 uJZoLwu04bBl/x7lNpevGhHAN/1FvT55OJ9jID6mluTHHp0yKHBKJKwG2IdUF5/Yxr
-	 BxOcj5NpE19Cw==
-Message-ID: <fbde8a3a-3adc-4c1a-8529-fde0fa149c8e@kernel.org>
-Date: Mon, 21 Oct 2024 11:43:35 +0200
+	b=Nk44N8Qgu6TNm/o+2q1WPoDJEF5Zllnpz7QBdGKsi//sf9Czst7SDst6lkCKClhZx
+	 KNgyXgWfRjg4B8bM0ulBoQNCKribaAoE4uVbq14ia9Jmy1MPTbnBSydfRZlYU63CO0
+	 xsaTWNAXkucClpL1mBSM1kXJsg4FL1DB3vaN7LQ7zXXgMlHuSzHc575iccvD33/U6r
+	 5xEqGeMyoNnemNjLr15KHeJD5qCS/HvXPnzxC7A9Qc1hwkVUAl4LMGgNhdcggWq0NZ
+	 XZ7XCvsvzgvIBrT3iukYx1PRRL6TadZKw5DILNEXYQgTXz9s24ynMS/wQYaYpTZs6b
+	 lbMHVDrD7Mt7g==
+Message-ID: <bf89e8ae-c53d-464d-b462-8b8b1b049c0d@kernel.org>
+Date: Mon, 21 Oct 2024 11:45:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-To: Charles Wang <charles.goodix@gmail.com>,
- Doug Anderson <dianders@chromium.org>
-Cc: dmitry.torokhov@gmail.com, hbarnor@chromium.org,
- conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v1 1/6] dt-bindings: timer: exynos4210-mct: Add
+ samsung,exynos8895-mct compatible
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>
+Cc: linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20241018020815.3098263-2-charles.goodix@gmail.com>
- <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
- <ZxMfu4yxk961mZWB@ux-UP-WHL01>
+References: <20241020182121.377969-1-ivo.ivanov.ivanov1@gmail.com>
+ <20241020182121.377969-2-ivo.ivanov.ivanov1@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,47 +108,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZxMfu4yxk961mZWB@ux-UP-WHL01>
+In-Reply-To: <20241020182121.377969-2-ivo.ivanov.ivanov1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 19/10/2024 04:55, Charles Wang wrote:
-> Hi Doug
+On 20/10/2024 20:21, Ivaylo Ivanov wrote:
+> Just like most Samsung Exynos SoCs, Exynos8895 uses almost the same
+> Multi-Core Timer block with no functional differences.
 > 
-> On Fri, Oct 18, 2024 at 01:48:56PM -0700, Doug Anderson wrote:
->>
->> On Thu, Oct 17, 2024 at 7:09 PM Charles Wang <charles.goodix@gmail.com> wrote:
->>>
->>> The Goodix GT7986U touch controller report touch data according to the
->>> HID protocol through the SPI bus. However, it is incompatible with
->>> Microsoft's HID-over-SPI protocol.
->>>
->>> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
->>> ---
->>>  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
->>>  1 file changed, 58 insertions(+), 10 deletions(-)
->>
->> I'm happy to let device tree folks make the call here, but IMO it
->> would be much cleaner to just consider the I2C-connected GT7986U and
->> the SPI-connected GT7986U to be different things and just use a
-
-Same device, you cannot have different compatibles. The way how the same
-(literally same chip) device sits on the bus is not part of the binding,
-thus no different compatibles.
-
->> different compatible string for them. So essentially go back to your
->> v7 patch from before [1] but change the compatible to
->> "goodix,gt7986u-spi". If, for instance, this device also had a USB
->> interface then I don't think we'd try to cram it into the same
->> bindings even though the same physical chip was present...
->>
+> Add dedicated samsung,exynos8895-mct compatible to the dt-schema for
+> representing the MCT timer of Exynos8895 SoC.
 > 
-> Honestly, I agree with this approach, but Krzysztof seems to prefer
-> extending the existing binding.
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> ---
 
-I prefer not to have warnings and that was the problem with original
-patchset. I am fine with splitting different models between different
-binding schemas/files, but not the same device in two files.
+I assume this will go via timers/clocksource:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
