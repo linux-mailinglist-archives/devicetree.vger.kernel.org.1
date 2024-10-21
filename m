@@ -1,220 +1,514 @@
-Return-Path: <devicetree+bounces-113429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 289749A5916
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 05:05:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C31F29A594E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 05:45:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB29B2820C8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 03:05:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2296FB229E9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 03:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC331CEE82;
-	Mon, 21 Oct 2024 03:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C41208A9;
+	Mon, 21 Oct 2024 03:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jRX3swmV"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NmWdDzTq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2084.outbound.protection.outlook.com [40.107.21.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC231CDFA6;
-	Mon, 21 Oct 2024 03:05:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.84
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729479910; cv=fail; b=G8vE+kJi6+fgEXblbp8GtzPU/R+ae6y5tsu5jxpMVXikzYGfkAPylNVT9pvLEK4fKjEJN2C9bd74XluQ82LVQdjvbGMFN/5xF4EOpdGwyz7izf11mpUFn7jSWSWu5WwwyjWBGyF49aXMkeHIQd+2z4PJUxOJEXpAuOVzbm2ukjM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729479910; c=relaxed/simple;
-	bh=cdAEEWws+JkeUZcal+b6iYyygIMEbd7DKHynd6Cxf2Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=pr9MRNTABXLNA7zY0niJUNLd9V1JZVCgodjAOY4HC/g3fWxs2hZApObgLAd0jw0Fd/sTCKGJVJA0hDpqM2NCeBMEUU/d+SoMSFlYFMr10x303FVWbTORJawx476N50Tjd8B3yrxUwyS3hv0D+lrywPeG1+UhkMpEfexpzftD0P4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jRX3swmV; arc=fail smtp.client-ip=40.107.21.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SQmrBUv3GDYvKB9oOyhIfBmYiQF6gKQXIQh75Xg8/Ig2WdzXd4kdOs8Qw0+eTt+Cg8vVYxE/m9k5gvritevjDXmyVSvtZrz1K8s9quHiPPeaXN81T5zd/fxxf13IswVfmhIQuGU/1Rwr0zWPTWVLeygUzAXX96+jV7MOspSTVoczenOpAlQIlLU+AX4tpZXeB280vXDo+UEdi38t1XDfg2EiJ0zOtLLMijaDJqMeoP6Uw++MquBGUwpejQKDzvgjpf2mOBuLqxXVTR27DHd/FOCvAJDc6eYysZ2Hb0h2kOVTIw2jJNTXJ2IqTHUMBGQiB7JPNF0qgjLo6KAffsOchw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tWfkGWCM4omQW1LZZCyIMtAhRUatw2CUbJlzGudBkk8=;
- b=FHYqSfs7YXCjt4UwdL4Ye4Ob/80Z9PCPkZWSGhl8Fds5wKbxbgqD5OTjOdjDY/CBQ42XL3W7zU2Yi1Ftd9rUdhjN1K3bNwGAX/W7syRuGv/BXor5P84z6vLkV4ga6ZCLzSolYT/Eslj5RTXvJntPZ+19vY4NDxTYIEhtOohAL6ceQVa8Yv39d7ZBIyIvFtSPqmhLhnJd2ZN5hZQyAm8udkjKDjYh3qGd8ZUJLZPPBdqs2OahgT49AfyRWzNtc5USqfwhnJ5YVsGdYLtMTbXxbkiY/JqoeXplSjHtO7yVp4wynkDUmDJVvJxJKEBb+ATF+3oxQ9+Uvq/n0OBVn5lijA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tWfkGWCM4omQW1LZZCyIMtAhRUatw2CUbJlzGudBkk8=;
- b=jRX3swmVumxIdeP7Ord/9ue6wlvXDc36dGjArEVIpZmoB5wRwU5Q+r8h2zdUjOpWZIOOkxNlGikZg0u4VAqGuhh4TrdbfQv/OH1mdr5szKaDDXjRoFxr2P5svMJQ6QhOoFHymLJbL/F1cO9HByBYbtwzxFZJt0wp92xU1ElPv30UUrT9zSlAcPAU5ikSbMlsbFhfZtZuvVJ6TC9pJREQZbLfJUH45C0gLLqQBxj/HxQ40qAA0R/i1SFffh0DCumSaasinwFRRyVEBU3WeQvT1jDf2K/ahWoqN4A/vbnlZNKtKAspGDFkEWi2vKURnOoZYFoOhbZiLhJx5H7rr/Zmaw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR0402MB3937.eurprd04.prod.outlook.com (2603:10a6:208:5::22)
- by AM8PR04MB7811.eurprd04.prod.outlook.com (2603:10a6:20b:236::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Mon, 21 Oct
- 2024 03:05:04 +0000
-Received: from AM0PR0402MB3937.eurprd04.prod.outlook.com
- ([fe80::4e37:f56b:8a3e:bff0]) by AM0PR0402MB3937.eurprd04.prod.outlook.com
- ([fe80::4e37:f56b:8a3e:bff0%4]) with mapi id 15.20.8048.020; Mon, 21 Oct 2024
- 03:05:04 +0000
-From: carlos.song@nxp.com
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	frank.li@nxp.com,
-	haibo.chen@nxp.com
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: imx7s: change i2c compatible string for applying errata ERR007805
-Date: Mon, 21 Oct 2024 11:11:48 +0800
-Message-Id: <20241021031148.2682015-1-carlos.song@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR06CA0010.apcprd06.prod.outlook.com
- (2603:1096:4:186::6) To AM0PR0402MB3937.eurprd04.prod.outlook.com
- (2603:10a6:208:5::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B89414A90
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:45:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729482352; cv=none; b=FcrFV6CI+Rz4xtYfe1GSrejlFD0T6phc67JoQz4MIsmstBqDLFTqoNI2sGoj/kkHfnzKbuKbtT0bddF5Z26qzSWW2wCNo9Fr6iD/b4zfYknqNERGPj6BLg/Vr6xIPBnIyAZdlhWLTURkH1t3Bhir0Gq/NpCGyUlp5cra0Sfsgs4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729482352; c=relaxed/simple;
+	bh=48iY/6ng3rTzT7U04tDz7oSoPrX/GbikNPGW32/rZAA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=as5A4DrrkKS4KQM4s5K5/2KUv5DX5ANhxKuR8DtXIWvSH4QsX7hFehbXyGcAL71Aav59pH4SNKfMZ4uSv+59/Xu4TTAY8fxfCdDuhTXmPGRYu8NauM2nTjkC6++SPBHlXDszNiM4h1ikOHgLpexz3ZbbYfd2EVvKOTJbDaUqAfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NmWdDzTq; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-539e13375d3so4240672e87.3
+        for <devicetree@vger.kernel.org>; Sun, 20 Oct 2024 20:45:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729482348; x=1730087148; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=89Lxjo33WwYCyROnc52VTFVbjS1T4gfA10xmJgnrxhg=;
+        b=NmWdDzTqrJPsSNZtkgBY9I+4vBcVXDRTTUWPhSX0V0hpX+7zIz1bjqYe/xA73bpaEA
+         h3unMx/ThOT5iczvngGbgPBDvG4BXSTt7uL+L7uQi4MuoGECYtoiA3391ShWi8cDJvns
+         g1WbMfwluIsCAqhNtoWrqiU/+FwFJE+Z6WKA4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729482348; x=1730087148;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=89Lxjo33WwYCyROnc52VTFVbjS1T4gfA10xmJgnrxhg=;
+        b=t4cPEBDLeGqSIHO3iJ8XSbYOfvwO8vl9YSdZU2CYdzzEhq7lHpZybCkOPFVF4FIgLI
+         LdIVD/ZT5zcB8mdY4Y+wPboqinPP86Xom/k47Q/0uJLNAuN9QtqvH0gRmTcfxUXzdSH5
+         DkPWAPDYlbX2rcPSU6OWrKPdOAL//aAZFGeLQwEYLUOzLQsCaSpe7/HNMdF4XxZ/DT1E
+         6HGp4HhBlLAY51KvIvB+UGKupE8k4KqdvoDN8A0PbgkFc9ZxtSvqh22XmPRe21mvvf8j
+         EAVuGqLsXMpuItqsCnuvPYzo9E/00xsgNPx1I/+cBHiDhSMwR1CAVR645BrjudrLwcFw
+         vowQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXQbQjxSpytc/GuKopkBkbP+HNO4z2T93Ksr+fyRtdTRsfBw23chs6TCk8dlzNBzp28myuWw4DnZ4XY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzJ7m5mpgjFghlHFzN8OEShQ8yr8HuB6ZIrZySHnvUyHgZCVQR
+	4bRvJZS27MZnbWJ0zRJRR4i5DBkVJQ0969/Lrx3AHVk7SIidTZ6fUOWbGIi+GODIJo+wez3ZKCR
+	T3At2Zj5XfMD7+k8DcT6j1FhkPBEWa6boQ3wc
+X-Google-Smtp-Source: AGHT+IFr3BTScNBvrlXGBOGqM+cE1Teqf7FcPXjAUV8dGB205MgAEef5pC1n9sNjZsWzyh87run40PkmJjJ9p+SS0Hs=
+X-Received: by 2002:a05:6512:3b93:b0:539:fb49:c48e with SMTP id
+ 2adb3069b0e04-53a15441716mr4720141e87.11.1729482347886; Sun, 20 Oct 2024
+ 20:45:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR0402MB3937:EE_|AM8PR04MB7811:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6474e240-738a-48e3-f0bf-08dcf17d28fa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|52116014|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Fx4IOlSj7xVEt1RW2/d3AqeeL6MMsRPmvneMRmuBIi1/mxCDhU1YC0g7WHop?=
- =?us-ascii?Q?7WQ85JegvzOTIpEl5UuRotQZ5pPbO5e4iAZgMAl29Tgl8uscqacsMRBM1bJt?=
- =?us-ascii?Q?GAdrBvpHyoB6rtNN4U8B8m7jJSCBX4x90xWy+PCpj9VfKcJTBd0fbbN28dE2?=
- =?us-ascii?Q?1QwrDYAsFYhz2Db4/hhr1tZX270G1IBIGoovLRaohdX/LKg1DHakdP0CP9VY?=
- =?us-ascii?Q?tE8arFVf13iO8cVSkEdlzY+HNDyusB+9LGxLT9PvP3PV52D8afkgj96IdgHa?=
- =?us-ascii?Q?SJQK737gVIJJLKguHk2+QWGT9PrG0S6/NIGOYz4LpJslb0fQdPfG9GsfCGaK?=
- =?us-ascii?Q?2z1c0GJpADWJvzuo3iO8P3j3uc+r7XfQy42bVQB4pbq9URZ1qmD44TOjTJsK?=
- =?us-ascii?Q?O9W6gfmrg8Hew80w0SpRX/Qtzbl2Srqk7ivGbrTaBgGwaZA+7YmkK4zFo0Ik?=
- =?us-ascii?Q?lt9sz/ByalTmh7N3/34XK696lerekOcKiNWfvgOjEdL9vrjfHbAaAkzuRBle?=
- =?us-ascii?Q?3MYCkcoDd1IEnZUnA8k9vNgKBFL16uDg8j3Rv4GCp/63QXQeMPmVAcQuJGS5?=
- =?us-ascii?Q?KN4QWXvUESgA3E0b086Swo/jbSqM/DR/apfibiCQrwu6E+3oemBwWEeDYjLC?=
- =?us-ascii?Q?sbloxoglWuA1oOZNVXJQvT5wgF5Jq+om1tz3gpmkjCjJgIE7xwMFW4SvkEBt?=
- =?us-ascii?Q?VflLglnzcNXbHBKdL5t4FOgsizqAlMHHz/gTLVgxzkPkTlTXOU6AnMeWKQm8?=
- =?us-ascii?Q?Qea4XVwe0fxEoA36YQui/U7FgV39bBLfRPFHtZbs50XetNIiaSI6Ap+/eAX7?=
- =?us-ascii?Q?X/VwpqsHLhzKXeXNcz3/gIHPVKtk1AW2Vulf+ORN/48MIaM8DZabYpKr+ZBb?=
- =?us-ascii?Q?OnsYDrQ9T/9EV5N/yBee9jSVT7ykT0RdD75Eu9gr5K5mx09mv8+YXubm8jMM?=
- =?us-ascii?Q?0z2RJkkcx2zmldrESsK8Sp26P+t4ILwbqOHvdCWQgILUp3GUzE9VEq4QV+zE?=
- =?us-ascii?Q?zDLN/zSNcS4iV9Idg6itlm0E/iMebtN/xsCPmdAetvG2+VFl/5RBP7ffxFan?=
- =?us-ascii?Q?y72y8GbCgE9m3ECaxrkQRKxoiuK/szXv2Hg2Rgo+y3Wp3ce/cm2HiASMfJBW?=
- =?us-ascii?Q?p5sjShwP17QWHS3NyWeUt0LLIcKii6cQxUOkQvYslKnCljcn6yVxfjcLARV1?=
- =?us-ascii?Q?EYMVfyE2e66v1WivRigKDRI8iSj+Fb70bGBLkg0grdT/y8trXhjEmpBLXygg?=
- =?us-ascii?Q?phh9kou+lqkPp6VpIbUkPIushmscAfNhTTeKV8LkiXY0S/Zd4gIsxLPjyB0R?=
- =?us-ascii?Q?ScmNF3zeUQ38/d8VNoNvR5gklzUzdAP4951Zl98oJAVr8aOkB2DpKU6tLVN/?=
- =?us-ascii?Q?+XTjPRI=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR0402MB3937.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(52116014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?OqS8/irslL2A66oTkc5PTjsQ9GMTnHl/wcMtnFD9TlVV88ZlpoGXHjFvmP5y?=
- =?us-ascii?Q?Cgi+VBLk3rGecXuTudBISVuGiNtJNc8qzs8SuJKI2W9J9+4eCb9hCzJlFnvu?=
- =?us-ascii?Q?LW2FSCXLlS0JZCdgqF+fdzI24tVPOVIRogfDVYGFfAYqE1CoEOCrFEhozc2G?=
- =?us-ascii?Q?GiCOuUq1lLKh6ksDW9RsBwq1bUKoQDsRyI5aLLexC1Ebu9EvHIzxpozSNp8g?=
- =?us-ascii?Q?MaIC7Z+s2dSILP1Ede06geRXnGh/glyUHcUx3p1TIue81tKhD+DzepYpZuZk?=
- =?us-ascii?Q?GPcJC8DCBA0JADcb8mRZ79lZcqjHFT/vKJpbsClpptqqoafbsPeN90DJvDda?=
- =?us-ascii?Q?rGd13MD9Brn8lIxlyBmvD0+3QB//1KonG3snHZvuqJvkss7HE4wnP6lhYKM6?=
- =?us-ascii?Q?R3gCSRyJGzqfnXMEQrIwOLQKE5fUwgzLcnLy9ngawyxYHdkOUVx2S4sSxkEx?=
- =?us-ascii?Q?6DmKW/IDIAU02L223MdyKtUw9yiVWmxXoPHJfCPaH+RRevuZwpK7GsfnJrXo?=
- =?us-ascii?Q?fpQvm7KBQaPXJX1dOnT5uFdsK7fhKXRQpnvq51zb9Hb+G/ul5O8DSAOdkrG0?=
- =?us-ascii?Q?o1uiXLjTtw3Mu3qFAJGrHD+SMy9Y08z68DfCGBkpA3fiMDmg+rwH3KoTcjBj?=
- =?us-ascii?Q?7u6V99h4B2oocDXN6UzYkZQog3pBfN60ZgfVnQV9L3HP064+/KZcaCXRV6uD?=
- =?us-ascii?Q?0j4hO1DrYDO9OE5/ZKLMc2OYqofqHmeQa9nm+P1qzOJvi5hDbyxLP3uIvGhZ?=
- =?us-ascii?Q?0ufGuyBL38XYF8zN6Gga60ObwCLIpG/WlNKEtdkc2mmCTOIutDbu83TIzuHW?=
- =?us-ascii?Q?Bkyf9cxMxGgErGPG5TVlUsrgxSEGJ84dJlVWYrBI9jAD3zRIhOe8DJ5RkZ0I?=
- =?us-ascii?Q?4TqSeDjIphhiubxZtWQTeQg5gZdbCKlq8jLCwoEQ2386WQYDnHiIuP/na38X?=
- =?us-ascii?Q?cN/7pBna4u335z6CKcsNgQ0EukFnaTF0dpBL3Zir9sZqXBmFby9rWEZnn28h?=
- =?us-ascii?Q?uG/kQsedUomzQ1jx4fZlMAHG5lrxLW22iqA8LE5HJ3HqaAG+4qx7w+wHohDP?=
- =?us-ascii?Q?f0gq5kYZL6Vwn8aTtSiU0MZYKTo39z4lxO5vfpkwcLLSeVcMI74kMa4+PQiR?=
- =?us-ascii?Q?msFybQJZdsbmLTCXHQXALAPVDWJVcbtOLz3IloojmlkbzuJO5drNzGIE8SFX?=
- =?us-ascii?Q?zIPkaLgCSCIM7K3oUUn4Jdf/5rwAva+6HmI34Qpd2XVZfOUd40nKxTF+kRVC?=
- =?us-ascii?Q?AyuNyS6p/7QPWWmfjAPFqSQPA2yPw1abjsiFb+7irrXcXWr1TgCh7jzDoIkA?=
- =?us-ascii?Q?HbWFUQFr7G3Yrgyyalbxds0jUYooP6kFoqTpqiLAUVzMl1OrWsRGSAA5oL9b?=
- =?us-ascii?Q?UUVp0Q8Gv294dj+yKNF9tD+lTHmcJ88zJx99676lKTuhrjz9oe4wsagrT4XH?=
- =?us-ascii?Q?N4xSKpBktuihzBBDIfaJTaszuBrUwVP4wzLB3P3q+461CM1OGlIMKCxGBt04?=
- =?us-ascii?Q?TN/mPduTui6FCe0dfHwpLou1gq3wXP2lcUIKDiA+gN3Mr9/0Zjqpcl1f0K1N?=
- =?us-ascii?Q?Bczd5pD+LKNnyVFvc2T9g1xyMP9tGLuEpeM8VZlv?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6474e240-738a-48e3-f0bf-08dcf17d28fa
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR0402MB3937.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2024 03:05:04.3041
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +O6Dl4D+2MHCsMRbYYqvFnoHui61R/EoBCo3k9A0vVnaowvsC4c+84SumRmOxc+mPrTw6gZVeohXvUBOVcnMQw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7811
+References: <20241018094234.2633366-1-jakiela@google.com>
+In-Reply-To: <20241018094234.2633366-1-jakiela@google.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 21 Oct 2024 11:45:36 +0800
+Message-ID: <CAGXv+5G2kc5vkAuMC2JqLRSdjCeHMCpu8_E7DccJd2VoCqY1VQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8186: Update regulators voltages
+To: =?UTF-8?Q?Albert_Jakie=C5=82a?= <jakiela@google.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Carlos Song <carlos.song@nxp.com>
+On Fri, Oct 18, 2024 at 5:44=E2=80=AFPM Albert Jakie=C5=82a <jakiela@google=
+.com> wrote:
+>
+> Update minimum and maximum voltages and add
+> missing regulators.
+>
+> Signed-off-by: Albert Jakie=C5=82a <jakiela@google.com>
+> ---
+>  .../boot/dts/mediatek/mt8186-corsola.dtsi     | 107 +++++++++++-------
+>  1 file changed, 63 insertions(+), 44 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm6=
+4/boot/dts/mediatek/mt8186-corsola.dtsi
+> index 682c6ad2574d..62158eac45d0 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> @@ -1302,8 +1302,8 @@ mt6366_regulators: regulators {
+>
+>                         vcore {
+>                                 regulator-name =3D "pp0750_dvdd_core";
+> -                               regulator-min-microvolt =3D <550000>;
+> -                               regulator-max-microvolt =3D <800000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <1293750>;
 
-Compatible string "fsl,imx7d-i2c" is not exited at i2c-imx driver
-compatible string table, at the result, "fsl,imx21-i2c" will be
-matched, but it will cause errata ERR007805 not be applied in fact.
+No. The voltage range has been correctly limited to the consumer's range.
+The voltage constraints are supposed to be the voltage range supported
+by all its consumers, not what the regulator can actually provide. The
+latter is already implied by the compatible string and the regulator
+node name.
 
-Replace "fsl,imx7d-i2c" by "fsl,imx7s-i2c" compatible string in dts
-file for appling the errata ERR007805.
+>                                 regulator-ramp-delay =3D <6250>;
+>                                 regulator-enable-ramp-delay =3D <200>;
+>                                 regulator-allowed-modes =3D <MT6397_BUCK_=
+MODE_AUTO
+> @@ -1313,8 +1313,8 @@ vcore {
+>
+>                         mt6366_vdram1_reg: vdram1 {
+>                                 regulator-name =3D "pp1125_emi_vdd2";
+> -                               regulator-min-microvolt =3D <1125000>;
+> -                               regulator-max-microvolt =3D <1125000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <2087500>;
 
-Signed-off-by: Carlos Song <carlos.song@nxp.com>
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
----
- arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Same thing about the voltage ranges.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-index 22dd72499ef2..6a1d8350192f 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-@@ -1087,7 +1087,7 @@ flexcan2: can@30a10000 {
- 			i2c1: i2c@30a20000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				compatible = "fsl,imx7d-i2c", "fsl,imx21-i2c";
-+				compatible = "fsl,imx7s-i2c", "fsl,imx21-i2c";
- 				reg = <0x30a20000 0x10000>;
- 				interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_I2C1_ROOT_CLK>;
-@@ -1097,7 +1097,7 @@ i2c1: i2c@30a20000 {
- 			i2c2: i2c@30a30000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				compatible = "fsl,imx7d-i2c", "fsl,imx21-i2c";
-+				compatible = "fsl,imx7s-i2c", "fsl,imx21-i2c";
- 				reg = <0x30a30000 0x10000>;
- 				interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_I2C2_ROOT_CLK>;
-@@ -1107,7 +1107,7 @@ i2c2: i2c@30a30000 {
- 			i2c3: i2c@30a40000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				compatible = "fsl,imx7d-i2c", "fsl,imx21-i2c";
-+				compatible = "fsl,imx7s-i2c", "fsl,imx21-i2c";
- 				reg = <0x30a40000 0x10000>;
- 				interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_I2C3_ROOT_CLK>;
-@@ -1117,7 +1117,7 @@ i2c3: i2c@30a40000 {
- 			i2c4: i2c@30a50000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				compatible = "fsl,imx7d-i2c", "fsl,imx21-i2c";
-+				compatible = "fsl,imx7s-i2c", "fsl,imx21-i2c";
- 				reg = <0x30a50000 0x10000>;
- 				interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_I2C4_ROOT_CLK>;
--- 
-2.34.1
+>                                 regulator-ramp-delay =3D <12500>;
+>                                 regulator-enable-ramp-delay =3D <0>;
+>                                 regulator-allowed-modes =3D <MT6397_BUCK_=
+MODE_AUTO
+> @@ -1322,6 +1322,16 @@ mt6366_vdram1_reg: vdram1 {
+>                                 regulator-always-on;
+>                         };
+>
+> +                       mt6366_vpa_reg: vpa {
+> +                               regulator-name =3D "ppvar_dvdd_vpa";
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <3650000>;
+> +                               regulator-ramp-delay =3D <50000>;
+> +                               regulator-enable-ramp-delay =3D <250>;
+> +                               regulator-allowed-modes =3D <MT6397_BUCK_=
+MODE_AUTO
+> +                                                          MT6397_BUCK_MO=
+DE_FORCE_PWM>;
+> +                       };
+> +
 
+This regulator is not used in the design and was purposefully omitted
+when the board was upstreamed.
+
+>                         mt6366_vgpu_reg: vgpu {
+>                                 /*
+>                                  * Called "ppvar_dvdd_gpu" in the schemat=
+ic.
+> @@ -1330,19 +1340,17 @@ mt6366_vgpu_reg: vgpu {
+>                                  */
+>                                 regulator-name =3D "ppvar_dvdd_vgpu";
+>                                 regulator-min-microvolt =3D <500000>;
+> -                               regulator-max-microvolt =3D <950000>;
+> +                               regulator-max-microvolt =3D <1293750>;
+
+Why? The datasheet has a lower value and the OPPs only go up to 0.95V.
+
+>                                 regulator-ramp-delay =3D <6250>;
+>                                 regulator-enable-ramp-delay =3D <200>;
+>                                 regulator-allowed-modes =3D <MT6397_BUCK_=
+MODE_AUTO
+>                                                            MT6397_BUCK_MO=
+DE_FORCE_PWM>;
+> -                               regulator-coupled-with =3D <&mt6366_vsram=
+_gpu_reg>;
+> -                               regulator-coupled-max-spread =3D <10000>;
+
+Definitely not. Please read
+
+    https://lore.kernel.org/all/20230301095523.428461-1-angelogioacchino.de=
+lregno@collabora.com/
+
+and understand that things have been solved differently compared to the
+ChromeOS downstream kernel.
+
+>                         };
+>
+>                         mt6366_vproc11_reg: vproc11 {
+>                                 regulator-name =3D "ppvar_dvdd_proc_bc_mt=
+6366";
+> -                               regulator-min-microvolt =3D <600000>;
+> -                               regulator-max-microvolt =3D <1200000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <1293750>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-ramp-delay =3D <6250>;
+>                                 regulator-enable-ramp-delay =3D <200>;
+>                                 regulator-allowed-modes =3D <MT6397_BUCK_=
+MODE_AUTO
+> @@ -1352,8 +1360,8 @@ mt6366_vproc11_reg: vproc11 {
+>
+>                         mt6366_vproc12_reg: vproc12 {
+>                                 regulator-name =3D "ppvar_dvdd_proc_lc";
+> -                               regulator-min-microvolt =3D <600000>;
+> -                               regulator-max-microvolt =3D <1200000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <1293750>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-ramp-delay =3D <6250>;
+>                                 regulator-enable-ramp-delay =3D <200>;
+>                                 regulator-allowed-modes =3D <MT6397_BUCK_=
+MODE_AUTO
+> @@ -1361,10 +1369,21 @@ mt6366_vproc12_reg: vproc12 {
+>                                 regulator-always-on;
+>                         };
+>
+> +                       mt6366_vmodem_reg: vmodem {
+> +                               regulator-name =3D "ppvar_vmodem";
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <1293750>;
+> +                               regulator-ramp-delay =3D <6250>;
+> +                               regulator-enable-ramp-delay =3D <900>;
+> +                               regulator-allowed-modes =3D <MT6397_BUCK_=
+MODE_AUTO
+> +                                                          MT6397_BUCK_MO=
+DE_FORCE_PWM>;
+> +                               regulator-always-on;
+> +                       };
+> +
+
+This regulator is not used in the design and was purposefully omitted
+when the board was upstreamed.
+
+>                         mt6366_vs1_reg: vs1 {
+>                                 regulator-name =3D "pp2000_vs1";
+> -                               regulator-min-microvolt =3D <2000000>;
+> -                               regulator-max-microvolt =3D <2000000>;
+> +                               regulator-min-microvolt =3D <1000000>;
+> +                               regulator-max-microvolt =3D <2587500>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-ramp-delay =3D <12500>;
+>                                 regulator-enable-ramp-delay =3D <0>;
+>                                 regulator-always-on;
+> @@ -1372,8 +1391,8 @@ mt6366_vs1_reg: vs1 {
+>
+>                         mt6366_vs2_reg: vs2 {
+>                                 regulator-name =3D "pp1350_vs2";
+> -                               regulator-min-microvolt =3D <1350000>;
+> -                               regulator-max-microvolt =3D <1350000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <2087500>;
+
+Same thing about the voltage ranges. Furthermore, the power rail says
+"pp1350", which is a big hint why this change is wrong.
+
+>                                 regulator-ramp-delay =3D <12500>;
+>                                 regulator-enable-ramp-delay =3D <0>;
+>                                 regulator-always-on;
+> @@ -1397,7 +1416,7 @@ mt6366_vaud28_reg: vaud28 {
+>                         mt6366_vaux18_reg: vaux18 {
+>                                 regulator-name =3D "pp1840_vaux18";
+>                                 regulator-min-microvolt =3D <1800000>;
+> -                               regulator-max-microvolt =3D <1840000>;
+> +                               regulator-max-microvolt =3D <1800000>;
+
+The correct voltage is 1.84 V, however since earlier kernels did not
+support the 0.01 steps, the minimum was kept at 1.8V. The 0.04V offset
+is set either by bootloader or is the hardware default.
+
+>                                 regulator-enable-ramp-delay =3D <270>;
+>                         };
+>
+> @@ -1410,8 +1429,8 @@ mt6366_vbif28_reg: vbif28 {
+>
+>                         mt6366_vcn18_reg: vcn18 {
+>                                 regulator-name =3D "pp1800_vcn18_x";
+> -                               regulator-min-microvolt =3D <1800000>;
+> -                               regulator-max-microvolt =3D <1800000>;
+> +                               regulator-min-microvolt =3D <600000>;
+> +                               regulator-max-microvolt =3D <2100000>;
+
+Same thing about the voltage ranges. Furthermore, the power rail
+says "pp1800", which is a big hint why this change is wrong.
+
+>                                 regulator-enable-ramp-delay =3D <270>;
+>                         };
+>
+> @@ -1424,8 +1443,8 @@ mt6366_vcn28_reg: vcn28 {
+>
+>                         mt6366_vefuse_reg: vefuse {
+>                                 regulator-name =3D "pp1800_vefuse";
+> -                               regulator-min-microvolt =3D <1800000>;
+> -                               regulator-max-microvolt =3D <1800000>;
+> +                               regulator-min-microvolt =3D <1700000>;
+> +                               regulator-max-microvolt =3D <1900000>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-enable-ramp-delay =3D <270>;
+>                         };
+>
+> @@ -1438,15 +1457,15 @@ mt6366_vfe28_reg: vfe28 {
+>
+>                         mt6366_vemc_reg: vemc {
+>                                 regulator-name =3D "pp3000_vemc";
+> -                               regulator-min-microvolt =3D <3000000>;
+> -                               regulator-max-microvolt =3D <3000000>;
+> +                               regulator-min-microvolt =3D <2900000>;
+> +                               regulator-max-microvolt =3D <3300000>;
+
+Same thing about the voltage ranges. Furthermore, the power rail
+says "pp3000", which is a big hint why this change is wrong.
+
+>                                 regulator-enable-ramp-delay =3D <60>;
+>                         };
+>
+>                         mt6366_vibr_reg: vibr {
+>                                 regulator-name =3D "pp2800_vibr_x";
+> -                               regulator-min-microvolt =3D <2800000>;
+> -                               regulator-max-microvolt =3D <2800000>;
+> +                               regulator-min-microvolt =3D <1200000>;
+> +                               regulator-max-microvolt =3D <3300000>;
+
+Same thing about the voltage ranges. Furthermore, the power rail
+says "pp2800", which is a big hint why this change is wrong.
+
+>                                 regulator-enable-ramp-delay =3D <60>;
+>                         };
+>
+> @@ -1482,30 +1501,30 @@ mt6366_vmc_reg: vmc {
+>
+>                         mt6366_vmddr_reg: vmddr {
+>                                 regulator-name =3D "pm0750_emi_vmddr";
+> -                               regulator-min-microvolt =3D <700000>;
+> -                               regulator-max-microvolt =3D <750000>;
+> +                               regulator-min-microvolt =3D <600000>;
+> +                               regulator-max-microvolt =3D <2100000>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-enable-ramp-delay =3D <325>;
+>                                 regulator-always-on;
+>                         };
+>
+>                         mt6366_vmch_reg: vmch {
+>                                 regulator-name =3D "pp3000_vmch";
+> -                               regulator-min-microvolt =3D <3000000>;
+> -                               regulator-max-microvolt =3D <3000000>;
+> +                               regulator-min-microvolt =3D <2900000>;
+> +                               regulator-max-microvolt =3D <3300000>;
+
+Same thing about the voltage ranges. Furthermore, the power rail
+says "pp3000", which is a big hint why this change is wrong.
+
+>                                 regulator-enable-ramp-delay =3D <60>;
+>                         };
+>
+>                         mt6366_vcn33_reg: vcn33 {
+>                                 regulator-name =3D "pp3300_vcn33_x";
+>                                 regulator-min-microvolt =3D <3300000>;
+> -                               regulator-max-microvolt =3D <3300000>;
+> +                               regulator-max-microvolt =3D <3500000>;
+
+Same thing about the voltage ranges. Furthermore, the power rail
+says "pp3300", which is a big hint why this change is wrong.
+
+>                                 regulator-enable-ramp-delay =3D <270>;
+>                         };
+>
+>                         vdram2 {
+>                                 regulator-name =3D "pp0600_emi_vddq";
+>                                 regulator-min-microvolt =3D <600000>;
+> -                               regulator-max-microvolt =3D <600000>;
+> +                               regulator-max-microvolt =3D <1800000>;
+
+Same thing about the voltage ranges. Furthermore, the power rail
+says "pp0600", which is a big hint why this change is wrong.
+
+>                                 regulator-enable-ramp-delay =3D <3300>;
+>                                 regulator-always-on;
+>                         };
+> @@ -1518,6 +1537,7 @@ mt6366_vrf12_reg: vrf12 {
+>                         };
+>
+>                         mt6366_vrf18_reg: vrf18 {
+> +                               compatible =3D "regulator-fixed";
+
+No. This is incorrect.
+
+>                                 regulator-name =3D "pp1800_vrf18_x";
+>                                 regulator-min-microvolt =3D <1800000>;
+>                                 regulator-max-microvolt =3D <1800000>;
+> @@ -1526,8 +1546,8 @@ mt6366_vrf18_reg: vrf18 {
+>
+>                         vsim1 {
+>                                 regulator-name =3D "pp1860_vsim1_x";
+> -                               regulator-min-microvolt =3D <1800000>;
+> -                               regulator-max-microvolt =3D <1860000>;
+> +                               regulator-min-microvolt =3D <1700000>;
+> +                               regulator-max-microvolt =3D <3100000>;
+
+The correct voltage is 1.86 V, however since earlier kernels did not
+support the 0.01 steps, the minimum was kept at 1.8V. The 0.06V offset
+is set either by bootloader or is the hardware default.
+
+>                                 regulator-enable-ramp-delay =3D <540>;
+>                         };
+>
+> @@ -1540,18 +1560,17 @@ mt6366_vsim2_reg: vsim2 {
+>
+>                         mt6366_vsram_gpu_reg: vsram-gpu {
+>                                 regulator-name =3D "pp0900_dvdd_sram_gpu"=
+;
+> -                               regulator-min-microvolt =3D <850000>;
+> -                               regulator-max-microvolt =3D <1050000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <1293750>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-ramp-delay =3D <6250>;
+>                                 regulator-enable-ramp-delay =3D <240>;
+> -                               regulator-coupled-with =3D <&mt6366_vgpu_=
+reg>;
+> -                               regulator-coupled-max-spread =3D <10000>;
+> +                               regulator-always-on;
+
+No and no. See above about why it is coupled, and there is no need to
+keep the GPU always on.
+
+>                         };
+>
+>                         mt6366_vsram_others_reg: vsram-others {
+>                                 regulator-name =3D "pp0900_dvdd_sram_core=
+";
+> -                               regulator-min-microvolt =3D <900000>;
+> -                               regulator-max-microvolt =3D <900000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <1293750>;
+
+Same thing about the voltage ranges. Furthermore, the power rail
+says "pp0900", which is a big hint why this change is wrong.
+
+>                                 regulator-ramp-delay =3D <6250>;
+>                                 regulator-enable-ramp-delay =3D <240>;
+>                                 regulator-always-on;
+> @@ -1559,8 +1578,8 @@ mt6366_vsram_others_reg: vsram-others {
+>
+>                         mt6366_vsram_proc11_reg: vsram-proc11 {
+>                                 regulator-name =3D "pp0900_dvdd_sram_bc";
+> -                               regulator-min-microvolt =3D <850000>;
+> -                               regulator-max-microvolt =3D <1120000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <1293750>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-ramp-delay =3D <6250>;
+>                                 regulator-enable-ramp-delay =3D <240>;
+>                                 regulator-always-on;
+> @@ -1568,8 +1587,8 @@ mt6366_vsram_proc11_reg: vsram-proc11 {
+>
+>                         mt6366_vsram_proc12_reg: vsram-proc12 {
+>                                 regulator-name =3D "pp0900_dvdd_sram_lc";
+> -                               regulator-min-microvolt =3D <850000>;
+> -                               regulator-max-microvolt =3D <1120000>;
+> +                               regulator-min-microvolt =3D <500000>;
+> +                               regulator-max-microvolt =3D <1293750>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-ramp-delay =3D <6250>;
+>                                 regulator-enable-ramp-delay =3D <240>;
+>                                 regulator-always-on;
+> @@ -1578,7 +1597,7 @@ mt6366_vsram_proc12_reg: vsram-proc12 {
+>                         vusb {
+>                                 regulator-name =3D "pp3070_vusb";
+>                                 regulator-min-microvolt =3D <3000000>;
+> -                               regulator-max-microvolt =3D <3070000>;
+> +                               regulator-max-microvolt =3D <3100000>;
+
+The correct voltage is 3.07 V, however since earlier kernels did not
+support the 0.01V steps, the minimum was kept at 3.0V. The 0.07V offset
+is set either by bootloader or is the hardware default.
+
+>                                 regulator-enable-ramp-delay =3D <270>;
+>                                 regulator-always-on;
+>                         };
+> @@ -1586,7 +1605,7 @@ vusb {
+>                         vxo22 {
+>                                 regulator-name =3D "pp2240_vxo22";
+>                                 regulator-min-microvolt =3D <2200000>;
+> -                               regulator-max-microvolt =3D <2240000>;
+> +                               regulator-max-microvolt =3D <2200000>;
+
+Same thing about the voltage ranges.
+
+>                                 regulator-enable-ramp-delay =3D <120>;
+>                                 /* Feeds DCXO internally */
+>                                 regulator-always-on;
+
+So basically you are undoing all the cleanups that I did to get the
+dtsi to fit upstream conventions and solutions that we have.
+
+
+ChenYu
 
