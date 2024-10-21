@@ -1,97 +1,79 @@
-Return-Path: <devicetree+bounces-113489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36EE39A5D2E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:34:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFEC99A5D30
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:35:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E066E1F242EF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:34:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 811EB283F91
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0FF1DF759;
-	Mon, 21 Oct 2024 07:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D799C1E009B;
+	Mon, 21 Oct 2024 07:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tm2Alw2h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SQAi490z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259DE1DED50;
-	Mon, 21 Oct 2024 07:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11901DFDB0;
+	Mon, 21 Oct 2024 07:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729496086; cv=none; b=CREoAcJcMWbJ+bJ0efANLkTl2yVDfx56XSphNY4dTGH6uuAsMffb2CkjIG7lFruQAkeFEQs74z1cziZxmsuxs0KOk3+VghLSFfajS85afg7WIQBwe9LlLS2OtmhRHGg0z5HpnyEhwYxQ4tVjLE98TzdeUlLVRjdbqF8u0V3BtxI=
+	t=1729496142; cv=none; b=H7CFfLryJLeKjgck3t66soZWfeGS0uaOmYGvppuIwv60PQx7AszNgx8jknXFVgl7+crmM7mSeCzHrWwyitf0R7MrEZ4BPb6doIbVse1Hv2wi1wzJ244g+PJXkcU1FEqLJOGNlgIBWXChEBUEvQfXjRwefu39gIp4v/WX8dc0ISk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729496086; c=relaxed/simple;
-	bh=PGRrRgvi2jqRX+mltsSqaXvIpNV6ix71vEvoVNKTNhg=;
+	s=arc-20240116; t=1729496142; c=relaxed/simple;
+	bh=wybT2bUv36pflpIUF9oYJw/DtXVn6jl1SVHa2Dbie5k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=msnTpSDjlIZuuUWrQaWY6P8J7zkq7i8ZaTzAUNop7G7nOQf6rXLUeNLsE0OvId23B6lpVOdXfV5pIagRfc+6CTF3LNQD1YJNb1pQpsSO3BWjDEwK6b6pOoeJV1iI5My7g6G1xwBfYkaxHhH4Zy8jZsxTzDF29esmJ1HXx2iqj3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tm2Alw2h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD1C8C4CECD;
-	Mon, 21 Oct 2024 07:34:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IA9bfUHClluwUVkIXVCw+CZS+myBS6pmPW51IE2BIgTjYyhimIIhpoDtIdAeiI9VZk/j7gzX4g2xFmoBIxbbz8d0ZKAB/k8sRK5IjULZ32007MN3/XMQfK1zsjYLuR1MfqmwPRuJQfGP85j8IfDfBm6snvdulL0FH7vmcMubQ9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SQAi490z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60D28C4CEC3;
+	Mon, 21 Oct 2024 07:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729496085;
-	bh=PGRrRgvi2jqRX+mltsSqaXvIpNV6ix71vEvoVNKTNhg=;
+	s=k20201202; t=1729496142;
+	bh=wybT2bUv36pflpIUF9oYJw/DtXVn6jl1SVHa2Dbie5k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tm2Alw2hOg9v5wXx0gBX81LrWj7kvzaWYLEfOMl3GXJn1S4gAFNgV2TtyMnxNpBBW
-	 hRtF5RzyY/0yPfBJThgtW1P64LEh7jgn+/y2ZPy+XxTUybIuL8DLe5fYcUUWljqNHp
-	 +UGW8bF+gqkBiOzVX68xdsqANE5fC5A2SViJKYcqFx5cIjxD7Uvk/8BMTdE5Rtb8wv
-	 tGoUxCs7H9V+Lse19rn3RvyR7c9TQ9EbYdo6bD8F7Ki0NZwptmj6w/zjGqXCNFJrGT
-	 BsSP5xW4ArO8bnnPQsUZb2Tb4NBD0Lka/ocCpAe9+/uC8YVcXXY2hE0e4l5QoBYnw6
-	 yWUAR5VFtwSbg==
-Date: Mon, 21 Oct 2024 09:34:41 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	alexandre.belloni@bootlin.com, magnus.damm@gmail.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v4 03/12] dt-bindings: clock: renesas,r9a08g045-vbattb:
- Document VBATTB
-Message-ID: <5fddjnvzu2e74rtmqw6o2w5upxn6dpih3hmdbgiky75qyuvyum@ilch2rahnmih>
-References: <20241019084738.3370489-1-claudiu.beznea.uj@bp.renesas.com>
- <20241019084738.3370489-4-claudiu.beznea.uj@bp.renesas.com>
- <m4kxv7cba6qd67ahhh4cal6sgieohgow6f3tdvqoxvheemtp4j@gpxbkxd3tvat>
+	b=SQAi490zPpFuqUV7lcumXm7ZrkdzQ4dgksxyjnRTfnGpsJce1tTfSubFoMZ4951za
+	 CIkPmeIR/l17jNcyiFOged4raszJNDw9MkyHzDmcO0LUN6ufqY3r2OwQNmhKodKVrC
+	 XtLIghQNXAEfcIMG65cin93GuFjkQv4Gyb/fGRTxBxGfbrOUz+vjjbL8dQ4TzUESjD
+	 e4lOSo1Yy/PPkeFmHqli8p9FcKhC71gEdxWQrDhvAdIGYStyDyW9LxGgm1Nf091U0O
+	 YT+IyRo+CugyUGR1xxcgfAx+j1xXe/1SrAQQ5U4vCtfcJvaFeMZt2w+tcckDfcYv0R
+	 7KtVuImIn9KTg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t2mxD-0000000020n-2rH7;
+	Mon, 21 Oct 2024 09:35:51 +0200
+Date: Mon, 21 Oct 2024 09:35:51 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: phy: qcom,sc8280xp-qmp-usb32dp: Add
+ SAR2130P compatible
+Message-ID: <ZxYEV-hS9NhlnhYZ@hovoldconsulting.com>
+References: <20241019-sar2130p-phys-v1-0-bf06fcea2421@linaro.org>
+ <20241019-sar2130p-phys-v1-1-bf06fcea2421@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <m4kxv7cba6qd67ahhh4cal6sgieohgow6f3tdvqoxvheemtp4j@gpxbkxd3tvat>
+In-Reply-To: <20241019-sar2130p-phys-v1-1-bf06fcea2421@linaro.org>
 
-On Mon, Oct 21, 2024 at 09:32:37AM +0200, Krzysztof Kozlowski wrote:
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/r9a08g045-cpg.h>
-> > +    #include <dt-bindings/clock/renesas,r9a08g045-vbattb.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    clock-controller@1005c000 {
-> > +        compatible = "renesas,r9a08g045-vbattb";
-> > +        reg = <0x1005c000 0x1000>;
-> > +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&vbattb_xtal>;
-> > +        clock-names = "bclk", "rtx";
-> > +        assigned-clocks = <&vbattb VBATTB_MUX>;
-> > +        assigned-clock-parents = <&vbattb VBATTB_XC>;
-> 
-> Why are you configuring internal clocks to internal parents? That's part
-> internal to this device, not DTS... or at least some explanation would
-> be useful.
+On Sat, Oct 19, 2024 at 06:44:50PM +0300, Dmitry Baryshkov wrote:
+> Document compatible for the USB+DP Combo PHY on SAR2130P platform.
 
-From DTS I see this belongs to the board, not SoC, so makes sense.
+Looks like you got the patch prefix wrong (it should include 'usb43dp').
 
-Best regards,
-Krzysztof
-
+Johan
 
