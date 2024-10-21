@@ -1,132 +1,195 @@
-Return-Path: <devicetree+bounces-113435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45349A5A1A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 08:02:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6CFB9A5A21
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 08:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D55D11C21113
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 06:02:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4F4B1C20FA7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 06:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D3E18EFDE;
-	Mon, 21 Oct 2024 06:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B809E1946D0;
+	Mon, 21 Oct 2024 06:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="it4XXUve"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="g0MdSgGP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9982209B;
-	Mon, 21 Oct 2024 06:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479AE433A0
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 06:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729490571; cv=none; b=VWsBulpRG+Nz5e2/0WVMe30U8ZVnq3T6xyDpUNjrvz4edOCOyyY0xWkZypvW2GnM7l65/K3+qZMoPsEZ7x9nd5RZdW0HVh9J7oehsNTrv5NqbHRliCgxSZirvcGoAhr39EUskjnqOG5fN7Sd5pZwT/oLTyVb95ICb4W6jfcoWa0=
+	t=1729490742; cv=none; b=AN5cWEr7VU/045eUAwcUPx/LAEPqIdC6YcaMV4CK0nBoz8mRYL78M5GxngndCt1QdLmhzGLOdcx4h9rtvRx5/9G6PwwITPEO0NFxa4R1hVwkFf7QNkwckrMCDm/Vipz1u4xbEjYptivJ3g1YGbPtOAMq/YFH167o9aklEQzzYAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729490571; c=relaxed/simple;
-	bh=vu4RT3On7XnbTi5GEYXuD7VfT612YLOO9q2H7/dwXMk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BpSW9RO5kgZvgAzwx7Om8h2D7+2gEeOF1Oc9cnq+Rf8YJ5H+5/BOtcLN7JpG+I/PdnO6zcpZNwEz4YKrg8bBwuqHtc36pbpiZ8+pL9bC3L1aBcNa5UsosOoq1G0qrZrl/boe6/4DoaRdvvU16udUD5KCYJJSXtOBx637ceOHtR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=it4XXUve; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729490569; x=1761026569;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vu4RT3On7XnbTi5GEYXuD7VfT612YLOO9q2H7/dwXMk=;
-  b=it4XXUveHkGElbmpZX7T3OLz73cL61fk/hn7F5ySLQF2XPTktzyLps3/
-   /ZHMbVB3irKUof/Ga2D3Sr8uKdCUaY8eop5wUHAJM7boWMSSrbo2+kZIz
-   YDlT76hdT6pQp4EqFkkouyF7q9Nm8bFw0fNn9ob+aWxcwIWu1ewjQoBj6
-   aU9FKatrdKwwR+nmsd+ajO3jiFMOqDrDtwdwe5BeUqbt2QWQ709z8D03j
-   Gr10+8ZlEBWQjJu3KtoFverXKirrt6GRlKwe5hnoutTPBRMyX0j60PnPY
-   6JJqQqWbxIMuAQ64O/i0cBhvsZIEoU9mbs4eHpirjOJgQa9GmwBFYleZ3
-   g==;
-X-CSE-ConnectionGUID: 4w4ihZ86SrSQcBKzM25b9w==
-X-CSE-MsgGUID: UcXIjHebTMuqXWZs8SNk8Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="32641225"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="32641225"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2024 23:02:48 -0700
-X-CSE-ConnectionGUID: 3RVbadbzQXiJFfRCWoMknA==
-X-CSE-MsgGUID: Aho/sbD2QMWKcyndR5WT4g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; 
-   d="scan'208";a="84214852"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 20 Oct 2024 23:02:43 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t2lV2-000RFj-2h;
-	Mon, 21 Oct 2024 06:02:40 +0000
-Date: Mon, 21 Oct 2024 14:02:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Inochi Amaoto <inochiama@gmail.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Hal Feng <hal.feng@starfivetech.com>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, Yixun Lan <dlan@gentoo.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] irqchip: add T-HEAD C900 ACLINT SSWI driver
-Message-ID: <202410211310.9jsZOb1L-lkp@intel.com>
-References: <20241020121030.1012572-3-inochiama@gmail.com>
+	s=arc-20240116; t=1729490742; c=relaxed/simple;
+	bh=IIWio+BGWaSaW21PnnxARXZp4FionUCKZk/+r1D+oG8=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=DEkFIm3wKt//RaK3WUEDTpmi2FN3fh0ZQiT2cnJCVP+Zh25r2AvuXXnGww5WpDNffabKqqhJg88WFMc/revCnrIFmMENhL2VJHG4GJBchJJh9fslwsR/XT6CV6g7Yk9StKLu+ZFdcLImS73wJcP/5VcNObLgK5aWKDQXgAecC9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=g0MdSgGP; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241021060538epoutp02623728ef90334db643402f9d120a98d7~AYqnJTCob1764317643epoutp02k
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 06:05:38 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241021060538epoutp02623728ef90334db643402f9d120a98d7~AYqnJTCob1764317643epoutp02k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1729490738;
+	bh=cb03jBzckq9Uro4zVi90gsorpfxSmMqhnETvcsGXro4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=g0MdSgGP6pbOZvRs9RMEYa2XzU2jIOV+twWysW48vjYmHvfDq+K2shIludSNSjOCd
+	 MviT5gtCmM52jFzhFQPnpGBZJoHsG8I6gakxwFXCAVoiNZHCP68ZDeXgdlUISqrWsr
+	 8BTBVTy13SWkmh4Tmb7YBK23e432fiG3Zh8ZtRFA=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+	20241021060537epcas2p37bee194c61b47e11eac304db9cf11964~AYqmoU-pd1337213372epcas2p3x;
+	Mon, 21 Oct 2024 06:05:37 +0000 (GMT)
+Received: from epsmgec2p1-new.samsung.com (unknown [182.195.36.68]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4XX4YF2dRwz4x9Pr; Mon, 21 Oct
+	2024 06:05:37 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmgec2p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	B8.C8.18950.03FE5176; Mon, 21 Oct 2024 15:05:36 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20241021060535epcas2p1f716c45ee988775fb2a2b9790435126d~AYqkyqKGt1960619606epcas2p1W;
+	Mon, 21 Oct 2024 06:05:35 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20241021060535epsmtrp2f0b46818128934af63d237155420f084~AYqkxv7BR0397203972epsmtrp2c;
+	Mon, 21 Oct 2024 06:05:35 +0000 (GMT)
+X-AuditID: b6c32a4d-1f1c070000004a06-6e-6715ef304a3a
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	8E.64.08227.F2FE5176; Mon, 21 Oct 2024 15:05:35 +0900 (KST)
+Received: from KORCO119526 (unknown [10.229.18.158]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241021060535epsmtip2fea2c687d755854e22e3c927d20cbb56~AYqkfoj_F3072430724epsmtip2O;
+	Mon, 21 Oct 2024 06:05:35 +0000 (GMT)
+From: =?utf-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Wim Van Sebroeck'"
+	<wim@linux-watchdog.org>, "'Guenter Roeck'" <linux@roeck-us.net>, "'Rob
+ Herring'" <robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
+	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
+	<alim.akhtar@samsung.com>
+Cc: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, "'Byoungtae Cho'" <bt.cho@samsung.com>
+In-Reply-To: <f9bbe108-1a0d-451f-a1c7-14e8aadc76b5@kernel.org>
+Subject: RE: [PATCH v2 1/3] dt-bindings: watchdog: Document ExynosAutoV920
+ watchdog bindings
+Date: Mon, 21 Oct 2024 15:05:35 +0900
+Message-ID: <003f01db237f$3e707de0$bb5179a0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241020121030.1012572-3-inochiama@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKShxVw65UJgYXARO76wzJ5NcLQ6AK2VKhSAdj3/m8BY0zLI7DyOOGg
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLJsWRmVeSWpSXmKPExsWy7bCmqa7Be9F0gyNTuC0ezNvGZnH/Ux+T
+	xZq955gs5h85x2rxctY9Novz5zewW2x6fI3V4vKuOWwWM87vY7K4sW4fu8WThWeYLP7v2cFu
+	8fjlP2YHXo9NqzrZPFauWcPqsXlJvcfO7w3sHn1bVjF6fN4kF8AWlW2TkZqYklqkkJqXnJ+S
+	mZduq+QdHO8cb2pmYKhraGlhrqSQl5ibaqvk4hOg65aZA3SokkJZYk4pUCggsbhYSd/Opii/
+	tCRVISO/uMRWKbUgJafAvECvODG3uDQvXS8vtcTK0MDAyBSoMCE7Y+PHSYwFBwQr5p39y9TA
+	eIuvi5GTQ0LAROLhm7ksXYxcHEICexgl5j47zQThfGKUWPPkJyuE841RYtGOG2wwLRv/nINK
+	7GWUmL/jKzOE85JRYvX6BcwgVWwCFhJLrn0AmyUisIFJYuqZm6wgCWaB24wSO98bg9icAnYS
+	DzpWs4DYwgJxEm23L4E1swioSsxeuoMdxOYVsJS4f+w3C4QtKHFy5hMWiDnyEtvfzmGGOElB
+	4ufTZWDzRQTcJHY+6GCGqBGRmN3ZBnadhMAZDonX81ewQjS4SPzc9xzqH2GJV8e3sEPYUhKf
+	3+2FiudLrFx5ggnCrpG417aLBcK2l1h05idQPQfQAk2J9bv0QUwJAWWJI7egTuOT6Dj8lx0i
+	zCvR0SYEYapKTF8WADFDWmLijLVsExiVZiH5axaSv2YhuX8WwqoFjCyrGKVSC4pz01OTjQoM
+	dfNSy+ERnpyfu4kRnI61fHcwvl7/V+8QIxMH4yFGCQ5mJRFepRLRdCHelMTKqtSi/Pii0pzU
+	4kOMpsDQnsgsJZqcD8wIeSXxhiaWBiZmZobmRqYG5krivPda56YICaQnlqRmp6YWpBbB9DFx
+	cEo1MFk3v33mUh3pr9NukMyYL9X1+84j7rrQZsVVtx38pt7b8Cg6ZWteT3rHpPSvEUbrflVk
+	Hmvc9VRRniGy+cChTbekZbYdsX187sTEk1yHukUZX8YtC7oQ9+9ix6L17n68XyYFT+hzffBx
+	Pe/vooNH19nlGhUant4iV7Bh5q1Z3ybaxWr8ntCZ3VW0YvqrD/2rNGIWeJjUP4tasa1h9vMH
+	1zkVAs7Eqm5O3Mjz117HsP1WB6fhI8l9YaHbKxhVH19cUDv7L9PNsJBTO3Ydfjj5j2zzBKu5
+	T3SfPUvY/kpBRvJH7ctDnypXn64WONy760pSzrZLHRoqu9fKVGk6l+n/56s/YOrA6sl74Vkm
+	e3hFFIcSS3FGoqEWc1FxIgBcolYoUAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBIsWRmVeSWpSXmKPExsWy7bCSvK7+e9F0g7trlS0ezNvGZnH/Ux+T
+	xZq955gs5h85x2rxctY9Novz5zewW2x6fI3V4vKuOWwWM87vY7K4sW4fu8WThWeYLP7v2cFu
+	8fjlP2YHXo9NqzrZPFauWcPqsXlJvcfO7w3sHn1bVjF6fN4kF8AWxWWTkpqTWZZapG+XwJWx
+	8eMkxoIDghXzzv5lamC8xdfFyMkhIWAisfHPOdYuRi4OIYHdjBI/+n6zQySkJY78fsEGYQtL
+	3G85AlX0nFHizPtOVpAEm4CFxJJrH5hAEiICW5gkpr86xQjiMAs8ZJT4/+oAVMtXRon+3Y9Y
+	QFo4BewkHnSsBrOFBWIkDq48ywhiswioSsxeugNsN6+ApcT9Y79ZIGxBiZMzn4DZzALaEk9v
+	PoWy5SW2v53DDHGfgsTPp8vAThIRcJPY+aCDGaJGRGJ2ZxvzBEbhWUhGzUIyahaSUbOQtCxg
+	ZFnFKJlaUJybnltsWGCUl1quV5yYW1yal66XnJ+7iREcmVpaOxj3rPqgd4iRiYPxEKMEB7OS
+	CK9SiWi6EG9KYmVValF+fFFpTmrxIUZpDhYlcd5vr3tThATSE0tSs1NTC1KLYLJMHJxSDUzS
+	rDeuPQvRd186jWfy/sdJTJ5qTtLZhZvk7Rsd597oVpp167JexekDzBFflFZ8WHvj7c4lapE/
+	BdYb6Ry6/0bC4sj0KxaL+tyfV02OObI5JrX7zkf3OUF3ljHMuLv/veqxhoMahwvfe0gd2h80
+	d2X+By3bzm97VSK3qEn1bzxpfa5v4YcqycorMkJuj/8lWJXs7NMLe6+YoWQnt4A77sIXj2Az
+	y8yqcpenqsqzr+18v1sxIMOD6dmONf1phw0/zNoT83VZbZ5WdfGftNBzkrZr+Ni790/LmfGn
+	l/Gfs91dtcM//3db8PLM/3F4sa2L2umjiilcu3azr2gV5f+iIligUWGymcG4JOHS7neXJhQr
+	sRRnJBpqMRcVJwIAzR8uDzsDAAA=
+X-CMS-MailID: 20241021060535epcas2p1f716c45ee988775fb2a2b9790435126d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241010111837epcas2p11dddc10945ca0648997dccaaf4854d93
+References: <20241010111807.3635504-1-trunixs.kim@samsung.com>
+	<CGME20241010111837epcas2p11dddc10945ca0648997dccaaf4854d93@epcas2p1.samsung.com>
+	<20241010111807.3635504-2-trunixs.kim@samsung.com>
+	<f9bbe108-1a0d-451f-a1c7-14e8aadc76b5@kernel.org>
 
-Hi Inochi,
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: Thursday, October 10, 2024 8:47 PM
+> To: Taewan Kim <trunixs.kim@samsung.com>; Wim Van Sebroeck <wim@linux-
+> watchdog.org>; Guenter Roeck <linux@roeck-us.net>; Rob Herring
+> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Alim Akhtar <alim.akhtar@samsung.com>
+> Cc: linux-watchdog@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; Byoungtae Cho <bt.cho@samsung.com>
+> Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: Document ExynosAutoV920
+> watchdog bindings
+> 
+> On 10/10/2024 13:18, Taewan Kim wrote:
+> > From: Byoungtae Cho <bt.cho@samsung.com>
+> >
+> > Add "samsung-exynosautov920-wdt" compatible to the dt-schema document.
+> > ExynosAutoV920 is new SoC for automotive, similar to
+> > exynosautov9 but some CPU configurations are quite different.
+> >
+> > Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
+> > Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
+> 
+> Shall we do the work twice?
 
-kernel test robot noticed the following build warnings:
+I missed it by mistake, I'm sorry.
+I will push v3 with tags.
+> 
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
+> 
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions,
+> under or above your Signed-off-by tag. Tag is "received", when provided in
+> a message replied to you on the mailing list. Tools like b4 can help here.
+> However, there's no need to repost patches *only* to add the tags. The
+> upstream maintainer will do that for tags received on the version they
+> apply.
+> 
+> https://protect2.fireeye.com/v1/url?k=19c96b19-46525206-19c8e056-
+> 000babdfecba-8f51e01dd01bb666&q=1&e=eb401f36-1904-4376-adea-
+> 9688adb1d657&u=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv6.5-
+> rc3%2Fsource%2FDocumentation%2Fprocess%2Fsubmitting-patches.rst%23L577
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+> 
+> Best regards,
+> Krzysztof
 
-[auto build test WARNING on tip/irq/core]
-[also build test WARNING on sophgo/for-next sophgo/fixes tip/smp/core robh/for-next linus/master v6.12-rc4 next-20241018]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Inochi-Amaoto/dt-bindings-interrupt-controller-Add-Sophgo-SG2044-ACLINT-SSWI/20241020-201209
-base:   tip/irq/core
-patch link:    https://lore.kernel.org/r/20241020121030.1012572-3-inochiama%40gmail.com
-patch subject: [PATCH v3 2/3] irqchip: add T-HEAD C900 ACLINT SSWI driver
-config: riscv-kismet-CONFIG_GENERIC_IRQ_IPI_MUX-CONFIG_THEAD_C900_ACLINT_SSWI-0-0 (https://download.01.org/0day-ci/archive/20241021/202410211310.9jsZOb1L-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20241021/202410211310.9jsZOb1L-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410211310.9jsZOb1L-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for GENERIC_IRQ_IPI_MUX when selected by THEAD_C900_ACLINT_SSWI
-   WARNING: unmet direct dependencies detected for GENERIC_IRQ_IPI_MUX
-     Depends on [n]: SMP [=n]
-     Selected by [y]:
-     - THEAD_C900_ACLINT_SSWI [=y] && RISCV [=y]
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
