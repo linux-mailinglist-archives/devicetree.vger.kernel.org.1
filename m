@@ -1,296 +1,301 @@
-Return-Path: <devicetree+bounces-113598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F31A9A640D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:42:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81EE29A6510
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:53:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FCB11C2256E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:42:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A09BFB2B894
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:44:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0AFA1F80B8;
-	Mon, 21 Oct 2024 10:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00341E6DC2;
+	Mon, 21 Oct 2024 10:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SMrWULaY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bunadi0R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA8E1F6681;
-	Mon, 21 Oct 2024 10:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594C81E633C
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729507018; cv=none; b=R7G29Xt6Usutl+W7Pr1V0W06FZRUKFmmx4FtfHfIJjiHqrpwpgPS68XRdJnT5skeYjkB4wBw7QVYk8sfd2GmzFURYxLqe5ieSKblQxsZ1PVJ2abGPP+RSLDjDSVgHciB2jlcXpwEKA+1OO0mawSrlGu/Cj0sjX4ogSFd6DAJdCU=
+	t=1729507126; cv=none; b=VOmsqVR8RMK4AVYOoWgVddiKWonW6p8MQLr8xaZLOo01uyFKnc4gM6vBm5hzOeCTBOyHZLxWhvOURfSF9w/aXfSMWAFAIUDABOyWBR3sSvH05ZD4AmXf12/Tr/jkfbe2p0D2/mTQ03vKIpBugAE9OpEfAWSQWHR5BScaKsDnWXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729507018; c=relaxed/simple;
-	bh=etEndz2Qo0Ninz2eZPaGO+kvPjiGsNRIVQ9duINjyQE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YbooEpS+YOTuysZkmZjoi1LGzePv36Gr7zxWH0V6QrX2FqDFFExZQgOL2pDKkiHmdjQhTIEIrxSnlqGrbnrqlFVGXakzNPH+jF4ustI1DrkACttQddQGRhniBQ/ewP2K0CHo6PBGgHJXyv1Y0apLtxiGFYXOIRf50WXXqwzxLCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SMrWULaY; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e28fe3b02ffso3836048276.3;
-        Mon, 21 Oct 2024 03:36:56 -0700 (PDT)
+	s=arc-20240116; t=1729507126; c=relaxed/simple;
+	bh=OtAbMeazYZxPVYU5/7ohPXTaGyps2mbNAHyWMRwAYXs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=kMjj7DYbFMTnvhplYCmBdG22oZ3ifNeVgzk/p3+tEyYoDfQydw4dORf6qepJvciPQE7eMS5YckgHZiYY9UPlRMMwpfgafjOHDMC4Xl6Fdtyy+I3fic7oMzlxmFjfwtFu2mGGvVEadsZyclfreJLTEbCYBB7r3kWcjK29IkE3zU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bunadi0R; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4316a44d1bbso15773395e9.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:38:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729507015; x=1730111815; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=svclsiCEeUb5+9t03qJl3db9yymwfO2bBzTcRxMC9P8=;
-        b=SMrWULaYT2P/Ihus8WQelGojoGLWKAahl6tHrcZy4wi+OPLSVQnke+ITyx8v6g0DFd
-         xqimyVrmvq407uZ3Sb7OpHvhYKaXj/HxiEmWV33karMYTSyCAF50RvWyaTpRG3rlIlhN
-         oZLolnfUsyj1dNg7sEayNCmeMpXHQoWPmjmAIYEbCKEasnbECZ3EahwTlFL+p1Khjbgj
-         QNm+uHtEw9r02qWgPazKio+4eFhZRuiq8yzUzZD5RV8FeMOjP4XYC5OvM5wZFVQD0LiX
-         F/7oVyvVnPepnA9Fiq9aJoITIW12z1ygWZgEwaGJka2RE40/xJzy4kgRKjksJNETnGYs
-         dOng==
+        d=linaro.org; s=google; t=1729507122; x=1730111922; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2ySuw8D8jWEN/9YhfbV0Sya+B2jTWI3nM02ykj7+cy8=;
+        b=Bunadi0RhCr6FL+KpNcBauqqipnpTGK56jzQI788HniDrZ7xzJ5VsSyXacwo0GxkJm
+         gBkx2nnRYLzS9L+KbWhvrJ4G00KrOUlyw14iB602a6YTDcMxcOxOI5rnCeQOQKx7ixdv
+         9YNzHOh1cPCrppPuK0/eCHNrwJsrOBKdpK9hsfDJCOSWhnvwgwN2BXiU/hXxDNoC9M9W
+         klLPko3k10SbjelHbuYVW5UVOG0JX255Sr4neFjbTvs75E//rHdWlcYC/3FGLqccz768
+         ftvvvcgirT85lamSEpARBh4ySG0w+aPuDZKLi8LvfSnNcKwRgHIeHwKD2ZMC1k2VaxZZ
+         dEqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729507015; x=1730111815;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=svclsiCEeUb5+9t03qJl3db9yymwfO2bBzTcRxMC9P8=;
-        b=vV8L0EoO3VQpp61gbX088vTQr3JgUBaEi3HzEjXvIpeYSyf86EAmq3bx6lcON8Y86s
-         cUIHPklNGVpswMYIa4m3OLUw3+i+kc4i3y8Qlh1nND7XHQPUODSzbOXLY+NNBd09LtdD
-         rbtu5X6iTy6G6BWRhN/H9EL1P453IFKqcVCy5ZPSsI9chN/ur5Sys/1lb/x3IYSCm4Nc
-         gvRIJn6MTDu5bbjmR1IrU6Pd8Ug9+KeHD4/02jY7M770rjpfGBIj4oxrBzccQdM8APL/
-         Qv832DRTtaN9wx1XYZacXd1eLkcQBs8UIFek7yKT5seKyHvC2XFGKW7XyZPGLt9QMqWD
-         c+dg==
-X-Forwarded-Encrypted: i=1; AJvYcCVLPYkAb0U8mfAj2bCEFy5oKeQPSJgLcRNR+7om5xAJypVCcpcrsPz70LAaJQTghPdW+pP22pr9@vger.kernel.org, AJvYcCWgLJnVLeFf53L+L6XNgNtOXLXiLR+++TeeUd3v1GCONI/wy1SUbhAhyFm9IkAdDtMSKvPWqhn14zE4AlX2@vger.kernel.org, AJvYcCX/QR7ZtBTxKYp4bYXQAld1t/cFiJ9c+n9Oh/wIQKOx8eso2DOxmh1CU0Gi1OQnk2javhnrsPZ5YuL0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0uEVUv+iYhxUyDG3q4sjelIMvLUTr94t3me2AG4JV1MeRcEkN
-	hz4zfWk/FMkFVpfvYyRpHlEwg2EvIpQMODCQ4GjLuOzdxGNZfZEE
-X-Google-Smtp-Source: AGHT+IHlrA+/dcj1vd4lrPU9QHu+0p+ysA9RIWhCRIkhzXUN8cuwR3GxzlOFB2/p619LdCBVuIUTOA==
-X-Received: by 2002:a05:6902:1b8b:b0:e29:1572:6d03 with SMTP id 3f1490d57ef6-e2bb16cf119mr9061983276.47.1729507015417;
-        Mon, 21 Oct 2024 03:36:55 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7eaeabd8dc8sm2772799a12.77.2024.10.21.03.36.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 03:36:55 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicorn_wang@outlook.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-Date: Mon, 21 Oct 2024 18:36:17 +0800
-Message-ID: <20241021103617.653386-5-inochiama@gmail.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241021103617.653386-1-inochiama@gmail.com>
-References: <20241021103617.653386-1-inochiama@gmail.com>
+        d=1e100.net; s=20230601; t=1729507122; x=1730111922;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=2ySuw8D8jWEN/9YhfbV0Sya+B2jTWI3nM02ykj7+cy8=;
+        b=NcofO/Fx2queya7VvABFd+xAcQlJw1EObOrEgsqWRfQMVbDHnupBlQ4miBYO9gxvgG
+         r2YsEYW4TqXCcjjCzMH4ybGbGPT6MUxoVcPbsUSrcYT/Ia7j1SZjhOUMC7RQKQkXORL+
+         6Y1kP371C/xKWBWyqw3GULcyvO7YPv2ySQxFVoR0ftraqJ+c5krPxf3dMPcuXVDPQBpu
+         hmNACti+/zyeOPDXBklouncp6j+xegohkeLEHT+nqjoeotXF4jwf7UtN+aadqQ8L18Fp
+         9srBgPxDTtTviiI2E6UCwzIEm8ZHwWSmLo7/eF4l96Oq8mUjjjN0YJThI97MAM7qLkeI
+         Xm6A==
+X-Forwarded-Encrypted: i=1; AJvYcCWeeu9XMe84cGRiwlFo2E7Vu3hySBlKMaHL6hcn81dJNzBLFzB+T1wuUlei3D3EHpsWRfPp1S6SyNNd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4Z3YL7ZOJsYy5TdiGsPfRKrWFu3j4KFPeDlo3Qu3t99G091AK
+	rTCTBzieqMBwA7kAU/WbnTTUqUX70xmViOQf8RcTM5LJ1xxUR4lcHQ46wkSrr/8=
+X-Google-Smtp-Source: AGHT+IEdepbcnTwYewoqxOwDr6bbpP0LoiIrLZO/s1iPNW7F3xJuePF3p6zuXgXPdml/hpNXA/PR6g==
+X-Received: by 2002:a05:600c:35d3:b0:431:5f9e:3f76 with SMTP id 5b1f17b1804b1-43161669464mr96932435e9.16.1729507122510;
+        Mon, 21 Oct 2024 03:38:42 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:3908:dea6:2ddd:be97? ([2a01:e0a:982:cbb0:3908:dea6:2ddd:be97])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c3497sm52743365e9.29.2024.10.21.03.38.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Oct 2024 03:38:42 -0700 (PDT)
+Message-ID: <f6c4cee8-dd22-4b30-a3b2-aee48e2c3611@linaro.org>
+Date: Mon, 21 Oct 2024 12:38:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
+ SoCs
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
+ <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
+ <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
+ <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
+ <4127b448-a914-4c69-b938-29512995326f@amlogic.com>
+ <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
+ <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
+ <5ad8f396-84a5-486d-b90d-98fbf8882d1b@linaro.org>
+ <e6cd13b5-2f7a-4ab1-899c-5867bc0ea64f@kernel.org>
+ <fdb4d0eb-a5e5-4061-b3cc-14958473baf3@linaro.org>
+ <c8a03fa6-9ac5-434f-ba13-78e47ad341b8@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <c8a03fa6-9ac5-434f-ba13-78e47ad341b8@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Adds Sophgo dwmac driver support on the Sophgo SG2044 SoC.
+On 21/10/2024 11:56, Krzysztof Kozlowski wrote:
+> On 21/10/2024 09:38, neil.armstrong@linaro.org wrote:
+>> On 18/10/2024 17:31, Krzysztof Kozlowski wrote:
+>>> On 18/10/2024 14:31, Neil Armstrong wrote:
+>>>> On 18/10/2024 12:13, Krzysztof Kozlowski wrote:
+>>>>> On 18/10/2024 11:20, Jerome Brunet wrote:
+>>>>>> On Fri 18 Oct 2024 at 17:01, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
+>>>>>>
+>>>>>>> Hi Jerome,
+>>>>>>>       Thanks for your reply.
+>>>>>>>
+>>>>>>> On 2024/10/18 16:39, Jerome Brunet wrote:
+>>>>>>>> [ EXTERNAL EMAIL ]
+>>>>>>>> On Fri 18 Oct 2024 at 10:28, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>>>>>
+>>>>>>>>> On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
+>>>>>>>>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>>>>>>>
+>>>>>>>>>> Add the new compatible name for Amlogic A4 pin controller, and add
+>>>>>>>>>> a new dt-binding header file which document the detail pin names.
+>>>>>>>> the change does not do what is described here. At least the description
+>>>>>>>> needs updating.
+>>>>>>>>
+>>>>>>>
+>>>>>>> Will do.
+>>>>>>>
+>>>>>>>> So if the pin definition is now in the driver, does it mean that pins have
+>>>>>>>> to be referenced in DT directly using the made up numbers that are
+>>>>>>>> created in pinctrl-amlogic-a4.c at the beginning of patch #2 ?
+>>>>>>>>
+>>>>>>>
+>>>>>>> Yes.
+>>>>>>>
+>>>>>>>> If that's case, it does not look very easy a read.
+>>>>>>>>
+>>>>>>>
+>>>>>>> It does happen. The pin definition does not fall under the category of
+>>>>>>> binding.
+>>>>>>>
+>>>>>>> https://lore.kernel.org/all/106f4321-59e8-49b9-bad3-eeb57627c921@amlogic.com/
+>>>>>>
+>>>>>> So the expectation is that people will write something like:
+>>>>>>
+>>>>>>     reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
+>>>>>>
+>>>>>> And others will go in the driver to see that is maps to GPIOX_10 ? the number
+>>>>>> being completly made up, with no link to anything HW/Datasheet
+>>>>>> whatsoever ?
+>>>>>>
+>>>>>> This is how things should be done now ?
+>>>>>
+>>>>> Why would you need to do this? Why it cannot be <&gpio 10
+>>>>> GPIO_ACTIVE_LOW>, assuming it is GPIO 10?
+>>>>>
+>>>>> Bindings have absolutely nothing to do with it. You have GPIO 10, not
+>>>>> 42, right?
+>>>>
+>>>> There's no 1:1 mapping between the number and the pin on Amlogic platforms,
+>>>> so either a supplementary gpio phandle cell is needed to encode the gpio pin
+>>>> group or some bindings header is needed to map those to well known identifiers.
+>>>
+>>> So I assume this is not linear mapping (simple offset)? If so, this fits
+>>> the binding header with identifiers, but I have impression these were
+>>> not really used in earlier versions of this patchset. Instead some offsets:
+>>> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-1-3e74a65c285e@amlogic.com/
+>>>
+>>> and pre-proccessor.
+>>>
+>>> These looked almost good:
+>>> https://lore.kernel.org/all/20240613170816.GA2020944-robh@kernel.org/
+>>>
+>>> but then 0 -> 0
+>>> 1 -> 1
+>>> so where is this need for IDs?
+>>
+>> ???
+>>
+>> Of courses the first pins maps to linear values...
+>>
+>>>
+>>> See also last comment from Rob in above email.
+>>
+>> OK so I looked and v2 was in fact correct:
+>> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-1-3e74a65c285e@amlogic.com/
+>>
+>> ====><=================
+>> +/* Standard port */
+>> +#define GPIOB_START	0
+>> +#define GPIOB_NUM	14
+>> +
+>> +#define GPIOD_START	(GPIOB_START + GPIOB_NUM)
+>> +#define GPIOD_NUM	16
+>> +
+>> +#define GPIOE_START	(GPIOD_START + GPIOD_NUM)
+>> +#define GPIOE_NUM	2
+>> +
+>> +#define GPIOT_START	(GPIOE_START + GPIOE_NUM)
+>> +#define GPIOT_NUM	23
+>> +
+>> +#define GPIOX_START	(GPIOT_START + GPIOT_NUM)
+>> +#define GPIOX_NUM	18
+>> +
+>> +#define PERIPHS_PIN_NUM	(GPIOX_START + GPIOX_NUM)
+>> +
+>> +/* Aobus port */
+>> +#define GPIOAO_START	0
+>> +#define GPIOAO_NUM	7
+>> +
+>> +/* It's a special definition, put at the end, just 1 num */
+>> +#define	GPIO_TEST_N	(GPIOAO_START +  GPIOAO_NUM)
+>> +#define	AOBUS_PIN_NUM	(GPIO_TEST_N + 1)
+>> +
+>> +#define AMLOGIC_GPIO(port, offset)	(port##_START + (offset))
+>> ====><=================
+>>
+>> is exactly what rob asked for, and you nacked it.
+> 
+> No, this is not what was asked, at least according to my understanding.
+> Number of GPIOs is not an ABI. Neither is their relationship, where one
+> starts and other ends.
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-sophgo.c    | 132 ++++++++++++++++++
- 3 files changed, 144 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
+I confirm this need some work, but it moved the per-pin define to start
+and ranges, so what did rob expect ?
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 05cc07b8f48c..bc44b21c593f 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -169,6 +169,17 @@ config DWMAC_SOCFPGA
- 	  for the stmmac device driver. This driver is used for
- 	  arria5 and cyclone5 FPGA SoCs.
- 
-+config DWMAC_SOPHGO
-+	tristate "Sophgo dwmac support"
-+	depends on OF && (ARCH_SOPHGO || COMPILE_TEST)
-+	default m if ARCH_SOPHGO
-+	help
-+	  Support for ethernet controllers on Sophgo RISC-V SoCs
-+
-+	  This selects the Sophgo SoC specific glue layer support
-+	  for the stmmac device driver. This driver is used for the
-+	  ethernet controllers on various Sophgo SoCs.
-+
- config DWMAC_STARFIVE
- 	tristate "StarFive dwmac support"
- 	depends on OF && (ARCH_STARFIVE || COMPILE_TEST)
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index c2f0e91f6bf8..e1287b53047b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -23,6 +23,7 @@ obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
- obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
- obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
- obj-$(CONFIG_DWMAC_SOCFPGA)	+= dwmac-altr-socfpga.o
-+obj-$(CONFIG_DWMAC_SOPHGO)	+= dwmac-sophgo.o
- obj-$(CONFIG_DWMAC_STARFIVE)	+= dwmac-starfive.o
- obj-$(CONFIG_DWMAC_STI)		+= dwmac-sti.o
- obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-new file mode 100644
-index 000000000000..83c67c061182
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-@@ -0,0 +1,132 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Sophgo DWMAC platform driver
-+ *
-+ * Copyright (C) 2024 Inochi Amaoto <inochiama@gmail.com>
-+ *
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/regmap.h>
-+
-+#include "stmmac_platform.h"
-+
-+struct sophgo_dwmac {
-+	struct device *dev;
-+	struct clk *clk_tx;
-+};
-+
-+#define DWMAC_SG2044_FLAG_USE_RX_DELAY		BIT(16)
-+
-+static void sophgo_dwmac_fix_mac_speed(void *priv, unsigned int speed, unsigned int mode)
-+{
-+	struct sophgo_dwmac *dwmac = priv;
-+	unsigned long rate;
-+	int ret;
-+
-+	switch (speed) {
-+	case SPEED_1000:
-+		rate = 125000000;
-+		break;
-+	case SPEED_100:
-+		rate = 25000000;
-+		break;
-+	case SPEED_10:
-+		rate = 2500000;
-+		break;
-+	default:
-+		dev_err(dwmac->dev, "invalid speed %u\n", speed);
-+		break;
-+	}
-+
-+	ret = clk_set_rate(dwmac->clk_tx, rate);
-+	if (ret)
-+		dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
-+}
-+
-+static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
-+				    struct plat_stmmacenet_data *plat_dat,
-+				    struct stmmac_resources *stmmac_res)
-+{
-+	struct sophgo_dwmac *dwmac;
-+	struct regmap *regmap;
-+	unsigned int args[2];
-+	int ret;
-+
-+	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-+	if (!dwmac)
-+		return -ENOMEM;
-+
-+	dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
-+	if (IS_ERR(dwmac->clk_tx))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
-+				     "failed to get tx clock\n");
-+
-+	regmap = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
-+						      "sophgo,syscon",
-+						      2, args);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(regmap),
-+				     "failed to get the regmap\n");
-+
-+	ret = regmap_set_bits(regmap, args[0], DWMAC_SG2044_FLAG_USE_RX_DELAY);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "failed to set the phy rx delay\n");
-+
-+	dwmac->dev = &pdev->dev;
-+	plat_dat->bsp_priv = dwmac;
-+	plat_dat->flags |= STMMAC_FLAG_SPH_DISABLE;
-+	plat_dat->fix_mac_speed = sophgo_dwmac_fix_mac_speed;
-+	plat_dat->multicast_filter_bins = 0;
-+	plat_dat->unicast_filter_entries = 1;
-+
-+	return 0;
-+}
-+
-+static int sophgo_dwmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "failed to get resources\n");
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat),
-+				     "dt configuration failed\n");
-+
-+	ret = sophgo_sg2044_dwmac_init(pdev, plat_dat, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	return stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-+}
-+
-+static const struct of_device_id sophgo_dwmac_match[] = {
-+	{ .compatible = "sophgo,sg2044-dwmac" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, sophgo_dwmac_match);
-+
-+static struct platform_driver sophgo_dwmac_driver = {
-+	.probe  = sophgo_dwmac_probe,
-+	.remove_new = stmmac_pltfr_remove,
-+	.driver = {
-+		.name = "sophgo-dwmac",
-+		.pm = &stmmac_pltfr_pm_ops,
-+		.of_match_table = sophgo_dwmac_match,
-+	},
-+};
-+module_platform_driver(sophgo_dwmac_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Sophgo DWMAC platform driver");
--- 
-2.47.0
+> 
+> Maybe I missed something, but I could not find any users of these in the
+> DTS. Look:
+> 
+> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-3-3e74a65c285e@amlogic.com/
+
+So you want consumers before the bindings ? strange argument
+
+> 
+> Where is any of above defines?
+> 
+> Maybe they will be visible in the consumer code, but I did not imagine
+> such use. You expect:
+> reset-gpios = <&ctrl GPIOAO_START 1>???
+
+No I expect:
+reset-gpios = <&ctrl AMLOGIC_GPIO(B, 0) 1>;
+
+but the macro should go along the dts like we did for the reset defines,
+so perhaps this is the solution ?
+
+> 
+> How this is anyway close to what we have for Aspeed or Tegra? I
+> understand that there was no consumer DTS, but you have also cover
+> letter which could bring some answers in case reviewer is confused. What
+> did cover letter say? Let me quote:
+> 
+> "Add pinctrl driver support for Amloigc A4 SoC"
+
+Well he didn't expect a such sudden radical change in maintainers
+requirements! Neither did I.
+
+Neil
+
+> 
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
