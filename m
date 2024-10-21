@@ -1,123 +1,188 @@
-Return-Path: <devicetree+bounces-113821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592279A722E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:20:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1224C9A7257
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:29:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 842CB1F25C97
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:20:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40C5D1C22AEF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446301F1309;
-	Mon, 21 Oct 2024 18:20:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6231FBC98;
+	Mon, 21 Oct 2024 18:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hRo1sqyS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NPQijWH7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230781C3F04;
-	Mon, 21 Oct 2024 18:20:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 635E41FBC92;
+	Mon, 21 Oct 2024 18:28:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729534812; cv=none; b=cNZ4yqnOfpUD3Z59zCJ97J5yPPhBOc6HnQGKVEWK9TqXtiqrA91o5U+tAKRsnzdksAZo/6DdaqCVF3vKFenQ7m5gASjxUeeReX7RQAAQ2P2sSdfLsuIXgszoKj+X/IlTJWXNhBxthLEWzjwr8igi6K95irocYXwZGImnkW5+8DI=
+	t=1729535323; cv=none; b=Zt06zV/FU9PbZ5UTZM+o7tHoPQGjXW0iKIGK1M/uFlm/mxfuITx4dfyZgrymSVMnMh3smVD6c4EtCiCvTyAq6NdCiNWU1dQsDhWnIykSIKq6Os7PQwaNmASyJvgbRHvurBD4KADVqvxwF2HZiLCUTf5PB3GjTWOJ27+Erh0MUsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729534812; c=relaxed/simple;
-	bh=GlPX+KtWJH8I2hdfrLtHvDpj0eL7bZVupSjgXXp60UQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tN60JtpKZjMyAyWN/F0Z8zlSytPZJjv806mapNRj87Myqm4mC5lJO0I9cjJTAjRByC/phswIOSPeV1xoqRj7rsWf4Kwa+S1BaQBP3Mu0Qfy4uvXm6NzbFPUz2PP5Miwc856ptS+ukNBrl8qFiSyoeyWDJDxZl7vD9oWt9D/+lD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hRo1sqyS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LAlHxI012350;
-	Mon, 21 Oct 2024 18:19:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SBA+LZg+3ZcEFM0R25WL7du5150FkxKzdf/CXN7CqTw=; b=hRo1sqySidl/ke6w
-	iyVKvIz0X/kv2WlSF6PhnbYa6s3PzZZp0iLrwpvN5JmcUuaMQjAxD9hA8X7IW9n8
-	NVUuTENN4q5t+TeyhR8CDazj4q6txde2xen6+IJivYPIhHbtWPgOKq6l0WvlpuMN
-	vqq7Ro5egzaUyyHIJMUUh82HdwwHPDgKhd9ji5VivL3vJbYGK9Ma5QHDb/hMCCD6
-	O7IeBGdCCeePxxQr4Wg3i2Mc0N0gVjpWWhBZbBnYHmGZcp3xJausw734lWL4+ZVa
-	SZRYyy491JDshNmnP+SKHj5ac7Hni0xG6s/OQn6DUQcjLXzSF/AuhpQ3rpjvA8ts
-	jfNXlA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42c6tsnm7j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Oct 2024 18:19:37 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49LIJZxQ012413
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Oct 2024 18:19:35 GMT
-Received: from [10.81.24.74] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Oct
- 2024 11:19:35 -0700
-Message-ID: <41db541a-4de1-409b-bfec-7b9456fc200f@quicinc.com>
-Date: Mon, 21 Oct 2024 11:19:34 -0700
+	s=arc-20240116; t=1729535323; c=relaxed/simple;
+	bh=ptS4hB+9g5tLJ6Y3Ir0ex1ToynFjAmAhdZirQ2dCAcM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ou6ioiLjjOWk7pyZmStAfbGdQMuDc5Bf3e7URZk27hQiH8bfPqlHetAJraD69YRtx1lYAcZewvH7Lo92V8hNEQIYyP8haGjb3uIPbpjKSOQUUkXNnHs9jX/r5cJr6hQ9inwSikkCJRVgFO1xY4T2R8wRgusYDOYFTPIIXaJRMmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NPQijWH7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD1CC4CEC7;
+	Mon, 21 Oct 2024 18:28:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729535323;
+	bh=ptS4hB+9g5tLJ6Y3Ir0ex1ToynFjAmAhdZirQ2dCAcM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=NPQijWH7dtdQfWQ3VINcIBs68dM7uYDwqDcC2DOqmkjAh885TxxLXIXa6K6JXTqIj
+	 vLYbM9aSLPVzuqEGu9n47tRZL6yC5W6IuoeQAv3gEtpKVM24dQD2UTQfxIC9iJ72aT
+	 iaL92gS8GtScPW0VQ6NHnhn0X3kJSLq6yz/sKf5ri6TVXklasyrOUYB7vbY5NPGHHB
+	 DnT/UhfYWB3SqtpQJOY3poCa4WKT4yHrI6EICqV2radISv18EU7dBnPMMqEjuybaTo
+	 HwOkckHVkRvA26k2S7SW/moHtwPMsTdWCEWamezYhDASvCdaXc0AndJrHt2jl3a2w2
+	 kTT5OjpPZffSg==
+Date: Mon, 21 Oct 2024 19:28:36 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Emil Gedenryd <Emil.Gedenryd@axis.com>
+Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "dannenberg@ti.com" <dannenberg@ti.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "lars@metafoo.de"
+ <lars@metafoo.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Kernel
+ <Kernel@axis.com>
+Subject: Re: [PATCH v4 2/2] iio: light: opt3001: add support for TI's
+ opt3002 light sensor
+Message-ID: <20241021192836.1b1fe68d@jic23-huawei>
+In-Reply-To: <9e93042237c3c9815d7b1be5ba85be61239b76e8.camel@axis.com>
+References: <20241003-add_opt3002-v4-0-c550dc4591b4@axis.com>
+	<20241003-add_opt3002-v4-2-c550dc4591b4@axis.com>
+	<20241006141624.3fa5bf34@jic23-huawei>
+	<b40d22b5bdf487b40207e676d35a0507c47cbb26.camel@axis.com>
+	<20241010184742.1747bfe2@jic23-huawei>
+	<fab164228b4d567a147cd8d93150e687c6db0c70.camel@axis.com>
+	<20241012161040.1506a7a4@jic23-huawei>
+	<9e93042237c3c9815d7b1be5ba85be61239b76e8.camel@axis.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 4/8] mtd: nand: Add qpic_common API file
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, <broonie@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241021115620.1616617-1-quic_mdalam@quicinc.com>
- <20241021115620.1616617-5-quic_mdalam@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20241021115620.1616617-5-quic_mdalam@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SD8HV_K6uhAb3197RF7-KumeTaXLtH8X
-X-Proofpoint-ORIG-GUID: SD8HV_K6uhAb3197RF7-KumeTaXLtH8X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 spamscore=0 mlxlogscore=977 phishscore=0 adultscore=0
- mlxscore=0 clxscore=1011 bulkscore=0 malwarescore=0 impostorscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410210132
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 10/21/24 04:56, Md Sadre Alam wrote:
-...
-> diff --git a/drivers/mtd/nand/qpic_common.c b/drivers/mtd/nand/qpic_common.c
-> new file mode 100644
-> index 000000000000..570ab59ca12b
-> --- /dev/null
-> +++ b/drivers/mtd/nand/qpic_common.c
-> @@ -0,0 +1,757 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+On Mon, 14 Oct 2024 06:18:29 +0000
+Emil Gedenryd <Emil.Gedenryd@axis.com> wrote:
 
-I'm surprised you aren't adding a 2024 Qualcomm Innovation Center copyright 
-...
-> +MODULE_LICENSE("GPL");
+> On Sat, 2024-10-12 at 16:10 +0100, Jonathan Cameron wrote:
+> > On Fri, 11 Oct 2024 07:12:05 +0000
+> > Emil Gedenryd <Emil.Gedenryd@axis.com> wrote:
+> >  =20
+> > > On Thu, 2024-10-10 at 18:47 +0100, Jonathan Cameron wrote: =20
+> > > > On Mon, 7 Oct 2024 07:19:06 +0000
+> > > > Emil Gedenryd <Emil.Gedenryd@axis.com> wrote:
+> > > >    =20
+> > > > > On Sun, 2024-10-06 at 14:16 +0100, Jonathan Cameron wrote:   =20
+> > > > > > On Thu, 3 Oct 2024 14:22:17 +0200
+> > > > > > Emil Gedenryd <emil.gedenryd@axis.com> wrote:     =20
+> > > > > > >=20
+> > > > > > > +struct opt3001_chip_info {
+> > > > > > > +	const struct iio_chan_spec (*channels)[2];
+> > > > > > > +	enum iio_chan_type chan_type;
+> > > > > > > +	int num_channels;
+> > > > > > > +
+> > > > > > > +	const struct opt3001_scale (*scales)[12];     =20
+> > > > > > This doesn't compile for me as one of the two options only
+> > > > > > has 11 entries.  You could either force them to be 12
+> > > > > > entries each or use a pointer without the size and
+> > > > > > add a num_scales entry in here.
+> > > > > >=20
+> > > > > > Jonathan     =20
+> > > > >=20
+> > > > > Hi Jonathan,
+> > > > >=20
+> > > > > Are you building on top of the patch that was accepted in earlier=
+ versions of this
+> > > > > patch set? That patch adds the twelfth missing scale value for th=
+e opt3001.
+> > > > > See:=C2=A0https://lore.kernel.org/all/20240916-add_opt3002-v3-1-9=
+84b190cd68c@axis.com/
+> > > > >=20
+> > > > > Should I have added some tag to highlight the dependency for this=
+ version of the
+> > > > > patch set?   =20
+> > > > Ah.  Yes, I was half asleep.
+> > > > They are going via different branches (slow and fast) so I'll have =
+to
+> > > > sit on this series until after that fix is in the upstream for the =
+togreg
+> > > > branch of iio.git.
+> > > >=20
+> > > > If I seem to have lost it after that is the case feel free to give =
+me a poke.
+> > > >=20
+> > > > Jonathan
+> > > >    =20
+> > > Hi,
+> > >=20
+> > > No worries. Just to clarify, do you mean sit on it as that you will c=
+ontinue reviewing
+> > > the code after the fix is in upstream, or should I consider this patc=
+h to be approved? =20
+> > Assuming not other review comes in, I consider this ready to go. =20
+>=20
+> Great, thank you!
+>=20
+> > >=20
+> > > Also, do you have an approximation of what time frame we're talking a=
+bout? =20
+> > 2 weeks most likely.
+> >=20
+> > I've just sent Greg KH a pull request with the fix in it. He will hopef=
+ully
+> > pick that up and then send a pull request on to Linus.  Then we wait fo=
+r the
+> > next rc after that at which point Greg will probably pull it into char-=
+misc-next or
+> > I can always merge it into my togreg branch once it is in a release can=
+didate of
+> > Linus' tree.
+> >=20
+> > In parallel with that I'll probably do a pull request for what is alrea=
+dy in the
+> > togreg tree to get a lot of stuff in char-misc-next for the next cycle.=
+ That makes
+> > the history a little cleaner as I can fast forward my tree and end up w=
+ith
+> > whatever is in char-misc-next (hopefully including this).
+> >=20
+> > Anyhow, a bit of tree juggling for me, but we have plenty of time as rc=
+3 will probably
+> > be out tomorrow and it normally goes to rc7 at one rc a week =20
+>=20
+> Thank you for the information and for the help during the review process =
+for this patch.
+> Best regards,
+> Emil
 
-Since commit 1fffe7a34c89 ("script: modpost: emit a warning when the
-description is missing"), a module without a MODULE_DESCRIPTION() will
-result in a warning when built with make W=1. Recently, multiple
-developers have been eradicating these warnings treewide, and very few
-(if any) are left, so please don't introduce a new one :)
+Applied to the togreg branch of iio.git and pushed out initially as testing=
+ to
+let the build bots see if they can find anything we missed.
 
-Please add the missing MODULE_DESCRIPTION()
+I'll push it out for linux-next to pick up in a few days.
+
+Jonathan
+
+> >=20
+> > Thanks,
+> >=20
+> > Jonathan =20
+> > > Best Regards,
+> > > Emil=20
+> > >  =20
+> >  =20
+>=20
 
 
