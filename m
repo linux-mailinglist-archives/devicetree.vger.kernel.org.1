@@ -1,175 +1,212 @@
-Return-Path: <devicetree+bounces-113673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89DC09A68F9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:47:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 112619A6916
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:51:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11DF51F22D48
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:47:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88B281F22399
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:51:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8659A1F4736;
-	Mon, 21 Oct 2024 12:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98FA31F4FA0;
+	Mon, 21 Oct 2024 12:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ljVVC56u"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BxinkhbI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561B01F130A;
-	Mon, 21 Oct 2024 12:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4021D1E7A
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:51:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729514864; cv=none; b=dn+lK7naWuvojX2GeKmKFAaZaW7S+hqvobYDb64mPJH4qmnrQF+RVozOFG7J3w+qbHDrr1GX01UP290N18j1wR+9YK/6dpoa5SNE1tPB9hZx2P66SCEK5pZKf3oitaDOZKz6MvEjEC4rS1bKrjAmVEqKCqMuLt4hOBvvrFd4r2U=
+	t=1729515073; cv=none; b=O2Njx9FD9aAqXS5JfZfB4NSzlyK0Fk57T+YoH/rK5t8/qctnmbkjsgkqf74Jzl5Ktym0kMA5R8VB5QhD8RYYax30ecvdDoQPrUYSi7UlbExkg7WkuUJjDjsmRLG+6eGkIxD9YjrFB/++JHgbE/0Pd3KZ/VGwaZr8jm5TxBRjd/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729514864; c=relaxed/simple;
-	bh=TdRtTKzQUuBzDz5Brnx39Tf1QkRAMgpDSfGVgGG3i98=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a+Cj4XFmvr8GIhpd5kLgPexomqipVnPY9Cn/n8f8C92rKJdo1zp8Y4aHVmyRc8fzdWjy/t7PiaVPXhW+Gk5ja+m9zrKiJTsX/6sWhGks9f2HbB9/jA80RA1c0oKBgc772GCcSmrV4JhYuS6iU6xLkTeoarhViH0Z7RXX6Wq0MJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ljVVC56u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19FFBC4CEC3;
-	Mon, 21 Oct 2024 12:47:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729514863;
-	bh=TdRtTKzQUuBzDz5Brnx39Tf1QkRAMgpDSfGVgGG3i98=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ljVVC56uysSjykiOb3ys73cGAtPuNBztEN0WdqjjhTb7ayzsOmOy+ucaLK0XtCqm2
-	 SxPXicBXSShWKk/kQJSjgg0wsWnVBaz28U+KYY20mDIQ0SZ4pKurf46YZVwkzgSke+
-	 iDx8/OnOv/uyx0ITIj6Z6usNz1eHdO20/6UrYgKO2TbJsfg5OW2Of7grUtXLnlP3Id
-	 xnh21u+NR/NNV5C3Z2xLaoCmPt2m1IKrP6GGx79pHqTKae06FlOfxubX3NxUKsfRWw
-	 2Oq7rNlkGvnw20hGs5GT/W31IbtU/Cd2Ui1cUepTebjBIBuzfqjCdWpW6EAf1ZpDyr
-	 /x9CiVI73+Lsg==
-Message-ID: <c048d270-7a07-4807-b816-0f4e0aeb67f7@kernel.org>
-Date: Mon, 21 Oct 2024 14:47:32 +0200
+	s=arc-20240116; t=1729515073; c=relaxed/simple;
+	bh=V94Ij3ae1rZVmL+jxKjTKUB+2p4lVCFw5V42wkRlmNk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EIWh6f0TGEOKeIcOamlaQzZvY+mtb/PH9jra8UvS4lgC0EK5DHN0k0YpJrTyDl2kLIa2iJnfEYGvZEQhajEI5ptU1kaUtRSsxSzMzQnTy7ntpB/M/8AsFrRbfQIsvZVK/MvPCZB/VoEmHrh4ByJpA+Ab0GaiXhrXB7joN0ibWj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BxinkhbI; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53a0c160b94so2512932e87.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:51:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729515068; x=1730119868; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y4x0frPjt5/BOSJ9+yy/X3eM08JC+jz1BkqZ97LB2LU=;
+        b=BxinkhbIolaZt7V0mXqJwX1rjsQq5gLUkpj0/0egfWJIczRp+6fczOr0/MloDhqncM
+         oPL66Jwead4z/83KS3lQGCWG2r9xa2IM5mq3FNUDY+V0WwujlXUo8WK3jzyfIMOEMdeo
+         a5/I9l2xjPh9+MauM35OH2Yklj6Xz3+0+30wYDvNUO2wBffp3Z11tx6UczFj7xOcTtf/
+         lo5bt/v5jZpxxRVopqBV9k/Oag/Q5S1m3UcaOaMJc6ZI6tKz1KUcd2dhCBJXA+EaAihk
+         jripIz+9Fw+89KcmYLyeItz+3aZQ0cfU2NNJMe/h5jgI/DH+u5w+/6I/XAJAH5ZaVT8M
+         hPnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729515068; x=1730119868;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y4x0frPjt5/BOSJ9+yy/X3eM08JC+jz1BkqZ97LB2LU=;
+        b=uPq51YuzcBbBg557YbPXcKrCkB//Kr6TtFKGtRJ7gznPOjpdfyDQreuqAfrhakeOAv
+         XPQ9T2Eh9bUMX8nJspGC//E9hDWtrqYKslRHuLIL4IeaL8nQs6bytE0Tmi+u/44w3GGL
+         bZ5tTjUUnwllmH6+MZ6Jq7g6dEPgbKy37MKo6DVczsDvAojuyQ6Rb1Hw6Om1gFQha1CX
+         PIOw0DbAjzaFNOsfg0isDlq9tCI1ATz4iEy8/j7UPbCS2I+mj6qXmypSaHTxBpDvFZZD
+         M+uqGdODg1SBjMYh74/askB4Wd9nwCLQQ0kN8QPIIjLqAPKae95qNc4hXpGMTTBqKV9B
+         uPNA==
+X-Forwarded-Encrypted: i=1; AJvYcCUBgX45g1lOFzR8FDjhl9A8gtf3PJ2xMXenSdO0EB5ePUffzCK4YeWJDwc4o8QTR4lbpiV2J266JKeM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyq+ItS1DnUJ20fZ5EY94zSXNn5eyb6duhR1ToUIIUC89RTjNJf
+	ec7yWoszi0I/DW4hyOrEXiS73fag8HvbbaxB3vMkwEBGsmre5esy9qUIsqtUzHk/h94gVpR4OgR
+	rxF7DX6nZThxXrjiApEXa3rI7wWClD9SrdjupWQ==
+X-Google-Smtp-Source: AGHT+IE+MWgG9ymZWSMfk2GnXFlKQTXntyhXseGsCdBrJgITVmJEdzAzJOSda4D1TD0k+L/IINSDoacMOfpYM6ib3uo=
+X-Received: by 2002:a05:6512:1383:b0:539:d428:fbdd with SMTP id
+ 2adb3069b0e04-53a1546d2f9mr5522728e87.53.1729515068095; Mon, 21 Oct 2024
+ 05:51:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] riscv: dts: starfive: add DeepComputing FML13V01
- board device tree
-To: Conor Dooley <conor@kernel.org>
-Cc: Guodong Xu <guodong@riscstar.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Emil Renner Berthing <kernel@esmil.dk>, rafal@milecki.pl,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Michael Zhu <michael.zhu@starfivetech.com>,
- Drew Fustini <drew@beagleboard.org>, Alexandru Stan <ams@frame.work>,
- Daniel Schaefer <dhs@frame.work>, Sandie Cao <sandie.cao@deepcomputing.io>,
- Yuning Liang <yuning.liang@deepcomputing.io>,
- Huiming Qiu <huiming.qiu@deepcomputing.io>, Alex Elder <elder@riscstar.com>,
- linux@frame.work, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241020134959.519462-1-guodong@riscstar.com>
- <20241020134959.519462-4-guodong@riscstar.com>
- <ae5gels34ozgzrcrwz53wj22hoy5cq3crn3dmkhitxlffmnavt@6lbmrcpjmqyd>
- <20241021-unroll-empower-3ab903615d6d@spud>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241021-unroll-empower-3ab903615d6d@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241021-ad7380-fix-supplies-v2-0-2ca551b3352a@baylibre.com>
+ <20241021-ad7380-fix-supplies-v2-4-2ca551b3352a@baylibre.com> <037d7ebb4d037edb32f9d717e456ab545621ea94.camel@gmail.com>
+In-Reply-To: <037d7ebb4d037edb32f9d717e456ab545621ea94.camel@gmail.com>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Mon, 21 Oct 2024 14:50:55 +0200
+Message-ID: <CAEHHSvZxrt3cPmmLwNj9nts9KhBWg4CwnzWnoTXYJL30AbJBsA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] iio: adc: ad7380: fix supplies for ad7380-4
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 21/10/2024 13:16, Conor Dooley wrote:
-> On Mon, Oct 21, 2024 at 09:17:59AM +0200, Krzysztof Kozlowski wrote:
->> On Sun, Oct 20, 2024 at 09:49:59PM +0800, Guodong Xu wrote:
->>> From: Sandie Cao <sandie.cao@deepcomputing.io>
->>> +&camss {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&csi2rx {
->>> +	status = "disabled";
->>> +};
-> 
-> You can drop these two, I marked them disabled in the common file
-> earlier this week.
-> 1
->>> +
->>> +&gmac0 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&i2c0 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&pwm {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&pwmdac {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&spi0 {
->>> +	status = "disabled";
->>
->> If your board has to disable all these, then they should not have been
->> enabled in DTSI in the first place. Only blocks present and working in
->> the SoC (without amny external needs) should be enabled.
->>
->> I suggest to fix that aspect first.
-> 
-> Eh, I don't think I agree. Having 5 disables here is a lesser evil than
-> reproducing 90% of jh7110-common.dtsi or shunting a bunch of stuff
-> around. Emil?
+Le lun. 21 oct. 2024 =C3=A0 13:18, Nuno S=C3=A1 <noname.nuno@gmail.com> a =
+=C3=A9crit :
+>
+> On Mon, 2024-10-21 at 12:00 +0200, Julien Stephan wrote:
+> > ad7380-4 is the only device in the family that does not have an interna=
+l
+> > reference. It uses "refin" as a required external reference.
+> > All other devices in the family use "refio"" as an optional external
+> > reference.
+> >
+> > Fixes: 737413da8704 ("iio: adc: ad7380: add support for ad738x-4 4 chan=
+nels
+> > variants")
+> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> > ---
+>
+> Hi Julien,
+>
+> Patch looks good. Sorry if this already came out in the previous version =
+or in
+> the other patchset you mention but shouldn't this fix come first in the s=
+eries?
+>
 
-Why reproducing 90%? Only enable would be here, no? Or you want to say
-the common DTSI has things which do not exist?
+Hi Nuno,
+That was my plan at first, but doing the
+devm_regulator_get_enable_read_voltage() first, simplifies the next
+changes ... and also eases the review :)
 
-Best regards,
-Krzysztof
+If needed I can do the rebase
 
+Cheers
+Julien
+
+> Anyways, for the patch itself:
+>
+> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+>
+> >  drivers/iio/adc/ad7380.c | 36 ++++++++++++++++++++++++++----------
+> >  1 file changed, 26 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
+> > index
+> > e257f78d63edd7910fcb936ec5344922f8e70b99..65096717f0dd3ea6a4ff7020bc544=
+d62b84c
+> > b8fd 100644
+> > --- a/drivers/iio/adc/ad7380.c
+> > +++ b/drivers/iio/adc/ad7380.c
+> > @@ -89,6 +89,7 @@ struct ad7380_chip_info {
+> >       bool has_mux;
+> >       const char * const *supplies;
+> >       unsigned int num_supplies;
+> > +     bool external_ref_only;
+> >       const char * const *vcm_supplies;
+> >       unsigned int num_vcm_supplies;
+> >       const unsigned long *available_scan_masks;
+> > @@ -431,6 +432,7 @@ static const struct ad7380_chip_info ad7380_4_chip_=
+info =3D
+> > {
+> >       .num_simult_channels =3D 4,
+> >       .supplies =3D ad7380_supplies,
+> >       .num_supplies =3D ARRAY_SIZE(ad7380_supplies),
+> > +     .external_ref_only =3D true,
+> >       .available_scan_masks =3D ad7380_4_channel_scan_masks,
+> >       .timing_specs =3D &ad7380_4_timing,
+> >  };
+> > @@ -1047,17 +1049,31 @@ static int ad7380_probe(struct spi_device *spi)
+> >                                    "Failed to enable power supplies\n")=
+;
+> >       msleep(T_POWERUP_MS);
+> >
+> > -     /*
+> > -      * If there is no REFIO supply, then it means that we are using
+> > -      * the internal 2.5V reference, otherwise REFIO is reference volt=
+age.
+> > -      */
+> > -     ret =3D devm_regulator_get_enable_read_voltage(&spi->dev, "refio"=
+);
+> > -     if (ret < 0 && ret !=3D -ENODEV)
+> > -             return dev_err_probe(&spi->dev, ret,
+> > -                                  "Failed to get refio regulator\n");
+> > +     if (st->chip_info->external_ref_only) {
+> > +             ret =3D devm_regulator_get_enable_read_voltage(&spi->dev,
+> > +                                                          "refin");
+> > +             if (ret < 0)
+> > +                     return dev_err_probe(&spi->dev, ret,
+> > +                                          "Failed to get refin
+> > regulator\n");
+> > +
+> > +             st->vref_mv =3D ret / 1000;
+> >
+> > -     external_ref_en =3D ret !=3D -ENODEV;
+> > -     st->vref_mv =3D external_ref_en ? ret / 1000 : AD7380_INTERNAL_RE=
+F_MV;
+> > +             /* these chips don't have a register bit for this */
+> > +             external_ref_en =3D false;
+> > +     } else {
+> > +             /*
+> > +              * If there is no REFIO supply, then it means that we are
+> > using
+> > +              * the internal reference, otherwise REFIO is reference
+> > voltage.
+> > +              */
+> > +             ret =3D devm_regulator_get_enable_read_voltage(&spi->dev,
+> > +                                                          "refio");
+> > +             if (ret < 0 && ret !=3D -ENODEV)
+> > +                     return dev_err_probe(&spi->dev, ret,
+> > +                                          "Failed to get refio
+> > regulator\n");
+> > +
+> > +             external_ref_en =3D ret !=3D -ENODEV;
+> > +             st->vref_mv =3D external_ref_en ? ret / 1000 :
+> > AD7380_INTERNAL_REF_MV;
+> > +     }
+> >
+> >       if (st->chip_info->num_vcm_supplies > ARRAY_SIZE(st->vcm_mv))
+> >               return dev_err_probe(&spi->dev, -EINVAL,
+> >
+>
 
