@@ -1,69 +1,70 @@
-Return-Path: <devicetree+bounces-113716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B6869A6ACA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:44:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BBDB9A6ACE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 15:44:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A1BD1F21E71
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:44:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A6841C215DD
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22B91F8908;
-	Mon, 21 Oct 2024 13:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90C41F80B8;
+	Mon, 21 Oct 2024 13:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="OHS5G4qJ"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="qxpf7no0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C274E1F80B8;
-	Mon, 21 Oct 2024 13:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3A01E0B96;
+	Mon, 21 Oct 2024 13:43:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729518206; cv=none; b=qBt+U0u1a1ZoUqtpMqYOkJBquNomtwXb6b5NzzrD7u3EkcSgku9jL7NAxZe/3tM/N3FQI7KGf49w5ibUaLcf+hLFAxEJzrep5nRuwA//7+K8WgX3U3cypH3LU+S71yAaN49+T6WZ5TOr04Ar543NfECN/1EDX/C/RojiIXGhz5k=
+	t=1729518207; cv=none; b=LGlwmCTwcHJykIJYHn31vDvK570qxNI0JuhMFxOVkInmuDOR9aOdSBhL1mpWT+Xpj1IHjqdkYDAm5Tho2B0P328JYNvq/McbqDnHFI7MkjoIsvKxbUz4/H/NyNlUKbYMDngrAeao/I+CTE4PtpS2cD7689TdDT034iCD07lSxMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729518206; c=relaxed/simple;
-	bh=rDvs1CxqVAzeYVMSGhs2gik+4bnLUS6qsOMHn/0ea3o=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=CRDS58j+cN3hh3Ub84ONFkckQYcGQQzKLMsZCnahNDH0onaj6POlmYWQ0HMrffvnSeZ7ZCPZnezTuPyYTSLRgBy3mR0Ckgy3qPmyNdm+A7ijkLm557erBbLSI2jpYK0Lkr9BqqHSclZKhndr7HcWfv6B/z7h7GbH332het10eXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=OHS5G4qJ; arc=none smtp.client-ip=148.163.135.77
+	s=arc-20240116; t=1729518207; c=relaxed/simple;
+	bh=28ZEwNAS2wz8DuwwSFhc4diahqnZwjYWUf4dzSSUEw8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=h7CtsFaZ8xZ+aafU9rSp4W4eu90mMVXrn2a7x4uRcXuQteGe6h5p5h+uB50nLS5PgPh6oWANbQwjKUDx+kKUCG1EK+0k3dsz2z10AgJ+aiNxNrpBqWr6m/cVk/bF76LfE9mY5ol/5T8ZRvMMz3EIgeJiqq2U39leilHbk4D6DKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=qxpf7no0; arc=none smtp.client-ip=148.163.135.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LC2tGp015881;
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LDS1lk019868;
 	Mon, 21 Oct 2024 09:42:47 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=DKIM; bh=J+ShBUz+F3k1OHNB/ky1BEGXz6G
-	b4uNGdFMQRWPazGw=; b=OHS5G4qJmIYDST4Z643GQliYQ83kBxzJjctCiYIO6uR
-	M85PUsfBQay7IxZ1bXLGTxYjb7uirMldw0sMRUmgJPTxGWngTYFrsmpV5M5nPhVX
-	SgM2CbId8fZh5LJVZJmBqvywmRO1ToYnlnR18PDw35agor8gsjyfbcY8PWL2IOr4
-	+Ku3icHymtQ/mg30Q8j89aqFqGlLnT52WQgOHS5NbRX56OCKP41y5bRfN0KIMznV
-	c5KDzJAfu+Z5p1daf85cfCQkx57SflPJwHv/0mdotSGUeKl2mDi6WXbn0t7fDN1M
-	hxYoPF77KWU5c2YRdbQnuoUBuVud93deIWDR5fQxpLQ==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42dj4vsfrd-1
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=NDWic
+	yi3U6+Fr7U8T64rcjDoHTLIy2DHOYZyWUxvJ24=; b=qxpf7no0ZoAd8TJi5n1bz
+	Pj50K4zcHGa7g07fbDqn6NyQGGtyOBp8WJUZkQCWoRZan1oYRPW+5kKZjuCLrDMh
+	JBWEZcrgI1U4HCeeUNZHxmRnGP6mjp9X7oX3D53GW5u4viNMMW29D1+bCYgc4l5L
+	dGaMhr/iMNIKT25y/frO6ADdPIhk0U2dyQrl01rN73q9/U0Z7Oq+L6WOb6mSj+T9
+	KYsG1lZhSujBeKROCkyF4oTooZfRYwtelJpVqbok++oGLFTI1NeDoPnk+j1I9jQC
+	mkCB/xBWXeoadBINKpAvEVIEae/5h3T7aKPCGkIgjG5JwCKn4N/bXSB+dpvkfioh
+	A==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42dk5dh6q4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Mon, 21 Oct 2024 09:42:47 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 49LDge6R055732
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 49LDgj5t038537
 	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Mon, 21 Oct 2024 09:42:45 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 21 Oct
- 2024 09:42:42 -0400
+ 2024 09:42:45 -0400
 Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
  (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 21 Oct 2024 09:42:42 -0400
+ Transport; Mon, 21 Oct 2024 09:42:45 -0400
 Received: from [127.0.0.1] ([10.44.3.60])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49LDgU7W017079;
-	Mon, 21 Oct 2024 09:42:32 -0400
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49LDgU7X017079;
+	Mon, 21 Oct 2024 09:42:40 -0400
 From: Nuno Sa <nuno.sa@analog.com>
-Subject: [PATCH 0/4] ASoC: codecs: adau1373: drop platform data
-Date: Mon, 21 Oct 2024 15:46:44 +0200
-Message-ID: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
+Date: Mon, 21 Oct 2024 15:46:45 +0200
+Subject: [PATCH 1/4] ASoC: codecs: adau1373: add some kconfig text
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,11 +72,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAERbFmcC/x3MQQqAIBBA0avErBNSK6WrRAtpppqNhmYF0d2Tl
- m/x/wOJIlOCoXog0smJgy+QdQXz5vxKgrEYVKNa2UgrHLostdEibfnAcHmBs8bWds6g7aF0e6S
- F7/85Tu/7AdbGeWJjAAAA
-X-Change-ID: 20241018-adau1373-shutdown-dc3d485a7d86
+Content-Transfer-Encoding: 7bit
+Message-ID: <20241021-adau1373-shutdown-v1-1-bec4ff9dfa16@analog.com>
+References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
+In-Reply-To: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
 To: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>
 CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
         Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
@@ -85,49 +85,48 @@ CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	<krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1729518408; l=985;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1729518408; l=690;
  i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=rDvs1CxqVAzeYVMSGhs2gik+4bnLUS6qsOMHn/0ea3o=;
- b=cWvhL9zypRmhbO4j1v1nMpS8xmH6o24HBpjj+InMDSu21EoPDulI6nhhQEF4jYAgtSaEnIsZL
- N+2N3VAzu2VCQTPeBC3LvsXsjyeHdBk4erZO6r62nKuNrS2YuftUuay
+ bh=28ZEwNAS2wz8DuwwSFhc4diahqnZwjYWUf4dzSSUEw8=;
+ b=WWs6spQOo9a4U4sJVsdfc+361jxenLEKpEkx0HPb81NSc4AefMHwSVilMxB8upXM7XR/nYJ2O
+ He2Ja5cRfscBWXAD2EWOX+yvC+pCuEjTA82LKER99XdUUxRi4LUz91a
 X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
  pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
 X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: TDb83TFkCs9Lej6XcRfs1mdvG17ca_V4
-X-Proofpoint-ORIG-GUID: TDb83TFkCs9Lej6XcRfs1mdvG17ca_V4
+X-Proofpoint-ORIG-GUID: KWg7cdvOurh9ytSBjRu9YfJKFE08ibbS
+X-Proofpoint-GUID: KWg7cdvOurh9ytSBjRu9YfJKFE08ibbS
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 phishscore=0 mlxscore=0 suspectscore=0 clxscore=1011
- malwarescore=0 mlxlogscore=719 adultscore=0 spamscore=0 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410210098
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=528 adultscore=0
+ spamscore=0 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
+ mlxscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410210097
 
-Main motivation for this was to just add support for a powerdown GPIO.
-Then, I realized the driver was using platdata which is not being used by 
-any platform. Hence, move to support FW properties and add bindings
-docs.
+Add some text to 'tristate' so that we can actually enable the driver
+when using things like menuconfig.
 
+Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 ---
-Nuno Sa (4):
-      ASoC: codecs: adau1373: add some kconfig text
-      ASoC: dt-bindings: document the adau1373 Codec
-      ASoC: codecs: adau1373: drop patform_data
-      ASoC: codecs: adau1373: add powerdown gpio
+ sound/soc/codecs/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- .../devicetree/bindings/sound/adi,adau1373.yaml    | 102 +++++++++++
- MAINTAINERS                                        |   1 +
- include/sound/adau1373.h                           |  33 ----
- sound/soc/codecs/Kconfig                           |   2 +-
- sound/soc/codecs/adau1373.c                        | 198 ++++++++++++++++-----
- 5 files changed, 253 insertions(+), 83 deletions(-)
----
-base-commit: cab655772416379a925af9ea85769a9d3eecdba0
-change-id: 20241018-adau1373-shutdown-dc3d485a7d86
---
+diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
+index 6a6125e94d2dc094b10c6f2fb53dd447e831f23d..72643907cef737ab4504ebac78b2bf7b4a8ead68 100644
+--- a/sound/soc/codecs/Kconfig
++++ b/sound/soc/codecs/Kconfig
+@@ -464,7 +464,7 @@ config SND_SOC_ADAU1372_SPI
+ 	select REGMAP_SPI
+ 
+ config SND_SOC_ADAU1373
+-	tristate
++	tristate "Analog Devices ADAU1373 CODEC"
+ 	depends on I2C
+ 	select SND_SOC_ADAU_UTILS
+ 
 
-Thanks!
-- Nuno Sá
+-- 
+2.47.0
 
 
