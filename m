@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-113816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A129A7214
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:14:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B9569A721C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 20:16:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 965732814DF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:14:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A4621F22C09
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 18:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B1A1F707E;
-	Mon, 21 Oct 2024 18:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF9291991D8;
+	Mon, 21 Oct 2024 18:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lKU136QW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HdEuE9l7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965601991DB;
-	Mon, 21 Oct 2024 18:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2C3F79CF;
+	Mon, 21 Oct 2024 18:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729534457; cv=none; b=RlEtSP7XPjnjIDuVy+lcGNh49XZnwwv/53mCEnzfBPNewLBMbozzeu6KZTgBivFvuwJJnP7kUvyktzbuaanWXPXIG6bRiCEKvz5VCX180No213+mDY55zM0GN9utS2pZca4Np/hQb7237ueQmdI76FxegNcvIs5NtJtSgbJR1rM=
+	t=1729534602; cv=none; b=emOqsCmWJJXC1XzIlUXz3KW1HYR/Q1MJzGPw8nVa31hef/PVY/r3ZD+vfsS1KN11Oz+fsOfccMebCtY9ayeNG2klnvwMLF3FQtf4Ry6BIkjNDrS0bFZzngMQjYhHVKN3VFXQsDfTicLTtxo614BRZEfLP5mRGFOOKnbjaEIJwXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729534457; c=relaxed/simple;
-	bh=6mdzQzHRWIZ7e/NGbWzVAFm3R4ztY9x43onKwrhnKgM=;
+	s=arc-20240116; t=1729534602; c=relaxed/simple;
+	bh=535weqGthcOSSyLKIbRyjS0M8aM1BuA4DQbzV12il9I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HtGV8n/UUYMi5LxSjeSJBAo1fdprpE9GnvgIb7aFyuhfDFRYmVs5uwEdzuz64GGUOBtTPc9EBilfFrlXn0qfGsqmrU8k0OzSWS7gJe/bXYgJy+XXIlLInWExbKQlciTs/DhzQK+VMukFFQgyX3bBbroUGqBmUdSb/LsWOo4w03o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lKU136QW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ECBAC4CEC3;
-	Mon, 21 Oct 2024 18:14:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IZoEJpFsqtSys1SIUChxzfAtfPcWiPndrdRYSMpC1oIDmdEQFTGKaGL5qp9X5Y3PRr48Lgj2peqJzZhz4rnShNs4IUWcuUncoC0JXSQa44Q3kiR5NwAxpVnSaaA5SldP7U2WN3K9qntEpC5SrDsq8X9OHDiN/oOI7oTkKzGeghI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HdEuE9l7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59079C4CEC7;
+	Mon, 21 Oct 2024 18:16:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729534454;
-	bh=6mdzQzHRWIZ7e/NGbWzVAFm3R4ztY9x43onKwrhnKgM=;
+	s=k20201202; t=1729534602;
+	bh=535weqGthcOSSyLKIbRyjS0M8aM1BuA4DQbzV12il9I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lKU136QW4s9amLSb5SPHuIHW8ZnFGAQjoIKpw3dOntSCZI0l2kZ+wbIiNAQApDyh9
-	 /yZZamRWx61MByztKcNjczZpysskr77E+PExVakVIClqJXTGShyEzXTmuoH/HKC7pb
-	 yonOTns4UoaqXel3Xf+h/cgh1o4lDwUJyaYJNi65PV65MxsG1J2JjShGvstU881Px1
-	 +fGW9Z4fA6NAa/wkOTTdP6qcu6QlcuFqyR6FsQH+MhU8/4iBwx+r+zyN54ngfsMcz5
-	 H8C0pq8syCfZV75wVrLf9A/sMP+aIDfj2XJQ8zqSpJGrqq7Bter1qsQC+gl3WJcKBt
-	 Qt6Z+fRFbfIRQ==
-Date: Mon, 21 Oct 2024 13:14:13 -0500
+	b=HdEuE9l7w4kvRQh74utaeulNFvw7nn+FImK0ByIqLqsnkIrC+XOTNUsBjFkqpGhE6
+	 HZJBPw8orsxmPx4hE7MXM5zBaUsRcb6R6Hqmj2/tki0dDi6ILPyLC6d0+0RzxXektw
+	 hYk7bY5rCTtA7rNUjJ1FZ4VzURgQ1LetB6Msn9yVJBiQWzmeEY5suWCCndt49FLpz/
+	 2feM0JT1aweEHZbFqk4tFZ7UEJwyhw+zlxEY3A84t1+nNMRagAqap82nIpZfL57JBB
+	 0hOr7w2/eqosTr4XTxAgaTEgQMiAhBjUTGSFcRNrRhigotTilgHvp9pJT+Y1n2HC9L
+	 FZOE9P2nwF4wA==
+Date: Mon, 21 Oct 2024 13:16:41 -0500
 From: Rob Herring <robh@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-i2c@vger.kernel.org,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Imran Shaik <quic_imrashai@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, kernel@dh-electronics.com
-Subject: Re: [PATCH 1/2] dt-bindings: at24: add ST M24256E Additional Write
- lockable page support
-Message-ID: <20241021181413.GA816269-robh@kernel.org>
-References: <20241017184152.128395-1-marex@denx.de>
- <20241018132754.GA54765-robh@kernel.org>
- <3aa9e2f4-b1ad-46bf-a8c3-0d57cd3a7075@denx.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Ajit Pandey <quic_ajipan@quicinc.com>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/6] dt-bindings: clock: qcom: Add QCS8300 video clock
+ controller
+Message-ID: <20241021181641.GA874673-robh@kernel.org>
+References: <20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com>
+ <20241018-qcs8300-mm-patches-v1-5-859095e0776c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,29 +68,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3aa9e2f4-b1ad-46bf-a8c3-0d57cd3a7075@denx.de>
+In-Reply-To: <20241018-qcs8300-mm-patches-v1-5-859095e0776c@quicinc.com>
 
-On Sun, Oct 20, 2024 at 06:29:13AM +0200, Marek Vasut wrote:
-> On 10/18/24 3:27 PM, Rob Herring wrote:
-> > On Thu, Oct 17, 2024 at 08:41:25PM +0200, Marek Vasut wrote:
-> > > The ST M24256E behaves as a regular M24C256, except for the E variant
-> > > which uses up another I2C address for Additional Write lockable page.
-> > > This page is 64 Bytes long and can contain additional data. Add entry
-> > > for it, so users can describe that page in DT. Note that users still
-> > > have to describe the main M24C256 area separately as that is on separate
-> > > I2C address from this page.
-> > 
-> > I think this should be modelled as 1 node having 2 addresses, not 2
-> > nodes.
-> We had the exact same discussion regarding M24C32D, see:
+On Fri, Oct 18, 2024 at 04:42:33PM +0530, Imran Shaik wrote:
+> Add device tree bindings for the video clock controller on Qualcomm
+> QCS8300 platform.
+
+That's obvious reading the diff. How is it different from the sa8775p 
+version? It must be different or you should have a fallback compatible.
+
 > 
-> https://lore.kernel.org/all/CAMRc=MdTu1gagX-L4_cHmN9aUCoKhN-b5i7yEeszKSdr+BuROg@mail.gmail.com/
-
-Seems like kernel implementation details dictating the binding to me. 
-Won't be a problem until there are shared resources on "both" devices.
-
-I guess since it is inline with what we already have:
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,sa8775p-videocc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sa8775p-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sa8775p-videocc.yaml
+> index 928131bff4c1..07e5d811d816 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sa8775p-videocc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sa8775p-videocc.yaml
+> @@ -18,6 +18,7 @@ description: |
+>  properties:
+>    compatible:
+>      enum:
+> +      - qcom,qcs8300-videocc
+>        - qcom,sa8775p-videocc
+>  
+>    clocks:
+> 
+> -- 
+> 2.25.1
+> 
 
