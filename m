@@ -1,68 +1,69 @@
-Return-Path: <devicetree+bounces-113483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6335B9A5D00
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:28:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 008169A5D02
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:29:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86A311C21443
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:28:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B00A3282F2B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:29:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483B01DFE2D;
-	Mon, 21 Oct 2024 07:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7A91E00B9;
+	Mon, 21 Oct 2024 07:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="aZ435by4"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="a2/3G4yJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C2F1DFD8A
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 07:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B601E0087
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 07:27:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729495661; cv=none; b=LBOLRftmUiNrSBd1ZzTCrjXOijyS8KVQLH+Ik/2BHGnGzzkuaLzLlbKi2LjLRGSTplbWR0Rlm/u/gqIk1dFRrfKEXEziazxjP3lOD1IPGz0lLaMDcW5Pwbcv8FyXA0S04Al8QrnP1N02WDTIxnMu0k1wbypz7h8vDfJGXLsNsk4=
+	t=1729495664; cv=none; b=O72df5fQ/pzYriK9loy1yd4LcleUBpiSweNk2/4DcGJFg1EnZsEbstPrvAHi9D4rxXGWLyRLhSPFJvt2O785/eOgOKbEoIlOScE/usIbSp+GzTCQt5S6rqIKMdJgOqDtwQu1jie8X030JU4TRi7t4gbNVGSQpc+GUID7JoujhYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729495661; c=relaxed/simple;
-	bh=03Qb5hxKK7rAKMhBjn9jT6mqUqatJTsr8tb5L6OSVI8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=Dm8sa2rLWvOcO52ga9N1pKlrNnpx/njtXNYy/79kGqLLIXMkPpCcNifAylPxorHrZB39qU6iJaxUOf5ag/QMxDc6vNsnU3iVi0Y7FnA3FfqM3L42r7x07VrChuAkFqruOMuzitndedWIN7F/ajNhKemIcCTpvxwnLZ+xeEXhnfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=aZ435by4; arc=none smtp.client-ip=209.85.214.170
+	s=arc-20240116; t=1729495664; c=relaxed/simple;
+	bh=+1oPmQQZYYyTlzfu+WalO7jQocFIehp8SUptW/y7x18=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=KzXy34FW72nuYkb6jrmZiAMVfN9f5IOdulpoFJ7CYz7CNbrqXjXcGYvzYOEV+mQK2YiUCf5d6UYncU/p93KwGH/FMbod0ssYx/zZ+34c6Mk+wmXnNNyuXnYnnCI9hV05gyOs8zNsEPeMt5hczbYVUPG5fRE2p6IFoVbMHakdzbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=a2/3G4yJ; arc=none smtp.client-ip=209.85.216.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-20c7b9087c4so3166785ad.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 00:27:38 -0700 (PDT)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2e2e31aacbbso647175a91.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 00:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1729495658; x=1730100458; darn=vger.kernel.org;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1729495661; x=1730100461; darn=vger.kernel.org;
         h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=XkkT1YK08fvvBnsXdekTj1dlk1F6WdJ88gbC//Uv2Rg=;
-        b=aZ435by45LAqLAeDuG6tSbjua6pMzwvX9oGJw1C1nrj2c4rTIBAeYD0OJgU/XxSoyr
-         YMoiounZY65YC/7XWzHmzvyn2zq8OljHx1/Go/4/jN/9Iygt2HLlqYVMMtk1d3aq6Pk9
-         BGH46n+FrpsnJLyvcaIMGMh+CY6fqb93jr9s/UVN52NFvD8yk/2tGhDVw2s1t2iZBMDk
-         QsIAPF8vJ50DVEuxxfV2SU0EST5oIOg54rvixE2+mzn+NapTwoKTvVTGANwWtMFerooJ
-         yySZrgp45Mn039Toxv7tEQQ/I/epiaw+61eafXx1jZXK7+lpLuAH3Rz0NPBv/RCZNHX8
-         bxZg==
+        bh=RwvmpL8qKj3SLwmzOmr8dF0fJatg9G7HpxkdxZupeyM=;
+        b=a2/3G4yJTRnZr2n3G+zOSS3jb5tf6/kIhQ0sTcfCIUSPyzbMM3XN0ONyUb9UXGmkQx
+         haq1hmAUW5K0HBhwmk3+GdfJT1F6Sc9mr7zb/BmFRCTwmJYKA7wHKclkXYkCbhJEdI9L
+         cB65sOL2pMTD2qXd4nDVDAMxo+ibl778h+E6VEfKBcl/E4raQu+1UboIu3akAM2pzapX
+         OHj5bqRGVk8krLiP54VWn8Y1aU9navB+C3rfLsChlZwIijjzsWFJimDQO3YU8U89dm0R
+         M4fSOhcoelRHVAKBkLQZRIdi02G6vC6Uho/5Li1NP4PebX67u7LTO7u4k61HJ2wtO9Ub
+         Ditg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729495658; x=1730100458;
+        d=1e100.net; s=20230601; t=1729495661; x=1730100461;
         h=references:in-reply-to:message-id:date:subject:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XkkT1YK08fvvBnsXdekTj1dlk1F6WdJ88gbC//Uv2Rg=;
-        b=IOLgKwhapKgGDhH8IMbY6iBGyT870Py9LAS4tVZlZOub3Np6j7oRDK6SNog5FZgIXF
-         0luaExQV+KTkQChCN+1P+QHDcGizCeYjbNiEF3GWZZrTKhAjUL2r2NgKwsZJ2/ySDceI
-         fa6nokPXDHoreaYWwYOcwxVf58zPTlQAWOtgXG2RaybJS6eMPtPGThsG1+zhTt+RBggI
-         5cYVgOD0eBuLoBYrhyNMAeA3MPMZmjRcKr2N5L4ojkFXddg068ODFp415Kh/G9LBmtd8
-         9pME7YmhjpBpeRDFy5qyll1Sh15UW+e5BIqstEvoBKo670Ad1U1QJLF6yHB27LfKMoBf
-         fw4w==
-X-Gm-Message-State: AOJu0YxjZ4FRaN+ZXA3Qhj/Zqed//7gxYa6K+QNBI8Fow2SiWchvtyVF
-	YxUzw8+yrMjbKpya0Raflp7gR3zuvxTwPPPriyesAZzPNW0EVltZy2a4d8/3wek=
-X-Google-Smtp-Source: AGHT+IEh6/03mZfFhuxBy6xAmriaeuAlOB4siq5+NfULwqzoaaUzBkefycmGSb5S4BiTt/jpYQtLhg==
-X-Received: by 2002:a17:902:c44c:b0:20c:df08:9a78 with SMTP id d9443c01a7336-20e5a9ae59cmr57079665ad.13.1729495658258;
-        Mon, 21 Oct 2024 00:27:38 -0700 (PDT)
+        bh=RwvmpL8qKj3SLwmzOmr8dF0fJatg9G7HpxkdxZupeyM=;
+        b=REdxJcITdfQ8fGLfrr2smM4sRO+nvNk3UaGWn9umbXiN1Ji8S0eW2KRjo+vWdYGcNo
+         vk4cyqucoPKn8QUlQHz9IfqQ/Zab9p/AA2E2lEQGK5J6rCG+QcISxQkPmcyBIE4H9df7
+         qry9sA2XVzXqHzBHedPOhJlGS0FpTirIaU8V2M10SXqDrs9ZjOExwtKwmVKAIkBuhE1X
+         VWR4YzucGr1d1M1/v30x7t/2/9Ad7wC4amrhEAe6XbulgGoShubUoqE6WsYKX9vnhjHb
+         6IDa1tIDWSCmqKMkD3AK6INkIkbPpIMhKbVN6dl99D1gZVBt+TvHrwejCPjmaXNUvamw
+         xr1w==
+X-Gm-Message-State: AOJu0YyX3d+4uiBtNEErCS3FvPDwba04vBZA0dFZK5H04PRNCfSYsWGV
+	Qo65U0JeH/s46G0268/w6j0UYNeCyXozL4yMPBmO9dyjLdD6ydA/U3hTwZwt89m58cO7nNQ85IQ
+	z
+X-Google-Smtp-Source: AGHT+IG7O4MTB4RTMZwzLlrbW/3WFjdoM5Duu6oLxtC3YUEZUKgcz7nk76eEdwRy5PZ8e1hJ3H2RpA==
+X-Received: by 2002:a17:902:da8f:b0:20c:9285:e951 with SMTP id d9443c01a7336-20e5a71b46dmr62715575ad.3.1729495660913;
+        Mon, 21 Oct 2024 00:27:40 -0700 (PDT)
 Received: from ubuntu.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0db2desm19749595ad.203.2024.10.21.00.27.35
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0db2desm19749595ad.203.2024.10.21.00.27.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 00:27:38 -0700 (PDT)
+        Mon, 21 Oct 2024 00:27:40 -0700 (PDT)
 From: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -77,9 +78,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
-Subject: [PATCH v3 RESEND 3/4] arm64: dts: mediatek: Add exton node for DP bridge
-Date: Mon, 21 Oct 2024 15:26:25 +0800
-Message-Id: <20241021072626.15102-4-xiazhengqiao@huaqin.corp-partner.google.com>
+Subject: [PATCH v3 RESEND 4/4] arm64: dts: mediatek: Modify audio codec name for pmic
+Date: Mon, 21 Oct 2024 15:26:26 +0800
+Message-Id: <20241021072626.15102-5-xiazhengqiao@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20241021072626.15102-1-xiazhengqiao@huaqin.corp-partner.google.com>
 References: <20241021072626.15102-1-xiazhengqiao@huaqin.corp-partner.google.com>
@@ -89,37 +90,26 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-Add exton node for DP bridge to make the display work properly.
+change `codec` in pmic (in mt8186-corsola.dtsi) to `audio-codec`
 
 Signed-off-by: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index 682c6ad2574d..943837f20377 100644
+index 943837f20377..13e464dac1be 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -424,6 +424,7 @@
- 		ovdd-supply = <&mt6366_vsim2_reg>;
- 		pwr18-supply = <&pp1800_dpbrdg_dx>;
- 		reset-gpios = <&pio 177 GPIO_ACTIVE_HIGH>;
-+		extcon = <&usbc_extcon>;
+@@ -1276,7 +1276,7 @@
+ 		interrupts-extended = <&pio 201 IRQ_TYPE_LEVEL_HIGH>;
+ 		#interrupt-cells = <2>;
  
- 		ports {
- 			#address-cells = <1>;
-@@ -1656,6 +1657,11 @@
- 				try-power-role = "source";
- 			};
- 		};
-+
-+		usbc_extcon: extcon0 {
-+			compatible = "google,extcon-usbc-cros-ec";
-+			google,usb-port-id = <0>;
-+		};
- 	};
- };
- 
+-		mt6366codec: codec {
++		mt6366codec: audio-codec {
+ 			compatible = "mediatek,mt6366-sound", "mediatek,mt6358-sound";
+ 			Avdd-supply = <&mt6366_vaud28_reg>;
+ 			mediatek,dmic-mode = <1>; /* one-wire */
 -- 
 2.17.1
 
