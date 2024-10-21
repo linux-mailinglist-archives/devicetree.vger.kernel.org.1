@@ -1,224 +1,125 @@
-Return-Path: <devicetree+bounces-113736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBBC59A6B61
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:02:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3F709A6B8C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 16:06:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EE0C1F20F07
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:02:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CDB51C2238F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:06:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D651FBCBB;
-	Mon, 21 Oct 2024 14:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144AD1F8931;
+	Mon, 21 Oct 2024 14:05:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="c3SH5BR+"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FSrckexO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82B81E7C09;
-	Mon, 21 Oct 2024 14:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC8C1E526
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 14:05:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729519217; cv=none; b=rM8CjgD/MG4gI2IkYzAfWv3s49Zks9xinUtVGAAq+pllqvPk9WSy0YkZE4x7n2J8aPKKkj4ohUipoG4a9J6wvnYMFT4/hI/8PIxLME1FGuJjhBL/mY2Z7tpfNlH72Gt63ably2b4ilnSOZic7petExdTzr1Fer72wriZQCKQVaU=
+	t=1729519553; cv=none; b=WlQY6wcOvfGgfe8Wqjx39cTruv5n60JffbpkgeQUfjF2MK22GOTPoodHHwiS/VjrMlZWWVpgcxdD4u8extlclCSxyIaf8RRUmOcKQqhU/aEOqz/IOj+S7yW5RG/i/uneydBQff6Rxxz2faIqdm5+lnPppF3H6LIXK34mDgfVxEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729519217; c=relaxed/simple;
-	bh=MGtHqjnJHsWdHgeNRtIE41YoumSd7sY+lNNdVHYmShs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=LAty3esh9NrkNPFhdISRk+o1bmZi9wuiccCghglNNIGpe0/f5CwGimLtuHV2XPJUixgkvm8QJOaGRLIE1k7uHY/fbh2QPd9uXTAcdKsoq+0zzz/yR4yxbFYYLiOUatjZ69VLBpuhJpoGL05T6vevvkwSjSUOMMRYctV+L5BzYCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=c3SH5BR+; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1729519216; x=1761055216;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=MGtHqjnJHsWdHgeNRtIE41YoumSd7sY+lNNdVHYmShs=;
-  b=c3SH5BR+TunEQXAzwIK4hDeeqrQnZAKRo3iUEhIAYs8QqLH9IicbPY33
-   3wBRlSZxRBaWOn/zrMk/g0WEmoMX55X0bdt3Yj9rCBijhFb2DYODN2hi+
-   TZLKr61E4svQH2tRCVHaE4Kfj4el0b23IQ7uz9Ib0T6oMGOfNad1CjVfC
-   X3ND91yfIwaNf6Vl1ik8Rkez54muCnoJNNHl+j9pLSGLMXcgYuxBqSO/7
-   7FLULzqFNvYKmDzS5F9dzQwgjBZ09w1PwJwHdsduwH/LHfWJJ3DXNYw7/
-   g0iqe7vlf1n82qSNMUWOnEHnUvxFAk2LEEO3Kmeja31Y4gzG67FJ/uHW0
-   g==;
-X-CSE-ConnectionGUID: wjlJ/ymcRaqntxTcHXMHhA==
-X-CSE-MsgGUID: I0v9UrQkSW+g6ZlCutcotw==
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; 
-   d="scan'208";a="33285734"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Oct 2024 07:00:13 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 21 Oct 2024 06:59:56 -0700
-Received: from DEN-DL-M70577.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 21 Oct 2024 06:59:52 -0700
-From: Daniel Machon <daniel.machon@microchip.com>
-Date: Mon, 21 Oct 2024 15:58:52 +0200
-Subject: [PATCH net-next 15/15] net: sparx5: add feature support
+	s=arc-20240116; t=1729519553; c=relaxed/simple;
+	bh=eedBscw/LGWNdzKVkTU7WWL5VO1Qm3yPV32Z9qjHYBc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Mn3iNZIHzRr5wFNQ8jTsPyGn5fsboc8ski2OeFH5urJLUbp8Ek/gzTAEzwu+y3BxLrwbk4FsbG7In9z2XGdtwdk8N82nUJoi/eDDER41zgbu3/kNa6EWmjxuqbb8+AkL0Jr9AaHmQTLyepC6RVN7bs0Pj2xDzn4Vf8iLgHnfAHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=FSrckexO; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-7cd8803fe0aso2981227a12.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 07:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729519550; x=1730124350; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lVisE+PE807hpO8CSAN7tilp7Z5USiSARLUB5mQ6sGE=;
+        b=FSrckexOgwmjvmNzAZf4P15GD6f/ullMommleZNlODPiqg1U9kP/ThP9EmGTzO95rA
+         4L+8KFs5W7DHXeruEccgXZo5Zc8qaU4i5y3cm45J1xT+LiMbsvkWR7wJOkR3DfLiU0jp
+         mkvdWAbCNHGaDOuhj5eGSyYSbNWhLfVFzuPIQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729519550; x=1730124350;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lVisE+PE807hpO8CSAN7tilp7Z5USiSARLUB5mQ6sGE=;
+        b=FCGJlYPtZnz6aRAeJnWBho/onaNBrQvtr7izx4svZIdg7vFVEDeLSHgUDjejCU1J8p
+         keOeSxrfHWjYn8bQ3auu0JRf/vI9gIhPvpESfydGt47J2KMRu4mi3I8k2KnlBFxn3rMS
+         lh7f2U+klxgQP3T37co2GcH0O+KfYvObNYsEv+EpFZ0zPs/ibNR0b/PKXz+nY9RaYK94
+         VYgDt6sy4bHoiYRhYxseZ7rT7bd4S3Vri3GSGQlOr/MLvd2H5QP8KnXKQczbAM1vUtqB
+         1n3nEpd/5G8VzXUm6mjsFBuebbXykDaw7ykiJsXN9hOOk4XRYPHq4POJ4b9vF9Zt55JG
+         SgHA==
+X-Forwarded-Encrypted: i=1; AJvYcCW2z3CaJ0gekeCu91BycEtHml06+GbxoBDlPyWSGwbR4eKCI983OM1bVkpeXpWZAb9Rl++w8tcTXkTF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzxupr7mzhKS1PnVFyNFlGypjZdzEzv0Zb9wdO6xFWKFZiWoMff
+	XwObo33u1ZrpTCFf9iXKulrO9cWWqwsrVqPnVfkhjFLwU4geIHFHDtf5UJeoqQ==
+X-Google-Smtp-Source: AGHT+IFKl8bzamnuWMLgNJkuqVRi9dnOVZzxVFFalqgJLx3tvd/wT7dAvKU2gZg1sxaZIisSRMrfSg==
+X-Received: by 2002:a05:6a21:350d:b0:1d9:ea5:19da with SMTP id adf61e73a8af0-1d96b6b6ed5mr25344637.17.1729519549873;
+        Mon, 21 Oct 2024 07:05:49 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:ecc1:dced:8a05:e4d8])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7eaeab57e36sm3133318a12.43.2024.10.21.07.05.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 07:05:49 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH] arm64: dts: mediatek: mt8186-corsola: Fix GPU supply coupling max-spread
+Date: Mon, 21 Oct 2024 22:05:36 +0800
+Message-ID: <20241021140537.3049232-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.47.0.rc1.288.g06298d1525-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241021-sparx5-lan969x-switch-driver-2-v1-15-c8c49ef21e0f@microchip.com>
-References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
-In-Reply-To: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
-To: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, <andrew@lunn.ch>, Lars Povlsen
-	<lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
-	<horatiu.vultur@microchip.com>, <jensemil.schulzostergaard@microchip.com>,
-	<Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
-	<ast@fiberby.net>, <maxime.chevallier@bootlin.com>
-CC: <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Steen Hegelund
-	<steen.hegelund@microchip.com>, <devicetree@vger.kernel.org>
-X-Mailer: b4 0.14-dev
+Content-Transfer-Encoding: 8bit
 
-Lan969x supports a number of different features, depending on the SKU
-(Stock Keeping Unit, see [1] for details). Add new field
-sparx5->features and initialize the features based on the target. Also
-add the function sparx5_has_feature() and use it throughout. For now, we
-only need to handle features: PSFP and PTP - more will come in the
-future.
+The GPU SRAM supply is supposed to be always at least 0.1V higher than
+the GPU supply. However when the DT was upstreamed, the spread was
+incorrectly set to 0.01V.
 
-[1] https://www.microchip.com/en-us/product/lan9698
-
-Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+Fixes: 8855d01fb81f ("arm64: dts: mediatek: Add MT8186 Krabby platform based Tentacruel / Tentacool")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- .../net/ethernet/microchip/sparx5/sparx5_main.c    | 40 +++++++++++++++++++++-
- .../net/ethernet/microchip/sparx5/sparx5_main.h    |  7 ++++
- .../ethernet/microchip/sparx5/sparx5_tc_flower.c   |  5 +++
- 3 files changed, 51 insertions(+), 1 deletion(-)
+Noticed this while trying to align the downstream Mali driver to the
+upstream device tree and binding.
 
-diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-index edbe639d98c5..ecec93625d37 100644
---- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-+++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-@@ -267,6 +267,40 @@ static int sparx5_set_target_dt(struct sparx5 *sparx5)
- 	return 0;
- }
- 
-+static void sparx5_init_features(struct sparx5 *sparx5)
-+{
-+	switch (sparx5->target_dt) {
-+	case SPX5_TARGET_CT_7546:
-+	case SPX5_TARGET_CT_7549:
-+	case SPX5_TARGET_CT_7552:
-+	case SPX5_TARGET_CT_7556:
-+	case SPX5_TARGET_CT_7558:
-+	case SPX5_TARGET_CT_7546TSN:
-+	case SPX5_TARGET_CT_7549TSN:
-+	case SPX5_TARGET_CT_7552TSN:
-+	case SPX5_TARGET_CT_7556TSN:
-+	case SPX5_TARGET_CT_7558TSN:
-+	case SPX5_TARGET_CT_LAN9691VAO:
-+	case SPX5_TARGET_CT_LAN9694TSN:
-+	case SPX5_TARGET_CT_LAN9694RED:
-+	case SPX5_TARGET_CT_LAN9692VAO:
-+	case SPX5_TARGET_CT_LAN9696TSN:
-+	case SPX5_TARGET_CT_LAN9696RED:
-+	case SPX5_TARGET_CT_LAN9693VAO:
-+	case SPX5_TARGET_CT_LAN9698TSN:
-+	case SPX5_TARGET_CT_LAN9698RED:
-+		sparx5->features = (SPX5_FEATURE_PSFP | SPX5_FEATURE_PTP);
-+		break;
-+	default:
-+		break;
-+	}
-+}
-+
-+bool sparx5_has_feature(struct sparx5 *sparx5, enum sparx5_feature feature)
-+{
-+	return sparx5->features & feature;
-+}
-+
- /* Compare the devicetree target with the chip target.
-  * Make sure the chip target supports the features and bandwidth requested
-  * from the devicetree target.
-@@ -934,7 +968,8 @@ static int sparx5_start(struct sparx5 *sparx5)
- 		sparx5->xtr_irq = -ENXIO;
- 	}
- 
--	if (sparx5->ptp_irq >= 0) {
-+	if (sparx5->ptp_irq >= 0 &&
-+	    sparx5_has_feature(sparx5, SPX5_FEATURE_PTP)) {
- 		err = devm_request_threaded_irq(sparx5->dev, sparx5->ptp_irq,
- 						NULL, ops->ptp_irq_handler,
- 						IRQF_ONESHOT, "sparx5-ptp",
-@@ -1088,6 +1123,9 @@ static int mchp_sparx5_probe(struct platform_device *pdev)
- 	if (err)
- 		goto cleanup_config;
- 
-+	/* Initialize the features based on the devicetree target */
-+	sparx5_init_features(sparx5);
-+
- 	/* Initialize Switchcore and internal RAMs */
- 	err = sparx5_init_switchcore(sparx5);
- 	if (err) {
-diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.h b/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
-index 8a2b74d0bd35..5163e26a28b4 100644
---- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
-+++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
-@@ -75,6 +75,11 @@ enum sparx5_cal_bw {
- 	SPX5_CAL_SPEED_12G5 = 7
- };
- 
-+enum sparx5_feature {
-+	SPX5_FEATURE_PSFP = BIT(0),
-+	SPX5_FEATURE_PTP  = BIT(1),
-+};
-+
- #define SPX5_PORTS             65
- #define SPX5_PORTS_ALL         70 /* Total number of ports */
- 
-@@ -338,6 +343,7 @@ struct sparx5 {
- 	u32 chip_id;
- 	enum spx5_target_chiptype target_ct;
- 	enum spx5_target_chiptype target_dt; /* target from devicetree */
-+	u32 features;
- 	void __iomem *regs[NUM_TARGETS];
- 	int port_count;
- 	struct mutex lock; /* MAC reg lock */
-@@ -405,6 +411,7 @@ struct sparx5 {
- 
- /* sparx5_main.c */
- bool is_sparx5(struct sparx5 *sparx5);
-+bool sparx5_has_feature(struct sparx5 *sparx5, enum sparx5_feature feature);
- 
- /* sparx5_switchdev.c */
- int sparx5_register_notifier_blocks(struct sparx5 *sparx5);
-diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_tc_flower.c b/drivers/net/ethernet/microchip/sparx5/sparx5_tc_flower.c
-index c3bbed140554..4dc1ebd5d510 100644
---- a/drivers/net/ethernet/microchip/sparx5/sparx5_tc_flower.c
-+++ b/drivers/net/ethernet/microchip/sparx5/sparx5_tc_flower.c
-@@ -1284,6 +1284,11 @@ static int sparx5_tc_flower_replace(struct net_device *ndev,
- 
- 	/* Setup PSFP */
- 	if (tc_sg_idx >= 0 || tc_pol_idx >= 0) {
-+		if (!sparx5_has_feature(sparx5, SPX5_FEATURE_PSFP)) {
-+			err = -EOPNOTSUPP;
-+			goto out;
-+		}
-+
- 		err = sparx5_tc_flower_psfp_setup(sparx5, vrule, tc_sg_idx,
- 						  tc_pol_idx, &sg, &fm, &sf);
- 		if (err)
+ arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+index cf288fe7a238..db2aca079349 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+@@ -1352,7 +1352,7 @@ mt6366_vgpu_reg: vgpu {
+ 				regulator-allowed-modes = <MT6397_BUCK_MODE_AUTO
+ 							   MT6397_BUCK_MODE_FORCE_PWM>;
+ 				regulator-coupled-with = <&mt6366_vsram_gpu_reg>;
+-				regulator-coupled-max-spread = <10000>;
++				regulator-coupled-max-spread = <100000>;
+ 			};
+ 
+ 			mt6366_vproc11_reg: vproc11 {
+@@ -1561,7 +1561,7 @@ mt6366_vsram_gpu_reg: vsram-gpu {
+ 				regulator-ramp-delay = <6250>;
+ 				regulator-enable-ramp-delay = <240>;
+ 				regulator-coupled-with = <&mt6366_vgpu_reg>;
+-				regulator-coupled-max-spread = <10000>;
++				regulator-coupled-max-spread = <100000>;
+ 			};
+ 
+ 			mt6366_vsram_others_reg: vsram-others {
 -- 
-2.34.1
+2.47.0.rc1.288.g06298d1525-goog
 
 
