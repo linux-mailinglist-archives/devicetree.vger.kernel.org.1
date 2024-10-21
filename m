@@ -1,175 +1,136 @@
-Return-Path: <devicetree+bounces-113602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064009A65CA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C3419A65E1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 13:06:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEA081F236B0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:04:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF9111F220DD
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E0191E25E3;
-	Mon, 21 Oct 2024 11:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5045F1E47AC;
+	Mon, 21 Oct 2024 11:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TepYvfmM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vN9Q7jqJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442671E0087
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 11:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07431E3784
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 11:06:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729508679; cv=none; b=OZwrVWbFulvXrfj2/f6pos2juAijNt+/1hX8+RO+k//RwYFS698TXS0j3LPYsLbN8sPDvAWlw2F2LePp2e+nuaoUPvdjpoL88HbfqRriy0SmK4qsXLjbnJOb9l3vRh2CJidfymlexyZwYdX8WtZFhTZqY9+ezNC5cWGIo8rfdHc=
+	t=1729508808; cv=none; b=Z3DclfccKup/eDmDwzRmJeaPYWuCj/V65L5yGDanOuzMHXTjPEPOr/83jeBWNeZLLfdUbX9tAEscWZ9OfWJ99B6grpHEncMc9EjF1RNoHHnOlqA4e2Mh+HhsGbTcAGvOqm1QqGQHxG0Dk7ZbNxvTExFprSBigqSNaHVOQeEMbWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729508679; c=relaxed/simple;
-	bh=LvxPIKw0Wc6uzyJGMhWnJXsVOAN4ixv2zbjyRPGFRrQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G9Z2GCWxx/qlaP8QIrd0LvnM5Blo1UNZR8aN70++9kmMpEQb6xHKcWMx66NEqHfgFj9PwxkbmYjuGFHHmNv2a6OBRiGryCYTHq0doaAsJIKNkCvdrjaoiRYSRoxOEKDwX6BrdHB6epBxTLZSPmuGmNTBodBaD+cWaek8fNJ8x0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TepYvfmM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49L8VrHB014410
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 11:04:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dcngVYJfUYun0KaV2VXI+C+nI+5NsaRAfwQ2oaU47dA=; b=TepYvfmMQ7RGWfx8
-	kzP7XkguUVIeG4R0XvPn39g3Eom5MfLBIfc9Rln1F3NRBZTEbjdpbXCFdleAXA9V
-	jpJhj2QId88OZh5ZjVm+51DXiMTADJ2m/EchfJfb7AucbPRASXHvyaIh/Dn35l/s
-	ODcbLlnTaqc1zzcq27y9GzPG8ilJL3lMhVsjXqotU+qf6YR8yioOT38mCwT0hQ/c
-	JNA887n6+e/iJWbFbX/torkg6J3UvubSkMrBpGZA1kalCwldKF8vXMlTnLy1vmYQ
-	6jGu0SaN20Qfe2gxf2ZhVZC0FTKCIdegaumZahHY+2L31w0DTmNc0Yd9y4nbOy0M
-	cEwQfw==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42dkhd0guj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 11:04:36 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6cbe6e6bcf2so12037436d6.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 04:04:35 -0700 (PDT)
+	s=arc-20240116; t=1729508808; c=relaxed/simple;
+	bh=j/cqU4YQ9xO8Fy6AsqoJKZ8kYO9WpzGiOTJL1LCyPps=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lHe8sI4JMNKxWdWkeefI/YF2EMTsLlNv74JFc6g211N0H+552Ze9zI7MOfjK1kWXIMJJdpSdsvtqFB2Nae6ETQOYE+SjKd51sJmerJmezfCwVKzukCz4J0WsbnMGfmpNamOCGfFSDu0KfITykvW33Oxpp/nOQx31o/4Bs/rOYp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vN9Q7jqJ; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-539fe02c386so5294993e87.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 04:06:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729508804; x=1730113604; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RnolULg5KM7EXLrBuCEsj9PWWGa59GTkIO/LQyKKSQ4=;
+        b=vN9Q7jqJUEvbWsuqArKxZEF1tOBj25cuPoSFA2o+HjMU6RpPoU7de3fjMLHE2PdgGk
+         VFyHPu0jTLqnhNqRZEOf94v5oGTaUUTCMoGPwPhs5QtE1gFDd9D4hSsyNNGKDDkpr9lA
+         ptSFB0A5Sne14ZXUQx/qD9HWQ6e5Wu6fU82LSc9imubKdV2mTir2lFG3W28BxxdtZVi0
+         jsVKeMfRML5st0p6iR1sILR1bbe6SVLf1kPCwoJi6TqCBrTdiX69Fdc8hpL/977aUIg0
+         btyyc4UC0Bo4ZLYxC2s3AbrcNPg2fuBJvMvO/Nf43/yib5Rb9CdY61YofIPl4y59jhV2
+         twZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729508675; x=1730113475;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dcngVYJfUYun0KaV2VXI+C+nI+5NsaRAfwQ2oaU47dA=;
-        b=C/yxA40dnp0294QTIVrWPChOSLCp323kyX9a1U4M3soR8ib2nk9RVUOd8aRFatDi9y
-         2dtF3K4rSl//Q4Lr1VRKK0pnUKlozcvatxbGAhg3xu9MvR7gVZv+bbvfYvjQFs2n0SQ/
-         euxdXbRs1pKbDSKAEOZ4MKNMY1eBhbpT1xmF/CPioRKjwzF7NJAylbwNukU9Z0bYQwNx
-         xWqqx7wq53VdYTztcumR6IJy3oquLX946QV71/9j0SxUmInTn3GR2TgCzWQuUA4QMF7P
-         yCl/N0hDD0AqKoLia0tuCBwRlz02V+5L4RditwO8YFnY5qNOm5dYCKlSnM4fd/OGRQmN
-         EdQA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjxRco25fibe2LGkOCz1ysJUa/xPX4BgFuK2IsN645McdSHHrG0Gpxm28sk+RlSjAFCGSYcQgOVPPO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtFfr5jcj8WVXX4KUQyHpOmrYksutq3/3v4uElQeTerepdTUqn
-	jHpio7Qn7aWv1ntnP5okFZcU4va+9Ycv6g8BWWBSAuOmw5V4RTwDwHcgZ6C0UC5wtOQgMI1aZAA
-	dmgLx1kvMqh5aJy+dYTK8ZIBYFeSpNAw5XumIGc4cFjGr4afp8iTQuxiDN2Ni
-X-Received: by 2002:a05:6214:2268:b0:6c5:3338:45d5 with SMTP id 6a1803df08f44-6cde1635d54mr69115546d6.10.1729508675354;
-        Mon, 21 Oct 2024 04:04:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFSOUk7F+0PG+KYcCOi0xlveTYyYfaksaIxdy5jdFMTlNyIJZuGZYLXKfzZqdvLn3luov5JYA==
-X-Received: by 2002:a05:6214:2268:b0:6c5:3338:45d5 with SMTP id 6a1803df08f44-6cde1635d54mr69115376d6.10.1729508675042;
-        Mon, 21 Oct 2024 04:04:35 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a912ed80fsm190291766b.46.2024.10.21.04.04.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 04:04:34 -0700 (PDT)
-Message-ID: <7fa066b6-a214-4866-9d0a-f75896531d84@oss.qualcomm.com>
-Date: Mon, 21 Oct 2024 13:04:32 +0200
+        d=1e100.net; s=20230601; t=1729508804; x=1730113604;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RnolULg5KM7EXLrBuCEsj9PWWGa59GTkIO/LQyKKSQ4=;
+        b=WfTw/jzZymujZW1kgg+w4kGkBbdPULsxi9QbkArPhQrBV4kpGjJ+xtWJGoar5Dap3N
+         kIXaeACmaDWAouf0va1xVIcBqtmrSDxAMvoFPowtbE3VxNol3wWmokxAlObmwVwFRW/O
+         NJoUbqLhgdJAhx6bHbg0/7CcJZG1W8mav1dpO6fGGLW1f5Z+hsA2AtnqeXojaJ/CFtTL
+         PlgAGOzYgSTkuErjzs0I5ypMbLFywLdeNoNFXB5ADp8Eu5F3oHKF5saErDFapdkW3eBu
+         nA8QYO0Z/1fAmPQ9Z8MbbImR6eBS0klXMznKrptsv7XnF4CX+1o1V3Wp5qBz6GWfPyCQ
+         xFUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWqflQ4FkTDdZ+MceYG5D/cTRDry8ONgzQtp2GfW7NYvERnenoTo6drNB548QgfSC9wBZkul5hfXelD@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYbTIIPnrPwrcuDyelOIdBTGBHKJZvou7wdNp/L0YZFIP2pneN
+	jLUDavE83wgJACZdvFFCiSxC4Fry1fGHm6dnHBPkCdPFS2V5SXloTTciHeXjtVc=
+X-Google-Smtp-Source: AGHT+IGm7aR5j3IDD6zj2Is7qEysFSvXPXkRuXdOrYhmnokCl1jooJeLNZfITl/g4HX8vOeeK4W3tw==
+X-Received: by 2002:a05:6512:3d8b:b0:539:e263:331c with SMTP id 2adb3069b0e04-53a1586059emr4022787e87.17.1729508803900;
+        Mon, 21 Oct 2024 04:06:43 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a2242017csm456428e87.130.2024.10.21.04.06.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 04:06:42 -0700 (PDT)
+Date: Mon, 21 Oct 2024 14:06:40 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, quic_jesszhan@quicinc.com, 
+	mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	sakari.ailus@linux.intel.com, hverkuil@xs4all.nl, tomi.valkeinen@ideasonboard.com, 
+	quic_bjorande@quicinc.com, geert+renesas@glider.be, arnd@arndb.de, nfraprado@collabora.com, 
+	thierry.reding@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org, 
+	marex@denx.de, biju.das.jz@bp.renesas.com
+Subject: Re: [PATCH v3 09/15] dt-bindings: display:
+ panel-simple-lvds-dual-ports: Reference lvds-dual-ports.yaml
+Message-ID: <xzvjrvp6raqeyx555x3msbdm3ugyjefv4b5qv3dwt3thnblsvf@r37cjtcicuuv>
+References: <20241021064446.263619-1-victor.liu@nxp.com>
+ <20241021064446.263619-10-victor.liu@nxp.com>
+ <3qrtknxsgxzyhwivd7d4eqqg7v6twgtczxotg7rhkdumjkl3p7@u2fso5hexiu4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] soc: qcom: llcc: add support for SAR2130P and
- SAR1130P
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241019-sar2130p-llcc-v1-0-4e09063d04f2@linaro.org>
- <20241019-sar2130p-llcc-v1-2-4e09063d04f2@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241019-sar2130p-llcc-v1-2-4e09063d04f2@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 2YffnFJXoD23UDhR0sMIHiQMYFtN8ISP
-X-Proofpoint-GUID: 2YffnFJXoD23UDhR0sMIHiQMYFtN8ISP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- phishscore=0 spamscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
- mlxscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410210078
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3qrtknxsgxzyhwivd7d4eqqg7v6twgtczxotg7rhkdumjkl3p7@u2fso5hexiu4>
 
-On 19.10.2024 6:26 PM, Dmitry Baryshkov wrote:
-> Implement necessary support for the LLCC control on the SAR1130P and
-> SAR2130P platforms. These two platforms use different ATTR1_MAX_CAP
-> shift and also require manual override for num_banks.
+On Mon, Oct 21, 2024 at 09:43:30AM +0200, Krzysztof Kozlowski wrote:
+> On Mon, Oct 21, 2024 at 02:44:40PM +0800, Liu Ying wrote:
+> > This schema documents LVDS panels with dual links.  lvds-dual-ports.yaml
+> > documents dual-link LVDS display common properties.  Reference the ports
+> > property defined in lvds-dual-ports.yaml to save lines.
+> > 
+> > Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > v3:
+> > * New patch.  (Dmitry)
+> > 
+> >  .../panel/panel-simple-lvds-dual-ports.yaml   | 20 +------------------
+> >  1 file changed, 1 insertion(+), 19 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+> > index 10ed4b57232b..e80fc7006984 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+> > @@ -22,6 +22,7 @@ description: |
+> >    If the panel is more advanced a dedicated binding file is required.
+> >  
+> >  allOf:
+> > +  - $ref: /schemas/display/lvds-dual-ports.yaml#
+> >    - $ref: panel-common.yaml#
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/soc/qcom/llcc-qcom.c       | 468 ++++++++++++++++++++++++++++++++++++-
->  include/linux/soc/qcom/llcc-qcom.h |  12 +
->  2 files changed, 474 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-> index a470285f54a875bf2262aac7b0f84ed8fd028ef1..ef84fe3b2af4e777126a8308bfd4ec47b28aeae2 100644
-> --- a/drivers/soc/qcom/llcc-qcom.c
-> +++ b/drivers/soc/qcom/llcc-qcom.c
-> @@ -32,6 +32,7 @@
->  #define ATTR1_FIXED_SIZE_SHIFT        0x03
->  #define ATTR1_PRIORITY_SHIFT          0x04
->  #define ATTR1_MAX_CAP_SHIFT           0x10
-> +#define ATTR1_MAX_CAP_SHIFT_sar       0x0e
->  #define ATTR0_RES_WAYS_MASK           GENMASK(15, 0)
->  #define ATTR0_BONUS_WAYS_MASK         GENMASK(31, 16)
->  #define ATTR0_BONUS_WAYS_SHIFT        0x10
-> @@ -140,6 +141,11 @@ struct qcom_llcc_config {
->  	bool need_llcc_cfg;
->  	bool no_edac;
->  	bool irq_configured;
-> +	/*
-> +	 * special workarounds for SAR2130P and similar platforms which have
-> +	 * slightly different register mapping.
-> +	 */
-> +	bool is_sar_chip;
+> So dual link panels common binding does not fit here? sorry, this is
+> just introducing mess and confusion.
 
-This is not the only odd ball, please make max_cap_width variable
+Why? It's allOf, so it is panel-common.yaml AND lvds-dual-ports.yaml.
+Where does the confusion come from?
 
-[...]
-
-> +	/*
-> +	 * For some reason register returns incorrect value here.
-> +	 * List compatibles instead of using .is_sar_chip since there might be
-> +	 * SAR-like chips which have other number of banks.
-> +	 */
-> +	if (of_device_is_compatible(dev->of_node, "qcom,sar1130p-llcc") ||
-> +	    of_device_is_compatible(dev->of_node, "qcom,sar2130p-llcc")) {
-> +		num_banks = 2;
-> +	} else {
-> +		ret = regmap_read(regmap, cfg->reg_offset[LLCC_COMMON_STATUS0], &num_banks);
-> +		if (ret)
-> +			goto err;
-> +
-> +		num_banks &= LLCC_LB_CNT_MASK;
-> +		num_banks >>= LLCC_LB_CNT_SHIFT;
-> +	}
->  
-> -	num_banks &= LLCC_LB_CNT_MASK;
-> -	num_banks >>= LLCC_LB_CNT_SHIFT;
->  	drv_data->num_banks = num_banks;
-
-This too
-
-Konrad
+-- 
+With best wishes
+Dmitry
 
