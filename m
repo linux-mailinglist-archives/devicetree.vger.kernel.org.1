@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-113587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F11B9A6381
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:35:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D32379A6388
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:36:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8107F1C21DFF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:35:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DBE21C21996
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6951E906A;
-	Mon, 21 Oct 2024 10:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4DA1E909C;
+	Mon, 21 Oct 2024 10:33:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sJ3YCqw3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WhulcuaO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD4D1E5020
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69471E9064
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729506795; cv=none; b=SH7fBH1jIYWkblTLMBPkIcHmshqa7BTBtxTiMnbJtUMBOQe1Pxl2kDxYtLr6iNSgnygNmpn3MahFrqzf2ABVfaWmnt+bG7ciXwZhJoiowSR7U0a3PLQ1Y4PDxnWx6lnP1g/9A7fHg9C3S+FoPFAcL8pHDhysetEnVl6kvPoKfcc=
+	t=1729506798; cv=none; b=AoKE33B/stoNs+ha9L9nIkK7se7IUKA+kDmoiIfxUsgBDvnxdYIrY8BiA+MVBKou8KbkkMUpnnJgkAT8AO393eFVEMYyJjvbeke98mTqtzElyJ3Z09/WigyDvw5wjx13MohtXI3YHgGPo4rAoAvNxMe6YKBXvgZGKgcrYi2+DXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729506795; c=relaxed/simple;
-	bh=Vq2O95x6e7Hs1DzKvXYDscSROlBA9dAz4qml1ZBzo4k=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XaAdYLqwJ4/eM5sj8oTq0XOYao02edeIx+Mi8iw65yGDeG0KZC/GeHmNWRH21OM/9BfQ9sfl2TX0QaZ2Fyv3I+kvaE8ocHcUlJueELMnmFNRKRP8WmaCltL0R/WeD0RQhy8PDIZakjvKKCFGfzh75knFrGkL3L2z0TNwGEgw44s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sJ3YCqw3; arc=none smtp.client-ip=209.85.167.47
+	s=arc-20240116; t=1729506798; c=relaxed/simple;
+	bh=7YeWftVlP2Q/gQUZRfbjxaxvlZtz7wnpUr40ZoRjqrc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=d5DMxwBD4oKV2syKlvPVfI3aemr06GPD1w3eNtVmA05yJvRlPC8U66YMgrpiR5wzm7TZ4JbhmPmTYrjlQomNGSH6890K9C4lj0hVzvPjzxwqFQ4XBVkcA0G+Jc7/bIaTZHGb6n4iykkwUTB+5VMwmvCv5Md8O8wW9AeASq33Aog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WhulcuaO; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539f84907caso4730744e87.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:33:13 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb5be4381dso42107971fa.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:33:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729506791; x=1730111591; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UTXT6Qy0j2/Ntg3Z49e6WSEz/eZy8Jlw8PKip8owHHU=;
-        b=sJ3YCqw3amNW0osDV+u5MxV1qVtBJ4ToD9wymUISqbjYh/UWrvOdVvK0iFuBhGqoXK
-         aWMVJi0YEOJ1d6rqr6SYl/JaXxOlU0L84HWSi4ZgMBw1C2LA+kOrRQ7UdLyQ6iI24edv
-         woFZx+Ja2yvKP0yVkR4fdZ5wr4KOrnlP+Oer0ol3UMuO2dJYqf2jqM0kyk/3K3ipQ2Cf
-         I2f5kOxaYuLSdF3V32k4YQCZ93+o8a5Wbrv27HrLEuPhlyVggu5CaqOgjuYDcmR3WA4t
-         VDxMw3b0ofC2wMMiCQwMTHW1GNZm7fbbGVI8Hv/wH5awC5NoI2qkCu4nnVRYy0dM01Gu
-         cqLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729506791; x=1730111591;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1729506793; x=1730111593; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UTXT6Qy0j2/Ntg3Z49e6WSEz/eZy8Jlw8PKip8owHHU=;
-        b=uCMVOXaIZBhVYXVr9Yo3IvH5DAj56moeWUFFj5vpQGTacTmX1i5gEqCHKyKT0d06Pt
-         cBWlCy0pM6ZLqMd4Lfa4Q3qQ8W9/NChDBjcQindKH0OxJ2+tiMfkd7qUi0IAmigJUfKk
-         ER9W9KWwXw8Mt1yF4+cTVW7lOzOOXcbfUmPyBCdvoyieWsFa+zC7r3+UBokNbhtrTynv
-         EL/T4cMFWOdIoOYy0xPAwEwkg7R4lc6hfcwiYcsvluOgtlDJrBGmjOK3YjyhnwXVP431
-         QiSWjT8cOYPTr9cdcz+dMFlRnK7obpHRP5Ips5ZnuuWgwwjq5IYmK3DUuWV/5GP58X5i
-         YdAg==
-X-Forwarded-Encrypted: i=1; AJvYcCVZwUpwiUUqHr4v3W3DAlr8SUf8eoOc4IqlL6iZftSbTxwr5UFXzpcFFOuwArXtQfSVXLgGkKuQjCtn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzb6xPcPhjHrxi0rp3yYKD4njeO9GvdDsNoMiAQwe53W/jkKjrx
-	nHduVk1n2XyJ8DM8uL4+wyoW0pNH1aRMa4tzsROtHWIrhTQOI5jgPQUmi1q0cAo=
-X-Google-Smtp-Source: AGHT+IHGW0q2lwoRj7S3rf9+iiedFfDzPTp7u5cQ3yIox9lL4ddIvW7Ltn33mCs9mL8+x1IN3JIGaA==
-X-Received: by 2002:a05:6512:318b:b0:539:de9c:c890 with SMTP id 2adb3069b0e04-53a1544c332mr5346248e87.42.1729506791288;
-        Mon, 21 Oct 2024 03:33:11 -0700 (PDT)
+        bh=Dq+HZX/YrY3XCimbXKEs5fGXUV/6PLqs5QlWH/wMocE=;
+        b=WhulcuaOY+I2biH9f2Cz//kQVjk89+Q+ziJbpUO62ickF2k2dcHIPeZmGgSNSHHRAp
+         R0QXQZKQxAyJQNROEUKS6mK3GjBKofzeJi/6dQEouS81k0g2L75kKGHacGgrWkSukFzS
+         wlgxl7M1PRfoEGflkzrib6B2jvOM56Vyc9G2P0s9Mse9LzRB8Ydvn2lB+tvBEApIXM1X
+         uXqHu3fRtacMPyq5NGv1J4qz4FexTKa43aG/++D7qKb7t+a0C0si1aO8CrQ2W0VJm1hS
+         CugYeOy/Wn3VwEmU/XARSYrMOUzpcvnqP4VaKWgMVPilteuT3VD+vjT/p7g84oNv6jX2
+         HHbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729506793; x=1730111593;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dq+HZX/YrY3XCimbXKEs5fGXUV/6PLqs5QlWH/wMocE=;
+        b=rhU8zPLnvjDQExXCX1uUK96Lj6Rvd9eNP9kPfX5mqPqWLxpQ/QWtwwlanmlthQ5GKW
+         0pwUy0sKCPXa4AN2mpoEqp7hcF+ewDVcsKgKLqULgUFUNX/hhKcFpe/Bzw8Rf04oKXqT
+         dtL/xUQMErY++gIzUuoWf7KSZp50foLMhaxkGWynbv5P3fxcemr/AmoXGKHo4Fdc6EGF
+         2PiEWf1juQpVlQtzvw2hjSvskO23HjfcEbnfgkPo8SZRz9/O9uXu/ooOhY6Bt96bx84/
+         /FDMxRRd+KJ/PUfvOU3gjivD/hG36i96f+dOKArliccN2g2qDNV88VSS7EQWzpfhRgm1
+         vtYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXqcejr3zRRD5+3gp8a0eoechfJMO7YND25VxQmEB1Jgz768EQ/0Q2BP5SoO+C4GkKilRNfOxAtKhAe@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIACjlDgrZV4EvOKpaDd6mLWyW5WE/vBrQdjm2Cri0yCSqg//G
+	ANhjHdtTKw/ybQnx8+nakp/ep+WJiZFwLGFCmup3VHGbWHxp8PAxE2+3Xnhx6NM=
+X-Google-Smtp-Source: AGHT+IHrXA0yTSuYlDJ1nxR7O4obHD6PXzXsLUGDH5RpgjhCzPSYejr2Mgj0PH04npOI5C2Lz0ao6Q==
+X-Received: by 2002:a05:6512:e8c:b0:52f:c13f:23d2 with SMTP id 2adb3069b0e04-53a15229c2bmr4977335e87.25.1729506792835;
+        Mon, 21 Oct 2024 03:33:12 -0700 (PDT)
 Received: from [127.0.1.1] (2001-14ba-a0c3-3a00-70b-e6fc-b322-6a1b.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:70b:e6fc:b322:6a1b])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a22420015sm454132e87.123.2024.10.21.03.33.10
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a22420015sm454132e87.123.2024.10.21.03.33.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 03:33:10 -0700 (PDT)
+        Mon, 21 Oct 2024 03:33:12 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v2 0/6] phy: qualcomm: add support for USB+DP and PCIe PHYs
- on SAR2130P
-Date: Mon, 21 Oct 2024 13:33:06 +0300
-Message-Id: <20241021-sar2130p-phys-v2-0-d883acf170f7@linaro.org>
+Date: Mon, 21 Oct 2024 13:33:07 +0300
+Subject: [PATCH v2 1/6] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Add
+ SAR2130P compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,74 +79,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOItFmcC/13MQQqDMBCF4avIrJuSGSXWrnqP4iLaaAaKkUkJF
- cndmwrddPk/eN8O0Qm7CNdqB3GJI4elBJ0qGL1dZqf4URpIU4MaWxWtENZ6VavfomrItHU9XDS
- aDspnFTfx+/DufWnP8RVkO/iE3/UndX9SQqXVMGkzjc5SQ3h78mIlnIPM0OecP6lZppKrAAAA
-X-Change-ID: 20241017-sar2130p-phys-426733b80169
+Message-Id: <20241021-sar2130p-phys-v2-1-d883acf170f7@linaro.org>
+References: <20241021-sar2130p-phys-v2-0-d883acf170f7@linaro.org>
+In-Reply-To: <20241021-sar2130p-phys-v2-0-d883acf170f7@linaro.org>
 To: Vinod Koul <vkoul@kernel.org>, 
  Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
 Cc: Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
  linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+ linux-kernel@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1714;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1186;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=Vq2O95x6e7Hs1DzKvXYDscSROlBA9dAz4qml1ZBzo4k=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnFi3jHG8OPQet6L+ETGmWNYD1lBj7VW+leaQvs
- ae5xw29CbuJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxYt4wAKCRAU23LtvoBl
- uI3QD/4nXKaITIt5aPT/aRcRMosbLmFThrHwNilqfCZp5vHXvBNhs1Ynyeh+7i2DifmIldNE+8d
- I7al4ryRbTYQUmzrcVV/mpTngLXuY4e9Qi1rAM2tWUBUP/2MGWeISmitd3tteL8NbjfspLN9ZBJ
- 902lOqOy/oVWqMHdKdvmSWZh++o0tLCzTHNdwj7PdaBIk+WSmT8DKZiC3+/K+ylav1FJMBeT6g7
- +OnFN/+hpTWdJp3r9euV53zbxCuE/azbbUCFbGYzEsJGUFDU/icjA7XYqs/RDEcqziblQ6eLtrQ
- rCL1dI/q5KlX3+xiI1KEKtRHSSzkaJVeudpv+cRZcvDxfBJC9hYYACwNdObmw5fR4ld1rEpTyGC
- t+5C3A7vEAO2MQadKmnKbd90z+4hjhwB0rAxSgRcWga1oz46OKTg69yPCmAV3v23oJ2Ddr8WYBe
- nyCY8XLJyOIZksVTQS8xTzEPATuxPJ4PXD6XPgmusMSAJRCKb8lOMGhZROkwZ4lT1nFRx6Y5zCJ
- PL10tRQ0OY1nxoBYPhrqpArJlsY4+2oEfCQkAEtaofS3V2b1TCwezIGZTbYDQhMgj1DY3bFoTbZ
- vXtCX1nPn5+TNemkprgDL8GAdS79KqI1QhjpDhhF2EtAU6PsvhadK6ZpBoQwufQ5Ph+eaHQNGhS
- 4XOEcZmRuEMj9ZQ==
+ bh=7YeWftVlP2Q/gQUZRfbjxaxvlZtz7wnpUr40ZoRjqrc=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnFi3kbqrKaNrEeLFVg4hGGH2uG5CeVqVeoDlB9
+ LfRyNGn/bGJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxYt5AAKCRAU23LtvoBl
+ uPvBEACle3Xj/q7wBu9X/PtDKjasjl6a5hgmsyoWzlxnxBgZJM8MAbjis1hn4760X47VKl4AtfL
+ lNitq5WgM2NC+RvkSk3GUJLmov8o1rUcY110nImwa4eEzq2zN8i3bRWL3d2NWBNJjJ0EwIq09nK
+ 9uN0b/kFawCSbR3TjzU504Cik+9RpYrgVyMfydiR1XbuRwyjHUftVF5QViNS8Meqxd1/JtA8dFv
+ 5p0bI3eoNLNvRgpinUz4qeWsluYxJFo2FmMLSSJVlpb8m7stOd+XkFwQepW3NUS/cAsqBAkpGXT
+ zWViONEgtmEa2Qe8Jp1mVtu5eu4BzYl5TLt04DsI22rZAtaYFz3Zu8OjZ4/7Gc3HzCf4HTsx5Zd
+ RM/rxr1mwy6oAJc8hkLn8J7+2qRtxc+7LDvCP77dbndL2NhXl1OwKKP+0pYNUMTmXuPipQ4Ro8x
+ x+xu36WTBLE+C61XIY8nk1xYeZHIEFbj9OgtqHDPqDJYbE17zTdSRZ4c7FHtYjbad4PfbkFlgoa
+ drqPQuNLGiaOANLPHSrqTgJeQ7m0TS4lEOZ4vw1XqYsAP9zmjk6zk5nWD2SteqrgGblPbDXS688
+ GV/oepP7YPb0ErtLJsFgUCgpWy84TjSJgCBL6wpAl/oKm2OufkoKK4W5gsbsVBScFE476r87u2G
+ EnN5gup17yejuLQ==
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Add support for the USB+DP Combo PHY and PCIe PHY on the Qualcomm
-SAR2130P platform.
-
-The DP part of the combo PHY wasn't yet tested, but it is not possible
-to support just the USB part of the PHY. DP part might require
-additional fixes later.
+Document compatible for the USB+DP Combo PHY on SAR2130P platform.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
-Changes in v2:
-- Fixed the schema name in the patch 1 subject (Johan)
-- Link to v1: https://lore.kernel.org/r/20241019-sar2130p-phys-v1-0-bf06fcea2421@linaro.org
+ .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml          | 2 ++
+ 1 file changed, 2 insertions(+)
 
----
-Dmitry Baryshkov (6):
-      dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Add SAR2130P compatible
-      dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Add SAR2130P compatible
-      phy: qualcomm: qmp-combo: add support for SAR2130P
-      phy: qualcomm: qmp-pcie: split PCS_LANE1 region
-      phy: qualcomm: qmp-pcie: define several new registers
-      phy: qualcomm: qmp-pcie: add support for SAR2130P
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+index 2d0d7e9e643117f5ec625e49270ac94c70603e7e..358a6736a951ca5db7cff7385b3657976a667358 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+@@ -16,6 +16,7 @@ description:
+ properties:
+   compatible:
+     enum:
++      - qcom,sar2130p-qmp-usb3-dp-phy
+       - qcom,sc7180-qmp-usb3-dp-phy
+       - qcom,sc7280-qmp-usb3-dp-phy
+       - qcom,sc8180x-qmp-usb3-dp-phy
+@@ -127,6 +128,7 @@ allOf:
+       properties:
+         compatible:
+           enum:
++            - qcom,sar2130p-qmp-usb3-dp-phy
+             - qcom,sc8280xp-qmp-usb43dp-phy
+             - qcom,sm6350-qmp-usb3-dp-phy
+             - qcom,sm8550-qmp-usb3-dp-phy
 
- .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |   2 +
- .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |   2 +
- drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 100 ++++++++++++
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 173 ++++++++++++++++++++-
- drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v4_20.h |   5 +-
- drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h |   5 +-
- drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6.h    |   3 +
- drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6.h         |   2 +
- .../phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v6.h    |   1 +
- 9 files changed, 284 insertions(+), 9 deletions(-)
----
-base-commit: f2493655d2d3d5c6958ed996b043c821c23ae8d3
-change-id: 20241017-sar2130p-phys-426733b80169
-
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.39.5
 
 
