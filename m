@@ -1,114 +1,197 @@
-Return-Path: <devicetree+bounces-113845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E81379A902D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:50:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFC4C9A9038
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 21:53:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A55232813C1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:50:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C93D1C2298B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 19:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4949A1CB518;
-	Mon, 21 Oct 2024 19:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04631CEEAF;
+	Mon, 21 Oct 2024 19:53:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bVvH0JWb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ar40kziH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A1521C9DE5;
-	Mon, 21 Oct 2024 19:50:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 368E21C68AC;
+	Mon, 21 Oct 2024 19:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729540245; cv=none; b=TMAcYtAM/D8U0ZQNimpH43SXL0JoYx70eMqTuEF/KurlDH+xd0Qo68rpsHFSB5qHTlZtZ+Wo7HIZCmGhZb55c2cXTQVz5hsMU7gWZBjqMkmmImgV3FVdvrIvI64N5cZMff88DOaU9PBP279z68/UIYcjECi40gI7tIowdBt2314=
+	t=1729540404; cv=none; b=fSRQOrQ3n/LItAqFeE/6HpLqvOWiiOPdo1TZkk9c9UpMns7JVlp0Gnh5ljYG/DH/2wwpFjAnug/l+tSOU8ZdHNKW9bSaQh4jUoVVwwvEZQk25O8dZo1n4+tR0QU9Nxm1pb2003prRNYSLOl6MKAGYSsM4KTnKJ5KZTOZXGNzTXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729540245; c=relaxed/simple;
-	bh=ydGZrdfQa8ASusOpBeBgAhY22oTxyxpiS7caUm/boCI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hn1+kjdjwtQbDxr1xsoo6huRssNNn8jmFTVNTHSnoluLw1HZmSiMpPKEsw9NXdr7sWns+UR1oOJEMUPXicTYrTKrfGE5NmtLOTOfg9o8hUf+CDAh2RyMx7RNG2CPcTIcmzy4IRfawBheEpkR2REfOxiqDvzopacBaQH4rVwQZbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bVvH0JWb; arc=none smtp.client-ip=209.85.208.43
+	s=arc-20240116; t=1729540404; c=relaxed/simple;
+	bh=1ODOQKyatQ9aosi/Ebuhj+1MZLUlp4wf/eNSuDHF7nc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PWe8axWbOHwLQ/JuhvJyI4rpUBw6IhDbO2CmOx7DR9gS5oXzb+NaTtMJyAaZjhFVt51s7wFWrHaAL08OKC1U1n6evu38mrWj70mLMS5mz6UwtdaXo544ssx0Zk3TNPzn899QDW13V9xPK4PVcoYyWNA00upLVxUp+HAsYqads5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ar40kziH; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5c9634c9160so5367251a12.2;
-        Mon, 21 Oct 2024 12:50:42 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb5a9c7420so48597761fa.3;
+        Mon, 21 Oct 2024 12:53:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729540241; x=1730145041; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Lysv7uhwVKHdI6mHRz0fS2jA5yM5eGnF2mqAXAmknTM=;
-        b=bVvH0JWbZ3bwO7sG6brPh6oflXVvLLC8JupViHBzPmSDWrUk7COI3RRpiyI1UuRXr7
-         r8ouLWiB0zm7luyuaFJ/eqdoLPivLoeNGSVXvq0xR/XtNgFFQ+V6/MbZpSJzp3RlZhhF
-         S8l8j+Os7yW3abrcHBpYzSKY230M3aXgOAUT89OqMeiJ0Fc822yI7XmUUODn+n/S64ls
-         mvceNJNUk7N5az9gVoB5CXmGCywzjxjtuocyhi06Pwh3eEI6/LQqAeISm4y4LWo96P9L
-         4gwTxDPRc3d7F+hRkuyTnpV4JzxaQwj0YXnCIQgyoXI2Va6ljSGnKo3LAvF7z85mUZZN
-         MBmA==
+        d=gmail.com; s=20230601; t=1729540401; x=1730145201; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=T+IFLjRjd7myM3ODT1z2z8w2/OGdry3PTB9Rc7SaXbE=;
+        b=Ar40kziHcvjYoZ4Ou6DGWbYX/+wg2Zo4ih4B0NtroQDyU60gw21wVw7xzMNI0UK8l1
+         tFEop6ZTgQaEauZCmwtNFdPmRRmLQSexjOrUt3SkV0rBxKYwb+vlYAXYrLEXSkiF+fKz
+         ykfFxqRAQKM05kPABLNcWlYeTttd3q0SYzuNy6rZtHLL3ORkDgoQm8I42qA3oOF6XGyU
+         w1P56elv3peDCsHc/5JVvsQN2v3XJtqii53Trskd0PwxPjS53+07l7Z7KfjyVF49wDPX
+         XswYaJTaKfkFJdVBvUzLPDqQqWfUwngUEEyo8Bc/E6FdO0Xyu1np3ul8zWXnxgamlqMi
+         IWFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729540241; x=1730145041;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lysv7uhwVKHdI6mHRz0fS2jA5yM5eGnF2mqAXAmknTM=;
-        b=jY/VpzU0N+A52+iI37kCYzm6WiVKeFu4GyRdyKgpvn2q9hqJc0MT0DxAmjDdRtxvwl
-         t6STeMbiQM8PZjo8QpyTiKs/qslPA6ll3xAag2uWY4rjGNl+p/wfwFjPavg6e/DNE+Hl
-         hZyPOPmpPx/Me7NukR0oe/tFx9gFIPeW6t8WnuycKoiS1Q1yfYDLhohhSSWiDSlSBEw+
-         dAwTxxWEz4TZw/ZoPka77wDTEc3SYbDolt1lKYfLQgTZ/+7lIyNjq/BF2t9C0VajieH1
-         /dLGtktPknGDc4nHeJK9RbkvXoo+Fjrk8fGSx5VIY9+GHLw0L8ubXhQVyy8miqfuVRFT
-         c3eg==
-X-Forwarded-Encrypted: i=1; AJvYcCV9+TUxZojUn+7KCzlw68HLKK71tWwGkj1cotnGtlw9D9EHHIMfcfyxuLqZEu/TP4IxZ3xFOqBEILh5iHcG@vger.kernel.org, AJvYcCW64g4LUeSudRh4Hcsi4zA3lACSw2uohpO80eHMUZMeGghgyUJGazJrcgn0QrVUS55mDLjBcoIVhkDDwQKsaA==@vger.kernel.org, AJvYcCXpR0Fj2BHMdIzcrmOOPy3fma2dHoMMisvkhaZqjldHZNH+C4RMLKpbgZfh1PF+2iXJLKaQdrXeGzDF@vger.kernel.org, AJvYcCXxd2RQlE4lFKI/MJW3E/eTzs77TxfWuAcRH/0ky6dB6NdZ81ZsoSIWMcHF35ivoXwiBu9UZFveuC8Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz46uULBGPZaFaCOF0iHGEwtjF1TRHkMWhBMOKzAiV6rbzq0MH2
-	HS4CdlvXENxXTQrASk42lsBrmD1pPJX3FuIRp3n6+qQk9/S2Kz/wxb8EetZA
-X-Google-Smtp-Source: AGHT+IHZYQnoOcQ+3GxNp3d9r5mQyk3oFBPMvOCeTy6raelJ3cO8rMq8MZ0pBKSYEr8orpxPv72P6w==
-X-Received: by 2002:a05:6402:907:b0:5c7:2122:6ad with SMTP id 4fb4d7f45d1cf-5ca0ae7f7c3mr9387565a12.14.1729540241189;
-        Mon, 21 Oct 2024 12:50:41 -0700 (PDT)
-Received: from [192.168.20.170] (5D59A6C7.catv.pool.telekom.hu. [93.89.166.199])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66a6a6efsm2316192a12.53.2024.10.21.12.50.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 12:50:40 -0700 (PDT)
-Message-ID: <fc6d204a-93c6-412c-bdf2-9619415f5062@gmail.com>
-Date: Mon, 21 Oct 2024 21:50:37 +0200
+        d=1e100.net; s=20230601; t=1729540401; x=1730145201;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=T+IFLjRjd7myM3ODT1z2z8w2/OGdry3PTB9Rc7SaXbE=;
+        b=bqUe3JpFKiVnWmFfiuywi6W0pPZZDwDappv8QoGlRKSSUXbdVxgAEJ4WQc4WeXvuaL
+         CKGTYA5fvuq3R7Fhvo4ThtXo6KwAznNWvMfc2VtV8267wPo2CzhY4YS/4oJx/TMHdpTc
+         yF5/NNdBxkoSwbW+CPxx+0fszAHFYTFwyMWfo7fYYqL6L7h8M+QjfFu71dUPeKaQC3R8
+         Dyj25BQn4GC+eToUI3ZprkVoh9jLlOg0LU41SDN42HEKFHP0r1CF3hRuy/qnb1AEZE0k
+         QrqIwgnD0Ic0EpEXDve0R+UJJi+DCtJJHKCRp9cmsd12MVqa23OGzQoogMHaxbi4CFPq
+         aidA==
+X-Forwarded-Encrypted: i=1; AJvYcCULjzCa5TBYCixsQU0/y9P+TM9+nRvCJubLbE3cE0mqOkRPrY36Fcofxh/eQWWjtgoO2bcbhqDPvUHzyva+@vger.kernel.org, AJvYcCWdcM8gVSRfxUFkaT6jGprE/knDt0SCLDRMM0Pmwg6jM6WCnGt1dQYe0wqw/1WXv5aDCvn30Q45tfOB@vger.kernel.org, AJvYcCXBkMqdDyZpvzgZMFE9cGFoV9ydpAFPm6LTBQX9ZQyZ/dXPhUmFBs0LbBbmGn85CMOnqlXkyc8v33Gi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+mD6rFkboJ7rx2BGZ2BreYhy5PmZ9sv5FDbaL/PESYv/pwx3y
+	uTO5YIrApkCyXDep1GBhQqp7PDz8SfSgL5Mo/3HBJjRaCWmOeZMz
+X-Google-Smtp-Source: AGHT+IE5reZAV5HNrGraupO5HA/2bG4D0HTEshCdhsCl4g3s/5Hw4xu5N6fZx2zPUx7gvwc21Cp2fA==
+X-Received: by 2002:a2e:b8c6:0:b0:2fb:3c44:7f8b with SMTP id 38308e7fff4ca-2fb83226eb4mr57448761fa.43.1729540401091;
+        Mon, 21 Oct 2024 12:53:21 -0700 (PDT)
+Received: from vamoirid-laptop.. ([2a04:ee41:82:7577:9cf6:f1e5:ce2b:ea6b])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66c6b12dsm2338702a12.77.2024.10.21.12.53.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 12:53:19 -0700 (PDT)
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com
+Cc: vassilisamir@gmail.com,
+	anshulusr@gmail.com,
+	gustavograzs@gmail.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/13]: chemical: bme680: 2nd set of cleanup
+Date: Mon, 21 Oct 2024 21:53:03 +0200
+Message-ID: <20241021195316.58911-1-vassilisamir@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/11] clk: qcom: Update the support for alpha mode
- configuration
-Content-Language: hu
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, Stephen Boyd
- <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20241019-qcs615-mm-clockcontroller-v1-0-4cfb96d779ae@quicinc.com>
- <20241019-qcs615-mm-clockcontroller-v1-1-4cfb96d779ae@quicinc.com>
-From: Gabor Juhos <j4g8y7@gmail.com>
-In-Reply-To: <20241019-qcs615-mm-clockcontroller-v1-1-4cfb96d779ae@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-2024. 10. 18. 21:15 keltezéssel, Taniya Das írta:
-> The alpha_en_mask and alpha_mode_mask must be applied within the
-> clk_alpha_pll_configure() function to ensure proper configuration of
-> the alpha mode of the PLL.
-> 
-> Fixes: c45ae598fc16 ("clk: qcom: support for alpha mode configuration")
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Changes in v2:
 
-Tested-by: Gabor Juhos <j4g8y7@gmail.com>
+Generally, the patches were rearranged according to comments from Andy
+in previous version in order to be more consistent. The refactoring of
+the ambient temperature was dropped for now because it was a bit more
+complicated than I thought and this series is already heavy enough.
+
+[PATCH v2 01/13]:
+	- New patch
+
+[PATCH v2 02/13]:
+	- v1 1/13
+	- used "optimized" in commit message to not prompt for a fix.
+	- added documentation of where this sleep comes from
+
+[PATCH v2 03/13]:
+	- v1 2/13
+	- Fix indentation of array and removed extra whitespace.
+
+[PATCH v2 04/13]:
+	- v1 5/13
+	- removed extra check inside the set_mode() function.
+
+[PATCH v2 06/13]:
+	- v1 1/13
+	- removed indentation fixes which are fixed later since code is
+	  changed in those lines in later commits.
+
+[PATCH v2 09/13]:
+	- v1 12/13
+	- removed unnecessary debug messages
+	- Used struture instead of buffer to push data to userspace
+
+[PATCH v2 10/13]:
+	- v1 13/13
+	- used better naming
+	- made channel index to -1
+
+[PATCH v2 11/13]:
+	- v1 06/13
+	- removed device from trivial-devices
+
+[PATCH v2 12/13]:
+	- v1 07/13
+	- use devm_regulator_bulk_get_enable()
+
+[PATCH v2 13/13]:
+	- v1 08/13
+	- removed internal usage of dev structure
+	- added missing header in both bme680_core.c and bme680.h
+	- used devm_pm_runtime_enable
+
+---
+v1: https://lore.kernel.org/linux-iio/20241010210030.33309-1-vassilisamir@gmail.com
+
+This patch series is continuing the work that started on [1] by
+improving some small issues of the driver in the commits 1,2,3.
+
+Commits 4,5 are refactorizing existing code.
+
+Commits 6,7,8 are adding DT, regulator and PM support.
+
+Commit 9 is refactorizing one macro to attribute.
+
+Commit 10,11,12 are refactorizing the read/compensate functions
+to become generic and add triggered buffer support.
+
+Finally, commit 13 adds support for an *output* channel of type
+IIO_CURRENT in order to preheat the plate that is used to measure the
+quality of the air.
+
+This and the previous series [1] started with the idea to add support
+for the new bme688 device but due to the structure of the driver I
+decided that it is better to restructure and improve some things before
+adding extra funcitonalities.
+
+[1]: https://lore.kernel.org/linux-iio/20240609233826.330516-1-vassilisamir@gmail.com
+
+Vasileios Amoiridis (13):
+  iio: chemical: bme680: Fix missing header
+  iio: chemical: bme680: optimize startup time
+  iio: chemical: bme680: avoid using camel case
+  iio: chemical: bme680: refactorize set_mode() mode
+  iio: chemical: bme680: move to fsleep()
+  iio: chemical: bme680: Fix indentation and unnecessary spaces
+  iio: chemical: bme680: generalize read_*() functions
+  iio: chemical: bme680: Add SCALE and RAW channels
+  iio: chemical: bme680: Add triggered buffer support
+  iio: chemical: bme680: Add support for preheat current
+  dt-bindings: iio: add binding for BME680 driver
+  iio: chemical: bme680: add regulators
+  iio: chemical: bme680: add power management
+
+ .../bindings/iio/chemical/bosch,bme680.yaml   |  64 +++
+ .../devicetree/bindings/trivial-devices.yaml  |   2 -
+ drivers/iio/chemical/Kconfig                  |   2 +
+ drivers/iio/chemical/bme680.h                 |  11 +-
+ drivers/iio/chemical/bme680_core.c            | 505 +++++++++++++++---
+ 5 files changed, 508 insertions(+), 76 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
+
+-- 
+2.43.0
+
 
