@@ -1,106 +1,141 @@
-Return-Path: <devicetree+bounces-113884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 888069A9368
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 00:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6E8D9A939C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 01:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8FC11C22ECB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 22:34:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 118461C21565
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 23:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78BEB1FF02F;
-	Mon, 21 Oct 2024 22:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C0E1FEFD4;
+	Mon, 21 Oct 2024 23:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uv2LvaUl"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="u0OhyVJb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E9BF137750;
-	Mon, 21 Oct 2024 22:34:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90442198A17
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 23:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729550079; cv=none; b=VoowsCIkzZPJiPvTW1+8jHLMOTT5nyMFG+y7OR1gidWhm8pZDqkuCkAH5tquqKoUgh5o21f6mTQ+zKwWS+zclAekPTvo3iOcqmlbBdZuwYpglwBsO7g9hYueo8vB7pm0yygA9XRNNiZ0lrKfssVvqDz8DhFEG5eOnXwOTk4jr74=
+	t=1729551676; cv=none; b=AHSm4+qAi+UxTcg/bkyzAUreExDcK9uc9lwCdT+Eeg+wkPosYrsL5+HEgEqw/SEzEBamq5ISCjMsNZNBs+OB05bDkXmOxdAha7EuFDFw44GvCrGuLk/AkF6R6qPm+KrmVSxmiYvfcxZlAZruQhmCgLAf/uOxjQpPZWoNLdNB+Qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729550079; c=relaxed/simple;
-	bh=Cfzf9o7FO5QZjK5R7ziXh5AOoQbKPb2DoBGTH5P6IAQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=IYx4Ukt5O04MTWDOXiRI/lqgTI0O6nCs3TrfEeQbux1TpPrilv/Us+Sj0qwKWcKUT8VN+pEkWFDOeVmIZHE1zOH7V8tYhCyI3VQlvgZBPbNGKUiK7eJ4dH1BS/oqStrxq/HVc03mC8KcgeCdX2YJOkLSzQE+Em6rYCWGNAqr2eM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uv2LvaUl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2D2DC4CEC3;
-	Mon, 21 Oct 2024 22:34:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729550078;
-	bh=Cfzf9o7FO5QZjK5R7ziXh5AOoQbKPb2DoBGTH5P6IAQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Uv2LvaUlSKgbZgAlv4z2VgG7vQf2st0qQnf1ADaEBlYRiGLDJKgvlfhUmhTRAkJRN
-	 PQdnq1vqg+zm7EL4NOaEYTai9Qa/jaPV31qJj+d3oAalu3vo7PbEXp1wZ8Jzkg99Nc
-	 hn2udqkyFHfg+CpTsKx5+zcd4+SfdyowXR81khqLRp1pclSCT2rVTNOPQrXiBaE2mh
-	 jbRsEdP1xt6xVNve+7HB0zORrbd3cVlFGelaq7aEEExs5aiwCO54a6uRBrHWjUKWqr
-	 C2Qq2t0mDlmB+6KLVjSqI0/80PRH+sCCJ0qGEXeO8ryrQchRRHx5EC4uZ1eijYntWt
-	 NzbFIvUJVnK+A==
-From: Mark Brown <broonie@kernel.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- tsbogend@alpha.franken.de, markus.stockhausen@gmx.de, 
- Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-In-Reply-To: <20241015225434.3970360-1-chris.packham@alliedtelesis.co.nz>
-References: <20241015225434.3970360-1-chris.packham@alliedtelesis.co.nz>
-Subject: Re: (subset) [PATCH v5 0/3] Realtek SPI-NAND controller
-Message-Id: <172955007659.195060.15034869301013958050.b4-ty@kernel.org>
-Date: Mon, 21 Oct 2024 23:34:36 +0100
+	s=arc-20240116; t=1729551676; c=relaxed/simple;
+	bh=5Zzqx3A4n5EeVx/0LWou/Imc9eW2gadMZF418UAHXGM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tTioJ0FI1BR974BFEkQO9o+nwwcjqwmReWHnqEfuH409q5Q7ifeK8hKdDMbg9nUoBxlfTGOyWj0KxONZc4USiRS85Zd2FjmBvhyoG7c0M2o8BbkBbq2zw2PNlbDW6mJxE3BBWK8zMvEPPnGJalKPkDtCTem9gAS47nMQ0Bb13Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=u0OhyVJb; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20caea61132so39513505ad.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 16:01:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1729551674; x=1730156474; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CbX4JrS0G2aPmeTj0cPN4ckJcQHnSFIvvEuAPKo/Z/0=;
+        b=u0OhyVJb1r2P+/JjIyqydUAzgb0EGQESaU4DYZob0T5wdNxWXOGlErg7zKHb7UmXeX
+         zrffyrcAazMo6KRdibxzcR8Ih4E4fYhreC0XG4n2bAumMnTu6Q4xH3EZxOg4RkzXM8ya
+         cinbUprdFLmIoc2oM5PyENAOtd4Bneo0dgNS3KpvMUULewlwQkn0C1EK/4p185kDoVBx
+         6WOdkf45zQqPVYPQjgR85tkDM8mupb265CuaXGT0zIviC90ulZg3zPBArVro2mb//cIn
+         cFcaBRhEKUxGPsnIGX3WKnGn0XDADEC6hA6plDNCLDbmBSAkeqthx3/oScnGGIWNi7Fl
+         EX1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729551674; x=1730156474;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CbX4JrS0G2aPmeTj0cPN4ckJcQHnSFIvvEuAPKo/Z/0=;
+        b=JF+RZJ8v0aHleWEVu0AtsECyoS5AU7hXdO9rYqudfPitWSLQ4FOoHSRrH0y7Z5mV+c
+         cdlC1yBi3C5PE9ZcIYoy8ElQltJk/JD0vikFy9J27QGm/yqPRFHatvIdJRFmvhS2v60b
+         CeBUYU0bHriNqOdT5YzMlAG1qACVhtTf1lO6+dGEml3tBPQLrNw84n/5c6BHVKvx5Ljt
+         ut9qwPnS8U0h5CWs4uTfHRoT15y2Lx1cABQpENQ8NvM6mfbkkfyJJjo0jy+/sjHg3iSu
+         Ka0X5b/22wc5jxF4r/iwTt7Si9Z9Mp0q0lIUqhyhaMn4GnqSIAASj2GkmCbPIiwJEv7v
+         PmdA==
+X-Forwarded-Encrypted: i=1; AJvYcCWS49Xn7MKSqVuq0lfZyFLr66l+BPy72X5U5dLskiFcjVC+wN2pvOUna3hbzb9a/OSGZykDb75X4/ye@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4qrAEsMM6umn/k3ggevnEL/TipWGU/fPZR5OGYK3U/BKXqTnQ
+	juUe/TSdzghNaxAmtHDVBqVSP2ManSEDWw2eDThGsi8UUz3L23YlVW7iYZuUXA==
+X-Google-Smtp-Source: AGHT+IHoldcCnyrgXNW1sALFOZ6iz/sj7e0UYEYVGjzOFiNIzCmJhdTycWg08bSvHILJAbVkZRgVcQ==
+X-Received: by 2002:a17:902:db04:b0:20c:9062:fb88 with SMTP id d9443c01a7336-20e5a70d863mr176436595ad.1.1729551673349;
+        Mon, 21 Oct 2024 16:01:13 -0700 (PDT)
+Received: from ?IPV6:2a00:79e0:2e14:7:a9a0:cfc3:258b:2293? ([2a00:79e0:2e14:7:a9a0:cfc3:258b:2293])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7ef0c5e4sm31217595ad.97.2024.10.21.16.01.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Oct 2024 16:01:12 -0700 (PDT)
+Message-ID: <cf0f9a77-4981-48af-8fda-76e57f8a54fa@google.com>
+Date: Mon, 21 Oct 2024 16:01:10 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v4 0/2] Add support for time DT property in TCPM
+To: gregkh@linuxfoundation.org, robh@kernel.org,
+ heikki.krogerus@linux.intel.com, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: badhri@google.com, kyletso@google.com, rdbabiera@google.com,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org
+References: <20240925031135.1101048-1-amitsd@google.com>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <20240925031135.1101048-1-amitsd@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
 
-On Wed, 16 Oct 2024 11:54:31 +1300, Chris Packham wrote:
-> This series adds support for the SPI-NAND flash controller on the RTL9300
-> family of SoCs.
-> 
-> There are 2 physical chip selects which are called SPI_MST_CS0 and SPI_MST_CS1
-> in the datasheet. Via some pin-strapping these can be assigned to either the
-> SPI-NOR controller or the SPI-NAND controller. Which means you can end up with
-> the following permutations
-> 
-> [...]
+Hi,
 
-Applied to
+I had a process related question. Once an RFC patchset gets a 
+Reviewed-by tag, do I need to send a formal [PATCH] or is an RFC patch 
+sufficient for being accepted?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+I tried to look for it in the Kernel documentation but couldn't find. 
+Please can you help me on the next steps.
 
-Thanks!
-
-[1/3] dt-bindings: spi: Add realtek,rtl9301-snand
-      commit: eef26f1c6179eee5b622362b324a0a72dafb5c16
-[3/3] spi: spi-mem: Add Realtek SPI-NAND controller
-      commit: 42d20a6a61b8fccbb57d80df1ccde7dd82d5bbd6
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
 
 Thanks,
-Mark
 
+Amit
+
+On 9/24/24 8:11 PM, Amit Sunil Dhamne wrote:
+> USB PD specification defines a bunch of timers that can have a range of
+> acceptable values instead of specific values. These values have to be
+> tuned based on the platform. However, TCPM currently sets them to a
+> default value without providing a mechanism to set platform specific
+> values.
+>
+> This patchset adds new DT properties per timer to allow users to define
+> platform specific values.
+>
+> Changes compared to v3:
+>    - nit: removed an extra newline that got added in tcpm_register_port()
+>
+> Changes compared to v2:
+>    - Added min, max & default values to DT property in Documentation.
+>    - Changed return type of tcpm_fw_get_timings to void instead of int.
+>
+> Changes compared to v1:
+>    - Defined new properties per timer that we are interested in rather
+>      than defining a single pd-timers u32 array property.
+>    - Better description of the timer properties.
+>    - Since subject has changed, adding link for previous patchset for
+>      posterity:
+>      https://lore.kernel.org/all/20240911000715.554184-1-amitsd@google.com/
+>
+> Amit Sunil Dhamne (2):
+>    dt-bindings: connector: Add properties to define time values
+>    usb: typec: tcpm: Add support for parsing time dt properties
+>
+>   .../bindings/connector/usb-connector.yaml     | 35 ++++++++-
+>   drivers/usb/typec/tcpm/tcpm.c                 | 73 +++++++++++++++----
+>   2 files changed, 91 insertions(+), 17 deletions(-)
+>
+>
+> base-commit: 68d4209158f43a558c5553ea95ab0c8975eab18c
 
