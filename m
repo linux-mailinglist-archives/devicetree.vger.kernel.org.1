@@ -1,153 +1,89 @@
-Return-Path: <devicetree+bounces-113541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41F829A6003
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:31:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 613A89A6009
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 11:32:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A174BB283DC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:31:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 376F11F224ED
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:32:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669441E3DE5;
-	Mon, 21 Oct 2024 09:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94A71E1A33;
+	Mon, 21 Oct 2024 09:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UwP45KV/"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="pRYAp1aB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A4E823DD;
-	Mon, 21 Oct 2024 09:29:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F54C8EB;
+	Mon, 21 Oct 2024 09:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729502968; cv=none; b=HHhPbgi2BMxl/qeNWQCiSCyMlXxbVkkij9xnTCmxsOUumXYvn5UQu4EqaRXiTJtW6385p9p1kXpb0rtTaFDGIxwKsCEkuuD9U1RJj7qlZzruL7VWMzA7tduCLSDEeG5OG9m8EZiWJXlI3/qkD0biQ4n69dI9T7UKkM64wGzDLeM=
+	t=1729503040; cv=none; b=W/29U1IsaGx2MlEQjhkhg/5P8ipk5LAGetDBa588f+Beu2Rew0Cr658kfsEdkHe0XipPHjykjfi9LiA/QrvmMoGmE8ZpiK/aYQ9QjuVr3HcsW7UPhzkdxfhsByC4zVONHzmsTZAoELIRLh8XIJjjDrkXNEpfti60vCYIIjKNCqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729502968; c=relaxed/simple;
-	bh=/JzRc1Cme3nFE2GF5Li7+9M42QY8EO1CGP6MGSomNUA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WJ1vN6+90kEUhL3RIAABX35I0knBXdC+t3yLe/6nrKwezbToE59GoSzAOFhGxX9Wvs6G4eKEfNBEstS0TmxKuXpzay/B96kXORNQdtuAaq9sl/HgNjvftV2M64HJCSQRK8p1bfXvNmh2UYR509cpmoyJlfwUTGKZLxHYrr81S/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UwP45KV/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EED35C4CEC3;
-	Mon, 21 Oct 2024 09:29:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729502967;
-	bh=/JzRc1Cme3nFE2GF5Li7+9M42QY8EO1CGP6MGSomNUA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UwP45KV/t0Nr9Lroc7vCF7jMZej/deezkrIHvNGrN8elAKsON3pkX4AALgntfm8E0
-	 /DQ4QLdBZiHz6nThZLwVTma3hdc9FcUO0xJNgzwY7DQxizP7eY5I8WlBbY5BLmCeOd
-	 Xk35GvAJQFw6NrYbVgsSEMgwDOaG/fwqPLQbnoLG6uVnlCrdejRgzLar3TEi9usnSE
-	 NI/4t2cGb4ThnZM8rCiViJipiHi6gj0qrmbqS3UWvle2xpMwsv4ne5bX9sPpV58tnH
-	 SGMdaYfsNiBhtDmaGsnaRpu9KZG1KcOvUPrRW1jCZg4ALw7Ut607cswOL/ZGCPoIFP
-	 ofzkCFJFdlqWw==
-Message-ID: <09c1e8a0-f669-42ef-bbd2-44649fad35d8@kernel.org>
-Date: Mon, 21 Oct 2024 11:29:20 +0200
+	s=arc-20240116; t=1729503040; c=relaxed/simple;
+	bh=XNMRCMkK6PDEJ8+GAYVR/SX2ZAGnKDe+KC2cYYCVSAk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dTtyUTCUS0xvotmuxOUKIP5gE18eZjJTqTedzQrxgmnR/ZzD4MMJxu2LYxoVKLX8Ofc2jmjrOcP3IK8et8DTB3oMcH0xVVI97K3oIg4G4BMfdse+LED2RPTWi4cGQPq2SuaOtgfLG02hlBtMr7ILMbt+/3IkR64FXxp9RpGnLxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=pRYAp1aB; arc=none smtp.client-ip=220.197.32.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=oPeQwjN5+Aqq+N6ZgX8E0B65rXeXBqrPsgK5gCG/RgQ=;
+	b=pRYAp1aB+13bgEr/Hfoomff0biQmXjPhLbmJ6ax0d7TeH3gnpgBPeqXtZBFYwR
+	XKePqdJlcE5Y0g5G0hfbRjdthjOyqSUVFl7bLq63Y0xLVRN8tS0IYvE4+uy+lmSK
+	4Wt6E2CbFsZbzM+jTD+cByeWeZx0KTQT/XspaUdFE65mI=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgC3e9AcHxZnHv6EAA--.4810S3;
+	Mon, 21 Oct 2024 17:30:06 +0800 (CST)
+Date: Mon, 21 Oct 2024 17:30:04 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Conor Dooley <conor@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: arm: fsl: drop usage of Toradex SOMs
+ compatible alone
+Message-ID: <ZxYfHMViwfCQEdNY@dragon>
+References: <20241004160842.110079-1-francesco@dolcini.it>
+ <20241004-enforcer-absently-e3a056284991@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: serial: samsung: Add
- samsung,exynos8895-uart compatible
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241020180201.376151-1-ivo.ivanov.ivanov1@gmail.com>
- <20241020180201.376151-2-ivo.ivanov.ivanov1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241020180201.376151-2-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241004-enforcer-absently-e3a056284991@spud>
+X-CM-TRANSID:Mc8vCgC3e9AcHxZnHv6EAA--.4810S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZF15Cw1Utw1rJw4UtFW7twb_yoWxZFb_uF
+	ZIgryxJrZ5CF4UXa9I9rn0qr9rK3WSvr15tay3Gw1fAas5ZrW8G34kJr97Z34xGa12krsx
+	AanI9r1fu343ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU1uHq7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgd-ZWcWDekz3wAAs2
 
-On 20/10/2024 20:02, Ivaylo Ivanov wrote:
-> Add dedicated samsung,exynos8895-uart compatible to the dt-schema for
-> representing uart of the Exynos8895 SoC.
+On Fri, Oct 04, 2024 at 05:24:11PM +0100, Conor Dooley wrote:
+> On Fri, Oct 04, 2024 at 06:08:42PM +0200, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > 
+> > The Toradex SOMs cannot be used alone without a carrier board, so drop
+> > the usage of its compatible alone.
 > 
-> Like GS101, it has a required DT property samsung,uart-fifosize, but
-> it does not exhibit the 32 bit register access limit.
-> 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->  .../bindings/serial/samsung_uart.yaml           | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> index 788c80e47..2491b6048 100644
-> --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> @@ -27,6 +27,7 @@ properties:
->            - samsung,exynos4210-uart
->            - samsung,exynos5433-uart
->            - samsung,exynos850-uart
-> +          - samsung,exynos8895-uart
->        - items:
->            - enum:
->                - samsung,exynos7-uart
-> @@ -172,6 +173,22 @@ allOf:
->          clock-names:
->            maxItems: 2
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,exynos8895-uart
+> FYI, alot of what you're removing here appears in the $som.dtsi files.
+> I don't think that matters at all, since the dtsi files need to be
+> included somewhere - but figured I'd point it out in case the platform
+> maintainer for fsl cares.
 
-This looks exactly like gs101, so please grow the enum there.
+Thanks for pointing it out, Conor!
 
-Best regards,
-Krzysztof
+I would say we should remove the compatible from dtsi files before
+dropping it from bindings.
+
+Shawn
 
 
