@@ -1,45 +1,58 @@
-Return-Path: <devicetree+bounces-113510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 374639A5DC1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:57:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99F069A5DC7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 09:58:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C6C61C20308
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:57:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47E4C1F213A4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 07:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485091E0E16;
-	Mon, 21 Oct 2024 07:57:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFEAF1E102C;
+	Mon, 21 Oct 2024 07:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uYad8ACA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2228B1DF730;
-	Mon, 21 Oct 2024 07:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4181E1028;
+	Mon, 21 Oct 2024 07:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729497462; cv=none; b=fjKFc9xl4XREOt1Nk5/dxBsx+dhBBYFaZZ7Xj7xa0xsii1bZWO9nZsXD1efEsq82gVjNXVS8Q4oyXtN6LK5fF3SbsB8Vwg61nDlGqokDdb+jNtP5NX2xfzSXjXMvoCsThLMMT4QOQNEusFYXap6qF9hpbo64a4UUKpc78nh/mHA=
+	t=1729497515; cv=none; b=CDh6DTyQY5UZ8B+WP4DOfvGBcuNJAtIomlbbsg3l99kLjin1xvLB53RsOgHeYCkQSCnoeIck1WVri4wGCwK1FbKiCj/fYl2kY3N/KXiz0WbE8suB+jxD6CtXZaSmhTLnSkosGHUURaDhyI97C7y6xsinEo0NqfzhdgCh2xLS3l8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729497462; c=relaxed/simple;
-	bh=0uLjBf18Xz4SF1MWvZb3/ZoXIhPTTkH+q/ljSF3KWM0=;
+	s=arc-20240116; t=1729497515; c=relaxed/simple;
+	bh=BF6N0Tw9m2cqoYjZKr6+wjglNc9USslZtMlpF8ZL0F8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BjsADItlWdBGE5Zs7JeiVA1ygy1ijYfrOD3MQJSPQdPKg5eWhqJxhL0jUU3NN5rWkQv2Ps15V/WMpkWZVs2gqC5XBD9XqqtQVetDIvUTodwHY1Ll8El5nlio+8rwn+/lwe0dYkkEYTaX7JCLXJDA9/745TdlkfASlxAV4RsH8ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CC71C4CECD;
-	Mon, 21 Oct 2024 07:57:40 +0000 (UTC)
-Date: Mon, 21 Oct 2024 09:57:37 +0200
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
-	Rajendra Nayak <quic_rjendra@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] dt-bindings: cache: qcom,llcc: Fix X1E80100 reg entries
-Message-ID: <ksadu3tkdrnioetmbkhcxojme3nqacftgmsxgvkeod4iunf5ri@hvu4t3yae7yf>
-References: <20241018-qcom-llcc-bindings-reg-ranges-fix-v1-1-88693cb7723b@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CVv/9cOo6vLcVxEGggcqEQjbG6jUAI3SUUeafAC2HU7XV2IJzJ+DQ22adRJMylJ9JPFWGtiHp/eohpjUzWXCEhcqpaBpTU+M6jMvAMZ67mdztt21ktVRr+Eo9sMKYmPPxDs/MFCsxV+/KvGkmLIs7yJONMPIOrzDV0sql8s+Dd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uYad8ACA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38E7C4CEC3;
+	Mon, 21 Oct 2024 07:58:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729497515;
+	bh=BF6N0Tw9m2cqoYjZKr6+wjglNc9USslZtMlpF8ZL0F8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uYad8ACA85Qv0eqX9qLoavhjKucHVcdevtM1iV4B40hhzw9Lna6vN1xrYWbnx1V6T
+	 STPxuhI1UC9dm/Xtmp3ljrC2c9cN960SPGh/N8z0VBgw9+1FJif8PF5KrZsQK7ntH9
+	 asS7kwyqKZxn9V6mWoDEA9FOp4mukvjsuPAjhoiTsatK1IBT7ax2LQphkuUSAI5cdi
+	 gN70/j5Ie1vYWHqQNemRCF4HXvaVaJ5/x+AvkBzA/+Bj4Mo58rqZwbmzBnopqVeL7k
+	 VDLfkKXGQJtK3CldsijDl6PHIwur6S1mdBKH9c32DExJ+SqlUD4CR+bXjdjmP+OJ1R
+	 hsuSq4VS+gUyQ==
+Date: Mon, 21 Oct 2024 09:58:32 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: usb: Describe TUSB1046 crosspoint switch
+Message-ID: <l5guykbgo23s4fw52cen3vuewqe4lqtf2zbdt6gxmlkatm4ecx@wpi6so6okizf>
+References: <20241018-tusb1046-v1-0-a38312f18691@bootlin.com>
+ <20241018-tusb1046-v1-1-a38312f18691@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,18 +61,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241018-qcom-llcc-bindings-reg-ranges-fix-v1-1-88693cb7723b@linaro.org>
+In-Reply-To: <20241018-tusb1046-v1-1-a38312f18691@bootlin.com>
 
-On Fri, Oct 18, 2024 at 04:13:47PM +0300, Abel Vesa wrote:
-> Document the missing Broadcast_AND region for x1e80100.
-> 
-> Fixes: e9ceb595c2d3 ("dt-bindings: cache: qcom,llcc: Add X1E80100 compatible")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202410181235.L7MF7z48-lkp@intel.com/
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  .../devicetree/bindings/cache/qcom,llcc.yaml       | 36 ++++++++++++++++++++--
->  1 file changed, 34 insertions(+), 2 deletions(-)
+On Fri, Oct 18, 2024 at 03:30:48PM +0200, Romain Gantois wrote:
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        typec-mux@44 {
+> +            compatible = "ti,tusb1046";
+> +            reg = <0x44>;
+> +
+> +            mode-switch;
+> +            orientation-switch;
+> +
+> +            port {
+> +              endpoint {
+> +                remote-endpoint = <&typec_controller>;
+
+Use consistent indentation for DTS, preferred is 4 space.
+
+With above fixed:
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
