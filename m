@@ -1,195 +1,212 @@
-Return-Path: <devicetree+bounces-113436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6CFB9A5A21
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 08:05:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B629A5A61
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 08:31:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4F4B1C20FA7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 06:05:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7396B210F3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 06:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B809E1946D0;
-	Mon, 21 Oct 2024 06:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9A6194AEC;
+	Mon, 21 Oct 2024 06:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="g0MdSgGP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eZukqSlv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479AE433A0
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 06:05:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 059C5DDA8;
+	Mon, 21 Oct 2024 06:31:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729490742; cv=none; b=AN5cWEr7VU/045eUAwcUPx/LAEPqIdC6YcaMV4CK0nBoz8mRYL78M5GxngndCt1QdLmhzGLOdcx4h9rtvRx5/9G6PwwITPEO0NFxa4R1hVwkFf7QNkwckrMCDm/Vipz1u4xbEjYptivJ3g1YGbPtOAMq/YFH167o9aklEQzzYAQ=
+	t=1729492292; cv=none; b=l61VXGcG2qgkmU+cPkyJfn3tkUcBmG3uq/tO+JeF3LA9j99ZJ5pmLQomr9c6GdLCzXSk4aZc7M0IHGwWLdn8mTY3K9aiPqI+wlbZG2xKTmOVOKmVczbX+fGYh2uTLTaZ0Qky48XJeIVtJeaY2rp9tuvbTC54mCLJdiLAxMB9SNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729490742; c=relaxed/simple;
-	bh=IIWio+BGWaSaW21PnnxARXZp4FionUCKZk/+r1D+oG8=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=DEkFIm3wKt//RaK3WUEDTpmi2FN3fh0ZQiT2cnJCVP+Zh25r2AvuXXnGww5WpDNffabKqqhJg88WFMc/revCnrIFmMENhL2VJHG4GJBchJJh9fslwsR/XT6CV6g7Yk9StKLu+ZFdcLImS73wJcP/5VcNObLgK5aWKDQXgAecC9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=g0MdSgGP; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241021060538epoutp02623728ef90334db643402f9d120a98d7~AYqnJTCob1764317643epoutp02k
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 06:05:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241021060538epoutp02623728ef90334db643402f9d120a98d7~AYqnJTCob1764317643epoutp02k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1729490738;
-	bh=cb03jBzckq9Uro4zVi90gsorpfxSmMqhnETvcsGXro4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=g0MdSgGP6pbOZvRs9RMEYa2XzU2jIOV+twWysW48vjYmHvfDq+K2shIludSNSjOCd
-	 MviT5gtCmM52jFzhFQPnpGBZJoHsG8I6gakxwFXCAVoiNZHCP68ZDeXgdlUISqrWsr
-	 8BTBVTy13SWkmh4Tmb7YBK23e432fiG3Zh8ZtRFA=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-	20241021060537epcas2p37bee194c61b47e11eac304db9cf11964~AYqmoU-pd1337213372epcas2p3x;
-	Mon, 21 Oct 2024 06:05:37 +0000 (GMT)
-Received: from epsmgec2p1-new.samsung.com (unknown [182.195.36.68]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4XX4YF2dRwz4x9Pr; Mon, 21 Oct
-	2024 06:05:37 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-	epsmgec2p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	B8.C8.18950.03FE5176; Mon, 21 Oct 2024 15:05:36 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20241021060535epcas2p1f716c45ee988775fb2a2b9790435126d~AYqkyqKGt1960619606epcas2p1W;
-	Mon, 21 Oct 2024 06:05:35 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20241021060535epsmtrp2f0b46818128934af63d237155420f084~AYqkxv7BR0397203972epsmtrp2c;
-	Mon, 21 Oct 2024 06:05:35 +0000 (GMT)
-X-AuditID: b6c32a4d-1f1c070000004a06-6e-6715ef304a3a
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	8E.64.08227.F2FE5176; Mon, 21 Oct 2024 15:05:35 +0900 (KST)
-Received: from KORCO119526 (unknown [10.229.18.158]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20241021060535epsmtip2fea2c687d755854e22e3c927d20cbb56~AYqkfoj_F3072430724epsmtip2O;
-	Mon, 21 Oct 2024 06:05:35 +0000 (GMT)
-From: =?utf-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Wim Van Sebroeck'"
-	<wim@linux-watchdog.org>, "'Guenter Roeck'" <linux@roeck-us.net>, "'Rob
- Herring'" <robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>
-Cc: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, "'Byoungtae Cho'" <bt.cho@samsung.com>
-In-Reply-To: <f9bbe108-1a0d-451f-a1c7-14e8aadc76b5@kernel.org>
-Subject: RE: [PATCH v2 1/3] dt-bindings: watchdog: Document ExynosAutoV920
- watchdog bindings
-Date: Mon, 21 Oct 2024 15:05:35 +0900
-Message-ID: <003f01db237f$3e707de0$bb5179a0$@samsung.com>
+	s=arc-20240116; t=1729492292; c=relaxed/simple;
+	bh=WhSHnMsUMuuz6aBN+4q6e1xLL5CV8bctPFFrYJZFMVA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VzICEudMjbt0lb9WQD/U0jLdNqmphEk7iQ/VhtTIbD/21w9uSxvMeW7v02r5rMCktga7ngfzpm2893nRxrUtYr3YrFZJHGwl9RvEYWHGh7B2J7EROFvae4SQ0dbCzcdxV5FUqQCp7lqNXwX+Cmvn1xmgF/tsYPsBl1M6wVw747U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eZukqSlv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71EB7C4CEC3;
+	Mon, 21 Oct 2024 06:31:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729492291;
+	bh=WhSHnMsUMuuz6aBN+4q6e1xLL5CV8bctPFFrYJZFMVA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eZukqSlv2DxN+4ie17Ri7yvctbzM61UVj2Kzwz+aRuqk8sIqQ4308kPxgDgDk8PT9
+	 PNiNWniiAbvOqTKztxwrXzolsyKfw4OAAJu8Wt7bX/c9NDJkgiCV9l+vDwouD02uRH
+	 3VHaiXZxboXKvZ4gHbSRoJ3aMEBinqtzKk2O/nQ9+ybAEILC8uom3Snxe2uh6QSkZB
+	 jdvU2KB4ZzCp755RRVOf+bktFOshHobJbdxtYuW2Q02+x81IGOGatdGQCzdsrw5pf5
+	 ykTFZ//xQ1E5/SRANTfVtRJ/uX95OqYkrbcQ6RWhyQxJE3FM0XZ5T6/714+dzwjbDY
+	 RJGtHswEg86YA==
+Message-ID: <8cb615cf-1b4e-49ba-91fc-6e1f5f57cd3c@kernel.org>
+Date: Mon, 21 Oct 2024 08:31:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
+ SoCs
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
+ <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
+ <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
+ <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
+ <4127b448-a914-4c69-b938-29512995326f@amlogic.com>
+ <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
+ <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
+ <1jiktpr40d.fsf@starbuckisacylon.baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <1jiktpr40d.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKShxVw65UJgYXARO76wzJ5NcLQ6AK2VKhSAdj3/m8BY0zLI7DyOOGg
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLJsWRmVeSWpSXmKPExsWy7bCmqa7Be9F0gyNTuC0ezNvGZnH/Ux+T
-	xZq955gs5h85x2rxctY9Novz5zewW2x6fI3V4vKuOWwWM87vY7K4sW4fu8WThWeYLP7v2cFu
-	8fjlP2YHXo9NqzrZPFauWcPqsXlJvcfO7w3sHn1bVjF6fN4kF8AWlW2TkZqYklqkkJqXnJ+S
-	mZduq+QdHO8cb2pmYKhraGlhrqSQl5ibaqvk4hOg65aZA3SokkJZYk4pUCggsbhYSd/Opii/
-	tCRVISO/uMRWKbUgJafAvECvODG3uDQvXS8vtcTK0MDAyBSoMCE7Y+PHSYwFBwQr5p39y9TA
-	eIuvi5GTQ0LAROLhm7ksXYxcHEICexgl5j47zQThfGKUWPPkJyuE841RYtGOG2wwLRv/nINK
-	7GWUmL/jKzOE85JRYvX6BcwgVWwCFhJLrn0AmyUisIFJYuqZm6wgCWaB24wSO98bg9icAnYS
-	DzpWs4DYwgJxEm23L4E1swioSsxeuoMdxOYVsJS4f+w3C4QtKHFy5hMWiDnyEtvfzmGGOElB
-	4ufTZWDzRQTcJHY+6GCGqBGRmN3ZBnadhMAZDonX81ewQjS4SPzc9xzqH2GJV8e3sEPYUhKf
-	3+2FiudLrFx5ggnCrpG417aLBcK2l1h05idQPQfQAk2J9bv0QUwJAWWJI7egTuOT6Dj8lx0i
-	zCvR0SYEYapKTF8WADFDWmLijLVsExiVZiH5axaSv2YhuX8WwqoFjCyrGKVSC4pz01OTjQoM
-	dfNSy+ERnpyfu4kRnI61fHcwvl7/V+8QIxMH4yFGCQ5mJRFepRLRdCHelMTKqtSi/Pii0pzU
-	4kOMpsDQnsgsJZqcD8wIeSXxhiaWBiZmZobmRqYG5krivPda56YICaQnlqRmp6YWpBbB9DFx
-	cEo1MFk3v33mUh3pr9NukMyYL9X1+84j7rrQZsVVtx38pt7b8Cg6ZWteT3rHpPSvEUbrflVk
-	Hmvc9VRRniGy+cChTbekZbYdsX187sTEk1yHukUZX8YtC7oQ9+9ix6L17n68XyYFT+hzffBx
-	Pe/vooNH19nlGhUant4iV7Bh5q1Z3ybaxWr8ntCZ3VW0YvqrD/2rNGIWeJjUP4tasa1h9vMH
-	1zkVAs7Eqm5O3Mjz117HsP1WB6fhI8l9YaHbKxhVH19cUDv7L9PNsJBTO3Ydfjj5j2zzBKu5
-	T3SfPUvY/kpBRvJH7ctDnypXn64WONy760pSzrZLHRoqu9fKVGk6l+n/56s/YOrA6sl74Vkm
-	e3hFFIcSS3FGoqEWc1FxIgBcolYoUAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBIsWRmVeSWpSXmKPExsWy7bCSvK7+e9F0g7trlS0ezNvGZnH/Ux+T
-	xZq955gs5h85x2rxctY9Novz5zewW2x6fI3V4vKuOWwWM87vY7K4sW4fu8WThWeYLP7v2cFu
-	8fjlP2YHXo9NqzrZPFauWcPqsXlJvcfO7w3sHn1bVjF6fN4kF8AWxWWTkpqTWZZapG+XwJWx
-	8eMkxoIDghXzzv5lamC8xdfFyMkhIWAisfHPOdYuRi4OIYHdjBI/+n6zQySkJY78fsEGYQtL
-	3G85AlX0nFHizPtOVpAEm4CFxJJrH5hAEiICW5gkpr86xQjiMAs8ZJT4/+oAVMtXRon+3Y9Y
-	QFo4BewkHnSsBrOFBWIkDq48ywhiswioSsxeugNsN6+ApcT9Y79ZIGxBiZMzn4DZzALaEk9v
-	PoWy5SW2v53DDHGfgsTPp8vAThIRcJPY+aCDGaJGRGJ2ZxvzBEbhWUhGzUIyahaSUbOQtCxg
-	ZFnFKJlaUJybnltsWGCUl1quV5yYW1yal66XnJ+7iREcmVpaOxj3rPqgd4iRiYPxEKMEB7OS
-	CK9SiWi6EG9KYmVValF+fFFpTmrxIUZpDhYlcd5vr3tThATSE0tSs1NTC1KLYLJMHJxSDUzS
-	rDeuPQvRd186jWfy/sdJTJ5qTtLZhZvk7Rsd597oVpp167JexekDzBFflFZ8WHvj7c4lapE/
-	BdYb6Ry6/0bC4sj0KxaL+tyfV02OObI5JrX7zkf3OUF3ljHMuLv/veqxhoMahwvfe0gd2h80
-	d2X+By3bzm97VSK3qEn1bzxpfa5v4YcqycorMkJuj/8lWJXs7NMLe6+YoWQnt4A77sIXj2Az
-	y8yqcpenqsqzr+18v1sxIMOD6dmONf1phw0/zNoT83VZbZ5WdfGftNBzkrZr+Ni790/LmfGn
-	l/Gfs91dtcM//3db8PLM/3F4sa2L2umjiilcu3azr2gV5f+iIligUWGymcG4JOHS7neXJhQr
-	sRRnJBpqMRcVJwIAzR8uDzsDAAA=
-X-CMS-MailID: 20241021060535epcas2p1f716c45ee988775fb2a2b9790435126d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20241010111837epcas2p11dddc10945ca0648997dccaaf4854d93
-References: <20241010111807.3635504-1-trunixs.kim@samsung.com>
-	<CGME20241010111837epcas2p11dddc10945ca0648997dccaaf4854d93@epcas2p1.samsung.com>
-	<20241010111807.3635504-2-trunixs.kim@samsung.com>
-	<f9bbe108-1a0d-451f-a1c7-14e8aadc76b5@kernel.org>
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: Thursday, October 10, 2024 8:47 PM
-> To: Taewan Kim <trunixs.kim@samsung.com>; Wim Van Sebroeck <wim@linux-
-> watchdog.org>; Guenter Roeck <linux@roeck-us.net>; Rob Herring
-> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
-> <conor+dt@kernel.org>; Alim Akhtar <alim.akhtar@samsung.com>
-> Cc: linux-watchdog@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> samsung-soc@vger.kernel.org; Byoungtae Cho <bt.cho@samsung.com>
-> Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: Document ExynosAutoV920
-> watchdog bindings
+On 18/10/2024 14:26, Jerome Brunet wrote:
+> On Fri 18 Oct 2024 at 12:13, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 > 
-> On 10/10/2024 13:18, Taewan Kim wrote:
-> > From: Byoungtae Cho <bt.cho@samsung.com>
-> >
-> > Add "samsung-exynosautov920-wdt" compatible to the dt-schema document.
-> > ExynosAutoV920 is new SoC for automotive, similar to
-> > exynosautov9 but some CPU configurations are quite different.
-> >
-> > Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
-> > Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
+>> On 18/10/2024 11:20, Jerome Brunet wrote:
+>>> On Fri 18 Oct 2024 at 17:01, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
+>>>
+>>>> Hi Jerome,
+>>>>    Thanks for your reply.
+>>>>
+>>>> On 2024/10/18 16:39, Jerome Brunet wrote:
+>>>>> [ EXTERNAL EMAIL ]
+>>>>> On Fri 18 Oct 2024 at 10:28, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>>
+>>>>>> On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
+>>>>>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>>>>
+>>>>>>> Add the new compatible name for Amlogic A4 pin controller, and add
+>>>>>>> a new dt-binding header file which document the detail pin names.
+>>>>> the change does not do what is described here. At least the description
+>>>>> needs updating.
+>>>>>
+>>>>
+>>>> Will do.
+>>>>
+>>>>> So if the pin definition is now in the driver, does it mean that pins have
+>>>>> to be referenced in DT directly using the made up numbers that are
+>>>>> created in pinctrl-amlogic-a4.c at the beginning of patch #2 ?
+>>>>>
+>>>>
+>>>> Yes.
+>>>>
+>>>>> If that's case, it does not look very easy a read.
+>>>>>
+>>>>
+>>>> It does happen. The pin definition does not fall under the category of
+>>>> binding.
+>>>>
+>>>> https://lore.kernel.org/all/106f4321-59e8-49b9-bad3-eeb57627c921@amlogic.com/
+>>>
+>>> So the expectation is that people will write something like:
+>>>
+>>>  reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
+>>>
+>>> And others will go in the driver to see that is maps to GPIOX_10 ? the number
+>>> being completly made up, with no link to anything HW/Datasheet
+>>> whatsoever ?
+>>>
+>>> This is how things should be done now ?
+>>
+>> Why would you need to do this? Why it cannot be <&gpio 10
+>> GPIO_ACTIVE_LOW>, assuming it is GPIO 10?
+>>
+>> Bindings have absolutely nothing to do with it. You have GPIO 10, not
+>> 42, right?
 > 
-> Shall we do the work twice?
+> That's what being proposed here, as far as I can see.
+> 
+> GPIOX_10 (not GPIO 10) maps to 42. If this goes through, for DTs to be
+> valid in any OS, all need to share the same definition. That looks like
+> a binding to me.
+> 
+> On these SOC, gpios in each controller are organized in bank with
+> different number of pins. So far, this was represented as single linear
+> array and that was not a problem since the mapping was part of the binding.
+> 
+> Are you suggesting 2 params instead of one ? something like this maybe ?
+> 
+> reset-gpios = <&gpio BANK_X 10 GPIO_ACTIVE_LOW>;
 
-I missed it by mistake, I'm sorry.
-I will push v3 with tags.
-> 
-> <form letter>
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions,
-> under or above your Signed-off-by tag. Tag is "received", when provided in
-> a message replied to you on the mailing list. Tools like b4 can help here.
-> However, there's no need to repost patches *only* to add the tags. The
-> upstream maintainer will do that for tags received on the version they
-> apply.
-> 
-> https://protect2.fireeye.com/v1/url?k=19c96b19-46525206-19c8e056-
-> 000babdfecba-8f51e01dd01bb666&q=1&e=eb401f36-1904-4376-adea-
-> 9688adb1d657&u=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv6.5-
-> rc3%2Fsource%2FDocumentation%2Fprocess%2Fsubmitting-patches.rst%23L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
-> 
-> Best regards,
-> Krzysztof
+No, I propose the same as you wrote:
+<&gpio 10 GPIO_ACTIVE_LOW>
 
+but I don't mind putting bank there.
+
+> 
+> This means this A4 controller will be software incompatible with the
+> previous generation. It will need to handled differently eventhough the
+> HW is exactly the same.
+> 
+> Note that some form of binding would still be required to define the
+> banks which are referenced by arbitrary letter in doc, not numbers.
+
+Usually banks are considered separate gpio controllers, so numbering
+always start from 0 because phandle encodes the bank.
+
+And this is exactly what Rob already asked in v1 review.
+
+Best regards,
+Krzysztof
 
 
