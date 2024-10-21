@@ -1,181 +1,140 @@
-Return-Path: <devicetree+bounces-113677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E50159A6943
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:57:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E0D99A6948
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 14:58:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9165FB2260B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:54:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A6411C20456
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11811F4FDA;
-	Mon, 21 Oct 2024 12:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130811F706A;
+	Mon, 21 Oct 2024 12:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tZfQf9Sb"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="PF7qz/av"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C061F4736
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191C91F6681
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 12:56:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729515251; cv=none; b=jjGe+FEc+Qm+WbJCJt/NjBxt9MdVgE3bsWLyhCElQF2JaBg1vkeSSC4y/wPtR51TW9KrPH2gLj0A4rtYsHOtBr6BwIg9XMZOVbvludl5AAxqqvx1xQPS6FRdgw3KZrubtxcfxE0aZ9LMvn1r2iPGDOa4IazmwluffUAwdWVvouA=
+	t=1729515414; cv=none; b=otOlpRZLUOb8BpoO5Sj9p34VQ4IQ+zukth96Q2PIzqpGKR12wkzkN4qSarBj8NOgToSDZjOt/V76M94VlYHMW1HoTWxr5NpQnWXqI/Ct8qqppp5NOG5zlFZSgBL52aaChYMu7lUyocqja4kj4JKbW6M49+zRyulQOhloxgxU7lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729515251; c=relaxed/simple;
-	bh=DyWxLKiydqEOonS9mZeITo4s7rpB/FLXd8owqshBsQM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sDUkYnan7QiXCyEpB+IraqMoRE/QUzMq5yc6MztKcarZRDXIb2ixHnZ+mE8aV/xvc6lOZIf9A2xiRNe6l9WQDlAg3HeyDj2dDbTZUn3s44X5mkO36w52LdkiUrl288j4jmMNBp/qqiDSLylH/UzFmcLBt+iYSA4UHSrPc9Mj2qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tZfQf9Sb; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fb5014e2daso44052041fa.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:54:09 -0700 (PDT)
+	s=arc-20240116; t=1729515414; c=relaxed/simple;
+	bh=iF5kSi2+h7yYoqW72il1fTTVPVpJA+9T3CejaiQWTmI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tRcZpaGNUcaRjmcpDOjwWfRJjKN4yUGfzpgTUXGOck4KZFQ1ZX297NGNncmsT9gYdpTCMwxzRp9Rf8DG921jJaW31X9xRv6xK9IPNdp/vQ4RwEUYrL2GrF1A4unXxfRTEQkSDt+vkNhegFo76MDmbrHLaDaJcLlu05DvNn4biVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=PF7qz/av; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-50d5795c0f8so1174722e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 05:56:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729515247; x=1730120047; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=I2s35/3heGmToRyOYXVolNum+L9YFMF7ccDrRpO5RZ0=;
-        b=tZfQf9Sb4iEvkWs6NrfaZAdVp90KSBkmjG1l8VVQUSfk7GatsBY2qih3+zRSzeG+LN
-         7J8yWxdP0IoFPLBt+KnhXDT5mWFmwFPsFYZcRIdCOWzODF+512cEI93+/4Kn2sAvkiPB
-         87PxOUU/utf+4U1p0iP+HlW4kC7RSr4E/Bdm75BreaSoNslnugwsrWVeLJYTqzYeSbOz
-         UEA3PmkmPNbtffcTqLhrX5FVLDHBBfk1b4bCNsS0FHyxaJOo9ZBkjGVpmcjge45nQChx
-         Qiwl6bVf371tmPuCcofcNq+vQ9+MvZgM26/q8x5lPVHn31p9PQuj9uD7OvvJw5lGpcvV
-         peqw==
+        d=raspberrypi.com; s=google; t=1729515412; x=1730120212; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iF5kSi2+h7yYoqW72il1fTTVPVpJA+9T3CejaiQWTmI=;
+        b=PF7qz/avHVUh5mwtIC0o2a6n1Lf1NGoZvIOQ8MGyQxAMziHevHEuiww4Bgs5ZQsB7Y
+         DsjORwJ8p58v0cAyJIk2t6M0iyMLSLFLMuVx3ZGb0ILPY//apddMRNfQdrCG6aSZUO7Z
+         3cOHd9COB3kJ6tzEiED+sJgbazepcZnF59wPUQ8H7vvMi29obwnKe37Ls7latRssuM+B
+         4EaCXVi2VduFIZ+hpDtuDU4frfz4g4SP9WeaQm2YN04cD3mjrAc2e+GzsW7brRgTxJzJ
+         Q/qyJkrx7oRt+2TvH5ACO2spQgUPW+vr1WB0UwW0Vf29R3cBaPffrbXNqMkbYfZ8Y4Ds
+         lE0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729515247; x=1730120047;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I2s35/3heGmToRyOYXVolNum+L9YFMF7ccDrRpO5RZ0=;
-        b=cWgnYHmA7j0pLm99YxeVGjmYQa38BtMHekvzv6poUsIpsKi1Vy7zh8j701h6nP5FYt
-         A+N33klxrlhW4Fy4e/Rp7kTmTeUG0flqDZgfw0NoqM9sxxh9T8nZqRZfw4N+6WaerqER
-         IbYKP37t0TpaNDrDXCdMv4suue6JVp+pn3Oy5iMmX/ERPMUGJCR5PNX8aI24wCzV9S2T
-         NQFbDNfb+bXUfBa3yYbyVITAUvHquA9lMjmN4fH6+BOW89cwq6WrtwJroIlx40NZn7mS
-         lB/75LQAitsTADXnpSdF1DpVysOAdHATTC4fEbQxQB3S8dt5S8Qlmi4B7IREyrlkcXlh
-         xe7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXvtcOXqXmViS3J8d6bq6fvR7FiV0IhPUNrqO8ifGEU+3B07IU3ubFBw5PIN0Pa8JhLH5N51J52eQZy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8cYmFTqZZmd6jMH89CrHKXiRG57cla4PJDdMJJ8up/VSzZhYd
-	AKU7/uBxH9Aqn/V2140zlR+eYWqLSiimr4fMyvt3dYGLA3Zjqsi6Xumh1tL9XJY=
-X-Google-Smtp-Source: AGHT+IEz4ViWfBMtEMxwNV3/I552f0CNAjJ7YSgMEZYhkW6iNBJSB8GpfuJiztKEovvTD9JY1l14kw==
-X-Received: by 2002:a05:6512:3e1f:b0:539:8bc6:694a with SMTP id 2adb3069b0e04-53a154f8ec6mr4583475e87.43.1729515247279;
-        Mon, 21 Oct 2024 05:54:07 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef80:b7f5:199d:c177:8c47])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66c6b12dsm1924908a12.77.2024.10.21.05.54.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 05:54:06 -0700 (PDT)
-Date: Mon, 21 Oct 2024 14:54:00 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Jonathan Marek <jonathan@marek.ca>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: x1e80100-crd: enable otg on usb
- ports
-Message-ID: <ZxZO6Prrm2ITUZMQ@linaro.org>
-References: <20241011231624.30628-1-jonathan@marek.ca>
- <20241011231624.30628-2-jonathan@marek.ca>
+        d=1e100.net; s=20230601; t=1729515412; x=1730120212;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iF5kSi2+h7yYoqW72il1fTTVPVpJA+9T3CejaiQWTmI=;
+        b=AZ4mUHb8D61Lk+QGvRY7nb+TAcbkp+KoLtJnbw9yCthUivJ+kAgtKZq43wr86xWTMh
+         rrmm3OG/VgeuXIxaD1/OXx6Bb/7yYYvL1kKMqUr34NcxX+H+aB0zMDMaDr9lefXAKOWK
+         Ml9pztvwZYVA7rimdz8Yz+dejZILkNHe1iXW5g/+f7SQjImnrlm+XBiVI/dMS+P8RXrj
+         3o0zM3KcgCK+5QdiUvw2K6266lBFRCUaimzhHjwcWSeA84NbX9Fc+jVu1RiFD074sLGt
+         S0gB4XFqMyPxb83H6V0ieFVW0IglOUAJgc7bB7bZUyP9D9+AC+RCBxHATrhR81/WlH9r
+         CpWw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5hnB447i/eNRFTdpV/DgODUoqSUlIfydZr1ViHEOJfANaqSiOFjaMpgwW8oUDdIrT5iNosFiRnZUu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoL3//Vrk8wZP9dhLzLykLpjTr1Y7k2mAi8Wk0laWeX+d0TpCQ
+	FAFzRsr6TNLmUXEf9vuQ2MxwwJxbs0PbZNfoHpn5FQe6JHK7AjEmSUCLAaOIoMMMWqIlyVD4IYp
+	kIxAYNYukdQvh2dJas4ME8abUaVhwywugjLdM3y0PW6LrG8zLCys=
+X-Google-Smtp-Source: AGHT+IFEq5ENcXQdOuBxqKLqxxVONLn/0UE6KpwIFKd/1HrI7jrMRxE3oii80pR3eyKJmbtlfIzoD+cwV3PlryjrWTE=
+X-Received: by 2002:a05:6102:5089:b0:4a5:6f41:211e with SMTP id
+ ada2fe7eead31-4a5d6bd361amr9160919137.24.1729515411915; Mon, 21 Oct 2024
+ 05:56:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241011231624.30628-2-jonathan@marek.ca>
+References: <20241014130710.413-1-svarbanov@suse.de> <20241014130710.413-10-svarbanov@suse.de>
+ <60de2ae5-af4b-4c31-bc63-9f62b08be2fc@broadcom.com> <bed7b0ea-494b-429e-8130-12d12eb11bf0@suse.de>
+In-Reply-To: <bed7b0ea-494b-429e-8130-12d12eb11bf0@suse.de>
+From: Jonathan Bell <jonathan@raspberrypi.com>
+Date: Mon, 21 Oct 2024 13:56:41 +0100
+Message-ID: <CADQZjwdO6ifEMBwh15EVPsxm4XtSYGRs==hVCZ0HmcUbADh6hw@mail.gmail.com>
+Subject: Re: [PATCH v3 09/11] PCI: brcmstb: Adjust PHY PLL setup to use a
+ 54MHz input refclk
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jim Quinlan <jim2101024@gmail.com>, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Andrea della Porta <andrea.porta@suse.com>, 
+	Phil Elwell <phil@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
 
-+Cc Abel and Johan
+On Thu, 17 Oct 2024 at 15:42, Stanimir Varbanov <svarbanov@suse.de> wrote:
+>
+> Hi Florian,
+>
+> On 10/14/24 20:07, Florian Fainelli wrote:
+> > On 10/14/24 06:07, Stanimir Varbanov wrote:
+> >> Use canned MDIO writes from Broadcom that switch the ref_clk output
+> >> pair to run from the internal fractional PLL, and set the internal
+> >> PLL to expect a 54MHz input reference clock.
+> >>
+> >> Without this RPi5 PCIe cannot enumerate endpoint devices on
+> >> extension connector.
+> >
+> > You could say that the default reference clock for the PLL is 100MHz,
+> > except for some devices, where it is 54MHz, like 2712d0. AFAIR, 2712c1
+> > might have been 100MHz as well, so whether we need to support that
+> > revision of the chip or not might be TBD.
+>
+> I'm confused now, according to [1] :
+>
+> BCM2712C1 - 4GB and 8GB RPi5 models
+> BCM2712D0 - 2GB RPi5 models
+>
+> My device is 4GB RPi5 model so I would expect it is BCM2712C1, thus
+> according to your comment the PLL PHY adjustment is not needed. But I
+> see that the PCIex1 RC cannot enumerate devices on ext PCI connector
+> because of link training failure. Implementing PLL adjustment fixes the
+> failure.
+>
+>
+> ~Stan
+>
+> [1]
+> https://www.raspberrypi.com/documentation/computers/processors.html#bcm2712
 
-FYI, this landed in qcom for-next last week for CRD and T14s.
+The MDIO writes for 2712C1 are required because platform firmware
+arranges for the reference input clock to be 54MHz.
+2712D0 can't generate a 100MHz reference input, it's 54MHz only. The
+MDIO register defaults are also changed to suit, but there's no harm
+in applying the writes anyway.
+Both steppings need to behave identically for compliance and interop reasons.
+RP1 is very tolerant of out-of-spec reference clocks, which is why
+only the expansion connector appears to be affected.
 
-On Fri, Oct 11, 2024 at 07:16:22PM -0400, Jonathan Marek wrote:
-> The 3 USB ports on x1e80100-crd are OTG-capable, remove the dr_mode
-> override to enable OTG.
-> 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-
-This is a bit problematic, because dr_mode = "otg" seems to imply
-gadget/peripheral mode by default and we are currently unable to detect
-the role at runtime until the ADSP is started. Being in peripheral mode
-by default will break USB installers; they won't be able find the rootfs
-via USB. Unfortunately, they wouldn't be able to detect it once in the
-rootfs either, because usually you first need to copy the ADSP firmware
-from Windows (at least on the laptops).
-
-I think the best quick fix would be to set
-
-	role-switch-default-mode = "host";
-
-for now to restore the old behavior in initrd, while still allowing to
-switch to peripheral mode once detected by the ADSP later.
-
-It would be nice to have gadget mode in initrd as well, since e.g.
-postmarketOS needs that to set up the USB debug shell. But I'm not sure
-how we could support that:
-
- - We could designate some of the ports as "peripheral by default" and
-   some as "host by default". E.g. usb_1_ss0 is also used for EDL and
-   Fastboot on CRD, so it's more likely to be used in peripheral mode.
-   But there still would be users confused about why they cannot plug in
-   their USB installer into one of the ports...
-
- - Long term, I wonder if there is any way we could reuse the reduced
-   ADSP firmware from UEFI for USB detection until we start the full one
-   later? Perhaps it provides a similar interface?
-
-Thanks,
-Stephan
-
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 12 ------------
->  1 file changed, 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> index eb6b735c41453..bc66f4713b231 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> @@ -1568,10 +1568,6 @@ &usb_1_ss0 {
->  	status = "okay";
->  };
->  
-> -&usb_1_ss0_dwc3 {
-> -	dr_mode = "host";
-> -};
-> -
->  &usb_1_ss0_dwc3_hs {
->  	remote-endpoint = <&pmic_glink_ss0_hs_in>;
->  };
-> @@ -1600,10 +1596,6 @@ &usb_1_ss1 {
->  	status = "okay";
->  };
->  
-> -&usb_1_ss1_dwc3 {
-> -	dr_mode = "host";
-> -};
-> -
->  &usb_1_ss1_dwc3_hs {
->  	remote-endpoint = <&pmic_glink_ss1_hs_in>;
->  };
-> @@ -1632,10 +1624,6 @@ &usb_1_ss2 {
->  	status = "okay";
->  };
->  
-> -&usb_1_ss2_dwc3 {
-> -	dr_mode = "host";
-> -};
-> -
->  &usb_1_ss2_dwc3_hs {
->  	remote-endpoint = <&pmic_glink_ss2_hs_in>;
->  };
-> -- 
-> 2.45.1
-> 
+Regards
+Jonathan
 
