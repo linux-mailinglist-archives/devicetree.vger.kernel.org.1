@@ -1,301 +1,208 @@
-Return-Path: <devicetree+bounces-113599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81EE29A6510
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:53:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C79B89A6596
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 12:59:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A09BFB2B894
-	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:44:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A4051F22DFB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Oct 2024 10:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00341E6DC2;
-	Mon, 21 Oct 2024 10:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582C31E47B3;
+	Mon, 21 Oct 2024 10:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bunadi0R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xTwTo4Uo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594C81E633C
-	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCEBC3A1CD
+	for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 10:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729507126; cv=none; b=VOmsqVR8RMK4AVYOoWgVddiKWonW6p8MQLr8xaZLOo01uyFKnc4gM6vBm5hzOeCTBOyHZLxWhvOURfSF9w/aXfSMWAFAIUDABOyWBR3sSvH05ZD4AmXf12/Tr/jkfbe2p0D2/mTQ03vKIpBugAE9OpEfAWSQWHR5BScaKsDnWXo=
+	t=1729508227; cv=none; b=IHWE5ckgjigV7A7YpTj/U5K+410kMmneZG1R55K8dHfLvXtNAJmIs3xyrXGJ/zY6oiRWwSI+OJipOy/FYiqN2ga1FQomqISeIvXYIIDeg76/oVYTHc9006VnmQGglNUi/jGOfiDpf6ZcS4YFwaqSeRJ85vm/kK3x6wSzqP2Ll8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729507126; c=relaxed/simple;
-	bh=OtAbMeazYZxPVYU5/7ohPXTaGyps2mbNAHyWMRwAYXs=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=kMjj7DYbFMTnvhplYCmBdG22oZ3ifNeVgzk/p3+tEyYoDfQydw4dORf6qepJvciPQE7eMS5YckgHZiYY9UPlRMMwpfgafjOHDMC4Xl6Fdtyy+I3fic7oMzlxmFjfwtFu2mGGvVEadsZyclfreJLTEbCYBB7r3kWcjK29IkE3zU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bunadi0R; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1729508227; c=relaxed/simple;
+	bh=CDBHa4HhpZ93hMV4Cyf19fbWiPeaQcK01LUJDJBdBEg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V9IrxuRF8GatXfndrBvb0WLiuu/SG5wb1FD6cJ5EmTo2vaudrp2fnLzD3rB5/6I541Iev47193mFGiFgGRl3z12KsBjR10ZvKdEzRgB/Azn/NFQWeWZoZvIV0W0uGsILOmHST1PoOIJM011HkxPYFi/iSrfQ6yFdElQxjneEnpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xTwTo4Uo; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4316a44d1bbso15773395e9.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:38:44 -0700 (PDT)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539e6c754bdso4105648e87.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 03:57:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729507122; x=1730111922; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2ySuw8D8jWEN/9YhfbV0Sya+B2jTWI3nM02ykj7+cy8=;
-        b=Bunadi0RhCr6FL+KpNcBauqqipnpTGK56jzQI788HniDrZ7xzJ5VsSyXacwo0GxkJm
-         gBkx2nnRYLzS9L+KbWhvrJ4G00KrOUlyw14iB602a6YTDcMxcOxOI5rnCeQOQKx7ixdv
-         9YNzHOh1cPCrppPuK0/eCHNrwJsrOBKdpK9hsfDJCOSWhnvwgwN2BXiU/hXxDNoC9M9W
-         klLPko3k10SbjelHbuYVW5UVOG0JX255Sr4neFjbTvs75E//rHdWlcYC/3FGLqccz768
-         ftvvvcgirT85lamSEpARBh4ySG0w+aPuDZKLi8LvfSnNcKwRgHIeHwKD2ZMC1k2VaxZZ
-         dEqA==
+        d=linaro.org; s=google; t=1729508223; x=1730113023; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=0sJa6EKXXiP19VVbfMZOnJkIoAIvDNdNKcWXx8p9So8=;
+        b=xTwTo4UoyjZNuBrKGscAWHLLhPYoltif0Gu2BKm7BJZHRwZQh7Zq1b4gCF5CeuKVVt
+         YXqOa4Dkz0eDH5ba1lUvbNKCQp3H3dGzwmlPvXMfM+f4v5hTo34oG8OXKdDBqv7Mhrcx
+         dHJ0Iec/nYD+tEkcvhynBLpNlio3qXxcfZtK7RDjcH6lzzfOlWY+u2I+XPJeXGMIh4zT
+         gBRDLARVfCzoppTuUpCp0/N2gFzxLlIF7SM6QFWErQewNhVlR6B+qWo1juqaJHIK1X4U
+         TZaaO6WbZ6xzi5AzGkXbgQFBGZPjozZa+26JKaUAFkO132tudd0+bki3Eb9K5tvf78+2
+         GV2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729507122; x=1730111922;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2ySuw8D8jWEN/9YhfbV0Sya+B2jTWI3nM02ykj7+cy8=;
-        b=NcofO/Fx2queya7VvABFd+xAcQlJw1EObOrEgsqWRfQMVbDHnupBlQ4miBYO9gxvgG
-         r2YsEYW4TqXCcjjCzMH4ybGbGPT6MUxoVcPbsUSrcYT/Ia7j1SZjhOUMC7RQKQkXORL+
-         6Y1kP371C/xKWBWyqw3GULcyvO7YPv2ySQxFVoR0ftraqJ+c5krPxf3dMPcuXVDPQBpu
-         hmNACti+/zyeOPDXBklouncp6j+xegohkeLEHT+nqjoeotXF4jwf7UtN+aadqQ8L18Fp
-         9srBgPxDTtTviiI2E6UCwzIEm8ZHwWSmLo7/eF4l96Oq8mUjjjN0YJThI97MAM7qLkeI
-         Xm6A==
-X-Forwarded-Encrypted: i=1; AJvYcCWeeu9XMe84cGRiwlFo2E7Vu3hySBlKMaHL6hcn81dJNzBLFzB+T1wuUlei3D3EHpsWRfPp1S6SyNNd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4Z3YL7ZOJsYy5TdiGsPfRKrWFu3j4KFPeDlo3Qu3t99G091AK
-	rTCTBzieqMBwA7kAU/WbnTTUqUX70xmViOQf8RcTM5LJ1xxUR4lcHQ46wkSrr/8=
-X-Google-Smtp-Source: AGHT+IEdepbcnTwYewoqxOwDr6bbpP0LoiIrLZO/s1iPNW7F3xJuePF3p6zuXgXPdml/hpNXA/PR6g==
-X-Received: by 2002:a05:600c:35d3:b0:431:5f9e:3f76 with SMTP id 5b1f17b1804b1-43161669464mr96932435e9.16.1729507122510;
-        Mon, 21 Oct 2024 03:38:42 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:3908:dea6:2ddd:be97? ([2a01:e0a:982:cbb0:3908:dea6:2ddd:be97])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c3497sm52743365e9.29.2024.10.21.03.38.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 03:38:42 -0700 (PDT)
-Message-ID: <f6c4cee8-dd22-4b30-a3b2-aee48e2c3611@linaro.org>
-Date: Mon, 21 Oct 2024 12:38:40 +0200
+        d=1e100.net; s=20230601; t=1729508223; x=1730113023;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0sJa6EKXXiP19VVbfMZOnJkIoAIvDNdNKcWXx8p9So8=;
+        b=lCs1fT8N2cB1jGNP4t7K+1AbVlWWjuLVZtlQPVt2vdeMrozn/WrtHraU0gVvy4q9CM
+         r1sPV9UACFsX8oswxLHHHmMWqUP7HNr+7vGIVbL3qIXeuZcWYQ64Ny+gUnq0vd+qcM9g
+         URBfdNcCkmW/wYsdpiAmhHQnYZE2K/57N841z//+tf+LdCdju5ZKgUrL+YISm4cou8wq
+         /BidMYWNmAVT21xOxh/ltKYn6NfenxsBh7CHvhA7PwCWzKn+JBNpld9zIaAAs6AzcfpL
+         Y5vVJbdlEu0ulM3XxKrvJ25i4R1A9z+PFurBuHsAVk8R1Rrlno3YMQxAU9AQU3GylQ68
+         M7lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXo1Tf8nrLdeK/5PfQTg/6uKtNzcJjqgcTsFrxQqspST+aqQTEZlHU6OJAbA6ZQA/ZL18TXoTJAJn5b@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8gkHDsK0hj9Prds/tk/9BnlBD/+QrTDl9IZIkz6tvqsJl7tex
+	k3qmvi7t24nFt0gK2sVixHSs35X0xbPm2g+T+pANE5XXBlwYEzt3dbAUqtYcxH0=
+X-Google-Smtp-Source: AGHT+IHMXgWU4v7Fzqllu7BsHwkTqs7vhzF+ABH7oaEiwqvEmG1ej27+CESFkjwyqXjFWNy4DYBV1g==
+X-Received: by 2002:a05:6512:33d3:b0:533:4689:973c with SMTP id 2adb3069b0e04-53a15497022mr4270762e87.23.1729508222934;
+        Mon, 21 Oct 2024 03:57:02 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a223e5903sm454768e87.11.2024.10.21.03.57.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 03:57:01 -0700 (PDT)
+Date: Mon, 21 Oct 2024 13:56:59 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Imran Shaik <quic_imrashai@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/6] clk: qcom: Add support for GPU Clock Controller on
+ QCS8300
+Message-ID: <o5v3fch5oxol4t7j4xlqswk6m6uo4tleck2cnfk6whpfqsrvjc@s2yrjumgvw6j>
+References: <20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com>
+ <20241018-qcs8300-mm-patches-v1-2-859095e0776c@quicinc.com>
+ <puhpztfn6ga5rxv4mwu7wyvk63hqme2nzffcvzwv7t4oo5hlvc@4ugxncmu3wwk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
- SoCs
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
- <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
- <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
- <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
- <4127b448-a914-4c69-b938-29512995326f@amlogic.com>
- <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
- <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
- <5ad8f396-84a5-486d-b90d-98fbf8882d1b@linaro.org>
- <e6cd13b5-2f7a-4ab1-899c-5867bc0ea64f@kernel.org>
- <fdb4d0eb-a5e5-4061-b3cc-14958473baf3@linaro.org>
- <c8a03fa6-9ac5-434f-ba13-78e47ad341b8@kernel.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <c8a03fa6-9ac5-434f-ba13-78e47ad341b8@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <puhpztfn6ga5rxv4mwu7wyvk63hqme2nzffcvzwv7t4oo5hlvc@4ugxncmu3wwk>
 
-On 21/10/2024 11:56, Krzysztof Kozlowski wrote:
-> On 21/10/2024 09:38, neil.armstrong@linaro.org wrote:
->> On 18/10/2024 17:31, Krzysztof Kozlowski wrote:
->>> On 18/10/2024 14:31, Neil Armstrong wrote:
->>>> On 18/10/2024 12:13, Krzysztof Kozlowski wrote:
->>>>> On 18/10/2024 11:20, Jerome Brunet wrote:
->>>>>> On Fri 18 Oct 2024 at 17:01, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
->>>>>>
->>>>>>> Hi Jerome,
->>>>>>>       Thanks for your reply.
->>>>>>>
->>>>>>> On 2024/10/18 16:39, Jerome Brunet wrote:
->>>>>>>> [ EXTERNAL EMAIL ]
->>>>>>>> On Fri 18 Oct 2024 at 10:28, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>>>>
->>>>>>>>> On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
->>>>>>>>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>>>>>>>>
->>>>>>>>>> Add the new compatible name for Amlogic A4 pin controller, and add
->>>>>>>>>> a new dt-binding header file which document the detail pin names.
->>>>>>>> the change does not do what is described here. At least the description
->>>>>>>> needs updating.
->>>>>>>>
->>>>>>>
->>>>>>> Will do.
->>>>>>>
->>>>>>>> So if the pin definition is now in the driver, does it mean that pins have
->>>>>>>> to be referenced in DT directly using the made up numbers that are
->>>>>>>> created in pinctrl-amlogic-a4.c at the beginning of patch #2 ?
->>>>>>>>
->>>>>>>
->>>>>>> Yes.
->>>>>>>
->>>>>>>> If that's case, it does not look very easy a read.
->>>>>>>>
->>>>>>>
->>>>>>> It does happen. The pin definition does not fall under the category of
->>>>>>> binding.
->>>>>>>
->>>>>>> https://lore.kernel.org/all/106f4321-59e8-49b9-bad3-eeb57627c921@amlogic.com/
->>>>>>
->>>>>> So the expectation is that people will write something like:
->>>>>>
->>>>>>     reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
->>>>>>
->>>>>> And others will go in the driver to see that is maps to GPIOX_10 ? the number
->>>>>> being completly made up, with no link to anything HW/Datasheet
->>>>>> whatsoever ?
->>>>>>
->>>>>> This is how things should be done now ?
->>>>>
->>>>> Why would you need to do this? Why it cannot be <&gpio 10
->>>>> GPIO_ACTIVE_LOW>, assuming it is GPIO 10?
->>>>>
->>>>> Bindings have absolutely nothing to do with it. You have GPIO 10, not
->>>>> 42, right?
->>>>
->>>> There's no 1:1 mapping between the number and the pin on Amlogic platforms,
->>>> so either a supplementary gpio phandle cell is needed to encode the gpio pin
->>>> group or some bindings header is needed to map those to well known identifiers.
->>>
->>> So I assume this is not linear mapping (simple offset)? If so, this fits
->>> the binding header with identifiers, but I have impression these were
->>> not really used in earlier versions of this patchset. Instead some offsets:
->>> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-1-3e74a65c285e@amlogic.com/
->>>
->>> and pre-proccessor.
->>>
->>> These looked almost good:
->>> https://lore.kernel.org/all/20240613170816.GA2020944-robh@kernel.org/
->>>
->>> but then 0 -> 0
->>> 1 -> 1
->>> so where is this need for IDs?
->>
->> ???
->>
->> Of courses the first pins maps to linear values...
->>
->>>
->>> See also last comment from Rob in above email.
->>
->> OK so I looked and v2 was in fact correct:
->> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-1-3e74a65c285e@amlogic.com/
->>
->> ====><=================
->> +/* Standard port */
->> +#define GPIOB_START	0
->> +#define GPIOB_NUM	14
->> +
->> +#define GPIOD_START	(GPIOB_START + GPIOB_NUM)
->> +#define GPIOD_NUM	16
->> +
->> +#define GPIOE_START	(GPIOD_START + GPIOD_NUM)
->> +#define GPIOE_NUM	2
->> +
->> +#define GPIOT_START	(GPIOE_START + GPIOE_NUM)
->> +#define GPIOT_NUM	23
->> +
->> +#define GPIOX_START	(GPIOT_START + GPIOT_NUM)
->> +#define GPIOX_NUM	18
->> +
->> +#define PERIPHS_PIN_NUM	(GPIOX_START + GPIOX_NUM)
->> +
->> +/* Aobus port */
->> +#define GPIOAO_START	0
->> +#define GPIOAO_NUM	7
->> +
->> +/* It's a special definition, put at the end, just 1 num */
->> +#define	GPIO_TEST_N	(GPIOAO_START +  GPIOAO_NUM)
->> +#define	AOBUS_PIN_NUM	(GPIO_TEST_N + 1)
->> +
->> +#define AMLOGIC_GPIO(port, offset)	(port##_START + (offset))
->> ====><=================
->>
->> is exactly what rob asked for, and you nacked it.
+On Mon, Oct 21, 2024 at 09:56:08AM +0200, Krzysztof Kozlowski wrote:
+> On Fri, Oct 18, 2024 at 04:42:30PM +0530, Imran Shaik wrote:
+> > Add support to the QCS8300 GPU clock controller by extending
+> > the SA8775P GPU clock controller, which is mostly identical
+> > but QCS8300 has few additional clocks and minor differences.
+> > 
+> > Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> > ---
+> >  drivers/clk/qcom/gpucc-sa8775p.c | 47 ++++++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 47 insertions(+)
+> > 
+> > diff --git a/drivers/clk/qcom/gpucc-sa8775p.c b/drivers/clk/qcom/gpucc-sa8775p.c
+> > index f8a8ac343d70..99a8344b00db 100644
+> > --- a/drivers/clk/qcom/gpucc-sa8775p.c
+> > +++ b/drivers/clk/qcom/gpucc-sa8775p.c
+> > @@ -317,6 +317,24 @@ static struct clk_branch gpu_cc_crc_ahb_clk = {
+> >  	},
+> >  };
+> >  
+> > +static struct clk_branch gpu_cc_cx_accu_shift_clk = {
+> > +	.halt_reg = 0x95e8,
+> > +	.halt_check = BRANCH_HALT,
+> > +	.clkr = {
+> > +		.enable_reg = 0x95e8,
+> > +		.enable_mask = BIT(0),
+> > +		.hw.init = &(const struct clk_init_data){
+> > +			.name = "gpu_cc_cx_accu_shift_clk",
+> > +			.parent_hws = (const struct clk_hw*[]){
+> > +				&gpu_cc_xo_clk_src.clkr.hw,
+> > +			},
+> > +			.num_parents = 1,
+> > +			.flags = CLK_SET_RATE_PARENT,
+> > +			.ops = &clk_branch2_ops,
+> > +		},
+> > +	},
+> > +};
+> > +
+> >  static struct clk_branch gpu_cc_cx_ff_clk = {
+> >  	.halt_reg = 0x914c,
+> >  	.halt_check = BRANCH_HALT,
+> > @@ -420,6 +438,24 @@ static struct clk_branch gpu_cc_demet_clk = {
+> >  	},
+> >  };
+> >  
+> > +static struct clk_branch gpu_cc_gx_accu_shift_clk = {
+> > +	.halt_reg = 0x95e4,
+> > +	.halt_check = BRANCH_HALT,
+> > +	.clkr = {
+> > +		.enable_reg = 0x95e4,
+> > +		.enable_mask = BIT(0),
+> > +		.hw.init = &(const struct clk_init_data){
+> > +			.name = "gpu_cc_gx_accu_shift_clk",
+> > +			.parent_hws = (const struct clk_hw*[]){
+> > +				&gpu_cc_xo_clk_src.clkr.hw,
+> > +			},
+> > +			.num_parents = 1,
+> > +			.flags = CLK_SET_RATE_PARENT,
+> > +			.ops = &clk_branch2_ops,
+> > +		},
+> > +	},
+> > +};
+> > +
+> >  static struct clk_branch gpu_cc_hlos1_vote_gpu_smmu_clk = {
+> >  	.halt_reg = 0x7000,
+> >  	.halt_check = BRANCH_HALT_VOTED,
+> > @@ -499,6 +535,7 @@ static struct clk_regmap *gpu_cc_sa8775p_clocks[] = {
+> >  	[GPU_CC_AHB_CLK] = &gpu_cc_ahb_clk.clkr,
+> >  	[GPU_CC_CB_CLK] = &gpu_cc_cb_clk.clkr,
+> >  	[GPU_CC_CRC_AHB_CLK] = &gpu_cc_crc_ahb_clk.clkr,
+> > +	[GPU_CC_CX_ACCU_SHIFT_CLK] = NULL,
+> >  	[GPU_CC_CX_FF_CLK] = &gpu_cc_cx_ff_clk.clkr,
+> >  	[GPU_CC_CX_GMU_CLK] = &gpu_cc_cx_gmu_clk.clkr,
+> >  	[GPU_CC_CX_SNOC_DVM_CLK] = &gpu_cc_cx_snoc_dvm_clk.clkr,
+> > @@ -508,6 +545,7 @@ static struct clk_regmap *gpu_cc_sa8775p_clocks[] = {
+> >  	[GPU_CC_DEMET_DIV_CLK_SRC] = &gpu_cc_demet_div_clk_src.clkr,
+> >  	[GPU_CC_FF_CLK_SRC] = &gpu_cc_ff_clk_src.clkr,
+> >  	[GPU_CC_GMU_CLK_SRC] = &gpu_cc_gmu_clk_src.clkr,
+> > +	[GPU_CC_GX_ACCU_SHIFT_CLK] = NULL,
+> >  	[GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK] = &gpu_cc_hlos1_vote_gpu_smmu_clk.clkr,
+> >  	[GPU_CC_HUB_AHB_DIV_CLK_SRC] = &gpu_cc_hub_ahb_div_clk_src.clkr,
+> >  	[GPU_CC_HUB_AON_CLK] = &gpu_cc_hub_aon_clk.clkr,
+> > @@ -583,6 +621,7 @@ static const struct qcom_cc_desc gpu_cc_sa8775p_desc = {
+> >  };
+> >  
+> >  static const struct of_device_id gpu_cc_sa8775p_match_table[] = {
+> > +	{ .compatible = "qcom,qcs8300-gpucc" },
+> >  	{ .compatible = "qcom,sa8775p-gpucc" },
 > 
-> No, this is not what was asked, at least according to my understanding.
-> Number of GPIOs is not an ABI. Neither is their relationship, where one
-> starts and other ends.
+> I just wanted to comment on your binding that devices should be made
+> compatible...
+> 
+> >  	{ }
+> >  };
+> > @@ -596,6 +635,14 @@ static int gpu_cc_sa8775p_probe(struct platform_device *pdev)
+> >  	if (IS_ERR(regmap))
+> >  		return PTR_ERR(regmap);
+> >  
+> > +	if (of_device_is_compatible(pdev->dev.of_node, "qcom,qcs8300-gpucc")) {
+> 
+> Why we cannot use match data? Seeing compatibles in the code is
+> unexpected and does not scale.
 
-I confirm this need some work, but it moved the per-pin define to start
-and ranges, so what did rob expect ?
+Because using match data doesn't scale in such cases. We have been using
+compatibles to patch clock trees for the platforms for quite a while.
+You can see that each of the "tunings" is slightly different. From my
+point of view, this approach provides a nice balance between having a
+completely duplicate driver and having a driver which self-patches the
+tree.
 
-> 
-> Maybe I missed something, but I could not find any users of these in the
-> DTS. Look:
-> 
-> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-3-3e74a65c285e@amlogic.com/
-
-So you want consumers before the bindings ? strange argument
-
-> 
-> Where is any of above defines?
-> 
-> Maybe they will be visible in the consumer code, but I did not imagine
-> such use. You expect:
-> reset-gpios = <&ctrl GPIOAO_START 1>???
-
-No I expect:
-reset-gpios = <&ctrl AMLOGIC_GPIO(B, 0) 1>;
-
-but the macro should go along the dts like we did for the reset defines,
-so perhaps this is the solution ?
-
-> 
-> How this is anyway close to what we have for Aspeed or Tegra? I
-> understand that there was no consumer DTS, but you have also cover
-> letter which could bring some answers in case reviewer is confused. What
-> did cover letter say? Let me quote:
-> 
-> "Add pinctrl driver support for Amloigc A4 SoC"
-
-Well he didn't expect a such sudden radical change in maintainers
-requirements! Neither did I.
-
-Neil
-
-> 
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-
+-- 
+With best wishes
+Dmitry
 
