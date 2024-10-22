@@ -1,258 +1,210 @@
-Return-Path: <devicetree+bounces-114085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8969C9A9C16
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AC569A9C1E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:13:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44057280DF8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:10:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0F76280F31
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C229615574C;
-	Tue, 22 Oct 2024 08:10:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XXs1UNiY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95937156F24;
+	Tue, 22 Oct 2024 08:13:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2076.outbound.protection.outlook.com [40.107.21.76])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988B5347C7;
-	Tue, 22 Oct 2024 08:10:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.76
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729584634; cv=fail; b=r+JFRwMAW2xbeWfLKhgfhl1RhlUyfBhvqtLAGTMGE4USs03vqjMNuReAKDWk4Xh8QdTIQALY6de9BUTDxfQTgwQs9+n72Xb0atQqe0TxdVlpj30ePS3xPpT1CiRLsJ9xqL7lCGnHyLlJsHwBAqkA3QD6m5DPjP41cpuU5BJZA0s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729584634; c=relaxed/simple;
-	bh=hoRmFJkZBP253y3ZxpmXM2ajWakTiIUz/dsJn3sw4kM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=d7xCMeZoqr3faUotNaw4vZ4xujlMwNo70+OT+rvlbcbIHEZyDGp6L8DMRpMI2rhSi4PYrorQvlQVC8xbL2ZYP5wo9RmagP1d8uaP9a/L4l29MO2dYC9MEORNX7v1BjXXhq+LBJAyjhImQYlRiRwSOBLHeRoAR3oVP2xj+RLEP6g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XXs1UNiY; arc=fail smtp.client-ip=40.107.21.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yevszvDNeVJX4Hfhz421oKIYte8X7bGKqs0yydEyALo/Mwzd6RvOJM92CdChbHEAffgoJXilc7ZqhsOjVLTTyyXlbiT4pqk9jB/dcJca4J64uohe6+NqLX2LOjPG5hChbNqMwMhFUmVDoTpVrmiJrDm0Y4RYRCSr2rdLsGgh10uturAfWPBaIllQKn9fAHwQ6y0dSFcPRBE4GJOgrBULPwHgHBHN5wtcJR/1QyUH0JzXBkLwiSZmx07chaM8k9+W2AWNZtipt+SvLrYnCUDivHaWh2EETojnJqX10y8e3igA1s8K194sc7ELAcY1sZLQ1kaP+ahsNlJnGgO83Ltmyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mBT7Yawja4t5KOzpO1HC8aPsQiOUdr1KXHnLoYiFhXE=;
- b=u+qwQiAWFtNfVNmZfyrIOqsBPxOIsM9a5bYrAsa+Ha9nUkW7RISGEYtDtjhy0JvZKpKhaDkv+uTUbEvgm8+0ZduOuDU4TOUgtMfxxveujtATcPtgU8W3uEJ9rIZFSWii5mSV/2GIPkwbu/W+9NsViAMoeQsBQs4st76dFumOzGrrv/HfwonKJ6QlHcUl4EuGUH9ssfefx3bY9p2dCbnkVHgPgvRoh2kr+8qJsZiwWmfI4iWTklV+61YDgSoc0Udzbu3CxTnH04OqNys3RrArjuwCCnc9J4PwTeNJHaFdPAH+j47t0d18nccYwnfqnlE1SlWIdeMPfZ6GHhpbVcoi3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mBT7Yawja4t5KOzpO1HC8aPsQiOUdr1KXHnLoYiFhXE=;
- b=XXs1UNiYivtUZokx6nU3Y7inI9/D6vksx0WD24g4oFGZiacL7OaLhzUqgkxWaI8XVrR75WOkR5d6AdpwOmpZNIYMZIeynn9VP9sLs8rQ+zyoUhFdgAIsAp28ijmeaDGK/uVQld3nsz/XVMdwcPbcm6gia2LvN787Mk/lHHIlrwUDZioNhW1g7S8quz0JwcldqtI6+B3h04dQhKYrg2bC63dcTy2HooSmWKJiQL6sbXkEVt4/eySBMCMw4qbdewYuq7wVKvBaBjEhwZIJmLR9Ns97uP9f73CQjTth6VqiTgaxSyewVEp1eil59iXNZZ0xlMG0DcJx2ebSI+Q32fOvfQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AS5PR04MB10020.eurprd04.prod.outlook.com (2603:10a6:20b:682::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Tue, 22 Oct
- 2024 08:10:28 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%4]) with mapi id 15.20.8069.027; Tue, 22 Oct 2024
- 08:10:28 +0000
-Message-ID: <7a83230b-292c-4e28-813d-a07ea1b6a66a@nxp.com>
-Date: Tue, 22 Oct 2024 16:10:51 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/15] drm/bridge: Add ITE IT6263 LVDS to HDMI
- converter
-To: Maxime Ripard <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, quic_jesszhan@quicinc.com,
- mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
- will@kernel.org, sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
- tomi.valkeinen@ideasonboard.com, quic_bjorande@quicinc.com,
- geert+renesas@glider.be, dmitry.baryshkov@linaro.org, arnd@arndb.de,
- nfraprado@collabora.com, thierry.reding@gmail.com,
- prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org, marex@denx.de,
- biju.das.jz@bp.renesas.com
-References: <20241021064446.263619-1-victor.liu@nxp.com>
- <20241021064446.263619-13-victor.liu@nxp.com>
- <20241021-thick-cockle-of-popularity-c5e28c@houat>
- <889594b9-e6cb-4d90-b959-cd0258b2f166@nxp.com>
- <20241022-wondrous-fractal-lion-aedcd9@houat>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <20241022-wondrous-fractal-lion-aedcd9@houat>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2P153CA0026.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:190::18) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBADA1547EE
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:13:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729584799; cv=none; b=WrGFQqnWykaMtgxlclNyOPSADok0redFfTiafURH8T1L5aO/pOsywwqnUhR9StQ8n9gMhbVbo9LsbNk5TOPiA/MYGoliSJ9jGdZh/tlpWE7csP4tYCdt/pSxBkuxDPMvnPAw4uXgKOXZT6ySeW3c1yHZJDM8Qs+kGYfuauh5Kxc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729584799; c=relaxed/simple;
+	bh=mU5ijISLPIS6XER+dkDHOlCCs8HDVysP/I3y18vdbbc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tNnLceHiYPkVLx2+myrJmBIpfBcfeChHTMEYKRhiVW4uOmerP37Q0CL7Z2rYJa6a3ihOUub/FYgv7vw6OUpMQlhdYCeaci/K5RzhkGa408zkFwIq7LZwM7bk4fIDpcZVaAtWy/jLQLZiVrVJ3h/VW1zxYd/dMHRitUrCGdYcOlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t3A0n-0001fa-0j; Tue, 22 Oct 2024 10:13:05 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t3A0m-000peV-1W;
+	Tue, 22 Oct 2024 10:13:04 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t3A0m-007WO0-1C;
+	Tue, 22 Oct 2024 10:13:04 +0200
+Date: Tue, 22 Oct 2024 10:13:04 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+	Sherry Sun <sherry.sun@nxp.com>,
+	Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+	Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+	"marcel@holtmann.org" <marcel@holtmann.org>,
+	"luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+Message-ID: <20241022081304.d2tpnn4eyf3adxg2@pengutronix.de>
+References: <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
+ <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
+ <0d460226-4ea7-4a9b-a119-468343727996@kernel.org>
+ <20241021064129.trchqa2oickna7pc@pengutronix.de>
+ <bb34f4ae-92b3-48b7-b0d6-5937756cdbb9@kernel.org>
+ <20241021102558.rfnz7nxcg5knibxs@pengutronix.de>
+ <e7a1622e-6406-478f-bd3e-08a8490d4db0@kernel.org>
+ <20241022071208.lgk2rpl2c2qpytfa@pengutronix.de>
+ <66d33097-37ed-4e89-a356-285eda743a5c@kernel.org>
+ <a11cf72d-3878-4af1-89c5-c66d55794ea6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS5PR04MB10020:EE_
-X-MS-Office365-Filtering-Correlation-Id: 554f082c-6558-4521-f682-08dcf270fd85
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?cnZqTGR3Q3dkRE1qaWVzNEovTVozRUcwaUZLSkF0UVZhemZSb1o4elRPQ0F1?=
- =?utf-8?B?TkRVN0d6TnNiMTc5OEFoa2JZOEVBbjdJeTNabUVwdGFqYnp6ZWlZekl2bWV0?=
- =?utf-8?B?c0xPa255WVZXYTVJZnJBS20zbDNMVE1TZkNnUUpSWU5La0p4dlZicnlnM29F?=
- =?utf-8?B?KzRlb3R6aE11OEZyZjRaY3E3WHJYdnVQaWtGb2hIanhWWUVFQjZ3eXdHdDNV?=
- =?utf-8?B?aU9uT1Q4MmtBbDJ1ZjQxT051eHJidTIyUDhVM0Z2ejErZkhmM1Z2MnJaMmto?=
- =?utf-8?B?S1RuQUE4a0RWSUlXZHMvK1VDNmEvM2pzcFRJazJtVVpMMVI0SXZaNytMb1dZ?=
- =?utf-8?B?MW5nRHlyNnEwV1RQU2NEaFRzWndSZHcxQlRrWEZ1bDlZZWRkNS9IUERCUU5G?=
- =?utf-8?B?b1hrMHMwanpFTG1CVFJua1d2SCtPTXozL2pTcFBrVVVlejlmSmgvQlNyaVV5?=
- =?utf-8?B?b1QwMDBib0dDeU8yR2JGL1lmNENmQVhtODk4Q3dPWkkrZkREbHRRcU1tNG5M?=
- =?utf-8?B?QmpPc1ZFbGpSU1RqVXhqVElKKzhRRWZFajVBVGQ3RE00QUFFUmNpWVhkLzcx?=
- =?utf-8?B?dmZMM0JxTjVnNjViN2N2ckQweGpRSy94cml3UDY1ZEE0N2diNmcvaDBya05B?=
- =?utf-8?B?UHVlM1FPSmFmVmJzMmhsaFFhRThXUU5YcmVWMlcyaUl4bTlMdTVLM2JhVnJ0?=
- =?utf-8?B?Y2sxTVkwY3hYTW5DUko0WWhZaENGYS8ycEFHZ2U1UVBEY1NLeEdQblpudW9V?=
- =?utf-8?B?MUs5MHVUMTZ2Q3NRT0lCMU93Y0t5cDBNR1dNWldUd3dETmpLS0hIcEhrUWJK?=
- =?utf-8?B?VG40bXdSbTA4NVdkc0d6TzA1UldISFVsaHFrMkdBY0NsdXo3azdCSUJoTVlD?=
- =?utf-8?B?djUrclMxTlVrL05sSjVNalpjZU1xYXNIbCtHQVpGRHF3WXdPaTZhRXI3Y0E5?=
- =?utf-8?B?enVLWnY3Q3JjeXJtU0FnbVgxTFBTQnl1Qmd0RWgxbG0xcHhaN0ZQaVlqRW5F?=
- =?utf-8?B?aVd0VkJaVkpBdGNQaFBvU052UE13OTFzVjMyWXlSRmlCMFIvTlQ0SVlnR2ht?=
- =?utf-8?B?akxoSjBvWHBWN3lGYmVINXExWjlpdC9UbTZJZE1zNWhTRUlBZkgxQXJVRDk3?=
- =?utf-8?B?Rk1CczdPem9CUmN5V2Y2VTdKZVcyM0dmRzVES2FDd3JPRnJhdGNvRlczRTN5?=
- =?utf-8?B?a0h6UUM1N05hVXd0dkNzS3B2MnNFLzhjaVk3MzVabUFPeTVkSTJ4WmMvcTh6?=
- =?utf-8?B?RnpXeXNQRTAyTXhoY1JxTnFWU3pSc0oyMWU3d0ZhK0RBbDBuak1RY1hiMURJ?=
- =?utf-8?B?ZDJIR3VzYU9pRmF6VkV5Qm85QVJzOVM0MmxXbGg2SHJwK0ZqQWZXc1RKTzJh?=
- =?utf-8?B?RjhZRlY1V1J2WDRQNFZ4MHd0bnBmNDdwc0lMYUR5enJYU09oSGdYVmJqZUhp?=
- =?utf-8?B?SVZUUW5yK3l4MGxXVEdJYUg2dE1mbjVjNHI3aE9yWlFKVHVIUXJXTFhsM1dz?=
- =?utf-8?B?eTBDSytoOWl3WmpyejZSa1NIZm1Hc0lSMkMwVnQyZEJKRmEwSDd2Nm9YQWRk?=
- =?utf-8?B?b1g3ME9xSDhwaUYwZlRMSDVFNHVSN0c1TlEwVVRTemlMck1EdTh4TUJPb3VJ?=
- =?utf-8?B?SlFCcmFkZ3V3RksvRzFlWmQrM3NxbStHWE9pTWwwSFowSjdUQk00L0RhRXZl?=
- =?utf-8?B?WCtRSDJlbEZkQzNRZGp5andGeDhZdzFSdFJvL0JreGVZcWxrVG4rQ0Myb2ZK?=
- =?utf-8?Q?i2tIkvssAjEKfB5l0zSWGTqWrXqq6pHb7EYAEVW?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?UzJRZ3NMNDBrWEo2blNEcm5DelFVQ1JUdGRWM2NpLzFXVDJvSVQ2M3JkUnBx?=
- =?utf-8?B?cjFZRVFjQVlzZzd4WmJiS2Nvald1QmJtYWNacm55MkZJMmhZelBocnpCd1h0?=
- =?utf-8?B?NnFORXVYNFl4dDBvWUIwZFdBQy8ydGdIbGlMM1Y2ZXJrZHo5VzRLemNiKy94?=
- =?utf-8?B?TlFPVGhTUmlTM1pQYU9HMlpSWEdJN1FFQ1A4WVJ5TDBWM1hCV3hnaTVIZzRV?=
- =?utf-8?B?UzFyM1VTSXNTb1RDMkFnMUZsZGg0SFdaem1Wc2JaSFBPSitKUHpocmxBVTBR?=
- =?utf-8?B?MVJjc0pLaDFqSnZ1aFB4UkpCb0RmbFBkK0QxMGdHNWhUbjlvSlNKVkNFekUv?=
- =?utf-8?B?aXFwd2RQd1NSOHlmVTRFRXNlbFpaa0U0Q2ZJTU9hc3VndkJXdFBtMVVMMmR3?=
- =?utf-8?B?Tk5XRzh6U2dJdzBmL081U24vZFhFWXpoalN3ZU9ucDArekI1MytjdWFzQUVL?=
- =?utf-8?B?c2xxcVpzRmJOMm4vVjVHOXowZ0pvbk9La1JqanlqSEQya3Rxb0tVRG9FUUNn?=
- =?utf-8?B?WmdDUEk0UkUrY1FFTVByd0xYTjdUZml6N3R3WVBUanhNODlBcUovU2ZVTGNH?=
- =?utf-8?B?dGl1NGplVGdMaHVMVEc2RThQNzZGQ3BvdU1QRzZHVWp2OXlWUEhDVU1iYzV0?=
- =?utf-8?B?eDhucmV6UmtHZjk3eWxkbUZzQ2dZVkxJaTgxQmtvL0FWdzBIamJHK3dHellw?=
- =?utf-8?B?aklVcUNkZ0wwYTJWekI3QWJPbXl1SjFkOWlpTHNsSlNmUVhEZUZkT29KTnRX?=
- =?utf-8?B?YnlzSFZxQkhyS00rQVlEYm5aMXFSelJKK2RMZU9Cd2FnbmdIK1ZYQmkvSC9L?=
- =?utf-8?B?OHZFN3IyUW5TMDF2RVlTakVlMmFka0tTOTlFVWhiRi9yQllIR1liNG9jMTlJ?=
- =?utf-8?B?SXdNMDRYdndjektXZ0tKYytIQm4raTh0ZFBJWUhqVEd6dGIxanpTVlZxZlda?=
- =?utf-8?B?VEVGMWttMnVZcWFlWHlqU1E1ZWRyVkNSdHdPeDJPMWNvL3lzZFE0L1JRRyth?=
- =?utf-8?B?WFpmbW50OTRQdk9saVBLazM4WE1oNkdoYjFsZm40YXVzKzlkMHJ3Rit0UjV5?=
- =?utf-8?B?cEdOK2dBQVpiVTNKanhoVURtaSs5c3dwWWJlN1ZEZ2tzNG5jR0lKdXJydXAy?=
- =?utf-8?B?M0ppcGwyY1hpWDl5SUMxeXlXMUY0NTlGK1Y2N1Rnc0g2VWszR1hlYmtIaHdM?=
- =?utf-8?B?L28zRVJsVno2Y0I5WlF1di81OHNmaDBQVFozMk1UME5UNVBVME0ycXpVaHpX?=
- =?utf-8?B?WmNZOFI2Vy9lc0hCNHlnWjljcGwvaW01OSt1WGNGRkwxbUkzSjdOcnlydHoy?=
- =?utf-8?B?K21wQUQwWkhxR1YxbGVGR2JIYi9nUkRTM0l1VmxubUFsVyszd0lxam1TV2xy?=
- =?utf-8?B?TldGQit0dk54c21Dd3VPR3dsajN3Zk9adjA5SkZyNjhYVE5MWEVqTW9qQ3NI?=
- =?utf-8?B?MVBPeHgwaWMxalFBWVptaG5IeXJMUVlRS1RXZHc0WHRyY0lvK3hESkN4dW9S?=
- =?utf-8?B?WGEzVVhocnBYelNldTk5N2FVRFVSb2dhbll2YjJuN2sxRHV4VWhPRGxUeDVM?=
- =?utf-8?B?OFJLdXBCUFc2RXYwRWlweEI2aW14djl1Z0xrR2U2dFZRR1hENlhmYnlNQmFQ?=
- =?utf-8?B?MTVsNDE0L2hhTldmRUlPQkY5S2hkZ2RBenZIVmdrNlZGZ2U1RjFiclZwbnFu?=
- =?utf-8?B?NUJMK21FalZNM2RlZ3FyVjM2SUZ3aVN5YXk3S1dFcVZaekJzQWlXWFlsbFlL?=
- =?utf-8?B?dkRoU0h3RlJUbXVZUEg1TG0xUk9Vc05SbytVbVYrdm9NV2c5cHhJZVBrdE1h?=
- =?utf-8?B?QUZwcHNKZWNkQXIrUXNnOHFQVFR2dERzcjZhbUMzSlJqWGszb0FKVXcyWmFZ?=
- =?utf-8?B?c0Npa05zTzYra1VjQ1pwK0htUWU4NDhhRU5JZWZNcHBUaXlxc0VTblQrbm16?=
- =?utf-8?B?MmdrMlgxaTFxZXNVNmdJRVA4V0lydTQvZnRuNk9HbXdvcDlYSlVMQVdUNmtx?=
- =?utf-8?B?N0V5SjBacEI5NGw2V1lpY3ozNnI0OFkvS2lPRU0ySG9tSXNCQXZCUEFsenY3?=
- =?utf-8?B?Mmt0UnVOd2ZEMTd0V05QVkd6eW5uUlEybVA5L2cxUXNUWnhSeEpudSt6YmhN?=
- =?utf-8?Q?S6C+npMWG4rb4JPjlu7rtIhhp?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 554f082c-6558-4521-f682-08dcf270fd85
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2024 08:10:28.4710
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zjw0fIC7SsyR6zSy607sBDxCQ5lSJbe+2vEiKmb7LcUgVtyV51GxN+prlm9EGy+yTVycOOfyOuQsxj2rE3Fnwg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB10020
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a11cf72d-3878-4af1-89c5-c66d55794ea6@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Maxime,
+On 24-10-22, Krzysztof Kozlowski wrote:
+> On 22/10/2024 09:30, Krzysztof Kozlowski wrote:
+> > On 22/10/2024 09:12, Marco Felsch wrote:
+> >> On 24-10-22, Krzysztof Kozlowski wrote:
+> >>> On 21/10/2024 12:25, Marco Felsch wrote:
+> >>>> On 24-10-21, Krzysztof Kozlowski wrote:
+> >>>>> On 21/10/2024 08:41, Marco Felsch wrote:
+> >>>>>> On 24-10-07, Krzysztof Kozlowski wrote:
+> >>
+> >> ...
+> >>
+> >>>>>>> Based on earlier message:
+> >>>>>>>
+> >>>>>>> "For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means
+> >>>>>>> that both wifi and BT controller will be powered on and off at the same
+> >>>>>>> time."
+> >>>>>>>
+> >>>>>>> but maybe that's not needed. No clue, I don't know the hardware. But be
+> >>>>>>> carefully what you write in the bindings, because then it will be ABI.
+> >>>>>>
+> >>>>>> We noticed the new power-sequencing infrastructure which is part of 6.11
+> >>>>>> too but I don't think that this patch is wrong. The DT ABI won't break
+> >>>>>> if we switch to the power-sequencing later on since the "reset-gpios"
+> >>>>>> are not marked as required. So it is up to the driver to handle it
+> >>>>>> either via a separate power-sequence driver or via "power-supply" and
+> >>>>>> "reset-gpios" directly.
+> >>>>>
+> >>>>> That's not the point. We expect correct hardware description. If you say
+> >>>>> now it has "reset-gpios" but later say "actually no, because it has
+> >>>>> PMU", I respond: no. Describe the hardware, not current Linux.
+> >>>>
+> >>>> I know that DT abstracts the HW. That said I don't see the problem with
+> >>>> this patch. The HW is abstracted just fine:
+> >>>>
+> >>>> shared PDn          -> reset-gpios
+> >>>> shared power-supply -> vcc-supply
+> >>>>
+> >>>> Right now the DT ABI for the BT part is incomplete since it assume a
+> >>>> running WLAN part or some hog-gpios to pull the device out-of-reset
+> >>>> which is addressed by this patchset.
+> >>>>
+> >>>> Making use of the new power-sequencing fw is a Linux detail and I don't
+> >>>> see why the DT can't be extended later on. We always extend the DT if
+> >>>> something is missing or if we found a better way to handle devices.
+> >>>
+> >>> Sure, although I am not really confident that you understand the
+> >>> implications - you will not be able to switch to proper power-sequencing
+> >>> with above bindings, because it will not be just possible without
+> >>> breaking the ABI or changing hardware description (which you say it is
+> >>> "fine", so complete/done). I am fine with it, just mind the implications.
+> >>
+> >> Sorry can you please share your concerns? I don't get the point yet why
+> >> we do break the DT ABI if we are going from
+> > 
+> > Not necessarily breaking ABI, but changing the description.
+> >>
+> >> bt {
+> >> 	reset-gpios = <&gpio 4 0>;
+> >> 	vcc-supply = <&supply>;
+> >> };
+> >>
+> >> to
+> >>
+> >> bt {
+> >> 	vcc-supply = <&pmu_supply>;
+> > 
+> > ...because you just removed reset-gpios which is a property of this device.
 
-On 10/22/2024, Maxime Ripard wrote:
-> On Tue, Oct 22, 2024 at 03:36:47PM +0800, Liu Ying wrote:
->> Hi Maxime,
->>
->> On 10/21/2024, Maxime Ripard wrote:
->>> On Mon, Oct 21, 2024 at 02:44:43PM +0800, Liu Ying wrote:
->>>> +static int it6263_bridge_atomic_check(struct drm_bridge *bridge,
->>>> +				      struct drm_bridge_state *bridge_state,
->>>> +				      struct drm_crtc_state *crtc_state,
->>>> +				      struct drm_connector_state *conn_state)
->>>> +{
->>>> +	struct drm_display_mode *mode = &crtc_state->adjusted_mode;
->>>> +	int ret;
->>>> +
->>>> +	ret = drm_atomic_helper_connector_hdmi_check(conn_state->connector,
->>>> +						     conn_state->state);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	return mode->clock > MAX_PIXEL_CLOCK_KHZ ? -EINVAL : 0;
->>>
->>> drm_atomic_helper_connector_hdmi_check will already make that check, so
->>> it's redundant.
->>
->> MAX_PIXEL_CLOCK_KHZ is 150MHz. With 150MHz pixel clock rate, we'll get
->> 150MHz HDMI character rate for 8bpc and 187.5MHz HDMI character rate
->> for 10bpc, both are lower than MAX_HDMI_TMDS_CHAR_RATE_HZ = 225MHz.
+An optional property. That beeing said, dropping the *-gpios was the
+solution for the Qualcomm DTS as well:
+
+bd37ce2eeb84 ("arm64: dts: qcom: qrb5165-rb5: add the Wifi node")
+
+> >> };
+> >>
+> >> or:
+> >>
+> >> bt {
+> >> 	pmu = <&pmu>;
 > 
-> I guess? I have no idea how that's relevant though. Where are those
-> constraints coming from, and why aren't you checking for them in
-> tmds_char_rate_valid?
-
-All constraints come from IT6263 data sheet. They are also mentioned
-in IT6263 product link(commit message contains the link).
-
-https://www.ite.com.tw/en/product/cate1/IT6263
-
-"
-LVDS RX
-Support input clock rate up to 150 MHz
-
-HDMI TX
-Support link speeds of up to 2.25 Gbps (link clock rate of 225 MHz) 
-"
-
-If no objection, I'll check mode clock rate against
-MAX_PIXEL_CLOCK_KHZ in tmds_char_rate_valid.
-
+> Ah, and I forgot here: this also might not be correct, because if you
+> have PMU, then the PMU consumes VCC, not the Bluetooth. Therefore both
+> of above two solutions might be inaccurate description if you decide to
+> go with PMU.
 > 
->> So, it looks like pixel clock rate is the bottleneck.
-> 
-> The bottleneck to what?
+> >> };
+> >>
+> >> Of course the driver need to support all 2/3 cases due to backward
+> >> compatibility but from DT pov I don't see any breakage since we already
+> >> need to define the power handling properties (gpio & supply) as
+> >> optional.
+> > 
+> > Either existing binding is complete or not. Not half-done.
 
-To the IT6263 video processing throughput capability.
+As I remember DT ABI must be backward compatible. I understand this as
+followed: In our current use-case the dt-bindings don't describe any
+required hw resource so we need to mark them as optional to be backward
+compatible.
 
-> 
->> Remove drm_atomic_helper_connector_hdmi_check() or keep this as-is?
-> 
-> No, like I said, remove the final check for mode->clock.
-> 
-> Maxime
+Regarding your above comment: "complete or not. Not half-done". Do you
+see the current dt-bindings for this particular device as complete or
+not? In other words can we mark the reset-gpios and vcc-supply
+properties as required albeit this would break the DT ABI since all
+current users don't specify it?
 
--- 
+> >> That beeing said I don't see the need for a PMU driver for this WLAN/BT
+> >> combi chip which is way simpler than the Qualcomm one from Bartosz. Also
+> >> there is physically no PMU device which powers the chip unlike the
+> >> Qualcomm one. I'm not sure if you would accept virtual PMU devices.
+> > 
+> > Virtual PMU, of course not. I would like to have complete hardware
+> > description, not something which matches your current driver model.
+
+Okay so PMU is no option and we don't have to consider this idea any
+longer. So reset-gpios and vcc-supply it is :) and I don't expect this
+to change.
+
 Regards,
-Liu Ying
-
+  Marco
 
