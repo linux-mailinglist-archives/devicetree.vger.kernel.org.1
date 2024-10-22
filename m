@@ -1,148 +1,186 @@
-Return-Path: <devicetree+bounces-114126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A459A9E16
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:14:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84E9B9A9E21
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E11C5284445
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:14:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C04C1C23839
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0CB194C8F;
-	Tue, 22 Oct 2024 09:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42FD0198846;
+	Tue, 22 Oct 2024 09:15:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CL3ulpYg"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Y6cUtWkI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD41C155330;
-	Tue, 22 Oct 2024 09:14:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3857A18593C
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:15:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729588479; cv=none; b=Pepy3Yj1ZPU3wsTTgCserxVQrGJ2s0jUidfYhN8GJTJ4b4YIXCz/JY5stCzayFYuGIzgRd6HZmj8cF+JCJagF22ziYOvf3lpHkipXcBil2g4iNT9JYfBO3A6Cp4WCdOf74Zecl9G7m13i+k1aTcGZC7N42b2GtdBftmipb7z8ns=
+	t=1729588546; cv=none; b=mnyEgRMcgOZ05ToOGDG0lOeqMW14wr+5SsWUbd+ldaRVV28yqfImGYiYFONacwhunj3xxEwAKB16XGSyfPvq2bz/7uypPcrUSJWTmbUIY4SS0v1NEBlAqRJO/2rcH9LFaEp78diUkPHCPunsb11y7+b6rcPUuBi/UkSMnbdF2xE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729588479; c=relaxed/simple;
-	bh=f+VA8/ybdfD4gsOa8oxcs6/Kl0Jm/VzGANxxPbg3Qb4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KD33MlC34U0IRFVQtKFUxEe82A56a/g8cZ4vqXaR6oKMTKmRm452ajrsO9R48mM+6dJbujiCQjT9fSGkmLgu6X0355cRHK6JkirelPRi5s0Kv6bMJ7/w4zyKxLFbZlE5MxKyJWHtMqOwLKjxSM1klJ0QewTRcE716ZYtioXtZFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CL3ulpYg; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20cbca51687so53860605ad.1;
-        Tue, 22 Oct 2024 02:14:37 -0700 (PDT)
+	s=arc-20240116; t=1729588546; c=relaxed/simple;
+	bh=Uk8Pa45s/KheSrUEOKOicHeanGteTnbgslk7ul9tBQs=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CmKN+m7c0K+abhNtrXySYzHkUgOn6oPN64oD38T7nugFntl76qT4xUf74KixBlz/NpS6HXo0RQyXnQLKC5VUMur2cK34fsRx05alk+sfAb5fnT46Y8JBCOOpD5cEawO+WI8IFLVzfFDVgLKkG1VsOQJVBVDRAL1gu0qt4jhHje0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Y6cUtWkI; arc=none smtp.client-ip=209.85.208.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-5c9428152c0so7177983a12.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 02:15:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729588477; x=1730193277; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K51whSOoccfWJ1oT5QsGS1IjvPrInQRVrtM/UwrHahw=;
-        b=CL3ulpYgMdDpIWHAblCNPF0NlJQKmP09bxNz+BIq0YgLx4htXO4Kj7z588DNxTBGFm
-         wycdVBMdXG3haHvW2j0QM+eco1p7lobbxzkHckodnQG1WMsPdVLHbhGrGP8/QGTBBKLn
-         abWPdzNhH6B4MV9g806plucAu+YP30+toojaPQ0LdTtnIJ+j8Mv8qbIiByWY+Jx2XDt6
-         H5vHs7xl3w64580GbYKOQssUR/qVZyr3HyIFpZG0EVn2L7wG1FvSO17gkX3aLcVkg+R6
-         iF9IeGANI8hEZ9JHm1HAHea+OQMEJ459dp5/TkEcN9HWAcDiPsALYLwP482OMLe7GYvV
-         8Guw==
+        d=suse.com; s=google; t=1729588542; x=1730193342; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IsPzi2IAagO7nqzLDsgxybyAdjpi8ZWkxbmu+EWhc0o=;
+        b=Y6cUtWkIgaRVKYVYdl2h1UzqB19s2QfcONrnlSfVLZQZImtmS0Yck8MI9MLImZpIA7
+         v2bmHG2UcW8G/u7HTtFtuuGyXeF/V2jNevD9rJH5ftn0DPvYiDc427c/ooUQDsJog2TV
+         xBB75xu/PxyYqYd3PoxXHVZ+6AFDvc/vwQBI3OSiqIzduh3jc+xMKyLA7vlXjjrgBZjO
+         CecWDRBdvdfyzxd0etVZSyBxG7Se0E3EU/j+bCOjrUycAV7bDboxdLZ1wKeHwA2E9Nen
+         E4scyprJZv82bMxmnofMxR/UpuZQ6YNI8Xmc7sIYqzZtv+gppIeRlCHTRo18+1EFHm01
+         s0ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729588477; x=1730193277;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K51whSOoccfWJ1oT5QsGS1IjvPrInQRVrtM/UwrHahw=;
-        b=tHhyyVJclNAbQEk0VPm5E84KCyg0xXgTEuA0iuqBUg2vbLeUqDCQTe8N299HLnh0Ap
-         CbYhSH4no3yy1mFXEDAGWvyM+441Lz0uqBAWd4qS3t6KIQhcBc6fWdH/340M1M6UdxCC
-         jSbp8MsWi6CtZqEY7TdRusGvoilOlldQlg11km1izbTb5FEW4qcCGQx8q6EdFBhaxrOF
-         IkAonahphnhhKLvFllp+q0/rFdQz1XvTNsCNRRou2n/5q6iOhsQZl9fEvkgJBKxfsZ2F
-         g5P7XZDlkOOZap6DOqVmUqBN50rBgw05+5YaWPq79LrjsqmhBjZP+RqwWNu9HGhgu+VT
-         bYWA==
-X-Forwarded-Encrypted: i=1; AJvYcCVALmPji43nBYbtWKmQgPFdbgLJdKamKu+FbBNERhU2b1/qh81zSaeUIivJbsjmkrNxo7Q9sVtppFFI@vger.kernel.org, AJvYcCWJSvhtErhwm45P4wCxqZmiHct+bZtOCxgO0Eoo7u40xYP7L01XUCdGo2VPEgi8KIaIx8ULs+9y4JfDbq+v@vger.kernel.org
-X-Gm-Message-State: AOJu0YysX0vNSWbhq2yKC4+Zm2YUKXi8SuU6sbxU0ceefhSu6JC4uk9n
-	y5NSCiv7tS8n4qM48wM/iUdvs3gK9y4ajz+8SwF2CO/lE0vOAQTf
-X-Google-Smtp-Source: AGHT+IHH9sYrSSvfbEf+31ytxi3WDRRewNjbMkhS8kbu4X5qoBQrSZpw/oFE2eqC02U58aD5xBFgQQ==
-X-Received: by 2002:a17:902:d2ce:b0:20b:6a57:bf25 with SMTP id d9443c01a7336-20e5a7749damr228551665ad.20.1729588476937;
-        Tue, 22 Oct 2024 02:14:36 -0700 (PDT)
-Received: from [172.19.1.53] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0bd48fsm38623195ad.129.2024.10.22.02.14.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Oct 2024 02:14:36 -0700 (PDT)
-Message-ID: <38aba46a-c5e5-4832-8a73-4260d5a94b68@gmail.com>
-Date: Tue, 22 Oct 2024 17:14:33 +0800
+        d=1e100.net; s=20230601; t=1729588542; x=1730193342;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IsPzi2IAagO7nqzLDsgxybyAdjpi8ZWkxbmu+EWhc0o=;
+        b=oItQdlh06eWqBqRSQn0fBn2KzURPfLKXaGLfgqHx/Cn+odG+gFc9LGVh5g3QKKveg+
+         n/VIAKanx/8Ejw7HfIt6/rjqIv2mcLsHEc/bIFojWo8Olt3WPtTO/Wbk8Tq+/ecdQz3k
+         fV7+DfM3dZ32lRgfZ+KSyphVVNxrSoENPS+PrmxrBHcTAaKhq0K4jsNkeF48A/LIarnZ
+         NHL5NScnTXBZB3Gp4nisCP1+hxHGUpB71UyIrTM8SmpEI21xK8pl2m766xRdRLmwtO6g
+         Ohcmb5oTIulWjmVCPS/LIAvwk8zjSKGDZ8DNM4WnG+z2IJAZi8UH74KfYHNkGUWtf3Bm
+         De3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXYjl9z5R9BvAoQiZ3uR6qtMJWSzKvyZ9jMbiOzsCyZ07fixRDdT9Il07Qr4WN/2AxGppJ+FWKV/KSG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCAdbripUIGPH5w1tMSaPDfOmbFNQsvlOFzB8mF0Jy8UGTVCNh
+	2vWI4cbevqDi/Gf02564k8P3CEZH4vM4Ztdj3LCLNbniaiNIBCL7ZIVOGwJ1s/M=
+X-Google-Smtp-Source: AGHT+IG0UbTdshGjhe1cBG9B7a7reFtp9fnVda6ehg+mYut3t/cw34W4iDARXx7x4hjoKD2s8wnmcA==
+X-Received: by 2002:a17:906:6a29:b0:a99:e504:40c5 with SMTP id a640c23a62f3a-a9a69bb4776mr1542963966b.39.1729588542016;
+        Tue, 22 Oct 2024 02:15:42 -0700 (PDT)
+Received: from localhost (host-95-239-0-46.retail.telecomitalia.it. [95.239.0.46])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a912d8381sm308924466b.45.2024.10.22.02.15.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 02:15:41 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 22 Oct 2024 11:16:02 +0200
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v2 03/14] dt-bindings: pci: Add common schema for devices
+ accessible through PCI BARs
+Message-ID: <ZxdtUm_uoFvvKtVl@apocalypse>
+References: <cover.1728300189.git.andrea.porta@suse.com>
+ <e1d6c72d9f41218e755b615b9a985db075ce9c28.1728300189.git.andrea.porta@suse.com>
+ <flxm3zap4opsjf2s4wfjwdj6idf7p6errgtiru4xgbgkfx4ves@xxiz42cghgvr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] mtd: rawnand: nuvoton: add new driver for the
- Nuvoton MA35 SoC
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nikita.shubin@maquefel.me, arnd@arndb.de,
- vkoul@kernel.org, esben@geanix.com, linux-arm-kernel@lists.infradead.org,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241018022519.721914-1-hpchen0nvt@gmail.com>
- <20241018022519.721914-3-hpchen0nvt@gmail.com>
- <20241021103254.1f31205b@xps-13>
- <9cfd923a-4bc8-4a6c-986d-8d0c6fd6d9bb@gmail.com>
- <20241022105109.1906f524@xps-13>
-Content-Language: en-US
-From: Hui-Ping Chen <hpchen0nvt@gmail.com>
-In-Reply-To: <20241022105109.1906f524@xps-13>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <flxm3zap4opsjf2s4wfjwdj6idf7p6errgtiru4xgbgkfx4ves@xxiz42cghgvr>
 
-Dear Miquel,
+Hi Krzysztof,
 
-Thank you for your reply.
+On 08:24 Tue 08 Oct     , Krzysztof Kozlowski wrote:
+> On Mon, Oct 07, 2024 at 02:39:46PM +0200, Andrea della Porta wrote:
+> > Common YAML schema for devices that exports internal peripherals through
+> > PCI BARs. The BARs are exposed as simple-buses through which the
+> > peripherals can be accessed.
+> > 
+> > This is not intended to be used as a standalone binding, but should be
+> > included by device specific bindings.
+> 
+> It still has to be tested before posting... Mailing list is not a
+> testing service. My and Rob's machines are not a testing service.
 
+Sorry about that, I must have missed that file when rechecking all the schemas
+after rebasing on 6.12-rc1.
 
-On 2024/10/22 下午 04:51, Miquel Raynal wrote:
-> Hi Hui-Ping,
->
->>>> +
->>>> +static int ma35_nand_write_page_hwecc(struct nand_chip *chip, const u8 *buf,
->>>> +				      int oob_required, int page)
->>>> +{
->>> The hardware ECC engine should always be disabled by default.
->>>
->>> Then, in these helpers you should:
->>> * enable the ECC engine
->>> * do your things
->>> * disable the ECC engine
->> The ECC engine of the MA35 NAND controller cannot be turned on or off separately.
->>
->> The ECC engine is activated with the DMA,
->>
->> and it calculates and writes to the OOB during the transfer.
-> What about:
->
-> ECC Algorithm Enable Bit [23] ECCEN
->
-> 	This field is used to select the ECC algorithm for data
-> 	protecting. The BCH algorithm can correct 8 or 12 or 24 bits.
-> 	0 = BCH code encode/decode Disabled.
-> 	1 = BCH code encode/decode Enabled.
->
-> ?
+> 
+> > 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >  .../devicetree/bindings/pci/pci-ep-bus.yaml   | 69 +++++++++++++++++++
+> >  MAINTAINERS                                   |  1 +
+> >  2 files changed, 70 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml b/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> > new file mode 100644
+> > index 000000000000..9d7a784b866a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/pci-ep-bus.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Common properties for PCI MFD endpoints with peripherals addressable from BARs.
+> 
+> Drop full stop and capitalize it.
 
-That's right, this bit represents this meaning, but ECC operations will 
-only occur when DMA is activated.
+Ack.
 
-I will add enable/disable ECC engine before and after reading/writing 
-the page.
+> 
+> > +
+> > +maintainers:
+> > +  - Andrea della Porta  <andrea.porta@suse.com>
+> > +
+> > +description:
+> > +  Define a generic node representing a PCI endpoint which contains several sub-
+> > +  peripherals. The peripherals can be accessed through one or more BARs.
+> > +  This common schema is intended to be referenced from device tree bindings, and
+> > +  does not represent a device tree binding by itself.
+> > +
+> > +properties:
+> > +  "#address-cells":
+> 
+> Use consistent quotes, either ' or ".
 
+Ack.
 
-> Thanks,
-> Miquèl
+Many thanks,
+Andrea
 
-
-Best regards,
-
-Hui-Ping Chen
-
-
+> 
+> Best regards,
+> Krzysztof
+> 
 
