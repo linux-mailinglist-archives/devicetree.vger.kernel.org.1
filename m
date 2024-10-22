@@ -1,76 +1,79 @@
-Return-Path: <devicetree+bounces-113966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D9AC9A982E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:14:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B517F9A9840
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:21:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD96D1F23A6F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 05:14:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01B6EB21001
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 05:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8701712C549;
-	Tue, 22 Oct 2024 05:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927F583A09;
+	Tue, 22 Oct 2024 05:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="jvBrUj0r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ugu3A4bs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DADF84DF8;
-	Tue, 22 Oct 2024 05:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651745A79B;
+	Tue, 22 Oct 2024 05:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729574077; cv=none; b=NbTVkOG7G/4bBQXJum2nAomYQEpibnCjeqqCmDNyWdBfVguPB3G8quOtLw2ZICQ3AhVscjVUXSFB+OnHHoI671bz9sPqM/HrJ8u9pcRrCZ1dTCQK+25K0ExvFsCMnr1+2E69zESLoJ9EktA6oGiYp5+DnznTqJQYUcqLU49kDhE=
+	t=1729574486; cv=none; b=ej1x6WrxDhWYOKgApexaIN1XJTf+Qe9Et8T7LN+Nk363lXriVLa45e7Ozr2asG9bUQsDRzSwvBoqyzvQmko+cn/OPFXwp47ic4/j+jCg4ki/lNzOiETSs8oy1gP13Ex2Ah8tVZscac+WDa3hw7ianHx2Pbpe8E/mGV6j0H1ngeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729574077; c=relaxed/simple;
-	bh=1jkNlwMF4vkDOF+NAig94pV+JFYv3I+EouVkRAryLIE=;
+	s=arc-20240116; t=1729574486; c=relaxed/simple;
+	bh=nZDFAcO6yoRsupbSgjsjHQewvJyGH7Kw3eZxIShUBWQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a+CPL47l9bVq04XnEIncJPa3UMa9xIxZJJ6MQJtw8pxN2g4c4tAQiN9KUyCjuq+LBBMHhG14w1X0p8oaA41naFFrvkklyaIH8iT33dT65tqGj7EACyvOEOyndDKbj29gDjqJJ+nClssrdswAfbKtsesSUDZTLjdEMNFCi4gYZ6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=jvBrUj0r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C52F9C4CEC3;
-	Tue, 22 Oct 2024 05:14:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1729574076;
-	bh=1jkNlwMF4vkDOF+NAig94pV+JFYv3I+EouVkRAryLIE=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=a3O855If+biXChxJkYEiHgN76euGmQwJ2iE/9A4iy0AQfv3W7euHD0GCmWUrUs0hjKaaLYO+YqTOqyCbRAGHN4J6zLqWZKC6EFO9ce4n5y/aNmz3JpSrsGcMd0FY0VXOz9/Pu4rPQoNmC5hXtkIAqE2MapzW7EtrCwZo7DI2fl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ugu3A4bs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61B56C4CEC7;
+	Tue, 22 Oct 2024 05:21:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729574486;
+	bh=nZDFAcO6yoRsupbSgjsjHQewvJyGH7Kw3eZxIShUBWQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jvBrUj0rq78ucLBXAjb54jQLXXn05hvFy3MMulvN4EsytoOEKhLsItEwy+6fqDxVp
-	 PaPA4+IUQs8viN2t7ZoC8ebM3DqxHYnpNCdjNeZ346/d6fbpkpqyjLzY5BmkUtmo0j
-	 /QVZfmybmRt9qh50yLR23d+NKWRQyZEEhRv1CaRA=
-Date: Tue, 22 Oct 2024 07:14:26 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Amit Sunil Dhamne <amitsd@google.com>
-Cc: robh@kernel.org, heikki.krogerus@linux.intel.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, badhri@google.com, kyletso@google.com,
-	rdbabiera@google.com, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	dmitry.baryshkov@linaro.org
-Subject: Re: [RFC v4 0/2] Add support for time DT property in TCPM
-Message-ID: <2024102250-citric-dropout-17c7@gregkh>
-References: <20240925031135.1101048-1-amitsd@google.com>
- <cf0f9a77-4981-48af-8fda-76e57f8a54fa@google.com>
+	b=Ugu3A4bslGKXQIl2HM0BuEVqkKqFuFV8A0YSDL/V2uNdii445fe8qDXY5U9kzYWMa
+	 4azUfmktSEEO/M1ok11n3nlIHrhhFxjm7YKCec7FEtpVIT+nItP0G3ng+bUfEaexAL
+	 0LBHOQlCyLTee7I7Cc296qFEeEQUEa7LQuJXRMvfd7TNGcCDyMQnEmNP0YFjFM+aGF
+	 m0Rmn0Vsc8b12jwrNl77bEQxp7BmzZhiL9SPzEa6vaqgRundKEaBL053w0dsqxkGUl
+	 AuERW+O9LoPHRKHp9jln4NBi9m2SKSDoc6+jJPmnYFSrFb+IBPOnMp4Fyo0aKnTJqo
+	 TuMMCq5XPDGcg==
+Date: Tue, 22 Oct 2024 07:21:22 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tim Harvey <tharvey@gateworks.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: Add Gateworks GW82XX-2x
+ dev kit
+Message-ID: <ilooeedyqplrqvgxooylzdjrdqdb4m4e3nl6zhm5bm5cs2ms4b@wc7wsoxrlgej>
+References: <20241021205329.1179426-1-tharvey@gateworks.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cf0f9a77-4981-48af-8fda-76e57f8a54fa@google.com>
+In-Reply-To: <20241021205329.1179426-1-tharvey@gateworks.com>
 
-On Mon, Oct 21, 2024 at 04:01:10PM -0700, Amit Sunil Dhamne wrote:
-> Hi,
+On Mon, Oct 21, 2024 at 01:53:28PM -0700, Tim Harvey wrote:
+> Adds support for the Gateworks GW82XX-2X development kit
+> based on a GW82XX baseboard and a GW702X System On Module.
 > 
-> I had a process related question. Once an RFC patchset gets a Reviewed-by
-> tag, do I need to send a formal [PATCH] or is an RFC patch sufficient for
-> being accepted?
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+> v2: no changes
 
-You need to send a real series (and please do not top-post), for it to
-be considered for being accepted.
+Why? What about my email?
 
-thanks,
+Best regards,
+Krzysztof
 
-greg k-h
 
