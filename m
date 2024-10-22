@@ -1,109 +1,138 @@
-Return-Path: <devicetree+bounces-114101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53FF39A9CF6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:37:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4D349A9D40
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:43:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8379E1C21A9A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:37:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FF8C28317D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:43:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67DB4172767;
-	Tue, 22 Oct 2024 08:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD4317B51B;
+	Tue, 22 Oct 2024 08:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hEqFll4F"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="F6++lCn9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D312B157487;
-	Tue, 22 Oct 2024 08:37:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2C1178388
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729586266; cv=none; b=OKv6H8Oh/rrNzUozpyGdzn+/VV/nWQLsJfo2KL5CcbPl3YcujGp0PRX2+qbd5GLUnU1u12gXqK0uZ8PSf3zIm2YP6vP7YW6J66oj94yUsTxOeHaCvXT/JahdejKudhOkDtBrKCV1zb+QyUuP653Mdgaqr6UY5oOze3YXCYR2Awo=
+	t=1729586577; cv=none; b=byVP0xmFiWIliQT+rz64asU2BsayFcx1SOkHhTCC+QYl0B8dEUK/kxoaMoS1lGRKbA8Wu6QjB/dfUjCuPIbZ5vLcbgQG6PO4Hw+GLamcBFoD6q03LduWbg5gJEPj2oY76Ubggt4AQMbbLwPO+bakndmgh1IRnmNG1Go1wsOExr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729586266; c=relaxed/simple;
-	bh=hqESUoeCOtAgPVeowsanTRwsfMFY5c1n3Vj5MXcewyI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mkVUR49qPj30j63zz7c0byCIsGj+onrp4kcGGL7+kTvDSF5XCFtTfMjpYONYKBSO0hs3UKhhJ/Wg14LCUp1gemYgZpj1ZJ9OyxB/jfeeTS+hAVpBt9NCVREaiX+C2p6uLFaUbfxOnMCaUygkugi0iVoMu+wE6C/knEOLnxsrz/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hEqFll4F; arc=none smtp.client-ip=209.85.217.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4a479773730so1221244137.2;
-        Tue, 22 Oct 2024 01:37:44 -0700 (PDT)
+	s=arc-20240116; t=1729586577; c=relaxed/simple;
+	bh=Eb5cq6rhpvrVx58PTZz7HAj5RGu1n0Lf/stla6XXmuI=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=qPMOQNm/O2x7Q1kTrZ5XPGZCuDHZqvIUEgeb+aUe8cqXqoM9l+Az++ZTJyLC4jwGYVcr/Fk9VyuojzjcYQ+3kAfxpetyws4Zl/+Lh3tE9e02cjOFkTDlfDT0L/MP299dBd9mDiCeKq0CJd5eU/jQvLFn6JN3Sb5u4dr0N/iatfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=F6++lCn9; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43161c0068bso39435655e9.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 01:42:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729586264; x=1730191064; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/O4MGPxvsvh3KaI++oWEtd2LMAnjDvHPtuX1tYTzn8o=;
-        b=hEqFll4FbOdFoZxPyKuGzO4fGvRhUzJ7N/MFdrkiSbFIZccojp33EyVUPeK8lgO4Vb
-         LXnYKY3phXroIeBjhLUj0q4GW7tS7IfTdpTxh3XzZ/R0hBc6CQVmOgt/vrsx1azvei88
-         76QAAcnXEV8MDJIjRDotYQiyZtJNqiMyuJMQx7g06Dv6ujzkNkV4PWLK3G0F1ihW7sWn
-         xeIiwxDqq5azx8499l++Tdj0IOv83RWVoQ5AIsQjJSwGe9yaKZlVfOzQWaioVPbKk3sp
-         wuVVVkV0bjYRDhZ6EvLto/pqMEebKbRJCHS1+pSqvNFJkjujVQfSHgR0PgqoEkSfuWiy
-         GxZw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729586573; x=1730191373; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1jpnHnQ3gPJsZV3rud6D7V0PkG3eWvAEvUguSu5qf1I=;
+        b=F6++lCn9BxSckRtsBnnNu3SVH90ucKKDu1CKtEBCql7EeVGT+IKfwziUMEVYIdSQGU
+         anyAisyiuEMZGFOMB0obu+iZJVGMB9C65ebpvoFLBCkcoSVdktpT6QQm4p/kQA/5M7XV
+         /AE17pk9aPG+w92rdNQ7hUhOcBOtZ1Lxs1KDATQ3cStiazRAQAalCQ9xYWscBhk8kEdu
+         q/p+dTQ3gGgKKQPu/OPv4K6Xo4RpZzy70NoY1wx1sXJtFlN7ZPmec7VhC325d5XSKwUR
+         yJvJrmMBc3miL63olEES3W8h+I8UXzcIRkD76zyQTBBz4GjL0QTLEEpaIVyiVKy48zil
+         fBdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729586264; x=1730191064;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/O4MGPxvsvh3KaI++oWEtd2LMAnjDvHPtuX1tYTzn8o=;
-        b=k3WxjzKb/tJGeTiyIhi65vojZJ5M1WjUdxuxijb5TZMUptM60/Sredzdi9lGTSTBtm
-         rH7t18ZOpiU/wk4CagODHPqum1N03+nT+A7oYx4yAbanuC3Jhd6mpmcQC3bOgexILvnL
-         /YyYUAU4deSu0CkV+lqR99+1PVvd7mzMaY58hGfVvfvQ8ggpk07dCaf1wF7Fb8RVhTOC
-         cuEOmAho14XzAoXh1bxgoPNbHF+N5Bbi+/zp7x9al4BPd5hKCe4OtwNtmWel2XSowL/H
-         akLfgNQB9c5tMt0nIiORO2vLttQAvlA8lUy/CQ12zGUYisW0RBG6CnCkiSon+vnDXTHC
-         UbXg==
-X-Forwarded-Encrypted: i=1; AJvYcCU+XZciSD0d9B7k+IC6H7DDTji2mFK+OsTAFQYpblk16J+HW/Ust7ujGptZJNxzgwtdA3wWZevhJWpgOLVD@vger.kernel.org, AJvYcCUCf1jWD+mgN3EVUQp2+V869znrub45ZKO56twoUgTayYO5vwRefKW/BXUQnGxZ/2TmnIlEJzQQ8aA=@vger.kernel.org, AJvYcCUG8plWlzCYIeR4U4RE0sIm+EITgUGJn8PQ0XX87nW7XBT5tfoFoiWlZtcw5MMVJzSXr68/kCnax0Lo@vger.kernel.org, AJvYcCUTg2mc/FUMKVy+Gtrg/nBU9r3ACpt8sgCdoXsWIXg8VX441eBI8cMW40IXfVYcoyXgulBbw2iteQZJnmc=@vger.kernel.org, AJvYcCUl7oRyWRdsB1D9ZceRYIacZfvu8gapwARfcdWE1UI9N1pFnR7soFYst1sU4djKbY6/RRlzZsmN/YXn3A==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4GPCbCT25FtCPln8ATbzeiKGJxqWov8w5uwQnNjGH54KX1ylU
-	e+HrC+cBFOsseVXXb+7wNyne9DVnlPGtTANUrkpDjBZvBXm/3dbJYHSTl/SgqpJZ2NTAPzrWrBO
-	jMQUP/LnerrY00L0WHkhzDtgc440=
-X-Google-Smtp-Source: AGHT+IE+cqda+uQBNaMUBayVyYnL2hd8JWUNI/WpzZQ5XAIlV+fvhML5xaeQ8JrQbL8UGyVS29+gz6jO0CHGrVeFWpQ=
-X-Received: by 2002:a05:6102:3f02:b0:4a3:ad8f:4fd9 with SMTP id
- ada2fe7eead31-4a5d6bfc9ccmr12481047137.29.1729586263778; Tue, 22 Oct 2024
- 01:37:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729586573; x=1730191373;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1jpnHnQ3gPJsZV3rud6D7V0PkG3eWvAEvUguSu5qf1I=;
+        b=gq8VaorRY/i6Qgv4EPS/m8mjWXuy0nG9v8VXs53PVFxga5oc6NjMR2fVpeLBdPWhl+
+         dd1vfiZVAz+DfnSW6Xv07Ph/Vl9AG0UVyicmVjWj9SoKwyCyBGX5X1jtBGxom7JYi2Hz
+         g2KEDxPt/Q6p0Fda4YNzDih4/0zdHTkPVMmAeBdv3dRlXJUutNIuOkLAxTJHYeTejlsB
+         yVlEVIlqo7watLcXEdJyHbWQoAAx6stuvE20hH+FbmUd18Akq+Z7UUDwgfYgQ7f4cT85
+         S7ft8sPvUEk1ZdUcPtmG1/wivfRKzCPbaBRFkxaWaFdQJdP3aIdu/TRTtu4136BhT/u5
+         S/oA==
+X-Forwarded-Encrypted: i=1; AJvYcCVpQwK75ImM+a63HcaNfMBw10BQN14CgcvE0zhnb83r7iCjwigMzSQ1kaOhIj3Ga7gfDSNMWF+3fEaj@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywhy8ME7Y6AjAXLWb+Tih20S7gA/ElpbYDey7hoHddJEQ7MLZnN
+	UuN0PgmnhMgMZUUxAJIr6lETZC8vVDJ6Ml2+CvvbzdplG2r39ZdTesbYjRS1OyY=
+X-Google-Smtp-Source: AGHT+IHRQTZKw+rsQ6rr0wLIuGP9VOmB5Go8obeenaZUn2sWIynPYNrej4PW0IGYCYtMiZC4z5Keng==
+X-Received: by 2002:adf:f452:0:b0:37c:d569:97b with SMTP id ffacd0b85a97d-37ea2174eb6mr8577418f8f.19.1729586573251;
+        Tue, 22 Oct 2024 01:42:53 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:ef1c:ae40:1300:20c6])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0b9bb15sm6114405f8f.99.2024.10.22.01.42.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 01:42:52 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,  <devicetree@vger.kernel.org>,
+  Kevin Hilman <khilman@baylibre.com>,  "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>,  <linux-amlogic@lists.infradead.org>,
+  <linux-arm-kernel@lists.infradead.org>,  <linux-clk@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Michael Turquette
+ <mturquette@baylibre.com>,  Neil Armstrong <neil.armstrong@linaro.org>,
+  Philipp Zabel <p.zabel@pengutronix.de>,  Rob Herring <robh@kernel.org>,
+  Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [RFC PATCH v4 1/5] reset: amlogic: add support for A1 SoC in
+ auxiliary reset driver
+In-Reply-To: <20240913121152.817575-2-jan.dakinevich@salutedevices.com> (Jan
+	Dakinevich's message of "Fri, 13 Sep 2024 15:11:48 +0300")
+References: <20240913121152.817575-1-jan.dakinevich@salutedevices.com>
+	<20240913121152.817575-2-jan.dakinevich@salutedevices.com>
+Date: Tue, 22 Oct 2024 10:42:52 +0200
+Message-ID: <1jbjzcle9f.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241007-starqltechn_integration_upstream-v6-0-0d38b5090c57@gmail.com>
- <20241007-starqltechn_integration_upstream-v6-3-0d38b5090c57@gmail.com> <20241015140224.GI8348@google.com>
-In-Reply-To: <20241015140224.GI8348@google.com>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Tue, 22 Oct 2024 11:37:33 +0300
-Message-ID: <CABTCjFDEEcuJtiK0d8gVM3Zf7vWL-rpsqH5AndeAuPbBMT=Www@mail.gmail.com>
-Subject: Re: [PATCH v6 3/7] mfd: Add new driver for MAX77705 PMIC
-To: Lee Jones <lee@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-> > +     /* Unmask interrupts from all blocks in interrupt source register=
- */
-> > +     ret =3D regmap_update_bits(max77705->regmap,
-> > +                              MAX77705_PMIC_REG_INTSRC_MASK,
-> > +                              MAX77705_SRC_IRQ_ALL, (unsigned int)~MAX=
-77705_SRC_IRQ_ALL);
+On Fri 13 Sep 2024 at 15:11, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
+
+> Add support for the reset controller present in the audio clock
+> controller of A1 SoC families, using the auxiliary bus.
 >
-> Why the cast?
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+
+Independent of clock controller. Should be sent separately
+
+> ---
+>  drivers/reset/amlogic/reset-meson-aux.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 >
+> diff --git a/drivers/reset/amlogic/reset-meson-aux.c b/drivers/reset/amlogic/reset-meson-aux.c
+> index dd8453001db9..a385c0125836 100644
+> --- a/drivers/reset/amlogic/reset-meson-aux.c
+> +++ b/drivers/reset/amlogic/reset-meson-aux.c
+> @@ -26,6 +26,12 @@ struct meson_reset_adev {
+>  #define to_meson_reset_adev(_adev) \
+>  	container_of((_adev), struct meson_reset_adev, adev)
+>  
+> +static const struct meson_reset_param meson_a1_audio_param = {
+> +	.reset_ops	= &meson_reset_toggle_ops,
+> +	.reset_num	= 32,
+> +	.level_offset	= 0x28,
+> +};
+> +
+>  static const struct meson_reset_param meson_g12a_audio_param = {
+>  	.reset_ops	= &meson_reset_toggle_ops,
+>  	.reset_num	= 26,
+> @@ -40,6 +46,9 @@ static const struct meson_reset_param meson_sm1_audio_param = {
+>  
+>  static const struct auxiliary_device_id meson_reset_aux_ids[] = {
+>  	{
+> +		.name = "a1-audio-clkc.rst-a1",
+> +		.driver_data = (kernel_ulong_t)&meson_a1_audio_param,
+> +	}, {
+>  		.name = "axg-audio-clkc.rst-g12a",
+>  		.driver_data = (kernel_ulong_t)&meson_g12a_audio_param,
+>  	}, {
 
-BIT macro creates a 64 bit constant value. When inverted,
-it overruns 32 bit value, causing compiler to warn on conversion like
-`warning: conversion from =E2=80=98long unsigned int=E2=80=99 to =E2=80=98u=
-nsigned int=E2=80=99`.
-
---=20
-
-Best regards,
-Dzmitry
+-- 
+Jerome
 
