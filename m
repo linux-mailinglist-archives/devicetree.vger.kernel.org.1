@@ -1,118 +1,114 @@
-Return-Path: <devicetree+bounces-114424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95CAC9AB979
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:29:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1688E9AB983
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:31:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F514284560
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 22:28:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A22E3B22843
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 22:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8151CDA31;
-	Tue, 22 Oct 2024 22:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9981CCB41;
+	Tue, 22 Oct 2024 22:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZyexL6t0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RgSt4Lny"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40421CCEED
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 22:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0EC19E810;
+	Tue, 22 Oct 2024 22:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729636132; cv=none; b=bNL0OFIEXkXJbPmacOXhGey46JyOJijqPcfch08vnTv89bDIM4VM9wcG7TePQ6HA6+fYRq8tynfuKZqW96O2NQQr9c02ChCFpInUq0AWKjQo9oyAgBbALqh4KgbpycA2h3TCdLcquV4U9KVhpbNAZj/qsGJaF4vNidevNTJZF/4=
+	t=1729636296; cv=none; b=ewmyxMUQxjYyxWcheYhs5ffukrP7G5Fp9LADHF8ZOmSYVdBsEkuWaK0NM14o0AGoUSU0s+CQnc/HpOa14YWG92WD2xJWZJOp0gsDNPf0s4NDT1Pz+PA2w7jRNdCbFCZrauT8QchiWK60YXTQYxWCh8OlAS+pVmUdSJf1fD981Ps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729636132; c=relaxed/simple;
-	bh=iGY+RCSHBD6wL6JNcYAazeLM4Xjl5L1gAi6U9Jl6vNE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pXb4afy+p1yYqNQfIKSBLeXxKEFklcp2L84fxqpJy8yjIVBe3LUKISFTZRyLyK1UU+jtROREnOnaDWGLWx6DOpLorZ7tG6kgvL8MiBJ28gGNdWLy1qmTZEC5B0Sa7XrObVcNGD/lAp4tWQPBoeB2/hRijdz93NURqQzVca60CfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZyexL6t0; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-718066adb47so3507069a34.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 15:28:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729636129; x=1730240929; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xFCCeAvPeqUghAEXu6ImvnShl5xo3a21P+QnN+rS1kw=;
-        b=ZyexL6t0PYPLWtdnvPtD0ROowY4jZwM0Ezd7BVmOkrKpOvIVz5i1xNLdISGLiAfwaM
-         mLC9Rz7A46GhoUUuErQyFDckKWhjLwej/z+Wp1MzoCTkOa7nIcoouRvRrt972zgMmBY8
-         m+fn5PELh0AdkaYeEaDcybf7lUduArq64bU/vcfzRDsPhfbRgVenzyaW9kTGJiF7krDl
-         P20FH48Wc9yUEpAsENh3xO7Us4vUhI45phKT8GJ3GMTpDdHP/+f1KE3gqqbqk4xpvl3+
-         3OyPE+9E+loPk1/FvoFiP9yQASf9k48upRVYaua+dHuDsb+sWwhySJjFAod2ULzixynF
-         3KjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729636129; x=1730240929;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xFCCeAvPeqUghAEXu6ImvnShl5xo3a21P+QnN+rS1kw=;
-        b=CWzTwKmO6R9DuDEMTi+FL5V42tYNcA8qWRMkAVFJGcn98ri0VDO1AIJtNV1AfxJoC9
-         ZqDELPpANX0Uz0FNZZ0wbIgRhIkLMr+whQvYmjio2E32hhL48bMvhhld27eHGY0v57UD
-         IGfurq2oyZwvy6+j9DeVAZzFTvAuzpZrrhLLB9n4u+Zmsd09OFHVaqgaBwY++4vjAnI8
-         hPWUjBL8JYvrFskG5NdCyuyo5wS3RXWoh+KMTY2g+C4ckR2rFnKD+NuyV4cWYjKx+5+B
-         hMmRDJb8xcR3dNR5PGepUxNkTF4ozLVHVKPIEZvh4woN2CmlH36V5D1PBZuG5F7UAZ3T
-         E7OA==
-X-Forwarded-Encrypted: i=1; AJvYcCUrak2C6varnsOS5tuNVxn9Djjurd3AKN0BsqrbdU578vbYwcMrDMEB9QtYt77TDV/0wrbmA8whwD8e@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxke81mBvNtz5rVb4nBlqoRzGHGl3GZpadgSz2dY99sID7pXWKt
-	cndIS8SwLMAl9UlZdk71wtDQup4KNfqMzqq9Izi6ylUeL3YxTJ4phKtxYABsrI8=
-X-Google-Smtp-Source: AGHT+IF5mcNdyQFGzKonGK31BzE89ULqNpP3zj6vhFzYDm2khTM1Kxs+zbZJgi/cGr96wp91oL9EFQ==
-X-Received: by 2002:a05:6830:6995:b0:710:f3cb:5b9d with SMTP id 46e09a7af769-7184b42bc5bmr812319a34.24.1729636129027;
-        Tue, 22 Oct 2024 15:28:49 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7182eb50cd4sm1448774a34.38.2024.10.22.15.28.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Oct 2024 15:28:48 -0700 (PDT)
-Message-ID: <0b478ed2-dd1e-4014-8501-2e1b50b473e3@baylibre.com>
-Date: Tue, 22 Oct 2024 17:28:47 -0500
+	s=arc-20240116; t=1729636296; c=relaxed/simple;
+	bh=jb6n/Hf6W94zrY5Vg/sXsWIEdSYA1Ugqf2Bk4yWaXq0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iqm8lFmDEe0mn/0MU/O3Q+ZQzyCobVjpaHHJxWKo4+ncvSAG0SX8K7+3u6KhJy9qlr8LaeXoAvyhZXOpmYDjfHpkhZamh/Panmp1R19J0mckBbO3XcCnA7O0Qxv7JGvh+qoWo4y1/NtirvQ5Cy2pkPN/aIVGDsrwcs/DDyqaICA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RgSt4Lny; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE82DC4CEC3;
+	Tue, 22 Oct 2024 22:31:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729636295;
+	bh=jb6n/Hf6W94zrY5Vg/sXsWIEdSYA1Ugqf2Bk4yWaXq0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RgSt4LnyX6ZooatLF4ZAEURWQWgCQf0R+SvHp2Rkcqk4a0j68XMOUjAvaUu3YrxyN
+	 LqyGtQL+njuQpS//gqf3UUF2f+CTcECRgrqb4TB+WQK35ctE1yYEp+9MJnwp3Ro0pI
+	 mpwSRdNrCRWsm2DXxBGRaHZ1KiNI4JNxvTxil+FprUMEqL3ftZYkj7jZJaRVIYQzMA
+	 8QSkoJIvulcFR06R3AZIbDfVzQs5Mdwgd0/kVbRMyvL48GokmUmG0qllP6WTkMk/hN
+	 Ib3i1a7YJGsIucYVM1J4KHP2SJ8+VCA+gPPGoph8YbLh9jOwoYtZWZxkTSb8MwwUii
+	 1FIN1+sBvU/ag==
+Date: Tue, 22 Oct 2024 17:31:32 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, quic_imrashai@quicinc.com, quic_jkona@quicinc.com, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 7/8] arm64: dts: qcom: Update sleep_clk frequency to
+ 32000 on SA8775P
+Message-ID: <amnapm4ig6ivhmle4tgywi2n7ah54cha3gpl5sowvf2rqvhg6s@7xg2afpus4ej>
+References: <20241011-sa8775p-mm-v4-resend-patches-v5-0-4a9f17dc683a@quicinc.com>
+ <20241011-sa8775p-mm-v4-resend-patches-v5-7-4a9f17dc683a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] iio: adc: ad4851: add ad485x driver
-To: Jonathan Cameron <jic23@kernel.org>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, nuno.sa@analog.com,
- conor+dt@kernel.org, ukleinek@kernel.org, dragos.bogdan@analog.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20241018104210.51659-1-antoniu.miclaus@analog.com>
- <20241018104210.51659-6-antoniu.miclaus@analog.com>
- <20241019144912.697d9d29@jic23-huawei>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241019144912.697d9d29@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241011-sa8775p-mm-v4-resend-patches-v5-7-4a9f17dc683a@quicinc.com>
 
-On 10/19/24 8:49 AM, Jonathan Cameron wrote:
-> On Fri, 18 Oct 2024 13:42:10 +0300
-> Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On Fri, Oct 11, 2024 at 12:28:37AM GMT, Taniya Das wrote:
+> The HW supported sleep_clk frequency on SA8775P is 32000, hence
+> update the sleep_clk frequency with the correct value on SA8775P.
 > 
->> Add support for the AD485X a fully buffered, 8-channel simultaneous
->> sampling, 16/20-bit, 1 MSPS data acquisition system (DAS) with
->> differential, wide common-mode range inputs.
->>
->> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> 
-> A few minor things from me that I could fix whilst applying,
-> but David gave a much more detailed review of v3, so I'll wait
-> for his feedback on this.  I haven't dug into datasheets much and
-> may well have missed other things.
-> 
-Many of my review comments were not addressed at all. :-(
+> Fixes: 603f96d4c9d0 ("arm64: dts: qcom: add initial support for qcom sa8775p-ride")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 
-Plus one addressed incorrectly (rounding PWM period down instead
-of the suggested rounding up).
+It's generally expected that bug fixes are sent first in patch series,
+but perhaps it's fine as this is the first DT-patch in the series.
 
-I still have major concerns about userspace-facing things like the
-questionable use of the offset attribute and fixing how oversampling
-interacts with the scan_type.
+That said, the only relationship between this patch and the rest of this
+series is...you. There's no reason for sending this together with the
+multimedia clock drivers.
+
+
+Further, the patch subject doesn't match the expected format. It's too
+long (not a summary) and it doesn't have the expected subject prefix for
+changes to this file.
+
+Please correct this.
+
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> index 0c1b21def4b62cc65a693552983ec0bc7eec697d..adb71aeff339b564eb3acc42a38bba2f03507508 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> @@ -517,7 +517,7 @@ &serdes1 {
+>  };
+>  
+>  &sleep_clk {
+> -	clock-frequency = <32764>;
+> +	clock-frequency = <32000>;
+>  };
+>  
+>  &spi16 {
+> 
+> -- 
+> 2.45.2
+> 
 
