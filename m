@@ -1,129 +1,270 @@
-Return-Path: <devicetree+bounces-114035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD0709A9A27
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:43:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9049A99FB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:38:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C76C286419
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:43:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1C931C2100F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBC26146D53;
-	Tue, 22 Oct 2024 06:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B81145A19;
+	Tue, 22 Oct 2024 06:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tCLG31Du"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lLE3vcHx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D893145A19
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 06:42:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3DE712C491;
+	Tue, 22 Oct 2024 06:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729579372; cv=none; b=YPd+q1NFzbZHO9ouiUT9rqG5yBkoM+geWJxh7gCMd+NPkJxJUezRl4cllUvUgG925QuaCD8oFNB1SQS4IrCScTjJ27jI37SMKXuVrzo0O2cckUjD3Y6Apl/nl/fzKNMR5xebpFcqOtHVveHfUpC2vIYzfkjUKsVkgPt7127w9tI=
+	t=1729579116; cv=none; b=neBgYyS0I1rkPXcsOj3l0IdU8cu+OJYTf4M+mLVgjxPS2bJCewdgG2y5nUmhWmvNIxhtvGcrou1C6GcWluKX6ioVmuv4Rm+ANIjNgH0muyScQoiGiPiimtdh2CTHocAdXEmXYo7Rfd2yMPULZEBF8ukRo/qeSpJnS93EAde9k54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729579372; c=relaxed/simple;
-	bh=6PBa+Qvoo1U7dPLtQp2fv7kQwyV0nwSgzL0nLq/hfpM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gOGSYmErfKb8+43M2cgjoh2sU5uO2ey/KjW2oCr5MEQ3eOwZDb781NfmR3Pr84V2HqdGd3/rfJjJWgOIEljencU+Iz9P5GnYeGCxHbynkq1RiLT1hlWP/KoI3ew/TafdT1nCCEBwQ1paFsr7gFit/uMp10D1gemFzwdlajp0MhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tCLG31Du; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-37d4dbb4a89so527507f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 23:42:51 -0700 (PDT)
+	s=arc-20240116; t=1729579116; c=relaxed/simple;
+	bh=9pcPlD06pv+SEQV6FitZCFxRdWx6qbI19wDrDPQq0p8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=G7r/VQ75zcqb3sfaMg9VRv57Vh4goretA9mpM5MWoceCK0FbziiOxZ/YcXY3a9UM3Q6wkSw1SmmFj+yWDZpBA1rsL9bgrnuN72fnuUDBSB7Ss5kjK+qPCUcy0UpV5PU0CtmGBB/gQae7+3ZJ+fKs6mmDBiF7LzodJq7/c1SPzU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lLE3vcHx; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43168d9c6c9so32144605e9.3;
+        Mon, 21 Oct 2024 23:38:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729579370; x=1730184170; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ztbetuKuCAG4xpiy9biwiMZIEYTR+UuLmyONPGKxx24=;
-        b=tCLG31DurdwdE9+pN5nPpdAZxXPi3rA9XQY+WeDEvzlElQEB46ik35Gi5a29L0D/75
-         qenv5Ev+vM17AavG2lG66WD3TTbOJOiI8bjlLvoGd4m22BoJ+Cimx3LCvUiHL9ACYz/4
-         k/S8BlOgK4E3WbLvnAtA1eIUPcZkSkgfLj/ZhEBVUqcteVWSC2X/aN+2oMTOdAQgPwJX
-         uWkxFSydunZUycPi3oAUJ0AH5EJSo9/WkeBJW1crO3Q2MT1O8WBW2Ucw7b0kPZOmO5og
-         klSglJkQPQ/bQH1U114wT4u5IiiX2mMp5IfRyPSKvBldcnoNnp9caGM6k9gwvOOzpL4j
-         pTDg==
+        d=gmail.com; s=20230601; t=1729579113; x=1730183913; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=9pcPlD06pv+SEQV6FitZCFxRdWx6qbI19wDrDPQq0p8=;
+        b=lLE3vcHx4KAjE/BeJyB0zK5KGFJkYc1BkarPc1eS63AjIOanYH74j514+YoksfneHj
+         +Kzw3ANf+1A+7cl0RU9WpNnWpHWdOD+aNQw5xe1CQvcYIrgxm+jlYJafWqR/tvnbhjqT
+         L4nS2e5wlaSrynKDseXw7h+uopgN2gFVIa6XdTxXS3anTFo3w8JWvb49DzdacjLr3pmw
+         tTqczDNshfBGaZklvelkM1318hIsxSwDNO28l8nvpFmp4FwiQrvJYQX8tRX3zAnf42ub
+         O3zewRQ8kFdDOw7IqZFiWyxNNt6gIgpw0l8U1+xkReWDLnlvmp1O9eAcQJ3ZNAYDvHho
+         9l8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729579370; x=1730184170;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ztbetuKuCAG4xpiy9biwiMZIEYTR+UuLmyONPGKxx24=;
-        b=idOw5arEOOm7YXGlWam4XP9AxQDmySJOfl92O0FVtxkhvJ/WQu/dVO3odzlRG+1K5e
-         yyuDDirxhCpNq4jNMJHaaMZ1aXGnpXzjki4aUoeSWB0G6ufr9dsvcZdJxZVrX74VlMis
-         fhm3eE69OwMLHEf6+s2Uqu5oxUgwNvozrVHJVsQn7+MHdUoeNRYS/oXzf2RWXXEc/Rkk
-         x2ifvSMvRM0XaPXw15ZGWORZ2T1Wqv1Axfij7YVXQdcf2HXd4FrA6OusGMsK13a+WdP8
-         1QjfoSVhEXGtRYFujmH2szQYxtuVJu2WMPrUtDLvasFR+0kUxYatWE7/BMR7E4UNVaQv
-         7Fvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUms7ePLo67vogZK0hbCdZNdlVGvIj2K9uCI6Rvk/JqZ0Pk6vW4cpUwlZfvBFLv//bDwUwbSttkbud4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH+loae8M2ceEeJstWa92+OjrpsKDTXhKlT6Pd7aaVU1a6Txfq
-	2UPZUR/emPoDwX+fGImyAv+A3ZtZFv+QRK3uxaLzhAZTbI67E/E1B5aL2GjWpK8=
-X-Google-Smtp-Source: AGHT+IEHQ0Nm3uSdjaODv2aTXm+D9OjTtt75SBNZU7edu3Bqv7g5ZesIWn1TqWP3SdH5sWHuh6A8pg==
-X-Received: by 2002:a5d:5889:0:b0:378:955f:d47d with SMTP id ffacd0b85a97d-37eb4860850mr5014701f8f.11.1729579369586;
-        Mon, 21 Oct 2024 23:42:49 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5cc501sm78231705e9.43.2024.10.21.23.42.48
+        d=1e100.net; s=20230601; t=1729579113; x=1730183913;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9pcPlD06pv+SEQV6FitZCFxRdWx6qbI19wDrDPQq0p8=;
+        b=BduHGmVu3Vs9gySvOylw8zt0ttckNoUuiap0VJUOlF2QlL7zbCGSzg4OtILxfM9HzI
+         xmAd8oeYCtUzcVjJs8jaLjg79JhPoaoODP9H+bl+cnEpsS7j6k/du2dKXFkDg61tjHa2
+         NTW7l6t74geEkE35znZmPBvPiXF3TrNmMUmRzHGkPZnBthBRYGSblqWTzFak0iHRTx5s
+         Lqgm/VV1qgcKtti7QfLopv/GoP4kBbhzrAu4P3r/8brRUV3I62CZ/j5QTz+tgqEO59Gh
+         k6qF+Ne4nqzJ1vbjHqAqDjU/Ho3W5XUQ4tdLf9qkybR6n8DgvL9Us65ieJKE9KqLxq/I
+         hjWg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkDk1sASfANhMNBihvMlJcsvGbX633zcC8LN3GhmGv/K6JPOVDaPer5kQqLpXKIAcmZfklXADIaFUG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWtm2Gi1I/EW9ILM9tp5qtTW4Ad8LW7bjUguxj83iiSueLEACM
+	nLhe1G+JdPWNHlTh7nL3fLhim9O0VpwHWxq8V/XvPUGR7JVRcq802bZLlPlOx8I8V19h
+X-Google-Smtp-Source: AGHT+IFj292MaSA+uQzu4Kutne2WGpYWL/OvZOC6J/AIk/lJKBvqooSWcTNLFnhEDUHUj5J2yQCLew==
+X-Received: by 2002:a5d:4d03:0:b0:37d:476d:2d58 with SMTP id ffacd0b85a97d-37eb47693bamr8382231f8f.45.1729579112836;
+        Mon, 21 Oct 2024 23:38:32 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a4ad97sm5887561f8f.41.2024.10.21.23.38.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 23:42:49 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Melody Olvera <quic_molvera@quicinc.com>,
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
-Subject: [PATCH] dt-bindings: pinctrl: qcom,sm8650-lpass-lpi-pinctrl: Add SM8750
-Date: Tue, 22 Oct 2024 08:42:45 +0200
-Message-ID: <20241022064245.22983-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+        Mon, 21 Oct 2024 23:38:32 -0700 (PDT)
+Message-ID: <a38c5d3e4f1cdf90f53b8c17ef7508faaf760f89.camel@gmail.com>
+Subject: Re: [PATCH 2/4] ASoC: dt-bindings: document the adau1373 Codec
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, Liam Girdwood
+	 <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+	 <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Lars-Peter Clausen
+	 <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Date: Tue, 22 Oct 2024 08:42:50 +0200
+In-Reply-To: <pj5clifybfwljpq3usfgca7cy54xpmzngdckyb53wc3u4lts53@gtm2mbuiiudw>
+References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
+	 <20241021-adau1373-shutdown-v1-2-bec4ff9dfa16@analog.com>
+	 <pj5clifybfwljpq3usfgca7cy54xpmzngdckyb53wc3u4lts53@gtm2mbuiiudw>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Document compatible for Qualcomm SM8750 SoC LPASS TLMM pin controller,
-fully compatible with previous SM8650 generation (same amount of pins
-and functions).
+On Tue, 2024-10-22 at 08:06 +0200, Krzysztof Kozlowski wrote:
+> On Mon, Oct 21, 2024 at 03:46:46PM +0200, Nuno Sa wrote:
+> > Describe the adau1373 Low Power Codec with Speaker and
+> > Headphone Amplifier.
+> >=20
+> > While at it, properly add a MAINTAINERS entry for ADI sound bindings.
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0.../devicetree/bindings/sound/adi,adau1373.yaml=C2=A0=C2=A0=C2=A0=
+ | 102
+> > +++++++++++++++++++++
+> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A02 files changed, 103 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/sound/adi,adau1373.yaml
+> > b/Documentation/devicetree/bindings/sound/adi,adau1373.yaml
+> > new file mode 100644
+> > index
+> > 0000000000000000000000000000000000000000..b2b5b2226ed7b354f2fb7871c1727=
+2b347
+> > 921fa5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sound/adi,adau1373.yaml
+> > @@ -0,0 +1,102 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sound/adi,adau1373.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +
+>=20
+> Just one blank line
+>=20
+> > +title: Analog Devices ADAU1373 CODEC
+> > +
+> > +maintainers:
+> > +=C2=A0 - Nuno S=C3=A1 <nuno.sa@analog.com>
+> > +
+> > +description: |
+> > +=C2=A0 Analog Devices ADAU1373 Low power codec with speaker and headph=
+one
+> > amplifiers.
+> > +=C2=A0
+> > https://www.analog.com/media/en/technical-documentation/data-sheets/ADA=
+U1373.pdf
+> > +
+> > +allOf:
+> > +=C2=A0 - $ref: dai-common.yaml#
+> > +
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 enum:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,adau1373
+> > +
+> > +=C2=A0 reg:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 "#sound-dai-cells":
+> > +=C2=A0=C2=A0=C2=A0 const: 0
+> > +
+> > +=C2=A0 powerdown-gpios:
+> > +=C2=A0=C2=A0=C2=A0 description: GPIO used for hardware power-down.
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 adi,micbias1-microvolt:
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This property sets the microphone bias =
+voltage for the first
+> > microphone.
+> > +=C2=A0=C2=A0=C2=A0 enum: [1800000, 2200000, 2600000, 2900000]
+> > +=C2=A0=C2=A0=C2=A0 default: 2900000
+> > +
+> > +=C2=A0 adi,micbias2-microvolt:
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This property sets the microphone bias =
+voltage for the second
+> > microphone.
+> > +=C2=A0=C2=A0=C2=A0 enum: [1800000, 2200000, 2600000, 2900000]
+> > +=C2=A0=C2=A0=C2=A0 default: 2900000
+> > +
+> > +=C2=A0 adi,input1-differential:
+> > +=C2=A0=C2=A0=C2=A0 description: This property sets the first analog in=
+put as differential.
+> > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > +
+> > +=C2=A0 adi,input2-differential:
+> > +=C2=A0=C2=A0=C2=A0 description: This property sets the second analog i=
+nput as
+> > differential.
+> > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > +
+> > +=C2=A0 adi,input3-differential:
+> > +=C2=A0=C2=A0=C2=A0 description: This property sets the third analog in=
+put as differential.
+> > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > +
+> > +=C2=A0 adi,input4-differential:
+> > +=C2=A0=C2=A0=C2=A0 description: This property sets the fourth analog i=
+nput as
+> > differential.
+> > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > +
+> > +=C2=A0 adi,lineout-differential:
+> > +=C2=A0=C2=A0=C2=A0 description: This property sets the line output as =
+differential.
+> > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > +
+> > +=C2=A0 adi,lineout-gnd-sense:
+> > +=C2=A0=C2=A0=C2=A0 description: This property enables the line output =
+ground sense
+> > control.
+> > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > +
+> > +=C2=A0 adi,drc-settings:
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This setting is used to control the dyn=
+amic range of the signal. The
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device provides a maximum of three full=
+ band DRCs with 13 entries
+> > each.
+> > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +=C2=A0=C2=A0=C2=A0 oneOf:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minItems: 13
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minItems: 26
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - minItems: 39
+>=20
+> and maxItems?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hmm, I had the idea that if maxItems was omitted, then it's the same as
+minItems? Because that's the intent... We can either have an array of 13, 2=
+6 or
+39 entries.
 
----
+>=20
+> > +
+> > +required:
+> > +=C2=A0 - "#sound-dai-cells"
+> > +=C2=A0 - compatible
+> > +=C2=A0 - reg
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +=C2=A0 - |
+> > +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +=C2=A0=C2=A0=C2=A0 i2c {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 audio-codec@1a {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,adau1373";
+>=20
+> Messed indentation.
 
-Cc: Melody Olvera <quic_molvera@quicinc.com>
-Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- .../bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml     | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+WIll fix. Normally my IDE handles this pretty well...
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x1a>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 #sound-dai-cells =3D <0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 powerdown-gpios =3D <&gpio 100 GPIO_ACTIVE_LOW>;
+>=20
+> Extend the example, you have like 10 unused properties.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml
-index db7214362301..e90a5274647d 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml
-@@ -16,7 +16,11 @@ description:
- 
- properties:
-   compatible:
--    const: qcom,sm8650-lpass-lpi-pinctrl
-+    oneOf:
-+      - const: qcom,sm8650-lpass-lpi-pinctrl
-+      - items:
-+          - const: qcom,sm8750-lpass-lpi-pinctrl
-+          - const: qcom,sm8650-lpass-lpi-pinctrl
- 
-   reg:
-     items:
--- 
-2.43.0
+Will do
+
+Thanks!
+- Nuno S=C3=A1
 
 
