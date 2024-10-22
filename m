@@ -1,835 +1,567 @@
-Return-Path: <devicetree+bounces-114088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037C09A9C2E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BBA9A9C32
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:19:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF14E281DFF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:18:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04729283B63
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDA71547F5;
-	Tue, 22 Oct 2024 08:18:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oSXSCh1k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1C71714A1;
+	Tue, 22 Oct 2024 08:19:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01on2093.outbound.protection.outlook.com [40.107.239.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52B713BAC6;
-	Tue, 22 Oct 2024 08:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729585129; cv=none; b=bKTqYheSOE22Z28GvaglN/PR2RdxdvjMiB++hlLeF4URURykkg+x+1RXihdK7dbEzrxOIktYoG8i1Ej2X9PxvLvZbcxuhdT87e/vf24YatRTiLsUGL9pB+zONrqrbfAlhvfrVUN5pP7XQ9c6R+0Rrus58hbpWyVtkHUJMUa54SY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729585129; c=relaxed/simple;
-	bh=BV9TzmWeBO9rM0UPUyjCa7WvkzmYZx8Ef+0oZJQcH3A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=msxrA2sSqGv7QRV213dhO5bh8GEa+RU/y4hs8o3wNFUeDiu3v+rJFS+Ony1DIPaFdb7zvpUH4QR0h6O8F6ktsNvxUcB/dVR01/lIsqsOSSos986JDhJOwpQKVQydC7C25l2eZOt7HqVIOcBYPkV01Q87jIvDOHDWhAtCMYsLSk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oSXSCh1k; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LM0pVB027018;
-	Tue, 22 Oct 2024 08:18:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kRQw83Mw/2mlyTSMji35IuXRaLQcBWzfspDC/E77H5s=; b=oSXSCh1kjdjf7tdD
-	YTFl1Mye/Vi1jjpEzEwv2abLFSeDYTDfKl0/SY4bINjk/WdDm6GeicEccx5yeXhC
-	I5Mn6bHR5gcy0Q+nGATbNsI0QdKU7Zg4t8MkON3k83Vg115uLjO+Bv2XSbF8dEVP
-	TP/LtKrnZJhjMUJbTxXoGZHXcjXPR452mmoNB/4ae6Pn9nD+q7wWkR2oq+UxgzOk
-	23OFW/aLEAF4NuPGKghlbCFZWb16DqzcZX6o8eCpEE8E3gh0jE7Di2H4iZzHaM/D
-	44Ugt2wtd9NLpl6qkVlu5GRtJn61/gF1NH/vkd9B0t7Z3vZwys+TKWpZpKVAMIiY
-	5La1fw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42c6rj7ffy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 08:18:34 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49M8IXvF024358
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 08:18:33 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Oct
- 2024 01:18:28 -0700
-Message-ID: <29eef87e-96f6-5105-6f7a-a8e01efcb4a3@quicinc.com>
-Date: Tue, 22 Oct 2024 13:48:25 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A1C158D7B;
+	Tue, 22 Oct 2024 08:19:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.239.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729585168; cv=fail; b=FcdQcXl9MZr7cI2vrK75NqUdmqlczlxwnl7F22h9gw6WbcAOvW2f5l46N0FmQkeR578xGDpnLtrS6eNBEHhYU59iY3aKpgBQFv8ETbRJ09sy/GH2uDw1AKzws/9zPVV6Bx8MZICAE5Cxbca5T+y/PFMiUQAggzptjt66EhfKCBE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729585168; c=relaxed/simple;
+	bh=MrtZPAjgmdcJQFpbUtLKCOoHWvT9tGIJyXGiJUUPCYM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=WUCvbYhxOOFiT9148K48wvbK0w2PxBq+hyQ9FWNcs5dikEhmskjNxfCF3RQAa/Hqm0lv5t+2c0d+ueuD2TGmIgVQF7XOlOGWMnPobZitt3OZ4E4VIGOki2E54uDFvvLMFT/NXfJPoDzrVO5Q0DkHyIee2ce3uli61x2fIeB2U9U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.239.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=e5o2o8Dr9rIA/vpVMS4jGLnYCSj+qDamz3JgvBuffs58Z1PaPGP4apRJk3gCOkie8GBRedGYFyO8deMwCK1RC/KfmI29Bm9SSqgqhrZ55lXtBFllO66W06CM+vqVJOxRyLUoS+GVLC7s/gimBE1G9/bHV1+LXV8ziYUAV65Ggw72+fwNioo4ry9cm9+atVuP/miSmJ3f+Ch1fZVNn/2SKK9ebxSAJmMFcBsrabASI3n6NZjcqqs0KqrSGJ5Mak+9x8NwB4SqWIZNoS7p2cqnzt1loXmmw6iiRDLeFSGXS5xWvQ1ZSwety4KN6gnV+kGYhOSB5rmIvIk9fL8ngS8ryg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MrtZPAjgmdcJQFpbUtLKCOoHWvT9tGIJyXGiJUUPCYM=;
+ b=BsQKms6sfoaIHY7En0Tv1qAsOTzzEtZQ+D03+k1ccKp/ovjfPR/BK9j7fjIfZqPUYUcEoEQkmkGJ28/2RfbY/aTGka/ZM7of/9QoV69ZE2sPwtS6p1kL85/Gj1ekiovENOYWEglP7RFw4kKwPP/6xMO9w0FtfdFvPc6en/eILRF5qURFxoVjaupnj8ZDntq9QRoveQN/IbeXya5WwGSKF+X9Eyv0gvZA8dShrLipez5Cj/7CGg+M/EVdoxJL1Lo6xyBKG4Lsbd8kDoRZcLv+CGEpS3qZYB/NGNosDvGzBEHbQwVjvI6HQArrQV/PIt2qAu3MDCC9xjSowbATPGPvVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1b8::9)
+ by PN2P287MB0522.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:117::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Tue, 22 Oct
+ 2024 08:19:22 +0000
+Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ ([fe80::368a:445f:b1be:4bd6]) by PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ ([fe80::368a:445f:b1be:4bd6%6]) with mapi id 15.20.8069.027; Tue, 22 Oct 2024
+ 08:19:21 +0000
+From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "linus.walleij@linaro.org"
+	<linus.walleij@linaro.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>
+CC: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt to
+ yaml format
+Thread-Topic: [PATCH] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt to
+ yaml format
+Thread-Index: AQHbJEf0KUynUcmP0kuLM4i3mQYwMrKSUAsAgAAX7Bg=
+Date: Tue, 22 Oct 2024 08:19:21 +0000
+Message-ID:
+ <PN0P287MB20192A56CF07E9DFF1BC0F249A4C2@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
+References: <20241022060157.36372-1-himanshu.bhavani@siliconsignals.io>
+ <b69251f7-7827-4f0e-b4fe-184a5cb54ee7@kernel.org>
+In-Reply-To: <b69251f7-7827-4f0e-b4fe-184a5cb54ee7@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PN0P287MB2019:EE_|PN2P287MB0522:EE_
+x-ms-office365-filtering-correlation-id: 8218e584-488d-4eff-819a-08dcf2723b8b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?iI+gxorHidO7vcMpp26jqxCfC4lrmsHMaiYvG6bt2R9wyChA/PYmqS/G2d?=
+ =?iso-8859-1?Q?+qkjDE0o4a/a6DMP2Bx57WQ8iv2dE+hThoZPXpyhKIEa2gu5LZarAPFmO4?=
+ =?iso-8859-1?Q?8G+hxfDVEU2Ms/3PBzn/K/10kmVGkp19QjkwVqDhiSaABK6XEkgA73bwVJ?=
+ =?iso-8859-1?Q?IeYKQdwFG4fXCsx5h1BWbVjWGM+49CVfG4W6HFtvBcw5vf/Zwdc36VcYoe?=
+ =?iso-8859-1?Q?nM9a435HFQOZS9w9YivlT1OVEy6YVomrW/dI3LM/KU7OM1ygBixtun163r?=
+ =?iso-8859-1?Q?fWq7dyXrIfx4qZBMFNjd8kChI8CvFlK/Nd61iFmvLF/QBq3tQNZhoIRcec?=
+ =?iso-8859-1?Q?JLapC/HYQm+k0DhuoUzbFgfnXMdZfb4LiRYCBs+IZ/S7Sk6nsSxuHw94cX?=
+ =?iso-8859-1?Q?+b9c8vGQfiBlSdtFVecHnPojCGrA4lABTswPHDy8CvBblJgAFJ7PQS7pXh?=
+ =?iso-8859-1?Q?XcsY0Z7gO1PalWWZ3DKI8RG5Xxa1wi5INNEa4ToDTIpSQEiHq9edEzOaXX?=
+ =?iso-8859-1?Q?mBf9skXl/BxOFrLXhlk6V2SELAmIETcHNtFUrX1P2PIzDxJUHiLRQAPckP?=
+ =?iso-8859-1?Q?HBGvBhJnHpntk/+qDUOD5hyv2quYCaVxkWfu8WbpIf8lzh2AK9GXJPlVkW?=
+ =?iso-8859-1?Q?03NBGBpqda0u7LJIY/dn+hi7qjcVHaRryqumKT2AbHi5vF663TzIRSALWd?=
+ =?iso-8859-1?Q?vK+kpiHHZvxPkBcz4F3UkNyRt4tWARzT5edgPXNms+Kf0X+KByu5HdfjLf?=
+ =?iso-8859-1?Q?ANadm7E/zWI1jMiRCNxk0S23mcmIOnqBGYSpfruDxh2JpVZEOW8Peruae0?=
+ =?iso-8859-1?Q?TRe1vsDAPceChSU4I+3RNkACuiH4Dr4oziSEMcTAmq4lGpeMAXnVdxJduB?=
+ =?iso-8859-1?Q?0kRb09NPn06c06etmX2DjtgYAm6nl8mxB55hdRYN3Ly/HSNAas3Nn4JRGR?=
+ =?iso-8859-1?Q?hce/eqGUt2Lp+/1tfUIK9qlB+BhgQXxOg6fu3ueCxhaIg/pWhqIvN4toZQ?=
+ =?iso-8859-1?Q?bsG53cX/G1NasQiSzu1gFDa5r73zoZOFGFEBKw3SyJkWPIShqo1n0FtqjS?=
+ =?iso-8859-1?Q?Zam8otNWt9RVrRCCmKS1VVdxPfaVyZRmYXs2LkrQg3mzFPhwiW2pOIMb+u?=
+ =?iso-8859-1?Q?CmDg74qae/rR0IqGeSKz211oaHvywKFCzEXAdtn1ZPecl1A3vJGF6dhe8Q?=
+ =?iso-8859-1?Q?dwPka97+gl8KCAKH1e5ZVUcyDTuHvPv26n+XhkA7bs7CGaBbIXa4538Iyd?=
+ =?iso-8859-1?Q?L+ExMo6yy+cBJmmS4BCc+Cujlvk9jGyiFP0kSFr9AJXnnicmhMLK3HkECT?=
+ =?iso-8859-1?Q?esiQ3qyPJ8bDGEMdlAfPIO3wNiQxEO3FAzI4NeNmtn8rvH3HVKi9cRxRF0?=
+ =?iso-8859-1?Q?EJEbwrAXiG?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN0P287MB2019.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?UCikKR1rQXsyCQyU9SXIbG9w7xV8+4e/mc6iRgE1lGdvpM+PvJOrN4RKze?=
+ =?iso-8859-1?Q?sLD7We2amo9qJuoOG5D53kMQxAxJYQi9lgTP+yRB8AwoZoDaFNr38Cobs6?=
+ =?iso-8859-1?Q?UGtFx7jCA+w7u8uCfjMAfSowrmshpcIUNREteDEACUqFqQe5bVe/kd2Nlz?=
+ =?iso-8859-1?Q?qwd1l1x0fzye+BCPbeMCA3xZN7DdX0seOchDJroEwEncefGIHcEq9KQwaN?=
+ =?iso-8859-1?Q?OSkqjnhTaFuIexi42uQhdE+QzXFaEU+NrSPB07zEohqnuDg3waegzecA4e?=
+ =?iso-8859-1?Q?XOGFY4PNcxckFdXc5RKnWRY46mDrV9DvQZzgU4YzWBENlFZgwJ/67e5Llo?=
+ =?iso-8859-1?Q?9aXqFWNFTdti2kFH1yGlNb1MFreK8/JeC+KR3/9JIgy9LlmfkIi0/fEy9A?=
+ =?iso-8859-1?Q?lngEuEyk0siY54KLbXY8VsDwjFH0hbsF8kd8g4unGSJakU4H04EBz0G7VG?=
+ =?iso-8859-1?Q?cf3QotzYYpFpzLdBrY2SsQGSoop8D6+v0hYNjT1jR4o0bN71t9ZfYJi06V?=
+ =?iso-8859-1?Q?ep3R5MXKzbGEngLNXb0rJmeRGNyF8HbzW3D7t7uK1DkUZP8ROMivBb9awy?=
+ =?iso-8859-1?Q?TBOWAi1yllgbEmShmPoYlYe5qZHvqo1I0Nazjcjk2y8SDeedNcHtEl+XRs?=
+ =?iso-8859-1?Q?qconAL/W367PY1EKeS2eTcVg6yTdJm3c+OJCjTmHMHa5Tw1GyJSfOGohTt?=
+ =?iso-8859-1?Q?3CLHThWQxz1VLb994XUxmGfVHQY88/rlp6o7JyAiREGJdo3z4pDKtxivB5?=
+ =?iso-8859-1?Q?OeiAU7VaLRA0NVUgR443E0YJfFiyOKysBuQQIgRPbbbUHDE+0YvdWS6tza?=
+ =?iso-8859-1?Q?JGt7OKeXVbdHFO9XmEEwM/kgxajtDihaho7wH4pjljjjHnkY+UUTfwI8cL?=
+ =?iso-8859-1?Q?KOM1J1fyRhFF+mtwsryTV0inVBQyMuP48ckVRz7aTAk6hMoBtNNG/oreTR?=
+ =?iso-8859-1?Q?vu8CVAF42b1bk3/wMp0yDvPCUlo77t2EZZ/IjVLlAis73E5nLusIHIUVCH?=
+ =?iso-8859-1?Q?Zsgrd9/2Ty1twwT9mhFceIItUVHYTRXDN5/IfG6Kt5c73D/SOmZ2jnBzdU?=
+ =?iso-8859-1?Q?vzLVUykaV7LFx+ynnF8F865zvBq8yjkysjX9W9A4pWJgqvu7yZpGX5ErLc?=
+ =?iso-8859-1?Q?NWX3UmkaAlBLQeNDJ2ujRAyotH/NXsCxj7OAbctLqIWEQAu5kLli2ohB/p?=
+ =?iso-8859-1?Q?KD3wf0edVjHbUKP4sJZ7YKbDr9KL7ug34G7GsktG3NflwDfrMwL266RGaf?=
+ =?iso-8859-1?Q?NB0ZhyclU0XkT49fdvovaJXzFu2MeukDiPcvzxMu2DMzg2S3XjSQxNilBt?=
+ =?iso-8859-1?Q?0fd5ilE86YXMlcWfeAjIPo9FbqQ9iIvISr2kZIwEIvrIsQXGj8+URtYFcy?=
+ =?iso-8859-1?Q?1yuJ3wSyIycda4SSAFeI8JRrf5+dazaFUZ/EP6U20SgqtDwgIVIlQgyFp8?=
+ =?iso-8859-1?Q?8NQPqr7Mwli22ENMBERD/5TMmiUv9cMeGwmu51mJUrXPEswpaKY2A1UJBn?=
+ =?iso-8859-1?Q?H6RlQc0hP643qNHyRoCwLyBaf2IwBYjZrhxnZdCh4y2PKVByxUvjO3thDU?=
+ =?iso-8859-1?Q?Xm5kp2Xc3qzEcI7JMZy9RbQUHQxjeBSWewEA6kQBOrR6Ws1JwcH94uRR6I?=
+ =?iso-8859-1?Q?VjQ1q5+btdDvhxZjgTTJ5NHZ2b3MkdTCBSioTYN1dLpYG8ZrhV1tYlXe8k?=
+ =?iso-8859-1?Q?shug46Lx9zzXtzuTQKM=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V4 4/5] soc: qcom: Introduce SCMI based Memlat (Memory
- Latency) governor
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
-        <arm-scmi@vger.kernel.org>, Amir Vajid <avajid@quicinc.com>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <20241007061023.1978380-5-quic_sibis@quicinc.com>
- <2aycrvnvivcrqctqmweadcgenwugafdr6ub3bzkscterpenz32@bzabln2hkral>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <2aycrvnvivcrqctqmweadcgenwugafdr6ub3bzkscterpenz32@bzabln2hkral>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9NubxEvzGB-pNZ3y5m23VIrTSBnHeGNY
-X-Proofpoint-ORIG-GUID: 9NubxEvzGB-pNZ3y5m23VIrTSBnHeGNY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 bulkscore=0 malwarescore=0 mlxscore=0 spamscore=0
- impostorscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410220053
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8218e584-488d-4eff-819a-08dcf2723b8b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2024 08:19:21.8934
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7iH4GvQWfBpFTKc+PgBhwFS4tXYcEiWR88rMq+a1F77wVjYyRcg+i6+s4V6uE3DvboKSzBOpVTVFdHcuBlze8V/79G5OKbGxVv9+MyUJP61CMmdNKEX6uV2T7uFX6o8q
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0522
 
-
-
-On 10/7/24 23:27, Dmitry Baryshkov wrote:
-> On Mon, Oct 07, 2024 at 11:40:22AM GMT, Sibi Sankar wrote:
->> Introduce a client driver that uses the memlat algorithm string
->> hosted on QCOM SCMI Generic Extension Protocol to detect memory
->> latency workloads and control frequency/level of the various
->> memory buses (DDR/LLCC/DDR_QOS).
-> 
-> This sounds like a devfreq implementation. Please provide a reason why
-> it doesn't use existing API (even if to export the information to the
-> userspace).
-
-IIRC, you asked the same question when the RFC version of it
-was posted and I replied to it back then.
-
-https://lore.kernel.org/lkml/0adaa065-3883-ebfe-8259-05ebdbd821eb@quicinc.com/
-
-The series does not yet export any information to userspace yet
-and when it does get added in the future, it would have no way
-of populating governor node with the current way devfreq framework
-is structured. Since this series is all about just enabling basic
-support, I guess what you ask can be accomodated when we do start
-exporting this info to userspace.
-
-> 
->>
->> Co-developed-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Co-developed-by: Amir Vajid <avajid@quicinc.com>
->> Signed-off-by: Amir Vajid <avajid@quicinc.com>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>
->> v3:
->> * Add missing enum in the scmi memlat driver and fix documentation [Konrad]
->> * Add checks for max memory and monitor [Shivnandan]
->> * Fix typo from START_TIMER -> STOP_TIMER [Shivnandan]
->> * Make populate_physical_mask func to void [Shivnandan]
->> * Remove unecessary zero set [Shivnandan]
->> * Use __free(device node) in init_cpufreq-memfreqmap [Christian/Konrad]
->> * Use sdev->dev.of_node directly [Christian]
->> * use return dev_err_probe in multiple places [Christian]
->>
->>   drivers/soc/qcom/Kconfig                   |  12 +
->>   drivers/soc/qcom/Makefile                  |   1 +
->>   drivers/soc/qcom/qcom_scmi_memlat_client.c | 569 +++++++++++++++++++++
->>   3 files changed, 582 insertions(+)
->>   create mode 100644 drivers/soc/qcom/qcom_scmi_memlat_client.c
->>
->> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
->> index 74b9121240f8..1b6dd40d69ea 100644
->> --- a/drivers/soc/qcom/Kconfig
->> +++ b/drivers/soc/qcom/Kconfig
->> @@ -295,4 +295,16 @@ config QCOM_PBS
->>   	  This module provides the APIs to the client drivers that wants to send the
->>   	  PBS trigger event to the PBS RAM.
->>   
->> +config QCOM_SCMI_MEMLAT_CLIENT
->> +	tristate "Qualcomm Technologies Inc. SCMI client driver"
->> +	depends on QCOM_SCMI_GENERIC_EXT || COMPILE_TEST
->> +	help
->> +	  This driver uses the MEMLAT (memory latency) algorithm string
->> +	  hosted on QCOM SCMI Vendor Protocol to detect memory latency
-> 
-> How can it use the string to detect workloads? Most likely you mean something like "uses memlat extensions".
-> Also s/QCOM/Qualcomm/ in the help text.
-
-The generic vendor protocol extension works by associating algorithms to
-strings. But like you said it can be re-worded to avoid confusion.
-
-> 
->> +	  workloads and control frequency/level of the various memory
->> +	  buses (DDR/LLCC/DDR_QOS).
->> +
->> +	  This driver defines/documents the parameter IDs used while configuring
->> +	  the memory buses.
->> +
->>   endmenu
->> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
->> index acbca2ab5cc2..28549bb141bc 100644
->> --- a/drivers/soc/qcom/Makefile
->> +++ b/drivers/soc/qcom/Makefile
->> @@ -36,6 +36,7 @@ obj-$(CONFIG_QCOM_APR) += apr.o
->>   obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
->>   obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=	kryo-l2-accessors.o
->>   obj-$(CONFIG_QCOM_ICC_BWMON)	+= icc-bwmon.o
->> +obj-$(CONFIG_QCOM_SCMI_MEMLAT_CLIENT)	+= qcom_scmi_memlat_client.o
->>   qcom_ice-objs			+= ice.o
->>   obj-$(CONFIG_QCOM_INLINE_CRYPTO_ENGINE)	+= qcom_ice.o
->>   obj-$(CONFIG_QCOM_PBS) +=	qcom-pbs.o
->> diff --git a/drivers/soc/qcom/qcom_scmi_memlat_client.c b/drivers/soc/qcom/qcom_scmi_memlat_client.c
->> new file mode 100644
->> index 000000000000..05198bf1f7ec
->> --- /dev/null
->> +++ b/drivers/soc/qcom/qcom_scmi_memlat_client.c
->> @@ -0,0 +1,569 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <linux/cpu.h>
->> +#include <linux/err.h>
->> +#include <linux/errno.h>
->> +#include <linux/init.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/scmi_protocol.h>
->> +#include <linux/scmi_qcom_protocol.h>
->> +#include <linux/units.h>
->> +#include <dt-bindings/firmware/qcom,scmi-memlat.h>
->> +
->> +#define MEMLAT_ALGO_STR				0x4D454D4C4154 /* MEMLAT */
->> +#define INVALID_IDX				0xff
->> +#define MAX_MEMORY_TYPES			3
->> +#define MAX_MONITOR_CNT				4
->> +#define MAX_NAME_LEN				20
->> +#define MAX_MAP_ENTRIES				7
->> +#define CPUCP_DEFAULT_SAMPLING_PERIOD_MS	4
->> +#define CPUCP_DEFAULT_FREQ_METHOD		1
->> +
->> +/**
->> + * enum scmi_memlat_protocol_cmd - parameter_ids supported by the "MEMLAT" algo_str hosted
->> + *                                 by the Qualcomm Generic Vendor Protocol on the SCMI controller.
->> + *
->> + * MEMLAT (Memory Latency) monitors the counters to detect memory latency bound workloads
->> + * and scales the frequency/levels of the memory buses accordingly.
->> + *
->> + * @MEMLAT_SET_MEM_GROUP: initializes the frequency/level scaling functions for the memory bus.
->> + * @MEMLAT_SET_MONITOR: configures the monitor to work on a specific memory bus.
->> + * @MEMLAT_SET_COMMON_EV_MAP: set up common counters used to monitor the cpu frequency.
->> + * @MEMLAT_SET_GRP_EV_MAP: set up any specific counters used to monitor the memory bus.
->> + * @MEMLAT_IPM_CEIL: set the IPM (Instruction Per Misses) ceiling per monitor.
->> + * @MEMLAT_SAMPLE_MS: set the sampling period for all the monitors.
->> + * @MEMLAT_MON_FREQ_MAP: setup the cpufreq to memfreq map.
->> + * @MEMLAT_SET_MIN_FREQ: set the max frequency of the memory bus.
->> + * @MEMLAT_SET_MAX_FREQ: set the min frequency of the memory bus.
->> + * @MEMLAT_START_TIMER: start all the monitors with the requested sampling period.
->> + * @MEMLAT_STOP_TIMER: stop all the running monitors.
->> + * @MEMLAT_SET_EFFECTIVE_FREQ_METHOD: set the method used to determine cpu frequency.
->> + */
->> +enum scmi_memlat_protocol_cmd {
->> +	MEMLAT_SET_MEM_GROUP = 16,
->> +	MEMLAT_SET_MONITOR,
->> +	MEMLAT_SET_COMMON_EV_MAP,
->> +	MEMLAT_SET_GRP_EV_MAP,
->> +	MEMLAT_IPM_CEIL = 23,
->> +	MEMLAT_SAMPLE_MS = 31,
->> +	MEMLAT_MON_FREQ_MAP,
->> +	MEMLAT_SET_MIN_FREQ,
->> +	MEMLAT_SET_MAX_FREQ,
->> +	MEMLAT_START_TIMER = 36,
->> +	MEMLAT_STOP_TIMER,
->> +	MEMLAT_SET_EFFECTIVE_FREQ_METHOD = 39,
->> +};
->> +
->> +struct map_table {
->> +	u16 v1;
->> +	u16 v2;
-> 
-> Huh? Why can't it be cpufreq and memfreq with some suffix?
-
-ack
-
-> 
->> +};
->> +
->> +struct map_param_msg {
->> +	u32 hw_type;
->> +	u32 mon_idx;
->> +	u32 nr_rows;
->> +	struct map_table tbl[MAX_MAP_ENTRIES];
->> +} __packed;
->> +
->> +struct node_msg {
->> +	u32 cpumask;
->> +	u32 hw_type;
->> +	u32 mon_type;
->> +	u32 mon_idx;
->> +	char mon_name[MAX_NAME_LEN];
->> +};
->> +
->> +struct scalar_param_msg {
->> +	u32 hw_type;
->> +	u32 mon_idx;
->> +	u32 val;
->> +};
->> +
->> +enum common_ev_idx {
->> +	INST_IDX,
->> +	CYC_IDX,
->> +	CONST_CYC_IDX,
->> +	FE_STALL_IDX,
->> +	BE_STALL_IDX,
->> +	NUM_COMMON_EVS
->> +};
->> +
->> +enum grp_ev_idx {
->> +	MISS_IDX,
->> +	WB_IDX,
->> +	ACC_IDX,
->> +	NUM_GRP_EVS
->> +};
->> +
->> +#define EV_CPU_CYCLES		0
->> +#define EV_INST_RETIRED		2
->> +#define EV_L2_D_RFILL		5
->> +
->> +struct ev_map_msg {
->> +	u32 num_evs;
->> +	u32 hw_type;
->> +	u32 cid[NUM_COMMON_EVS];
->> +};
->> +
->> +struct cpufreq_memfreq_map {
->> +	unsigned int cpufreq_mhz;
->> +	unsigned int memfreq_khz;
->> +};
->> +
->> +struct scmi_monitor_info {
->> +	struct cpufreq_memfreq_map *freq_map;
->> +	char mon_name[MAX_NAME_LEN];
->> +	u32 mon_idx;
->> +	u32 mon_type;
->> +	u32 ipm_ceil;
->> +	u32 mask;
->> +	u32 freq_map_len;
->> +};
->> +
->> +struct scmi_memory_info {
->> +	struct scmi_monitor_info *monitor[MAX_MONITOR_CNT];
->> +	u32 hw_type;
->> +	int monitor_cnt;
->> +	u32 min_freq;
->> +	u32 max_freq;
->> +};
->> +
->> +struct scmi_memlat_info {
->> +	struct scmi_protocol_handle *ph;
->> +	const struct qcom_generic_ext_ops *ops;
->> +	struct scmi_memory_info *memory[MAX_MEMORY_TYPES];
->> +	u32 cluster_info[NR_CPUS];
->> +	int memory_cnt;
->> +};
->> +
->> +static int populate_cluster_info(u32 *cluster_info)
->> +{
->> +	char name[MAX_NAME_LEN];
->> +	int i = 0;
->> +
->> +	struct device_node *cn __free(device_node) = of_find_node_by_path("/cpus");
->> +	if (!cn)
->> +		return -ENODEV;
->> +
->> +	struct device_node *map __free(device_node) = of_get_child_by_name(cn, "cpu-map");
->> +	if (!map)
->> +		return -ENODEV;
->> +
->> +	do {
->> +		snprintf(name, sizeof(name), "cluster%d", i);
->> +		struct device_node *c __free(device_node) = of_get_child_by_name(map, name);
->> +		if (!c)
->> +			break;
->> +
->> +		*(cluster_info + i) = of_get_child_count(c);
->> +		i++;
->> +	} while (1);
-> 
-> Can you use existing API from drivers/base/arch_topology.c? If not, can
-> it be extended to support your usecase?
-
-ack. But I'm pretty sure it's going to take a while for reaching such
-an agreement so I'll drop this feature during the next re-spin.
-
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static void populate_physical_mask(struct device_node *np, u32 *mask, u32 *cluster_info)
->> +{
->> +	struct device_node *dev_phandle __free(device_node);
->> +	int cpu, i = 0, physical_id;
->> +
->> +	do {
->> +		dev_phandle = of_parse_phandle(np, "cpus", i++);
->> +		cpu = of_cpu_node_to_id(dev_phandle);
->> +		if (cpu != -ENODEV) {
->> +			physical_id = topology_core_id(cpu);
->> +			for (int j = 0; j < topology_cluster_id(cpu); j++)
->> +				physical_id += *(cluster_info + j);
->> +			*mask |= BIT(physical_id);
->> +		}
->> +	} while (dev_phandle);
->> +}
->> +
->> +static struct cpufreq_memfreq_map *init_cpufreq_memfreq_map(struct device *dev,
->> +							    struct scmi_memory_info *memory,
->> +							    struct device_node *of_node,
->> +							    u32 *cnt)
->> +{
->> +	struct device_node *tbl_np __free(device_node), *opp_np __free(device_node);
->> +	struct cpufreq_memfreq_map *tbl;
->> +	int ret, i = 0;
->> +	u32 level, len;
->> +	u64 rate;
->> +
->> +	tbl_np = of_parse_phandle(of_node, "operating-points-v2", 0);
-> 
-> Please use existing API to parse OPP tables or document a reason why it
-> can't be used.
-
-Thanks, I had them documented as opens in the coverletter. Dropped them
-since no one had any comments on it during V3. Will add them as comments
-to this driver instead.
-
-https://lore.kernel.org/lkml/20240702191440.2161623-1-quic_sibis@quicinc.com/
-
-re-copying things again:
-opp-tables are used but they don't get to be added to the scmi device
-(thus we rely on a lot of manual parsing) because the memlat client 
-driver doesn't vote on these resources clocks/interconnects/power-domain
-from the kernel and some of the resources aren't modeled in the first
-place like DDR_QOS.
-
-
-> 
->> +	if (!tbl_np)
->> +		return ERR_PTR(-ENODEV);
->> +
->> +	len = min(of_get_available_child_count(tbl_np), MAX_MAP_ENTRIES);
->> +	if (len == 0)
->> +		return ERR_PTR(-ENODEV);
->> +
->> +	tbl = devm_kzalloc(dev, (len + 1) * sizeof(struct cpufreq_memfreq_map),
->> +			   GFP_KERNEL);
->> +	if (!tbl)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	for_each_available_child_of_node(tbl_np, opp_np) {
->> +		ret = of_property_read_u64_index(opp_np, "opp-hz", 0, &rate);
->> +		if (ret < 0)
->> +			return ERR_PTR(ret);
->> +
->> +		tbl[i].cpufreq_mhz = rate / HZ_PER_MHZ;
->> +
->> +		if (memory->hw_type != QCOM_MEM_TYPE_DDR_QOS) {
->> +			ret = of_property_read_u64_index(opp_np, "opp-hz", 1, &rate);
->> +			if (ret < 0)
->> +				return ERR_PTR(ret);
->> +
->> +			tbl[i].memfreq_khz = rate / HZ_PER_KHZ;
->> +		} else {
->> +			ret = of_property_read_u32(opp_np, "opp-level", &level);
->> +			if (ret < 0)
->> +				return ERR_PTR(ret);
->> +
->> +			tbl[i].memfreq_khz = level;
->> +		}
->> +
->> +		dev_dbg(dev, "Entry%d CPU:%u, Mem:%u\n", i, tbl[i].cpufreq_mhz, tbl[i].memfreq_khz);
->> +		i++;
->> +	}
->> +	*cnt = len;
->> +
->> +	return tbl;
->> +}
->> +
->> +static int process_scmi_memlat_of_node(struct scmi_device *sdev, struct scmi_memlat_info *info)
->> +{
->> +	struct scmi_monitor_info *monitor;
->> +	struct scmi_memory_info *memory;
->> +	char name[MAX_NAME_LEN];
->> +	u64 memfreq[2];
->> +	int ret;
->> +
->> +	ret = populate_cluster_info(info->cluster_info);
->> +	if (ret < 0) {
->> +		dev_err_probe(&sdev->dev, ret, "failed to populate cluster info\n");
->> +		goto err;
->> +	}
->> +
->> +	of_node_get(sdev->dev.of_node);
->> +	do {
->> +		snprintf(name, sizeof(name), "memory-%d", info->memory_cnt);
->> +		struct device_node *memory_np __free(device_node) =
->> +			of_find_node_by_name(sdev->dev.of_node, name);
->> +
->> +		if (!memory_np)
->> +			break;
->> +
->> +		if (info->memory_cnt >= MAX_MEMORY_TYPES)
->> +			return dev_err_probe(&sdev->dev, -EINVAL,
->> +					     "failed to parse unsupported memory type\n");
->> +
->> +		memory = devm_kzalloc(&sdev->dev, sizeof(*memory), GFP_KERNEL);
->> +		if (!memory) {
->> +			ret = -ENOMEM;
->> +			goto err;
->> +		}
->> +
->> +		ret = of_property_read_u32(memory_np, "qcom,memory-type", &memory->hw_type);
->> +		if (ret) {
->> +			dev_err_probe(&sdev->dev, ret, "failed to read memory type\n");
->> +			goto err;
->> +		}
->> +
->> +		ret = of_property_read_u64_array(memory_np, "freq-table-hz", memfreq, 2);
->> +		if (ret && (ret != -EINVAL)) {
->> +			dev_err_probe(&sdev->dev, ret, "failed to read min/max freq\n");
->> +			goto err;
->> +		}
-> 
-> Can we get this information from the OPP table instead?
-
-we don't list all the available ddr/llcc freqs in the opp-table
-so that we can keep the table constant across platforms.
-
-> 
->> +
->> +		if (memory->hw_type != QCOM_MEM_TYPE_DDR_QOS) {
->> +			memory->min_freq = memfreq[0] / HZ_PER_KHZ;
->> +			memory->max_freq = memfreq[1] / HZ_PER_KHZ;
->> +		} else {
->> +			memory->min_freq = memfreq[0];
->> +			memory->max_freq = memfreq[1];
-> 
-> Why? At least invert the logic here, please. The DDR_QOS is a special
-> case, not all other kinds of memory.
-
-ack
-> 
->> +		}
->> +		info->memory[info->memory_cnt++] = memory;
->> +
->> +		do {
->> +			snprintf(name, sizeof(name), "monitor-%d", memory->monitor_cnt);
->> +			struct device_node *monitor_np __free(device_node) =
->> +				of_get_child_by_name(memory_np, name);
->> +
->> +			if (!monitor_np)
->> +				break;
->> +
->> +			if (memory->monitor_cnt >= MAX_MONITOR_CNT)
-> 
-> Why do you need to limit it? Is it a protocol limitation or an
-> artificial driver limitation? Can monitors be allocated dynamically?
-
-Yeah, they are limited to a max of 5 in firmware.
-
-> 
->> +				return dev_err_probe(&sdev->dev, -EINVAL,
->> +						     "failed to parse unsupported monitor\n");
->> +
->> +			monitor = devm_kzalloc(&sdev->dev, sizeof(*monitor), GFP_KERNEL);
->> +			if (!monitor) {
->> +				ret = -ENOMEM;
->> +				goto err;
->> +			}
->> +
->> +			monitor->mon_type = of_property_read_bool(monitor_np, "qcom,compute-type");
->> +			if (!monitor->mon_type) {
->> +				ret = of_property_read_u32(monitor_np, "qcom,ipm-ceil",
->> +							   &monitor->ipm_ceil);
->> +				if (ret) {
->> +					dev_err_probe(&sdev->dev, ret,
->> +						      "failed to read IPM ceiling\n");
->> +					goto err;
->> +				}
->> +			}
->> +
->> +			/*
->> +			 * Variants of the SoC having reduced number of cpus operate
->> +			 * with the same number of logical cpus but the physical
->> +			 * cpu disabled will differ between parts. Calculate the
->> +			 * physical cpu number using cluster information instead.
->> +			 */
->> +			populate_physical_mask(monitor_np, &monitor->mask, info->cluster_info);
->> +
->> +			monitor->freq_map = init_cpufreq_memfreq_map(&sdev->dev, memory, monitor_np,
->> +								     &monitor->freq_map_len);
->> +			if (IS_ERR(monitor->freq_map)) {
->> +				dev_err_probe(&sdev->dev, PTR_ERR(monitor->freq_map),
->> +					      "failed to populate cpufreq-memfreq map\n");
->> +				goto err;
->> +			}
->> +
->> +			strscpy(monitor->mon_name, name, sizeof(monitor->mon_name));
->> +			monitor->mon_idx = memory->monitor_cnt;
->> +
->> +			memory->monitor[memory->monitor_cnt++] = monitor;
->> +		} while (1);
->> +
->> +		if (!memory->monitor_cnt) {
->> +			ret = -EINVAL;
->> +			dev_err_probe(&sdev->dev, ret, "failed to find monitor nodes\n");
->> +			goto err;
->> +		}
->> +	} while (1);
->> +
->> +	if (!info->memory_cnt) {
->> +		ret = -EINVAL;
->> +		dev_err_probe(&sdev->dev, ret, "failed to find memory nodes\n");
->> +	}
->> +
->> +err:
->> +	of_node_put(sdev->dev.of_node);
->> +
->> +	return ret;
->> +}
->> +
->> +static int configure_cpucp_common_events(struct scmi_memlat_info *info)
->> +{
->> +	const struct qcom_generic_ext_ops *ops = info->ops;
->> +	u8 ev_map[NUM_COMMON_EVS];
->> +	struct ev_map_msg msg;
->> +
->> +	memset(ev_map, 0xFF, NUM_COMMON_EVS);
->> +
->> +	msg.num_evs = NUM_COMMON_EVS;
->> +	msg.hw_type = INVALID_IDX;
->> +	msg.cid[INST_IDX] = EV_INST_RETIRED;
->> +	msg.cid[CYC_IDX] = EV_CPU_CYCLES;
->> +	msg.cid[CONST_CYC_IDX] = INVALID_IDX;
->> +	msg.cid[FE_STALL_IDX] = INVALID_IDX;
->> +	msg.cid[BE_STALL_IDX] = INVALID_IDX;
->> +
->> +	return ops->set_param(info->ph, &msg, sizeof(msg), MEMLAT_ALGO_STR,
->> +			      MEMLAT_SET_COMMON_EV_MAP);
->> +}
->> +
->> +static int configure_cpucp_grp(struct device *dev, struct scmi_memlat_info *info, int memory_index)
->> +{
->> +	const struct qcom_generic_ext_ops *ops = info->ops;
->> +	struct scmi_memory_info *memory = info->memory[memory_index];
->> +	struct ev_map_msg ev_msg;
->> +	u8 ev_map[NUM_GRP_EVS];
->> +	struct node_msg msg;
->> +	int ret;
->> +
->> +	msg.cpumask = 0;
->> +	msg.hw_type = memory->hw_type;
->> +	msg.mon_type = 0;
->> +	msg.mon_idx = 0;
->> +	ret = ops->set_param(info->ph, &msg, sizeof(msg), MEMLAT_ALGO_STR, MEMLAT_SET_MEM_GROUP);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, ret, "failed to configure mem type %d\n",
->> +				     memory->hw_type);
->> +
->> +	memset(ev_map, 0xFF, NUM_GRP_EVS);
->> +	ev_msg.num_evs = NUM_GRP_EVS;
->> +	ev_msg.hw_type = memory->hw_type;
->> +	ev_msg.cid[MISS_IDX] = EV_L2_D_RFILL;
->> +	ev_msg.cid[WB_IDX] = INVALID_IDX;
->> +	ev_msg.cid[ACC_IDX] = INVALID_IDX;
->> +	ret = ops->set_param(info->ph, &ev_msg, sizeof(ev_msg), MEMLAT_ALGO_STR,
->> +			     MEMLAT_SET_GRP_EV_MAP);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, ret, "failed to configure event map for mem type %d\n",
->> +				     memory->hw_type);
->> +
->> +	return ret;
->> +}
->> +
->> +static int configure_cpucp_mon(struct device *dev, struct scmi_memlat_info *info,
->> +			       int memory_index, int monitor_index)
->> +{
->> +	const struct qcom_generic_ext_ops *ops = info->ops;
->> +	struct scmi_memory_info *memory = info->memory[memory_index];
->> +	struct scmi_monitor_info *monitor = memory->monitor[monitor_index];
->> +	struct scalar_param_msg scalar_msg;
->> +	struct map_param_msg map_msg;
->> +	struct node_msg msg;
->> +	int ret;
->> +	int i;
->> +
->> +	msg.cpumask = monitor->mask;
->> +	msg.hw_type = memory->hw_type;
->> +	msg.mon_type = monitor->mon_type;
->> +	msg.mon_idx = monitor->mon_idx;
->> +	strscpy(msg.mon_name, monitor->mon_name, sizeof(msg.mon_name));
->> +	ret = ops->set_param(info->ph, &msg, sizeof(msg), MEMLAT_ALGO_STR, MEMLAT_SET_MONITOR);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, ret, "failed to configure monitor %s\n",
->> +				     monitor->mon_name);
->> +
->> +	scalar_msg.hw_type = memory->hw_type;
->> +	scalar_msg.mon_idx = monitor->mon_idx;
->> +	scalar_msg.val = monitor->ipm_ceil;
->> +	ret = ops->set_param(info->ph, &scalar_msg, sizeof(scalar_msg), MEMLAT_ALGO_STR,
->> +			     MEMLAT_IPM_CEIL);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, ret, "failed to set ipm ceil for %s\n",
->> +				     monitor->mon_name);
->> +
->> +	map_msg.hw_type = memory->hw_type;
->> +	map_msg.mon_idx = monitor->mon_idx;
->> +	map_msg.nr_rows = monitor->freq_map_len;
->> +	for (i = 0; i < monitor->freq_map_len; i++) {
->> +		map_msg.tbl[i].v1 = monitor->freq_map[i].cpufreq_mhz;
->> +		map_msg.tbl[i].v2 = monitor->freq_map[i].memfreq_khz;
->> +	}
->> +	ret = ops->set_param(info->ph, &map_msg, sizeof(map_msg), MEMLAT_ALGO_STR,
->> +			     MEMLAT_MON_FREQ_MAP);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, ret, "failed to configure freq_map for %s\n",
->> +				     monitor->mon_name);
->> +
->> +	scalar_msg.hw_type = memory->hw_type;
->> +	scalar_msg.mon_idx = monitor->mon_idx;
->> +	scalar_msg.val = memory->min_freq;
->> +	ret = ops->set_param(info->ph, &scalar_msg, sizeof(scalar_msg), MEMLAT_ALGO_STR,
->> +			     MEMLAT_SET_MIN_FREQ);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, ret, "failed to set min_freq for %s\n",
->> +				     monitor->mon_name);
->> +
->> +	scalar_msg.hw_type = memory->hw_type;
->> +	scalar_msg.mon_idx = monitor->mon_idx;
->> +	scalar_msg.val = memory->max_freq;
->> +	ret = ops->set_param(info->ph, &scalar_msg, sizeof(scalar_msg), MEMLAT_ALGO_STR,
->> +			     MEMLAT_SET_MAX_FREQ);
->> +	if (ret < 0)
->> +		dev_err_probe(dev, ret, "failed to set max_freq for %s\n", monitor->mon_name);
->> +
->> +	return ret;
->> +}
->> +
->> +static int cpucp_memlat_init(struct scmi_device *sdev)
->> +{
->> +	const struct scmi_handle *handle = sdev->handle;
->> +	const struct qcom_generic_ext_ops *ops;
->> +	struct scmi_protocol_handle *ph;
->> +	struct scmi_memlat_info *info;
->> +	u32 cpucp_freq_method = CPUCP_DEFAULT_FREQ_METHOD;
->> +	u32 cpucp_sample_ms = CPUCP_DEFAULT_SAMPLING_PERIOD_MS;
->> +	int ret, i, j;
->> +
->> +	if (!handle)
->> +		return -ENODEV;
->> +
->> +	ops = handle->devm_protocol_get(sdev, SCMI_PROTOCOL_QCOM_GENERIC, &ph);
->> +	if (IS_ERR(ops))
->> +		return PTR_ERR(ops);
->> +
->> +	info = devm_kzalloc(&sdev->dev, sizeof(*info), GFP_KERNEL);
->> +	if (!info)
->> +		return -ENOMEM;
->> +
->> +	ret = process_scmi_memlat_of_node(sdev, info);
->> +	if (ret)
->> +		return ret;
->> +
->> +	info->ph = ph;
->> +	info->ops = ops;
->> +
->> +	/* Configure common events ids */
->> +	ret = configure_cpucp_common_events(info);
->> +	if (ret < 0)
->> +		return dev_err_probe(&sdev->dev, ret, "failed to configure common events\n");
->> +
->> +	for (i = 0; i < info->memory_cnt; i++) {
->> +		/* Configure per group parameters */
->> +		ret = configure_cpucp_grp(&sdev->dev, info, i);
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		for (j = 0; j < info->memory[i]->monitor_cnt; j++) {
->> +			/* Configure per monitor parameters */
->> +			ret = configure_cpucp_mon(&sdev->dev, info, i, j);
->> +			if (ret < 0)
->> +				return ret;
->> +		}
->> +	}
->> +
->> +	/* Set loop sampling time */
->> +	ret = ops->set_param(ph, &cpucp_sample_ms, sizeof(cpucp_sample_ms), MEMLAT_ALGO_STR,
->> +			     MEMLAT_SAMPLE_MS);
->> +	if (ret < 0)
->> +		return dev_err_probe(&sdev->dev, ret, "failed to set sample_ms\n");
->> +
->> +	/* Set the effective cpu frequency calculation method */
->> +	ret = ops->set_param(ph, &cpucp_freq_method, sizeof(cpucp_freq_method), MEMLAT_ALGO_STR,
->> +			     MEMLAT_SET_EFFECTIVE_FREQ_METHOD);
->> +	if (ret < 0)
->> +		return dev_err_probe(&sdev->dev, ret,
->> +				     "failed to set effective frequency calc method\n");
->> +
->> +	/* Start sampling and voting timer */
->> +	ret = ops->start_activity(ph, NULL, 0, MEMLAT_ALGO_STR, MEMLAT_START_TIMER);
->> +	if (ret < 0)
->> +		dev_err_probe(&sdev->dev, ret, "failed to start memory group timer\n");
->> +
->> +	return ret;
->> +}
->> +
->> +static int scmi_client_probe(struct scmi_device *sdev)
->> +{
->> +	return cpucp_memlat_init(sdev);
-> 
-> Inline it here, please.
-
-ack.
-
--Sibi
-
-> 
->> +}
->> +
->> +static const struct scmi_device_id scmi_id_table[] = {
->> +	{ SCMI_PROTOCOL_QCOM_GENERIC, "qcom-generic-ext" },
->> +	{ },
->> +};
->> +MODULE_DEVICE_TABLE(scmi, scmi_id_table);
->> +
->> +static struct scmi_driver qcom_scmi_client_drv = {
->> +	.name		= "scmi-qcom-generic-ext-memlat",
->> +	.probe		= scmi_client_probe,
->> +	.id_table	= scmi_id_table,
->> +};
->> +module_scmi_driver(qcom_scmi_client_drv);
->> +
->> +MODULE_DESCRIPTION("QTI SCMI client driver");
->> +MODULE_LICENSE("GPL");
->> -- 
->> 2.34.1
->>
-> 
+Hi Krzysztof,=0A=
+=0A=
+>> Convert the text bindings of pinctrl-mcp23s08 to YAML so it could be use=
+d to=0A=
+>> validate the DTS.=0A=
+>>=0A=
+>=0A=
+>You silently dropped several compatibles. Document clearly what and why=0A=
+>you changed from original binding during conversion.=0A=
+=0A=
+Sure, will do it =0A=
+=0A=
+>> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
+>> ---=0A=
+>>=A0 .../bindings/pinctrl/pinctrl-mcp23s08.txt=A0=A0=A0=A0 | 148 ---------=
+--------=0A=
+>>=A0 .../bindings/pinctrl/pinctrl-mcp23s08.yaml=A0=A0=A0 | 153 +++++++++++=
++++++++=0A=
+>=0A=
+>Filename based on compatible, so microchip,mcp23s08.yaml.=0A=
+=0A=
+ok I will change.=0A=
+=0A=
+>>=A0 2 files changed, 153 insertions(+), 148 deletions(-)=0A=
+>>=A0 delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-=
+mcp23s08.txt=0A=
+>>=A0 create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-=
+mcp23s08.yaml=0A=
+=0A=
+...=0A=
+=0A=
+>> -};=0A=
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.=
+yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.yaml=0A=
+>> new file mode 100644=0A=
+>> index 000000000000..3904b8adba44=0A=
+>> --- /dev/null=0A=
+>> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.yaml=0A=
+>> @@ -0,0 +1,153 @@=0A=
+>> +# SPDX-License-Identifier: GPL-2.0-only=0A=
+>> +# Copyright 2024 Silicon Signals Pvt. Ltd.=0A=
+>=0A=
+>I don't see how Silicon signals contributed to original binding in=0A=
+>a157789b78f4e95f5d66f8b564356e396716f67e and I feel above suggests it is=
+=0A=
+>a new work, not derivative. And if you claim this is not derivative=0A=
+>work, then why not licensed as checkpatch asks? IOW, I suggest dropping=0A=
+>copyright statement.=0A=
+=0A=
+sure, I will drop it.=0A=
+=0A=
+>> +%YAML 1.2=0A=
+>> +---=0A=
+>> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-mcp23s08.yaml#=0A=
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#=0A=
+>> +=0A=
+>> +title: Microchip I/O expander with serial interface (I2C/SPI)=0A=
+>> +=0A=
+>> +maintainers:=0A=
+>> +=A0 - Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
+>> +=0A=
+>> +description: |=0A=
+>=0A=
+>Do not need '|' unless you need to preserve formatting.=0A=
+=0A=
+okay.=0A=
+=0A=
+>> +=A0 Microchip MCP23008, MCP23017, MCP23S08, MCP23S17, MCP23S18 GPIO exp=
+ander=0A=
+>> +=A0 chips.These chips provide 8 or 16 GPIO pins with either I2C or SPI =
+interface.=0A=
+>> +=0A=
+>> +properties:=0A=
+>> +=A0 compatible:=0A=
+>> +=A0=A0=A0 enum:=0A=
+>> +=A0=A0=A0=A0=A0 - microchip,mcp23s08=0A=
+>> +=A0=A0=A0=A0=A0 - microchip,mcp23s17=0A=
+>> +=A0=A0=A0=A0=A0 - microchip,mcp23s18=0A=
+>> +=A0=A0=A0=A0=A0 - microchip,mcp23008=0A=
+>> +=A0=A0=A0=A0=A0 - microchip,mcp23017=0A=
+>> +=A0=A0=A0=A0=A0 - microchip,mcp23018=0A=
+>> +=0A=
+>> +=A0 reg:=0A=
+>> +=A0=A0=A0 maxItems: 1=0A=
+> >+=0A=
+> >+=A0 gpio-controller: true=0A=
+> >+=0A=
+> >+=A0 '#gpio-cells':=0A=
+> >+=A0=A0=A0 const: 2=0A=
+> >+=0A=
+> >+=A0 interrupt-controller: true=0A=
+> >+=0A=
+> >+=A0 '#interrupt-cells':=0A=
+> >+=A0=A0=A0 const: 2=0A=
+> >+=0A=
+> >+=A0 interrupts:=0A=
+> >+=A0=A0=A0 maxItems: 1=0A=
+> >+=0A=
+> >+=A0 reset-gpios:=0A=
+> >+=A0=A0=A0 description: GPIO specifier for active-low reset pin.=0A=
+> >+=A0=A0=A0 maxItems: 1=0A=
+> >+=0A=
+> >+=A0 spi-max-frequency:=0A=
+> >+=A0=A0=A0 description: Maximum frequency for SPI devices.=0A=
+>=0A=
+>Drop, not needed. Is this a device on SPI bus? Then you miss ref to=0A=
+>spi-peripheral-props.=0A=
+=0A=
+yes device is on SPI bus. I will add reference=0A=
+=0A=
+>> +=0A=
+>> +=A0 microchip,spi-present-mask:=0A=
+>> +=A0=A0=A0 description: |=0A=
+>=0A=
+>Do not need '|' unless you need to preserve formatting.=0A=
+=0A=
+sure,=0A=
+=0A=
+>> +=A0=A0=A0=A0=A0 SPI present mask. Specifies which chips are present on =
+the shared SPI=0A=
+>> +=A0=A0=A0=A0=A0 chipselect. Each bit in the mask represents one SPI add=
+ress.=0A=
+>> +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/uint8=0A=
+>=0A=
+>Where is the entire description from old binding?=0A=
+=0A=
+Okay I will add whole description=0A=
+=0A=
+>> +=0A=
+>> +=A0 microchip,irq-mirror:=0A=
+>> +=A0=A0=A0 type: boolean=0A=
+>> +=A0=A0=A0 description: |=0A=
+> >+=A0=A0=A0=A0=A0 Sets the mirror flag in the IOCON register. Devices wit=
+h two interrupt=0A=
+> >+=A0=A0=A0=A0=A0 outputs (these are the devices ending with 17 and those=
+ that have 16 IOs)=0A=
+> >+=A0=A0=A0=A0=A0 have two IO banks IO 0-7 form bank 1 and IO 8-15 are ba=
+nk 2. These chips=0A=
+> >+=A0=A0=A0=A0=A0 have two different interrupt outputs One for bank 1 and=
+ another for=0A=
+>> +=A0=A0=A0=A0=A0 bank 2. If irq-mirror is set, both interrupts are gener=
+ated regardless of=0A=
+>> +=A0=A0=A0=A0=A0 the bank that an input change occurred on. If it is not=
+ set,the interrupt=0A=
+>> +=A0=A0=A0=A0=A0 are only generated for the bank they belong to.=0A=
+> >+=0A=
+> >+=A0 microchip,irq-active-high:=0A=
+> >+=A0=A0=A0 type: boolean=0A=
+> >+=A0=A0=A0 description: |=0A=
+> >+=A0=A0=A0=A0=A0 Sets the INTPOL flag in the IOCON register.This configu=
+res the IRQ output=0A=
+> >+=A0=A0=A0=A0=A0 polarity as active high.=0A=
+> >+=0A=
+> >+=A0 drive-open-drain:=0A=
+> >+=A0=A0=A0 type: boolean=0A=
+> >+=A0=A0=A0 description: |=0A=
+> >+=A0=A0=A0=A0=A0 Sets the ODR flag in the IOCON register. This configure=
+s the IRQ output as=0A=
+> >+=A0=A0=A0=A0=A0 open drain active low.=0A=
+> >+=0A=
+> >+=A0 pinmux:=0A=
+> >+=A0=A0=A0 type: object=0A=
+> >+=A0=A0=A0 properties:=0A=
+> >+=A0=A0=A0=A0=A0 pins:=0A=
+> >+=A0=A0=A0=A0=A0=A0=A0 description: |=0A=
+> >+=A0=A0=A0=A0=A0=A0=A0=A0=A0 The list of GPIO pins controlled by this no=
+de. Each pin name corresponds=0A=
+> >+=A0=A0=A0=A0=A0=A0=A0=A0=A0 to a physical pin on the GPIO expander.=0A=
+> >+=A0=A0=A0=A0=A0=A0=A0 items:=0A=
+> >+=A0=A0=A0=A0=A0=A0=A0=A0=A0 pattern: "^gpio([0-9]|[1][0-5])$"=0A=
+> >+=A0=A0=A0=A0=A0=A0=A0 maxItems: 16=0A=
+> >+=0A=
+> >+=A0=A0=A0=A0=A0 bias-pull-up:=0A=
+> >+=A0=A0=A0=A0=A0=A0=A0 type: boolean=0A=
+> >+=A0=A0=A0=A0=A0=A0=A0 description: Configures pull-up resistors for the=
+ GPIO pins.=0A=
+> >+=0A=
+> >+=A0=A0=A0 required:=0A=
+> >+=A0=A0=A0=A0=A0 - pins=0A=
+> >+=A0=A0=A0=A0=A0 - bias-pull-up=0A=
+>=0A=
+>This does not make much sense, why pull up is always required?=0A=
+=0A=
+Not always but you can configure as pull-up.=0A=
+=0A=
+If you suggest then I will give two different example in i2c, with or witho=
+ut pull-up as old bindings had.=0A=
+=0A=
+and in pinmux I will add description for pull-up .=0A=
+=0A=
+=0A=
+Best regards,=0A=
+Himanshu=0A=
+=0A=
+> +=0A=
+> +=A0=A0=A0 additionalProperties: false=0A=
+> +=0A=
+> +required:=0A=
+> +=A0 - compatible=0A=
+> +=A0 - reg=0A=
+> +=A0 - gpio-controller=0A=
+> +=A0 - '#gpio-cells'=0A=
+> +=0A=
+> +additionalProperties: false=0A=
+=0A=
+________________________________________=0A=
+From:=A0Krzysztof Kozlowski <krzk@kernel.org>=0A=
+Sent:=A022 October 2024 12:03=0A=
+To:=A0Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>; linus.walleij@=
+linaro.org <linus.walleij@linaro.org>; robh@kernel.org <robh@kernel.org>; k=
+rzk+dt@kernel.org <krzk+dt@kernel.org>; conor+dt@kernel.org <conor+dt@kerne=
+l.org>=0A=
+Cc:=A0linux-gpio@vger.kernel.org <linux-gpio@vger.kernel.org>; devicetree@v=
+ger.kernel.org <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org <=
+linux-kernel@vger.kernel.org>=0A=
+Subject:=A0Re: [PATCH] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt t=
+o yaml format=0A=
+=A0=0A=
+CAUTION: This email originated from outside the organization. Do not click =
+links or open attachments unless you recognize the sender and know the cont=
+ent is safe.=0A=
+=0A=
+On 22/10/2024 08:01, Himanshu Bhavani wrote:=0A=
+> Convert the text bindings of pinctrl-mcp23s08 to YAML so it could be used=
+ to=0A=
+> validate the DTS.=0A=
+>=0A=
+=0A=
+You silently dropped several compatibles. Document clearly what and why=0A=
+you changed from original binding during conversion.=0A=
+=0A=
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
+> ---=0A=
+>=A0 .../bindings/pinctrl/pinctrl-mcp23s08.txt=A0=A0=A0=A0 | 148 ----------=
+-------=0A=
+>=A0 .../bindings/pinctrl/pinctrl-mcp23s08.yaml=A0=A0=A0 | 153 ++++++++++++=
+++++++=0A=
+=0A=
+Filename based on compatible, so microchip,mcp23s08.yaml.=0A=
+=0A=
+=0A=
+>=A0 2 files changed, 153 insertions(+), 148 deletions(-)=0A=
+>=A0 delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-m=
+cp23s08.txt=0A=
+>=A0 create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-m=
+cp23s08.yaml=0A=
+=0A=
+...=0A=
+=0A=
+> -};=0A=
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.y=
+aml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.yaml=0A=
+> new file mode 100644=0A=
+> index 000000000000..3904b8adba44=0A=
+> --- /dev/null=0A=
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.yaml=0A=
+> @@ -0,0 +1,153 @@=0A=
+> +# SPDX-License-Identifier: GPL-2.0-only=0A=
+> +# Copyright 2024 Silicon Signals Pvt. Ltd.=0A=
+=0A=
+I don't see how Silicon signals contributed to original binding in=0A=
+a157789b78f4e95f5d66f8b564356e396716f67e and I feel above suggests it is=0A=
+a new work, not derivative. And if you claim this is not derivative=0A=
+work, then why not licensed as checkpatch asks? IOW, I suggest dropping=0A=
+copyright statement.=0A=
+=0A=
+> +%YAML 1.2=0A=
+> +---=0A=
+> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-mcp23s08.yaml#=0A=
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#=0A=
+> +=0A=
+> +title: Microchip I/O expander with serial interface (I2C/SPI)=0A=
+> +=0A=
+> +maintainers:=0A=
+> +=A0 - Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
+> +=0A=
+> +description: |=0A=
+=0A=
+Do not need '|' unless you need to preserve formatting.=0A=
+=0A=
+> +=A0 Microchip MCP23008, MCP23017, MCP23S08, MCP23S17, MCP23S18 GPIO expa=
+nder=0A=
+> +=A0 chips.These chips provide 8 or 16 GPIO pins with either I2C or SPI i=
+nterface.=0A=
+> +=0A=
+> +properties:=0A=
+> +=A0 compatible:=0A=
+> +=A0=A0=A0 enum:=0A=
+> +=A0=A0=A0=A0=A0 - microchip,mcp23s08=0A=
+> +=A0=A0=A0=A0=A0 - microchip,mcp23s17=0A=
+> +=A0=A0=A0=A0=A0 - microchip,mcp23s18=0A=
+> +=A0=A0=A0=A0=A0 - microchip,mcp23008=0A=
+> +=A0=A0=A0=A0=A0 - microchip,mcp23017=0A=
+> +=A0=A0=A0=A0=A0 - microchip,mcp23018=0A=
+> +=0A=
+> +=A0 reg:=0A=
+> +=A0=A0=A0 maxItems: 1=0A=
+> +=0A=
+> +=A0 gpio-controller: true=0A=
+> +=0A=
+> +=A0 '#gpio-cells':=0A=
+> +=A0=A0=A0 const: 2=0A=
+> +=0A=
+> +=A0 interrupt-controller: true=0A=
+> +=0A=
+> +=A0 '#interrupt-cells':=0A=
+> +=A0=A0=A0 const: 2=0A=
+> +=0A=
+> +=A0 interrupts:=0A=
+> +=A0=A0=A0 maxItems: 1=0A=
+> +=0A=
+> +=A0 reset-gpios:=0A=
+> +=A0=A0=A0 description: GPIO specifier for active-low reset pin.=0A=
+> +=A0=A0=A0 maxItems: 1=0A=
+> +=0A=
+> +=A0 spi-max-frequency:=0A=
+> +=A0=A0=A0 description: Maximum frequency for SPI devices.=0A=
+=0A=
+Drop, not needed. Is this a device on SPI bus? Then you miss ref to=0A=
+spi-peripheral-props.=0A=
+=0A=
+=0A=
+> +=0A=
+> +=A0 microchip,spi-present-mask:=0A=
+> +=A0=A0=A0 description: |=0A=
+=0A=
+Do not need '|' unless you need to preserve formatting.=0A=
+=0A=
+> +=A0=A0=A0=A0=A0 SPI present mask. Specifies which chips are present on t=
+he shared SPI=0A=
+> +=A0=A0=A0=A0=A0 chipselect. Each bit in the mask represents one SPI addr=
+ess.=0A=
+> +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/uint8=0A=
+=0A=
+Where is the entire description from old binding?=0A=
+=0A=
+> +=0A=
+> +=A0 microchip,irq-mirror:=0A=
+> +=A0=A0=A0 type: boolean=0A=
+> +=A0=A0=A0 description: |=0A=
+> +=A0=A0=A0=A0=A0 Sets the mirror flag in the IOCON register. Devices with=
+ two interrupt=0A=
+> +=A0=A0=A0=A0=A0 outputs (these are the devices ending with 17 and those =
+that have 16 IOs)=0A=
+> +=A0=A0=A0=A0=A0 have two IO banks IO 0-7 form bank 1 and IO 8-15 are ban=
+k 2. These chips=0A=
+> +=A0=A0=A0=A0=A0 have two different interrupt outputs One for bank 1 and =
+another for=0A=
+> +=A0=A0=A0=A0=A0 bank 2. If irq-mirror is set, both interrupts are genera=
+ted regardless of=0A=
+> +=A0=A0=A0=A0=A0 the bank that an input change occurred on. If it is not =
+set,the interrupt=0A=
+> +=A0=A0=A0=A0=A0 are only generated for the bank they belong to.=0A=
+> +=0A=
+> +=A0 microchip,irq-active-high:=0A=
+> +=A0=A0=A0 type: boolean=0A=
+> +=A0=A0=A0 description: |=0A=
+> +=A0=A0=A0=A0=A0 Sets the INTPOL flag in the IOCON register.This configur=
+es the IRQ output=0A=
+> +=A0=A0=A0=A0=A0 polarity as active high.=0A=
+> +=0A=
+> +=A0 drive-open-drain:=0A=
+> +=A0=A0=A0 type: boolean=0A=
+> +=A0=A0=A0 description: |=0A=
+> +=A0=A0=A0=A0=A0 Sets the ODR flag in the IOCON register. This configures=
+ the IRQ output as=0A=
+> +=A0=A0=A0=A0=A0 open drain active low.=0A=
+> +=0A=
+> +=A0 pinmux:=0A=
+> +=A0=A0=A0 type: object=0A=
+> +=A0=A0=A0 properties:=0A=
+> +=A0=A0=A0=A0=A0 pins:=0A=
+> +=A0=A0=A0=A0=A0=A0=A0 description: |=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 The list of GPIO pins controlled by this nod=
+e. Each pin name corresponds=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 to a physical pin on the GPIO expander.=0A=
+> +=A0=A0=A0=A0=A0=A0=A0 items:=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 pattern: "^gpio([0-9]|[1][0-5])$"=0A=
+> +=A0=A0=A0=A0=A0=A0=A0 maxItems: 16=0A=
+> +=0A=
+> +=A0=A0=A0=A0=A0 bias-pull-up:=0A=
+> +=A0=A0=A0=A0=A0=A0=A0 type: boolean=0A=
+> +=A0=A0=A0=A0=A0=A0=A0 description: Configures pull-up resistors for the =
+GPIO pins.=0A=
+> +=0A=
+> +=A0=A0=A0 required:=0A=
+> +=A0=A0=A0=A0=A0 - pins=0A=
+> +=A0=A0=A0=A0=A0 - bias-pull-up=0A=
+=0A=
+This does not make much sense, why pull up is always required?=0A=
+=0A=
+> +=0A=
+> +=A0=A0=A0 additionalProperties: false=0A=
+> +=0A=
+> +required:=0A=
+> +=A0 - compatible=0A=
+> +=A0 - reg=0A=
+> +=A0 - gpio-controller=0A=
+> +=A0 - '#gpio-cells'=0A=
+> +=0A=
+> +additionalProperties: false=0A=
+=0A=
+=0A=
+=0A=
+Best regards,=0A=
+Krzysztof=0A=
 
