@@ -1,191 +1,220 @@
-Return-Path: <devicetree+bounces-114293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F34B9AB35C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:07:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7FF59AB360
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEAA2285952
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:07:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B56371C209EA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCAA61BA272;
-	Tue, 22 Oct 2024 16:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96F71B141D;
+	Tue, 22 Oct 2024 16:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cJSPzcCW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bFowMhYW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2640139CEF;
-	Tue, 22 Oct 2024 16:05:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F1B41A7066;
+	Tue, 22 Oct 2024 16:06:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729613121; cv=none; b=HMMAak0KOEG7EWyBhI5Hcuq/yu4TFtlmjaI6qcc7YoDBQeyw//PMlIhxIqbEtDKwS3p1Rb/WZsl5xgWyu2JuMfdZuyjK9ed9Gub04H9HH/M/FOCxQVr/vzw3/tp5Rf88JZFee/2UYt748V/D/UdfTPSVHM3ZaQul6iCiH/L1wyI=
+	t=1729613172; cv=none; b=aYLcCv1g4XCdkZ6+GJIvEXMKalz7PjLlYQN7WyzpddvvZ1FhCjiQMkmdKh9zsvcI8x9AEHCuMvMOjtpX5Leos3mk4KCI814ISA/aGTlbZQVqiMwGYjDg/VL+EA2y/bUXifam9kw922nIlcv/fOHZzJFt++zQr0f8YJ83xiU3ReE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729613121; c=relaxed/simple;
-	bh=OynJaLzMucy3vyn4kZXuh4tD4dsnHaoATki7l4g0SmM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=V0csBPn3mCtkxhH+6RzRBpQ2b7feBCEpWHBLXfYfrJlGTxTVSScNERtEpiEdQQvTddI5a1C8ir/vG1cEi8z/Kks/YZfPZtV/4mgY8aLy+k/I5IoGb206CE8rLmMffXYy9EmaKASg8HOuECVvA7gOl/4/EOeF7NHrrmIaI8cbZzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cJSPzcCW; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729613117;
-	bh=OynJaLzMucy3vyn4kZXuh4tD4dsnHaoATki7l4g0SmM=;
-	h=From:Date:Subject:To:Cc:From;
-	b=cJSPzcCWjFLx6mkYM+D4SNX8Nk0MW+obST65upmRoc37JhwJb2tiy6WNT8/TfU02O
-	 KMwsLCr13ftAJt5XEkynWkHmaB7rNhgFOJZ/VWkEtCV7B5pdT0WP3FZLqPP7HYindA
-	 vW0oqi8GHrUowMvqQ52EA5wX0gBiZVtGrD+S6el+jFspQZTD0iezRInZZgu/8NJis3
-	 gZF7ToI/9yOs4vpzt8jUUy2c2gG9g3x2vXwGO7IXeiAZqZZteEBS4X9zuF5d+RuSn5
-	 yoVrIEzcs1LFJH8FycR+s7lL+K2cONMi3ym+ezH+89t/m/g47KNJHKOKJGbzCD0psE
-	 xPUKxupBP6bgg==
-Received: from localhost (unknown [188.24.146.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C0F2717E3677;
-	Tue, 22 Oct 2024 18:05:17 +0200 (CEST)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Tue, 22 Oct 2024 19:04:42 +0300
-Subject: [PATCH v3] arm64: dts: rockchip: Enable HDMI0 on rock-5a
+	s=arc-20240116; t=1729613172; c=relaxed/simple;
+	bh=oRFDm+iedatU2fV8V3MjHkys9bVf+nOjhkvEO5L675M=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iJjRTkEXscsO/NvV/Hhr/mDNHzMXdSQ/UAmsM1lsI7qVps3yhoJcHR5GzREqbeqDSi+KghgUyucmL5czXAVInFEW+lGiTxZEb2m4OYEcUwS/SKHJ+pVfO7pxcFd62qbJHO+Fl7KEBHWFttXffF+Zmq96kLKhmx+cHZexLDodPyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bFowMhYW; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4315f24a6bbso49991215e9.1;
+        Tue, 22 Oct 2024 09:06:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729613169; x=1730217969; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=fxWrldtj8CkDnO6DhUP04cjtdJoNzqSbZK7oqpPnv/8=;
+        b=bFowMhYWYIZDpDv+K1RAbOh7CwXPkYsGSSi3TGsu4wkdBqqMLMQqmbln/2pDW5OuSz
+         MMLz2ZYdErP6J36cMPPhEo8t6BMXwwV3gfGuBi0AlFVpbhm1feXmlXjX9mwWkpa4jrlH
+         KQrM9Ji3pnf62zVUvFIPh5KrdwWdyawwInIkAQTlK5cvOAMQcQNKDqbRrNOdYVdY//Bz
+         MtApJXmLTrS6S3Wgsgbm+Z8p06/fsa+Vn/u5Cqwe0X1io3q1Mehi3EigoOUkQzNxC/Zr
+         /f2Q6bjDHiDy9RNXM8HlxrrDaQ56vr/QMpGzVQB4IfKW59lvNXfraAJ9Dna8a97+JDK8
+         c+Jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729613169; x=1730217969;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fxWrldtj8CkDnO6DhUP04cjtdJoNzqSbZK7oqpPnv/8=;
+        b=XlWY+8OiVGOixgkjNgHCXp/84Gv9LkW8HlLJ26rqlSf6I9Qqdd7fvWYgCuJJ7MKHUo
+         VzONUbLannl2VseQQDsD1oQt5S7TGGdNX2q0wm2BPH9nNLe0YJbON9rHMW4P7nolPErH
+         CoLZ/cec4WI2icpgMkzjYRX4uunlyOzNQ4QA6tk7rdK/Vls6gd2llDvFUwXluXv4rY9O
+         p2wP74LgjYrME2lJM1D4NzT0ZXzrSKDMZessAw15P4sTxrKAI9NvRWvKOyaVG3FKbw0p
+         fCeoWvI9K90lAkIqTFyRQNAcXxRS8aGdMg03xz8Gfow6jf1ATspJ0luUXSw+Izg0j18T
+         FA2A==
+X-Forwarded-Encrypted: i=1; AJvYcCVdNL/snafsVhKCR70mFZV7iLiYhziEvsKH3fKmKy3b83/jETZX8TBw36iyecUsqXmXBhSjqNHEj8XH@vger.kernel.org, AJvYcCWjLrKhpkOHsqHYNn59PYv2NA9nj36t2DBPJTCj7Mf2wgf1e/usLcQ84oYyX8q33LPagHAxdkcL47W5@vger.kernel.org, AJvYcCXxfqfJtE9tD/rDDR/S3JNFRFND5xHpSe9SxsZ3wThePV9U0C408EUTdgVbhqWReFTa5OR3QvXpFw1o2w==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfEYEh0yTkRogycc4/dFSvmzJmx38DDV++WjDc6HAlNOsZcxrt
+	UX2Dxb+aT74S8fBEg4z4AKWSEU4tK+N/CQLy2Cnpmr0hbHn/qZNv
+X-Google-Smtp-Source: AGHT+IGn+ZvQ2I0cnepX3Iem8TmtbcezWfjPrq8BYpHnSfPOy22mKwtv0GTJLAfmSkZIvd++rl2lXA==
+X-Received: by 2002:a05:600c:4709:b0:430:56c1:644c with SMTP id 5b1f17b1804b1-43161693a2emr116369875e9.31.1729613168980;
+        Tue, 22 Oct 2024 09:06:08 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37a2fsm6921282f8f.22.2024.10.22.09.06.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 09:06:08 -0700 (PDT)
+Message-ID: <6717cd70.df0a0220.850c6.7b5d@mx.google.com>
+X-Google-Original-Message-ID: <ZxfNbgbroaqiZhkf@Ansuel-XPS.>
+Date: Tue, 22 Oct 2024 18:06:06 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v8 3/6] dt-bindings: pwm: airoha: Add EN7581 pwm
+References: <20241018-en7581-pinctrl-v8-0-b676b966a1d1@kernel.org>
+ <20241018-en7581-pinctrl-v8-3-b676b966a1d1@kernel.org>
+ <20241021190053.GA948525-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241022-rk3588-hdmi0-dt-v3-1-3cc981e89afb@collabora.com>
-X-B4-Tracking: v=1; b=H4sIABnNF2cC/4XNTQ7CIBCG4as0rMUM9EfoynsYF5QBS2yLgYZom
- t5d2sSNLly+XzLPLCSa4EwkbbGQYJKLzk85ykNBdK+mm6EOcxMOvGLABA33shaC9jg6oDhTplh
- ZI8CpUZbkq0cw1j138XLN3bs4+/DaHyS2rR9L/liJUaAdCsultEZpPGs/DKrzQR21H8nmJf7H4
- NmomkajACOsld/Guq5vYTSqjPYAAAA=
-X-Change-ID: 20241018-rk3588-hdmi0-dt-1a135d0076af
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241021190053.GA948525-robh@kernel.org>
 
-Add the necessary DT changes to enable HDMI0 on Radxa ROCK 5A.
+On Mon, Oct 21, 2024 at 02:00:53PM -0500, Rob Herring wrote:
+> On Fri, Oct 18, 2024 at 03:19:04PM +0200, Lorenzo Bianconi wrote:
+> > Introduce device-tree binding documentation for Airoha EN7581 pwm
+> > controller.
+> > 
+> > Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  .../devicetree/bindings/pwm/airoha,en7581-pwm.yaml | 61 ++++++++++++++++++++++
+> >  1 file changed, 61 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml b/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..fb68c10b037b840a571a2ceee57f13cbae78da66
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pwm/airoha,en7581-pwm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Airoha EN7581 PWM Controller
+> > +
+> > +maintainers:
+> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> > +
+> > +allOf:
+> > +  - $ref: pwm.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: airoha,en7581-pwm
+> > +
+> > +  "#pwm-cells":
+> > +    const: 3
+> > +
+> > +  airoha,74hc595-mode:
+> > +    description: Set the PWM to handle attached shift register chip 74HC595.
+> > +
+> > +      With this disabled, PWM assume a 74HC164 chip attached.
+> > +
+> > +      The main difference between the 2 chip is the presence of a latch pin
+> > +      that needs to triggered to apply the configuration and PWM needs to
+> > +      account for that.
+> > +    type: boolean
+> > +
+> > +  airoha,sipo-clock-divisor:
+> > +    description: Declare Shift Register chip clock divisor (clock source is
+> > +      from SoC APB Clock)
+> 
+> Where is the clock source defined?
+> 
+> You can specify the PWM frequency in PWM cells and should be able to get 
+> the APB Clock frequency. Then you can calculate the divider.
+>
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
-Since the initial support for the RK3588 HDMI TX Controller [1] has been
-merged as of next-20241018, let's enable the HDMI0 output port for the
-following boards: Radxa ROCK 5A & 5B, Rockchip RK3588 EVB1 V10, Xunlong
-Orange Pi 5+.
+Hi Rob,
 
-Thanks,
-Cristian
+this property is related to the Shift Register chip and is not related
+to the clock of the PWM.
 
-[1]: https://lore.kernel.org/all/20241016-b4-rk3588-bridge-upstream-v10-0-87ef92a6d14e@collabora.com/
----
-Changes in v3:
-- Used the proper (i.e. micro) HDMI connector type for ROCK 5A (Jonas)
-- Rebased series onto next-20241022 and dropped patches already merged
-  by Heiko
-- Link to v2: https://lore.kernel.org/r/20241019-rk3588-hdmi0-dt-v2-0-466cd80e8ff9@collabora.com
+It's really to configure the clock that will be feed to Shift Register
+chip if for whatever reason one OEM mount a different kind (but still
+register compatible) and requires to run at higher clock rate.
 
-Changes in v2:
-- Updated descriptions for rock-5a & rock-5b patches to include Radxa,
-  per Naoki's review; also collected his Tested-by on the latter
-- Included Naoki's HPD pin related fix in rock-5a patch and dropped the
-  UNTESTED prefix from the subject
-- Link to v1: https://lore.kernel.org/r/20241019-rk3588-hdmi0-dt-v1-0-bd8f299feacd@collabora.com
----
- arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 52 ++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+We can consider hardcoding it if really needed but considering the case
+with 2 different kind of shift register supported, I assume configuring
+this might be needed on some corner case Devices.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-index 5882027ab64c94066ead9a1c6cc84226968a69c8..3ca23555d90c5fedd95d4e8681c073b6523f5bf8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-@@ -5,6 +5,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include "rk3588s.dtsi"
- 
- / {
-@@ -35,6 +36,17 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		port {
-+			hdmi0_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -301,6 +313,31 @@ &gmac1_rgmii_clk
- 	status = "okay";
- };
- 
-+&hdmi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hdmim0_tx0_cec
-+		     &hdmim1_tx0_hpd
-+		     &hdmim0_tx0_scl
-+		     &hdmim0_tx0_sda>;
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi0_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi0 {
-+	status = "okay";
-+};
-+
- &mdio1 {
- 	rgmii_phy1: ethernet-phy@1 {
- 		/* RTL8211F */
-@@ -793,3 +830,18 @@ &usb_host1_ohci {
- &usb_host2_xhci {
- 	status = "okay";
- };
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
+For the clock we are not 100% but we might have an idea of what is the
+source, but still it will be just referenced and enabled in the driver
+(it's always enabled).
 
----
-base-commit: 7436324ebd147598f940dde1335b7979dbccc339
-change-id: 20241018-rk3588-hdmi0-dt-1a135d0076af
+Hope I can get some hint by you on how to proceed.
 
+Is it ok with:
+
+- Defining the attached clock
+- Keep the property
+
+?
+
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    default: 32
+> > +    enum: [4, 8, 16, 32]
+> > +
+> > +  airoha,sipo-clock-delay:
+> > +    description: Declare Serial GPIO Clock delay.
+> > +      This can be needed to permit the attached shift register to correctly
+> > +      setup and apply settings. Value must NOT be greater than
+> > +      "airoha,sipo-clock-divisor" / 2
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    default: 1
+> > +    minimum: 1
+> > +    maximum: 16
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#pwm-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    pwm {
+> > +      compatible = "airoha,en7581-pwm";
+> > +
+> > +      #pwm-cells = <3>;
+> > +    };
+> > 
+> > -- 
+> > 2.47.0
+> > 
+
+-- 
+	Ansuel
 
