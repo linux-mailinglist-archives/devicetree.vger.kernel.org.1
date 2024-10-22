@@ -1,358 +1,377 @@
-Return-Path: <devicetree+bounces-114436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274549ABA19
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 01:31:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B09199ABA2E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 01:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E520B22A7D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 23:31:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACB041C226B2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 23:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9801D1CBEAB;
-	Tue, 22 Oct 2024 23:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E2181C3F34;
+	Tue, 22 Oct 2024 23:47:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jIcFT4jf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D9EA19CC17;
-	Tue, 22 Oct 2024 23:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A1B126C05;
+	Tue, 22 Oct 2024 23:47:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729639855; cv=none; b=Fc8/UTkx+DtIpUHf95HcvGKf0rQ4sMjBRxkuvoXN3IJvtZ/m03IjsqK3YX5hEWCTLUvbfrlIgszVVwsldiRB23G8FezI1ltE/1evVUX8VddPmKYJGtB02Hi1ujp9FuaLrMiRVegOT4+Vy2o4NHmqbjnhzuORby9P3z5W0lD0E5Q=
+	t=1729640834; cv=none; b=BOKE4bDfuCwCR+r3hzePetrBJQFTCDkFuV4k2ijW3mIBTsFLnR7ERzcftFa6j3L8E3Tu7Ks9NeCPcH7kmDVBkiw0Vb1B54yVl5ysaSNoK/ieiHqrBSqLG5XgftXv7Q9+4nbk2HkyMTxOPZtGCGX/RUUWILQj8Ogd4Xi2aRHTWSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729639855; c=relaxed/simple;
-	bh=3o0Q1NRy2o/cdZfGKiKydob/soTt3l+zr6Ivj0/0PiE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YwiEDwXc+sbvehjGc1V8fx19DT0W5qGP/lDysfhlzHoJnB1SXnH06CR7H7IluEHvweHmd5oVOitrBzMM19BDkxvcONDYm/s6Qtvou9kBa0RHenGrv6khRhFOuXNPAlwvVBQlq7a8PPAZ/3TrkRpslTpPLYCBdukJuGE2JlKHmoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.34.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip4t1729639831tliqsfj
-X-QQ-Originating-IP: 0/DcOEYPZguikRtnu/sJNedCkil5KiU4+s0+y6B+8K0=
-Received: from [IPV6:240f:10b:7440:1:c796:8e4d ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 23 Oct 2024 07:30:28 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14738271466555509775
-Message-ID: <1663957A755BE820+acc57e45-954f-4b33-90fb-47f97815db96@radxa.com>
-Date: Wed, 23 Oct 2024 08:30:28 +0900
+	s=arc-20240116; t=1729640834; c=relaxed/simple;
+	bh=Px6RnOkwYLcO5EadM7A80gzX0pkRkg1cNipFiLBt1H8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MNwdlLl0Pgkexk7Yx0LE8JPW0sfzf7ig9zcJXfVXThwC8qj5VKbLA1HFCv4WzuKVl2HAPPQu8e6hExL3mkCY77S0+v2I1PitVbwOxNg218chsWTSqYyvF9Pv00+SWWJvySAE5EBXPbDpEULb3bINCJuLhdPRSRoqUaKZbjcrNss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jIcFT4jf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EA7CC4CEC3;
+	Tue, 22 Oct 2024 23:47:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729640833;
+	bh=Px6RnOkwYLcO5EadM7A80gzX0pkRkg1cNipFiLBt1H8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jIcFT4jf8+PAYhMHRA6ZJxALMOvKmrMFnzvDt0KA5QR3QxJwbIUfMLVhA8yVeRjoX
+	 s48+PwfmXo79FSVEM+0Y7zMpl1DIkK22SPXqk3hR304a/+++HGbTrN9MfNbpWCcQel
+	 6DF57GeVykSKREg+aYjADrJq/O4BQ9Ngbz40SspgxdtNuxHFXdRjeFUy5yYlFMHR/X
+	 i17w+9+JCA2B1SLNbCKYv9/bwMEOmiX9TFFd8nGRB8Lj3kuT+r/I6BLF0onWyK+oxu
+	 IaXxgYd4YdUblajh6+e/htQWdOKdIpusljXZKV2pvjI5DcAsIOGtMdjEUwi0X3h3hW
+	 OZ/tW2T7Pn5DA==
+Date: Tue, 22 Oct 2024 18:47:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
+ driver abstractions
+Message-ID: <20241022234712.GB1848992-robh@kernel.org>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-16-dakr@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add new SoC dtsi for the
- RK3566T variant
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, TL Lim <tllim@pine64.org>,
- Marek Kraus <gamiee@pine64.org>, Tom Cubie <tom@radxa.com>,
- Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
- Jonas Karlman <jonas@kwiboo.se>
-References: <cover.1728752527.git.dsimic@manjaro.org>
- <95fc64aaf6d3ac7124926bcb0c664406b4e5fe3d.1728752527.git.dsimic@manjaro.org>
- <CE605641E53903DC+0f0ea6b2-9423-4aa2-ac9d-652a9ac5c237@radxa.com>
- <ce54f171dfb145ce85d9a0192562e174@manjaro.org>
- <850ad8c6645b4c54bcecb7df79f9ab3a@manjaro.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <850ad8c6645b4c54bcecb7df79f9ab3a@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: OQI66KMdBntWcI6zpKnKgys7HXA8EtU0nKCcd0wDBRHDfrPZuJAMUzlu
-	jQ9c4TcVYeDeW3Hs8t1bko73UORUx4C2pbzqmnFINSh2Z2fN7a7uTbn6qRkdKu2PPepHyXK
-	0npxqnS5CY0A8/IocXFmYSdnUrTqLZFE7MoVBxv4meLFLKOpM0X1dRjUl9Pt7fjFE9iNE8p
-	R6ErI1d73gRgwOka1+//64b3oEw+hBxs88y7A4Mm6vcCO9k67QlLDyyPjjYgDyIvC79MGjN
-	kXDRRQmITKHfJlYJHr8oxLyhofXj+Rha8BLq72je3kva5fYVl0Hhcj+gRKRRg69bxC5j7pW
-	rDWgh/EzEk9zUF9Tvxdb+O6Rg6r8/JWf8O+uP49H7gNnBb7YeCAuc3OT7E3L+5S/jYapVKF
-	tQEwg8auyee4fpsBGC/2/ggBXzoXR+YFqiO+fPa3Lk8WxnTexjLsA4Vuw7+yG03ntfcmM9q
-	rGrXh7ZahsdfRz5leF1HSAn8wQFQZb0DYAgvpF8LyHgO4ImYVDaXPyrHpMEufGLMfMWgTxx
-	o3gLtVPq1Vc3LtlFjWQrgsCzJUU09/ZYgXWP5PZ5oA6qrMo2b0OQk+d4h9MO5xaG93I2m78
-	vSF19mReXMe8ye5pTv5VZG2CMOoCa3GTKigDiItUhcOu6C6gCPmi8VWP2ks9Y2tcKDvy/0V
-	KBFOlqEaWXbLKIRyRBX2u02ROIYlyKVrpMMCu9MHyugEONbS/kygrM92833Yb6m3mjVJ5Oa
-	WzJ+zc1eiFMr4l2GtkWzcX7OT/uIOZ9A0dCXqFd4rlgAGOw+io6nLmw3SLisJDvROazLTb9
-	Jp58XsojEWNiItOPsfTLWYToGTokQw97ZPY2ESgNjP5es+rZdd2+cf2eQ5cgEVRjNJx5IP6
-	hAfqOHk33hQfPPVI9nkdkXzoV/4d4epcKXj8GJ0wpZHMjW/CLtK9rB3grObB5qq8hVCVBWs
-	6OEY=
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241022213221.2383-16-dakr@kernel.org>
 
-Hi Dragan Simic,
-
-On 10/23/24 05:13, Dragan Simic wrote:
-> Hello Fukaumi and Tom,
+On Tue, Oct 22, 2024 at 11:31:52PM +0200, Danilo Krummrich wrote:
+> Implement the basic platform bus abstractions required to write a basic
+> platform driver. This includes the following data structures:
 > 
-> On 2024-10-14 07:16, Dragan Simic wrote:
->> On 2024-10-14 06:38, FUKAUMI Naoki wrote:
->>> On 10/13/24 02:04, Dragan Simic wrote:
->>>> Add new SoC dtsi file for the RK3566T variant of the Rockchip RK3566 
->>>> SoC.
->>>> The difference between the RK3566T variant and the "full-fat" RK3566 
->>>> variant
->>>> is in fewer supported CPU and GPU OPPs on the RK3566T, and in the 
->>>> absence of
->>>> a functional NPU, which we currently don't have to worry about.
->>>>
->>>> Examples of the boards based on the RK3566T include the Pine64 
->>>> Quartz64 Zero
->>>> SBC, [2] the Radxa ROCK 3C and the Radxa ZERO 3E/3W SBCs. 
->>>> Unfortunately,
->>>> Radxa doesn't mention the use of RK3566T officially, but its 
->>>> official SBC
->>>> specifications do state that the maximum frequency for the 
->>>> Cortex-A55 cores
->>>> on those SBCs is lower than the "full-fat" RK3566's 1.8 GHz, which 
->>>> makes
->>>> spotting the presence of the RK3566T SoC variant rather easy. 
->>>> [3][4][5]  An
->>>> additional, helpful cue is that Radxa handles the CPU and GPU OPPs 
->>>> for the
->>>> RK3566T variant separately in its downstream kernel. [6]
->>>>
->>>> The CPU and GPU OPPs supported on the RK3566T SoC variant are taken 
->>>> from the
->>>> vendor kernel source, [1] which uses the values of the 
->>>> "opp-supported-hw" OPP
->>>> properties to determine which ones are supported on a particular SoC 
->>>> variant.
->>>> The actual values of the "opp-supported-hw" properties make it 
->>>> rather easy
->>>> to see what OPPs are supported on the RK3566T SoC variant, but that, 
->>>> rather
->>>> unfortunately, clashes with the maximum frequencies advertised 
->>>> officially
->>>> for the Cortex-A55 CPU cores on the above-mentioned SBCs. 
->>>> [2][3][4][5]  The
->>>> vendor kernel source indicates that the maximum frequency for the 
->>>> CPU cores
->>>> is 1.4 GHz, while the SBC specifications state that to be 1.6 GHz. 
->>>> Unless
->>>> that discrepancy is resolved somehow, let's take the safe approach 
->>>> and use
->>>> the lower maximum frequency for the CPU cores.
->>>>
->>>> Update the dts files of the currently supported RK3566T-based boards 
->>>> to use
->>>> the new SoC dtsi for the RK3566T variant.  This actually takes the 
->>>> CPU cores
->>>> and the GPUs found on these boards out of their earlier overclocks, 
->>>> but it
->>>> also means that the officially advertised specifications 
->>>> [2][3][4][5] of the
->>>> highest supported frequencies for the Cortex-A55 CPU cores on these 
->>>> boards
->>>> may actually be wrong, as already explained above.
->>>>
->>>> The correctness of the introduced changes was validated by 
->>>> decompiling and
->>>> comparing all affected board dtb files before and after these changes.
->>>>
->>>> [1] 
->>>> https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed561650be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->>>> [2] https://wiki.pine64.org/wiki/Quartz64
->>>> [3] 
->>>> https://dl.radxa.com/rock3/docs/hw/3c/radxa_rock3c_product_brief.pdf
->>>> [4] 
->>>> https://dl.radxa.com/zero3/docs/hw/3e/radxa_zero_3e_product_brief.pdf
->>>> [5] 
->>>> https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_product_brief.pdf
->>>> [6] 
->>>> https://github.com/radxa/kernel/commit/2dfd51da472e7ebb5ef0d3db78f902454af826b8
->>>>
->>>> Cc: TL Lim <tllim@pine64.org>
->>>> Cc: Marek Kraus <gamiee@pine64.org>
->>>> Cc: Tom Cubie <tom@radxa.com>
->>>> Cc: FUKAUMI Naoki <naoki@radxa.com>
->>>> Helped-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
->>>> Helped-by: Jonas Karlman <jonas@kwiboo.se>
->>>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->>>> ---
->>>>   .../dts/rockchip/rk3566-radxa-zero-3.dtsi     |  2 +-
->>>>   .../boot/dts/rockchip/rk3566-rock-3c.dts      |  2 +-
->>>>   arch/arm64/boot/dts/rockchip/rk3566t.dtsi     | 90 
->>>> +++++++++++++++++++
->>>>   3 files changed, 92 insertions(+), 2 deletions(-)
->>>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3566t.dtsi
->>>>
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi 
->>>> b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
->>>> index de390d92c35e..1ee5d96a46a1 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
->>>> @@ -3,7 +3,7 @@
->>>>   #include <dt-bindings/gpio/gpio.h>
->>>>   #include <dt-bindings/leds/common.h>
->>>>   #include <dt-bindings/soc/rockchip,vop2.h>
->>>> -#include "rk3566.dtsi"
->>>> +#include "rk3566t.dtsi"
->>>
->>> could you drop this change for now?
->>
->> This patch is also going to be used for the upcoming board dts
->> for the Pine64 Quartz64 Zero, so there's no need for dropping it.
->> The Quartz64 Zero definitely uses the RK3566T.
->>
->>> We (Radxa) think we use RK3566.
->>
->> Well, the available documentation for the Radxa ROCK 3C and ZERO
->> 3E/3W boards doesn't say so; instead, everything points to the
->> RK3566T being used.  The referenced commit in the Radxa downstream
->> kernel also indicates that RK3566T is used at least on some boards.
->>
->> Also, some independent testing, by reading the efuses, has showed
->> that at least some ROCK 3C and ZERO 3E/3W boards actually have the
->> RK3566T, which means that we should handle them all as having the
->> RK3566T, to avoid overclocking the CPU cores and the GPU.  I'll
->> get back to this below.
->>
->>> and vendor kernel[6] refers efuse value to determine it's -T or not.
->>> can you do similar way?
->>
->> Unfortunately not at the moment, because that would require major
->> changes to the way OPPs are handled in the upstream kernel.  Maybe
->> we can do that at some point in the future, as part of my planned
->> work on supporting SoC binning.
->>
->> With that in place, hopefully, we could handle any ROCK 3C and ZERO
->> 3E/3W boards that actually have the "full-fat" RK3566 variant as
->> such, but until then, it's much safer to treat them all as having
->> the RK3566T, and avoid the possible overclocking.
+> The `platform::Driver` trait represents the interface to the driver and
+> provides `pci::Driver::probe` for the driver to implement.
 > 
-> Just checking, and having the subsequent discussion on IRC in mind,
-> are you fine with the above-proposed approach?  Please let me know
-> if some further clarification is needed.
-
-we have no objection. please do safer way.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
->>>>   / {
->>>>       chosen {
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts 
->>>> b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
->>>> index f2cc086e5001..9a8f4f774dbc 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
->>>> @@ -5,7 +5,7 @@
->>>>   #include <dt-bindings/leds/common.h>
->>>>   #include <dt-bindings/pinctrl/rockchip.h>
->>>>   #include <dt-bindings/soc/rockchip,vop2.h>
->>>> -#include "rk3566.dtsi"
->>>> +#include "rk3566t.dtsi"
->>>
->>> same here.
->>>
->>>>   / {
->>>>       model = "Radxa ROCK 3C";
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566t.dtsi 
->>>> b/arch/arm64/boot/dts/rockchip/rk3566t.dtsi
->>>> new file mode 100644
->>>> index 000000000000..cd89bd3b125b
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566t.dtsi
->>>> @@ -0,0 +1,90 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> +
->>>> +#include "rk3566-base.dtsi"
->>>> +
->>>> +/ {
->>>> +    cpu0_opp_table: opp-table-0 {
->>>> +        compatible = "operating-points-v2";
->>>> +        opp-shared;
->>>> +
->>>> +        opp-408000000 {
->>>> +            opp-hz = /bits/ 64 <408000000>;
->>>> +            opp-microvolt = <850000 850000 1150000>;
->>>> +            clock-latency-ns = <40000>;
->>>> +        };
->>>> +
->>>> +        opp-600000000 {
->>>> +            opp-hz = /bits/ 64 <600000000>;
->>>> +            opp-microvolt = <850000 850000 1150000>;
->>>> +            clock-latency-ns = <40000>;
->>>> +        };
->>>> +
->>>> +        opp-816000000 {
->>>> +            opp-hz = /bits/ 64 <816000000>;
->>>> +            opp-microvolt = <850000 850000 1150000>;
->>>> +            clock-latency-ns = <40000>;
->>>> +            opp-suspend;
->>>> +        };
->>>> +
->>>> +        opp-1104000000 {
->>>> +            opp-hz = /bits/ 64 <1104000000>;
->>>> +            opp-microvolt = <900000 900000 1150000>;
->>>> +            clock-latency-ns = <40000>;
->>>> +        };
->>>> +
->>>> +        opp-1416000000 {
->>>> +            opp-hz = /bits/ 64 <1416000000>;
->>>> +            opp-microvolt = <1025000 1025000 1150000>;
->>>> +            clock-latency-ns = <40000>;
->>>> +        };
->>>> +    };
->>>> +
->>>> +    gpu_opp_table: opp-table-1 {
->>>> +        compatible = "operating-points-v2";
->>>> +
->>>> +        opp-200000000 {
->>>> +            opp-hz = /bits/ 64 <200000000>;
->>>> +            opp-microvolt = <850000 850000 1000000>;
->>>> +        };
->>>> +
->>>> +        opp-300000000 {
->>>> +            opp-hz = /bits/ 64 <300000000>;
->>>> +            opp-microvolt = <850000 850000 1000000>;
->>>> +        };
->>>> +
->>>> +        opp-400000000 {
->>>> +            opp-hz = /bits/ 64 <400000000>;
->>>> +            opp-microvolt = <850000 850000 1000000>;
->>>> +        };
->>>> +
->>>> +        opp-600000000 {
->>>> +            opp-hz = /bits/ 64 <600000000>;
->>>> +            opp-microvolt = <900000 900000 1000000>;
->>>> +        };
->>>> +
->>>> +        opp-700000000 {
->>>> +            opp-hz = /bits/ 64 <700000000>;
->>>> +            opp-microvolt = <950000 950000 1000000>;
->>>> +        };
->>>> +    };
->>>> +};
->>>> +
->>>> +&cpu0 {
->>>> +    operating-points-v2 = <&cpu0_opp_table>;
->>>> +};
->>>> +
->>>> +&cpu1 {
->>>> +    operating-points-v2 = <&cpu0_opp_table>;
->>>> +};
->>>> +
->>>> +&cpu2 {
->>>> +    operating-points-v2 = <&cpu0_opp_table>;
->>>> +};
->>>> +
->>>> +&cpu3 {
->>>> +    operating-points-v2 = <&cpu0_opp_table>;
->>>> +};
->>>> +
->>>> +&gpu {
->>>> +    operating-points-v2 = <&gpu_opp_table>;
->>>> +};
+> The `platform::Device` abstraction represents a `struct platform_device`.
 > 
+> In order to provide the platform bus specific parts to a generic
+> `driver::Registration` the `driver::RegistrationOps` trait is implemented
+> by `platform::Adapter`.
+> 
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> ---
+>  MAINTAINERS                     |   1 +
+>  rust/bindings/bindings_helper.h |   1 +
+>  rust/helpers/helpers.c          |   1 +
+>  rust/helpers/platform.c         |  13 ++
+>  rust/kernel/lib.rs              |   1 +
+>  rust/kernel/platform.rs         | 217 ++++++++++++++++++++++++++++++++
+>  6 files changed, 234 insertions(+)
+>  create mode 100644 rust/helpers/platform.c
+>  create mode 100644 rust/kernel/platform.rs
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 87eb9a7869eb..173540375863 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6985,6 +6985,7 @@ F:	rust/kernel/device.rs
+>  F:	rust/kernel/device_id.rs
+>  F:	rust/kernel/devres.rs
+>  F:	rust/kernel/driver.rs
+> +F:	rust/kernel/platform.rs
+>  
+>  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
+>  M:	Nishanth Menon <nm@ti.com>
+> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
+> index 312f03cbdce9..217c776615b9 100644
+> --- a/rust/bindings/bindings_helper.h
+> +++ b/rust/bindings/bindings_helper.h
+> @@ -18,6 +18,7 @@
+>  #include <linux/of_device.h>
+>  #include <linux/pci.h>
+>  #include <linux/phy.h>
+> +#include <linux/platform_device.h>
+>  #include <linux/refcount.h>
+>  #include <linux/sched.h>
+>  #include <linux/slab.h>
+> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
+> index 8bc6e9735589..663cdc2a45e0 100644
+> --- a/rust/helpers/helpers.c
+> +++ b/rust/helpers/helpers.c
+> @@ -17,6 +17,7 @@
+>  #include "kunit.c"
+>  #include "mutex.c"
+>  #include "page.c"
+> +#include "platform.c"
+>  #include "pci.c"
+>  #include "rbtree.c"
+>  #include "rcu.c"
+> diff --git a/rust/helpers/platform.c b/rust/helpers/platform.c
+> new file mode 100644
+> index 000000000000..ab9b9f317301
+> --- /dev/null
+> +++ b/rust/helpers/platform.c
+> @@ -0,0 +1,13 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/platform_device.h>
+> +
+> +void *rust_helper_platform_get_drvdata(const struct platform_device *pdev)
+> +{
+> +	return platform_get_drvdata(pdev);
+> +}
+> +
+> +void rust_helper_platform_set_drvdata(struct platform_device *pdev, void *data)
+> +{
+> +	platform_set_drvdata(pdev, data);
+> +}
+> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> index 5946f59f1688..9e8dcd6d7c01 100644
+> --- a/rust/kernel/lib.rs
+> +++ b/rust/kernel/lib.rs
+> @@ -53,6 +53,7 @@
+>  pub mod net;
+>  pub mod of;
+>  pub mod page;
+> +pub mod platform;
+>  pub mod prelude;
+>  pub mod print;
+>  pub mod rbtree;
+> diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
+> new file mode 100644
+> index 000000000000..addf5356f44f
+> --- /dev/null
+> +++ b/rust/kernel/platform.rs
+> @@ -0,0 +1,217 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Abstractions for the platform bus.
+> +//!
+> +//! C header: [`include/linux/platform_device.h`](srctree/include/linux/platform_device.h)
+> +
+> +use crate::{
+> +    bindings, container_of, device,
+> +    device_id::RawDeviceId,
+> +    driver,
+> +    error::{to_result, Result},
+> +    of,
+> +    prelude::*,
+> +    str::CStr,
+> +    types::{ARef, ForeignOwnable},
+> +    ThisModule,
+> +};
+> +
+> +/// An adapter for the registration of platform drivers.
+> +pub struct Adapter<T: Driver>(T);
+> +
+> +impl<T: Driver + 'static> driver::RegistrationOps for Adapter<T> {
+> +    type RegType = bindings::platform_driver;
+> +
+> +    fn register(
+> +        pdrv: &mut Self::RegType,
+> +        name: &'static CStr,
+> +        module: &'static ThisModule,
+> +    ) -> Result {
+> +        pdrv.driver.name = name.as_char_ptr();
+> +        pdrv.probe = Some(Self::probe_callback);
+> +
+> +        // Both members of this union are identical in data layout and semantics.
+> +        pdrv.__bindgen_anon_1.remove = Some(Self::remove_callback);
+> +        pdrv.driver.of_match_table = T::ID_TABLE.as_ptr();
+> +
+> +        // SAFETY: `pdrv` is guaranteed to be a valid `RegType`.
+> +        to_result(unsafe { bindings::__platform_driver_register(pdrv, module.0) })
+> +    }
+> +
+> +    fn unregister(pdrv: &mut Self::RegType) {
+> +        // SAFETY: `pdrv` is guaranteed to be a valid `RegType`.
+> +        unsafe { bindings::platform_driver_unregister(pdrv) };
+> +    }
+> +}
+> +
+> +impl<T: Driver + 'static> Adapter<T> {
+> +    fn id_info(pdev: &Device) -> Option<&'static T::IdInfo> {
+> +        let table = T::ID_TABLE;
+> +        let id = T::of_match_device(pdev)?;
+> +
+> +        Some(table.info(id.index()))
+> +    }
+> +
+> +    extern "C" fn probe_callback(pdev: *mut bindings::platform_device) -> core::ffi::c_int {
+> +        // SAFETY: The platform bus only ever calls the probe callback with a valid `pdev`.
+> +        let dev = unsafe { device::Device::from_raw(&mut (*pdev).dev) };
+> +        // SAFETY: `dev` is guaranteed to be embedded in a valid `struct platform_device` by the
+> +        // call above.
+> +        let mut pdev = unsafe { Device::from_dev(dev) };
+> +
+> +        let info = Self::id_info(&pdev);
+> +        match T::probe(&mut pdev, info) {
+> +            Ok(data) => {
+> +                // Let the `struct platform_device` own a reference of the driver's private data.
+> +                // SAFETY: By the type invariant `pdev.as_raw` returns a valid pointer to a
+> +                // `struct platform_device`.
+> +                unsafe { bindings::platform_set_drvdata(pdev.as_raw(), data.into_foreign() as _) };
+> +            }
+> +            Err(err) => return Error::to_errno(err),
+> +        }
+> +
+> +        0
+> +    }
+> +
+> +    extern "C" fn remove_callback(pdev: *mut bindings::platform_device) {
+> +        // SAFETY: `pdev` is a valid pointer to a `struct platform_device`.
+> +        let ptr = unsafe { bindings::platform_get_drvdata(pdev) };
+> +
+> +        // SAFETY: `remove_callback` is only ever called after a successful call to
+> +        // `probe_callback`, hence it's guaranteed that `ptr` points to a valid and initialized
+> +        // `KBox<T>` pointer created through `KBox::into_foreign`.
+> +        let _ = unsafe { KBox::<T>::from_foreign(ptr) };
+> +    }
+> +}
+> +
+> +/// Declares a kernel module that exposes a single platform driver.
+> +///
+> +/// # Examples
+> +///
+> +/// ```ignore
+> +/// kernel::module_platform_driver! {
+> +///     type: MyDriver,
+> +///     name: "Module name",
+> +///     author: "Author name",
+> +///     description: "Description",
+> +///     license: "GPL v2",
+> +/// }
+> +/// ```
+> +#[macro_export]
+> +macro_rules! module_platform_driver {
+> +    ($($f:tt)*) => {
+> +        $crate::module_driver!(<T>, $crate::platform::Adapter<T>, { $($f)* });
+> +    };
+> +}
+> +
+> +/// IdTable type for platform drivers.
+> +pub type IdTable<T> = &'static dyn kernel::device_id::IdTable<of::DeviceId, T>;
+> +
+> +/// The platform driver trait.
+> +///
+> +/// # Example
+> +///
+> +///```
+> +/// # use kernel::{bindings, c_str, of, platform};
+> +///
+> +/// struct MyDriver;
+> +///
+> +/// kernel::of_device_table!(
+> +///     OF_TABLE,
+> +///     MODULE_OF_TABLE,
+> +///     <MyDriver as platform::Driver>::IdInfo,
+> +///     [
+> +///         (of::DeviceId::new(c_str!("redhat,my-device")), ())
+
+All compatible strings have to be documented as do vendor prefixes and 
+I don't think "redhat" is one. An exception is you can use 
+"test,<whatever>" and not document it.
+
+There's a check for undocumented compatibles. I guess I'll have to add 
+rust parsing to it...
+
+BTW, how do you compile this code in the kernel? 
+
+> +///     ]
+> +/// );
+> +///
+> +/// impl platform::Driver for MyDriver {
+> +///     type IdInfo = ();
+> +///     const ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
+> +///
+> +///     fn probe(
+> +///         _pdev: &mut platform::Device,
+> +///         _id_info: Option<&Self::IdInfo>,
+> +///     ) -> Result<Pin<KBox<Self>>> {
+> +///         Err(ENODEV)
+> +///     }
+> +/// }
+> +///```
+> +/// Drivers must implement this trait in order to get a platform driver registered. Please refer to
+> +/// the `Adapter` documentation for an example.
+> +pub trait Driver {
+> +    /// The type holding information about each device id supported by the driver.
+> +    ///
+> +    /// TODO: Use associated_type_defaults once stabilized:
+> +    ///
+> +    /// type IdInfo: 'static = ();
+> +    type IdInfo: 'static;
+> +
+> +    /// The table of device ids supported by the driver.
+> +    const ID_TABLE: IdTable<Self::IdInfo>;
+> +
+> +    /// Platform driver probe.
+> +    ///
+> +    /// Called when a new platform device is added or discovered.
+> +    /// Implementers should attempt to initialize the device here.
+> +    fn probe(dev: &mut Device, id_info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>>;
+> +
+> +    /// Find the [`of::DeviceId`] within [`Driver::ID_TABLE`] matching the given [`Device`], if any.
+> +    fn of_match_device(pdev: &Device) -> Option<&of::DeviceId> {
+
+Is this visible to drivers? It shouldn't be. I just removed most of the 
+calls of the C version earlier this year. Drivers should only need the 
+match data. The preferred driver C API is device_get_match_data(). That 
+is firmware agnostic and works for DT, ACPI and old platform 
+driver_data. Obviously, ACPI is not supported here, but it will be soon 
+enough. We could perhaps get away with not supporting the platform 
+driver_data because that's generally not used on anything in the last 10 
+years.
+
+Another potential issue is keeping the match logic for probe and the 
+match logic for the data in sync. If you implement your own logic here 
+in rust and probe is using the C version, they might not be the same. 
+Best case, we have 2 implementations of the same thing.
+
+> +        let table = Self::ID_TABLE;
+> +
+> +        // SAFETY:
+> +        // - `table` has static lifetime, hence it's valid for read,
+> +        // - `dev` is guaranteed to be valid while it's alive, and so is
+> +        //   `pdev.as_dev().as_raw()`.
+> +        let raw_id = unsafe { bindings::of_match_device(table.as_ptr(), pdev.as_dev().as_raw()) };
+
+of_match_device depends on CONFIG_OF. There's an empty static inline, 
+but seems bindgen can't handle those. Prior versions added a helper 
+function, but that's going to scale terribly. Can we use an annotation 
+for CONFIG_OF here (assuming we can't get rid of using this directly)?
+
+> +
+> +        if raw_id.is_null() {
+> +            None
+> +        } else {
+> +            // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_id` and
+> +            // does not add additional invariants, so it's safe to transmute.
+> +            Some(unsafe { &*raw_id.cast::<of::DeviceId>() })
+> +        }
+> +    }
+> +}
 
