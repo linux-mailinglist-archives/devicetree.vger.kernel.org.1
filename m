@@ -1,192 +1,264 @@
-Return-Path: <devicetree+bounces-114173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FAAB9AA03A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:44:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F379AA044
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:46:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3EA81F21D70
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:44:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BA2C1F22A08
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CC119AA46;
-	Tue, 22 Oct 2024 10:43:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6BB19ABBF;
+	Tue, 22 Oct 2024 10:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SZ3ybE8w"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K0u+pZZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765DE16DECB;
-	Tue, 22 Oct 2024 10:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5348189905;
+	Tue, 22 Oct 2024 10:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729593836; cv=none; b=QzrvBavePwxYQN3Mrrsof5NwNSnxARDZGhTsKYk7xEo+cYG4tQPxEfUZB9AG4DXIIppAx6mU03wypxplYNqKEWYd5RfQC03TWemHRG9HheaUcQHqUJcDv9uN3Y09ZsuRBDEe+Cx5hH42bHi1MeY/0+IaHp8Up86SNQtZKtJ62/o=
+	t=1729593986; cv=none; b=lKTF51mEd8/73x0T8dhMEncDnLxa1kPts/UEFFGI/4RGbyhqaT03IhB6OR1RdeI7IiLq8KX7WZUcPNY1JqrbFn9J96vdiukG6dKW0dJ+uj1G9zM8ZXtWSDu42gLxZmMXoM4yw4UoH8XIYN24FRiDR2N/g0DEVxkIWQ1lm2/XMTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729593836; c=relaxed/simple;
-	bh=3L/mfArSh02i4CZyNQjoKh10X4Lo25gJRXejPnC009o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YqvV6cRHax8USWv/7Z/ESqeN8KFaRh4JxUsrNeo4aAh9u78I3QSpetUf+p+XJ4Ji7tN8uwY/4Z4iu3hRYcplLM1ygZhVv9tWqum4gLb9IWhbLOYsmZTDy1NbkvTHMjYuCV1M5T2O5D2xgVJRINJ0rSHP+BSEgQEEXX1Z2KrfaHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SZ3ybE8w; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D096B40002;
-	Tue, 22 Oct 2024 10:43:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729593825;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=p4qsrG6uruQTTTq/+4Xc9VuG+K4ys0k5jHgZ1t4x9E0=;
-	b=SZ3ybE8wllmqN+BvxV9heeYAnisb5Zp9aRtSqWEpYyBD+7i/vk+39TSmXk0gvfEEE8eaQn
-	3kdpvnsC8+o0sEVquJ5nuQUY18YYGVGM1d2vplYckrd1sRWsN9J6TNgWxjsufyIikKo0bw
-	V8gcdM0G3Lmpx3GvFWf0Ysv+b0qAJa3ph33r/hQ4NvJlqJlx9Wh56mXJm82WBrPzrc6Vof
-	cRhevYdxHFnBCvCYUS3hdqkuDu/6kQ8UVFVAKQb460nY2L2HZB1cK0BauIS7w2xjzC8k4V
-	/73GdVHpiKKWdKTS9jx27hJRl0vIGzLKoYXGgaBw678kvkeHXnPNXEMI1ffarA==
-Message-ID: <c9e98811-15f5-427a-82f7-2e7fff4a9873@bootlin.com>
-Date: Tue, 22 Oct 2024 12:43:44 +0200
+	s=arc-20240116; t=1729593986; c=relaxed/simple;
+	bh=FeKqeBYMuqfzU4UZ4HSQLfjOsSJFx0JmfQYbN/04ZAQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ILSsdxx2goE1M0sfAh4Uwm6XscS3ogv4hE0r9PLMh3p5adwakzWqHUUKCsJp0eOdbFr1E0VIGVE0c6j1Z952xNqyt2jYYgIH/7G+p5S8uCmeCfAkssNKspCs58tvWTDUFMLlFfapHnBe7BzWr+h4YFBf9GJNDkPw4mHuYqJJf6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K0u+pZZr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49M8bx4k001170;
+	Tue, 22 Oct 2024 10:46:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=lRjRs+EADtb1GPc1BWqSXUVu62ODJc/GUnoWwgVJnKM=; b=K0
+	u+pZZrogwFa6nE8tGnjRGf517blQMty++3/ciaOIo8gcFPmimkaff3neD3Ds+P5V
+	B1+enVTl95lt6zuwMdpnNmjRyUWY12fDkNPcMWUdOq8fyR4Jj6ioiJkcypAtzVxT
+	/5rk8v721AityDHEZ02IeH23kQOvINCmh8jytIb9wbjG/4Kb98rD1qSg8haYtJiS
+	Nf9T+zU1FRCFocogH8S0J+WDYo42EaKxUAEQVe8+qa7+Ha1rM0GUgcelUbSleJNn
+	qIF9wEcXqd9rioPDnmCgGNXXHjTtnSfOj69cihXRNJGdaBVdjDPdI7R3Ay1IFG66
+	i0psaxcJchGnM5E2HbKQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42dmj13wny-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Oct 2024 10:46:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49MAkJEU009323
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Oct 2024 10:46:19 GMT
+Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 22 Oct 2024 03:46:16 -0700
+From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable Bluetooth
+Date: Tue, 22 Oct 2024 16:16:00 +0530
+Message-ID: <20241022104600.3228-1-quic_janathot@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: wilc1000: Rework bus locking
-To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20241022013855.284783-1-marex@denx.de>
-From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20241022013855.284783-1-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexis.lothore@bootlin.com
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cMcZbftrZFg5q3eofOkgjERr2L8H3RTJ
+X-Proofpoint-ORIG-GUID: cMcZbftrZFg5q3eofOkgjERr2L8H3RTJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ suspectscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 clxscore=1015 mlxlogscore=998 phishscore=0 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410220069
 
-Hi Marek,
+Add Bluetooth and UART7 support for qcs6490-rb3gen2.
 
-On 10/22/24 03:38, Marek Vasut wrote:
-> The bus locking in this driver is broken and produces subtle race
-> condition with ksdioirqd and its mmc_claim_host()/mmc_release_host()
-> usage in case of SDIO bus. Rework the locking to avoid this race
-> condition.
-> 
-> The problem is the hif_cs mutex used in acquire_bus()/release_bus(),
-> which makes it look like calling acquire_bus() results in exclusive
-> access to the bus, but that is not true for SDIO bus. For SDIO bus,
-> to obtain exclusive access (any access, really), it is necessary to
-> call sdio_claim_host(), which is a wrapper around mmc_claim_host(),
-> which does its own locking. The acquire_bus() does not do that, but
-> the SDIO interface implementation does call sdio_claim_host() and
-> sdio_release_host() every single command, which is problematic. To
-> make things worse, wilc_sdio_interrupt() implementation called from
-> ksdioirqd first calls sdio_release_host(), then interrupt handling
-> and finally sdio_claim_host().
-> 
-> The core problem is that sdio_claim_host() cannot be done per command,
-> but has to be done per register/data IO which consists of multiple
-> commands.
+Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 122 ++++++++++++++++++-
+ 1 file changed, 121 insertions(+), 1 deletion(-)
 
-Is it really true ? What makes you say that we can not perform multiple
-operations under the same exclusive sdio section ?
-
-Usually the WILC register read/write consists of 3x CMD52
-> to push in CSA pointer address and 1x CMD53 to read/write data to that
-> address. Most other accesses are also composed of multiple commands.
-> 
-> Currently, if ksdioirqd wakes up and attempts to read SDIO_CCCR_INTx
-> to get pending SDIO IRQs in sdio_get_pending_irqs(), it can easily
-> perform that transfer between two consecutive CMD52 which are pushing
-> in the CSA pointer address and possibly disrupt the WILC operation.
-> This is undesired behavior.
-
-I agree about the observation, and then I disagree about the statement above on
-sdio_claim_host/sdio_release_host not meant to be used for multiple commands.
-I see plenty of sdio wireless drivers performing multiple sdio operations under
-the same sdio exclusive bus access section, either explicitely in their code, or
-through a sdio dedicated helper (eg: sdio_enable_func, sdio_disable_func).
-
-But more concerns below
-> 
-> Rework the locking.
-> 
-> Introduce new .hif_claim/.hif_release callbacks which implement bus
-> specific locking. Lock/unlock SDIO bus access using sdio_claim_host()
-> and sdio_release_host(), lock/unlock SPI bus access using the current
-> hif_cs mutex moved purely into the spi.c interface. Make acquire_bus()
-> and release_bus() call the .hif_claim/.hif_release() callbacks and do
-> not access the hif_cs mutex from there at all.
-> 
-> Remove any SDIO bus locking used directly in commands and the broken
-> SDIO bus unlocking in wilc_sdio_interrupt(), this is no longer needed.
-> Fix up SDIO initialization code which newly needs sdio_claim_host()
-> and sdio_release_host(), since it cannot depend on the locking being
-> done per-command anymore.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-
-[...]
-
->  
-> -static void wilc_sdio_interrupt(struct sdio_func *func)
-> +static void wilc_sdio_claim(struct wilc *wilc)
-> +{
-> +	struct sdio_func *func = container_of(wilc->dev, struct sdio_func, dev);
-> +
-> +	sdio_claim_host(func);
-> +}
-> +
-> +static void wilc_sdio_release(struct wilc *wilc)
->  {
-> +	struct sdio_func *func = container_of(wilc->dev, struct sdio_func, dev);
-> +
->  	sdio_release_host(func);
-> +}
-
-So with this series, we end up with some bus-specific operations needing some
-locking, but is now up to the upper layer to control this locking. This feels
-wrong. The driver has a dedicated sdio layer, so if we need some locking for
-sdio-specific operations, it should be handled autonomously by the sdio layer,
-right ?
-
-[...]
-
->  static int wilc_wlan_cfg_commit(struct wilc_vif *vif, int type,
-> diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.h b/drivers/net/wireless/microchip/wilc1000/wlan.h
-> index b9e7f9222eadd..ade2db95e8a0f 100644
-> --- a/drivers/net/wireless/microchip/wilc1000/wlan.h
-> +++ b/drivers/net/wireless/microchip/wilc1000/wlan.h
-> @@ -403,6 +403,8 @@ struct wilc_hif_func {
->  	void (*disable_interrupt)(struct wilc *nic);
->  	int (*hif_reset)(struct wilc *wilc);
->  	bool (*hif_is_init)(struct wilc *wilc);
-> +	void (*hif_claim)(struct wilc *wilc);
-> +	void (*hif_release)(struct wilc *wilc);
-
-So IIUC, your series push the hif_cs lock into each bus layer of the driver,
-remove any explicit call to bus-specific locking mechanism from those layers,
-and makes the upper layer control the locking. As mentioned above, I don't
-understand why those layers can not manage the bus-specific locking by
-themselves (which would be a big win for the upper layer).
-For SDIO specifically, I feel like letting the layer handle those claim/release
-would even allow to remove this hif_cs mutex (but we may still need a lock for
-SPI side)
-
-But I may be missing something, so feel free to prove me wrong.
-
-
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 0d45662b8028..b774d89172ea 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: BSD-3-Clause
+ /*
+- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ /dts-v1/;
+@@ -31,7 +31,9 @@
+ 	chassis-type = "embedded";
+ 
+ 	aliases {
++		bluetooth0 = &bluetooth;
+ 		serial0 = &uart5;
++		serial1 = &uart7;
+ 	};
+ 
+ 	chosen {
+@@ -688,6 +690,39 @@
+ 	status = "okay";
+ };
+ 
++&qup_uart7_cts {
++	/*
++	 * Configure a bias-bus-hold on CTS to lower power
++	 * usage when Bluetooth is turned off. Bus hold will
++	 * maintain a low power state regardless of whether
++	 * the Bluetooth module drives the pin in either
++	 * direction or leaves the pin fully unpowered.
++	 */
++	bias-bus-hold;
++};
++
++&qup_uart7_rts {
++	/* We'll drive RTS, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
++
++&qup_uart7_rx {
++	/*
++	 * Configure a pull-up on RX. This is needed to avoid
++	 * garbage data when the TX pin of the Bluetooth module is
++	 * in tri-state (module powered off or not driving the
++	 * signal yet).
++	 */
++	bias-pull-up;
++};
++
++&qup_uart7_tx {
++	/* We'll drive TX, so no pull */
++	drive-strength = <2>;
++	bias-disable;
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -719,12 +754,97 @@
+ &tlmm {
+ 	gpio-reserved-ranges = <32 2>, /* ADSP */
+ 			       <48 4>; /* NFC */
++	bt_en: bt-en-state {
++		pins = "gpio85";
++		function = "gpio";
++		output-low;
++		bias-disable;
++	};
++
++	qup_uart7_sleep_cts: qup-uart7-sleep-cts-state {
++		pins = "gpio28";
++		function = "gpio";
++		/*
++		 * Configure a bias-bus-hold on CTS to lower power
++		 * usage when Bluetooth is turned off. Bus hold will
++		 * maintain a low power state regardless of whether
++		 * the Bluetooth module drives the pin in either
++		 * direction or leaves the pin fully unpowered.
++		 */
++		bias-bus-hold;
++	};
++
++	qup_uart7_sleep_rts: qup-uart7-sleep-rts-state {
++		pins = "gpio29";
++		function = "gpio";
++		/*
++		 * Configure pull-down on RTS. As RTS is active low
++		 * signal, pull it low to indicate the BT SoC that it
++		 * can wakeup the system anytime from suspend state by
++		 * pulling RX low (by sending wakeup bytes).
++		 */
++		bias-pull-down;
++	};
++
++	qup_uart7_sleep_rx: qup-uart7-sleep-rx-state {
++		pins = "gpio31";
++		function = "gpio";
++		/*
++		 * Configure a pull-up on RX. This is needed to avoid
++		 * garbage data when the TX pin of the Bluetooth module
++		 * is floating which may cause spurious wakeups.
++		 */
++		bias-pull-up;
++	};
++
++	qup_uart7_sleep_tx: qup-uart7-sleep-tx-state {
++		pins = "gpio30";
++		function = "gpio";
++		/*
++		 * Configure pull-up on TX when it isn't actively driven
++		 * to prevent BT SoC from receiving garbage during sleep.
++		 */
++		bias-pull-up;
++	};
++
++	sw_ctrl: sw-ctrl-state {
++		pins = "gpio86";
++		function = "gpio";
++		bias-pull-down;
++	};
+ };
+ 
+ &uart5 {
+ 	status = "okay";
+ };
+ 
++&uart7 {
++	status = "okay";
++	/delete-property/interrupts;
++	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
++				<&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
++	pinctrl-names = "default", "sleep";
++	pinctrl-1 = <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
++			<&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
++
++	bluetooth: bluetooth {
++		compatible = "qcom,wcn6750-bt";
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_en>, <&sw_ctrl>;
++		enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
++		swctrl-gpios = <&tlmm 86 GPIO_ACTIVE_HIGH>;
++		vddaon-supply = <&vreg_s7b_0p972>;
++		vddbtcxmx-supply = <&vreg_s7b_0p972>;
++		vddrfacmn-supply = <&vreg_s7b_0p972>;
++		vddrfa0p8-supply = <&vreg_s7b_0p972>;
++		vddrfa1p7-supply = <&vreg_s1b_1p872>;
++		vddrfa1p2-supply = <&vreg_s8b_1p272>;
++		vddrfa2p2-supply = <&vreg_s1c_2p19>;
++		vddasd-supply = <&vreg_l11c_2p8>;
++		max-speed = <3200000>;
++	};
++};
++
+ &usb_1 {
+ 	status = "okay";
+ };
 -- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
 
