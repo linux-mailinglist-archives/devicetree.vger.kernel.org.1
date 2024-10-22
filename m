@@ -1,122 +1,131 @@
-Return-Path: <devicetree+bounces-114306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A7999AB40D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:31:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D40489AB41D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:36:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26EBB1F238BA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:31:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FB6E1C22D01
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:36:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C654E1B6525;
-	Tue, 22 Oct 2024 16:31:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2EA1B85C9;
+	Tue, 22 Oct 2024 16:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dXREBZhn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mRBGzM9w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96E8D19AA53;
-	Tue, 22 Oct 2024 16:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF0B1A4F1B;
+	Tue, 22 Oct 2024 16:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729614680; cv=none; b=dzcQBo+NtVD1/pEPOLubAdKZOgs5e0KBqiwM7J08MK1rc++j/6ByMFhd73JkDxzZ8TTGL2Z/vPYeLDP4wXOUIGsGnavJlzNek6YuJxV3pvLke4P+dxJRXof73mjycJPJpwS0eNauouvWaI3cagvtzVAncKWDgnkpA7J6v5dHBZ4=
+	t=1729614959; cv=none; b=FFT+wc6sMSOmTsF/s5Co9+A/YJLzcG0/1DC8Lrh6slcU6ZCDQ5p0TuMbABXmkk8ziuhtan7k8+hDGGzREY1JotkGX+9V21vc9l6XuBWGJOJO9DVP0YZ35lu655v8PEeTjKVEKvjA1Ls505kzgHdK5a27HHUgB5wAYCXagQ975Os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729614680; c=relaxed/simple;
-	bh=KVLjpT7ZX9iWAD/24xl4Rm7ljfOUWX5ZNEqXbQPnM3w=;
+	s=arc-20240116; t=1729614959; c=relaxed/simple;
+	bh=HKIT1GB9I2Pw8GnpOIOFPtWfYM9DYHxHuIwKhIlijg4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WlYzZRtSP9FDL0ScAS9yTbnND3vj71lyWk3h9Vld4k5PalFe+fU+xT4ANqNEjr6ygMnXI2/VbM/7NjiLzxh7lisb7p/Fr76NLH3Hcfoo6n1c1WSlOMqUC++2XnaAlI9Zw2YhmnAk3i6AmSqS1er+j0inBrPuuQtgU2DVaUVmd/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dXREBZhn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D9B1C4CEC3;
-	Tue, 22 Oct 2024 16:31:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HWbJbavyuAPV1rTMgvmtn/T8KtP8uWEjw8fm7+ySAxyC1AVMVgrCtiCNax9LqsyWNfVK/KLWG7wC2ZgGJYXT4Ww4HJ764yJ0zzKCMymBVRMi0OnIihhtaUgHDP0NO/Co2IFRdXqFoktBnTcA7yeRV4bUP92zbB5L/o7Wt01pWtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mRBGzM9w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 274C6C4CEC3;
+	Tue, 22 Oct 2024 16:35:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729614679;
-	bh=KVLjpT7ZX9iWAD/24xl4Rm7ljfOUWX5ZNEqXbQPnM3w=;
+	s=k20201202; t=1729614959;
+	bh=HKIT1GB9I2Pw8GnpOIOFPtWfYM9DYHxHuIwKhIlijg4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dXREBZhnbOCRyRJEiURpCXE06H6GgDVmaDwtKIv+czCXlz1h/52ulbmftS6fG+Tnx
-	 dCqMNvASD8vVoYHQuGjLuqnhuKgGT8YDa0kOiJrDe35i2qr8Xh7/WrZmIU/bQIj1Ja
-	 u30hBzV0fpl90CzpENJ2z/BI6VyMbl71Yerxkvgzd8zsB2t35BZoH4heOmmCy9BY8Q
-	 0x7oCYfVw9yi5tpbQnalxiSW58VaD+NMdTcur4P28wR9wzlnUBUAaesH5UAqDhbsnn
-	 XyVe6/bHCA3EvoAZYBCp7ayqhIy3gaKahLp8UPxoMAOTZ5y32gz4Kr5ULC1fgxFVw+
-	 XBDrdYm83U25Q==
-Date: Tue, 22 Oct 2024 17:31:10 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	b=mRBGzM9wKsrl6QT3VYmwGf+KvBGLL5zGDbIC4bge1qldHREXFINHZY27hxLFQPEFp
+	 VYUUk+J+LRsrMnmFZI2irDHu/3ooVJcbZyDxOvRYIcerFXA1CHm0zfzHaWvvM78/wJ
+	 9jaFjPlSujVvuY6yT0MFrBeYsn1JwJLgu+FmFq8EWdLXx221o5ZtUVo67ItRqBJRzd
+	 rXsh/Vz1A2wcbHCFibZHpsJY87es3J704EWGhrdjp3L7YpirmPgyoK+D+F5gaiUqIi
+	 yEd1bNGlcHA7GDB+U5V6jAS79i69sn+H2OJfTWKhYDhTnPyxU5CtUc+CkhCobpRAun
+	 T3o1C9YQmQNjw==
+Date: Tue, 22 Oct 2024 17:35:55 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	jason-ch chen <Jason-ch.Chen@mediatek.com>,
-	Chen Zhong <chen.zhong@mediatek.com>,
-	Flora Fu <flora.fu@mediatek.com>,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 5/6] regulator: Add driver for MediaTek MT6328 PMIC
- regulators
-Message-ID: <8b4814d7-15da-4c0d-8d6d-0707a8c2eb74@sirena.org.uk>
-References: <20241018081050.23592-1-y.oudjana@protonmail.com>
- <20241018081050.23592-6-y.oudjana@protonmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: pcf2127: Add
+ nxp,battery-switch-over property
+Message-ID: <20241022-radiator-blemish-3819dd4d94e0@spud>
+References: <20241022092855.1609427-1-p.rosenberger@kunbus.com>
+ <20241022092855.1609427-2-p.rosenberger@kunbus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="33tXnPvbLYFDgAR7"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+KTeWsQ8l8Yvriiu"
 Content-Disposition: inline
-In-Reply-To: <20241018081050.23592-6-y.oudjana@protonmail.com>
-X-Cookie: Surprise due today.  Also the rent.
+In-Reply-To: <20241022092855.1609427-2-p.rosenberger@kunbus.com>
 
 
---33tXnPvbLYFDgAR7
+--+KTeWsQ8l8Yvriiu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 18, 2024 at 11:10:47AM +0300, Yassine Oudjana wrote:
+On Tue, Oct 22, 2024 at 11:28:54AM +0200, Philipp Rosenberger wrote:
+> The nxp,battery-switch-over property is used to control the switch-over,
+> battery low detection and extra power fail detection functions.
+>=20
+> The PCF2131 has a different default value for the PWRMNG bits. It is set
+> to 0x7: battery switch-over function is disabled, only one power supply
+> (VDD); battery low detection function is disabled.
+> This is the opposite of the default of the PCF2127/PCA2129 and PCF2129.
+> With the nxp,battery-switch-over the behavior can be controlled through
+> the device tree.
+>=20
+> Signed-off-by: Philipp Rosenberger <p.rosenberger@kunbus.com>
+> ---
+>  Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Doc=
+umentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> index 2d9fe5a75b06..5739c3e371e7 100644
+> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> @@ -30,6 +30,16 @@ properties:
+> =20
+>    reset-source: true
+> =20
+> +  nxp,battery-switch-over:
+> +    description:
+> +      Battery and power related configuration. This property is used to =
+set the
+> +      PWRMNG bits of the Control_3 register to control the battery switc=
+h-over,
+> +      battery low detection and extra power fail detection functions.
+> +      The actual supported functions depend on the device capabilities.
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    minimum: 0
+> +    maximum: 7
 
-> +static int mt6328_ldo_table_set_mode(struct regulator_dev *rdev, unsigned int mode)
-> +{
-> +	int ret, val = 0;
-> +	struct mt6328_regulator_info *info = rdev_get_drvdata(rdev);
-> +
-> +	if (!info->modeset_mask) {
-> +		dev_err(&rdev->dev, "regulator %s doesn't support set_mode\n",
-> +			info->desc.name);
-> +		return -EINVAL;
-> +	}
+Beyond the fact that I dislike register-content properties like this, where
+it is not possible to grok the meaning by reading the property, what
+even makes this suitable for DT in the first place? Reading the commit
+message this sounds like software policy, and that different users of
+the same board might want to configure these register bits in different
+ways.
 
-If the regulator doesn't support setting modes it shouldn't have any
-mode operations, then the core will take care of handling things
-appropriately.
-
-Otherwise this looks good.
-
---33tXnPvbLYFDgAR7
+--+KTeWsQ8l8Yvriiu
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcX000ACgkQJNaLcl1U
-h9Ce+wf/ZIulqT3K3IhJ+KVWRcq3tjdhPl/Mej1+R59I03LxzaQpb8o43HQxSAxe
-SU0os389dSUkyF+kdhdT9f6YnIbW+vKIYPS38wU/5vfJN83xndKz8fBXDIxypF+W
-p9CnJwD0oQdITaqwTv3R5hfguCOZjh4YZLOgF4lLnhrxE5n3xHTAd3xaDK8gFhDb
-3igU5G1wWXv1t4bo88lF+fVeV/UvAllmm/cMimxvkDXpC+0rVwyVE+TMXZ6+70j0
-HzjxF8MNukQREubLvlekRPkCKzcNJ69HTiMYsDNN8YEf2YNWgbfzTJIap31+vm1U
-wiwCOzsm/3hF/CDv5/gVqprY892Ehw==
-=zs8D
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxfUagAKCRB4tDGHoIJi
+0k4dAQD64SynLJ2HE4dFv/JDZwl8zoM2AKjat0CrtbfMq2E8DgD8Dlnk6fbrOQgn
+V8U47+nzU4OyWKpf5IFuaVQLjBnDAg0=
+=N53I
 -----END PGP SIGNATURE-----
 
---33tXnPvbLYFDgAR7--
+--+KTeWsQ8l8Yvriiu--
 
