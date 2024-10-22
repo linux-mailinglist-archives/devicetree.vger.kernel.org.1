@@ -1,187 +1,97 @@
-Return-Path: <devicetree+bounces-114188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 081BC9AA192
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:58:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 064349AA27F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B42FE281C07
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:58:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33DE31C2178D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:52:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D346B19D06A;
-	Tue, 22 Oct 2024 11:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF8619D89D;
+	Tue, 22 Oct 2024 12:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wyygpwv1"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="zNeRSXLn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1796719CC21;
-	Tue, 22 Oct 2024 11:58:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18AF819CD01;
+	Tue, 22 Oct 2024 12:52:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729598310; cv=none; b=Zc7aeeUjW/ZhXih0zMbW7aXudBDHNTr1F7IGsrpgHagkHyfmbq7RwgHXiEalzMSNxrrLMgy2TW6XvcKIDt0zbOzKTiytCnPs/YVbsn9axuby4U1wJh+CHuW/kxQ1tanNDHOgKK9Z5HcfE9YpERWoOLBT3ElU55SKeyxkIBptcdk=
+	t=1729601542; cv=none; b=S1bOfPdWqUnac5hYWEKvenxdG9zj2KmHfnW+Jhkai953Zy90U+5ZzfxaPXEgezNMD8jESc8PzOzzLf8kz6eBYqvr2evjQ5DKf13dbVRstdgJW4DASsZpW/CAyfFDTdNBBy88gObbI3ObikubLgjZZv5Db7Zjfa1GZZNZjhlTS4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729598310; c=relaxed/simple;
-	bh=BTDt6qlSaNzWRwuddcIgmNzyQuQyr8njKeq88csMu80=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ClKzQarUVc9d2RqlQ4TfTTm7nMt8tzNH02EtvWRT30QtL+Qx5WZ1zAI2JK9PXjjUIuhkGc5a/IbWK0D6+8FM/tZEy5ARNT6EgVWlLCYDHWVs9U2BwceYwQ1fLPMVx9GQpNGeRSCeZB83dcD3kBSpcH/VBguUhxBfQE4Piqtt280=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wyygpwv1; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-37d70df0b1aso4390197f8f.3;
-        Tue, 22 Oct 2024 04:58:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729598307; x=1730203107; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WxrSMO536EXZGmOr3kpv23n7knkK3n2HcDHnFXznw88=;
-        b=Wyygpwv1TM48KTsWDhzGRuFWSXYWHhg2Dz2eaaxVWbV728uph/q+6vMmC/Dz7Oyvys
-         3rKhDpthISnoXTDuEDOe+ByUJ9XoMG5IrpGxe93gEtXFPODSMZ/PnWChtEEuc5LttGiw
-         OjtDcMFpvp1r2sNSFdb7et2tyyvRI6X7cJTYLUhoB90VugEcc2gk7YQKC1GJSI2kM5DI
-         mF7EAUFsnGcjctQlRfcCi/W4WwxfIpf74t/LKk+MS3M0r1+MRu7vKpRpp31+SGjWqAA/
-         TbuiVqUaCGE5PI9O5TjkI+STvWi7+HJb0CFQicZqcEwBZzm4D4gzqoNOfHic1BlX7Ugw
-         aKRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729598307; x=1730203107;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WxrSMO536EXZGmOr3kpv23n7knkK3n2HcDHnFXznw88=;
-        b=PCnW8TYwyx5OciUXWdZnabtLZ2c5IIGuvDbZjOQrzTV8HQQIfSsB6DzXC/KclKfJuj
-         HfMsM9Q3rTwCqqrqfuZF/Pd25TiVPSkVpjwAtCVN+WcKgUItoZZxX/GBVQprkhE/5Cvl
-         gYbYoyY5ibJ544QbsOeSo1PLhkVPPJj2vgYqqpoBgo4nk6PFrURVeChRtgyQQvZ77jux
-         KdO3+Yq6Xm6RAQcrYnCf9L7k+q/E1M9mFKgoNS8vMBP01v9aQsSXWu4G8sJpUKB4R4Fq
-         KbcwnY5CmwCyNJfslGDnUeLol4jE+6ijH0ZGoU6Er4NEjQXWXrojt6EQAp7jhZhIW4mi
-         m85Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU3Y2B8nSgRSo3fcyT77kctY6E4y3HbBv2A2FhCOvs1WSya1CZ/NqR1PFp313xbDN7CO4IbO8lVMozLXJD4@vger.kernel.org, AJvYcCXYpdIKNoid4IW7FbmB+kk3uh0SdYeOxNL3VlYQfPB/WtsIucTTFKd80bFvL9u7yw3OP/Chmfc135UN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8frtSSa4eq8z6HDlWkn/WoIN5iz+stVlIdc8HaAF44b4n8szh
-	+ogHe2gSDwK+N9G4XTPJpniSgsdyvNHJvl+Z1OrdZbmKbuA81SaZ
-X-Google-Smtp-Source: AGHT+IGFZtwZol0FwtPPFXHWKs+IKkc4ogJP3Moca9EW8gM4QQqFPt7Tq5HUvO5M231nm4Hgv5fAHg==
-X-Received: by 2002:a5d:6b90:0:b0:37d:4e74:687 with SMTP id ffacd0b85a97d-37ebaa7a72dmr8894108f8f.41.1729598307045;
-        Tue, 22 Oct 2024 04:58:27 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2d2bsm85376615e9.34.2024.10.22.04.58.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 04:58:26 -0700 (PDT)
-Message-ID: <8cba678ee61eb221f8d5deb786a69b547371f11c.camel@gmail.com>
-Subject: Re: [PATCH v7 8/8] iio: dac: adi-axi-dac: add registering of child
- fdt node
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Angelo Dureghello <adureghello@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich	 <Michael.Hennerich@analog.com>, Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dlechner@baylibre.com, Mark Brown
-	 <broonie@kernel.org>
-Date: Tue, 22 Oct 2024 14:02:44 +0200
-In-Reply-To: <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-8-969694f53c5d@baylibre.com>
-References: 
-	<20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-0-969694f53c5d@baylibre.com>
-	 <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-8-969694f53c5d@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.0 
+	s=arc-20240116; t=1729601542; c=relaxed/simple;
+	bh=5BJzw8OeL5RxI2XBz1iZG7KaTvXSK/izAGyBEdyk8sc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qJv+Gc6o+4pXpHn3u4pZmzxHs3t10ZxMValSDMS3aWWxIYQ+jkBet2oD0wN6uAGvIeUUU6Jh4kC5OM74qchLhemTtqo3QpZ6hjS+l5XBrdZDf91q4dps3kqTTS7orwJ1hFNPe/xcPeA+OTTe28pLqNAxs77jimO3WulXzbVNqgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=zNeRSXLn; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 3D3FD88EBA;
+	Tue, 22 Oct 2024 14:52:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1729601539;
+	bh=9DOx6O2cK3IrTdgG8pysn1acDSlZP8m21uO78nQpmWQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=zNeRSXLn9Z1iLHCgLS+g2i9ljpqBvKT9QR28j/93614sc+VbjIBfCXCZFSttbM1cb
+	 QatBSjzxmomh8OhXkOOP2CxuykCxJt2eQE88/sHM3aeoRDdmDXXEds9l/R2qkFjC8x
+	 cYJyLPMelL9Z2ahnz3U0ngtuS06Io741MMy8e0OepApq+M+Aik0B5LnV2v5wFsq71u
+	 UP1mKxQOfcTJni6lsk3WwogVOVMdDbyyd/o/fyHqClvhC12Oi0YPEe3F+VDUngzR2j
+	 l9WSGvzhx15+tw92NUi0PVr3ZESj5knYTy1FiCA9e7hIHVnkxn1+zGdt5G4FnqRS4z
+	 dqCFpLR6A0FJg==
+Message-ID: <d985668f-9e53-449a-9785-5cbb9b14a8fc@denx.de>
+Date: Tue, 22 Oct 2024 13:23:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/12] dt-bindings: pinctrl: fsl,imx6ul-pinctrl:
+ Convert i.MX35/5x/6 to YAML
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
+ Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, kernel@dh-electronics.com, linux-gpio@vger.kernel.org
+References: <20241017211241.170861-1-marex@denx.de> <ZxcbHb5v05+XhFnM@dragon>
+ <6eb23f6c-fe0c-4ee1-8f99-568041524073@denx.de> <ZxdDPSI4i/nRawlw@dragon>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <ZxdDPSI4i/nRawlw@dragon>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, 2024-10-21 at 14:40 +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
->=20
-> Change to obtain the fdt use case as reported in the
-> adi,ad3552r.yaml file in this patchset.
->=20
-> The DAC device is defined as a child node of the backend.
-> Registering the child fdt node as a platform devices.
->=20
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
-> =C2=A0drivers/iio/dac/adi-axi-dac.c | 53
-> +++++++++++++++++++++++++++++++++++++++++++
-> =C2=A01 file changed, 53 insertions(+)
->=20
-> diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.=
-c
-> index 9d6809fe7a67..7f7ef3e219ba 100644
-> --- a/drivers/iio/dac/adi-axi-dac.c
-> +++ b/drivers/iio/dac/adi-axi-dac.c
-> @@ -29,6 +29,8 @@
-> =C2=A0#include <linux/iio/buffer.h>
-> =C2=A0#include <linux/iio/iio.h>
-> =C2=A0
-> +#include "ad3552r-hs.h"
-> +
-> =C2=A0/*
-> =C2=A0 * Register definitions:
-> =C2=A0 *=C2=A0=C2=A0 https://wiki.analog.com/resources/fpga/docs/axi_dac_=
-ip#register_map
-> @@ -97,6 +99,7 @@ struct axi_dac_info {
-> =C2=A0	unsigned int version;
-> =C2=A0	const struct iio_backend_info *backend_info;
-> =C2=A0	bool has_dac_clk;
-> +	bool has_child_nodes;
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct axi_dac_state {
-> @@ -723,6 +726,35 @@ static int axi_dac_bus_reg_read(struct iio_backend *=
-back,
-> u32 reg, u32 *val,
-> =C2=A0	return regmap_read(st->regmap, AXI_DAC_CUSTOM_RD_REG, val);
-> =C2=A0}
-> =C2=A0
-> +static void axi_dac_child_remove(void *data)
-> +{
-> +	platform_device_unregister(data);
-> +}
-> +
-> +static int axi_dac_create_platform_device(struct axi_dac_state *st,
-> +					=C2=A0 struct fwnode_handle *child)
-> +{
-> +	struct ad3552r_hs_platform_data pdata =3D {
-> +		.bus_reg_read =3D axi_dac_bus_reg_read,
-> +		.bus_reg_write =3D axi_dac_bus_reg_write,
-> +	};
-> +	struct platform_device_info pi =3D {
-> +		.parent =3D st->dev,
-> +		.name =3D fwnode_get_name(child),
-> +		.id =3D PLATFORM_DEVID_AUTO,
-> +		.fwnode =3D child,
-> +		.data =3D &pdata,
-> +		.size_data =3D sizeof(pdata),
-> +	};
-> +	struct platform_device *pdev;
-> +
-> +	pdev =3D platform_device_register_full(&pi);
-> +	if (IS_ERR(pdev))
-> +		return PTR_ERR(pdev);
-> +
-> +	return devm_add_action_or_reset(st->dev, axi_dac_child_remove, pdev);
-> +}
-> +
-> =C2=A0static const struct iio_backend_ops axi_dac_generic_ops =3D {
-> =C2=A0	.enable =3D axi_dac_enable,
-> =C2=A0	.disable =3D axi_dac_disable,
-> @@ -865,6 +897,26 @@ static int axi_dac_probe(struct platform_device *pde=
-v)
-> =C2=A0		return dev_err_probe(&pdev->dev, ret,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to register iio backend\n");
-> =C2=A0
-> +	if (st->info->has_child_nodes) {
+On 10/22/24 8:16 AM, Shawn Guo wrote:
+> On Tue, Oct 22, 2024 at 05:52:08AM +0200, Marek Vasut wrote:
+>> On 10/22/24 5:25 AM, Shawn Guo wrote:
+> ...
+>>> I'm not sure it makes a lot sense to have "fsl,imx6ul-pinctrl: " in the
+>>> subject prefix.
+>> I can change it to imx-pinctrl or something and send V4 , or can you tweak
+>> it while applying since the series is somewhat large ? Which do you prefer ?
+> 
+> I expect this binding change go via pinctrl tree, so it's up to Linus.
+Oh ok, so just let me know. And ideally let me know what kind of prefix 
+do you expect there, imx- or imx35- or ... ?
 
-I would prefer to not be silent on possible misconfigurations. IOW, moving =
-the
-check inside the loop and error out if (!st->info->has_child_nodes)
-
-- Nuno S=C3=A1
-
+Also, what about the DT changes, do you plan to pick those or shall I 
+send them separately ?
 
