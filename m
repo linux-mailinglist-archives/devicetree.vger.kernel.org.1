@@ -1,158 +1,212 @@
-Return-Path: <devicetree+bounces-114330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8A79AB4A4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:05:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC9639AB4AD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:06:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F990284DE6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:05:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F978B22941
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C851BC06E;
-	Tue, 22 Oct 2024 17:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701D01BC9F5;
+	Tue, 22 Oct 2024 17:06:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UVZb3sRX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e18z5qEY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 089EE1A08CB
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1A64438B;
+	Tue, 22 Oct 2024 17:06:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729616723; cv=none; b=t3H821Y8e53DSaO4Z6ZONusednUqymBhLeeUb1LJ7H0DTBnApEtwVZhXuk3loJacQJciP/0xfUq+IbMsvaN3sR04/5kfZOCrTRtsE4GT5T45ByvAcIp0gTRPb9g5Rb7PRoUFlFdTnqJ8y2cDqzAlNnVGtdLJG1L2p9Q9FH5fxho=
+	t=1729616775; cv=none; b=lScmOqwXwmCat0B7lRJKT+WwMNUPF++E3ezHWMN5RYhXmWZb7JionBBKLEVIYZNrcKlJADAKIfulu0IPvBdNLo/AyDhF/S8Xo0zKgZwzDUQPxStqbJUd09iqLtDvJMVFFCgXms6XVBgviIetqvjJHtKZPU+0IW6ZziU41vgo9+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729616723; c=relaxed/simple;
-	bh=GIQYkP95DpNNqjHPx+GVVjcUxfLNLK4bVCRYu91sUN4=;
+	s=arc-20240116; t=1729616775; c=relaxed/simple;
+	bh=JSq1PbKICLPD3uEw/HtbkFlY48LXhzmHMpUzmbOu/KA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m72coXHl+1/0dNBnYJUspcRC/Cvk716bI8ruHVEUn124QTdrkFjybizh9pf1bi2KT4WFdIvXppwqYJD1i9x3GS4D5IteAXp7pmfTnO+kB40Y2o/G36xkiDRXrrDAMz58BghQnXVwO2wFUbSKJkWoH9Q4PF4ByY786wFkYGNHebk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UVZb3sRX; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2e2ed59a35eso4814057a91.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 10:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729616721; x=1730221521; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ApU3fV+UtKxcEYZyM6H87gs38rNpBSSNhr/eTWWEXY4=;
-        b=UVZb3sRXDRYymQ3279okG0TR5rjGPhTRkxEiKH3HKZM7D7H/wMUGdSiWQnG4dy9hCz
-         tEsZTNR5k+X1pEtRKjQYH9J9OLraW8rbKIHh64w4kO6Jmr0ZMzGKQk3IJP19GNJY6P4g
-         zraM0/mOFxy0iFpz3w+4gQ5VBnbbODwr2PY2zFLLRztJ5k9641VI6AXVAiJKZIY2V9Ha
-         v4B58wZl6+AjUHkv5Pz5nTMXfPJM2RxhIGSJOz0G/JcJLi/yh8vetN/YczuavaHSKjcS
-         GMxHBETdZ9V/Fob1fSqOwkRtb2j+3zKKOePN7je2f47a9kk7xdfO0q7dKpNtHrz/CiKf
-         TH9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729616721; x=1730221521;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ApU3fV+UtKxcEYZyM6H87gs38rNpBSSNhr/eTWWEXY4=;
-        b=pGRB12Nk9g35QOSprFpnXa4AK40TNaj3AnaCsSLZfgd/OalPcHCSyMLkQvBecTzXRj
-         lR9Lgh8q5St088SeIEE8pStg/26V8gHXmx2TCpxIZMS3aP0mulcn38WmVd8JPouDQzEG
-         78GqaXbYOTrlwwA+dX1V20JGrfsMSjgnsbSPKxl6M+F6mGenCObl9sCymUWvyS2Ioggi
-         8FQZBDKTI19BhAxY5Yjgd41aTPCM8PzFOnddKBkiDTfIlEHMxNqOwmX9nFarSp8l3xHJ
-         AIuDOJR7k+r9ob7LDaEzFjpz7S0yqoh3FhC08Nu7dw4MAqhwHXJRHzuC5SGzlZ8UNUOw
-         AX/g==
-X-Forwarded-Encrypted: i=1; AJvYcCUh26nvOcAbVKNHEiU4YDuTYRR9nTdDDRRapqqJXE067n8wg2LGO1tAeg8Jpc4u0GAmhEh9IasdFjzA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvcdGc8W/kkQ6xAdExlNPhKoPau+u08DxYe7SC/AY8pJ3ql702
-	YCZ+MWa8XAq1MUzTPpU4k4kpeFs2E8tfesljweTrNcF4npryfir9m+RJjsUahw==
-X-Google-Smtp-Source: AGHT+IHRqsW0sRulSaBfDKEdAZUSpR9q80CX2UTyubbP2o+xbSDVjhZp8NPAD81dLI0BL9hvAVo41w==
-X-Received: by 2002:a17:90b:1185:b0:2e2:cef9:4d98 with SMTP id 98e67ed59e1d1-2e561a01146mr16890078a91.25.1729616721232;
-        Tue, 22 Oct 2024 10:05:21 -0700 (PDT)
-Received: from thinkpad ([36.255.17.224])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad389146sm6432096a91.26.2024.10.22.10.05.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 10:05:20 -0700 (PDT)
-Date: Tue, 22 Oct 2024 22:35:14 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: kw@linux.com, bhelgaas@google.com, lpieralisi@kernel.org,
-	frank.li@nxp.com, l.stach@pengutronix.de, robh+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
-	s.hauer@pengutronix.de, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v4 6/9] PCI: imx6: Make *_enable_ref_clk() function
- symmetric
-Message-ID: <20241022170514.s6ejwj2w64nivqui@thinkpad>
-References: <1728981213-8771-1-git-send-email-hongxing.zhu@nxp.com>
- <1728981213-8771-7-git-send-email-hongxing.zhu@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YBsu7AazZu6oRp6aso4UL822t+cloPS62THv+pXxkE9aj2AcLArdGNrt0K73NfCQt7sWwKxvIDAVGlmbb7k/m1a6ZqcjXmDYGVOueBoWjfOf04K1bEJ4pTFZtaMCDpBOi7Booht90ZUOB/w4LGcan+q508K3Fom++hVDoP2HxsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e18z5qEY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4C67C4CEC3;
+	Tue, 22 Oct 2024 17:06:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729616774;
+	bh=JSq1PbKICLPD3uEw/HtbkFlY48LXhzmHMpUzmbOu/KA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e18z5qEYerXbFSihhum4dQ7H0airCV1cW9LE38K9rLigMXBv12l088+WqureaXLyh
+	 aYqXSxqQ2+u1pfol71i/9g6o1XqJVsyhwao5E74YAnohCRoeaPaCaqSGryVvV05YWm
+	 BF+1qnJfY3E4qr0lY35uDwzQ9vRJO+Xsn/RBhqwjZXYxdEOvlNSlEe1MS4GbS6O+1K
+	 I1+a0ENIx8/BkE6D5h2DjkXfXrFlKUYeml0TOg6SN4eVmJZWlMmeJNkqlWwuGyK6jG
+	 T9edol+8M23G48/Qq2a+yP+RisXYzUPoCGIa6Mci5zV3bfhetFFuWmx+7JuKMFGOpH
+	 ZX/WRaKpgrWLw==
+Date: Tue, 22 Oct 2024 18:06:08 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Richard van Schagen <vschagen@icloud.com>,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev
+Subject: Re: [RFC PATCH v3 2/3] dt-bindings: crypto: Add Inside Secure
+ SafeXcel EIP-93 crypto engine
+Message-ID: <20241022-most-politely-e85f571c05a3@spud>
+References: <20241021145642.16368-1-ansuelsmth@gmail.com>
+ <20241021145642.16368-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tBfP0HJf7nOgQAVw"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1728981213-8771-7-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <20241021145642.16368-2-ansuelsmth@gmail.com>
 
-On Tue, Oct 15, 2024 at 04:33:30PM +0800, Richard Zhu wrote:
-> Ensure the *_enable_ref_clk() function is symmetric by addressing missing
-> disable parts on some platforms.
 
-This warrants a Fixes tag. And the patch subject should be something like,
+--tBfP0HJf7nOgQAVw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-"PCI: imx6: Fix the missing reference clock disable logic"
-
-> Also, remove the duplicate
-> imx7d_pcie_init_phy() function as it is the same as
-> imx7d_pcie_enable_ref_clk().
-> 
-
-This is a cleanup, so should be a separate patch.
-
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+On Mon, Oct 21, 2024 at 04:56:38PM +0200, Christian Marangi wrote:
+> Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
+>=20
+> The IP is present on Airoha SoC and on various Mediatek devices and
+> other SoC under different names like mtk-eip93 or PKTE.
+>=20
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  drivers/pci/controller/dwc/pci-imx6.c | 33 +++++++++++----------------
->  1 file changed, 13 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 93e2bcf9aa0a..161daad34a94 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -388,13 +388,6 @@ static int imx8mq_pcie_init_phy(struct imx_pcie *imx_pcie)
->  	return 0;
->  }
->  
-> -static int imx7d_pcie_init_phy(struct imx_pcie *imx_pcie)
-> -{
-> -	regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12, IMX7D_GPR12_PCIE_PHY_REFCLK_SEL, 0);
-> -
-> -	return 0;
-> -}
-> -
->  static int imx_pcie_init_phy(struct imx_pcie *imx_pcie)
->  {
->  	regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> @@ -593,13 +586,13 @@ static int imx_pcie_attach_pd(struct device *dev)
->  
->  static int imx6sx_pcie_enable_ref_clk(struct imx_pcie *imx_pcie, bool enable)
->  {
-> -	if (enable)
-> -		regmap_clear_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> -				  IMX6SX_GPR12_PCIE_TEST_POWERDOWN);
-> -
-> +	regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> +			   IMX6SX_GPR12_PCIE_TEST_POWERDOWN,
-> +			   enable ? 0 : IMX6SX_GPR12_PCIE_TEST_POWERDOWN);
->  	return 0;
->  }
->  
+> Changes v3:
+> - Add SoC compatible with generic one
+> Changes v2:
+> - Change to better compatible
+> - Add description for EIP93 models
+>=20
+>  .../crypto/inside-secure,safexcel-eip93.yaml  | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secur=
+e,safexcel-eip93.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safex=
+cel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,saf=
+excel-eip93.yaml
+> new file mode 100644
+> index 000000000000..13341710ee31
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip=
+93.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/inside-secure,safexcel-eip93.y=
+aml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
+> +title: Inside Secure SafeXcel EIP-93 cryptographic engine
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +description: |
+> +  The Inside Secure SafeXcel EIP-93 is a cryptographic engine IP block
+> +  integrated in varios devices with very different and generic name from
+> +  PKTE to simply vendor+EIP93. The real IP under the hood is actually
+> +  developed by Inside Secure and given to license to vendors.
+> +
+> +  The IP block is sold with different model based on what feature are
+> +  needed and are identified with the final letter. Each letter correspond
+> +  to a specific set of feature and multiple letter reflect the sum of the
+> +  feature set.
+> +
+> +  EIP-93 models:
+> +    - EIP-93i: (basic) DES/Triple DES, AES, PRNG, IPsec ESP, SRTP, SHA1
+> +    - EIP-93ie: i + SHA224/256, AES-192/256
+> +    - EIP-93is: i + SSL/DTLS/DTLS, MD5, ARC4
+> +    - EIP-93ies: i + e + s
+> +    - EIP-93iw: i + AES-XCB-MAC, AES-CCM
 
-Spurious change.
+This implies that you should have a non-trivial set of fallbacks, with
+the "i" model as the base for that. eg:
 
-- Mani
+"ie", "i"
+"is", "i"
+"iw", "i"
+"ies", "ie, "is", "i" (I dunno which would be a better order here)
 
--- 
-மணிவண்ணன் சதாசிவம்
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: airoha,crypto-eip93
+> +      - enum:
+> +          - inside-secure,safexcel-eip93i
+> +          - inside-secure,safexcel-eip93ie
+> +          - inside-secure,safexcel-eip93is
+> +          - inside-secure,safexcel-eip93ies
+> +          - inside-secure,safexcel-eip93iw
+
+I don't really get what's going on here. Why is the first compatible the
+generic one? That seems suspect to me, as I doubt the crypto block on a
+particular SoC varies? I'd expect to see some soc-specific compatibles
+with a fallback to the inside-secure IP version that it integrates.
+
+Cheers,
+Conor.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    crypto@1e004000 {
+> +      compatible =3D "airoha,crypto-eip93", "inside-secure,safexcel-eip9=
+3ies";
+> +      reg =3D <0x1fb70000 0x1000>;
+> +
+> +      interrupts =3D <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> --=20
+> 2.45.2
+>=20
+
+--tBfP0HJf7nOgQAVw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxfbgAAKCRB4tDGHoIJi
+0gWRAP9jiY6x9l9Ufpjhp/094FdBrAiNEO4VxSjzCIBxqQWXkAD/QLfnL6ZVzcbi
+dxCnGvhmIM1SsJP7gycqN6LPJsHwfQg=
+=p17h
+-----END PGP SIGNATURE-----
+
+--tBfP0HJf7nOgQAVw--
 
