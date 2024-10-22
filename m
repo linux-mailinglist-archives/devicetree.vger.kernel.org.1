@@ -1,180 +1,77 @@
-Return-Path: <devicetree+bounces-113927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A42C9A956C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 03:24:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A69C9A956F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 03:27:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C841A28473A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 01:23:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 246A528191B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 01:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36D61386BF;
-	Tue, 22 Oct 2024 01:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD78F126C08;
+	Tue, 22 Oct 2024 01:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c3N0BImI"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Buz1x96t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671F485C5E;
-	Tue, 22 Oct 2024 01:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B94B185C47;
+	Tue, 22 Oct 2024 01:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729560211; cv=none; b=tldunRGOv04rhLbeg6phTOz+OVJH+uNcBjNzp0aqhBcplE+4LL2AKQc+O9BQsODyqm0Ar/2+T5NwI86uMDKzI4l9oWAcHa+dCuESSR23fBKbJoWHdVbJqGZDAXR/r0xERF1YdAS/TH2svVzHJy93j5ZLsd2ejP7n5i18ymFNZSI=
+	t=1729560468; cv=none; b=gCy7SHUa4BItm8NTNLMrxw0n3NMdaWmbgBCon/hxBI4iZgF6DllL4fe+xdZW3vq/VuoMO7ctkAIfhgJAkxeFKP9OiRVJIWftQIkFmyk0HjcHLtILNbfixrIBZ1ILU0Em9wa8hgecM9XLTZCP33w684c/9xL5kt0tMJ7grCA0Qis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729560211; c=relaxed/simple;
-	bh=MIGPOdo21PTWbv6zESRF7XdStcwjMCU1AGOn2z3JMpM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=r1PdolKxteYa5FNimSIz/vNLcfaqOP8njSg/+irPPkG0Jh6HKRnDA6SAeepzWtz4h+l31i+UqnKo+bF6jF2W85qXmk53SFg8O2byozwS3GfLMJQojZJSJBjIFX3DGMIUQnUmjdE17W4Ln/e5/Iu2jvInxxK+C7gaUYmV3akK1os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c3N0BImI; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e2dcf4b153so3709752a91.1;
-        Mon, 21 Oct 2024 18:23:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729560210; x=1730165010; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0kpvlTNyCm02akaAvuo0njQRu2uaU/VS1NFzMgstuUA=;
-        b=c3N0BImIvY5cduUTvGafDkpAAOEwHY+JnLF3cn+rzCewOqnUDpAvUu/koxgLaN/N5Q
-         HnZuLT5srW8CrhcOUcjrdw3464LBmipm8Wa+YudvFwyfbtzVVPqtCLQXfvSTuZ1GLXqm
-         4EPWNo5aQYUfxaYdmgMkEOVRBy9WVjWCMifaW6SNrYXJ+LapbPSXDP4iLKmtyZqA851v
-         SLASUkbhoimnw8YCxbJOE0Uc3aJMRUqJgo2z9clppBhpKr8ahQqx1hh4ENFoADfPl+Dv
-         fDMOY69cIeCpB0k7evLnyNrxD7XxlgsTOXRGy7dByiXQ3vANVeJ9QrsyOGrgqfoBiybz
-         XKEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729560210; x=1730165010;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0kpvlTNyCm02akaAvuo0njQRu2uaU/VS1NFzMgstuUA=;
-        b=OKI930XPd1dixvTGa98LFN6O+GUyh/aA/CR4KB5dvfnJbhIk3b6JFSJY20hoMqtDo2
-         IaXudvjCqk9jITvXNAcqs+gEvUqU7NNBMg4MfySEhl8QgUbaldNfmWK/udMLsbXm5Ee/
-         sXtkLa2vqJlvX6IUlglTN0E3rgp0syYEVvDogPklXDtVo60ela+KJ/k2i2JoftZS60Nu
-         qLFpaXIwREdgSNh8SQe7tTGafttJpygD6Q8Ji5U7QqKl4UCg+wbjD8ALW6HfBEoPaX6Z
-         lMD+5HD4UpqLi4oE8DTwK3gjBeGXGyeFIExyLykxqs7OPWHABnYo0FB7bIebWFceszdg
-         kzgw==
-X-Forwarded-Encrypted: i=1; AJvYcCWoSv2sdmt1SD9ydDVEF3kUbjKw2+++Xmbk1+a3TLYnkTPHJDW9Jyc8jvNXVfnyQ2wi6rGaxxZxoilZ@vger.kernel.org, AJvYcCXZ0i0QsuCuQimMWb9Q6mMPfU6NCUihCO4ofSUWICB0SckMFgTrRdE6spLeZfazHHONHjptMohw5YHL52T+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJwzyAO1Rsm8O2y3ymkBNd95ESvGUaZIQRyrg7HYnQe6c0yDeN
-	EvODfk5pUZpaa6aeMsN1ZNIj+WYRRxWmLBzH/vUY/dKZtwIZCf0V
-X-Google-Smtp-Source: AGHT+IFDF8vNafHQIu1BhZKfSynLDr8X+Y76zj3pF0K4HDOWPyQhGrBM3vZ3HSYkUohWmDmh0iN3ug==
-X-Received: by 2002:a17:90a:fd10:b0:2e2:8c75:b45 with SMTP id 98e67ed59e1d1-2e5da580a85mr2166127a91.11.1729560206396;
-        Mon, 21 Oct 2024 18:23:26 -0700 (PDT)
-Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad365d14sm4718919a91.13.2024.10.21.18.23.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 18:23:26 -0700 (PDT)
-From: Potin Lai <potin.lai.pt@gmail.com>
-Date: Tue, 22 Oct 2024 09:20:47 +0800
-Subject: [PATCH v2 2/2] ipmi: ssif_bmc: add GPIO-based alert mechanism
+	s=arc-20240116; t=1729560468; c=relaxed/simple;
+	bh=dqszEP1v019qGNcL5CesOrLFKyvxXNh+xc6yd+cMh8s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R0L0S1R4NzUBosoJbEKiLUM2blDo15IRfwj6GuaNL1rwKrc6pvISowQq7E+uFRg6vKJ348fNdNFLhskah8X/zBT1G0EwCfAP8SZ3mYjs6lEHj9rer7l7coUy/hIbON6TaU3AELffrQKr/w+y3cQ/U9Z5lk0f768ap/v9Ud8dGlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Buz1x96t; arc=none smtp.client-ip=1.95.21.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=dVrd/2fUWFhAJT7e0aGI6esgbMA0fu+dfMpHANARuy0=;
+	b=Buz1x96twcRHAJQfuAdZK/M4fx4p9OBUmc4NXC2cbkl5yuQP4j9ElGIkQMTqW5
+	1ygfysgG5+sx3Wi/N/lKe1kDaQlC9klhfnhxTGGdOdVzCB4Mj6u6ivOdcL4YOAZg
+	WOfNnjqCeIiWX/tSGXhN+Z79WGYIaulLQW4C+H18Cfd+A=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAHLrlt_xZnTOeSAA--.5164S3;
+	Tue, 22 Oct 2024 09:27:11 +0800 (CST)
+Date: Tue, 22 Oct 2024 09:27:09 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: correct sdhc ipg clk
+Message-ID: <Zxb/bU7Z7KxLF9Mu@dragon>
+References: <20241012025221.1728438-1-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241022-ssif-alert-gpios-v2-2-c7dd6dd17a7e@gmail.com>
-References: <20241022-ssif-alert-gpios-v2-0-c7dd6dd17a7e@gmail.com>
-In-Reply-To: <20241022-ssif-alert-gpios-v2-0-c7dd6dd17a7e@gmail.com>
-To: Corey Minyard <minyard@acm.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Quan Nguyen <quan@os.amperecomputing.com>, 
- Patrick Williams <patrick@stwcx.xyz>
-Cc: openipmi-developer@lists.sourceforge.net, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Cosmo Chou <cosmo.chou@quantatw.com>, 
- Potin Lai <potin.lai@quantatw.com>, Potin Lai <potin.lai.pt@gmail.com>, 
- Cosmo Chou <chou.cosmo@gmail.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1729560198; l=2721;
- i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
- bh=PUD6kC7ss3fWPkXsFlsDDO/XmHqy3YarK27U7zFcq0Q=;
- b=MyfetClwEMMrsdJaxnzazo2rPnNjJCZ9K1ekxRTXpo/c8c/YsSJqGaU10vFCc71b8hk75UtUe
- 2GRhg/5TkDrCWG8W1UO6rPs30IqeFSulmQw9mAGIAVkp3ZJVH0iVizv
-X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
- pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241012025221.1728438-1-peng.fan@oss.nxp.com>
+X-CM-TRANSID:Mc8vCgAHLrlt_xZnTOeSAA--.5164S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUIXTmUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEhSAZWcWdwf6DgAAsW
 
-From: Cosmo Chou <chou.cosmo@gmail.com>
+On Sat, Oct 12, 2024 at 10:52:21AM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> The ipg clk for sdhc sources from IPG_CLK_ROOT per i.MX 8M Plus
+> Applications Processor Reference Manual, Table 5-2. System Clocks.
+> 
+> Fixes: 6d9b8d20431f ("arm64: dts: freescale: Add i.MX8MP dtsi support")
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Implement GPIO-based alert mechanism in the SSIF BMC driver to notify
-the host when a response is ready.
-
-This improves host-BMC communication efficiency by providing immediate
-notification, potentially reducing host polling overhead.
-
-Signed-off-by: Cosmo Chou <chou.cosmo@gmail.com>
----
- drivers/char/ipmi/ssif_bmc.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/drivers/char/ipmi/ssif_bmc.c b/drivers/char/ipmi/ssif_bmc.c
-index a14fafc583d4..73be166b0042 100644
---- a/drivers/char/ipmi/ssif_bmc.c
-+++ b/drivers/char/ipmi/ssif_bmc.c
-@@ -17,6 +17,7 @@
- #include <linux/spinlock.h>
- #include <linux/timer.h>
- #include <linux/jiffies.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/ipmi_ssif_bmc.h>
- 
- #define DEVICE_NAME                             "ipmi-ssif-host"
-@@ -102,6 +103,7 @@ struct ssif_bmc_ctx {
- 	struct ssif_part_buffer part_buf;
- 	struct ipmi_ssif_msg    response;
- 	struct ipmi_ssif_msg    request;
-+	struct gpio_desc        *alert;
- };
- 
- static inline struct ssif_bmc_ctx *to_ssif_bmc(struct file *file)
-@@ -222,6 +224,9 @@ static ssize_t ssif_bmc_write(struct file *file, const char __user *buf, size_t
- 
- 	/* Clean old request buffer */
- 	memset(&ssif_bmc->request, 0, sizeof(struct ipmi_ssif_msg));
-+
-+	if (!IS_ERR(ssif_bmc->alert))
-+		gpiod_set_value(ssif_bmc->alert, 1);
- exit:
- 	spin_unlock_irqrestore(&ssif_bmc->lock, flags);
- 
-@@ -584,6 +589,9 @@ static void process_smbus_cmd(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
- 	memset(&ssif_bmc->part_buf.payload[0], 0, MAX_PAYLOAD_PER_TRANSACTION);
- 
- 	if (*val == SSIF_IPMI_SINGLEPART_WRITE || *val == SSIF_IPMI_MULTIPART_WRITE_START) {
-+		if (!IS_ERR(ssif_bmc->alert))
-+			gpiod_set_value(ssif_bmc->alert, 0);
-+
- 		/*
- 		 * The response maybe not come in-time, causing host SSIF driver
- 		 * to timeout and resend a new request. In such case check for
-@@ -640,6 +648,8 @@ static void on_read_requested_event(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
- 	calculate_response_part_pec(&ssif_bmc->part_buf);
- 	ssif_bmc->part_buf.index = 0;
- 	*val = ssif_bmc->part_buf.length;
-+	if (!IS_ERR(ssif_bmc->alert))
-+		gpiod_set_value(ssif_bmc->alert, 0);
- }
- 
- static void on_read_processed_event(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-@@ -808,6 +818,11 @@ static int ssif_bmc_probe(struct i2c_client *client)
- 	if (!ssif_bmc)
- 		return -ENOMEM;
- 
-+	/* Request GPIO for alerting the host that response is ready */
-+	ssif_bmc->alert = devm_gpiod_get(&client->dev, "alert", GPIOD_ASIS);
-+	if (!IS_ERR(ssif_bmc->alert))
-+		gpiod_direction_output(ssif_bmc->alert, 0);
-+
- 	spin_lock_init(&ssif_bmc->lock);
- 
- 	init_waitqueue_head(&ssif_bmc->wait_queue);
-
--- 
-2.31.1
+Applied, thanks!
 
 
