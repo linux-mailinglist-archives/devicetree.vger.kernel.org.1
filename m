@@ -1,97 +1,171 @@
-Return-Path: <devicetree+bounces-114197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064349AA27F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:52:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E769AA1E6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:11:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33DE31C2178D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:52:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9E13B24008
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF8619D89D;
-	Tue, 22 Oct 2024 12:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F05919F47E;
+	Tue, 22 Oct 2024 12:09:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="zNeRSXLn"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="hjYwuD6c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18AF819CD01;
-	Tue, 22 Oct 2024 12:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C499199938;
+	Tue, 22 Oct 2024 12:09:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729601542; cv=none; b=S1bOfPdWqUnac5hYWEKvenxdG9zj2KmHfnW+Jhkai953Zy90U+5ZzfxaPXEgezNMD8jESc8PzOzzLf8kz6eBYqvr2evjQ5DKf13dbVRstdgJW4DASsZpW/CAyfFDTdNBBy88gObbI3ObikubLgjZZv5Db7Zjfa1GZZNZjhlTS4U=
+	t=1729598955; cv=none; b=rncSKePN+pfw5wvCrfapK5Z1iDnXQRq9jnIo7HAhyoFelZtFKZmYyTfsUl0o7WIf6Sm5FS5yjTP9lXrzg0l4HGtTYmcPZuN/GaxUSBMM/zL0OHbXbcBSjH1tTOy/CEujoWnb0NdIvDIYilHLFOCcdU69AjwZyQTSTKXkEs+Rwys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729601542; c=relaxed/simple;
-	bh=5BJzw8OeL5RxI2XBz1iZG7KaTvXSK/izAGyBEdyk8sc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qJv+Gc6o+4pXpHn3u4pZmzxHs3t10ZxMValSDMS3aWWxIYQ+jkBet2oD0wN6uAGvIeUUU6Jh4kC5OM74qchLhemTtqo3QpZ6hjS+l5XBrdZDf91q4dps3kqTTS7orwJ1hFNPe/xcPeA+OTTe28pLqNAxs77jimO3WulXzbVNqgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=zNeRSXLn; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 3D3FD88EBA;
-	Tue, 22 Oct 2024 14:52:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729601539;
-	bh=9DOx6O2cK3IrTdgG8pysn1acDSlZP8m21uO78nQpmWQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=zNeRSXLn9Z1iLHCgLS+g2i9ljpqBvKT9QR28j/93614sc+VbjIBfCXCZFSttbM1cb
-	 QatBSjzxmomh8OhXkOOP2CxuykCxJt2eQE88/sHM3aeoRDdmDXXEds9l/R2qkFjC8x
-	 cYJyLPMelL9Z2ahnz3U0ngtuS06Io741MMy8e0OepApq+M+Aik0B5LnV2v5wFsq71u
-	 UP1mKxQOfcTJni6lsk3WwogVOVMdDbyyd/o/fyHqClvhC12Oi0YPEe3F+VDUngzR2j
-	 l9WSGvzhx15+tw92NUi0PVr3ZESj5knYTy1FiCA9e7hIHVnkxn1+zGdt5G4FnqRS4z
-	 dqCFpLR6A0FJg==
-Message-ID: <d985668f-9e53-449a-9785-5cbb9b14a8fc@denx.de>
-Date: Tue, 22 Oct 2024 13:23:42 +0200
+	s=arc-20240116; t=1729598955; c=relaxed/simple;
+	bh=GCAlh70HIIrX7QW1ylG+a51tvpUD9YM+ryk+RDixp4w=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j0cmk+u2aDLT7Do6xSERKDWhq8kViiFQzCD3QRYx/hLEDYH9D/JWRua+phSlbOwLp8Aqet49e1g4SBpG8Vdm3mWzs9TSFuM3FM4W/QMCHP1K+jfTuSHqnby+hIlpwEfJFlsW3UC8JbkY8DqUSeZE17cFDzMI0jDlxLFkx73hoEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=hjYwuD6c; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1729598953; x=1761134953;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GCAlh70HIIrX7QW1ylG+a51tvpUD9YM+ryk+RDixp4w=;
+  b=hjYwuD6c8oEvcgvSFrzV2/kTzdR74NnnhtKYUFV7WUQwuGDeUqcRPljo
+   b0dNuxX2HkuQvoZTeeSjSH1xYJ+syO3itZTiyyAiuNSwIxg8gKdhlkrBU
+   4djPFMMxiB17Si8XpxBoyLP+AHDf6cUis0+tJY/h3pZj6v0AS3vtW+DRh
+   alFDEoDNgGR4/NNPO7UyEGEUideUyYvFIRpAJQl8Yw8OHS7RuU7dAtNHu
+   oVUzOIjyAYPI+ciQNonxnBLBCL3LW73OUMQEhG6zNaojhCp4qW3qvAmFN
+   adxkdeJ+J+lQtFDVGXAfCebVWE6l9sS57qT9oXQ2KLBTGSNF3Ta+WWGr+
+   w==;
+X-CSE-ConnectionGUID: 5z4sXM/ESmCyIGzt5yX2Zw==
+X-CSE-MsgGUID: YhWYqzeMTBaRk2u3gZSxrg==
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; 
+   d="scan'208";a="33105701"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Oct 2024 05:09:12 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 22 Oct 2024 05:08:47 -0700
+Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Tue, 22 Oct 2024 05:08:43 -0700
+Date: Tue, 22 Oct 2024 12:08:42 +0000
+From: Daniel Machon <daniel.machon@microchip.com>
+To: Simon Horman <horms@kernel.org>
+CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, <andrew@lunn.ch>, Lars Povlsen
+	<lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
+	<horatiu.vultur@microchip.com>, <jensemil.schulzostergaard@microchip.com>,
+	<Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
+	<ast@fiberby.net>, <maxime.chevallier@bootlin.com>, <netdev@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next 14/15] net: sparx5: add compatible strings for
+ lan969x and verify the target
+Message-ID: <20241022120842.uf575qwaulufjyv6@DEN-DL-M70577>
+References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
+ <20241021-sparx5-lan969x-switch-driver-2-v1-14-c8c49ef21e0f@microchip.com>
+ <20241022085050.GQ402847@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/12] dt-bindings: pinctrl: fsl,imx6ul-pinctrl:
- Convert i.MX35/5x/6 to YAML
-To: Shawn Guo <shawnguo2@yeah.net>
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
- Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, kernel@dh-electronics.com, linux-gpio@vger.kernel.org
-References: <20241017211241.170861-1-marex@denx.de> <ZxcbHb5v05+XhFnM@dragon>
- <6eb23f6c-fe0c-4ee1-8f99-568041524073@denx.de> <ZxdDPSI4i/nRawlw@dragon>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <ZxdDPSI4i/nRawlw@dragon>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20241022085050.GQ402847@kernel.org>
 
-On 10/22/24 8:16 AM, Shawn Guo wrote:
-> On Tue, Oct 22, 2024 at 05:52:08AM +0200, Marek Vasut wrote:
->> On 10/22/24 5:25 AM, Shawn Guo wrote:
-> ...
->>> I'm not sure it makes a lot sense to have "fsl,imx6ul-pinctrl: " in the
->>> subject prefix.
->> I can change it to imx-pinctrl or something and send V4 , or can you tweak
->> it while applying since the series is somewhat large ? Which do you prefer ?
+Hi Simon,
+
+> > Add compatible strings for the twelve lan969x SKU's (Stock Keeping Unit)
+> > that we support, and verify that the devicetree target is supported by
+> > the chip target.
+> >
+> > Each SKU supports different bandwidths and features (see [1] for
+> > details). We want to be able to run a SKU with a lower bandwidth and/or
+> > feature set, than what is supported by the actual chip. In order to
+> > accomplish this we:
+> >
+> >     - add new field sparx5->target_dt that reflects the target from the
+> >       devicetree (compatible string).
+> >
+> >     - compare the devicetree target with the actual chip target. If the
+> >       bandwidth and features provided by the devicetree target is
+> >       supported by the chip, we approve - otherwise reject.
+> >
+> >     - set the core clock and features based on the devicetree target
+> >
+> > [1] https://www.microchip.com/en-us/product/lan9698
+> >
+> > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
+> > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+> > ---
+> >  drivers/net/ethernet/microchip/sparx5/Makefile     |   1 +
+> >  .../net/ethernet/microchip/sparx5/sparx5_main.c    | 194 ++++++++++++++++++++-
+> >  .../net/ethernet/microchip/sparx5/sparx5_main.h    |   1 +
+> >  3 files changed, 193 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/net/ethernet/microchip/sparx5/Makefile b/drivers/net/ethernet/microchip/sparx5/Makefile
+> > index 3435ca86dd70..8fe302415563 100644
+> > --- a/drivers/net/ethernet/microchip/sparx5/Makefile
+> > +++ b/drivers/net/ethernet/microchip/sparx5/Makefile
+> > @@ -19,3 +19,4 @@ sparx5-switch-$(CONFIG_DEBUG_FS) += sparx5_vcap_debugfs.o
+> >  # Provide include files
+> >  ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/vcap
+> >  ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/fdma
+> > +ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/lan969x
+> > diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> > index 5c986c373b3e..edbe639d98c5 100644
+> > --- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> > +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> > @@ -24,6 +24,8 @@
+> >  #include <linux/types.h>
+> >  #include <linux/reset.h>
+> >
+> > +#include "lan969x.h" /* lan969x_desc */
+> > +
 > 
-> I expect this binding change go via pinctrl tree, so it's up to Linus.
-Oh ok, so just let me know. And ideally let me know what kind of prefix 
-do you expect there, imx- or imx35- or ... ?
+> Hi Daniel,
+> 
+> Perhaps this will change when Krzysztof's comment elsewhere in this thread
+> is addressed. But as it stands the construction in the above two hunks
+> appears to cause a build failure.
+> 
+>   CC      drivers/net/ethernet/microchip/sparx5/sparx5_main.o
+> In file included from drivers/net/ethernet/microchip/sparx5/sparx5_main.c:27:
+> ./drivers/net/ethernet/microchip/lan969x/lan969x.h:10:10: fatal error: sparx5_main.h: No such file or directory
+>    10 | #include "sparx5_main.h"
+>       |          ^~~~~~~~~~~~~~~
+> 
+> My preference would be to move away from adding -I directives and, rather,
+> use relative includes as is common practice in Networking drivers (at least).
+> 
+> ...
+> 
+> --
+> pw-bot: changes-requested
 
-Also, what about the DT changes, do you plan to pick those or shall I 
-send them separately ?
+I didn't see this build failure when I ran my tests, nor did the NIPA
+tests reveal it. I can only reproduce it if I point to the microchip
+subdir when building - but maybe that's what you did too?
+
+Anyway, I will skip the -I includes and resort to relative includes, as
+per your request. Thanks.
+
+/Daniel
+
 
