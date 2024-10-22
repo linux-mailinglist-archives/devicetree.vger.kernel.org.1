@@ -1,208 +1,192 @@
-Return-Path: <devicetree+bounces-114172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA25A9AA02D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:38:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FAAB9AA03A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:44:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D19AD1C21A1E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:38:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3EA81F21D70
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8297419AA43;
-	Tue, 22 Oct 2024 10:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CC119AA46;
+	Tue, 22 Oct 2024 10:43:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="BenDzSPg"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SZ3ybE8w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B8919B3D7
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 10:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765DE16DECB;
+	Tue, 22 Oct 2024 10:43:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729593489; cv=none; b=M/7vb+wnqitlRVQ9i7eW/tZvnmm2FWfDTF1PxJ3/Ex61XD2vR5vz+TAPeSvUuBaJp3PSr5ZRNjy75ggn/ddeWcG7JEv/BrDpjv6Mn8UE4ur4SRU5sXsZCANyS5K/XKRepI/k+H+KqTK3Q4E77nkZaDM91+CLc9OruQq5uYcqClQ=
+	t=1729593836; cv=none; b=QzrvBavePwxYQN3Mrrsof5NwNSnxARDZGhTsKYk7xEo+cYG4tQPxEfUZB9AG4DXIIppAx6mU03wypxplYNqKEWYd5RfQC03TWemHRG9HheaUcQHqUJcDv9uN3Y09ZsuRBDEe+Cx5hH42bHi1MeY/0+IaHp8Up86SNQtZKtJ62/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729593489; c=relaxed/simple;
-	bh=iNwDcYtlbxvi4NbJQ1Qv0xRcHf3mR6Uqwsa3JIcyDJQ=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=tjMk8ntgU/PSX72lbJP/FVpbi//12bh22TSv7pq633hH3NaAWDelC/5ekQmDPdOCTKIjQHzidiMWrum6CZzGzr4v2AvJMyRi8IqJeD5/8hJ18y2L9Dov9ma4yxnZ8P73mCJrPNfm+c5nPzKcyx9rvN3rqfTP43sRJfhqci7IrEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=BenDzSPg; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-37d6a2aa748so3597278f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 03:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1729593486; x=1730198286; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3DqeiQ/4GJHdOQ7JJjqx8kLtxbudI+1y5YQkYzghUQ8=;
-        b=BenDzSPgWOLrLpDaZK3Y7k7nJncb/7CvK39OHhF0sKGhMdsIfMp1DDtrYFGvaDsNEf
-         vEu6ax1vRJxK5N/OY9qdw8aLJX++sO7mhDD+/HbWwupBSlwRs6aTHO7RhdhnBEoQIw63
-         V9JeA9VWILExwqKHjaAbDbXlgoH9S6yaQGZkYm6kLEvabvlxbOrjAzfOIEnccB4tvw2u
-         YVVwypVi+EoB8rM+atG11lvFgV4YelGlobNK1eOdF3yrA8G+ARxix9k4GjhLnaiS5GQO
-         HKLXnDO10a7B9O6WQ/DAzs68pQL3ykvt9e4tBBZVUTxhPBdQQFMYeFMVMNRSL4xO3TRA
-         0RZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729593486; x=1730198286;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3DqeiQ/4GJHdOQ7JJjqx8kLtxbudI+1y5YQkYzghUQ8=;
-        b=MmxwxkQB13hjp1tSXu+r3SVIhIRETocB4rZnmaIueE5ADIR4xYB8iBslAv7j3nf7FH
-         +tvLn/ZwGoI6Td91tjubHhZBiXzgz0Oi6MNxs1bPwxTYvykFTj1pP4cQlSO6g3UqxBRk
-         jTIxzTXoypHQZBn4+unOsXzHq4I/MdAOBlZ8SKOlBn5hKchVwH0apYQ7aK/X+y1PdTLU
-         t4R/iD8LMvi1ikCnR8twmwFqt7aK6k/y0+bAjQsZutu9T3jXoJaCn0JPE06SelQVgB0g
-         xO+nGnk+qA+041KKP0Sc7gh1TK/PLBLV1chXYhF4WCogH0QU7IVfQsBy2nBYVAe/JYcs
-         xlHw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIgNltRoCLAlSQDojFQc+voIn5ci1y1Qc0VcpVUKymCl5Y54hIMxh8gAU9mhutlHMm5WC2TdPzxDow@vger.kernel.org
-X-Gm-Message-State: AOJu0YxziJ5WtPjGMuOab4cGbfoE4x2KTAYx97GGvs7TZRaAvRVCB823
-	6SkrcwN2qDJp7FW2BNJ/g2xf+JCUPdcQGHj24vvTXkmHMeMVZWONkZZKECJcAw8=
-X-Google-Smtp-Source: AGHT+IE2IQWBiMB+M/1I2TW/3oVxcQmmQ8LKMmQ9f08j/0oNw9aZKwVh5bm+wsUlo8PaGwno1otOKA==
-X-Received: by 2002:a5d:4e49:0:b0:37d:3301:9891 with SMTP id ffacd0b85a97d-37ea2164d8bmr9308914f8f.17.1729593485673;
-        Tue, 22 Oct 2024 03:38:05 -0700 (PDT)
-Received: from stroh80.lab.9e.network (ip-078-094-000-050.um19.pools.vodafone-ip.de. [78.94.0.50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a4864csm6352974f8f.35.2024.10.22.03.38.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 03:38:04 -0700 (PDT)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	jdelvare@suse.com,
-	linux@roeck-us.net,
-	sylv@sylv.io,
-	linux-hwmon@vger.kernel.org,
-	Naresh Solanki <naresh.solanki@9elements.com>
-Subject: [PATCH] dt-bindings: hwmon: pmbus: Add bindings for MPS MP297x
-Date: Tue, 22 Oct 2024 16:07:49 +0530
-Message-ID: <20241022103750.572677-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1729593836; c=relaxed/simple;
+	bh=3L/mfArSh02i4CZyNQjoKh10X4Lo25gJRXejPnC009o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YqvV6cRHax8USWv/7Z/ESqeN8KFaRh4JxUsrNeo4aAh9u78I3QSpetUf+p+XJ4Ji7tN8uwY/4Z4iu3hRYcplLM1ygZhVv9tWqum4gLb9IWhbLOYsmZTDy1NbkvTHMjYuCV1M5T2O5D2xgVJRINJ0rSHP+BSEgQEEXX1Z2KrfaHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SZ3ybE8w; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D096B40002;
+	Tue, 22 Oct 2024 10:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1729593825;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=p4qsrG6uruQTTTq/+4Xc9VuG+K4ys0k5jHgZ1t4x9E0=;
+	b=SZ3ybE8wllmqN+BvxV9heeYAnisb5Zp9aRtSqWEpYyBD+7i/vk+39TSmXk0gvfEEE8eaQn
+	3kdpvnsC8+o0sEVquJ5nuQUY18YYGVGM1d2vplYckrd1sRWsN9J6TNgWxjsufyIikKo0bw
+	V8gcdM0G3Lmpx3GvFWf0Ysv+b0qAJa3ph33r/hQ4NvJlqJlx9Wh56mXJm82WBrPzrc6Vof
+	cRhevYdxHFnBCvCYUS3hdqkuDu/6kQ8UVFVAKQb460nY2L2HZB1cK0BauIS7w2xjzC8k4V
+	/73GdVHpiKKWdKTS9jx27hJRl0vIGzLKoYXGgaBw678kvkeHXnPNXEMI1ffarA==
+Message-ID: <c9e98811-15f5-427a-82f7-2e7fff4a9873@bootlin.com>
+Date: Tue, 22 Oct 2024 12:43:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] wifi: wilc1000: Rework bus locking
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20241022013855.284783-1-marex@denx.de>
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20241022013855.284783-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: alexis.lothore@bootlin.com
 
-Remove mps297x from trivial-devices as it requires
-additional properties and does not fit into the trivial
-devices category.
+Hi Marek,
 
-Add new bindings for MPS mp2971, mp2973 & mp2975.
-It is Dual-Loop, Digital Multi-Phase Controller with PMBUS
-interface
+On 10/22/24 03:38, Marek Vasut wrote:
+> The bus locking in this driver is broken and produces subtle race
+> condition with ksdioirqd and its mmc_claim_host()/mmc_release_host()
+> usage in case of SDIO bus. Rework the locking to avoid this race
+> condition.
+> 
+> The problem is the hif_cs mutex used in acquire_bus()/release_bus(),
+> which makes it look like calling acquire_bus() results in exclusive
+> access to the bus, but that is not true for SDIO bus. For SDIO bus,
+> to obtain exclusive access (any access, really), it is necessary to
+> call sdio_claim_host(), which is a wrapper around mmc_claim_host(),
+> which does its own locking. The acquire_bus() does not do that, but
+> the SDIO interface implementation does call sdio_claim_host() and
+> sdio_release_host() every single command, which is problematic. To
+> make things worse, wilc_sdio_interrupt() implementation called from
+> ksdioirqd first calls sdio_release_host(), then interrupt handling
+> and finally sdio_claim_host().
+> 
+> The core problem is that sdio_claim_host() cannot be done per command,
+> but has to be done per register/data IO which consists of multiple
+> commands.
 
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
----
- .../bindings/hwmon/pmbus/mps,mp2975.yaml      | 75 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  6 --
- 2 files changed, 75 insertions(+), 6 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/mps,mp2975.yaml
+Is it really true ? What makes you say that we can not perform multiple
+operations under the same exclusive sdio section ?
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/mps,mp2975.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/mps,mp2975.yaml
-new file mode 100644
-index 000000000000..f7bc4f077929
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/mps,mp2975.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/pmbus/mps,mp2975.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MPS MP2975 Synchronous Buck Regulator
-+
-+maintainers:
-+  - Naresh Solanki <naresh.solanki@9elements.com>
-+
-+description:
-+  The MPS MP2971, MP2973 & MP2975 is a multi-phase voltage regulator
-+  designed for use in high-performance computing and server
-+  applications. It supports I2C/PMBus for control and monitoring.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mps,mp2971
-+      - mps,mp2973
-+      - mps,mp2975
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  regulators:
-+    type: object
-+    description:
-+      List of regulators provided by this controller.
-+
-+    patternProperties:
-+      "^vout[0-1]$":
-+        $ref: /schemas/regulator/regulator.yaml#
-+        type: object
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        regulator@58 {
-+            compatible = "mps,mp2973";
-+            reg = <0x58>;
-+
-+            interrupt-parent = <&smb_pex_cpu1_event>;
-+            interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
-+
-+            regulators {
-+                vout0 {
-+                    regulator-name = "pvccin_cpu1";
-+                    regulator-enable-ramp-delay = <200>;
-+                };
-+                vout1 {
-+                    regulator-name = "pvccfa_ehv_fivra_cpu1";
-+                    regulator-enable-ramp-delay = <200>;
-+                };
-+            };
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 15f89d7ecf73..08de873f9f98 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -281,12 +281,6 @@ properties:
-           - mps,mp2888
-             # Monolithic Power Systems Inc. multi-phase controller mp2891
-           - mps,mp2891
--            # Monolithic Power Systems Inc. multi-phase controller mp2971
--          - mps,mp2971
--            # Monolithic Power Systems Inc. multi-phase controller mp2973
--          - mps,mp2973
--            # Monolithic Power Systems Inc. multi-phase controller mp2975
--          - mps,mp2975
-             # Monolithic Power Systems Inc. multi-phase controller mp2993
-           - mps,mp2993
-             # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5920
+Usually the WILC register read/write consists of 3x CMD52
+> to push in CSA pointer address and 1x CMD53 to read/write data to that
+> address. Most other accesses are also composed of multiple commands.
+> 
+> Currently, if ksdioirqd wakes up and attempts to read SDIO_CCCR_INTx
+> to get pending SDIO IRQs in sdio_get_pending_irqs(), it can easily
+> perform that transfer between two consecutive CMD52 which are pushing
+> in the CSA pointer address and possibly disrupt the WILC operation.
+> This is undesired behavior.
 
-base-commit: d79616b04f0e08178ceb716a5d2ef60ab723d532
+I agree about the observation, and then I disagree about the statement above on
+sdio_claim_host/sdio_release_host not meant to be used for multiple commands.
+I see plenty of sdio wireless drivers performing multiple sdio operations under
+the same sdio exclusive bus access section, either explicitely in their code, or
+through a sdio dedicated helper (eg: sdio_enable_func, sdio_disable_func).
+
+But more concerns below
+> 
+> Rework the locking.
+> 
+> Introduce new .hif_claim/.hif_release callbacks which implement bus
+> specific locking. Lock/unlock SDIO bus access using sdio_claim_host()
+> and sdio_release_host(), lock/unlock SPI bus access using the current
+> hif_cs mutex moved purely into the spi.c interface. Make acquire_bus()
+> and release_bus() call the .hif_claim/.hif_release() callbacks and do
+> not access the hif_cs mutex from there at all.
+> 
+> Remove any SDIO bus locking used directly in commands and the broken
+> SDIO bus unlocking in wilc_sdio_interrupt(), this is no longer needed.
+> Fix up SDIO initialization code which newly needs sdio_claim_host()
+> and sdio_release_host(), since it cannot depend on the locking being
+> done per-command anymore.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+
+[...]
+
+>  
+> -static void wilc_sdio_interrupt(struct sdio_func *func)
+> +static void wilc_sdio_claim(struct wilc *wilc)
+> +{
+> +	struct sdio_func *func = container_of(wilc->dev, struct sdio_func, dev);
+> +
+> +	sdio_claim_host(func);
+> +}
+> +
+> +static void wilc_sdio_release(struct wilc *wilc)
+>  {
+> +	struct sdio_func *func = container_of(wilc->dev, struct sdio_func, dev);
+> +
+>  	sdio_release_host(func);
+> +}
+
+So with this series, we end up with some bus-specific operations needing some
+locking, but is now up to the upper layer to control this locking. This feels
+wrong. The driver has a dedicated sdio layer, so if we need some locking for
+sdio-specific operations, it should be handled autonomously by the sdio layer,
+right ?
+
+[...]
+
+>  static int wilc_wlan_cfg_commit(struct wilc_vif *vif, int type,
+> diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.h b/drivers/net/wireless/microchip/wilc1000/wlan.h
+> index b9e7f9222eadd..ade2db95e8a0f 100644
+> --- a/drivers/net/wireless/microchip/wilc1000/wlan.h
+> +++ b/drivers/net/wireless/microchip/wilc1000/wlan.h
+> @@ -403,6 +403,8 @@ struct wilc_hif_func {
+>  	void (*disable_interrupt)(struct wilc *nic);
+>  	int (*hif_reset)(struct wilc *wilc);
+>  	bool (*hif_is_init)(struct wilc *wilc);
+> +	void (*hif_claim)(struct wilc *wilc);
+> +	void (*hif_release)(struct wilc *wilc);
+
+So IIUC, your series push the hif_cs lock into each bus layer of the driver,
+remove any explicit call to bus-specific locking mechanism from those layers,
+and makes the upper layer control the locking. As mentioned above, I don't
+understand why those layers can not manage the bus-specific locking by
+themselves (which would be a big win for the upper layer).
+For SDIO specifically, I feel like letting the layer handle those claim/release
+would even allow to remove this hif_cs mutex (but we may still need a lock for
+SPI side)
+
+But I may be missing something, so feel free to prove me wrong.
+
+
 -- 
-2.42.0
-
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
