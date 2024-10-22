@@ -1,162 +1,181 @@
-Return-Path: <devicetree+bounces-114178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920309AA051
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:47:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11BBB9AA0CB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:05:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E96A28307A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:47:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40E111C21B51
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D2D19CD07;
-	Tue, 22 Oct 2024 10:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CC9199EBB;
+	Tue, 22 Oct 2024 11:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O9uiQniK"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jDCkvX03"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F4919C555
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 10:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66862199236;
+	Tue, 22 Oct 2024 11:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729593990; cv=none; b=mOEyQC62dwROgjowzyV2+ReePe07VpzHE9ykpDx29fAJTmf9H45/orwqt2SgYw2KINucW55rii56irfl73d00hMAvEXgscoGDhJYpUWaB1U6x4IfZkI57EBcS2qTV+i2QUrrOyUoq/iXcOKmqTE0PKd229MsmotkpCZb+xM762Y=
+	t=1729595143; cv=none; b=mTmesu1iWTlOzxV3mqFcvqkNvDhZHPPQDcWfCBYrjG5pmVpAEIScDdlqw1NnhZO8Y18vPxQLTnB3bk2WngXeRyn9jGjY4ubRAhNqrz7o2+ukags7z+dhKEORCDP1OJKWOUuJUAuKh2yET0Dfgc03JcKxL1l9z2Jl9hIEwM+ZdsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729593990; c=relaxed/simple;
-	bh=HnTSSieNZnln6w8Vcr1MEzPJufKQo6Dj8CE0MlH5veg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sgkacqTdrLKJhztMD2hNQQRlocllPWg3VzBOHvVas4+VlDx6/WDB7ZdChR9mP/r1PXw6TFqaWZMlFpvQVTn/6ghbKEM1n7udEZMZpUsHDiMKTzknypvwgpfBhUKoEOElpjh5MyT12yKj6ZITdUxrQDtGT7to0LOeo8OiQ8Ycb/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O9uiQniK; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-431548bd1b4so53336325e9.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 03:46:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729593986; x=1730198786; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zW3qGb3ZL5G/B18IQmAOlU1aRnTk8u0KXdkSlfqu380=;
-        b=O9uiQniKRrf/qkNkbF5hQJvIih9cywmdrqV0iiRLDqOJHLUZ+Ix5WA8Rww8FqWFrFO
-         RCm8jctiRH0NG6irlsjJEdiDW6I8iuqJXG26d9dqb+jNMKiMdNXOmI9Gdk723/P34QBL
-         2VtVcvYbNJ1x3RZxGmO4VEBr+2qt8eAqdz8r9eNicl3vGmND5hltelcRuFqZJzEyJZIq
-         lxUpC8ehkUPQsCxOoT5wGUkmxYsBsC1XDGSNmocYZDODs+7bbpGXwb2tuYbUMkbvKlR1
-         ftHY+lI4vTqKfvHVLRgfeadtxYUhrylVM1HjxS3Xv1l3XTCUYtQvhYiVBUluza199n2I
-         OR3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729593986; x=1730198786;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zW3qGb3ZL5G/B18IQmAOlU1aRnTk8u0KXdkSlfqu380=;
-        b=iDY8zFa8H3pjPHZ/Odx9AZ5LqReMp0fq+B1uXPz0Mzk1phZfR4h8GVMw76C7YiDhKn
-         ALUnvNa0xYCqfEsWa0CCriR1EptkiyXIJd+/ueCoMCV8Ah0ATQsrksDOVRVQog137Sdw
-         A5DrV3Pg1agEhOnIohtIOlZGV1xeETFRhb3Y012mTYPNE7bSfT6qyWSBG/XXeIDAlJLP
-         3faCOKM2YRnBeSLp45Ek64OjemSFo4sVA4A5+edjjn/hbaXAY9Oe4AV2Qp3L1iWgJ0Am
-         b2mo0eBARKWAz2L1jjVaNmndL5kw3II3gk/cicSO7ceU6Y4p2wq4Xf7E/0PypRgZK6yo
-         GalA==
-X-Forwarded-Encrypted: i=1; AJvYcCXw9by21udk3HlP8nDfTkSraf0q018bTDQ34owMIDdIH3LULF7IdxJJ6NFPcHd/r5K+eUXsJgtTumyJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0/gIYXCPoQVA6+F9EthW7y2Xy5eBs3UWCVsSN2Sn3/XOVw9Bg
-	CUiikPoWVKMtoV5aOIP5GA2gErtRuVeS45zqLc/6U8/s+NLb1NKykVIWML4zWIA=
-X-Google-Smtp-Source: AGHT+IHWyz5wiWkL1gLHnapTjbhzPMcFdILnDlv1ASWwLLUS2W9b26cj/y0Xv+s9Xpgn84JXtBikKQ==
-X-Received: by 2002:adf:fb45:0:b0:37d:4ebe:1646 with SMTP id ffacd0b85a97d-37eab728744mr9793149f8f.48.1729593986521;
-        Tue, 22 Oct 2024 03:46:26 -0700 (PDT)
-Received: from [127.0.1.1] ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37e1asm6351943f8f.20.2024.10.22.03.46.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 03:46:26 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 22 Oct 2024 13:46:10 +0300
-Subject: [PATCH v3 3/3] arm64: dts: qcom: x1e80100-qcp: Enable SD card
- support
+	s=arc-20240116; t=1729595143; c=relaxed/simple;
+	bh=lk6aSBgrBEc1NRKveTngB3JmIdfkK85pmGw8ldyXGEM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SmWu4rlrDiApbRfRFLhCh/jeyu1DTyVkMs3Aqv3k4BsobvFA6CV6Kyefw6pucInvhdznJIY3c3Q+KF8hztrP3av3GNNwT1SbbFGm7ICXpd4l1RIqNxbjigesGN1apTvrj0x+/Fk3voKs+mIvsnNxec8KEhhCfjFHfeiSnILjPpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jDCkvX03; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729595140; x=1761131140;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lk6aSBgrBEc1NRKveTngB3JmIdfkK85pmGw8ldyXGEM=;
+  b=jDCkvX03/huqOv9OCFLUhyZNVFMGWBbyKTlgR/wnxJYazWZsDQPUCQM7
+   2T4IjQTJaQYGsdhVKQPavrenUyzaYXULy+b/3wY7QvynhCvCMu3+2IOjF
+   Q4u0o5lUYyDIRqtA58zSrEd0yTi3A0H2pW/qv4mgFa7mEclh6W2UtsoI/
+   HHCfCMR2wzNsTDDTh0aPvYeSVGOF4Cx+EPQmsmajZLy8Io8PX9KP7Yz7J
+   Pmoi8+cJUuxN2GKMHyNJSKbjSDlMQr9yWBJZ7slpdoDKv6SQhh225apvZ
+   Va3F4h6jdaeGOrGCsvI0Bk8Fi5VuSb1mqbtlmUzi9IiQhP0tvFe9UdYPK
+   w==;
+X-CSE-ConnectionGUID: WaYKjoDxQWitu2o0jxEZ8g==
+X-CSE-MsgGUID: 3ahCKxxGSdOHY6/WMr4tCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29014475"
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; 
+   d="scan'208";a="29014475"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Oct 2024 04:05:40 -0700
+X-CSE-ConnectionGUID: M5Fes5M9R4qe3m5f1zbR5Q==
+X-CSE-MsgGUID: bsraSG9CSeiejIeei9+NFg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; 
+   d="scan'208";a="79778327"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 22 Oct 2024 04:05:33 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t3Che-000TTS-2k;
+	Tue, 22 Oct 2024 11:05:30 +0000
+Date: Tue, 22 Oct 2024 19:04:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Inochi Amaoto <inochiama@gmail.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	netdev@vger.kernel.org, Yixun Lan <dlan@gentoo.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
+Message-ID: <202410221853.0nt4WyvW-lkp@intel.com>
+References: <20241021103617.653386-5-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241022-x1e80100-qcp-sdhc-v3-3-46c401e32cbf@linaro.org>
-References: <20241022-x1e80100-qcp-sdhc-v3-0-46c401e32cbf@linaro.org>
-In-Reply-To: <20241022-x1e80100-qcp-sdhc-v3-0-46c401e32cbf@linaro.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1388; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=HnTSSieNZnln6w8Vcr1MEzPJufKQo6Dj8CE0MlH5veg=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnF4J8X5kOFGgSwfgft9bWqpCsIXyCcZsi6r37H
- SlJO9TKFdeJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZxeCfAAKCRAbX0TJAJUV
- Vt5+D/9jaiprJ3yJnoVGdRv2WEQiVxq1yOKMPMLfFMqJCmePNrorpIcfP36j8Z4TAKYkEEzjpji
- fSOXWFXSP3D2/6jx7o0QEA52I2hVATds4vgIsP1vtbiQi1AWS66AYusmLfdBVqPgGVhvU98DATo
- +ebifQ3Jnrin9h4boqjgMPpXLDmfon1kq7lYwGH0RxAkpnuuMfWnXJ5dfzJVRp+WssZQ7CUWEqF
- vfnqcc/eCVOukavPcQTkMZs7EwcIQrYJuIwlTkJWqhMT0tAFVxGYlu/4vIyQN+G3/YK977BPh7V
- Z3ZNwUAUlWmAV4T1fM9zxE213Q4GEffE57Q4BA8nbEiR3wqTBkYhtySYuV0Utt/C5WeeQ/gi6Yv
- WwmIxGS+/wakOcCKK2s88dZ52HBBWjEPGu/IRy9DwASp7RgheMhOAEKPRS4Jun8sI9IuHJ6ktP1
- H6cDqNlTUbtotZzsHh2n9Sn4BzP715zijwP7p58KTAZ7w+lEfhEv5RRgUp3x8JBaQT2R6r9Gh03
- /lqBX0l5L6r6tx1vD3ocYd7GjW9XNfVLSRjQtvW19PJqNV5c0Bttw/5wt/lOwj+qwcO6y8OZYpr
- zI4na/roGV9/WpjxnxCn4QcvoKPIJ+T3vj9Unsj08e9p9m9oH06UMDUl15WAtlj48r/fvI/4yxy
- mo6xw2QPHaje77A==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241021103617.653386-5-inochiama@gmail.com>
 
-One of the SD card slots found on the X Elite QCP board is
-controlled by the SDC2. Enable it and describe the board
-specific resources.
+Hi Inochi,
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index 1c3a6a7b3ed628e9e05002cf4b4505d9f4fb1a63..a82fabaaac9010ce3b8d6718b3425e84d8864171 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -729,6 +729,19 @@ &remoteproc_cdsp {
- 	status = "okay";
- };
- 
-+&sdhc_2 {
-+	cd-gpios = <&tlmm 71 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&sdc2_default &sdc2_card_det_n>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_card_det_n>;
-+	pinctrl-names = "default", "sleep";
-+	vmmc-supply = <&vreg_l9b_2p9>;
-+	vqmmc-supply = <&vreg_l6b_1p8>;
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	status = "okay";
-+};
-+
- &smb2360_0_eusb2_repeater {
- 	vdd18-supply = <&vreg_l3d_1p8>;
- 	vdd3-supply = <&vreg_l2b_3p0>;
-@@ -870,6 +883,13 @@ wake-n-pins {
- 		};
- 	};
- 
-+	sdc2_card_det_n: sdc2-card-det-state {
-+		pins = "gpio71";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	wcd_default: wcd-reset-n-active-state {
- 		pins = "gpio191";
- 		function = "gpio";
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on sophgo/for-next sophgo/fixes net-next/main net/main linus/master v6.12-rc4 next-20241021]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Inochi-Amaoto/dt-bindings-net-snps-dwmac-Add-dwmac-5-30a-version/20241021-184301
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241021103617.653386-5-inochiama%40gmail.com
+patch subject: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241022/202410221853.0nt4WyvW-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241022/202410221853.0nt4WyvW-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410221853.0nt4WyvW-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:41:2: warning: variable 'rate' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+      41 |         default:
+         |         ^~~~~~~
+   drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:46:36: note: uninitialized use occurs here
+      46 |         ret = clk_set_rate(dwmac->clk_tx, rate);
+         |                                           ^~~~
+   drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:28:20: note: initialize the variable 'rate' to silence this warning
+      28 |         unsigned long rate;
+         |                           ^
+         |                            = 0
+   1 warning generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+
+
+vim +/rate +41 drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
+
+    24	
+    25	static void sophgo_dwmac_fix_mac_speed(void *priv, unsigned int speed, unsigned int mode)
+    26	{
+    27		struct sophgo_dwmac *dwmac = priv;
+    28		unsigned long rate;
+    29		int ret;
+    30	
+    31		switch (speed) {
+    32		case SPEED_1000:
+    33			rate = 125000000;
+    34			break;
+    35		case SPEED_100:
+    36			rate = 25000000;
+    37			break;
+    38		case SPEED_10:
+    39			rate = 2500000;
+    40			break;
+  > 41		default:
+    42			dev_err(dwmac->dev, "invalid speed %u\n", speed);
+    43			break;
+    44		}
+    45	
+    46		ret = clk_set_rate(dwmac->clk_tx, rate);
+    47		if (ret)
+    48			dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+    49	}
+    50	
 
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
