@@ -1,193 +1,148 @@
-Return-Path: <devicetree+bounces-114200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A43ED9AA2BF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:05:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E309AA2F4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:22:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC98FB23042
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:05:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D25A41F240A1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:22:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F6D19D8B4;
-	Tue, 22 Oct 2024 13:05:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5611219E965;
+	Tue, 22 Oct 2024 13:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="qZNBVA57"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ej/602ZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2046.outbound.protection.outlook.com [40.92.103.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60800194ADB
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 13:05:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729602333; cv=fail; b=OtSUp4b2UDyfZ7QQAFAOkn0TaWh5KJlGvce863i2CKP0T6+5ACb+ZrTWcj2SQ5Q/Sab50u+UJqOIFlqP1WTh70QLIa8vszjgwy4ttfsEmoXxySr5SLnMkhLdEuowKt5UHWRn9lpLnYbtmCjzIC4QaOOz64VSPYLyX+E92FOAXdA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729602333; c=relaxed/simple;
-	bh=EcR7lA/KZGy2jLTtcGMm1OFvFDPp8IMxe2A87FRCJ/E=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=RkV8w/FLC9SBvUYp0OpQf3DczVBH0liSq892ZX/VMgwds/FPT4jJxTuumprJvjHZmvFKu68HZx489gDvopB8OYN5iasdqZZCQvcyVNny95dIYO6RZbYYaQYHEfHOcqzpSRmtwVyH4WBZ29oKT5qvZg59uDj0/0TMC8nC3kgJ8iw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=qZNBVA57; arc=fail smtp.client-ip=40.92.103.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D5HbanDqKI/Tp7Rhv+qK6JhQgiQuYf3754rGFHM8a4ACD8HNKIJrJHH/IqRL3rD+53TVr90L/BK7EchaU1f9CQbkDCLuauMTDpXzf/ri+14LWhvkp2/9EYZp0BfbZqwPfmdmB8XEhcr6zWrBK5UxPJGdk6Ht5j328eulyH/aiU4yBXAQm4tDDN26wAIwZMYjoB3qJDSPHn67KSfhEiVcMH5+PDZSv+5hlpD9t5dRtoELfj4BbeH9ZRWnRh6M0A2akaJqbV+SWhX0Q1cfP28H620CJFBY88xWP2UWAXeqbK8oKQcBIDRJiiPM5mMOiOHe94x2aNQcM8Pjca3hHjHCiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NhuMGTqAvXkEhjb/p0H6cU2Xb3nrwr1AF+LbZf9ORe4=;
- b=CF+XkdI5Vwwt5xSCwJRWJArRJYL62UCd5/JxRjmqZxiudgBJYJBiW2sPJ8TjMjKGpjvjdCJpjXTLulyJi7jTU47vB5KdU6qZoPi6cDipchisFiSRFdjNNxnAmCafCIdM0QWJ7lN62/Y0WDbGzFSWACM0/vVP67ASFI5qUqKeg93Cgasn5OLk/dW1z+7vVLnHPNByq6ijFIlSXnZ1OE4TpGGa6v+5E7EV2MyjBQPygragN24QtqtjN2oxRMnfNuKitXCNpBYZKNNfOfUthZrQtDHpz1VWQDUKHI9vq7f1efMEV2xH34Jrq96ZM+KGmX59CNPQb56WXdv+HpkNibIc3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NhuMGTqAvXkEhjb/p0H6cU2Xb3nrwr1AF+LbZf9ORe4=;
- b=qZNBVA57pGhNyR06UI4Mo7t8EZRQn6WXaGH4KsFV5z4/0om4+BJXh4ReJlumVlcJ0eZUVpRRBrLilAirmeMuLfwUmj3kEMZsUSEq/BFCMPYBK8in5C1pSqUnbDN6V1B6ICWBBx4hp5/ONce/2qYvhzH7cZQDS69i78H7FfkXxmCvlsPtJi1C1YVH5yVJdrgrIKly7IOk9v7dV6fRpuI6V4hL61dl7NlL7aCeN+l6/RemyihNl+LGpdxDgyTvGpB0quyIToYh8c3eMyVqMhaPK8MIPUfTEcaLiyoQdXwImd098jLNrOm6Un2dqGuuUtiq/9QywjXjK/MCQO0KaeVv2Q==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PN0P287MB1040.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:142::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Tue, 22 Oct
- 2024 13:05:18 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%3]) with mapi id 15.20.8069.027; Tue, 22 Oct 2024
- 13:05:18 +0000
-Message-ID:
- <MA0P287MB2822F8833229C771136D0B5AFE4C2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Tue, 22 Oct 2024 21:05:14 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] riscv: dts: Replace deprecated snps,nr-gpios property for
- snps,dw-apb-gpio-port devices
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Inochi Amaoto <inochiama@outlook.com>,
- Guo Ren <guoren@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20241022091428.477697-8-u.kleine-koenig@baylibre.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20241022091428.477697-8-u.kleine-koenig@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SG2PR01CA0127.apcprd01.prod.exchangelabs.com
- (2603:1096:4:40::31) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <bc9e899e-4e2e-4d1f-88e2-8409c932447b@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF2419E7D3
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 13:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729603365; cv=none; b=VqrOddXFszs7/MqcIOQQ8NAAQyqQmJoGZ1G8TFCIQfpoVklXfkcu/tq+zKn/LYxbzGU7TmnZ9ou4gFn68AuXQYbwjM2rhDVtntmKiXa0o10mNMg6RvKODrgrVvg+laVkzyacrrO9pzCvQQkZlOUVep6RgeshRj+DeJFq3ErcgqM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729603365; c=relaxed/simple;
+	bh=8ZXY++sczqiX9uMbT4vUgqAb6YUuuxo60CIRxsXCS5Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IDpdCTWoCaYQ+lzOgLMl965qFAXpT2hMirJAK4UqAghQz7//iN6hyMb1zkedRSQMOjo75fHR2XbzI2+Zhgg9fiPpGWpuUqrhLDjrIUME4S2OGPNChiPgA7B8CsCMXIpz+PL2VhCNHfej0sgb6sJgrSJ+u9HTM0VfY/6Xphzabtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ej/602ZD; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb4af0b6beso87297401fa.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 06:22:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729603360; x=1730208160; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UfqSeJ9XLIfUJ11D1pRhbSM/QaFSnTxK9h/wuyBvkLQ=;
+        b=Ej/602ZDeWAVt2b8F4oHW8Nduy8YagTmo2KN97rJPCzf56fn1A1eiQtUiBL38R0/54
+         Mxo42basLZvoQ6JFrwMsx8qw1V83Zq7W+XP0IH/voq/hYSK8ptkHzMJtNlVW08bU6X7w
+         cGUvrrJcbNdxp0iApgJDZUv+cIshq3ekPJV/r68oNs9cvKV3pf3zC4L22W5EIUU4KSjB
+         6o7yF7ZbxTn4L1mymahiHXCr6R+lUbzkWhmNpsTehecvVjVTv78oHtBXCSRz2MjkjW5y
+         uedAO2XpD8Ovq+IyuDDb6NbUYcBPJSbbWpgrERMHbfeQo4ylE8PJjaTeIcJ1CBBHdYWC
+         pHgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729603360; x=1730208160;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UfqSeJ9XLIfUJ11D1pRhbSM/QaFSnTxK9h/wuyBvkLQ=;
+        b=CshI+OT3z+33xSHITv+Rs08pquWU9T5/7hCmQK3g6/QOD+tlb+D24LEXskK8jI1Irz
+         up9NvBxY3zicUTLhJWN5uDlfc3f5G411xIP6bIgayoevK34BlTjwBSTBNmZdYUMxlU+l
+         pmRdU6sGZAvgj/aFe4HUXvlgnNiYyKPe+1oJpto+h+9IUs9jWiRu2bzyRU/ZFuvNZX8d
+         RKIuKDzJz6FSAw2zzmIzyfjrlzcTPHmD3QLuw51t9gOcjFPJBU6MzywlpERI0pjwfeXb
+         aayweNRyD2fPiUyLhKNwofuXZTMYEAKSirOhayuEAK9Qi7/c6rOLmNLDw5qtPCdXrDYQ
+         o1Dg==
+X-Forwarded-Encrypted: i=1; AJvYcCWL9adGp9aX1PG/djZDdoI5a69qSm3rlzzZonB++VpVJq+LdhugoU7MnbQNhJ3lDvXHuZ7L22tU96Z8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTfBUAMf1pYbaLguZVw832Df5Lo7AjKxGQDnT4uiH2lNv6p1a3
+	kk0wM3Zm77Isc5k3h/2nWb20To6u3eDkcr6I7bjRAnPgkQ/1xCkF2XZtHl73R88=
+X-Google-Smtp-Source: AGHT+IGF20MNQnrfkIa6RUxQDdxll7fwLfR/qIaL9fRFIM4On88xwZNFbh3IKY4n74ZANHygrXqjsQ==
+X-Received: by 2002:a2e:9fca:0:b0:2fb:5bd:8ff2 with SMTP id 38308e7fff4ca-2fb82ea1dcdmr85657021fa.16.1729603360433;
+        Tue, 22 Oct 2024 06:22:40 -0700 (PDT)
+Received: from [192.168.1.64] (2a02-842a-d52e-6101-6fd0-06c4-5d68-f0a5.rev.sfr.net. [2a02:842a:d52e:6101:6fd0:6c4:5d68:f0a5])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66c737c4sm3109496a12.96.2024.10.22.06.22.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 06:22:40 -0700 (PDT)
+From: Julien Stephan <jstephan@baylibre.com>
+Subject: [PATCH v3 0/5] iio: adc: ad7380: fix several supplies issues
+Date: Tue, 22 Oct 2024 15:22:35 +0200
+Message-Id: <20241022-ad7380-fix-supplies-v3-0-f0cefe1b7fa6@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB1040:EE_
-X-MS-Office365-Filtering-Correlation-Id: 05b0174d-9d3a-4fe7-1da3-08dcf29a2d67
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799003|5072599009|6090799003|8060799006|15080799006|461199028|7092599003|3412199025|440099028;
-X-Microsoft-Antispam-Message-Info:
-	RogfhdAG21SkVQ5VU2l9UxY0WHSYXCSwXW7GptCVerLRXIDqQYwp4mpY4hTeRhNKEQ5UkJi4buy/sFhBO0EzVUhqDzEBleJFYYjZcukYo69wpksDW5lxgjh3gI1EK8d/beKZlHfz9UA+vu1Cs/96qtbGjRVRAHt7z8Ud45JeYxwhzdYbzv9G13utx1LDUhDElATaXlG/IRdf1x96NkkS5zHKJ5x5ChYBAfhnjpmzW3zuknZvQ36A48sRRHOxjneOANVd8LH1ck8nSUKJohvxy9omZsHqs2E/o2iPQ5/Oj/bBYd1Mbf/6c1JiaaOuCzcbhoxvwfaM6f3yCZugVHnacfwiqiaCx84eTNpuChty/M9nJFGx/gyp988TqmCyz7EbGvJpguWcnMpkC1HczjizYb92ubXrD7iSJWC77kPOv5NgFGcdJr+KGlJvUNVueHzFJrn+lFgOnv43qmQRep3PW6XvnOlvo8POPYGDRCsgDJcSwVM4Q8vmcQEAJjLVnKtJkofMOlw/L+Hq7Lmyr7wSx+XaRQn5UbK+s+xcmmZJaqASxCQEXVN+UUI3tB/nMTogtQxgkibXeL2Z+KT0jjBwJB2g1qi+CEzpfGP1feLq4Q/hEciESmx8E1RRNxUd1Fu0QSzTaUno6A2MK3HwbZklWADQCObab4BCtHk57F9wcac3uTKrUXAxeoxKjylt/qNlbSvmkS7viPPjKiQdQxDHoj0Y1Xo2gDH4laYNKdFYzg/IRZzBCkzqUKPLXTcEagaufvhpGUPR0n8SqGQ+9sq1LA==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SWJMSEFPRXBjU1JCZkpJeHAvTi9zbi82dzZjU0llMDNsUVFVWHowQSszZk96?=
- =?utf-8?B?cElwV2U2eFlmWWNyNko3cDRUTjBQbjZDVDU3blI0dnZOeHdOV0NBamlIdC9q?=
- =?utf-8?B?WGFDWXJHaFArT1pVVW1McTZNTDFjZzUwSUpNTjNqajUxZ1JKdFlORmRuMjZ4?=
- =?utf-8?B?N2NLT2pLMitEZzhmK0ZoTisvcmc5U3VXSWNUVS9IN2ZVQk13Vkg5cTduc2Z0?=
- =?utf-8?B?aW0vM2xWOUlmRFVDQW1hRGQrU0syNWNHU080ZjJyZDZ3a0NmN1Ntd0h2RjNr?=
- =?utf-8?B?VXhwVE5EdndtbnphbzhyVkFkdm82K1g4YWZZaWR4NnNZa2lSNkhxQzdMMG11?=
- =?utf-8?B?OENrTTRlQVlzYkhSS2ZmWVdodGZyMDFvMzE5QWk0T2pMdExDeloxb3BrVlpD?=
- =?utf-8?B?Nkg1ZmhQZXdxTWtYQkFDamRxdW54SzVLRkZVOHVBamVuQnNHd2FrWlVScVBR?=
- =?utf-8?B?dXkxUmd6Q3lrYmVoaEtzcDdZNGJRQ2dBS0RZRDJBVUxnWHdTWm5tMm8vZ204?=
- =?utf-8?B?NjhFWlltcGdWM2FNSjZHQU5MSmVWbzRTL3hsOVpwemo4KzA0THdCSFhEKzNo?=
- =?utf-8?B?am5zTy9QeFhJeU12c2VOQkhMV3BxY05LUlE0bmd3Qi92NWxoSitqSnlzSDN6?=
- =?utf-8?B?RFF6T1lLMDF0Vm92WWVqOTNMUk9pam9NK2I4cVYweXVuQUVpT3RuYkhTLzFB?=
- =?utf-8?B?MmgvUitwVDlzWGV4ampTTjduaFZLdXhOUld6QWZlU3lBeEk3UTFVYnlLRkxU?=
- =?utf-8?B?cTJ4djQyaFg2dCs2ZytLNk83WEdWVWlDT1E3SmhaZWNBaGMvQUs0QkxSNWFS?=
- =?utf-8?B?T0ZlemRlY1oxZE9TbFpqT1g3cjlaMlc0VGtHSkxCNnpDeDBmbnIwNkFEdmNC?=
- =?utf-8?B?Z2N4SzVuWGN4Q2JHZFcvaWM5VUV3TjVSd3hHMlJlMlFMcXQ5MWF1WGVFN2JJ?=
- =?utf-8?B?Qkk0NzFLVXZDM1YxTENody9GNzJQK3VlMHFRa3ZqeUdielZqcEhjLzJOUHhp?=
- =?utf-8?B?Nk10bnpEdEVmSXlISWxGNlU1d3lEdFpjWTJBQm1VVGx2QTJBQisyZ3ZFeHpm?=
- =?utf-8?B?b0Yyb3NuL29HWW00Z25UMFlUY1ZwbGNXWUlMajVEdlRBLy9leDJMbjlXem9q?=
- =?utf-8?B?NTJreFkzSS9Va2JjZnVPZjVJamFLdzNkSmFSbnA0VXBKbVZ6WFU3SlNFeXo1?=
- =?utf-8?B?VHZmVW45Q3pIdmh1aWdTZDNpSnlZN1J1dW8xNWR5MThaVElPWDR6ODc4N0hK?=
- =?utf-8?B?NmswZ0g0akh0c1BSZSsyTjdDdjh0bXFLSTRsV0lDcVg2Y1lhT2ZGRmlyZHJO?=
- =?utf-8?B?Z0Q5SGU3bHhCbnppbGZ3TTZvSW15SCs5Y2VSOGtlZC9KMU1ENHJuNnpGLytW?=
- =?utf-8?B?T0dzc1c0dnV3OTkyR0V4U2cvbHIrY1k4SGtZM0lMSDZycTV5NVczeE55T3dK?=
- =?utf-8?B?MVB0YnZVUFNqVEhBY0Z3czF2d2xqRDRKMGxwWlBLZ0E0TU1mb0NKS2lIdUd4?=
- =?utf-8?B?ZG9EVm5NQjFqNmp6dktEQXloUTcxTU8vZVVSK1RNQ2MxNE9QcThta0RNTXlO?=
- =?utf-8?B?UDAxSjRDVnlPQ3pQZmJxcXJJWVBhbi9yN01rd25uVWFya01sdWkzQXpTQVhl?=
- =?utf-8?B?YlMvcGZ4VzByZ1o5UHVrUngzZFlWTzdycW9PSW1KdHF5aHBKcXdKUkZ6SkY2?=
- =?utf-8?Q?O6/ycI5L/zslpC1NXcKS?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05b0174d-9d3a-4fe7-1da3-08dcf29a2d67
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2024 13:05:18.2100
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB1040
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABunF2cC/23NTQqDMBAF4KtI1k3JjzHqqvcoXUxirAGrkrShI
+ t69o1AoxeV7w/tmIdEF7yKps4UEl3z044BBnjJiOxjujvoGMxFM5JyxnEKjZclo6980vqapxzG
+ VhdayULYtAQgup+DwvqvXG+bOx+cY5v1J4lv79fShlzhl1ECDIJe2MtXFwNx7E9zZjg+ykUn8M
+ IIfMwIZYUEpbqRUAv6YdV0/AgZ60wABAAA=
+X-Change-ID: 20241004-ad7380-fix-supplies-3677365cf8aa
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-doc@vger.kernel.org, 
+ Julien Stephan <jstephan@baylibre.com>
+X-Mailer: b4 0.14.2
 
+Hello,
 
-On 2024/10/22 17:14, Uwe Kleine-König wrote:
-> snps,dw-apb-gpio-port is deprecated since commit ef42a8da3cf3
-> ("dt-bindings: gpio: dwapb: Add ngpios property support"). The
-> respective driver supports this since commit 7569486d79ae ("gpio: dwapb:
-> Add ngpios DT-property support") which is included in Linux v5.10-rc1.
->
-> This change was created using
->
-> 	git grep -l snps,nr-gpios arch/riscv/boot/dts | xargs perl -p -i -e 's/\bsnps,nr-gpios\b/ngpios/
->
-> .
->
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+This series tries to fix several issues found on the ad7380 driver about
+supplies:
 
-Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+- vcc and vlogic are required, but are not retrieved and enabled in the
+probe function
+- ad7380-4 is the only device from the family that does not have internal
+reference and uses REFIN instead of REFIO for external reference.
 
-Thanks.
+driver, bindings, and doc are fixed accordingly
 
-> ---
->   arch/riscv/boot/dts/sophgo/sg2042.dtsi | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> index 4e5fa6591623..e62ac51ac55a 100644
-> --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-> @@ -112,7 +112,7 @@ port0a: gpio-controller@0 {
->   				compatible = "snps,dw-apb-gpio-port";
->   				gpio-controller;
->   				#gpio-cells = <2>;
-> -				snps,nr-gpios = <32>;
-> +				ngpios = <32>;
->   				reg = <0>;
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
-> @@ -134,7 +134,7 @@ port1a: gpio-controller@0 {
->   				compatible = "snps,dw-apb-gpio-port";
->   				gpio-controller;
->   				#gpio-cells = <2>;
-> -				snps,nr-gpios = <32>;
-> +				ngpios = <32>;
->   				reg = <0>;
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
-> @@ -156,7 +156,7 @@ port2a: gpio-controller@0 {
->   				compatible = "snps,dw-apb-gpio-port";
->   				gpio-controller;
->   				#gpio-cells = <2>;
-> -				snps,nr-gpios = <32>;
-> +				ngpios = <32>;
->   				reg = <0>;
->   				interrupt-controller;
->   				#interrupt-cells = <2>;
->
-> base-commit: 7436324ebd147598f940dde1335b7979dbccc339
+Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+---
+Changes in v3:
+- Use fsleep instead of msleep
+- Add all trailers from review
+- Link to v2: https://lore.kernel.org/r/20241021-ad7380-fix-supplies-v2-0-2ca551b3352a@baylibre.com
+
+Changes in v2:
+- Fix kernel test robot warning about variable uninitialized when used [1]
+- drop commit removing supply description in bindings
+- after discussion on [2] we decided to add refin supply here, as it
+  will be needed in the futur
+
+- Link to v1: https://lore.kernel.org/r/20241007-ad7380-fix-supplies-v1-0-badcf813c9b9@baylibre.com
+
+[1] https://lore.kernel.org/oe-kbuild-all/202410081608.ZxEPPZ0u-lkp@intel.com/
+[2] https://lore.kernel.org/all/20241015-ad7380-add-adaq4380-4-support-v1-0-d2e1a95fb248@baylibre.com/:warning
+
+---
+Julien Stephan (5):
+      dt-bindings: iio: adc: ad7380: fix ad7380-4 reference supply
+      iio: adc: ad7380: use devm_regulator_get_enable_read_voltage()
+      iio: adc: ad7380: add missing supplies
+      iio: adc: ad7380: fix supplies for ad7380-4
+      docs: iio: ad7380: fix supply for ad7380-4
+
+ .../devicetree/bindings/iio/adc/adi,ad7380.yaml    |  21 ++++
+ Documentation/iio/ad7380.rst                       |  13 +-
+ drivers/iio/adc/ad7380.c                           | 136 ++++++++++++---------
+ 3 files changed, 110 insertions(+), 60 deletions(-)
+---
+base-commit: 1a8b58362f6a6fef975032f7fceb7c4b80d20d60
+change-id: 20241004-ad7380-fix-supplies-3677365cf8aa
+
+Best regards,
+-- 
+Julien Stephan <jstephan@baylibre.com>
+
 
