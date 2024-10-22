@@ -1,235 +1,213 @@
-Return-Path: <devicetree+bounces-114041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DAF09A9A57
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:59:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60D999A9A66
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:02:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B800E1C20F55
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:59:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E65AF1F22955
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88A9146D59;
-	Tue, 22 Oct 2024 06:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A83146A71;
+	Tue, 22 Oct 2024 07:02:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zghSAd2L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UtB/SN+6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A90146A71
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 06:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4910C12CD89
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 07:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729580373; cv=none; b=fTXN54Uv7NVBnRypyWvjefDJW4m3g2q6ke+xn80SxfdT5lsHNaco+0qb35E7JEHVOycC3I0m/soM7vdDDiPgVNapuHgBT2aGwi6qIFOcKzgQbBhqjUawvTMOht119/hDr03orqOa4MSFMeDYlH1wDiYfUuoBTkUKba5zvF5vqYo=
+	t=1729580546; cv=none; b=N6LznZxWaxVZTSkMvL17GasUtM3G3IpskVinFYccyOvZVHLJEUPb73UTaBOewglctkY51QRSVWJm5lvrOq3ICVn9PtPsxYuyzIgIz2bP2SB/Ey3sca8i0ZNIbtV9/OoLu0MGke/Az3Gkar/uDoPtGYcOD+Cb6iJgcOteQtI3z9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729580373; c=relaxed/simple;
-	bh=TvjGSE5GNJjW4VdXHD6cIJ+b9CBXevZuw8+amadgwWU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=B9xOQWdw0W9NRaLrcCfFGN0Q7INZdBShApusqJUkdNTYJaWdJxcNTfrrMu4y7spJbVdFCRDEJHrhUnxZI8hdawAk47BR7FU8IYHzgRti6VULQPrs9tGsw91jmvHDzMuBQsmVtOeCLvU/e1f8vHRTCvXryh7fBbV+CUnpd2WMgpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zghSAd2L; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-50d4797098dso1694368e0c.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 23:59:30 -0700 (PDT)
+	s=arc-20240116; t=1729580546; c=relaxed/simple;
+	bh=4yE8s5Gg/D7Mg1mfXzs4xFsiwPIVCKqduCQJUZDhtGg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X55WGadUGtQe2l6Whc9K7dDlu9xddoaEhQjRZENOzGRvd4CvffTdVUQVtqZjGz6+LLRhDG50tD2fpVD378Gt728+ThLgQITlMsFN9OpOyD7RpX02AR6A2AdkQEFcc1uuh5VdE7XjUUa27W0rRPUhnH+0Uyz5a4Nb+HNdpzqGhJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UtB/SN+6; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37d4ac91d97so5102367f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 00:02:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729580369; x=1730185169; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EmrMnZQE3a07XKbFi4coi+hrWjINxdc/YU4ZsynDMvw=;
-        b=zghSAd2LEJJ5hlv5Om9FUv2ZOZKJmN9ICEFtjkZpvck+hF2+Opw1yUDq1mUVZNqQX8
-         wvD9BSmCOlxRleRgKf1H+aBNnvUYDNBfJFLT/eCWdrWFjLiuLPclgbn3TOOsx7bWZBzq
-         5D+rikUMCFpV7mga0qrjzz5S29YWPeArzWrIFEmTISWtpU4qAet45GwNnfeNUBeDWK08
-         NEZYGuvuWANZMjyGgH3JRAR2ctiw3zLdr3L2WumaSnqxq7Ds9eSzj8w9M4n5oeae3t8H
-         b3/iJll86vPAe0hKjbnJ86H32EY0EcfgieCcomM27mcy5Q+SGQ2FPljkk8ELRCWEg0iz
-         q4jA==
+        d=linaro.org; s=google; t=1729580543; x=1730185343; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zo0xOmZ3bF1XOgnsXVyn+rFyT/PuDvUbKaYAetJa4ms=;
+        b=UtB/SN+6Aqhrz6c63vBySYEAqogw7sBk/gBj9MhWxQofZXnmprhmpdzI0mUp1eJpk5
+         c1C22idsUoMAt++oxTy3kFXXuz9q3dmomzII2e3ad4FJ90boRX++XCRf8pd49uEc/mjR
+         8FycVbZY9OTtwe7FkD3sLAFbChmiz7mZOad8+53NRP/1CzOt7V9DpSV9+fdjHRYalu6c
+         q/9l55AoNBc67kgboiJv+kRjLaeWnccllyBQYfihWBc31rJ2j7OpTWwI4xV7ecgvpd4n
+         2UcdWBYZ3n+g3NOV9F8QfXhAT7s6O3OJLlL9Zfxg9y/DjN0/PUkY+RNFgCckgF5lAI3t
+         yFqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729580369; x=1730185169;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EmrMnZQE3a07XKbFi4coi+hrWjINxdc/YU4ZsynDMvw=;
-        b=pxKkib2nNWm1ZayVa/xFVFBa6/oYzncVak4fbiT2+M76DU3HRdADy+XbyZSr0jfRt3
-         VfLDbbMq2FXUt686Afx3gIfCUjDK5dfoZ5Fl+Rhh95R+Q6aRZgZkP/ieXjrq8Kd2sN4O
-         r3mtlzZ57dSFH7c9BRvbLnLps4LLrv6OVySqTHp/ySAEJ1CoS6q3OSNMuam7MlCiec1y
-         gGPDgq3wEGRe9bQZQtwPt22L7XzQRdpaUBpFqEPpwJiLtJRcQkYwjUXX0eRMmT+JHCUk
-         VypzgYb2Cb305hRhKa3j9toVY4kboempxi7hQ/LrCPOlikOTBfg8qbMr1/Lc/aHjk8u/
-         bIEA==
-X-Forwarded-Encrypted: i=1; AJvYcCVj27oPIoV27kTZGPegqrYGwVEWi50OUOzjeLhi/nLyefIl9dbTR+/V9OBZps1GFHhQU/q1W1dlM4Vu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNLlNjSK+37C3k5g3PEDTY+ewTLHTZmcKjDUSSPhgKwmJzBNUK
-	lWDT6dBX8QL1yOcCD5oOBaMZgBRYM+9Zb66yBJdPl0ZKSY0BWzuH1ygkO8skBZPxBoDM5rgUVkC
-	Kj3AVjDwUFfVgbIx0R82nLG0bVgNnfgIRruGRiQ==
-X-Google-Smtp-Source: AGHT+IEX+86wBXIxaEn+JJmosniozV/wBNVR8nbW+AlAIx4DcXOLbFziVIp6cF0B0dDVKfGnCGfxDkGyRjEPYGwyzVk=
-X-Received: by 2002:a05:6122:3188:b0:50d:2dd4:e62a with SMTP id
- 71dfb90a1353d-50dda3c723emr9671921e0c.13.1729580367724; Mon, 21 Oct 2024
- 23:59:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729580543; x=1730185343;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zo0xOmZ3bF1XOgnsXVyn+rFyT/PuDvUbKaYAetJa4ms=;
+        b=F5fHbaLPlu+7nYGFIEUc0ROqcDyJMpDys30ijvUFgdTNAKBt57cXXiy+RvAvptVh/a
+         E+RvryRyUHuD9pEI3KAGGv+UpcCdSKO6DFFiC3sj6zpZRe9HRCu5P5gOhkSZqiSvr+Z7
+         M/te6KCZfsKJx25En2nqaqTWKBzkHZhZJ3PBouZd4f6r4JXwuPP8LzDi1YUhqLnAser2
+         UWbMY62x31tHolLCN3PH3SPrOkJ9lElGqRof8OoRWwdeCYvLhx0A0zaXDJL8Hb1sDAbE
+         AR8KhV2OeDgAUvOfXwU5SKDJUG9N4XNWFcPHv3xyBivfJjr8yJ/KUzqWKxlliZGoLqEh
+         kqsg==
+X-Forwarded-Encrypted: i=1; AJvYcCXfETszW1HH/HAKcGN5h1ljDc0XWh+rnRXo6npmWaGsUEBJ8+yb+8oJeCe0wpTd/Oup8NU4jSpCpb4S@vger.kernel.org
+X-Gm-Message-State: AOJu0YysQ0xifjueQAxr8KyIP11D3ciI0IvID3W1LGoNp4PqbQZfcxFK
+	lLhhcP+MrKEPDQwuvkHHZo5at4B8oGNy54s9ZPSk9gHR+N3DCspEp+R6yM4I5Bk=
+X-Google-Smtp-Source: AGHT+IEb/90ZLK03pt7rWCnU1U7KPmd5ONg5GXEb+jncfPIGAWGKj/2uCiifR3O1/uN1UB+cMvzzSA==
+X-Received: by 2002:a5d:4e0e:0:b0:37d:61aa:67de with SMTP id ffacd0b85a97d-37eab7555a4mr11958766f8f.42.1729580542648;
+        Tue, 22 Oct 2024 00:02:22 -0700 (PDT)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0b93f92sm5881454f8f.76.2024.10.22.00.02.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 00:02:22 -0700 (PDT)
+Date: Tue, 22 Oct 2024 10:02:20 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Johan Hovold <johan@kernel.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add Parade PS8830 Type-C
+ retimer bindings
+Message-ID: <ZxdN/Kr5ej2YFv9T@linaro.org>
+References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
+ <20241004-x1e80100-ps8830-v2-1-5cd8008c8c40@linaro.org>
+ <657a2qb727tm5ndz2wokxb5aiyqysppufm7evtwfbplu34yzmp@mlm4k775zm7a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241021130221.1469099-1-aardelean@baylibre.com>
- <20241021130221.1469099-5-aardelean@baylibre.com> <0a7c5305-b4f7-4166-8a8a-05cf6e3273cc@baylibre.com>
-In-Reply-To: <0a7c5305-b4f7-4166-8a8a-05cf6e3273cc@baylibre.com>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Tue, 22 Oct 2024 09:59:16 +0300
-Message-ID: <CA+GgBR_tT5J8Lq7DmSw9GdETiRScXzPzcf5UkDk32GLP8tSrQw@mail.gmail.com>
-Subject: Re: [PATCH 4/6] iio: adc: ad7606: rework scale-available to be static
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com, 
-	gstols@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <657a2qb727tm5ndz2wokxb5aiyqysppufm7evtwfbplu34yzmp@mlm4k775zm7a>
 
-On Mon, Oct 21, 2024 at 9:17=E2=80=AFPM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> On 10/21/24 8:02 AM, Alexandru Ardelean wrote:
-> > The main driver for this change is the AD7607 part, which has a scale o=
-f
-> > "1.220703" for the =C2=B110V range. The AD7607 has a resolution of 14-b=
-its.
-> >
-> > So, just adding the scale-available list for that part would require so=
-me
-> > quirks to handle just that scale value.
-> > But to do it more neatly, the best approach is to rework the scale
-> > available lists to have the same format as it is returned to userspace.
-> > That way, we can also get rid of the allocation for the 'scale_avail_sh=
-ow'
-> > array.
-> >
-> > Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
+On 24-10-06 18:28:52, Dmitry Baryshkov wrote:
+> On Fri, Oct 04, 2024 at 04:57:37PM GMT, Abel Vesa wrote:
+> > Document bindings for the Parade PS8830 Type-C retimer. This retimer is
+> > currently found on all boards featuring Qualcomm Snapdragon X Elite SoCs
+> > and it is needed to provide altmode muxing between DP and USB, but also
+> > connector orientation handling between.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > > ---
->
-> ...
->
->
-> >  static ssize_t in_voltage_scale_available_show(struct device *dev,
-> >                                              struct device_attribute *a=
-ttr,
-> >                                              char *buf)
-> > @@ -703,8 +690,16 @@ static ssize_t in_voltage_scale_available_show(str=
-uct device *dev,
-> >       struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
-> >       struct ad7606_state *st =3D iio_priv(indio_dev);
-> >       struct ad7606_chan_scale *cs =3D &st->chan_scales[0];
-> > +     const unsigned int (*vals)[2] =3D cs->scale_avail;
-> > +     unsigned int i;
-> > +     size_t len =3D 0;
-> >
-> > -     return ad7606_show_avail(buf, cs->scale_avail, cs->num_scales, tr=
-ue);
-> > +     for (i =3D 0; i < cs->num_scales; i++)
-> > +             len +=3D scnprintf(buf + len, PAGE_SIZE - len, "%u.%06u "=
-,
-> > +                              vals[i][0], vals[i][1]);
-> > +     buf[len - 1] =3D '\n';
+> >  .../devicetree/bindings/usb/parade,ps8830.yaml     | 129 +++++++++++++++++++++
+> >  1 file changed, 129 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/parade,ps8830.yaml b/Documentation/devicetree/bindings/usb/parade,ps8830.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..f6721d6eee26c6d4590a12c19791b3d47a8145f3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/parade,ps8830.yaml
+> > @@ -0,0 +1,129 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/parade,ps8830.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +     return len;
-> >  }
-> >
-> >  static IIO_DEVICE_ATTR_RO(in_voltage_scale_available, 0);
->
-> Probably a reason for this that I forgot, but why is this handled in a
-> custom attribute instead of ad7606_read_avail()?
-
-[1]
-So, this is a quirk of this driver that would require a bigger cleanup.
-It could be done as a different series.
-Or (otherwise said) I would do it in a different series (unless
-requested otherwise).
-
-These device-level attributes are attached in the probe() of this
-driver, based on the GPIO configurations provided via DT.
-There's that bit of code
-
-        if (st->gpio_os) {
-                if (st->gpio_range)
-                        indio_dev->info =3D &ad7606_info_os_and_range;
-                else
-                        indio_dev->info =3D &ad7606_info_os;
-        } else {
-                if (st->gpio_range)
-                        indio_dev->info =3D &ad7606_info_range;
-                else
-                        indio_dev->info =3D &ad7606_info_no_os_or_range;
-        }
-
-The "range" there refers to "scale_available", which is only attached
-like this, for HW mode.
-A rework of HW-mode would be a good idea.
-
->
-> > @@ -742,6 +737,7 @@ static int ad7606_write_raw(struct iio_dev *indio_d=
-ev,
-> >                           long mask)
-> >  {
-> >       struct ad7606_state *st =3D iio_priv(indio_dev);
-> > +     unsigned int scale_avail[AD760X_MAX_SCALES];
->
-> Calling this scale_avail_uv would make the code easier for me to understa=
-nd.
-
-Ack.
-
->
-> >       struct ad7606_chan_scale *cs;
-> >       int i, ret, ch =3D 0;
-> >
-> > @@ -752,7 +748,12 @@ static int ad7606_write_raw(struct iio_dev *indio_=
-dev,
-> >               if (st->sw_mode_en)
-> >                       ch =3D chan->address;
-> >               cs =3D &st->chan_scales[ch];
-> > -             i =3D find_closest(val2, cs->scale_avail, cs->num_scales)=
-;
-> > +             for (i =3D 0; i < cs->num_scales; i++) {
-> > +                     scale_avail[i] =3D cs->scale_avail[i][0] * 100000=
-0 +
->
->                                                                  MICRO
-
-Ack.
-
->
-> > +                                      cs->scale_avail[i][1];
-> > +             }
-> > +             val =3D val * 1000000 + val2;
-> > +             i =3D find_closest(val, scale_avail, cs->num_scales);
-> >               ret =3D st->write_scale(indio_dev, ch, i + cs->reg_offset=
-);
-> >               if (ret < 0)
-> >                       return ret;
-> > @@ -788,9 +789,15 @@ static ssize_t ad7606_oversampling_ratio_avail(str=
-uct device *dev,
-> >  {
-> >       struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
-> >       struct ad7606_state *st =3D iio_priv(indio_dev);
-> > +     const unsigned int *vals =3D st->oversampling_avail;
-> > +     unsigned int i;
-> > +     size_t len =3D 0;
-> >
-> > -     return ad7606_show_avail(buf, st->oversampling_avail,
-> > -                              st->num_os_ratios, false);
-> > +     for (i =3D 0; i < st->num_os_ratios; i++)
-> > +             len +=3D scnprintf(buf + len, PAGE_SIZE - len, "%u ", val=
-s[i]);
-> > +     buf[len - 1] =3D '\n';
+> > +title: Parade PS8830 USB and DisplayPort Retimer
 > > +
-> > +     return len;
-> >  }
-> >
-> >  static IIO_DEVICE_ATTR(oversampling_ratio_available, 0444,
->
-> Same question about ad7606_read_avail() instead for this one.
+> > +maintainers:
+> > +  - Abel Vesa <abel.vesa@linaro.org>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - parade,ps8830
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: XO Clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: xo
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  vdd-supply:
+> > +    description: power supply (1.07V)
+> > +
+> > +  vdd33-supply:
+> > +    description: power supply (3.3V)
+> > +
+> > +  vdd33-cap-supply:
+> > +    description: power supply (3.3V)
+> > +
+> > +  vddar-supply:
+> > +    description: power supply (1.07V)
+> > +
+> > +  vddat-supply:
+> > +    description: power supply (1.07V)
+> 
+> Any additional details?
 
-See [1]
+Documentation doesn't say anything more than this.
 
->
+> 
+> > +
+> > +  vddio-supply:
+> > +    description: power supply (1.2V or 1.8V)
+> > +
+> > +  orientation-switch: true
+> > +  retimer-switch: true
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: Super Speed (SS) Output endpoint to the Type-C connector
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        description: Super Speed (SS) Input endpoint from the Super-Speed PHY
+> 
+> or from another SS signal source, which can be a mux, a switch or
+> anything else. I'd say, just 'Input Super Speed (SS)'
+
+Will use that.
+
+> 
+> > +        unevaluatedProperties: false
+> > +
+> > +      port@2:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Sideband Use (SBU) AUX lines endpoint to the Type-C connector for the purpose of
+> > +          handling altmode muxing and orientation switching.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +allOf:
+> > +  - $ref: usb-switch.yaml#
+> > +
+> > +additionalProperties: false
+> > +
+> 
+> -- 
+> With best wishes
+> Dmitry
 
