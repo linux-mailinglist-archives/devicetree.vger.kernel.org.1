@@ -1,114 +1,159 @@
-Return-Path: <devicetree+bounces-114217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419A39AB016
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:51:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 587DD9AB031
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:56:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E16B31F23A80
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:51:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19076283EED
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:56:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F90619F116;
-	Tue, 22 Oct 2024 13:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D731A08CB;
+	Tue, 22 Oct 2024 13:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xooZKAgd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tS056dqB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C5B14F123;
-	Tue, 22 Oct 2024 13:51:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 099EB1A08B1
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 13:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729605091; cv=none; b=m+tpTHoukWu6h0Fvvn1tWolSfPLXqAY++8pWHmLRlEq8UYTuj7pqy14ZCbFjuFE3xT22vXCeD6s5kUT0XNQL0/Ce0MnkS8VQabMuM5coRqGuGwFbbzkKQSR0AHyOYN8F8dz3nRMZgkiA+qGLDFZTtDpjJ0smPUV9G3t8XUI4Prs=
+	t=1729605369; cv=none; b=lwPKRcZj8NkCnse3+Y+wL4t+K9KGFT/o+MSgG7BAwuJmwoem4s5v6sCX8X6ifcrsqBi0Kx/LJbtxe4sYblRa0I5HkRNLaSauZla0Q16yGn5pXKbvhJUBh7zvet09iN02DXLo+i7NjjnytB8jNFqfk2jaBvN0mI9j12oI/20Pcqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729605091; c=relaxed/simple;
-	bh=4YCUU/tRZ2uzBTwVjxElzWy8H8WB2+ci5aZn1lr2UfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QMblGEsP2XEsfrinlnY/ld7pZJ/bHEuhEMR3R8agsZdiwrxF96Fou1mBnlrzhE/USYyM/KSIl9cXK74AzMgXM8FHg0Gyu2LX8qMN/eY2Q9nIzSUQzyMenXVFOHlhEZzluEv/UtqG6lau9wUULkVeKIAI90gLHumsoaXpkJG25cE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xooZKAgd; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=EvgeLiQ1i9RqfW0Xm0MuToc51LBco8luwq4fL+Inhzc=; b=xooZKAgd7OkHixgbYVMEcGcidL
-	a+SWF6BNyNSjY6eJy8yQGbXPowzJ4G1vD/u8Lrbngi4UPc8IU6Mww6P7m85HQiZWAIQW97HQ2s5BI
-	tQxjhR9NLctB2XtWz3xWo3JoopalvpzvS+1/PA3XzVs0c4WbTQ4IISKXeVRRcle51beQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t3FHw-00Aqeu-KD; Tue, 22 Oct 2024 15:51:08 +0200
-Date: Tue, 22 Oct 2024 15:51:08 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-Message-ID: <66f35d1b-fd26-429b-bbf9-d03ed0c1edaf@lunn.ch>
-References: <20241021103617.653386-1-inochiama@gmail.com>
- <20241021103617.653386-5-inochiama@gmail.com>
- <227daa87-1924-4b0b-80db-77507fc20f19@lunn.ch>
- <gwtiuotmwj2x3d5rhfrploj7o763yjye4jj7vniomv77s7crqx@5jwrpwrlwn4s>
- <65720a16-d165-4379-a01f-54340fb907df@lunn.ch>
- <424erlm55tuorjvs2xgmanzpximvey22ufhzf3fli7trpimxih@st4yz53hpzzr>
+	s=arc-20240116; t=1729605369; c=relaxed/simple;
+	bh=/pS5vqqoSRD872l4pw+0rXrLxLdDPnIUcYWrbdyEl+o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jOW1aBNajFFfc7Of6lwK2LK9blx2zpDTiHNEykBTamIuZNVo+sGN8vs1l3doOpCHTVzL/R300B5U12bhz9JfA57V5LiR2+TjBq5GjbFm5X0K8iQkgggBYJhxQQNj8p5UOsg7gO5GTzuW5qHXjZxyGAYb8uRJpDk4RM73wtiVq40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tS056dqB; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6e5fadb5e23so22903437b3.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 06:56:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729605367; x=1730210167; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cDLtvhMz6PcWfZhVz6kUWAuewo8GBV/2rwOJwr5Q+iQ=;
+        b=tS056dqBTKGzg23vC6WAfeoazPOS8TnK5xrLI6Xs7otPTl2sBc9CCoY2UCyAKYDq6f
+         xzC4eGpXtV8xi3X2FfyFWEKM0KyMNXFSbbzRQyiTPP2AiaTdwUBALXzpfzVVg5gWYoUV
+         qkiE8y84xpU/UE0ZVKn9PoLW1Tp39CI6qCosvAJjAsTG1NaJP7dcgh/hiv5ERs8JFuNL
+         OMgCyVSvN0PEY/HbRttkuvnMmatMIpCvydZiILma/+o374/+0K2msBuiR6Q+bByrcJCn
+         xbNrYJsPWFU15f+YwIzx//+nB+Q0V/ZSrwYFSWk/y+BI0OAbjC+PugkMWg2Jveos8XYD
+         94fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729605367; x=1730210167;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cDLtvhMz6PcWfZhVz6kUWAuewo8GBV/2rwOJwr5Q+iQ=;
+        b=Z5+kPz+sPx1wItSxnmz5ePMk/7N6FnritzZJx4ER8jfBVT679W1FGbcDsoZZLB5YxH
+         RH9DwhveqjtKBq+aSaQSgJxVmC4huEal5K1lacuRkhkIP7ewNA9e1jkD20EALv6XnLiX
+         +r5IOdoUnLwUgQ4zcRLy2W9lht+i01KQqmbCiVG0liCeGF+ur192FhOudnzJW+ZuDQ0n
+         +HM2/aZeaLkzjMQ8zpMRiYj021PYJ2/4VJDoyYUj+aYRV6Vrl3E8BBe2jxmLZ1pW5gmi
+         kMVt6cIuO3dzZWtemx9fEIPR6JpGl9/m/VJ8ZFTlp4wdk5XbOsTdHJV2nJBs+fhIuM8z
+         ggtw==
+X-Forwarded-Encrypted: i=1; AJvYcCUvqDl/YsFWtidghY0OLr1oOebrtIOXogDkk/E3/fWaZeQUcV2rLyGTZim4U3gKLSiTUXqx4SO6Eeo4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVcm8XSaXZuHn7HG8iwfz6mFxPPHIJZt0B3qsQtte0vf9PLzFp
+	dQfMbIJfU/NQ4KA17M3icNi1DTX/lrRUDI/9Dxm0zh6l3YLCYJWSsNteSjbvRQ4PNou5sQtHFPR
+	RKHGw0Cp4m3ALqAAzp+qZ7VVUMYjgKX+DIPID/g==
+X-Google-Smtp-Source: AGHT+IFpmhM2z2KDin6GRhjxZIQ5R+mLzT187UDQAB/1orWo3bN3jQ1rEzWwIZFAogs3JWkBJ+YU+ZNAkgJe/aJbZl0=
+X-Received: by 2002:a05:690c:f8f:b0:6d3:f9a6:e29c with SMTP id
+ 00721157ae682-6e5bf9a0846mr144026337b3.12.1729605366851; Tue, 22 Oct 2024
+ 06:56:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <424erlm55tuorjvs2xgmanzpximvey22ufhzf3fli7trpimxih@st4yz53hpzzr>
+References: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
+ <20241001033053.2084360-3-quic_miaoqing@quicinc.com> <smgbishqbin4kcpshqvue3ivvfko2l6rj2w4ikwydosbkq6kde@pdbzhklj7znm>
+ <1c5f5c93-db06-4490-af2e-bbce2d184c94@quicinc.com>
+In-Reply-To: <1c5f5c93-db06-4490-af2e-bbce2d184c94@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 22 Oct 2024 16:55:56 +0300
+Message-ID: <CAA8EJporsVmyhvYV4QDnTJPh82A-JZz3u1RkChe=MumGidmLSQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] wifi: ath11k: add firmware-name device tree property
+To: Miaoqing Pan <quic_miaoqing@quicinc.com>
+Cc: kvalo@kernel.org, quic_jjohnson@quicinc.com, ath11k@lists.infradead.org, 
+	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Oct 22, 2024 at 06:21:49PM +0800, Inochi Amaoto wrote:
-> On Mon, Oct 21, 2024 at 03:27:18PM +0200, Andrew Lunn wrote:
-> > > It is related to the RGMII delay. On sg2044, when the phy 
-> > > sets rx-delay, the interal mac is not set the same delay, 
-> > > so this is needed to be set.
-> > 
-> > This is the wrong way to do it. Please look at how phy-mode should be
-> > used, the four different "rgmii" values. Nearly everybody gets this
-> > wrong, so there are plenty of emails from me in the netdev list about
-> > how it should be done.
-> > 
-> 
-> The phy-mode is alreay set to the "rgmii-id" and a rx delay is already
-> set (a default tx delay is set by the phy driver). In the scenario 
-> the extra bit is used to fix 2ns difference between the sampling clock
-> and data. It is more like an extra setting and the kernel can not handle
-> it by only setting the phy-mode.
+On Tue, 22 Oct 2024 at 13:20, Miaoqing Pan <quic_miaoqing@quicinc.com> wrote:
+>
+>
+>
+> On 10/22/2024 5:57 PM, Dmitry Baryshkov wrote:
+> > On Tue, Oct 01, 2024 at 11:30:52AM +0800, Miaoqing Pan wrote:
+> >> QCA6698AQ uses different firmware/bdf/regdb with existing WCN6855
+> >> firmware, which is customized for IoE platforms. And the 'pci-device-id +
+> >> soc-hw-version + soc-hw-sub-version' may not be enough to identify the
+> >> correct firmware directory path.
+> >
+> > Why is it so? What makes it so different from the existing platforms
+> > that you can not use WCN6855 firmware?
+>
+> Just as I said, a new customized firmware for IoE devices.
 
-This sounds wrong.
+This answers the "what" question, not "why". Please provide a reason
+and a description. Can the hardware work with the default firmware?
+Does your custom firmware provide additional features? Is it just
+signed for a different SoC? Is there anything else?
 
-So in DT you have rgmii-id? You say the PHY is doing TX delay. So you
-pass PHY_INTERFACE_MODE_RGMII_TXID to the PHY? It is not clear from
-this patch, i don't see any code mentioning
-PHY_INTERFACE_MODE_RGMII_TXID. Could you point me at that code.
+> >> The device tree allows "firmware-name" to define the firmware path,
+> >>      wifi@c000000 {
+> >
+> > You are describing platform node, while the commit message talks about
+> > the PCIe devices. Could you please clarify, whether it is a PCIe device
+> > or an AHB device?
+>
+> PCIe device. The change is for sa8775p/qcs8300 those non-AHB boards.
 
-	Andrew
+Then why are you patching the AHB schema and why are you providing a
+platform-based example? It makes it harder to follow your arguments.
+
+>
+> >
+> >>          firmware-name = "QCA6698AQ";
+> >
+> > Could we please follow the approach that has been defined in the commit
+> > 5abf259772df ("wifi: ath10k: support board-specific firmware
+> > overrides")? In other words, instead of creating another directory under
+> > ath11k, create a subdir under the WCN6855/hwN.M/ which contains your
+> > device-specific data.
+>
+> Sure, thanks, will update.
+>
+> >
+> >>          status = "okay";
+> >>      };
+> >>
+> >> Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+> >>
+> >> Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+> >
+> > P.S. please CC linux-arm-msm for future respins of this series or for
+> > all other submissions that concern board-specific DT data on MSM
+> > platforms.
+>
+> ok.
+>
+> >
+> >> ---
+> >>   drivers/net/wireless/ath/ath11k/core.c | 12 ++++++++++++
+> >>   drivers/net/wireless/ath/ath11k/core.h | 11 +++--------
+> >>   2 files changed, 15 insertions(+), 8 deletions(-)
+> >>
+> >
+>
+
+
+-- 
+With best wishes
+Dmitry
 
