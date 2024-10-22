@@ -1,268 +1,164 @@
-Return-Path: <devicetree+bounces-114275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 207B29AB2CB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:55:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CC0B9AB30C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:00:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A52441F21B16
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:55:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E4181F25935
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553091BD038;
-	Tue, 22 Oct 2024 15:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483001AD5DE;
+	Tue, 22 Oct 2024 15:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="md+rt+yX"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="j1Dlhm8l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B50B31BD027
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 15:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC221A3AAD;
+	Tue, 22 Oct 2024 15:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729612335; cv=none; b=n9JMZHxXe36N6metoRcrSeufDdpGEgBFerbp1e3CRZbdAXdbRymNIvcvt+6EPpmo8KSzN/PKMYdQIT2tuI6j2WNgOMe+OR3CXsWlm2RwA9mKSj5cUr58dtgpylx4eV7rvh5kmQh3wmugRgU8sTe3+AQ9zNEIZh4a2fBPG0o+uXw=
+	t=1729612785; cv=none; b=LciU1OrwIdyE++LP+zuSHyJfhWpPG17xp0Eq4ijExMX+YIGCBNM2YwgZECLBm6KDlohRCYdwy1/3Aj6TA1VVlqt/VuREahF8iOF8lI/iUeXZzsk8JWrxClYQAkHV4kDimK3KDAGgQMJ6sJR0DPvb8rKtHcbL/0H6ADUwuWrLp3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729612335; c=relaxed/simple;
-	bh=kHo8sIuxFbLHSYOFK7SARA0PAdoM4GLl0qg3icRE4OE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FNr6t+1eEw59qeP35HW+haFmwWVlPJHFjY2WEwFvEsaZN/oau+j/OBW/0LTy6HJE4ItbJM79ZyxF5b+IXEtd5lYrkyhEfFz43mWlh+RSrBYpT1PI637LJosK4rx0RWKns2LEjf7HKp9J5Fjy+o0Gg+qhxnFBsfoiP5nELG3OgKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=md+rt+yX; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20cd76c513cso48789775ad.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:52:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729612333; x=1730217133; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8AkVLCCPZxZ1fApkqmTMKj62SttuuqmnYfplcOKZMck=;
-        b=md+rt+yXSRHE2x4e3VUG7e+34RmZf8f5VlTgsj8Mrv8EZEwy7u1RA98q1jbLSlnll4
-         i/EuMWD1qcQ6YMPXGRVMLtSHKUC1FPGqME4CaIL3U+LpqRtCiophIrOmBXQ9QNk1Jn83
-         71ZPGfxN4tX66DCDVRM5eVWWpxrvY/j/XvUxO1SL2r1LlYQAQSaLOMVrZYDgjtIzhyEt
-         JBVAs2P454crlDW4RHhMpncYBJ3y9zCYp77MAUs+hHPoNfJ+4f7WEyPkoMJcSeBU/xLy
-         UU8ziMSSy/jWawz8i5GkAKnHlQk+TLr0M49xyIL1e32y/r11Yha/ZUsqA6GITxJIgd1p
-         6xjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729612333; x=1730217133;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8AkVLCCPZxZ1fApkqmTMKj62SttuuqmnYfplcOKZMck=;
-        b=FwF9qSGZwS7HGgZXUn3YPmdntLPd2TUzTPRrUKTWTDTQyi3kwtiwgRtaJGQ5MfNn4p
-         PKyDSW8SoiS65NTU+njsrM2+0bEmPgkkPQV2TJt0P82V8bz46kCgGkByA7PLGRemqsX1
-         z0jFLJRClu3uqbWp465dogJRcOCPNtwkEBNtP00IN3Zv9Rcpvr6uBVVkfsJAE0ULVzsf
-         fCLWv9bTAzsDk6LrYLGr1gYJoYpDrjePagvSBhWEQcp1I+z201Sv5BBKuNGQy42Zd8cI
-         /+bfLhFMftoloYsHJ+XOQkV3urAw1cBjZf9+x7+WMrEuH5lVqGYsaOd0ZS1vyOhlXOCU
-         aOcA==
-X-Forwarded-Encrypted: i=1; AJvYcCW4LGTKuIj/qqh6GwGFtBJd3bKfgjy80SJEnH3smIbixWmxki4bJAIf2gB5h8YUPOcmLQf0yB+8Hl7t@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3zSPKFPu6Wrw3dADGRE1+eCGjJycqkkcdrf++XJgz5Fw2p5GY
-	FrhepU9xndHEsjFm4jVUeKJouxrLJRQKISPWaeSYlgnjr2vsLuKYpoDqecLm+zA=
-X-Google-Smtp-Source: AGHT+IEsN3+xGI76q2s1diRf4iXLrreaf3Jeckwsh5L0/TmOy3pREL6E0A6kjoW8nKAID3UtRLL8+w==
-X-Received: by 2002:a17:903:1cc:b0:20c:c880:c3b0 with SMTP id d9443c01a7336-20e948aefd1mr44835425ad.21.1729612332913;
-        Tue, 22 Oct 2024 08:52:12 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:567b:4c87:a9aa:a404])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7ef0c5e4sm44510525ad.97.2024.10.22.08.52.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 08:52:12 -0700 (PDT)
-Date: Tue, 22 Oct 2024 09:52:09 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 7/7] remoteproc: stm32: Add support of an OP-TEE TA
- to load the firmware
-Message-ID: <ZxfKKe5C/O16x+J4@p14s>
-References: <20241009080108.4170320-1-arnaud.pouliquen@foss.st.com>
- <20241009080108.4170320-8-arnaud.pouliquen@foss.st.com>
+	s=arc-20240116; t=1729612785; c=relaxed/simple;
+	bh=ewytY9HxHvUWX6XTcYqjtATx26xPNqTacLGjbA/Zt88=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=n+ByClDq4xOZVB0yiTCtPCfNls6l/FSoxh3wjMvDv7GgWQY/9ficGQbufRA+Erpg9z8g+qiDU7N/oXiacTpk1gbgkQv872a893WmEJ0orhh7U3QeXDft7Kf14sn+DdOM+puldpIFdCo35IbfLLSmcBJv7kcXTPuvvWzLYDNiov4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=j1Dlhm8l; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49MBW0Se024761;
+	Tue, 22 Oct 2024 17:59:31 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=RtDggdY2iW+robAFxHqAEs
+	sSQfrLj5YNuaQVcXG5m80=; b=j1Dlhm8lgIJT3NwzUPHpY72H4qB/AH6b8RHHrK
+	IXIC4lrTjmirBYpFI5/GKng/oDBWFKUgam9jgKgc4UipdsxnA3MIxaviAo0J460S
+	4LWhcxtqPRd5UQlCklx6h5YJu+ajWUOx5eCyLCQpOoz6fG4L8inaR/nGg8ZkRZML
+	w9+ray9EZaqvhqijL9/cFlO0I3kkCrUsg0rrNuTnexmis6WzsZ9w8NLXzJ5XO/zn
+	ErZi53zTWJa33ukr+CepqVYHzk1Ai0S02HeMMnF75UYWa9rE82GPOApqhDyB3rSk
+	zaeE3inRr50S8QoFMM2P5TNFJtinl0dKmuW4LRajc/s7oL9Q==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42c7316cmc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Oct 2024 17:59:31 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id BB6894004F;
+	Tue, 22 Oct 2024 17:58:26 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B654C26D665;
+	Tue, 22 Oct 2024 17:57:16 +0200 (CEST)
+Received: from localhost (10.48.87.33) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 22 Oct
+ 2024 17:57:16 +0200
+From: Antonio Borneo <antonio.borneo@foss.st.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: Antonio Borneo <antonio.borneo@foss.st.com>,
+        <linux-kernel@vger.kernel.org>,
+        =?UTF-8?q?Cl=C3=A9ment=20Le=20Goffic?=
+	<clement.legoffic@foss.st.com>,
+        Stephane Danieau
+	<stephane.danieau@foss.st.com>,
+        Amelie Delaunay
+	<amelie.delaunay@foss.st.com>,
+        Fabien Dessenne <fabien.dessenne@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        Gatien Chevallier
+	<gatien.chevallier@foss.st.com>,
+        Cheick Traore <cheick.traore@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH 00/14] pinctrl: stm32: Add new features and support for more SoC
+Date: Tue, 22 Oct 2024 17:56:44 +0200
+Message-ID: <20241022155658.1647350-1-antonio.borneo@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241009080108.4170320-8-arnaud.pouliquen@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Wed, Oct 09, 2024 at 10:01:08AM +0200, Arnaud Pouliquen wrote:
-> The new TEE remoteproc driver is used to manage remote firmware in a
-> secure, trusted context. The 'st,stm32mp1-m4-tee' compatibility is
-> introduced to delegate the loading of the firmware to the trusted
-> execution context. In such cases, the firmware should be signed and
-> adhere to the image format defined by the TEE.
-> 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> ---
-> updates vs v9 revision:
-> - rename tee_interface to tee_rproc_itf
-> - in stm32_rproc_probe(), test and use rproc->tee_rproc_itf instead of
->   trproc in the tee_rproc_unregister() call
-> - initialize release_fw ops
-> ---
->  drivers/remoteproc/stm32_rproc.c | 63 ++++++++++++++++++++++++++++++--
->  1 file changed, 60 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-> index 288bd70c7861..cb7093de41df 100644
-> --- a/drivers/remoteproc/stm32_rproc.c
-> +++ b/drivers/remoteproc/stm32_rproc.c
-> @@ -18,6 +18,7 @@
->  #include <linux/pm_wakeirq.h>
->  #include <linux/regmap.h>
->  #include <linux/remoteproc.h>
-> +#include <linux/remoteproc_tee.h>
->  #include <linux/reset.h>
->  #include <linux/slab.h>
->  #include <linux/workqueue.h>
-> @@ -255,6 +256,19 @@ static int stm32_rproc_release(struct rproc *rproc)
->  	return 0;
->  }
->  
-> +static int stm32_rproc_tee_stop(struct rproc *rproc)
-> +{
-> +	int err;
-> +
-> +	stm32_rproc_request_shutdown(rproc);
-> +
-> +	err = tee_rproc_stop(rproc);
-> +	if (err)
-> +		return err;
-> +
-> +	return stm32_rproc_release(rproc);
-> +}
-> +
->  static int stm32_rproc_prepare(struct rproc *rproc)
->  {
->  	struct device *dev = rproc->dev.parent;
-> @@ -691,8 +705,20 @@ static const struct rproc_ops st_rproc_ops = {
->  	.get_boot_addr	= rproc_elf_get_boot_addr,
->  };
->  
-> +static const struct rproc_ops st_rproc_tee_ops = {
-> +	.prepare	= stm32_rproc_prepare,
-> +	.start		= tee_rproc_start,
-> +	.stop		= stm32_rproc_tee_stop,
-> +	.kick		= stm32_rproc_kick,
-> +	.load		= tee_rproc_load_fw,
-> +	.parse_fw	= tee_rproc_parse_fw,
-> +	.find_loaded_rsc_table = tee_rproc_find_loaded_rsc_table,
-> +	.release_fw	= tee_rproc_release_fw,
-> +};
-> +
->  static const struct of_device_id stm32_rproc_match[] = {
->  	{ .compatible = "st,stm32mp1-m4" },
-> +	{ .compatible = "st,stm32mp1-m4-tee" },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, stm32_rproc_match);
-> @@ -851,17 +877,42 @@ static int stm32_rproc_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct stm32_rproc *ddata;
->  	struct device_node *np = dev->of_node;
-> +	struct tee_rproc *trproc = NULL;
+This series introduces the support for the new SoC
+- STM32MP215,
+- STM32MP235,
 
-The cleaner this patchset get, the more obvious it is (at least to me) that
-struct tee_rproc needs to be changed to struct rproc_tee.  Otherwise I keep
-wondering if this is coming from the TEE subsystem or the remoteproc subsystem.
+by adding the support for the new functionalities
+- irq affinity,
+- Resource Isolation Framework (RIF),
+- Reserved (RSVD) pinmux function,
+- IO synchronization parameters,
+- compile the driver as module.
 
->  	struct rproc *rproc;
->  	unsigned int state;
-> +	u32 proc_id;
->  	int ret;
->  
->  	ret = dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
->  	if (ret)
->  		return ret;
->  
-> -	rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
-> -	if (!rproc)
-> -		return -ENOMEM;
-> +	if (of_device_is_compatible(np, "st,stm32mp1-m4-tee")) {
-> +		/*
-> +		 * Delegate the firmware management to the secure context.
-> +		 * The firmware loaded has to be signed.
-> +		 */
-> +		ret = of_property_read_u32(np, "st,proc-id", &proc_id);
-> +		if (ret) {
-> +			dev_err(dev, "failed to read st,rproc-id property\n");
-> +			return ret;
-> +		}
-> +
-> +		rproc = devm_rproc_alloc(dev, np->name, &st_rproc_tee_ops, NULL, sizeof(*ddata));
-> +		if (!rproc)
-> +			return -ENOMEM;
-> +
-> +		trproc = tee_rproc_register(dev, rproc, proc_id);
+Some minor code reorganization is also introduced.
 
-This should return an integer rather than a struct tee_rproc * since the latter
-is available through rproc->tee_rproc_itf.
+Regards,
+Antonio Borneo
 
-In line with my comment above, this should be changed to rproc_tee_register()
-since it belongs to the remoteproc subsystem.  Before when I asked for
-tee_remoteproc.c to be changed to remoteproc_tee.c, I thought we could get by
-without changing the inside but now I think it is clear that we can't - this
-needs to be addressed.  
 
-> +		if (IS_ERR(trproc)) {
-> +			dev_err_probe(dev, PTR_ERR(trproc),
-> +				      "signed firmware not supported by TEE\n");
-> +			return PTR_ERR(trproc);
+Amelie Delaunay (2):
+  pinctrl: stm32: Add stm32mp215 pinctrl support
+  dt-bindings: pinctrl: stm32: support for stm32mp215 and additional
+    packages
 
-                        return dev_err_probe(...);
-> +		}
-> +	} else {
-> +		rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
-> +		if (!rproc)
-> +			return -ENOMEM;
-> +	}
->  
->  	ddata = rproc->priv;
->  
-> @@ -913,6 +964,9 @@ static int stm32_rproc_probe(struct platform_device *pdev)
->  		dev_pm_clear_wake_irq(dev);
->  		device_init_wakeup(dev, false);
->  	}
-> +	if (rproc->tee_rproc_itf)
-> +		tee_rproc_unregister(rproc->tee_rproc_itf);
-> +
+Antonio Borneo (4):
+  pinctrl: stm32: Declare stm32_pmx_get_mode() as static
+  pinctrl: stm32: Rework stm32_pconf_parse_conf()
+  pinctrl: stm32: Add RIF support for stm32mp257
+  dt-bindings: pinctrl: stm32: add support for stm32mp235
 
-If I read Bjorn's comment properly, this should probably be:
+Cheick Traore (1):
+  pinctrl: stm32: Manage irq affinity settings
 
-                rproc_tee_unregister(rproc);
+Clément Le Goffic (2):
+  pinctrl: stm32: Add stm32mp235 pinctrl support
+  pinctrl: stm32: Add new package to stm32mp257 pinctrl support
 
-with the if() inside the function.
+Fabien Dessenne (4):
+  pinctrl: stm32: Handle RSVD pin configuration
+  dt-bindings: pinctrl: stm32: add RSVD mux function
+  pinctrl: stm32: Support IO synchronization parameters
+  dt-bindings: pinctrl: stm32: support IO synchronization parameters
 
->  	return ret;
->  }
->  
-> @@ -933,6 +987,9 @@ static void stm32_rproc_remove(struct platform_device *pdev)
->  		dev_pm_clear_wake_irq(dev);
->  		device_init_wakeup(dev, false);
->  	}
-> +	if (rproc->tee_rproc_itf)
-> +		tee_rproc_unregister(rproc->tee_rproc_itf);
-> +
+Stephane Danieau (1):
+  pinctrl: stm32: Allow compile as module for stm32mp257
 
-Same here.
+ .../bindings/pinctrl/st,stm32-pinctrl.yaml    |   62 +-
+ arch/arm64/Kconfig.platforms                  |    1 -
+ drivers/pinctrl/stm32/Kconfig                 |   18 +-
+ drivers/pinctrl/stm32/Makefile                |    2 +
+ drivers/pinctrl/stm32/pinctrl-stm32.c         |  365 +++-
+ drivers/pinctrl/stm32/pinctrl-stm32.h         |   27 +-
+ drivers/pinctrl/stm32/pinctrl-stm32mp215.c    | 1807 ++++++++++++++++
+ drivers/pinctrl/stm32/pinctrl-stm32mp235.c    | 1906 +++++++++++++++++
+ drivers/pinctrl/stm32/pinctrl-stm32mp257.c    |  305 +--
+ include/dt-bindings/pinctrl/stm32-pinfunc.h   |    4 +
+ 10 files changed, 4326 insertions(+), 171 deletions(-)
+ create mode 100644 drivers/pinctrl/stm32/pinctrl-stm32mp215.c
+ create mode 100644 drivers/pinctrl/stm32/pinctrl-stm32mp235.c
 
-I am done reviewing this set.
 
-Thanks,
-Mathieu
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+-- 
+2.34.1
 
->  }
->  
->  static int stm32_rproc_suspend(struct device *dev)
-> -- 
-> 2.25.1
-> 
 
