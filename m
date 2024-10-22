@@ -1,159 +1,244 @@
-Return-Path: <devicetree+bounces-114094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F27B39A9C50
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:24:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8CA9A9C97
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:30:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D6211F21F1A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:24:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57E14283B1A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:30:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B05315E5D3;
-	Tue, 22 Oct 2024 08:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4BB193430;
+	Tue, 22 Oct 2024 08:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c17O3H6A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DjTlnATo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD64158D7B;
-	Tue, 22 Oct 2024 08:24:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32955191F95
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:29:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729585466; cv=none; b=re2hixvB/fhpYG3RRPP18zT/5U2jj5IKIbipy4Yk+tzwxpgXNalTidBAyzITv1/h3mgD0st8+2RFvDjcU0CNYUok35Ms8xi/MTcNUeJpzQqPXrpPElNFHJI8s0lgd01D8DjOjPY13hEmY5VyrMzHW4IC82yu9LGbn9gvsaPQTAQ=
+	t=1729585777; cv=none; b=ZIzf5PTGWRA/D1Zk+oZamci4o4R4CbWCWE16t13+qmP+jIoZjY7oQhtA2iOIY7s9YDVzbs5S/ol+KGoNzo0AHf1u2NxBzzavGO9KWUHNqvuWfZgCbdrsEYER5Gsa8KQqhRA2D4SywjfHIXET+YmLUrawKXJUgf24iMLX4WhPfWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729585466; c=relaxed/simple;
-	bh=ukPEnMSX5kbqTfKI6FalbDRRnwjbTnVhFzN7tzRJ8Fw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TVtj390UES4sBsEJfTu2f6n5+0cKsdrO1vq2OxlvArV0GWfTcJRcsn48VG4bPBy2nTR6VvzFAN7iEioWrm0idlPYOIKbd+6yazDOfOkNMV5MYFh7Ve4RieIj+lwfhQ9o9DVHfS3iM9zko+mNqhT3aYAJPv1eZc3+P7aB9V96gek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c17O3H6A; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43161e7bb25so40527725e9.2;
-        Tue, 22 Oct 2024 01:24:24 -0700 (PDT)
+	s=arc-20240116; t=1729585777; c=relaxed/simple;
+	bh=bEKAEeDjsfkpr3NXf7w6RwcSc/+oBytWAMh+Aw1PHdE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sU5VsZ9ppKg2yW5KxFlgsixK9sKAdHBfdgBaaKSLAeWq3EwsWrWpQZkwIe9gLMJ09uxd3V2AStLIaQ8dC1eTQyNpoD76X/dJNMVzegIfHLbwBxG9lMF9aWJtLMbftl73vnVrt7/DnHh6rZlIIKZAtxGUJkNYEEBYvA6W3ubpLzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DjTlnATo; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4314fa33a35so55145105e9.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 01:29:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729585463; x=1730190263; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ukPEnMSX5kbqTfKI6FalbDRRnwjbTnVhFzN7tzRJ8Fw=;
-        b=c17O3H6AbGnLYtDjJ8LN/KV8chyfI81Z+LZJFS5q6T45WX3x8E+yvYLGW/scr1pCDR
-         LRhTMZ7gEetNLe9A1Mc7b/EhwyhuhsbM6eDyl9mdQvLSTjXoN7U2CxjCuG/cQxbbBKy7
-         A6D9Eh8vKDW54PjEwj0Jm3ZQUT6P8tUNyuVi/z61TeyahPzYmyP0HmPUlzQClHhosItK
-         BVwQbmePz4kDvu25FumaIIqKjebuPFEoe8mES01YR6KWsGCHaKOg1SRKgqRJ5XRFdW1W
-         tcx/64SmYAlxqUvAEDQ+K6dnOgtKprK5aRR/bdETUPkBjD2hkXCPtR4z9Rd2qUM6YMVT
-         pK0w==
+        d=linaro.org; s=google; t=1729585773; x=1730190573; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HjDsS+1q07DHK+ymYm6GkZX2xnCRVZpDlWCzY/btsRo=;
+        b=DjTlnATopK3LAp4B+C7Lk76+DAinha90NdCnVnQY/xXsMir7sYe5t56DdeiHZPFx2+
+         Yau/n7vbH1PERND7D294K7K4kCGXC9p9HFvrEsYIQgEgQwGcc9hU4QrF+n72wzeKxoB0
+         awVEp/AKsbyrmvUlw5IVfK67HVCNe+Zo2HP8ASKXaewTD0vBjJEj2gH9wxAe7FFsbbp/
+         okyCF9Wj9zPDc4n8ZagzYM/TTZmhvRx6V3Pn4XKs/g6zCkGOmvUGb0ktevi05/NFG4Ld
+         KxJcgV49nze9F0/pUSVmwwAYHiOvi2Sf3N7FQWpDhK8/2W+e+2ipT+aFKmPJhYPLiMDI
+         k03A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729585463; x=1730190263;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ukPEnMSX5kbqTfKI6FalbDRRnwjbTnVhFzN7tzRJ8Fw=;
-        b=AYkquIpEmyu43LCor5mznI8ZXwu77c95eomjVgLOSY4OOZfZAXSr9CHXvR+0PY8XLp
-         j7nZU0WPXDIxP5v1pBCVKib7fR3SLTik2grbNZrdqGgThfSUWzQ5HOgs8leW+5P9uOdl
-         kxYRHrT2kTG45ZNNqtCDXIUJPPmK5asklVjFhlau19cmeqDrSDKIUgDtdgVJE1QgiZj0
-         UXPyZPzMYAr+yN9dRqggJjqQNjIImztiZijJWeXoY3sWyLSqLuRA4b2bIPP1s+Jb5bHm
-         qjAQxsHCWTyiKBYMM4zJppptZbe8nvrELZqNIwaKqUawG2CoVBIwR4ws0ES3MBx1arF4
-         i1lA==
-X-Forwarded-Encrypted: i=1; AJvYcCUmX+cjrEwbSkcx9S9dHnmTnbrX1R2j7bAhSF1GkQ50hrFplGziTzHhkmJgIEweB5j0G3tEYL6JZZD+@vger.kernel.org, AJvYcCWQKQozdWLQepCrbw/tq5fOs9CHzfsZW8A1+1GJMU1Gzg87LEV9WOdnYHZPRkUMeNjcTlLx//RrIgcw6EOy@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdhQGcZsFi+e+lq5chf/S0D8UKu04HBIhAAOVhRVUfQpx/QJhp
-	KRjDu/MNrc1fSiQ3/GkQM6DAjOyEyGgVe62b0G3HbCFI67E8b4L0
-X-Google-Smtp-Source: AGHT+IGepLLb+O1n6mDqgL9Oop1ZhSrzptoKk9PYdaWutmvWNcfopSTKd5E6TrNqjp7YUqpfVXB/zg==
-X-Received: by 2002:a05:600c:1c8d:b0:431:5044:e388 with SMTP id 5b1f17b1804b1-4317b90e37bmr19705365e9.22.1729585462328;
-        Tue, 22 Oct 2024 01:24:22 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2d39sm82037085e9.37.2024.10.22.01.24.21
+        d=1e100.net; s=20230601; t=1729585773; x=1730190573;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HjDsS+1q07DHK+ymYm6GkZX2xnCRVZpDlWCzY/btsRo=;
+        b=OSuADdJfW3BF6GKeK52fLQnrkZu65+bHsNQPp6OZhAKdmXEsWC3SklaTm+VNOgF/Ks
+         ycVaBYYCH9V4wTWHJW7ph4ZHTyv2s5YbnwDNNwUq3kinxiI+HWGq4Qkr8kboitoHYUxm
+         zXTJyTnkCjjUVALN+kwFF+PgNzFMjdcM8N533S7oX40T8YsWJTOZdIPHvuy4uMUGwmOP
+         Rdr2o2AwTPUYD7aCog4dT0IXh1oQXi9yOotpUGOrNxCuaPEVFJKiWjf1PuWmgIWrQjLa
+         KHYGSOwm84i+lJ02rT8/1k6JS3E56jZhR2fzKBWQt4vjHGeFbjUPRB3kU8LdtKvfGIyr
+         oyTw==
+X-Forwarded-Encrypted: i=1; AJvYcCWCKgoWiiqM0K8pyHxr8kVsnxSJGfllbZG6xshFHSSNz9i+BfRC8MXfJodg7zy4tREim6a/pjoMOjCp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxageqIda7nXxwgjjBJ5EEHSID2g53mmRLbmMQQmNY286yc86R4
+	CNTQdkCNUGc7urgSlyNMS3W7Vz9hBCu/bMnauH8vpLHNUQiMlZaLLyXilWCurCy0mIu+DhYKNqr
+	X
+X-Google-Smtp-Source: AGHT+IE+SNDjL4952t77e0RAt7JLi2MDieoW4JvDW20v/QUsIp9vmzVn/LMvIVc+mnRMKtbJnNHGnQ==
+X-Received: by 2002:a05:600c:3151:b0:431:588a:4498 with SMTP id 5b1f17b1804b1-4317b8dfcfcmr23701415e9.14.1729585773420;
+        Tue, 22 Oct 2024 01:29:33 -0700 (PDT)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2cb8sm82100105e9.31.2024.10.22.01.29.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 01:24:22 -0700 (PDT)
-Message-ID: <9083e7ff5471e9f8c478a10a67a7c606b81c6287.camel@gmail.com>
-Subject: Re: [PATCH 4/6] iio: adc: ad7606: rework scale-available to be
- static
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Alexandru Ardelean <aardelean@baylibre.com>, David Lechner
-	 <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, 	lars@metafoo.de, michael.hennerich@analog.com,
- gstols@baylibre.com
-Date: Tue, 22 Oct 2024 10:28:40 +0200
-In-Reply-To: <CA+GgBR_tT5J8Lq7DmSw9GdETiRScXzPzcf5UkDk32GLP8tSrQw@mail.gmail.com>
-References: <20241021130221.1469099-1-aardelean@baylibre.com>
-	 <20241021130221.1469099-5-aardelean@baylibre.com>
-	 <0a7c5305-b4f7-4166-8a8a-05cf6e3273cc@baylibre.com>
-	 <CA+GgBR_tT5J8Lq7DmSw9GdETiRScXzPzcf5UkDk32GLP8tSrQw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.54.0 
+        Tue, 22 Oct 2024 01:29:32 -0700 (PDT)
+Date: Tue, 22 Oct 2024 11:29:30 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Johan Hovold <johan@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] usb: typec: Add support for Parade PS8830 Type-C
+ Retimer
+Message-ID: <ZxdialY3h9YW2NdL@linaro.org>
+References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
+ <20241004-x1e80100-ps8830-v2-2-5cd8008c8c40@linaro.org>
+ <133f0232-6e62-4532-bdeb-85b5927fddc8@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <133f0232-6e62-4532-bdeb-85b5927fddc8@wanadoo.fr>
 
-T24gVHVlLCAyMDI0LTEwLTIyIGF0IDA5OjU5ICswMzAwLCBBbGV4YW5kcnUgQXJkZWxlYW4gd3Jv
-dGU6Cj4gT24gTW9uLCBPY3QgMjEsIDIwMjQgYXQgOToxN+KAr1BNIERhdmlkIExlY2huZXIgPGRs
-ZWNobmVyQGJheWxpYnJlLmNvbT4gd3JvdGU6Cj4gPiAKPiA+IE9uIDEwLzIxLzI0IDg6MDIgQU0s
-IEFsZXhhbmRydSBBcmRlbGVhbiB3cm90ZToKPiA+ID4gVGhlIG1haW4gZHJpdmVyIGZvciB0aGlz
-IGNoYW5nZSBpcyB0aGUgQUQ3NjA3IHBhcnQsIHdoaWNoIGhhcyBhIHNjYWxlIG9mCj4gPiA+ICIx
-LjIyMDcwMyIgZm9yIHRoZSDCsTEwViByYW5nZS4gVGhlIEFENzYwNyBoYXMgYSByZXNvbHV0aW9u
-IG9mIDE0LWJpdHMuCj4gPiA+IAo+ID4gPiBTbywganVzdCBhZGRpbmcgdGhlIHNjYWxlLWF2YWls
-YWJsZSBsaXN0IGZvciB0aGF0IHBhcnQgd291bGQgcmVxdWlyZSBzb21lCj4gPiA+IHF1aXJrcyB0
-byBoYW5kbGUganVzdCB0aGF0IHNjYWxlIHZhbHVlLgo+ID4gPiBCdXQgdG8gZG8gaXQgbW9yZSBu
-ZWF0bHksIHRoZSBiZXN0IGFwcHJvYWNoIGlzIHRvIHJld29yayB0aGUgc2NhbGUKPiA+ID4gYXZh
-aWxhYmxlIGxpc3RzIHRvIGhhdmUgdGhlIHNhbWUgZm9ybWF0IGFzIGl0IGlzIHJldHVybmVkIHRv
-IHVzZXJzcGFjZS4KPiA+ID4gVGhhdCB3YXksIHdlIGNhbiBhbHNvIGdldCByaWQgb2YgdGhlIGFs
-bG9jYXRpb24gZm9yIHRoZSAnc2NhbGVfYXZhaWxfc2hvdycKPiA+ID4gYXJyYXkuCj4gPiA+IAo+
-ID4gPiBTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcnUgQXJkZWxlYW4gPGFhcmRlbGVhbkBiYXlsaWJy
-ZS5jb20+Cj4gPiA+IC0tLQo+ID4gCj4gPiAuLi4KPiA+IAo+ID4gCj4gPiA+IMKgc3RhdGljIHNz
-aXplX3QgaW5fdm9sdGFnZV9zY2FsZV9hdmFpbGFibGVfc2hvdyhzdHJ1Y3QgZGV2aWNlICpkZXYs
-Cj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRldmljZV9hdHRy
-aWJ1dGUKPiA+ID4gKmF0dHIsCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-Y2hhciAqYnVmKQo+ID4gPiBAQCAtNzAzLDggKzY5MCwxNiBAQCBzdGF0aWMgc3NpemVfdCBpbl92
-b2x0YWdlX3NjYWxlX2F2YWlsYWJsZV9zaG93KHN0cnVjdAo+ID4gPiBkZXZpY2UgKmRldiwKPiA+
-ID4gwqDCoMKgwqDCoCBzdHJ1Y3QgaWlvX2RldiAqaW5kaW9fZGV2ID0gZGV2X3RvX2lpb19kZXYo
-ZGV2KTsKPiA+ID4gwqDCoMKgwqDCoCBzdHJ1Y3QgYWQ3NjA2X3N0YXRlICpzdCA9IGlpb19wcml2
-KGluZGlvX2Rldik7Cj4gPiA+IMKgwqDCoMKgwqAgc3RydWN0IGFkNzYwNl9jaGFuX3NjYWxlICpj
-cyA9ICZzdC0+Y2hhbl9zY2FsZXNbMF07Cj4gPiA+ICvCoMKgwqDCoCBjb25zdCB1bnNpZ25lZCBp
-bnQgKCp2YWxzKVsyXSA9IGNzLT5zY2FsZV9hdmFpbDsKPiA+ID4gK8KgwqDCoMKgIHVuc2lnbmVk
-IGludCBpOwo+ID4gPiArwqDCoMKgwqAgc2l6ZV90IGxlbiA9IDA7Cj4gPiA+IAo+ID4gPiAtwqDC
-oMKgwqAgcmV0dXJuIGFkNzYwNl9zaG93X2F2YWlsKGJ1ZiwgY3MtPnNjYWxlX2F2YWlsLCBjcy0+
-bnVtX3NjYWxlcywKPiA+ID4gdHJ1ZSk7Cj4gPiA+ICvCoMKgwqDCoCBmb3IgKGkgPSAwOyBpIDwg
-Y3MtPm51bV9zY2FsZXM7IGkrKykKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBsZW4g
-Kz0gc2NucHJpbnRmKGJ1ZiArIGxlbiwgUEFHRV9TSVpFIC0gbGVuLCAiJXUuJTA2dSAiLAo+ID4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB2YWxzW2ldWzBdLCB2YWxzW2ldWzFdKTsKPiA+ID4gK8KgwqDCoMKgIGJ1ZltsZW4gLSAx
-XSA9ICdcbic7Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgIHJldHVybiBsZW47Cj4gPiA+IMKgfQo+
-ID4gPiAKPiA+ID4gwqBzdGF0aWMgSUlPX0RFVklDRV9BVFRSX1JPKGluX3ZvbHRhZ2Vfc2NhbGVf
-YXZhaWxhYmxlLCAwKTsKPiA+IAo+ID4gUHJvYmFibHkgYSByZWFzb24gZm9yIHRoaXMgdGhhdCBJ
-IGZvcmdvdCwgYnV0IHdoeSBpcyB0aGlzIGhhbmRsZWQgaW4gYQo+ID4gY3VzdG9tIGF0dHJpYnV0
-ZSBpbnN0ZWFkIG9mIGFkNzYwNl9yZWFkX2F2YWlsKCk/Cj4gCj4gWzFdCj4gU28sIHRoaXMgaXMg
-YSBxdWlyayBvZiB0aGlzIGRyaXZlciB0aGF0IHdvdWxkIHJlcXVpcmUgYSBiaWdnZXIgY2xlYW51
-cC4KPiBJdCBjb3VsZCBiZSBkb25lIGFzIGEgZGlmZmVyZW50IHNlcmllcy4KPiBPciAob3RoZXJ3
-aXNlIHNhaWQpIEkgd291bGQgZG8gaXQgaW4gYSBkaWZmZXJlbnQgc2VyaWVzICh1bmxlc3MKPiBy
-ZXF1ZXN0ZWQgb3RoZXJ3aXNlKS4KCkFncmVlZC4uLgoKPiAKPiBUaGVzZSBkZXZpY2UtbGV2ZWwg
-YXR0cmlidXRlcyBhcmUgYXR0YWNoZWQgaW4gdGhlIHByb2JlKCkgb2YgdGhpcwo+IGRyaXZlciwg
-YmFzZWQgb24gdGhlIEdQSU8gY29uZmlndXJhdGlvbnMgcHJvdmlkZWQgdmlhIERULgo+IFRoZXJl
-J3MgdGhhdCBiaXQgb2YgY29kZQo+IAo+IMKgwqDCoMKgwqDCoMKgIGlmIChzdC0+Z3Bpb19vcykg
-ewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoc3QtPmdwaW9fcmFuZ2UpCj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbmRpb19kZXYt
-PmluZm8gPSAmYWQ3NjA2X2luZm9fb3NfYW5kX3JhbmdlOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBlbHNlCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBpbmRpb19kZXYtPmluZm8gPSAmYWQ3NjA2X2luZm9fb3M7Cj4gwqDCoMKgwqDCoMKg
-wqAgfSBlbHNlIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKHN0LT5ncGlv
-X3JhbmdlKQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-aW5kaW9fZGV2LT5pbmZvID0gJmFkNzYwNl9pbmZvX3JhbmdlOwo+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBlbHNlCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBpbmRpb19kZXYtPmluZm8gPSAmYWQ3NjA2X2luZm9fbm9fb3Nfb3JfcmFuZ2U7
-Cj4gwqDCoMKgwqDCoMKgwqAgfQo+IAo+IFRoZSAicmFuZ2UiIHRoZXJlIHJlZmVycyB0byAic2Nh
-bGVfYXZhaWxhYmxlIiwgd2hpY2ggaXMgb25seSBhdHRhY2hlZAo+IGxpa2UgdGhpcywgZm9yIEhX
-IG1vZGUuCj4gQSByZXdvcmsgb2YgSFctbW9kZSB3b3VsZCBiZSBhIGdvb2QgaWRlYS4KPiAKCk1h
-eWJlIGl0J3MgYWxzbyBkdWUgdG8gLnJlYWRfYXZhaWwoKSBub3QgYmVpbmcgYXJvdW5kIHdoZW4g
-dGhlIGRyaXZlciB3YXMgZmlyc3QKYWRkZWQgKGJ1dCBub3Qgc3VyZSBhYm91dCB0aGF0KS4KCi0g
-TnVubyBTw6EKCj4gCg==
+On 24-10-22 09:41:42, Christophe JAILLET wrote:
+> Le 04/10/2024 à 15:57, Abel Vesa a écrit :
+> > The Parade PS8830 is a Type-C muti-protocol retimer controlled over I2C.
+> > It provides both altmode and orientation handling.
+> > 
+> > Add a driver with support for the following modes:
+> >   - DP 4lanes
+> >   - DP 2lanes + USB3
+> >   - USB3
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> 
+> Hi,
+> 
+> > +static int ps8830_retimer_probe(struct i2c_client *client)
+> > +{
+> > +	struct device *dev = &client->dev;
+> > +	struct typec_switch_desc sw_desc = { };
+> > +	struct typec_retimer_desc rtmr_desc = { };
+> > +	struct ps8830_retimer *retimer;
+> > +	int ret;
+> > +
+> > +	retimer = devm_kzalloc(dev, sizeof(*retimer), GFP_KERNEL);
+> > +	if (!retimer)
+> > +		return -ENOMEM;
+> > +
+> > +	retimer->client = client;
+> > +
+> > +	mutex_init(&retimer->lock);
+> > +
+> > +	retimer->regmap = devm_regmap_init_i2c(client, &ps8830_retimer_regmap);
+> > +	if (IS_ERR(retimer->regmap)) {
+> > +		dev_err(dev, "failed to allocate register map\n");
+> > +		return PTR_ERR(retimer->regmap);
+> > +	}
+> > +
+> > +	ret = ps8830_get_vregs(retimer);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	retimer->xo_clk = devm_clk_get(dev, "xo");
+> > +	if (IS_ERR(retimer->xo_clk))
+> > +		return dev_err_probe(dev, PTR_ERR(retimer->xo_clk),
+> > +				     "failed to get xo clock\n");
+> > +
+> > +	retimer->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> > +	if (IS_ERR(retimer->reset_gpio))
+> > +		return dev_err_probe(dev, PTR_ERR(retimer->reset_gpio),
+> > +				     "failed to get reset gpio\n");
+> > +
+> > +	retimer->typec_switch = fwnode_typec_switch_get(dev->fwnode);
+> > +	if (IS_ERR(retimer->typec_switch)) {
+> > +		dev_err(dev, "failed to acquire orientation-switch\n");
+> > +		return PTR_ERR(retimer->typec_switch);
+> > +	}
+> > +
+> > +	retimer->typec_mux = fwnode_typec_mux_get(dev->fwnode);
+> > +	if (IS_ERR(retimer->typec_mux)) {
+> > +		dev_err(dev, "failed to acquire mode-mux\n");
+> > +		goto err_switch_put;
+> > +	}
+> > +
+> > +	sw_desc.drvdata = retimer;
+> > +	sw_desc.fwnode = dev_fwnode(dev);
+> > +	sw_desc.set = ps8830_sw_set;
+> > +
+> > +	ret = drm_aux_bridge_register(dev);
+> > +	if (ret)
+> > +		goto err_mux_put;
+> > +
+> > +	retimer->sw = typec_switch_register(dev, &sw_desc);
+> > +	if (IS_ERR(retimer->sw)) {
+> > +		dev_err(dev, "failed to register typec switch\n");
+> > +		goto err_aux_bridge_unregister;
+> > +	}
+> > +
+> > +	rtmr_desc.drvdata = retimer;
+> > +	rtmr_desc.fwnode = dev_fwnode(dev);
+> > +	rtmr_desc.set = ps8830_retimer_set;
+> > +
+> > +	retimer->retimer = typec_retimer_register(dev, &rtmr_desc);
+> > +	if (IS_ERR(retimer->retimer)) {
+> > +		dev_err(dev, "failed to register typec retimer\n");
+> > +		goto err_switch_unregister;
+> > +	}
+> > +
+> > +	ret = clk_prepare_enable(retimer->xo_clk);
+> > +	if (ret) {
+> > +		dev_err(dev, "failed to enable XO: %d\n", ret);
+> > +		goto err_retimer_unregister;
+> > +	}
+> > +
+> > +	ret = ps8830_enable_vregs(retimer);
+> > +	if (ret)
+> > +		goto err_clk_disable;
+> > +
+> > +	/* delay needed as per datasheet */
+> > +	usleep_range(4000, 14000);
+> > +
+> > +	gpiod_set_value(retimer->reset_gpio, 1);
+> > +
+> > +	return 0;
+> > +
+> > +err_clk_disable:
+> > +	clk_disable_unprepare(retimer->xo_clk);
+> > +
+> > +err_retimer_unregister:
+> > +	typec_retimer_unregister(retimer->retimer);
+> > +
+> > +err_switch_unregister:
+> > +	typec_switch_unregister(retimer->sw);
+> > +
+> > +err_aux_bridge_unregister:
+> > +	gpiod_set_value(retimer->reset_gpio, 0);
+> 
+> Is this called useful here?
+> gpiod_set_value(, 1) has not been called yet.
+> 
+> It made sense to have something like that in v1, but it looks strange in v2.
+> 
 
+The devm_gpiod_get() flag sets it to HIGH.
+
+Anyway, this will be reworked in v3 as the reset gpio is active low.
+
+> CJ
+> 
+> > +	clk_disable_unprepare(retimer->xo_clk);
+> > +
+> > +err_mux_put:
+> > +	typec_mux_put(retimer->typec_mux);
+> > +
+> > +err_switch_put:
+> > +	typec_switch_put(retimer->typec_switch);
+> > +
+> > +	return ret;
+> > +}
+> 
+> ...
 
