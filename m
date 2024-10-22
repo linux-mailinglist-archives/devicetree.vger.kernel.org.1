@@ -1,132 +1,215 @@
-Return-Path: <devicetree+bounces-113963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA56F9A97FA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:40:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 259809A981F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:11:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B4D7281732
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 04:40:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A5931C2301D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 05:11:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D83126BEF;
-	Tue, 22 Oct 2024 04:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42370126F02;
+	Tue, 22 Oct 2024 05:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OQQ4nnyB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mu60vOcQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA7B811EB;
-	Tue, 22 Oct 2024 04:40:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10AC910E0;
+	Tue, 22 Oct 2024 05:11:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729572003; cv=none; b=CpAd+cpYo4LOmYxmcVw3nCAzMG6osbfXhJOY/eKjeoHU7UT1vB92ajI+3ZnI9s0G/wTc3uFSBvzAY1nze0uP9iresTSslYdNsE9pYKZZEGHsTFPHTKIJBmdDwuHbwKZ7451DZYCPzCxQn+8I3XPRICMw4vwmVxsimyGuVlvceTc=
+	t=1729573906; cv=none; b=pDVoTyENzLvb63y57EqhogwXQb9Jbm8POyIUexK08GL4m18lVy3H4KjYCs2OPcuWRxZhSwr2rVLYnJwCsWHb9NFE+2Zbe4DJQHXFRzibzEXWK6jmCVcuXFkeO/yvMSNoPGizz9Ej10WbtTdy9yJlAOyDS+IkKI+IpCduCFgDWT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729572003; c=relaxed/simple;
-	bh=zZcSs9LEMsjftqsO8zJH6e/5d9NYY/akuamUM8cOyZ8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pPVhOveRxgtsnrH5i9yGs7JahTqYgznt+YRvF/dEK1wmjGXLZegSm5QaKmF0s13yAyBgjZIe9j9Bj/Z9v7yzWQ32rKjTmhCKbBWfpenRBJcyQ9AnNFYhKkivGsd42ZUDsmWRhgLE1nCpsiqBR1ZWib2hmqaXsTQ5DmxRU8WmvpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OQQ4nnyB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LF7vdw009626;
-	Tue, 22 Oct 2024 04:39:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	r6QzmzQaHek9p4OE1LFO1rZiLxLngWirJKOlqZoBv+Q=; b=OQQ4nnyB06FSfWL+
-	aEuLCZLrBx2FhPl8wlnYNl05ErIqZKaDyxmyoB0KjwFFMBXws7Avu458bfvRr3ww
-	Gco2i/PK+yfkjPQ5tf2pQCdG3uGpia3Njs12cb+sJK6VE96Q+Nc/wF7etchEHVJB
-	hvbiTFltOMSkn7Cs7yWoLkDnCHTPm4z9HyCoDt7htLwZFJpjnGQQzsxTmoFG4We4
-	gmFpXjqpEHCu41nlg4kmOzkUqh075h+2Ll1HMA+9ep/6GJtLooSirhhHkEw+P6Df
-	fcVF57QgO8bjhM0zo1qRZDrkF/cs06V90sczMa2dNrGIVYxrx6y1h9IQlerC7ST3
-	zWDa8A==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42dkbt35xx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 04:39:50 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49M4dngR026627
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 04:39:49 GMT
-Received: from [10.151.37.94] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Oct
- 2024 21:39:43 -0700
-Message-ID: <4c239c07-799c-b910-c6e0-ff717202ceb0@quicinc.com>
-Date: Tue, 22 Oct 2024 10:09:34 +0530
+	s=arc-20240116; t=1729573906; c=relaxed/simple;
+	bh=77///Hghh184qaPOXx3OjQPZRdLqRN10rmRRS+IaLto=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dYBKSBZ0yy1h6merb2kTKRS2p6GGEak72qcDF8pJhnBaJQm5hMJQyACGwpyE6yjQL8BVSTAW0A41vKvtJYAeuUM0hne4L9xeQZV4bGb7P0cSDTGzQLOcWWZDzOBC5efS4AFrBwowtYeR1TQ/Foi2bw2v7oPwOdxEVy+NKB9qPdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mu60vOcQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6A97C4CEC3;
+	Tue, 22 Oct 2024 05:11:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729573905;
+	bh=77///Hghh184qaPOXx3OjQPZRdLqRN10rmRRS+IaLto=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mu60vOcQtKJUhNQVlvcjbHMjXfGgK2l/h8rykjvHFRKIlBcxkiXx00rrpY21GykkH
+	 1bWy0BOFIvxR8/pfJxkg7oRmgXDoIfZ0IzAz5nWHnJOyFxDTqRdVtVf087iJh8N5CC
+	 0uq9CrtyfBirHb7mv9g8hgpWpYnZIWfkYscx/v8KA9tGDSeacPCWP3wjVRPudjaHMM
+	 QJz1V6RygnHcvpVvtBgVqXv+aQVF7A+QiSaWaIkdZmYgXTF/K1ZzKkcq8CdDpDRURQ
+	 ozBi9urCkLxzCAwA2TaGPp7LnOpQ4ydwIpc34+jj3ajuKA3SLqPseMooTtIb/z5zJR
+	 INcN5y1baoVFQ==
+Message-ID: <e7a1622e-6406-478f-bd3e-08a8490d4db0@kernel.org>
+Date: Tue, 22 Oct 2024 07:11:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v12 4/8] mtd: nand: Add qpic_common API file
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, <broonie@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241021115620.1616617-1-quic_mdalam@quicinc.com>
- <20241021115620.1616617-5-quic_mdalam@quicinc.com>
- <41db541a-4de1-409b-bfec-7b9456fc200f@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+ Sherry Sun <sherry.sun@nxp.com>, Amitkumar Karwar
+ <amitkumar.karwar@nxp.com>, Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+ "marcel@holtmann.org" <marcel@holtmann.org>,
+ "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+References: <20241004113557.2851060-1-catalin.popescu@leica-geosystems.com>
+ <DB9PR04MB8429B4535422D3AE07D8EE79927C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
+ <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
+ <0d460226-4ea7-4a9b-a119-468343727996@kernel.org>
+ <20241021064129.trchqa2oickna7pc@pengutronix.de>
+ <bb34f4ae-92b3-48b7-b0d6-5937756cdbb9@kernel.org>
+ <20241021102558.rfnz7nxcg5knibxs@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <41db541a-4de1-409b-bfec-7b9456fc200f@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241021102558.rfnz7nxcg5knibxs@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: B7wAcqzBYy_1DaTih_1VAdrhkXLM0nYO
-X-Proofpoint-GUID: B7wAcqzBYy_1DaTih_1VAdrhkXLM0nYO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 mlxscore=0 bulkscore=0 malwarescore=0
- lowpriorityscore=0 mlxlogscore=999 clxscore=1015 suspectscore=0
- phishscore=0 spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410220029
 
+On 21/10/2024 12:25, Marco Felsch wrote:
+> On 24-10-21, Krzysztof Kozlowski wrote:
+>> On 21/10/2024 08:41, Marco Felsch wrote:
+>>> On 24-10-07, Krzysztof Kozlowski wrote:
+>>>> On 07/10/2024 14:58, POPESCU Catalin wrote:
+>>>>>>>>
+>>>>>>>> +  vcc-supply:
+>>>>>>>> +    description:
+>>>>>>>> +      phandle of the regulator that provides the supply voltage.
+>>>>>>>> +
+>>>>>>>> +  reset-gpios:
+>>>>>>>> +    description:
+>>>>>>>> +      Chip powerdown/reset signal (PDn).
+>>>>>>>> +
+>>>>>>> Hi Catalin,
+>>>>>>>
+>>>>>>> For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means that both wifi and BT controller will be powered on and off at the same time.
+>>>>>>> Taking the M.2 NXP WIFI/BT module as an example, pin56(W_DISABLE1) is connected to the WIFI/BT chip PDn pin, we has already controlled this pin in the corresponding PCIe/SDIO controller dts nodes.
+>>>>>>> It is not clear to me what exactly pins for vcc-supply and reset-gpios you describing here. Can you help understand the corresponding pins on M.2 interface as an example? Thanks.
+>>>>>
+>>>>> Hi Sherry,
+>>>>>
+>>>>> Regulators and reset controls being refcounted, we can then implement 
+>>>>> powerup sequence in both bluetooth/wlan drivers and have the drivers 
+>>>>> operate independently. This way bluetooth driver would has no dependance 
+>>>>> on the wlan driver for :
+>>>>>
+>>>>> - its power supply
+>>>>>
+>>>>> - its reset pin (PDn)
+>>>>>
+>>>>> - its firmware (being downloaded as part of the combo firmware)
+>>>>>
+>>>>> For the wlan driver we use mmc power sequence to drive the chip reset 
+>>>>> pin and there's another patchset that adds support for reset control 
+>>>>> into the mmc pwrseq simple driver.
+>>>>>
+>>>>>> Please wrap your replies.
+>>>>>>
+>>>>>> It seems you need power sequencing just like Bartosz did for Qualcomm WCN.
+>>>>>
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> I'm not familiar with power sequencing, but looks like way more 
+>>>>> complicated than reset controls. So, why power sequencing is recommended 
+>>>>> here ? Is it b/c a supply is involved ?
+>>>>
+>>>> Based on earlier message:
+>>>>
+>>>> "For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means
+>>>> that both wifi and BT controller will be powered on and off at the same
+>>>> time."
+>>>>
+>>>> but maybe that's not needed. No clue, I don't know the hardware. But be
+>>>> carefully what you write in the bindings, because then it will be ABI.
+>>>
+>>> We noticed the new power-sequencing infrastructure which is part of 6.11
+>>> too but I don't think that this patch is wrong. The DT ABI won't break
+>>> if we switch to the power-sequencing later on since the "reset-gpios"
+>>> are not marked as required. So it is up to the driver to handle it
+>>> either via a separate power-sequence driver or via "power-supply" and
+>>> "reset-gpios" directly.
+>>
+>> That's not the point. We expect correct hardware description. If you say
+>> now it has "reset-gpios" but later say "actually no, because it has
+>> PMU", I respond: no. Describe the hardware, not current Linux.
+> 
+> I know that DT abstracts the HW. That said I don't see the problem with
+> this patch. The HW is abstracted just fine:
+> 
+> shared PDn          -> reset-gpios
+> shared power-supply -> vcc-supply
+> 
+> Right now the DT ABI for the BT part is incomplete since it assume a
+> running WLAN part or some hog-gpios to pull the device out-of-reset
+> which is addressed by this patchset.
+> 
+> Making use of the new power-sequencing fw is a Linux detail and I don't
+> see why the DT can't be extended later on. We always extend the DT if
+> something is missing or if we found a better way to handle devices.
 
+Sure, although I am not really confident that you understand the
+implications - you will not be able to switch to proper power-sequencing
+with above bindings, because it will not be just possible without
+breaking the ABI or changing hardware description (which you say it is
+"fine", so complete/done). I am fine with it, just mind the implications.
 
-On 10/21/2024 11:49 PM, Jeff Johnson wrote:
-> On 10/21/24 04:56, Md Sadre Alam wrote:
-> ...
->> diff --git a/drivers/mtd/nand/qpic_common.c b/drivers/mtd/nand/qpic_common.c
->> new file mode 100644
->> index 000000000000..570ab59ca12b
->> --- /dev/null
->> +++ b/drivers/mtd/nand/qpic_common.c
->> @@ -0,0 +1,757 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-> 
-> I'm surprised you aren't adding a 2024 Qualcomm Innovation Center copyright
-qpic_common.c file is derived from drivers/mtd/nand/raw/qcom_nandc.c file
-so I am retaining the Copyright from the drivers/mtd/nand/raw/qcom_nandc.c file
-> ...
->> +MODULE_LICENSE("GPL");
-> 
-> Since commit 1fffe7a34c89 ("script: modpost: emit a warning when the
-> description is missing"), a module without a MODULE_DESCRIPTION() will
-> result in a warning when built with make W=1. Recently, multiple
-> developers have been eradicating these warnings treewide, and very few
-> (if any) are left, so please don't introduce a new one :)
-> 
-> Please add the missing MODULE_DESCRIPTION()
-Sorry I missed it. Will add in next revision.
+Best regards,
+Krzysztof
 
-> 
 
