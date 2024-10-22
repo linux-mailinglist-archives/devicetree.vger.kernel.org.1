@@ -1,129 +1,187 @@
-Return-Path: <devicetree+bounces-114068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DC939A9B3A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:39:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AFBB9A9B3E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:39:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFCAEB21392
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:39:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46EE928104B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E0014F123;
-	Tue, 22 Oct 2024 07:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="Ug5CIh3w"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247C014F123;
+	Tue, 22 Oct 2024 07:39:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B403414EC60;
-	Tue, 22 Oct 2024 07:38:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729582737; cv=pass; b=hUeBpc/BpA1XKVhgcfA5RZ4YCsCfgTyl3n2ULd5bSTdm5szNPiAZi38EE1bOebVOi0dysu6C6OyN/nrIK0kjurL5fRmcTjnjkpwNJwgqtG6HrthfyGYXx4mADBamxHyDC7Jw8KvvwCUBi7FJtQGDK8G5PYGERXHT119uJ0Wm7s8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729582737; c=relaxed/simple;
-	bh=iVC4rGuUWrDbXKFGbcB0c7rDS+JuAC4pEITpMqaVOWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GEGO47yFR+X27fG7czhU8JsowMYLM7dXu4IQDqMgz1l4QLk2Pq5qX6j5IRWxkVkTi+26qB5YKcb03t4aMtcrliNXm6AxqhwKcBdZ8w5qkoph8kEODumCvLFMlv6ukbxQ/LkFy3aXQtasBLPfyQEveOZo4AlYP2Vma0AEc3oSqPU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=Ug5CIh3w; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4XXkZD0MHgz49QB3;
-	Tue, 22 Oct 2024 10:38:43 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1729582726;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JywbDX15nq2UroYMBFhAwnTYlwi6J5gla6pJnh99TIQ=;
-	b=Ug5CIh3wd2favuBs1zfGzgeIkMM18PuICQn4kLoZEJF0I4Iln0b7X/T7H6MzFZJyZE2cJu
-	ZUYb1Aatxq1+44x1A5kz1yR7y5GHTVbmSGuF35ipvd5WZdwq7NANsn9zr9//Q0s++1RBcT
-	zD33msa5ng7EXjNYRn68gTZ0y+GUcXNPSiG5dPoiMd3O7K8iFJe51SmJupZNXjgE8Q/dR+
-	dfzbvBKXHPdl1o8VxEb3MVqgwkyN9xJa7zr8egkcNAqPqeWgCHTYCgbo7r8jEFczuEQ5eg
-	10ahoL7v44SCGrGMK4rS6ZgIPKTyVaRLrCnImsjCepCwK6aZAl0gVAv6/3M4Bw==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1729582726; a=rsa-sha256;
-	cv=none;
-	b=aVNLoEqQSDWxxRn0i2iY3h5UOGcvN7v8Fehljky+yjTbGMIJcUIdD4BmdcMe7y0/md0qwO
-	OF/IjxdhqSq5jEQ4GUF7ljU9ap6QpiQ/eh2wT5PQcE8IFX7BRLFN9RleK1VVNRALBoTDPN
-	3Z7ZTPph2Bb078svCVX8lPkJrPXmh6SgZjROgX8mIwL6cMspFPT6LNSUeBUk1Kf1g8PHDr
-	0HHSkkEWwZzcKCebGtxNdk3Au8JHDqiFuGVTX7Ts7dwEPt2/VQh/Tthg8nnNPwZ6aPmP44
-	pBVJ4av4Ug9EzkKMvHHAUJ+Vfe+5vKuaEMAqigUQ7EjG0kyZLGMWj2ilzK+N4Q==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1729582726;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JywbDX15nq2UroYMBFhAwnTYlwi6J5gla6pJnh99TIQ=;
-	b=ahBeazQXJN0sr8dX4cYyLxfpE+ornNZKUNgPkuQhUNVFh0GvouWLDbBG6hj/J+Jol/+lZY
-	Vbmm5gMKvx0zgA8qPZMD3mwduEwy+9nbCnDPvxKzJcxz1vqcBRe+QN6nOEyvHl0+fqQrZz
-	MDk1ep9790xOKq/TLoQ3eU7aoKaHUVHl/VPWpxGlbrPeYIFs1uidFn/18kHKVCDUOSVQic
-	q6GzpsxzFrcVfeZUOEVb6jklequWQjeYxTWdjlI2l0iK5oevJrOtJPuO95m0Md8A11wVXa
-	XpFapAUycljenzSdhyVUKPCuqSHQSUBZrpNWmzLQguxrxcmhy2v+jB/jk7MfKA==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 96BB5634C93;
-	Tue, 22 Oct 2024 10:38:43 +0300 (EEST)
-Date: Tue, 22 Oct 2024 07:38:43 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v7 9/9] media: xilinx-tpg: use new of_graph functions
-Message-ID: <ZxdWg68UVopg7ZvT@valkosipuli.retiisi.eu>
-References: <87wmiirqwy.wl-kuninori.morimoto.gx@renesas.com>
- <87jzeirqv3.wl-kuninori.morimoto.gx@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF9213D882;
+	Tue, 22 Oct 2024 07:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729582752; cv=none; b=kJoAG7YQ6ujd7HwBzDDifRX2giaMZ4od8eljJCK2XoPTkGYDPjns7xrfCO+RLATEtIB4gajDMi74guJPGEE7T6BDTjiGwlc+e5tyJMg/qa3+f/5CazplCFpFMPyqK80cl2+8IAqlYKVWEqi5HulPMSI55tiDVeNAYBKhGlQgWm0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729582752; c=relaxed/simple;
+	bh=Ikm13DpJkWGybjKwMgPWan+NZEi+FDDxCMEwIYjZme8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GtjjNo5TtCd4kiGbmg9NL6+WjdEGHq2dcblKf2lr83CxUD/aDsvets28dryAGucIbHEy9rGltfbArf1iihohhWGwo1uQzz+v8FGdFEhqHKhjjoIIbWgOWi7/IsNzgbAsxyKscXACF3RtXa2IFmunZS8ERIUiH1av+Vn+8vgG3zU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e290d5f83bcso4785419276.0;
+        Tue, 22 Oct 2024 00:39:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729582748; x=1730187548;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JD8rI0o/+MxBekDfHEFiHdt2uGE4wyA7esrBVKYniH4=;
+        b=DLljbUb1a3Dz0PU40sfG6cpmub3we82GRW4tpMxJ/YOJuxO+58QqKsG9wXGOvdFgsM
+         vfc7fp+vZusqMuEmUzfFYjayeubOyqGfrpKJsUPUkpQJlZ1ZtePiAVNlPSKPrGLLY+Xa
+         wLJbMAOLQKSiztH8wTInCd2EeNUZ1SqXxPBF7f4JPfZLcS828/+70ru80VzXIGvUDkb/
+         e0VixL9tfLa+UOPJrbHoJReO5GkOGSF/YsUtHB+cMukLvkL2BLXEOV3kEmhv1acZeYSR
+         6WOgcZ0VEKpGwI0EQyapFT9Cub8w/9PR2gRqrJZw2nzbNBojqaoQPtOB30n0una/s5lC
+         HySg==
+X-Forwarded-Encrypted: i=1; AJvYcCWblEKRwM8qK8iWdDkaL4itgALmtk/GHouHklmR1GCgfyM3xHU3a8TRk1zZUzlyag3cy0WjLtQ/U/SF9xb/ef80e/0=@vger.kernel.org, AJvYcCXY1BypzIdGfM7sMyL+L93EcQaweNCzVG9UElRxgfsZQc/jIS7Mpj04AOF1apC9XbWBYtTurGJuSC0j@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0qJ+HfKVXe6Y5qk79HHKDUXN4+k+DlIKNuRHSs4QNWUcg4rmP
+	dz71cprUTa9xGV8uadGf4WI0VNUoyRWF7s+NFhn32H/vfPaIHaAj6qSVd62Z
+X-Google-Smtp-Source: AGHT+IHJp3fkssoLJw/z6Fxebpt7zbI6ja3hPThCz4NoAMZhkdqrRCEHbKeEiYGO+6ex3yYBnRbsoQ==
+X-Received: by 2002:a05:6902:2512:b0:e28:6b10:51b4 with SMTP id 3f1490d57ef6-e2bb16c37fcmr11031555276.46.1729582748620;
+        Tue, 22 Oct 2024 00:39:08 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e2bdc96ae00sm1024663276.9.2024.10.22.00.39.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Oct 2024 00:39:08 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e29327636f3so5208684276.2;
+        Tue, 22 Oct 2024 00:39:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVY4DbG0odOBLn8u/e9ZQZEVmFeTJmpgQBRzy5PW6tCM8DvwYwKsZy9681s/rnHHU5AdU6wK/dMVInA@vger.kernel.org, AJvYcCVwQXJT3DyLDq2T1VU10jR94Adk7y4XLBfIm4/BnPiSQDLz+FNcBL2o29gATgBhuTTzFiaFSJpfXmg5y2mq+b4qydM=@vger.kernel.org
+X-Received: by 2002:a05:690c:39d:b0:6e7:e3b1:8cc7 with SMTP id
+ 00721157ae682-6e7e3b19d2bmr4479407b3.22.1729582748107; Tue, 22 Oct 2024
+ 00:39:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87jzeirqv3.wl-kuninori.morimoto.gx@renesas.com>
+References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
+ <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de> <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
+ <50b37c36-643c-4307-9d4e-ad49b306ba8a@denx.de> <20241015144810.GD2838422@ragnatech.se>
+ <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de> <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
+ <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de>
+In-Reply-To: <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 22 Oct 2024 09:38:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXW332YZahLw=vzfB6fZwc_9jL8uY-Uxj=Qyfov5vYQFw@mail.gmail.com>
+Message-ID: <CAMuHMdXW332YZahLw=vzfB6fZwc_9jL8uY-Uxj=Qyfov5vYQFw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
+ to mdio node
+To: Marek Vasut <marex@denx.de>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Morimoto-san, Rob,
+Hi Marek,
 
-On Wed, Oct 09, 2024 at 01:45:36AM +0000, Kuninori Morimoto wrote:
-> Now we can use new port related functions for port parsing. Use it.
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+On Tue, Oct 22, 2024 at 4:07=E2=80=AFAM Marek Vasut <marex@denx.de> wrote:
+> On 10/21/24 9:13 AM, Geert Uytterhoeven wrote:
+> > On Mon, Oct 21, 2024 at 2:13=E2=80=AFAM Marek Vasut <marex@denx.de> wro=
+te:
+> >> On 10/15/24 4:48 PM, Niklas S=C3=B6derlund wrote:
+> >>>>> However, the reset signal may be in asserted state when the PHY is
+> >>>>> probed (e.g. after unbind from the Ethernet driver, or during kexec=
+).
+> >>>>> Identifying the PHY by reading the ID register requires deasserting
+> >>>>> the reset first.
+> >>>> That may not be the entire precondition. For example the SMSC LAN87x=
+x PHYs
+> >>>> also require PHY clock to be enabled before the reset is toggled, bu=
+t such
+> >>>> information is available only to the specific PHY driver.
+> >>>>
+> >>>> The MDIO-level reset GPIO handling, as far as I understand it, appli=
+es in
+> >>>> case there are more PHYs on the MDIO bus which share the same reset =
+GPIO
+> >>>> line.
+> >>>>
+> >>>> In this case there is only one PHY on the MDIO bus, so the only bit =
+which
+> >>>> applies is the potential PHY-specific reset requirement handling. If=
+ the PHY
+> >>>> driver ever gets extended with such a thing in the future, then havi=
+ng the
+> >>>> reset-gpios in the PHY node is beneficial over having it in MDIO nod=
+e.
+> >>>>
+> >>>> It will always be a compromise between the above and best-effort PHY
+> >>>> auto-detection though.
+> >>>
+> >>> I agree this is not needed if the PHY is identified by the compatible
+> >>> string, but might be if it is not. In this case it works and the reas=
+on
+> >>> for this patch was just to align the style used here.
+> >>>
+> >>> I'm happy to drop this patch, or send a rebased version that applies
+> >>> since the context changed ;-) Marek, Geert what is your view? I'm hap=
+py
+> >>> with either option.
+> >>
+> >> I was hoping Geert would comment on this first, but seems like maybe n=
+o.
+> >> I think, since the PHY node does have a compatible string AND the rese=
+t
+> >> is connected to the PHY, I would keep the reset property in the PHY
+> >> node. Sorry.
+> >
+> > You are inverting the reasoning ;-) The compatible strings were added
+> > because otherwise the PHY core can not identify the PHY when the
+> > reset is asserted (e.g. after kexec).
+>
+> ... or because the PHY requires some complex sequence to bring it up, it
+> is not just reset.
 
-Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+That is your hypothetical case, but not the reason behind commit
+722d55f3a9bd810f ("arm64: dts: renesas: Add compatible properties to
+KSZ9031 Ethernet PHYs").
 
-I.e. it's ok to merge this via non-media tree.
+> > If possible, I'd rather remove
+> > the compatible strings again, as different PHYs may be mounted on
+> > different PHY revisions, causing a headache for DTB management.
+>
+> Will that ever be the case with this hardware ?
 
--- 
-Kind regards,
+Dunno. It did happen with the Beacon boards.
 
-Sakari Ailus
+> > So, what would you suggest when the PHY nodes would not have compatible
+> > strings?
+> I would suggest keep the PHY compatible strings, because that is the
+> most accurate method to describe the hardware and fulfill the PHY bring
+> up requirements. If the PHY changes on this hardware in some future
+
+That issue is moot for KSZ9031.
+
+> revision, we can revisit this discussion ? Maybe bootloader-applied DTOs
+> could work then ?
+
+So, what would you suggest when the PHY nodes would not have compatible
+strings?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
