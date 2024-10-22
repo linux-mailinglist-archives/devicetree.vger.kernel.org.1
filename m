@@ -1,320 +1,179 @@
-Return-Path: <devicetree+bounces-114118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37E39A9DC5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:01:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 996129A9DD7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:04:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0F2E1C21D70
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:01:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B96FE1C21633
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:04:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDBEA191F95;
-	Tue, 22 Oct 2024 09:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M+JzADzm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F781946B4;
+	Tue, 22 Oct 2024 09:04:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40331917E9
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61E31189BA6;
+	Tue, 22 Oct 2024 09:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729587679; cv=none; b=INat9KiR2b1ST/6fNyXgvaeV7RYWGClQgBfhrnTWeB02BmpPBAVfOBDxouUGEUKTlTpjhP9tWJE1SWbaq9+9xsbk57qBC62IV1qzpWQUsq8dVYgYk0ywdH78OeYHq0LcmJNjXcm4pyK8XDND7R/jxU5E4ucxvgMaSbURe1fhvF4=
+	t=1729587868; cv=none; b=NJq75SCmMfb3VaH86PEGEnWwxYY/lbsVb4PLhLeGQC8G6hb+WjpEh3OkuJIrbH1nKNgUq9SKSK9JGjirk3Ohez4kg27bJYjJe8tlC3V05sOp44CPfm92LeCliUEGqhbRX592PCWeChbvsrZX1lIVdVUY3VQSPBUOhUXPnl0Kug8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729587679; c=relaxed/simple;
-	bh=YHNeQy+Gb09kRog+hJNRWpW815XE2iQrmhqT0ezNi08=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jJY9PyDW80Z9R1yvgkSeLgAp9yO94eU+immZraXnCE2jsKUCiSBal3GgCP/s0w86HG3f5ISc4RxNVruLmUzv9k1fMJMMp6kI0+tE5Wewyx9c1qO708wvfjcGDg5KNsa9XsnPby11wl5tmsAJuFHAQ5teYy5f6DjAsYRBzu3jmSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M+JzADzm; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43168d9c6c9so33449725e9.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 02:01:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729587676; x=1730192476; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6/0uwFU7QS3ULtUk30D33huoCZ8wSxBsNaZesrFmH4Y=;
-        b=M+JzADzmDy2kAnnpswLitxMSSeerj8rJ6C24+9jOc5ruTMEcEzk+H3FVTWvp218Bc+
-         6hgyhenJ8FvYE6MoOtgroGRPV76BaeqU2mOA8UhcJMmIDH6YJTwvcTHG7GKdEnm3GqNT
-         VodKBJX/CiU2mU5kX9ANojWdmL1OUTrKlh78H9/avyUbn+ctpru5fPjLAGNZd0Nl5K4s
-         UPfbWb/MAw5VQP2kgo83KveozzOxwu43HPdp/QYQAIZjAVoMyLS9/jNgm1itfIwcarj5
-         YPu7yyzgv9U1fAFlKHEGyHrf9++Bx/93sbGMZz5ZVXJYsqXaOMwChFp4O0MmxjD9L+e8
-         srJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729587676; x=1730192476;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6/0uwFU7QS3ULtUk30D33huoCZ8wSxBsNaZesrFmH4Y=;
-        b=oJoHp43syrv7hnHtBHQj1m4wHGJNtrIyS/7IX+5nLmlHFuWEGcZNxNCq3XoS6jMkss
-         XmVLENcA0jMohra3NN5hGvC+CAOcCbLSK6rs9glUnX9zPdOBxfyL/i3+b45+uNrqVdfs
-         LZ0VnVcAAQUGvJyyUvTDISsdXFUo01BKmxtNkf3IQ9fvO6YFrEJdkRaXKBsX9seeHAPP
-         UCHgRWL9HmQN6qqGw2sNdfWLG5BibzteqHzjCGGgCgdWiEzuqQiXUGhAZ0OPtAa9DBOY
-         oxM6WoUEBko9Fa8fSSGfYaByehEmVvabw+B9CFjk9OEL8CIEiQYbChz3Ckvh5KzCQdQp
-         Qwaw==
-X-Forwarded-Encrypted: i=1; AJvYcCX8IdF1+QLhtyfbt/6auWNXSFUkIjP9smuMQZfL+W8qPhCCgX3y42Kogy7VqWf0Jl5d2RvZNUztg/EJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyh21yYRS9f30CgrAC/nKyY61pWK2gedPpeneVp/cfgWtBI+9AE
-	HxwpJ1lQ8O1idHGt/muBO1TL/kIaIseK71fqDSxYex75dAY3+N/Xg82vLWoGVXo=
-X-Google-Smtp-Source: AGHT+IG9nn8Y+opUXK/jzmtyqOYnvXx/g5R4ITP+6pKF3OzW0Yk5PYNV4zNyh5rh+oEJ4F1hZ59ooA==
-X-Received: by 2002:a05:600c:1e28:b0:42c:b750:1a1e with SMTP id 5b1f17b1804b1-431615991f4mr115572795e9.0.1729587676087;
-        Tue, 22 Oct 2024 02:01:16 -0700 (PDT)
-Received: from linaro.org ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f570b99sm83040255e9.2.2024.10.22.02.01.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 02:01:15 -0700 (PDT)
-Date: Tue, 22 Oct 2024 12:01:14 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] usb: typec: Add support for Parade PS8830 Type-C
- Retimer
-Message-ID: <Zxdp2vHzREJAFkwj@linaro.org>
-References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
- <20241004-x1e80100-ps8830-v2-2-5cd8008c8c40@linaro.org>
- <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
+	s=arc-20240116; t=1729587868; c=relaxed/simple;
+	bh=FmDcReTPKUUV7YiJm+WOnQgrY+OEHQUfuIC7c1n0nYk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JfAgOLHJokdIzme0MWxo99+iUT29Bm9vsx8OWP/nsPZ2CG1UONryJ+fqBkWpBHwgNp8MvgLsyBivVk807NktIW6wXTdsZJVNzgN9yju/PfSmBeGYSFB36EuE2YEWpX1ntVHqpDePBIhSHI/jLc9/kC/WBFlM6OmWv8dv+LKmwfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.52])
+	by gateway (Coremail) with SMTP id _____8BxeeGVahdnsL4EAA--.10942S3;
+	Tue, 22 Oct 2024 17:04:21 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.52])
+	by front1 (Coremail) with SMTP id qMiowMAx7uCQahdnKy4HAA--.42603S2;
+	Tue, 22 Oct 2024 17:04:17 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Juxin Gao <gaojuxin@loongson.cn>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Sean Young <sean@mess.org>,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v7 0/2] pwm: Introduce pwm driver for the Loongson family chips
+Date: Tue, 22 Oct 2024 17:04:13 +0800
+Message-ID: <cover.1729583747.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowMAx7uCQahdnKy4HAA--.42603S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxCr48WF4DXw4DGF4kury7CFX_yoW5Cr47pF
+	ZrC343Kr10qr10yrs3J348Cr1SvayrJF9rGFsay348X3yUCw4jqw4SgF45JFZrAr129F42
+	vrZ3CFWjka4UuFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUB2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+	XVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
+	AKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
+	6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
+	xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
+	jxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw2
+	0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x02
+	67AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUc9a9UUUUU
 
-On 24-10-15 15:03:15, Johan Hovold wrote:
-> On Fri, Oct 04, 2024 at 04:57:38PM +0300, Abel Vesa wrote:
-> 
-> > +static int ps8830_enable_vregs(struct ps8830_retimer *retimer)
-> > +{
-> 
-> > +	return 0;
-> > +
-> > +err_vddat_disable:
-> > +	regulator_disable(retimer->vddat_supply);
-> > +
-> 
-> Nit: I'd drop the empty lines between the errors cases here.
+Hi all:
 
-Will drop.
+This patchset introduce a generic PWM framework driver for Loongson family.
+Each PWM has one pulse width output signal and one pulse input signal to be measured.
 
-> 
-> > +err_vddar_disable:
-> > +	regulator_disable(retimer->vddar_supply);
-> > +
-> > +err_vdd_disable:
-> > +	regulator_disable(retimer->vdd_supply);
-> > +
-> > +err_vdd33_cap_disable:
-> > +	regulator_disable(retimer->vdd33_cap_supply);
-> > +
-> > +err_vdd33_disable:
-> > +	regulator_disable(retimer->vdd33_supply);
-> > +
-> > +	return ret;
-> > +}
-> 
-> > +static int ps8830_retimer_probe(struct i2c_client *client)
-> > +{
-> > +	struct device *dev = &client->dev;
-> > +	struct typec_switch_desc sw_desc = { };
-> > +	struct typec_retimer_desc rtmr_desc = { };
-> > +	struct ps8830_retimer *retimer;
-> > +	int ret;
-> > +
-> > +	retimer = devm_kzalloc(dev, sizeof(*retimer), GFP_KERNEL);
-> > +	if (!retimer)
-> > +		return -ENOMEM;
-> > +
-> > +	retimer->client = client;
-> > +
-> > +	mutex_init(&retimer->lock);
-> > +
-> > +	retimer->regmap = devm_regmap_init_i2c(client, &ps8830_retimer_regmap);
-> > +	if (IS_ERR(retimer->regmap)) {
-> > +		dev_err(dev, "failed to allocate register map\n");
-> 
-> Please make sure to log the errno as well here and below.
+It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
 
-Will add.
+Thanks.
 
-> 
-> > +		return PTR_ERR(retimer->regmap);
-> > +	}
-> > +
-> > +	ret = ps8830_get_vregs(retimer);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	retimer->xo_clk = devm_clk_get(dev, "xo");
-> > +	if (IS_ERR(retimer->xo_clk))
-> > +		return dev_err_probe(dev, PTR_ERR(retimer->xo_clk),
-> > +				     "failed to get xo clock\n");
-> > +
-> > +	retimer->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> 
-> The reset line is active low and should be described as such in DT. So
-> here you want to request it as logically low if you want to deassert
-> reset.
+-------
+V7:
+Thanks for Sean's advice.
+patch (2/2):
+ - Set chip->atomic to keep pwm_apply_atomic() can be used with the pwm.
+ - Test with CONFIG_PWM_DEBUG and CONFIG_DEBUG_ATOMIC_SLEEP enabled.
 
-This is being reworked in v3 as we need to support cases where the
-retimer has been left enabled and initialized by bootloader and we want
-to keep that state until unplug event for the cold-plug orientation
-to work properly.
+Link to V6:
+https://lore.kernel.org/all/cover.1728463622.git.zhoubinbin@loongson.cn/
 
-On top of that, we don't want to deassert the reset here. We do that
-via gpiod_set_value() call below, after the clocks and regulators have
-been enabled.
+V6:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Add Reference Manual;
+ - Shortcut if !pwm->state.enabled;
+ - When state->enabled is true, unconditionally execute
+   pwm_loongson_set_polarity() to avoid that the polarity register is
+   not set correctly.
 
-> 
-> Is there now timing requirements on when you deassert reset after
-> enabling the supplies?
+Link to V5:
+https://lore.kernel.org/all/cover.1720516327.git.zhoubinbin@loongson.cn/
 
-So based on my comment above, this is actually asserting the reset.
-No timing requirements for that.
+V5:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Test with PWM_DEBUG enabled.
+ - In pwm_loongson_apply(), the pwm state is determined before the pwm
+   polarity, avoid test failures when PWM_DEBUG is enabled;
+ - Added DIV64_U64_ROUND_UP in pwm_loongson_get_state() to avoid
+   precision loss and to avoid test failures when PWM_DEBUG is enabled.
 
-> 
-> > +	if (IS_ERR(retimer->reset_gpio))
-> > +		return dev_err_probe(dev, PTR_ERR(retimer->reset_gpio),
-> > +				     "failed to get reset gpio\n");
-> > +
-> > +	retimer->typec_switch = fwnode_typec_switch_get(dev->fwnode);
-> > +	if (IS_ERR(retimer->typec_switch)) {
-> > +		dev_err(dev, "failed to acquire orientation-switch\n");
-> 
-> I saw the driver fail here once, but not sure what the errno was since
-> it was not printed. Presumably it was a probe deferral and then this
-> should be a dev_err_probe() as well:
-> 
-> 	ps8830_retimer 2-0008: failed to acquire orientation-switch
+Link to V4:
+https://lore.kernel.org/all/cover.1716795485.git.zhoubinbin@loongson.cn/
 
-Will use dev_err_probe.
+V4:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Addressed Uwe's review comments:
+   - Make use of devm_pwmchip_alloc() function;
+   - Add Limitations description;
+   - Add LOONGSON_ prefix for Loongson pwm register defines;
+   - Keep regs written only once;
+   - Rewrite duty/period calculation;
+   - Add dev_err_probe() in .probe();
+   - Fix some code style.
 
-> 
-> > +		return PTR_ERR(retimer->typec_switch);
-> > +	}
-> > +
-> > +	retimer->typec_mux = fwnode_typec_mux_get(dev->fwnode);
-> > +	if (IS_ERR(retimer->typec_mux)) {
-> > +		dev_err(dev, "failed to acquire mode-mux\n");
-> 
-> Similar here perhaps?
+Link to V3:
+https://lore.kernel.org/linux-pwm/cover.1713164810.git.zhoubinbin@loongson.cn/
 
-Same.
+V3:
+patch (1/2):
+ - Add Reviewed-by tag from Krzysztof, thanks.
+patch (2/2):
+ - Several code stlye adjustments, such as line breaks.
 
-> 
-> > +		goto err_switch_put;
-> > +	}
-> > +
-> > +	sw_desc.drvdata = retimer;
-> > +	sw_desc.fwnode = dev_fwnode(dev);
-> > +	sw_desc.set = ps8830_sw_set;
-> > +
-> > +	ret = drm_aux_bridge_register(dev);
-> > +	if (ret)
-> > +		goto err_mux_put;
-> > +
-> > +	retimer->sw = typec_switch_register(dev, &sw_desc);
-> > +	if (IS_ERR(retimer->sw)) {
-> > +		dev_err(dev, "failed to register typec switch\n");
-> > +		goto err_aux_bridge_unregister;
-> > +	}
-> > +
-> > +	rtmr_desc.drvdata = retimer;
-> > +	rtmr_desc.fwnode = dev_fwnode(dev);
-> > +	rtmr_desc.set = ps8830_retimer_set;
-> > +
-> > +	retimer->retimer = typec_retimer_register(dev, &rtmr_desc);
-> > +	if (IS_ERR(retimer->retimer)) {
-> > +		dev_err(dev, "failed to register typec retimer\n");
-> > +		goto err_switch_unregister;
-> > +	}
-> > +
-> > +	ret = clk_prepare_enable(retimer->xo_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to enable XO: %d\n", ret);
-> > +		goto err_retimer_unregister;
-> > +	}
-> 
-> Should you really enable the clock before the regulators?
+Link to V2:
+https://lore.kernel.org/all/cover.1712732719.git.zhoubinbin@loongson.cn/
 
-So maybe in this case it might not really matter. But in principle,
-the HW might be affected by clock glitches and such when IP block
-is powered up but unclocked. Even more so if the clock enabling
-(prepare, to be more exact) involves switching to a new PLL.
+v2:
+- Remove the dts-related patches and update dts at once after all
+relevant drivers are complete.
+patch (1/2):
+ - The dt-binding filename should match compatible, rename it as
+   loongson,ls7a-pwm.yaml;
+ - Update binding description;
+ - Add description for each pwm cell;
+ - Drop '#pwm-cells' from required, for pwm.yaml makes it required already.
 
-So clock first, then power up. At least that's my understanding of HW
-in general.
+Link to v1:
+https://lore.kernel.org/linux-pwm/cover.1711953223.git.zhoubinbin@loongson.cn/
 
-> 
-> > +
-> > +	ret = ps8830_enable_vregs(retimer);
-> > +	if (ret)
-> > +		goto err_clk_disable;
-> > +
-> > +	/* delay needed as per datasheet */
-> > +	usleep_range(4000, 14000);
-> > +
-> > +	gpiod_set_value(retimer->reset_gpio, 1);
-> 
-> Here you only deassert reset in case the line is incorrectly described
-> as active high in DT.
+Binbin Zhou (2):
+  dt-bindings: pwm: Add Loongson PWM controller
+  pwm: Add Loongson PWM controller support
 
-Yes, this needs to be 0 instead of 1. And in v3 it will depend on
-a DT property called ps8830,boot-on, meaning if we want to keep it
-enabled and configured as left by bootloader, by using that property
-we will skip the resetting altogether.
+ .../bindings/pwm/loongson,ls7a-pwm.yaml       |  66 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/pwm/Kconfig                           |  12 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-loongson.c                    | 288 ++++++++++++++++++
+ 5 files changed, 374 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-loongson.c
 
-> 
-> > +	return 0;
-> > +
-> > +err_clk_disable:
-> > +	clk_disable_unprepare(retimer->xo_clk);
-> > +
-> > +err_retimer_unregister:
-> > +	typec_retimer_unregister(retimer->retimer);
-> > +
-> > +err_switch_unregister:
-> > +	typec_switch_unregister(retimer->sw);
-> > +
-> > +err_aux_bridge_unregister:
-> > +	gpiod_set_value(retimer->reset_gpio, 0);
-> > +	clk_disable_unprepare(retimer->xo_clk);
-> > +
-> > +err_mux_put:
-> > +	typec_mux_put(retimer->typec_mux);
-> > +
-> > +err_switch_put:
-> > +	typec_switch_put(retimer->typec_switch);
-> 
-> Drop newlines before labels?
 
-Will do.
-
-> 
-> > +
-> > +	return ret;
-> > +}
-> 
-> Johan
-
-Thanks for reviewing.
-
-Abel
+base-commit: c13bce43b32b06f2273c7961940c391cdaf13d1e
+-- 
+2.43.5
 
 
