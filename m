@@ -1,134 +1,127 @@
-Return-Path: <devicetree+bounces-114328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D3F9AB491
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:00:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBCF29AB497
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8A671F24392
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:00:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D333283698
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003A41BC9F6;
-	Tue, 22 Oct 2024 16:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3FB1BD017;
+	Tue, 22 Oct 2024 17:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wixNJ2JX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qrApnhmZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688C61BC9FB
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 16:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14847483;
+	Tue, 22 Oct 2024 17:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729616397; cv=none; b=Dv8yF13bhNgpuwEALqSfabfMyzodwx39z0J5MQedZYqTFSJQ4fY1oPRNGabG4XIhquzvgtix4y2BS8fr5tI68XBo6Vqg4AwrtMkrHO9TVJ91Bw6CWInJg4+YgQ0MOVN3SNYzQLlxmiddVpBH9RIr88cPSvcXgz6j4pxdJdnC00c=
+	t=1729616475; cv=none; b=ncBWldkGp+OYO7EalIc/gIJtE+tUZyVcDoK2Jl+BnEePE9CwkFUu4vzVyQU1l1sYZ8Opo4ImQLt/F++dOfRtVC0d2qBPuCCilK+JGFeXzLESthA/YAlRmUP5netaIOy30xGtWP5bKHzMTNxH+o6BdxfOL7NmEN3Fsl1gb6VA+dA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729616397; c=relaxed/simple;
-	bh=NY/4WIGOYWbosC9nYshjQw+85FLhnQpOJ5Wim0TS7rk=;
+	s=arc-20240116; t=1729616475; c=relaxed/simple;
+	bh=SkxruN3qyASLBSy7ziFG5BSa8nKG0zYL2UVq2sfpF60=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dRPf8IgXAhNghlzYqlTlgHsFoRvpWAW36Fa39cH0bqffY2csQ2Ed1DXB9oZ+RyEbMqpEGGOrOqRzNMV9RA5WjAHAh7Jy5LVQw/gGiHx7YB0qXpS7bSvsh/OhCRK+VaDe0wRr89YXH8lZi6wBSdQI4Fb4Du+Lf41bprDH5Aeowek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wixNJ2JX; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20cbcd71012so53094475ad.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:59:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729616396; x=1730221196; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=VS3tXfWam2DO1i7ilVLotgRr0xGMHWMFEHP5fSK9K/M=;
-        b=wixNJ2JXkKvqUUDovqBXfnhNtL6+HDP+/Y6eB7nOTSCUvVueGTZRd27COtXpH9z5aS
-         x44s20YABBLDbtemA7EE8BnR2iQzxYkbikS8KV3/CHciFimLY5Vtq/SqOpmbKAKT106s
-         wQbMhcS7VdV2YSyqZepP105s8L9KYLhznt88iUR6iQtsaZvbt9FVaMGjPJjoS4fCb1Q+
-         mzgWf9qdZ6uOdJDvcsufzAqFMelrtUbMqNLU5oEhTTL7FrhBmwkZyPuoAocX3p6gfA/K
-         oXiMzg4LPPo8WPDa2GZ+2fw2vJbZdFJQ1r6Pb8BpZgwUDDNkgRaN+wOU8DteHALM681U
-         sgrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729616396; x=1730221196;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VS3tXfWam2DO1i7ilVLotgRr0xGMHWMFEHP5fSK9K/M=;
-        b=UHY3xm6jtcD9CMr+pfsxG29wUOHzzdbRchY3/Z74Wi8Fv3kAmZ23uF63VWbzh2kJsF
-         /1YMnHCkT3CwTEH2xtfq7ODcw+GQ9Bc1TUWIc1B1/9rWYHmExsp6xcv3caWwfSKa8laH
-         eLHPOWFQJpYcrNbiIQSy7D4rWkYFan27xNyrEbLmKG9gmxTWBmPwq+IA2SxWiMikCmJi
-         FlSaEWKH5KLqBSIuX7xCjDooUvGWEZASiPqT9XSF9jDxsYuRjspIjhM6qdiALTkwicW8
-         VEm56ww1vXJHnDL8ChiHtSGtzt8Xw5qfiW5XmY6u3DHQNNNm8EZFBSYZo0Y5Syu61Lv4
-         s3aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ4hVkaX/4n4MbhO2pCV65jOAVkDOsv9PIryBnPi2Ycv63S7IKJ7Wc7t32uIlJcTSnTfrEzPOH3nfZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzkws37xZLwEz6NP8hOaP3Vtnkh+9ITJYgkY5fGNDy2poGACYM2
-	+z6nEcClkwXnyZM+6H0N9QmdMUaq7iK6iQ8l9NBQig9R77GPO8RnMG96BNN7wA==
-X-Google-Smtp-Source: AGHT+IEYx820a1axe7TYA5uJ7U5XpkZcGO8wslMBvWfwxZnRbZqXMJz1tinZzuebUznia7UTdzMS7g==
-X-Received: by 2002:a17:902:ea0e:b0:20c:8331:cb6e with SMTP id d9443c01a7336-20f39628369mr1028375ad.19.1729616395600;
-        Tue, 22 Oct 2024 09:59:55 -0700 (PDT)
-Received: from thinkpad ([36.255.17.224])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0bf197sm45044345ad.150.2024.10.22.09.59.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 09:59:55 -0700 (PDT)
-Date: Tue, 22 Oct 2024 22:29:49 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: kw@linux.com, bhelgaas@google.com, lpieralisi@kernel.org,
-	frank.li@nxp.com, l.stach@pengutronix.de, robh+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
-	s.hauer@pengutronix.de, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v4 5/9] PCI: imx6: Make core reset assertion deassertion
- symmetric
-Message-ID: <20241022165949.dn6wzgeocond2ia7@thinkpad>
-References: <1728981213-8771-1-git-send-email-hongxing.zhu@nxp.com>
- <1728981213-8771-6-git-send-email-hongxing.zhu@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gXj5s7XqsbJ1gp6eBizMzbaNahu8GfENlBnkuf2jgTh6l8EkL305tbSJZRpv4YW8TN8WyJl3aiCsPc9oj5Tvz1dfxCwnznwIdI+CRg2Qu+ge5bu+IzD+hheH24IKbFG60mhfsKB9zOy2WF6KGqKYEP69bJL8IgCIG89PlmWOlIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qrApnhmZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A1A4C4CEC7;
+	Tue, 22 Oct 2024 17:01:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729616474;
+	bh=SkxruN3qyASLBSy7ziFG5BSa8nKG0zYL2UVq2sfpF60=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qrApnhmZAXDdZ4SSpggax2im4eSKHuqpnqC9KwoGZB/aRpyGHLEjvH+EmdQypkKux
+	 7PI5+FW3O0VLQVJxBsYG8W4p6lheqxCoB8WnZzxtV9bFCEB2Dr6NElYULTkFDqVL3+
+	 prxeH2uePahI5PJi1yKoAU1pQusy3/BZuOPcKf2+GtbKmYT8xFlSf/vJUFN2WPvF35
+	 xtNWGPIJoRF+phpOkrSsDLkJT4yqQ7RM/cNBJHK/V8kWKHVSwkYDMc+cRBGUsh995z
+	 BoHAyxw/C3LovbDIOeEpsEBXylrsyskt3Ma8lKBpFbDLnxSHrlq223m1U1gRBl8DWN
+	 6dV7HTrtJiXwA==
+Date: Tue, 22 Oct 2024 18:01:08 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Richard van Schagen <vschagen@icloud.com>,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev
+Subject: Re: [RFC PATCH v3 2/3] dt-bindings: crypto: Add Inside Secure
+ SafeXcel EIP-93 crypto engine
+Message-ID: <20241022-frozen-dinginess-c9b71213e11a@spud>
+References: <20241021145642.16368-1-ansuelsmth@gmail.com>
+ <20241021145642.16368-2-ansuelsmth@gmail.com>
+ <20241021-extenuate-glue-fa98a4c7f695@spud>
+ <6716883e.050a0220.3afab9.2304@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WarKaUJK5icuKqW0"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1728981213-8771-6-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <6716883e.050a0220.3afab9.2304@mx.google.com>
 
-On Tue, Oct 15, 2024 at 04:33:29PM +0800, Richard Zhu wrote:
-> Add apps_reset deassertion in the imx_pcie_deassert_core_reset(). Let it be
-> symmetric with imx_pcie_assert_core_reset().
-> 
 
-Am I correctly interpreting that this patch adds the *missing* reset deassert
-for 'apps reset' line?
+--WarKaUJK5icuKqW0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If so, then there should be a relevant Fixes tag. Also, there should be some
-info about the implications of not deasserting it.
+On Mon, Oct 21, 2024 at 06:58:35PM +0200, Christian Marangi wrote:
+> On Mon, Oct 21, 2024 at 05:50:25PM +0100, Conor Dooley wrote:
+> > On Mon, Oct 21, 2024 at 04:56:38PM +0200, Christian Marangi wrote:
+> > > Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
+> > >=20
+> > > The IP is present on Airoha SoC and on various Mediatek devices and
+> > > other SoC under different names like mtk-eip93 or PKTE.
+> > >=20
+> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > ---
+> > > Changes v3:
+> > > - Add SoC compatible with generic one
+> > > Changes v2:
+> > > - Change to better compatible
+> > > - Add description for EIP93 models
+> >=20
+> > RFC v3, but I don't see any comments explaining what you're seeking
+> > comments on.
+>=20
+> I feel comments for the DT part are finished, if Rob is ok with the
+> following compatibles.
+>=20
+> The RFC is more for the driver part and this is patch part of the series.
 
-- Mani
+I didn't see anything there either, that pointed out what made it an
+RFC. Please be more explicit in the future - possibly in your cover
+letter.
 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index ca8714c625fe..93e2bcf9aa0a 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -770,6 +770,7 @@ static void imx_pcie_assert_core_reset(struct imx_pcie *imx_pcie)
->  static int imx_pcie_deassert_core_reset(struct imx_pcie *imx_pcie)
->  {
->  	reset_control_deassert(imx_pcie->pciephy_reset);
-> +	reset_control_deassert(imx_pcie->apps_reset);
->  
->  	if (imx_pcie->drvdata->core_reset)
->  		imx_pcie->drvdata->core_reset(imx_pcie, false);
-> -- 
-> 2.37.1
-> 
+--WarKaUJK5icuKqW0
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-மணிவண்ணன் சதாசிவம்
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxfaVAAKCRB4tDGHoIJi
+0j2oAQCPnM+xlAU21uykbD2R+qVH/1NCqFKMuxtkcErWXY+k6AEA9XEkpZ423S/Y
+8/3Yk49clCSUaEY9pZS4S0HEdrSKqQ0=
+=1OeI
+-----END PGP SIGNATURE-----
+
+--WarKaUJK5icuKqW0--
 
