@@ -1,210 +1,196 @@
-Return-Path: <devicetree+bounces-114428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 084539AB9CB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 01:03:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0F09AB9F4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 01:21:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B36A1284217
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 23:03:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44343B22C0C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 23:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E4B191F7B;
-	Tue, 22 Oct 2024 23:03:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D805D1CDFD8;
+	Tue, 22 Oct 2024 23:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JoXnp6mT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M9zWB6tT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53C0615CD52;
-	Tue, 22 Oct 2024 23:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8BDA130AF6;
+	Tue, 22 Oct 2024 23:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729638233; cv=none; b=agUZZeEnyrjZctA0yR2nrgb1xy2RgWoJYM2ZLiZbilcgyOHHQGsFW8rFNkN5ykNDXxr4jGOuEURZH5tvPb66FZdUDtH1AL3zCsTOU6abkXUD/C9ozGgTxIbT5IP1Guzy2ZVVtuKXzyS9ErGEDi5fhjrrwjFZGYVs3fkAyyLenBM=
+	t=1729639277; cv=none; b=D+77CE3QeDTVoNLBYR0Bqs0KYq45pFsrcdcUavr+RmtMVl3D3PKo5bye05PGhUmtwoA1fCP6j6MREGwU6/rn+lvFLTbwPFjwqUvJIsb0/aU6MDslE4JFU6WC9QMRLEf6qlUBUKwv7JT5zlcrtCCafyTxDknFJwNXxkChgwQMJtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729638233; c=relaxed/simple;
-	bh=n8lD8DCqOlH73Gu9VQdGu1O0WqrfAycD1MpavnIEgK8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MwGvUbJSVUOXhQ8B03vY6MNx+Lu3EZ/UO36MHZ3B1fq11MqFgolGX7QPQpUeaVY/Xukv3FXWBGRpHkNRSOd3CntRDuSXXllTQgid3+0qE8hh3C3hLcJMRmxg4uDpHx2rqAkNsQuS4yPjKsTT9tyZkjy3yqoD+42CwhGfTHeJOoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JoXnp6mT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF69C4CEC3;
-	Tue, 22 Oct 2024 23:03:52 +0000 (UTC)
+	s=arc-20240116; t=1729639277; c=relaxed/simple;
+	bh=X1e8vDLLwVMBwesOw7xOWYQnP0hPlECb7qpb+1bGdGk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Gpbds4D5SwtJ5/QVsp8NXpstuOF/EetPKE+ew+lw8m6UlHWgZYFSwCYn2HEUl6NDwvB1NehbbOs6bQxZAXAtbGWVXxUWYPA/tj/S1fNk/NQtGt9tg/AxxAy9WfcFVAuXu2gFPeuxf+ssBl8ypo4MQq081PDM23ksZXd9AzNgGJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M9zWB6tT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 137B0C4CEC3;
+	Tue, 22 Oct 2024 23:21:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729638232;
-	bh=n8lD8DCqOlH73Gu9VQdGu1O0WqrfAycD1MpavnIEgK8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JoXnp6mT6m+lDTaXdvJEIlJtW4bAiMGbBfY/KkVwxf/niiZWtXDh0jwsmIk0RF2aC
-	 Dtphi9WPKduVkHpN62lAgTa6Ub9xTP/3kNB3SEAQIsaDfFG8sHqhY4KazThi9FOGo5
-	 JK8clH2eVpGpkOfp3jryMK3iC2Fo6E5AqrPljxT1H+1LwX4NU/3RvDyzizRvtcxXBG
-	 ksKfCJ8DF+0Af7abdCQZCCLNOfOXZLKxOkn+Qht4fLCx1tI8BC6zYFbP2P5jyBE2xd
-	 3CEujJ53dLqFyCKADwqeknKlNmE0gfX4vT0xxIEANkP4YBDzjAMbNQeEZYP71IO9mD
-	 KYxb2xfmv/w8g==
-Date: Tue, 22 Oct 2024 18:03:51 -0500
-From: Rob Herring <robh@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 14/16] rust: of: add `of::DeviceId` abstraction
-Message-ID: <20241022230351.GA1848992-robh@kernel.org>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-15-dakr@kernel.org>
+	s=k20201202; t=1729639277;
+	bh=X1e8vDLLwVMBwesOw7xOWYQnP0hPlECb7qpb+1bGdGk=;
+	h=From:Subject:Date:To:Cc:From;
+	b=M9zWB6tTp8/ghWcm6b12A/+7JTwIMjPHrZajO3ivmRGZ3kBt/w/hfVtSrkmbhip7L
+	 7GFsxVi0/qUTCco6QXvVwsBVXJ9eiUWAMbGrp8IKSHGEClS93d56KpVh/Ack+cjmUn
+	 1cyTSf2Exss7XY7SY/bXTLFBBJwQ8TUG9r7petsud3ohCpAUVBH0U2FHcVjcp8Km7F
+	 8K8V4xazSwJYnz5JD7wu831YC6D8m25tf/GG+uDa7RNvekCiO3wxwlQniao/za/akj
+	 K/DzEhLUlzgwqIuAV/wB0+iSyQm+HYiIzt49U+ft6Mf9eKjuVieS0PSSOHCkMkA8yf
+	 euQZPrMKNeCyw==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH v9 0/6] Add mfd, pinctrl and pwm support to EN7581 SoC
+Date: Wed, 23 Oct 2024 01:20:00 +0200
+Message-Id: <20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241022213221.2383-15-dakr@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACAzGGcC/2XSS27jMAwG4KsEXleBSFGvrOYeRReWRCVGUzuju
+ EbbIHevkhZTT7WkgI/8SejSnbkMfO52m0tXeBnOwzTWwj9sunjoxz2LIdW6Q4kkHTjBo9UOxGk
+ Y41yOAkIGlKApsOwqOhXOw9u94eNTrXOZXsR8KNzf28iklWXngiFHNkRi8labgOQDck4xk/PB4
+ xYsKuWRiLb7Yd4ep8Ljx/TnmcvIx+1U9t/DCv99raHnr4k/mXebe2IrtchTEUYAiHDKolfkOUf
+ pUna7BbtbxsNwnqfyfr9Bfbr1+VoX8fe6CwopQg9ae7Cqt3md6NZrUSuvoPGqeu+YQw6UemMaT
+ z/eQ+upeiP76FWyRobQeP3Pg5St19WnCJE1YTCxnW9WHlTjTfUoyTEm6X3Extu1N4231VPOBiC
+ jqQdsvFv75rst7nZ/Y03wxvSQ4D9/vV4/AardYHLRAgAA
+X-Change-ID: 20240818-en7581-pinctrl-1bf120154be0
+To: Lorenzo Bianconi <lorenzo@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
+ linux-pwm@vger.kernel.org
+X-Mailer: b4 0.14.2
 
-On Tue, Oct 22, 2024 at 11:31:51PM +0200, Danilo Krummrich wrote:
-> `of::DeviceId` is an abstraction around `struct of_device_id`.
-> 
-> This is used by subsequent patches, in particular the platform bus
-> abstractions, to create OF device ID tables.
-> 
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
->  MAINTAINERS                     |  1 +
->  rust/bindings/bindings_helper.h |  1 +
->  rust/kernel/lib.rs              |  1 +
->  rust/kernel/of.rs               | 63 +++++++++++++++++++++++++++++++++
->  4 files changed, 66 insertions(+)
->  create mode 100644 rust/kernel/of.rs
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d9c512a3e72b..87eb9a7869eb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17340,6 +17340,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
->  F:	Documentation/ABI/testing/sysfs-firmware-ofw
->  F:	drivers/of/
->  F:	include/linux/of*.h
-> +F:	rust/kernel/of.rs
->  F:	scripts/dtc/
->  F:	tools/testing/selftests/dt/
->  K:	of_overlay_notifier_
-> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
-> index cd4edd6496ae..312f03cbdce9 100644
-> --- a/rust/bindings/bindings_helper.h
-> +++ b/rust/bindings/bindings_helper.h
-> @@ -15,6 +15,7 @@
->  #include <linux/firmware.h>
->  #include <linux/jiffies.h>
->  #include <linux/mdio.h>
-> +#include <linux/of_device.h>
+Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
+EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
+needs to access the same memory block (gpio memory region) to configure
+{gio,irq}_chip and pwm functionalities respectively, so model them as
+childs of a parent mfd driver.
+Current EN7581 pinctrl driver supports the following functionalities:
+- pin multiplexing via chip_scu syscon
+- pin pull-up, pull-down, open-drain, current strength,
+  {input,output}_enable, output_{low,high} via chip_scu syscon
+- gpio controller
+- irq controller
 
-Technically, you don't need this for *this* patch. You need 
-mod_devicetable.h for of_device_id. Best to not rely on implicit 
-includes. I've tried removing it and it still built, so I guess there is 
-another implicit include somewhere...
+---
+Changes in v9:
+- pwm: remove unused properties
+- Link to v8: https://lore.kernel.org/r/20241018-en7581-pinctrl-v8-0-b676b966a1d1@kernel.org
 
->  #include <linux/pci.h>
->  #include <linux/phy.h>
->  #include <linux/refcount.h>
-> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> index 3ec690eb6d43..5946f59f1688 100644
-> --- a/rust/kernel/lib.rs
-> +++ b/rust/kernel/lib.rs
-> @@ -51,6 +51,7 @@
->  pub mod list;
->  #[cfg(CONFIG_NET)]
->  pub mod net;
-> +pub mod of;
->  pub mod page;
->  pub mod prelude;
->  pub mod print;
-> diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
-> new file mode 100644
-> index 000000000000..a37629997974
-> --- /dev/null
-> +++ b/rust/kernel/of.rs
-> @@ -0,0 +1,63 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Open Firmware abstractions.
+Changes in v8:
+- pwm: add missing properties documentation
+- Link to v7: https://lore.kernel.org/r/20241016-en7581-pinctrl-v7-0-4ff611f263a7@kernel.org
 
-s/Open Firmware/Devicetree/
+Changes in v7:
+- pinctrl: cosmetics
+- pinctrl: fix compilation warning
+- Link to v6: https://lore.kernel.org/r/20241013-en7581-pinctrl-v6-0-2048e2d099c2@kernel.org
 
-Or keep both that prior versions of this code had. Most of DT/OF today 
-is not OpenFirmware.
+Changes in v6:
+- pwm: rely on regmap APIs
+- pwm: introduce compatible string
+- pinctrl: introduce compatible string
+- remove airoha-mfd driver
+- add airoha,en7581-pinctrl binding
+- add airoha,en7581-pwm binding
+- update airoha,en7581-gpio-sysctl binding
+- Link to v5: https://lore.kernel.org/r/20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org
 
-> +//!
-> +//! C header: [`include/linux/of_*.h`](srctree/include/linux/of_*.h)
+Changes in v5:
+- use spin_lock in airoha_pinctrl_rmw instead of a mutex since it can run
+  in interrupt context
+- remove unused includes in pinctrl driver
+- since the irq_chip is immutable, allocate the gpio_irq_chip struct
+  statically in pinctrl driver
+- rely on regmap APIs in pinctrl driver but keep the spin_lock local to the
+  driver
+- rely on guard/guard_scope APIs in pinctrl driver
+- improve naming convention pinctrl driver
+- introduce airoha_pinconf_set_pin_value utility routine
+- Link to v4: https://lore.kernel.org/r/20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org
 
-I haven't quite figured out how this gets used. I guess just a link in 
-documentation? I somewhat doubt this file is going to handle all DT
-abstractions. That might become quite long. Most of of_address.h and 
-of_irq.h I actively don't want to see Rust bindings for because they 
-are mainly used by higher level interfaces (e.g. platform dev 
-resources). There's a slew of "don't add new users" APIs which I need to 
-document. Also, the main header is of.h which wasn't included here.
+Changes in v4:
+- add 'Limitation' description in pwm driver
+- fix comments in pwm driver
+- rely on mfd->base __iomem pointer in pwm driver, modify register
+  offsets according to it and get rid of sgpio_cfg, flash_cfg and
+  cycle_cfg pointers
+- simplify register utility routines in pwm driver
+- use 'generator' instead of 'waveform' suffix for pwm routines
+- fix possible overflow calculating duty cycle in pwm driver
+- do not modify pwm state in free callback in pwm driver
+- cap the maximum period in pwm driver
+- do not allow inverse polarity in pwm driver
+- do not set of_xlate callback in the pwm driver and allow the stack to
+  do it
+- fix MAINTAINERS file for airoha pinctrl driver
+- fix undefined reference to __ffsdi2 in pinctrl driver
+- simplify airoha,en7581-gpio-sysctl.yam binding
+- Link to v3: https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org
 
-As of now, only the mod_devicetable.h header is used by this file, so I 
-think you should just put it until that changes. Maybe there would be 
-some savings if all of mod_devicetable.h was handled by 1 rust file?
+Changes in v3:
+- introduce airoha-mfd driver
+- add pwm driver to the same series
+- model pinctrl and pwm drivers as childs of a parent mfd driver.
+- access chip-scu memory region in pinctrl driver via syscon
+- introduce a single airoha,en7581-gpio-sysctl.yaml binding and get rid
+  of dedicated bindings for pinctrl and pwm
+- add airoha,en7581-chip-scu.yaml binding do the series
+- Link to v2: https://lore.kernel.org/r/20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org
 
-> +
-> +use crate::{bindings, device_id::RawDeviceId, prelude::*};
-> +
-> +/// An open firmware device id.
-> +#[derive(Clone, Copy)]
-> +pub struct DeviceId(bindings::of_device_id);
-> +
-> +// SAFETY:
-> +// * `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_id` and does not add
-> +//   additional invariants, so it's safe to transmute to `RawType`.
-> +// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
-> +unsafe impl RawDeviceId for DeviceId {
-> +    type RawType = bindings::of_device_id;
-> +
-> +    const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::of_device_id, data);
-> +
-> +    fn index(&self) -> usize {
-> +        self.0.data as _
-> +    }
-> +}
-> +
-> +impl DeviceId {
-> +    /// Create a new device id from an OF 'compatible' string.
-> +    pub const fn new(compatible: &'static CStr) -> Self {
-> +        let src = compatible.as_bytes_with_nul();
-> +        // Replace with `bindings::of_device_id::default()` once stabilized for `const`.
-> +        // SAFETY: FFI type is valid to be zero-initialized.
-> +        let mut of: bindings::of_device_id = unsafe { core::mem::zeroed() };
-> +
-> +        let mut i = 0;
-> +        while i < src.len() {
-> +            of.compatible[i] = src[i] as _;
-> +            i += 1;
-> +        }
+Changes in v2:
+- Fix compilation errors
+- Collapse some register mappings for gpio and irq controllers
+- update dt-bindings according to new register mapping
+- fix some dt-bindings errors
+- Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
 
-AFAICT, this loop will go away when C char maps to u8. Perhaps a note 
-to that extent or commented code implementing that.
+---
+Benjamin Larsson (1):
+      pwm: airoha: Add support for EN7581 SoC
 
-> +
-> +        Self(of)
-> +    }
-> +
-> +    /// The compatible string of the embedded `struct bindings::of_device_id` as `&CStr`.
-> +    pub fn compatible<'a>(&self) -> &'a CStr {
-> +        // SAFETY: `self.compatible` is a valid `char` pointer.
-> +        unsafe { CStr::from_char_ptr(self.0.compatible.as_ptr()) }
-> +    }
+Christian Marangi (1):
+      dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
 
-I don't think we need this. The usage model is checking does a node's 
-compatible string(s) match a compatible in the table. Most of the time 
-we don't even need that. We just need the match data.
+Lorenzo Bianconi (4):
+      dt-bindings: arm: airoha: Add the chip-scu node for EN7581 SoC
+      dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
+      dt-bindings: pwm: airoha: Add EN7581 pwm
+      pinctrl: airoha: Add support for EN7581 SoC
 
-Rob
+ .../bindings/arm/airoha,en7581-chip-scu.yaml       |   42 +
+ .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    |   90 +
+ .../bindings/pinctrl/airoha,en7581-pinctrl.yaml    |  400 +++
+ .../devicetree/bindings/pwm/airoha,en7581-pwm.yaml |   34 +
+ MAINTAINERS                                        |    7 +
+ drivers/pinctrl/mediatek/Kconfig                   |   17 +-
+ drivers/pinctrl/mediatek/Makefile                  |    1 +
+ drivers/pinctrl/mediatek/pinctrl-airoha.c          | 2970 ++++++++++++++++++++
+ drivers/pwm/Kconfig                                |   11 +
+ drivers/pwm/Makefile                               |    1 +
+ drivers/pwm/pwm-airoha.c                           |  386 +++
+ 11 files changed, 3958 insertions(+), 1 deletion(-)
+---
+base-commit: 712a7891b8b68467edb10dc4dbc3eb11805d5795
+change-id: 20240818-en7581-pinctrl-1bf120154be0
+prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
+
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
+
 
