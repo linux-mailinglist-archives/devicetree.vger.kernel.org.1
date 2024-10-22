@@ -1,129 +1,167 @@
-Return-Path: <devicetree+bounces-113961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 028C79A97EE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:34:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 376559A97F3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:38:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC19B1F23B29
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 04:34:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35084B22A56
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 04:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB59811EB;
-	Tue, 22 Oct 2024 04:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427068563E;
+	Tue, 22 Oct 2024 04:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bApzbWxE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hubSYBaz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 312034F1F2
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 04:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC6354F1F2;
+	Tue, 22 Oct 2024 04:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729571661; cv=none; b=jDNn3BC7HmHk/3hLO55BzIGobkmyNWJKHHYnzaudmQL2prLONBQrpKBEXox3+quiTC6gz2Ki6U+addsHp7WoKVRaetswffWC4S+8nIj5BYWqqYlXAroWdVVuhUFDnDKj4BvpH5VkLBPZmpXFT+y4U8zqG1AhF/4373LxxCGNobw=
+	t=1729571920; cv=none; b=QHpK0PZOHPH0AvulLkLtIwJAyVJwN8XvZT5x/hQ85HvXAsZXpJVJYrsudFZkCOOnRrIBZ1eIG06DeV7dO4OjdPIWZ/mzQOjptfWuyMjuK7SdJcaDO9Lk5L3eQM6aBuEi4/n/aipw0K2NkHo3KfwiDLx4XccXlX1O7Eqv6xhUpfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729571661; c=relaxed/simple;
-	bh=7e5NYSzE2NoLAoHODKI75pJFPJGPF7bdkJmk3GtFVp4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SsoYL6M64wkdG5X3NcXRGTQgdtXM95M00jSVYYyjgTpOwADTXkBTanGJDjjUiTCAHd42BC2LGi9m2EbV7PNOmr2oNvY1jYPTdhLSovN31lfmOfYTgjB7z+8Wj4pDf/HfE51brTFzYunsBliKWHAeFDlr+7GpnniI3M0y8r/NGFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bApzbWxE; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729571659; x=1761107659;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7e5NYSzE2NoLAoHODKI75pJFPJGPF7bdkJmk3GtFVp4=;
-  b=bApzbWxEMnioCVIcG+HAsox5kQrBD/iN7baajvAkd3VxfOaCXV7D0tL9
-   Ug8rt7xjPcxKke0HVhL8/oPnRrE7+QclDKDEXLuyWskxFzSqk/2kAZY32
-   01IZYqQXrWA4RQ9KG3e1mema7wYW7pBQITIfHKp2KXnPzmMNASmnrFi5j
-   ntzfYyLFHdyc/IbcEeFXh9vuP6Ur17n4TqZb/K0oUkpSnFyZ1ISo4eAT/
-   5j+z9OEASdk7rbrLR4bKAVNYbCm7UEmpPb2Tmn6+03OwJ+KqAX1Cavl3F
-   s7RRVM2/Y3CWaCx43vEbRXwioi3SUFmfENCQglP6cYnhwQy5G3uYuUO+U
-   Q==;
-X-CSE-ConnectionGUID: eDhWYiLuR4acTKHzx+Hksw==
-X-CSE-MsgGUID: BgQkzWVgQ2m8HZD144kOTQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="16714385"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; 
-   d="scan'208";a="16714385"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2024 21:34:18 -0700
-X-CSE-ConnectionGUID: HMhWDQ+pRoOPUnUEaSH/Ww==
-X-CSE-MsgGUID: 64orfNxfQJOU4UYis/9F/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; 
-   d="scan'208";a="79657289"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 21 Oct 2024 21:34:14 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t36aw-000T46-2q;
-	Tue, 22 Oct 2024 04:34:10 +0000
-Date: Tue, 22 Oct 2024 12:33:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, macromorgan@hotmail.com,
-	jonas@kwiboo.se, andyshrk@163.com, tim@feathertop.org,
-	jagan@edgeble.ai, dsimic@manjaro.org, michael.riesch@wolfvision.net,
-	sebastian.reichel@collabora.com, cfsworks@gmail.com,
-	kever.yang@rock-chips.com, jing@jing.rocks,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	FUKAUMI Naoki <naoki@radxa.com>
-Subject: Re: [PATCH v2 RESEND 3/3] arm64: dts: rockchip: Enable HDMI0 on
- rock-5c
-Message-ID: <202410221225.u7cCiQ3a-lkp@intel.com>
-References: <20241021090548.1052-3-naoki@radxa.com>
+	s=arc-20240116; t=1729571920; c=relaxed/simple;
+	bh=za3YqSqD4Wfcsj/D9CW+BVvGkZaGQkM47ir4X4Chnc4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XSHvk72JxvKGEl1fLuCl2JhI/uyELV3c+WjegZpTrqMsAU7Dtx9NUymGtXiXE01qGW3oPnSEVkoggVeNPGQp1v5edGmtxlZnKBE9u3PHerHToAbyM1Z0knqlPJBxHbCXjzhG6tPlDP2Vg15fwlWyeT5l5ojx33hX0Mfs6LiTICU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hubSYBaz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LIE6Bj001055;
+	Tue, 22 Oct 2024 04:38:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5ve/hy7uOdV9SIh9rFk1tNdtPzkxDZdPB7C19tNaF4I=; b=hubSYBaz364uxPLd
+	KP/4GbFlIQB0AW6yl0a/euzMt7sygSMFARA9jpc862cazoJzQyg1U7cSLEm/PP9h
+	oUUz8AmPJspdoRUBJ1pXa5qjWANHOrJoq2p6zvQU4x1Ta6STMJSS32BcquSmYJHC
+	hc7kYGmjA3kxlb+k93boE0At8TvbJKCDI3bXIbsvYABbXHYZOJkb0IARKs7gWOKw
+	+Q8LLl4IqhQHlz/u70nCiU5DNUz5h3qfrte4lVMaB5sfvgaZtq76iSpLxgRfTq/Q
+	cRmGwnOz8CH+Ch6ts8ejuzZyMat/w+p0QPWMB0xmjAsJJw13w4l1cqOR5WODLwoo
+	hnxbsQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42dmj12udm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Oct 2024 04:38:34 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49M4cXGU006789
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Oct 2024 04:38:33 GMT
+Received: from [10.216.44.181] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Oct
+ 2024 21:38:28 -0700
+Message-ID: <af978f3e-31a8-46ff-9513-92cca96063a3@quicinc.com>
+Date: Tue, 22 Oct 2024 10:08:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241021090548.1052-3-naoki@radxa.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/6] clk: qcom: Add support for Video Clock Controller on
+ QCS8300
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com>
+ <20241018-qcs8300-mm-patches-v1-6-859095e0776c@quicinc.com>
+ <2wahtcgpz7juse325f6vp5od75pwrwyl5v3c2ln2xa64qzpvid@f43c7uxx34r6>
+Content-Language: en-US
+From: Imran Shaik <quic_imrashai@quicinc.com>
+In-Reply-To: <2wahtcgpz7juse325f6vp5od75pwrwyl5v3c2ln2xa64qzpvid@f43c7uxx34r6>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3XZIkn0qZ_bQoKo9gjg8bDBOoNXgyRuk
+X-Proofpoint-ORIG-GUID: 3XZIkn0qZ_bQoKo9gjg8bDBOoNXgyRuk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ suspectscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 clxscore=1011 mlxlogscore=999 phishscore=0 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410220029
 
-Hi FUKAUMI,
 
-kernel test robot noticed the following build errors:
 
-[auto build test ERROR on rockchip/for-next]
-[also build test ERROR on robh/for-next linus/master v6.12-rc4 next-20241021]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 10/18/2024 5:38 PM, Dmitry Baryshkov wrote:
+> On Fri, Oct 18, 2024 at 04:42:34PM +0530, Imran Shaik wrote:
+>> Add support to the QCS8300 Video clock controller by extending
+>> the SA8775P Video clock controller, which is mostly identical
+>> but QCS8300 has minor difference.
+>>
+>> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+>> ---
+>>   drivers/clk/qcom/videocc-sa8775p.c | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/clk/qcom/videocc-sa8775p.c b/drivers/clk/qcom/videocc-sa8775p.c
+>> index bf5de411fd5d..d0494ba81f5f 100644
+>> --- a/drivers/clk/qcom/videocc-sa8775p.c
+>> +++ b/drivers/clk/qcom/videocc-sa8775p.c
+>> @@ -524,6 +524,7 @@ static struct qcom_cc_desc video_cc_sa8775p_desc = {
+>>   
+>>   static const struct of_device_id video_cc_sa8775p_match_table[] = {
+>>   	{ .compatible = "qcom,sa8775p-videocc" },
+>> +	{ .compatible = "qcom,qcs8300-videocc" },
+> 
+> Sorted, please.
+> 
 
-url:    https://github.com/intel-lab-lkp/linux/commits/FUKAUMI-Naoki/arm64-dts-rockchip-add-Radxa-ROCK-5C/20241021-171353
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20241021090548.1052-3-naoki%40radxa.com
-patch subject: [PATCH v2 RESEND 3/3] arm64: dts: rockchip: Enable HDMI0 on rock-5c
-config: arm64-randconfig-001-20241022 (https://download.01.org/0day-ci/archive/20241022/202410221225.u7cCiQ3a-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241022/202410221225.u7cCiQ3a-lkp@intel.com/reproduce)
+Sure, I will fix this in next patch series.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410221225.u7cCiQ3a-lkp@intel.com/
+>>   	{ }
+>>   };
+>>   MODULE_DEVICE_TABLE(of, video_cc_sa8775p_match_table);
+>> @@ -550,6 +551,9 @@ static int video_cc_sa8775p_probe(struct platform_device *pdev)
+>>   	clk_lucid_evo_pll_configure(&video_pll0, regmap, &video_pll0_config);
+>>   	clk_lucid_evo_pll_configure(&video_pll1, regmap, &video_pll1_config);
+>>   
+> 
+> Comment?
+> 
 
-All errors (new ones prefixed by >>):
+Sure, I will update the comment details for qcs8300-videocc in next 
+patch series.
 
->> Error: arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts:260.1-7 Label or path hdmi0 not found
->> Error: arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts:269.1-10 Label or path hdmi0_in not found
->> Error: arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts:275.1-11 Label or path hdmi0_out not found
->> FATAL ERROR: Syntax error parsing input tree
+Thanks,
+Imran
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for MODVERSIONS
-   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
-   Selected by [y]:
-   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+>> +	if (of_device_is_compatible(pdev->dev.of_node, "qcom,qcs8300-videocc"))
+>> +		regmap_write(regmap, video_cc_mvs0c_div2_div_clk_src.reg, 2);
+>> +
+>>   	/* Keep some clocks always enabled */
+>>   	qcom_branch_set_clk_en(regmap, 0x80ec); /* VIDEO_CC_AHB_CLK */
+>>   	qcom_branch_set_clk_en(regmap, 0x8144); /* VIDEO_CC_SLEEP_CLK */
+>>
+>> -- 
+>> 2.25.1
+>>
+> 
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
