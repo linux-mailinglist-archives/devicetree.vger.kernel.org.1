@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-114308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817349AB428
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:37:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DA949AB429
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:38:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A197E1C2061A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:37:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E3082847F1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB8C1BBBEA;
-	Tue, 22 Oct 2024 16:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A19E1B654C;
+	Tue, 22 Oct 2024 16:38:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A/rfhmDm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bPWbsKoJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2B91B654A
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 16:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF362136345;
+	Tue, 22 Oct 2024 16:38:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729615017; cv=none; b=q5o/FW+tRxXFAObR3sLHQVOoq/9MZzfK8QRnvn3EEMGW6SmCMRMDXuswRrejhs5skgckvZE6ZrNjfbnTM02n46t5bsdO9/gEu5mQLFyVylqccwpM/5DDSmn+OXuiJEv1otKbpV9mXQrePmoYCrwTerovbdZv7o+AdewFcVxXFkM=
+	t=1729615092; cv=none; b=UOlq+fPTtvMgbbZ6QOP0IUDt3sj1WPCGnUFPQyqD9Gsjd0ffjEkhL8iUli64og/ZEWHNRGxsgLslIo1jwOVKR2eokPnrA4Y6b0KZJRW7Pjb383j3dpeAMxlfvvowBr8myY6TfsXnyczbnGuzrlthCTryekbXOzxbgvM9O3pI3ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729615017; c=relaxed/simple;
-	bh=BTDD3Fw+/u3I447F7vF/WWQoCy0CZu+9QabZG+ZAo/k=;
+	s=arc-20240116; t=1729615092; c=relaxed/simple;
+	bh=x365vfZcwOL/Kx8CbJaN5XUaJiNoO7EftBuEebNOTpg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bAijOem5GQvKxLklsF0nBYDFqMP4fWvFXIy5UTAQmPsfK7abKhvgW5JRqAuzKBf/rhZOYQM5KYYRfkgqFxYe4dEcFrj3nBETzvbnTP5einr6c2rYjnlho/JJsYhgBddDUPvwCbzsn8rgW7ce1esgadH05WRUwhBTPQ6HXMz0Fq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A/rfhmDm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A58DAC4CEC7;
-	Tue, 22 Oct 2024 16:36:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lc7kYCDmJo67z7x/uO0reJBcjQHnVtCn7yjptmbBRIO1XTIWgX71IO47t4eaAq7BQM+7rCn7GaY0R9uM6JwNcGHoKlcSKMmlfuiNZYvr/VucPMNmT0TwErVJNJ0F5r6WO2PrX1CFaeqohMtfe9pY0j4/xPp68qWk10WSlKG7pUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bPWbsKoJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE30CC4CEC3;
+	Tue, 22 Oct 2024 16:38:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729615017;
-	bh=BTDD3Fw+/u3I447F7vF/WWQoCy0CZu+9QabZG+ZAo/k=;
+	s=k20201202; t=1729615091;
+	bh=x365vfZcwOL/Kx8CbJaN5XUaJiNoO7EftBuEebNOTpg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A/rfhmDmozheiqVB0k8mYEhZpyVjOTHCZBJTayCR17DDZbpO6sA0+248C+lPOR2wS
-	 GgoNww8s2WiDPGLwnB3gUpYYWetpUWI5asMy1KvO7HzR72Qrrs/KU+63t2Q7GsrXu5
-	 TArt3BROdroNVKZPT7F+DDIRIAjfyb8qyiw4xNr/6dCSrDd0z14d1gpRNU3yjW6IZF
-	 vKeF6SipwEjneRdzZQXpFvUQQtnJVJrTs9zKl9nLFEmCKnQlvcB2ej8snWnwBw5R1o
-	 vf/0Fol2n7dOEPh35ko/dmb1kncT/yG1Fpqb2vUjiP493cVzICTHOi8leo2khbMv4k
-	 0k4qozhqOWV7A==
-Date: Tue, 22 Oct 2024 17:36:52 +0100
+	b=bPWbsKoJv+eBfGCCmSRZP0amck6NKkyJ9B7bDAqCXLBSCNYQWSb5Gibnj7wkfYWS7
+	 G1XA5uKX7cqj8bGD9FOpIMHvJBZSc4jo+XLKXhvUv7L1DAjtFCmt3HrzsC8rw6RuJ8
+	 azis5p/Q75f7zgREgqDwJNHs2l9hXMKC0PvSi8JHpZChCbw0p2miKCMHY4RNTrSxs+
+	 dZfWCw/M3/AfJ812VM/7DE3UauXh1BzReBKheJ9z5/CySuZxy5IKvjmF2i5BAOosBo
+	 6Faw5oONF3jaNHpSNyllxbE3lJmGHP8kO0xcvp8yXjJb04p3xsoG+zd31pvkj/8RE5
+	 99nFxxVonb3Mg==
+Date: Tue, 22 Oct 2024 17:38:06 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH] riscv: dts: Replace deprecated snps,nr-gpios property
- for snps,dw-apb-gpio-port devices
-Message-ID: <20241022-bulb-ruse-f9ba00aea2b0@spud>
-References: <20241022091428.477697-8-u.kleine-koenig@baylibre.com>
- <d5vjohhftbx5zlsay6hfij7p5qbcrrebnj2sspsdtkgrkz4scq@aifcdtxcqqqd>
- <gtwdkkeckdtcfkovfljfoaplrhdjabqwagcvvub7zdnwp3dyqj@lztfrve6zhmh>
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,sm8650-lpass-lpi-pinctrl: Add
+ SM8750
+Message-ID: <20241022-stoic-props-fb09384c4357@spud>
+References: <20241022064245.22983-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,49 +65,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="KaE63Gt2cT8ASydl"
+	protocol="application/pgp-signature"; boundary="j8d5r80CqIdQPr5f"
 Content-Disposition: inline
-In-Reply-To: <gtwdkkeckdtcfkovfljfoaplrhdjabqwagcvvub7zdnwp3dyqj@lztfrve6zhmh>
+In-Reply-To: <20241022064245.22983-1-krzysztof.kozlowski@linaro.org>
 
 
---KaE63Gt2cT8ASydl
-Content-Type: text/plain; charset=iso-8859-1
+--j8d5r80CqIdQPr5f
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 22, 2024 at 04:08:37PM +0200, Uwe Kleine-K=F6nig wrote:
-> On Tue, Oct 22, 2024 at 06:04:17PM +0800, Inochi Amaoto wrote:
-> > On Tue, Oct 22, 2024 at 11:14:30AM +0200, Uwe Kleine-K=F6nig wrote:
-> > > snps,dw-apb-gpio-port is deprecated since commit ef42a8da3cf3
-> > > ("dt-bindings: gpio: dwapb: Add ngpios property support"). The
-> > > respective driver supports this since commit 7569486d79ae ("gpio: dwa=
-pb:
-> > > Add ngpios DT-property support") which is included in Linux v5.10-rc1.
-> >=20
-> > Please add Fixes tag.
+On Tue, Oct 22, 2024 at 08:42:45AM +0200, Krzysztof Kozlowski wrote:
+> Document compatible for Qualcomm SM8750 SoC LPASS TLMM pin controller,
+> fully compatible with previous SM8650 generation (same amount of pins
+> and functions).
 >=20
-> Ah, I expected that the usage of snps,nr-gpios in the dts files predates
-> the deprecation. So we could add:
->=20
-> Fixes: a508d794f86e ("riscv: sophgo: dts: add gpio controllers for SG2042=
- SoC")
->=20
-> . That's a commit that just entered mainline in v6.12-rc1. But I'm not
-> entirely sure backporting to stable is sensible.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Ye, I don't think I'd bother with a fixes tag even, since it'll probably
-get backported automagically if you add one.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---KaE63Gt2cT8ASydl
+--j8d5r80CqIdQPr5f
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxfUpAAKCRB4tDGHoIJi
-0k5DAQCzNXMFFKBiB54D0Echm2fKmYgLO5iCAlqcVTg9iNWCUwEAi6+guhhWmycD
-XSTGQVYZOrBQAFe1/x23lGp7SoyulQY=
-=7tvp
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxfU7gAKCRB4tDGHoIJi
+0hRPAP91AW90yGsTA6HzxcerSeDrVaNzYAgKbfL3FmGSybZndQD+J8kMR3awoB/3
+vDzopa2+qrVMC0Guq+NPz/6ZiYW/ogE=
+=Gfn2
 -----END PGP SIGNATURE-----
 
---KaE63Gt2cT8ASydl--
+--j8d5r80CqIdQPr5f--
 
