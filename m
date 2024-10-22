@@ -1,107 +1,163 @@
-Return-Path: <devicetree+bounces-114030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E314D9A99F1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:35:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 566A19A9A1A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:42:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A1B91F224A0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:35:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E99C1C23BC4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D95F142E9F;
-	Tue, 22 Oct 2024 06:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C6A147C96;
+	Tue, 22 Oct 2024 06:42:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z3VTEpom"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="apoviP08"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AAC813E03E;
-	Tue, 22 Oct 2024 06:35:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0AF146D76
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 06:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729578935; cv=none; b=muECR/Mz80TBQOSCtg5YWWPqENpWPK6M32zlsCgU+6M0VkNkQopkKvjyjCbI3l+5+9C/mFEuhnqvMzmr0I1vltytabc5UypJPiFC+K8OTS58d+ESqbEHgEEBtwlwDEtt4V7Pf34GlMHKI1PxTF4CFtiebf3lnizT0uTyCYHN1u4=
+	t=1729579327; cv=none; b=j0QInKWYOYr3X3j4v3G7jJGsLjkr9vucCfFkuktEn6letin52TiFF8ILadWwkSfJcVSeRJ5QSbItyEIowZriAh7gob+fgDyEkbxL/2khJgET6mAMfkdmbT0S9VU2zeM5HLU37XYzrHnt+aISLR/GW9lZOEGdBCHYjEK8phtA42M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729578935; c=relaxed/simple;
-	bh=f/4LPkUrDgub4VPiv5XgAEJ7tHTuc6Y+P4YkJHZv/kA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=izFy7zXxXvYFfzpepiOreOhfl91sL1ySLgdPEmH+dTuewKg+sBjk9sTOKXjv0Nj1MnFviwXTMGAYAid73uO9XKOIDJiqLCS/SaiYkTZKufwlBPJGfiaR3436wF5JGryd/buj2agV4w6Nq+Rukh4qXBW+wo3thXljaayETLuAFtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z3VTEpom; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4315baec681so54063255e9.2;
-        Mon, 21 Oct 2024 23:35:33 -0700 (PDT)
+	s=arc-20240116; t=1729579327; c=relaxed/simple;
+	bh=1thCTcH23spAhn2EXYxroeApX1m8h0dJWW4QKu3j478=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QEq0U6HAjS/pWspvjZfsroehPbrpUgqEz1h3Ly2bIMWIlYGx84CawspzbqnhLaEb0l+X/TlAVDsWxxXWSrW/sa40eWYHKFbnTSiq4atQpyIjLBe5vDXeclWsr16VtjRzHakVK2uUCmXXh7eq8pRNn5YwWkefI9DNfNqECxv20j0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=apoviP08; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-37d5231f71cso456105f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 23:42:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729578932; x=1730183732; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=f/4LPkUrDgub4VPiv5XgAEJ7tHTuc6Y+P4YkJHZv/kA=;
-        b=Z3VTEpombUMH/ufnHcV9nwh9PrntSV4w8lzJreyQ50c73K9Y7KX0F6ONdxqueTs4B2
-         ysR8H5nB0y9gzOsWLLMatIxGjdm8ECk4k1MQU6fUhdUi1RCrq0ZwAmhb6Nt1PGHYAR0b
-         C79m/I2a+nqDaLq3bd1st9IukHmVMOwVqb2VDyZ2Us7fYjua1egL4hqbIXbgVd9mnsFX
-         UZCwrREkS+ojG2ZB2F9gRxdVwCyEdz/IIA4r+b0qgj4pzDJy8RHQtvOTCgRRqfiqiQdo
-         Bz+ArmmcN7uEb8WHtK/DkobFgrtCH4JBGq1s3TQ8w+Uf5I29+sjvyscBR5xlb6+RzSEh
-         EX0Q==
+        d=linaro.org; s=google; t=1729579323; x=1730184123; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=duciRezIS4gg7ESTgVskBEGp7JBiK6GVm+jK3y4v+lo=;
+        b=apoviP08plzx+ful4dCHoV0hIwJShFFQdNJyCh57xRoYhdEZLQejQQihFOUlnK68a4
+         Mo6tqadsPYLg5pNi9ES8dTa5flf434uElZYRLrcSGr19z+m8SsXwynBHprfngJYVy9Re
+         vYxLawiP2CKzhDHehjCxxgdV6mbUf0uFZ7armdxTh0uXy1+jRWZhDsQNEK7LQ50BbOIs
+         1PnvEsWGLEbIS4lB3eO/4d71d0hQVqazQHq9lhXR8O2xuAC5cIGBK5OkQVkGr5zKH8iT
+         F+oPmDUC5uh2UpDBGqdZef8JyvXhd5TTJIFw7J4+pEoZccvnkj5EymqR8MrzhBslgVfP
+         Z0eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729578932; x=1730183732;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f/4LPkUrDgub4VPiv5XgAEJ7tHTuc6Y+P4YkJHZv/kA=;
-        b=wBfLzJO+3+qRtdXSZQaMKKMzyLPM5uYRnVChmlxJHJBDjDo4x4ZBKGfHAkb/sLbQSw
-         26tz27BDoOibWjvuvYpyHpSqSrUuaf1RRlbxCVsVecuUsp7OPTuTv4bT7IPXOalFj4Bf
-         zrv5iwert2hZSGwBAVhA84qt0dh1f+a4uQ6hVRbeuwn9GtBF+GiHumMXInTQ559LT/Wx
-         abNxeWnCE4meUePeoS/hwR8JgpAJjo0XIPxpM5V+CcUDm4ORn42t2vYbhvEUx+/XfVE9
-         x2XJIPcOpGIedQVPTM5+QVq3exvgz6dSGWFMgv65wlhJESb0SpiRCHG22oDuRG+6sNsc
-         e1OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCULAlWg1FifQ+DNRcruBSaI6gKz+17k+aC85WwIppc1LgswzriS1Tj0hiLVpxlnxMheSLfOQacZng0/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRtd9re4mOvEjaEWxZ0iGjOem1kFfMiGJXcigHLqS5rAhiH92z
-	2QHlIyYpLSNBFoVU0SmqLuMTkxZ1lE3mUcPVjBTGMvoiaBVdaiaS
-X-Google-Smtp-Source: AGHT+IFTNXLsxN1R6wim6OUD8zZTTf4YG0tq1SCP94X8xnPM3vGFANeN3Se88tG012MdQ1W1KO52KA==
-X-Received: by 2002:a05:600c:3b25:b0:42f:8515:e4a8 with SMTP id 5b1f17b1804b1-431616331e8mr114512855e9.6.1729578931543;
-        Mon, 21 Oct 2024 23:35:31 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2bf3sm78051685e9.38.2024.10.21.23.35.30
+        d=1e100.net; s=20230601; t=1729579323; x=1730184123;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=duciRezIS4gg7ESTgVskBEGp7JBiK6GVm+jK3y4v+lo=;
+        b=r1BVxsuPo7lLuW6ghLJGZfmr9LXZwLpqSMK23g84XmBNU+tbTnth5nEZPDSxglWbxU
+         GHz0YulgdOKtiIr+V1Sq+jWBscHmjzKImT0gdw7380QGwdLk5D0GBVhoJ31CaDgt8f06
+         HoNzdpbrXEi7l/5SQvDDBZWbaGRwE4GgNI8M/GVKcHngRh56RxaUy77z4QzOI+EVc83V
+         2qSgsiK+YvvAvN6LM5S1tz++TQTYuTa5vd/SCQ690GX/Rdj3qd63o4IXqGqpz9kL5jMg
+         Pt4vjsk9ErFQalSI4mkQuISznOiYEB0cMww433uO7DyfB5qEsr+f8oZmwIRSaCydgz3z
+         l3rA==
+X-Forwarded-Encrypted: i=1; AJvYcCUED3FM7qNbrSkO/m3StN7NpSo14cR8g+NVk57t0xKf8V+4dv1BA7j/RKd7dHsI+xpy8YQ3gFBiKVgI@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKei4CfBsuFLZiJtsgHmahbKc82um5FFO94hjk8c2m8HJn2xs3
+	yShRwdbN1MwVXM2yqpf3QGjE9O6/aQuceZ1ntO6C1PUIsdXuKHqU4iOx2NXdvDs=
+X-Google-Smtp-Source: AGHT+IELjStkZnV8uJMVd3FU3vRg2EcfcYQAty8fNGG65QLhbFCLjs2ESgMWCjfcqZNp+pmAgmQ4KA==
+X-Received: by 2002:a05:6000:1445:b0:37e:d965:46b7 with SMTP id ffacd0b85a97d-37ed96547fdmr2222045f8f.10.1729579322571;
+        Mon, 21 Oct 2024 23:42:02 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a5b98asm5914655f8f.61.2024.10.21.23.42.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 23:35:30 -0700 (PDT)
-Message-ID: <d8bd85955bc5051f50b473028698f1c9d6b802ce.camel@gmail.com>
-Subject: Re: [PATCH 4/4] ASoC: codecs: adau1373: add powerdown gpio
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Mark Brown <broonie@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, Liam Girdwood
-	 <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
-	 <tiwai@suse.com>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>
-Date: Tue, 22 Oct 2024 08:39:49 +0200
-In-Reply-To: <7a8b1560-c091-4e87-a6f4-7ca7453b7414@sirena.org.uk>
-References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
-	 <20241021-adau1373-shutdown-v1-4-bec4ff9dfa16@analog.com>
-	 <7a8b1560-c091-4e87-a6f4-7ca7453b7414@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.0 
+        Mon, 21 Oct 2024 23:42:02 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-sound@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
+Subject: [PATCH] ASoC: dt-bindings: qcom: Add SM8750 LPASS macro codecs
+Date: Tue, 22 Oct 2024 08:41:55 +0200
+Message-ID: <20241022064155.22800-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Mon, 2024-10-21 at 16:30 +0100, Mark Brown wrote:
-> On Mon, Oct 21, 2024 at 03:46:48PM +0200, Nuno Sa wrote:
-> > If the powerdown GPIO is specified, we use it for reset. Otherwise,
-> > fallback to a software reset.
->=20
-> Ideally we'd also put the device into reset when we unload, but that's
-> not essential.
+Document compatibles for Qualcomm SM8750 SoC macro digital codecs (RX,
+TX, VA and WSA), compatible with previous generation (SM8550 and
+SM8650).
 
-Alright... I can do a v2 with that. Will just wait for some more feedback o=
-n the
-rest.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-- Nuno S=C3=A1
+---
+
+Cc: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml | 1 +
+ Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml | 1 +
+ Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml | 1 +
+ .../devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml          | 1 +
+ 4 files changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+index b8540b30741e..92f95eb74b19 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+@@ -21,6 +21,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,sm8650-lpass-rx-macro
++              - qcom,sm8750-lpass-rx-macro
+               - qcom,x1e80100-lpass-rx-macro
+           - const: qcom,sm8550-lpass-rx-macro
+ 
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+index 3e2ae16c6aba..914798a89878 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+@@ -22,6 +22,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,sm8650-lpass-tx-macro
++              - qcom,sm8750-lpass-tx-macro
+               - qcom,x1e80100-lpass-tx-macro
+           - const: qcom,sm8550-lpass-tx-macro
+ 
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+index 6b483fa3c428..f41deaa6f4df 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+@@ -21,6 +21,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,sm8650-lpass-va-macro
++              - qcom,sm8750-lpass-va-macro
+               - qcom,x1e80100-lpass-va-macro
+           - const: qcom,sm8550-lpass-va-macro
+ 
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+index 6f5644a89feb..9082e363c709 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+@@ -21,6 +21,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,sm8650-lpass-wsa-macro
++              - qcom,sm8750-lpass-wsa-macro
+               - qcom,x1e80100-lpass-wsa-macro
+           - const: qcom,sm8550-lpass-wsa-macro
+ 
+-- 
+2.43.0
+
 
