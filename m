@@ -1,273 +1,187 @@
-Return-Path: <devicetree+bounces-114189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA7E69AA19A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:00:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 081BC9AA192
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:58:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EBEFB215B4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:00:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B42FE281C07
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B70A19D884;
-	Tue, 22 Oct 2024 12:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D346B19D06A;
+	Tue, 22 Oct 2024 11:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wyygpwv1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA98419D071;
-	Tue, 22 Oct 2024 12:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1796719CC21;
+	Tue, 22 Oct 2024 11:58:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729598427; cv=none; b=etFdxhX/+1UKguvpFxK42OpmKE5LdJ2d6RhfiFBThbj11U24FM4o8WVFVFvzm1ryzOZ4TPr2rB4eJhh+JSQuigRn+ghaFj08W9T1C/50oa6fvQeHc9MaScZbRUXa+ieXKzZS1Im3zcXO5Im1Fr0tt8Y7tWucfppDtPyMOL/Mre4=
+	t=1729598310; cv=none; b=Zc7aeeUjW/ZhXih0zMbW7aXudBDHNTr1F7IGsrpgHagkHyfmbq7RwgHXiEalzMSNxrrLMgy2TW6XvcKIDt0zbOzKTiytCnPs/YVbsn9axuby4U1wJh+CHuW/kxQ1tanNDHOgKK9Z5HcfE9YpERWoOLBT3ElU55SKeyxkIBptcdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729598427; c=relaxed/simple;
-	bh=yxCUM6k+87wouGcLePOkGCF/ax0FIEz1VxC8bZNB3QA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eJNdd9w4o/py+C/Ndk1OWgwLeXnvh0PMpMT8yCt+0gjutY358dLwvkfAc8CuQIO/fpCztH8U6qEFxc2tPslP4NHyq/R+4RZzxNLAfA6zAeYYfe8/unTNe+pvN2f6SloyM2jsmy67egG2mVWN2xWVTgONGu7ZXdiRPSQssWaHPtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B8ED7497;
-	Tue, 22 Oct 2024 05:00:52 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ADA303F71E;
-	Tue, 22 Oct 2024 05:00:20 -0700 (PDT)
-Date: Tue, 22 Oct 2024 13:00:18 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org,
-	konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, quic_rgottimu@quicinc.com,
-	quic_kshivnan@quicinc.com, conor+dt@kernel.org,
-	arm-scmi@vger.kernel.org, Amir Vajid <avajid@quicinc.com>
-Subject: Re: [PATCH V4 4/5] soc: qcom: Introduce SCMI based Memlat (Memory
- Latency) governor
-Message-ID: <ZxeT0rl4LJP17LiE@pluto>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <20241007061023.1978380-5-quic_sibis@quicinc.com>
+	s=arc-20240116; t=1729598310; c=relaxed/simple;
+	bh=BTDt6qlSaNzWRwuddcIgmNzyQuQyr8njKeq88csMu80=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ClKzQarUVc9d2RqlQ4TfTTm7nMt8tzNH02EtvWRT30QtL+Qx5WZ1zAI2JK9PXjjUIuhkGc5a/IbWK0D6+8FM/tZEy5ARNT6EgVWlLCYDHWVs9U2BwceYwQ1fLPMVx9GQpNGeRSCeZB83dcD3kBSpcH/VBguUhxBfQE4Piqtt280=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wyygpwv1; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-37d70df0b1aso4390197f8f.3;
+        Tue, 22 Oct 2024 04:58:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729598307; x=1730203107; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WxrSMO536EXZGmOr3kpv23n7knkK3n2HcDHnFXznw88=;
+        b=Wyygpwv1TM48KTsWDhzGRuFWSXYWHhg2Dz2eaaxVWbV728uph/q+6vMmC/Dz7Oyvys
+         3rKhDpthISnoXTDuEDOe+ByUJ9XoMG5IrpGxe93gEtXFPODSMZ/PnWChtEEuc5LttGiw
+         OjtDcMFpvp1r2sNSFdb7et2tyyvRI6X7cJTYLUhoB90VugEcc2gk7YQKC1GJSI2kM5DI
+         mF7EAUFsnGcjctQlRfcCi/W4WwxfIpf74t/LKk+MS3M0r1+MRu7vKpRpp31+SGjWqAA/
+         TbuiVqUaCGE5PI9O5TjkI+STvWi7+HJb0CFQicZqcEwBZzm4D4gzqoNOfHic1BlX7Ugw
+         aKRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729598307; x=1730203107;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WxrSMO536EXZGmOr3kpv23n7knkK3n2HcDHnFXznw88=;
+        b=PCnW8TYwyx5OciUXWdZnabtLZ2c5IIGuvDbZjOQrzTV8HQQIfSsB6DzXC/KclKfJuj
+         HfMsM9Q3rTwCqqrqfuZF/Pd25TiVPSkVpjwAtCVN+WcKgUItoZZxX/GBVQprkhE/5Cvl
+         gYbYoyY5ibJ544QbsOeSo1PLhkVPPJj2vgYqqpoBgo4nk6PFrURVeChRtgyQQvZ77jux
+         KdO3+Yq6Xm6RAQcrYnCf9L7k+q/E1M9mFKgoNS8vMBP01v9aQsSXWu4G8sJpUKB4R4Fq
+         KbcwnY5CmwCyNJfslGDnUeLol4jE+6ijH0ZGoU6Er4NEjQXWXrojt6EQAp7jhZhIW4mi
+         m85Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU3Y2B8nSgRSo3fcyT77kctY6E4y3HbBv2A2FhCOvs1WSya1CZ/NqR1PFp313xbDN7CO4IbO8lVMozLXJD4@vger.kernel.org, AJvYcCXYpdIKNoid4IW7FbmB+kk3uh0SdYeOxNL3VlYQfPB/WtsIucTTFKd80bFvL9u7yw3OP/Chmfc135UN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8frtSSa4eq8z6HDlWkn/WoIN5iz+stVlIdc8HaAF44b4n8szh
+	+ogHe2gSDwK+N9G4XTPJpniSgsdyvNHJvl+Z1OrdZbmKbuA81SaZ
+X-Google-Smtp-Source: AGHT+IGFZtwZol0FwtPPFXHWKs+IKkc4ogJP3Moca9EW8gM4QQqFPt7Tq5HUvO5M231nm4Hgv5fAHg==
+X-Received: by 2002:a5d:6b90:0:b0:37d:4e74:687 with SMTP id ffacd0b85a97d-37ebaa7a72dmr8894108f8f.41.1729598307045;
+        Tue, 22 Oct 2024 04:58:27 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2d2bsm85376615e9.34.2024.10.22.04.58.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 04:58:26 -0700 (PDT)
+Message-ID: <8cba678ee61eb221f8d5deb786a69b547371f11c.camel@gmail.com>
+Subject: Re: [PATCH v7 8/8] iio: dac: adi-axi-dac: add registering of child
+ fdt node
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Angelo Dureghello <adureghello@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich	 <Michael.Hennerich@analog.com>, Jonathan Cameron
+ <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dlechner@baylibre.com, Mark Brown
+	 <broonie@kernel.org>
+Date: Tue, 22 Oct 2024 14:02:44 +0200
+In-Reply-To: <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-8-969694f53c5d@baylibre.com>
+References: 
+	<20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-0-969694f53c5d@baylibre.com>
+	 <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-8-969694f53c5d@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007061023.1978380-5-quic_sibis@quicinc.com>
 
-On Mon, Oct 07, 2024 at 11:40:22AM +0530, Sibi Sankar wrote:
-> Introduce a client driver that uses the memlat algorithm string
-> hosted on QCOM SCMI Generic Extension Protocol to detect memory
-> latency workloads and control frequency/level of the various
-> memory buses (DDR/LLCC/DDR_QOS).
-> 
-
-Hi,
-
-a few small remarks, down below.
-
-> Co-developed-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-> Co-developed-by: Amir Vajid <avajid@quicinc.com>
-> Signed-off-by: Amir Vajid <avajid@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+On Mon, 2024-10-21 at 14:40 +0200, Angelo Dureghello wrote:
+> From: Angelo Dureghello <adureghello@baylibre.com>
+>=20
+> Change to obtain the fdt use case as reported in the
+> adi,ad3552r.yaml file in this patchset.
+>=20
+> The DAC device is defined as a child node of the backend.
+> Registering the child fdt node as a platform devices.
+>=20
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 > ---
-
-[snip]
-
-> +static int populate_cluster_info(u32 *cluster_info)
+> =C2=A0drivers/iio/dac/adi-axi-dac.c | 53
+> +++++++++++++++++++++++++++++++++++++++++++
+> =C2=A01 file changed, 53 insertions(+)
+>=20
+> diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.=
+c
+> index 9d6809fe7a67..7f7ef3e219ba 100644
+> --- a/drivers/iio/dac/adi-axi-dac.c
+> +++ b/drivers/iio/dac/adi-axi-dac.c
+> @@ -29,6 +29,8 @@
+> =C2=A0#include <linux/iio/buffer.h>
+> =C2=A0#include <linux/iio/iio.h>
+> =C2=A0
+> +#include "ad3552r-hs.h"
+> +
+> =C2=A0/*
+> =C2=A0 * Register definitions:
+> =C2=A0 *=C2=A0=C2=A0 https://wiki.analog.com/resources/fpga/docs/axi_dac_=
+ip#register_map
+> @@ -97,6 +99,7 @@ struct axi_dac_info {
+> =C2=A0	unsigned int version;
+> =C2=A0	const struct iio_backend_info *backend_info;
+> =C2=A0	bool has_dac_clk;
+> +	bool has_child_nodes;
+> =C2=A0};
+> =C2=A0
+> =C2=A0struct axi_dac_state {
+> @@ -723,6 +726,35 @@ static int axi_dac_bus_reg_read(struct iio_backend *=
+back,
+> u32 reg, u32 *val,
+> =C2=A0	return regmap_read(st->regmap, AXI_DAC_CUSTOM_RD_REG, val);
+> =C2=A0}
+> =C2=A0
+> +static void axi_dac_child_remove(void *data)
 > +{
-> +	char name[MAX_NAME_LEN];
-> +	int i = 0;
-> +
-> +	struct device_node *cn __free(device_node) = of_find_node_by_path("/cpus");
-> +	if (!cn)
-> +		return -ENODEV;
-
-Not sure if this is some new coding style accepted for the new cleanup.h
-fancy stuff (sincere question/doubt...so please take this with a grain of salt),
-BUT, if not, you should consider grouping this definition/initialization to
-the start of the block whose scope they are in...like:
-
-
-	struct device_node *cn __free(device_node) = of_find_node_by_path("/cpus");
-	struct device_node *map __free(device_node) = NULL;
-	char name[MAX_NAME_LEN];
-	int i = 0;
-
-	if (!cn)
-		return -ENODEV;
-
-	map = of_get_child_by_name(cn, "cpu-map");
-	if (!map)
-		return -ENODEV;
-
-> +
-> +	struct device_node *map __free(device_node) = of_get_child_by_name(cn, "cpu-map");
-> +	if (!map)
-> +		return -ENODEV;
-> +
-
-As said...
-
-> +	do {
-> +		snprintf(name, sizeof(name), "cluster%d", i);
-> +		struct device_node *c __free(device_node) = of_get_child_by_name(map, name);
-> +		if (!c)
-> +			break;
-> +
-> +		*(cluster_info + i) = of_get_child_count(c);
-> +		i++;
-> +	} while (1);
-> +
-> +	return 0;
+> +	platform_device_unregister(data);
 > +}
 > +
-> +static void populate_physical_mask(struct device_node *np, u32 *mask, u32 *cluster_info)
+> +static int axi_dac_create_platform_device(struct axi_dac_state *st,
+> +					=C2=A0 struct fwnode_handle *child)
 > +{
-> +	struct device_node *dev_phandle __free(device_node);
-
-...so this cleanups on return....
-
-> +	int cpu, i = 0, physical_id;
+> +	struct ad3552r_hs_platform_data pdata =3D {
+> +		.bus_reg_read =3D axi_dac_bus_reg_read,
+> +		.bus_reg_write =3D axi_dac_bus_reg_write,
+> +	};
+> +	struct platform_device_info pi =3D {
+> +		.parent =3D st->dev,
+> +		.name =3D fwnode_get_name(child),
+> +		.id =3D PLATFORM_DEVID_AUTO,
+> +		.fwnode =3D child,
+> +		.data =3D &pdata,
+> +		.size_data =3D sizeof(pdata),
+> +	};
+> +	struct platform_device *pdev;
 > +
-> +	do {
-> +		dev_phandle = of_parse_phandle(np, "cpus", i++);
-
-BUT wont this be needed to be of_put, between calls to of_parse_phandle
-inside this loop ? ... so cannot this be done like
-
-	int cpu, i = 0, physical_id;
-
-	while (1) {
-		struct device_node *dev_phandle __free(device_node) = of_parse_phandle(np, "cpus", i++);
-	
-		if (!dev_phandle)
-			break;
-
-		cpu = of_cpu_node_to_id(dev_phandle);
-		if (cpu != -ENODEV) {
-			....
-	}
-
-...not even build tested ... ah... :P
-
-
-> +		cpu = of_cpu_node_to_id(dev_phandle);
-> +		if (cpu != -ENODEV) {
-> +			physical_id = topology_core_id(cpu);
-> +			for (int j = 0; j < topology_cluster_id(cpu); j++)
-> +				physical_id += *(cluster_info + j);
-> +			*mask |= BIT(physical_id);
-> +		}
-> +	} while (dev_phandle);
+> +	pdev =3D platform_device_register_full(&pi);
+> +	if (IS_ERR(pdev))
+> +		return PTR_ERR(pdev);
+> +
+> +	return devm_add_action_or_reset(st->dev, axi_dac_child_remove, pdev);
 > +}
 > +
-> +static struct cpufreq_memfreq_map *init_cpufreq_memfreq_map(struct device *dev,
-> +							    struct scmi_memory_info *memory,
-> +							    struct device_node *of_node,
-> +							    u32 *cnt)
-> +{
-> +	struct device_node *tbl_np __free(device_node), *opp_np __free(device_node);
-> +	struct cpufreq_memfreq_map *tbl;
-> +	int ret, i = 0;
-> +	u32 level, len;
-> +	u64 rate;
-> +
-> +	tbl_np = of_parse_phandle(of_node, "operating-points-v2", 0);
-> +	if (!tbl_np)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	len = min(of_get_available_child_count(tbl_np), MAX_MAP_ENTRIES);
-> +	if (len == 0)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	tbl = devm_kzalloc(dev, (len + 1) * sizeof(struct cpufreq_memfreq_map),
-> +			   GFP_KERNEL);
-> +	if (!tbl)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	for_each_available_child_of_node(tbl_np, opp_np) {
+> =C2=A0static const struct iio_backend_ops axi_dac_generic_ops =3D {
+> =C2=A0	.enable =3D axi_dac_enable,
+> =C2=A0	.disable =3D axi_dac_disable,
+> @@ -865,6 +897,26 @@ static int axi_dac_probe(struct platform_device *pde=
+v)
+> =C2=A0		return dev_err_probe(&pdev->dev, ret,
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to register iio backend\n");
+> =C2=A0
+> +	if (st->info->has_child_nodes) {
 
-This seems to lack a of+node_put at the end but possibly the scoped
-version  for_each_available_child_of_node_scoped() will do it for you...
+I would prefer to not be silent on possible misconfigurations. IOW, moving =
+the
+check inside the loop and error out if (!st->info->has_child_nodes)
 
-> +		ret = of_property_read_u64_index(opp_np, "opp-hz", 0, &rate);
-> +		if (ret < 0)
-> +			return ERR_PTR(ret);
-> +
-> +		tbl[i].cpufreq_mhz = rate / HZ_PER_MHZ;
-> +
-> +		if (memory->hw_type != QCOM_MEM_TYPE_DDR_QOS) {
-> +			ret = of_property_read_u64_index(opp_np, "opp-hz", 1, &rate);
-> +			if (ret < 0)
-> +				return ERR_PTR(ret);
-> +
-> +			tbl[i].memfreq_khz = rate / HZ_PER_KHZ;
-> +		} else {
-> +			ret = of_property_read_u32(opp_np, "opp-level", &level);
-> +			if (ret < 0)
-> +				return ERR_PTR(ret);
-> +
-> +			tbl[i].memfreq_khz = level;
-> +		}
-> +
-> +		dev_dbg(dev, "Entry%d CPU:%u, Mem:%u\n", i, tbl[i].cpufreq_mhz, tbl[i].memfreq_khz);
-> +		i++;
-> +	}
-> +	*cnt = len;
-> +
-> +	return tbl;
-> +}
-> +
-> +static int process_scmi_memlat_of_node(struct scmi_device *sdev, struct scmi_memlat_info *info)
-> +{
-> +	struct scmi_monitor_info *monitor;
-> +	struct scmi_memory_info *memory;
-> +	char name[MAX_NAME_LEN];
-> +	u64 memfreq[2];
-> +	int ret;
-> +
-> +	ret = populate_cluster_info(info->cluster_info);
-> +	if (ret < 0) {
-> +		dev_err_probe(&sdev->dev, ret, "failed to populate cluster info\n");
-> +		goto err;
-> +	}
-> +
-> +	of_node_get(sdev->dev.of_node);
+- Nuno S=C3=A1
 
-cant you use cleanup.h magic also for this and get rid of a few gotos down below ?
-...this function seems the ideal case fot that...
-
-> +	do {
-> +		snprintf(name, sizeof(name), "memory-%d", info->memory_cnt);
-> +		struct device_node *memory_np __free(device_node) =
-> +			of_find_node_by_name(sdev->dev.of_node, name);
-> +
-> +		if (!memory_np)
-> +			break;
-> +
-> +		if (info->memory_cnt >= MAX_MEMORY_TYPES)
-
-Shouldn't the MAX_MEMORY_TYPES something discoverable at runtime through
-some command of your vendor protocol ? for better future scalability I
-mean...maybe I am overthinking... 
-
-> +			return dev_err_probe(&sdev->dev, -EINVAL,
-> +					     "failed to parse unsupported memory type\n");
-> +
-> +		memory = devm_kzalloc(&sdev->dev, sizeof(*memory), GFP_KERNEL);
-> +		if (!memory) {
-> +			ret = -ENOMEM;
-> +			goto err;
-> +		}
-> +
-
-Thanks,
-Cristian
 
