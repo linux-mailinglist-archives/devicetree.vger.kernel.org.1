@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-113983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B759A9881
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:34:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7C39A988A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:35:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D1581C21A37
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 05:33:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 492ED1C21EBF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 05:35:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A77881487C1;
-	Tue, 22 Oct 2024 05:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C571422A2;
+	Tue, 22 Oct 2024 05:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kRJV0um5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SsIsfUVB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C96E14831D;
-	Tue, 22 Oct 2024 05:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E9A13F42F;
+	Tue, 22 Oct 2024 05:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729575151; cv=none; b=qZ49WUG6cY4WyxVh1bYe805RWcrmcwElCJF5v6eZDloTp+cS/RrPSW3t0Zb6kR266HNguT+LXpaC91wryI8/lpzRKU4lvG+yttXgIxD56fkTW4XM4JgSc+PMRwhWpuRInN9/5DV0jwV72HitczMgYWKs+NcbgA/J0KLVknJqUJw=
+	t=1729575175; cv=none; b=GNA1fNBVWPN6Ki3GICQA6w9xr3Fycg88DMCICyAXapU+q/Xt7Do7mh+YjJsiROAJ8nOOYLvHu3UwZ8Bt0B3FnwszwCKUFhIqwV0qRznteJxlReTJpLZYQmfDksAbzUD1/ski6ObFHAraObz5PvPxp/Djgzw7uhwYyrctzkscmMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729575151; c=relaxed/simple;
-	bh=kSF+9+ajZJQvMRaoOEcOAl1pa3G1ScWHQcL2VdO0LP4=;
+	s=arc-20240116; t=1729575175; c=relaxed/simple;
+	bh=eh5c4h3CkGCO/mZQgkwvM/qIDAYGPN9tRfVaEHgegAs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=M9E1KmbQI9jxd4qtIhpOt1eRT1dwmlnnAoca3buUaQyfMaIT3ZGN/ECCaySl70NaxU36YWz2UbWL9peojZmeX/kx6NC/ydTdk2GOTEgGd/Rm0VBX45EmNiU++/pI7jJl1g/rbeQfJBHjfcMqwIQG5gqDC7oU415Gzh+oA+VAuLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kRJV0um5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C6E5C4CEC3;
-	Tue, 22 Oct 2024 05:32:28 +0000 (UTC)
+	 MIME-Version:Content-Type; b=NIOuhdacbS7n9HrAwtgZAgsZAnAR8VK+ABvbvKA1rIZPKW3clOwPxzx3Wsupy2Ze75OGQ59c1wmYx75eFPrT1Jez2NoRrF7svBxAhAAKh1pfTek8gUjW+HB9XDoAKqWfFcZaCkM7UFOFTgOB7Fz5Y30jWNuS5i7DfD/7BkjgGKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SsIsfUVB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E074C4CEC3;
+	Tue, 22 Oct 2024 05:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729575151;
-	bh=kSF+9+ajZJQvMRaoOEcOAl1pa3G1ScWHQcL2VdO0LP4=;
+	s=k20201202; t=1729575175;
+	bh=eh5c4h3CkGCO/mZQgkwvM/qIDAYGPN9tRfVaEHgegAs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=kRJV0um5j1Vwy/rE73i8oqZeQHRGXEHoJP25oHgNMbBm6kh+L04cJYCRNRP3yvuU+
-	 kMU4osyRQIZqidUchiqRxqyE6hvsBUe6QbtMPc6Amw6pJb5z+3DfxldZTdy3ogMtWo
-	 FVb1LPFMjfkQ0wzhSGqX5rmonR9TeZfIyvpbtrMO6SM0hvem3rxkMc5Ex/N6B8yt+W
-	 xkXIbE+8yukmpadDeBmn6AZGmmQPz1QcgBhtGOcZHdiwB5yOIGFxY4u3BTaS5dKhTf
-	 Ge5ndPWB0/cPxs78mn6bEHOsEIYJZarVgY8xAqz2NodbrlkANXiLxjTwZ4T7iK6ckD
-	 roBWYpacYc7dw==
+	b=SsIsfUVB+2l3Nx+c5HhekukYSvbFt9KNQKkmpjgIisTuWv8fIZMtuLUVhWwYgX/0z
+	 cFdK6lO17/JXUnO3gCEU/tBnP6zIvkM4vtM9Axpx9EbjYm6TTh6D0nIczLxpjwjq9R
+	 5mKh1EKIkTCaY9InQnTBJGeqEU/jqMfil4VR5cYAfmyIlsY7Q3nXiXxhhfpgX8UEJc
+	 7lrdeL25eo7cLo3YNCwR5mkY6eMmWpwUdd94RoxLloPDnM7pPGSs2nAatJVr13Xnad
+	 EIR/b9DXI3gz+lxC22/j5MJT5LY7NknUemeQnDR5SeFuGg1+byIPaa0VYGzc0a7Lw+
+	 GMIeoIbUZb4TA==
 From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Lars Povlsen <lars.povlsen@microchip.com>, 
- Steen Hegelund <Steen.Hegelund@microchip.com>, UNGLinuxDriver@microchip.com, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Daniel Machon <daniel.machon@microchip.com>
-Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20240909-sparx5-lan969x-serdes-driver-v2-0-d695bcb57b84@microchip.com>
-References: <20240909-sparx5-lan969x-serdes-driver-v2-0-d695bcb57b84@microchip.com>
-Subject: Re: [PATCH v2 0/9] phy: sparx5-serdes: add support for lan969x
- serdes driver
-Message-Id: <172957514813.488852.12562116691017295702.b4-ty@kernel.org>
-Date: Tue, 22 Oct 2024 11:02:28 +0530
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241017-sar2130p-dma-v1-1-e6aa6789f116@linaro.org>
+References: <20241017-sar2130p-dma-v1-1-e6aa6789f116@linaro.org>
+Subject: Re: [PATCH] dt-bindings: dma: qcom,gpi: Add SAR2130P compatible
+Message-Id: <172957517301.489113.3658561077139339207.b4-ty@kernel.org>
+Date: Tue, 22 Oct 2024 11:02:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,40 +63,15 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Mon, 09 Sep 2024 17:14:40 +0200, Daniel Machon wrote:
-> The lan969x switch chip (upstreaming efforts beginning soon) has ten 10G
-> SERDES'es which share the same features and data rates as the Sparx5 10G
-> SERDES'es. Lets take advantage of this and reuse the existing SERDES
-> driver for lan969x.
+On Thu, 17 Oct 2024 21:11:49 +0300, Dmitry Baryshkov wrote:
+> Document compatible for GPI DMA controller on SAR2130P platform.
 > 
-> In order to do this, we add a new indirection layer to the register
-> macros, that takes register differences into account. Additionally, we
-> add driver match data for other differences that we need to handle.
-> These other differences are handled by a combination of constants (eg.
-> the number of SERDES'es), ops and if's
 > 
-> [...]
 
 Applied, thanks!
 
-[1/9] phy: sparx5-serdes: add support for private match data
-      commit: d41bb5e00ec7ac2905ab115ed4bbf971aa593704
-[2/9] phy: sparx5-serdes: add constants to match data
-      commit: 8e65baf8ccc1fdc72645db15a10bd69209cccfb8
-[3/9] phy: sparx5-serdes: add constant for the number of CMU's
-      commit: 5206ba966d0b053bcd15e4fcba17284201ca6199
-[4/9] phy: sparx5-serdes: add ops to match data
-      commit: d61d42a91e322f73b8c68e22347469306b280008
-[5/9] phy: sparx5-serdes: add function for getting the CMU index
-      commit: f16df057837e06d16b5e5f978d79d80d70784b80
-[6/9] phy: sparx5-serdes: add indirection layer to register macros
-      commit: c8e4c8b7ea47cb9044c190e6148e994c8e04a34a
-[7/9] phy: sparx5-serdes: add support for branching on chip type
-      commit: 6158a32b431bc93f35aff03c9889417a7643da9a
-[8/9] dt-bindings: phy: sparx5: document lan969x
-      commit: c5699055472ead216c38236476c62bf43fcc3ca3
-[9/9] phy: lan969x-serdes: add support for lan969x serdes driver
-      commit: c0a0a7aec1b142e116c61f3d3facc8c80e97bbff
+[1/1] dt-bindings: dma: qcom,gpi: Add SAR2130P compatible
+      commit: e7a614cc8847f469370ea29604be966ee16f07e9
 
 Best regards,
 -- 
