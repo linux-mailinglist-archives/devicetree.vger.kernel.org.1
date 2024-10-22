@@ -1,178 +1,231 @@
-Return-Path: <devicetree+bounces-114420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D2E39AB925
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 23:55:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E94009AB94D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:04:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC4ABB22E65
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 21:55:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D2311F23AC4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 22:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1AB71D041B;
-	Tue, 22 Oct 2024 21:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A50371CCB50;
+	Tue, 22 Oct 2024 22:04:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="jey+nl/O"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="g275A3C8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic302-21.consmr.mail.ir2.yahoo.com (sonic302-21.consmr.mail.ir2.yahoo.com [87.248.110.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2083.outbound.protection.outlook.com [40.107.20.83])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF26E1CFEDF
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 21:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=87.248.110.84
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729634048; cv=none; b=pxkTVqGsZb3Hs3Zt7p2HPwq3zJsdssrnPa2Uwg3m30L3ID56CV2RJqYPOhAx/ipBIVs3P3vhgvVobDuenXhAbf/YogG0RBYbVPxvj2Z0CuogJlBRiQsKQke8l/Yo4CTkU4q9i3ZAxO1ijsGoZxBKVG9yTnsiVBTe8EbQDs9Lf4U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729634048; c=relaxed/simple;
-	bh=zOMyIwvrjWngB9XpgRClzT6LO2z3ccv2zShnUyLoYHQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ocj9Ytb3YKfUw4Qx4KXMYJguo8lLyj7rFaKPsDcG+krM87u4i9YoXffs215+R+H8CWiP3K65bISKY5QOymgau+CIfIu1Y6AjsRezrPaA0IWIq7ZI7/2Cc91s1sbhwCVzhUehn0/EjFdDgKvbgy1Jw1xvhnspm6Zg6YGVqQ92KVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=jey+nl/O; arc=none smtp.client-ip=87.248.110.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1729634045; bh=vFxp6V7ftU2GOHcy5DZ1sostkzSaRPaYmJbs4yP+a9A=; h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To; b=jey+nl/Oje7fuGpao5csbtVJfd/V33tGEvpFTYkQ0A9DG87HXqwMWvsvdV0FUKdr60NkOQ3qWR25veONjJ7DmjfvDcjh+ODfJwt7c9LX0GDCNS+6tRbqdMbFHTLHpqv29CZxEru3vHpBKimZjBCvL+5nwHpnB+5cF+2Gzb/87QpnRekzz3rPtCqaJpC9bI2oL9C4WMf6A0K8DWZ4ycVQWSN+61r13kXzb0P1l0bupflIf1dqrqDO5odln103d1MB/4+TZkJWU9orpoAW/k3rry2nszvIZCxDT0CGw5h5s60BfPO98QPPR9k01itC7mjvyl+NHKpTTHQpIBQ7ahAvFw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1729634045; bh=5QPS8pBV5Knf7Hf1N0NZiZZwrzz7rqSWaTMfcWNhc1k=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=neMKn4nvoWqbC+fOdWMWZ22Q1AVB27Hq/kYZgbJE79cg3gPjW1aBCON2b0z10DRzrKTRSWXMj1bNg517+Vuzh6jT622PPaNO+45hCYgynShpEqc6Dh8VmeNEMlYlunM75mYXTCU+4xxiNmOF+E1CWSF6zGRj7fxbheM837UPznHKLxFfNQQ0wJpgrI9Zc8bXBrrVBSNEhTepFDN/8b+kdb7oDGMuClI0Zb8II0VXIVKliwuWFsDli4F9JTR2ZWHNMgXX72yjt28jj7KmbgUPUSQmMjrb8JXaOfkXkIaHxKkMYfunFJWPpDmd2BNOQOZV2UxkjTcx0tEsY00Y/ni22g==
-X-YMail-OSG: 8pe5oZ0VM1nIayulXc.WxoS8hNfG8a5yeNkaMZqkeSv1QKc8lnqo0PL8ik4tr9b
- R00Ds5cp2pQJ3_.IuCJh0eEuOfc8QDZ1DJu_ZxoVqaTISELkTiObhNPk2zRp3vbCih3SEKtnCeOC
- JDRokLy0csDePD1hGrANHw3IFLjyjxY3J4JrRCiwKu..zn1yezgAxtLMDIiD_FZdZY4TTWzJBnqp
- dS411XdAU5X4quvj2tosr7whkHfY2TR4JuW6LzAa45KhRRqp7CZ7vngbftbtDPAunYju9.MjTvCL
- AgkPVOaWvr3BiuI0OHZQvAmDNhwW.Dy.GTgBhzFCnswRjMkkb6UfzZMG0r79v1BB2cpVm8xQGHPZ
- K9uyXw2rN_qKhcakbdl6dkNjRpWXo.FAr.WQeMuSy.SJScFwVVeXazIxIyjWaXPS91elnDP2JTxf
- kFRnB8fW_ZtmcJ5Q_LHN0h2DKRmIvcDnlRu0PjN1mFLMZeEtY5qclI9zT93W7.eDlsTbn1qHVzmr
- OlIQ4IMgjDexRBjFHu2E1MWz8WERe4sSjK4U9CLpo5SisjkBDjnye0pRGRbyxZuHkuVmHHh1AovD
- yIZ_2d4TdNNSjiLxHt3MzuLkEN49ykVqfMqZvWdKbZsdw_WylsrLRVH1wpzK7B_yyPhBfCEwhQJW
- xn9BSLE8U9ZRqn78weHNbBgnmprCY4HOqZrlXw71RL1qinrjRJ0mgDNxs56WPB2BDDYEcJk3ySx4
- xaFLeDvKm1IdNl8UoTy1.Wx1FZfKpcAT9dl29n1MLqzmOoSTy3JS7AzyOoCnPa9Lc7jqPMqYT4hd
- J28Yf.YSM5YeQeM0fBjGSDSgiSU6dAzGSz36wYiqQSceyQd4HCGKbAT0YosrD7v0fEgfvacwmMoZ
- mifDBsI83tnBioflkf6GOp_RRuc3asoDKpZI5FxxOOFBDhKYaH2L4Y_96XRp_Znd9hcynnkmETNf
- Radpn0KKzGBO8nSGuiThDPxbSy_.cqF70pCO7pq7vgk9.qjYaMIozkJNILk2IeUU89U27CeHXt44
- u1i_zEqselvVrVJ5oLEtaJBZ17jqU9ic8tuua4IQg_lpw3t29iFhekd7n1FshAYrL0Kym9RatB.F
- YdjVoFoHBj6zD3lD5Y3jwS7dE1Y1W9N2.dkjh8lx_jVN_2UunVSzEJp0HGP97xMOfQa_I5gIDIpi
- gKaFDEG7BQO.HSkGe6JbWfL_CHCiPf0U2WtKpyiQyP.w_PDSc2TrNUxX_ZqbvPh5u00bf8HEKHcN
- bkmC6umeHEaXUhfllGgwRzlxXzvpFk0FGOB1bkpfVg51HMJBVmvpsr6bttGn8aixMd3QU3_OitS2
- tPMgGrzC0dWg1GJF9e7SNNS1oFUZbI8ypPWi6e4mzZbTX.DcH5gmQI66sW2jmAEW0hJy4Fh.vrgk
- _AWZRldnxbWItCXiRDUpYtLsTCJt0kQIN2kweUgOnzP1kE6ou6EymE1HRTn4Vj3b5faWEcB2HJ1v
- Bssew5BnSNd3Xus1vjzLNSQFjoWJz8QPqCczysrCW9qVXuHbNdsWNJ8CLhWDfXhlnKL8wB74UOs3
- exZAf8U9YM1Qptam0WD3RKbi.jEqo9qfZxpccDrT7_B9rvGwsYSVe6FABAaFDloIbzQ9OBoWipCo
- 2V31TRs0J8yVNPrdYw5_Q57dPqPwWbcy0dnFEiXA2t0kxl5EewFp_udiXZ0Au4t.1LXToXSwkj4o
- YRwm_7MRYe19JpZZ0uf37GXKyu6HUQPf87XIucRlsKhkqjUvFah8jTCOkyV35L9HK3nQ1dr7m5Wk
- MYygUhFmF__oeXpJ4mgTJPhr7qvFVeKUbAn0gfxW49tetIkrTGj8iXe_zkOymAQzcEK4oWRce3PV
- 1a2OF5ppEN_aUfwBLtMx02ie.tHSAOu_DYDT.LpzeWfHCL.NJmj6LeqJe2fit0HdARKuEZByhn2O
- tC7UamdJzQhN0PlutSe8ln2SfJ.NWnYSbkkMQU5TU.e48Uncb7J_KM8W.EesvBtPkNPkTjqdW8JF
- VmbqY77Bq0pJjWQ2GNxl2aRrxO84TMuFoyYEw9zPWpfYSGA4nUAPrKwp2.rmZzV971uomhACOn9i
- SjrUbirSY9ryDbmguD4.WYH4wNL5kLGHPsCOF7SYFiaYpd6n_DZIJW5IN9Xo5v4xnD6Dd9eYjaE5
- 5i_tlx_pGzN18EIvewWslysQkwkI1aBu.IlNvfGXSzBAzmGtmRKPJ822IcbTBmtAgX.GC4AjmqWc
- idvB4eeqmNtBhjQSPaGnVbuYTOaHLrDML6.FIy2Qzk0htBk8FXzbcnvogDMPhlEf3ZgF5rJ1Y4.1
- M9aM.NX6FZVg17L9dcuIB8jxew6tpXpkhgLg6ttMlqFNyL.QK9V2foA--
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 395ddffb-acb6-449b-9b75-1ae2036c4cac
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic302.consmr.mail.ir2.yahoo.com with HTTP; Tue, 22 Oct 2024 21:54:05 +0000
-Received: by hermes--production-ir2-c694d79d9-qjs6q (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 00a5d0a4af66107c7c1614b6d685cac8;
-          Tue, 22 Oct 2024 21:33:48 +0000 (UTC)
-From: Jakob Hauser <jahau@rocketmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D78713B58A;
+	Tue, 22 Oct 2024 22:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.83
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729634690; cv=fail; b=CiOARPT6QHGzxHD82qTUgs21q3R3fiHjchDNHOIfh/lqBKqDOxOQPbLttwQY2nEouhGofMjwVKrBZWZE6M1ZK+6vYJ8Ar1gYsuD2gM5K/wZQq+Zsh2YeEXSTpB3S0VhQRq5vNuYfCmnjJ4ai8DKY/RuAUZ+A551/pVCwey2GU0U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729634690; c=relaxed/simple;
+	bh=BXHa9QjbF0wK8Ih5p3k8njbnhgVMzqJeRZYo3+wTM+o=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=dk4XN9g1qMDAaS6KylEaL7DtoI+Q8+v+6s8/P04BpEGMKA3A2UybX2MGV0j78ILZPXmIAxwNqvH3W2YwBzySyRlM6lIKk4jFch8WjKBKWE9GMoc3+jJ4vtX8BAKoLwd6bHB6N92IvP6trRJIU55FGrK/dGNfC7OOF2h8pmMYClE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=g275A3C8; arc=fail smtp.client-ip=40.107.20.83
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=B2d9F1aSB0g2Xtmf4m3jtEVP4gBd0rAA4nXK3wVnvJ3GDxTGyewilI/ucHcrvuy33w8VYFEWH0TxNd3WD63nZ6ir+UAyo6+HDCUQu49a2Gjs2M+BVFLRjeKNVs/ewd+z1O7dsqjBTg8Baro2TGo1X4q/PGKQeaYPymNRfoTm3XHfCG2XtPRGR+99Jr+xyehZFzIayrIN3hGetYBJJbsZxF4GFz9FIeaksRhNyWusVTE+YnGvD4hf3Hj47lgp1Oc3bG1UBF2g1Kvymu5tWJUfV2nPX1zGubJc9SvvA+qXsVv1b0v5aJqaw/pGgCpAlWeDoBXpuCO0U/dHowhxH/Qm6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ABctcxlMV50g61aNXIM52WsZemEX5Rwn4U9xD8pCoJI=;
+ b=unDeIr1FThjTZKfwUObuYhKuX2Swa7hesNWkEQBpa135kKYRXydv7HGLubqWX8lzgrtOB+gnutK7t8+p36Ypa135SAL+fTIsh/wkynBOEzJzMsKjoV5o++UalQVG56EZUxEBkfBfs/dqw/qvuugyEBqbiJY18Xga6/0kP+g9kw+HHHOYI632BbXOwa281VqiSrgPx5wOi6LdqO13TGd1cJyqCURjQiLquia0DBV4e9IIxKbfhkPNXRSYbGyjcZaAZVsc2YVc9YXTbqa+FASVompepTLPF+LQeBILvY9MXVjBx/q5hpYIrbLBr8UCwBxnUKFmi2XiQiJD3aUhleL6CA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ABctcxlMV50g61aNXIM52WsZemEX5Rwn4U9xD8pCoJI=;
+ b=g275A3C8OoM2javAiO3Yu+rNuMzs9vMdCoQ5DedP8T+JNqaRjx7C1lRMs4uxTF20sL3YyVJVSb1F3gYcfA8Z630VWQUMoFGAfTKhsnVxlc7jXMs2fzs0X3kTaNJlgpAswAoiVRndgESjAzX1ELBHwdvzdMqmqhM2bn83ttIfQw2PMDgvQIUgWWjlR6a/WdLOfduyKLbTPCjf/EVsb7wOHxHN0GKEeuviAcjLFGY36DHJPUeGrM+qezGe/FLJ7yKrrF655gc4kzBA+mdA3Xnvsnepi72tccx1mfOmVJsy6gx9MjWAb5apkP5QEUrfHHmHIBSUn55xbON7aMEu+ISq0A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB8996.eurprd04.prod.outlook.com (2603:10a6:20b:42f::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.17; Tue, 22 Oct
+ 2024 22:04:45 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8069.024; Tue, 22 Oct 2024
+ 22:04:45 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: alexander.stein@ew.tq-group.com,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Jakob Hauser <jahau@rocketmail.com>
-Subject: [PATCH v2 5/5] drm/panel: samsung-s6e88a0-ams427ap24: Add flip option
-Date: Tue, 22 Oct 2024 23:33:39 +0200
-Message-Id: <57a8498440695218d095cb037a5dc818d6fe7355.1729630039.git.jahau@rocketmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1729630039.git.jahau@rocketmail.com>
-References: <cover.1729630039.git.jahau@rocketmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	linux@ew.tq-group.com (open list:TQ SYSTEMS BOARD & DRIVER SUPPORT),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 1/1] arm64: dts: imx8: move samsung,burst-clock-frequency to imx8mn and imx8mm mba8mx board file
+Date: Tue, 22 Oct 2024 18:04:29 -0400
+Message-Id: <20241022220429.1281129-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0055.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::30) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8996:EE_
+X-MS-Office365-Filtering-Correlation-Id: 09d54560-08df-4d8c-39ff-08dcf2e589fd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?qe/ixCIK/qF3eQx0R3bY2HQqUgRlBMG2pqA3YcDoZlrDB4SbRh9aYzMViCeQ?=
+ =?us-ascii?Q?dZbP8YbX/AkBAJ3jcAxlWQnMxyoXI5gcJUxAOx3XvHkeseHDFyLJVUjgRN6U?=
+ =?us-ascii?Q?rzsYBlGLVQRFPnQE6QzxGpyXkbqQRmDAGxhGsal0TyPcMvvV4cPoRPYtRO3s?=
+ =?us-ascii?Q?XmxX+/bXRYexxtMt4v7FCHtjUnB3EMDXHfuXx1XwFdiyG64NEJzXULS0mQnY?=
+ =?us-ascii?Q?Xukzbt96ojaZx7LxtUiF/C9Slra1048KVQh4aO0b20swiLrKAeBvJ0Erhgaj?=
+ =?us-ascii?Q?BljRwbWJupmxNdzeUMQ3tKensOqDekNReU7hLTiVZUdTYPk4J094y+NopshS?=
+ =?us-ascii?Q?Be4ZK+0W15FvU8WypcfHWVpY+kseR67lT7WMVZ91UtoPK4cro1KVKLY9zzA2?=
+ =?us-ascii?Q?yMvb+cxHIrmKWDa/zFTuiQglVWo5p/dkua5cKBdov7ty1xZTQedvOiE8/PR7?=
+ =?us-ascii?Q?Z4kFkDm9/qKZncevz5LHTJT/qCk9UGMdCZrp96CPq5ry7CvT37sN74wXzLGy?=
+ =?us-ascii?Q?Egh2b6J4ICpujma1l/egpqraZTdijlDl2Xgob2CBQ5yS2u2M8xhLJezMILq2?=
+ =?us-ascii?Q?YjXfQYs61gxwz26Htz8v27RCggzOFiRT8TlmRZmj0CGRCHlzaIENrcWVk3qg?=
+ =?us-ascii?Q?NIZ6tmnl+WWWYNlHJpCZw1FJ8ADn3PRkzTYsp9QiHghPFyMnSgIspAcK5Zj8?=
+ =?us-ascii?Q?iElsw/Ey5hBMceSaF+YRrOelcPdBfYKsMxOf65eCwt5dThA6zAJwrjtt3/DQ?=
+ =?us-ascii?Q?0CSbfupyCGWhw3Lzh2ERvvgTf5TZBmUxX6ZXTLM69ahk1LIg2K9nrdhmKyQc?=
+ =?us-ascii?Q?mPJYw9x70gEk8HTd8WWilHAO5wtwyqpDI3IO5uqTmxFKu5ySrA7rt9GLS8/x?=
+ =?us-ascii?Q?zhbHuA/pj9MbpbtuQ1rBfUWSzjpP6/jyOG8h3x46VDVPh74gQYy4loxfDfWF?=
+ =?us-ascii?Q?bdV0InryFcLgXKLQpyGC6JXLIpDbZerWNml4QaMeWNKrBmye9Fc8TD0fbXQO?=
+ =?us-ascii?Q?mOtfOX5KBu2TKFItQQ2V8/za5l5BNqQfK4QV1k4zTP5zo0jmf6vD7vbCZu+E?=
+ =?us-ascii?Q?AYPsrOW3PdDXOGrnO2jiVLl7u5r+beFypfRTkscmuiDUMcsXCkZgMn9+HqlR?=
+ =?us-ascii?Q?w11Sp1jUAMXvMXfjQCbkFqQl/KO4CnB3UtrobSVCy0qWv3rNwjfrJZDtBKC8?=
+ =?us-ascii?Q?Q1GT3h63Yhb22PvAXhMnrXzyV5DyPgYzi46NjRlL1UbRY2OniJ/tA3f9cVyb?=
+ =?us-ascii?Q?519xjHynpFKGqtFvLwOZlkaWfKud8txwfizciKlq0p1DhcJu6y/4/5c5CbgA?=
+ =?us-ascii?Q?6hNIybaKCGnlav+VGJ6qre/au/IcheSSikqwqhVz1EvYOw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?bgEZTEneBCPLO+zYo2Qw01HlQZcJNX/DxyVx+2NKKQBkg6PcrA8fEvL3h7ra?=
+ =?us-ascii?Q?Ib/yLlTNfYCvmzAcRaVVd2lB4wFAPfRC7wT+p03lacsP5rYyEjeZq+Pm6+A0?=
+ =?us-ascii?Q?I9wDGgpmGrLjI3XZ/jrr4Gheih8kxTRjthuTr1+HFPVJ4ZWu2xW7xsPDXtOX?=
+ =?us-ascii?Q?pLMtH+6w2xm9syCP0qZvLYFzNXsCk0zut2wSOytbtBLa65skVgJkPyVku+V+?=
+ =?us-ascii?Q?KaGLMcS8mZb3ODie6bH4B5wfdAKsOWKprNP2YW0YSycw5PW011aXnUQvNnxk?=
+ =?us-ascii?Q?PsFabGeWWRIL3OBYMs3R6uJWI7c/F2mG5wwhuSvUXbsvONaSB51xWWJCo09/?=
+ =?us-ascii?Q?hgtzAfxJQzcy1AnwXwqEazgEms0FN41ac2PUFBNLgFw+e4c7j8k7uTZtNWTl?=
+ =?us-ascii?Q?hE3DBK76g3FaihJTY/mBA5T9IXRcIDQaKpNJP/0WU1RshkEpodjv7ZiKlF8K?=
+ =?us-ascii?Q?OyW8VhRlRlQKFPU9JzYnczY7r0HbiRy0tj5H7fbsRwEC+YMNtSTTK6VLmJEQ?=
+ =?us-ascii?Q?ev3m6f+XmMQI6ZXaSdrtA8OqsdAMV0GTQXVA5Jh6tWegI+kDsIy7+YLOQyJB?=
+ =?us-ascii?Q?W4+wjH7LEPQNaMgpbRNkMBxKJEBjf9cZt3OelcRX3YWjQw0xWVdL9D8usuOk?=
+ =?us-ascii?Q?4Gsoqsuvt/N1E9DK4ZzWum24FzAgvBlHXnIlIr0jUDkst/Gc/Rd8Ao0azt3i?=
+ =?us-ascii?Q?Fp29dMHrkaBrKT9B+w6YL4KOyw/XfgWz2OIL9CvyIMqsHXfq6JsQXHN7oqnx?=
+ =?us-ascii?Q?6FI/72aJ1zq3/ixfuDm9tMi25CT5RWyBvsV1gt5Fa+ugPdFhICts3w4Wjlp4?=
+ =?us-ascii?Q?Hja7323y9/gTnETz+rcwADHr3hxphDQpYTm9Sx+mOA74t1UalsvbBObS/JqN?=
+ =?us-ascii?Q?2DfgnGW4PCt/IX1Dsr3BNt2xsWvtm3v/UYINKFJuQBN+dbehB9rMp8HV27SI?=
+ =?us-ascii?Q?wJyPn/VffdpqfaH7YQoj21WG1JwcX1aKQ06VIbMdIB2P1nIXVezepOgtmxix?=
+ =?us-ascii?Q?9A21e6oqKfCmZ6vihQeh13QX+H7sOwu9n9/SBJI3sre1ZhLZ+MF+HsSTaNlD?=
+ =?us-ascii?Q?27R/8kZgzFl9npBgJPraX2bpoks6JnvmL5o2TIQj5wixY7a2MgnM+rKUfiEx?=
+ =?us-ascii?Q?+VcZzkyVbz8ws72oMA5li0dSplaE542+g9aLW/blVbqKR1OlhtyBPqY77NJf?=
+ =?us-ascii?Q?sjjPC8IL1UZAJNecoLcAz9vIwPcPxgrfqSz7lKhrCAhrFjGn6Kh6ssSa8/PY?=
+ =?us-ascii?Q?VRA9im16nX+jEAJv+43TEXc6K21XdVGGVdgLRdsJ+a7jFjpc0rA7WUNeE/qZ?=
+ =?us-ascii?Q?Hm5h1qS2b96yKcvfZ7nRZ1xGRCjHE1Sd00FUo7UgT5dBzCaK1HFnUF8on3nw?=
+ =?us-ascii?Q?6JO6THuEpcbI1AIp0i1kmyqtSrJICtz5eqmSx5sqb+RGNhN9eWtZclPZ9vtu?=
+ =?us-ascii?Q?pOer2VJKkRbDC3zQ7lOCiCZD1aKvmjyHEFqTHnD9fklxopYrrQBpuFhquxzr?=
+ =?us-ascii?Q?M/6n7ddc1ZTvKXFEyqZpovN0i0+ouO/OKRJjoqo1O8YfQCbKqtFP05gyKXPz?=
+ =?us-ascii?Q?rC7d154Y0q9fnSbepoiO/bUu3V4OOlZbJC3ONlNz?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09d54560-08df-4d8c-39ff-08dcf2e589fd
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2024 22:04:45.7491
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CxUkj4h8Nd5GHJ0pxWWZCozg3FDbUjX6QWbJfbczE0lfWcm67zUgZ0maxWLi1zF0sf64LFew1K0mTiV3ZU/1Zg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8996
 
-The way of implementing a flip option follows the existing
-panel-samsung-s6e8aa0.c [1][2][3].
+Move 'samsung,burst-clock-frequency' and 'samsung,esc-clock-frequency'
+properties to i.MX8MN and i.MX8MM mba8mx board file. These properties are
+not applicable to i.MX8MQ MIPI DSI, which uses the compatible string
+'fsl,imx8mq-nwl-dsi'. The properties are only valid for i.MX8MM and i.MX8MN
+devices with the compatible string 'fsl,imx8mm-mipi-dsim', as described in
+samsung,mipi-dsim.yaml.
 
-The value to flip the screen is taken from a downstream kernel file of
-a similar but older panel [4]. The mipi clock [5] for the new panel
-samsung-s6e88a0-ams427ap24 matches 461 MHz and a hardware read-out of the
-0xcb values corresponds to revision R01 of that older panel [6]. Although
-for samsung-s6e88a0-ams427ap24 that's in non-flipped state while in this
-older driver it seems to be the other way around. Further up there is a
-hint [7] basically saying for revision R01 to change the first word of the
-0xcb command from 0x06 to 0x0e, which is actually setting BIT(3) of that
-word. This causes a horizontal flip.
+Fix warning:
+/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtb: dsi@30a00000:
+    Unevaluated properties are not allowed ('ports', 'samsung,burst-clock-frequency', 'samsung,esc-clock-frequency' were unexpected)
+        from schema $id: http://devicetree.org/schemas/display/bridge/nwl-dsi.yaml#
 
-[1] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L103
-[2] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L207-L211
-[3] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L954-L974
-[4] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c
-[5] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L2027-L2028
-[6] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L137-L151
-[7] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L66-L74
-
-Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- .../drm/panel/panel-samsung-s6e88a0-ams427ap24.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 5 +++++
+ arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts | 5 +++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi                 | 5 -----
+ 3 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-index 6e02b881434d..8372d0d307c8 100644
---- a/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-+++ b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-@@ -32,6 +32,7 @@ struct s6e88a0_ams427ap24 {
- 	struct mipi_dsi_device *dsi;
- 	struct regulator_bulk_data *supplies;
- 	struct gpio_desc *reset_gpio;
-+	bool flip_horizontal;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+index 01b632b220dc7..b941c8c4f7bb4 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+@@ -75,6 +75,11 @@ expander2: gpio@27 {
+ 	};
  };
  
- const struct regulator_bulk_data s6e88a0_ams427ap24_supplies[] = {
-@@ -538,6 +539,10 @@ static int s6e88a0_ams427ap24_on(struct s6e88a0_ams427ap24 *ctx)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcc, 0x4c);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x03, 0x0d);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0xa5, 0xa5);
++&mipi_dsi {
++	samsung,burst-clock-frequency = <891000000>;
++	samsung,esc-clock-frequency = <20000000>;
++};
 +
-+	if (ctx->flip_horizontal)
-+		mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcb, 0x0e);
-+
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0xa5, 0xa5);
+ &pcie_phy {
+ 	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+ 	fsl,clkreq-unsupported;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+index 433d8bba44255..dc94d73f7106c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+@@ -64,6 +64,11 @@ expander2: gpio@27 {
+ 	};
+ };
  
-@@ -672,6 +677,15 @@ static int s6e88a0_ams427ap24_register_backlight(struct s6e88a0_ams427ap24 *ctx)
- 	return ret;
- }
++&mipi_dsi {
++	samsung,burst-clock-frequency = <891000000>;
++	samsung,esc-clock-frequency = <20000000>;
++};
++
+ &sai3 {
+ 	assigned-clocks = <&clk IMX8MN_CLK_SAI3>;
+ 	assigned-clock-parents = <&clk IMX8MN_AUDIO_PLL1_OUT>;
+diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+index 3d26b6981c06f..58e3865c28895 100644
+--- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+@@ -317,11 +317,6 @@ lvds_bridge_out: endpoint {
+ 	};
+ };
  
-+static void s6e88a0_ams427ap24_parse_dt(struct s6e88a0_ams427ap24 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	struct device_node *np = dev->of_node;
-+
-+	ctx->flip_horizontal = of_property_read_bool(np, "flip-horizontal");
-+}
-+
- static int s6e88a0_ams427ap24_probe(struct mipi_dsi_device *dsi)
- {
- 	struct device *dev = &dsi->dev;
-@@ -706,6 +720,8 @@ static int s6e88a0_ams427ap24_probe(struct mipi_dsi_device *dsi)
- 		       DRM_MODE_CONNECTOR_DSI);
- 	ctx->panel.prepare_prev_first = true;
- 
-+	s6e88a0_ams427ap24_parse_dt(ctx);
-+
- 	ret = s6e88a0_ams427ap24_register_backlight(ctx);
- 	if (ret < 0)
- 		return ret;
+-&mipi_dsi {
+-	samsung,burst-clock-frequency = <891000000>;
+-	samsung,esc-clock-frequency = <20000000>;
+-};
+-
+ &mipi_dsi_out {
+ 	data-lanes = <1 2 3 4>;
+ 	remote-endpoint = <&lvds_bridge_in>;
 -- 
-2.39.5
+2.34.1
 
 
