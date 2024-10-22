@@ -1,171 +1,188 @@
-Return-Path: <devicetree+bounces-114190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E769AA1E6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:11:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B24A19AA212
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:27:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9E13B24008
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:11:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68502282E20
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 12:27:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F05919F47E;
-	Tue, 22 Oct 2024 12:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8114519CC12;
+	Tue, 22 Oct 2024 12:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="hjYwuD6c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DxDrICTZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C499199938;
-	Tue, 22 Oct 2024 12:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E411E495;
+	Tue, 22 Oct 2024 12:27:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729598955; cv=none; b=rncSKePN+pfw5wvCrfapK5Z1iDnXQRq9jnIo7HAhyoFelZtFKZmYyTfsUl0o7WIf6Sm5FS5yjTP9lXrzg0l4HGtTYmcPZuN/GaxUSBMM/zL0OHbXbcBSjH1tTOy/CEujoWnb0NdIvDIYilHLFOCcdU69AjwZyQTSTKXkEs+Rwys=
+	t=1729600059; cv=none; b=pqjoxoNSfo2Gy4fWqodjONJRUO9NhoFff1y2zP7DVXfbxaxlebMkmGE+HnM24NTmbj+Nhz7c1fc698CJcO51o+iYhGCHeAlm8aZt5MNnzGA9r5noEhZANxiERM3de5HgGFfOGHkj4rOS499LRr2RmkR8EYI/Oc37AbWXE5Tkofo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729598955; c=relaxed/simple;
-	bh=GCAlh70HIIrX7QW1ylG+a51tvpUD9YM+ryk+RDixp4w=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j0cmk+u2aDLT7Do6xSERKDWhq8kViiFQzCD3QRYx/hLEDYH9D/JWRua+phSlbOwLp8Aqet49e1g4SBpG8Vdm3mWzs9TSFuM3FM4W/QMCHP1K+jfTuSHqnby+hIlpwEfJFlsW3UC8JbkY8DqUSeZE17cFDzMI0jDlxLFkx73hoEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=hjYwuD6c; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1729598953; x=1761134953;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GCAlh70HIIrX7QW1ylG+a51tvpUD9YM+ryk+RDixp4w=;
-  b=hjYwuD6c8oEvcgvSFrzV2/kTzdR74NnnhtKYUFV7WUQwuGDeUqcRPljo
-   b0dNuxX2HkuQvoZTeeSjSH1xYJ+syO3itZTiyyAiuNSwIxg8gKdhlkrBU
-   4djPFMMxiB17Si8XpxBoyLP+AHDf6cUis0+tJY/h3pZj6v0AS3vtW+DRh
-   alFDEoDNgGR4/NNPO7UyEGEUideUyYvFIRpAJQl8Yw8OHS7RuU7dAtNHu
-   oVUzOIjyAYPI+ciQNonxnBLBCL3LW73OUMQEhG6zNaojhCp4qW3qvAmFN
-   adxkdeJ+J+lQtFDVGXAfCebVWE6l9sS57qT9oXQ2KLBTGSNF3Ta+WWGr+
-   w==;
-X-CSE-ConnectionGUID: 5z4sXM/ESmCyIGzt5yX2Zw==
-X-CSE-MsgGUID: YhWYqzeMTBaRk2u3gZSxrg==
-X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; 
-   d="scan'208";a="33105701"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Oct 2024 05:09:12 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 22 Oct 2024 05:08:47 -0700
-Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Tue, 22 Oct 2024 05:08:43 -0700
-Date: Tue, 22 Oct 2024 12:08:42 +0000
-From: Daniel Machon <daniel.machon@microchip.com>
-To: Simon Horman <horms@kernel.org>
-CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, <andrew@lunn.ch>, Lars Povlsen
-	<lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
-	<horatiu.vultur@microchip.com>, <jensemil.schulzostergaard@microchip.com>,
-	<Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
-	<ast@fiberby.net>, <maxime.chevallier@bootlin.com>, <netdev@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next 14/15] net: sparx5: add compatible strings for
- lan969x and verify the target
-Message-ID: <20241022120842.uf575qwaulufjyv6@DEN-DL-M70577>
-References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
- <20241021-sparx5-lan969x-switch-driver-2-v1-14-c8c49ef21e0f@microchip.com>
- <20241022085050.GQ402847@kernel.org>
+	s=arc-20240116; t=1729600059; c=relaxed/simple;
+	bh=JE0VhiywA5LosfdIaPft+01lZz/slGcL0Mr4if/hCqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XNVKuj1CU9MmiMBLQ59Vs9qcvG2UuWYxdVWprbQ9mooZOZmwiZefVoighuHonx9XffNa8iXYlnL8ZBuJ3PhIc36jGy0Mri6PbjoHHmUqvOL3qWTHKFvuLDuJNYOL+NwvPstUG6hjK9HXxqk+eD+rqex0BSzhIBSsTe19kva6O8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DxDrICTZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1619C4CEC3;
+	Tue, 22 Oct 2024 12:27:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729600058;
+	bh=JE0VhiywA5LosfdIaPft+01lZz/slGcL0Mr4if/hCqc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DxDrICTZ2DZ3zxmTJhc+hxRtuC9DPt6bSQUvQBVWhhW5DLuXoKJjWjXZblI+k5PsC
+	 k6g01NxAoKUn5DT9WTkmdmIODdaMWuEzZB1tE6VWxOctcaRe8H2n8nCk6h1S7LqB3L
+	 gHqS9DW6RGQZsEjuet+fEbwKhycFLDAeKYyqm15gKpw+jJ7NzhR4vU8Z+Z+izt1zIY
+	 uyvXLNfFfRvLx9zOJ6Uiin5x+VcisO7zt72z4eFosKepCIIKV3DD1Eo5UVCx055p4T
+	 MRs2gWdB6Q43/XT6Y/Mj3DXn89G1pk5X7eIlTl+MjUF84zbLngxkl/Wrkkd2FKcFIM
+	 uZVJYPeJ3Qfuw==
+Message-ID: <dd008ff5-ee2a-47be-8a5b-d4f3a1e2bac3@kernel.org>
+Date: Tue, 22 Oct 2024 14:27:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241022085050.GQ402847@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable Bluetooth
+To: Janaki Ramaiah Thota <quic_janathot@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241022104600.3228-1-quic_janathot@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20241022104600.3228-1-quic_janathot@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Simon,
+On 22/10/2024 12:46, Janaki Ramaiah Thota wrote:
+> Add Bluetooth and UART7 support for qcs6490-rb3gen2.
+> 
+> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 122 ++++++++++++++++++-
+>  1 file changed, 121 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index 0d45662b8028..b774d89172ea 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: BSD-3-Clause
+>  /*
+> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+>  /dts-v1/;
+> @@ -31,7 +31,9 @@
+>  	chassis-type = "embedded";
+>  
+>  	aliases {
+> +		bluetooth0 = &bluetooth;
 
-> > Add compatible strings for the twelve lan969x SKU's (Stock Keeping Unit)
-> > that we support, and verify that the devicetree target is supported by
-> > the chip target.
-> >
-> > Each SKU supports different bandwidths and features (see [1] for
-> > details). We want to be able to run a SKU with a lower bandwidth and/or
-> > feature set, than what is supported by the actual chip. In order to
-> > accomplish this we:
-> >
-> >     - add new field sparx5->target_dt that reflects the target from the
-> >       devicetree (compatible string).
-> >
-> >     - compare the devicetree target with the actual chip target. If the
-> >       bandwidth and features provided by the devicetree target is
-> >       supported by the chip, we approve - otherwise reject.
-> >
-> >     - set the core clock and features based on the devicetree target
-> >
-> > [1] https://www.microchip.com/en-us/product/lan9698
-> >
-> > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
-> > ---
-> >  drivers/net/ethernet/microchip/sparx5/Makefile     |   1 +
-> >  .../net/ethernet/microchip/sparx5/sparx5_main.c    | 194 ++++++++++++++++++++-
-> >  .../net/ethernet/microchip/sparx5/sparx5_main.h    |   1 +
-> >  3 files changed, 193 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/net/ethernet/microchip/sparx5/Makefile b/drivers/net/ethernet/microchip/sparx5/Makefile
-> > index 3435ca86dd70..8fe302415563 100644
-> > --- a/drivers/net/ethernet/microchip/sparx5/Makefile
-> > +++ b/drivers/net/ethernet/microchip/sparx5/Makefile
-> > @@ -19,3 +19,4 @@ sparx5-switch-$(CONFIG_DEBUG_FS) += sparx5_vcap_debugfs.o
-> >  # Provide include files
-> >  ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/vcap
-> >  ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/fdma
-> > +ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/lan969x
-> > diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> > index 5c986c373b3e..edbe639d98c5 100644
-> > --- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> > +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> > @@ -24,6 +24,8 @@
-> >  #include <linux/types.h>
-> >  #include <linux/reset.h>
-> >
-> > +#include "lan969x.h" /* lan969x_desc */
-> > +
-> 
-> Hi Daniel,
-> 
-> Perhaps this will change when Krzysztof's comment elsewhere in this thread
-> is addressed. But as it stands the construction in the above two hunks
-> appears to cause a build failure.
-> 
->   CC      drivers/net/ethernet/microchip/sparx5/sparx5_main.o
-> In file included from drivers/net/ethernet/microchip/sparx5/sparx5_main.c:27:
-> ./drivers/net/ethernet/microchip/lan969x/lan969x.h:10:10: fatal error: sparx5_main.h: No such file or directory
->    10 | #include "sparx5_main.h"
->       |          ^~~~~~~~~~~~~~~
-> 
-> My preference would be to move away from adding -I directives and, rather,
-> use relative includes as is common practice in Networking drivers (at least).
-> 
-> ...
-> 
-> --
-> pw-bot: changes-requested
+Which driver uses this alias?
 
-I didn't see this build failure when I ran my tests, nor did the NIPA
-tests reveal it. I can only reproduce it if I point to the microchip
-subdir when building - but maybe that's what you did too?
+>  		serial0 = &uart5;
+> +		serial1 = &uart7;
+>  	};
 
-Anyway, I will skip the -I includes and resort to relative includes, as
-per your request. Thanks.
+...
 
-/Daniel
+
+>  };
+>  
+>  &uart5 {
+>  	status = "okay";
+>  };
+>  
+> +&uart7 {
+> +	status = "okay";
+> +	/delete-property/interrupts;
+> +	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
+> +				<&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
+
+
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-1 = <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
+> +			<&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
+
+This could be just one phandle to state node with multiple pins subnode.
+
+> +
+> +	bluetooth: bluetooth {
+> +		compatible = "qcom,wcn6750-bt";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_en>, <&sw_ctrl>;
+> +		enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
+> +		swctrl-gpios = <&tlmm 86 GPIO_ACTIVE_HIGH>;
+> +		vddaon-supply = <&vreg_s7b_0p972>;
+> +		vddbtcxmx-supply = <&vreg_s7b_0p972>;
+> +		vddrfacmn-supply = <&vreg_s7b_0p972>;
+> +		vddrfa0p8-supply = <&vreg_s7b_0p972>;
+> +		vddrfa1p7-supply = <&vreg_s1b_1p872>;
+> +		vddrfa1p2-supply = <&vreg_s8b_1p272>;
+> +		vddrfa2p2-supply = <&vreg_s1c_2p19>;
+> +		vddasd-supply = <&vreg_l11c_2p8>;
+> +		max-speed = <3200000>;
+
+There were warnings in the past. Please confirm that you addressed them
+and this is warning free.
+
+Best regards,
+Krzysztof
 
 
