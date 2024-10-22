@@ -1,133 +1,122 @@
-Return-Path: <devicetree+bounces-114052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3A869A9AAA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:14:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD5A9A9AA3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:14:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1645C1C21FAC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:14:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E85BB1F24BE2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:14:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D586D14A60A;
-	Tue, 22 Oct 2024 07:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD8B14A4F9;
+	Tue, 22 Oct 2024 07:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CnZLv6wR"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="ITBx2/Io"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EEE1148FEB;
-	Tue, 22 Oct 2024 07:14:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E05D51494B2
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 07:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729581262; cv=none; b=FHQSoBDAhCVzZeqg4bUi5mknByuuRPT0np2mlchIqBiNyVJLmbKmUzAcxdBkejUPmjh0DGRZwF4c+LOgWSP0xe5ErmziRxR/wsW2koK4FPiQPMQCLqSvD6KTyaKFsikrZhrnkquLC84insSeXpBSbebOPThKLvtihkhnICDVxGQ=
+	t=1729581242; cv=none; b=ussN7zZNhEkJWtLz7W2A6UpvIxyQxTtakLXRVP4yn7O4S5KHvfOnsoS9tuMmwHzU4XD74mtxNp6MItX5QvnV+Lff9iAxE6pxrvCSbDaE2c7wIwP8dA+evlLEsVYkuIfl0M5MFx8JIfuz2JxnbVR+uxr0KQH1/2NXopQG6Pul9+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729581262; c=relaxed/simple;
-	bh=/Rgpo9I553gF5Dq4wZ7FZfxuASIDdLW/V8cSYDAMXD0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lzwBuB/2c3IyjxIRkkzGLWydK+A4QPU67XrRoYXnORLbIL+3P0zXFUZWbaP6SIPZZr2clDyHhgH9BOelIqZ4002Tb8jGD9Eb+RnlUK8OK8Y/LW8p4BH4zOIDjwQd1cHwnKtVkwAkTUYp1b2iulE6qwMq27vdDjdvqkWlatGvFpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CnZLv6wR; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49M6uVqZ019049;
-	Tue, 22 Oct 2024 07:14:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2OQf0si/CIXxYVkyVvj9sbbdpTRNuvie33M0zB2wTuk=; b=CnZLv6wRZlLSPWbP
-	azI4Ryr3rzSb5MJECbNKX3AtFZErqfropwue0i0kbznUMcqc4RT4FFg04Sw9v6v3
-	LOMMtWAvioq48XZDgw2MzpztdpZ5uNUCEAOSzUjsd9HFUkE8jGzdBzENwnGvV7R9
-	48RvAqBCEQBbWmH+kwR2BWe9IO9nftszC1DbWWowSI10MTAZwM7yQGt57kLIqGtJ
-	RjLNOhJqcK3u41ezFei+w0zFCV8Gje/5Hxj3YDgU2rn3voqMtd40r8+xHaTmZqO7
-	ktiYhyw7371VoV0WvlMz2rss/bqyvSNRaKXvHMpcev/VQ3u8CjswqbaTwPgaOlt1
-	8AfGIw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42e77pg2ge-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 07:14:16 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49M7EFWn024228
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 07:14:15 GMT
-Received: from [10.151.40.160] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Oct
- 2024 00:14:12 -0700
-Message-ID: <09be6843-52c0-4d84-bcba-e6cbd0cb51a9@quicinc.com>
-Date: Tue, 22 Oct 2024 12:43:36 +0530
+	s=arc-20240116; t=1729581242; c=relaxed/simple;
+	bh=rg6eNn4n7KKuhoN847xjNM4A6AinYmC7pL0O7ui5KnA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DI2jJaIXLGsAIGBrOYCFArh/jEOotCLYnF2Wk21i+b0pftuf3rqWbn1Mgrp0FrMlOwbr1U46BENRE2V+u0EieHiElyZq97CK4wxC4dG12OHHbo8FfiGIx4QjiOOsXXiKCpyuDb701aJggbvg1BDqzCB62WCoQAiMkyXSKALknlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=ITBx2/Io; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4315c1c7392so48174305e9.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 00:14:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1729581239; x=1730186039; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2DpZoo6yO9Hfgv4N61HzJjjkVfEBeub6eC9TjyXKIOI=;
+        b=ITBx2/Io9mEbD6WDkZTeUX4+aOAYx5BvH/ETO2pCP5rRkHEt6p2oSU7wbMlXbtkkna
+         iFWXmA0SuYpEXQwW4NG2NAmzVf03qkXG/qtXZmwVKPLi9fjtRTzhTL684zUHDhk+H0H9
+         wRrcTZIKv2XDXNMWJJ1KTepFET/hRe10uEWAOYB49lMtbPYG2N0K3o0wLNwU7/LWqBxy
+         2a9U3zbceCPt9WlsoPoOACu5OlpB6mYtAoShwTImMzh6KhEPSTxD/+BDG40ezFPxBFFx
+         GrsaUiNY56iAR9ePNs1O/mqHqkxYmn623zDTY2ghPTrCKJfcQLV4LmSnfy3KHW6dtg8J
+         Ib0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729581239; x=1730186039;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2DpZoo6yO9Hfgv4N61HzJjjkVfEBeub6eC9TjyXKIOI=;
+        b=D9mHbEoSoszhZnF+StJCbNX0SDyYe28pirV6gVzf4O4Irean2qLVY591VRsTRy80Ae
+         yPQk739SGU9iGAZBkeuYx4ZQVnBOdiVjlYIrOVpZklfxuAuWZBqc7atmd2PTMBZAsyFs
+         B7MS0pp9mb6Q5tfUWCniWZYeVuhIp6vND2m6xDQTr52/CIR1FBn+OLrsw2BrFwylSD4C
+         tn93bSkpdqCfGHmEntVGEKuZHEfRCsfS9vMMYaOx9NUSLH8mJag6cR/e7KaH75IllaxO
+         dSs7c/pJEH/1HmZkWutNWNnjvGzlbizLl12XVw6KpHlxPIHNiKTll763CYdH5prNiX4q
+         dCFw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2hN6mpunwmuVUy6WehXtZIBuHVGsz/MKe1l2jIOs51bYYPCQZbcytxk/zqTnjVRtu/uVnVL6kEtek@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3aftgWpPfSRdYs/uPvvSLgAqoHsdsbMglkkRT2LI8J7g2kxwe
+	bCTFaBgJYkkOUHB30lFW2fdZ6I1LWICGOh4MTbpyHO2etn3X1oH9f02JwNUrpXQ=
+X-Google-Smtp-Source: AGHT+IF7poMWB5wXDFbQZpRfCv/lvFJvmJjWztGtzS5HoWO0iyjQWrSGbADDmRVBaQjNId/3pravTQ==
+X-Received: by 2002:a05:600c:3553:b0:42b:af5a:109 with SMTP id 5b1f17b1804b1-431616a3c1bmr112210255e9.24.1729581237606;
+        Tue, 22 Oct 2024 00:13:57 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:9c8b:c7e5:66f5:b8f1])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a4ae36sm5955801f8f.43.2024.10.22.00.13.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 00:13:55 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: linux-i2c@vger.kernel.org,
+	Marek Vasut <marex@denx.de>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	kernel@dh-electronics.com
+Subject: Re: [PATCH 1/2] dt-bindings: at24: add ST M24256E Additional Write lockable page support
+Date: Tue, 22 Oct 2024 09:13:52 +0200
+Message-ID: <172958121344.18422.8336462727519958263.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241017184152.128395-1-marex@denx.de>
+References: <20241017184152.128395-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 16/22] wifi: ath12k: convert tasklet to BH workqueue
- for CE interrupts
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath12k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
- <20241015182637.955753-17-quic_rajkbhag@quicinc.com>
- <877ca1q0yq.fsf@kernel.org>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <877ca1q0yq.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ds6dUeqqETgxjzzffRHEvUQO7UndozCn
-X-Proofpoint-ORIG-GUID: ds6dUeqqETgxjzzffRHEvUQO7UndozCn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- suspectscore=0 impostorscore=0 adultscore=0 bulkscore=0 phishscore=0
- mlxlogscore=967 spamscore=0 malwarescore=0 priorityscore=1501
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410220045
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 10/21/2024 2:36 PM, Kalle Valo wrote:
-> Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+
+On Thu, 17 Oct 2024 20:41:25 +0200, Marek Vasut wrote:
+> The ST M24256E behaves as a regular M24C256, except for the E variant
+> which uses up another I2C address for Additional Write lockable page.
+> This page is 64 Bytes long and can contain additional data. Add entry
+> for it, so users can describe that page in DT. Note that users still
+> have to describe the main M24C256 area separately as that is on separate
+> I2C address from this page.
 > 
->> Currently in Ath12k, tasklet is used to handle the BH context of CE
->> interrupts. However the tasklet is marked deprecated and has some
->> design flaws. To replace tasklets, BH workqueue support has been
->> added. BH workqueue behaves similarly to regular workqueues except
->> that the queued work items are executed in the BH context.
->>
->> Hence, convert the tasklet to BH workqueue for handling CE interrupts
->> in the BH context.
->>
->> Tested-on: IPQ5332 hw1.0 AHB WLAN.WBE.1.3.1-00130-QCAHKSWPL_SILICONZ-1
->> Tested-on: QCN9274 hw2.0 PCI WLAN.WBE.1.1.1-00210-QCAHKSWPL_SILICONZ-1
->>
->> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-> 
-> 22 patches is a lot and I'm not going to look at this in detail, please
-> reduce your patchset size. 10-12 patches is recommended. For example,
-> this could be easily submitted separately.
-> 
+> [...]
 
-Sure Kalle,
+Applied, thanks!
 
-We are working on other review comments in this series, in the next version
-we will reduce the number of patches.
+[1/2] dt-bindings: at24: add ST M24256E Additional Write lockable page support
+      (no commit info)
+[2/2] eeprom: at24: add ST M24256E Additional Write lockable page support
+      (no commit info)
 
-This patch we will be sending separately as v3.
+Best regards,
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
