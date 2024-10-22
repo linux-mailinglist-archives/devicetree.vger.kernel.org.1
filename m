@@ -1,83 +1,86 @@
-Return-Path: <devicetree+bounces-114079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A3809A9BE6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:02:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EAD59A9C07
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:08:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 575161C22725
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:02:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F5071C214D8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58432156F34;
-	Tue, 22 Oct 2024 08:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=kunbus.com header.i=@kunbus.com header.b="z3Sk2+2W"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38A69155333;
+	Tue, 22 Oct 2024 08:07:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2092.outbound.protection.outlook.com [40.107.21.92])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01on2113.outbound.protection.outlook.com [40.107.239.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538D21547C4;
-	Tue, 22 Oct 2024 08:02:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7771514F6;
+	Tue, 22 Oct 2024 08:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.239.113
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729584134; cv=fail; b=ZaBRtX/kbE7sWLz2b1Pot10bnxrv1msUhy6K1PmOeCm7B9J1JJxVAEcC7uGcywPK0JFe07S5ou0I7Z5eqdw5EayA8WsJQDP4C27PqjFKVzWULHDaO2TC5PiTHcGOQT3HjCbx3Rvzu2Hn5tYO3lHWxPxOxnmjL8MYeu+DgZr6+Yk=
+	t=1729584479; cv=fail; b=HQl4carmbe/wRFjQa7maOv8DowGfNKxE5gbmCaGVUcka0ZlnIlwp4zPLfKnURlVP6jZ/a4QRoFBq2hwE2NjmMymHcaDtOx1Fm7FTxqHwB8916Q6j3v6uszmJr+X35+PJaxZtWHh4wHHDFaaDtzx0S5hFsPFN2ow8xVAfiCMvJl0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729584134; c=relaxed/simple;
-	bh=FuWHeEJksRVSZveOxXsR/3MoDNW1bvU6a4gHntO2eQc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kOl8/9x61Vk2a0M6t465uQHwD9Oc1rRusVQqwe4CQM3s4ud8nNWMFbMPEh1a9VMDo6UudiP8YIn4NVTOQcFToL+LV8yQjej3N0OIHw4EuhheId/FrKLOEBxdtTBX7xglXTPyFrTWFLRz2iG9qWREUz1OOtk6wQZD6++c1sytIM8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kunbus.com; spf=pass smtp.mailfrom=kunbus.com; dkim=pass (1024-bit key) header.d=kunbus.com header.i=@kunbus.com header.b=z3Sk2+2W; arc=fail smtp.client-ip=40.107.21.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kunbus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kunbus.com
+	s=arc-20240116; t=1729584479; c=relaxed/simple;
+	bh=lAAjuoKiQb4YyL2Gs9/f9Uo5QWLH0h69GUqpTASY158=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=a8tkMAWNuBilUt9OiW7MyX7VTtoQf5iCfD/nEeMzT2O3+8uOlA+cylYRh8Bb1bXAficBp9xKwwPjHItxFMGMEmPLkqJehajg5RHYItBdKAzq53OgUz477/VSIr+fLD/JfB9XLXRs7Ys2MfEvriO+z9d9mlH6Ps+zRGEZATTcyWk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.239.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lequOJkvoUA31wdhQGNCanoZtw4mxC42bv940jtEyf6Jp+DnxLqMNHy0KkBnEnQCWA1Mpobf0LBjT+cyX2Px9jJZbmyeFKP2MV4Em4Pu9puZOcOHrTQWnsqUXsSPs/iTkJAiSNMhv6oFLAT4Ao7XlmhyH0L/VmCCDMrFRaXjb/bTeS4PjxvWAtaX9A46wcdaoEEsdyVZwR3t9ULZ1NLk/r1NVF6posu/15j6U8GIZGpqij/dTgt96LfEZaXLtFW8xR0TGYX7CcS91h18u2qHSqRUkzUs0rxcKnncu3pN7bv/JP0mvyv8YdMGUxIUrAqQ3f3MstacX5w6m6Kv2vYTSw==
+ b=wFJ8LL2K2wDto+61w0UaAlFrTQozxWJmIwEz4B5o4nToetH8J+QOGt4X96LuUGT3QxFlxlqwSrEOtF+F/y6ygA7fPW57S6Q1Cz5vdX4p53XKMcPw/KqeO0GPQopvYy+xWBrDiHcXrBjCtpidtSaJke4uR2VIB4o0d8Jpm9GLS42X+MhQICe5UEX+17xcxsg1zbW3eKistmNE7KEtVyLS9uVJf4mVfY0RcoVskLtKlCQyrOLEzlvFjwn1qtlzUYWk2G74zjOnfmYG8b4yRVP10zM7/xVN4lO72oi1LrW7f6s2K87zUENAfnPw3yP5LkvsinNPitvwdyoSVmK7lqZLlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lXDv0RffGdWMYbbKEiHp0cR4svtT9Ts1IGNDgkKP2io=;
- b=UnQmut3wnB8LEzjA5wGh1WZQqwSpLui6DOZ4FGTC7X9ZxSIMU2nkwfY08j8B+FKWuxw8rUXO2vhuxt3rE+GUrG6+DaOY04phku8tV52yRwgesx/LzHjxduIKq4ME/hMowEW4Zxz2b5FHlEgAXXIjDsOPVahEmOmJNYm2n8Ol8iRl0fFTtKiSk46LMj3SdLeU6yvmuqcKmyM/8dbSmvfTviEjgsmFuLRNJSyeDpmH82j6k66DYp07y5XWWmaktz8+VtcAb+sb1dX/0PSTFiBSPURsw9E/0jUO9OtJsY7qeKLs1s/vsPcxYOYgGz5DLZlhAOxYw1yN96cGOxHc5fngyg==
+ bh=CYY6HycvDYNr0qDeuMZeidwqEjHE9ISHsKrNHLsN778=;
+ b=a4t6/vh+phsl9chCeV/ymab+b8nX0quIMZ62MWMGJbpSztsCFhdgxcUd7AVh9oHXWpbeyOIa9I/cDLa1xXGtTK/hbRnEbuoOaq0jOqTENgl64l5xOsLOx338aG9sjRYDk2rFGUubw3JMjlbVvW73N4GEnR1ulybLms+wmGAXP/oHdkt0N7onC25EHlaCWa/UvOxmnfYyLJem1fJEmZQoraFn4Kn9/PZ+VBjCETlNB5czjuGff6ApFch5JUjHSuT3VieplFoTC5xGJD1Cprik1oZyrORM/X1pq1GBvEgARgmY9QnQC97H+0KptlJzdQYkxAT4wG7ceFzk1hm5FPv6DA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kunbus.com; dmarc=pass action=none header.from=kunbus.com;
- dkim=pass header.d=kunbus.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kunbus.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lXDv0RffGdWMYbbKEiHp0cR4svtT9Ts1IGNDgkKP2io=;
- b=z3Sk2+2WNtf0k9g8cHELac/UkhgeREkTHrAD+C+kSaZG9i6XJychpaXy6XUkpLYYY7kvHI2pGPne+Xq4qjFPHWR8RwMjUjXsI/y4gneJxasSsBbiNfcZCdBksDPoA6swFF++EiN2CUTBd0n4WYWsl7Varb0pg7m9kGW4vwJYz9o=
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kunbus.com;
-Received: from AM0P193MB0738.EURP193.PROD.OUTLOOK.COM (2603:10a6:20b:160::8)
- by AM0P193MB0497.EURP193.PROD.OUTLOOK.COM (2603:10a6:20b:16e::15) with
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN3P287MB1171.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1a1::5)
+ by PN2P287MB0824.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:136::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Tue, 22 Oct
- 2024 08:02:08 +0000
-Received: from AM0P193MB0738.EURP193.PROD.OUTLOOK.COM
- ([fe80::2398:d74:da85:f90]) by AM0P193MB0738.EURP193.PROD.OUTLOOK.COM
- ([fe80::2398:d74:da85:f90%3]) with mapi id 15.20.8093.014; Tue, 22 Oct 2024
- 08:02:08 +0000
-From: Philipp Rosenberger <p.rosenberger@kunbus.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.23; Tue, 22 Oct
+ 2024 08:07:53 +0000
+Received: from PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
+ ([fe80::12a8:c951:3e4b:5a8a]) by PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
+ ([fe80::12a8:c951:3e4b:5a8a%4]) with mapi id 15.20.8069.027; Tue, 22 Oct 2024
+ 08:07:53 +0000
+From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+To: shawnguo@kernel.org
+Cc: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-rtc@vger.kernel.org,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Tim Harvey <tharvey@gateworks.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Lino Sanfilippo <l.sanfilippo@kunbus.com>,
-	Philipp Rosenberger <p.rosenberger@kunbus.com>
-Subject: [PATCH 2/2] rtc: pcf2127: make battery switch-over configurable
-Date: Tue, 22 Oct 2024 10:01:21 +0200
-Message-Id: <20241022080121.1594744-3-p.rosenberger@kunbus.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241022080121.1594744-1-p.rosenberger@kunbus.com>
-References: <20241022080121.1594744-1-p.rosenberger@kunbus.com>
-Content-Transfer-Encoding: quoted-printable
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/2] Add support Boundary Device Nitrogen8MP Universal SMARC Carrier Board 
+Date: Tue, 22 Oct 2024 13:36:12 +0530
+Message-ID: <20241022080645.39536-1-bhavin.sharma@siliconsignals.io>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: FR4P281CA0063.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ce::10) To AM0P193MB0738.EURP193.PROD.OUTLOOK.COM
- (2603:10a6:20b:160::8)
+X-ClientProxiedBy: PN3PR01CA0192.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:be::16) To PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:1a1::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,202 +88,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0P193MB0738:EE_|AM0P193MB0497:EE_
-X-MS-Office365-Filtering-Correlation-Id: 73caae4b-2e2a-423c-144a-08dcf26fd399
+X-MS-TrafficTypeDiagnostic: PN3P287MB1171:EE_|PN2P287MB0824:EE_
+X-MS-Office365-Filtering-Correlation-Id: d1da40bb-528f-4e21-88aa-08dcf270a0d0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|38350700014;
+	BCL:0;ARA:13230040|52116014|376014|7416014|366016|1800799024|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?QXaDShfisAKJfL4Q98gVrNc9T8gmeRHG6kYVzdzyNfQt/pPqb04wd5LDZy9K?=
- =?us-ascii?Q?4HzFxpkSupUc8hKwri0OeIbYMechP0gMt8QAHOeuZGIGEPbXDUzt6pr2jlkW?=
- =?us-ascii?Q?z66haB5bTWyfnFkGS+vja6u/o3s9qq+LuhTNbesJtu9kP/NWEbk93bssfbks?=
- =?us-ascii?Q?YYYZ+ZnxXMl5nizXfD47TQ/MDVL+792ro5GrPt+o+c1lkohAaDnAe44gp94y?=
- =?us-ascii?Q?iENX45yszo0AclHEec8E8iBoMGZkB4phXiva2rrCQNdE2tdcc7uLd/JA5ftu?=
- =?us-ascii?Q?EDa//dHpGoPfBd+lAKDWCX6O9O4abGDBtsWGiFzC6tbxNcvoehi/Efh2KI8J?=
- =?us-ascii?Q?RW2DVE8yhXHSVn/QZNn5Gs4NEyucuB4kt557TT+izmqyiBFLrfJTahth21cH?=
- =?us-ascii?Q?BRQIYnOGTtulZ/4saFpNDesvjWXXY00PzvMnoNugmX1kLZbiT9iy4g0H3YjL?=
- =?us-ascii?Q?QCdavCr5gWjxelTtIR/w2qHiysfqrGpnrSpBA8bEqB6UQ4l4ymM2TVi1Vb5o?=
- =?us-ascii?Q?AiALqlSGphXk8WSJWeI1u4i/X66qpUIAB8wB4tbzhvGm/UAZSYOYHoAZIISE?=
- =?us-ascii?Q?ZPm5+ZHEFi7ClBBvK6tVKq5IW8MfmZ3gEtkBOlQulX3Gu5PVyjAQRLnI3+mc?=
- =?us-ascii?Q?BHQfPEx7NEKfbbWk7qPLXf37sILqty+c2Iopvfv7ZrKgALkIkOuwN6y6QH8X?=
- =?us-ascii?Q?4HH8vOMNpx7FNQ1rPd+PAWx3KWprJVI1mNztTCRIQK9p52A9Ktklg1vfRq4w?=
- =?us-ascii?Q?FRhKpf+uag4LiGMPFKCKuJ2Vh2+CTNBdPgN2YWU7TKf3rDDJqqU04rNaanqW?=
- =?us-ascii?Q?Uu6EGQk5kKCMBok/Gcq0XnhXUI71ahcFjem1wh37U3jeK648XFsahTH4uz26?=
- =?us-ascii?Q?SJKlOSW5MBUqwlpa0IrB6NGDQgQkAwlPPRhsYQHFIjgnyER2UBiH9liuLhO2?=
- =?us-ascii?Q?te+gZoFTra8Sp+1GcDiifr7kK6cxaXQRqYN2MUysDYO6wHAoS7rBbnW494kl?=
- =?us-ascii?Q?yY+8xgKJP1RlOh27K7WX9JuR6IWG++j1O6ffIWpsacS+DX0qPBImx55xCfJ0?=
- =?us-ascii?Q?iVMLIgaAPItIo+Qh/GZYpF7w4LXGVNJLmMOgHilVPDtG8wI4ElxPh/XRfC14?=
- =?us-ascii?Q?Cy0r5QoZu1YJOgoB8dohWAmT4FS+pvgzXjMhh5E0VYHoVKEZNiOR3vBtMWWY?=
- =?us-ascii?Q?YJCu0DGlqupIGTiLCRhmWJ3Jr68lzdfqKKIZdA5KQNcyCxexDNdDXAFUM1pN?=
- =?us-ascii?Q?fml5SZSBlrju+CyMsKCP7XrS4rt2F49f9J3RQVD3RmIQnItEr5lckZux/Sw4?=
- =?us-ascii?Q?ILlxBi9jvw+vvTST4u6wdMSOSr33lEQMZvGSeFPFnPlSSmJXQp9ZCMmK4NxT?=
- =?us-ascii?Q?kdxgj1I=3D?=
+	=?us-ascii?Q?6zuGpol9StMX0Db/FIHfG+v3Vyhpk0jXMBC7awkNvJMZneNBIuIYMmFifMCn?=
+ =?us-ascii?Q?k+/KKjK30rKAXSEYTa0Fc6SkWzy1OAxETJtZX9iX9ngVTqm5HESRZBJ/I5xK?=
+ =?us-ascii?Q?KIpO8KA4P9QEIpoQoZnFt4hKsEN6dDj/NqMXB+Shli4fXFOuUuYTvO6LJk+l?=
+ =?us-ascii?Q?PNRpa67pjbeEprc6gjgoLLIj6kPlD5KdGSC/UKP/zy67ztnpvJ6mCk79rr39?=
+ =?us-ascii?Q?Lftg4r3jvSf4h0pqdvusg9aD0jNHJId4Si418VxJH/g/ziYwrhWbukqLjuuG?=
+ =?us-ascii?Q?K3m+JCDOA45kHYKXsAu9XZIYTlW8yygCe5QepWjYPjzDJtXIw/L65L9yw08t?=
+ =?us-ascii?Q?ZZc00OxlqY9wxLXzXISFgCCFPJMTubM4PSFVaWi1y3u2N/RBVdkzG1oWmiyV?=
+ =?us-ascii?Q?8DHJ2l9rljdlSh9CYab8SfM2EJLhOYE73rHZwD9c0fIg7cWp8cNytCCwmEUy?=
+ =?us-ascii?Q?3Ai69g2CFw9Vc6qv7GWcU566HIDYFKqSBBBat84fHMKITwOtSwK4M5wfB5Ba?=
+ =?us-ascii?Q?7krGDCTEK2chkyPCpO8p7KAt1HMSEBcHNo8VKeODrH3vc4Ra72Ykcbyd8WRC?=
+ =?us-ascii?Q?tD32qFth3Za54iVu+5HYNiQKT4jkkqukEFo/wpSgIZTjxzPeI32GfZGO02oV?=
+ =?us-ascii?Q?3DCCNdb9lwS+WPY2PadS54JhDl0tYYSJZJ7Ag3jkBckUsPyat7uciyQGcRk9?=
+ =?us-ascii?Q?8j2DqpAhqmPX7xMD7/nUOnalZDSRXE8N1rhrWQoQ/luBgwAwX10ZrajIA9o/?=
+ =?us-ascii?Q?yBYyct4EYVEbC1diRtArjiNTLhgVfLMQlyne1vu2G8HYI95mYHKzmEDoFrqt?=
+ =?us-ascii?Q?qaH8mUgMn45Jojy1a9SSwRxIo00N/3e4HgzD4oPFRmd737sZT33kTobGxgO5?=
+ =?us-ascii?Q?D3ww4hgOli/HDo3TaKknC5yuSjiQKKt0fVIxEbbC3WxV3PHGBEB8REODf/N3?=
+ =?us-ascii?Q?YerM3wp4A46CASZG4M/dJri7qah/JycCrHqjvT3WM/TyeMGREMKzN6z2hZvs?=
+ =?us-ascii?Q?ca+ZtOF1stywrEq3ji+715agMX8v89owiua0X45DMDWOq3GW7Nfwak2uhizG?=
+ =?us-ascii?Q?S2ptxjxzNeyE2X7ziUEDETd36zCqlBZ+6JnuHlF9dUTT9RY2qkJ/oj/xKOVc?=
+ =?us-ascii?Q?aCA4nDZbf/Kyz9Ei2HXtMdpNb2geClLcAXel2IF59uT6TkuicFi0WP5MUwdI?=
+ =?us-ascii?Q?IphNDkBEejCAnThF09qAtLPI+yxIHJ96ccbt96h4m4uOx2pt3BAaHXPWD7H+?=
+ =?us-ascii?Q?leVfvfOi0mIjq9iOeDK2h4bXp0b6nGvS37ZbUVsMKxQ+BnM0vuHtcrBQr7B1?=
+ =?us-ascii?Q?tZbUG0FAiJofO7iYN+I2wgbzOYdRfBHqxuH/0BcQw9kHm12w3ceIQ5MtF92E?=
+ =?us-ascii?Q?n2qiazc=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0P193MB0738.EURP193.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(38350700014);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB1171.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?9nBRHLpDeHSDnWh7anrTfZKlMXrhUwoiTqz32YoYNjAJNeifin2cuF+5oAuP?=
- =?us-ascii?Q?+b8eeopTy96dNAudLnTVVm1h+uq191QWSUpk5vJSEK37I7qsazpix9HXhHU7?=
- =?us-ascii?Q?wbV3sbQ1cGruIVMgO+J2GJ99svU81tFKTKvHwLFt0rbhb/hhXlwOdXgi7q78?=
- =?us-ascii?Q?289iMvMKxpBcUgZwvalI9naJ0k8PrlF/eRd2Pa1molbW54oFNLG1R5D1CDFB?=
- =?us-ascii?Q?q/6LZ/vWb277wtf9CUSVKN4fSEQvfzdV04OuolgMqseGMPGrcleiocP1BWM2?=
- =?us-ascii?Q?8OLHcOVpkB2HzBRmENOlFxYAZILoeocVmJdjzUNx41NurDFjfv9EjGK3ZxeQ?=
- =?us-ascii?Q?B/VYY/9CqNgsg+9zP7vEqnm8Vyk2s+ldmuhUNWH8Ad8S+4Ayj/yYJmAOXqxx?=
- =?us-ascii?Q?kJgUduWbBjLj4/NRQCX99kca66w0IOQzt08d0SjGGHt2CQQKL+xXl98ePh1x?=
- =?us-ascii?Q?WbARAiD34JT+rq4tg8hkVuvnSeIOz+8RDPKbGCHea48qeZLcDa0Vn+EVDol3?=
- =?us-ascii?Q?4EFfLdA0Y3VgfnDuFiWn1FQf8HzMMzh8RRwdABvjkVuXDuu/6idasbFI3u5N?=
- =?us-ascii?Q?By3ZHg4Nf2qGnQ0zTGZQzTdOx2uzwukowHruSEPyw1sRTzi8pwb4Rs1PC6DO?=
- =?us-ascii?Q?o3mrBQb+NaDFZkyXLV8V5iTJuiD94xTEwqbeQgJUUf8DJbIRxmWJ3UTnz1ew?=
- =?us-ascii?Q?hU58SYZWhLVpXGwFcgW3dqh5cyxj+JzBP90FJY3VEnQDBB2smDbjJi8CKZyh?=
- =?us-ascii?Q?lp697IUK12nWPkYVbS4WjM4F/oPmYyXyzELpvjj7EuDrbXU9BcYX8bK45kmF?=
- =?us-ascii?Q?BvJwKoG1v3HQ8N1Q8fX44Nxg8smoC439gmeucOMV8xPUYJj7V5/IKn4tVWpe?=
- =?us-ascii?Q?xsdEH4yr7htC6REZjz3kD/BPGlJGyvuuQd5RcggQlx+5wOXo5JuwJUnNvBp+?=
- =?us-ascii?Q?SLDRLaL6fbXGTlD9/lSdwOlYYq/dcoXFqwYSlHmwoJqlE8DgED8/4O3ZCgEf?=
- =?us-ascii?Q?U2rS4wzan8mTLatlQRNtRvT0Ab2aDgRuz7aE4JGTDhYzziMpcHhTcMJzTbnQ?=
- =?us-ascii?Q?OaZiK2nTRdVi3BJU1dkMUAw2qt5O9F28JehnatQDATkXZHnJzhqvpUpF1uWu?=
- =?us-ascii?Q?LxynVXhTcCTXWOOq/4/AtJBXdLvzxnUGv1KmqQ3YcqDjLrV3OzX7wEXja1y4?=
- =?us-ascii?Q?OQvK76mRJPY4p7RDWcIQElSBHY8av9eGjOmzSN6jzV1IwUTSmjXwR68dhMMu?=
- =?us-ascii?Q?+eChk8RNkr2luPv4hv+2jEtMrvvXw0DhfQ41UMjJRAr/UBZg01cEPoxDl7cD?=
- =?us-ascii?Q?B+sJMHsxOncuM0Z20RZJFvmT0VJJdoMuPqiMzD/muf29ojYlbe2Pz2mC3TLh?=
- =?us-ascii?Q?zm9sPs2aMD5zAACfKFYou/0sic79sfGowyeArhAOGGhxqvy8nhot/rwY2OaN?=
- =?us-ascii?Q?sTg3ixVFqhZZHTIawU7ySloWAxoxV+ITaxhubpJyzsaRVx1h/jfXasvXL1/k?=
- =?us-ascii?Q?NWms+T8WY8UpKxG1Q+XHJY6UeD9pAItL6cUL+Ux8hvo2d3CarYfybCJzdCmd?=
- =?us-ascii?Q?BGqz+TwnNuSbpmUR91jSpR0uFMkx/vrqeZ3kXo80L/LACPYp5VcTDZpZm5Dg?=
- =?us-ascii?Q?dw=3D=3D?=
-X-OriginatorOrg: kunbus.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73caae4b-2e2a-423c-144a-08dcf26fd399
-X-MS-Exchange-CrossTenant-AuthSource: AM0P193MB0738.EURP193.PROD.OUTLOOK.COM
+	=?us-ascii?Q?+L6pq7QXlXlUQjDrHpJ+JlQGBkR7ycQQszGDlVWSmo6btiJxDNFDUSD3jfhY?=
+ =?us-ascii?Q?4dBwtiFpxNjTzDVmgACL26vfQolVQudMiQrlZKT/FG2mDCyOiVJUG0/gu3XX?=
+ =?us-ascii?Q?0hzKgu6xVzELSqPbgGczZXAadjloFsoV5xvqRI5Hy4YXsj3clMOpqT/5w2XW?=
+ =?us-ascii?Q?gotz0+0TKFiyUe29Rqnb4w4u237lEWSMXMJm+4SLTLToixA8qXhxYNOUPstZ?=
+ =?us-ascii?Q?IVPld+M35xdPlGxycTyKakpQBlJZXtsRo6Qk2yesK3ffQFaZGSFjGzQoUcj5?=
+ =?us-ascii?Q?F7EZxXClB+PhalBGPWM/7dh7vyG94f0djGYFS8lwnc+cuFlL7L+sUIHD3uFh?=
+ =?us-ascii?Q?5kyNCs/SbAZGtYt5I2JN3+rgtYFse85peGa9t9O1kRccamamXboWeGtJDTbl?=
+ =?us-ascii?Q?QtKAzv8yKgQ+yyr6iIKkNmdTEQrTkwGvJigLY3PcB54s/y6p97IaqeKyPyAL?=
+ =?us-ascii?Q?f6MetlWYSQVpFlp3pznHGxDGyBWYv322xE7NAx4OmZR3zpNjcS63qyxnAl26?=
+ =?us-ascii?Q?i1yNwvqUwEKB3BK6p70gDzVR8H/GXwTk6XQe8GtsivN5satUo81AW2xa75JQ?=
+ =?us-ascii?Q?gCydTrI9tWWAEmbHxo1kTDvBWvBjyGpxOcIvEI1h5OMS+SikvijRoJHkDUxo?=
+ =?us-ascii?Q?ekSmNCF8i7F6t/HAcJw7tc9JL4RzwB/z2uE2eaIAd8L0tYrdrBasTDhGOclq?=
+ =?us-ascii?Q?/QeXX27X29QEiJ/FgMVokKWhhTAybnma3oFGKTz60asErC1heasYPhXTr1yd?=
+ =?us-ascii?Q?9O6AeLEkLrS4OPYIE9LiCGHM6vFzq8IkOklxroQozA3DGY46jbr6je0hycxo?=
+ =?us-ascii?Q?2wVwTDsSSNurzb47WQ/6ePxtaqTnsJCszztqBZhpV2gWcZJH4605kYM7icsk?=
+ =?us-ascii?Q?LrKg6euWBWV4CF4GXTjk8pmzAgwAouV0DmldZ8xS4OK3TO6wkXRTXRasWxLL?=
+ =?us-ascii?Q?lE+T5cc6sYzt4fifSyqQQBP8ne0xl0HSfivjgizcJQX+/ogR8DDa67jwzENP?=
+ =?us-ascii?Q?xVNITJPGx/GuFJgabanRZ1h3vEvYLXcds6Cl7VtpC27vI4k37SNyZoahbhaH?=
+ =?us-ascii?Q?uhtgK77j2JOia31zgNUdM3RNdNlLvBvet2nozZi3ZFZL3916OpixfXNOLXoU?=
+ =?us-ascii?Q?1c33k3mX/Hgg9HfQf62MG187KHsCHfGB0gBg4rpghWrGEaJd06W6+QxiRNro?=
+ =?us-ascii?Q?S81XdfWbqIrQONSg8Vy1AtDIujWXCng5xuM/37oiS001Tzq5sZs8tzeFfBGc?=
+ =?us-ascii?Q?h/Jkk+Vo+FG3XtXSPE4IVZTEcveuioAnErV5hMcPO02QSycGEzmzAJaGxCLA?=
+ =?us-ascii?Q?IorvXEbs1tYlMNWMh0l3r7ZE1aAVjh0DFmDdzDK/1Og0qD+xcUc76+F0FhMV?=
+ =?us-ascii?Q?e2bRUT0qpvzkKFEnzVgHQs4RDAfw+Hf/9anCN1K99BaEzDwhzdPt9E9Pk8ER?=
+ =?us-ascii?Q?bd3mgCIDI/70tOInhQ4idtUQfkSqC+FJzMlBeItnQxfF+ZMOhl18Xj2wUad1?=
+ =?us-ascii?Q?8Y98X7xEagxo6AJOLm7CK6+DK2q5yUnfNKukVp2t5206tuIHJEeNvzY6bIS7?=
+ =?us-ascii?Q?tHQRG3TRAW6fri9mVBUw1b6gcPaYjvPQRZIJhmrq/jDn8dlW2DioHDrRmENZ?=
+ =?us-ascii?Q?1I02w0UACTD9srozcY4UPPc=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1da40bb-528f-4e21-88aa-08dcf270a0d0
+X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2024 08:02:08.6090
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2024 08:07:52.8932
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: aaa4d814-e659-4b0a-9698-1c671f11520b
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GCTY5Po+NskI2ZGQKSPo0REBKMsylOnKSDKTQpckaX5HYRbvBZ22gxNZmztouWBbhXDakpA2VBZuGAfamayccNDvKRmj2J7PG4OYLsv/shQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0P193MB0497
+X-MS-Exchange-CrossTenant-UserPrincipalName: 04Qi5hTW2mjRinmjBx2xYcOJxkF2Fb9fXxocK7pP6hQWpx8gw7osao8Q40DqkJ4RQc0Y6UaHkf1W1ndKbsrMqfAOtj5Yazg5PvbE4h+KxWA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0824
 
-The battery switch-over function of the PCF2127, PCA2129 and PCF2129
-have the opposite default behavior as the PCF2131. If the PCF2131 is
-used as replacement for one of the others, the battery switch-over will
-be disabled.
+Add initial support for Nitrogen8MP Universal SMARC Carrier Board with
+Nitrogen8MP SMARC System on Module.
 
-Add nxp,battery-switch-over as an optional devicetree property to configure
-the battery switch-over, battery low detection and extra power fail
-detection functions.
 
-The property reflects the value of the PWRMNG bits of the Control_3
-register.
+Change in V2:
 
-Signed-off-by: Philipp Rosenberger <p.rosenberger@kunbus.com>
----
- drivers/rtc/rtc-pcf2127.c | 61 +++++++++++++++++++++++++++++----------
- 1 file changed, 46 insertions(+), 15 deletions(-)
+in patch 1/2:
+	- Drop Unneeded line 
+	- Correct the indentation
 
-diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-index 9c04c4e1a49c..812764b65b34 100644
---- a/drivers/rtc/rtc-pcf2127.c
-+++ b/drivers/rtc/rtc-pcf2127.c
-@@ -48,6 +48,7 @@
- #define PCF2127_BIT_CTRL3_BLF                  BIT(2)
- #define PCF2127_BIT_CTRL3_BF                   BIT(3)
- #define PCF2127_BIT_CTRL3_BTSE                 BIT(4)
-+#define PCF2127_BIT_CTRL3_PWRMNG_MASK          (BIT(5) | BIT(6) | BIT(7))
- /* Time and date registers */
- #define PCF2127_REG_TIME_BASE          0x03
- #define PCF2127_BIT_SC_OSF                     BIT(7)
-@@ -529,6 +530,49 @@ static int pcf2127_watchdog_init(struct device *dev, s=
-truct pcf2127 *pcf2127)
-        return devm_watchdog_register_device(dev, &pcf2127->wdd);
- }
+in patch 2/2:
+	- Add Acked-by tag
 
-+static int pcf2127_battery_init(struct device *dev, struct pcf2127 *pcf212=
-7)
-+{
-+       u8 val =3D 0xff;
-+       int ret;
-+
-+       /*
-+        * Disable battery low/switch-over timestamp and interrupts.
-+        * Clear battery interrupt flags which can block new trigger events=
-.
-+        * Note: This is the default chip behaviour but added to ensure
-+        * correct tamper timestamp and interrupt function.
-+        */
-+       ret =3D regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL3,
-+                                PCF2127_BIT_CTRL3_BTSE |
-+                                PCF2127_BIT_CTRL3_BIE |
-+                                PCF2127_BIT_CTRL3_BLIE, 0);
-+       if (ret) {
-+               dev_err(dev, "%s: interrupt config (ctrl3) failed\n",
-+                       __func__);
-+               return ret;
-+       }
-+
-+       ret =3D device_property_read_u8(dev, "nxp,battery-switch-over", &va=
-l);
-+       if (ret < 0)
-+               return 0;
-+
-+       if (val > 7) {
-+               dev_warn(dev,
-+                        "%s: ignoring invalid value for nxp,battery-switch=
--over: %u\n",
-+                        __func__, val);
-+               return 0;
-+       };
-+       ret =3D regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL3,
-+                                PCF2127_BIT_CTRL3_PWRMNG_MASK, val << 5);
-+       if (ret) {
-+               dev_err(dev,
-+                       "%s: battery switch-over config (ctrl3) failed\n",
-+                       __func__);
-+               return ret;
-+       }
-+
-+       return 0;
-+}
-+
- /* Alarm */
- static int pcf2127_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *a=
-lrm)
- {
-@@ -1224,22 +1268,9 @@ static int pcf2127_probe(struct device *dev, struct =
-regmap *regmap,
-        }
+Bhavin Sharma (2):
+  dt-bindings: arm: fsl: Add Boundary Device Nitrogen8MP Universal SMARC
+    Carrier Board
+  arm64: dts: imx8mp: Add Boundary Device Nitrogen8MP Universal SMARC
+    Carrier Board
 
-        pcf2127_watchdog_init(dev, pcf2127);
--
--       /*
--        * Disable battery low/switch-over timestamp and interrupts.
--        * Clear battery interrupt flags which can block new trigger events=
-.
--        * Note: This is the default chip behaviour but added to ensure
--        * correct tamper timestamp and interrupt function.
--        */
--       ret =3D regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL3,
--                                PCF2127_BIT_CTRL3_BTSE |
--                                PCF2127_BIT_CTRL3_BIE |
--                                PCF2127_BIT_CTRL3_BLIE, 0);
--       if (ret) {
--               dev_err(dev, "%s: interrupt config (ctrl3) failed\n",
--                       __func__);
-+       ret =3D pcf2127_battery_init(dev, pcf2127);
-+       if (ret < 0)
-                return ret;
--       }
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../freescale/imx8mp-nitrogen-smarc-som.dtsi  | 348 ++++++++++++++++++
+ .../imx8mp-nitrogen-smarc-universal-board.dts |  17 +
+ 3 files changed, 371 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-nitrogen-smarc-som.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-nitrogen-smarc-universal-board.dts
 
-        /*
-         * Enable timestamp functions 1 to 4.
---
-2.39.5
+-- 
+2.43.0
 
----------------------------------------------------------------------------=
-------
-sps
-Smart Production Solutions
-Nuremberg, 12 - 14 November 2024
-Visit us: Hall 5, Booth 228
----------------------------------------------------------------------------=
-------
 
