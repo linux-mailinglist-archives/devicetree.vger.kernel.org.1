@@ -1,102 +1,101 @@
-Return-Path: <devicetree+bounces-114332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AB429AB4BC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:08:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5119C9AB4D0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:16:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 368721F2438B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:08:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08A6E285604
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E784E1BD008;
-	Tue, 22 Oct 2024 17:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66190199937;
+	Tue, 22 Oct 2024 17:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="m5hyNAMj"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="bsfdJYXd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11DE81B654C
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 097CD4438B;
+	Tue, 22 Oct 2024 17:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729616887; cv=none; b=eKnSNYLCeYjFn0qeKmnZAxHGW9+zgyS+EkDrRMrYK1YXpEVVd0YjrHLjsWeTj/kb/rlAqG0/JvGO6rRlLYH4wJZddcJyxaS/vgKWd4p8V4PMtZCyYxtYx3WkID2VPxm4a111/5qZl+KTcMYZjjgs8JaVqGYTtNXsYPog0f9Bj7w=
+	t=1729617389; cv=none; b=LuFeCmnoV3Jjx3TcdlvMr0Fa4818piwU5pPS48QwD69HW71H/gh5+Cog0ujGG+oKQpAsVNVqDMwAk91ZuGuzvWMhwT0N/I8dSrw6Wwfc7KwndQZsvT1Qch2s7jSK0qkARELYo1sDj3h0A1u4A3hBz3CPTwiqP3cMWL3y0s+b4Io=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729616887; c=relaxed/simple;
-	bh=uSy5WCLE3OegrQ3JlMATraKL0cSEF+fEASJ7MnB23gY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vAm+OUd6hvxnj9A4XkCTI1OmyGrcyCyflI3uqlPPjINv6sHggeu0m1rAVzkNG3SihIrY69sb1kela7v1CsZvd9JonB9IPw4MClRYGqsvMF1e0I81ggpBZ3UfhL3nc5KeBwNVanaWRycR9iLeSta62+Je2f21i1DXFlOjiEH4XLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=m5hyNAMj; arc=none smtp.client-ip=207.246.76.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1729616873;
- bh=ntkSVzAxzy7Rcn6JfP4Oqh1kowFYoM8B0tHurfPeglY=;
- b=m5hyNAMjwa70CvaWQEotpSxEueKum3p5Yt1QpLlXCEkH8BKJ5ihKAOIZ1uRZyHYMpSvgQFaAp
- HpMcspcmFfbNp+ks94WdXvoIY3UXbrGfz+O7UCmGvwBlANplK+kLQJsLfvleRqe6rbCEhogRXOP
- 5UPCse+RuMyxbGT2yxwaxertiqIjK0pMRkHqzMROqQr97yemBYiw1iuRP4F4iAaEfcCP4dfEkNG
- 9u1QXk+AdZkXqHJXx7V/JQwiLCl2TZ2PkgWZxCLSR0gYQjMWCRUZc8uI83kqBNzphAdWOZ/5hzU
- MBEpjYCstTurkah+03snITDIonr0zWJEcFjFmxoq4GQw==
-Message-ID: <8684a5a3-48d0-4acf-9ed7-a035fca15119@kwiboo.se>
-Date: Tue, 22 Oct 2024 19:07:43 +0200
+	s=arc-20240116; t=1729617389; c=relaxed/simple;
+	bh=lMxhVUL8QcioR8QStO8yoHWsojdAWhc6MwdJWkMWZU4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n7/pdA6cHZkRqlFuTEe0tbbyDhu9GehHmysvmRIsdLO8bm4KWA1vaQfDd/77uUxM8xcn6AWxTUI3++sKWTT9n01XEVUKGKpmZaBgZg+OmQkJ9kIZ6TDyLoYwHLorvXzXMdE58rAKys8TdRI3PP+IURMVvOlskZ7JEUb8dAWgA7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=bsfdJYXd; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 81B681F9B6;
+	Tue, 22 Oct 2024 19:16:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1729617385;
+	bh=kpepVEbWAcNZtN//yj3scYliR7FFdifKdw/IM/nj/II=; h=From:To:Subject;
+	b=bsfdJYXdq8wQz9TZMQtiTjo5QRA8PeAvsyYHofTwe9c/FHRWiuk2odYGUW/ydg6Xl
+	 GhEsHMM2b5zt+jiox3RX8URmBPJQC9IWh77Sgz/HRjdWvtBsXKZRdWog4rqu4JzZrM
+	 JbtM6BcucOXt8sC5Dcmmgg4BQxAh4hLF7mU8gYuHJbQXHVer0YWltklPjEPFzkgTGH
+	 AcM3bw7VZxhmeZ7lXF41ZeSJnxQL6rlBrkMC9ogrvTVs7ma20jN0j+eZWHTKfjqdLO
+	 IVujgfz/Zst1G5Fw96IhZV9nwCR0uBb19fJctxH/0EI8uphP/+T+ZWcFcxovo6S/g5
+	 gK2opMKSz1BEw==
+Date: Tue, 22 Oct 2024 19:16:20 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: shawnguo2@yeah.net, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, robh@kernel.org,
+	s.hauer@pengutronix.de, shawnguo@kernel.org
+Subject: Re: [PATCH v2 3/6] arm64: dts: imx8qxp-mek: enable jpeg encode and
+ decode
+Message-ID: <20241022171620.GA69574@francesco-nb>
+References: <20241021163437.1007507-1-Frank.Li@nxp.com>
+ <20241021163437.1007507-3-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add FriendlyARM NanoPi
- R3S
-To: Heiko Stuebner <heiko@sntech.de>, Tianling Shen <cnsztl@gmail.com>
-Cc: Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh@kernel.org>,
- Andy Yan <andyshrk@163.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Chris Morgan <macromorgan@hotmail.com>, Conor Dooley <conor+dt@kernel.org>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20241020173946.225960-1-cnsztl@gmail.com>
- <172960632903.1476617.9941592027677995572.b4-ty@sntech.de>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <172960632903.1476617.9941592027677995572.b4-ty@sntech.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 207.246.76.47
-X-ForwardEmail-ID: 6717dbe4289888ca1b5a2b67
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241021163437.1007507-3-Frank.Li@nxp.com>
 
-Hi Heiko,
-
-On 2024-10-22 16:12, Heiko Stuebner wrote:
-> On Mon, 21 Oct 2024 01:39:45 +0800, Tianling Shen wrote:
->> Add devicetree binding for FriendlyARM NanoPi R3S.
->>
->>
+On Mon, Oct 21, 2024 at 12:34:34PM -0400, Frank Li wrote:
+> Enable jpeg encode and decode.
 > 
-> Applied, thanks!
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> change from v1 to v2
+> - fix typo deconde
+> ---
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> [1/2] dt-bindings: arm: rockchip: Add FriendlyARM NanoPi R3S
->       commit: 1e94bfea52bee081c42ab922c19156dd3d2bade8
-> [2/2] arm64: dts: rockchip: Add FriendlyARM NanoPi R3S board
->       commit: 50decd493c8394c52d04561fe4ede34df27a46ba
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> index da8ceffdc7212..0d14b0def19d4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> @@ -337,6 +337,14 @@ &cm40_intmux {
+>  	status = "okay";
+>  };
+>  
+> +&jpegdec {
+> +	status = "okay";
+> +};
+> +
+> +&jpegenc {
+> +	status = "okay";
+> +};
+> +
 
-I just sent out a review on this patch [1], please leave more then a day
-or two to finish up a review ;-)
+Just wondering, what's the reason to not enable those in the SOC dtsi?
 
-[1] https://lore.kernel.org/r/13bb8657-f048-4f79-a2c1-3680445f2bef@kwiboo.se/
-
-Regards,
-Jonas
-
-> 
-> Best regards,
+Francesco
 
 
