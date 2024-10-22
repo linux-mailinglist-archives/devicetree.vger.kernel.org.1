@@ -1,143 +1,131 @@
-Return-Path: <devicetree+bounces-113935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52AF49A95FC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 04:07:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39E219A94ED
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 02:31:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 024681F22B1E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 02:07:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0BCA282230
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 00:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 168E213957E;
-	Tue, 22 Oct 2024 02:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3364642D;
+	Tue, 22 Oct 2024 00:24:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="TWPevTxV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jnCU435l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452491386C9;
-	Tue, 22 Oct 2024 02:07:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D39A81E;
+	Tue, 22 Oct 2024 00:24:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729562851; cv=none; b=AJ0AK8wiVod9KsnDltSffXUrsbOQv0V4C3LcAYzbirZ2JKTebfvNLo1loMmNCGITiWiIvnjrTviu5vJRQB0zCQggJOY+fZzpUrk2tHQu0BbanPpsCJMNuvnESUuyxIny4aqUwgimet+/8A8oajDbBtUWcB5/zvDeMV/AgAOdPWc=
+	t=1729556688; cv=none; b=EgOdu2VrWZtx4SHa1M99UqYNeFZsKsu3zKeTz7ewIaAlxHYvNPBoV+dNSWccIXM0vKy7rcmHCACrbhUbXg+SnZLxeXyonwnXWaCHZ6R79qwGF3nZTrxlEzlp5rn5JmcWEfGM+YOnSYWdxsb8HquPV/DwVHAdATiajkctJ++ZXaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729562851; c=relaxed/simple;
-	bh=kNmfwuWCwSI1Lnv9MoOIz4EIQ1MQSka28xLaVCbb+7k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d1ydwtZXHTJT7JJ6wHWY7TfarcGqsL6+0cXZw5pt5aAGUVCCG+moO2VqZNMWCsJtG2BiK84cV/BEYIfOQUO/f+/F13LF9UpQ3v6RXULqpenUudJjiKUU+JJV8eSDBZLiQEEn15P1evx14xB0oSh8kCnPZc6gN6vtlpfIjjLn/Qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=TWPevTxV; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 8356788F28;
-	Tue, 22 Oct 2024 04:07:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729562847;
-	bh=+0tl7Q7H4ndrPdzB3wPYNaGB1T/hwqmxhyO0X7DUPvo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TWPevTxVzukyaieWel9VPjRSDfEzcPyFFhP3uam2pAk8fbx7YUrIyqqR+hWCdBUki
-	 8Q07NXVUJR2AIVF7DbnE3uixUgaHQbUw6lQAKhnbl1UQAS/U7sOBY/dcxZlkQHu/0W
-	 /m+TzMKX9vxdgr7lAvGDUPTXTiHTiFF1APMsKpxci+ZDlfiqDl+NSMocjsGqSv7nd8
-	 I1t2UKDNE84LUbqcpZ68fkM+9FUZXkEU6D1TXJS2s292xIbTE+OFLaBXGDA0MQiv1+
-	 8U0AHUvXHcWH0Ca2/Nl4flQ4/4zpPpPcDDetNPUpmd7aqBnE3KcsGhD+TCRjiAj63C
-	 2JA7xLYybJpsA==
-Message-ID: <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de>
-Date: Mon, 21 Oct 2024 23:31:50 +0200
+	s=arc-20240116; t=1729556688; c=relaxed/simple;
+	bh=qn3tvKKrV+MkKEEtP/3mSVOXcf1hvH6DKKf2Olq8c1k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AWPn4pa5tV9vyOB8BknSJ0ItsUHPwsIgMT69OQ6SHBY2n7pQG2ayy1sKKEerJPahYxSCCtfNCksLe5Z1hGuuXbpoPH3dhefXAT3hBvJY02IQ4g4NetTB4sB7nUa2ZQK6UH46EM2oHZVCtQDRM7lx3aL4AQY40woaqagmdSPDePA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jnCU435l; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2dc61bc41so3396381a91.1;
+        Mon, 21 Oct 2024 17:24:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729556686; x=1730161486; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gpkTY6F2uSC04DqIi28SIb8nyKa9ghdEbA6ivtVMgTg=;
+        b=jnCU435lSqZ0TLULb5/6bA/1BQDJ4Nk6et64W1ETKuFzbddXVOCe2Nsq89dV4bBpUq
+         mHMphqqb4p3yzn4WLLCpA5LDoScuiVmZYXH4Og4xGWZjgzJKsC17qUQKFZHfcb6cyy+k
+         hvPVRNhzkRPz1EHNuCzRQBY6Y3j9s0z3fenRM4rA+wzbh4VzfuytmfEQc+ycEbq8IJiF
+         K+czXiEWdy/ImdM12q5+zKmYhURJsywJuCciKPstTsEj7xUpv9+Fa0a5SDXHQn5fuYdr
+         icgc1X7Gf8aBQvq3bR92DD4wbRBJDJWH0nqGR1LjIiFXStTN3Sh7Vy+qTu4mi1UtZtpJ
+         Q4VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729556686; x=1730161486;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gpkTY6F2uSC04DqIi28SIb8nyKa9ghdEbA6ivtVMgTg=;
+        b=rugC9zq6oEF7bQTI7vLxYxtUSWQJ1XeFPEIMBk/+8VTruvwA/6LUd0sXAorIxHPSaD
+         pgne+5MbCooYbPt3dV1QBGiyknkWIcOYvCIukK0m3oAjxNCmePxusqjDNri3m5xhTtH0
+         7mkqqtVowtHi0GfhpsOcpSXufqS43Lxchm4ozcS82Fzx7zCQHobuUT0F1T88WlvVw72S
+         EJly1i/cCZNqWYRFkxaB3f4frEP7OyAdFRGdAT2rqeTtXOFDjYNbvbRZp5KJS3G7zokv
+         fam3DzYzNCQyVMTi6bF4yDWHompfq3RtF6veh0mQgvh3DMzxZblei/nE4hMxKuqXmkWi
+         ej2A==
+X-Forwarded-Encrypted: i=1; AJvYcCXHEKbz0GLvAivROpHd0/tQP+DURO5zVyELSF4+f6xz1CoJixVCBlthfJujT2hEsY1qT82DRCbFN/9R/Fer@vger.kernel.org, AJvYcCXHxhfwUjx/H2DfrDV021INqeU4oU08H+yeWlQs+2Bjuoe6hNl8J5o1kCC17m8Si8zveC8w75sR4ijEqEwn@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAm54FqKWfBtUBPNkyaUdPUeiyw6B5A5Ofe5P+aeH8TUUQrjA0
+	Bw6N/SnKFpYc+5Ugx3NH62wzpK2Rit3LVqDkcC2MjIzxpoO+eEsozq3DHHqG
+X-Google-Smtp-Source: AGHT+IGUblBWPgHD/8lMJnzINTEdCpZFULIYDgQjz+bUtbwE8Sk2RHAni7w6SRxPq05zY/2T4Ljb7Q==
+X-Received: by 2002:a17:90a:b781:b0:2e2:f044:caaa with SMTP id 98e67ed59e1d1-2e5619f8409mr15213589a91.37.1729556685785;
+        Mon, 21 Oct 2024 17:24:45 -0700 (PDT)
+Received: from ryzen.lan ([2601:644:8200:dab8::a86])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad4ed78dsm4618714a91.40.2024.10.21.17.24.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 17:24:45 -0700 (PDT)
+From: Rosen Penev <rosenp@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM MAILING LIST),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] ARM: dts: qcom: ipq4019: use nvmem-layout
+Date: Mon, 21 Oct 2024 17:24:44 -0700
+Message-ID: <20241022002444.843484-1-rosenp@gmail.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
- to mdio node
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com>
- <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
- <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
- <50b37c36-643c-4307-9d4e-ad49b306ba8a@denx.de>
- <20241015144810.GD2838422@ragnatech.se>
- <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de>
- <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-On 10/21/24 9:13 AM, Geert Uytterhoeven wrote:
-> Hi Marek,
+nvmem-layout is a more flexible replacement for nvmem-cells.
 
-Hi,
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+---
+ .../boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
 
-> On Mon, Oct 21, 2024 at 2:13 AM Marek Vasut <marex@denx.de> wrote:
->> On 10/15/24 4:48 PM, Niklas Söderlund wrote:
->>>>> However, the reset signal may be in asserted state when the PHY is
->>>>> probed (e.g. after unbind from the Ethernet driver, or during kexec).
->>>>> Identifying the PHY by reading the ID register requires deasserting
->>>>> the reset first.
->>>> That may not be the entire precondition. For example the SMSC LAN87xx PHYs
->>>> also require PHY clock to be enabled before the reset is toggled, but such
->>>> information is available only to the specific PHY driver.
->>>>
->>>> The MDIO-level reset GPIO handling, as far as I understand it, applies in
->>>> case there are more PHYs on the MDIO bus which share the same reset GPIO
->>>> line.
->>>>
->>>> In this case there is only one PHY on the MDIO bus, so the only bit which
->>>> applies is the potential PHY-specific reset requirement handling. If the PHY
->>>> driver ever gets extended with such a thing in the future, then having the
->>>> reset-gpios in the PHY node is beneficial over having it in MDIO node.
->>>>
->>>> It will always be a compromise between the above and best-effort PHY
->>>> auto-detection though.
->>>
->>> I agree this is not needed if the PHY is identified by the compatible
->>> string, but might be if it is not. In this case it works and the reason
->>> for this patch was just to align the style used here.
->>>
->>> I'm happy to drop this patch, or send a rebased version that applies
->>> since the context changed ;-) Marek, Geert what is your view? I'm happy
->>> with either option.
->>
->> I was hoping Geert would comment on this first, but seems like maybe no.
->> I think, since the PHY node does have a compatible string AND the reset
->> is connected to the PHY, I would keep the reset property in the PHY
->> node. Sorry.
-> 
-> You are inverting the reasoning ;-) The compatible strings were added
-> because otherwise the PHY core can not identify the PHY when the
-> reset is asserted (e.g. after kexec).
+diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
+index 0d23c03fae33..a6d4390efa7c 100644
+--- a/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
+@@ -166,16 +166,19 @@ partition@170000 {
+ 				label = "ART";
+ 				reg = <0x00170000 0x00010000>;
+ 				read-only;
+-				compatible = "nvmem-cells";
+-				#address-cells = <1>;
+-				#size-cells = <1>;
+ 
+-				precal_art_1000: precal@1000 {
+-					reg = <0x1000 0x2f20>;
+-				};
++				nvmem-layout {
++					compatible = "fixed-layout";
++					#address-cells = <1>;
++					#size-cells = <1>;
++
++					precal_art_1000: precal@1000 {
++						reg = <0x1000 0x2f20>;
++					};
+ 
+-				precal_art_5000: precal@5000 {
+-					reg = <0x5000 0x2f20>;
++					precal_art_5000: precal@5000 {
++						reg = <0x5000 0x2f20>;
++					};
+ 				};
+ 			};
+ 
+-- 
+2.47.0
 
-... or because the PHY requires some complex sequence to bring it up, it 
-is not just reset.
-
-> If possible, I'd rather remove
-> the compatible strings again, as different PHYs may be mounted on
-> different PHY revisions, causing a headache for DTB management.
-
-Will that ever be the case with this hardware ?
-
-> So, what would you suggest when the PHY nodes would not have compatible
-> strings?
-I would suggest keep the PHY compatible strings, because that is the 
-most accurate method to describe the hardware and fulfill the PHY bring 
-up requirements. If the PHY changes on this hardware in some future 
-revision, we can revisit this discussion ? Maybe bootloader-applied DTOs 
-could work then ?
 
