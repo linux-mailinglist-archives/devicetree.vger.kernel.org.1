@@ -1,70 +1,92 @@
-Return-Path: <devicetree+bounces-114117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6D519A9DA7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:58:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C37E39A9DC5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62CAF1F26438
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:58:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0F2E1C21D70
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC106198E78;
-	Tue, 22 Oct 2024 08:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDBEA191F95;
+	Tue, 22 Oct 2024 09:01:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JP/vevSM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M+JzADzm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3B4193092;
-	Tue, 22 Oct 2024 08:57:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40331917E9
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:01:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729587440; cv=none; b=KvcOiKqFyrr4rnxcu+LnmUzaMVL0Uz6YdYuU2okCITl+RNfz4OC3Ek0b02Ue0rPdNBZh8uMItjXtVnaPRbsx6eopQc043IB/zkUs0HOpNOkzaLRjIEwI8UBZpmQ/Z7C+GqOezIABSTJQDuoHqBeFE+HeKkhjArhL4OgNihCO7+A=
+	t=1729587679; cv=none; b=INat9KiR2b1ST/6fNyXgvaeV7RYWGClQgBfhrnTWeB02BmpPBAVfOBDxouUGEUKTlTpjhP9tWJE1SWbaq9+9xsbk57qBC62IV1qzpWQUsq8dVYgYk0ywdH78OeYHq0LcmJNjXcm4pyK8XDND7R/jxU5E4ucxvgMaSbURe1fhvF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729587440; c=relaxed/simple;
-	bh=htdXVuBg3rUPy01vK1UMoH1g0fkJC7jNj9EenNcP2hY=;
+	s=arc-20240116; t=1729587679; c=relaxed/simple;
+	bh=YHNeQy+Gb09kRog+hJNRWpW815XE2iQrmhqT0ezNi08=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uq9i2khZe/cnsiUv1ZFWjgDsk9n1ph8eOzox3pm8fZ9wTxWcB1Jioxsc3J9W7108/aTMYhIAzkBy+iFqaDkf01+aJBd7QNhgpuRNrvXLgj391YIBWV6IVfKqplG3p7by35qQOLEOax0joPYhrUjBg1/mE8fkggEYMQAZPhp79qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JP/vevSM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCEA8C4CEC3;
-	Tue, 22 Oct 2024 08:57:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729587440;
-	bh=htdXVuBg3rUPy01vK1UMoH1g0fkJC7jNj9EenNcP2hY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JP/vevSM6dZ5CjZgbF+JPWInBBZi7QxSxJQTeGlIWg4akANwQIckgvexhbnWL4uPy
-	 9ZzayKAMqBVoWK+ABAtNcRmIJfYlXCSU+XEbMvramqx7wYKW2/Jj3veRaNCIWXrVJ1
-	 oMzmfx7lge3QWaBBImJajqh2XMT95tj9lT/UGVvDFlCmWFFYPl0ffhdevYA+2exIQh
-	 LktrII0F290bHJXSnwI9GsMOyJ/VFwqGtZarQ2Z0rfXQ5orovIHK/QDRWKgStsBCy4
-	 S9M9HVb78xbTglVJx5FOlqFDQ5ZKG+FZwVkDy34SDkEz0WPkrmqtCjeKcjS+WveQ25
-	 9D9nvKQzc2rFg==
-Date: Tue, 22 Oct 2024 09:57:13 +0100
-From: Simon Horman <horms@kernel.org>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	andrew@lunn.ch, Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	horatiu.vultur@microchip.com,
-	jensemil.schulzostergaard@microchip.com,
-	Parthiban.Veerasooran@microchip.com, Raju.Lakkaraju@microchip.com,
-	UNGLinuxDriver@microchip.com,
-	Richard Cochran <richardcochran@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jJY9PyDW80Z9R1yvgkSeLgAp9yO94eU+immZraXnCE2jsKUCiSBal3GgCP/s0w86HG3f5ISc4RxNVruLmUzv9k1fMJMMp6kI0+tE5Wewyx9c1qO708wvfjcGDg5KNsa9XsnPby11wl5tmsAJuFHAQ5teYy5f6DjAsYRBzu3jmSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M+JzADzm; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43168d9c6c9so33449725e9.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 02:01:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729587676; x=1730192476; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6/0uwFU7QS3ULtUk30D33huoCZ8wSxBsNaZesrFmH4Y=;
+        b=M+JzADzmDy2kAnnpswLitxMSSeerj8rJ6C24+9jOc5ruTMEcEzk+H3FVTWvp218Bc+
+         6hgyhenJ8FvYE6MoOtgroGRPV76BaeqU2mOA8UhcJMmIDH6YJTwvcTHG7GKdEnm3GqNT
+         VodKBJX/CiU2mU5kX9ANojWdmL1OUTrKlh78H9/avyUbn+ctpru5fPjLAGNZd0Nl5K4s
+         UPfbWb/MAw5VQP2kgo83KveozzOxwu43HPdp/QYQAIZjAVoMyLS9/jNgm1itfIwcarj5
+         YPu7yyzgv9U1fAFlKHEGyHrf9++Bx/93sbGMZz5ZVXJYsqXaOMwChFp4O0MmxjD9L+e8
+         srJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729587676; x=1730192476;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6/0uwFU7QS3ULtUk30D33huoCZ8wSxBsNaZesrFmH4Y=;
+        b=oJoHp43syrv7hnHtBHQj1m4wHGJNtrIyS/7IX+5nLmlHFuWEGcZNxNCq3XoS6jMkss
+         XmVLENcA0jMohra3NN5hGvC+CAOcCbLSK6rs9glUnX9zPdOBxfyL/i3+b45+uNrqVdfs
+         LZ0VnVcAAQUGvJyyUvTDISsdXFUo01BKmxtNkf3IQ9fvO6YFrEJdkRaXKBsX9seeHAPP
+         UCHgRWL9HmQN6qqGw2sNdfWLG5BibzteqHzjCGGgCgdWiEzuqQiXUGhAZ0OPtAa9DBOY
+         oxM6WoUEBko9Fa8fSSGfYaByehEmVvabw+B9CFjk9OEL8CIEiQYbChz3Ckvh5KzCQdQp
+         Qwaw==
+X-Forwarded-Encrypted: i=1; AJvYcCX8IdF1+QLhtyfbt/6auWNXSFUkIjP9smuMQZfL+W8qPhCCgX3y42Kogy7VqWf0Jl5d2RvZNUztg/EJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyh21yYRS9f30CgrAC/nKyY61pWK2gedPpeneVp/cfgWtBI+9AE
+	HxwpJ1lQ8O1idHGt/muBO1TL/kIaIseK71fqDSxYex75dAY3+N/Xg82vLWoGVXo=
+X-Google-Smtp-Source: AGHT+IG9nn8Y+opUXK/jzmtyqOYnvXx/g5R4ITP+6pKF3OzW0Yk5PYNV4zNyh5rh+oEJ4F1hZ59ooA==
+X-Received: by 2002:a05:600c:1e28:b0:42c:b750:1a1e with SMTP id 5b1f17b1804b1-431615991f4mr115572795e9.0.1729587676087;
+        Tue, 22 Oct 2024 02:01:16 -0700 (PDT)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f570b99sm83040255e9.2.2024.10.22.02.01.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 02:01:15 -0700 (PDT)
+Date: Tue, 22 Oct 2024 12:01:14 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, jacob.e.keller@intel.com,
-	ast@fiberby.net, maxime.chevallier@bootlin.com,
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 01/15] net: sparx5: add support for lan969x
- SKU's and core clock
-Message-ID: <20241022085713.GR402847@kernel.org>
-References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
- <20241021-sparx5-lan969x-switch-driver-2-v1-1-c8c49ef21e0f@microchip.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] usb: typec: Add support for Parade PS8830 Type-C
+ Retimer
+Message-ID: <Zxdp2vHzREJAFkwj@linaro.org>
+References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
+ <20241004-x1e80100-ps8830-v2-2-5cd8008c8c40@linaro.org>
+ <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,51 +95,226 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241021-sparx5-lan969x-switch-driver-2-v1-1-c8c49ef21e0f@microchip.com>
+In-Reply-To: <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
 
-On Mon, Oct 21, 2024 at 03:58:38PM +0200, Daniel Machon wrote:
-> In preparation for lan969x, add lan969x SKU's (Stock Keeping Unit) to
-> sparx5_target_chiptype and set the core clock frequency for these
-> throughout. Lan969x only supports a core clock frequency of 328MHz.
+On 24-10-15 15:03:15, Johan Hovold wrote:
+> On Fri, Oct 04, 2024 at 04:57:38PM +0300, Abel Vesa wrote:
 > 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+> > +static int ps8830_enable_vregs(struct ps8830_retimer *retimer)
+> > +{
+> 
+> > +	return 0;
+> > +
+> > +err_vddat_disable:
+> > +	regulator_disable(retimer->vddat_supply);
+> > +
+> 
+> Nit: I'd drop the empty lines between the errors cases here.
 
-...
+Will drop.
 
-> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> index d1e9bc030c80..f48b5769e1b3 100644
-> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> @@ -475,6 +475,20 @@ static int sparx5_init_coreclock(struct sparx5 *sparx5)
->  		else if (sparx5->coreclock == SPX5_CORE_CLOCK_250MHZ)
->  			freq = 0; /* Not supported */
->  		break;
-> +	case SPX5_TARGET_CT_LAN9694:
-> +	case SPX5_TARGET_CT_LAN9691VAO:
-> +	case SPX5_TARGET_CT_LAN9694TSN:
-> +	case SPX5_TARGET_CT_LAN9694RED:
-> +	case SPX5_TARGET_CT_LAN9696:
-> +	case SPX5_TARGET_CT_LAN9692VAO:
-> +	case SPX5_TARGET_CT_LAN9696TSN:
-> +	case SPX5_TARGET_CT_LAN9696RED:
-> +	case SPX5_TARGET_CT_LAN9698:
-> +	case SPX5_TARGET_CT_LAN9693VAO:
-> +	case SPX5_TARGET_CT_LAN9698TSN:
-> +	case SPX5_TARGET_CT_LAN9698RED:
-> +		freq = SPX5_CORE_CLOCK_328MHZ;
-> +		break;
+> 
+> > +err_vddar_disable:
+> > +	regulator_disable(retimer->vddar_supply);
+> > +
+> > +err_vdd_disable:
+> > +	regulator_disable(retimer->vdd_supply);
+> > +
+> > +err_vdd33_cap_disable:
+> > +	regulator_disable(retimer->vdd33_cap_supply);
+> > +
+> > +err_vdd33_disable:
+> > +	regulator_disable(retimer->vdd33_supply);
+> > +
+> > +	return ret;
+> > +}
+> 
+> > +static int ps8830_retimer_probe(struct i2c_client *client)
+> > +{
+> > +	struct device *dev = &client->dev;
+> > +	struct typec_switch_desc sw_desc = { };
+> > +	struct typec_retimer_desc rtmr_desc = { };
+> > +	struct ps8830_retimer *retimer;
+> > +	int ret;
+> > +
+> > +	retimer = devm_kzalloc(dev, sizeof(*retimer), GFP_KERNEL);
+> > +	if (!retimer)
+> > +		return -ENOMEM;
+> > +
+> > +	retimer->client = client;
+> > +
+> > +	mutex_init(&retimer->lock);
+> > +
+> > +	retimer->regmap = devm_regmap_init_i2c(client, &ps8830_retimer_regmap);
+> > +	if (IS_ERR(retimer->regmap)) {
+> > +		dev_err(dev, "failed to allocate register map\n");
+> 
+> Please make sure to log the errno as well here and below.
 
-Hi Daniel,
+Will add.
 
-It is addressed in patch 12/15, but until then pol_upd_int will
-be used uninitialised later on in this function when this case it hit.
+> 
+> > +		return PTR_ERR(retimer->regmap);
+> > +	}
+> > +
+> > +	ret = ps8830_get_vregs(retimer);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	retimer->xo_clk = devm_clk_get(dev, "xo");
+> > +	if (IS_ERR(retimer->xo_clk))
+> > +		return dev_err_probe(dev, PTR_ERR(retimer->xo_clk),
+> > +				     "failed to get xo clock\n");
+> > +
+> > +	retimer->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> 
+> The reset line is active low and should be described as such in DT. So
+> here you want to request it as logically low if you want to deassert
+> reset.
 
-Flagged by Smatch.
+This is being reworked in v3 as we need to support cases where the
+retimer has been left enabled and initialized by bootloader and we want
+to keep that state until unplug event for the cold-plug orientation
+to work properly.
 
->  	default:
->  		dev_err(sparx5->dev, "Target (%#04x) not supported\n",
->  			sparx5->target_ct);
+On top of that, we don't want to deassert the reset here. We do that
+via gpiod_set_value() call below, after the clocks and regulators have
+been enabled.
 
-...
+> 
+> Is there now timing requirements on when you deassert reset after
+> enabling the supplies?
+
+So based on my comment above, this is actually asserting the reset.
+No timing requirements for that.
+
+> 
+> > +	if (IS_ERR(retimer->reset_gpio))
+> > +		return dev_err_probe(dev, PTR_ERR(retimer->reset_gpio),
+> > +				     "failed to get reset gpio\n");
+> > +
+> > +	retimer->typec_switch = fwnode_typec_switch_get(dev->fwnode);
+> > +	if (IS_ERR(retimer->typec_switch)) {
+> > +		dev_err(dev, "failed to acquire orientation-switch\n");
+> 
+> I saw the driver fail here once, but not sure what the errno was since
+> it was not printed. Presumably it was a probe deferral and then this
+> should be a dev_err_probe() as well:
+> 
+> 	ps8830_retimer 2-0008: failed to acquire orientation-switch
+
+Will use dev_err_probe.
+
+> 
+> > +		return PTR_ERR(retimer->typec_switch);
+> > +	}
+> > +
+> > +	retimer->typec_mux = fwnode_typec_mux_get(dev->fwnode);
+> > +	if (IS_ERR(retimer->typec_mux)) {
+> > +		dev_err(dev, "failed to acquire mode-mux\n");
+> 
+> Similar here perhaps?
+
+Same.
+
+> 
+> > +		goto err_switch_put;
+> > +	}
+> > +
+> > +	sw_desc.drvdata = retimer;
+> > +	sw_desc.fwnode = dev_fwnode(dev);
+> > +	sw_desc.set = ps8830_sw_set;
+> > +
+> > +	ret = drm_aux_bridge_register(dev);
+> > +	if (ret)
+> > +		goto err_mux_put;
+> > +
+> > +	retimer->sw = typec_switch_register(dev, &sw_desc);
+> > +	if (IS_ERR(retimer->sw)) {
+> > +		dev_err(dev, "failed to register typec switch\n");
+> > +		goto err_aux_bridge_unregister;
+> > +	}
+> > +
+> > +	rtmr_desc.drvdata = retimer;
+> > +	rtmr_desc.fwnode = dev_fwnode(dev);
+> > +	rtmr_desc.set = ps8830_retimer_set;
+> > +
+> > +	retimer->retimer = typec_retimer_register(dev, &rtmr_desc);
+> > +	if (IS_ERR(retimer->retimer)) {
+> > +		dev_err(dev, "failed to register typec retimer\n");
+> > +		goto err_switch_unregister;
+> > +	}
+> > +
+> > +	ret = clk_prepare_enable(retimer->xo_clk);
+> > +	if (ret) {
+> > +		dev_err(dev, "failed to enable XO: %d\n", ret);
+> > +		goto err_retimer_unregister;
+> > +	}
+> 
+> Should you really enable the clock before the regulators?
+
+So maybe in this case it might not really matter. But in principle,
+the HW might be affected by clock glitches and such when IP block
+is powered up but unclocked. Even more so if the clock enabling
+(prepare, to be more exact) involves switching to a new PLL.
+
+So clock first, then power up. At least that's my understanding of HW
+in general.
+
+> 
+> > +
+> > +	ret = ps8830_enable_vregs(retimer);
+> > +	if (ret)
+> > +		goto err_clk_disable;
+> > +
+> > +	/* delay needed as per datasheet */
+> > +	usleep_range(4000, 14000);
+> > +
+> > +	gpiod_set_value(retimer->reset_gpio, 1);
+> 
+> Here you only deassert reset in case the line is incorrectly described
+> as active high in DT.
+
+Yes, this needs to be 0 instead of 1. And in v3 it will depend on
+a DT property called ps8830,boot-on, meaning if we want to keep it
+enabled and configured as left by bootloader, by using that property
+we will skip the resetting altogether.
+
+> 
+> > +	return 0;
+> > +
+> > +err_clk_disable:
+> > +	clk_disable_unprepare(retimer->xo_clk);
+> > +
+> > +err_retimer_unregister:
+> > +	typec_retimer_unregister(retimer->retimer);
+> > +
+> > +err_switch_unregister:
+> > +	typec_switch_unregister(retimer->sw);
+> > +
+> > +err_aux_bridge_unregister:
+> > +	gpiod_set_value(retimer->reset_gpio, 0);
+> > +	clk_disable_unprepare(retimer->xo_clk);
+> > +
+> > +err_mux_put:
+> > +	typec_mux_put(retimer->typec_mux);
+> > +
+> > +err_switch_put:
+> > +	typec_switch_put(retimer->typec_switch);
+> 
+> Drop newlines before labels?
+
+Will do.
+
+> 
+> > +
+> > +	return ret;
+> > +}
+> 
+> Johan
+
+Thanks for reviewing.
+
+Abel
+
 
