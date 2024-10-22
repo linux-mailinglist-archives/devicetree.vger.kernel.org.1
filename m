@@ -1,207 +1,184 @@
-Return-Path: <devicetree+bounces-114057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 142E79A9AD3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:21:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3628C9A9ADD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:23:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C93B02821D1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:21:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A003E1F22524
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:23:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77640146A63;
-	Tue, 22 Oct 2024 07:21:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="E4xyxVML"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228181494BF;
+	Tue, 22 Oct 2024 07:23:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-14.smtpout.orange.fr [80.12.242.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35471465BB;
-	Tue, 22 Oct 2024 07:21:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8BD1465BB
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 07:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729581705; cv=none; b=oLfTmmOk4e2IIzHr5RoCGknhb7BgqdzbjtPAt9b6KWjHuRTVnPBNeOs0HtkLT4ThQYBqnmPt0vX1Aa9uDZ1Q3ordIw6g9E2mMx2desHh8JzeDxWs2urKAKZwCrfkaZMbb1H2PomMsdsbexzmhehCmxWWvfFbrk9As+vLbErN9uk=
+	t=1729581797; cv=none; b=Oug/ij9KW9xuTYZ1jmWWDH1COJlFRL4VQYNjj6oy9ryQ6ESAWLI+Wyfj8k2W5jupNFHKFIFJ78nNtkiyRBNIH18zwQOI/P+VgwRBiq6TSV/w3ePoB7yqwCBaR8HEBnsl6p2xIYT8Dfuap1Xo39bxMhlXfEDLNriTI9h1ytdUtrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729581705; c=relaxed/simple;
-	bh=mncV6XjcLUPuWRXPPqMYWxkt3/1zcuG6fht9FXcpTgo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pBKK5tJPN5YHV2Od2j9kBexQe66RBuC2D3ghdhh08qwVU7nDu6YC0ElzoaTxSE1JXN04jHjv8vFNlUBqF2d2qZRASlNvkE2gtltgCzJ2qngFUQzkhH59fh4aiFPjirAeoyNLr3JVYnQduQD7rSkqEpXt42R1nGuuauxJOXOrjEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=E4xyxVML; arc=none smtp.client-ip=80.12.242.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id 39BptoyFQvtq839BptCJaI; Tue, 22 Oct 2024 09:20:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1729581629;
-	bh=jbeACBlKmPATg9TY9lfakh5orbRiwjpJqN6f+njt1iU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=E4xyxVMLGKUcuxP9Sl0vRgZc8l0ppDa1X8iJXl/F+xBewJYFCUrXgS+sUyBezfk5U
-	 Uo810xRWboULP0HeTAVTmKN19iCzuPNiAkfW32RFTzPSYKvkgO5Z/s5gze4X6u0nMq
-	 UN+sn1Rt6q2kL1shkVZv7RYhi5OrX/sC3CxWjkTAkzau2dHj01iI6NJrjwRvqhc8pU
-	 fQ/9FChq06JTrKg16ixQo8zC0l55lsoCRNi+ZSVHSMRx2xEPMK6tPpnnE4LuLe22yl
-	 eUJXPrm/wgxLYv5tFrsUkcABOFbjShqMINvfVV90uT2xRwTHTvbm8vWUkXgAomPul8
-	 E/bUg2KN5infw==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Tue, 22 Oct 2024 09:20:29 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <2339841b-034b-440f-83ac-139d95059727@wanadoo.fr>
-Date: Tue, 22 Oct 2024 09:20:25 +0200
+	s=arc-20240116; t=1729581797; c=relaxed/simple;
+	bh=hOKrI3GQqLEYrRGRQ4W1xaNqTzfZ590TisBLQIuIizQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sa4ZJ7z5i+28xcki6TMuYp0gaEKnRkQMr691qMCT6NBYN0UJjdsUCfQYjc1fYOrkn6bjVX7SueH4mujGWPWVv60g/maxU0r/aLNBJGG6ucziIi9Ish6g3v+ZQaHvc3O9rmwMwFvsbaeIEpWINwiMO+dyebgl2x+ypeUwePV+1nE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t39EW-0003v3-2i; Tue, 22 Oct 2024 09:23:12 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t39EV-000pEO-1c;
+	Tue, 22 Oct 2024 09:23:11 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1t39EV-007Vcd-1H;
+	Tue, 22 Oct 2024 09:23:11 +0200
+Date: Tue, 22 Oct 2024 09:23:11 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Sherry Sun <sherry.sun@nxp.com>
+Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+	Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+	Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+	"marcel@holtmann.org" <marcel@holtmann.org>,
+	"luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+Message-ID: <20241022072311.ubh2sia5lwgvebsg@pengutronix.de>
+References: <20241004113557.2851060-1-catalin.popescu@leica-geosystems.com>
+ <DB9PR04MB8429B4535422D3AE07D8EE79927C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
+ <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
+ <0d460226-4ea7-4a9b-a119-468343727996@kernel.org>
+ <20241021064129.trchqa2oickna7pc@pengutronix.de>
+ <bb34f4ae-92b3-48b7-b0d6-5937756cdbb9@kernel.org>
+ <20241021102558.rfnz7nxcg5knibxs@pengutronix.de>
+ <DB9PR04MB842939900805C080F2CC32B2924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] hwmon: Add driver for I2C chip Nuvoton NCT7363Y
-To: baneric926@gmail.com, jdelvare@suse.com, linux@roeck-us.net,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- corbet@lwn.net
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- openbmc@lists.ozlabs.org, kwliu@nuvoton.com, kcfeng0@nuvoton.com,
- DELPHINE_CHIU@wiwynn.com, Bonnie_Lo@wiwynn.com
-References: <20241022052905.4062682-1-kcfeng0@nuvoton.com>
- <20241022052905.4062682-3-kcfeng0@nuvoton.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20241022052905.4062682-3-kcfeng0@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DB9PR04MB842939900805C080F2CC32B2924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Le 22/10/2024 à 07:29, baneric926@gmail.com a écrit :
-> From: Ban Feng <kcfeng0@nuvoton.com>
+On 24-10-22, Sherry Sun wrote:
+> > On 24-10-21, Krzysztof Kozlowski wrote:
+> > > On 21/10/2024 08:41, Marco Felsch wrote:
+> > > > On 24-10-07, Krzysztof Kozlowski wrote:
+> > > >> On 07/10/2024 14:58, POPESCU Catalin wrote:
+> > > >>>>>>
+> > > >>>>>> +  vcc-supply:
+> > > >>>>>> +    description:
+> > > >>>>>> +      phandle of the regulator that provides the supply voltage.
+> > > >>>>>> +
+> > > >>>>>> +  reset-gpios:
+> > > >>>>>> +    description:
+> > > >>>>>> +      Chip powerdown/reset signal (PDn).
+> > > >>>>>> +
+> > > >>>>> Hi Catalin,
+> > > >>>>>
+> > > >>>>> For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which
+> > means that both wifi and BT controller will be powered on and off at the
+> > same time.
+> > > >>>>> Taking the M.2 NXP WIFI/BT module as an example,
+> > pin56(W_DISABLE1) is connected to the WIFI/BT chip PDn pin, we has already
+> > controlled this pin in the corresponding PCIe/SDIO controller dts nodes.
+> > > >>>>> It is not clear to me what exactly pins for vcc-supply and reset-gpios
+> > you describing here. Can you help understand the corresponding pins on M.2
+> > interface as an example? Thanks.
+> > > >>>
+> > > >>> Hi Sherry,
+> > > >>>
+> > > >>> Regulators and reset controls being refcounted, we can then
+> > > >>> implement powerup sequence in both bluetooth/wlan drivers and have
+> > > >>> the drivers operate independently. This way bluetooth driver would
+> > > >>> has no dependance on the wlan driver for :
+> > > >>>
+> > > >>> - its power supply
+> > > >>>
+> > > >>> - its reset pin (PDn)
+> > > >>>
+> > > >>> - its firmware (being downloaded as part of the combo firmware)
+> > > >>>
+> > > >>> For the wlan driver we use mmc power sequence to drive the chip
+> > > >>> reset pin and there's another patchset that adds support for reset
+> > > >>> control into the mmc pwrseq simple driver.
+> > > >>>
+> > > >>>> Please wrap your replies.
+> > > >>>>
+> > > >>>> It seems you need power sequencing just like Bartosz did for
+> > Qualcomm WCN.
+> > > >>>
+> > > >>> Hi Krzysztof,
+> > > >>>
+> > > >>> I'm not familiar with power sequencing, but looks like way more
+> > > >>> complicated than reset controls. So, why power sequencing is
+> > > >>> recommended here ? Is it b/c a supply is involved ?
+> > > >>
+> > > >> Based on earlier message:
+> > > >>
+> > > >> "For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which
+> > > >> means that both wifi and BT controller will be powered on and off
+> > > >> at the same time."
+> > > >>
+> > > >> but maybe that's not needed. No clue, I don't know the hardware.
+> > > >> But be carefully what you write in the bindings, because then it will be
+> > ABI.
+> > > >
+> > > > We noticed the new power-sequencing infrastructure which is part of
+> > > > 6.11 too but I don't think that this patch is wrong. The DT ABI
+> > > > won't break if we switch to the power-sequencing later on since the
+> > "reset-gpios"
+> > > > are not marked as required. So it is up to the driver to handle it
+> > > > either via a separate power-sequence driver or via "power-supply"
+> > > > and "reset-gpios" directly.
+> > >
+> > > That's not the point. We expect correct hardware description. If you
+> > > say now it has "reset-gpios" but later say "actually no, because it
+> > > has PMU", I respond: no. Describe the hardware, not current Linux.
+> > 
+> > I know that DT abstracts the HW. That said I don't see the problem with this
+> > patch. The HW is abstracted just fine:
+> > 
+> > shared PDn          -> reset-gpios
+> > shared power-supply -> vcc-supply
 > 
-> The NCT7363Y is a fan controller which provides up to 16
-> independent FAN input monitors. It can report each FAN input count
-> values. The NCT7363Y also provides up to 16 independent PWM
-> outputs. Each PWM can output specific PWM signal by manual mode to
-> control the FAN duty outside.
-> 
-> Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
-> ---
+> Actually we should use vcc-supply to control the PDn pin, this is the
+> power supply for NXP wifi/BT.
 
-Hi,
+Please don't since this is regular pin on the wlan/bt device not the
+regulator. People often do that for GPIOs if the driver is missing the
+support to pull the reset/pdn/enable gpio but the enable-gpio on the
+regulator is to enable the regulator and _not_ the bt/wlan device.
 
-a few nitpick, should there be a v7 and if they make sense to you.
+Therefore the implementation Catalin provided is the correct one.
 
-> +static const struct of_device_id nct7363_of_match[] = {
-> +	{ .compatible = "nuvoton,nct7363", },
-> +	{ .compatible = "nuvoton,nct7362", },
-> +	{ },
-
-Usually, a comma is not added after a terminator entry.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, nct7363_of_match);
-> +
-> +struct nct7363_data {
-> +	struct regmap		*regmap;
-> +
-> +	u16			fanin_mask;
-> +	u16			pwm_mask;
-> +};
-> +
-> +static int nct7363_read_fan(struct device *dev, u32 attr, int channel,
-> +			    long *val)
-> +{
-> +	struct nct7363_data *data = dev_get_drvdata(dev);
-> +	unsigned int reg;
-> +	u8 regval[2];
-> +	int ret = 0;
-
-No need to init.
-
-> +	u16 cnt;
-> +
-> +	switch (attr) {
-> +	case hwmon_fan_input:
-> +		/*
-> +		 * High-byte register should be read first to latch
-> +		 * synchronous low-byte value
-> +		 */
-> +		ret = regmap_bulk_read(data->regmap,
-> +				       NCT7363_REG_FANINX_HVAL(channel),
-> +				       &regval, 2);
-> +		if (ret)
-> +			return ret;
-> +
-> +		cnt = (regval[0] << 5) | (regval[1] & NCT7363_FANINX_LVAL_MASK);
-> +		*val = fan_from_reg(cnt);
-> +		return 0;
-> +	case hwmon_fan_min:
-> +		ret = regmap_bulk_read(data->regmap,
-> +				       NCT7363_REG_FANINX_HL(channel),
-> +				       &regval, 2);
-> +		if (ret)
-> +			return ret;
-> +
-> +		cnt = (regval[0] << 5) | (regval[1] & NCT7363_FANINX_LVAL_MASK);
-> +		*val = fan_from_reg(cnt);
-> +		return 0;
-> +	case hwmon_fan_alarm:
-> +		ret = regmap_read(data->regmap,
-> +				  NCT7363_REG_LSRS(channel), &reg);
-> +		if (ret)
-> +			return ret;
-> +
-> +		*val = (long)ALARM_SEL(reg, channel) > 0 ? 1 : 0;
-> +		return 0;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-
-...
-
-> +static int nct7363_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct device_node *child;
-> +	struct nct7363_data *data;
-> +	struct device *hwmon_dev;
-> +	int ret;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->regmap = devm_regmap_init_i2c(client, &nct7363_regmap_config);
-> +	if (IS_ERR(data->regmap))
-> +		return PTR_ERR(data->regmap);
-> +
-> +	for_each_child_of_node(dev->of_node, child) {
-
-for_each_child_of_node_scoped() to slightly simplify code and save a few 
-lines?
-
-> +		ret = nct7363_present_pwm_fanin(dev, child, data);
-> +		if (ret) {
-> +			of_node_put(child);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/* Initialize the chip */
-> +	ret = nct7363_init_chip(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	hwmon_dev =
-> +		devm_hwmon_device_register_with_info(dev, client->name, data,
-> +						     &nct7363_chip_info, NULL);
-
-return devm_hwmon_device_register_with_info()?
-
-> +	return PTR_ERR_OR_ZERO(hwmon_dev);
-> +}
-
-...
-
-CJ
-
+Regards,
+  Marco
 
