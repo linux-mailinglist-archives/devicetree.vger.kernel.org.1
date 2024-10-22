@@ -1,115 +1,125 @@
-Return-Path: <devicetree+bounces-114231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F23D9AB0F8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:36:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAC419AB18B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:01:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A2F8B230A5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:36:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A8EA1F24352
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38DF11A0BF3;
-	Tue, 22 Oct 2024 14:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 104BF1A0BFE;
+	Tue, 22 Oct 2024 15:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cb/mlrbN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OYZJZqMX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547061A0BE5
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 14:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8197A13A865;
+	Tue, 22 Oct 2024 15:01:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729607785; cv=none; b=MNHTeJXS6+1rHgQObN6KBXPRREdDKbyLRfBrzTGhVgKaGlcWUzhjd0vOxrmOr+2QcI6sdYWWVRiIqTwjXK9r27D1KMSqnLKMPKTr9r8A189QnENGEzNX2qmUjVfplIU072KVL1gOjfaxoN22/Hq7K6X9ax/OQy9nA4OWMLxui7I=
+	t=1729609265; cv=none; b=F2GR4HU2gsiuFXEMzDtXCHnSQUSw4FIr+ZwBJuuBybB/7j3f1ZF08N2bgApH6R2xSaSO5eznRlgCp5kypd2X8xYjYkqACwP0S2KkXtq7tFIDl89MYofV+xEpQfZtVjzy1wVIf77aZVVn+1mTktZUBU1cvxxsocskt/0esPWcou8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729607785; c=relaxed/simple;
-	bh=XPTt/DRcxaXM3jq+HjKo66FdsyRj2Gi2+pHUZZljpsY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Pt+jKg5VfIV5VCNYq1bxUbEt24E66kzHqmjiSHJWrU8VMMCd5Bz7CEgzOXVe/j6IuExwAf4EKjX6CSF90wuI2Pa9KfbDFF0gi9QWyK39G2wIkB62g/vKVxHnsPxmseR/iil9aTMrFyIaoddZFSGbcFq77phsuLRxiEpD+oTLgDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cb/mlrbN; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-37d70df0b1aso4537329f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 07:36:23 -0700 (PDT)
+	s=arc-20240116; t=1729609265; c=relaxed/simple;
+	bh=bm58zMeK6d0PMqj87NIHPoN7oaHDMA679yeWU0dMt7Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C/JSWMgPANIlqOpoJWQXnzr8LRYHi0O6EbaWtLtuVN7qbWHIV6CHMIgxVhfYN/l45AvrY7hDKFZsirI8wrjUNHe0TjgqV7bj8ZN4QrriYBqRtBFmvRQvyv+7UkEZkSQ/L6JxOAraQcX7x9Rgwx1G3Afd2Hbs9NlElqQGn95TRFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OYZJZqMX; arc=none smtp.client-ip=209.85.166.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-3a39cabb9faso19704585ab.3;
+        Tue, 22 Oct 2024 08:01:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729607782; x=1730212582; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GrUWXWfzIj5zJMMGxBfqh3qOh40//ZAdcEGnfXtiphw=;
-        b=Cb/mlrbND1Pa/nKp8ElOnPSNjq1przHnZgJHUbzUL2QqqyLNm6PXZSa/1QMPFPA1jM
-         ivYSTZGdhtHAxl6sZ4QyWv6L3krWAjSaVVQMvwOlaRdXZ49dHt81tSoETuzbq2KQsIkC
-         Gj9IeiIiRn987DiE1/BU4z7PzH1xXIzpVA92Dq0mJtHftEsZ6UFrmQqEYRK+9dKbkZzQ
-         WLniMhNEr1jVwLrdUSJ8rCFMHVo6OSdG0S42y5HK5Xfgx23RpCXOYOPGDIJBv1Q0UMZ0
-         QBpl+6NsTkmVIr6d/XIpBpxDg13TTFeLWo5JzG2ZjUHupeoPX/kC8Z/i3+Pt3gZOwy0L
-         zT7Q==
+        d=gmail.com; s=20230601; t=1729609262; x=1730214062; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=IP69QrjKIvgdLN3I+u548pC2BXnb7qD0PJFFBg5pzfc=;
+        b=OYZJZqMX08HnyULiwaZxKTfDjxAws1tYT1GHdJcA204FTfklaWdrc3nuX3SyBesjBa
+         DujILnvE2NATqmTvxqdSLPEXscD3FwJxFy7avvcSU/Eis1k55Sm4i8hBlpDot2GCoE59
+         WVQUJt+8AKnJIh9lTD18WlgfERJfeXA86XHkO8I3R2Q5wGwyhA1pmfEiqSblSlok8aFh
+         KVlRPMzqeKpzhxFTHCzVrbFdJyPBKoO7qTCs3oTTyt/cBUph2Q24St8uCPKSSAm6gWoi
+         UQ7r90r132/xUAEO4rSeGlNIH1mgeIYk381raM31ouygV3+6K1kL2YSf/jhhIblVbI56
+         UPTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729607782; x=1730212582;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GrUWXWfzIj5zJMMGxBfqh3qOh40//ZAdcEGnfXtiphw=;
-        b=bdbxmHJwo6Ujf6UOTuh4cDIcVofs1Ibbai6bBVKGXAJDaWLGU8z7P+c4MYmRPA1uaG
-         hpMM5TziJljd8yv9Xry0EaYI/cSj2SnWu9SGnKpMx56WiToSuCjdZ2Xugprz27FXk+kO
-         e7t2GEFVFELHoAB6t+RWwgb2YMoDrSxlJfwj+O8xbGVkC2oNP1SojMu3l/1XDg7z8I5r
-         MJP/wh85KK4bJt2UOmSIPnw9pUexqdItjSoU8IIQuiOusSK3XQI8ihJPLznKhLRvg70C
-         X0BOSuVOhGob0Gdp2+M/tO4sfQoS/fD4XCWDBkm/f6ALFAimKFo5deP9KhVyONhiW1hN
-         ko+w==
-X-Gm-Message-State: AOJu0Yz7PqI1OqWfGQSapadBrO8zqmBnKBYh/rX8/yLhKnL6h0oGdaZk
-	rNE72fLAglmKmfjHMvGjQHj35oKxRGtxEZgE/5BrInUvZ7PAw+mLpKyNdwCM5pA=
-X-Google-Smtp-Source: AGHT+IH1gDK1/uDRHCxw8RYMyjPcimj1r1WhkfVOpVJ9j0PYqU0pkA6VBIa7LJdkDoJQNlhbE2+Oig==
-X-Received: by 2002:a05:6000:c85:b0:37d:4e74:68a with SMTP id ffacd0b85a97d-37eb5a59780mr8701399f8f.46.1729607781629;
-        Tue, 22 Oct 2024 07:36:21 -0700 (PDT)
-Received: from [127.0.1.1] ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a47caesm6723587f8f.28.2024.10.22.07.36.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 07:36:20 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com, 
- sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
- festevam@gmail.com, Richard Zhu <hongxing.zhu@nxp.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
- imx@lists.linux.dev, kernel@pengutronix.de
-In-Reply-To: <1728977644-8207-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1728977644-8207-1-git-send-email-hongxing.zhu@nxp.com>
-Subject: Re: [PATCH v5 0/2] Add one clock gate for i.MX95 HSIO block
-Message-Id: <172960777824.2281007.10515356955760469298.b4-ty@linaro.org>
-Date: Tue, 22 Oct 2024 17:36:18 +0300
+        d=1e100.net; s=20230601; t=1729609262; x=1730214062;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IP69QrjKIvgdLN3I+u548pC2BXnb7qD0PJFFBg5pzfc=;
+        b=XYP5LbONpcvdmSHe0B30xM3CA4/kVvz+gYzoqsOgxq+p6xgZqPwA8JKd4uX6cQzOw9
+         a2rTi78+WlbpHi4WvYaiLuJJ0OluXJvgBPK7XpsXaoNhfW3R+SFONqfaI6kiG7xtIR/C
+         ehTjdEtNcqlHiUl+trrSxd/wggTUR3RLIMoPJcC9DcJ9Ffmq8XJWydiJ1HJo5r/d5sgm
+         goVALS5z3h3GUoDjryzdbfrEJ/HUvSbQ0bkEnPw7iecTekiOV79W2QxmgUZUqKRVqEiD
+         EZifEJuK6cXpJm/BW3SWvb5R0lZ4qbBTgf85dJvCw4XmC7uNwQd9l0f/rtsI0Lr4LtGS
+         v7vA==
+X-Forwarded-Encrypted: i=1; AJvYcCV8+mUKd0247flwXgbrUXEMfsHTYORWvMi6xUcKocHEZXIDabp8YKoRjv5Q/Rg+FUCq4dWE57B7iCjlfpsD@vger.kernel.org, AJvYcCWAX1dtx03mVqB8UrniGSaoV8sBjEZ9N09SSvJa7A7ZUy5XI+NdoeTpkVuZRJ/GdNc695G2BeMa/Ldy@vger.kernel.org, AJvYcCWQ+F1RoUhPpqnM45p6pGi/CDZBMnt/gbBKTBgozmBnloFh4MxAXrjiDZS8bDJpwf3dZz/XXw2jvDzgrA==@vger.kernel.org, AJvYcCWk1MqgWxFItr7kzuE63ONUe2GFZM4VkxwXec9TKRuNQDbw5/5XdFB10r0T3M8usCQV4R8a+cmKTRNsSK0=@vger.kernel.org, AJvYcCXHC8pRsLuuoVehduDiVKYdzfN1WWTD2t7y4whhiU70ZAJsCVuSf+QVq/9hxUbZIG/p5xj3viM9z60=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKfK2BFi/Dpmny+ykM+gQWvUWdvjMDdnLbSJGY6D0vHNMugXku
+	PSeb0U/SU3PluYus/G3hWO+22JTq9ac23NTkKVTdcs4bshPRyED5uYunQXvBsmIY242SA199pID
+	itE2iF523GZH/ai1ut9XbqHbIsy1Z4yTd6tM=
+X-Google-Smtp-Source: AGHT+IEeuB3yHQ+efDPfikQckQ3B8TFoP4EuLV4GrGAYD8B2BtElQVwkA7TIw+O2jGhd0Ao/mhTvjxwYg9t7GrlgIDc=
+X-Received: by 2002:a05:6102:3e8f:b0:4a5:ba70:1c6e with SMTP id
+ ada2fe7eead31-4a742e72fd9mr3282746137.29.1729609251362; Tue, 22 Oct 2024
+ 08:00:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-dedf8
+References: <20241007-starqltechn_integration_upstream-v6-0-0d38b5090c57@gmail.com>
+ <20241007-starqltechn_integration_upstream-v6-7-0d38b5090c57@gmail.com> <20241015143329.GJ8348@google.com>
+In-Reply-To: <20241015143329.GJ8348@google.com>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Tue, 22 Oct 2024 18:00:40 +0300
+Message-ID: <CABTCjFCtFbFht2ZyBADuxhOfHZqiUmNKnAu4rwAS=kNgdqeS+w@mail.gmail.com>
+Subject: Re: [PATCH v6 7/7] leds: max77705: Add LEDs support
+To: Lee Jones <lee@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+
+(...)
+> >  drivers/leds/leds-max77705.c | 157 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>
+> Lol!  How big is your terminal? :)
+>
+
+Dunno actually, this was generated by b4
+
+(...)
 
 
-On Tue, 15 Oct 2024 15:34:02 +0800, Richard Zhu wrote:
-> REF_EN (Bit6) of LFAST_IO_REG control i.MX95 PCIe REF clock out
-> enable/disable.
-> Add one clock gate for i.MX95 HSIO block to support PCIe REF clock
-> out gate.
-> 
-> v5 changes:
-> - Rebase to v6.12-rc3.
-> 
-> [...]
+> No C++ comments please.
+>
 
-Applied, thanks!
+This conflicts with https://patchwork.kernel.org/comment/25898728/
 
-[1/2] dt-bindings: clock: nxp,imx95-blk-ctl: Add compatible string for i.MX95 HSIO BLK CTRL
-      commit: 731237359d83bfb4f27eea5b7a8935af5c72a5ac
-[2/2] clk: imx95-blk-ctl: Add one clock gate for HSIO block
-      commit: cf295252f0d88410d5793fa6db56a7192a65d66f
+> > +             ret = regmap_update_bits(led->regmap,
+> > +                                     MAX77705_RGBLED_REG_LEDEN,
+> > +                                     MAX77705_LED_EN_MASK << led->en_shift, 0);
+> > +             max77705_rgb_blink(cdev, &blink_default, &blink_default);
+> > +     } else {
+> > +             // Set current
+> > +             ret = regmap_write(led->regmap,
+> > +                                led->reg_brightness, brightness);
+>
+> Line wrap at 100-chars.
+>
+
+From coding-style.rst:
+`The preferred limit on the length of a single line is 80 columns.`
+I only exceed 80 chars, when there's no good wrapping.
+
+
+-- 
 
 Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
-
+Dzmitry
 
