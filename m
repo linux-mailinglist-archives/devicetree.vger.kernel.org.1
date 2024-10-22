@@ -1,131 +1,151 @@
-Return-Path: <devicetree+bounces-113916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39E219A94ED
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 02:31:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4E79A94FF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 02:33:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0BCA282230
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 00:31:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 245B51F23832
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 00:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3364642D;
-	Tue, 22 Oct 2024 00:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6755F768E7;
+	Tue, 22 Oct 2024 00:32:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jnCU435l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mdEZDvW9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D39A81E;
-	Tue, 22 Oct 2024 00:24:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0BD84A35;
+	Tue, 22 Oct 2024 00:32:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729556688; cv=none; b=EgOdu2VrWZtx4SHa1M99UqYNeFZsKsu3zKeTz7ewIaAlxHYvNPBoV+dNSWccIXM0vKy7rcmHCACrbhUbXg+SnZLxeXyonwnXWaCHZ6R79qwGF3nZTrxlEzlp5rn5JmcWEfGM+YOnSYWdxsb8HquPV/DwVHAdATiajkctJ++ZXaM=
+	t=1729557160; cv=none; b=R629rCbvsVrdOBBzDy6o31CBZT/70W9JjvZGPBEEXmMUKE+lvwquYLHgBKb5q6OC9M1ZfwmvnvIZq+E2YxJ9kBaYWf67ua6mtrw9/9JZ8c8Th6OmN7x1PCB1Spo2fNaCj9s1FU+Dej8fQyZtwFfePUcv/M4LtZxL+sw7j60joDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729556688; c=relaxed/simple;
-	bh=qn3tvKKrV+MkKEEtP/3mSVOXcf1hvH6DKKf2Olq8c1k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AWPn4pa5tV9vyOB8BknSJ0ItsUHPwsIgMT69OQ6SHBY2n7pQG2ayy1sKKEerJPahYxSCCtfNCksLe5Z1hGuuXbpoPH3dhefXAT3hBvJY02IQ4g4NetTB4sB7nUa2ZQK6UH46EM2oHZVCtQDRM7lx3aL4AQY40woaqagmdSPDePA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jnCU435l; arc=none smtp.client-ip=209.85.216.53
+	s=arc-20240116; t=1729557160; c=relaxed/simple;
+	bh=Ubo42J5xKuWevhXM6XuKUJW1NcslPFK+IsNwa6C5B4s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EJRFCEVUIDTOZRMKh1pu0wg3xlwmXqgJoLkSwc/8P4uCUBs2zs56c2aT+h3zQZpDFQdM9wAQL4rFKkTaz9bnHYvuXpRQS5rvxm9+MjbmIbaRjXseCPo/7bTKU9tOC52qsa8EacHOBva3APCO20OiNvPhejHVThFdTNXP8dCjY04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mdEZDvW9; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2dc61bc41so3396381a91.1;
-        Mon, 21 Oct 2024 17:24:46 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-71e579abb99so3614845b3a.2;
+        Mon, 21 Oct 2024 17:32:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729556686; x=1730161486; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gpkTY6F2uSC04DqIi28SIb8nyKa9ghdEbA6ivtVMgTg=;
-        b=jnCU435lSqZ0TLULb5/6bA/1BQDJ4Nk6et64W1ETKuFzbddXVOCe2Nsq89dV4bBpUq
-         mHMphqqb4p3yzn4WLLCpA5LDoScuiVmZYXH4Og4xGWZjgzJKsC17qUQKFZHfcb6cyy+k
-         hvPVRNhzkRPz1EHNuCzRQBY6Y3j9s0z3fenRM4rA+wzbh4VzfuytmfEQc+ycEbq8IJiF
-         K+czXiEWdy/ImdM12q5+zKmYhURJsywJuCciKPstTsEj7xUpv9+Fa0a5SDXHQn5fuYdr
-         icgc1X7Gf8aBQvq3bR92DD4wbRBJDJWH0nqGR1LjIiFXStTN3Sh7Vy+qTu4mi1UtZtpJ
-         Q4VQ==
+        d=gmail.com; s=20230601; t=1729557158; x=1730161958; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WE4OCeGrEarxaIJLsEWYczNlBhDxq64y4K7wEYrbCx8=;
+        b=mdEZDvW9nTyN1dw+JYjF4rK7DBcVEl1v/HVuUX2cswl1EjvxSXsCJt/fV5+Fi6BW1N
+         bifZP9n/bKaj+bZNIrY09ai5/IykPQ+I8mtD3rVRr7uc5J8yni5GQMMnfc1BHEbXoYWJ
+         VHkA/arunQHrV6lhS0n7upPJhcl7/joRPQ7tqZ2PhbrFZWv/VJ4B3TJWzdu1wEGkO9rN
+         gOMc2GdIpLTh4YwUZON5ByqEdwd+6bFs/2g7g1dFz4EKQpAKgaCUrxl1qAGS8h0cinV4
+         BQ34/iJp8u/H6tFqb4VDG0ghy7g18fArpC0JBy+UvGJSB9fgLOaZd3/5RlLGXrLoc50I
+         YKUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729556686; x=1730161486;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gpkTY6F2uSC04DqIi28SIb8nyKa9ghdEbA6ivtVMgTg=;
-        b=rugC9zq6oEF7bQTI7vLxYxtUSWQJ1XeFPEIMBk/+8VTruvwA/6LUd0sXAorIxHPSaD
-         pgne+5MbCooYbPt3dV1QBGiyknkWIcOYvCIukK0m3oAjxNCmePxusqjDNri3m5xhTtH0
-         7mkqqtVowtHi0GfhpsOcpSXufqS43Lxchm4ozcS82Fzx7zCQHobuUT0F1T88WlvVw72S
-         EJly1i/cCZNqWYRFkxaB3f4frEP7OyAdFRGdAT2rqeTtXOFDjYNbvbRZp5KJS3G7zokv
-         fam3DzYzNCQyVMTi6bF4yDWHompfq3RtF6veh0mQgvh3DMzxZblei/nE4hMxKuqXmkWi
-         ej2A==
-X-Forwarded-Encrypted: i=1; AJvYcCXHEKbz0GLvAivROpHd0/tQP+DURO5zVyELSF4+f6xz1CoJixVCBlthfJujT2hEsY1qT82DRCbFN/9R/Fer@vger.kernel.org, AJvYcCXHxhfwUjx/H2DfrDV021INqeU4oU08H+yeWlQs+2Bjuoe6hNl8J5o1kCC17m8Si8zveC8w75sR4ijEqEwn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAm54FqKWfBtUBPNkyaUdPUeiyw6B5A5Ofe5P+aeH8TUUQrjA0
-	Bw6N/SnKFpYc+5Ugx3NH62wzpK2Rit3LVqDkcC2MjIzxpoO+eEsozq3DHHqG
-X-Google-Smtp-Source: AGHT+IGUblBWPgHD/8lMJnzINTEdCpZFULIYDgQjz+bUtbwE8Sk2RHAni7w6SRxPq05zY/2T4Ljb7Q==
-X-Received: by 2002:a17:90a:b781:b0:2e2:f044:caaa with SMTP id 98e67ed59e1d1-2e5619f8409mr15213589a91.37.1729556685785;
-        Mon, 21 Oct 2024 17:24:45 -0700 (PDT)
-Received: from ryzen.lan ([2601:644:8200:dab8::a86])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad4ed78dsm4618714a91.40.2024.10.21.17.24.44
+        d=1e100.net; s=20230601; t=1729557158; x=1730161958;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WE4OCeGrEarxaIJLsEWYczNlBhDxq64y4K7wEYrbCx8=;
+        b=gHG0Kab/fJNzIYRBScj2ULUZIPouRyLWYm6xpzwr3ESSpK4/TE6lYrWQZoS8pmGvfA
+         001G/FoFTGWn6sN29p5tCpAmftBvv9c6KmYENeN11BLOUCHfb16X9FE8mWkOTr3OQMhy
+         /NeldPxE7w4uSjSj44fdafFghG/Dhi2M7nsQxpQYvXQ36qCV1tDeRHgW/w44sBuiYjTk
+         5IK7SWVUMpBnQiA3lAvAkOibetiBAmOZM1pr8uKBHQ7/QkmL/kDHpzOapPnVMtkCz7St
+         zHpPppWb22FOQ7TmO/w9IPn0IlsYTYG5rOCom4k1ANTcldqjaSoy6vT44uk3uthvWxkB
+         Lj7A==
+X-Forwarded-Encrypted: i=1; AJvYcCVU4TRt8YJFYg/WzoOhcRDCvHYERu1nWMus3AoFp7aJNqIsjrInxk6Qyg+RXRMco2dT/NXldkzb0o7qesl7@vger.kernel.org, AJvYcCVc3pQDDOd/zH500nM2/mX2JFztMTwKs2UY7HJ18M4BgpeK+mVkM/xH1+oGNGuc9V/YvsTi6RqbP20h@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrEqd0x++i12AlYXEA+0EvS5yyy2jfbhb7rYh2KMI1o0w4j0U+
+	CAnh3wsl48xYGMdFoGshz5QacdP0bDCaP11f8A5EnTle5aRc3HCveaXVMw==
+X-Google-Smtp-Source: AGHT+IGRvtwT49FWz7kNEaS3v8Wbc/KWtCjRiHMEU5H4U/gU9VJLLNUgtlNoDFiUyPMBYSalal22xQ==
+X-Received: by 2002:a05:6a00:3d15:b0:71e:76ac:4fc4 with SMTP id d2e1a72fcca58-71ea332ab76mr19694997b3a.21.1729557158051;
+        Mon, 21 Oct 2024 17:32:38 -0700 (PDT)
+Received: from localhost ([121.250.214.124])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7eaeab58aadsm3747124a12.53.2024.10.21.17.32.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Oct 2024 17:24:45 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM MAILING LIST),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] ARM: dts: qcom: ipq4019: use nvmem-layout
-Date: Mon, 21 Oct 2024 17:24:44 -0700
-Message-ID: <20241022002444.843484-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.47.0
+        Mon, 21 Oct 2024 17:32:37 -0700 (PDT)
+Date: Tue, 22 Oct 2024 08:32:19 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>, Conor Dooley <conor@kernel.org>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 0/2] Add board support for Sipeed LicheeRV Nano
+Message-ID: <luq5c3nkj6mcnmfah5gethcud5iikaayyt4e4tiw7fh7e67zou@bkuzbt7kiztp>
+References: <20241010-sg2002-v5-0-a0f2e582b932@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241010-sg2002-v5-0-a0f2e582b932@bootlin.com>
 
-nvmem-layout is a more flexible replacement for nvmem-cells.
+On Thu, Oct 10, 2024 at 05:07:05PM +0200, Thomas Bonnefille wrote:
+> The LicheeRV Nano is a RISC-V SBC based on the Sophgo SG2002 chip. Adds
+> minimal device tree files for this board to make it boot to a basic
+> shell.
+> 
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> ---
+> Changes in v5:
+> - Add support for pinctrl
+> - Remove nodes for i2c0 and uart1
+> - Drop dt-bindings patch that are already applied
+> - Link to v4: https://lore.kernel.org/r/20240711-sg2002-v4-0-d97ec2367095@bootlin.com
+> 
+> Changes in v4:
+> - Add correct bindings configuration for SG2002 sdhci
+> - Drop commit "dt-bindings: timer: Add SOPHGO SG2002 clint" because it
+>   has already been merged in Daniel Lezcano git tree.
+> - Link to v3: https://lore.kernel.org/r/20240709-sg2002-v3-0-af779c3d139d@bootlin.com
+> 
+> Changes in v3:
+> - Remove /dts-v1/ directive from sg2002.dtsi file
+> - Add disable-wp property to sdhci node to avoid having a write
+>   protected SD card
+> - Drop changes in cv18xx.dtsi and cv1800b.dtsi
+> - Add fallback compatible to cv1800b in SDHCI node of sg2002.dtsi
+> - Link to v2: https://lore.kernel.org/r/20240612-sg2002-v2-0-19a585af6846@bootlin.com
+> 
+> Changes in v2:
+> - Add SDHCI support
+> - Change device tree name to match the Makefile
+> - Add oscillator frequency
+> - Add aliases to other UARTs
+> - Add aliases to GPIOs
+> - Move compatible for SDHCI from common DT to specific DT 
+> - Link to v1: https://lore.kernel.org/r/20240527-sg2002-v1-0-1b6cb38ce8f4@bootlin.com
+> 
+> ---
+> Thomas Bonnefille (2):
+>       riscv: dts: sophgo: Add initial SG2002 SoC device tree
+>       riscv: dts: sophgo: Add LicheeRV Nano board device tree
+> 
+>  arch/riscv/boot/dts/sophgo/Makefile                |  1 +
+>  .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 95 ++++++++++++++++++++++
+>  arch/riscv/boot/dts/sophgo/sg2002.dtsi             | 42 ++++++++++
+>  3 files changed, 138 insertions(+)
+> ---
+> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+> change-id: 20240515-sg2002-93dce1d263be
+> 
+> Best regards,
+> -- 
+> Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> 
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- .../boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+LGTM.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
-index 0d23c03fae33..a6d4390efa7c 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
-@@ -166,16 +166,19 @@ partition@170000 {
- 				label = "ART";
- 				reg = <0x00170000 0x00010000>;
- 				read-only;
--				compatible = "nvmem-cells";
--				#address-cells = <1>;
--				#size-cells = <1>;
- 
--				precal_art_1000: precal@1000 {
--					reg = <0x1000 0x2f20>;
--				};
-+				nvmem-layout {
-+					compatible = "fixed-layout";
-+					#address-cells = <1>;
-+					#size-cells = <1>;
-+
-+					precal_art_1000: precal@1000 {
-+						reg = <0x1000 0x2f20>;
-+					};
- 
--				precal_art_5000: precal@5000 {
--					reg = <0x5000 0x2f20>;
-+					precal_art_5000: precal@5000 {
-+						reg = <0x5000 0x2f20>;
-+					};
- 				};
- 			};
- 
--- 
-2.47.0
-
+Reviewed-by: Inochi Amaoto <inochiama@gmail.com>
 
