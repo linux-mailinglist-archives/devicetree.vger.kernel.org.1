@@ -1,475 +1,184 @@
-Return-Path: <devicetree+bounces-114055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89D999A9AC4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:18:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D679A9ACA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:19:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8217B2467D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:18:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB4E21C20A0A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5E83148FEB;
-	Tue, 22 Oct 2024 07:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D4314901B;
+	Tue, 22 Oct 2024 07:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QYZJiZ8U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZPAP34ri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40E412FB2E;
-	Tue, 22 Oct 2024 07:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E25413D882;
+	Tue, 22 Oct 2024 07:19:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729581524; cv=none; b=l51FLMRtN3jVr9LsN+0SELtrRD2CPtKGh5SPhKdlgEAyX0wFOpoz7kgwZLZs2fFN1QC1XQ85lhC8/nbF+mw2fA9D5RCby16a34v6EcXLj/lhcVNoSOcsBY8NLIxR7GDc7EwsGf5lom418BVrhSt8aRBYmjsFdWLTA31BnTb60YM=
+	t=1729581562; cv=none; b=RYfxG62lqzcSvop/Yra3BOvYmlH8+iNJ2NTHGKA0lKMB+YYBD6C3PRf9EiPKhf6I/5D5tqxseZK3rYu7xX6IcPtow071jhhudgvFeWY0/zQa3f7y+4iJGIjUWELfV5TDDzZW4oRgKflpxoepV9abdKrVMX+nEBWeDK/J9FsX2iE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729581524; c=relaxed/simple;
-	bh=/5ixtaMbalvDpJJwfD0BzexaBvsrWL+N26FdmAvrBUY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kKdIR48Xgd6E5Wz886xMRldJqbP0xR6k4/lKLeGMeXcahLFgaPyHkZkcqrqWMI6mqgPSlodo/tzAQevY3wyVqCDoXsLQDVVf9xcp7rHQKR/CHqXmbV0Lf5u3tL93O1fc0UWTx+313WDiegeiHMF2+Lx5m/3VwqDsMQYMwY/Lksc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QYZJiZ8U; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49M00OCU014935;
-	Tue, 22 Oct 2024 07:18:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xqGOi+LaRxpqzDOGdLlElAJCeTtbp1S+F7o+lAODmps=; b=QYZJiZ8UrVzMrszZ
-	2BHXsZGk52a9Na6dcRWVMLxYNb/j6x0Ff7z/1P4iPz0mQ5veUMYyuvNmcZ2rbTTZ
-	USEQVi2m9w85Q2le4ESYazw2AZKXYqhuZiG3yoOx6JHZvHq1knpDmz/VnmTIp5RC
-	lFfxn4XUnqG72Z57A8GvVTZodoE16lEvnf6AZ7V22NBBbSurMXkOfPZ/KeeD1alj
-	GmVVGxqi/W5k6jj09RcvcTo3H2rmgxcM0IfMu3QGdnpcLBgg7duNbfCFyjfAYftc
-	U1Yny/CNh4DUNQq0yjwoEIAi1z9nT3tawUnYwJYLlcvVXxHSc69ywP+XcoZGMEZw
-	bshJxA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42dkbt3mj3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 07:18:33 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49M7IVr5001778
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 07:18:31 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Oct
- 2024 00:18:27 -0700
-Message-ID: <afab811c-4de5-8a63-554d-b24704e1bdcb@quicinc.com>
-Date: Tue, 22 Oct 2024 12:48:24 +0530
+	s=arc-20240116; t=1729581562; c=relaxed/simple;
+	bh=ZijgXv2TM6YWiupi5TuKGeeesw3ZN88Ht0fCGQ0XX1w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rmqEcWUjuSZGOywZjwSsHrTwh2BGMXpOYJYKHopFLe9q9clhQzGre7odOOTpNnc4PzZOYYBrEIaZaEjlHOddsDGrlT8OB1znx9vKURyCtJa5gGZUQ9p5LRKa/W1kYZzBLBvCI9RHrwEQR6Hb+W9IgmgVmxBRU1hx4I1CJRIw5vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZPAP34ri; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20e576dbc42so37436805ad.0;
+        Tue, 22 Oct 2024 00:19:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729581560; x=1730186360; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XrY5a8w2eF5hqkiN1ay+aD3AseD3qSj3rX8OoR3oJKI=;
+        b=ZPAP34rimC7nG1Ne6QXGz2vm9E/emcW3McWQ0v50ElRo82TtkBa6pFQyY3HoMBgMwN
+         2Y8JX2QV+JLCQhO2B0BuBoTly47zbFY2vP8qK6bt8V5UBHHVp2/KN8rsPiMDuE7Z9hlL
+         B1Rm23MhHek8o3gC5ptvpxrHtJDbyhOou2Fp/EdPP9HWTSut4hLmbFrSEkhvcYwG6LvB
+         bJ7nyagCORjvz15CLcdQom7hVjQGcbVbG+/r6pzvBIwQ0ooI3QC2NyGL5AMAo9vziiwl
+         KSYE99AgpTklsz1HXBjXsRRPf+Cw5GbCnqvNKfJ6BVAxijV6gPn+kNqPs17xyNEwUqq4
+         Yonw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729581560; x=1730186360;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XrY5a8w2eF5hqkiN1ay+aD3AseD3qSj3rX8OoR3oJKI=;
+        b=bqjXXtOm7kX61cIxuwyJxzEoQGRWdRzs25zMLIfFLLIkvXqtv4XyNo2XC4SMXWrnk4
+         Vtw1/CnBPyx55Ql6Q7rs8V+ovNlUl0HO6UavUr3IvL/7etBwON+nwBVGKZwg5ckSywrc
+         jnGPrpdL+sMLJKsLBnv9EL3I5qIgGp8r8dA/vyq360xJozv5GFX1mprjUu0oev3rg3wi
+         UhAveDc16q7JtFcvI4qfITh2NyPs7HW3nIGVEy0M3Zu+nju+nYYmGl8lZMSGCswu+k3R
+         URFcVmTaGAKouj4cEzyWfKlYBwnPjWID4IBEriXFdv/z3HTbLbSqoMMuWH+37qKN4Bz6
+         6Itg==
+X-Forwarded-Encrypted: i=1; AJvYcCVFpoaxItbXUsF21xl7vx5MravY8XGIML6e7ek/1LbPiw3U4F21yGGlb5qBqMCtbroW8JIsIunAvDKn@vger.kernel.org, AJvYcCXNl15X2/6gXOAu50qmJj6fegtdLqCwTipja9JFvOUVuCCejlsuM37n3TR/BXlE7Fqwp9dna5/lbegxU0dL@vger.kernel.org, AJvYcCXbZQAhug/lDK0L2CPXccjsF6kJYSUPkvxYnyAjlquyhLH0jBFJp/R/TCMmr0h2PALz9sVhabGgMn8qxNU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YztGI6HaWelij0flP+G0i8CoErEMErgZyvRmvXT3kQincAh4pOY
+	xgun5mUkdSrdhfTQWJZGR6MOKqMxflWs9nziNz13Qi3mtNlRGs48
+X-Google-Smtp-Source: AGHT+IF971eN1XW/0cnJQ0Xzkjpk9q0IGwL5BsrxQpmOzncKIjssOO7/GR2M8uI66dtXtBMqphhnmA==
+X-Received: by 2002:a17:902:f544:b0:20c:9821:6997 with SMTP id d9443c01a7336-20e983eff6bmr25662825ad.8.1729581559751;
+        Tue, 22 Oct 2024 00:19:19 -0700 (PDT)
+Received: from ux-UP-WHL01 ([120.237.109.178])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0db9bfsm36666475ad.211.2024.10.22.00.19.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 00:19:19 -0700 (PDT)
+Date: Tue, 22 Oct 2024 15:19:04 +0800
+From: Charles Wang <charles.goodix@gmail.com>
+To: Doug Anderson <dianders@chromium.org>
+Cc: krzk@kernel.org, dmitry.torokhov@gmail.com, hbarnor@chromium.org,
+	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+Message-ID: <ZxdRaaCR7eTOCQkB@ux-UP-WHL01>
+References: <20241018020815.3098263-2-charles.goodix@gmail.com>
+ <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
+ <ZxMfu4yxk961mZWB@ux-UP-WHL01>
+ <fbde8a3a-3adc-4c1a-8529-fde0fa149c8e@kernel.org>
+ <CAD=FV=VphXewyk_mpGHUZKw8_aK8HnH8T-YumwM70eyz22S+Aw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V4 3/5] firmware: arm_scmi: vendors: Add QCOM SCMI Generic
- Extensions
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
-        <arm-scmi@vger.kernel.org>, Amir Vajid <avajid@quicinc.com>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <20241007061023.1978380-4-quic_sibis@quicinc.com>
- <3vj55wm7j6fz32q2pynzqikl4yysno5zdlpt6zz6xylcv237ak@bwejn7zn5o3o>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <3vj55wm7j6fz32q2pynzqikl4yysno5zdlpt6zz6xylcv237ak@bwejn7zn5o3o>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: OF6RgkDKHYKAw1oStKWf2nMtZN6c4L0O
-X-Proofpoint-GUID: OF6RgkDKHYKAw1oStKWf2nMtZN6c4L0O
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 mlxscore=0 bulkscore=0 malwarescore=0
- lowpriorityscore=0 mlxlogscore=999 clxscore=1015 suspectscore=0
- phishscore=0 spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410220046
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=VphXewyk_mpGHUZKw8_aK8HnH8T-YumwM70eyz22S+Aw@mail.gmail.com>
 
+Hi Doug,
 
-
-On 10/7/24 23:43, Dmitry Baryshkov wrote:
-> On Mon, Oct 07, 2024 at 11:40:21AM GMT, Sibi Sankar wrote:
->> The QCOM SCMI Generic Extensions Protocol provides a generic way of
->> exposing a number of Qualcomm SoC specific features (like memory bus
->> scaling) through a mixture of pre-determined algorithm strings and
->> param_id pairs hosted on the SCMI controller.
->>
->> Co-developed-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Co-developed-by: Amir Vajid <avajid@quicinc.com>
->> Signed-off-by: Amir Vajid <avajid@quicinc.com>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-
-Thanks again for spending time to review the series!
-
->> ---
->>
->> v3:
->> * Pick up Rb tag and fixup/re-order elements of the vendor ops [Christian]
->> * Follow naming convention and folder structure used by IMX
->> * Add missing enum in the vendor protocol and fix documentation [Konrad]
->>
->>   drivers/firmware/arm_scmi/Kconfig             |   1 +
->>   drivers/firmware/arm_scmi/Makefile            |   1 +
->>   .../firmware/arm_scmi/vendors/qcom/Kconfig    |  15 ++
->>   .../firmware/arm_scmi/vendors/qcom/Makefile   |   2 +
->>   .../arm_scmi/vendors/qcom/qcom-generic-ext.c  | 184 ++++++++++++++++++
->>   include/linux/scmi_qcom_protocol.h            |  39 ++++
->>   6 files changed, 242 insertions(+)
->>   create mode 100644 drivers/firmware/arm_scmi/vendors/qcom/Kconfig
->>   create mode 100644 drivers/firmware/arm_scmi/vendors/qcom/Makefile
->>   create mode 100644 drivers/firmware/arm_scmi/vendors/qcom/qcom-generic-ext.c
->>   create mode 100644 include/linux/scmi_qcom_protocol.h
->>
->> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
->> index dabd874641d0..73128442d97b 100644
->> --- a/drivers/firmware/arm_scmi/Kconfig
->> +++ b/drivers/firmware/arm_scmi/Kconfig
->> @@ -71,6 +71,7 @@ config ARM_SCMI_DEBUG_COUNTERS
->>   
->>   source "drivers/firmware/arm_scmi/transports/Kconfig"
->>   source "drivers/firmware/arm_scmi/vendors/imx/Kconfig"
->> +source "drivers/firmware/arm_scmi/vendors/qcom/Kconfig"
->>   
->>   endif #ARM_SCMI_PROTOCOL
->>   
->> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
->> index 9ac81adff567..58cf4d656cbb 100644
->> --- a/drivers/firmware/arm_scmi/Makefile
->> +++ b/drivers/firmware/arm_scmi/Makefile
->> @@ -12,6 +12,7 @@ scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
->>   
->>   obj-$(CONFIG_ARM_SCMI_PROTOCOL) += transports/
->>   obj-$(CONFIG_ARM_SCMI_PROTOCOL) += vendors/imx/
->> +obj-$(CONFIG_ARM_SCMI_PROTOCOL) += vendors/qcom/
->>   
->>   obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
->>   obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-module.o
->> diff --git a/drivers/firmware/arm_scmi/vendors/qcom/Kconfig b/drivers/firmware/arm_scmi/vendors/qcom/Kconfig
->> new file mode 100644
->> index 000000000000..5dd9e8a6b75f
->> --- /dev/null
->> +++ b/drivers/firmware/arm_scmi/vendors/qcom/Kconfig
->> @@ -0,0 +1,15 @@
->> +# SPDX-License-Identifier: GPL-2.0-only
->> +menu "ARM SCMI QCOM Vendor Protocols"
->> +
->> +config QCOM_SCMI_GENERIC_EXT
->> +	tristate "Qualcomm Technologies, Inc. Qcom SCMI vendor Protocol"
->> +	depends on ARM_SCMI_PROTOCOL || COMPILE_TEST
->> +	help
->> +	  The QCOM SCMI vendor protocol provides a generic way of exposing
->> +	  a number of Qualcomm SoC specific features (like memory bus scaling)
->> +	  through a mixture of pre-determined algorithm strings and param_id
->> +	  pairs hosted on the SCMI controller.
->> +
->> +	  This driver defines/documents the message ID's used for this
->> +	  communication and also exposes the operations used by the clients.
->> +endmenu
->> diff --git a/drivers/firmware/arm_scmi/vendors/qcom/Makefile b/drivers/firmware/arm_scmi/vendors/qcom/Makefile
->> new file mode 100644
->> index 000000000000..6b98fabbebb8
->> --- /dev/null
->> +++ b/drivers/firmware/arm_scmi/vendors/qcom/Makefile
->> @@ -0,0 +1,2 @@
->> +# SPDX-License-Identifier: GPL-2.0-only
->> +obj-$(CONFIG_QCOM_SCMI_GENERIC_EXT) += qcom-generic-ext.o
->> diff --git a/drivers/firmware/arm_scmi/vendors/qcom/qcom-generic-ext.c b/drivers/firmware/arm_scmi/vendors/qcom/qcom-generic-ext.c
->> new file mode 100644
->> index 000000000000..f7cd949161df
->> --- /dev/null
->> +++ b/drivers/firmware/arm_scmi/vendors/qcom/qcom-generic-ext.c
->> @@ -0,0 +1,184 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <linux/scmi_qcom_protocol.h>
->> +
->> +#include "../../common.h"
->> +
->> +/**
->> + * enum qcom_generic_ext_protocol_cmd - vendor specific commands supported by SCMI Qualcomm
->> + *                                      generic vendor protocol.
->> + *
->> + * This protocol is intended as a generic way of exposing a number of Qualcomm SoC
->> + * specific features through a mixture of pre-determined algorithm string and param_id
->> + * pairs hosted on the SCMI controller.
->> + *
->> + * The QCOM SCMI Vendor Protocol has the protocol id as 0x80 and vendor id set to
->> + * Qualcomm and the implementation version set to 0x20000. The PROTOCOL_VERSION command
->> + * returns version 1.0.
->> + *
->> + * @QCOM_SCMI_SET_PARAM: message_id: 0x10 is used to set the parameter of a specific algo_str
->> + *                       hosted on QCOM SCMI Vendor Protocol. The tx len depends on the
->> + *                       algo_str used.
->> + * @QCOM_SCMI_GET_PARAM: message_id: 0x11 is used to get parameter information of a specific
->> + *                       algo_str hosted on QCOM SCMI Vendor Protocol. The tx and rx len
->> + *                       depends on the algo_str used.
->> + * @QCOM_SCMI_START_ACTIVITY: message_id: 0x12 is used to start the activity performed by
->> + *                            the algo_str.
->> + * @QCOM_SCMI_STOP_ACTIVITY: message_id: 0x13 is used to stop a pre-existing activity
->> + *                           performed by the algo_str.
+On Mon, Oct 21, 2024 at 08:37:32AM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> Drop message_id's from the definitions. They duplicate enum values.
+> On Mon, Oct 21, 2024 at 2:43 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On 19/10/2024 04:55, Charles Wang wrote:
+> > > Hi Doug
+> > >
+> > > On Fri, Oct 18, 2024 at 01:48:56PM -0700, Doug Anderson wrote:
+> > >>
+> > >> On Thu, Oct 17, 2024 at 7:09 PM Charles Wang <charles.goodix@gmail.com> wrote:
+> > >>>
+> > >>> The Goodix GT7986U touch controller report touch data according to the
+> > >>> HID protocol through the SPI bus. However, it is incompatible with
+> > >>> Microsoft's HID-over-SPI protocol.
+> > >>>
+> > >>> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> > >>> ---
+> > >>>  .../bindings/input/goodix,gt7375p.yaml        | 68 ++++++++++++++++---
+> > >>>  1 file changed, 58 insertions(+), 10 deletions(-)
+> > >>
+> > >> I'm happy to let device tree folks make the call here, but IMO it
+> > >> would be much cleaner to just consider the I2C-connected GT7986U and
+> > >> the SPI-connected GT7986U to be different things and just use a
+> >
+> > Same device, you cannot have different compatibles. The way how the same
+> > (literally same chip) device sits on the bus is not part of the binding,
+> > thus no different compatibles.
+> 
+> I don't want to belabour the point too much, but this doesn't feel
+> completely black and white here.
+> 
+> "Same chip": a whole lot of laptops and phones all use the "same chip"
+> (same SoC) yet are different products. ...or you can look at the fact
+> that many peripherals have the same STM32 or Nuvoton chip in them but
+> are wildly different peripherals.
+> 
+> In this case, Goodix may have made an ASIC called "GT7986U" that has
+> some type of CPU on it that can run firmware that can talk as an I2C
+> device or a SPI device. This ASIC may be intended to be used as a
+> touchscreen controller, but fundamentally it doesn't feel that
+> different from an STM32. You can build different boards designs with
+> the "GT7986U" on it and those boards are intended to run different
+> firmware.
+> 
+> People manufacturing touch controller boards presumably put this
+> "GT7986U" on their touch controller board, maybe set certain
+> strappings telling it that it's talking over SPI or I2C or maybe just
+> decide which pins they're going to wire out to the board-to-board
+> connector on the touch controller board. A touch controller board
+> intended to talk over SPI may look 98% the same as a touch controller
+> board intended to talk over I2C, but what percentage of "sameness"
+> means that we need the same compatible string?
+> 
+> Would things be different if Goodix decided to manufacture touch
+> controller boards themselves and sold two SKUs: a GT7986U-S and a
+> GT7986U-I?
+> 
+> I would also note that (reading back in previous conversations) I
+> think Charles said that they run different firmware on the SPI vs. I2C
+> touch controllers. As I understand it, the firmware running on a
+> device can make it a different device from a device tree perspective.
+> The device tree does its best to describe just the hardware but it can
+> get fuzzy. For instance the "VID/PID" of a USB device is usually
+> something programmable and could be updateable by a firmware change
+> but we still may need to encode the VID/PID of the firmware that is
+> intended to run on the device in the device tree.
+> 
+> Anyway, I'm happy to be quiet about this and fine if folks want to
+> continue to work towards a "unified" binding. It makes me a little
+> uncomfortable that I'll still end up listed as a "maintainer" of the
+> unified binding because I don't totally agree with it, but I'm also
+> pragmatic and I'd rather have something that can land.
+> 
 
-ack
+Thank you very much for your attention. Your understanding of the GT7986U
+SPI and I2C devices is correct. There is no fundamental difference between
+them and the STM32, as they are all ASIC devices. The functionality of the
+device is determined by the firmware that is loaded, although the GT7986U
+is an ASIC specifically designed for touchscreens.
 
-> 
->> + */
->> +enum qcom_generic_ext_protocol_cmd {
->> +	QCOM_SCMI_SET_PARAM = 0x10,
->> +	QCOM_SCMI_GET_PARAM = 0x11,
->> +	QCOM_SCMI_START_ACTIVITY = 0x12,
->> +	QCOM_SCMI_STOP_ACTIVITY = 0x13,
->> +};
->> +
->> +/**
->> + * struct qcom_scmi_msg - represents the various parameters to be populated
->> + *                        for using the QCOM SCMI Vendor Protocol
->> + *
->> + * @ext_id: reserved, must be zero
->> + * @algo_low: lower 32 bits of the algo_str
->> + * @algo_high: upper 32 bits of the algo_str
->> + * @param_id: serves as token message id to the specific algo_str
->> + * @buf: serves as the payload to the specified param_id and algo_str pair
->> + */
->> +struct qcom_scmi_msg {
->> +	__le32 ext_id;
->> +	__le32 algo_low;
->> +	__le32 algo_high;
->> +	__le32 param_id;
->> +	__le32 buf[];
->> +};
->> +
->> +static int qcom_scmi_set_param(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
->> +			       u64 algo_str, u32 param_id)
->> +{
->> +	struct scmi_xfer *t;
->> +	struct qcom_scmi_msg *msg;
->> +	int ret;
->> +
->> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_SET_PARAM, buf_len + sizeof(*msg), 0, &t);
->> +	if (ret)
->> +		return ret;
->> +
->> +	msg = t->tx.buf;
->> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
->> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
->> +	msg->param_id = cpu_to_le32(param_id);
->> +
->> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
->> +
->> +	ret = ph->xops->do_xfer(ph, t);
->> +	ph->xops->xfer_put(ph, t);
->> +
->> +	return ret;
->> +}
->> +
->> +static int qcom_scmi_get_param(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
->> +			       u64 algo_str, u32 param_id, size_t rx_size)
->> +{
->> +	struct scmi_xfer *t;
->> +	struct qcom_scmi_msg *msg;
->> +	int ret;
->> +
->> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_GET_PARAM, buf_len + sizeof(*msg), rx_size, &t);
->> +	if (ret)
->> +		return ret;
->> +
->> +	msg = t->tx.buf;
->> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
->> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
->> +	msg->param_id = cpu_to_le32(param_id);
->> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
-> 
-> Isn't it buf_len?
+Additionally, the firmware and devices are generally bound to specific touch
+panels, meaning that firmware intended for SPI will not function properly on
+an I2C touch panel.
 
-> 
->> +
->> +	ret = ph->xops->do_xfer(ph, t);
->> +	memcpy(buf, t->rx.buf, t->rx.len);
->> +	ph->xops->xfer_put(ph, t);
->> +
->> +	return ret;
->> +}
->> +
->> +static int qcom_scmi_start_activity(const struct scmi_protocol_handle *ph, void *buf,
->> +				    size_t buf_len, u64 algo_str, u32 param_id)
->> +{
->> +	struct scmi_xfer *t;
->> +	struct qcom_scmi_msg *msg;
->> +	int ret;
->> +
->> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_START_ACTIVITY, buf_len + sizeof(*msg), 0, &t);
->> +	if (ret)
->> +		return ret;
->> +
->> +	msg = t->tx.buf;
->> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
->> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
->> +	msg->param_id = cpu_to_le32(param_id);
->> +
->> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
-> 
-> Isn't it buf_len?
-> 
->> +
->> +	ret = ph->xops->do_xfer(ph, t);
->> +	ph->xops->xfer_put(ph, t);
->> +
->> +	return ret;
->> +}
->> +
->> +static int qcom_scmi_stop_activity(const struct scmi_protocol_handle *ph, void *buf,
->> +				   size_t buf_len, u64 algo_str, u32 param_id)
->> +{
->> +	struct scmi_xfer *t;
->> +	struct qcom_scmi_msg *msg;
->> +	int ret;
->> +
->> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_STOP_ACTIVITY, buf_len + sizeof(*msg), 0, &t);
->> +	if (ret)
->> +		return ret;
->> +
->> +	msg = t->tx.buf;
->> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
->> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
->> +	msg->param_id = cpu_to_le32(param_id);
->> +
->> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
-> 
-> Isn't it buf_len?
-
-ack
-
-> 
->> +
->> +	ret = ph->xops->do_xfer(ph, t);
->> +	ph->xops->xfer_put(ph, t);
-> 
-> Could you please extract a common helper that handles xfer for you?
-> Seeing the same code 4 times is 3 times too much in my opinion.
-
-Yup, you have been asking for this multiple times already.
-Will get it addressed in the next re-spin.
-
-> 
->> +
->> +	return ret;
->> +}
->> +
->> +static struct qcom_generic_ext_ops qcom_proto_ops = {
->> +	.set_param = qcom_scmi_set_param,
->> +	.get_param = qcom_scmi_get_param,
->> +	.start_activity = qcom_scmi_start_activity,
->> +	.stop_activity = qcom_scmi_stop_activity,
->> +};
->> +
->> +static int qcom_generic_ext_protocol_init(const struct scmi_protocol_handle *ph)
->> +{
->> +	u32 version;
->> +
->> +	ph->xops->version_get(ph, &version);
->> +
->> +	dev_info(ph->dev, "QCOM Generic Vendor Version %d.%d\n",
->> +		 PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
-> 
-> dev_dbg, please.
-
-Few protocols had them marked as info. Sure, I'll convert it to dbg
-instead.
-
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct scmi_protocol qcom_generic_ext = {
->> +	.id = SCMI_PROTOCOL_QCOM_GENERIC,
->> +	.owner = THIS_MODULE,
->> +	.instance_init = &qcom_generic_ext_protocol_init,
->> +	.ops = &qcom_proto_ops,
->> +	.vendor_id = "Qualcomm",
->> +	.impl_ver = 0x20000,
->> +};
->> +module_scmi_protocol(qcom_generic_ext);
->> +
->> +MODULE_DESCRIPTION("QCOM SCMI Generic Vendor protocol");
->> +MODULE_LICENSE("GPL");
->> diff --git a/include/linux/scmi_qcom_protocol.h b/include/linux/scmi_qcom_protocol.h
->> new file mode 100644
->> index 000000000000..8f82c42e566d
->> --- /dev/null
->> +++ b/include/linux/scmi_qcom_protocol.h
->> @@ -0,0 +1,39 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * SCMI Message Protocol driver QCOM extension header
->> + *
->> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#ifndef _LINUX_SCMI_QCOM_PROTOCOL_H
->> +#define _LINUX_SCMI_QCOM_PROTOCOL_H
->> +
->> +#include <linux/bitfield.h>
->> +#include <linux/device.h>
-> 
-> It doesn't look like you need those two headers.
-
-Thanks for catching this.
-
--Sibi
-
-> 
->> +#include <linux/types.h>
->> +
->> +#define SCMI_PROTOCOL_QCOM_GENERIC    0x80
->> +
->> +struct scmi_protocol_handle;
->> +
->> +/**
->> + * struct qcom_generic_ext_ops - represents the various operations provided
->> + *				 by QCOM Generic Vendor Protocol
->> + *
->> + * @set_param: set parameter specified by param_id and algo_str pair.
->> + * @get_param: retrieve parameter specified by param_id and algo_str pair.
->> + * @start_activity: initiate a specific activity defined by algo_str.
->> + * @stop_activity: halt previously initiated activity defined by algo_str.
->> + */
->> +struct qcom_generic_ext_ops {
->> +	int (*set_param)(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
->> +			 u64 algo_str, u32 param_id);
->> +	int (*get_param)(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
->> +			 u64 algo_str, u32 param_id, size_t rx_size);
->> +	int (*start_activity)(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
->> +			      u64 algo_str, u32 param_id);
->> +	int (*stop_activity)(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
->> +			     u64 algo_str, u32 param_id);
->> +};
->> +
->> +#endif /* _LINUX_SCMI_QCOM_PROTOCOL_H */
->> -- 
->> 2.34.1
->>
-> 
+Best regards,
+Charles
 
