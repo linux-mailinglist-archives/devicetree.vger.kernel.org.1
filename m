@@ -1,135 +1,157 @@
-Return-Path: <devicetree+bounces-114339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57F99AB4F4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:24:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 619CD9AB500
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:25:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E15261C20DE0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:24:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1602C2816BF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC31B1BD4F1;
-	Tue, 22 Oct 2024 17:23:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fODqioL5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB611BDAA5;
+	Tue, 22 Oct 2024 17:25:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E531BD4E0;
-	Tue, 22 Oct 2024 17:23:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE5B1BDA81;
+	Tue, 22 Oct 2024 17:25:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729617838; cv=none; b=V5hVmgKPsCa78fTDrPsMNrwKvYCjJpRaj1XablQCEyhyQr6k35nN4hig9IvjljTqL+k0uDviYhGFrQo8eGqvQ3b9cnIUfTKaC8+xxIXvlMbZ2+/LQBp4O9cu3Uk++hfF9whOcC287Hb5AoktRBr9RKuIuwLQTe/wgyjPRlHUES4=
+	t=1729617903; cv=none; b=jwAW7VrVzHP49hSkSBY5DWSAsuxPXDD4KHqXmkcbhS3OjnYwF5x+xkVbdb35R+8y+z/DB0VI5Dd0e/JNOyuZgPS1v+wWWkuFs/rkkvvMtKMiKItLwwc9XIgFMi9A7ZPYbQqEG8sq2i7DfjJFfBjTxOfAztPb92fG7di2hyBR0m8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729617838; c=relaxed/simple;
-	bh=u774XJNJoKaoO7NkJoZ6UrZ6tUzrujqv0gRuGOzw/hg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=shaBt0LF9hSIPgqeqLwWTehV8OP6L6LOf/NuFeYofUO4dMjFgI1u6bMA6Ule8tmZwafSZxpVm3+Huhtffc0qByL09kvaLEOItxvOjv4TbFwaVpmvL3e45YL+rHk3uTGgEsiBsW2X3c++0yJ12tVWK8xay1Fn9J9SFK6ucT76Jtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fODqioL5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96122C4CEC3;
-	Tue, 22 Oct 2024 17:23:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729617838;
-	bh=u774XJNJoKaoO7NkJoZ6UrZ6tUzrujqv0gRuGOzw/hg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fODqioL5YDB0GPyFq7GnX4U/RJwKQTIXdfMCHOpPXB8lT0AmCmjbsHBbvb+c33QCD
-	 zxieNmT+ESorvyOEpKL6pHuvEKnZ3MXFamJiEA99iS3xUsBwKPOhAqL97AUNyLwosV
-	 EJ9Pjg/d9ZmscmCFEqq+PdWyeJyReFUQViKwtf94yzzotdDwEzHu3ogziBN91mIpZQ
-	 IDtkhHjrq2vFCLANnec6WtTzXUnky4VckPLJvJHzEs4QmiCTEMmbZXkQTVtTFL9RXT
-	 Z8aEjr0NgfHNaHGjv1OeCuQOERkN3fSiSBL8eV3QJTAT2QCbATu2S8Udq07jlMPrwq
-	 yxjxt6l6BLw2g==
-Date: Tue, 22 Oct 2024 18:23:52 +0100
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Yassine Oudjana <yassine.oudjana@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Lukas Bulwahn <lukas.bulwahn@redhat.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Sam Shih <sam.shih@mediatek.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: mediatek: Add bindings for
- MT6735 syscon clock and reset controllers
-Message-ID: <20241022-map-unsightly-fafb554b8f9b@spud>
-References: <20241021121618.151079-1-y.oudjana@protonmail.com>
- <20241021121618.151079-2-y.oudjana@protonmail.com>
- <20241021-goatskin-wafer-7582dbcfe1d1@spud>
- <78f4da13-cbff-415b-a8eb-ec16108b5c00@collabora.com>
+	s=arc-20240116; t=1729617903; c=relaxed/simple;
+	bh=NjIFEcZKU2L1qHXmyWx4b7i5GYM04tGEhv9u6uJtOqA=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=adTrBS/dtw8o5n0NjhgFoo5o1rmiWVR+gw39ThEAg88tqODhqJYAT5fuJxtUAqtb2yEc/7cLwMHvdAX2Jy/4fbVWrQsQdghqjlCC+k26HqLoHwpQvPDOQX/Agu9ezlLQtvvjTgaSfJ57P35ADmerw4jsXdFeMA0NckVWjNMw7ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XXzXK5CpMz6K6HL;
+	Wed, 23 Oct 2024 01:22:57 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 457D3140CF4;
+	Wed, 23 Oct 2024 01:24:58 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 22 Oct
+ 2024 19:24:57 +0200
+Date: Tue, 22 Oct 2024 18:24:51 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Rob Herring <robh@kernel.org>
+CC: Vasileios Amoiridis <vassilisamir@gmail.com>, <jic23@kernel.org>,
+	<lars@metafoo.de>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<andriy.shevchenko@linux.intel.com>, <anshulusr@gmail.com>,
+	<gustavograzs@gmail.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 11/13] dt-bindings: iio: add binding for BME680
+ driver
+Message-ID: <20241022182451.00007ac0@Huawei.com>
+In-Reply-To: <20241022134102.GA401216-robh@kernel.org>
+References: <20241021195316.58911-1-vassilisamir@gmail.com>
+	<20241021195316.58911-12-vassilisamir@gmail.com>
+	<20241022134102.GA401216-robh@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MGdtz8fU63TqFAKQ"
-Content-Disposition: inline
-In-Reply-To: <78f4da13-cbff-415b-a8eb-ec16108b5c00@collabora.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
+ frapeml500008.china.huawei.com (7.182.85.71)
+
+On Tue, 22 Oct 2024 08:41:02 -0500
+Rob Herring <robh@kernel.org> wrote:
+
+> On Mon, Oct 21, 2024 at 09:53:14PM +0200, Vasileios Amoiridis wrote:
+> > Add dt-binding for BME680 gas sensor device. The device incorporates as
+> > well temperature, pressure and relative humidity sensors.  
+> 
+> You aren't adding a binding for bme680, but extending it.
+> 
+> Drop the 2nd 'bindings' from subject. 
+> 
+> Something like this:
+> 
+> dt-bindings: iio/chemical: bosch,bme680: Add supply properties
+> 
+> > 
+> > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> > ---
+> >  .../bindings/iio/chemical/bosch,bme680.yaml   | 64 +++++++++++++++++++
+> >  .../devicetree/bindings/trivial-devices.yaml  |  2 -
+> >  2 files changed, 64 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml b/Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
+> > new file mode 100644
+> > index 000000000000..e54df3afa7b2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
+> > @@ -0,0 +1,64 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/chemical/bosch,bme680.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Bosch BME680 Gas sensor
+> > +
+> > +maintainers:
+> > +  - Vasileios Amoiridis <vassilisamir@gmail.com>
+> > +
+> > +description:  
+> 
+> You need '>' to maintain paragraphs.
+> 
+> > +  BME680 is a gas sensor which combines relative humidity, barometric pressure,
+> > +  ambient temperature and gas (VOC - Volatile Organic Compounds) measurements.
+> > +
+> > +  https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: bosch,bme680
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  vdd-supply: true
+> > +  vddio-supply: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - vdd-supply
+> > +  - vddio-supply  
+> 
+> These supplies can't be required. That's an ABI change from what was 
+> already supported.
+Hi Rob,
+
+I thought for supplies the convention was that if the power is needed
+for functioning device then to put them as required.
+
+In case were they were missing in an original binding
+allow stub regulators to deal with a DT that predates that.
+Non linux cases are obviously trickier to predict but these
+supplies must be on or the binding wouldn't have worked before this
+point.
+
+I remember I was very much on the side that they were optional and
+convinced by others that this was the way to go.
+
+We've added supplies for old bindings as required in the past
+so probably broken someone if I have this wrong :(
+
+Jonathan
 
 
---MGdtz8fU63TqFAKQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Oct 22, 2024 at 11:36:20AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 21/10/24 18:56, Conor Dooley ha scritto:
-> > On Mon, Oct 21, 2024 at 03:16:15PM +0300, Yassine Oudjana wrote:
-> > > From: Yassine Oudjana <y.oudjana@protonmail.com>
-> > >=20
-> > > Add device tree bindings for syscon clock and reset controllers (IMGS=
-YS,
-> > > MFGCFG, VDECSYS and VENCSYS).
-> > >=20
-> > > Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> > > ---
-> > >   .../bindings/clock/mediatek,syscon.yaml           |  4 ++++
-> > >   MAINTAINERS                                       |  6 ++++++
-> > >   .../dt-bindings/clock/mediatek,mt6735-imgsys.h    | 15 ++++++++++++=
-+++
-> > >   .../dt-bindings/clock/mediatek,mt6735-mfgcfg.h    |  8 ++++++++
-> > >   .../dt-bindings/clock/mediatek,mt6735-vdecsys.h   |  9 +++++++++
-> > >   .../dt-bindings/clock/mediatek,mt6735-vencsys.h   | 11 +++++++++++
-> > >   .../dt-bindings/reset/mediatek,mt6735-mfgcfg.h    |  9 +++++++++
-> > >   .../dt-bindings/reset/mediatek,mt6735-vdecsys.h   | 10 ++++++++++
-> >=20
-> > Is it really necessary to have individual files foe each of these? Seems
-> > a bit extra, no?
-> >=20
->=20
-> It's only good for including smaller headers in each driver (and/or DT, b=
-ut
-> then the SoC DT will anyway include them all).
->=20
-> I'm fine with that, but I'm also fine with one header for clock and one f=
-or reset.
->=20
-> So.. Conor, it's however you prefer :-)
-
-It's not worth respinning for, IMO, but I think having 8 and 9 line
-header files for 2 definitions is silly.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---MGdtz8fU63TqFAKQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxffqAAKCRB4tDGHoIJi
-0jppAQC3jp73TDDQ8ceo7QUcuVoccM5RURc39pRsxAGOCXGfdwEA/dA9MNvMdUWv
-jSwY6hOKcpjb/PE5XD01uo3g0gxiBwE=
-=3GWk
------END PGP SIGNATURE-----
-
---MGdtz8fU63TqFAKQ--
 
