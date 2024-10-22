@@ -1,220 +1,227 @@
-Return-Path: <devicetree+bounces-114294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7FF59AB360
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A06459AB392
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:13:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B56371C209EA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:07:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C13F21C21BDA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96F71B141D;
-	Tue, 22 Oct 2024 16:06:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2D11AD9ED;
+	Tue, 22 Oct 2024 16:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bFowMhYW"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JagwZroB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F1B41A7066;
-	Tue, 22 Oct 2024 16:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6101A7066
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 16:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729613172; cv=none; b=aYLcCv1g4XCdkZ6+GJIvEXMKalz7PjLlYQN7WyzpddvvZ1FhCjiQMkmdKh9zsvcI8x9AEHCuMvMOjtpX5Leos3mk4KCI814ISA/aGTlbZQVqiMwGYjDg/VL+EA2y/bUXifam9kw922nIlcv/fOHZzJFt++zQr0f8YJ83xiU3ReE=
+	t=1729613574; cv=none; b=fYrcYvxiHHqwaOlTaWgKnvTkme3MMoYIbMeYPcYgerQt8Kkl1xBKW3vBEUzfX5Pna+4QHDsAABvAUmK+QrduUQPdVBe6Ej67kRnmt9Nn07dXHRJZUMimM/r9/am0T9esvpExFwvhwiyO7SqhKdYDfjM1W/x48wu9hU0MAMpG6o4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729613172; c=relaxed/simple;
-	bh=oRFDm+iedatU2fV8V3MjHkys9bVf+nOjhkvEO5L675M=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iJjRTkEXscsO/NvV/Hhr/mDNHzMXdSQ/UAmsM1lsI7qVps3yhoJcHR5GzREqbeqDSi+KghgUyucmL5czXAVInFEW+lGiTxZEb2m4OYEcUwS/SKHJ+pVfO7pxcFd62qbJHO+Fl7KEBHWFttXffF+Zmq96kLKhmx+cHZexLDodPyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bFowMhYW; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4315f24a6bbso49991215e9.1;
-        Tue, 22 Oct 2024 09:06:10 -0700 (PDT)
+	s=arc-20240116; t=1729613574; c=relaxed/simple;
+	bh=os2vWw3As1ltpU8K161/JxD1EUb+eBNxacNzN4bKumY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kRXZKYDBGd6QLEPktM8Omt4oZylKC/qntV2X27HNrP8/XaoxyGO451cgf+vNhvEsp2jtxrO/xu6hNgia2xUZh1F4wEcuBHc3SKkfWFon+Kf6Iq+VBsn+qZKdhHhMQPfwnBI7FUL0QlOh6FnVV10HNMn/K6bb36mkYva3qYEmRLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JagwZroB; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539e13375d3so6455325e87.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:12:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729613169; x=1730217969; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=fxWrldtj8CkDnO6DhUP04cjtdJoNzqSbZK7oqpPnv/8=;
-        b=bFowMhYWYIZDpDv+K1RAbOh7CwXPkYsGSSi3TGsu4wkdBqqMLMQqmbln/2pDW5OuSz
-         MMLz2ZYdErP6J36cMPPhEo8t6BMXwwV3gfGuBi0AlFVpbhm1feXmlXjX9mwWkpa4jrlH
-         KQrM9Ji3pnf62zVUvFIPh5KrdwWdyawwInIkAQTlK5cvOAMQcQNKDqbRrNOdYVdY//Bz
-         MtApJXmLTrS6S3Wgsgbm+Z8p06/fsa+Vn/u5Cqwe0X1io3q1Mehi3EigoOUkQzNxC/Zr
-         /f2Q6bjDHiDy9RNXM8HlxrrDaQ56vr/QMpGzVQB4IfKW59lvNXfraAJ9Dna8a97+JDK8
-         c+Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729613169; x=1730217969;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1729613570; x=1730218370; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fxWrldtj8CkDnO6DhUP04cjtdJoNzqSbZK7oqpPnv/8=;
-        b=XlWY+8OiVGOixgkjNgHCXp/84Gv9LkW8HlLJ26rqlSf6I9Qqdd7fvWYgCuJJ7MKHUo
-         VzONUbLannl2VseQQDsD1oQt5S7TGGdNX2q0wm2BPH9nNLe0YJbON9rHMW4P7nolPErH
-         CoLZ/cec4WI2icpgMkzjYRX4uunlyOzNQ4QA6tk7rdK/Vls6gd2llDvFUwXluXv4rY9O
-         p2wP74LgjYrME2lJM1D4NzT0ZXzrSKDMZessAw15P4sTxrKAI9NvRWvKOyaVG3FKbw0p
-         fCeoWvI9K90lAkIqTFyRQNAcXxRS8aGdMg03xz8Gfow6jf1ATspJ0luUXSw+Izg0j18T
-         FA2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVdNL/snafsVhKCR70mFZV7iLiYhziEvsKH3fKmKy3b83/jETZX8TBw36iyecUsqXmXBhSjqNHEj8XH@vger.kernel.org, AJvYcCWjLrKhpkOHsqHYNn59PYv2NA9nj36t2DBPJTCj7Mf2wgf1e/usLcQ84oYyX8q33LPagHAxdkcL47W5@vger.kernel.org, AJvYcCXxfqfJtE9tD/rDDR/S3JNFRFND5xHpSe9SxsZ3wThePV9U0C408EUTdgVbhqWReFTa5OR3QvXpFw1o2w==@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfEYEh0yTkRogycc4/dFSvmzJmx38DDV++WjDc6HAlNOsZcxrt
-	UX2Dxb+aT74S8fBEg4z4AKWSEU4tK+N/CQLy2Cnpmr0hbHn/qZNv
-X-Google-Smtp-Source: AGHT+IGn+ZvQ2I0cnepX3Iem8TmtbcezWfjPrq8BYpHnSfPOy22mKwtv0GTJLAfmSkZIvd++rl2lXA==
-X-Received: by 2002:a05:600c:4709:b0:430:56c1:644c with SMTP id 5b1f17b1804b1-43161693a2emr116369875e9.31.1729613168980;
-        Tue, 22 Oct 2024 09:06:08 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37a2fsm6921282f8f.22.2024.10.22.09.06.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 09:06:08 -0700 (PDT)
-Message-ID: <6717cd70.df0a0220.850c6.7b5d@mx.google.com>
-X-Google-Original-Message-ID: <ZxfNbgbroaqiZhkf@Ansuel-XPS.>
-Date: Tue, 22 Oct 2024 18:06:06 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v8 3/6] dt-bindings: pwm: airoha: Add EN7581 pwm
-References: <20241018-en7581-pinctrl-v8-0-b676b966a1d1@kernel.org>
- <20241018-en7581-pinctrl-v8-3-b676b966a1d1@kernel.org>
- <20241021190053.GA948525-robh@kernel.org>
+        bh=t9CFjc08LcWL0/ABOGF1hFYw5yTeZPCjsc8aV5Qz52Y=;
+        b=JagwZroBsdmMseKkuO0UIOUhA2lm9FqbGXEIyaq4Jd5o9oM0MED2+o1Y1YHXFt2Ok8
+         kVTNDnoSRELz1j6t5GtE8heiETsVITB6N+2WpJBzrQ8IpmG/ulSxYwZeQwy6zCXGQls+
+         GIqcTkMGKXGeNRtxMac7u9DKRrkuBx6B06D88=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729613570; x=1730218370;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t9CFjc08LcWL0/ABOGF1hFYw5yTeZPCjsc8aV5Qz52Y=;
+        b=gu57gLrNT43vobVgB+/m/bGRQgUIbvRV3vtBqxGqtGgircTr9DdqoQDhMIqn5hKWgL
+         3lfX+tEP/z/VgWvjxxuCoqhHpVX1Jkz09rXSw0Xl2uaxOSjZaMDmCZswuPS2OgTWDmV5
+         AdRLo6a9PojtBq+6kbwriC3w2ckVHCUauTzq8JOORaywvo+gk1KhF32US8UrMYqHKjnw
+         3UaeApnV7oH2ikX3/JxkKdBoLt/h8WLplGFuEkbFhphRCcOFwzXfy7nEg6e3eCs8NIDL
+         XdgyVxdROCWlxUc76+sz10iGQ12AX/ZjmyWXTy7sNJoriookNlrwORV7ndixGBph2216
+         wSiA==
+X-Forwarded-Encrypted: i=1; AJvYcCVO4lMmEtXNxKoPTH+MS00POarg79ui70qJHrikDzKFxGpR8W5yPG84SUuGB4jxOOB2rgCY/dkr/Kya@vger.kernel.org
+X-Gm-Message-State: AOJu0YxW8WFx0O/3xQJPX/qyeg7Ye1ueScYskUEYFHH18lC+B+1ioJOg
+	8y+4ZaT6Ssifh3BNLH4fQlPvJd3nnXp7U7iVxmhS+6nJEnGk5DtyXF6MCRMjJ+mxv49fNHvGyuU
+	IcvKm
+X-Google-Smtp-Source: AGHT+IF2VD6zWumeNnnYXpiDQQZDTw44IV2x66Qw6gfkVIDSLnQRyevy6vuLJ/q1xIOme3kai7y/VQ==
+X-Received: by 2002:a05:6512:1244:b0:539:f7ab:e161 with SMTP id 2adb3069b0e04-53b13a221eamr1995820e87.45.1729613569844;
+        Tue, 22 Oct 2024 09:12:49 -0700 (PDT)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com. [209.85.167.45])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a2243edb9sm802289e87.274.2024.10.22.09.12.48
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Oct 2024 09:12:48 -0700 (PDT)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539f4d8ef84so6182701e87.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:12:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUEc3YckfTi3F1b5ThhR1RoHvCdS4toR8omNRX3K1FHeWz3qZeRM3LfpLsNXqyaLDQXJv2bcorgvxhf@vger.kernel.org
+X-Received: by 2002:a05:6512:691:b0:52e:faf0:40c with SMTP id
+ 2adb3069b0e04-53b139dc446mr1945625e87.3.1729613567969; Tue, 22 Oct 2024
+ 09:12:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241021190053.GA948525-robh@kernel.org>
+References: <20241018020815.3098263-2-charles.goodix@gmail.com>
+ <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
+ <ZxMfu4yxk961mZWB@ux-UP-WHL01> <fbde8a3a-3adc-4c1a-8529-fde0fa149c8e@kernel.org>
+ <CAD=FV=VphXewyk_mpGHUZKw8_aK8HnH8T-YumwM70eyz22S+Aw@mail.gmail.com> <ZxdRaaCR7eTOCQkB@ux-UP-WHL01>
+In-Reply-To: <ZxdRaaCR7eTOCQkB@ux-UP-WHL01>
+From: Doug Anderson <dianders@chromium.org>
+Date: Tue, 22 Oct 2024 09:12:33 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UFonOVHUP5_9+BfJp71CFX7KKA1Gx=boN0=3_4cCKnZw@mail.gmail.com>
+Message-ID: <CAD=FV=UFonOVHUP5_9+BfJp71CFX7KKA1Gx=boN0=3_4cCKnZw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: krzk@kernel.org, dmitry.torokhov@gmail.com, hbarnor@chromium.org, 
+	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 21, 2024 at 02:00:53PM -0500, Rob Herring wrote:
-> On Fri, Oct 18, 2024 at 03:19:04PM +0200, Lorenzo Bianconi wrote:
-> > Introduce device-tree binding documentation for Airoha EN7581 pwm
-> > controller.
-> > 
-> > Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  .../devicetree/bindings/pwm/airoha,en7581-pwm.yaml | 61 ++++++++++++++++++++++
-> >  1 file changed, 61 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml b/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..fb68c10b037b840a571a2ceee57f13cbae78da66
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pwm/airoha,en7581-pwm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Airoha EN7581 PWM Controller
-> > +
-> > +maintainers:
-> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
-> > +
-> > +allOf:
-> > +  - $ref: pwm.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: airoha,en7581-pwm
-> > +
-> > +  "#pwm-cells":
-> > +    const: 3
-> > +
-> > +  airoha,74hc595-mode:
-> > +    description: Set the PWM to handle attached shift register chip 74HC595.
-> > +
-> > +      With this disabled, PWM assume a 74HC164 chip attached.
-> > +
-> > +      The main difference between the 2 chip is the presence of a latch pin
-> > +      that needs to triggered to apply the configuration and PWM needs to
-> > +      account for that.
-> > +    type: boolean
-> > +
-> > +  airoha,sipo-clock-divisor:
-> > +    description: Declare Shift Register chip clock divisor (clock source is
-> > +      from SoC APB Clock)
-> 
-> Where is the clock source defined?
-> 
-> You can specify the PWM frequency in PWM cells and should be able to get 
-> the APB Clock frequency. Then you can calculate the divider.
+Hi,
+
+On Tue, Oct 22, 2024 at 12:19=E2=80=AFAM Charles Wang <charles.goodix@gmail=
+.com> wrote:
 >
+> Hi Doug,
+>
+> On Mon, Oct 21, 2024 at 08:37:32AM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Mon, Oct 21, 2024 at 2:43=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> > >
+> > > On 19/10/2024 04:55, Charles Wang wrote:
+> > > > Hi Doug
+> > > >
+> > > > On Fri, Oct 18, 2024 at 01:48:56PM -0700, Doug Anderson wrote:
+> > > >>
+> > > >> On Thu, Oct 17, 2024 at 7:09=E2=80=AFPM Charles Wang <charles.good=
+ix@gmail.com> wrote:
+> > > >>>
+> > > >>> The Goodix GT7986U touch controller report touch data according t=
+o the
+> > > >>> HID protocol through the SPI bus. However, it is incompatible wit=
+h
+> > > >>> Microsoft's HID-over-SPI protocol.
+> > > >>>
+> > > >>> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> > > >>> ---
+> > > >>>  .../bindings/input/goodix,gt7375p.yaml        | 68 +++++++++++++=
++++---
+> > > >>>  1 file changed, 58 insertions(+), 10 deletions(-)
+> > > >>
+> > > >> I'm happy to let device tree folks make the call here, but IMO it
+> > > >> would be much cleaner to just consider the I2C-connected GT7986U a=
+nd
+> > > >> the SPI-connected GT7986U to be different things and just use a
+> > >
+> > > Same device, you cannot have different compatibles. The way how the s=
+ame
+> > > (literally same chip) device sits on the bus is not part of the bindi=
+ng,
+> > > thus no different compatibles.
+> >
+> > I don't want to belabour the point too much, but this doesn't feel
+> > completely black and white here.
+> >
+> > "Same chip": a whole lot of laptops and phones all use the "same chip"
+> > (same SoC) yet are different products. ...or you can look at the fact
+> > that many peripherals have the same STM32 or Nuvoton chip in them but
+> > are wildly different peripherals.
+> >
+> > In this case, Goodix may have made an ASIC called "GT7986U" that has
+> > some type of CPU on it that can run firmware that can talk as an I2C
+> > device or a SPI device. This ASIC may be intended to be used as a
+> > touchscreen controller, but fundamentally it doesn't feel that
+> > different from an STM32. You can build different boards designs with
+> > the "GT7986U" on it and those boards are intended to run different
+> > firmware.
+> >
+> > People manufacturing touch controller boards presumably put this
+> > "GT7986U" on their touch controller board, maybe set certain
+> > strappings telling it that it's talking over SPI or I2C or maybe just
+> > decide which pins they're going to wire out to the board-to-board
+> > connector on the touch controller board. A touch controller board
+> > intended to talk over SPI may look 98% the same as a touch controller
+> > board intended to talk over I2C, but what percentage of "sameness"
+> > means that we need the same compatible string?
+> >
+> > Would things be different if Goodix decided to manufacture touch
+> > controller boards themselves and sold two SKUs: a GT7986U-S and a
+> > GT7986U-I?
+> >
+> > I would also note that (reading back in previous conversations) I
+> > think Charles said that they run different firmware on the SPI vs. I2C
+> > touch controllers. As I understand it, the firmware running on a
+> > device can make it a different device from a device tree perspective.
+> > The device tree does its best to describe just the hardware but it can
+> > get fuzzy. For instance the "VID/PID" of a USB device is usually
+> > something programmable and could be updateable by a firmware change
+> > but we still may need to encode the VID/PID of the firmware that is
+> > intended to run on the device in the device tree.
+> >
+> > Anyway, I'm happy to be quiet about this and fine if folks want to
+> > continue to work towards a "unified" binding. It makes me a little
+> > uncomfortable that I'll still end up listed as a "maintainer" of the
+> > unified binding because I don't totally agree with it, but I'm also
+> > pragmatic and I'd rather have something that can land.
+> >
+>
+> Thank you very much for your attention. Your understanding of the GT7986U
+> SPI and I2C devices is correct. There is no fundamental difference betwee=
+n
+> them and the STM32, as they are all ASIC devices. The functionality of th=
+e
+> device is determined by the firmware that is loaded, although the GT7986U
+> is an ASIC specifically designed for touchscreens.
+>
+> Additionally, the firmware and devices are generally bound to specific to=
+uch
+> panels, meaning that firmware intended for SPI will not function properly=
+ on
+> an I2C touch panel.
 
-Hi Rob,
+Just to get clarity: how is GT7986U delivered? For instance:
 
-this property is related to the Shift Register chip and is not related
-to the clock of the PWM.
+1. Maybe Goodix produces touchscreen controller boards and ships them
+to customers for use in their products. In this case, does Goodix ship
+a single board with two connectors, or a separate board for SPI vs.
+I2C? I would have to believe that maybe a "dev" board might have both
+connectors and a bunch of jumpers/switches to choose which ones to
+use, but it feels unlikely someone would ship that in any quantity.
 
-It's really to configure the clock that will be feed to Shift Register
-chip if for whatever reason one OEM mount a different kind (but still
-register compatible) and requires to run at higher clock rate.
+2. Maybe Goodix provides schematics for customers to produce their own
+touchscreen controller boards and they tell customers to either hook
+up the SPI lines and load the SPI firmware or hook up the I2C lines
+and load the I2C firmware. In this case the assumption is that
+customers using the same communication method are following the
+schematics closely enough that they all behave the same and thus we
+don't need some extra distinction.
 
-We can consider hardcoding it if really needed but considering the case
-with 2 different kind of shift register supported, I assume configuring
-this might be needed on some corner case Devices.
+In either case it seems like a touchscreen controller board that talks
+over SPI and one that talks over I2C are two different products and
+thus (to me) should have two distinct compatible strings. This is not
+one device that merely has multiple interfaces.
 
-For the clock we are not 100% but we might have an idea of what is the
-source, but still it will be just referenced and enabled in the driver
-(it's always enabled).
 
-Hope I can get some hint by you on how to proceed.
-
-Is it ok with:
-
-- Defining the attached clock
-- Keep the property
-
-?
-
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 32
-> > +    enum: [4, 8, 16, 32]
-> > +
-> > +  airoha,sipo-clock-delay:
-> > +    description: Declare Serial GPIO Clock delay.
-> > +      This can be needed to permit the attached shift register to correctly
-> > +      setup and apply settings. Value must NOT be greater than
-> > +      "airoha,sipo-clock-divisor" / 2
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 1
-> > +    minimum: 1
-> > +    maximum: 16
-> > +
-> > +required:
-> > +  - compatible
-> > +  - "#pwm-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    pwm {
-> > +      compatible = "airoha,en7581-pwm";
-> > +
-> > +      #pwm-cells = <3>;
-> > +    };
-> > 
-> > -- 
-> > 2.47.0
-> > 
-
--- 
-	Ansuel
+-Doug
 
