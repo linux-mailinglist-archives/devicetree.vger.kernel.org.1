@@ -1,156 +1,183 @@
-Return-Path: <devicetree+bounces-114348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16BEB9AB569
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:47:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB939AB58A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:56:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4BD71F2414D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:47:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92EBB1C22D1F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CAD91C2DB5;
-	Tue, 22 Oct 2024 17:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DD51C8FB0;
+	Tue, 22 Oct 2024 17:56:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kqnXt4Qj"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="F205EJ2v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEBBE1C2441
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78B31C8FA6
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:56:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729619231; cv=none; b=eUTXWTwfNIXF+lu+KRJ81QBc6CARVSlj4jbFK9kbzaIAFAIYxLGhrWu2xjCEIdiqvnh1DgZRrJFEE771tcU0o6yLfUQ2KYnmfNdWiy+E/fzhF+/otnFSUfujZQ0bVqSnk/xrMcdoR/QcsT8ZhueXaGlpzSZtFvQ7v6khsppiuSY=
+	t=1729619790; cv=none; b=GQR/0+6Scbc96/1JRUzm1JDxG2gCwRqbjZuNSk4ya06Snvo1nCqUhJDUY3LT4tteTmwHoZ1/Pfwm+HBz/ref0Xgc8/nh15v7vuhU54CkHliXO1yeYGl/nqtqSGKLtIhFlefPS+VI4d1psHjHkgqOnGq+QDr8AMUmQEkE5eItjDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729619231; c=relaxed/simple;
-	bh=z3Q1lZ93bNfCGzvIrdovcH2nYuWY7+uWZanQ4ngU4I8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Z8Cbhx+3J0O1NwEEH97LzzKTAHjBMAl7aTSChn4CDdxbrGR65SNjWO3tuSTeFtu13R+K3IIT8JKrEqBlAmXvm7rqTUiLfLsQgIF8dNbbNLpQovakmcSxiAr+/5G5bC8BW55joKXsF6Bl2OVMiDGJhCWX6lc4w/vlVGghh5arL2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kqnXt4Qj; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5ebc0c05e25so1328455eaf.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 10:47:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729619229; x=1730224029; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WZ6BO7JQGKnf9YHuY5qzRmWkXlEdrFxY0wBGYJpddts=;
-        b=kqnXt4QjS5AGxW1UFGvzaTVmvL4PkSYzpGRt9rlLoXqBwCOyRv1T8hbJeCizP0iI3U
-         f8EkLQSjIxV0O4emRVBlAiQJYg7vvJw/VPpmgO9X9dNl/YlfEoEn3eZpwe4cz70wWHqK
-         ouNFu32Spq3dojVgyh/A36orjh82RDrzfEvcj8MUUcBHtqu7vj+9gmiasVDIsNr6MdOa
-         Q/sq5JsvkvXXG6WntHd+u+yttvxowGQzJlXR+RDNWVfO+1WWifxP8K6aITxMWiU73hu1
-         hfL+NDDhIXFRrgpmuOtznYIWsXDkkrwJdP4ADEvifolMVlk2KIzIfro42dFejaDFGNoJ
-         v3gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729619229; x=1730224029;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WZ6BO7JQGKnf9YHuY5qzRmWkXlEdrFxY0wBGYJpddts=;
-        b=J403QJerZMfVrTxdXc22jHlu96Hm1vOBHEHle2x+F1Jimpk0b2YB9VhkDBzsfuiiVT
-         F1mOtQOmGdGCZDoskEYk8ez3gRj2aePbthmQrsyXQVq/iNcvac5vAmfVk1YwstixDE+Q
-         mIaoJugEg8S9TywfHg+5zvjp5JJRbNfC5NeV335Y2ZOpMgfwmshLrHiAdXleVqX+P6yn
-         9UHBY69QYi+XdaSitRyfDHow2p1+O0Po+fWm0HnRMmHz1fHxWehr/UX79FVhYJTN5/CE
-         EHbhpT7hk2m12H3jEVDpSQC3nQLe9wCNc83IexCBQs9GsLR0Tfgr9ZAu6uGDlxv3kLq/
-         lkhA==
-X-Forwarded-Encrypted: i=1; AJvYcCVf9AbOQM5frXashc/zlg2X72agPbZhdHCDYA8glWiDdQHGNLu6qXO/RHemB96vBhshtsdl5M5z7KIT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgP9s112RaVY5qfCLycKHyI0EMaLTSq22q3/8f09EYCLQAK2ik
-	/wBIXObKrF0pbWS9eqUvImhG6/KIakfeDXoS5ks+OIeC6eZ0CowUGGrUzpzH1k0=
-X-Google-Smtp-Source: AGHT+IHdp9OlsGzeS6gDxUdePR2Vr1pSb8/P2TOXAQaAjnRnLrCAIfBudjI8ESRogO+kzmPoIXeKdw==
-X-Received: by 2002:a05:6871:714:b0:278:1c68:9c03 with SMTP id 586e51a60fabf-28ccb3a3e59mr76726fac.8.1729619228948;
-        Tue, 22 Oct 2024 10:47:08 -0700 (PDT)
-Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7182eb22312sm1353300a34.13.2024.10.22.10.47.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 10:47:08 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 22 Oct 2024 12:46:41 -0500
-Subject: [PATCH 2/2] dt-bindings: dma: adi,axi-dmac: deprecate adi,channels
- node
+	s=arc-20240116; t=1729619790; c=relaxed/simple;
+	bh=pf9vSfqRBsjSd2TM5I2xo/gtg+4SY8vPL8CeXA3BrA0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jiYJX/Z4m9K5D9WYGHJTiclNG/wZk3oP/NGx1qUUzhrS00aFGlBEhvl5ttZBtgP6CRz0IaX73lp33Fm7rsNC+hQZ+uQmEtsVnQ3plQaG+OM5AdJrEdF88qzx7u2PS1ldMaCvCDQ3XYJDQgN0kLgetAgltY2AVq5Dbypa9juuRxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=F205EJ2v; arc=none smtp.client-ip=207.246.76.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1729619774;
+ bh=YGvLjOzdMUUNlRyiBCim3QXE0H0tSBA3xLQ6miTXyIw=;
+ b=F205EJ2vCko4LMsf5gAXQje2kuR34Xeuuz1iVeTEbP5ZB7nDURVWbZzeVHLj3/1FlsMJ53VKB
+ aWaV/IcDXE0YcFqzFNEzJmr6D87bruShq1Y8EkyaatQuNfNQlt6OTJXod1esN4eRccTOxGz3duB
+ X78Oy/dzRVmV0Z7HsL93poR6RS4dLdlS5rKWmi6ZFJvaT6a/trtvR7pbDCGrkXG2IxkWc3FhhAC
+ oldXeQ2Q1RkRKu87LqLi9WsxWTi8NwOr1jyfkxL2BUiZ7o0KIPklf4Gn0HvZDDYfP8JH0zvWNHf
+ Kh19IuRBKkf1lKa2P3iVFgejQWW2KJIbFKZ5ceBUGwkA==
+Message-ID: <c2a4e8a8-9466-41c4-83b3-57210fdf5a5c@kwiboo.se>
+Date: Tue, 22 Oct 2024 19:56:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241022-axi-dma-dt-yaml-v1-2-68f2a2498d53@baylibre.com>
-References: <20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com>
-In-Reply-To: <20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add FriendlyARM NanoPi R3S
+ board
+To: Tianling Shen <cnsztl@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chris Morgan <macromorgan@hotmail.com>, Andy Yan <andyshrk@163.com>,
+ Jagan Teki <jagan@edgeble.ai>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <13bb8657-f048-4f79-a2c1-3680445f2bef@kwiboo.se>
+ <20241022173901.892190-1-cnsztl@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20241022173901.892190-1-cnsztl@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 207.246.76.47
+X-ForwardEmail-ID: 6717e73d289888ca1b5a4034
 
-Deprecate the adi,channels node in the adi,axi-dmac binding. Prior to
-IP version 4.3.a, this information was required. Since then, there are
-memory-mapped registers that can be read to get the same information.
+Hi Tianling,
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
+On 2024-10-22 19:38, Tianling Shen wrote:
+> Hi Jonas,
+> 
+> On Wed, Oct 23, 2024 at 12:49â€¯AM Jonas Karlman <jonas@kwiboo.se> wrote:
+>>
+>> Hi Tianling,
+>>
+>> On 2024-10-20 19:39, Tianling Shen wrote:
+>>> The NanoPi R3S(as "R3S") is an open source platform with dual-Gbps
+>>> Ethernet ports designed and developed by FriendlyElec for IoT
+>>> applications.
+>>>
+>>> Specification:
+>>> - Rockchip RK3566
+>>> - 2GB LPDDR4X RAM
+>>> - optional 32GB eMMC module
+>>> - SD card slot
+>>> - 2x 1000 Base-T
+>>> - 3x LEDs (POWER, LAN, WAN)
+>>> - 2x Buttons (Reset, MaskROM)
+>>> - 1x USB 3.0 Port
+>>> - Type-C 5V 2A Power
+>>>
+>>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+>>> ---
+>>> Â arch/arm64/boot/dts/rockchip/Makefile Â  Â  Â  Â  | Â  1 +
+>>> Â .../boot/dts/rockchip/rk3566-nanopi-r3s.dts Â  | 554 ++++++++++++++++++
+>>> Â 2 files changed, 555 insertions(+)
+>>> Â create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+>>> index 8e1025cb5d20..e641033d23d1 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>>> @@ -109,6 +109,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-model-a.dtb
+>>> Â dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-box-demo.dtb
+>>> Â dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-lckfb-tspi.dtb
+>>> Â dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-lubancat-1.dtb
+>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-nanopi-r3s.dtb
+>>> Â dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
+>>> Â dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
+>>> Â dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-fastrhino-r66s.dtb
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts b/arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts
+>>> new file mode 100644
+>>> index 000000000000..951dd9bcb4b0
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts
+>>> @@ -0,0 +1,554 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>>> +/*
+>>> + * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
+>>> + *
+>>> + * Copyright (c) 2024 FriendlyElec Computer Tech. Co., Ltd.
+>>> + * (http://www.friendlyarm.com/
 
-For context, the adi,channels node has not been required in the Linux
-kernel since [1].
+This could probably be updated to use https://www.friendlyelec.com/
 
-[1]: https://lore.kernel.org/all/20200825151950.57605-7-alexandru.ardelean@analog.com/
----
- .../devicetree/bindings/dma/adi,axi-dmac.yaml        | 20 +++++---------------
- 1 file changed, 5 insertions(+), 15 deletions(-)
+>>> + *
+>>> + * Copyright (c) 2024 Tianling Shen <cnsztl@gmail.com>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/input/input.h>
+>>> +#include <dt-bindings/leds/common.h>
+>>> +#include <dt-bindings/pinctrl/rockchip.h>
+>>> +#include <dt-bindings/soc/rockchip,vop2.h>
+>>> +#include "rk3566.dtsi"
+>>> +
+>>> +/ {
+>>> + Â  Â  model = "FriendlyARM NanoPi R3S";
+>>
+>> Please use the marketing name, and the name added in binding:
+>>
+>> Â  Â FriendlyElec NanoPi R3S
+> 
+> Sorry for the copy & paste error, will fix it in new patch.
 
-diff --git a/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml b/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml
-index e457630ec7c0..d5e87fceb3bb 100644
---- a/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml
-@@ -28,8 +28,12 @@ properties:
-     const: 1
- 
-   adi,channels:
-+    deprecated: true
-     type: object
--    description: This sub-node must contain a sub-node for each DMA channel.
-+    description:
-+      This sub-node must contain a sub-node for each DMA channel. This node is
-+      only required for IP versions older than 4.3.a and should otherwise be
-+      omitted.
- 
-     properties:
-       "#size-cells":
-@@ -109,7 +113,6 @@ required:
-   - interrupts
-   - clocks
-   - "#dma-cells"
--  - adi,channels
- 
- additionalProperties: false
- 
-@@ -121,17 +124,4 @@ examples:
-         interrupts = <0 57 0>;
-         clocks = <&clkc 16>;
-         #dma-cells = <1>;
--
--        adi,channels {
--            #size-cells = <0>;
--            #address-cells = <1>;
--
--            dma-channel@0 {
--                reg = <0>;
--                adi,source-bus-width = <32>;
--                adi,source-bus-type = <0>; /* AXI_DMAC_TYPE_AXI_MM */
--                adi,destination-bus-width = <64>;
--                adi,destination-bus-type = <2>; /* AXI_DMAC_TYPE_AXI_FIFO */
--            };
--        };
-     };
+The commit subject could probably also be updated :-)
 
--- 
-2.43.0
+> 
+>>
+>>> + Â  Â  compatible = "friendlyarm,nanopi-r3s", "rockchip,rk3566";
+>>> +
+>>> + Â  Â  aliases {
+>>> + Â  Â  Â  Â  Â  Â  ethernet0 = &gmac1;
+>>> + Â  Â  Â  Â  Â  Â  mmc0 = &sdmmc0;
+>>> + Â  Â  Â  Â  Â  Â  mmc1 = &sdhci;
+>>
+>> This board comes with on-board eMMC this please use mmc0 as alias for
+>> &sdhci; and mmc1 for sd-card.
+> 
+> Is using mmc0 for sdhci a common practice for eMMC boards?
+> The eMMC module on R3S is optional and users may get boards without it.
 
+Typically any non-removable storage (emmc) is listed before removable
+storage (sd-card) options. Also U-Boot will try to override and use
+mmc0=sdhci and mmc1=sdmmc0 for all rk356x boards, so for EFI booing
+using control FDT the alias may be different.
+
+Regards,
+Jonas
+
+[snip]
 
