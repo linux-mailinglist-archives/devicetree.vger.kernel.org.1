@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-114334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7C959AB4D7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:18:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1079AB4E0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:21:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D91851C2265B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:18:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62A161F24461
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:21:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8886A1A726D;
-	Tue, 22 Oct 2024 17:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BBBA1BDA87;
+	Tue, 22 Oct 2024 17:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PyMyAviB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jVpD6zsT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044344438B
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:18:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E171BD4E5
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729617490; cv=none; b=kG1uvzjK9x2qcRO7Aqt8w16kocnQpIO2fLRKtM0WRa9sdQkHIij7NrhAFiu/X5ILczFTvaX3eoQw3DT2G0OuAvCJ3KAis80+YMegyw/aCLpqJAqWZ67ugyS2WRuyz88mlKpyE2YSt/OuX9au2hZjx+5Fi8ewlE3fLgYZqSytMIU=
+	t=1729617668; cv=none; b=cMzW0akNGgn5Za6u236AWDdl68+n72J3zyiBc70/+BRX9wclH0fZYjiGeoyuGM3duaekpEbIpQDtGRNEf/t78+k89ECgEwSBa2PsWoAAWrvAeaszSYI1VqCM9Pws2WtISOS36BmKoBU1RtrJIdb8Sq+5GTtJLgMQp//VoSPrtBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729617490; c=relaxed/simple;
-	bh=KSC5L6vhzjZFMWeXwTYwXoW7pK23HzcFd3BChjy0VW0=;
+	s=arc-20240116; t=1729617668; c=relaxed/simple;
+	bh=ROz6wyxkN00RlAqx/HywNHHOFDd4bvEy70xBiafp8II=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qd1s8tTgUzlgBLkNcdJ5zf6w851gMnhVWwwkoN1lTdZjcF4H91vNBjFai2wUcpslymFluyQHxTIZLST1gbINANOAuxKvH++Ky4/KDjnvtVUauBknod4WqgPd0h7fVn34Jdry0f6yV6rMUqlsghizTvPMpwUaCtDbfw8wj5M1Kuw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PyMyAviB; arc=none smtp.client-ip=209.85.210.175
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z4qxiVbEuAfnTV/SeU79HD8ZPa9U6D6myeUPO4oahI9L8ISA8V29nzcI5F2N+0G7Lzb0ACDLVqx3UVoRHqalWGz9UVmtbV3RZbcrRG8WDVH9CsLdKtR3B60xVSjKW06/lh5zJVC/guvXsH3tzZCCNkqoLRhH/VMGLslADz04LvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jVpD6zsT; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-71e6cec7227so4612081b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 10:18:07 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-20cd76c513cso49581435ad.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 10:21:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729617487; x=1730222287; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729617666; x=1730222466; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=FO8AvzTVl7Q+hb2sVhgFlvzsJXMthOIv2P45jM3TDcY=;
-        b=PyMyAviBbSlVGyBCagEjtHlBWQjSiJZDFtsVR1mshA4MxDTHgYuAgmxQQQ/jYptf7l
-         IYgU+34AXqNne+97bfSyKYcbVlj3Y+jsE1WJ8UQNKLTDwiGNJ0zhCCqsjxjXDwxbRlzt
-         DiN1iO76Zyl9M2xqV2/9kV8eKXr0Kof18bUHkzufeUpC1ugCXUv/O6W6XjZCS0bzQGcp
-         p7PSkHQZVPx5kGKADuxXF4+gfSC343kOpgCsPlkrDasSva/vO1KRDtQNQIr3tATXui95
-         hzDb5Et2EfK+mhuvxb12+9+L+5RU6JRR6dX7BlUZNywjVNzgMSo1hqChti20Vahr/8pn
-         edwg==
+        bh=EYyTRaKGn0PVJQtdVRYtFHSxQ4TFBsfP/i6X4tjAirc=;
+        b=jVpD6zsT5sIRfE+LsqQR3PG94TPbxqKODIw1x40UNimrCAjYq1XGAmGQnXfY6NCJMk
+         WrvleReAbyQeQd3+qnEQPS8to6NrzgOJrAWNsJE/OCRdjatoIdguxmTV1UAyTyHArmaX
+         oAXUbk3Qj9GMZgSbR5Bov1KqdU7uNqiPBr3tsxgqDb8tFqq2TThaMb6sRmzAmnIj9HAW
+         M7oxfMsnjyjVXV4FBis876K5tH+Iy9fQzA/9Zrc3VhBZUhQs7gUBWzefL7Gz5CRQMF/Y
+         BGaSW03sBAqAnbp0BGFWgHvuKCqxiWEn/57ejEwaDalcBqKhUD7Pqtv0CFOQLukK9Jkk
+         qaOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729617487; x=1730222287;
+        d=1e100.net; s=20230601; t=1729617666; x=1730222466;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FO8AvzTVl7Q+hb2sVhgFlvzsJXMthOIv2P45jM3TDcY=;
-        b=pilhRW7ZNJE7EDQpQbyicfbcoILYk5r5x9RSwEAFK/7JteWBJcB9IIxMjLCg/f9uxB
-         8uQH+1BFt9nlCYVaI/w4Dbr5RxZmkXcOeU3igXsasKs8a7s7aQmw2YcwUju4HNWo3hqw
-         418EVjGB8oKL6kbxR8e4N7BvxFSBrLlgyDue2DWMqlB6vqvfXSx9boKKIf6l7AdvsQID
-         JBR4CLCgsxQCguxXbd5MTklkNTzSLIKABZBYj00iaCUCB0rwcS/lnRSxTHt6l3N3MbWN
-         t+7B/zKK4jTy0rvxJsOnj2b541xAEAgnogz8xICxpEtfQKhM5vZDygEm1+wX7BhZe9DR
-         JjCw==
-X-Forwarded-Encrypted: i=1; AJvYcCWsPIyji7msfjR5J/K8d9cPLLbPY8KyoBfaW8bhqpm7XxRzBElHlNxRguzoFvpkuTtr57bHB67rA1wq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwR2jEnbIDZciP4vqY/2A+end6Hg6qcWA7UnLYH9x5y+/iMFmaA
-	99gtHU27WBKi6mITjI4pp2rbC4If1vFB6zpRv1HCdZgxaZp2paSCsPhS/aD1Ag==
-X-Google-Smtp-Source: AGHT+IG3HaDs9ASXXfFMoqRPiXkH/fVNWOTszOyH/jfDreL4V9LL3Tz/krJsFpBbR1TrYP1MANau0Q==
-X-Received: by 2002:a05:6a00:3e0b:b0:71e:4fe4:282a with SMTP id d2e1a72fcca58-71ea3118a51mr23192217b3a.2.1729617487247;
-        Tue, 22 Oct 2024 10:18:07 -0700 (PDT)
+        bh=EYyTRaKGn0PVJQtdVRYtFHSxQ4TFBsfP/i6X4tjAirc=;
+        b=ST83XZCpBBguXLI2ePNke9wUlnkCsu0A292bf3VTgUX/OCq+zWmJzr4fZH2pAXJxh6
+         C8vfjieCASv3NhXfsDMoqAiErWF/7J0F7PaqhP/17tynlN9koUCJoV9QKK9OuojGVQ1q
+         YyDYUvboqsJxCO+8cYxkFa7OjYfdhmwS8MP1DyNUL2KVyGs2QEME+Q9byc8TUWzegwgV
+         a5uETAyDefE4Q+Njeq6voPfXlGP0GdSlFooZUXigdcSvKp+BiDKG7xFo6zZ5y0+Cj35t
+         172ZRKLLXtNqBrNAw0JqPIGTlE24rILJ8ED5Jet3GLvD2F0k6305GrH433DXu+2nZPf8
+         0EBg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhdf/GnFikr18D4V0EGDJKjLLnlu/SiCoz6uSMwIJ4OfZGA5adK5/ektRKN1tHVLR7J/k9TFovnYhK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLIu85hs8/nTyvILPuh4IEUm2e2aQQSMzqRftGxe6vc2/pdqLn
+	yQ3PyKJAd4ZqvYQVatNA8nNwnvKm/7LstxqeEivwbuzHmkDsYCe2POpvPCMbzw==
+X-Google-Smtp-Source: AGHT+IEFhMlMl+SifAdPrVg99u83uazLX/A9KcHRvv7Tuv35akUo2976i/YilQVOuBqYd19nUmnDHQ==
+X-Received: by 2002:a17:902:da85:b0:20b:6f04:486f with SMTP id d9443c01a7336-20e9489afa8mr44178795ad.18.1729617666017;
+        Tue, 22 Oct 2024 10:21:06 -0700 (PDT)
 Received: from thinkpad ([36.255.17.224])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec13ea12asm4965447b3a.159.2024.10.22.10.18.02
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7eeef535sm45591245ad.44.2024.10.22.10.21.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 10:18:06 -0700 (PDT)
-Date: Tue, 22 Oct 2024 22:48:00 +0530
+        Tue, 22 Oct 2024 10:21:05 -0700 (PDT)
+Date: Tue, 22 Oct 2024 22:50:59 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Richard Zhu <hongxing.zhu@nxp.com>
 Cc: kw@linux.com, bhelgaas@google.com, lpieralisi@kernel.org,
@@ -78,10 +78,10 @@ Cc: kw@linux.com, bhelgaas@google.com, lpieralisi@kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, kernel@pengutronix.de,
 	imx@lists.linux.dev
-Subject: Re: [PATCH v4 7/9] PCI: imx6: Use dwc common suspend resume method
-Message-ID: <20241022171800.fwkdvzozw2rnzv34@thinkpad>
+Subject: Re: [PATCH v4 9/9] arm64: dts: imx95: Add ref clock for i.MX95 PCIe
+Message-ID: <20241022172059.wuw5xel7m4vobarq@thinkpad>
 References: <1728981213-8771-1-git-send-email-hongxing.zhu@nxp.com>
- <1728981213-8771-8-git-send-email-hongxing.zhu@nxp.com>
+ <1728981213-8771-10-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,215 +91,69 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1728981213-8771-8-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <1728981213-8771-10-git-send-email-hongxing.zhu@nxp.com>
 
-On Tue, Oct 15, 2024 at 04:33:31PM +0800, Richard Zhu wrote:
-> From: Frank Li <Frank.Li@nxp.com>
+On Tue, Oct 15, 2024 at 04:33:33PM +0800, Richard Zhu wrote:
+> Add ref clock for i.MX95 PCIe.
 > 
-> Call common dwc suspend/resume function. Use dwc common iATU method to send
-> out PME_TURN_OFF message. Old platform such as iMX6SX and iMX6QP, iATU
-> CTRL2 bit 22 (PCIE_ATU_INHIBIT_PAYLOAD) are reserved. So can't send out MSG
-> without data by dummy MMIO write. Without PCIE_ATU_INHIBIT_PAYLOAD, MSGD
-> will be sent out instead of MSG. So keep old method to send PME_TURN_OFF
-> MSG.
-> 
-
-This PME_Turn_Off implementation is the only difference between the DWC common
-ops and the custom one here? I don't think so. Please describe all the
-differences.
-
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  drivers/pci/controller/dwc/pci-imx6.c | 97 ++++++++++-----------------
->  1 file changed, 36 insertions(+), 61 deletions(-)
+>  arch/arm64/boot/dts/freescale/imx95.dtsi | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 161daad34a94..baa853d84b4d 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -33,6 +33,7 @@
->  #include <linux/pm_domain.h>
->  #include <linux/pm_runtime.h>
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> index 03661e76550f..5cb504b5f851 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -1473,6 +1473,14 @@ smmu: iommu@490d0000 {
+>  			};
+>  		};
 >  
-> +#include "../../pci.h"
->  #include "pcie-designware.h"
->  
->  #define IMX8MQ_GPR_PCIE_REF_USE_PAD		BIT(9)
-> @@ -82,6 +83,7 @@ enum imx_pcie_variants {
->  #define IMX_PCIE_FLAG_HAS_SERDES		BIT(6)
->  #define IMX_PCIE_FLAG_SUPPORT_64BIT		BIT(7)
->  #define IMX_PCIE_FLAG_CPU_ADDR_FIXUP		BIT(8)
-> +#define IMX_PCIE_FLAG_CUSTOM_PME_TURNOFF	BIT(9)
->  
->  #define imx_check_flag(pci, val)	(pci->drvdata->flags & val)
->  
-> @@ -106,19 +108,18 @@ struct imx_pcie_drvdata {
->  	int (*init_phy)(struct imx_pcie *pcie);
->  	int (*enable_ref_clk)(struct imx_pcie *pcie, bool enable);
->  	int (*core_reset)(struct imx_pcie *pcie, bool assert);
-> +	const struct dw_pcie_host_ops *ops;
->  };
->  
->  struct imx_pcie {
->  	struct dw_pcie		*pci;
->  	struct gpio_desc	*reset_gpiod;
-> -	bool			link_is_up;
->  	struct clk_bulk_data	clks[IMX_PCIE_MAX_CLKS];
->  	struct regmap		*iomuxc_gpr;
->  	u16			msi_ctrl;
->  	u32			controller_id;
->  	struct reset_control	*pciephy_reset;
->  	struct reset_control	*apps_reset;
-> -	struct reset_control	*turnoff_reset;
->  	u32			tx_deemph_gen1;
->  	u32			tx_deemph_gen2_3p5db;
->  	u32			tx_deemph_gen2_6db;
-> @@ -898,13 +899,11 @@ static int imx_pcie_start_link(struct dw_pcie *pci)
->  		dev_info(dev, "Link: Only Gen1 is enabled\n");
->  	}
->  
-> -	imx_pcie->link_is_up = true;
->  	tmp = dw_pcie_readw_dbi(pci, offset + PCI_EXP_LNKSTA);
->  	dev_info(dev, "Link up, Gen%i\n", tmp & PCI_EXP_LNKSTA_CLS);
->  	return 0;
->  
->  err_reset_phy:
-> -	imx_pcie->link_is_up = false;
->  	dev_dbg(dev, "PHY DEBUG_R0=0x%08x DEBUG_R1=0x%08x\n",
->  		dw_pcie_readl_dbi(pci, PCIE_PORT_DEBUG0),
->  		dw_pcie_readl_dbi(pci, PCIE_PORT_DEBUG1));
-> @@ -1023,9 +1022,33 @@ static u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
->  	return cpu_addr - entry->offset;
->  }
->  
-> +/*
-> + * Old dwc iATU ctrl2 bit 22 (PCIE_ATU_INHIBIT_PAYLOAD) are reserved. So can't
-> + * send out MSG without data by dummy MMIO write. Without
-> + * PCIE_ATU_INHIBIT_PAYLOAD, MSGD will be sent out. So have to keep old method
-> + * to send PME_TURN_OFF MSG.
+> +		hsio_blk_ctl: syscon@4c0100c0 {
+> +			compatible = "nxp,imx95-hsio-blk-ctl", "syscon";
+> +			reg = <0x0 0x4c0100c0 0x0 0x4>;
+> +			#clock-cells = <1>;
+> +			clocks = <&dummy>;
+> +			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
+> +		};
 
-Please reword the comments:
-
-"In Old DWC implementations, PCIE_ATU_INHIBIT_PAYLOAD bit in iATU Ctrl2 register
-is reserved. So the generic DWC implementation of sending the PME_Turn_Off
-message using a dummy MMIO write cannot be used."
-
-> + */
-> +static void imx_pcie_pm_turn_off(struct dw_pcie_rp *pp)
-
-s/pm/pme
-
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct imx_pcie *imx_pcie = to_imx_pcie(pci);
-> +
-> +	regmap_set_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12, IMX6SX_GPR12_PCIE_PM_TURN_OFF);
-> +	regmap_clear_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12, IMX6SX_GPR12_PCIE_PM_TURN_OFF);
-> +
-> +	usleep_range(PCIE_PME_TO_L2_TIMEOUT_US/10, PCIE_PME_TO_L2_TIMEOUT_US);
-> +}
-> +
-> +
->  static const struct dw_pcie_host_ops imx_pcie_host_ops = {
->  	.init = imx_pcie_host_init,
->  	.deinit = imx_pcie_host_exit,
-> +	.pme_turn_off = imx_pcie_pm_turn_off,
-> +};
-> +
-> +static const struct dw_pcie_host_ops imx_pcie_host_dw_pme_ops = {
-> +	.init = imx_pcie_host_init,
-> +	.deinit = imx_pcie_host_exit,
->  };
->  
->  static const struct dw_pcie_ops dw_pcie_ops = {
-> @@ -1146,43 +1169,6 @@ static int imx_add_pcie_ep(struct imx_pcie *imx_pcie,
->  	return 0;
->  }
->  
-> -static void imx_pcie_pm_turnoff(struct imx_pcie *imx_pcie)
-> -{
-> -	struct device *dev = imx_pcie->pci->dev;
-> -
-> -	/* Some variants have a turnoff reset in DT */
-> -	if (imx_pcie->turnoff_reset) {
-> -		reset_control_assert(imx_pcie->turnoff_reset);
-> -		reset_control_deassert(imx_pcie->turnoff_reset);
-> -		goto pm_turnoff_sleep;
-> -	}
-
-What about this part of the code? Don't you need it now?
-
-> -
-> -	/* Others poke directly at IOMUXC registers */
-> -	switch (imx_pcie->drvdata->variant) {
-> -	case IMX6SX:
-> -	case IMX6QP:
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> -				IMX6SX_GPR12_PCIE_PM_TURN_OFF,
-> -				IMX6SX_GPR12_PCIE_PM_TURN_OFF);
-> -		regmap_update_bits(imx_pcie->iomuxc_gpr, IOMUXC_GPR12,
-> -				IMX6SX_GPR12_PCIE_PM_TURN_OFF, 0);
-> -		break;
-> -	default:
-> -		dev_err(dev, "PME_Turn_Off not implemented\n");
-> -		return;
-> -	}
-> -
-> -	/*
-> -	 * Components with an upstream port must respond to
-> -	 * PME_Turn_Off with PME_TO_Ack but we can't check.
-> -	 *
-> -	 * The standard recommends a 1-10ms timeout after which to
-> -	 * proceed anyway as if acks were received.
-> -	 */
-> -pm_turnoff_sleep:
-> -	usleep_range(1000, 10000);
-> -}
-> -
->  static void imx_pcie_msi_save_restore(struct imx_pcie *imx_pcie, bool save)
->  {
->  	u8 offset;
-> @@ -1206,36 +1192,26 @@ static void imx_pcie_msi_save_restore(struct imx_pcie *imx_pcie, bool save)
->  static int imx_pcie_suspend_noirq(struct device *dev)
->  {
->  	struct imx_pcie *imx_pcie = dev_get_drvdata(dev);
-> -	struct dw_pcie_rp *pp = &imx_pcie->pci->pp;
->  
->  	if (!(imx_pcie->drvdata->flags & IMX_PCIE_FLAG_SUPPORTS_SUSPEND))
->  		return 0;
->  
->  	imx_pcie_msi_save_restore(imx_pcie, true);
-> -	imx_pcie_pm_turnoff(imx_pcie);
-> -	imx_pcie_stop_link(imx_pcie->pci);
-> -	imx_pcie_host_exit(pp);
-> -
-> -	return 0;
-> +	return dw_pcie_suspend_noirq(imx_pcie->pci);
->  }
->  
->  static int imx_pcie_resume_noirq(struct device *dev)
->  {
->  	int ret;
->  	struct imx_pcie *imx_pcie = dev_get_drvdata(dev);
-> -	struct dw_pcie_rp *pp = &imx_pcie->pci->pp;
->  
->  	if (!(imx_pcie->drvdata->flags & IMX_PCIE_FLAG_SUPPORTS_SUSPEND))
->  		return 0;
->  
-> -	ret = imx_pcie_host_init(pp);
-> +	ret = dw_pcie_resume_noirq(imx_pcie->pci);
->  	if (ret)
->  		return ret;
->  	imx_pcie_msi_save_restore(imx_pcie, false);
-> -	dw_pcie_setup_rc(pp);
-> -
-> -	if (imx_pcie->link_is_up)
-> -		imx_pcie_start_link(imx_pcie->pci);
-
-So this is also not needed? Why? Please explain in the commit message.
+This is an internal reference clock, right? Please mention it in patch
+description since the controller supports external reference clock also.
 
 - Mani
+
+> +
+>  		pcie0: pcie@4c300000 {
+>  			compatible = "fsl,imx95-pcie";
+>  			reg = <0 0x4c300000 0 0x10000>,
+> @@ -1500,8 +1508,9 @@ pcie0: pcie@4c300000 {
+>  			clocks = <&scmi_clk IMX95_CLK_HSIO>,
+>  				 <&scmi_clk IMX95_CLK_HSIOPLL>,
+>  				 <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
+> -				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
+> -			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
+> +				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>,
+> +				 <&hsio_blk_ctl 0>;
+> +			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref";
+>  			assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
+>  					 <&scmi_clk IMX95_CLK_HSIOPLL>,
+>  					 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
+> @@ -1528,8 +1537,9 @@ pcie0_ep: pcie-ep@4c300000 {
+>  			clocks = <&scmi_clk IMX95_CLK_HSIO>,
+>  				 <&scmi_clk IMX95_CLK_HSIOPLL>,
+>  				 <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
+> -				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
+> -			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
+> +				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>,
+> +				 <&hsio_blk_ctl 0>;
+> +			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref";
+>  			assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
+>  					 <&scmi_clk IMX95_CLK_HSIOPLL>,
+>  					 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
+> -- 
+> 2.37.1
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
