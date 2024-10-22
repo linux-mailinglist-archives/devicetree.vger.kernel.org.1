@@ -1,567 +1,309 @@
-Return-Path: <devicetree+bounces-114089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48BBA9A9C32
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFA99A9C42
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:21:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04729283B63
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:19:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A923283089
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1C71714A1;
-	Tue, 22 Oct 2024 08:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A001158D7B;
+	Tue, 22 Oct 2024 08:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="HW3VYkFq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01on2093.outbound.protection.outlook.com [40.107.239.93])
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2065.outbound.protection.outlook.com [40.107.241.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A1C158D7B;
-	Tue, 22 Oct 2024 08:19:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.239.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBEE1154C09;
+	Tue, 22 Oct 2024 08:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.65
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729585168; cv=fail; b=FcdQcXl9MZr7cI2vrK75NqUdmqlczlxwnl7F22h9gw6WbcAOvW2f5l46N0FmQkeR578xGDpnLtrS6eNBEHhYU59iY3aKpgBQFv8ETbRJ09sy/GH2uDw1AKzws/9zPVV6Bx8MZICAE5Cxbca5T+y/PFMiUQAggzptjt66EhfKCBE=
+	t=1729585307; cv=fail; b=ca4jEgtBcHZu3hW6zgdyw4cQArA0tb3f4YeLrIda+slVnB/er+rbPolmZEHOik+ZZlUgRxWIXW8Yno5tZRWV7QNM7d1nmyrTWR2E0Df/7ybv9FxtTZJskfkgwmskSUb4Tvutu3alnM+/9e9EdijscsNJoXlK2p/snb9mglABUUQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729585168; c=relaxed/simple;
-	bh=MrtZPAjgmdcJQFpbUtLKCOoHWvT9tGIJyXGiJUUPCYM=;
+	s=arc-20240116; t=1729585307; c=relaxed/simple;
+	bh=FtGshSZFCd34bYUaAN/iN+L3L3pqQvG6du8tliyiBPk=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=WUCvbYhxOOFiT9148K48wvbK0w2PxBq+hyQ9FWNcs5dikEhmskjNxfCF3RQAa/Hqm0lv5t+2c0d+ueuD2TGmIgVQF7XOlOGWMnPobZitt3OZ4E4VIGOki2E54uDFvvLMFT/NXfJPoDzrVO5Q0DkHyIee2ce3uli61x2fIeB2U9U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.239.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+	 Content-Type:MIME-Version; b=JzJK1Yi/zaOJoOe3RydpuUCtF/rKwsyJJTX4smsTJS8HBmlenRqop3fzNzHrwq8k3B29Z15rvlx+yn0373zTKGztvw1nE+7wnRtDaALj5jAx5dZIkkv5sVRlrb1dBlmmHQFgku+8ZG3CagI8aDupt0eQoCwl8LS2TtL4jR9hPiU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=HW3VYkFq; arc=fail smtp.client-ip=40.107.241.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e5o2o8Dr9rIA/vpVMS4jGLnYCSj+qDamz3JgvBuffs58Z1PaPGP4apRJk3gCOkie8GBRedGYFyO8deMwCK1RC/KfmI29Bm9SSqgqhrZ55lXtBFllO66W06CM+vqVJOxRyLUoS+GVLC7s/gimBE1G9/bHV1+LXV8ziYUAV65Ggw72+fwNioo4ry9cm9+atVuP/miSmJ3f+Ch1fZVNn/2SKK9ebxSAJmMFcBsrabASI3n6NZjcqqs0KqrSGJ5Mak+9x8NwB4SqWIZNoS7p2cqnzt1loXmmw6iiRDLeFSGXS5xWvQ1ZSwety4KN6gnV+kGYhOSB5rmIvIk9fL8ngS8ryg==
+ b=P6nAruZLBaUbjeQyVKy6KDdJG50ykSnlKY0JU4gi2XSKfbY6JgJ65ffeAjArXo4aXrVWD0fazGxNPdCEb6fzKWd0O6u78OPkn7Da62JT4yjyiiZOeDNHEwN8Z9xgNYNWbeV27MFAhgfT57BsDhkjwx8GD9OBwpQq4kkd7RwFM2kwHbrO0lj58UATXmzZx1gAU+Wtr0DTynkOS7beOuiSTMw3jaXHpvXY7BPe9ltyIcd8qlJrn5/YRvFlmgu1yQDTrJBC+0How/MARYO3Iy+fXlHOjcA1LAD0mwujtjqh4T/TOjgWkztlmqCJ7TRgF1d2WIxGI4vE6ZHiS2y58TsYQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MrtZPAjgmdcJQFpbUtLKCOoHWvT9tGIJyXGiJUUPCYM=;
- b=BsQKms6sfoaIHY7En0Tv1qAsOTzzEtZQ+D03+k1ccKp/ovjfPR/BK9j7fjIfZqPUYUcEoEQkmkGJ28/2RfbY/aTGka/ZM7of/9QoV69ZE2sPwtS6p1kL85/Gj1ekiovENOYWEglP7RFw4kKwPP/6xMO9w0FtfdFvPc6en/eILRF5qURFxoVjaupnj8ZDntq9QRoveQN/IbeXya5WwGSKF+X9Eyv0gvZA8dShrLipez5Cj/7CGg+M/EVdoxJL1Lo6xyBKG4Lsbd8kDoRZcLv+CGEpS3qZYB/NGNosDvGzBEHbQwVjvI6HQArrQV/PIt2qAu3MDCC9xjSowbATPGPvVQ==
+ bh=FtGshSZFCd34bYUaAN/iN+L3L3pqQvG6du8tliyiBPk=;
+ b=p1kY6kWC3xlKOJjRdXL+ElMr6WJ3SaXISr7BnRo+AVV+bR9VQ0VR7gI7uq5VUw6L9iLFT3kRXehH0cXpcx5H7v/DdQV1pR/DeMMPCtcF616/NRvWgqiQNGSypvtMiePiKxs8Pdjfv2jpBUqjpDlWxup2nZ73WmCOFcu/kwgBLB/7YLFEikD2FPvEyMCCxk6yX5/4si98sZm0rmKiPFu6sx2ov7jaFHIUuPilU7TrP4jEM/KGS1aiBtuy/tUAjrulWnei5l803Zfa+NmCS0YTsIVsxvT7HYrss7EL46YeSesYALD6kmaoqn7OWPobc5/T7aZ/zZoM9i4HqMcEE47ylQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
- header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
-Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1b8::9)
- by PN2P287MB0522.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:117::9) with
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass action=none
+ header.from=leica-geosystems.com; dkim=pass header.d=leica-geosystems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FtGshSZFCd34bYUaAN/iN+L3L3pqQvG6du8tliyiBPk=;
+ b=HW3VYkFq5idh6t696IQTgb7xO0YV/8vRVr5conPU+rcHBIMT9mZ1KqceQaTYfgT6V30LbrC5R/n38U/Mgdu15CPnz5AoKU9o73ibX8Nq3hGoRmOFABu/Dh7RsIBdUPGEFX114N2uMXYaaxE0vVMo57dqVygtblc6+6uxfqWL8SY=
+Received: from DBAPR06MB6901.eurprd06.prod.outlook.com (2603:10a6:10:1a0::11)
+ by AM9PR06MB7268.eurprd06.prod.outlook.com (2603:10a6:20b:2d1::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Tue, 22 Oct
- 2024 08:19:22 +0000
-Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
- ([fe80::368a:445f:b1be:4bd6]) by PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
- ([fe80::368a:445f:b1be:4bd6%6]) with mapi id 15.20.8069.027; Tue, 22 Oct 2024
- 08:19:21 +0000
-From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-To: Krzysztof Kozlowski <krzk@kernel.org>, "linus.walleij@linaro.org"
-	<linus.walleij@linaro.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-CC: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt to
- yaml format
-Thread-Topic: [PATCH] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt to
- yaml format
-Thread-Index: AQHbJEf0KUynUcmP0kuLM4i3mQYwMrKSUAsAgAAX7Bg=
-Date: Tue, 22 Oct 2024 08:19:21 +0000
-Message-ID:
- <PN0P287MB20192A56CF07E9DFF1BC0F249A4C2@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
-References: <20241022060157.36372-1-himanshu.bhavani@siliconsignals.io>
- <b69251f7-7827-4f0e-b4fe-184a5cb54ee7@kernel.org>
-In-Reply-To: <b69251f7-7827-4f0e-b4fe-184a5cb54ee7@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.16; Tue, 22 Oct
+ 2024 08:21:40 +0000
+Received: from DBAPR06MB6901.eurprd06.prod.outlook.com
+ ([fe80::3988:68ff:8fd1:7ea0]) by DBAPR06MB6901.eurprd06.prod.outlook.com
+ ([fe80::3988:68ff:8fd1:7ea0%4]) with mapi id 15.20.8069.027; Tue, 22 Oct 2024
+ 08:21:40 +0000
+From: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
+To: Sherry Sun <sherry.sun@nxp.com>, Marco Felsch <m.felsch@pengutronix.de>
+CC: Amitkumar Karwar <amitkumar.karwar@nxp.com>, Neeraj Sanjay Kale
+	<neeraj.sanjaykale@nxp.com>, "marcel@holtmann.org" <marcel@holtmann.org>,
+	"luiz.dentz@gmail.com" <luiz.dentz@gmail.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "linux-bluetooth@vger.kernel.org"
+	<linux-bluetooth@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, GEO-CHHER-bsp-development
+	<bsp-development.geo@leica-geosystems.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+Thread-Topic: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+Thread-Index:
+ AQHbFlGYxegmsfkbQ0S2PUUKI4YS47J5bJAAgAAtywCAAao9AIAAIGOAgBV25oCAABNWAIAAK2IAgAE7AYCAACRCgIAADPSAgAADYwA=
+Date: Tue, 22 Oct 2024 08:21:40 +0000
+Message-ID: <a2d9a0f2-afc1-42dc-81ab-6ad0f49f5601@leica-geosystems.com>
+References: <20241004113557.2851060-1-catalin.popescu@leica-geosystems.com>
+ <DB9PR04MB8429B4535422D3AE07D8EE79927C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
+ <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
+ <0d460226-4ea7-4a9b-a119-468343727996@kernel.org>
+ <20241021064129.trchqa2oickna7pc@pengutronix.de>
+ <bb34f4ae-92b3-48b7-b0d6-5937756cdbb9@kernel.org>
+ <20241021102558.rfnz7nxcg5knibxs@pengutronix.de>
+ <DB9PR04MB842939900805C080F2CC32B2924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <20241022072311.ubh2sia5lwgvebsg@pengutronix.de>
+ <DB9PR04MB8429657FCB48ACAD74FDD471924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+In-Reply-To:
+ <DB9PR04MB8429657FCB48ACAD74FDD471924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+Accept-Language: en-CH, en-US
+Content-Language: aa
 X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
-msip_labels:
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+ header.d=none;dmarc=none action=none header.from=leica-geosystems.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PN0P287MB2019:EE_|PN2P287MB0522:EE_
-x-ms-office365-filtering-correlation-id: 8218e584-488d-4eff-819a-08dcf2723b8b
+x-ms-traffictypediagnostic: DBAPR06MB6901:EE_|AM9PR06MB7268:EE_
+x-ms-office365-filtering-correlation-id: b3ef1fe7-4430-4768-3f29-08dcf2728e49
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|1800799024|376014|38070700018;
 x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?iI+gxorHidO7vcMpp26jqxCfC4lrmsHMaiYvG6bt2R9wyChA/PYmqS/G2d?=
- =?iso-8859-1?Q?+qkjDE0o4a/a6DMP2Bx57WQ8iv2dE+hThoZPXpyhKIEa2gu5LZarAPFmO4?=
- =?iso-8859-1?Q?8G+hxfDVEU2Ms/3PBzn/K/10kmVGkp19QjkwVqDhiSaABK6XEkgA73bwVJ?=
- =?iso-8859-1?Q?IeYKQdwFG4fXCsx5h1BWbVjWGM+49CVfG4W6HFtvBcw5vf/Zwdc36VcYoe?=
- =?iso-8859-1?Q?nM9a435HFQOZS9w9YivlT1OVEy6YVomrW/dI3LM/KU7OM1ygBixtun163r?=
- =?iso-8859-1?Q?fWq7dyXrIfx4qZBMFNjd8kChI8CvFlK/Nd61iFmvLF/QBq3tQNZhoIRcec?=
- =?iso-8859-1?Q?JLapC/HYQm+k0DhuoUzbFgfnXMdZfb4LiRYCBs+IZ/S7Sk6nsSxuHw94cX?=
- =?iso-8859-1?Q?+b9c8vGQfiBlSdtFVecHnPojCGrA4lABTswPHDy8CvBblJgAFJ7PQS7pXh?=
- =?iso-8859-1?Q?XcsY0Z7gO1PalWWZ3DKI8RG5Xxa1wi5INNEa4ToDTIpSQEiHq9edEzOaXX?=
- =?iso-8859-1?Q?mBf9skXl/BxOFrLXhlk6V2SELAmIETcHNtFUrX1P2PIzDxJUHiLRQAPckP?=
- =?iso-8859-1?Q?HBGvBhJnHpntk/+qDUOD5hyv2quYCaVxkWfu8WbpIf8lzh2AK9GXJPlVkW?=
- =?iso-8859-1?Q?03NBGBpqda0u7LJIY/dn+hi7qjcVHaRryqumKT2AbHi5vF663TzIRSALWd?=
- =?iso-8859-1?Q?vK+kpiHHZvxPkBcz4F3UkNyRt4tWARzT5edgPXNms+Kf0X+KByu5HdfjLf?=
- =?iso-8859-1?Q?ANadm7E/zWI1jMiRCNxk0S23mcmIOnqBGYSpfruDxh2JpVZEOW8Peruae0?=
- =?iso-8859-1?Q?TRe1vsDAPceChSU4I+3RNkACuiH4Dr4oziSEMcTAmq4lGpeMAXnVdxJduB?=
- =?iso-8859-1?Q?0kRb09NPn06c06etmX2DjtgYAm6nl8mxB55hdRYN3Ly/HSNAas3Nn4JRGR?=
- =?iso-8859-1?Q?hce/eqGUt2Lp+/1tfUIK9qlB+BhgQXxOg6fu3ueCxhaIg/pWhqIvN4toZQ?=
- =?iso-8859-1?Q?bsG53cX/G1NasQiSzu1gFDa5r73zoZOFGFEBKw3SyJkWPIShqo1n0FtqjS?=
- =?iso-8859-1?Q?Zam8otNWt9RVrRCCmKS1VVdxPfaVyZRmYXs2LkrQg3mzFPhwiW2pOIMb+u?=
- =?iso-8859-1?Q?CmDg74qae/rR0IqGeSKz211oaHvywKFCzEXAdtn1ZPecl1A3vJGF6dhe8Q?=
- =?iso-8859-1?Q?dwPka97+gl8KCAKH1e5ZVUcyDTuHvPv26n+XhkA7bs7CGaBbIXa4538Iyd?=
- =?iso-8859-1?Q?L+ExMo6yy+cBJmmS4BCc+Cujlvk9jGyiFP0kSFr9AJXnnicmhMLK3HkECT?=
- =?iso-8859-1?Q?esiQ3qyPJ8bDGEMdlAfPIO3wNiQxEO3FAzI4NeNmtn8rvH3HVKi9cRxRF0?=
- =?iso-8859-1?Q?EJEbwrAXiG?=
+ =?utf-8?B?ZTBlTGYvN2Y4UVF1b2h4THdYTHVlb2xza1hOQ0FjUktnaDNsbEppaFJVRTZo?=
+ =?utf-8?B?c0NLekdnSlRjMGFERENqTU1ZTExIVzFZdWI1RUlRWU1WUnNLSXNMMktyTnNn?=
+ =?utf-8?B?aDA4UzI2c0xCS3VzSnk3SUlVMmorZ04zNEhJbnVmYnhPQ0xKa0JwOVZtTEFJ?=
+ =?utf-8?B?YnJiM1k0OEhvTWVqQzEvTXZkR3dHbjRyYmhKSVAxSGV0OHFzOEUvWlI0dFRP?=
+ =?utf-8?B?V3ZwRks3WHZZMDVRRGtZUUEyclFjME5vVVdhRWkrZ3pwYVdPYnhrNDJQRTlO?=
+ =?utf-8?B?Q3FjYUd6QXFyU1FDNVVnNCtTTGZtTzAwYW42Z3dsSlc1azZHLzBydGV4cVdR?=
+ =?utf-8?B?Rkx2KzErVVM5S1lsZjJDZTBnUkljVmhRZVZOSCtvTjlRZm1vNEZaMS9jbm5C?=
+ =?utf-8?B?ekIrWVF3NDVaNWZDTENGY1BUQS95UkVIOVR5dlFzVFVVS1ZKMkl5UGhyN3BJ?=
+ =?utf-8?B?czIvY2o2WjIxWFh4RXMrcGJkc3NHZmVwWTdTbmFZeWhJMTMxZFR3bDV6L0JG?=
+ =?utf-8?B?QUVNOGVva1BaMDE5bThrbVdpV2Zic3JFTXZwMWllOWNCUjVYZFkwbHRqV0J2?=
+ =?utf-8?B?empGamsxdHg2VjVhM2grT2V6cHoyQTVtV1JRUW5mYjY3ZCtyZXVxSTNwbFRh?=
+ =?utf-8?B?SFVsOTFCbFk0MWtwRlVjOVkyaFNvWTJ1UHlOc1BOZVJGVXpVUjRFU0VFTTRV?=
+ =?utf-8?B?WnVYbWVTRGRxNkU2M3RKNDNhTTBaZWNWYzFrVnNNdThlY29GU1JqRVRxdktt?=
+ =?utf-8?B?SHFDSjdVODBYajhYbjhsUTZsaU52ZlFRTXNrdC9wTCt0bSsrZFlYWFpKLzBL?=
+ =?utf-8?B?SFoya2JMTU05dmdvUkhxOXkzMW9GWURWVE5SckZJdy9ObGNaTkFOVzIwTzFO?=
+ =?utf-8?B?ZVBlN3ZNTS94cEpqNTdDR0U4TlhtUmZ6SmVmMWUwWlNWb2c4NXlRYUY2UjB4?=
+ =?utf-8?B?dW5sSFc1WnRDdk5vaVRETVVKWUR2SXM2U3l0VEg5NVhOdThiZFRVS0h6cWhM?=
+ =?utf-8?B?QUp0SmM1dGc0ODBwNU1pdkhmVk4xdE5jb0VlcW9rbVg0NjcweFE5Qjc1dE5J?=
+ =?utf-8?B?MnZCK0RXY21vSjd4dXJ5anBzSkx3andyTHlBN0F2SjJOYjk5QjVHQ1NyV05m?=
+ =?utf-8?B?czZ5Qno1UnI3WFFKZ2JsR281UGFZeVhqa3U3L1Z3TEN1N1MzQjIrdkRJSFFY?=
+ =?utf-8?B?YVhtL1dJcGhPMjNITmdXRE1TU1BkRTFZQS9LdFJvMWJrZ0JaUUlCSEg4MXhj?=
+ =?utf-8?B?UW5CZXBKakt1b2ErSTJlM0VydEEyMW1TYkhKemxSWWo4V2c5UlVoNVVIRkp1?=
+ =?utf-8?B?dHIwTVRTVExNNmI0bWY1LzlMYnc1RkVabklRRFRyRVduOXVwa0Q5TUpYWnU4?=
+ =?utf-8?B?N3d4UWdFRERJMGJLd0ZRSkVaaDFLa1I5bFUvbHQ2TDNiSWJkSm9ySmxXNFlL?=
+ =?utf-8?B?V2VIVlJYdElScHJ5NUJvWG1aZmZwaDhCV3BwbHdqNkZkNE1OVWVXV0hvWjNu?=
+ =?utf-8?B?M01OWnR0Y29hR1gwV2ZMOWxSUTVPUWwzU1ZzMFZjNTBNY21Pd2Q3UEp2aXhT?=
+ =?utf-8?B?a2x2WTdTSFpDbFRLMEI5TUM5cDhWampFKzJHRmdsenBBUEkwVlR4a3N2ckJL?=
+ =?utf-8?B?MEptcXNkMVhoQk5SVm01ZXdhQUx1VFZEdEtzUlFYdnJxMi9aa0xpSC9rbXVF?=
+ =?utf-8?B?bG1FNW5sdWw5dzArSEtzVHliWGdpTnI4R28weTdZRnZTdXljVDBhSjBpekw0?=
+ =?utf-8?B?bkFFSWwwd0hYRVBaUDBqaUQvRjBuekhmWW9TOWJGd2owckNtTGNnRGl2N1dL?=
+ =?utf-8?Q?D+7fWggwcypcAxced2DEidrjrqke52FKWzgzs=3D?=
 x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN0P287MB2019.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBAPR06MB6901.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014)(38070700018);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?UCikKR1rQXsyCQyU9SXIbG9w7xV8+4e/mc6iRgE1lGdvpM+PvJOrN4RKze?=
- =?iso-8859-1?Q?sLD7We2amo9qJuoOG5D53kMQxAxJYQi9lgTP+yRB8AwoZoDaFNr38Cobs6?=
- =?iso-8859-1?Q?UGtFx7jCA+w7u8uCfjMAfSowrmshpcIUNREteDEACUqFqQe5bVe/kd2Nlz?=
- =?iso-8859-1?Q?qwd1l1x0fzye+BCPbeMCA3xZN7DdX0seOchDJroEwEncefGIHcEq9KQwaN?=
- =?iso-8859-1?Q?OSkqjnhTaFuIexi42uQhdE+QzXFaEU+NrSPB07zEohqnuDg3waegzecA4e?=
- =?iso-8859-1?Q?XOGFY4PNcxckFdXc5RKnWRY46mDrV9DvQZzgU4YzWBENlFZgwJ/67e5Llo?=
- =?iso-8859-1?Q?9aXqFWNFTdti2kFH1yGlNb1MFreK8/JeC+KR3/9JIgy9LlmfkIi0/fEy9A?=
- =?iso-8859-1?Q?lngEuEyk0siY54KLbXY8VsDwjFH0hbsF8kd8g4unGSJakU4H04EBz0G7VG?=
- =?iso-8859-1?Q?cf3QotzYYpFpzLdBrY2SsQGSoop8D6+v0hYNjT1jR4o0bN71t9ZfYJi06V?=
- =?iso-8859-1?Q?ep3R5MXKzbGEngLNXb0rJmeRGNyF8HbzW3D7t7uK1DkUZP8ROMivBb9awy?=
- =?iso-8859-1?Q?TBOWAi1yllgbEmShmPoYlYe5qZHvqo1I0Nazjcjk2y8SDeedNcHtEl+XRs?=
- =?iso-8859-1?Q?qconAL/W367PY1EKeS2eTcVg6yTdJm3c+OJCjTmHMHa5Tw1GyJSfOGohTt?=
- =?iso-8859-1?Q?3CLHThWQxz1VLb994XUxmGfVHQY88/rlp6o7JyAiREGJdo3z4pDKtxivB5?=
- =?iso-8859-1?Q?OeiAU7VaLRA0NVUgR443E0YJfFiyOKysBuQQIgRPbbbUHDE+0YvdWS6tza?=
- =?iso-8859-1?Q?JGt7OKeXVbdHFO9XmEEwM/kgxajtDihaho7wH4pjljjjHnkY+UUTfwI8cL?=
- =?iso-8859-1?Q?KOM1J1fyRhFF+mtwsryTV0inVBQyMuP48ckVRz7aTAk6hMoBtNNG/oreTR?=
- =?iso-8859-1?Q?vu8CVAF42b1bk3/wMp0yDvPCUlo77t2EZZ/IjVLlAis73E5nLusIHIUVCH?=
- =?iso-8859-1?Q?Zsgrd9/2Ty1twwT9mhFceIItUVHYTRXDN5/IfG6Kt5c73D/SOmZ2jnBzdU?=
- =?iso-8859-1?Q?vzLVUykaV7LFx+ynnF8F865zvBq8yjkysjX9W9A4pWJgqvu7yZpGX5ErLc?=
- =?iso-8859-1?Q?NWX3UmkaAlBLQeNDJ2ujRAyotH/NXsCxj7OAbctLqIWEQAu5kLli2ohB/p?=
- =?iso-8859-1?Q?KD3wf0edVjHbUKP4sJZ7YKbDr9KL7ug34G7GsktG3NflwDfrMwL266RGaf?=
- =?iso-8859-1?Q?NB0ZhyclU0XkT49fdvovaJXzFu2MeukDiPcvzxMu2DMzg2S3XjSQxNilBt?=
- =?iso-8859-1?Q?0fd5ilE86YXMlcWfeAjIPo9FbqQ9iIvISr2kZIwEIvrIsQXGj8+URtYFcy?=
- =?iso-8859-1?Q?1yuJ3wSyIycda4SSAFeI8JRrf5+dazaFUZ/EP6U20SgqtDwgIVIlQgyFp8?=
- =?iso-8859-1?Q?8NQPqr7Mwli22ENMBERD/5TMmiUv9cMeGwmu51mJUrXPEswpaKY2A1UJBn?=
- =?iso-8859-1?Q?H6RlQc0hP643qNHyRoCwLyBaf2IwBYjZrhxnZdCh4y2PKVByxUvjO3thDU?=
- =?iso-8859-1?Q?Xm5kp2Xc3qzEcI7JMZy9RbQUHQxjeBSWewEA6kQBOrR6Ws1JwcH94uRR6I?=
- =?iso-8859-1?Q?VjQ1q5+btdDvhxZjgTTJ5NHZ2b3MkdTCBSioTYN1dLpYG8ZrhV1tYlXe8k?=
- =?iso-8859-1?Q?shug46Lx9zzXtzuTQKM=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ =?utf-8?B?M0NFSU52cjA0dUs4Z3VRL21GdHhVMGUyOCtGWnQ4MHBzMDI0bXpIaTR0bWpO?=
+ =?utf-8?B?VmRFeUZsQTNEcndEQllqdXJDL1BmM3lZK1kzVWdiaUd2SHMrdUkxVFJUcHFh?=
+ =?utf-8?B?UFZhK1YrL2NhdE5JekRia3dna0xXQ0tmTEdLaytnbHdjcGRCNHRBYlNEVmZB?=
+ =?utf-8?B?YTh4ZHBhbXZhOXdIblZtNVkvczZCeXVFZ0JYd1RYMk1aRFBBSXE3SWgvaTRm?=
+ =?utf-8?B?R1lOSElabFVobjlUYVZsU0ZHSjRoWmQrK0lYV2FtZlZHNGY5cktSaUpQb20v?=
+ =?utf-8?B?QkI2R04vV1FSNGZCanE2eG0zQU5BTHBNdFBydXpPZzNzeUdFRlJGWEh2TlNz?=
+ =?utf-8?B?YUh5Wmc2eU5CRWVkUGZBakxjSGtIbzdqNmJOQlM3V1E4Y2xVaXN4SHlmSDZl?=
+ =?utf-8?B?VTFiVkh6bS9oYWh3NGVJY0NwSlV2eG1XUGFreXJ6VE5WVWJMdmJtalI3WTlu?=
+ =?utf-8?B?K0k4RDdERWgvOStPYnpSdnQ5Undya09oMFM1VVBRM3E1WXdzR3NjTFZDSldO?=
+ =?utf-8?B?UkFuSVlaZllGeTY0OFlSdmVvVGpzbnA1L2VRc1FtekswOFpKSDVSSGlrWnhh?=
+ =?utf-8?B?L1B6MWZ3UHlodUt3dGxFRGNHRzlxa1ZaNHZ2aWFDMEIvakRxTUlZREExd255?=
+ =?utf-8?B?UHozOUFZVFVPbGpOK1EzWHdzbzllT3l2ZW45YXZ4TUV6MndjV1RMM29iM1Nn?=
+ =?utf-8?B?dW5Zd014T2orclNUR21JMG82dW1pWHdUVE1EWHVWRE1QSDEvMlFLVmxpbUZK?=
+ =?utf-8?B?dTV4TnV2WXRzamZMazJ3K2JsZitCNWxvV0x5am5WYVJjSk1xY1dvTVoxTmJa?=
+ =?utf-8?B?cUtUNGFXUWtCQnFIQlJOTkM1cnJ5VktoS1VxY3IxTmlIM01BQkp0MlptdkdL?=
+ =?utf-8?B?VlZoOHQ0d2tncURiZ0lNMGcyNUZWR0Y4QnpRZXg0UjBydDFlTURUZWIxMEh4?=
+ =?utf-8?B?aTVpUEtHNmhJRGhhV3UzNkFrRnZGeTFGQVFHelhjNE03YlJPdzdTc1duV01L?=
+ =?utf-8?B?Z3BpV2hGaXVQN3hVOXp0TXZEY0ZtN0FiMGZwR2JVYXpGclJiSWI5SmJJYzNG?=
+ =?utf-8?B?dnZXSGRyc003clRtUEpGUU04aWVLMHpMaVByOHJ6Qk9IV2hNN21FV0YxQ0tL?=
+ =?utf-8?B?SENUWWJTSWN6ZWlPTWtiSTYxUVE4RlowT2RIZG5QS21lMXJIR0tjSDNOemxN?=
+ =?utf-8?B?Vm5oOVBrL1hwUU9vcTUvR3lTUUxnQTJqVzF5MEpUbVpzVzBvMXkvUzhvcmx4?=
+ =?utf-8?B?Nk1UUGRHU2VVK1YreFlLVmE2T25uQ2xzM0R6bkErZmFGVlVLNjF6SVpRbXFL?=
+ =?utf-8?B?cXRZOUhoaFo0SndHdDZ3Mi9NcTY3MGhXSk8wZElWTDd5V0dEN1N5azZNdTNP?=
+ =?utf-8?B?OHlLaFo0eEkrN2UxSXkrUzBUeVFkbStzMGtaSDJCQ2RoMVR4MFA0SCtnNDlq?=
+ =?utf-8?B?R1I0NFFNTjNRSCthMElZbmxVWURiVENNTTdvdHNlbktVMTdoTnZubW5nVTNa?=
+ =?utf-8?B?TXpFOUNLWFhRUFN0L3hlbVFRMU9zTDZLZVpwc0o0Rm52anVPcmM1ZW1xRmoy?=
+ =?utf-8?B?azEvYWtNdU9mT3ZNYjBPLzNRNWdGOUZHdm5ldVVIWVRlcVVBUW1lLzQ1dWg5?=
+ =?utf-8?B?RjZTRWhYaFE5UXcvVm5zalhtZ01DclQ1cU5FenNESnBBSFZ6bExNQlVaMVlh?=
+ =?utf-8?B?SHA2b1RGUS9BZWRCd1Z4Ulp1a0hpeE5hL05oMEhuOE8yZkk4czNrNFVTaTJM?=
+ =?utf-8?B?OUg5NkprZXN1UjdWTU1EaU5yakZybXk0YXRZTWNjOTBMMEM4MWN0a05BSGZH?=
+ =?utf-8?B?bEQrQXpLZGl2aUZEMHNaMHo0N2QxblNWK3RWd2lZWXRPNlk3L0VPQXRWRGZ1?=
+ =?utf-8?B?bnpRSFlHa2E4cmgwQThvYjdaNTVpbUdOWFhCL0IvZUkwQ3RYZERxNkZERjdy?=
+ =?utf-8?B?OVprVzRiTHU3WXNSSmEwNzEwVmhtZTllL1krSTR1NHMxR1BLK2p2YkQzbFh2?=
+ =?utf-8?B?TTJKWUY3ZFVDYm1CazhIeU1JM3Q5ZHd0dFdONUt6MnVHTkJDZVY2OXFvK05H?=
+ =?utf-8?B?aXBSY0FVS1ovY2lCUExvK2VPNDl4L0plTkJhc3BRTzNIMFJXTlRjT3dDbi9z?=
+ =?utf-8?B?cGlFYnFqYzA0SEp1YW4ycGV2WGE3cVZQU3ROL1locm4vWS80UVhJVDBvRjB0?=
+ =?utf-8?B?TXc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B08C70B6209E514D8217700DE32C0E2A@eurprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siliconsignals.io
+X-OriginatorOrg: leica-geosystems.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8218e584-488d-4eff-819a-08dcf2723b8b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2024 08:19:21.8934
+X-MS-Exchange-CrossTenant-AuthSource: DBAPR06MB6901.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3ef1fe7-4430-4768-3f29-08dcf2728e49
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2024 08:21:40.7088
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7iH4GvQWfBpFTKc+PgBhwFS4tXYcEiWR88rMq+a1F77wVjYyRcg+i6+s4V6uE3DvboKSzBOpVTVFdHcuBlze8V/79G5OKbGxVv9+MyUJP61CMmdNKEX6uV2T7uFX6o8q
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0522
+X-MS-Exchange-CrossTenant-userprincipalname: KaF8+2K1XgX6+GA/VrGwsd/jx9xNQDplOHRqiJYzXGIsuhU31dXBmZLvUMSEXE7r76/nxGrOUFBrfkprUlGCWe/NVmnVE1Kp+bXcTtnFBUMS7uXMfnAyvsivh2FTbkjk
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR06MB7268
 
-Hi Krzysztof,=0A=
-=0A=
->> Convert the text bindings of pinctrl-mcp23s08 to YAML so it could be use=
-d to=0A=
->> validate the DTS.=0A=
->>=0A=
->=0A=
->You silently dropped several compatibles. Document clearly what and why=0A=
->you changed from original binding during conversion.=0A=
-=0A=
-Sure, will do it =0A=
-=0A=
->> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
->> ---=0A=
->>=A0 .../bindings/pinctrl/pinctrl-mcp23s08.txt=A0=A0=A0=A0 | 148 ---------=
---------=0A=
->>=A0 .../bindings/pinctrl/pinctrl-mcp23s08.yaml=A0=A0=A0 | 153 +++++++++++=
-+++++++=0A=
->=0A=
->Filename based on compatible, so microchip,mcp23s08.yaml.=0A=
-=0A=
-ok I will change.=0A=
-=0A=
->>=A0 2 files changed, 153 insertions(+), 148 deletions(-)=0A=
->>=A0 delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-=
-mcp23s08.txt=0A=
->>=A0 create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-=
-mcp23s08.yaml=0A=
-=0A=
-...=0A=
-=0A=
->> -};=0A=
->> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.=
-yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.yaml=0A=
->> new file mode 100644=0A=
->> index 000000000000..3904b8adba44=0A=
->> --- /dev/null=0A=
->> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.yaml=0A=
->> @@ -0,0 +1,153 @@=0A=
->> +# SPDX-License-Identifier: GPL-2.0-only=0A=
->> +# Copyright 2024 Silicon Signals Pvt. Ltd.=0A=
->=0A=
->I don't see how Silicon signals contributed to original binding in=0A=
->a157789b78f4e95f5d66f8b564356e396716f67e and I feel above suggests it is=
-=0A=
->a new work, not derivative. And if you claim this is not derivative=0A=
->work, then why not licensed as checkpatch asks? IOW, I suggest dropping=0A=
->copyright statement.=0A=
-=0A=
-sure, I will drop it.=0A=
-=0A=
->> +%YAML 1.2=0A=
->> +---=0A=
->> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-mcp23s08.yaml#=0A=
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#=0A=
->> +=0A=
->> +title: Microchip I/O expander with serial interface (I2C/SPI)=0A=
->> +=0A=
->> +maintainers:=0A=
->> +=A0 - Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
->> +=0A=
->> +description: |=0A=
->=0A=
->Do not need '|' unless you need to preserve formatting.=0A=
-=0A=
-okay.=0A=
-=0A=
->> +=A0 Microchip MCP23008, MCP23017, MCP23S08, MCP23S17, MCP23S18 GPIO exp=
-ander=0A=
->> +=A0 chips.These chips provide 8 or 16 GPIO pins with either I2C or SPI =
-interface.=0A=
->> +=0A=
->> +properties:=0A=
->> +=A0 compatible:=0A=
->> +=A0=A0=A0 enum:=0A=
->> +=A0=A0=A0=A0=A0 - microchip,mcp23s08=0A=
->> +=A0=A0=A0=A0=A0 - microchip,mcp23s17=0A=
->> +=A0=A0=A0=A0=A0 - microchip,mcp23s18=0A=
->> +=A0=A0=A0=A0=A0 - microchip,mcp23008=0A=
->> +=A0=A0=A0=A0=A0 - microchip,mcp23017=0A=
->> +=A0=A0=A0=A0=A0 - microchip,mcp23018=0A=
->> +=0A=
->> +=A0 reg:=0A=
->> +=A0=A0=A0 maxItems: 1=0A=
-> >+=0A=
-> >+=A0 gpio-controller: true=0A=
-> >+=0A=
-> >+=A0 '#gpio-cells':=0A=
-> >+=A0=A0=A0 const: 2=0A=
-> >+=0A=
-> >+=A0 interrupt-controller: true=0A=
-> >+=0A=
-> >+=A0 '#interrupt-cells':=0A=
-> >+=A0=A0=A0 const: 2=0A=
-> >+=0A=
-> >+=A0 interrupts:=0A=
-> >+=A0=A0=A0 maxItems: 1=0A=
-> >+=0A=
-> >+=A0 reset-gpios:=0A=
-> >+=A0=A0=A0 description: GPIO specifier for active-low reset pin.=0A=
-> >+=A0=A0=A0 maxItems: 1=0A=
-> >+=0A=
-> >+=A0 spi-max-frequency:=0A=
-> >+=A0=A0=A0 description: Maximum frequency for SPI devices.=0A=
->=0A=
->Drop, not needed. Is this a device on SPI bus? Then you miss ref to=0A=
->spi-peripheral-props.=0A=
-=0A=
-yes device is on SPI bus. I will add reference=0A=
-=0A=
->> +=0A=
->> +=A0 microchip,spi-present-mask:=0A=
->> +=A0=A0=A0 description: |=0A=
->=0A=
->Do not need '|' unless you need to preserve formatting.=0A=
-=0A=
-sure,=0A=
-=0A=
->> +=A0=A0=A0=A0=A0 SPI present mask. Specifies which chips are present on =
-the shared SPI=0A=
->> +=A0=A0=A0=A0=A0 chipselect. Each bit in the mask represents one SPI add=
-ress.=0A=
->> +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/uint8=0A=
->=0A=
->Where is the entire description from old binding?=0A=
-=0A=
-Okay I will add whole description=0A=
-=0A=
->> +=0A=
->> +=A0 microchip,irq-mirror:=0A=
->> +=A0=A0=A0 type: boolean=0A=
->> +=A0=A0=A0 description: |=0A=
-> >+=A0=A0=A0=A0=A0 Sets the mirror flag in the IOCON register. Devices wit=
-h two interrupt=0A=
-> >+=A0=A0=A0=A0=A0 outputs (these are the devices ending with 17 and those=
- that have 16 IOs)=0A=
-> >+=A0=A0=A0=A0=A0 have two IO banks IO 0-7 form bank 1 and IO 8-15 are ba=
-nk 2. These chips=0A=
-> >+=A0=A0=A0=A0=A0 have two different interrupt outputs One for bank 1 and=
- another for=0A=
->> +=A0=A0=A0=A0=A0 bank 2. If irq-mirror is set, both interrupts are gener=
-ated regardless of=0A=
->> +=A0=A0=A0=A0=A0 the bank that an input change occurred on. If it is not=
- set,the interrupt=0A=
->> +=A0=A0=A0=A0=A0 are only generated for the bank they belong to.=0A=
-> >+=0A=
-> >+=A0 microchip,irq-active-high:=0A=
-> >+=A0=A0=A0 type: boolean=0A=
-> >+=A0=A0=A0 description: |=0A=
-> >+=A0=A0=A0=A0=A0 Sets the INTPOL flag in the IOCON register.This configu=
-res the IRQ output=0A=
-> >+=A0=A0=A0=A0=A0 polarity as active high.=0A=
-> >+=0A=
-> >+=A0 drive-open-drain:=0A=
-> >+=A0=A0=A0 type: boolean=0A=
-> >+=A0=A0=A0 description: |=0A=
-> >+=A0=A0=A0=A0=A0 Sets the ODR flag in the IOCON register. This configure=
-s the IRQ output as=0A=
-> >+=A0=A0=A0=A0=A0 open drain active low.=0A=
-> >+=0A=
-> >+=A0 pinmux:=0A=
-> >+=A0=A0=A0 type: object=0A=
-> >+=A0=A0=A0 properties:=0A=
-> >+=A0=A0=A0=A0=A0 pins:=0A=
-> >+=A0=A0=A0=A0=A0=A0=A0 description: |=0A=
-> >+=A0=A0=A0=A0=A0=A0=A0=A0=A0 The list of GPIO pins controlled by this no=
-de. Each pin name corresponds=0A=
-> >+=A0=A0=A0=A0=A0=A0=A0=A0=A0 to a physical pin on the GPIO expander.=0A=
-> >+=A0=A0=A0=A0=A0=A0=A0 items:=0A=
-> >+=A0=A0=A0=A0=A0=A0=A0=A0=A0 pattern: "^gpio([0-9]|[1][0-5])$"=0A=
-> >+=A0=A0=A0=A0=A0=A0=A0 maxItems: 16=0A=
-> >+=0A=
-> >+=A0=A0=A0=A0=A0 bias-pull-up:=0A=
-> >+=A0=A0=A0=A0=A0=A0=A0 type: boolean=0A=
-> >+=A0=A0=A0=A0=A0=A0=A0 description: Configures pull-up resistors for the=
- GPIO pins.=0A=
-> >+=0A=
-> >+=A0=A0=A0 required:=0A=
-> >+=A0=A0=A0=A0=A0 - pins=0A=
-> >+=A0=A0=A0=A0=A0 - bias-pull-up=0A=
->=0A=
->This does not make much sense, why pull up is always required?=0A=
-=0A=
-Not always but you can configure as pull-up.=0A=
-=0A=
-If you suggest then I will give two different example in i2c, with or witho=
-ut pull-up as old bindings had.=0A=
-=0A=
-and in pinmux I will add description for pull-up .=0A=
-=0A=
-=0A=
-Best regards,=0A=
-Himanshu=0A=
-=0A=
-> +=0A=
-> +=A0=A0=A0 additionalProperties: false=0A=
-> +=0A=
-> +required:=0A=
-> +=A0 - compatible=0A=
-> +=A0 - reg=0A=
-> +=A0 - gpio-controller=0A=
-> +=A0 - '#gpio-cells'=0A=
-> +=0A=
-> +additionalProperties: false=0A=
-=0A=
-________________________________________=0A=
-From:=A0Krzysztof Kozlowski <krzk@kernel.org>=0A=
-Sent:=A022 October 2024 12:03=0A=
-To:=A0Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>; linus.walleij@=
-linaro.org <linus.walleij@linaro.org>; robh@kernel.org <robh@kernel.org>; k=
-rzk+dt@kernel.org <krzk+dt@kernel.org>; conor+dt@kernel.org <conor+dt@kerne=
-l.org>=0A=
-Cc:=A0linux-gpio@vger.kernel.org <linux-gpio@vger.kernel.org>; devicetree@v=
-ger.kernel.org <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org <=
-linux-kernel@vger.kernel.org>=0A=
-Subject:=A0Re: [PATCH] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt t=
-o yaml format=0A=
-=A0=0A=
-CAUTION: This email originated from outside the organization. Do not click =
-links or open attachments unless you recognize the sender and know the cont=
-ent is safe.=0A=
-=0A=
-On 22/10/2024 08:01, Himanshu Bhavani wrote:=0A=
-> Convert the text bindings of pinctrl-mcp23s08 to YAML so it could be used=
- to=0A=
-> validate the DTS.=0A=
->=0A=
-=0A=
-You silently dropped several compatibles. Document clearly what and why=0A=
-you changed from original binding during conversion.=0A=
-=0A=
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
-> ---=0A=
->=A0 .../bindings/pinctrl/pinctrl-mcp23s08.txt=A0=A0=A0=A0 | 148 ----------=
--------=0A=
->=A0 .../bindings/pinctrl/pinctrl-mcp23s08.yaml=A0=A0=A0 | 153 ++++++++++++=
-++++++=0A=
-=0A=
-Filename based on compatible, so microchip,mcp23s08.yaml.=0A=
-=0A=
-=0A=
->=A0 2 files changed, 153 insertions(+), 148 deletions(-)=0A=
->=A0 delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-m=
-cp23s08.txt=0A=
->=A0 create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-m=
-cp23s08.yaml=0A=
-=0A=
-...=0A=
-=0A=
-> -};=0A=
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.y=
-aml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.yaml=0A=
-> new file mode 100644=0A=
-> index 000000000000..3904b8adba44=0A=
-> --- /dev/null=0A=
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.yaml=0A=
-> @@ -0,0 +1,153 @@=0A=
-> +# SPDX-License-Identifier: GPL-2.0-only=0A=
-> +# Copyright 2024 Silicon Signals Pvt. Ltd.=0A=
-=0A=
-I don't see how Silicon signals contributed to original binding in=0A=
-a157789b78f4e95f5d66f8b564356e396716f67e and I feel above suggests it is=0A=
-a new work, not derivative. And if you claim this is not derivative=0A=
-work, then why not licensed as checkpatch asks? IOW, I suggest dropping=0A=
-copyright statement.=0A=
-=0A=
-> +%YAML 1.2=0A=
-> +---=0A=
-> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-mcp23s08.yaml#=0A=
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#=0A=
-> +=0A=
-> +title: Microchip I/O expander with serial interface (I2C/SPI)=0A=
-> +=0A=
-> +maintainers:=0A=
-> +=A0 - Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
-> +=0A=
-> +description: |=0A=
-=0A=
-Do not need '|' unless you need to preserve formatting.=0A=
-=0A=
-> +=A0 Microchip MCP23008, MCP23017, MCP23S08, MCP23S17, MCP23S18 GPIO expa=
-nder=0A=
-> +=A0 chips.These chips provide 8 or 16 GPIO pins with either I2C or SPI i=
-nterface.=0A=
-> +=0A=
-> +properties:=0A=
-> +=A0 compatible:=0A=
-> +=A0=A0=A0 enum:=0A=
-> +=A0=A0=A0=A0=A0 - microchip,mcp23s08=0A=
-> +=A0=A0=A0=A0=A0 - microchip,mcp23s17=0A=
-> +=A0=A0=A0=A0=A0 - microchip,mcp23s18=0A=
-> +=A0=A0=A0=A0=A0 - microchip,mcp23008=0A=
-> +=A0=A0=A0=A0=A0 - microchip,mcp23017=0A=
-> +=A0=A0=A0=A0=A0 - microchip,mcp23018=0A=
-> +=0A=
-> +=A0 reg:=0A=
-> +=A0=A0=A0 maxItems: 1=0A=
-> +=0A=
-> +=A0 gpio-controller: true=0A=
-> +=0A=
-> +=A0 '#gpio-cells':=0A=
-> +=A0=A0=A0 const: 2=0A=
-> +=0A=
-> +=A0 interrupt-controller: true=0A=
-> +=0A=
-> +=A0 '#interrupt-cells':=0A=
-> +=A0=A0=A0 const: 2=0A=
-> +=0A=
-> +=A0 interrupts:=0A=
-> +=A0=A0=A0 maxItems: 1=0A=
-> +=0A=
-> +=A0 reset-gpios:=0A=
-> +=A0=A0=A0 description: GPIO specifier for active-low reset pin.=0A=
-> +=A0=A0=A0 maxItems: 1=0A=
-> +=0A=
-> +=A0 spi-max-frequency:=0A=
-> +=A0=A0=A0 description: Maximum frequency for SPI devices.=0A=
-=0A=
-Drop, not needed. Is this a device on SPI bus? Then you miss ref to=0A=
-spi-peripheral-props.=0A=
-=0A=
-=0A=
-> +=0A=
-> +=A0 microchip,spi-present-mask:=0A=
-> +=A0=A0=A0 description: |=0A=
-=0A=
-Do not need '|' unless you need to preserve formatting.=0A=
-=0A=
-> +=A0=A0=A0=A0=A0 SPI present mask. Specifies which chips are present on t=
-he shared SPI=0A=
-> +=A0=A0=A0=A0=A0 chipselect. Each bit in the mask represents one SPI addr=
-ess.=0A=
-> +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/uint8=0A=
-=0A=
-Where is the entire description from old binding?=0A=
-=0A=
-> +=0A=
-> +=A0 microchip,irq-mirror:=0A=
-> +=A0=A0=A0 type: boolean=0A=
-> +=A0=A0=A0 description: |=0A=
-> +=A0=A0=A0=A0=A0 Sets the mirror flag in the IOCON register. Devices with=
- two interrupt=0A=
-> +=A0=A0=A0=A0=A0 outputs (these are the devices ending with 17 and those =
-that have 16 IOs)=0A=
-> +=A0=A0=A0=A0=A0 have two IO banks IO 0-7 form bank 1 and IO 8-15 are ban=
-k 2. These chips=0A=
-> +=A0=A0=A0=A0=A0 have two different interrupt outputs One for bank 1 and =
-another for=0A=
-> +=A0=A0=A0=A0=A0 bank 2. If irq-mirror is set, both interrupts are genera=
-ted regardless of=0A=
-> +=A0=A0=A0=A0=A0 the bank that an input change occurred on. If it is not =
-set,the interrupt=0A=
-> +=A0=A0=A0=A0=A0 are only generated for the bank they belong to.=0A=
-> +=0A=
-> +=A0 microchip,irq-active-high:=0A=
-> +=A0=A0=A0 type: boolean=0A=
-> +=A0=A0=A0 description: |=0A=
-> +=A0=A0=A0=A0=A0 Sets the INTPOL flag in the IOCON register.This configur=
-es the IRQ output=0A=
-> +=A0=A0=A0=A0=A0 polarity as active high.=0A=
-> +=0A=
-> +=A0 drive-open-drain:=0A=
-> +=A0=A0=A0 type: boolean=0A=
-> +=A0=A0=A0 description: |=0A=
-> +=A0=A0=A0=A0=A0 Sets the ODR flag in the IOCON register. This configures=
- the IRQ output as=0A=
-> +=A0=A0=A0=A0=A0 open drain active low.=0A=
-> +=0A=
-> +=A0 pinmux:=0A=
-> +=A0=A0=A0 type: object=0A=
-> +=A0=A0=A0 properties:=0A=
-> +=A0=A0=A0=A0=A0 pins:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 description: |=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 The list of GPIO pins controlled by this nod=
-e. Each pin name corresponds=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 to a physical pin on the GPIO expander.=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 items:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 pattern: "^gpio([0-9]|[1][0-5])$"=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 maxItems: 16=0A=
-> +=0A=
-> +=A0=A0=A0=A0=A0 bias-pull-up:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 type: boolean=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 description: Configures pull-up resistors for the =
-GPIO pins.=0A=
-> +=0A=
-> +=A0=A0=A0 required:=0A=
-> +=A0=A0=A0=A0=A0 - pins=0A=
-> +=A0=A0=A0=A0=A0 - bias-pull-up=0A=
-=0A=
-This does not make much sense, why pull up is always required?=0A=
-=0A=
-> +=0A=
-> +=A0=A0=A0 additionalProperties: false=0A=
-> +=0A=
-> +required:=0A=
-> +=A0 - compatible=0A=
-> +=A0 - reg=0A=
-> +=A0 - gpio-controller=0A=
-> +=A0 - '#gpio-cells'=0A=
-> +=0A=
-> +additionalProperties: false=0A=
-=0A=
-=0A=
-=0A=
-Best regards,=0A=
-Krzysztof=0A=
+T24gMjIvMTAvMjAyNCAxMDowOSwgU2hlcnJ5IFN1biB3cm90ZToNCj4gW+aUtuWIsOatpOmCruS7
+tueahOafkOS6m+S6uumAmuW4uOS4jeS8muaUtuWIsOadpeiHqiBzaGVycnkuc3VuQG54cC5jb20g
+55qE55S15a2Q6YKu5Lu244CC6K+36K6/6ZeuIGh0dHBzOi8vYWthLm1zL0xlYXJuQWJvdXRTZW5k
+ZXJJZGVudGlmaWNhdGlvbu+8jOS7peS6huino+S4uuS7gOS5iOi/meS4gOeCueW+iOmHjeimgeOA
+gl0NCj4NCj4gVGhpcyBlbWFpbCBpcyBub3QgZnJvbSBIZXhhZ29u4oCZcyBPZmZpY2UgMzY1IGlu
+c3RhbmNlLiBQbGVhc2UgYmUgY2FyZWZ1bCB3aGlsZSBjbGlja2luZyBsaW5rcywgb3BlbmluZyBh
+dHRhY2htZW50cywgb3IgcmVwbHlpbmcgdG8gdGhpcyBlbWFpbC4NCj4NCj4NCj4+IC0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tDQo+PiBGcm9tOiBNYXJjbyBGZWxzY2ggPG0uZmVsc2NoQHBlbmd1
+dHJvbml4LmRlPg0KPj4gU2VudDogVHVlc2RheSwgT2N0b2JlciAyMiwgMjAyNCAzOjIzIFBNDQo+
+PiBUbzogU2hlcnJ5IFN1biA8c2hlcnJ5LnN1bkBueHAuY29tPg0KPj4gQ2M6IFBPUEVTQ1UgQ2F0
+YWxpbiA8Y2F0YWxpbi5wb3Blc2N1QGxlaWNhLWdlb3N5c3RlbXMuY29tPjsgQW1pdGt1bWFyDQo+
+PiBLYXJ3YXIgPGFtaXRrdW1hci5rYXJ3YXJAbnhwLmNvbT47IE5lZXJhaiBTYW5qYXkgS2FsZQ0K
+Pj4gPG5lZXJhai5zYW5qYXlrYWxlQG54cC5jb20+OyBtYXJjZWxAaG9sdG1hbm4ub3JnOw0KPj4g
+bHVpei5kZW50ekBnbWFpbC5jb207IHJvYmhAa2VybmVsLm9yZzsga3J6aytkdEBrZXJuZWwub3Jn
+Ow0KPj4gY29ub3IrZHRAa2VybmVsLm9yZzsgcC56YWJlbEBwZW5ndXRyb25peC5kZTsgbGludXgt
+DQo+PiBibHVldG9vdGhAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
+ZzsgbGludXgtDQo+PiBrZXJuZWxAdmdlci5rZXJuZWwub3JnOyBHRU8tQ0hIRVItYnNwLWRldmVs
+b3BtZW50IDxic3AtDQo+PiBkZXZlbG9wbWVudC5nZW9AbGVpY2EtZ2Vvc3lzdGVtcy5jb20+OyBL
+cnp5c3p0b2YgS296bG93c2tpDQo+PiA8a3J6a0BrZXJuZWwub3JnPg0KPj4gU3ViamVjdDogUmU6
+IFtQQVRDSCAxLzJdIGR0LWJpbmRpbmdzOiBuZXQ6IGJsdWV0b290aDogbnhwOiBhZGQgc3VwcG9y
+dCBmb3INCj4+IHN1cHBseSBhbmQgcmVzZXQNCj4+DQo+PiBPbiAyNC0xMC0yMiwgU2hlcnJ5IFN1
+biB3cm90ZToNCj4+Pj4gT24gMjQtMTAtMjEsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+
+Pj4+PiBPbiAyMS8xMC8yMDI0IDA4OjQxLCBNYXJjbyBGZWxzY2ggd3JvdGU6DQo+Pj4+Pj4gT24g
+MjQtMTAtMDcsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+Pj4+Pj4+IE9uIDA3LzEwLzIw
+MjQgMTQ6NTgsIFBPUEVTQ1UgQ2F0YWxpbiB3cm90ZToNCj4+Pj4+Pj4+Pj4+ICsgIHZjYy1zdXBw
+bHk6DQo+Pj4+Pj4+Pj4+PiArICAgIGRlc2NyaXB0aW9uOg0KPj4+Pj4+Pj4+Pj4gKyAgICAgIHBo
+YW5kbGUgb2YgdGhlIHJlZ3VsYXRvciB0aGF0IHByb3ZpZGVzIHRoZSBzdXBwbHkgdm9sdGFnZS4N
+Cj4+Pj4+Pj4+Pj4+ICsNCj4+Pj4+Pj4+Pj4+ICsgIHJlc2V0LWdwaW9zOg0KPj4+Pj4+Pj4+Pj4g
+KyAgICBkZXNjcmlwdGlvbjoNCj4+Pj4+Pj4+Pj4+ICsgICAgICBDaGlwIHBvd2VyZG93bi9yZXNl
+dCBzaWduYWwgKFBEbikuDQo+Pj4+Pj4+Pj4+PiArDQo+Pj4+Pj4+Pj4+IEhpIENhdGFsaW4sDQo+
+Pj4+Pj4+Pj4+DQo+Pj4+Pj4+Pj4+IEZvciBOWFAgV0lGSS9CVCBjaGlwLCBXSUZJIGFuZCBCVCBz
+aGFyZSB0aGUgb25lIFBEbiBwaW4sDQo+Pj4+Pj4+Pj4+IHdoaWNoDQo+Pj4+IG1lYW5zIHRoYXQg
+Ym90aCB3aWZpIGFuZCBCVCBjb250cm9sbGVyIHdpbGwgYmUgcG93ZXJlZCBvbiBhbmQgb2ZmIGF0
+DQo+Pj4+IHRoZSBzYW1lIHRpbWUuDQo+Pj4+Pj4+Pj4+IFRha2luZyB0aGUgTS4yIE5YUCBXSUZJ
+L0JUIG1vZHVsZSBhcyBhbiBleGFtcGxlLA0KPj4+PiBwaW41NihXX0RJU0FCTEUxKSBpcyBjb25u
+ZWN0ZWQgdG8gdGhlIFdJRkkvQlQgY2hpcCBQRG4gcGluLCB3ZSBoYXMNCj4+Pj4gYWxyZWFkeSBj
+b250cm9sbGVkIHRoaXMgcGluIGluIHRoZSBjb3JyZXNwb25kaW5nIFBDSWUvU0RJTyBjb250cm9s
+bGVyIGR0cw0KPj4gbm9kZXMuDQo+Pj4+Pj4+Pj4+IEl0IGlzIG5vdCBjbGVhciB0byBtZSB3aGF0
+IGV4YWN0bHkgcGlucyBmb3IgdmNjLXN1cHBseSBhbmQNCj4+Pj4+Pj4+Pj4gcmVzZXQtZ3Bpb3MN
+Cj4+Pj4geW91IGRlc2NyaWJpbmcgaGVyZS4gQ2FuIHlvdSBoZWxwIHVuZGVyc3RhbmQgdGhlIGNv
+cnJlc3BvbmRpbmcgcGlucw0KPj4+PiBvbiBNLjIgaW50ZXJmYWNlIGFzIGFuIGV4YW1wbGU/IFRo
+YW5rcy4NCj4+Pj4+Pj4+IEhpIFNoZXJyeSwNCj4+Pj4+Pj4+DQo+Pj4+Pj4+PiBSZWd1bGF0b3Jz
+IGFuZCByZXNldCBjb250cm9scyBiZWluZyByZWZjb3VudGVkLCB3ZSBjYW4gdGhlbg0KPj4+Pj4+
+Pj4gaW1wbGVtZW50IHBvd2VydXAgc2VxdWVuY2UgaW4gYm90aCBibHVldG9vdGgvd2xhbiBkcml2
+ZXJzIGFuZA0KPj4+Pj4+Pj4gaGF2ZSB0aGUgZHJpdmVycyBvcGVyYXRlIGluZGVwZW5kZW50bHku
+IFRoaXMgd2F5IGJsdWV0b290aA0KPj4+Pj4+Pj4gZHJpdmVyIHdvdWxkIGhhcyBubyBkZXBlbmRh
+bmNlIG9uIHRoZSB3bGFuIGRyaXZlciBmb3IgOg0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+IC0gaXRzIHBv
+d2VyIHN1cHBseQ0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+IC0gaXRzIHJlc2V0IHBpbiAoUERuKQ0KPj4+
+Pj4+Pj4NCj4+Pj4+Pj4+IC0gaXRzIGZpcm13YXJlIChiZWluZyBkb3dubG9hZGVkIGFzIHBhcnQg
+b2YgdGhlIGNvbWJvDQo+Pj4+Pj4+PiBmaXJtd2FyZSkNCj4+Pj4+Pj4+DQo+Pj4+Pj4+PiBGb3Ig
+dGhlIHdsYW4gZHJpdmVyIHdlIHVzZSBtbWMgcG93ZXIgc2VxdWVuY2UgdG8gZHJpdmUgdGhlDQo+
+Pj4+Pj4+PiBjaGlwIHJlc2V0IHBpbiBhbmQgdGhlcmUncyBhbm90aGVyIHBhdGNoc2V0IHRoYXQg
+YWRkcyBzdXBwb3J0DQo+Pj4+Pj4+PiBmb3IgcmVzZXQgY29udHJvbCBpbnRvIHRoZSBtbWMgcHdy
+c2VxIHNpbXBsZSBkcml2ZXIuDQo+Pj4+Pj4+Pg0KPj4+Pj4+Pj4+IFBsZWFzZSB3cmFwIHlvdXIg
+cmVwbGllcy4NCj4+Pj4+Pj4+Pg0KPj4+Pj4+Pj4+IEl0IHNlZW1zIHlvdSBuZWVkIHBvd2VyIHNl
+cXVlbmNpbmcganVzdCBsaWtlIEJhcnRvc3ogZGlkIGZvcg0KPj4+PiBRdWFsY29tbSBXQ04uDQo+
+Pj4+Pj4+PiBIaSBLcnp5c3p0b2YsDQo+Pj4+Pj4+Pg0KPj4+Pj4+Pj4gSSdtIG5vdCBmYW1pbGlh
+ciB3aXRoIHBvd2VyIHNlcXVlbmNpbmcsIGJ1dCBsb29rcyBsaWtlIHdheQ0KPj4+Pj4+Pj4gbW9y
+ZSBjb21wbGljYXRlZCB0aGFuIHJlc2V0IGNvbnRyb2xzLiBTbywgd2h5IHBvd2VyIHNlcXVlbmNp
+bmcNCj4+Pj4+Pj4+IGlzIHJlY29tbWVuZGVkIGhlcmUgPyBJcyBpdCBiL2MgYSBzdXBwbHkgaXMg
+aW52b2x2ZWQgPw0KPj4+Pj4+PiBCYXNlZCBvbiBlYXJsaWVyIG1lc3NhZ2U6DQo+Pj4+Pj4+DQo+
+Pj4+Pj4+ICJGb3IgTlhQIFdJRkkvQlQgY2hpcCwgV0lGSSBhbmQgQlQgc2hhcmUgdGhlIG9uZSBQ
+RG4gcGluLCB3aGljaA0KPj4+Pj4+PiBtZWFucyB0aGF0IGJvdGggd2lmaSBhbmQgQlQgY29udHJv
+bGxlciB3aWxsIGJlIHBvd2VyZWQgb24gYW5kDQo+Pj4+Pj4+IG9mZiBhdCB0aGUgc2FtZSB0aW1l
+LiINCj4+Pj4+Pj4NCj4+Pj4+Pj4gYnV0IG1heWJlIHRoYXQncyBub3QgbmVlZGVkLiBObyBjbHVl
+LCBJIGRvbid0IGtub3cgdGhlIGhhcmR3YXJlLg0KPj4+Pj4+PiBCdXQgYmUgY2FyZWZ1bGx5IHdo
+YXQgeW91IHdyaXRlIGluIHRoZSBiaW5kaW5ncywgYmVjYXVzZSB0aGVuDQo+Pj4+Pj4+IGl0IHdp
+bGwgYmUNCj4+Pj4gQUJJLg0KPj4+Pj4+IFdlIG5vdGljZWQgdGhlIG5ldyBwb3dlci1zZXF1ZW5j
+aW5nIGluZnJhc3RydWN0dXJlIHdoaWNoIGlzIHBhcnQNCj4+Pj4+PiBvZg0KPj4+Pj4+IDYuMTEg
+dG9vIGJ1dCBJIGRvbid0IHRoaW5rIHRoYXQgdGhpcyBwYXRjaCBpcyB3cm9uZy4gVGhlIERUIEFC
+SQ0KPj4+Pj4+IHdvbid0IGJyZWFrIGlmIHdlIHN3aXRjaCB0byB0aGUgcG93ZXItc2VxdWVuY2lu
+ZyBsYXRlciBvbiBzaW5jZQ0KPj4+Pj4+IHRoZQ0KPj4+PiAicmVzZXQtZ3Bpb3MiDQo+Pj4+Pj4g
+YXJlIG5vdCBtYXJrZWQgYXMgcmVxdWlyZWQuIFNvIGl0IGlzIHVwIHRvIHRoZSBkcml2ZXIgdG8g
+aGFuZGxlDQo+Pj4+Pj4gaXQgZWl0aGVyIHZpYSBhIHNlcGFyYXRlIHBvd2VyLXNlcXVlbmNlIGRy
+aXZlciBvciB2aWEgInBvd2VyLXN1cHBseSINCj4+Pj4+PiBhbmQgInJlc2V0LWdwaW9zIiBkaXJl
+Y3RseS4NCj4+Pj4+IFRoYXQncyBub3QgdGhlIHBvaW50LiBXZSBleHBlY3QgY29ycmVjdCBoYXJk
+d2FyZSBkZXNjcmlwdGlvbi4gSWYNCj4+Pj4+IHlvdSBzYXkgbm93IGl0IGhhcyAicmVzZXQtZ3Bp
+b3MiIGJ1dCBsYXRlciBzYXkgImFjdHVhbGx5IG5vLA0KPj4+Pj4gYmVjYXVzZSBpdCBoYXMgUE1V
+IiwgSSByZXNwb25kOiBuby4gRGVzY3JpYmUgdGhlIGhhcmR3YXJlLCBub3QgY3VycmVudA0KPj4g
+TGludXguDQo+Pj4+IEkga25vdyB0aGF0IERUIGFic3RyYWN0cyB0aGUgSFcuIFRoYXQgc2FpZCBJ
+IGRvbid0IHNlZSB0aGUgcHJvYmxlbQ0KPj4+PiB3aXRoIHRoaXMgcGF0Y2guIFRoZSBIVyBpcyBh
+YnN0cmFjdGVkIGp1c3QgZmluZToNCj4+Pj4NCj4+Pj4gc2hhcmVkIFBEbiAgICAgICAgICAtPiBy
+ZXNldC1ncGlvcw0KPj4+PiBzaGFyZWQgcG93ZXItc3VwcGx5IC0+IHZjYy1zdXBwbHkNCj4+PiBB
+Y3R1YWxseSB3ZSBzaG91bGQgdXNlIHZjYy1zdXBwbHkgdG8gY29udHJvbCB0aGUgUERuIHBpbiwg
+dGhpcyBpcyB0aGUNCj4+PiBwb3dlciBzdXBwbHkgZm9yIE5YUCB3aWZpL0JULg0KPj4gUGxlYXNl
+IGRvbid0IHNpbmNlIHRoaXMgaXMgcmVndWxhciBwaW4gb24gdGhlIHdsYW4vYnQgZGV2aWNlIG5v
+dCB0aGUgcmVndWxhdG9yLg0KPj4gUGVvcGxlIG9mdGVuIGRvIHRoYXQgZm9yIEdQSU9zIGlmIHRo
+ZSBkcml2ZXIgaXMgbWlzc2luZyB0aGUgc3VwcG9ydCB0byBwdWxsIHRoZQ0KPj4gcmVzZXQvcGRu
+L2VuYWJsZSBncGlvIGJ1dCB0aGUgZW5hYmxlLWdwaW8gb24gdGhlIHJlZ3VsYXRvciBpcyB0byBl
+bmFibGUgdGhlDQo+PiByZWd1bGF0b3IgYW5kIF9ub3RfIHRoZSBidC93bGFuIGRldmljZS4NCj4+
+DQo+PiBUaGVyZWZvcmUgdGhlIGltcGxlbWVudGF0aW9uIENhdGFsaW4gcHJvdmlkZWQgaXMgdGhl
+IGNvcnJlY3Qgb25lLg0KPj4NCj4gRm9yIE5YUCB3aWZpL0JULCB0aGUgUERuIGlzIHRoZSBvbmx5
+IHBvd2VyIGNvbnRyb2wgcGluLCBubyBzcGVjaWZpYyByZWd1bGF0b3IsIHBlciBteSB1bmRlcnN0
+YW5kaW5nLA0KPiBpdCBpcyBhIGNvbW1vbiB3YXkgdG8gY29uZmlndXJlIHRoaXMgcGluIGFzIHRo
+ZSB2Y2Mtc3VwcGx5IGZvciB0aGUgd2lmaSBpbnRlcmZhY2UoU0RJTyBvciBQQ0llKS4NCj4NCj4g
+cmVnX3VzZGhjM192bW1jOiByZWd1bGF0b3ItdXNkaGMzIHsNCj4gICAgICAgICAgIGNvbXBhdGli
+bGUgPSAicmVndWxhdG9yLWZpeGVkIjsNCj4gICAgICAgICAgIHJlZ3VsYXRvci1uYW1lID0gIldM
+QU5fRU4iOw0KPiAgICAgICAgICAgcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MzMwMDAwMD47
+DQo+ICAgICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwzMzAwMDAwPjsNCj4gICAg
+ICAgICAgIGdwaW8gPSA8JnBjYWw2NTI0IDIwIEdQSU9fQUNUSVZFX0hJR0g+Ow0KPiAgICAgICAg
+ICAgZW5hYmxlLWFjdGl2ZS1oaWdoOw0KPiB9Ow0KPg0KPiAmdXNkaGMzIHsNCj4gLi4uDQo+ICAg
+ICAgICB2bW1jLXN1cHBseSA9IDwmcmVnX3VzZGhjM192bW1jPjsNCj4gLi4uDQo+IH0NCj4NCj4g
+QmVzdCBSZWdhcmRzDQo+IFNoZXJyeQ0KDQpIaSBTaGVycnksDQoNCkknbSBzb3JyeSBidXTCoCBJ
+IGhhdmUgdG8gZGlzYWdyZWUuIEkgY2hlY2tlZCBhZ2FpbiBibG9jayBkaWFncmFtcyBmb3IgDQpJ
+VzYxMSwgSVc2MTIsIElXNDE2IHdoaWNoIGFyZSBhdmFpbGFibGUgb24gTlhQIHdlYnNpdGUgYW5k
+IHRoZXkgY2xlYXJseSANCmRpZmZlcmVudGlhdGUgYmV0d2VlbiBwb3dlciBzdXBwbHkocykgYW5k
+IHBvd2VyLWRvd24uIFBvd2VyLWRvd24gaXMgDQphY3R1YWxseSBhIHJlc2V0IGFuZCBzaG91bGQg
+YmUgdHJlYXRlZCBhcyBzdWNoIGluIHRoZSBEVCwgbm90IGFzIGEgDQpzdXBwbHkgcmVndWxhdG9y
+Lg0KDQpCUiwNCg0KQ2F0YWxpbg0KDQo=
 
