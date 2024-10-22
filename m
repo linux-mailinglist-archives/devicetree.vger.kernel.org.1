@@ -1,88 +1,92 @@
-Return-Path: <devicetree+bounces-114020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F56C9A99B2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5B69A99A5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:16:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3686D1C20430
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:17:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C614C1C23459
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4414F12C460;
-	Tue, 22 Oct 2024 06:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FEBA127B56;
+	Tue, 22 Oct 2024 06:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="SuwUto3i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tOKyS/hA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AC21E495;
-	Tue, 22 Oct 2024 06:17:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30AB3433B0;
+	Tue, 22 Oct 2024 06:16:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729577848; cv=none; b=cN6Ws5vfd4XtvppqeNwmWJeKclI1EpBW3txhGpCKpZ2caOwtHqMHunSKOtIz+aLjro1/HeDxAFlI2H8Xr92Xn+2/QumqHYhiBWepduSZXrgp2grdlUdLFrUImMoa4J1CcAJ1y9/GvUydfbHzgqHnhfRGqJQl8hHV7oGshA7RFQ0=
+	t=1729577810; cv=none; b=uKZv4DXp1Nz4RWkSjlkTg8yBbRJ2WQ+KX/8gZ+6XIlMgxZfXtOQ7sBFmxAqFvIBKoOy7qmf0BGtAW/bmhFXzkwxx1R/VutTNzmnac8yku2RG7bfUalwSv/kETjgVYZp0isuTyVhipdkk8EFBEkTQYdeDSZx9Azmts426ZiUQYTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729577848; c=relaxed/simple;
-	bh=h3InVI4qFK55P4L7wHq1injg5MD9zqKZJYcTogdFIeE=;
+	s=arc-20240116; t=1729577810; c=relaxed/simple;
+	bh=dsiYHfMENw54Rwxddnc6oq2Qf3UAW+DE+wpic+MnsGI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lGH1Uarm5wVPBdU4TYrlNrydq63jLcD+zsSyqfhx9//mBMBqaegwOyZciTgZCweGdZMqTlsvncH5lvO7pVf4RxWeACnsVR10Ao8ZyaQ/C4WUtdv/OX/51Nryc+2UPr6pORnOWEx273SC0oSBcBBlAQhMf5qdBVP8lLqg3icD+bk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=SuwUto3i; arc=none smtp.client-ip=220.197.32.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=h3InVI4qFK55P4L7wHq1injg5MD9zqKZJYcTogdFIeE=;
-	b=SuwUto3i8XkFrXD8TDh9txIufyXu31OxY6FIqdnP6b57TkWqZ1Emx5lo/gXQfw
-	E0f8WQaEhCbRZI4f31GUaq44kTkUbKtnfIDP9lTXdmtOEgl55l7zEE2k/v8eWfDX
-	OUSGHK+ve8P6IXhh8ML1CFg0S8H7+2jHIhOJOAFdBxHTo=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3H6w9QxdncfWVAA--.5441S3;
-	Tue, 22 Oct 2024 14:16:31 +0800 (CST)
-Date: Tue, 22 Oct 2024 14:16:29 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, Stefan Wahren <wahrenst@gmx.net>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	kernel@dh-electronics.com, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 01/12] dt-bindings: pinctrl: fsl,imx6ul-pinctrl:
- Convert i.MX35/5x/6 to YAML
-Message-ID: <ZxdDPSI4i/nRawlw@dragon>
-References: <20241017211241.170861-1-marex@denx.de>
- <ZxcbHb5v05+XhFnM@dragon>
- <6eb23f6c-fe0c-4ee1-8f99-568041524073@denx.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QEc2LLVeM5ZEkKSyO1yKU5Im7zCrMzEpBfl4kLYFy2g5Wsplxvj1OwJL3/rGFwf4pW70XSWs5lIVUGBE1yNxt462u1Us7VUjLXSXpIx6tCmEt+DovEAhFI+cOl13nI0qTNAl278PtTvrrEd+6GkFG1+Rn+do8TaJBxOU5ebnioQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tOKyS/hA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 006DCC4CEC3;
+	Tue, 22 Oct 2024 06:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729577809;
+	bh=dsiYHfMENw54Rwxddnc6oq2Qf3UAW+DE+wpic+MnsGI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tOKyS/hAG+QH3+pNntd7RV6hRZMfJYatkZDr5iXfIv1IijPTed0k0j41/2e3qEh9D
+	 wSwTj48nYXxDI8jKiZQHtyLc0i3MBbOvaIIhGKHgXzEUQ8viaNAa0DDgXSLFnlx419
+	 pMD7tkHDTr/uSR1crFGMVqSDIEkhMYPngtz4k4JNOMnXqDe3YzNMhDCh3DsNdVcegW
+	 K5K3xi/utAiazNXKBnKeuS+Vr2T8n5j2Xp/XhMFZDAjZFmgL2ix288uitgs0ueprjo
+	 mllBEdfOO+3hgpjHhzkY96jq7WubZjex82sVRxB2t5aDzF1Rf0+k2yrrnZaw7SqtNi
+	 zwlkpNAbxBMNw==
+Date: Tue, 22 Oct 2024 08:16:46 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
+	"Satya Durga Srinivasu Prabhala --cc=linux-arm-msm @ vger . kernel . org" <quic_satyap@quicinc.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: clock: qcom-rpmhcc: Add RPMHCC bindings
+ for SM8750
+Message-ID: <l7bs5xhoddlwggdd2ufc5lc2d33zkm2ewguwnd4t3gste2gjak@4qmcvkututzm>
+References: <20241021230359.2632414-1-quic_molvera@quicinc.com>
+ <20241021230359.2632414-2-quic_molvera@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <6eb23f6c-fe0c-4ee1-8f99-568041524073@denx.de>
-X-CM-TRANSID:M88vCgD3H6w9QxdncfWVAA--.5441S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU3J5rUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEQGAZWcXARTPXwAAsA
+In-Reply-To: <20241021230359.2632414-2-quic_molvera@quicinc.com>
 
-On Tue, Oct 22, 2024 at 05:52:08AM +0200, Marek Vasut wrote:
-> On 10/22/24 5:25 AM, Shawn Guo wrote:
-...
-> > I'm not sure it makes a lot sense to have "fsl,imx6ul-pinctrl: " in the
-> > subject prefix.
-> I can change it to imx-pinctrl or something and send V4 , or can you tweak
-> it while applying since the series is somewhat large ? Which do you prefer ?
+On Mon, Oct 21, 2024 at 04:03:53PM -0700, Melody Olvera wrote:
+> From: Taniya Das <quic_tdas@quicinc.com>
+> 
+> Add bindings and update documentation for clock rpmh driver on SM8750
+> SoCs.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
 
-I expect this binding change go via pinctrl tree, so it's up to Linus.
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-Shawn
+This applies to all your patches.
+
+There is already CXO clock, so why pad is needed? All of these clocks
+come via some pad, right? Commit msg could explain here this. Otherwise
+it just duplicates the diff.
+
+Best regards,
+Krzysztof
 
 
