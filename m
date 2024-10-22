@@ -1,53 +1,54 @@
-Return-Path: <devicetree+bounces-113948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C5169A9726
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 05:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E78089A9729
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 05:36:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A44F9283B99
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 03:35:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 913542811F6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 03:36:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8897131182;
-	Tue, 22 Oct 2024 03:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1720C136664;
+	Tue, 22 Oct 2024 03:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="pNdwNPUQ"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="iyaj3Soq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEABD51C45;
-	Tue, 22 Oct 2024 03:35:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B13A6256D;
+	Tue, 22 Oct 2024 03:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729568129; cv=none; b=Is+d/yMWq8NrhR0MuJtuvMuvco4bmUZ1P5CZx6F3Ff3CcjOKkAHVfERhrAiOJ5Ng23y75LfydI5ltH4Rur8C6+BsKOOXVInHI44/2mF1Jl5xfolapy44ESA+YMtlZlmdyN+CiV1EyeXrCox6NNdVj7Vqrdz+sNOzsK+Y3rrwH6w=
+	t=1729568202; cv=none; b=kjriErWMke45MkDEif5/Bf6Ekc0LoqywhH8UYY/jPryUd02/5KHL5S8ZzrdXJVRrdOAMKciEnAeUSxlP+fOugIo4owjan9tJvn/7Dy3feRZrbYhecJCGfEt7szGnhJHgv+FKtMV/ssmpUXLEgOi5K+BRUAiLF4p3vzhTZkZ9kRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729568129; c=relaxed/simple;
-	bh=Ji9RW5wBVkidiXquZNVk2PiwPs+kaPzx64z6/LAQZ3Q=;
+	s=arc-20240116; t=1729568202; c=relaxed/simple;
+	bh=aDWM3Tsm/QnlSB4T1eEAl53wu1sl3BOYUKQW+rM+Dho=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tOu7NFBgoAsJn3BrUezpjxSXXzG9yAfXEohkWxnrRUTWvPUPzdYxS9J/KFkCdwdiTh3i/UbtcKs3ppzMKV4kgAcs8dzsFVdx+LEchfGJBoZGJN/iwkQB8RJdbUhO1LnbpABYzUOWeyg9RpsJC38xhAN/B6uv+7ynEKD2KwppeFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=pNdwNPUQ; arc=none smtp.client-ip=220.197.32.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=qT1HfXt7eKS2dQtaKJtYVwyKQ2naK5L373y13Y5IteHXgdmtFMkbENgB2UlSXbAVlSJClgNvkWyvU2i+UB6J7/QTsMBA/sj+lsgyEanbCvJmUlLERR6TTeBLOWDtX+NBuoaa0oi+0phvbtkQuVf1XL18tG8Czc3bSIbnnQ3QqGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=iyaj3Soq; arc=none smtp.client-ip=1.95.21.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=rSoTtuHYsIo/Jxwdun60HpAfK7vei6fXzyYoF3sirpk=;
-	b=pNdwNPUQzFuf+FGORSXgU4NJcngpB2Jeh0RujdhPrtnqgr4v6fx7uYPYn7vlLV
-	x4Zp+JJm7Rb7dL+JchDcMsOJkjjhf9QvcI7pEtmJh5vzB3JcrAeP/3ZJsiOm2n+w
-	rKstB/EUy/BFMuJN9rjhdEisnMcUC/KZBr3SyqMmSypEo=
+	Content-Type; bh=thn0AY0PIXWYmip1+zVuTvIXO66qKJV0eJxybGA31Cg=;
+	b=iyaj3Soqwf93MEBn23OahSPitJyKJkrUWibScwUsGhCEpph17cJ0PmkAMylhuv
+	k9ASoVrcwuhXTxceoF0Xv1rPEh5YNsbROyeW8G572iQ6ZlqJCghmpesoLBEKM36s
+	jh1+7ewO2ncUZdlHMlRU36cjPjdMkPczHAMwByUAt2Bso=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAXH9diHRdn3dGUAA--.5380S3;
-	Tue, 22 Oct 2024 11:35:00 +0800 (CST)
-Date: Tue, 22 Oct 2024 11:34:58 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgBnb9erHRdnk9aUAA--.5381S3;
+	Tue, 22 Oct 2024 11:36:13 +0800 (CST)
+Date: Tue, 22 Oct 2024 11:36:11 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6sll: fix anatop thermal dtbs_check warnings
-Message-ID: <ZxcdYudAHVSykFoW@dragon>
-References: <20241021183244.303329-1-andreas@kemnade.info>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+	imx@lists.linux.dev, kernel@pengutronix.de, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+Subject: Re: [PATCH v3 1/4] arm64: dts: imx8-ss-hsio: Add PCIe and SATA
+ support
+Message-ID: <Zxcdq6HN8n7Ri8xv@dragon>
+References: <20241021190602.1056492-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,51 +57,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241021183244.303329-1-andreas@kemnade.info>
-X-CM-TRANSID:Mc8vCgAXH9diHRdn3dGUAA--.5380S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Jr1DWw1xAF1rKw43Kry5twb_yoW8Jryxpa
-	yfCF4DKr4xCr1xKay5Zr4DKrWvv3ZIkF4F9r1qgay8ArZrXa42qr1ftFnakr98XF4Fqw4F
-	qr4rWF1UJa1DZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j4nQUUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEg2AZWcXAR5oSwAAs2
+In-Reply-To: <20241021190602.1056492-1-Frank.Li@nxp.com>
+X-CM-TRANSID:Mc8vCgBnb9erHRdnk9aUAA--.5381S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVOzVUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEQqAZWcXARRp3wAAst
 
-On Mon, Oct 21, 2024 at 08:32:44PM +0200, Andreas Kemnade wrote:
-> Fix anatop thermal related dtbs_check warnings about node name
-
-Can we be clear what the warning about the node name is, too long?
-
-Shawn
-
-> and missing thermal-cells property.
+On Mon, Oct 21, 2024 at 03:05:59PM -0400, Frank Li wrote:
+> From: Richard Zhu <hongxing.zhu@nxp.com>
 > 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
->  arch/arm/boot/dts/nxp/imx/imx6sll.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> Add PCIe support for i.MX8QXP, i.MX8QM and i.MX8DXL.
+> Add SATA support for i.MX8QM, which is in hsio subsystem and is shared with
+> PCIe PHY.
 > 
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-> index ddeb5b37fb78b..85fe2a4ab97a0 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-> @@ -525,7 +525,7 @@ reg_3p0: regulator-3p0@20c8120 {
->  					anatop-enable-bit = <0>;
->  				};
->  
-> -				tempmon: temperature-sensor {
-> +				tempmon: tempmon {
->  					compatible = "fsl,imx6sll-tempmon", "fsl,imx6sx-tempmon";
->  					interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
->  					interrupt-parent = <&gpc>;
-> @@ -533,6 +533,7 @@ tempmon: temperature-sensor {
->  					nvmem-cells = <&tempmon_calib>, <&tempmon_temp_grade>;
->  					nvmem-cell-names = "calib", "temp_grade";
->  					clocks = <&clks IMX6SLL_CLK_PLL3_USB_OTG>;
-> +					#thermal-sensor-cells = <0>;
->  				};
->  			};
->  
-> -- 
-> 2.39.5
-> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+Applied all, thanks!
 
 
