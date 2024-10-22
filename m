@@ -1,112 +1,137 @@
-Return-Path: <devicetree+bounces-114060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD449A9AE5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:25:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A399A9AFD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:28:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763C81C21211
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:25:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C83931F21746
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8537014A084;
-	Tue, 22 Oct 2024 07:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4563914B08C;
+	Tue, 22 Oct 2024 07:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W9ZaOq85"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e8an7E9+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515E6149C41;
-	Tue, 22 Oct 2024 07:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 178F513E03A;
+	Tue, 22 Oct 2024 07:28:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729581932; cv=none; b=fEdMhRY5G18Fqu6dT1UttQv7l/gTEnpYatNoxEjOLQrPaVD8xy6dq7wz7gflo8wI4+2MGcKoJFYZ1sYJqM4CyTkE/qmlt8WXgJXR2ZsK4+i1xUsDN8ZIq44dJn6HttSXBpIYv6f5juBVuhmcTFY/MvsnhPE7fAQmPaW+Wjq60Ws=
+	t=1729582091; cv=none; b=S/3hgHNDsaEcDSNXWro6ucpTuYK4PonwGaNeX/2kTACvF+1hBIHiOBKJUK3jhvL7Bx12qA/K82ZE2dAiboceQ0iGiE5ofnbfN+5pfVYkdM+QNlkViaxgOudKGLM3PambifBP28GQr6A3MJxtJO9cjUjspUj2VIFVnl7b8CHRdaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729581932; c=relaxed/simple;
-	bh=zowprF69nfhPdKQnL+MSI1acjh7ULk2gd17Lc+eGNh0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YbaVkiXK1moXaHvP8j5NsA+7ytW7x3Gkrj0k0WkORvIuSdJyI9afV6qo0/sejujqrF4FTHP21aF+4pVsqkkWbRmfCjcHE+gM+71B60iOADAjVFiixV51bishZiOVBUBK73CxPFS/V5ZC7UGcsm8UWOtan0GfvEDBJACr9PJ+4fo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W9ZaOq85; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB31AC4CEC3;
-	Tue, 22 Oct 2024 07:25:31 +0000 (UTC)
+	s=arc-20240116; t=1729582091; c=relaxed/simple;
+	bh=8rGMMAvukvk29wAId/3OVrL5qkWSNF9O1nPa2Evv/II=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V73Lm91Oiadp7IkMmcFD2EUhMupdYYeFH5EeA3q52iMSkA3hsr+1irn3ksvqbGCk9xdaSrQtR6y7ws3y7z3AdXUQl2l3HSM0z1kuCAYOUkQadxtMEc+QoSKGSfBediY7nVy5ckFcszlDf7xwNS4OhFpjRumVdKBVLS4VD/HEQ6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e8an7E9+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCF67C4CEE4;
+	Tue, 22 Oct 2024 07:28:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729581931;
-	bh=zowprF69nfhPdKQnL+MSI1acjh7ULk2gd17Lc+eGNh0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W9ZaOq85cFvQLJS78UE/g2249ffKe48oON7Bn+HY824PcMIv8+oU8leAYCGQrxYai
-	 a0vBSo2S3fdlG1OXbXwkdJ+R1J+uS+jDzQ/JOU/vS7dfn/PDKxmWTGKvC4j76+6FS8
-	 gkEupWB4c/v3CFL02dukhdo+izRDPUAoo+3fOMxIDGjaQWBvuDHpdvgHGNkUkTJQoT
-	 6BrQri5pfdx0/dr58zdvJ7DcLn+337XMg9IK5PY3ZqbMejOzk5rP9qrJ2iGgMW7kMQ
-	 4eR2dAdYSwwZAQHYVVXj26mCM4h3xitw2Xj3DWiF8zJ77BEQbk3hovleiTdtPKmXCg
-	 04eHHQmX11nDw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t39Gw-000000004OJ-0nGl;
-	Tue, 22 Oct 2024 09:25:42 +0200
-Date: Tue, 22 Oct 2024 09:25:42 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] usb: typec: Add new driver for Parade PS8830
- Type-C Retimer
-Message-ID: <ZxdTdqs2ReKwoFfb@hovoldconsulting.com>
-References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
- <Zw5i9dcSMOG4n3PW@hovoldconsulting.com>
- <Zw5oOUeN/v+tz+SY@linaro.org>
- <ZxCoDHq871x_0Nbm@hovoldconsulting.com>
- <ZxDJ8I6ZXOLv/KbR@linaro.org>
+	s=k20201202; t=1729582090;
+	bh=8rGMMAvukvk29wAId/3OVrL5qkWSNF9O1nPa2Evv/II=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=e8an7E9+Xy6YCBTRnSmS3aeHBMaLDSK2PmbkGVOPIxZnbJtiUjp+dKbTiYUpIP+2C
+	 5zgtfqlwd9PsqCHJ2HO0yBCD/DmnqImenrpySYGNs19IpQ9r6+02H0ABc6xBAQI6wF
+	 gKu2TJUYwLmQr/JnjkkhAi18ULsL2nz+lQD1x7AISzVtd9A3UdQPlyPU6mtWPnAZf3
+	 EOj+kagI4r9h0ArUupJvjbwHF8WU9BJKWiJb22B3dXWgOFFraqr9RCRJT2J2umjuhX
+	 uTw9oyJTN5r19xlqFxBZfLJ+zndzVXsQevSRjMuPE7mCV77ylgAeMjw1md8hOYiCL8
+	 8b0MZRW4gdwCA==
+Message-ID: <e766b50c-818c-421a-a71d-e2529b56bd24@kernel.org>
+Date: Tue, 22 Oct 2024 09:28:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZxDJ8I6ZXOLv/KbR@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt to
+ yaml format
+To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+ linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241022060157.36372-1-himanshu.bhavani@siliconsignals.io>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241022060157.36372-1-himanshu.bhavani@siliconsignals.io>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 17, 2024 at 11:25:20AM +0300, Abel Vesa wrote:
-> On 24-10-17 08:00:44, Johan Hovold wrote:
+On 22/10/2024 08:01, Himanshu Bhavani wrote:
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        
+> +        mcp23017: gpio@20 {
+> +            compatible = "microchip,mcp23017";
+> +            reg = <0x20>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <17 IRQ_TYPE_LEVEL_LOW>; // Check this line
 
-> > I can confirm that marking the regulators as having been left on by the
-> > bootloader so that they are not disabled temporarily during boot indeed
-> > fixes the coldplug issue here.
-> > 
-> > That however makes me wonder whether something is missing in the driver
-> > so that it still relies on setup having been done by the boot firmware.
-> > 
-> > Have you tried actually asserting reset during probe to verify that
-> > driver can configure the retimers itself without relying on the boot
-> > firmware?
-> 
-> We do not want to reset the retimers on probe because we won't be able
-> to figure out the orientation config until next pmic glink notify comes.
-> The pmic glink notify only triggers on USB event, which never comes
-> until you replug the device. So in order to have coldplug orientation
-> configured correctly in the retimer, we need to make sure the retimer
-> holds state until unplug.
+Hm? Left-over?
 
-Ok, thanks for clarifying. As we've discussed off-list it should be
-possible to retrieve the orientation from the orientation gpios, but I'm
-sure there are bits missing in the kernel for propagating that
-information to the retimers currently.
+BTW, did you test this before sending?
 
-If I understood you correctly you did reset and reinitialise the
-retimers in v1, which is useful during development at least to make sure
-that the driver is complete.
+Best regards,
+Krzysztof
 
-Johan
 
