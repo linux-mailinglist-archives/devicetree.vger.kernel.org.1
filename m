@@ -1,74 +1,52 @@
-Return-Path: <devicetree+bounces-114124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F62D9A9DEE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:08:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D6B9A9E02
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:12:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 102051F2711F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:08:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A24B7B235A6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F194194AEF;
-	Tue, 22 Oct 2024 09:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F370198846;
+	Tue, 22 Oct 2024 09:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O5KBmYDS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DNolxaMA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CEE158DAC
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:07:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E379A195F28;
+	Tue, 22 Oct 2024 09:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729588081; cv=none; b=mKs2MT8pNHNy2JIyhuJ6Dr+SxO/ZaiH8UD8pJaeKkzokhKDXUlKmcTWszDpoQ47VhO11H8amMQzdjUazE/VQPOhdocsDSjDl4w/6OyMts+5OUvqiITFHd6eo0b+7Kgn6O4CIuYl5f+JOJvCs5A/ryIHI+vKRU422VOF9+b/pbB4=
+	t=1729588315; cv=none; b=tvWUZfA1jE4JpX5oWasIPZ6FVUXyNmbSD7+osqKZ8Oxc/WlmTgynYFafMtiqQKfA01vcjBRkbXnpXIqKfNypUmOgPvtr9ulJFGke0kla8debv9DSZbBnYXZ4fQFqKah7jH5iwm3Pm/g195v/YfIi+f98wBYSAkcBTEKshEp6R5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729588081; c=relaxed/simple;
-	bh=pysn6nWm7VH7Da+e1O+B858W3dG1ImyoY2oZIhE1dqU=;
+	s=arc-20240116; t=1729588315; c=relaxed/simple;
+	bh=nSGECfqzkAGWc3seoDSqFvb1xwTkBP138TLgT6YEaTw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b7Ugk9o7aWvf1rzb1r8fI86AplftEaxYp3GFTvA1eLdDqsCl9B4pUh0kNIwnPJbylOLMlpwqg4rxQCYUXOfdv1su+KSxPoe1lNE+IZBdGj3GKwFdOuefKBsRQXlN85tSaqliqH3blN66CEcnmC5GS9KHMlSCKMd2eLbyzJBX7zQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O5KBmYDS; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a9a0c7abaa6so630942766b.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 02:07:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729588078; x=1730192878; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sqANacwu59WVDubToPeLNd0ZLGqiBFI013WHEtWvuoY=;
-        b=O5KBmYDS0Stfg84yUL2nST6Zvalu4l4l6bLQT5TA216sumVAH4lu22MqfhgU1h5Pon
-         gUDvOIvhfo3JOL+R2sIjQrqMz2rgudqBbzBx6CDtiZeFLR1ECXtpm1jBnrRIt0ZfFR+u
-         Z5DeBN1NVNVYls5QRcO0TLNBX2+tZ2Dq+n7gJZM5zU4bNjfA/5GVUewDb94tVP68c1tS
-         A3wGWpuYJ38l/9sh8k0oRu5iEddG8gCM1wvUdv7VvLENkmi/svsN97cTG60IY5osdhP6
-         BOQnSLQqKD+lzlnWKvTdjVEs5td5dVG1rie6/hx3WZe7j11gwCZbFEluguyVx6ALhkks
-         qk2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729588078; x=1730192878;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sqANacwu59WVDubToPeLNd0ZLGqiBFI013WHEtWvuoY=;
-        b=GNdUS3CNcg5yaGL6E3eyEM8sxKJMCXw/MLDU7ARF+QWSw0ZvtjT9pxvhrT8J620Y1V
-         bU9VUmPhaMV0MjtAuXcpXQg5qq466c/tvZ1SO0pRPTlRfulRpHEzJPtxIzgbHHkrXsuM
-         SiDGQrxWNa337Zi07tDcJ0vxpFVkzv7IEw3dNq4NEufI8f18/MREytwUJP0ltT7p+CwR
-         JvfucYNawTFqcci17pxcPaZ/b17B6jL9yZV9DVAOMRpccF/nuqydf/E1aOtOrcCpSNEg
-         2eK1KrbSvHiX5J2qJuTkCHbh+XZ+1SlEMubmxIOyBwi7FruqX2bjZvnBxLHQwoKFSC31
-         q1ag==
-X-Forwarded-Encrypted: i=1; AJvYcCXsPCIkrt54XeChokaHrKd1HzjA70RyVa0qGs0wcBvePDUrE95RgRbD6CoaDt/y3gIajuGzHbShO5Ld@vger.kernel.org
-X-Gm-Message-State: AOJu0YyukyGi8Xm5QKXEzrM7cQwlnvDeYpKHDEaVGcXWpmZmp4R919Rm
-	r23vZBHtaSACQVSkGLz1gix6TDET8920ult10prTH4Qrt71tTuOoVu91L05ru+U=
-X-Google-Smtp-Source: AGHT+IGoE+jrhGDPxvzS+WZimT/uQDCBFmA0e0z1M8EFELzXgykeI+0Jev6cLL5gP+5Bp6fGDKWWLg==
-X-Received: by 2002:a17:907:3e12:b0:a9a:4fd3:c35f with SMTP id a640c23a62f3a-a9a69a63db8mr1206244266b.9.1729588077786;
-        Tue, 22 Oct 2024 02:07:57 -0700 (PDT)
-Received: from [192.168.0.40] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a912d6267sm311979566b.32.2024.10.22.02.07.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Oct 2024 02:07:57 -0700 (PDT)
-Message-ID: <3ee7a1c9-2d6d-4fd5-982e-d86151e45662@linaro.org>
-Date: Tue, 22 Oct 2024 10:07:55 +0100
+	 In-Reply-To:Content-Type; b=r99jMlsHrJi6L+060L01TFJEcVI2mZooppthrN4K/VQMFNknHil2Bb4YZrSzbc2plzjZPdUm3ZxAuO2HHA2aJ3vNdqSldLG+BmivIW7j8jvPooQAEPxw6k108ohjw2O5Tri8AOfOi/EzzDa84DGOUpqtHwc6rmCbpmzkMsN6MoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DNolxaMA; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 32CBB2000A;
+	Tue, 22 Oct 2024 09:11:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1729588304;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5BQxHQ54LnPFjeIxYHJU62iL3BisyLDG8bgtN3ZCWt0=;
+	b=DNolxaMAooGW3AYhYQq6IHJ4EF8iX36/bg9gYFl54SDf7qMNEO2r96g9yXhNclJq6hJDwB
+	mGxKSQSjrVA8xxZdbw9kuAZ64nMgqTkbufPD/IV6zzz/507xkKq07hxjrIX9WspyKTwhTp
+	TQH6Yn1Hg6rUk5uPwl6PhYc5KnzCX8JlWhBZaKlzSWbZjPaH85wZN9dRustFjRsjiwym6g
+	V1bdi79QsbyrYEdQaWg+gyD3q05qW8+Otyfkij/x2zvE+jd7LJrD2QPeDsHDeK7J4Aspax
+	pocbZbrxqx7y6aKULBEm03m6evRQJXLUDgpyRpx6uiC5jRiHn3IwC6IPi5Cn+A==
+Message-ID: <a6529da9-6333-4516-923d-01f12c439b33@bootlin.com>
+Date: Tue, 22 Oct 2024 11:11:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,132 +54,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] drm/msm/adreno: Add support for ACD
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>, Rob Clark
- <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241021-gpu-acd-v2-0-9c25a62803bc@quicinc.com>
- <20241021-gpu-acd-v2-1-9c25a62803bc@quicinc.com>
+Subject: Re: [PATCH] wifi: wilc1000: Add proper error handling for remaining
+ CMD52
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20241018194244.280322-1-marex@denx.de>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20241021-gpu-acd-v2-1-9c25a62803bc@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+In-Reply-To: <20241018194244.280322-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: alexis.lothore@bootlin.com
 
-On 21/10/2024 12:53, Akhil P Oommen wrote:
-> ACD a.k.a Adaptive Clock Distribution is a feature which helps to reduce
-> the power consumption. In some chipsets, it is also a requirement to
-> support higher GPU frequencies. This patch adds support for GPU ACD by
-> sending necessary data to GMU and AOSS. The feature support for the
-> chipset is detected based on devicetree data.
+
+Hi Marek,
+
+On 10/18/24 21:41, Marek Vasut wrote:
+> A few of the CMD52 calls did not have any error handling, add it.
+> This prevents odd errors like "Unexpected interrupt (1) int=nnn"
+> when the CMD52 fails just above in the IRQ handler and the CMD52
+> error code is ignored by the driver. Fill the error handling in.
+> Sort the variables in those affected functions while at it. Note
+> that the error code itself is already printed in wilc_sdio_cmd52().
 > 
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->   drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 81 ++++++++++++++++++++++++++++-------
->   drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  1 +
->   drivers/gpu/drm/msm/adreno/a6xx_hfi.c | 36 ++++++++++++++++
->   drivers/gpu/drm/msm/adreno/a6xx_hfi.h | 21 +++++++++
->   4 files changed, 124 insertions(+), 15 deletions(-)
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Adham Abozaeid <adham.abozaeid@microchip.com>
+> Cc: Ajay Singh <ajay.kathat@microchip.com>
+> Cc: Alexis Lothoré <alexis.lothore@bootlin.com>
+> Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Kalle Valo <kvalo@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-wireless@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> ---
+>  .../net/wireless/microchip/wilc1000/sdio.c    | 27 ++++++++++++++-----
+>  1 file changed, 21 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> index 37927bdd6fbe..09fb3f397dbb 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-> @@ -1021,14 +1021,6 @@ int a6xx_gmu_resume(struct a6xx_gpu *a6xx_gpu)
->   
->   	gmu->hung = false;
->   
-> -	/* Notify AOSS about the ACD state (unimplemented for now => disable it) */
-> -	if (!IS_ERR(gmu->qmp)) {
-> -		ret = qmp_send(gmu->qmp, "{class: gpu, res: acd, val: %d}",
-> -			       0 /* Hardcode ACD to be disabled for now */);
-> -		if (ret)
-> -			dev_err(gmu->dev, "failed to send GPU ACD state\n");
-> -	}
-> -
->   	/* Turn on the resources */
->   	pm_runtime_get_sync(gmu->dev);
->   
-> @@ -1476,6 +1468,64 @@ static int a6xx_gmu_pwrlevels_probe(struct a6xx_gmu *gmu)
->   	return a6xx_gmu_rpmh_votes_init(gmu);
->   }
->   
-> +static int a6xx_gmu_acd_probe(struct a6xx_gmu *gmu)
-> +{
-> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
-> +	struct a6xx_hfi_acd_table *cmd = &gmu->acd_table;
-> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
-> +	struct msm_gpu *gpu = &adreno_gpu->base;
-> +	int ret, i, cmd_idx = 0;
-> +
-> +	cmd->version = 1;
-> +	cmd->stride = 1;
-> +	cmd->enable_by_level = 0;
-> +
-> +	/* Skip freq = 0 and parse acd-level for rest of the OPPs */
-> +	for (i = 1; i < gmu->nr_gpu_freqs; i++) {
-> +		struct dev_pm_opp *opp;
-> +		struct device_node *np;
-> +		unsigned long freq;
-> +		u32 val;
-> +
-> +		freq = gmu->gpu_freqs[i];
-> +		opp = dev_pm_opp_find_freq_exact(&gpu->pdev->dev, freq, true);
-> +		np = dev_pm_opp_get_of_node(opp);
-> +
-> +		ret = of_property_read_u32(np, "qcom,opp-acd-level", &val);
-> +		of_node_put(np);
-> +		dev_pm_opp_put(opp);
-> +		if (ret == -EINVAL)
-> +			continue;
-> +		else if (ret) {
-> +			DRM_DEV_ERROR(gmu->dev, "Unable to read acd level for freq %lu\n", freq);
-> +			return ret;
-> +		}
-> +
-> +		cmd->enable_by_level |= BIT(i);
-> +		cmd->data[cmd_idx++] = val;
+> diff --git a/drivers/net/wireless/microchip/wilc1000/sdio.c b/drivers/net/wireless/microchip/wilc1000/sdio.c
+> index 5262c8846c13d..170470d1c2092 100644
+> --- a/drivers/net/wireless/microchip/wilc1000/sdio.c
+> +++ b/drivers/net/wireless/microchip/wilc1000/sdio.c
+> @@ -769,8 +769,10 @@ static int wilc_sdio_init(struct wilc *wilc, bool resume)
+>  
+>  static int wilc_sdio_read_size(struct wilc *wilc, u32 *size)
+>  {
+> -	u32 tmp;
+> +	struct sdio_func *func = dev_to_sdio_func(wilc->dev);
+>  	struct sdio_cmd52 cmd;
+> +	u32 tmp;
+> +	int ret;
+>  
+>  	/**
+>  	 *      Read DMA count in words
+> @@ -780,12 +782,20 @@ static int wilc_sdio_read_size(struct wilc *wilc, u32 *size)
+>  	cmd.raw = 0;
+>  	cmd.address = WILC_SDIO_INTERRUPT_DATA_SZ_REG;
+>  	cmd.data = 0;
+> -	wilc_sdio_cmd52(wilc, &cmd);
+> +	ret = wilc_sdio_cmd52(wilc, &cmd);
+> +	if (ret) {
+> +		dev_err(&func->dev, "Fail cmd 52, set DATA_SZ[0] register...\n");
 
-How do you know that cmd_idx is always < sizeof(cmd->data); ?
+I don't get the log message, why "set" DATA_SZ[0] ? This helper is rather trying
+to read it. Same for the other logs added below
 
+> +		return ret;
 > +	}
-> +
-> +	cmd->num_levels = cmd_idx;
-> +
-> +	/* We are done here if ACD is not required for any of the OPPs */
-> +	if (!cmd->enable_by_level)
-> +		return 0;
-> +
-> +	/* Initialize qmp node to talk to AOSS */
-> +	gmu->qmp = qmp_get(gmu->dev);
-> +	if (IS_ERR(gmu->qmp)) {
-> +		cmd->enable_by_level = 0;
-> +		return dev_err_probe(gmu->dev, PTR_ERR(gmu->qmp), "Failed to initialize qmp\n");
+>  	tmp = cmd.data;
+>  
+>  	cmd.address = WILC_SDIO_INTERRUPT_DATA_SZ_REG + 1;
+>  	cmd.data = 0;
+> -	wilc_sdio_cmd52(wilc, &cmd);
+> +	ret = wilc_sdio_cmd52(wilc, &cmd);
+> +	if (ret) {
+> +		dev_err(&func->dev, "Fail cmd 52, set DATA_SZ[1] register...\n");
+> +		return ret;
 > +	}
-> +
-> +	/* Notify AOSS about the ACD state */
-> +	ret = qmp_send(gmu->qmp, "{class: gpu, res: acd, val: %d}", 1);
-> +	if (ret)
-> +		DRM_DEV_ERROR(gmu->dev, "failed to send GPU ACD state\n");
-> +
-> +	return 0;
+>  	tmp |= (cmd.data << 8);
+>  
+>  	*size = tmp;
+> @@ -796,9 +806,10 @@ static int wilc_sdio_read_int(struct wilc *wilc, u32 *int_status)
+>  {
+>  	struct sdio_func *func = dev_to_sdio_func(wilc->dev);
+>  	struct wilc_sdio *sdio_priv = wilc->bus_data;
+> -	u32 tmp;
+> -	u8 irq_flags;
+>  	struct sdio_cmd52 cmd;
+> +	u8 irq_flags;
+> +	u32 tmp;
+> +	int ret;
+>  
+>  	wilc_sdio_read_size(wilc, &tmp);
+>  
+> @@ -817,7 +828,11 @@ static int wilc_sdio_read_int(struct wilc *wilc, u32 *int_status)
+>  	cmd.raw = 0;
+>  	cmd.read_write = 0;
+>  	cmd.data = 0;
+> -	wilc_sdio_cmd52(wilc, &cmd);
+> +	ret = wilc_sdio_cmd52(wilc, &cmd);
+> +	if (ret) {
+> +		dev_err(&func->dev, "Fail cmd 52, set IRQ_FLAG register...\n");
+> +		return ret;
+> +	}
+>  	irq_flags = cmd.data;
+>  
+>  	if (sdio_priv->irq_gpio)
 
-Shouldn't the ret from gmp_send() get propogated in the return of this 
-function ?
 
-i.e. how can your probe be successful if the notification failed ?
-
----
-bod
+-- 
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
