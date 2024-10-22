@@ -1,98 +1,134 @@
-Return-Path: <devicetree+bounces-114327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 602D59AB48C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 18:59:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D3F9AB491
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:00:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 217A5281BD5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:59:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8A671F24392
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45CCF1BC9F5;
-	Tue, 22 Oct 2024 16:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003A41BC9F6;
+	Tue, 22 Oct 2024 16:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XTgj2jKc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wixNJ2JX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16BFE256D;
-	Tue, 22 Oct 2024 16:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688C61BC9FB
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 16:59:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729616378; cv=none; b=qyTloraSGwOSKhYyghft6qRotEW40uLoF3jl7hojWQjGFHSj2qCcs4EW5KjlxLfW10zbZPtPIFle5KtAcejs6P4BslzS0cQ+RcQV8WljLoGO5KbYd9CPgNRGDzWwYUt6lQ9oag1yBEPakbey1byIsbMsiJVXecxChcBV4qsNpEo=
+	t=1729616397; cv=none; b=Dv8yF13bhNgpuwEALqSfabfMyzodwx39z0J5MQedZYqTFSJQ4fY1oPRNGabG4XIhquzvgtix4y2BS8fr5tI68XBo6Vqg4AwrtMkrHO9TVJ91Bw6CWInJg4+YgQ0MOVN3SNYzQLlxmiddVpBH9RIr88cPSvcXgz6j4pxdJdnC00c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729616378; c=relaxed/simple;
-	bh=mA5JfNNOYj/yFZVtsZkUwXCpe/lM2gtIB21VQf58k+I=;
+	s=arc-20240116; t=1729616397; c=relaxed/simple;
+	bh=NY/4WIGOYWbosC9nYshjQw+85FLhnQpOJ5Wim0TS7rk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HBGfAMrEYe/Ub85upRAOlbkZ1DHOprUiM80oPT4mosKJ6OflsEChEMFwYFSfy2c/1YW99i+d3X9Oe7cyb10ElVAHNDRGW/EXkL6fQ8mS8ZzhD8EnXuiI/wDKJ7tgYRQxDwN5XUbwunk1MrDd4oqV92UUHDIIsBKsm4tIxrTQKgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XTgj2jKc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AE4BC4CEC3;
-	Tue, 22 Oct 2024 16:59:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729616377;
-	bh=mA5JfNNOYj/yFZVtsZkUwXCpe/lM2gtIB21VQf58k+I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XTgj2jKcPesaQK3VZpFE10HJRc1ynK40vkx11OXoKGZ85NbZEj9PG6Ryp6v9NH41O
-	 vj0ghE296PUWSnNEHYq1BqV1osojy50uDT0nVeXgxzcykJg2wgcAJEPAGg8x2sFfZM
-	 zwBUhLxJHn69TtM2lrWL6po2r4/HhN5ryJJM/dBUEqkQwiUQLYmOr/m871z73w6BC+
-	 /mmSo8Zz1a0+no9GYExusSy7Ldb/8R0W10fYZGtNtISN50zcKHw4SwyXRsLNjlWeKb
-	 rBf2m+lhao4c8plNPZtOIG3cwz/PyNG0mzdxEaFzeqlzOc7eyhKdjLmC9fyV/oLaEy
-	 cqj9K0OkRgWzA==
-Date: Tue, 22 Oct 2024 17:59:32 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Shawn Guo <shawnguo@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=dRPf8IgXAhNghlzYqlTlgHsFoRvpWAW36Fa39cH0bqffY2csQ2Ed1DXB9oZ+RyEbMqpEGGOrOqRzNMV9RA5WjAHAh7Jy5LVQw/gGiHx7YB0qXpS7bSvsh/OhCRK+VaDe0wRr89YXH8lZi6wBSdQI4Fb4Du+Lf41bprDH5Aeowek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wixNJ2JX; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20cbcd71012so53094475ad.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:59:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729616396; x=1730221196; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=VS3tXfWam2DO1i7ilVLotgRr0xGMHWMFEHP5fSK9K/M=;
+        b=wixNJ2JXkKvqUUDovqBXfnhNtL6+HDP+/Y6eB7nOTSCUvVueGTZRd27COtXpH9z5aS
+         x44s20YABBLDbtemA7EE8BnR2iQzxYkbikS8KV3/CHciFimLY5Vtq/SqOpmbKAKT106s
+         wQbMhcS7VdV2YSyqZepP105s8L9KYLhznt88iUR6iQtsaZvbt9FVaMGjPJjoS4fCb1Q+
+         mzgWf9qdZ6uOdJDvcsufzAqFMelrtUbMqNLU5oEhTTL7FrhBmwkZyPuoAocX3p6gfA/K
+         oXiMzg4LPPo8WPDa2GZ+2fw2vJbZdFJQ1r6Pb8BpZgwUDDNkgRaN+wOU8DteHALM681U
+         sgrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729616396; x=1730221196;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VS3tXfWam2DO1i7ilVLotgRr0xGMHWMFEHP5fSK9K/M=;
+        b=UHY3xm6jtcD9CMr+pfsxG29wUOHzzdbRchY3/Z74Wi8Fv3kAmZ23uF63VWbzh2kJsF
+         /1YMnHCkT3CwTEH2xtfq7ODcw+GQ9Bc1TUWIc1B1/9rWYHmExsp6xcv3caWwfSKa8laH
+         eLHPOWFQJpYcrNbiIQSy7D4rWkYFan27xNyrEbLmKG9gmxTWBmPwq+IA2SxWiMikCmJi
+         FlSaEWKH5KLqBSIuX7xCjDooUvGWEZASiPqT9XSF9jDxsYuRjspIjhM6qdiALTkwicW8
+         VEm56ww1vXJHnDL8ChiHtSGtzt8Xw5qfiW5XmY6u3DHQNNNm8EZFBSYZo0Y5Syu61Lv4
+         s3aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVZ4hVkaX/4n4MbhO2pCV65jOAVkDOsv9PIryBnPi2Ycv63S7IKJ7Wc7t32uIlJcTSnTfrEzPOH3nfZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzkws37xZLwEz6NP8hOaP3Vtnkh+9ITJYgkY5fGNDy2poGACYM2
+	+z6nEcClkwXnyZM+6H0N9QmdMUaq7iK6iQ8l9NBQig9R77GPO8RnMG96BNN7wA==
+X-Google-Smtp-Source: AGHT+IEYx820a1axe7TYA5uJ7U5XpkZcGO8wslMBvWfwxZnRbZqXMJz1tinZzuebUznia7UTdzMS7g==
+X-Received: by 2002:a17:902:ea0e:b0:20c:8331:cb6e with SMTP id d9443c01a7336-20f39628369mr1028375ad.19.1729616395600;
+        Tue, 22 Oct 2024 09:59:55 -0700 (PDT)
+Received: from thinkpad ([36.255.17.224])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0bf197sm45044345ad.150.2024.10.22.09.59.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 09:59:55 -0700 (PDT)
+Date: Tue, 22 Oct 2024 22:29:49 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: kw@linux.com, bhelgaas@google.com, lpieralisi@kernel.org,
+	frank.li@nxp.com, l.stach@pengutronix.de, robh+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
+	s.hauer@pengutronix.de, linux-pci@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: add compatible strings for
- Kobo Clara 2E
-Message-ID: <20241022-uninjured-sepia-58fbcb283845@spud>
-References: <20241021173631.299143-1-andreas@kemnade.info>
- <20241021173631.299143-2-andreas@kemnade.info>
+	devicetree@vger.kernel.org, kernel@pengutronix.de,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v4 5/9] PCI: imx6: Make core reset assertion deassertion
+ symmetric
+Message-ID: <20241022165949.dn6wzgeocond2ia7@thinkpad>
+References: <1728981213-8771-1-git-send-email-hongxing.zhu@nxp.com>
+ <1728981213-8771-6-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="whFWgqmw9ezpt/VJ"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241021173631.299143-2-andreas@kemnade.info>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1728981213-8771-6-git-send-email-hongxing.zhu@nxp.com>
 
+On Tue, Oct 15, 2024 at 04:33:29PM +0800, Richard Zhu wrote:
+> Add apps_reset deassertion in the imx_pcie_deassert_core_reset(). Let it be
+> symmetric with imx_pcie_assert_core_reset().
+> 
 
---whFWgqmw9ezpt/VJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Am I correctly interpreting that this patch adds the *missing* reset deassert
+for 'apps reset' line?
 
-On Mon, Oct 21, 2024 at 07:36:29PM +0200, Andreas Kemnade wrote:
-> Adds compatible strings for the Kobo Clara 2E eBook reader.
-> There are two variants differing in the EPD PMIC used.
->=20
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+If so, then there should be a relevant Fixes tag. Also, there should be some
+info about the implications of not deasserting it.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+- Mani
 
---whFWgqmw9ezpt/VJ
-Content-Type: application/pgp-signature; name="signature.asc"
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/controller/dwc/pci-imx6.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index ca8714c625fe..93e2bcf9aa0a 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -770,6 +770,7 @@ static void imx_pcie_assert_core_reset(struct imx_pcie *imx_pcie)
+>  static int imx_pcie_deassert_core_reset(struct imx_pcie *imx_pcie)
+>  {
+>  	reset_control_deassert(imx_pcie->pciephy_reset);
+> +	reset_control_deassert(imx_pcie->apps_reset);
+>  
+>  	if (imx_pcie->drvdata->core_reset)
+>  		imx_pcie->drvdata->core_reset(imx_pcie, false);
+> -- 
+> 2.37.1
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxfZ9AAKCRB4tDGHoIJi
-0hguAP4hBeIlzePBXA6EaNTr8IqT3/psBuyO6nOvuZ740uA4ZgEAiwYU/GX6CDxG
-kya3rjDIV0h6wF/8ACagOKjVFFVaUAc=
-=Fd7d
------END PGP SIGNATURE-----
-
---whFWgqmw9ezpt/VJ--
+-- 
+மணிவண்ணன் சதாசிவம்
 
