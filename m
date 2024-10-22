@@ -1,167 +1,136 @@
-Return-Path: <devicetree+bounces-114212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6349AA341
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:35:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B2769AA34D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40BDBB22853
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:35:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B49F71F22155
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DC119C55C;
-	Tue, 22 Oct 2024 13:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r85hpzFN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64FFE19D898;
+	Tue, 22 Oct 2024 13:37:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7221E481;
-	Tue, 22 Oct 2024 13:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B9219CC08;
+	Tue, 22 Oct 2024 13:37:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729604115; cv=none; b=mCMjvPRWNIXGmDXiLcYONPUTgYx4MleBm03LFcnrnORsQi9edXOLDnMFz8j1hzw9XZjLEXXCgLFuXoHHcbZKeecTcEKbQtqTeXkTwFGILgnvlnogU1UWS0cdkzEFIeCkDxlm0GNbXHsslwYv1UJ61zG5fOcv15UYztJlnWGgZF4=
+	t=1729604235; cv=none; b=taOGGwvAO7ForU/yHUUrFOJJOax2cDZKxACC8R8C2p9imh5THFNrfJLz5SsFeNU2iAFSzvM6YDoYaTbg7AGRH0mUoAISi3qColne4qZ/gTzmvAdpI4jpjdZeYj0et1f8nVp+qJEzZXEGa8vQ0/hXIFzINZ5W9K1gHL7XOf4srqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729604115; c=relaxed/simple;
-	bh=qDbw4iQAOpQcGNeHy6beNAJP98MdOCI+be23tNCoFSk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KnmO0dz+12J54f2Zm7uTzmapG7/22rrNPO4HSmAVJkMHxKDTHvJgHk7wvVP3sDpz9HjLt9cWIabTGk9MH4K90hi2D3tMENeyv/Y/M6BF7bTJjWfn+HuGQi1N9Cv9mPov1I3Xz39VQLNDiw3QqbtXTbeZrVMmeu+y8nFLAKYSkXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r85hpzFN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB5CAC4CEC3;
-	Tue, 22 Oct 2024 13:35:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729604115;
-	bh=qDbw4iQAOpQcGNeHy6beNAJP98MdOCI+be23tNCoFSk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r85hpzFNcYJqa8q/mviguSa8hDJYzLTzeJAPiQFXlUVRQO/iPeQySWCnb9POflz/I
-	 /uG/FD5LLBLcg2c7xme06K+s+xSuX+YpSeW1+WmxdQj4Z/aLFSSVAcpRY/UgXaBAJQ
-	 jrdA3vaFo8FRCm3ZmX++XCObdMhQyHNLis286B1sQ5IxPEec45N0kDO6d3bowNnwhq
-	 dsUfJWA3ILOSK3uvtlRQKByZskt5Bk0eLIe7VZnZb70lrV9dolnbeAMf7/hxWlwaih
-	 2QclJG/qTUnCO18VkLbg7kRGRyebQrH1L/eVXsF5QJJKZ4qo3TJknrvCManli0k+JE
-	 Yx9QtFmW02nWQ==
-Date: Tue, 22 Oct 2024 14:35:08 +0100
-From: Simon Horman <horms@kernel.org>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	andrew@lunn.ch, Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	horatiu.vultur@microchip.com,
-	jensemil.schulzostergaard@microchip.com,
-	Parthiban.Veerasooran@microchip.com, Raju.Lakkaraju@microchip.com,
-	UNGLinuxDriver@microchip.com,
-	Richard Cochran <richardcochran@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, jacob.e.keller@intel.com,
-	ast@fiberby.net, maxime.chevallier@bootlin.com,
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 14/15] net: sparx5: add compatible strings for
- lan969x and verify the target
-Message-ID: <20241022133508.GT402847@kernel.org>
-References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
- <20241021-sparx5-lan969x-switch-driver-2-v1-14-c8c49ef21e0f@microchip.com>
- <20241022085050.GQ402847@kernel.org>
- <20241022120842.uf575qwaulufjyv6@DEN-DL-M70577>
+	s=arc-20240116; t=1729604235; c=relaxed/simple;
+	bh=jS021KBDHtA4UtpuC4paBAK9ONTM1F/OrzYnjmfKhf8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=B9DZGAPu6tq69gnQ7gKvJR64nr6LXgOpbAFkP7k+jRWUeSmLCiPX0Wen/LIXV4Ns6OUX1rKU7vmqJSy9JU6DOA5N2D7hstl04Mlv/r1Bo60smq8RkCJQiQZnYqy4Z6U5Nti6f9bqGvF5n0/ulGb7wTc+8efe7Pvq8hZc5PQHnoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6e2e3e4f65dso61876417b3.3;
+        Tue, 22 Oct 2024 06:37:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729604232; x=1730209032;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7fMGLBYZUh1hjtAZF9PX3JxjrqOky9g79+ieIgquWyM=;
+        b=p5UCkYLDOhvIIQgmX2AhyLH5T/gypXq8D4o9WZ71ttZ3N640mavj4Uku4QMsDZI3yj
+         b0LQJm2uLvcE1P/Us+JzNV1GVocBDGk/uXWp+2w2AnMlim9kUWyurKprdsUJMFXgQqje
+         wy37lc/WtGojn839rdE8uJIeXJUsyWh0X4xF3z1ei+tHTQc3OLeRjR82s5xkese2UhJl
+         nVQwff8knCYULBuHRQjtw5H7vbcQNV3GRCeHgJHTi/2Z/ky7+Xvtr4A16FjDY/XQSraQ
+         9rdkRw4YYbJXkYKUN81EDknhqk3+xhQZmkVmJ0bUikOOx/gYs3oLh/hPF10WrInDqgFO
+         TcbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVWDqFOp6k2GfEpPUL+mDV+LB4BrvBzNA7Hn5LL27ui+srOLV/x0Xv4PJKbsb798RaEreWFt8LguJU=@vger.kernel.org, AJvYcCWQU3GB4NA7TF/9xX8jEqDuSuXKmtdEzFU0ccs2jbrsBfg/zCj94JqnbLStOF92SrEkhHeGx6hc9af6@vger.kernel.org, AJvYcCXiPKli/Hh6B0VVCVx9RRt6dzT3czimJdapLgJSRpeQxiCnGPJZcUnS14oDJwgmAUTG33HKsk8kdT5IRtZCgCgDXfA=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8oagSWCd1zJvhmD6nwI1SlCqYsch58mX9kqO+KMY9pJyrI7Xj
+	me7TKT0ZBZYpV59I9xm8bP/q3ZLGhTkYKrkTJDd8Q8BV1R0HSU2JiCTa+tNT
+X-Google-Smtp-Source: AGHT+IE1+k6M7ePwACV4piOIz4z0K/q06SnxJYYZIMv3hryVSKCX/Q1R8NUVaoblp3Xmw8yw8YGrJg==
+X-Received: by 2002:a05:690c:4c0f:b0:6dd:d119:58dd with SMTP id 00721157ae682-6e5bfc3c1bbmr152980637b3.16.1729604231880;
+        Tue, 22 Oct 2024 06:37:11 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e5f5ccb6b3sm10822407b3.93.2024.10.22.06.37.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Oct 2024 06:37:11 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6e35f08e23eso51878597b3.2;
+        Tue, 22 Oct 2024 06:37:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUZkQZZuAhZjpCoOVY0myfHtJoFu1keR+sKkbCKVRM/9C5WIZQ8TtvYYNBI9R3WV6QWaUMym5yDSpI=@vger.kernel.org, AJvYcCWTtMNNveRfdGFN9kyGE7iYki/3oMNGiSzFaAx5+eli+ZN3zHUMPzuXqaU4SRGc27ejBY16rWFDW414@vger.kernel.org, AJvYcCWZWXo73dDnTEAyf2nCcxWWf54caQRFQehydB/A5sguXBYqUVSBIEtEkOjm4yE27TQLSYcUyVZKcPQM9pti4mQeDu8=@vger.kernel.org
+X-Received: by 2002:a05:690c:f05:b0:6e2:1527:446b with SMTP id
+ 00721157ae682-6e5bfbed07amr127148667b3.3.1729604231577; Tue, 22 Oct 2024
+ 06:37:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241022120842.uf575qwaulufjyv6@DEN-DL-M70577>
+References: <cover.1728377971.git.geert+renesas@glider.be>
+In-Reply-To: <cover.1728377971.git.geert+renesas@glider.be>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 22 Oct 2024 15:36:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXsmAqQL+2+D_y+u1z4nn8JO+xF-mq6wWJ0pAH58n5Wiw@mail.gmail.com>
+Message-ID: <CAMuHMdXsmAqQL+2+D_y+u1z4nn8JO+xF-mq6wWJ0pAH58n5Wiw@mail.gmail.com>
+Subject: Re: [PATCH/RFC 0/2] arm64: dts: renesas: Re-add voltages to OPP tables
+To: Lukasz Luba <lukasz.luba@arm.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-pm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 22, 2024 at 12:08:42PM +0000, Daniel Machon wrote:
-> Hi Simon,
-> 
-> > > Add compatible strings for the twelve lan969x SKU's (Stock Keeping Unit)
-> > > that we support, and verify that the devicetree target is supported by
-> > > the chip target.
-> > >
-> > > Each SKU supports different bandwidths and features (see [1] for
-> > > details). We want to be able to run a SKU with a lower bandwidth and/or
-> > > feature set, than what is supported by the actual chip. In order to
-> > > accomplish this we:
-> > >
-> > >     - add new field sparx5->target_dt that reflects the target from the
-> > >       devicetree (compatible string).
-> > >
-> > >     - compare the devicetree target with the actual chip target. If the
-> > >       bandwidth and features provided by the devicetree target is
-> > >       supported by the chip, we approve - otherwise reject.
-> > >
-> > >     - set the core clock and features based on the devicetree target
-> > >
-> > > [1] https://www.microchip.com/en-us/product/lan9698
-> > >
-> > > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> > > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
-> > > ---
-> > >  drivers/net/ethernet/microchip/sparx5/Makefile     |   1 +
-> > >  .../net/ethernet/microchip/sparx5/sparx5_main.c    | 194 ++++++++++++++++++++-
-> > >  .../net/ethernet/microchip/sparx5/sparx5_main.h    |   1 +
-> > >  3 files changed, 193 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/net/ethernet/microchip/sparx5/Makefile b/drivers/net/ethernet/microchip/sparx5/Makefile
-> > > index 3435ca86dd70..8fe302415563 100644
-> > > --- a/drivers/net/ethernet/microchip/sparx5/Makefile
-> > > +++ b/drivers/net/ethernet/microchip/sparx5/Makefile
-> > > @@ -19,3 +19,4 @@ sparx5-switch-$(CONFIG_DEBUG_FS) += sparx5_vcap_debugfs.o
-> > >  # Provide include files
-> > >  ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/vcap
-> > >  ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/fdma
-> > > +ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/lan969x
-> > > diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> > > index 5c986c373b3e..edbe639d98c5 100644
-> > > --- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> > > +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
-> > > @@ -24,6 +24,8 @@
-> > >  #include <linux/types.h>
-> > >  #include <linux/reset.h>
-> > >
-> > > +#include "lan969x.h" /* lan969x_desc */
-> > > +
-> > 
-> > Hi Daniel,
-> > 
-> > Perhaps this will change when Krzysztof's comment elsewhere in this thread
-> > is addressed. But as it stands the construction in the above two hunks
-> > appears to cause a build failure.
-> > 
-> >   CC      drivers/net/ethernet/microchip/sparx5/sparx5_main.o
-> > In file included from drivers/net/ethernet/microchip/sparx5/sparx5_main.c:27:
-> > ./drivers/net/ethernet/microchip/lan969x/lan969x.h:10:10: fatal error: sparx5_main.h: No such file or directory
-> >    10 | #include "sparx5_main.h"
-> >       |          ^~~~~~~~~~~~~~~
-> > 
-> > My preference would be to move away from adding -I directives and, rather,
-> > use relative includes as is common practice in Networking drivers (at least).
-> > 
-> > ...
-> > 
-> > --
-> > pw-bot: changes-requested
-> 
-> I didn't see this build failure when I ran my tests, nor did the NIPA
-> tests reveal it. I can only reproduce it if I point to the microchip
-> subdir when building - but maybe that's what you did too?
-> 
-> Anyway, I will skip the -I includes and resort to relative includes, as
-> per your request. Thanks.
+On Tue, Oct 8, 2024 at 11:14=E2=80=AFAM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> When CONFIG_ENERGY_MODEL=3Dy, an error is printed on RZ/G2E and R-Car E3:
+>
+>     cpu cpu0: EM: invalid perf. state: -22
+>
+> This happens because the Operating Points Parameters tables do not list
+> voltages, as they are all identical.  Previously, it was assumed they
+> were optional, and unused, when none of the CPU nodes is tied to a
+> regulator using the "cpu-supply" property.  This assumption turned out
+> to be incorrect, causing the reported error message.
+>
+> This RFC patch series fixes this by adding the missing voltages.
+>
+> Note that the Energy Model calculates energy efficiency by dividing the
+> (estimated) CPU power consumption by CPU core clock frequency.  When all
+> voltages have the same value, the former is proportional to clock
+> frequency, and energy efficiency becomes a constant.  Hence all
+> operating points are considered to have the same efficiency, and the
+> Energy Model always picks the one with the highest clock rate (see also
+> [1]).
+>
+> Alternatively, the Energy Model could be changed to silently ignore OPP
+> tables with missing frequencies.  IMHO this is not an unusual case.
+>
+> Which approach should be taken?
+> Thanks for your comments!
 
-Thanks Daniel,
+Any comments from the Energy Model and PM people?
+Thanks!
 
-Yes I did see the problem when pointing to the subdir.
-But I was also able to see it without doing so when
-using a config based on tinyconfigi on x86_64.
+> [1] "PM: EM: Question Potential Issue with EM and OPP Table in cpufreq
+>      ondemand Governor"
+>     https://lore.kernel.org/all/a2ca883e-122e-43a1-b377-c43956b5b3be@arm.=
+com
+>
+> Geert Uytterhoeven (2):
+>   arm64: dts: renesas: r8a774c0: Re-add voltages to OPP table
+>   arm64: dts: renesas: r8a77990: Re-add voltages to OPP table
 
-I can dig further if you like, or provide that config.
-But I did see that relative includes (or an extra -I)
-resolved the problem.
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
