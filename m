@@ -1,127 +1,198 @@
-Return-Path: <devicetree+bounces-114156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6979B9A9F25
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 185569A9F27
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:50:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98A201C243C9
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:50:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 391DD1C243D3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F126B199236;
-	Tue, 22 Oct 2024 09:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C6B199EB7;
+	Tue, 22 Oct 2024 09:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HJkm1B1t"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oldtT6Yk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDAB198E91
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA96C1991B9;
+	Tue, 22 Oct 2024 09:49:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729590595; cv=none; b=nTNkvc/H7i9LOPpnN6d0gcGSNMnK/yFVg0mjruAgxENumOBB+WqRmJFjBK/qSiUrO0RKEIo5jaBLB4yqg6UuRNspEywncAWmhHEA8X4+HQDaVwNXQzxooAeKYKNpKOL0SuRRYD6jv73wTww0VXd9J7IQ+bUA6q4XK7JeJi1i9CU=
+	t=1729590596; cv=none; b=Lw63zT53p5G9hesMb4d84EIhKXSBt65VJtYEfp0wVspGwBP1GIEFYKHhkbnFxeuxkUwh5Kcw/EVeE+gVL1Q3BaXJmuJ0Ns7iYyFOmUhwS/9Sx2JJTug1tXDnliDev608wtpulFYrIdgtXchVQ5D4yyJ9Dw0Zx3tbffafNts4As4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729590595; c=relaxed/simple;
-	bh=ucPxv8v8063nhyvHkY26XrVe11xBeay7vWd4UaefvoE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uHdrv0RbTD08GlvnxOU6jpMD2/aD377y06yUxfDExPE+/2aO5ZNG1JvGAZrjhil7rnFQetqEifZA57WDrA6ZqXgaQJ323zrSh3ZPhcEUkGpWcs5qbIJR8KJVVBkpChQ1BR0bUDNm9L8wJKW2HBi9qg6OA+y75WWPhG5zfAxN7o4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HJkm1B1t; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7eb0bc007edso204647a12.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 02:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729590594; x=1730195394; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fRj9OXTql8TyVlExpaWtvY5+P9nZhBqC5DIwNAggGns=;
-        b=HJkm1B1tsymwVAQmxgMlGelN6XZuRiwaq/KxTjg8qKenZr7B98Ltv0GmFjS9K0lND9
-         y2dgc6AefLHtWasbrcPf+cG6+XotSdXV2kKIhJYryUBj2zYuu9TcV3DRh6+3jD0p6yEs
-         QS8GF/oI4wIQoUvtFkJWRNtjoBsqpXnZvKeEa+2s6uPOOyGVWsxTcQXo1QABdJijMH5y
-         fqoUPgw8ASxPufJ2S0nfs6uWm4I1IDooKG5DYuf1/hbxnJle0yNLk+PczRtaXa4jdInN
-         7R4lq6TEFdCaL7BeIJdayFeG7ls9TqRubknDETG23ZmpG4ZdBpJttq3xVlPZLE+ay/uR
-         pgBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729590594; x=1730195394;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fRj9OXTql8TyVlExpaWtvY5+P9nZhBqC5DIwNAggGns=;
-        b=bTOQuPjRNFz/Q9HuplnKvXQl+bVSRafRSoF1OIzFk6u7BeA2Q6dJY4A9EPbgLqO7xv
-         0L+KDWcI/mQ77uLw57bJfwdSN+rkgmSfFROL9RLl41wbzw7YBeS5VgNm2MS4IZzoX023
-         FARR6uLAVw/zRzzDkQO9KiSsjJxFZqdIFSYHkaNohlvMmXdOZLyW9kiDM2UeKeOnAU4L
-         QqaueN1YBvZdE+/BO9wDwfNYaLmgOazyeuEkFap62WpX4Bb3w9Id4uXyWc2TbH5dSL47
-         +sy/56vC5QU0Bj0v/HuOp853zstGGkI6k4BF57GqvoU/pAzTxHpSVGWsj64LwB+xTD6L
-         VmCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWnFCDSLqjeMzRw2IC7GoUmMHGVsBrUqCGscqCbfAzDJ0c7mjIhjMC/EVo7KByLmp6cl0z4ksVhjrj4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3JE/s5ypdpjeFS6YCDDu6u9sG2v/HF9gNUy4YHQTm+SPP3ZkB
-	R8wxYtLqqSlXxyPzWsGTdD290GlfcN2g2feIkL1qYbv5HGH/m6uKvrdvF/1wA5tV3ukI1FlB2FX
-	y1SRcbtuSEB/FzAwrnr5sv86Hxe2shEd77rEdxA==
-X-Google-Smtp-Source: AGHT+IEPl8TvCF4WHMkzmV6+C+089KSglwEosAUtKdVvP3kM20qYnQAdlYOhAKr/lEnlRi0DAeAxzTVKxy3L2gEvDpE=
-X-Received: by 2002:a05:6a21:e88:b0:1c4:9f31:ac9e with SMTP id
- adf61e73a8af0-1d96df3bf9bmr1994876637.42.1729590593804; Tue, 22 Oct 2024
- 02:49:53 -0700 (PDT)
+	s=arc-20240116; t=1729590596; c=relaxed/simple;
+	bh=nCzRJ1LbBCDjOWEeoH9yNZbsyD6ffv5nqZxpGDEu7+0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MbmCFVbxS55CItMXZYvlVuv+4ddpRIRFe1ARSf83glphfVgaJkStQvyEdLAzeOa8xXvXiOLmLXGggLvGdDuZqf+bechHy/c9PDAEA4FHxxn2InTi//5x70Oalfc6PVevb5T2kIWSSmZtwsSb6fTlD/nzzqqxCXcDPC4YsESj9p8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oldtT6Yk; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729590592;
+	bh=nCzRJ1LbBCDjOWEeoH9yNZbsyD6ffv5nqZxpGDEu7+0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oldtT6YkN+poyFUM3an948NAQ1vDUR9PXYx8Qgv9gP5MHbb1W1mZu2iAFx14HSKB2
+	 rS9EViKhZhwDXQ5qdRG/h217QlNRCqgoZC8TcONj7xsgn+2ZEBXUnVwCeUgdCC+gln
+	 KhNNujVzPfCozkAeZoegEdGNwR4xOAK3j7X2iPZYXH3Pu96ixLlioAFsEoUhaOuGSm
+	 TJB0NOXo/eLxJiByF4hShfPhZ3By4L5k7r+kViNBZDIh4jBLrC0a1Q+eU/MbsGeM5z
+	 f35kokcURoJos2ZG/mk1Sx6gOqCAhzc3bk1cAaHvOpuRyUPsFwFcuVxP8CBGv+xXsy
+	 90v9rUIofjJdA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0D6F917E139E;
+	Tue, 22 Oct 2024 11:49:52 +0200 (CEST)
+Message-ID: <52a7c00a-6638-420b-a65b-208491c55074@collabora.com>
+Date: Tue, 22 Oct 2024 11:49:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241018032217.39728-1-quic_jinlmao@quicinc.com> <20241018032217.39728-2-quic_jinlmao@quicinc.com>
-In-Reply-To: <20241018032217.39728-2-quic_jinlmao@quicinc.com>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Tue, 22 Oct 2024 10:49:41 +0100
-Message-ID: <CAJ9a7VhkGrr10hT8-5r6Zp8SZj5hJjos8ZdPeOhuPqenMht_xw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: arm: Add arm,static-trace-id for
- coresight dummy source
-To: Mao Jinlong <quic_jinlmao@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@arm.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, coresight@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/6] regulator: Add driver for MediaTek MT6328 PMIC
+ regulators
+To: Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ jason-ch chen <Jason-ch.Chen@mediatek.com>,
+ Chen Zhong <chen.zhong@mediatek.com>, Flora Fu <flora.fu@mediatek.com>,
+ Alexandre Mergnat <amergnat@baylibre.com>,
+ Yassine Oudjana <y.oudjana@protonmail.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20241018081050.23592-1-y.oudjana@protonmail.com>
+ <20241018081050.23592-6-y.oudjana@protonmail.com>
+ <4cf5a3d0-97a2-4a43-a91a-0a35aa2bc7e4@collabora.com>
+ <04OPLS.YYQIIIW9J73R3@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <04OPLS.YYQIIIW9J73R3@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, 18 Oct 2024 at 04:22, Mao Jinlong <quic_jinlmao@quicinc.com> wrote:
->
-> Some dummy source HW has static trace id which cannot be changed via
-> software programming. Add arm,static-trace-id for static id support to
-> coresight dummy source.
->
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../devicetree/bindings/arm/arm,coresight-dummy-source.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-> index 04a8c37b4aff..742dc4e25d3b 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-> @@ -38,6 +38,12 @@ properties:
->      enum:
->        - arm,coresight-dummy-source
->
-> +  arm,static-trace-id:
-> +    description: If dummy source needs static id support, use this to set trace id.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 111
-> +
->    out-ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->
-> --
-> 2.17.1
->
+Il 21/10/24 16:55, Yassine Oudjana ha scritto:
+> 
+> On Mon, Oct 21 2024 at 15:24:51 +02:00:00, AngeloGioacchino Del Regno 
+> <angelogioacchino.delregno@collabora.com> wrote:
+>> Il 18/10/24 10:10, Yassine Oudjana ha scritto:
+>>> From: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>
+>>> Add a driver for the regulators on the MT6328 PMIC.
+>>>
+>>> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>> ---
+>>>   drivers/regulator/Kconfig                  |   9 +
+>>>   drivers/regulator/Makefile                 |   1 +
+>>>   drivers/regulator/mt6328-regulator.c       | 479 +++++++++++++++++++++
+>>>   include/linux/regulator/mt6328-regulator.h |  49 +++
+>>>   4 files changed, 538 insertions(+)
+>>>   create mode 100644 drivers/regulator/mt6328-regulator.c
+>>>   create mode 100644 include/linux/regulator/mt6328-regulator.h
+>>>
+>>> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+>>> index 249933d6388dd..e9b9faff67f3a 100644
+>>> --- a/drivers/regulator/Kconfig
+>>> +++ b/drivers/regulator/Kconfig
+>>> @@ -862,6 +862,15 @@ config REGULATOR_MT6323
+>>>         This driver supports the control of different power rails of device
+>>>         through regulator interface.
+>>>   +config REGULATOR_MT6328
+>>> +    tristate "MediaTek MT6328 PMIC"
+>>> +    depends on MFD_MT6397
+>>> +    help
+>>> +      Say y here to select this option to enable the power regulator of
+>>> +      MediaTek MT6328 PMIC.
+>>> +      This driver supports the control of different power rails of device
+>>> +      through regulator interface.
+>>> +
+>>>   config REGULATOR_MT6331
+>>>       tristate "MediaTek MT6331 PMIC"
+>>>       depends on MFD_MT6397
+>>> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+>>> index 9b69546fb3f65..c1a5a44413198 100644
+>>> --- a/drivers/regulator/Makefile
+>>> +++ b/drivers/regulator/Makefile
+>>> @@ -103,6 +103,7 @@ obj-$(CONFIG_REGULATOR_MPQ7920) += mpq7920.o
+>>>   obj-$(CONFIG_REGULATOR_MT6311) += mt6311-regulator.o
+>>>   obj-$(CONFIG_REGULATOR_MT6315) += mt6315-regulator.o
+>>>   obj-$(CONFIG_REGULATOR_MT6323)    += mt6323-regulator.o
+>>> +obj-$(CONFIG_REGULATOR_MT6328)    += mt6328-regulator.o
+>>>   obj-$(CONFIG_REGULATOR_MT6331)    += mt6331-regulator.o
+>>>   obj-$(CONFIG_REGULATOR_MT6332)    += mt6332-regulator.o
+>>>   obj-$(CONFIG_REGULATOR_MT6357)    += mt6357-regulator.o
+>>> diff --git a/drivers/regulator/mt6328-regulator.c b/drivers/regulator/mt6328- 
+>>> regulator.c
+>>> new file mode 100644
+>>> index 0000000000000..e15a64404f494
+>>> --- /dev/null
+>>> +++ b/drivers/regulator/mt6328-regulator.c
+>>> @@ -0,0 +1,479 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * MediaTek MT6328 regulator driver
+>>> + * Based on MT6323 driver.
+>>> + *
+>>> + * Copyright (c) 2016 MediaTek Inc.
+>>> + * Copyright (c) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
+>>> + */
+>>> +
+>>
+>> ..snip..
+>>
+>>> +/* The array is indexed by id(MT6328_ID_XXX) */
+>>> +static struct mt6328_regulator_info mt6328_regulators[] = {
+>>> +    MT6328_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
+>>> +        buck_volt_range1, MT6328_VPA_CON9, MT6328_VPA_CON11, 0x3f,
+>>> +        MT6328_VPA_CON12, MT6328_VPA_CON7),
+>>
+>> Can you please fix the indentation?
+>>
+>> Also, all of those entries do fit in two lines, I checked a couple of those
+>> and always ended up with less than 90 columns anyway.
+> 
+> I can't seem to fit even the first one in 2 lines in under 90 columns :/
+> That is unless I don't indent the second line:
+> 
+>      MT6328_BUCK("buck_vpa", VPA, 500000, 3650000, 50000, buck_volt_range1,
+>      MT6328_VPA_CON9, MT6328_VPA_CON11, 0x3f, MT6328_VPA_CON12, MT6328_VPA_CON7),
+> 
+> Which I don't think is what you meant by fixing the indentation. Can you show me an 
+> example? With 100 columns on the other hand it seems like they should fit.
 
-Reviewed-by: Mike Leach <mike.leach@linaro.org>
+I can get that one specifically to 96 columns... it's okay.
+Just don't get over 100 columns please: if a few need 3 lines, they just do.
 
---
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+Anyway, here's an example:
+
+MT6328_BUCK("buck_vpa", VPA, 500000, 3650000, 50000, buck_volt_range1, MT6328_VPA_CON9,
+	    MT6328_VPA_CON11, 0x3f, MT6328_VPA_CON12, MT6328_VPA_CON7),
+
+...since I'm not sure that this will render correctly in the outgoing email, here's
+another example:
+
+MT6328_BUCK("buck_something", SOMETHING, params, blahblah, thisandthat,
+             something_else),
+
+Cheers,
+Angelo
+
+>>
+> 
+> 
+
+
+
 
