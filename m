@@ -1,210 +1,162 @@
-Return-Path: <devicetree+bounces-114086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC569A9C1E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:13:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3FED9A9C26
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 10:15:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0F76280F31
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:13:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB8E21C21276
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95937156F24;
-	Tue, 22 Oct 2024 08:13:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6233C15853C;
+	Tue, 22 Oct 2024 08:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ka8qOXVc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBADA1547EE
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:13:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EAA5154C03;
+	Tue, 22 Oct 2024 08:15:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729584799; cv=none; b=WrGFQqnWykaMtgxlclNyOPSADok0redFfTiafURH8T1L5aO/pOsywwqnUhR9StQ8n9gMhbVbo9LsbNk5TOPiA/MYGoliSJ9jGdZh/tlpWE7csP4tYCdt/pSxBkuxDPMvnPAw4uXgKOXZT6ySeW3c1yHZJDM8Qs+kGYfuauh5Kxc=
+	t=1729584922; cv=none; b=KiP5/7mwX5sWCLU4MT3R+eVVW3Dom4IYiG3EsYR7QZKMie6Z3unijmZ2HbH5tpG/JlHYKLuokODl9NSk33dEd1vRc0ol8BJk7PHxQQ/NaLegBt0A3vm5j9+Ha0NEKilp/onXdoFzs2uXcRyA5Uhqnhk1Z2Jy84DL42GWQiihl94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729584799; c=relaxed/simple;
-	bh=mU5ijISLPIS6XER+dkDHOlCCs8HDVysP/I3y18vdbbc=;
+	s=arc-20240116; t=1729584922; c=relaxed/simple;
+	bh=ED+LZhJhE26ThOoJvug3eIlGNitTZP5Mq2j85RJfjA0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tNnLceHiYPkVLx2+myrJmBIpfBcfeChHTMEYKRhiVW4uOmerP37Q0CL7Z2rYJa6a3ihOUub/FYgv7vw6OUpMQlhdYCeaci/K5RzhkGa408zkFwIq7LZwM7bk4fIDpcZVaAtWy/jLQLZiVrVJ3h/VW1zxYd/dMHRitUrCGdYcOlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t3A0n-0001fa-0j; Tue, 22 Oct 2024 10:13:05 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t3A0m-000peV-1W;
-	Tue, 22 Oct 2024 10:13:04 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1t3A0m-007WO0-1C;
-	Tue, 22 Oct 2024 10:13:04 +0200
-Date: Tue, 22 Oct 2024 10:13:04 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
-	Sherry Sun <sherry.sun@nxp.com>,
-	Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-	Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-	"marcel@holtmann.org" <marcel@holtmann.org>,
-	"luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
- supply and reset
-Message-ID: <20241022081304.d2tpnn4eyf3adxg2@pengutronix.de>
-References: <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
- <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
- <0d460226-4ea7-4a9b-a119-468343727996@kernel.org>
- <20241021064129.trchqa2oickna7pc@pengutronix.de>
- <bb34f4ae-92b3-48b7-b0d6-5937756cdbb9@kernel.org>
- <20241021102558.rfnz7nxcg5knibxs@pengutronix.de>
- <e7a1622e-6406-478f-bd3e-08a8490d4db0@kernel.org>
- <20241022071208.lgk2rpl2c2qpytfa@pengutronix.de>
- <66d33097-37ed-4e89-a356-285eda743a5c@kernel.org>
- <a11cf72d-3878-4af1-89c5-c66d55794ea6@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=eRRP3RlGixPeXa1gCBxiNdj0qbKxfNOJlNPkf0dcjFqMIcFDRvmv9W5PPVTETFpPqCkqi0+e4uNaaiqKemjij5HXn81aE3Fur6nGVbapucu6oCBq+zpypAyo30Ea20CDHj3bQL7ibDp93kIL/deRMnvW0EBFASBMJ7fpLU8RiUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ka8qOXVc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37DE2C4CEC3;
+	Tue, 22 Oct 2024 08:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729584921;
+	bh=ED+LZhJhE26ThOoJvug3eIlGNitTZP5Mq2j85RJfjA0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ka8qOXVcbwuemlUXAnev4yBNY0NkM0WPW5XLI2Xv4xxSRjyH2PXtU1NX3OeQQ1DqR
+	 ctV44H/93iiU+iazoEDmIAcF5UZlUtyLumdw5/bvqk7vAAeb2umOphDF2hdmITv4ld
+	 5Iq6FRxkQjSZIt1WfCG9ItMlVz6K7gqcLxGb4rgwoDr2ASCacNwpF3uanbgPb5c8pY
+	 dmIJzrGspNAFodoW1mSkKN/8r2EBNy0dgzSPREN8z22O5DGrXCZIL8ZzrHbShW5Vpq
+	 lwbDuU/CqHqZGvzLufVCMgNNZyoGCyFecBoChO1JyWdy2dvwbzlFK+QBWnObrV4fjq
+	 6YfyORkX7yN9Q==
+Date: Tue, 22 Oct 2024 10:15:19 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
+	jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, quic_jesszhan@quicinc.com, mchehab@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	sakari.ailus@linux.intel.com, hverkuil@xs4all.nl, tomi.valkeinen@ideasonboard.com, 
+	quic_bjorande@quicinc.com, geert+renesas@glider.be, dmitry.baryshkov@linaro.org, 
+	arnd@arndb.de, nfraprado@collabora.com, thierry.reding@gmail.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org, marex@denx.de, biju.das.jz@bp.renesas.com
+Subject: Re: [PATCH v3 12/15] drm/bridge: Add ITE IT6263 LVDS to HDMI
+ converter
+Message-ID: <20241022-amazing-fresh-agouti-fb6eda@houat>
+References: <20241021064446.263619-1-victor.liu@nxp.com>
+ <20241021064446.263619-13-victor.liu@nxp.com>
+ <20241021-thick-cockle-of-popularity-c5e28c@houat>
+ <889594b9-e6cb-4d90-b959-cd0258b2f166@nxp.com>
+ <20241022-wondrous-fractal-lion-aedcd9@houat>
+ <7a83230b-292c-4e28-813d-a07ea1b6a66a@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="u3pcdhq2tn2xfgvk"
 Content-Disposition: inline
-In-Reply-To: <a11cf72d-3878-4af1-89c5-c66d55794ea6@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <7a83230b-292c-4e28-813d-a07ea1b6a66a@nxp.com>
 
-On 24-10-22, Krzysztof Kozlowski wrote:
-> On 22/10/2024 09:30, Krzysztof Kozlowski wrote:
-> > On 22/10/2024 09:12, Marco Felsch wrote:
-> >> On 24-10-22, Krzysztof Kozlowski wrote:
-> >>> On 21/10/2024 12:25, Marco Felsch wrote:
-> >>>> On 24-10-21, Krzysztof Kozlowski wrote:
-> >>>>> On 21/10/2024 08:41, Marco Felsch wrote:
-> >>>>>> On 24-10-07, Krzysztof Kozlowski wrote:
+
+--u3pcdhq2tn2xfgvk
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 12/15] drm/bridge: Add ITE IT6263 LVDS to HDMI
+ converter
+MIME-Version: 1.0
+
+On Tue, Oct 22, 2024 at 04:10:51PM +0800, Liu Ying wrote:
+> Hi Maxime,
+>=20
+> On 10/22/2024, Maxime Ripard wrote:
+> > On Tue, Oct 22, 2024 at 03:36:47PM +0800, Liu Ying wrote:
+> >> Hi Maxime,
 > >>
-> >> ...
-> >>
-> >>>>>>> Based on earlier message:
-> >>>>>>>
-> >>>>>>> "For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means
-> >>>>>>> that both wifi and BT controller will be powered on and off at the same
-> >>>>>>> time."
-> >>>>>>>
-> >>>>>>> but maybe that's not needed. No clue, I don't know the hardware. But be
-> >>>>>>> carefully what you write in the bindings, because then it will be ABI.
-> >>>>>>
-> >>>>>> We noticed the new power-sequencing infrastructure which is part of 6.11
-> >>>>>> too but I don't think that this patch is wrong. The DT ABI won't break
-> >>>>>> if we switch to the power-sequencing later on since the "reset-gpios"
-> >>>>>> are not marked as required. So it is up to the driver to handle it
-> >>>>>> either via a separate power-sequence driver or via "power-supply" and
-> >>>>>> "reset-gpios" directly.
-> >>>>>
-> >>>>> That's not the point. We expect correct hardware description. If you say
-> >>>>> now it has "reset-gpios" but later say "actually no, because it has
-> >>>>> PMU", I respond: no. Describe the hardware, not current Linux.
-> >>>>
-> >>>> I know that DT abstracts the HW. That said I don't see the problem with
-> >>>> this patch. The HW is abstracted just fine:
-> >>>>
-> >>>> shared PDn          -> reset-gpios
-> >>>> shared power-supply -> vcc-supply
-> >>>>
-> >>>> Right now the DT ABI for the BT part is incomplete since it assume a
-> >>>> running WLAN part or some hog-gpios to pull the device out-of-reset
-> >>>> which is addressed by this patchset.
-> >>>>
-> >>>> Making use of the new power-sequencing fw is a Linux detail and I don't
-> >>>> see why the DT can't be extended later on. We always extend the DT if
-> >>>> something is missing or if we found a better way to handle devices.
+> >> On 10/21/2024, Maxime Ripard wrote:
+> >>> On Mon, Oct 21, 2024 at 02:44:43PM +0800, Liu Ying wrote:
+> >>>> +static int it6263_bridge_atomic_check(struct drm_bridge *bridge,
+> >>>> +				      struct drm_bridge_state *bridge_state,
+> >>>> +				      struct drm_crtc_state *crtc_state,
+> >>>> +				      struct drm_connector_state *conn_state)
+> >>>> +{
+> >>>> +	struct drm_display_mode *mode =3D &crtc_state->adjusted_mode;
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	ret =3D drm_atomic_helper_connector_hdmi_check(conn_state->connect=
+or,
+> >>>> +						     conn_state->state);
+> >>>> +	if (ret)
+> >>>> +		return ret;
+> >>>> +
+> >>>> +	return mode->clock > MAX_PIXEL_CLOCK_KHZ ? -EINVAL : 0;
 > >>>
-> >>> Sure, although I am not really confident that you understand the
-> >>> implications - you will not be able to switch to proper power-sequencing
-> >>> with above bindings, because it will not be just possible without
-> >>> breaking the ABI or changing hardware description (which you say it is
-> >>> "fine", so complete/done). I am fine with it, just mind the implications.
+> >>> drm_atomic_helper_connector_hdmi_check will already make that check, =
+so
+> >>> it's redundant.
 > >>
-> >> Sorry can you please share your concerns? I don't get the point yet why
-> >> we do break the DT ABI if we are going from
-> > 
-> > Not necessarily breaking ABI, but changing the description.
-> >>
-> >> bt {
-> >> 	reset-gpios = <&gpio 4 0>;
-> >> 	vcc-supply = <&supply>;
-> >> };
-> >>
-> >> to
-> >>
-> >> bt {
-> >> 	vcc-supply = <&pmu_supply>;
-> > 
-> > ...because you just removed reset-gpios which is a property of this device.
+> >> MAX_PIXEL_CLOCK_KHZ is 150MHz. With 150MHz pixel clock rate, we'll get
+> >> 150MHz HDMI character rate for 8bpc and 187.5MHz HDMI character rate
+> >> for 10bpc, both are lower than MAX_HDMI_TMDS_CHAR_RATE_HZ =3D 225MHz.
+> >=20
+> > I guess? I have no idea how that's relevant though. Where are those
+> > constraints coming from, and why aren't you checking for them in
+> > tmds_char_rate_valid?
+>=20
+> All constraints come from IT6263 data sheet. They are also mentioned
+> in IT6263 product link(commit message contains the link).
+>=20
+> https://www.ite.com.tw/en/product/cate1/IT6263
+>=20
+> "
+> LVDS RX
+> Support input clock rate up to 150 MHz
+>=20
+> HDMI TX
+> Support link speeds of up to 2.25 Gbps (link clock rate of 225 MHz)=20
+> "
+>=20
+> If no objection, I'll check mode clock rate against
+> MAX_PIXEL_CLOCK_KHZ in tmds_char_rate_valid.
 
-An optional property. That beeing said, dropping the *-gpios was the
-solution for the Qualcomm DTS as well:
+If you don't support bpc other than 8, and no other format than RGB,
+then it's a good enough approximation.
 
-bd37ce2eeb84 ("arm64: dts: qcom: qrb5165-rb5: add the Wifi node")
+It should be documented though
 
-> >> };
-> >>
-> >> or:
-> >>
-> >> bt {
-> >> 	pmu = <&pmu>;
-> 
-> Ah, and I forgot here: this also might not be correct, because if you
-> have PMU, then the PMU consumes VCC, not the Bluetooth. Therefore both
-> of above two solutions might be inaccurate description if you decide to
-> go with PMU.
-> 
-> >> };
-> >>
-> >> Of course the driver need to support all 2/3 cases due to backward
-> >> compatibility but from DT pov I don't see any breakage since we already
-> >> need to define the power handling properties (gpio & supply) as
-> >> optional.
-> > 
-> > Either existing binding is complete or not. Not half-done.
+Maxime
 
-As I remember DT ABI must be backward compatible. I understand this as
-followed: In our current use-case the dt-bindings don't describe any
-required hw resource so we need to mark them as optional to be backward
-compatible.
+--u3pcdhq2tn2xfgvk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Regarding your above comment: "complete or not. Not half-done". Do you
-see the current dt-bindings for this particular device as complete or
-not? In other words can we mark the reset-gpios and vcc-supply
-properties as required albeit this would break the DT ABI since all
-current users don't specify it?
+-----BEGIN PGP SIGNATURE-----
 
-> >> That beeing said I don't see the need for a PMU driver for this WLAN/BT
-> >> combi chip which is way simpler than the Qualcomm one from Bartosz. Also
-> >> there is physically no PMU device which powers the chip unlike the
-> >> Qualcomm one. I'm not sure if you would accept virtual PMU devices.
-> > 
-> > Virtual PMU, of course not. I would like to have complete hardware
-> > description, not something which matches your current driver model.
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZxdfFgAKCRAnX84Zoj2+
+dkBpAYCTeWy3zA6iD+/mbISTuTA/oxVJr3H30Y/l4YAaYrxfiRnjSilMM+ckG3ph
+I3wUIxkBgO6JaDPbvX/C2fiSO1tM2GF/EadgjnJcVNSM3abhxJrUp3a2Z7LivwPC
+xgrGePQkkQ==
+=x6hs
+-----END PGP SIGNATURE-----
 
-Okay so PMU is no option and we don't have to consider this idea any
-longer. So reset-gpios and vcc-supply it is :) and I don't expect this
-to change.
-
-Regards,
-  Marco
+--u3pcdhq2tn2xfgvk--
 
