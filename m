@@ -1,55 +1,58 @@
-Return-Path: <devicetree+bounces-114385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED3A9AB7C2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 22:39:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0CB09AB7D8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 22:43:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF4D12832E9
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 20:39:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47EB4283E74
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 20:43:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0AE21CC8B7;
-	Tue, 22 Oct 2024 20:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A5E1CC8A8;
+	Tue, 22 Oct 2024 20:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TwopQ6jK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lvB4UYKM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE081A2872;
-	Tue, 22 Oct 2024 20:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5DC1CC88A;
+	Tue, 22 Oct 2024 20:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729629554; cv=none; b=uIE79c0bSrciJlI4gHrxj7TSPSiXHW3+HqkEVqR6LI0fhY01quwQMUxDccd0i+qOvhCl39MFcPnqFnvS5gkDr0XtDdKj0EARWOvd7V4vRgSCWObR9D47J0ktX+rR5EiDokLfYdAB6BiLUQPFQdtaFCSXU4fV7FrKbI4fC0MqKec=
+	t=1729629794; cv=none; b=OsGunNU/rskTTaJgs5OEmjpnro4ILrMI9tQ6i/4kP4/EE9jXXqk1/F0y1jSJvgYcdoMQXjarkKj3U8LNTy7y2rtAuWdSmTV3+H5dMc9zlqCUo/m3BJdLO6UiXdVQC2xkbgjLfkUWCn92VSKQg5CKaUB/lZ0TNdBT6u7wpvS3SDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729629554; c=relaxed/simple;
-	bh=zf6B/ocO5rbhrIZkHOYoAi8TUWwKG7prjtVoNUvcNdI=;
+	s=arc-20240116; t=1729629794; c=relaxed/simple;
+	bh=5fembjrFYHH0Uxd/AJeoKR2phtLvd9IwGMMXh/aNqUo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EFvcngXD9MsegtpUif0oCoDQ4ujcCu0NkHrXfBPM4sBJmYl4CYq/mxg1zLIjHS/AKGdyY8Pcc7UlldIyd1DnvUeSy9vAy59BNiUErtNErwp2b4TmuKhC3pnoIMxUgHv1CDRmO0LIeVaqUEaIQwgExXiq2sMp3hhC8pkhfvUw64U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TwopQ6jK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3556BC4CEE3;
-	Tue, 22 Oct 2024 20:39:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nhnhC6SyG5RjIN25lCnx/8rBtSEssM8AUoA0ux5mvmrfBmhD/lQUb9gT1fm7y8MWe0tRZO9MPHX0HxFDL2oien+d2R/nKym6OQRSil1nZ3LPTC8WZGbkLy3wO8EB6ihtfgOFaAgJ3LtqbWZWNzA/3TVeIQNQHWIBrHilmz6Sg60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lvB4UYKM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D603C4CEC3;
+	Tue, 22 Oct 2024 20:43:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729629554;
-	bh=zf6B/ocO5rbhrIZkHOYoAi8TUWwKG7prjtVoNUvcNdI=;
+	s=k20201202; t=1729629793;
+	bh=5fembjrFYHH0Uxd/AJeoKR2phtLvd9IwGMMXh/aNqUo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TwopQ6jK8j551ft4Ffnd8+g5V+/cSIoacdXljYxBJStAQVOYzAAPRC8F0vi/pB2lP
-	 GY9sjRbIl57FJ3AW8bm9Z+wGPcN1BDeEwUBG29nC3XxObs7J7OUoXnGxHNNmLuhWGR
-	 4wBPIchnDnYRduGCxOCwvcGSTjGKnGksfHnPf5RVzSfd7xDAXqT92VCk43W4ga/krg
-	 iP6HSWfe3hZAVPcpMUjdK2QeORhdXe3UqrjKlt/kVC1u2gDeofSqZiFs6pazGkqQ0D
-	 R9IPfyMIXkv+VwYdTnDZFynUBzS5AhyfOoI8VD3RmFZ4xseXAVuvpzF5OwSmHJdrkw
-	 7vCcvxoJTLo6A==
-Date: Tue, 22 Oct 2024 15:39:11 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
-Subject: Re: [PATCH v1] arm64: dts: qcom: sa8775p: Add GPI configuration
-Message-ID: <jyed22cc3lrrvmfyyywccz6cr5tfdl2bs57zdjlbiizcjwkyxt@mbm4adbf66ds>
-References: <20241021102815.12079-1-quic_vdadhani@quicinc.com>
+	b=lvB4UYKMsaCcd9sGc/YETcZeKf9PAiD83chFfuoCPJJQbVerE342CrGhTzbIaJFf5
+	 e7+ZZ5KfGM7h9VS1eAoTPI+C+ydAKduvaSMQ89d4BF7i4ExM2/VbL0GXBYr4wCoW+B
+	 NV2zRkGIqUFC3zlPa6vNc3xqWp0rZFDVSF4erCZ4PPuf0pXo6VUXiE4rMOYSKBdGnh
+	 fqpPG6YFiH3BAG3Oxp25IDNPqV0O1Ce5Ke5UH0UO6oWdbug6zvpV5U1elOkI0R7knY
+	 8LdN2iKjsY9p3pfwxB/gnvD/RajNS+8lPfZzD5lU1OBVTmvNIYi3Lrd2YNWs4ZPHw1
+	 qQlYpgvw/dB/g==
+Date: Tue, 22 Oct 2024 15:43:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: dma: adi,axi-dmac: convert to yaml
+ schema
+Message-ID: <20241022204312.GA1524310-robh@kernel.org>
+References: <20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com>
+ <20241022-axi-dma-dt-yaml-v1-1-68f2a2498d53@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,599 +61,268 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241021102815.12079-1-quic_vdadhani@quicinc.com>
+In-Reply-To: <20241022-axi-dma-dt-yaml-v1-1-68f2a2498d53@baylibre.com>
 
-On Mon, Oct 21, 2024 at 03:58:15PM GMT, Viken Dadhaniya wrote:
-> I2C and SPI geni driver also supports the GSI node based
-> on client requirements. Currently, in the DTSI, the GSI mode
-> configuration is not added.
+On Tue, Oct 22, 2024 at 12:46:40PM -0500, David Lechner wrote:
+> Convert the AXI DMAC bindings from .txt to .yaml.
 > 
-> Therefore, add GPI DT nodes for QUPV_0/1/2/3 for I2C and SPI
-> for the SA8775.
-> 
-
-For future patches, 
-https://docs.kernel.org/process/submitting-patches.html#the-canonical-patch-format
-clearly states that lines should be wrapped at 75 characters, not 60...
-
-Regards,
-Bjorn
-
-> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 > ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 246 ++++++++++++++++++++++++++
->  1 file changed, 246 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 07b3d9f65684..47b5fb4d83a9 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/clock/qcom,rpmh.h>
->  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
->  #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
-> +#include <dt-bindings/dma/qcom-gpi.h>
->  #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
->  #include <dt-bindings/mailbox/qcom-ipcc.h>
->  #include <dt-bindings/firmware/qcom,scm.h>
-> @@ -852,6 +853,28 @@
->  			#mbox-cells = <2>;
->  		};
->  
-> +		gpi_dma2: qcom,gpi-dma@800000  {
-> +			compatible = "qcom,sm6350-gpi-dma";
-> +			reg = <0x0 0x00800000 0x0 0x60000>;
-> +			#dma-cells = <3>;
-> +			interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 598 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 599 IRQ_TYPE_LEVEL_HIGH>;
-> +			dma-channels = <12>;
-> +			dma-channel-mask = <0xfff>;
-> +			iommus = <&apps_smmu 0x5b6 0x0>;
-> +			status = "disabled";
-> +		};
+> For the maintainer, Lars is the original author, but isn't really
+> active with ADI anymore, so I have added Nuno instead since he is the
+> most active ADI representative currently and is knowledgeable about this
+> hardware.
+> 
+> Also, the rob-bot is likely to complain. Locally, I am getting the
+> following warning from dt_bindings_check:
+> 
+> 	Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml: properties:adi,channels:type: 'boolean' was expected
+> 		hint: A vendor boolean property can use "type: boolean"
+> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> 	DTC [C] Documentation/devicetree/bindings/dma/adi,axi-dmac.example.dtb
+> 
+> I think this is telling me that object nodes should not have a vendor
+> prefix. However, since this is an existing bindings, we can't change
+> that.
+
+Yes, that can be ignored. I'll have to drop that check from dtschema.
+
+> ---
+>  .../devicetree/bindings/dma/adi,axi-dmac.txt       |  61 ---------
+>  .../devicetree/bindings/dma/adi,axi-dmac.yaml      | 137 +++++++++++++++++++++
+>  2 files changed, 137 insertions(+), 61 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/adi,axi-dmac.txt b/Documentation/devicetree/bindings/dma/adi,axi-dmac.txt
+> deleted file mode 100644
+> index cd17684aaab5..000000000000
+> --- a/Documentation/devicetree/bindings/dma/adi,axi-dmac.txt
+> +++ /dev/null
+> @@ -1,61 +0,0 @@
+> -Analog Devices AXI-DMAC DMA controller
+> -
+> -Required properties:
+> - - compatible: Must be "adi,axi-dmac-1.00.a".
+> - - reg: Specification for the controllers memory mapped register map.
+> - - interrupts: Specification for the controllers interrupt.
+> - - clocks: Phandle and specifier to the controllers AXI interface clock
+> - - #dma-cells: Must be 1.
+> -
+> -Required sub-nodes:
+> - - adi,channels: This sub-node must contain a sub-node for each DMA channel. For
+> -   the channel sub-nodes the following bindings apply. They must match the
+> -   configuration options of the peripheral as it was instantiated.
+> -
+> -Required properties for adi,channels sub-node:
+> - - #size-cells: Must be 0
+> - - #address-cells: Must be 1
+> -
+> -Required channel sub-node properties:
+> - - reg: Which channel this node refers to.
+> - - adi,source-bus-width,
+> -   adi,destination-bus-width: Width of the source or destination bus in bits.
+> - - adi,source-bus-type,
+> -   adi,destination-bus-type: Type of the source or destination bus. Must be one
+> -   of the following:
+> -	0 (AXI_DMAC_TYPE_AXI_MM): Memory mapped AXI interface
+> -	1 (AXI_DMAC_TYPE_AXI_STREAM): Streaming AXI interface
+> -	2 (AXI_DMAC_TYPE_AXI_FIFO): FIFO interface
+> -
+> -Deprecated optional channel properties:
+> - - adi,length-width: Width of the DMA transfer length register.
+> - - adi,cyclic: Must be set if the channel supports hardware cyclic DMA
+> -   transfers.
+> - - adi,2d: Must be set if the channel supports hardware 2D DMA transfers.
+> -
+> -DMA clients connected to the AXI-DMAC DMA controller must use the format
+> -described in the dma.txt file using a one-cell specifier. The value of the
+> -specifier refers to the DMA channel index.
+> -
+> -Example:
+> -
+> -dma: dma@7c420000 {
+> -	compatible = "adi,axi-dmac-1.00.a";
+> -	reg = <0x7c420000 0x10000>;
+> -	interrupts = <0 57 0>;
+> -	clocks = <&clkc 16>;
+> -	#dma-cells = <1>;
+> -
+> -	adi,channels {
+> -		#size-cells = <0>;
+> -		#address-cells = <1>;
+> -
+> -		dma-channel@0 {
+> -			reg = <0>;
+> -			adi,source-bus-width = <32>;
+> -			adi,source-bus-type = <ADI_AXI_DMAC_TYPE_MM_AXI>;
+> -			adi,destination-bus-width = <64>;
+> -			adi,destination-bus-type = <ADI_AXI_DMAC_TYPE_FIFO>;
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml b/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml
+> new file mode 100644
+> index 000000000000..e457630ec7c0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/adi,axi-dmac.yaml
+> @@ -0,0 +1,137 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/adi,axi-dmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  		qupv3_id_2: geniqup@8c0000 {
->  			compatible = "qcom,geni-se-qup";
->  			reg = <0x0 0x008c0000 0x0 0x6000>;
-> @@ -882,6 +905,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 0 QCOM_GPI_I2C>,
-> +				       <&gpi_dma2 1 0 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -903,6 +930,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 0 QCOM_GPI_SPI>,
-> +				       <&gpi_dma2 1 0 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -939,6 +970,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 1 QCOM_GPI_I2C>,
-> +				       <&gpi_dma2 1 1 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -960,6 +995,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 1 QCOM_GPI_SPI>,
-> +				       <&gpi_dma2 1 1 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -996,6 +1035,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 2 QCOM_GPI_I2C>,
-> +				       <&gpi_dma2 1 2 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1015,6 +1058,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 2 QCOM_GPI_SPI>,
-> +				       <&gpi_dma2 1 2 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				status = "disabled";
-> @@ -1053,6 +1100,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 3 QCOM_GPI_I2C>,
-> +				       <&gpi_dma2 1 3 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1074,6 +1125,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 3 QCOM_GPI_SPI>,
-> +				       <&gpi_dma2 1 3 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1108,6 +1163,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 4 QCOM_GPI_I2C>,
-> +				       <&gpi_dma2 1 4 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  				status = "disabled";
-> @@ -1131,6 +1190,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 4 QCOM_GPI_SPI>,
-> +				       <&gpi_dma2 1 4 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1167,6 +1230,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 5 QCOM_GPI_I2C>,
-> +				       <&gpi_dma2 1 5 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1188,6 +1255,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 5 QCOM_GPI_SPI>,
-> +				       <&gpi_dma2 1 5 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1224,6 +1295,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 6 QCOM_GPI_I2C>,
-> +				       <&gpi_dma2 1 6 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1245,6 +1320,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma2 0 6 QCOM_GPI_SPI>,
-> +				       <&gpi_dma2 1 6 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1265,6 +1344,28 @@
->  
->  		};
->  
-> +		gpi_dma0: qcom,gpi-dma@900000  {
-> +			compatible = "qcom,sm6350-gpi-dma";
-> +			reg = <0x0 0x00900000 0x0 0x60000>;
-> +			#dma-cells = <3>;
-> +			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
-> +			dma-channels = <12>;
-> +			dma-channel-mask = <0xfff>;
-> +			iommus = <&apps_smmu 0x416 0x0>;
-> +			status = "disabled";
-> +		};
+> +title: Analog Devices AXI-DMAC DMA controller
 > +
->  		qupv3_id_0: geniqup@9c0000 {
->  			compatible = "qcom,geni-se-qup";
->  			reg = <0x0 0x9c0000 0x0 0x6000>;
-> @@ -1295,6 +1396,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
-> +				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1316,6 +1421,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 0 QCOM_GPI_SPI>,
-> +				     <&gpi_dma0 1 0 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1352,6 +1461,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 1 QCOM_GPI_I2C>,
-> +				       <&gpi_dma0 1 1 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1373,6 +1486,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 1 QCOM_GPI_SPI>,
-> +				       <&gpi_dma0 1 1 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1409,6 +1526,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 2 QCOM_GPI_I2C>,
-> +				       <&gpi_dma0 1 2 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1430,6 +1551,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 2 QCOM_GPI_SPI>,
-> +				       <&gpi_dma0 1 2 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1466,6 +1591,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 3 QCOM_GPI_I2C>,
-> +				       <&gpi_dma0 1 3 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1487,6 +1616,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 3 QCOM_GPI_SPI>,
-> +				       <&gpi_dma0 1 3 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1523,6 +1656,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C>,
-> +				       <&gpi_dma0 1 4 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1544,6 +1681,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 4 QCOM_GPI_SPI>,
-> +				       <&gpi_dma0 1 4 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1580,6 +1721,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 5 QCOM_GPI_I2C>,
-> +				       <&gpi_dma0 1 5 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1601,6 +1746,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma0 0 5 QCOM_GPI_SPI>,
-> +				       <&gpi_dma0 1 5 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1620,6 +1769,28 @@
->  			};
->  		};
->  
-> +		gpi_dma1: qcom,gpi-dma@a00000  {
-> +			compatible = "qcom,sm6350-gpi-dma";
-> +			reg = <0x0 0x00a00000 0x0 0x60000>;
-> +			#dma-cells = <3>;
-> +			interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>;
-> +			iommus = <&apps_smmu 0x456 0x0>;
-> +			dma-channels = <12>;
-> +			dma-channel-mask = <0xfff>;
-> +			status = "disabled";
-> +		};
+> +description: http://analogdevicesinc.github.io/hdl/library/axi_dmac/index.html
+
+Please make description more than just a link.
+
 > +
->  		qupv3_id_1: geniqup@ac0000 {
->  			compatible = "qcom,geni-se-qup";
->  			reg = <0x0 0x00ac0000 0x0 0x6000>;
-> @@ -1650,6 +1821,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 0 QCOM_GPI_I2C>,
-> +				       <&gpi_dma1 1 0 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1671,6 +1846,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 0 QCOM_GPI_SPI>,
-> +				       <&gpi_dma1 1 0 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1708,6 +1887,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 1 QCOM_GPI_I2C>,
-> +				       <&gpi_dma1 1 1 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1729,6 +1912,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 1 QCOM_GPI_SPI>,
-> +				       <&gpi_dma1 1 1 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1766,6 +1953,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 2 QCOM_GPI_I2C>,
-> +				       <&gpi_dma1 1 2 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1787,6 +1978,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 2 QCOM_GPI_SPI>,
-> +				       <&gpi_dma1 1 2 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1823,6 +2018,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 3 QCOM_GPI_I2C>,
-> +				       <&gpi_dma1 1 3 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1844,6 +2043,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 3 QCOM_GPI_SPI>,
-> +				       <&gpi_dma1 1 3 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1881,6 +2084,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 4 QCOM_GPI_I2C>,
-> +				       <&gpi_dma1 1 4 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1902,6 +2109,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 4 QCOM_GPI_SPI>,
-> +				       <&gpi_dma1 1 4 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1939,6 +2150,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 5 QCOM_GPI_I2C>,
-> +				       <&gpi_dma1 1 5 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1960,6 +2175,10 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 5 QCOM_GPI_SPI>,
-> +				       <&gpi_dma1 1 5 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -1996,10 +2215,29 @@
->  						     "qup-config",
->  						     "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma1 0 6 QCOM_GPI_I2C>,
-> +				       <&gpi_dma1 1 6 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
+> +maintainers:
+> +  - Nuno Sa <nuno.sa@analog.com>
 > +
->  			};
->  		};
->  
-> +		gpi_dma3: qcom,gpi-dma@b00000  {
-> +			compatible = "qcom,sm6350-gpi-dma";
-> +			reg = <0x0 0x00b00000 0x0 0x58000>;
-> +			#dma-cells = <3>;
-> +			interrupts = <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 528 IRQ_TYPE_LEVEL_HIGH>;
-> +			iommus = <&apps_smmu 0x056 0x0>;
-> +			dma-channels = <4>;
-> +			dma-channel-mask = <0xf>;
-> +			status = "disabled";
-> +		};
+> +properties:
+> +  compatible:
+> +    const: adi,axi-dmac-1.00.a
 > +
->  		qupv3_id_3: geniqup@bc0000 {
->  			compatible = "qcom,geni-se-qup";
->  			reg = <0x0 0xbc0000 0x0 0x6000>;
-> @@ -2030,6 +2268,10 @@
->  							 "qup-config",
->  							 "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma3 0 0 QCOM_GPI_I2C>,
-> +				       <&gpi_dma3 1 0 QCOM_GPI_I2C>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -2051,6 +2293,10 @@
->  							 "qup-config",
->  							 "qup-memory";
->  				power-domains = <&rpmhpd SA8775P_CX>;
-> +				dmas = <&gpi_dma3 0 0 QCOM_GPI_SPI>,
-> +				       <&gpi_dma3 1 0 QCOM_GPI_SPI>;
-> +				dma-names = "tx",
-> +					    "rx";
->  				status = "disabled";
->  			};
->  
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  "#dma-cells":
+> +    const: 1
+> +
+> +  adi,channels:
+> +    type: object
+> +    description: This sub-node must contain a sub-node for each DMA channel.
+> +
+> +    properties:
+> +      "#size-cells":
+> +        const: 0
+> +      "#address-cells":
+> +        const: 1
+> +
+> +    patternProperties:
+> +      "^dma-channel@[0-9a-f]+$":
+> +        type: object
+> +        description:
+> +          DMA channel properties based on HDL compile-time configuration.
+> +
+> +        properties:
+> +          reg:
+> +            maxItems: 1
+> +
+> +          adi,source-bus-width:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: Width of the source bus in bits.
+> +            enum: [8, 16, 32, 64, 128]
+> +
+> +          adi,destination-bus-width:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: Width of the destination bus in bits.
+> +            enum: [8, 16, 32, 64, 128]
+> +
+> +          # 0 (AXI_DMAC_TYPE_AXI_MM): Memory mapped AXI interface
+> +          # 1 (AXI_DMAC_TYPE_AXI_STREAM): Streaming AXI interface
+> +          # 2 (AXI_DMAC_TYPE_AXI_FIFO): FIFO interface
+
+Put these in the 'description'
+
+> +
+> +          adi,source-bus-type:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: Type of the source bus.
+> +            enum: [0, 1, 2]
+> +
+> +          adi,destination-bus-type:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: Type of the destination bus.
+> +            enum: [0, 1, 2]
+> +
+> +          adi,length-width:
+> +            deprecated: true
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: Width of the DMA transfer length register.
+> +
+> +          adi,cyclic:
+> +            deprecated: true
+> +            type: boolean
+> +            description:
+> +              Must be set if the channel supports hardware cyclic DMA transfers.
+> +
+> +          adi,2d:
+> +            deprecated: true
+> +            type: boolean
+> +            description:
+> +              Must be set if the channel supports hardware 2D DMA transfers.
+> +
+> +        required:
+> +          - reg
+> +          - adi,source-bus-width
+> +          - adi,destination-bus-width
+> +          - adi,source-bus-type
+> +          - adi,destination-bus-type
+> +
+> +        additionalProperties: false
+
+Put this before 'properties'. Easier to read the indented cases that 
+way.
+
+> +
+> +    required:
+> +      - "#size-cells"
+> +      - "#address-cells"
+> +
+> +    additionalProperties: false
+
+ditto
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - "#dma-cells"
+> +  - adi,channels
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dma: dma@7c420000 {
+
+Drop unused labels.
+
+dma-controller@7c420000
+
+> +        compatible = "adi,axi-dmac-1.00.a";
+> +        reg = <0x7c420000 0x10000>;
+> +        interrupts = <0 57 0>;
+> +        clocks = <&clkc 16>;
+> +        #dma-cells = <1>;
+> +
+> +        adi,channels {
+> +            #size-cells = <0>;
+> +            #address-cells = <1>;
+> +
+> +            dma-channel@0 {
+> +                reg = <0>;
+> +                adi,source-bus-width = <32>;
+> +                adi,source-bus-type = <0>; /* AXI_DMAC_TYPE_AXI_MM */
+> +                adi,destination-bus-width = <64>;
+> +                adi,destination-bus-type = <2>; /* AXI_DMAC_TYPE_AXI_FIFO */
+> +            };
+> +        };
+> +    };
+> 
 > -- 
-> 2.17.1
+> 2.43.0
 > 
 
