@@ -1,163 +1,107 @@
-Return-Path: <devicetree+bounces-114029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2BFE9A99EC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:34:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E314D9A99F1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8464FB21803
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:34:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A1B91F224A0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD20F145B16;
-	Tue, 22 Oct 2024 06:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D95F142E9F;
+	Tue, 22 Oct 2024 06:35:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oGG0J35W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z3VTEpom"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A7D145B1D;
-	Tue, 22 Oct 2024 06:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AAC813E03E;
+	Tue, 22 Oct 2024 06:35:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729578863; cv=none; b=e+r7/ab8fz6hr01ykJqiXC05upGTf4FBXYV3ft9/Ups0OXExNFHKMSyAMGA97dL/siHwYy2FMzEGAO6OwDok9nmxNxFG/+hg0ZZ/x31Yksz8NorvVQXuzYHGTbJuyUN8EKGNDM2G1+03B8dkXWYiWRdsGVmc8RZOfSURW4nUQD8=
+	t=1729578935; cv=none; b=muECR/Mz80TBQOSCtg5YWWPqENpWPK6M32zlsCgU+6M0VkNkQopkKvjyjCbI3l+5+9C/mFEuhnqvMzmr0I1vltytabc5UypJPiFC+K8OTS58d+ESqbEHgEEBtwlwDEtt4V7Pf34GlMHKI1PxTF4CFtiebf3lnizT0uTyCYHN1u4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729578863; c=relaxed/simple;
-	bh=EblcvRA9qNW60RSbDiXV1fyDYUFjayvBzrexf5KCGk8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gHiXWb4Y5Bl5NN6RDaGu/NaJNVhCS2MjuQ/G+t6iswbC17fImLbx4zAMjVNDjviuKe1IgxA31NLlpPFpuS1mW3GDNQ5aEChAHIE0N8zsWEWOqIFdZ59ju5eMwrHiCb780DgOw40y3h/J2KXOSL5yv7t4YxJYtt78Y8pxQ9AoKyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oGG0J35W; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LIaaES017132;
-	Tue, 22 Oct 2024 06:34:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4MawGpLa/NNaYxXFZcETJ52viwjLZbX91KKAa29KKAU=; b=oGG0J35W6LgbfjBE
-	qF6krQUF/QFCHFeXpw6Td3MsFiC4Nuk2439bGQC7n7e6ZWFyfK2Crhj9QvnFAAke
-	mm15F5WDups82lWbIUCafGYksTc34RkEP7lpJzyaf134AgOCFK+J8L7RX7vCWUhH
-	XzmL472Kg/qB1/20LuANccmpC8QcP6UDqeV3E/euZPf1HHgOsukVglZpPog1ke6N
-	rwqpbnFrwVKXr4eL2faDW3GOiSzUB845pNCaYWfqtj10himkE9iK41DXbfl8Dx7S
-	dG2lsgDRQMmqIJmAe2IXYe7WGh3bSasOtLJ2X71oIvINNJUB60498gnv0DXh6b2K
-	Mc2o1g==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42dmdqb33w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 06:34:17 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49M6YGsx027941
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 06:34:16 GMT
-Received: from [10.216.44.181] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Oct
- 2024 23:34:11 -0700
-Message-ID: <36bfe493-8a85-4add-93e3-650b002636df@quicinc.com>
-Date: Tue, 22 Oct 2024 12:04:09 +0530
+	s=arc-20240116; t=1729578935; c=relaxed/simple;
+	bh=f/4LPkUrDgub4VPiv5XgAEJ7tHTuc6Y+P4YkJHZv/kA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=izFy7zXxXvYFfzpepiOreOhfl91sL1ySLgdPEmH+dTuewKg+sBjk9sTOKXjv0Nj1MnFviwXTMGAYAid73uO9XKOIDJiqLCS/SaiYkTZKufwlBPJGfiaR3436wF5JGryd/buj2agV4w6Nq+Rukh4qXBW+wo3thXljaayETLuAFtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z3VTEpom; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4315baec681so54063255e9.2;
+        Mon, 21 Oct 2024 23:35:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729578932; x=1730183732; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=f/4LPkUrDgub4VPiv5XgAEJ7tHTuc6Y+P4YkJHZv/kA=;
+        b=Z3VTEpombUMH/ufnHcV9nwh9PrntSV4w8lzJreyQ50c73K9Y7KX0F6ONdxqueTs4B2
+         ysR8H5nB0y9gzOsWLLMatIxGjdm8ECk4k1MQU6fUhdUi1RCrq0ZwAmhb6Nt1PGHYAR0b
+         C79m/I2a+nqDaLq3bd1st9IukHmVMOwVqb2VDyZ2Us7fYjua1egL4hqbIXbgVd9mnsFX
+         UZCwrREkS+ojG2ZB2F9gRxdVwCyEdz/IIA4r+b0qgj4pzDJy8RHQtvOTCgRRqfiqiQdo
+         Bz+ArmmcN7uEb8WHtK/DkobFgrtCH4JBGq1s3TQ8w+Uf5I29+sjvyscBR5xlb6+RzSEh
+         EX0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729578932; x=1730183732;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f/4LPkUrDgub4VPiv5XgAEJ7tHTuc6Y+P4YkJHZv/kA=;
+        b=wBfLzJO+3+qRtdXSZQaMKKMzyLPM5uYRnVChmlxJHJBDjDo4x4ZBKGfHAkb/sLbQSw
+         26tz27BDoOibWjvuvYpyHpSqSrUuaf1RRlbxCVsVecuUsp7OPTuTv4bT7IPXOalFj4Bf
+         zrv5iwert2hZSGwBAVhA84qt0dh1f+a4uQ6hVRbeuwn9GtBF+GiHumMXInTQ559LT/Wx
+         abNxeWnCE4meUePeoS/hwR8JgpAJjo0XIPxpM5V+CcUDm4ORn42t2vYbhvEUx+/XfVE9
+         x2XJIPcOpGIedQVPTM5+QVq3exvgz6dSGWFMgv65wlhJESb0SpiRCHG22oDuRG+6sNsc
+         e1OQ==
+X-Forwarded-Encrypted: i=1; AJvYcCULAlWg1FifQ+DNRcruBSaI6gKz+17k+aC85WwIppc1LgswzriS1Tj0hiLVpxlnxMheSLfOQacZng0/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRtd9re4mOvEjaEWxZ0iGjOem1kFfMiGJXcigHLqS5rAhiH92z
+	2QHlIyYpLSNBFoVU0SmqLuMTkxZ1lE3mUcPVjBTGMvoiaBVdaiaS
+X-Google-Smtp-Source: AGHT+IFTNXLsxN1R6wim6OUD8zZTTf4YG0tq1SCP94X8xnPM3vGFANeN3Se88tG012MdQ1W1KO52KA==
+X-Received: by 2002:a05:600c:3b25:b0:42f:8515:e4a8 with SMTP id 5b1f17b1804b1-431616331e8mr114512855e9.6.1729578931543;
+        Mon, 21 Oct 2024 23:35:31 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2bf3sm78051685e9.38.2024.10.21.23.35.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 23:35:30 -0700 (PDT)
+Message-ID: <d8bd85955bc5051f50b473028698f1c9d6b802ce.camel@gmail.com>
+Subject: Re: [PATCH 4/4] ASoC: codecs: adau1373: add powerdown gpio
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Mark Brown <broonie@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, Liam Girdwood
+	 <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	 <tiwai@suse.com>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	 <conor+dt@kernel.org>
+Date: Tue, 22 Oct 2024 08:39:49 +0200
+In-Reply-To: <7a8b1560-c091-4e87-a6f4-7ca7453b7414@sirena.org.uk>
+References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
+	 <20241021-adau1373-shutdown-v1-4-bec4ff9dfa16@analog.com>
+	 <7a8b1560-c091-4e87-a6f4-7ca7453b7414@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] clk: qcom: Add support for GPU Clock Controller on
- QCS8300
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Taniya Das
-	<quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        "Satya
- Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com>
- <20241018-qcs8300-mm-patches-v1-2-859095e0776c@quicinc.com>
- <puhpztfn6ga5rxv4mwu7wyvk63hqme2nzffcvzwv7t4oo5hlvc@4ugxncmu3wwk>
- <o5v3fch5oxol4t7j4xlqswk6m6uo4tleck2cnfk6whpfqsrvjc@s2yrjumgvw6j>
- <34216857-170c-45d4-8f6d-987573269215@kernel.org>
-Content-Language: en-US
-From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <34216857-170c-45d4-8f6d-987573269215@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _Z9cHtAk172C_5x6AprBo93FeR1XZQOR
-X-Proofpoint-GUID: _Z9cHtAk172C_5x6AprBo93FeR1XZQOR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 spamscore=0 mlxscore=0 phishscore=0 suspectscore=0
- lowpriorityscore=0 clxscore=1011 malwarescore=0 impostorscore=0
- adultscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410220041
 
+On Mon, 2024-10-21 at 16:30 +0100, Mark Brown wrote:
+> On Mon, Oct 21, 2024 at 03:46:48PM +0200, Nuno Sa wrote:
+> > If the powerdown GPIO is specified, we use it for reset. Otherwise,
+> > fallback to a software reset.
+>=20
+> Ideally we'd also put the device into reset when we unload, but that's
+> not essential.
 
+Alright... I can do a v2 with that. Will just wait for some more feedback o=
+n the
+rest.
 
-On 10/21/2024 8:41 PM, Krzysztof Kozlowski wrote:
-> On 21/10/2024 12:56, Dmitry Baryshkov wrote:
->>>>   	{ }
->>>>   };
->>>> @@ -596,6 +635,14 @@ static int gpu_cc_sa8775p_probe(struct platform_device *pdev)
->>>>   	if (IS_ERR(regmap))
->>>>   		return PTR_ERR(regmap);
->>>>   
->>>> +	if (of_device_is_compatible(pdev->dev.of_node, "qcom,qcs8300-gpucc")) {
->>>
->>> Why we cannot use match data? Seeing compatibles in the code is
->>> unexpected and does not scale.
->>
->> Because using match data doesn't scale in such cases. We have been using
-> 
-> I don't understand how it could not scale. That's the entire point of
-> match data - scaling.
-> 
->> compatibles to patch clock trees for the platforms for quite a while.
->> You can see that each of the "tunings" is slightly different. From my
-> 
-> 
-> You have one driver, where are these tunings which are supposed to be
-> different? You need here only enum or define, in the simplest choice.
-> 
->> point of view, this approach provides a nice balance between having a
->> completely duplicate driver and having a driver which self-patches the
->> tree.
-> 
-> How duplicate driver got into this? I don't think we talk about the
-> same. I meant ID table match data.
->>
-
-I agree with Dmitry. If I understand correctly, to add match data 
-support, we need to define the gpu_cc_qcs8300_clocks struct by 
-duplicating the entries from gpu_cc_sa8775p_clocks and then adding the 
-additional qcs8300 clocks. The compatible approach is simpler and used 
-across most existing platforms.
-
-Thanks,
-Imran
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
+- Nuno S=C3=A1
 
