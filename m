@@ -1,182 +1,141 @@
-Return-Path: <devicetree+bounces-114074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 341E99A9B78
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:50:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B9449A9B85
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:53:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E47EE2825F8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:50:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC028B217D0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 07:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4490C149E0E;
-	Tue, 22 Oct 2024 07:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F811547C0;
+	Tue, 22 Oct 2024 07:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mudIEwTw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WP+vrCJG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EB4813AD2A;
-	Tue, 22 Oct 2024 07:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49C1127E37;
+	Tue, 22 Oct 2024 07:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729583449; cv=none; b=BUrXVH7DNFoL5etm2KUccvkzGH0o/ku9AcBCaeOoaoBTeUrSflUZgJhi3i2iFUW3pvdKqdIMLyOpIdFH1zB1oweepfbf6JlKZ9LSwzz0LJupF+45gpntZDrTjGVRTCAViPltCg2bMc2NyxJ5wXthUdwIaXW9et2XGl+db72bg/8=
+	t=1729583627; cv=none; b=cEUDDPfcw+Dmc6CKAd+iO/JfRpdz3OzHtXRTdpaoSXUkS1lLYC02YxRAW0TV3qo+Wl9CoUKI7RFJ8mK8Q3thrPOH+h78KRB0zk7BSysbjTRI8BoCECtnEVdjCQ27W0DwP912KnGDePyD2rqUDrPJUhYy0fhxP5cdWcCaW/N9TTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729583449; c=relaxed/simple;
-	bh=FFkqX8JXSwAe5nloeMb6u4fpSIZT16b4DjZAifoQqCQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nz+xsfYuBW6vdukMd6wTFvqLR6MP/m4t9bi40pimCkRiSTyzh781qul2qDNRJT9KwhNFTLKUT7zvyL4MvYCnkoDI2jSBGUHY0yZG81gZKddktYKB1OXakj0goMBQsEL1vU+91OnhdYjuC+rfhG6fhmipsTnhOkjmUoDGqScj6rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mudIEwTw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LI0wrf012434;
-	Tue, 22 Oct 2024 07:50:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=E3OAqgJqJplSETmxkoQm58tf
-	JNZ2u+eymO4b66DsCoM=; b=mudIEwTw6qoSU1vE1u/KUoDo0/Pa/uha++bS9Ltq
-	Fy8K+4p6tfC126fkakCd4UaucGEPXKk6v/IW+K3RZe25FUgXwD14thhwpU/xSXKz
-	JRVxMVhL6el7v36GC9vYUoh86IJTW4NPQWWcYcDS1F1/V9pafiUd0q5dfZLq+iv2
-	/uh3pgzYlVPTGpVGA7/GRVp+oQXGyCpYVoKkT5QNkvORYvPIs3nK3Q47P4p5XN6i
-	oXXNc1UenH2hvwXWmpaHvsf7lGPaPABxgXq0qd8qkuY83b4SA65c/stwpDcw5IhK
-	dzCnKUxoJahaFEnzwp5GTwxpCG2awaH+fjt8pO5iOJAXJw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42c6vc7fv6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 07:50:28 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49M7oRTn002734
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Oct 2024 07:50:27 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 22 Oct 2024 00:50:21 -0700
-Date: Tue, 22 Oct 2024 13:20:16 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <djakov@kernel.org>, <richardcochran@gmail.com>,
-        <geert+renesas@glider.be>, <neil.armstrong@linaro.org>,
-        <arnd@arndb.de>, <nfraprado@collabora.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <netdev@vger.kernel.org>,
-        Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Subject: Re: [PATCH v5 7/8] arm64: dts: qcom: ipq5332: add support for the
- NSSCC
-Message-ID: <ZxdZONgqUag9kJ2L@hu-varada-blr.qualcomm.com>
-References: <20240829082830.56959-1-quic_varada@quicinc.com>
- <20240829082830.56959-8-quic_varada@quicinc.com>
- <hvbrd7lyf4zjhwphxiephohuoy7olmqb5hxsa4qnidmuuae45p@swezjh3lfpzi>
+	s=arc-20240116; t=1729583627; c=relaxed/simple;
+	bh=94yBtoN+NpXDkZbfuTm6IbHirn/x4DZTEvDfAeXAcpA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O+CvHS6dSa1oR+AwwSm83XwCy+dpOofL4ui5Ig9A+hyXEnz35X8PQn/cXZn9gTS2LnopUKbZdejEbxmfu/5Fy0+8+3zk57vxtKafS5L3uTNn1lXmfXlV/P7IkRsaJlepJXhhygR+TmkZMSiyPVZPSnaEiwjQA6ObUuOTJ9pC/JE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WP+vrCJG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 157F3C4CEC3;
+	Tue, 22 Oct 2024 07:53:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729583627;
+	bh=94yBtoN+NpXDkZbfuTm6IbHirn/x4DZTEvDfAeXAcpA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WP+vrCJGa7gZyLVrVwi+VFRTM0ScCecdKxk+Li7zOUiaDW2pfTG6XrcpVzRGv9STR
+	 T7OeATEZTlF+IPmvX0czoTTOOtsAP2de3OUrShTxlShJMVjoZ/9QRRQTLHnFIazkDM
+	 oI+HVzjH2p4APM0aW14CGQfNl9lvZGyKjDbEKgip52Bss+DcL0a1nOliVeJ+3p5aZ9
+	 Wkdmh1eo8Wr+dfhbRH+zTuDP0aTU0AW2nJ5mDLB+bo2geepiQNAus+kMdvvTPfizSO
+	 pF9vugoJRndcp9osV0GvvkoAEOoeCWBPhf6CKZZg3cRUoEJ+jlKKKDFysKiyQb9vaG
+	 fMUjSgsr37F2g==
+Date: Tue, 22 Oct 2024 09:53:44 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
+	jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, quic_jesszhan@quicinc.com, mchehab@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	sakari.ailus@linux.intel.com, hverkuil@xs4all.nl, tomi.valkeinen@ideasonboard.com, 
+	quic_bjorande@quicinc.com, geert+renesas@glider.be, dmitry.baryshkov@linaro.org, 
+	arnd@arndb.de, nfraprado@collabora.com, thierry.reding@gmail.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, sam@ravnborg.org, marex@denx.de, biju.das.jz@bp.renesas.com
+Subject: Re: [PATCH v3 12/15] drm/bridge: Add ITE IT6263 LVDS to HDMI
+ converter
+Message-ID: <20241022-wondrous-fractal-lion-aedcd9@houat>
+References: <20241021064446.263619-1-victor.liu@nxp.com>
+ <20241021064446.263619-13-victor.liu@nxp.com>
+ <20241021-thick-cockle-of-popularity-c5e28c@houat>
+ <889594b9-e6cb-4d90-b959-cd0258b2f166@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="ndesq6xmp4pn532m"
 Content-Disposition: inline
-In-Reply-To: <hvbrd7lyf4zjhwphxiephohuoy7olmqb5hxsa4qnidmuuae45p@swezjh3lfpzi>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Jzr-NvcTDyNsO1DpnpI8DxZ-0T4akIq3
-X-Proofpoint-ORIG-GUID: Jzr-NvcTDyNsO1DpnpI8DxZ-0T4akIq3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 suspectscore=0
- spamscore=0 phishscore=0 bulkscore=0 mlxscore=0 adultscore=0
- mlxlogscore=956 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410220049
+In-Reply-To: <889594b9-e6cb-4d90-b959-cd0258b2f166@nxp.com>
 
-On Thu, Aug 29, 2024 at 01:21:20PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Aug 29, 2024 at 01:58:29PM GMT, Varadarajan Narayanan wrote:
-> > From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> >
-> > Describe the NSS clock controller node and it's relevant external
-> > clocks.
->
-> Who generates these clocks? 300 MHz crystal?
 
-These two clocks are from the output clocks of CMN PLL.
-IPQ5332 CMN PLL patches similar to [1] are in the pipeline
-and should get posted soon.
+--ndesq6xmp4pn532m
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 12/15] drm/bridge: Add ITE IT6263 LVDS to HDMI
+ converter
+MIME-Version: 1.0
 
-1: https://lore.kernel.org/all/20241015-qcom_ipq_cmnpll-v4-0-27817fbe3505@quicinc.com/
+On Tue, Oct 22, 2024 at 03:36:47PM +0800, Liu Ying wrote:
+> Hi Maxime,
+>=20
+> On 10/21/2024, Maxime Ripard wrote:
+> > On Mon, Oct 21, 2024 at 02:44:43PM +0800, Liu Ying wrote:
+> >> +static int it6263_bridge_atomic_check(struct drm_bridge *bridge,
+> >> +				      struct drm_bridge_state *bridge_state,
+> >> +				      struct drm_crtc_state *crtc_state,
+> >> +				      struct drm_connector_state *conn_state)
+> >> +{
+> >> +	struct drm_display_mode *mode =3D &crtc_state->adjusted_mode;
+> >> +	int ret;
+> >> +
+> >> +	ret =3D drm_atomic_helper_connector_hdmi_check(conn_state->connector,
+> >> +						     conn_state->state);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	return mode->clock > MAX_PIXEL_CLOCK_KHZ ? -EINVAL : 0;
+> >=20
+> > drm_atomic_helper_connector_hdmi_check will already make that check, so
+> > it's redundant.
+>=20
+> MAX_PIXEL_CLOCK_KHZ is 150MHz. With 150MHz pixel clock rate, we'll get
+> 150MHz HDMI character rate for 8bpc and 187.5MHz HDMI character rate
+> for 10bpc, both are lower than MAX_HDMI_TMDS_CHAR_RATE_HZ =3D 225MHz.
 
-Thanks
-Varada
+I guess? I have no idea how that's relevant though. Where are those
+constraints coming from, and why aren't you checking for them in
+tmds_char_rate_valid?
 
-> > Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> > v5: Remove #power-domain-cells
-> >     Add #interconnect-cells
-> > ---
-> >  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 28 +++++++++++++++++++++++++++
-> >  1 file changed, 28 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> > index 71328b223531..1cc614de845c 100644
-> > --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> > @@ -16,6 +16,18 @@ / {
-> >  	#size-cells = <2>;
-> >
-> >  	clocks {
-> > +		cmn_pll_nss_200m_clk: cmn-pll-nss-200m-clk {
-> > +			compatible = "fixed-clock";
-> > +			clock-frequency = <200000000>;
-> > +			#clock-cells = <0>;
-> > +		};
-> > +
-> > +		cmn_pll_nss_300m_clk: cmn-pll-nss-300m-clk {
-> > +			compatible = "fixed-clock";
-> > +			clock-frequency = <300000000>;
-> > +			#clock-cells = <0>;
-> > +		};
-> > +
-> >  		sleep_clk: sleep-clk {
-> >  			compatible = "fixed-clock";
-> >  			#clock-cells = <0>;
-> > @@ -479,6 +491,22 @@ frame@b128000 {
-> >  				status = "disabled";
-> >  			};
-> >  		};
-> > +
-> > +		nsscc: clock-controller@39b00000 {
-> > +			compatible = "qcom,ipq5332-nsscc";
-> > +			reg = <0x39b00000 0x80000>;
-> > +			clocks = <&cmn_pll_nss_200m_clk>,
-> > +				 <&cmn_pll_nss_300m_clk>,
-> > +				 <&gcc GPLL0_OUT_AUX>,
-> > +				 <0>,
-> > +				 <0>,
-> > +				 <0>,
-> > +				 <0>,
-> > +				 <&xo_board>;
-> > +			#clock-cells = <1>;
-> > +			#reset-cells = <1>;
-> > +			#interconnect-cells = <1>;
-> > +		};
-> >  	};
-> >
-> >  	timer {
-> > --
-> > 2.34.1
-> >
->
-> --
-> With best wishes
-> Dmitry
+> So, it looks like pixel clock rate is the bottleneck.
+
+The bottleneck to what?
+
+> Remove drm_atomic_helper_connector_hdmi_check() or keep this as-is?
+
+No, like I said, remove the final check for mode->clock.
+
+Maxime
+
+--ndesq6xmp4pn532m
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZxdaCAAKCRAnX84Zoj2+
+dkMtAX0bABUvvrQvsEVfC/FsHL24JniTnXVp5PfMg4bNoZgQKIMXrttSyJhmufST
+5RbQcPUBfRss1fUSXSj1YNr6FqAGDfJUWa++ed7TSbFOKM1yWDyQJwOyznEzViOj
+kYYL52W9yg==
+=wUZL
+-----END PGP SIGNATURE-----
+
+--ndesq6xmp4pn532m--
 
