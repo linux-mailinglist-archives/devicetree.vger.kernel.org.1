@@ -1,86 +1,122 @@
-Return-Path: <devicetree+bounces-113933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18C939A95A8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 03:48:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7F49A95E7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 04:02:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 475991C21BAC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 01:48:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 729481F23DA0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 02:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B7B84D0D;
-	Tue, 22 Oct 2024 01:48:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81256142E78;
+	Tue, 22 Oct 2024 02:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="eol339eT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oq2pT0t7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3DCB38384;
-	Tue, 22 Oct 2024 01:48:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A880141987;
+	Tue, 22 Oct 2024 02:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729561683; cv=none; b=P4Rgpc+Fnes7D2mGJLQGPqGn81JYQnJN+16Jrki6ZoIECZfs7v5XLmPQ45UminQ6ltd6HFJxjcFQI3UZqQyYhoViAR611kvBinOwfGkJKRl8VL/9S9mrUsh0VdUF0hKS0wJ0li63tkt0ysz6b7xARRZpJt0SRyc36mGEhnwUTEA=
+	t=1729562484; cv=none; b=bVuoHPRBVPK5MLql/QrziqdMjRsGunyqgWZ9MFA1CB1w80qjmkouMh68wxd72JJkI52uWuD69+i+152aTj5xUIi53oKAo4jyLYSkmyWcpKdL/4CT9hTu+syCD0wX9nLZR1kXM8uGaeE12AiulCrBh9Nz/8mBe1s7DDJyvp8E4xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729561683; c=relaxed/simple;
-	bh=hqYD/CBNsaLsrn8FBvCiBFGdvxlp3H8BJorx44bx5xU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DYvi8DrMhFnXqdvIeezZfkIdrr467xGX253jEfJi/ItZswJZkCCfqpj3G8V5g0PX227wndJvlSdpJZCKrGM7VLavR1NxAiXZW2W6yDhYsxSNaJlGHeB5p2DkkH3OuQGlVbpnPf9+KYW/Moun1gFmrZOvUhRTZAg1+9JmYgdNlhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=eol339eT; arc=none smtp.client-ip=220.197.32.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=eWBEveVJM0G1RyM83TGGBhWjSPPu5+wqEZFI9XnVW1Q=;
-	b=eol339eTJt+loXgGdojJkVLcrpCrYmvbxfw8lfFRrttEejnU1HKsht0B+Gfr4T
-	rfbj9cr/5vRhoAL15QRVv3E53VTHvzk6nQ8xA0E3E53eBk51u94sY4eLIJNCnl8B
-	ijVJ5BgUHhmKlbKSRFz82z6qJBqeYumEztB9zxiocIYDs=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgCX3XwlBBdnaAaSAA--.5191S3;
-	Tue, 22 Oct 2024 09:47:18 +0800 (CST)
-Date: Tue, 22 Oct 2024 09:47:16 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, kernel@dh-electronics.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6qdl-dhcom-pdk2: Fill in missing panel
- power-supply
-Message-ID: <ZxcEJIZVdMSxbx27@dragon>
-References: <20241015232509.101206-1-marex@denx.de>
+	s=arc-20240116; t=1729562484; c=relaxed/simple;
+	bh=ZRiqAHnP27cfBP/NQQBM0XoZ8/zdK0SbvS6GfSDV+Tw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AA/de4nuZfckYF5hwoniCgSYIxVA5Br5Kh+f0+ilH1WXQ2Y7ANg7BUE/mHMdTHrZV7d8drhJhYH3PsfxJ5abZ1uAH27JT4YVmI1qTGz+VnI/E3kMDpAdgDtOpPcvpzjvly82u7CuyKN/fZYfgF4ek7X2en7Fqvu6DmXqMl5LKks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oq2pT0t7; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20caea61132so40278925ad.2;
+        Mon, 21 Oct 2024 19:01:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729562482; x=1730167282; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aPNabAA00UhSLiwzu+RL1RxmJwr1aDxxDCGsIyPJfSQ=;
+        b=Oq2pT0t7Mudf2Sy3UDbw99FMxOxCaWjC7SIvDImtFlDwdfPLuVxWB/JB1p7fN4LVGS
+         2cE0XX/eFMe4g+LVSAEa88r0yRAXN5nK8ji/RwMTPYByGIGvb8aYrU7i6tKdsKMDxSc7
+         iC3T3Q4ovOEl6xxTaqDXtZvDmkLFk7j7If25T2Fh7zCQgEgZWIg0OTMyDyybLFhXzZcu
+         iGG3Ts5EsHJ2Ty1g6POTJbsqFUkkpIvk+hMqfmTgjqlI8uj2tr1VcVyXhArS/7TgsML2
+         jMDZXGELcBzD8L5ff4OGIqlvCezXZoGSeLIJT822uSFuA96CazbiUWZR+GUsL1A+Pk7Q
+         jLEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729562482; x=1730167282;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aPNabAA00UhSLiwzu+RL1RxmJwr1aDxxDCGsIyPJfSQ=;
+        b=wJutzgRe7Jz7W90Iv1L8RhpteLjkctTbx7PxIf7WKxPs5WXrbnabdtlJXef+AziIsx
+         GWJrXWYJvNpFv7MtP6nAFpwN8HiADvfYqRA4fJv/b4LLTMB2Rz9/iMgqhLihRyr2Ra3G
+         CLtpMk39CwtcO7IFFKPcqz5gzPBojuCddwjlnZ60NH1yHeyu0kW/IW4I7aIm0kcADerU
+         oV3RsQWJ96UCdT4T/QriXBFTofKFaK+yNHN0u8Ap7DHWmEk5TQc40xopi1+vTrCjxDtB
+         1pkcxv77XkB7M/1VmnUXgGX8hbR/EjD4KJIVn2e437uy+JMRq44felPi2rlvYVRke447
+         7y0A==
+X-Forwarded-Encrypted: i=1; AJvYcCU9RlrOuCIQYRr1FqcdacON39NmYv13aZIj89brslF8XfvO/ZhNIVQt5iWjbEZWF2cY5oOXoVWU2fL7YKnM@vger.kernel.org, AJvYcCXIsvwjfN0oPmB+BXZNhqvGhsQUXI+tJ295zKfuIjaxZFezH1HSIrvLZoADFzmBkmREUxSt2aOJ/65g@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8D05dvnx0Ns/iWE/owPsjSBnice6Q6Qg4mq354Ddygww2nKhI
+	+Qa/f8QXqLyYbwAEBG2yHH2ZJHjPgIKj0YT2QBRImlJJm31ZWVsp
+X-Google-Smtp-Source: AGHT+IGzuILj1RsrFZjoJ4dXI5tDh7XMcKK2Bx+k0YFTR77UD8om/JwzukAtT+4x7q3vK/f91G9AFw==
+X-Received: by 2002:a17:903:2448:b0:20b:58f2:e1a0 with SMTP id d9443c01a7336-20e5a76137fmr161321345ad.18.1729562482111;
+        Mon, 21 Oct 2024 19:01:22 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0f355csm32435915ad.265.2024.10.21.19.01.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 19:01:21 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: aou@eecs.berkeley.edu,
+	unicorn_wang@outlook.com,
+	conor+dt@kernel.org,
+	guoren@kernel.org,
+	inochiama@outlook.com,
+	krzk+dt@kernel.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	chunzhi.lin@sophgo.com,
+	Chen Wang <unicornxw@gmail.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>
+Subject: Re: [PATCH 0/1] Add power key for pioneer box
+Date: Tue, 22 Oct 2024 10:01:01 +0800
+Message-ID: <172956244972.305559.6733343990944223670.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <cover.1728350655.git.unicorn_wang@outlook.com>
+References: <cover.1728350655.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015232509.101206-1-marex@denx.de>
-X-CM-TRANSID:M88vCgCX3XwlBBdnaAaSAA--.5191S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU3mhFUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgaAZWcW3kZhjwAAsm
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 16, 2024 at 01:24:51AM +0200, Marek Vasut wrote:
-> Add missing panel power-supply property to DT to fix the following warning.
-> The power supply on this device is very simple chain of regulators from the
-> main 24V input, describe those.
+On Tue, 08 Oct 2024 09:43:32 +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> "
-> arch/arm/boot/dts/nxp/imx/imx6q-dhcom-pdk2.dtb: panel: 'power-supply' is a required property
-> "
+> Add power key for pioneer box.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Thanks,
+> Chen
+> 
+> [...]
 
-Applied, thanks!
+Applied to for-next, thanks!
+
+[1/1] riscv: sophgo: dts: add power key for pioneer box
+      https://github.com/sophgo/linux/commit/128bded4bc5253b94c66acd63bef03f16148ae4f
+
+Thanks,
+Inochi
 
 
