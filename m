@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-114265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FAFD9AB29E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:51:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 253EF9AB2A2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:51:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B6FD1C2265B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:51:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 961D91F22073
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13AC1BE852;
-	Tue, 22 Oct 2024 15:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802E01BF335;
+	Tue, 22 Oct 2024 15:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RlTJBhgU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vkzBi2Be"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F391BDA90
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 15:48:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B767819D07E
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 15:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729612100; cv=none; b=ApWC09K4fVqF2H4ilKWfUxgyI7TlHa802Dub5OOh0b/XSXw92Wq3LCEJFvhmk9yqOKHpXYZI5sosNpVFMtPZs4HFjA21oqdmVmT/dkfLURXBwCzFfGxXZ+JZSkPRP4/ahNh8VUKfewiLmSRXKUuw64sOnQ0U0FULYr7kzvWeEpc=
+	t=1729612102; cv=none; b=qzkCmeN2S5Ltmwkp6fgPQNUN0JCFIi6lKmXZkMe7Ld/yKuGXU7krUfKQwacmJ8s3C7LTaQnT09jYQuNUdbGbtH9b2HQcjhpnGw3fkunibpl9eB1dLNPIvBhWlLgRjJoMnolVvUVfpxAkiYPC3LofEBB87et37OvrbLHcBdE534w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729612100; c=relaxed/simple;
-	bh=iPL390E5JLXtD3wTFEtOSzANh7PbtLmD4GW7T04H1Gs=;
+	s=arc-20240116; t=1729612102; c=relaxed/simple;
+	bh=fdf5q7Kdg5agvSReu+CjfGcEHicH6nlf1t2RIbqvN1I=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OPsIanWam+/7g+6ngFlo5TYnXRd2jYfJFsJ/guNPu0HUokg3PYdrhHcq6TBt1m8p3dowPRG5U8l6F3vCPXV4sA8QGUxwQZQMdfWmrWyfMwyssRFLRRBDOmw/OAIT7iaAlYaffyhFFUd8Jo8iauNRagF/8HLKxA30W+4ppg4rG48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RlTJBhgU; arc=none smtp.client-ip=209.85.208.46
+	 In-Reply-To:To:Cc; b=hu1iy1xkLIIyV2MhssHoQeua+ylCubhEHbu67eqkc88VRQTR9RS3IKKBVlJSoool4mezjA5lIZkEIdnVQtEXTm8Taav43L+VRXsQcbBXJJBNP5xwWE9+EpYibRLrz5HXEo2VZSlr4i7eEZ1JbiSrjmfm6QnqbF7wwj0Zj+Cqy1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vkzBi2Be; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5cb79c648c9so155519a12.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:48:18 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5ca0a1fc1aeso769998a12.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:48:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729612096; x=1730216896; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729612098; x=1730216898; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KjB7bNtH6RNNDltSB+1qzZOH17wcQ0yrLiP/Eqf10XU=;
-        b=RlTJBhgUc6Q+F8toOq1fIvwGn4JDRnCq30Nd5V0FlI6gixtKsLP+c0E8+SkHNJ4HDm
-         WrFNbSDeSGtT9jkGZega1/n04GkyvtRo8XaM+yb/lYGIPmyq2AqTBFTmqUeYjPxkVifu
-         vOikkO2smipnSJqAZ/zUH3TPjK0k4oHbcByhjVkXSqDd+4GP+jdft4P2KQxgFZiP7B+1
-         6vIYuBUeaqdMBzTr/4o4MPyYNsTKJC3TDnBK307qyW78sBrxw421i3EzZZTT6hqSocQ1
-         nthSxlC5pEjRWHptM7N7hmjOAV2Ad9e3EY9sHFXBelV4+nf0i2M67URtp1283ZvfpuHF
-         R6Ag==
+        bh=UBm4Nhw4qPHigj/nsxESh7ajX6tcdPfbKCrsfAQCQsI=;
+        b=vkzBi2BeB+y8Fw5fWAs9PR3FKAGrGY5kqieb0JJ57xM7/lYva133fTMiN4z/tzXAAi
+         BNID+s1v/9be1Tjz/f3TDQ2V2unP4X73sehQtFifzFQoEE0k1p5Srb2DXFlt5Uhg7amI
+         6yy1gYwEaX3vAwt3ZPUpYbGTj2GDozFn3lJCpQ8M0VwNLhGiKSwsjPgIzPO/VHH8BHsa
+         Jr6r1JYwvC1M4bQXx3y3C+eyJRZRt55CNapqPCo/vK/4Obu2FqCjIvpZXQzJDI49Vi4u
+         RsEYqIe0OaC0U/FbaJP7b5Ap0qhX7QXkuIiA59ICrV4ZdwA82jB+CXf8xs8GC3f81cmf
+         hAuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729612096; x=1730216896;
+        d=1e100.net; s=20230601; t=1729612098; x=1730216898;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=KjB7bNtH6RNNDltSB+1qzZOH17wcQ0yrLiP/Eqf10XU=;
-        b=NbNqXRWmKrnEN1vJwaRFYFFicCJaISp6s0zNsZKe3ZVpYdXcFglGCtij5ujJsaPwzw
-         bBgQuBS6vPoLaGEVUFlSVlFzmkVgwdbNJB5+1KltaR31cFkkQqvW5HfjGWadQiy4leVO
-         sUQisQ30xFyorQ699ZKQyoLMvT9o1aBkXcYK0E6eZ6a1iBtpryz7INXHLdZfADUIlqN0
-         xNmnGp/JxUWLlDOuALyKozi72iDVTW7Vs+GfNxPFWU9PtDd8oFzP85DGXi6QIgmQ1rUB
-         fUZYhLGl4Dpkwtnj8ayXvmipVA2fW/Z8TYAaH37QO7z51kfpNiVD4fss2c3edFHqBTyn
-         ZLyg==
-X-Forwarded-Encrypted: i=1; AJvYcCX6IDHJxcE7yY0sa8XzXWMbiCIavYlomiAbO74FeD0caOvrrUBc/VYx9GcSM4uJg0STsI+xu9ZOiEzr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwavhlfYLhQyoLoYruNHcFg8Cx3zyyY8StTTc73jKEH07CExu3v
-	ct2PFgU9bFdgiq+ZXMwaz+5JRHzBmRlqhruZrgNfwv0LRjssH0AOoORMk274mBQ=
-X-Google-Smtp-Source: AGHT+IHECpbkwBnTCSppGUpSTmpAyy8UbrD7YnSuVqV3+OvD3M3LLZviitzkEQQK8vikzndL+itYCw==
-X-Received: by 2002:a05:6402:40c3:b0:5c3:eb29:50c5 with SMTP id 4fb4d7f45d1cf-5ca0af89464mr5425772a12.9.1729612096324;
-        Tue, 22 Oct 2024 08:48:16 -0700 (PDT)
+        bh=UBm4Nhw4qPHigj/nsxESh7ajX6tcdPfbKCrsfAQCQsI=;
+        b=gkdpR5LciX/Bsmb9uemS6UoYUWZl139ZBu5mrZ8EdsOSv+KIztctN68lB7D8f7VLoF
+         FWgw2610XVQsRiUSMMAH89yQpD18n0/Sr0UFDdMEr1PPwXQihOe/ENrfKV/yvNJEEq+Q
+         nrI2K4En/Beh70CwE0+l60kzwR+Yw+5qkoIcjyAkjKFZjmrKpdeGHM0PEuqXIjHZ5jiK
+         9i8FO5yxl1tCmcWX5Pz0X2Xi7NsyuLrfpBXW0hV4M2wTkS2ETi7N/EgclqEBS8Ht4Qpn
+         LVBFNJ7YWzuPmridjLIl9kDkNSr1k+mI6MrFIfmAxRczcoTwwdhnbDjuEaUfRYi3t53Y
+         jt1g==
+X-Forwarded-Encrypted: i=1; AJvYcCVNjz3mD7r7G3DKPYJh+8e9Dcq7Y8HglAtJXl0kIEqGOOKxOdX3qr4miohM3BTlQc9S37d4XNhPiMAz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgiyFiy2c024GEeg0lzcpwdyZeqs0KIYlqokizJO/cF6uVosgb
+	bJGtkd+OGVro5jGkb3TYYPtOMU43FMq71A+PNrHAOs1J+j5FMfe1elNkIMY5uts=
+X-Google-Smtp-Source: AGHT+IFkQDSrm4UOqTxHIT807XR2YYF6TU62i1nh8YsqaqKsopceyemluvYrXIwwbSunH1c0zzNoXA==
+X-Received: by 2002:a05:6402:348a:b0:5c9:879e:6998 with SMTP id 4fb4d7f45d1cf-5ca0ac44384mr6206104a12.1.1729612097913;
+        Tue, 22 Oct 2024 08:48:17 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66c725fesm3439959a12.87.2024.10.22.08.48.15
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66c725fesm3439959a12.87.2024.10.22.08.48.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 08:48:15 -0700 (PDT)
+        Tue, 22 Oct 2024 08:48:17 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 22 Oct 2024 17:47:37 +0200
-Subject: [PATCH v3 12/18] arm64: dts: qcom: sm8450: change labels to
+Date: Tue, 22 Oct 2024 17:47:38 +0200
+Subject: [PATCH v3 13/18] arm64: dts: qcom: sm8550: change labels to
  lower-case
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241022-dts-qcom-label-v3-12-0505bc7d2c56@linaro.org>
+Message-Id: <20241022-dts-qcom-label-v3-13-0505bc7d2c56@linaro.org>
 References: <20241022-dts-qcom-label-v3-0-0505bc7d2c56@linaro.org>
 In-Reply-To: <20241022-dts-qcom-label-v3-0-0505bc7d2c56@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -90,21 +90,21 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10625;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11525;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=iPL390E5JLXtD3wTFEtOSzANh7PbtLmD4GW7T04H1Gs=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBnF8keUkmEeXk+jy8uVx+vfyLUSwh3iDJZNeWAC
- U63G2LxC1OJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZxfJHgAKCRDBN2bmhouD
- 15yPD/9XIL7I1oHUHZkUOIPeYExwMvjTs6DVl0VjTHGPHTxePAXOrGob3K5QdNzI5Cv52cfsFDq
- EdZewJjz4QKWUdCFcrIp3OW+7O/dA+eBzgxVFckhsn6+UPkaJU5+y8M7k0h/bcowStlX0AQ2Lvs
- +vSUwrHRLPRg9sWBNcEZPHdxLQwIdJgt9qZUXrpEaJHm0Pg+2mOAUNj0DtKmU5VnMH18vuS4n9W
- FocsO2FxsojIkiMTklJ2FkgWsuSIUDhz5vGOYx2s043jiVHXR92PDUqnulsYFxpUspxpL7rEXcy
- DYyi4/eMbf/CrxIZY7kD8v+uQjMq6Q+3Qy4II5bXGVTskUCcIb51q3Zq2IX+VAqA1wWnDuQzgXN
- 3kAX7HE8P0JgzdMzPhNQFSIEQd2MGWT5gRthtSQCefBys7/dU6qj6A/wCZJnQiI0EL5qmY4bUpb
- lYnj7eqKY0qTTuSto2gw134+b3p4bFlXm3OMh2TccyuP6bSEObNVRMc7Pjn1OzKjf74QqJhvigy
- DG0LVeI5QImMr82hCS6pP/VFpht0wUC3Rg0J69JqfZYyqJMVrUK94d9i7SYU/qeZGdHS11vB+Hq
- 1SG5utFD1karKNM7ei6P1uqFCBGBrn7LiUlipESO3YFEOHrrB6NZZysJzGuuSMd9uhDFZXhemjE
- bTAQKsYvwbUr7hQ==
+ bh=fdf5q7Kdg5agvSReu+CjfGcEHicH6nlf1t2RIbqvN1I=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBnF8kfZCwdQUtnoJZTzVx95Q4Oy8Z9Vh8f7Fvue
+ DrohB/TiTCJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZxfJHwAKCRDBN2bmhouD
+ 14xYD/oDqHPB1D03/2Vuzud1vu1jfBDzrFRB4sWdmF+M/5t+WpTe9bxX60TaaU7PVeUe29pjRDU
+ Ckxu08/Fm93ogTTMPl4poD9SH0so6cjQoReaqRO0bH30+Ukae2v4d/0Sp2l2pBmPB1geGUnyBAc
+ fX/e59mK0AKHKxnTpopToAqsmXlVulxkkzp46hWtJokmLzyasH9DMaDGJz2vXrJoskUSmVVvDDk
+ bYJfBxc9NNlU/NHW3yX9PQFKUyzwLEA0aMtcXdv6WGC6ZcsypzTnO8Ipl+v+Fhn5Xn1+kVO0eNK
+ H2FgDlOOdaMazb6hs06MDEZ8zD/t1YA+og/gI8yUii0P6CFwkFqZACsuZQaigN50sR38YNN35Zy
+ ScJI+JNebAJ30KcE0Hjr9a6fyp2QOXAwLQEA1tFiiaf1jqD1dv783z2tJglY1WPy74KElG2cl5O
+ GhTMzct1D9ZxBGfJgvXFzO4IMR0KfetCwqctSpcn6GspjEdas25VzVRwof+vj1lxytRzX/IUFs8
+ d/OCNLxnu96Px4jAnXfrfgHPmmnXRoBzIOif5Kk4nRIxt6bZBf0n/zdYz2kCbPa7TPEC3C3gUD1
+ GZKBUvrfk4pJwUZQV7A9/CRf19o/e+oUSyDHD5EsdnUZ1Tq2bHskYIWxAW2iTfJBFylTkvEH0Wp
+ 3ndR8CTUXMHrJ/A==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
@@ -114,22 +114,23 @@ Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 160 +++++++++++++++++------------------
- 1 file changed, 80 insertions(+), 80 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 162 +++++++++++++++++------------------
+ 1 file changed, 81 insertions(+), 81 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f361a44ef53 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -51,23 +51,23 @@ cpus {
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 93c8aa32e411b4aecb3140110073f422b407bf80..9d2ee372b225783c0fd2acc0fe23329fa42abb12 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -64,25 +64,25 @@ cpus {
  		#address-cells = <2>;
  		#size-cells = <0>;
  
 -		CPU0: cpu@0 {
 +		cpu0: cpu@0 {
  			device_type = "cpu";
- 			compatible = "qcom,kryo780";
- 			reg = <0x0 0x0>;
+ 			compatible = "arm,cortex-a510";
+ 			reg = <0 0>;
+ 			clocks = <&cpufreq_hw 0>;
  			enable-method = "psci";
 -			next-level-cache = <&L2_0>;
 -			power-domains = <&CPU_PD0>;
@@ -137,8 +138,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +			power-domains = <&cpu_pd0>;
  			power-domain-names = "psci";
  			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			capacity-dmips-mhz = <1024>;
+ 			dynamic-power-coefficient = <100>;
  			#cooling-cells = <2>;
- 			clocks = <&cpufreq_hw 0>;
 -			L2_0: l2-cache {
 +			l2_0: l2-cache {
  				compatible = "cache";
@@ -151,15 +153,16 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
  					compatible = "cache";
  					cache-level = <3>;
  					cache-unified;
-@@ -75,171 +75,171 @@ L3_0: l3-cache {
+@@ -90,185 +90,185 @@ L3_0: l3-cache {
  			};
  		};
  
 -		CPU1: cpu@100 {
 +		cpu1: cpu@100 {
  			device_type = "cpu";
- 			compatible = "qcom,kryo780";
- 			reg = <0x0 0x100>;
+ 			compatible = "arm,cortex-a510";
+ 			reg = <0 0x100>;
+ 			clocks = <&cpufreq_hw 0>;
  			enable-method = "psci";
 -			next-level-cache = <&L2_100>;
 -			power-domains = <&CPU_PD1>;
@@ -167,8 +170,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +			power-domains = <&cpu_pd1>;
  			power-domain-names = "psci";
  			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			capacity-dmips-mhz = <1024>;
+ 			dynamic-power-coefficient = <100>;
  			#cooling-cells = <2>;
- 			clocks = <&cpufreq_hw 0>;
 -			L2_100: l2-cache {
 +			l2_100: l2-cache {
  				compatible = "cache";
@@ -182,8 +186,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 -		CPU2: cpu@200 {
 +		cpu2: cpu@200 {
  			device_type = "cpu";
- 			compatible = "qcom,kryo780";
- 			reg = <0x0 0x200>;
+ 			compatible = "arm,cortex-a510";
+ 			reg = <0 0x200>;
+ 			clocks = <&cpufreq_hw 0>;
  			enable-method = "psci";
 -			next-level-cache = <&L2_200>;
 -			power-domains = <&CPU_PD2>;
@@ -191,8 +196,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +			power-domains = <&cpu_pd2>;
  			power-domain-names = "psci";
  			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			capacity-dmips-mhz = <1024>;
+ 			dynamic-power-coefficient = <100>;
  			#cooling-cells = <2>;
- 			clocks = <&cpufreq_hw 0>;
 -			L2_200: l2-cache {
 +			l2_200: l2-cache {
  				compatible = "cache";
@@ -206,17 +212,19 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 -		CPU3: cpu@300 {
 +		cpu3: cpu@300 {
  			device_type = "cpu";
- 			compatible = "qcom,kryo780";
- 			reg = <0x0 0x300>;
+ 			compatible = "arm,cortex-a715";
+ 			reg = <0 0x300>;
+ 			clocks = <&cpufreq_hw 1>;
  			enable-method = "psci";
 -			next-level-cache = <&L2_300>;
 -			power-domains = <&CPU_PD3>;
 +			next-level-cache = <&l2_300>;
 +			power-domains = <&cpu_pd3>;
  			power-domain-names = "psci";
- 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			capacity-dmips-mhz = <1792>;
+ 			dynamic-power-coefficient = <270>;
  			#cooling-cells = <2>;
- 			clocks = <&cpufreq_hw 0>;
 -			L2_300: l2-cache {
 +			l2_300: l2-cache {
  				compatible = "cache";
@@ -230,8 +238,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 -		CPU4: cpu@400 {
 +		cpu4: cpu@400 {
  			device_type = "cpu";
- 			compatible = "qcom,kryo780";
- 			reg = <0x0 0x400>;
+ 			compatible = "arm,cortex-a715";
+ 			reg = <0 0x400>;
+ 			clocks = <&cpufreq_hw 1>;
  			enable-method = "psci";
 -			next-level-cache = <&L2_400>;
 -			power-domains = <&CPU_PD4>;
@@ -239,8 +248,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +			power-domains = <&cpu_pd4>;
  			power-domain-names = "psci";
  			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			capacity-dmips-mhz = <1792>;
+ 			dynamic-power-coefficient = <270>;
  			#cooling-cells = <2>;
- 			clocks = <&cpufreq_hw 1>;
 -			L2_400: l2-cache {
 +			l2_400: l2-cache {
  				compatible = "cache";
@@ -254,8 +264,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 -		CPU5: cpu@500 {
 +		cpu5: cpu@500 {
  			device_type = "cpu";
- 			compatible = "qcom,kryo780";
- 			reg = <0x0 0x500>;
+ 			compatible = "arm,cortex-a710";
+ 			reg = <0 0x500>;
+ 			clocks = <&cpufreq_hw 1>;
  			enable-method = "psci";
 -			next-level-cache = <&L2_500>;
 -			power-domains = <&CPU_PD5>;
@@ -263,8 +274,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +			power-domains = <&cpu_pd5>;
  			power-domain-names = "psci";
  			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			capacity-dmips-mhz = <1792>;
+ 			dynamic-power-coefficient = <270>;
  			#cooling-cells = <2>;
- 			clocks = <&cpufreq_hw 1>;
 -			L2_500: l2-cache {
 +			l2_500: l2-cache {
  				compatible = "cache";
@@ -278,8 +290,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 -		CPU6: cpu@600 {
 +		cpu6: cpu@600 {
  			device_type = "cpu";
- 			compatible = "qcom,kryo780";
- 			reg = <0x0 0x600>;
+ 			compatible = "arm,cortex-a710";
+ 			reg = <0 0x600>;
+ 			clocks = <&cpufreq_hw 1>;
  			enable-method = "psci";
 -			next-level-cache = <&L2_600>;
 -			power-domains = <&CPU_PD6>;
@@ -287,8 +300,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +			power-domains = <&cpu_pd6>;
  			power-domain-names = "psci";
  			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			capacity-dmips-mhz = <1792>;
+ 			dynamic-power-coefficient = <270>;
  			#cooling-cells = <2>;
- 			clocks = <&cpufreq_hw 1>;
 -			L2_600: l2-cache {
 +			l2_600: l2-cache {
  				compatible = "cache";
@@ -302,8 +316,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 -		CPU7: cpu@700 {
 +		cpu7: cpu@700 {
  			device_type = "cpu";
- 			compatible = "qcom,kryo780";
- 			reg = <0x0 0x700>;
+ 			compatible = "arm,cortex-x3";
+ 			reg = <0 0x700>;
+ 			clocks = <&cpufreq_hw 2>;
  			enable-method = "psci";
 -			next-level-cache = <&L2_700>;
 -			power-domains = <&CPU_PD7>;
@@ -311,8 +326,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +			power-domains = <&cpu_pd7>;
  			power-domain-names = "psci";
  			qcom,freq-domain = <&cpufreq_hw 2>;
+ 			capacity-dmips-mhz = <1894>;
+ 			dynamic-power-coefficient = <588>;
  			#cooling-cells = <2>;
- 			clocks = <&cpufreq_hw 2>;
 -			L2_700: l2-cache {
 +			l2_700: l2-cache {
  				compatible = "cache";
@@ -366,7 +382,7 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
  				};
  			};
  		};
-@@ -247,7 +247,7 @@ core7 {
+@@ -276,7 +276,7 @@ core7 {
  		idle-states {
  			entry-method = "psci";
  
@@ -375,7 +391,7 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
  				compatible = "arm,idle-state";
  				idle-state-name = "silver-rail-power-collapse";
  				arm,psci-suspend-param = <0x40000004>;
-@@ -257,7 +257,7 @@ LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+@@ -286,7 +286,7 @@ LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
  				local-timer-stop;
  			};
  
@@ -384,7 +400,16 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
  				compatible = "arm,idle-state";
  				idle-state-name = "gold-rail-power-collapse";
  				arm,psci-suspend-param = <0x40000004>;
-@@ -269,7 +269,7 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+@@ -296,7 +296,7 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+ 				local-timer-stop;
+ 			};
+ 
+-			PRIME_CPU_SLEEP_0: cpu-sleep-2-0 {
++			prime_cpu_sleep_0: cpu-sleep-2-0 {
+ 				compatible = "arm,idle-state";
+ 				idle-state-name = "goldplus-rail-power-collapse";
+ 				arm,psci-suspend-param = <0x40000004>;
+@@ -308,7 +308,7 @@ PRIME_CPU_SLEEP_0: cpu-sleep-2-0 {
  		};
  
  		domain-idle-states {
@@ -392,17 +417,17 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +			cluster_sleep_0: cluster-sleep-0 {
  				compatible = "domain-idle-state";
  				arm,psci-suspend-param = <0x41000044>;
- 				entry-latency-us = <1050>;
-@@ -277,7 +277,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 				min-residency-us = <5309>;
+ 				entry-latency-us = <750>;
+@@ -316,7 +316,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
+ 				min-residency-us = <9144>;
  			};
  
 -			CLUSTER_SLEEP_1: cluster-sleep-1 {
 +			cluster_sleep_1: cluster-sleep-1 {
  				compatible = "domain-idle-state";
  				arm,psci-suspend-param = <0x4100c344>;
- 				entry-latency-us = <2700>;
-@@ -323,57 +323,57 @@ psci {
+ 				entry-latency-us = <2800>;
+@@ -376,57 +376,57 @@ psci {
  		compatible = "arm,psci-1.0";
  		method = "smc";
  
@@ -437,9 +462,9 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +		cpu_pd3: power-domain-cpu3 {
  			#power-domain-cells = <0>;
 -			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+-			domain-idle-states = <&BIG_CPU_SLEEP_0>;
 +			power-domains = <&cluster_pd>;
-+			domain-idle-states = <&little_cpu_sleep_0>;
++			domain-idle-states = <&big_cpu_sleep_0>;
  		};
  
 -		CPU_PD4: power-domain-cpu4 {
@@ -473,23 +498,23 @@ index 1b5dc5b8cecb94cc1ac637cb929ab0d25eeb0b7c..e2601ea4ce42936d53a6df50492a3f36
 +		cpu_pd7: power-domain-cpu7 {
  			#power-domain-cells = <0>;
 -			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+-			domain-idle-states = <&PRIME_CPU_SLEEP_0>;
 +			power-domains = <&cluster_pd>;
-+			domain-idle-states = <&big_cpu_sleep_0>;
++			domain-idle-states = <&prime_cpu_sleep_0>;
  		};
  
--		CLUSTER_PD: power-domain-cpu-cluster0 {
-+		cluster_pd: power-domain-cpu-cluster0 {
+-		CLUSTER_PD: power-domain-cluster {
++		cluster_pd: power-domain-cluster {
  			#power-domain-cells = <0>;
 -			domain-idle-states = <&CLUSTER_SLEEP_0>, <&CLUSTER_SLEEP_1>;
 +			domain-idle-states = <&cluster_sleep_0>, <&cluster_sleep_1>;
  		};
  	};
  
-@@ -4354,7 +4354,7 @@ apps_rsc: rsc@17a00000 {
+@@ -4366,7 +4366,7 @@ apps_rsc: rsc@17a00000 {
  			qcom,drv-id = <2>;
- 			qcom,tcs-config = <ACTIVE_TCS  3>, <SLEEP_TCS   2>,
- 					  <WAKE_TCS    2>, <CONTROL_TCS 0>;
+ 			qcom,tcs-config = <ACTIVE_TCS    3>, <SLEEP_TCS     2>,
+ 					  <WAKE_TCS      2>, <CONTROL_TCS   0>;
 -			power-domains = <&CLUSTER_PD>;
 +			power-domains = <&cluster_pd>;
  
