@@ -1,55 +1,74 @@
-Return-Path: <devicetree+bounces-114123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D016F9A9DDD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:05:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F62D9A9DEE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:08:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC9F51C21B95
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:05:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 102051F2711F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED03719538D;
-	Tue, 22 Oct 2024 09:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F194194AEF;
+	Tue, 22 Oct 2024 09:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ihfKcFvA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O5KBmYDS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1E741940B9;
-	Tue, 22 Oct 2024 09:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CEE158DAC
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729587905; cv=none; b=jlfg1fSmL/3B9cdzv40Q1YSDFPkMTk5Z0Fkc7Mx06O7i5DELTwN0729YL+f7At9y0DRkLgG1QfYJnvWzx3W5Ka81j5J3NFa5Wr5HJ2dh4JA2b3yXESrnMrZ0Q4ZHT2jjn5GMdW1KJCyt0a0+j0L5A4NA0sqmCRbVfhkC+sKfPvM=
+	t=1729588081; cv=none; b=mKs2MT8pNHNy2JIyhuJ6Dr+SxO/ZaiH8UD8pJaeKkzokhKDXUlKmcTWszDpoQ47VhO11H8amMQzdjUazE/VQPOhdocsDSjDl4w/6OyMts+5OUvqiITFHd6eo0b+7Kgn6O4CIuYl5f+JOJvCs5A/ryIHI+vKRU422VOF9+b/pbB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729587905; c=relaxed/simple;
-	bh=RpHFkVfZw0AbIR3xtzIa38SQHNStexiY4qowugrrTZg=;
+	s=arc-20240116; t=1729588081; c=relaxed/simple;
+	bh=pysn6nWm7VH7Da+e1O+B858W3dG1ImyoY2oZIhE1dqU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T1hC1LTOYuVEwtse464LEPVplXp+z/8/mc4VIjNvuhgkvHCv279xgvQHv4CaLoXWRCAdXbuVfiEtr3tXFwZZkFLy8D0Xs9XTMclT4ZNcdBH41c+OB6cKgM0vwWBNCzbJBZespRYENFRSdtj6RYrJXoVmA8JcXnNvLtzpi72XwNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ihfKcFvA; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729587902;
-	bh=RpHFkVfZw0AbIR3xtzIa38SQHNStexiY4qowugrrTZg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ihfKcFvAPzJ1jjddRGqWXAVCFvDyRfurcwcEXlbwFn9KeEPqedlIWFkHa8EAeaioY
-	 z5g2rVf2iXJE3ewnoD2QU72shFBMmANKa/KHZhdMQzNnhZeE7KRzWKpcgVuy4QqK8r
-	 31c/w2PPM8fGdaetfB8cPs5zXYDhAKfLnZVHshMxMOXlmTr/xi+N12nkHDxiO2x5Y0
-	 anTOhQEYQpA58ZvKZov+vDpsFDU5XOqXmWh8n2fTyHOUbRwA9L/SQUT0cKzuKD9Wka
-	 QYy1hRalt7HgpWuyhOiNWtsJYUhOBV4DkkY9WtpGuC5L9bWr7XS9wB620ncP2/IGLN
-	 Qgskb2Cub8Juw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9769A17E12AC;
-	Tue, 22 Oct 2024 11:05:01 +0200 (CEST)
-Message-ID: <cb070d12-7e6d-4b0b-9dad-af4b9d6c51bc@collabora.com>
-Date: Tue, 22 Oct 2024 11:05:01 +0200
+	 In-Reply-To:Content-Type; b=b7Ugk9o7aWvf1rzb1r8fI86AplftEaxYp3GFTvA1eLdDqsCl9B4pUh0kNIwnPJbylOLMlpwqg4rxQCYUXOfdv1su+KSxPoe1lNE+IZBdGj3GKwFdOuefKBsRQXlN85tSaqliqH3blN66CEcnmC5GS9KHMlSCKMd2eLbyzJBX7zQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O5KBmYDS; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a9a0c7abaa6so630942766b.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 02:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729588078; x=1730192878; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sqANacwu59WVDubToPeLNd0ZLGqiBFI013WHEtWvuoY=;
+        b=O5KBmYDS0Stfg84yUL2nST6Zvalu4l4l6bLQT5TA216sumVAH4lu22MqfhgU1h5Pon
+         gUDvOIvhfo3JOL+R2sIjQrqMz2rgudqBbzBx6CDtiZeFLR1ECXtpm1jBnrRIt0ZfFR+u
+         Z5DeBN1NVNVYls5QRcO0TLNBX2+tZ2Dq+n7gJZM5zU4bNjfA/5GVUewDb94tVP68c1tS
+         A3wGWpuYJ38l/9sh8k0oRu5iEddG8gCM1wvUdv7VvLENkmi/svsN97cTG60IY5osdhP6
+         BOQnSLQqKD+lzlnWKvTdjVEs5td5dVG1rie6/hx3WZe7j11gwCZbFEluguyVx6ALhkks
+         qk2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729588078; x=1730192878;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sqANacwu59WVDubToPeLNd0ZLGqiBFI013WHEtWvuoY=;
+        b=GNdUS3CNcg5yaGL6E3eyEM8sxKJMCXw/MLDU7ARF+QWSw0ZvtjT9pxvhrT8J620Y1V
+         bU9VUmPhaMV0MjtAuXcpXQg5qq466c/tvZ1SO0pRPTlRfulRpHEzJPtxIzgbHHkrXsuM
+         SiDGQrxWNa337Zi07tDcJ0vxpFVkzv7IEw3dNq4NEufI8f18/MREytwUJP0ltT7p+CwR
+         JvfucYNawTFqcci17pxcPaZ/b17B6jL9yZV9DVAOMRpccF/nuqydf/E1aOtOrcCpSNEg
+         2eK1KrbSvHiX5J2qJuTkCHbh+XZ+1SlEMubmxIOyBwi7FruqX2bjZvnBxLHQwoKFSC31
+         q1ag==
+X-Forwarded-Encrypted: i=1; AJvYcCXsPCIkrt54XeChokaHrKd1HzjA70RyVa0qGs0wcBvePDUrE95RgRbD6CoaDt/y3gIajuGzHbShO5Ld@vger.kernel.org
+X-Gm-Message-State: AOJu0YyukyGi8Xm5QKXEzrM7cQwlnvDeYpKHDEaVGcXWpmZmp4R919Rm
+	r23vZBHtaSACQVSkGLz1gix6TDET8920ult10prTH4Qrt71tTuOoVu91L05ru+U=
+X-Google-Smtp-Source: AGHT+IGoE+jrhGDPxvzS+WZimT/uQDCBFmA0e0z1M8EFELzXgykeI+0Jev6cLL5gP+5Bp6fGDKWWLg==
+X-Received: by 2002:a17:907:3e12:b0:a9a:4fd3:c35f with SMTP id a640c23a62f3a-a9a69a63db8mr1206244266b.9.1729588077786;
+        Tue, 22 Oct 2024 02:07:57 -0700 (PDT)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a912d6267sm311979566b.32.2024.10.22.02.07.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Oct 2024 02:07:57 -0700 (PDT)
+Message-ID: <3ee7a1c9-2d6d-4fd5-982e-d86151e45662@linaro.org>
+Date: Tue, 22 Oct 2024 10:07:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,188 +76,132 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clk: mediatek: Add drivers for MT6735 syscon clock
- and reset controllers
-To: Yassine Oudjana <yassine.oudjana@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/3] drm/msm/adreno: Add support for ACD
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>, Rob Clark
+ <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Lukas Bulwahn <lukas.bulwahn@redhat.com>,
- Daniel Golle <daniel@makrotopia.org>, Sam Shih <sam.shih@mediatek.com>
-Cc: Yassine Oudjana <y.oudjana@protonmail.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20241021121618.151079-1-y.oudjana@protonmail.com>
- <20241021121618.151079-3-y.oudjana@protonmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241021-gpu-acd-v2-0-9c25a62803bc@quicinc.com>
+ <20241021-gpu-acd-v2-1-9c25a62803bc@quicinc.com>
 Content-Language: en-US
-In-Reply-To: <20241021121618.151079-3-y.oudjana@protonmail.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20241021-gpu-acd-v2-1-9c25a62803bc@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 21/10/24 14:16, Yassine Oudjana ha scritto:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+On 21/10/2024 12:53, Akhil P Oommen wrote:
+> ACD a.k.a Adaptive Clock Distribution is a feature which helps to reduce
+> the power consumption. In some chipsets, it is also a requirement to
+> support higher GPU frequencies. This patch adds support for GPU ACD by
+> sending necessary data to GMU and AOSS. The feature support for the
+> chipset is detected based on devicetree data.
 > 
-> Add drivers for IMGSYS, MFGCFG, VDECSYS and VENCSYS clocks and resets
-> on MT6735.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
 > ---
->   MAINTAINERS                               |  4 ++
->   drivers/clk/mediatek/Kconfig              | 32 +++++++++
->   drivers/clk/mediatek/Makefile             |  4 ++
->   drivers/clk/mediatek/clk-mt6735-imgsys.c  | 57 ++++++++++++++++
->   drivers/clk/mediatek/clk-mt6735-mfgcfg.c  | 61 +++++++++++++++++
->   drivers/clk/mediatek/clk-mt6735-vdecsys.c | 81 +++++++++++++++++++++++
->   drivers/clk/mediatek/clk-mt6735-vencsys.c | 53 +++++++++++++++
->   7 files changed, 292 insertions(+)
->   create mode 100644 drivers/clk/mediatek/clk-mt6735-imgsys.c
->   create mode 100644 drivers/clk/mediatek/clk-mt6735-mfgcfg.c
->   create mode 100644 drivers/clk/mediatek/clk-mt6735-vdecsys.c
->   create mode 100644 drivers/clk/mediatek/clk-mt6735-vencsys.c
+>   drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 81 ++++++++++++++++++++++++++++-------
+>   drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  1 +
+>   drivers/gpu/drm/msm/adreno/a6xx_hfi.c | 36 ++++++++++++++++
+>   drivers/gpu/drm/msm/adreno/a6xx_hfi.h | 21 +++++++++
+>   4 files changed, 124 insertions(+), 15 deletions(-)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 25484783f6a0b..939f9d29fc9bf 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14533,9 +14533,13 @@ L:	linux-clk@vger.kernel.org
->   L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
->   S:	Maintained
->   F:	drivers/clk/mediatek/clk-mt6735-apmixedsys.c
-> +F:	drivers/clk/mediatek/clk-mt6735-imgsys.c
->   F:	drivers/clk/mediatek/clk-mt6735-infracfg.c
-> +F:	drivers/clk/mediatek/clk-mt6735-mfgcfg.c
->   F:	drivers/clk/mediatek/clk-mt6735-pericfg.c
->   F:	drivers/clk/mediatek/clk-mt6735-topckgen.c
-> +F:	drivers/clk/mediatek/clk-mt6735-vdecsys.c
-> +F:	drivers/clk/mediatek/clk-mt6735-vencsys.c
->   F:	include/dt-bindings/clock/mediatek,mt6735-apmixedsys.h
->   F:	include/dt-bindings/clock/mediatek,mt6735-imgsys.h
->   F:	include/dt-bindings/clock/mediatek,mt6735-infracfg.h
-> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-> index 7a33f9e92d963..4dd6d2d6263fd 100644
-> --- a/drivers/clk/mediatek/Kconfig
-> +++ b/drivers/clk/mediatek/Kconfig
-> @@ -133,6 +133,38 @@ config COMMON_CLK_MT6735
->   	  by apmixedsys, topckgen, infracfg and pericfg on the
->   	  MediaTek MT6735 SoC.
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> index 37927bdd6fbe..09fb3f397dbb 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> @@ -1021,14 +1021,6 @@ int a6xx_gmu_resume(struct a6xx_gpu *a6xx_gpu)
 >   
-> +config COMMON_CLK_MT6735_IMGSYS
-> +	tristate "Clock driver for MediaTek MT6735 imgsys"
-> +	depends on (ARCH_MEDIATEK && COMMON_CLK_MT6735) || COMPILE_TEST
-
-If this depends on COMMON_CLK_MT6735, it automatically also depends on
-ARCH_MEDIATEK, because the former cannot be selected without satisfying
-the dependency on the latter.
-
-Also, with those being really dependant on COMMON_CLK_MT6735, it does
-not make any sense to COMPILE_TEST those alone anyway...
-
-> +	select COMMON_CLK_MEDIATEK
-
-The same goes for this select statement: it's already done when selecting
-COMMON_CLK_MT6735.
-
-Finally:
-
-config COMMON_CLK_MT6735_IMGSYS
-      tristate "Clock driver for MediaTek MT6735 imgsys"
-      depends on COMMON_CLK_MT6735
-      help
-        blah blah blah
-
-is just fine - and shorter too :-)
-
-> +	help
-> +	  This enables a driver for clocks provided by imgsys
-> +	  on the MediaTek MT6735 SoC.
+>   	gmu->hung = false;
+>   
+> -	/* Notify AOSS about the ACD state (unimplemented for now => disable it) */
+> -	if (!IS_ERR(gmu->qmp)) {
+> -		ret = qmp_send(gmu->qmp, "{class: gpu, res: acd, val: %d}",
+> -			       0 /* Hardcode ACD to be disabled for now */);
+> -		if (ret)
+> -			dev_err(gmu->dev, "failed to send GPU ACD state\n");
+> -	}
+> -
+>   	/* Turn on the resources */
+>   	pm_runtime_get_sync(gmu->dev);
+>   
+> @@ -1476,6 +1468,64 @@ static int a6xx_gmu_pwrlevels_probe(struct a6xx_gmu *gmu)
+>   	return a6xx_gmu_rpmh_votes_init(gmu);
+>   }
+>   
+> +static int a6xx_gmu_acd_probe(struct a6xx_gmu *gmu)
+> +{
+> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
+> +	struct a6xx_hfi_acd_table *cmd = &gmu->acd_table;
+> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+> +	struct msm_gpu *gpu = &adreno_gpu->base;
+> +	int ret, i, cmd_idx = 0;
 > +
-> +config COMMON_CLK_MT6735_MFGCFG
-> +	tristate "Clock driver for MediaTek MT6735 mfgcfg"
-> +	depends on (ARCH_MEDIATEK && COMMON_CLK_MT6735) || COMPILE_TEST
-> +	select COMMON_CLK_MEDIATEK
-> +	help
-> +	  This enables a driver for clocks and resets provided
-> +	  by mfgcfg on the MediaTek MT6735 SoC.
+> +	cmd->version = 1;
+> +	cmd->stride = 1;
+> +	cmd->enable_by_level = 0;
 > +
-> +config COMMON_CLK_MT6735_VDECSYS
-> +	tristate "Clock driver for MediaTek MT6735 vdecsys"
-> +	depends on (ARCH_MEDIATEK && COMMON_CLK_MT6735) || COMPILE_TEST
-> +	select COMMON_CLK_MEDIATEK
-> +	help
-> +	  This enables a driver for clocks and resets provided
-> +	  by vdecsys on the MediaTek MT6735 SoC.
+> +	/* Skip freq = 0 and parse acd-level for rest of the OPPs */
+> +	for (i = 1; i < gmu->nr_gpu_freqs; i++) {
+> +		struct dev_pm_opp *opp;
+> +		struct device_node *np;
+> +		unsigned long freq;
+> +		u32 val;
 > +
-> +config COMMON_CLK_MT6735_VENCSYS
-> +	tristate "Clock driver for MediaTek MT6735 vencsys"
-> +	depends on (ARCH_MEDIATEK && COMMON_CLK_MT6735) || COMPILE_TEST
-> +	select COMMON_CLK_MEDIATEK
-> +	help
-> +	  This enables a driver for clocks provided by vencsys
-> +	  on the MediaTek MT6735 SoC.
+> +		freq = gmu->gpu_freqs[i];
+> +		opp = dev_pm_opp_find_freq_exact(&gpu->pdev->dev, freq, true);
+> +		np = dev_pm_opp_get_of_node(opp);
 > +
->   config COMMON_CLK_MT6765
->          bool "Clock driver for MediaTek MT6765"
->          depends on (ARCH_MEDIATEK && ARM64) || COMPILE_TEST
+> +		ret = of_property_read_u32(np, "qcom,opp-acd-level", &val);
+> +		of_node_put(np);
+> +		dev_pm_opp_put(opp);
+> +		if (ret == -EINVAL)
+> +			continue;
+> +		else if (ret) {
+> +			DRM_DEV_ERROR(gmu->dev, "Unable to read acd level for freq %lu\n", freq);
+> +			return ret;
+> +		}
+> +
+> +		cmd->enable_by_level |= BIT(i);
+> +		cmd->data[cmd_idx++] = val;
 
-..snip..
+How do you know that cmd_idx is always < sizeof(cmd->data); ?
 
-> diff --git a/drivers/clk/mediatek/clk-mt6735-vdecsys.c b/drivers/clk/mediatek/clk-mt6735-vdecsys.c
-> new file mode 100644
-> index 0000000000000..f59b481aaa6da
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt6735-vdecsys.c
-> @@ -0,0 +1,81 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
-> + */
+> +	}
 > +
-> +#include <linux/clk-provider.h>
-> +#include <linux/platform_device.h>
+> +	cmd->num_levels = cmd_idx;
 > +
-> +#include "clk-gate.h"
-> +#include "clk-mtk.h"
+> +	/* We are done here if ACD is not required for any of the OPPs */
+> +	if (!cmd->enable_by_level)
+> +		return 0;
 > +
-> +#include <dt-bindings/clock/mediatek,mt6735-vdecsys.h>
-> +#include <dt-bindings/reset/mediatek,mt6735-vdecsys.h>
+> +	/* Initialize qmp node to talk to AOSS */
+> +	gmu->qmp = qmp_get(gmu->dev);
+> +	if (IS_ERR(gmu->qmp)) {
+> +		cmd->enable_by_level = 0;
+> +		return dev_err_probe(gmu->dev, PTR_ERR(gmu->qmp), "Failed to initialize qmp\n");
+> +	}
 > +
+> +	/* Notify AOSS about the ACD state */
+> +	ret = qmp_send(gmu->qmp, "{class: gpu, res: acd, val: %d}", 1);
+> +	if (ret)
+> +		DRM_DEV_ERROR(gmu->dev, "failed to send GPU ACD state\n");
+> +
+> +	return 0;
 
-..snip..
+Shouldn't the ret from gmp_send() get propogated in the return of this 
+function ?
 
-> +static u16 vdecsys_rst_bank_ofs[] = { VDEC_RESETB_CON, SMI_LARB1_RESETB_CON };
-> +
-> +static u16 vdecsys_rst_idx_map[] = {
-> +	[MT6735_VDEC_RST0_VDEC]		= 0 * RST_NR_PER_BANK + 0,
-> +
+i.e. how can your probe be successful if the notification failed ?
 
-Please remove this extra blank line, it's not needed.
-
-> +	[MT6735_VDEC_RST1_SMI_LARB1]	= 1 * RST_NR_PER_BANK + 0,
-> +};
-> +
-> +static const struct mtk_clk_rst_desc vdecsys_resets = {
-> +	.version = MTK_RST_SIMPLE,
-> +	.rst_bank_ofs = vdecsys_rst_bank_ofs,
-> +	.rst_bank_nr = ARRAY_SIZE(vdecsys_rst_bank_ofs),
-> +	.rst_idx_map = vdecsys_rst_idx_map,
-> +	.rst_idx_map_nr = ARRAY_SIZE(vdecsys_rst_idx_map)
-> +};
-> +
-> +static const struct mtk_clk_desc vdecsys_clks = {
-> +	.clks = vdecsys_gates,
-> +	.num_clks = ARRAY_SIZE(vdecsys_gates),
-> +
-
-same here.
-
-> +	.rst_desc = &vdecsys_resets
-> +};
-> +
-The rest looks good, and I'm confident that you're getting my R-b on v2.
-
-Cheers,
-Angelo
+---
+bod
 
