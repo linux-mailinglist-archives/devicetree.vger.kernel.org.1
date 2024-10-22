@@ -1,166 +1,111 @@
-Return-Path: <devicetree+bounces-114346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22A69AB556
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:42:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0F79AB568
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:47:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D42451C230C2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:42:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B536281613
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:47:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D2061BF810;
-	Tue, 22 Oct 2024 17:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B4301C2DA5;
+	Tue, 22 Oct 2024 17:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="WrCJ8CIS"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TMZdZq7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9733A80C13;
-	Tue, 22 Oct 2024 17:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B59C1C2430
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729618957; cv=none; b=jWOXSkNBs4jidSXq3i8Pt1EQhdISh3NdKdDXB+/BrFetmPcXI1YrxRAhrVcC4Oy9AjDS8A7lYE2p3h3V4f4/Cy5TnYIrhdoqZeh/+I/oo6bzoWmUYMc7Fh2q+D9KPEUx8i5pbDQDXk0W9Y8JmPC5Rb5a+cLCLvsAYpRmcmlI8UM=
+	t=1729619231; cv=none; b=KF8It+aFn7YlDw3wdK8quph90rhXeLtLFi+qQoQre4G+IVQxb+PAY7JWad9ijNmgt8pjSlRYrZ1U6zdff341ghTAZ3IObiW0HQq0vTOjfqMmzCVOLCJUTs4ihG7y0/d1swNdkrb9ws8B5+qDXYLQfDIjrl8nvOJDpT6m2HmPJW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729618957; c=relaxed/simple;
-	bh=v9o+diiWPAzNW6fcahbOqHdppyHhmJ37GjMy4tZPO6A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OO2dhZ4zguLOeTMU3BL9CiwBQSGuyHsd8EBM/Rhbpn49cvNlFA0JchvnNcI8MGTMvgOfdewmgbMK3Tz/boZUxve94yfuD9fqsp4mbGfFx7qElRbPJrnKSwn1eK5dcAEqdJuF2/4douW4diTReoWotgWhtMrhbLXxiJb8ypZJBG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=WrCJ8CIS; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=YzXiqSqg0aayLyb7AVqmSvNxO5PvD8+CWdeuiriR2g4=; b=WrCJ8CISZzKR5F2k23TGKepHhJ
-	AmOqL5WWVvwpujLtGGbInXiQsofKfQ6xN1HBHTd9jnbuwTeNXRBElnzZyGaIVU//dsb9pSgVGfxO1
-	9mrqlMaxDHWr8adQivIIl97piVyPc1u2LWwQ0T6EVfzBbc/90bbi59QNJrZFjavcFgZXwmsVdBgBx
-	zG40HCAtTJF9I5Q1y1MLf0bULCuOQ1Kvyy8UhRyQ388bxkJLGfSoproLFmGXNM1HNBPa8G9P6J37S
-	njkI06N7B57rT3mh29Ggx9+YxeavFAhS1AgfiZpKvUOeZiNOUJVpwGKmzYEIGACNTbgqa/qZUjQAJ
-	es6L8phw==;
-Date: Tue, 22 Oct 2024 19:42:21 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Conor Dooley <conor@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Alexander Stein <alexander.stein@ew.tq-group.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Fabio
- Estevam <festevam@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org, Rob Herring
- <robh@kernel.org>
-Subject: Re: [PATCH 2/3] ARM: dts: imx: Add devicetree for Kobo Clara 2E
-Message-ID: <20241022194221.43b9073b@akair>
-In-Reply-To: <20241022-refurbish-laborious-e7cc067966dc@spud>
-References: <20241021173631.299143-1-andreas@kemnade.info>
-	<20241021173631.299143-3-andreas@kemnade.info>
-	<20241022-refurbish-laborious-e7cc067966dc@spud>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729619231; c=relaxed/simple;
+	bh=FlzAbp/MpdQyzh+K8hBdQtACT1TABdVqqz+kTWPLk1k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UphPpTAgi7kKC7MT4P1IGt2bW4lToSm4yxSIEhu7nB1pUMtO1NubZF7ai/vRNBTyGd1Mkm4pVbp00LSnpN11IgKtjIaJsVMgF/ccSaFGK7ECzEnZFKbLBZWd2JgosYjtphMnIztk7T836KjWgacssF6dv9kQ1p8yu9o5bOLOomI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TMZdZq7/; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7180ab89c58so2947688a34.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 10:47:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729619227; x=1730224027; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/3ROG2OgFC6S+UkSzKtSeK7aKbtjVl+W6QaKu0EpfgA=;
+        b=TMZdZq7/h06w9TiDr3SqwGMKJwdNpwiHNzg585uCTUfgcMVtGkiObh6cDvcQajID4c
+         xwmkC/Xl8l/jtMWNoEwckzB7w02eIkJDyjwDhgfcbVw8Vu12/bXq8L43aEo3WJyDvU9+
+         pFzmX45qPvGIU7JJLBf2r8CBVhjU/9XV+Fcp5jZPCNVKhHaP9K7ciTGzTKME3Uoemg58
+         9gId6j25CLcDWi3gEb4Z7deVrphNEZC0+lXnR5LwnPtlLnyr8Ib9hJz4Pm+TpHNjSrNV
+         GRV2V4mrvSp6D5B6xaTqfYBYJe+WucxpYKWc9Hry/7e5LUJlHrLEV+n5P9xuOrdpOHqZ
+         Ikgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729619227; x=1730224027;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/3ROG2OgFC6S+UkSzKtSeK7aKbtjVl+W6QaKu0EpfgA=;
+        b=roXQR1riPsom1D0ubLA7Cb6/ojhd/IgPJTbDZTfVDyTs6o1Lz30pttI750iMSlPEMe
+         29YtSjEAEg1NRdYrvr5nGZcxZotd8KSnbINZE943YvnP+03zf9fF7Ka3Y0hrDidkK5d+
+         Fn50yRBokHZ5kN+lvlRy+yDZyi/DzWKK55coLhs5MPMTCJ/13mAO/Ae0xgM98QZ1Lv4V
+         iyO0QE54QLC+WCp5jZrQaQoKZnilMWidZBwvh2mnpiK0fPJhjThK81U5YFKUkKsIQvVJ
+         n+9eGmS19AnpVz8yVXD1wJddYEiFETWrTO07lD+aJiKyMspPA/ZZsEm43hJ8NLtrBCYA
+         Hchw==
+X-Forwarded-Encrypted: i=1; AJvYcCUakRoMGqZegj+d13thXdoy6zKMls+blXQ7nhbX7X+GjgWW8nAmBG8sGs9JBpEOEgRcD5qpudPcmb96@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZZ1U4FGRFiJJ5R5IsZso2gCFFhrfFp8RLmAPqhzwR1D+Wvxb7
+	QFPVkaoOWliPih6aNUIwzPS7TvPxf1OQzuOo5neff957RzgrkULikOrwd1TI1vQ=
+X-Google-Smtp-Source: AGHT+IGgxcxo+adSxHU9+SGY77xlzKKVjgiC07fyJqCqhErk5/yWbcxxOxhTJG2ooD3rK8VwR9BxCg==
+X-Received: by 2002:a05:6830:6f01:b0:718:10ce:c6a7 with SMTP id 46e09a7af769-7184b348e49mr31285a34.30.1729619227325;
+        Tue, 22 Oct 2024 10:47:07 -0700 (PDT)
+Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7182eb22312sm1353300a34.13.2024.10.22.10.47.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 10:47:07 -0700 (PDT)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH 0/2] dt-bindings: dma: adi,axi-dmac: convert to yaml and
+ update
+Date: Tue, 22 Oct 2024 12:46:39 -0500
+Message-Id: <20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP/kF2cC/x3MSwqAMAwA0atI1gZsEEWvIi5iGzXgj1akIt7d4
+ vItZh4I4lUCtNkDXi4Num8JJs/AzrxNguqSgQoqTUGEHBXdyuhOvHld0Fa2NuxIhkYgVYeXUeN
+ /7Pr3/QDPGey8YQAAAA==
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ David Lechner <dlechner@baylibre.com>
+X-Mailer: b4 0.14.1
 
-Am Tue, 22 Oct 2024 17:59:10 +0100
-schrieb Conor Dooley <conor@kernel.org>:
+Convert the ADI AXI DMAC bindings to YAML and then update the bindings
+to reflect the current actual use of the bindings.
 
-> On Mon, Oct 21, 2024 at 07:36:30PM +0200, Andreas Kemnade wrote:
-> > Adds a devicetree for the Kobo Clara 2E Ebook reader. It is based
-> > on boards marked with "37NB-E60K2M+4A2" or "37NB-E60K2M+4B0". It is
-> > equipped with an i.MX6SLL SoC.
-> > 
-> > Expected to work:
-> >   - Buttons
-> >   - Wifi
-> >   - Bluetooth
-> >     (if Wifi is initialized first, driver does not handle regulators
-> >      yet)
-> >   - LED
-> >   - uSD
-> >   - USB
-> >   - RTC
+---
+David Lechner (2):
+      dt-bindings: dma: adi,axi-dmac: convert to yaml schema
+      dt-bindings: dma: adi,axi-dmac: deprecate adi,channels node
 
-and also touchscreen.
-> > 
+ .../devicetree/bindings/dma/adi,axi-dmac.txt       |  61 ----------
+ .../devicetree/bindings/dma/adi,axi-dmac.yaml      | 127 +++++++++++++++++++++
+ 2 files changed, 127 insertions(+), 61 deletions(-)
+---
+base-commit: 52a53aecddb1b407268ebc80695c38e5093dc08f
+change-id: 20241022-axi-dma-dt-yaml-c6c71ad2eb9e
 
+Best regards,
+-- 
+David Lechner <dlechner@baylibre.com>
 
-
-> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > ---
-> >  arch/arm/boot/dts/nxp/imx/Makefile            |   2 +
-> >  .../dts/nxp/imx/imx6sll-kobo-clara2e-a.dts    |  23 +
-> >  .../dts/nxp/imx/imx6sll-kobo-clara2e-b.dts    |  23 +
-> >  .../nxp/imx/imx6sll-kobo-clara2e-common.dtsi  | 514
-> > ++++++++++++++++++ 4 files changed, 562 insertions(+)
-> >  create mode 100644
-> > arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-a.dts create mode
-> > 100644 arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-b.dts create
-> > mode 100644
-> > arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-common.dtsi
-> > 
-> > diff --git a/arch/arm/boot/dts/nxp/imx/Makefile
-> > b/arch/arm/boot/dts/nxp/imx/Makefile index
-> > 92e291603ea13..58db45352b666 100644 ---
-> > a/arch/arm/boot/dts/nxp/imx/Makefile +++
-> > b/arch/arm/boot/dts/nxp/imx/Makefile @@ -290,6 +290,8 @@
-> > dtb-$(CONFIG_SOC_IMX6SL) += \ dtb-$(CONFIG_SOC_IMX6SLL) += \
-> >  	imx6sll-evk.dtb \
-> >  	imx6sll-kobo-clarahd.dtb \
-> > +	imx6sll-kobo-clara2e-a.dtb \
-> > +	imx6sll-kobo-clara2e-b.dtb \
-> >  	imx6sll-kobo-librah2o.dtb
-> >  dtb-$(CONFIG_SOC_IMX6SX) += \
-> >  	imx6sx-nitrogen6sx.dtb \
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-a.dts
-> > b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-a.dts new file
-> > mode 100644 index 0000000000000..33756d6de7aa0
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clara2e-a.dts
-> > @@ -0,0 +1,23 @@
-> > +// SPDX-License-Identifier: (GPL-2.0)
-> > +/*
-> > + * Device tree for the Kobo Clara 2E rev A ebook reader
-> > + *
-> > + * Name on mainboard is: 37NB-E60K2M+4A2
-> > + * Serials start with: E60K2M (a number also seen in
-> > + * vendor kernel sources)
-> > + *
-> > + * Copyright 2024 Andreas Kemnade
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "imx6sll-kobo-clara2e-common.dtsi"
-> > +
-> > +/ {
-> > +	model = "Kobo Clara 2E";
-> > +	compatible = "kobo,clara2e-b", "kobo,clara2e",
-> > "fsl,imx6sll"; +};
-> > +
-> > +&i2c2 {
-> > +	/* EPD PMIC SY7636 at 0x62 */  
-> 
-> Could you explain what you're doing here, please?
->
-I am not sure what you are really after with this question...
-So I am guessing a bit.
-I describe the hardware as good as possible. The sy7636a (apparently
-=sy7636) driver could probably be used here but the driver and its
-bindings needs to be extended to specify an input supply and some gpios.
-So at the moment I could not use a machine-readable way of fully
-describe the stuff here. But I want to put a human-readable mark here
-so if someone extends the driver, he/she might be aware that there are
-some possible users and candidates for a Tested-by here.
-For the JD9930 it is even worse. No driver in kernel. I have a pretty
-dirty one requiring some rounds with the brush before sending it.
-So the mark is good for information what is missing and for teaming up.
-
-Regards,
-Andreas
 
