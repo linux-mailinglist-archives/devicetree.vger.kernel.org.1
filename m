@@ -1,134 +1,113 @@
-Return-Path: <devicetree+bounces-114023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D80BC9A99CC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:31:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E69919A99D1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 08:32:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A0AE1C20DFE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:31:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 227611C213AA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED613139590;
-	Tue, 22 Oct 2024 06:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D7B142900;
+	Tue, 22 Oct 2024 06:32:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UJAo0jEg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R1r2s5bA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2FA284D12
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 06:31:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D1C126C02;
+	Tue, 22 Oct 2024 06:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729578711; cv=none; b=L5ujl0dx2dAI+1L7r3xzx7ZvjMvnF6OfMRzoDdwoqoOdDsS3o5q9Pv2kFD+HBTyDXKXVKu69t0emhDAAM/v1V3F6Nh+PxswMfoXOz15TIMlPRxqEk75LJUYoWYE5XtErWMvCwEoDABTcQxQy5iFWvW/gDnZYdhnBNwZoyxVm/7c=
+	t=1729578729; cv=none; b=VnQ+pZ2GsXtr58OKt/TguwAV1YiHfrBRuKx1iXo8FasuEOj4nWuwc7kEVtVghbhIDBfXiB+PTrHqDVAacXkosXi/mzoHKHcQySXZ90ILMgOLyrn90kjSiewxPmxoroBp+DLPbva+XOMryj3ujdsf+eFzOv+m4vk3Bl7MRZI+3Vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729578711; c=relaxed/simple;
-	bh=UA8peE4aqBis176Dq9lkDvGeZvGkh4OgIM0eopFMjow=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=An4XKU9X44ebUzmxUf3BcEnV8wMjxyheM32VC/YYoR0Xha/tlhGD2eycAwI5+vHxBLaC/7b4Ipr3iolK5JAddFxdJANfVUN1TngFhh794YebOBi7KGtLfv7X0/7Eca9KpXbMZ0bI2gx6UNBog5GmrIeHagof9ZgBOVgSczAU0bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UJAo0jEg; arc=none smtp.client-ip=209.85.221.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-50c9f4efd09so1614332e0c.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 23:31:49 -0700 (PDT)
+	s=arc-20240116; t=1729578729; c=relaxed/simple;
+	bh=fRv3QAZ5GTT1Ytn6SNlfvUscWQW7sf1SPvVZnk5xV1w=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=oA4M3njBxL1AnzVwvVhQqRjkZcjA9VILn7EvH4e31h9yq+yuz1Al81sc43ZjVR/F/++YJ7c30hI71zoYgwia1eDcQVXeLoVuVYtKVUegWTn3NvMzuwAlBUos4puupS3vYuZWX/TXjmTc0rMPaKTWYUMPcWV5HuqkZLYx7my5B0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R1r2s5bA; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2e2d09decso4385524a91.1;
+        Mon, 21 Oct 2024 23:32:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729578709; x=1730183509; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UA8peE4aqBis176Dq9lkDvGeZvGkh4OgIM0eopFMjow=;
-        b=UJAo0jEgnOmJRx2pNvTMy1oZBwG5qKEtT4atVR2IMrMg62XtxjFEEsm4m/zv9cfBIa
-         E2NZSAeYtad4ld4+D5Do3TTL8TXpx14x8plQE0dOAezGypoW3fem7eloMQLr3bAK6JjC
-         93LyuU7dseHpkOT39jMM+VFmY3oPpOjCA51r48eVQbjGZ8db2KqxB1SG5DdFn+z5aB10
-         L8wLs/iFk1RLKIW6Or8s5QJUwNHqZ3sGNzgCujhVApmnWQTT5OAZOYhOI4hIFFjsPniR
-         gJjSjRGznLuyFienR+pRrWxZj6omU3cFIq86ll53Zy4ZjJDrFFwtcmBDRi9vrjIHivaR
-         jGnw==
+        d=gmail.com; s=20230601; t=1729578727; x=1730183527; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s0ZVg94ADVSlaDxa+1PXOL3bzB11GUZscW4ia7W/tYk=;
+        b=R1r2s5bA02z11dBb3XB/QVXOgONzJjPWuk3oEWtyy7rcUh4ckdAERlvrRti/RGaCUo
+         UnUwNc33tsBXSY8e3g5nYjGFYoT7G4Phgmvj+U/8a1JmbJsdgzeU85yontapHHmAR3Eb
+         pLqVT4zNKAfgTm2hyRkiHIA4MyFLQHDyKWBR9dxdZtxV9vdNadgI/iZa95ubGXpL+0Zo
+         ApziIhH66iy/Vmr8ZhDkYG6k2gv60snJC/vQKIlusPypkU9sfe16zujufluEVj2+k91Q
+         QT7ELLvhZnd+ig5VXRoPh+uZR8hBG9gAYtK6KL7mumrXm1iIHJZivV/+eLDm0aeXSiBk
+         bP8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729578709; x=1730183509;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UA8peE4aqBis176Dq9lkDvGeZvGkh4OgIM0eopFMjow=;
-        b=wICYYAwVQsZ72LcEktFcjabnY5vkuHrGsgrtLbOaMWNWyYTvBpwYecGltezrJks+ra
-         o0mz7z8TrHNfi73EkLo2EdU2KoFC6/+iGBdb/uACRAiYzdsjRw18vm/kjnbR8klfI1l6
-         L4/6sEZQP3/OMHpArk7qeS5ddCztIOVn6batKRFv5CaPMb6B6X2uJI+ZGFKqkgadu51O
-         Eo0ezcSOV6QX7VhVAwmSAd4wRcooN6sah3iFgqiP7QUT5YKJGpUD7JyspbCZRn0dUNCp
-         08IHVLWXdrVB2vrTUsriXZMjMdAhnxxLBSb8WIsNKhJLJu7m3qSLiQv5DiosZTZA0R7O
-         FF4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXFyme66c3xiN5KSiXHHzgaIY3g8tJ3IdTRKkYyBRSy23HziAaMygeOQCgwlR8bggp93jyLUWMb7MMm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/87lYrvCSheYcn8uoUDXEEzz/qt0thWSYHpCKNTdub7lEq/DK
-	qmPodVXffR5+OfeyvZPfaRWqf4hVlKdTPew8EP4zFzkLEQJLgsj/yKAdS8cwwhFzHNr23xmOABJ
-	4UuNMKNBho+uTz7OvA2eGFWJGskgZ+GNcvHeNgg==
-X-Google-Smtp-Source: AGHT+IFOCcrJoYXRgEW2qz+ymyN0Gck1g+lyMApoiYLfdYnlbLEKw+Rb3ciR3agjaxWEa8c5lSru4E5xt3YoNOkB+SU=
-X-Received: by 2002:a05:6122:169f:b0:50a:76c9:1b7 with SMTP id
- 71dfb90a1353d-50dda3c6942mr11641929e0c.12.1729578708667; Mon, 21 Oct 2024
- 23:31:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729578727; x=1730183527;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s0ZVg94ADVSlaDxa+1PXOL3bzB11GUZscW4ia7W/tYk=;
+        b=EsBm9glCneEs4/p25+NQLVmZoY7bsq7r1iOE3W2Lf+rjp4dnVVdJ+w6+8cOCwesHeL
+         xKlxM05y7hW+yPmqAezcCysWt+3sqg9tW+z5AvUJjRmR5CJtjF5SlyDDjj5mfa/NNnrm
+         2rNYrJ85Sw3jFsmG+8RV7GKE2e3C2swEr3WpmLg5WyhPiHxaPX6rkIxrabTcfdFJot4h
+         8/WEHx6ewhuYs0inIG9D0FGi/IBoyA1iTCj1Km4BJFc2/MTo3/eL1sC9F6M0WpI1ucdq
+         n0F9VM39oyIdk/uR0i4J9mG1ZZ2uhur4sTRLUK8FD7Gjrg2CBhPuKhoiAtcuStfnC+6b
+         0DLA==
+X-Forwarded-Encrypted: i=1; AJvYcCV05w5WkU2QudI+MoxdjOb6A0JsFRWXqAduUF2V2QOCtOcttq/26c4x8++Y7qlH+n0ijkc3Dc1dBclg1fw=@vger.kernel.org, AJvYcCXOF5P18FYF/Hiu6OGrguGmrKh9oIEGRdclEta0gTUP2fpNfzb4WAcG2KqoiHh3Z8XjMt7j4qutpHRE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yys3GGpxNb9z6VdxQQiga8nGf3XrUQK0wErhCg+WTHRWtJv0NSB
+	cYzNUOe9Oe48ZGEl4nw9C98SPhbfOLRC4ukUSX9wk0jvWrFt0m3n5zv8fKfc
+X-Google-Smtp-Source: AGHT+IFXgTBiFgFsXxOg631XJW9inf5ov3uskzvCNIx2xVHr9SuSJamqxyvMEirBwTsGX8DTDMZajQ==
+X-Received: by 2002:a17:90b:f0c:b0:2e2:c2b0:d03e with SMTP id 98e67ed59e1d1-2e5db94f135mr3456580a91.5.1729578726704;
+        Mon, 21 Oct 2024 23:32:06 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e5ad355bebsm5227508a91.7.2024.10.21.23.32.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Oct 2024 23:32:06 -0700 (PDT)
+From: mjchen <mjchen0829@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	mjchen0829@gmail.com,
+	mjchen@nuvoton.com,
+	peng.fan@nxp.com,
+	sudeep.holla@arm.com,
+	arnd@arndb.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	dmitry.torokhov@gmail.com
+Subject: [PATCH 0/2] Add support for nuvoton ma35d1 keypad controller
+Date: Tue, 22 Oct 2024 06:31:56 +0000
+Message-Id: <20241022063158.5910-1-mjchen0829@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241021130221.1469099-1-aardelean@baylibre.com>
- <20241021130221.1469099-3-aardelean@baylibre.com> <2842cbb5-680e-483a-af62-4c08e7818a85@baylibre.com>
- <1dbc8e19-d6fd-42dd-b116-f08c408b6a5c@baylibre.com>
-In-Reply-To: <1dbc8e19-d6fd-42dd-b116-f08c408b6a5c@baylibre.com>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Tue, 22 Oct 2024 09:31:38 +0300
-Message-ID: <CA+GgBR-8i-S2gnp39TnOxayfGqLpdhAceOjNDpE+Y7t_5Xeaig@mail.gmail.com>
-Subject: Re: [PATCH 2/6] iio: adc: ad7606: fix issue/quirk with find_closest()
- for oversampling
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com, 
-	gstols@baylibre.com, brgl@bgdev.pl
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 21, 2024 at 10:31=E2=80=AFPM David Lechner <dlechner@baylibre.c=
-om> wrote:
->
-> On 10/21/24 2:03 PM, David Lechner wrote:
-> > On 10/21/24 8:02 AM, Alexandru Ardelean wrote:
-> >> There's a small issue with setting oversampling-ratio that seems to ha=
-ve
-> >> been there since the driver was in staging.
-> >> Trying to set an oversampling value of '2' will set an oversampling va=
-lue
-> >> of '1'. This is because find_closest() does an average + rounding of 1=
- + 2,
-> >> and we get '1'.
-> >>
-> >> This is the only issue with find_closest(), at least in this setup. Th=
-e
-> >> other values (above 2) work reasonably well. Setting 3, rounds to 2, s=
-o a
-> >> quick fix is to round 'val' to 3 (if userspace provides 2).
-> >
-> > This sounds like a bug in find_closest() instead of in this driver.
-> >
+From: mjchen <mjchen@nuvoton.com>
 
-Adding Bart (the original author of find_closest()).
+This patch series adds keypad driver for the nuvoton ma35 ARMv8 SoC.
+It includes DT binding documentation and the ma35d1 keypad driver.
 
-> > If there is an exact match in the list, it seems reasonable to expect
-> > that the exact match is returned by find_closest().
-> >
->
-> Likely also affected by this bug since they have values 1, 2 in the list:
->
-> * rtq6056_adc_set_average()
-> * si1133_scale_to_swgain()
+mjchen (2):
+  dt-bindings: input: Add Nuvoton MA35D1 keypad
+  input: keypad: add new keypad driver for MA35D1
 
-Yeah.
-I forgot to mention this sooner.
-But this patch is more of an RFC patch about how to handle this
-situation with find_closest().
+ .../bindings/input/nvt,ma35d1-keypad.yaml     |  88 +++++
+ drivers/input/keyboard/Kconfig                |  10 +
+ drivers/input/keyboard/Makefile               |   1 +
+ drivers/input/keyboard/ma35d1_keypad.c        | 312 ++++++++++++++++++
+ 4 files changed, 411 insertions(+)
+ create mode 100755 Documentation/devicetree/bindings/input/nvt,ma35d1-keypad.yaml
+ create mode 100644 drivers/input/keyboard/ma35d1_keypad.c
 
-For monotonic values with an increment of 1, find_closest() is a bit buggy.
-Will try to fix find_closest()
+-- 
+2.17.1
 
->
 
