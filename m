@@ -1,140 +1,235 @@
-Return-Path: <devicetree+bounces-114244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C6D49AB257
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:43:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB50A9AB27B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 17:48:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43A5B1F214EC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:43:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 369991F22954
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763DB1A3A8A;
-	Tue, 22 Oct 2024 15:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFC91A3A8A;
+	Tue, 22 Oct 2024 15:47:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="GK681qpW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eEkyIs+7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849A11A3056
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 15:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E1619F10A
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 15:47:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729611765; cv=none; b=gwzZbhrB5RbjYQB8KCcM+meDA/2Vk3XkT3E0WqFe840wnC92ZJy8JJ8YDD9G5FIwKJLFlnmYcpqwPstkfHy67ggiXTEJyIAfBPjMZjzKjfijRXOfLFpGQ8c/nTlT1DpjKdOYPF3+uKQmizcLwNYukmm5dDb3a5Omv0gTDvpI0GU=
+	t=1729612075; cv=none; b=YPETOi2g6YIgQdxuT7PxZ6Uq/LC2GT2IVA/GcTSMCFeOwib7hDckeRiyo+La0n42n/07Ikfx+YnRkfsbkah5GQP9OyzD8OlcSzX1mVvbIkCmNfXvNvGzSPFEQKIfF5ZyH422mRbx2LCK6sES+tWcs8rEtUDzGTyIuJqLqjh/RQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729611765; c=relaxed/simple;
-	bh=Tb5ba7CKLTn8rkhkDlReivWDEzP/Y12f+/EWqIfz6pM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N6OqnSTPbFaKVD+jmj1kpVELuiErGeQdYNtwB0pQfGSBAKUPjJ1Ne733Dk5AuSFlaqwaqwnyfhS3xRLSfL0SDjpUk/NxYC7BkWezM+EHUL0vx5CITZI4VQU8OIb5K9PmiQ/XKEFRbAydmIfg+1YOQIznzTU+GeUfRaTw7RQmlDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=GK681qpW; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a9a0c40849cso896429266b.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:42:43 -0700 (PDT)
+	s=arc-20240116; t=1729612075; c=relaxed/simple;
+	bh=a13NbY+v/P+pxSVkHgPc9/8v/gp5YPf7t3CPFDjrcsw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=m2AWxhM//pZSm5b4wBkp0kQXSjq2dwgI0HZITUnIGl5o6QRVeV+kErNuCsI/BecMKK6Emb6aF4DqVnZEMGK3fmVt/4JgM4jqs4+VqZXak4nhNih891WJU9jxzL4w9wTRIiO1i6vyQufn01QZuva3ZtXzQIExy2Smft9dlqrtU3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eEkyIs+7; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d570728ebso508951f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 08:47:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729611762; x=1730216562; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tb5ba7CKLTn8rkhkDlReivWDEzP/Y12f+/EWqIfz6pM=;
-        b=GK681qpWlwldmsONhp4g9jw+kpV/vTByK0HwMYSWsAOakVzk/8uFUWmbL65tKSDAk7
-         OIQntprktrEg9qW2VzQA5l1VOHZmXgsg731Tz2o2im5aYdfe2oNLTszM4t+er/A0My58
-         QzWnAyCyf3D7uttWRAEm/6Ia4p+6i/jaWLeUuTzYP1//aa0Nmswbez52Pt8SZOOTvgLv
-         /d/QwuTzQQHpLwm0yFUWzTwM9RdHwuUrx+05YtE5hUWXpQDLTKpFpsJPkVEY6OkMSklX
-         Sz/bG3YdfRKnkUCzsEFYRqpD8V0JFWA5gU+6Etxb6UQ3xZW0motMuyPTVb+/tjS14Z8P
-         cdfQ==
+        d=linaro.org; s=google; t=1729612072; x=1730216872; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/i37KGSJH2cyKOYgiQHzdl8hUHnbxZvYWeriSe8Ki34=;
+        b=eEkyIs+7UxYT0CHGFFtZMwD+LzAX8goYAnU12OR8AXNwefjWWTZcoeCK6WNYjRwEnS
+         WD8dugeEOxMQpBzNRxwknKhtR2uD+NXczwj4JmuNOMdd5LH42il6f0YKvg8iUANMg54J
+         YBXF2V4yZi9rMPoQ9UgTJQogUIbQbTt7ScKa/vjN8fQardRELwo1RWxOe8zxWgbUqkSe
+         tvu2OY5T0dvt5NW0JaTWb5NJhFRMb7NTYUrvQ2fG9SPyXsYy+RUxOhyuJriYeq9v+CeF
+         zIWx3X9+fyvoGfAm416V8R9VEwSY6+K4spWWB8+b39MVdJhvVxz86FTErOKXEekOfRVP
+         6z5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729611762; x=1730216562;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tb5ba7CKLTn8rkhkDlReivWDEzP/Y12f+/EWqIfz6pM=;
-        b=hf41682pqvIN97zOEG7NiALQRvbNfnZXoMjfRSq93zqc2Pof8KtL0ihFbuHaezSy9j
-         lVYxWUmjpNOekMMIaUp3pl67+kAlWHa7CIUzicxFPRcbfJLRUnxW09dD62e4jAsGzqrt
-         UuKj4KDU0sxSe3KgaXGBgmCQyv7icHrgbsulrabMzoxoOaQG4TosWv0f05C7TVvv44an
-         vtGR27Sr176U4vqAAMw6a4AOKDtuHzuUIuPcZRM7jW+Dl5lTOgVr2jUo6b54xjQx3gHG
-         MHNgPapeGuFOmmNoEPghMgbD19x8KIR+Xta8Gw7BL5GPXA+rYbOSyURSVDLC3i0dBkTt
-         oJ1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWajERKI+pi78vjIs+Q8jxjNUUB1Njsxk4Xvbxu1ZENjkGwAHoin3h4Tx0iO6fEm7+kvEFBXptFPfzC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz18RmhV9e5mxePsA2biOtUFNJMeDMagJKjAho876uLqkrgu4qw
-	c9/V9KCMZc7lRBsskbBn7TdbeYkeJ+ZKvnzX69eOyj5lwy3HtPOpHkaNS9momcU=
-X-Google-Smtp-Source: AGHT+IH31g9A5tvlodwEJG6AIYxAUczXnCG2y8sRDax4YawMtiLAN/avicWxie7/dj2TwfmEdo/6WA==
-X-Received: by 2002:a17:906:6a07:b0:a9a:3cc6:f14c with SMTP id a640c23a62f3a-a9aa8a05ea6mr439944866b.48.1729611761895;
-        Tue, 22 Oct 2024 08:42:41 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a912f67f1sm353775166b.85.2024.10.22.08.42.40
+        d=1e100.net; s=20230601; t=1729612072; x=1730216872;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/i37KGSJH2cyKOYgiQHzdl8hUHnbxZvYWeriSe8Ki34=;
+        b=wycIXFwVy9NQhMshKOVjnqquE+XGxdm5TDqJUdATeGUzCwgSuTqYY1lQfugHh+Dpg1
+         61KXWhtXxOK2QK7KjBPXndUhVQtkRRoSrZRj7m58tGHqv4z25HTxfA4N9vyVPNln+4Qo
+         VfQQ9vXKu5oCoHxGGlI3Gu9ZZIFx1MQju8Xi1pU73XlTVqU/SuoZepY2+bDA1UrwtwPq
+         MhFoytkVh/RTaSkfl6E3ZqvrIp1/r1S0MqQHgoleCuBVwIG+98YswKyVmPr4a/vg8Y5m
+         dDem+5DErkce1m89fX4su5uCUYWGD0yYMJlY7oatTYAPAbj1ny+4+80EKCpSjKjGwfB8
+         +lFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWap1tNedmvW8H4YJbVNEgyox6raQDBodS2URMC/TyQtn2N5Q179y2SzEnyVjwlsRfzISuMGjZecLw/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJcSMGSWvT2MKdHEnIcVNexy45aqNOFuiH7O+rRMJn7uGUscu4
+	ARu6mGV4wIYuYSZjPBKkuwuzHVor5pz84JhAz39F20EsjKsEvlzAtHwG9+0+U5A=
+X-Google-Smtp-Source: AGHT+IE0zZyVhD+43lbZMoBwIDAOYUcJm1NwSt3gC8ejPy6KPL7TRG4c6ozV091ZE8gZwscF1v9rNw==
+X-Received: by 2002:a5d:6484:0:b0:37d:4988:a37e with SMTP id ffacd0b85a97d-37eab73d2fcmr4919973f8f.13.1729612071462;
+        Tue, 22 Oct 2024 08:47:51 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66c725fesm3439959a12.87.2024.10.22.08.47.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 08:42:41 -0700 (PDT)
-Date: Tue, 22 Oct 2024 17:42:38 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Chen Wang <unicorn_wang@outlook.com>
-Cc: Chen Wang <unicornxw@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, inochiama@outlook.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, 
-	chunzhi.lin@sophgo.com
-Subject: Re: [PATCH v4 0/3] pwm: Add pwm driver for Sophgo SG2042
-Message-ID: <i3zf5qoy7mrbqg2shag4rdwdptcjmfhr2zfxqcqzcobbnl4trd@n6ib4fobduq6>
-References: <cover.1729037302.git.unicorn_wang@outlook.com>
- <MA0P287MB2822808440B26B1C445118BAFE4C2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
- <MA0P287MB2822C080A81F87037F9EE94CFE4C2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+        Tue, 22 Oct 2024 08:47:50 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 00/18] arm64: dts: qcom: change labels to lower-case
+Date: Tue, 22 Oct 2024 17:47:25 +0200
+Message-Id: <20241022-dts-qcom-label-v3-0-0505bc7d2c56@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3p5yql6s3yusktbg"
-Content-Disposition: inline
-In-Reply-To: <MA0P287MB2822C080A81F87037F9EE94CFE4C2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA3JF2cC/3WMQQ6CMBBFr2K6dgwd1BZX3sO4aOkAkyDVljQaw
+ t0trDTG5fv5700iUmCK4rSZRKDEkf2QodxuRN2ZoSVgl1lggftCowY3RnjU/ga9sdSDlpWuGqu
+ 01bXI0j1Qw881eLlm7jiOPrzWfpLL+jeVJBRgUVmFsswfde55MMHvfGjF0kr46Vc/Pmb/4MgYZ
+ 0o6Wvzy53l+Awgc9VftAAAA
+X-Change-ID: 20240828-dts-qcom-label-81989fb78b8c
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Steev Klimaszewski <steev@kali.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6659;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=a13NbY+v/P+pxSVkHgPc9/8v/gp5YPf7t3CPFDjrcsw=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBnF8kRiVZeKyjU4SElDWF4xg8ukQRdxFvzWfEOs
+ dXWOXINSdaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZxfJEQAKCRDBN2bmhouD
+ 14pjD/9JcZItFv03lkI9CCo45MsFrJKqnfGKz8q/+H/oNvpsTNiqHN4GeDa2wh4Q8S+KDeLRo9j
+ FMXSpZch9aLnSYqX9F1rSbXBlLJz68TBPT0OEJLzdbN7l2sF51CZ/aDU11XJzvtNCpseajLWaLF
+ oVelcndo5Q/ispvCxchtoWUXSSJWiBdZ8FvmDeoXijHRp5OhynjrAvwlRSCVTip729PZjbPczo/
+ Pkrw4UlLPvOiTdubHr29eTCCn4gvINDmmuvTJ9DiztfHU/d6gbdA9sIBG5jPpkc/Y82b2NvaDIR
+ /EWyhlw24155M4gyIxHhUxQEO+K4zrBbtRbiowyE3P5HHW/Z2p7DazmRvgaukqpAs+aaYI4pOQx
+ aaIkIZUyabTcjRnS8J1TdIP1Pv+Z/Bxa+HDG+u7T+qkOzs8B17z0TXPeVA4Gf5y4CFa2Eh20YlE
+ 8yx/N6MKiwBItIvTLIMN8y0BlxXlqkjrFj2tAdVGeS9xmhsy16Ap3zQiRhJ1S9t8Mvh6tschDYd
+ 86EyGn9tBRrZG3Uis3RcBUJDlJftUe64XVVAWF+oDIG630cfqZPYFa/U1ly4IaWBnvrC30ycMTt
+ RA7SRK6320E3IFIZJJsiGYYgtaMOwMKGI5Ouu8Gypp/MpxLISEVy70Z+hYu5THrcWwjp2c2v3uE
+ i0vCMB6I2ALhoWQ==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
+Changes in v3:
+- New patch #18
+- Update also sc8280xp-microsoft-arcata.dts
+- Tags
+- Link to v2: https://lore.kernel.org/r/20240829-dts-qcom-label-v2-0-5deaada3e6b2@linaro.org
 
---3p5yql6s3yusktbg
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 0/3] pwm: Add pwm driver for Sophgo SG2042
-MIME-Version: 1.0
+Changes in v2:
+- New patch #3
+- Several fixes as pointed out by Konrad - not entire part of labels was
+  converted in v1 (e.g. LITTLE_CPU_SLEEP_0 -> little_cpu_SLEEP_0).
+- Few more labels found for clusters/cpu sleep states and clk40m.
+- So in total re-doing pattern matching. b4 is your friend for the
+  changelog :)
+- Link to v1: https://lore.kernel.org/r/20240828-dts-qcom-label-v1-0-b27b72130247@linaro.org
 
-Hello,
+DTS coding style expects labels to be lowercase.  No functional impact.
+Verified with comparing decompiled DTB (dtx_diff and fdtdump+diff).
 
-On Tue, Oct 22, 2024 at 08:53:42PM +0800, Chen Wang wrote:
-> Adding another email address of Uwe.
->=20
-> Hi, Uwe, not sure if <u.kleine-koenig@baylibre.com>is another emailbox
-> adderss of yours?
->=20
->=20
-> On 2024/10/22 8:00, Chen Wang wrote:
-> > If it looks good to you, can you please apply the binding & driver part
-> > of this patchset for next v6.13=EF=BC=9FFor dts part, I will handle it.
+I am splitting the patchset per few patches doing the same, because
+otherwise diffs would be too big and would bounce from Patchwork/mailing
+list.
 
-It's on my todo list, but not at the top. (See
-https://patchwork.ozlabs.org/project/linux-pwm/list/ for a part of my
-todo list that I usually tackle from old to new.)
+Best regards,
+Krzysztof
 
-So please have some more patience. And FTR: Both email addresses reach
-me just fine.
+---
+Krzysztof Kozlowski (18):
+      arm64: dts: qcom: ipq: change labels to lower-case
+      arm64: dts: qcom: msm: change labels to lower-case
+      arm64: dts: qcom: msm8992-libra: drop unused regulators labels
+      arm64: dts: qcom: sc7180: change labels to lower-case
+      arm64: dts: qcom: sc8280xp: change labels to lower-case
+      arm64: dts: qcom: sc: change labels to lower-case
+      arm64: dts: qcom: sm6115: change labels to lower-case
+      arm64: dts: qcom: sm6350: change labels to lower-case
+      arm64: dts: qcom: sm8150: change labels to lower-case
+      arm64: dts: qcom: sm8250: change labels to lower-case
+      arm64: dts: qcom: sm8350: change labels to lower-case
+      arm64: dts: qcom: sm8450: change labels to lower-case
+      arm64: dts: qcom: sm8550: change labels to lower-case
+      arm64: dts: qcom: sm8650: change labels to lower-case
+      arm64: dts: qcom: sm: change labels to lower-case
+      arm64: dts: qcom: sdm: change labels to lower-case
+      arm64: dts: qcom: change labels to lower-case
+      ARM: dts: qcom: change labels to lower-case
 
-Best regards
-Uwe
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi           |  36 +-
+ arch/arm/boot/dts/qcom/qcom-apq8084.dtsi           |  20 +-
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi           |  10 +-
+ arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi           |   6 +-
+ arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi           |   4 +-
+ arch/arm/boot/dts/qcom/qcom-msm8226.dtsi           |  34 +-
+ arch/arm/boot/dts/qcom/qcom-msm8660.dtsi           |   6 +-
+ arch/arm/boot/dts/qcom/qcom-msm8916-smp.dtsi       |   2 +-
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi           |   6 +-
+ arch/arm/boot/dts/qcom/qcom-msm8974.dtsi           |  36 +-
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  10 +-
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  18 +-
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              |  26 +-
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi              |  18 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  50 +--
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              | 100 +++---
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 110 +++---
+ arch/arm64/boot/dts/qcom/msm8953.dtsi              |  68 ++--
+ arch/arm64/boot/dts/qcom/msm8976.dtsi              |  32 +-
+ arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts       |  12 +-
+ arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts  |   4 +-
+ arch/arm64/boot/dts/qcom/msm8992.dtsi              |   4 +-
+ arch/arm64/boot/dts/qcom/msm8994.dtsi              |  52 +--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              |  54 +--
+ arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi    |  32 +-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  92 ++---
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi              |  68 ++--
+ arch/arm64/boot/dts/qcom/qcs404.dtsi               |  68 ++--
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi              |  86 ++---
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           |  14 +-
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts           |   4 +-
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts           |   4 +-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 188 +++++------
+ arch/arm64/boot/dts/qcom/sc7180-firmware-tfa.dtsi  |  84 ++---
+ .../arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi |   8 +-
+ .../boot/dts/qcom/sc7180-trogdor-homestar.dtsi     |   8 +-
+ .../boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi  |   8 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               | 362 ++++++++++----------
+ arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |   6 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 374 ++++++++++-----------
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 164 ++++-----
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  16 +-
+ .../boot/dts/qcom/sc8280xp-microsoft-arcata.dts    |  16 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 158 ++++-----
+ arch/arm64/boot/dts/qcom/sdm630.dtsi               | 152 ++++-----
+ arch/arm64/boot/dts/qcom/sdm632.dtsi               |  26 +-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi               |  16 +-
+ arch/arm64/boot/dts/qcom/sdm670.dtsi               | 158 ++++-----
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi         |  74 ++--
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts         |   4 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               | 178 +++++-----
+ arch/arm64/boot/dts/qcom/sdx75.dtsi                |  90 ++---
+ arch/arm64/boot/dts/qcom/sm4250.dtsi               |  16 +-
+ arch/arm64/boot/dts/qcom/sm4450.dtsi               | 160 ++++-----
+ arch/arm64/boot/dts/qcom/sm6115.dtsi               | 152 ++++-----
+ arch/arm64/boot/dts/qcom/sm6125.dtsi               |  52 +--
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 190 +++++------
+ arch/arm64/boot/dts/qcom/sm6375.dtsi               | 160 ++++-----
+ arch/arm64/boot/dts/qcom/sm7125.dtsi               |  16 +-
+ arch/arm64/boot/dts/qcom/sm7225.dtsi               |  16 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               | 370 ++++++++++----------
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 366 ++++++++++----------
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 352 +++++++++----------
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 160 ++++-----
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               | 162 ++++-----
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               | 156 ++++-----
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 202 +++++------
+ 67 files changed, 2853 insertions(+), 2853 deletions(-)
+---
+base-commit: a1fc2f9ffe8386e254538ad0742194744b7d4a48
+change-id: 20240828-dts-qcom-label-81989fb78b8c
 
---3p5yql6s3yusktbg
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcXx+sACgkQj4D7WH0S
-/k4X9wf+LjLZn7Y6+CUC3ywDEyn58ElxJveW4VehciYRmEqEsXeQEIVMOyuZTYzs
-sQAmqS+7ykouw7tQuJ+sVHPdO0sMHqFadkJ1ZIGEwTdYrRnFSL0YvZIAUB9nsKE6
-sJRLd9vuRdIrWPyQTeC/lrDU4RRlGM65Qtvbea5XTGu2vzXcjru9NuVjETol6F4Q
-MNDjvUNF7Aw0WKRSzxCzlA3CkxpMkmUPJn1TVnVrwXz2wSEcq4P7mPdMgBcYkHas
-9johxTldvYqd3SW4LgsbLmvi4zBK/hw+X4HTjfFvnzjPG6yDYziT2S+kPW9qMAZK
-KbWYT69PgQ7lWbfwC3k0pgsWu/G/aw==
-=L4hC
------END PGP SIGNATURE-----
-
---3p5yql6s3yusktbg--
 
