@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-114233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D3FA9AB120
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:44:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D357B9AB123
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 16:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7824B23379
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:44:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94CED2845B0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 14:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD691A254F;
-	Tue, 22 Oct 2024 14:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0625D1A2658;
+	Tue, 22 Oct 2024 14:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="M0q1PpH0"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="zPsfDhy5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F84E1A0737;
-	Tue, 22 Oct 2024 14:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0701A0737;
+	Tue, 22 Oct 2024 14:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729608268; cv=none; b=Wq2IZmnCG+mjRfa3RhrUSUV24nNYZjHg1tB2hKeWDqeONl7NVZLNZIkLx+rt/1UQvpWYaKyJIp3+Z4SIUfwe3ZklqG//yYfgChY7xMaEJ2wf8w8J3fKmb/XT2A1AnXc1mtq5o+zNp2aPnHK/WA6zAXDbbkEdNuEkONtinnu9q0M=
+	t=1729608271; cv=none; b=Wff4wQ3hBKaEF+G5C5Kg0SbtwVYA5/ksIwQo9/sX6yVOaZ1Qgz90Yhhuk1h5nWtdA2vJqqCWm0mbvpc38TT7UUMEhQGQHZIitEeagl5eGV4awvHfEj/Jy8PnTIghTOGCkyegDQc315v//R6nWUW93VHM9Tf9oYWtjGoGSVlmCBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729608268; c=relaxed/simple;
-	bh=2QKP5bShhJgstrGjEpmyAJHBDPoJQrvbizAvM/kvMQc=;
+	s=arc-20240116; t=1729608271; c=relaxed/simple;
+	bh=eURP4ar4+HITlep6dZUO0eNRMf3wwVBadmodatCMtSs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mbmnD0RfkqOpZying71SJR1+/PudL5ZD2hPyGSx3sv1guJ7yYN8jALFPrOf6N366yfIf/Q4xIvZXZpLUxviGT9JP754xDyGNqZElM3cpqsgpifTWk5sRXs77SSvFtq5NqaTJ9L4UgIpyauuwNViF1xRA7uafX/YG9G4DtXJnGt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=M0q1PpH0; arc=none smtp.client-ip=85.214.62.61
+	 In-Reply-To:Content-Type; b=UaJ0GkPtPCMhGmAoXcjGCRyhluikSeN0UN6pxPOGh7RNYMmgNU/0msgK/S117npCsEAVKrVrVnAYaGsNt4u4dWx2E1+o+IoWTqyA56aEiL7tMGPK6/5xXrgwnhP8JgCKrwG1JKeFqtWzhdLDLctzLaBf4JiGHgxG4hsKXipvvq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=zPsfDhy5; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
 Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id B5B81883D4;
-	Tue, 22 Oct 2024 16:44:23 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id 7F5CE88EBA;
+	Tue, 22 Oct 2024 16:44:27 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729608264;
-	bh=XpHkPMU9+jmzDRCDk3QaPWlsUvggEKn5/K45SclQhvo=;
+	s=phobos-20191101; t=1729608268;
+	bh=8JCWEFiVxTgldvfx2ew36UU69vLDsIQ+wcH6mkzO9Is=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M0q1PpH0oUl6Cus5XKlSbppFeAItUcnij+MxEsLIZpOzIcOPT1+4vTlqsQKxUfqKt
-	 QcCkF10ZOKiqwDGrVuImGWf++kKhnMSqUJQ5oKDghKfInq9VJgcyIIIdDYB7SHO0s+
-	 bfjfOqcPIpC6bahy0RYfclJza+zaegY0liKiR2zEKdO0vhhUWNDg4SxytsRPidgkxH
-	 8yli49eSfSydAdu/vSwr0sBP0U2GaqwZNnrP42vbVjC3G7GTE7GnSxjCB/WBF8egqJ
-	 2LrcmILnCd7DYVIiccdUK9iVoqevfLEfZiC9LLrrLHw7L32GNm2iyKwLClAtbO7rY+
-	 T1VVFPALtV/3Q==
-Message-ID: <f95fc508-fe6f-4501-9233-07bda0d28d98@denx.de>
-Date: Tue, 22 Oct 2024 15:23:33 +0200
+	b=zPsfDhy5oryqqBV+Ic3xo10tNvaLLB1ttADNgufC5PYpGS1vKw5xSsP1Q8HXF5oLa
+	 LTASKwtUNO/uKlpy588coRiqHVZQUJXbwZlu6sj4F6spD+DsmDTKV/UOxdmItG8ETJ
+	 ZJshR9NtvCyyBMLy1J9ky5IPFJk/vMmOvzj5nMn6atIN2RbDPJ3QOvuqFpxcVJ+KGc
+	 qSmus+JL2H+lD7oOYbTXEZytYFzruUZ/iVVaD0ZKkF7gqcZLWDWHXEU6rKqo9xZXPt
+	 pmt9oYK79A0k1wu7g7zM5domLaPESR9MOwT1vTAe7VbIA/BshvuE0A15CNjTjBTPrc
+	 UHMSI1BK0027w==
+Message-ID: <b382b08a-4ce9-4070-adbf-45ef5e91ce1d@denx.de>
+Date: Tue, 22 Oct 2024 15:56:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,59 +56,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: wilc1000: Add proper error handling for remaining
- CMD52
-To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
- linux-wireless@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20241018194244.280322-1-marex@denx.de>
- <a6529da9-6333-4516-923d-01f12c439b33@bootlin.com>
+Subject: Re: [PATCH v3 01/12] dt-bindings: pinctrl: fsl,imx6ul-pinctrl:
+ Convert i.MX35/5x/6 to YAML
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
+ Fabio Estevam <festevam@gmail.com>, Jacky Bai <ping.bai@nxp.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, kernel@dh-electronics.com, linux-gpio@vger.kernel.org
+References: <20241017211241.170861-1-marex@denx.de>
+ <CACRpkdYvMWABqw1tC5YSh+RXcHiCwUGsbOGAfkysThYQZTPWzg@mail.gmail.com>
 Content-Language: en-US
 From: Marek Vasut <marex@denx.de>
-In-Reply-To: <a6529da9-6333-4516-923d-01f12c439b33@bootlin.com>
+In-Reply-To: <CACRpkdYvMWABqw1tC5YSh+RXcHiCwUGsbOGAfkysThYQZTPWzg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-On 10/22/24 11:11 AM, Alexis Lothoré wrote:
+On 10/22/24 2:55 PM, Linus Walleij wrote:
+> Hi Marek,
 
 Hi,
 
->> diff --git a/drivers/net/wireless/microchip/wilc1000/sdio.c b/drivers/net/wireless/microchip/wilc1000/sdio.c
->> index 5262c8846c13d..170470d1c2092 100644
->> --- a/drivers/net/wireless/microchip/wilc1000/sdio.c
->> +++ b/drivers/net/wireless/microchip/wilc1000/sdio.c
->> @@ -769,8 +769,10 @@ static int wilc_sdio_init(struct wilc *wilc, bool resume)
->>   
->>   static int wilc_sdio_read_size(struct wilc *wilc, u32 *size)
->>   {
->> -	u32 tmp;
->> +	struct sdio_func *func = dev_to_sdio_func(wilc->dev);
->>   	struct sdio_cmd52 cmd;
->> +	u32 tmp;
->> +	int ret;
->>   
->>   	/**
->>   	 *      Read DMA count in words
->> @@ -780,12 +782,20 @@ static int wilc_sdio_read_size(struct wilc *wilc, u32 *size)
->>   	cmd.raw = 0;
->>   	cmd.address = WILC_SDIO_INTERRUPT_DATA_SZ_REG;
->>   	cmd.data = 0;
->> -	wilc_sdio_cmd52(wilc, &cmd);
->> +	ret = wilc_sdio_cmd52(wilc, &cmd);
->> +	if (ret) {
->> +		dev_err(&func->dev, "Fail cmd 52, set DATA_SZ[0] register...\n");
+> thanks for your hard work on this!
 > 
-> I don't get the log message, why "set" DATA_SZ[0] ? This helper is rather trying
-> to read it. Same for the other logs added below
-Fixed in V2 , s@set@get@ , thanks !
+> On Thu, Oct 17, 2024 at 11:13 PM Marek Vasut <marex@denx.de> wrote:
+> 
+>> The IOMUXC controller description is almost identical on i.MX35/5x/6 SoCs,
+>> except for the configuration bits which differ across SoCs. Rename the
+>> fsl,imx6ul-pinctrl.yaml to fsl,imx35-pinctrl.yaml, fill in compatible
+>> strings for the other SoCs and fill in the various bits into desciption.
+>> This way, i.MX35/5x/6 series SoCs can all be converted to DT schema.
+>> Remove the old text DT bindings description.
+>>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+> 
+> Is this v5 patch 1/12 something I can just apply to the pinctrl
+> tree or do you want it on some immutable branch or so to be able
+> to pull it into the SoC tree for dependencies?
+I do not have a preference, really. If Shawn maybe has one, then I will 
+defer to Shawn's preference.
+
+I'm sorry I cannot be of more help.
 
