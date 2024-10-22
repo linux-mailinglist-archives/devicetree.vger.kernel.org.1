@@ -1,127 +1,104 @@
-Return-Path: <devicetree+bounces-114372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 341BF9AB701
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 21:37:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2207F9AB709
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 21:38:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC4F72825AC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:37:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1D47B24E04
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 19:38:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DA21CB523;
-	Tue, 22 Oct 2024 19:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169081CBEAF;
+	Tue, 22 Oct 2024 19:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W+TOhRgt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rHDu0YFf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423261CB506;
-	Tue, 22 Oct 2024 19:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8EF11CB523;
+	Tue, 22 Oct 2024 19:37:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729625790; cv=none; b=DBwJLY62Jj42iRxLlJJfn2ITTGIdRfdTMkRgMdKdDup2Z5ELQegIIra+kDLPVZPcFzVb8DEwmiHfY+bO5HRBv0TumwErJr0xgORP3VBZ5c/5IkmsUDI+DcjLZL/ojRP/iv6LEiITXAqVVFXPX/XxM4LgxhXS8agFQXRo2/zOE+I=
+	t=1729625876; cv=none; b=ZidZbLJLFqmoXHk5YOWirNW3Wz5SyoTh4js39fucRMNxA01cJFn288c49TirR76Dodjih4SXvYeXVgus153qWwxFFEfbbxAmfSlCN9NIWGxJQXxyIg14xKu0YtXZsfdN6C/K47LkGTCyut1uOPpf6QFBinB3WHDj4jfhQH2D3VM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729625790; c=relaxed/simple;
-	bh=C/+2SgXeYmcIKn77+1YOSb6RNVx9TrqkO66oZtCdJNo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ScKXb6WjFENk2jeK53H1pfgqwlPOZO4QwdqSEz/S+j+vlBTQzlLSBweZNfklD+KY6qM6vIyCJ+wNAVLEQ0gxnUNJQLrHGIGTp1KwHgtv3g13YlqkEzYpae5pnHsBD/dp5ejdTiSXsANKhAep9DZ8IfVJC3ax6kQKU/Y8zhibAFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W+TOhRgt; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20cf3e36a76so58871565ad.0;
-        Tue, 22 Oct 2024 12:36:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729625788; x=1730230588; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M8wiRg5W1PtOs1HUIUCqVFmtQqvRNw6+deonhikANW0=;
-        b=W+TOhRgt9qVlX/7mawsqsURj+YvGFJsxp9CmYNrWdyLffslSgT/PFe+0/WK9+HHsKc
-         eVAvhxSUb2DY+jgoZLKOaR9FBtWe8aK+stUJnrUjuUv1Jd4+3MV5mcpRc6QGwPA+wRYO
-         t3NbCtU9lu8UUFsuZaHW2A7UjieFfjwuEWLa2Rj6+Pm2F/GVDgajZTdGv+PwJDGHFZyx
-         aSyI684wQeII9qQjXFaT6ywMOChzerQptNKn3flMgMEwTKFmNO2h28GsSFGbcAw0E/gQ
-         eGNgwTVuMQ9Z9Uq+c/XMK/mLX++VIz/NPv2VoXMNVJkm8Q+jjAUkUFDfZo7Zn6QD3HGg
-         UHLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729625788; x=1730230588;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M8wiRg5W1PtOs1HUIUCqVFmtQqvRNw6+deonhikANW0=;
-        b=ZI3i6UYrn6W+0YBpWPW8m2s1LTPM1U9gssS5WO0i3PfvxPEU5KPs2gUGlnSU36Yrth
-         LU9H5+JIZt/DOv94CJ8/rm6dD7mrV2S5wSfNm9kgmfsmakY5SpUN0+ZKZ/GF8BhtlfMg
-         dzMemDI4DT8k4CnnGUCRVFfmMD2OjGWGKhfyRCEZQ84J9TlGFstU/ZHs0Iignx9vHmz6
-         yJ62WxaL6fvgkzc/HARhgi18qNjkaQL7ZJU2E540FTcqRMgriEBTuDlpPRp9MlG7QVjO
-         Xi0vdyoAAzk0J4C8xxlNcovO3W8hNe7R317Aiu/bjwIze8nItC92b2THkbHZXUIv11g5
-         OAXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWXFFgfyg9PJhGWD1HyuLCNCdlPRvyesNCf7iN1P8mlpZCqOjdHGonybKn0HH8TN7W1pXzVS6OJty7BVJo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxF0OU5vtwmZSKwogoVFDPyEtSRM64WAbutmbUXT6G2Loeldytj
-	Uh/dFrx26VTNeCtS/iuF7UXoN/phPJq5VnAlrhxlYll7mtZDUxp7
-X-Google-Smtp-Source: AGHT+IHcM9OVE8m7QLGtMQFh/XvemYftK7Dm2+Nn3KopFxQ5Dvr2Qu3K/wfO5X/iP72Xd1Y56zAfYA==
-X-Received: by 2002:a05:6a21:1798:b0:1d2:e888:3a8e with SMTP id adf61e73a8af0-1d978b1b03cmr128873637.18.1729625787998;
-        Tue, 22 Oct 2024 12:36:27 -0700 (PDT)
-Received: from CNSZTL-DEB.lan ([2408:8262:245d:4d65:bc4b:53ff:fead:2725])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7eaeaafb1e0sm5467316a12.3.2024.10.22.12.36.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 12:36:27 -0700 (PDT)
-From: Tianling Shen <cnsztl@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Andy Yan <andyshrk@163.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Tianling Shen <cnsztl@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: rockchip: reorder mmc aliases for NanoPi R3S
-Date: Wed, 23 Oct 2024 03:35:30 +0800
-Message-ID: <20241022193537.1117919-6-cnsztl@gmail.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241022193537.1117919-1-cnsztl@gmail.com>
-References: <20241022193537.1117919-1-cnsztl@gmail.com>
+	s=arc-20240116; t=1729625876; c=relaxed/simple;
+	bh=mL7bSMN56iFRWocfFYLWy1pq2RVY6ZsuMKHDqeFXkEg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=jst3wLa5VM9XsGp+MxFB+RSneC1DPPvVxRzvKMD7djLC0pQNT16GZsX+omYGcecrILD2KSllKYHCCHprvxDExESg6l2OULRmB2mT2LlqhnhA2RE3T9d0Dp4ESu+/QLh9k9gCqN8rfRd2hz+PVnjBksFXCItVxFP2Ci1fTH3XLQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rHDu0YFf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBEC6C4CEC7;
+	Tue, 22 Oct 2024 19:37:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729625875;
+	bh=mL7bSMN56iFRWocfFYLWy1pq2RVY6ZsuMKHDqeFXkEg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=rHDu0YFfej9Eb7Yo2MGQ7AeAq5AgowOM9WpKsoRzR+o04KGsxqRIJlQ5PvlCr3lgv
+	 xvMyT6pdNs/EEkHW3PUTTX9ERMNg85ZVgzc2ajZu2zdYbZSoPyU+Fy+6vZxlqxOtRH
+	 vvEd1YOK1Uck8dPNhtz3MSEpkYtwQYTajV5NiHKw9s4ChQxrsZEurllwJFrqCfYtOP
+	 H/tXFQtjsiXKtZbvr/aOryalWRkp30Rrd7+uBXQGHCjXcH2LUGVHSjJTtbEbgMaDAn
+	 DXR60E1tjEgYN2xEhWrr3LRYwxntbGQuGzROpTOpHxWA1IClq/EnRxtNRCcEY5FZ9M
+	 URn3mGMVKmtIg==
+From: Mark Brown <broonie@kernel.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Melody Olvera <quic_molvera@quicinc.com>, 
+ Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
+In-Reply-To: <20241022064155.22800-1-krzysztof.kozlowski@linaro.org>
+References: <20241022064155.22800-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: qcom: Add SM8750 LPASS macro codecs
+Message-Id: <172962587249.134224.1033882736357959605.b4-ty@kernel.org>
+Date: Tue, 22 Oct 2024 20:37:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-Typically any non-removable storage (emmc) is listed before removable
-storage (sd-card) options. Also U-Boot will try to override and use
-mmc0=sdhci and mmc1=sdmmc0 for all rk356x boards.
+On Tue, 22 Oct 2024 08:41:55 +0200, Krzysztof Kozlowski wrote:
+> Document compatibles for Qualcomm SM8750 SoC macro digital codecs (RX,
+> TX, VA and WSA), compatible with previous generation (SM8550 and
+> SM8650).
+> 
+> 
 
-Fixes: 50decd493c83 ("arm64: dts: rockchip: Add FriendlyARM NanoPi R3S board")
-Suggested-by: Jonas Karlman <jonas@kwiboo.se>
-Signed-off-by: Tianling Shen <cnsztl@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Applied to
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts b/arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts
-index 03a2f90f6217..fb1f65c86883 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-nanopi-r3s.dts
-@@ -22,8 +22,8 @@ / {
- 
- 	aliases {
- 		ethernet0 = &gmac1;
--		mmc0 = &sdmmc0;
--		mmc1 = &sdhci;
-+		mmc0 = &sdhci;
-+		mmc1 = &sdmmc0;
- 	};
- 
- 	chosen: chosen {
--- 
-2.47.0
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: qcom: Add SM8750 LPASS macro codecs
+      commit: 6a646e6de58f4aedf5f6c7a4605a0393c4490ef1
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
