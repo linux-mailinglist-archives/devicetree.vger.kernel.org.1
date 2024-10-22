@@ -1,78 +1,58 @@
-Return-Path: <devicetree+bounces-114214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B6C9AA355
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:38:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9B69AA368
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 15:41:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 338552841CA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:38:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81875283955
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 13:41:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8DA19F111;
-	Tue, 22 Oct 2024 13:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9198219F118;
+	Tue, 22 Oct 2024 13:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="k9sNs1yk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eWdZIp4w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D94019E99E;
-	Tue, 22 Oct 2024 13:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650FD19EED3;
+	Tue, 22 Oct 2024 13:41:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729604274; cv=none; b=m2RZV0BiVBqws681e9+dibY4ttY5lnrJ7c530NTY+ytWYHkK9vSS3bd8cnPj8rIcPpcatvieZ2I4PiMUg/2uXqtz1aDDw8NuZWJRHwiAjxorbAh6OFv2WOeKcC1vZqwo0GkL9ig7Xh25eRm4XyOJuQcILoKM1OxuCHRLUj64src=
+	t=1729604464; cv=none; b=X87XAo+8PyWL4hpcAMB986S+YXS/W79D2kkfjuTpJ2FZgkxp/ZdNKMxzqyzPq0GIMigAIOAihOPhJUGoqb/rDkU0FtGCVqE4KflKIAw4UudmdobeYekwbNLswLBPfbEP8CPoTx22e2PaVOqWCJPd2rw9/5l8jzkk7qRgJNNH7i4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729604274; c=relaxed/simple;
-	bh=9g88+vo+w3pHcZYFTHanutEy/cUSfaKP7KjUnZfdDCw=;
+	s=arc-20240116; t=1729604464; c=relaxed/simple;
+	bh=QqlugLdFG9Y5oU8kGv0o9veX7/mlOyMr4C2DHWI7ZKc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KRwlD1js5xFeVLTFOCqPM6TzFg6PbEPe0YXymw2hjhuS179Z9esNQMhrTmxCaAHfo06Oh4FzObK59MWjSC06t2HIzJUd+kHQ9hZNUeNHTBTUPngc022cTZCBhNBDDnE3rFMGmnMvmqqVDzc1U4EojI+MUuYLxVZpep2qzMiYcaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=k9sNs1yk; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=2lLWUy23eHb4MgFna+aBGyb7zbgEcHoFz1AAK36qYiQ=; b=k9sNs1ykHFkSe7oZVo7n1QwwwI
-	qkDWA7xTVJdC83jRqnoXHQGP2QQoeEL94aUL9RFKWalZtLdpEjqOLeg0PrHfvYkaivPJxzFfUCZSX
-	VJuRKHmdypK5r5oG5p26eCmTQ4lCCFdmCt1rQ+8JPGDNEZj/vj+O16+Ro/ESmMHWHVnw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t3F4q-00AqUR-33; Tue, 22 Oct 2024 15:37:36 +0200
-Date: Tue, 22 Oct 2024 15:37:36 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Kiran Kumar C.S.K" <quic_kkumarcs@quicinc.com>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jacob Keller <jacob.e.keller@intel.com>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vsmuthu@qti.qualcomm.com,
-	arastogi@qti.qualcomm.com, linchen@qti.qualcomm.com,
-	john@phrozen.org, Luo Jie <quic_luoj@quicinc.com>,
-	Pavithra R <quic_pavir@quicinc.com>,
-	"Suruchi Agarwal (QUIC)" <quic_suruchia@quicinc.com>,
-	"Lei Wei (QUIC)" <quic_leiwei@quicinc.com>
-Subject: Re: RFC: Advice on adding support for Qualcomm IPQ9574 SoC Ethernet
-Message-ID: <7b5227fc-0114-40be-ba5d-7616cebb4bf9@lunn.ch>
-References: <f0f0c065-bf7c-4106-b5e2-bfafc6b52101@quicinc.com>
- <d2929bd2-bc9e-4733-a89f-2a187e8bf917@quicinc.com>
- <817a0d2d-e3a6-422c-86d2-4e4216468fe6@lunn.ch>
- <c7d8109d-8f88-4f4c-abb7-6ebfa1f1daa3@quicinc.com>
- <Zv_6mf3uYcqtHC2j@shell.armlinux.org.uk>
- <ba1bf2a6-76b7-4e82-b192-86de9a8b8012@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gPnoH+96Z9bpcQuabxbKtlC1f2C12ShMHab0RjZ/gy9D8gixJ+2B1zqgsOVY7tiYLj8Hx0OKfNnzJYZ9wUniGAFqcDFIeOm36uW1A1gBLCojigfOj5BQl1PN51iEVhGyGzySxBfNi4ScXHGkc0Typz/OB5/yvrb+q60Vyl5Su9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eWdZIp4w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C362EC4CEC7;
+	Tue, 22 Oct 2024 13:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729604463;
+	bh=QqlugLdFG9Y5oU8kGv0o9veX7/mlOyMr4C2DHWI7ZKc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eWdZIp4wDgEUxXWDBNPGl9ajQjc5KpqUhiBTaYMzy2lha3vZ7TQNQJmFtGAuK0dj/
+	 oly0FERWDT2IV18br2bAyS65BNEUl9/gZdIZPNUc5qnZdpWvE5GsWbYD1d4zlecnmy
+	 H5Umn0YdwALjO8U/PG2+9ikzXxyogoDrX5HxpByrtJial2g/0MB4z4R7rwEJnb8BV0
+	 +Q6sBT0YNnd3+WRrO2c6q8g0veXNohvlE8N+w6ktHaC4F9oHsWvyAtDdHMSH4JvtwK
+	 ZQ+K64ifeCZaPRkV6a+8dwM3F+kgVWT+bvtmo6Q2qtVEffNlEQn1yh4iPVjotmcRa0
+	 bSfdR2EhOzjbA==
+Date: Tue, 22 Oct 2024 08:41:02 -0500
+From: Rob Herring <robh@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+	anshulusr@gmail.com, gustavograzs@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 11/13] dt-bindings: iio: add binding for BME680 driver
+Message-ID: <20241022134102.GA401216-robh@kernel.org>
+References: <20241021195316.58911-1-vassilisamir@gmail.com>
+ <20241021195316.58911-12-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,75 +61,119 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ba1bf2a6-76b7-4e82-b192-86de9a8b8012@quicinc.com>
+In-Reply-To: <20241021195316.58911-12-vassilisamir@gmail.com>
 
-> Apologies for the delay in response. I understand that the PCS<->PHY
-> clocks may be out of the scope of PCS DT due to the reasons you mention.
-> However would like to clarify that the MII clocks referred to here, are
-> part of the connection between the MAC and PCS and not between PCS and PHY.
+On Mon, Oct 21, 2024 at 09:53:14PM +0200, Vasileios Amoiridis wrote:
+> Add dt-binding for BME680 gas sensor device. The device incorporates as
+> well temperature, pressure and relative humidity sensors.
+
+You aren't adding a binding for bme680, but extending it.
+
+Drop the 2nd 'bindings' from subject. 
+
+Something like this:
+
+dt-bindings: iio/chemical: bosch,bme680: Add supply properties
+
 > 
-> Below is a diagram that shows the sub-blocks inside the 'UNIPHY' block
-> of IPQ9574 which houses the PCS and the serdes, along with the clock
-> connectivity. The MII Rx/Tx clocks are supplied from the NSS CC, to the
-> GMII channels between PCS and MAC. So, it seemed appropriate to have
-> these clocks described as part of the PCS DT node.
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> ---
+>  .../bindings/iio/chemical/bosch,bme680.yaml   | 64 +++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |  2 -
+>  2 files changed, 64 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
 > 
->               +-------+ +---------+  +-------------------------+
->    -----------|CMN PLL| |  GCC    |  |   NSSCC (Divider)       |
->    |25/50mhz  +----+--+ +----+----+  +--+-------+--------------+
->    |clk            |         |          ^       |
->    |       31.25M  |  SYS/AHB|clk  RX/TX|clk    +------------+
->    |       ref clk |         |          |       |            |
->    |               |         v          | MII RX|TX clk   MAC| RX/TX clk
->    |            +--+---------+----------+-------+---+      +-+---------+
->    |            |  |   +----------------+       |   |      | |     PPE |
->    v            |  |   |     UNIPHY0            V   |      | V         |
->   +-------+     |  v   |       +-----------+ (X)GMII|      |           |
->   |       |     |  +---+---+   |           |--------|------|-- MAC0    |
->   |       |     |  |       |   |           | (X)GMII|      |           |
->   |  Quad |     |  |SerDes |   |  (X)PCS   |--------|------|-- MAC1    |
->   |       +<----+  |       |   |           | (X)GMII|      |           |
->   |(X)GPHY|     |  |       |   |           |--------|------|-- MAC2    |
->   |       |     |  |       |   |           | (X)GMII|      |           |
->   |       |     |  +-------+   |           |--------|------|-- MAC3    |
->   +-------+     |              |           |        |      |           |
->                 |              +-----------+        |      |           |
->                 +-----------------------------------+      |           |
+> diff --git a/Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml b/Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
+> new file mode 100644
+> index 000000000000..e54df3afa7b2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/chemical/bosch,bme680.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bosch BME680 Gas sensor
+> +
+> +maintainers:
+> +  - Vasileios Amoiridis <vassilisamir@gmail.com>
+> +
+> +description:
 
-Thanks for the detailed diagram. That always helps get things
-straight.
+You need '>' to maintain paragraphs.
 
-Im i correct in says that MII RX|TX is identical to MAC RX|TX? These
-two clocks are used by the MAC and XPCS to clock data from one to the
-other? If they are the exact same clocks, i would suggest you use the
-same name, just to avoid confusion.
+> +  BME680 is a gas sensor which combines relative humidity, barometric pressure,
+> +  ambient temperature and gas (VOC - Volatile Organic Compounds) measurements.
+> +
+> +  https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: bosch,bme680
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +  vddio-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vddio-supply
 
-Both XPCS and PPE are clock consumers, so both will have a phandle
-pointing to the NSSCC clock provider?
+These supplies can't be required. That's an ABI change from what was 
+already supported.
 
-> We had one other question on the approach used in the driver for PCS
-> clocks, could you please provide your comments.
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        bme680@77 {
+> +            compatible = "bosch,bme680";
+> +            reg = <0x77>;
+> +            vddio-supply = <&vddio>;
+> +            vdd-supply = <&vdd>;
+> +        };
+> +    };
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        bme680@0 {
+> +            compatible = "bosch,bme680";
+> +            reg = <0>;
+> +            spi-max-frequency = <500000>;
+> +            vddio-supply = <&vddio>;
+> +            vdd-supply = <&vdd>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 0108d7507215..3d9c08ed7bce 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -55,8 +55,6 @@ properties:
+>            - atmel,atsha204a
+>              # BPA-RS600: Power Supply
+>            - blutek,bpa-rs600
+> -            # Bosch Sensortec pressure, temperature, humididty and VOC sensor
+> -          - bosch,bme680
+>              # CM32181: Ambient Light Sensor
+>            - capella,cm32181
+>              # CM3232: Ambient Light Sensor
+> -- 
+> 2.43.0
 > 
-> As we can see from the above diagram, each serdes in the UNIPHY block
-> provides the clocks to the NSSCC, and the PCS block consumes the MII
-> Rx/Tx clocks. In our current design, the PCS/UNIPHY driver registers a
-> provider driver for the clocks that the serdes supplies to the NSS CC.
-
-That sounds reasonable.
-
-> It also enables the MII Rx/Tx clocks which are supplied to the PCS from
-> the NSS CC. Would this be an acceptable design to have the PCS driver
-> register the clock provider driver and also consume the MII Rx/Tx
-> clocks? It may be worth noting that the serdes and PCS are part of the
-> same UNIPHY block and also share same register region.
-
-Does the SERDES consume the MII Rx/Tx? Your diagram indicates it does
-not. I'm just wondering if you have circular dependencies at runtime?
-
-Where you will need to be careful is probe time vs runtime. Since you
-have circular phandles you need to first create all the clock
-providers, and only then start the clock consumers. Otherwise you
-might get into an endless EPROBE_DEFER loop.
-
-	Andrew
 
