@@ -1,198 +1,167 @@
-Return-Path: <devicetree+bounces-114157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185569A9F27
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:50:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE45C9A9F33
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 11:51:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 391DD1C243D3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:50:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7DC11C24E19
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 09:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C6B199EB7;
-	Tue, 22 Oct 2024 09:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6482198E91;
+	Tue, 22 Oct 2024 09:51:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oldtT6Yk"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fJbPglXI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA96C1991B9;
-	Tue, 22 Oct 2024 09:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE5231494C2
+	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 09:51:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729590596; cv=none; b=Lw63zT53p5G9hesMb4d84EIhKXSBt65VJtYEfp0wVspGwBP1GIEFYKHhkbnFxeuxkUwh5Kcw/EVeE+gVL1Q3BaXJmuJ0Ns7iYyFOmUhwS/9Sx2JJTug1tXDnliDev608wtpulFYrIdgtXchVQ5D4yyJ9Dw0Zx3tbffafNts4As4=
+	t=1729590689; cv=none; b=shL5K+uLJOETAUuXl3y+YGCNaBJ2x7yf7MAEeuxiL1c2eSCiRyhO4f/q4/R4/OwqZnKOWhDW9eKk0owQ2UAeBtaYawKvZFId2zTxWLM8mLwJukudbdmjsOkiuzLG/DeKDn5AZiUEE4xYxOTL5vrzSmG2UKNbEyewudRbpyoZaG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729590596; c=relaxed/simple;
-	bh=nCzRJ1LbBCDjOWEeoH9yNZbsyD6ffv5nqZxpGDEu7+0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MbmCFVbxS55CItMXZYvlVuv+4ddpRIRFe1ARSf83glphfVgaJkStQvyEdLAzeOa8xXvXiOLmLXGggLvGdDuZqf+bechHy/c9PDAEA4FHxxn2InTi//5x70Oalfc6PVevb5T2kIWSSmZtwsSb6fTlD/nzzqqxCXcDPC4YsESj9p8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oldtT6Yk; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729590592;
-	bh=nCzRJ1LbBCDjOWEeoH9yNZbsyD6ffv5nqZxpGDEu7+0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oldtT6YkN+poyFUM3an948NAQ1vDUR9PXYx8Qgv9gP5MHbb1W1mZu2iAFx14HSKB2
-	 rS9EViKhZhwDXQ5qdRG/h217QlNRCqgoZC8TcONj7xsgn+2ZEBXUnVwCeUgdCC+gln
-	 KhNNujVzPfCozkAeZoegEdGNwR4xOAK3j7X2iPZYXH3Pu96ixLlioAFsEoUhaOuGSm
-	 TJB0NOXo/eLxJiByF4hShfPhZ3By4L5k7r+kViNBZDIh4jBLrC0a1Q+eU/MbsGeM5z
-	 f35kokcURoJos2ZG/mk1Sx6gOqCAhzc3bk1cAaHvOpuRyUPsFwFcuVxP8CBGv+xXsy
-	 90v9rUIofjJdA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0D6F917E139E;
-	Tue, 22 Oct 2024 11:49:52 +0200 (CEST)
-Message-ID: <52a7c00a-6638-420b-a65b-208491c55074@collabora.com>
-Date: Tue, 22 Oct 2024 11:49:51 +0200
+	s=arc-20240116; t=1729590689; c=relaxed/simple;
+	bh=JsWWmLr80OvZZgtqzSLI+3NO59wkVjAXXzhBndm6rPs=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=YdHo+S7Vm2WvSH8mBQfVN5je8OCTH5QFeBWATsprFoGwLdYhbD/0xg3yVY7kiikXcQzkBAcSowhFVemdXj9XkQI8x1iqxmOcfx1RT2p0N4Ka079St0gUAmDSz/3a7MBT4H1Y2GThgxjPZ7yxffmZ/KAl4/gEBPhsOBya+aF/+rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fJbPglXI; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4315df7b43fso54143845e9.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 02:51:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729590685; x=1730195485; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O9uhSsPjuLDUWqYOIT4n8318oMtxdXxpij17XIrTsXE=;
+        b=fJbPglXIIS2dknfgtbeunLcmjIXpFQlBmw2BrAwiOAVZu/rdZj3Y1BtqdRg7g9kyZ2
+         KhbNffz+hPm0J7WJIASZ6gyLBudGKgRGmBEHYcw0DaMlPYhGucp/SLET0JPqenbhLtQX
+         qmU0f5Hh6tMoJFEY12pF2sTMa5ybFiiffOmCsMzR12mB6dvVSQVym8q8QjYFK6HjiB9R
+         ZIi+pjGd6feUpyy9J15oOzryXiIffbLE+d+3Hh96C8UbUtykTGCBM3nw9gyOqW4BLk8l
+         nm9zZzkdAus6FSw6wJHglp9sjPmrGF46cd2GugZ+7niwhSsjuFuc2Ya4Z6JMxorbjwnm
+         +vyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729590685; x=1730195485;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O9uhSsPjuLDUWqYOIT4n8318oMtxdXxpij17XIrTsXE=;
+        b=ubt4938BbVBrKTTg3/s5uL6KO1Z5iWJxz0jFVK9ipheLMm7FfInH0hV7Bt6QE7RGtx
+         LYfFJHrI1A4vaLjIA/jkkCEk+6W66/P0le9osFSOalDemAwORiNj3uE+u1KV65o2foDa
+         sVq9nS8UPvu1Py/cmkd0HxIRTRUJ4/2s2yKZoETxpW6S+3WHAZ7PVEVROeRRqRrU0u2p
+         a1t0ZZfyeK6R7YopZ6PO5RnHeD02yEDjLRrkMa26oaN9l0M0HUukmvFqi7ic5kfulLDC
+         Vq/e6r6TtsPAnAW8cdkGwkb515SBwNvZ6Uekg8cwjANXfJXamjBWgX68Zq/ZJc/jYbFU
+         fLpA==
+X-Forwarded-Encrypted: i=1; AJvYcCUgWNVzJaF0cmfXGbSphRtqw5Fr3MWZlypb5/r1lHZdmGE6jSRd3wAmGct5KYMYmk25dtbXTfGCxyTO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzquxgKZnSur0axcJ+DIijx7ZW0HOIWpqtboE3d8mkUs77HmfUM
+	Xi4Sewu2Ik7wXDrkHzpb7tvOS0CVq1+ZaqXfEJKJ3QAPFZcGcQ5wSPfo62igILSIQ0oi+U8+VVh
+	Ee9U=
+X-Google-Smtp-Source: AGHT+IG4BjZjQ2Z2dqGHg8e13po3OOXPlOkZEZh2gmQz0kEl9ezHR/+UkwbK17+DbKxR73ieabZKcw==
+X-Received: by 2002:a05:600c:6747:b0:430:5356:ac92 with SMTP id 5b1f17b1804b1-4316161fb1dmr109088635e9.7.1729590685185;
+        Tue, 22 Oct 2024 02:51:25 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:ef1c:ae40:1300:20c6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f570de0sm83095085e9.6.2024.10.22.02.51.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 02:51:24 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,  <devicetree@vger.kernel.org>,
+  Kevin Hilman <khilman@baylibre.com>,  "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>,  <linux-amlogic@lists.infradead.org>,
+  <linux-arm-kernel@lists.infradead.org>,  <linux-clk@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Michael Turquette
+ <mturquette@baylibre.com>,  Neil Armstrong <neil.armstrong@linaro.org>,
+  Philipp Zabel <p.zabel@pengutronix.de>,  Rob Herring <robh@kernel.org>,
+  Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [RFC PATCH v4 0/5] Add A1 Soc audio clock controller driver
+In-Reply-To: <20240913121152.817575-1-jan.dakinevich@salutedevices.com> (Jan
+	Dakinevich's message of "Fri, 13 Sep 2024 15:11:47 +0300")
+References: <20240913121152.817575-1-jan.dakinevich@salutedevices.com>
+Date: Tue, 22 Oct 2024 11:51:24 +0200
+Message-ID: <1jplnsjwir.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] regulator: Add driver for MediaTek MT6328 PMIC
- regulators
-To: Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
- Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
- Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- jason-ch chen <Jason-ch.Chen@mediatek.com>,
- Chen Zhong <chen.zhong@mediatek.com>, Flora Fu <flora.fu@mediatek.com>,
- Alexandre Mergnat <amergnat@baylibre.com>,
- Yassine Oudjana <y.oudjana@protonmail.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20241018081050.23592-1-y.oudjana@protonmail.com>
- <20241018081050.23592-6-y.oudjana@protonmail.com>
- <4cf5a3d0-97a2-4a43-a91a-0a35aa2bc7e4@collabora.com>
- <04OPLS.YYQIIIW9J73R3@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <04OPLS.YYQIIIW9J73R3@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Il 21/10/24 16:55, Yassine Oudjana ha scritto:
-> 
-> On Mon, Oct 21 2024 at 15:24:51 +02:00:00, AngeloGioacchino Del Regno 
-> <angelogioacchino.delregno@collabora.com> wrote:
->> Il 18/10/24 10:10, Yassine Oudjana ha scritto:
->>> From: Yassine Oudjana <y.oudjana@protonmail.com>
->>>
->>> Add a driver for the regulators on the MT6328 PMIC.
->>>
->>> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>> ---
->>>   drivers/regulator/Kconfig                  |   9 +
->>>   drivers/regulator/Makefile                 |   1 +
->>>   drivers/regulator/mt6328-regulator.c       | 479 +++++++++++++++++++++
->>>   include/linux/regulator/mt6328-regulator.h |  49 +++
->>>   4 files changed, 538 insertions(+)
->>>   create mode 100644 drivers/regulator/mt6328-regulator.c
->>>   create mode 100644 include/linux/regulator/mt6328-regulator.h
->>>
->>> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
->>> index 249933d6388dd..e9b9faff67f3a 100644
->>> --- a/drivers/regulator/Kconfig
->>> +++ b/drivers/regulator/Kconfig
->>> @@ -862,6 +862,15 @@ config REGULATOR_MT6323
->>>         This driver supports the control of different power rails of device
->>>         through regulator interface.
->>>   +config REGULATOR_MT6328
->>> +    tristate "MediaTek MT6328 PMIC"
->>> +    depends on MFD_MT6397
->>> +    help
->>> +      Say y here to select this option to enable the power regulator of
->>> +      MediaTek MT6328 PMIC.
->>> +      This driver supports the control of different power rails of device
->>> +      through regulator interface.
->>> +
->>>   config REGULATOR_MT6331
->>>       tristate "MediaTek MT6331 PMIC"
->>>       depends on MFD_MT6397
->>> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
->>> index 9b69546fb3f65..c1a5a44413198 100644
->>> --- a/drivers/regulator/Makefile
->>> +++ b/drivers/regulator/Makefile
->>> @@ -103,6 +103,7 @@ obj-$(CONFIG_REGULATOR_MPQ7920) += mpq7920.o
->>>   obj-$(CONFIG_REGULATOR_MT6311) += mt6311-regulator.o
->>>   obj-$(CONFIG_REGULATOR_MT6315) += mt6315-regulator.o
->>>   obj-$(CONFIG_REGULATOR_MT6323)    += mt6323-regulator.o
->>> +obj-$(CONFIG_REGULATOR_MT6328)    += mt6328-regulator.o
->>>   obj-$(CONFIG_REGULATOR_MT6331)    += mt6331-regulator.o
->>>   obj-$(CONFIG_REGULATOR_MT6332)    += mt6332-regulator.o
->>>   obj-$(CONFIG_REGULATOR_MT6357)    += mt6357-regulator.o
->>> diff --git a/drivers/regulator/mt6328-regulator.c b/drivers/regulator/mt6328- 
->>> regulator.c
->>> new file mode 100644
->>> index 0000000000000..e15a64404f494
->>> --- /dev/null
->>> +++ b/drivers/regulator/mt6328-regulator.c
->>> @@ -0,0 +1,479 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * MediaTek MT6328 regulator driver
->>> + * Based on MT6323 driver.
->>> + *
->>> + * Copyright (c) 2016 MediaTek Inc.
->>> + * Copyright (c) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
->>> + */
->>> +
->>
->> ..snip..
->>
->>> +/* The array is indexed by id(MT6328_ID_XXX) */
->>> +static struct mt6328_regulator_info mt6328_regulators[] = {
->>> +    MT6328_BUCK("buck_vpa", VPA, 500000, 3650000, 50000,
->>> +        buck_volt_range1, MT6328_VPA_CON9, MT6328_VPA_CON11, 0x3f,
->>> +        MT6328_VPA_CON12, MT6328_VPA_CON7),
->>
->> Can you please fix the indentation?
->>
->> Also, all of those entries do fit in two lines, I checked a couple of those
->> and always ended up with less than 90 columns anyway.
-> 
-> I can't seem to fit even the first one in 2 lines in under 90 columns :/
-> That is unless I don't indent the second line:
-> 
->      MT6328_BUCK("buck_vpa", VPA, 500000, 3650000, 50000, buck_volt_range1,
->      MT6328_VPA_CON9, MT6328_VPA_CON11, 0x3f, MT6328_VPA_CON12, MT6328_VPA_CON7),
-> 
-> Which I don't think is what you meant by fixing the indentation. Can you show me an 
-> example? With 100 columns on the other hand it seems like they should fit.
+On Fri 13 Sep 2024 at 15:11, Jan Dakinevich <jan.dakinevich@salutedevices.com> wrote:
 
-I can get that one specifically to 96 columns... it's okay.
-Just don't get over 100 columns please: if a few need 3 lines, they just do.
+> This series adds support for audio clock and reset controllers on A1 SoC family.
+>
 
-Anyway, here's an example:
+Split the reset part out of the series (I'd suggest adding VAD reset
+support while at it). Also remove the DT patch, since it will depends on
+both patchset.
 
-MT6328_BUCK("buck_vpa", VPA, 500000, 3650000, 50000, buck_volt_range1, MT6328_VPA_CON9,
-	    MT6328_VPA_CON11, 0x3f, MT6328_VPA_CON12, MT6328_VPA_CON7),
+Drop the RFC tag, at v4 I think that phase is over.
 
-...since I'm not sure that this will render correctly in the outgoing email, here's
-another example:
+> Dependency: [4]
+>
+> Changes v3 [3] -> v4
+>  - Use auxiliary reset device implemented in [4]
+>  - Split the driver into files
+>  - Use common with axg-audio yaml schema
+>  - Unify clock-names with axg-audio
+>
+> Changes v2 [2] -> v3
+>  - reset:
+>    * added auxiliary device
+>  - yaml:
+>    * added declaration of optional clocks
+>    * fixed names in example and another cosmetics
+>  - clocks:
+>    * reworked naming
+>    * stop using of "core" clock name
+>    * fixed wrong parenting
+>
+> Changes v1 [1] -> v2:
+>  - Detached from v1's series (patch 2, 3, 4, 25).
+>  - Reuse some of defines from axg-audio;
+>  - Split the controller into two memory regions.
+>
+> Links:
+>  [1] https://lore.kernel.org/lkml/20240314232201.2102178-1-jan.dakinevich@salutedevices.com/
+>  [2] https://lore.kernel.org/lkml/20240328010831.884487-1-jan.dakinevich@salutedevices.com/
+>  [3] https://lore.kernel.org/lkml/20240419125812.983409-1-jan.dakinevich@salutedevices.com/
+>  [4] https://lore.kernel.org/lkml/9a4377fe27d8eb940399e452b68fb5a6d678929f.camel@pengutronix.de/
+>
+> Jan Dakinevich (5):
+>   reset: amlogic: add support for A1 SoC in auxiliary reset driver
+>   clk: meson: axg: share the set of audio helper macro
+>   dt-bindings: clock: axg-audio: document A1 SoC audio clock controller
+>     driver
+>   clk: meson: a1: add the audio clock controller driver
+>   arm64: dts: meson: a1: add the audio clock controller
+>
+>  .../clock/amlogic,axg-audio-clkc.yaml         |   3 +
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  48 +++
+>  drivers/clk/meson/Kconfig                     |  14 +
+>  drivers/clk/meson/Makefile                    |   3 +
+>  drivers/clk/meson/a1-audio-clkc.c             | 359 ++++++++++++++++++
+>  drivers/clk/meson/a1-audio-drv.c              | 104 +++++
+>  drivers/clk/meson/a1-audio-vad-clkc.c         |  85 +++++
+>  drivers/clk/meson/a1-audio.h                  | 131 +++++++
+>  drivers/clk/meson/axg-audio.c                 | 138 +------
+>  drivers/clk/meson/meson-audio.h               | 143 +++++++
+>  drivers/reset/amlogic/reset-meson-aux.c       |   9 +
+>  .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++++
+>  .../reset/amlogic,meson-a1-audio-reset.h      |  29 ++
+>  13 files changed, 1051 insertions(+), 137 deletions(-)
+>  create mode 100644 drivers/clk/meson/a1-audio-clkc.c
+>  create mode 100644 drivers/clk/meson/a1-audio-drv.c
+>  create mode 100644 drivers/clk/meson/a1-audio-vad-clkc.c
+>  create mode 100644 drivers/clk/meson/a1-audio.h
+>  create mode 100644 drivers/clk/meson/meson-audio.h
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
 
-MT6328_BUCK("buck_something", SOMETHING, params, blahblah, thisandthat,
-             something_else),
-
-Cheers,
-Angelo
-
->>
-> 
-> 
-
-
-
+-- 
+Jerome
 
