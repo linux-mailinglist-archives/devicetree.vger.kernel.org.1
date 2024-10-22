@@ -1,129 +1,124 @@
-Return-Path: <devicetree+bounces-114392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15FFB9AB83B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 23:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C0D39AB83F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 23:12:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5E111F23C7D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 21:11:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 327491F238FD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 21:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039061CCB3C;
-	Tue, 22 Oct 2024 21:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C341CCB47;
+	Tue, 22 Oct 2024 21:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="mTVPp93X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HA7sOREF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B831C9ED4;
-	Tue, 22 Oct 2024 21:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EA518DF6B;
+	Tue, 22 Oct 2024 21:12:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729631459; cv=none; b=hi328+A0tHnCnJnZMnM1/vyByitCWYOgVUO8pxPU+qnrMD8qgroIH0Q86zLqQE9UC84K+G3L7munbh8CERpfs0rak33PojLVtgZw11bKDHPf/a2PRKv9fatswxAO0z6vvhUQdGm2i1+xyck997HxXUKhUKfFl8izUdsRt/VQmyA=
+	t=1729631536; cv=none; b=GpDa33aar7G4LWZ4aslxXKewni1eTxrgDrZkLrkpDpm5mUQG4Xdmpv6kY3srVj0fgz3lAbXuxmxA1jvPSMF2h94OSN3SbbiAB7usGHRV05erJ5Ng2i4l2YyjilHoEUHnTlUsCcsGUPJrGWmPM53Cz1L4pFEHyECWpmql4z+CGxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729631459; c=relaxed/simple;
-	bh=dc/em9XLGr0IMWGi6gCdSPRtcojc9lJvnQ6IDEZddIs=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=tPJAvdNh+iIssfCRp5lyN/GwI0otSnoT3j47d+vDBacWmQbufDZyyq5Ny6RZYnJT0NfdrRk8QmENNAz9+/dhmYo+GxXWwzxthrqf1iUuJEmWoE1fxOV3QyKoCmn/6D8wh1Kn09uB+dHAclIvJIT9dtY1tVyUE1urk3TDRK5CC/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=fail smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=mTVPp93X; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1729631536; c=relaxed/simple;
+	bh=0ZbHdOdhPHO6tK5tV+5WpGsJUHeJH0s91iEhq1CXEmw=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VDo9gyMsfiZ3F+V7xsCCRkBhJnCLR6TE1F47taAi6nxoaV6Mha3GrELUhSYP0M7F4O/YRUuLjxdLsCR8b1kdyhUnzNQOVOd+D8LxDm+CCTuyNpSiIYaSaFbN6+ATMTgQn7Q6uIwQJGYzCn44WQ/2tVjMDIE196azMLWv77giHM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HA7sOREF; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43162cf1eaaso62504895e9.0;
+        Tue, 22 Oct 2024 14:12:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729631533; x=1730236333; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rNu/FvAWyLA/JckutZ/iwvJKerjABgFZGmn6jKJRXBQ=;
+        b=HA7sOREFGFKULQWcSorVZRRb3/Rqm9SAEXsdRr6SNSE7V315hCCHEcjBoUn/jXJe36
+         7k54v5xOvIttfWbzbbcZnXtgRNKtBAI+CLSbY5T2wSE6hEdBxKqgrfEV2u5ZRzpfou82
+         Fc2YjidaYgpqie7OR0gHwHH08lcR5m015HaBAXG5QAlxjkYvUlOPebQGZNWIi8n00gc/
+         dkkfPNLYXmgNd6egw8Id21XXxzUgwaNX3oK1v0xA7a/Pl6Sd0wTQYZ2tZGkisoiUShCB
+         IQbKgnfJYzOPsYDpChIHfWzioEroBMJp4rXxr+PRzawmtcTckdhQoazNreNMjKrjS9KS
+         o7xQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729631533; x=1730236333;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rNu/FvAWyLA/JckutZ/iwvJKerjABgFZGmn6jKJRXBQ=;
+        b=t/f9aGB10UA8qlAwuD/pPXG89NGrivIbiXRi0tRNUemAnRrQAOLdt/mvHoJJK50yt7
+         SQSMXDYz+AwgwO26ABUsqo/d4iwTp/9cCbAAyHuK5aCxCckjQyZsO3/aHoGl6KU53w23
+         6wdacRZBYn4N9M4IjIMYNZ2O+ZA2pL/VR50ItlLrSYfck5iXZCp6X9FyMDIzwnlsn/dS
+         EK7qjVJqdThhgNBJNGUsrAqPRC7/HeA5GraVQDqpxqHJ0tVhpAryoXX0SkfKt/TSdswG
+         eFuGrq3zkA5eHlGbKYiO4ByHQCVoQTiJTdn0OLDks2rARzDuyru7P5BME7Gnr5i60ejS
+         mw4g==
+X-Forwarded-Encrypted: i=1; AJvYcCVt6zUtSsHtiaMJBBn02tTUjgMd8oSYzwdSjM5clgqi+/50Kn2E02Kysy1sFpuPv+6ZRfxSp520hemEwg==@vger.kernel.org, AJvYcCWdk/Z+Po3SHGskjgqo4XopeoNyMcpGAcQsaPwTM7PG6fzmb3Kubk3qelzKwIwEm9w7mwryQXfX5nMM@vger.kernel.org, AJvYcCXO9liweXcKBnCbma/Jxx8qVCoaOp1tGSOvOFSKGUcxWvSpHrN/nmeLvG1wGAUlAC1GkC7TP01DBQS0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8PU28/wXlNMS0b2S9ghsjKdXO2NUIy4ygx4FC/5EPZbffMDJu
+	okngGFG1vHY68VNWKOEytjkc0avgmYtRNrxmLAQL0IpkEazyybcd
+X-Google-Smtp-Source: AGHT+IGa88Nr1D+evYXWzyT7ItOhzzlRaH3zdup02HiVkyXY0Xjn7H177GR7+9NtHZ6zi58DyBHcTw==
+X-Received: by 2002:a05:600c:46c5:b0:431:54f3:11ab with SMTP id 5b1f17b1804b1-4318424f36bmr3854185e9.33.1729631532571;
+        Tue, 22 Oct 2024 14:12:12 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f5c2fa7sm99791705e9.34.2024.10.22.14.12.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Oct 2024 14:12:12 -0700 (PDT)
+Message-ID: <6718152c.050a0220.3afab9.2d2b@mx.google.com>
+X-Google-Original-Message-ID: <ZxgVKCj-uBPlAxw0@Ansuel-XPS.>
+Date: Tue, 22 Oct 2024 23:12:08 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Benjamin Larsson <benjamin.larsson@genexis.eu>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v8 3/6] dt-bindings: pwm: airoha: Add EN7581 pwm
+References: <20241018-en7581-pinctrl-v8-0-b676b966a1d1@kernel.org>
+ <20241018-en7581-pinctrl-v8-3-b676b966a1d1@kernel.org>
+ <20241021190053.GA948525-robh@kernel.org>
+ <2da79425-0cfc-4c73-8fb9-bd3c92aa28d7@genexis.eu>
+ <20241022210858.GA1565063-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1729631455;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DpG8Gwq6DbfDSJARi+S9yYQYQPhocfObsOfqzRoEGDY=;
-	b=mTVPp93X6kCWd1yaOPgEeTFZ2CVITdBz2tY14CSzFXNCbLtcpymcrjaKZsvkKNduxny/r1
-	4PbQjeFI4AOqProBKrgeYoLad9UlkBhEdMCjHKXJGAzYBGZi2B7BtOE05QQkqDXJ7EgbrL
-	NsxsV6QWbf2TfeudtzwmlYdDZZEL3I3zU4ZtgKNgQ5quj1ranStuvTW+c50F/qUksoS/6Y
-	MfpJHX2rzwAD10wKrs5T2RyrfkBetgzg6jmKQNOzunh7cFhvI40CXQbDdaXYJ3mw0mAD6f
-	Ca2ILEKbkzwgZ/AQ9IuXlDUTciTroNbXScfriME5a8/bt90layqsKEB8mFY/2Q==
-Date: Tue, 22 Oct 2024 23:10:55 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: linux-sunxi@lists.linux.dev
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org,
- jernej.skrabec@gmail.com, samuel@sholland.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Ondrej Jirman <megi@xff.cz>, Andrey Skvortsov
- <andrej.skvortzov@gmail.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: pinephone: Add mount matrix to
- accelerometer
-In-Reply-To: <129f0c754d071cca1db5d207d9d4a7bd9831dff7.1726773282.git.dsimic@manjaro.org>
-References: <129f0c754d071cca1db5d207d9d4a7bd9831dff7.1726773282.git.dsimic@manjaro.org>
-Message-ID: <bef0570137358c6c4a55f59e7a4977c4@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241022210858.GA1565063-robh@kernel.org>
 
-Hello,
+On Tue, Oct 22, 2024 at 04:08:58PM -0500, Rob Herring wrote:
+> On Tue, Oct 22, 2024 at 10:02:05PM +0200, Benjamin Larsson wrote:
+> > On 21/10/2024 21:00, Rob Herring wrote:
+> > > > +  airoha,sipo-clock-divisor:
+> > > > +    description: Declare Shift Register chip clock divisor (clock source is
+> > > > +      from SoC APB Clock)
+> > > Where is the clock source defined?
+> > > 
+> > By measurement the clock was found to be 125MHz.
+> 
+> What I mean is the clock input should be a 'clocks' property. Assuming 
+> this is a clock input to the PWM which I'm not so sure about given the 
+> other replies.
+>
 
-On 2024-09-19 21:15, Dragan Simic wrote:
-> The way InvenSense MPU-6050 accelerometer is mounted on the user-facing 
-> side
-> of the Pine64 PinePhone mainboard, which makes it rotated 90 degrees 
-> counter-
-> clockwise, [1] requires the accelerometer's x- and y-axis to be 
-> swapped, and
-> the direction of the accelerometer's y-axis to be inverted.
-> 
-> Rectify this by adding a mount-matrix to the accelerometer definition 
-> in the
-> Pine64 PinePhone dtsi file.
-> 
-> [1] 
-> https://files.pine64.org/doc/PinePhone/PinePhone%20mainboard%20bottom%20placement%20v1.1%2020191031.pdf
-> 
-> Fixes: 91f480d40942 ("arm64: dts: allwinner: Add initial support for
-> Pine64 PinePhone")
-> Cc: stable@vger.kernel.org
-> Helped-by: Ondrej Jirman <megi@xff.cz>
-> Helped-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+Yep it's not, we are just dropping this property and hardcoding it to a
+sensible value in the driver. Sorry for the confusion and thanks for the
+clarification.
 
-Just a brief reminder about this patch...  Please, let me know if some
-further work is needed for it to become accepted.
-
-> ---
-> 
-> Notes:
->     See also the linux-sunxi thread [2] that has led to this patch, 
-> which
->     provides a rather detailed analysis with additional details and 
-> pictures.
->     This patch effectively replaces the patch submitted in that thread.
-> 
->     [2] 
-> https://lore.kernel.org/linux-sunxi/20240916204521.2033218-1-andrej.skvortzov@gmail.com/T/#u
-> 
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> index 6eab61a12cd8..b844759f52c0 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> @@ -212,6 +212,9 @@ accelerometer@68 {
->  		interrupts = <7 5 IRQ_TYPE_EDGE_RISING>; /* PH5 */
->  		vdd-supply = <&reg_dldo1>;
->  		vddio-supply = <&reg_dldo1>;
-> +		mount-matrix = "0", "1", "0",
-> +			       "-1", "0", "0",
-> +			       "0", "0", "1";
->  	};
->  };
+-- 
+	Ansuel
 
