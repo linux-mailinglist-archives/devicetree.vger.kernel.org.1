@@ -1,155 +1,131 @@
-Return-Path: <devicetree+bounces-113958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-113959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19FF19A97DF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:29:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C5859A97E2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 06:31:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C0C8B21ACE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 04:29:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7218F283A5F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 04:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BDF684A40;
-	Tue, 22 Oct 2024 04:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05077581F;
+	Tue, 22 Oct 2024 04:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="hn8cyO40"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YNHP7pSL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D09D7DA7C
-	for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 04:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3485515D1;
+	Tue, 22 Oct 2024 04:31:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729571360; cv=none; b=LrwBOySBExYkcs9TE3FRDoDbTlKjDT8Fz4eYaf7fi99PntbGVN0g65hhoemxS5M3iZhy07Ob0DGlM+IDMYK1FcSbkUMBsAab/dXoFPVykSRXSVdw3iMvw6h0/r2v0gQhnaU8+zsvc0+9qGdhUCGr515ZFSbVKMUHrLJmCzj+h2U=
+	t=1729571472; cv=none; b=ct7kjY5CPPsgiSG7gJWfjWWW/GySz1AxtPbcJKLe/cpRKWeS4FC9edgAPWEg7i6FZRT9QOT+vcc2gz65Ey22voyK1T0F6IY8/iJ6gs9BYxvq28u18uVG77RkkHCo7KFirPjLKY5ENxCi9xamLu2Tr0M/4TMkQbrTwXjrwhBvBhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729571360; c=relaxed/simple;
-	bh=3vn8UdTm2vZ8iRF6+NWU3XRwJYYFBfTvmGiraajlAPc=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=MOtrJVCnbDPmo56IXMn9up+vk9/hQrpRZmTEtvHt9VrCm+MafpjVeBRggZrWLiG+sxTB7ydyAe0/ZlAugUP3exBLmz0Kq5UaG6X7qFryfr/uU/2krucG6Mm6Rph3eW4Faq59juMMUpjScZ7No3uei93Iq/tc2esifMeC7jAN4dM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=hn8cyO40; arc=none smtp.client-ip=209.85.222.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7b12a02596aso340593685a.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Oct 2024 21:29:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek.ca; s=google; t=1729571357; x=1730176157; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gQCeQESSGdnWu3CIfb5Og/6oYW/wkrRIWKBMInOCmnM=;
-        b=hn8cyO403y7ZlsM20VX/SKSSP9metkcKN0nx6C2XiQu7CYjFUJ7qcVr+iN7CQE6/3p
-         koJY/c46l7dkt4ew+SjtTl7hscKEgq8BONL6c2XNM/whvb3qqZX7p2mO/oxXECKd5NqT
-         xBPB8oTHdOqTSlhuFAQp+MuTzbzaAebZ62a2ElF3Y8syLMD4LbotARpizj6IUMpGk0s1
-         5C6aQQX2BEoU3FMyTB9jPySTclo1uvnRgRPoK7LASuzn1IjHfTiUdr3WkmDlQA319NQM
-         lJxJ4xHnYiWpyxxV58km7t3i8ZupkwkMZ03WgXyv4W+CIyFizI2n8i/7LWTrAiAGoxy2
-         S/mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729571357; x=1730176157;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gQCeQESSGdnWu3CIfb5Og/6oYW/wkrRIWKBMInOCmnM=;
-        b=tR2BTuAfJJeUIxxrc4DH+I4PO6NzvD02AJjKfCAr3A8tnJTiB+tpTshuxPaVhZrJqI
-         2aHSgsl317lW9ELJ0Olv/Jyq2/rU3Yv9XbQxYgiBFxNRnlEQzbeL6d81S2PusOMh6bH8
-         p6IsD+wkjFJtLjnUqsc0hhkfDp7LeFqaac73sFClcgnumk5VIHzEJSjt947H2xlrxrru
-         7xmUK29RAkUg7Zjq2Sang0OSNHhIjEIOFNhXhgnmSy1LHWJM2kF6siiEhsrTKSF9sekB
-         mEs1BYTN0p0BHFPFUFGGFsKx1NF7nvem7BsXotkX6vnj3BElReU1ytZ7cAuZcyCxSUU5
-         kVzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVN7cWjuSx/cv/oe4zy7JHhoMpYK4gMVViQ7KXpgO8Zidovk6E/FAe5RSPoa17MgcCxo/aiLs0I0dXN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yylbct4E2ATLXZCSGZJp0Kkw49g33M5RzXRZR/KaP8p+nY1szpj
-	2+/agBowlXl9peAktK3kXwKxI0uagqHy8BU60R9UWf//EdxYOsF0NLET1y+ZC/0=
-X-Google-Smtp-Source: AGHT+IG2vf84iHRnL7reLpo6EFw4xTQRM7dGVwb9R/9+8Iat8D/hAdv07jr8otPh32dSSQP0/CrWVQ==
-X-Received: by 2002:a05:620a:2a0b:b0:7b1:11ea:1f62 with SMTP id af79cd13be357-7b157b40d94mr2036300785a.8.1729571357284;
-        Mon, 21 Oct 2024 21:29:17 -0700 (PDT)
-Received: from [192.168.0.189] (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b165a710a7sm242547785a.106.2024.10.21.21.29.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Oct 2024 21:29:16 -0700 (PDT)
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: x1e80100-crd: enable otg on usb
- ports
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
-References: <20241011231624.30628-1-jonathan@marek.ca>
- <20241011231624.30628-2-jonathan@marek.ca> <ZxZO6Prrm2ITUZMQ@linaro.org>
-From: Jonathan Marek <jonathan@marek.ca>
-Message-ID: <8e7b99e0-2649-fa3d-4fbd-e027a65aff6a@marek.ca>
-Date: Tue, 22 Oct 2024 00:25:46 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+	s=arc-20240116; t=1729571472; c=relaxed/simple;
+	bh=EhcizUuLOQoDcszkbqpq8bkB//6KFm8ftMiMPLl64eI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nZyhE2sXYTWRv1y/LHKYaDvFhIKHJWzc9nyPRBU/q1gZAtAtyPnye9D7kj2UD0A9cwEDFBl0Qj42uqJKbRnvwgyWjLPcP2UPxmSfvONGICHL9XV7gPNGSoi2P5PHNTpMOz8YHTbONyjjJglvNfn4RZT+wsJighA1YRAzkqy85Bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YNHP7pSL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49LI0wVP012434;
+	Tue, 22 Oct 2024 04:31:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	p4Z0dH4BEZqPcFJqsUQAT4AGWjjAEFBIJ7o8AdMmsb0=; b=YNHP7pSLOePFOmX2
+	AZ7lOwnt/PtdEzM0DWuarZeHX6a1LWzbhGp2xOKVo23YLsDLEiQBbkIMG9XmsVEj
+	dqY/gpEHpw6POmeByVxaihLkFKUnkReWhpNZCSy0gCRT9RNIi/KTDrh2DFk6Cs//
+	QlScZNcf6kQA0I9yQ9rj/A4iPZTEDjEPvUGZemARO0kecoKMctwopn9kz2amWlst
+	GxXuLCGGxWe9VfD4zSAQzB//d3OmVMbKj1J3IXhL8/KaM8Tgut4OVUv4NGGnX1gn
+	QLGyVrT3XSvE9IC/wgLXrpLRNc3bz6wV1DcJBdzD7CM7mbxP733Q1EWn09QTLg3d
+	/VMGyw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42c6vc6xet-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Oct 2024 04:31:07 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49M4V6Zw015546
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 22 Oct 2024 04:31:06 GMT
+Received: from [10.216.44.181] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 21 Oct
+ 2024 21:31:02 -0700
+Message-ID: <b6a9f8d7-655f-4ac5-9887-e3c186a3701b@quicinc.com>
+Date: Tue, 22 Oct 2024 10:00:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <ZxZO6Prrm2ITUZMQ@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom: Add GPU clocks for QCS8300
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        "Satya
+ Priya Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com>
+ <20241018-qcs8300-mm-patches-v1-1-859095e0776c@quicinc.com>
+ <wbkon6izhasg2jn2fqkjbzcawn7qx444kb7dvfoncaqkcr7gry@vote5okvj4gs>
 Content-Language: en-US
+From: Imran Shaik <quic_imrashai@quicinc.com>
+In-Reply-To: <wbkon6izhasg2jn2fqkjbzcawn7qx444kb7dvfoncaqkcr7gry@vote5okvj4gs>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 0TbmvQhbzSOIiP7NxF4Usk5NwceUVXSj
+X-Proofpoint-ORIG-GUID: 0TbmvQhbzSOIiP7NxF4Usk5NwceUVXSj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ spamscore=0 phishscore=0 bulkscore=0 mlxscore=0 adultscore=0
+ mlxlogscore=762 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410220028
 
-On 10/21/24 8:54 AM, Stephan Gerhold wrote:
-> +Cc Abel and Johan
+
+
+On 10/21/2024 1:24 PM, Krzysztof Kozlowski wrote:
+> On Fri, Oct 18, 2024 at 04:42:29PM +0530, Imran Shaik wrote:
+>> Add support for qcom GPU clock controller bindings for QCS8300 platform.
 > 
-> FYI, this landed in qcom for-next last week for CRD and T14s.
-> 
-> On Fri, Oct 11, 2024 at 07:16:22PM -0400, Jonathan Marek wrote:
->> The 3 USB ports on x1e80100-crd are OTG-capable, remove the dr_mode
->> override to enable OTG.
->>
->> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> 
-> This is a bit problematic, because dr_mode = "otg" seems to imply
-> gadget/peripheral mode by default and we are currently unable to detect
-> the role at runtime until the ADSP is started. Being in peripheral mode
-> by default will break USB installers; they won't be able find the rootfs
-> via USB. Unfortunately, they wouldn't be able to detect it once in the
-> rootfs either, because usually you first need to copy the ADSP firmware
-> from Windows (at least on the laptops).
-> 
-> I think the best quick fix would be to set
-> 
-> 	role-switch-default-mode = "host";
+> Why are you adding defines to SA8775p header? Commit msg should explain
+> non-obvious contents.
 > 
 
-I have no objection to this but its a hack to workaround qcom's broken 
-design and perhaps should include a comment along those lines. The 
-situation is also the same on anything sm8350 and newer.
+The QCS8300 GPU clock controller is mostly identical to SA8775P, but 
+QCS8300 has few additional clocks and minor differences. Hence, re-using 
+the SA8775P GPUCC for QCS8300. I will update the commit text with these 
+details in next series.
 
-FYI upstream doesn't support a rootfs on USB because loading a new ADSP 
-firmware breaks it (cuts off vbus for a moment I guess), but I guess 
-that doesn't apply to the USB installer case. (maybe the people making 
-these USB installers should just have to carry a patch with this?)
+Thanks,
+Imran
 
-> for now to restore the old behavior in initrd, while still allowing to
-> switch to peripheral mode once detected by the ADSP later.
+> Best regards,
+> Krzysztof
 > 
-> It would be nice to have gadget mode in initrd as well, since e.g.
-> postmarketOS needs that to set up the USB debug shell. But I'm not sure
-> how we could support that:
-> 
->   - We could designate some of the ports as "peripheral by default" and
->     some as "host by default". E.g. usb_1_ss0 is also used for EDL and
->     Fastboot on CRD, so it's more likely to be used in peripheral mode.
->     But there still would be users confused about why they cannot plug in
->     their USB installer into one of the ports...
-> 
->   - Long term, I wonder if there is any way we could reuse the reduced
->     ADSP firmware from UEFI for USB detection until we start the full one
->     later? Perhaps it provides a similar interface?
 
-This is what I do (minus the "start the full one later" part), with a 
-hack [1] to make the remoteproc driver skip loading any firmware and 
-trying to boot the DSP. The UEFI-loaded ADSP firmware has the same 
-charging/usb functionality as the full ADSP firmware.
-
-[1] 
-https://github.com/flto/linux/commit/36921742d28b55dc02d8e5a8d6598e567e7874ab
 
