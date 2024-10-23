@@ -1,242 +1,229 @@
-Return-Path: <devicetree+bounces-114776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C8F39ACE73
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:17:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E70009ACEA3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:25:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E0051C209BF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:17:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B3FC1F220AA
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3E81B5ED0;
-	Wed, 23 Oct 2024 15:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D261C9EDC;
+	Wed, 23 Oct 2024 15:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="sYVNrfG5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZANycmS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B867C19DF53;
-	Wed, 23 Oct 2024 15:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C469C1C8FB3;
+	Wed, 23 Oct 2024 15:23:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729696664; cv=none; b=ght2XoQjDGX10hr3ZbYKSJ44JGYPUiw1xaCuDuZBi6DHOwfxrTiGaMXcglA3lju+wqeUvqkqDSvrY3a4RDDOqdk/tnxSdbWzFzYfd6ytbDDXVKHEoNOH1C6yhYBe/wxo1SfWSEIeqgQWnjCppFYekWaBKcN8cVuXR9GAQkTHTxI=
+	t=1729696981; cv=none; b=sfnNyJ+qb9Zh9ZZqLi2937p9hY6FRuI1q/U/SvgixmOWvlSf2k/kMzLSOSgPeL8vYyR/ZcpOuwV70dOdGA0Vn/ZF5WAt+onvFnS1N0pbyYQnbh1wbO6TNHWtoLfLDHfbJQ5uB5eAsOeJjpfnJjDZ/l+8ErXbqI1+nWaoEEREcRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729696664; c=relaxed/simple;
-	bh=4hnHAIaEe4ze1ZxKC3Y2qOStpSS+H15iF4uLDOF5Fuc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FzPMR6tk3YD6zt3EImlHXec31lORlxSGpx2IrykPMaobF5wMKw+gW79vcWce0/gzr7Rui6pA5K3rak9GTzBRzhePpgzKBxe7UjtHwhjR8emqelZm4oUyFaVKICg7W+r86g5OvMbqcQvTkxzItfafItJO1kOydHkG3uTTRk9lwrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=sYVNrfG5; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id AC9DA891A3;
-	Wed, 23 Oct 2024 17:17:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729696661;
-	bh=mGNPZ7L2+BANTdVwGnl+FyDwUhdNjCqHTPZtrrx98vE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=sYVNrfG5It5j42lroGwiscpQM1HAuIS/QdVO9YJ8HaIZyQh/dxCHxRnSvanFFc0RB
-	 /XFouyNKsHh8IaqvMYdGocRO5QmCb6IgV2YRLoIpBfso+JPBFviVEIucykdLCrp6rq
-	 limZl21TOiekCVm+qoeL4FxH47tmU5rMFxIjc1iKig0x3e4uGkpTNgeonHlo+HwSfl
-	 d7bhaKDe43GxQjhyxyDqNhliOXHWemqZM++r+44vvzmEDNijbuYY/Ew1RnCU+jurse
-	 G22qMsk1Z6r+p4oJmE5PwF79G8ywCQaJ1XkHYQC9FReKEOunztUPu0bN1Op0efXnZ3
-	 cyxHgwISbA8/Q==
-Date: Wed, 23 Oct 2024 17:17:39 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, broonie@kernel.org, linux-spi@vger.kernel.org,
- shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org, Fabio Estevam
- <festevam@denx.de>
-Subject: Re: [PATCH 1/3] dt-bindings: misc: lwn,bk4-spi: Add binding
-Message-ID: <20241023171739.475a2bb7@wsk>
-In-Reply-To: <20241023120015.1049008-1-festevam@gmail.com>
-References: <20241023120015.1049008-1-festevam@gmail.com>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729696981; c=relaxed/simple;
+	bh=KXkbSwlGbCZMCSuO/HqUDNu6DmitH+pQc626B5yFwFY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TrUeiVPbbcNJ2uewd/hfhbWJeqOIq4Vu8X4qmRAWKU6UfPBlZ1BzzY182rZQkTQmxZ6bmdU6sSHwZrmHzNEoXOAWUEFkSUoX/l21zUcglCrFei3sp4/IaOAsrCtip30k9DNT+k5N2S+h+k8DfMv6iNu0QVdLf122UIMl/dM9YZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZANycmS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 613FCC4CECD;
+	Wed, 23 Oct 2024 15:22:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729696981;
+	bh=KXkbSwlGbCZMCSuO/HqUDNu6DmitH+pQc626B5yFwFY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AZANycmSnzGOxPgI8KK5fXhNpNn4LV5haxmCQJgpwlbzvIB72HJjTJduSk7C4D/jN
+	 c5HH9n6mNDhJd0ezGRDc8IvN++xEk3uF4DcpNNCizXGBiHGeKcJAlwUDp5n3Q50OWP
+	 7FIqAxTJ8wQfx6lBAu0hp7G2rhrdzRRWIhpV8fN9M1nRFaGyyV0FDMkmPAgnrwN+Kq
+	 JYDGS0EI20ZY6nlDRypzZDK/sEdXGgVBOWXTDdsDlMPbt70hwAyVgp0U0l2sxmrEOw
+	 WW6tqv+aXe45a+z9RtrpPHQ7Z+k1DymCwsCSJoHKaFLsRX6OuNm9ZXRHrDEy7sezVU
+	 N3JYrItlnmN5Q==
+Date: Wed, 23 Oct 2024 16:22:56 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Angelo Dureghello <adureghello@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dlechner@baylibre.com,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v7 4/8] iio: dac: adi-axi-dac: extend features
+Message-ID: <20241023-nifty-electable-64d3b42bce3b@spud>
+References: <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-0-969694f53c5d@baylibre.com>
+ <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-4-969694f53c5d@baylibre.com>
+ <b1ac7d51280caf729d192ca871c26260fdf3697c.camel@gmail.com>
+ <20241022-napped-labored-6956ce18d986@spud>
+ <7a4f8c718029c8c57596d950495fcf28562c6e78.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/EXs69__H/ReNKkpgChycJ7c";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FcRsxxiByCiYsStm"
+Content-Disposition: inline
+In-Reply-To: <7a4f8c718029c8c57596d950495fcf28562c6e78.camel@gmail.com>
 
---Sig_/EXs69__H/ReNKkpgChycJ7c
-Content-Type: text/plain; charset=US-ASCII
+
+--FcRsxxiByCiYsStm
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Fabio,
-
-> From: Fabio Estevam <festevam@denx.de>
+On Wed, Oct 23, 2024 at 04:56:39PM +0200, Nuno S=E1 wrote:
+> On Tue, 2024-10-22 at 18:21 +0100, Conor Dooley wrote:
+> > On Tue, Oct 22, 2024 at 02:36:44PM +0200, Nuno S=E1 wrote:
+> > > On Mon, 2024-10-21 at 14:40 +0200, Angelo Dureghello wrote:
+> > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > >=20
+> > > > Extend AXI-DAC backend with new features required to interface
+> > > > to the ad3552r DAC. Mainly, a new compatible string is added to
+> > > > support the ad3552r-axi DAC IP, very similar to the generic DAC
+> > > > IP but with some customizations to work with the ad3552r.
+> > > >=20
+> > > > Then, a series of generic functions has been added to match with
+> > > > ad3552r needs. Function names has been kept generic as much as
+> > > > possible, to allow re-utilization from other frontend drivers.
+> > > >=20
+> > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > > ---
+> > >=20
+> > > Looks mostly good,
+> > >=20
+> > > one minor thing that (I think) could be improved
+> > > > =A0drivers/iio/dac/adi-axi-dac.c | 269
+> > > > +++++++++++++++++++++++++++++++++++++++--
+> > > > -
+> > > > =A01 file changed, 255 insertions(+), 14 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-ax=
+i-dac.c
+> > > > index 04193a98616e..9d6809fe7a67 100644
+> > > > --- a/drivers/iio/dac/adi-axi-dac.c
+> > > > +++ b/drivers/iio/dac/adi-axi-dac.c
+> > > > @@ -46,9 +46,28 @@
+> > > > =A0#define AXI_DAC_CNTRL_1_REG			0x0044
+> > > > =A0#define=A0=A0 AXI_DAC_CNTRL_1_SYNC			BIT(0)
+> > > > =A0#define AXI_DAC_CNTRL_2_REG			0x0048
+> > > > +#define=A0=A0 AXI_DAC_CNTRL_2_SDR_DDR_N		BIT(16)
+> > > > +#define=A0=A0 AXI_DAC_CNTRL_2_SYMB_8B		BIT(14)
+> > > > =A0#define=A0=A0 ADI_DAC_CNTRL_2_R1_MODE		BIT(5)
+> > > > +#define=A0=A0 AXI_DAC_CNTRL_2_UNSIGNED_DATA		BIT(4)
+> > > > +#define AXI_DAC_STATUS_1_REG			0x0054
+> > > > +#define AXI_DAC_STATUS_2_REG			0x0058
+> > > > =A0#define AXI_DAC_DRP_STATUS_REG			0x0074
+> > > > =A0#define=A0=A0 AXI_DAC_DRP_STATUS_DRP_LOCKED		BIT(17)
+> > > > +#define AXI_DAC_CUSTOM_RD_REG			0x0080
+> > > > +#define AXI_DAC_CUSTOM_WR_REG			0x0084
+> > > > +#define=A0=A0 AXI_DAC_CUSTOM_WR_DATA_8		GENMASK(23, 16)
+> > > > +#define=A0=A0 AXI_DAC_CUSTOM_WR_DATA_16		GENMASK(23, 8)
+> > > > +#define AXI_DAC_UI_STATUS_REG			0x0088
+> > > > +#define=A0=A0 AXI_DAC_UI_STATUS_IF_BUSY		BIT(4)
+> > > > +#define AXI_DAC_CUSTOM_CTRL_REG			0x008C
+> > > > +#define=A0=A0 AXI_DAC_CUSTOM_CTRL_ADDRESS		GENMASK(31, 24)
+> > > > +#define=A0=A0 AXI_DAC_CUSTOM_CTRL_SYNCED_TRANSFER	BIT(2)
+> > > > +#define=A0=A0 AXI_DAC_CUSTOM_CTRL_STREAM		BIT(1)
+> > > > +#define=A0=A0 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA	BIT(0)
+> > >=20
+> > > ...
+> > > =A0
+> > > > =A0static int axi_dac_probe(struct platform_device *pdev)
+> > > > =A0{
+> > > > -	const unsigned int *expected_ver;
+> > > > =A0	struct axi_dac_state *st;
+> > > > =A0	void __iomem *base;
+> > > > =A0	unsigned int ver;
+> > > > @@ -566,14 +780,29 @@ static int axi_dac_probe(struct platform_devi=
+ce
+> > > > *pdev)
+> > > > =A0	if (!st)
+> > > > =A0		return -ENOMEM;
+> > > > =A0
+> > > > -	expected_ver =3D device_get_match_data(&pdev->dev);
+> > > > -	if (!expected_ver)
+> > > > +	st->info =3D device_get_match_data(&pdev->dev);
+> > > > +	if (!st->info)
+> > > > =A0		return -ENODEV;
+> > > > +	clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
+> > > > +	if (IS_ERR(clk)) {
+> > >=20
+> > > If clock-names is not given, then we'll get -EINVAL. Hence we could a=
+ssume
+> > > that:
+> > >=20
+> > > 		if (PTR_ERR(clk) !=3D -EINVAL)
+> > > 			return dev_err_probe();
+> >=20
+> > clock-names isn't a required property, but the driver code effectively
+> > makes it one. Doesn't this lookup need to be by index, unless
+> > clock-names is made required for this variant?
 >=20
-> Add a lwn,bk4-spi.yaml binding for Liebherr's BK4 external SPI
-> controller.
+> Likely I'm missing something but the driver is not making clock-names man=
+datory,
+> is it?
+
+Did you miss the "for this variant"? Maybe I left the comment in not
+exactly the right place, but I don't think the code works correctly for
+the new variant if clock-names aren't provided:
+
++	if (st->info->has_dac_clk) {
++		struct clk *dac_clk;
++		dac_clk =3D devm_clk_get_enabled(&pdev->dev, "dac_clk");
++		if (IS_ERR(dac_clk))
++			return dev_err_probe(&pdev->dev, PTR_ERR(dac_clk),
++					     "failed to get dac_clk clock\n");
++
++		/* We only care about the streaming mode rate */
++		st->dac_clk_rate =3D clk_get_rate(dac_clk) / 2;
+
+Isn't this going to cause a probe failure?
+
+> At least for the s_axi_aclk, we first try to get it using clock-names and=
+ if
+> that fails we backup to what we're doing which is passing NULL (which
+> effectively get's the first clock in the array).
 >=20
-> Currently, the compatible string used for this device is "lwn,bk4",
-> which is the same as the board compatible string documented at
-> fsl.yaml.
->=20
-> This causes several dt-schema warnings:
->=20
-> make dtbs_check DT_SCHEMA_FILES=3Dfsl.yaml
-> ...
->=20
-> ['lwn,bk4'] is too short
-> 'lwn,bk4' is not one of ['tq,imx8dxp-tqma8xdp-mba8xx']
-> 'lwn,bk4' is not one of ['tq,imx8qxp-tqma8xqp-mba8xx']
-> 'lwn,bk4' is not one of ['armadeus,imx1-apf9328', 'fsl,imx1ads']
-> ...
->=20
-> Use a more specific "lwn,bk4-spi" compatible string for this
-> device.
->=20
+> The reasoning is that on the generic variant we only need the AXI clk and=
+ we
+> can't now enforce clock-names on it. But to keep things flexible, this was
+> purposed.
 
-Thanks for updating this.
+Why not always just get the first clock by index and avoid the
+complexity?
 
-BK4 is another example of to be long-time supported device... :-)
+> Another alternative that might have more lines of code (but simpler to
+> understand the intent) is to have (for example) a callback get_clocks fun=
+ction
+> that we set depending on the variant. And this also makes me realize that=
+ we
+> could improve the bindings. I mean, for the generic dac variant we do not=
+ need
+> clock-names but for this new variant, clock-names is mandatory and I'm fa=
+irly
+> sure we can express that in the bindings.
 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  .../devicetree/bindings/misc/lwn,bk4-spi.yaml | 54
-> +++++++++++++++++++ .../devicetree/bindings/misc/lwn-bk4.txt      |
-> 26 --------- 2 files changed, 54 insertions(+), 26 deletions(-)
->  create mode 100644
-> Documentation/devicetree/bindings/misc/lwn,bk4-spi.yaml delete mode
-> 100644 Documentation/devicetree/bindings/misc/lwn-bk4.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/misc/lwn,bk4-spi.yaml
-> b/Documentation/devicetree/bindings/misc/lwn,bk4-spi.yaml new file
-> mode 100644 index 000000000000..7fb86e6abade
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/lwn,bk4-spi.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/lwn,bk4-spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Liebherr's BK4 external SPI controller
-> +
-> +maintainers:
-> +  - Lukasz Majewski <lukma@denx.de>
-> +
-> +description: |
-> +  Liebherr's BK4 external SPI controller is a device which handles
-> data
-> +  acquisition from compatible industrial peripherals.
-> +  The SPI is used for data and management purposes in both master and
-> +  slave modes.
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: lwn,bk4-spi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 30000000
-> +
-> +  fsl,spi-cs-sck-delay: true
-> +
-> +  fsl,spi-sck-cs-delay: true
-> +
-> +required:
-> +  - compatible
-> +  - spi-max-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        spidev@0 {
-> +            compatible =3D "lwn,bk4-spi";
-> +            reg =3D <0>;
-> +            spi-max-frequency =3D <30000000>;
-> +            fsl,spi-cs-sck-delay =3D <200>;
-> +            fsl,spi-sck-cs-delay =3D <400>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/misc/lwn-bk4.txt
-> b/Documentation/devicetree/bindings/misc/lwn-bk4.txt deleted file
-> mode 100644 index d6a8c188c087..000000000000
-> --- a/Documentation/devicetree/bindings/misc/lwn-bk4.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -* Liebherr's BK4 controller external SPI
-> -
-> -A device which handles data acquisition from compatible industrial
-> -peripherals.
-> -The SPI is used for data and management purposes in both master and
-> -slave modes.
-> -
-> -Required properties:
-> -
-> -- compatible : Should be "lwn,bk4"
-> -
-> -Required SPI properties:
-> -
-> -- reg : Should be address of the device chip select within
-> -  the controller.
-> -
-> -- spi-max-frequency : Maximum SPI clocking speed of device in Hz,
-> should be
-> -  30MHz at most for the Liebherr's BK4 external bus.
-> -
-> -Example:
-> -
-> -spidev0: spi@0 {
-> -	compatible =3D "lwn,bk4";
-> -	spi-max-frequency =3D <30000000>;
-> -	reg =3D <0>;
-> -};
+Right. You can "edit" required in the if/then/else branch for the new
+variant.
 
-
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/EXs69__H/ReNKkpgChycJ7c
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--FcRsxxiByCiYsStm
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmcZE5MACgkQAR8vZIA0
-zr2JBgf9H8mKx1+O2rZSlkSQDdOlfnIg8XuozSSDbe6QLKtQYYnxuAEBbjooqYsY
-kYYTOSSlLCNrb8sWtuZFf6zWWmWbPiri4J92hFv/ZC2h6bWIKgaO3fO2nCaar36+
-ANiTgWo83oD1Vd6VfWRIvESzCh+attaDCueKbseaC+BB3uvcu/I+wYmYdv2Cno6C
-Vu9yCAW4v50zPxu98/YtC0fHGmoowqrtXiXkoiPpmkTtzFuAmnKMq/HHMExMgR02
-xp4IgKKS57UdyyEP7K/YA1slem9Hs2UVDQ1r1LnfqUu0T8tGjn2AXmsPGNsfctv6
-AUsEjOKDz1+u8ma39DrHFlLCqtrt/g==
-=OYo+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxkUvwAKCRB4tDGHoIJi
+0iH0AQDT3WZkbiqQZikEUWqx6FC6ZERzFp5cE6EJ0uvCHfGrpwD+MwupjN9w4Yz7
+A9SQRFg6vReiv04lQ/Myk3KErlH/8Qg=
+=anK4
 -----END PGP SIGNATURE-----
 
---Sig_/EXs69__H/ReNKkpgChycJ7c--
+--FcRsxxiByCiYsStm--
 
