@@ -1,139 +1,145 @@
-Return-Path: <devicetree+bounces-114782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFA109ACEF3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7D69ACEFE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:39:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 766211F21F97
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:37:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 605D41F22156
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F091C5798;
-	Wed, 23 Oct 2024 15:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34CDA1C578C;
+	Wed, 23 Oct 2024 15:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K8i9ZywW"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TrIQgpRn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4421ADFF5;
-	Wed, 23 Oct 2024 15:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C8C3A1DA;
+	Wed, 23 Oct 2024 15:39:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729697825; cv=none; b=pbEVo4rDd1f01m7ohqaHYr3e605dxsPqN8qclk9bSIBLhc25W3p38jX99yQihgn9D/5L49rT/tth165J75M45IIAySDxkebvGgTvR3QEYXpWT20kG9M8qlz8settipID17Mc9Nd0qZNB9BcikLzePPjzhCRVWUJS1ivfjW1UiIw=
+	t=1729697950; cv=none; b=uMtybDm0w1On1uH+oQuV3/m84yv20mBohVHxCCU+coohYn+3zMRn7Menc0JVHiDlWRfw+dtQl3X95tGpsa0jtAXRbijjvCe+Jp+n9Q92ZMoyuGmIA5k64GiC9EgItNqn0/T/UJNcbaVXio+zH3o5HghjFE487orD5sogBtI1MGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729697825; c=relaxed/simple;
-	bh=lk0BVWNF7JihPDu8AoY+TTLyFPUHODOZeiL1akPZRvY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=THPpjEkw6yPWzsVK0Jtc8QTHittGbfEg/Qwj73djwKZEu2EWTaLuSMYHj+LNDgmzdTIOyV5xmJJtMwkBc8HAczHQHu1JNdPUUSzxJvz/+7CmsnJxdPnsXuf4Z8MIVUITfcNWWT+UETOcBgLPs3iB9Zx1zkLee+M+FSZAaMe2Jms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K8i9ZywW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B042CC4CEC6;
-	Wed, 23 Oct 2024 15:37:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729697824;
-	bh=lk0BVWNF7JihPDu8AoY+TTLyFPUHODOZeiL1akPZRvY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K8i9ZywWG1tpdwujXwquT2/K5g7j+78KPhFfoMyqJmVgJDCqTdlotB1hX/oUmisbr
-	 yuI5GmWmRTqXUNPTuRjJGGQQjv7JZrcpmof2zYnc5lHVJVc/om4nkUXf7Y2beDYC+O
-	 YS4kUcLC+z6Y+7m4pgidBbx4UHcuSr29AOqWWv14LqVOeMeEtWDaXjQ4byxBuhZ9B9
-	 UVhfnAWMvgAKJv2SLlVScKAQs6H2XWbKq4mwQ1YVE7h+AqK6GM4d0tj2sGA7TFpc5G
-	 Z1DUYs2oocSPMv273HEkHfX0RMUhAQ7oIhDludID8sNHB1hEIROK2wJNG2gWNMjI4B
-	 aDGLVMl6myaWA==
-Date: Wed, 23 Oct 2024 10:37:03 -0500
-From: Rob Herring <robh@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 16/16] samples: rust: add Rust platform sample driver
-Message-ID: <20241023153703.GA1064929-robh@kernel.org>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-17-dakr@kernel.org>
- <20241023000408.GC1848992-robh@kernel.org>
- <Zxie5Lu2z_Xc_RXM@pollux>
+	s=arc-20240116; t=1729697950; c=relaxed/simple;
+	bh=NBxhE82kCl2yKOP+vUIKC/W8t8kh6uIpI0gB+20aSEI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bM69c69KfqO4OuvMTqv8cxdwGlHAK2scriU5LfGojSZzy56o0/H3y1uTevwuf0CJ/Vg6NnBN03dHluVgu+v3wK0yYS7Pd8ggCZ0cMLIVt2waKV8ryxfXi5bZn8bz47riu7qt7hs2QDNqbYHEgHF7E8E8NOYqE8sfCg4+U1EKHj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TrIQgpRn; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49NFd1Ws067669;
+	Wed, 23 Oct 2024 10:39:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1729697941;
+	bh=OuQA09gyI4WukFo0h7kDvUI5cJRKjUfhIF1isfAvFEI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=TrIQgpRnEwdf6ZBsIBTODFe9PxqDiNNJY0S9AlzfrSO4P8275hP5PYfPN0HvhMWQ1
+	 coPSMaLVX6E5y1g1C7WDpSSiXydS1XB2RqwpkmymtNe4OONGL5tjGzPo+DpaORlAdJ
+	 vzrBDpcyBN8CvGsi1n5kikUXj0qtd337uuISH+K4=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49NFd1Ke129217
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 23 Oct 2024 10:39:01 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 23
+ Oct 2024 10:39:01 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 23 Oct 2024 10:39:00 -0500
+Received: from [172.24.227.91] (psdkl-workstation0.dhcp.ti.com [172.24.227.91])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49NFcuS4104759;
+	Wed, 23 Oct 2024 10:38:57 -0500
+Message-ID: <47441421-23d4-42a9-b080-21f7c9314fa6@ti.com>
+Date: Wed, 23 Oct 2024 21:08:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zxie5Lu2z_Xc_RXM@pollux>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 02/12] arm64: dts: ti: k3-j784s4-j742s2-mcu-wakeup:
+ Remove parent nodes bootph-*
+To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Udit
+ Kumar <u-kumar1@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>, Andrew Davis <afd@ti.com>
+References: <20241023-b4-upstream-bootph-all-v5-0-a974d06370ab@ti.com>
+ <20241023-b4-upstream-bootph-all-v5-2-a974d06370ab@ti.com>
+Content-Language: en-US
+From: Aniket Limaye <a-limaye@ti.com>
+In-Reply-To: <20241023-b4-upstream-bootph-all-v5-2-a974d06370ab@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed, Oct 23, 2024 at 08:59:48AM +0200, Danilo Krummrich wrote:
-> On Tue, Oct 22, 2024 at 07:04:08PM -0500, Rob Herring wrote:
-> > On Tue, Oct 22, 2024 at 11:31:53PM +0200, Danilo Krummrich wrote:
-> > > Add a sample Rust platform driver illustrating the usage of the platform
-> > > bus abstractions.
-> > > 
-> > > This driver probes through either a match of device / driver name or a
-> > > match within the OF ID table.
-> > 
-> > I know if rust compiles it works, but how does one actually use/test 
-> > this? (I know ways, but I might be in the minority. :) )
+
+
+On 23/10/24 12:27, Manorit Chawdhry wrote:
+> Adding bootph properties on leaf nodes imply that they are applicable to
+> the parent nodes as well. Bootloaders can derive the parent nodes when
+> bootph is available in the leaf nodes.
 > 
-> For testing a name match I just used platform_device_register_simple() in a
-> separate module.
+> Remove the bootph-* properties from parent nodes as they are redundant.
 > 
-> Probing through the OF table is indeed a bit more tricky. Since I was too lazy
-> to pull out a random ARM device of my cupboard I just used QEMU on x86 and did
-> what drivers/of/unittest.c does. If you're smart you can also just enable those
-> unit tests and change the compatible string to "unittest". :)
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+
+Reviewed-by: Aniket Limaye <a-limaye@ti.com>
+
+> ---
 > 
-> > 
-> > The DT unittests already define test platform devices. I'd be happy to 
-> > add a device node there. Then you don't have to muck with the DT on some 
-> > device and it even works on x86 or UML.
+> Notes:
+>      It wasn't existing previously in U-boot but the following patch fixes it [0]
+>      
+>      [0]: https://lore.kernel.org/u-boot/20231217163627.2339802-10-sjg@chromium.org/
 > 
-> Sounds good, I'll add one in there for this sample driver -- any preferences?
-
-I gave this a spin and added the patch below in. Feel free to squash it 
-into this one.
-
-8<----------------------------------------------------------------
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 23 Oct 2024 10:29:47 -0500
-Subject: [PATCH] of: unittest: Add a platform device node for rust platform
- driver sample
-
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-
-diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
-index fa39611071b3..575ea260a877 100644
---- a/drivers/of/unittest-data/tests-platform.dtsi
-+++ b/drivers/of/unittest-data/tests-platform.dtsi
-@@ -33,6 +33,11 @@ dev@100 {
-                                        reg = <0x100>;
-                                };
-                        };
-+
-+                       test-device@2 {
-+                               compatible = "test,rust-device";
-+                               reg = <0x2>;
-+                       };
-                };
-        };
- };
-diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-index 55caaaa4f216..5cf4a8f86c13 100644
---- a/samples/rust/rust_driver_platform.rs
-+++ b/samples/rust/rust_driver_platform.rs
-@@ -15,7 +15,7 @@ struct SampleDriver {
-     MODULE_OF_TABLE,
-     <SampleDriver as platform::Driver>::IdInfo,
-     [(
--        of::DeviceId::new(c_str!("redhat,rust-sample-platform-driver")),
-+        of::DeviceId::new(c_str!("test,rust-device")),
-         Info(42)
-     )]
- );
+>   arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi | 3 ---
+>   1 file changed, 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
+> index 9899da73a905..46bc2a3e4aea 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
+> @@ -7,7 +7,6 @@
+>   
+>   &cbass_mcu_wakeup {
+>   	sms: system-controller@44083000 {
+> -		bootph-all;
+>   		compatible = "ti,k2g-sci";
+>   		ti,host-id = <12>;
+>   
+> @@ -39,7 +38,6 @@ k3_reset: reset-controller {
+>   	};
+>   
+>   	wkup_conf: bus@43000000 {
+> -		bootph-all;
+>   		compatible = "simple-bus";
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+> @@ -458,7 +456,6 @@ mcu_spi2: spi@40320000 {
+>   	};
+>   
+>   	mcu_navss: bus@28380000 {
+> -		bootph-all;
+>   		compatible = "simple-bus";
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+> 
 
