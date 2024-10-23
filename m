@@ -1,127 +1,98 @@
-Return-Path: <devicetree+bounces-114449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F809ABAD2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 03:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C53F9ABADB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 03:13:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A31551F2446C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 01:09:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27FA41F244B4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 01:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B341BDC3;
-	Wed, 23 Oct 2024 01:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="aEgBdFd7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356D01C28E;
+	Wed, 23 Oct 2024 01:12:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B414E36B;
-	Wed, 23 Oct 2024 01:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6211C687;
+	Wed, 23 Oct 2024 01:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729645753; cv=none; b=kPAz/0ShztyyubLHxEIiP/N/gOVwenzDMOrL3YQos6LD4sZpo01opfE5PmHtjWuJLJWyOZSHPqmDtIsWS7+WP9xUi9FDQ0/F4dbHh9vsE9Uqzmm/4POPj3Gk38hM2wwDqJkerm6zW2mkzw9arq2HrOwQQsKkOKwwqKm8x2UAaxc=
+	t=1729645976; cv=none; b=EYFW53dbFTBCRnjM72+f0vzVh+szWbMIPCGfZ0vvfHQwoJKeA36NOuSCGJLiRkBLbLG1hpd3J2wpNHPQL3XT+TLh8cD2pVV2XVyX82TChOoy9dTKNW+7F7t11L/0PdWg8+f4trLuslCRQAqdPAxKyjI1WR84VUEnmxpHJsYI0tA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729645753; c=relaxed/simple;
-	bh=eUyRW2nq2PM2+wK4ivE581lNhZuoS/1YaFjB9OcUsR0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eB+nL9Z5rdqLT/GMRKnyCOn+8LJ6WrSAOgfc/2xdwsC2ZkSjiaQXbSSlEPMd2SdxKNb0PpG268/F9tho/zVDUO8k56OC+yDos+f4fMfgIEVmwghtk7Z3b06FCZvKJ/qwpeusB+EnZHhU0EeY7VUzqSYnLSD5LQSmWPN6DBYBlRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=aEgBdFd7; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Luc414sqlYd9r0hDusrFOUlGPmShpMBsFYhEzzPbPG8=; b=aEgBdFd7EvMykDpVG1QVfh49KR
-	5u9QFtmR4J7sflyt1GIeWIFboSZRFtINEdsb08ZeGtSJbNlinAimtn8fpFRuP3MWjkp38q1HWNocG
-	h8ynoSuwrb9LfOGoX/pw869W4udzciX9gh/6NHwhIGv5REsP6umt77XbQWTKsum6FfR8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t3Pro-00AtuF-B7; Wed, 23 Oct 2024 03:08:52 +0200
-Date: Wed, 23 Oct 2024 03:08:52 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-Message-ID: <d691a687-c0e2-48a9-bf76-d0a086aa7870@lunn.ch>
-References: <20241021103617.653386-1-inochiama@gmail.com>
- <20241021103617.653386-5-inochiama@gmail.com>
- <227daa87-1924-4b0b-80db-77507fc20f19@lunn.ch>
- <gwtiuotmwj2x3d5rhfrploj7o763yjye4jj7vniomv77s7crqx@5jwrpwrlwn4s>
- <65720a16-d165-4379-a01f-54340fb907df@lunn.ch>
- <424erlm55tuorjvs2xgmanzpximvey22ufhzf3fli7trpimxih@st4yz53hpzzr>
- <66f35d1b-fd26-429b-bbf9-d03ed0c1edaf@lunn.ch>
- <zum7n3656qonk4sdfu76owfs4jk2mkjrzayd57uuoqeb6iiris@635pw3mqymqd>
+	s=arc-20240116; t=1729645976; c=relaxed/simple;
+	bh=1CRyGpFPXnZ3EeTDtQQ//Q62U5p5ZIRBi44cv20mdJ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZwVE8iInixWyIFUAipKOk9yyu2qs5wdKZ47fYfZV9wy7IkeoRX8+hN2AT+Gp7iJNdvMEuKyLxVTAtE9ObLUrRqZO5+aDnhD92HB2zEextIRaRcW+pTnZj8R9hLEwqju5ZmjgTiVCH+/GVd2FsKRstSPcxQSWhFgruDnYPjDplHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [IPV6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46] (unknown [IPv6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id B9AB0B4B04E6;
+	Wed, 23 Oct 2024 03:12:46 +0200 (CEST)
+Message-ID: <434a7a39-de2d-4053-aed7-df556b5c385d@freeshell.de>
+Date: Tue, 22 Oct 2024 18:12:45 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <zum7n3656qonk4sdfu76owfs4jk2mkjrzayd57uuoqeb6iiris@635pw3mqymqd>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] riscv: dts: starfive: Update ethernet phy0 delay
+ parameter values for Star64
+To: Conor Dooley <conor@kernel.org>
+Cc: Henry Bell <dmoo_dv@protonmail.com>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241022061004.62812-1-e@freeshell.de>
+ <20241022-amusement-overreach-c5d1d7fd797b@spud>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20241022-amusement-overreach-c5d1d7fd797b@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 23, 2024 at 08:41:36AM +0800, Inochi Amaoto wrote:
-> On Tue, Oct 22, 2024 at 03:51:08PM +0200, Andrew Lunn wrote:
-> > On Tue, Oct 22, 2024 at 06:21:49PM +0800, Inochi Amaoto wrote:
-> > > On Mon, Oct 21, 2024 at 03:27:18PM +0200, Andrew Lunn wrote:
-> > > > > It is related to the RGMII delay. On sg2044, when the phy 
-> > > > > sets rx-delay, the interal mac is not set the same delay, 
-> > > > > so this is needed to be set.
-> > > > 
-> > > > This is the wrong way to do it. Please look at how phy-mode should be
-> > > > used, the four different "rgmii" values. Nearly everybody gets this
-> > > > wrong, so there are plenty of emails from me in the netdev list about
-> > > > how it should be done.
-> > > > 
-> > > 
-> > > The phy-mode is alreay set to the "rgmii-id" and a rx delay is already
-> > > set (a default tx delay is set by the phy driver). In the scenario 
-> > > the extra bit is used to fix 2ns difference between the sampling clock
-> > > and data. It is more like an extra setting and the kernel can not handle
-> > > it by only setting the phy-mode.
-> > 
-> > This sounds wrong.
-> > 
-> > So in DT you have rgmii-id? You say the PHY is doing TX delay. So you
-> > pass PHY_INTERFACE_MODE_RGMII_TXID to the PHY? It is not clear from
-> > this patch, i don't see any code mentioning
-> > PHY_INTERFACE_MODE_RGMII_TXID. Could you point me at that code.
-> > 
-> > 	Andrew
-> 
-> The phy on the board I have is YT8531, The config code is here:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/motorcomm.c#n868
 
-This PHY should be able to do rgmii-id, so there is no need for the
-MAC to add delays. We encourage that setup in linux, so all RGMII
-MAC/PHY pairs are the same, the PHY add the delays.
+On 10/22/24 09:41, Conor Dooley wrote:
+> On Mon, Oct 21, 2024 at 11:09:51PM -0700, E Shattow wrote:
+>> Improve function of Star64 bottom network port phy0 with updated delay values.
+>> Initial upstream patches supporting Star64 use the same vendor board support
+>> package parameters known to result in an unreliable bottom network port.
+> Should I add:
+> Fixes: 2606bf583b962 ("riscv: dts: starfive: add Star64 board devicetree")
+> CC: stable@vger.kernel.org
+> ?
+>
+> "unreliable" sounds to me like something that is worthy of going to
+> fixes/stable
 
-	Andrew
+Applying as a fix to stable sounds reasonable, thanks. The bottom 
+network port has always been known by Star64 users in reviews and 
+discussions to be affected by dropped packets and low network 
+throughput. If we want to prove correctness does this require expertise 
+and use of an oscilloscope to characterize the signal timing? Though I 
+am not sure I got it right, it's not worse than previously was on any of 
+these Star64 boards in the wild and probably is better for at least some 
+(if not all).
+
+Notable aside is to mention the re-worked motorcomm driver of 
+more-recent Linux kernel releases (when compared to the vendor board 
+support package) dropped the Fast Ethernet configuration parameters on 
+the reasoning that Fast Ethernet (as compared to Gigabit Ethernet) is 
+relatively slow enough of a signal that a default delay parameter is 
+good enough for all use cases. The non-default Fast Ethernet delay 
+parameter values missing from the upstream effort are not possible to 
+implement or test for in my effort here, but are no worse or better for 
+having this patch applied.
+
+-E
+
 
