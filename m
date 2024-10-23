@@ -1,152 +1,141 @@
-Return-Path: <devicetree+bounces-114578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE2519ABFE2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:13:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFBE9ABFE4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:13:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7003828197E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:13:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73EB92817AF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D08814D430;
-	Wed, 23 Oct 2024 07:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CAB414D430;
+	Wed, 23 Oct 2024 07:13:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q6grCQSn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF62814C5BD;
-	Wed, 23 Oct 2024 07:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B804136345;
+	Wed, 23 Oct 2024 07:13:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729667608; cv=none; b=RY1vtnx0nY7wXwPgGea2Ko6/+tyIo+6ekGCpK+Ie7uucBRnZTyE5FMLHCgIWxbQH0/xYDGK0G9yRdK/B1zvlFyW/Slp9G8ljsFsTipIMX4eFaOg59oLwhF+rfiuh4gacKfsM8+P61qrFOoJICh1PV3gL716HfmeUUXrmLut5S2k=
+	t=1729667620; cv=none; b=dfgf4SGmtssjikwTWSE6EeTkEXtUHfu+fPb8sy+/vwI2VMzcWXJvCsAFLIJdO4n7sdHbpUCwTRtOC3jXzYcdb1XHnUsdPLNIinYp2Vq9k2DT90W+p6A72bOmDSRTekJLenPdao0XIhcWaTQlfrCBN5exgrsemE9VtUJAYj6Z8KU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729667608; c=relaxed/simple;
-	bh=g3fRDGBRXtuoJU+m52RH4KA7qu6/emCxqoWPgTrgyD8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j+Ysh+ICrTQi0c1RtqcoNcVq1ip9LcsUQz3CJlJ5GnP/iRZKccda75sMEgPzpAzUI5Fc8qvKyVjx/pZ/xOQgvqNTgSBJTUw9WL/n8eYP011j9x1TKkV7p2bg9LuO/m1DQMJp41vHu4NmWkXlwX0Qk9MYhnzVnPFWgdaaAqBNDYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e5b7cd1ef5so50243427b3.1;
-        Wed, 23 Oct 2024 00:13:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729667604; x=1730272404;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=buZmOWPffpNhw64jjqBJYO5lR7bm4nckM7nvoDMsE34=;
-        b=axl4j0Qpajl3zEpIc6ZSlnbvthjw0N2C6TTk4LuoVjH2HxNqeNHOY5wBaKLdtObM0+
-         y7YMuKr6CGvhVTS8SrjJQ2FdpcHa+nGd8gp2HMGJdHkBexTjZxffVvBWgMfw1pyVfHx4
-         HLVvBJqLCnTaz4Sts+lriydK+96GQJ05EI8ekNjUf+t8uHykGQYdyAuqNL2kyP3lhaCU
-         yJzRxhWEg+3dnZww31lMKW1yPCt3ahKhhz+yrEC9oaFWHQTZaKVg68V0GMoQetrQzAnF
-         Dp9rpZHRkG+THgvO/LrcpM1dUHNivMfgEE0Dn5nGoqIIFFOUuXpBGztYXpbH5qPO6mt5
-         M0nA==
-X-Forwarded-Encrypted: i=1; AJvYcCUVaMD2TNkoyMz7WphzNaGFA7SAVLxnxBXjhCvj16aNrY5fJIrt0a4QDb0NGS24EvV2m7udTvGqut8c@vger.kernel.org, AJvYcCXA9KakZBd2IjLJMOZrQk2l2Gfsc/6uHjKTZOQf4ETVlwbc37VLPGyPMS5YAU5WGu6s9fTeZAjoSrEpEoadHKxE+Yg=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4FOLLXQTr65tnvZnO+p3s8cVo1/PH/0jefPB+fN9CoiRTgRfV
-	cR/pTFlar/VoLXs4uMrH4SsYiPdZu46TattCvC+0mX1jr0H91/W4yCrH0tX6
-X-Google-Smtp-Source: AGHT+IGJUqEzlBUhXPO5VUFya8bBkDyavJlzT5PzYG+5CcoWFMJSgomiOcSyUtcjTNw3ex0djSh+kA==
-X-Received: by 2002:a05:690c:350f:b0:6e3:32e2:ecbf with SMTP id 00721157ae682-6e7f0e66042mr17250187b3.24.1729667604376;
-        Wed, 23 Oct 2024 00:13:24 -0700 (PDT)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e5f5ccb428sm14323037b3.78.2024.10.23.00.13.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Oct 2024 00:13:23 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6e38ebcc0abso71967747b3.2;
-        Wed, 23 Oct 2024 00:13:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVwnOsIfKZ37S28GzxwhK7usA3UWOo4PXcN/3KSXTn7lTMKo481j++spJQh2OFAITxxS+81sRajyz9UIfJ5j1oEAMs=@vger.kernel.org, AJvYcCWvqcGvR6F5MOmH75AM+rc81MDXeP9++Rvuab0uInUVbRJo+oTybt0l2vqGhYCyY2oQ7WzlmiNvS8yq@vger.kernel.org
-X-Received: by 2002:a05:690c:4087:b0:6e2:1467:17c0 with SMTP id
- 00721157ae682-6e7f0db9866mr13547347b3.8.1729667603177; Wed, 23 Oct 2024
- 00:13:23 -0700 (PDT)
+	s=arc-20240116; t=1729667620; c=relaxed/simple;
+	bh=6mcRPPfWFTCRRKsPOr7A3DI6scMeu8dER+8BgqPZ35o=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Et0Vgai8UaDytlWlmh0Z9C8gWUcuc0oCgUzyh3qWMCdmzV6koKS/T72YXs+Qsz2Hawq/3fBwhkw0t9ysg6gjLZGtcrkMXoVZyM2I4REiDXCfrDAv5VITts6GYq5VQTzpIe1cAn4Sk3YF9aTC3OADfHLXSV3paX/AgpLdG6NI2zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q6grCQSn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C87EC4CEC7;
+	Wed, 23 Oct 2024 07:13:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729667620;
+	bh=6mcRPPfWFTCRRKsPOr7A3DI6scMeu8dER+8BgqPZ35o=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=Q6grCQSnMzBRGkKsu0lY08FzDnBwMQ4DnHp/Td1JG9247YEoO7ROv4y/P3I+b7/b7
+	 X+LrOJ8IKnhww0SUDhP1wmM5ReIN8G9g6xen7tz4GyPb+0Th+FF2hXvAjdH7oJo09q
+	 8nqj2bAI2fwleOnEP7Hsp+glLdf5DK16h/FcIFvO9UPMFgl/FUZcNQbPczvwn8qNn0
+	 qbn6Zr8/kLHW6+GGfs53wHobjRZObXFp2g6nuQoEE+cCXOtzdY41SePHcVs4ixieqS
+	 5MtV8/bnoVGY6gPQZ7LJ2+PO7Wo7zHhaz8I2fv2/KOdqoFr6Ze2cWbLD86LHDy3fO/
+	 dEbcXEmTcASnA==
+Message-ID: <159a5bc5-6a8d-4178-8c9b-7d3f234bd3ed@kernel.org>
+Date: Wed, 23 Oct 2024 09:13:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022184727.3206180-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20241022184727.3206180-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 23 Oct 2024 09:13:11 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV+4PdxnRCzr7fnHnGYiuypem1hYMbXLac+x2db7yfpkA@mail.gmail.com>
-Message-ID: <CAMuHMdV+4PdxnRCzr7fnHnGYiuypem1hYMbXLac+x2db7yfpkA@mail.gmail.com>
-Subject: Re: [PATCH 0/2] arm64: dts: renesas: falcon: Wire-up Ethernet
- breakout board
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: soc: bcm: Convert
+ raspberrypi,bcm2835-power to Dt schema
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Karan Sanghavi <karansanghvi98@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>,
+ Alexander Aring <alex.aring@gmail.com>, Eric Anholt <eric@anholt.net>
+References: <20241022-raspberrypi-bcm2835-power-v2-1-1a4a8a8a5737@gmail.com>
+ <lfzxcilud65ype66frb7eihq2hvranzxp6fomjvjyxvciiixlj@2efv5266wt5r>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <lfzxcilud65ype66frb7eihq2hvranzxp6fomjvjyxvciiixlj@2efv5266wt5r>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Niklas,
+On 23/10/2024 09:12, Krzysztof Kozlowski wrote:
+> On Tue, Oct 22, 2024 at 06:17:03PM +0000, Karan Sanghavi wrote:
+>> Convert the raspberrypi,bcm2835-power binding to Dt schema
+>>
+>> Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
+>> ---
+>> Changes in v2:
+>> - Added original file maintainers
+>> - Removed unnecessary headers from example and formating from description 
+>> - Link to v1: https://lore.kernel.org/r/20241019-raspberrypi-bcm2835-power-v1-1-75e924dc3745@gmail.com
+>> ---
+> 
+>> @@ -0,0 +1,42 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/bcm/raspberrypi,bcm2835-power.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 
-Thanks for your series!
+Ah, and this is of course not part of soc directory, but power, so move
+it there.
 
-On Tue, Oct 22, 2024 at 8:48=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> This small series wires up the Marvell 88Q2110 PHYs found on the Falcon
-> Ethernet breakout board. With this applied all five PHYs are probed
-> correctly.
->
->     mv88q2110 e6810000.ethernet-ffffffff:07: attached PHY driver (mii_bus=
-:phy_addr=3De6810000.ethernet-ffffffff:07, irq=3DPOLL)
->     mv88q2110 e6820000.ethernet-ffffffff:07: attached PHY driver (mii_bus=
-:phy_addr=3De6820000.ethernet-ffffffff:07, irq=3DPOLL)
->     mv88q2110 e6830000.ethernet-ffffffff:07: attached PHY driver (mii_bus=
-:phy_addr=3De6830000.ethernet-ffffffff:07, irq=3DPOLL)
->     mv88q2110 e6840000.ethernet-ffffffff:07: attached PHY driver (mii_bus=
-:phy_addr=3De6840000.ethernet-ffffffff:07, irq=3DPOLL)
->     mv88q2110 e6850000.ethernet-ffffffff:07: attached PHY driver (mii_bus=
-:phy_addr=3De6850000.ethernet-ffffffff:07, irq=3DPOLL)
->
-> They can be auto detected with just the compatible
-> "ethernet-phy-ieee802.3-c45", but to keep the style currently used I
-> have added the specific compatible for the 88Q2110 as done for other
-> SoCs.
+Best regards,
+Krzysztof
 
-If the specific compatible values are not needed, I prefer not to add
-them, as DT should describe only what cannot be auto-detected[1].
-Have you tried kexec and/or unbinding/rebinding the AVB driver
-(the latter is probably easiest)?
-
-> The primary issue we had with this in the past was due to an incorrect
-> PHY address. After studying the schematics (v100) I found the PHYs
-> address pins are wired differently on Falcon compared to other Gen4
-> boards. On Falcon they are pulled-down, while on other Gen4 boards they
-> are left unconnected and subjected to the PHYs internal pull-ups. This
-> gives the PHY an address where the lower 3 bits of the address is
-> inverted for Falcon.
-
-This was changed in v102 of the schematics (REV0043c vs. REV0043b of
-the schematics for the Ethernet sub board): See "Changed Strap pin
-settings =3D=3D> PHYAD=3D[0,0,0], pull-down removed" on page 1, and the
-various PHY configuration notes...
-Moreover, this might be different in other board revisions, as the
-BSP uses PHY address 1 for RAVB1, address 2 for RAVB2, and so on...
-
-As I only had remote access to Falcon, I never knew the actual board
-revision I was using.
-
-How to handle this (yet another DTS file)?
-Are non-v100 variants widespread?
-
-[1] In theory, we could drop all SoC- and family-specific compatible
-    values, and just look at the Product Register. I do not suggest
-    going that way ;-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
