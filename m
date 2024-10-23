@@ -1,112 +1,163 @@
-Return-Path: <devicetree+bounces-114789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F619ACFC0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:10:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE669ACFFB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:20:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78560282C33
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 16:10:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 881F51C21915
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 16:20:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B25C1CACDD;
-	Wed, 23 Oct 2024 16:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9ACB1CACDD;
+	Wed, 23 Oct 2024 16:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hQUSGdFt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FiMc3U21"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469FA7D07D;
-	Wed, 23 Oct 2024 16:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7904436E;
+	Wed, 23 Oct 2024 16:20:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729699846; cv=none; b=GzePGfA+BlICb0tpGS8/qPeyjgNH6kNXAKgz2h1lQjTwYQw9ThmvpsSlnJ9YxiUww/2P2OkQ1P2w11uDOS3q1uudJTuRytaIdmTNGjqoBslIskmv+FXf2OWBu5glYw7dNnnYMb53NPcD5E79Wqb/s2Q2itUnBR6ZipzvEHEIteo=
+	t=1729700440; cv=none; b=H1WaWgdL5R18dL0lU+govudboP3GtVqyGBd99fHKucJcyLpgAnx2Y2hpSjFhgGQV+i7eqbziXG2b40osTeNTnANkIwm5JH3OTAPHiGYT/lI4miUQ44LlbO+kUr2+yrwOxdrcOkQbvhUpGuQ5k/Jru75H6o+Ckkuw/qGdxAhE9M4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729699846; c=relaxed/simple;
-	bh=qxn9zzMc9LTHjJoCIJ5wmgWIscOldp9qfo6Yu6dG7vY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l2Krk8Tbnrs91Yz3FW3ypTBV/M5ikH7PK7GgqHn5a19wIszF1+L+kcf6XY5FX6GiNPsx7JUuI3ZsE3lYFHYTwT0nKfbXg3VVfjHgikoIbZ/arnORfl4qv1DvA3GATE+0UvMwfDXvmuHlMjvYTmJ8hb5xFHfETZ5bIvGEmAlvPy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hQUSGdFt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD458C4CEC6;
-	Wed, 23 Oct 2024 16:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729699845;
-	bh=qxn9zzMc9LTHjJoCIJ5wmgWIscOldp9qfo6Yu6dG7vY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hQUSGdFtqZ1RMW2CnRROfvUOOGt3R5YoAhDzqhNqaDeZ66s00e4BVtrVO3e31Xb+J
-	 SNmT8uJ6SxKI1FMFssrq6lLl4NnRqWpyhDklSvh5CjOdKNUMFEAU1Fubt/0gyc0kVS
-	 OvnfRblqCbHMl92090KtWXVhx93rPGtSrJU0HMOebBsIUe6Cn6Wzx2UMr7cibXrxJh
-	 zJ4IobIVdbvebHA34/nNwt7B4p/3tfRzvyvXTsYjamcSYZPe5WqyQPrbMkK31GLnp1
-	 TfsfFlhHrCKf95nZKt4oiSi4EB78rwILUf38y51u0b5uAqdPZ+SOeBX3+zSMJJH3fR
-	 6UtshLNdFN75A==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t3dwo-000000005rA-35XM;
-	Wed, 23 Oct 2024 18:10:58 +0200
-Date: Wed, 23 Oct 2024 18:10:58 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	s=arc-20240116; t=1729700440; c=relaxed/simple;
+	bh=6/g9lKfKiPk1nnWdH1RKMQu4og8A6nbQAuBiz2udt5Y=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=u1o317y55HwXfVhv4pGF6YbhXDdwihr6UfqDZwReqLaUeRcbrGqJ3lmCpuR1EzOrEjShi2a9eCm6JXjqClmXQlChxJpz67vWvscM4dYYul6QkMA0DL6nLTipTst1aczv8rlQY7fyYTzaL/DOeTu9097c2TX1H2dHfYNmsQ5XDJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FiMc3U21; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43155afca99so7588565e9.1;
+        Wed, 23 Oct 2024 09:20:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729700438; x=1730305238; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=al+2wR40GSQZ0z2UvHLWXNJ+e2sWW9EXks4CEP4E8l4=;
+        b=FiMc3U211nOuKv8aDGnpB1WRpulQFhWeOMMjQqn2Fvq9whGxYA1VKs7yM8MHiXqbbE
+         rNAUtciKYSqeoZdKSSzPOh9ZxxBF8Zr6VoEXRNGi4lztJ3NuucRUiYOnuD/0r5N/8U7d
+         P1aaM4MyXDmrvAQ/FQhC3RyO/1j+734QBuQJ2bVBPGKoaGuri4shNwVopjVPpZ8h0zhs
+         AyZPbFwBqrfm9cFfidvHnTSAZCVT0l4b4q7GrwD17vtbr7veRPIsVq+AE9SaaEg+7GQ+
+         Wkg0YVtw9ncbUACq6U7psJ/sJN0qgLPEXybPcrmhXM3ZgoeXNHSawzOR5kB8kYMQSpPW
+         YbTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729700438; x=1730305238;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=al+2wR40GSQZ0z2UvHLWXNJ+e2sWW9EXks4CEP4E8l4=;
+        b=j58I6dgmRswNs64+sVTptkVPvet4pslJwJYnO4LhEkzvYhxkOxt36vPnvUS4UWag7A
+         geyWicHjfwUpfQC0H/ffspSPtOOBzSEP0nz2eBjZjn3iIE4LlVca9R/ijeDU9lW5QHIh
+         I2SyL2x8BzR/HTbNiiIWm5xNPSEUHReAba8CCPh3pAbOnkgqtYk08niaAMGZyITesqU+
+         TsU+5rdZr54yCEIl65qDDFFPbTghtlcluNtiyS/KlpFeN/DZ/+zYM38nVz5Y1UinRpnb
+         5tTYbNRdzhrpx1A2QmdWEBX6EkD7/25vS58/K41HFqQcy8EYMBpRxXc62OpatJ+iNgdq
+         M6xA==
+X-Forwarded-Encrypted: i=1; AJvYcCVcM9TVBueZtRMmx4X9giEIJ/1wpa2ZW/Qnlj0Rl9Sc8T8dYYVTKcPJkIjZ5lguawTObZ7CfOZgZuUp@vger.kernel.org, AJvYcCWqoAekwUWytMJHDcgM1Woo9HdmxnbpX/kmTEag2oUFONrqmxeUaBzpQL1OS6Bcqu24iB7REbhk@vger.kernel.org, AJvYcCXmBc/9tvpGuTZU9mqIawYjm7Xk+4Dqnzw9QvYtUntweps5ms3piuuSSfa5fmzb75vh+xTbtWIreSxudh5G@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDpeBcz4r9AKH383UaDDjfzsxQ4rYCFssfxDXJ9lg0zdk+73QY
+	W9gnCAFElhSgbGXvm4a+Dez4nTcm5vY1ASD+iGWFRqky2zEVMOIH
+X-Google-Smtp-Source: AGHT+IG1nMIvDQljj4Ctf6uXPxTVi3CrEWeOFLdBbIt5ACR/HyKAd4kiAjrt/Xyf+AiGFHmrzTEYew==
+X-Received: by 2002:a05:6000:c84:b0:37c:fdc8:77ab with SMTP id ffacd0b85a97d-37ef1271e7emr5019941f8f.7.1729700437396;
+        Wed, 23 Oct 2024 09:20:37 -0700 (PDT)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-37ee0ba7dffsm9249993f8f.116.2024.10.23.09.20.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 09:20:37 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] usb: typec: Add support for Parade PS8830 Type-C
- Retimer
-Message-ID: <ZxkgEjptmmHpQpfB@hovoldconsulting.com>
-References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
- <20241004-x1e80100-ps8830-v2-2-5cd8008c8c40@linaro.org>
- <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
- <Zxdp2vHzREJAFkwj@linaro.org>
- <Zxif6vmh8BE_C-_n@hovoldconsulting.com>
- <ZximeTNi7huc95te@linaro.org>
- <ZxirM9HJELXGWVqv@hovoldconsulting.com>
- <ZxiuFRFnZFlcdMPs@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [net-next RFC PATCH v2 0/3] net: dsa: Add Airoha AN8855 support
+Date: Wed, 23 Oct 2024 18:19:49 +0200
+Message-ID: <20241023161958.12056-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZxiuFRFnZFlcdMPs@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 23, 2024 at 11:04:37AM +0300, Abel Vesa wrote:
-> On 24-10-23 09:52:19, Johan Hovold wrote:
+This small series add the initial support for the Airoha AN8855 Switch.
 
-> > I'm talking about an I/O pin here, you must generally not drive those
-> > high before powering on the IC.
-> > 
-> > And AFAIU the same applies to clocks even though the risk of damage
-> > there is lower.
-> 
-> As I stated before, enabling (or rather preparing, from kernel's point
-> of view) will definitely glitch due to PLL switcing (unless the mux is
-> glitchless from design). And there is literally no risk of enabling or
-> keeping a clock enabled even if the consumer is powered off.
+It's a 5 port Gigabit Switch with SGMII/HSGMII upstream port.
 
-That's a separate discussion from whether you should supply clocks to an
-unpowered IC, and you can get around that by making sure the IC is held
-in reset until the clock is stable.
+This is starting to get in the wild and there are already some router
+having this switch chip.
 
-What does the datasheet say about the XTALO_REFCLK_IN pin? What's the
-max voltage specified as?
+It's conceptually similar to mediatek switch but register and bits
+are different. And there is that massive Hell that is the PCS
+configuration.
+Saddly for that part we have absolutely NO documentation currently.
 
-And since the machine we are currently working on do not using a crystal
-oscillator here, do you need to configure the device to use a clock
-instead somehow?
+There is this special thing where PHY needs to be calibrated with values
+from the switch efuse. (the thing have a whole cpu timer and MCU)
 
-Is there any mention of the refclk in the power-on sequence?
+Some cleanup API are used and one extra patch for mdio_mutex_nested is
+introduced. As suggested some time ago, the use of such API is limited
+to scoped variants and not the guard ones.
 
-Johan
+Posting as RFC as I expect in later version to add additional feature
+but this is already working and upstream-ready. So this is really to
+have a review of the very basic features and if I missed anything in
+recent implementation of DSA.
+
+Changes v2:
+- Drop mutex guard patch
+- Drop guard usage in DSA driver
+- Use __mdiobus_write/read
+- Check return condition and return errors for mii read/write
+- Fix wrong logic for EEE
+- Fix link_down (don't force link down with autoneg)
+- Fix forcing speed on sgmii autoneg
+- Better document link speed for sgmii reg
+- Use standard define for sgmii reg
+- Imlement nvmem support to expose switch EFUSE
+- Rework PHY calibration with the use of NVMEM producer/consumer
+- Update DT with new NVMEM property
+- Move aneg validation for 2500-basex in pcs_config
+- Move r50Ohm table and function to PHY driver
+
+Christian Marangi (3):
+  dt-bindings: net: dsa: Add Airoha AN8855 Gigabit Switch documentation
+  net: dsa: Add Airoha AN8855 5-Port Gigabit DSA Switch driver
+  net: phy: Add Airoha AN8855 Internal Switch Gigabit PHY
+
+ .../bindings/net/dsa/airoha,an8855.yaml       |  253 +++
+ MAINTAINERS                                   |   11 +
+ drivers/net/dsa/Kconfig                       |    9 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/an8855.c                      | 2012 +++++++++++++++++
+ drivers/net/dsa/an8855.h                      |  498 ++++
+ drivers/net/phy/Kconfig                       |    5 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/air_an8855.c                  |  265 +++
+ 9 files changed, 3055 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/airoha,an8855.yaml
+ create mode 100644 drivers/net/dsa/an8855.c
+ create mode 100644 drivers/net/dsa/an8855.h
+ create mode 100644 drivers/net/phy/air_an8855.c
+
+-- 
+2.45.2
+
 
