@@ -1,236 +1,318 @@
-Return-Path: <devicetree+bounces-114886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7D799AD4C7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 21:27:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 477919AD4E9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 21:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 865E9283B1C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 19:27:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C12581F23A13
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 19:35:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B2B91D86C0;
-	Wed, 23 Oct 2024 19:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00611D0DE8;
+	Wed, 23 Oct 2024 19:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="F3DKtvKD"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RrLkSy9e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872D01AD3F6;
-	Wed, 23 Oct 2024 19:27:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E6A1A0AF0
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 19:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729711643; cv=none; b=kGcEhU1qNWEXqXl9xOIG5bxcJ/CBySCaMR4dQqmFwe2oBLSIjyCNUspNhnIAlebfmmsfrQ/WJS9Tit0FGONYSnmLkuBixytLpPP1G6xQl7cLBA53TcgFCvtUspLF9RaeaJBx3d+zPwqWndXYbYzdNKZMu5i/v/RZHIGr9xCY2+0=
+	t=1729712133; cv=none; b=TUUGqyw1jMjq2f2kbKQKQD7RD9Pbu+dorVqKhsQtvoo4e1pnGnjqqjADbsYnF4sTHi5v8OMNBbxyHj60zfvs90G2lJpC6Ajs/OhmYzJ+0HTbjpTlsPIB6BC4vtBNGURDPEi7747OHPe8sW65gWJ+/7xa0crhGEJW0U2LwP/3iPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729711643; c=relaxed/simple;
-	bh=IqtiVFYWsES8xg3HHkSQZ/U5gu+TdGMCabRbRggQhFk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=in9kBvVR2OXjgaVIIb36cUNxYC+ufKKEc/tdBkjrIBmo/pITHDB0YOvdwupmQyBT2AKvqywnroD+4GIn2ixkwAymMbvijdI7INFmm93s+F0np5IK5gnJyL4LAfxk0XjRopE2IBjvgm6NCfYpVZ8oTLmf2ow5XrCscfuNbwHl2WU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=F3DKtvKD; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49N9sMo0018092;
-	Wed, 23 Oct 2024 19:27:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hbHEZ3g8fq7hQtiuP2HIxsItu1akAG8bAAbZChe0ops=; b=F3DKtvKDXJMiM59G
-	qXmN8NYJmda6LAMo2Qzl0ALxNkxC6n8r8HAXQPx9LbeS8P66B7+1RLpdUcuCNxUr
-	LwDAOnfYuwLaPT9gwX3wY+EBeIpp22dGDwAH4zg/MkIS8FrVD53rjs6sNXVz7b96
-	AXTjXuBLz/uzX3Pum6kVRiUaBoZsfogTgrUyIyOeNJefnqSerKJ1zGNc8Q1RFKBx
-	73QaR0aqcJrX2tmGkrS5Cpb+urQtnYLxWI0Wms5TDi3rIZGRXUqsNVBKiJ1oU+z4
-	Cmc875avfrm31cYTAiNiWtnA/kGsuB9qBpoQ03+C0qbEZC/ceVTvsCla/uytqu5u
-	R9eh3g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3wb9re-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 19:27:09 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49NJR7iA027983
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 19:27:07 GMT
-Received: from [10.216.22.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Oct
- 2024 12:27:01 -0700
-Message-ID: <d858dadb-4098-4c9f-b4f0-393dc988db5f@quicinc.com>
-Date: Thu, 24 Oct 2024 00:56:58 +0530
+	s=arc-20240116; t=1729712133; c=relaxed/simple;
+	bh=wNYfSW+eYGJvx5KJp4suRILJhQZ0Ag7C+qU/GxQTLA0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GfivIKKhGykHVUG/1WLro/vNXuLU1GGG5bRqYfQW0EF7fTFwgNb5O7yDh+dYykqUhRR3oPT5DF95fezFWUOdfqAH1QbdNZj/qt9pnhf9o2X/5gaSuPlN1K7rHNZetYlROyvjAVi8BeR9WPbuYTuiXiUbLAGoBwbsgih6pnm+4L8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RrLkSy9e; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-539fbe22ac0so138976e87.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 12:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729712129; x=1730316929; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JIcRJaC4tkNbBKQG9JrVDAOe7hOw1yVBfVB1/wPO5XQ=;
+        b=RrLkSy9eZ7jCy+9b5ifUcS54Dn+CuUcQebuoXPDmDyj1bMOyuwT+K4BslRecg8FSiz
+         bQxXJq4pOMCya8zcZ5El2UEWUIbMQr4MB0OMCHYS8cMVcm6aPK6G0vMPY7ET/VXOlJAn
+         syNi8+Pio/9T8SCo2/58mG4psl0L1b5nd5xIk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729712129; x=1730316929;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JIcRJaC4tkNbBKQG9JrVDAOe7hOw1yVBfVB1/wPO5XQ=;
+        b=T0LKUgrB1jDHdwbnEhIwAKIj2ERbcHvCKftDdApmUFLQNHZe4YKmhjSBGd3kXZgvIy
+         bd1zha8OwuR+WNyFWRT8Uall9E99ygo5rbDJ3/m6IJVmQ/xK6rQKAAA4eMYdaEaf4kAv
+         5+0xelf4Gmmv7/+at9vJfZtwtKy+Q2gqOrUCxGE5iV0JDKzwOBG/ZnKLPFHWpoz3T7Iy
+         tcV1oytXM4S5CFTQ3NoaEC5ZYw6H2FQPooIHivsmPGNkcHZgXLXubMjRY2/yZYthQBMh
+         80GqugG0LU+j4Y6vlpU5wiwoI1d3O49GuMmHHmf8FNluzS8KsEmOTSqkQKXZjHvx8QO4
+         PXLA==
+X-Forwarded-Encrypted: i=1; AJvYcCV6I6gcDQok+TvCweOFzJVKEKGzOsfSDMebU8Cg3JXmPESegATurNj2qEMav49UzprK7yHi5WlyxMXU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHlAZJMaPqukqsz6sviPNWybJtl5EvptAqjge9rsDprxRC772/
+	QvsKzBTrV4fshcXf8JYE2wTlQadgjgEQbTdjUYUhNIUMh+EoyNM3NxUw/bot6kHkYgCIFY8uqa2
+	bbA==
+X-Google-Smtp-Source: AGHT+IEJO0OIigayAELyJ3pM706GPuvF5ak28bh9fi/G3lj0xa1Ef1Kwkgky1FMR+ZlaG128nAzqzA==
+X-Received: by 2002:a05:6512:b98:b0:539:e454:942e with SMTP id 2adb3069b0e04-53b1a30482fmr2617294e87.16.1729712128180;
+        Wed, 23 Oct 2024 12:35:28 -0700 (PDT)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com. [209.85.167.45])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b1048b5cbsm772273e87.191.2024.10.23.12.35.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Oct 2024 12:35:27 -0700 (PDT)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539e5c15fd3so134773e87.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 12:35:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXuy0ecDUJY2ki62tiv5J5OOKRVe16mck0VU5P/oN6Uk7BpjLfnV+rICbTzUZJbATs69j9eQ+mrHARb@vger.kernel.org
+X-Received: by 2002:a05:6512:2355:b0:539:fa43:fc36 with SMTP id
+ 2adb3069b0e04-53b1a2f42abmr1785628e87.12.1729712126300; Wed, 23 Oct 2024
+ 12:35:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: opp: Add v2-qcom-adreno vendor
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
-	<nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20241021-gpu-acd-v2-0-9c25a62803bc@quicinc.com>
- <20241021-gpu-acd-v2-2-9c25a62803bc@quicinc.com>
- <mz4zpcr4tqh2w7vt75f4ofxjzfve54ozzgpdbi2jjzk5pdxbk7@t36tlt3mmprt>
-Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <mz4zpcr4tqh2w7vt75f4ofxjzfve54ozzgpdbi2jjzk5pdxbk7@t36tlt3mmprt>
+References: <20241018020815.3098263-2-charles.goodix@gmail.com>
+ <CAD=FV=UFrk4QCxWzV9zUZnjhwiFf22Fji5KH83svdwba2mPVBA@mail.gmail.com>
+ <ZxMfu4yxk961mZWB@ux-UP-WHL01> <fbde8a3a-3adc-4c1a-8529-fde0fa149c8e@kernel.org>
+ <CAD=FV=VphXewyk_mpGHUZKw8_aK8HnH8T-YumwM70eyz22S+Aw@mail.gmail.com>
+ <ZxdRaaCR7eTOCQkB@ux-UP-WHL01> <CAD=FV=UFonOVHUP5_9+BfJp71CFX7KKA1Gx=boN0=3_4cCKnZw@mail.gmail.com>
+ <ZxiZXeQzIaDYuu1F@ux-UP-WHL01>
+In-Reply-To: <ZxiZXeQzIaDYuu1F@ux-UP-WHL01>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 23 Oct 2024 12:35:09 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WSUrjbEzG83kYt50FRQ-Bu+bQP17JY_wPAEBf_GxGTJg@mail.gmail.com>
+Message-ID: <CAD=FV=WSUrjbEzG83kYt50FRQ-Bu+bQP17JY_wPAEBf_GxGTJg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: krzk@kernel.org, dmitry.torokhov@gmail.com, hbarnor@chromium.org, 
+	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sygsDimvIhAM-eyZUnFnjmWrKR5d0XeP
-X-Proofpoint-ORIG-GUID: sygsDimvIhAM-eyZUnFnjmWrKR5d0XeP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- mlxscore=0 lowpriorityscore=0 phishscore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 mlxlogscore=999 suspectscore=0 bulkscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410230125
+Content-Transfer-Encoding: quoted-printable
 
-On 10/22/2024 11:19 AM, Krzysztof Kozlowski wrote:
-> On Mon, Oct 21, 2024 at 05:23:43PM +0530, Akhil P Oommen wrote:
->> Add a new schema which extends opp-v2 to support a new vendor specific
->> property required for Adreno GPUs found in Qualcomm's SoCs. The new
->> property called "qcom,opp-acd-level" carries a u32 value recommended
->> for each opp needs to be shared to GMU during runtime.
->>
->> Cc: Rob Clark <robdclark@gmail.com>
->> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->> ---
->>  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 96 ++++++++++++++++++++++
->>  1 file changed, 96 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
->> new file mode 100644
->> index 000000000000..6d50c0405ef8
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
->> @@ -0,0 +1,96 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/opp/opp-v2-qcom-adreno.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Adreno compatible OPP supply
->> +
->> +description:
->> +  Adreno GPUs present in Qualcomm's Snapdragon chipsets uses an OPP specific
->> +  ACD related information tailored for the specific chipset. This binding
->> +  provides the information needed to describe such a hardware value.
->> +
->> +maintainers:
->> +  - Rob Clark <robdclark@gmail.com>
->> +
->> +allOf:
->> +  - $ref: opp-v2-base.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: operating-points-v2-adreno
->> +      - const: operating-points-v2
->> +
->> +patternProperties:
->> +  '^opp-?[0-9]+$':
-> 
-> '-' should not be optional. opp1 is not expected name.
+Hi,
 
-Agree. Will change this to '^opp-[0-9]+$'
+On Tue, Oct 22, 2024 at 11:44=E2=80=AFPM Charles Wang <charles.goodix@gmail=
+.com> wrote:
+>
+> Hi,
+>
+> On Tue, Oct 22, 2024 at 09:12:33AM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Tue, Oct 22, 2024 at 12:19=E2=80=AFAM Charles Wang <charles.goodix@g=
+mail.com> wrote:
+> > >
+> > > Hi Doug,
+> > >
+> > > On Mon, Oct 21, 2024 at 08:37:32AM -0700, Doug Anderson wrote:
+> > > > Hi,
+> > > >
+> > > > On Mon, Oct 21, 2024 at 2:43=E2=80=AFAM Krzysztof Kozlowski <krzk@k=
+ernel.org> wrote:
+> > > > >
+> > > > > On 19/10/2024 04:55, Charles Wang wrote:
+> > > > > > Hi Doug
+> > > > > >
+> > > > > > On Fri, Oct 18, 2024 at 01:48:56PM -0700, Doug Anderson wrote:
+> > > > > >>
+> > > > > >> On Thu, Oct 17, 2024 at 7:09=E2=80=AFPM Charles Wang <charles.=
+goodix@gmail.com> wrote:
+> > > > > >>>
+> > > > > >>> The Goodix GT7986U touch controller report touch data accordi=
+ng to the
+> > > > > >>> HID protocol through the SPI bus. However, it is incompatible=
+ with
+> > > > > >>> Microsoft's HID-over-SPI protocol.
+> > > > > >>>
+> > > > > >>> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> > > > > >>> ---
+> > > > > >>>  .../bindings/input/goodix,gt7375p.yaml        | 68 +++++++++=
++++++++---
+> > > > > >>>  1 file changed, 58 insertions(+), 10 deletions(-)
+> > > > > >>
+> > > > > >> I'm happy to let device tree folks make the call here, but IMO=
+ it
+> > > > > >> would be much cleaner to just consider the I2C-connected GT798=
+6U and
+> > > > > >> the SPI-connected GT7986U to be different things and just use =
+a
+> > > > >
+> > > > > Same device, you cannot have different compatibles. The way how t=
+he same
+> > > > > (literally same chip) device sits on the bus is not part of the b=
+inding,
+> > > > > thus no different compatibles.
+> > > >
+> > > > I don't want to belabour the point too much, but this doesn't feel
+> > > > completely black and white here.
+> > > >
+> > > > "Same chip": a whole lot of laptops and phones all use the "same ch=
+ip"
+> > > > (same SoC) yet are different products. ...or you can look at the fa=
+ct
+> > > > that many peripherals have the same STM32 or Nuvoton chip in them b=
+ut
+> > > > are wildly different peripherals.
+> > > >
+> > > > In this case, Goodix may have made an ASIC called "GT7986U" that ha=
+s
+> > > > some type of CPU on it that can run firmware that can talk as an I2=
+C
+> > > > device or a SPI device. This ASIC may be intended to be used as a
+> > > > touchscreen controller, but fundamentally it doesn't feel that
+> > > > different from an STM32. You can build different boards designs wit=
+h
+> > > > the "GT7986U" on it and those boards are intended to run different
+> > > > firmware.
+> > > >
+> > > > People manufacturing touch controller boards presumably put this
+> > > > "GT7986U" on their touch controller board, maybe set certain
+> > > > strappings telling it that it's talking over SPI or I2C or maybe ju=
+st
+> > > > decide which pins they're going to wire out to the board-to-board
+> > > > connector on the touch controller board. A touch controller board
+> > > > intended to talk over SPI may look 98% the same as a touch controll=
+er
+> > > > board intended to talk over I2C, but what percentage of "sameness"
+> > > > means that we need the same compatible string?
+> > > >
+> > > > Would things be different if Goodix decided to manufacture touch
+> > > > controller boards themselves and sold two SKUs: a GT7986U-S and a
+> > > > GT7986U-I?
+> > > >
+> > > > I would also note that (reading back in previous conversations) I
+> > > > think Charles said that they run different firmware on the SPI vs. =
+I2C
+> > > > touch controllers. As I understand it, the firmware running on a
+> > > > device can make it a different device from a device tree perspectiv=
+e.
+> > > > The device tree does its best to describe just the hardware but it =
+can
+> > > > get fuzzy. For instance the "VID/PID" of a USB device is usually
+> > > > something programmable and could be updateable by a firmware change
+> > > > but we still may need to encode the VID/PID of the firmware that is
+> > > > intended to run on the device in the device tree.
+> > > >
+> > > > Anyway, I'm happy to be quiet about this and fine if folks want to
+> > > > continue to work towards a "unified" binding. It makes me a little
+> > > > uncomfortable that I'll still end up listed as a "maintainer" of th=
+e
+> > > > unified binding because I don't totally agree with it, but I'm also
+> > > > pragmatic and I'd rather have something that can land.
+> > > >
+> > >
+> > > Thank you very much for your attention. Your understanding of the GT7=
+986U
+> > > SPI and I2C devices is correct. There is no fundamental difference be=
+tween
+> > > them and the STM32, as they are all ASIC devices. The functionality o=
+f the
+> > > device is determined by the firmware that is loaded, although the GT7=
+986U
+> > > is an ASIC specifically designed for touchscreens.
+> > >
+> > > Additionally, the firmware and devices are generally bound to specifi=
+c touch
+> > > panels, meaning that firmware intended for SPI will not function prop=
+erly on
+> > > an I2C touch panel.
+> >
+> > Just to get clarity: how is GT7986U delivered? For instance:
+> >
+> > 1. Maybe Goodix produces touchscreen controller boards and ships them
+> > to customers for use in their products. In this case, does Goodix ship
+> > a single board with two connectors, or a separate board for SPI vs.
+> > I2C? I would have to believe that maybe a "dev" board might have both
+> > connectors and a bunch of jumpers/switches to choose which ones to
+> > use, but it feels unlikely someone would ship that in any quantity.
+> >
+> > 2. Maybe Goodix provides schematics for customers to produce their own
+> > touchscreen controller boards and they tell customers to either hook
+> > up the SPI lines and load the SPI firmware or hook up the I2C lines
+> > and load the I2C firmware. In this case the assumption is that
+> > customers using the same communication method are following the
+> > schematics closely enough that they all behave the same and thus we
+> > don't need some extra distinction.
+> >
+> > In either case it seems like a touchscreen controller board that talks
+> > over SPI and one that talks over I2C are two different products and
+> > thus (to me) should have two distinct compatible strings. This is not
+> > one device that merely has multiple interfaces.
+> >
+>
+> Goodix's approach is similar to Method 2. First, Goodix provides the
+> schematics and the chips (including initial firmware, no touch function)
+> to customers, and customers design their touchscreen controller boards an=
+d
+> decide whether to use the I2C or SPI interface. Then, Goodix modifies and
+> debugs the firmware based on the customer's design and provides the final
+> firmware for customers to upgrade.
 
-> 
->> +    type: object
->> +    additionalProperties: false
->> +
->> +    properties:
->> +      opp-hz: true
->> +
->> +      opp-level: true
->> +
->> +      opp-peak-kBps: true
->> +
->> +      opp-supported-hw: true
->> +
->> +      qcom,opp-acd-level:
->> +        description: |
->> +          A positive value representing the ACD (Adaptive Clock Distribution,
->> +          a fancy name for clk throttling during voltage droop) level associated
->> +          with this OPP node. This value is shared to a co-processor inside GPU
->> +          (called Graphics Management Unit a.k.a GMU) during wake up. It may not
->> +          be present for some OPPs and GMU will disable ACD while transitioning
->> +          to that OPP. This value encodes a voltage threshold and few other knobs
->> +          which are identified by characterization of the SoC. So, it doesn't have
->> +          any unit.
-> 
-> Thanks for explanation and other updates. I am still not happy with this
-> property. I do not see reason why DT should encode magic values in a
-> quite generic piece of code. This creates poor ABI, difficult to
-> maintain or understand.
-> 
+OK, thanks!
 
-Configuring GPU ACD block with its respective value is a requirement for each OPP.
-So OPP node seems like the natural place for this data.
+From the above that means that if someone uses the "goodix,gt7986u"
+compatible today (with what's landed in mainline) then by that they
+mean "This is a touchscreen that's compatible with a Goodix-defined
+standard way of talking to i2c-based touchscreens built atop a GT7986U
+touchscreen controller". With what's landed in mainline that "standard
+way" is the "i2c-hid" protocol plus a reset line (which IIRC is not
+part of the i2c-hid standard) plus a defined power up/power down
+sequence.
 
-If it helps to resolve your concerns, I can elaborate the documentation with
-details on the GMU HFI interface where this value should be passed on to the
-hardware. Also replace "few other knobs" with "Delay cycles & Calibration margin"
-in the above doc.
- 
-> 
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +    required:
->> +      - opp-hz
->> +      - opp-level
->> +
->> +required:
->> +  - compatible
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/power/qcom-rpmpd.h>
->> +
->> +    gpu_opp_table: opp-table {
->> +        compatible = "operating-points-v2-adreno", "operating-points-v2";
->> +
->> +        opp-687000000 {
->> +                opp-hz = /bits/ 64 <687000000>;
-> 
-> Messed indentation.
+I suppose one conclusion one might make is that we never should have
+used "goodix,gt7986u" as a compatible string in the first place and
+should have instead added a new compatible string for every actual
+instantiation of a touchscreen. So when Vendor1 made touchscreen 1234
+based on GT7986U then we could have used the compatible
+"vendor1,touchscreen1234" and then when Vendor2 made touchscreen 5678
+based on GT7986U we could have used the compatible
+"vendor2,touchscreen5678". Should we have done this / should we do it
+in the future? I don't know. If everyone using GT7986U is adhering to
+the same interface then it doesn't buy us a ton and adds lots more
+bindings. I think I ended up originally adding the Goodix GT7375P
+bindings because someone gave me a datasheet with all the power
+sequencing and timings that came from Goodix and said it was for the
+"Goodix GT7375P". Given the fact that Goodix provides such a datasheet
+and it includes power sequencing is a strong indicator that there
+truly is a standard and we can use that.
 
-It seems my text editor got confused here. Will fix.
+In any case, if we _had_ used a different compatible for each actual
+touchscreen implementation then we wouldn't be having this discussion.
+Those touchscreens that shipped with a controller board that had SPI
+connections and SPI firmware would have had obviously different
+compatible strings than the touchscreens that shipped with a
+controller board designed for I2C.
 
-Thanks,
--Akhil
+If we _do_ want to keep using a compatible like "goodix,gt7986u" then,
+IMO, it's beneficial to also have a SPI-variant compatible like
+"goodix,gt7986u-spi". This is not a second interface to one device but
+it's actually a distinct interface compared to the Goodix I2C
+interface. Note: this assumes there isn't some hidden benefit to
+having a combined "I2C/SPI" bindings file. I find having the combined
+file buys me nothing and just makes it more confusing / adds
+complexity. Is there some benefit I'm missing other than towing the
+line of "one chip, one compatible"?
 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
 
+> It is important to note that the type of driver used by the final device
+> is related not only to the bus type but also to the final firmware. Even
+> when using the same I2C bus, different drivers may be needed, such as
+> hid-i2c or a customer-specific driver.
+
+Right. ...the firmware that's on the device matters and distinct
+firmware can make a distinct device, and IMO a GT7986U loaded with I2C
+firmware is a distinct device than a GT7986U loaded with SPI firmware.
+They are not the same and thus don't need the same compatible.
+
+
+-Doug
 
