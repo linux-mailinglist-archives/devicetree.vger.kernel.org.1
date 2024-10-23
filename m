@@ -1,513 +1,120 @@
-Return-Path: <devicetree+bounces-114709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7777E9AC8AB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:13:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72D4A9AC8BD
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:19:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06DCA1F221E8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:13:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91E851C21293
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6151A2C32;
-	Wed, 23 Oct 2024 11:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 789F119F42F;
+	Wed, 23 Oct 2024 11:19:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iLriqqKG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7C24F21D;
-	Wed, 23 Oct 2024 11:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CC791B813;
+	Wed, 23 Oct 2024 11:19:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729681986; cv=none; b=l6bUMz1Rx3W+LolDDcneCxve4S3h/9NlpICYapVEglAgWc96J0+e67FWw/PmNwKeus88+sBaa01wcfQyrP1PM2YJizirS9xPIJqwgaOV6evqmbYHYpfI+ru8cC97iBJE+KxBjgtgLJrJk6vb1ltBwrbdisLMY1PnTWBPTLMUjCs=
+	t=1729682365; cv=none; b=NL1eU/nfBCn7Eutz5jaOv4L2iaHmg7WlD67BclWoJykvMyR1QFQzdXsywRcJdPFUM6u5/zQuplDezk1X+Xsbmdugma47m+83o2rsLlt7ZjJuv7lVfVeRjCsP5WkihU0keCzWBs0lNA1D3hUH28WX5NI0G3MuiaiYfFLYvbMWJC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729681986; c=relaxed/simple;
-	bh=w2dIDHsuzH+P3MBWYFVjkSTcv9ecunJ3p9KhQ6AkdzY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Cit/Mt00QicaSj30KAz9RFxGJlzhRckl17u2mYWgn4tI/qOKzKBgjLECjYTa+ntvErdnZrP9IEJbWxQBFF+shsE2TPZ9ti74OMYZenNvqImXdzZiMcFQGyKYFeb23/Hmw1F0BxfFlFDNcnpi/8Y0og+Wv5JQIcFowc/Fe1JoVXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EC1BC4CEE4;
-	Wed, 23 Oct 2024 11:13:03 +0000 (UTC)
-Message-ID: <59047df4-1e5f-488f-a134-f8bad7cf655c@xs4all.nl>
-Date: Wed, 23 Oct 2024 13:13:02 +0200
+	s=arc-20240116; t=1729682365; c=relaxed/simple;
+	bh=zh+dX67lar1d2U2hALKOPSbuvmdfg66Z5qWFNtie79s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=a9+28agSn/WfP+3ORTiIv5BSMwLteYAAi0id28kyRTixvjrzr+TbDbg1Uf57DoRhsQI/0rOerKG5h/EjVPgSwxdd9RVKfFGUStw9H+j9kpQY5o/FugmHEW9QfHWmy+G81fC7tUbx57Qv8O1lsLTHEKeE1qT8YuY8cN0U6g88SKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iLriqqKG; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2e2a999b287so5121585a91.0;
+        Wed, 23 Oct 2024 04:19:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729682363; x=1730287163; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JgV2bop4E+Lefe1b02SOkU11Tjy474hcAgvkx+xv0NY=;
+        b=iLriqqKGpX2PLPqoyHdOLEpkJk4ouX0frO8UWZEGuuXRnXCbt2VM/XMU9kjUSUiPPM
+         VWdG2RTRYslJhBlNhTV/ox2K6+af37m3HiRJfdr7ZUCs3VJtvX+6SJrmyV7g3646j0A3
+         zv6dhOFnDzQ0a9Mx+Rk6kiQ2yRhqQ26GnUh8o7ToQ3Ac1s2Guc65H+Ud7pgMC7lVwNz6
+         WVZ4dw3GwMfoIlcrKtU/IU5wUl5IJqb2gxsLnUR+NuITIVKnabBFvkd4nTLN9dYN9YR7
+         JTkb1oCprHNKq+7WB6GuInEaLMgFSRn8tRXU6u0PJO0/v/1s4Qv5uAtPKFBtSMPy2tSa
+         dHBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729682363; x=1730287163;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JgV2bop4E+Lefe1b02SOkU11Tjy474hcAgvkx+xv0NY=;
+        b=nX7Rd554wjq8Ab4+IBTlDC7Mbq3hQRhN6dTgbhHw1jxqHDKavQ/QhTH9zQXUgkLfjG
+         jApaPyBBcXNvRylsZxb5M5WFX+za2gCiM4FyD+xtfFE39TMEaACNo4KzEwh0wABQJ2Xi
+         0mFw0cygkVZkKsQruIyd6W6E+5JN7a50ACXzHuwWMNk6ViaIUPlPSgp5hjEbay4J5ex7
+         Ctvx2Axk2osLUYYXHjKLQS478llCi60RrQ2woRphXA1jRQksPshAyMuiuY0PuFZWrh6b
+         BvZ/4yetu7GIBDjFbD2j6S2T7C6q3ZM9MzJbdmqIgDQ+bWIIUKM9aypuTnpgmuBd/SAP
+         U6Ng==
+X-Forwarded-Encrypted: i=1; AJvYcCWG/myeKhQOqpbq2WobgIejKpxiDA8XCWL+hFwaMrCYNwOnOPOEbl9bxtsDGRVvm2ku/ygcGv1sTdOs@vger.kernel.org, AJvYcCXFAJ+d6aQGTTVTDXiYhmxilcahHpOXwykrxYLXd118xPaF683eAuaCAiXKGws2x3jF9+m+nqQoCCDU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz89ctuvis5TlsbxWsu2B4JwV5AhcmedF6W5fogSiuna8PfrDtI
+	u3BPoRq4AykIvI3qotNg6esiaFNNG7TlNUkxfhYVKy8oXBdOFqgtJ3YV/Jaq
+X-Google-Smtp-Source: AGHT+IFhAZ88Ov+m4B72gMAynIVK0mE7UZ0VxI7wuNoZF7LTUb4m149scJ3ktLFsatlgiKyvvGr2vA==
+X-Received: by 2002:a17:90a:6f83:b0:2e2:e8a9:a1d with SMTP id 98e67ed59e1d1-2e76b5b67b5mr2016364a91.6.1729682363178;
+        Wed, 23 Oct 2024 04:19:23 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e76dfbeca4sm1123022a91.32.2024.10.23.04.19.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 04:19:22 -0700 (PDT)
+From: Chi-Wen Weng <cwweng.linux@gmail.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	cwweng@nuvoton.com,
+	Chi-Wen Weng <cwweng.linux@gmail.com>
+Subject: [PATCH v2 0/2] Add support for nuvoton ma35d1 pwm controller
+Date: Wed, 23 Oct 2024 19:18:39 +0800
+Message-Id: <20241023111841.158049-1-cwweng.linux@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 16/28] media: iris: implement vb2 streaming ops
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Sebastian Fricke <sebastian.fricke@collabora.com>,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com>
- <20241014-qcom-video-iris-v4-v4-16-c5eaa4e9ab9e@quicinc.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <20241014-qcom-video-iris-v4-v4-16-c5eaa4e9ab9e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/10/2024 11:07, Dikshita Agarwal wrote:
-> In stream on, send HFI_CMD_START on capture and
-> output planes to start the processing on respective planes.
-> 
-> During stream off, send HFI_CMD_STOP to firmware which is
-> a synchronous command. After the response is received from
-> firmware, the session is closed on firmware.
-> 
-> Introduce different states for instance and state transitions.
-> 
-> IRIS_INST_INIT - video instance is opened.
-> IRIS_INST_INPUT_STREAMING - stream on is completed on output plane.
-> IRIS_INST_OUTPUT_STREAMING - stream on is completed on capture
-> plane.
-> IRIS_INST_STREAMING - stream on is completed on both output and
-> capture planes.
-> IRIS_INST_DEINIT - video instance is closed.
-> IRIS_INST_ERROR - error state.
-> 
->                    |
->                    v
->             -------------
->   +---------|   INIT    |---------  +
->   |         -------------           |
->   |            ^    ^               |
->   |           /      \              |
->   |          /        \             |
->   |         v          v            |
->   |    -----------    -----------   |
->   |   |   INPUT         OUTPUT  |   |
->   |---| STREAMING     STREAMING |---|
->   |    -----------    -----------   |
->   |        ^            ^           |
->   |         \          /            |
->   |          \        /             |
->   |           v      v              |
->   |         -------------           |
->   |--------|  STREAMING |-----------|
->   |         -------------           |
->   |               |                 |
->   |               |                 |
->   |               v                 |
->   |          -----------            |
->   +-------->|  DEINIT   |<----------+
->   |          -----------            |
->   |               |                 |
->   |               |                 |
->   |               v                 |
->   |          ----------             |
->   +-------->|   ERROR  |<-----------+
->              ----------.
-> 
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/iris/Makefile          |   1 +
->  drivers/media/platform/qcom/iris/iris_hfi_common.h |   2 +
->  .../platform/qcom/iris/iris_hfi_gen1_command.c     |  82 +++++++++++++++-
->  .../platform/qcom/iris/iris_hfi_gen1_defines.h     |  24 +++++
->  .../platform/qcom/iris/iris_hfi_gen1_response.c    |  39 +++++++-
->  .../platform/qcom/iris/iris_hfi_gen2_command.c     |  61 ++++++++++++
->  .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   2 +
->  .../platform/qcom/iris/iris_hfi_gen2_response.c    |  32 ++++++-
->  drivers/media/platform/qcom/iris/iris_instance.h   |   4 +
->  drivers/media/platform/qcom/iris/iris_state.c      | 104 +++++++++++++++++++++
->  drivers/media/platform/qcom/iris/iris_state.h      |  58 ++++++++++++
->  drivers/media/platform/qcom/iris/iris_utils.c      |  11 ++-
->  drivers/media/platform/qcom/iris/iris_utils.h      |   2 +-
->  drivers/media/platform/qcom/iris/iris_vb2.c        |  70 ++++++++++++++
->  drivers/media/platform/qcom/iris/iris_vb2.h        |   3 +
->  drivers/media/platform/qcom/iris/iris_vdec.c       |  75 +++++++++++++++
->  drivers/media/platform/qcom/iris/iris_vdec.h       |   3 +
->  drivers/media/platform/qcom/iris/iris_vidc.c       |  32 ++++++-
->  18 files changed, 593 insertions(+), 12 deletions(-)
-> 
+This patch series adds pwm driver for the nuvoton ma35d1 ARMv8 SoC.
+It includes DT binding documentation and the ma35d1 pwm driver.
 
-<snip>
+v2:
+  - Update nuvoton,ma35d1-pwm.yaml
+    - Fix 'maxItems' of 'reg' to 1.
+    - Remove unused label
+  - Update ma35d1 pwm driver
+    - Remove MODULE_ALIAS()
+    - Add chip->atomic = true
 
-> diff --git a/drivers/media/platform/qcom/iris/iris_vb2.c b/drivers/media/platform/qcom/iris/iris_vb2.c
-> index f89891e52fde..75c1364709d1 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vb2.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vb2.c
-> @@ -6,6 +6,7 @@
->  #include "iris_buffer.h"
->  #include "iris_instance.h"
->  #include "iris_vb2.h"
-> +#include "iris_vdec.h"
->  #include "iris_vpu_buffer.h"
->  
->  int iris_vb2_queue_setup(struct vb2_queue *q,
-> @@ -22,6 +23,10 @@ int iris_vb2_queue_setup(struct vb2_queue *q,
->  	inst = vb2_get_drv_priv(q);
->  
->  	mutex_lock(&inst->lock);
-> +	if (inst->state == IRIS_INST_ERROR) {
-> +		ret = -EBUSY;
-> +		goto unlock;
-> +	}
->  
->  	core = inst->core;
->  	f = V4L2_TYPE_IS_OUTPUT(q->type) ? inst->fmt_src : inst->fmt_dst;
-> @@ -49,6 +54,10 @@ int iris_vb2_queue_setup(struct vb2_queue *q,
->  			dev_err(core->dev, "session open failed\n");
->  			goto unlock;
->  		}
-> +
-> +		ret = iris_inst_change_state(inst, IRIS_INST_INIT);
-> +		if (ret)
-> +			goto unlock;
->  	}
->  
->  	buffers = &inst->buffers[buffer_type];
-> @@ -75,3 +84,64 @@ int iris_vb2_queue_setup(struct vb2_queue *q,
->  
->  	return ret;
->  }
-> +
-> +int iris_vb2_start_streaming(struct vb2_queue *q, unsigned int count)
-> +{
-> +	struct iris_inst *inst;
-> +	int ret = 0;
-> +
-> +	inst = vb2_get_drv_priv(q);
-> +
-> +	if (V4L2_TYPE_IS_CAPTURE(q->type) && inst->state == IRIS_INST_INIT)
-> +		return 0;
-> +
-> +	mutex_lock(&inst->lock);
-> +	if (inst->state == IRIS_INST_ERROR) {
-> +		ret = -EBUSY;
 
-If an error occurs during start_streaming, then all queued buffers must be
-returned to vb2 in state VB2_BUF_STATE_QUEUED.
 
-> +		goto error;
-> +	}
-> +
-> +	if (!V4L2_TYPE_IS_OUTPUT(q->type) &&
-> +	    !V4L2_TYPE_IS_CAPTURE(q->type)) {
-> +		ret = -EINVAL;
-> +		goto error;
-> +	}
-> +
-> +	if (V4L2_TYPE_IS_OUTPUT(q->type))
-> +		ret = iris_vdec_streamon_input(inst);
-> +	else if (V4L2_TYPE_IS_CAPTURE(q->type))
-> +		ret = iris_vdec_streamon_output(inst);
-> +	if (ret)
-> +		goto error;
-> +
-> +	mutex_unlock(&inst->lock);
-> +
-> +	return ret;
-> +
-> +error:
-> +	iris_inst_change_state(inst, IRIS_INST_ERROR);
-> +	mutex_unlock(&inst->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +void iris_vb2_stop_streaming(struct vb2_queue *q)
-> +{
-> +	struct iris_inst *inst;
-> +
-> +	inst = vb2_get_drv_priv(q);
-> +
-> +	if (V4L2_TYPE_IS_CAPTURE(q->type) && inst->state == IRIS_INST_INIT)
-> +		return;
-> +
-> +	mutex_lock(&inst->lock);
-> +
-> +	if (!V4L2_TYPE_IS_OUTPUT(q->type) &&
-> +	    !V4L2_TYPE_IS_CAPTURE(q->type))
-> +		goto exit;
-> +
-> +	iris_vdec_session_streamoff(inst, q->type);
-> +
-> +exit:
+Chi-Wen Weng (2):
+  dt-bindings: pwm: nuvoton: Add MA35D1 pwm
+  pwm: Add Nuvoton MA35D1 PWM controller support
 
-stop_streaming must return all queued buffers to vb2 in state VB2_BUF_STATE_ERROR.
+ .../bindings/pwm/nuvoton,ma35d1-pwm.yaml      |  45 +++++
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-ma35d1.c                      | 169 ++++++++++++++++++
+ 4 files changed, 224 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-ma35d1.c
 
-> +	mutex_unlock(&inst->lock);
-> +}
-> diff --git a/drivers/media/platform/qcom/iris/iris_vb2.h b/drivers/media/platform/qcom/iris/iris_vb2.h
-> index 78157a97b86e..bc3bb830c2ba 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vb2.h
-> +++ b/drivers/media/platform/qcom/iris/iris_vb2.h
-> @@ -9,4 +9,7 @@
->  int iris_vb2_queue_setup(struct vb2_queue *q,
->  			 unsigned int *num_buffers, unsigned int *num_planes,
->  			 unsigned int sizes[], struct device *alloc_devs[]);
-> +int iris_vb2_start_streaming(struct vb2_queue *q, unsigned int count);
-> +void iris_vb2_stop_streaming(struct vb2_queue *q);
-> +
->  #endif
-> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.c b/drivers/media/platform/qcom/iris/iris_vdec.c
-> index 66a54771b9e8..44372e2811c3 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vdec.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vdec.c
-> @@ -241,3 +241,78 @@ int iris_vdec_subscribe_event(struct iris_inst *inst, const struct v4l2_event_su
->  
->  	return ret;
->  }
-> +
-> +static void iris_vdec_kill_session(struct iris_inst *inst)
-> +{
-> +	const struct iris_hfi_command_ops *hfi_ops = inst->core->hfi_ops;
-> +
-> +	if (!inst->session_id)
-> +		return;
-> +
-> +	hfi_ops->session_close(inst);
-> +	iris_inst_change_state(inst, IRIS_INST_ERROR);
-> +}
-> +
-> +void iris_vdec_session_streamoff(struct iris_inst *inst, u32 plane)
-> +{
-> +	const struct iris_hfi_command_ops *hfi_ops = inst->core->hfi_ops;
-> +	int ret;
-> +
-> +	ret = hfi_ops->session_stop(inst, plane);
-> +	if (ret)
-> +		goto error;
-> +
-> +	ret = iris_inst_state_change_streamoff(inst, plane);
-> +	if (ret)
-> +		goto error;
-> +
-> +	return;
-> +
-> +error:
-> +	iris_vdec_kill_session(inst);
-> +}
-> +
-> +static int iris_vdec_process_streamon_input(struct iris_inst *inst)
-> +{
-> +	const struct iris_hfi_command_ops *hfi_ops = inst->core->hfi_ops;
-> +	int ret;
-> +
-> +	ret = hfi_ops->session_start(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return iris_inst_state_change_streamon(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> +}
-> +
-> +int iris_vdec_streamon_input(struct iris_inst *inst)
-> +{
-> +	return iris_vdec_process_streamon_input(inst);
-> +}
-> +
-> +static int iris_vdec_process_streamon_output(struct iris_inst *inst)
-> +{
-> +	const struct iris_hfi_command_ops *hfi_ops = inst->core->hfi_ops;
-> +	int ret;
-> +
-> +	ret = hfi_ops->session_start(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return iris_inst_state_change_streamon(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> +}
-> +
-> +int iris_vdec_streamon_output(struct iris_inst *inst)
-> +{
-> +	int ret;
-> +
-> +	ret = iris_vdec_process_streamon_output(inst);
-> +	if (ret)
-> +		goto error;
-> +
-> +	return ret;
-> +
-> +error:
-> +	iris_vdec_session_streamoff(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> +
-> +	return ret;
-> +}
-> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.h b/drivers/media/platform/qcom/iris/iris_vdec.h
-> index d7b8a0ad6fa8..b3299164f823 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vdec.h
-> +++ b/drivers/media/platform/qcom/iris/iris_vdec.h
-> @@ -14,5 +14,8 @@ int iris_vdec_enum_fmt(struct iris_inst *inst, struct v4l2_fmtdesc *f);
->  int iris_vdec_try_fmt(struct iris_inst *inst, struct v4l2_format *f);
->  int iris_vdec_s_fmt(struct iris_inst *inst, struct v4l2_format *f);
->  int iris_vdec_subscribe_event(struct iris_inst *inst, const struct v4l2_event_subscription *sub);
-> +int iris_vdec_streamon_input(struct iris_inst *inst);
-> +int iris_vdec_streamon_output(struct iris_inst *inst);
-> +void iris_vdec_session_streamoff(struct iris_inst *inst, u32 plane);
->  
->  #endif
-> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media/platform/qcom/iris/iris_vidc.c
-> index 60ee05b67f86..615f57bfaddc 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
-> @@ -142,10 +142,12 @@ int iris_open(struct file *filp)
->  
->  	inst->core = core;
->  	inst->session_id = hash32_ptr(inst);
-> +	inst->state = IRIS_INST_DEINIT;
->  
->  	mutex_init(&inst->lock);
->  	mutex_init(&inst->ctx_q_lock);
->  	init_completion(&inst->completion);
-> +	init_completion(&inst->flush_completion);
->  
->  	iris_v4l2_fh_init(inst);
->  
-> @@ -191,6 +193,9 @@ static void iris_session_close(struct iris_inst *inst)
->  	bool wait_for_response = true;
->  	int ret;
->  
-> +	if (inst->state == IRIS_INST_DEINIT)
-> +		return;
-> +
->  	reinit_completion(&inst->completion);
->  
->  	ret = hfi_ops->session_close(inst);
-> @@ -198,7 +203,7 @@ static void iris_session_close(struct iris_inst *inst)
->  		wait_for_response = false;
->  
->  	if (wait_for_response)
-> -		iris_wait_for_session_response(inst);
-> +		iris_wait_for_session_response(inst, false);
->  }
->  
->  int iris_close(struct file *filp)
-> @@ -211,6 +216,7 @@ int iris_close(struct file *filp)
->  	mutex_lock(&inst->lock);
->  	iris_vdec_inst_deinit(inst);
->  	iris_session_close(inst);
-> +	iris_inst_change_state(inst, IRIS_INST_DEINIT);
->  	iris_v4l2_fh_deinit(inst);
->  	iris_remove_session(inst);
->  	mutex_unlock(&inst->lock);
-> @@ -238,7 +244,14 @@ static int iris_try_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_form
->  	int ret;
->  
->  	mutex_lock(&inst->lock);
-> +	if (inst->state == IRIS_INST_ERROR) {
-> +		ret = -EBUSY;
-> +		goto unlock;
-> +	}
-
-Why this check? You should be able to try a format at any time.
-
-> +
->  	ret = iris_vdec_try_fmt(inst, f);
-> +
-> +unlock:
->  	mutex_unlock(&inst->lock);
->  
->  	return ret;
-> @@ -250,7 +263,14 @@ static int iris_s_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format
->  	int ret;
->  
->  	mutex_lock(&inst->lock);
-> +	if (inst->state == IRIS_INST_ERROR) {
-> +		ret = -EBUSY;
-> +		goto unlock;
-> +	}
-> +
->  	ret = iris_vdec_s_fmt(inst, f);
-> +
-> +unlock:
->  	mutex_unlock(&inst->lock);
->  
->  	return ret;
-> @@ -262,6 +282,11 @@ static int iris_g_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format
->  	int ret = 0;
->  
->  	mutex_lock(&inst->lock);
-> +	if (inst->state == IRIS_INST_ERROR) {
-> +		ret = -EBUSY;
-> +		goto unlock;
-> +	}
-
-Same question, this should be fine at any time.
-
-> +
->  	if (V4L2_TYPE_IS_OUTPUT(f->type))
->  		memcpy(f, inst->fmt_src, sizeof(*f));
->  	else if (V4L2_TYPE_IS_CAPTURE(f->type))
-> @@ -269,6 +294,7 @@ static int iris_g_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format
->  	else
->  		ret = -EINVAL;
->  
-> +unlock:
->  	mutex_unlock(&inst->lock);
->  
->  	return ret;
-> @@ -402,6 +428,8 @@ static struct v4l2_file_operations iris_v4l2_file_ops = {
->  
->  static const struct vb2_ops iris_vb2_ops = {
->  	.queue_setup                    = iris_vb2_queue_setup,
-> +	.start_streaming                = iris_vb2_start_streaming,
-> +	.stop_streaming                 = iris_vb2_stop_streaming,
->  };
->  
->  static const struct v4l2_ioctl_ops iris_v4l2_ioctl_ops = {
-> @@ -421,6 +449,8 @@ static const struct v4l2_ioctl_ops iris_v4l2_ioctl_ops = {
->  	.vidioc_g_selection             = iris_g_selection,
->  	.vidioc_subscribe_event         = iris_subscribe_event,
->  	.vidioc_unsubscribe_event       = iris_unsubscribe_event,
-> +	.vidioc_streamon                = v4l2_m2m_ioctl_streamon,
-> +	.vidioc_streamoff               = v4l2_m2m_ioctl_streamoff,
->  };
->  
->  void iris_init_ops(struct iris_core *core)
-> 
+-- 
+2.25.1
 
 
