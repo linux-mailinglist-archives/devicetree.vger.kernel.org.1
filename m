@@ -1,157 +1,263 @@
-Return-Path: <devicetree+bounces-114570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD309ABF9A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:02:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A2B9ABF9D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:02:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1B86282D43
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:02:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 130551C23230
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:02:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E50B15687C;
-	Wed, 23 Oct 2024 06:59:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D3314D2AC;
+	Wed, 23 Oct 2024 06:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zf+sq6Bq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bgZs9p1n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E9D155CBD;
-	Wed, 23 Oct 2024 06:59:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88DF14B06A;
+	Wed, 23 Oct 2024 06:59:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729666759; cv=none; b=NLAP+6gE++3khtzzAbQ/LXttY5vbxGEkNbdTXEB4ddQPHcfbIvgo/LkAxFU0k5PMMiUWeB5iNvzNFjShkZP956tpIgNA7Tlt8BtFSLbup1YWd0wIMN67so41bkTdma/0jyIIVhe5mNDyhuNm+QR/67C1vHFeVBopeyuHRzbZu+M=
+	t=1729666797; cv=none; b=q2OwotChTTDZSXpCaXj9BjQHConPOuppwM087pmr7oYC+v3GJl3cvEgsd2mkVL7aaXKRAHiyX/DB6ZovoG7B/rcKX8O4byKvpO+53iW3jX2o+iwFQExWN50w5zI/ypb2NR9xMQ5Gsrdl+4wJEBDM3a9Z/3nsV4wo3UL9OXlW14g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729666759; c=relaxed/simple;
-	bh=dWYJ5hZw4CRKNMwTRgvaoC3DrogIMgmnJ7kv8WblhHc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NNNm39dt4quh1iGXGg7ozuxsSMLSQMuRlJ+8AX1yal0ckXFzKYqdP4vzcE4J6/mzl7hVh4/rkxvSOlRhrwMLYT12ts65WDlga4vEW5gvQUYxkQqeA7qCa084Vd9WkSy1Ci61L2PVlgF8S5woT/U5YEIXKQO+Zr9ukHVLy+CiL6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zf+sq6Bq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1BB8C4CEC6;
-	Wed, 23 Oct 2024 06:59:11 +0000 (UTC)
+	s=arc-20240116; t=1729666797; c=relaxed/simple;
+	bh=2YwrmN1vOX3AU19WvgKYIM5K+VsFgsOaRdurY0BNOuM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S162dBB/VKyFBZVYEDlOUPMiNsE+AyeWlAWk/uWHlV1XEocGl7r7iK5PRhlht6eIqqSpaLT6WZsEXB2GmETQ9afss99RbcD/BaE61uTxbqjLMuTABoC/WgiYUjm5BH41oCHQfzot2M0jkVmTmGb92uPAd3PJ9Bggze9zrvU4trY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bgZs9p1n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6EC4C4CEC6;
+	Wed, 23 Oct 2024 06:59:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729666756;
-	bh=dWYJ5hZw4CRKNMwTRgvaoC3DrogIMgmnJ7kv8WblhHc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zf+sq6BqJ2ZOiwRV6/mGAhj4NsURVkdphEf0bNxR9ZLrs8x/0IdvH2FWRP7Mr1RCN
-	 9oA0PxVKhA0N+xLlC8OfgZynUUIFSE7vzqq+O3v3lsUVav44+Y62ls3lCpK3NNLWfk
-	 a9wLWy23z/lQYn9CgtjDTBMgjK2q1r6t3w2U9QAFyNugf5yXuCTtvPBGFxzc8NZOy5
-	 OHfh0Cwq4PiDnGSAvMoV4EBDD8/HeGmfw3hzR4g4cEoq64yjpG0hM+wpVwDr+cBIEY
-	 XbyrpZZIYFdCREnf9oBgdJEWGEq1feKzk+KprS4TVMrr7HqiVbQx6Vbf82VzGPumFB
-	 JmG3oneCVWukA==
-Message-ID: <606083d8-4332-45e4-be41-08ca5425cc03@kernel.org>
-Date: Wed, 23 Oct 2024 08:59:09 +0200
+	s=k20201202; t=1729666796;
+	bh=2YwrmN1vOX3AU19WvgKYIM5K+VsFgsOaRdurY0BNOuM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bgZs9p1n4ctArYgqV537sGCnZ2Jdw3HtHIwhL0pGmfjf515BHdTN3eZIeABhSlG0y
+	 RekHxuXwy91VdRm9jC7OVdeYfkjgrXkGsKoRj7NjYKAJ4WrT9anzpASgd5ub8SXtei
+	 gn0VUdu3YKgCyfONx4u2yIVz6BIXl6SaA1XsR4qBAv1y3AW03yLBg8Rb/uDD1wrnUn
+	 QBsiQ67TR/Jzs/OWr+TXme1EWcBHTBxyKQOYu7W+f6f/NJodUBBUuTsjWkuKv3AWSK
+	 czIB2+vtIMSN8R0JzLeuMZCzJ5TPBPv1tjUiiHkHTyCHDhYWHxX2B+W1DUuAyGd/OD
+	 Ap8oTxlJdBkpA==
+Date: Wed, 23 Oct 2024 08:59:48 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 16/16] samples: rust: add Rust platform sample driver
+Message-ID: <Zxie5Lu2z_Xc_RXM@pollux>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-17-dakr@kernel.org>
+ <20241023000408.GC1848992-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/6] dt-bindings: net: wireless: update required
- properties for ath12k PCI module
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20241023060352.605019-1-quic_rajkbhag@quicinc.com>
- <20241023060352.605019-2-quic_rajkbhag@quicinc.com>
- <87db3d68-ab1a-4cc4-9857-416de39cea0f@kernel.org>
- <e2c1ce1a-89af-4feb-a21a-9ca2578430e7@quicinc.com>
- <b97b8350-3925-40b0-8f87-f89df429a52a@kernel.org>
- <e7b27f57-efb2-45ea-bbe0-e5aeb90cbff9@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <e7b27f57-efb2-45ea-bbe0-e5aeb90cbff9@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241023000408.GC1848992-robh@kernel.org>
 
-On 23/10/2024 08:53, Raj Kumar Bhagat wrote:
-> On 10/23/2024 12:17 PM, Krzysztof Kozlowski wrote:
->> On 23/10/2024 08:45, Raj Kumar Bhagat wrote:
->>> On 10/23/2024 12:05 PM, Krzysztof Kozlowski wrote:
->>>> On 23/10/2024 08:03, Raj Kumar Bhagat wrote:
->>>>> The current device-tree bindings for the Ath12K module list many
->>>>> WCN7850-specific properties as required. However, these properties are
->>>>> not applicable to other Ath12K devices.
->>>>>
->>>>> Hence, remove WCN7850-specific properties from the required section,
->>>>> retaining only generic properties valid across all Ath12K devices.
->>>>> WCN7850-specific properties will remain required based on the device's
->>>>> compatible enum.
->>>> Just not true. These apply to all devices described in this binding.
->>>>
->>>> NAK.
->>>>
->>>> Don't send patches for your downstream stuff.
->>> This is not for downstream. This series is the per-requisite for ath12k
->>> MLO support in upstream.
->>>
->>> In the subsequent patch [2/6] we are adding new device (QCN9274) in this
->>> binding that do not require the WCN7850 specific properties.
->>>
->>> This is a refactoring patch for the next patch [2/6].
->> It's just wrong. Not true. At this point of patch there are no other
->> devices. Don't refactor uselessly introducing incorrect hardware
+On Tue, Oct 22, 2024 at 07:04:08PM -0500, Rob Herring wrote:
+> On Tue, Oct 22, 2024 at 11:31:53PM +0200, Danilo Krummrich wrote:
+> > Add a sample Rust platform driver illustrating the usage of the platform
+> > bus abstractions.
+> > 
+> > This driver probes through either a match of device / driver name or a
+> > match within the OF ID table.
 > 
-> Ok then, If we squash this patch with the next patch [2/6], that actually adding
-> the new device, then this patch changes are valid right?
+> I know if rust compiles it works, but how does one actually use/test 
+> this? (I know ways, but I might be in the minority. :) )
 
-Yes, except I asked to have separate binding for devices with different
-interface (WSI). You add unrelated devices to same binding, growing it
-into something tricky to manage. Your second patch misses if:then
-disallwing all this WSI stuff for existing device... and then you should
-notice there is absolutely *nothing* in common.
+For testing a name match I just used platform_device_register_simple() in a
+separate module.
 
-Best regards,
-Krzysztof
+Probing through the OF table is indeed a bit more tricky. Since I was too lazy
+to pull out a random ARM device of my cupboard I just used QEMU on x86 and did
+what drivers/of/unittest.c does. If you're smart you can also just enable those
+unit tests and change the compatible string to "unittest". :)
 
+> 
+> The DT unittests already define test platform devices. I'd be happy to 
+> add a device node there. Then you don't have to muck with the DT on some 
+> device and it even works on x86 or UML.
+
+Sounds good, I'll add one in there for this sample driver -- any preferences?
+
+> 
+> And I've started working on DT (fwnode really) property API bindings as 
+> well, and this will be great to test them with.
+> 
+> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> > ---
+> >  MAINTAINERS                          |  1 +
+> >  samples/rust/Kconfig                 | 10 +++++
+> >  samples/rust/Makefile                |  1 +
+> >  samples/rust/rust_driver_platform.rs | 62 ++++++++++++++++++++++++++++
+> >  4 files changed, 74 insertions(+)
+> >  create mode 100644 samples/rust/rust_driver_platform.rs
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 173540375863..583b6588fd1e 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -6986,6 +6986,7 @@ F:	rust/kernel/device_id.rs
+> >  F:	rust/kernel/devres.rs
+> >  F:	rust/kernel/driver.rs
+> >  F:	rust/kernel/platform.rs
+> > +F:	samples/rust/rust_driver_platform.rs
+> >  
+> >  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
+> >  M:	Nishanth Menon <nm@ti.com>
+> > diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
+> > index 6d468193cdd8..70126b750426 100644
+> > --- a/samples/rust/Kconfig
+> > +++ b/samples/rust/Kconfig
+> > @@ -41,6 +41,16 @@ config SAMPLE_RUST_DRIVER_PCI
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config SAMPLE_RUST_DRIVER_PLATFORM
+> > +	tristate "Platform Driver"
+> > +	help
+> > +	  This option builds the Rust Platform driver sample.
+> > +
+> > +	  To compile this as a module, choose M here:
+> > +	  the module will be called rust_driver_platform.
+> > +
+> > +	  If unsure, say N.
+> > +
+> >  config SAMPLE_RUST_HOSTPROGS
+> >  	bool "Host programs"
+> >  	help
+> > diff --git a/samples/rust/Makefile b/samples/rust/Makefile
+> > index b66767f4a62a..11fcb312ed36 100644
+> > --- a/samples/rust/Makefile
+> > +++ b/samples/rust/Makefile
+> > @@ -3,5 +3,6 @@
+> >  obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
+> >  obj-$(CONFIG_SAMPLE_RUST_PRINT)			+= rust_print.o
+> >  obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
+> > +obj-$(CONFIG_SAMPLE_RUST_DRIVER_PLATFORM)	+= rust_driver_platform.o
+> >  
+> >  subdir-$(CONFIG_SAMPLE_RUST_HOSTPROGS)		+= hostprogs
+> > diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
+> > new file mode 100644
+> > index 000000000000..55caaaa4f216
+> > --- /dev/null
+> > +++ b/samples/rust/rust_driver_platform.rs
+> > @@ -0,0 +1,62 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +//! Rust Platform driver sample.
+> > +
+> > +use kernel::{c_str, of, platform, prelude::*};
+> > +
+> > +struct SampleDriver {
+> > +    pdev: platform::Device,
+> > +}
+> > +
+> > +struct Info(u32);
+> > +
+> > +kernel::of_device_table!(
+> > +    OF_TABLE,
+> > +    MODULE_OF_TABLE,
+> > +    <SampleDriver as platform::Driver>::IdInfo,
+> > +    [(
+> > +        of::DeviceId::new(c_str!("redhat,rust-sample-platform-driver")),
+> 
+> Perhaps use the same compatible as the commented example. Same comments 
+> on that apply to this.
+> 
+> > +        Info(42)
+> 
+> Most of the time this is a pointer to a struct. It would be better to 
+> show how to do that.
+
+No, this should never be a raw pointer. There is no reason for a driver to
+perfom this kind of unsafe operation to store any ID info data. This ID info
+data is moved into the `IdArray` on compile time. And the bus abstraction takes
+care of providing a reference to this structure in `Driver::probe`.
+
+So, technically, this example is fine. But if you have ideas for more meaningful
+data to store there, I happy to change it.
+
+> 
+> > +    )]
+> > +);
+> > +
+> > +impl platform::Driver for SampleDriver {
+> > +    type IdInfo = Info;
+> > +    const ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
+> 
+> Probably want to name this OF_ID_TABLE for when ACPI_ID_TABLE is added.
+
+Yes, makes sense.
+
+> 
+> > +
+> > +    fn probe(pdev: &mut platform::Device, info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
+> > +        dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver sample.\n");
+> > +
+> > +        match (Self::of_match_device(pdev), info) {
+> 
+> That answers my question on being exposed to drivers. This is a big no 
+> for me.
+
+Agreed, we don't need it. Please also see my previous reply in the platform bus
+abstraction.
+
+> 
+> > +            (Some(id), Some(info)) => {
+> > +                dev_info!(
+> > +                    pdev.as_ref(),
+> > +                    "Probed by OF compatible match: '{}' with info: '{}'.\n",
+> > +                    id.compatible(),
+> 
+> As I mentioned, "real" drivers don't need the compatible string.
+
+Same here.
+
+> 
+> > +                    info.0
+> > +                );
+> > +            }
+> > +            _ => {
+> > +                dev_info!(pdev.as_ref(), "Probed by name.\n");
+> > +            }
+> > +        };
+> > +
+> > +        let drvdata = KBox::new(Self { pdev: pdev.clone() }, GFP_KERNEL)?;
+> > +
+> > +        Ok(drvdata.into())
+> > +    }
+> > +}
+> > +
+> > +impl Drop for SampleDriver {
+> > +    fn drop(&mut self) {
+> > +        dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver sample.\n");
+> > +    }
+> > +}
+> > +
+> > +kernel::module_platform_driver! {
+> > +    type: SampleDriver,
+> > +    name: "rust_driver_platform",
+> > +    author: "Danilo Krummrich",
+> > +    description: "Rust Platform driver",
+> > +    license: "GPL v2",
+> > +}
+> > -- 
+> > 2.46.2
+> > 
+> 
 
