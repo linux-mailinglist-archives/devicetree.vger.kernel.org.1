@@ -1,361 +1,302 @@
-Return-Path: <devicetree+bounces-114744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E935A9ACA94
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:52:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 297D19ACAB2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:05:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3D27284FDE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:52:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D942E283858
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:05:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1807D1AB50C;
-	Wed, 23 Oct 2024 12:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B5C1ADFED;
+	Wed, 23 Oct 2024 13:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FyIFK84N"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="ElYQQDmx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010007.outbound.protection.outlook.com [52.101.229.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263DC130AF6;
-	Wed, 23 Oct 2024 12:52:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729687950; cv=none; b=CHGRNF/QaNbol/ugao74estxv2QzgFUP3FCE6WOih6XxYmmho7puqXK4dAiApD6FPRPnPwIHuzoI4XkbZt6wSjlWixOlWXqw1TNvXr+vNsr0/Y3nZUZPHJspeojSRAFfOI9pMrcG3LXS240RxO6747ww5LMvy2lkOCUTocAcwF0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729687950; c=relaxed/simple;
-	bh=YSIS8mQYy60AaGZUUcr3xR3JW3QP0FULhpa5XV284IU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LOv2Ry0PY4eJCpU+qPAPOVM22svzrCQrKkf7dEb8UWika9SEAonBMZWRziGuUd6bu/NamjPzX6uOLMy/JaAc88dHVhZmijEw0nq66jIFxyhBQBEsJKDBDjPFAY9GL+/mk8i5S+jbisKswRI9HNDkvma61V+jQTAbHqR8DgnptvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FyIFK84N; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9abe139088so126864766b.1;
-        Wed, 23 Oct 2024 05:52:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729687944; x=1730292744; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NAxDZcUfCng+DUNFyrC/AKwhSj/73MfKXpYFHi+RSAU=;
-        b=FyIFK84N+yow8vyxiqZDYzQ+up2DdXp11D76bPUyCgY7HzSvhdyShTZLtMxQ6mGj8F
-         9FINVqTULLuG2FgojtoWLE6EDPvtrgiLR9DtAiqm9THGJtKm+ibD1Hgzv3BW7qKrlgYK
-         dUdnEY+RDoI0rzrC0wG4VpAnx/9fgntlyxwoervFC/vV2B5UVTuz5UxhB5etBDIIdi9C
-         GcNwFqd1l8cqgzHUGTlELT56RyxqXAVWsqqeDtvDWuta5Gky1lUsl2JdXkM5kMaKx9rV
-         SeFn8kV1zqbV1gsQQgW7WjX05fb0m5+99Baqni7ez7jGnf8tUPDWXwgDodyO5NY1YSLX
-         MgAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729687944; x=1730292744;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NAxDZcUfCng+DUNFyrC/AKwhSj/73MfKXpYFHi+RSAU=;
-        b=gnprQpib22kp4F5jwgDNDvJqQRApzzK7GULNpUlsFLyj7efCJf3e7tJY+H4Ertuy7K
-         0OldUdm4kIm+jOvTAoyCyQd4zVJFLoFoMZZsVlT3JUhqUNkLgrBd+qHwoxtVB2q+GVhR
-         OU5y5BDr7PgVSRxzYqDuti2weo1tQIoRxQUrHXLkcbF81ZjZZhShJX+PIBYNy3QTvtQr
-         rOik6XOsL5CG7aXSstG6uYhNGrMdowciXJ4Kq1Cpvx71CbsUONlPgfiW6YRRa14uxr6F
-         Ve2eDhqhMHAVY8B0aSVNB06vkFpwEl6jNkwgFrmRG3ZNbCNyAFzYMhLSIM+GcWhT3s6v
-         yB3g==
-X-Forwarded-Encrypted: i=1; AJvYcCU1QQ3YDSzvh3Wx+Jp0faXePZCxVzE7iUwtSUIl3pPGx73e90h05VbxH57OosJa2OsVvlxUTrElTs4n@vger.kernel.org, AJvYcCUDLLJ6Xrs3U7MsFPrw/EAqR0BNTcLW/qOabDc4x7Ncr24YDvJFmzNaC9ub29ajM0tlX1Wn09+GDh+o@vger.kernel.org, AJvYcCUZLOcQgjtUNuhl9wERxRECBA26+ohvKADsBJbdYpJIZKTPtw16aX7UZj++dVdIkMR8aSyOqfBprRRFsBTt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3P8b6Az/1M7tEGvA2VvKojsFwnuHebzQipCaeKS5gbfgjGfzs
-	vuyGaBUV0QgZJoiLz96hrRZXBiWxP9zhVwrGIlNKVEEI1LFO2pvx8uYl0QS1
-X-Google-Smtp-Source: AGHT+IF5yk0HhZ+ETbtk4xhn2J5Q7HSseKucesx9u2mYjnY2Mo1aQgigJvj7xES/VmMZ+z5BYEXW+A==
-X-Received: by 2002:a17:906:7308:b0:a99:fb10:1269 with SMTP id a640c23a62f3a-a9abf873267mr218973266b.17.1729687944005;
-        Wed, 23 Oct 2024 05:52:24 -0700 (PDT)
-Received: from debian ([2a00:79c0:624:c500:303:6c5b:4b07:6715])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a91559a1csm475695566b.125.2024.10.23.05.52.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 05:52:23 -0700 (PDT)
-Date: Wed, 23 Oct 2024 14:52:21 +0200
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-Message-ID: <20241023125221.GA197308@debian>
-References: <20240927125745.38367-1-dima.fedrau@gmail.com>
- <20240927125745.38367-3-dima.fedrau@gmail.com>
- <oppdnsda4tqjcpsb26j5ew62t4bkkmtxuu7e2fpinnazubk5ky@tmz76o5xdrlj>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB0E1ADFEA;
+	Wed, 23 Oct 2024 13:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.7
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729688675; cv=fail; b=EUdWgsgpSwAJiljELa5RTDcc0Oj1HhwSUcLO5cqGDECHBW1b5njmPNSwGpwJnvbMp4LM3nfhj9HieBqd6JxskQFtqqbWki/J1aOom8fMSUvLjtxbwf5imD9/JCJsnOIGDQuwO4E3PghD7ZG4z8GsToH2cdYCeHPBgjsgawxdipo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729688675; c=relaxed/simple;
+	bh=s4SsT348T6mDL8v36HQLUb2t6tyowGsXZrH+3jMYQ64=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=gCeSHGDoJoKNen88QKXFdMR+WE8198rjLxMdOJw6r9xvIXcucWGWOFWyCsTqsRo+L4Xfy043Jl9R8bdyFU1MA9kVnS+N/2Q1Ibuttx/NPVW2G6p3e4daShZQoc14z4Tb12uvLy8fUKBuAZEUSZR/N3AsiMTzAzLkk3ERKrvXpS8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=ElYQQDmx; arc=fail smtp.client-ip=52.101.229.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CAoK7ZUvbNtr4jpdZDdiDjdG4TAvMpsaIE4BvbpjKdJKISxd1ty4AE+OJvYFBElTntm4Io/iEdfJYAOPHcKPNeIsSx1twFLzS4qlarSjsEOR8GlKCi4df0EMNwerWB5EvsNb9Ulhc2NprO8UGVXUmAs28zsy8C7QoZgPE9Fp1Vp8xQj9qhNy00Bfzq9+XFFElNnwE3YLvL5Nie2q/PEJ2lhnF0x/4433FSBc/InRqWPIlHnbyOgGsiVaKongPa2ddsB2GTWCONQr1RN+NMmcaKTZdI4iMBSPVc2Bw8uIb+tnDeavFQ+P3kbmZXVa8l2F8X8hKAC+bLn/7LApRoe9/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s4SsT348T6mDL8v36HQLUb2t6tyowGsXZrH+3jMYQ64=;
+ b=SjSK3yPLdmLslpIXX3uhkfpU85PXRRDOKxVRJicCoYBx/PxPEjBdpgbPsyYKVqUpJzMay2SRCtEFHXRUFymE3bED9W/5Rs21eR4ENqc5p3j75Z96tobc5NrGomhY5zn3fsyIgkHKVeg+gID0Lc/Rvlyp2pp3+mh4quIQxMpmchbtHat/MiYwGXVynNGmjd3V6ajBRP5QqQmjEMbB2dO0RCKUi2bnJVzdQlQQ8HYBsJN0Ov1uLNMCGQX+QxW0OCiZQD2URIfxngc3KvaHAhVwgh65GfsiJG06q+RXSCBjVzZRxHjA0DxC+QH/mmmUZtgBETHe6kaykGvJPNd0zLrWag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s4SsT348T6mDL8v36HQLUb2t6tyowGsXZrH+3jMYQ64=;
+ b=ElYQQDmxHCRNJiLSMG5DiTWrEDP6PxHQ2JT3X+RWV+ePjnWLV1NILopRMgAkCRu6MQ1nkCtauTtcQpxjSDUXYZS0Le8wV5nZQWdG+0dCyCK+9s6/OJg7y/i+qgG1BFWbQV4l8gz303s9w1rgncV+nBbOV5BYlQO9VM1/0EOgrTE=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by OS3PR01MB6503.jpnprd01.prod.outlook.com (2603:1096:604:100::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.16; Wed, 23 Oct
+ 2024 13:04:27 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%3]) with mapi id 15.20.8093.014; Wed, 23 Oct 2024
+ 13:04:27 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>, Geert Uytterhoeven
+	<geert@linux-m68k.org>
+CC: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, Magnus Damm
+	<magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
+Thread-Topic: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
+Thread-Index:
+ AQHbGaIZmx0KhA/2XUiyPZAzZz+L/7J9FRWwgAAGadCAAC1egIAA3vUAgAACHjCAAAk3AIAC+5uwgAAB5QCAAAGLMIATMLrg
+Date: Wed, 23 Oct 2024 13:04:26 +0000
+Message-ID:
+ <TY3PR01MB11346FA2A49CEF90C98EF9335864D2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20241008164935.335043-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <TY3PR01MB11346A1726BCE1687C6AFF519867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <TY3PR01MB113469ABB6393E0A6451034A4867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8vWpUmq9esgcnjWVcPb-jUaLuKvhJF2VwiWrCx5_nOtww@mail.gmail.com>
+ <CAMuHMdULuCWd1V0Az=NWHhSb7voDKbTo9rp3Excntp7qvTbbuQ@mail.gmail.com>
+ <TY3PR01MB113460ED98BB6EE2575D0CBC7867F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CAMuHMdX8rCM+yG4cwtG9yogwz0xWqD3O0aiXNMwE9Vkcpyhrkw@mail.gmail.com>
+ <TY3PR01MB1134648DE5396A9ED9227BEB186792@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CAMuHMdWa0=pKfY=RL1NYXP+EBz6AK-6Br4wy4d_g4XwoCyW9og@mail.gmail.com>
+ <TY3PR01MB1134642E82FBCF217DFD8A75386792@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To:
+ <TY3PR01MB1134642E82FBCF217DFD8A75386792@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS3PR01MB6503:EE_
+x-ms-office365-filtering-correlation-id: 71fddf60-3866-4168-3e84-08dcf3633964
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?Ym81NGdkLzlrOTdTUHZSVHJxN2c2aTY2TFpla25Yd2hONTlhb1BQRFRvTTZ1?=
+ =?utf-8?B?cG0yVXJCcDlXVmMzUERnc29QaVF1eXA2d0ttazErZVpBVUwxRlIwUW4xMWxo?=
+ =?utf-8?B?OUkxZDl1WFZwUVBUZ0pDbll0RXVoc3d5YkE3T3E4SjdraEFKamhKdFBNVUN6?=
+ =?utf-8?B?SmNyQUtmeFB3RDRNN0d1ZXh5NTVQM1VHYWZMbXREVHp0c1daM1FGb2NKRUda?=
+ =?utf-8?B?b2w5elZmcEwwelhwdlEzUHFFSEZJYk45KytDNFhoR013TGE4MTEzSFhKWkRr?=
+ =?utf-8?B?NE15bTBWWWxGL09PWnl5Q1ROVFNwdS9paWs2bEsxejFnMWF6RWlqUnpJSlY0?=
+ =?utf-8?B?Z2hpVWFKU04wNjZWVFdEdFY3ZUJENmxLQzB5akhJYjgrN3l2OTA0NFJsSU5n?=
+ =?utf-8?B?ZHZqZHJ3azMyKzJzZVV0SFFsMmp6Qjhrd0JRVWFLOGtYOXRudnA0Wk5GakJx?=
+ =?utf-8?B?eitWaEp4ZmNTMVprSzhFTXNrVDl4aFA1M2lmTEEzNkxqV2pQcVNuRUhDRnpr?=
+ =?utf-8?B?b2pLUnBGYVFlSkNUYzhWUTJ6VmJGZENzVHYyVkE0RlM1Q3NNR0NKYU9TaEF3?=
+ =?utf-8?B?M2xqeEVFQ1gwaFlPMldZZUdVYnVHT2lpOVdwamdjcklUQUkzMHFLTE1JcGdi?=
+ =?utf-8?B?bzdRbnZEV0tGckIxVmRBSUlDckVZOS9MK0FucmhRemE0Uy92ckhORFd0M2NJ?=
+ =?utf-8?B?SzErVC9IUFhiUjhHR2ltVjYyL0xGamJCRFVlQURaZXU3ODlxTW91MndOMmJ3?=
+ =?utf-8?B?Uk5SZ0NaTFlCRXRXVGN6RDVWNFE5N2ZGZHUxWW8yNHR3Y25TeVVzcHdROTQr?=
+ =?utf-8?B?VHpkZGI3dmRsVDZtaGpnSFZnRjVGUzNnclFWbG1PSmxSK3k5MllxVk8wanZL?=
+ =?utf-8?B?S1hPeTFJTndHUzFhV05HcVcwKzM4RVF5V2VlVnkrems2NGMyS2hJSmlkNlg4?=
+ =?utf-8?B?aktlSzB1aWRndUxRNDNSQUFLb2pQVHZrNGptcEQvZDNBZDFVemw2bkZXbEd6?=
+ =?utf-8?B?cWFLRUFkbUdMeWZYRDNuQ2tEWHRXN3hqL1dUblpUenRycVBEMUlVdGRsMEJO?=
+ =?utf-8?B?NGF5WlRlQkZ3WVRsdlNEdGVMY3gxVEg5dUFDQ1pFZ0o4OEloQVpuMlZhaU01?=
+ =?utf-8?B?RDJ1RFlOaUFuVGUwaWxRRTdOYmZ5emdHb3BzMVh3dmttKy9wcWhGT2hkMXl6?=
+ =?utf-8?B?WEZINm5QaVpHRnpRNThUNGtkOFlNdXRJaUxzZWxpbGJMdGFlWUFqL1Z0K3M1?=
+ =?utf-8?B?eE5ZR1hZQUYvMTh3YVdYb096d2hHZFpZZ053Y1l2WU15bHQ5MHI3dTRvSDNG?=
+ =?utf-8?B?VGdQazl5akRkZ3VobmRXaFlQdXdqN3ltTTZaNUZyanZ6bk1pakVua01LM0xk?=
+ =?utf-8?B?TzZxeGFyY0V0b3RxS2VsenFZdVZBVmxVUFI4MlFyNTYyZnJxWU9uaEIyUi9X?=
+ =?utf-8?B?Y09QZlNRS0Z5L2ZEZjBrTHpXOUVGZzNQT1hPKzJBVEVBaDNUU1c5bGNRdml5?=
+ =?utf-8?B?Ym9ZdlAyckd0WjgwdnBpekV2ellaeHk5R09EQUFhRUpJTVUxTzV0R2NWbTg3?=
+ =?utf-8?B?RzgzN1gzK2xiYlFVRUNaWXpyNm9wRkY2cFRyNCtkZHgxcHR3bXZ0Z0RXVkts?=
+ =?utf-8?B?dTQrZndkYWJ6TmdyQzJXTHVkWXZUMmhoaWZyM2VxN0dVQWFiTEhxdGRSOXdZ?=
+ =?utf-8?B?bnAvNE1zY3AzN2ZDRkRMbCtMaDlIUGVyQUlnaGdudEZ5dm80U2pVYVhGL1VO?=
+ =?utf-8?B?L3JzdS9yTTlZTGNuYW1SaUJYdzhhNnlyNUJxQ0xXQTRiVmhGZWMxVHZXa0Jv?=
+ =?utf-8?Q?TEG8d7y2jHusinzmEp39YbucT8J9+DhxNEAvU=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?OWhYbC9QbWYwdjVZQU9MeUM2WjNDOTh2SFpxRytscStaZC9idy85Sy9FaDBt?=
+ =?utf-8?B?ZXJocGpZbUdLSndXQmV4NU9WUFRVY2xQTVhWcW9ka2EyUXhMQmkrWFRvRXpD?=
+ =?utf-8?B?aUFmRllnUGI5T2pJZWFhYWo0eHY1MDNBTnorTHc0OGRQMGRDaWNSUXdFYjBT?=
+ =?utf-8?B?TzNxdjQ0REJTQ0ZKRVp5N3R0c01NUDdZWkhJVEh1TDM3Q2VoRmxOcmVjMHVw?=
+ =?utf-8?B?QkxDbytudDU4ajlYT3ozajNoOUR1b1lmdW91QnhjdmFadkthckVOOEhKWWpM?=
+ =?utf-8?B?cHJpczdCdkQ5RmJ1Sy8yd0tvL3FDVGVnUEVNTGw0RUFzZG9WekxPcUtpclZI?=
+ =?utf-8?B?eE12TlJpaXAweVFCWGNIZlZEdXAxRC83TjVQQ0tlZ2FEalBOcUdZR3RsSW04?=
+ =?utf-8?B?TUpPOHcyaGc4SC8vaGdWVGdHUWc4OWFGd3QvUWZxTUt0OFZMR0RuODBqNW4r?=
+ =?utf-8?B?UFRSUERhL2lrNTNWdnlNUEc3eGRHRjl6c3ZKNWRoL1l4TmR2NlpzeCtCRWdW?=
+ =?utf-8?B?Zy8rS3VUeTVtTGhwN0lTbzl5OUNuVTh4WkN1WkNCSVZnclRmb1p0aUFaMm5W?=
+ =?utf-8?B?RGRZY25OL0pvSmRoTmVpUS9nQ0wxa2F6MzBaUWtIOE1oYkQ0ZFh1K1FvZkha?=
+ =?utf-8?B?enB0WEUzOVc3WTVWWGU5Vi9PbFcydWdUTG5iV0xVY1ZoMmFTdm5XZDhEQnZN?=
+ =?utf-8?B?aDlJT2thcmcrZEhwaVBYamtyWW96a1JZQWRnVDVtMVNUTkErZ0YrakVQZDB1?=
+ =?utf-8?B?UmkzV2lQek5GVjhPbVRraURlNkhra1dTa3NzbHVoZVFCWDJMUm9YMWtwQnZj?=
+ =?utf-8?B?M0lPMlR5aXBOQzJPVGVMa1lNYjZKRW9WUFhqeTlCcFlXeTA1WHdJeVRCTWxv?=
+ =?utf-8?B?NVowTWxtK3g2Z24wMWRJbklqU1ltVkpjVlNiNy9hQkQxRGZjWDZJZURLb0Rq?=
+ =?utf-8?B?cXQ1OFVWWDVNOGZ1RHNuZWVQOCtuTXEvKzVSdVFzdkxydTBTN3Ryb3ZCQ3lH?=
+ =?utf-8?B?YTZTSC92QUI0elBOejBXOHEvbU9PVi9qcGV6OWllTFBybFRtU24zZ2orWGcz?=
+ =?utf-8?B?UUo0clRZem10ckl0RTJKMG1LWC8yV21aTXZITXhWWXdTSFZpc3kxNlNRMUFm?=
+ =?utf-8?B?dzFOUXVnNXpJYXlkaCtibHdKMXdhZjdQTmE1c3V0akFUam1Yd3piTFREbk1a?=
+ =?utf-8?B?N280aDhJZ3JZY3FkVExKN1AyUmtwemV0ZTlQRU0zeWFoQXFCTEdGekRkdU82?=
+ =?utf-8?B?UmhwSUNDUUlQc1lrL2cyWGxYOUJCUkRud21Wa0t0MktMK2lXUkZPb2VXTnVF?=
+ =?utf-8?B?cWZzVWRCc0VWQzdpT3V5WHRmai9vTG1jckxQMXNDMnVWeWZZQjFkNnpkTUJE?=
+ =?utf-8?B?bGxyUnYvV0QxMEt2L0kxRUl3U1FycDdpbUpDdmVpeUFIMkVLS2xoZDBOT3M0?=
+ =?utf-8?B?TDVaOVdTRU1IUm1oMERWZkUyZkRQdzN1clVuUm9wZjR2aGVLeWtLTS82OThz?=
+ =?utf-8?B?bCtjQkxwUlRBSGx2SFV2ZXlYWHE5L1c2SERlTG9qL2REM2Vtd2pPdVVIVG1p?=
+ =?utf-8?B?M0dEaG42dk9uTXVQQ0JTejRNUVFGaTZwTGk3bnBaNS9MZ1htOExrUitNdDh3?=
+ =?utf-8?B?dU93Y29EWDdnOVo0bnNBZ3dJMVBmQmVPOXk4WUF5clBZK0t1Rzc2R1d2ZG1O?=
+ =?utf-8?B?Rkpsdkh4WXJhNmxoOHhYeFRvYlNuK3hMSndzZ2ZMcDJLODF6UXRDdk5uN29y?=
+ =?utf-8?B?RTlJVzY3RFF0NkFSYzBvRHBuRE9kUm1TSE4vUDcxTFBoZS9CQ2MxMHUrOVA4?=
+ =?utf-8?B?NUVHamdXSlU4bkMrdXBkYmZJcytDMEhqTWZWRDByN0hZQkRzNnl6akFhTXpY?=
+ =?utf-8?B?andmNXRBd212YkNYeW1LeGQ4aFVaekRMRnpHeWd3NEdodjVyb3NZK0svZkw5?=
+ =?utf-8?B?SjBmbDFUNW5IeHM4cDZnYysrTWZrYTJPL1ErOUluSHQ1RXRoTG4rZElsdTY5?=
+ =?utf-8?B?VU8yRWtxS2NES1A1eDE0ZG9jaW9KV2FuNUEzY0tPTXRXaW54OVNXRVZHSEp5?=
+ =?utf-8?B?U2h6N0NObzk2aHg4QzV3K1lYOGZZWXpCOUJGYlFHNVpzMW95NGhIWklDTG1n?=
+ =?utf-8?B?YlFodUdhbWxtR2dtZmllaFZBMzVucmhPQmhscWhTWW9Jdmh3MHlnODQ0MlVS?=
+ =?utf-8?B?aWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <oppdnsda4tqjcpsb26j5ew62t4bkkmtxuu7e2fpinnazubk5ky@tmz76o5xdrlj>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71fddf60-3866-4168-3e84-08dcf3633964
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2024 13:04:26.9750
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: T9buFnZ4LIXMXtix8sX/ydTu/f6k8GFx3LsdrDTOch+OXzHwcj+qXLM4+1IkRPWCd8bdcSj8u+TNdxIYKU0fV3fvre1LhkWv5Ivn14S+oLY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6503
 
-Hello Uwe,
-
-Am Tue, Oct 22, 2024 at 09:54:50AM +0200 schrieb Uwe Kleine-König:
-
-[...]
-> > +
-> > +#define MC33XS2410_MIN_PERIOD		488282
-> > +#define MC33XS2410_MAX_PERIOD_STEP0	2000000000
-> > +/* x in { 0 ... 3 } */
-> > +#define MC33XS2410_MAX_PERIOD_STEP(x)	(MC33XS2410_MAX_PERIOD_STEP0 >> (2 * x))
-> 
-> Nitpick: These register definition become easier to parse for a human if
-> you indent the RHS of register fields one tab further and add an empty
-> line between the definitions for different registers.
-> 
-
-Adding an empty line seems reasonable to me but the additional tab doesn't
-help me to improve readability.
-
-> MC33XS2410_PWM_DC1 is only used once, I'd hard-code it into the
-> definition of MC33XS2410_PWM_DC.
-> 
-
-Ok. Should I do the same for MC33XS2410_PWM_FREQ1 and
-MC33XS2410_MAX_PERIOD_STEP0 ?
-
-> The register fields [7:4] in MC33XS2410_PWM_CTRL3 are called PWM_ON4 ..
-> PWM_ON1. So your x in { 0 ... 3 } is wrong. (Luckily, having some x
-> range over { 0 ... 3 } and others orver { 1 ... 4 } is prone to error
-> and confusion.)
-> 
-
-Will fix it. Should I do the same for MC33XS2410_PWM_CTRL1_POL_INV ?
-
-> Also I'd drop all _MASK suffixes.
-> 
-
-Ok.
-
-> For MC33XS2410_MAX_PERIOD_STEP maybe use a different variable name than
-> for the others. For the register definitions the range is over hwpwm
-> (which might be a good name there?), for MC33XS2410_MAX_PERIOD_STEP it's
-> about MC33XS2410_PWM_FREQ_STEP.
-> 
-
-What about MC33XS2410_PWM_MAX_PERIOD(x) ?
-
-> > +#define MC33XS2410_MAX_TRANSFERS	5
-> > +#define MC33XS2410_WORD_LEN		2
-> > +
-> > +struct mc33xs2410_pwm {
-> > +	struct spi_device *spi;
-> > +};
-> > +
-> > +static inline struct mc33xs2410_pwm *mc33xs2410_from_chip(struct pwm_chip *chip)
-> > +{
-> > +	return pwmchip_get_drvdata(chip);
-> > +}
-> > +
-> > +static int mc33xs2410_xfer_regs(struct spi_device *spi, bool read, u8 *reg,
-> > +				u16 *val, bool *ctrl, int len)
-> 
-> Should len better be unsigned?
-> 
-
-I switch to unsigned.
-
-> Unless I missed something all ctrl[x] are always identical. If so
-> represent that by a single bool.
-> 
-
-Yes, they are identical. I added the crtl[x] to be able read from ctrl and
-diag registers. I will change it so it is represented by a single bool, if
-the feature is needed in the future I can still add it.
-
-> > +{
-> > +	struct spi_transfer t[MC33XS2410_MAX_TRANSFERS] = { { 0 } };
-> > +	u8 tx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
-> > +	u8 rx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
-> > +	int i, ret, reg_i, val_i;
-> > +
-> > +	if (!len)
-> > +		return 0;
-> > +
-> > +	if (read)
-> > +		len++;
-> > +
-> > +	if (len > MC33XS2410_MAX_TRANSFERS)
-> > +		return -EINVAL;
-> > +
-> > +	for (i = 0; i < len; i++) {
-> > +		reg_i = i * MC33XS2410_WORD_LEN;
-> > +		val_i = reg_i + 1;
-> > +		if (read) {
-> > +			if (i < len - 1) {
-> > +				tx[reg_i] = reg[i];
-> > +				tx[val_i] = ctrl[i] ? MC33XS2410_RD_CTRL : 0;
-> > +				t[i].tx_buf = &tx[reg_i];
-> > +			}
-> > +
-> > +			if (i > 0)
-> > +				t[i].rx_buf = &rx[reg_i - MC33XS2410_WORD_LEN];
-> > +		} else {
-> > +			tx[reg_i] = reg[i] | MC33XS2410_WR;
-> > +			tx[val_i] = val[i];
-> > +			t[i].tx_buf = &tx[reg_i];
-> > +		}
-> > +
-> > +		t[i].len = MC33XS2410_WORD_LEN;
-> > +		t[i].cs_change = 1;
-> 
-> Not sure if MC33XS2410_WORD_LEN really improves readability here.
-> 
-
-It is used throughout in the function and improves readability overall,
-maybe not here but for consistency I would stick to it.
-
-> Why is this done using $len transfers, wouldn't a single one do (and
-> maybe be more performant and not rely on a spi controller that supports
-> cs_change)?
-> 
-
-Without cs_change after every 16 bit, requests aren't processed by the
-device. Reading/writing from/to device fails. The SPI controller therefore
-must support cs_change. Single transfer is not possible because of the
-cs_change after every 16bit.
-
-> > +	}
-> > +
-> > +	t[len - 1].cs_change = 0;
-> > +
-> > +	ret = spi_sync_transfer(spi, &t[0], len);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	if (read) {
-> > +		for (i = 0; i < len - 1; i++) {
-> > +			reg_i = i * MC33XS2410_WORD_LEN;
-> > +			val[i] = FIELD_GET(MC33XS2410_RD_DATA_MASK,
-> > +					   get_unaligned_be16(&rx[reg_i]));
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > [...]
-> > +static
-> > +int mc33xs2410_read_reg(struct spi_device *spi, u8 reg, u16 *val, bool ctrl)
-> 
-> My personal opinion: Better break the line in the argument list or not
-> at all. Having a "static" on its own line looks ugly.
-> 
-Ok.
-
-> > +{
-> > +	return mc33xs2410_read_regs(spi, &reg, &ctrl, val, 1);
-> > +}
-> > [...]
-> > +static u64 mc33xs2410_pwm_get_period(u8 reg)
-> > +{
-> > [...]
-> > +	/* Convert frequency to period, considering the doubled frequency. */
-> > +	return DIV_ROUND_UP((u32)(2 * NSEC_PER_SEC), freq);
-> 
-> That u32 cast isn't needed.
->
-Will fix it.
-
-> > +}
-> > [...]
-> > +static int mc33xs2410_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> > +				const struct pwm_state *state)
-> > +{
-> > [...]
-> > +	/* frequency */
-> > +	val[0] = mc33xs2410_pwm_get_freq(period);
-> > +	/* Continue calculations with the possibly truncated period */
-> > +	period = mc33xs2410_pwm_get_period(val[0]);
-> > +
-> > +	/* duty cycle */
-> > +	duty_cycle = min(period, state->duty_cycle);
-> > +	rel_dc = mc33xs2410_pwm_get_relative_duty_cycle(period, duty_cycle);
-> > +	val[1] = rel_dc < 0 ? 0 : rel_dc;
-> 
-> Handling of the duty cycle is correct here, but misleading. I already
-> added a comment here that using val[1] = 0 if rel_dc < 0 is wrong and
-> just deleted it again after I saw (rel_dc >= 0) being used determining
-> the value for MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm). An explicit if block
-> would make this more obvious.
->
-
-Will add an explicit if block, should I do the same for the value for
-MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm) ?
-
-> mc33xs2410_pwm_get_relative_duty_cycle() is simple enough and only used
-> once that I'd unroll it here.
-> 
-
-You are right, will fix it.
-
-> > +	/* polarity */
-> > +	mask = MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm);
-> > +	val[2] = (state->polarity == PWM_POLARITY_INVERSED) ?
-> > +		 (val[2] | mask) : (val[2] & ~mask);
-> > +
-> > +	/* enable output */
-> > +	mask = MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm);
-> > +	val[3] = (state->enabled && rel_dc >= 0) ? (val[3] | mask) :
-> > +						   (val[3] & ~mask);
-> > +
-> > +	return mc33xs2410_write_regs(spi, reg, val, 4);
-> > +}
-> > +
-> > +static int mc33xs2410_pwm_get_state(struct pwm_chip *chip,
-> > +				    struct pwm_device *pwm,
-> > +				    struct pwm_state *state)
-> > +{
-> > [...]
-> > +	state->period = mc33xs2410_pwm_get_period(val[0]);
-> > +	state->polarity = (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm)) ?
-> > +			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
-> > +	state->enabled = !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm));
-> > +	mc33xs2410_pwm_set_relative_duty_cycle(state, val[1]);
-> 
-> No need to set state->duty_cycle = 0 if state->enabled is false. This is
-> another function I suggest to unroll as it hides more than it abstracts.
-> 
-
-Function can be unrolled, but the check for state->enabled is needed. The
-device is unable to generate a 0% duty cycle, so it is turned off to
-generate a 0% duty cylce.
-
-> > +	return 0;
-> > +}
-> > +
-> > [...]
-> > +static int mc33xs2410_probe(struct spi_device *spi)
-> > +{
-> > [...]
-> > +	/* Transition to normal mode */
-> > +	ret = mc33xs2410_modify_reg(spi, MC33XS2410_GLB_CTRL,
-> > +				    MC33XS2410_GLB_CTRL_MODE,
-> > +				    MC33XS2410_GLB_CTRL_MODE_NORMAL);
-> > +	if (ret < 0)
-> > +		return dev_err_probe(dev, ret,
-> > +				     "Failed to transition to normal mode\n");
-> 
-> What is the effect of this register write if the PWM was already setup
-> by the bootloader?
-> 
-
-When its setup is done in the bootloader and the watchdog is disabled in
-the bootloader it shouldn't have any impact.
-
-> > +
-> > +	ret = devm_pwmchip_add(dev, chip);
-> > +	if (ret < 0)
-> > +		return dev_err_probe(dev, ret, "Failed to add pwm chip\n");
-> > +
-> > +	return 0;
-> > +}
-> 
-> Best regards
-> Uwe
-
-Best regards
-Dimitri
+SGkgR2VlcnQsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQmlqdSBE
+YXMgPGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29tPg0KPiBTZW50OiBGcmlkYXksIE9jdG9iZXIg
+MTEsIDIwMjQgOTowMCBBTQ0KPiBTdWJqZWN0OiBSRTogW1BBVENIIHYyXSBhcm02NDogZHRzOiBy
+ZW5lc2FzOiByOWEwOWcwNTc6IEFkZCBPUFAgdGFibGUNCj4gDQo+IEhpIEdlZXJ0LA0KPiANCj4g
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZl
+biA8Z2VlcnRAbGludXgtbTY4ay5vcmc+DQo+ID4gU2VudDogRnJpZGF5LCBPY3RvYmVyIDExLCAy
+MDI0IDg6NDggQU0NCj4gPiBTdWJqZWN0OiBSZTogW1BBVENIIHYyXSBhcm02NDogZHRzOiByZW5l
+c2FzOiByOWEwOWcwNTc6IEFkZCBPUFAgdGFibGUNCj4gPg0KPiA+IEhpIEJpanUsDQo+ID4NCj4g
+PiBPbiBGcmksIE9jdCAxMSwgMjAyNCBhdCA5OjQz4oCvQU0gQmlqdSBEYXMgPGJpanUuZGFzLmp6
+QGJwLnJlbmVzYXMuY29tPiB3cm90ZToNCj4gPiA+ID4gRnJvbTogR2VlcnQgVXl0dGVyaG9ldmVu
+IDxnZWVydEBsaW51eC1tNjhrLm9yZz4gT24gV2VkLCBPY3QgOSwNCj4gPiA+ID4gMjAyNCBhdCAx
+MTo0MeKAr0FNIEJpanUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4gd3JvdGU6DQo+
+ID4gPiA+ID4gPiBGcm9tOiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdlZXJ0QGxpbnV4LW02OGsub3Jn
+PiBPbiBUdWUsIE9jdCA4LA0KPiA+ID4gPiA+ID4gMjAyNCBhdCAxMDoxMOKAr1BNIExhZCwgUHJh
+Ymhha2FyIDxwcmFiaGFrYXIuY3NlbmdnQGdtYWlsLmNvbT4gd3JvdGU6DQo+ID4gPiA+ID4gPiA+
+IE9uIFR1ZSwgT2N0IDgsIDIwMjQgYXQgNjozM+KAr1BNIEJpanUgRGFzIDxiaWp1LmRhcy5qekBi
+cC5yZW5lc2FzLmNvbT4gd3JvdGU6DQo+ID4gPiA+ID4gPiA+ID4gPiBGcm9tOiBCaWp1IERhcyA8
+YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+ID4gPiA+ID4gPiA+ID4gPiA+IEZyb206IFBy
+YWJoYWthciA8cHJhYmhha2FyLmNzZW5nZ0BnbWFpbC5jb20+DQo+ID4gPiA+ID4gPiA+ID4gPiA+
+IEZyb206IExhZCBQcmFiaGFrYXINCj4gPiA+ID4gPiA+ID4gPiA+ID4gPHByYWJoYWthci5tYWhh
+ZGV2LWxhZC5yakBicC5yZW5lc2FzLmNvbT4NCj4gPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4g
+PiA+ID4gPiA+ID4gQWRkIE9QUCB0YWJsZSBmb3IgUlovVjJIKFApIFNvQy4NCj4gPiA+ID4gPiA+
+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogTGFkIFByYWJoYWth
+cg0KPiA+ID4gPiA+ID4gPiA+ID4gPiA8cHJhYmhha2FyLm1haGFkZXYtbGFkLnJqQGJwLnJlbmVz
+YXMuY29tPg0KPiA+ID4gPiA+ID4gPiA+ID4gPiAtLS0NCj4gPiA+ID4gPiA+ID4gPiA+ID4gdjEt
+PnYyDQo+ID4gPiA+ID4gPiA+ID4gPiA+IC0gU2V0IG9wcC1taWNyb3ZvbHQgdG8gODAwMDAwIGZv
+ciBmcmVxdWVuY2llcyBiZWxvdw0KPiA+ID4gPiA+ID4gPiA+ID4gPiAxLjFHSHoNCj4gPiA+ID4g
+PiA+ID4gPiA+ID4gLS0tDQo+ID4gPiA+ID4gPiA+ID4gPiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRz
+L3JlbmVzYXMvcjlhMDlnMDU3LmR0c2kgfCA0MQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiArKysrKysr
+KysrKysrKysrKysrKysrDQo+ID4gPiA+ID4gPiA+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgNDEg
+aW5zZXJ0aW9ucygrKQ0KPiA+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiA+ID4gPiBk
+aWZmIC0tZ2l0DQo+ID4gPiA+ID4gPiA+ID4gPiA+IGEvYXJjaC9hcm02NC9ib290L2R0cy9yZW5l
+c2FzL3I5YTA5ZzA1Ny5kdHNpDQo+ID4gPiA+ID4gPiA+ID4gPiA+IGIvYXJjaC9hcm02NC9ib290
+L2R0cy9yZW5lc2FzL3I5YTA5ZzA1Ny5kdHNpDQo+ID4gPiA+ID4gPiA+ID4gPiA+IGluZGV4IDFh
+ZDVhMWI2OTE3Zi4uNGJiZTc1YjgxZjU0IDEwMDY0NA0KPiA+ID4gPiA+ID4gPiA+ID4gPiAtLS0g
+YS9hcmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcjlhMDlnMDU3LmR0c2kNCj4gPiA+ID4gPiA+
+ID4gPiA+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9yZW5lc2FzL3I5YTA5ZzA1Ny5kdHNp
+DQo+ID4gPiA+ID4gPiA+ID4gPiA+IEBAIC0yMCw2ICsyMCwzOSBAQCBhdWRpb19leHRhbF9jbGs6
+IGF1ZGlvLWNsayB7DQo+ID4gPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgICAgIGNsb2NrLWZyZXF1
+ZW5jeSA9IDwwPjsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gICAgIH07DQo+ID4gPiA+ID4gPiA+ID4g
+PiA+DQo+ID4gPiA+ID4gPiA+ID4gPiA+ICsgICAvKg0KPiA+ID4gPiA+ID4gPiA+ID4gPiArICAg
+ICogVGhlIGRlZmF1bHQgY2x1c3RlciB0YWJsZSBpcyBiYXNlZCBvbiB0aGUgYXNzdW1wdGlvbiB0
+aGF0IHRoZSBQTExDQTU1IGNsb2NrDQo+ID4gPiA+ID4gPiA+ID4gPiA+ICsgICAgKiBmcmVxdWVu
+Y3kgaXMgc2V0IHRvIDEuN0dIei4gVGhlIFBMTENBNTUgY2xvY2sgZnJlcXVlbmN5IGNhbiBiZSBz
+ZXQgdG8NCj4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAqIDEuNy8xLjYvMS41LzEuMSBHSHogYmFz
+ZWQgb24gdGhlIEJPT1RQTExDQV8wLzEgcGlucyAoYW5kIGFkZGl0aW9uYWxseSBjYW4gYmUNCj4g
+PiA+ID4gPiA+ID4gPiA+ID4gKyAgICAqIGNsb2NrZWQgdG8gMS44R0h6IGFzIHdlbGwpLiBUaGUg
+dGFibGUgYmVsb3cgc2hvdWxkIGJlIG92ZXJyaWRkZW4gaW4gdGhlIGJvYXJkDQo+ID4gPiA+ID4g
+PiA+ID4gPiA+ICsgICAgKiBEVFMgYmFzZWQgb24gdGhlIFBMTENBNTUgY2xvY2sgZnJlcXVlbmN5
+Lg0KPiA+ID4gPiA+ID4gPiA+ID4gPiArICAgICovDQo+ID4gPiA+ID4gPiA+ID4gPiA+ICsgICBj
+bHVzdGVyMF9vcHA6IG9wcC10YWJsZS0wIHsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAg
+ICAgY29tcGF0aWJsZSA9ICJvcGVyYXRpbmctcG9pbnRzLXYyIjsNCj4gPiA+ID4gPiA+ID4gPiA+
+ID4gKw0KPiA+ID4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICBvcHAtMTcwMDAwMDAwMCB7DQo+
+ID4gPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgb3BwLWh6ID0gL2JpdHMvIDY0
+IDwxNzAwMDAwMDAwPjsNCj4gPiA+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICBv
+cHAtbWljcm92b2x0ID0gPDkwMDAwMD47DQo+ID4gPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4g
+PiA+ID4gTm90IHN1cmUgQ0EtNTUgY2FuIGNoYW5nZSB2b2x0YWdlIGZyb20gODAwbVYgdG8gOTAw
+bVY/Pw0KPiA+ID4gPiA+ID4gPiA+ID4gQmFzZWQgb24gUG93ZXIgRG9tYWluIENvbnRyb2wsIGl0
+IG5lZWRzIHRvIGJlIGluIEFXTw0KPiA+ID4gPiA+ID4gPiA+ID4gbW9kZSBmb3IgY2hhbmdpbmcg
+dGhlIFBEX0NBNTUNCj4gPiB2b2x0YWdlLg0KPiA+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+
+ID4gPiA+IFRoZSBtYW51YWwgc2F5cyBPRCB2b2x0YWdlIGlzIDAuOVYgYW5kIE5EIHZvbHRhZ2Ug
+aXMgMC44Vi4NCj4gPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4gPiBJcyAxLjdHSFog
+aXMgTkQgb3IgT0Q/DQo+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiB7MS43LDEuNiwx
+LjUgR0h6fSBpcyBlbmFibGVkIHdoZW4gVkREMDlfQ0E1NSBpcyBhdCAwLjkgVg0KPiA+ID4gPiA+
+ID4gPiA+IGFuZCBmb3INCj4gPiA+ID4gPiA+ID4gPiAxLjEgR0h6IGl0IGlzIDAuOFYuDQo+ID4g
+PiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gPiBNYXliZSB3aGVuIHlvdSBkbyAvMiwgLzQsIC84
+IHVzaW5nIGRpdmlkZXJzLCB0aGUgdm9sdGFnZQ0KPiA+ID4gPiA+ID4gPiA+IG1heSBiZSBzdGls
+bCB0aGUgc2FtZT8/DQo+ID4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gSSB0aGluayB5b3Ug
+YXJlIHJpZ2h0IHdoZW4gQk9PVFBMTENBWzE6MF0gcGlucyBhcmUgc2V0IHRvDQo+ID4gPiA+ID4g
+PiA+IDEuN0dIeiB0aGUNCj4gPiA+ID4gPiA+ID4gVkREMDlfQ0E1NSBpcyBhdCAwLjkgViwgZnVy
+dGhlciBkaXZpZGluZyB0aGUgY2xvY2sgc2hvdWxkbnQNCj4gPiA+ID4gPiA+ID4gYWZmZWN0IHRo
+ZSB2b2x0YWdlIGxldmVscyBhdCB0aGUgUE1JQyBvdXRwdXQuDQo+ID4gPiA+ID4gPiA+DQo+ID4g
+PiA+ID4gPiA+IEdlZXJ0LCBwbGVhc2UgbGV0IG1lIGtub3cgaWYgbXkgdW5kZXJzdGFuZGluZyBp
+cyBpbmNvcnJlY3QuDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gVGhlIGFjdHVhbCBWREQwOV9D
+QTU1IHZvbHRhZ2UgaXMgY29udHJvbGxlZCBieSB0aGUgZXh0ZXJuYWwNCj4gPiA+ID4gPiA+IFBN
+SUMgKFJBQTIxNTMwMCkuICBJdCBpcyB0aGUgcmVzcG9uc2liaWxpdHkgb2YgdGhlIHN5c3RlbQ0K
+PiA+ID4gPiA+ID4gZGVzaWduZXIgdG8gbWFrZSBzdXJlIFZERDA5X0NBNTUgaXMgYXQgMC45ViB3
+aGVuDQo+ID4gPiA+ID4gPiBCT09UUExMQ0FbMTowXSBpcyBzdHJhcHBlZCBmb3IgT0QsIGFzIENQ
+VSBjb3JlIGNsb2NrIHJhdGVzDQo+ID4gPiA+IGhpZ2hlciB0aGFuIDEuMSBHSHogbmVlZCBhIGhp
+Z2hlciBjb3JlIHZvbHRhZ2UuDQo+ID4gPiA+ID4gPiBJIGRvbid0IHRoaW5rIGl0IGh1cnRzIHRv
+IHN1cHBseSB0aGUgaGlnaGVyIGNvcmUgdm9sdGFnZSB3aGlsZQ0KPiA+ID4gPiA+ID4gcnVubmlu
+ZyB0aGUgQ1BVIGNvcmUgYXQgbG93IGNvcmUgZnJlcXVlbmNpZXMsIGV4Y2VwdCBmb3IgZXh0cmEg
+cG93ZXIgY29uc3VtcHRpb24uDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gVG8gY29udHJvbCBW
+REQwOV9DQTU1IGR5bmFtaWNhbGx5LCB0aGUgQ1BVIGNvcmVzIHNob3VsZCBoYXZlDQo+ID4gPiA+
+ID4gPiBjcHUtc3VwcGx5IHByb3BlcnRpZXMgcG9pbnRpbmcgdG8gdGhlIHJlZ3VsYXRvciBjb250
+cm9sbGluZyBpdCAocmFhMjE1MzAwKS4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+IFRoaXMgbmVlZHMg
+YSBiaWcgd29yayhzZWU6IDQuNS4zLjEuMyBQRF9DQTU1IGFyZWEgdm9sdGFnZSBjaGFuZ2UpLg0K
+PiA+ID4gPiA+IENBLTU1IG5lZWRzIHRvIHNpZ25hbCBDTS0zMyBzbyB0aGF0IGl0IHN3aXRjaGVz
+IHRvIEFXTyBtb2RlKE9ubHkNCj4gPiA+ID4gPiBDTS0zMyBpcyBhY3RpdmUpIGFuZCBJbiBBV08g
+bW9kZSwgQ00zMyBpcyBpbiBjaGFyZ2Ugb2YgY2hhbmdpbmcNCj4gPiA+ID4gPiBDQTU1IHZvbHRh
+Z2UgYW5kIHRoZW4gc3dpdGNoZXMgdG8gQUxMLU9OIG1vZGUNCj4gPiA+ID4NCj4gPiA+ID4gVWdo
+LCB0aGlzIGlzIGluZGVlZCBtdWNoIG1vcmUgY29tcGxpY2F0ZWQgdGhhbiBvbiBvdGhlciBTb0Nz
+Lg0KPiA+ID4gPiBTbyBiYXNpY2FsbHkgeW91IGFyZSBzdHVjayB3aXRoIHRoZSBpbml0aWFsIHZv
+bHRhZ2Ugc2V0dGluZ3MuDQo+ID4gPg0KPiA+ID4gRllJLCBJIGdvdCBjb25maXJtYXRpb24gdGhh
+dCAxLjdHSHosMC45ViBpcyBOb3JtYWwgZHJpdmUgYW5kIEl0IGlzDQo+ID4gPiB0aGUgZGVmYXVs
+dCBmb3IgUlovVjJIIGFuZCB1cGNvbWluZyBSWi9HM0UgU29Dcy4NCj4gPg0KPiA+IE9LLCBzbyBu
+byAidHVyYm8tbW9kZSIgcHJvcGVydHkgaXMgbmVlZGVkLg0KPiANCj4gInR1cmJvLW1vZGUiIGlz
+IDEuOEdIeg0KPiANCj4gIjEuOEdIeiBjYW5ub3QgYmUgc3VwcG9ydGVkIGJ5IENBNTUgb25seSAo
+Q00zMyBpcyByZXF1aXJlZCkgc28gdXBzdHJlYW0gdGFyZ2V0IGlzIDEuN0dIei4iDQo+IA0KPiBT
+bywgd2l0aG91dCBDTS0zMywgdHVyYm8tbW9kZSBpcyBub3QgcG9zc2libGU/PyBXZSBhcmUgcmVj
+aGVja2luZyB0aGlzIGFuZCB3aWxsIHByb3ZpZGUgZmVlZGJhY2sgb25jZQ0KPiB3ZSBnZXQgaW5m
+byBmcm9tIEhXIHBlb3BsZS4NCg0KDQpHb3QgdXBkYXRlIGZyb20gSFcgdGVhbS4NCg0KRnJvbSBI
+VyBwb2ludCBvZiB2aWV3LCAxLjhHSHosIDAuOVYgaXMgb3ZlciBkcml2ZSBhbmQgMS4xR0h6LCAw
+LjhWIGlzIG5vcm1hbCBkcml2ZS4NCmJ1dCBmb3IgYWNoaWV2aW5nIDEuOEdIeiwgQ00zMyBpcyBy
+ZXF1aXJlZC4gU28gbm8gInR1cmJvLW1vZGUiIHByb3BlcnR5IGlzIG5lZWRlZC4NCg0KQnV0IHZp
+ZXdwb2ludCBmcm9tIExpbnV4LCAxLjdHSHosIDAuOVYgaXMgb3ZlciBkcml2ZSBhbmQgMS4xR0h6
+LCAwLjhWIGlzIG5vcm1hbCBkcml2ZQ0KYW5kIDEuN0dIeiBzaG91bGQgYmUgdGhlIHVwc3RyZWFt
+IHRhcmdldC4NCg0KQXMgeW91IHNhaWQsIGxvb2tzIGxpa2UgdGhlIGN1cnJlbnQgcGF0Y2ggaXMg
+Z29vZCBlbm91Z2guDQoNCkNoZWVycywNCkJpanUNCg==
 
