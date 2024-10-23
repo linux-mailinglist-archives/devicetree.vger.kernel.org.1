@@ -1,164 +1,140 @@
-Return-Path: <devicetree+bounces-114875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C6ED9AD44E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:54:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B90F89AD457
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:58:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2094287309
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:54:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7060A1F22754
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A01E1D0F77;
-	Wed, 23 Oct 2024 18:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC4E1D1756;
+	Wed, 23 Oct 2024 18:58:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNzG/EMy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FdKBkgrP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBE51CC170;
-	Wed, 23 Oct 2024 18:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42E1A1D14E4;
+	Wed, 23 Oct 2024 18:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729709640; cv=none; b=QzYtQJq+x2pQ+qrCaIxCHN9bkiMcvw4FLIRZt8IRzYgoHXQUV4Jk/rDF+j/KO7ulUbyhT50ID7C7f9rlXzV59A8qbNu4Qbz1PF1EQl9UJLym55lTNSdVayiHl/+YfZUzyVpXnzIeFHwgP01yuPNwgZAel4toyTJzbdSFOdpJLsg=
+	t=1729709933; cv=none; b=dByvHI3BDf9CnIqEGFfON9aKQdSCPfsssBTERP2hVPh3N1hjx2JgiTW7eKkOxW6IyJQxg2BtGtdZkkWTma4o0jCezdTZ8AFA+5mLBjWkKZkRUYeoMWY9YWQIglZAzhf2S2wFJe8ndv24hKl9CAw3G9sABIs9WJQXPNCtZIIm9xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729709640; c=relaxed/simple;
-	bh=5Pt3SczTg9tl+y/wXVlx0w43lG1EclvLYHV4haFhs1Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i2qZeJx1hYPONeptjclxFoMeqIPztvv7LJs3xGSZTOlIF6IHASaml7MEFnMktGPajD8wAgVHVgpDo/IQB+yJKu1sCNQJy+WxlIMPoroCE0lP2V2i3pzBrRC1dct0NUX9f9bCZYXacaVMJ7CS6VGt1vUB9cts9loX34JttHUVdkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNzG/EMy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFFF3C4CEC6;
-	Wed, 23 Oct 2024 18:53:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729709639;
-	bh=5Pt3SczTg9tl+y/wXVlx0w43lG1EclvLYHV4haFhs1Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SNzG/EMybBKcPcmF6JfUU7O4/pzCGNTc3FbY2AIPk/pV3i5r0q014C7hxyUIa7Swe
-	 83cLVQ0Qm/Tv5icgh/xnE2rzGVXkpsvBSE0fPRJPGGlJiGl1djU8uXU30T/SzwX0J2
-	 6A0ovwGz6FhgUiKLeHO0bT4wBfESzEOjUurXDFdtjLOac66fE6s+OvAHffCi9JxaX+
-	 7wPAyPlOi7fdRt0GQjzZbFfA4LhTBUdTv1QSUWP7hpxi50iE2uMClB+4lSxmPQopUp
-	 fIJkkTLJPSRN7s3oaMTBVdgdZ2+oHWdRcivGEi7L6QmHoB5ntutdiButfQ6XdtYZ1d
-	 gYPoS2hBUFyoQ==
-Date: Wed, 23 Oct 2024 19:53:53 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Inochi Amaoto <inochiama@outlook.com>, Yixun Lan <dlan@gentoo.org>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: snps-dw-apb-uart: Add Sophgo
- SG2044 uarts
-Message-ID: <20241023-backroom-pending-279f9d12e9d8@spud>
-References: <20241021072606.585878-1-inochiama@gmail.com>
- <20241021072606.585878-2-inochiama@gmail.com>
- <20241021-outlying-washday-8f171dedc703@spud>
- <r5ngs2j776jcy6sfirwzmtsoljotatfvgmlmv4sj4xksye2bff@xtn7adafbpfz>
- <20241021-rosy-drove-1ae3c8985405@spud>
- <2zawe64brm3sfuslh443352wfupgnhb4xw7jragkzxu6kgg6t7@b4qiya3jdij4>
- <20241022-washday-glass-3db9f6a2cd27@spud>
- <e32xi34m4lubrquluk7uu6nvqgarnxtmj57ricxg2gv45xpgcs@x6t7itvwng4h>
+	s=arc-20240116; t=1729709933; c=relaxed/simple;
+	bh=63W5Ky+pMOBBnhK2c1KQgIZjKxCECrOTMw1zvS/YZEE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=A7AvZamN3K1vN2wihvWWVw+hWEIGrCXS97BPpNQuT7DT8lvsduyhrde6tnRb8lq+rU9szEop/IPFZI7VVAVjZ5y697xj+zR1REK3/0gX9zVXirbIdH/YijM1GB28oDVN/LpGRYs+mE9gc6/Mc8atD2r99BbSJjtMERfCeQgSubo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FdKBkgrP; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20c805a0753so747305ad.0;
+        Wed, 23 Oct 2024 11:58:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729709931; x=1730314731; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bETUmi3XIXD8kJXknLOuOgQdcHp3kntpbqzcQWybJyo=;
+        b=FdKBkgrP46uniLiPbhDVS4k95RK/wyp7VNJ5FygKDvYTm1NpaSWy69HBxIrv2K8Ias
+         tXhkIM0r4/zT2jJEtDabiMfqQvxTvTBMcMQFWsbrpXEI4VPlW3klzcslPUreEp1co/mv
+         9HDzTTWFnL2snom825thNvNzXcsL0ifBg6w7LifnW+L/9cvSfrrkOdOfnxe3dHKL/DWH
+         eIlxx0zwsmwJEJ518KhTVo6ninaAB/RGLPqJ5cdRq244RlWyfn1a+wviWpEtIgsLllld
+         nUMLsH+znh4eDOzhpTHKDKX4purq/0ZkR18z+Fvg042tmiu2WO8bJdIKxI2UZuGglojh
+         aipQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729709931; x=1730314731;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bETUmi3XIXD8kJXknLOuOgQdcHp3kntpbqzcQWybJyo=;
+        b=GRF8ZgbmChW0UFJPF5eKgZ0OL5sc/z+8Rs2yINHuYXroClRnoidVwBXxUaWZfphnsa
+         kzjJdMkNfqGBP1+N9haHp61FJA60jazdsjNWmhTxfI0+kLPG21CxDF5qivV5Z87TZSuW
+         C4+/ZDv3TiHjvED+EtUKRurDDsiKCSaOkP/+ga4UJy/xNDUsvPG3o6LvlQvF8oJ/sSCw
+         MA4cANHPDNQmPMr/Sxez7/bmGbMRyHSMuvWhEYk7gHnZ2SO+t2GQZqbCNXwop62Ty6y0
+         C/4Bzn3QbEJiAoPMCtG1Orqw/aMqvYYhXNBFYfSzSKomv0maurOmEo8GCP77NpJ5g0QI
+         Gbpg==
+X-Forwarded-Encrypted: i=1; AJvYcCUsphNlnlWmrYuWfb9Kqv5urOfEn2zu9E2ETwsAG2PdVQw4hXR1LONhQOlYpJ06uuPLPmthiqOhiFhF@vger.kernel.org, AJvYcCV98nxs8ckwbf/sEgMuyXdj2RGcYjBJAH+S7XH5YYEEkQOYjuUKT44z6BFgLnfiDWhXYOASzexTxQ7JHdko@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDM9bC/Mxy3bFjIQHBi83bGWkRg7s1faBaRlVX4kgDtjG/BCsW
+	blT51uoHCC+8LTLzGGZNZ/i5MIdtt3IapoARrBMbPiyU/ap7lggl
+X-Google-Smtp-Source: AGHT+IEiMM+L5uFTC2VVfCZ7I44sSELbZMIx+Zoda6jHBhFMKFwgs8wwCZULrOSJN8mgnxIegVhiIQ==
+X-Received: by 2002:a17:902:d482:b0:20c:8df8:5066 with SMTP id d9443c01a7336-20fa9ea096cmr44157185ad.45.1729709931402;
+        Wed, 23 Oct 2024 11:58:51 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:248:317f:2ba9:e66c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0f6ee4sm60619955ad.295.2024.10.23.11.58.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 11:58:50 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: tglx@linutronix.de
+Cc: daniel.lezcano@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] dt-bindings: timer: fsl,imxgpt: Fix the fsl,imx7d-gpt fallback
+Date: Wed, 23 Oct 2024 15:58:40 -0300
+Message-Id: <20241023185841.1183706-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+Tk608JwS4IXNVJ/"
-Content-Disposition: inline
-In-Reply-To: <e32xi34m4lubrquluk7uu6nvqgarnxtmj57ricxg2gv45xpgcs@x6t7itvwng4h>
+Content-Transfer-Encoding: 8bit
 
+From: Fabio Estevam <festevam@denx.de>
 
---+Tk608JwS4IXNVJ/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+imx7s.dtsi correctly describes the GPT node as:
 
-On Wed, Oct 23, 2024 at 08:32:42AM +0800, Inochi Amaoto wrote:
-> On Tue, Oct 22, 2024 at 06:25:00PM +0100, Conor Dooley wrote:
-> > On Mon, Oct 21, 2024 at 08:23:30PM +0800, Inochi Amaoto wrote:
-> > > On Mon, Oct 21, 2024 at 01:21:58PM +0100, Conor Dooley wrote:
-> > > > On Mon, Oct 21, 2024 at 08:18:58PM +0800, Inochi Amaoto wrote:
-> > > > > On Mon, Oct 21, 2024 at 01:10:52PM +0100, Conor Dooley wrote:
-> > > > > > On Mon, Oct 21, 2024 at 03:26:05PM +0800, Inochi Amaoto wrote:
-> > > > > > > The UART of SG2044 is modified version of the standard Synops=
-ys
-> > > > > > > DesignWare UART. The UART on SG2044 relys on the internal div=
-isor
-> > > > > > > and can not set right clock rate for the common bitrates.
-> > > > > > >=20
-> > > > > > > Add compatibles string for the Sophgo SG2044 uarts.
-> > > > > > >=20
-> > > > > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > > > > > > ---
-> > > > > > >  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml        =
-  | 4 ++++
-> > > > > > >  1 file changed, 4 insertions(+)
-> > > > > > >=20
-> > > > > > > diff --git a/Documentation/devicetree/bindings/serial/snps-dw=
--apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.=
-yaml
-> > > > > > > index 4cdb0dcaccf3..6963f89a1848 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-ua=
-rt.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-ua=
-rt.yaml
-> > > > > > > @@ -58,6 +58,10 @@ properties:
-> > > > > > >                - brcm,bcm11351-dw-apb-uart
-> > > > > > >                - brcm,bcm21664-dw-apb-uart
-> > > > > > >            - const: snps,dw-apb-uart
-> > > > > > > +      - items:
-> > > > > > > +          - enum:
-> > > > > > > +              - sophgo,sg2044-uart
-> > > > > > > +          - const: snps,dw-apb-uart
-> > > > > >=20
-> > > > > > Why does each vendor have an items entry of its own? Seems like=
- needless
-> > > > > > clutter of the file IMO, except for the renesas bit.
-> > > > >=20
-> > > > > I just follow others when writing this binding. I think it may ne=
-ed
-> > > > > another patch to fix this problem, right?
-> > > >=20
-> > > > Yeah. But I'd hold off to see if someone gives a rationale for it b=
-eing
-> > > > done this way before sending that. I've not deleted this thread, and
-> > > > will send an ack if someone justifies why the binding is written li=
-ke
-> > > > this.
-> >=20
-> > Well, Rob doesn't think they should be separate so please add that
-> > additional patch in your next version.
-> >=20
-> > Thanks,
-> > Conor.
->=20
-> It is OK for me. I will add a fix patch in the next version. Can
-> I add you with suggested-by tag in this fix patch?
+compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
 
-If you want, but I don't really care for one.
+Document the fallback compatible to be "fsl,imx6dl-gpt" in the bindings.
 
---+Tk608JwS4IXNVJ/
-Content-Type: application/pgp-signature; name="signature.asc"
+This fixes the following dt-schema warnings:
 
------BEGIN PGP SIGNATURE-----
+timer@302f0000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['fsl,imx7d-gpt', 'fsl,imx6dl-gpt'] is too long
+	'fsl,imx1-gpt' was expected
+	'fsl,imx21-gpt' was expected
+	'fsl,imx27-gpt' was expected
+	'fsl,imx31-gpt' was expected
+	'fsl,imx7d-gpt' is not one of ['fsl,imx25-gpt', 'fsl,imx50-gpt', 'fsl,imx51-gpt', 'fsl,imx53-gpt', 'fsl,imx6q-gpt']
+	'fsl,imx6dl-gpt' was expected
+	'fsl,imx7d-gpt' is not one of ['fsl,imx6sl-gpt', 'fsl,imx6sx-gpt', 'fsl,imx8mp-gpt', 'fsl,imxrt1050-gpt', 'fsl,imxrt1170-gpt']
+	'fsl,imx6sx-gpt' was expected
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxlGQQAKCRB4tDGHoIJi
-0lWCAQDLqp4C3pRf90+AdSgA9vyQTtFUkYtMqLHF8L01+nyJ2QD/cvLql7LjVd04
-9Mv7I4joqV3H0Gvfo2rKjnJsSHJcfQw=
-=SV4x
------END PGP SIGNATURE-----
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---+Tk608JwS4IXNVJ/--
+diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
+index e2607377cbae..a2fcb1e8e74e 100644
+--- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
++++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
+@@ -31,6 +31,7 @@ properties:
+           - enum:
+               - fsl,imx6sl-gpt
+               - fsl,imx6sx-gpt
++              - fsl,imx7d-gpt
+               - fsl,imx8mp-gpt
+               - fsl,imxrt1050-gpt
+               - fsl,imxrt1170-gpt
+@@ -38,7 +39,6 @@ properties:
+       - items:
+           - enum:
+               - fsl,imx6ul-gpt
+-              - fsl,imx7d-gpt
+           - const: fsl,imx6sx-gpt
+ 
+   reg:
+-- 
+2.34.1
+
 
