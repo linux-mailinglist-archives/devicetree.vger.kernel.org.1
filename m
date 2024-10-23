@@ -1,192 +1,205 @@
-Return-Path: <devicetree+bounces-114960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 820729AD7E2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 00:40:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2289AD860
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 01:24:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E079284903
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:40:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B6F81F22921
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 23:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC2B1FEFDA;
-	Wed, 23 Oct 2024 22:38:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8287D1FEFD9;
+	Wed, 23 Oct 2024 23:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d2LxQ/ap"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="iob5VUbL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010046.outbound.protection.outlook.com [52.101.229.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD0C81FEFD3;
-	Wed, 23 Oct 2024 22:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729723133; cv=none; b=k2+jeEc+sbIk/BaoPq3QjhHSp3/PMIpQoHzSEiaCSe5C+gYxgbYVg5n7Fz2i8pX7nzTRzJ8T3qyaDEIRLD2TfDTa+7AI9O0OFb6pBgtHq73cnPP9trlgDxitrwtOrC/exaQ5mbzb3xvcyLgJSGuNSiQ1ddPZrQN8wMP+/FRti6w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729723133; c=relaxed/simple;
-	bh=ES5iYOA95Kt0KDp71z3fgi0EpYKOwnsO4BIWmBh/gpM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XpABzy7gmJFRXmpMw/UAdjT4HYQV69SaLMLp4JN2UjEerpAGbFFLkhG+qzjGHkl5KniiXollOuPtQ8+CEFTKcsWutThEukqVxb6i6fnr5dqUARB0Xt0dOKDtUtClzQAxfOTwzFX9LSLihFVIgaUvYQqB8Zfe/0llPBWtRHi4ehg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d2LxQ/ap; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-71e6d988ecfso240302b3a.0;
-        Wed, 23 Oct 2024 15:38:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729723131; x=1730327931; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rkwckHmFPJEkM3Wxs1jlPmTkTzgcJwcJLaHVmfmItpM=;
-        b=d2LxQ/apVyAlS1olU1fdMZKiDZjRrbk5T7qyCWqdCPk8ZprLdSID6Ig+ARiK1pINal
-         m/xfluNMNHvfQzV5+8kxznjutp2IXYSeyCpEh2lqIsorvgqA7wkJ/lIIHQ/z/e3QO+/P
-         i3vxrJa12QTr47FbDAYefW8ZwBqtD9UO8K53j2hFmqiCuvK+pQtUhvt+4vBFIHcNvbRu
-         UFpg9Wo1ZLL0sAdk/SP7elW8HnB0lGxy0RWVjNg/oPuvshPfpHZFgAEw9rPZ6YI7Wz/G
-         7KTBkxbzyFgBFh35f+J7wSY7NFzYizTCUvHXz8QA1ztUSNdZBpyi/rsZuQMPRnUIq9gx
-         2O1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729723131; x=1730327931;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rkwckHmFPJEkM3Wxs1jlPmTkTzgcJwcJLaHVmfmItpM=;
-        b=s+6htdohf4A8eNjHjAcTB43pkTwxKJoIcpiSOb6+zKEiPr9QT556c5S4lLo6MteWw3
-         6X+C+QRCb4OccNyvhtizNYgPee2BOH7YOm+QvXlXRjQqRraojOV3yyRNaYNI21xHJOXv
-         v0sIV0znef6v+NJX44t9kacnuTWJhpULi+QV45gryGWoq4PtCXU0VyMc4AqKw3Po4IYF
-         op5PWh+CgHLe2CF7w1m/xMgWTOv4Ynyno7yzWpRbXqwXw6YX/egOodK3DHnBLaPYYhty
-         uPQf+l9HSitzRdJfMmW8fwTegCsRxk+QB0Kpkm0ZJGWVT5WOuc5N6BmBoPdAP84oQp7Z
-         J2Ew==
-X-Forwarded-Encrypted: i=1; AJvYcCV4ERdi05OcpiUMtrSoJVgo32Kj6Zo9jW8pJlhwbMA97aOYgzvEVs9vQm1nJZc6VNjh87sbmySysCTy@vger.kernel.org, AJvYcCVs2M6ugftZk8PgPFxB1fCdJzDAFk246uRCu4zGNrnLEzY5D03tnjAFUPoAXYjtjbkuDvb7lC+vmDUxVV7Q@vger.kernel.org, AJvYcCW4DGi+ZHAPF9NKgLd7zliHhVdVL98Gn/b9QcolAs9TDTYiHdqfhYTQVzlrbejakyIY4+ZiDEKB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1xNN/uZ4SiIK3/tYDTxoWqKbReX67n0BUC3bGpWf2a65saQQV
-	N7JGG1Xf6EjH/sTk73tsRPIDc+6PMRq6c7MC66+ZanlZlkugvMez
-X-Google-Smtp-Source: AGHT+IGUv5GcBzM76Tis8BZFsna+Tt+yRb2ER6YRERF8hAd8oZIE6Ogk0CalUXCV034zvn8ODhWHxQ==
-X-Received: by 2002:a05:6a00:806:b0:71e:693c:107c with SMTP id d2e1a72fcca58-72030a8b242mr6049959b3a.11.1729723130943;
-        Wed, 23 Oct 2024 15:38:50 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec1312c8fsm7047579b3a.14.2024.10.23.15.38.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 15:38:50 -0700 (PDT)
-Date: Thu, 24 Oct 2024 06:38:29 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Inochi Amaoto <inochiama@outlook.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: Add support for Sophgo SG2044 dwmac
-Message-ID: <5cv7wcdddxa4ruggrk36cwaquo5srcrjqqwefqzcju2s3yhl73@ekpyw6zrpfug>
-References: <20241021103617.653386-1-inochiama@gmail.com>
- <20241021103617.653386-3-inochiama@gmail.com>
- <20241022-crisply-brute-45f98632ef78@spud>
- <yt2idyivivcxctosec3lwkjbmr4tmctbs4viefxsuqlsvihdeh@alya6g27625l>
- <20241023-paper-crease-befa8239f7f0@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AACE1E4A4;
+	Wed, 23 Oct 2024 23:24:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729725855; cv=fail; b=TMy+MV/GayaBjDyec9q4cqdUV3g6J8R8qZ1gq6Fc+sNGw1E2UBfnqEeMNd9bDGws8JsM7p/szO9n2QTAOy//1eEKsjUscShWtaFFwXjuoSn5KWV8mji4gjOnQ7HZlGEWehdFlcfVNasZSlFD34TVtubhs66fw7zkRbR64YVRjcY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729725855; c=relaxed/simple;
+	bh=SfONGMiHtGfkuR9xoWKI/yM+0slCHGD0PC0wEKOMFIQ=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=UpeEtKNpcyEkLsOhEfbapQQLQus2MYX86qxoxRMdWof3B+TPVjTxhniSlp2k6XfmJdF/rxKuSRVKGApehKV9ihA+BJ+wAW7vQQKVaWUE6Jg/QRG+v0+kKeyayPZP15HQWk/UMugXBH4KPpZpaRzw2UR2l6pSGCaeAbuXXlixbxA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=iob5VUbL; arc=fail smtp.client-ip=52.101.229.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QOV5JzdkKomkuq0kGKLg473T0WS7efiH0uprWhaGwu2SC2oNSgkktswajRkVquMmeboOs+k8vccAU9vuLWWJb7kef5r/7OlfGU6zndGKrxUOusVQtj7Qn8hIOdnc5km1lH6OVZ28Yi2avMvYV8x10GcEwlSk4lWgPa7nvFg1gMliex6BJ/iEgmiQsZDW/SoEEignfgBwVsHGuqjvDAsCC7Rk8jpHksxXt25IOJNZZ1hMecYU9Mh7dSW/7lV8rDKxcZnHg4FDsZzFPDcOn4qlDy+6VL7h8b/WXlB8XFpOWaYFrr/H7AuCWnrKM/Vmlggx2dlDhr3SSDl06FR3kTKovg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eQbtT0EoLi2XJldMq9hJV8PBzOo+xjgIFlwOVqGopok=;
+ b=uynHEIcAI8rZ4/QBQFG1rNOyYgsZ/u0JvSYj9ZY5X6O9k3k86mAiTIN0gKfitXLdZHb+/iNc4Dz0f9FwEcD59vqlmnsUMFjo6Txg++Zo3k6mH4hS8Re2qbhn/inPYXC5dc8z+lWB2HogzDby/Zb80YqPMJ49KsR1YHv0S+DeS3lv2VuLrxWBwgWtADQcrzT5fT+09DlPLRM3A3zOVNHEPGiAcE2Oj/ZOmlZ4EqbLFLlv5GCzn+krAr95jHTInCBrMhPedz62v0bU+jRmFHlPBJc+SZJMxMT1GJSYyfrOqRK8+P2Ph9CZUbI45ksmm/o0m5p7iq5042h9nkEQi/UzpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eQbtT0EoLi2XJldMq9hJV8PBzOo+xjgIFlwOVqGopok=;
+ b=iob5VUbLI21n+q+Mczy/dWKVqaxMbwxqeqBs99sQ3SS0aPFP6dSPLX/g+zt+dwEk53Apb2f1gisoXLJuPBFa+BtO8vGtjasyPhb45Vb5b+kipotP62z62CUEDoRUJZD7lRhz/cmsmFvEOQkh+9KjEriAKOsKTbcW2QfMM3TJmd8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OS3PR01MB6917.jpnprd01.prod.outlook.com
+ (2603:1096:604:12c::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.17; Wed, 23 Oct
+ 2024 23:24:06 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8093.014; Wed, 23 Oct 2024
+ 23:24:01 +0000
+Message-ID: <87cyjqcsjg.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH v7 1/9] of: property: add of_graph_get_next_port()
+In-Reply-To: <Zxin_DeoTPjZ0enu@valkosipuli.retiisi.eu>
+References: <87wmiirqwy.wl-kuninori.morimoto.gx@renesas.com>
+	<87v7y2rqwf.wl-kuninori.morimoto.gx@renesas.com>
+	<ZxYiD5CCzcrwbD1o@valkosipuli.retiisi.eu>
+	<87y12fwhwy.wl-kuninori.morimoto.gx@renesas.com>
+	<Zxin_DeoTPjZ0enu@valkosipuli.retiisi.eu>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Wed, 23 Oct 2024 23:24:00 +0000
+X-ClientProxiedBy: TYCP286CA0307.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:38b::15) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241023-paper-crease-befa8239f7f0@spud>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS3PR01MB6917:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42f2e4c7-e2db-47d6-585a-08dcf3b9c6ba
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|376014|52116014|7416014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?NfVk69mMPgvrHzDe6f6AwEBqS771D8dzPdKKRP8c1IHLX7AZTdesWf7EQ/Gs?=
+ =?us-ascii?Q?X4J2tC3jeAU9cHPoFBMQuVUkEThRaifBed7SZSHPr27Rb3i9llgKfB2cfqzf?=
+ =?us-ascii?Q?cWhfqtoM3XIkcrHwltJf9z8qpejHuRghUqeavpHbujmd0VAmZZAFQHg0udYA?=
+ =?us-ascii?Q?XsFyN1mvTNmyLZDB7+9mwgc9sxsuPsolNOIO46FaxBo9HkB2fAO58J00fUcq?=
+ =?us-ascii?Q?JOmpzd844IlYOq+2nQs57Adq4Q9stlouey31p/Frd7t0QOyVre+a625sL9TW?=
+ =?us-ascii?Q?2nmYGISZ1wpTHb7LfEee9h90DKH69u958lJrgFaKqcY+PhUC4rjUoXd8ncAp?=
+ =?us-ascii?Q?/zmZbXFufDiLCCYHDGsVxDdYKBtW6sPsj/JhS2XAqm2mUQZA+EDexiut2o8O?=
+ =?us-ascii?Q?23qU+CJtdMb789UuVwRAM/3B3WIllsFJR/SYY8wzCMMcWJaksf9S0XusAGCq?=
+ =?us-ascii?Q?EP+frxbnDbpkNAu2ppWtZB2LxETttGWuu17r3bgTA2Y5W8bKy7v26R86FpZr?=
+ =?us-ascii?Q?QfbIcYFJeGrWkI+4AnethD39Sqi3+ZZevIomEr+CqFRqvFRx+G8Uc9LhAa9i?=
+ =?us-ascii?Q?yewS0LtJliFDlQGIoIx+rDHTsm8/MmjbnoqNdP/EGdtL8oruv8SkBkluHQ2I?=
+ =?us-ascii?Q?KEr1wwTyDIlbL9tbVLlEf3ObHZnK8WWgC00F/jBz3a86pD2AE9II3oHTAwuB?=
+ =?us-ascii?Q?teWfPJCuHkzIu+KDeAWbgrS6BBOyklnasnBMTgEXsa8ZhDO1iGeR2wP6sqo5?=
+ =?us-ascii?Q?a4tAY7SQ75aaOWRSBgPNxUgMzuyZ0YVpHt35m2BgrgjPX3OjasTM5LsXr0HP?=
+ =?us-ascii?Q?Dbhf7Z0Gp/EBxe+IiGo3FNeiViT5U651ClHRsN2DGxc9WAL0sK7r/mqSNUpa?=
+ =?us-ascii?Q?ywN7ICHZh8RxdCQWxHquSg2wq5PMrrvq+6YVqEd7MfNGfBeANcI6q1mlIKww?=
+ =?us-ascii?Q?rnpTHSnZEz3OlmeFMv1Fslnucfn4JhbyEc3DRQyIKZ9MiWJuIZmXPOrYG/Wq?=
+ =?us-ascii?Q?xMAzRdUDcUyiVhqpcoWnKxOlRVk9KzCZ0Qc97siqNTtLkgcTuGqwt5UMYnKU?=
+ =?us-ascii?Q?44hwKh61KqwCv4+m7CY3lCWzyRM8lR0SlELF4FbtparXaKMVR6pdP5rrIM69?=
+ =?us-ascii?Q?nmttz1mYUVskIqTaOnJHHD6KXyJ7i3EMfEnJmE4BMWUELcz4Ct+Xws3XwZzp?=
+ =?us-ascii?Q?BYANIFt1eNPrCDlra9oJUVioZ9Rs5LtZftqPsq3JIjLB87UOjemycvjBDgFK?=
+ =?us-ascii?Q?/sbFgX6kSBepBOyn76DIHkBsRtnFOf0d0FxrHQMLZQAOddSkaOegOxjrjPAK?=
+ =?us-ascii?Q?as3aoyXL3GcXJKQgOCXbv5f9OvS7yWTgC4KLblwvaUE5RDJc6OhXLRLQRn56?=
+ =?us-ascii?Q?AoCX+PQ=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?wafsU+Bpr/nNBegEDMbz+h2N8EqBl0RO2Iyn3E/SP4YfLzs1s23Bn5K4uXJ+?=
+ =?us-ascii?Q?HmwzK8W2+xAJ0kigGI8XhZRA2aObf8Aa+hbv9CG1/QDnzf53+ddBE1RHMvo2?=
+ =?us-ascii?Q?pvM3RbeyccyM3MUF1Zroh99FLol5uVGFHuDA5DoLCb5QkPbsNrKSU85r1n7P?=
+ =?us-ascii?Q?/s4GWbSHKAlc7ohk64hE3KTLpnGZ7Grip0i2l0YrcJG4H/DxBQRaahElA3t3?=
+ =?us-ascii?Q?lL04v3IMDVniBw6VIJGdE9avoppjnyMyGQgJzCU98pKFluSxlpspe1/Ux4L8?=
+ =?us-ascii?Q?kiyZrKaT6R1avLHRDzGMdOVLQw44Uwb3F5EC9qk2IbjxYZq9gp11h6ElWbG9?=
+ =?us-ascii?Q?ANA93WXvf7VT0yT5SSbfhLur4jA9/x1Jq+r9+hZ1A8roNHrZevT+pvNu+eUE?=
+ =?us-ascii?Q?swWHOd2YVhtO8sAOPXXFU9bOMPU+danwdiRwq5Vpd4X7X1Nd1OaFfDFYyeXF?=
+ =?us-ascii?Q?LDhuv1ZbEwkDopv0ApnZGYJ8CoFaXY/vnqu8zwDlnQiWXLXSvOr+FxZBmJB9?=
+ =?us-ascii?Q?vGRZhV/TN2RD3CnR5qDSCpzKdSZtpiHlRknAWiQ4/8JH0Bx+rIvr+vTg20qN?=
+ =?us-ascii?Q?lOrrTSUY3YxKoU7gqouAO+SU3d+hzMAi3U1Bq6b3GsV8KdtKGFPqzRyjhfF4?=
+ =?us-ascii?Q?ePqllBUQYSqiXgCcgFiIZTUNH8eP25OjDlKXC8aodCnXQopCOXPE884fU6C1?=
+ =?us-ascii?Q?Phyt0J3a/BOn3yPhtAbjLIl9+xLOaZDGv5lD+WUkUNlvFhzrthC43oWt1dTu?=
+ =?us-ascii?Q?Tpuk3OmfIzdGjQPuWeXe0Sahl117we+U01U43WfAqsxaOGk0yQGlffTRq0xJ?=
+ =?us-ascii?Q?mCYUKiNq3nhpCll1ccTHb7NXFMIOKj2WkN5Hfsz7wZoPX479TbikPP91hVX4?=
+ =?us-ascii?Q?R+PxudABz9tu8LUlOtd27Mgbe8bFZBvgvIA1tRe/SvUk0JOF1u36kfHzRwhn?=
+ =?us-ascii?Q?604h7HcDAIEQbKYrks+tnudmJCa9snfe+v4LnF3e7ImkZ4Ecs6+2jHVWtNYW?=
+ =?us-ascii?Q?2BmgvtuXu3i3gSQ4wGVlcVW7DGd6OvopnqyJAKKwXdPvPvfpgmyIbYpwLZtP?=
+ =?us-ascii?Q?vHfinWG/Ueu5SYLLHEjRZFJT07bU1zZ+KcnOESbFvey+dsg0uheY90st4ZQL?=
+ =?us-ascii?Q?FT2TvIo1WY+3RTDoDnol9+u9LLtttAwHvRQy9sFy+rVqdPZciG8RGbmTWDkz?=
+ =?us-ascii?Q?UCX1n0VZv2ys3tKhkU3xtr9RUv++X7t7Ew2iim1PMMGNyQgSs1TTgDjXxgzk?=
+ =?us-ascii?Q?2/oWaHETlX5Pgh1WPPNj5uFjGUQCIq44PLVlSaqT8J+s5ONEYbfHc8z/qB0d?=
+ =?us-ascii?Q?7wKaOSCVPIF7UAkemLRg3d5fgeRjUYq94wLQeTEK1kX88Tmdm2U5XrrJkUW0?=
+ =?us-ascii?Q?x3gCnEqv5xYb4J7pF17lEWPUuaAAiPcoexckSTJWxwJ7AT89AlhKSMtKPrIE?=
+ =?us-ascii?Q?AeyIiQJ+x4vbiQVJjEoVC60mVY+Le9j/8sct4Jx7y153Qx8lfPE2jZnXKGwi?=
+ =?us-ascii?Q?TfnAbPf54eeeEe7PFs+BGWDkaDPeV4TYp+7XJ0YbrY2xca81UlWyhqX8GkKx?=
+ =?us-ascii?Q?FIShKmwFQlFhUChKaE1/1VXZFCYn4g8ylpcKkpeJwlX3u4meHhGxOUcanAZa?=
+ =?us-ascii?Q?2j8vV/jPqSvVxiGXGNmKXzc=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42f2e4c7-e2db-47d6-585a-08dcf3b9c6ba
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 23:24:00.9845
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gmaIwznAItV4Ygq4aiOZ7Og5r2qa+YcevP4FN3aB219BOBRQnZmNJaux1AuqD/uwe6Ll3VA0iXfI7UF044Xkku+C719p4ULRN47I5V8Fby5Rvbx+Ch6tPkRC3q8wGef8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6917
 
-On Wed, Oct 23, 2024 at 09:49:34PM +0100, Conor Dooley wrote:
-> On Wed, Oct 23, 2024 at 08:31:24AM +0800, Inochi Amaoto wrote:
-> > On Tue, Oct 22, 2024 at 06:28:06PM +0100, Conor Dooley wrote:
-> > > On Mon, Oct 21, 2024 at 06:36:15PM +0800, Inochi Amaoto wrote:
-> > > > The GMAC IP on SG2044 is almost a standard Synopsys DesignWare MAC
-> > > > with some extra clock.
-> > > > 
-> > > > Add necessary compatible string for this device.
-> > > > 
-> > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > > > ---
-> > > >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
-> > > >  .../bindings/net/sophgo,sg2044-dwmac.yaml     | 145 ++++++++++++++++++
-> > > >  2 files changed, 146 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > > index 3c4007cb65f8..69f6bb36970b 100644
-> > > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > > @@ -99,6 +99,7 @@ properties:
-> > > >          - snps,dwmac-5.30a
-> > > >          - snps,dwxgmac
-> > > >          - snps,dwxgmac-2.10
-> > > > +        - sophgo,sg2044-dwmac
-> > > >          - starfive,jh7100-dwmac
-> > > >          - starfive,jh7110-dwmac
-> > > >  
-> > > > diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..93c41550b0b6
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
-> > > > @@ -0,0 +1,145 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/net/sophgo,sg2044-dwmac.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: StarFive JH7110 DWMAC glue layer
-> > > > +
-> > > > +maintainers:
-> > > > +  - Inochi Amaoto <inochiama@gmail.com>
-> > > > +
-> > > > +select:
-> > > > +  properties:
-> > > > +    compatible:
-> > > > +      contains:
-> > > > +        enum:
-> > > > +          - sophgo,sg2044-dwmac
-> > > > +  required:
-> > > > +    - compatible
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    items:
-> > > > +      - const: sophgo,sg2044-dwmac
-> > > > +      - const: snps,dwmac-5.30a
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    items:
-> > > > +      - description: GMAC main clock
-> > > > +      - description: PTP clock
-> > > > +      - description: TX clock
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: stmmaceth
-> > > > +      - const: ptp_ref
-> > > > +      - const: tx
-> > > > +
-> > > > +  sophgo,syscon:
+
+Hi Sakari
+
+> > > > + * Parent device node can be used as @parent whether device node has ports node or not.
 > > > 
-> > > How many dwmac instances does the sg2044 have?
-> > > 
+> > > This line should be wrapped, no reason to have it longer than 80 chars.
 > > 
-> > Only one, there is another 100G dwxgmac instance, but it does not
-> > use this syscon.
+> > We can use 100 char now on upstream ?
+> > 
+> > 	commit bdc48fa11e46f867ea4d75fa59ee87a7f48be144
+> > 	("checkpatch/coding-style: deprecate 80-column warning")
 > 
-> That dwxgmac is a different device, with a different compatible etc?
+> It's the checkpatch.pl warning that's gone, not the preference to have
+> lines shorter than that. This is reflected in
+> Documentation/process/coding-style.rst as well as the commit message of the
+> patch removing the warning.
 
-Yes, it needs a different compatiable, and maybe a new binding is needed
-since the 100G and 1G IP are different.
+OK, I will update it and post v8 patch
+Thank you for your help !!
 
-Regards,
-Inochi
+Best regards
+---
+Kuninori Morimoto
 
