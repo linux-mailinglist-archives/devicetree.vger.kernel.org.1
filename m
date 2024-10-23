@@ -1,193 +1,237 @@
-Return-Path: <devicetree+bounces-114539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A85CA9ABEAF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:25:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8AA9ABED0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:33:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DBCE284545
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:25:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93E491F23576
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C4714A629;
-	Wed, 23 Oct 2024 06:24:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B733D1487F4;
+	Wed, 23 Oct 2024 06:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MJWEX4N9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B/1lPFaU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D48014A605;
-	Wed, 23 Oct 2024 06:24:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8462013D53F;
+	Wed, 23 Oct 2024 06:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729664689; cv=none; b=ey3pLiLyrqpsdCWgu6QHUx2jkbu5nhGJzYgQi0wyjPYoyPL18zzvih18lJpr8BvfR1N4plwRLPmCJ5YL4kLJ10p0m4CZeOtLHra0BUOwqIaP8MxoP6SEn/amZw7Iv4VmNikUWWP9tUqvRUer0SWmyJ1GGW5DJbTdnAmPwMnfcco=
+	t=1729665193; cv=none; b=UxGbCmfSqP/SKc/sEWsBUMGfocJLzBtXDNoSyuHTlxR91uyRtGnlCR0qG5y0QaaQ5wiCrx1hVZqK02y8R4ciOEfSxq9DKih0WnPvBrmlR9eKRZrfj7yGUmNCBjPAXacfNLZlv6fdwBXE5n76p5DbFFYLkytp0rqlLPtpUvdczmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729664689; c=relaxed/simple;
-	bh=APOzSU+KlMGLUuYjnSvUiO03YykwfjLbCynGKCVGp+4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rQW74qpezUvOJIzOvgiBKJ4sQnQyAoe8t6dCXc8Wc0ZmdzxZsCrjv5QZGbZxDlnxZ2Xhjve8Tp3R/zX5XWXb1mzDTqPkbKOMsM/7iGJQNNblWfIt61Tk1BfH4Rxj2TU3SWiMpgSC1zSxzhRr16Fa3jLHRUhYbq83DAB97HC0Qhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MJWEX4N9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49MLa1a7032122;
-	Wed, 23 Oct 2024 06:24:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jcQW5RcyqeDeHXJvfyXe0YmvyZ+DgVH1hq0fW/JPfT4=; b=MJWEX4N9iTBtxd16
-	OV7HLSEaT8PxtSQ7LHZaSOBgVsD9PkSVmuvQGGKKO76KDur47Zqrqy8NP49DbXyR
-	unTKnrzBz9ko97g3gljZ7frbHONebKYejvFbsNupJYJgXyE5YyuxnbYWmAx+jCd1
-	te1prxjeP+yUnGKvenhOXhs+o0sMwrW/hYssLKWT/T2197Tu/swnmMV/+3FE8rpM
-	lwPsu74epGzqlz8aZvXpCHtV/+Z9MZ2fJKo2gROZDk0GLuQNvLVeQyJwT+VxhPYz
-	V1TIXpp0D3jl5kpD5w6aN63rGvDlqKKPPgvqeYRK5kCWga/pLcg4bZkbtXdS+zJW
-	tzW5tQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3vs3xr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 06:24:35 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49N6OXcG002057
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 06:24:33 GMT
-Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 22 Oct 2024 23:24:26 -0700
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Bard Liao
-	<yung-chuan.liao@linux.intel.com>,
-        Jaroslav Kysela <perex@perex.cz>, "Takashi
- Iwai" <tiwai@suse.com>
-CC: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-        Sanyog Kale
-	<sanyog.r.kale@intel.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <kernel@quicinc.com>,
-        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Subject: [RESEND v2 4/4] ASoC: qcom: sdw: Add get and set channel maps support from codec to cpu dais
-Date: Wed, 23 Oct 2024 11:53:31 +0530
-Message-ID: <20241023062331.3872883-5-quic_mohs@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241023062331.3872883-1-quic_mohs@quicinc.com>
-References: <20241023062331.3872883-1-quic_mohs@quicinc.com>
+	s=arc-20240116; t=1729665193; c=relaxed/simple;
+	bh=ZYUx7rnK41TpTiB5KIOCiGNaxeb9IcDba9ScKn7b29A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B+CU+A0PU5owg8SwxRiELPoci92fUjcoeOK7rUlCpCan1zv/KTr2UhA8YRxNcrEKcHZOtkzX54QS2ggLQxBNTH1BPA3kKXcWm067dueU8tptS4paEVGzEw9NyG53IlzQxoQCRsxU72bdm1+QaFSFBR/kmr/iUUVmm6VhR79mQrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B/1lPFaU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21DA0C4CEC6;
+	Wed, 23 Oct 2024 06:33:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729665193;
+	bh=ZYUx7rnK41TpTiB5KIOCiGNaxeb9IcDba9ScKn7b29A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B/1lPFaUb889m8GvOY+rWzcHGu7nSnW03TO90VNmnkjVahIgHxBGlTTN4vV2lJLJS
+	 2K9iuXgFWggZGNjCXz1xYGukZCOQ2Oyb1rcevAMFdH1MU/BytuU1SwsROyXNPbMWX3
+	 gsMoc7JbQqePChCBw6WKU/+a6GJBwTIW7lmbjZGy7vTjTtSkTCiFH5PIi5uPEfMYpH
+	 g5cjQSKPmLDoIfnL12ZuhGvLn1fmqV6CO7kC+EMF/VAYjHuTeaFlVlIVElrkbTsM2C
+	 IN1bxkF4bsx8JwPhaRmtcGUkJykBLYl1CaLTnIDDEXT9qdAwFwA1bVd6+ECeIvLEVk
+	 SQxKUdml9Gwew==
+Date: Wed, 23 Oct 2024 08:33:04 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 14/16] rust: of: add `of::DeviceId` abstraction
+Message-ID: <ZxiYoNUwAEX8Adh5@pollux>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-15-dakr@kernel.org>
+ <20241022230351.GA1848992-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8LN5gND3JbeD5GkAX2orujlRywK_ZtDE
-X-Proofpoint-ORIG-GUID: 8LN5gND3JbeD5GkAX2orujlRywK_ZtDE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- malwarescore=0 spamscore=0 clxscore=1015 lowpriorityscore=0
- mlxlogscore=999 priorityscore=1501 mlxscore=0 suspectscore=0 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410230037
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241022230351.GA1848992-robh@kernel.org>
 
-Add get and set channel maps support from codec to cpu dais.
+On Tue, Oct 22, 2024 at 06:03:51PM -0500, Rob Herring wrote:
+> On Tue, Oct 22, 2024 at 11:31:51PM +0200, Danilo Krummrich wrote:
+> > `of::DeviceId` is an abstraction around `struct of_device_id`.
+> > 
+> > This is used by subsequent patches, in particular the platform bus
+> > abstractions, to create OF device ID tables.
+> > 
+> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> > ---
+> >  MAINTAINERS                     |  1 +
+> >  rust/bindings/bindings_helper.h |  1 +
+> >  rust/kernel/lib.rs              |  1 +
+> >  rust/kernel/of.rs               | 63 +++++++++++++++++++++++++++++++++
+> >  4 files changed, 66 insertions(+)
+> >  create mode 100644 rust/kernel/of.rs
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index d9c512a3e72b..87eb9a7869eb 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -17340,6 +17340,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+> >  F:	Documentation/ABI/testing/sysfs-firmware-ofw
+> >  F:	drivers/of/
+> >  F:	include/linux/of*.h
+> > +F:	rust/kernel/of.rs
+> >  F:	scripts/dtc/
+> >  F:	tools/testing/selftests/dt/
+> >  K:	of_overlay_notifier_
+> > diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
+> > index cd4edd6496ae..312f03cbdce9 100644
+> > --- a/rust/bindings/bindings_helper.h
+> > +++ b/rust/bindings/bindings_helper.h
+> > @@ -15,6 +15,7 @@
+> >  #include <linux/firmware.h>
+> >  #include <linux/jiffies.h>
+> >  #include <linux/mdio.h>
+> > +#include <linux/of_device.h>
+> 
+> Technically, you don't need this for *this* patch. You need 
+> mod_devicetable.h for of_device_id. Best to not rely on implicit 
+> includes. I've tried removing it and it still built, so I guess there is 
+> another implicit include somewhere...
 
-Implemented logic to get the channel map in case of only sdw stream and
-set channel map only for specific cpu dais.
+True, however mod_devicetable.h is already needed for a previous patch "rust:
+pci: add basic PCI device / driver abstractions" already. So, I'll add it there
+and remove the of_device.h include here.
 
-Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
----
- drivers/soundwire/qcom.c |  5 ++---
- sound/soc/qcom/sdw.c     | 34 +++++++++++++++++++++++++++++++---
- 2 files changed, 33 insertions(+), 6 deletions(-)
+> 
+> >  #include <linux/pci.h>
+> >  #include <linux/phy.h>
+> >  #include <linux/refcount.h>
+> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> > index 3ec690eb6d43..5946f59f1688 100644
+> > --- a/rust/kernel/lib.rs
+> > +++ b/rust/kernel/lib.rs
+> > @@ -51,6 +51,7 @@
+> >  pub mod list;
+> >  #[cfg(CONFIG_NET)]
+> >  pub mod net;
+> > +pub mod of;
+> >  pub mod page;
+> >  pub mod prelude;
+> >  pub mod print;
+> > diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
+> > new file mode 100644
+> > index 000000000000..a37629997974
+> > --- /dev/null
+> > +++ b/rust/kernel/of.rs
+> > @@ -0,0 +1,63 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +//! Open Firmware abstractions.
+> 
+> s/Open Firmware/Devicetree/
+> 
+> Or keep both that prior versions of this code had. Most of DT/OF today 
+> is not OpenFirmware.
+> 
+> > +//!
+> > +//! C header: [`include/linux/of_*.h`](srctree/include/linux/of_*.h)
+> 
+> I haven't quite figured out how this gets used. I guess just a link in 
+> documentation? I somewhat doubt this file is going to handle all DT
+> abstractions. That might become quite long. Most of of_address.h and 
+> of_irq.h I actively don't want to see Rust bindings for because they 
+> are mainly used by higher level interfaces (e.g. platform dev 
+> resources). There's a slew of "don't add new users" APIs which I need to 
+> document. Also, the main header is of.h which wasn't included here.
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 007183c6c047..6c3cff1194aa 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -1276,11 +1276,10 @@ static void *qcom_swrm_get_sdw_stream(struct snd_soc_dai *dai, int direction)
- }
- 
- static int qcom_swrm_set_channel_map(struct snd_soc_dai *dai,
--				     unsigned int tx_num, unsigned int *tx_slot,
--				     unsigned int rx_num, unsigned int *rx_slot)
-+				     unsigned int tx_num, const unsigned int *tx_slot,
-+				     unsigned int rx_num, const unsigned int *rx_slot)
- {
- 	struct qcom_swrm_ctrl *ctrl = dev_get_drvdata(dai->dev);
--	struct sdw_stream_runtime *sruntime = ctrl->sruntime[dai->id];
- 	int i;
- 
- 	if (tx_slot) {
-diff --git a/sound/soc/qcom/sdw.c b/sound/soc/qcom/sdw.c
-index f2eda2ff46c0..d4d8ed46e6ff 100644
---- a/sound/soc/qcom/sdw.c
-+++ b/sound/soc/qcom/sdw.c
-@@ -25,7 +25,9 @@ int qcom_snd_sdw_startup(struct snd_pcm_substream *substream)
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 	struct sdw_stream_runtime *sruntime;
- 	struct snd_soc_dai *codec_dai;
--	int ret, i;
-+	int ret, i, j;
-+	u32 rx_ch[SDW_MAX_PORTS], tx_ch[SDW_MAX_PORTS];
-+	u32 rx_ch_cnt = 0, tx_ch_cnt = 0;
- 
- 	sruntime = sdw_alloc_stream(cpu_dai->name);
- 	if (!sruntime)
-@@ -35,9 +37,35 @@ int qcom_snd_sdw_startup(struct snd_pcm_substream *substream)
- 		ret = snd_soc_dai_set_stream(codec_dai, sruntime,
- 					     substream->stream);
- 		if (ret < 0 && ret != -ENOTSUPP) {
--			dev_err(rtd->dev, "Failed to set sdw stream on %s\n",
--				codec_dai->name);
-+			dev_err(rtd->dev, "Failed to set sdw stream on %s\n", codec_dai->name);
- 			goto err_set_stream;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+
-+		ret = snd_soc_dai_get_channel_map(codec_dai, &tx_ch_cnt, tx_ch,
-+						  &rx_ch_cnt, rx_ch);
-+		if (ret != 0 && ret != -ENOTSUPP) {
-+			dev_err(rtd->dev, "Failed to get codec chan map %s\n", codec_dai->name);
-+			goto err_set_stream;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+	}
-+
-+	switch (cpu_dai->id) {
-+	case RX_CODEC_DMA_RX_0:
-+	case TX_CODEC_DMA_TX_3:
-+		if (tx_ch_cnt || rx_ch_cnt) {
-+			for_each_rtd_codec_dais(rtd, j, codec_dai) {
-+				ret = snd_soc_dai_set_channel_map(codec_dai,
-+								  tx_ch_cnt, tx_ch,
-+								  rx_ch_cnt, rx_ch);
-+				if (ret != 0 && ret != -ENOTSUPP)
-+					goto err_set_stream;
-+			}
- 		}
- 	}
- 
--- 
-2.25.1
+I think for now it's indeed meaningless and we should just remove it.
 
+If subsequent patches start adding abstractions for things like properties,
+device nodes, etc. they can add it back in.
+
+> 
+> As of now, only the mod_devicetable.h header is used by this file, so I 
+> think you should just put it until that changes. Maybe there would be 
+> some savings if all of mod_devicetable.h was handled by 1 rust file?
+
+AFAIK, in C we have all those device ID structs in mod_devicetable.h, such that
+in can easily be included in scripts/mod/file2alias.c. But I think implementing
+all Rust abstractions for those in a single file would be a bit odd. I'd rather
+put them together with the corresponding bus abstractions. OF and ACPI may be a
+bit of an exception.
+
+> 
+> > +
+> > +use crate::{bindings, device_id::RawDeviceId, prelude::*};
+> > +
+> > +/// An open firmware device id.
+> > +#[derive(Clone, Copy)]
+> > +pub struct DeviceId(bindings::of_device_id);
+> > +
+> > +// SAFETY:
+> > +// * `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_id` and does not add
+> > +//   additional invariants, so it's safe to transmute to `RawType`.
+> > +// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
+> > +unsafe impl RawDeviceId for DeviceId {
+> > +    type RawType = bindings::of_device_id;
+> > +
+> > +    const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::of_device_id, data);
+> > +
+> > +    fn index(&self) -> usize {
+> > +        self.0.data as _
+> > +    }
+> > +}
+> > +
+> > +impl DeviceId {
+> > +    /// Create a new device id from an OF 'compatible' string.
+> > +    pub const fn new(compatible: &'static CStr) -> Self {
+> > +        let src = compatible.as_bytes_with_nul();
+> > +        // Replace with `bindings::of_device_id::default()` once stabilized for `const`.
+> > +        // SAFETY: FFI type is valid to be zero-initialized.
+> > +        let mut of: bindings::of_device_id = unsafe { core::mem::zeroed() };
+> > +
+> > +        let mut i = 0;
+> > +        while i < src.len() {
+> > +            of.compatible[i] = src[i] as _;
+> > +            i += 1;
+> > +        }
+> 
+> AFAICT, this loop will go away when C char maps to u8. Perhaps a note 
+> to that extent or commented code implementing that.
+
+That's true, I'll add a note.
+
+> 
+> > +
+> > +        Self(of)
+> > +    }
+> > +
+> > +    /// The compatible string of the embedded `struct bindings::of_device_id` as `&CStr`.
+> > +    pub fn compatible<'a>(&self) -> &'a CStr {
+> > +        // SAFETY: `self.compatible` is a valid `char` pointer.
+> > +        unsafe { CStr::from_char_ptr(self.0.compatible.as_ptr()) }
+> > +    }
+> 
+> I don't think we need this. The usage model is checking does a node's 
+> compatible string(s) match a compatible in the table. Most of the time 
+> we don't even need that. We just need the match data.
+
+Right, I think I just added it for the sample driver, we can get rid of it.
+
+> 
+> Rob
+> 
 
