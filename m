@@ -1,221 +1,169 @@
-Return-Path: <devicetree+bounces-114964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A275B9AD8AC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 01:52:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B6879AD8BA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 01:53:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 337451F250F6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 23:52:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C0941C21634
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 23:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B231E0087;
-	Wed, 23 Oct 2024 23:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DE3200110;
+	Wed, 23 Oct 2024 23:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="Qp6MtApK"
+	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="tMX4Rfvu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011060.outbound.protection.outlook.com [40.107.74.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sonic312-26.consmr.mail.ir2.yahoo.com (sonic312-26.consmr.mail.ir2.yahoo.com [77.238.178.97])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856871553AB;
-	Wed, 23 Oct 2024 23:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729727529; cv=fail; b=Uy2jmbXsP2+slLnKB1CfbXL4X3qh4EksPvM0s4nEyvWfsualCr5BI9e/rQk0gtgqt1/8RIeGea/3iqK4179+OiLLbDiCgDsu3ZSxyJLacz5ldCkZEYhPLeV8bR/GQded6bIQO0TeB88YcHwmcaYoG8ubA8GxUx86ltAf/2RyT/I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729727529; c=relaxed/simple;
-	bh=utLcFs5i/9DMq7a5++poMDxT1C/IPRnCiwNx3A7rEfg=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=b/5hsJINvVCsclWbI84HNJV60w2Egf9khAXd5qezPldLRZi0sQBQHDK7x7Q6a0+LrB/QUCfZJNTm3heqcF+yLp36zOW35z43+YHuZ7gNpS5BN7XgkCVoknu370KYzsjovASmmAoqDdJ/YcsiaGVKczpo5GEJ4mxb3zKhRk/+Xts=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=Qp6MtApK; arc=fail smtp.client-ip=40.107.74.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d4I2lHP403eHu6zF860F89jZtJkiSsJ0AutPptPUWBS3H61o/oZGzCkUvnv/r4SsLmA+UkQTxODuTejh1H4IqZw17IvrMTt2QuDBCCmVhIElaaDLQG5kkNs485tzxcSdyUgfvwIvywf2axJoAUi/nnHAesL31+NyG7gUJBMJe7odSz3iYX/jgZjEhaFfJr8o8tdKtYXIRx7unyXCSt+uTf54UqCh+o4CDnaH1j8OKkHGJVS8J1BPt8KrMgmJ8raN4s4VKB7bdrkb/NJI3pE3CxNea6L+UTF3m1xV8JpTmcP3JsoMduSAq87umwD3VBI/iL/rFldeEjcTTwpFwrlugA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IZWFGJqWgrVel6JN18jUrwFa5tPXehQ9H5adeRXcoT0=;
- b=GIbrMKibDH36o/SSyKKCRHOoyxh2HUpmmfaq/ZjG0QsAuHyospeD+kM7+Jjaoubbxi5MawZ/cYFqiUYJ2UzaWnNimkzbqeYMj+74b49vcdmUl9HrYFDofCpXaqOd+YQdcHKulUWtA8KaLIQ3rk2PwyDcI0qGm9T1Cmta8a92Jsy3d2rFlsIqfBFMOeKgyLOgX7FNzwTD3429nPTcXvekHA8mP3pehYS/+FMeTlG6TM9ejEf2MCiG8h1/lfBVSu8yb8eTKD5zP5yB6GE12TeEoYNc6ADD3fEzRzFzhiz5KrEzYKE8OzTg/+upYvSZx9bOCsnXhuIDE24J2GIPm9mNdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IZWFGJqWgrVel6JN18jUrwFa5tPXehQ9H5adeRXcoT0=;
- b=Qp6MtApKhrdm+XPJw1GDnll8kJ29KYWUONuREB3oBytYf2l5mhOh1+EVsqCyhxleClj6M8lmJ0xpFAOj1A1Fw9rSVMw2/6AWsCwACtRBCWMdWCc+bXvEaW66Ld5hSjTP6VSJnkKKAdUnVSnl8DCw14UaKFBwhtW0zuOz8IqwVPI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OSOPR01MB12217.jpnprd01.prod.outlook.com
- (2603:1096:604:2da::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.16; Wed, 23 Oct
- 2024 23:52:01 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8093.014; Wed, 23 Oct 2024
- 23:52:01 +0000
-Message-ID: <87a5eucr8e.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Mark Brown <broonie@kernel.org>,
-	Takashi Iwai <tiwai@suse.com>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Iuliana Prodan <iuliana.prodan@nxp.com>,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sound@vger.kernel.org,
-	sound-open-firmware@alsa-project.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: audio-graph-card2: add widgets and hp-det-gpios support
-In-Reply-To: <Zxk9Vq0jtws/DNAb@lizhi-Precision-Tower-5810>
-References: <20241023162114.3354-1-laurentiumihalcea111@gmail.com>
-	<20241023162114.3354-3-laurentiumihalcea111@gmail.com>
-	<Zxk9Vq0jtws/DNAb@lizhi-Precision-Tower-5810>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Wed, 23 Oct 2024 23:52:01 +0000
-X-ClientProxiedBy: TYWP286CA0024.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:262::9) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570CD1553AB
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 23:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.178.97
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729727587; cv=none; b=crjNt7xm7kdQetdJXPzMlscxArqYNFoZndWDMiCL5u753cGNlKObY3hE2MWUP1mrNNsuOek+XyFYFysB1AqTcJPf3atCe07ZhfyRLMdAHH94zzCOOIhNyQHVWgpmy4GpOPY2g/YjsiPj//GGFaWjuwMe65Tg7JFHJyFscg9dKPk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729727587; c=relaxed/simple;
+	bh=6f9/c1TgAN/6j0KAcaBvQ74WjnSBLTBuNra7X7cQHVI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jo5HVpBoa0GAv7dNkrCOBtmvqkdZpMOx+V1gxL/O3mmc0De/uNcQgXQrFhJRnbJ8n0Dbq0hCIrT4OtyLC7UVqvzNlhs4yO8By3qHH8MfcXC0axtzxdxCGIG37HzsR7hJtlJz0vXm78bB88f/6s6ONk3rHk3CILwgNA2J6tVivWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=tMX4Rfvu; arc=none smtp.client-ip=77.238.178.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1729727577; bh=3M7OH4HoZlKMnnhKf1C/0ZDF12iGNKASzjBaElkoH0k=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=tMX4Rfvunh7rn7zLZM5NmdH2IFll4muRpXEp7gqF6C62S0p7y4lsLDXX5tPlvedz+GcynUVVW3090IpcxOdRPh5aLBNOTjEQz6PaBtqLiTCdXgjHTPy0iPohjAaVqCoboPAwmMis7Yq0KG8+oa6wml6Tuas2KEfmZEZPgd7ar0cV9dogPBiLwLk3r78yN9CoKkUVU+BO9wF3gdq+jOhim2M9YNLnQWCz6vSPiv9qtKtWrejR3FPyCpEpT/8a1t77xACjYPy34iqd2fFGyPmOQVwMDJqVXXuI8+7kPwkwmLGNHgSTcGhQsS+nbocejOyKn6PWjpzYwEPTZ2SzIaW7ig==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1729727577; bh=0CpDsy1M70THEKr4JF38Y15+V8F6T7u2+69FLTRTAmR=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=lc/c9++FikamwJxx1Af8LOgIdIPzBCTBE+I1aIqGo0JGOPTp52bFg/KXvhUwGZQq97i06YGEZyqZe5afQf1AWrVUBaxOr6On8S2aNpI1mFnivnACKAeYpu+aGKGD/cbYoyHFT5XVv2yhtLfrzJuYBFwbmJyfiF0CBCl1F+az9OWVny0W2jhYVmlbJNYfloewbTmDEGlSI2NuQR6I4jC/9zVWxj8TO/yJdDqbSOSw7tJ6WxlNltSKbhmmu6Ozbw7jl6HLgL32jTYNGl2+jxxIx0DB649OqdAbCwRlujvxdNURCs2dSB4VbQrXe2csOaj5qsJrihsT3i/t+KE5CnOYDw==
+X-YMail-OSG: NvFvbF8VM1k0KAKc96_cF5AJ3ActjRy_v8GV.1f.MINJ0qgX3dMKvxUUpT4upUk
+ 05u83Dxm7QYbm_Ua8UhHW0s_YkteVb_QwfuUG67DqEfys_0ahY6rjJs6rJoEA.BbK2nqhpaE8sq3
+ UxuIBdS9oGiBX0jZoQBftpwrvXYYI994KtkNeYzsO3rUNt0.7rK_VHnJ.O8SADGPxOwkbRYn_aF7
+ EWn.XkYakoY8V2gxz4fij2vS.NhXLMwJpIfPQeEgB6cKHfzxWrqsQonCgHA5fCGt7KmvuKDhSEyD
+ QhW_XkSV2zPPyk6u4VOnCdXVBuyHubP2nA4a2mKredEEgayR2Q1AElLmS1D796s_0dQecWBKAX5e
+ 7Fjc0Eefdv1KYVFMwFhObaBBfryghrgDLtpzvkWfmBYKj1c.AFSaEktzCWgahgGTG2mfX8mDOEJ0
+ LgL5kofQdJDnTHyAC5fxpKz8DnM4fgGTGbyVmKezlRQVmp3RTJaTGyfLxdZmMM7w6WQO1Hf.GQDg
+ LJyQEH5SAPXeEAuYIG3C4Cvq0yoNL7pabmOy5eF_fHwQtlr7mWeXN5KPb0pqlbk7FA5XEacg6sUh
+ hcKWe4u_vH0bh3mY_NSvoKTBsMI.6gdbx0CCrktl03fgpTw0uZOOwxDYu3gj0I_At4Ys8hqvD5EB
+ M7ChU8apos8inCvYhQlA8l3k24JRhQFYvhKdmGlPLeC1_a9pdAd.hsyludg3ZtIJpIhaVNOSSb2V
+ Gb6T1lim20aeo8FYtBuneaa6ku6DZbH3XZrxymfDDWKqdascIMl94r8vmqkfPAyO2OJDd4fYrS97
+ 3QWeiLgyTIu2KabInqzEKi7Ai5xujYjxHupBfkqFe_Y7Ke.2J.WSkUy2LhtLvI3FMsQJc5Qkx_3p
+ Cpd3YDl4Qzp_xwBpAxezsZAFI8Td.tvq3QZyeCYMLazLrKTokV9vlgzUe9vTR_n4ylqdR26Fi6tn
+ xf9Q79nmZ8ea1FgHPApIBu1FFpfvs4FRPLQ_rJGipQI5_qRnTGcqLZhmuddMMpUYFQfNCEizpEfW
+ 3lM_4sJspTPY4iZi4jKBfr874V_9LxyqiUaz3jsAgqlDhegYKOOijAHYvKgq2_VIUSWsfl3OKjGX
+ TX5K7V07pBA4Po6TMiEY7lL5xmY6evn3wMMmBEZjxLQSfbxb8ym7o8gFiyTosmZCVs0VUeaYPfYt
+ f6nW3ir8MOAesjVzjdG2vOM51.fCM339wRy6i0BppmlfuhKd2e47JOxDD.IZ2oKvqU8ec41KwsLT
+ zE0b6KDhqhs9WZf1hq60_5WPqEgMiCv6Oulx2nRaUIL9rmkaH3pEI4RJEzMTyUg6zCNZgaeHKIKA
+ bTcYlYSfQcOKlEnuGE0LtKg39uKQLqUZfHVsqKBjd7auq0GZgQeol0vn1GUVI2LcM4_40YfsNpao
+ rnjTdvPgBFh4Tdzr99_xFwcL69A191yM.EVqEg3bFN09hyV8fwnB28O2CCT.XvSzjK8PPSpwL5ik
+ vHEEkljZwS5wL9f4n3gBdnlhz22Mp7SkXpgtmv5_qnvt74FvSp70eR3.eg2BszMwYSj6qpnQkWc6
+ s1BM05nDdEVrQJRwB9nbz..pszUuQEL21n0pAVNR7VF.ubpdfukS4lb1ExqqLO0nK17Ukj9SDZXF
+ a9tsD80NStMDoA3rrZrcvpcpq1J5etK9uvrDgmG8I76.HGPwr.PLCxKCsGKIjKOf_WbsmbPUIYd9
+ XodwxqJYbgepv.Or.0HrJBRCmwn0Q1W8K5NnRwmxZIy7.sZC9lMAYQ80ZmSAlFEXUPh7u3EaEcQk
+ o2c1CoWmXZVdLyxc9aCa_7F4JibkfF.bi.xiEheGRBnIdmlqdT73a0Ah.W6x_1eukPZkPqMVjpsR
+ B9ffoBTnqmKmweU6d8PUf0DC2GY73zD8HXn9fIISUre6wxaiQ4ep.d131XuaLQY3Vpyh9WzdHHDB
+ BkqwT.i_QAeGcR_filMeOSOHV43hfYkODdZ2TJM.u_KpRd1DY8cTaoWckC3rhduZTuYFISnRkr.E
+ XQnXSaEIDS7v5d_StEFwkOtiLxxuuHvcEqCYNV0LPrPKrZ.a.fqVKD1LCjxizLKm1Sv5SOvYhNCp
+ GaFrjkxqtKbjDr_Of30GeeZ_tTOAinXHSOk840aJi7yjJLJ9NrMI_BRS20hKEkFI1rTk2ocKD898
+ 4l3S.al5b6ayqsCr2_33PhpTI7S_AyAs2SwOz3rMxMOjrVThrhgF4RHql4_YalCFYG35xTOX5Sqz
+ _7nEMk72ncQukq_5VlB7xhZ2ufOhGTUGWz6PhS9dVM_8KjEeO_61IGEfidmEDiuTnbip.azbSI6Y
+ rO12u2kmICa2wLLlVK3d82qQpPmo7ZM1MS35CEPRTiROnCw--
+X-Sonic-MF: <jahau@rocketmail.com>
+X-Sonic-ID: 1aa0b617-1d8a-4930-a090-0cab9e1b224f
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.ir2.yahoo.com with HTTP; Wed, 23 Oct 2024 23:52:57 +0000
+Received: by hermes--production-ir2-c694d79d9-d879w (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 2aed7270ea53ee049cc46986fdcd6d7b;
+          Wed, 23 Oct 2024 23:52:57 +0000 (UTC)
+Message-ID: <7025fa62-b178-4ff7-94fd-f7fac0452178@rocketmail.com>
+Date: Thu, 24 Oct 2024 01:52:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OSOPR01MB12217:EE_
-X-MS-Office365-Filtering-Correlation-Id: ab957132-8f55-40f2-f8cd-08dcf3bdb07c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|52116014|7416014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?fIQP/0lX6daPuz/9UvRu4lt0PKgWIuPQAIxvKAdk3IhK4B62plYQOuOvBwCu?=
- =?us-ascii?Q?FTR61T6FQnVSLDJbiXNou80OtaqZMNhjC5dab7JPCNCOktFJYtyHkAuiFcEK?=
- =?us-ascii?Q?bWYcyGLw1+xvZk60JbGQGtEXgy03vQBmfngO7Y2BI+f6sZSBucE4zwLSbLzs?=
- =?us-ascii?Q?cS7hcJeybJ7MiP+BDpUO7WoF08WDPx4jBdsbATKc465E7C4Up5JlAGuMI0cA?=
- =?us-ascii?Q?E/cnMkajsd6Yss2fpz2z1F/MIcPjDPMhYq6VftryPCgyrf8UCWy6lJM5Kcrh?=
- =?us-ascii?Q?6KYUE/QtiEVI64KdQ/dv11gwjFeX2DE0foQEOoifUU+XjmpiR2uUwsilw74f?=
- =?us-ascii?Q?9IucIt2C6h96NzTd0w8vApR8A8PjWTic8qulsnIsN5cZf3/VzTiPCM2YRe0f?=
- =?us-ascii?Q?CDjtU6cpNlOypWUDvJrBA3mswWE97RllklSa0820XaEeY7sn+BZuWsIAThID?=
- =?us-ascii?Q?OFplEC3BzfIB/Ixipmiv1MR/bqtTVKmaCNn1ns85LmVm0kNqTP+7Gr8Ihy6u?=
- =?us-ascii?Q?/rLz3YfjY0pSw/1ZV/4Ot/C/uFO6+vw8myg0zkx70hKau73yG8Q5OL5zY9g+?=
- =?us-ascii?Q?tKBSBKBUnOpF2PXe8Wsuogho6E0ul8CPE7SVSjY8QkEn+ZezqVBlwLZtEdqn?=
- =?us-ascii?Q?CgpBlm7RXSiG1Ifz6hHZ+9i3Xo5GbdGRcKm2rGkHKOcmHrZHoDD7h1U6D4tX?=
- =?us-ascii?Q?BY+ukY7xRoZZ2H/96Maui9OdP4LXxdF/ld4VtwAEsfXjjutZPJyffXEGWWUG?=
- =?us-ascii?Q?RWmUcMcqarcTw/51tUSpsUFrXpZHSF+hM1Bq03a0vD5JV8TodgUDq8iH6gaP?=
- =?us-ascii?Q?HVdUiCIkH1rdPQx1XxypA6A+jFah0m1DSIhSO4HspJ2aK8cP+DD3Hy8sK0ub?=
- =?us-ascii?Q?wrAZHFdlrByx99j9iiR4sfv5E3uztAq4Mndooz0PT+i6EMG2TDXRbF5bYGpn?=
- =?us-ascii?Q?by5o1MffLKmah/xsHg9S67CTrcUdt4Z2v88fmE+jHJ+MARNymBS460ZsTph2?=
- =?us-ascii?Q?xMbYyiTuL0DVabeAoedT4mgas+g9MvttAacS0Kwi6dE38DrOJPLMe+7cHzUk?=
- =?us-ascii?Q?nrKjT6ZtK6iGiPWxX3LXnd3ULmejNewubKkVADRnBYQ7Lc5mRVBOrueph+Fm?=
- =?us-ascii?Q?Yh3KbNMEYGoZZlP/rcekpW8MX3jxCLeahFwubnjB5O/GbFmRvXgfQLuR13Ji?=
- =?us-ascii?Q?f00m0LHVBtZPdlGtCh/kL0Hux5Zdl/gLRbx7ailrMYDZTYnz/6V2v4TWYCIu?=
- =?us-ascii?Q?GaiSV4MSewKJuH5oPU51AzRHPntfl35GRHEKW5NPfEta8S6JeK9SOu2k/SOy?=
- =?us-ascii?Q?ZXKEK+HUydGfzIUvAWmEfsNo449+m6qd+yO0I1X48b2rx1ximhc76ajLAQmp?=
- =?us-ascii?Q?73MGR7w=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(52116014)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?MiXfoLGasGQMg7OWv+ES+EAy0CaqFKvl0l4hTIR+Y7f+xtRLpJW5TpZwtGKs?=
- =?us-ascii?Q?RxNcHPyKQ/j/FlGBjvReIgnvsyEyCdlHOt+KBzPKqIqoMn3ydfVUmzHhsXhi?=
- =?us-ascii?Q?p8BVEJ8Gm0spu8Sftm2JzOfuvrMN37zO/3hpxGwKCzuNZX64Ymw05+uB5nWZ?=
- =?us-ascii?Q?Aprx8qHVFfGekJGwy17TsjBe+JnpWudZs/UxrFq97jy3yOBhOHDSHml4fLnE?=
- =?us-ascii?Q?zlZMxyH4cqexi4tWnGa5v+VKXmT+7wKRaSaJYQUewc+7v1EPXz6/NL8gHXo4?=
- =?us-ascii?Q?9P4/mUYEu4usk8HGQHOtcsbNruMR56mZfB6QF+GJ7SoBYl3HlSF6OTSXACrw?=
- =?us-ascii?Q?GKLfBbTQSUFL39ShO6HDQ3pkGtEagheBVUL/zypRitHqjYcM9iWF96T17s3q?=
- =?us-ascii?Q?OMoVl2K51cD9DVwIutIXvQOjGft1ndKbAJTNBL5MYDNe2x4nResP4g0+lUmS?=
- =?us-ascii?Q?RdISrYLO4HMseeModlelkle9AbU4rv+JZFgZQQq94HSpg/CS70IGPSS4auLT?=
- =?us-ascii?Q?hQyQAXVyXCR2382mjlB1CCoPgadPvm0oWJQ0iLd6nx2iXj5EDNIn1skA6AWy?=
- =?us-ascii?Q?Prkx/ILPocbT+mfbJ1yz5XtWTWz/evbDUyq1qpucPWxst/Xx5Gfs8wdmZuAO?=
- =?us-ascii?Q?0ALIuQNuSBncqSwBPsUrN2ds+f+Al+Xz/kt2gYErQm/4DzZghEfrQDlAbypw?=
- =?us-ascii?Q?F2pEAvejUlF1On65MqRjsB5ytg3RgttgUiQTxjoOXqh5FZAJxYRF9Ppg/Qiq?=
- =?us-ascii?Q?Wto0TSgcC52N67+yV8YJhM5pNCrqXAfQ0cGasnGCrDN59+ZbAbGnct0cr4Jl?=
- =?us-ascii?Q?uR/plJhSkZ9378Ece6iRG0z68N1190ncJI+uoLcN8RH5sI8a/qBLuX+BP3jC?=
- =?us-ascii?Q?3p3HHVKw91dfyjmVNT2Dz7mxu01hwHVeWQIQB12B2UzZHIBjM7UdKHwoxpdC?=
- =?us-ascii?Q?wA0XelZGs7iYj2v+6gaShNZSSt58CN2bMbt0VmHUdNpWPQ3llNqVY8UGXaWQ?=
- =?us-ascii?Q?PDINpG5TtwtT1HaxTSz3FiGNV/moUgSCSiqkpb0jXmuSA5MP3TvtFaPzJn78?=
- =?us-ascii?Q?hytWx1wuWhAqLdwaKgvdLJdOq5OB6K3Xj0rIU5FTYhZyi47IqVphyx3C9Pv3?=
- =?us-ascii?Q?k7K5rv3ZYFT987+ozjm2pBMjSTcwN0dUwf8kwes54MaObIJObLoocbI87ueD?=
- =?us-ascii?Q?PtQaM6bgViyqgYManXS+69GmMPiuvRjLnkPXbqKVDQLaqJFj78Qh+7DnWN3W?=
- =?us-ascii?Q?YXV+emgXylqJ9aByNws5T0qAQk8ZA3R/dnnW2sDEpuoCpahQ7jAteAyjmS2l?=
- =?us-ascii?Q?NY3sak4ew9Wlc+D82QOG0acJOXEXqgqo9vH3fAzlWVnpO9nqP7TfMrFlTBoe?=
- =?us-ascii?Q?heQJUpn7N6JNoRKH8YWd7FVvEmjGO1cRz0e149DEXOf4DvgBrrX3O5Lg3zeL?=
- =?us-ascii?Q?Ndi3sm5mgSbUP5fdfYJKp5GxfUGHGh5VL09Lb1gEIOatbbMyAdaK2RGoMVQr?=
- =?us-ascii?Q?ST+HXXzYry4UeasdDLqA19dnjG20BZAR803V/2Bl5Cg/+DYFUn7lSR+J53Xa?=
- =?us-ascii?Q?wx0U96tcquXio8yYyu+htqAhS4DEfo3ERKVrQrKEdAgKjZu+X74cnQQTLL9J?=
- =?us-ascii?Q?yA3fmIU4E0OVS1oEJYUR9Fk=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab957132-8f55-40f2-f8cd-08dcf3bdb07c
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 23:52:01.6371
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +AfcE9UL18qpbg7PJ2q+CRTKBPZl8f9X8WtFqgALjIaHSwjaBQjgdIvjDg//9geUtuvBRdlvALpEkZUwuuH5dlbMxfNk8Yf8IV9jIM/lNR3e/RfjmINK0VMDDSlWGUm/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSOPR01MB12217
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: panel: Move flip properties
+ to panel-common
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1729630039.git.jahau@rocketmail.com>
+ <18a0d8787b5714633a574f2e15f0cec1addddcfc.1729630039.git.jahau@rocketmail.com>
+ <yq7usspbou5lj4zz5giw472icd655als7pdik4ito2ziaidkwv@7yrkrgqs462o>
+Content-Language: en-US
+From: Jakob Hauser <jahau@rocketmail.com>
+In-Reply-To: <yq7usspbou5lj4zz5giw472icd655als7pdik4ito2ziaidkwv@7yrkrgqs462o>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.22806 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
 
+Hi Krzysztof,
 
-Hi
-
-> > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> >
-> > Introduce the 'widgets' property, allowing the creation of widgets from
-> > 4 template widgets: Microphone, Line, Headphone, and Speaker. Also
-> > introduce the 'hp-det-gpios' property, which allows using headphone
-> > detection using the specified GPIO.
-> >
-> > Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> > ---
-> >  .../devicetree/bindings/sound/audio-graph-card2.yaml     | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
-> > index f943f90d8b15..f0300a08f7fe 100644
-> > --- a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
-> > @@ -37,6 +37,15 @@ properties:
-> >    codec2codec:
-> >      type: object
-> >      description: Codec to Codec node
-> > +  hp-det-gpios:
-> > +    maxItems: 1
-> > +  widgets:
-> > +    description:
-> > +      User specified audio sound widgets.
-> > +      Each entry is a pair of strings, the first being the type of
-> > +      widget ("Microphone", "Line", "Headphone", "Speaker"), the
-> > +      second being the machine specific name for the widget.
-> > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+On 23.10.24 09:15, Krzysztof Kozlowski wrote:
+> On Tue, Oct 22, 2024 at 11:33:35PM +0200, Jakob Hauser wrote:
+>> The flip properties were used by "samsung,s6e8aa0.yaml" only so far. By
+>> introducing "samsung,s6e88a0-ams427ap24.yaml" they become more common.
+>>
+>> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+>> ---
+>> Patch is based on current branch drm-misc-next.
+>> ---
+>>   .../bindings/display/panel/panel-common.yaml           |  8 ++++++++
+>>   .../bindings/display/panel/samsung,s6e8aa0.yaml        | 10 ++--------
+>>   2 files changed, 10 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+>> index 0a57a31f4f3d..087415753d60 100644
+>> --- a/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+>> +++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
+>> @@ -51,6 +51,14 @@ properties:
+>>       $ref: /schemas/types.yaml#/definitions/uint32
+>>       enum: [0, 90, 180, 270]
+>>   
+>> +  flip-horizontal:
+>> +    description: boolean to flip image horizontally
+>> +    type: boolean
+>> +
+>> +  flip-vertical:
+>> +    description: boolean to flip image vertically
+>> +    type: boolean
+>> +
 > 
-> Is it possible $ref: /schemas/sound/audio-graph.yaml to avoid duplicate
-> these properties like audio-graph-card.yaml
+> I actually wonder how or why would you need to flip the images. I
+> understand rotation, but this is mirror flip, right? Is it for some
+> transparent displays?
 
-You can find both "hp-det-gpios" and "widget" already exist in audio-graph.yaml
+Yes, it's mirror flip. The two cases we have here so far are displays 
+for smartphones.
 
-Thank you for your help !!
+The panel "samsung-s6e88a0-ams427ap24", which this patchset is for, is 
+used in device "samsung-serranove" (Samsung Galaxy S4 Mini "Value 
+Edition"). By default this panel shows a mirrored picture, it needs flip 
+to fix that. I can't think of any good reason and it seems rather 
+unique. Maybe there was some mistake during fast-paced development and 
+easier to fix that way instead of changing suppliers specification, or 
+some purchase related topic, but that's just wild guessing. I 
+implemented the flip as an option because I don't know if this driver 
+could be extended for similar panels that might not need the flip, e.g. 
+older device "samsung-serranolte" (Samsung Galaxy S4 Mini LTE).
 
-Best regards
----
-Kuninori Morimoto
+For panel "samsung-s6e8aa0" I can't say much because I'm not familiar 
+with that. Within the kernel it is used by devices 
+"exynos4412-galaxy-s3" (Samsung Galaxy S III) and "exynos4210-trats" 
+(don't know what this is). Looking into their devicetree files they 
+apply horizontal and vertical flip at once, actually that's a rotation 
+by 180 degrees. Looking into the panel driver it seems that this is what 
+the hardware interface offers.
+
+> The change is fine, I just really wonder about hardware.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+...
+
+Kind regards,
+Jakob
 
