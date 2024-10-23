@@ -1,224 +1,119 @@
-Return-Path: <devicetree+bounces-114804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 103DA9AD11D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:37:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D810C9AD125
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:38:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C113C283096
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 16:37:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0504F1C220CC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 16:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643DD1CB301;
-	Wed, 23 Oct 2024 16:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A34A1CBEB5;
+	Wed, 23 Oct 2024 16:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j0CH/hkM"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="uGCpb5ab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 350E51CACEF;
-	Wed, 23 Oct 2024 16:37:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48E361C3306
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 16:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729701454; cv=none; b=H9dynSQ7rzyIZdo3YNxAB2Gm6EcZkC6L1cqseMOnYAroyXAMEbx9BeqUtJ3rF+OtNUdHx4omRjnER7DvtVChvnQeDnUnD52zU1KdzGJ912Fik3sIZAouuLdNy7FKtDQGnSOA9QhDchtJoAICBiHLlOBE20PRvVaohquJQ+FULEI=
+	t=1729701520; cv=none; b=utk6/Gha2fvDFLrre8Y4njIwj/c+DrgYB3ivoPGOt5pRJt70UGc09couKpl9tKStTxKa+6tLD7aG5ig0FDNKkt3EtUgWHv/MhqyWhMyBzkXUQ8vN+1334jIg4BDzGgi0tngS79+IgzffeB/6QvA8QCXPkcUY5AOL3pSqItu3+OM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729701454; c=relaxed/simple;
-	bh=lRi0/nbBx0EcnpJdJrSER6XlVEOeT8jhZsfMLgBKoX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DKCo/zuDlj3zRo/HRUC3Tzj367qeazIe7FynY+xuqOlmu91ee/AXmNkkxNsBP0Lo7RLZXcvxhjFFjytA9blGlldqlCJ4J84wU3wQwAiyNN2p4gGehW4mUB4B7V0QMJ3TU/in8sbERPrWL8m4SAErGmHI1aDmftEMBvMKZoibwJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j0CH/hkM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 618D3C4CEC6;
-	Wed, 23 Oct 2024 16:37:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729701453;
-	bh=lRi0/nbBx0EcnpJdJrSER6XlVEOeT8jhZsfMLgBKoX8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j0CH/hkMKYH48v8Sr/RQU1IatBjbfb1A2DzaiWFAfPxQLOoJqIJCyH2iKwnPeN4o9
-	 EGJEQciElHcqiqTgwnehDwu0qeuzqrLa42ll5c5uSb/TZ5BN7KboxwHvuNoELmyRBm
-	 E8l1BhxHboj54ZV5pK6wVQAgJxwRjppK4+RdXfVeMJvusitRCvhRKu5ponfvQFH44/
-	 Clr8rAEKVaXAMjdaimhTRk6xe4++CIhSkAG/kiETSLmQuXQWck+pLMger85R0gzGMN
-	 Uu/zsO6f40+7UWC37GEYwVr8ubJ7A16iqEVo82sVHBPlnRflBpCHdv1jWs0FaffKru
-	 tSljbav7LldqQ==
-Date: Wed, 23 Oct 2024 17:37:29 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org,
-	linux-spi@vger.kernel.org, shawnguo@kernel.org,
-	linux-arm-kernel@lists.infradead.org, lukma@denx.de,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH 1/3] dt-bindings: misc: lwn,bk4-spi: Add binding
-Message-ID: <20241023-irritate-veal-0423be9e4c45@spud>
-References: <20241023120015.1049008-1-festevam@gmail.com>
+	s=arc-20240116; t=1729701520; c=relaxed/simple;
+	bh=2KGO9/x+zR1sj8A0z8FXdfQsavpMZB5tjb8iXzv7MBc=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eM5y/lLRBqsjrnknzeU8f3arljMPVHrQEK+RDqPKz+TAEMeot1H7SQ5h6GR6Z9G8OhIwFGTMqrD7oXFLSMW4a+BHkZpOWBpL/H4MH0bxTDUzgmfCw4T8PjwO6lz9nOmvbRN1Rkhu3Nha0UqktAbGQ8eTwLT8ZJUdNPkE/4viDJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=uGCpb5ab; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oo1-f69.google.com (mail-oo1-f69.google.com [209.85.161.69])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CB45C4121A
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 16:38:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1729701509;
+	bh=2KGO9/x+zR1sj8A0z8FXdfQsavpMZB5tjb8iXzv7MBc=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=uGCpb5absfmh85IqbmT/JDjoYaOy3iXil7ITsr9Otsx66wPabRbZxFQl6p1WrRHgJ
+	 b+pUgSaCQ7FTvVhTn/iIAH1tWEgnIGCZxFIRrxigL87bnhfqohhA+RujsO3zy3Vm0i
+	 EASop8057c5na5h/RO1Gugby1KmzpGm4vQB0SbVPzkma279itG1ZSQfykrXmPRydfM
+	 IhFkjBR9Y+YAmpHqomA9HSajfXqFPBn10tscA64GyPGgvMPzwEez5WiOIIHPIYPhUs
+	 R6Q38EEO7wwSArr/3bz8R7JNSzA9xmgCqjkCk0cxbjDFk+QveZxGQoYCqQi7XzrAGl
+	 M5MP8jH4zDZmQ==
+Received: by mail-oo1-f69.google.com with SMTP id 006d021491bc7-5eb24a3a3d6so5563405eaf.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 09:38:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729701506; x=1730306306;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2KGO9/x+zR1sj8A0z8FXdfQsavpMZB5tjb8iXzv7MBc=;
+        b=Y9B0g//veryD9xrr21FHu8BeVFZRzkr8lc5SOoYK7T33zrBiQYW/Hzdk9ZXn2ll7Tv
+         HlbT0GVCkszO2d2PMxSM4hXSsnXpkKuFPFyP6xlMrhwlLyqQ3DISjFjAfNjU/e9P/qmp
+         X78UeVl5CTnLjRfltW6AOI1v6D0hAA9lQltIKTBX0mhDMibT7JRNFKDQ0al3sabu6F2N
+         g0eoQiRMFWF4zK8yUydQQlSqZ7o2zpRgcUiPPeLPlSRqJuL0o0UZ0dT48DBquGyitFZu
+         jGlnp+X5cgzlVwXeHb57Z8V6viw34fyTqKzyjaygMZdTA4KGBU5DaUdOZisg1x+LKcry
+         E7jg==
+X-Forwarded-Encrypted: i=1; AJvYcCWis0L2yN6Novb6PAGjthFDchjRNN2rumhYed02j4sPiuqpAjEOnFo3m9qIOE2/8SrMetHBymb7DCgr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqmIb1EUX8QjAh6DDgOzey4C70ra5K5U5PeWkqCcyWgKE/fBdo
+	o2AoRyHvQgWZkbs0gMSNLXX5FSk5b0W9Fsaaw5SQ5uerKh38L8ZmS1CFUsB83z/JoCTOSeqy4BO
+	UIkpuhFunIVH8soy4fCl3QbQ+2MjSaDBLqhUCCGwRO+Tqch5jhLit3rUUhdzzZZfRInUOTaWJu7
+	YoYBgCyr8XIYa1XoFSTLklhvBRnQ8rXyxw55ax2HxShemZIQD7dQ==
+X-Received: by 2002:a05:6871:58a1:b0:287:c014:c979 with SMTP id 586e51a60fabf-28ccb404424mr3446452fac.13.1729701506395;
+        Wed, 23 Oct 2024 09:38:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGYKVer8iHAkiMMpVseZz+FbkbvOVCl9iXO7WeY67iQ2hOj/Lh97N9pnwdvNGMM13TWHpzNMqvtkjAlCvvT1/E=
+X-Received: by 2002:a05:6871:58a1:b0:287:c014:c979 with SMTP id
+ 586e51a60fabf-28ccb404424mr3446372fac.13.1729701504622; Wed, 23 Oct 2024
+ 09:38:24 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 23 Oct 2024 12:38:24 -0400
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20241020134959.519462-3-guodong@riscstar.com>
+References: <20241020134959.519462-1-guodong@riscstar.com> <20241020134959.519462-3-guodong@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CjG6ETQKo6RDEUwd"
-Content-Disposition: inline
-In-Reply-To: <20241023120015.1049008-1-festevam@gmail.com>
+Mime-Version: 1.0
+Date: Wed, 23 Oct 2024 12:38:23 -0400
+Message-ID: <CAJM55Z9amwkWEK5GGKMiqh_6NQY=TBQhjEuFdMPBFd_hHM==4Q@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] dt-bindings: riscv: starfive: add deepcomputing,fml13v01
+To: Guodong Xu <guodong@riscstar.com>, Conor Dooley <conor@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, rafal@milecki.pl, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Heiko Stuebner <heiko.stuebner@cherry.de>, Michael Zhu <michael.zhu@starfivetech.com>, 
+	Drew Fustini <drew@beagleboard.org>, Alexandru Stan <ams@frame.work>, Daniel Schaefer <dhs@frame.work>, 
+	Sandie Cao <sandie.cao@deepcomputing.io>, Yuning Liang <yuning.liang@deepcomputing.io>, 
+	Huiming Qiu <huiming.qiu@deepcomputing.io>, Alex Elder <elder@riscstar.com>, linux@frame.work, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Guodong Xu wrote:
+> From: Sandie Cao <sandie.cao@deepcomputing.io>
+>
+> Add "deepcomputing,fml13v01" as a StarFive SoC-based board.
+>
+> The DeepComputing FML13V01 board incorporates a StarFive JH7110 SoC, and
+> it's designed for the Framework Laptop 13 Chassis, which has (Framework)
+> SKU FRANHQ0001.
+>
+> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> [elder@riscstar.com: considerably shortened the description]
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
 
---CjG6ETQKo6RDEUwd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Oct 23, 2024 at 09:00:13AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
->=20
-> Add a lwn,bk4-spi.yaml binding for Liebherr's BK4 external SPI controller.
->=20
-> Currently, the compatible string used for this device is "lwn,bk4",
-> which is the same as the board compatible string documented at fsl.yaml.
->=20
-> This causes several dt-schema warnings:
->=20
-> make dtbs_check DT_SCHEMA_FILES=3Dfsl.yaml
-> ...
->=20
-> ['lwn,bk4'] is too short
-> 'lwn,bk4' is not one of ['tq,imx8dxp-tqma8xdp-mba8xx']
-> 'lwn,bk4' is not one of ['tq,imx8qxp-tqma8xqp-mba8xx']
-> 'lwn,bk4' is not one of ['armadeus,imx1-apf9328', 'fsl,imx1ads']
-> ...
->=20
-> Use a more specific "lwn,bk4-spi" compatible string for this
-> device.
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  .../devicetree/bindings/misc/lwn,bk4-spi.yaml | 54 +++++++++++++++++++
->  .../devicetree/bindings/misc/lwn-bk4.txt      | 26 ---------
->  2 files changed, 54 insertions(+), 26 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/misc/lwn,bk4-spi.ya=
-ml
->  delete mode 100644 Documentation/devicetree/bindings/misc/lwn-bk4.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/misc/lwn,bk4-spi.yaml b/Do=
-cumentation/devicetree/bindings/misc/lwn,bk4-spi.yaml
-> new file mode 100644
-> index 000000000000..7fb86e6abade
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/lwn,bk4-spi.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/lwn,bk4-spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Liebherr's BK4 external SPI controller
-> +
-> +maintainers:
-> +  - Lukasz Majewski <lukma@denx.de>
-> +
-> +description: |
-> +  Liebherr's BK4 external SPI controller is a device which handles data
-> +  acquisition from compatible industrial peripherals.
-> +  The SPI is used for data and management purposes in both master and
-> +  slave modes.
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: lwn,bk4-spi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 30000000
-> +
-> +  fsl,spi-cs-sck-delay: true
-> +
-> +  fsl,spi-sck-cs-delay: true
-
-Why does this have fsl properties? I figure they're taken from the dts,
-but spidev doesn't use them, right?
-
-> +
-> +required:
-> +  - compatible
-> +  - spi-max-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        spidev@0 {
-           ^^^^^^
-This should really be the type of device that this is. The way you word
-the description etc doesn't really make much sense to me but it sounds
-like this is a daisy chained spi controller? Or is it a data acquisition
-device that is a spi "slave"?
-
-> +            compatible =3D "lwn,bk4-spi";
-> +            reg =3D <0>;
-> +            spi-max-frequency =3D <30000000>;
-> +            fsl,spi-cs-sck-delay =3D <200>;
-> +            fsl,spi-sck-cs-delay =3D <400>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/misc/lwn-bk4.txt b/Documen=
-tation/devicetree/bindings/misc/lwn-bk4.txt
-> deleted file mode 100644
-> index d6a8c188c087..000000000000
-> --- a/Documentation/devicetree/bindings/misc/lwn-bk4.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -* Liebherr's BK4 controller external SPI
-> -
-> -A device which handles data acquisition from compatible industrial
-> -peripherals.
-> -The SPI is used for data and management purposes in both master and
-> -slave modes.
-> -
-> -Required properties:
-> -
-> -- compatible : Should be "lwn,bk4"
-> -
-> -Required SPI properties:
-> -
-> -- reg : Should be address of the device chip select within
-> -  the controller.
-> -
-> -- spi-max-frequency : Maximum SPI clocking speed of device in Hz, should=
- be
-> -  30MHz at most for the Liebherr's BK4 external bus.
-> -
-> -Example:
-> -
-> -spidev0: spi@0 {
-> -	compatible =3D "lwn,bk4";
-> -	spi-max-frequency =3D <30000000>;
-> -	reg =3D <0>;
-> -};
-> --=20
-> 2.34.1
->=20
-
---CjG6ETQKo6RDEUwd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxkmSQAKCRB4tDGHoIJi
-0vmXAP4xi+mBjk3u9ojzHfEMphla5LEqQXpnG1Pd8VUmTXz7eQEAzhJEl+8likjP
-4CHifmI+fvA19ArkRRuWrqJ9MBetNQM=
-=weg+
------END PGP SIGNATURE-----
-
---CjG6ETQKo6RDEUwd--
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
