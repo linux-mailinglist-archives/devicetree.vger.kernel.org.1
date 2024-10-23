@@ -1,48 +1,52 @@
-Return-Path: <devicetree+bounces-114602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0489AC0BC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:53:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10B299AC0C2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:54:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18C0C1F2617E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:53:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E23B1C21B58
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C5A155C87;
-	Wed, 23 Oct 2024 07:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9AA155C98;
+	Wed, 23 Oct 2024 07:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fB1FBom5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cqHwpYAl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01278156222;
-	Wed, 23 Oct 2024 07:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A350155742;
+	Wed, 23 Oct 2024 07:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729670014; cv=none; b=qVjo7aJPSs5KlB57NrWgmX3mU/rJJNje58qFvYMbqdWre8rR6nb6Xho1jtTlm65xAz8kileFBXWC8ZBwscSoPnznpVAvRYQutR3z+4cHOSyPX0sW+pDe35vWCZf+syqgibz4IOr+VoD7NgzQwQKyvn8dRw+6keiUNOd8k33VX2I=
+	t=1729670054; cv=none; b=XbaeiNJ8d/oe4wY4QEZGtpgf7rjRvQHmAqMFearIbURwIDWwpZci00I1LLgpAl2ZvrDSE13rW2bWFjRT43ZCN4d9C2qL8DQHY6dfLua+iM4pMmwSePF4MqZfo4svxWFGP1BVabBkuxmz/VmjTcJmmjYpdnSFq8FFPiOCPr3ZxWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729670014; c=relaxed/simple;
-	bh=gvFaxArGPX2eO1te5g129vk1aWhR0NTedPOo0h1Yzwg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=HOXzwHYLPbfXp11CkmQm6ushq+r3QoEcG/9l6LwmDkJf0yUeQgdSWecVb0M9B7vepiR2Kfjn7uJf7Y+rDC+U3WhasDsvHxeS8SxoZiLG9v50QmuUnBBlqvWMObNPjYAUsNXR5+lETYoQIw/fOi7G4v+iA8TCYydBBAGlvtpPunA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fB1FBom5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC2EBC4CEC6;
-	Wed, 23 Oct 2024 07:53:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729670013;
-	bh=gvFaxArGPX2eO1te5g129vk1aWhR0NTedPOo0h1Yzwg=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=fB1FBom5I9KH2SRqx3/yPu0/Pruor2ub+H3UtcrxDL0ULzaLUg5VS5P0PV4aA5UiT
-	 kX8Fa0s+tv8whDz+dltRBaJ13aVtwbiT9ck8WJWofUrAACZltpefqcIdsYdHoMWgSe
-	 foAPabLcZwYTBx4EI2gnXXGMjkwYiK2HIigS4fOsETgutv/iq7I2ShzwSy0+vjkcJs
-	 wpXPI8Gts/ypds5UN4d8Hk/jRsttbSv85lp5mFTblhqCyhjL10nx06zNNVhxBhmIbt
-	 prYjceaxxYttLS2QAirEvhoQbxdypepE37For79jB1rGOKGvYpPMEbUeMgI6Ye2I1k
-	 yAXiq2a1ReDqw==
-Message-ID: <4c32bc67-591f-4bb5-ae4f-11e802c27ac5@kernel.org>
-Date: Wed, 23 Oct 2024 09:53:25 +0200
+	s=arc-20240116; t=1729670054; c=relaxed/simple;
+	bh=HkNoZ5FCu3rF5J7aCvuNlnreJOKQyuHkkl7kviNxQik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iMCWeq5dE/rHHgNxMWSfvCDOLtCE4OToJGbsboMraOXULJ8wyDrQVTbASjfzjfcIvJZOAI9Z1TRzseRnxol/7xVXXp2MUd6GB0JIm06TIZ8MZbEgozUpXsP55834v56beHBizf8FzbNpC6n86yRPlKBM2IoiUQ3AUO+fBmgrHoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cqHwpYAl; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AA4D5FF803;
+	Wed, 23 Oct 2024 07:54:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1729670049;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TdvS4VbW0v8hQ6mg/PNYWge1aqhZUl5W/f00dp8iRAc=;
+	b=cqHwpYAluT7D6Tlq83Uamt7EsDHI32fcpyhgwQab56fp2y3T5qncv1UwZOrkJ9Iqb8QAcF
+	uaNJnUEfLZQZwlcW7sP98e3suvfthQ7kfTFbhLsrPHluV+/79kuhYfWcnQzdE3X+AEiGKD
+	IPGf+ewApaLcSH2tQWfuUJlvhnDrXVRV6wQuwV9vC4kACqSrTm44ln5WbDMfJ+T5CAnYPo
+	Ji7/2a1TP3btJeC2xFQpysNmLOm3ZCO0X14uZPj70/MlsqHmfjVYDssV7A03baBOlHYwDD
+	VnJ6R1yR4tvrAoFOZmzuYlmje8oFfoRiBGMA9vDz0AVgYJAB4wkk5UMg4mN88g==
+Message-ID: <71c93145-f7ed-485a-99f2-fab9529e6bcb@bootlin.com>
+Date: Wed, 23 Oct 2024 09:54:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,161 +54,161 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: wcd937x-sdw: Add static channel
- mapping support
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Bard Liao <yung-chuan.liao@linux.intel.com>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
- Sanyog Kale <sanyog.r.kale@intel.com>, linux-arm-msm@vger.kernel.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com, kernel@quicinc.com
-References: <20241023061326.3871877-1-quic_mohs@quicinc.com>
- <20241023061326.3871877-2-quic_mohs@quicinc.com>
- <qzjbiby7w6a7m4e324hdatgklmejlcxfwv7tszzfmdqahgrbu2@bcwsdlrpncxq>
+Subject: Re: [PATCH] wifi: wilc1000: Rework bus locking
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20241022013855.284783-1-marex@denx.de>
+ <c9e98811-15f5-427a-82f7-2e7fff4a9873@bootlin.com>
+ <8e28ba76-ecfa-49b6-89b5-1edabb22129d@denx.de>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <qzjbiby7w6a7m4e324hdatgklmejlcxfwv7tszzfmdqahgrbu2@bcwsdlrpncxq>
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+In-Reply-To: <8e28ba76-ecfa-49b6-89b5-1edabb22129d@denx.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: alexis.lothore@bootlin.com
 
-On 23/10/2024 09:52, Krzysztof Kozlowski wrote:
-> On Wed, Oct 23, 2024 at 11:43:23AM +0530, Mohammad Rafi Shaik wrote:
->> Add static channel mapping between master and slave rx/tx ports for
->> Qualcomm wcd937x soundwire codec.
->>
->> Currently, the channel mask for each soundwire port is hardcoded in the
->> wcd937x-sdw driver, and the same channel mask value is configured in the
->> soundwire master.
->>
->> The Qualcomm boards like the QCM6490-IDP require different channel mask settings
->> for the soundwire master and slave ports.
-> 
-> Different than what? Other wcd937x? Which are these?
-> 
->>
->> With the introduction of the following channel mapping properties, it is now possible
->> to configure the master channel mask directly from the device tree.
->>
->> The qcom,tx-channel-mapping property specifies the static channel mapping between the slave
->> and master tx ports in the order of slave port channels which is adc1, adc2, adc3, adc4,
->> dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
-> 
-> I still don't get what is the channel here.
-> 
->>
->> The qcom,rx-channel-mapping property specifies static channel mapping between the slave
->> and master rx ports in the order of slave port channels which is hph_l, hph_r, clsh,
->> comp_l, comp_r, lo, dsd_r, dsd_l.
-> 
-> And this description copies binding :/.
-> 
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-> 
->>
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> ---
->>  .../bindings/sound/qcom,wcd937x-sdw.yaml      | 36 +++++++++++++++++++
->>  1 file changed, 36 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
->> index d3cf8f59cb23..a6bc9b391db0 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
->> @@ -58,6 +58,38 @@ properties:
->>      items:
->>        enum: [1, 2, 3, 4, 5]
->>  
->> +  qcom,tx-channel-mapping:
->> +    description: |
->> +      Specifies static channel mapping between slave and master tx port
->> +      channels.
->> +      In the order of slave port channels which is adc1, adc2, adc3, adc4,
->> +      dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
->> +      ch_mask1 ==> bit mask value 1
->> +      ch_mask2 ==> bit mask value 2
->> +      ch_mask3 ==> bit mask value 4
->> +      ch_mask4 ==> bit mask value 8
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    minItems: 8
->> +    maxItems: 13
-> 
-> Why size is variable? This device has fixed amount of slave ports, I
-> think.
-> 
->> +    items:
->> +      enum: [1, 2, 4, 8]
-> 
-> What is the point of using bits if you cannot actually create a bit mask
-> out of it? Why this cannot be 7?
-> 
->> +
->> +  qcom,rx-channel-mapping:
->> +    description: |
->> +      Specifies static channels mapping between slave and master rx port
->> +      channels.
->> +      In the order of slave port channels, which is
->> +      hph_l, hph_r, clsh, comp_l, comp_r, lo, dsd_r, dsd_l.
->> +      ch_mask1 ==> bit mask value 1
->> +      ch_mask2 ==> bit mask value 2
->> +      ch_mask3 ==> bit mask value 4
->> +      ch_mask4 ==> bit mask value 8
-> 
-> and the value is what exactly? Index is channel, but what does "ch_mask4 ==> bit
-> mask value 8" mean? I don't understand this at all.
+Hello Marek,
 
-Ah, and previous feedback was to use strings, no?
+On 10/22/24 15:19, Marek Vasut wrote:
+> On 10/22/24 12:43 PM, Alexis Lothoré wrote:
+>> Hi Marek,
+> 
+> Hi,
+> 
+>> On 10/22/24 03:38, Marek Vasut wrote:
+>>> The bus locking in this driver is broken and produces subtle race
+>>> condition with ksdioirqd and its mmc_claim_host()/mmc_release_host()
+>>> usage in case of SDIO bus. Rework the locking to avoid this race
+>>> condition.
+>>>
+>>> The problem is the hif_cs mutex used in acquire_bus()/release_bus(),
+>>> which makes it look like calling acquire_bus() results in exclusive
+>>> access to the bus, but that is not true for SDIO bus. For SDIO bus,
+>>> to obtain exclusive access (any access, really), it is necessary to
+>>> call sdio_claim_host(), which is a wrapper around mmc_claim_host(),
+>>> which does its own locking. The acquire_bus() does not do that, but
+>>> the SDIO interface implementation does call sdio_claim_host() and
+>>> sdio_release_host() every single command, which is problematic. To
+>>> make things worse, wilc_sdio_interrupt() implementation called from
+>>> ksdioirqd first calls sdio_release_host(), then interrupt handling
+>>> and finally sdio_claim_host().
+>>>
+>>> The core problem is that sdio_claim_host() cannot be done per command,
+>>> but has to be done per register/data IO which consists of multiple
+>>> commands.
+>>
+>> Is it really true ? What makes you say that we can not perform multiple
+>> operations under the same exclusive sdio section ?
+> 
+> What I am trying to say is this:
+> 
+> With current code, this can happen, which is not good, because transfers from
+> multiple threads can be interleaved and interfere with each other:
+> 
+> thread 1                         thread2
+> do_some_higher_level_op() {
+>  ...
+>  read_register_0x3b0000() {
+>   claim_bus
+>   CMD52 0x00
+>   release bus                    ksdioirqd() {
+>                                    claim_bus
+>                                    CMD52 0x0f, lets read SDIO_CCCR_INTx
+>                                    release_bus
+>   claim bus                      }
+>   CMD52 0x00
+>   release_bus
+>   claim_bus
+>   CMD52 0x3b
+>   release_bus
+>   claim_bus
+>   CMD53 lets read data
+>   release_bus
+>  }
+>  ...
+> }
+> 
+> What should happen is either:
+> 
+> thread 1                         thread2
+>                                  ksdioirqd() { // option 1
+>                                    claim_bus
+>                                    CMD52 0x0f, lets read SDIO_CCCR_INTx
+>                                    release_bus
+>                                  }
+> do_some_higher_level_op() {
+>  claim_bus
+>  ...
+>  read_register_0x3b0000 {
+>   CMD52 0x00
+>   CMD52 0x00
+>   CMD52 0x3b
+>   CMD53 lets read data
+>  }
+>  ...
+>  read_another_register()
+>  ...
+>  release_bus
+> }
+>                                  ksdioirqd() { // option 2
+>                                    claim_bus
+>                                    CMD52 0x0f, lets read SDIO_CCCR_INTx
+>                                    release_bus
+>                                  }
+> 
+> That's what this patch implements, to avoid the interference.
+> 
+> Maybe I should include the infographics? Or reword this somehow?
 
-Best regards,
-Krzysztof
+What I may have misunderstood is your first sentence ("sdio_claim_host() cannot
+be done per command, but has to be done per register/data IO which consists of
+multiple commands", especially command VS reg/data io), but your graph clarified
+it for me, thanks, so in the end we agree on this :) That may just be me having
+poorly interpreted, so no need to add the graphs to the commit
 
+[...]
+
+>>>   static int wilc_wlan_cfg_commit(struct wilc_vif *vif, int type,
+>>> diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.h b/drivers/net/
+>>> wireless/microchip/wilc1000/wlan.h
+>>> index b9e7f9222eadd..ade2db95e8a0f 100644
+>>> --- a/drivers/net/wireless/microchip/wilc1000/wlan.h
+>>> +++ b/drivers/net/wireless/microchip/wilc1000/wlan.h
+>>> @@ -403,6 +403,8 @@ struct wilc_hif_func {
+>>>       void (*disable_interrupt)(struct wilc *nic);
+>>>       int (*hif_reset)(struct wilc *wilc);
+>>>       bool (*hif_is_init)(struct wilc *wilc);
+>>> +    void (*hif_claim)(struct wilc *wilc);
+>>> +    void (*hif_release)(struct wilc *wilc);
+>>
+>> So IIUC, your series push the hif_cs lock into each bus layer of the driver,
+>> remove any explicit call to bus-specific locking mechanism from those layers,
+>> and makes the upper layer control the locking. As mentioned above, I don't
+>> understand why those layers can not manage the bus-specific locking by
+>> themselves (which would be a big win for the upper layer).
+> 
+> Because of acquire_bus()/release_bus() which I think is an attempt to serialize
+> bus access across multiple complex operations (=commands sent to the card), see
+> above.
+
+Taking a further look at some examples in the driver, I see that indeed the
+"scope" of acquire_bus/release_bus is larger than simple bus operations. So I
+withdraw my proposal which was wrong.
+
+Thanks,
+
+Alexis
+
+-- 
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
