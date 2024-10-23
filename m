@@ -1,122 +1,120 @@
-Return-Path: <devicetree+bounces-114691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96279AC7FB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:29:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9795B9AC820
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8109A1F28303
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:29:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B799B22109
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA34819DF7A;
-	Wed, 23 Oct 2024 10:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B46D19F13F;
+	Wed, 23 Oct 2024 10:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BGLvvY2X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="k3Swi63j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079BC155393;
-	Wed, 23 Oct 2024 10:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2359419CC20;
+	Wed, 23 Oct 2024 10:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729679360; cv=none; b=TaQyEd49kN+bgtVMj78XsyuT+dYW8Yt8MZzkVrtcdRlldJC56PpBw36uURX4LRv3yOJq3K4/2NzQc/Fv5rj4s6FcQ7DepJSwQfQ7pNcPk8Z2DWoXfWK25m4zoIx8xGIXt7ut6RDHCNtnZf9vzfW3oT+5A1HkPZEir1p0HEcKNnA=
+	t=1729680346; cv=none; b=Ef4eXMNXVHdvMMn0QM2donkMuhvtGSHWnVtNzvKN+FK8IR8698VCK89EOujIyS1wN2qbuGCAHV5NeptoLtxrPzChkhSAPrJUIj9L5QqGx6LZE1xLQUIwnh5pAXTuIfaWIxfcg7EyDslFriT5Vf3m9LakjC6/+R5ktBVIWYqpKLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729679360; c=relaxed/simple;
-	bh=Gut0VnewNuT0LdmLi16hq5QIvsI+I9WMoZnZJlOfPAs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Ghq5PP6Xz6FU7XZsmsJfuMQ4r58nm+3yCFZ+zIvT+QDr6w4g2S7kD9NYK57M9eLSUKtNU4werdqjSXtlsIa+s+110/f3wfj4ZphQzMUHW1SBQaD8ZrL823xMdqiZEXzDIyVUr6Bbfa0gONIewBDSc8aSiARnTUIXJrigmLJ+wwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BGLvvY2X; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37d47b38336so4521502f8f.3;
-        Wed, 23 Oct 2024 03:29:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729679357; x=1730284157; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Gut0VnewNuT0LdmLi16hq5QIvsI+I9WMoZnZJlOfPAs=;
-        b=BGLvvY2XVjFH4hmvaimwDv76C123Wa20iKKA3hv1rUzL+6a/0Ah38whQGDZ1LSgMGS
-         XfGVKg/Nnj8V+iNonIZSOezh+RqYmWS0jkfN8fhhBd1ZXCLu43IF7SfWOA1Z1O9dgWTX
-         t3hcyn9m4Y7x71ET7DrLG5GMRsJmuGJhNyrGytH5GtEiP49eAzv4eaeYMONSLreCFkta
-         qIszBx2D0WOQZ0WQneAUleJ0H4u0KIbSI477pPsrY0E4Ay4NJarEzgsRujOIlIwnDAKQ
-         oqmqD/1cr25yNR/+ijyV/gIQ8rLGX9Fd9Ce/4uQ5wtD4VxhJf0vUvOOUCkr14TCTCN2m
-         ZIwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729679357; x=1730284157;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gut0VnewNuT0LdmLi16hq5QIvsI+I9WMoZnZJlOfPAs=;
-        b=ouxYB5VqO3X06A6AWVDDkaRyD9fVIeGdRWNfzuO6mI6dDSiky32gxUjEVie2pE+1PW
-         XCnDlmQ6qNUSZ0RYNurWHkDCOYU8BpZJQlyvqwIfUrlezdfB6q6J34RpZRZFKKers5Q/
-         xHcM9R5EmAENMkKxjlnPqsvIM8RB6j5XtL60KA1w+KuP1KrJpdgr76mFHAQ7TGKYeHmd
-         NclmPQW3a1nkMUE2hcIog4Bie59BGM0ErWhUSYdWBEraWf3YVXh/l6Zm2RMLviKppJZw
-         Tl2zpCwCSdrt+B5W07tWCY04F9Yk4xDgC4WdCpSoBWPBgulAKxcp8BxNxSm6YGG1FyfD
-         QjRA==
-X-Forwarded-Encrypted: i=1; AJvYcCUSsmcNEroJ+sf04nvx4BS1rZ7lZKxRGMi7C0S2DCCYA+3+kvK0MDGXPvSwARtIAKDDkTbDYcUwSWrP@vger.kernel.org, AJvYcCVVrDlR2vupVDxE/wzgZYcBRWFc9ks08XpnCMsDmeYFY9/qvxTqHI3lugJJt2InSGgNhPf/kJI8pbvS@vger.kernel.org, AJvYcCX31zTtVWF89ao8W0Ynxm0ZDcc86S7kaujq4h0FYUDdxLTxerPywpD8ozXfsa1t79Cr9TeX9kC2VyagWsBs@vger.kernel.org
-X-Gm-Message-State: AOJu0YynhXeuAphQsm00r96Pq5pEu7UENdixJh807DQL0vd97K1WdN/c
-	b06i2kvwspryNAuEKIcJjS57d6Elg4MFDSNQcK8cq8rihltLivAx
-X-Google-Smtp-Source: AGHT+IHK3wCNc3RpQVpZ454cZp0zMtJu7nlGiRTUxZethjnQCgS4SELAAgxTJwdbVnWRkrmDEj0+bA==
-X-Received: by 2002:a05:6000:ac2:b0:37d:52e3:e3f0 with SMTP id ffacd0b85a97d-37efcf7ba39mr1572374f8f.44.1729679357155;
-        Wed, 23 Oct 2024 03:29:17 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a587f4sm8640688f8f.52.2024.10.23.03.29.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 03:29:16 -0700 (PDT)
-Message-ID: <e58d43d19daea622719f26193c49aa4fcacdaf3c.camel@gmail.com>
-Subject: Re: [PATCH 0/2] dt-bindings: dma: adi,axi-dmac: convert to yaml and
- update
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Vinod Koul <vkoul@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,  Nuno Sa <nuno.sa@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Wed, 23 Oct 2024 12:33:35 +0200
-In-Reply-To: <20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com>
-References: <20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1 
+	s=arc-20240116; t=1729680346; c=relaxed/simple;
+	bh=2UfxoJCdQX+zrGwIUniIub7eBOWzMwOUmkhc7uEiPUE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dnD9ZXaurz+9jLMKx89Qmv2zeCWGOrEmYgHXWBPZumbuOZKjHcVvsT2UnBQwaD7xxo6bKmAvPwh3GXCYFauMm3xompEU59GLqM2evbxVSF14rWdAte24Vk3GA96CPL3oibXC7thHyWJtArD4IaDSnmPkmJvt3in9At+2OMrF1gk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=k3Swi63j; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49NAjb1v001673;
+	Wed, 23 Oct 2024 05:45:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1729680337;
+	bh=OOav69xrLjc1Tf8Pp64sba+N+3XprTxwBkpV+TNsfYQ=;
+	h=From:To:CC:Subject:Date;
+	b=k3Swi63jh4eAsbUspTJcyyM6Wjpl6wek4cbRnuOzzyW5qN3ziHe+cafZ6nb3XwgZq
+	 zg1VOtopHA+AyFgU91TzqRZ/J58bveFph3Le0aZzF0RioVpHOQ1v1do3ZWMuy+EZOn
+	 vwtzlUdl++An6LJKpS/wiNhpdnGN5LaXccZSSVrw=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49NAjb4I070855
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 23 Oct 2024 05:45:37 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 23
+ Oct 2024 05:45:36 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 23 Oct 2024 05:45:36 -0500
+Received: from a-dutta.dhcp.ti.com (a-dutta.dhcp.ti.com [10.24.68.112])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49NAjW1r014331;
+	Wed, 23 Oct 2024 05:45:33 -0500
+From: Anurag Dutta <a-dutta@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
+        <j-keerthy@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+Subject: [PATCH 0/4] MCSPI clock ID fixes for J7200/J721E/J721S2/J784S4
+Date: Wed, 23 Oct 2024 16:15:28 +0530
+Message-ID: <20241023104532.3438851-1-a-dutta@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, 2024-10-22 at 12:46 -0500, David Lechner wrote:
-> Convert the ADI AXI DMAC bindings to YAML and then update the bindings
-> to reflect the current actual use of the bindings.
->=20
-> ---
+Hi all,
+This series fixes the clock IDs for MCSPI instances across:
+1) Main and Wakeup domains in j7200
+2) Wakeup domain in j721e
+3) Main and wakeup domain in j721s2
+4) Main domain in j784s4
 
-Nothing to add on Rob's comment. Basically adding my ack to show that I'm f=
-ine
-being the maintainer for this:
+In j7200, kernel crashes were observed due to incorrect clock IDs.
+In j721e/j721s2/j784s4, there was only a mismatch of clock IDs w.r.t
+documentation, however it did not trigger a crash. The clock IDs can be
+verified from the below links.
 
-Acked-by: Nuno Sa <nuno.sa@analog.com>
+Documentation links:
+J7200 - https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/clocks.html
+J721E - https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721e/clocks.html
+J721S2 - https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
+J784S4 - https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j784s4/clocks.html
 
-> David Lechner (2):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: dma: adi,axi-dmac: convert to=
- yaml schema
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: dma: adi,axi-dmac: deprecate =
-adi,channels node
->=20
-> =C2=A0.../devicetree/bindings/dma/adi,axi-dmac.txt=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 61 ----------
-> =C2=A0.../devicetree/bindings/dma/adi,axi-dmac.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 127
-> +++++++++++++++++++++
-> =C2=A02 files changed, 127 insertions(+), 61 deletions(-)
-> ---
-> base-commit: 52a53aecddb1b407268ebc80695c38e5093dc08f
-> change-id: 20241022-axi-dma-dt-yaml-c6c71ad2eb9e
->=20
-> Best regards,
+Test logs:
+J7200 EVM CRASH - https://gist.github.com/anuragdutta731/2733fab2d734eea67bd5ad64a2ad982a
+J7200 EVM SPI TEST - https://gist.github.com/anuragdutta731/e7f7610a0ff016415d5f58ff314a8c81
+J721E EVM SPI TEST - https://gist.github.com/anuragdutta731/d8e63b1298e0c074f6a29544f30c3e87
+J721S2 EVM SPI TEST - https://gist.github.com/anuragdutta731/48f6e67f776c025ec98ebe0809dac4a1
+J784S4 EVM SPI TEST -https://gist.github.com/anuragdutta731/7c1367c9d0308c5b67a4efa579594970
+
+Anurag Dutta (4):
+  arm64: dts: ti: k3-j7200: Fix clock ids for MCSPI instances
+  arm64: dts: ti: k3-j721e: Fix clock IDs for MCSPI instances
+  arm64: dts: ti: k3-j721s2: Fix clock IDs for MCSPI instances
+  arm64: dts: ti: k3-j784s4: Fix clock IDs for MCSPI instances
+
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi        | 16 ++++++++--------
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  |  6 +++---
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  |  6 +++---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       | 16 ++++++++--------
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi |  6 +++---
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       | 16 ++++++++--------
+ 6 files changed, 33 insertions(+), 33 deletions(-)
+
+-- 
+2.34.1
 
 
