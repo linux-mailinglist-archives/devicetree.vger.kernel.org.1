@@ -1,102 +1,178 @@
-Return-Path: <devicetree+bounces-114739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4CC29ACA56
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:42:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D849ACA5F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:44:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17899B22F85
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:42:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37C8C1C217D4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:44:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 598201ABEA1;
-	Wed, 23 Oct 2024 12:42:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="W1xL2f/0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF3F1ABEA6;
+	Wed, 23 Oct 2024 12:44:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F20221AA795;
-	Wed, 23 Oct 2024 12:42:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43C91AB539;
+	Wed, 23 Oct 2024 12:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729687356; cv=none; b=brO2p04i0imrsiuEMgh0bhTotthsV3CQlBH/9J6yOHwy1Usuj3dT2VDAD63SNbUYyV+Y1niSNfwR3Q3rs/GtidZf5uRqas0/utQWaWYE99TyR5Tx+LVuFYUO/ksANc9DSAM/Ab9zV39WONbw+aH7uXxUHZMVWaGsbQ5dGCQ/Sbs=
+	t=1729687449; cv=none; b=j943Uy+Zm5swlLTlrYy+JiizBs+NxSTwRjOjzlIseOhkYaTyeF6WzqxHSgwv/9K+s8mcdXgi7QtJ1WYj7zV5M3RdodteIkwtH/yZtSVCL8XDNxSE/N5WpbQgHXZYMzcwUi9RdJRUnj4LCVrYVponzfn4ged3b52rgQDoWlYz9dQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729687356; c=relaxed/simple;
-	bh=8FMQ2U+Yx5+4JJKuH97KbfWiDSrVmukhFmnAsljLTQo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UPFuHg5UyT2yDw5TuzEKxTpd2lxcNFOGnemJh7Qqm1g3I3Ef24NX70AdI7R8E/ozrp3wa2dyxaxLxbtz9sGSbyu2Jk6p7xs8OKhNI7YprDJ+JmjxTgjBOd4HtT2I497+uubyUcT/OEuGSRDSCjgCYGco6Cb+BHldMSjqgxq9qCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=W1xL2f/0; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ECkcLoi6nvRMZ6z485UUavRz1TW3AZP1oqqzMx62oAc=; b=W1xL2f/0ZkdIvu3RBvN4VPj7s8
-	HWt25pPkWMTIeb8bKcnp5OzNWA++tl9VhjKT8RWGaFy7Um+O7/tUkG3clzs+mRlae+X3em5cuzPtq
-	ld5s5T9R32kTtlewbDVrG+876rR8aV3XkHGKs2tR2LwwMS01GKyGXeEN/W7MS+Zs0g90=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1t3agq-00Axlr-AW; Wed, 23 Oct 2024 14:42:16 +0200
-Date: Wed, 23 Oct 2024 14:42:16 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-Message-ID: <79f9b971-8b3f-4f31-ab42-42a31d505607@lunn.ch>
-References: <20241021103617.653386-1-inochiama@gmail.com>
- <20241021103617.653386-5-inochiama@gmail.com>
- <227daa87-1924-4b0b-80db-77507fc20f19@lunn.ch>
- <gwtiuotmwj2x3d5rhfrploj7o763yjye4jj7vniomv77s7crqx@5jwrpwrlwn4s>
- <65720a16-d165-4379-a01f-54340fb907df@lunn.ch>
- <424erlm55tuorjvs2xgmanzpximvey22ufhzf3fli7trpimxih@st4yz53hpzzr>
- <66f35d1b-fd26-429b-bbf9-d03ed0c1edaf@lunn.ch>
- <zum7n3656qonk4sdfu76owfs4jk2mkjrzayd57uuoqeb6iiris@635pw3mqymqd>
- <d691a687-c0e2-48a9-bf76-d0a086aa7870@lunn.ch>
- <amg64lxjjetkzo5bpi7icmsfgmt5e7jmu2z2h3duqy2jcloj7s@nma2hjk4so5b>
+	s=arc-20240116; t=1729687449; c=relaxed/simple;
+	bh=zRiiMfd6Xcoo1LMFv0np0QQYsp5hLvrBYxzxTP2GrXA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mfHT+rVRHBK/JQLqv1z90cs1D9QFCAlpR3C2IuzmTRev5d+yBmz7EB6MY/9+i3+bU4BxdFotUevKtKxrrmSx95D0V5lidvsFu09EbAJ1oy1Ywwo6814u6yjIQ47KVVNsnC66ohXwhfSGLStD84GJwJkrMr+BVrUXBXM8Q+AArBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6e7e1232648so16410197b3.0;
+        Wed, 23 Oct 2024 05:44:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729687446; x=1730292246;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=inaV9taw8T4njvzxlHAZ1EG3WYPL67iLOevVu66/Zqk=;
+        b=rUDIkEJP8gtYd771ndwCXpCM2YUPzfBNuLnHO4Pp2TLvn2I9WePR+ljIRfyR8XEWfP
+         d1LO8ZnVOu3qQp8oYYhuJVHVUJfSeMi+4Qt9wq9QSUoNVRXu4gFp2Aep75aJB4u4url+
+         0nhnV7EivFavwDqGlsJ4G+e3E+/kurv2bt1Zl92xFMWeneAA1AQ/B77QhfO+agBajQdZ
+         QLWyRx+AOil3nE7r6AMYsdbjPmjqVlcXLpNlEKk996ZwB67RqRkj9B4QXafcbr+ByADr
+         mttvxUJlSI7/wNklPqrouIcAAmxLJR5ue64BdxOKECf2WbHsX+EHhkvCIt4U0JF4Gjlk
+         KpAw==
+X-Forwarded-Encrypted: i=1; AJvYcCXPN+RdWbiFQG+U+dYiVNCfeHCGLSlnC7WsrQiJSitAaAnPSKFIoQe7YoFewL5lbqTPdsnn4iixiC0W4HbdqjZxkeI=@vger.kernel.org, AJvYcCXvXW0JzGi1ej9h4zAqC+yz+AhpSdAGSWeE8eyzehJYwDctp/Ain3W9UQ4ABmZ7xXhdsuFF5knJzkm/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDXp3WQcH7HPg+SvwW8CZ/any8T4Ivqdyay1XgYoKXNcQ4CxuU
+	ZefkB78Jh5Yj58TXIno1mllTzWByeWXI0BZ1nZRPBUa/Ocu/gfpTsgG3350n
+X-Google-Smtp-Source: AGHT+IFWV5hIjk7NZRh6t0jYY8Ds0rcF+RHKyiu7+4RIDQMlJP2GklpQ8TUUCq8+Zdw6AC1x8YU6mw==
+X-Received: by 2002:a05:690c:7009:b0:6dd:b983:8563 with SMTP id 00721157ae682-6e7f0df5025mr27499347b3.14.1729687446249;
+        Wed, 23 Oct 2024 05:44:06 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e7e59e9db0sm5650187b3.96.2024.10.23.05.44.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Oct 2024 05:44:06 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e2e427b07dso57181957b3.1;
+        Wed, 23 Oct 2024 05:44:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXFbZSlcWnKtsZLYLDt+IL8RP679lQy1iR58uoiYEU5FPXLkCfro0K8fgCjpgOTKA+3DjQyXg1SHe1t@vger.kernel.org, AJvYcCXXPBiCk8obByOg7g4cMS8t7v9T6D2K7MH5XegUyJkH8HVii9ae5JqfDMRswDB1jJbKYRjGTQ42kI797fcerOWMqws=@vger.kernel.org
+X-Received: by 2002:a05:690c:dd2:b0:6e2:b263:1051 with SMTP id
+ 00721157ae682-6e7f0db1f05mr26567047b3.7.1729687445693; Wed, 23 Oct 2024
+ 05:44:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <amg64lxjjetkzo5bpi7icmsfgmt5e7jmu2z2h3duqy2jcloj7s@nma2hjk4so5b>
+References: <20241022184727.3206180-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdV+4PdxnRCzr7fnHnGYiuypem1hYMbXLac+x2db7yfpkA@mail.gmail.com> <20241023124134.GA1417003@ragnatech.se>
+In-Reply-To: <20241023124134.GA1417003@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 23 Oct 2024 14:43:53 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUK9ing+dCLxDxbpyD9BQeddP5eCoqgPrORRApD1-C5Ag@mail.gmail.com>
+Message-ID: <CAMuHMdUK9ing+dCLxDxbpyD9BQeddP5eCoqgPrORRApD1-C5Ag@mail.gmail.com>
+Subject: Re: [PATCH 0/2] arm64: dts: renesas: falcon: Wire-up Ethernet
+ breakout board
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Yes, this is what I have done at the beginning. At first I only
-> set up the phy setting and not set the config in the syscon. 
-> But I got a weird thing: the phy lookback test is timeout. 
-> Although the datasheet told it just adds a internal delay for 
-> the phy, I suspect sophgo does something more to set this delay.
+Hi Niklas,
 
-You need to understand what is going on here. Just because it works
-does not mean it is correct.
+On Wed, Oct 23, 2024 at 2:41=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> On 2024-10-23 09:13:11 +0200, Geert Uytterhoeven wrote:
+> > On Tue, Oct 22, 2024 at 8:48=E2=80=AFPM Niklas S=C3=B6derlund
+> > <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > > This small series wires up the Marvell 88Q2110 PHYs found on the Falc=
+on
+> > > Ethernet breakout board. With this applied all five PHYs are probed
+> > > correctly.
+> > >
+> > >     mv88q2110 e6810000.ethernet-ffffffff:07: attached PHY driver (mii=
+_bus:phy_addr=3De6810000.ethernet-ffffffff:07, irq=3DPOLL)
+> > >     mv88q2110 e6820000.ethernet-ffffffff:07: attached PHY driver (mii=
+_bus:phy_addr=3De6820000.ethernet-ffffffff:07, irq=3DPOLL)
+> > >     mv88q2110 e6830000.ethernet-ffffffff:07: attached PHY driver (mii=
+_bus:phy_addr=3De6830000.ethernet-ffffffff:07, irq=3DPOLL)
+> > >     mv88q2110 e6840000.ethernet-ffffffff:07: attached PHY driver (mii=
+_bus:phy_addr=3De6840000.ethernet-ffffffff:07, irq=3DPOLL)
+> > >     mv88q2110 e6850000.ethernet-ffffffff:07: attached PHY driver (mii=
+_bus:phy_addr=3De6850000.ethernet-ffffffff:07, irq=3DPOLL)
+> > >
+> > > They can be auto detected with just the compatible
+> > > "ethernet-phy-ieee802.3-c45", but to keep the style currently used I
+> > > have added the specific compatible for the 88Q2110 as done for other
+> > > SoCs.
+> >
+> > If the specific compatible values are not needed, I prefer not to add
+> > them, as DT should describe only what cannot be auto-detected[1].
+>
+> Ok, I will post a v2 without the specific compatible value.
+>
+> > Have you tried kexec and/or unbinding/rebinding the AVB driver
+> > (the latter is probably easiest)?
+>
+> I have tested unbinding/rebinding the driver both with and without a
+> specific compatible value, both scenarios work.
 
-	Andrew
+Great!
+
+> > > The primary issue we had with this in the past was due to an incorrec=
+t
+> > > PHY address. After studying the schematics (v100) I found the PHYs
+> > > address pins are wired differently on Falcon compared to other Gen4
+> > > boards. On Falcon they are pulled-down, while on other Gen4 boards th=
+ey
+> > > are left unconnected and subjected to the PHYs internal pull-ups. Thi=
+s
+> > > gives the PHY an address where the lower 3 bits of the address is
+> > > inverted for Falcon.
+> >
+> > This was changed in v102 of the schematics (REV0043c vs. REV0043b of
+> > the schematics for the Ethernet sub board): See "Changed Strap pin
+> > settings =3D=3D> PHYAD=3D[0,0,0], pull-down removed" on page 1, and the
+> > various PHY configuration notes...
+> > Moreover, this might be different in other board revisions, as the
+> > BSP uses PHY address 1 for RAVB1, address 2 for RAVB2, and so on...
+> >
+> > As I only had remote access to Falcon, I never knew the actual board
+> > revision I was using.
+>
+> I could not find any revision markings on the board. But to the best of
+> my ability (the markings are not super clear) I have identified that the
+> pull-down resistors are indeed present on the board I have.
+>
+> > How to handle this (yet another DTS file)?
+> > Are non-v100 variants widespread?
+>
+> As Wolfram points out, I don't think it's widespread. I think it's OK to
+> move forward with this as all the V3U boards we have seen have this
+> configuration. If one pops-up later we can solve it then right? As
+> solving this properly would need ether a separate DTS source or at least
+> an overlay anyhow.
+>
+> Is this acceptable for you? If so I will post a v2 with the change
+> proposed above.
+
+Yes, sounds good to me.
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
