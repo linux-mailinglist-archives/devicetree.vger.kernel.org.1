@@ -1,105 +1,122 @@
-Return-Path: <devicetree+bounces-114692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257709AC800
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:30:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C96279AC7FB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:29:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA70D281654
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:30:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8109A1F28303
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:29:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F30B19E7D1;
-	Wed, 23 Oct 2024 10:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA34819DF7A;
+	Wed, 23 Oct 2024 10:29:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEzpmZy1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BGLvvY2X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432E71662F6;
-	Wed, 23 Oct 2024 10:30:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079BC155393;
+	Wed, 23 Oct 2024 10:29:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729679419; cv=none; b=RXFBui1dJXG5wJNhYdyx/2cNY8IYn26r72tTkPr2IZ8E+MjaFjOHYaaMD+vxPO+VVTXpSS/pkSHzz71rGlRazMLPBoh5uwVIzJag+6cpDhsPcaNN2lSZ5wJKjZ5mvVHSlzxWUqJ+rhF/RHRtv+XQwx+MsBBvs+JE0BUwLsQ7jE0=
+	t=1729679360; cv=none; b=TaQyEd49kN+bgtVMj78XsyuT+dYW8Yt8MZzkVrtcdRlldJC56PpBw36uURX4LRv3yOJq3K4/2NzQc/Fv5rj4s6FcQ7DepJSwQfQ7pNcPk8Z2DWoXfWK25m4zoIx8xGIXt7ut6RDHCNtnZf9vzfW3oT+5A1HkPZEir1p0HEcKNnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729679419; c=relaxed/simple;
-	bh=1yMvsbqKKxCmPBDkUMt3vUIL8R4RjnBl2vB8/PDwUCk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=X+fXSVTfADxfYHL/eE7KsUeEQrbbf9XbP9Y4ud7R+w6HBoxmLIH9RuPePty6S7n8Eyh6vzqfqvuUpeGQJAyImZBJHOrjWXW4n1kqXFNDEkHIt4Gl3CDXb65tNUrNqol3rEE6jX7eZeVVtq6E7qOS7MCTPIuCSugLZPXnKdE1miM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEzpmZy1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33056C4CEC6;
-	Wed, 23 Oct 2024 10:30:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729679416;
-	bh=1yMvsbqKKxCmPBDkUMt3vUIL8R4RjnBl2vB8/PDwUCk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pEzpmZy1WbauAFljLYu5X2oUuavpPzogfbG3dvJHq0uRYEpUy5HPRo4Vyr3ZZVT59
-	 Dpmgxb0X8TpTPJcxQqbmpChIdwace8Zxaqe9T/5BocCVCz6EbbRFgyTpQ6eNb7sQPV
-	 UJhZoOOW/eNy0BB31qEtbSJ/kzdyUMNhHwF3Iqb24Xu0gdyc4Sx0TjWQH7yFtNYanC
-	 Km8POoGWxxaFPqQM342sVLn5reVMpoowxkv2VJK/vSQa6jyvCYmVJZ+gvXXA4WoeWG
-	 TfpbrlahDd5K1bxKh8K9fSYwMO8H9z+9tEzBBINPqs75DhUHUpvneD/2H4GGur096c
-	 7tMHv33au6qxQ==
-From: Conor Dooley <conor@kernel.org>
-To: Henry Bell <dmoo_dv@protonmail.com>,
-	E Shattow <e@freeshell.de>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: starfive: Update ethernet phy0 delay parameter values for Star64
-Date: Wed, 23 Oct 2024 11:30:03 +0100
-Message-ID: <20241023-guts-versus-1a2bcfdfbec2@spud>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241022061004.62812-1-e@freeshell.de>
-References: <20241022061004.62812-1-e@freeshell.de>
+	s=arc-20240116; t=1729679360; c=relaxed/simple;
+	bh=Gut0VnewNuT0LdmLi16hq5QIvsI+I9WMoZnZJlOfPAs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Ghq5PP6Xz6FU7XZsmsJfuMQ4r58nm+3yCFZ+zIvT+QDr6w4g2S7kD9NYK57M9eLSUKtNU4werdqjSXtlsIa+s+110/f3wfj4ZphQzMUHW1SBQaD8ZrL823xMdqiZEXzDIyVUr6Bbfa0gONIewBDSc8aSiARnTUIXJrigmLJ+wwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BGLvvY2X; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37d47b38336so4521502f8f.3;
+        Wed, 23 Oct 2024 03:29:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729679357; x=1730284157; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Gut0VnewNuT0LdmLi16hq5QIvsI+I9WMoZnZJlOfPAs=;
+        b=BGLvvY2XVjFH4hmvaimwDv76C123Wa20iKKA3hv1rUzL+6a/0Ah38whQGDZ1LSgMGS
+         XfGVKg/Nnj8V+iNonIZSOezh+RqYmWS0jkfN8fhhBd1ZXCLu43IF7SfWOA1Z1O9dgWTX
+         t3hcyn9m4Y7x71ET7DrLG5GMRsJmuGJhNyrGytH5GtEiP49eAzv4eaeYMONSLreCFkta
+         qIszBx2D0WOQZ0WQneAUleJ0H4u0KIbSI477pPsrY0E4Ay4NJarEzgsRujOIlIwnDAKQ
+         oqmqD/1cr25yNR/+ijyV/gIQ8rLGX9Fd9Ce/4uQ5wtD4VxhJf0vUvOOUCkr14TCTCN2m
+         ZIwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729679357; x=1730284157;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gut0VnewNuT0LdmLi16hq5QIvsI+I9WMoZnZJlOfPAs=;
+        b=ouxYB5VqO3X06A6AWVDDkaRyD9fVIeGdRWNfzuO6mI6dDSiky32gxUjEVie2pE+1PW
+         XCnDlmQ6qNUSZ0RYNurWHkDCOYU8BpZJQlyvqwIfUrlezdfB6q6J34RpZRZFKKers5Q/
+         xHcM9R5EmAENMkKxjlnPqsvIM8RB6j5XtL60KA1w+KuP1KrJpdgr76mFHAQ7TGKYeHmd
+         NclmPQW3a1nkMUE2hcIog4Bie59BGM0ErWhUSYdWBEraWf3YVXh/l6Zm2RMLviKppJZw
+         Tl2zpCwCSdrt+B5W07tWCY04F9Yk4xDgC4WdCpSoBWPBgulAKxcp8BxNxSm6YGG1FyfD
+         QjRA==
+X-Forwarded-Encrypted: i=1; AJvYcCUSsmcNEroJ+sf04nvx4BS1rZ7lZKxRGMi7C0S2DCCYA+3+kvK0MDGXPvSwARtIAKDDkTbDYcUwSWrP@vger.kernel.org, AJvYcCVVrDlR2vupVDxE/wzgZYcBRWFc9ks08XpnCMsDmeYFY9/qvxTqHI3lugJJt2InSGgNhPf/kJI8pbvS@vger.kernel.org, AJvYcCX31zTtVWF89ao8W0Ynxm0ZDcc86S7kaujq4h0FYUDdxLTxerPywpD8ozXfsa1t79Cr9TeX9kC2VyagWsBs@vger.kernel.org
+X-Gm-Message-State: AOJu0YynhXeuAphQsm00r96Pq5pEu7UENdixJh807DQL0vd97K1WdN/c
+	b06i2kvwspryNAuEKIcJjS57d6Elg4MFDSNQcK8cq8rihltLivAx
+X-Google-Smtp-Source: AGHT+IHK3wCNc3RpQVpZ454cZp0zMtJu7nlGiRTUxZethjnQCgS4SELAAgxTJwdbVnWRkrmDEj0+bA==
+X-Received: by 2002:a05:6000:ac2:b0:37d:52e3:e3f0 with SMTP id ffacd0b85a97d-37efcf7ba39mr1572374f8f.44.1729679357155;
+        Wed, 23 Oct 2024 03:29:17 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a587f4sm8640688f8f.52.2024.10.23.03.29.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 03:29:16 -0700 (PDT)
+Message-ID: <e58d43d19daea622719f26193c49aa4fcacdaf3c.camel@gmail.com>
+Subject: Re: [PATCH 0/2] dt-bindings: dma: adi,axi-dmac: convert to yaml and
+ update
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Vinod Koul <vkoul@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Nuno Sa <nuno.sa@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Wed, 23 Oct 2024 12:33:35 +0200
+In-Reply-To: <20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com>
+References: <20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=965; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=+Ekbc+eRHl5mRs0Lm29hCW/ghDBTMs/HMot0ehs2yl0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOkSF7QL0ree2ZbMXZQlMCXr76OrQdvPHms5pi8w05kn1 rn2Y9iyjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExkRw8jwzHbSR0bzPOnlKkv OVUq98LQgVHDZdnJL+fNwyYnhosaZDD8M3rfJsfbvHmzt57gc/bPn0I4xWaW3Diw78tsza7aDKl SPgA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Tue, 2024-10-22 at 12:46 -0500, David Lechner wrote:
+> Convert the ADI AXI DMAC bindings to YAML and then update the bindings
+> to reflect the current actual use of the bindings.
+>=20
+> ---
 
-On Mon, 21 Oct 2024 23:09:51 -0700, E Shattow wrote:
-> Improve function of Star64 bottom network port phy0 with updated delay values.
-> Initial upstream patches supporting Star64 use the same vendor board support
-> package parameters known to result in an unreliable bottom network port.
-> 
-> Success acquiring DHCP lease and no dropped packets to ping LAN address:
-> rx  900: tx 1500 1650 1800 1950
-> rx  750: tx      1650 1800 1950
-> rx  600: tx           1800 1950
-> rx 1050: tx      1650 1800 1950
-> rx 1200: tx 1500 1650 1800 1950
-> rx 1350: tx 1500 1650 1800 1950
-> rx 1500: tx 1500 1650 1800 1950
-> rx 1650: tx 1500 1650 1800 1950
-> rx 1800: tx 1500 1650 1800 1950
-> rx 1900: tx                1950
-> rx 1950: tx                1950
-> 
-> [...]
+Nothing to add on Rob's comment. Basically adding my ack to show that I'm f=
+ine
+being the maintainer for this:
 
-Applied to riscv-soc-fixes, thanks!
+Acked-by: Nuno Sa <nuno.sa@analog.com>
 
-[1/1] riscv: dts: starfive: Update ethernet phy0 delay parameter values for Star64
-      https://git.kernel.org/conor/c/825bb69228c8
+> David Lechner (2):
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: dma: adi,axi-dmac: convert to=
+ yaml schema
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: dma: adi,axi-dmac: deprecate =
+adi,channels node
+>=20
+> =C2=A0.../devicetree/bindings/dma/adi,axi-dmac.txt=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 61 ----------
+> =C2=A0.../devicetree/bindings/dma/adi,axi-dmac.yaml=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 127
+> +++++++++++++++++++++
+> =C2=A02 files changed, 127 insertions(+), 61 deletions(-)
+> ---
+> base-commit: 52a53aecddb1b407268ebc80695c38e5093dc08f
+> change-id: 20241022-axi-dma-dt-yaml-c6c71ad2eb9e
+>=20
+> Best regards,
 
-Thanks,
-Conor.
 
