@@ -1,187 +1,185 @@
-Return-Path: <devicetree+bounces-114589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F84E9AC045
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:32:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C8EB9AC049
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:32:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE9692852EC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:32:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DBB02853BC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA8B1547D5;
-	Wed, 23 Oct 2024 07:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA1F15624D;
+	Wed, 23 Oct 2024 07:32:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UAN6oKaf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rnzPosid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE931553BB
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 07:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140BD154BFC
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 07:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729668729; cv=none; b=c7RP8FGGAMwrhhKbxE2kVof04i6J91iI+k6ZvTUL43QSWHdk2aRnDiuF00gWYXv07FN7Mtl4Ve3AbtRAx6WQq9OLLIkD9eHuEpE9X/7qKwJWV4qpuUpqA66KQ8EU+rvTKNbGG7mH6QlmcT7/167uug31sQYWsgYIJqYvpAc7r1w=
+	t=1729668735; cv=none; b=EOVGpXxGF8UBU6s2xCXcxljwc6lThB2DTvJv/GU33UGy75xYu9yC2HzKs6q0YuJba20svuevj1DXnX67xYp95qkpPYxkiW0HmLAEmzreXtaVG87QMvsT/je76Xuh1jJm074uJUqdVJMza3L+X4MbDKXp6nf7IRKZdVjAFpdZISU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729668729; c=relaxed/simple;
-	bh=dTDdz6StFkQ7UdOGaYxF3BlZM5FwqqVkhyMDlmNMuoI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h2Pd2MbAyKA59qDU/WwTeI5yjHxnIMwR53l2lupQrt66Pqa6LTSl3aVuoim3PY+YXpiUgW3ZAcX16LOfi++dH0VLa9P4Q1H1qlPVSh8T1Gi/hJgMXEnrKdV9g8rDS4BeZ4iW5P2vPBUTs/Zs9b6up95tgOX0L4aOL8C06LlExuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UAN6oKaf; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c95a962c2bso7783476a12.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 00:32:06 -0700 (PDT)
+	s=arc-20240116; t=1729668735; c=relaxed/simple;
+	bh=UG6ihVAcJ5pYreWh3xW3jBvz7qOrrWyU52nZm6ikEK0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SVmS0Z5dYksBL4gDJjKizEPhg72ZDUEMw9NkMPhbyDFAI60MWdR6UlM0b+UVTqkQvCd/GX7f7GVYtJBpTMa7Xcz+dSPO2R19MtVDsVY+BIsPBlwYdTXXmna3H9KpjwP0VOeD9nDl9Vq++dz99gYAR1ckwmmLAiHQS8m24onhQtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rnzPosid; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d70df0b1aso5121340f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 00:32:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729668725; x=1730273525; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ld+3WPOQF7W9x7JI6fzkyd3V36oBi0SwcjkGdighsL4=;
-        b=UAN6oKaf4ef/I0JzdYXntW/u1JELU3eF4tG4EwLfCt8Ws9hTY9Ry8SlxXhGudhk9Ys
-         55jsm/zokV/kXDEyKoSfci8rysfnPuxheO891auEldiFNvK1z0Bmf31j7YA+TlYOyVDR
-         b07je4+Ncoz5gNEBart9a5qAY/uee84lrBdeipNdO1ulslV3TFKzcs3LjPrQOwJSCqDZ
-         8B+UzoFiO+tN1t/bTAMXqw05sZZwme47UXIjdvJc2dm7lhXC0znddgRuHqxHmGGtXBwb
-         +SWXtoAT85MH/Cf9T1LUQtlIE7ncBn5QwVri7kwJMCQsyazaGivWm350buutSzjClKOl
-         6lvQ==
+        d=linaro.org; s=google; t=1729668732; x=1730273532; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=0ByOuflTVuw6FqNFCU6UPV6W286vup+uWGJ9ZYP4mkM=;
+        b=rnzPosidsZfkKP9K0Lvs+r9sC6NLuAmZf0Bz99r3WvVrlT3tJt1Um0S/JhhOL2DBmi
+         UfpsTzFMXricAvlVtD95Ra5TetnGrGG9nuQqO70H4idTM3rTtqe8LN8gvYex/qa5b36M
+         6zuOEWgrzeYOWvLDJmeBp4O9mfK8dl9JebGzIj+cbg4jQ7zwjoRVF7hd6bEL0dlex+mp
+         +CAGNr5eDHPuJBRwnV1Y9lFuFImrgXK07ZJiEGw/AOyKUp4mAN1k6FAehreau6PQG24K
+         jbpe12thcixDm9hTbxLc4DgQqJdZ7iEUciDfabUXTPZURSGhZWS7JELA8pOZyagWMRNC
+         eQrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729668725; x=1730273525;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ld+3WPOQF7W9x7JI6fzkyd3V36oBi0SwcjkGdighsL4=;
-        b=DJnsncX5d7+AhkRRBAvKBuNNZQdx2FeMIpY1dIdWsXt1exIyymHpkaNtuSwFI90fgN
-         mStS3ThwfsgNa3YLj0wV304uvlol1MQpP/3UT5FxyXuww9/kwW8Ge9D9+UsSFqs2HbKr
-         6m/mC1dj5EGX8PngZfFF1d06BpUrv4+lT+ZK5eJdA3Km0P3hJ9QJ7Kr4fykVP9tjHMp4
-         ssaB4D+p6+0LammLMl9KJBwHjnNDERIHhDKbC0LMQfnXPgGZfyHmRV6GGSuZljVsUIDh
-         MWCBmSG8lAMbpEcqY36MUGk/ohctEqyZJAPLjHLE9WmJkTStlEYjudbJ6CIU8//1VNVt
-         Wbng==
-X-Forwarded-Encrypted: i=1; AJvYcCUvhdqi9laieLZMvwm0Om9HzS6Q6DGsdwxXWgCnBMtnYsWibqnOlB0FETI2hFlqKnpKUr2cpYluSEkN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAF1LwXYuHNPckm5wMsIMqrndv4tL1dsi4Kbsu/yBxgUO1eIBb
-	yiX5OLcRfEtWnFLTp1VSlet4b7O+9qFnWi2uq1rDqUYRrRuRH3oZ/PmsaaMOaYBT99gv9DFbRxo
-	+ACIc/cp6oHwE6g5enHzYSNddk3/JKkk9tUx1ig==
-X-Google-Smtp-Source: AGHT+IEJBETWRzafCHMiJacmhO3+2BGfuEPqovyY1jdP6hMCT71V63RIrqcr+Gk7ya87qxf9ULOTWDHVQyBI2z8liWE=
-X-Received: by 2002:a17:906:d54e:b0:a9a:38e6:2fdf with SMTP id
- a640c23a62f3a-a9abf96d1ffmr137056066b.64.1729668724464; Wed, 23 Oct 2024
- 00:32:04 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729668732; x=1730273532;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0ByOuflTVuw6FqNFCU6UPV6W286vup+uWGJ9ZYP4mkM=;
+        b=xS49QcpFPBISr0PpOt7EIWt6ETD4TLJ4psYJC1kcA0evhVFGb+dS0vA4N0xlIDp9Oh
+         Z5tOk93dfd2iPaYtYM0ECL0KZTYsQHjoSgokc6CRPg0oWK1UEXnLCYVCna3bQa2YjmOr
+         2Q6/5Dmk52cz3iV5/2EClDU8KYj0vqt7zoZie0+t4DR9aDE0TWkvoCaZUH9vJWt2JtQY
+         w4JiNV9eyVhs90Zbty36pf840BZAfoyQ/fRPTERmW+oep6srEwBJSkEGW2HfpbuBt8Mw
+         /iChsMT3yfADsRnHm9O1AMbgPLExB93hwcZ3WFbPIc+sWlVOUhPct4zedwOhc+Z/2NAY
+         w+nw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBVVQg3j++ofVjZ4vSZ0ofJGhSHaxljSEMAUZCTcU0XGs9wIqHyMTDzOW4yJ63m1nKK16htLSEekdL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvgDslFWMYNFojVS950/Y3pE1eeyJyNIOt1JFtOu9zlLG20fwv
+	EkMDyKaBgBR1Kg1cJf5TL4LabgW9tN6+Q5ih7BLwjcCm86dHm3w/6vtmcs4iGVA=
+X-Google-Smtp-Source: AGHT+IHjIA8gmyjHXms77rT5Sn14lEAq7Alni4DB4J5+vDcwterfp4ljbKgcAnTOfUwgEtKEJq9FJA==
+X-Received: by 2002:adf:ea46:0:b0:37d:529f:ac1e with SMTP id ffacd0b85a97d-37efcf9c1a9mr938910f8f.53.1729668732225;
+        Wed, 23 Oct 2024 00:32:12 -0700 (PDT)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a4ac2esm8276357f8f.44.2024.10.23.00.32.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 00:32:11 -0700 (PDT)
+Date: Wed, 23 Oct 2024 10:32:09 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] usb: typec: Add support for Parade PS8830 Type-C
+ Retimer
+Message-ID: <ZximeTNi7huc95te@linaro.org>
+References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
+ <20241004-x1e80100-ps8830-v2-2-5cd8008c8c40@linaro.org>
+ <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
+ <Zxdp2vHzREJAFkwj@linaro.org>
+ <Zxif6vmh8BE_C-_n@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022-ad7380-fix-supplies-v3-0-f0cefe1b7fa6@baylibre.com> <20241022210239.6a61b32f@jic23-huawei>
-In-Reply-To: <20241022210239.6a61b32f@jic23-huawei>
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Wed, 23 Oct 2024 09:31:49 +0200
-Message-ID: <CAEHHSvYCx1zWmAf8iSdVTaxfewFLoeJo6RXQj7-3hwX40yCjOQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] iio: adc: ad7380: fix several supplies issues
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zxif6vmh8BE_C-_n@hovoldconsulting.com>
 
-Le mar. 22 oct. 2024 =C3=A0 22:02, Jonathan Cameron <jic23@kernel.org> a =
-=C3=A9crit :
->
-> On Tue, 22 Oct 2024 15:22:35 +0200
-> Julien Stephan <jstephan@baylibre.com> wrote:
->
-> > Hello,
-> >
-> > This series tries to fix several issues found on the ad7380 driver abou=
-t
-> > supplies:
-> >
-> > - vcc and vlogic are required, but are not retrieved and enabled in the
-> > probe function
-> > - ad7380-4 is the only device from the family that does not have intern=
-al
-> > reference and uses REFIN instead of REFIO for external reference.
-> >
-> > driver, bindings, and doc are fixed accordingly
->
-> I considered a few responses to this series.
->
-> 1) Asking you to pull the fixes to the front even though it would be pain=
-ful.
-> 2) Asking if the missing supplies patch should really be tagged as a fix.
->
-> In the end I opted for the variant that may just confuse the stable folk
-> the most and just took it as is + added stable to the 3 fixes.  Hopefully
-> it will be obvious they should just pick up all 5 (or maybe not the docs)=
-.
->
-> You are correct that the refactors make it easier to review the fixes
-> and this is a fairly new driver so I'm not that worried by pushing back t=
-he fix
-> as it's only to 6.11.
->
-> Applied to the fixes-togreg branch of iio.git.
->
-> Note the side effect of this is timing is tight for having this available
-> in the char-misc-next branch, so it may push back additional device
-> support until next cycle.
->
-> Thanks,
->
+On 24-10-23 09:04:10, Johan Hovold wrote:
+> On Tue, Oct 22, 2024 at 12:01:14PM +0300, Abel Vesa wrote:
+> > On 24-10-15 15:03:15, Johan Hovold wrote:
+> > > On Fri, Oct 04, 2024 at 04:57:38PM +0300, Abel Vesa wrote:
+> 
+> > > > +	ret = ps8830_get_vregs(retimer);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	retimer->xo_clk = devm_clk_get(dev, "xo");
+> > > > +	if (IS_ERR(retimer->xo_clk))
+> > > > +		return dev_err_probe(dev, PTR_ERR(retimer->xo_clk),
+> > > > +				     "failed to get xo clock\n");
+> > > > +
+> > > > +	retimer->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> > > 
+> > > The reset line is active low and should be described as such in DT. So
+> > > here you want to request it as logically low if you want to deassert
+> > > reset.
+> > 
+> > This is being reworked in v3 as we need to support cases where the
+> > retimer has been left enabled and initialized by bootloader and we want
+> > to keep that state until unplug event for the cold-plug orientation
+> > to work properly.
+> > 
+> > On top of that, we don't want to deassert the reset here. We do that
+> > via gpiod_set_value() call below, after the clocks and regulators have
+> > been enabled.
+> 
+> Ok, but you should generally not drive an input high before powering on
+> the device as that can damage the IC (more below).
 
-Thank you!
+This is just not true, generally. Think of top level XTALs which feed in
+clocks (and can't be disabled) before ICs are enabled.
 
-Cheers
-Julien
+> 
+> That is, in this case, you should not deassert reset before making sure
+> the supplies are enabled.
 
-> Jonathan
->
-> >
-> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> > ---
-> > Changes in v3:
-> > - Use fsleep instead of msleep
-> > - Add all trailers from review
-> > - Link to v2: https://lore.kernel.org/r/20241021-ad7380-fix-supplies-v2=
--0-2ca551b3352a@baylibre.com
-> >
-> > Changes in v2:
-> > - Fix kernel test robot warning about variable uninitialized when used =
-[1]
-> > - drop commit removing supply description in bindings
-> > - after discussion on [2] we decided to add refin supply here, as it
-> >   will be needed in the futur
-> >
-> > - Link to v1: https://lore.kernel.org/r/20241007-ad7380-fix-supplies-v1=
--0-badcf813c9b9@baylibre.com
-> >
-> > [1] https://lore.kernel.org/oe-kbuild-all/202410081608.ZxEPPZ0u-lkp@int=
-el.com/
-> > [2] https://lore.kernel.org/all/20241015-ad7380-add-adaq4380-4-support-=
-v1-0-d2e1a95fb248@baylibre.com/:warning
-> >
-> > ---
-> > Julien Stephan (5):
-> >       dt-bindings: iio: adc: ad7380: fix ad7380-4 reference supply
-> >       iio: adc: ad7380: use devm_regulator_get_enable_read_voltage()
-> >       iio: adc: ad7380: add missing supplies
-> >       iio: adc: ad7380: fix supplies for ad7380-4
-> >       docs: iio: ad7380: fix supply for ad7380-4
-> >
-> >  .../devicetree/bindings/iio/adc/adi,ad7380.yaml    |  21 ++++
-> >  Documentation/iio/ad7380.rst                       |  13 +-
-> >  drivers/iio/adc/ad7380.c                           | 136 ++++++++++++-=
---------
-> >  3 files changed, 110 insertions(+), 60 deletions(-)
-> > ---
-> > base-commit: 1a8b58362f6a6fef975032f7fceb7c4b80d20d60
-> > change-id: 20241004-ad7380-fix-supplies-3677365cf8aa
-> >
-> > Best regards,
->
+Wrong. Even the data sheet of this retimer shows in the timigs plot the
+reset as being asserted before the supplies are enabled.
+
+And generally speaking, the reset needs to be asserted before the
+supplies are up, so that the IC doesn't start doing any work until
+the SW decides it needs to.
+
+> 
+> > > > +	ret = clk_prepare_enable(retimer->xo_clk);
+> > > > +	if (ret) {
+> > > > +		dev_err(dev, "failed to enable XO: %d\n", ret);
+> > > > +		goto err_retimer_unregister;
+> > > > +	}
+> > > 
+> > > Should you really enable the clock before the regulators?
+> > 
+> > So maybe in this case it might not really matter. But in principle,
+> > the HW might be affected by clock glitches and such when IP block
+> > is powered up but unclocked. Even more so if the clock enabling
+> > (prepare, to be more exact) involves switching to a new PLL.
+> > 
+> > So clock first, then power up. At least that's my understanding of HW
+> > in general.
+> 
+> I think you got that backwards as inputs are typically rated for some
+> maximum voltage based on the supply voltage. 
+
+Yes, but that's done at board design stage.
+
+> That applies also to the
+> reset line as I also mentioned above.
+> 
+> What does the datasheet say?
+
+As mentioned above, datasheet shows reset asserted before the supplies
+are being enabled.
+
+> 
+> > > > +
+> > > > +	ret = ps8830_enable_vregs(retimer);
+> > > > +	if (ret)
+> > > > +		goto err_clk_disable;
+> 
+> Johan
 
