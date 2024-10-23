@@ -1,339 +1,223 @@
-Return-Path: <devicetree+bounces-114771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F0B79ACE1C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:07:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92E8D9ACE46
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:10:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4151AB22CB1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:07:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F1C02812A4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321491D0E18;
-	Wed, 23 Oct 2024 14:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E733E1D0421;
+	Wed, 23 Oct 2024 15:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="iAa8tFt8"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jvyLBVS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28ADC1B78E7
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 14:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4601D278A;
+	Wed, 23 Oct 2024 15:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729695523; cv=none; b=FeWanIzVjMQHB0TaR7cya/byeadQGjebyS+9Lk34ki16hq1ZmpjlpF6TReVCldKI7qtYCAZW9ltjMBYPXixq0uN1uox+amUXialTq4MJmDlA1KrofmM/ZTt3PNqvcsZzbQWYMZlwcx+HlT3XeqtDu+azKhDF2y2tY69HJPgNzAs=
+	t=1729695931; cv=none; b=WyWs0ko55dqoBjPu90EwdUjRrmJsOhydlbwO5Qo0GjIjDIZEtawQsw+u55E87sOZ5RuFD+Gylk/PhUp81fp2sF2pmvW7l4muWURiZVBiNQZLfgtyqvBGFbM+p7P1INOHU8J/Qi5Ye4Y7Wlvlkv6HEPZkP1WRDw7fF7PhulCajDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729695523; c=relaxed/simple;
-	bh=ijSNBy8WFLMHsM6Tz0SAZQFPKdhIuybeQf2QKLmNK3A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZPLTPEXhE8RVmGgLU3kyWB/Ovn2uHXdHOA6mojSZFHPrT6nigophDjxg6QWXAI6sgTaaVySJ/KP/hqsd8himOnmYoa7V5yKSkR3Gs3pXGJEtW5Ph4QnMRhsAQcOy3ziDBg5yWcrJ5NMtPielD3USWJwyFNlrqIROvGpPYknIEsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=iAa8tFt8; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e29327636f3so6979689276.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 07:58:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1729695520; x=1730300320; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=08wzDr73SmncP7hOpusXSf0JUEnKVaq7T6cx/CuFfXg=;
-        b=iAa8tFt8IKUKcHsFf2TMju2oXovRyXgP9C5PgivPwrtVpT2MOiS7JzInKoOjc9J0tF
-         rIifyZf+tG4WGXaYc/0K9bUdQZ1mYGN62NJn/9DaTPBELPqrrTqgBps4GO4ELKUWX3vH
-         v8fKmv9i0CWLnst+IdxL2Kad6iY+OQuxjWXTM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729695520; x=1730300320;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=08wzDr73SmncP7hOpusXSf0JUEnKVaq7T6cx/CuFfXg=;
-        b=Pg434sMswIlsBk9gZF1/NsEhLvG3vO2JAV4fP1rpCv16EVncw+1JzFY6MwfkZvv2wT
-         ridr0NndTywjTKnfJB5KzTRqEuim2/PCJ0lWeH0CFmQkbmaeZFegl/fPlZNYokXoopEz
-         dD0C9JJxNoB/hGFW/kZjbddGleDulmVvCWstda91TZ7WSkUp/+49yon8KJUm9My6QGo4
-         z6QXpFoG+zk53zLyiDSH+l9Vq4j9sn3tOwzHPqtY9VjY2I6JtHFWIc/Te5waxVLKOVI6
-         RvBYnEcw0vcpF+m3OJnp5ran148vH2jfv2VFBQpqt4aasvIO7hKVCT7JMVVEd0weH9dZ
-         cBnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWQ/53VuS/+A24Upt6WFct6WtU92arrSErMBoru+x3eIL/dHDlWEPtFO5ONDEvzmkFeFOQ8pmKrDA4H@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzoi6rjMQ8QUXW9wHtC2Yi6saucZOMWpxn4WLXsy0QxhWavse11
-	UuJ84/L+1+NolQKGSfNPFjm7TY3KZMnyV4/Ys5/PgTLfzz9Kp0LuNCrBFIFAiAC/a8vcxs4KYE6
-	YFOMbupM8A1ABvMtfbTDyN7+VbM/Awl3sSqBmCg==
-X-Google-Smtp-Source: AGHT+IGAkJXmTLbjp4p/kmr/kI6fPHFgvzbKjk4VittFrzzA3ftmZhOciZg168F1BuNwZNJVQtt2aHwv41AM/edj+1w=
-X-Received: by 2002:a05:6902:260a:b0:e28:e9bf:797c with SMTP id
- 3f1490d57ef6-e2e3a609744mr2609445276.3.1729695520116; Wed, 23 Oct 2024
- 07:58:40 -0700 (PDT)
+	s=arc-20240116; t=1729695931; c=relaxed/simple;
+	bh=GnQXAr70wzJVnk/mn57v4kjZEEIUVdMGYwOK2pJ8TbI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ODT5ycOgO7xAt9w+TOqFYsYoxb5LqN0V4diEAtk8raH6nZgqbFID8kYODi6iY4eeLHBaAeYVJAwFlCmO8Jh7P7jy0yXp2ByLYD805V3zDiyef978lhHJREd4eGXfcPY7AKY2EJ49vv9QBw32MyTz2Lv6uz2T4ltYHmNQRk8ZGis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jvyLBVS8; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49NF5LMN071286;
+	Wed, 23 Oct 2024 10:05:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1729695921;
+	bh=cxfnVxjxs+e2TMfqcU/zti9/A8hiBCMmmh5nnYqaFHY=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=jvyLBVS8exSaB5VCINBrlNUsLaKuPIwkeN/K9p4A9hFhKP2n5Xxz5bwp5Oo9/N2mw
+	 pLZ5m6vyBWr0A9Iusqv6QadYEvWvVrqVFlvYclX/tj9zFO8Os95DfkK70x/B7i9OMU
+	 JmcvsqQWNBcQPmt6pHNrrqyuKWoF/aMXhUy396oI=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49NF5LJS006302
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 23 Oct 2024 10:05:21 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 23
+ Oct 2024 10:05:20 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 23 Oct 2024 10:05:21 -0500
+Received: from [172.24.227.91] (psdkl-workstation0.dhcp.ti.com [172.24.227.91])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49NF5GnA065172;
+	Wed, 23 Oct 2024 10:05:17 -0500
+Message-ID: <942f988f-8228-43e0-9b29-41fccddcaaf1@ti.com>
+Date: Wed, 23 Oct 2024 20:35:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240928083804.1073942-1-dario.binacchi@amarulasolutions.com>
- <20240928083804.1073942-2-dario.binacchi@amarulasolutions.com>
- <566859c1-a397-4465-987e-0682b07a703e@kernel.org> <CABGWkvqqg-PGAZTCz=MMLRx5F93jaN_=z8zJt1sDd3PHXd80PQ@mail.gmail.com>
- <6c3e6071-822f-4230-b76b-276330de07ef@kernel.org> <CABGWkvrU507BHoP94Y7fEyFr=chuuy3o=oBHtuWRvwTw3GnxXw@mail.gmail.com>
- <82db5037-bbd3-4005-bde9-02df1bf4c475@kernel.org> <CABGWkvqXZ+YAvo-AtUy+Ftdu0xxXKuhOwcSTwO5Fv6D3yzttNg@mail.gmail.com>
- <b847ccb1-1eb8-4119-8612-212804cb50d8@kernel.org> <CABGWkvqkmo9O-O1taR651W4xo=yqar=p71e0LKqRte2CGZ2Z8w@mail.gmail.com>
- <7bce31c0-8c74-4d65-812f-01951a0d75d1@kernel.org> <CABGWkvqFi_y8OzKbi=K7ucW4RuY_zh6Z4a=uO2oqQRoVE8LaCQ@mail.gmail.com>
-In-Reply-To: <CABGWkvqFi_y8OzKbi=K7ucW4RuY_zh6Z4a=uO2oqQRoVE8LaCQ@mail.gmail.com>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Wed, 23 Oct 2024 16:58:28 +0200
-Message-ID: <CABGWkvrR-vVTpNSBD_etjn4SteO8cpUed+dTvYguHR67UUSsYA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: clock: imx8m-anatop: support spread
- spectrum clocking
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 06/12] arm64: dts: ti: k3-j7200: Add bootph-*
+ properties
+To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Udit
+ Kumar <u-kumar1@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>, Andrew Davis <afd@ti.com>
+References: <20241023-b4-upstream-bootph-all-v5-0-a974d06370ab@ti.com>
+ <20241023-b4-upstream-bootph-all-v5-6-a974d06370ab@ti.com>
+Content-Language: en-US
+From: Aniket Limaye <a-limaye@ti.com>
+In-Reply-To: <20241023-b4-upstream-bootph-all-v5-6-a974d06370ab@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Oct 8, 2024 at 11:16=E2=80=AFAM Dario Binacchi
-<dario.binacchi@amarulasolutions.com> wrote:
->
-> On Tue, Oct 8, 2024 at 10:20=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> >
-> > On 07/10/2024 17:02, Dario Binacchi wrote:
-> > > On Sun, Oct 6, 2024 at 3:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> > >>
-> > >> On 05/10/2024 10:57, Dario Binacchi wrote:
-> > >>> On Thu, Oct 3, 2024 at 12:46=E2=80=AFPM Krzysztof Kozlowski <krzk@k=
-ernel.org> wrote:
-> > >>>>
-> > >>>> On 01/10/2024 08:29, Dario Binacchi wrote:
-> > >>>>> On Mon, Sep 30, 2024 at 8:45=E2=80=AFAM Krzysztof Kozlowski <krzk=
-@kernel.org> wrote:
-> > >>>>>>
-> > >>>>>> On 29/09/2024 22:00, Dario Binacchi wrote:
-> > >>>>>>>>
-> > >>>>>>>>
-> > >>>>>>>>> +  properties:
-> > >>>>>>>>> +    compatible:
-> > >>>>>>>>> +      contains:
-> > >>>>>>>>> +        enum:
-> > >>>>>>>>> +          - fsl,imx8mm-anatop
-> > >>>>>>>>> +
-> > >>>>>>>>> +then:
-> > >>>>>>>>> +  properties:
-> > >>>>>>>>> +    fsl,ssc-clocks:
-> > >>>>>>>>
-> > >>>>>>>> Nope. Properties must be defined in top-level.
-> > >>>>>>>>
-> > >>>>>>>>> +      $ref: /schemas/types.yaml#/definitions/phandle-array
-> > >>>>>>>>> +      description:
-> > >>>>>>>>> +        The phandles to the PLLs with spread spectrum clock =
-generation
-> > >>>>>>>>> +        hardware capability.
-> > >>>>>>>>
-> > >>>>>>>> These should be clocks.
-> > >>>>>>>
-> > >>>>>>> Sorry, but I can't understand what you're asking me.
-> > >>>>>>> Could you kindly explain it to me in more detail?
-> > >>>>>>
-> > >>>>>> You added new property instead of using existing one for this pu=
-rpose:
-> > >>>>>> 'clocks'.
-> > >>>>>
-> > >>>>>>
-> > >>>>>>
-> > >>>>>>
-> > >>>>>> Best regards,
-> > >>>>>> Krzysztof
-> > >>>>>>
-> > >>>>>
-> > >>>>> I added this new property specifically for managing spread-spectr=
-um.
-> > >>>>> Indeed, not all clocks/PLLs
-> > >>>>> managed by the node/peripheral support spread-spectrum, and the a=
-dded
-> > >>>>> properties specify
-> > >>>>> parameters for enabling and tuning SSC for each individual PLL ba=
-sed
-> > >>>>> on the index of each list.
-> > >>>>> If I were to use the 'clocks' property and add a clock to this li=
-st
-> > >>>>> that does not support SSC, IMHO
-> > >>>>> the pairings would be less clear.
-> > >>>>
-> > >>>> You duplicate property with argument "pairings shall match". Well,=
- I am
-> > >>>> not happy with the duplication. Clocks have specific order, thus i=
-t is
-> > >>>> explicit which one needs tuning. Your other properties can match t=
-hem as
-> > >>>> well, just index from clocks is offset...
-> > >>>
-> > >>> Just to check if I understood correctly what you are suggesting bef=
-ore
-> > >>> submitting version 3 of the patch.
-> > >>> Something, for example, like:
-> > >>>
-> > >>> clocks =3D <&clk, IMX8MP_AUDIO_PLL1>,  <&clk, IMX8MP_AUDIO_PLL2>, <=
-&clk
-> > >>> IMX8MP_VIDEO_PLL1>;
-> > >>> fsl,ssc-modfreq-hz =3D <0, 3517>, <2, 6818>;
-> > >>
-> > >> Hm, what is 0? If clock index, then no, it's redundant. The first it=
-em
-> > >> in cannot point to other clock.
-> > >>
-> > >> Also, what exactly are you setting here
-> > >
-> > > I am enabling and configuring the spread spectrum.
-> > >
-> > > Normal clock: Without spread spectrum, the clock signal has a fixed a=
-nd
-> > > repetitive frequency (e.g., 100 MHz). This frequency generates an
-> > > electromagnetic
-> > > signal concentrated on a single frequency, and if strong enough, it c=
-an disturb
-> > > other devices.
-> > >
-> > > Spread spectrum:  With spread spectrum, the clock frequency is
-> > > slightly "modulated,"
-> > > meaning it oscillates around a central value. For example, if the bas=
-e
-> > > frequency is 100 MHz,
-> > > the clock might vary between 99.5 MHz and 100.5 MHz in a cyclic manne=
-r. This
-> > > small variation spreads the energy over a wider range of frequencies
-> > > (from 99.5 to 100.5 MHz),
-> > > reducing the intensity of the signal at any one frequency.
-> >
-> > Sure, so each board will come with its own, different values and you
-> > will not put into the SoC DTSI?
->
-> Yes, exactly.
->
-> >
-> > Where is the DTS? I received only this patch.
->
-> I haven't had time to push the board I'm working on upstream yet.
-> Locally, I apply this patch:
->
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-ctouch2-of10.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-ctouch2-of10.dts
-> @@ -113,6 +113,13 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
->         };
->  };
->
-> +&anatop {
-> +       fsl,ssc-clocks =3D <&clk IMX8MP_VIDEO_PLL1>;
-> +       fsl,ssc-modfreq-hz =3D <6818>;
-> +       fsl,ssc-modrate-percent =3D <3>;
-> +       fsl,ssc-modmethod =3D "down-spread";
-> +};
+
+
+On 23/10/24 12:27, Manorit Chawdhry wrote:
+> Adds bootph-* properties to the leaf nodes to enable bootloaders to
+> utilise them.
+> 
+> Following adds bootph-* to
+> - System controller nodes that allow controlling power domain, clocks, etc.
+> - secure_proxy_sa3/secure_proxy_main mboxes for communication with
+>    System Controller
+> - mcu_ringacc/mcu_udmap for DMA to SMS
+> - chipid for detection soc information.
+> - mcu_timer0 for bootloader tick-timer.
+> - hbmc_mux for enabling Hyperflash support
+> - ESM nodes for enabling ESM support.
+> - wkup_vtm for enabling Adaptive voltage scaling(AVS) support
+> 
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+
+Thanks for the patch!
+
+Reviewed-by: Aniket Limaye <a-limaye@ti.com>
+
+> ---
+>   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi       |  2 ++
+>   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 11 +++++++++++
+>   2 files changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> index 9386bf3ef9f6..ac9c0a939461 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -136,6 +136,7 @@ secure_proxy_main: mailbox@32c00000 {
+>   			      <0x00 0x32800000 0x00 0x100000>;
+>   			interrupt-names = "rx_011";
+>   			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+> +			bootph-all;
+>   		};
+>   
+>   		hwspinlock: spinlock@30e00000 {
+> @@ -1527,6 +1528,7 @@ main_r5fss0_core1: r5f@5d00000 {
+>   	main_esm: esm@700000 {
+>   		compatible = "ti,j721e-esm";
+>   		reg = <0x0 0x700000 0x0 0x1000>;
+> +		bootph-pre-ram;
+>   		ti,esm-pins = <656>, <657>;
+>   	};
+>   };
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> index 5097d192c2b2..7e9ad2301937 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> @@ -21,16 +21,19 @@ dmsc: system-controller@44083000 {
+>   		k3_pds: power-controller {
+>   			compatible = "ti,sci-pm-domain";
+>   			#power-domain-cells = <2>;
+> +			bootph-all;
+>   		};
+>   
+>   		k3_clks: clock-controller {
+>   			compatible = "ti,k2g-sci-clk";
+>   			#clock-cells = <2>;
+> +			bootph-all;
+>   		};
+>   
+>   		k3_reset: reset-controller {
+>   			compatible = "ti,sci-reset";
+>   			#reset-cells = <2>;
+> +			bootph-all;
+>   		};
+>   	};
+>   
+> @@ -44,6 +47,7 @@ mcu_timer0: timer@40400000 {
+>   		assigned-clocks = <&k3_clks 35 1>;
+>   		assigned-clock-parents = <&k3_clks 35 2>;
+>   		power-domains = <&k3_pds 35 TI_SCI_PD_EXCLUSIVE>;
+> +		bootph-pre-ram;
+>   		ti,timer-pwm;
+>   	};
+>   
+> @@ -191,6 +195,7 @@ wkup_conf: bus@43000000 {
+>   		chipid: chipid@14 {
+>   			compatible = "ti,am654-chipid";
+>   			reg = <0x14 0x4>;
+> +			bootph-all;
+>   		};
+>   	};
+>   
+> @@ -344,6 +349,7 @@ mcu_ringacc: ringacc@2b800000 {
+>   			      <0x00 0x28440000 0x00 0x40000>;
+>   			reg-names = "rt", "fifos", "proxy_gcfg",
+>   				    "proxy_target", "cfg";
+> +			bootph-all;
+>   			ti,num-rings = <286>;
+>   			ti,sci-rm-range-gp-rings = <0x1>; /* GP ring range */
+>   			ti,sci = <&dmsc>;
+> @@ -363,6 +369,7 @@ mcu_udmap: dma-controller@285c0000 {
+>   				    "tchan", "rchan", "rflow";
+>   			msi-parent = <&main_udmass_inta>;
+>   			#dma-cells = <1>;
+> +			bootph-all;
+>   
+>   			ti,sci = <&dmsc>;
+>   			ti,sci-dev-id = <236>;
+> @@ -383,6 +390,8 @@ secure_proxy_mcu: mailbox@2a480000 {
+>   		reg = <0x0 0x2a480000 0x0 0x80000>,
+>   		      <0x0 0x2a380000 0x0 0x80000>,
+>   		      <0x0 0x2a400000 0x0 0x80000>;
+> +		bootph-pre-ram;
 > +
->  /* Ethernet */
->  &eqos {
->         pinctrl-names =3D "default";
->
-> >
-> > >
-> > >> and why assigned-clock-rates are
-> > >> not working?
-> > >
-> > > The traditional clock properties, such as clocks,
-> > > assigned-clocks-rates, etc retain their usual
-> > > meaning even when spread spectrum is applied. However, to implement
-> > > the spread spectrum
-> > > mechanism in a circuit with a PLL (Phase-Locked Loop), additional
-> > > specific parameters are
-> > > introduced to properly configure the frequency modulation:
-> > >
-> > >  - Modulation frequency: i. e. fsl,ssc-modfreq-hz
-> > >  - Modulation rate: i.e.  fsl,ssc-modrate-percent
-> > >  - Modulation type:  i. e. fsl,ssc-modmethod (center-spread, down-spr=
-ead)
-> > >
-> > > Additionally, it should be noted that not all anatop PLLs are equippe=
-d
-> > > with circuitry for spread
-> > > spectrum, but only a small subset of them. This is the reason why I
-> > > introduced the property
-> > > "fsl, ssc-clocks".
-> > >
-> > > This is another commit [1] on enabling spread spectrum that I
-> > > implemented some time ago for
-> > > the am335x. The most evident difference is that in that case the node
-> > > was a clock node and not
-> > > a clock controller, as in the case of anatop. The parameters are also
-> > > not exactly the same, but
-> > > that depends on the platform.
-> > >
-> > > [1] 4a8bc2644ef0cbf8e ("dt-bindings: ti: dpll: add spread spectrum su=
-pport")
-> >
-> >
-> > OK, I still do not know what "0" was, but the items are fixed, so you
-> > know exactly which clock you are configuring here.
->
-> So, after delving deeper into the topic, is it now acceptable to use
-> the property
-> "fsl,ssc-clocks" instead of "clocks"?  As in the patch I applied locally?
-
-A gentle ping.
-Sorry, but I haven't yet received your response to the previous email,
-and I'm not sure how to proceed.
-
-Thanks and regards,
-Dario
-
->
-> Thanks and regards,
-> Dario
->
-> >
-> > Best regards,
-> > Krzysztof
-> >
->
->
-> --
->
-> Dario Binacchi
->
-> Senior Embedded Linux Developer
->
-> dario.binacchi@amarulasolutions.com
->
-> __________________________________
->
->
-> Amarula Solutions SRL
->
-> Via Le Canevare 30, 31100 Treviso, Veneto, IT
->
-> T. +39 042 243 5310
-> info@amarulasolutions.com
->
-> www.amarulasolutions.com
-
-
-
---=20
-
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
+>   		/*
+>   		 * Marked Disabled:
+>   		 * Node is incomplete as it is meant for bootloaders and
+> @@ -534,6 +543,7 @@ hbmc_mux: mux-controller@47000004 {
+>   			reg = <0x00 0x47000004 0x00 0x4>;
+>   			#mux-control-cells = <1>;
+>   			mux-reg-masks = <0x0 0x2>; /* HBMC select */
+> +			bootph-all;
+>   		};
+>   
+>   		hbmc: hyperbus@47034000 {
+> @@ -652,6 +662,7 @@ wkup_vtm0: temperature-sensor@42040000 {
+>   		      <0x00 0x42050000 0x00 0x350>;
+>   		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
+>   		#thermal-sensor-cells = <1>;
+> +		bootph-pre-ram;
+>   	};
+>   
+>   	mcu_esm: esm@40800000 {
+> 
 
