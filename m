@@ -1,169 +1,114 @@
-Return-Path: <devicetree+bounces-114965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B6879AD8BA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 01:53:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1609AD8D7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 01:57:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C0941C21634
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 23:53:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AB831F26B1E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 23:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DE3200110;
-	Wed, 23 Oct 2024 23:53:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95D320012C;
+	Wed, 23 Oct 2024 23:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="tMX4Rfvu"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xXaPPxsW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic312-26.consmr.mail.ir2.yahoo.com (sonic312-26.consmr.mail.ir2.yahoo.com [77.238.178.97])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570CD1553AB
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 23:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.178.97
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E031E0087;
+	Wed, 23 Oct 2024 23:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729727587; cv=none; b=crjNt7xm7kdQetdJXPzMlscxArqYNFoZndWDMiCL5u753cGNlKObY3hE2MWUP1mrNNsuOek+XyFYFysB1AqTcJPf3atCe07ZhfyRLMdAHH94zzCOOIhNyQHVWgpmy4GpOPY2g/YjsiPj//GGFaWjuwMe65Tg7JFHJyFscg9dKPk=
+	t=1729727814; cv=none; b=q2dIoNFHnM5coGuwUsH7yuUUhRRNtT0I0G6CsRspZ9j2LKwZ5B81f2OzFoSsH6JT5qjNiVoA5UKyr8F0CxHmX8NszBvj+VSXqyYyREImEaUsuixn3RHtesy7yNdxJ4HLzV/9PzA+QkyNbnj0mwLHjeKgeYMqwliwgV3WRSPZCYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729727587; c=relaxed/simple;
-	bh=6f9/c1TgAN/6j0KAcaBvQ74WjnSBLTBuNra7X7cQHVI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jo5HVpBoa0GAv7dNkrCOBtmvqkdZpMOx+V1gxL/O3mmc0De/uNcQgXQrFhJRnbJ8n0Dbq0hCIrT4OtyLC7UVqvzNlhs4yO8By3qHH8MfcXC0axtzxdxCGIG37HzsR7hJtlJz0vXm78bB88f/6s6ONk3rHk3CILwgNA2J6tVivWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=tMX4Rfvu; arc=none smtp.client-ip=77.238.178.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1729727577; bh=3M7OH4HoZlKMnnhKf1C/0ZDF12iGNKASzjBaElkoH0k=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=tMX4Rfvunh7rn7zLZM5NmdH2IFll4muRpXEp7gqF6C62S0p7y4lsLDXX5tPlvedz+GcynUVVW3090IpcxOdRPh5aLBNOTjEQz6PaBtqLiTCdXgjHTPy0iPohjAaVqCoboPAwmMis7Yq0KG8+oa6wml6Tuas2KEfmZEZPgd7ar0cV9dogPBiLwLk3r78yN9CoKkUVU+BO9wF3gdq+jOhim2M9YNLnQWCz6vSPiv9qtKtWrejR3FPyCpEpT/8a1t77xACjYPy34iqd2fFGyPmOQVwMDJqVXXuI8+7kPwkwmLGNHgSTcGhQsS+nbocejOyKn6PWjpzYwEPTZ2SzIaW7ig==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1729727577; bh=0CpDsy1M70THEKr4JF38Y15+V8F6T7u2+69FLTRTAmR=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=lc/c9++FikamwJxx1Af8LOgIdIPzBCTBE+I1aIqGo0JGOPTp52bFg/KXvhUwGZQq97i06YGEZyqZe5afQf1AWrVUBaxOr6On8S2aNpI1mFnivnACKAeYpu+aGKGD/cbYoyHFT5XVv2yhtLfrzJuYBFwbmJyfiF0CBCl1F+az9OWVny0W2jhYVmlbJNYfloewbTmDEGlSI2NuQR6I4jC/9zVWxj8TO/yJdDqbSOSw7tJ6WxlNltSKbhmmu6Ozbw7jl6HLgL32jTYNGl2+jxxIx0DB649OqdAbCwRlujvxdNURCs2dSB4VbQrXe2csOaj5qsJrihsT3i/t+KE5CnOYDw==
-X-YMail-OSG: NvFvbF8VM1k0KAKc96_cF5AJ3ActjRy_v8GV.1f.MINJ0qgX3dMKvxUUpT4upUk
- 05u83Dxm7QYbm_Ua8UhHW0s_YkteVb_QwfuUG67DqEfys_0ahY6rjJs6rJoEA.BbK2nqhpaE8sq3
- UxuIBdS9oGiBX0jZoQBftpwrvXYYI994KtkNeYzsO3rUNt0.7rK_VHnJ.O8SADGPxOwkbRYn_aF7
- EWn.XkYakoY8V2gxz4fij2vS.NhXLMwJpIfPQeEgB6cKHfzxWrqsQonCgHA5fCGt7KmvuKDhSEyD
- QhW_XkSV2zPPyk6u4VOnCdXVBuyHubP2nA4a2mKredEEgayR2Q1AElLmS1D796s_0dQecWBKAX5e
- 7Fjc0Eefdv1KYVFMwFhObaBBfryghrgDLtpzvkWfmBYKj1c.AFSaEktzCWgahgGTG2mfX8mDOEJ0
- LgL5kofQdJDnTHyAC5fxpKz8DnM4fgGTGbyVmKezlRQVmp3RTJaTGyfLxdZmMM7w6WQO1Hf.GQDg
- LJyQEH5SAPXeEAuYIG3C4Cvq0yoNL7pabmOy5eF_fHwQtlr7mWeXN5KPb0pqlbk7FA5XEacg6sUh
- hcKWe4u_vH0bh3mY_NSvoKTBsMI.6gdbx0CCrktl03fgpTw0uZOOwxDYu3gj0I_At4Ys8hqvD5EB
- M7ChU8apos8inCvYhQlA8l3k24JRhQFYvhKdmGlPLeC1_a9pdAd.hsyludg3ZtIJpIhaVNOSSb2V
- Gb6T1lim20aeo8FYtBuneaa6ku6DZbH3XZrxymfDDWKqdascIMl94r8vmqkfPAyO2OJDd4fYrS97
- 3QWeiLgyTIu2KabInqzEKi7Ai5xujYjxHupBfkqFe_Y7Ke.2J.WSkUy2LhtLvI3FMsQJc5Qkx_3p
- Cpd3YDl4Qzp_xwBpAxezsZAFI8Td.tvq3QZyeCYMLazLrKTokV9vlgzUe9vTR_n4ylqdR26Fi6tn
- xf9Q79nmZ8ea1FgHPApIBu1FFpfvs4FRPLQ_rJGipQI5_qRnTGcqLZhmuddMMpUYFQfNCEizpEfW
- 3lM_4sJspTPY4iZi4jKBfr874V_9LxyqiUaz3jsAgqlDhegYKOOijAHYvKgq2_VIUSWsfl3OKjGX
- TX5K7V07pBA4Po6TMiEY7lL5xmY6evn3wMMmBEZjxLQSfbxb8ym7o8gFiyTosmZCVs0VUeaYPfYt
- f6nW3ir8MOAesjVzjdG2vOM51.fCM339wRy6i0BppmlfuhKd2e47JOxDD.IZ2oKvqU8ec41KwsLT
- zE0b6KDhqhs9WZf1hq60_5WPqEgMiCv6Oulx2nRaUIL9rmkaH3pEI4RJEzMTyUg6zCNZgaeHKIKA
- bTcYlYSfQcOKlEnuGE0LtKg39uKQLqUZfHVsqKBjd7auq0GZgQeol0vn1GUVI2LcM4_40YfsNpao
- rnjTdvPgBFh4Tdzr99_xFwcL69A191yM.EVqEg3bFN09hyV8fwnB28O2CCT.XvSzjK8PPSpwL5ik
- vHEEkljZwS5wL9f4n3gBdnlhz22Mp7SkXpgtmv5_qnvt74FvSp70eR3.eg2BszMwYSj6qpnQkWc6
- s1BM05nDdEVrQJRwB9nbz..pszUuQEL21n0pAVNR7VF.ubpdfukS4lb1ExqqLO0nK17Ukj9SDZXF
- a9tsD80NStMDoA3rrZrcvpcpq1J5etK9uvrDgmG8I76.HGPwr.PLCxKCsGKIjKOf_WbsmbPUIYd9
- XodwxqJYbgepv.Or.0HrJBRCmwn0Q1W8K5NnRwmxZIy7.sZC9lMAYQ80ZmSAlFEXUPh7u3EaEcQk
- o2c1CoWmXZVdLyxc9aCa_7F4JibkfF.bi.xiEheGRBnIdmlqdT73a0Ah.W6x_1eukPZkPqMVjpsR
- B9ffoBTnqmKmweU6d8PUf0DC2GY73zD8HXn9fIISUre6wxaiQ4ep.d131XuaLQY3Vpyh9WzdHHDB
- BkqwT.i_QAeGcR_filMeOSOHV43hfYkODdZ2TJM.u_KpRd1DY8cTaoWckC3rhduZTuYFISnRkr.E
- XQnXSaEIDS7v5d_StEFwkOtiLxxuuHvcEqCYNV0LPrPKrZ.a.fqVKD1LCjxizLKm1Sv5SOvYhNCp
- GaFrjkxqtKbjDr_Of30GeeZ_tTOAinXHSOk840aJi7yjJLJ9NrMI_BRS20hKEkFI1rTk2ocKD898
- 4l3S.al5b6ayqsCr2_33PhpTI7S_AyAs2SwOz3rMxMOjrVThrhgF4RHql4_YalCFYG35xTOX5Sqz
- _7nEMk72ncQukq_5VlB7xhZ2ufOhGTUGWz6PhS9dVM_8KjEeO_61IGEfidmEDiuTnbip.azbSI6Y
- rO12u2kmICa2wLLlVK3d82qQpPmo7ZM1MS35CEPRTiROnCw--
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 1aa0b617-1d8a-4930-a090-0cab9e1b224f
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.ir2.yahoo.com with HTTP; Wed, 23 Oct 2024 23:52:57 +0000
-Received: by hermes--production-ir2-c694d79d9-d879w (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 2aed7270ea53ee049cc46986fdcd6d7b;
-          Wed, 23 Oct 2024 23:52:57 +0000 (UTC)
-Message-ID: <7025fa62-b178-4ff7-94fd-f7fac0452178@rocketmail.com>
-Date: Thu, 24 Oct 2024 01:52:55 +0200
+	s=arc-20240116; t=1729727814; c=relaxed/simple;
+	bh=ER3FknFXrHM3OX+lTqkJggiQuTe6Auk+uTi2E4vUyzA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j8Tyy6i7zM9QFj3Yq2Hc69D47S3E3j0iwGRhG0UTQxH3tOIhU8FOw/M4N3IprCP5HP6Px8fKczoXU/eXacFB2KH/y+HHutDAMNLg9ItYbw5XfiLtjI+EDXKEic1gzCNewtEWutUkfEYCPgzPw1l3niJ9BzeGa/z9RAh8sqgv4Mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xXaPPxsW; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=RoRcRsT4dhnXehgIrOkavzDeXndrmIy2Jhqon6Rlw04=; b=xXaPPxsWzvAbAQuddJCjS9yg5d
+	2/VF7BtvdVpWAbUQBX7qUUcBsszBfqG67ZBz0MoKXGrjtUWuGGs6saIWYGdTn8TV4PvEJkmh0Y136
+	u6FUSMwVJaXCsPav2KWXtqSUkpKEBVRtn/vlgfd4QeXco3meEX/lWhBFZXMyMqHmxtOI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1t3lDL-00B1qp-9U; Thu, 24 Oct 2024 01:56:31 +0200
+Date: Thu, 24 Oct 2024 01:56:31 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
+Message-ID: <6f0e1c34-d5d3-4ee5-9374-768e67a0c067@lunn.ch>
+References: <227daa87-1924-4b0b-80db-77507fc20f19@lunn.ch>
+ <gwtiuotmwj2x3d5rhfrploj7o763yjye4jj7vniomv77s7crqx@5jwrpwrlwn4s>
+ <65720a16-d165-4379-a01f-54340fb907df@lunn.ch>
+ <424erlm55tuorjvs2xgmanzpximvey22ufhzf3fli7trpimxih@st4yz53hpzzr>
+ <66f35d1b-fd26-429b-bbf9-d03ed0c1edaf@lunn.ch>
+ <zum7n3656qonk4sdfu76owfs4jk2mkjrzayd57uuoqeb6iiris@635pw3mqymqd>
+ <d691a687-c0e2-48a9-bf76-d0a086aa7870@lunn.ch>
+ <amg64lxjjetkzo5bpi7icmsfgmt5e7jmu2z2h3duqy2jcloj7s@nma2hjk4so5b>
+ <79f9b971-8b3f-4f31-ab42-42a31d505607@lunn.ch>
+ <uzlmckuziavq5qeybvfm7htycprzogvkfdqj2pxrjmdkuovfut@5euc5nou7aly>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: panel: Move flip properties
- to panel-common
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1729630039.git.jahau@rocketmail.com>
- <18a0d8787b5714633a574f2e15f0cec1addddcfc.1729630039.git.jahau@rocketmail.com>
- <yq7usspbou5lj4zz5giw472icd655als7pdik4ito2ziaidkwv@7yrkrgqs462o>
-Content-Language: en-US
-From: Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <yq7usspbou5lj4zz5giw472icd655als7pdik4ito2ziaidkwv@7yrkrgqs462o>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.22806 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <uzlmckuziavq5qeybvfm7htycprzogvkfdqj2pxrjmdkuovfut@5euc5nou7aly>
 
-Hi Krzysztof,
-
-On 23.10.24 09:15, Krzysztof Kozlowski wrote:
-> On Tue, Oct 22, 2024 at 11:33:35PM +0200, Jakob Hauser wrote:
->> The flip properties were used by "samsung,s6e8aa0.yaml" only so far. By
->> introducing "samsung,s6e88a0-ams427ap24.yaml" they become more common.
->>
->> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
->> ---
->> Patch is based on current branch drm-misc-next.
->> ---
->>   .../bindings/display/panel/panel-common.yaml           |  8 ++++++++
->>   .../bindings/display/panel/samsung,s6e8aa0.yaml        | 10 ++--------
->>   2 files changed, 10 insertions(+), 8 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/panel/panel-common.yaml b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
->> index 0a57a31f4f3d..087415753d60 100644
->> --- a/Documentation/devicetree/bindings/display/panel/panel-common.yaml
->> +++ b/Documentation/devicetree/bindings/display/panel/panel-common.yaml
->> @@ -51,6 +51,14 @@ properties:
->>       $ref: /schemas/types.yaml#/definitions/uint32
->>       enum: [0, 90, 180, 270]
->>   
->> +  flip-horizontal:
->> +    description: boolean to flip image horizontally
->> +    type: boolean
->> +
->> +  flip-vertical:
->> +    description: boolean to flip image vertically
->> +    type: boolean
->> +
+On Thu, Oct 24, 2024 at 06:36:06AM +0800, Inochi Amaoto wrote:
+> On Wed, Oct 23, 2024 at 02:42:16PM +0200, Andrew Lunn wrote:
+> > > Yes, this is what I have done at the beginning. At first I only
+> > > set up the phy setting and not set the config in the syscon. 
+> > > But I got a weird thing: the phy lookback test is timeout. 
+> > > Although the datasheet told it just adds a internal delay for 
+> > > the phy, I suspect sophgo does something more to set this delay.
+> > 
+> > You need to understand what is going on here. Just because it works
+> > does not mean it is correct.
+> > 
 > 
-> I actually wonder how or why would you need to flip the images. I
-> understand rotation, but this is mirror flip, right? Is it for some
-> transparent displays?
+> It seems like there is a missing info in the SG2044 doc: setting the
+> syscon internal delay bit is not enabling the internal mac delay, but
+> disable it. Now everything seems like normal: the mac adds no delay,
+> and the phy adds its delay. 
 
-Yes, it's mirror flip. The two cases we have here so far are displays 
-for smartphones.
+That makes a lot more sense.
 
-The panel "samsung-s6e88a0-ams427ap24", which this patchset is for, is 
-used in device "samsung-serranove" (Samsung Galaxy S4 Mini "Value 
-Edition"). By default this panel shows a mirrored picture, it needs flip 
-to fix that. I can't think of any good reason and it seems rather 
-unique. Maybe there was some mistake during fast-paced development and 
-easier to fix that way instead of changing suppliers specification, or 
-some purchase related topic, but that's just wild guessing. I 
-implemented the flip as an option because I don't know if this driver 
-could be extended for similar panels that might not need the flip, e.g. 
-older device "samsung-serranolte" (Samsung Galaxy S4 Mini LTE).
+Thanks for digging into the details.
 
-For panel "samsung-s6e8aa0" I can't say much because I'm not familiar 
-with that. Within the kernel it is used by devices 
-"exynos4412-galaxy-s3" (Samsung Galaxy S III) and "exynos4210-trats" 
-(don't know what this is). Looking into their devicetree files they 
-apply horizontal and vertical flip at once, actually that's a rotation 
-by 180 degrees. Looking into the panel driver it seems that this is what 
-the hardware interface offers.
-
-> The change is fine, I just really wonder about hardware.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-...
-
-Kind regards,
-Jakob
+	Andrew
 
