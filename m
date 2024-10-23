@@ -1,107 +1,116 @@
-Return-Path: <devicetree+bounces-114651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EB289AC2DC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:05:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFF779AC313
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:09:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE7231F24853
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:05:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE3BE1C2074E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8846A19755A;
-	Wed, 23 Oct 2024 09:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174F51714C8;
+	Wed, 23 Oct 2024 09:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bf8WlTYY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g/OkG3ck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7895B16F0D0
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 09:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4C016190B;
+	Wed, 23 Oct 2024 09:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729674327; cv=none; b=g3rfM73tw9rORodrpYcKFIIT/aTpdfs+4IQFVo6xIrpBX5jnzowE8ag2M7jdDmy6yeouuBVwnY3dOcWqG0GZgPJh8UKffZd+0VI1qjNusaP1b2HFXTDPkbV8219mFCX6C/qmEvy5RqIfCVCE1J/QwGPjR9f5iUqyjQYY55LbaPg=
+	t=1729674553; cv=none; b=uCPU1G0yvT8B97VY0/RYOeRW2wcnWI+skdJrZAr9/W28Yw2cV7S+MnFOx4a6Ot7JB0rdCybhi/mkFTZITiMwBWaqA4a1trVKL8l3TFZNerOvhB9jX9Qn/SkQuR7/OG1w3ScubeCP1EysFa42WM4XTeuB3/0f0CxB/W+O0NCElAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729674327; c=relaxed/simple;
-	bh=X36zWetOyTJAz93vBOWJ+rocrYfNGhJ7Z73gXa68vyg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jSbLvSSrW+AkbZfb8wLBECbMUtRnxVxN6x8DQK8PLN1xTkEpiBDNSH0jjuxt7BgWiGICi+EQ3QPuAqIA37z42qlQZ2hHaEXM8q6UdtmcvUlX4D7ZumIHs4nrucoZfRbI34cxDOfQ98LYV+6oXw5FM3VlNiem7ZUvDTrL3AfA9Qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bf8WlTYY; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539f72c913aso7655671e87.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 02:05:24 -0700 (PDT)
+	s=arc-20240116; t=1729674553; c=relaxed/simple;
+	bh=MPXSO7MlmL0YKy/BMMfxHrqho0YS3NUcNx2DCOjbvyU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Rk117VDfoY2bgtzcnClNfqbhTDtECx5B8MtNUS2DYkmfVmVq91qmVFSiCwfM5XnmfGIMx2L4yw70xwWvSo0sGNqXy2LGUG11+VDIvYQrCS+qjOXvL/ur4F0m9w92azfE2xwcaPTzkPXILghdNh/oplgNEoNDI8Az9RkvnKIBEAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g/OkG3ck; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5c95a962c2bso7883988a12.2;
+        Wed, 23 Oct 2024 02:09:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729674323; x=1730279123; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X36zWetOyTJAz93vBOWJ+rocrYfNGhJ7Z73gXa68vyg=;
-        b=Bf8WlTYYkazelvOtD4+8fKPxplJyMy/MFUXpwj/wtxRdiA/9k4ANP89QOrXqvKte/r
-         VKeoW/ZKUh1Aak3JYBP+PyFsT8nBxeIPCjO8cIiZi8LXjHeu05bDq89k08EMQoSfTzXn
-         Gq3cwjaGVuZ7qTp5o3/UWU4vMcm/hSCQupbCQwzYM+nN03VWU+tNNkoNu3xNVg1agQP+
-         FoTMO3Pk3xEjhyfJRSsEiEvlQ9FOjPGPF1YhRrpTCHZykO5Qj+By1MwLPds4R5790n/L
-         hehWQQTPCFi6YqPR9Hww4hiDuUreSsv4d+kNbmyNWPaSYLdXggrcb46HLZBVCGGUtaeC
-         sjUQ==
+        d=gmail.com; s=20230601; t=1729674549; x=1730279349; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tUrRWUy2mg+9eFy2uOgVTtm4AMaUGJKQ+NZVihzkt4o=;
+        b=g/OkG3ckqYBrZ/Kkk6pDcmZcSHbwQ0+6vJA1gSUm59gw3BEoZPmA1oYCo0pjXwEXeT
+         8VFRbes1P2NBzCwklqz+0DYDoxhWiiBbAzAxwO8htpQ8no8zdKdrgaOs3LTW1Z25ej/V
+         aRNtzEV99piFPpGxwsPOCCAMrYkVNyp3qO9xh7wlslk9k71JzLUswtxb3SndEvnN7VHJ
+         ae3IU62eepa2deXOme3849mjJcFyvZZ4vD9jeOvIEggn5NAm6EryJQTh0jG+TO6Wt8GN
+         3/n3CW/Vn9O55xIFoGaRSufiG3bLcDpZdX7XPUb2YZx2ZQaGonXFfIdbGH0aq2LJ0t6y
+         9Ylw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729674323; x=1730279123;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X36zWetOyTJAz93vBOWJ+rocrYfNGhJ7Z73gXa68vyg=;
-        b=roSm2oyJ95ZZoeU5tH9cn6Tb/CR3ZWCDk+7qx+cRBN7sbHgaH3tGnjpDPhjy2QkuCw
-         DcE5FEqMasoEBduXqxIOixHGBDWbp6Z9t7tzOKsVVWwyMEbcVebjYbIy0rk8gI4l1v+w
-         0eb+MCOIR1OUMSibgVpETIc7e17niND5ihbWtAYAIkrI6p+owRpyGw941mUQuQSznmg9
-         6YJS2DByewi/QC8pQnatO6nJf4blTZhnyEC2bgcThGV7waj9ZOlXLPqGiID5veE7Cucb
-         oAanGqjrRiK8yAecRNlZNvdkJkisOJ1HZXtQpe1eTageTZehZXSEQ3i+7PZZ3+khfIyZ
-         YUPg==
-X-Forwarded-Encrypted: i=1; AJvYcCUI53T5y9+P+NWKE+5b82lEGMdcYj02VU45PbHEEMRr0TSRKaJhomSAt70wOKh/pKxp7yNZ/3ybwSYD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKwLVC8IEceabbIIYidhkNZPM9vCWQciWAK+1Ju/reyPwNRwSs
-	RkQqD6vRzLaCWdLhYZoY1ya3/spaP2qoRgrLbNV+fSehRxTlvJ+5P4AM+/1wQ9bDFR5wifAZRRA
-	hDyKSkbu5ME9s3xeXkezN2vz8Rm6fGgMLjlq7xg==
-X-Google-Smtp-Source: AGHT+IH1+v9bDoKekaMKgbzEkbrdYTS5dXGjA0/CBdqgcdFe8CjG21FHGf37DjwlkgqMpl892dYOQgZjGQaLo7ZGFiE=
-X-Received: by 2002:a05:6512:3e0a:b0:539:f37f:bed9 with SMTP id
- 2adb3069b0e04-53b1a2f42ffmr857364e87.8.1729674322600; Wed, 23 Oct 2024
- 02:05:22 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729674549; x=1730279349;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tUrRWUy2mg+9eFy2uOgVTtm4AMaUGJKQ+NZVihzkt4o=;
+        b=bhw7G18Na8wYa+OL92PQeNGcdna5VAO6+WBQrNtpvHpjhoshmOzqLnwl8+Fq2PjCb+
+         CRyYJgzuQ073eunXyGOG0pDA9oYkp5fupk3+MbU9MZsJxXTLUqR4kEfF5OtvSCBTGYwu
+         zTlclSaef1HkY3NyNRBf0/WtiDo1wSuhqqQmadOhqEDWTF3yva+rAR+r28ym07zIRUOZ
+         yV7guFmVbD64VRZyHqLqB2mlXAxdT+Y5sdE9nYFJ5pdHRiaWlWbdGNDYh/DeHkXV3eIn
+         4zG3zEny1k9Zpl7FM/0GEgs9N8LxO72YToHejsrcfVcfed7K6Y88ex/uinufbWd72Znx
+         0VKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUVJleDY9ARMYyT8zbVCz4cFagh4A5kFdzLPiZ7oTYo2KqDgS/sLCzwp5z8gk1mrJ6Rz+y6g/upEuPhYpAB@vger.kernel.org, AJvYcCUgIofaYQxeNYqEeCPyrjvLCsV63yex1VmJtP/oTzbf8rXHmV44S6uboOkB9BzJ1O65GrKsufO+OaDx5bt1@vger.kernel.org, AJvYcCXclHH9Zpl2OXF5SbDqvxyqftbrbukZzQGgQPXc2O3c+gQpB1lVzBsfg1eS/G5nM5CIfrZ14okoB1YF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8XLUSRfYDx2Ru20Bw+AtddneTnCOsoMRkVbYx73yAXUVQNLUu
+	sxcQrGU2ElssEozwNxjMJXjI7ThuAoSHy+eKYG41p7rf64PRbYIh
+X-Google-Smtp-Source: AGHT+IH1co3YBg4rKf5PUxpbvDK7TPc4kKnhGRQ/nm7LiXeXMTGbhhWYCdZPkZcPIJcd+rccOP+qzw==
+X-Received: by 2002:a05:6402:3888:b0:5c9:6f20:4cf1 with SMTP id 4fb4d7f45d1cf-5cb8af7228amr1624364a12.27.1729674549217;
+        Wed, 23 Oct 2024 02:09:09 -0700 (PDT)
+Received: from ivaylo-T580.. ([77.85.230.22])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66a6a8efsm4133058a12.52.2024.10.23.02.09.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 02:09:08 -0700 (PDT)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] tty: serial: samsung: Add Exynos8895 compatible
+Date: Wed, 23 Oct 2024 12:09:00 +0300
+Message-ID: <20241023090902.538040-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241023044423.18294-1-towinchenmi@gmail.com>
-In-Reply-To: <20241023044423.18294-1-towinchenmi@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 23 Oct 2024 11:05:10 +0200
-Message-ID: <CACRpkdZP9oDd+fRKKagFtGbfLx=Rk5LJ7bvaKimw5-t25XZAfQ@mail.gmail.com>
-Subject: Re: [PATCH v6 RESEND 00/20] Initial device trees for A7-A11 based
- Apple devices
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 23, 2024 at 6:44=E2=80=AFAM Nick Chan <towinchenmi@gmail.com> w=
-rote:
+Hey folks,
 
-> This series adds device trees for all A7-A11 SoC based iPhones, iPads,
-> iPod touches and Apple TVs.
+This patchset adds serial driver support for Exynos8895 SoC. The main
+difference from other exynos platforms is that fifosize is only
+specified via the samsung,uart-fifosize DT property.
 
-This is a good and important series. FWIW:
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Newer Exynos platforms also specify fifosize via DT, so in such case
+this compatible could be used with oneOf.
 
-Are patches not getting applied since you resend them?
+Changes in v2:
+ - Grow the enum at gs101 instead of making a new if-else
+ - Add r-b from Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Yours,
-Linus Walleij
+Ivaylo Ivanov (2):
+  dt-bindings: serial: samsung: Add samsung,exynos8895-uart compatible
+  tty: serial: samsung: Add Exynos8895 compatible
+
+ .../devicetree/bindings/serial/samsung_uart.yaml   | 14 ++++++++++++--
+ drivers/tty/serial/samsung_tty.c                   | 13 +++++++++++++
+ 2 files changed, 25 insertions(+), 2 deletions(-)
+
+-- 
+2.43.0
+
 
