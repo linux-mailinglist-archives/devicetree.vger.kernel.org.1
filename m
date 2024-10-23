@@ -1,276 +1,177 @@
-Return-Path: <devicetree+bounces-114611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A809AC0DB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:00:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 990039AC0FE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:04:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FF98B23902
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:00:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C7E31F22D12
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE4A148FF3;
-	Wed, 23 Oct 2024 08:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12FB156644;
+	Wed, 23 Oct 2024 08:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="bBJFZsjh";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="jdTaobCi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IPqLJ7hb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B99A14B942;
-	Wed, 23 Oct 2024 08:00:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BABD1158527
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 08:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729670407; cv=none; b=f6DXFlBTeCjqP0lhmJlfwV4SJoaa8xvh0tIwEux9h0BA1AX/C5TcMwdS1OhJfo7khMiv+6Qb/Pf2ndUTRksUCFk+8hrhnPC03CbNhOLStnH77i/ZTwfyl7BA4EDE05BiJhOSo8VvLSUrjMx6xkQR8LgPlzkX6iQtgqg43NB4tyQ=
+	t=1729670683; cv=none; b=eCXYiBdQwCJOYRyMbilHn9dywm/8y+2uj5SedWfO6XDzeVTKKj52jMDmhgCGC5oMl9bYgOpV7J7iFy19CCmlVkraJf6MsEzogY9TkDn23JSSMuv1s883XgmfZ/DrM2+HnKskY7RNTAgqLXHfz6sW0Tx7mLwEsMfT74jPT7ArhCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729670407; c=relaxed/simple;
-	bh=6GaFL/0waHV1EDEGFaRbExtZwhdfXGKAosnni+XtjYE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VjF62hZVMdSlVwL+xb1r65+1usb0+ItZZsVvWAb7cruuiSvjGuP1GsOnegZl8k4b/V/UEPCy4JPP79JlYx6CqRtYP2GyoIrv2yL1G6DTruFqol5JL+0fu7tZJ2FqQdinzK216TIuLJe4q9caZgC8RmB4chh0LUqJUvmHvyNAEqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=bBJFZsjh; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=jdTaobCi; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfout.phl.internal (Postfix) with ESMTP id 3A24C13804F2;
-	Wed, 23 Oct 2024 04:00:05 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-10.internal (MEProxy); Wed, 23 Oct 2024 04:00:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1729670405; x=
-	1729756805; bh=8QXVw6Z7+G67UnBf1aFM75MSoCxRUB1S0GY88oZNAaM=; b=b
-	BJFZsjh+vk09gud9e3aFsT72wAPq9FpTnEjtwI/gHwus1fq+hm/y5yT+MAgWntJ5
-	xbBN1chTvbRfgGQHdDJBQK10FDeE4rza/r4ZZuPrfX0FMaZupTY/4zcMlA75KTBp
-	iuZE+9aJ3gBFwlGUEfOO8tvJeXZj1AXKSmpcnNBdb1+CcZZRqdw4OdZrm/ma89+r
-	ns8r+FfeuIkS1M5OGIwMAueGHoYkr9i7EBtZOUJFGyd1HRhaQTATO4lypwREbSDR
-	iGwe8gJ7PGUgpnsmd5RRHFegRAAJW1/MJYRApJZ1d9coqyVPqjQC74qhm/UrD9aj
-	zyUvDVW/zigqqWjGIyjhA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1729670405; x=
-	1729756805; bh=8QXVw6Z7+G67UnBf1aFM75MSoCxRUB1S0GY88oZNAaM=; b=j
-	dTaobCinfIGIxBi7kKCqA8792T8+nuHNoD0y7HNYD8eFZen1ekrRB20fuTbC+IZk
-	pfGrgLZQKmzhyP9nUVgJdPEyb3WPCnkTVCufedEpeCqy+S006l1BnuYXQneIhZTx
-	ZW6Ac+a5aMO7qVs9alo207hWQf4biJd8BLl36FzycXDzRACN2+tCguC63Nj0LPpx
-	qzynUxwn7kAUCLIUy9U0pbHySptsndKjdQPXJpHik1zL9cAGCuhYbFq0GrBUvHF0
-	srs+9USlEFLhDsrFP3F7g7TUs2VkpsWZU8R1ONf2bdOAX+aX7M4my9YJxQ+Cx355
-	q57EFv9P/7t7tvaklMcpg==
-X-ME-Sender: <xms:Ba0YZ0zMTA66g5lpi36OMADZ5xpa7qaSstx2UpQyX763uPSCv_x9wg>
-    <xme:Ba0YZ4RgRZxcu3IzAPWVO5cBUVsFs2MSHSX8qmqhLjOlkKXx-rKudU9bsRwAS8yHU
-    y0K-E8gBgfQPHha7w>
-X-ME-Received: <xmr:Ba0YZ2UIUUfs7k3l2X-JqBZGbwPUmkWtfAPp-b6UtGGc5Dq6sHNLCuJqUI9eq6_Vao8DpuSZEzTn6yh9MeJXlk_2sW7m3EXJQXW3J0RRnwo-W8ch>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeiiedguddviecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddt
-    necuhfhrohhmpefthigrnhcuhggrlhhklhhinhcuoehrhigrnhesthgvshhtthhorghsth
-    drtghomheqnecuggftrfgrthhtvghrnhepffehieffgedtgfffjeetveegfeekleeileek
-    veeuteffteetudffveegieeiheetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
-    hmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhnsggprhgt
-    phhtthhopeduhedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheplhhgihhrugifoh
-    hougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopehpvghrvgigsehpvghrvgigrdgtiidprhgtphhtthhopehtih
-    ifrghisehsuhhsvgdrtghomhdprhgtphhtthhopeifvghnshestghsihgvrdhorhhgpdhr
-    tghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhlrdgtohhmpdhrtghpth
-    htohepshgrmhhuvghlsehshhholhhlrghnugdrohhrghdprhgtphhtthhopehmrggtrhho
-    rghlphhhrgekvdesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnshdrphhhih
-    hlihhpphgvsehgmhgrihhlrdgtohhm
-X-ME-Proxy: <xmx:Ba0YZyi9CsOO6Z4ZuqJSt9624-jcarpBPc4PnswN4dzszI42U_2thw>
-    <xmx:Ba0YZ2A-qP67GNn2ZcqFW8EAtfsPmXt9vWpZfTEHdfehIFoiIxrDXA>
-    <xmx:Ba0YZzJrE9f8rny9Mlp8p5ZCUl_qdwIsg948raJ1r1tgnCzJzdQXQA>
-    <xmx:Ba0YZ9AhSaaFK2uz8430TyL2yA52s6E-N5z8UHBf7OSqcY2MCsogWQ>
-    <xmx:Ba0YZ8TXfNCjRjjeU-iBCNtsXSj86jPBbf1KAmpcpR_quc1Mp7mxiwpE>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 23 Oct 2024 04:00:00 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>
-Cc: linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v3 7/7] arm64: dts: allwinner: h313/h616/h618/h700: Enable audio codec for all supported boards
-Date: Wed, 23 Oct 2024 20:57:03 +1300
-Message-ID: <20241023075917.186835-8-ryan@testtoast.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241023075917.186835-1-ryan@testtoast.com>
-References: <20241023075917.186835-1-ryan@testtoast.com>
+	s=arc-20240116; t=1729670683; c=relaxed/simple;
+	bh=D3CLnPGNyMPYexChlzYiATcbJjQtpiQCDkIqJ9Za0iA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fchqqpvVekMD2gxJTxIfqTVLDcFoGCyu0QnMBn8s+QHG5vkw70hNX79SPLoFVzi9Gh4VhK2esVOssTzjSizMHLPIC6mEMnCHq5/OiD9PwWqDrJxSoYsvu6BoeIVo2PWiPj/43JFpNH5O0bl9Hcjds5edSFlLoxsbWHEyJD2aqxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IPqLJ7hb; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43155afca99so3745605e9.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 01:04:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729670680; x=1730275480; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=640yGN5iXrEqvUdxBKaSevUog3GotXGjXCRRBnWHy3g=;
+        b=IPqLJ7hb1FveSTwmjIe7kS+UpWXIzrhmmkTn+ZTH06BmuYfwciTYin89SOnBhiU0QG
+         vhO2w524K/TV5n7z2yqeUIVPOiwx5VaENnTrR34omF6MI5UC++zvdrEKZxPcR8+wwEmX
+         gFUO+JbqcA7sevHOHTu5TwdMsdo+mXohiF/Z54oIBZI0wMdzYyfY3UsvYU0y4j2LBBDF
+         +pOX1Cynr5ROTlkBfeoJ3Txre1xqKashM1jq8eOkfZFikRdUcbM8QJr0Pslrsd1vrJaR
+         eKCWwzAbtyFfH8iRvyE5DaL9ABnk/wkvKIj2XXiDsWPXlBaFIme1DXI72Z1bZ/uNi3hR
+         SJAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729670680; x=1730275480;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=640yGN5iXrEqvUdxBKaSevUog3GotXGjXCRRBnWHy3g=;
+        b=X24meeKoJF8Th9clQS/d+KmTk5YFemhHUbr2JL5Sw5K4/eg3iK+NMhUtXAqzgtGFoP
+         WLUFhI7aOa4FYmFdCzrRmmfxB1d+MCbN2cDglRuMJVOitZvoSK7tljwcNzBLuFcCNrLh
+         74LqUbg4LKUfQqcOR7nga4ZsRy5meDlPPLKnZOat73gkX2ScEX6PNjIG5jqdi5/tvDt3
+         4C+iyD6H11Gnmuw3+IJHjfo32N0y5w8mxXABTU9ICTEzD5CC2NDB3f0HUywVNfmCDVIC
+         a9JV/6gz9n450LjadenBPyKrpokQjIdArKkYEgJzd/JENEYfliIX6Dqw/K2cX9qU6FJL
+         ODLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUBbvwKeJz0fjt5UeSSc95OxuLPUNhzpk0YRKkv2vCuVtuKtlg3WG0Viab+1lMWNgYCBp4o6yE+6uP9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrnxKMLRgASIdayxxV9/3rowX9KQaPFRZNtvHcj2nJj+4dMK1K
+	baqL3v2HlKBUQUlxLwHLMQiDceszZwPE5zZGHhCEjw9LtutkqYZvueLrnLNMjgs=
+X-Google-Smtp-Source: AGHT+IFlUcIPc5Wvs4vuda7h60x05vaE9/J6mhMXBYWyXTSxBGJ7z+3Tl3D+Tg2nAWfNAXyiFxqn4A==
+X-Received: by 2002:a05:600c:1ca4:b0:431:55f3:d34e with SMTP id 5b1f17b1804b1-43184463c48mr9517185e9.15.1729670680010;
+        Wed, 23 Oct 2024 01:04:40 -0700 (PDT)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37ac4sm8429790f8f.6.2024.10.23.01.04.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 01:04:39 -0700 (PDT)
+Date: Wed, 23 Oct 2024 11:04:37 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] usb: typec: Add support for Parade PS8830 Type-C
+ Retimer
+Message-ID: <ZxiuFRFnZFlcdMPs@linaro.org>
+References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
+ <20241004-x1e80100-ps8830-v2-2-5cd8008c8c40@linaro.org>
+ <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
+ <Zxdp2vHzREJAFkwj@linaro.org>
+ <Zxif6vmh8BE_C-_n@hovoldconsulting.com>
+ <ZximeTNi7huc95te@linaro.org>
+ <ZxirM9HJELXGWVqv@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZxirM9HJELXGWVqv@hovoldconsulting.com>
 
-Now that the H616 (and variants) audio codec is supported, enable it for
-boards with a mainline DTS. The Tanix TX1, Transpeed 8K618-T and X-96
-Mate have all been tested with the onboard 3.5mm audio jack and the
-Orange Pi Zero 3 with a 3.5mm jack connected to the audio header.
+On 24-10-23 09:52:19, Johan Hovold wrote:
+> On Wed, Oct 23, 2024 at 10:32:09AM +0300, Abel Vesa wrote:
+> > On 24-10-23 09:04:10, Johan Hovold wrote:
+> > > On Tue, Oct 22, 2024 at 12:01:14PM +0300, Abel Vesa wrote:
+> > > > On 24-10-15 15:03:15, Johan Hovold wrote:
+> > > > > On Fri, Oct 04, 2024 at 04:57:38PM +0300, Abel Vesa wrote:
+> > > 
+> > > > > > +	ret = ps8830_get_vregs(retimer);
+> > > > > > +	if (ret)
+> > > > > > +		return ret;
+> > > > > > +
+> > > > > > +	retimer->xo_clk = devm_clk_get(dev, "xo");
+> > > > > > +	if (IS_ERR(retimer->xo_clk))
+> > > > > > +		return dev_err_probe(dev, PTR_ERR(retimer->xo_clk),
+> > > > > > +				     "failed to get xo clock\n");
+> > > > > > +
+> > > > > > +	retimer->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> > > > > 
+> > > > > The reset line is active low and should be described as such in DT. So
+> > > > > here you want to request it as logically low if you want to deassert
+> > > > > reset.
+> > > > 
+> > > > This is being reworked in v3 as we need to support cases where the
+> > > > retimer has been left enabled and initialized by bootloader and we want
+> > > > to keep that state until unplug event for the cold-plug orientation
+> > > > to work properly.
+> > > > 
+> > > > On top of that, we don't want to deassert the reset here. We do that
+> > > > via gpiod_set_value() call below, after the clocks and regulators have
+> > > > been enabled.
+> > > 
+> > > Ok, but you should generally not drive an input high before powering on
+> > > the device as that can damage the IC (more below).
+> > 
+> > This is just not true, generally. Think of top level XTALs which feed in
+> > clocks (and can't be disabled) before ICs are enabled.
+> 
+> I'm talking about an I/O pin here, you must generally not drive those
+> high before powering on the IC.
+> 
+> And AFAIU the same applies to clocks even though the risk of damage
+> there is lower.
 
-The RG35XX (2024, -H, -Plus and -SP variants) are also tested working
-but have a separate mux and GPIO-controlled (PI5) power amplifier to
-support both a headphone jack and onboard speakers.
+As I stated before, enabling (or rather preparing, from kernel's point
+of view) will definitely glitch due to PLL switcing (unless the mux is
+glitchless from design). And there is literally no risk of enabling or
+keeping a clock enabled even if the consumer is powered off.
 
-The headphone jack has a GPIO for jack detection, but this is not
-currently supported by the driver, so audio is heard both via the
-headphone jack and speakers when the speaker amp is powered (by the
-CLDO1 regulator, defined as always-on until proper jack detection is
-implemented).
+> 
+> > > That is, in this case, you should not deassert reset before making sure
+> > > the supplies are enabled.
+> > 
+> > Wrong. Even the data sheet of this retimer shows in the timigs plot the
+> > reset as being asserted before the supplies are enabled.
+> 
+> Reset *asserted*, yes (i.e. pull to ground). Not *deasserted* (i.e.
+> drive high) as you are doing here.
 
-Define the audio codec and routing for all supported H616 and variant
-boards, and power and speaker amp enablement where present on boards and
-known.
+Oh, yeah, that has been fixed in v3 already. Also, this v2 version was
+also wrong from active level point of view. Which is also fixed in v3.
 
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-Tested-by: Philippe Simons <simons.philippe@gmail.com>
----
-Changelog v1..v2:
-- Add codec enablement all supported boards.
----
- .../boot/dts/allwinner/sun50i-h313-tanix-tx1.dts    |  5 +++++
- .../dts/allwinner/sun50i-h616-orangepi-zero.dtsi    |  5 +++++
- .../boot/dts/allwinner/sun50i-h616-x96-mate.dts     |  5 +++++
- .../dts/allwinner/sun50i-h618-orangepi-zero2w.dts   |  5 +++++
- .../dts/allwinner/sun50i-h618-transpeed-8k618-t.dts |  5 +++++
- .../allwinner/sun50i-h700-anbernic-rg35xx-2024.dts  | 13 +++++++++++--
- 6 files changed, 36 insertions(+), 2 deletions(-)
+> 
+> > And generally speaking, the reset needs to be asserted before the
+> > supplies are up, so that the IC doesn't start doing any work until
+> > the SW decides it needs to.
+> 
+> Again, the problem is that you are *deasserting* reset before enabling
+> the supplies.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-index bb2cde59bd033..bafd3e803106b 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-@@ -65,6 +65,11 @@ reg_vcc5v: vcc5v {
- 	};
- };
- 
-+&codec {
-+	allwinner,audio-routing = "Line Out", "LINEOUT";
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&reg_dcdc2>;
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-index fc7315b944065..19c5cf75f3f7d 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-@@ -59,6 +59,11 @@ reg_usb1_vbus: regulator-usb1-vbus {
- 	};
- };
- 
-+&codec {
-+	allwinner,audio-routing = "Line Out", "LINEOUT";
-+	status = "okay";
-+};
-+
- &ehci1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-index 26d25b5b59e0f..6dfe4eab91f6a 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-@@ -33,6 +33,11 @@ reg_vcc5v: vcc5v {
- 	};
- };
- 
-+&codec {
-+	allwinner,audio-routing = "Line Out", "LINEOUT";
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&reg_dcdca>;
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-index 6a4f0da972330..a0fe7a9afb77c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero2w.dts
-@@ -54,6 +54,11 @@ reg_vcc3v3: vcc3v3 {
- 	};
- };
- 
-+&codec {
-+	allwinner,audio-routing = "Line Out", "LINEOUT";
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&reg_dcdc2>;
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-index d6631bfe629fa..59ee2b253ea4b 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-@@ -52,6 +52,11 @@ wifi_pwrseq: pwrseq {
- 	};
- };
- 
-+&codec {
-+	allwinner,audio-routing = "Line Out", "LINEOUT";
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&reg_dcdc2>;
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-index 899ae3be5683c..89de86b442155 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-@@ -237,6 +237,12 @@ panel_in_rgb: endpoint {
- 	};
- };
- 
-+&codec {
-+	allwinner,audio-routing = "Line Out", "LINEOUT";
-+	allwinner,pa-gpios = <&pio 8 5 GPIO_ACTIVE_HIGH>; // PI5
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&reg_dcdc1>;
- };
-@@ -352,7 +358,7 @@ reg_aldo3: aldo3 {
- 			reg_aldo4: aldo4 {
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
--				regulator-name = "vcc-pg";
-+				regulator-name = "avcc";
- 			};
- 
- 			reg_bldo1: bldo1 {
-@@ -375,7 +381,10 @@ reg_bldo4: bldo4 {
- 			};
- 
- 			reg_cldo1: cldo1 {
--				/* 3.3v - audio codec - not yet implemented */
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-spkr-amp";
- 			};
- 
- 			reg_cldo2: cldo2 {
--- 
-2.47.0
+Yep.
 
+> 
+> Johan
 
