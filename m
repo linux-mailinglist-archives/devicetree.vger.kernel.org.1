@@ -1,124 +1,158 @@
-Return-Path: <devicetree+bounces-114802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C590E9AD10B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:33:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 739B19AD113
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:35:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ADE71F21FA8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 16:33:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FDC2283218
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 16:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B522E1CB334;
-	Wed, 23 Oct 2024 16:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FD41CBEAA;
+	Wed, 23 Oct 2024 16:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iAf/g0I2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qW1Va/Up"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A20DDAB;
-	Wed, 23 Oct 2024 16:32:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537041CACF8
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 16:34:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729701174; cv=none; b=PIXOEAQ/y3jUWdRW4wHtywIRDpv1qdW1g77MPVmJTGtWUWCAEWBXiKqy0WFP0msfA5nNb7jBCSSRVrJ5FmQe1o6DpuFup1t+ms93oiBuVjvlNAkHPd5Lcltunl0rTVN585jN33NE2oJ4vImCY8f0mAaBXtgK08uwKa5tf8Nu27g=
+	t=1729701301; cv=none; b=G9tS2Dpowyzp+c+di/BHV/XWTDMYnYCQDJaqCaFICpsnH8xUT+54LsWuyQTjgGR4eYr7heoqY3imHLR8fSiNXVxbwtV44RFc5wEiXFZMkuKojOAGqF3CXKcZtftE93Q735A8c0ofq9xIqqrK7JI/9K6/QfdKs5LkXscQyaqzAzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729701174; c=relaxed/simple;
-	bh=TyywN/+wAMLWJRgELJOMExlGZYjMTxNyuaEfnm0ujeM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jQlWGyHtQH3+OV6rwnvd+1ebRPjybpRVEswNcPrP418I3bKDKQbFy14ILGTPrgG4FDACiMMHk6VPl90X/Zf0k2uo44Xy7P9UMQkHK1xHwrAiMxTix7brtJ+BslvSm3vJFOq1Ho85HUcdNbFxK+/ZammV5T8XZOd8sPVV5r+zirI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iAf/g0I2; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 60BC940002;
-	Wed, 23 Oct 2024 16:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729701164;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2mo5TXq2lM94AOYob7sigSv7lm1UH6+vMtcH4MaKVCI=;
-	b=iAf/g0I2OwQO00ReC6C88G//21aTCm8VlXqLUz0rDUOWS1CRki4N+V3xFVghUaJQNvn72n
-	Qpk5JQCZK/Sbi2XAyf4zsqDNUyew8tVwAhxmYx+ezK0zr5DZgZK5VWfAyA5fzY2IEgyWV7
-	DiH+k8QuSrgZsPY3p0v4k+Fws/eYodmishgCNQXEueUEzM3ZuN3oDY4gGT3ncZGbYTZzWP
-	rFabYPUeE2ili/emKROsPngRGFeG1VimgOrtiIRQrsXqDtagozfdquWUHB5T4aARxllfNU
-	6BsL05hnF4PrqEu0/dx/92y5hfmem7fy6oL2bPaBSJqrQEOsJjSzZonTu+JZGQ==
-Date: Wed, 23 Oct 2024 18:32:40 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Arnd
- Bergmann <arnd@arndb.de>, Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn
- Helgaas <bhelgaas@google.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Catalin Marinas
- <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Derek
- Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>, Linus Walleij
- <linus.walleij@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>, Masahiro Yamada <masahiroy@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, St efan Wahren <wahrenst@gmx.net>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Will Deacon
- <will@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- phil@raspberrypi.com, jonathan@raspberrypi.com
-Subject: Re: [PATCH v2 08/14] clk: rp1: Add support for clocks provided by
- RP1
-Message-ID: <20241023183240.0dffae03@bootlin.com>
-In-Reply-To: <ZxkX5gnDkWrTynRv@apocalypse>
-References: <cover.1728300189.git.andrea.porta@suse.com>
-	<022cf4920f8147cc720eaf02fd52c0fa56f565c5.1728300189.git.andrea.porta@suse.com>
-	<611de50b5f083ea4c260f920ccc0e300.sboyd@kernel.org>
-	<ZxkX5gnDkWrTynRv@apocalypse>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1729701301; c=relaxed/simple;
+	bh=XTw9uHyp78RHTyu0gUyLmCgArzYpbhsNyfwgWvettNU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=al4g85nDs18rKQeH2dEsjr6N1huxdTTABKajAGP8Xm9Ifw6+4vBvTqSKE4wfCMqFEX0PevdgXmevtHovGCOL7bLdIgYhnoHjjyz2UluWR5ajJq/WzbbjhaUHIpVLfgorJYJf8cy0o7FBIau43MNz2CX22uU00vTI/l/8gzmMyxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qW1Va/Up; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-539f72c913aso8379390e87.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 09:34:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729701297; x=1730306097; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GIlUDXdAKX1CHecIqtZk/0fdttpDeFu8l+DaQfJV4bc=;
+        b=qW1Va/Upxar0dClhaYkTpgnEVmPyxQ2dG4MMyJK4AxlsNJu5EXGIgI74G4Zui4GdFB
+         Xhq17L/uymWlIUzaWstCTpDBHlcTqeWUttUlZ43vvWykvQUj6euFisJMPhgCKXK3Il9J
+         tROzfgWknxbpgiYylsoop7jI7Rhxfa3zsVMFqcy+DXj+ODyeY/PKdT7Om6Kzmy0fjMwN
+         HP7gsbDmBM/8nWlcSnwt+PBvkvjs3Pu8uGuiSQi/felwBuqs3cKidgpUZGZUS1QUZKIP
+         cOJh6i8R59YJA330rRwnFFtiN/8IJKMMR6SqV018Hxw/M6aqdwMk7vxPK7nfTdKu9Yy0
+         QAEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729701297; x=1730306097;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GIlUDXdAKX1CHecIqtZk/0fdttpDeFu8l+DaQfJV4bc=;
+        b=JmazFNtx11S8YPbHUfLeBwc/H8RR4kDe5EveRX63UWWenMz31X5a43fuDJ+PkjSEay
+         k21BcksZNVj+mLdkmh5nn4ec+thiq70i0efA1eg0i2pTDIxveL4Vs5jeBfJzLGbptsVM
+         7fI27Lam7L2jbjNb8JvAeOs+n7Pld6uWujX1HmDApm2jvsJMVJMJwzUQ0/3tFx0e0wl7
+         l0I0y8yR3yBkHSyFVvwfwiSRnCLUamo5AWMSv5QEBnGp3pQZyxBozMKUSQUrQsRy2JXM
+         jdm6f90XHFOj5xVeFmj3DRby4iJI1iwoULUptpIGAD0K0wtbQd70yiCZQtLBXuiSsRoG
+         s8YA==
+X-Forwarded-Encrypted: i=1; AJvYcCWIeK2DD50jc2tawdaVzPRH1v+8i7z/dypN5if3cDPuGe1xs0tjziNHm73S2WE1ZoN3a9fHv4GbgRLe@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcwUH+/A3HWVRSgwzwB+0keE0xbnOt9QeqtpXifz7L1/HHPXCF
+	sktrXc5j7tdJcpH85/gyAKzvct7hqTGqTrD7v59Q2GvDix7g970KxGGEFxl5pzI=
+X-Google-Smtp-Source: AGHT+IHCtZVloL02eSDFnoZ/6ygP0dHMAE0674BRC+dYkqpA6GY3yq1KJxmIEB1Drju4efa3nY8wHg==
+X-Received: by 2002:a05:6512:108e:b0:539:949a:a793 with SMTP id 2adb3069b0e04-53b1a321d26mr1886084e87.36.1729701297281;
+        Wed, 23 Oct 2024 09:34:57 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a22420133sm1097096e87.170.2024.10.23.09.34.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 09:34:56 -0700 (PDT)
+Date: Wed, 23 Oct 2024 19:34:55 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Tingguo Cheng <quic_tingguoc@quicinc.com>
+Cc: quic_fenglinw@quicinc.com, quic_tingweiz@quicinc.com, 
+	kernel@quicinc.com, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcs615: Adds SPMI bus, PMIC and
+ peripherals
+Message-ID: <e7ntpu6gqrxwueqvyesr4voofpdjz4hrjypyxrstukd4mdln4w@dpyaaw5afn3v>
+References: <20241014-adds-spmi-pmic-peripherals-for-qcs615-v1-1-8a3c67d894d8@quicinc.com>
+ <p7fw7jjfawbnk2vb7zdtr2dp3ni4g2uuiwvt6o4qva53zyrpvd@kokibgaidfzb>
+ <5c23a6bd-e233-4b02-86cf-902d2c57c382@quicinc.com>
+ <CAA8EJppdQsGe-R5JKRJ9LJs9xGTdhkCGYc5NyzVSLA1bWvvUwQ@mail.gmail.com>
+ <6a73c0d3-879a-412b-9345-e4d5ccb52e78@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6a73c0d3-879a-412b-9345-e4d5ccb52e78@quicinc.com>
 
-Hi Andrea,
-
-
-On Wed, 23 Oct 2024 17:36:06 +0200
-Andrea della Porta <andrea.porta@suse.com> wrote:
-
-> Hi Stephen,
+On Wed, Oct 23, 2024 at 06:25:33PM +0800, Tingguo Cheng wrote:
 > 
-> On 15:08 Wed 09 Oct     , Stephen Boyd wrote:
-> > Quoting Andrea della Porta (2024-10-07 05:39:51)  
-> > > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> > > index 299bc678ed1b..537019987f0c 100644
-> > > --- a/drivers/clk/Kconfig
-> > > +++ b/drivers/clk/Kconfig
-> > > @@ -88,6 +88,15 @@ config COMMON_CLK_RK808
-> > >           These multi-function devices have two fixed-rate oscillators, clocked at 32KHz each.
-> > >           Clkout1 is always on, Clkout2 can off by control register.
-> > >  
-> > > +config COMMON_CLK_RP1
-> > > +       tristate "Raspberry Pi RP1-based clock support"
-> > > +       depends on PCI || COMPILE_TEST  
+> 
+> On 10/22/2024 5:38 PM, Dmitry Baryshkov wrote:
+> > On Tue, 22 Oct 2024 at 11:26, Tingguo Cheng <quic_tingguoc@quicinc.com> wrote:
+> > > 
+> > > 
+> > > 
+> > > On 10/14/2024 6:53 PM, Dmitry Baryshkov wrote:
+> > > > On Mon, Oct 14, 2024 at 06:08:17PM +0800, Tingguo Cheng wrote:
+> > > > > Create a new file qcs615-pmic.dtsi to add on-board PMIC and peripher-
+> > > > > als in the PMIC that controlled by SPMI bus. The peripherals include
+> > > > > GPIO, RTC, PON, power key and resin-key for QCS615 platform. The power
+> > > > > key and volume down key are controlled by PMIC PON hardware on QCS615.
+> > > > 
+> > > > Why do you need a separate file? Unless there is a good reason such
+> > > > configuration should be split between the pmic.dtsi and the board file.
+> > > > 
+> > > One reason is that I use upstream as
+> > > template(x1ee80100,sc8180x,sa8775p...), they all have
+> > > platform-pmics.dtsi alongside.
+> > > 
+> > > On the other hand, qcs615-pmic.dtsi contains only the PMIC's
+> > > peripherals, creating a new file can eliminate duplicate code if there
+> > > are any other new boards with pmm6155au as their PMIC(similar to
+> > > x1e80100-lenovo-xxx/x1e80100-microsoft-xxxx, where "x1e80100-pmics.dtsi"
+> > > has been included).
 > > 
-> > A better limit would be some ARCH_* config.  
+> > And this is pretty unique  to those platforms and it exists mostly to
+> > facilitate the case when a platform has several instances of the same
+> > PMIC. In all other cases (mobile, IoT) usually there is just one
+> > instance of the particular PMIC. In such a case pmic definitions go to
+> > "pmABCDEF.dtsi" to be reused by the platform and then board DT can
+> > include that file and wire it up according to the platform needs.
+> > 
+> Yes, in this case, there is only one PMIC. So making a new file does not
+> make sense except the PMIC is totally a new design.
+> > > > BTW, what is the PMIC id for pmm6155au? Is it a real PMIC or a version
+> > > > of some other PMIC?
+> > > > 
+> > > pmm6155au is the PMIC id(Silk scree). It's a real PMIC for qcs615.Maybe
+> > > I should use the name qcs615-pmics.dtsi instead of qcs6150-pmic.dtsi to
+> > > align with other platforms.
+> > 
+> > Is it the same thing as PM6150? Or is it a combo of PM6150 and PM6150L?
+> > 
+> I got your point, I did some more research, it's a variant of pm8150. In
+> this case, I will upload a new version that makes DT to be changed after it
+> includes pm8150.dtsi.
+
+That sounds good, thank you.
+
+> > > > > Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+> > 
 > 
-> I've avoided ARCH_BCM2835 since the original intention is for this driver
-> to work (in the future) also for custom PCI cards with RP1 on-board, and not
-> only for Rpi5.
+> -- 
+> Thank you & BRs
+> Tingguo
+> 
 
-Maybe depends on CONFIG_MISC_RP1 ?
-CONFIG_MISC_RP1 enables the RP1 PCI driver
-
-Best regards,
-Hervé
+-- 
+With best wishes
+Dmitry
 
