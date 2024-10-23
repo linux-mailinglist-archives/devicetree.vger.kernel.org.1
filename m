@@ -1,250 +1,248 @@
-Return-Path: <devicetree+bounces-114701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9F49AC840
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:53:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 757959AC86C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:01:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAE5B281F55
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:53:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23608282166
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3336F1A0BF1;
-	Wed, 23 Oct 2024 10:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF3419E804;
+	Wed, 23 Oct 2024 11:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="sF2Rp3kn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A35D55896;
-	Wed, 23 Oct 2024 10:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711DF15C13F;
+	Wed, 23 Oct 2024 11:00:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729680828; cv=none; b=dz/YXLwHjXyx7kbW6mich8/z5ecGdW9WUDXR4zyBGeHF4zX6/1h+JWnWqPqSENY0zL+SRWfwZprV3Wsydwxb5uZmYzyKRV/wbEK7e2MBkq8dPx9qMU0RvX1TiBPVwQR0rgQs7aioDSJzPaSxkGZGwamU+nvmcvdAnHBfB8z9lZ4=
+	t=1729681259; cv=none; b=L54wcpL+hNr+mEJUUVwo+3Y22MdpMi4A5tpgsZ2xayLisfr9HIBRDe+6yqstKoJT5Xf8kOZh5TQ8w9Xr4fwZZTx+vqnQDwvxhfUq57SdoDlJz9A2VLh8JmtSRrSmrqjO+OIRvwkK1QPT5vfu2Ea2Y3aniZvNO1ieIJeuwm8JQZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729680828; c=relaxed/simple;
-	bh=OVxvnPFmtEptAnqiwO8D4thUZ7w93Z8IUlicBOIjqY4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sFw83CsBNf5R/oMcUQ9f1MLWqA271k1TD8GMaswdaDxWdsAutBIQWAEt4Tp6JlFi+GzAPWuRyFiYR7ypkEKyqhghY9cj8iII6v8YgTItNKOF6yIm711TNpr2bN6eivVhsKRqZLR5wMSTE6pUe27ZqQ+Uwbpg4Kjn+3ucYxHsYso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C78DC4CEC6;
-	Wed, 23 Oct 2024 10:53:44 +0000 (UTC)
-Message-ID: <990813bb-05b8-48e7-af00-e07de6836a17@xs4all.nl>
-Date: Wed, 23 Oct 2024 12:53:42 +0200
+	s=arc-20240116; t=1729681259; c=relaxed/simple;
+	bh=gNTtwUARn5PRS9rR2cWgZZqKEgR1+SjxqQ6LRsIxNTg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RxfC7KkNt33dWiSRKEZDfZSIqqqw/7ZQalVeI1+Qkl5x7b0G5Rq8l+DSfRB2jTony+JWH3+7VQlLJiUJHsOiD7IvdcU616nnHSoUxnRtHN3eZOpLsP6IiYLUrVuoQbXlEVx63NwluUNCrP5/i0EzKWhPkEVWgCRBKVCqpTdiYbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=sF2Rp3kn; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1729681257; x=1761217257;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gNTtwUARn5PRS9rR2cWgZZqKEgR1+SjxqQ6LRsIxNTg=;
+  b=sF2Rp3kn2CmlrFDh/gC34wS5WkuBgijOr9E7JngVRvuU+ic5JwJQ2CvI
+   LsqDO8N9VlXatGxVXTIp7GacXblRndE/1iZUqlRothyYTZOIB27XwqIWE
+   6HTAmDcCfYav0AIKXTfLc4WnaSt9m8Xud9MfGhnAaTYlLRzgFsVMs5tQj
+   Z95XsKgL1gfzBFuEDyzuXxGZEX5BwzwX7QGBoU1ovUkLIGTRN2gG2aF71
+   MY7mAfHoZrYa2oR0fvTR5vA7b9NI4w7gD6HkR55n581QpmyWUpHWYj/tp
+   OOUs0pYRRFiyVsdEnqTK53eo++HjiOWGpAtyry/m6I/Gh2b9rUiljtH2n
+   Q==;
+X-CSE-ConnectionGUID: xFJ1gZBCTEelQDgk0yaFAw==
+X-CSE-MsgGUID: O8SN6ZFJQXyTkpqIH5dq8Q==
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; 
+   d="scan'208";a="33153951"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Oct 2024 04:00:46 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 23 Oct 2024 04:00:38 -0700
+Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Wed, 23 Oct 2024 04:00:34 -0700
+Date: Wed, 23 Oct 2024 11:00:34 +0000
+From: Daniel Machon <daniel.machon@microchip.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, <andrew@lunn.ch>, Lars Povlsen
+	<lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
+	<horatiu.vultur@microchip.com>, <jensemil.schulzostergaard@microchip.com>,
+	<Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
+	<ast@fiberby.net>, <maxime.chevallier@bootlin.com>, <netdev@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next 14/15] net: sparx5: add compatible strings for
+ lan969x and verify the target
+Message-ID: <20241023110034.jpwoblwrds3ln5nr@DEN-DL-M70577>
+References: <20241021-sparx5-lan969x-switch-driver-2-v1-0-c8c49ef21e0f@microchip.com>
+ <20241021-sparx5-lan969x-switch-driver-2-v1-14-c8c49ef21e0f@microchip.com>
+ <cetor3ohhg6rzf3w2cm6hqxsqukh52nm54mp7tizb2qc3x44j4@n53v6btq6t6r>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 13/28] media: iris: implement subscribe_event and
- unsubscribe_event ioctls
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Sebastian Fricke <sebastian.fricke@collabora.com>,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Vedang Nagar <quic_vnagar@quicinc.com>
-References: <20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com>
- <20241014-qcom-video-iris-v4-v4-13-c5eaa4e9ab9e@quicinc.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <20241014-qcom-video-iris-v4-v4-13-c5eaa4e9ab9e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <cetor3ohhg6rzf3w2cm6hqxsqukh52nm54mp7tizb2qc3x44j4@n53v6btq6t6r>
 
-On 14/10/2024 11:07, Dikshita Agarwal wrote:
-> From: Vedang Nagar <quic_vnagar@quicinc.com>
+Hi Krzysztof,
+
+> > Add compatible strings for the twelve lan969x SKU's (Stock Keeping Unit)
+> > that we support, and verify that the devicetree target is supported by
+> > the chip target.
+> >
+> > Each SKU supports different bandwidths and features (see [1] for
+> > details). We want to be able to run a SKU with a lower bandwidth and/or
+> > feature set, than what is supported by the actual chip. In order to
+> > accomplish this we:
+> >
+> >     - add new field sparx5->target_dt that reflects the target from the
+> >       devicetree (compatible string).
+> >
+> >     - compare the devicetree target with the actual chip target. If the
+> >       bandwidth and features provided by the devicetree target is
+> >       supported by the chip, we approve - otherwise reject.
+> >
+> >     - set the core clock and features based on the devicetree target
+> >
+> > [1] https://www.microchip.com/en-us/product/lan9698
+> >
+> > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
+> > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+> > ---
+> >  drivers/net/ethernet/microchip/sparx5/Makefile     |   1 +
+> >  .../net/ethernet/microchip/sparx5/sparx5_main.c    | 194 ++++++++++++++++++++-
+> >  .../net/ethernet/microchip/sparx5/sparx5_main.h    |   1 +
+> >  3 files changed, 193 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/net/ethernet/microchip/sparx5/Makefile b/drivers/net/ethernet/microchip/sparx5/Makefile
+> > index 3435ca86dd70..8fe302415563 100644
+> > --- a/drivers/net/ethernet/microchip/sparx5/Makefile
+> > +++ b/drivers/net/ethernet/microchip/sparx5/Makefile
+> > @@ -19,3 +19,4 @@ sparx5-switch-$(CONFIG_DEBUG_FS) += sparx5_vcap_debugfs.o
+> >  # Provide include files
+> >  ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/vcap
+> >  ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/fdma
+> > +ccflags-y += -I$(srctree)/drivers/net/ethernet/microchip/lan969x
+> > diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> > index 5c986c373b3e..edbe639d98c5 100644
+> > --- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> > +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+> > @@ -24,6 +24,8 @@
+> >  #include <linux/types.h>
+> >  #include <linux/reset.h>
+> >
+> > +#include "lan969x.h" /* lan969x_desc */
+> > +
+> >  #include "sparx5_main_regs.h"
+> >  #include "sparx5_main.h"
+> >  #include "sparx5_port.h"
+> > @@ -227,6 +229,168 @@ bool is_sparx5(struct sparx5 *sparx5)
+> >       }
+> >  }
+> >
+> > +/* Set the devicetree target based on the compatible string */
+> > +static int sparx5_set_target_dt(struct sparx5 *sparx5)
+> > +{
+> > +     struct device_node *node = sparx5->pdev->dev.of_node;
+> > +
+> > +     if (is_sparx5(sparx5))
+> > +             /* For Sparx5 the devicetree target is always the chip target */
+> > +             sparx5->target_dt = sparx5->target_ct;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9691-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9691VAO;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9692-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9692VAO;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9693-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9693VAO;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9694-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9694;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9695-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9694TSN;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9696-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9696;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9697-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9696TSN;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9698-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9698;
+> > +     else if (of_device_is_compatible(node, "microchip,lan9699-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9698TSN;
+> > +     else if (of_device_is_compatible(node, "microchip,lan969a-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9694RED;
+> > +     else if (of_device_is_compatible(node, "microchip,lan969b-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9696RED;
+> > +     else if (of_device_is_compatible(node, "microchip,lan969c-switch"))
+> > +             sparx5->target_dt = SPX5_TARGET_CT_LAN9698RED;
+> > +     else
+> > +             return -EINVAL;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +/* Compare the devicetree target with the chip target.
+> > + * Make sure the chip target supports the features and bandwidth requested
+> > + * from the devicetree target.
+> > + */
+> > +static int sparx5_verify_target(struct sparx5 *sparx5)
+> > +{
+> > +     switch (sparx5->target_dt) {
+> > +     case SPX5_TARGET_CT_7546:
+> > +     case SPX5_TARGET_CT_7549:
+> > +     case SPX5_TARGET_CT_7552:
+> > +     case SPX5_TARGET_CT_7556:
+> > +     case SPX5_TARGET_CT_7558:
+> > +     case SPX5_TARGET_CT_7546TSN:
+> > +     case SPX5_TARGET_CT_7549TSN:
+> > +     case SPX5_TARGET_CT_7552TSN:
+> > +     case SPX5_TARGET_CT_7556TSN:
+> > +     case SPX5_TARGET_CT_7558TSN:
+> > +             return 0;
 > 
-> Implement subscribe_event and unsubscribe_event iocts
-> with necessary hooks.
+> All this is weird. Why would you verify? You were matched, it cannot be
+> mis-matching.
+
+We are verifying that the match (target/compatible string) from the
+device tree is supported by the chip. Maybe I wasn't too clear about the
+intend in v1.
+
+Each target supports different bandwidths and features. If you have a
+lan9698 chip, it must, obviously, be possible to run it as a lan9698
+target. However, some targets can be run on chip targets other than
+themselves, given that the chip supports the bandwidth and features of
+the provided target. In contrary, trying to run as a target with a
+feature not supported by the chip, or a bandwidth higher than what the
+chip supports, should be rejected.
+
+Without this logic, the chip id is read and a target is determined. That
+means on a lan9698 chip you will always match the lan9698 target.
+
+With the new logic, it is possible to run as a different target than
+what is read from the chip id, given that the target you are trying to
+run as, is supported by the chip.
+
 > 
-> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_instance.h |  2 ++
->  drivers/media/platform/qcom/iris/iris_vdec.c     | 26 ++++++++++++++++++++++++
->  drivers/media/platform/qcom/iris/iris_vdec.h     |  1 +
->  drivers/media/platform/qcom/iris/iris_vidc.c     | 17 ++++++++++++++++
->  4 files changed, 46 insertions(+)
+> > +     case SPX5_TARGET_CT_LAN9698RED:
+> > +             if (sparx5->target_ct == SPX5_TARGET_CT_LAN9698RED)
 > 
-> diff --git a/drivers/media/platform/qcom/iris/iris_instance.h b/drivers/media/platform/qcom/iris/iris_instance.h
-> index bb43119af352..d28b8fd7ec2f 100644
-> --- a/drivers/media/platform/qcom/iris/iris_instance.h
-> +++ b/drivers/media/platform/qcom/iris/iris_instance.h
-> @@ -30,6 +30,7 @@
->   * @once_per_session_set: boolean to set once per session property
->   * @m2m_dev:	a reference to m2m device structure
->   * @m2m_ctx:	a reference to m2m context structure
-> + * @subscriptions: variable to hold current events subscriptions
->   */
->  
->  struct iris_inst {
-> @@ -48,6 +49,7 @@ struct iris_inst {
->  	bool				once_per_session_set;
->  	struct v4l2_m2m_dev		*m2m_dev;
->  	struct v4l2_m2m_ctx		*m2m_ctx;
-> +	unsigned int			subscriptions;
->  };
->  
->  #endif
-> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.c b/drivers/media/platform/qcom/iris/iris_vdec.c
-> index fd0f1ebc33e8..c4eeba5ed6da 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vdec.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vdec.c
-> @@ -3,6 +3,7 @@
->   * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->  
-> +#include <media/v4l2-event.h>
->  #include <media/v4l2-mem2mem.h>
->  
->  #include "iris_buffer.h"
-> @@ -13,6 +14,7 @@
->  #define DEFAULT_WIDTH 320
->  #define DEFAULT_HEIGHT 240
->  #define DEFAULT_CODEC_ALIGNMENT 16
-> +#define MAX_EVENTS 30
->  
->  void iris_vdec_inst_init(struct iris_inst *inst)
->  {
-> @@ -208,3 +210,27 @@ int iris_vdec_s_fmt(struct iris_inst *inst, struct v4l2_format *f)
->  
->  	return 0;
->  }
-> +
-> +int iris_vdec_subscribe_event(struct iris_inst *inst, const struct v4l2_event_subscription *sub)
-> +{
-> +	int ret = 0;
-> +
-> +	switch (sub->type) {
-> +	case V4L2_EVENT_EOS:
-> +		ret = v4l2_event_subscribe(&inst->fh, sub, MAX_EVENTS, NULL);
+> What is "ct"? sorry, all this code is a big no.
 
-Why 30 events? EOS needs has to store just 1 event. I'd just drop MAX_EVENTS and
-fill in 0 or 1 here.
+In this case we were matched as a SPX5_TARGET_CT_LAN9698RED target. We
+are verifying that the chip target (target_ct, which is read from the
+chip) supports the target we were matched as.
 
-> +		inst->subscriptions |= V4L2_EVENT_EOS;
-> +		break;
-> +	case V4L2_EVENT_SOURCE_CHANGE:
-> +		ret = v4l2_src_change_event_subscribe(&inst->fh, sub);
-> +		inst->subscriptions |= V4L2_EVENT_SOURCE_CHANGE;
-> +		break;
-> +	case V4L2_EVENT_CTRL:
-> +		ret = v4l2_ctrl_subscribe_event(&inst->fh, sub);
-> +		inst->subscriptions |= V4L2_EVENT_CTRL;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return ret;
-> +}
-> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.h b/drivers/media/platform/qcom/iris/iris_vdec.h
-> index eb8a1121ae92..707fff34bf4d 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vdec.h
-> +++ b/drivers/media/platform/qcom/iris/iris_vdec.h
-> @@ -13,5 +13,6 @@ void iris_vdec_inst_deinit(struct iris_inst *inst);
->  int iris_vdec_enum_fmt(struct iris_inst *inst, struct v4l2_fmtdesc *f);
->  int iris_vdec_try_fmt(struct iris_inst *inst, struct v4l2_format *f);
->  int iris_vdec_s_fmt(struct iris_inst *inst, struct v4l2_format *f);
-> +int iris_vdec_subscribe_event(struct iris_inst *inst, const struct v4l2_event_subscription *sub);
->  
->  #endif
-> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media/platform/qcom/iris/iris_vidc.c
-> index 1d6c5e8fafb4..8068c06c1f11 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <linux/pm_runtime.h>
-> +#include <media/v4l2-event.h>
->  #include <media/v4l2-ioctl.h>
->  #include <media/v4l2-mem2mem.h>
->  
-> @@ -320,6 +321,20 @@ static int iris_g_selection(struct file *filp, void *fh, struct v4l2_selection *
->  	return 0;
->  }
->  
-> +static int iris_subscribe_event(struct v4l2_fh *fh, const struct v4l2_event_subscription *sub)
-> +{
-> +	struct iris_inst *inst = container_of(fh, struct iris_inst, fh);
-> +
-> +	return iris_vdec_subscribe_event(inst, sub);
-> +}
-> +
-> +static int iris_unsubscribe_event(struct v4l2_fh *fh, const struct v4l2_event_subscription *sub)
-> +{
-> +	struct iris_inst *inst = container_of(fh, struct iris_inst, fh);
-> +
-> +	return v4l2_event_unsubscribe(&inst->fh, sub);
-> +}
-> +
->  static struct v4l2_file_operations iris_v4l2_file_ops = {
->  	.owner                          = THIS_MODULE,
->  	.open                           = iris_open,
-> @@ -345,6 +360,8 @@ static const struct v4l2_ioctl_ops iris_v4l2_ioctl_ops = {
->  	.vidioc_enum_framesizes         = iris_enum_framesizes,
->  	.vidioc_reqbufs                 = v4l2_m2m_ioctl_reqbufs,
->  	.vidioc_g_selection             = iris_g_selection,
-> +	.vidioc_subscribe_event         = iris_subscribe_event,
-> +	.vidioc_unsubscribe_event       = iris_unsubscribe_event,
+> Krzysztof
+>
 
-Just set this op to v4l2_event_unsubscribe directly. You should not need a
-driver specific override function.
+This is a feature that we would like, as it gives the flexibility of
+running different targets on the same chip. Now if this is something
+that cannot be accepted, I will have to ditch this part.
 
->  };
->  
->  void iris_init_ops(struct iris_core *core)
-> 
+Let me know.
+
+/Daniel
 
 
