@@ -1,291 +1,203 @@
-Return-Path: <devicetree+bounces-114737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99BAA9AC9F5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A61F9ACA4A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:41:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E7221F22311
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:22:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0D7F1F22289
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:41:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2106D1ABEA5;
-	Wed, 23 Oct 2024 12:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0571AB51E;
+	Wed, 23 Oct 2024 12:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KjVNMZmx"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="d/dNjEc4";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MumQwB+Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fout-b6-smtp.messagingengine.com (fout-b6-smtp.messagingengine.com [202.12.124.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB411AA79E;
-	Wed, 23 Oct 2024 12:22:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734AA1AA795;
+	Wed, 23 Oct 2024 12:41:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729686147; cv=none; b=W0Rtili+i7rDPNE8PMQJNo81RanPA+idWL+VuXTVgZ801ovzHoKcFT30rgeEKeUOlIRwL7v77XcEXoP4Fo6Ug+Jwvf+On0ukmB4D5AJa7IIh/hPtKCt4DT2Ghl6XFuyLZ0cvHn1Ou9DwHeLu5XmdJOVCNDN9uk+6yElCQu+7KJk=
+	t=1729687303; cv=none; b=RltEVM9uIkRsG4xGBIgqWJeMXdRblpV76qs8A4DIfPDvcBdDQXRBYKZ6lwtkcccek9YjAjcm4DCCAsrhnnxCDRAHSQHc7i6T6lveAUAIOopcncZC3T7gQBrrgsXBy/u5cHeWDD/d9LMisnzze1Ckg5Od1IqYv/mgO+s3NVQLd1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729686147; c=relaxed/simple;
-	bh=adF3VxoVJ9AU8QpZj/30erZAdABXuvA93uhqk5/vMpg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EHrSOP6XxGLwAaw4shXdUtu6nQf2sY/U9aj2RtwufWCs58bs/LAZkJNUI+DxttPFRyaO8Ho27ICgpFrHXmihX4NijxMmGiKj+b7S7o2abVWJpMRPWj03+765GPIgzT6cGuH0GKL7aeMj0jc+epXQkw07ZAEzS8IVv7Mh9A1lJds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KjVNMZmx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49N9ijY1030354;
-	Wed, 23 Oct 2024 12:22:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iTht4jf6MVYNx9CnrbRM5YEqmjgvAAa/perOIHWuwqI=; b=KjVNMZmx5W6T/hx9
-	qFM5Ssj5c7Ibw53lWnXBtjvQE7kikPtZJN3J/0cNQ7uf1P+iu1OSASbEfV6SLS9b
-	jAexoHHg46KkFBQ3TU6qrIAAfVsYlMAl8oHGvEgFVqFZTzzP4PAEU6RM5TlRkEU+
-	dygswS8TFpWOAjgZ8mhyblYGzeEdo1URz1AOY09sIvAlJIj1xKHLuoYCa9fmsWb/
-	cUlBa9im7A+D1SEPn4hrRHvDwRTIMG3WhdCBR3yOlaDxHW6NopjV1v5qXIZqT7bR
-	MkpHAKCSua1eJ//QXZSONhIJ4w8yAJzizWugPgBfTJtX6ADenFoixi8HVvN+Hdm9
-	8v2i5Q==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3w25y7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 12:22:17 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49NCMH7Q014294
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 12:22:17 GMT
-Received: from [10.152.207.135] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Oct
- 2024 05:22:12 -0700
-Message-ID: <9c06fdac-df4f-449c-8d58-b57c375c1751@quicinc.com>
-Date: Wed, 23 Oct 2024 17:52:07 +0530
+	s=arc-20240116; t=1729687303; c=relaxed/simple;
+	bh=E6FBFn0Ujc319qC0O/jBgBpQtLYrjDz4154twniKKzM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RGx0RoJ5TGKKOWvrG745xTECCMR3kce7tCpwPnkALWNmpw5cbtYdRm4/YZJDcZfO1SACOFa9OY4TKMc5K9FOzWRiigY1T+mRHBnngAqo75K/sQV3l0QwFq0vTEfSzL7eiKGqNU9Tf2lpiJ+9RL/mHAVUrYGnF2uBOFdjfj7EBJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=d/dNjEc4; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=MumQwB+Q; arc=none smtp.client-ip=202.12.124.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
+	by mailfout.stl.internal (Postfix) with ESMTP id 334D9114009E;
+	Wed, 23 Oct 2024 08:41:38 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-01.internal (MEProxy); Wed, 23 Oct 2024 08:41:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1729687298;
+	 x=1729773698; bh=VW7MmHOKBJ2Amif5Bul+T9HBPuzh3KiWj+o/3hNtOGo=; b=
+	d/dNjEc4jtF5QxMrZSBcGgJh9bB6Zwa4WbMHAGujzsw71Hf+9pro1L8fHBY2JwEU
+	t4VCZ6X3s1OdTX2QoaxdZm2qa7WeuycMfcX9Na9n52CAwGTSBKe5WcdgrwZX5poN
+	oNG+R+N019Q9dY4xjbkK2S7PR3AzoyUcuq6rlQuYnH1KznIkaobR8EKmQL9Z71Rp
+	x/AGge8bbzNj46HiCZZdh7NsosI0PEXsetmQS+vDpsAhS1Qz8PxtX6DcJNmXBUQ3
+	F4vXIVPcI0laoYkK6liH51/6dqFtkzNvN8FYu7Fiuoqa8juSGWz4/8Ll8GqKWeDF
+	DRvVOCWNeFAHDKbXVmhBfg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1729687298; x=
+	1729773698; bh=VW7MmHOKBJ2Amif5Bul+T9HBPuzh3KiWj+o/3hNtOGo=; b=M
+	umQwB+QT2T5lZVRawC27AhOXaoY46xnQ9UluRAmOEs0PctmXV86ZBwR108Fq/EkC
+	RT3cwoimnkZk06G2dQ7hxexjt9hKxPe7aAYFUXXu5tWWet0lqhpgpKetyhLqSk6M
+	b48lWtLAsf3WwC1OtGXjfYUeuP55AvRS+rY7V5Hzh9ePOFJOVVf50ZXlrqC1vF2m
+	YGASNJdjgwpUR5UNlHMa7Hsf0sWYTji0kHVvHi+5Myf10FOyLH5B+fy2po4mSgYj
+	k0i2vL4sjUaVInG8pdv5tyG1HWw+8j9Y1szgaz+Kq+9SYT6iDLCbQc3i0PnJGI8i
+	vS7gO0Cf3uponRaAAPdAA==
+X-ME-Sender: <xms:Ae8YZ1PfVYUMfBAee28gg7nkevyUDcGb2oyCsIp2U68OMQIRdoLjTA>
+    <xme:Ae8YZ3_Erg5EspjR475GUemLB_rYbtBYCUjqnUzI05S-JUNelFqhJKdZqznBPwdaP
+    LIL4sdRpe3_Pxqk7zY>
+X-ME-Received: <xmr:Ae8YZ0QcaIPsKC0U_HTfIrONPAmlk5j1-aYj2t2peVlTwd9V-4arXjuLGvv_W9Gwer13mofcYWBrGq2MEHXdt031GQS9yiJNwg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeijedgheegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
+    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
+    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
+    thgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvd
+    elieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
+    ihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrsh
+    gvpdhnsggprhgtphhtthhopeeipdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehg
+    vggvrhhtsehlihhnuhigqdhmieekkhdrohhrghdprhgtphhtthhopehrohgshheskhgvrh
+    hnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhr
+    tghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlih
+    hnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:Ae8YZxuNTMgT-1XEDtVDCDM6H7a6HsWCCD73rfzBhogL-MBWW7NP_g>
+    <xmx:Ae8YZ9cahsoxS_iqDxXHuatSIlWMmSHp2qxz-SyD29wRkalHaZIpSA>
+    <xmx:Ae8YZ90zUWiQ1dQeXH2HUax2IXaguc6NSkx_SU9KB2bawNzZWFKuhA>
+    <xmx:Ae8YZ580hUdbIPREOBgODAKN6M-mBt6IrJKzrrtaVEEcPpmjR14Q8w>
+    <xmx:Au8YZ1S_lYNf3btHLyTBxGh5IB4GDyEFwMpVs1t0FdOOGp80zFhRY9Ns>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 23 Oct 2024 08:41:36 -0400 (EDT)
+Date: Wed, 23 Oct 2024 14:41:34 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: renesas: falcon: Wire-up Ethernet
+ breakout board
+Message-ID: <20241023124134.GA1417003@ragnatech.se>
+References: <20241022184727.3206180-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdV+4PdxnRCzr7fnHnGYiuypem1hYMbXLac+x2db7yfpkA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/6] dt-bindings: net: wireless: ath12k: describe WSI
- property for QCN9274
-To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20241023060352.605019-1-quic_rajkbhag@quicinc.com>
- <20241023060352.605019-3-quic_rajkbhag@quicinc.com>
- <b42da7f0-2034-467b-ab17-fb13ef7800c4@kernel.org>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <b42da7f0-2034-467b-ab17-fb13ef7800c4@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: s3FSzHXtIQ2CGqrun3lATKRRWpRaFwCS
-X-Proofpoint-GUID: s3FSzHXtIQ2CGqrun3lATKRRWpRaFwCS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- priorityscore=1501 impostorscore=0 bulkscore=0 lowpriorityscore=0
- clxscore=1015 suspectscore=0 spamscore=0 malwarescore=0 mlxscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410230073
+In-Reply-To: <CAMuHMdV+4PdxnRCzr7fnHnGYiuypem1hYMbXLac+x2db7yfpkA@mail.gmail.com>
 
-On 10/23/2024 12:08 PM, Krzysztof Kozlowski wrote:
-> On 23/10/2024 08:03, Raj Kumar Bhagat wrote:
->> QCN9274 device has WSI support. WSI stands for WLAN Serial Interface.
->> It is used for the exchange of specific control information across
->> radios based on the doorbell mechanism. This WSI connection is
->> essential to exchange control information among these devices
->>
->> Hence, describe WSI interface supported in QCN9274 with the following
->> properties:
->>
->>  - qcom,wsi-group-id: It represents the identifier assigned to the WSI
->>    connection. All the ath12k devices connected to same WSI connection
->>    have the same wsi-group-id.
->>
->>  - qcom,wsi-index: It represents the identifier assigned to ath12k
->>    device in the order of the WSI connection.
->>
->>  - qcom,wsi-num-devices: Number of devices connected through WSI in
->>    the same group ID.
+Hi Geert,
+
+On 2024-10-23 09:13:11 +0200, Geert Uytterhoeven wrote:
+> Hi Niklas,
 > 
-> You should have separate binding.
+> Thanks for your series!
 > 
-
-Based on the discussion in previous patch [1/6]. If required we will have
-separate binding.
-
->>
->> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
->> ---
->>  .../bindings/net/wireless/qcom,ath12k.yaml    | 61 +++++++++++++++++++
->>  1 file changed, 61 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->> index ecf38af747f7..6c8f97865075 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->> @@ -19,6 +19,7 @@ properties:
->>    compatible:
->>      enum:
->>        - pci17cb,1107  # WCN7850
->> +      - pci17cb,1109  # QCN9274
->>  
->>    reg:
->>      maxItems: 1
->> @@ -50,6 +51,41 @@ properties:
->>    vddpcie1p8-supply:
->>      description: VDD_PCIE_1P8 supply regulator handle
->>  
->> +  wsi:
->> +    type: object
->> +    description:
->> +      The ath12k devices (QCN9274) feature WSI support. WSI stands for
->> +      WLAN Serial Interface. It is used for the exchange of specific
->> +      control information across radios based on the doorbell mechanism.
->> +      This WSI connection is essential to exchange control information
->> +      among these devices.
->> +
->> +    properties:
->> +      qcom,wsi-group-id:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description:
->> +          It represents the identifier assigned to the WSI connection. All
->> +          the ath12k devices connected to same WSI connection have the
->> +          same wsi-group-id.
+> On Tue, Oct 22, 2024 at 8:48 PM Niklas Söderlund
+> <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > This small series wires up the Marvell 88Q2110 PHYs found on the Falcon
+> > Ethernet breakout board. With this applied all five PHYs are probed
+> > correctly.
+> >
+> >     mv88q2110 e6810000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6810000.ethernet-ffffffff:07, irq=POLL)
+> >     mv88q2110 e6820000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6820000.ethernet-ffffffff:07, irq=POLL)
+> >     mv88q2110 e6830000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6830000.ethernet-ffffffff:07, irq=POLL)
+> >     mv88q2110 e6840000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6840000.ethernet-ffffffff:07, irq=POLL)
+> >     mv88q2110 e6850000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6850000.ethernet-ffffffff:07, irq=POLL)
+> >
+> > They can be auto detected with just the compatible
+> > "ethernet-phy-ieee802.3-c45", but to keep the style currently used I
+> > have added the specific compatible for the 88Q2110 as done for other
+> > SoCs.
 > 
-> Why it cannot be implied by compatible?
-> 
->> +
->> +      qcom,wsi-index:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description:
->> +          It represents the identifier assigned to ath12k device in the
->> +          order of the WSI connection.
-> 
-> No, we do not have indices in DTS.
-> 
->> +
->> +      qcom,wsi-num-devices:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description:
->> +          Number of devices connected through WSI in the same group ID.
-> 
-> Wait, why? Number of devices is visible from DTS. You are missing some
-> diagram showing this but it looks like you stuff multiple nodes into one
-> node.
-> 
-> 
+> If the specific compatible values are not needed, I prefer not to add
+> them, as DT should describe only what cannot be auto-detected[1].
 
-To discuss the above comments, let me provide a diagram that is part of the
-commit log of DTS patch [6/6].
+Ok, I will post a v2 without the specific compatible value.
 
-The WSI connection in RDP433 is represented below:
+> Have you tried kexec and/or unbinding/rebinding the AVB driver
+> (the latter is probably easiest)?
 
-          +-------+        +-------+        +-------+
-          | pcie2 |        | pcie3 |        | pcie1 |
-          |       |        |       |        |       |
-   +----->|  wsi  |------->|  wsi  |------->|  wsi  |-----+
-   |      | idx 0 |        | idx 1 |        | idx 2 |     |
-   |      +-------+        +-------+        +-------+     |
-   +------------------------------------------------------+
-
-The above three blocks represent the QCN9274 WiFi devices connected to their
-respective PCI slots. The dotted line represents the WSI connection that connects
-these three devices together. Hence, the WSI interface is part of the QCN9274 device.
-
-To describe this WSI hardware connection in the device tree, we are adding three
-properties inside the WSI object:
-
-1. qcom,wsi-group-id:
-   In the above diagram, we have one WSI connection connecting all three devices.
-   Hence, “qcom,wsi-group-id” for all three devices can be 0.
-
-   This cannot be implied by the compatible property, as explained below:
-   Let’s take the case of a platform that can have four QCN9274 WiFi devices. Below
-   is one possibility of a WSI connection:
-
-         +-------+       +-------+          +-------+      +-------+
-         | pcie2 |       | pcie3 |          | pcie1 |      | pcie0 |
-         |       |       |       |          |       |      |       |
-   +---->|  wsi  |------>|  wsi  |--+   +-->|  wsi  |----->|  wsi  |----+
-   |     | idx 0 |       | idx 1 |  |   |   | idx 0 |      | idx 1 |    |
-   |     +-------+       +-------+  |   |   +-------+      +-------+    |
-   +--------------------------------+   +-------------------------------+
-
-   In this case, QCN9274 devices connected in PCIe2 and PCIe3 will have the same
-   “qcom,wsi-group-id”. This group-id will be different from the “qcom,wsi-group-id”
-   of QCN9274 devices connected at PCIe1 and PCIe0.
-
-2. qcom,wsi-index:
-   This is a unique identifier of the device within the same group. The value of
-   wsi-idx is represented in both the above cases (RDP433 and the 4 WiFi device
-   platform) in the diagram itself.
-
-3. qcom,wsi-num-devices:
-   Represents the number of devices connected through WSI within the same WSI group to
-   which the device belongs.
-   
-   In the case of RDP433, all devices will have this number as 3.
-   For the second example with four WiFi devices but with two WSI connections, the
-   value of “qcom,wsi-num-devices” for each device will be 2.
+I have tested unbinding/rebinding the driver both with and without a 
+specific compatible value, both scenarios work.
 
 > 
->> +
->> +    required:
->> +      - qcom,wsi-group-id
->> +      - qcom,wsi-index
->> +      - qcom,wsi-num-devices
->> +
->> +    additionalProperties: false
->> +
->>  required:
->>    - compatible
->>    - reg
->> @@ -108,3 +144,28 @@ examples:
->>              };
->>          };
->>      };
->> +
->> +  - |
->> +    pcie {
->> +        #address-cells = <3>;
->> +        #size-cells = <2>;
->> +
->> +        pcie@0 {
->> +            device_type = "pci";
->> +            reg = <0x0 0x0 0x0 0x0 0x0>;
->> +            #address-cells = <3>;
->> +            #size-cells = <2>;
->> +            ranges;
->> +
->> +            wifi@0 {
->> +                compatible = "pci17cb,1109";
->> +                reg = <0x0 0x0 0x0 0x0 0x0>;
->> +
->> +                wsi {
->> +                    qcom,wsi-group-id = <0>;
->> +                    qcom,wsi-index = <0>;
->> +                    qcom,wsi-num-devices = <3>;
+> > The primary issue we had with this in the past was due to an incorrect
+> > PHY address. After studying the schematics (v100) I found the PHYs
+> > address pins are wired differently on Falcon compared to other Gen4
+> > boards. On Falcon they are pulled-down, while on other Gen4 boards they
+> > are left unconnected and subjected to the PHYs internal pull-ups. This
+> > gives the PHY an address where the lower 3 bits of the address is
+> > inverted for Falcon.
 > 
-> So what are the other 2 devices? Where are they documented?
+> This was changed in v102 of the schematics (REV0043c vs. REV0043b of
+> the schematics for the Ethernet sub board): See "Changed Strap pin
+> settings ==> PHYAD=[0,0,0], pull-down removed" on page 1, and the
+> various PHY configuration notes...
+> Moreover, this might be different in other board revisions, as the
+> BSP uses PHY address 1 for RAVB1, address 2 for RAVB2, and so on...
+> 
+> As I only had remote access to Falcon, I never knew the actual board
+> revision I was using.
+
+I could not find any revision markings on the board. But to the best of 
+my ability (the markings are not super clear) I have identified that the 
+pull-down resistors are indeed present on the board I have.
+
+> 
+> How to handle this (yet another DTS file)?
+> Are non-v100 variants widespread?
+
+As Wolfram points out, I don't think it's widespread. I think it's OK to 
+move forward with this as all the V3U boards we have seen have this 
+configuration. If one pops-up later we can solve it then right? As 
+solving this properly would need ether a separate DTS source or at least 
+an overlay anyhow.
+
+Is this acceptable for you? If so I will post a v2 with the change 
+proposed above.
+> 
+> [1] In theory, we could drop all SoC- and family-specific compatible
+>     values, and just look at the Product Register. I do not suggest
+>     going that way ;-)
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 > 
 
-In the example, we have represented only one WiFi node. Although it indicates
-that there are a total of three devices in the same WSI connection with group-id
-0, we can add all three WiFi nodes in the next version if required.
-
+-- 
+Kind Regards,
+Niklas Söderlund
 
