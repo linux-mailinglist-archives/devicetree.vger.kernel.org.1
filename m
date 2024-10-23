@@ -1,192 +1,122 @@
-Return-Path: <devicetree+bounces-114900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 831EB9AD5C6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:49:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B0F9AD5CE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBA2EB218A3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:49:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 187D71F22B61
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:52:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29FD1CEAD4;
-	Wed, 23 Oct 2024 20:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729F41D9667;
+	Wed, 23 Oct 2024 20:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbsmEFuB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AM6dabTf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937CC149013;
-	Wed, 23 Oct 2024 20:49:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F229013AA2B;
+	Wed, 23 Oct 2024 20:52:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729716581; cv=none; b=eD1U0nnnRMYbVtPckwqsNU9pXIz11q8dEtReJGYfuLn1WpLnvhGEVF3q3o086uZP4OIbPwFNFavFoDF4MgrGOiN669sKQggmDaAG/ZnmLwiWjdPNxSywQxkd63KBTTrPA9qVHL8OcIT9dkarKMBEl1t9i3RbqP+0+RevazHb1xc=
+	t=1729716742; cv=none; b=Ieup/Yw8PuKmC4C2oBumuq79pm89KbM5sA+ldJ3xDvOITD+pFDiRTJ5A4ttJU83xEoUXmwxACvqV8eZGx09L3hLC67xyYpE0R8KULCmIDfGedhkzXqsRGBn6Op/vUCQnSX/FVn6r9/xQNLmnmPWNTYt1nVYN1uEEzYQRZECcvZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729716581; c=relaxed/simple;
-	bh=D6rOAupw7nWaOfhbwJhOxY7u+4yNaJ1nMm3CkyxSZ4I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fvBqNmduASY6S8mSJoNeJAcpyIvjEAp38CV8X0G70jy69PDp0K9H9WmU/TFd2Wgd5hVF7oWH/XBTpxDhqLsisKvinXfj8X1dbrP8r0YnC7pSc6cLSLd55YSGqJchq+5UUuvJqo8Ik0P90atfphQc3wzIe9Kuy8im3gAPb2GN16w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbsmEFuB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 612EEC4CEC6;
-	Wed, 23 Oct 2024 20:49:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729716581;
-	bh=D6rOAupw7nWaOfhbwJhOxY7u+4yNaJ1nMm3CkyxSZ4I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SbsmEFuBcYBJxfd9aKYJEJhvm5sOCBpuq3Gkw8XBVAgaBVAtodo4MzzFydgz9lmre
-	 lYFf+4Bc3gblOkDrHaTeXYplOKsx+ARhDq7I84evZ9AqNJW6sdl8mkvHTdvLRiNWq7
-	 HIxQV0FTIhIlXU1I0UWU0dYoCb4/La4ArGqqwj83V1yPu64TjVihcSJtg+Lv4hnx7j
-	 nsU4mql2Gn/IGBFQELdRYpyG77D96qEA7RspsiJJx3jVWn3y5NFarKPXPlN+Fhh4du
-	 ljtB6NwbDGGW5+zuy3s8XNOWGeFaUUoztmYHWjCyMnJg20bW3Ehuw32LgawaSV0yAA
-	 ne0ctkmBg3+FQ==
-Date: Wed, 23 Oct 2024 21:49:34 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: Add support for Sophgo SG2044 dwmac
-Message-ID: <20241023-paper-crease-befa8239f7f0@spud>
-References: <20241021103617.653386-1-inochiama@gmail.com>
- <20241021103617.653386-3-inochiama@gmail.com>
- <20241022-crisply-brute-45f98632ef78@spud>
- <yt2idyivivcxctosec3lwkjbmr4tmctbs4viefxsuqlsvihdeh@alya6g27625l>
+	s=arc-20240116; t=1729716742; c=relaxed/simple;
+	bh=6Tb9pV9LKWRPVhJB94rtHiF5fsrInY9eTzz7D4KN0BM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=jvvyiTsENUM0GpDBdNC2EfOUR1tW/8xwWpPpkpprVr6ZwpFdK3myIPM15jMp+VGhutJ7naxHaR8OmoXcPsmegEr46O1dFaD4KDxox1I/uZOOrpsYEH/Fdiy+jfIwFiKG9npksRAkNGvAJ5QtoAKRRhSWbikXZgd32Y/K8rRcm0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AM6dabTf; arc=none smtp.client-ip=209.85.161.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-5eb60f6b4a7so53759eaf.0;
+        Wed, 23 Oct 2024 13:52:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729716740; x=1730321540; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1jbKCohA6TwC7UhYKQo7aMkg7DeKcY9uJ0EDFXngfwA=;
+        b=AM6dabTfDFALbRqEKceeJFKANwrP/4CB2y1ZUHqFYJWIu0hFBTlfjzWt8l5aa/GCja
+         ajh1xUyj02yOnq8C44kQFsGZACHf7DBwx5RIgAVlMw5hc//SP5is/WJREjGqYvHFsAZx
+         aeaepHkeyYEAIka66tfnovEW6JfJCXHmX7yX/BfnOD7U9+N8ltYGRxGerYBLTkR3dB2f
+         r0nuNKzpKioSMZkiS/xgAVbzL+s5q13DuyofgHGCS8H8D8LFcE7arEZopiIGKfB7NL+0
+         uBlJyJxXsTx61Em8jim2L0UkElivsXm48TfG7WQQt84qDaHp4lD6WM2JnNa5uV8CiTN3
+         cfxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729716740; x=1730321540;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1jbKCohA6TwC7UhYKQo7aMkg7DeKcY9uJ0EDFXngfwA=;
+        b=c7/Lsq2LGy0LAMiIKXYP8Pby+FVuV7nP5ZueBh0bA1LQt3JwETsmkc5ob+Nozksj38
+         0yJhob5mq3tWOlVw8blqiScY9FfYxUmS+mVZpYSY+IXisf2CEUa+6w3/vJ1uUvigwznn
+         y64F+Atq2NjLlbybUN5+Ztorox+de/IPDeprznImf+rmN0HYbBUnTLzNlCnjvqBqbbMW
+         FhnnRr5KHC/3bvvnh8Sz53WFkcAB8LaR0fVDxjg4V5jHpb1dr4Uuc9YEE/qS2UemfOKQ
+         D9Bo550poA8m0E0aVh07fRnFcz3V+uqMLEeUPBoEozlgwgGDOfsW0llWQW2WvQZpiEy9
+         kptg==
+X-Forwarded-Encrypted: i=1; AJvYcCWe/NCLJ6kN0sJ6Ztga2epOdajJ8NjB3TIiJlHpNNYsQrn0hKs9Hjp1wJ/oJp9UQmHFJXzK5hLn1WFw@vger.kernel.org, AJvYcCXLayeMvx9DPBd9v6vvni4nI5EelhOM8FueYgU8zVmnPJgNiUm5vutmYarRP10AzFfiqpJqVXVhun66BVg=@vger.kernel.org, AJvYcCXW7tqtpGZlmK+KMzC+XhuTrdYFMfgaUH0JtKNPDCZfjwyzLxtN8x//WPluS4Evvnwkoga94BfMQ3HM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8K4CmHowIBbM+nHfEXIPvEXalx5UpF+DwiMNOIno02aESt8Hx
+	z7YORouIjfxrnsdIRjYvlmTTatRgDoqCZ95E5wR2UaiMC/Pbx/4v
+X-Google-Smtp-Source: AGHT+IHV0IpveUxQDGeApYx1dNz0WIaE6DawoHEQ3wydp2sgV6+/FNxfzLeaAihAF5Iqj0zjtmD0qA==
+X-Received: by 2002:a05:6871:706:b0:261:7c5:f018 with SMTP id 586e51a60fabf-28ccb3a0246mr4158703fac.4.1729716739817;
+        Wed, 23 Oct 2024 13:52:19 -0700 (PDT)
+Received: from raspberrypi ([2600:1700:90:4c80::f])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7182ebd5ef0sm1855407a34.60.2024.10.23.13.52.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 13:52:18 -0700 (PDT)
+Date: Wed, 23 Oct 2024 15:52:15 -0500
+From: Grant Peltier <grantpeltier93@gmail.com>
+To: robh@kernel.org, linux@roeck-us.net, geert+renesas@glider.be,
+	magnus.damm@gmail.com
+Cc: grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v3 0/2] dt-bindings: hwmon: pmbus: add bindings for isl68137
+Message-ID: <cover.1729715599.git.grantpeltier93@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HZ3OWjJABGOCrTlm"
-Content-Disposition: inline
-In-Reply-To: <yt2idyivivcxctosec3lwkjbmr4tmctbs4viefxsuqlsvihdeh@alya6g27625l>
-
-
---HZ3OWjJABGOCrTlm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 23, 2024 at 08:31:24AM +0800, Inochi Amaoto wrote:
-> On Tue, Oct 22, 2024 at 06:28:06PM +0100, Conor Dooley wrote:
-> > On Mon, Oct 21, 2024 at 06:36:15PM +0800, Inochi Amaoto wrote:
-> > > The GMAC IP on SG2044 is almost a standard Synopsys DesignWare MAC
-> > > with some extra clock.
-> > >=20
-> > > Add necessary compatible string for this device.
-> > >=20
-> > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > > ---
-> > >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
-> > >  .../bindings/net/sophgo,sg2044-dwmac.yaml     | 145 ++++++++++++++++=
-++
-> > >  2 files changed, 146 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/net/sophgo,sg20=
-44-dwmac.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/=
-Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > index 3c4007cb65f8..69f6bb36970b 100644
-> > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > > @@ -99,6 +99,7 @@ properties:
-> > >          - snps,dwmac-5.30a
-> > >          - snps,dwxgmac
-> > >          - snps,dwxgmac-2.10
-> > > +        - sophgo,sg2044-dwmac
-> > >          - starfive,jh7100-dwmac
-> > >          - starfive,jh7110-dwmac
-> > > =20
-> > > diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwma=
-c.yaml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
-> > > new file mode 100644
-> > > index 000000000000..93c41550b0b6
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
-> > > @@ -0,0 +1,145 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/net/sophgo,sg2044-dwmac.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: StarFive JH7110 DWMAC glue layer
-> > > +
-> > > +maintainers:
-> > > +  - Inochi Amaoto <inochiama@gmail.com>
-> > > +
-> > > +select:
-> > > +  properties:
-> > > +    compatible:
-> > > +      contains:
-> > > +        enum:
-> > > +          - sophgo,sg2044-dwmac
-> > > +  required:
-> > > +    - compatible
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: sophgo,sg2044-dwmac
-> > > +      - const: snps,dwmac-5.30a
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: GMAC main clock
-> > > +      - description: PTP clock
-> > > +      - description: TX clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: stmmaceth
-> > > +      - const: ptp_ref
-> > > +      - const: tx
-> > > +
-> > > +  sophgo,syscon:
-> >=20
-> > How many dwmac instances does the sg2044 have?
-> >=20
->=20
-> Only one, there is another 100G dwxgmac instance, but it does not
-> use this syscon.
+Renesas digital multiphase voltage regulators are capable of regulating
+output voltages that exceed the range that their Vsense pins can detect.
+In such applications, users may place a voltage divider between Vout and
+the Vsense pin for a given rail. However, the driver currently has no
+way of knowing if a voltage divider is being used which results in
+erroneous telemetry being reported over hwmon.
 
-That dwxgmac is a different device, with a different compatible etc?
+This patch set defines a devicetree bindings schema for Renesas digital
+multiphase voltage regulators that are supported by the isl68137 driver
+to allow users to add voltage divider definitions for any rail powered
+by the device. This patch set also includes the required changes to the
+isl68137 driver to enable scaling Vout/Pout telemetry for rails with a
+defined voltage divider.
 
---HZ3OWjJABGOCrTlm
-Content-Type: application/pgp-signature; name="signature.asc"
+v3:
+- Report and return errors reading the vout-voltage-divider property from
+  the devicetree when the property is defined
+- Change u64 division/rounding operations to use explicit math64 macros
 
------BEGIN PGP SIGNATURE-----
+v2:
+- Fix devicetree bindings schema errors
+- Add "renesas," vendor prefix to "vout-voltage-divider" property
+- Rebase patch series on v6.12-rc1
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxlhXgAKCRB4tDGHoIJi
-0pO0AQD5Swmhv1mfvz5DiD/5f5DGV3m+rvoUAhPp697EkSD9KgD/fnWAmf29z3yR
-O/N/hNkW71ULWbchz7jsFDwGdd6q4Ao=
-=k7np
------END PGP SIGNATURE-----
+Grant Peltier (2):
+  hwmon: (pmbus/isl68137) add support for voltage divider on Vout
+  dt-bindings: hwmon: isl68137: add bindings to support voltage dividers
 
---HZ3OWjJABGOCrTlm--
+ .../hwmon/pmbus/renesas,isl68137.yaml         | 131 +++++++++++
+ drivers/hwmon/pmbus/isl68137.c                | 204 +++++++++++++++++-
+ 2 files changed, 330 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68137.yaml
+
+-- 
+2.39.5
+
 
