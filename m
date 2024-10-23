@@ -1,142 +1,116 @@
-Return-Path: <devicetree+bounces-114573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 277749ABFAD
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:04:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6848B9ABFD4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:08:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD461285448
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:04:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7625B25D3C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B16E148FE5;
-	Wed, 23 Oct 2024 07:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5961A153BFC;
+	Wed, 23 Oct 2024 07:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uFSgJbX0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sXabRIzz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4860713A3F3;
-	Wed, 23 Oct 2024 07:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2553A8D0;
+	Wed, 23 Oct 2024 07:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729667039; cv=none; b=n/Vx4svFOMZxeH2CSqM0PpISYPEmyO4SyXnYjA6nMxxYfL45iEH6895x6yuHqTIjXrMHTiQ52ITV3nl0V7Q0QgAQ3kkTTggLd7kGoQaS14Qqhl0DAKm7RYK3Oq0gIqo9apmjjah3aWqMxH6NTIlUMdfsjwxutbjRT5smL/Mfmww=
+	t=1729667224; cv=none; b=hmObecpNgfEQ5GnaLzINyaRZesEwEn9ZjjrBnoEjEDo7AuovbAEOlj9LQuQ8VVaMaezsDIVneXGoC9J9T5GD66cPfTyOElp1lIucfctnCzJTbwctaAivDTqsbHLi9UX8E3CkgPlEzGYK+MCwQQGs3Rnzwy32ul7YRFg5uK+XJmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729667039; c=relaxed/simple;
-	bh=6DVKQTLwDZ80k1XcNjngRcu4GZNFUuwGnFM8c9RnzkA=;
+	s=arc-20240116; t=1729667224; c=relaxed/simple;
+	bh=jZ6NwNmVZfV7ULD4jlOblJfA583fZK3j0KAMT/P6Wsw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q7xyGqy8XfTlFGotKOlpLe2W31xjayu/KYzWta6e13zL1kXmTWPyParIu7Q6erh7QwKUC8kvj2dr4axADvbXx6OU5ZX7wWryS0kByK6VkFi+YvDi3JslhtstOdjZVm2Gd5JXyYjciuxtYQ9dIPgrnnoUMG+01kYB/V+w/hgTOEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uFSgJbX0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE82EC4CEC6;
-	Wed, 23 Oct 2024 07:03:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ecV2ZyODRCDshqvy4WHrRjjmW22Un0atr+Ut4aNXAQFIJkQnDyO81OY0OnSFwVgZWu8gSdhkIAs+GVwhMd+JqnqgAz5nmXwZ2LEQ0IgLZYZDsP78DRUojwjERK96y6+5TQBUjL+kcfSMIM5CR0X4gD7ye/Xtc2/0Dff4Ts3EVLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sXabRIzz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B538C4CEC6;
+	Wed, 23 Oct 2024 07:07:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729667038;
-	bh=6DVKQTLwDZ80k1XcNjngRcu4GZNFUuwGnFM8c9RnzkA=;
+	s=k20201202; t=1729667223;
+	bh=jZ6NwNmVZfV7ULD4jlOblJfA583fZK3j0KAMT/P6Wsw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uFSgJbX0TOXKZqTgHQeTetPCujY6ARh7Kwo0rEgfyO8Oki0pjsoQE7X9qFVBBVOXm
-	 VFBZtwgsPBZuPRRl6DHVDaAv9uUkt2m1553NXprb9iVlQakmUX38lxlpJhb7XgXBdy
-	 mVzRL9opR28oW1y/+G38LRUJ1lRDiToBffmYeqNw0fhdBD+2rrnh4AtxzX/m4ybcUZ
-	 58N4ttKznHX11xI7JNYrfaP0ZhVguJRGIRbhjcNw9s8+3VH3Uv5YUQXAZSV0A5CRwl
-	 jlw8KbnDrj79K9+feR048Q8SAGyt13jrX+f1n1b2ntWbr3yMRpI3BwxVZtA0jXv7Qz
-	 hFqpJjtVn63RQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t3VPe-000000001go-2ooC;
-	Wed, 23 Oct 2024 09:04:10 +0200
-Date: Wed, 23 Oct 2024 09:04:10 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] usb: typec: Add support for Parade PS8830 Type-C
- Retimer
-Message-ID: <Zxif6vmh8BE_C-_n@hovoldconsulting.com>
-References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
- <20241004-x1e80100-ps8830-v2-2-5cd8008c8c40@linaro.org>
- <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
- <Zxdp2vHzREJAFkwj@linaro.org>
+	b=sXabRIzzRLc+Ren3SbDkbHSRKkIoGn/a/hcvUxLhcqv2bVV0cvr5fKWgaqaSTwY2c
+	 YSLOhKVImXQj4uIEJIRiko/yA2rBAc78Z83Bwe7NHz19QcP+ylhMc4JoVQd0IS1QLz
+	 DMr/NyzjR+UCdxs+b7Z7qIJMoThhbk3Ab4R2G3WfBEO6pZ3PVRGTaEsYYaPLn9gxvj
+	 hH0Fyo7hNc5iks8ZcefQh9BCElFr/XBsylyQZF+pKOQJNsxZwx898kpZsaJTo5fp84
+	 ttAS6KDcq7MGCy1dPYz58ROoC8LLYwbhvbt4EuwnbvwuN3ECSg/prw64CoDKC5mwRy
+	 6lm4m71YzvsHA==
+Date: Wed, 23 Oct 2024 09:06:59 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Philipp Rosenberger <p.rosenberger@kunbus.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: pcf2127: Add
+ nxp,battery-switch-over property
+Message-ID: <sopwritiludrmxzupp3p62ngak3u7qekyam67qh23qnchjim4w@eft6y6kuuqbj>
+References: <20241022092855.1609427-1-p.rosenberger@kunbus.com>
+ <20241022092855.1609427-2-p.rosenberger@kunbus.com>
+ <20241022-radiator-blemish-3819dd4d94e0@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Zxdp2vHzREJAFkwj@linaro.org>
+In-Reply-To: <20241022-radiator-blemish-3819dd4d94e0@spud>
 
-On Tue, Oct 22, 2024 at 12:01:14PM +0300, Abel Vesa wrote:
-> On 24-10-15 15:03:15, Johan Hovold wrote:
-> > On Fri, Oct 04, 2024 at 04:57:38PM +0300, Abel Vesa wrote:
-
-> > > +	ret = ps8830_get_vregs(retimer);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	retimer->xo_clk = devm_clk_get(dev, "xo");
-> > > +	if (IS_ERR(retimer->xo_clk))
-> > > +		return dev_err_probe(dev, PTR_ERR(retimer->xo_clk),
-> > > +				     "failed to get xo clock\n");
-> > > +
-> > > +	retimer->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+On Tue, Oct 22, 2024 at 05:35:55PM +0100, Conor Dooley wrote:
+> On Tue, Oct 22, 2024 at 11:28:54AM +0200, Philipp Rosenberger wrote:
+> > The nxp,battery-switch-over property is used to control the switch-over,
+> > battery low detection and extra power fail detection functions.
 > > 
-> > The reset line is active low and should be described as such in DT. So
-> > here you want to request it as logically low if you want to deassert
-> > reset.
-> 
-> This is being reworked in v3 as we need to support cases where the
-> retimer has been left enabled and initialized by bootloader and we want
-> to keep that state until unplug event for the cold-plug orientation
-> to work properly.
-> 
-> On top of that, we don't want to deassert the reset here. We do that
-> via gpiod_set_value() call below, after the clocks and regulators have
-> been enabled.
-
-Ok, but you should generally not drive an input high before powering on
-the device as that can damage the IC (more below).
-
-That is, in this case, you should not deassert reset before making sure
-the supplies are enabled.
-
-> > > +	ret = clk_prepare_enable(retimer->xo_clk);
-> > > +	if (ret) {
-> > > +		dev_err(dev, "failed to enable XO: %d\n", ret);
-> > > +		goto err_retimer_unregister;
-> > > +	}
+> > The PCF2131 has a different default value for the PWRMNG bits. It is set
+> > to 0x7: battery switch-over function is disabled, only one power supply
+> > (VDD); battery low detection function is disabled.
+> > This is the opposite of the default of the PCF2127/PCA2129 and PCF2129.
+> > With the nxp,battery-switch-over the behavior can be controlled through
+> > the device tree.
 > > 
-> > Should you really enable the clock before the regulators?
+> > Signed-off-by: Philipp Rosenberger <p.rosenberger@kunbus.com>
+> > ---
+> >  Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > index 2d9fe5a75b06..5739c3e371e7 100644
+> > --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > @@ -30,6 +30,16 @@ properties:
+> >  
+> >    reset-source: true
+> >  
+> > +  nxp,battery-switch-over:
+> > +    description:
+> > +      Battery and power related configuration. This property is used to set the
+> > +      PWRMNG bits of the Control_3 register to control the battery switch-over,
+> > +      battery low detection and extra power fail detection functions.
+> > +      The actual supported functions depend on the device capabilities.
+> > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > +    minimum: 0
+> > +    maximum: 7
 > 
-> So maybe in this case it might not really matter. But in principle,
-> the HW might be affected by clock glitches and such when IP block
-> is powered up but unclocked. Even more so if the clock enabling
-> (prepare, to be more exact) involves switching to a new PLL.
-> 
-> So clock first, then power up. At least that's my understanding of HW
-> in general.
+> Beyond the fact that I dislike register-content properties like this, where
+> it is not possible to grok the meaning by reading the property, what
+> even makes this suitable for DT in the first place? Reading the commit
+> message this sounds like software policy, and that different users of
+> the same board might want to configure these register bits in different
+> ways.
 
-I think you got that backwards as inputs are typically rated for some
-maximum voltage based on the supply voltage. That applies also to the
-reset line as I also mentioned above.
+Especially that according to commit msg this is model specific, so
+compatible already defines different default value of this register.
 
-What does the datasheet say?
+Best regards,
+Krzysztof
 
-> > > +
-> > > +	ret = ps8830_enable_vregs(retimer);
-> > > +	if (ret)
-> > > +		goto err_clk_disable;
-
-Johan
 
