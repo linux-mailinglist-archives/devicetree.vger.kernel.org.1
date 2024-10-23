@@ -1,159 +1,200 @@
-Return-Path: <devicetree+bounces-114654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1590F9AC31E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:09:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A37A89AC332
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 583A0B2610A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:09:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27B321F21555
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F6219C56B;
-	Wed, 23 Oct 2024 09:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mz/RbSxC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85400176AA5;
+	Wed, 23 Oct 2024 09:13:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01on2112.outbound.protection.outlook.com [40.107.239.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB991199934;
-	Wed, 23 Oct 2024 09:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729674557; cv=none; b=fI6m2Ru79ymGm5/QGH+TzBHVSNAmHKjQBOKKr+jocNaL8b/vTtzID3tTBliMskrkjokszfnOVW6oIBW4JpYrrJX3fXGyknEdrEdatuttJ+3BWRkahxlfO+Dp7ZvsLuJv10TmGZz0eyS4yyMuQejOQZ319++CDFlGFvnC8jHn8qM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729674557; c=relaxed/simple;
-	bh=An6KwyGtbwyjAt9NN38EiENLA0XUBmNzsbOhp3H3uVk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bZYv9ZUqcNdrNblOKkVkDvxglucwIjrSIn1Z6qswcI8oEqcMjdzWdQLy5KvgeUsryG21ZpoS98Ril3wmR7Dr/KMm8sV6HYaX+XluG5i+jmDcjvQWe1zGZ3Dgu0o1qkD1DUuiItzYUhPNxRVwj3ZMxd5xx3hji6ACel3H1ZpcW3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mz/RbSxC; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f75c56f16aso63559101fa.0;
-        Wed, 23 Oct 2024 02:09:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729674553; x=1730279353; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ujJ4oLac9g0afJ+xDbcOvTG1+w2apfAzFkZUFjxOHx8=;
-        b=Mz/RbSxCZhu1GGzOw4Qgin5I4Bx+G1Q64Tuyp2rm3UZhilzMamiwZGInHdzIgm5YeK
-         GAlvPQtLR+s4meN3Dw1BIQgHfW7HFPP1S7fruk0Qa+CfQmQI2GeGu56mq8bwdLzyMxdi
-         i2gpXmAWeBrJhcluV9JEeM9WUjoZ41YP5v/XUhJSN2iJJV439Rp1g5ygw23X+Eq1erud
-         qX5jA0IwHxCbXmkLUkkAXEM/4IWytRqiZxhlJocaDPKyi16FsKUyBquCnyeh5Y1lbRCF
-         geVeA+ya9MTF2+gsdpkWMypwaMy7LQbI7Ss9+yvMy0GALtFC43iARUJ+i3VDD8Osfwb6
-         nyiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729674553; x=1730279353;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ujJ4oLac9g0afJ+xDbcOvTG1+w2apfAzFkZUFjxOHx8=;
-        b=Wf5DEvhL6wir7xHrpRSaF1BcpV3y+PKiM2PcxI7AtEMCygFK3wvhUeTNIOo55hdV3D
-         NsD1bPfYwcg/7yvChY1/JP6LxvaPelRYHJ1IHWhubj6IEwGUQ73Dw3oQRlg4ok48psS0
-         4cMk+OElICREDfS+T7Q2x3L8X17HHEG696jhYOoDUr0jkKmS9BJbw0VX7rOfqw/OX29j
-         rNjorMjRGZycSnPWBHgjujswMqnKMt68cMDi/PBubK6wNTg7eebdd6f/vhQEb2MyKpGB
-         RR/E0qXwhKiOf7Z/6GBUS+PdSNE4scROmBNsc48/asNiO6n6yojbkQ7hXwoZGTkgO/LJ
-         yqsw==
-X-Forwarded-Encrypted: i=1; AJvYcCUXZxP+wYyzCahpr09+zu08+Ge40B6L8slyWmKoS7d6nVF79j6289dWs6jDTHKYLaFPZxBVZSDd9WE8MyXh@vger.kernel.org, AJvYcCUqDtgQL6M9fszcnweja5GSC1yrl2L4g+U5JPQHexk6RBY0SLrj+JRmejlToB6DCZIOiG35FLNcHyYFYg8R@vger.kernel.org, AJvYcCVMBXHq+PlsOV4/nGQPWyY7iLEZhQ703KORPtZ83qFzNQ3RlsG6Us3vxQLJDfvgGMdNzYFsgbXo+u7O@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLyp/ijdS0MLyhMP6Uo3oK+g9FxtTXJnqBLIw1XoTYAlMcaXe2
-	toKGxOxdKUga0w+CHQfodK4EKPOTTAVJgPtdFrzBzPtspf3bs8y4
-X-Google-Smtp-Source: AGHT+IGo5t/YGqOG95+HxnpFXmcZcZV08248fLElKYVYfbislpYCQJusFoz71CRdRKvzJm3CtGqcAw==
-X-Received: by 2002:a2e:4619:0:b0:2fb:5b23:edba with SMTP id 38308e7fff4ca-2fc9d32fd88mr7586791fa.23.1729674552286;
-        Wed, 23 Oct 2024 02:09:12 -0700 (PDT)
-Received: from ivaylo-T580.. ([77.85.230.22])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66a6a8efsm4133058a12.52.2024.10.23.02.09.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 02:09:11 -0700 (PDT)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B6817BEB8;
+	Wed, 23 Oct 2024 09:13:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.239.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729674789; cv=fail; b=YW764ABeyGJ0hLlJIA8aDJRJ2nYTAOhGnIy4HmU5JlGEq1WJahOi2hNT7N57wFPyXg3ICt/a7kLJNpBZOhUI6XgeEWuCdkva/7Lb3SXBAW0lOht8/MdOkp1LrTSofBJQJNXXn6JhyD3kxu3edDawGSwN67FmzdF9FuiNmMvzLGo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729674789; c=relaxed/simple;
+	bh=Q3ekbevtguKrMLZvpwVb2lmRzCmhIsGdvIi5GBTdHtU=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=YUnrE2UuoH8OAhy3SVqny5pFumky79u8eu+frZHCxoFT6qa9jvYL2xHDAEOhOP29YLwfsAYAXvTVXzpRu/ZnDcEQpNRj9lHJ6v5v+5zxYfhA0QCI7g7Q3mq1gU53ozLwFKcI5nfgqNpqtRRmsUoB/Irg6q9QP2fJ/NMb1RBQ9Cc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.239.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MZ64wUCj3MmQxlcMMmhM9pXI7+X1k5ZrZahG9HD+Gynne0KCVxf0CnEwBlRxvUy5ewuJ18Md8KZ4SmYSGSHOsfibjpMYOCk6kei7pYHRfBBtxaq5Nf5VrrtUA+TSGH/eE0We1CR7Emn3NWUQ5nCT3M78TiqJ18v88mocHh07QY0QhEsKV1DH0JHQvhjq49xD2/1hXisEDA1g+TmCMTc+L1EdDsWIWFdNSqUcmizChE9ZAyt6jOFG4Z8veBbE1+FvNG4XRqMDIZopphQ0RwE3zzI61Jbk2GoiRVj80rJBphaiahTF9fhOUkuaQLI2g1ZPGXO/VmIc1lTp3ZI/QEU8sA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gZH+rif0kKRsM34iFZf3VnAhz4oLAlC2r6iRuaqw6Ns=;
+ b=DTzUuMVVDikd98Pf6TfuxM+sZ9qn/ZtV9suTLUm+ii059qaeHF6J9q/kFDTqm54ITEXbwJvUmQ+aAJSZaJY2YK2oRzaKZb9KL1Y6fn3pjTWth5/QSfhQYgI6Sbq/qzKvSocgUMDZY9TZfNtEyEorrglEdjmfFw81PpymvnJ0/K9RJv+U70NGeRpU40cEAyymB27vhn5Vuri/Ln7Z/bHvjkM7D+xO1wtlgPG1qHCyS4yT+QPabZ1QIgBW/+6TH8VVDZBJSpbPTg6KMkIG4gMxabU0zv8gUbAlNSm+IKEGL/rNoE0WN84L89p+JeKvVCt4O6IBJlDIbQjGz7pgiM5iRA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN3P287MB1171.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1a1::5)
+ by PN2PPFDCD372071.INDP287.PROD.OUTLOOK.COM (2603:1096:c04:1::153) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Wed, 23 Oct
+ 2024 09:13:03 +0000
+Received: from PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
+ ([fe80::12a8:c951:3e4b:5a8a]) by PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
+ ([fe80::12a8:c951:3e4b:5a8a%4]) with mapi id 15.20.8069.027; Wed, 23 Oct 2024
+ 09:13:03 +0000
+From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+To: shawnguo@kernel.org
+Cc: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
 	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org,
-	linux-serial@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Parthiban Nallathambi <parthiban@linumiz.com>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Tim Harvey <tharvey@gateworks.com>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] tty: serial: samsung: Add Exynos8895 compatible
-Date: Wed, 23 Oct 2024 12:09:02 +0300
-Message-ID: <20241023090902.538040-3-ivo.ivanov.ivanov1@gmail.com>
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/2] Add support Boundary Device Nitrogen8MP Universal SMARC Carrier Board 
+Date: Wed, 23 Oct 2024 14:41:13 +0530
+Message-ID: <20241023091231.10050-1-bhavin.sharma@siliconsignals.io>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241023090902.538040-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20241023090902.538040-1-ivo.ivanov.ivanov1@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PN2PEPF000001B4.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c04::6) To PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:1a1::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN3P287MB1171:EE_|PN2PPFDCD372071:EE_
+X-MS-Office365-Filtering-Correlation-Id: e2fd8d60-faab-4024-118f-08dcf342e608
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|1800799024|376014|366016|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Jm7KRZFYtyBFw9n1JQGjDUiggz8cQVdLUc8PxrjR4wFOx4Cft1EXTDNt0nUz?=
+ =?us-ascii?Q?o/G1t7NmwwJFNPo8FbWF+qmAPkIG7T0l3w9gHUkc/coYlyJ/fXcUThWn0uYX?=
+ =?us-ascii?Q?iJBT4duXTb3N1Fx2gXznaCcJ1vU5VOhF+TvixiS0aveVHjlzMdwYS6ouaKPo?=
+ =?us-ascii?Q?Bczi1VkT53z4R+490jpviFNFBZqRrN1dI/MIOnbfqYYjhGd2ixfXa/egBsKn?=
+ =?us-ascii?Q?FlFLDIG31BOxlJ2oxVrbPybblhilbH7S14qJUoKMZdQ7ph/bCdj7MHOWCVUF?=
+ =?us-ascii?Q?WID8JPomctNyIFVninEp2n9lSnlWCohha5hcbLAfov6x1fY3Y9s8AJZdMkza?=
+ =?us-ascii?Q?g2mT53VFMMDFzaZbOnugjZJ3oNGGmhHqAGjFe9XjMfp4rJDdiYCOGHhVW+Yi?=
+ =?us-ascii?Q?xNpsU+vWfOcniHQAIR0hFSz9b9rRY4j0arDbhd9Taa+KFcZK+sEmr7dKVTAb?=
+ =?us-ascii?Q?si4O6wE1hB9iZBRcBGih7hcpQBy3gPiM17YAIbAXxEdQXAYcgFOQzl4Z2Cop?=
+ =?us-ascii?Q?eIGh1XiyVYiORBRrSjsL70AFF/DSg3fQX/HUMwSRXJmrxhHl+lXJ8bGSjCvr?=
+ =?us-ascii?Q?7XOpgTmMcORomDXDJ6/7daxnl/0DruuLboIBPc7g1YKXH6iQAUVF+3uXnpEo?=
+ =?us-ascii?Q?NSWkw1DYrsffQMK7OgUcnu9otUTy8574HPNHBQmyYCHxMwZPtVAzgDO8i24c?=
+ =?us-ascii?Q?QbPoVqlAYsuf1Otp61iKyf9By4s0AawSr+89VvHzVAWSZupy6quIozfW8Y8y?=
+ =?us-ascii?Q?6mPsyfixVdwfxzfXASC/aTcRCGe+s44UP9v4XwmkEcy6Qk3ko9oHS33gp6EX?=
+ =?us-ascii?Q?W5Xh6P5SLFVpQOkFmZf/co7+/Ahvl75rahN8d/0ndOGPBEQnAZ/nya85SeXN?=
+ =?us-ascii?Q?wTSamTAQGbmTQmspCYEAsqGS34JXziFLedE/ofUhJHfHFy0VpMuzLInZlJUj?=
+ =?us-ascii?Q?XbIyA7uPL5OmxEmZlC51r6eGvskMVyNc6hB+Nk/Zes4SUoP+lqZ1qUV4IpsY?=
+ =?us-ascii?Q?lIeewBOVXz0pjhwhpzurDC7BUHLgAQUtQu0Xgbm+9xjHswLx36Cqb12mrOKt?=
+ =?us-ascii?Q?O6BcjWQxiCbyP4SwfOi5t5iUxdSTNdcLi/c/cf8dltw9aMD2yJTGL3lev0GD?=
+ =?us-ascii?Q?wN4CByd51Uc5zRMGySZnaH1hdti2pQZgUQzUT+QE0wlMoHrNrXjLDXkzVQbl?=
+ =?us-ascii?Q?tk70YtS1B8ICbb59YqpRypTav8dZQfn7IJ3NRRrdZyiY6+j7x/f2PdGvMAwI?=
+ =?us-ascii?Q?Y3nedv0lxnT3WCbSaaSW6V3WvizKL1dHUULOpS0J8oQ3s7+WTHUA/55hLm/Q?=
+ =?us-ascii?Q?TojjRtjhjxknZi6EaREPzUC/ptRLgTNIuuiYNPgGT8srHmbS1HD9j9hoPeFf?=
+ =?us-ascii?Q?uq9dT2g=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB1171.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(52116014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Ca05jao7i0NPfT1xQU5sOtHtWx8yO4hJd01IG7GeT1P1uLOpo2kCEGOm9Fts?=
+ =?us-ascii?Q?fIT19NvyPa4ZNeQGXgoF5PJ9Kmn7d2Nerk7RJXzmrbkgqoAO8zb0S3k+lExU?=
+ =?us-ascii?Q?76AvYDjDOPktNxw94wtSVsORiIAyAT9l8lJ8bEaQMOx0u8/Frtll5q4DZ/F+?=
+ =?us-ascii?Q?Q8Ne1zeH5NaeGrA8+eRgaZnUudWxMffhklmkmjCIht6Jw8FOVx+48dqjat5+?=
+ =?us-ascii?Q?OtEBnE5d8ljZPHUfbVMo7Ae81VzwbR7hysSQ9PxXNrAOTox4zpG+7BWpafE/?=
+ =?us-ascii?Q?wJ4PgHHvdA6W5mPgbe7OEmlhNRDt4Hof/PI3A043QNXeKYCVep3r7a1Wj9Cv?=
+ =?us-ascii?Q?0MnjaGDYsy6smEQDOno5Ye6phfkxZGz0AQAAkJYrxHq1MBiaZ+Xstxr9OHYR?=
+ =?us-ascii?Q?WbGNJXwbv9NfwOwm4y5KRrCuH1ViWzMz770draCEQiKVj6jiDYGauVCoskuH?=
+ =?us-ascii?Q?098lm9/P+lyZulQ2afcjkMX2c4mV3nUxco2S/ceS2jwF59yKV5L6SRcYNtbw?=
+ =?us-ascii?Q?AN9VtUsMBQfbDgT1WVe2USYGUg4zbvcOpNEuUDyXcjPN895BTtmqVBTIG+X4?=
+ =?us-ascii?Q?N4L+NUrM2n4BrPh4vPJGuT38OYs2GjklBsRPBprmzyZqic2UnLo0puT5HWwZ?=
+ =?us-ascii?Q?EMvSPTTXSUubAsNmMjVYPEeuw2hNKtTrc2U3zDhrSJ92xfSVrQsJPRcfSLvS?=
+ =?us-ascii?Q?0RpMszW0oUx60gGv4utZWsd3+6kORVIeCQhPVesQzHHVT8Ebs53TS7OUEwJF?=
+ =?us-ascii?Q?P7jROsQaM1fjtD4gGfbi3F89FNU3bbhcedj0S0B2QG2Pv48UFefsyQFTCFR4?=
+ =?us-ascii?Q?3AwbVeBGa+A8qaaZ0Duv2pFXoFVaWVKNG1OCklwUavGE0sdk289A/dtHFfy/?=
+ =?us-ascii?Q?rpkPmxFRzZymnEbJSZlSqsf7oYCXlfHeSnpHxR3AUXAGXhPuXsWSFT3CAVZp?=
+ =?us-ascii?Q?/fcDNOvF6P5Z8FBTYU5piU1mL9PfD5b0WTj4m5TnLmisDUyVP4t3K6DiH/j8?=
+ =?us-ascii?Q?Fhpm8mqs9YYgPLTXusTt86446q3hHP2gezwPvSDMKgcW3+wnzCp4miWLWHY+?=
+ =?us-ascii?Q?JMZX+EPcYtylwQdBlCvQCBLQG6ScLp5c3IdEtpN0Kw81oFvnr5+M2rcmsrz6?=
+ =?us-ascii?Q?W8XDLvsFF4VWioOAIzZiOQrxpf/c6ICIUmrbCPADng1Awzg8YsZ/dmBsNOuy?=
+ =?us-ascii?Q?V1M/ByCvSimutonPM1B1eBkHo6OfvrmosxH3TLaTSD/EHQox3QgNFwaqGKI1?=
+ =?us-ascii?Q?BRqfZEBnTS71qy0pWzSrOXCfDEh2XpcHt/vwvEv7Vrgot2BfDXJTVvLmEGe4?=
+ =?us-ascii?Q?A5hy4cIDvlUDlD0Si6HRqyPDYPmfmtn7uykYpUVi9QQ6VFg6c0VpjEl6Hz9k?=
+ =?us-ascii?Q?2Fnnnd/li7ZpB0p55zXkgVAisdqqZN5UHlkZtRv1PIfrQEpGQZu+QnHgEPt7?=
+ =?us-ascii?Q?4p8a2XEQJej9g85rMFN+JTJ1+RT6RFlI/fhdrVzEmeshhgFdT6iR7DkTYSO7?=
+ =?us-ascii?Q?TY0vgKiTpqSKF/simhuZNe7L+GIc296yEPTW6EdKSM+qDANiYS9mjVMRS+0R?=
+ =?us-ascii?Q?ys2z7aFYzMPtexkq03XozUmcwQM1/KgKcymCB9wobpgWFxxCv75whAgDA/z1?=
+ =?us-ascii?Q?en/jyNogffkctOam+B7JHLM=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2fd8d60-faab-4024-118f-08dcf342e608
+X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 09:13:03.3362
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CwfwB2icZgOXA3AzrM5zJf4KIUVHJGeAOUdEf1vBRMc994jvSkt+mL4lwNOUHEumQRg6YGs3ZofAIuwK8XokIjVqMm5nR4KlirHmU/tqWSg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2PPFDCD372071
 
-Add serial driver data for Exynos8895 SoC. The main difference from
-other platforms is that fifosize is only specified via the
-samsung,uart-fifosize DT property.
+Add initial support for Nitrogen8MP Universal SMARC Carrier Board with
+Nitrogen8MP SMARC System on Module.
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- drivers/tty/serial/samsung_tty.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Change in V2:
 
-diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-index 0d184ee2f..ce3c3ec34 100644
---- a/drivers/tty/serial/samsung_tty.c
-+++ b/drivers/tty/serial/samsung_tty.c
-@@ -2498,6 +2498,12 @@ static const struct s3c24xx_serial_drv_data exynos850_serial_drv_data = {
- 	.fifosize = { 256, 64, 64, 64 },
- };
- 
-+static const struct s3c24xx_serial_drv_data exynos8895_serial_drv_data = {
-+	EXYNOS_COMMON_SERIAL_DRV_DATA,
-+	/* samsung,uart-fifosize must be specified in the device tree. */
-+	.fifosize = { 0 },
-+};
-+
- static const struct s3c24xx_serial_drv_data gs101_serial_drv_data = {
- 	.info = {
- 		.name		= "Google GS101 UART",
-@@ -2528,12 +2534,14 @@ static const struct s3c24xx_serial_drv_data gs101_serial_drv_data = {
- #define EXYNOS4210_SERIAL_DRV_DATA (&exynos4210_serial_drv_data)
- #define EXYNOS5433_SERIAL_DRV_DATA (&exynos5433_serial_drv_data)
- #define EXYNOS850_SERIAL_DRV_DATA (&exynos850_serial_drv_data)
-+#define EXYNOS8895_SERIAL_DRV_DATA (&exynos8895_serial_drv_data)
- #define GS101_SERIAL_DRV_DATA (&gs101_serial_drv_data)
- 
- #else
- #define EXYNOS4210_SERIAL_DRV_DATA NULL
- #define EXYNOS5433_SERIAL_DRV_DATA NULL
- #define EXYNOS850_SERIAL_DRV_DATA NULL
-+#define EXYNOS8895_SERIAL_DRV_DATA NULL
- #define GS101_SERIAL_DRV_DATA NULL
- #endif
- 
-@@ -2623,6 +2631,9 @@ static const struct platform_device_id s3c24xx_serial_driver_ids[] = {
- 	}, {
- 		.name		= "gs101-uart",
- 		.driver_data	= (kernel_ulong_t)GS101_SERIAL_DRV_DATA,
-+	}, {
-+		.name		= "exynos8895-uart",
-+		.driver_data	= (kernel_ulong_t)EXYNOS8895_SERIAL_DRV_DATA,
- 	},
- 	{ },
- };
-@@ -2646,6 +2657,8 @@ static const struct of_device_id s3c24xx_uart_dt_match[] = {
- 		.data = ARTPEC8_SERIAL_DRV_DATA },
- 	{ .compatible = "google,gs101-uart",
- 		.data = GS101_SERIAL_DRV_DATA },
-+	{ .compatible = "samsung,exynos8895-uart",
-+		.data = EXYNOS8895_SERIAL_DRV_DATA },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, s3c24xx_uart_dt_match);
+in patch 1/2:
+        - Drop Unneeded line
+        - Correct the indentation
+
+in patch 2/2:
+        - Add Acked-by tag
+
+CHange in V3:
+
+in patch 1/2:
+	- In version 2, I forgot to add the Makefile. Adding it now.
+
+Bhavin Sharma (2):
+  arm64: dts: imx8mp: Add Boundary Device Nitrogen8MP Universal SMARC
+    Carrier Board
+  dt-bindings: arm: fsl: Add Boundary Device Nitrogen8MP Universal SMARC
+    Carrier Board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx8mp-nitrogen-smarc-som.dtsi  | 348 ++++++++++++++++++
+ .../imx8mp-nitrogen-smarc-universal-board.dts |  17 +
+ 4 files changed, 372 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-nitrogen-smarc-som.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-nitrogen-smarc-universal-board.dts
+
 -- 
 2.43.0
 
