@@ -1,107 +1,157 @@
-Return-Path: <devicetree+bounces-114593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303379AC06F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19CDE9AC074
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:38:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE7111F22334
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:37:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 922D31F24485
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1088C154C04;
-	Wed, 23 Oct 2024 07:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05533155300;
+	Wed, 23 Oct 2024 07:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="JY4IPgUU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DFA8148FE8;
-	Wed, 23 Oct 2024 07:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729669074; cv=none; b=Hoe+dXEI8gUofhF8tfAcowUMFu0AuOq80pGLGn5u28TNeoZp9LUYPIeZL5GyuiAMz7h7GFd4SkfzvFI8DGOFCLc4cIZqd635ugcHW7+x0DnJp2I15VTnUrqZm72FRK0U2WIQLhGw/LXxripDT8WudLDikeK16SZRmGTu1C8alK8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729669074; c=relaxed/simple;
-	bh=u4JQxfYcMPlyi9HiIa3KMAM+bjUiWnR3jyZP8srqLxA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QfcjQGzOC6g6Ob+G65ME3l83rS8QhpbMW5uyCfae1hGHXBuO+cc2NsEpvTckae5lMKEkNPQUxNwadDQzMFuEjTEHHq/OQlKiJ2S4v/mi6rTrtYeQedLnRSI9woBK26RI/4prr6PCOj4KF9gSeePEX0gZ5bvqBsd9DBcpjkNrMQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e2e2ef2e906so1683695276.2;
-        Wed, 23 Oct 2024 00:37:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729669070; x=1730273870;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m+PBluiKGEgvXQd9D1fqi0rYQCLfJ4nFtSe+3v7U03Y=;
-        b=LWZAC2dXjJ1+z1NbYWuAI1wNJq/mpIhRRb4PQXyDxFnfo18kdW7MaKVZpV22nIGZZm
-         p8I2nYO+mkuWrT+1vvfKBJznPogchUvLEeGQdYKw9rvHg5+8sxFr1RcbkRUm9u56lzM3
-         qKhSF0O2tmfRasChFQOid6zGq15B/RcPqFXS906MGL10x4O/E/vk555FRKhylWG5X9mV
-         6wFxDLmgD4cfJ5/52bkXqHWkekKO2JjcRnbjiQfDPfvG3G0YNiClmUTHU0HKvVqpQbCu
-         7cp8IZLBDczjPElraHTEvEzBTFhQX+eg5B3K09YIcSk3SQV6DT0/7ufkImWdUtQsCyw/
-         7s4g==
-X-Forwarded-Encrypted: i=1; AJvYcCVYfi+0BtqrPD5y+gW+JR3fcs5/QR3yfTEAHIRacBghECZnV7LWRn6WRh5NQkhh90uQPjFWSbGNWJuM@vger.kernel.org, AJvYcCViDz5fmBRVvisfHF12QYN5sfgyG4tTD8SYy8fNNJNKQC1knrr/cSGsDl/0YvJtwMH7LiSux3MmvOz9SJkhlisBjOM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxywrPY8pRInjnII2SGiBbj+KXOsVmbtfQMKyKF/WXD/W3DD9iu
-	dnh2CK667/VI4HxFM6J4AzhwjZqnNERrvrS3dGidKHiiOwqd0lRuRnFwaXrm
-X-Google-Smtp-Source: AGHT+IHiraaOPruBNcw44nml4IoVob167/38R+huc9G6Ri6iVbNFTEzWn6fwl+OKwW1rEFsHp0ngew==
-X-Received: by 2002:a05:6902:228b:b0:e29:1fa4:9aa4 with SMTP id 3f1490d57ef6-e2e3a650fefmr1524218276.34.1729669070092;
-        Wed, 23 Oct 2024 00:37:50 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e2bdcaebbb9sm1445640276.47.2024.10.23.00.37.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Oct 2024 00:37:49 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6e35fb3792eso65044807b3.3;
-        Wed, 23 Oct 2024 00:37:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWnEHmnadKp5leavcLJzekmPz0IrG+lrHgRqIUUl94+2ZxuUZtyPkfnrzg4j2M9KCIhC2lOWn9U+A9n@vger.kernel.org, AJvYcCX29tEUTV9H0QnDRSVOFUsoPGJDorRybU5NWPga7/eAU3IKk3gA70+WkjiZIY4VUz0m2d5uPPQl2vyB2HcRDzqzZT0=@vger.kernel.org
-X-Received: by 2002:a05:690c:318a:b0:6e3:d8ca:f00 with SMTP id
- 00721157ae682-6e7f100471amr14088917b3.44.1729669069333; Wed, 23 Oct 2024
- 00:37:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2DB154BFF;
+	Wed, 23 Oct 2024 07:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729669125; cv=pass; b=X9g4rPRcToFa76bN43kaYWuCMtcU825NPxM+no6mJpM5T8C1+PvCESufIinrNlBOBOH8xullTAIro8p3j9niaH6ykLMVC5DMEQ7YU47Rmorq+Nmw9k8NWxyFC3slNTE4KQr8Qwehi87csVJIbIuAi8zMWLkL4GR6Q4xEJuGiWgQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729669125; c=relaxed/simple;
+	bh=NrzpukXh6P7IisrDPAmM5wk0qWZ9z3zuvZ8moxfUkxk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pRoY9gt2X54wWhe+uYNfJNu+8GTA2urtW4grsRBt4NA/zhJMT6elxnfviommLbpSGoYIJCkqBRXd0lwzfOnwTA2n3Yfu6DMSDSFNl4FKuOmRMUiBU7VfzIyXwxOKJloCd2rmtVeV0+1NJnrtGkQXaGvmcQ3ETJCOB43R8p6xwlM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=JY4IPgUU; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4XYLWf5yY6z49QG8;
+	Wed, 23 Oct 2024 10:38:38 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1729669120;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1h+F/u7tVRldbNXsJpUJj1dGS4Jj3sN0KCmaRER52UA=;
+	b=JY4IPgUUebTOP68hAyVqLDne1vVPZTrNDzB7jAtDtVNYt3IqdjdGY3nb7NWUb1Ak4cmssz
+	wEuHxiFPisnqTlhH226i2kq74xvqK0vShaxg1KoDTYP1QZyCdoLfWQUfo2URcJBZUPrveI
+	giMrKdFIS+8wuTGm3ydFGpyYEZiWFQAyvhShlkuzJ3iDe4Irmb14RyVcloVJBgFp75qMvM
+	MZWr/0uAYxgR+HQefP0Th7dRyCRNJv1MiHoYDjNCjaXdxSMSaC6LPO0tW3cBmgikaTUacl
+	j67M/RxZ6vHPbK6+mgixdLEgfyOIzT5m87t863zfc8KwCtaQ4/CS9omSESZ3BQ==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1729669120; a=rsa-sha256;
+	cv=none;
+	b=FvfpxZPPmgr9hTE7bsNVnfE+TfCOBlj0mDd/nFOWogNn/0jz28Yl8iUV8KJcVZ1oNPVK6P
+	xmXME5c2wgvTpFZOWL8cKSaYpooYMPbxInmzGez0mZdauQIjjcgq3TtULPC+rDuENlc/TZ
+	PojAXNqwA2smd+Uflbnpr91Ag5dkOlwQKr7EuoPboOZkzUIUOzuCRavvxzbG5Jv764DHtr
+	veULu9SdmGdJJX8SQ3ZjDS8mIqWY12u1ZK5yZoaTNawBI4VonOBiFCK1VU78WmdbtPJFiW
+	9vF4uU/EWjs+i4VcbWYM9QfbpW+WvWnMD5xWwEcUao2nwlnThXPMlfExc919aQ==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1729669120;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1h+F/u7tVRldbNXsJpUJj1dGS4Jj3sN0KCmaRER52UA=;
+	b=h1RgPKM0i5vhy0NAvI3YP9focSGtw0oHdw30Pq7UljFoAXWEiNXjVkgOu8Dm35/2kJWHs6
+	HIl0HMv9iEZ9gJgw9/hEfKz25xAFilvPNxUeyj7EYYEoemOHClh0G8dyV+cs/CdYxzcFwq
+	D6VpRkKPSLnZD4+K8Q3NLyQzTAmrIraMq8VPGySpvMDP8nqtuSKd3X30U3jN7FBep9K0Cn
+	Go/eHa6urAYA1NWZC2jE1xZNZabuk4P9DijkfMOcQoPnJvg5nS9GzIGWt/L70fGlu4qGH2
+	8HQv8MG3qRMQEyFh7vvWLS6PxiRaxVpAGvFkg09xiSMP6FGSk3s3Vl451pYZKw==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id C563F634C94;
+	Wed, 23 Oct 2024 10:38:36 +0300 (EEST)
+Date: Wed, 23 Oct 2024 07:38:36 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH v7 1/9] of: property: add of_graph_get_next_port()
+Message-ID: <Zxin_DeoTPjZ0enu@valkosipuli.retiisi.eu>
+References: <87wmiirqwy.wl-kuninori.morimoto.gx@renesas.com>
+ <87v7y2rqwf.wl-kuninori.morimoto.gx@renesas.com>
+ <ZxYiD5CCzcrwbD1o@valkosipuli.retiisi.eu>
+ <87y12fwhwy.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022184727.3206180-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdV+4PdxnRCzr7fnHnGYiuypem1hYMbXLac+x2db7yfpkA@mail.gmail.com> <ZxinNLKFW6Ijuyc7@shikoro>
-In-Reply-To: <ZxinNLKFW6Ijuyc7@shikoro>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 23 Oct 2024 09:37:37 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW5VDiM+9SerRm8sBxYFw=NPBAqTmcJ5i-R=Y1zS+ai0A@mail.gmail.com>
-Message-ID: <CAMuHMdW5VDiM+9SerRm8sBxYFw=NPBAqTmcJ5i-R=Y1zS+ai0A@mail.gmail.com>
-Subject: Re: [PATCH 0/2] arm64: dts: renesas: falcon: Wire-up Ethernet
- breakout board
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87y12fwhwy.wl-kuninori.morimoto.gx@renesas.com>
 
-Hi Wolfram,
+Dear Morimoto-san,
 
-On Wed, Oct 23, 2024 at 9:35=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> > Are non-v100 variants widespread?
->
-> I'd say nothing related to the Falcon could be called "widespread"...
+On Wed, Oct 23, 2024 at 04:40:45AM +0000, Kuninori Morimoto wrote:
+> 
+> Hi Sakari, again
+> 
+> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > index 11b922fde7af..6a5d27dd0c64 100644
+> > > --- a/drivers/of/property.c
+> > > +++ b/drivers/of/property.c
+> > > @@ -630,6 +630,43 @@ struct device_node *of_graph_get_port_by_id(struct device_node *parent, u32 id)
+> > >  }
+> > >  EXPORT_SYMBOL(of_graph_get_port_by_id);
+> > >  
+> > > +/**
+> > > + * of_graph_get_next_port() - get next port node.
+> > > + * @parent: pointer to the parent device node, or parent ports node
+> > > + * @prev: previous port node, or NULL to get first
+> > > + *
+> > > + * Parent device node can be used as @parent whether device node has ports node or not.
+> > 
+> > This line should be wrapped, no reason to have it longer than 80 chars.
+> 
+> We can use 100 char now on upstream ?
+> 
+> 	commit bdc48fa11e46f867ea4d75fa59ee87a7f48be144
+> 	("checkpatch/coding-style: deprecate 80-column warning")
 
-I agree (but I didn't want to be the one to spell it out ;-)
+It's the checkpatch.pl warning that's gone, not the preference to have
+lines shorter than that. This is reflected in
+Documentation/process/coding-style.rst as well as the commit message of the
+patch removing the warning.
 
-Gr{oetje,eeting}s,
+> 
+> Thank you for your help !!
 
-                        Geert
+You're welcome!
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+-- 
+Kind regards,
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Sakari Ailus
 
