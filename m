@@ -1,237 +1,133 @@
-Return-Path: <devicetree+bounces-114540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C8AA9ABED0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:33:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1509E9ABEDF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:35:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93E491F23576
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:33:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAE98280FEF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:35:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B733D1487F4;
-	Wed, 23 Oct 2024 06:33:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1941149E17;
+	Wed, 23 Oct 2024 06:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B/1lPFaU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R+Z/yfVX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8462013D53F;
-	Wed, 23 Oct 2024 06:33:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F0C142623;
+	Wed, 23 Oct 2024 06:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729665193; cv=none; b=UxGbCmfSqP/SKc/sEWsBUMGfocJLzBtXDNoSyuHTlxR91uyRtGnlCR0qG5y0QaaQ5wiCrx1hVZqK02y8R4ciOEfSxq9DKih0WnPvBrmlR9eKRZrfj7yGUmNCBjPAXacfNLZlv6fdwBXE5n76p5DbFFYLkytp0rqlLPtpUvdczmQ=
+	t=1729665330; cv=none; b=dnJKxc8ZhD3gbgg1OOQ/5ErLJkcSc3PgPVlQxzLYOE5IJkwtTUgCCio011F/e1PVohPnVAPoYIYN9ufRUkCB3zKp2LEvuMd26LYZeGNiXksFhoUGJNVpDZXXBOrWm6KCuvA+6e2T6FKvevc7Q849r+Q9yd9Q6mpPUF5KWPDhYEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729665193; c=relaxed/simple;
-	bh=ZYUx7rnK41TpTiB5KIOCiGNaxeb9IcDba9ScKn7b29A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B+CU+A0PU5owg8SwxRiELPoci92fUjcoeOK7rUlCpCan1zv/KTr2UhA8YRxNcrEKcHZOtkzX54QS2ggLQxBNTH1BPA3kKXcWm067dueU8tptS4paEVGzEw9NyG53IlzQxoQCRsxU72bdm1+QaFSFBR/kmr/iUUVmm6VhR79mQrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B/1lPFaU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21DA0C4CEC6;
-	Wed, 23 Oct 2024 06:33:07 +0000 (UTC)
+	s=arc-20240116; t=1729665330; c=relaxed/simple;
+	bh=BQfP7i6Lx9bwFL8ZcsmpT4lmJtnZUA6PN/5RMl7Qox0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jP1G9gM8QnAKdMolMXdS8hN2y3UTuhCANr9rbQ7WZn808rI9PKWOXMQ5dHe+R3TpOD1iIW7hnLk18u6BbIn+n9SZ1Sb0kGCbeRkb+KKwEa0jOX0Hh0EpisSJTK+ZdzFaIlrlslKsp6HW9n66g69B3kT6BnKOVbqYxoArvwZhoTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R+Z/yfVX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EB54C4CEC6;
+	Wed, 23 Oct 2024 06:35:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729665193;
-	bh=ZYUx7rnK41TpTiB5KIOCiGNaxeb9IcDba9ScKn7b29A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B/1lPFaUb889m8GvOY+rWzcHGu7nSnW03TO90VNmnkjVahIgHxBGlTTN4vV2lJLJS
-	 2K9iuXgFWggZGNjCXz1xYGukZCOQ2Oyb1rcevAMFdH1MU/BytuU1SwsROyXNPbMWX3
-	 gsMoc7JbQqePChCBw6WKU/+a6GJBwTIW7lmbjZGy7vTjTtSkTCiFH5PIi5uPEfMYpH
-	 g5cjQSKPmLDoIfnL12ZuhGvLn1fmqV6CO7kC+EMF/VAYjHuTeaFlVlIVElrkbTsM2C
-	 IN1bxkF4bsx8JwPhaRmtcGUkJykBLYl1CaLTnIDDEXT9qdAwFwA1bVd6+ECeIvLEVk
-	 SQxKUdml9Gwew==
-Date: Wed, 23 Oct 2024 08:33:04 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 14/16] rust: of: add `of::DeviceId` abstraction
-Message-ID: <ZxiYoNUwAEX8Adh5@pollux>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-15-dakr@kernel.org>
- <20241022230351.GA1848992-robh@kernel.org>
+	s=k20201202; t=1729665330;
+	bh=BQfP7i6Lx9bwFL8ZcsmpT4lmJtnZUA6PN/5RMl7Qox0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=R+Z/yfVXauNOCpwAeIZUDb1A3OjoMHuqPjqz3fsy3X4pD6aLfWk5HdHi836hNyABs
+	 pZFHw+rs+Oz/C43Na9SomEAviyFPOuzzBbo802nhjUVYQ38SkukBQb1baY20ItyQKp
+	 dBTMo+sLxZ6dC8+wGoRPwBttl5pl99SRWl92UAwsBL2qcQsRgZZErWH9wlkM2V5h7I
+	 ZHy4vUooxrVyxoXfOKmiDx0bTKzjrBFpIp57IGjmkN/ZPapDStWHzUYMILNYpEAIt5
+	 DZgrcyNkObQG8Uqwh3mT4of0yCaxqgiHUz+GQOEjyTpceF4NxjQMygLDnk98/c4L7V
+	 JoDxPsgCad96g==
+Message-ID: <87db3d68-ab1a-4cc4-9857-416de39cea0f@kernel.org>
+Date: Wed, 23 Oct 2024 08:35:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241022230351.GA1848992-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/6] dt-bindings: net: wireless: update required
+ properties for ath12k PCI module
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20241023060352.605019-1-quic_rajkbhag@quicinc.com>
+ <20241023060352.605019-2-quic_rajkbhag@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241023060352.605019-2-quic_rajkbhag@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 22, 2024 at 06:03:51PM -0500, Rob Herring wrote:
-> On Tue, Oct 22, 2024 at 11:31:51PM +0200, Danilo Krummrich wrote:
-> > `of::DeviceId` is an abstraction around `struct of_device_id`.
-> > 
-> > This is used by subsequent patches, in particular the platform bus
-> > abstractions, to create OF device ID tables.
-> > 
-> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> > ---
-> >  MAINTAINERS                     |  1 +
-> >  rust/bindings/bindings_helper.h |  1 +
-> >  rust/kernel/lib.rs              |  1 +
-> >  rust/kernel/of.rs               | 63 +++++++++++++++++++++++++++++++++
-> >  4 files changed, 66 insertions(+)
-> >  create mode 100644 rust/kernel/of.rs
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index d9c512a3e72b..87eb9a7869eb 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -17340,6 +17340,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
-> >  F:	Documentation/ABI/testing/sysfs-firmware-ofw
-> >  F:	drivers/of/
-> >  F:	include/linux/of*.h
-> > +F:	rust/kernel/of.rs
-> >  F:	scripts/dtc/
-> >  F:	tools/testing/selftests/dt/
-> >  K:	of_overlay_notifier_
-> > diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
-> > index cd4edd6496ae..312f03cbdce9 100644
-> > --- a/rust/bindings/bindings_helper.h
-> > +++ b/rust/bindings/bindings_helper.h
-> > @@ -15,6 +15,7 @@
-> >  #include <linux/firmware.h>
-> >  #include <linux/jiffies.h>
-> >  #include <linux/mdio.h>
-> > +#include <linux/of_device.h>
+On 23/10/2024 08:03, Raj Kumar Bhagat wrote:
+> The current device-tree bindings for the Ath12K module list many
+> WCN7850-specific properties as required. However, these properties are
+> not applicable to other Ath12K devices.
 > 
-> Technically, you don't need this for *this* patch. You need 
-> mod_devicetable.h for of_device_id. Best to not rely on implicit 
-> includes. I've tried removing it and it still built, so I guess there is 
-> another implicit include somewhere...
+> Hence, remove WCN7850-specific properties from the required section,
+> retaining only generic properties valid across all Ath12K devices.
+> WCN7850-specific properties will remain required based on the device's
+> compatible enum.
 
-True, however mod_devicetable.h is already needed for a previous patch "rust:
-pci: add basic PCI device / driver abstractions" already. So, I'll add it there
-and remove the of_device.h include here.
+Just not true. These apply to all devices described in this binding.
 
-> 
-> >  #include <linux/pci.h>
-> >  #include <linux/phy.h>
-> >  #include <linux/refcount.h>
-> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> > index 3ec690eb6d43..5946f59f1688 100644
-> > --- a/rust/kernel/lib.rs
-> > +++ b/rust/kernel/lib.rs
-> > @@ -51,6 +51,7 @@
-> >  pub mod list;
-> >  #[cfg(CONFIG_NET)]
-> >  pub mod net;
-> > +pub mod of;
-> >  pub mod page;
-> >  pub mod prelude;
-> >  pub mod print;
-> > diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
-> > new file mode 100644
-> > index 000000000000..a37629997974
-> > --- /dev/null
-> > +++ b/rust/kernel/of.rs
-> > @@ -0,0 +1,63 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +//! Open Firmware abstractions.
-> 
-> s/Open Firmware/Devicetree/
-> 
-> Or keep both that prior versions of this code had. Most of DT/OF today 
-> is not OpenFirmware.
-> 
-> > +//!
-> > +//! C header: [`include/linux/of_*.h`](srctree/include/linux/of_*.h)
-> 
-> I haven't quite figured out how this gets used. I guess just a link in 
-> documentation? I somewhat doubt this file is going to handle all DT
-> abstractions. That might become quite long. Most of of_address.h and 
-> of_irq.h I actively don't want to see Rust bindings for because they 
-> are mainly used by higher level interfaces (e.g. platform dev 
-> resources). There's a slew of "don't add new users" APIs which I need to 
-> document. Also, the main header is of.h which wasn't included here.
+NAK.
 
-I think for now it's indeed meaningless and we should just remove it.
+Don't send patches for your downstream stuff.
 
-If subsequent patches start adding abstractions for things like properties,
-device nodes, etc. they can add it back in.
 
-> 
-> As of now, only the mod_devicetable.h header is used by this file, so I 
-> think you should just put it until that changes. Maybe there would be 
-> some savings if all of mod_devicetable.h was handled by 1 rust file?
+Best regards,
+Krzysztof
 
-AFAIK, in C we have all those device ID structs in mod_devicetable.h, such that
-in can easily be included in scripts/mod/file2alias.c. But I think implementing
-all Rust abstractions for those in a single file would be a bit odd. I'd rather
-put them together with the corresponding bus abstractions. OF and ACPI may be a
-bit of an exception.
-
-> 
-> > +
-> > +use crate::{bindings, device_id::RawDeviceId, prelude::*};
-> > +
-> > +/// An open firmware device id.
-> > +#[derive(Clone, Copy)]
-> > +pub struct DeviceId(bindings::of_device_id);
-> > +
-> > +// SAFETY:
-> > +// * `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_id` and does not add
-> > +//   additional invariants, so it's safe to transmute to `RawType`.
-> > +// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
-> > +unsafe impl RawDeviceId for DeviceId {
-> > +    type RawType = bindings::of_device_id;
-> > +
-> > +    const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::of_device_id, data);
-> > +
-> > +    fn index(&self) -> usize {
-> > +        self.0.data as _
-> > +    }
-> > +}
-> > +
-> > +impl DeviceId {
-> > +    /// Create a new device id from an OF 'compatible' string.
-> > +    pub const fn new(compatible: &'static CStr) -> Self {
-> > +        let src = compatible.as_bytes_with_nul();
-> > +        // Replace with `bindings::of_device_id::default()` once stabilized for `const`.
-> > +        // SAFETY: FFI type is valid to be zero-initialized.
-> > +        let mut of: bindings::of_device_id = unsafe { core::mem::zeroed() };
-> > +
-> > +        let mut i = 0;
-> > +        while i < src.len() {
-> > +            of.compatible[i] = src[i] as _;
-> > +            i += 1;
-> > +        }
-> 
-> AFAICT, this loop will go away when C char maps to u8. Perhaps a note 
-> to that extent or commented code implementing that.
-
-That's true, I'll add a note.
-
-> 
-> > +
-> > +        Self(of)
-> > +    }
-> > +
-> > +    /// The compatible string of the embedded `struct bindings::of_device_id` as `&CStr`.
-> > +    pub fn compatible<'a>(&self) -> &'a CStr {
-> > +        // SAFETY: `self.compatible` is a valid `char` pointer.
-> > +        unsafe { CStr::from_char_ptr(self.0.compatible.as_ptr()) }
-> > +    }
-> 
-> I don't think we need this. The usage model is checking does a node's 
-> compatible string(s) match a compatible in the table. Most of the time 
-> we don't even need that. We just need the match data.
-
-Right, I think I just added it for the sample driver, we can get rid of it.
-
-> 
-> Rob
-> 
 
