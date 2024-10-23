@@ -1,130 +1,187 @@
-Return-Path: <devicetree+bounces-114685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2159AC75E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:06:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D7479AC77B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:11:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5877CB25D52
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:06:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CB851F233E7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D641A0716;
-	Wed, 23 Oct 2024 10:06:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B5319E99E;
+	Wed, 23 Oct 2024 10:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zef9Zx+E"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="E/rc47sl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1B519F46D
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 10:06:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 627E219E961;
+	Wed, 23 Oct 2024 10:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729677990; cv=none; b=FSyzjg2n+vuT/RK9DcBwwz0aCeeuzkrLZE7yP+Offj5L/giD7dzjr03ASPLB097Dyw0/4QM7j637UltcwYrdnnFXBM6Js0eIPUSwIlNlHWf5MnfwSLEgfawsifjHAJjaYN91I1CJje+Y+DKf4dMSMwRo/2dHd2/x2e7hUIqqdhY=
+	t=1729678255; cv=none; b=qrmOXoTkU9bWC8DIIMuWuHNKWrE5jiNmgZPEZOANhWX3knv4Jg6kqUHW5ybPQIf+7l94RFlwIeD/6GvvWVEBeDaT3k/wEPKq70Gfe1aow2/YyR7F/2dRVNOeJMwvmTdWtg7c+FAPwJOrQFM2Ydf+c/l4FE+Mr7pwK9+YvXZm+N8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729677990; c=relaxed/simple;
-	bh=a95S/TCmJUb9zAzOT/Z7FGsQTjMV4ZgF2D4dSS7l1HM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dCiqCr5oXWHeTsk+UtHxtB3XJdmUFh5gjIkfbFmTuVpJYj1YyIqBgHjsg4KRIJnLhHEr190GVw4aMthH6hqNhdZwE3WXMMJhdwHU/fAD1kjhLI+ndMGCSXiSamJcxLkRhVcRhb3RVOEVpnOgYCXtdDmPF/DDFKVUqlVf+CnZMxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zef9Zx+E; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6e314136467so7054677b3.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 03:06:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729677987; x=1730282787; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=a95S/TCmJUb9zAzOT/Z7FGsQTjMV4ZgF2D4dSS7l1HM=;
-        b=zef9Zx+EJUg5vR9H9/bgYEaqvY7drLABxWeW5rTOHVsvhb8RnyKzIBFL3+kkHMgmF/
-         2Gs+9vUWmPAs3TWwQFtw7AmD1IWf4f9mwzZGENb/VspLPo/6vcxjE1aLTHIK5qsG/vVQ
-         B7mJZVBSkpqDkUFWPy83mrE0rGHSmAJOKsKuRt5BrTxT2XJs4Tp/cJZnMeFPLlYoJaPu
-         uxm5lahZvUknt8Ng689mtgFUsohbkYN4ZFo5AijgPJQlK4f7m53rR8ndk4f66u5j0VZt
-         CBnUepMiaEU3L6whdD02F98S508+VmPItJ19xXHNM9EZMqfyncUP3UUEmwEGrqyB2aMZ
-         bIIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729677987; x=1730282787;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a95S/TCmJUb9zAzOT/Z7FGsQTjMV4ZgF2D4dSS7l1HM=;
-        b=Vtq1EqGy0S1TX7wo15ILbV0QbpeF+ys/LF41IKikQHfxr4n9TiIuJdr8kEsvbbfg/Z
-         QysOeodkYyh2MwBnTD8/ZhsfR49Ub34xE4EoB47qNp3MXZNpPuV5jq3FiIcONAcWN3UV
-         aTopTLZeA51wtBG+DsADtQHZjicVuZNjNIXUsjNUFaYxenWCWdjjptAhRLkE1tbMAc8B
-         YIQ3pjGiCD8Q5gcgoFa6doZFdSOWY4ZqouI+rFkfzUEzvwRy/Z7Y0jhh3aCFyNtykcR+
-         ba8yWgcBvKwN7ba6P3jeQ5KTNX0ADnQ/IKMeJaAfYEEyCdTkjJK+cV9IA/EAHNFKrEsY
-         9W9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUpfQheZqP9WV3X5wUVEzKz3qIMeyycHQ5X4crJal4Rs2oU5kJC0+PiubKAtQbVTa/hF+vsB/HSyAVN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9WA8vwJymGiymBf7k+gOy5fDYgq4BE3pBchg8azpSP9vMEua1
-	eFyTm3tLKhdtU20jae1RnWWdFE/mCStl5PopqpUHitxA8Jjl3U//EeS6HLgyI7JEi7MMBhGT+9F
-	ljMgJAYWRq7dn3ofc9X7qvo5hrB65iZ6En3b3hw==
-X-Google-Smtp-Source: AGHT+IFwOZBv/9xV3wiaI1U67V6VvBJcsk2sGD6YUBFHxuleavk/W9fHcm2zNaYIQVNokSq8zuqqKdyHygLlMwbU20o=
-X-Received: by 2002:a05:690c:fc7:b0:6e2:b262:bebc with SMTP id
- 00721157ae682-6e7f060d560mr19960777b3.0.1729677987373; Wed, 23 Oct 2024
- 03:06:27 -0700 (PDT)
+	s=arc-20240116; t=1729678255; c=relaxed/simple;
+	bh=Xo1eeiTgVZYq4ByM4vw+H1JV/QTd+caClf5hFYE3Uik=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=gjWyvtXuV9+yN0zT+jLGKAeMJfxmemzkp+mRn0so9YOMmgaPCs9/0yt4vWmZ+saDl6EaRE2OkwNhUL6NI74D0SFJ1xKP+u9Pk/Zt4HKTfwM0BK5KDJL1Vgs5AoVKaRgVSCUQNYXhj4IFkVfgrPzQETvfJPy24gczmAJFTICQ/Go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=E/rc47sl; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49N81PNq031369;
+	Wed, 23 Oct 2024 12:10:33 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	Xo1eeiTgVZYq4ByM4vw+H1JV/QTd+caClf5hFYE3Uik=; b=E/rc47slUUGkV4Qb
+	X7SV5eUil6zyjtO4R3GKzIPDzBE3qYYbm8Tr95nRH8qxltKNVCfXtJriYD8XDt+S
+	XBXFEmbXp/hKilUlVUd1bshlMF/qO/aKh1JmxmCrO5tkoEYGBTthrL4xBwgrW3Nv
+	Pvwenlc9Ib8gh1+1o1qIlyHKciFTY2DKub3Vj1f6qxaEQvlONyvYnAEwXQwmxYwD
+	2r/Q9MZV1/I27hg9JzvVaL/ZNhcKnd61OZv2lbmWnf1ShO1MRWeazfbaPZgY8ZQ7
+	Wj3x2aRoWMAQMDDjpWB9g97pHBiAo+Bh1gwK2+JGHMk4gZ2dRIxlSm/ovNgzv5I4
+	3pIsIg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42em4djq8m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Oct 2024 12:10:32 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 34AC640050;
+	Wed, 23 Oct 2024 12:09:24 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D04E82699F1;
+	Wed, 23 Oct 2024 12:09:01 +0200 (CEST)
+Received: from [192.168.8.15] (10.48.87.33) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 23 Oct
+ 2024 12:09:00 +0200
+Message-ID: <334845caee45ed72ef08867f23f69b5333be57c5.camel@foss.st.com>
+Subject: Re: [PATCH 11/14] dt-bindings: pinctrl: stm32: support for
+ stm32mp215 and additional packages
+From: Antonio Borneo <antonio.borneo@foss.st.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        =?ISO-8859-1?Q?Cl=E9ment?= Le Goffic
+	<clement.legoffic@foss.st.com>,
+        Stephane Danieau
+	<stephane.danieau@foss.st.com>,
+        Amelie Delaunay
+	<amelie.delaunay@foss.st.com>,
+        Fabien Dessenne <fabien.dessenne@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        Gatien Chevallier
+	<gatien.chevallier@foss.st.com>,
+        Cheick Traore <cheick.traore@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Date: Wed, 23 Oct 2024 12:08:59 +0200
+In-Reply-To: <2g65375shtjq4udjfarfspqtpg5q27oeerqskt2uzwj44pvnbb@rderpevnrzxs>
+References: <20241022155658.1647350-1-antonio.borneo@foss.st.com>
+	 <20241022155658.1647350-12-antonio.borneo@foss.st.com>
+	 <2g65375shtjq4udjfarfspqtpg5q27oeerqskt2uzwj44pvnbb@rderpevnrzxs>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022154508.63563-1-sebastian.reichel@collabora.com>
-In-Reply-To: <20241022154508.63563-1-sebastian.reichel@collabora.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 23 Oct 2024 12:05:51 +0200
-Message-ID: <CAPDyKFoAv1jeQitHmTMhvwG9vGzN-vLby0fPzkX1E6+-Qe2dog@mail.gmail.com>
-Subject: Re: [PATCH v3 0/7] Fix RK3588 GPU domain
-To: Mark Brown <broonie@kernel.org>, Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
-	=?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?= <adrian.larumbe@collabora.com>, 
-	Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai <wens@csie.org>, 
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Tue, 22 Oct 2024 at 17:45, Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Hi,
->
-> I got a report, that the Linux kernel crashes on Rock 5B when the panthor
-> driver is loaded late after booting. The crash starts with the following
-> shortened error print:
->
-> rockchip-pm-domain fd8d8000.power-management:power-controller: failed to set domain 'gpu', val=0
-> rockchip-pm-domain fd8d8000.power-management:power-controller: failed to get ack on domain 'gpu', val=0xa9fff
-> SError Interrupt on CPU4, code 0x00000000be000411 -- SError
->
-> This series first does some cleanups in the Rockchip power domain
-> driver and changes the driver, so that it no longer tries to continue
-> when it fails to enable a domain. This gets rid of the SError interrupt
-> and long backtraces. But the kernel still hangs when it fails to enable
-> a power domain. I have not done further analysis to check if that can
-> be avoided.
->
-> Last but not least this provides a fix for the GPU power domain failing
-> to get enabled - after some testing from my side it seems to require the
-> GPU voltage supply to be enabled.
->
-> This series is now based on the pull request from Mark Brown:
-> https://lore.kernel.org/linux-pm/ZvsVfQ1fuSVZpF6A@finisterre.sirena.org.uk/
->
-> I added one more patch, which adds devm_of_regulator_get without the
-> _optional suffix, since that is more sensible for the Rockchip usecase.
-> Longer explanation can be seen in patch 6, which adds the handling to
-> the Rockchip driver. My merge suggestion would be that Mark adds the
-> regulator patch on top of the immutable branch and creates a new pull
-> request.
+On Wed, 2024-10-23 at 10:51 +0200, Krzysztof Kozlowski wrote:
+> On Tue, Oct 22, 2024 at 05:56:55PM +0200, Antonio Borneo wrote:
+> > From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> >=20
+> > Add support for st,stm32mp215-pinctrl and st,stm32mp215-z-pinctrl.
+>=20
+> So all previous patches are for this? Then they are supposed to be here.
 
-The merge strategy seems reasonable to me. But I am fine with that
-whatever works for Mark.
+Hi Krzysztof,
 
-[...]
+I'm not sure I fully get your point here.
+The previous patches in this series add the new features to the already ups=
+treamed STM32MP257.
+The same features are also needed here by STM32MP215 and in next patches 12=
+/14 and 13/14 by STM32MP235.
 
-Kind regards
-Uffe
+>=20
+> > Add packages AM, AN and AO (values : 0x1000, 0x2000 and 0x8000)
+> >=20
+> > Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> > Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
+> > ---
+> > =C2=A0.../devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 4 +++-
+> > =C2=A0include/dt-bindings/pinctrl/stm32-pinfunc.h=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 3 +++
+> > =C2=A02 files changed, 6 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl=
+.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> > index 9a7ecfea6eb5b..0a2d644dbece3 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> > @@ -27,6 +27,8 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - st,stm32mp135-pinctrl
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - st,stm32mp157-pinctrl
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - st,stm32mp157-z-pinctrl
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - st,stm32mp215-pinctrl
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - st,stm32mp215-z-pinctrl
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - st,stm32mp257-pinctrl
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - st,stm32mp257-z-pinctrl
+> > =C2=A0
+> > @@ -59,7 +61,7 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Indicates the SOC package used.
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 More details in include/dt-binding=
+s/pinctrl/stm32-pinfunc.h
+> > =C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint32
+> > -=C2=A0=C2=A0=C2=A0 enum: [0x1, 0x2, 0x4, 0x8, 0x100, 0x400, 0x800]
+> > +=C2=A0=C2=A0=C2=A0 enum: [0x1, 0x2, 0x4, 0x8, 0x100, 0x400, 0x800, 0x1=
+000, 0x2000, 0x4000]
+> > =C2=A0
+> > =C2=A0patternProperties:
+> > =C2=A0=C2=A0 '^gpio@[0-9a-f]*$':
+> > diff --git a/include/dt-bindings/pinctrl/stm32-pinfunc.h b/include/dt-b=
+indings/pinctrl/stm32-pinfunc.h
+> > index af3fd388329a0..01bc8be78ef72 100644
+> > --- a/include/dt-bindings/pinctrl/stm32-pinfunc.h
+> > +++ b/include/dt-bindings/pinctrl/stm32-pinfunc.h
+> > @@ -41,6 +41,9 @@
+> > =C2=A0#define STM32MP_PKG_AI=C2=A00x100
+> > =C2=A0#define STM32MP_PKG_AK=C2=A00x400
+> > =C2=A0#define STM32MP_PKG_AL=C2=A00x800
+> > +#define STM32MP_PKG_AM=C2=A00x1000
+> > +#define STM32MP_PKG_AN=C2=A00x2000
+> > +#define STM32MP_PKG_AO=C2=A00x4000
+>=20
+> Why these are some random hex values but not for example 0x801, 0x802
+> and 0x803? That's an enum, so bitmask does not make sense here.
+
+The are bitmask. You can check in patch 14/14 that adds a new package to th=
+e existing code of STM32MP257.
+Do you prefer I rewrite them all as, e.g.
+#define STM32MP_PKG_AO (1 << 14)
+?
+
+Thanks for the review!
+Regards,
+Antonio
 
