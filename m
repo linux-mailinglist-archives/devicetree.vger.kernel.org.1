@@ -1,264 +1,192 @@
-Return-Path: <devicetree+bounces-114959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 735159AD7DB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 00:39:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 820729AD7E2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 00:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FF9C284E17
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:39:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E079284903
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C54A20898E;
-	Wed, 23 Oct 2024 22:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC2B1FEFDA;
+	Wed, 23 Oct 2024 22:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A4BDpSuW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d2LxQ/ap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBFC206E8F;
-	Wed, 23 Oct 2024 22:37:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD0C81FEFD3;
+	Wed, 23 Oct 2024 22:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729723054; cv=none; b=TtwrXLIG8x2nc9AchGuGIRC7qB8oQ1SD10lViTxecVhDHA8no21eRDmtAca4KHTSAk6lu4twdEiK0tP9+K/do6XjG/EeHuSqSn7ZF6aaUsvCk5RdpiTuk0qT+0mOTxuRqQLRdiHLoOByNWYWNVtP+Y3NlbdcQbjYYLcTKeHfB/8=
+	t=1729723133; cv=none; b=k2+jeEc+sbIk/BaoPq3QjhHSp3/PMIpQoHzSEiaCSe5C+gYxgbYVg5n7Fz2i8pX7nzTRzJ8T3qyaDEIRLD2TfDTa+7AI9O0OFb6pBgtHq73cnPP9trlgDxitrwtOrC/exaQ5mbzb3xvcyLgJSGuNSiQ1ddPZrQN8wMP+/FRti6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729723054; c=relaxed/simple;
-	bh=uGxvRrGiZ9uLBWYdiZjpDfcJUgUDjLtTL5MMaS3Y99c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ITjB9hAshqnHd3M1u2Vbq4S3kCnYGVKWMGg3TKonRXfeqqQ3gU6tRVHZqP4LBb59nM8XlAl+AnH7wVVHCXJ6Y9MPYq8RT+ryICUdyyu7RuTnskd+Q4qFIHvttivzLPB1nvdRwWdrfDtMuKC/bcZeTALzHeErb0Z1IOPEw6a5c9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A4BDpSuW; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1729723133; c=relaxed/simple;
+	bh=ES5iYOA95Kt0KDp71z3fgi0EpYKOwnsO4BIWmBh/gpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XpABzy7gmJFRXmpMw/UAdjT4HYQV69SaLMLp4JN2UjEerpAGbFFLkhG+qzjGHkl5KniiXollOuPtQ8+CEFTKcsWutThEukqVxb6i6fnr5dqUARB0Xt0dOKDtUtClzQAxfOTwzFX9LSLihFVIgaUvYQqB8Zfe/0llPBWtRHi4ehg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d2LxQ/ap; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9a1b71d7ffso31785966b.1;
-        Wed, 23 Oct 2024 15:37:31 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-71e6d988ecfso240302b3a.0;
+        Wed, 23 Oct 2024 15:38:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729723050; x=1730327850; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AX+cZKl5XEc3DMRwSLMsFqqUE19e2NM6vk+Aym6iSqQ=;
-        b=A4BDpSuWQYzggbtXPFbu4kQ47Zr1IWsF5lCmwPPAbbk6i+7xmPCtwcTEpeMDO8Y1Mr
-         y+aEpeW6Dn7BM9pglQePlDCLCHtLR2stsOovv1Y/cw3RZM7AHClir37dbDz++K9GS/SG
-         MzhMqO1j1cj30L6cbEfeYeno0Vt1o5TKrZYMuIYOsmL2eQWXK3uAkTBMqZtYcjrxGrDg
-         Dlk1a8BJghYFaLhaO0WU9HkRyG7v8KIPe8GsNirrLCTm6DrEfDkEMQ3oa05dOlsDj4Gl
-         a5DKHbxMgr0fZ2gwYZZw02zwFyQ5h1NKqiJdw4V6xcxzyYkCOi7y1NTK/gRXO1L+J8NY
-         PKwQ==
+        d=gmail.com; s=20230601; t=1729723131; x=1730327931; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rkwckHmFPJEkM3Wxs1jlPmTkTzgcJwcJLaHVmfmItpM=;
+        b=d2LxQ/apVyAlS1olU1fdMZKiDZjRrbk5T7qyCWqdCPk8ZprLdSID6Ig+ARiK1pINal
+         m/xfluNMNHvfQzV5+8kxznjutp2IXYSeyCpEh2lqIsorvgqA7wkJ/lIIHQ/z/e3QO+/P
+         i3vxrJa12QTr47FbDAYefW8ZwBqtD9UO8K53j2hFmqiCuvK+pQtUhvt+4vBFIHcNvbRu
+         UFpg9Wo1ZLL0sAdk/SP7elW8HnB0lGxy0RWVjNg/oPuvshPfpHZFgAEw9rPZ6YI7Wz/G
+         7KTBkxbzyFgBFh35f+J7wSY7NFzYizTCUvHXz8QA1ztUSNdZBpyi/rsZuQMPRnUIq9gx
+         2O1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729723050; x=1730327850;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AX+cZKl5XEc3DMRwSLMsFqqUE19e2NM6vk+Aym6iSqQ=;
-        b=TT/i1MDXNQtw1BdvWFOL8+siLLi5vOBg6uQnKB9x59sr0BRUq0yUqziNycRJw/VrEQ
-         waquV7oQMfvitha6nXoXyb/0LNGjQtgbsFIFNszJYzv1lbhzU6hwQvYkZyjNciMeuGVe
-         3PaQNZ7OtenLi2yEmVf182arfDRLTggP4lRTx6FSG8fe20pD/nHGNwhaC/jf3QaRAMpa
-         uN4Bs7sQLMqPa3eAcADPqFKVrbcfZKSeN90hKR7w8nkW3qwmJmMc4ZXspUW8LmFnLcJ2
-         OpmrCvsY2MGJmOSgIfw7rZd69zmwDThbO2XwdbZsA7pEY2NaNE2qDSdlEAoxUektI27l
-         BgDw==
-X-Forwarded-Encrypted: i=1; AJvYcCU8UTijcXLWQZJaA38LI/Kj69OT3JuLGLHrcane2JFas+4zU1Nvuo6pDtsCrPhysLMu8lVcsg5THhRzK3/h@vger.kernel.org, AJvYcCVoyDII/6iDGj7ECS98OfFmEavLpn8hCuj8uKgxtWk4b8dGfTX6+gSb86CXUzHCGx8el6mPlWjtR+tP@vger.kernel.org, AJvYcCWhjlCLu2LB269Anr00QUOmmrTk+8wlniRvy4T1D9PIiqAAg0JpucOYcaNudGKWMPcP3loadGAkdj3Icx4oKsrS3sA=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzgs3IrMMQOzibtD2bWM5LuXjVQUkqjxC0tVEeXffPs9v6lu3zO
-	wa8oibKxwWjDgxPRdS/DYTFF5OE8jjuMS4R+XsS7Opnz9s6pvTT9
-X-Google-Smtp-Source: AGHT+IEz7HfZTewz5b+n8ON3omkJnOW3c4z1DCw0FOB98fFAPZeutFcm1+iZOYPfU9psjdpc68Nk/w==
-X-Received: by 2002:a17:907:2d8c:b0:a99:f8a2:cd8f with SMTP id a640c23a62f3a-a9abf9682bemr399570466b.64.1729723050129;
-        Wed, 23 Oct 2024 15:37:30 -0700 (PDT)
-Received: from [192.168.122.1] (93-190-140-122.hosted-by-worldstream.net. [93.190.140.122])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb6696b4easm4907816a12.12.2024.10.23.15.37.28
+        d=1e100.net; s=20230601; t=1729723131; x=1730327931;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rkwckHmFPJEkM3Wxs1jlPmTkTzgcJwcJLaHVmfmItpM=;
+        b=s+6htdohf4A8eNjHjAcTB43pkTwxKJoIcpiSOb6+zKEiPr9QT556c5S4lLo6MteWw3
+         6X+C+QRCb4OccNyvhtizNYgPee2BOH7YOm+QvXlXRjQqRraojOV3yyRNaYNI21xHJOXv
+         v0sIV0znef6v+NJX44t9kacnuTWJhpULi+QV45gryGWoq4PtCXU0VyMc4AqKw3Po4IYF
+         op5PWh+CgHLe2CF7w1m/xMgWTOv4Ynyno7yzWpRbXqwXw6YX/egOodK3DHnBLaPYYhty
+         uPQf+l9HSitzRdJfMmW8fwTegCsRxk+QB0Kpkm0ZJGWVT5WOuc5N6BmBoPdAP84oQp7Z
+         J2Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCV4ERdi05OcpiUMtrSoJVgo32Kj6Zo9jW8pJlhwbMA97aOYgzvEVs9vQm1nJZc6VNjh87sbmySysCTy@vger.kernel.org, AJvYcCVs2M6ugftZk8PgPFxB1fCdJzDAFk246uRCu4zGNrnLEzY5D03tnjAFUPoAXYjtjbkuDvb7lC+vmDUxVV7Q@vger.kernel.org, AJvYcCW4DGi+ZHAPF9NKgLd7zliHhVdVL98Gn/b9QcolAs9TDTYiHdqfhYTQVzlrbejakyIY4+ZiDEKB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1xNN/uZ4SiIK3/tYDTxoWqKbReX67n0BUC3bGpWf2a65saQQV
+	N7JGG1Xf6EjH/sTk73tsRPIDc+6PMRq6c7MC66+ZanlZlkugvMez
+X-Google-Smtp-Source: AGHT+IGUv5GcBzM76Tis8BZFsna+Tt+yRb2ER6YRERF8hAd8oZIE6Ogk0CalUXCV034zvn8ODhWHxQ==
+X-Received: by 2002:a05:6a00:806:b0:71e:693c:107c with SMTP id d2e1a72fcca58-72030a8b242mr6049959b3a.11.1729723130943;
+        Wed, 23 Oct 2024 15:38:50 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec1312c8fsm7047579b3a.14.2024.10.23.15.38.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 15:37:29 -0700 (PDT)
-From: Markuss Broks <markuss.broks@gmail.com>
-Date: Thu, 24 Oct 2024 01:36:43 +0300
-Subject: [PATCH 12/12] arm64: dts: exynos: Add initial support for Samsung
- Galaxy S9 (SM-G960F)
+        Wed, 23 Oct 2024 15:38:50 -0700 (PDT)
+Date: Thu, 24 Oct 2024 06:38:29 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Inochi Amaoto <inochiama@outlook.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: net: Add support for Sophgo SG2044 dwmac
+Message-ID: <5cv7wcdddxa4ruggrk36cwaquo5srcrjqqwefqzcju2s3yhl73@ekpyw6zrpfug>
+References: <20241021103617.653386-1-inochiama@gmail.com>
+ <20241021103617.653386-3-inochiama@gmail.com>
+ <20241022-crisply-brute-45f98632ef78@spud>
+ <yt2idyivivcxctosec3lwkjbmr4tmctbs4viefxsuqlsvihdeh@alya6g27625l>
+ <20241023-paper-crease-befa8239f7f0@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241024-exynos9810-v1-12-ed14d0d60d08@gmail.com>
-References: <20241024-exynos9810-v1-0-ed14d0d60d08@gmail.com>
-In-Reply-To: <20241024-exynos9810-v1-0-ed14d0d60d08@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Tomasz Figa <tomasz.figa@gmail.com>, Will Deacon <will@kernel.org>, 
- Mark Rutland <mark.rutland@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
- Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
- Markuss Broks <markuss.broks@gmail.com>, 
- Maksym Holovach <nergzd@nergzd723.xyz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1729723025; l=4396;
- i=markuss.broks@gmail.com; s=20241024; h=from:subject:message-id;
- bh=uGxvRrGiZ9uLBWYdiZjpDfcJUgUDjLtTL5MMaS3Y99c=;
- b=qPBGU4g4UzTmbyW8K01GZbAhJ3thwrS3nfygRW+CZyRP6QN6HO9I+K97XuAksgJIsecePUf7I
- rEf03pG5egjBT1CsyGfHrc9Ut5Fp/ZIomu0fA2F+mFTrWbl3/YBjz9p
-X-Developer-Key: i=markuss.broks@gmail.com; a=ed25519;
- pk=p3Bh4oPpeCrTpffJvGch5WsWNikteWHJ+4LBICPbZg0=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241023-paper-crease-befa8239f7f0@spud>
 
-Samsung Galaxy S9 (SM-G960F), codenamed starlte, is a mobile phone
-released in 2017. It has 4GB of RAM, 64GB of UFS storage, Exynos9810
-SoC and 1440x2960 Super AMOLED display.
+On Wed, Oct 23, 2024 at 09:49:34PM +0100, Conor Dooley wrote:
+> On Wed, Oct 23, 2024 at 08:31:24AM +0800, Inochi Amaoto wrote:
+> > On Tue, Oct 22, 2024 at 06:28:06PM +0100, Conor Dooley wrote:
+> > > On Mon, Oct 21, 2024 at 06:36:15PM +0800, Inochi Amaoto wrote:
+> > > > The GMAC IP on SG2044 is almost a standard Synopsys DesignWare MAC
+> > > > with some extra clock.
+> > > > 
+> > > > Add necessary compatible string for this device.
+> > > > 
+> > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > > > ---
+> > > >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+> > > >  .../bindings/net/sophgo,sg2044-dwmac.yaml     | 145 ++++++++++++++++++
+> > > >  2 files changed, 146 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > index 3c4007cb65f8..69f6bb36970b 100644
+> > > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > @@ -99,6 +99,7 @@ properties:
+> > > >          - snps,dwmac-5.30a
+> > > >          - snps,dwxgmac
+> > > >          - snps,dwxgmac-2.10
+> > > > +        - sophgo,sg2044-dwmac
+> > > >          - starfive,jh7100-dwmac
+> > > >          - starfive,jh7110-dwmac
+> > > >  
+> > > > diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..93c41550b0b6
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > > @@ -0,0 +1,145 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/net/sophgo,sg2044-dwmac.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: StarFive JH7110 DWMAC glue layer
+> > > > +
+> > > > +maintainers:
+> > > > +  - Inochi Amaoto <inochiama@gmail.com>
+> > > > +
+> > > > +select:
+> > > > +  properties:
+> > > > +    compatible:
+> > > > +      contains:
+> > > > +        enum:
+> > > > +          - sophgo,sg2044-dwmac
+> > > > +  required:
+> > > > +    - compatible
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    items:
+> > > > +      - const: sophgo,sg2044-dwmac
+> > > > +      - const: snps,dwmac-5.30a
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  clocks:
+> > > > +    items:
+> > > > +      - description: GMAC main clock
+> > > > +      - description: PTP clock
+> > > > +      - description: TX clock
+> > > > +
+> > > > +  clock-names:
+> > > > +    items:
+> > > > +      - const: stmmaceth
+> > > > +      - const: ptp_ref
+> > > > +      - const: tx
+> > > > +
+> > > > +  sophgo,syscon:
+> > > 
+> > > How many dwmac instances does the sg2044 have?
+> > > 
+> > 
+> > Only one, there is another 100G dwxgmac instance, but it does not
+> > use this syscon.
+> 
+> That dwxgmac is a different device, with a different compatible etc?
 
-This initial device tree enables the framebuffer pre-initialised
-by bootloader and physical buttons of the device, with more support
-to come in the future.
+Yes, it needs a different compatiable, and maybe a new binding is needed
+since the 100G and 1G IP are different.
 
-Co-authored-by: Maksym Holovach <nergzd@nergzd723.xyz>
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
----
- arch/arm64/boot/dts/exynos/Makefile               |   1 +
- arch/arm64/boot/dts/exynos/exynos9810-starlte.dts | 119 ++++++++++++++++++++++
- 2 files changed, 120 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-index 7a934499b235892eef38cd926905e02f0ce08278..6760b3d59e819fb52bc8cf4dc6877a0b9db9ce47 100644
---- a/arch/arm64/boot/dts/exynos/Makefile
-+++ b/arch/arm64/boot/dts/exynos/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	exynos7885-jackpotlte.dtb	\
- 	exynos850-e850-96.dtb		\
- 	exynos8895-dreamlte.dtb		\
-+	exynos9810-starlte.dtb		\
- 	exynos990-c1s.dtb		\
- 	exynosautov9-sadk.dtb		\
- 	exynosautov920-sadk.dtb
-diff --git a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..f3a1910402b8d686dd7bd156a691ec541e10ad08
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
-@@ -0,0 +1,119 @@
-+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-+/*
-+ * Samsung Galaxy S9 (starlte/SM-G960F) device tree source
-+ *
-+ * Copyright (c) 2024 Markuss Broks <markuss.broks@gmail.com>
-+ * Copyright (c) 2024 Maksym Holovach <nergzd@nergzd723.xyz>
-+ */
-+
-+/dts-v1/;
-+#include "exynos9810.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Samsung Galaxy S9 (SM-G960F)";
-+	compatible = "samsung,starlte", "samsung,exynos9810";
-+	chassis-type = "handset";
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		framebuffer@cc000000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0xcc000000 (1440 * 2960 * 4)>;
-+			width = <1440>;
-+			height = <2960>;
-+			stride = <(1440 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x3c800000>,
-+		      <0x8 0x80000000 0x80000000>,
-+		      <0x0 0xc0000000 0x20000000>,
-+		      <0x0 0xe1900000 0x1e700000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		framebuffer@cc000000 {
-+			reg = <0x0 0xcc000000 (1440 * 2960 * 4)>;
-+			no-map;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&key_voldown &key_volup &key_bixby &key_power>;
-+		pinctrl-names = "default";
-+
-+		/* In stock firmware used for assistant. Map it as a camera button for now */
-+		bixby-key {
-+			label = "Bixby";
-+			linux,code = <KEY_CAMERA>;
-+			gpios = <&gpa0 6 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		power-key {
-+			label = "Power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpa2 4 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		volup-key {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&gpa0 3 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		voldown-key {
-+			label = "Volume Down";
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpios = <&gpa0 4 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&oscclk {
-+	clock-frequency = <26000000>;
-+};
-+
-+&pinctrl_alive {
-+	key_bixby: key-bixby-pins {
-+		samsung,pins = "gpa0-6";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-+		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-+	};
-+
-+	key_volup: key-volup-pins {
-+		samsung,pins = "gpa0-3";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-+		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-+	};
-+
-+	key_voldown: key-voldown-pins {
-+		samsung,pins = "gpa0-4";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-+		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-+	};
-+
-+	key_power: key-power-pins {
-+		samsung,pins = "gpa2-4";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-+		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-+	};
-+};
-
--- 
-2.46.2
-
+Regards,
+Inochi
 
