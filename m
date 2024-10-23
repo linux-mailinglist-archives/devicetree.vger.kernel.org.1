@@ -1,145 +1,158 @@
-Return-Path: <devicetree+bounces-114783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7D69ACEFE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:39:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D804F9ACF4C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:49:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 605D41F22156
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:39:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D4271F254DD
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34CDA1C578C;
-	Wed, 23 Oct 2024 15:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AE71CB325;
+	Wed, 23 Oct 2024 15:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TrIQgpRn"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="Rq7UGLhI";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="fQPLC3q/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C8C3A1DA;
-	Wed, 23 Oct 2024 15:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84D01459F6;
+	Wed, 23 Oct 2024 15:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729697950; cv=none; b=uMtybDm0w1On1uH+oQuV3/m84yv20mBohVHxCCU+coohYn+3zMRn7Menc0JVHiDlWRfw+dtQl3X95tGpsa0jtAXRbijjvCe+Jp+n9Q92ZMoyuGmIA5k64GiC9EgItNqn0/T/UJNcbaVXio+zH3o5HghjFE487orD5sogBtI1MGM=
+	t=1729698422; cv=none; b=L1t1UpjOsP6Aau8jCTgjYLzkxjBqBY2bUt0kYx13DmGM3IPbLCkyfol3uEtuKSEu3qwTGO+1G5Q+zWe8rKui+Hjevsn7DjchMQsITu3/2czI99PutKS+Mhj0PfHYcONT83+wS/l6ZoGNK8n5/J+veksB1RmvwqUR/MHCXF27Lew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729697950; c=relaxed/simple;
-	bh=NBxhE82kCl2yKOP+vUIKC/W8t8kh6uIpI0gB+20aSEI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bM69c69KfqO4OuvMTqv8cxdwGlHAK2scriU5LfGojSZzy56o0/H3y1uTevwuf0CJ/Vg6NnBN03dHluVgu+v3wK0yYS7Pd8ggCZ0cMLIVt2waKV8ryxfXi5bZn8bz47riu7qt7hs2QDNqbYHEgHF7E8E8NOYqE8sfCg4+U1EKHj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TrIQgpRn; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49NFd1Ws067669;
-	Wed, 23 Oct 2024 10:39:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1729697941;
-	bh=OuQA09gyI4WukFo0h7kDvUI5cJRKjUfhIF1isfAvFEI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=TrIQgpRnEwdf6ZBsIBTODFe9PxqDiNNJY0S9AlzfrSO4P8275hP5PYfPN0HvhMWQ1
-	 coPSMaLVX6E5y1g1C7WDpSSiXydS1XB2RqwpkmymtNe4OONGL5tjGzPo+DpaORlAdJ
-	 vzrBDpcyBN8CvGsi1n5kikUXj0qtd337uuISH+K4=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49NFd1Ke129217
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 23 Oct 2024 10:39:01 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 23
- Oct 2024 10:39:01 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 23 Oct 2024 10:39:00 -0500
-Received: from [172.24.227.91] (psdkl-workstation0.dhcp.ti.com [172.24.227.91])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49NFcuS4104759;
-	Wed, 23 Oct 2024 10:38:57 -0500
-Message-ID: <47441421-23d4-42a9-b080-21f7c9314fa6@ti.com>
-Date: Wed, 23 Oct 2024 21:08:56 +0530
+	s=arc-20240116; t=1729698422; c=relaxed/simple;
+	bh=ZZwU4NFC91wMgN4c7lkp6TocHvXTpLhtn1odQHi+ipU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kKABil70/FWmfrJ9+MBa7hfib2Qbk0NYeuxWGOE0z1Thd5ABuHfZCZlZOHsKUkXkdb+PMPGppaqwNGFXkK5TGs+BUomZMfbHOFCkYthTl5GMA5aP+RzL1kPR1E2WnTpv9H2JDpGKeQ0BXKzBUlqQDcYTHbNWAwpBb9UUB1Es/KI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=Rq7UGLhI; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=fQPLC3q/; arc=none smtp.client-ip=202.12.124.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-11.internal (phl-compute-11.phl.internal [10.202.2.51])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 9C97C2540109;
+	Wed, 23 Oct 2024 11:46:58 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-11.internal (MEProxy); Wed, 23 Oct 2024 11:46:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm2; t=1729698418; x=1729784818; bh=IG
+	T5U0hFJ5zQwBJxWSQZ5zevqrZ00gLykqZ8O2zCm20=; b=Rq7UGLhI2quFopPwHu
+	PWEgqc0k1UvRsYZMwWjTv153zux7sYUyGT64gjXF3YwRtDlXCIEQiEbwXWmQFYdq
+	6wG9W900qx35j842BhOAzFDV2BCJTFzjsK7eeEASKlNHQz91Ahl8C/HGZUIgjYlE
+	9eNisy0fTAVtfUugH1unkeMx7vBxw0nYzQjkadBywhOQZtc22KWsOAfPYNGBLhRK
+	dDFhZWwx45Umztd7B0zZbOcNGcNZIBdxcOAQtz5w/vDiAXxGZrmjxVEtuILgqbaH
+	ak3xyQvF3s0KmKhteu8ETPvdTCcch4lKW3cGGtzeXkT4MRZhYF9NQWvwKDnN1J+m
+	GskA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm3; t=1729698418; x=1729784818; bh=IGT5U0hFJ5zQw
+	BJxWSQZ5zevqrZ00gLykqZ8O2zCm20=; b=fQPLC3q/gdU9VJNddKPGCABkja1Tx
+	cPuM1ZdqNWKi7q3F+JQXsuxsLAmA0a0AcuQ8d3cZn87IPTaZA+VGUx7939RZRFCF
+	f2KRzOQ8LIFhtOaT52WYQk3wmxTAoVIMMhpU9n/IE98sjilQ2KUnk6EF0ybqQZi7
+	TTdwejVCsRowMYtl7c9cXV0k3EQF0W4hGMJfqP9eb1KgBgVagGcIJpzG5bFTGciw
+	k8rTTjhyOKIDezFbClo1nE0aRgXYyXEUW1uuX2+C0floN7c55GW9byWJ6sgAU2Fg
+	M4nHEUR4IHCwHwiBRIDYxx4HzHEhRiiAMlHCxyC0oS+S+p8Hz2u+/iE3w==
+X-ME-Sender: <xms:choZZ80cEVfsHrHe8eUNWIAaABjzbEB5c8i0YIk1kmyHl-u8YvjEDQ>
+    <xme:choZZ3GNGw2kFFqHRR2Cw5o_VmPet99y6S6RJDesyUZcQXfAUK6mGdzPig65O_vvf
+    9YhLLR_jl5Hw7gS7As>
+X-ME-Received: <xmr:choZZ04XW68NVL3923zlFcdQHfgDPWWwRrQdfq2Z2L8hx3bzh0EQPnTsuQP4-srxFCBGZ5p2jbghSF3SEh6Ph19CLg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeijedgleduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecu
+    hfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrh
+    hluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgv
+    rhhnpeehudelteetkefgffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfeetge
+    enucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhk
+    lhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtth
+    hopeejpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehgvggvrhhtodhrvghnvghs
+    rghssehglhhiuggvrhdrsggvpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+    dprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegt
+    ohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrhgvnh
+    gvshgrshdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghv
+    ihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehnihhklh
+    grshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:choZZ11shOUT36kmwJVSHFlmWKFYMn05dgF_BcpjXRNjOM958q283w>
+    <xmx:choZZ_F1vXoI7kPRN6zSCSp_nS3SiWb_NjejQ6HGdoZs4jBK3NH5-g>
+    <xmx:choZZ-9ZtLNMB9IkglJdyPTYRPDkVcvVa0BT52k8w-0F4byAvOTGYA>
+    <xmx:choZZ0mWiCnblRRmEVmqcz92skskrjlHkftA01u7Dr6wXdmQAVeAng>
+    <xmx:choZZ-1Vt_QQFkjOa0mgz6blVP4s3SoUfEMxEiqXPaSKRExPfp7ngCzH>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 23 Oct 2024 11:46:57 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v2 0/2] arm64: dts: renesas: falcon: Wire-up Ethernet breakout board
+Date: Wed, 23 Oct 2024 17:46:41 +0200
+Message-ID: <20241023154643.4025941-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.46.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/12] arm64: dts: ti: k3-j784s4-j742s2-mcu-wakeup:
- Remove parent nodes bootph-*
-To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Udit
- Kumar <u-kumar1@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>, Andrew Davis <afd@ti.com>
-References: <20241023-b4-upstream-bootph-all-v5-0-a974d06370ab@ti.com>
- <20241023-b4-upstream-bootph-all-v5-2-a974d06370ab@ti.com>
-Content-Language: en-US
-From: Aniket Limaye <a-limaye@ti.com>
-In-Reply-To: <20241023-b4-upstream-bootph-all-v5-2-a974d06370ab@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi Geert,
 
+This small series wires up the Marvell 88Q2110 PHYs found on the Falcon
+Ethernet breakout board. With this applied all five PHYs are probed
+correctly.
 
-On 23/10/24 12:27, Manorit Chawdhry wrote:
-> Adding bootph properties on leaf nodes imply that they are applicable to
-> the parent nodes as well. Bootloaders can derive the parent nodes when
-> bootph is available in the leaf nodes.
-> 
-> Remove the bootph-* properties from parent nodes as they are redundant.
-> 
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+    mv88q2110 e6810000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6810000.ethernet-ffffffff:07, irq=POLL)
+    mv88q2110 e6820000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6820000.ethernet-ffffffff:07, irq=POLL)
+    mv88q2110 e6830000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6830000.ethernet-ffffffff:07, irq=POLL)
+    mv88q2110 e6840000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6840000.ethernet-ffffffff:07, irq=POLL)
+    mv88q2110 e6850000.ethernet-ffffffff:07: attached PHY driver (mii_bus:phy_addr=e6850000.ethernet-ffffffff:07, irq=POLL)
 
-Reviewed-by: Aniket Limaye <a-limaye@ti.com>
+The wire-up works fine with unbind/bind cycles of the device and the PHY 
+can properly be probed again.
 
-> ---
-> 
-> Notes:
->      It wasn't existing previously in U-boot but the following patch fixes it [0]
->      
->      [0]: https://lore.kernel.org/u-boot/20231217163627.2339802-10-sjg@chromium.org/
-> 
->   arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi | 3 ---
->   1 file changed, 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
-> index 9899da73a905..46bc2a3e4aea 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
-> @@ -7,7 +7,6 @@
->   
->   &cbass_mcu_wakeup {
->   	sms: system-controller@44083000 {
-> -		bootph-all;
->   		compatible = "ti,k2g-sci";
->   		ti,host-id = <12>;
->   
-> @@ -39,7 +38,6 @@ k3_reset: reset-controller {
->   	};
->   
->   	wkup_conf: bus@43000000 {
-> -		bootph-all;
->   		compatible = "simple-bus";
->   		#address-cells = <1>;
->   		#size-cells = <1>;
-> @@ -458,7 +456,6 @@ mcu_spi2: spi@40320000 {
->   	};
->   
->   	mcu_navss: bus@28380000 {
-> -		bootph-all;
->   		compatible = "simple-bus";
->   		#address-cells = <2>;
->   		#size-cells = <2>;
-> 
+The primary issue we had with this in the past was due to an incorrect
+PHY address. After studying the schematics (v100) I found the PHYs
+address pins are wired differently on Falcon compared to other Gen4
+boards. On Falcon they are pulled-down, while on other Gen4 boards they
+are left unconnected and subjected to the PHYs internal pull-ups. This
+gives the PHY an address where the lower 3 bits of the address is
+inverted for Falcon.
+
+Patch 1/2 is a simple preparation patch removing properties that should
+not be set in the base SoC include and will produce warnings once the
+mdio node is added. Patch 2/2 wires up the PHYs.
+
+Most likely the change in 1/2 should be applied to AVB0 also, but
+pending our discussion in a different patch about where to place the
+reset-gpio property for mdio nodes that don't strictly need it I left
+AVB0 as is.
+
+See individual patches for changelog.
+
+Niklas Söderlund (2):
+  arm64: dts: renesas: r8a779a0: Remove address- and size-cells from
+    AVB[1-5]
+  arm64: dts: renesas: falcon: ethernet: Describe PHYs connected on the
+    breakout board
+
+ .../dts/renesas/r8a779a0-falcon-ethernet.dtsi | 242 ++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi     |  10 -
+ 2 files changed, 242 insertions(+), 10 deletions(-)
+
+-- 
+2.46.2
+
 
