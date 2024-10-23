@@ -1,167 +1,176 @@
-Return-Path: <devicetree+bounces-114748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9F39ACB1C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:23:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5533E9ACB28
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:27:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 389B41C20D65
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:23:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3DA91F2268F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F88D1AE016;
-	Wed, 23 Oct 2024 13:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56141AC882;
+	Wed, 23 Oct 2024 13:27:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D471AC45F
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 13:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCC31DFEF;
+	Wed, 23 Oct 2024 13:27:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729689808; cv=none; b=pU9n0fxHfoOrqHUHWqwXS/727Chvq5A3wB3uCEWVi24juwjzfb9U1f5XbE03y1s8EMLX9OHGrlipTTcln36aTjWIYCQAJaCuepJ3UvyyBFXkW67mDFosmyIKgQ57ffUrLw0VsaY3kKFcD+EbBko27Tx/XT5kOyiczt+Z+kXzJfs=
+	t=1729690064; cv=none; b=Y11nwtwbQ0Puy/7mu/gmuIimRYqEYx9PMI9tORnovpOID/oWF0Iqi67w5zG2f9gx1JgXG9WD6EDU0qINnvTFaUrB1eMWcQWIgSpFnrge8y52/NVhqrbtJUHdES6JRQjezUtx+a7SI+lErAKYpm3WYOWuIIdTixwTadSLORbVBmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729689808; c=relaxed/simple;
-	bh=//0t6o5kKGPijj/BBOmhHLDpudOTigv2PpD2dcqFhu8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pI4QxHGfFfORFMiV1JuWBxgnWwJGD3dgi+1Io2/ei8Jsm8j1IPUyzwjhuoPIpphvR4fRJvKw+Vwn8ZSyrdlIT5Blz/h6UU3f1Jk/OincJV9CbIgaQRuoJcbDZrI64vFLdrOb6WxT+EismThp0wWRnIH3crNpHgscK6C2XnANMB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <r.czerwinski@pengutronix.de>)
-	id 1t3bKb-0005DN-Kh; Wed, 23 Oct 2024 15:23:21 +0200
-Message-ID: <e729be591e47e4a63f740ffbec9047abc12f78b0.camel@pengutronix.de>
-Subject: Re: [PATCH 2/3] dt-bindings: display: panel: add YAML schema for
- LXD M9189A
-From: Rouven Czerwinski <r.czerwinski@pengutronix.de>
-To: Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg
- <sam@ravnborg.org>,  dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Cc: kernel@pengutronix.de, Neil Armstrong <neil.armstrong@linaro.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Date: Wed, 23 Oct 2024 15:23:20 +0200
-In-Reply-To: <20241023124411.1153552-2-r.czerwinski@pengutronix.de>
-References: <20241023124411.1153552-1-r.czerwinski@pengutronix.de>
-	 <20241023124411.1153552-2-r.czerwinski@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 
+	s=arc-20240116; t=1729690064; c=relaxed/simple;
+	bh=F2ZxZPlaC9l+JfMZiw3EGc1lSCa3SkUfM7rIWrIRM4k=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IZwwXTImN9z+Hk11ZmY9QlmEIJ8XWuY31rQq97GPsN2N+/gVWSxcBq3En/S8ycDBoy+fdJr3YPX38qmK5uoaP0K9Cyq1xl57woOVZbVXUDnxb1reLyns+LGZJXFTqOVtExeQSDzKthinffd0jVQ3LaS4fLJmC7uZGH+D51BdZiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XYV8x6NhWz6LD2C;
+	Wed, 23 Oct 2024 21:22:57 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 4E4291400F4;
+	Wed, 23 Oct 2024 21:27:38 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 23 Oct
+ 2024 15:27:37 +0200
+Date: Wed, 23 Oct 2024 14:27:35 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Per-Daniel Olsson <perdaniel.olsson@axis.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<rickard.andersson@axis.com>, <kernel@axis.com>
+Subject: Re: [PATCH v4 2/2] iio: light: Add support for TI OPT4060 color
+ sensor
+Message-ID: <20241023142735.000018cb@Huawei.com>
+In-Reply-To: <10d6bba4-4d25-4ee0-877e-48a27c622bde@axis.com>
+References: <20241016213409.3823162-1-perdaniel.olsson@axis.com>
+	<20241016213409.3823162-3-perdaniel.olsson@axis.com>
+	<20241020135105.36b29fe8@jic23-huawei>
+	<10d6bba4-4d25-4ee0-877e-48a27c622bde@axis.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: r.czerwinski@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Hi,
-On Wed, 2024-10-23 at 14:44 +0200, Rouven Czerwinski wrote:
-> The LXD M9189A is a 1024x600 MIPI-DSI panel.
->=20
-> Signed-off-by: Rouven Czerwinski <r.czerwinski@pengutronix.de>
-> ---
-> =C2=A0.../bindings/display/panel/lxd,m9189a.yaml=C2=A0=C2=A0=C2=A0 | 64
-> +++++++++++++++++++
-> =C2=A01 file changed, 64 insertions(+)
-> =C2=A0create mode 100644
-> Documentation/devicetree/bindings/display/panel/lxd,m9189a.yaml
->=20
-> diff --git
-> a/Documentation/devicetree/bindings/display/panel/lxd,m9189a.yaml
-> b/Documentation/devicetree/bindings/display/panel/lxd,m9189a.yaml
-> new file mode 100644
-> index 0000000000000..49cee8865cae1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/lxd,m9189a.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/lxd,m9189a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LXD M9189 DSI Display Panel
-                   ^ is missing an A
-> +
-> +maintainers:
-> +=C2=A0 - Rouven Czerwinski <r.czerwinski@pengutronix.de>
-> +
-> +properties:
-> +=C2=A0 compatible:
-> +=C2=A0=C2=A0=C2=A0 const: ronbo,rb070d30
+On Wed, 23 Oct 2024 09:29:08 +0200
+Per-Daniel Olsson <perdaniel.olsson@axis.com> wrote:
 
-This is the wrong compatible.
+> Hi Jonathan,
+> 
+> Thank you for your feedback, much appreciated. I have added questions and
+> comments inline below regarding channels and triggers. I will address the other
+> comments in the next patch.
+> 
+> Best regards / Per-Daniel
+> 
+> On 10/20/24 14:51, Jonathan Cameron wrote:
+> > On Wed, 16 Oct 2024 23:34:09 +0200
+> > Per-Daniel Olsson <perdaniel.olsson@axis.com> wrote:
+> >   
+> >> Add support for Texas Instruments OPT4060 RGBW Color sensor.
+> >>
+> >> Signed-off-by: Per-Daniel Olsson <perdaniel.olsson@axis.com>  
+> > 
+> > Hi Per-Daniel,
+> > 
+> > Comments inline.
+> > 
+> > Jonathan
+> >   
+> >> diff --git a/drivers/iio/light/opt4060.c b/drivers/iio/light/opt4060.c
+> >> new file mode 100644
+> >> index 000000000000..2c3761ec423a
+> >> --- /dev/null
+> >> +++ b/drivers/iio/light/opt4060.c
+> >> @@ -0,0 +1,1259 @@  
+> > 
+> > ...
+> >   
+> >> +
+> >> +struct opt4060_buffer {
+> >> +	u32 chan[OPT4060_NUM_CHANS];
+> >> +	s64 ts __aligned(8);  
+> > 
+> > aligned_s64 is now available in linux-next + the IIO tree.
+> >   
+> >> +};
+> >> +
+> >> +static const struct opt4060_channel_factor opt4060_channel_factors[] = {
+> >> +	{
+> >> +		/* RED 2.4 * 2.15e-3 */  
+> > This needs more details on wrt to what standard etc.
+> > 
+> > The datasheet is a little vague, but it seems to me like TI invented their
+> > own standard. To use this stuff in a consistent ABI we need to have
+> > a common standard or at least an approximation of one.
+> > The illuminance estimates from some devices are bad approximations, but they
+> > are at least attempting to approximate a well defined standard.  
+> 
+> I have read the datasheet again to try to figure out what TI means. When I read
+> it now with your remarks from this email and previous emails in mind, I think I'm
+> starting to understand more.
+> 
+> I think we should expose the data from the sensor in the following way:
+> - Four raw channels (R, G, B and Clear)
+> - Three processed IIO_INTENSITY channels with normalized values (R, G, B)
+>   to get the relative color components independent of light intensity.
+> - One IIO_LIGHT channel giving the lux value.
+> 
+> This is basically what TI is stating in chapter 8.4.5.2. I know that you don't
+> like how TI are calculating the lux value using the green channel. But after
+> reading the description and detailed description parts of the datasheet again,
+> I think it sort of makes sense. Looking at the spectral response curves on the
+> first page, the green curve covers the whole visible spectrum. It seems like this
+> is what the sensor is actually designed for, measuring light intensity in lux and
+> color independent of the light intensity.
+> 
+> Does this sound like a way forward you think?
+Not keen on the colour part.
 
-> +
-> +=C2=A0 reg:
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +=C2=A0 standby-gpios:
-> +=C2=A0=C2=A0=C2=A0 description: GPIO used for the standby pin
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +=C2=A0 reset-gpios:
-> +=C2=A0=C2=A0=C2=A0 description: GPIO used for the reset pin
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +=C2=A0 vdd-supply:
-> +=C2=A0=C2=A0=C2=A0 description: Power regulator
-> +
-> +=C2=A0 backlight:
-> +=C2=A0=C2=A0=C2=A0 description: Backlight used by the panel
-> +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +required:
-> +=C2=A0 - compatible
-> +=C2=A0 - reg
-> +=C2=A0 - standby-gpios
-> +=C2=A0 - reset-gpios
-> +=C2=A0 - vdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +=C2=A0 - |
-> +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/gpio/gpio.h>
-> +
-> +=C2=A0=C2=A0=C2=A0 dsi {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 panel@0 {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "lxd,m9189a";
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 backlight =3D <&backlight>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-gpios =3D <&gpio3 25 GP=
-IO_ACTIVE_LOW>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 standby-gpios =3D <&gpio5 22 =
-GPIO_ACTIVE_LOW>;
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mipi_panel_in: en=
-dpoint {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 remot=
-e-endpoint =3D <&mipi_dsi_out>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> +=C2=A0=C2=A0=C2=A0 };
+As far as I can tell TI made up a colour standard.  If it were
+CIE 1931 RGB or then 'maybe' we could consider presenting them as processed,
+though as they are linear scales even then should present _raw and _scale, not
+_input (processed).  We would still need to figure out if we needed to handle
+multiple colour space definitions.
+As it is, if we have two different colour sensors, there is no way to compare the
+values.  In particular that Green is way too broad for the colour standards
+I quickly compared this with.
 
-Fixed both for a v2 of this series, will wait for more feedback before
-resending.
+The green curve does (based on eyeballing it rather than anything formal)
+look much closer to the luminosity function (one used for illuminance)
+than I was assuming (given it's called green!)
 
-Best Regards,
-Rouven Czerwinski
+So not ideal but that one feels ok (with comments in the code explaining
+this) to use for illuminance.
+
+
+For the color channels maybe we could present with _scale provided
+if we add suitable documentation to say that the scaling is to arbitrary
+datasheet specified normalization and that the resulting _raw * _scale
+values cannot be compared across different sensors. I don't like that
+but it does seem silly to not present the scaling if it might be useful
+to someone.  So if you want to do this, propose some additions
+to Documentation/testing/ABI/sysfs-bus-iio
+to cover this for in_intensity_red_scale
+etc.
+
+Jonathan
+
 
 
