@@ -1,136 +1,194 @@
-Return-Path: <devicetree+bounces-114555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740199ABF5B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:53:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B0139ABF60
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F447B224E3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:53:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9A2D1C2261A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675B914AD3D;
-	Wed, 23 Oct 2024 06:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9EF814AD3F;
+	Wed, 23 Oct 2024 06:56:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="A3ba63Y7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YVE5WCO5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3DBD6EB7C;
-	Wed, 23 Oct 2024 06:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A202622318;
+	Wed, 23 Oct 2024 06:56:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729666425; cv=none; b=akprxsbAUxK0N7Pm93DW3jajdGj9hQCSWG977LCfbx8KOAZ7PlPMMz8LKGUSIYUOJg9DTidAC7ij/iHAzoy+XLWZPwhFCxnkpKq+kDIrzXKZH15fGS7xgrgYtIq4P248s7yznNNcLpRYZyfReacDXn/L1jz0LnHuuMMPOH3xnCg=
+	t=1729666588; cv=none; b=YesP2fBPAy38BTQRtqiqynE/nsWnGR6A6N7mm6VALQRdt7RsYoq52LsRsgNfV0cKmkufgTCy/+ihKnfWnDDdO9NgBkVTlSQTnarlD68rfvf4SA54hzXwYl5X7MZoQQaK+Uo/R3v7P/f8l9MZX1ZvGpe0gsnRhQAbIWF6qYDi2zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729666425; c=relaxed/simple;
-	bh=Q/xcJ+iRdj0rrmryaUY02+UfmDoPLuPn1s6lQnZEVL0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GWP0k8VY1/wTzNBJQD0X2DnVWHTtxkAiXsEkLuFZ8aulMNQO4/CanINH2ZdWv+izKkMmVP78SB9ChSmamvU6BaQinYjW3SXRPKyPJ3f4/WDratlxAoD6ppBf7IgqwQwRnZNuDWlqhugdCEhNnHU5UX+UoYVqh2rfZU27guNd1Fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=A3ba63Y7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49MLZuoV017391;
-	Wed, 23 Oct 2024 06:53:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Q/xcJ+iRdj0rrmryaUY02+UfmDoPLuPn1s6lQnZEVL0=; b=A3ba63Y7IpxUpHdp
-	m2pX4rZ/yDW9Ud6BFxYh37iyUymih3YluvYR3lupNYQfxOU812tEyqnngwfPXZA8
-	xuuIb8SJnXnInx2Aox6XYsa4vnNpq2Ib3sio99FjgDy+ij0uNKQuHdaABDWm97ue
-	2iXo1sH/QdUY93BhuRn+HpVUI6uYyCI5NbjCRj3EQnV+DFDBNeao5wE6n+/0B5mZ
-	xT9pp9e9EqtxZw8N2HliRlXM3XYhmrCfr7AvNTsYSr5fm/Tx0zGmn9bY7/aJbb9S
-	aJQLzIao5OONdeph+VHyB0ArL4FCx7XKQwT3XzVcTqH67XWjNa+nAgehUJ6xDvdw
-	+uShXw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3w94s8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 06:53:38 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49N6racb031862
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 06:53:36 GMT
-Received: from [10.151.40.160] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Oct
- 2024 23:53:32 -0700
-Message-ID: <e7b27f57-efb2-45ea-bbe0-e5aeb90cbff9@quicinc.com>
-Date: Wed, 23 Oct 2024 12:23:29 +0530
+	s=arc-20240116; t=1729666588; c=relaxed/simple;
+	bh=4qN2s5zoqbBxdDlMfTyfRaNHDkUJuWvdiUUIKG6VDd0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tkbcRsID6+rI0IXOpz7hGzMkxWDDjsjfxo1i/WKfB5qoxzaMgMh8idRzIoNINW5ZlgDzg7X+Q8Vz1zQn9RwozHdYqKMetaSNXDLZvwenJQhan28ZEheO6DCchnHn7FMnJTXQipgXcP9F5yKLHhzyR/VYMXFG7LYHVi6aqMNaRBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YVE5WCO5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B394C4CEC6;
+	Wed, 23 Oct 2024 06:56:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729666588;
+	bh=4qN2s5zoqbBxdDlMfTyfRaNHDkUJuWvdiUUIKG6VDd0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YVE5WCO5DRwWkG+GV1aoV89agNuEAs2GEodGFVvE+MsGkHdnK5b/XaWcJ5fUxe3vu
+	 sPxulQMsTQWdRANFmgkaQGGeN3fVFRTwWFqtwsuYFZiptRaZAwoAzhAYgLbWdFXtno
+	 0eC2n3lEIVE+JI/Cs2Ct5QgtOt3/dPBN5+zPsPccvmT0KvrxAYYme92SocA+1/25OW
+	 lkjNaOCjkGJkrKAxr6KwESPq0uO/H/cXZi/LA7ao8rDu7SsqcHeCnc9d5GNtrSscFY
+	 PhCv245wOYnuTBn52IfMG60dxDDmSG5Q/tqSHKaNHzk0br0mIad0WjA4ZoWeL6vqlf
+	 x958z8MBz1CCA==
+Date: Wed, 23 Oct 2024 08:56:24 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org, 
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vladimir.oltean@nxp.com, claudiu.manoil@nxp.com, xiaoning.wang@nxp.com, Frank.Li@nxp.com, 
+	christophe.leroy@csgroup.eu, linux@armlinux.org.uk, bhelgaas@google.com, horms@kernel.org, 
+	imx@lists.linux.dev, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, alexander.stein@ew.tq-group.com
+Subject: Re: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for
+ NETC blocks control
+Message-ID: <xx4l4bs4iqmtgafs63ly2labvqzul2a7wkpyvxkbde257hfgs2@xgfs57rcdsk6>
+References: <20241022055223.382277-1-wei.fang@nxp.com>
+ <20241022055223.382277-4-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/6] dt-bindings: net: wireless: update required
- properties for ath12k PCI module
-To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20241023060352.605019-1-quic_rajkbhag@quicinc.com>
- <20241023060352.605019-2-quic_rajkbhag@quicinc.com>
- <87db3d68-ab1a-4cc4-9857-416de39cea0f@kernel.org>
- <e2c1ce1a-89af-4feb-a21a-9ca2578430e7@quicinc.com>
- <b97b8350-3925-40b0-8f87-f89df429a52a@kernel.org>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <b97b8350-3925-40b0-8f87-f89df429a52a@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DMGvM9A_59mrmXjV_SF-turbPRBobcxQ
-X-Proofpoint-ORIG-GUID: DMGvM9A_59mrmXjV_SF-turbPRBobcxQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- mlxscore=0 lowpriorityscore=0 phishscore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 mlxlogscore=680 suspectscore=0 bulkscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410230040
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241022055223.382277-4-wei.fang@nxp.com>
 
-On 10/23/2024 12:17 PM, Krzysztof Kozlowski wrote:
-> On 23/10/2024 08:45, Raj Kumar Bhagat wrote:
->> On 10/23/2024 12:05 PM, Krzysztof Kozlowski wrote:
->>> On 23/10/2024 08:03, Raj Kumar Bhagat wrote:
->>>> The current device-tree bindings for the Ath12K module list many
->>>> WCN7850-specific properties as required. However, these properties are
->>>> not applicable to other Ath12K devices.
->>>>
->>>> Hence, remove WCN7850-specific properties from the required section,
->>>> retaining only generic properties valid across all Ath12K devices.
->>>> WCN7850-specific properties will remain required based on the device's
->>>> compatible enum.
->>> Just not true. These apply to all devices described in this binding.
->>>
->>> NAK.
->>>
->>> Don't send patches for your downstream stuff.
->> This is not for downstream. This series is the per-requisite for ath12k
->> MLO support in upstream.
->>
->> In the subsequent patch [2/6] we are adding new device (QCN9274) in this
->> binding that do not require the WCN7850 specific properties.
->>
->> This is a refactoring patch for the next patch [2/6].
-> It's just wrong. Not true. At this point of patch there are no other
-> devices. Don't refactor uselessly introducing incorrect hardware
+On Tue, Oct 22, 2024 at 01:52:13PM +0800, Wei Fang wrote:
+> Add bindings for NXP NETC blocks control. Usually, NETC has 2 blocks of
+> 64KB registers, integrated endpoint register block (IERB) and privileged
+> register block (PRB). IERB is used for pre-boot initialization for all
+> NETC devices, such as ENETC, Timer, EMDIO and so on. And PRB controls
+> global reset and global error handling for NETC. Moreover, for the i.MX
+> platform, there is also a NETCMIX block for link configuration, such as
+> MII protocol, PCS protocol, etc.
+> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+> v2 changes:
+> 1. Rephrase the commit message.
+> 2. Change unevaluatedProperties to additionalProperties.
+> 3. Remove the useless lables from examples.
+> v3 changes:
+> 1. Remove the items from clocks and clock-names, add maxItems to clocks
+> and rename the clock.
+> v4 changes:
+> 1. Reorder the required properties.
+> 2. Add assigned-clocks, assigned-clock-parents and assigned-clock-rates.
+> ---
+>  .../bindings/net/nxp,netc-blk-ctrl.yaml       | 111 ++++++++++++++++++
+>  1 file changed, 111 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/nxp,netc-blk-ctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nxp,netc-blk-ctrl.yaml b/Documentation/devicetree/bindings/net/nxp,netc-blk-ctrl.yaml
+> new file mode 100644
+> index 000000000000..0b7fd2c5e0d8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nxp,netc-blk-ctrl.yaml
+> @@ -0,0 +1,111 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/nxp,netc-blk-ctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NETC Blocks Control
+> +
+> +description:
+> +  Usually, NETC has 2 blocks of 64KB registers, integrated endpoint register
+> +  block (IERB) and privileged register block (PRB). IERB is used for pre-boot
+> +  initialization for all NETC devices, such as ENETC, Timer, EMIDO and so on.
+> +  And PRB controls global reset and global error handling for NETC. Moreover,
+> +  for the i.MX platform, there is also a NETCMIX block for link configuration,
+> +  such as MII protocol, PCS protocol, etc.
+> +
+> +maintainers:
+> +  - Wei Fang <wei.fang@nxp.com>
+> +  - Clark Wang <xiaoning.wang@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,imx95-netc-blk-ctrl
+> +
+> +  reg:
+> +    minItems: 2
+> +    maxItems: 3
 
-Ok then, If we squash this patch with the next patch [2/6], that actually adding
-the new device, then this patch changes are valid right?
+You have one device, why this is flexible? Device either has exactly 2
+or exactly 3 IO spaces, not both depending on the context.
+
+> +
+> +  reg-names:
+> +    minItems: 2
+> +    items:
+> +      - const: ierb
+> +      - const: prb
+> +      - const: netcmix
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
+> +
+> +  ranges: true
+> +  assigned-clocks: true
+> +  assigned-clock-parents: true
+> +  assigned-clock-rates: true
+
+Drop these three.
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: ipg
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^pcie@[0-9a-f]+$":
+> +    $ref: /schemas/pci/host-generic-pci.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        netc-blk-ctrl@4cde0000 {
+
+system-controller? Don't use compatible as node name.
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Best regards,
+Krzysztof
+
 
