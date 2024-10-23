@@ -1,150 +1,81 @@
-Return-Path: <devicetree+bounces-114620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E27D9AC14B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:17:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25AB29AC12F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:14:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD7C61F22147
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:17:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4C2828115F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:14:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41E915746E;
-	Wed, 23 Oct 2024 08:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBAF71581F0;
+	Wed, 23 Oct 2024 08:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SI7EUNMh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from muminek.juszkiewicz.com.pl (muminek.juszkiewicz.com.pl [213.251.184.221])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91B414B953;
-	Wed, 23 Oct 2024 08:17:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.251.184.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF950157476;
+	Wed, 23 Oct 2024 08:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729671427; cv=none; b=UUlq+CWBR0GsbUzLzSUKpDQr1K5fhPtuVMh1ShWg0PVDECT7doYLosE8PxWW0AougkNbs7yeLgwk06kBeItHS7PYFokqXC/w+DqUaPHPfb8Rn4P1rrKoYPakNSRVH19BraZflbih1sngp5kpsYIGpMBrTM4ESqN/qdsm32Nd4HI=
+	t=1729671184; cv=none; b=dPv44tJgbFziUVheTqtFzkwbjZ88hHRTBsj1XscCrUir7IlmcAMzeI+Be3KxT5Q6Bw1XsOIyDZEmBiC224MqegagyxDpKfZFsQI85GhcHO4r2rmI8xFg26bnqCTJzPfliR0TePxs5K+ubz7kXFa8OQpppYI3HIVE4Qkh9l0Bxds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729671427; c=relaxed/simple;
-	bh=TJf3b8eqVwOuOIsErBaIed229CKsRWSMPf3lEQFcUfA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pfRwmuF/gSCjDe6c+FTa9kb648i0R5hmVp8VW3p/j0qsMdk0TSC59mukjsQD2PC77DFGIhJUgCnJCUeXxPjccbYaibB1ZNbVXCDXyOj8WOxUaFapM+wafN3U6nZdMq+XCPiPbVK5YP2SQpCAnIQYwZG00zcbWrijlQu3OzOOraA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org; spf=fail smtp.mailfrom=linaro.org; arc=none smtp.client-ip=213.251.184.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=linaro.org
-Received: from localhost (localhost [127.0.0.1])
-	by muminek.juszkiewicz.com.pl (Postfix) with ESMTP id 6D5AD261A20;
-	Wed, 23 Oct 2024 10:06:14 +0200 (CEST)
-X-Virus-Scanned: Debian amavis at juszkiewicz.com.pl
-Received: from muminek.juszkiewicz.com.pl ([127.0.0.1])
- by localhost (muminek.juszkiewicz.com.pl [127.0.0.1]) (amavis, port 10024)
- with ESMTP id DkM8llJTJZMF; Wed, 23 Oct 2024 10:06:12 +0200 (CEST)
-Received: from puchatek.lan (83.11.13.124.ipv4.supernova.orange.pl [83.11.13.124])
-	by muminek.juszkiewicz.com.pl (Postfix) with ESMTPSA id 117CF26059E;
-	Wed, 23 Oct 2024 10:06:10 +0200 (CEST)
-From: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
+	s=arc-20240116; t=1729671184; c=relaxed/simple;
+	bh=8J3YAEI5ymgvph4zK7ncOEzXxqUjFg6dl0aEFe5PEnY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fqpm9uDysi/Eoz+DcE9s2KKUjrmRE0WauOds8H6g4SMng+6//+mPgw6tyaC9fbgX1sKewKROFkP9W38yGWZHUSa4Kif8cnu/uHyPl0wzOA2awqoImYOz62Yh2AVnScWc3SwESHEAV3NwAeMrS2YXp5pLDhB7h7ueHs89SWqR+rY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SI7EUNMh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E512C4CEC6;
+	Wed, 23 Oct 2024 08:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729671184;
+	bh=8J3YAEI5ymgvph4zK7ncOEzXxqUjFg6dl0aEFe5PEnY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SI7EUNMhGFzmfewIPepR5qWd9AqqoNWb1gJzE8lSrd7sX0RyCPnhDis+fkKxor6B1
+	 M3r5erW4QFpCcFXPxd+xmWmz4Y4SqO5F7H4pcP1jFHgPFy/SCwonjO469JWO9O4tD7
+	 +uxd429C4/QiKy9eZNjeo8BwDvfwsmrFAUS1ONj6eaBvc3f1Om8ANnYEMVbv/Ziqxa
+	 QrrGQ4VnVFVnB/mUAjV2mCTMpopzE0/ruY4tsyOgCNzbJd9hA9IeCry3uEmHb3KNn8
+	 BkSY6p9pU1MEbrLKcqaHkSIUE/QwdrGYk2T+mmwsfJAWSzBZ4nH/oWAq7Jd9HkHqCI
+	 6g9mvcK6rbrOw==
+Date: Wed, 23 Oct 2024 10:13:00 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Enable HDMI0 on rk3588-nanopc-t6
-Date: Wed, 23 Oct 2024 10:06:04 +0200
-Message-ID: <20241023080605.623125-1-marcin.juszkiewicz@linaro.org>
-X-Mailer: git-send-email 2.47.0
+Subject: Re: [PATCH 1/2] dt-bindings: cache: qcom,llcc: document SAR2130P and
+ SAR1130P
+Message-ID: <u5gsyn22qm2syhkp3gdvvqasboq3jjybpkrsrxiisekqgpjbm3@gdawddb4kt7f>
+References: <20241019-sar2130p-llcc-v1-0-4e09063d04f2@linaro.org>
+ <20241019-sar2130p-llcc-v1-1-4e09063d04f2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241019-sar2130p-llcc-v1-1-4e09063d04f2@linaro.org>
 
-Add the necessary DT changes to enable HDMI0 on FriendlyELEC NanoPC-T6.
-Tested on LTS variant of the board but this part is the same on both.
+On Sat, Oct 19, 2024 at 07:26:41PM +0300, Dmitry Baryshkov wrote:
+> Describe the last level cache controller on the SAR2130P and SAR1130P
+> platforms. They have 2 banks and also a separate register set to control
+> scratchpad slice.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/cache/qcom,llcc.yaml       | 28 ++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
 
-Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
----
- .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-index fc131789b4c3..35d5d9f0c477 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include <dt-bindings/usb/pd.h>
- #include "rk3588.dtsi"
- 
-@@ -40,6 +41,17 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi0_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
- 	ir-receiver {
- 		compatible = "gpio-ir-receiver";
- 		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
-@@ -318,6 +330,26 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi0_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi0 {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0m2_xfer>;
-@@ -1039,3 +1071,18 @@ &usb_host1_ehci {
- &usb_host1_ohci {
- 	status = "okay";
- };
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
--- 
-2.47.0
+Best regards,
+Krzysztof
 
 
