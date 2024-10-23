@@ -1,178 +1,623 @@
-Return-Path: <devicetree+bounces-114441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D9249ABA5D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 02:08:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B1869ABA7E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 02:24:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD0B3284C1D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:08:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31AC81F2390B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3507610B;
-	Wed, 23 Oct 2024 00:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54166125D5;
+	Wed, 23 Oct 2024 00:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="iUM+Zv40"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fPU4Lup5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888FD2595
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 00:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDD8322B;
+	Wed, 23 Oct 2024 00:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729642087; cv=none; b=nobvmjiCgHVoylpLKna7UYBLsxj4janzZz/TV9wsUTUAy1RnTVOXcQcPffoMb3WUzC2iRtFNBHVpJWesY/cIumvTvHVae6sMp8fyTT0IXmO/MabY9vuacaZtOk4gYuZNptmw1N7q7+j6fdgMEDO08dMMd2s5++aUoPQGAUSKg4c=
+	t=1729643063; cv=none; b=A6/2Ms3lA+hkPedaJCXcEgL0Cd4qYRZ/DWAHR7wFOx/YA1oUawBG4l5N7DLUdDNPZNZ+pVs3ytZjSOxwEfna4U1REbdbds2paodRc+W28dlrcVD8Izk/V7Qhza9px9XOWc8/N3sG1SkXpzbi+ctgd0qgUip68rpG6+A7YBQS65M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729642087; c=relaxed/simple;
-	bh=UQAbXbkOAhARgZFMBQq796mjQiiEE/8JleG3+DUEYcE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QNw8y8Hrn1u6yG710R8+MgNwvRVdL/btO8kjUbrrK/4xgBlJq1bgUsv44CColWjVvjoDECifWsic5rzsNDT83ldOiwNVT2QA2C2dSilD69b5TVW7W3+bCMeY6wY17HvoatEibGI3MJ9yuj71kOZmo6FL9SyleTjGutumaoXGX7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=iUM+Zv40; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5cb6704ff6bso4090129a12.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:08:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1729642084; x=1730246884; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zvLG7lWTLy4qhLgf8MKM63Xm05WyCgQZoRXtbsojwUE=;
-        b=iUM+Zv40D3bWH2+jXOy6E3NmL9IfR0zJ3o4QA/fJK40jNDteNuloUFAWYy+OuZDMSP
-         hfpOnHIRjbM7w+0oL2k1HTXIn1FWy8ncZEdEQXTey9uXOjns720UG60yCY7kbpmUqx0C
-         rhLskCxwGGEA/NVuAWQphruLTudspKzwsRKdc47h42kyEV4VHKaCLsPvaqVDRQ3vIXFN
-         o51w2baJI/0sar000Y+u4y2+rKN39QmdgC4zYVluuG8YCQWDFR8A3s6RvLD9PvFnYavE
-         e2gTs+swiFWp/YgXm0YYWGwPRqrc5v1o4wV6egircf3wUoqcGaBFL5mu5DOvQu1woJiU
-         DK3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729642084; x=1730246884;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zvLG7lWTLy4qhLgf8MKM63Xm05WyCgQZoRXtbsojwUE=;
-        b=oyWyjVkPhW4Gdin2CnU5v6o2Y99ANk/kfCylZ763nwpJIio8Z7kO23vCgIUu4qcDjX
-         qiCXdx0Wf6Tl4oc3fM9avN+86/wT0oOCnN1onrvksvok4EHeQTuqgC7rhTp54tiDpxhG
-         yyZ/eqM/YR1qElrrU/dTwf016Z9Q/sffDrVAPCTJp92iwd8Wp4Ut7756YZxi8IusgXm3
-         Mm+PT+F8pg5G2r5HxgicvWXH8H/PnGo8WQS0dvT2FFmhDhK7//hurtHNqEXGopuw9JLF
-         ORGJT8I9WtPe5bGvltMEtxqvBHwRbfzceVAekWsdZo5M6Y0AQIfyTA+ch2AJRTJ6cUhB
-         lPow==
-X-Forwarded-Encrypted: i=1; AJvYcCU068FMt6GlcLekloVTWrH38B/lJinREqbu69Q3YEc92KQV/v4v8v/a5jcmKbrvosk8aueNzbyJoOKr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yykv4Xpw7K0DB/I6lcetXbq58zRpdG/CH1rRac2zIJXaou5JqiY
-	YP1nh3vRsr64RzuR3NwFOjAKCbp+IjHDPa+Vn/fkMnYtjxnSRK4F8vnX/f1MJQRPrU5kAQsD6rc
-	XvuU0f0VgTnG1pqgW0R/Nx879VBnjvwj1myM=
-X-Google-Smtp-Source: AGHT+IF+4QbJlbfikIMGRQjJfTJNafD6q9VcZNamqjkxqlolhdhjxD9HTiMah4nBFKijj+UgfLPf9UwJGerFp7fgjng=
-X-Received: by 2002:a17:907:3f1d:b0:a99:3c32:b538 with SMTP id
- a640c23a62f3a-a9abf94e684mr48837966b.42.1729642083589; Tue, 22 Oct 2024
- 17:08:03 -0700 (PDT)
+	s=arc-20240116; t=1729643063; c=relaxed/simple;
+	bh=z0Y2IIcC6PBwZWvhscUgWkulEILdVYJHyYVffqC3ygA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iEDyfxYXEakIbHcGTSLrg3ES88zQqEmEwQPmF1PrM595GJK5DufILfbbifoDgIXQI8jvHGJPxpLc+JJlbj8j8+XogZS8d9vaVJrwtQozqNKL7TX2mCNknHjpunoTGPucT9v+davxLSGWtHZdZZ99ZIlbP/nRRa8R8Zx1VWcmafE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fPU4Lup5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65E25C4CEC3;
+	Wed, 23 Oct 2024 00:24:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729643062;
+	bh=z0Y2IIcC6PBwZWvhscUgWkulEILdVYJHyYVffqC3ygA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fPU4Lup5r2rKX5U9dAGbnHZMsYcobqBlH3hyglkJ40qaZKT30PX0IM44gjq98lu4b
+	 EDgJtWFXLZvZPTArUbLydP8Ouug9rPTlWMybZay2oX/5YC99yurgq6L8Up/OImFpN1
+	 406Lxc8o2/s98/x5HY/HzFlyGJlTGkFzEypOV/xbdNf9+1MeflJhAf4lRpYnDgi63g
+	 EMIgoU69F9qcInlFXI2SaBZA32SaJuJhx4QEc3c7N+W+Xoi17x+YVoqQlwu4W+KC2p
+	 nejUSm2l1l3+fubJCW50pMTxKnAyXXC/e2TOAQQXJjI7fl7qk681w4g0Sdud1AIkht
+	 UpMiZwgRm4IJQ==
+Date: Tue, 22 Oct 2024 19:24:19 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>, 
+	Johan Hovold <johan@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: x1e80100-crd: Add Parade PS8830
+ related nodes
+Message-ID: <3i36qmnyzyonbzbsxgcdjwbshcl45vq75ocpth4redwrnqjkm5@wjev5ul7rs75>
+References: <20241022-x1e80100-ps8830-v3-0-68a95f351e99@linaro.org>
+ <20241022-x1e80100-ps8830-v3-3-68a95f351e99@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022092855.1609427-1-p.rosenberger@kunbus.com> <20241022092855.1609427-3-p.rosenberger@kunbus.com>
-In-Reply-To: <20241022092855.1609427-3-p.rosenberger@kunbus.com>
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date: Wed, 23 Oct 2024 09:07:37 +0900
-Message-ID: <CABMQnVLT10=4Y0yKaRj5=wnAr9abTsyPkXmB2XJPfK8CmR368w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] rtc: pcf2127: make battery switch-over configurable
-To: Philipp Rosenberger <p.rosenberger@kunbus.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241022-x1e80100-ps8830-v3-3-68a95f351e99@linaro.org>
 
-Hello,
+On Tue, Oct 22, 2024 at 01:26:56PM GMT, Abel Vesa wrote:
+> Add nodes for all 3 Parade PS8830 Type-C retimers found on Qualcomm
+> X Elite CRD board, along with all of their voltage regulators. These
+> retimers sit between the Type-C connectors and the PHYs, so describe the
+> pmic glink graph accordingly. On this board, these retimers might be left
+                               ^ Here would be a good point to split this hunk into two paragraphs.
 
-2024=E5=B9=B410=E6=9C=8822=E6=97=A5(=E7=81=AB) 18:29 Philipp Rosenberger <p=
-.rosenberger@kunbus.com>:
->
-> The battery switch-over function of the PCF2127, PCA2129 and PCF2129
-> have the opposite default behavior as the PCF2131. If the PCF2131 is
-> used as replacement for one of the others, the battery switch-over will
-> be disabled.
->
-> Add nxp,battery-switch-over as an optional devicetree property to configu=
-re
-> the battery switch-over, battery low detection and extra power fail
-> detection functions.
->
-> The property reflects the value of the PWRMNG bits of the Control_3
-> register.
->
-> Signed-off-by: Philipp Rosenberger <p.rosenberger@kunbus.com>
+> enabled and configured by the bootloader, so make sure the retimers don't
+> reset their configuration on driver probe.
+
+It would be nice if there was a hint here about how this statement
+manifest itself in the patch.
+
+
+Hint:
+https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+is a good read for how to structure ones commit message - with a problem
+description, then a technical description of the change (i.e. probably
+not something starting with the word "Add"...)
+
+Regards,
+Bjorn
+
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  drivers/rtc/rtc-pcf2127.c | 61 +++++++++++++++++++++++++++++----------
->  1 file changed, 46 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-> index 9c04c4e1a49c..812764b65b34 100644
-> --- a/drivers/rtc/rtc-pcf2127.c
-> +++ b/drivers/rtc/rtc-pcf2127.c
-> @@ -48,6 +48,7 @@
->  #define PCF2127_BIT_CTRL3_BLF                  BIT(2)
->  #define PCF2127_BIT_CTRL3_BF                   BIT(3)
->  #define PCF2127_BIT_CTRL3_BTSE                 BIT(4)
-> +#define PCF2127_BIT_CTRL3_PWRMNG_MASK          (BIT(5) | BIT(6) | BIT(7)=
-)
->  /* Time and date registers */
->  #define PCF2127_REG_TIME_BASE          0x03
->  #define PCF2127_BIT_SC_OSF                     BIT(7)
-> @@ -529,6 +530,49 @@ static int pcf2127_watchdog_init(struct device *dev,=
- struct pcf2127 *pcf2127)
->         return devm_watchdog_register_device(dev, &pcf2127->wdd);
->  }
->
-> +static int pcf2127_battery_init(struct device *dev, struct pcf2127 *pcf2=
-127)
-> +{
-> +       u8 val =3D 0xff;
-> +       int ret;
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 448 +++++++++++++++++++++++++++++-
+>  1 file changed, 442 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> index f5f2659690915f9ba50d15a27c54e3c0f504a14b..7cc45a5cd7eb7e70915d04ea7e181b56f693f768 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> @@ -99,7 +99,15 @@ port@1 {
+>  					reg = <1>;
+>  
+>  					pmic_glink_ss0_ss_in: endpoint {
+> -						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
+> +						remote-endpoint = <&retimer_ss0_ss_out>;
+> +					};
+> +				};
 > +
-> +       /*
-> +        * Disable battery low/switch-over timestamp and interrupts.
-> +        * Clear battery interrupt flags which can block new trigger even=
-ts.
-> +        * Note: This is the default chip behaviour but added to ensure
-> +        * correct tamper timestamp and interrupt function.
-> +        */
-> +       ret =3D regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL3,
-> +                                PCF2127_BIT_CTRL3_BTSE |
-> +                                PCF2127_BIT_CTRL3_BIE |
-> +                                PCF2127_BIT_CTRL3_BLIE, 0);
-> +       if (ret) {
-> +               dev_err(dev, "%s: interrupt config (ctrl3) failed\n",
-> +                       __func__);
-> +               return ret;
-> +       }
+> +				port@2 {
+> +					reg = <2>;
 > +
-> +       ret =3D device_property_read_u8(dev, "nxp,battery-switch-over", &=
-val);
-> +       if (ret < 0)
-> +               return 0;
+> +					pmic_glink_ss0_con_sbu_in: endpoint {
+> +						remote-endpoint = <&retimer_ss0_con_sbu_out>;
+>  					};
+>  				};
+>  			};
+> @@ -128,7 +136,15 @@ port@1 {
+>  					reg = <1>;
+>  
+>  					pmic_glink_ss1_ss_in: endpoint {
+> -						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+> +						remote-endpoint = <&retimer_ss1_ss_out>;
+> +					};
+> +				};
 > +
-> +       if (val > 7) {
-> +               dev_warn(dev,
-> +                        "%s: ignoring invalid value for nxp,battery-swit=
-ch-over: %u\n",
-> +                        __func__, val);
-> +               return 0;
-> +       };
-
-Please remove ';' .
-Otherwise
-
-Reviewed-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-
-Best regards,
-  Nobuhiro
-
-
---=20
-Nobuhiro Iwamatsu
-   iwamatsu at {nigauri.org / debian.org / kernel.org}
-   GPG ID: 32247FBB40AD1FA6
+> +				port@2 {
+> +					reg = <2>;
+> +
+> +					pmic_glink_ss1_con_sbu_in: endpoint {
+> +						remote-endpoint = <&retimer_ss1_con_sbu_out>;
+>  					};
+>  				};
+>  			};
+> @@ -157,7 +173,15 @@ port@1 {
+>  					reg = <1>;
+>  
+>  					pmic_glink_ss2_ss_in: endpoint {
+> -						remote-endpoint = <&usb_1_ss2_qmpphy_out>;
+> +						remote-endpoint = <&retimer_ss2_ss_out>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +
+> +					pmic_glink_ss2_con_sbu_in: endpoint {
+> +						remote-endpoint = <&retimer_ss2_con_sbu_out>;
+>  					};
+>  				};
+>  			};
+> @@ -291,6 +315,150 @@ vreg_nvme: regulator-nvme {
+>  		pinctrl-0 = <&nvme_reg_en>;
+>  	};
+>  
+> +	vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR0_1P15";
+> +		regulator-min-microvolt = <1150000>;
+> +		regulator-max-microvolt = <1150000>;
+> +
+> +		gpio = <&pmc8380_5_gpios 8 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr0_1p15_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vreg_rtmr0_1p8: regulator-rtmr0-1p8 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR0_1P8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +
+> +		gpio = <&pm8550ve_9_gpios 8 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr0_1p8_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vreg_rtmr0_3p3: regulator-rtmr0-3p3 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR0_3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&pm8550_gpios 11 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr0_3p3_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vreg_rtmr1_1p15: regulator-rtmr1-1p15 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR1_1P15";
+> +		regulator-min-microvolt = <1150000>;
+> +		regulator-max-microvolt = <1150000>;
+> +
+> +		gpio = <&tlmm 188 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr1_1p15_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vreg_rtmr1_1p8: regulator-rtmr1-1p8 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR1_1P8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +
+> +		gpio = <&tlmm 175 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr1_1p8_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vreg_rtmr1_3p3: regulator-rtmr1-3p3 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR1_3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 186 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr1_3p3_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vreg_rtmr2_1p15: regulator-rtmr2-1p15 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR2_1P15";
+> +		regulator-min-microvolt = <1150000>;
+> +		regulator-max-microvolt = <1150000>;
+> +
+> +		gpio = <&tlmm 189 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr2_1p15_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vreg_rtmr2_1p8: regulator-rtmr2-1p8 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR2_1P8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +
+> +		gpio = <&tlmm 126 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr2_1p8_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vreg_rtmr2_3p3: regulator-rtmr2-3p3 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_RTMR2_3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 187 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&rtmr2_3p3_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +	};
+> +
+>  	vph_pwr: regulator-vph-pwr {
+>  		compatible = "regulator-fixed";
+>  
+> @@ -709,6 +877,187 @@ keyboard@3a {
+>  	};
+>  };
+>  
+> +&i2c1 {
+> +	clock-frequency = <400000>;
+> +
+> +	status = "okay";
+> +
+> +	typec-mux@8 {
+> +		compatible = "parade,ps8830";
+> +		reg = <0x08>;
+> +
+> +		clocks = <&rpmhcc RPMH_RF_CLK5>;
+> +		clock-names = "xo";
+> +
+> +		vdd-supply = <&vreg_rtmr2_1p15>;
+> +		vdd33-supply = <&vreg_rtmr2_3p3>;
+> +		vdd33-cap-supply = <&vreg_rtmr2_3p3>;
+> +		vddar-supply = <&vreg_rtmr2_1p15>;
+> +		vddat-supply = <&vreg_rtmr2_1p15>;
+> +		vddio-supply = <&vreg_rtmr2_1p8>;
+> +
+> +		reset-gpios = <&tlmm 185 GPIO_ACTIVE_LOW>;
+> +
+> +		pinctrl-0 = <&rtmr2_default>;
+> +		pinctrl-names = "default";
+> +
+> +		orientation-switch;
+> +		retimer-switch;
+> +
+> +		ps8830,boot-on;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				retimer_ss2_ss_out: endpoint {
+> +					remote-endpoint = <&pmic_glink_ss2_ss_in>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				retimer_ss2_ss_in: endpoint {
+> +					remote-endpoint = <&usb_1_ss2_qmpphy_out>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +
+> +				retimer_ss2_con_sbu_out: endpoint {
+> +					remote-endpoint = <&pmic_glink_ss2_con_sbu_in>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	clock-frequency = <400000>;
+> +
+> +	status = "okay";
+> +
+> +	typec-mux@8 {
+> +		compatible = "parade,ps8830";
+> +		reg = <0x08>;
+> +
+> +		clocks = <&rpmhcc RPMH_RF_CLK3>;
+> +		clock-names = "xo";
+> +
+> +		vdd-supply = <&vreg_rtmr0_1p15>;
+> +		vdd33-supply = <&vreg_rtmr0_3p3>;
+> +		vdd33-cap-supply = <&vreg_rtmr0_3p3>;
+> +		vddar-supply = <&vreg_rtmr0_1p15>;
+> +		vddat-supply = <&vreg_rtmr0_1p15>;
+> +		vddio-supply = <&vreg_rtmr0_1p8>;
+> +
+> +		reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_LOW>;
+> +
+> +		pinctrl-0 = <&rtmr0_default>;
+> +		pinctrl-names = "default";
+> +
+> +		retimer-switch;
+> +		orientation-switch;
+> +
+> +		ps8830,boot-on;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				retimer_ss0_ss_out: endpoint {
+> +					remote-endpoint = <&pmic_glink_ss0_ss_in>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				retimer_ss0_ss_in: endpoint {
+> +					remote-endpoint = <&usb_1_ss0_qmpphy_out>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +
+> +				retimer_ss0_con_sbu_out: endpoint {
+> +					remote-endpoint = <&pmic_glink_ss0_con_sbu_in>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c7 {
+> +	clock-frequency = <400000>;
+> +
+> +	status = "okay";
+> +
+> +	typec-mux@8 {
+> +		compatible = "parade,ps8830";
+> +		reg = <0x8>;
+> +
+> +		clocks = <&rpmhcc RPMH_RF_CLK4>;
+> +		clock-names = "xo";
+> +
+> +		vdd-supply = <&vreg_rtmr1_1p15>;
+> +		vdd33-supply = <&vreg_rtmr1_3p3>;
+> +		vdd33-cap-supply = <&vreg_rtmr1_3p3>;
+> +		vddar-supply = <&vreg_rtmr1_1p15>;
+> +		vddat-supply = <&vreg_rtmr1_1p15>;
+> +		vddio-supply = <&vreg_rtmr1_1p8>;
+> +
+> +		reset-gpios = <&tlmm 176 GPIO_ACTIVE_LOW>;
+> +
+> +		pinctrl-0 = <&rtmr1_default>;
+> +		pinctrl-names = "default";
+> +
+> +		retimer-switch;
+> +		orientation-switch;
+> +
+> +		ps8830,boot-on;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				retimer_ss1_ss_out: endpoint {
+> +					remote-endpoint = <&pmic_glink_ss1_ss_in>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				retimer_ss1_ss_in: endpoint {
+> +					remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +
+> +				retimer_ss1_con_sbu_out: endpoint {
+> +					remote-endpoint = <&pmic_glink_ss1_con_sbu_in>;
+> +				};
+> +			};
+> +
+> +		};
+> +	};
+> +};
+> +
+>  &i2c8 {
+>  	clock-frequency = <400000>;
+>  
+> @@ -854,6 +1203,37 @@ &pcie6a_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pm8550_gpios {
+> +	rtmr0_default: rtmr0-reset-n-active-state {
+> +		pins = "gpio10";
+> +		function = "normal";
+> +		power-source = <1>; /* 1.8V */
+> +	};
+> +
+> +	rtmr0_3p3_reg_en: rtmr0-3p3-reg-en-state {
+> +		pins = "gpio11";
+> +		function = "normal";
+> +		power-source = <1>; /* 1.8V */
+> +	};
+> +};
+> +
+> +&pmc8380_5_gpios {
+> +	rtmr0_1p15_reg_en: rtmr0-1p15-reg-en-state {
+> +		pins = "gpio8";
+> +		function = "normal";
+> +		power-source = <1>; /* 1.8V */
+> +		bias-disable;
+> +	};
+> +};
+> +
+> +&pm8550ve_9_gpios {
+> +	rtmr0_1p8_reg_en: rtmr0-1p8-reg-en-state {
+> +		pins = "gpio8";
+> +		function = "normal";
+> +		power-source = <1>; /* 1.8V */
+> +	};
+> +};
+> +
+>  &pmc8380_3_gpios {
+>  	edp_bl_en: edp-bl-en-state {
+>  		pins = "gpio4";
+> @@ -1093,6 +1473,62 @@ wake-n-pins {
+>  		};
+>  	};
+>  
+> +	rtmr1_1p15_reg_en: rtmr1-1p15-reg-en-state {
+> +		pins = "gpio188";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	rtmr1_1p8_reg_en: rtmr1-1p8-reg-en-state {
+> +		pins = "gpio175";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	rtmr1_3p3_reg_en: rtmr1-3p3-reg-en-state {
+> +		pins = "gpio186";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	rtmr1_default: rtmr1-reset-n-active-state {
+> +		pins = "gpio176";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	rtmr2_1p15_reg_en: rtmr2-1p15-reg-en-state {
+> +		pins = "gpio189";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	rtmr2_1p8_reg_en: rtmr2-1p8-reg-en-state {
+> +		pins = "gpio126";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	rtmr2_3p3_reg_en: rtmr2-3p3-reg-en-state {
+> +		pins = "gpio187";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	rtmr2_default: rtmr2-reset-n-active-state {
+> +		pins = "gpio185";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+>  	tpad_default: tpad-default-state {
+>  		pins = "gpio3";
+>  		function = "gpio";
+> @@ -1160,7 +1596,7 @@ &usb_1_ss0_dwc3_hs {
+>  };
+>  
+>  &usb_1_ss0_qmpphy_out {
+> -	remote-endpoint = <&pmic_glink_ss0_ss_in>;
+> +	remote-endpoint = <&retimer_ss0_ss_in>;
+>  };
+>  
+>  &usb_1_ss1_hsphy {
+> @@ -1188,7 +1624,7 @@ &usb_1_ss1_dwc3_hs {
+>  };
+>  
+>  &usb_1_ss1_qmpphy_out {
+> -	remote-endpoint = <&pmic_glink_ss1_ss_in>;
+> +	remote-endpoint = <&retimer_ss1_ss_in>;
+>  };
+>  
+>  &usb_1_ss2_hsphy {
+> @@ -1216,5 +1652,5 @@ &usb_1_ss2_dwc3_hs {
+>  };
+>  
+>  &usb_1_ss2_qmpphy_out {
+> -	remote-endpoint = <&pmic_glink_ss2_ss_in>;
+> +	remote-endpoint = <&retimer_ss2_ss_in>;
+>  };
+> 
+> -- 
+> 2.34.1
+> 
 
