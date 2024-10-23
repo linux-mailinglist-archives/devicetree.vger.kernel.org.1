@@ -1,293 +1,361 @@
-Return-Path: <devicetree+bounces-114743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D679ACA8A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:50:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E935A9ACA94
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:52:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 285D41C248F1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:50:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3D27284FDE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 12:52:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22371AB50C;
-	Wed, 23 Oct 2024 12:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1807D1AB50C;
+	Wed, 23 Oct 2024 12:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="mOzvynGB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FyIFK84N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2074.outbound.protection.outlook.com [40.107.94.74])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42716130AF6;
-	Wed, 23 Oct 2024 12:50:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729687841; cv=fail; b=ENewKu6E4miQLnnT5cilL7kW5nu5aJBBJVTafv09MWn8TxRcXXiyiMEHxpWQDPzD/Vy2o/52EmhJ1EtlGp0s8B93rrEDIjLQlMwnlyqpd5m/F5F+E2VRb667nZK3r5n5DJ+bzkCkbFLiT/MT4nyv6s6HJr7IPmB5PzyuylxtJqQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729687841; c=relaxed/simple;
-	bh=vCRe4xo+h9wEkqYD6QPJ1466cl1exLe+qQ919fS+kkM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=FhjHkzO8iHSv/D7ME2upmiWral527aetXkZRfebr2CDaSy+yxsk6k1e1lbeHkTWXYY7Ghjd0XvDoau3ACOBmXAHHSCoYC6NwNUj1isa63vXbc3gOSavA+V9TzLA9jFxuzkaEMdeUPxzYJf1NrrJDU4vraLS2n3zFOLG4bi+TP7E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=mOzvynGB; arc=fail smtp.client-ip=40.107.94.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=acjCpcY5V1dMrztEwoqKbQhrngtkkQw7TV/SwDiambBHDbspBFtK0kHztAeTvciusLwkDEfiLJ+nIOFpOd6ooEPWFHJs4ThlWBspdB3nHSPn05xiWNhO2fzz0I4j7oIx3z45HxNTDuFptm2HCHDLVmB0XS3+WunVhV5Idl0LAqqTJD+RyFA7+GVbM+VGNHwwv4tsdYhf6LahPbcIJbvd44BTVPJUpmieMLFJMvy7xOisCsXBlvf96Md/yUFSra4V8GjW3pWJPo6Bre0AXpk+N85CZNujUluQ5zuH8rmAThXfeaFEOjnhDLFs21iUwQTrf2pgMS7EswXD/M9IZXJMhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p+h0hHzNR5jn8jjKGnXTgh87um3+JK4hADNO/mSEv0Q=;
- b=bZ5Wjo1XgoArNIeDg4IHQzxIutxeVndAYyQC2n3lal1J9DTsixRXEwFihozlheLwyitF3UVy0sQcBDclFFVjTyET+13DCcwtdR77mLvuRPTHHR23M2sXMOQTTa86QlyDfcTnwfZd3TNNFQ8TCWTaS1x6+AiZ0KpE0jPMEs2VfoGLKxXl4MzZGaFE216C0p1GpyQ4jT8iOD/X7Lxi6v4gvdcj47emgpZNB9Xc53U1Te6cMC3/t42kO2SnXZ+Zd3RVo2RqIl2et3UigmvwD8y8a6H3o0TItzawRHB3vpJHx37N7WlFSxiF0UJ9OxSc7OD8VZj6SUNMR/Tns64l9fasAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p+h0hHzNR5jn8jjKGnXTgh87um3+JK4hADNO/mSEv0Q=;
- b=mOzvynGBzauBY3uc1uos2JOvrywQj0EfziTAlu54k6a8ZqdtmjXwrxOKY0RyRHPUqksc29odb2wrrM4/Bjd13g8GmYsnujj/WbybNgYhz08mjCgYj+VVBW1+kjnvQyhc88FgwRwS1n0p3S1OLo3SijArPo6y7ZrWrxhfAIzFAh4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
- by SA1PR12MB8597.namprd12.prod.outlook.com (2603:10b6:806:251::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Wed, 23 Oct
- 2024 12:50:36 +0000
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30%6]) with mapi id 15.20.8069.027; Wed, 23 Oct 2024
- 12:50:36 +0000
-Message-ID: <c1d30ad1-868a-480a-9601-32106e8d2baf@amd.com>
-Date: Wed, 23 Oct 2024 14:50:15 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] arm64: dts: zynqmp: Add DMA for DP audio
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Vishal Sagar <vishal.sagar@amd.com>,
- Anatoliy Klymenko <anatoliy.klymenko@amd.com>,
- =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-References: <20240910-xilinx-dp-audio-v3-0-75560793f4d0@ideasonboard.com>
- <20240910-xilinx-dp-audio-v3-2-75560793f4d0@ideasonboard.com>
- <123f770f-ceb6-4c8c-a065-ace2e02dc65f@amd.com>
- <9f7f0fd7-bca9-4c92-9590-ce621dce7f5f@ideasonboard.com>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- 3i3l5DA=
-In-Reply-To: <9f7f0fd7-bca9-4c92-9590-ce621dce7f5f@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1P189CA0017.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:802:2a::30) To SJ2PR12MB8109.namprd12.prod.outlook.com
- (2603:10b6:a03:4f5::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263DC130AF6;
+	Wed, 23 Oct 2024 12:52:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729687950; cv=none; b=CHGRNF/QaNbol/ugao74estxv2QzgFUP3FCE6WOih6XxYmmho7puqXK4dAiApD6FPRPnPwIHuzoI4XkbZt6wSjlWixOlWXqw1TNvXr+vNsr0/Y3nZUZPHJspeojSRAFfOI9pMrcG3LXS240RxO6747ww5LMvy2lkOCUTocAcwF0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729687950; c=relaxed/simple;
+	bh=YSIS8mQYy60AaGZUUcr3xR3JW3QP0FULhpa5XV284IU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LOv2Ry0PY4eJCpU+qPAPOVM22svzrCQrKkf7dEb8UWika9SEAonBMZWRziGuUd6bu/NamjPzX6uOLMy/JaAc88dHVhZmijEw0nq66jIFxyhBQBEsJKDBDjPFAY9GL+/mk8i5S+jbisKswRI9HNDkvma61V+jQTAbHqR8DgnptvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FyIFK84N; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9abe139088so126864766b.1;
+        Wed, 23 Oct 2024 05:52:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729687944; x=1730292744; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NAxDZcUfCng+DUNFyrC/AKwhSj/73MfKXpYFHi+RSAU=;
+        b=FyIFK84N+yow8vyxiqZDYzQ+up2DdXp11D76bPUyCgY7HzSvhdyShTZLtMxQ6mGj8F
+         9FINVqTULLuG2FgojtoWLE6EDPvtrgiLR9DtAiqm9THGJtKm+ibD1Hgzv3BW7qKrlgYK
+         dUdnEY+RDoI0rzrC0wG4VpAnx/9fgntlyxwoervFC/vV2B5UVTuz5UxhB5etBDIIdi9C
+         GcNwFqd1l8cqgzHUGTlELT56RyxqXAVWsqqeDtvDWuta5Gky1lUsl2JdXkM5kMaKx9rV
+         SeFn8kV1zqbV1gsQQgW7WjX05fb0m5+99Baqni7ez7jGnf8tUPDWXwgDodyO5NY1YSLX
+         MgAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729687944; x=1730292744;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NAxDZcUfCng+DUNFyrC/AKwhSj/73MfKXpYFHi+RSAU=;
+        b=gnprQpib22kp4F5jwgDNDvJqQRApzzK7GULNpUlsFLyj7efCJf3e7tJY+H4Ertuy7K
+         0OldUdm4kIm+jOvTAoyCyQd4zVJFLoFoMZZsVlT3JUhqUNkLgrBd+qHwoxtVB2q+GVhR
+         OU5y5BDr7PgVSRxzYqDuti2weo1tQIoRxQUrHXLkcbF81ZjZZhShJX+PIBYNy3QTvtQr
+         rOik6XOsL5CG7aXSstG6uYhNGrMdowciXJ4Kq1Cpvx71CbsUONlPgfiW6YRRa14uxr6F
+         Ve2eDhqhMHAVY8B0aSVNB06vkFpwEl6jNkwgFrmRG3ZNbCNyAFzYMhLSIM+GcWhT3s6v
+         yB3g==
+X-Forwarded-Encrypted: i=1; AJvYcCU1QQ3YDSzvh3Wx+Jp0faXePZCxVzE7iUwtSUIl3pPGx73e90h05VbxH57OosJa2OsVvlxUTrElTs4n@vger.kernel.org, AJvYcCUDLLJ6Xrs3U7MsFPrw/EAqR0BNTcLW/qOabDc4x7Ncr24YDvJFmzNaC9ub29ajM0tlX1Wn09+GDh+o@vger.kernel.org, AJvYcCUZLOcQgjtUNuhl9wERxRECBA26+ohvKADsBJbdYpJIZKTPtw16aX7UZj++dVdIkMR8aSyOqfBprRRFsBTt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3P8b6Az/1M7tEGvA2VvKojsFwnuHebzQipCaeKS5gbfgjGfzs
+	vuyGaBUV0QgZJoiLz96hrRZXBiWxP9zhVwrGIlNKVEEI1LFO2pvx8uYl0QS1
+X-Google-Smtp-Source: AGHT+IF5yk0HhZ+ETbtk4xhn2J5Q7HSseKucesx9u2mYjnY2Mo1aQgigJvj7xES/VmMZ+z5BYEXW+A==
+X-Received: by 2002:a17:906:7308:b0:a99:fb10:1269 with SMTP id a640c23a62f3a-a9abf873267mr218973266b.17.1729687944005;
+        Wed, 23 Oct 2024 05:52:24 -0700 (PDT)
+Received: from debian ([2a00:79c0:624:c500:303:6c5b:4b07:6715])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a91559a1csm475695566b.125.2024.10.23.05.52.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 05:52:23 -0700 (PDT)
+Date: Wed, 23 Oct 2024 14:52:21 +0200
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+Message-ID: <20241023125221.GA197308@debian>
+References: <20240927125745.38367-1-dima.fedrau@gmail.com>
+ <20240927125745.38367-3-dima.fedrau@gmail.com>
+ <oppdnsda4tqjcpsb26j5ew62t4bkkmtxuu7e2fpinnazubk5ky@tmz76o5xdrlj>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|SA1PR12MB8597:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2bf9c49a-bfe8-4fbd-d0ff-08dcf3614a0c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|366016|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?L0pjZDNVMVJ3bWhSNFdTVmxYaHpRQ3dRaEdZVllPTFJiRS9uU0dkaUIxb09w?=
- =?utf-8?B?bGlQNCtDaE9IeUR4OTBtOGJBTzNWVzYwUHdjNFNGVFRoOVc4Wk9Sd2pHcSsw?=
- =?utf-8?B?Z1F5S1U4bG1TUVRFZ1ZlL2xrUEtOekhCdkQ5dXBIOFlHQUgrWVU3bEhhQks1?=
- =?utf-8?B?OFp5Wm5mOHVjRGJna2VqZ1FWb2JNLzFCbTdzQjg4VWp0TzRJY3RjN2w5M2Vn?=
- =?utf-8?B?U3RYNmZLQzIwTkg1c1lFYVJ2SjVMeVJMczZzNCsvVTcxNkRLOXZEZUZwVWJk?=
- =?utf-8?B?NndCOTY4c1pwYVVvd3Q4NUc2RVRJT2hxT2I5bnlWWHp4eTAzQS9Mek84a2pM?=
- =?utf-8?B?MkpJNnp5ZGpZMWd1dGdJNk9CQzBscmw4QVR4WVZSZjhWSlhWRlB3QkRBTHZJ?=
- =?utf-8?B?cVJLZ3VVWkRjbERxS1JSYjhWTlpYSjJxdFIzZ0s1RUovaTRGZ3FzQVEyUGdy?=
- =?utf-8?B?cjJmeEw3Ui9FanFqVEc0Y3dqUXdTOFJTSmVpN2c4ZjFoU1QrZzBjZnhHdWpt?=
- =?utf-8?B?YWIxU09JSTlKVGNicnhRN0dCZnh5Rmd1RThsU291TGxmZ1JCV1JUQU9teXVx?=
- =?utf-8?B?dldqS2dzQnkwa1RGbEpGcG9QYWhXOHlCNmRnRzV6cVRlUU5Td1pJelpKYnoy?=
- =?utf-8?B?S1FqWUlKRzFVS3RVbG1mbTErTGgwdnpXay9WRlF5RlJRVDI1TE5EQjVER1NO?=
- =?utf-8?B?QTRkMk9nanYwdW1nL0tyNWxzQ3BvaFdyUm52SHA0SE9LL1kzVVVjeGoyZEVl?=
- =?utf-8?B?L1ZxcHNCbnlENXBQS0cvTGdHRC9LdnNPMElvV0R2ckdQZUtMZVlvRzdiWmw3?=
- =?utf-8?B?QTFYOHJuNjMwdUcyOU9ZdzUrWnN2U0psajRhSEJOc0d2emZFemlKdnNjbE84?=
- =?utf-8?B?OSt2MXhaN29DS2VOYjU4bXY1V1VuemNnTTBNK3hZMS92ZENJSGFOa3ZNRXhF?=
- =?utf-8?B?U0tod3BKY3gzU01vVmJSYUxPRm50anlRdlhyUkdwZksrM09XVk9Ga3ZoQ051?=
- =?utf-8?B?VjZld2oydXJlMERqUUs4WFViU0lkRnJJejVDSzlNbXJqaUEvbG1zMTJoeUlF?=
- =?utf-8?B?cndUZENncHk3cGFIWVVwUytaaXk2WjAyR1RXV2ZwZDNRbDRuZWE5RVYrTXNz?=
- =?utf-8?B?TGNWTndPdVo2eEhvNFJiSWZqRWp2eWhpVWRSczFDUUprK3ZTNTg3OWg3Y0lO?=
- =?utf-8?B?MXo2bFAxZkpmaCtNWENYRlZ0MDRhWTc0cVJZZmszaDRuT2F2YzFCR2FzZkF2?=
- =?utf-8?B?TWVycnpSSjg1SzlVY29lbTZ1LzBQWk1hUzlWclhKKzlUV3dzOTJEOHJ1UkV5?=
- =?utf-8?B?eGFCakM1TURYYUJ3QmkyNUR2WlhHN2gxUGFuSDBuNFVMZkluTGJMMVpWdEhq?=
- =?utf-8?B?QlNEay9GNGZVUlprWmJ1aGRsTVB4bkJsU1hWTzZPN09MVThieUxQNk5sWEVK?=
- =?utf-8?B?U0NZMUZ2WTZraGdReTFaTjF3bWp4MWhwZUI2ZmZVZlN3VUdxcHlNZEVZa1ZQ?=
- =?utf-8?B?OFNOeTJiekNEelpvZWZvbFEvTUd5UmI3NUZualhuRnRuWkhmR1UxUkIwTjJr?=
- =?utf-8?B?SEl0NExveU1KOFFrMWcwL0lKSEhpSGdURUxEd3grL3JZemtmOS83bHc5YkJZ?=
- =?utf-8?B?SFIvM3FpYVlZdXViK3pGUzh0RktRZHdhT1RMdksxMUxTb1MzWkNyY3F0RDh3?=
- =?utf-8?B?ZTRmNU1BakhVbjk2SEdFeUZoUENqVmlZVXFVOUtWTEVkQnhMUTdTUnNPMGhO?=
- =?utf-8?B?enRyaHY4T3NERHd3ZGJxSG9OM25NNDZjR0pWWGx0RFZHY3NqYUkxa2dCOFpT?=
- =?utf-8?Q?iEM1rHnPJwu/PTqwBai1XjBE5qwqt/ejsAzXQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UEtaRjVQT1hkcVhkZzhzUjVzeG1Fa2I1UTl0Q1F4TjlvVjY0Z1FYd25IcDZZ?=
- =?utf-8?B?ZjlLRkFWSHEwV3drK2hxTDc5STZXYkVFSFRKaUJwdHd4aHpzQi9acHN6eFQ1?=
- =?utf-8?B?K1ZZOHRrNWFuQTF2aU1lbE9jVmpwdEtPZVh0Zyt5NUxZa1JCdnVTQzFiWThH?=
- =?utf-8?B?MXA5N25hWjV3L05sa09pQTJ2T01abUhVWFNuaUR0dll3YWFGQlNGYk0wenNo?=
- =?utf-8?B?S2NMMkpTUkNsS0Y0bU9IczRyR2FaejVaRW0wdlMyRkIxd2FWNHpLV1JUS1VH?=
- =?utf-8?B?enBrckVHdkNvTzZmSHJMZ1hwZmhBU2lmcGtyZVhIWTRRMkNaaWVYdWh6eVdH?=
- =?utf-8?B?SGludkMwYlRQUUdsZXN5VmdBMXczWHJ0OXlHcW9tMDBBTUp2TmxBdU1UdjJL?=
- =?utf-8?B?ZXo0WXdZMVU4R3dQWjFyU0Y0TmtseW9JNFMwcHZyVW01ZEhvWXdic0FwTmJB?=
- =?utf-8?B?eTIvZUFqOWZnQXM4bXpoWTJqQWFnWVZ2bnhtN3paWFA5eGkrT2RUYldwSDFL?=
- =?utf-8?B?d25DV0d4aEJQcGh2RG44ZTI4REhJc2lkTWJhNXlWbGQrRVV2c1VYNVREdk83?=
- =?utf-8?B?NEQwcVJRNThTNFpKNk9CR0EvMDB5K1pudlh1Nys4NFpGMkh0ODROakVpT1Zr?=
- =?utf-8?B?b21kR0FDcUlnL3UvZlV4VXA2dTR5aFBmcjR6dE9GaHJ4c3JDSmRINi80cXlu?=
- =?utf-8?B?dk9aSlJUZWVvWHgrRnZjQjdISVdsRE9JMlNIRXFaMjRKZmcvTE9Cajl0a2p0?=
- =?utf-8?B?Y0taU21xN1VQUzRub0pQL210bzNodGNkVFdiaXYrSjlPRkdCNzZnVTlsN0hU?=
- =?utf-8?B?bWUzdWx4S25HY0lBanErelBuLzZ2MjdzelNFN2U4MnFrNUVwNTVDOUFUbFFt?=
- =?utf-8?B?RCtCU2hCK0JLcTZleUlxbXB5K3hVSUlwS3JUZmx0NSt2Lzd1bUhNdTE5Q0dm?=
- =?utf-8?B?Z3hheFpLK3ZXTm5NOHBOL3JQakFqUjVqQTFnNkpmbmsvMXZKL2gzNUUxWE1a?=
- =?utf-8?B?SlVPdktPbElHTjRaQzVLdjRlTlFMRlA3UEI4bng2NVM0aUlHUDFvQ2pRZnBB?=
- =?utf-8?B?M25DK1VtcmxVYXdOaEhDNWVaT3FNT2FhbldSVlpZdEhucHZsbUJvSmFsdkta?=
- =?utf-8?B?OFAzR1UvSEEwVmhucS9zV3ZZVU5nMHkwMzVDczFTTWRTSHk3eHk1MmJSRk4z?=
- =?utf-8?B?V3hscU9ad0tpdTd6RWRtaFpacFV5SmRFaHJ1TFFEZFN5VTM1VVRiaVZPd0ho?=
- =?utf-8?B?bko2RnV4dWVsSkR5bURLWDdHM2F4ZUZDOEFKQnlpRnVZb3N5Q1FkVzdQWVA3?=
- =?utf-8?B?ekJTSzdZem9tc1Y4a2thbTZTanYrbnh2MytVUTUxZys4WGJSRE42WDlqdnpK?=
- =?utf-8?B?TkcvdjdlUUVHeWwwek5GWENscm15TDZEa3lzY3FIM0hZNWYwUmNvaVJaVHRi?=
- =?utf-8?B?S0x2Qzg2aVE0a0xjOXppbCtDM2w5b1czNW4rbm43VjI3bFAxNGxPdjc4djJv?=
- =?utf-8?B?TCtSdUJyMDFQZlNtV2JyVUtjNjlBMlZ2SGt0VHZqNU9ZMlNNTkk1UWZxWnR5?=
- =?utf-8?B?YUVkSjdtOEg0UmQ4VzNLbDhlWXpVSmsvVktrZS9XUk5IN0ZoN3pRWUVDR01h?=
- =?utf-8?B?VStvcHg4VmhtbmhYRHR0eXdMZFI2UHFsUXQ5UmphazFycXBRZnhMNzdwK0Jz?=
- =?utf-8?B?V0xBS0RBeU5aaGtQTG10YUNBQThGOWZNeUVSMjRYTlZYUWFlYXhzUGtWcU9l?=
- =?utf-8?B?MU52TVhqc2hNZnBZSWV0TmpUUFVwWFdJNkZwQ1JvM0MyeC9jZnQ4aWxxY0pn?=
- =?utf-8?B?aE5zUzhKNENVYStDK3VjTXJsc2NvbE9mWjJ2UWhNWXJWa3VaUnhNS3NyYVlC?=
- =?utf-8?B?Wk1PTm0vTURLTDM2LzBUVUc1SkZOVVMrc28zMm9ueXpXK2ZPejdxeXZuQmJF?=
- =?utf-8?B?VElML1lDTDVEWXNDQU9hUGdFOGRIcEpmQWFMeTBtc1VKdWx3c2NnbGJNSUZ1?=
- =?utf-8?B?QVg4R1BXdklqc2JNcEUzcytrYkxvODN2aDdoa0hXVUFkMXNZdWpZNkxkb1Y5?=
- =?utf-8?B?UWdENWpUQTRkd2dFWnYrelpydmM0Y0IvMHNod2VrbWpIUzBpZTBKRkhRUVhn?=
- =?utf-8?Q?HMJPJGBKVCigvsrkiq7t+9tZW?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2bf9c49a-bfe8-4fbd-d0ff-08dcf3614a0c
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 12:50:36.2372
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sfo7EvvNJAHyh663D4vSz+BAObJTjcyMO9uAPb8fgjlr2ywgmgj087kMc0AQ0xf4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8597
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <oppdnsda4tqjcpsb26j5ew62t4bkkmtxuu7e2fpinnazubk5ky@tmz76o5xdrlj>
 
-Hi Tomi,
+Hello Uwe,
 
-On 10/23/24 14:00, Tomi Valkeinen wrote:
-> Hi Michal,
+Am Tue, Oct 22, 2024 at 09:54:50AM +0200 schrieb Uwe Kleine-König:
+
+[...]
+> > +
+> > +#define MC33XS2410_MIN_PERIOD		488282
+> > +#define MC33XS2410_MAX_PERIOD_STEP0	2000000000
+> > +/* x in { 0 ... 3 } */
+> > +#define MC33XS2410_MAX_PERIOD_STEP(x)	(MC33XS2410_MAX_PERIOD_STEP0 >> (2 * x))
 > 
-> On 08/10/2024 11:22, Michal Simek wrote:
->>
->>
->> On 9/10/24 13:19, Tomi Valkeinen wrote:
->>> Add the two DMA channels used for the DisplayPort audio to the
->>> zynqmp_dpsub node.
->>>
->>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->>> ---
->>>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 7 +++++--
->>>   1 file changed, 5 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/ dts/ 
->>> xilinx/zynqmp.dtsi
->>> index b1b31dcf6291..673ca8422e6b 100644
->>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>> @@ -1207,11 +1207,14 @@ zynqmp_dpsub: display@fd4a0000 {
->>>                         "dp_vtc_pixel_clk_in";
->>>               power-domains = <&zynqmp_firmware PD_DP>;
->>>               resets = <&zynqmp_reset ZYNQMP_RESET_DP>;
->>> -            dma-names = "vid0", "vid1", "vid2", "gfx0";
->>> +            dma-names = "vid0", "vid1", "vid2", "gfx0",
->>> +                    "aud0", "aud1";
->>>               dmas = <&zynqmp_dpdma ZYNQMP_DPDMA_VIDEO0>,
->>>                      <&zynqmp_dpdma ZYNQMP_DPDMA_VIDEO1>,
->>>                      <&zynqmp_dpdma ZYNQMP_DPDMA_VIDEO2>,
->>> -                   <&zynqmp_dpdma ZYNQMP_DPDMA_GRAPHICS>;
->>> +                   <&zynqmp_dpdma ZYNQMP_DPDMA_GRAPHICS>,
->>> +                   <&zynqmp_dpdma ZYNQMP_DPDMA_AUDIO0>,
->>> +                   <&zynqmp_dpdma ZYNQMP_DPDMA_AUDIO1>;
->>>               ports {
->>>                   #address-cells = <1>;
->>>
->>
->> Acked-by: Michal Simek <michal.simek@amd.com>
->>
->> If you want me to take this patch via my tree please let me know.
+> Nitpick: These register definition become easier to parse for a human if
+> you indent the RHS of register fields one tab further and add an empty
+> line between the definitions for different registers.
 > 
-> Thanks. I've sent a v4, but no changes to this patch.
+
+Adding an empty line seems reasonable to me but the additional tab doesn't
+help me to improve readability.
+
+> MC33XS2410_PWM_DC1 is only used once, I'd hard-code it into the
+> definition of MC33XS2410_PWM_DC.
 > 
-> I'm not sure what is the custom with xilinx dts changes. With the other 
-> platforms dts changes have always gone through a single tree, not via driver trees.
+
+Ok. Should I do the same for MC33XS2410_PWM_FREQ1 and
+MC33XS2410_MAX_PERIOD_STEP0 ?
+
+> The register fields [7:4] in MC33XS2410_PWM_CTRL3 are called PWM_ON4 ..
+> PWM_ON1. So your x in { 0 ... 3 } is wrong. (Luckily, having some x
+> range over { 0 ... 3 } and others orver { 1 ... 4 } is prone to error
+> and confusion.)
 > 
-> I don't have a preference either way, so if there's no clear rule here, I can 
-> take this one with the other patches.
 
-I have seen it both ways. If this is done with patches it is easier because I 
-can't really send it before dt binding patch reaches upstream. It means there is 
-going to be delay.
-Normally it should be enough that I gave you my tag that you can also change the 
-DT files too.
+Will fix it. Should I do the same for MC33XS2410_PWM_CTRL1_POL_INV ?
 
-Thanks,
-Michal
+> Also I'd drop all _MASK suffixes.
+> 
 
+Ok.
+
+> For MC33XS2410_MAX_PERIOD_STEP maybe use a different variable name than
+> for the others. For the register definitions the range is over hwpwm
+> (which might be a good name there?), for MC33XS2410_MAX_PERIOD_STEP it's
+> about MC33XS2410_PWM_FREQ_STEP.
+> 
+
+What about MC33XS2410_PWM_MAX_PERIOD(x) ?
+
+> > +#define MC33XS2410_MAX_TRANSFERS	5
+> > +#define MC33XS2410_WORD_LEN		2
+> > +
+> > +struct mc33xs2410_pwm {
+> > +	struct spi_device *spi;
+> > +};
+> > +
+> > +static inline struct mc33xs2410_pwm *mc33xs2410_from_chip(struct pwm_chip *chip)
+> > +{
+> > +	return pwmchip_get_drvdata(chip);
+> > +}
+> > +
+> > +static int mc33xs2410_xfer_regs(struct spi_device *spi, bool read, u8 *reg,
+> > +				u16 *val, bool *ctrl, int len)
+> 
+> Should len better be unsigned?
+> 
+
+I switch to unsigned.
+
+> Unless I missed something all ctrl[x] are always identical. If so
+> represent that by a single bool.
+> 
+
+Yes, they are identical. I added the crtl[x] to be able read from ctrl and
+diag registers. I will change it so it is represented by a single bool, if
+the feature is needed in the future I can still add it.
+
+> > +{
+> > +	struct spi_transfer t[MC33XS2410_MAX_TRANSFERS] = { { 0 } };
+> > +	u8 tx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
+> > +	u8 rx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
+> > +	int i, ret, reg_i, val_i;
+> > +
+> > +	if (!len)
+> > +		return 0;
+> > +
+> > +	if (read)
+> > +		len++;
+> > +
+> > +	if (len > MC33XS2410_MAX_TRANSFERS)
+> > +		return -EINVAL;
+> > +
+> > +	for (i = 0; i < len; i++) {
+> > +		reg_i = i * MC33XS2410_WORD_LEN;
+> > +		val_i = reg_i + 1;
+> > +		if (read) {
+> > +			if (i < len - 1) {
+> > +				tx[reg_i] = reg[i];
+> > +				tx[val_i] = ctrl[i] ? MC33XS2410_RD_CTRL : 0;
+> > +				t[i].tx_buf = &tx[reg_i];
+> > +			}
+> > +
+> > +			if (i > 0)
+> > +				t[i].rx_buf = &rx[reg_i - MC33XS2410_WORD_LEN];
+> > +		} else {
+> > +			tx[reg_i] = reg[i] | MC33XS2410_WR;
+> > +			tx[val_i] = val[i];
+> > +			t[i].tx_buf = &tx[reg_i];
+> > +		}
+> > +
+> > +		t[i].len = MC33XS2410_WORD_LEN;
+> > +		t[i].cs_change = 1;
+> 
+> Not sure if MC33XS2410_WORD_LEN really improves readability here.
+> 
+
+It is used throughout in the function and improves readability overall,
+maybe not here but for consistency I would stick to it.
+
+> Why is this done using $len transfers, wouldn't a single one do (and
+> maybe be more performant and not rely on a spi controller that supports
+> cs_change)?
+> 
+
+Without cs_change after every 16 bit, requests aren't processed by the
+device. Reading/writing from/to device fails. The SPI controller therefore
+must support cs_change. Single transfer is not possible because of the
+cs_change after every 16bit.
+
+> > +	}
+> > +
+> > +	t[len - 1].cs_change = 0;
+> > +
+> > +	ret = spi_sync_transfer(spi, &t[0], len);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	if (read) {
+> > +		for (i = 0; i < len - 1; i++) {
+> > +			reg_i = i * MC33XS2410_WORD_LEN;
+> > +			val[i] = FIELD_GET(MC33XS2410_RD_DATA_MASK,
+> > +					   get_unaligned_be16(&rx[reg_i]));
+> > +		}
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > [...]
+> > +static
+> > +int mc33xs2410_read_reg(struct spi_device *spi, u8 reg, u16 *val, bool ctrl)
+> 
+> My personal opinion: Better break the line in the argument list or not
+> at all. Having a "static" on its own line looks ugly.
+> 
+Ok.
+
+> > +{
+> > +	return mc33xs2410_read_regs(spi, &reg, &ctrl, val, 1);
+> > +}
+> > [...]
+> > +static u64 mc33xs2410_pwm_get_period(u8 reg)
+> > +{
+> > [...]
+> > +	/* Convert frequency to period, considering the doubled frequency. */
+> > +	return DIV_ROUND_UP((u32)(2 * NSEC_PER_SEC), freq);
+> 
+> That u32 cast isn't needed.
+>
+Will fix it.
+
+> > +}
+> > [...]
+> > +static int mc33xs2410_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> > +				const struct pwm_state *state)
+> > +{
+> > [...]
+> > +	/* frequency */
+> > +	val[0] = mc33xs2410_pwm_get_freq(period);
+> > +	/* Continue calculations with the possibly truncated period */
+> > +	period = mc33xs2410_pwm_get_period(val[0]);
+> > +
+> > +	/* duty cycle */
+> > +	duty_cycle = min(period, state->duty_cycle);
+> > +	rel_dc = mc33xs2410_pwm_get_relative_duty_cycle(period, duty_cycle);
+> > +	val[1] = rel_dc < 0 ? 0 : rel_dc;
+> 
+> Handling of the duty cycle is correct here, but misleading. I already
+> added a comment here that using val[1] = 0 if rel_dc < 0 is wrong and
+> just deleted it again after I saw (rel_dc >= 0) being used determining
+> the value for MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm). An explicit if block
+> would make this more obvious.
+>
+
+Will add an explicit if block, should I do the same for the value for
+MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm) ?
+
+> mc33xs2410_pwm_get_relative_duty_cycle() is simple enough and only used
+> once that I'd unroll it here.
+> 
+
+You are right, will fix it.
+
+> > +	/* polarity */
+> > +	mask = MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm);
+> > +	val[2] = (state->polarity == PWM_POLARITY_INVERSED) ?
+> > +		 (val[2] | mask) : (val[2] & ~mask);
+> > +
+> > +	/* enable output */
+> > +	mask = MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm);
+> > +	val[3] = (state->enabled && rel_dc >= 0) ? (val[3] | mask) :
+> > +						   (val[3] & ~mask);
+> > +
+> > +	return mc33xs2410_write_regs(spi, reg, val, 4);
+> > +}
+> > +
+> > +static int mc33xs2410_pwm_get_state(struct pwm_chip *chip,
+> > +				    struct pwm_device *pwm,
+> > +				    struct pwm_state *state)
+> > +{
+> > [...]
+> > +	state->period = mc33xs2410_pwm_get_period(val[0]);
+> > +	state->polarity = (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm)) ?
+> > +			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
+> > +	state->enabled = !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm));
+> > +	mc33xs2410_pwm_set_relative_duty_cycle(state, val[1]);
+> 
+> No need to set state->duty_cycle = 0 if state->enabled is false. This is
+> another function I suggest to unroll as it hides more than it abstracts.
+> 
+
+Function can be unrolled, but the check for state->enabled is needed. The
+device is unable to generate a 0% duty cycle, so it is turned off to
+generate a 0% duty cylce.
+
+> > +	return 0;
+> > +}
+> > +
+> > [...]
+> > +static int mc33xs2410_probe(struct spi_device *spi)
+> > +{
+> > [...]
+> > +	/* Transition to normal mode */
+> > +	ret = mc33xs2410_modify_reg(spi, MC33XS2410_GLB_CTRL,
+> > +				    MC33XS2410_GLB_CTRL_MODE,
+> > +				    MC33XS2410_GLB_CTRL_MODE_NORMAL);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(dev, ret,
+> > +				     "Failed to transition to normal mode\n");
+> 
+> What is the effect of this register write if the PWM was already setup
+> by the bootloader?
+> 
+
+When its setup is done in the bootloader and the watchdog is disabled in
+the bootloader it shouldn't have any impact.
+
+> > +
+> > +	ret = devm_pwmchip_add(dev, chip);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(dev, ret, "Failed to add pwm chip\n");
+> > +
+> > +	return 0;
+> > +}
+> 
+> Best regards
+> Uwe
+
+Best regards
+Dimitri
 
