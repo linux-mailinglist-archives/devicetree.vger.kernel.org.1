@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-114490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 034AD9ABCD1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:19:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C5B9ABCD5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:19:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3129A1C22CA8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 04:19:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 641A91F24147
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 04:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32FB1155A59;
-	Wed, 23 Oct 2024 04:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7E6156669;
+	Wed, 23 Oct 2024 04:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kAXyaE1K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dQcBXN8E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07FB5155A30;
-	Wed, 23 Oct 2024 04:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CFA156646;
+	Wed, 23 Oct 2024 04:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729656986; cv=none; b=Mw6GEbwKgCaMm4oVuLEzXZnRHvkNwfaa6mOElWe1H6bjdDPtI7cYts5pqv6mgkGHmQtVJLigtG541s96avR0lAVv0BhS6dGtGUGxKL+lZ9IjrrtaPm/3U1rQOpw4bKTLuRYSLa4qkHb09E1z6Q6ll26Lm4EeBycQwm2+o/JJYT0=
+	t=1729656987; cv=none; b=qyjnzcUjU/fANilq/pDoEYypznIq6ets/1YlDAqXrL0L/wq59Zu8W61pcS30vxEkUxij2yI/O6Fr9jjQIubFoHWzTZGttFQAbE1hk+U9uBsCrYDVur68YT70erWPqV3ibptr8gdcEVT2Hxz33oPfAxok17X16rREZIOpBo+pPRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729656986; c=relaxed/simple;
-	bh=AV28ao7EkD0FEGO0LqK55QI6h4qPslnvb6diIn7+b6Q=;
+	s=arc-20240116; t=1729656987; c=relaxed/simple;
+	bh=bec6KiO+m8hW8ozeZJcuyh4/Q0ZTvqAXQGBByAauqSE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FmRO0nPAt1wf2/pP2x2ibkXW5sXwr7GvkujnNmSmN0ML8mX2lH7T2WY/M899YDJwHRkJ2cvikz3WFxvOuQQoS7flUuz6uVyqlyNVrVJgdbBSY5Tjxj0ljNS4Id+WJKTCmBG9DSoYTes8p6q88OUmoWEVnEUvWzUivp69lzbHVzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kAXyaE1K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F554C4CEE7;
-	Wed, 23 Oct 2024 04:16:24 +0000 (UTC)
+	 MIME-Version:Content-Type; b=mynY2GHxLQmkDYuX15LvIcQOd4OisaOARN37S1ADY75v9AdFs3gjGPe8eNYxS7rcoUhzVUsEoc3eJ0/wq11U/f+CYOGLL7+swk9ga4s0LN0PSJ4cwC4DomeWhzHQY6pQxQURJmAy1ostKUNwbOV13VEwfWCRS+E2joUFaVPSvHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dQcBXN8E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75F04C4CEE6;
+	Wed, 23 Oct 2024 04:16:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729656985;
-	bh=AV28ao7EkD0FEGO0LqK55QI6h4qPslnvb6diIn7+b6Q=;
+	s=k20201202; t=1729656987;
+	bh=bec6KiO+m8hW8ozeZJcuyh4/Q0ZTvqAXQGBByAauqSE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kAXyaE1Kp50D+q1loyNIaXm0vQN6PFbW5XAlt2LIjLUb8nMmg+FzeDHC3qBFDnvyX
-	 BZhXFMwLCWI2+R5M/RBu38vXC2p5Ag+uyIlhU9XHd9QoYMdz39k/zqUVaYJjCbPSKb
-	 rxAXVaxUXTC+RzdhvVo5dNffNNFNKXvqBdlzNqDNTkrLHc4M857h2/jIz0ia1Na+k4
-	 w6HGWJLK8OaFUa28Uulvkexg/VWr2JDU2enqxxt2mgXTxxwptAaYCCknjYc39waxaE
-	 bOogdQHrBsZR2G1B+68m72+uFaqZeCryGmOxtkeKxCmK09Rou5Fn3bvjJpURT6ODv6
-	 SJJ8c1o3G18vQ==
+	b=dQcBXN8Ezxrg4GRkhOdSv9J7cLWE3PBjVgkOOBm16GR8in5IPzsPeb4B3l4slWbCg
+	 a+9iGEP4hJpnJnwBwVSAA7Lqi6ksCM5wXpFz2DnBHOocqIpDoQlPplPOuksmLF+0Or
+	 KhI+1cuF7wyr5KxxEu6hrXePz1QLC2gf4yHrQQRPPzNm571EdL1uDBgK+fiG17451z
+	 bFDGXGRjxk0/E+VJVsckxXc6azWlmerlg4l9RE7dpEQ1baniqLsMrszFIA7z2cf4ag
+	 qjW7QET/T9mBnBglms4GlTB/BrKOzjLToIfhckyn6x9NCmG75kC8znEi4zn33XvkX9
+	 dU3ykvoaxpYUA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manish Pandey <quic_mapa@quicinc.com>
+To: conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	konradybcio@kernel.org,
+	lee@kernel.org,
+	Mukesh Ojha <quic_mojha@quicinc.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	quic_nitirawa@quicinc.com
-Subject: Re: [PATCH V3] arm64: dts: qcom: qcm6490-idp: Add UFS nodes
-Date: Tue, 22 Oct 2024 23:16:01 -0500
-Message-ID: <172965696417.224417.6379593336280989214.b4-ty@kernel.org>
+	Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: mfd: qcom,tcsr: Add compatible for sa8775p
+Date: Tue, 22 Oct 2024 23:16:03 -0500
+Message-ID: <172965696405.224417.14379916194468164981.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241019063659.6324-1-quic_mapa@quicinc.com>
-References: <20241019063659.6324-1-quic_mapa@quicinc.com>
+In-Reply-To: <20240830133908.2246139-1-quic_mojha@quicinc.com>
+References: <20240830133908.2246139-1-quic_mojha@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,15 +68,15 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sat, 19 Oct 2024 12:06:59 +0530, Manish Pandey wrote:
-> Add UFS host controller and Phy nodes for Qualcomm qcm6490-idp board.
+On Fri, 30 Aug 2024 19:09:07 +0530, Mukesh Ojha wrote:
+> Document the compatible for sa8775p SoC.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: qcm6490-idp: Add UFS nodes
-      commit: 5b9d9b910653c53e66c05b9c4dc863d0a1ee14de
+[2/2] arm64: dts: qcom: sa8775p: Add TCSR halt register space
+      commit: 1a82fbfc87fd7627ce9499590fb381069db99e8f
 
 Best regards,
 -- 
