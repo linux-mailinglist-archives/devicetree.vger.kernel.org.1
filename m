@@ -1,229 +1,253 @@
-Return-Path: <devicetree+bounces-114777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70009ACEA3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:25:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB609ACEA9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B3FC1F220AA
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:25:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D80F1C25492
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D261C9EDC;
-	Wed, 23 Oct 2024 15:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 804E01C7B6D;
+	Wed, 23 Oct 2024 15:24:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZANycmS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aH6M5GLD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C469C1C8FB3;
-	Wed, 23 Oct 2024 15:23:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AC661C726D;
+	Wed, 23 Oct 2024 15:24:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729696981; cv=none; b=sfnNyJ+qb9Zh9ZZqLi2937p9hY6FRuI1q/U/SvgixmOWvlSf2k/kMzLSOSgPeL8vYyR/ZcpOuwV70dOdGA0Vn/ZF5WAt+onvFnS1N0pbyYQnbh1wbO6TNHWtoLfLDHfbJQ5uB5eAsOeJjpfnJjDZ/l+8ErXbqI1+nWaoEEREcRQ=
+	t=1729697067; cv=none; b=W0VzyCRhnSEZL/xVRIPz5r3Qgs1n3AaVUarK3jp3t2WViROpWSPfUCoxZ6RD/Z8QaxJ2jdlBfDweUeIpaG6OdcIgL5Nfcej9HrKwD/JP33q4ky4fXGtRAol4wl/GE1Hz34+clahvrbHU3FUShfquKboX9o2m73e2jxsDVfSBizw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729696981; c=relaxed/simple;
-	bh=KXkbSwlGbCZMCSuO/HqUDNu6DmitH+pQc626B5yFwFY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TrUeiVPbbcNJ2uewd/hfhbWJeqOIq4Vu8X4qmRAWKU6UfPBlZ1BzzY182rZQkTQmxZ6bmdU6sSHwZrmHzNEoXOAWUEFkSUoX/l21zUcglCrFei3sp4/IaOAsrCtip30k9DNT+k5N2S+h+k8DfMv6iNu0QVdLf122UIMl/dM9YZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZANycmS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 613FCC4CECD;
-	Wed, 23 Oct 2024 15:22:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729696981;
-	bh=KXkbSwlGbCZMCSuO/HqUDNu6DmitH+pQc626B5yFwFY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AZANycmSnzGOxPgI8KK5fXhNpNn4LV5haxmCQJgpwlbzvIB72HJjTJduSk7C4D/jN
-	 c5HH9n6mNDhJd0ezGRDc8IvN++xEk3uF4DcpNNCizXGBiHGeKcJAlwUDp5n3Q50OWP
-	 7FIqAxTJ8wQfx6lBAu0hp7G2rhrdzRRWIhpV8fN9M1nRFaGyyV0FDMkmPAgnrwN+Kq
-	 JYDGS0EI20ZY6nlDRypzZDK/sEdXGgVBOWXTDdsDlMPbt70hwAyVgp0U0l2sxmrEOw
-	 WW6tqv+aXe45a+z9RtrpPHQ7Z+k1DymCwsCSJoHKaFLsRX6OuNm9ZXRHrDEy7sezVU
-	 N3JYrItlnmN5Q==
-Date: Wed, 23 Oct 2024 16:22:56 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Angelo Dureghello <adureghello@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dlechner@baylibre.com,
-	Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v7 4/8] iio: dac: adi-axi-dac: extend features
-Message-ID: <20241023-nifty-electable-64d3b42bce3b@spud>
-References: <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-0-969694f53c5d@baylibre.com>
- <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-4-969694f53c5d@baylibre.com>
- <b1ac7d51280caf729d192ca871c26260fdf3697c.camel@gmail.com>
- <20241022-napped-labored-6956ce18d986@spud>
- <7a4f8c718029c8c57596d950495fcf28562c6e78.camel@gmail.com>
+	s=arc-20240116; t=1729697067; c=relaxed/simple;
+	bh=yRzFip91Xr2ZV5np80u8yjQpIQR4flidzXUnRUp49Ew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uscRL6LnTQm5lEZKs7rU0giLi16vnCZRcHTvQteldbmvDFUJuhQ26FM9q5wI5WbV5NZOGD3eZpcJUKKvJhdVIHfHz6rQbpWe8iNmRnWRj1Xvf+vs/1npXXi1wcMw4cxxBBX2YXMlqJo/HT9b7vNwfnKWb04vI2Y5/xsh6cFnD1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aH6M5GLD; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a9acafdb745so62735766b.0;
+        Wed, 23 Oct 2024 08:24:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729697064; x=1730301864; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I8bsCbuYj3wrkY+HeSAAVlp5CC82l84u/ffkdl8Y/1g=;
+        b=aH6M5GLDsycGXsbPOxlYJazYkIzih+BWAA/OOmx6b6dd99ysO5nBUOUxwBccvDHg7s
+         selKvdvhJ8u1WNDaddzcnWqvhAsbvCB5S0O2ZXYlmehhKYpTkXeJu6EDLV2aiyPoDvGR
+         iBqoYSF5hOXxIixCwNAHse/ShtT6zk6fRMykKOpgomSgVVQllEilu8SPzbC4Tefr8Kse
+         e8t1Mp65IQkmvgAjX6+fur0asNmeZQZRV2GppD+k0stS7ZZCAFpaGnIwnKR+tFL+2hXK
+         sWa0XFCtS7UNtHv0JJmoFLUhOSyn36UiBNp20fyWMIae0OYEoxYGqPh9+5bBPMpO89O+
+         BPXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729697064; x=1730301864;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I8bsCbuYj3wrkY+HeSAAVlp5CC82l84u/ffkdl8Y/1g=;
+        b=ZBDYZIkmILh4tMW8r7JFeTTxzRAv88UI6Hq5vPixSx0xtVqEsVnIlHzZ7Yw8cbOzbM
+         y77kJiFm8mNZSXJmfJedemJbk1VeoStNDZxnu467csrCb4jOqUrYSeNUWariM8iOZIn6
+         TDJ2hM4xF56xBrDHCNcd0bY7/GfmdTns49UWpNx3JxB0ZBwA/xMonAbpPq2ghaQOpPil
+         hIYI1PiXLNX2wEOZdZb73rqbq0lcutWeMTDSeMdygbLL7QtLMmTaHp9VTDTD4QVGX9CN
+         qWXSF9OzPrIcfy+8oH7UBo4dlQQa7Xx0kTx68fQwihkSpvzMQBQ4G/s9Br3NOQpFfkSL
+         5BEw==
+X-Forwarded-Encrypted: i=1; AJvYcCVCgq05b6QvWjpC8wqyDaAujZ/+Z3BDPWX+jZy/pEmPrWi1ccwV6XQoyOmcomka/isDmUNZin/lPnpy@vger.kernel.org, AJvYcCVumwDRcV5NqZ2f8I0fgJD+YGqeG4h5Y49GkUw3RDfODGXE5P3/Jgj27jKeUzwU539UCZADPuWa7IDJTzbZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4w77CJVi2civDJZXXzkcMg9lEEcUShXWj1Wk6jH8vxZ71hZxp
+	S4X31fee1XVnz2OJbg9DaQPhuqAocFndMCYj+YM/nTZeYzFvKqpc
+X-Google-Smtp-Source: AGHT+IGLxU7wxiCH3a1b/uHVpe3fD6Af7zQszRgnPFbDSKYaGfHilRmwG2cZ7GC2/X4IxrDdkB/rog==
+X-Received: by 2002:a17:907:6d0c:b0:a8d:2281:94d9 with SMTP id a640c23a62f3a-a9aaa620d72mr822955666b.23.1729697063565;
+        Wed, 23 Oct 2024 08:24:23 -0700 (PDT)
+Received: from ?IPV6:2a03:83e0:1126:4:eb:d0d0:c7fd:c82c? ([2620:10d:c092:500::7:ca73])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a91559b33sm487702366b.116.2024.10.23.08.24.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Oct 2024 08:24:23 -0700 (PDT)
+Message-ID: <237a32b7-e2c9-4db4-9358-918ce54da779@gmail.com>
+Date: Wed, 23 Oct 2024 16:24:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="FcRsxxiByCiYsStm"
-Content-Disposition: inline
-In-Reply-To: <7a4f8c718029c8c57596d950495fcf28562c6e78.camel@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] of/kexec: save pa of initial_boot_params for arm64 and
+ use it at kexec
+To: Rob Herring <robh@kernel.org>
+Cc: mark.rutland@arm.com, will@kernel.org, leitao@debian.org,
+ catalin.marinas@arm.com, saravanak@google.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kexec@lists.infradead.org
+References: <20241003113840.2972416-1-usamaarif642@gmail.com>
+ <20241004000316.GA1910499-robh@kernel.org>
+ <d3d90f10-1ccd-4557-843c-5b546d3b913c@gmail.com>
+ <CAL_JsqJVEjPt9tHNr0uAGHQwGnUbZDZoe7kURp3Qx0ce1jv+vw@mail.gmail.com>
+ <4b9456a3-47ea-4a00-92fe-131ccd80e550@gmail.com>
+ <CAL_JsqLLxyhjrc-Aqg12mjUZHGGgw59=AJxPpOfh5uSST8hY0Q@mail.gmail.com>
+ <1e117d65-b454-4d5c-b03a-c3ab3b078093@gmail.com>
+ <CAL_JsqJhd0X+eCW6WgXUjCLb-dBqHN4_01vzRRLU07Wz5Q2tLw@mail.gmail.com>
+Content-Language: en-US
+From: Usama Arif <usamaarif642@gmail.com>
+In-Reply-To: <CAL_JsqJhd0X+eCW6WgXUjCLb-dBqHN4_01vzRRLU07Wz5Q2tLw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
---FcRsxxiByCiYsStm
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 23, 2024 at 04:56:39PM +0200, Nuno S=E1 wrote:
-> On Tue, 2024-10-22 at 18:21 +0100, Conor Dooley wrote:
-> > On Tue, Oct 22, 2024 at 02:36:44PM +0200, Nuno S=E1 wrote:
-> > > On Mon, 2024-10-21 at 14:40 +0200, Angelo Dureghello wrote:
-> > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > >=20
-> > > > Extend AXI-DAC backend with new features required to interface
-> > > > to the ad3552r DAC. Mainly, a new compatible string is added to
-> > > > support the ad3552r-axi DAC IP, very similar to the generic DAC
-> > > > IP but with some customizations to work with the ad3552r.
-> > > >=20
-> > > > Then, a series of generic functions has been added to match with
-> > > > ad3552r needs. Function names has been kept generic as much as
-> > > > possible, to allow re-utilization from other frontend drivers.
-> > > >=20
-> > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > > ---
-> > >=20
-> > > Looks mostly good,
-> > >=20
-> > > one minor thing that (I think) could be improved
-> > > > =A0drivers/iio/dac/adi-axi-dac.c | 269
-> > > > +++++++++++++++++++++++++++++++++++++++--
-> > > > -
-> > > > =A01 file changed, 255 insertions(+), 14 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-ax=
-i-dac.c
-> > > > index 04193a98616e..9d6809fe7a67 100644
-> > > > --- a/drivers/iio/dac/adi-axi-dac.c
-> > > > +++ b/drivers/iio/dac/adi-axi-dac.c
-> > > > @@ -46,9 +46,28 @@
-> > > > =A0#define AXI_DAC_CNTRL_1_REG			0x0044
-> > > > =A0#define=A0=A0 AXI_DAC_CNTRL_1_SYNC			BIT(0)
-> > > > =A0#define AXI_DAC_CNTRL_2_REG			0x0048
-> > > > +#define=A0=A0 AXI_DAC_CNTRL_2_SDR_DDR_N		BIT(16)
-> > > > +#define=A0=A0 AXI_DAC_CNTRL_2_SYMB_8B		BIT(14)
-> > > > =A0#define=A0=A0 ADI_DAC_CNTRL_2_R1_MODE		BIT(5)
-> > > > +#define=A0=A0 AXI_DAC_CNTRL_2_UNSIGNED_DATA		BIT(4)
-> > > > +#define AXI_DAC_STATUS_1_REG			0x0054
-> > > > +#define AXI_DAC_STATUS_2_REG			0x0058
-> > > > =A0#define AXI_DAC_DRP_STATUS_REG			0x0074
-> > > > =A0#define=A0=A0 AXI_DAC_DRP_STATUS_DRP_LOCKED		BIT(17)
-> > > > +#define AXI_DAC_CUSTOM_RD_REG			0x0080
-> > > > +#define AXI_DAC_CUSTOM_WR_REG			0x0084
-> > > > +#define=A0=A0 AXI_DAC_CUSTOM_WR_DATA_8		GENMASK(23, 16)
-> > > > +#define=A0=A0 AXI_DAC_CUSTOM_WR_DATA_16		GENMASK(23, 8)
-> > > > +#define AXI_DAC_UI_STATUS_REG			0x0088
-> > > > +#define=A0=A0 AXI_DAC_UI_STATUS_IF_BUSY		BIT(4)
-> > > > +#define AXI_DAC_CUSTOM_CTRL_REG			0x008C
-> > > > +#define=A0=A0 AXI_DAC_CUSTOM_CTRL_ADDRESS		GENMASK(31, 24)
-> > > > +#define=A0=A0 AXI_DAC_CUSTOM_CTRL_SYNCED_TRANSFER	BIT(2)
-> > > > +#define=A0=A0 AXI_DAC_CUSTOM_CTRL_STREAM		BIT(1)
-> > > > +#define=A0=A0 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA	BIT(0)
-> > >=20
-> > > ...
-> > > =A0
-> > > > =A0static int axi_dac_probe(struct platform_device *pdev)
-> > > > =A0{
-> > > > -	const unsigned int *expected_ver;
-> > > > =A0	struct axi_dac_state *st;
-> > > > =A0	void __iomem *base;
-> > > > =A0	unsigned int ver;
-> > > > @@ -566,14 +780,29 @@ static int axi_dac_probe(struct platform_devi=
-ce
-> > > > *pdev)
-> > > > =A0	if (!st)
-> > > > =A0		return -ENOMEM;
-> > > > =A0
-> > > > -	expected_ver =3D device_get_match_data(&pdev->dev);
-> > > > -	if (!expected_ver)
-> > > > +	st->info =3D device_get_match_data(&pdev->dev);
-> > > > +	if (!st->info)
-> > > > =A0		return -ENODEV;
-> > > > +	clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
-> > > > +	if (IS_ERR(clk)) {
-> > >=20
-> > > If clock-names is not given, then we'll get -EINVAL. Hence we could a=
-ssume
-> > > that:
-> > >=20
-> > > 		if (PTR_ERR(clk) !=3D -EINVAL)
-> > > 			return dev_err_probe();
-> >=20
-> > clock-names isn't a required property, but the driver code effectively
-> > makes it one. Doesn't this lookup need to be by index, unless
-> > clock-names is made required for this variant?
->=20
-> Likely I'm missing something but the driver is not making clock-names man=
-datory,
-> is it?
+On 23/10/2024 16:17, Rob Herring wrote:
+> On Wed, Oct 23, 2024 at 9:43 AM Usama Arif <usamaarif642@gmail.com> wrote:
+>>
+>>
+>>
+>> On 23/10/2024 14:40, Rob Herring wrote:
+>>> On Mon, Oct 7, 2024 at 10:30 AM Usama Arif <usamaarif642@gmail.com> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 07/10/2024 15:39, Rob Herring wrote:
+>>>>> On Mon, Oct 7, 2024 at 9:06 AM Usama Arif <usamaarif642@gmail.com> wrote:
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> On 04/10/2024 01:03, Rob Herring wrote:
+>>>>>>> On Thu, Oct 03, 2024 at 12:38:40PM +0100, Usama Arif wrote:
+>>>>>>>>  __pa() is only intended to be used for linear map addresses and using
+>>>>>>>> it for initial_boot_params which is in fixmap for arm64 will give an
+>>>>>>>> incorrect value. Hence stash the physical address when it is known at
+>>>>>>>> boot time and use it at kexec time instead of converting the virtual
+>>>>>>>> address using __pa().
+>>>>>>>>
+>>>>>>>> Reported-by: Breno Leitao <leitao@debian.org>
+>>>>>>>> Suggested-by: Mark Rutland <mark.rutland@arm.com>
+>>>>>>>> Signed-off-by: Usama Arif <usamaarif642@gmail.com>
+>>>>>>>> Fixes: ac10be5cdbfa ("arm64: Use common of_kexec_alloc_and_setup_fdt()")
+>>>>>>>> ---
+>>>>>>>>  arch/arm64/kernel/setup.c | 8 ++++++++
+>>>>>>>>  drivers/of/fdt.c          | 6 ++++++
+>>>>>>>>  drivers/of/kexec.c        | 8 ++++++--
+>>>>>>>>  include/linux/of_fdt.h    | 2 ++
+>>>>>>>>  4 files changed, 22 insertions(+), 2 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+>>>>>>>> index b22d28ec8028..a4d96f5e2e05 100644
+>>>>>>>> --- a/arch/arm64/kernel/setup.c
+>>>>>>>> +++ b/arch/arm64/kernel/setup.c
+>>>>>>>> @@ -194,6 +194,14 @@ static void __init setup_machine_fdt(phys_addr_t dt_phys)
+>>>>>>>>      /* Early fixups are done, map the FDT as read-only now */
+>>>>>>>>      fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL_RO);
+>>>>>>>>
+>>>>>>>> +    /*
+>>>>>>>> +     * Save dt_phys address so that it can be used later for kexec. This
+>>>>>>>> +     * is done as __pa() is only intended to be used for linear map addresses
+>>>>>>>> +     * and using it for initial_boot_params which is in fixmap will give an
+>>>>>>>> +     * incorrect value.
+>>>>>>>> +     */
+>>>>>>>> +    set_initial_boot_params_pa(dt_phys);
+>>>>>>>
+>>>>>>> No new arch->dt functions please. If we need to save off the PA, then do
+>>>>>>> that when we set initial_boot_params.
+>>>>>>>
+>>>>>>> Rob
+>>>>>>
+>>>>>>
+>>>>>> initial_boot_params is set in early_init_dt_verify, called by early_init_dt_scan.
+>>>>>> This is done in setup_machine_fdt in arm64 where the PA is available,
+>>>>>> but in other functions in other architectures, where the PA is not available.
+>>>>>
+>>>>> Doesn't __pa() work for all the other architectures? That's what your
+>>>>> patch indicates.
+>>>>>
+>>>>
+>>>> Yes, __pa() works for all other architectures.
+>>>>
+>>>> But we would need to add initial_boot_params_pa of type phys_addr_t
+>>>> as an argument for early_init_dt_scan, which is called by all other archs,
+>>>> and we technically cant use 0 as an invalid value.
+>>>>
+>>>> We could convert initial_boot_params_pa to void *, and pass NULL for all
+>>>> other archs. But again, I don't really think we should be changing the
+>>>> early_init_dt_scan(dt_virt) call in all other archs to
+>>>> early_init_dt_scan(dt_virt, NULL) just to save initial_boot_params_pa
+>>>> in arm64?
+>>>>
+>>>>>> So it makes it quite messy to set it in the same place as initial_boot_params.
+>>>>>> Its only needed for arm64 and making a change in all archs probably isnt a good idea?
+>>>>>>
+>>>>>> Any reason to not add a new function to make arch -> of/fdt call?
+>>>>>
+>>>>> Yes. It is the opposite direction I have reworked the interfaces to.
+>>>>> We don't want each arch calling various early DT functions at random
+>>>>> times and order. That's fragile when the DT functions make assumptions
+>>>>> about when they are called or what's been initialized already.
+>>>>>
+>>>>> Another option is to make arm64 copy the DT as some arches do.
+>>>>>
+>>>>> Rob
+>>>>
+>>>> Ah maybe I didn't understand this properly, but isnt early_init_dt_scan an
+>>>> arch -> of/fdt interfaces. set_initial_boot_params_pa is a similar interface
+>>>> to early_init_dt_scan?
+>>>
+>>> Yes, and I don't want more APIs if they can be avoided. When is
+>>> set_initial_boot_params_pa() supposed to be called? Is it before or
+>>> after early_init_dt_scan()?
+>>
+>> Its only needed in arm64, and can be either before or after, as long as its
+>> somewhere in setup_machine_fdt, where dt_phys is available.
+> 
+> Maybe only arm64 today. What happens when riscv decides they too want
+> to support the DT anywhere in memory including outside the linear
+> address map and then they need the same thing.
+> 
+>>> Can subsequent OF functions assume the PA
+>>> is valid?
+>>
+>> After set_initial_boot_params_pa has been called, yes.
+> 
+> How do I know it has been called? Do I have to go wade thru every arch
+> to see? You could document the requirement to be immediately after
+> early_init_dt_scan(), but then how do you enforce that? You can't
+> unless you design the interface to just avoid the problem in the first
+> place.
+> 
+>>> If an arch doesn't call set_initial_boot_params_pa() is
+>>> __pa() valid or did they just forget to call it?
+>>
+>> Only arm64 seems to do the fixmap as discussed in
+>> https://lore.kernel.org/all/1ea5538f-7e96-4034-9af9-e2d5fd72e069@gmail.com/,
+>> so __pa should work in others.
+>>
+>> Requiring the PA to
+>>> be set at the same time as initial_boot_params avoids all those issues
+>>> with any period of time having the PA incorrect.
+>>>
+>>
+>> Are you recommending I send a patch which changes all archs to call
+>> early_init_dt_scan(dt_virt, NULL)?
+>> or maybe early_init_dt_scan(dt_virt, __pa(dt_virt))?
+>> and arm to call early_init_dt_scan(dt_virt, dt_phys).
+> 
+> I believe that's what I suggested already, so yes. Whether NULL or
+> __pa(dt_virt))? __pa() would be better because then the arch has to
+> think about whether that is right or not.
 
-Did you miss the "for this variant"? Maybe I left the comment in not
-exactly the right place, but I don't think the code works correctly for
-the new variant if clock-names aren't provided:
 
-+	if (st->info->has_dac_clk) {
-+		struct clk *dac_clk;
-+		dac_clk =3D devm_clk_get_enabled(&pdev->dev, "dac_clk");
-+		if (IS_ERR(dac_clk))
-+			return dev_err_probe(&pdev->dev, PTR_ERR(dac_clk),
-+					     "failed to get dac_clk clock\n");
-+
-+		/* We only care about the streaming mode rate */
-+		st->dac_clk_rate =3D clk_get_rate(dac_clk) / 2;
+Sounds good! Will send a v2 with the change.
 
-Isn't this going to cause a probe failure?
+Thanks
+> 
+>> Happy to do send a v2 with that if its the way forward, although I feel
+>> set_initial_boot_params_pa() in just one arch might be better than
+>> changing this for all archs.
+> 
+> We don't work around kernel APIs if they don't meet changing needs. We
+> change them.
+> 
+> Rob
 
-> At least for the s_axi_aclk, we first try to get it using clock-names and=
- if
-> that fails we backup to what we're doing which is passing NULL (which
-> effectively get's the first clock in the array).
->=20
-> The reasoning is that on the generic variant we only need the AXI clk and=
- we
-> can't now enforce clock-names on it. But to keep things flexible, this was
-> purposed.
-
-Why not always just get the first clock by index and avoid the
-complexity?
-
-> Another alternative that might have more lines of code (but simpler to
-> understand the intent) is to have (for example) a callback get_clocks fun=
-ction
-> that we set depending on the variant. And this also makes me realize that=
- we
-> could improve the bindings. I mean, for the generic dac variant we do not=
- need
-> clock-names but for this new variant, clock-names is mandatory and I'm fa=
-irly
-> sure we can express that in the bindings.
-
-Right. You can "edit" required in the if/then/else branch for the new
-variant.
-
---FcRsxxiByCiYsStm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxkUvwAKCRB4tDGHoIJi
-0iH0AQDT3WZkbiqQZikEUWqx6FC6ZERzFp5cE6EJ0uvCHfGrpwD+MwupjN9w4Yz7
-A9SQRFg6vReiv04lQ/Myk3KErlH/8Qg=
-=anK4
------END PGP SIGNATURE-----
-
---FcRsxxiByCiYsStm--
 
