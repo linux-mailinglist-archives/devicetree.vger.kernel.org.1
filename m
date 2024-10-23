@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-114439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088199ABA41
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 01:54:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D7379ABA56
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 02:04:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F55B1C229D0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Oct 2024 23:54:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFABF1F244BA
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237211CEE8D;
-	Tue, 22 Oct 2024 23:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5EDE1798F;
+	Wed, 23 Oct 2024 00:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OcP08QOd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jXK3ZBl3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7291CDFC8;
-	Tue, 22 Oct 2024 23:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B26991798C;
+	Wed, 23 Oct 2024 00:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729641279; cv=none; b=m0mhCk4B+5VGymUUL4fhJslfZ6x0JDzhTPNRZ0r8vCHXqQ1xuUx6JijSlMQChIAVwv+IU06AeW0OBKr1bWvrUrQPkNzE4JOnxANoojnAvXUQMwLUtIPK6n7GdaG5Gt8xFi1QrdRWdNvot18sB+xdLB3ZGMoveuGbO3qyf7X5j08=
+	t=1729641849; cv=none; b=ncKQxFKshkBjcLimSf9d9/uM2ftjFmJsieEFXEcwk9grsu34KgPropBbhyOXbE7vyeeN5QA29n7z5mclncBBwfab1v/riUSYU0v728QDkgLYPO8cCn0lqwpaaFtb53Dv7SkmYVQMSwmtwRdJ+OYHajNp3ifKBno6+XT2hY9ik3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729641279; c=relaxed/simple;
-	bh=oaIE2+YTrWvXAsSPmtB6UaYr/m5HRh9uVimWLPJIWbY=;
+	s=arc-20240116; t=1729641849; c=relaxed/simple;
+	bh=lp+qOB2AsGXn3zORPru0TEAo87RI1MyOJb9mTrSMdWI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JgMt8m6EQRMfVOKFvz/nluoVxyv+47TNlXLL2lk7OjLHDoyCM1Pzjf0s1Q5ARc0g0SqithFQOMcxr8RQXo+DhUqaGb7MTmSpgmCK52r56FceZEQuOcSIG6806MMgY/eDJ8DRksmoCbRJDT+2S6eutgEFAeH6XOBdS13NjsDsOQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OcP08QOd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAE47C4CEC3;
-	Tue, 22 Oct 2024 23:54:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RE3MiBJVfYSBzXzlNo/b3RUbERURrn9A+B+yeznddkb3Hst7azXcf7JTAGOGAEwqjc+K+FV1nWifKCGKpX0e49Yd88xYlFLER4FwU5yQVHnXmlVYzJnAtLhkR36lQRmlnZpBdjuhEgemkUrQAJy0WCx4kxR4FyHDQSRiVXPDNdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jXK3ZBl3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14756C4CEE7;
+	Wed, 23 Oct 2024 00:04:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729641278;
-	bh=oaIE2+YTrWvXAsSPmtB6UaYr/m5HRh9uVimWLPJIWbY=;
+	s=k20201202; t=1729641849;
+	bh=lp+qOB2AsGXn3zORPru0TEAo87RI1MyOJb9mTrSMdWI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OcP08QOd87Jy4tqgzPcNQocfXaI6m5TKxJNdb5sUJEs2hBqci6oE7PC37bJtiGHBf
-	 4lny/crMdrWIc4rqRi6Il59V9bleDxhAguDXyxBWPdzW6gCgTPocjKxeTVpTUkeUjA
-	 /sTNYStvRk5Zz0f2BAUmvyxNml+Y5gmSJQyb6Pqccfz3eitEPDmJaiSA5con76HtKe
-	 lDzmWouRZit3+xkszrnRVC6nBK+Oyy0vnEfJblWq7UiGzp5A5fcyFQiPoIxHaao4ZW
-	 Kd6X2dVd6TxxWGtGpyq0dbA0fH2ifRkzu4QEcrPfaa2w0+0hyWNtBoRA9MtwTfPlia
-	 zr02eR09wWRWQ==
-Date: Tue, 22 Oct 2024 18:54:35 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Subramanian Ananthanarayanan <quic_skananth@quicinc.com>
-Cc: krzk+dt@kernel.org, quic_krichai@quicinc.com, 
-	quic_vbadigan@quicinc.com, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8775p: Update iommu-map entry
-Message-ID: <ndu3y3dk2zvezqqhczry24arai5gk6rqlghznxru3zcxevnmrc@jjrff25gzjq3>
-References: <20241008121755.1174730-1-quic_skananth@quicinc.com>
- <70c2e4c0-aa5a-4d61-9b12-ee7cc5106ead@quicinc.com>
+	b=jXK3ZBl3KW9rfPcw7U0EoPj5+z8C2qWD5+sQxr2ptHDzUelYirfjUhbN6q5T9hLZd
+	 2r+iV8vy6JlEGdPBZbwMFCCHljH4fSg9rBU/bcSxKEZvyVGBrnGAbMC58rLA5KGU/F
+	 kN6zKxos2jfMzYb4zZDqSl1vh/RXLtKiFNMFp7hZ1/npSfNl/MSRq2iPQK3audE2Bi
+	 GSsC0GLX7qsVCy0bRTqjuzw/fPP1RaBgKMaxGNcIEZknAkvNjOXRvL1r2CdQbdEm47
+	 WJvzNER/IjE+Rr1NS8bGFCqcAKB3j3yEJ55gPNSw4IQkoA+suB2rwOG+yCNK69DAAg
+	 O6K4qc5Ii+b2A==
+Date: Tue, 22 Oct 2024 19:04:08 -0500
+From: Rob Herring <robh@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 16/16] samples: rust: add Rust platform sample driver
+Message-ID: <20241023000408.GC1848992-robh@kernel.org>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-17-dakr@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,115 +65,165 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <70c2e4c0-aa5a-4d61-9b12-ee7cc5106ead@quicinc.com>
+In-Reply-To: <20241022213221.2383-17-dakr@kernel.org>
 
-On Tue, Oct 08, 2024 at 05:55:27PM GMT, Subramanian Ananthanarayanan wrote:
+On Tue, Oct 22, 2024 at 11:31:53PM +0200, Danilo Krummrich wrote:
+> Add a sample Rust platform driver illustrating the usage of the platform
+> bus abstractions.
 > 
-> On 10/8/2024 5:47 PM, Subramanian Ananthanarayanan wrote:
-> > SA8775P has only support for SMMU v2, due to this PCIe has limited
-> > SID entries to enable dynamic IOMMU mapping in the driver, hence
-> > we are updating static entries.
-> > 
-> > iommu-map entries are added to support more PCIe device like switch
-> > attach, SRIOV capable devices. These entries are specific to this
-> > board as topology of PCIe devices can vary based on the end usecase
-> > connected via PCIe. For other board files, these entries may
-> > not be directly applicable.
-> > 
-> > Signed-off-by: Subramanian Ananthanarayanan <quic_skananth@quicinc.com>
-> > ---
-> > Changes in V2:
-> > 	- Updated commit message.
-> 
-> forgot to add link to v1 : https://lore.kernel.org/lkml/20241001114601.1097618-1-quic_skananth@quicinc.com/
-> 
+> This driver probes through either a match of device / driver name or a
+> match within the OF ID table.
 
-Please use b4, as described on go/upstream, and you can not forget.
+I know if rust compiles it works, but how does one actually use/test 
+this? (I know ways, but I might be in the minority. :) )
 
-Regards,
-Bjorn
+The DT unittests already define test platform devices. I'd be happy to 
+add a device node there. Then you don't have to muck with the DT on some 
+device and it even works on x86 or UML.
 
-> -Subramanian
+And I've started working on DT (fwnode really) property API bindings as 
+well, and this will be great to test them with.
+
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> ---
+>  MAINTAINERS                          |  1 +
+>  samples/rust/Kconfig                 | 10 +++++
+>  samples/rust/Makefile                |  1 +
+>  samples/rust/rust_driver_platform.rs | 62 ++++++++++++++++++++++++++++
+>  4 files changed, 74 insertions(+)
+>  create mode 100644 samples/rust/rust_driver_platform.rs
 > 
-> > ---
-> > ---
-> >   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 62 ++++++++++++++++++++++
-> >   1 file changed, 62 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> > index 0c1b21def4b6..05c9f572ae42 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> > @@ -675,6 +675,37 @@ &pcie0 {
-> >   	pinctrl-names = "default";
-> >   	pinctrl-0 = <&pcie0_default_state>;
-> > +	iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
-> > +		    <0x100 &pcie_smmu 0x0001 0x1>,
-> > +		    <0x101 &pcie_smmu 0x0002 0x1>,
-> > +		    <0x208 &pcie_smmu 0x0003 0x1>,
-> > +		    <0x210 &pcie_smmu 0x0004 0x1>,
-> > +		    <0x218 &pcie_smmu 0x0005 0x1>,
-> > +		    <0x280 &pcie_smmu 0x0006 0x1>,
-> > +		    <0x281 &pcie_smmu 0x0007 0x1>,
-> > +		    <0x282 &pcie_smmu 0x0008 0x1>,
-> > +		    <0x283 &pcie_smmu 0x0009 0x1>,
-> > +		    <0x284 &pcie_smmu 0x000a 0x1>,
-> > +		    <0x285 &pcie_smmu 0x000b 0x1>,
-> > +		    <0x286 &pcie_smmu 0x000c 0x1>,
-> > +		    <0x287 &pcie_smmu 0x000d 0x1>,
-> > +		    <0x288 &pcie_smmu 0x000e 0x1>,
-> > +		    <0x289 &pcie_smmu 0x000f 0x1>,
-> > +		    <0x28a &pcie_smmu 0x0010 0x1>,
-> > +		    <0x28b &pcie_smmu 0x0011 0x1>,
-> > +		    <0x28c &pcie_smmu 0x0012 0x1>,
-> > +		    <0x28d &pcie_smmu 0x0013 0x1>,
-> > +		    <0x28e &pcie_smmu 0x0014 0x1>,
-> > +		    <0x28f &pcie_smmu 0x0015 0x1>,
-> > +		    <0x290 &pcie_smmu 0x0016 0x1>,
-> > +		    <0x291 &pcie_smmu 0x0017 0x1>,
-> > +		    <0x292 &pcie_smmu 0x0018 0x1>,
-> > +		    <0x293 &pcie_smmu 0x0019 0x1>,
-> > +		    <0x300 &pcie_smmu 0x001a 0x1>,
-> > +		    <0x400 &pcie_smmu 0x001b 0x1>,
-> > +		    <0x500 &pcie_smmu 0x001c 0x1>,
-> > +		    <0x501 &pcie_smmu 0x001d 0x1>;
-> > +
-> >   	status = "okay";
-> >   };
-> > @@ -685,6 +716,37 @@ &pcie1 {
-> >   	pinctrl-names = "default";
-> >   	pinctrl-0 = <&pcie1_default_state>;
-> > +	iommu-map = <0x0 &pcie_smmu 0x0080 0x1>,
-> > +		    <0x100 &pcie_smmu 0x0081 0x1>,
-> > +		    <0x101 &pcie_smmu 0x0082 0x1>,
-> > +		    <0x208 &pcie_smmu 0x0083 0x1>,
-> > +		    <0x210 &pcie_smmu 0x0084 0x1>,
-> > +		    <0x218 &pcie_smmu 0x0085 0x1>,
-> > +		    <0x280 &pcie_smmu 0x0086 0x1>,
-> > +		    <0x281 &pcie_smmu 0x0087 0x1>,
-> > +		    <0x282 &pcie_smmu 0x0088 0x1>,
-> > +		    <0x283 &pcie_smmu 0x0089 0x1>,
-> > +		    <0x284 &pcie_smmu 0x008a 0x1>,
-> > +		    <0x285 &pcie_smmu 0x008b 0x1>,
-> > +		    <0x286 &pcie_smmu 0x008c 0x1>,
-> > +		    <0x287 &pcie_smmu 0x008d 0x1>,
-> > +		    <0x288 &pcie_smmu 0x008e 0x1>,
-> > +		    <0x289 &pcie_smmu 0x008f 0x1>,
-> > +		    <0x28a &pcie_smmu 0x0090 0x1>,
-> > +		    <0x28b &pcie_smmu 0x0091 0x1>,
-> > +		    <0x28c &pcie_smmu 0x0092 0x1>,
-> > +		    <0x28d &pcie_smmu 0x0093 0x1>,
-> > +		    <0x28e &pcie_smmu 0x0094 0x1>,
-> > +		    <0x28f &pcie_smmu 0x0095 0x1>,
-> > +		    <0x290 &pcie_smmu 0x0096 0x1>,
-> > +		    <0x291 &pcie_smmu 0x0097 0x1>,
-> > +		    <0x292 &pcie_smmu 0x0098 0x1>,
-> > +		    <0x29d &pcie_smmu 0x0099 0x1>,
-> > +		    <0x300 &pcie_smmu 0x009a 0x1>,
-> > +		    <0x400 &pcie_smmu 0x009b 0x1>,
-> > +		    <0x500 &pcie_smmu 0x009c 0x1>,
-> > +		    <0x501 &pcie_smmu 0x009d 0x1>;
-> > +
-> >   	status = "okay";
-> >   };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 173540375863..583b6588fd1e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6986,6 +6986,7 @@ F:	rust/kernel/device_id.rs
+>  F:	rust/kernel/devres.rs
+>  F:	rust/kernel/driver.rs
+>  F:	rust/kernel/platform.rs
+> +F:	samples/rust/rust_driver_platform.rs
+>  
+>  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
+>  M:	Nishanth Menon <nm@ti.com>
+> diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
+> index 6d468193cdd8..70126b750426 100644
+> --- a/samples/rust/Kconfig
+> +++ b/samples/rust/Kconfig
+> @@ -41,6 +41,16 @@ config SAMPLE_RUST_DRIVER_PCI
+>  
+>  	  If unsure, say N.
+>  
+> +config SAMPLE_RUST_DRIVER_PLATFORM
+> +	tristate "Platform Driver"
+> +	help
+> +	  This option builds the Rust Platform driver sample.
+> +
+> +	  To compile this as a module, choose M here:
+> +	  the module will be called rust_driver_platform.
+> +
+> +	  If unsure, say N.
+> +
+>  config SAMPLE_RUST_HOSTPROGS
+>  	bool "Host programs"
+>  	help
+> diff --git a/samples/rust/Makefile b/samples/rust/Makefile
+> index b66767f4a62a..11fcb312ed36 100644
+> --- a/samples/rust/Makefile
+> +++ b/samples/rust/Makefile
+> @@ -3,5 +3,6 @@
+>  obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
+>  obj-$(CONFIG_SAMPLE_RUST_PRINT)			+= rust_print.o
+>  obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
+> +obj-$(CONFIG_SAMPLE_RUST_DRIVER_PLATFORM)	+= rust_driver_platform.o
+>  
+>  subdir-$(CONFIG_SAMPLE_RUST_HOSTPROGS)		+= hostprogs
+> diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
+> new file mode 100644
+> index 000000000000..55caaaa4f216
+> --- /dev/null
+> +++ b/samples/rust/rust_driver_platform.rs
+> @@ -0,0 +1,62 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Rust Platform driver sample.
+> +
+> +use kernel::{c_str, of, platform, prelude::*};
+> +
+> +struct SampleDriver {
+> +    pdev: platform::Device,
+> +}
+> +
+> +struct Info(u32);
+> +
+> +kernel::of_device_table!(
+> +    OF_TABLE,
+> +    MODULE_OF_TABLE,
+> +    <SampleDriver as platform::Driver>::IdInfo,
+> +    [(
+> +        of::DeviceId::new(c_str!("redhat,rust-sample-platform-driver")),
+
+Perhaps use the same compatible as the commented example. Same comments 
+on that apply to this.
+
+> +        Info(42)
+
+Most of the time this is a pointer to a struct. It would be better to 
+show how to do that.
+
+> +    )]
+> +);
+> +
+> +impl platform::Driver for SampleDriver {
+> +    type IdInfo = Info;
+> +    const ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
+
+Probably want to name this OF_ID_TABLE for when ACPI_ID_TABLE is added.
+
+> +
+> +    fn probe(pdev: &mut platform::Device, info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
+> +        dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver sample.\n");
+> +
+> +        match (Self::of_match_device(pdev), info) {
+
+That answers my question on being exposed to drivers. This is a big no 
+for me.
+
+> +            (Some(id), Some(info)) => {
+> +                dev_info!(
+> +                    pdev.as_ref(),
+> +                    "Probed by OF compatible match: '{}' with info: '{}'.\n",
+> +                    id.compatible(),
+
+As I mentioned, "real" drivers don't need the compatible string.
+
+> +                    info.0
+> +                );
+> +            }
+> +            _ => {
+> +                dev_info!(pdev.as_ref(), "Probed by name.\n");
+> +            }
+> +        };
+> +
+> +        let drvdata = KBox::new(Self { pdev: pdev.clone() }, GFP_KERNEL)?;
+> +
+> +        Ok(drvdata.into())
+> +    }
+> +}
+> +
+> +impl Drop for SampleDriver {
+> +    fn drop(&mut self) {
+> +        dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver sample.\n");
+> +    }
+> +}
+> +
+> +kernel::module_platform_driver! {
+> +    type: SampleDriver,
+> +    name: "rust_driver_platform",
+> +    author: "Danilo Krummrich",
+> +    description: "Rust Platform driver",
+> +    license: "GPL v2",
+> +}
+> -- 
+> 2.46.2
+> 
 
