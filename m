@@ -1,135 +1,207 @@
-Return-Path: <devicetree+bounces-114763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D47C9ACDAE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 16:58:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7C5A9ACD71
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 16:53:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EABB91F21088
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:58:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC0D81C23B96
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 14:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77BB1FF041;
-	Wed, 23 Oct 2024 14:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E4F1C8FB5;
+	Wed, 23 Oct 2024 14:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Dr82H/qv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZnYAi8xh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1EF1FF035;
-	Wed, 23 Oct 2024 14:45:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F7C1ADFE4;
+	Wed, 23 Oct 2024 14:35:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729694714; cv=none; b=Tgg65DtoZazfr6hBosyhe1hXGH/PvDHZidCpJOEb9xOLt9zqpXeLjPY/5EIbIjGHHjumjur1bbTOKgg+2y10L+Xtuxl8vB8XZ3IMa7mixocMlcnLl8a11ElryS+GMNLavvbbUsIbSZDy7aKbs1ChdO30r7OrswLWZlAe3Sm7mgI=
+	t=1729694139; cv=none; b=SR2c5Ei6xt5sYN9a7beLcc+QYvekBA1tocjJHSE9cghitpiGHqv+06Blf7jyuVvneseYN/RZMluvI8KQ9GfvN3Xga1eoqG4sIhL0zHVuZ0JY4Wh5gjEt05wKRLVy+Hh/t5OuMnOLoyd3DXs22WOSELtE4kjM54afZA3bJE6194M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729694714; c=relaxed/simple;
-	bh=gVRZmGDbSSe3eE9Wa/shHPOp5LGbVJEKYHUbkOttPNE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jV4HWD4iUtT7YnSoiZqXIjCDVSM3my3uj1wggCE722VZZcEDl03PyOQgr4g5pm3HLc5JeA0d592SX6NXFGxh72/DGthSRHNUR/Xazi5DPTxuYiY3OIE9kUWVRdEpyISuLszBd14qUSB4DiVKxPnmWbRpOupGzZLy9PDPoRI1XHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Dr82H/qv; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 2FE0F8926F;
-	Wed, 23 Oct 2024 16:45:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1729694711;
-	bh=gz9H38d2hsPWIqXhhStTpviHMUHd9U6Jhiq3f7k4l70=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dr82H/qvBgqrQ9fq456Rh+c8cmgK1VSc/0OPUhlC4Ch5k+SasRbJRKfZ9kYAqxuFo
-	 +fknygzTdUyhJj5Zz8Z0XmIoSGCSUI1mM6wqvEY+xQI2GarF0ycfhKQMGYnIqqLa64
-	 ybzZVhGV2ahsqkYDk8KIfhUUK1BM1fVe7HGtMymCzQZfrBuJx/bWtqHt3mwZphDU95
-	 3F6SmHcY/S1qYXedvziK+zFFfyJt2maYGnjplA1rfStvLkNOdgHHf5hJ0GuQDdoJfh
-	 Qg6e8VAKVNkY/u9my4jpu2d6SzBdA/UZRm8chKvKQMM0IS830C0/EULyzIJUnRilLU
-	 znXKEs8xhX4fQ==
-Message-ID: <3b2e85a2-5dd2-4368-9f94-422b7766297a@denx.de>
-Date: Wed, 23 Oct 2024 16:26:54 +0200
+	s=arc-20240116; t=1729694139; c=relaxed/simple;
+	bh=azQJ3eGowkkRjf7a7p4DUvh4rfik/bDhwyFQa/WiKhg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PshgeRM5mow8DudjLGSZUziTBHqiHsAUezvzdolEAcblOSRmP7br3fVAak2QhpHdwI/Uhx3hbGNFIZDlzZWEmqhsYUgnWPdOwEBv4VXyWHwYKdsX9/kczoTweQMZr867OGrhfIlpmrXV9rveIkVD6MbvU3fHA7lN7MNJnpTKe+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZnYAi8xh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5D01C4CEEF;
+	Wed, 23 Oct 2024 14:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729694138;
+	bh=azQJ3eGowkkRjf7a7p4DUvh4rfik/bDhwyFQa/WiKhg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ZnYAi8xhKVOwyN23dtadpHuhJyihl2MDeOhcQoE63BUztJTDrQrBBwrL0rvXULRRk
+	 /EFa+6zg5Ddujjug7EamJ/cDRT+F0n5FadFPs185ur2IGAhnK07Kmcr8OjBt76bQ89
+	 xdKfco3k3sJZQ9GLwbol3zWK6QVhvu+w4FRlxVHZXIFRI2mwDg7qL2wQ+HR6rKvF8G
+	 kUo/FrbFc4h6odrkyoxm7pftbyFcU+pO7+Bz6hiRg52IOGIvtWkFV3jNHNRyyPyj+a
+	 iXHCBRPQD5/Viy+XTVHPQU2zx7IYfNY9fpUDzARmP5MmPnJpLyUW0Gxe88IYv5BtAg
+	 YvuzrVYk9TYRg==
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71e61b47c6cso5301194b3a.2;
+        Wed, 23 Oct 2024 07:35:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUVd2e4wVmUm5w8oiicFsTbtKdjzNqt9SNR88Luc9iM0VftISAzSnTgXVsHs3oK2TxoXCc/4Fy+vUnl@vger.kernel.org, AJvYcCVoflN/gP6E3GdpTwzKBAi0BbFflVkb4cf9+b9goh4LCa7XxOr6c+3dHwjCVudi8glWWej05aOPsXtTJuQc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxi4v4+f+BTDARjk9p/Jo1eH8HXeXLSBANIQ0wi7TgTVJ4Ze592
+	ElsXwJ+U8FbmmBV857sNbnlelL/7wkcgFu2uGtPUveHeVDOaU1Fhun1nFJvyoJbjPEPmFKxQU5e
+	b4esLO4GD6SyNwP+9pG3Qb5p2zQ==
+X-Google-Smtp-Source: AGHT+IGotfPUjuCyXnHej963WsiwtwAVlBk0onYdkHZONBPgcS/jZacTHxq70ShX22L6ObDnMI+HTy8A/5j0aUTa/2E=
+X-Received: by 2002:a05:6a00:3d15:b0:70b:176e:b3bc with SMTP id
+ d2e1a72fcca58-72030bdca55mr4263603b3a.28.1729694137938; Wed, 23 Oct 2024
+ 07:35:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: wilc1000: Rework bus locking
-To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
- linux-wireless@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20241022013855.284783-1-marex@denx.de>
- <c9e98811-15f5-427a-82f7-2e7fff4a9873@bootlin.com>
- <8e28ba76-ecfa-49b6-89b5-1edabb22129d@denx.de>
- <71c93145-f7ed-485a-99f2-fab9529e6bcb@bootlin.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <71c93145-f7ed-485a-99f2-fab9529e6bcb@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+References: <20241003030919.17980-1-macpaul.lin@mediatek.com> <20241003030919.17980-4-macpaul.lin@mediatek.com>
+In-Reply-To: <20241003030919.17980-4-macpaul.lin@mediatek.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Wed, 23 Oct 2024 22:35:58 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-6tHK7xq3JUWSX--2mZqHQE-bzfaCwzuYHY5crFtYNxQ@mail.gmail.com>
+Message-ID: <CAAOTY_-6tHK7xq3JUWSX--2mZqHQE-bzfaCwzuYHY5crFtYNxQ@mail.gmail.com>
+Subject: Re: [PATCH v6 4/4] dt-bindings: display: mediatek: dpi: correct
+ power-domains property
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>, 
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Rohit Agarwal <rohiagar@chromium.org>, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, 
+	Alexandre Mergnat <amergnat@baylibre.com>, Bear Wang <bear.wang@mediatek.com>, 
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, 
+	Sen Chu <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>, 
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+	Chen-Yu Tsai <wenst@chromium.org>, Jitao Shi <jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/23/24 9:54 AM, Alexis Lothoré wrote:
+Hi, Macpaul:
 
-Hello Alexis,
+Macpaul Lin <macpaul.lin@mediatek.com> =E6=96=BC 2024=E5=B9=B410=E6=9C=883=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:09=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> The MediaTek DPI module is typically associated with one of the
+> following multimedia power domains:
+>  - POWER_DOMAIN_DISPLAY
+>  - POWER_DOMAIN_VDOSYS
+>  - POWER_DOMAIN_MM
+> The specific power domain used varies depending on the SoC design.
+>
+> These power domains are shared by multiple devices within the SoC.
+> In most cases, these power domains are enabled by other devices.
+> As a result, the DPI module of legacy SoCs often functions correctly
+> even without explicit configuration.
+>
+> It is recommended to explicitly add the appropriate power domain
+> property to the DPI node in the device tree. Hence drop the
+> compatible checking for specific SoCs.
 
->>                                   ksdioirqd() { // option 2
->>                                     claim_bus
->>                                     CMD52 0x0f, lets read SDIO_CCCR_INTx
->>                                     release_bus
->>                                   }
->>
->> That's what this patch implements, to avoid the interference.
->>
->> Maybe I should include the infographics? Or reword this somehow?
-> 
-> What I may have misunderstood is your first sentence ("sdio_claim_host() cannot
-> be done per command, but has to be done per register/data IO which consists of
-> multiple commands", especially command VS reg/data io), but your graph clarified
-> it for me, thanks, so in the end we agree on this :) That may just be me having
-> poorly interpreted, so no need to add the graphs to the commit
+Applied to mediatek-drm-fixes [1], thanks.
 
-You're welcome. As long as we can understand each other with one extra 
-round trip, all is good :)
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-fixes
 
-> [...]
-> 
->>>>    static int wilc_wlan_cfg_commit(struct wilc_vif *vif, int type,
->>>> diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.h b/drivers/net/
->>>> wireless/microchip/wilc1000/wlan.h
->>>> index b9e7f9222eadd..ade2db95e8a0f 100644
->>>> --- a/drivers/net/wireless/microchip/wilc1000/wlan.h
->>>> +++ b/drivers/net/wireless/microchip/wilc1000/wlan.h
->>>> @@ -403,6 +403,8 @@ struct wilc_hif_func {
->>>>        void (*disable_interrupt)(struct wilc *nic);
->>>>        int (*hif_reset)(struct wilc *wilc);
->>>>        bool (*hif_is_init)(struct wilc *wilc);
->>>> +    void (*hif_claim)(struct wilc *wilc);
->>>> +    void (*hif_release)(struct wilc *wilc);
->>>
->>> So IIUC, your series push the hif_cs lock into each bus layer of the driver,
->>> remove any explicit call to bus-specific locking mechanism from those layers,
->>> and makes the upper layer control the locking. As mentioned above, I don't
->>> understand why those layers can not manage the bus-specific locking by
->>> themselves (which would be a big win for the upper layer).
->>
->> Because of acquire_bus()/release_bus() which I think is an attempt to serialize
->> bus access across multiple complex operations (=commands sent to the card), see
->> above.
-> 
-> Taking a further look at some examples in the driver, I see that indeed the
-> "scope" of acquire_bus/release_bus is larger than simple bus operations. So I
-> withdraw my proposal which was wrong.
-All right.
+Regards,
+Chun-Kuang.
+
+>
+> Fixes: 5474d49b2f79 ("dt-bindings: display: mediatek: dpi: Add power doma=
+ins")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  .../display/mediatek/mediatek,dpi.yaml        | 24 ++++++++-----------
+>  1 file changed, 10 insertions(+), 14 deletions(-)
+>
+> Changes for v2:
+>  - Because of the corresponding dts fix has been reviewed with a Reviewed=
+-by: tag.
+>    [1] https://lore.kernel.org/all/20240925080515.16377-1-macpaul.lin@med=
+iatek.com/
+>    We still need this change to fix the 2 dtbs_check errors.
+>    So keeps no change here.
+>
+> Changes for v3:
+>  - The origin patch is [2]
+>    https://lore.kernel.org/all/20240926111449.9245-2-macpaul.lin@mediatek=
+.com/
+>  - Thanks for Conor's reminding, after MediaTek's internal discussion,
+>    This patch v3 is the replacement of [2] v2.
+>    Because the DPI module should has a explicit configuration with power =
+domain.
+>  - Drop Acked-by: tag since v3 is nearly a new patch for different approa=
+ch.
+>
+> Changes for v4:
+>  - No change. Please help to review it again.
+>
+> Changes for v5:
+>  - Add missing Reviewed-by Tag from Krzysztof. Thanks.
+>
+> Changes for v6:
+>  - No change.
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.=
+yaml
+> index 3a82aec9021c..497c0eb4ed0b 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
+l
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
+l
+> @@ -63,6 +63,16 @@ properties:
+>        - const: sleep
+>
+>    power-domains:
+> +    description: |
+> +      The MediaTek DPI module is typically associated with one of the
+> +      following multimedia power domains:
+> +        POWER_DOMAIN_DISPLAY
+> +        POWER_DOMAIN_VDOSYS
+> +        POWER_DOMAIN_MM
+> +      The specific power domain used varies depending on the SoC design.
+> +
+> +      It is recommended to explicitly add the appropriate power domain
+> +      property to the DPI node in the device tree.
+>      maxItems: 1
+>
+>    port:
+> @@ -79,20 +89,6 @@ required:
+>    - clock-names
+>    - port
+>
+> -allOf:
+> -  - if:
+> -      not:
+> -        properties:
+> -          compatible:
+> -            contains:
+> -              enum:
+> -                - mediatek,mt6795-dpi
+> -                - mediatek,mt8173-dpi
+> -                - mediatek,mt8186-dpi
+> -    then:
+> -      properties:
+> -        power-domains: false
+> -
+>  additionalProperties: false
+>
+>  examples:
+> --
+> 2.45.2
+>
 
