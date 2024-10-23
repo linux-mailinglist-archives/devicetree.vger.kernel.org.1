@@ -1,193 +1,83 @@
-Return-Path: <devicetree+bounces-114534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C3399ABE91
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:16:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 087719ABE7C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:15:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5583B23D84
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:16:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B31821F2444E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:15:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624C314B086;
-	Wed, 23 Oct 2024 06:16:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C05148317;
+	Wed, 23 Oct 2024 06:15:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="F2BD5AA3"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="X7iuuQmt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6FD7149013;
-	Wed, 23 Oct 2024 06:16:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EE2EAC5;
+	Wed, 23 Oct 2024 06:15:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729664175; cv=none; b=mwV3WB1t+gMyBuNM6sFpSe9KwScSrzgRKM6jEyYa+Wv7ee5rpqIZotviAHZ9H0lC0da6ZeVM/RA408WNqxoPkETYlt6UqBkPOyLW2IlSNbx/HAXmMG4lIFX/uPel9fwYGMxLy1nS6v8WcIzxBa9r0OLU+Rr+GdWKHg7sGlxgp0E=
+	t=1729664104; cv=none; b=uMkZ5fLndu4R3Zv8204oRPjGsvE7UdVWcx0gwqO7YtUlDX5UH2pK7ukCmem6OJoeEmx4rsGRi+xnbJg50y6fhIJrwrramXH9kyn2WIT+PWKCybT9uKz0j6XZuWn+WumeIB+Jf3pokpPDBKR8NLmmdY9dz0q9i7FxBr/ef+z5MZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729664175; c=relaxed/simple;
-	bh=APOzSU+KlMGLUuYjnSvUiO03YykwfjLbCynGKCVGp+4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eynpUxosfgdm28W7s3yolBGLtJttMU5MCqtrsDzxDaHp/pwGtQG0B4KZ3hyuhRCs1kNZEHzJWbTuK7C6kY8+amcwDFisI1PfQVKYxoSs4LjKaK5qaj85aBzwNmsB/55hK2h45RdkX9Sosos2UM7g1KQL/v3JVM/Fbb8/S3hjMBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=F2BD5AA3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49MLfAMM020008;
-	Wed, 23 Oct 2024 06:15:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jcQW5RcyqeDeHXJvfyXe0YmvyZ+DgVH1hq0fW/JPfT4=; b=F2BD5AA3elidHFqL
-	CbpJgUYTzfcUAiYVaHczQyfi4Xnt2bx+RgIFfVRHVuNcLxXNOyLaCh7gTrs8mUCP
-	OVOCMhkNgZn5Ru2faYzdY6yJuNpTbHmKqtjSmZLl4ecf8sj46AcDFFJYfw3QWRaJ
-	Czuj9UAdIx9nr9FrbR4okqWV/0ai7UfDME3ZDxfJBttl9esctek67UhSZwZnxLHM
-	Yv5f+1Es+vjRiKC7siTiEPB2MmciQmhIlxJSizbYR7j2/pDimGbG6KbQJu94+sTh
-	JSfjJaEyQvaaoPE47w/Cj0bhfWl1K+f0AbEDfRhXIfbgxrXWgrQeUhesvK5OQPyO
-	4XHsAg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em6692j8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 06:15:57 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49N6FvRt013682
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 06:15:57 GMT
-Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 22 Oct 2024 23:15:49 -0700
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Bard Liao
-	<yung-chuan.liao@linux.intel.com>,
-        Jaroslav Kysela <perex@perex.cz>, "Takashi
- Iwai" <tiwai@suse.com>
-CC: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-        Sanyog Kale
-	<sanyog.r.kale@intel.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <kernel@quicinc.com>,
-        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Subject: [PATCH v2 4/4] ASoC: qcom: sdw: Add get and set channel maps support from codec to cpu dais
-Date: Wed, 23 Oct 2024 11:43:26 +0530
-Message-ID: <20241023061326.3871877-5-quic_mohs@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241023061326.3871877-1-quic_mohs@quicinc.com>
-References: <20241023061326.3871877-1-quic_mohs@quicinc.com>
+	s=arc-20240116; t=1729664104; c=relaxed/simple;
+	bh=uPW4iOmh92n0FdWJ1U1PBgbj0zGgvRYGMjRMNUlwlTA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Adyp0o/NOeQF32FfTzIuTKIF/GiWEdJIMhkiF1TjeqVkvJoEI4OJapR6raP/AveVUNiCUhgB4v4ee1PiPLyfmmY8Z/Z5CH+rYL9E0kamiWUZ9q9jgikamNkxcgXQP/srXO5fqUFDBnpwLE89XG3wwaXWojVCKExdcfhp42t9X4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=X7iuuQmt; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1729664098;
+	bh=uPW4iOmh92n0FdWJ1U1PBgbj0zGgvRYGMjRMNUlwlTA=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=X7iuuQmtFguQG+IJh+TWz3WceRdZtTv0UTTY3M8mvcCXfZEgzRTEnQbL4xosPwdjh
+	 PdOeK8A1aYSHt2AN2kSU+h5erp2a53AwQqDkrUlvGVuKSRKnBBAOcEmjNnPb0U3e7x
+	 WReBijoA0h92pnsWY2QEsY0Yxi744vJU+s+KbgVXaEcwhR6d71YPhR2G0Vu7Iktsae
+	 A7Hyvyv8jd5I8B/ArQ/FWIqp53IwC7J+5bK+sMEPfF0gg79zVld4mGVlmNjgmN7BD7
+	 xG1s96ZC2UTO32IzSGgLuVFFCdZkMrzGxvCldZYO+XMvsbeGquVnFMVYrEbpNa2ddt
+	 ZoFkgx36BiABA==
+Received: from [192.168.68.112] (ppp118-210-190-208.adl-adc-lon-bras34.tpg.internode.on.net [118.210.190.208])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id DCEE069460;
+	Wed, 23 Oct 2024 14:14:55 +0800 (AWST)
+Message-ID: <de478e5f56bb67a9babe59afa6ad53c8dd4542ee.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 0/2] Add Meta(Facebook) Ventura BMC(AST2600)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Jason-Hsu <jasonhell19@gmail.com>
+Cc: yang.chen@quantatw.com, jerry.lin@quantatw.com, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, patrick@stwcx.xyz,
+  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Wed, 23 Oct 2024 16:44:55 +1030
+In-Reply-To: <20241022021230.2322132-1-jasonhell19@gmail.com>
+References: <20241022021230.2322132-1-jasonhell19@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: eQ8xMa0gi9MV6Wbd3PW4bmVJB8bBMCHz
-X-Proofpoint-GUID: eQ8xMa0gi9MV6Wbd3PW4bmVJB8bBMCHz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 phishscore=0 impostorscore=0 malwarescore=0 mlxlogscore=999
- suspectscore=0 clxscore=1015 mlxscore=0 bulkscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410230036
 
-Add get and set channel maps support from codec to cpu dais.
+On Tue, 2024-10-22 at 10:12 +0800, Jason-Hsu wrote:
+> Add Linux device tree entry related to Meta(Facebook) Ventura specific
+> devices connected to BMC(AST2600) SoC.
+>=20
+> Signed-off-by: Jason-Hsu <jasonhell19@gmail.com>
 
-Implemented logic to get the channel map in case of only sdw stream and
-set channel map only for specific cpu dais.
+What commands are you running to generate and send your patch series?
 
-Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
----
- drivers/soundwire/qcom.c |  5 ++---
- sound/soc/qcom/sdw.c     | 34 +++++++++++++++++++++++++++++++---
- 2 files changed, 33 insertions(+), 6 deletions(-)
+The patches must be threaded properly.
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 007183c6c047..6c3cff1194aa 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -1276,11 +1276,10 @@ static void *qcom_swrm_get_sdw_stream(struct snd_soc_dai *dai, int direction)
- }
- 
- static int qcom_swrm_set_channel_map(struct snd_soc_dai *dai,
--				     unsigned int tx_num, unsigned int *tx_slot,
--				     unsigned int rx_num, unsigned int *rx_slot)
-+				     unsigned int tx_num, const unsigned int *tx_slot,
-+				     unsigned int rx_num, const unsigned int *rx_slot)
- {
- 	struct qcom_swrm_ctrl *ctrl = dev_get_drvdata(dai->dev);
--	struct sdw_stream_runtime *sruntime = ctrl->sruntime[dai->id];
- 	int i;
- 
- 	if (tx_slot) {
-diff --git a/sound/soc/qcom/sdw.c b/sound/soc/qcom/sdw.c
-index f2eda2ff46c0..d4d8ed46e6ff 100644
---- a/sound/soc/qcom/sdw.c
-+++ b/sound/soc/qcom/sdw.c
-@@ -25,7 +25,9 @@ int qcom_snd_sdw_startup(struct snd_pcm_substream *substream)
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 	struct sdw_stream_runtime *sruntime;
- 	struct snd_soc_dai *codec_dai;
--	int ret, i;
-+	int ret, i, j;
-+	u32 rx_ch[SDW_MAX_PORTS], tx_ch[SDW_MAX_PORTS];
-+	u32 rx_ch_cnt = 0, tx_ch_cnt = 0;
- 
- 	sruntime = sdw_alloc_stream(cpu_dai->name);
- 	if (!sruntime)
-@@ -35,9 +37,35 @@ int qcom_snd_sdw_startup(struct snd_pcm_substream *substream)
- 		ret = snd_soc_dai_set_stream(codec_dai, sruntime,
- 					     substream->stream);
- 		if (ret < 0 && ret != -ENOTSUPP) {
--			dev_err(rtd->dev, "Failed to set sdw stream on %s\n",
--				codec_dai->name);
-+			dev_err(rtd->dev, "Failed to set sdw stream on %s\n", codec_dai->name);
- 			goto err_set_stream;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+
-+		ret = snd_soc_dai_get_channel_map(codec_dai, &tx_ch_cnt, tx_ch,
-+						  &rx_ch_cnt, rx_ch);
-+		if (ret != 0 && ret != -ENOTSUPP) {
-+			dev_err(rtd->dev, "Failed to get codec chan map %s\n", codec_dai->name);
-+			goto err_set_stream;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+	}
-+
-+	switch (cpu_dai->id) {
-+	case RX_CODEC_DMA_RX_0:
-+	case TX_CODEC_DMA_TX_3:
-+		if (tx_ch_cnt || rx_ch_cnt) {
-+			for_each_rtd_codec_dais(rtd, j, codec_dai) {
-+				ret = snd_soc_dai_set_channel_map(codec_dai,
-+								  tx_ch_cnt, tx_ch,
-+								  rx_ch_cnt, rx_ch);
-+				if (ret != 0 && ret != -ENOTSUPP)
-+					goto err_set_stream;
-+			}
- 		}
- 	}
- 
--- 
-2.25.1
+`git send-email` or `b4` both do what is expected without any effort
+required. Please consider using them, particularly b4, if you're not
+already.
 
+Andrew
 
