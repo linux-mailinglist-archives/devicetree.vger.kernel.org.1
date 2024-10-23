@@ -1,133 +1,158 @@
-Return-Path: <devicetree+bounces-114877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320B59AD45C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:59:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C4649AD460
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 21:00:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B18B1C21D81
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 18:59:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DECF31F22766
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 19:00:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25C01DC04C;
-	Wed, 23 Oct 2024 18:58:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE2E1D27A0;
+	Wed, 23 Oct 2024 19:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BGpz2Tj1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D8wMIeuj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EF401D5AA4;
-	Wed, 23 Oct 2024 18:58:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA67C1D1756;
+	Wed, 23 Oct 2024 19:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729709936; cv=none; b=dog1OTBPI0Bg3BdpV5J63B0SPWCGUF5nOZJQ//IgUQC4j8jnfDO21FinnKk3hrSDgCGgEQTcI+Fmg08DOxrWKy23oOkEMUXKwxoKlhPNPrj685Bx7yRhfXt2UtbWBO+f64q+E6QiHIDmtwxzIZupc9TJ4bUkFFUzlIg/EnFyML8=
+	t=1729710004; cv=none; b=QTKicS0Q/taumWLbCLrUFlq0OOCgP3CxUPdVPiAOnhPbVtzd8evQnfpzuiU7S7QmkpB12zLmv9QHNqNpK1LcDbOmHJtYtiK4BJaJ1QzDoSB/y6LZxkhb2C0uiJKr0UQ+JQLnisSwlprxEFKU6JQugVwFjppXnbG/R5Rx4OwQQ4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729709936; c=relaxed/simple;
-	bh=x204FY8czbHAb7Cmw99W7nI9BVzyf3/4zvjGmKOefJs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JaZbCeIZezBhdircDg2gjSTLJ8tv92igVsVCkMWoDdhEB2AENY71iXxkmBaBwVmm2GcJjYhq5dyyza26YXUkhZ2RG46Cf5mPaUTAvkte7zMBDJC2zJHAjSQB/bDNO02can1o9WJ8TqndY7jkqvQ66PSouUkvP3yKqdbMSHzbFUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BGpz2Tj1; arc=none smtp.client-ip=209.85.214.178
+	s=arc-20240116; t=1729710004; c=relaxed/simple;
+	bh=3ySqNRLtGWwpMyBHGSdChNcqITgkUEvbM2RBlgIaxds=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=evK2lHwhKR6ucDjtivdDqothVBMkQQJFt7kTfOVc6mUJbkuOCSP4vOjg9V1J5Fb2LIxDCxcY5KtYlqO9LfpCkVE3U8/oMH1OWA+mS++aXjToypqYQPpmTBb7VYPkGuWo4g/oyGGM7j1JFKh2wZzGwTFs2JUvZn3nMF0217eEMV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D8wMIeuj; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20c77459558so666755ad.0;
-        Wed, 23 Oct 2024 11:58:55 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4315e62afe0so1099535e9.1;
+        Wed, 23 Oct 2024 12:00:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729709935; x=1730314735; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I8POc0ozVUT+47lXZs+WKX2u4H7qQ6BvNQLFo8yC2yY=;
-        b=BGpz2Tj1MTC2J8Cnbmm6LnjUekip1LcTuAXQVfQ7m3rDet3hjb93r3J8ZPKk1HGLPy
-         SRs1uyRqjSDWKREWU8Cvs3yc+O52yrNuBKob11qkldA7x8BdjrCmQ5pWnDdimI7aZoyv
-         CaGMgnlDlCIe9+MwWi5eh87QTxVaLGI7ScmSakyV6+XBgNTb+8MTXmAdTaQozON2oj35
-         wpNibOmD8C8DGxiSh6lrp5VmOix+LH30NTmZ8a3g81y+s8e5Qv/MDViKbvPvkbKjR8Li
-         qBL1BL7oJ3vpFzGsQaUfKk3WNMaBhh6q0KcCJefUy6DQgdXA1h5oWCWN1yAqX3p450zq
-         TSnQ==
+        d=gmail.com; s=20230601; t=1729710001; x=1730314801; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FsJIF8FT1ZOAASevldtxcNuDKIhD6kU5J03bohqg87A=;
+        b=D8wMIeujxkK45xkZlhTckS8z/IGvl0mifSFRSfvdMU/XG3LvKQDtIkAONueyUwoCUB
+         ffERTNa81l1vaaJR5UTmq+YW1x13a/bzepOl0S6UlIi3rnPp2vgdJ6XuIPz1Y5iTO1n5
+         HPj/eetfe5YlN9pdfcds3Z1fGhhQeHgBZnYXvH0XPd43j6G6qwQOjbAEDBwu9as4G7/e
+         Szrt0jBEroXoz8SVr3JJc+eKWj+r8w14BZ5z/eHB++N/0Ykc5DGHGW/34D5ehNvbCoSB
+         cGj/t+lrO+fp7Q+4MYu9woL/CLUlphwypSTVyMla2oOMqXIQxbDsG//ilsiu2ABiBVye
+         hPfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729709935; x=1730314735;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I8POc0ozVUT+47lXZs+WKX2u4H7qQ6BvNQLFo8yC2yY=;
-        b=Tz2pW1jqMxHyVCkZgSco0ozfZQfKJXk56nvv1TRDNWBFDLK4GIeHSz8oeZxTau8b5Q
-         YZ2d4QyF8WCmybfDY9DDA+BxS3BncG8mQU0R91f/uxaHva0QKHrDLfhm9kHZp2vE4XSV
-         3nGUspyiJH8+wpaIlDnNCzgLoGFi8QdmxWay+yFa1ObofSjtMjdfqh+0wSeLR7DXn33k
-         fwQW3/Uyjcjyo3n253dGz4YE/KSDEgCULru/hVD7My5z8U3U4G43OeYltybo1T6cs4Sc
-         dnqfSLhHPIKglYLYc/gWOZPFQuaadTROkGnyr62ViOJJI/p5Zcyf8KtdOgdGVucW3H/i
-         /CaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVN+vHPsxv+vRqz0Mn2hxxu3LBDe+VlheR+Y6znFtCllvXMCQmqX08uL79Y1XB4liEdOwu7s+paPHEDCbuA@vger.kernel.org, AJvYcCVqxtXPviZxbwAvM2du762LFWd9hDphnFGDSGcJnQyG4NGiBHXRgeAq41b/2mgJ2HsiAUFnviS2NsNY@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywfsjhl6VJQnwJ1H5nO3Ob2H1BTJiB3t35M0+AFCvSFclXbT6lt
-	yGB8cFbMREz82jQjlCRcEvCdmyMyYSQudpQBSjgUoxrAicXThmqu
-X-Google-Smtp-Source: AGHT+IHH019wlye4OLyzFgAVfsYnBimRnqGGVnQAULUDSlRjJMvfsgn8n6SH4ioTZQtD+DntZKPrMA==
-X-Received: by 2002:a17:902:e5ca:b0:20c:b876:5046 with SMTP id d9443c01a7336-20fa9ea37c0mr32248425ad.50.1729709934726;
-        Wed, 23 Oct 2024 11:58:54 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:248:317f:2ba9:e66c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7f0f6ee4sm60619955ad.295.2024.10.23.11.58.51
+        d=1e100.net; s=20230601; t=1729710001; x=1730314801;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FsJIF8FT1ZOAASevldtxcNuDKIhD6kU5J03bohqg87A=;
+        b=rjIjoc5NYIs4yvXwchwmSZOeyE5IEbjCEIkoNFhMo7lKju5UB1IbQui3ETgoUily7S
+         jJ+2Ezl4dFtfZ0SuIyLZePHNF2Nrs/3OXLxbo5Psqt2ZI47arXx3orR9duJCePPk2Si9
+         snTRXwiz4RxJ1+K97DRhw/FpBxJPborsUxI6RqERUEo9mR/fFiv26/eve2ObazerEe7n
+         +NBa6oPcGHJVux6s5Gbh3kLt0ePlXC+2+L2mOYbuDde4BIAeB6IwDTJluupUyum4Aa5v
+         jx0u8hTMg9zFvQWaGimiBshvtpRO4ocv3fRDJGfRPvgqVPwTzyFfZ/ULhI+wIAxZ4chU
+         NcpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOBAF+6Cq88yOcXD1f5ACeBWYsHFGnt5Ae5k87LintPQVqKS34+9Qd/grGNoEjO/ZfEbxCHfEbSKr6jSHi@vger.kernel.org, AJvYcCViPrjEqv7B2vgp9oul/+JtMSbq4AJkWQg1th+dheyye2uS8XxSE4tpZ6LEYtOqRkSlv+zOjjlolAv7@vger.kernel.org
+X-Gm-Message-State: AOJu0YycYEdUSDKi3FIa7qLr2mg9VXdyaSjwOsFpWeIajoCKZ7SQW8YP
+	jEI5o2etfCyxNJmFjtG5DARIdxjp3i+bg4V6gBYHCJKwbMTg5D1j
+X-Google-Smtp-Source: AGHT+IFTs7ItDseyR4ZDl5HA79aGpVYcUk5tq1heIhbRH/wK064InmWoKT1MOInjiCQD2tlVX/SA5w==
+X-Received: by 2002:a05:600c:19d4:b0:431:3927:d1bc with SMTP id 5b1f17b1804b1-4318412ff0dmr29920895e9.2.1729710001082;
+        Wed, 23 Oct 2024 12:00:01 -0700 (PDT)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-b7f1-415d-4bfe-cca9.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:b7f1:415d:4bfe:cca9])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43186c3a707sm24176485e9.33.2024.10.23.11.59.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 11:58:54 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: tglx@linutronix.de
-Cc: daniel.lezcano@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 2/2] dt-bindings: timer: fsl,imxgpt: Document fsl,imx35-gpt
-Date: Wed, 23 Oct 2024 15:58:41 -0300
-Message-Id: <20241023185841.1183706-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241023185841.1183706-1-festevam@gmail.com>
-References: <20241023185841.1183706-1-festevam@gmail.com>
+        Wed, 23 Oct 2024 12:00:00 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH v3 0/2] iio: light: add support for veml3235
+Date: Wed, 23 Oct 2024 20:59:57 +0200
+Message-Id: <20241023-veml3235-v3-0-8490f2622f9a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK1HGWcC/02MywrDIBBFfyW4rmUc8+yq/1G6UDMmQl5okZaQf
+ 68JhWZ5LveclQXyjgK7ZSvzFF1w85RAXjJmejV1xF2bmCFgLgAqHmkcJMqCg5I1lgU1WhFL98W
+ Tde8j9Xgm7l14zf5zlKPY119ElP9IFBy4biC3NWCryN67UbnhauaR7ZGIJxHhJGISc20qY1VbE
+ eizuG3bF3pciwfZAAAA
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1729709999; l=2472;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=3ySqNRLtGWwpMyBHGSdChNcqITgkUEvbM2RBlgIaxds=;
+ b=p6sGnY5rJllCmR1IedzW0iJxFWX3QqmzzOH5UDSp8n45HCsJLaD8Q5OkHGjcisqUZF5/fPU0m
+ EHf7+bc5yzqBzqEBNRvkE6sfo1TwnxFLuQVvycCSjhaOirfSlUdfHQh
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-The i.MX35 General Purpose Timer is compatible with i.MX31.
+This series adds support for the Vishay veml3235 ambient light sensor
+with I2C protocol interface.
 
-Document the fsl,imx35-gpt compatible.
+I attempted to add support for this device in the existing veml6030
+driver, as it shares some operating principles with the supported
+devices. But given that the veml3235 has different register addresses,
+bit arrangements, and limited functionality, it ended up making most of
+the driver kind of device-agnostic.
 
-This fixes the following dt-schema warning:
+Instead, the proposed driver is based on the recently updated veml6030
+with multiple simplifications and a few clean ups (e.g. regfields,
+right definition of shared-by-all info masks, which can't be modified
+in veml6030 as it breaks the ABI).
 
-timer@53f90000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx35-gpt', 'fsl,imx31-gpt'] is too long
-	'fsl,imx1-gpt' was expected
-	'fsl,imx21-gpt' was expected
-	'fsl,imx27-gpt' was expected
-	'fsl,imx31-gpt' was expected
-	'fsl,imx35-gpt' is not one of ['fsl,imx25-gpt', 'fsl,imx50-gpt', 'fsl,imx51-gpt', 'fsl,imx53-gpt', 'fsl,imx6q-gpt']
-	'fsl,imx6dl-gpt' was expected
-	'fsl,imx35-gpt' is not one of ['fsl,imx6sl-gpt', 'fsl,imx6sx-gpt', 'fsl,imx8mp-gpt', 'fsl,imxrt1050-gpt', 'fsl,imxrt1170-gpt']
-	'fsl,imx35-gpt' is not one of ['fsl,imx6ul-gpt', 'fsl,imx7d-gpt']
-	'fsl,imx6sx-gpt' was expected
+On the other hand, the dt-bindings can be recycled as there is no real
+reason to add new ones. From a dt-bindings point of view it resembles
+the already supported veml7700. But if for whatever reason new bindings
+would be preferred, I am willing to provide them in further versions.
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 ---
- Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v3:
+- Add missing Tag to [1/2] (Acked-by).
+- Drop processed values from the driver, which in turn removes the need
+  to store the current resolution, gain and integration time in the
+  driver data.
+- Fix SD0 bit position (15).
+- Drop redundant configuration write in hw_init (gain and integration
+  times are the only fields to set).
+- Link to v2: https://lore.kernel.org/r/20241020-veml3235-v2-0-4bc7cfad7e0b@gmail.com
 
-diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-index a2fcb1e8e74e..9898dc7ea97b 100644
---- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-+++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-@@ -21,6 +21,7 @@ properties:
-       - items:
-           - enum:
-               - fsl,imx25-gpt
-+              - fsl,imx35-gpt
-               - fsl,imx50-gpt
-               - fsl,imx51-gpt
-               - fsl,imx53-gpt
+Changes in v2:
+- Rename SD/SD0 bits to include register name.
+- Switch to dev_info() when checking ID.
+- Simplify val/val2 handling in veml3235_set_gain().
+- Move return -EINVAL to the default case in veml3235_read_avail().
+- Link to v1: https://lore.kernel.org/r/20241016-veml3235-v1-0-b904f802daef@gmail.com
+
+---
+Javier Carrasco (2):
+      dt-bindings: iio: light: veml6030: add veml3235
+      iio: light: add support for veml3235
+
+ .../bindings/iio/light/vishay,veml6030.yaml        |   5 +-
+ MAINTAINERS                                        |   6 +
+ drivers/iio/light/Kconfig                          |  11 +
+ drivers/iio/light/Makefile                         |   1 +
+ drivers/iio/light/veml3235.c                       | 504 +++++++++++++++++++++
+ 5 files changed, 526 insertions(+), 1 deletion(-)
+---
+base-commit: ceab669fdf7b7510b4e4997b33d6f66e433a96db
+change-id: 20241007-veml3235-0a38265e9bae
+
+Best regards,
 -- 
-2.34.1
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
 
