@@ -1,229 +1,178 @@
-Return-Path: <devicetree+bounces-114440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D7379ABA56
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 02:04:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D9249ABA5D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 02:08:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFABF1F244BA
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:04:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD0B3284C1D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5EDE1798F;
-	Wed, 23 Oct 2024 00:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3507610B;
+	Wed, 23 Oct 2024 00:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jXK3ZBl3"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="iUM+Zv40"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B26991798C;
-	Wed, 23 Oct 2024 00:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888FD2595
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 00:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729641849; cv=none; b=ncKQxFKshkBjcLimSf9d9/uM2ftjFmJsieEFXEcwk9grsu34KgPropBbhyOXbE7vyeeN5QA29n7z5mclncBBwfab1v/riUSYU0v728QDkgLYPO8cCn0lqwpaaFtb53Dv7SkmYVQMSwmtwRdJ+OYHajNp3ifKBno6+XT2hY9ik3w=
+	t=1729642087; cv=none; b=nobvmjiCgHVoylpLKna7UYBLsxj4janzZz/TV9wsUTUAy1RnTVOXcQcPffoMb3WUzC2iRtFNBHVpJWesY/cIumvTvHVae6sMp8fyTT0IXmO/MabY9vuacaZtOk4gYuZNptmw1N7q7+j6fdgMEDO08dMMd2s5++aUoPQGAUSKg4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729641849; c=relaxed/simple;
-	bh=lp+qOB2AsGXn3zORPru0TEAo87RI1MyOJb9mTrSMdWI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RE3MiBJVfYSBzXzlNo/b3RUbERURrn9A+B+yeznddkb3Hst7azXcf7JTAGOGAEwqjc+K+FV1nWifKCGKpX0e49Yd88xYlFLER4FwU5yQVHnXmlVYzJnAtLhkR36lQRmlnZpBdjuhEgemkUrQAJy0WCx4kxR4FyHDQSRiVXPDNdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jXK3ZBl3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14756C4CEE7;
-	Wed, 23 Oct 2024 00:04:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729641849;
-	bh=lp+qOB2AsGXn3zORPru0TEAo87RI1MyOJb9mTrSMdWI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jXK3ZBl3KW9rfPcw7U0EoPj5+z8C2qWD5+sQxr2ptHDzUelYirfjUhbN6q5T9hLZd
-	 2r+iV8vy6JlEGdPBZbwMFCCHljH4fSg9rBU/bcSxKEZvyVGBrnGAbMC58rLA5KGU/F
-	 kN6zKxos2jfMzYb4zZDqSl1vh/RXLtKiFNMFp7hZ1/npSfNl/MSRq2iPQK3audE2Bi
-	 GSsC0GLX7qsVCy0bRTqjuzw/fPP1RaBgKMaxGNcIEZknAkvNjOXRvL1r2CdQbdEm47
-	 WJvzNER/IjE+Rr1NS8bGFCqcAKB3j3yEJ55gPNSw4IQkoA+suB2rwOG+yCNK69DAAg
-	 O6K4qc5Ii+b2A==
-Date: Tue, 22 Oct 2024 19:04:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 16/16] samples: rust: add Rust platform sample driver
-Message-ID: <20241023000408.GC1848992-robh@kernel.org>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-17-dakr@kernel.org>
+	s=arc-20240116; t=1729642087; c=relaxed/simple;
+	bh=UQAbXbkOAhARgZFMBQq796mjQiiEE/8JleG3+DUEYcE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QNw8y8Hrn1u6yG710R8+MgNwvRVdL/btO8kjUbrrK/4xgBlJq1bgUsv44CColWjVvjoDECifWsic5rzsNDT83ldOiwNVT2QA2C2dSilD69b5TVW7W3+bCMeY6wY17HvoatEibGI3MJ9yuj71kOZmo6FL9SyleTjGutumaoXGX7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=iUM+Zv40; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5cb6704ff6bso4090129a12.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Oct 2024 17:08:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1729642084; x=1730246884; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zvLG7lWTLy4qhLgf8MKM63Xm05WyCgQZoRXtbsojwUE=;
+        b=iUM+Zv40D3bWH2+jXOy6E3NmL9IfR0zJ3o4QA/fJK40jNDteNuloUFAWYy+OuZDMSP
+         hfpOnHIRjbM7w+0oL2k1HTXIn1FWy8ncZEdEQXTey9uXOjns720UG60yCY7kbpmUqx0C
+         rhLskCxwGGEA/NVuAWQphruLTudspKzwsRKdc47h42kyEV4VHKaCLsPvaqVDRQ3vIXFN
+         o51w2baJI/0sar000Y+u4y2+rKN39QmdgC4zYVluuG8YCQWDFR8A3s6RvLD9PvFnYavE
+         e2gTs+swiFWp/YgXm0YYWGwPRqrc5v1o4wV6egircf3wUoqcGaBFL5mu5DOvQu1woJiU
+         DK3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729642084; x=1730246884;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zvLG7lWTLy4qhLgf8MKM63Xm05WyCgQZoRXtbsojwUE=;
+        b=oyWyjVkPhW4Gdin2CnU5v6o2Y99ANk/kfCylZ763nwpJIio8Z7kO23vCgIUu4qcDjX
+         qiCXdx0Wf6Tl4oc3fM9avN+86/wT0oOCnN1onrvksvok4EHeQTuqgC7rhTp54tiDpxhG
+         yyZ/eqM/YR1qElrrU/dTwf016Z9Q/sffDrVAPCTJp92iwd8Wp4Ut7756YZxi8IusgXm3
+         Mm+PT+F8pg5G2r5HxgicvWXH8H/PnGo8WQS0dvT2FFmhDhK7//hurtHNqEXGopuw9JLF
+         ORGJT8I9WtPe5bGvltMEtxqvBHwRbfzceVAekWsdZo5M6Y0AQIfyTA+ch2AJRTJ6cUhB
+         lPow==
+X-Forwarded-Encrypted: i=1; AJvYcCU068FMt6GlcLekloVTWrH38B/lJinREqbu69Q3YEc92KQV/v4v8v/a5jcmKbrvosk8aueNzbyJoOKr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yykv4Xpw7K0DB/I6lcetXbq58zRpdG/CH1rRac2zIJXaou5JqiY
+	YP1nh3vRsr64RzuR3NwFOjAKCbp+IjHDPa+Vn/fkMnYtjxnSRK4F8vnX/f1MJQRPrU5kAQsD6rc
+	XvuU0f0VgTnG1pqgW0R/Nx879VBnjvwj1myM=
+X-Google-Smtp-Source: AGHT+IF+4QbJlbfikIMGRQjJfTJNafD6q9VcZNamqjkxqlolhdhjxD9HTiMah4nBFKijj+UgfLPf9UwJGerFp7fgjng=
+X-Received: by 2002:a17:907:3f1d:b0:a99:3c32:b538 with SMTP id
+ a640c23a62f3a-a9abf94e684mr48837966b.42.1729642083589; Tue, 22 Oct 2024
+ 17:08:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241022213221.2383-17-dakr@kernel.org>
+References: <20241022092855.1609427-1-p.rosenberger@kunbus.com> <20241022092855.1609427-3-p.rosenberger@kunbus.com>
+In-Reply-To: <20241022092855.1609427-3-p.rosenberger@kunbus.com>
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date: Wed, 23 Oct 2024 09:07:37 +0900
+Message-ID: <CABMQnVLT10=4Y0yKaRj5=wnAr9abTsyPkXmB2XJPfK8CmR368w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] rtc: pcf2127: make battery switch-over configurable
+To: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 22, 2024 at 11:31:53PM +0200, Danilo Krummrich wrote:
-> Add a sample Rust platform driver illustrating the usage of the platform
-> bus abstractions.
-> 
-> This driver probes through either a match of device / driver name or a
-> match within the OF ID table.
+Hello,
 
-I know if rust compiles it works, but how does one actually use/test 
-this? (I know ways, but I might be in the minority. :) )
-
-The DT unittests already define test platform devices. I'd be happy to 
-add a device node there. Then you don't have to muck with the DT on some 
-device and it even works on x86 or UML.
-
-And I've started working on DT (fwnode really) property API bindings as 
-well, and this will be great to test them with.
-
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+2024=E5=B9=B410=E6=9C=8822=E6=97=A5(=E7=81=AB) 18:29 Philipp Rosenberger <p=
+.rosenberger@kunbus.com>:
+>
+> The battery switch-over function of the PCF2127, PCA2129 and PCF2129
+> have the opposite default behavior as the PCF2131. If the PCF2131 is
+> used as replacement for one of the others, the battery switch-over will
+> be disabled.
+>
+> Add nxp,battery-switch-over as an optional devicetree property to configu=
+re
+> the battery switch-over, battery low detection and extra power fail
+> detection functions.
+>
+> The property reflects the value of the PWRMNG bits of the Control_3
+> register.
+>
+> Signed-off-by: Philipp Rosenberger <p.rosenberger@kunbus.com>
 > ---
->  MAINTAINERS                          |  1 +
->  samples/rust/Kconfig                 | 10 +++++
->  samples/rust/Makefile                |  1 +
->  samples/rust/rust_driver_platform.rs | 62 ++++++++++++++++++++++++++++
->  4 files changed, 74 insertions(+)
->  create mode 100644 samples/rust/rust_driver_platform.rs
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 173540375863..583b6588fd1e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6986,6 +6986,7 @@ F:	rust/kernel/device_id.rs
->  F:	rust/kernel/devres.rs
->  F:	rust/kernel/driver.rs
->  F:	rust/kernel/platform.rs
-> +F:	samples/rust/rust_driver_platform.rs
->  
->  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
->  M:	Nishanth Menon <nm@ti.com>
-> diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
-> index 6d468193cdd8..70126b750426 100644
-> --- a/samples/rust/Kconfig
-> +++ b/samples/rust/Kconfig
-> @@ -41,6 +41,16 @@ config SAMPLE_RUST_DRIVER_PCI
->  
->  	  If unsure, say N.
->  
-> +config SAMPLE_RUST_DRIVER_PLATFORM
-> +	tristate "Platform Driver"
-> +	help
-> +	  This option builds the Rust Platform driver sample.
+>  drivers/rtc/rtc-pcf2127.c | 61 +++++++++++++++++++++++++++++----------
+>  1 file changed, 46 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
+> index 9c04c4e1a49c..812764b65b34 100644
+> --- a/drivers/rtc/rtc-pcf2127.c
+> +++ b/drivers/rtc/rtc-pcf2127.c
+> @@ -48,6 +48,7 @@
+>  #define PCF2127_BIT_CTRL3_BLF                  BIT(2)
+>  #define PCF2127_BIT_CTRL3_BF                   BIT(3)
+>  #define PCF2127_BIT_CTRL3_BTSE                 BIT(4)
+> +#define PCF2127_BIT_CTRL3_PWRMNG_MASK          (BIT(5) | BIT(6) | BIT(7)=
+)
+>  /* Time and date registers */
+>  #define PCF2127_REG_TIME_BASE          0x03
+>  #define PCF2127_BIT_SC_OSF                     BIT(7)
+> @@ -529,6 +530,49 @@ static int pcf2127_watchdog_init(struct device *dev,=
+ struct pcf2127 *pcf2127)
+>         return devm_watchdog_register_device(dev, &pcf2127->wdd);
+>  }
+>
+> +static int pcf2127_battery_init(struct device *dev, struct pcf2127 *pcf2=
+127)
+> +{
+> +       u8 val =3D 0xff;
+> +       int ret;
 > +
-> +	  To compile this as a module, choose M here:
-> +	  the module will be called rust_driver_platform.
+> +       /*
+> +        * Disable battery low/switch-over timestamp and interrupts.
+> +        * Clear battery interrupt flags which can block new trigger even=
+ts.
+> +        * Note: This is the default chip behaviour but added to ensure
+> +        * correct tamper timestamp and interrupt function.
+> +        */
+> +       ret =3D regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL3,
+> +                                PCF2127_BIT_CTRL3_BTSE |
+> +                                PCF2127_BIT_CTRL3_BIE |
+> +                                PCF2127_BIT_CTRL3_BLIE, 0);
+> +       if (ret) {
+> +               dev_err(dev, "%s: interrupt config (ctrl3) failed\n",
+> +                       __func__);
+> +               return ret;
+> +       }
 > +
-> +	  If unsure, say N.
+> +       ret =3D device_property_read_u8(dev, "nxp,battery-switch-over", &=
+val);
+> +       if (ret < 0)
+> +               return 0;
 > +
->  config SAMPLE_RUST_HOSTPROGS
->  	bool "Host programs"
->  	help
-> diff --git a/samples/rust/Makefile b/samples/rust/Makefile
-> index b66767f4a62a..11fcb312ed36 100644
-> --- a/samples/rust/Makefile
-> +++ b/samples/rust/Makefile
-> @@ -3,5 +3,6 @@
->  obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
->  obj-$(CONFIG_SAMPLE_RUST_PRINT)			+= rust_print.o
->  obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
-> +obj-$(CONFIG_SAMPLE_RUST_DRIVER_PLATFORM)	+= rust_driver_platform.o
->  
->  subdir-$(CONFIG_SAMPLE_RUST_HOSTPROGS)		+= hostprogs
-> diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-> new file mode 100644
-> index 000000000000..55caaaa4f216
-> --- /dev/null
-> +++ b/samples/rust/rust_driver_platform.rs
-> @@ -0,0 +1,62 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Rust Platform driver sample.
-> +
-> +use kernel::{c_str, of, platform, prelude::*};
-> +
-> +struct SampleDriver {
-> +    pdev: platform::Device,
-> +}
-> +
-> +struct Info(u32);
-> +
-> +kernel::of_device_table!(
-> +    OF_TABLE,
-> +    MODULE_OF_TABLE,
-> +    <SampleDriver as platform::Driver>::IdInfo,
-> +    [(
-> +        of::DeviceId::new(c_str!("redhat,rust-sample-platform-driver")),
+> +       if (val > 7) {
+> +               dev_warn(dev,
+> +                        "%s: ignoring invalid value for nxp,battery-swit=
+ch-over: %u\n",
+> +                        __func__, val);
+> +               return 0;
+> +       };
 
-Perhaps use the same compatible as the commented example. Same comments 
-on that apply to this.
+Please remove ';' .
+Otherwise
 
-> +        Info(42)
+Reviewed-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 
-Most of the time this is a pointer to a struct. It would be better to 
-show how to do that.
+Best regards,
+  Nobuhiro
 
-> +    )]
-> +);
-> +
-> +impl platform::Driver for SampleDriver {
-> +    type IdInfo = Info;
-> +    const ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
 
-Probably want to name this OF_ID_TABLE for when ACPI_ID_TABLE is added.
-
-> +
-> +    fn probe(pdev: &mut platform::Device, info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
-> +        dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver sample.\n");
-> +
-> +        match (Self::of_match_device(pdev), info) {
-
-That answers my question on being exposed to drivers. This is a big no 
-for me.
-
-> +            (Some(id), Some(info)) => {
-> +                dev_info!(
-> +                    pdev.as_ref(),
-> +                    "Probed by OF compatible match: '{}' with info: '{}'.\n",
-> +                    id.compatible(),
-
-As I mentioned, "real" drivers don't need the compatible string.
-
-> +                    info.0
-> +                );
-> +            }
-> +            _ => {
-> +                dev_info!(pdev.as_ref(), "Probed by name.\n");
-> +            }
-> +        };
-> +
-> +        let drvdata = KBox::new(Self { pdev: pdev.clone() }, GFP_KERNEL)?;
-> +
-> +        Ok(drvdata.into())
-> +    }
-> +}
-> +
-> +impl Drop for SampleDriver {
-> +    fn drop(&mut self) {
-> +        dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver sample.\n");
-> +    }
-> +}
-> +
-> +kernel::module_platform_driver! {
-> +    type: SampleDriver,
-> +    name: "rust_driver_platform",
-> +    author: "Danilo Krummrich",
-> +    description: "Rust Platform driver",
-> +    license: "GPL v2",
-> +}
-> -- 
-> 2.46.2
-> 
+--=20
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org / kernel.org}
+   GPG ID: 32247FBB40AD1FA6
 
