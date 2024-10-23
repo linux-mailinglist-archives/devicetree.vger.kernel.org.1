@@ -1,243 +1,252 @@
-Return-Path: <devicetree+bounces-114903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7789AD5D5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:54:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 563CD9AD5E6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:59:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5084B22047
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:54:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7784E1C21129
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9BEC1E0DD1;
-	Wed, 23 Oct 2024 20:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEFEC1E6DFE;
+	Wed, 23 Oct 2024 20:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H8Szicll"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oANJdccm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A48413AA2B;
-	Wed, 23 Oct 2024 20:53:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DDBD1E7657
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 20:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729716836; cv=none; b=pE3na8z3ME2BJOpjI0KC8wmZbaROvv8uzT9tbktG4L27gDQgN5+8Za8EqDamibMHBLbxtYzxInUE1stEYVZ1mpzFESORwCsDrk6QW4x8LXXgBri0HbYS/oqMYLxFyIigyzYV/L8a62v3JidMNapuMZsG9fHiQ7P6XPq9Osn8J5o=
+	t=1729717159; cv=none; b=Wx/wcHwGmlqMs/3J4kGs/RdLD/BRZFvOWQ88QON06k/ryDAP8xfwIxP/u/FV0rnA1WKrMgQu7aA+OrMV+bE7CLtg2ibM7nvZLYK11OKxpPunsnSAl2U5eH5oWQ1oM50BxOD1hJmrJEbZPdynEG4MHthdCqjfCGUxaq6uv3SwqRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729716836; c=relaxed/simple;
-	bh=FYj61WXwisPzXtbemi6EdvR6xgwUd1lYYm1eBThKgXo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EPDSfpSsMPSKA+jX7Nc44yKFCPXHfE9aAgkgewEdV4gCF5XTZuABOx2hR49tFQW1A+8IU5t2aR6w2+m4Th+YVkx8QLOTTK6p17ZoN8CezmH860LRmAE0DDXADvh4UfQ5sk0nqEsGqCLJH8c59+vRenAHCBGNLRYTjfq5uY4gQFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H8Szicll; arc=none smtp.client-ip=209.85.210.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7180ab89c58so163253a34.1;
-        Wed, 23 Oct 2024 13:53:54 -0700 (PDT)
+	s=arc-20240116; t=1729717159; c=relaxed/simple;
+	bh=gUkuBY9bo71JJTJB5re/xUdAobzayyfJ8VRpLHGMDaU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RMnSviGwIrFhQqb4WfyZGH05aSU1Xt+UATTPDtYVeAbH1XCgS8AWkAOTv95DUYHrmSJKI95r8UFRCngx18hbHDTFb4v2B4dDv5DHNzCmDOLwLrg+D8RC3bCy+Zmd3gnJgdiBblJ1xKZyiF1OSquC1tylGZ74lUfZmNFsRybeH9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oANJdccm; arc=none smtp.client-ip=209.85.161.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5eba976beecso597272eaf.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 13:59:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729716834; x=1730321634; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=unwvQEJpU2auNKArz08woZdbyl7ZgOvJVRSR8P4z/fI=;
-        b=H8Szicll7TPPeYmdtWwQi7etMhcFtyFgYKLgDdQ1czgJPfJxKLm6JG7jMQPzAC4P7n
-         O1+qkF8Xih1+pkohrpeH8Z1IHRPGvR57s/vNkjRMnNquCog7NQokkWbzxttsrD0Ns49f
-         kWoJdNa6YG3GEuV2L2GmVr7PpPnNS17JUuVpPSHKYM6UQ+hb2K4jK40V/g0IQbGkxtBt
-         BFVlPaoVTPUIEpkFCqwa0zyDE0zPdWu7xA/NnNIRHRIKrKQfOCDa7C0JPomGOvigmx4I
-         /5aJxbleGJ91WBFTe6ygsl6Nws1xBRXFglkNCtpA09UjAcKSaWyjiKUPnlaEdX74+BED
-         Uzuw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729717156; x=1730321956; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Sq3YErNwXlYIDZenVr/C+NE9FZlP0tU7NSaS67Os0c=;
+        b=oANJdccmolGUM+wDY3oJPnn4o6irj/s3KlNDOVy61nKYd0WLqDprl5VGGO6TjNXtwx
+         c3vFQZ21T3x7ck5m6JUkDX4s1YZ3ipNplBqXmPuUuVQDKSG93fUV5xNdv0p2AmxpdCbv
+         roFadTTb6sCkICIElniOXMqYgVutQPVUTVnEwnMBNa8ixF3w5/rbvPmbyTZ7vsjdWlq9
+         2db88OGI6d+28nThhMs4QR+VR+4ENvl8ZvcJ6w5kup5FVj4eBygonQA0cAE7/DBaxp32
+         kmGx3/ac+Q2RRjhyy6yWJLft+yGIeYIJP2DXhkWmllxA2kgkH8u4/Vua3QcTYOy3lsgd
+         KRTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729716834; x=1730321634;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=unwvQEJpU2auNKArz08woZdbyl7ZgOvJVRSR8P4z/fI=;
-        b=mWqm6BQ50BlxTvjCG0mHeLfBLwP/I0vkXd+H+Hnbfs/a9LcxfaR8HdHn6RNvkUsurj
-         YAmeorPDLDWSnmni15pjOAOpoBnPaBbuMIt1ecEpTafqPuXzvkWJNkSmVoWhVSZVUnmJ
-         u77io+cceSukF6FDOleDPnvf3xBNmRO4CW6ZCIpewDsC17SDI/lLfEydObcmk4wQSaDQ
-         uQkiIfZO4RVozudJ/eHNLJsKSUvFGVJ2JtWtGaPi2bSzZlD0GZp7/jYQQff2lENe6lMF
-         egARhVpKg+C4IogjrKzqCKT35zHtmSMU0gdNKxgqNa3JvOUqdMiz/Yeu3/v1aEVDbNBU
-         rZ3g==
-X-Forwarded-Encrypted: i=1; AJvYcCVRWzmzWZ6uS0uSRQJ0D6TQTRGpzwEOCxZhuDVwPGd6mxlOK/R9ckiVpdMbZQ9d9gpTzO2PLWY4hQsolOY=@vger.kernel.org, AJvYcCWG/FubVGf1eGOXoZpsUV1yXmv3AzSVNUUZqEICWor+bFXQxuf4k8dkxzfH90WN5f4xTY7AD6wYWl+h@vger.kernel.org, AJvYcCWS8MI2dELZbQSvMehup1TAKJaD6pMZeo/kLIKa57b8Le6CdveCi9p9FMZvbdJ3usJgABIJnpqklRXP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yya2UCa91IvUljK1f44V8ZZovTA1s07sLe4x93o7MthV8GO9Mf9
-	Xdx6pQ8h8SLVbJbhmCDJwzlldYoC4jyrkM0L/eTythxUr/7XcN73
-X-Google-Smtp-Source: AGHT+IHqxONL9icorPiBAyJ7fxCvW4JQT6tYn2d0Un3n+fGTAwxo9dB/jB6wLNVqqxOb2iT11oahVA==
-X-Received: by 2002:a05:6830:6f01:b0:718:10ce:c6a7 with SMTP id 46e09a7af769-7184b348e49mr3519502a34.30.1729716834152;
-        Wed, 23 Oct 2024 13:53:54 -0700 (PDT)
-Received: from raspberrypi ([2600:1700:90:4c80::f])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec02aee5c6sm57787eaf.8.2024.10.23.13.53.52
+        d=1e100.net; s=20230601; t=1729717156; x=1730321956;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2Sq3YErNwXlYIDZenVr/C+NE9FZlP0tU7NSaS67Os0c=;
+        b=OhpKRUGSFQ4FuszaqPvZrJczRshh/O0FhLr3qSiI6wwQS9qRrdXhAqvH4OIBsyFJ7d
+         cAbLw51rI3luIhF6DFSHDK2iPlvs275C7+4HNmPUzxaeI41dTC3O87YNVxnRTKMX3dQe
+         ixhoYW4lSRHmOyiLuoC+r2wvL2MYiIYFfiusz3MthOt/KTtAa89GG+G/APQZniJ/sQVx
+         44uuH+e4gWz016S0rvPrKIsyi4sVsYuP9wQwCXeu4m24ascTLBq6p4qZo6Jej1hrCuZG
+         91AYv5WN5haLXFsJL6OyaXGPzpji5K6ZbD7kUEk/6kcRGOXaEi9T+PmJ1TyhQnLn8E8X
+         Dluw==
+X-Forwarded-Encrypted: i=1; AJvYcCURFC15Zv5xDSo7FAaRZzhqvONFrrNTHcIKvdLdw31YM8aJNCfuhmLWnm8m/3xXK0vcnOL8Sp76q6Kt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLjr8e/gtuLoK5WbVHhl2MU7nVNfG01mux0lfl3NYMM7Ec8HWd
+	tfqDJhJQz7nuYR7Lfh53PRY0WS3S3FQdQkvQ5qxtaoo3oM2K1Zu/iVqX2laep9A=
+X-Google-Smtp-Source: AGHT+IF5vEkcFWBunbct3xDPJTcfOq2aHXuUYYMQqfOKidYToX+9CfBb1xysM7teRKdV7vOUrfBZ2A==
+X-Received: by 2002:a05:6820:2293:b0:5d6:ab0:b9a6 with SMTP id 006d021491bc7-5ebee27a8a1mr2398714eaf.4.1729717156206;
+        Wed, 23 Oct 2024 13:59:16 -0700 (PDT)
+Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec02c2c157sm52730eaf.44.2024.10.23.13.59.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 13:53:52 -0700 (PDT)
-Date: Wed, 23 Oct 2024 15:53:51 -0500
-From: Grant Peltier <grantpeltier93@gmail.com>
-To: robh@kernel.org, linux@roeck-us.net, geert+renesas@glider.be,
-	magnus.damm@gmail.com
-Cc: grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: hwmon: isl68137: add bindings to support
- voltage dividers
-Message-ID: <2cc99616ff3dd9bcecb1309cd4d103d70aea862b.1729715599.git.grantpeltier93@gmail.com>
-References: <cover.1729715599.git.grantpeltier93@gmail.com>
+        Wed, 23 Oct 2024 13:59:14 -0700 (PDT)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH RFC v4 00/15] spi: axi-spi-engine: add offload support
+Date: Wed, 23 Oct 2024 15:59:07 -0500
+Message-Id: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1729715599.git.grantpeltier93@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJtjGWcC/5WNQQrCMBBFryJZOxLT1KgrQfAAbsVFkk7agTSRR
+ IpSendjN4Ir3Xz+n4H3RpYxEWa2X4ws4UCZYihDLhfMdjq0CNSUzQQXktdrDo1H20GvKXgKCPl
+ GgKF91+icj7oBAdpZrNSOm1obVki3hI4es+XCzqcju5ZjR/ke03M2D2J+/SUZBHDYKq50CSur+
+ mD005NJuLKxnxVD9cEqIX7DVgWrpOAo68ZtduYLO03TC+a9ArM1AQAA
+To: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>, 
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ David Lechner <dlechner@baylibre.com>
+X-Mailer: b4 0.14.1
 
-Add devicetree bindings to support declaring optional voltage dividers to
-the rail outputs of supported digital multiphase regulators. Some
-applications require Vout to exceed the voltage range that the Vsense pin
-can detect. This binding definition allows users to define the
-characteristics of a voltage divider placed between Vout and the Vsense
-pin for any rail powered by the device.
+In this revision, I ended up changing quite a bit more that I was
+expecting.
 
-Signed-off-by: Grant Peltier <grantpeltier93@gmail.com>
+In the DT bindings, I ended up dropping the #spi-offload-cells and
+spi-offload properties. A couple of reasons for this:
+
+1. Several people commented that it is odd to have a separate provider/
+   consumer binding for something that already has a parent/child
+   relationship (both on this series and in another unrelated series
+   with io-backends). For now, the only SPI offload provider is the AXI
+   SPI Engine, which is a SPI controller.
+2. In a discussion unrelated to this series, but related to the idea
+   of SPI offloads [1], it became apparent that the proposed use for
+   the cells to select triggers and tx/rx streams doesn't actually
+   work for that case.
+3. In offline review, it was suggested that assigning specific offloads
+   to specific peripherals may be too restrictive, e.g. if there are
+   controllers that have pools of identical offloads. This idea of
+   pools of generic offloads has also come up in previous discussions
+   on the mailing list.
+
+[1]: https://lore.kernel.org/linux-iio/e5310b63-9dc4-43af-9fbe-0cc3b604ab8b@baylibre.com/
+
+So the idea is that if we do end up needing to use DT to assign certain
+resources (triggers, DMA channels, etc.) to specific peripherals, we
+would make a mapping attribute in the controller node rather than using
+phandle cells. But we don't need this yet, so it isn't present in The
+current patches.
+
+And if we ever end up with a SPI offload provider that is not a SPI
+controller, we can bring back the #spi-offload-cells and
+spi-offload properties.
+
+Regarding the SPI core changes, there are more details on each
+individual patch, but a lot has changed there due to adding a second
+ADC consumer that is wired up differently. The AD7944 is as pictured
+below, but the AD4695 that has been added has the ADC chip itself as
+the SPI offload trigger source, which I found to not be compatible with
+many of the assumptions we made in previous revisions. So there isn't
+much that is still the same as in previous revisions.
+
 ---
- .../hwmon/pmbus/renesas,isl68137.yaml         | 131 ++++++++++++++++++
- 1 file changed, 131 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68137.yaml
+Changes in v4:
+- Dropped #spi-offload-cells and spi-offload properties from DT bindings.
+- Made an attempt at a more generic trigger interface instead of using
+  clk framework. This also includes a new driver for a generic PWM
+  trigger.
+- Addressed IIO review comments.
+- Added new patches for iio/adc/ad4695 as 2nd user of SPI offload.
+- Link to v3: https://lore.kernel.org/r/20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68137.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68137.yaml
-new file mode 100644
-index 000000000000..af10c55d547f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68137.yaml
-@@ -0,0 +1,131 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/pmbus/renesas,isl68137.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas Digital Multiphase Voltage Regulators with PMBus
-+
-+maintainers:
-+  - Grant Peltier <grant.peltier.jg@renesas.com>
-+
-+description: |
-+  Renesas digital multiphase voltage regulators with PMBus.
-+  https://www.renesas.com/en/products/power-management/multiphase-power/multiphase-dcdc-switching-controllers
-+
-+properties:
-+  compatible:
-+    enum:
-+      - renesas,isl68220
-+      - renesas,isl68221
-+      - renesas,isl68222
-+      - renesas,isl68223
-+      - renesas,isl68224
-+      - renesas,isl68225
-+      - renesas,isl68226
-+      - renesas,isl68227
-+      - renesas,isl68229
-+      - renesas,isl68233
-+      - renesas,isl68239
-+      - renesas,isl69222
-+      - renesas,isl69223
-+      - renesas,isl69224
-+      - renesas,isl69225
-+      - renesas,isl69227
-+      - renesas,isl69228
-+      - renesas,isl69234
-+      - renesas,isl69236
-+      - renesas,isl69239
-+      - renesas,isl69242
-+      - renesas,isl69243
-+      - renesas,isl69247
-+      - renesas,isl69248
-+      - renesas,isl69254
-+      - renesas,isl69255
-+      - renesas,isl69256
-+      - renesas,isl69259
-+      - renesas,isl69260
-+      - renesas,isl69268
-+      - renesas,isl69269
-+      - renesas,isl69298
-+      - renesas,raa228000
-+      - renesas,raa228004
-+      - renesas,raa228006
-+      - renesas,raa228228
-+      - renesas,raa229001
-+      - renesas,raa229004
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "^channel@([0-3])$":
-+    type: object
-+    description:
-+      Container for properties specific to a particular channel (rail).
-+
-+    properties:
-+      reg:
-+        description: The channel (rail) index.
-+        items:
-+          minimum: 0
-+          maximum: 3
-+
-+      renesas,vout-voltage-divider:
-+        description:
-+          Resistances of a voltage divider placed between Vout and the voltage
-+          sense pin for the given channel (rail). It has two numbers
-+          representing the resistances of the voltage divider provided as
-+          <R1 R2> which yields an adjusted Vout as
-+          Vout_adj = Vout * (R1 + R2) / R2 given the original Vout as reported
-+          by the Vsense pin.
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        minItems: 2
-+        maxItems: 2
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      isl68239@60 {
-+        compatible = "renesas,isl68239";
-+        reg = <0x60>;
-+      };
-+    };
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      isl68239@60 {
-+        compatible = "renesas,isl68239";
-+        reg = <0x60>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+          reg = <0>;
-+          renesas,vout-voltage-divider = <1000 1000>;  // Reported Vout/Pout would be scaled by 2
-+        };
-+      };
-+    };
+Changes in v3:
+- Reworked DT bindings to have things physically connected to the SPI
+  controller be properties of the SPI controller and use more
+  conventional provider/consumer properties.
+- Added more SPI APIs for peripheral drivers to use to get auxillary
+  offload resources, like triggers.
+- Link to v2: https://lore.kernel.org/r/20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com
+
+Individual patches have more details on these changes and earlier revisions too.
+---
+
+As a recap, here is the background and end goal of this series:
+
+The AXI SPI Engine is a SPI controller that has the ability to record a
+series of SPI transactions and then play them back using a hardware
+trigger. This allows operations to be performed, repeating many times,
+without any CPU intervention. This is needed for achieving high data
+rates (millions of samples per second) from ADCs and DACs that are
+connected via a SPI bus.
+
+The offload hardware interface consists of a trigger input and a data
+output for the RX data. These are connected to other hardware external
+to the SPI controller.
+
+To record one or more transactions, commands and TX data are written
+to memories in the controller (RX buffer is not used since RX data gets
+streamed to an external sink). This sequence of transactions can then be
+played back when the trigger input is asserted.
+
+This series includes core SPI support along with the first SPI
+controller (AXI SPI Engine) and SPI peripheral (AD7944 ADC) that use
+them. This enables capturing analog data at 2 million samples per
+second.
+
+The hardware setup looks like this:
+
++-------------------------------+   +------------------+
+|                               |   |                  |
+|  SOC/FPGA                     |   |  AD7944 ADC      |
+|  +---------------------+      |   |                  |
+|  | AXI SPI Engine      |      |   |                  |
+|  |             SPI Bus ============ SPI Bus          |
+|  |                     |      |   |                  |
+|  |  +---------------+  |      |   |                  |
+|  |  | Offload 0     |  |      |   +------------------+
+|  |  |   RX DATA OUT > > > >   |
+|  |  |    TRIGGER IN < < <  v  |
+|  |  +---------------+  | ^ v  |
+|  +---------------------+ ^ v  |
+|  | AXI PWM             | ^ v  |
+|  |                 CH0 > ^ v  |
+|  +---------------------+   v  |
+|  | AXI DMA             |   v  |
+|  |                 CH0 < < <  |
+|  +---------------------+      |
+|                               |
++-------------------------------+
+
+---
+David Lechner (15):
+      pwm: core: export pwm_get_state_hw()
+      spi: add basic support for SPI offloading
+      spi: offload: add support for hardware triggers
+      spi: dt-bindings: add trigger-source.yaml
+      spi: dt-bindings: add PWM SPI offload trigger
+      spi: offload-trigger: add PWM trigger driver
+      spi: add offload TX/RX streaming APIs
+      spi: dt-bindings: axi-spi-engine: add SPI offload properties
+      spi: axi-spi-engine: implement offload support
+      iio: buffer-dmaengine: document iio_dmaengine_buffer_setup_ext
+      iio: buffer-dmaengine: add devm_iio_dmaengine_buffer_setup_ext2()
+      iio: adc: ad7944: don't use storagebits for sizing
+      iio: adc: ad7944: add support for SPI offload
+      dt-bindings: iio: adc: adi,ad4695: add SPI offload properties
+      iio: adc: ad4695: Add support for SPI offload
+
+ .../devicetree/bindings/iio/adc/adi,ad4695.yaml    |  13 +-
+ .../bindings/spi/adi,axi-spi-engine.yaml           |  22 +
+ .../devicetree/bindings/spi/trigger-pwm.yaml       |  39 ++
+ .../devicetree/bindings/spi/trigger-source.yaml    |  28 ++
+ drivers/iio/adc/Kconfig                            |   2 +
+ drivers/iio/adc/ad4695.c                           | 470 +++++++++++++++++++--
+ drivers/iio/adc/ad7944.c                           | 249 ++++++++++-
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c | 104 ++++-
+ drivers/pwm/core.c                                 |  55 ++-
+ drivers/spi/Kconfig                                |  16 +
+ drivers/spi/Makefile                               |   4 +
+ drivers/spi/spi-axi-spi-engine.c                   | 273 +++++++++++-
+ drivers/spi/spi-offload-trigger-pwm.c              | 169 ++++++++
+ drivers/spi/spi-offload.c                          | 446 +++++++++++++++++++
+ drivers/spi/spi.c                                  |  10 +
+ include/linux/iio/buffer-dmaengine.h               |   5 +
+ include/linux/pwm.h                                |   1 +
+ include/linux/spi/spi-offload.h                    | 166 ++++++++
+ include/linux/spi/spi.h                            |  19 +
+ 19 files changed, 1995 insertions(+), 96 deletions(-)
+---
+base-commit: 6c4b0dd7d0df3a803766d4954dc064dc57aeda17
+change-id: 20240510-dlech-mainline-spi-engine-offload-2-afce3790b5ab
+
+Best regards,
 -- 
-2.39.5
+David Lechner <dlechner@baylibre.com>
 
 
