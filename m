@@ -1,82 +1,57 @@
-Return-Path: <devicetree+bounces-114614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C1A29AC10C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:09:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E27D9AC14B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 206D81C219E8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:09:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD7C61F22147
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:17:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DAC156F5E;
-	Wed, 23 Oct 2024 08:09:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="G0X/1fwU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41E915746E;
+	Wed, 23 Oct 2024 08:17:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from muminek.juszkiewicz.com.pl (muminek.juszkiewicz.com.pl [213.251.184.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30EDC155352;
-	Wed, 23 Oct 2024 08:09:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91B414B953;
+	Wed, 23 Oct 2024 08:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.251.184.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729670965; cv=none; b=BtmLjlgy/+U6mo19k2UEwbcLzVH0v8WSkhzbhBMAw676OPFV/xcqPsV02ldbvJNUophShNA3q+Q98VXUkHs8kZfSVQXH2mvv1CvBDvhf5hhF4I5sCkC96uPGqbrT8QevtZJTvrPEqfkX1JuLomEwOU7bNdfEMLKzHmfrl3oqqKA=
+	t=1729671427; cv=none; b=UUlq+CWBR0GsbUzLzSUKpDQr1K5fhPtuVMh1ShWg0PVDECT7doYLosE8PxWW0AougkNbs7yeLgwk06kBeItHS7PYFokqXC/w+DqUaPHPfb8Rn4P1rrKoYPakNSRVH19BraZflbih1sngp5kpsYIGpMBrTM4ESqN/qdsm32Nd4HI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729670965; c=relaxed/simple;
-	bh=cVJTtuqNvBoo2c/v8o3Z57VU6P7zWn4UcE9ORaAp2XM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jWPTPOoaHSnMHJaN9BFjYtdWAL9smKJ7NPpu90KgIQ5u7i0HUhDHgXfOlGpvHm71Mb0ZuzeTb3zvTHyRtFqJsW5sPlJTKYgNq9Kv2oAAYN/mcHTvMsu9ZOwMTEmEZ7nFQqeRP8SD4BKGgBEJTzkwBOEILQDdc2piU9iI0GL3cA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=G0X/1fwU; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 193c3654911611efbd192953cf12861f-20241023
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=w24Qkpigsf6HUVrzGiv2wyzaHNFlzCPVSWhYfhqIJgk=;
-	b=G0X/1fwUoXV0zJmJ7Q6MKueWGMuCZuJcaRAzm+CNV6mwMQLCW+mbQ+/AlaBtCTBIq6NchjrUPCkuH6UTXB0EN1ksgApd5E8ZeGvF9AgWt5P3Rpr8h9p2fhQ9SJSrhXGxizO5gzr1u/6TF8ZPIuk4vXbuF7yZ0sZbmy/4xDppByM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.42,REQID:5c72c31f-12af-484c-9385-c45cd8b4d5b6,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:b0fcdc3,CLOUDID:e7d1fa2d-a7a0-4b06-8464-80be82133975,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 193c3654911611efbd192953cf12861f-20241023
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1156656146; Wed, 23 Oct 2024 16:09:17 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 23 Oct 2024 16:09:15 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 23 Oct 2024 16:09:15 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-usb@vger.kernel.org>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	Fabien Parent <fparent@baylibre.com>, Simon Sun <simon.sun@yunjingtech.com>
-Subject: [PATCH v3 2/2] arm64: dts: mediatek: mt8395-genio-1200-evk: add support for MUX IT5205
-Date: Wed, 23 Oct 2024 16:09:12 +0800
-Message-ID: <20241023080912.15349-2-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20241023080912.15349-1-macpaul.lin@mediatek.com>
-References: <20241023080912.15349-1-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1729671427; c=relaxed/simple;
+	bh=TJf3b8eqVwOuOIsErBaIed229CKsRWSMPf3lEQFcUfA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pfRwmuF/gSCjDe6c+FTa9kb648i0R5hmVp8VW3p/j0qsMdk0TSC59mukjsQD2PC77DFGIhJUgCnJCUeXxPjccbYaibB1ZNbVXCDXyOj8WOxUaFapM+wafN3U6nZdMq+XCPiPbVK5YP2SQpCAnIQYwZG00zcbWrijlQu3OzOOraA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org; spf=fail smtp.mailfrom=linaro.org; arc=none smtp.client-ip=213.251.184.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=linaro.org
+Received: from localhost (localhost [127.0.0.1])
+	by muminek.juszkiewicz.com.pl (Postfix) with ESMTP id 6D5AD261A20;
+	Wed, 23 Oct 2024 10:06:14 +0200 (CEST)
+X-Virus-Scanned: Debian amavis at juszkiewicz.com.pl
+Received: from muminek.juszkiewicz.com.pl ([127.0.0.1])
+ by localhost (muminek.juszkiewicz.com.pl [127.0.0.1]) (amavis, port 10024)
+ with ESMTP id DkM8llJTJZMF; Wed, 23 Oct 2024 10:06:12 +0200 (CEST)
+Received: from puchatek.lan (83.11.13.124.ipv4.supernova.orange.pl [83.11.13.124])
+	by muminek.juszkiewicz.com.pl (Postfix) with ESMTPSA id 117CF26059E;
+	Wed, 23 Oct 2024 10:06:10 +0200 (CEST)
+From: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Enable HDMI0 on rk3588-nanopc-t6
+Date: Wed, 23 Oct 2024 10:06:04 +0200
+Message-ID: <20241023080605.623125-1-marcin.juszkiewicz@linaro.org>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,67 +59,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
 
-Add ITE IT5205FN (TYPEC MUX) under I2C2 bus and configure its properties;
-also add references to it5205fn from MT6360 TYPE-C connector for TYPEC
-configuration.
+Add the necessary DT changes to enable HDMI0 on FriendlyELEC NanoPC-T6.
+Tested on LTS variant of the board but this part is the same on both.
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Signed-off-by: Simon Sun <simon.sun@yunjingtech.com>
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
 ---
- .../dts/mediatek/mt8395-genio-1200-evk.dts    | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
-Changes for v2:
- - This is a new patch in the v2 patch.
-
-Changes for v3:
- - No change.
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-index 83d520226302..4c11c100e7b6 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-@@ -229,6 +229,21 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	pinctrl-names = "default";
- 	status = "okay";
-+
-+	it5205fn: typec-mux@48 {
-+		compatible = "ite,it5205";
-+		reg = <0x48>;
-+		vcc-supply = <&mt6359_vibr_ldo_reg>;
-+		mode-switch;
-+		orientation-switch;
-+		status = "okay";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index fc131789b4c3..35d5d9f0c477 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -10,6 +10,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/pinctrl/rockchip.h>
++#include <dt-bindings/soc/rockchip,vop2.h>
+ #include <dt-bindings/usb/pd.h>
+ #include "rk3588.dtsi"
+ 
+@@ -40,6 +41,17 @@ chosen {
+ 		stdout-path = "serial2:1500000n8";
+ 	};
+ 
++	hdmi0-con {
++		compatible = "hdmi-connector";
++		type = "a";
 +
 +		port {
-+			it5205_sbu_ep: endpoint {
-+				remote-endpoint = <&mt6360_ssusb_sbu_ep>;
++			hdmi0_con_in: endpoint {
++				remote-endpoint = <&hdmi0_out_con>;
 +			};
 +		};
 +	};
++
+ 	ir-receiver {
+ 		compatible = "gpio-ir-receiver";
+ 		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
+@@ -318,6 +330,26 @@ &gpu {
+ 	status = "okay";
  };
  
- &i2c6 {
-@@ -369,6 +384,13 @@ mt6360_ssusb_ep: endpoint {
- 							remote-endpoint = <&ssusb_ep>;
- 						};
- 					};
++&hdmi0 {
++	status = "okay";
++};
 +
-+					port@2 {
-+						reg = <2>;
-+						mt6360_ssusb_sbu_ep: endpoint {
-+							remote-endpoint = <&it5205_sbu_ep>;
-+						};
-+					};
- 				};
- 			};
- 		};
++&hdmi0_in {
++	hdmi0_in_vp0: endpoint {
++		remote-endpoint = <&vp0_out_hdmi0>;
++	};
++};
++
++&hdmi0_out {
++	hdmi0_out_con: endpoint {
++		remote-endpoint = <&hdmi0_con_in>;
++	};
++};
++
++&hdptxphy_hdmi0 {
++	status = "okay";
++};
++
+ &i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c0m2_xfer>;
+@@ -1039,3 +1071,18 @@ &usb_host1_ehci {
+ &usb_host1_ohci {
+ 	status = "okay";
+ };
++
++&vop_mmu {
++	status = "okay";
++};
++
++&vop {
++	status = "okay";
++};
++
++&vp0 {
++	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
++		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
++		remote-endpoint = <&hdmi0_in_vp0>;
++	};
++};
 -- 
-2.45.2
+2.47.0
 
 
