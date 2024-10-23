@@ -1,82 +1,90 @@
-Return-Path: <devicetree+bounces-114902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D8A49AD5D1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:53:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF549AD5DA
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:54:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21DE21F22E7F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:53:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CE971C219B3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B11E1D9A68;
-	Wed, 23 Oct 2024 20:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 057531E5731;
+	Wed, 23 Oct 2024 20:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dns8vujF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JZaRjA0i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E63A13AA2B;
-	Wed, 23 Oct 2024 20:53:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A9D21E2844;
+	Wed, 23 Oct 2024 20:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729716798; cv=none; b=TSeZ0KALeDCSnA+eL6C085bA33VYCbvOPUM1SjVOIUCE5sfTDZvgGleoVikdKgTydlxlJhjj7TEVlTIk9KJasjuSlqayoLO1e7SZ27MvDO13k0ai5irZG28c8UbPZSD/TK81iw7xU92me7vN6odvJ2X6xfGwf5fjQ/EkeDKOz9s=
+	t=1729716860; cv=none; b=FQ0d5DIFJLTzaIxRqRztWNB5y/T4ZCuduGAd6vcw2XI+eRSWXHNTHBaawvDKvAxefaAlfxrbNh+BCuVWdUjVSQQdpfe5J7e2KTMV6+BMavlCCI1sVAbrhATDTHheN3z6rJa5S+gTWNAFjjy3aW9kjHqlYWvEq3zZW2SAMh3OxMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729716798; c=relaxed/simple;
-	bh=Mnw/s7bcwWRJJxv+CyNMILNDaoRTWFU7FMYPs4IrIRY=;
+	s=arc-20240116; t=1729716860; c=relaxed/simple;
+	bh=0ZJH1tg6Y1edCRrqp9Sf6DHWEh8mb9yux+PSI5k4boY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K+UCNoc39+4Uoc99M2sEF4zJmfreixfvF1+msNFjdpzxsQapKfgqvAjQLdL93Zb1Cuj3c/MOao9FjkkO0nbw5lXd1zxLJZzknHF9MtDwuTLylJ0nZgQQV//rbZsjvBqXRTvOgxMJblOq4rWlM5spBbVpCfgFs02EcKs0CDmzSAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dns8vujF; arc=none smtp.client-ip=209.85.160.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-288a90e4394so188647fac.0;
-        Wed, 23 Oct 2024 13:53:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729716795; x=1730321595; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ITJ1VJH6IQ7GGQgfyemLH1sSX6G1fGHWHA+pv5ohzH0=;
-        b=Dns8vujFOnj1KyLKmlUVB4r/9/hcR82oQwNKrGkzHO27HF2+2ePYHqSDjY4IumOJzE
-         ndDGSnlVqcX3yfGZp/7C2xt5aJGTxuDpKuaNvIdYyMh33lWEU7XAJvxqByGezhqpL8Un
-         rpnkYjpBDn5i56FQTuT2X6Z6liphR+2lAXzQmX+9hMdc7vTUBslTOCDHetNyu9ZozjgB
-         XRbcb9iZNUUTmINJtaGvR9gWNxHU2KrVF9IOj7ViIFjPPAyJcYPAa70CRx9lVBQPXUxu
-         I5c2vDmcvXMdEhc5uByojQuU5HYZpBHLPXVdk5vXhTRcNVtZ2ca/2CtPLL1oGge5slVq
-         6dXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729716795; x=1730321595;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ITJ1VJH6IQ7GGQgfyemLH1sSX6G1fGHWHA+pv5ohzH0=;
-        b=wNox6F7Bj+wRWKdV89YBll755tfTWZzbnxpO+ud3O0o9PItVRvS3Sqabuemr0W0fDK
-         exBwmXygoFV588U37r6xlddBXJqTlezY9tDD5/Kqy53RPu2B43mi+yir9O+B/TJrWrm/
-         WcYCymd9+D2KvjD1j5njhMUubd1koFKaWaTL6KF4WKKJBJ9oHYHIYJTBeBam/hyy0PGe
-         iPmFHRB2tNJoe9f3Dh2RdcriY5pyYGm1qA+siYyxeeFEH4HkVo9JNLVKw/YA5xU9zkn3
-         wA7yH41c6C77jNXjrcfYtCUlLADL7yEhz3VWsy5Kv9dGdHuXu9WSH+W+R9+mb3NkcuN4
-         QgoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVtfb3AvQ4FltuAkg0WYr9WQoYu2yYX55MvpKrvYAK7X12vWuxuwCKDr8e94KPapOO9pdFWr5BE3WjN+Ok=@vger.kernel.org, AJvYcCWV49SAcY0SpS9b7txIx99hBkNGGktrwWEWmcbSlL5hLzjNZaDJuXtxFN7dDqe8cup8FbWS77P5fXP5@vger.kernel.org, AJvYcCXy218zFrIggWQOQeGgaF9tStZXXI9Om56YNkdKl2Hy4eqwhMVOC+uVKh7ZkBsQIs98ZThxh33bfFtg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0TnKVUXeXg/GqdpL31SKksqOAjUvCZQrtFmVhSyGwFNKWZF5Z
-	aB85E+AHzRIEH11z4HO8TWypOhqlhGfWKGdM5NAVuPBGjQ6bYew4
-X-Google-Smtp-Source: AGHT+IEz4/5DgTyW5EA0Ew5z5+cgccRvRpmFUat0xAxxtjdTyoJ3pNI3kWTgBjTkm76H1xEbra502A==
-X-Received: by 2002:a05:6870:b493:b0:27a:a0b8:89d6 with SMTP id 586e51a60fabf-28ccb44c9d6mr4156694fac.4.1729716795373;
-        Wed, 23 Oct 2024 13:53:15 -0700 (PDT)
-Received: from raspberrypi ([2600:1700:90:4c80::f])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-28c792b0d19sm2651012fac.33.2024.10.23.13.53.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 13:53:14 -0700 (PDT)
-Date: Wed, 23 Oct 2024 15:53:11 -0500
-From: Grant Peltier <grantpeltier93@gmail.com>
-To: robh@kernel.org, linux@roeck-us.net, geert+renesas@glider.be,
-	magnus.damm@gmail.com
-Cc: grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH v3 1/2] hwmon: (pmbus/isl68137) add support for voltage
- divider on Vout
-Message-ID: <67e4b3843fd276e8ed417aa181a605346bc5edc4.1729715599.git.grantpeltier93@gmail.com>
-References: <cover.1729715599.git.grantpeltier93@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OlgQ0n8mvTG4JhvxtIXFn32Iki83KUOecMmfdahJ59C4ki2rTCz53bZnTBnejb7DNBP5S3xfQZMblzFmmtDEtpCPJP4MPX0iJ+DBOkKw1oFi/5UCKSSKHKm9BoNTDqT9gqFMYeCWaBkK5kJvw+hr8T+EoL+0xr6QLqy8Ncj2qoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JZaRjA0i; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729716860; x=1761252860;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0ZJH1tg6Y1edCRrqp9Sf6DHWEh8mb9yux+PSI5k4boY=;
+  b=JZaRjA0iC4NVvA01DvEgyhQwmK+sitm2pS/urNoRVUt+CQcEs9y/lf/N
+   XqoPco45fkuPSrCZdSyfDv3A3wnrzTtEZmgKCO2AHIIFUhzDQ/RcW5dst
+   cVk9fkg3zwYwsP2q1Z+WUlwYeHa9soINQcU0RjfCpsUjY7WYC2FAc4mpn
+   uz0WQMsQGz5kBqvlGc50cT/RqozPa7t4oNZcLePuEXJ2VVM2Cd8pi1URf
+   x8RLVR9sUO8elOyyN8elXxb5LdFmbMmw989m9aefsA2Mxnv0SIGtDKTiD
+   UvMixTifRh+wN12iiwiTgy+bJDFbWznqFnIrBUAOVK0cAcdbCXaGyyMp9
+   Q==;
+X-CSE-ConnectionGUID: HE771IYrSDqpcKyMMpv6DQ==
+X-CSE-MsgGUID: gJy9n+4jQVmwthkOYAu1pg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29489455"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="29489455"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2024 13:54:19 -0700
+X-CSE-ConnectionGUID: MKv2nNyiQKCvJu/RCWVqSQ==
+X-CSE-MsgGUID: 3drdinVSRfmhXjb2/4zFKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; 
+   d="scan'208";a="80691801"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 23 Oct 2024 13:54:13 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t3iMt-000VYU-01;
+	Wed, 23 Oct 2024 20:54:11 +0000
+Date: Thu, 24 Oct 2024 04:53:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniel Machon <daniel.machon@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	andrew@lunn.ch, Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	horatiu.vultur@microchip.com,
+	jensemil.schulzostergaard@microchip.com,
+	Parthiban.Veerasooran@microchip.com, Raju.Lakkaraju@microchip.com,
+	UNGLinuxDriver@microchip.com,
+	Richard Cochran <richardcochran@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, jacob.e.keller@intel.com,
+	ast@fiberby.net, maxime.chevallier@bootlin.com
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 06/15] net: lan969x: add match data for lan969x
+Message-ID: <202410240405.kPh7im63-lkp@intel.com>
+References: <20241021-sparx5-lan969x-switch-driver-2-v1-6-c8c49ef21e0f@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,324 +93,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1729715599.git.grantpeltier93@gmail.com>
+In-Reply-To: <20241021-sparx5-lan969x-switch-driver-2-v1-6-c8c49ef21e0f@microchip.com>
 
-Some applications require Vout to be higher than the detectable voltage
-range of the Vsense pin for a given rail. In such applications, a voltage
-divider may be placed between Vout and the Vsense pin, but this results
-in erroneous telemetry being read back from the part. This change adds
-support for a voltage divider to be defined in the devicetree for a (or
-multiple) specific rail(s) for a supported digital multiphase device and
-for the applicable Vout telemetry to be scaled based on the voltage
-divider configuration.
+Hi Daniel,
 
-Signed-off-by: Grant Peltier <grantpeltier93@gmail.com>
----
- drivers/hwmon/pmbus/isl68137.c | 204 ++++++++++++++++++++++++++++++++-
- 1 file changed, 199 insertions(+), 5 deletions(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/drivers/hwmon/pmbus/isl68137.c b/drivers/hwmon/pmbus/isl68137.c
-index 7e53fb1d5ea3..24b5adffb526 100644
---- a/drivers/hwmon/pmbus/isl68137.c
-+++ b/drivers/hwmon/pmbus/isl68137.c
-@@ -13,6 +13,7 @@
- #include <linux/init.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/of.h>
- #include <linux/string.h>
- #include <linux/sysfs.h>
- 
-@@ -20,6 +21,7 @@
- 
- #define ISL68137_VOUT_AVS	0x30
- #define RAA_DMPVR2_READ_VMON	0xc8
-+#define MAX_CHANNELS            4
- 
- enum chips {
- 	isl68137,
-@@ -72,6 +74,17 @@ enum variants {
- 	raa_dmpvr2_hv,
- };
- 
-+struct isl68137_channel {
-+	u32 vout_voltage_divider[2];
-+};
-+
-+struct isl68137_data {
-+	struct pmbus_driver_info info;
-+	struct isl68137_channel channel[MAX_CHANNELS];
-+};
-+
-+#define to_isl68137_data(x)	container_of(x, struct isl68137_data, info)
-+
- static const struct i2c_device_id raa_dmpvr_id[];
- 
- static ssize_t isl68137_avs_enable_show_page(struct i2c_client *client,
-@@ -163,6 +176,8 @@ static const struct attribute_group *isl68137_attribute_groups[] = {
- static int raa_dmpvr2_read_word_data(struct i2c_client *client, int page,
- 				     int phase, int reg)
- {
-+	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-+	const struct isl68137_data *data = to_isl68137_data(info);
- 	int ret;
- 
- 	switch (reg) {
-@@ -170,6 +185,25 @@ static int raa_dmpvr2_read_word_data(struct i2c_client *client, int page,
- 		ret = pmbus_read_word_data(client, page, phase,
- 					   RAA_DMPVR2_READ_VMON);
- 		break;
-+	case PMBUS_READ_POUT:
-+		/*
-+		 * In cases where a voltage divider is attached to the target
-+		 * rail between Vout and the Vsense pin, both Vout and Pout
-+		 * should be scaled by the voltage divider scaling factor.
-+		 * I.e. Vout = Vsense * (R1 + R2) / R2
-+		 */
-+		fallthrough;
-+	case PMBUS_READ_VOUT:
-+		ret = pmbus_read_word_data(client, page, phase, reg);
-+		if (ret > 0 && data->channel[page].vout_voltage_divider[0]
-+			&& data->channel[page].vout_voltage_divider[1]) {
-+			u64 temp = DIV_U64_ROUND_CLOSEST((u64)ret *
-+				((u64)data->channel[page].vout_voltage_divider[0]
-+				+ data->channel[page].vout_voltage_divider[1]),
-+				data->channel[page].vout_voltage_divider[1]);
-+			ret = clamp_val(temp, 0, 0xffff);
-+		}
-+		break;
- 	default:
- 		ret = -ENODATA;
- 		break;
-@@ -178,6 +212,50 @@ static int raa_dmpvr2_read_word_data(struct i2c_client *client, int page,
- 	return ret;
- }
- 
-+static int raa_dmpvr2_write_word_data(struct i2c_client *client, int page,
-+				      int reg, u16 word)
-+{
-+	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-+	const struct isl68137_data *data = to_isl68137_data(info);
-+	int ret;
-+
-+	switch (reg) {
-+	case PMBUS_VOUT_MAX:
-+		/*
-+		 * In cases where a voltage divider is attached to the target
-+		 * rail between Vout and the Vsense pin, Vout related PMBus
-+		 * commands should be scaled based on the expected voltage
-+		 * at the Vsense pin.
-+		 * I.e. Vsense = Vout * R2 / (R1 + R2)
-+		 */
-+		fallthrough;
-+	case PMBUS_VOUT_MARGIN_HIGH:
-+		fallthrough;
-+	case PMBUS_VOUT_MARGIN_LOW:
-+		fallthrough;
-+	case PMBUS_VOUT_OV_FAULT_LIMIT:
-+		fallthrough;
-+	case PMBUS_VOUT_UV_FAULT_LIMIT:
-+		fallthrough;
-+	case PMBUS_VOUT_COMMAND:
-+		if (data->channel[page].vout_voltage_divider[0]
-+			&& data->channel[page].vout_voltage_divider[1]) {
-+			u64 temp = DIV64_U64_ROUND_CLOSEST((u64)word *
-+				data->channel[page].vout_voltage_divider[1],
-+				((u64)data->channel[page].vout_voltage_divider[0]
-+				 + data->channel[page].vout_voltage_divider[1]));
-+			ret = clamp_val(temp, 0, 0xffff);
-+		} else {
-+			ret = -ENODATA;
-+		}
-+		break;
-+	default:
-+		ret = -ENODATA;
-+		break;
-+	}
-+	return ret;
-+}
-+
- static struct pmbus_driver_info raa_dmpvr_info = {
- 	.pages = 3,
- 	.format[PSC_VOLTAGE_IN] = direct,
-@@ -220,14 +298,72 @@ static struct pmbus_driver_info raa_dmpvr_info = {
- 	    | PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_POUT,
- };
- 
-+static int isl68137_probe_child_from_dt(struct device *dev,
-+					struct device_node *child,
-+					struct isl68137_data *data)
-+{
-+	u32 channel;
-+	int err;
-+
-+	err = of_property_read_u32(child, "reg", &channel);
-+	if (err) {
-+		dev_err(dev, "missing reg property of %pOFn\n", child);
-+		return err;
-+	}
-+	if (channel >= MAX_CHANNELS) {
-+		dev_err(dev, "invalid reg %d of %pOFn\n", channel, child);
-+		return -EINVAL;
-+	}
-+
-+	err = of_property_read_u32_array(child, "renesas,vout-voltage-divider",
-+				data->channel[channel].vout_voltage_divider,
-+				ARRAY_SIZE(data->channel[channel].vout_voltage_divider));
-+	if (err && err != -EINVAL) {
-+		dev_err(dev,
-+			"malformed renesas,vout-voltage-divider value for channel %d\n",
-+			channel);
-+		return err;
-+	}
-+	return 0;
-+}
-+
-+static int isl68137_probe_from_dt(struct device *dev,
-+				  struct isl68137_data *data)
-+{
-+	const struct device_node *np = dev->of_node;
-+	struct device_node *child;
-+	int err;
-+
-+	for_each_child_of_node(np, child) {
-+		if (strcmp(child->name, "channel"))
-+			continue;
-+
-+		err = isl68137_probe_child_from_dt(dev, child, data);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
- static int isl68137_probe(struct i2c_client *client)
- {
-+	struct device *dev = &client->dev;
- 	struct pmbus_driver_info *info;
-+	struct isl68137_data *data;
-+	int i, err;
- 
--	info = devm_kzalloc(&client->dev, sizeof(*info), GFP_KERNEL);
--	if (!info)
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
- 		return -ENOMEM;
--	memcpy(info, &raa_dmpvr_info, sizeof(*info));
-+
-+	for (i = 0; i < MAX_CHANNELS; i++)
-+		memset(data->channel[i].vout_voltage_divider,
-+			0,
-+			sizeof(data->channel[i].vout_voltage_divider));
-+
-+	memcpy(&data->info, &raa_dmpvr_info, sizeof(data->info));
-+	info = &data->info;
- 
- 	switch (i2c_match_id(raa_dmpvr_id, client)->driver_data) {
- 	case raa_dmpvr1_2rail:
-@@ -242,6 +378,7 @@ static int isl68137_probe(struct i2c_client *client)
- 	case raa_dmpvr2_1rail:
- 		info->pages = 1;
- 		info->read_word_data = raa_dmpvr2_read_word_data;
-+		info->write_word_data = raa_dmpvr2_write_word_data;
- 		break;
- 	case raa_dmpvr2_2rail_nontc:
- 		info->func[0] &= ~PMBUS_HAVE_TEMP3;
-@@ -250,9 +387,11 @@ static int isl68137_probe(struct i2c_client *client)
- 	case raa_dmpvr2_2rail:
- 		info->pages = 2;
- 		info->read_word_data = raa_dmpvr2_read_word_data;
-+		info->write_word_data = raa_dmpvr2_write_word_data;
- 		break;
- 	case raa_dmpvr2_3rail:
- 		info->read_word_data = raa_dmpvr2_read_word_data;
-+		info->write_word_data = raa_dmpvr2_write_word_data;
- 		break;
- 	case raa_dmpvr2_hv:
- 		info->pages = 1;
-@@ -263,11 +402,18 @@ static int isl68137_probe(struct i2c_client *client)
- 		info->m[PSC_POWER] = 2;
- 		info->R[PSC_POWER] = -1;
- 		info->read_word_data = raa_dmpvr2_read_word_data;
-+		info->write_word_data = raa_dmpvr2_write_word_data;
- 		break;
- 	default:
- 		return -ENODEV;
- 	}
- 
-+	if (dev->of_node) {
-+		err = isl68137_probe_from_dt(dev, data);
-+		if (err)
-+			return err;
-+	}
-+
- 	return pmbus_do_probe(client, info);
- }
- 
-@@ -318,11 +464,59 @@ static const struct i2c_device_id raa_dmpvr_id[] = {
- 
- MODULE_DEVICE_TABLE(i2c, raa_dmpvr_id);
- 
-+static const struct of_device_id isl68137_of_match[] = {
-+	{ .compatible = "renesas,isl68137", .data = (void *)raa_dmpvr1_2rail },
-+	{ .compatible = "renesas,isl68220", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl68221", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl68222", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl68223", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl68224", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl68225", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl68226", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl68227", .data = (void *)raa_dmpvr2_1rail },
-+	{ .compatible = "renesas,isl68229", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl68233", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl68239", .data = (void *)raa_dmpvr2_3rail },
-+
-+	{ .compatible = "renesas,isl69222", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69223", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl69224", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69225", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69227", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl69228", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl69234", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69236", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69239", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl69242", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69243", .data = (void *)raa_dmpvr2_1rail },
-+	{ .compatible = "renesas,isl69247", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69248", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69254", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69255", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69256", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69259", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69260", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69268", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,isl69269", .data = (void *)raa_dmpvr2_3rail },
-+	{ .compatible = "renesas,isl69298", .data = (void *)raa_dmpvr2_2rail },
-+
-+	{ .compatible = "renesas,raa228000", .data = (void *)raa_dmpvr2_hv },
-+	{ .compatible = "renesas,raa228004", .data = (void *)raa_dmpvr2_hv },
-+	{ .compatible = "renesas,raa228006", .data = (void *)raa_dmpvr2_hv },
-+	{ .compatible = "renesas,raa228228", .data = (void *)raa_dmpvr2_2rail_nontc },
-+	{ .compatible = "renesas,raa229001", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,raa229004", .data = (void *)raa_dmpvr2_2rail },
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, isl68137_of_match);
-+
- /* This is the driver that will be inserted */
- static struct i2c_driver isl68137_driver = {
- 	.driver = {
--		   .name = "isl68137",
--		   },
-+		.name = "isl68137",
-+		.of_match_table = isl68137_of_match,
-+	},
- 	.probe = isl68137_probe,
- 	.id_table = raa_dmpvr_id,
- };
+[auto build test ERROR on 30d9d8f6a2d7e44a9f91737dd409dbc87ac6f6b7]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Machon/net-sparx5-add-support-for-lan969x-SKU-s-and-core-clock/20241021-220557
+base:   30d9d8f6a2d7e44a9f91737dd409dbc87ac6f6b7
+patch link:    https://lore.kernel.org/r/20241021-sparx5-lan969x-switch-driver-2-v1-6-c8c49ef21e0f%40microchip.com
+patch subject: [PATCH net-next 06/15] net: lan969x: add match data for lan969x
+config: arm64-randconfig-002-20241024 (https://download.01.org/0day-ci/archive/20241024/202410240405.kPh7im63-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241024/202410240405.kPh7im63-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410240405.kPh7im63-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c: In function 'sparx5_fdma_rx_get_frame':
+>> drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c:178:20: error: 'struct sk_buff' has no member named 'offload_fwd_mark'
+     178 |                 skb->offload_fwd_mark = 1;
+         |                    ^~
+--
+   drivers/net/ethernet/microchip/sparx5/sparx5_packet.c: In function 'sparx5_xtr_grp':
+>> drivers/net/ethernet/microchip/sparx5/sparx5_packet.c:154:20: error: 'struct sk_buff' has no member named 'offload_fwd_mark'
+     154 |                 skb->offload_fwd_mark = 1;
+         |                    ^~
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for SPARX5_SWITCH
+   Depends on [n]: NETDEVICES [=y] && ETHERNET [=y] && NET_VENDOR_MICROCHIP [=y] && NET_SWITCHDEV [=n] && HAS_IOMEM [=y] && OF [=y] && (ARCH_SPARX5 [=y] || COMPILE_TEST [=y]) && PTP_1588_CLOCK_OPTIONAL [=m] && (BRIDGE [=m] || BRIDGE [=m]=n [=n])
+   Selected by [m]:
+   - LAN969X_SWITCH [=m] && NETDEVICES [=y] && ETHERNET [=y] && NET_VENDOR_MICROCHIP [=y]
+
+
+vim +178 drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
+
+10615907e9b51c Steen Hegelund 2021-08-19  141  
+10615907e9b51c Steen Hegelund 2021-08-19  142  static bool sparx5_fdma_rx_get_frame(struct sparx5 *sparx5, struct sparx5_rx *rx)
+10615907e9b51c Steen Hegelund 2021-08-19  143  {
+e8218f7a9f4425 Daniel Machon  2024-09-02  144  	struct fdma *fdma = &rx->fdma;
+10615907e9b51c Steen Hegelund 2021-08-19  145  	struct sparx5_port *port;
+8fec1cea941d32 Daniel Machon  2024-09-02  146  	struct fdma_db *db_hw;
+10615907e9b51c Steen Hegelund 2021-08-19  147  	struct frame_info fi;
+10615907e9b51c Steen Hegelund 2021-08-19  148  	struct sk_buff *skb;
+10615907e9b51c Steen Hegelund 2021-08-19  149  
+10615907e9b51c Steen Hegelund 2021-08-19  150  	/* Check if the DCB is done */
+4ff58c394715ee Daniel Machon  2024-09-02  151  	db_hw = fdma_db_next_get(fdma);
+4ff58c394715ee Daniel Machon  2024-09-02  152  	if (unlikely(!fdma_db_is_done(db_hw)))
+10615907e9b51c Steen Hegelund 2021-08-19  153  		return false;
+e8218f7a9f4425 Daniel Machon  2024-09-02  154  	skb = rx->skb[fdma->dcb_index][fdma->db_index];
+4ff58c394715ee Daniel Machon  2024-09-02  155  	skb_put(skb, fdma_db_len_get(db_hw));
+10615907e9b51c Steen Hegelund 2021-08-19  156  	/* Now do the normal processing of the skb */
+aa7dfc6611fae2 Daniel Machon  2024-10-21  157  	sparx5_ifh_parse(sparx5, (u32 *)skb->data, &fi);
+10615907e9b51c Steen Hegelund 2021-08-19  158  	/* Map to port netdev */
+3f9e46347a466a Daniel Machon  2024-10-04  159  	port = fi.src_port < sparx5->data->consts->n_ports ?
+3f9e46347a466a Daniel Machon  2024-10-04  160  		       sparx5->ports[fi.src_port] :
+3f9e46347a466a Daniel Machon  2024-10-04  161  		       NULL;
+10615907e9b51c Steen Hegelund 2021-08-19  162  	if (!port || !port->ndev) {
+10615907e9b51c Steen Hegelund 2021-08-19  163  		dev_err(sparx5->dev, "Data on inactive port %d\n", fi.src_port);
+10615907e9b51c Steen Hegelund 2021-08-19  164  		sparx5_xtr_flush(sparx5, XTR_QUEUE);
+10615907e9b51c Steen Hegelund 2021-08-19  165  		return false;
+10615907e9b51c Steen Hegelund 2021-08-19  166  	}
+10615907e9b51c Steen Hegelund 2021-08-19  167  	skb->dev = port->ndev;
+10615907e9b51c Steen Hegelund 2021-08-19  168  	skb_pull(skb, IFH_LEN * sizeof(u32));
+10615907e9b51c Steen Hegelund 2021-08-19  169  	if (likely(!(skb->dev->features & NETIF_F_RXFCS)))
+10615907e9b51c Steen Hegelund 2021-08-19  170  		skb_trim(skb, skb->len - ETH_FCS_LEN);
+70dfe25cd8666d Horatiu Vultur 2022-03-04  171  
+70dfe25cd8666d Horatiu Vultur 2022-03-04  172  	sparx5_ptp_rxtstamp(sparx5, skb, fi.timestamp);
+10615907e9b51c Steen Hegelund 2021-08-19  173  	skb->protocol = eth_type_trans(skb, skb->dev);
+10615907e9b51c Steen Hegelund 2021-08-19  174  	/* Everything we see on an interface that is in the HW bridge
+10615907e9b51c Steen Hegelund 2021-08-19  175  	 * has already been forwarded
+10615907e9b51c Steen Hegelund 2021-08-19  176  	 */
+10615907e9b51c Steen Hegelund 2021-08-19  177  	if (test_bit(port->portno, sparx5->bridge_mask))
+10615907e9b51c Steen Hegelund 2021-08-19 @178  		skb->offload_fwd_mark = 1;
+10615907e9b51c Steen Hegelund 2021-08-19  179  	skb->dev->stats.rx_bytes += skb->len;
+10615907e9b51c Steen Hegelund 2021-08-19  180  	skb->dev->stats.rx_packets++;
+10615907e9b51c Steen Hegelund 2021-08-19  181  	rx->packets++;
+10615907e9b51c Steen Hegelund 2021-08-19  182  	netif_receive_skb(skb);
+10615907e9b51c Steen Hegelund 2021-08-19  183  	return true;
+10615907e9b51c Steen Hegelund 2021-08-19  184  }
+10615907e9b51c Steen Hegelund 2021-08-19  185  
+
 -- 
-2.39.5
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
