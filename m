@@ -1,185 +1,260 @@
-Return-Path: <devicetree+bounces-114590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C8EB9AC049
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:32:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B929AC066
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:35:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DBB02853BC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:32:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A48D3281308
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA1F15624D;
-	Wed, 23 Oct 2024 07:32:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rnzPosid"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393ED154435;
+	Wed, 23 Oct 2024 07:34:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140BD154BFC
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 07:32:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2CA73451;
+	Wed, 23 Oct 2024 07:34:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729668735; cv=none; b=EOVGpXxGF8UBU6s2xCXcxljwc6lThB2DTvJv/GU33UGy75xYu9yC2HzKs6q0YuJba20svuevj1DXnX67xYp95qkpPYxkiW0HmLAEmzreXtaVG87QMvsT/je76Xuh1jJm074uJUqdVJMza3L+X4MbDKXp6nf7IRKZdVjAFpdZISU=
+	t=1729668893; cv=none; b=bJL3BmmAu22vaM5fc4zbOc2qrbG37m3JXULO1YDUd386k0yGK2UTrOKr6h06ov4AJdRT/C+8ylmNX11d8ikuYqkZHFqu0pC6SZfrXjAgXFmS1FUdwkgQk032ckqSM5H6qyCRzsX2ebMXDNYra6d5M+8FWszMfU2uZA/oTF60IBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729668735; c=relaxed/simple;
-	bh=UG6ihVAcJ5pYreWh3xW3jBvz7qOrrWyU52nZm6ikEK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SVmS0Z5dYksBL4gDJjKizEPhg72ZDUEMw9NkMPhbyDFAI60MWdR6UlM0b+UVTqkQvCd/GX7f7GVYtJBpTMa7Xcz+dSPO2R19MtVDsVY+BIsPBlwYdTXXmna3H9KpjwP0VOeD9nDl9Vq++dz99gYAR1ckwmmLAiHQS8m24onhQtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rnzPosid; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d70df0b1aso5121340f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 00:32:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729668732; x=1730273532; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ByOuflTVuw6FqNFCU6UPV6W286vup+uWGJ9ZYP4mkM=;
-        b=rnzPosidsZfkKP9K0Lvs+r9sC6NLuAmZf0Bz99r3WvVrlT3tJt1Um0S/JhhOL2DBmi
-         UfpsTzFMXricAvlVtD95Ra5TetnGrGG9nuQqO70H4idTM3rTtqe8LN8gvYex/qa5b36M
-         6zuOEWgrzeYOWvLDJmeBp4O9mfK8dl9JebGzIj+cbg4jQ7zwjoRVF7hd6bEL0dlex+mp
-         +CAGNr5eDHPuJBRwnV1Y9lFuFImrgXK07ZJiEGw/AOyKUp4mAN1k6FAehreau6PQG24K
-         jbpe12thcixDm9hTbxLc4DgQqJdZ7iEUciDfabUXTPZURSGhZWS7JELA8pOZyagWMRNC
-         eQrw==
+	s=arc-20240116; t=1729668893; c=relaxed/simple;
+	bh=gYA7V2+luJ68VKlU8tWJhrphluX80vBq3147GQw76UY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J9+Ze51yw50ZEeljULNDwC61zeBoGMWZsLK9MXOrXa3WXyRWHH+A3Z94lLQFc8nrCX07tddlEgmQNBLtCifXVq8GS4AhZvT8y6AomU+a6OMmqoJ6ussE/co017Z41ZPbjkPIVRM1QYwjoewFZb/EUJ9TE9YwZlS4NJEhMGZgFBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e291cbbf05bso6629544276.2;
+        Wed, 23 Oct 2024 00:34:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729668732; x=1730273532;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0ByOuflTVuw6FqNFCU6UPV6W286vup+uWGJ9ZYP4mkM=;
-        b=xS49QcpFPBISr0PpOt7EIWt6ETD4TLJ4psYJC1kcA0evhVFGb+dS0vA4N0xlIDp9Oh
-         Z5tOk93dfd2iPaYtYM0ECL0KZTYsQHjoSgokc6CRPg0oWK1UEXnLCYVCna3bQa2YjmOr
-         2Q6/5Dmk52cz3iV5/2EClDU8KYj0vqt7zoZie0+t4DR9aDE0TWkvoCaZUH9vJWt2JtQY
-         w4JiNV9eyVhs90Zbty36pf840BZAfoyQ/fRPTERmW+oep6srEwBJSkEGW2HfpbuBt8Mw
-         /iChsMT3yfADsRnHm9O1AMbgPLExB93hwcZ3WFbPIc+sWlVOUhPct4zedwOhc+Z/2NAY
-         w+nw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBVVQg3j++ofVjZ4vSZ0ofJGhSHaxljSEMAUZCTcU0XGs9wIqHyMTDzOW4yJ63m1nKK16htLSEekdL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvgDslFWMYNFojVS950/Y3pE1eeyJyNIOt1JFtOu9zlLG20fwv
-	EkMDyKaBgBR1Kg1cJf5TL4LabgW9tN6+Q5ih7BLwjcCm86dHm3w/6vtmcs4iGVA=
-X-Google-Smtp-Source: AGHT+IHjIA8gmyjHXms77rT5Sn14lEAq7Alni4DB4J5+vDcwterfp4ljbKgcAnTOfUwgEtKEJq9FJA==
-X-Received: by 2002:adf:ea46:0:b0:37d:529f:ac1e with SMTP id ffacd0b85a97d-37efcf9c1a9mr938910f8f.53.1729668732225;
-        Wed, 23 Oct 2024 00:32:12 -0700 (PDT)
-Received: from linaro.org ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a4ac2esm8276357f8f.44.2024.10.23.00.32.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 00:32:11 -0700 (PDT)
-Date: Wed, 23 Oct 2024 10:32:09 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] usb: typec: Add support for Parade PS8830 Type-C
- Retimer
-Message-ID: <ZximeTNi7huc95te@linaro.org>
-References: <20241004-x1e80100-ps8830-v2-0-5cd8008c8c40@linaro.org>
- <20241004-x1e80100-ps8830-v2-2-5cd8008c8c40@linaro.org>
- <Zw5oEyMj6cPGFDEI@hovoldconsulting.com>
- <Zxdp2vHzREJAFkwj@linaro.org>
- <Zxif6vmh8BE_C-_n@hovoldconsulting.com>
+        d=1e100.net; s=20230601; t=1729668889; x=1730273689;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Z+lpt1WfOqRv7Qh2HfusVj5G6gjAIEYeAicEYOrMhQQ=;
+        b=ODpGK3N4Tb7lVAipv+ADPbRbez9TFomTTnOszORr20JzZ8zvueatTGGi+CBY8bBj73
+         lmVIM0hziNP8Ztq1lpp8rtsUgeofpElx0qg/XLkk/SpZsyNsEp6lTtrgO0jEflDXrHuD
+         d9hTQDoob83Pb3cePRpXp+st9ge/bvcnKVIqtPr0MCsNlP22T0IH73it4mNPR7f5V4gr
+         Vo4P91H5fBcEvJsU49MjJ1ls8+NtPlaM36kfmMLSsIKF2wMMGS1nVVMbzUvBb0EjXpUS
+         pvzLwPcd8zYIQ3vcQGkreVk8hFXY87Oc/od4knUTIYmJHfj0tmjZmRzjDMa2+8vJ+xHJ
+         sSsw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5NInGMRl+Qn8Y1roafXLB8VE+w3oHjtQxUJeuyrqyvCzMdyClIIhEVaHE1WSaO01DFr7ikUc+zCJ+@vger.kernel.org, AJvYcCWM4LehkQHR7Mmui2ntGrIQjDUKi2ZESzw+i77HfsX3NiaE8uVWiytYh7P4yJSoe23gJkWcHAgwndcY@vger.kernel.org, AJvYcCWgPv2X8B6fj0IYKY5xvPL7g2rQaZAo4q003r2Ie+Fe/kgzyznoLxPQTvQQIo5Mr4Ihu8xKzoPVBuQpZx0=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo/68aRh7VTSpw1f+PPnbLtC9kx5ffCozU4gvDh8yuytWzluGj
+	XUg3XkS8sbyt+ZnSJC/5DCWNeYiAh9+M4VLL5GY3nYO0VJVwq6ReaLfPrRQA
+X-Google-Smtp-Source: AGHT+IGwPKw0ZTzqr4OgkjLrlhFHtEu644ezGQSn2clvcZhdfN2zbZ3ugleGuhACKDzdMyhwAmh+3A==
+X-Received: by 2002:a05:690c:660c:b0:6dd:cdd7:ce5a with SMTP id 00721157ae682-6e7f0e14dc2mr16288047b3.18.1729668889384;
+        Wed, 23 Oct 2024 00:34:49 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e5f5d13172sm14037487b3.125.2024.10.23.00.34.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Oct 2024 00:34:48 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6e390d9ad1dso59445267b3.3;
+        Wed, 23 Oct 2024 00:34:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV+qAI71U8tiIRJvoMD8XDsM6V8hR2m7C9MTpbIMJNzj5/fCZj1f7wBmTnOX+8Az6AH0KdIsedgQO6I@vger.kernel.org, AJvYcCVx8c2inyl5cpHOgD2w0Po80tUfwQj4aAj/zvbqy9aNjC8gebYKWY2hLjhaYffzb54MF6WmEg0K1FxY@vger.kernel.org, AJvYcCW3pZ9GY1/4+bkTo3lJh13brlTr0L1PE76SMfG4PxvreKdC/cvg5FyEYWUwSNUYvASYkXv8rqHITCFya/M=@vger.kernel.org
+X-Received: by 2002:a05:690c:7090:b0:6e2:b263:104a with SMTP id
+ 00721157ae682-6e7f0e30c6amr19119317b3.23.1729668888670; Wed, 23 Oct 2024
+ 00:34:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zxif6vmh8BE_C-_n@hovoldconsulting.com>
+References: <cover.1729646466.git.grantpeltier93@gmail.com> <422a40e992e047e250a3b1295503e3b81b5515ae.1729646466.git.grantpeltier93@gmail.com>
+In-Reply-To: <422a40e992e047e250a3b1295503e3b81b5515ae.1729646466.git.grantpeltier93@gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 23 Oct 2024 09:34:36 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWeqGvUZmTpo18oaOzYz1TEg97OuXyUSy9YJxmrWQWMBw@mail.gmail.com>
+Message-ID: <CAMuHMdWeqGvUZmTpo18oaOzYz1TEg97OuXyUSy9YJxmrWQWMBw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] hwmon: (pmbus/isl68137) add support for voltage
+ divider on Vout
+To: Grant Peltier <grantpeltier93@gmail.com>
+Cc: robh@kernel.org, linux@roeck-us.net, magnus.damm@gmail.com, 
+	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 24-10-23 09:04:10, Johan Hovold wrote:
-> On Tue, Oct 22, 2024 at 12:01:14PM +0300, Abel Vesa wrote:
-> > On 24-10-15 15:03:15, Johan Hovold wrote:
-> > > On Fri, Oct 04, 2024 at 04:57:38PM +0300, Abel Vesa wrote:
-> 
-> > > > +	ret = ps8830_get_vregs(retimer);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	retimer->xo_clk = devm_clk_get(dev, "xo");
-> > > > +	if (IS_ERR(retimer->xo_clk))
-> > > > +		return dev_err_probe(dev, PTR_ERR(retimer->xo_clk),
-> > > > +				     "failed to get xo clock\n");
-> > > > +
-> > > > +	retimer->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> > > 
-> > > The reset line is active low and should be described as such in DT. So
-> > > here you want to request it as logically low if you want to deassert
-> > > reset.
-> > 
-> > This is being reworked in v3 as we need to support cases where the
-> > retimer has been left enabled and initialized by bootloader and we want
-> > to keep that state until unplug event for the cold-plug orientation
-> > to work properly.
-> > 
-> > On top of that, we don't want to deassert the reset here. We do that
-> > via gpiod_set_value() call below, after the clocks and regulators have
-> > been enabled.
-> 
-> Ok, but you should generally not drive an input high before powering on
-> the device as that can damage the IC (more below).
+Hi Grant,
 
-This is just not true, generally. Think of top level XTALs which feed in
-clocks (and can't be disabled) before ICs are enabled.
+On Wed, Oct 23, 2024 at 3:58=E2=80=AFAM Grant Peltier <grantpeltier93@gmail=
+.com> wrote:
+> Some applications require Vout to be higher than the detectable voltage
+> range of the Vsense pin for a given rail. In such applications, a voltage
+> divider may be placed between Vout and the Vsense pin, but this results
+> in erroneous telemetry being read back from the part. This change adds
+> support for a voltage divider to be defined in the devicetree for a (or
+> multiple) specific rail(s) for a supported digital multiphase device and
+> for the applicable Vout telemetry to be scaled based on the voltage
+> divider configuration.
+>
+> Signed-off-by: Grant Peltier <grantpeltier93@gmail.com>
 
-> 
-> That is, in this case, you should not deassert reset before making sure
-> the supplies are enabled.
+Thanks for your patch!
 
-Wrong. Even the data sheet of this retimer shows in the timigs plot the
-reset as being asserted before the supplies are enabled.
+> --- a/drivers/hwmon/pmbus/isl68137.c
+> +++ b/drivers/hwmon/pmbus/isl68137.c
 
-And generally speaking, the reset needs to be asserted before the
-supplies are up, so that the IC doesn't start doing any work until
-the SW decides it needs to.
+> @@ -170,6 +185,25 @@ static int raa_dmpvr2_read_word_data(struct i2c_clie=
+nt *client, int page,
+>                 ret =3D pmbus_read_word_data(client, page, phase,
+>                                            RAA_DMPVR2_READ_VMON);
+>                 break;
+> +       case PMBUS_READ_POUT:
+> +               /*
+> +                * In cases where a voltage divider is attached to the ta=
+rget
+> +                * rail between Vout and the Vsense pin, both Vout and Po=
+ut
+> +                * should be scaled by the voltage divider scaling factor=
+.
+> +                * I.e. Vout =3D Vsense * (R1 + R2) / R2
+> +                */
+> +               fallthrough;
+> +       case PMBUS_READ_VOUT:
+> +               ret =3D pmbus_read_word_data(client, page, phase, reg);
+> +               if (ret > 0 && data->channel[page].vout_voltage_divider[0=
+]
+> +                       && data->channel[page].vout_voltage_divider[1]) {
+> +                       u64 temp =3D DIV_ROUND_CLOSEST_ULL((u64)ret *
+> +                               (data->channel[page].vout_voltage_divider=
+[0]
+> +                               + data->channel[page].vout_voltage_divide=
+r[1]),
+> +                               data->channel[page].vout_voltage_divider[=
+1]);
 
-> 
-> > > > +	ret = clk_prepare_enable(retimer->xo_clk);
-> > > > +	if (ret) {
-> > > > +		dev_err(dev, "failed to enable XO: %d\n", ret);
-> > > > +		goto err_retimer_unregister;
-> > > > +	}
-> > > 
-> > > Should you really enable the clock before the regulators?
-> > 
-> > So maybe in this case it might not really matter. But in principle,
-> > the HW might be affected by clock glitches and such when IP block
-> > is powered up but unclocked. Even more so if the clock enabling
-> > (prepare, to be more exact) involves switching to a new PLL.
-> > 
-> > So clock first, then power up. At least that's my understanding of HW
-> > in general.
-> 
-> I think you got that backwards as inputs are typically rated for some
-> maximum voltage based on the supply voltage. 
+You are casting "ret" to u64 to force a 64-bit multiplication, as the
+product may not fit in 32 bits. However, DIV_ROUND_CLOSEST_ULL()
+does a 32-bit division on 32-bit platforms.  So this should use
+DIV_U64_ROUND_CLOSEST() instead.
+The sum of vout_voltage_divider[0] + vout_voltage_divider[1] might
+not fit in 32 bits, so that should be changed to a 64-bit addition.
+Unfortunately there is no rounding version of mul_u64_u32_div() yet,
+so you have to open-code it.
 
-Yes, but that's done at board design stage.
+> +                       ret =3D clamp_val(temp, 0, 0xffff);
+> +               }
+> +               break;
+>         default:
+>                 ret =3D -ENODATA;
+>                 break;
+> @@ -178,6 +212,50 @@ static int raa_dmpvr2_read_word_data(struct i2c_clie=
+nt *client, int page,
+>         return ret;
+>  }
+>
+> +static int raa_dmpvr2_write_word_data(struct i2c_client *client, int pag=
+e,
+> +                                     int reg, u16 word)
+> +{
+> +       const struct pmbus_driver_info *info =3D pmbus_get_driver_info(cl=
+ient);
+> +       const struct isl68137_data *data =3D to_isl68137_data(info);
+> +       int ret;
+> +
+> +       switch (reg) {
+> +       case PMBUS_VOUT_MAX:
+> +               /*
+> +                * In cases where a voltage divider is attached to the ta=
+rget
+> +                * rail between Vout and the Vsense pin, Vout related PMB=
+us
+> +                * commands should be scaled based on the expected voltag=
+e
+> +                * at the Vsense pin.
+> +                * I.e. Vsense =3D Vout * R2 / (R1 + R2)
+> +                */
+> +               fallthrough;
+> +       case PMBUS_VOUT_MARGIN_HIGH:
+> +               fallthrough;
+> +       case PMBUS_VOUT_MARGIN_LOW:
+> +               fallthrough;
+> +       case PMBUS_VOUT_OV_FAULT_LIMIT:
+> +               fallthrough;
+> +       case PMBUS_VOUT_UV_FAULT_LIMIT:
+> +               fallthrough;
+> +       case PMBUS_VOUT_COMMAND:
+> +               if (data->channel[page].vout_voltage_divider[0]
+> +                       && data->channel[page].vout_voltage_divider[1]) {
+> +                       u64 temp =3D DIV_ROUND_CLOSEST_ULL((u64)word *
+> +                               data->channel[page].vout_voltage_divider[=
+1],
+> +                               (data->channel[page].vout_voltage_divider=
+[0] +
+> +                                data->channel[page].vout_voltage_divider=
+[1]));
 
-> That applies also to the
-> reset line as I also mentioned above.
-> 
-> What does the datasheet say?
+Similar comments, but here the sum is the divisor, so you have to use
+a full 64-by-64 division, using DIV64_U64_ROUND_CLOSEST().
 
-As mentioned above, datasheet shows reset asserted before the supplies
-are being enabled.
+> +                       ret =3D clamp_val(temp, 0, 0xffff);
+> +               } else {
+> +                       ret =3D -ENODATA;
+> +               }
+> +               break;
+> +       default:
+> +               ret =3D -ENODATA;
+> +               break;
+> +       }
+> +       return ret;
+> +}
+> +
+>  static struct pmbus_driver_info raa_dmpvr_info =3D {
+>         .pages =3D 3,
+>         .format[PSC_VOLTAGE_IN] =3D direct,
+> @@ -220,14 +298,67 @@ static struct pmbus_driver_info raa_dmpvr_info =3D =
+{
+>             | PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_POUT,
+>  };
+>
+> +static int isl68137_probe_child_from_dt(struct device *dev,
+> +                                       struct device_node *child,
+> +                                       struct isl68137_data *data)
+> +{
+> +       u32 channel;
+> +       int err;
+> +
+> +       err =3D of_property_read_u32(child, "reg", &channel);
+> +       if (err) {
+> +               dev_err(dev, "missing reg property of %pOFn\n", child);
+> +               return err;
+> +       }
+> +       if (channel >=3D MAX_CHANNELS) {
+> +               dev_err(dev, "invalid reg %d of %pOFn\n", channel, child)=
+;
+> +               return -EINVAL;
+> +       }
+> +
+> +       of_property_read_u32_array(child, "renesas,vout-voltage-divider",
+> +                               data->channel[channel].vout_voltage_divid=
+er,
+> +                               ARRAY_SIZE(data->channel[channel].vout_vo=
+ltage_divider));
 
-> 
-> > > > +
-> > > > +	ret = ps8830_enable_vregs(retimer);
-> > > > +	if (ret)
-> > > > +		goto err_clk_disable;
-> 
-> Johan
+Shouldn't the return value be checked for errors different from -EINVAL?
+
+> +
+> +       return 0;
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
