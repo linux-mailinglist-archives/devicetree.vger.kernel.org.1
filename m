@@ -1,287 +1,174 @@
-Return-Path: <devicetree+bounces-114720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FF269AC933
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:39:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAAAE9AC96E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:53:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1E1B1C216BF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:39:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9554D2812DC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECD81AB6FD;
-	Wed, 23 Oct 2024 11:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3271E1AAE3A;
+	Wed, 23 Oct 2024 11:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kOJARlK5"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UgBdd0p0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B64D1AB505;
-	Wed, 23 Oct 2024 11:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662DC49652;
+	Wed, 23 Oct 2024 11:53:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729683530; cv=none; b=qRfY91ut6cN1WPvNwcLALjZrUGP3JUCHIiz+hWLGVKPDk7NJjfzADdYjHW1iTVRvovUhiHIczCrtIEJ7PeI/GLrZy3HGP615kujJbTZEFn4EAobeZwOQHE8ydg0+1HXn9ad8hQgw6O1LfMwbkfkTJBWJoRYYTFWaFb0tIpD/ovw=
+	t=1729684388; cv=none; b=XObxaQsB8GSJ3U1wqJAVSk+nlnqFlSYBQR12ju4ITIHAB04+YdQyEqC2OnZvEyRYjEVs4AglJ3xaplGu99VgXM71jNr+WJFzkRn8geRpKQTuC6s8gsfLLn8SmP29jsZatd0rP8Z4EobxXex8v85W57WAad3QVrHZN8aXaBHAcZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729683530; c=relaxed/simple;
-	bh=/+WFEnvDjivJX4Au126VwACdaOw4qcV7VLLYvjLfqVw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hQ3mWtTBhpfekgJmDT1SaAxzG8+eCLT/G+gF3r2x6CyuvQhsCQlOX8W7KY70+0IXDy49HMEHvGwWHeMjsocE7mkHGuOE2Ip1/JWCe2e0wAOxyisJyThIhldglS3fX2Ua8FKvpy4YmSwY23Hek7rY6EJ+EWgfzH9t1yWf6NpP3yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kOJARlK5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49N9V37f005091;
-	Wed, 23 Oct 2024 11:38:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5dBF+Sk+S4kNDoPW+metDIn5VFDJ/fiEgaWVi9mtMqc=; b=kOJARlK5OIhU6ALl
-	nC0zhOPse5pS4zVdy3TPM4ldIqveRiGpFxOzOrZgtHfFb2hOP+Q2AD1W0CkNDki+
-	V0jlympX7MgyA8Dy2G51lzdgtPN788+zyfV2K9h9FJa22x5YboQLGM/QAt9pIHxz
-	mQ8QwiVgNwb0H78vgwjulKDLbAMgGsNr2XkYv+7c4/pFtZzWRmbP+TP8pCUP6nXR
-	gyqrt1f9zWLhrEFE83bIshHdVrsnP9EZmo1ijqrs+jm2nWK60rR+vYNjUoTSbobC
-	EyyXuY4osSj2MdPtSqzkuniBI/5vODNTcPgE51TXqasm5DNww938tGZpWlsA3pvL
-	29qaAw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em681yq8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 11:38:41 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49NBceOS019198
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 11:38:40 GMT
-Received: from [10.216.48.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Oct
- 2024 04:38:36 -0700
-Message-ID: <48307b08-dbf5-bec5-ac0e-41ad64d0bad4@quicinc.com>
-Date: Wed, 23 Oct 2024 17:08:33 +0530
+	s=arc-20240116; t=1729684388; c=relaxed/simple;
+	bh=Q5I4r72oA/6A0mpxkrBboGMIhbKMjAbnlCQclz2hNqM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hwJh0P86SYs62x2KN+4iKe/gK4EXJavYuGnHv19Ij5yDIaJ3m18V2Ypwv6aCMv5mX5xQY9Ie1queUVSkYV2eDszQW5XLlc5FyrYLYjdvlFsbMkMYeqsYnORzeCtTsF1yb5rSvgmwc63k5AGxZNCloaAueeOh0V96S03VrIbKTH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=UgBdd0p0; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [127.0.1.1] (91-157-155-49.elisa-laajakaista.fi [91.157.155.49])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 93653A47;
+	Wed, 23 Oct 2024 13:51:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1729684276;
+	bh=Q5I4r72oA/6A0mpxkrBboGMIhbKMjAbnlCQclz2hNqM=;
+	h=From:Subject:Date:To:Cc:From;
+	b=UgBdd0p0wrxwrHjwmBr8V54eRNOweONCoWruGBpa+lFM//MV3bNlAtKA0/X80Sjuk
+	 LzJdODRQfQ1nxCREphnIuZSCqHJWUEgGMkcs2wtdoue8+87GC+na3Pevy2mixlRMQd
+	 X+3XKPfccTmGzM1YT8Xa6zTbaynAbpGawO7m/06c=
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH v4 0/3] drm: xlnx: zynqmp: Add DP audio support
+Date: Wed, 23 Oct 2024 14:52:40 +0300
+Message-Id: <20241023-xilinx-dp-audio-v4-0-5128881457be@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 12/28] media: iris: implement enum_fmt and
- enum_frameintervals ioctls
-Content-Language: en-US
-To: Hans Verkuil <hverkuil@xs4all.nl>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: Sebastian Fricke <sebastian.fricke@collabora.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vedang Nagar
-	<quic_vnagar@quicinc.com>
-References: <20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com>
- <20241014-qcom-video-iris-v4-v4-12-c5eaa4e9ab9e@quicinc.com>
- <5a1f5d57-341c-47c3-b478-7d6a7842ae70@xs4all.nl>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <5a1f5d57-341c-47c3-b478-7d6a7842ae70@xs4all.nl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ZG01fZ-F0M06Vpy-em9D4xVQWoBABabO
-X-Proofpoint-GUID: ZG01fZ-F0M06Vpy-em9D4xVQWoBABabO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 bulkscore=0 phishscore=0 mlxscore=0
- lowpriorityscore=0 mlxlogscore=999 impostorscore=0 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410230068
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAIjjGGcC/3XNTQ7CIBCG4asY1mL4E8SV9zAuKAN2Ei0NaFPT9
+ O6iG020y/dL5pmJlJAxFLJfTSSHAQumroZar4hvXXcOFKE2EUwoJrmgI16wGyn01N0BE1V654C
+ LaKNWpF71OUQc3+LxVLvFckv58X4w8Ne6bA2cMqqt9sZG55vGHhCCK6lrksuw8elKXuQgvhn7y
+ 4jKWAEapDPembDAyA9jOftlZGXMdquZsTIqYH+YeZ6fShmsZkMBAAA=
+To: Lars-Peter Clausen <lars@metafoo.de>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Simona Vetter <simona.vetter@ffwll.ch>
+Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Vishal Sagar <vishal.sagar@amd.com>, 
+ Anatoliy Klymenko <anatoliy.klymenko@amd.com>, 
+ =?utf-8?q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>, 
+ Markus Elfring <Markus.Elfring@web.de>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3283;
+ i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
+ bh=Q5I4r72oA/6A0mpxkrBboGMIhbKMjAbnlCQclz2hNqM=;
+ b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBnGOOYdB4a29tVAERuM4J3tvaK345HA1KyQtUjj
+ TTsMJvwMHGJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCZxjjmAAKCRD6PaqMvJYe
+ 9fPjEACbXxnFCCLs8Mot4EVKD+efiSDJolwjJ9LFaYGBQfisgK3vFY392SIR+xdLwqKNSLbUmZP
+ wVfzdCsMJVSSMZenAkFoi2g25R0FzNEsN5M/o9gF23GuJlzazq0w90vvdgMoG4wBzhR3yurw8Dt
+ tPsyt9i+j0IEjUQPyv9dA+4DKtpJKXfDonGYCX8MOQUea4YPG6o83cg6qak0IPUwrE06Pc2KKlQ
+ l9U2WluNZTjRMfPmJWq2M1tEj7xZC38Fctj1EWOQyr36W5mgz2sfzQcI1ppEfTMbRyb588lAD+g
+ nnku4uInc7r+UwDkxC+q9y4j6SBzFLV0xYD01m1BC65QmvW11nlUMWat/H7BF+c5tyl6AnRx72k
+ XPvKVQEOhejBFzZChS4i7OHTr320DGGNus9nkJS00ehD3f5omBBpEcbx3BYIm8IjcjbqJBmMYT+
+ YKbghB2IY+Qjgwccbaefe9kfYIhV6Mmga8LLg5zDXqEX6xbkqvbCMXwk5Q1JKEbDPkCZWF+ej80
+ /3JbNZSfpXgcjWMd0McrdtSnMoOY//W4chNnr8DAWpPpNwu9vEKbb53vsC6oQnm95azwS/6fBM3
+ XWYhhqNFPLqD8Lg36EmegS0sBYGfb/n6KtImFVLXt9aszAFFpp1iLzeZJ+uUrIHZ8O1tJItXREI
+ eIaWoFozhgJjNDw==
+X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
+ fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
 
+Add DisplayPort audio support for Xilinx ZynqMP platforms.
 
+The current DT is, for some reason, missing the DMA channels for the
+audio. This series adds that to the bindings and the dts file, but to
+support older dtb files without the audio DMA, the driver will not fail
+if the audio DMA is missing, but will just mark the audio support as
+disabled.
 
-On 10/23/2024 4:19 PM, Hans Verkuil wrote:
-> On 14/10/2024 11:07, Dikshita Agarwal wrote:
->> From: Vedang Nagar <quic_vnagar@quicinc.com>
->>
->> Implement enum_fmt and enum_frameintervals ioctls with
->> necessary hooks.
->>
->> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
->> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
->> ---
->>  .../platform/qcom/iris/iris_platform_common.h      |  4 +++
->>  .../platform/qcom/iris/iris_platform_sm8550.c      |  4 +++
->>  drivers/media/platform/qcom/iris/iris_vdec.c       | 21 ++++++++++++
->>  drivers/media/platform/qcom/iris/iris_vdec.h       |  1 +
->>  drivers/media/platform/qcom/iris/iris_vidc.c       | 39 ++++++++++++++++++++++
->>  5 files changed, 69 insertions(+)
->>
->> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
->> index e345667dfbf2..54a2d723797b 100644
->> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
->> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
->> @@ -43,6 +43,10 @@ struct ubwc_config_data {
->>  };
->>  
->>  struct platform_inst_caps {
->> +	u32 min_frame_width;
->> +	u32 max_frame_width;
->> +	u32 min_frame_height;
->> +	u32 max_frame_height;
->>  	u32 max_mbpf;
->>  };
->>  struct iris_core_power {
->> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
->> index bc4769732aad..37c0130d7059 100644
->> --- a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
->> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
->> @@ -11,6 +11,10 @@
->>  #define VIDEO_ARCH_LX 1
->>  
->>  static struct platform_inst_caps platform_inst_cap_sm8550 = {
->> +	.min_frame_width = 96,
->> +	.max_frame_width = 8192,
->> +	.min_frame_height = 96,
->> +	.max_frame_height = 8192,
->>  	.max_mbpf = (8192 * 4352) / 256,
->>  };
->>  
->> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.c b/drivers/media/platform/qcom/iris/iris_vdec.c
->> index e807decdda2b..fd0f1ebc33e8 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vdec.c
->> +++ b/drivers/media/platform/qcom/iris/iris_vdec.c
->> @@ -60,6 +60,27 @@ void iris_vdec_inst_deinit(struct iris_inst *inst)
->>  	kfree(inst->fmt_src);
->>  }
->>  
->> +int iris_vdec_enum_fmt(struct iris_inst *inst, struct v4l2_fmtdesc *f)
->> +{
->> +	switch (f->type) {
->> +	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
->> +		f->pixelformat = V4L2_PIX_FMT_H264;
->> +		f->flags = V4L2_FMT_FLAG_COMPRESSED | V4L2_FMT_FLAG_DYN_RESOLUTION;
->> +		strscpy(f->description, "codec", sizeof(f->description));
-> 
-> Don't set description, it's handled in v4l_fill_fmtdesc in v4l2-ioctl.c.
-> 
->> +		break;
->> +	case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
->> +		f->pixelformat = V4L2_PIX_FMT_NV12;
->> +		strscpy(f->description, "colorformat", sizeof(f->description));
-> 
-> Ditto.
-> 
-> Hmm, v4l2-compliance should warn about this. Is this changed in a later patch perhaps?
-> 
-Oh, we didn't see such warning.
-Will make the change.
->> +		break;
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +
->> +	memset(f->reserved, 0, sizeof(f->reserved));
-> 
-> No need to do this, it's already zeroed by v4l_enum_fmt.
-> 
-Sure, Noted.
->> +
->> +	return 0;
->> +}
->> +
->>  int iris_vdec_try_fmt(struct iris_inst *inst, struct v4l2_format *f)
->>  {
->>  	struct v4l2_pix_format_mplane *pixmp = &f->fmt.pix_mp;
->> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.h b/drivers/media/platform/qcom/iris/iris_vdec.h
->> index 4f2557d15ca2..eb8a1121ae92 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vdec.h
->> +++ b/drivers/media/platform/qcom/iris/iris_vdec.h
->> @@ -10,6 +10,7 @@ struct iris_inst;
->>  
->>  void iris_vdec_inst_init(struct iris_inst *inst);
->>  void iris_vdec_inst_deinit(struct iris_inst *inst);
->> +int iris_vdec_enum_fmt(struct iris_inst *inst, struct v4l2_fmtdesc *f);
->>  int iris_vdec_try_fmt(struct iris_inst *inst, struct v4l2_format *f);
->>  int iris_vdec_s_fmt(struct iris_inst *inst, struct v4l2_format *f);
->>  
->> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media/platform/qcom/iris/iris_vidc.c
->> index 481fa0a7b7f3..1d6c5e8fafb4 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
->> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
->> @@ -214,6 +214,16 @@ int iris_close(struct file *filp)
->>  	return 0;
->>  }
->>  
->> +static int iris_enum_fmt(struct file *filp, void *fh, struct v4l2_fmtdesc *f)
->> +{
->> +	struct iris_inst *inst = iris_get_inst(filp, NULL);
->> +
->> +	if (f->index)
->> +		return -EINVAL;
->> +
->> +	return iris_vdec_enum_fmt(inst, f);
->> +}
->> +
->>  static int iris_try_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format *f)
->>  {
->>  	struct iris_inst *inst = iris_get_inst(filp, NULL);
->> @@ -256,6 +266,32 @@ static int iris_g_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format
->>  	return ret;
->>  }
->>  
->> +static int iris_enum_framesizes(struct file *filp, void *fh,
->> +				struct v4l2_frmsizeenum *fsize)
->> +{
->> +	struct iris_inst *inst = iris_get_inst(filp, NULL);
->> +	struct platform_inst_caps *caps;
->> +
->> +	if (fsize->index)
->> +		return -EINVAL;
->> +
->> +	if (fsize->pixel_format != V4L2_PIX_FMT_H264 &&
->> +	    fsize->pixel_format != V4L2_PIX_FMT_NV12)
->> +		return -EINVAL;
->> +
->> +	caps = inst->core->iris_platform_data->inst_caps;
->> +
->> +	fsize->type = V4L2_FRMSIZE_TYPE_STEPWISE;
->> +	fsize->stepwise.min_width = caps->min_frame_width;
->> +	fsize->stepwise.max_width = caps->max_frame_width;
->> +	fsize->stepwise.step_width = STEP_WIDTH;
->> +	fsize->stepwise.min_height = caps->min_frame_height;
->> +	fsize->stepwise.max_height = caps->max_frame_height;
->> +	fsize->stepwise.step_height = STEP_HEIGHT;
->> +
->> +	return 0;
->> +}
->> +
->>  static int iris_g_selection(struct file *filp, void *fh, struct v4l2_selection *s)
->>  {
->>  	struct iris_inst *inst = iris_get_inst(filp, NULL);
->> @@ -298,12 +334,15 @@ static const struct vb2_ops iris_vb2_ops = {
->>  };
->>  
->>  static const struct v4l2_ioctl_ops iris_v4l2_ioctl_ops = {
->> +	.vidioc_enum_fmt_vid_cap        = iris_enum_fmt,
->> +	.vidioc_enum_fmt_vid_out        = iris_enum_fmt,
->>  	.vidioc_try_fmt_vid_cap_mplane  = iris_try_fmt_vid_mplane,
->>  	.vidioc_try_fmt_vid_out_mplane  = iris_try_fmt_vid_mplane,
->>  	.vidioc_s_fmt_vid_cap_mplane    = iris_s_fmt_vid_mplane,
->>  	.vidioc_s_fmt_vid_out_mplane    = iris_s_fmt_vid_mplane,
->>  	.vidioc_g_fmt_vid_cap_mplane    = iris_g_fmt_vid_mplane,
->>  	.vidioc_g_fmt_vid_out_mplane    = iris_g_fmt_vid_mplane,
->> +	.vidioc_enum_framesizes         = iris_enum_framesizes,
->>  	.vidioc_reqbufs                 = v4l2_m2m_ioctl_reqbufs,
->>  	.vidioc_g_selection             = iris_g_selection,
->>  };
->>
-> 
+To: Lars-Peter Clausen <lars@metafoo.de>
+To: Jaroslav Kysela <perex@perex.cz>
+To: Takashi Iwai <tiwai@suse.com>
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: Vishal Sagar <vishal.sagar@amd.com>
+Cc: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+Cc: Péter Ujfalusi <peter.ujfalusi@gmail.com>
+Cc: Markus Elfring <Markus.Elfring@web.de>
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+Changes in v4:
+- Update copyright year
+- Use guard(mutex) in the zynqmp_dp_audio.c
+- Add Rb and Ab tags
+- Link to v3: https://lore.kernel.org/r/20240910-xilinx-dp-audio-v3-0-75560793f4d0@ideasonboard.com
+
+Changes in v3:
+- Expand the description in "dt-bindings: display/xlnx/zynqmp-dpsub: Add
+  audio DMAs" to be more clear about the DT binding change.
+- Rebased on top of current upstream
+- Link to v2: https://lore.kernel.org/r/20240319-xilinx-dp-audio-v2-0-92d6d3a7ca7e@ideasonboard.com
+
+Changes in v2:
+- Fix a missing double-quote in the DT binding
+- Link to v1: https://lore.kernel.org/r/20240312-xilinx-dp-audio-v1-0-696c79facbb9@ideasonboard.com
+
+---
+Tomi Valkeinen (3):
+      dt-bindings: display/xlnx/zynqmp-dpsub: Add audio DMAs
+      arm64: dts: zynqmp: Add DMA for DP audio
+      drm: xlnx: zynqmp_dpsub: Add DP audio support
+
+ .../bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml   |  10 +-
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi             |   7 +-
+ drivers/gpu/drm/xlnx/Kconfig                       |   9 +
+ drivers/gpu/drm/xlnx/Makefile                      |   1 +
+ drivers/gpu/drm/xlnx/zynqmp_disp.c                 |  48 ---
+ drivers/gpu/drm/xlnx/zynqmp_disp_regs.h            |   7 +-
+ drivers/gpu/drm/xlnx/zynqmp_dp.c                   |  54 ++-
+ drivers/gpu/drm/xlnx/zynqmp_dp.h                   |   7 +
+ drivers/gpu/drm/xlnx/zynqmp_dp_audio.c             | 447 +++++++++++++++++++++
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c                |  39 +-
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.h                |  15 +-
+ 11 files changed, 539 insertions(+), 105 deletions(-)
+---
+base-commit: 42f7652d3eb527d03665b09edac47f85fb600924
+change-id: 20240312-xilinx-dp-audio-468ad12f9f64
+
+Best regards,
+-- 
+Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
 
