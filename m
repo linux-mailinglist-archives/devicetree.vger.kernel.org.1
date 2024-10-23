@@ -1,98 +1,154 @@
-Return-Path: <devicetree+bounces-114517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C30AC9ABDAE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:13:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46BC49ABE20
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:49:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7D571C22D61
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 05:13:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6ED051C21F78
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 05:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C27913D276;
-	Wed, 23 Oct 2024 05:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D643E144304;
+	Wed, 23 Oct 2024 05:49:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="BOk4yNCl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="I8sXDIXe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C993F7482;
-	Wed, 23 Oct 2024 05:13:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B058825;
+	Wed, 23 Oct 2024 05:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729660419; cv=none; b=IrJxXWlVT9qVJ4k9csMpbYr1tIA9t8wFNFAg2H7Egj/69nBYb02ocWDCD1jMB7BqlI6KMEHCSWznJcbIq39Q6tUJD2D4lQUXtjYNpTFHmZlIJgubiDtUr0Bl51WFr29jTUl9xjpYILLtYom2H5nVADlTP3BiOo+HVSCjbW03taI=
+	t=1729662552; cv=none; b=VZ3PHaYN9riueDCx9MAe0DC56LHl9yu1k/Te3bdbxn7UJtf8/eXHluVquo3SO6z+agjgxgT+phVcukT3hKdOmUAE71lbaC1wUmdP/wUplLRqe3xHcYbG7pdRybb59Bc+mafKS0n552J0rYfdNt2WE6icRB+6BoOnwjGiH/SDqXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729660419; c=relaxed/simple;
-	bh=m+rPki2tptmN7S7B5MXCF9gSzNRRmnntfBRrd6Hgdfo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J2bOcT1xBXUSnahWQhyuXAyrv4x1i+BTw2w6WSnOzd1X8N5mUJrn9lbw9AmXVL5yBkM3ZRKN6g1Bga4F8g3r0YH2GZy06bhqKFT75+2jaoKcj2rcpo3IbOKTtRH7Ul1EtIuHBHoM/5akE3Fm79D8pUZexyheffDqlo36N0KTbHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=BOk4yNCl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 121A5C4CEC6;
-	Wed, 23 Oct 2024 05:13:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1729660419;
-	bh=m+rPki2tptmN7S7B5MXCF9gSzNRRmnntfBRrd6Hgdfo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BOk4yNClyJ3XLpfFa2iOs16JDykqYJZqrLVqoN0faTrZg+xuH1SJecsMl3B9dPYP9
-	 rwH0sayzLp3sO+7sUh79SUoKXkNglLyncBoOQ6lBSyx2KqjH372V8Ltszk9nkcaHb1
-	 4P0cZmC2/0yC32YCudCniiI+DAS340Yymh/slD3E=
-Date: Wed, 23 Oct 2024 07:13:37 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
-	alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
-	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
-	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 00/16] Device / Driver PCI / Platform Rust abstractions
-Message-ID: <2024102324-giver-scavenger-a295@gregkh>
-References: <20241022213221.2383-1-dakr@kernel.org>
+	s=arc-20240116; t=1729662552; c=relaxed/simple;
+	bh=IrOkKdwgwnuzrdwFl2ugTT/CJ3Mgqiqx6mFH09fEqhA=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=l9vddRAeFs0mx/kzkutwom/0r3fOF7NeY1mWoGbeAmtsEwR1Jvdm2PEIAQMewboA1yz3pM+TTvNq3GzDmguo30gNMvmIC0IoWRw1xYqT14nmSI8jWfMXFTzXEe79bSCebZewrv1+oP+8v/ySCQVJCjX+S+DKpPkSDvFkEZ2NFGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=I8sXDIXe; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49MLa1qX029637;
+	Wed, 23 Oct 2024 05:49:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9+1DNfDvn2TGnEibmwLTDyqIQvMTt/LxPVTNCzem/0I=; b=I8sXDIXejreScEDE
+	nQ+qyyrHzUfUS4mtlz2TFDjYAOUmQrDJpbPrA+dKCXxpZ7pdEy65s6MHkQ+ERaT0
+	UU1YSjAJYBBCu6dJXMGmFFo+KeRP75MR8vZxv5YYLGvGASfKOLe4Y0XyWJWiSvzk
+	iv/s0lgfn2Eb9tTc3U/+emqwFv62bAVSiKJLYF5xuhcxJBnhXPIyjiZFU3il1k55
+	fbx8y8h25x+ardLexTlgbtxvIZBZh6CZOtwFKJn41lCcLP733/gK80Qm7N07RtJ2
+	uyPhGIJue7YT9RNIcw8lgwmBf6rvmDXxHY/+YzjHrfsy8D3Elt3eOIUaybyO9zwd
+	5BV9gQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3w10e1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Oct 2024 05:49:01 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49N5n1Tn029613
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Oct 2024 05:49:01 GMT
+Received: from [10.239.132.41] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 22 Oct
+ 2024 22:48:57 -0700
+Message-ID: <bc1ab306-903a-4111-a428-8f28d8324207@quicinc.com>
+Date: Wed, 23 Oct 2024 13:48:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241022213221.2383-1-dakr@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: qcs615: add the APPS SMMU node
+From: Qingqing Zhou <quic_qqzhou@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <robimarko@gmail.com>, <will@kernel.org>,
+        <robin.murphy@arm.com>, <joro@8bytes.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>
+References: <20241015081603.30643-1-quic_qqzhou@quicinc.com>
+ <20241015081603.30643-5-quic_qqzhou@quicinc.com>
+ <ac5081ce-e2e4-4201-bd7c-eb4ec2cf7e2d@oss.qualcomm.com>
+ <ed4209a8-fb37-4354-a717-60dc1b5c29ab@quicinc.com>
+In-Reply-To: <ed4209a8-fb37-4354-a717-60dc1b5c29ab@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8L0WjqWcJitDB143WEK8KmruSMXCMzX8
+X-Proofpoint-GUID: 8L0WjqWcJitDB143WEK8KmruSMXCMzX8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
+ priorityscore=1501 impostorscore=0 bulkscore=0 lowpriorityscore=0
+ clxscore=1015 suspectscore=0 spamscore=0 malwarescore=0 mlxscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410230033
 
-On Tue, Oct 22, 2024 at 11:31:37PM +0200, Danilo Krummrich wrote:
-> This patch series implements the necessary Rust abstractions to implement
-> device drivers in Rust.
-> 
-> This includes some basic generalizations for driver registration, handling of ID
-> tables, MMIO operations and device resource handling.
-> 
-> Those generalizations are used to implement device driver support for two
-> busses, the PCI and platfrom bus (with OF IDs) in order to provide some evidence
-> that the generalizations work as intended.
-> 
-> The patch series also includes two patches adding two driver samples, one PCI
-> driver and one platform driver.
-> 
-> The PCI bits are motivated by the Nova driver project [1], but are used by at
-> least one more OOT driver (rnvme [2]).
-> 
-> The platform bits, besides adding some more evidence to the base abstractions,
-> are required by a few more OOT drivers aiming at going upstream, i.e. rvkms [3],
-> cpufreq-dt [4], asahi [5] and the i2c work from Fabien [6].
-> 
-> The patches of this series can also be [7], [8] and [9].
 
-Nice!
 
-Thanks for redoing this, at first glance it's much better.  It will be a
-few days before I can dive into this, It's conference season and the
-travel is rough, so be patient but I will get to this...
+在 10/18/2024 2:20 PM, Qingqing Zhou 写道:
+> 
+> 
+> 在 10/18/2024 4:05 AM, Konrad Dybcio 写道:
+>> On 15.10.2024 10:16 AM, Qingqing Zhou wrote:
+>>> Add the APPS SMMU node for QCS615 platform. Add the dma-ranges
+>>> to limit DMA address range to 36bit width to align with system
+>>> architecture.
+>>>
+>>> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 74 ++++++++++++++++++++++++++++
+>>>  1 file changed, 74 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>> index 027c5125f36b..fcba83fca7cf 100644
+>>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>> @@ -379,6 +379,7 @@
+>>>  	soc: soc@0 {
+>>>  		compatible = "simple-bus";
+>>>  		ranges = <0 0 0 0 0x10 0>;
+>>> +		dma-ranges = <0 0 0 0 0x10 0>;
+>>>  		#address-cells = <2>;
+>>>  		#size-cells = <2>;
+>>>  
+>>> @@ -524,6 +525,79 @@
+>>>  			reg = <0x0 0x0c3f0000 0x0 0x400>;
+>>>  		};
+>>>  
+>>> +		apps_smmu: iommu@15000000 {
+>>> +			compatible = "qcom,qcs615-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+>>> +			reg = <0x0 0x15000000 0x0 0x80000>;
+>>> +			#iommu-cells = <2>;
+>>> +			#global-interrupts = <1>;
+>>> +
+>>> +			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
+>>> +					<GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+>>> +					<GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
+>>
+>> The list seems perfectly sorted, which is suspicious.. if we set
+>> i = n - #global-interrupts, interrupt[i] signifies an error in the i-th
+>> context bank. If the order is wrong, we'll get bogus reports
+> Thanks for the review, the list refers to Qualcomm Interrupts design spec, checking this platform again, the list is right, first line is global interrupt and the others are context interrupts with right order.
+Hi Konrad,
+Hope above comments explain your question. If no more questions from you, I will post the next version. Thanks.
+>>
+>> Also, this is not aligned properly ('<' under '<')
+> Got it, will update and align the spaces in next version.
+>>
+>> Konrad
+> 
+> 
 
-thanks,
-
-greg k-h
 
