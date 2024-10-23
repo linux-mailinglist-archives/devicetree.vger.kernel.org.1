@@ -1,197 +1,126 @@
-Return-Path: <devicetree+bounces-114657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 570249AC338
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:13:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 998619AC352
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:18:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4AD4B23FD7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:13:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 444E81F24790
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66CD119B5AC;
-	Wed, 23 Oct 2024 09:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BEDF15B971;
+	Wed, 23 Oct 2024 09:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KHj08Mqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01on2097.outbound.protection.outlook.com [40.107.222.97])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A9E15B547;
-	Wed, 23 Oct 2024 09:13:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.222.97
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729674817; cv=fail; b=mZNeY9nv88BXYp8yotcYiFdNQihWWMv+0hQya1DMgPaHFekXBQOzgCBxJMxaoz6UGxPYn8oMhLFqG7a1U0dFGoX8df3cUUrLGcBr+1zRlBL15aYpQeL4qRT9lTMbcLS1145grkvUK2Ig1NpInIKH4vfG8Rf7VMy3YT3/KJR//oQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729674817; c=relaxed/simple;
-	bh=2RjhCla6GxRf0cfuDHoXBU7H3h/FcRlNzUO/gRvrwdc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=azfaOZtVocDldRAhcf9Z4egcypIgfnrjU0J6vE9QAC3cr04C0RqaVPioVOPzR5pNA1Ql+vMJgcIKCRlPoi4T41yuwg0929ef/D5M3wU496Q1aALTqWE0FdWXmYV6yN3NpB8fIMt1+MK9xTIGgp4IhWmmpq6fhcQC0ROJS2au1Fk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.222.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mjlM4TnKIT9IHlmsSUiNbkALRREGd486OnCTHyyTGL5ZZGqbK0+doWewIIxYS/BKQtUGBFic64qBoxWgKM+FeFuSu2Q5eyYEMpyKO922MDFh6kNywy83s0fKfCnNzXo3Z3sB09uDuMhuy7oP1FtIiKrUo0DnvQv0RUAeDgeIjPf2ttcrI+NenJ2ozrvNnA8svAdM3U4hPo+Yoi00/p5Z39uaVERH5cyIft71GUuvJRcRv2+9XS80eET31MHhtUyXx4fj3HcB9J7Dm355z4/yfUd4rTZmqSDgkCC7XpGq2iwonBlzcLzA+Px1A7qQB5JsoKEdm6ae6W25es+IbR8YfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SizgIdNgryjdOlgkT7YRB2O9/7ON0hG/owpTs5VbQAE=;
- b=o8hpKpvmjiC2YmvThAaHVRazaRKphSvHQX5CDTQt4I/FZWfvM4cec2JvbPXx6cTlVhxeVy5D9NpwuEbjzrqUWueQhtZhVy0e5aTQZQk9vKzf2BVgpo5S/R6a3/GFOUceKXDnXyFxaZO/WLj9Ex5TN9mL7v0zrjbS6dx5md6vRAiAjgONl5DbjDwO9fhgdrUF2buVgMtqDmg9dzs8HIMkMJKfBbohtlTCqsnK8F0OGkJd0PrsuOjoSFDRaWk+TmzgYIDXcI/awN9belLYfkIT0qQEbWcKKRWQREirHFcLAk3OYb1kHmtjf5qZERgWztbSmvdjwUMg4nYTccTzIxhsvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
- header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siliconsignals.io;
-Received: from PN3P287MB1171.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1a1::5)
- by PN2PPFDCD372071.INDP287.PROD.OUTLOOK.COM (2603:1096:c04:1::153) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Wed, 23 Oct
- 2024 09:13:32 +0000
-Received: from PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
- ([fe80::12a8:c951:3e4b:5a8a]) by PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
- ([fe80::12a8:c951:3e4b:5a8a%4]) with mapi id 15.20.8069.027; Wed, 23 Oct 2024
- 09:13:32 +0000
-From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-To: shawnguo@kernel.org
-Cc: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631124503C;
+	Wed, 23 Oct 2024 09:18:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729675083; cv=none; b=QVQlcenHQM7GgpIH8pRP5/+Mjqy5R8DVlnGTsZXQ2MkLYt61tK2N5Dr5iJciZJCBtZZ5qliyovVHX86utuNOAavvEnsr9GEkKyaziOLGNaAvgBjsE3M6qUUSCmOEiNcKFo+jFyTWftmkIFov/qynbxbsdysObiA/ugQQ1lmS91U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729675083; c=relaxed/simple;
+	bh=suYFZPHJ9gFTwEFo384qz94z1cETlcVAYVuUXBtfHoY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oeYrygWux2R3aRH9DRp6BWmN3d7shRmoTufMmG9Jxmv1mEOICaflBMpmO6jVkUH3j3ZLSdxQrkv5rv55dIIijz2aS+eGybw8HKntTLLKDwIY8IZeuwZgxpsO8oyp2shm8yO9NljuTTt6RnLUHUWHkKv5ja1upWjIJ0FOZDPYUCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KHj08Mqt; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a9a6acac4c3so790549266b.0;
+        Wed, 23 Oct 2024 02:18:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729675081; x=1730279881; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HKyFdp80jeQ+jlEhTVnoKBC7uY0HBHNTi/SulDolW28=;
+        b=KHj08MqtCeLhx/26yiZGpJUrLkJ6tYwLCoLINJer8Po8Wn5ilsQJv65pcq/MBvwxBm
+         AvHCAPKLczfwyhQm/+YN2W3/TNVfR+7uI5DL4zrhAnUcPqw2kZePES2tZLEcf/WelCpe
+         oeT/BnyITDEzkuPiAfTIlKXweL22fBByDAiIlRNZBPZc32oIw/rPo+8ZrQM8Aq9Y8dWh
+         b/p7li7EfOzOKiT03yTtD/7wXUVK4popQEEAr2D0W2seeontAqBw2vtEFBAFmwdXPxSS
+         nXkG2H1J2ZM0rFZ1RMPoGPLr4dLTgAos00mhMf1C80FFsCe5WGJw3J6nPZ2aBwAt0pLA
+         tHHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729675081; x=1730279881;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HKyFdp80jeQ+jlEhTVnoKBC7uY0HBHNTi/SulDolW28=;
+        b=N6lfyJ7ftKexyA140XuqL7DWRtLGELxp6/tsFMFYS98MVC2ZodlTtXEpbwARNWlRmr
+         edAY73sVZi6wzib/TKZo+v+YONHgX4XqkDautpFJqjyRJqQ54hO014V6v58AGamI24Zc
+         /IsJxP50RXlpqjk5ZGhvMa+TQU84HRQldMdrPvXg+3BBWYM3zqCLnez2Rh8w0IpP2mmb
+         8uc3DF7I9p5ietZnqIFIP+hYtmd/7UhvP2rkgHJShEI3704znaB0BuCVaNhk/g4xb+bz
+         5rsyvooWh36BSe5xjR0sYtHX/WfEWFFEs/H8WbljBwH1fgnpimdiUBh9Dh+a+8Qil+Is
+         sNug==
+X-Forwarded-Encrypted: i=1; AJvYcCVFmLvY4wobL/EopHW/kqNLp+Q/8hadUJ2D8BEX7lthN1kXgA2kC3YeUZB6uJc5r+0Qn6eLnZpQKK64@vger.kernel.org, AJvYcCWn0JvA9I6UfxBih8QtgrLqUOhs8sVWLN88clASPyJ9eAldTHnfDTWeTqVrFQLLKqZQAWhtRn6F8zw6XLxC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw79E/jo4bugCKgYu3xVvfyk1sK1ZWaCFndux/GJCzsGDUbi2og
+	FN63JkHz/HxiC6vevFtyAIjKbfGYQoQ/sUUCSpkvizs75i0Tr3Gm
+X-Google-Smtp-Source: AGHT+IHQDKM1v6j1KpR3PNxXd6NutIZHwOAX8Zrbdb0rubKzMnxJUNay7KnSa3JA8FZk9Ie4OpNsNg==
+X-Received: by 2002:a17:907:980a:b0:a99:ed0c:1d6 with SMTP id a640c23a62f3a-a9abf920abamr159168666b.49.1729675080578;
+        Wed, 23 Oct 2024 02:18:00 -0700 (PDT)
+Received: from ivaylo-T580.. ([77.85.230.22])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a913704easm449177466b.107.2024.10.23.02.17.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 02:18:00 -0700 (PDT)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>,
-	Tim Harvey <tharvey@gateworks.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>
+Cc: linux-samsung-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 2/2] dt-bindings: arm: fsl: Add Boundary Device Nitrogen8MP Universal SMARC Carrier Board
-Date: Wed, 23 Oct 2024 14:41:15 +0530
-Message-ID: <20241023091231.10050-3-bhavin.sharma@siliconsignals.io>
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] arm64: dts: exynos8895: Add cmu, mct, serial_0/1 and spi_0/1
+Date: Wed, 23 Oct 2024 12:17:29 +0300
+Message-ID: <20241023091734.538682-1-ivo.ivanov.ivanov1@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241023091231.10050-1-bhavin.sharma@siliconsignals.io>
-References: <20241023091231.10050-1-bhavin.sharma@siliconsignals.io>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PN2PEPF000001B4.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c04::6) To PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:1a1::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PN3P287MB1171:EE_|PN2PPFDCD372071:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9c164a1-963a-4f51-7916-08dcf342f76a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|1800799024|376014|366016|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?x4IN91rlNk1gA617Aa4ooP+FJbFrDVJ9k3wZec5A8e9IYQi/RTMDUDUlx0KU?=
- =?us-ascii?Q?1WU31S4DUA+E73RFRZEx2Ylb+tQL1r+SpXWnwA5MS+M0RADof0WZEUHepLQo?=
- =?us-ascii?Q?SQRN5KgtKXG3dgpR6jkLr8Sjiu0+aJ3KTbT3waaikhpVLYAJ6S5dy5lqqgxH?=
- =?us-ascii?Q?1i2RXT4vCg+vT3raDcBtzdTVaT2fFeA9LfNyrg03oxPHq3neN7PajP0eSjT6?=
- =?us-ascii?Q?TYENEM0h4lZ1QCwpODfvgsxgCZeFaBQR0DN+LE5W01bTP8ZB/+DqHFELyAWY?=
- =?us-ascii?Q?9kCfzRllAu7eRl0Gt3O7qbGyt1LENLCKVbiGbL3hgvYoq0AStDDJWuC75pBq?=
- =?us-ascii?Q?VZDDeIlIjXykijMAElmxcUW3sOWfJDtNnA3Y1f0adN634L/w/VHDbOnEhYtJ?=
- =?us-ascii?Q?a9U1YrTA6Kk3aYRwZEQBrU2sH25zz+tMPfmJkGuL6Y9RTMMjuBUorvjco89Z?=
- =?us-ascii?Q?099FK4HM5jrMSdZoGCxLwqFW1Fg+6JJBJXI7G3FoQvY3D/twxg869TwGwz7R?=
- =?us-ascii?Q?vdospMbh208V6w7F66xrxhddufHs3dwRPvVRQMPb20dPUMsptsHc81Iajy9m?=
- =?us-ascii?Q?cEnHDwkayMmMIKOCf+NAzj8ymkeufAx9OIymgo7xJ0LzpFQNA/lOM6j9xfTJ?=
- =?us-ascii?Q?pSbcUUu+Q4LR5iJal8cu8CeF99+o7w3UTRsSyeU2SB+WYpe4ei8GabyMIxNs?=
- =?us-ascii?Q?i1fprpRa3XEXCREAVJ5678keQ89TQoIBGx0kV7N1v2mfWw1hCmKMwyAItIOF?=
- =?us-ascii?Q?QpB6Z1bappeizuJnGjGagXedmh8SO9Q5cyX5BO0DMoqDiqI7NQYJGZIfYdXE?=
- =?us-ascii?Q?UKnkAL1ZkUGPDzuZ0skwkYjWkVVdKi0Y85FSj/FsfYdxUmQZ87smo9cToPpd?=
- =?us-ascii?Q?eFpa0rh6kYiSmjd1B11wYQ0Bl/8Cb115wEGQtfcngoubZwol57PmUVs/K+uc?=
- =?us-ascii?Q?Eo3FGMtLxbiUP2D/VuomTluljOBsN3ySXwHy/Tw1hlsbClvd37GcanrDcqYA?=
- =?us-ascii?Q?yVb5QdMrsyp7YmFBM+2KbQaP9GYgZbO79CMYNGgliWFiAP2QfcGnbVoTZbyl?=
- =?us-ascii?Q?EEmwxR5KXncErFmgdfl6RfXV8jgoBjOjGAE+4iHxNNA1CuomF+TIEKoeNNvA?=
- =?us-ascii?Q?K36e6S63zQOzgqfqlTwnvfCv9ACNW07kZVfQT1ZdjXUhWAI4UOoJ+Djiurfd?=
- =?us-ascii?Q?o8Y2vtIOAWhiN71VtMLl/u1Rh8iC5cwMMD8v9uoMGFsjIpjEhLSzKme0Y+RD?=
- =?us-ascii?Q?84+bloYfgJtfu3/Gmnl72u0XYaY3cmNtYm0LzxkCf7hdo8Nur7FFfQjOwTgx?=
- =?us-ascii?Q?Ojltj8f0BoFD+q/uyAd6Qfws6Cu5JPmHcj8Wtt0buWngG7nNDYKq/NBLDb97?=
- =?us-ascii?Q?bMrxvW8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB1171.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(52116014)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?W2lrmGSV/mtX9qQN9NweBqj8mROkTCn+/+EynbECTCk57xghXls79bWrEU8p?=
- =?us-ascii?Q?HL3VrbwwBNYJ9FUm5iQBq+GopPt1HzGAvg4O0UmWPzSWhFqjgU8E9LKbx+0E?=
- =?us-ascii?Q?Lj53dguu0lT0FiCD+Lxqod4PFENncsD39MD0YMCBk4IlgoYt81VB8UmMKzgV?=
- =?us-ascii?Q?Mnh3J99SpgQtEiVVhaoQ2eAjRPyVPoecY5chk7/nN9ioq4JWO3rOMuesM8S2?=
- =?us-ascii?Q?36ke4WrB1Ftog+NPLwuSphNfZ5/yAXj0dz3XHJchjwKRnz2Pa3Bz4I0Q1Q/i?=
- =?us-ascii?Q?t728oq0Ig10LLy38+mw3t5Ospy8S4rdQEPNy53BaxbKHXPJE/O7LPUWM0oAy?=
- =?us-ascii?Q?OgxRqMmqElJMZNK1UwsDJUlIYjaHIREQE1W5rRJ69BBHcq5JaCg9n2O9M0rv?=
- =?us-ascii?Q?eTDrmXJS9yJZnOgJ87cyCz9mAf/roqNvDLBXpBbIztt+bwNz1IFNCMhqg+RA?=
- =?us-ascii?Q?5GveCSzM79rdS1nM1XgzbYl/ss5hcxwurZ4u77jjzZD1dhopLOZDlourWrVZ?=
- =?us-ascii?Q?jcLGDNlgLirdflrUMuNxngLNhSWtvVjT4buCKVmrufxBzL3TrQbnl1QdLA+a?=
- =?us-ascii?Q?dUgzXtUXPFnNDJ81RSteIRpH4BmasSxT15Vn94ALp7m2aGn/dzOVaDyn+3UB?=
- =?us-ascii?Q?CjbgOshBLP7s8oqX4/AJHgp7zGd7CaDT5pUVfKog8bKZUbJVPupKH2PPT9/c?=
- =?us-ascii?Q?UPjB/uywbRY8OaYvb83Kn4d8xvVW5pXwrlKgyXHsp9rc5Aa8kts1GqowpAOh?=
- =?us-ascii?Q?9ItudidjZTbwPWBDwuK7g6NKTTcfIzhxCIjaZw7TQbTMvGbJi5megGmlbf1y?=
- =?us-ascii?Q?nDkNpm3HuWzFoEhpxJC1JPJlZ8/lDBjE3k+QuWntcP37s4Cs4hWrZSAKCfc/?=
- =?us-ascii?Q?gS95E7PJIoifOp4NwSOhQXYq/cHlBG+C7nrYed9TyECw5624CE+MesCc9W88?=
- =?us-ascii?Q?zyi7y8H/JoSBuejagMFZrBSROgtDo5XKw75xFFMhxZS0iYhhyGedQGeytVHR?=
- =?us-ascii?Q?Eu9yrVyoIpuiwaXUIxmn8ZQjOJmH3HkZ+9xTvx6DwKOZZ7T6orH9WYexlMvQ?=
- =?us-ascii?Q?wUjZM6Z4mqb4hF06vOlc0qj+cNWUoYZlsruXRPlF8KlRkSntq0KiTTEWBk4h?=
- =?us-ascii?Q?lPuXfZi96dSaQpVp+AuH+v2vYcK7PYyVXWdg5O/OwUocS8vmEgWDTnRa0LGr?=
- =?us-ascii?Q?2VfbFcL583QNJy3DKgVrn1tTQx8EmDj+AgVRZSEhfwl6eOK7YzHQXHi2qbEr?=
- =?us-ascii?Q?183pKkC8ljJJ/uXPjTFQ9DGrlbMmjNUoqP2r55fWuTPQqyJGxvUrDjc/CcM9?=
- =?us-ascii?Q?bhJ8B6PuYLWNq6xsuY4aYi0MxlgFew62uRwvNl0EzU1uHc1C6xlZ3FcQyvHG?=
- =?us-ascii?Q?2zoxsGRP2Xp/OI/ARI95/i8RDL3eMRoXjxWOLdEKhiyyY93u75Z2KJIPIodH?=
- =?us-ascii?Q?kxgXNBen/Iuz6IjlkmzJsBz2EBLpj6CNRa8l8o6p6mQFzHj7usDyspFjwBgB?=
- =?us-ascii?Q?E2eOWImaaQnFMyhGDwZmBPkvPyreMNOMNf+UGgGSFhbrrQ4G72P8mCZ8vxgF?=
- =?us-ascii?Q?/sx7qCRbM7KuFdT+044HSdJCVUhG2+AJRIAmxnpLaDbW2d11ZJqPEOMplWCC?=
- =?us-ascii?Q?wF2r/++1xFuY5NZiKLr28gs=3D?=
-X-OriginatorOrg: siliconsignals.io
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9c164a1-963a-4f51-7916-08dcf342f76a
-X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB1171.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 09:13:32.5146
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gIIU1S/XL3zK5CwwWcOCh9faL3kcjbqMhddXuxM6LlnhdbSbmso+N2Hvf2wAZBAxMApodzbtizZO4GRDq60e4X0inJ6dY36Mb3Zs5L6Ggcc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2PPFDCD372071
+Content-Transfer-Encoding: 8bit
 
-Adds support for the Nitrogen8MP SMARC System on Module and
-the Nitrogen8MP Universal SMARC Carrier Board.
+Hey folks,
 
-Signed-off-by: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+This patchset adds device tree nodes for multiple clock management unit
+blocks, MCT, SPI and UART for Exynos8895.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index b39a7e031177..58979c030519 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1097,6 +1097,12 @@ properties:
-           - const: avnet,sm2s-imx8mp              # SM2S-IMX8PLUS SoM
-           - const: fsl,imx8mp
- 
-+      - description: Boundary Device Nitrogen8MP Universal SMARC Carrier Board
-+        items:
-+          - const: boundary,imx8mp-nitrogen-smarc-universal-board
-+          - const: boundary,imx8mp-nitrogen-smarc-som
-+          - const: fsl,imx8mp
-+
-       - description: i.MX8MP DHCOM based Boards
-         items:
-           - enum:
+Exynos8895 uses USIv1 for most of its serial buses, except a few that
+have been implemented in this series. Support for USIv1 and HSI2C will
+be added in the future.
+
+This patchset is dependent on [1] and [2], which add driver support for
+CMU and UART.
+
+[1] https://lore.kernel.org/all/20241023090136.537395-1-ivo.ivanov.ivanov1@gmail.com/
+[2] https://lore.kernel.org/all/20241023090902.538040-1-ivo.ivanov.ivanov1@gmail.com/
+
+Changes in v2:
+ - Add r-b from Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ - Change clock-names according to the v2 changes for clk bindings
+
+Ivaylo Ivanov (5):
+  dt-bindings: timer: exynos4210-mct: Add samsung,exynos8895-mct
+    compatible
+  arm64: dts: exynos8895: Add clock management unit nodes
+  arm64: dts: exynos8895: Add Multi Core Timer (MCT) node
+  arm64: dts: exynos8895: Add serial_0/1 nodes
+  arm64: dts: exynos8895: Add spi_0/1 nodes
+
+ .../timer/samsung,exynos4210-mct.yaml         |   2 +
+ arch/arm64/boot/dts/exynos/exynos8895.dtsi    | 161 ++++++++++++++++++
+ 2 files changed, 163 insertions(+)
+
 -- 
 2.43.0
 
