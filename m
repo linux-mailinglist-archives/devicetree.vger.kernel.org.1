@@ -1,57 +1,62 @@
-Return-Path: <devicetree+bounces-114787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 095CB9ACF76
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:53:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 159DF9ACF8B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:57:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAD70282905
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:53:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4430C1C23A63
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 15:57:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3BA61C7610;
-	Wed, 23 Oct 2024 15:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FAA01C174E;
+	Wed, 23 Oct 2024 15:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="csyVFXl+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BvbTBSe+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E98814658D;
-	Wed, 23 Oct 2024 15:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE90136E21;
+	Wed, 23 Oct 2024 15:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729698730; cv=none; b=foCF6IiNznVQmwAFjENDf27SDpQpGTgBcUawT05AhZp1d1SxV1L0Ndo4XwjxtH9ph87UW6nrR0v4kW+1srmXCusmSGuiXzEQ6sLXtkgI9vDX421gSYUgaQy2FJyV75D4+/TYArfcDuYuPqo61QvmHcGspMf4HlLd1lq6KHJmAvU=
+	t=1729699059; cv=none; b=paPq2i674shJN7LM2M2Kr5a/v8/Dh/5vkfHfEOd+rrN2lFqjljdJhnBT61f/tD2MmBDfu5/N/PX4QGaIjbQbU8rIDckP2Q75dgz6j8Et238wyO/X0cp48AtyJGb5bPB+CbJiDdRrUpnLF+VkzrzVUKDIpCPhyzMu8/6vC4mZyxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729698730; c=relaxed/simple;
-	bh=AV5H6hlJaONoA8nAGCTvlAiXR3Rc2bBojnFNOvSUClY=;
+	s=arc-20240116; t=1729699059; c=relaxed/simple;
+	bh=B78ryvKF67MiZdQxaBwJo78TUToM4c88TbX4KJ39PiQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BHlS1H60lJ2C0fDT1GrY0VHUhkZKHbtRwIxkEprIXCRi4EhigoGtYInIx3eKVWeDmwRg077xIEHXmiref9JbNhIHwspVLJvlD1bsLCRfkzRjS+M74GRThvG2ThAKLS9GD+BQxt3NM8L0d2TcsqCJY7J35MYMP7JCnNvVDEITRb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=csyVFXl+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E83EC4CEE5;
-	Wed, 23 Oct 2024 15:52:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KDKpYluB5Ec/4YQRMmovH8GcyeFn9h6wEX9XAeSGdV/Qq7pjSYIvNUvgX2LLl6iuWHc/1vIh1kEEU59yl5NncdaBGV0656WNVKAru6l8hhOf+lfq9YRVDremKQTKuVS7Nn+P5UgqwPU6gmJC/gkAeozQGuCNZtOXwk0iBawhKC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BvbTBSe+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0E8C4CEC6;
+	Wed, 23 Oct 2024 15:57:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729698730;
-	bh=AV5H6hlJaONoA8nAGCTvlAiXR3Rc2bBojnFNOvSUClY=;
+	s=k20201202; t=1729699058;
+	bh=B78ryvKF67MiZdQxaBwJo78TUToM4c88TbX4KJ39PiQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=csyVFXl+a9ST4pNz1CLX5BAdgkHbbkNAKXLPqWHSKWThEiQetm0UloKxGR15tXnoE
-	 EHw6zTRxoAuprAeOUZHsjjn6+RlmjDHJyLeYT+AHXnbDJcoRS9vMAvW6Kpwqq2Cvih
-	 IStNGPnHVAmmKi87DgWmo2uvCjIM51xNf1+hGhBVvPsHlKbGgkwAMVQItDU6fuwpj4
-	 TwPafKb8i6mnK/xeRCUPGfsYTu3Hzd3TkmDJuDami0+L6N64nIQnkDUKqzIOlHGiGx
-	 cZAIbgwYmuezJ0G1cZDENWIl0dJoLpbkfnqPo6JnaKexHQU3eDiSfARth9BPZa7qwT
-	 a1LIKFNZWIOKQ==
-Date: Wed, 23 Oct 2024 10:52:07 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-Cc: sboyd@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
-	linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	quic_varada@quicinc.com, quic_srichara@quicinc.com
-Subject: Re: [PATCH V7 5/5] firmware: qcom_scm: ipq5332: add support to pass
- metadata size
-Message-ID: <pdyy4zflklvi5syhwt3oklidq3mwizthds2td4qzglhhdulel5@337xsbehgdp3>
-References: <20240820055618.267554-1-quic_gokulsri@quicinc.com>
- <20240820055618.267554-6-quic_gokulsri@quicinc.com>
+	b=BvbTBSe+cBz60GH+b2U9iOa1nt5ktU1nEDrvXTRpBsc+xWsStGex2BnPY7cw8ZXwG
+	 dyYV2CNAoJaBFJ8L0HQduJCb1bFYU7N1moDd3Hw0iVUjcQR0JMC8HUJTwgPP5jTk21
+	 kFvhS6yr/0maF3qENtDA6vVr7DqZPO8sP2Y3nGQcVvR/MJv7UfCJlFI34GJDgCQrgk
+	 z5/bbEWd+R4uioZn7+VZV5YgFy+8eVHsv2RNMyBpMMGYkneWx/v4tUUEmgl/xsnzAg
+	 OTcxMs/oa9bZYcMr/UzxW25nXnQL8wj0xBLadtcV5Xg2eCO0w73mzJRRI4JgvNc38T
+	 HCE0mf53pUfhA==
+Date: Wed, 23 Oct 2024 10:57:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 13/16] samples: rust: add Rust PCI sample driver
+Message-ID: <20241023155737.GB1064929-robh@kernel.org>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-14-dakr@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,94 +65,145 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240820055618.267554-6-quic_gokulsri@quicinc.com>
+In-Reply-To: <20241022213221.2383-14-dakr@kernel.org>
 
-On Tue, Aug 20, 2024 at 11:26:18AM GMT, Gokul Sriram Palanisamy wrote:
-> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+On Tue, Oct 22, 2024 at 11:31:50PM +0200, Danilo Krummrich wrote:
+> This commit adds a sample Rust PCI driver for QEMU's "pci-testdev"
+> device. To enable this device QEMU has to be called with
+> `-device pci-testdev`.
+
+Note that the DT unittests also use this device. So this means we have 2 
+drivers that bind to the device. Probably it's okay, but does make 
+them somewhat mutually-exclusive.
+ 
+> The same driver shows how to use the PCI device / driver abstractions,
+> as well as how to request and map PCI BARs, including a short sequence of
+> MMIO operations.
 > 
-> IPQ5332 security software running under trustzone
-> requires metadata size. With V2 cmd, pass metadata
-> size as well.
-
-Documentation says commit messages should be wrapped at 75 characters,
-not 50...
-
-Please improve the second sentence here, "v2 cmd" is coming out of
-nowhere. Say that there is a new command with a size parameter added.
-
-Is this operation available on all targets, or is it IPQ-specific?
-
-
-I don't see the relationship between this patch and the cover letter
-subject "remove unnecessary q6 clocks". Should this have been send on
-its own?
-
-> 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 > ---
-> Changes in v7:
-> 	- No changes.
-> 	- Rebased on top of linux-next.
+>  MAINTAINERS                     |   1 +
+>  samples/rust/Kconfig            |  11 ++++
+>  samples/rust/Makefile           |   1 +
+>  samples/rust/rust_driver_pci.rs | 109 ++++++++++++++++++++++++++++++++
+>  4 files changed, 122 insertions(+)
+>  create mode 100644 samples/rust/rust_driver_pci.rs
 > 
-> Changes in v6:
-> 	- Rebased on linux-next
-> 
-> Changes in v5:
-> 	- Rebased on linux-next
-> 
-> Changes in v4:
-> 	- Rebased on linux-next
-> 
->  drivers/firmware/qcom/qcom_scm.c | 8 ++++++++
->  drivers/firmware/qcom/qcom_scm.h | 1 +
->  2 files changed, 9 insertions(+)
-> 
-> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-> index e60bef68401c..aa559fd01932 100644
-> --- a/drivers/firmware/qcom/qcom_scm.c
-> +++ b/drivers/firmware/qcom/qcom_scm.c
-> @@ -607,6 +607,14 @@ int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size,
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2d00d3845b4a..d9c512a3e72b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17940,6 +17940,7 @@ F:	include/linux/of_pci.h
+>  F:	include/linux/pci*
+>  F:	include/uapi/linux/pci*
+>  F:	rust/kernel/pci.rs
+> +F:	samples/rust/rust_driver_pci.rs
 >  
->  	desc.args[1] = mdata_phys;
+>  PCIE DRIVER FOR AMAZON ANNAPURNA LABS
+>  M:	Jonathan Chocron <jonnyc@amazon.com>
+> diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
+> index b0f74a81c8f9..6d468193cdd8 100644
+> --- a/samples/rust/Kconfig
+> +++ b/samples/rust/Kconfig
+> @@ -30,6 +30,17 @@ config SAMPLE_RUST_PRINT
 >  
-> +	if (__qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_PIL,
-> +					 QCOM_SCM_PAS_INIT_IMAGE_V2)) {
-> +		desc.cmd = QCOM_SCM_PAS_INIT_IMAGE_V2;
-> +		desc.arginfo =
-> +			QCOM_SCM_ARGS(3, QCOM_SCM_VAL, QCOM_SCM_RW, QCOM_SCM_VAL);
-> +		desc.args[2] = size;
-> +	}
+>  	  If unsure, say N.
+>  
+> +config SAMPLE_RUST_DRIVER_PCI
+> +	tristate "PCI Driver"
+> +	depends on PCI
+> +	help
+> +	  This option builds the Rust PCI driver sample.
 > +
-
-Please avoid default initialization and then conditionally overwrite
-parts of the values. Make a clear:
-
-if (v2 availble) {
-	prepare v2 request;
-} else {
-	prepare v1 request;
-}
-
-Regards,
-Bjorn
-
->  	ret = qcom_scm_call(__scm->dev, &desc, &res);
->  	qcom_scm_bw_disable();
+> +	  To compile this as a module, choose M here:
+> +	  the module will be called driver_pci.
+> +
+> +	  If unsure, say N.
+> +
+>  config SAMPLE_RUST_HOSTPROGS
+>  	bool "Host programs"
+>  	help
+> diff --git a/samples/rust/Makefile b/samples/rust/Makefile
+> index 03086dabbea4..b66767f4a62a 100644
+> --- a/samples/rust/Makefile
+> +++ b/samples/rust/Makefile
+> @@ -2,5 +2,6 @@
 >  
-> diff --git a/drivers/firmware/qcom/qcom_scm.h b/drivers/firmware/qcom/qcom_scm.h
-> index 685b8f59e7a6..008b59cbad36 100644
-> --- a/drivers/firmware/qcom/qcom_scm.h
-> +++ b/drivers/firmware/qcom/qcom_scm.h
-> @@ -96,6 +96,7 @@ struct qcom_tzmem_pool *qcom_scm_get_tzmem_pool(void);
+>  obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
+>  obj-$(CONFIG_SAMPLE_RUST_PRINT)			+= rust_print.o
+> +obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
 >  
->  #define QCOM_SCM_SVC_PIL		0x02
->  #define QCOM_SCM_PIL_PAS_INIT_IMAGE	0x01
-> +#define QCOM_SCM_PAS_INIT_IMAGE_V2	0x1a
->  #define QCOM_SCM_PIL_PAS_MEM_SETUP	0x02
->  #define QCOM_SCM_PIL_PAS_AUTH_AND_RESET	0x05
->  #define QCOM_SCM_PIL_PAS_SHUTDOWN	0x06
-> -- 
-> 2.34.1
-> 
+>  subdir-$(CONFIG_SAMPLE_RUST_HOSTPROGS)		+= hostprogs
+> diff --git a/samples/rust/rust_driver_pci.rs b/samples/rust/rust_driver_pci.rs
+> new file mode 100644
+> index 000000000000..d24dc1fde9e8
+> --- /dev/null
+> +++ b/samples/rust/rust_driver_pci.rs
+> @@ -0,0 +1,109 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Rust PCI driver sample (based on QEMU's `pci-testdev`).
+> +//!
+> +//! To make this driver probe, QEMU must be run with `-device pci-testdev`.
+> +
+> +use kernel::{bindings, c_str, devres::Devres, pci, prelude::*};
+> +
+> +struct Regs;
+> +
+> +impl Regs {
+> +    const TEST: usize = 0x0;
+> +    const OFFSET: usize = 0x4;
+> +    const DATA: usize = 0x8;
+> +    const COUNT: usize = 0xC;
+> +    const END: usize = 0x10;
+> +}
+> +
+> +type Bar0 = pci::Bar<{ Regs::END }>;
+> +
+> +#[derive(Debug)]
+> +struct TestIndex(u8);
+> +
+> +impl TestIndex {
+> +    const NO_EVENTFD: Self = Self(0);
+> +}
+> +
+> +struct SampleDriver {
+> +    pdev: pci::Device,
+> +    bar: Devres<Bar0>,
+> +}
+> +
+> +kernel::pci_device_table!(
+> +    PCI_TABLE,
+> +    MODULE_PCI_TABLE,
+> +    <SampleDriver as pci::Driver>::IdInfo,
+> +    [(
+> +        pci::DeviceId::new(bindings::PCI_VENDOR_ID_REDHAT, 0x5),
+> +        TestIndex::NO_EVENTFD
+> +    )]
+> +);
+> +
+> +impl SampleDriver {
+> +    fn testdev(index: &TestIndex, bar: &Bar0) -> Result<u32> {
+> +        // Select the test.
+> +        bar.writeb(index.0, Regs::TEST);
+> +
+> +        let offset = u32::from_le(bar.readl(Regs::OFFSET)) as usize;
+
+The C version of readl takes care of from_le for you. Why not here?
+
+Also, can't we do better with rust and make this a generic:
+
+let offset = bar.read::<u32>(Regs::OFFSET)) as usize;
+
+
+> +        let data = bar.readb(Regs::DATA);
+> +
+> +        // Write `data` to `offset` to increase `count` by one.
+> +        //
+> +        // Note that we need `try_writeb`, since `offset` can't be checked at compile-time.
+> +        bar.try_writeb(data, offset)?;
+> +
+> +        Ok(u32::from_le(bar.readl(Regs::COUNT)))
+> +    }
+> +}
 
