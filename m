@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-114639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC46C9AC24B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:53:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B9E9AC259
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:56:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78C791F21605
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:53:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97C47B2337B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C35361FF2;
-	Wed, 23 Oct 2024 08:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256861607B7;
+	Wed, 23 Oct 2024 08:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qealQ/A4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/qmuNty"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C278157E78;
-	Wed, 23 Oct 2024 08:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69542AD2C;
+	Wed, 23 Oct 2024 08:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729673602; cv=none; b=kU5Qs80cQR4cLr2/PWy9vBEw/vdxYj4s19UYSBMIX31uG01dWZ5ozq72+LnK+8IALWVp1u/S1BlAT7d2Uck+ZB8cvAGeNQnynYm0oXj7HDJr2ys9JX9HdXrH3n16jyKMCA9ONQC1RmY7KS/mcdLHhkpnT1l6aym9u7HyeMZ8Wdc=
+	t=1729673765; cv=none; b=iQ5buDhHd1jxtCCT8OvgcDUazyNTWY3KmpIyLb1Mnx9nOD8WoWly9JM0ucyls1GnpTx1sZ14IuPppTdy+g12pr8Id1hfpeI0FxHGc4/u5ENJoSCT8LUv+c2RbvK5m6Bpu6UXX4cx19dDAl2CHK272wiIz1nTClFzfpLuwVS8ZEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729673602; c=relaxed/simple;
-	bh=K7vq94wfd6+rOC5hpKLO2DE8q9QNC5fud9DSHoVTpTA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=DSyh2XukZP7xkGIA5hZNnQeLWFzBo0zwSMsNnctgO2s0nAs95uGKw0kRYHFLhzkJl4f3N0IbQzYfTZ8aKLaUbgT3iatqQelJ063KYfPJwQvJ24RxQYqXiR+zbUv6eVY1xyEgMplbU8gRD415AraV1f7FHSHDqUkunolFwc8qiiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qealQ/A4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26A1CC4CEC6;
-	Wed, 23 Oct 2024 08:53:18 +0000 (UTC)
+	s=arc-20240116; t=1729673765; c=relaxed/simple;
+	bh=A2Ad8XKRlmcqgJz2XKG/2BRiRGesInQ+3Q287IAxvGA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pH0FHuThiFt3mPe/oAMZa90bm7fWiHK7TJ5D/nru19yKhj9hHZ+e2YDN0I3J6BmRibjblciVHlueHzxwH4WyhTvFu//Ep0slwOar8EZDvnjnbm9BAEE3uILXPfYnMRBfUprUVhNT2HU7ZPy+Of4mbD8KlYmxRibtHUs13g8Olvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/qmuNty; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0135DC4CEC6;
+	Wed, 23 Oct 2024 08:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729673602;
-	bh=K7vq94wfd6+rOC5hpKLO2DE8q9QNC5fud9DSHoVTpTA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=qealQ/A4cy917UudAmi7hmo9uY5PZ3KJTWy5Dz84XBtYf9x3jJVvNNUUDraYbapxl
-	 ZK3lr/Yxu0JR+Hqq9YfAS/3c/J4sMwFBMl2PUsZs4x0kYTW86R31ZDcjXjpDeUpPbd
-	 L6XWQZ80o6pZQM5n0f3rgF1iBsFz1YxwBwvD8a+CbGGhONjJ7cY7vw7zfzJmzKcdPa
-	 xBnKhjMI04vEvrNfRAtozBqqBk+HPhBFzfHRzZUc4y9sIshAo76uEu0iM/95wR6Bab
-	 2dF/lh3wTHq4bnVTwE4JupbqTemdrW3UYeh4VpcM4U/SPrGdwS/l66KD0OWNuqOn/v
-	 uThGtPs4W7uUA==
-Message-ID: <7be1dcea-3fbf-419d-8458-53ee621b7a1b@kernel.org>
-Date: Wed, 23 Oct 2024 10:53:17 +0200
+	s=k20201202; t=1729673764;
+	bh=A2Ad8XKRlmcqgJz2XKG/2BRiRGesInQ+3Q287IAxvGA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Q/qmuNtyT7LrN6rhQ6PU2ojQHubnc+0bICeEB7M47vopejfLqckMtLsOYuYZ6YzfJ
+	 2vsMyFbSD4GZT400Nj+aNxCvHN6hcR9cZ/vjJXDWxtbh5lhGrppZPitM/0dr1d5AXG
+	 6qLn6+hp6XdQg+a+LAMhfbbAFBX2qNFaexXdWNM/FTZxcS3HNWFjpj6ultp5wKtUDC
+	 IqD8qcsnao8PC7s913E+0uldTw9lELPNyoCR4gafWw4Z2YGYQiI3V4IVT5C5AgWSnd
+	 Ipkkh31lo9jBa+FjoqDo1mVxoSmXfRIQtrVq55/7JX/1bx2WY9nyao62hAP0J6H42n
+	 eCohDE6rZz8sg==
+Message-ID: <f7064783-983a-44bd-a9db-fd20f4e50e33@kernel.org>
+Date: Wed, 23 Oct 2024 10:55:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
-To: mjchen <mjchen0829@gmail.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, mjchen@nuvoton.com, peng.fan@nxp.com,
- sudeep.holla@arm.com, arnd@arndb.de, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, dmitry.torokhov@gmail.com
-References: <20241022063158.5910-1-mjchen0829@gmail.com>
- <20241022063158.5910-2-mjchen0829@gmail.com>
+Subject: Re: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for NETC
+ blocks control
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+ Frank Li <frank.li@nxp.com>,
+ "christophe.leroy@csgroup.eu" <christophe.leroy@csgroup.eu>,
+ "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+ "bhelgaas@google.com" <bhelgaas@google.com>,
+ "horms@kernel.org" <horms@kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>
+References: <20241022055223.382277-1-wei.fang@nxp.com>
+ <20241022055223.382277-4-wei.fang@nxp.com>
+ <xx4l4bs4iqmtgafs63ly2labvqzul2a7wkpyvxkbde257hfgs2@xgfs57rcdsk6>
+ <PAXPR04MB851034FDAC4E63F1866356B4884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,19 +121,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241022063158.5910-2-mjchen0829@gmail.com>
+In-Reply-To: <PAXPR04MB851034FDAC4E63F1866356B4884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/10/2024 08:31, mjchen wrote:
-> From: mjchen <mjchen@nuvoton.com>
+On 23/10/2024 10:18, Wei Fang wrote:
+>>> +maintainers:
+>>> +  - Wei Fang <wei.fang@nxp.com>
+>>> +  - Clark Wang <xiaoning.wang@nxp.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - nxp,imx95-netc-blk-ctrl
+>>> +
+>>> +  reg:
+>>> +    minItems: 2
+>>> +    maxItems: 3
+>>
+>> You have one device, why this is flexible? Device either has exactly 2
+>> or exactly 3 IO spaces, not both depending on the context.
+>>
 > 
-> Add YAML bindings for MA35D1 SoC keypad.
-> 
-> Signed-off-by: mjchen <mjchen@nuvoton.com>
+> There are three register blocks, IERB and PRB are inside NETC IP, but NETCMIX
+> is outside NETC. There are dependencies between these three blocks, so it is
+> better to configure them in one driver. But for other platforms like S32, it does
+> not have NETCMIX, so NETCMIX is optional.
 
-Don't use your login name as name, but use your known identity or full
-legal name.
+But how s32 is related here? That's a different device.
 
 Best regards,
 Krzysztof
