@@ -1,184 +1,203 @@
-Return-Path: <devicetree+bounces-114896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA499AD521
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 21:45:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A149AD559
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:11:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF3BF1F20F73
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 19:45:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43DD01C219D3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:11:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E1A1D5AB6;
-	Wed, 23 Oct 2024 19:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6F51E2304;
+	Wed, 23 Oct 2024 20:11:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="I1wYRPVS"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="h4dY6PKt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2062.outbound.protection.outlook.com [40.107.247.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DA41D0E2B
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 19:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729712639; cv=none; b=Jkn668P/gw14UrviKGUIS7bEEAmA0J9kqrK0eyV4cETto0JvtsHdDnS4GWwnf1q6iyYUcKYlvy8ZTpxXuZ9Pl8ZRiypXArC6oyHFcigxyvcWl27BfOkLZsySavyAc37sIZWCPIvcyaOc12jteYUsNxn+DxNOxBCo0QhCzMgma8w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729712639; c=relaxed/simple;
-	bh=VbNSljtrG7HC2J2sDbh+vHJsgpO0vDVNSxCca0nZ8cQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Iu+U9tW4EVvjtd4iA7IdQIdQNJaJIe2Psc1QPkVwDb8VE43JRkINnvXdaOIX2XdTgLrxcywafDdrwdhnp6P+A3XjoTVEPN8dJztwVI8+FuyyLqNQXhVjxs51TT5zNodckbidwsp9dVEETbfrk7LnvXceAx/mbhgKTLKyG9jO378=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=I1wYRPVS; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=JWKBCrheMnDwDxxa6Xpd5V/N96xN2BH0moUZB4LkXaI=; b=I1wYRPVSEd0WFKjzgZCgMdJV2p
-	+uEZJDMsRrZsLt1KIRx4JLJZqZB7DwmX7UAlxasxvfWM1Fv1P7/I+g2cpG5zZd6F6YmRFGGgMtlHk
-	KpE81dHu5w5tT/zQUZC3cmqQxJB3G0PmHhNzIQS1yKsGM0g4z3wi90gjamjJ51blxm2dBDpgcUW6d
-	cXx7sQjuexahECDWhpyv+Bh8njQV297aQ4NRfaYEbaZaN2SGBXFJOtymzeUnnM5da0JEZlej9N5so
-	ZOeEvyQO7UIJDa9BkIYx3kbW1qUWqo/fWP7x0JEOzLYFsFsDf2PQ6BldDMKMtaJnxc1sDQkK3hhwP
-	j4jM0xuw==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1t3hGs-0002eH-38; Wed, 23 Oct 2024 21:43:54 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org, Chris Morgan <macroalpha82@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject:
- Re: [PATCH 2/2] arm64: dts: rockchip: Enable HDMI0 and GPU on Indiedroid Nova
-Date: Wed, 23 Oct 2024 21:43:54 +0200
-Message-ID: <46754280.fMDQidcC6G@diego>
-In-Reply-To: <20241023164104.66282-3-macroalpha82@gmail.com>
-References:
- <20241023164104.66282-1-macroalpha82@gmail.com>
- <20241023164104.66282-3-macroalpha82@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72ABA1DED61;
+	Wed, 23 Oct 2024 20:11:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.62
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729714310; cv=fail; b=gqblY4gSKnYtU0VjMBaVP88MbxbX/jubF5f8KVYrIYYurJPvdAbIaf3RL3gHk/bckyvXDUKQjt4BDHEpHTcIuEpHL9w2hsHxybOxxldW6SihvKk1aOpreefB86yM0BB4Y9azApEenzuK1jZkBk0+jDIzELv8LXbKd+PWjUP4jSs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729714310; c=relaxed/simple;
+	bh=D1jQCG1nQUVbZG1mgq0gm+RV7wpi94oq2P4Duqghn1o=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ZxAz2mNROGKT0UZY+eGaOBIcB+Xef+VLiJnMxIgG/4pIyz3PDhWNiEOXl4izW61aOed2Ke2CGCh84gvNCQoyj09OuiYBXODVxj2D46Yu7OtS99/byvzF8vbpTkBEDFeYdgxiUQUBc/HQ0DVykKOP0K0GrTRHkpDDPX25oZk/vT0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=h4dY6PKt; arc=fail smtp.client-ip=40.107.247.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lFlJ4mPT3o7+PPTkoYGaGevcL30vpqxU1t/TMfKoSqt5gUQc4WEqR5gCPL1Z5nQuGxmESOzewR64QDwcOgIm71EdiT5DuEip/1Stc1FP/Vfyi86cw9DmYQN9Mgl2o9Tj9Ag9P/iRnLT81UU42K1wy9vz6HPfJEm11r9GEM7XJI2Tyj7PONIly5jW1B0xWg9Koi+0jFoQKrD9odugRDkg7x1w+M14AfcT0hC7x7aFrL3aFx9W0M8REqe53rxswDf2vzW8c+ap0CLcUSOd6h/NpL1OaUFBrMmw+B2c3HGynxQUtOzMeA+uL1TRq24UJf6GMidqcK5hUkzTjwjhoQJcEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XdGFQlJgqaz6ZKv4/Hh+un6TVzl+St19XAqPrHnDz4w=;
+ b=ZyCiLo8w7E5LJlu005O9yOlcVbi9fT0hwk3N7t+8Ie0X8Zl5VbQ7jlOG68KhBARIw1EFrZN5ZgiaChsG9qYJI6Rqi8thtzaSMR+ai0n/8WxAvGGP7aAoIpJlOxNW/dRlbGFopvvP+86Td11ZiHqmueEyuXTzHx+yToQT7lJa/Gyh/koQjCGgUZrveUL57+u8qlAIktrJ5mpAOTJ5D2d8Nz0/ju4sTSpbuWfe3grBk2jva1SO/7hyBT7hgUVUMt5Vr/gr3nJV6rYh3omBuCTQuuNLC+c4+LL5Jn+MFWy3mfYW2UC6bfNcM3WKuM7NOTrrbGqMKWQxHsT7NSSEvjxirA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XdGFQlJgqaz6ZKv4/Hh+un6TVzl+St19XAqPrHnDz4w=;
+ b=h4dY6PKt5JGyOEnCFFN73QulqFSJrcIl4o4wzh4RHOWqFgLlVfuaSo18HN+2uzYj36QC7g/RddbNqC0VSf+N6x31aQy0CgFJBuN+xnIJgIEsDxPSBmgGb9Zf0iwomoTFYMJaAk5SxvngdFmyr9JIWtoI5fUTYMXg3iwioNkBbvLUQ+hfgv/ojzdU3l9gCkPnSRi6xnxBAW/l0EpalWW7I0wCpYcoPUPHcy5CgYXmzycNbrGe2FHg9D3PxoPTlQJgUz3bFW8mGLghnROWCMj86BSWbo4GIPKQa8TR3+qjNXg75iZSjNHyJW9+6fS5V2A2QGq/0Mx1iy0iyI9LIla7wA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB8944.eurprd04.prod.outlook.com (2603:10a6:102:20f::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.28; Wed, 23 Oct
+ 2024 20:11:44 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8069.024; Wed, 23 Oct 2024
+ 20:11:44 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v1 1/1] arm64: dts: layerscape: remove en25s64 and only keep jedec,spi-nor compatible string
+Date: Wed, 23 Oct 2024 16:11:28 -0400
+Message-Id: <20241023201129.1382895-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0056.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8944:EE_
+X-MS-Office365-Filtering-Correlation-Id: a953ae0d-ca3e-4e07-60d4-08dcf39eea25
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?8sFkdZL70i0lN+92A3i++Y8CBHF7GS72IQfxchkjXC0FJTWiWoo5o1bkU1t/?=
+ =?us-ascii?Q?cdI8EmfZm7CG5go7/GiHSeW9ggcGT+JdHYGl9pL8AxDXPWquY+1Y6K6uGX0Z?=
+ =?us-ascii?Q?ZKGZjI0E9g/4bntLQdeYAkkc6u2CCKQM8lDcL5rrDeVb7C0wuoBr1q4DIuje?=
+ =?us-ascii?Q?2g4HOTps7sETrayPaBVCiP+fuZWIC0oxfb7wrFHZY/oBfniJ4p0GT2jZMTRa?=
+ =?us-ascii?Q?qWcGiSnhOnsOYJtgnfXuYHFu7Ow9GPAEgRkQ0j08m8kGyws3/TrOpNr0Ok1C?=
+ =?us-ascii?Q?4hJI+loJdBc1PCTfXMY81CZZEna0ticDrkwunJ/idSOlJ/1evM9EuXGRqT2F?=
+ =?us-ascii?Q?uFt/5lLsCXd1QQ+y25fkiNV4SIWAajOSh15U8yexFTseO6LgFp0CK3LWrMg7?=
+ =?us-ascii?Q?cEQhlV1AkLy4zYtewbiQqJbyTaQNZXfrZKhW3LPfMyKjI7MyTqKT/66u1zts?=
+ =?us-ascii?Q?f6MA6PyObqSnPzJqZHZj+cb62qleEGq1LwBBlVnfANDzlnKuXtiUW09Y1+gr?=
+ =?us-ascii?Q?TqxO1+vWHofNyd1GsyjmJLILAFr+biCJ3WOtTCgVCGh89XVIRhi9dSEcd3Kl?=
+ =?us-ascii?Q?GhZv+Czxb9mM1mEENfWaQClBus1qDwEFDyErQfvW+QuSE8toG6rQd5YtAYvH?=
+ =?us-ascii?Q?s5cF9wx2B3PhHQxFqikOtfcbDDLHEr4CDaO6ZaC7C4q3MHGTrmukM8bLqMtB?=
+ =?us-ascii?Q?pozU19s9l7anN1/36AhApjRXh69vl/vbTkuc1Pdspe8HIJMpxThi6fV4i8uV?=
+ =?us-ascii?Q?SVv/NGBD4NZr4Zj9S4dtn6pTYoFG6+sdrW9mFcOGg6e1S8DnkT8Fq6Xpm00x?=
+ =?us-ascii?Q?f5qqoP3GbPiwT9CGHT9XGPVnfQrSWY01BP5Ev4B+OQOHF+nZIWTnmiKqpQv+?=
+ =?us-ascii?Q?XlZ1X6aVK6zBZP5dTeaKVYGo+Yh3ErdGzTENRq97NJ7fsAgRrYWJeeZDlq/D?=
+ =?us-ascii?Q?RgOJvovEKctixUqr+VrqQ8XTI4/voDmLGV0IybnO+Cd/Jafp0R6sDsYJIALq?=
+ =?us-ascii?Q?RyBy99L1AilW8jl0loA3db0zWDcr3BtLN5o9WwOCWVs6LcS5sVAi08viZAIU?=
+ =?us-ascii?Q?A0AR8cWeCR5Z5xaIu+vqMOZ7hoOSj1lWrsTenmi1ju4mL2tJ7P2fe6QN1+bu?=
+ =?us-ascii?Q?6L317Iu2xVzuxOjQwZSfnpf+1l3B39khRZlMmbliGv6odPuFe6FYF849sf/N?=
+ =?us-ascii?Q?XZhgNd+X3bYj1TvyE7LgCfaRXwyUA0BHP84K3z/KafOCHINSjG5bYPFUNhXp?=
+ =?us-ascii?Q?XX8FQ/8mdYkM27G7LiYFnXriuzIdju5Cb1IHuxXTcDMIIwmQxeTKy/aLMLuV?=
+ =?us-ascii?Q?liKJ20540jZ3Tt9Ljhhkrweq+Zmpo3Hznl3IqNMPyFjAonfUa2wuocA9R/gX?=
+ =?us-ascii?Q?nKkrEws=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Zz0EG4dYh8RRE7HcgKQ5exJQIbWfQSq/QipxG5cBUtPPSf7n8xEddiyS2k1r?=
+ =?us-ascii?Q?Ucb+6TSG8K//3B7ohza74/NlTaCMR7CHesWvzCr6J2Vj6yn1FZPZM60UtHEy?=
+ =?us-ascii?Q?kKfEMWhnLGxcB05sGUylWCRBa/5t+sPv6E7NeS+2Y7q9Z7/36Hg5/ofUV27Y?=
+ =?us-ascii?Q?I/U7fjDaOm/uAP+LAzA2cRxOtDzKZVkQeoyfL6nugAF1Hutq94GU62etbtbv?=
+ =?us-ascii?Q?7xTDYNIB6HFNdz8+Kx0pzBqGupRa9fPCXD26c3B1fEowdUnJcTyKyE5AxE3/?=
+ =?us-ascii?Q?kp9GVncDvmU/zrZHpSE3UnjPp/LFkHMviV6aceeSqRNgff2XO/oVbLTqjv18?=
+ =?us-ascii?Q?JSdEbWMrvd07RJBpEsmPOlGwA/GxQviXCXA4M+IB8Q4ENW3t3dnwAhb3SDYP?=
+ =?us-ascii?Q?wUZJsNdJQAtND5MBO1Fj/90vlkbD2EsSNJSXjJXvMvDl/u2PAWQeV1fScxcK?=
+ =?us-ascii?Q?NeYXVxL5Ldj8mV70f7i3vRWXtK/PfvnaQtKV2cxv/TmerXJM8x1QvFfPyGlB?=
+ =?us-ascii?Q?W/M3TinvTTNJDErtRdfyxqTa8EtCytNp5WvRDtRXpFUjAAIYV2rKDVKBALqi?=
+ =?us-ascii?Q?s72jDilf/rL1Id59KSnqsu1YIeabt65FFNWDLVicCbuKjzMqIjb18YT53bUk?=
+ =?us-ascii?Q?gOT3MaEUNzc5K8rQfdG+Z0ENr6eBhQs7QfrIrTAERrH55A98NIi8QbqPK+ut?=
+ =?us-ascii?Q?zBlKBYndIeGWXeyCmSECdMR+OZ71k2yglxE8r3S6Dk7TKC5d7vdxIU5xzA30?=
+ =?us-ascii?Q?kk3efbVjwTBYSUlsWq3QLa54BRQpg26Um5q7GvvXeIU3V4zEtqmM1jIanR0t?=
+ =?us-ascii?Q?iYQsh/P6vE5OdXISJPWnr1xqH0YdqsyPEZ+TcwqzHjeYlnDvx+6Uk8JeE2Tw?=
+ =?us-ascii?Q?b0fz923JQbF0zGVh4epb6PNUOET2DcaovlnwyR70W+LAPQGqXjh0w5A3iqz8?=
+ =?us-ascii?Q?S/rv48Qfp5zKTFyRnLWBi4TtMr0ox3RReaVwPfdm2QjWPx5BnZZNja0v3npg?=
+ =?us-ascii?Q?535swPm/feslLU962K5LpixmwZmuIHoLA5rmrOTz+GSmC/HyLATLyC5q5QTb?=
+ =?us-ascii?Q?lr47692WVt6dm19VWmZEiZimaGmJ8GMDNiznWdpQUVODfVH6wosX9H0e2R+7?=
+ =?us-ascii?Q?+805+3CgibQ0lR+wBqGd4h05ODUP2NE6iA39QxJ6y2HzBC8vG1qjXlMn0TJi?=
+ =?us-ascii?Q?ZKsrvMyMxQTtEC5xGoGhjHdCq6TMoLYCReYUhrPEZqVuWyv4sknbbNynQ1Eh?=
+ =?us-ascii?Q?d/TozpaAAjZAYoKB5hhOwV7KChUdQFBB43jaNm3k4fZNpx0VOZuSqWFZGejt?=
+ =?us-ascii?Q?wiRPb6cjNjVS3IlKDo+L0dQDSzROZjOIIeo6I+cptmXVkaL4hP1X7EBWbywH?=
+ =?us-ascii?Q?fNVmdqL3BqT6Kzr54PNlmCX2rqiKunaKEAxyyi191fkcF5gBxJbe0A50WKxC?=
+ =?us-ascii?Q?CAiiTBRu8N3VZSGHalYofi8KugqNOzhx08SWHNPNa5nPN8etkAqCTKIUcXzz?=
+ =?us-ascii?Q?pnHAM7b3lbbfu38TinEcL0ckuf0cbpTL+E2EVAW4gTuQIjLY7/CP8koxse1n?=
+ =?us-ascii?Q?0RnHKyo2XiBidDvMl1+MPNqQxZvw2rxS2GL9TcQa?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a953ae0d-ca3e-4e07-60d4-08dcf39eea25
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 20:11:43.9912
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HQMiR1Uwp+IHbFcxggt4E7jV6wpc/4tCtMC8jyKbuGn96SjitIAUkhdzF6n3lU7N8sJUMxnIfap1uEthIN1vow==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8944
 
-Am Mittwoch, 23. Oktober 2024, 18:41:04 CEST schrieb Chris Morgan:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Enable the HDMI0 and GPU for the Indiedroid Nova.
+In jedec,spi-nor.yaml:
+  SPI NOR flashes compatible with the JEDEC SFDP standard or which may be
+  identified with the READ ID opcode (0x9F) do not deserve a specific
+  compatible. They should instead only be matched against the generic
+  "jedec,spi-nor" compatible.
 
-in general please notice the "and" in your commit message. This generally
-indicates a situation that wants to be more than one patch.
+en25s64 already in drivers/mtd/spi-nor/eon.c. So remove it safely and fix
+below warning:
+  arch/arm64/boot/dts/freescale/fsl-ls1012a-qds.dtb: flash@2: compatible: 'oneOf' conditional failed, one must be fixed:
+        ['en25s64', 'jedec,spi-nor'] is too long
 
-With the gpu + hdmi being close cousins and the gpu actually tiny,
-there is not a big reason to resend this series though.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1012a-qds.dts | 2 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-So I would've preferred 2 patches, but it'll do this time ;-)
-
-
-Heiko
-
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-> index a4b930f6987f..547b3ca881e0 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-> @@ -5,6 +5,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
->  #include <dt-bindings/pinctrl/rockchip.h>
-> +#include <dt-bindings/soc/rockchip,vop2.h>
->  #include <dt-bindings/usb/pd.h>
->  #include "rk3588s.dtsi"
->  
-> @@ -50,6 +51,17 @@ chosen {
->  		stdout-path = "serial2:1500000n8";
->  	};
->  
-> +	hdmi0-con {
-> +		compatible = "hdmi-connector";
-> +		type = "c";
-> +
-> +		port {
-> +			hdmi0_con_in: endpoint {
-> +				remote-endpoint = <&hdmi0_out_con>;
-> +			};
-> +		};
-> +	};
-> +
->  	sdio_pwrseq: sdio-pwrseq {
->  		compatible = "mmc-pwrseq-simple";
->  		clock-names = "ext_clock";
-> @@ -242,6 +254,35 @@ &gpio4 {
->  			  "", "", "", "";
->  };
->  
-> +&gpu {
-> +	mali-supply = <&vdd_gpu_s0>;
-> +	status = "okay";
-> +};
-> +
-> +&hdmi0 {
-> +	pinctrl-0 = <&hdmim0_rx_hpdin>, <&hdmim0_tx0_scl>,
-> +		    <&hdmim0_tx0_sda>, <&hdmim0_tx0_hpd>,
-> +		    <&hdmim0_tx0_cec>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&hdmi0_in {
-> +	hdmi0_in_vp0: endpoint {
-> +		remote-endpoint = <&vp0_out_hdmi0>;
-> +	};
-> +};
-> +
-> +&hdmi0_out {
-> +	hdmi0_out_con: endpoint {
-> +		remote-endpoint = <&hdmi0_con_in>;
-> +	};
-> +};
-> +
-> +&hdptxphy_hdmi0 {
-> +	status = "okay";
-> +};
-> +
->  &i2c0 {
->  	pinctrl-0 = <&i2c0m2_xfer>;
->  	pinctrl-names = "default";
-> @@ -919,3 +960,18 @@ usbdp_phy0_dp_altmode_mux: endpoint@1 {
->  		};
->  	};
->  };
-> +
-> +&vop {
-> +	status = "okay";
-> +};
-> +
-> +&vop_mmu {
-> +	status = "okay";
-> +};
-> +
-> +&vp0 {
-> +	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-> +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-> +		remote-endpoint = <&hdmi0_in_vp0>;
-> +	};
-> +};
-> 
-
-
-
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-qds.dts
+index bbdf989058ff7..ce59b94d8c228 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-qds.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-qds.dts
+@@ -87,7 +87,7 @@ flash@1 {
+ 	flash@2 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "en25s64", "jedec,spi-nor";
++		compatible = "jedec,spi-nor";
+ 		spi-cpol;
+ 		spi-cpha;
+ 		reg = <2>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
+index a1d9102ff32be..736722b58e77f 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
+@@ -69,7 +69,7 @@ flash@1 {
+ 	flash@2 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "en25s64", "jedec,spi-nor";
++		compatible = "jedec,spi-nor";
+ 		spi-cpol;
+ 		spi-cpha;
+ 		reg = <2>;
+-- 
+2.34.1
 
 
