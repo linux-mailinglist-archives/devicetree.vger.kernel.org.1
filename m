@@ -1,175 +1,165 @@
-Return-Path: <devicetree+bounces-114861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45AA9AD320
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 19:46:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2219AD345
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 19:49:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E457F1C21526
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:46:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F08531F2171B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 17:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50AC41B4F09;
-	Wed, 23 Oct 2024 17:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3791CDA3C;
+	Wed, 23 Oct 2024 17:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fm1rTyzR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PmaUHOyj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88481149E09;
-	Wed, 23 Oct 2024 17:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A2183CDA;
+	Wed, 23 Oct 2024 17:49:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729705547; cv=none; b=TofMef3WqMzaubtj2nm0SFQ2kJo5Ys7idECSdaYDlJltfNuMFfhrRMQRrboRVoM7HCoL4Y1kBnAbyQ5xRUwI9tmYiuQUXdoW6uWmIPRmtfUcIGPtrCER29z3iDxhyiNyQxDHI0g97q7hPEcubbsqUgm3zvP/L/FMysgiAi/NmbY=
+	t=1729705782; cv=none; b=hdbsXBPCmY86tE6RNcDhcpCESE+XBv4lP/UF/r/jH8PV09KSD8hvLJMM5qCvR8tosJ8L/1W1DMsMmyQ+ZF0k40QnkqQlpRstvrE0v4HHjgCuHLFTPrHdWWbrlCeIRoxk5ElfBBK1hziRPbEM4kKEtusXaObe4yl9mn4Z1u2+lBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729705547; c=relaxed/simple;
-	bh=v0Z3QmhsLFML5Hvb/hT/FmA4RUl007es1W1tDpa4qt8=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G43L3O8fanUykzUKiCeAiy/1Mk/4yDMI0wVZaX+tmGI6MH5hfWxpe1JJLNxNwqJoFyH82jPfQ7OWQxYqC7wgsK0h0jovW/F9B6RfFKaPGL10iovElMA3/faJJB2FlNTFOUS7J5JFmzGQ8a6ENv1Tlk/a4n6dK2/bdTMbmrb+VjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fm1rTyzR; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d70df0b1aso5665351f8f.3;
-        Wed, 23 Oct 2024 10:45:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729705544; x=1730310344; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q2VscTNdIlS5vsji2abiXF+8aeUy0jlwcvqlNVowB/g=;
-        b=Fm1rTyzRy2IXxTq3AvCaeWbnVhaHEypGtRSkg2J1jBrWXVfWzluVp3LUcmT81XrUTR
-         GImZps85nQpwRTiXkiwS+qlc/7x+VJpQUiwNrRODDl8omiTkQNARG3DzvcK09gtga+Yt
-         +LEzV2nmjp1E3cb82pJ9a6nB/yVSv94XMmOmE0ypJqqro5MYJS+dxCDsfZpt2myPFVGA
-         vyB5I6A9+FaXW3FkqtQFy73zKEAvCSCBGAbNZ1WKKIThVoRktpCITTldDZm6Br9Gi/Mr
-         uNNBD5hGiSgIalW1VgZjb76skJKbmYTvqdHCiKR+8rYv2i0a4TErG1C3mBz3nyELQmxB
-         DwiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729705544; x=1730310344;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q2VscTNdIlS5vsji2abiXF+8aeUy0jlwcvqlNVowB/g=;
-        b=LY2wmFAECApnYAIw4Es0ptx/AODisdepR6+Axv2Y1RLD/MpCY6IXsDG8+9PKvSzlM6
-         vz0EwN59wEyG8pJV/KbKHBva78kTjpakmxuBMzDLk52xJ/quLcKujuTTVYBI7sdCqyHr
-         1uDFdkSk/BAMcP5z8gEpXGaM+OkI5E8DWpkjKSxxzmRMyPAxjNRM6YhRsoqycf96yttv
-         ZAEYObHyns+TI0y6nk8ZrZOtHHMUXWoGWe9sXmYVB5hjV3SBjYQdQqAlmDLqY9QaV3UO
-         SYW/7rD3IP81r7v4sKNv6Dj+HQPyVJJVN9qhIUwTGQ6eKl5f+XgbtBBgQUywHM2+TnBp
-         HppQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUylFw3qZslKZ7AmUhonvk+BZArYGaGWffVVVqTSAGmVY5mEsbjPDAh2grCsOM30HNWPRJE1SRD@vger.kernel.org, AJvYcCVufVfx+/EPgwzLY4KVm1NQSPZIB6Efi+POiIqo2uRh1Qb+nFgMKPTH6u56OMHRUsr6EuRREd77rwzcMwu4@vger.kernel.org, AJvYcCXtHJk2RM+otnBFkwRtzZ1mcowatsKV6rT4c7wmm3tPx1sGu1NPZ+eq/l7eDW3QyTbvIrA8l8zFjoe5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxGXNP95xIWf2pd/MR5P1WZ0neFMc4TpAjskH8bDfyQOJ4wsfs
-	3Ejas4Nd+Ii3C93hsPRLPhYXMrLGADmCOfik4zipzB2ZQeKbvMPh
-X-Google-Smtp-Source: AGHT+IEY8xxWoI65TbiESsWmXVoSDRzzgUk/ryShEl9kzMOLIChMg5LvevZzioCPurdVUr/AA453Kg==
-X-Received: by 2002:a5d:4704:0:b0:37d:5496:290c with SMTP id ffacd0b85a97d-37efcf051afmr2378914f8f.7.1729705543774;
-        Wed, 23 Oct 2024 10:45:43 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37aecsm9431133f8f.8.2024.10.23.10.45.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 10:45:43 -0700 (PDT)
-Message-ID: <67193647.5d0a0220.1b234f.2b09@mx.google.com>
-X-Google-Original-Message-ID: <Zxk2Q35zMPUsC1RZ@Ansuel-XPS.>
-Date: Wed, 23 Oct 2024 19:45:39 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v2 1/3] dt-bindings: net: dsa: Add Airoha
- AN8855 Gigabit Switch documentation
-References: <20241023161958.12056-1-ansuelsmth@gmail.com>
- <20241023161958.12056-2-ansuelsmth@gmail.com>
- <5761bdc3-7224-4de6-b0f5-bedc066c09f6@lunn.ch>
- <67192f00.7b0a0220.343b2b.9836@mx.google.com>
- <77e99052-a14e-4495-9197-06d98257c590@lunn.ch>
+	s=arc-20240116; t=1729705782; c=relaxed/simple;
+	bh=Y9TCwZlSJtdxla0/yzCRKiEB7fpt1K0qsHjdub3FmmI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GM1hw9PZc0Fh7PSUtacEM0GSmt8fAbgrvqQxnYBPecal3BaroR36gD9I+kgcHIZjAhgfD5VtaNbd2932nk5fEIlssFSSbLBZU2AcZzF9q9Vjk2dlIgZ6FVZb/ZPitWIYxOIAUyBcAJR/caQJzTDYOG0M2BdI/axTEtM2wKB5gEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PmaUHOyj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F927C4CEC6;
+	Wed, 23 Oct 2024 17:49:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729705782;
+	bh=Y9TCwZlSJtdxla0/yzCRKiEB7fpt1K0qsHjdub3FmmI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PmaUHOyjsIF/s2la1gyF32OheLEFYO2AI4QhNAUdsnfJrj49zonUU4cw6ibqLFGP5
+	 BK2sMy2qBRhymGxX8A+qajT7n8bfs4XgPN+GP9qcq7pzt+dnPbn4r81WGWuliUXoSo
+	 sR47EOws80W1N1+icMf6x2b1H9Hj9f6nvc5ReYmk94otaSJDMLyg8sPsVRoUag3kyh
+	 hLRT0cQpCjGyeOYDAw1DQNJfqx24+0/Azn+Pv1fS0mCyhsxz1NiED1uVgiRKOU9T3A
+	 fVtbWSb3fqxIsHcvnIcsUGRKPEeGmGHI8TUsrMxSOftwDKuLnaAp428dQ4kz588HVF
+	 m46JExIV5UVxg==
+Message-ID: <fdb76466-3258-4c71-bca3-50fd3cc94a0e@kernel.org>
+Date: Wed, 23 Oct 2024 19:49:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <77e99052-a14e-4495-9197-06d98257c590@lunn.ch>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: clock: imx8m-anatop: support spread
+ spectrum clocking
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+References: <20240928083804.1073942-1-dario.binacchi@amarulasolutions.com>
+ <20240928083804.1073942-2-dario.binacchi@amarulasolutions.com>
+ <566859c1-a397-4465-987e-0682b07a703e@kernel.org>
+ <CABGWkvqqg-PGAZTCz=MMLRx5F93jaN_=z8zJt1sDd3PHXd80PQ@mail.gmail.com>
+ <6c3e6071-822f-4230-b76b-276330de07ef@kernel.org>
+ <CABGWkvrU507BHoP94Y7fEyFr=chuuy3o=oBHtuWRvwTw3GnxXw@mail.gmail.com>
+ <82db5037-bbd3-4005-bde9-02df1bf4c475@kernel.org>
+ <CABGWkvqXZ+YAvo-AtUy+Ftdu0xxXKuhOwcSTwO5Fv6D3yzttNg@mail.gmail.com>
+ <b847ccb1-1eb8-4119-8612-212804cb50d8@kernel.org>
+ <CABGWkvqkmo9O-O1taR651W4xo=yqar=p71e0LKqRte2CGZ2Z8w@mail.gmail.com>
+ <7bce31c0-8c74-4d65-812f-01951a0d75d1@kernel.org>
+ <CABGWkvqFi_y8OzKbi=K7ucW4RuY_zh6Z4a=uO2oqQRoVE8LaCQ@mail.gmail.com>
+ <CABGWkvrR-vVTpNSBD_etjn4SteO8cpUed+dTvYguHR67UUSsYA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CABGWkvrR-vVTpNSBD_etjn4SteO8cpUed+dTvYguHR67UUSsYA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 23, 2024 at 07:39:01PM +0200, Andrew Lunn wrote:
-> > Well the first case that comes to mind is multiple switch and conflict.
-> > I have no idea if there are hw strap to configure this so I assume if a
-> > SoC have 2 switch (maybe of the same type), this permits to configure
-> > them (with reset pin and deasserting them once the base address is
-> > correctly configured)
+On 23/10/2024 16:58, Dario Binacchi wrote:
+>>>>
+>>>> This is another commit [1] on enabling spread spectrum that I
+>>>> implemented some time ago for
+>>>> the am335x. The most evident difference is that in that case the node
+>>>> was a clock node and not
+>>>> a clock controller, as in the case of anatop. The parameters are also
+>>>> not exactly the same, but
+>>>> that depends on the platform.
+>>>>
+>>>> [1] 4a8bc2644ef0cbf8e ("dt-bindings: ti: dpll: add spread spectrum support")
+>>>
+>>>
+>>> OK, I still do not know what "0" was, but the items are fixed, so you
+>>> know exactly which clock you are configuring here.
+>>
+>> So, after delving deeper into the topic, is it now acceptable to use
+>> the property
+>> "fsl,ssc-clocks" instead of "clocks"?  As in the patch I applied locally?
 > 
-> Is this switch internal on an internal MDIO bus, or external?
-
-External so it can be mounted on any SoC given correct mdio/mdc.
-
-> 
-> Most PHYs and switches i've seen have strapping pins to set the base
-> address. It would be unusual if there was not strapping.
-
-Same feeling, but I didn't found anything in the documentation.
-(actually no mention of hw strap or pin)
-
-> 
-> For the Marvell switches, the strapping moves all the MDIO
-> registers. This is why we have a reg at the top level in mv88e6xxx:
-> 
->         ethernet-switch@0 {
->             compatible = "marvell,mv88e6085";
->             reg = <0>;
-> 
-> There is one family which use the values of 0 or 16, and each switch
-> uses 16 addresses. So you can put two on the bus.
+> A gentle ping.
+> Sorry, but I haven't yet received your response to the previous email,
+> and I'm not sure how to proceed.
 > 
 
-Yes this is what that property does. Everything is shifted.
+Yeah, the property is fine, but I don't think you need the clock index.
+The lists - like clocks and your spread property - have strictly defined
+items, so it is enough if schema lists items and says which spread
+points to which clock.
 
-> > > > +  mdio:
-> > > > +    $ref: /schemas/net/mdio.yaml#
-> > > > +    unevaluatedProperties: false
-> > > > +    description:
-> > > > +      Define the relative address of the internal PHY for each port.
-> > > > +
-> > > > +      Each reg for the PHY is relative to the switch base PHY address.
-> > > 
-> > > Which is not the usual meaning of reg.
-> > > 
-> > > > +            mdio {
-> > > > +                #address-cells = <1>;
-> > > > +                #size-cells = <0>;
-> > > > +
-> > > > +                internal_phy0: phy@0 {
-> > > > +                    reg = <0>;
-> > > 
-> > > So given that airoha,base_smi_address defaults to 1, this is actually
-> > > address 1 on the MDIO bus?
-> > >
-> > 
-> > Yes correct. One problem I had was that moving this outside the swich
-> > cause panic as it does conflict with the switch PHY address...
-> 
-> I would make these addresses absolute, not relative. The example above
-> from the marvell switch, the device using addresses 16-31 has its PHYs
-> within that range, and we uses the absolute reg values.
->
 
-They were relative with the base SMI implementation in mind (as we would
-then offset) If the path is to drop that option then yes, these address
-should be absolute.
+P.S. I think you might pinged me on IRC, but you know,
+https://nohello.net/en/
 
-Or do you think even with that option, these address should be absolute?
 
--- 
-	Ansuel
+Best regards,
+Krzysztof
+
 
