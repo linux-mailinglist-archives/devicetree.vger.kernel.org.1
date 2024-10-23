@@ -1,132 +1,157 @@
-Return-Path: <devicetree+bounces-114705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86DCA9AC88A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:07:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75E9E9AC88F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 13:08:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A85D51C2158D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:07:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C59ADB23476
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E9C1AB530;
-	Wed, 23 Oct 2024 11:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BFBD1A76C7;
+	Wed, 23 Oct 2024 11:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oD8nWIOr"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aC+24G6j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF3AA1A76B2;
-	Wed, 23 Oct 2024 11:05:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72A5F19E804;
+	Wed, 23 Oct 2024 11:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729681547; cv=none; b=OoYpwIDmcmE/cSH0eRD7pjlR7kXVA1pcJFIUNk+EeTbPW1NyBWv3MtclMbtyFk0wWhX9k1FBxDVqw8pV6IYdJ/Vcv3Y54N/p9Fx35fgswUUJjUrJTFHNCk/gdOu1hqVpqzm3C2pZvnTYpCDIwABbz6IE0MaI7fKSev0RAWOKyN0=
+	t=1729681632; cv=none; b=UWgCUCx0s7agl9ty2W3xu2Lh754zX0Zy7RlivMpAMz5/3KAMyZBFnmDPQvlXvLXl5whdu9UJrBZsTtLFMfNTMwlPqlqgAl8QPR/ni70Q3i3v3FEpYb8RfVHvokuUrK4FkjqV6yE5aIYPe1GRJnYrqb5VbSElko2Pn4826iIpHHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729681547; c=relaxed/simple;
-	bh=RoJupA/pJTuOcTKNTkoFEuEcqD6COhEJm8+MmObXwFA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rGn6cMusB7ZtKLAPL+GsRjWaXAwSPx6vw2YuuZ3tZzolZ8GebAOORZNLi92uOKKOYO5c7/BjTqkDeB6KId9b6GWHsDDTckzPhmnczMjcz4Dhyq79XxdaRZlSGtN31CapctHsD8vx0P2gj88tSuVLvycKoT+LL/nbRxti7wLLp3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oD8nWIOr; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49N9w7Jj027468;
-	Wed, 23 Oct 2024 11:05:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8bl46XToNi5CdCM6CI3wWfowVn/5duNkEX4nzsCSJg0=; b=oD8nWIOrLytAkXvV
-	SpXrcwMFaCHr83YxmKFl36kylNwvzsylLr8+w+RyIdI0xcw93jK4UEPx00Y5jCGJ
-	m7fMNRqfo81w/NL39/YPxDbgEA4RvG3U01zWIO4F4+7v3BbO5/UU+edO842WLmQ7
-	xCQrDLWrVSZ72nPJdu5NP3rRfq8po0CApB74Dxg+nnBaw0Rs8TggK/wWyHVV43WK
-	Uvh+a2GcNHRRrm25h2Kb1+uk5sP3CObR6xgXn6YXhlvKQVinajWx5tjveIGIZNnv
-	+0LLE3JVSiTUGhxi1m2Xw1EJwdR96KyYNTL3AoJRmTeYxrMg4iHvAYa24rbXqZW6
-	ia0kCw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3whvwd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 11:05:41 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49NB5e3Q031828
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 23 Oct 2024 11:05:40 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Oct
- 2024 04:05:37 -0700
-Message-ID: <f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
-Date: Wed, 23 Oct 2024 16:35:35 +0530
+	s=arc-20240116; t=1729681632; c=relaxed/simple;
+	bh=jJv8pUshfT4apsQOdjQNUHnCdLbsPstTncS3AsjLstA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ChBRP1C6nu3zbcPsHgwBOnpUMPeK17srTlqgGREsyLVjERZ4KUN+uqayBvCK8p4FeyZ1x8iK57xXE6pyS/93O3GzElXITXY0ObUkr8TUSXJP3BDxBHfz/VlTjkC4b7oM8slKAdGHMWT6rm8B5ci7TZZOMx8GvTqlTXhaxIJHfEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aC+24G6j; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729681628;
+	bh=jJv8pUshfT4apsQOdjQNUHnCdLbsPstTncS3AsjLstA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aC+24G6ja6hENxZJQEW2Cvmejdh47ef2CmrATu9x95xSygdVjmmvb15RkcJKtXGse
+	 4xr7G/UEPiPb+7ycQckrd3P7NKRsze7KUWYZvWLmebtBl4I9teM7aK6ctzG8J5auR/
+	 7a/sbVvyuqdlaXVSsx1C6cctkk3Ff+ixka1gfAF9PHZ4HaQCxQ2MqV/i2yTc8J608b
+	 gPMt01CJ+XnQlBmc5u0Du2Ku+c7NnyePYj2WIyluXODjcrGWPIOkf+nsGxYnxhuTvA
+	 RH4HO7u8qALsxeVuu+4jg90gZWv72fe2Yoj7VsJmDU/K7TDtxwDiDdAYS533ZZBa6T
+	 CLTG6HFgwNgbA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id DE4ED17E1543;
+	Wed, 23 Oct 2024 13:07:07 +0200 (CEST)
+Message-ID: <0cc68449-a11d-466c-b89d-067b1c2fd7e0@collabora.com>
+Date: Wed, 23 Oct 2024 13:07:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/2] X1E001DE Snapdragon Devkit for Windows
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] arm64: dts: mediatek: mt8395-genio-1200-evk: add
+ support for MUX IT5205
+To: Macpaul Lin <macpaul.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ linux-usb@vger.kernel.org, Chris-qj chen <chris-qj.chen@mediatek.com>,
+ Fabien Parent <fparent@baylibre.com>, Simon Sun <simon.sun@yunjingtech.com>
+References: <20241023080912.15349-1-macpaul.lin@mediatek.com>
+ <20241023080912.15349-2-macpaul.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <krzk+dt@kernel.org>,
-        <robh+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <conor+dt@kernel.org>,
-        <abel.vesa@linaro.org>, <srinivas.kandagatla@linaro.org>
-References: <20240911073337.90577-1-quic_sibis@quicinc.com>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <20240911073337.90577-1-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <20241023080912.15349-2-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9ZE_5B1kWbiKYkbDRusaaJx6GMuaxhRZ
-X-Proofpoint-ORIG-GUID: 9ZE_5B1kWbiKYkbDRusaaJx6GMuaxhRZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- mlxlogscore=999 lowpriorityscore=0 malwarescore=0 suspectscore=0
- spamscore=0 mlxscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410230065
 
-
-
-On 9/11/24 13:03, Sibi Sankar wrote:
-> Add initial support for X1E001DE Snapdragon Devkit for Windows. X1E001DE
-> is the speed binned variant of X1E80100 that supports turbo boost up to
-> 4.3 Ghz. The initial support includes the following:
+Il 23/10/24 10:09, Macpaul Lin ha scritto:
+> Add ITE IT5205FN (TYPEC MUX) under I2C2 bus and configure its properties;
+> also add references to it5205fn from MT6360 TYPE-C connector for TYPEC
+> configuration.
 > 
-> -DSPs
-> -Ethernet (RTL8125BG) over the pcie 5 instance.
-> -NVme
-> -Wifi
-> -USB-C ports
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Simon Sun <simon.sun@yunjingtech.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>   .../dts/mediatek/mt8395-genio-1200-evk.dts    | 22 +++++++++++++++++++
+>   1 file changed, 22 insertions(+)
 > 
-
-Hi All,
-
-With the X1E Devkit cancelled and with no firmware updates promised for
-it perpetually, please chime in and let me know if you still want to get
-this series and rest (external-dp, usb-A ports, sd card slot and 3.5 mm
-Jack) merged and have it supported upstream for the folks who already
-received it!
-
--Sibi
-
-> Link: https://www.qualcomm.com/news/releases/2024/05/qualcomm-accelerates-development-for-copilot--pcs-with-snapdrago
+> Changes for v2:
+>   - This is a new patch in the v2 patch.
 > 
-> Sibi Sankar (2):
->    dt-bindings: arm: qcom: Add Snapdragon Devkit for Windows
->    arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for Windows
+> Changes for v3:
+>   - No change.
 > 
->   .../devicetree/bindings/arm/qcom.yaml         |   6 +
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   arch/arm64/boot/dts/qcom/x1e001de-devkit.dts  | 813 ++++++++++++++++++
->   3 files changed, 820 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> index 83d520226302..4c11c100e7b6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> @@ -229,6 +229,21 @@ &i2c2 {
+>   	pinctrl-0 = <&i2c2_pins>;
+>   	pinctrl-names = "default";
+>   	status = "okay";
+> +
+> +	it5205fn: typec-mux@48 {
+
+You don't need the it5205fn phandle, please drop.
+
+> +		compatible = "ite,it5205";
+> +		reg = <0x48>;
+> +		vcc-supply = <&mt6359_vibr_ldo_reg>;
+> +		mode-switch;
+> +		orientation-switch;
+
+compatible
+reg
+mode-switch
+orientation-switch
+vcc-supply
+
+Please reorder.
+
+After which:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> +		status = "okay";
+> +
+> +		port {
+> +			it5205_sbu_ep: endpoint {
+> +				remote-endpoint = <&mt6360_ssusb_sbu_ep>;
+> +			};
+> +		};
+> +	};
+>   };
+>   
+>   &i2c6 {
+> @@ -369,6 +384,13 @@ mt6360_ssusb_ep: endpoint {
+>   							remote-endpoint = <&ssusb_ep>;
+>   						};
+>   					};
+> +
+> +					port@2 {
+> +						reg = <2>;
+> +						mt6360_ssusb_sbu_ep: endpoint {
+> +							remote-endpoint = <&it5205_sbu_ep>;
+> +						};
+> +					};
+>   				};
+>   			};
+>   		};
+
+
 
