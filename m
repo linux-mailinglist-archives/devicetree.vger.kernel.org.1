@@ -1,140 +1,192 @@
-Return-Path: <devicetree+bounces-114899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97FDB9AD5BD
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:46:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831EB9AD5C6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:49:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DDF6B22147
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:46:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBA2EB218A3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BE71AB6F8;
-	Wed, 23 Oct 2024 20:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29FD1CEAD4;
+	Wed, 23 Oct 2024 20:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eyqb1hC7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbsmEFuB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C5C13B59E;
-	Wed, 23 Oct 2024 20:46:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937CC149013;
+	Wed, 23 Oct 2024 20:49:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729716389; cv=none; b=ZFT4LhMfvIDuLZTe47tRspopwHeRYcZzz9DL8VVmF2fy8yJweeb49KJcyg2lHuuGrUNZqNf+Kd6uNXSm6fZ8phyv4/A7VwjudyUWsX0iiGifCqfD05mI4uvcAmikiOBGrsLcyaPGoKHznWU7yQEhlGzCfioSTaz4e0/7qgf8fGI=
+	t=1729716581; cv=none; b=eD1U0nnnRMYbVtPckwqsNU9pXIz11q8dEtReJGYfuLn1WpLnvhGEVF3q3o086uZP4OIbPwFNFavFoDF4MgrGOiN669sKQggmDaAG/ZnmLwiWjdPNxSywQxkd63KBTTrPA9qVHL8OcIT9dkarKMBEl1t9i3RbqP+0+RevazHb1xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729716389; c=relaxed/simple;
-	bh=VE5faDGuulpA16bqytPHh+8rqbJzyZavDCJhycCNVO0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MOqcrri0jkiEKX0vhqcp51V3oLB7ZgLILUHr4ExM/AnU5OcxlmWM5ST9lTkDdBE30Oq6ETDZ0ttzxw1A2xx3IZa4BQApIOUtwqcrXpYZFaB+JBw8KgorVNKbRVjXTavacXl7YsoJGKfAGds8fWDFys1sVjbZpHL1+VdRkAReKOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eyqb1hC7; arc=none smtp.client-ip=209.85.166.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-8323b555a6aso7846839f.3;
-        Wed, 23 Oct 2024 13:46:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729716387; x=1730321187; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4Q9Fmtv1jhqmPQxhPj7GzThFbrtRvvOEog4jX1mozHs=;
-        b=eyqb1hC72NFyfzMwHYUNq8DdyinYXmcxlRxwGnmynvprDG6Qf2QMtGAmac/7PlR467
-         ExQc5DXbcTS9d63kbrt0641s9KgdWBSDuPEXQXRqohJExHb6nMQ5hIsI+y38vQL4C/Wz
-         P7jsvoOJlH9D/HhE/jnWvlKxjnU7kt9TwvyMbSUvwO1TWVJ20kv93y3NEbjy3IdJsHTl
-         SfqTf4l93CTYItlz+oCKcDGmk5g+zGzgcXYaW8f6qwkyRleQHgTD6ZvbAxW+5O6TODf5
-         xpbKPOSiRJ9iHRlR661kND/EUvs78Gfto2L/alBQs1MnorFx17KYf8Pk/ieExfizJZiA
-         2U1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729716387; x=1730321187;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4Q9Fmtv1jhqmPQxhPj7GzThFbrtRvvOEog4jX1mozHs=;
-        b=PMT5stGCpQalMbEsfFG03JW5C4sNzxoHFZF4X6q1AL9dNr8S8rcuFEEYYMJIF7z3Mf
-         qac4tQ81D2t1lblOHbDf5bAl8Ykl93CgsRPr5qELRu4G3MkGukqxTav8nDUu/RFCtjPU
-         HaH9fENVNIRKWj3lt9UrUuj5XG3+Vi9F4uCwOUxbGgnBX9gY8CEY1MbGuMdN4YvBPQv6
-         mXi1fb8Ovs7B682F8jdVCguaTHFYgGD2rIvT4qEbAsdLAsZEct8RKC9Tjn3QSZXPksmY
-         YYoktMMPnfYm1zXkhKI3VIDUnAAna+fhcziQZ6gFIb7AmhKiy2YS31T6Q8AH129yCnn/
-         iGEw==
-X-Forwarded-Encrypted: i=1; AJvYcCWhwUpE9+DeHWduz6w0y6CpXlfGM26NeLbWjd2eHISs+6hURBtYuLeBDim5G+vKhslpRQ90+mPZ35zC9kIf@vger.kernel.org, AJvYcCWzRe0+GVMFMYiXxNmuFK+yiEyXAnVIjp15obAa579VwxbdAxM4xpzDxAXSWXl3As7uJz+br2J+E9uXWBwikg==@vger.kernel.org, AJvYcCXD204IZOl6qjv30H+P826HqFVNJ0jJxojme+PFGwAXQWoVawRkJ8I6qbdauvavHenSLPo51mAE+xMn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/Tc5eBfnOfita/tGP3V78E/jOJ9En/+Cj3y6JX0nR7NkaEg9R
-	nDQo0uFiKjCdoOw0DZR1ijO2DnkLTlsIe68YkFhZoh+pj6kb32oofjCzfat8vFojNLZYUwo2mTv
-	M+M4W4CBAIAP6mb7EVKGhMw+C1II=
-X-Google-Smtp-Source: AGHT+IHoQOEizYcj7tAixtp4PTHw4bzgJdfZ39CRrv3g6b0UEB4bcHATl1XYABgvefhFHa8Sg1I3z+Hc0eB/FkZBbQU=
-X-Received: by 2002:a92:ca0a:0:b0:3a3:40f0:cb8c with SMTP id
- e9e14a558f8ab-3a4d59bbc12mr49771975ab.17.1729716387128; Wed, 23 Oct 2024
- 13:46:27 -0700 (PDT)
+	s=arc-20240116; t=1729716581; c=relaxed/simple;
+	bh=D6rOAupw7nWaOfhbwJhOxY7u+4yNaJ1nMm3CkyxSZ4I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fvBqNmduASY6S8mSJoNeJAcpyIvjEAp38CV8X0G70jy69PDp0K9H9WmU/TFd2Wgd5hVF7oWH/XBTpxDhqLsisKvinXfj8X1dbrP8r0YnC7pSc6cLSLd55YSGqJchq+5UUuvJqo8Ik0P90atfphQc3wzIe9Kuy8im3gAPb2GN16w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbsmEFuB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 612EEC4CEC6;
+	Wed, 23 Oct 2024 20:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729716581;
+	bh=D6rOAupw7nWaOfhbwJhOxY7u+4yNaJ1nMm3CkyxSZ4I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SbsmEFuBcYBJxfd9aKYJEJhvm5sOCBpuq3Gkw8XBVAgaBVAtodo4MzzFydgz9lmre
+	 lYFf+4Bc3gblOkDrHaTeXYplOKsx+ARhDq7I84evZ9AqNJW6sdl8mkvHTdvLRiNWq7
+	 HIxQV0FTIhIlXU1I0UWU0dYoCb4/La4ArGqqwj83V1yPu64TjVihcSJtg+Lv4hnx7j
+	 nsU4mql2Gn/IGBFQELdRYpyG77D96qEA7RspsiJJx3jVWn3y5NFarKPXPlN+Fhh4du
+	 ljtB6NwbDGGW5+zuy3s8XNOWGeFaUUoztmYHWjCyMnJg20bW3Ehuw32LgawaSV0yAA
+	 ne0ctkmBg3+FQ==
+Date: Wed, 23 Oct 2024 21:49:34 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: net: Add support for Sophgo SG2044 dwmac
+Message-ID: <20241023-paper-crease-befa8239f7f0@spud>
+References: <20241021103617.653386-1-inochiama@gmail.com>
+ <20241021103617.653386-3-inochiama@gmail.com>
+ <20241022-crisply-brute-45f98632ef78@spud>
+ <yt2idyivivcxctosec3lwkjbmr4tmctbs4viefxsuqlsvihdeh@alya6g27625l>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240911073337.90577-1-quic_sibis@quicinc.com> <f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
-In-Reply-To: <f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Wed, 23 Oct 2024 13:46:15 -0700
-Message-ID: <CAF6AEGvgnW5VTZYFzwiMChB4-2cShmBvMcfgQVbcCiOgH6e3Yg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] X1E001DE Snapdragon Devkit for Windows
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
-	robh+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	conor+dt@kernel.org, abel.vesa@linaro.org, srinivas.kandagatla@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="HZ3OWjJABGOCrTlm"
+Content-Disposition: inline
+In-Reply-To: <yt2idyivivcxctosec3lwkjbmr4tmctbs4viefxsuqlsvihdeh@alya6g27625l>
+
+
+--HZ3OWjJABGOCrTlm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 23, 2024 at 4:07=E2=80=AFAM Sibi Sankar <quic_sibis@quicinc.com=
-> wrote:
->
->
->
-> On 9/11/24 13:03, Sibi Sankar wrote:
-> > Add initial support for X1E001DE Snapdragon Devkit for Windows. X1E001D=
-E
-> > is the speed binned variant of X1E80100 that supports turbo boost up to
-> > 4.3 Ghz. The initial support includes the following:
-> >
-> > -DSPs
-> > -Ethernet (RTL8125BG) over the pcie 5 instance.
-> > -NVme
-> > -Wifi
-> > -USB-C ports
-> >
->
-> Hi All,
->
-> With the X1E Devkit cancelled and with no firmware updates promised for
-> it perpetually, please chime in and let me know if you still want to get
-> this series and rest (external-dp, usb-A ports, sd card slot and 3.5 mm
-> Jack) merged and have it supported upstream for the folks who already
-> received it!
+On Wed, Oct 23, 2024 at 08:31:24AM +0800, Inochi Amaoto wrote:
+> On Tue, Oct 22, 2024 at 06:28:06PM +0100, Conor Dooley wrote:
+> > On Mon, Oct 21, 2024 at 06:36:15PM +0800, Inochi Amaoto wrote:
+> > > The GMAC IP on SG2044 is almost a standard Synopsys DesignWare MAC
+> > > with some extra clock.
+> > >=20
+> > > Add necessary compatible string for this device.
+> > >=20
+> > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+> > >  .../bindings/net/sophgo,sg2044-dwmac.yaml     | 145 ++++++++++++++++=
+++
+> > >  2 files changed, 146 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/net/sophgo,sg20=
+44-dwmac.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/=
+Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > index 3c4007cb65f8..69f6bb36970b 100644
+> > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > @@ -99,6 +99,7 @@ properties:
+> > >          - snps,dwmac-5.30a
+> > >          - snps,dwxgmac
+> > >          - snps,dwxgmac-2.10
+> > > +        - sophgo,sg2044-dwmac
+> > >          - starfive,jh7100-dwmac
+> > >          - starfive,jh7110-dwmac
+> > > =20
+> > > diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwma=
+c.yaml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > new file mode 100644
+> > > index 000000000000..93c41550b0b6
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > @@ -0,0 +1,145 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/net/sophgo,sg2044-dwmac.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: StarFive JH7110 DWMAC glue layer
+> > > +
+> > > +maintainers:
+> > > +  - Inochi Amaoto <inochiama@gmail.com>
+> > > +
+> > > +select:
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        enum:
+> > > +          - sophgo,sg2044-dwmac
+> > > +  required:
+> > > +    - compatible
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - const: sophgo,sg2044-dwmac
+> > > +      - const: snps,dwmac-5.30a
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: GMAC main clock
+> > > +      - description: PTP clock
+> > > +      - description: TX clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: stmmaceth
+> > > +      - const: ptp_ref
+> > > +      - const: tx
+> > > +
+> > > +  sophgo,syscon:
+> >=20
+> > How many dwmac instances does the sg2044 have?
+> >=20
+>=20
+> Only one, there is another 100G dwxgmac instance, but it does not
+> use this syscon.
 
-(a) would the firmware update situation have been _that_ much better
-if it wasn't cancelled?  And (b) we do have dts upstream for other
-canceled boards.
+That dwxgmac is a different device, with a different compatible etc?
 
-My $0.02 is that it is still useful
+--HZ3OWjJABGOCrTlm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-BR,
--R
+-----BEGIN PGP SIGNATURE-----
 
-> -Sibi
->
-> > Link: https://www.qualcomm.com/news/releases/2024/05/qualcomm-accelerat=
-es-development-for-copilot--pcs-with-snapdrago
-> >
-> > Sibi Sankar (2):
-> >    dt-bindings: arm: qcom: Add Snapdragon Devkit for Windows
-> >    arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for Windows
-> >
-> >   .../devicetree/bindings/arm/qcom.yaml         |   6 +
-> >   arch/arm64/boot/dts/qcom/Makefile             |   1 +
-> >   arch/arm64/boot/dts/qcom/x1e001de-devkit.dts  | 813 +++++++++++++++++=
-+
-> >   3 files changed, 820 insertions(+)
-> >   create mode 100644 arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> >
->
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxlhXgAKCRB4tDGHoIJi
+0pO0AQD5Swmhv1mfvz5DiD/5f5DGV3m+rvoUAhPp697EkSD9KgD/fnWAmf29z3yR
+O/N/hNkW71ULWbchz7jsFDwGdd6q4Ao=
+=k7np
+-----END PGP SIGNATURE-----
+
+--HZ3OWjJABGOCrTlm--
 
