@@ -1,66 +1,70 @@
-Return-Path: <devicetree+bounces-114488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727639ABCC9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:18:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C769ABCCE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 06:19:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 079BD1F24664
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 04:18:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 137F01C22A31
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 04:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23FA01531E3;
-	Wed, 23 Oct 2024 04:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DB214D444;
+	Wed, 23 Oct 2024 04:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i/9AMxLQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tbPYGI/B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E95681531D5;
-	Wed, 23 Oct 2024 04:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD471155359;
+	Wed, 23 Oct 2024 04:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729656982; cv=none; b=Iq5Nuc7M+po3LlnEs6QBpJkyljq+jD9F2Xg1CHiTnBDsCIH7uNf/HeCEv2NmyHlenhBewTt70QKskxBGJSw5yD9XfNsKWHRvP5HJ08QYT6nbc0wFBF3TuR/F/+ReMi7AIIs5R1n7jomEyd6gbvsSpqLQMk5lMVyborVmDCM8R0o=
+	t=1729656984; cv=none; b=T6uPomfxIr6dc/q8Yi1SPHFnK6sR81y1HVw80NwFy0P5xiAQ17VDicbcXkWTKsqT8uiZu7G80bL/NlTsFcwZGNi+s4xQEa28ZuhK2Fvzya2ZGfj579Ceu8Jys33wGvbh7n9ZgB8aCGe4KySR86pJ61wsWpmUvPiLA2VSZGFcBQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729656982; c=relaxed/simple;
-	bh=K2Km0MA/CydEwXnO08OoydV2jYx7vunjjMa5JkF9eUo=;
+	s=arc-20240116; t=1729656984; c=relaxed/simple;
+	bh=UDxV7XYkif2d0bftv56KzhbxnOqR0eP486/8xyevWWU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FcaDoyrFBAK+Aa5jOcNHGoLOPQqVhvq4DVejZSPIu/aP0HyGKDzwAQ6rKTHu6JQYB3Dgaw3s+3ZaK6gOn5SQbPkyiOYG8HvMcW0wqYaDiqdu4AT0WqlAlpohxc+3CFj6LN0OfoVuKHdn0czXh1QTCs+zPNvAimuyRsBhazxQQdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i/9AMxLQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D03CCC4CEE7;
-	Wed, 23 Oct 2024 04:16:20 +0000 (UTC)
+	 MIME-Version:Content-Type; b=RIwXN1ACuZVM6zxYVwR0DLgkolAbvqkpjY3nu/xahb0zWyDTtR4i4oEUtczwaZBajG7BVq05gFwcC3JN6dVSdL5QuVkxmVsFLHl3vhKIBQ0pzmCnxxBnUt0n5eEnTHEFLRk3uCM5m90qZjG9dOOYLK14XdoPoaiMCu+ypFOQuDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tbPYGI/B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4310C4CEC6;
+	Wed, 23 Oct 2024 04:16:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729656981;
-	bh=K2Km0MA/CydEwXnO08OoydV2jYx7vunjjMa5JkF9eUo=;
+	s=k20201202; t=1729656984;
+	bh=UDxV7XYkif2d0bftv56KzhbxnOqR0eP486/8xyevWWU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=i/9AMxLQMD/ii018Bz/pU2ecVtX2E5y6odmm9GnSqbeqzeLMQxKLnbDT6yvzBCJJt
-	 6QIAWl6z9kYCRYAxNPuwY0f8PH9mGpu/geQosFrJFUu71RLnRyCgQb5pjyakDklnPX
-	 CJmpEebBftRFCr6b9kfuNG8p8EPRkkElk4+0af2sgq0+RzTBuuZ1cmRmusE9q5WyWL
-	 UoAd4mVFoJsZK5Uej4X9MXfmcl+TPgQ6Gypta7y5x3Oggr4ddRyacDA6I2ASVf1XU8
-	 +9/KDYHcwmea0mBMW487J0hzlcqqizw9haEb2Aq1vo1KE1H/5gmS6umWAH0a/IQ9pZ
-	 b1ByMN1ejLjtQ==
+	b=tbPYGI/BDyNlCeaZ3zKBVn/HVKr9hQII3Wn9hEXsDCgYAePV+y2ELUiU/GVnv8IaY
+	 j65h7a0pPwxwWCEpfMv6Cto61u3jlv2ACUNeAbxhNRKr8FH2MgNyCPm/vLnbicOOm2
+	 IG60+GrY25eoRuYSWPBRaM30T7YNHe9oQSFV19ljuFifgAuSwHiW59MpSEtV7hZ/Bc
+	 7SUpnS1w/dVq/DRw7f9lKmlQ2KLDfljniQhpwV+mXEs31vYvurl3Fpt5ialjBcNB9w
+	 qhhrNJloggdZ/ZVJu57sediJzSe4M6CYc9hARzXaQTOXuFSAu15aVUQdmOQgcrISYt
+	 Xj8XHerT2miyA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-pci@vger.kernel.org,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Lijuan Gao <quic_lijuang@quicinc.com>
+Cc: kernel@quicinc.com,
 	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 00/12] PCI: qcom: Enumerate endpoints based on Link up event in 'global_irq' interrupt
-Date: Tue, 22 Oct 2024 23:15:58 -0500
-Message-ID: <172965696407.224417.4025107228766337178.b4-ty@kernel.org>
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Tingguo Cheng <quic_tingguoc@quicinc.com>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Swetha Chintavatla <quic_chintava@quicinc.com>
+Subject: Re: (subset) [PATCH v4 0/7] Add initial support for QCS615 SoC and QCS615 RIDE board
+Date: Tue, 22 Oct 2024 23:16:00 -0500
+Message-ID: <172965696413.224417.15394852919307321985.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240828-pci-qcom-hotplug-v4-0-263a385fbbcb@linaro.org>
-References: <20240828-pci-qcom-hotplug-v4-0-263a385fbbcb@linaro.org>
+In-Reply-To: <20241022-add_initial_support_for_qcs615-v4-0-0a551c6dd342@quicinc.com>
+References: <20241022-add_initial_support_for_qcs615-v4-0-0a551c6dd342@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,25 +75,32 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 28 Aug 2024 21:16:10 +0530, Manivannan Sadhasivam wrote:
-> This series adds support to enumerate the PCIe endpoint devices using the Qcom
-> specific 'Link up' event in 'global' IRQ. Historically, Qcom PCIe RC controllers
-> lacked standard hotplug support. So when an endpoint is attached to the SoC,
-> users have to rescan the bus manually to enumerate the device. But this can be
-> avoided by rescanning the bus upon receiving 'Link up' event.
+On Tue, 22 Oct 2024 16:54:28 +0800, Lijuan Gao wrote:
+> Introduces the Device Tree for the QCS615 platform.
 > 
-> Qcom PCIe RC controllers are capable of generating the 'global' SPI interrupt
-> to the host CPUs. The device driver can use this interrupt to identify events
-> such as PCIe link specific events, safety events etc...
+> Features added and enabled:
+> - CPUs with PSCI idle states
+> - Interrupt-controller with PDC wakeup support
+> - Timers, TCSR Clock Controllers
+> - Reserved Shared memory
+> - QFPROM
+> - TLMM
+> - Watchdog
+> - RPMH controller
+> - Sleep stats driver
+> - Rpmhpd power controller
+> - Interconnect
+> - GCC and Rpmhcc
+> - QUP with Uart serial support
 > 
 > [...]
 
 Applied, thanks!
 
-[09/12] arm64: dts: qcom: sa8775p: Add 'linux,pci-domain' to PCIe EP controller nodes
-        commit: 9e8f38da6e240a71b860c4a895ea583f63964c45
-[12/12] arm64: dts: qcom: sm8450: Add 'global' interrupt to the PCIe RC node
-        commit: 7dc36be39c96f00d0d7c577cc91ff6b108b1d444
+[2/7] dt-bindings: arm: qcom,ids: add SoC ID for QCS615
+      commit: dbc81e680a0f007cf062963c40f145074aacab2d
+[4/7] soc: qcom: socinfo: Add QCS615 SoC ID table entry
+      commit: 8921bf54bfab240ea551b605c5c16c58f8777e97
 
 Best regards,
 -- 
