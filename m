@@ -1,214 +1,177 @@
-Return-Path: <devicetree+bounces-114603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B299AC0C2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:54:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 974F99AC0C9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:59:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E23B1C21B58
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:54:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A97E71C22406
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9AA155C98;
-	Wed, 23 Oct 2024 07:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60496156237;
+	Wed, 23 Oct 2024 07:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cqHwpYAl"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="H7xCsreu";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Q2tKGxnV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from fhigh-a2-smtp.messagingengine.com (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A350155742;
-	Wed, 23 Oct 2024 07:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D2AE155CBD;
+	Wed, 23 Oct 2024 07:59:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729670054; cv=none; b=XbaeiNJ8d/oe4wY4QEZGtpgf7rjRvQHmAqMFearIbURwIDWwpZci00I1LLgpAl2ZvrDSE13rW2bWFjRT43ZCN4d9C2qL8DQHY6dfLua+iM4pMmwSePF4MqZfo4svxWFGP1BVabBkuxmz/VmjTcJmmjYpdnSFq8FFPiOCPr3ZxWg=
+	t=1729670375; cv=none; b=gzU0/tIVPhrtkyzw3JbpObS4dwO5oqq+CYbt/EGF621csbF+Xegu+o6qIarvieegUQ1s+/Ink1IO+n9F9JJgwcEe7/zel7gnvZlJM9vOo7kwZP54ABAWIEfV+glIf/uDubMD8Mu23o9yT9LZmvkpJ8qY3KiYH9aFFCJ8H0riyFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729670054; c=relaxed/simple;
-	bh=HkNoZ5FCu3rF5J7aCvuNlnreJOKQyuHkkl7kviNxQik=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iMCWeq5dE/rHHgNxMWSfvCDOLtCE4OToJGbsboMraOXULJ8wyDrQVTbASjfzjfcIvJZOAI9Z1TRzseRnxol/7xVXXp2MUd6GB0JIm06TIZ8MZbEgozUpXsP55834v56beHBizf8FzbNpC6n86yRPlKBM2IoiUQ3AUO+fBmgrHoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cqHwpYAl; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AA4D5FF803;
-	Wed, 23 Oct 2024 07:54:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729670049;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TdvS4VbW0v8hQ6mg/PNYWge1aqhZUl5W/f00dp8iRAc=;
-	b=cqHwpYAluT7D6Tlq83Uamt7EsDHI32fcpyhgwQab56fp2y3T5qncv1UwZOrkJ9Iqb8QAcF
-	uaNJnUEfLZQZwlcW7sP98e3suvfthQ7kfTFbhLsrPHluV+/79kuhYfWcnQzdE3X+AEiGKD
-	IPGf+ewApaLcSH2tQWfuUJlvhnDrXVRV6wQuwV9vC4kACqSrTm44ln5WbDMfJ+T5CAnYPo
-	Ji7/2a1TP3btJeC2xFQpysNmLOm3ZCO0X14uZPj70/MlsqHmfjVYDssV7A03baBOlHYwDD
-	VnJ6R1yR4tvrAoFOZmzuYlmje8oFfoRiBGMA9vDz0AVgYJAB4wkk5UMg4mN88g==
-Message-ID: <71c93145-f7ed-485a-99f2-fab9529e6bcb@bootlin.com>
-Date: Wed, 23 Oct 2024 09:54:08 +0200
+	s=arc-20240116; t=1729670375; c=relaxed/simple;
+	bh=swoHZitnUxOyrKtp9TmaKWwF40O6gGMp/5+Codl//04=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d4g7oJ/r6eCBPfEQEEkzrhbPbGcW2drsdHXnqqzdJWw7OijRTdgItsrzoTG1NBeAjEQ6ffXGboHSyCPaNpaxG+YfQejcEhkXqSZQFfiFn3q+Fp8hiRy2KNqWt3ejKcZ0GXzjuR4xUswKRpd4vUp2AZCFw0VdeSKgrs6cU+plWFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=H7xCsreu; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Q2tKGxnV; arc=none smtp.client-ip=103.168.172.153
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 33E51114018D;
+	Wed, 23 Oct 2024 03:59:31 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-04.internal (MEProxy); Wed, 23 Oct 2024 03:59:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm3; t=1729670371; x=1729756771; bh=elHpuajvwi
+	yNA9OK8x4fvj9BtjIaAO6sLsdUEmQFU98=; b=H7xCsreudOiEYguWOLp1R2Sj/D
+	WyWe2YygznB/gn24le3RjwDCwf7EHrIrGo+E9bJgmQsjGOSERfMvyD0yhMbUcZDA
+	HVhQYabxYBrMXk0eV3Auvo3WfiNVMzEwVxWUHU+ApIpD2xPH8R9iZ1uM3xd7SdPN
+	wlYYHE8O2TeItYGaf+8wLjBKN6RjYO9zCKxqtoxYil00oeumFNuq8AjDAFrtnIIX
+	o6fb7jlw6Fj+qtku3M+/F2DR4jN71796FjTn75VD72WPz/4WpLGWqGEAx66hExgs
+	WNLTzIzqH+QvFu8Uy+BRfh40Jm9dQnOXHmJVI+Q+/Po4ZTrJsz3isy/ZSocw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1729670371; x=1729756771; bh=elHpuajvwiyNA9OK8x4fvj9BtjIa
+	AO6sLsdUEmQFU98=; b=Q2tKGxnVMxIQa65c+wFeGTQX6ITSsvo+JF/WYL+A4TWV
+	piraClaqQ2kL28TWtzfvNGGCgRpwmBp0puNKPOpkFFA6Wrj7Gh+C5IRiI4EFfShE
+	sOKuhiCHmMDmtApH+t7nuPB48vNQXeJ+6M3qjOzwkkt/SM5NrB/zVgAzRmV0mMy/
+	ttU2sr8jBs6X8C+QKtbStAh6e56A5RehJ6Mk3XOuME5kMRLtCze8jmFKreenGWa7
+	bq9Zj+hAQGS6WJlWoMyrzAWmJTgYt9u8L9SDAqR58U4HGbAIrjFtqYJkGgsu31Sv
+	yRwJINBz1hlD7QN+3Nf74OJ9OQu/HSeyPQbY6Hu+BQ==
+X-ME-Sender: <xms:4qwYZwDk2SV1wvgH2mbnVpZs475ySYiUTvk5pIiyq849nde6IrbkHw>
+    <xme:4qwYZygwlFgO73vhkR-CwSBcJHV_RzYpa8BGWmcwfFSX5SRcNPdI5aQD0_sNSE_oc
+    NyO0PDtzDfM932PpA>
+X-ME-Received: <xmr:4qwYZznJnOZIaJolnFyUKfbyXFJ3fAp5Dy8uaVYZq_yxAB2xX7S7cTSkH4Lv1oQCH54JynFduJq1Cc_pxOuk9AWQS7g1bYeH1-s_eSoA3Ri1XJBJ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeiiedguddvhecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffoggfgsedtkeertdertddtnecu
+    hfhrohhmpefthigrnhcuhggrlhhklhhinhcuoehrhigrnhesthgvshhtthhorghsthdrtg
+    homheqnecuggftrfgrthhtvghrnhepuddvueduueegtdeuffetveevgeehhedvhfefuddu
+    veekgffgfedtheegtefhhfffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
+    hmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhnsggprhgtphht
+    thhopeduhedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheplhhgihhrugifohhoug
+    esghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhr
+    ghdprhgtphhtthhopehpvghrvgigsehpvghrvgigrdgtiidprhgtphhtthhopehtihifrg
+    hisehsuhhsvgdrtghomhdprhgtphhtthhopeifvghnshestghsihgvrdhorhhgpdhrtghp
+    thhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhlrdgtohhmpdhrtghpthhtoh
+    epshgrmhhuvghlsehshhholhhlrghnugdrohhrghdprhgtphhtthhopehmrggtrhhorghl
+    phhhrgekvdesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnshdrphhhihhlih
+    hpphgvsehgmhgrihhlrdgtohhm
+X-ME-Proxy: <xmx:4qwYZ2xP-kAcrAhI2aATOxRvbzHFbJceIaQxRUz-r-8mEWDTy1MeEQ>
+    <xmx:4qwYZ1SdwqndmNEZfjSud9FwtGJvxiGzvab-RJNB9mSkwtovextclA>
+    <xmx:4qwYZxYRjYNYakZsZZz9T5rL9gs7WKrh4EO1s4fdfUuvJZaJ_7pkYg>
+    <xmx:4qwYZ-SbTwfFe4CGkGkFHJOK0PetXn3Y5lngiyDeZ-TzoVQ6az5lqA>
+    <xmx:46wYZ-jIyJQxzc9SqZWKEWc4LRrwhyyJCm-9MpkmEj2N4j4Pqexf26ZJ>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 23 Oct 2024 03:59:26 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Philippe Simons <simons.philippe@gmail.com>
+Cc: linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH v3 0/7] ASoC: add Allwinner H616 audio codec support
+Date: Wed, 23 Oct 2024 20:56:56 +1300
+Message-ID: <20241023075917.186835-1-ryan@testtoast.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: wilc1000: Rework bus locking
-To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20241022013855.284783-1-marex@denx.de>
- <c9e98811-15f5-427a-82f7-2e7fff4a9873@bootlin.com>
- <8e28ba76-ecfa-49b6-89b5-1edabb22129d@denx.de>
-Content-Language: en-US
-From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-In-Reply-To: <8e28ba76-ecfa-49b6-89b5-1edabb22129d@denx.de>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexis.lothore@bootlin.com
 
-Hello Marek,
+Hi All,
 
-On 10/22/24 15:19, Marek Vasut wrote:
-> On 10/22/24 12:43 PM, Alexis Lothoré wrote:
->> Hi Marek,
-> 
-> Hi,
-> 
->> On 10/22/24 03:38, Marek Vasut wrote:
->>> The bus locking in this driver is broken and produces subtle race
->>> condition with ksdioirqd and its mmc_claim_host()/mmc_release_host()
->>> usage in case of SDIO bus. Rework the locking to avoid this race
->>> condition.
->>>
->>> The problem is the hif_cs mutex used in acquire_bus()/release_bus(),
->>> which makes it look like calling acquire_bus() results in exclusive
->>> access to the bus, but that is not true for SDIO bus. For SDIO bus,
->>> to obtain exclusive access (any access, really), it is necessary to
->>> call sdio_claim_host(), which is a wrapper around mmc_claim_host(),
->>> which does its own locking. The acquire_bus() does not do that, but
->>> the SDIO interface implementation does call sdio_claim_host() and
->>> sdio_release_host() every single command, which is problematic. To
->>> make things worse, wilc_sdio_interrupt() implementation called from
->>> ksdioirqd first calls sdio_release_host(), then interrupt handling
->>> and finally sdio_claim_host().
->>>
->>> The core problem is that sdio_claim_host() cannot be done per command,
->>> but has to be done per register/data IO which consists of multiple
->>> commands.
->>
->> Is it really true ? What makes you say that we can not perform multiple
->> operations under the same exclusive sdio section ?
-> 
-> What I am trying to say is this:
-> 
-> With current code, this can happen, which is not good, because transfers from
-> multiple threads can be interleaved and interfere with each other:
-> 
-> thread 1                         thread2
-> do_some_higher_level_op() {
->  ...
->  read_register_0x3b0000() {
->   claim_bus
->   CMD52 0x00
->   release bus                    ksdioirqd() {
->                                    claim_bus
->                                    CMD52 0x0f, lets read SDIO_CCCR_INTx
->                                    release_bus
->   claim bus                      }
->   CMD52 0x00
->   release_bus
->   claim_bus
->   CMD52 0x3b
->   release_bus
->   claim_bus
->   CMD53 lets read data
->   release_bus
->  }
->  ...
-> }
-> 
-> What should happen is either:
-> 
-> thread 1                         thread2
->                                  ksdioirqd() { // option 1
->                                    claim_bus
->                                    CMD52 0x0f, lets read SDIO_CCCR_INTx
->                                    release_bus
->                                  }
-> do_some_higher_level_op() {
->  claim_bus
->  ...
->  read_register_0x3b0000 {
->   CMD52 0x00
->   CMD52 0x00
->   CMD52 0x3b
->   CMD53 lets read data
->  }
->  ...
->  read_another_register()
->  ...
->  release_bus
-> }
->                                  ksdioirqd() { // option 2
->                                    claim_bus
->                                    CMD52 0x0f, lets read SDIO_CCCR_INTx
->                                    release_bus
->                                  }
-> 
-> That's what this patch implements, to avoid the interference.
-> 
-> Maybe I should include the infographics? Or reword this somehow?
+V3 of this patch adding support for the Allwinner H616 (and variant)'s audio codec. Some clarification of comments, particularly regarding the clock driver changes, and a small fix for the device tree binding (apologies I forgot to re-run dt_binding_check on V2). Review comments otherwise addressed and reviews noted.
 
-What I may have misunderstood is your first sentence ("sdio_claim_host() cannot
-be done per command, but has to be done per register/data IO which consists of
-multiple commands", especially command VS reg/data io), but your graph clarified
-it for me, thanks, so in the end we agree on this :) That may just be me having
-poorly interpreted, so no need to add the graphs to the commit
+Changelog v1..v2:
+- Reordered patches to group ASoC changes
+- Corrected PLL_AUDIO clock dividers to match values from manual and vendor SDK.
+- Remove PLL_AUDIO_4X clock from the device tree binding (not used in the driver).
+- Restrict TX-only DMA changes to the H616.
+- Change the codec name to fit into the 16 char limit.
+- Move the codec (and spdif) blocks in the H616 DTSI to restore address-order.
+- Add board enablement (and power/GPIO changes for RG35XX to support speaker amp).
 
-[...]
+Changelog v2..v3:
+- Update clock driver patch commit message and inline comments to more accurately describe SDM changes.
+- Fix missing "-" in H616 conditional binding as reported by dt_binding_check
+- Add additional clarification of internal playback_only quirk in sun4i-codec driver
+- Add short driver_name to H616 codec driver and restore descriptive name.
+- Remove leading 0 from codec node's address in H616 device tree to match other blocks.
 
->>>   static int wilc_wlan_cfg_commit(struct wilc_vif *vif, int type,
->>> diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.h b/drivers/net/
->>> wireless/microchip/wilc1000/wlan.h
->>> index b9e7f9222eadd..ade2db95e8a0f 100644
->>> --- a/drivers/net/wireless/microchip/wilc1000/wlan.h
->>> +++ b/drivers/net/wireless/microchip/wilc1000/wlan.h
->>> @@ -403,6 +403,8 @@ struct wilc_hif_func {
->>>       void (*disable_interrupt)(struct wilc *nic);
->>>       int (*hif_reset)(struct wilc *wilc);
->>>       bool (*hif_is_init)(struct wilc *wilc);
->>> +    void (*hif_claim)(struct wilc *wilc);
->>> +    void (*hif_release)(struct wilc *wilc);
->>
->> So IIUC, your series push the hif_cs lock into each bus layer of the driver,
->> remove any explicit call to bus-specific locking mechanism from those layers,
->> and makes the upper layer control the locking. As mentioned above, I don't
->> understand why those layers can not manage the bus-specific locking by
->> themselves (which would be a big win for the upper layer).
-> 
-> Because of acquire_bus()/release_bus() which I think is an attempt to serialize
-> bus access across multiple complex operations (=commands sent to the card), see
-> above.
+Original blurb below:
 
-Taking a further look at some examples in the driver, I see that indeed the
-"scope" of acquire_bus/release_bus is larger than simple bus operations. So I
-withdraw my proposal which was wrong.
+Hi,
 
-Thanks,
+The Allwinner H616 has a playback-only audio codec, with a single stereo or differential-mono line output.
 
-Alexis
+This patch adds support for the H616 (and H313/H618/H700/T507) SoC. Based on the  Allwinner kernel SDK driver, and tested on the H700.
+
+Regards,
+
+Ryan
+
+Marcus Cooper (2):
+  ASoC: sun4i-codec: Add support for different DAC FIFOC addresses to
+    quirks
+  ASoC: sun4i-codec: Add playback only flag to quirks
+
+Ryan Walklin (5):
+  clk: sunxi-ng: h616: Add sigma-delta modulation settings for audio PLL
+  dt-bindings: allwinner: add H616 sun4i audio codec binding
+  ASoC: sun4i-codec: support allwinner H616 codec
+  arm64: dts: allwinner: h616: Add audio codec node
+  arm64: dts: allwinner: h313/h616/h618/h700: Enable audio codec for all
+    supported boards
+
+ .../sound/allwinner,sun4i-a10-codec.yaml      |  53 +++-
+ .../dts/allwinner/sun50i-h313-tanix-tx1.dts   |   5 +
+ .../allwinner/sun50i-h616-orangepi-zero.dtsi  |   5 +
+ .../dts/allwinner/sun50i-h616-x96-mate.dts    |   5 +
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |  44 ++-
+ .../allwinner/sun50i-h618-orangepi-zero2w.dts |   5 +
+ .../sun50i-h618-transpeed-8k618-t.dts         |   5 +
+ .../sun50i-h700-anbernic-rg35xx-2024.dts      |  13 +-
+ drivers/clk/sunxi-ng/ccu-sun50i-h616.c        |  46 ++-
+ sound/soc/sunxi/sun4i-codec.c                 | 298 +++++++++++++++---
+ 10 files changed, 404 insertions(+), 75 deletions(-)
 
 -- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.47.0
+
 
