@@ -1,152 +1,141 @@
-Return-Path: <devicetree+bounces-114585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9189AC01B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:22:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 440AD9AC029
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:27:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E661D1F21ACB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:22:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B52401F236B5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:27:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37AB815359A;
-	Wed, 23 Oct 2024 07:22:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6085C153BF8;
+	Wed, 23 Oct 2024 07:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aukyNOez"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="qHDwvzxU";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HjRos3+J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B29ED3A8D0;
-	Wed, 23 Oct 2024 07:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0A9EAC5;
+	Wed, 23 Oct 2024 07:27:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729668120; cv=none; b=ROSgIo2eyd4R7r3aK9YrOrbDNpGj4yPRPfpI6D/WZqJXx/jLy0lrdR90lNTiOGECM1uwmrtIEds4aTyFcwJpB7V1Vl5GlL/1vdIDJpZHx7RCdXOmCAl0XG9UbJSMq5guvxQR080XBN/o8Cc9JLyx/kJlmuUr/oCww/p8Fn/cQwI=
+	t=1729668455; cv=none; b=FD/pTByrNKZt/rxOBkPtRIgvZ0bnpexDkUnJouxv+wjmSH3w34RE1wE3z8c1Pq6JFr7/u38LwEycfGhWlSZN/a+aMk+iKMGAgNJU6D9iyn5ccVQIGmnTgPqAwPjIshVC72OMIITDrfVyg1vBP6+97B4omT/K+BEFW8V3J1DVzRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729668120; c=relaxed/simple;
-	bh=50ezmcEJzxDJ24mowip9lHrIonLa3G33aAyWzqTY2C8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GpBU25QqYn8f8/8zwN5KCZ0AW/ad1C8CSaewJ12eQVBRbociayZvYpcN8GkRYafSmH92NSvE3QRXawpCiRQKHhVngwEefkcssYNW4BObkwX8ocOTxP0lsvIjW1w+F/812GyHuddkpWKcvpRAJK53Selg7cC7Ojgqc231Ly+Cgb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aukyNOez; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20c8c50fdd9so3948855ad.0;
-        Wed, 23 Oct 2024 00:21:58 -0700 (PDT)
+	s=arc-20240116; t=1729668455; c=relaxed/simple;
+	bh=UOdGmteuDF17WaDKUsAm9bMSO1DRsXO+5b96m5laO4g=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MaUWlHO8JDgVhE27QiXwKGWD3Nj7U4p7817W846r1RAdObc7DUvNS8o9IQSk93em/R+Qt1Uomet6aIJojWgdLmHcsoJTvVlFILEbSixyrtO3MBhaO/8i9eAskyrPV2uc753JVoQTQ4jHO1yQk39JfvtEX80zmojVNIfa2AjRyrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=qHDwvzxU; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HjRos3+J reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729668118; x=1730272918; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3JpW5l4cHfObYzl7+2svJ3Qk3MetE1pLsV3fZ39aook=;
-        b=aukyNOezlMoyLLPOnobizcuoLXqApP5+SFgftgaMYrQjRAdreKkGefUiRwcKrgFh1U
-         vGXymT3blML9AdzJEp82I3rj/PjG2sF8I5xl8gvFlCkKMpeQC+ejulE6YEA2/XinL3vA
-         +QCW5EsZGT/0O9bGOEtohDS1Kk9idGqKBtdqjNSppbAsiZC96GzOOraPkv82KYPTESfA
-         mz3c5JMWgU4iT4XKn4+Acbf8Ygcp6npnEf97AmDT0UaqTWOGkFo+KkB5a2+4sWxdccz3
-         f+GEL7DJrKJOdhNUXTZ3vQaJ+061vV6E1UAj/04cMCw1zMlX3b0wUkdL4dUxOMMR8UYG
-         ltLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729668118; x=1730272918;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3JpW5l4cHfObYzl7+2svJ3Qk3MetE1pLsV3fZ39aook=;
-        b=Yayv2axVMXF7Hti/dUmaoOkLGQSLJCcCwqe4cLI8vYYF+hy/4QcKjE9Oe2nisrgMki
-         0NZAdHFqISEYe1VdEum2AtGMxSK2pTPKupb3+Sdgs1x+IrZ3y+X1Ebv4Kdm9sXIGRDJ5
-         +CYwjBhOHvJgFysK11E1J9AUUbkwPAUxx69MjKcGsl1TTi5mH5RXsRYkThqRClu2FdQO
-         G23TkTBDcjz46bEQK91/S4hDrI98A+CppOjMNg7Z0gkRwW7jYLVZ7z7ynMaC8PrreAPO
-         S5MEYRjGCCEtFBNRvI5HSwETP4fyWJ5g1kwKk7tBYuA4uXR+perEH8uqBM9qY2cpw+ri
-         aNSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU0Tzc5GX6BT1R+lAKCrJfejs7gu4A1ISfuDxTzj3K2/uQAjqh7aBOIUqTlRb4uc0fut2lGEYNb@vger.kernel.org, AJvYcCVHZPeLqCYjOQP3TPAHjN9OabwvAX3yjw0oKVKu2moXis40NlOJnDLPFkrnWYjXjBM9h5RiCUJl4E1U@vger.kernel.org, AJvYcCX6z5FOaaugTphGsLZR7YFT+aYaojDTW8pgHI+Aq55Nqe4x7Ko5loOW+/gXSxSHaLGymikn7v5lXNcjT7v7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx46+GZDEEvpBgdNr4qM/m7FYZ1zBvL/tbPxcGiK3fyjCEmTEkO
-	AQKf1POiv1CISXxl8kK11IbSUe4nAT5n2YWY/CCChVEjx8ojpuFv
-X-Google-Smtp-Source: AGHT+IFtrw0bTSDjOUHwOCouu0KJSU1+vA+nX8p6eBupMmcRvLXscxMVgLjlJ5OaperPpo2phGpacw==
-X-Received: by 2002:a17:903:244a:b0:205:8763:6c2d with SMTP id d9443c01a7336-20fa9ea22f1mr30676555ad.9.1729668117790;
-        Wed, 23 Oct 2024 00:21:57 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7eeef535sm52795975ad.44.2024.10.23.00.21.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Oct 2024 00:21:57 -0700 (PDT)
-Date: Wed, 23 Oct 2024 15:21:36 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Inochi Amaoto <inochiama@outlook.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-Message-ID: <amg64lxjjetkzo5bpi7icmsfgmt5e7jmu2z2h3duqy2jcloj7s@nma2hjk4so5b>
-References: <20241021103617.653386-1-inochiama@gmail.com>
- <20241021103617.653386-5-inochiama@gmail.com>
- <227daa87-1924-4b0b-80db-77507fc20f19@lunn.ch>
- <gwtiuotmwj2x3d5rhfrploj7o763yjye4jj7vniomv77s7crqx@5jwrpwrlwn4s>
- <65720a16-d165-4379-a01f-54340fb907df@lunn.ch>
- <424erlm55tuorjvs2xgmanzpximvey22ufhzf3fli7trpimxih@st4yz53hpzzr>
- <66f35d1b-fd26-429b-bbf9-d03ed0c1edaf@lunn.ch>
- <zum7n3656qonk4sdfu76owfs4jk2mkjrzayd57uuoqeb6iiris@635pw3mqymqd>
- <d691a687-c0e2-48a9-bf76-d0a086aa7870@lunn.ch>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1729668451; x=1761204451;
+  h=from:to:subject:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding;
+  bh=8QvoeAYq84HcWFFGcAF42FU7PXi0chXEy68ubmj3kl8=;
+  b=qHDwvzxURovGLoPvWg+1nfZx6SLzICxvmuamhWBip2VLlsihVOr31LvT
+   CJ3+gdf5m/xTcOEV5sv201bJrFyqMatGev0ZXCW45ivj8D4afa+wfKEVi
+   nvDY41OB+rfuT6ZLpYJrVb/UvoVUPRCTr4YploRp04Nu6Kvv5Bu84cH0A
+   +bpXmEN2YeH2lv+qfuzIN1CzcHI9hGJu8Kum2Cer+yR61DVCAs0t1/kMn
+   0RDNY4e0WjuAa9pWnLL2WdcOHCqtJWot36f69D2xQKUe3CNbq2imN9Kz0
+   peuc+pKPSspAitZBDd3WE0hqwXuhEd2V+R10YLhiIRysdcGPkOY8ncCcY
+   A==;
+X-CSE-ConnectionGUID: rDH59LECStGuVPIcPtvpUw==
+X-CSE-MsgGUID: glc2ETSXSCusCZzvvITlUw==
+X-IronPort-AV: E=Sophos;i="6.11,225,1725314400"; 
+   d="scan'208";a="39615366"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 23 Oct 2024 09:27:28 +0200
+X-CheckPoint: {6718A560-36-8E59014-E6F31237}
+X-MAIL-CPID: 69246EAEBA9715DF528DC60B9732E311_1
+X-Control-Analysis: str=0001.0A682F28.6718A561.000F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 96700161479;
+	Wed, 23 Oct 2024 09:27:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1729668444; h=from:subject:date:message-id:to:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=8QvoeAYq84HcWFFGcAF42FU7PXi0chXEy68ubmj3kl8=;
+	b=HjRos3+JIqRURrrlHtwap8O7c9iftlfAa/6SI48kI10SmsVrpT8gJh3SBk2i6pZD69s0cW
+	NClUuq19LuLN0LSPXLMmnM5nT/Uhr9gGPs9S9zPNpON1WuyuDClgAe/frWL3htYHSlzFsq
+	ijX2FkP8Y1/3LLubC7SLR+5ad7ph74BJJ1tX3KF6iq8WSfeDues3BEfQByxiKeaPg8HNQm
+	YdHaHXcSMj5WTV+oZKFnxgZWe3w8XcSbwkNc0trkUpDhba1sgylqsVH5LKS3XT3NL1zSGE
+	UWaR5FPGItWmquCWPNWhOuj0/jIfbxFO+2sSte0In712T1bAg0iGtHUrTm9XmA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>, "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH 1/1] arm64: dts: freescale: mba8mx: remove undocument 'data-lanes' at panel
+Date: Wed, 23 Oct 2024 09:27:23 +0200
+Message-ID: <4606074.LvFx2qVVIh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20241022202342.1263766-1-Frank.Li@nxp.com>
+References: <20241022202342.1263766-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d691a687-c0e2-48a9-bf76-d0a086aa7870@lunn.ch>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Oct 23, 2024 at 03:08:52AM +0200, Andrew Lunn wrote:
-> On Wed, Oct 23, 2024 at 08:41:36AM +0800, Inochi Amaoto wrote:
-> > On Tue, Oct 22, 2024 at 03:51:08PM +0200, Andrew Lunn wrote:
-> > > On Tue, Oct 22, 2024 at 06:21:49PM +0800, Inochi Amaoto wrote:
-> > > > On Mon, Oct 21, 2024 at 03:27:18PM +0200, Andrew Lunn wrote:
-> > > > > > It is related to the RGMII delay. On sg2044, when the phy 
-> > > > > > sets rx-delay, the interal mac is not set the same delay, 
-> > > > > > so this is needed to be set.
-> > > > > 
-> > > > > This is the wrong way to do it. Please look at how phy-mode should be
-> > > > > used, the four different "rgmii" values. Nearly everybody gets this
-> > > > > wrong, so there are plenty of emails from me in the netdev list about
-> > > > > how it should be done.
-> > > > > 
-> > > > 
-> > > > The phy-mode is alreay set to the "rgmii-id" and a rx delay is already
-> > > > set (a default tx delay is set by the phy driver). In the scenario 
-> > > > the extra bit is used to fix 2ns difference between the sampling clock
-> > > > and data. It is more like an extra setting and the kernel can not handle
-> > > > it by only setting the phy-mode.
-> > > 
-> > > This sounds wrong.
-> > > 
-> > > So in DT you have rgmii-id? You say the PHY is doing TX delay. So you
-> > > pass PHY_INTERFACE_MODE_RGMII_TXID to the PHY? It is not clear from
-> > > this patch, i don't see any code mentioning
-> > > PHY_INTERFACE_MODE_RGMII_TXID. Could you point me at that code.
-> > > 
-> > > 	Andrew
-> > 
-> > The phy on the board I have is YT8531, The config code is here:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/motorcomm.c#n868
-> 
-> This PHY should be able to do rgmii-id, so there is no need for the
-> MAC to add delays. We encourage that setup in linux, so all RGMII
-> MAC/PHY pairs are the same, the PHY add the delays.
-> 
+Hi Frank,
 
-Yes, this is what I have done at the beginning. At first I only
-set up the phy setting and not set the config in the syscon. 
-But I got a weird thing: the phy lookback test is timeout. 
-Although the datasheet told it just adds a internal delay for 
-the phy, I suspect sophgo does something more to set this delay.
+thanks for your patch.
 
-Regards,
-Inochi
+Am Dienstag, 22. Oktober 2024, 22:23:41 CEST schrieb Frank Li:
+> 'data-lanes' is port0 of lvds bridge. Needn't set it for simple panel. Fix
+> below CHECK_DTBS warning:
+>=20
+> arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtb:
+>    panel-lvds: port:endpoint: Unevaluated properties are not allowed ('da=
+ta-lanes' was unexpected)
+>        from schema $id: http://devicetree.org/schemas/display/panel/panel=
+=2Dsimple.yaml#
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+> ---
+> I have not such hardware to test.
+> Alexander Stein:
+> 	Can you help check it?
+
+I noticed myself already. This patch fixes the warning.
+
+Best regards,
+Alexander
+
+> ---
+>  arch/arm64/boot/dts/freescale/mba8mx.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/=
+dts/freescale/mba8mx.dtsi
+> index c60c7a9e54aff..3d26b6981c06f 100644
+> --- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+> @@ -100,7 +100,6 @@ panel: panel-lvds {
+> =20
+>  		port {
+>  			panel_in_lvds: endpoint {
+> -				data-lanes =3D <1 2 3 4>;
+>  				remote-endpoint =3D <&lvds_bridge_out>;
+>  			};
+>  		};
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
