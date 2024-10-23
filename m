@@ -1,156 +1,140 @@
-Return-Path: <devicetree+bounces-114640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71B9E9AC259
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 10:56:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 719769AC283
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 11:00:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97C47B2337B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 08:56:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FD461C20CF4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256861607B7;
-	Wed, 23 Oct 2024 08:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F236F199256;
+	Wed, 23 Oct 2024 09:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/qmuNty"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Ts5wCi4U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69542AD2C;
-	Wed, 23 Oct 2024 08:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AFF4199E9A;
+	Wed, 23 Oct 2024 09:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729673765; cv=none; b=iQ5buDhHd1jxtCCT8OvgcDUazyNTWY3KmpIyLb1Mnx9nOD8WoWly9JM0ucyls1GnpTx1sZ14IuPppTdy+g12pr8Id1hfpeI0FxHGc4/u5ENJoSCT8LUv+c2RbvK5m6Bpu6UXX4cx19dDAl2CHK272wiIz1nTClFzfpLuwVS8ZEk=
+	t=1729674004; cv=none; b=qoMBL4jVb2rZ9IJPONn1NFRXxeVnVhDzoTCFmEFvS7FEMMvDut3PLLTJ0SAUJpXzK062aByU4o/LTLywo+15onH859qpEhFhESdlFknqY2+SHQwP2Re5jAoEl7ko3tWVIW5raxf4dH3a8oZ/qV8XFN+rAU5tsaN9aSIliGKKmQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729673765; c=relaxed/simple;
-	bh=A2Ad8XKRlmcqgJz2XKG/2BRiRGesInQ+3Q287IAxvGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pH0FHuThiFt3mPe/oAMZa90bm7fWiHK7TJ5D/nru19yKhj9hHZ+e2YDN0I3J6BmRibjblciVHlueHzxwH4WyhTvFu//Ep0slwOar8EZDvnjnbm9BAEE3uILXPfYnMRBfUprUVhNT2HU7ZPy+Of4mbD8KlYmxRibtHUs13g8Olvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/qmuNty; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0135DC4CEC6;
-	Wed, 23 Oct 2024 08:55:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729673764;
-	bh=A2Ad8XKRlmcqgJz2XKG/2BRiRGesInQ+3Q287IAxvGA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q/qmuNtyT7LrN6rhQ6PU2ojQHubnc+0bICeEB7M47vopejfLqckMtLsOYuYZ6YzfJ
-	 2vsMyFbSD4GZT400Nj+aNxCvHN6hcR9cZ/vjJXDWxtbh5lhGrppZPitM/0dr1d5AXG
-	 6qLn6+hp6XdQg+a+LAMhfbbAFBX2qNFaexXdWNM/FTZxcS3HNWFjpj6ultp5wKtUDC
-	 IqD8qcsnao8PC7s913E+0uldTw9lELPNyoCR4gafWw4Z2YGYQiI3V4IVT5C5AgWSnd
-	 Ipkkh31lo9jBa+FjoqDo1mVxoSmXfRIQtrVq55/7JX/1bx2WY9nyao62hAP0J6H42n
-	 eCohDE6rZz8sg==
-Message-ID: <f7064783-983a-44bd-a9db-fd20f4e50e33@kernel.org>
-Date: Wed, 23 Oct 2024 10:55:58 +0200
+	s=arc-20240116; t=1729674004; c=relaxed/simple;
+	bh=u4oK+ppGTcU7dSjV7y+6H5nQdcyYAsUQKkYiXnnfEy8=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=M7JuDayY9WfdctPDqy/fn423ev6K8MjukT7cB6EFh355C1Bsda0jUMtKK8LGsvRBwh8Sm5/OYawNYi7+AKKoPPZS7D1lvyg+c+jKYIeLDBfq5qPGH3fzMsWgsBrRkrbecC+u0oFjVuFgYscsmvQHd2c/G17qiYCZV/lB4TX5iIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Ts5wCi4U; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49N81V6Z032518;
+	Wed, 23 Oct 2024 10:59:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	u4oK+ppGTcU7dSjV7y+6H5nQdcyYAsUQKkYiXnnfEy8=; b=Ts5wCi4Us1LuKr7x
+	FkhxMlBejRiyra2bjKbcFaK2my+Zey3E/JKpZ3atkMlSgXh2EQe63v157zg5bBTp
+	dfaJGvqueS7uZmhDxmD4rd+KQNI+9vwR9HOmuYcmQ7+/gEtEup9UUf/gQijF+Yn7
+	SpXznbRHmfbviY4XW0YZg2uZr0DWZYhZHAwqLhtl0HFbztYaqwae3b9T4/hpiVsj
+	O9+rklX+4/6JxFB9CwtW7RIoDJ4G+YOFp9kfUke5JceL3eIF0V+tNIjb0E2xVKa8
+	MIXD6lG5mj1+I2WrjtFEivHGEkACFhMNw5fRtMwKhaIAcrX3OAbUL4/qA4TIJp9R
+	RU/Jgw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42em4a2abc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 23 Oct 2024 10:59:39 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 355724002D;
+	Wed, 23 Oct 2024 10:58:30 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 29FBE265534;
+	Wed, 23 Oct 2024 10:57:00 +0200 (CEST)
+Received: from [192.168.8.15] (10.48.87.33) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 23 Oct
+ 2024 10:56:59 +0200
+Message-ID: <680f3e0b7458015d5b909200342a623eb55f907d.camel@foss.st.com>
+Subject: Re: [PATCH 04/14] dt-bindings: pinctrl: stm32: add RSVD mux function
+From: Antonio Borneo <antonio.borneo@foss.st.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        =?ISO-8859-1?Q?Cl=E9ment?= Le Goffic
+	<clement.legoffic@foss.st.com>,
+        Stephane Danieau
+	<stephane.danieau@foss.st.com>,
+        Amelie Delaunay
+	<amelie.delaunay@foss.st.com>,
+        Fabien Dessenne <fabien.dessenne@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        Gatien Chevallier
+	<gatien.chevallier@foss.st.com>,
+        Cheick Traore <cheick.traore@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Date: Wed, 23 Oct 2024 10:56:57 +0200
+In-Reply-To: <swbppwzpavktjpyb6piayzzht6ta75w3g36oyndmim54oztar5@svb4452yob7g>
+References: <20241022155658.1647350-1-antonio.borneo@foss.st.com>
+	 <20241022155658.1647350-5-antonio.borneo@foss.st.com>
+	 <swbppwzpavktjpyb6piayzzht6ta75w3g36oyndmim54oztar5@svb4452yob7g>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for NETC
- blocks control
-To: Wei Fang <wei.fang@nxp.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
- <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
- Frank Li <frank.li@nxp.com>,
- "christophe.leroy@csgroup.eu" <christophe.leroy@csgroup.eu>,
- "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "horms@kernel.org" <horms@kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>
-References: <20241022055223.382277-1-wei.fang@nxp.com>
- <20241022055223.382277-4-wei.fang@nxp.com>
- <xx4l4bs4iqmtgafs63ly2labvqzul2a7wkpyvxkbde257hfgs2@xgfs57rcdsk6>
- <PAXPR04MB851034FDAC4E63F1866356B4884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <PAXPR04MB851034FDAC4E63F1866356B4884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On 23/10/2024 10:18, Wei Fang wrote:
->>> +maintainers:
->>> +  - Wei Fang <wei.fang@nxp.com>
->>> +  - Clark Wang <xiaoning.wang@nxp.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - nxp,imx95-netc-blk-ctrl
->>> +
->>> +  reg:
->>> +    minItems: 2
->>> +    maxItems: 3
->>
->> You have one device, why this is flexible? Device either has exactly 2
->> or exactly 3 IO spaces, not both depending on the context.
->>
-> 
-> There are three register blocks, IERB and PRB are inside NETC IP, but NETCMIX
-> is outside NETC. There are dependencies between these three blocks, so it is
-> better to configure them in one driver. But for other platforms like S32, it does
-> not have NETCMIX, so NETCMIX is optional.
+On Wed, 2024-10-23 at 10:47 +0200, Krzysztof Kozlowski wrote:
+> On Tue, Oct 22, 2024 at 05:56:48PM +0200, Antonio Borneo wrote:
+> > From: Fabien Dessenne <fabien.dessenne@foss.st.com>
+> >=20
+> > Document the RSVD (Reserved) mux function, used to reserve pins
+> > for a coprocessor not running Linux.
+> >=20
+> > Signed-off-by: Fabien Dessenne <fabien.dessenne@foss.st.com>
+> > Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
+> > ---
+> > =C2=A0.../devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 8 ++++++++
+> > =C2=A0include/dt-bindings/pinctrl/stm32-pinfunc.h=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
+> > =C2=A02 files changed, 9 insertions(+)
+> >=20
+>=20
+> BTW, which *existing* SoCs use it? Aren't you adding it for the new
+> platform?
+>=20
 
-But how s32 is related here? That's a different device.
+This is already used in ST downstream kernel for STM32MP15x
+In this example
+https://github.com/STMicroelectronics/linux/blob/v6.1-stm32mp/arch/arm/boot=
+/dts/stm32mp157f-dk2-m4-examples.dts#L112
 
-Best regards,
-Krzysztof
+the GPIOs for LED and for PWM are assigned to the Cortex-M4 and Linux (on C=
+ortex-A7) is not supposed to touch them.
+
+Regards,
+Antonio
+
 
 
