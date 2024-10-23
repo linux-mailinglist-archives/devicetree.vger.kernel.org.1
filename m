@@ -1,125 +1,140 @@
-Return-Path: <devicetree+bounces-114898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0C59AD592
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:35:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97FDB9AD5BD
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 22:46:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21B6C1C226AE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:35:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DDF6B22147
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 20:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BBF1D14E4;
-	Wed, 23 Oct 2024 20:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BE71AB6F8;
+	Wed, 23 Oct 2024 20:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UPvVUlf/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eyqb1hC7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F0D75809;
-	Wed, 23 Oct 2024 20:35:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C5C13B59E;
+	Wed, 23 Oct 2024 20:46:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729715712; cv=none; b=KdPiZGaCAzJa9UOZaBbPLhCuhZtq3tRFmhhfq6VRGL+BUBazcsgNT8FBt5PwR5Wnhhm5spq4sn2gy486WXmPHeQq+wvt7OP+t2Kkw5cCnaP1Czv0pdDDcCBWCJr9OQibAobIy9lqVxmzFpJO5Af3hyumjy+cI2lKgN3t21tglQM=
+	t=1729716389; cv=none; b=ZFT4LhMfvIDuLZTe47tRspopwHeRYcZzz9DL8VVmF2fy8yJweeb49KJcyg2lHuuGrUNZqNf+Kd6uNXSm6fZ8phyv4/A7VwjudyUWsX0iiGifCqfD05mI4uvcAmikiOBGrsLcyaPGoKHznWU7yQEhlGzCfioSTaz4e0/7qgf8fGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729715712; c=relaxed/simple;
-	bh=SQRpUhcDzsAv3OqYqZzBoLiJktFW/ICG/wyiLq793cA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=QfM3oBoutUNpBxwvfgA1L/mcnI6R1lATTxlqFxi6RD76CE/x5MOjUWeijFP4zcux7WMmq3PgQojLbeQd5RxVEsuJ37EfnVXOuLaxqsH2sUOvCz4UQn/aj3cNZPtFAV0IB0rU6c2qU6pEHCGypF/sKJIQYLbMHsGCe8UK2VVmUxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UPvVUlf/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F76CC4CEC6;
-	Wed, 23 Oct 2024 20:35:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729715711;
-	bh=SQRpUhcDzsAv3OqYqZzBoLiJktFW/ICG/wyiLq793cA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=UPvVUlf/F3miqjlJpUtGZ42x9NLaX3gTFHxlA8CrIRSQIDU7sbsvzyG+OlUcBQNU7
-	 8vWpcyW/3Hyeq096UG2Nb0FdHDL+F/SzpeiSC2IoiCUxzTksGSa4UgF9sE8uGNjupl
-	 m/xrmHIHRezPRNdplMIHyay5kBlr15VSi9GAdawk1GVRCV2ri2BXYp5X94lMLjqMBA
-	 h5Wb1oaSnHZaMj9safq38/gFlseBQllYRF4u7bhhkBEpWMdNFwN4u7OcZbtwxuouI7
-	 otSraztNw3OkMJmD2fpiZNL/4fOFqFSUUFkzNypCyCQbQGBsye1oo4Z49A6cNcxq96
-	 fJ+RoyuWLwNTg==
-Date: Wed, 23 Oct 2024 15:35:10 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1729716389; c=relaxed/simple;
+	bh=VE5faDGuulpA16bqytPHh+8rqbJzyZavDCJhycCNVO0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MOqcrri0jkiEKX0vhqcp51V3oLB7ZgLILUHr4ExM/AnU5OcxlmWM5ST9lTkDdBE30Oq6ETDZ0ttzxw1A2xx3IZa4BQApIOUtwqcrXpYZFaB+JBw8KgorVNKbRVjXTavacXl7YsoJGKfAGds8fWDFys1sVjbZpHL1+VdRkAReKOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eyqb1hC7; arc=none smtp.client-ip=209.85.166.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-8323b555a6aso7846839f.3;
+        Wed, 23 Oct 2024 13:46:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729716387; x=1730321187; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4Q9Fmtv1jhqmPQxhPj7GzThFbrtRvvOEog4jX1mozHs=;
+        b=eyqb1hC72NFyfzMwHYUNq8DdyinYXmcxlRxwGnmynvprDG6Qf2QMtGAmac/7PlR467
+         ExQc5DXbcTS9d63kbrt0641s9KgdWBSDuPEXQXRqohJExHb6nMQ5hIsI+y38vQL4C/Wz
+         P7jsvoOJlH9D/HhE/jnWvlKxjnU7kt9TwvyMbSUvwO1TWVJ20kv93y3NEbjy3IdJsHTl
+         SfqTf4l93CTYItlz+oCKcDGmk5g+zGzgcXYaW8f6qwkyRleQHgTD6ZvbAxW+5O6TODf5
+         xpbKPOSiRJ9iHRlR661kND/EUvs78Gfto2L/alBQs1MnorFx17KYf8Pk/ieExfizJZiA
+         2U1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729716387; x=1730321187;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4Q9Fmtv1jhqmPQxhPj7GzThFbrtRvvOEog4jX1mozHs=;
+        b=PMT5stGCpQalMbEsfFG03JW5C4sNzxoHFZF4X6q1AL9dNr8S8rcuFEEYYMJIF7z3Mf
+         qac4tQ81D2t1lblOHbDf5bAl8Ykl93CgsRPr5qELRu4G3MkGukqxTav8nDUu/RFCtjPU
+         HaH9fENVNIRKWj3lt9UrUuj5XG3+Vi9F4uCwOUxbGgnBX9gY8CEY1MbGuMdN4YvBPQv6
+         mXi1fb8Ovs7B682F8jdVCguaTHFYgGD2rIvT4qEbAsdLAsZEct8RKC9Tjn3QSZXPksmY
+         YYoktMMPnfYm1zXkhKI3VIDUnAAna+fhcziQZ6gFIb7AmhKiy2YS31T6Q8AH129yCnn/
+         iGEw==
+X-Forwarded-Encrypted: i=1; AJvYcCWhwUpE9+DeHWduz6w0y6CpXlfGM26NeLbWjd2eHISs+6hURBtYuLeBDim5G+vKhslpRQ90+mPZ35zC9kIf@vger.kernel.org, AJvYcCWzRe0+GVMFMYiXxNmuFK+yiEyXAnVIjp15obAa579VwxbdAxM4xpzDxAXSWXl3As7uJz+br2J+E9uXWBwikg==@vger.kernel.org, AJvYcCXD204IZOl6qjv30H+P826HqFVNJ0jJxojme+PFGwAXQWoVawRkJ8I6qbdauvavHenSLPo51mAE+xMn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/Tc5eBfnOfita/tGP3V78E/jOJ9En/+Cj3y6JX0nR7NkaEg9R
+	nDQo0uFiKjCdoOw0DZR1ijO2DnkLTlsIe68YkFhZoh+pj6kb32oofjCzfat8vFojNLZYUwo2mTv
+	M+M4W4CBAIAP6mb7EVKGhMw+C1II=
+X-Google-Smtp-Source: AGHT+IHoQOEizYcj7tAixtp4PTHw4bzgJdfZ39CRrv3g6b0UEB4bcHATl1XYABgvefhFHa8Sg1I3z+Hc0eB/FkZBbQU=
+X-Received: by 2002:a92:ca0a:0:b0:3a3:40f0:cb8c with SMTP id
+ e9e14a558f8ab-3a4d59bbc12mr49771975ab.17.1729716387128; Wed, 23 Oct 2024
+ 13:46:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
- Sebastian Reichel <sre@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Pavel Machek <pavel@ucw.cz>, linux-input@vger.kernel.org, 
- linux-pm@vger.kernel.org, linux-leds@vger.kernel.org
-In-Reply-To: <20241023-starqltechn_integration_upstream-v7-2-9bfaa3f4a1a0@gmail.com>
-References: <20241023-starqltechn_integration_upstream-v7-0-9bfaa3f4a1a0@gmail.com>
- <20241023-starqltechn_integration_upstream-v7-2-9bfaa3f4a1a0@gmail.com>
-Message-Id: <172971571004.1852226.15537632667573865513.robh@kernel.org>
-Subject: Re: [PATCH v7 2/7] dt-bindings: mfd: add maxim,max77705
+References: <20240911073337.90577-1-quic_sibis@quicinc.com> <f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
+In-Reply-To: <f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Wed, 23 Oct 2024 13:46:15 -0700
+Message-ID: <CAF6AEGvgnW5VTZYFzwiMChB4-2cShmBvMcfgQVbcCiOgH6e3Yg@mail.gmail.com>
+Subject: Re: [PATCH 0/2] X1E001DE Snapdragon Devkit for Windows
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
+	robh+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	conor+dt@kernel.org, abel.vesa@linaro.org, srinivas.kandagatla@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Oct 23, 2024 at 4:07=E2=80=AFAM Sibi Sankar <quic_sibis@quicinc.com=
+> wrote:
+>
+>
+>
+> On 9/11/24 13:03, Sibi Sankar wrote:
+> > Add initial support for X1E001DE Snapdragon Devkit for Windows. X1E001D=
+E
+> > is the speed binned variant of X1E80100 that supports turbo boost up to
+> > 4.3 Ghz. The initial support includes the following:
+> >
+> > -DSPs
+> > -Ethernet (RTL8125BG) over the pcie 5 instance.
+> > -NVme
+> > -Wifi
+> > -USB-C ports
+> >
+>
+> Hi All,
+>
+> With the X1E Devkit cancelled and with no firmware updates promised for
+> it perpetually, please chime in and let me know if you still want to get
+> this series and rest (external-dp, usb-A ports, sd card slot and 3.5 mm
+> Jack) merged and have it supported upstream for the folks who already
+> received it!
 
-On Wed, 23 Oct 2024 22:42:50 +0300, Dzmitry Sankouski wrote:
-> Add maxim,max77705 core binding part.
-> 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> ---
-> Changes in v6:
-> - unevaluatedProperties must be false
-> - drop excessive sentence from description,
->   just describe the device
-> - change leds compatible to maxim,max77705-rgb
-> 
-> Changes in v5:
-> - formatting changes
-> - add unevaluatedProperties: false for nodes referencing
->   common schemas
-> - remove additionalProperties on nodes with
->   unevaluatedProperties: false
-> - add min and max to led index
-> Changes in v4:
-> - change dts example intendation from tabs
->  to spaces
-> - remove interrupt-names property
-> - remove obvious reg description
-> - split long(>80) lines
-> ---
->  Documentation/devicetree/bindings/mfd/maxim,max77705.yaml | 174 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  MAINTAINERS                                               |   1 +
->  2 files changed, 175 insertions(+)
-> 
+(a) would the firmware update situation have been _that_ much better
+if it wasn't cancelled?  And (b) we do have dts upstream for other
+canceled boards.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+My $0.02 is that it is still useful
 
-yamllint warnings/errors:
+BR,
+-R
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/maxim,max77705.example.dtb: pmic@66: leds:compatible:0: 'maxim,max77705-rgb' was expected
-	from schema $id: http://devicetree.org/schemas/mfd/maxim,max77705.yaml#
-Documentation/devicetree/bindings/mfd/maxim,max77705.example.dtb: /example-0/i2c/pmic@66/leds: failed to match any schema with compatible: ['maxim,max77705-led']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241023-starqltechn_integration_upstream-v7-2-9bfaa3f4a1a0@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> -Sibi
+>
+> > Link: https://www.qualcomm.com/news/releases/2024/05/qualcomm-accelerat=
+es-development-for-copilot--pcs-with-snapdrago
+> >
+> > Sibi Sankar (2):
+> >    dt-bindings: arm: qcom: Add Snapdragon Devkit for Windows
+> >    arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for Windows
+> >
+> >   .../devicetree/bindings/arm/qcom.yaml         |   6 +
+> >   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >   arch/arm64/boot/dts/qcom/x1e001de-devkit.dts  | 813 +++++++++++++++++=
++
+> >   3 files changed, 820 insertions(+)
+> >   create mode 100644 arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+> >
+>
 
