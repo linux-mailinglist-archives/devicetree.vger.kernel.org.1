@@ -1,152 +1,343 @@
-Return-Path: <devicetree+bounces-114446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD77E9ABA92
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 02:33:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F92D9ABA9A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 02:38:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75470284AA0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:33:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3EDF1F23DF9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 00:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF97E12B73;
-	Wed, 23 Oct 2024 00:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA4517C91;
+	Wed, 23 Oct 2024 00:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N9K4/1Ce"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="vR98cs1s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42EB9DDAD;
-	Wed, 23 Oct 2024 00:33:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207CB125D5;
+	Wed, 23 Oct 2024 00:38:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729643584; cv=none; b=BUG8TBuIkoDT2Pr0DRQwbn/k2ippffgqWFUkaNDEUH9XzpI7lpegsUBEYRTAIHd/tXXBnEdHlt53RCtRAMPZFGEm/UxDQHvIX4cK/tHu8TG3LjFaj7fAeRKnVd4rMaohvL9SRJk5mdBS2WmVNZ5AogxdQeFlKJNt4lQvMbq96iA=
+	t=1729643926; cv=none; b=crUBh/9acIuBPCmqHJh9h9XmiGejWb5e77IJN5IggkFc2amw4nxhXaBe2TrD0+BrU1EULnCgz02aTNPtTweK9255SjCCRLTLcsXymvNn9yuj/mQJ6Abvv/aul2DtkW5ltBVuIlaR5YTX3whv4+QmtoOg3ze/Gu1qPKV820A/JRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729643584; c=relaxed/simple;
-	bh=orW1M1HCJnfVDdum5Jk/N9vrFVJJLM+CIBZgcfA68UA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hAxhSqvnW6UUnXYSj1UX/72JlxYEhmrPQ2NAIiXEsCpTKBuBa19+XMxNb3Df9+jslNOctbq5SCGKSwDr6/wLxCbAsKkrpZnlg/lLJg47Kd2luuFchSGVu8F8/mvGTQqh7KZeglWnVaIXbeu+EdGYQkKb/ENK2eyWqHElmooGrAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N9K4/1Ce; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-20cdda5cfb6so64497605ad.3;
-        Tue, 22 Oct 2024 17:33:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729643582; x=1730248382; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7GwFa/KXD9udMqNOk/17VTw0JX40rEFnM+9r84c/Z+c=;
-        b=N9K4/1CePPy3rhkt1KEP/D2EbZzyrsuc317GYP4vxgsIzjiiz7UDZjgaPn7KcM7EP1
-         gQm5P3ZnCYLJK6d40rLkeyFNSdoaXyorPiF8ROWrC6GS7QNBMZJcxGkdxEBdQbOYdMC3
-         dbtx8M7Yw0qI7yrLbH1oaJMW/iEtaw8mKG4YU3HjTAb3ElWA9hLocXG+ca6hrBhe1ICr
-         Ac1rnTPABXq/X+6WypAWVqOIPEVyD/T8+hVuL0XcNdARIfAV+Ld0SMxryvhw4i7lZOS9
-         8C/r7TLX+QotHNHh2IK3KKs40q6Zkgqw9Wq8adRGryA4NPFy+8ybMP8hGfYIxH+ke744
-         +EYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729643582; x=1730248382;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7GwFa/KXD9udMqNOk/17VTw0JX40rEFnM+9r84c/Z+c=;
-        b=DCPpZKdbHWBfpXhfeLb2FRK4ymIzV5PJ3cYTnyGdJGqfOy7gfYgjqP03GCmcqNqccg
-         L0o6NDHQ9d7oFGyVzo/TMFwuLr7k/Y3GcQqM6v2GrfRuf3LLGFl6fFvf0EMwrHvfC0zj
-         iPDpoPm03d9z9ID0Oz+JEODY7RW53vs2kFIIiP7s67TrvNVO3pnXmvUWDSVRcBdjzwYa
-         Vo9cPBaePEiyx6kQ/WbMoH7/pIfrndR+4hcNgF6HteBQMISo29Yq+aJdxUtRIsuV3LYR
-         OfRfNDf1K8r6x11JgIeRNYrSx1oMFpgtYu6g5T3eO7Y7L29kJRAULbBKiDA19Otthfu8
-         P9Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCUKAX9PsU8a6liCW6WdpH5cL3LYW20X47h6I/cVK1GBVI6WNGz5day8YeD08k0Xst8UTEyUH3e+E2oD@vger.kernel.org, AJvYcCUPzwwTOEYFd1nwjpzEZrJnOfEbDAeqNlfhZ8O4wjW4loPpCkd0Ye/VWv5Xkow/gMnVHa1K5k6Ex1A36Iby@vger.kernel.org, AJvYcCWDSnuVn05wGIxRa4mqwbPCkk0e9UQkb86r1ELtrBAIJAlsaFGcU0YpJpQeUwRByDQZW67zOJgA/u9hMQgy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwB3GLn0QVAyFSgXh/otggYg2Cf1Qgj/kbNwfShaelnpvmOSzQP
-	YLBvs53f9XPXW/xggCEgMCagqJn0DcTmqm5WXZMB4uZMYUqTGjXj
-X-Google-Smtp-Source: AGHT+IHAY4TNmt69KkJHUwnXiPYb1f/Y1IUPucStfdWvNs0yInAp9Vjs+QAiNb2Jmb4WvpYofxCllg==
-X-Received: by 2002:a17:902:fc4f:b0:20c:a7d8:e436 with SMTP id d9443c01a7336-20fa9de929dmr13076305ad.4.1729643582441;
-        Tue, 22 Oct 2024 17:33:02 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7eee67b7sm48341985ad.41.2024.10.22.17.33.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 17:33:01 -0700 (PDT)
-Date: Wed, 23 Oct 2024 08:32:42 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Inochi Amaoto <inochiama@outlook.com>, 
-	Yixun Lan <dlan@gentoo.org>, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: snps-dw-apb-uart: Add Sophgo
- SG2044 uarts
-Message-ID: <e32xi34m4lubrquluk7uu6nvqgarnxtmj57ricxg2gv45xpgcs@x6t7itvwng4h>
-References: <20241021072606.585878-1-inochiama@gmail.com>
- <20241021072606.585878-2-inochiama@gmail.com>
- <20241021-outlying-washday-8f171dedc703@spud>
- <r5ngs2j776jcy6sfirwzmtsoljotatfvgmlmv4sj4xksye2bff@xtn7adafbpfz>
- <20241021-rosy-drove-1ae3c8985405@spud>
- <2zawe64brm3sfuslh443352wfupgnhb4xw7jragkzxu6kgg6t7@b4qiya3jdij4>
- <20241022-washday-glass-3db9f6a2cd27@spud>
+	s=arc-20240116; t=1729643926; c=relaxed/simple;
+	bh=hrgpu3cOSB+R1AJLvSRhSuSGxBgSV2eSaq0b+XgfTbk=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ICRhNwuI9gkWyfA2G2N3wXrRK7G4ZV6rHHaqVsAGyd+a+hlzgXF4ziUoaHyJ0RW0kP4kF/J+4Toh9cX2c57Cl97kAVaPl5PxEXTwdOl+9Ap7bA16zwN5eEnrruKNOYOWZJpBbVDX6Ph59BCbYN/ax6zq9UWiOyHsNgTEqOhTExo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=fail smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=vR98cs1s; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241022-washday-glass-3db9f6a2cd27@spud>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1729643921;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qOVebJrCvmpcO1ewjVRYqAMFpd0aJElLelEp+Ctmpwg=;
+	b=vR98cs1soCw804DUAkmxwkByateE682auq2UPOsZgO5jy2zPM3b5YtJOpPnKznpmacCgSt
+	gSXmRp6Qmf3QrITffaI1a+I/EuxFYT7r2nJzcwnrkkZtsbpPAQgLobyEHFjr6m09Aa6rfJ
+	tGn6iMqNoe5kvp+uSVZrXUyf0l+EPLf/YivODSdj9Ny6nuTyUyutyXcuG5VDCd4GGV/VVY
+	dqKPRMUw4AXmPnHm0TtrIyOuwH8V9XLzwJo3phFYm28dtV2V+8rz+lefI2Ut6ww9zm2n9F
+	lM9IG0Ma6xaKO/ylraj6s2FojFWbw5cNsBOsh5Nhvi7ZmYti/Ka7RNIk0GnZlQ==
+Date: Wed, 23 Oct 2024 02:38:41 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, TL Lim <tllim@pine64.org>, Marek Kraus
+ <gamiee@pine64.org>, Tom Cubie <tom@radxa.com>, Nicolas Frattaroli
+ <frattaroli.nicolas@gmail.com>, Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add new SoC dtsi for the
+ RK3566T variant
+In-Reply-To: <1663957A755BE820+acc57e45-954f-4b33-90fb-47f97815db96@radxa.com>
+References: <cover.1728752527.git.dsimic@manjaro.org>
+ <95fc64aaf6d3ac7124926bcb0c664406b4e5fe3d.1728752527.git.dsimic@manjaro.org>
+ <CE605641E53903DC+0f0ea6b2-9423-4aa2-ac9d-652a9ac5c237@radxa.com>
+ <ce54f171dfb145ce85d9a0192562e174@manjaro.org>
+ <850ad8c6645b4c54bcecb7df79f9ab3a@manjaro.org>
+ <1663957A755BE820+acc57e45-954f-4b33-90fb-47f97815db96@radxa.com>
+Message-ID: <2f93395f7b837ee73ad9441d10e8dbe4@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Tue, Oct 22, 2024 at 06:25:00PM +0100, Conor Dooley wrote:
-> On Mon, Oct 21, 2024 at 08:23:30PM +0800, Inochi Amaoto wrote:
-> > On Mon, Oct 21, 2024 at 01:21:58PM +0100, Conor Dooley wrote:
-> > > On Mon, Oct 21, 2024 at 08:18:58PM +0800, Inochi Amaoto wrote:
-> > > > On Mon, Oct 21, 2024 at 01:10:52PM +0100, Conor Dooley wrote:
-> > > > > On Mon, Oct 21, 2024 at 03:26:05PM +0800, Inochi Amaoto wrote:
-> > > > > > The UART of SG2044 is modified version of the standard Synopsys
-> > > > > > DesignWare UART. The UART on SG2044 relys on the internal divisor
-> > > > > > and can not set right clock rate for the common bitrates.
-> > > > > > 
-> > > > > > Add compatibles string for the Sophgo SG2044 uarts.
-> > > > > > 
-> > > > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > > > > > ---
-> > > > > >  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 ++++
-> > > > > >  1 file changed, 4 insertions(+)
-> > > > > > 
-> > > > > > diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > > > index 4cdb0dcaccf3..6963f89a1848 100644
-> > > > > > --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> > > > > > @@ -58,6 +58,10 @@ properties:
-> > > > > >                - brcm,bcm11351-dw-apb-uart
-> > > > > >                - brcm,bcm21664-dw-apb-uart
-> > > > > >            - const: snps,dw-apb-uart
-> > > > > > +      - items:
-> > > > > > +          - enum:
-> > > > > > +              - sophgo,sg2044-uart
-> > > > > > +          - const: snps,dw-apb-uart
-> > > > > 
-> > > > > Why does each vendor have an items entry of its own? Seems like needless
-> > > > > clutter of the file IMO, except for the renesas bit.
-> > > > 
-> > > > I just follow others when writing this binding. I think it may need
-> > > > another patch to fix this problem, right?
-> > > 
-> > > Yeah. But I'd hold off to see if someone gives a rationale for it being
-> > > done this way before sending that. I've not deleted this thread, and
-> > > will send an ack if someone justifies why the binding is written like
-> > > this.
+Hello Fukaumi,
+
+On 2024-10-23 01:30, FUKAUMI Naoki wrote:
+> On 10/23/24 05:13, Dragan Simic wrote:
+>> On 2024-10-14 07:16, Dragan Simic wrote:
+>>> On 2024-10-14 06:38, FUKAUMI Naoki wrote:
+>>>> On 10/13/24 02:04, Dragan Simic wrote:
+>>>>> Add new SoC dtsi file for the RK3566T variant of the Rockchip 
+>>>>> RK3566 SoC.
+>>>>> The difference between the RK3566T variant and the "full-fat" 
+>>>>> RK3566 variant
+>>>>> is in fewer supported CPU and GPU OPPs on the RK3566T, and in the 
+>>>>> absence of
+>>>>> a functional NPU, which we currently don't have to worry about.
+>>>>> 
+>>>>> Examples of the boards based on the RK3566T include the Pine64 
+>>>>> Quartz64 Zero
+>>>>> SBC, [2] the Radxa ROCK 3C and the Radxa ZERO 3E/3W SBCs. 
+>>>>> Unfortunately,
+>>>>> Radxa doesn't mention the use of RK3566T officially, but its 
+>>>>> official SBC
+>>>>> specifications do state that the maximum frequency for the 
+>>>>> Cortex-A55 cores
+>>>>> on those SBCs is lower than the "full-fat" RK3566's 1.8 GHz, which 
+>>>>> makes
+>>>>> spotting the presence of the RK3566T SoC variant rather easy. 
+>>>>> [3][4][5]  An
+>>>>> additional, helpful cue is that Radxa handles the CPU and GPU OPPs 
+>>>>> for the
+>>>>> RK3566T variant separately in its downstream kernel. [6]
+>>>>> 
+>>>>> The CPU and GPU OPPs supported on the RK3566T SoC variant are taken 
+>>>>> from the
+>>>>> vendor kernel source, [1] which uses the values of the 
+>>>>> "opp-supported-hw" OPP
+>>>>> properties to determine which ones are supported on a particular 
+>>>>> SoC variant.
+>>>>> The actual values of the "opp-supported-hw" properties make it 
+>>>>> rather easy
+>>>>> to see what OPPs are supported on the RK3566T SoC variant, but 
+>>>>> that, rather
+>>>>> unfortunately, clashes with the maximum frequencies advertised 
+>>>>> officially
+>>>>> for the Cortex-A55 CPU cores on the above-mentioned SBCs. 
+>>>>> [2][3][4][5]  The
+>>>>> vendor kernel source indicates that the maximum frequency for the 
+>>>>> CPU cores
+>>>>> is 1.4 GHz, while the SBC specifications state that to be 1.6 GHz. 
+>>>>> Unless
+>>>>> that discrepancy is resolved somehow, let's take the safe approach 
+>>>>> and use
+>>>>> the lower maximum frequency for the CPU cores.
+>>>>> 
+>>>>> Update the dts files of the currently supported RK3566T-based 
+>>>>> boards to use
+>>>>> the new SoC dtsi for the RK3566T variant.  This actually takes the 
+>>>>> CPU cores
+>>>>> and the GPUs found on these boards out of their earlier overclocks, 
+>>>>> but it
+>>>>> also means that the officially advertised specifications 
+>>>>> [2][3][4][5] of the
+>>>>> highest supported frequencies for the Cortex-A55 CPU cores on these 
+>>>>> boards
+>>>>> may actually be wrong, as already explained above.
+>>>>> 
+>>>>> The correctness of the introduced changes was validated by 
+>>>>> decompiling and
+>>>>> comparing all affected board dtb files before and after these 
+>>>>> changes.
+>>>>> 
+>>>>> [1] 
+>>>>> https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed561650be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>>>>> [2] https://wiki.pine64.org/wiki/Quartz64
+>>>>> [3] 
+>>>>> https://dl.radxa.com/rock3/docs/hw/3c/radxa_rock3c_product_brief.pdf
+>>>>> [4] 
+>>>>> https://dl.radxa.com/zero3/docs/hw/3e/radxa_zero_3e_product_brief.pdf
+>>>>> [5] 
+>>>>> https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_product_brief.pdf
+>>>>> [6] 
+>>>>> https://github.com/radxa/kernel/commit/2dfd51da472e7ebb5ef0d3db78f902454af826b8
+>>>>> 
+>>>>> Cc: TL Lim <tllim@pine64.org>
+>>>>> Cc: Marek Kraus <gamiee@pine64.org>
+>>>>> Cc: Tom Cubie <tom@radxa.com>
+>>>>> Cc: FUKAUMI Naoki <naoki@radxa.com>
+>>>>> Helped-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+>>>>> Helped-by: Jonas Karlman <jonas@kwiboo.se>
+>>>>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>>>>> ---
+>>>>>   .../dts/rockchip/rk3566-radxa-zero-3.dtsi     |  2 +-
+>>>>>   .../boot/dts/rockchip/rk3566-rock-3c.dts      |  2 +-
+>>>>>   arch/arm64/boot/dts/rockchip/rk3566t.dtsi     | 90 
+>>>>> +++++++++++++++++++
+>>>>>   3 files changed, 92 insertions(+), 2 deletions(-)
+>>>>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+>>>>> 
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi 
+>>>>> b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+>>>>> index de390d92c35e..1ee5d96a46a1 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+>>>>> @@ -3,7 +3,7 @@
+>>>>>   #include <dt-bindings/gpio/gpio.h>
+>>>>>   #include <dt-bindings/leds/common.h>
+>>>>>   #include <dt-bindings/soc/rockchip,vop2.h>
+>>>>> -#include "rk3566.dtsi"
+>>>>> +#include "rk3566t.dtsi"
+>>>> 
+>>>> could you drop this change for now?
+>>> 
+>>> This patch is also going to be used for the upcoming board dts
+>>> for the Pine64 Quartz64 Zero, so there's no need for dropping it.
+>>> The Quartz64 Zero definitely uses the RK3566T.
+>>> 
+>>>> We (Radxa) think we use RK3566.
+>>> 
+>>> Well, the available documentation for the Radxa ROCK 3C and ZERO
+>>> 3E/3W boards doesn't say so; instead, everything points to the
+>>> RK3566T being used.  The referenced commit in the Radxa downstream
+>>> kernel also indicates that RK3566T is used at least on some boards.
+>>> 
+>>> Also, some independent testing, by reading the efuses, has showed
+>>> that at least some ROCK 3C and ZERO 3E/3W boards actually have the
+>>> RK3566T, which means that we should handle them all as having the
+>>> RK3566T, to avoid overclocking the CPU cores and the GPU.  I'll
+>>> get back to this below.
+>>> 
+>>>> and vendor kernel[6] refers efuse value to determine it's -T or not.
+>>>> can you do similar way?
+>>> 
+>>> Unfortunately not at the moment, because that would require major
+>>> changes to the way OPPs are handled in the upstream kernel.  Maybe
+>>> we can do that at some point in the future, as part of my planned
+>>> work on supporting SoC binning.
+>>> 
+>>> With that in place, hopefully, we could handle any ROCK 3C and ZERO
+>>> 3E/3W boards that actually have the "full-fat" RK3566 variant as
+>>> such, but until then, it's much safer to treat them all as having
+>>> the RK3566T, and avoid the possible overclocking.
+>> 
+>> Just checking, and having the subsequent discussion on IRC in mind,
+>> are you fine with the above-proposed approach?  Please let me know
+>> if some further clarification is needed.
 > 
-> Well, Rob doesn't think they should be separate so please add that
-> additional patch in your next version.
-> 
-> Thanks,
-> Conor.
+> we have no objection. please do safer way.
 
-It is OK for me. I will add a fix patch in the next version. Can
-I add you with suggested-by tag in this fix patch?
+Great, thanks!  It's better to be on the safe side, until we get
+the full support for SoC binning in the upstream kernel.
 
-Regards,
-Inochi
+>>>>>   / {
+>>>>>       chosen {
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts 
+>>>>> b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+>>>>> index f2cc086e5001..9a8f4f774dbc 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+>>>>> @@ -5,7 +5,7 @@
+>>>>>   #include <dt-bindings/leds/common.h>
+>>>>>   #include <dt-bindings/pinctrl/rockchip.h>
+>>>>>   #include <dt-bindings/soc/rockchip,vop2.h>
+>>>>> -#include "rk3566.dtsi"
+>>>>> +#include "rk3566t.dtsi"
+>>>> 
+>>>> same here.
+>>>> 
+>>>>>   / {
+>>>>>       model = "Radxa ROCK 3C";
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566t.dtsi 
+>>>>> b/arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+>>>>> new file mode 100644
+>>>>> index 000000000000..cd89bd3b125b
+>>>>> --- /dev/null
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+>>>>> @@ -0,0 +1,90 @@
+>>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>>> +
+>>>>> +#include "rk3566-base.dtsi"
+>>>>> +
+>>>>> +/ {
+>>>>> +    cpu0_opp_table: opp-table-0 {
+>>>>> +        compatible = "operating-points-v2";
+>>>>> +        opp-shared;
+>>>>> +
+>>>>> +        opp-408000000 {
+>>>>> +            opp-hz = /bits/ 64 <408000000>;
+>>>>> +            opp-microvolt = <850000 850000 1150000>;
+>>>>> +            clock-latency-ns = <40000>;
+>>>>> +        };
+>>>>> +
+>>>>> +        opp-600000000 {
+>>>>> +            opp-hz = /bits/ 64 <600000000>;
+>>>>> +            opp-microvolt = <850000 850000 1150000>;
+>>>>> +            clock-latency-ns = <40000>;
+>>>>> +        };
+>>>>> +
+>>>>> +        opp-816000000 {
+>>>>> +            opp-hz = /bits/ 64 <816000000>;
+>>>>> +            opp-microvolt = <850000 850000 1150000>;
+>>>>> +            clock-latency-ns = <40000>;
+>>>>> +            opp-suspend;
+>>>>> +        };
+>>>>> +
+>>>>> +        opp-1104000000 {
+>>>>> +            opp-hz = /bits/ 64 <1104000000>;
+>>>>> +            opp-microvolt = <900000 900000 1150000>;
+>>>>> +            clock-latency-ns = <40000>;
+>>>>> +        };
+>>>>> +
+>>>>> +        opp-1416000000 {
+>>>>> +            opp-hz = /bits/ 64 <1416000000>;
+>>>>> +            opp-microvolt = <1025000 1025000 1150000>;
+>>>>> +            clock-latency-ns = <40000>;
+>>>>> +        };
+>>>>> +    };
+>>>>> +
+>>>>> +    gpu_opp_table: opp-table-1 {
+>>>>> +        compatible = "operating-points-v2";
+>>>>> +
+>>>>> +        opp-200000000 {
+>>>>> +            opp-hz = /bits/ 64 <200000000>;
+>>>>> +            opp-microvolt = <850000 850000 1000000>;
+>>>>> +        };
+>>>>> +
+>>>>> +        opp-300000000 {
+>>>>> +            opp-hz = /bits/ 64 <300000000>;
+>>>>> +            opp-microvolt = <850000 850000 1000000>;
+>>>>> +        };
+>>>>> +
+>>>>> +        opp-400000000 {
+>>>>> +            opp-hz = /bits/ 64 <400000000>;
+>>>>> +            opp-microvolt = <850000 850000 1000000>;
+>>>>> +        };
+>>>>> +
+>>>>> +        opp-600000000 {
+>>>>> +            opp-hz = /bits/ 64 <600000000>;
+>>>>> +            opp-microvolt = <900000 900000 1000000>;
+>>>>> +        };
+>>>>> +
+>>>>> +        opp-700000000 {
+>>>>> +            opp-hz = /bits/ 64 <700000000>;
+>>>>> +            opp-microvolt = <950000 950000 1000000>;
+>>>>> +        };
+>>>>> +    };
+>>>>> +};
+>>>>> +
+>>>>> +&cpu0 {
+>>>>> +    operating-points-v2 = <&cpu0_opp_table>;
+>>>>> +};
+>>>>> +
+>>>>> +&cpu1 {
+>>>>> +    operating-points-v2 = <&cpu0_opp_table>;
+>>>>> +};
+>>>>> +
+>>>>> +&cpu2 {
+>>>>> +    operating-points-v2 = <&cpu0_opp_table>;
+>>>>> +};
+>>>>> +
+>>>>> +&cpu3 {
+>>>>> +    operating-points-v2 = <&cpu0_opp_table>;
+>>>>> +};
+>>>>> +
+>>>>> +&gpu {
+>>>>> +    operating-points-v2 = <&gpu_opp_table>;
+>>>>> +};
 
