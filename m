@@ -1,211 +1,668 @@
-Return-Path: <devicetree+bounces-114598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3E319AC09D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:47:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979B59AC0A5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 09:51:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0703B23CB0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:47:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C2431F251A0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Oct 2024 07:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20661553AB;
-	Wed, 23 Oct 2024 07:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B9F1553AB;
+	Wed, 23 Oct 2024 07:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OGOphGwd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uMZ9Zw+R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E96154BE2
-	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 07:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A762F146A79
+	for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 07:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729669654; cv=none; b=k6FK5rpztEsAKZtxgbcacd4lOBanAuImBFHid7WGS4IEP2vq7dyrxZRv7MnJmDJWUqFWZYt2TdQhHwyfe+R/ZK2Hit2/6eLTS/oYA7EWRRW6FJdlnCoypTdZXu8Qstu66sJFw0yPqQru9uqoDE3hkg0ay5+Wd7J7U/9o6XbuG3A=
+	t=1729669869; cv=none; b=RJ0510+ucQ9y/9jR559rpoJJKfy9yfX56H1rqLQMw9hoxJHZtneptIiiyWmJvqK67NB2HGIkjlGeZ5L+zbDrFPv5gL6spdVjnT6QXAI0HDXTDwtV6RoWBQHOPtlD7SGzaJyMHTh05uu2SP2ZuD39MZdoGlxKkJmCkPX11sTCmZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729669654; c=relaxed/simple;
-	bh=OPrpcQJDgs8gdfYvAvpq6/72ypK5w3kzZcbsYHZW0pc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=SNAY2p7FBrtNR+NuZtRPwyMemhfSEiOHbChvNbE6v17PM7c/yvz/2Bxb5IMRI5lid7lQBR21lK5QczeldjB2SpORmF7J1qNie5aOeAg6Sdhl0D2bw2waQu+tT/67RQqHWT423Soac9Q/mfRZ0ONBa8G8sPpJuUPt70PqUDpbEAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OGOphGwd; arc=none smtp.client-ip=209.85.221.43
+	s=arc-20240116; t=1729669869; c=relaxed/simple;
+	bh=jKHdoIjtRqxfJ55vBGRP5JlLPI3n6f4w6R9TxFgyG/o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y95/SEQTo0v1x02yY+7D+YF2oN1a8k5rhcJXiOT/U/A+RkR9/8ddZoxvUCCIpM559zL0bdAVQkVdaEUjZZmiPTS0/m+GVQ2Ypc5doKKnS03TUnc8z+2ZxX5f0W6PITu1KTJGZXvr0+ZvHd2xbbxgnwQqluAOQl3I3BfLCJF/kKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uMZ9Zw+R; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37d447de11dso5094072f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 00:47:32 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37d58377339so6729174f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Oct 2024 00:51:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729669651; x=1730274451; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K8XhAOWkTQF179xXl3+TzBgUaXsW8j7rP9CkGj8YxbY=;
-        b=OGOphGwdgTNyz2Pj9UxHW//hy/kKzVk7wdLr96TKzxvVuVVvbClsJgK3BHMXeE1KB+
-         U1WY/76rM+BzSfKUmdBHuy8TZUyNmX7hB3eofGH2bq26stGX5+/gOgnBbptue2ZxRNZF
-         f5j903eU/ymZBTgX0yN0fvM89SjZxV6h5/F2zMKMFZ5eDazZ9vDPJk/KdgaU1GQ3gESI
-         e9TQNiy+ZPPgas8TX+4ugIV3NMINsIcRdExAWoky7xcbEeX4i8g9zRE9dgnl37Jao8uz
-         J1CK/otZgTx5EHLV0qkp3qnsOl51s8B98POUTK0nX3AsyevvZO4XhNh6LTaW/y5WNyGl
-         bNwg==
+        d=linaro.org; s=google; t=1729669866; x=1730274666; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6+XapBmDR0uZhfjYOvNMk0XBmZdhBIAkvxBqQIPfMd0=;
+        b=uMZ9Zw+RgcFIwGNEtBLAOvBghOsCasyV84AXKJ8zv0tnJGbgWumBlVpJ3f8MrSbUjW
+         OCz6Magyq4q8GTSRA13V0MmUhuXvKRDlqE0ygG+ks3umdnmjN0uHpKB22/akVmVecMBM
+         yeUG3XToTyLjs0xYlK7VVVrYDMxIYkk/OweAqlt1UjsY8BnBFrTOA0na0U8GG2wAkLXi
+         aV8kUBl0KGOL/CeWqny0Mg5fRvHP5rDixyD8mIwcR8KJ6lOzvqHZ2krBM+Yoa1/4jwXK
+         EqChsJIMWfsd6a+55hZVJsqttIWQAZu7fSa+JIvTpNIxix3POahYqOF+s4fricpVS6S/
+         5KOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729669651; x=1730274451;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=K8XhAOWkTQF179xXl3+TzBgUaXsW8j7rP9CkGj8YxbY=;
-        b=GuMSxY8PBlUzBbQsFkJ5zTQDiZZiDw9sZWDQJcweyT5O1A4KHFq98KIs7vfHVpjNWL
-         yLPJ/KuG+Tt1AuZiR6fk5Xf4b7xJcMwxw91Z48NF0H1SNLgeZuH+PAQ9vh7TojEs5ZdN
-         u8H7DGBFwP9l7GeeY0iLT2NHRbLduCE13cLjoejon0ESqc/5CITZRbbMYBx50my7t8nq
-         TNa3e1SGsQYyk29Az6/oi6gIf14Y+VCV4Vc2fXkszY8KRbYkSevpviIyY1l7yhUJLD9+
-         Pvttu6iubdylp46yOoOyNKqW7S5/I5cok7uhTzDleprtcJQd/xZarN6h/pPnb21uFJ6L
-         /eFA==
-X-Forwarded-Encrypted: i=1; AJvYcCXlfg3g5/hDjntORwiYMw7PGyIvxVHT7sXfwnJAHZrJ3M9geFoHqkaH7KRwdyHxlbBfGzD9A5FzGYZJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLUbQBUhFDgceE2WMwXTW+U+4MxXvoY86ZxjIog07pXOs+YEN7
-	VidMj4fyO1z2NVW7RkcRQpzBbSkXSNgSAW28H0XJ4ORTEzlBbwZMq9wcAgf0z7Y=
-X-Google-Smtp-Source: AGHT+IHrNfw9ADOpxGliLZ7C+mOsswL0VnI/CNGntnXyg5z6Klcj4ICG0tqO2d6isSu/7Zxp24Ql1g==
-X-Received: by 2002:a5d:4b50:0:b0:37d:4d31:e86c with SMTP id ffacd0b85a97d-37efcf794f6mr1102055f8f.44.1729669651254;
-        Wed, 23 Oct 2024 00:47:31 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:cad:2140:f9e2:19d:5b22:8044? ([2a01:e0a:cad:2140:f9e2:19d:5b22:8044])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0b943e4sm8313368f8f.75.2024.10.23.00.47.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Oct 2024 00:47:30 -0700 (PDT)
-Message-ID: <631d3d25-84ee-4b52-9429-eda6f489ba00@linaro.org>
-Date: Wed, 23 Oct 2024 09:47:26 +0200
+        d=1e100.net; s=20230601; t=1729669866; x=1730274666;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6+XapBmDR0uZhfjYOvNMk0XBmZdhBIAkvxBqQIPfMd0=;
+        b=tgU8ku1Yw/t9j3wwOBdbYllgqaY6nB9RitQuw1ZzK/TfXjXsDxtlgwXZcyw1Mhaafn
+         XllpbCelXncaiD2hjkUBQYEOm7/x8HzhpJV6Gx75IlV0oJPVSepHImmlXCl0YUXVxJK4
+         Ajpl1bl8WI299V1tOuzUNJtQXFcsOBmPwwe7AvBPhfnWpmbe7sb2iUdXsaa8LoWFyrNe
+         kOJ/iv3trvzgs0gusDX6l/1YUxxk1Y4mtE5yKmjaWDdXcurwJhGyLcigyWMNoYIYpBDk
+         o/4jcLTrzBIUFWM2BxN4LYlajToHFrx7fZRY8cU2y1Q3jEK5HTFMQpiVCXxUdViS5AQz
+         5sOg==
+X-Forwarded-Encrypted: i=1; AJvYcCV7b/yjBJ2Jf9IEtDZaYxe6GArsL/1qK7YDFcz5uQqZ+nYcctCZjoPLbkbkSe5bolyWWu6c9Uh270vi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMR07lAeh9eUsU4ZXn6pOrVPQYjZYFoO+mzQ7tNgvfMahtbC25
+	RvYqIAgxgefmM5SjqUU70AB6RDNkot5azRy0DbuHWuhhR4nAaNm8hP2lQVQyHFw=
+X-Google-Smtp-Source: AGHT+IHBf6IWOPS3k5EcHah0IeyN3Y8A0cACYMmuxzbj+ATa0KKIwoEZpzZPpqAIeGB3YhP8+s4gwg==
+X-Received: by 2002:adf:fe50:0:b0:37c:cc4b:d1d6 with SMTP id ffacd0b85a97d-37efcf15f35mr1264266f8f.27.1729669866070;
+        Wed, 23 Oct 2024 00:51:06 -0700 (PDT)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a48564sm8313364f8f.29.2024.10.23.00.51.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 00:51:05 -0700 (PDT)
+Date: Wed, 23 Oct 2024 10:51:04 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Johan Hovold <johan@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: x1e80100-crd: Add Parade PS8830
+ related nodes
+Message-ID: <Zxiq6Dx4eU1PNvzY@linaro.org>
+References: <20241022-x1e80100-ps8830-v3-0-68a95f351e99@linaro.org>
+ <20241022-x1e80100-ps8830-v3-3-68a95f351e99@linaro.org>
+ <3i36qmnyzyonbzbsxgcdjwbshcl45vq75ocpth4redwrnqjkm5@wjev5ul7rs75>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 5/5] drm/panel: samsung-s6e88a0-ams427ap24: Add flip
- option
-To: Jakob Hauser <jahau@rocketmail.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1729630039.git.jahau@rocketmail.com>
- <57a8498440695218d095cb037a5dc818d6fe7355.1729630039.git.jahau@rocketmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <57a8498440695218d095cb037a5dc818d6fe7355.1729630039.git.jahau@rocketmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3i36qmnyzyonbzbsxgcdjwbshcl45vq75ocpth4redwrnqjkm5@wjev5ul7rs75>
 
-On 22/10/2024 23:33, Jakob Hauser wrote:
-> The way of implementing a flip option follows the existing
-> panel-samsung-s6e8aa0.c [1][2][3].
+On 24-10-22 19:24:19, Bjorn Andersson wrote:
+> On Tue, Oct 22, 2024 at 01:26:56PM GMT, Abel Vesa wrote:
+> > Add nodes for all 3 Parade PS8830 Type-C retimers found on Qualcomm
+> > X Elite CRD board, along with all of their voltage regulators. These
+> > retimers sit between the Type-C connectors and the PHYs, so describe the
+> > pmic glink graph accordingly. On this board, these retimers might be left
+>                                ^ Here would be a good point to split this hunk into two paragraphs.
+
+Will do.
+
 > 
-> The value to flip the screen is taken from a downstream kernel file of
-> a similar but older panel [4]. The mipi clock [5] for the new panel
-> samsung-s6e88a0-ams427ap24 matches 461 MHz and a hardware read-out of the
-> 0xcb values corresponds to revision R01 of that older panel [6]. Although
-> for samsung-s6e88a0-ams427ap24 that's in non-flipped state while in this
-> older driver it seems to be the other way around. Further up there is a
-> hint [7] basically saying for revision R01 to change the first word of the
-> 0xcb command from 0x06 to 0x0e, which is actually setting BIT(3) of that
-> word. This causes a horizontal flip.
+> > enabled and configured by the bootloader, so make sure the retimers don't
+> > reset their configuration on driver probe.
 > 
-> [1] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L103
-> [2] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L207-L211
-> [3] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L954-L974
-> [4] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c
-> [5] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L2027-L2028
-> [6] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L137-L151
-> [7] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L66-L74
+> It would be nice if there was a hint here about how this statement
+> manifest itself in the patch.
+
+I'll add the property in the phrasing.
+
 > 
-> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
-> ---
->   .../drm/panel/panel-samsung-s6e88a0-ams427ap24.c | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-> index 6e02b881434d..8372d0d307c8 100644
-> --- a/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-> +++ b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-> @@ -32,6 +32,7 @@ struct s6e88a0_ams427ap24 {
->   	struct mipi_dsi_device *dsi;
->   	struct regulator_bulk_data *supplies;
->   	struct gpio_desc *reset_gpio;
-> +	bool flip_horizontal;
->   };
->   
->   const struct regulator_bulk_data s6e88a0_ams427ap24_supplies[] = {
-> @@ -538,6 +539,10 @@ static int s6e88a0_ams427ap24_on(struct s6e88a0_ams427ap24 *ctx)
->   	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcc, 0x4c);
->   	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x03, 0x0d);
->   	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0xa5, 0xa5);
-> +
-> +	if (ctx->flip_horizontal)
-> +		mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcb, 0x0e);
-> +
->   	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
->   	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0xa5, 0xa5);
->   
-> @@ -672,6 +677,15 @@ static int s6e88a0_ams427ap24_register_backlight(struct s6e88a0_ams427ap24 *ctx)
->   	return ret;
->   }
->   
-> +static void s6e88a0_ams427ap24_parse_dt(struct s6e88a0_ams427ap24 *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	struct device *dev = &dsi->dev;
-> +	struct device_node *np = dev->of_node;
-> +
-> +	ctx->flip_horizontal = of_property_read_bool(np, "flip-horizontal");
+> Hint:
+> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+> is a good read for how to structure ones commit message - with a problem
+> description, then a technical description of the change (i.e. probably
+> not something starting with the word "Add"...)
 
+Sure, will reword with "Describe all 3 Parade ...".
 
-Please use device_property_read_bool() instead
+> 
+> Regards,
+> Bjorn
 
-> +}
-> +
->   static int s6e88a0_ams427ap24_probe(struct mipi_dsi_device *dsi)
->   {
->   	struct device *dev = &dsi->dev;
-> @@ -706,6 +720,8 @@ static int s6e88a0_ams427ap24_probe(struct mipi_dsi_device *dsi)
->   		       DRM_MODE_CONNECTOR_DSI);
->   	ctx->panel.prepare_prev_first = true;
->   
-> +	s6e88a0_ams427ap24_parse_dt(ctx);
+Thanks for reviewing.
 
-I don't think this deserves a separate function, just move it probe.
+Abel
 
-> +
->   	ret = s6e88a0_ams427ap24_register_backlight(ctx);
->   	if (ret < 0)
->   		return ret;
-
-With that changed:
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> 
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 448 +++++++++++++++++++++++++++++-
+> >  1 file changed, 442 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> > index f5f2659690915f9ba50d15a27c54e3c0f504a14b..7cc45a5cd7eb7e70915d04ea7e181b56f693f768 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> > @@ -99,7 +99,15 @@ port@1 {
+> >  					reg = <1>;
+> >  
+> >  					pmic_glink_ss0_ss_in: endpoint {
+> > -						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
+> > +						remote-endpoint = <&retimer_ss0_ss_out>;
+> > +					};
+> > +				};
+> > +
+> > +				port@2 {
+> > +					reg = <2>;
+> > +
+> > +					pmic_glink_ss0_con_sbu_in: endpoint {
+> > +						remote-endpoint = <&retimer_ss0_con_sbu_out>;
+> >  					};
+> >  				};
+> >  			};
+> > @@ -128,7 +136,15 @@ port@1 {
+> >  					reg = <1>;
+> >  
+> >  					pmic_glink_ss1_ss_in: endpoint {
+> > -						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+> > +						remote-endpoint = <&retimer_ss1_ss_out>;
+> > +					};
+> > +				};
+> > +
+> > +				port@2 {
+> > +					reg = <2>;
+> > +
+> > +					pmic_glink_ss1_con_sbu_in: endpoint {
+> > +						remote-endpoint = <&retimer_ss1_con_sbu_out>;
+> >  					};
+> >  				};
+> >  			};
+> > @@ -157,7 +173,15 @@ port@1 {
+> >  					reg = <1>;
+> >  
+> >  					pmic_glink_ss2_ss_in: endpoint {
+> > -						remote-endpoint = <&usb_1_ss2_qmpphy_out>;
+> > +						remote-endpoint = <&retimer_ss2_ss_out>;
+> > +					};
+> > +				};
+> > +
+> > +				port@2 {
+> > +					reg = <2>;
+> > +
+> > +					pmic_glink_ss2_con_sbu_in: endpoint {
+> > +						remote-endpoint = <&retimer_ss2_con_sbu_out>;
+> >  					};
+> >  				};
+> >  			};
+> > @@ -291,6 +315,150 @@ vreg_nvme: regulator-nvme {
+> >  		pinctrl-0 = <&nvme_reg_en>;
+> >  	};
+> >  
+> > +	vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR0_1P15";
+> > +		regulator-min-microvolt = <1150000>;
+> > +		regulator-max-microvolt = <1150000>;
+> > +
+> > +		gpio = <&pmc8380_5_gpios 8 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr0_1p15_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> > +	vreg_rtmr0_1p8: regulator-rtmr0-1p8 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR0_1P8";
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +
+> > +		gpio = <&pm8550ve_9_gpios 8 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr0_1p8_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> > +	vreg_rtmr0_3p3: regulator-rtmr0-3p3 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR0_3P3";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +
+> > +		gpio = <&pm8550_gpios 11 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr0_3p3_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> > +	vreg_rtmr1_1p15: regulator-rtmr1-1p15 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR1_1P15";
+> > +		regulator-min-microvolt = <1150000>;
+> > +		regulator-max-microvolt = <1150000>;
+> > +
+> > +		gpio = <&tlmm 188 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr1_1p15_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> > +	vreg_rtmr1_1p8: regulator-rtmr1-1p8 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR1_1P8";
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +
+> > +		gpio = <&tlmm 175 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr1_1p8_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> > +	vreg_rtmr1_3p3: regulator-rtmr1-3p3 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR1_3P3";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +
+> > +		gpio = <&tlmm 186 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr1_3p3_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> > +	vreg_rtmr2_1p15: regulator-rtmr2-1p15 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR2_1P15";
+> > +		regulator-min-microvolt = <1150000>;
+> > +		regulator-max-microvolt = <1150000>;
+> > +
+> > +		gpio = <&tlmm 189 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr2_1p15_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> > +	vreg_rtmr2_1p8: regulator-rtmr2-1p8 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR2_1P8";
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +
+> > +		gpio = <&tlmm 126 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr2_1p8_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> > +	vreg_rtmr2_3p3: regulator-rtmr2-3p3 {
+> > +		compatible = "regulator-fixed";
+> > +
+> > +		regulator-name = "VREG_RTMR2_3P3";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +
+> > +		gpio = <&tlmm 187 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +
+> > +		pinctrl-0 = <&rtmr2_3p3_reg_en>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		regulator-boot-on;
+> > +	};
+> > +
+> >  	vph_pwr: regulator-vph-pwr {
+> >  		compatible = "regulator-fixed";
+> >  
+> > @@ -709,6 +877,187 @@ keyboard@3a {
+> >  	};
+> >  };
+> >  
+> > +&i2c1 {
+> > +	clock-frequency = <400000>;
+> > +
+> > +	status = "okay";
+> > +
+> > +	typec-mux@8 {
+> > +		compatible = "parade,ps8830";
+> > +		reg = <0x08>;
+> > +
+> > +		clocks = <&rpmhcc RPMH_RF_CLK5>;
+> > +		clock-names = "xo";
+> > +
+> > +		vdd-supply = <&vreg_rtmr2_1p15>;
+> > +		vdd33-supply = <&vreg_rtmr2_3p3>;
+> > +		vdd33-cap-supply = <&vreg_rtmr2_3p3>;
+> > +		vddar-supply = <&vreg_rtmr2_1p15>;
+> > +		vddat-supply = <&vreg_rtmr2_1p15>;
+> > +		vddio-supply = <&vreg_rtmr2_1p8>;
+> > +
+> > +		reset-gpios = <&tlmm 185 GPIO_ACTIVE_LOW>;
+> > +
+> > +		pinctrl-0 = <&rtmr2_default>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		orientation-switch;
+> > +		retimer-switch;
+> > +
+> > +		ps8830,boot-on;
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +
+> > +				retimer_ss2_ss_out: endpoint {
+> > +					remote-endpoint = <&pmic_glink_ss2_ss_in>;
+> > +				};
+> > +			};
+> > +
+> > +			port@1 {
+> > +				reg = <1>;
+> > +
+> > +				retimer_ss2_ss_in: endpoint {
+> > +					remote-endpoint = <&usb_1_ss2_qmpphy_out>;
+> > +				};
+> > +			};
+> > +
+> > +			port@2 {
+> > +				reg = <2>;
+> > +
+> > +				retimer_ss2_con_sbu_out: endpoint {
+> > +					remote-endpoint = <&pmic_glink_ss2_con_sbu_in>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&i2c3 {
+> > +	clock-frequency = <400000>;
+> > +
+> > +	status = "okay";
+> > +
+> > +	typec-mux@8 {
+> > +		compatible = "parade,ps8830";
+> > +		reg = <0x08>;
+> > +
+> > +		clocks = <&rpmhcc RPMH_RF_CLK3>;
+> > +		clock-names = "xo";
+> > +
+> > +		vdd-supply = <&vreg_rtmr0_1p15>;
+> > +		vdd33-supply = <&vreg_rtmr0_3p3>;
+> > +		vdd33-cap-supply = <&vreg_rtmr0_3p3>;
+> > +		vddar-supply = <&vreg_rtmr0_1p15>;
+> > +		vddat-supply = <&vreg_rtmr0_1p15>;
+> > +		vddio-supply = <&vreg_rtmr0_1p8>;
+> > +
+> > +		reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_LOW>;
+> > +
+> > +		pinctrl-0 = <&rtmr0_default>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		retimer-switch;
+> > +		orientation-switch;
+> > +
+> > +		ps8830,boot-on;
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +
+> > +				retimer_ss0_ss_out: endpoint {
+> > +					remote-endpoint = <&pmic_glink_ss0_ss_in>;
+> > +				};
+> > +			};
+> > +
+> > +			port@1 {
+> > +				reg = <1>;
+> > +
+> > +				retimer_ss0_ss_in: endpoint {
+> > +					remote-endpoint = <&usb_1_ss0_qmpphy_out>;
+> > +				};
+> > +			};
+> > +
+> > +			port@2 {
+> > +				reg = <2>;
+> > +
+> > +				retimer_ss0_con_sbu_out: endpoint {
+> > +					remote-endpoint = <&pmic_glink_ss0_con_sbu_in>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&i2c7 {
+> > +	clock-frequency = <400000>;
+> > +
+> > +	status = "okay";
+> > +
+> > +	typec-mux@8 {
+> > +		compatible = "parade,ps8830";
+> > +		reg = <0x8>;
+> > +
+> > +		clocks = <&rpmhcc RPMH_RF_CLK4>;
+> > +		clock-names = "xo";
+> > +
+> > +		vdd-supply = <&vreg_rtmr1_1p15>;
+> > +		vdd33-supply = <&vreg_rtmr1_3p3>;
+> > +		vdd33-cap-supply = <&vreg_rtmr1_3p3>;
+> > +		vddar-supply = <&vreg_rtmr1_1p15>;
+> > +		vddat-supply = <&vreg_rtmr1_1p15>;
+> > +		vddio-supply = <&vreg_rtmr1_1p8>;
+> > +
+> > +		reset-gpios = <&tlmm 176 GPIO_ACTIVE_LOW>;
+> > +
+> > +		pinctrl-0 = <&rtmr1_default>;
+> > +		pinctrl-names = "default";
+> > +
+> > +		retimer-switch;
+> > +		orientation-switch;
+> > +
+> > +		ps8830,boot-on;
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +
+> > +				retimer_ss1_ss_out: endpoint {
+> > +					remote-endpoint = <&pmic_glink_ss1_ss_in>;
+> > +				};
+> > +			};
+> > +
+> > +			port@1 {
+> > +				reg = <1>;
+> > +
+> > +				retimer_ss1_ss_in: endpoint {
+> > +					remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+> > +				};
+> > +			};
+> > +
+> > +			port@2 {
+> > +				reg = <2>;
+> > +
+> > +				retimer_ss1_con_sbu_out: endpoint {
+> > +					remote-endpoint = <&pmic_glink_ss1_con_sbu_in>;
+> > +				};
+> > +			};
+> > +
+> > +		};
+> > +	};
+> > +};
+> > +
+> >  &i2c8 {
+> >  	clock-frequency = <400000>;
+> >  
+> > @@ -854,6 +1203,37 @@ &pcie6a_phy {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&pm8550_gpios {
+> > +	rtmr0_default: rtmr0-reset-n-active-state {
+> > +		pins = "gpio10";
+> > +		function = "normal";
+> > +		power-source = <1>; /* 1.8V */
+> > +	};
+> > +
+> > +	rtmr0_3p3_reg_en: rtmr0-3p3-reg-en-state {
+> > +		pins = "gpio11";
+> > +		function = "normal";
+> > +		power-source = <1>; /* 1.8V */
+> > +	};
+> > +};
+> > +
+> > +&pmc8380_5_gpios {
+> > +	rtmr0_1p15_reg_en: rtmr0-1p15-reg-en-state {
+> > +		pins = "gpio8";
+> > +		function = "normal";
+> > +		power-source = <1>; /* 1.8V */
+> > +		bias-disable;
+> > +	};
+> > +};
+> > +
+> > +&pm8550ve_9_gpios {
+> > +	rtmr0_1p8_reg_en: rtmr0-1p8-reg-en-state {
+> > +		pins = "gpio8";
+> > +		function = "normal";
+> > +		power-source = <1>; /* 1.8V */
+> > +	};
+> > +};
+> > +
+> >  &pmc8380_3_gpios {
+> >  	edp_bl_en: edp-bl-en-state {
+> >  		pins = "gpio4";
+> > @@ -1093,6 +1473,62 @@ wake-n-pins {
+> >  		};
+> >  	};
+> >  
+> > +	rtmr1_1p15_reg_en: rtmr1-1p15-reg-en-state {
+> > +		pins = "gpio188";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +	};
+> > +
+> > +	rtmr1_1p8_reg_en: rtmr1-1p8-reg-en-state {
+> > +		pins = "gpio175";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +	};
+> > +
+> > +	rtmr1_3p3_reg_en: rtmr1-3p3-reg-en-state {
+> > +		pins = "gpio186";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +	};
+> > +
+> > +	rtmr1_default: rtmr1-reset-n-active-state {
+> > +		pins = "gpio176";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +	};
+> > +
+> > +	rtmr2_1p15_reg_en: rtmr2-1p15-reg-en-state {
+> > +		pins = "gpio189";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +	};
+> > +
+> > +	rtmr2_1p8_reg_en: rtmr2-1p8-reg-en-state {
+> > +		pins = "gpio126";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +	};
+> > +
+> > +	rtmr2_3p3_reg_en: rtmr2-3p3-reg-en-state {
+> > +		pins = "gpio187";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +	};
+> > +
+> > +	rtmr2_default: rtmr2-reset-n-active-state {
+> > +		pins = "gpio185";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+> > +	};
+> > +
+> >  	tpad_default: tpad-default-state {
+> >  		pins = "gpio3";
+> >  		function = "gpio";
+> > @@ -1160,7 +1596,7 @@ &usb_1_ss0_dwc3_hs {
+> >  };
+> >  
+> >  &usb_1_ss0_qmpphy_out {
+> > -	remote-endpoint = <&pmic_glink_ss0_ss_in>;
+> > +	remote-endpoint = <&retimer_ss0_ss_in>;
+> >  };
+> >  
+> >  &usb_1_ss1_hsphy {
+> > @@ -1188,7 +1624,7 @@ &usb_1_ss1_dwc3_hs {
+> >  };
+> >  
+> >  &usb_1_ss1_qmpphy_out {
+> > -	remote-endpoint = <&pmic_glink_ss1_ss_in>;
+> > +	remote-endpoint = <&retimer_ss1_ss_in>;
+> >  };
+> >  
+> >  &usb_1_ss2_hsphy {
+> > @@ -1216,5 +1652,5 @@ &usb_1_ss2_dwc3_hs {
+> >  };
+> >  
+> >  &usb_1_ss2_qmpphy_out {
+> > -	remote-endpoint = <&pmic_glink_ss2_ss_in>;
+> > +	remote-endpoint = <&retimer_ss2_ss_in>;
+> >  };
+> > 
+> > -- 
+> > 2.34.1
+> > 
 
