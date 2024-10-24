@@ -1,411 +1,285 @@
-Return-Path: <devicetree+bounces-115115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620709AE0BD
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:29:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4AD09AE0D0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:32:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA1E91F24784
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:29:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 105EF1C255DC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84E1E1D1F46;
-	Thu, 24 Oct 2024 09:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 597B71B85DF;
+	Thu, 24 Oct 2024 09:29:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="DZmgxdaz"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VUcJ5P75"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775FD1B3924;
-	Thu, 24 Oct 2024 09:26:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206CB1B6D1E
+	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 09:29:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729762020; cv=none; b=kzkmo5b9dGlU5lc7v1CEuP6cta0V4zq8ghNwXKdnEa0p1nzWuUqZCkfZMCMNn7dnFgPAH0RKSPJqWFUqqNgmQ83Sjq8Pw4X5R6Rcp3OWod2DZe1j/JZhC3BY3aFasTPFuKdBB/+X9o5usPB+FW/ne1//qbRVhbyAFFlBPrDQ99Q=
+	t=1729762189; cv=none; b=tqcKii/iFm2nw7TatjgAVmy9qHDdX5H664w+srRdDipfmxuUXBzVbqrHZ2M/PJP+peAXMErhgiMx00zBLZVxkJF99qNYegqLQiydSo+M0QcnpdlTS/0afZ/cNNg3IW48an2DPmaR4WVCwml2PRTRIfJMbazfzAYElEqbO5jFeSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729762020; c=relaxed/simple;
-	bh=Glev8zOQj4Z4pXPTbkLCvSvCTQpIQpK31YT6/RRlgXw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KIvpWpThfUhzI21w8ZrZMs9uDlQqdH8yG8whoqC0EY8mDQ3S+aap/y6lGaqPHDez2d6dWPZ35UdvnSftzokdkxlyDQTNwha/jVBocvdCEC9iM6cGPTjGATtWfVt6czv7BCSMKqX/KOxszvCIDZ0IMXBQAYBPeCljEf32+Ukz7x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=DZmgxdaz; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 19f2504091ea11efbd192953cf12861f-20241024
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=/023G7mDKUOrTtonKh4QV10AQzKB2Tag8vWepYfhObU=;
-	b=DZmgxdazQy+WgpGDs771gDf2n4o4BdftAwJL0hYtDzmKnrBZbqwMUdGYJAFNQLzQ1j6IA7MCsTktZzzRXypisAG+L2MGD1mkc5U0uGexw4k13TY94fQcS6/IkN296GYUrHlLHMkwiPAl/4tqJBaMVAK2VB/rsWZZhBge30ERGBg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.42,REQID:8e74b272-f5cd-457b-b878-bc3afee1fca2,IP:0,U
-	RL:0,TC:0,Content:40,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:40
-X-CID-META: VersionHash:b0fcdc3,CLOUDID:622dcccc-110e-4f79-849e-58237df93e70,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:3,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 19f2504091ea11efbd192953cf12861f-20241024
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-	(envelope-from <karl.li@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1075449677; Thu, 24 Oct 2024 17:26:51 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 24 Oct 2024 17:26:50 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 24 Oct 2024 17:26:50 +0800
-From: Karl.Li <karl.li@mediatek.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Karl Li <Karl.Li@mediatek.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	Chungying Lu <chungying.lu@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Karl Li
-	<karl.li@mediatek.com>
-Subject: [PATCH 3/3] mailbox: mediatek: Add mtk-apu-mailbox driver
-Date: Thu, 24 Oct 2024 17:25:45 +0800
-Message-ID: <20241024092608.431581-4-karl.li@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241024092608.431581-1-karl.li@mediatek.com>
-References: <20241024092608.431581-1-karl.li@mediatek.com>
+	s=arc-20240116; t=1729762189; c=relaxed/simple;
+	bh=7GLMKjoFMHeu21FwG9v6K0Az4LLutw0rnj4PK+vdB84=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AH2VGzCLyttKyj095bZsFQXKgpRz+ZRzMrJdhylb+m6cz8zFOrw+UETM9iCWFj3csrwX8yEVjqck2ugNVVNptawawdqx/ZsUzStXOMWxMoAV3pQgqZFDmmvYNyhNSRzCNcIJR1l3Whb9yFO9RwEVkFXEH+SW8pKv3dMcSoxLqSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VUcJ5P75; arc=none smtp.client-ip=209.85.128.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-42f6bec84b5so7348365e9.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 02:29:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729762184; x=1730366984; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=umDPNaddrw8s7LRTfU20jVzV71EK0gpRXjXBcrPfdR4=;
+        b=VUcJ5P75hhSQERFiAUJkcvjR38deR8nARh7R/pZDTsTLZC/ukgY3qgyKj0vqzthPiy
+         CihOCTaV6blzVFc51B3mwNXm7a8nn4LdNDL7U4rFjE5akxtQZ7RV3gUBMeJqblOjg6yl
+         OxbVGrx7Oq3Wq4FygKgB3NkfVQZcNx29aSk5ecKmaA3+4oIKx053MOve2aBx8vI5nDrW
+         SGJN7PHwUg+hYJ9LD1bKDiP9nkGvyyrPRyQ7g4MmKJ0C5kcC2n+tEAyiwn9QEPMkG4Jn
+         n6ID8zlFAyn1xMJTY2hsJqiT0sl4TKU+Pm/uQ2K9QvRNft5Rr6u7KzNUwIIxxER/B6VS
+         PN8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729762184; x=1730366984;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=umDPNaddrw8s7LRTfU20jVzV71EK0gpRXjXBcrPfdR4=;
+        b=aa8JBQYt8ccOHV+r0xN0jS04K447HyakmQ3nEONwWdGSUAK+RZoS66dA18q3mM2QEk
+         R64Szp/J9V6WnjxP0HTVuXPPGl4ypdqg3iwrr2xgxfSINceO+TfYxNs0h/YamZcv5nKg
+         cWNNgDMmUMTzF/2Efft0ZpeYgnvF13dq3E6NJw2xvhOzJeqXNOCTbh643iGpixU0iNbh
+         Rq3lw0VOrKHCcYa5G6vmehm5QV364BIWXeRgDsYnRpFc5Djpc/u1NB+NGwGxBXZmcq18
+         Rj645apepYbBFwStuFk/l1F/xQIn71cJWTet3Y87NkfAIIGo/i0M0AL4faQkKVtp6I6z
+         82TA==
+X-Forwarded-Encrypted: i=1; AJvYcCXhMHRCRgYDFQmAvq49ERRIZY9XCVcumJyrfMh9Sigo10XNXCwfUdN/PXrGGC6e98+aEWoKcM4fX1fb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpaHD2suEJgARO4pIiOzqwET6jfO+fjsaRnuZQVEhbiBzjZwvF
+	VKM+PYpInTB1L9xqwQN4NfuB2xg3QoMAAzP/aqh2ICTqeNztjq/KDddphR7VEiXE/iVDDn3r6Km
+	fwhPbq/QF
+X-Google-Smtp-Source: AGHT+IHTibw7Z57bMSTW7jJ8HbWjR1xpaNPqq+EEvaB8gOserl9u9FOnRWOtXqAUaSCVT0K/dJMLOQ==
+X-Received: by 2002:a05:600c:6045:b0:42c:af06:703 with SMTP id 5b1f17b1804b1-4318c8df606mr10485325e9.31.1729762184261;
+        Thu, 24 Oct 2024 02:29:44 -0700 (PDT)
+Received: from dfj (host-79-41-194-153.retail.telecomitalia.it. [79.41.194.153])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43186bde1b5sm39559315e9.12.2024.10.24.02.29.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Oct 2024 02:29:43 -0700 (PDT)
+Date: Thu, 24 Oct 2024 11:28:27 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dlechner@baylibre.com, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v7 2/8] dt-bindings: iio: dac: adi-axi-dac: add ad3552r
+ axi variant
+Message-ID: <zfggfhasl3njyux5n44j2au4dlyjlngbtt4fps2xqzpngbwn42@72icpspkogtz>
+References: <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-0-969694f53c5d@baylibre.com>
+ <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-2-969694f53c5d@baylibre.com>
+ <20241022-flagpole-subject-51e68e81e948@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--8.620800-8.000000
-X-TMASE-MatchedRID: 4kHyKE737jM9S3IiQd+eNWgZSmduwyweUAjrAJWsTe8It7KhKWdvFOJ1
-	Z55wDcxT8AyWk2NFMNZM8qdoCvOVvj13WcdbGR6Qzbh2+gTKAQ+AfODDLypXmvFJXtgF4GFL0JL
-	YEuZmPHUC470HKuzgB1rcv8nBrrT3BrU1duOq6zS3D7EeeyZCMwrefVId6fzVjnLTb30f4043dV
-	Tnu0EmWDqE8reTKDts781jTNgzH3VZT98H9cWYnJMSBMTQNiSAKSiQ6eagz6JX14Hy+eYp7+YI8
-	JecFTbdRw3fpQHgw3sGYQd6rNaIOSJFbDWAdpZLHPYwOJi6PLmXYX34rFl3x2d6vNuG6CqySAKU
-	IhfaB7A0RbGKWWKZ/3Qe11JD81nVu9okb5cOFzbKl4yJoI+fG9O4VcbrqWuq8EAby1w1DMl576m
-	y5IxjulD3U31Zcw/LhxHjE30dAnsfE8yM4pjsDwtuKBGekqUpOlxBO2IcOBaIHGa67w1D28oh7y
-	qmhyfdMbuKPPB0sroSZzN3LFJ282uTKbq4kNjO
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--8.620800-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	0BF7B7E278F88FE729E9F1441FC5995BADA4A3936A1666D1E2EF3D5FE850B0772000:8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241022-flagpole-subject-51e68e81e948@spud>
 
-From: Karl Li <karl.li@mediatek.com>
+Hi Conor,
 
-Add mtk-apu-mailbox driver to support the communication with
-APU remote microprocessor.
+On 22.10.2024 18:22, Conor Dooley wrote:
+> On Mon, Oct 21, 2024 at 02:40:12PM +0200, Angelo Dureghello wrote:
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> > 
+> > Add a new compatible and related bindigns for the fpga-based
+> > "ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
+> > 
+> > The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
+> > generic AXI "DAC" IP, intended to control ad3552r and similar chips,
+> > mainly to reach high speed transfer rates using a QSPI DDR
+> > (dobule-data-rate) interface.
+> > 
+> > The ad3552r device is defined as a child of the AXI DAC, that in
+> > this case is acting as an SPI controller.
+> > 
+> > Note, #io-backend is present because it is possible (in theory anyway)
+> > to use a separate controller for the control path than that used
+> > for the datapath.
+> > 
+> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > ---
+> >  .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   | 69 +++++++++++++++++++++-
+> >  1 file changed, 66 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > index a55e9bfc66d7..0aabb210f26d 100644
+> > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > @@ -19,11 +19,13 @@ description: |
+> >    memory via DMA into the DAC.
+> >  
+> >    https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
+> > +  https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+> >  
+> >  properties:
+> >    compatible:
+> >      enum:
+> >        - adi,axi-dac-9.1.b
+> > +      - adi,axi-ad3552r
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -36,7 +38,12 @@ properties:
+> >        - const: tx
+> >  
+> >    clocks:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    maxItems: 2
+> >  
+> >    '#io-backend-cells':
+> >      const: 0
+> > @@ -47,7 +54,31 @@ required:
+> >    - reg
+> >    - clocks
+> >  
+> > -additionalProperties: false
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: adi,axi-ad3552r
+> > +    then:
+> > +      $ref: /schemas/spi/spi-controller.yaml#
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 2
+> > +          maxItems: 2
+> 
+> Is this maxItems required? It matches the outer maximum.
+> 
+> > +        clock-names:
+> > +          items:
+> > +            - const: s_axi_aclk
+> > +            - const: dac_clk
+> 
+> The names are the same in both cases, you can move the definitions
+> outside of the if/then/else stuff and only constrain it here.
+>
+thanks, could you maybe have a look if it's ok now ?
+(maxItems not needed for a const list)
 
-Also, the mailbox hardware contains extra spare (scratch) registers
-that other hardware blocks use to communicate through.
-Expose these with custom mtk_apu_mbox_(read|write)() functions.
+  clocks:
+    minItems: 1
+    maxItems: 2
 
-Signed-off-by: Karl Li <karl.li@mediatek.com>
----
- drivers/mailbox/Kconfig                 |   9 +
- drivers/mailbox/Makefile                |   2 +
- drivers/mailbox/mtk-apu-mailbox.c       | 222 ++++++++++++++++++++++++
- include/linux/mailbox/mtk-apu-mailbox.h |  20 +++
- 4 files changed, 253 insertions(+)
- create mode 100644 drivers/mailbox/mtk-apu-mailbox.c
- create mode 100644 include/linux/mailbox/mtk-apu-mailbox.h
+  clock-names:
+    items:
+      - const: s_axi_aclk
+      - const: dac_clk
+    minItems: 1
 
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index 6fb995778636..2338e08a110a 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -240,6 +240,15 @@ config MTK_ADSP_MBOX
-           between processors with ADSP. It will place the message to share
- 	  buffer and will access the ipc control.
- 
-+config MTK_APU_MBOX
-+	tristate "MediaTek APU Mailbox Support"
-+	depends on ARCH_MEDIATEK || COMPILE_TEST
-+	help
-+	  Say yes here to add support for the MediaTek APU Mailbox
-+	  driver. The mailbox implementation provides access from the
-+	  application processor to the MediaTek AI Processing Unit.
-+	  If unsure say N.
-+
- config MTK_CMDQ_MBOX
- 	tristate "MediaTek CMDQ Mailbox Support"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 3c3c27d54c13..6b6dcc78d644 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -53,6 +53,8 @@ obj-$(CONFIG_STM32_IPCC) 	+= stm32-ipcc.o
- 
- obj-$(CONFIG_MTK_ADSP_MBOX)	+= mtk-adsp-mailbox.o
- 
-+obj-$(CONFIG_MTK_APU_MBOX)	+= mtk-apu-mailbox.o
-+
- obj-$(CONFIG_MTK_CMDQ_MBOX)	+= mtk-cmdq-mailbox.o
- 
- obj-$(CONFIG_ZYNQMP_IPI_MBOX)	+= zynqmp-ipi-mailbox.o
-diff --git a/drivers/mailbox/mtk-apu-mailbox.c b/drivers/mailbox/mtk-apu-mailbox.c
-new file mode 100644
-index 000000000000..b347ebd34ef7
---- /dev/null
-+++ b/drivers/mailbox/mtk-apu-mailbox.c
-@@ -0,0 +1,222 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2024 MediaTek Inc.
-+ */
-+
-+#include <asm/io.h>
-+#include <linux/bits.h>
-+#include <linux/interrupt.h>
-+#include <linux/mailbox_controller.h>
-+#include <linux/mailbox/mtk-apu-mailbox.h>
-+#include <linux/platform_device.h>
-+
-+#define INBOX		(0x0)
-+#define OUTBOX		(0x20)
-+#define INBOX_IRQ	(0xc0)
-+#define OUTBOX_IRQ	(0xc4)
-+#define INBOX_IRQ_MASK	(0xd0)
-+
-+#define SPARE_OFF_START	(0x40)
-+#define SPARE_OFF_END	(0xB0)
-+
-+struct mtk_apu_mailbox {
-+	struct device *dev;
-+	void __iomem *regs;
-+	struct mbox_controller controller;
-+	u32 msgs[MSG_MBOX_SLOTS];
-+};
-+
-+struct mtk_apu_mailbox *g_mbox;
-+
-+static irqreturn_t mtk_apu_mailbox_irq_top_half(int irq, void *dev_id)
-+{
-+	struct mtk_apu_mailbox *mbox = dev_id;
-+	struct mbox_chan *link = &mbox->controller.chans[0];
-+	int i;
-+
-+	for (i = 0; i < MSG_MBOX_SLOTS; i++)
-+		mbox->msgs[i] = readl(mbox->regs + OUTBOX + i * sizeof(u32));
-+
-+	mbox_chan_received_data(link, &mbox->msgs);
-+
-+	return IRQ_WAKE_THREAD;
-+}
-+
-+static irqreturn_t mtk_apu_mailbox_irq_btm_half(int irq, void *dev_id)
-+{
-+	struct mtk_apu_mailbox *mbox = dev_id;
-+	struct mbox_chan *link = &mbox->controller.chans[0];
-+
-+	mbox_chan_received_data_bh(link, &mbox->msgs);
-+	writel(readl(mbox->regs + OUTBOX_IRQ), mbox->regs + OUTBOX_IRQ);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int mtk_apu_mailbox_send_data(struct mbox_chan *chan, void *data)
-+{
-+	struct mtk_apu_mailbox *mbox = container_of(chan->mbox,
-+						    struct mtk_apu_mailbox,
-+						    controller);
-+	struct mtk_apu_mailbox_msg *msg = data;
-+	int i;
-+
-+	if (msg->send_cnt <= 0 || msg->send_cnt > MSG_MBOX_SLOTS) {
-+		dev_err(mbox->dev, "%s: invalid send_cnt %d\n", __func__, msg->send_cnt);
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 *	Mask lowest "send_cnt-1" interrupts bits, so the interrupt on the other side
-+	 *	triggers only after the last data slot is written (sent).
-+	 */
-+	writel(GENMASK(msg->send_cnt - 2, 0), mbox->regs + INBOX_IRQ_MASK);
-+	for (i = 0; i < msg->send_cnt; i++)
-+		writel(msg->data[i], mbox->regs + INBOX + i * sizeof(u32));
-+
-+	return 0;
-+}
-+
-+static bool mtk_apu_mailbox_last_tx_done(struct mbox_chan *chan)
-+{
-+	struct mtk_apu_mailbox *mbox = container_of(chan->mbox,
-+						    struct mtk_apu_mailbox,
-+						    controller);
-+
-+	return readl(mbox->regs + INBOX_IRQ) == 0;
-+}
-+
-+static const struct mbox_chan_ops mtk_apu_mailbox_ops = {
-+	.send_data = mtk_apu_mailbox_send_data,
-+	.last_tx_done = mtk_apu_mailbox_last_tx_done,
-+};
-+
-+/**
-+ * mtk_apu_mbox_write - Write value to specifice mtk_apu_mbox spare register.
-+ * @val: Value to be written.
-+ * @offset: Offset of the spare register.
-+ *
-+ * Return: 0 if successful
-+ *	   negative value if error happened
-+ */
-+int mtk_apu_mbox_write(u32 val, u32 offset)
-+{
-+	if (!g_mbox) {
-+		pr_err("mtk apu mbox was not initialized, stop writing register\n");
-+		return -ENODEV;
-+	}
-+
-+	if (offset < SPARE_OFF_START || offset >= SPARE_OFF_END) {
-+		dev_err(g_mbox->dev, "Invalid offset %d for mtk apu mbox spare register\n", offset);
-+		return -EINVAL;
-+	}
-+
-+	writel(val, g_mbox->regs + offset);
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS(mtk_apu_mbox_write, MTK_APU_MAILBOX);
-+
-+/**
-+ * mtk_apu_mbox_read - Read value to specifice mtk_apu_mbox spare register.
-+ * @offset: Offset of the spare register.
-+ * @val: Pointer to store read value.
-+ *
-+ * Return: 0 if successful
-+ *	   negative value if error happened
-+ */
-+int mtk_apu_mbox_read(u32 offset, u32 *val)
-+{
-+	if (!g_mbox) {
-+		pr_err("mtk apu mbox was not initialized, stop reading register\n");
-+		return -ENODEV;
-+	}
-+
-+	if (offset < SPARE_OFF_START || offset >= SPARE_OFF_END) {
-+		dev_err(g_mbox->dev, "Invalid offset %d for mtk apu mbox spare register\n", offset);
-+		return -EINVAL;
-+	}
-+
-+	*val = readl(g_mbox->regs + offset);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS(mtk_apu_mbox_read, MTK_APU_MAILBOX);
-+
-+static int mtk_apu_mailbox_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_apu_mailbox *mbox;
-+	int irq = -1, ret = 0;
-+
-+	mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
-+	if (!mbox)
-+		return -ENOMEM;
-+
-+	mbox->dev = dev;
-+	platform_set_drvdata(pdev, mbox);
-+
-+	mbox->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(mbox->regs))
-+		return PTR_ERR(mbox->regs);
-+
-+	mbox->controller.txdone_irq = false;
-+	mbox->controller.txdone_poll = true;
-+	mbox->controller.txpoll_period = 1;
-+	mbox->controller.ops = &mtk_apu_mailbox_ops;
-+	mbox->controller.dev = dev;
-+	/*
-+	 * Here we only register 1 mbox channel.
-+	 * The remaining channels are used by other modules.
-+	 */
-+	mbox->controller.num_chans = 1;
-+	mbox->controller.chans = devm_kcalloc(dev, mbox->controller.num_chans,
-+					      sizeof(*mbox->controller.chans),
-+					      GFP_KERNEL);
-+	if (!mbox->controller.chans)
-+		return -ENOMEM;
-+
-+	ret = devm_mbox_controller_register(dev, &mbox->controller);
-+	if (ret)
-+		return ret;
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return irq;
-+
-+	ret = devm_request_threaded_irq(dev, irq, mtk_apu_mailbox_irq_top_half,
-+					mtk_apu_mailbox_irq_btm_half, IRQF_ONESHOT,
-+					dev_name(dev), mbox);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to request IRQ\n");
-+
-+	g_mbox = mbox;
-+
-+	dev_dbg(dev, "registered mtk apu mailbox\n");
-+
-+	return 0;
-+}
-+
-+static void mtk_apu_mailbox_remove(struct platform_device *pdev)
-+{
-+	g_mbox = NULL;
-+}
-+
-+static const struct of_device_id mtk_apu_mailbox_of_match[] = {
-+	{ .compatible = "mediatek,mt8188-apu-mailbox" },
-+	{ .compatible = "mediatek,mt8196-apu-mailbox" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mtk_apu_mailbox_of_match);
-+
-+static struct platform_driver mtk_apu_mailbox_driver = {
-+	.probe = mtk_apu_mailbox_probe,
-+	.remove = mtk_apu_mailbox_remove,
-+	.driver = {
-+		.name = "mtk-apu-mailbox",
-+		.of_match_table = mtk_apu_mailbox_of_match,
-+	},
-+};
-+
-+module_platform_driver(mtk_apu_mailbox_driver);
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("MediaTek APU Mailbox Driver");
-diff --git a/include/linux/mailbox/mtk-apu-mailbox.h b/include/linux/mailbox/mtk-apu-mailbox.h
-new file mode 100644
-index 000000000000..d1457d16ce9b
---- /dev/null
-+++ b/include/linux/mailbox/mtk-apu-mailbox.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2024 MediaTek Inc.
-+ *
-+ */
-+
-+#ifndef __MTK_APU_MAILBOX_H__
-+#define __MTK_APU_MAILBOX_H__
-+
-+#define MSG_MBOX_SLOTS	(8)
-+
-+struct mtk_apu_mailbox_msg {
-+	int send_cnt;
-+	u32 data[MSG_MBOX_SLOTS];
-+};
-+
-+int mtk_apu_mbox_write(u32 val, u32 offset);
-+int mtk_apu_mbox_read(u32 offset, u32 *val);
-+
-+#endif /* __MTK_APU_MAILBOX_H__ */
--- 
-2.18.0
+  '#io-backend-cells':
+    const: 0
+
+required:
+  - compatible
+  - dmas
+  - reg
+  - clocks
+
+allOf:
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: adi,axi-ad3552r
+    then:
+      $ref: /schemas/spi/spi-controller.yaml#
+      properties:
+        clocks:
+          minItems: 2
+        clock-names:
+          minItems: 2
+    else:
+      properties:
+        clocks:
+          maxItems: 1
+        clock-names:
+          maxItems: 1
+
+unevaluatedProperties: false
+
+...
+
+> > +    else:
+> > +      properties:
+> > +        clocks:
+> > +          maxItems: 1
+> > +        clock-names:
+> > +          items:
+> > +            - const: s_axi_aclk
+> > +
+> > +unevaluatedProperties: false
+> >  
+> >  examples:
+> >    - |
+> > @@ -57,6 +88,38 @@ examples:
+> >          dmas = <&tx_dma 0>;
+> >          dma-names = "tx";
+> >          #io-backend-cells = <0>;
+> > -        clocks = <&axi_clk>;
+> > +        clocks = <&clkc 15>;
+> > +        clock-names = "s_axi_aclk";
+> > +    };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    axi_dac: spi@44a70000 {
+> > +        compatible = "adi,axi-ad3552r";
+> > +        reg = <0x44a70000 0x1000>;
+> > +        dmas = <&dac_tx_dma 0>;
+> > +        dma-names = "tx";
+> > +        #io-backend-cells = <0>;
+> > +        clocks = <&clkc 15>, <&ref_clk>;
+> > +        clock-names = "s_axi_aclk", "dac_clk";
+> > +
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        dac@0 {
+> > +            compatible = "adi,ad3552r";
+> > +            reg = <0>;
+> > +            reset-gpios = <&gpio0 92 GPIO_ACTIVE_HIGH>;
+> > +            io-backends = <&axi_dac>;
+> > +            spi-max-frequency = <20000000>;
+> > +
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            channel@0 {
+> > +                reg = <0>;
+> > +                adi,output-range-microvolt = <(-10000000) (10000000)>;
+> > +            };
+> > +        };
+> >      };
+> >  ...
+> > 
+> > -- 
+> > 2.45.0.rc1
+> > 
+
 
 
