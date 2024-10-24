@@ -1,116 +1,109 @@
-Return-Path: <devicetree+bounces-115088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA7C9ADE0F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:44:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C497F9ADE1F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:46:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E30FE1C256C1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:44:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FEFD1F2188B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C679B1ABECD;
-	Thu, 24 Oct 2024 07:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2B81AAE02;
+	Thu, 24 Oct 2024 07:46:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mQP9V+V7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tt1ityiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B20AD1ABEA8;
-	Thu, 24 Oct 2024 07:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6AB189BBB;
+	Thu, 24 Oct 2024 07:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729755875; cv=none; b=hcwH6z55i11AvBjdp0WXhRzYyEeB7fr0JamuGn9wL1WHPI8PRv9zEURANRVPdGFiH9CN6oSx/HfoPMwqeeq5zeTiEewnky/pE2iR5q5xSar6JcBYFXRttgl3wlFYkVZF+jF4ptmUgJsmNE3tIdXpk9lhDiP0/fct6tbVVZJOJeo=
+	t=1729755961; cv=none; b=mqz3Q4uwz3Y5fAh8xhhChLZ98ExbuhvkhqJmuIxh6OU3zP+tNPdqyVPFlcO2+jTKhWkPI1jwqLhBEjZ1DOwKFdhQ9ECMZ0/ie1+ySQaeOCp/eeGMZ2uSqTFzxdFIcjMsgL5ugrbVnzYr1YG053iEGLjsBmKj14pJ9+X5C9GkZNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729755875; c=relaxed/simple;
-	bh=Gdai8nHRN5zx4u+tGzkD01x+sxyu92Q/k5sZiqGt7LM=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=aL4eHw1OQTaTIWFvhgoKa4EVdEeMNU3jhmK6NQdqGr52R3+DE4ZQevTQrBD+xxDEFOunyL4/uIzH62QpvUKV1lz6dOuOquiYY2x393aXTP8zmxmQ4yePGj65l1RnVNSd5LcNOV9TXH10Pz7ujUMdJg6jWnqnI3Wzrwme95ov6lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mQP9V+V7; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729755874; x=1761291874;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=Gdai8nHRN5zx4u+tGzkD01x+sxyu92Q/k5sZiqGt7LM=;
-  b=mQP9V+V7cmIgX/4NP/G7o0TWfG40X1Ckn9/S4eYOOPkYeQ4WIS6k/ZZw
-   TdJNLZ4M9A/hSgLOPBcEc8PCwfvnBGHa+5pImdHSH4P1EAV0mzgwuZ4FI
-   0vOPwRZy0VjjFHb5bmUrXZ1Q6ghHc3cCIxzOd75uL6fdPz/0vx9KYBXiS
-   9D2oaG+q+r8B/2um4AaKD/ZHg2CwT7GtADaGaTij6xlqYSdUThN6TzP1q
-   grj81+7T9LFcw0z/WybiVyGEbUYaOg0h2L7myUxFKeVJzqTHV0691ress
-   c7No4RYqzAjX/A4ig2WnwpEnYozwv9BmB0xtLlRNcIF+IfH3axZHyrSCw
-   Q==;
-X-CSE-ConnectionGUID: kFJCsGhlRuyrQ2pq+LpSZA==
-X-CSE-MsgGUID: BuqqaoQGTK6Ykhc6PFkfsw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="28832598"
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; 
-   d="scan'208";a="28832598"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2024 00:44:33 -0700
-X-CSE-ConnectionGUID: dCd9/2W7TjGUWRhD8mzvcA==
-X-CSE-MsgGUID: oV4LCQYYTV2X4Ii0PjBowQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; 
-   d="scan'208";a="117985665"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.193])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2024 00:44:24 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 24 Oct 2024 10:44:20 +0300 (EEST)
-To: Maximilian Luz <luzmaximilian@gmail.com>
-cc: Hans de Goede <hdegoede@redhat.com>, 
-    =?ISO-8859-15?Q?J=E9r=F4me_de_Bretagne?= <jerome.debretagne@gmail.com>, 
-    Bjorn Andersson <andersson@kernel.org>, 
-    Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
-    linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>, platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] platform/surface: aggregator_registry: Add Surface
- Pro 9 5G
-In-Reply-To: <ad9fa9f2-7f97-401a-8e8f-ae633ab1932b@gmail.com>
-Message-ID: <c85afd9c-8ce8-44d3-5baf-a557ec43e769@linux.intel.com>
-References: <20240908223505.21011-1-jerome.debretagne@gmail.com> <20240908223505.21011-4-jerome.debretagne@gmail.com> <f9cbd1c3-eb05-4262-bdc6-6d37e83179e5@gmail.com> <CA+kEDGEdd_s+DGKsVNY6Jy870B72eHuaj2EgEnwP8J46ZGbxpQ@mail.gmail.com>
- <8370d062-b3d2-46f5-9e7b-8e16edde8480@redhat.com> <555f8a3a-ae5e-57e7-f176-96c52e1a5d45@linux.intel.com> <ad9fa9f2-7f97-401a-8e8f-ae633ab1932b@gmail.com>
+	s=arc-20240116; t=1729755961; c=relaxed/simple;
+	bh=T+80owMJgrDDVyRL0LAjbSEBW9ztZO0IsWvfnxMpzZc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TcyvvyjimXSEEdUmRHDSAHZLH/zWdgGK8tgiLyE4rcmAeOuFBCSYgExSESnP4J/gJShwkc7pVgPC/8oJhDOGUQkmRMTPwHc+h6NPTWE52M4anIUo++BYvxtkDxhSfwQHeJXV5NIXUF1ebtiIIJ1Y3QMgPnkm9D8kvwyuFMGppKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tt1ityiM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86070C4CEC7;
+	Thu, 24 Oct 2024 07:46:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729755961;
+	bh=T+80owMJgrDDVyRL0LAjbSEBW9ztZO0IsWvfnxMpzZc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tt1ityiMhdKTNa3OQE0xi1izaNQbq7V4iSTnwz8hIrXm86sAuKUnTVnvRU5cnPaIU
+	 2Ijj75H4fbPWjP0NCtJ88qppe895e7FBMD8aekXUKgaM4pY8mvdN5xww+7YHxuOV7z
+	 12K0i6K597AfMYhbPw0LUPFRtSJbb7EpJAFQpGvNuqlWkGDNIVGrDoLCswyqAjq4a3
+	 4tolrgHS7cm0eMYa72kVjHHpoNnU5P3i8XMXI1Habxq/VfsysLj18ig2PIEcajXnzL
+	 4uK1CWdJyWIqZX916mcSZwZtzwIER6XcmJpH3IkxygSRRj7weXE1TOHyBfPkmPSoze
+	 nO5lw03ZgAexg==
+Date: Thu, 24 Oct 2024 09:45:57 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Peng Fan <peng.fan@nxp.com>, Mark Brown <broonie@kernel.org>, 
+	Takashi Iwai <tiwai@suse.com>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Bard Liao <yung-chuan.liao@linux.intel.com>, Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
+	Conor Dooley <conor+dt@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Iuliana Prodan <iuliana.prodan@nxp.com>, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: fsl,imx-rproc: add new
+ compatible
+Message-ID: <ub7yylef6qyztjtg3pciamg6jjznxh3ydlqsdcg2xcoxqngpi4@j5jlex4qukyz>
+References: <20241023162114.3354-1-laurentiumihalcea111@gmail.com>
+ <20241023162114.3354-2-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-882061270-1729755860=:1315"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241023162114.3354-2-laurentiumihalcea111@gmail.com>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Wed, Oct 23, 2024 at 12:21:11PM -0400, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> 
+> Add new compatible for imx95's CM7 with SOF.
+> 
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> ---
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 58 +++++++++++++++++--
+>  1 file changed, 53 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> index 57d75acb0b5e..ab0d8e017965 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -28,6 +28,15 @@ properties:
+>        - fsl,imx8qxp-cm4
+>        - fsl,imx8ulp-cm33
+>        - fsl,imx93-cm33
+> +      - fsl,imx95-cm7-sof
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dram
+> +      - const: mailbox
 
---8323328-882061270-1729755860=:1315
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+That's quite different programming model. Are you sure these are devices
+from similar class/type?
 
-On Wed, 23 Oct 2024, Maximilian Luz wrote:
+Your big if:then: block suggests this could be separate binding.
 
-> On 10/22/24 10:56 AM, Ilpo J=C3=A4rvinen wrote:
->=20
-> [...]
->=20
-> > Hi all,
-> >=20
-> > I've now applied patch 3 to review-ilpo branch in pdx86 repo.
-> >=20
-> > I'd appreciate if somebody confirms I got those comment edits right.
-> >=20
->=20
-> Hi Ilpo,
->=20
-> looks good to me. Thanks for fixing this up!
+Best regards,
+Krzysztof
 
-Great! Thanks for confirmation.
-
---=20
- i.
-
---8323328-882061270-1729755860=:1315--
 
