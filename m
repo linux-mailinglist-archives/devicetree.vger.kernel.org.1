@@ -1,62 +1,48 @@
-Return-Path: <devicetree+bounces-115024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 531CF9ADC1A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:23:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0CF9ADC21
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:25:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95331B216DA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 06:23:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC36E2838DB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 06:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24AA17B4F6;
-	Thu, 24 Oct 2024 06:22:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACBA418732C;
+	Thu, 24 Oct 2024 06:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="A9IyW3Cu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="exqWy8rF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4450A189917;
-	Thu, 24 Oct 2024 06:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8236D185920;
+	Thu, 24 Oct 2024 06:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729750974; cv=none; b=ZcNPbIP2fixgWtvtJTp1YXzKiC9seJvY7KCRt2DuepWkazQDpvIjcrXVg/fztr5aubD8JGlERyZw2RNzAvsmzXyy3iCrSqivmrkd+FCs2G0SOdnq2+nMWOi/Fb1fFrbE3eWUnFnAo+vX5qeDyou2Z5Z1lqUbOqpG94Ld5m0pzRk=
+	t=1729751087; cv=none; b=oStPltLUDbowx1AykuscAZ4mBvSWXDrg6uby7rRZZqHWD9L9xz4gUMS5IJv/p7RjQySNNQ2fQoZXfeW+OVtv3IZgsoq0rNoPVYNZRpVQFm2BYXkNDEVwF5Q7BQkHnNWmQ40vrftX8VB7Q6L7kS3pusqcwVmhfG9woapGfWWESLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729750974; c=relaxed/simple;
-	bh=B2rrdyS8WCZyYD/QGyjdUeIH6SkWQUvf14qpLqrNcTA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rSdOdmnt7m5KI3R7ishHClp/t8W3EamWQ2kON46EO7Ke0RoEIqKv3debl/Htuf7ncJVq5ao10P34mPA6MGynt/iCbwndjS3GRKqAdhoTwqNEew7DboQBZijNqcqM/XBrW0KABR7O2UTOBGFqyIxD5Bu3Qv/vXKIA0paBG3oQNsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=A9IyW3Cu; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49O6MKX9123892;
-	Thu, 24 Oct 2024 01:22:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1729750940;
-	bh=+hD8pazlMNkRIEUj8wspoCE4BW4rrUFRVlh12y70QEM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=A9IyW3Cu9DpCd82XEUtdsuireR3ZphphhZGbkMG+5Q+DZAq242Eq9xBeKQIqjhVrr
-	 fsQRtm0ioviGkfQzaRX77Wu96XB0S0QWz29gu5A/CWq6uKMrc08dhIVSt8q9WW0aaP
-	 OiaeCuQl+hxqyF3ntYQwt6irsTjG22DrYicnoOxI=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49O6MK4E058800;
-	Thu, 24 Oct 2024 01:22:20 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 24
- Oct 2024 01:22:20 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 24 Oct 2024 01:22:19 -0500
-Received: from [172.24.227.91] (psdkl-workstation0.dhcp.ti.com [172.24.227.91])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49O6MGOb035515;
-	Thu, 24 Oct 2024 01:22:16 -0500
-Message-ID: <7f1d8857-9894-4db9-a0c4-534e1bff4cbb@ti.com>
-Date: Thu, 24 Oct 2024 11:52:15 +0530
+	s=arc-20240116; t=1729751087; c=relaxed/simple;
+	bh=2XvsYj0Ms6fqASHAm+m8OowANeoy1TenFBRkwyIDeLo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n0sy9sNCsgf0sQiYZ9kv6DN4ObZnP53O4RdRFH/foFfxgYwbgLpMjbQlONUjxzsBE8inxGNzTkDv8scD7xmiaR2GNWRuIu+gvVR6snV2B0gU7xePivSb0SqpOmy2KKd/nk1yFrJbi1087DCdk+KK7yzDxBx4ItwpmBrHzcvkwTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=exqWy8rF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34FEBC4CECC;
+	Thu, 24 Oct 2024 06:24:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729751087;
+	bh=2XvsYj0Ms6fqASHAm+m8OowANeoy1TenFBRkwyIDeLo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=exqWy8rFlj3HtQVJeCOlXbRWHcPHJ08imMNc9l+6ZGpxm0+YdudDblY8xLZ+EamSp
+	 Uv6YWL0rRJTkQCh7r1kb7O0gyjJNAvtiRHq6oEe1k2GwG86RrR2MXSmvx1cpi2FfXJ
+	 zB5cMd7IJxSMTlYcDkuDIvFPz8Z50Zlbi9NXQ8DxrHLpplF7Cy6yrysZiK3hqZ0F1V
+	 wMNj8VNBOwDRDoEwS2ZgzwWzzUBy425iCIfpW3IiuyasG8LXIOlljlGRAXRtaWyWjm
+	 PDzSaK/Esbovs9caoeLantXAmCtW/M6e5hOAcGbLXM2dm7dNJXH7RG46d04dkasKr+
+	 rsiMG9bUe6+3Q==
+Message-ID: <cdc7032b-4d09-40dc-86a7-16d244517d11@kernel.org>
+Date: Thu, 24 Oct 2024 08:24:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,149 +50,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j7200: Fix clock ids for MCSPI
- instances
-To: Anurag Dutta <a-dutta@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <j-keerthy@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20241023104532.3438851-1-a-dutta@ti.com>
- <20241023104532.3438851-2-a-dutta@ti.com>
+Subject: Re: [PATCHv2 12/23] ARM: socfpga: dts: add a10 clock binding yaml
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dinguyen@kernel.org, marex@denx.de, s.trumtrar@pengutronix.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241020194028.2272371-1-l.rubusch@gmail.com>
+ <20241020194028.2272371-13-l.rubusch@gmail.com>
+ <v4gqnsyhqjccdac3kgmo7y2aunigqquqc3f7n7wgt5hiv3rnip@jfmoq3is4rjh>
+ <CAFXKEHZOPioES4guqjco+BE7i=Eqe2DdHiUxAksBCZm7nx1Rog@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Aniket Limaye <a-limaye@ti.com>
-In-Reply-To: <20241023104532.3438851-2-a-dutta@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAFXKEHZOPioES4guqjco+BE7i=Eqe2DdHiUxAksBCZm7nx1Rog@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On 23/10/24 16:15, Anurag Dutta wrote:
-> The clock IDs for multiple MCSPI instances across wakeup as
-> well as main domain in J7200 are incorrect when compared with
-> documentation [1]. This results in kernel crashes when the said
-> instances are enabled. Fix the clock ids to their appropriate
-> values.
+On 24/10/2024 08:10, Lothar Rubusch wrote:
+> On Mon, Oct 21, 2024 at 9:05 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Sun, Oct 20, 2024 at 07:40:17PM +0000, Lothar Rubusch wrote:
+>>> Convert content of the altera socfpga.txt to match clock bindings for
+>>> the Arria10 SoC devicetrees. Currently all altr,* bindings appear as
+>>> error at dtbs_check, since these bindings are only written in .txt
+>>> format.
+>>>
+>>
+>> Please use subject prefixes matching the subsystem. You can get them for
+>> example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+>> your patch is touching. For bindings, the preferred subjects are
+>> explained here:
+>> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+>>
+>>> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+>>> ---
+>>>  .../bindings/clock/altr,socfpga-a10.yaml      | 107 ++++++++++++++++++
+>>>  1 file changed, 107 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml b/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml
+>>> new file mode 100644
+>>> index 000000000..795826f53
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml
+>>> @@ -0,0 +1,107 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/altr,socfpga-a10.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Device Tree Clock bindings for Altera's SoCFPGA platform
+>>
+>> This wasn't tested or you have some very, very old dtschema.
+>>
+>>
+>>> +
+>>> +maintainers:
+>>> +  - TODO
+>>
+>> We should not be taking unmaintained stuff.
+>>
 > 
-> [1]https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j7200/clocks.html
+> This is just a trigger here. Basically, I have no probelm in placing
+> my own name here. AFAIR Mr. Dinh Nguyen has his name on the other
+> intel/altera related files, so I'm not sure who decides that. Please
+> let me know.
 > 
-> Fixes: 8f6c475f4ca7 ("arm64: dts: ti: k3-j7200: Add MCSPI nodes")
-> 
-> Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+> Basically this particular patch is related to my initial questions
+> (cover letter):
+> 1.) Documentation/devicetree/bindings:
+> Executing the following find...
+> $ find ./Documentation/devicetree/bindings -name socfpga-\*.txt
+> ...shows 4 text files describing "altr," bindings. I sketch-implemented
+> the clock binding and could reduce some of my dtbs_check warnings. So, my
+> questions is, if this is the right way? Shall I try to write .yaml files
+> for all 4 of them, too? Related to that, who will be maintainer?
 
-Reviewed-by: Aniket Limaye <a-limaye@ti.com>
+Whoever is interested in that hardware. Platform maintainer, device
+maintainer.
 
-> ---
->   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi       | 16 ++++++++--------
->   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi |  6 +++---
->   2 files changed, 11 insertions(+), 11 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> index 9386bf3ef9f6..ee953c0bf11f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> @@ -1145,7 +1145,7 @@ main_spi0: spi@2100000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 266 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 266 1>;
-> +		clocks = <&k3_clks 266 4>;
->   		status = "disabled";
->   	};
->   
-> @@ -1156,7 +1156,7 @@ main_spi1: spi@2110000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 267 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 267 1>;
-> +		clocks = <&k3_clks 267 4>;
->   		status = "disabled";
->   	};
->   
-> @@ -1167,7 +1167,7 @@ main_spi2: spi@2120000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 268 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 268 1>;
-> +		clocks = <&k3_clks 268 4>;
->   		status = "disabled";
->   	};
->   
-> @@ -1178,7 +1178,7 @@ main_spi3: spi@2130000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 269 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 269 1>;
-> +		clocks = <&k3_clks 269 4>;
->   		status = "disabled";
->   	};
->   
-> @@ -1189,7 +1189,7 @@ main_spi4: spi@2140000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 270 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 270 1>;
-> +		clocks = <&k3_clks 270 2>;
->   		status = "disabled";
->   	};
->   
-> @@ -1200,7 +1200,7 @@ main_spi5: spi@2150000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 271 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 271 1>;
-> +		clocks = <&k3_clks 271 4>;
->   		status = "disabled";
->   	};
->   
-> @@ -1211,7 +1211,7 @@ main_spi6: spi@2160000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 272 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 272 1>;
-> +		clocks = <&k3_clks 272 4>;
->   		status = "disabled";
->   	};
->   
-> @@ -1222,7 +1222,7 @@ main_spi7: spi@2170000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 273 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 273 1>;
-> +		clocks = <&k3_clks 273 4>;
->   		status = "disabled";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> index 5097d192c2b2..b18b2f2deb96 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> @@ -494,7 +494,7 @@ mcu_spi0: spi@40300000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 274 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 274 0>;
-> +		clocks = <&k3_clks 274 4>;
->   		status = "disabled";
->   	};
->   
-> @@ -505,7 +505,7 @@ mcu_spi1: spi@40310000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 275 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 275 0>;
-> +		clocks = <&k3_clks 275 4>;
->   		status = "disabled";
->   	};
->   
-> @@ -516,7 +516,7 @@ mcu_spi2: spi@40320000 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   		power-domains = <&k3_pds 276 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 276 0>;
-> +		clocks = <&k3_clks 276 2>;
->   		status = "disabled";
->   	};
->   
+> 2.) Some bindings, e.g. the Silabs clock generator seem to have no
+> driver, thus show up as warning:
+>     compatible = "silabs,si5338";
+> IMHO it is most likely rather to be probed/loaded in the SPL of the
+> bootloader. Is it problematic to keep those declarations (showing up as
+> warning in dtbs_check) or how to deal with them?
+
+Sorry, I don't get the problem.
+
+> 
+> 3.) Please, give me some feedback if the DT and binding adjustments are
+> going into total wrong direction, or where I may do better. If it is ok,
+> and acceptable, or what is still missing. I tried to split them, to
+> allow for better single integration / discussion let me know if this is
+> ok, too.
+
+I still don't understand. Nothing here is different than with every
+other platform.
+
+> 
+> 
+>>> +
+>>> +description:
+>>> +  This binding uses the common clock binding[1].
+>>> +
+>>> +  [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+>>
+>> Drop description or describe the hardware.
+> 
+> Ok (the description was taken as content from the corresponding .txt file)
+
+What corresponding txt file? You are adding new binding. Are you saying
+you duplicated bindings instead of doing conversion?
+
+git log -p -- Documentation/devicetree | grep -i convert
+
+
+
+Best regards,
+Krzysztof
+
 
