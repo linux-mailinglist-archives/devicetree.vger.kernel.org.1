@@ -1,84 +1,75 @@
-Return-Path: <devicetree+bounces-115067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A629ADD58
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:15:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8414C9ADD5E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:16:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9EB1CB25209
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:15:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 318C31F2189B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:16:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E68D18BBA2;
-	Thu, 24 Oct 2024 07:12:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PpZQNcLS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C6017333D;
+	Thu, 24 Oct 2024 07:15:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB28189BAD;
-	Thu, 24 Oct 2024 07:12:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF05078C9C;
+	Thu, 24 Oct 2024 07:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729753963; cv=none; b=LRCC6EAiSyBLA+6rDbODT+Cuxc/8PTn7uJJn5NejyoWhNMQul5VjSy9YlzCzbjdjXGzxf6L9ExjIAKEdMDGjUFVRCCLY2wpH7atU5XTgDEyETG/yIDHsyVtva8bX6Pkod1ACzxsZKoKyh4BDpWDNGU5xPt8HQ4se33qq/pncDZM=
+	t=1729754153; cv=none; b=aq0HKZrqK9T16C33h/qi/NnzQyeOjpzltXkmZoAyatCu2No+vlvq9917evFbLbyC0+jEYA8xtsC+ruXeG2b+m1z5EY8vDtUD1KdANKXMpRyGa6Jjq8AHqiLZpuuGGa/cMEnYDpuNpbNhvpWPOAVoOi9KCPMuKGCl7K6CXXzBBbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729753963; c=relaxed/simple;
-	bh=ivHa9mrhegtxO3Q7geXr2Oyyb9aQ9mAh7cMUAd0X9aI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OxYDlzcf7RQOhUzJNYi7VDShXJMuzTLdP8nL2TBU9+dN8zsHNwpr/O/n8a/f/ghgYQTMbuAUe4txaKmcrgi8NZ0V0FCUz3mrHoe3W6TmZEsUeTAJfqvzhkhYy9qokwdy0us+wcjn4WmxjnGnB88uh2oamU7yQXWE33s3sVNul1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PpZQNcLS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9AFCC4CEC7;
-	Thu, 24 Oct 2024 07:12:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729753962;
-	bh=ivHa9mrhegtxO3Q7geXr2Oyyb9aQ9mAh7cMUAd0X9aI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PpZQNcLSEE5cjifNukT7Vu7Fb6Ll7qVRDqojODlObL6Akfm2A3+KYVEcGbcKcot/C
-	 f0xFrQi9+q1IIDNkgZDFYYqsUwvhnLXeMW2YbSxxUMRNfh+8RANVT/xbdQgb9UX8t5
-	 4SLMU4fOLNiYH1XmjC/7Ufpz2eFt3JXNKmGAcU5oQ0PMcnEOMES9iWMfEjvKQa0CVW
-	 2kQZy1sPwQEGDIQjLEXc9ZTqt8NltOqb39KFFUwsKCD6R4lVQvb9hy8qAgSGlOFq6J
-	 c4IMCap3ohH2TLcF4fPl1g3ScS8Do+m7BE4yaqhICZQClo0qzLiwYhvWtX1RmOgXZ7
-	 XSW0B1s608Y3Q==
-Date: Thu, 24 Oct 2024 09:12:38 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tao Zhang <quic_taozha@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: arm:
- qcom,coresight-static-replicator: Add property for source filtering
-Message-ID: <raa3otr6kmiq72qjb5rnqt5cluqw627jkfbvkxqi2vbjpbwpsb@v64xvghgxx75>
-References: <20241024065306.14647-1-quic_taozha@quicinc.com>
- <20241024065306.14647-2-quic_taozha@quicinc.com>
+	s=arc-20240116; t=1729754153; c=relaxed/simple;
+	bh=rsbgrNHNb4PGhRjN3KC2IH8pOcG2KkW5OnYWL5YpX9c=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=e8XhmcYu/IEqFN6ZYgYNZccB8YQLVJbLjtN0QU2Atv7gaKUpAewRuajaXAhxtSMLQmsBi7dzPmhgBrGnsWrWEmBSy7uCJN8erIi6SCYYR3O99j/eN68rlo+SZKDy4fAil/9sbgQQ0e+ix4V+msj50vNs6HHzWAss0/MtNKm+6aE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Thu, 24 Oct
+ 2024 15:15:48 +0800
+Received: from mail.aspeedtech.com (192.168.10.10) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
+ Transport; Thu, 24 Oct 2024 15:15:48 +0800
+From: Billy Tsai <billy_tsai@aspeedtech.com>
+To: <jdelvare@suse.com>, <linux@roeck-us.net>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <joel@jms.id.au>,
+	<andrew@codeconstruct.com.au>, <ukleinek@kernel.org>,
+	<billy_tsai@aspeedtech.com>, <linux-hwmon@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+	<linux-pwm@vger.kernel.org>, <BMC-SW@aspeedtech.com>
+Subject: [PATCH v1 0/2] Enable WDT reload feature
+Date: Thu, 24 Oct 2024 15:15:46 +0800
+Message-ID: <20241024071548.3370363-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241024065306.14647-2-quic_taozha@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Oct 24, 2024 at 02:53:03PM +0800, Tao Zhang wrote:
-> The is some "magic" hard coded filtering in the replicators,
-> which only passes through trace from a particular "source". Add
-> a new property "filter-src" to label a phandle to the coresight
-> trace source device matching the hard coded filtering for the port.
-> 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> ---
->  .../arm/arm,coresight-static-replicator.yaml  | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
+Aspeed PWM controller has the WDT reload feature, which changes the duty
+cycle to a preprogrammed value after a WDT/EXTRST#.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Billy Tsai (2):
+  hwmon: (aspeed-g6-pwm-tacho): Extend the #pwm-cells to 4
+  hwmon: (aspeed-g6-pwm-tacho): Support the WDT reload
 
-Best regards,
-Krzysztof
+ .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 25 +++++++++-
+ drivers/hwmon/aspeed-g6-pwm-tach.c            | 49 +++++++++++++++++++
+ drivers/pwm/core.c                            |  6 +--
+ include/linux/pwm.h                           | 10 ++++
+ 4 files changed, 86 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
 
 
