@@ -1,137 +1,135 @@
-Return-Path: <devicetree+bounces-115170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72DA99AE4F1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 14:35:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC3B79AE4F5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 14:36:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28A581F22FED
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:35:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACCE3282874
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D3F1DD0D7;
-	Thu, 24 Oct 2024 12:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6CE1D5174;
+	Thu, 24 Oct 2024 12:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E2OCOXA1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ecOVga9l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6C41D63CE;
-	Thu, 24 Oct 2024 12:34:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 096AE1D049D;
+	Thu, 24 Oct 2024 12:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729773290; cv=none; b=GknSqhDweZH+1cKKtWXY6jk3zoq2NYLuljz3nCGfCitgSSNTPBmHknlVrCb8tPGgk/AL2Sh3vt8ru8snXxdw6YyIUbe+JHoqo7pjbp9TPDc7S8PezTQqoGzrcpBSTyL9Ye1FuaEhH3ZCTJqhuAvU07rhFZmow0YLhi8V/a8LJOU=
+	t=1729773343; cv=none; b=BQPCm78NLgaXk1aUVD2s66zOtT2eGcZj2oY3679F6/Y8HQkdaYveuJgbyVtcE6YeOcCYJjlSPLO4cDhiDJsorOWEziPs/jQA2LGD85wghySA3PHtnEwT73BUaUp0HZZMrvtCQ1suwEfXYlO8zj4lXXJzbnZD9ZkP3zWnHZpkb5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729773290; c=relaxed/simple;
-	bh=K3gXF6XbnmUL4vxccwBpDJwpWrMAwTUAMTHCmMZNmhU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dtzlr8Py0XDk5WAciFIhB3fwT30tiXnvYQidFCvxFCfAs0l30JYxDre9iP8cexgPMHacQkxYvCagnqunU8gsZ1z7tObKeAyYyTu0ZRpe2jb++SyRjF/J/IXnZwt+nosL3mrwKJpvt1KH4DWxcyqFltR0f+UFZiA43sKTkRSgiXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E2OCOXA1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDCE2C4CEC7;
-	Thu, 24 Oct 2024 12:34:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729773290;
-	bh=K3gXF6XbnmUL4vxccwBpDJwpWrMAwTUAMTHCmMZNmhU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=E2OCOXA1DSNsWokyzFT/mLl5SxryxKZX+3uEFZQikGCaaPIBuqawl6DMXGiXvLUAA
-	 nuqpD+M4WL6rs5QZnaRH5R45WA2EM5M7L+44oDQ/AtqvIzLPji6QNDVFJqv4yoVQbi
-	 G/BZVS3T7GhoCcLBTJLwBlVVHeo+nReL0wEXLfBNloyz2c4Ox9Slr1VPJCEebXan+L
-	 dTc/8m54UOThkT5CrsY16Eyj/yeWy66zIwBkD+1qPvwGuCEvFlweX1Ul5N64E6Dq4M
-	 srpEbt7N6AyG/yjLAd4VzAz/BkcrYwc+/Z9XKdk7ySHhG1ViO5IVOjfEIuy83lMtVy
-	 4a/EtsGZcGeqg==
-From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Andy Chiu <andybnac@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 5/5] dt-bindings: riscv: document vector crypto requirements
-Date: Thu, 24 Oct 2024 13:34:33 +0100
-Message-ID: <20241024-pungent-lasso-42dd3512a3c8@spud>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241024-fanning-enrage-bcc39f8ed47d@spud>
-References: <20241024-fanning-enrage-bcc39f8ed47d@spud>
+	s=arc-20240116; t=1729773343; c=relaxed/simple;
+	bh=E3E92tat9CbOX0TNJBER6hBNO6vwI1J+Y8AONn6yclE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WwfVPbQ/G4yn4IWRvsoDGGwfRazjKA44GBmfZIxxlmP4iYRWQEq7XdcViJTyJ315UqHR8a7ERq6y/whyIoX5Onu9EBLTqHsWBWsqwOWc9EmfDxLs4YmjiUByB5NoudQrcmWOgMiUBnoJ4G5hvWNaCoIAiPuUrIjIBdVt9pT0U0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ecOVga9l; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a9a5f555cfbso52796366b.1;
+        Thu, 24 Oct 2024 05:35:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729773339; x=1730378139; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=E3E92tat9CbOX0TNJBER6hBNO6vwI1J+Y8AONn6yclE=;
+        b=ecOVga9l+yahZun+3uEJSQlcfOcTIdkcL9x+jiCDJ44cgG6HSUGa69+F/hdMKxUiv6
+         dtRPM82t72K+b5kBpO0ALDhBFy37tv5Nz0zKrrvoC80uzAg+Gvocents11IARK70dKkt
+         VHG85Nih4rT5eE8lmwsl6OHisor6FiELwoGo8N/zquhduAjcC5ldVfFtO7VguJvE6RfM
+         HfHAY+BiSgnXN3Nkz337Al2iXueQTBaebcX0ZiQmO+v/TgWs/eYAfyjVAOkUw1uDar6q
+         eP9772OgczmqZaMxHK7MEewVWpmLJLG/OAf4WbO23EuGxrqvbJX20xlJK/Teq7f98r4K
+         7CGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729773339; x=1730378139;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E3E92tat9CbOX0TNJBER6hBNO6vwI1J+Y8AONn6yclE=;
+        b=p13dW+xH8MWHjdxoJq+JDxute0azdWPhrsgm6KIjyXFIldkYK2dVLPcnNWcmVPypR4
+         p8HxJ1AErWkR6oU/Y82djqjycSU5L0cyvt8q7lykmR62n6tgqsBZlAXfAhLJKrxUMdoD
+         2yvbgSQtIg+Y+VHuU7EcV+4h3o1CKneLzej1T+ss7jt0C+VP+Q/mU6/GMOKhnBZ/NfnH
+         oy0whAuswMycU/cgb0RCXPZwjmce7D23tzmlq6EdbGdoFMc+GY+i8yi3P93fcZIfOXhw
+         dM7GT56fxLv4sKZ38OHvMx+BQK/ZJUmK2U0xLM+RhSdjSpFC0P+KusyeP5HHng53afMY
+         jE4g==
+X-Forwarded-Encrypted: i=1; AJvYcCVpJE3qGeV5uUjks7yLFGYgbwnZfRKtkI77I28aBlcQHtN43Zpdq4Tnl0Rjxu6K7lTIdSHmJd38BIZN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yybefz6lz3/q6lu0iWnXu4fLZvgeVFGLdgCR5/TfgkqVTJLCzUk
+	gYvX5XkAdpohiQZ4sGZJS0zi9vRXRWZTN1A/u2Suu8pTOys6DEux
+X-Google-Smtp-Source: AGHT+IHGLARm2ozMgjg9BY+ey1UHdsbN/1bmDmuDiducGLzYACM8tFv5Mr6VRCk4hXqTOA7PA2BCxg==
+X-Received: by 2002:a05:6402:2685:b0:5cb:6841:ede5 with SMTP id 4fb4d7f45d1cf-5cb8b267f63mr7481636a12.28.1729773338716;
+        Thu, 24 Oct 2024 05:35:38 -0700 (PDT)
+Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cb66a6d0besm5680417a12.57.2024.10.24.05.35.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Oct 2024 05:35:38 -0700 (PDT)
+Message-ID: <1e0097f6a15f47c173cb207e369909c1cb5943f9.camel@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: axi-clkgen: include AXI clk
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, Michael Turquette
+	 <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	 <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>
+Date: Thu, 24 Oct 2024 14:35:37 +0200
+In-Reply-To: <20241023-tucking-pacific-7360480bcb61@spud>
+References: <20241023-axi-clkgen-fix-axiclk-v1-0-980a42ba51c3@analog.com>
+	 <20241023-axi-clkgen-fix-axiclk-v1-1-980a42ba51c3@analog.com>
+	 <20241023-tucking-pacific-7360480bcb61@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2037; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=VOy2t1F9TKOOPNx3M+MXPHgxN3iDgl3UPDedDE/djSQ=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOlSdtes2OevZCwRtevndV7gEHIv9262WM9tzomNe3Z+K //45+DdjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExkzndGhn7rDdXb5CRP8WyW 3XL2n4Tnfl2WpeH5b3qLH0+d83Jl71VGholrOFib/4X9zJPsnjjzvdihro2/X8bKyoXfuv7+8hn bbQwA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, 2024-10-23 at 17:30 +0100, Conor Dooley wrote:
+> On Wed, Oct 23, 2024 at 04:56:54PM +0200, Nuno Sa wrote:
+> > In order to access the registers of the HW, we need to make sure that
+> > the AXI bus clock is enabled. Hence let's increase the number of clocks
+> > by one.
+> >=20
+> > In order to keep backward compatibility, the new axi clock must be the
+> > last phandle in the array. To make the intent clear, a non mandatory
+> > clock-names property is also being added.
+>=20
+> Hmm, I'm not sure. I think clock-names actually may need to be mandatory
+> here, as otherwise you'll not what the second clock is. The driver would
+> have to interpret no clock-names meaning clock 2 was clkin2.
+>=20
+>=20
 
-Section 35.2. Extensions Overview of [1] says:
-| The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly the composite extensions Zvkn and
-| Zvks-- (sic) require a Zve64x base, or application ("V") base Vector Extension.
-| All of the other Vector Crypto Extensions can be built on any embedded (Zve*) or application ("V") base
-| Vector Extension
+So the way things are now is that we just get the parents count with
+of_clk_get_parent_count() and then get the names with of_clk_get_parent_nam=
+e() and
+this is given into 'struct clk_init_data'. So they are effectively clk_pare=
+nts of the
+clock we're registering and as you can see clock-names does not really matt=
+er. What
+I'm trying to do is to keep this and still allow to get the AXI bus clock w=
+hich is
+something we should get and enable and not rely on others to do it. The ide=
+a is then
+to add the axi bus clock as the last one in the clocks property and I will =
+get it by
+index with of_clk_get(). The rest pretty much remains the same and we just =
+need to
+decrement by one the number of parent clocks as the axi clock is not really=
+ a parent
+of our output clock.
 
-Apply these rules in the binding, so that invalid combinations can be
-avoided.
+All that said, and FWIW, clock-names are not even being used in the driver.=
+ I just
+added it to the bindings to make the intent clear. I could have it in the d=
+river but
+I'm not sure the extra complexity would be worth it...
 
-Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-isa-release-698e64a-2024-09-09 [1]
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../devicetree/bindings/riscv/extensions.yaml | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index 20cead7d8af71..38d77043552a3 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -658,6 +658,38 @@ properties:
-             - contains:
-                 const: zve64f
- 
-+      - if:
-+          contains:
-+            anyOf:
-+              - const: zvbc
-+              - const: zvkn
-+              - const: zvknhb
-+              - const: zvks
-+        then:
-+          contains:
-+            anyOf:
-+              - const: v
-+              - const: zve64x
-+
-+      - if:
-+          contains:
-+            anyOf:
-+              - const: zvbb
-+              - const: zvkb
-+              - const: zvkg
-+              - const: zvkned
-+              - const: zvknha
-+              - const: zvksed
-+              - const: zvksh
-+              - const: zvknc
-+              - const: zvkng
-+              - const: zvkt
-+        then:
-+          contains:
-+            anyOf:
-+              - const: v
-+              - const: zve32x
-+
- allOf:
-   # Zcf extension does not exist on rv64
-   - if:
--- 
-2.45.2
-
+- Nuno S=C3=A1
 
