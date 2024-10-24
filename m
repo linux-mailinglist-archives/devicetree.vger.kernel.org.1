@@ -1,130 +1,135 @@
-Return-Path: <devicetree+bounces-115047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66CBA9ADCF7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:00:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C74289ADCFC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:02:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E959AB22FB1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 06:59:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01C711C21BCC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C0E5189BB3;
-	Thu, 24 Oct 2024 06:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8EF8189909;
+	Thu, 24 Oct 2024 07:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KIN3WDpu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BbaMdGCR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E947A189B88;
-	Thu, 24 Oct 2024 06:59:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E396617623F;
+	Thu, 24 Oct 2024 07:01:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729753147; cv=none; b=k8PgFMVr4fwAFhBF3xKZ6nvbSpSp0pFPAVXF8AovCMMnSC804pYUhi50Ptl7G3TSCbmBtYHjkI1jAiV8c+wiOKBoFGWTTK+7UMjFEv36dNwvZqFxwxpXklW8NtRwcbgFMZrn7wsSBEEYjHRpbTK3uouOVuF3b3uMkWY0rVcReKQ=
+	t=1729753305; cv=none; b=j1VcHRdnG/l2JzoItMuUvSxHegTPBYqMByNA3GLKhMghUJMvdlmaoiz1i1yXYRh3qtAeNYEnGseZQ+Xh0y9atwod2QUnkWmUVrG2Mb/+mjnRqqWPwz8kqf/wKxSYEEXEJaWg6SnjKmFFk1TY0jheL43ub4dfQ0oQ8cy1XtGizPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729753147; c=relaxed/simple;
-	bh=N9evOzKR9qQkb0jTmwdxreVwdmPlvZ4vIascLRoTQVM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YTu7yB+J2w0DXXSJkCHx9ikxIwJp/C5koF5wNmwGEi/4RQ/vzPxCqurevmmYK93pIZG00Q1Z+9QJDJkiBq0qSKNos+V79Xg8i2XVGukPS8EkxTP71qnVC+3EMJhS4pA4YqJPS57fh+Az36tve/x3gqe9nwF2tP/ZZjatP6tkjIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KIN3WDpu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B11DCC4CEC7;
-	Thu, 24 Oct 2024 06:59:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729753146;
-	bh=N9evOzKR9qQkb0jTmwdxreVwdmPlvZ4vIascLRoTQVM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KIN3WDpuP4NP5behVdbOl723TWbwnMLpyN49Ras0UEp4JTDv9IGlBw70gZKFXEG5Q
-	 n3teO0C/hRaLD7DVrA9UXSreOmhek4Pz6Q9f+ZQC+Rtx/wJJRNXGB2F5yg5xIsLCVo
-	 sLTf4rSODa7gD5c31+DEm3Zb8i82fqnYWJzL6QQj5GKvHVKicmA2gkpJzrQcIHh3+F
-	 0bn165gcHmEwWmzMQ8yEguJDgl44h/j247vmPEYBfFEu+FNsVCaXwzlP5W34wTSlJy
-	 Y8+khpBbHaG3ZPuTle0+VI8QUQO51NgdAA/9paJjpwP0D5XiYjaNaSBJT5aQ6KLTOo
-	 xgQ5HRzqlbtBw==
-Message-ID: <87e89ecb-a072-4607-83ca-74be4844237a@kernel.org>
-Date: Thu, 24 Oct 2024 08:59:00 +0200
+	s=arc-20240116; t=1729753305; c=relaxed/simple;
+	bh=zJuO8LfaQvkp55X9u1k1lcwlOMehG39jXlnIzJQtNYI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pLIK2O0itNku6vKTmzK12ibn0E0SL/VQKMI1Xo0NZhVfsvzsY+otAjcHsIlPORybS1qNO1WjuHRpL4vj9xn2x2m0awK5noOxqyz1LKm3nf/LMDMck3Mfa3I3m0ICL0XAb6qhMAuUblg+NvrBTL2Q2K7PwIufZUGjz6Dq/ic0iKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BbaMdGCR; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729753304; x=1761289304;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=zJuO8LfaQvkp55X9u1k1lcwlOMehG39jXlnIzJQtNYI=;
+  b=BbaMdGCRsmcRYAJxnVqXvi6gWaclX7uR1ALzLXDKn1qQeFnMX5LZxu5/
+   e/NIVuaKYVOgUSpPSbTcsG03hsvheOv3wXAMBMGKHGi9ACOkhP5o4ak3T
+   dudKgvVFhwe8fIipbXJl9UHhrWBlE3rX0+gSRQIlOxGUSpHUYfqjG8HcN
+   GleBL2KNBpu/GzvNCX/0AK26dL2Xfs3hYjIdB4EU9oEW76QQxXzNPbht0
+   TFeso6iIViY2l5cfcP4uG/azhFsKn5GAULedvmOyFHeJIn38cnIVKXnkW
+   T/HDngOF19QSAvOlZoRkejqJArl5sGU1bRfdMTqKBQj4IzUP+9nliWEKa
+   g==;
+X-CSE-ConnectionGUID: Fw9q9hUgSiuw+tSkp/gvCA==
+X-CSE-MsgGUID: M5DwRTl1Qz2kRwqf+ux0Lg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="39980355"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; 
+   d="scan'208";a="39980355"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2024 00:01:43 -0700
+X-CSE-ConnectionGUID: g7Zf7rphQCKSTv1iM/8KTg==
+X-CSE-MsgGUID: BjdgtSosQNSHOMAl3I7/2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; 
+   d="scan'208";a="80160958"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2024 00:01:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1t3rqj-00000006U4F-3O78;
+	Thu, 24 Oct 2024 10:01:37 +0300
+Date: Thu, 24 Oct 2024 10:01:37 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Philip =?iso-8859-1?Q?M=FCller?= <philm@manjaro.org>
+Cc: Justin Weiss <justin@justinweiss.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	"Derek J . Clark" <derekjohn.clark@gmail.com>,
+	Alex Lanzano <lanzano.alex@gmail.com>,
+	Furkan Kardame <f.kardame@manjaro.org>,
+	'Roman Gilg' <romangg@manjaro.org>
+Subject: Re: [PATCH v3 4/6] iio: imu: bmi270: Add support for BMI260
+Message-ID: <Zxnw0bZ5SRSYgzyr@smile.fi.intel.com>
+References: <20241020220011.212395-1-justin@justinweiss.com>
+ <20241020220011.212395-5-justin@justinweiss.com>
+ <87msiwm90s.fsf@justinweiss.com>
+ <ae3213db-4edb-4fba-8f9d-c6f283735e9f@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] dt-bindings: mfd: add maxim,max77705
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
- Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org
-References: <20241023-starqltechn_integration_upstream-v7-0-9bfaa3f4a1a0@gmail.com>
- <20241023-starqltechn_integration_upstream-v7-2-9bfaa3f4a1a0@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241023-starqltechn_integration_upstream-v7-2-9bfaa3f4a1a0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ae3213db-4edb-4fba-8f9d-c6f283735e9f@manjaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 23/10/2024 21:42, Dzmitry Sankouski wrote:
-> Add maxim,max77705 core binding part.
+On Thu, Oct 24, 2024 at 01:40:50PM +0700, Philip Müller wrote:
+> On 22/10/24 22:50, Justin Weiss wrote:
+> > I couldn't find a shipping device with a bmi260 using the 10EC5280 ACPI
+> > ID. Some prototype devices with the bmi260 may have used them:
+> > https://lore.kernel.org/all/
+> > CAFqHKTm2WRNkcSoBEE=oNbfu_9d9RagQHLydmv6q1=snO_MXyA@mail.gmail.com/
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> ---
-> Changes in v6:
-> - unevaluatedProperties must be false
-> - drop excessive sentence from description,
->   just describe the device
-> - change leds compatible to maxim,max77705-rgb
+> The Arch wiki has some recordings of that. Most likely got fixed in newer
+> BIOSs to the BMI0XXX coding.
+> 
+> https://wiki.archlinux.org/title/AYA_NEO_2021#IMU_(Accelerometer_+_Gyro)
+> https://wiki.archlinux.org/title/GPD_Win_Max#IMU_(Accelerometer_+_Gyro)
+> 
+> On 22/10/24 22:50, Justin Weiss wrote:
+> > I can't find any evidence of BOSC0260 being used, besides existing in
+> > the Windows driver. As suggested in an earlier review, I added it here
+> > to encourage people looking at this driver in the future to use the
+> > correct ACPI ID.
+> 
+> Based on the BIOS code from the OrangePi Neo the default value was 10EC5280
+> which got commented out and replaced by BMI0260. For BIOS v1.19 however
+> OrangePi will use BOSC0260. I might provide a new DSDT dump as soon as I get
+> the newer BIOS from the vendor.
 
-Forgot about example...
+Okay, at least that will be correct ID from the specification perspective.
+Still, do  we have an (written) approval from Bosch to use that ID?
 
-Best regards,
-Krzysztof
+Anyway, that needs to be in its own patch with the DSDT excerpt and other
+information.
+
+P.S. And thanks for working on this, at least we are coming better to have
+this mess to be sorted out and possibly preventing fake IDs from appearing
+in the future.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
