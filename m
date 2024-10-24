@@ -1,86 +1,84 @@
-Return-Path: <devicetree+bounces-115361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B819AF2BB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 21:43:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D0669AF2BE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 21:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E126B2875C7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:43:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D12712878AB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D39200B98;
-	Thu, 24 Oct 2024 19:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CAB215F44;
+	Thu, 24 Oct 2024 19:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E5PHkDOG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xy75vLzG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EC918A946
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 19:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15C81FF02C;
+	Thu, 24 Oct 2024 19:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729799016; cv=none; b=NqIhQOKylwUScbBausRwq1eluR3qCQDlhV859xneMbBXCJxbuWTVjFayqIrzOoSj0xAxi7HAmThwx/0M4Rq2nZggD/s5FlcMI55FO4b8+cJozern+l7JQxGs9rCdpjmzDtTLerr+ibQUyrzJ0oWJj2r06vwP9TtVsG1nSl+EywY=
+	t=1729799017; cv=none; b=R3tzyUxFszYBwWBL7AA5b4gxqc9rIT6dmgXUq2oY//bnQ8dEQlLU8XNqI/Adrxu/xnBl31VsqMU8Lv1jZdPX/dCLHVSWeOJlBMpm/1W2k9J/nv9s0cpUggxqQzG/0z4xOBR9K3kzlDCniyTspk0FNHvNk5WvIJm0fxfsT5b+qY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729799016; c=relaxed/simple;
-	bh=H1S2u//xJtJ6QkESGaS9F+6qGkp25nA8VG7jKdC4S8s=;
+	s=arc-20240116; t=1729799017; c=relaxed/simple;
+	bh=yZ/K6dqDsGzjb6K/FzxlpFPTOwMfQtT9lhO1k2nevX4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UqPU3L4XL+FfjQzqPWZNh5f89RjFc6NnyLdyL7sPE5I5/lSg35rJ18uB8rc/gRD2pi4rgeOAxcTk9oy1kMl+qdPRrBC+NPRPiY6PELAk63rghQondWWYOkOh7T2qmi5KhHHllvQHby5e5u5Yi3Kwaxp8J/sGIzVFdLAKUfck5Ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E5PHkDOG; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-539f72c8fc1so1683751e87.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 12:43:34 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oStj7IUKDc2rv5rkjN6bYdRwd92Ih1a7g8Mhw+04+liVrQO8Rrb+KeKYvq1ZwnribdFqmWUDcuYW6fO2v4NsVKaVu6cuGDUGTmeXCIwmc32NvVwAxRcVLVARXWCOYm+l73y3OFeumwty1ErMbcTs6zqpVT+Bm1880Ua5+Rq2pYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xy75vLzG; arc=none smtp.client-ip=209.85.210.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7181eb9ad46so841627a34.1;
+        Thu, 24 Oct 2024 12:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729799013; x=1730403813; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1729799014; x=1730403814; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KueSS+4AWd9h0f/ZsLs1oTryEUj0ykGAlyAv7GAvCLQ=;
-        b=E5PHkDOGXr+fVaCSy9/hvJIsLhrUJ1637zHr1ge+xAE1ScSq/eYOi6oqmactcgMrDZ
-         vt7SH4G1II33MB59lTZ6HvjTwMkLpygbbpQb1MV3nC1KL4pLKuqnwbVltWzo/N9SkKCz
-         CqlE5yYSFqBhp5wZPVDHVck79qAToTiorm5WG/4ixH2h/J4oPf1jlL+M7OrViv6wope7
-         EGlcEkxjolmfcUAWQUEnE9wOs60OoGsKooSv9QCpoGEWTlm8f2sGsRC2ChGdD6FG6lph
-         3wFHfKpOsiO9sQz5XLyJF9/NnN/v+mlbs8TPqfswL5g+2WiwG1KRvQCsleuCn45ssQ0t
-         mxhg==
+        bh=Fzk7F6oUmjqDhYJuo0PpkPkgeOk+vBWt9cR54GKynl0=;
+        b=Xy75vLzGNL4NN8FtwoNmSeZ/RbxySibZpOty8cF62YUAzENTR93v/tXehZZQ2csGnw
+         YmWuuU+XFcNehSUVCSloychBdfshutWteKxF4aI6B6njL+gwCVDi0vYuovbc69VWGQOR
+         7XAeRtc6cO/zzsXl8NEG1KpBUCOMMReELJXoosQXe7i3WZI1jlliu3rjctFPlEmtcvQT
+         lXXp778JGeFSZBCd3tbDgeZbUbqEtmkFA7t2J2qE6pS4lUYF/0rAJAF+ke9TNob1X+qw
+         nnw5orV9v712s5xKKGdIhBZnJK8m8dsDjIkc7Rm1n28jsY6NOok94gyMCDKHFbFA2Mzq
+         BYmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729799013; x=1730403813;
+        d=1e100.net; s=20230601; t=1729799014; x=1730403814;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KueSS+4AWd9h0f/ZsLs1oTryEUj0ykGAlyAv7GAvCLQ=;
-        b=xUCvUgvO04UowgEWh6b3eByWCEMSDrliZRCwdiu6lu/QU9hW28TztHzagS4x7LoD9z
-         +uwYjUc7L9SCDXJPgYZNiqcCe8ObkOaS147UO6jhIEwvDGbXjItkd4+4RH73oNeIWvLj
-         winzYzcsNZ0ixBbZvnp0azxk1Awo3/4e7+90KVDoy2fvJqN95ZUplmLRxxj7qKG2behH
-         LiYFU4nU6aHJyQvrAIohBHXCfqJd948+EW7xLMRn2F7oMOQQWpWb4mOIIrfe3dn9sqzN
-         rAUE1nC9KkCby19w7tcmc8bppkuvDjUgfp5qv8DNtSVoMnia5vcijF27Hy0cRbhPMiYJ
-         TPuw==
-X-Forwarded-Encrypted: i=1; AJvYcCVn+WNGo0tkaAEbp9zyPQrZ/n/mNco8UQlsRALrPCzvM2fCQSkNU6COVNXjgHMCsDcXrlKUglZmToiD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxc6UAQXIMkQMZg4GmP5l57mBy1o6usjgTOcRSMYNykhXLe7q34
-	UG5dYuXG4OLTdeuUXxn8QbRENrA17dfQCvaiyk2tjBhfzHNqnymdQuZ6fxUaCbM=
-X-Google-Smtp-Source: AGHT+IGgTCim3FhEqwvEUIIE7Oi+YsRLJCiWYwiW4+XEg5tv37unJCVGa6dkJxU3YvpEbKPe7cIk8g==
-X-Received: by 2002:a05:6512:39c4:b0:539:e0ee:4f5f with SMTP id 2adb3069b0e04-53b1a30bc4fmr4121836e87.18.1729799012562;
-        Thu, 24 Oct 2024 12:43:32 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a2242002bsm1460034e87.153.2024.10.24.12.43.31
+        bh=Fzk7F6oUmjqDhYJuo0PpkPkgeOk+vBWt9cR54GKynl0=;
+        b=uyLyA5xjIBoIMQp3RtDICM1ZVVm4gJ9fUlKsybSQHVxpgm2kgVVMmZ8zoep151W9Py
+         fCxG1VpYdLf0BFndffCf0xvP4XWmURs8IrZGLVsUsngxDzswBOfTppE4BtcZYL12iGdn
+         2j4qVJqytlb0K/fhF13cXdrU+yPE2262hYN8AEjH06g9ZcQmaMZBN8RbNZYHB4fdkKRM
+         RbqQTXnwOYbuWMsOMVQ8Y0EimzrS9clBKO70kWBMVNbE7N0ElVQTK082R+KNkbbls4Uo
+         NWxg4KM2Hq/05xpCXvLRZ8yy8ti59X0n89d1qeVroFb+RM2agc7OXzb7zudfDUpJXm6D
+         pCEg==
+X-Forwarded-Encrypted: i=1; AJvYcCVvhP8Fq0I2ALMxk7n8PLiDFbYntXRQUskyG+Oi/Qr/PRaP+mX7uve5OeHFBruUnK2bhm+x1Gs2ld0njSA=@vger.kernel.org, AJvYcCWDYuK4HAza4DIC19bEUDOuVuKAwdlDkfKgUUsqNacS97QlsIniqkIY/pZG9Dm3AzBvIT9XKYMB0l+1@vger.kernel.org, AJvYcCXOsxnC9bqCdMH1JYhjsIPvMMh0iNn7pOMcAQQdHyRgN/lLZ/MlK8IBI6n/N1X4qbA3kteCejp0pUeo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXary5WPjjob6myG448lofSm0Qev8d0LsVurFFbSJqT95qiq6b
+	TTXT5xZCb5LOR+dN4YupLuw7SuW6wGTajKqbj/WXswgZUnDVGuid
+X-Google-Smtp-Source: AGHT+IGAmjBs9KPnqhzVymUJWLtawEh8mKaCboI+u4oJBXp9Mw9fgh2Y7T2TbFiEefA8jFOtXibqSw==
+X-Received: by 2002:a05:6830:719d:b0:709:42dc:a024 with SMTP id 46e09a7af769-7185971d8efmr2990920a34.15.1729799014444;
+        Thu, 24 Oct 2024 12:43:34 -0700 (PDT)
+Received: from raspberrypi ([2600:1700:90:4c80::f])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7182ebd47acsm2236909a34.58.2024.10.24.12.43.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 12:43:32 -0700 (PDT)
-Date: Thu, 24 Oct 2024 22:43:30 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Imran Shaik <quic_imrashai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] clk: qcom: Add support for Video Clock Controller
- on QCS8300
-Message-ID: <pdelgdtn3pzj57maxzchf7vk3abmx62ob4jikxi5h63o6hdmmd@knjhkqiowfxi>
-References: <20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com>
- <20241024-qcs8300-mm-patches-v2-6-76c905060d0a@quicinc.com>
+        Thu, 24 Oct 2024 12:43:33 -0700 (PDT)
+Date: Thu, 24 Oct 2024 14:43:31 -0500
+From: Grant Peltier <grantpeltier93@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: robh@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+	grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] hwmon: (pmbus/isl68137) add support for voltage
+ divider on Vout
+Message-ID: <ZxqjY-5MvsZfzf3U@raspberrypi>
+References: <cover.1729646466.git.grantpeltier93@gmail.com>
+ <422a40e992e047e250a3b1295503e3b81b5515ae.1729646466.git.grantpeltier93@gmail.com>
+ <7d705ac9-a109-4b49-9ac6-78bd2e9ca091@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,21 +87,155 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241024-qcs8300-mm-patches-v2-6-76c905060d0a@quicinc.com>
+In-Reply-To: <7d705ac9-a109-4b49-9ac6-78bd2e9ca091@roeck-us.net>
 
-On Thu, Oct 24, 2024 at 07:01:19PM +0530, Imran Shaik wrote:
-> Add support to the QCS8300 Video clock controller by extending
-> the SA8775P Video clock controller, which is mostly identical
-> but QCS8300 has minor difference.
+Hi Guenter,
+
+Thank you for the review!
+
+On Thu, Oct 24, 2024 at 10:48:16AM -0700, Guenter Roeck wrote:
+> On 10/22/24 18:58, Grant Peltier wrote:
+> > + [...]
+> > +	switch (reg) {
+> > +	case PMBUS_VOUT_MAX:
+> > +		/*
+> > +		 * In cases where a voltage divider is attached to the target
+> > +		 * rail between Vout and the Vsense pin, Vout related PMBus
+> > +		 * commands should be scaled based on the expected voltage
+> > +		 * at the Vsense pin.
+> > +		 * I.e. Vsense = Vout * R2 / (R1 + R2)
+> > +		 */
+> > +		fallthrough;
+> > +	case PMBUS_VOUT_MARGIN_HIGH:
+> > +		fallthrough;
+> > +	case PMBUS_VOUT_MARGIN_LOW:
+> > +		fallthrough;
+> > +	case PMBUS_VOUT_OV_FAULT_LIMIT:
+> > +		fallthrough;
+> > +	case PMBUS_VOUT_UV_FAULT_LIMIT:
+> > +		fallthrough;
 > 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> ---
->  drivers/clk/qcom/videocc-sa8775p.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> Just add the comment after the last case and drop all the fallthrough;
+> Same above.
+>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Will fix in v4
 
--- 
-With best wishes
-Dmitry
+> > +	case PMBUS_VOUT_COMMAND:
+> > +		if (data->channel[page].vout_voltage_divider[0]
+> > +			&& data->channel[page].vout_voltage_divider[1]) {
+> 
+> It would be better to set defaults instead of having to check this
+> for every executed command (for example by setting R1:=0 and R2:=1).
+>
+
+Sounds reasonable. I will adjust the channel initialization process to
+set defaults instead and will remove the checks in v4.
+
+> > [...]
+> > +static int isl68137_probe_child_from_dt(struct device *dev,
+> > +					struct device_node *child,
+> > +					struct isl68137_data *data)
+> > +{
+> > +	u32 channel;
+> > +	int err;
+> > +
+> > +	err = of_property_read_u32(child, "reg", &channel);
+> > +	if (err) {
+> > +		dev_err(dev, "missing reg property of %pOFn\n", child);
+> > +		return err;
+> > +	}
+> > +	if (channel >= MAX_CHANNELS) {
+> 
+> The actual number of channels (pages) supported by the chip is known here
+> and should be checked, either by passing the number of channels or a pointer
+> to the entire info structure to this function.
+> 
+
+Will fix in v4.
+
+> > +		dev_err(dev, "invalid reg %d of %pOFn\n", channel, child);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	of_property_read_u32_array(child, "renesas,vout-voltage-divider",
+> 
+> Ultimately this potentially applies to _all_ hardware monitoring chips,
+> so I would very much prefer a generic voltage divider property definition.
+>
+
+There is a parallel conversation on PATCH v3 2/2 about this. Would you
+prefer that I match the implementation for maxim20730?
+
+> > +				data->channel[channel].vout_voltage_divider,
+> > +				ARRAY_SIZE(data->channel[channel].vout_voltage_divider));
+> 
+> The returned data should be be validated here.
+> 
+
+Fixed in v3.
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int isl68137_probe_from_dt(struct device *dev,
+> > +				  struct isl68137_data *data)
+> > +{
+> > +	const struct device_node *np = dev->of_node;
+> > +	struct device_node *child;
+> > +	int err;
+> > +
+> > +	for_each_child_of_node(np, child) {
+> > +		if (strcmp(child->name, "channel"))
+> > +			continue;
+> > +
+> > +		err = isl68137_probe_child_from_dt(dev, child, data);
+> > +		if (err)
+> > +			return err;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >   static int isl68137_probe(struct i2c_client *client)
+> >   {
+> > +	struct device *dev = &client->dev;
+> >   	struct pmbus_driver_info *info;
+> > +	struct isl68137_data *data;
+> > +	int i, err;
+> > -	info = devm_kzalloc(&client->dev, sizeof(*info), GFP_KERNEL);
+> > -	if (!info)
+> > +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> > +	if (!data)
+> >   		return -ENOMEM;
+> > -	memcpy(info, &raa_dmpvr_info, sizeof(*info));
+> > +
+> > +	for (i = 0; i < MAX_CHANNELS; i++)
+> > +		memset(data->channel[i].vout_voltage_divider,
+> > +			0,
+> > +			sizeof(data->channel[i].vout_voltage_divider));
+> 
+> Under what circumstance would this not already be 0 after devm_kzalloc() ?
+>
+
+Mental lapse on my end. Will change to set harmless defaults discussed
+above.
+
+> > + [...]
+> > +	if (dev->of_node) { 
+> This conditional should not be necessary because for_each_child_of_node()
+> ultimately calls __of_get_next_child() which checks if the node pointer
+> is NULL.
+> 
+
+Will remove in v4.
+
+> > +		err = isl68137_probe_from_dt(dev, data);
+> > +		if (err)
+> > +			return err;
+> > + [...]
+
+Thanks again,
+Grant 
 
