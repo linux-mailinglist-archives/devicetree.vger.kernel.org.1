@@ -1,159 +1,79 @@
-Return-Path: <devicetree+bounces-115140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD4A9AE2FA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:48:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8121E9AE32B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:59:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69931F231FB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:48:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B00CE1C21C8C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A561C3025;
-	Thu, 24 Oct 2024 10:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C9F71C75FA;
+	Thu, 24 Oct 2024 10:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fJ6sZHMB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CY7R9J5Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD15F148838;
-	Thu, 24 Oct 2024 10:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38271C07F3;
+	Thu, 24 Oct 2024 10:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729766881; cv=none; b=DDHtjP0gStRlks7Q8HeaZdz6+Ao/cJl1zsDaHiGr7KCBFcZHj4nwTilvOG/Jkq/nxjiOFcZzeAMk3jjdso5zsTPcVWzuEuO0/eZchaoFGnH6sROy2C0wke7VPeyimQivoD5tZsx8pkKnusPP9DAxuXYwVSOb1Nd9GaKY67rjyBw=
+	t=1729767551; cv=none; b=iKevdoMNq3W5ZtyPTE8jw4iHrE21+wjldFjf0reUqYMgOUv1lrNAiOck/QQe/GJyrmKRkdEaRTbvy2Dbayx9AarSjM/sfWKY6IGV5fcjpiaSvZtVp6+dWQ6+mtU/KSFscyghx/P48vX7AaMA51jCGE1mhqqBQ7G/1TnxcOECtOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729766881; c=relaxed/simple;
-	bh=Fa4ZeugCZulqq3yRjA8uOwaDIqdku/njHsQsYlodq+g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jIFCFiqcUY+gejHeH0EZcEgzIGpUF8b8TK5HWYhHrWYaFWUAIIAuGHGFD9+gCDQS/6TVWrRwFmEmCpj8ES6UzLyKKOmeW/A5hcxS/MKHLMa0YLNO/K5KpUjRasJYUJmU2DlZDT1S1VM+mNggeMuuqSXsRaCvJAz/SJxNjfaagqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fJ6sZHMB; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53b13ea6b78so1259087e87.2;
-        Thu, 24 Oct 2024 03:47:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729766877; x=1730371677; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V3DKzoGRNNveCs6SOsESX4/t1nglUdmun8SVRIZGpys=;
-        b=fJ6sZHMB0hd0b1ivbcbhhiELok3748GNQx+bu5c4hc8ru0gms2Z2cLtrZFgrNfIaPz
-         DRpxWa/0iuoAJ15slMkSthHIt0kLBNAB73gAC0WXxFjfEx6hL5eHJ+RmgoAEyJoRa8iD
-         m2X9YctZbn4SoGdRyFMmKbQfHumZ3Oq2GHBcZ3zLG0oFYtSeyd8Ba9ZWbIW4ouKxPMN3
-         cE8tarKNZZneM+zb2yVzCDBcX39eHz+He+lZLdKKR5mw1TzL3QuSnMDCZEJ85vYNyfjX
-         hirbiyb4U9nxXX3Xir7GHXUKK6kuLlxKzF4H80cbzU9tGiULf+EXhVDBuQZpaBnYCFLr
-         z3aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729766877; x=1730371677;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V3DKzoGRNNveCs6SOsESX4/t1nglUdmun8SVRIZGpys=;
-        b=lQVe6SmYdzl4IiqjCoz9gl6EgFIYXVCyr5XXwMy9nuS2ZbbB+8gCK/BbgV3OZ7cvJL
-         7Z3xE4K4HZUHj2NWzf6/CTzLqqD6BG6/jQhh5LFpI9EpDuRju1HEg4zsdNFMtuJrvh38
-         TtY7pFmKqB6WvaellZQZrSCIyjsyvba0xHjhSiJihDxjEnSnk73MAybvROVdcWl4/LVI
-         fwF5lV5ZVErp6f7wra856xhTqJ/T1LJSkgoYOtEU9Dvyl4eJ+K0NP5A6tph+UVbfWSd5
-         5uGDdMzjxUjeiV6z6IwL6FJTLqokBOyyxyYrU7Ttzs4kOCrtksrZs/Q/yZRdQWPFg7vs
-         fSlA==
-X-Forwarded-Encrypted: i=1; AJvYcCWYIzOq2/hav5roURogGXsugD1Gj7TnvQvme1zqi3arFCH1iJieMwI2HkIoVQXgf4Me1lBMVHxiroYYTzY=@vger.kernel.org, AJvYcCWhRvj6yn+SXxots1gLQMyHhN2z5MiOjC8i5Mt6ivTv1y6+3JI1UITA8N6rpICzoGTfoZezECa3Wa/KCThA@vger.kernel.org, AJvYcCWwi6DHtKfpxLg7T74J5hxhwqIo2hleOjEj4lBJAp3osKm6cbRtaqsdqH1jJNsq8s6G04g5LZ3oKWCi@vger.kernel.org, AJvYcCX5Z2cARk45Y8EjtM8pAqX1pKpu26RqznfcgnU5XH7RY1S64FZOqYIjF1nqkvNMakP2p3sNeVb9gVSiNkrHBRC/Pg==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIguarCUq0QvhBcn25SmvVUqYnncaMdw4Dm0nJ5qIXbMDu1Puu
-	8yJ/0haXm9aqBjNEkfzth+Jrdb8WGZdHsoWpowIZhiwpoT8mW1Zc
-X-Google-Smtp-Source: AGHT+IHHCGUunbU1WBMJq+sAZx9YzaIXr41UGHDPNjS2vbTVWpJJQid4DmPQCcWS5iyhHtNJjwXglg==
-X-Received: by 2002:a05:6512:4489:b0:53b:1f59:dc59 with SMTP id 2adb3069b0e04-53b1f59de4cmr4200149e87.6.1729766876589;
-        Thu, 24 Oct 2024 03:47:56 -0700 (PDT)
-Received: from [192.168.4.167] ([92.120.5.12])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a91306fc0sm600659666b.91.2024.10.24.03.47.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Oct 2024 03:47:56 -0700 (PDT)
-Message-ID: <8a017e66-6d84-4bdf-8188-9ae3428b6d17@gmail.com>
-Date: Thu, 24 Oct 2024 13:47:53 +0300
+	s=arc-20240116; t=1729767551; c=relaxed/simple;
+	bh=2SBR+T4K0WZt4+JORbA7vaUGCrx/PZpiNCVGUWyW6mM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LvuiioTU1X3YcAEQpmVFfVrLahtPqZOcXwQE9HPKJcr0zwJfMbD0anL6RMs86rBYycyURlxmd7scV9Ym2HOcDM4nJJun6LwXUXespV1ss9ZAi+0ww1oUzqXwKki4IQmMhNX/LVfoXK9yv3phPKc2RrlPLnfZUqmNRTCpHohjHb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CY7R9J5Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73468C4CEC7;
+	Thu, 24 Oct 2024 10:59:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729767550;
+	bh=2SBR+T4K0WZt4+JORbA7vaUGCrx/PZpiNCVGUWyW6mM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CY7R9J5QptNxkXkfSuh5WHIfXGDVwlgSgPum1CyjXaNhNRcx/wV/HNwTzLD45QsQE
+	 x2iWEyuWQWhWqP+pHLpbt9QYv6UCzOGCJGYTjDiVA2GYmfUBz9g9HEQi/cNx+zQRmR
+	 IiLmHqKGOXU1xOzpNPn0lBdFY/udabO7kbvzNuiPeyBznSt69/61+x9ZC9BtbxjNMV
+	 +CDo1OfMzXewvbONTQPMH/mgpJp6rJiccd4z7WXYr/9gOL2fSbQAH4kSBCkyi7zN4s
+	 Bf8MIQf4lFwGLgg9YTjjO3VMnizRucynb1hAJNlUpy2CAesy4atCMye+WuJGG/Ak+F
+	 9rwhffnwuUblQ==
+Date: Thu, 24 Oct 2024 12:59:06 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Wojciech Siudy <wojciech.siudy@nokia.com>
+Cc: linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, peda@axentia.se, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 2/2] pca954x: Reset if channel select fails
+Message-ID: <rvgcp3h4jedrug3nfodbvu7sk4lxqen3tcpwk3zgkf5alidbly@4j6haxpk3vao>
+References: <20241018100338.19420-1-wojciech.siudy@nokia.com>
+ <20241018100338.19420-3-wojciech.siudy@nokia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: fsl,imx-rproc: add new
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Daniel Baluta <daniel.baluta@nxp.com>,
- Peng Fan <peng.fan@nxp.com>, Mark Brown <broonie@kernel.org>,
- Takashi Iwai <tiwai@suse.com>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Bard Liao <yung-chuan.liao@linux.intel.com>,
- Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
- Jaroslav Kysela <perex@perex.cz>,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
- Conor Dooley <conor+dt@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Iuliana Prodan <iuliana.prodan@nxp.com>, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-sound@vger.kernel.org,
- sound-open-firmware@alsa-project.org, linux-kernel@vger.kernel.org
-References: <20241023162114.3354-1-laurentiumihalcea111@gmail.com>
- <20241023162114.3354-2-laurentiumihalcea111@gmail.com>
- <ub7yylef6qyztjtg3pciamg6jjznxh3ydlqsdcg2xcoxqngpi4@j5jlex4qukyz>
-Content-Language: en-US
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <ub7yylef6qyztjtg3pciamg6jjznxh3ydlqsdcg2xcoxqngpi4@j5jlex4qukyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241018100338.19420-3-wojciech.siudy@nokia.com>
 
+Hi Wojciech,
 
+> +	if (device_property_read_bool(dev, "i2c-mux-timeout-reset"))
+> +		data->timeout_reset = 1;
+> +	else
+> +		data->timeout_reset = 0;
+> +
 
-On 10/24/2024 10:45 AM, Krzysztof Kozlowski wrote:
-> On Wed, Oct 23, 2024 at 12:21:11PM -0400, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> Add new compatible for imx95's CM7 with SOF.
->>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->> ---
->>  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 58 +++++++++++++++++--
->>  1 file changed, 53 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->> index 57d75acb0b5e..ab0d8e017965 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->> @@ -28,6 +28,15 @@ properties:
->>        - fsl,imx8qxp-cm4
->>        - fsl,imx8ulp-cm33
->>        - fsl,imx93-cm33
->> +      - fsl,imx95-cm7-sof
->> +
->> +  reg:
->> +    maxItems: 2
->> +
->> +  reg-names:
->> +    items:
->> +      - const: dram
->> +      - const: mailbox
-> That's quite different programming model. Are you sure these are devices
-> from similar class/type?
-Yep, these are all Cortex-M cores. It's just that their usage differs quite a lot.
->
-> Your big if:then: block suggests this could be separate binding.
-Ideally I would have wanted to place the compatible inside dsp/fsl,dsp.yaml as the
-programming model would have been more similar.
+For as much as I would like this patch to be in, I can't take it
+if we don't sort it out in the binding.
 
-Unfortunately, these are different physical devices (HiFi DSP core vs CM core) even
-though they're all used for DSP purposes so I'm not sure this is entirely appropriate.
+I agree with the suggestion that Krzysztof has provided there and
+I'm aligned with his comments.
 
-Alternatively, if you think grouping these devices (i.e: those represented by the -dsp compatibles
-from fsl,dsp and the one represented by the compatible introduced here) under the same binding
-is alright we can just branch off from fsl,dsp and fsl,imx-rproc and create a new binding for
-these devices. I'm expecting this to be relatively clean as they have the same programming
-model.
-
-Let me know your thoughts on this.
->
-> Best regards,
-> Krzysztof
->
-
+Thanks,
+Andi
 
