@@ -1,168 +1,203 @@
-Return-Path: <devicetree+bounces-114992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ABF49ADA92
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 05:39:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85A779ADAE9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 06:30:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91FEB1F22546
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 03:39:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC3F6B21FDC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 04:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42F2516FF37;
-	Thu, 24 Oct 2024 03:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0022B1662E8;
+	Thu, 24 Oct 2024 04:29:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="dl5ugya5"
+	dkim=pass (1024-bit key) header.d=os.amperecomputing.com header.i=@os.amperecomputing.com header.b="gTODFOYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic307-7.consmr.mail.ir2.yahoo.com (sonic307-7.consmr.mail.ir2.yahoo.com [87.248.110.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11020097.outbound.protection.outlook.com [52.101.51.97])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50C216EBE8
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 03:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=87.248.110.32
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729741145; cv=none; b=FNYGz2EkdFS/qXwNqX0hTMCopzwAH1OLoRi0S6jkCQ7t26OCuImhSGw9QGohjnWPoTuumIrCNa/5O/Fbqn+NYmL1PXfLWoD8BcmyDvyRAu5Jc/tc/kTEVGSAu9m9hNIQo/gjd7d0txFcTVJf/jHyaiVPQ2fPt2YKtBu+ETmXgwE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729741145; c=relaxed/simple;
-	bh=8R4Te7MRQgzf/FF8ja0raU7z+jLVaXzMj9smvaTnuuQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=S8vnMnnRC9vRtmoWeUlB7sArl+kO4ZuC5S822HLFhZ0APKbm1QPPNmls51LVy6YM/rk0I4yjh5txZKZbSIom/u4/rQJ4pA6tPo23LqXcx1l0ydCIlJJo1rXvRbX2w1m0Q5/dmLTptwxke+VgTEkxS3IhLG7EAP82IhTzX3V8lLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=dl5ugya5; arc=none smtp.client-ip=87.248.110.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1729741141; bh=79TTgeSRgbvLQ5EeGH6nXTjmRqDQiiJWsR2p+Y4a46w=; h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To; b=dl5ugya5n+3msiyHHmaVtO0I8Bk5xdzxEYwKLmqMsXKMcrs1L/NsN0bZ91W3LNoYarxtljcUhCixzC5rwrS/BTdwdrxJBCjWcmNRwv0coQ3wkvbJb7q84x+62oI/VCqLmCy+wubebEAZK1kNYLj23k48VpNUK62LODtYQ//Kn+g6lllgQIQKCpCnc9cQtAA99mwVtas1l25BgwIvIL6dmQfBeZrURU/X2pS9EMPiUyyGRIvaBdgkF0rPvZQopo/xdGY0x3FFYcdt9kBglJJE9Wsd4lU1Y//b4x3HTdQAMbRTZE/Zf/gGafBZP4fWnWHJ/dSQYLxXDwLmxwmILqjQyg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1729741141; bh=wz68Bztfqzjx5+WcrI3JB/UCo23NgrZz+Xk1XZtp+Jz=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=Y9S8SKyhZDDRa7/T3N4yCK9lrySJ+9BZVSYvz7QEXgQcIoZwp2RsYTQZ4sCRGKvuNJrJ0tBVnL+S1IMU2esw9P3xUS8Z8EIT69KnHOMnbrPhyPOL2iM5TLj3UL1IY2mtCsTr3nh7HqL30vhzjCOlxPymPhs92pldHPX5hR3kAgS2IiRYbflJqTe8fBRQlbyOQFf+Pccxq707P9pk1JiqRZokulG8ETmwzZr2R6LRs1L2kdmErwrDD9S4ZT3YpH2BdCN155ODC0D/OETtVb51ntfKXN3bazVUo++vE/s72xP7+KEmhXbsufXJYr4UiUV8tlcJlINAoB3d66EZX6XlVQ==
-X-YMail-OSG: I3w5KVsVM1l7Gg5jEccNc1L_RYXR3druZjKvug9S.34znC6ysMfqa3nLT9.dcQl
- t9l.GXVlgNWupxesQVywQO0nB7fOHji6phD.3WuyZR2E719ZYG061GYylhZThOeZ.z8RzPzq0E.k
- L4O5bnhVlUkjH92tJEj1rx0Izugv6HHA5w38I1k_9LMV.PF2FQGPuImkUWrM1WMgFifk5XMoIFKa
- IBM4WbgnB_oykhDtN1vRwL5cGhEyrs24MbvFxDuTfSfOCGhRmHW_MpuyFP8MqcXKJ4LXPj7LLpXg
- nBbGnqIpy4UXwzFcwzr4SfSHmrUtOGu63xK0TunKId35aRJgs6A54FJWVGQrMUvyTLvpfDkX7_15
- Fz.QKijFLJJKGqCqcnfQxi4hQ7nduO8gRo33UUwrLod4KjrPDUcypxFRAJBkPQ0rnk00XSioNTuM
- zZ6uWIy_0_bWubja69IIxM3W8GfNtsd1vWfxE..I3Uf_FlZtH_wCDQgEfSagv_uq82IKmV6e4FwH
- .DWz7LUtZQusyjqSSSl_Z22MGbQaZXQIXCJr9SzzNBNu4hbS5w5_XpIqIPMv8VVqjLhZsJITTN49
- zHfTJkkNcKhH2sONyjPj4frNn.F_xESF0fEhhwiXVMGhArWUZOyw3Jvq4AqDrZJOx3A1SuHLR0iH
- UKXPNLejBW2vdNOlLOuaDJQEhbF8e3dvmRZQI9pXiGjK1lNPDlVjU8lI2_6o6_VuHJlJ003kGgen
- FClvCRyFakP1i_FR2XiKpxRbtBdsK.goDRHB6BZS1VSJJRpmKftcUWHNArDfjQn2ROonlhMiFvCM
- 2VcIdYSDoSuGgiRGzYB6LhHJyfrIU0hiBkoWEe0TWW_KLV7RCNqb4sGK8Ztw1eEuQ5YTj1f6DkUV
- kOBdurGQ6LgQ4jnbZJnhffmjhBuBQnRVVcfBXW1akTtJan3zfAVDiNQqyTKELtiOOY0xk6_F4_na
- QFw.SmmtLnDZdEJOFP32eE9SYub9LgSG6dkhPEMFiytsaSgs5XRyVgJiMlqL5ey7fJO98Xc02kNQ
- dNYhQX8YcrQaN0iX0.Airuq6MEtvoioUHwfygCJvFy4rWHWofNmQysH9_3xuHl6B6_FxLEpLLY7X
- JR0OnZRlOJkPRRKdIn1xpYxLh.vsKxezu1dh35ErkvefroQee9q81cGpy.kjkeJIot8DWoabf2Tr
- EDc5LmZ0yWZYRLAHS6mGYozywPICqiHTBxMP9zXb8b5qxC1SSrMW2jx10_mOi1763saiv4aCdoQZ
- qe9nNpHHX5icXNo1emkrBbMcTrg69qldkXumVr7yxaB__ItqhXpjNEKD0t4.Md2qPrMkQOhgT8NA
- ept1AG4TBI1D0faS4DLW2rsMBAGeroBrZ7wgSkT6NIVEPtspV_IOExS6xndCpV02KfaBXKap3upr
- ixe4rRwM.tv.QSZ_7a67ecJcJkPoNb0r._p7Yy02JnJRJ2t24WoBYhuUhxawX77N2NKu72MMIOw7
- yPZFwgy3gmsOz_ZsFTB5cYmygiYeLFayI3zcWS_CuU21YiGw5riOYKwoMYiY98wPe1fkMWqHzRtX
- rjuOyOdFYFdsGGobN5Zmo70d85zBbbXy.qBRf8s3UNUsg0sZGaZ4sJWwo3tawWcEJxwZ3msICtIg
- HmLw7SO6J2nzZkrtCyefFQnNHuiyope0a41UIq0cyY6EA_puOogT_lY3r.rXnqoy0XpiLHhiNS_V
- rKk7rAQZSmzs5DNoSZQToIsygq3QVdi6m5v9nf9_RcEN5AIL2IqYh4CxQgl3xyGuGgQf.3Fp4FVG
- xXizUSnPxZQ53xFyiU8zCW4yNegf.dK6vrAKHE4JIQXzIWfxhv2.vwnvLCteXeVKitUsacD1_ClZ
- MP_SJm1vQgQow6XqAyMKfZJR71yYaUl5enVAXk_nJg.8.NZwB3MRGTBn5mCmqUzlBPm9nJ5jd9ex
- spdjeiKQX4zv0lqhZJfy74HrZZ_g6cNviSt1QAzN5tBBW2Pcc_lvYd4uwCQCNuFub7HECp.H_qZu
- IxoK8gm1sBHY9hqV7Cx0NDikkBYvK97RSQKN.yGYPdmPdMFUGpSkhoRfNIUdcXI5Z.Ob7l56O1Mq
- ml3vEotSo5PBxOoMO8eMu6Y_L8wNi23rbg1is5Upt1w6vQ3paHuNBXcOGdHzYhwJuMo4SHURqIWc
- OPgIfrHO6EmLYBNMHc4E0NHf3Bv6dPfEPuY_RnkjJdFSwSCWoNeR1k2UmrmyvCU.IIq1AeFHk1ef
- rUk04uGYaN0xndfae7wBPZ7KjY03TKRG6Tra3oU3pN2KgQAKPPW82dYXoZzNhnG.n3NxBDjJyDMO
- zOpuS3oQCZNAcpyLYQfl3vnBSqALxyUQZt2tYUdwdIAcml5Tdq1r5goqV
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 6091e1f1-14e7-46b7-8aa9-d3601b762ce4
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ir2.yahoo.com with HTTP; Thu, 24 Oct 2024 03:39:01 +0000
-Received: by hermes--production-ir2-c694d79d9-2zgj2 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 26d1652bc1703d2ade3e89c3cd33808b;
-          Thu, 24 Oct 2024 03:18:42 +0000 (UTC)
-From: Jakob Hauser <jahau@rocketmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Jakob Hauser <jahau@rocketmail.com>
-Subject: [PATCH v3 5/5] drm/panel: samsung-s6e88a0-ams427ap24: Add flip option
-Date: Thu, 24 Oct 2024 05:18:27 +0200
-Message-Id: <886ce1a2443dfb58496f47734d1ceffd3325fb4b.1729738189.git.jahau@rocketmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1729738189.git.jahau@rocketmail.com>
-References: <cover.1729738189.git.jahau@rocketmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0E6157A59;
+	Thu, 24 Oct 2024 04:29:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.51.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729744198; cv=fail; b=VeuoGo35WzcaN7oCm0pmTIVzhNV3MWMMwhFXWJf3LZbPTKlMiJ+x5SzCTYZ34CNwfnAz6RW0SpMKBLfLGSSuP1cJ/9FZ1ks/Zg3i7whlqVO+p5IYgthIjj3HxOicz37UUIJeQOL8c3foTweoXAOyu3IL0vAPXqM68cIiqs9bKNo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729744198; c=relaxed/simple;
+	bh=MAJY4PtuGIvg7mFRAbOkxD5uU8HlZYLp/6TRWcyZZe0=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=nq7s1aRkLeHCPTFnp/EtoIkwYwXCY7VrepUpIt3KpE8d9y2oiyVYpCWi/42SOyzvkm9nxB0mwULkVaLozMOFZbU1n+wPeEf4Om76Gf+6ny5qX8boLLVolqmgeGhGmHtP/C8o4yz/jWWdBoOg5OIngEZ94LMB+jSiYaecwBQCwsw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=os.amperecomputing.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=pass (1024-bit key) header.d=os.amperecomputing.com header.i=@os.amperecomputing.com header.b=gTODFOYV; arc=fail smtp.client-ip=52.101.51.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=os.amperecomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ov4F1Ho7Izy4BY7hCr/QpFPVohmnbm+N5Eu6qnX5BGnn7awT06Y8bM/0sACcC3HsU6yjBkHYbSVQk86HLr9fZCv2zP+DhBKAJcTtaK9V07gC/WLMNe9V2C00UzNbu5xBs7d9tVJi7YdD95kYnf9knsanUFUelOLg1qjCTwtMzfzVHkwdZrZ7ghy7Me2MF4Z5WTIoK1sxofuhd4nmFtutinPLtEhGY4VMdcFd2THXtpz2NtUtpJnrJKvGrI7AFSEjXUkEtbrQITYGLoKZF2K0ILmzJeGy5GN7QJRhBx6/GLf/y4ZrgDMmMCVnxczQYGEyGCCg0yXb77gipKfkcFYrAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nl1BworvqpEcpHNx/vneDgJ4RxfCHtitOgsAtm5VH/g=;
+ b=k4f6GUVjUPJQzMrVnfWbiAFYnFyqe2ZL36dmb78BijBfZkB5K+n+P7K4iVX22VzUdxxlisppr8vExRGfQ0S+c8XKuz1aG8JiG9uVbB+Vt9PPHYtuEXdMPxxPrImXkAzQtQPLcGbF87/5oATP7SHDH7TncAxWlPZbf5TdIEZtbLDaJsxiYgqJDiOCuWGYgEilnpFZ22DhykCXPbaqwVixXgbQtYh9603XbicI9MUJ9CudYs1s9scK65LXX6AfdRwTBjwIoyNScz9ul8VQm2971CxEhYLf7F73RWTcrCKoTDtnlsnA7uxETODTRh3UDszHzy/E2y8DbsL51ermqzdEUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nl1BworvqpEcpHNx/vneDgJ4RxfCHtitOgsAtm5VH/g=;
+ b=gTODFOYVwJNfwwWih/4//OLhOlIsG6oBJ8VPloyzePay1XpdnmM9dgmfIkirxKiJ6jaEcx6Sxfm5Umkwen2HIWmuOrrN1NevK/LKX3qegymoQi4GfBTFd/0wjT0CXWjqxo2HFUYuew/g9Vr5G8F41efmgSjjBy23qI0RdH0Evq4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ2PR01MB8193.prod.exchangelabs.com (2603:10b6:a03:4f6::15) by
+ SN4PR01MB7438.prod.exchangelabs.com (2603:10b6:806:1e9::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7982.32; Thu, 24 Oct 2024 04:29:52 +0000
+Received: from SJ2PR01MB8193.prod.exchangelabs.com
+ ([fe80::4167:3f60:16af:411d]) by SJ2PR01MB8193.prod.exchangelabs.com
+ ([fe80::4167:3f60:16af:411d%5]) with mapi id 15.20.8093.014; Thu, 24 Oct 2024
+ 04:29:52 +0000
+Message-ID: <434333fb-5703-449e-83f2-46e85f34fd23@os.amperecomputing.com>
+Date: Thu, 24 Oct 2024 11:29:42 +0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] ipmi: ssif_bmc: add GPIO-based alert mechanism
+To: Potin Lai <potin.lai.pt@gmail.com>, Corey Minyard <minyard@acm.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Patrick Williams <patrick@stwcx.xyz>
+Cc: openipmi-developer@lists.sourceforge.net, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Cosmo Chou <cosmo.chou@quantatw.com>,
+ Potin Lai <potin.lai@quantatw.com>, Cosmo Chou <chou.cosmo@gmail.com>
+References: <20241022-ssif-alert-gpios-v2-0-c7dd6dd17a7e@gmail.com>
+ <20241022-ssif-alert-gpios-v2-2-c7dd6dd17a7e@gmail.com>
+Content-Language: en-CA
+From: Quan Nguyen <quan@os.amperecomputing.com>
+In-Reply-To: <20241022-ssif-alert-gpios-v2-2-c7dd6dd17a7e@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR01CA0049.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::13) To SJ2PR01MB8193.prod.exchangelabs.com
+ (2603:10b6:a03:4f6::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR01MB8193:EE_|SN4PR01MB7438:EE_
+X-MS-Office365-Filtering-Correlation-Id: fbc11a78-180c-40f4-d507-08dcf3e4812c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UVNrM3JSNEZiWkJrdTRqcnA0M3pxN3FjL2xFMkczS2hiUVVNeG1Mdk4vWlVs?=
+ =?utf-8?B?d2FjazdibFhiRVNnc0NBRGRCNmwzMTZGcWxaOUdodDJaVXV1UjRXWWx5R25p?=
+ =?utf-8?B?NEpmek1waW5UZ1RHVHhtVXhCUWhjTDlTT0E1dzV6b0FIT3BXVHVrL2tGTkhn?=
+ =?utf-8?B?cnpqM1VaVkNVOSs4aEZSVXJrcjFKNWM1TUg2S3orVTdqVkhUL3VuN2RmNWt4?=
+ =?utf-8?B?bTdjSHhPYXJxcExURFEya3AwNVFzT3hZM09FRmVFajJ6UGpRY0d2cDh3dHFS?=
+ =?utf-8?B?cjBvYndjUzVFMnJWSnBRNFczbGg5WVlKY3g0YlNpN1pzWEZkSnRtVDIrRzZS?=
+ =?utf-8?B?cjlUbmhJK1k3clQ4aC8zQlc3bTdYeTR4WFRlVUlXQ0d1Mmg3ZzkyZmZvd3Fx?=
+ =?utf-8?B?eUVKV3A5RWZNdmoxZ0x5bnl3eGlhYkRQcDd2bDkvb2lwYUUvUlVjeEJpL3hQ?=
+ =?utf-8?B?UlVlMDA2Zk9SdldycmVpL2VlMXRqbGozQW0rNmVGNXlxV1ptOFFuVzd6ay9G?=
+ =?utf-8?B?N2VTNENlZzFSREZxbUxMd1U1d0x2ejJaOENnMXE2eE9TYUYyOFA3cGUwNWYw?=
+ =?utf-8?B?Q3pVVXQ3RlVVY3BwcFN3Tll1Z0FjbWlmT2liWHVzY2dxckpobjlkMEVlM21E?=
+ =?utf-8?B?SHdVQnBsMkpaU1diSk0yZHpEdll3ZkdUVjZkcU5rNWx6V0dvYWhtOC9Uc1pz?=
+ =?utf-8?B?c0ZmL1BoTGhJYm1QbUZZUGJicHNJMGxQOXVWWEVNZFk4VGRnQTBBR1UreThs?=
+ =?utf-8?B?clJxK2UvOUdvWVRlZ0tTWWgrS01zSWw2cUUyOVcyc3lxS2tTZkpEUTJLU3NC?=
+ =?utf-8?B?OUhpdGRkRmJySWFudDhFY1Y1VzU1NmlLUk5Ob3dTa3IyeWhuT2lXeWtXS0tq?=
+ =?utf-8?B?Z1BMcnBVMXhKRzA4eGdYdWJnMkg0NTViZzhGL0dRc3kzcDJMQjFzckJtTVJ5?=
+ =?utf-8?B?b3ZlZlIxTGlRd3Y4STZWM2piODZiRFUvVXZUd1h6dmVyekRkNytGbjQya2tM?=
+ =?utf-8?B?WWlrM2hqRWhkb1VFMDB0UXZxUmF6OGVONzJDV1dzTWhwYkhVVW05Z1p1M0d6?=
+ =?utf-8?B?NE9rSWVnVmUwdzhmeVhtY05xK0JFZlM0SnBER2dQUEZoUXA4N1ZtakY2Mm8y?=
+ =?utf-8?B?bFNkOGttajE5d2JTTENYSFRGTHhHcnVqUC85MytSdGkrcVB6M3JPM3EyYUwr?=
+ =?utf-8?B?QmtBT0wyUjFUUndCbDFUQUVhWFJPYVc4M3AyeW5OT0NBR2tPcTlFN000RitN?=
+ =?utf-8?B?eERZbXZZQVFiMGtrSkpZSG9rTmVNYlpVSzJwUWhZWFRCSEJaYlRlNmhlWTVh?=
+ =?utf-8?B?aGpiVnRCRnRyT1RSdFY2VUJkZVZPeFMrY2FCcEt2RTZUeVdiNEcrVytkbldr?=
+ =?utf-8?B?dGFmSUdnMnAyeHRtMXloaDNLTnQ0cHBFMEFqZ25uODBNNUhUUWJvcWt5YmI3?=
+ =?utf-8?B?enA2WEQ3OFI0VWhUU21qbHFScjdDb3djSElDVGJpeE5RazdyMGdUc0JQVXZl?=
+ =?utf-8?B?bG9xaXEvU1pHaWtza3JzdDFIRlYrUDZMSzFzcXkzMzhFdEN4Qml0bFdFUFQ5?=
+ =?utf-8?B?MzUwQlFwMG93WkEva3NpK28zSDVUNzN4SnMvQjVnU0RucEFGYVcwK2pvWS9j?=
+ =?utf-8?B?bjlQeE91UitnUGhTRVJYenYyZU9Rc1FvakltQWdsc2VDRW02VTF0QnRYdWlV?=
+ =?utf-8?B?M0l0YjVDaWUwY0RWQVc3djVmUHNhUWtub1RldklkSi9ESUhYMmlwRlRDcWRx?=
+ =?utf-8?Q?XcAulra9i9+q0/fQwo=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR01MB8193.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YkVOTW5aekdJMDBIUS96TnpsbnpUZnkyeXRkOGs3eE9PTHJKVExKYmJhWm51?=
+ =?utf-8?B?M0o4S0s2TmJIOHZ6NW5hanlxcG05UWFVTzVuZHJTTVFnYzl0ZEZ0TDE0Mi85?=
+ =?utf-8?B?a2RLcTZFN0dBZHdPZUNHME80TnVraUYzb0dUdWtHT1lHU3Q5d1RIeVExc3Rq?=
+ =?utf-8?B?b0hTeU9VQ2lXVkxqN3pxVXR0NXkzcHAzQzJ3T0hYZzR4S05QVVZkUWV1Q1Ex?=
+ =?utf-8?B?bGJ6SGNGNVhNNVBwSEtqeXZ2OGhKTlVhQUNnNWlnQmczbzVZS1QvVGRnUDEv?=
+ =?utf-8?B?UjFyZWI2bmRqQnczWGFEYmFWS0gva3FwZmJsamZXSkUrcDRaNWtpUmxwMy9m?=
+ =?utf-8?B?bFcwTk12SUV1ZWxHSXF6NHRxRXZiUVBweW1ia1hUZEsvN3N4UE9nd2U3akJr?=
+ =?utf-8?B?OTVNOU1QcFM0WGNmQUZDWlZTNFFSSmFubDlOL2FnSU56NmRJbkRjT0FqWEMv?=
+ =?utf-8?B?SFJmZ1FaenhuLzFwNUZxMlREZ1Zab1dRbVRvTUkvdWZOckZMcnI2UDhhOVVz?=
+ =?utf-8?B?ZVBZNmZNWHgwa3EydmhDZUcrazlERlRFUjNiOC9aMW9iSlQ4aHBCdTlqblJS?=
+ =?utf-8?B?NU16WCtwY2hrY2F5akMyQjc4cnA1bTlXK3RDMzluYU1ySmk1QVZXZW82bjRH?=
+ =?utf-8?B?NXNybHYwVjBjRHd5WGx6QXRSVTVFbUYzUSt6ZzNlYU0zTVJCdVE3TTBCc2NN?=
+ =?utf-8?B?aEtjVFN2em9wclI2VUNWV25pRklkWjBvZ2hJR3BiVGFjbGx3TnF2emdTU3p3?=
+ =?utf-8?B?QU13d0F4QjNGelltdzh5bW1vQmNHN3Y2M1VoOERvTHRhYVV2aXZpQ1Z0VmZZ?=
+ =?utf-8?B?MXBmQm1LTllSZHgrRmJIMStFL1pMWE5EZE1PQzJhQjB5Qi9yejZzMHJCWE14?=
+ =?utf-8?B?NGhSbFVuNE83Mng1VEt2SmhweExFeTlobTJHRkFmWU9JemFSOWkyeDQrcDAx?=
+ =?utf-8?B?S3ljMURoK0JlK1BkYWE3bGZxL1hjc3BHMSt5T0hzUS92MHpETkNHTGxwSmNB?=
+ =?utf-8?B?TVQzQ0tPYURWbXBjbDFLYzdyV3BGTG4wY1hjRXFDN0xheWlJa0VYVlo4OFBs?=
+ =?utf-8?B?UURzTU50QU9ldkUwTGRyWXNBQ3ZBb2EzMGRqY2FnTU82WUlqbnovNkx0c3FC?=
+ =?utf-8?B?RCtLTjg1TGZhSVFkS1MzVHpVZ0p1ZlZDRlJjZUVpTGhPaEluaW9zYWo3bDV2?=
+ =?utf-8?B?V0hDNnJpekE1eExRbVRpMHdQam1WZjFFOUxSVXFPT05BdlFYeGNqTXV5Rzhy?=
+ =?utf-8?B?eDJ5R2lqUFBGVE1odVdzNEFQZndXZFFsS3NtcDBQOVI5OFdqbkJqVnZaQTM0?=
+ =?utf-8?B?NjJCUXoyRHAySlBrMmpVR3RBNUZaeVRlWis5akpsdVNjR2F6ZFhKNGxSem51?=
+ =?utf-8?B?elpkUDVoaDVYdkpUSnpwVFpId0hacUdTcUlvZlVudzc3TEtLLy9XcjNyTVNo?=
+ =?utf-8?B?SjVaTHhUVHZNTUV2VTNpbkNUb3d2Nmd2eWsvcWRjOHprd1dMMzZ6S1VnWmVv?=
+ =?utf-8?B?cVE2MmRMWHdkYTlUdmlrQUprTlp4Wlc0c055ZW9LK082Qlo2VEQvZ2traUFn?=
+ =?utf-8?B?V2JyVEJkRkdxbytqUGJmdDcxSjNwajdFTXRqZUtUd05oRlZxanVjVDZBbndr?=
+ =?utf-8?B?TDY1K05xWHREUi92Q0xjcXJKbEE5K2tGS29BRFFydmdycnRBWm52RW90Zm5v?=
+ =?utf-8?B?Szd0UEhqNTZadDllNDR4cGFNM21MYmx3SnMyVTJNTDRiMENVNXlhTzhQUy9s?=
+ =?utf-8?B?Z01adVY2UXFJTnhPZkpLMi93SG84REc0MVV2d0tYSWhxL3hDb044bWlGcXVu?=
+ =?utf-8?B?NndsRi9vQ1pWak1uc2xhei90YVphVEJrOTRwMDNnSnJXWjdpYkxLNGNJcTdH?=
+ =?utf-8?B?UDJRY0IxanhPWm12ZnZ0SmZrdHhPVmJIRHhoZStDY0JESitxQlNUd0xqaHhT?=
+ =?utf-8?B?T04vaVV4aVVoeGV0aG1FYS9yU25nL2RHWWVmV0lnSlpFRjYvRjltTDRvQktH?=
+ =?utf-8?B?cldOSnR1b055MlUwSStHTnRXaEMwT0NGcmo0K1pFdFMzODhYTEVXa0VoR253?=
+ =?utf-8?B?WWM1V0d5OTZyQm03YTVlY2p4RjM3RGZwVE9vc3B1c2tXWmF3bndqWU5US2FM?=
+ =?utf-8?B?b05KdDZnRnVNWUpkWFpUMVgzd3Rkb0FFNWliSHgyL1hSSWFsWjhzbDc0UWV5?=
+ =?utf-8?Q?NuhdNprWQ24tC7JGJzBcVTs=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbc11a78-180c-40f4-d507-08dcf3e4812c
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR01MB8193.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 04:29:52.7694
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rI5DbMS62yrzS2PKPX6dW+OwNz0s/TtKCdiYHvh5reXm1Pwx5heHv5etxsxbUIZ87JENMPHJWfR0ce9Zo+gQw7ft0Vb4r/Jh5KSBU5Empfg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR01MB7438
 
-The way of implementing a flip option follows the existing
-panel-samsung-s6e8aa0.c [1][2][3].
 
-The value to flip the screen is taken from a downstream kernel file of
-a similar but older panel [4]. The mipi clock [5] for the new panel
-samsung-s6e88a0-ams427ap24 matches 461 MHz and a hardware read-out of the
-0xcb values corresponds to revision R01 of that older panel [6]. Although
-for samsung-s6e88a0-ams427ap24 that's in non-flipped state while in this
-older driver it seems to be the other way around. Further up there is a
-hint [7] basically saying for revision R01 to change the first word of the
-0xcb command from 0x06 to 0x0e, which is actually setting BIT(3) of that
-word. This causes a horizontal flip.
 
-[1] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L103
-[2] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L207-L211
-[3] https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L954-L974
-[4] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c
-[5] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L2027-L2028
-[6] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L137-L151
-[7] https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L66-L74
+On 22/10/2024 08:20, Potin Lai wrote:
+> From: Cosmo Chou <chou.cosmo@gmail.com>
+> 
+> Implement GPIO-based alert mechanism in the SSIF BMC driver to notify
+> the host when a response is ready.
+> 
+> This improves host-BMC communication efficiency by providing immediate
+> notification, potentially reducing host polling overhead.
+> 
+> Signed-off-by: Cosmo Chou <chou.cosmo@gmail.com>
+> ---
+>   drivers/char/ipmi/ssif_bmc.c | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
+> 
 
-Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-Changes in v3:
- - Dissolved function s6e88a0_ams427ap24_parse_dt() and placed
-   the parsing in the probe function. Changed the parsing from
-   of_property_read_bool() to device_property_read_bool().
----
- drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+Thanks for adding feature to this driver, the code looks good to me.
 
-diff --git a/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-index 9e211be432d7..cbd51351a325 100644
---- a/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-+++ b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
-@@ -32,6 +32,7 @@ struct s6e88a0_ams427ap24 {
- 	struct mipi_dsi_device *dsi;
- 	struct regulator_bulk_data *supplies;
- 	struct gpio_desc *reset_gpio;
-+	bool flip_horizontal;
- };
- 
- static const struct regulator_bulk_data s6e88a0_ams427ap24_supplies[] = {
-@@ -538,6 +539,10 @@ static int s6e88a0_ams427ap24_on(struct s6e88a0_ams427ap24 *ctx)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcc, 0x4c);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x03, 0x0d);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0xa5, 0xa5);
-+
-+	if (ctx->flip_horizontal)
-+		mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcb, 0x0e);
-+
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0xa5, 0xa5);
- 
-@@ -698,6 +703,8 @@ static int s6e88a0_ams427ap24_probe(struct mipi_dsi_device *dsi)
- 		       DRM_MODE_CONNECTOR_DSI);
- 	ctx->panel.prepare_prev_first = true;
- 
-+	ctx->flip_horizontal = device_property_read_bool(dev, "flip-horizontal");
-+
- 	ret = s6e88a0_ams427ap24_register_backlight(ctx);
- 	if (ret < 0)
- 		return ret;
--- 
-2.39.5
+Reviewed-by: Quan Nguyen <quan@os.amperecomputing.com>
 
+I'm just have a bit of curious on how the ipmi_ssif in host side to work 
+with this mechanism? Will there be patches for ipmi_ssif to use this 
+feature followed?
+
+Thanks and Best regards,
+- Quan
 
