@@ -1,115 +1,99 @@
-Return-Path: <devicetree+bounces-115369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599CB9AF36F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 22:16:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3113E9AF3C1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 22:39:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 726A21C226B7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:16:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C82D51F21DDC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A7FC1AC458;
-	Thu, 24 Oct 2024 20:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00521FBF6B;
+	Thu, 24 Oct 2024 20:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fN3PSIaR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xzgqw8iV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB98D22B650;
-	Thu, 24 Oct 2024 20:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A93147C91;
+	Thu, 24 Oct 2024 20:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729801015; cv=none; b=G5jLi1oKjsXw6pIaftpWIUwfDVC/UQ0NG9CMvyW+6MylHQaXSrNwv+WdlBYsOA2bg8/CxUSxS2MBNESPOf2ITL//w7+oVI3SzwkhUPtE8vG86DfOwuHVuyJccCjd2NUMr7QyOGCv7Dsssjk7mWanynQdNx9hAzwsvv30Y3GqlqY=
+	t=1729802386; cv=none; b=AkDS5XnlV9EbZ4AU7ke5YFkFJFKTcIpZsKnqiULuPpRzIU4KqnnZlZkDoozum6XvF7sRBMdZHj853p//xMUyQNNAoaqgUm57FhsnAF4QKvcQPjll9cdPWOnsCHAevOCSsp9tw8Uyi5pESV/PnD6/hbGutMcTYBJtP6Va/78OIeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729801015; c=relaxed/simple;
-	bh=s17en98HCPC4smiDIgxFZgt3DoaeAwBGD5lpSCP0NXY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Xr9amLH0dOhO9twfIsFw2OV5lhunbuGHuIlBNmo3wclys06fn7SHlJ6T7ZYf8uJpBnEwiP4x3b7Iycf3WkqBX0mZVc2f1cWTV7Zl8jvI/GISDxIDKP2p0SUmf++KrWwsKHMXCvbWbrLNLoak0uRTabFMpdpykLYlnmLvrm6HoUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fN3PSIaR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FD1BC4CECD;
-	Thu, 24 Oct 2024 20:16:51 +0000 (UTC)
+	s=arc-20240116; t=1729802386; c=relaxed/simple;
+	bh=fu1NI55gqVY8lwDobFa1EKGS2z61s5XU7//5aqHBG3I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bMaBWv47IT/aGBXlVCoWkr6HKGeWg3tRxwTHW4vYluYrQEPsJeF4/goaCezeHAS5jCKTmyOIeNX3bo0cBTUPZuTL1iJDjgBbfgGKpdgh0zky27Ew7+3IUe9CfMwa2pzmVLTf0PS4OA/NZTTrB41PUQJeQz03dTbt/5tHlKTIbHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xzgqw8iV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0D80C4CEC7;
+	Thu, 24 Oct 2024 20:39:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729801015;
-	bh=s17en98HCPC4smiDIgxFZgt3DoaeAwBGD5lpSCP0NXY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=fN3PSIaRgf39zGbEzct0rOD33kVm8KPFR++PzQavQEALSng2aODPsqp0uHl2lQ104
-	 u23eIgNuO1U9G448+HHADdzmGMU8ocd9WGLxu5/8+B6RqQqDr3MCNilMloEGq6pHhI
-	 HsIXtApidyCnEeM5EcFy9USp5/zySZkYVsAnrSw4GPpnDYzqjtgpMcdBzEat8rms4j
-	 jttK4atwsFkBqsl4F1F8DVIGnfu0FkGE/wXIk1epMObUz4eycmeVA3FT9zNVLV1/bv
-	 T89QbaRcj7MLuDMs7uwzmFZlfoGcys0BfNrucuB08JV2PlPWUT+vYb6OPDyiGhpduY
-	 g1OEus1nLn7/Q==
-From: Mark Brown <broonie@kernel.org>
-To: =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
- David Rhodes <david.rhodes@cirrus.com>, 
- Richard Fitzgerald <rf@opensource.cirrus.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, James Calligeros <jcalligeros99@gmail.com>
-Cc: asahi@lists.linux.dev, linux-sound@vger.kernel.org, 
- patches@opensource.cirrus.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>, 
- Neal Gompa <neal@gompa.dev>
-In-Reply-To: <20241020-cs42l84-v2-0-37ba2b6721d9@gmail.com>
-References: <20241020-cs42l84-v2-0-37ba2b6721d9@gmail.com>
-Subject: Re: [PATCH v2 0/3] ASoC: add CS42L84 codec driver
-Message-Id: <172980101186.554299.11182862966336254463.b4-ty@kernel.org>
-Date: Thu, 24 Oct 2024 21:16:51 +0100
+	s=k20201202; t=1729802386;
+	bh=fu1NI55gqVY8lwDobFa1EKGS2z61s5XU7//5aqHBG3I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Xzgqw8iVGQU0dI3OeuHLmVLmbJ/SEFjLNv6oxbdrHizj2AZDaCc3n9Vn4SxbyTUrs
+	 T/qy1UKhHCnIdwOhjTrPnsCybxcQq7KfQ3XRLHHgCqjParoNauu523K51H21HrnyfN
+	 HqJWMrzazZJfXjP4kM65OpfLBnBh9G8Do+HPWQ8qvqwsaxwqQXRjajFWwJIVj25PJf
+	 S0duQysEtoqfpsCtOVRENsl9UybhyIS7YTliJcp6o81yrtGbcmiGMQwiAyDU0VywTY
+	 QB4HlPDkRK68GrQc+X5pk5MZEzX0UTvfHpKSBfFDzZuq1+QJkGZuHBbI9ST696kQQJ
+	 YPksUDIai5H6w==
+Date: Thu, 24 Oct 2024 15:39:45 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	David Airlie <airlied@gmail.com>,
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+	linux-clk@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-kernel@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	linux-rpi-kernel@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
+	Stephen Boyd <sboyd@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Will Deacon <will@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 04/37] dt-bindings: display: Add BCM2712 HDMI bindings
+Message-ID: <172980238460.1011654.10730669025533473709.robh@kernel.org>
+References: <20241023-drm-vc4-2712-support-v1-0-1cc2d5594907@raspberrypi.com>
+ <20241023-drm-vc4-2712-support-v1-4-1cc2d5594907@raspberrypi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241023-drm-vc4-2712-support-v1-4-1cc2d5594907@raspberrypi.com>
 
-On Sun, 20 Oct 2024 00:47:30 +1000, James Calligeros wrote:
-> This is version 2 of the Cirrus Logic CS42L84 ASoC codec driver.
+
+On Wed, 23 Oct 2024 17:50:01 +0100, Dave Stevenson wrote:
+> From: Maxime Ripard <mripard@kernel.org>
 > 
-> This patch set adds a driver for the Cirrus Logic CS42L84 codec. This chip
-> is (so far) found only on Apple Silicon Macs. In keeping with proud Apple
-> tradition, the CS42L84 is essentially just a CS42L42 with a different
-> regmap and no publicly available datasheet. It may also be missing its
-> parent's S/PDIF capabilities as none of Apple's devices support S/PDIF out,
-> however this cannot be positively confirmed.
+> The BCM2712 HDMI controller uses a slightly different HDMI controller
+> than the BCM2711, and a completely different PHY.
 > 
-> [...]
+> Let's introduce a new compatible for it.
+> 
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> ---
+>  Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/3] dt-bindings: sound: Add CS42L84 codec
-      commit: f2a67da9f4eb03f5402acb9aeb65b23cac990827
-[2/3] ASoC: cs42l84: Add new codec driver
-      commit: 250304a0fb34bb74f4726645ae24dc31d7582a22
-[3/3] ASoC: cs42l84: leverage ring sense IRQs to correctly detect headsets
-      commit: 2391b8719d686b1947b5f81250281fa112da91dc
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
