@@ -1,160 +1,108 @@
-Return-Path: <devicetree+bounces-115035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC409ADC80
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:47:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E469ADC8F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:51:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 402E4280DA9
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 06:47:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64EAA1F24B95
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 06:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF0D318990D;
-	Thu, 24 Oct 2024 06:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08605189F50;
+	Thu, 24 Oct 2024 06:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JlPkR6at"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="RSD2mKmN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE721662F4;
-	Thu, 24 Oct 2024 06:47:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE9A189911;
+	Thu, 24 Oct 2024 06:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729752441; cv=none; b=dr7uarVeYlw4VzbJlSqTj4E2/m3TjSICE4sM1l2mDyT9i8RYUo+vigOSSIhfsgQ+3T3Otpq6Mauw34b4tsl/tNYZWtqSJXk/NgEHzPwBBcrZEE0Yfzc1D4cA40qL8mgByKoubatyXVyYVJ0Mv5RWSHmdAWHIuGCc08dk6Z4+mA4=
+	t=1729752662; cv=none; b=n2CgaYoC4X894XHAwqsxatYqSEIhnV9XmhqGG76ng92PCXCkSs2J86+DJHSFCzhybfn+RgDnef5mzaETDwta3NR+Wsz/4J8mboC7PCbRDCCCph7MgU4R7/Joc2am4eRS6OzIZQ6mGh3UUlqbXQnQ7CYS4il8v/+v+2ykFc7ifHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729752441; c=relaxed/simple;
-	bh=DU0wvIKqAokNvq5Z0PhwpBxWd9YAuEmXvDVx83WHKIk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=InqhvWCoI8LuaiqKQmrm/Mr28OewVEplHKj6fADLh1T8Ymsfw7kwS648g+VcBZJ7OKowWoTozQfa1FAx7LYZIZvfciAAAreqIglXZpHYCP24u+npkFTFuhVx83P9VVpA057zJ0Q2TIACWUXarxwexZMgSHGy2cr/NaY7R87uSZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JlPkR6at; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49NLthH8009114;
-	Thu, 24 Oct 2024 06:47:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6/oSOlR+Cn9d7qsNYO1Ey7vDelnpMSv1JnrdKavwbT0=; b=JlPkR6atudhxNSYT
-	cwygBU9IhFBxCkcztk1nRwW6J6bLnxX+e6MQOtMjWaOTNsN+LIIjLVUbMfBy+IKv
-	TOXtxq8Sb3s3BFJwCEObG/I10NaL+mELpoHGeaX+/FO4NhdDEVg5smyGTWIPPlut
-	Aegds0tHvDc8BaP9/y/TMuGM/2z9lNWhV8sqEElZ/HIJk6DbHZyT0jZ2r5kSTT5V
-	v+8CZA1Apr1SPxGSvjipl28Mx7Y2kqQhM13b2sN3zwsiBOIPM+wYEFjBFn6IWf/l
-	cBcI1EkKRsySAwXHJZKChz3f2TKsAyJXcbG/sERufpDKRsQVkMjKHM+6svRIEzRV
-	4+3F9w==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em43cq6r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Oct 2024 06:47:02 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49O6l1i1020134
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Oct 2024 06:47:01 GMT
-Received: from [10.239.29.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Oct
- 2024 23:46:56 -0700
-Message-ID: <ca62ee1a-5681-4840-b9b4-ed45e731c449@quicinc.com>
-Date: Thu, 24 Oct 2024 14:46:53 +0800
+	s=arc-20240116; t=1729752662; c=relaxed/simple;
+	bh=dp+DSjy0O9qZHwMwnoGVEI8E4uceciDPmkCtu2FWcF4=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qzWjbH8DzyqtE3iZWhG0xsbAh6SBqS6BIuRPbx88hxQGVGZBYej3+3GvVl5sSKRuQeLlMzlFo2QKtHuyx9UD9yzYqCqDnSviiL/3looTpaIwdH+gQ+O1hFYQZGEbGPRs09w6pPNGT0PsriKuELw+iU7OrkC3gw/dUYPY886Ttas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=RSD2mKmN; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id C22C8A06B3;
+	Thu, 24 Oct 2024 08:50:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=REUvKdAlvm77Y+j57Tey
+	GIN8QeQ3OrJBLD44k4+2Y8A=; b=RSD2mKmNiQD3HVPIe4kTtusuYd9QWpcd8NQZ
+	2W/K+Ubbmn172cqm/rR7yt9G7bnNq3oxixEe45YKe6qUJ0zQs9UQXC59nnoiqgMT
+	J0WF3hlZKxJmHIUTCDN0CmiIjVLaM1DpTTspSY/AV+GCychkyuAIt9E/S994WUez
+	/uXZ7X6qKaEoW4xMR0GHkRHNqtdQjLCxcOpjWhp6ILUxCMeZ9ddhcLi5/7qmEGDx
+	hR6lpjzoMIKfgC5F4gJIs/CKga1LtQ2bFn9IhDh0A+1/oFS4hVvHUfbysbKDxCpU
+	+NxQnlHLX2ISI5nq4ABlfYxYEJCM9boi57vJDUBPvy/Er6qUa5M6RznA6/Q6Jjlm
+	ZPj50sZypExkrfWca7qaFaF2ZZDu1VNwTRGX8ZltasSFfCZ5AxweU0gnOjQhaD3+
+	fjFOwYdd5ur+24utWJsGn8PmH1k4ILCBfImxbcEzWEangQ0kkCR7sLvZm7fyn07g
+	jcqSv2RJ+d4yD784cqdHyxcOU49QHGDkVZlRfqq1tIHDBbPO2XgZG2o9DOpIvoym
+	HACMF40TvjiASuvrePIJEjKbmYw89O7rp295Fj+QwMzuytmL914eFdPAWv1HkkKy
+	BH2C0V+P6gm2p8Cc8ApgEr7hrOYQYobEPN5ntH5lHd69QuELPIwErihUTtoSJd8f
+	CEWxfpA=
+From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
+To: Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
+	<dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+	<linux-kernel@vger.kernel.org>
+CC: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, "Vinod
+ Koul" <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+Subject: [PATCH 03/10] dt-bindings: dmaengine: Add Allwinner suniv F1C100s DMA
+Date: Thu, 24 Oct 2024 08:49:24 +0200
+Message-ID: <20241024064931.1144605-4-csokas.bence@prolan.hu>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <13ab5cec-25e5-4e82-b956-5c154641d7ab@prolan.hu>
+References:
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 6/7] PCI: qcom: Disable ASPM L0s and remove BDF2SID
- mapping config for X1E80100 SoC
-To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-CC: <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <abel.vesa@linaro.org>,
-        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
-        <dmitry.baryshkov@linaro.org>, <kw@linux.com>, <lpieralisi@kernel.org>,
-        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <johan+linaro@kernel.org>,
-        <stable@vger.kernel.org>
-References: <20241017030412.265000-1-quic_qianyu@quicinc.com>
- <20241017030412.265000-7-quic_qianyu@quicinc.com>
- <ZxJvxvxlHuQ9Zze5@hu-bjorande-lv.qualcomm.com>
-Content-Language: en-US
-From: Qiang Yu <quic_qianyu@quicinc.com>
-In-Reply-To: <ZxJvxvxlHuQ9Zze5@hu-bjorande-lv.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: trgz8nXFd8XFNP3u6wQx1f_VCTWOFuiV
-X-Proofpoint-ORIG-GUID: trgz8nXFd8XFNP3u6wQx1f_VCTWOFuiV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- adultscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 impostorscore=0
- phishscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410240050
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1729752651;VERSION=7978;MC=2906467838;ID=135550;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A29ACD94855677065
+
+Add compatible string for Allwinner suniv F1C100s DMA.
+
+[ csokas.bence: reimplemented in YAML ]
+Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
+---
+ .../devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml      | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml b/Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml
+index 02d5bd035409..9b5180c0a7c4 100644
+--- a/Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml
++++ b/Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml
+@@ -22,7 +22,9 @@ properties:
+       number.
+ 
+   compatible:
+-    const: allwinner,sun4i-a10-dma
++    enum:
++      - allwinner,sun4i-a10-dma
++      - allwinner,suniv-f1c100s-dma
+ 
+   reg:
+     maxItems: 1
+-- 
+2.34.1
 
 
-On 10/18/2024 10:25 PM, Bjorn Andersson wrote:
-> On Wed, Oct 16, 2024 at 08:04:11PM -0700, Qiang Yu wrote:
->> Currently, the cfg_1_9_0 which is being used for X1E80100 has config_sid
->> callback in its ops and doesn't disable ASPM L0s. However, as same as
->> SC8280X, PCIe controllers on X1E80100 are connected to SMMUv3, hence don't
-> Would be nice to document the connection between SMMUv3 and "don't need
-> config_sid()" is because we don't have support for the SMMUv3.
-We don't need config_sid because we have support for SMMUv3 on HW.
-SMMUv3 is able to use BDF as SID, so BDF2SID mapping is not required
-and removed on HW.
-
-Thanks,
-Qiang
->> need config_sid() callback and hardware team has recommended to disable
->> L0s as it is broken in the controller. Hence reuse cfg_sc8280xp for
-> I expect that config_sid() and "disable L0s" are two separate issues.
-> I'm fine with you solving both in a single commit, but I'd prefer the
-> two subjects to be covered in at least two separate sentences.
->
-> Regards,
-> Bjorn
->
->> X1E80100.
->>
->> Fixes: 6d0c39324c5f ("PCI: qcom: Add X1E80100 PCIe support")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> ---
->>   drivers/pci/controller/dwc/pcie-qcom.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
->> index 468bd4242e61..c533e6024ba2 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -1847,7 +1847,7 @@ static const struct of_device_id qcom_pcie_match[] = {
->>   	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
->>   	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
->>   	{ .compatible = "qcom,pcie-sm8550", .data = &cfg_1_9_0 },
->> -	{ .compatible = "qcom,pcie-x1e80100", .data = &cfg_1_9_0 },
->> +	{ .compatible = "qcom,pcie-x1e80100", .data = &cfg_sc8280xp },
->>   	{ }
->>   };
->>   
->> -- 
->> 2.34.1
->>
->>
->> -- 
->> linux-phy mailing list
->> linux-phy@lists.infradead.org
->> https://lists.infradead.org/mailman/listinfo/linux-phy
 
