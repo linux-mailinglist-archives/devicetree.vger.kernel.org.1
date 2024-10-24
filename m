@@ -1,305 +1,1648 @@
-Return-Path: <devicetree+bounces-115388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB15A9AF498
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 23:19:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D1439AF4A5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 23:21:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEF6E1C21A56
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 21:19:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 738761C21F04
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 21:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35CE41B2183;
-	Thu, 24 Oct 2024 21:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901A51C7B7E;
+	Thu, 24 Oct 2024 21:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="sOktyzE6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m8EZiA2n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746851A76AC
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 21:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3161ACDED;
+	Thu, 24 Oct 2024 21:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729804763; cv=none; b=kJEqgoRYq4kxyH361r9COFs2EpEjHdeLg+ULSwkaAUjbPIWYUWHtjzHO6YE7M3/n5DCdwGxH9t1X5QYyP/MkGu1UKRVhdDmFpyh5TXd5asqzl7vvP03LKqoINpglQAtmwSoTNRIvxQs/DFa/wEdQp/+g1nH0UROkOvpE9CjznZY=
+	t=1729804910; cv=none; b=j9G1JXt6dYoJCI6F9goKTviGYFoQ2hZ+XSa7zA2zR2Rqzj1x23SHFbnbzmsCrNhvd79B8A5CaoKfpqq+F2Bxh+t39FirkU2IXlxyebKuCbrvgb26ilC9SRcrFk6qYBvVQrngsVlYvs700sAdWq0950VcJPcufnx615EIHo/VNDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729804763; c=relaxed/simple;
-	bh=LxNgM6OEG2refdE79AhxcGjPuTQUMHo9o67bdSKSZbE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=angIuzLGfXgWEON8rJLxqE78QWXi+NNPyBfwPphneex74LKRxRyJ8/J/eD0zrjnO3ENAsEj1w8TVkmjpEHREcazNg10PFbwSQXXny/7YCwlMVPgFAi2dWGhsvdZGDtL9dlLcoTho8rkKbqSPdCKE2xoPnZRyDFoboWZb6tiLd8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=sOktyzE6; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-37d47b38336so933553f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 14:19:20 -0700 (PDT)
+	s=arc-20240116; t=1729804910; c=relaxed/simple;
+	bh=wL3czIdZ9AWlmQnTVmLHlrWbCCvU5Lm38vB0ZvLBF3k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sUpinEqyKIXcD1kp+J5wJwag1jqSMe6+ZAFOwju7QJR8pzuBzxeScNsJxeLax2DKFYkpM8arEIiMe4nSF4ow0FfPE4Ag8lwmXIynNbkeMResfNzJcYlVn86jvciMumUrAmB8R/1xCRo+awhz8u5KRMEGRXT+3G5S/pft7jCOBT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m8EZiA2n; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb5fa911aaso19066041fa.2;
+        Thu, 24 Oct 2024 14:21:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729804759; x=1730409559; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pFvcoC488AfGA71diUr5gnpB0vBErIdVBK6D3oD+0Qg=;
-        b=sOktyzE6MNNawguKOwqZDn5nyBYa7vtBbgEh7y9T8jGt2nD0QXEGeDq0FOn1ajHoa9
-         jclGPCwrGu8dYy4nk9FZ62el0WaNpEzSgP7yAfcgCF/IV6cMMquLntrZH8uN9y22w6ck
-         EcxqUiXbttCsGrpe1E2WH8GEqk6+e0Irm2j/oJJwWlHEfiT+yZdUFzoNe0oiLJsgNi7k
-         5Ckxv6x6sTcbcKIP0ooR+nFQqHMPb7XtNCK7X5aTvMkgDq9EzP1JlbAcp4uXUV0Gn9kN
-         m//qMlGluKc2tUbgJnETh0VTnYu3zl3j2hI9F9SdI/O1NoZJlyBC59PST2pZ1s4tQKT2
-         NkNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729804759; x=1730409559;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1729804903; x=1730409703; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pFvcoC488AfGA71diUr5gnpB0vBErIdVBK6D3oD+0Qg=;
-        b=H+rXtxjRWHuCRppTd9vd7EWWsODoaBfOunZHuFsYEVwKqaN6V+TjchPsgfTp0Hta2S
-         1RLlPEAbDfsW9juP2fkakA+ia/fT5Glh7BkgkUSvjDGpOXCw9li8iWGL+ozNvP7NbWL8
-         4m4QvuzphSzqiaQYys8ahE+oi3YnqNCM1bGmq56VR4+zjNfrdey9OeaXmnjMbJiuGnRB
-         pY6b7LU+s4bHmM6yFTgPX/fbXZfy9PjIlJCgTHKLeU42MqNIRZWhK7i2y6u689nNRRb1
-         0H67HVEc2o0UrXgJNRBp3iF4eNocz2zzPAhDFSMxnEJIj6mtNVVK7VVZVHBzR1kmbvHE
-         S4IA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1dJ8kxG5vEt9UoSw2i6ItBENfX27FE0RctuZ/mjs4BlgFS2DNLniQ+WVCr5ORc2SxL+7IPvgSCO6S@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV8CP0FHmYXMGPTEQLovqQTVnPW+KV9lwJ8FYnRDnNC/YadM3R
-	QQWewfv7aNQ3qOW47qIEf13dl021iXQcfEv9a21/qeuOc9VIWKllaOBklKk4/GQ=
-X-Google-Smtp-Source: AGHT+IF3Wed+9TpTr9IMYHVE4Wg8LEyIqO5P26hksneByyONbFAY+RZznN2gRhFwj781oZ2PZlP+6Q==
-X-Received: by 2002:a5d:444f:0:b0:37d:4956:b0b4 with SMTP id ffacd0b85a97d-380458f42c6mr2398340f8f.59.1729804758627;
-        Thu, 24 Oct 2024 14:19:18 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:b203:5494:7e5a:8c7b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37e1asm12197642f8f.20.2024.10.24.14.19.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 14:19:18 -0700 (PDT)
-Date: Thu, 24 Oct 2024 23:19:16 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-Message-ID: <eyom32milbbqp6floun4r5bpozuewbe5kk2htvhp5cmcytj2oy@bpcrd2aiwk6m>
-References: <20240927125745.38367-1-dima.fedrau@gmail.com>
- <20240927125745.38367-3-dima.fedrau@gmail.com>
- <oppdnsda4tqjcpsb26j5ew62t4bkkmtxuu7e2fpinnazubk5ky@tmz76o5xdrlj>
- <20241023125221.GA197308@debian>
+        bh=9aH9S4JFO5/xiNYU8T5+jziuqYM0SUbeC0r9MA3SVXk=;
+        b=m8EZiA2n5pebT2E4SHg6RDHWcuVHG1bxiEo0y7REUsVzxOzF+OtGZMvIXXq+/96yY1
+         3ClsRZuv6D7uEK97FU4Sj0LYa1PYoAPzD2hv3dmZ1yRVG/+8oUUa5y1QQtHxiLYjvCUm
+         cSnwd6kgxEWDplzL+Ccu1JbE1MrXC2uAt0LOm6CdWO7+x6AJVN1ZryPAM3Jv2JsDohKS
+         5vzuI02YpR5tpOiqJnH3hnNd5kmBKgUI1jSdKdOerJJYRqNW4OxBMIO8gtvyTGawObyU
+         1Hg3oiYHnUnz4gyUcNIHlM/g2zd1OD+WE/sucH8B2CGSeYBMlXxQoyTUMvPzQ4o/v9Jn
+         yk/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729804903; x=1730409703;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9aH9S4JFO5/xiNYU8T5+jziuqYM0SUbeC0r9MA3SVXk=;
+        b=Vk7OZMmllRcAhWZ0RXuzvvsWykQ00ow9YQg4//1TuYdQwhwkOyz5PHAh67b3/WNjGt
+         TRUWGjv2Xt9b4Bb81x8DKzfTdC0d/80Hic3Z40/tC6/CbZtAwf6U5BBZr9YSnGmC/GEl
+         MUuo7TIpry00QSQbUxifL+5pH3Dz7HehjjSK+YUqRHe5DWzjWDOgjWNFon4M4Qo+ZtPd
+         i1cfuuhIsCOL15XsbJ7coRDNR4ewa472gky6/3HJ3LfjuFNLeKOarferas6lJ1H9WRO9
+         Xe21JuU2qhCRAR/NFVdTaoyDDmhnJC+XbUkyf5UOF2xbugL3urIYqwVMLwD1yL6QV6Qc
+         8BRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVLRbr2NlUImhI41DdXQjgzHUOnor0oQVyIKckbXXB4hOXvPGW+DUi3WCRbAzu4xviD57e/BTuiOMwz@vger.kernel.org, AJvYcCWBgS6bgvtX6F/EfiDCnCmjO1Fra1hWmzmlU8hojV0JdPwmdPl/AeWbRN5GCaMQFeAkd/BS/sGzzuF1q/cq@vger.kernel.org, AJvYcCWUQ7MYf7yDWRO5CmrqxXjwFLOoSKU1qOofr0zEJmHZhr4ud0ekZq+xO4uIqGLTCqa6t3UheBEIEmCL1Ug=@vger.kernel.org
+X-Gm-Message-State: AOJu0YynmBPGn5KBPFPpxFkn+uUQhgidOt3G/c3n/EvQZGw9HcpzoWMW
+	13sVvft/drokvwACO6HpcKzlpA09Awn9xSuqBspOI6HpFK9ymtrUWBvXWBVRRE3g3aeyd7JO8lC
+	4VnCR1z342S5sTM1RoOF8nuMxHQlc3BkrtXA=
+X-Google-Smtp-Source: AGHT+IGE53+mnSzcNuvH7o1zY00eGFtTfONpn6pf5hapbdwn/9KPVLOReJ2t4sRILUot66CvP8LcHJx43kAyy4+KBYY=
+X-Received: by 2002:a2e:be21:0:b0:2fa:d604:e522 with SMTP id
+ 38308e7fff4ca-2fc9d1de800mr61973681fa.0.1729804901029; Thu, 24 Oct 2024
+ 14:21:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qeuo22de2j43gzbl"
-Content-Disposition: inline
-In-Reply-To: <20241023125221.GA197308@debian>
-
-
---qeuo22de2j43gzbl
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
+References: <20241024090324.131731-1-wangweidong.a@awinic.com> <20241024090324.131731-3-wangweidong.a@awinic.com>
+In-Reply-To: <20241024090324.131731-3-wangweidong.a@awinic.com>
+From: anish kumar <yesanishhere@gmail.com>
+Date: Thu, 24 Oct 2024 14:21:29 -0700
+Message-ID: <CABCoZhBxAtQJ2yEpypx_b=1LRdUT7Ot4MVoK=niOZAGr1jr7cA@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] ASoC: codecs: Add aw88081 amplifier driver
+To: wangweidong.a@awinic.com
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, 
+	pierre-louis.bossart@linux.dev, neil.armstrong@linaro.org, 
+	rf@opensource.cirrus.com, arnd@arndb.de, luca.ceresoli@bootlin.com, 
+	quic_pkumpatl@quicinc.com, herve.codina@bootlin.com, masahiroy@kernel.org, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, yijiangtao@awinic.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 2/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-MIME-Version: 1.0
 
-Hello Dimitri,
+On Thu, Oct 24, 2024 at 2:05=E2=80=AFAM <wangweidong.a@awinic.com> wrote:
+>
+> From: Weidong Wang <wangweidong.a@awinic.com>
+>
+> The driver is for amplifiers aw88081 of Awinic Technology
+> Corporation. The awinic AW88081 is an I2S/TDM input,
+> high efficiency digital Smart K audio amplifier
+>
+> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
 
-On Wed, Oct 23, 2024 at 02:52:21PM +0200, Dimitri Fedrau wrote:
-> Am Tue, Oct 22, 2024 at 09:54:50AM +0200 schrieb Uwe Kleine-K=F6nig:
->=20
-> [...]
-> > > +
-> > > +#define MC33XS2410_MIN_PERIOD		488282
-> > > +#define MC33XS2410_MAX_PERIOD_STEP0	2000000000
-> > > +/* x in { 0 ... 3 } */
-> > > +#define MC33XS2410_MAX_PERIOD_STEP(x)	(MC33XS2410_MAX_PERIOD_STEP0 >=
-> (2 * x))
-> >=20
-> > Nitpick: These register definition become easier to parse for a human if
-> > you indent the RHS of register fields one tab further and add an empty
-> > line between the definitions for different registers.
->=20
-> Adding an empty line seems reasonable to me but the additional tab doesn't
-> help me to improve readability.
+Reviewed-by: anish kumar <yesanishhere@gmail.com>
 
-OK, fine for me.
-
-> > MC33XS2410_PWM_DC1 is only used once, I'd hard-code it into the
-> > definition of MC33XS2410_PWM_DC.
->=20
-> Ok. Should I do the same for MC33XS2410_PWM_FREQ1 and
-> MC33XS2410_MAX_PERIOD_STEP0 ?
-
-yepp.
-
-> > The register fields [7:4] in MC33XS2410_PWM_CTRL3 are called PWM_ON4 ..
-> > PWM_ON1. So your x in { 0 ... 3 } is wrong. (Luckily, having some x
-> > range over { 0 ... 3 } and others orver { 1 ... 4 } is prone to error
-> > and confusion.)
->=20
-> Will fix it. Should I do the same for MC33XS2410_PWM_CTRL1_POL_INV ?
-
-I guess so, otherwise you don't get consistent ranges.
-
-> > For MC33XS2410_MAX_PERIOD_STEP maybe use a different variable name than
-> > for the others. For the register definitions the range is over hwpwm
-> > (which might be a good name there?), for MC33XS2410_MAX_PERIOD_STEP it's
-> > about MC33XS2410_PWM_FREQ_STEP.
->=20
-> What about MC33XS2410_PWM_MAX_PERIOD(x) ?
-
-Consistency is trump.
-
-> > > +#define MC33XS2410_MAX_TRANSFERS	5
-> > > +#define MC33XS2410_WORD_LEN		2
-> > > +
-> > > +struct mc33xs2410_pwm {
-> > > +	struct spi_device *spi;
-> > > +};
-> > > +
-> > > +static inline struct mc33xs2410_pwm *mc33xs2410_from_chip(struct pwm=
-_chip *chip)
-> > > +{
-> > > +	return pwmchip_get_drvdata(chip);
-> > > +}
-> > > +
-> > > +static int mc33xs2410_xfer_regs(struct spi_device *spi, bool read, u=
-8 *reg,
-> > > +				u16 *val, bool *ctrl, int len)
-> >=20
-> > Unless I missed something all ctrl[x] are always identical. If so
-> > represent that by a single bool.
->=20
-> Yes, they are identical. I added the crtl[x] to be able read from ctrl and
-> diag registers. I will change it so it is represented by a single bool, if
-> the feature is needed in the future I can still add it.
-
-ack.
-
-> > > +{
-> > > +	struct spi_transfer t[MC33XS2410_MAX_TRANSFERS] =3D { { 0 } };
-> > > +	u8 tx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
-> > > +	u8 rx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
-> > > +	int i, ret, reg_i, val_i;
-> > > +
-> > > +	if (!len)
-> > > +		return 0;
-> > > +
-> > > +	if (read)
-> > > +		len++;
-> > > +
-> > > +	if (len > MC33XS2410_MAX_TRANSFERS)
-> > > +		return -EINVAL;
-> > > +
-> > > +	for (i =3D 0; i < len; i++) {
-> > > +		reg_i =3D i * MC33XS2410_WORD_LEN;
-> > > +		val_i =3D reg_i + 1;
-> > > +		if (read) {
-> > > +			if (i < len - 1) {
-> > > +				tx[reg_i] =3D reg[i];
-> > > +				tx[val_i] =3D ctrl[i] ? MC33XS2410_RD_CTRL : 0;
-> > > +				t[i].tx_buf =3D &tx[reg_i];
-> > > +			}
-> > > +
-> > > +			if (i > 0)
-> > > +				t[i].rx_buf =3D &rx[reg_i - MC33XS2410_WORD_LEN];
-> > > +		} else {
-> > > +			tx[reg_i] =3D reg[i] | MC33XS2410_WR;
-> > > +			tx[val_i] =3D val[i];
-> > > +			t[i].tx_buf =3D &tx[reg_i];
-> > > +		}
-> > > +
-> > > +		t[i].len =3D MC33XS2410_WORD_LEN;
-> > > +		t[i].cs_change =3D 1;
-> >=20
-> > Not sure if MC33XS2410_WORD_LEN really improves readability here.
->=20
-> It is used throughout in the function and improves readability overall,
-> maybe not here but for consistency I would stick to it.
-
-Seems to be subjective.
-
-> > Why is this done using $len transfers, wouldn't a single one do (and
-> > maybe be more performant and not rely on a spi controller that supports
-> > cs_change)?
->=20
-> Without cs_change after every 16 bit, requests aren't processed by the
-> device. Reading/writing from/to device fails. The SPI controller therefore
-> must support cs_change. Single transfer is not possible because of the
-> cs_change after every 16bit.
-
-There is SPI_CS_WORD for this usecase.
-=20
-> > > +	/* polarity */
-> > > +	mask =3D MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm);
-> > > +	val[2] =3D (state->polarity =3D=3D PWM_POLARITY_INVERSED) ?
-> > > +		 (val[2] | mask) : (val[2] & ~mask);
-> > > +
-> > > +	/* enable output */
-> > > +	mask =3D MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm);
-> > > +	val[3] =3D (state->enabled && rel_dc >=3D 0) ? (val[3] | mask) :
-> > > +						   (val[3] & ~mask);
-> > > +
-> > > +	return mc33xs2410_write_regs(spi, reg, val, 4);
-> > > +}
-> > > +
-> > > +static int mc33xs2410_pwm_get_state(struct pwm_chip *chip,
-> > > +				    struct pwm_device *pwm,
-> > > +				    struct pwm_state *state)
-> > > +{
-> > > [...]
-> > > +	state->period =3D mc33xs2410_pwm_get_period(val[0]);
-> > > +	state->polarity =3D (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwp=
-wm)) ?
-> > > +			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
-> > > +	state->enabled =3D !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm));
-> > > +	mc33xs2410_pwm_set_relative_duty_cycle(state, val[1]);
-> >=20
-> > No need to set state->duty_cycle =3D 0 if state->enabled is false. This=
- is
-> > another function I suggest to unroll as it hides more than it abstracts.
->=20
-> Function can be unrolled, but the check for state->enabled is needed. The
-> device is unable to generate a 0% duty cycle, so it is turned off to
-> generate a 0% duty cylce.
-
-What breaks if you drop the check for state->enabled?
-=20
-> > > [...]
-> > > +static int mc33xs2410_probe(struct spi_device *spi)
-> > > +{
-> > > [...]
-> > > +	/* Transition to normal mode */
-> > > +	ret =3D mc33xs2410_modify_reg(spi, MC33XS2410_GLB_CTRL,
-> > > +				    MC33XS2410_GLB_CTRL_MODE,
-> > > +				    MC33XS2410_GLB_CTRL_MODE_NORMAL);
-> > > +	if (ret < 0)
-> > > +		return dev_err_probe(dev, ret,
-> > > +				     "Failed to transition to normal mode\n");
-> >=20
-> > What is the effect of this register write if the PWM was already setup
-> > by the bootloader?
-> >=20
->=20
-> When its setup is done in the bootloader and the watchdog is disabled in
-> the bootloader it shouldn't have any impact.
-
-ok.
-
-Best regards
-Uwe
-
---qeuo22de2j43gzbl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcaudEACgkQj4D7WH0S
-/k412wgAhhuGRzfQOKAF0X4Z4/t1WK1gdfi8iWhKvKvP4hrx1ESX2QYqkAmfPa+2
-iz/EPW5egD5uVccERgRiUpYsn++lueMwY7a+096LkSzirBCZeQnlH5VBfwJkd7Ko
-l+on/AXmpCiSthFX8pqyv4h4wnBSz+ye4XeFi3tjpKiJxGZ2HmRLVJNDNzkAemKA
-dObtrDQfPkWOK1lTpeuF1c8YIWOxBMBMIHajTZ+yv4feSwquQDO9FONeN/lQgRyy
-7yhGv3ZOKv2ly34oa2K55+I9A43IP63QiFRWa5NY4bvUR8mPH4rvyuOWJEVH4tMG
-HObe9Cenh515ReB0rNQ35Ij+vGO9RA==
-=SOJB
------END PGP SIGNATURE-----
-
---qeuo22de2j43gzbl--
+> ---
+>  sound/soc/codecs/Kconfig   |   12 +
+>  sound/soc/codecs/Makefile  |    2 +
+>  sound/soc/codecs/aw88081.c | 1087 ++++++++++++++++++++++++++++++++++++
+>  sound/soc/codecs/aw88081.h |  286 ++++++++++
+>  4 files changed, 1387 insertions(+)
+>  create mode 100644 sound/soc/codecs/aw88081.c
+>  create mode 100644 sound/soc/codecs/aw88081.h
+>
+> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
+> index 7092842480ef..1eaca685c1a6 100644
+> --- a/sound/soc/codecs/Kconfig
+> +++ b/sound/soc/codecs/Kconfig
+> @@ -57,6 +57,7 @@ config SND_SOC_ALL_CODECS
+>         imply SND_SOC_AW8738
+>         imply SND_SOC_AW87390
+>         imply SND_SOC_AW88395
+> +       imply SND_SOC_AW88081
+>         imply SND_SOC_AW88261
+>         imply SND_SOC_AW88399
+>         imply SND_SOC_BT_SCO
+> @@ -685,6 +686,17 @@ config SND_SOC_AW88261
+>           boost converter can be adjusted smartly according to
+>           the input amplitude.
+>
+> +config SND_SOC_AW88081
+> +       tristate "Soc Audio for awinic aw88081"
+> +       depends on I2C
+> +       select REGMAP_I2C
+> +       select SND_SOC_AW88395_LIB
+> +       help
+> +         This option enables support for aw88081 Smart PA.
+> +         The awinic AW88081 is an I2S/TDM input, high efficiency
+> +         digital Smart K audio amplifier. Due to its 9uV noise
+> +         floor and ultra-low distortion, clean listening is guaranteed.
+> +
+>  config SND_SOC_AW87390
+>         tristate "Soc Audio for awinic aw87390"
+>         depends on I2C
+> diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
+> index 54cbc3feae32..7cc0cb49b3a2 100644
+> --- a/sound/soc/codecs/Makefile
+> +++ b/sound/soc/codecs/Makefile
+> @@ -49,6 +49,7 @@ snd-soc-arizona-y :=3D arizona.o arizona-jack.o
+>  snd-soc-audio-iio-aux-y :=3D audio-iio-aux.o
+>  snd-soc-aw8738-y :=3D aw8738.o
+>  snd-soc-aw87390-y :=3D aw87390.o
+> +snd-soc-aw88081-y :=3D aw88081.o
+>  snd-soc-aw88395-lib-y :=3D aw88395/aw88395_lib.o
+>  snd-soc-aw88395-y :=3D aw88395/aw88395.o \
+>                         aw88395/aw88395_device.o
+> @@ -457,6 +458,7 @@ obj-$(CONFIG_SND_SOC_ARIZONA)       +=3D snd-soc-ariz=
+ona.o
+>  obj-$(CONFIG_SND_SOC_AUDIO_IIO_AUX)    +=3D snd-soc-audio-iio-aux.o
+>  obj-$(CONFIG_SND_SOC_AW8738)   +=3D snd-soc-aw8738.o
+>  obj-$(CONFIG_SND_SOC_AW87390)  +=3D snd-soc-aw87390.o
+> +obj-$(CONFIG_SND_SOC_AW88081)  +=3D snd-soc-aw88081.o
+>  obj-$(CONFIG_SND_SOC_AW88395_LIB) +=3D snd-soc-aw88395-lib.o
+>  obj-$(CONFIG_SND_SOC_AW88395)  +=3Dsnd-soc-aw88395.o
+>  obj-$(CONFIG_SND_SOC_AW88261)  +=3Dsnd-soc-aw88261.o
+> diff --git a/sound/soc/codecs/aw88081.c b/sound/soc/codecs/aw88081.c
+> new file mode 100644
+> index 000000000000..58b8e002d76f
+> --- /dev/null
+> +++ b/sound/soc/codecs/aw88081.c
+> @@ -0,0 +1,1087 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// aw88081.c  --  AW88081 ALSA SoC Audio driver
+> +//
+> +// Copyright (c) 2024 awinic Technology CO., LTD
+> +//
+> +// Author: Weidong Wang <wangweidong.a@awinic.com>
+> +//
+> +
+> +#include <linux/firmware.h>
+> +#include <linux/i2c.h>
+> +#include <linux/regmap.h>
+> +#include <sound/soc.h>
+> +#include "aw88081.h"
+> +#include "aw88395/aw88395_device.h"
+> +
+> +struct aw88081 {
+> +       struct aw_device *aw_pa;
+> +       struct mutex lock;
+> +       struct delayed_work start_work;
+> +       struct regmap *regmap;
+> +       struct aw_container *aw_cfg;
+> +
+> +       bool phase_sync;
+> +};
+> +
+> +static const struct regmap_config aw88081_regmap_config =3D {
+> +       .val_bits =3D 16,
+> +       .reg_bits =3D 8,
+> +       .max_register =3D AW88081_REG_MAX,
+> +       .reg_format_endian =3D REGMAP_ENDIAN_LITTLE,
+> +       .val_format_endian =3D REGMAP_ENDIAN_BIG,
+> +};
+> +
+> +static int aw88081_dev_get_iis_status(struct aw_device *aw_dev)
+> +{
+> +       unsigned int reg_val;
+> +       int ret;
+> +
+> +       ret =3D regmap_read(aw_dev->regmap, AW88081_SYSST_REG, &reg_val);
+> +       if (ret)
+> +               return ret;
+> +       if ((reg_val & AW88081_BIT_PLL_CHECK) !=3D AW88081_BIT_PLL_CHECK)=
+ {
+> +               dev_err(aw_dev->dev, "check pll lock fail,reg_val:0x%04x"=
+, reg_val);
+> +               return -EINVAL;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_dev_check_mode1_pll(struct aw_device *aw_dev)
+> +{
+> +       int ret, i;
+> +
+> +       for (i =3D 0; i < AW88081_DEV_SYSST_CHECK_MAX; i++) {
+> +               ret =3D aw88081_dev_get_iis_status(aw_dev);
+> +               if (ret) {
+> +                       dev_err(aw_dev->dev, "mode1 iis signal check erro=
+r");
+> +                       usleep_range(AW88081_2000_US, AW88081_2000_US + 1=
+0);
+> +               } else {
+> +                       return 0;
+> +               }
+> +       }
+> +
+> +       return -EPERM;
+> +}
+> +
+> +static int aw88081_dev_check_mode2_pll(struct aw_device *aw_dev)
+> +{
+> +       unsigned int reg_val;
+> +       int ret, i;
+> +
+> +       ret =3D regmap_read(aw_dev->regmap, AW88081_PLLCTRL1_REG, &reg_va=
+l);
+> +       if (ret)
+> +               return ret;
+> +
+> +       reg_val &=3D (~AW88081_CCO_MUX_MASK);
+> +       if (reg_val =3D=3D AW88081_CCO_MUX_DIVIDED_VALUE) {
+> +               dev_dbg(aw_dev->dev, "CCO_MUX is already divider");
+> +               return -EPERM;
+> +       }
+> +
+> +       /* change mode2 */
+> +       ret =3D regmap_update_bits(aw_dev->regmap, AW88081_PLLCTRL1_REG,
+> +                       ~AW88081_CCO_MUX_MASK, AW88081_CCO_MUX_DIVIDED_VA=
+LUE);
+> +       if (ret)
+> +               return ret;
+> +
+> +       for (i =3D 0; i < AW88081_DEV_SYSST_CHECK_MAX; i++) {
+> +               ret =3D aw88081_dev_get_iis_status(aw_dev);
+> +               if (ret) {
+> +                       dev_err(aw_dev->dev, "mode2 iis check error");
+> +                       usleep_range(AW88081_2000_US, AW88081_2000_US + 1=
+0);
+> +               } else {
+> +                       break;
+> +               }
+> +       }
+> +
+> +       /* change mode1 */
+> +       ret =3D regmap_update_bits(aw_dev->regmap, AW88081_PLLCTRL1_REG,
+> +                       ~AW88081_CCO_MUX_MASK, AW88081_CCO_MUX_BYPASS_VAL=
+UE);
+> +       if (ret =3D=3D 0) {
+> +               usleep_range(AW88081_2000_US, AW88081_2000_US + 10);
+> +               for (i =3D 0; i < AW88081_DEV_SYSST_CHECK_MAX; i++) {
+> +                       ret =3D aw88081_dev_check_mode1_pll(aw_dev);
+> +                       if (ret) {
+> +                               dev_err(aw_dev->dev, "mode2 switch to mod=
+e1, iis check error");
+> +                               usleep_range(AW88081_2000_US, AW88081_200=
+0_US + 10);
+> +                       } else {
+> +                               break;
+> +                       }
+> +               }
+> +       }
+> +
+> +       return ret;
+> +}
+> +
+> +static int aw88081_dev_check_syspll(struct aw_device *aw_dev)
+> +{
+> +       int ret;
+> +
+> +       ret =3D aw88081_dev_check_mode1_pll(aw_dev);
+> +       if (ret) {
+> +               dev_dbg(aw_dev->dev, "mode1 check iis failed try switch t=
+o mode2 check");
+> +               ret =3D aw88081_dev_check_mode2_pll(aw_dev);
+> +               if (ret) {
+> +                       dev_err(aw_dev->dev, "mode2 check iis failed");
+> +                       return ret;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_dev_check_sysst(struct aw_device *aw_dev)
+> +{
+> +       unsigned int check_val;
+> +       unsigned int reg_val;
+> +       unsigned int value;
+> +       int ret, i;
+> +
+> +       ret =3D regmap_read(aw_dev->regmap, AW88081_PWMCTRL4_REG, &reg_va=
+l);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (reg_val & (~AW88081_NOISE_GATE_EN_MASK))
+> +               check_val =3D AW88081_NO_SWS_SYSST_CHECK;
+> +       else
+> +               check_val =3D AW88081_SWS_SYSST_CHECK;
+> +
+> +       for (i =3D 0; i < AW88081_DEV_SYSST_CHECK_MAX; i++) {
+> +               ret =3D regmap_read(aw_dev->regmap, AW88081_SYSST_REG, &r=
+eg_val);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               value =3D reg_val & (~AW88081_BIT_SYSST_CHECK_MASK) & che=
+ck_val;
+> +               if (value !=3D check_val) {
+> +                       dev_err(aw_dev->dev, "check sysst fail, reg_val=
+=3D0x%04x, check:0x%x",
+> +                               reg_val, check_val);
+> +                       usleep_range(AW88081_2000_US, AW88081_2000_US + 1=
+0);
+> +               } else {
+> +                       return 0;
+> +               }
+> +       }
+> +
+> +       return -EPERM;
+> +}
+> +
+> +static void aw88081_dev_i2s_tx_enable(struct aw_device *aw_dev, bool fla=
+g)
+> +{
+> +       if (flag)
+> +               regmap_update_bits(aw_dev->regmap, AW88081_I2SCTRL3_REG,
+> +                       ~AW88081_I2STXEN_MASK, AW88081_I2STXEN_ENABLE_VAL=
+UE);
+> +       else
+> +               regmap_update_bits(aw_dev->regmap, AW88081_I2SCTRL3_REG,
+> +                       ~AW88081_I2STXEN_MASK, AW88081_I2STXEN_DISABLE_VA=
+LUE);
+> +}
+> +
+> +static void aw88081_dev_pwd(struct aw_device *aw_dev, bool pwd)
+> +{
+> +       if (pwd)
+> +               regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
+> +                               ~AW88081_PWDN_MASK, AW88081_PWDN_POWER_DO=
+WN_VALUE);
+> +       else
+> +               regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
+> +                               ~AW88081_PWDN_MASK, AW88081_PWDN_WORKING_=
+VALUE);
+> +}
+> +
+> +static void aw88081_dev_amppd(struct aw_device *aw_dev, bool amppd)
+> +{
+> +       if (amppd)
+> +               regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
+> +                               ~AW88081_EN_PA_MASK, AW88081_EN_PA_POWER_=
+DOWN_VALUE);
+> +       else
+> +               regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
+> +                               ~AW88081_EN_PA_MASK, AW88081_EN_PA_WORKIN=
+G_VALUE);
+> +}
+> +
+> +static void aw88081_dev_clear_int_status(struct aw_device *aw_dev)
+> +{
+> +       unsigned int int_status;
+> +
+> +       /* read int status and clear */
+> +       regmap_read(aw_dev->regmap, AW88081_SYSINT_REG, &int_status);
+> +       /* make sure int status is clear */
+> +       regmap_read(aw_dev->regmap, AW88081_SYSINT_REG, &int_status);
+> +
+> +       dev_dbg(aw_dev->dev, "read interrupt reg =3D 0x%04x", int_status)=
+;
+> +}
+> +
+> +static void aw88081_dev_set_volume(struct aw_device *aw_dev, unsigned in=
+t value)
+> +{
+> +       struct aw_volume_desc *vol_desc =3D &aw_dev->volume_desc;
+> +       unsigned int volume;
+> +
+> +       volume =3D min((value + vol_desc->init_volume), (unsigned int)AW8=
+8081_MUTE_VOL);
+> +
+> +       regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL2_REG, ~AW88081=
+_VOL_MASK, volume);
+> +}
+> +
+> +static void aw88081_dev_fade_in(struct aw_device *aw_dev)
+> +{
+> +       struct aw_volume_desc *desc =3D &aw_dev->volume_desc;
+> +       int fade_in_vol =3D desc->ctl_volume;
+> +       int fade_step =3D aw_dev->fade_step;
+> +       int i;
+> +
+> +       if (fade_step =3D=3D 0 || aw_dev->fade_in_time =3D=3D 0) {
+> +               aw88081_dev_set_volume(aw_dev, fade_in_vol);
+> +               return;
+> +       }
+> +
+> +       for (i =3D AW88081_MUTE_VOL; i >=3D fade_in_vol; i -=3D fade_step=
+) {
+> +               aw88081_dev_set_volume(aw_dev, i);
+> +               usleep_range(aw_dev->fade_in_time, aw_dev->fade_in_time +=
+ 10);
+> +       }
+> +
+> +       if (i !=3D fade_in_vol)
+> +               aw88081_dev_set_volume(aw_dev, fade_in_vol);
+> +}
+> +
+> +static void aw88081_dev_fade_out(struct aw_device *aw_dev)
+> +{
+> +       struct aw_volume_desc *desc =3D &aw_dev->volume_desc;
+> +       int fade_step =3D aw_dev->fade_step;
+> +       int i;
+> +
+> +       if (fade_step =3D=3D 0 || aw_dev->fade_out_time =3D=3D 0) {
+> +               aw88081_dev_set_volume(aw_dev, AW88081_MUTE_VOL);
+> +               return;
+> +       }
+> +
+> +       for (i =3D desc->ctl_volume; i <=3D AW88081_MUTE_VOL; i +=3D fade=
+_step) {
+> +               aw88081_dev_set_volume(aw_dev, i);
+> +               usleep_range(aw_dev->fade_out_time, aw_dev->fade_out_time=
+ + 10);
+> +       }
+> +
+> +       if (i !=3D AW88081_MUTE_VOL)
+> +               aw88081_dev_set_volume(aw_dev, AW88081_MUTE_VOL);
+> +}
+> +
+> +static void aw88081_dev_mute(struct aw_device *aw_dev, bool is_mute)
+> +{
+> +       if (is_mute) {
+> +               aw88081_dev_fade_out(aw_dev);
+> +               regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
+> +                               ~AW88081_HMUTE_MASK, AW88081_HMUTE_ENABLE=
+_VALUE);
+> +       } else {
+> +               regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
+> +                               ~AW88081_HMUTE_MASK, AW88081_HMUTE_DISABL=
+E_VALUE);
+> +               aw88081_dev_fade_in(aw_dev);
+> +       }
+> +}
+> +
+> +static void aw88081_dev_uls_hmute(struct aw_device *aw_dev, bool uls_hmu=
+te)
+> +{
+> +       if (uls_hmute)
+> +               regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
+> +                               ~AW88081_ULS_HMUTE_MASK,
+> +                               AW88081_ULS_HMUTE_ENABLE_VALUE);
+> +       else
+> +               regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
+> +                               ~AW88081_ULS_HMUTE_MASK,
+> +                               AW88081_ULS_HMUTE_DISABLE_VALUE);
+> +}
+> +
+> +static int aw88081_dev_reg_update(struct aw88081 *aw88081,
+> +                                       unsigned char *data, unsigned int=
+ len)
+> +{
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +       struct aw_volume_desc *vol_desc =3D &aw_dev->volume_desc;
+> +       unsigned int read_vol;
+> +       int data_len, i, ret;
+> +       int16_t *reg_data;
+> +       u16 reg_val;
+> +       u8 reg_addr;
+> +
+> +       if (!len || !data) {
+> +               dev_err(aw_dev->dev, "reg data is null or len is 0");
+> +               return -EINVAL;
+> +       }
+> +
+> +       reg_data =3D (int16_t *)data;
+> +       data_len =3D len >> 1;
+> +
+> +       if (data_len & 0x1) {
+> +               dev_err(aw_dev->dev, "data len:%d unsupported", data_len)=
+;
+> +               return -EINVAL;
+> +       }
+> +
+> +       for (i =3D 0; i < data_len; i +=3D 2) {
+> +               reg_addr =3D reg_data[i];
+> +               reg_val =3D reg_data[i + 1];
+> +
+> +               if (reg_addr =3D=3D AW88081_SYSCTRL_REG) {
+> +                       reg_val &=3D ~(~AW88081_EN_PA_MASK |
+> +                                   ~AW88081_PWDN_MASK |
+> +                                   ~AW88081_HMUTE_MASK |
+> +                                   ~AW88081_ULS_HMUTE_MASK);
+> +
+> +                       reg_val |=3D AW88081_EN_PA_POWER_DOWN_VALUE |
+> +                                  AW88081_PWDN_POWER_DOWN_VALUE |
+> +                                  AW88081_HMUTE_ENABLE_VALUE |
+> +                                  AW88081_ULS_HMUTE_ENABLE_VALUE;
+> +               }
+> +
+> +               if (reg_addr =3D=3D AW88081_SYSCTRL2_REG) {
+> +                       read_vol =3D (reg_val & (~AW88081_VOL_MASK)) >>
+> +                               AW88081_VOL_START_BIT;
+> +                       aw_dev->volume_desc.init_volume =3D read_vol;
+> +               }
+> +
+> +               /* i2stxen */
+> +               if (reg_addr =3D=3D AW88081_I2SCTRL3_REG) {
+> +                       /* close tx */
+> +                       reg_val &=3D AW88081_I2STXEN_MASK;
+> +                       reg_val |=3D AW88081_I2STXEN_DISABLE_VALUE;
+> +               }
+> +
+> +               ret =3D regmap_write(aw_dev->regmap, reg_addr, reg_val);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       if (aw_dev->prof_cur !=3D aw_dev->prof_index)
+> +               vol_desc->ctl_volume =3D 0;
+> +
+> +       /* keep min volume */
+> +       aw88081_dev_set_volume(aw_dev, vol_desc->mute_volume);
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_dev_get_prof_name(struct aw_device *aw_dev, int index=
+, char **prof_name)
+> +{
+> +       struct aw_prof_info *prof_info =3D &aw_dev->prof_info;
+> +       struct aw_prof_desc *prof_desc;
+> +
+> +       if ((index >=3D aw_dev->prof_info.count) || (index < 0)) {
+> +               dev_err(aw_dev->dev, "index[%d] overflow count[%d]",
+> +                       index, aw_dev->prof_info.count);
+> +               return -EINVAL;
+> +       }
+> +
+> +       prof_desc =3D &aw_dev->prof_info.prof_desc[index];
+> +
+> +       *prof_name =3D prof_info->prof_name_list[prof_desc->id];
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_dev_get_prof_data(struct aw_device *aw_dev, int index=
+,
+> +                       struct aw_prof_desc **prof_desc)
+> +{
+> +       if ((index >=3D aw_dev->prof_info.count) || (index < 0)) {
+> +               dev_err(aw_dev->dev, "%s: index[%d] overflow count[%d]\n"=
+,
+> +                               __func__, index, aw_dev->prof_info.count)=
+;
+> +               return -EINVAL;
+> +       }
+> +
+> +       *prof_desc =3D &aw_dev->prof_info.prof_desc[index];
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_dev_fw_update(struct aw88081 *aw88081)
+> +{
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +       struct aw_prof_desc *prof_index_desc;
+> +       struct aw_sec_data_desc *sec_desc;
+> +       char *prof_name;
+> +       int ret;
+> +
+> +       ret =3D aw88081_dev_get_prof_name(aw_dev, aw_dev->prof_index, &pr=
+of_name);
+> +       if (ret) {
+> +               dev_err(aw_dev->dev, "get prof name failed");
+> +               return -EINVAL;
+> +       }
+> +
+> +       dev_dbg(aw_dev->dev, "start update %s", prof_name);
+> +
+> +       ret =3D aw88081_dev_get_prof_data(aw_dev, aw_dev->prof_index, &pr=
+of_index_desc);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /* update reg */
+> +       sec_desc =3D prof_index_desc->sec_desc;
+> +       ret =3D aw88081_dev_reg_update(aw88081, sec_desc[AW88395_DATA_TYP=
+E_REG].data,
+> +                                       sec_desc[AW88395_DATA_TYPE_REG].l=
+en);
+> +       if (ret) {
+> +               dev_err(aw_dev->dev, "update reg failed");
+> +               return ret;
+> +       }
+> +
+> +       aw_dev->prof_cur =3D aw_dev->prof_index;
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_dev_start(struct aw88081 *aw88081)
+> +{
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +       int ret;
+> +
+> +       if (aw_dev->status =3D=3D AW88081_DEV_PW_ON) {
+> +               dev_dbg(aw_dev->dev, "already power on");
+> +               return 0;
+> +       }
+> +
+> +       /* power on */
+> +       aw88081_dev_pwd(aw_dev, false);
+> +       usleep_range(AW88081_2000_US, AW88081_2000_US + 10);
+> +
+> +       ret =3D aw88081_dev_check_syspll(aw_dev);
+> +       if (ret) {
+> +               dev_err(aw_dev->dev, "pll check failed cannot start");
+> +               goto pll_check_fail;
+> +       }
+> +
+> +       /* amppd on */
+> +       aw88081_dev_amppd(aw_dev, false);
+> +       usleep_range(AW88081_1000_US, AW88081_1000_US + 50);
+> +
+> +       /* check i2s status */
+> +       ret =3D aw88081_dev_check_sysst(aw_dev);
+> +       if (ret) {
+> +               dev_err(aw_dev->dev, "sysst check failed");
+> +               goto sysst_check_fail;
+> +       }
+> +
+> +       /* enable tx feedback */
+> +       aw88081_dev_i2s_tx_enable(aw_dev, true);
+> +
+> +       /* close uls mute */
+> +       aw88081_dev_uls_hmute(aw_dev, false);
+> +
+> +       /* close mute */
+> +       aw88081_dev_mute(aw_dev, false);
+> +
+> +       /* clear inturrupt */
+> +       aw88081_dev_clear_int_status(aw_dev);
+> +       aw_dev->status =3D AW88081_DEV_PW_ON;
+> +
+> +       return 0;
+> +
+> +sysst_check_fail:
+> +       aw88081_dev_i2s_tx_enable(aw_dev, false);
+> +       aw88081_dev_clear_int_status(aw_dev);
+> +       aw88081_dev_amppd(aw_dev, true);
+> +pll_check_fail:
+> +       aw88081_dev_pwd(aw_dev, true);
+> +       aw_dev->status =3D AW88081_DEV_PW_OFF;
+> +
+> +       return ret;
+> +}
+> +
+> +static int aw88081_dev_stop(struct aw_device *aw_dev)
+> +{
+> +       if (aw_dev->status =3D=3D AW88081_DEV_PW_OFF) {
+> +               dev_dbg(aw_dev->dev, "already power off");
+> +               return 0;
+> +       }
+> +
+> +       aw_dev->status =3D AW88081_DEV_PW_OFF;
+> +
+> +       /* clear inturrupt */
+> +       aw88081_dev_clear_int_status(aw_dev);
+> +
+> +       aw88081_dev_uls_hmute(aw_dev, true);
+> +       /* set mute */
+> +       aw88081_dev_mute(aw_dev, true);
+> +
+> +       /* close tx feedback */
+> +       aw88081_dev_i2s_tx_enable(aw_dev, false);
+> +       usleep_range(AW88081_1000_US, AW88081_1000_US + 100);
+> +
+> +       /* enable amppd */
+> +       aw88081_dev_amppd(aw_dev, true);
+> +
+> +       /* set power down */
+> +       aw88081_dev_pwd(aw_dev, true);
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_reg_update(struct aw88081 *aw88081, bool force)
+> +{
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +       int ret;
+> +
+> +       if (force) {
+> +               ret =3D regmap_write(aw_dev->regmap,
+> +                                       AW88081_ID_REG, AW88081_SOFT_RESE=
+T_VALUE);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               ret =3D aw88081_dev_fw_update(aw88081);
+> +               if (ret)
+> +                       return ret;
+> +       } else {
+> +               if (aw_dev->prof_cur !=3D aw_dev->prof_index) {
+> +                       ret =3D aw88081_dev_fw_update(aw88081);
+> +                       if (ret)
+> +                               return ret;
+> +               }
+> +       }
+> +
+> +       aw_dev->prof_cur =3D aw_dev->prof_index;
+> +
+> +       return 0;
+> +}
+> +
+> +static void aw88081_start_pa(struct aw88081 *aw88081)
+> +{
+> +       int ret, i;
+> +
+> +       for (i =3D 0; i < AW88081_START_RETRIES; i++) {
+> +               ret =3D aw88081_reg_update(aw88081, aw88081->phase_sync);
+> +               if (ret) {
+> +                       dev_err(aw88081->aw_pa->dev, "fw update failed, c=
+nt:%d\n", i);
+> +                       continue;
+> +               }
+> +               ret =3D aw88081_dev_start(aw88081);
+> +               if (ret) {
+> +                       dev_err(aw88081->aw_pa->dev, "aw88081 device star=
+t failed. retry =3D %d", i);
+> +                       continue;
+> +               } else {
+> +                       dev_dbg(aw88081->aw_pa->dev, "start success\n");
+> +                       break;
+> +               }
+> +       }
+> +}
+> +
+> +static void aw88081_startup_work(struct work_struct *work)
+> +{
+> +       struct aw88081 *aw88081 =3D
+> +               container_of(work, struct aw88081, start_work.work);
+> +
+> +       mutex_lock(&aw88081->lock);
+> +       aw88081_start_pa(aw88081);
+> +       mutex_unlock(&aw88081->lock);
+> +}
+> +
+> +static void aw88081_start(struct aw88081 *aw88081, bool sync_start)
+> +{
+> +       if (aw88081->aw_pa->fw_status !=3D AW88081_DEV_FW_OK)
+> +               return;
+> +
+> +       if (aw88081->aw_pa->status =3D=3D AW88081_DEV_PW_ON)
+> +               return;
+> +
+> +       if (sync_start =3D=3D AW88081_SYNC_START)
+> +               aw88081_start_pa(aw88081);
+> +       else
+> +               queue_delayed_work(system_wq,
+> +                       &aw88081->start_work,
+> +                       AW88081_START_WORK_DELAY_MS);
+> +}
+> +
+> +static struct snd_soc_dai_driver aw88081_dai[] =3D {
+> +       {
+> +               .name =3D "aw88081-aif",
+> +               .id =3D 1,
+> +               .playback =3D {
+> +                       .stream_name =3D "Speaker_Playback",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D AW88081_RATES,
+> +                       .formats =3D AW88081_FORMATS,
+> +               },
+> +               .capture =3D {
+> +                       .stream_name =3D "Speaker_Capture",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D AW88081_RATES,
+> +                       .formats =3D AW88081_FORMATS,
+> +               },
+> +       },
+> +};
+> +
+> +static int aw88081_get_fade_in_time(struct snd_kcontrol *kcontrol,
+> +       struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *component =3D snd_soc_kcontrol_componen=
+t(kcontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(compone=
+nt);
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +
+> +       ucontrol->value.integer.value[0] =3D aw_dev->fade_in_time;
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_set_fade_in_time(struct snd_kcontrol *kcontrol,
+> +       struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *component =3D snd_soc_kcontrol_componen=
+t(kcontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(compone=
+nt);
+> +       struct soc_mixer_control *mc =3D
+> +               (struct soc_mixer_control *)kcontrol->private_value;
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +       int time;
+> +
+> +       time =3D ucontrol->value.integer.value[0];
+> +
+> +       if (time < mc->min || time > mc->max)
+> +               return -EINVAL;
+> +
+> +       if (time !=3D aw_dev->fade_in_time) {
+> +               aw_dev->fade_in_time =3D time;
+> +               return 1;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_get_fade_out_time(struct snd_kcontrol *kcontrol,
+> +       struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *component =3D snd_soc_kcontrol_componen=
+t(kcontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(compone=
+nt);
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +
+> +       ucontrol->value.integer.value[0] =3D aw_dev->fade_out_time;
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_set_fade_out_time(struct snd_kcontrol *kcontrol,
+> +       struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *component =3D snd_soc_kcontrol_componen=
+t(kcontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(compone=
+nt);
+> +       struct soc_mixer_control *mc =3D
+> +               (struct soc_mixer_control *)kcontrol->private_value;
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +       int time;
+> +
+> +       time =3D ucontrol->value.integer.value[0];
+> +       if (time < mc->min || time > mc->max)
+> +               return -EINVAL;
+> +
+> +       if (time !=3D aw_dev->fade_out_time) {
+> +               aw_dev->fade_out_time =3D time;
+> +               return 1;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_dev_set_profile_index(struct aw_device *aw_dev, int i=
+ndex)
+> +{
+> +       /* check the index whether is valid */
+> +       if ((index >=3D aw_dev->prof_info.count) || (index < 0))
+> +               return -EINVAL;
+> +       /* check the index whether change */
+> +       if (aw_dev->prof_index =3D=3D index)
+> +               return -EPERM;
+> +
+> +       aw_dev->prof_index =3D index;
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_profile_info(struct snd_kcontrol *kcontrol,
+> +                        struct snd_ctl_elem_info *uinfo)
+> +{
+> +       struct snd_soc_component *codec =3D snd_soc_kcontrol_component(kc=
+ontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(codec);
+> +       char *prof_name;
+> +       int count, ret;
+> +
+> +       uinfo->type =3D SNDRV_CTL_ELEM_TYPE_ENUMERATED;
+> +       uinfo->count =3D 1;
+> +
+> +       count =3D aw88081->aw_pa->prof_info.count;
+> +       if (count <=3D 0) {
+> +               uinfo->value.enumerated.items =3D 0;
+> +               return 0;
+> +       }
+> +
+> +       uinfo->value.enumerated.items =3D count;
+> +
+> +       if (uinfo->value.enumerated.item >=3D count)
+> +               uinfo->value.enumerated.item =3D count - 1;
+> +
+> +       count =3D uinfo->value.enumerated.item;
+> +
+> +       ret =3D aw88081_dev_get_prof_name(aw88081->aw_pa, count, &prof_na=
+me);
+> +       if (ret) {
+> +               strscpy(uinfo->value.enumerated.name, "null",
+> +                                               sizeof(uinfo->value.enume=
+rated.name));
+> +               return 0;
+> +       }
+> +
+> +       strscpy(uinfo->value.enumerated.name, prof_name, sizeof(uinfo->va=
+lue.enumerated.name));
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_profile_get(struct snd_kcontrol *kcontrol,
+> +                       struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *codec =3D snd_soc_kcontrol_component(kc=
+ontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(codec);
+> +
+> +       ucontrol->value.integer.value[0] =3D aw88081->aw_pa->prof_index;
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_profile_set(struct snd_kcontrol *kcontrol,
+> +               struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *codec =3D snd_soc_kcontrol_component(kc=
+ontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(codec);
+> +       int ret;
+> +
+> +       /* pa stop or stopping just set profile */
+> +       mutex_lock(&aw88081->lock);
+> +       ret =3D aw88081_dev_set_profile_index(aw88081->aw_pa, ucontrol->v=
+alue.integer.value[0]);
+> +       if (ret) {
+> +               dev_dbg(codec->dev, "profile index does not change");
+> +               mutex_unlock(&aw88081->lock);
+> +               return 0;
+> +       }
+> +
+> +       if (aw88081->aw_pa->status) {
+> +               aw88081_dev_stop(aw88081->aw_pa);
+> +               aw88081_start(aw88081, AW88081_SYNC_START);
+> +       }
+> +
+> +       mutex_unlock(&aw88081->lock);
+> +
+> +       return 1;
+> +}
+> +
+> +static int aw88081_volume_get(struct snd_kcontrol *kcontrol,
+> +                               struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *codec =3D snd_soc_kcontrol_component(kc=
+ontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(codec);
+> +       struct aw_volume_desc *vol_desc =3D &aw88081->aw_pa->volume_desc;
+> +
+> +       ucontrol->value.integer.value[0] =3D vol_desc->ctl_volume;
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_volume_set(struct snd_kcontrol *kcontrol,
+> +                               struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *codec =3D snd_soc_kcontrol_component(kc=
+ontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(codec);
+> +       struct aw_volume_desc *vol_desc =3D &aw88081->aw_pa->volume_desc;
+> +       struct soc_mixer_control *mc =3D
+> +               (struct soc_mixer_control *)kcontrol->private_value;
+> +       int value;
+> +
+> +       value =3D ucontrol->value.integer.value[0];
+> +
+> +       if (value < mc->min || value > mc->max)
+> +               return -EINVAL;
+> +
+> +       if (vol_desc->ctl_volume !=3D value) {
+> +               vol_desc->ctl_volume =3D value;
+> +               aw88081_dev_set_volume(aw88081->aw_pa, vol_desc->ctl_volu=
+me);
+> +               return 1;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_get_fade_step(struct snd_kcontrol *kcontrol,
+> +                               struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *codec =3D snd_soc_kcontrol_component(kc=
+ontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(codec);
+> +
+> +       ucontrol->value.integer.value[0] =3D aw88081->aw_pa->fade_step;
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_set_fade_step(struct snd_kcontrol *kcontrol,
+> +                               struct snd_ctl_elem_value *ucontrol)
+> +{
+> +       struct snd_soc_component *codec =3D snd_soc_kcontrol_component(kc=
+ontrol);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(codec);
+> +       struct soc_mixer_control *mc =3D
+> +               (struct soc_mixer_control *)kcontrol->private_value;
+> +       int value;
+> +
+> +       value =3D ucontrol->value.integer.value[0];
+> +       if (value < mc->min || value > mc->max)
+> +               return -EINVAL;
+> +
+> +       if (aw88081->aw_pa->fade_step !=3D value) {
+> +               aw88081->aw_pa->fade_step =3D value;
+> +               return 1;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct snd_kcontrol_new aw88081_controls[] =3D {
+> +       SOC_SINGLE_EXT("PCM Playback Volume", AW88081_SYSCTRL2_REG,
+> +               0, AW88081_MUTE_VOL, 0, aw88081_volume_get,
+> +               aw88081_volume_set),
+> +       SOC_SINGLE_EXT("Fade Step", 0, 0, AW88081_MUTE_VOL, 0,
+> +               aw88081_get_fade_step, aw88081_set_fade_step),
+> +       SOC_SINGLE_EXT("Volume Ramp Up Step", 0, 0, FADE_TIME_MAX, 0,
+> +               aw88081_get_fade_in_time, aw88081_set_fade_in_time),
+> +       SOC_SINGLE_EXT("Volume Ramp Down Step", 0, 0, FADE_TIME_MAX, 0,
+> +               aw88081_get_fade_out_time, aw88081_set_fade_out_time),
+> +       AW88081_PROFILE_EXT("Profile Set", aw88081_profile_info,
+> +               aw88081_profile_get, aw88081_profile_set),
+> +};
+> +
+> +static void aw88081_parse_channel_dt(struct aw88081 *aw88081)
+> +{
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +       struct device_node *np =3D aw_dev->dev->of_node;
+> +       u32 channel_value =3D AW88081_DEV_DEFAULT_CH;
+> +
+> +       of_property_read_u32(np, "awinic,audio-channel", &channel_value);
+> +       aw88081->phase_sync =3D of_property_read_bool(np, "awinic,sync-fl=
+ag");
+> +
+> +       aw_dev->channel =3D channel_value;
+> +}
+> +
+> +static int aw88081_init(struct aw88081 *aw88081, struct i2c_client *i2c,=
+ struct regmap *regmap)
+> +{
+> +       struct aw_device *aw_dev;
+> +       unsigned int chip_id;
+> +       int ret;
+> +
+> +       /* read chip id */
+> +       ret =3D regmap_read(regmap, AW88081_ID_REG, &chip_id);
+> +       if (ret) {
+> +               dev_err(&i2c->dev, "%s read chipid error. ret =3D %d", __=
+func__, ret);
+> +               return ret;
+> +       }
+> +       if (chip_id !=3D AW88081_CHIP_ID) {
+> +               dev_err(&i2c->dev, "unsupported device");
+> +               return -ENXIO;
+> +       }
+> +
+> +       dev_dbg(&i2c->dev, "chip id =3D %x\n", chip_id);
+> +
+> +       aw_dev =3D devm_kzalloc(&i2c->dev, sizeof(*aw_dev), GFP_KERNEL);
+> +       if (!aw_dev)
+> +               return -ENOMEM;
+> +
+> +       aw88081->aw_pa =3D aw_dev;
+> +       aw_dev->i2c =3D i2c;
+> +       aw_dev->regmap =3D regmap;
+> +       aw_dev->dev =3D &i2c->dev;
+> +       aw_dev->chip_id =3D AW88081_CHIP_ID;
+> +       aw_dev->acf =3D NULL;
+> +       aw_dev->prof_info.prof_desc =3D NULL;
+> +       aw_dev->prof_info.prof_type =3D AW88395_DEV_NONE_TYPE_ID;
+> +       aw_dev->fade_step =3D AW88081_VOLUME_STEP_DB;
+> +       aw_dev->volume_desc.mute_volume =3D AW88081_MUTE_VOL;
+> +       aw88081_parse_channel_dt(aw88081);
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_dev_init(struct aw88081 *aw88081, struct aw_container=
+ *aw_cfg)
+> +{
+> +       struct aw_device *aw_dev =3D aw88081->aw_pa;
+> +       int ret;
+> +
+> +       ret =3D aw88395_dev_cfg_load(aw_dev, aw_cfg);
+> +       if (ret) {
+> +               dev_err(aw_dev->dev, "aw_dev acf parse failed");
+> +               return -EINVAL;
+> +       }
+> +
+> +       ret =3D regmap_write(aw_dev->regmap, AW88081_ID_REG, AW88081_SOFT=
+_RESET_VALUE);
+> +       if (ret)
+> +               return ret;
+> +
+> +       aw_dev->fade_in_time =3D AW88081_500_US;
+> +       aw_dev->fade_out_time =3D AW88081_500_US;
+> +       aw_dev->prof_cur =3D AW88081_INIT_PROFILE;
+> +       aw_dev->prof_index =3D AW88081_INIT_PROFILE;
+> +
+> +       ret =3D aw88081_dev_fw_update(aw88081);
+> +       if (ret) {
+> +               dev_err(aw_dev->dev, "fw update failed ret =3D %d\n", ret=
+);
+> +               return ret;
+> +       }
+> +
+> +       aw88081_dev_clear_int_status(aw_dev);
+> +
+> +       aw88081_dev_uls_hmute(aw_dev, true);
+> +
+> +       aw88081_dev_mute(aw_dev, true);
+> +
+> +       usleep_range(AW88081_5000_US, AW88081_5000_US + 10);
+> +
+> +       aw88081_dev_i2s_tx_enable(aw_dev, false);
+> +
+> +       usleep_range(AW88081_1000_US, AW88081_1000_US + 100);
+> +
+> +       aw88081_dev_amppd(aw_dev, true);
+> +
+> +       aw88081_dev_pwd(aw_dev, true);
+> +
+> +       return 0;
+> +}
+> +
+> +static int aw88081_request_firmware_file(struct aw88081 *aw88081)
+> +{
+> +       const struct firmware *cont =3D NULL;
+> +       int ret;
+> +
+> +       aw88081->aw_pa->fw_status =3D AW88081_DEV_FW_FAILED;
+> +
+> +       ret =3D request_firmware(&cont, AW88081_ACF_FILE, aw88081->aw_pa-=
+>dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       dev_dbg(aw88081->aw_pa->dev, "loaded %s - size: %zu\n",
+> +                       AW88081_ACF_FILE, cont ? cont->size : 0);
+> +
+> +       aw88081->aw_cfg =3D devm_kzalloc(aw88081->aw_pa->dev, cont->size =
++ sizeof(int), GFP_KERNEL);
+> +       if (!aw88081->aw_cfg) {
+> +               release_firmware(cont);
+> +               return -ENOMEM;
+> +       }
+> +       aw88081->aw_cfg->len =3D (int)cont->size;
+> +       memcpy(aw88081->aw_cfg->data, cont->data, cont->size);
+> +       release_firmware(cont);
+> +
+> +       ret =3D aw88395_dev_load_acf_check(aw88081->aw_pa, aw88081->aw_cf=
+g);
+> +       if (ret)
+> +               return ret;
+> +
+> +       mutex_lock(&aw88081->lock);
+> +       ret =3D aw88081_dev_init(aw88081, aw88081->aw_cfg);
+> +       mutex_unlock(&aw88081->lock);
+> +
+> +       return ret;
+> +}
+> +
+> +static int aw88081_playback_event(struct snd_soc_dapm_widget *w,
+> +                               struct snd_kcontrol *k, int event)
+> +{
+> +       struct snd_soc_component *component =3D snd_soc_dapm_to_component=
+(w->dapm);
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(compone=
+nt);
+> +
+> +       mutex_lock(&aw88081->lock);
+> +       switch (event) {
+> +       case SND_SOC_DAPM_PRE_PMU:
+> +               aw88081_start(aw88081, AW88081_ASYNC_START);
+> +               break;
+> +       case SND_SOC_DAPM_POST_PMD:
+> +               aw88081_dev_stop(aw88081->aw_pa);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +       mutex_unlock(&aw88081->lock);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct snd_soc_dapm_widget aw88081_dapm_widgets[] =3D {
+> +        /* playback */
+> +       SND_SOC_DAPM_AIF_IN_E("AIF_RX", "Speaker_Playback", 0, SND_SOC_NO=
+PM, 0, 0,
+> +                                       aw88081_playback_event,
+> +                                       SND_SOC_DAPM_PRE_PMU | SND_SOC_DA=
+PM_POST_PMD),
+> +       SND_SOC_DAPM_OUTPUT("DAC Output"),
+> +
+> +       /* capture */
+> +       SND_SOC_DAPM_AIF_OUT("AIF_TX", "Speaker_Capture", 0, SND_SOC_NOPM=
+, 0, 0),
+> +       SND_SOC_DAPM_INPUT("ADC Input"),
+> +};
+> +
+> +static const struct snd_soc_dapm_route aw88081_audio_map[] =3D {
+> +       {"DAC Output", NULL, "AIF_RX"},
+> +       {"AIF_TX", NULL, "ADC Input"},
+> +};
+> +
+> +static int aw88081_codec_probe(struct snd_soc_component *component)
+> +{
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(compone=
+nt);
+> +       int ret;
+> +
+> +       INIT_DELAYED_WORK(&aw88081->start_work, aw88081_startup_work);
+> +
+> +       ret =3D aw88081_request_firmware_file(aw88081);
+> +       if (ret)
+> +               dev_err(aw88081->aw_pa->dev, "%s: request firmware failed=
+\n", __func__);
+> +
+> +       return ret;
+> +}
+> +
+> +static void aw88081_codec_remove(struct snd_soc_component *aw_codec)
+> +{
+> +       struct aw88081 *aw88081 =3D snd_soc_component_get_drvdata(aw_code=
+c);
+> +
+> +       cancel_delayed_work_sync(&aw88081->start_work);
+> +}
+> +
+> +static const struct snd_soc_component_driver soc_codec_dev_aw88081 =3D {
+> +       .probe =3D aw88081_codec_probe,
+> +       .remove =3D aw88081_codec_remove,
+> +       .dapm_widgets =3D aw88081_dapm_widgets,
+> +       .num_dapm_widgets =3D ARRAY_SIZE(aw88081_dapm_widgets),
+> +       .dapm_routes =3D aw88081_audio_map,
+> +       .num_dapm_routes =3D ARRAY_SIZE(aw88081_audio_map),
+> +       .controls =3D aw88081_controls,
+> +       .num_controls =3D ARRAY_SIZE(aw88081_controls),
+> +};
+> +
+> +static int aw88081_i2c_probe(struct i2c_client *i2c)
+> +{
+> +       struct aw88081 *aw88081;
+> +       int ret;
+> +
+> +       ret =3D i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C);
+> +       if (!ret)
+> +               return dev_err_probe(&i2c->dev, -ENXIO, "check_functional=
+ity failed");
+> +
+> +       aw88081 =3D devm_kzalloc(&i2c->dev, sizeof(*aw88081), GFP_KERNEL)=
+;
+> +       if (!aw88081)
+> +               return -ENOMEM;
+> +
+> +       mutex_init(&aw88081->lock);
+> +
+> +       i2c_set_clientdata(i2c, aw88081);
+> +
+> +       aw88081->regmap =3D devm_regmap_init_i2c(i2c, &aw88081_regmap_con=
+fig);
+> +       if (IS_ERR(aw88081->regmap))
+> +               return dev_err_probe(&i2c->dev, PTR_ERR(aw88081->regmap),
+> +                                               "failed to init regmap\n"=
+);
+> +
+> +       /* aw pa init */
+> +       ret =3D aw88081_init(aw88081, i2c, aw88081->regmap);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return devm_snd_soc_register_component(&i2c->dev,
+> +                       &soc_codec_dev_aw88081,
+> +                       aw88081_dai, ARRAY_SIZE(aw88081_dai));
+> +}
+> +
+> +static const struct i2c_device_id aw88081_i2c_id[] =3D {
+> +       { AW88081_I2C_NAME },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, aw88081_i2c_id);
+> +
+> +static struct i2c_driver aw88081_i2c_driver =3D {
+> +       .driver =3D {
+> +               .name =3D AW88081_I2C_NAME,
+> +       },
+> +       .probe =3D aw88081_i2c_probe,
+> +       .id_table =3D aw88081_i2c_id,
+> +};
+> +module_i2c_driver(aw88081_i2c_driver);
+> +
+> +MODULE_DESCRIPTION("ASoC AW88081 Smart PA Driver");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/sound/soc/codecs/aw88081.h b/sound/soc/codecs/aw88081.h
+> new file mode 100644
+> index 000000000000..6757354385a0
+> --- /dev/null
+> +++ b/sound/soc/codecs/aw88081.h
+> @@ -0,0 +1,286 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// aw88081.h  --  AW88081 ALSA SoC Audio driver
+> +//
+> +// Copyright (c) 2024 awinic Technology CO., LTD
+> +//
+> +// Author: Weidong Wang <wangweidong.a@awinic.com>
+> +//
+> +
+> +#ifndef __AW88081_H__
+> +#define __AW88081_H__
+> +
+> +#define AW88081_ID_REG                 (0x00)
+> +#define AW88081_SYSST_REG              (0x01)
+> +#define AW88081_SYSINT_REG             (0x02)
+> +#define AW88081_SYSINTM_REG            (0x03)
+> +#define AW88081_SYSCTRL_REG            (0x04)
+> +#define AW88081_SYSCTRL2_REG           (0x05)
+> +#define AW88081_I2SCTRL1_REG           (0x06)
+> +#define AW88081_I2SCTRL2_REG           (0x07)
+> +#define AW88081_I2SCTRL3_REG           (0x08)
+> +#define AW88081_DACCFG1_REG            (0x09)
+> +#define AW88081_DACCFG2_REG            (0x0A)
+> +#define AW88081_DACCFG3_REG            (0x0B)
+> +#define AW88081_DACCFG4_REG            (0x0C)
+> +#define AW88081_DACCFG5_REG            (0x0D)
+> +#define AW88081_DACCFG6_REG            (0x0E)
+> +#define AW88081_DACCFG7_REG            (0x11)
+> +#define AW88081_PWMCTRL1_REG           (0x13)
+> +#define AW88081_PWMCTRL2_REG           (0x14)
+> +#define AW88081_PWMCTRL3_REG           (0x15)
+> +#define AW88081_PWMCTRL4_REG           (0x16)
+> +#define AW88081_I2SCFG1_REG            (0x17)
+> +#define AW88081_DBGCTRL_REG            (0x18)
+> +#define AW88081_PDMCTRL_REG            (0x19)
+> +#define AW88081_DACST_REG              (0x20)
+> +#define AW88081_PATTERNST_REG          (0x21)
+> +#define AW88081_I2SINT_REG             (0x26)
+> +#define AW88081_I2SCAPCNT_REG          (0x27)
+> +#define AW88081_ANASTA1_REG            (0x28)
+> +#define AW88081_ANASTA2_REG            (0x29)
+> +#define AW88081_ANASTA3_REG            (0x2A)
+> +#define AW88081_VBAT_REG               (0x21)
+> +#define AW88081_TEMP_REG               (0x22)
+> +#define AW88081_PVDD_REG               (0x23)
+> +#define AW88081_ISNDAT_REG             (0x24)
+> +#define AW88081_VSNDAT_REG             (0x25)
+> +#define AW88081_DSMCFG1_REG            (0x30)
+> +#define AW88081_DSMCFG2_REG            (0x31)
+> +#define AW88081_DSMCFG3_REG            (0x32)
+> +#define AW88081_DSMCFG4_REG            (0x33)
+> +#define AW88081_DSMCFG5_REG            (0x34)
+> +#define AW88081_DSMCFG6_REG            (0x35)
+> +#define AW88081_DSMCFG7_REG            (0x36)
+> +#define AW88081_DSMCFG8_REG            (0x37)
+> +#define AW88081_TESTIN_REG             (0x38)
+> +#define AW88081_TESTOUT_REG            (0x39)
+> +#define AW88081_BOPCTRL1_REG           (0x40)
+> +#define AW88081_BOPCTRL2_REG           (0x41)
+> +#define AW88081_BOPCTRL3_REG           (0x42)
+> +#define AW88081_BOPSTA_REG             (0x43)
+> +#define AW88081_PLLCTRL1_REG           (0x54)
+> +#define AW88081_PLLCTRL2_REG           (0x55)
+> +#define AW88081_PLLCTRL3_REG           (0x56)
+> +#define AW88081_CDACTRL1_REG           (0x57)
+> +#define AW88081_CDACTRL2_REG           (0x58)
+> +#define AW88081_CDACTRL3_REG           (0x59)
+> +#define AW88081_DITHERCFG1_REG         (0x5A)
+> +#define AW88081_DITHERCFG2_REG         (0x5B)
+> +#define AW88081_DITHERCFG3_REG         (0x5C)
+> +#define AW88081_TM_REG                 (0x6E)
+> +#define AW88081_TM2_REG                (0x6F)
+> +#define AW88081_TESTCTRL1_REG          (0x70)
+> +#define AW88081_TESTCTRL2_REG          (0x71)
+> +
+> +#define AW88081_REG_MAX                (0x72)
+> +
+> +#define AW88081_UVLS_START_BIT         (14)
+> +#define AW88081_UVLS_UVLO              (1)
+> +#define AW88081_UVLS_UVLO_VALUE        \
+> +       (AW88081_UVLS_UVLO << AW88081_UVLS_START_BIT)
+> +
+> +#define AW88081_SWS_START_BIT          (8)
+> +#define AW88081_SWS_SWITCHING          (1)
+> +#define AW88081_SWS_SWITCHING_VALUE    \
+> +       (AW88081_SWS_SWITCHING << AW88081_SWS_START_BIT)
+> +
+> +#define AW88081_NOCLKS_START_BIT       (5)
+> +#define AW88081_NOCLKS_NO_CLOCK        (1)
+> +#define AW88081_NOCLKS_NO_CLOCK_VALUE  \
+> +       (AW88081_NOCLKS_NO_CLOCK << AW88081_NOCLKS_START_BIT)
+> +
+> +#define AW88081_CLKS_START_BIT         (4)
+> +#define AW88081_CLKS_STABLE            (1)
+> +#define AW88081_CLKS_STABLE_VALUE      \
+> +       (AW88081_CLKS_STABLE << AW88081_CLKS_START_BIT)
+> +
+> +#define AW88081_OCDS_START_BIT         (3)
+> +#define AW88081_OCDS_OC                (1)
+> +#define AW88081_OCDS_OC_VALUE          \
+> +       (AW88081_OCDS_OC << AW88081_OCDS_START_BIT)
+> +
+> +#define AW88081_OTHS_START_BIT         (1)
+> +#define AW88081_OTHS_OT                (1)
+> +#define AW88081_OTHS_OT_VALUE          \
+> +       (AW88081_OTHS_OT << AW88081_OTHS_START_BIT)
+> +
+> +#define AW88081_PLLS_START_BIT         (0)
+> +#define AW88081_PLLS_LOCKED            (1)
+> +#define AW88081_PLLS_LOCKED_VALUE      \
+> +       (AW88081_PLLS_LOCKED << AW88081_PLLS_START_BIT)
+> +
+> +#define AW88081_BIT_PLL_CHECK \
+> +               (AW88081_CLKS_STABLE_VALUE | \
+> +               AW88081_PLLS_LOCKED_VALUE)
+> +
+> +#define AW88081_BIT_SYSST_CHECK_MASK \
+> +               (~(AW88081_UVLS_UVLO_VALUE | \
+> +               AW88081_SWS_SWITCHING_VALUE | \
+> +               AW88081_NOCLKS_NO_CLOCK_VALUE | \
+> +               AW88081_CLKS_STABLE_VALUE | \
+> +               AW88081_OCDS_OC_VALUE | \
+> +               AW88081_OTHS_OT_VALUE | \
+> +               AW88081_PLLS_LOCKED_VALUE))
+> +
+> +#define AW88081_NO_SWS_SYSST_CHECK \
+> +               (AW88081_CLKS_STABLE_VALUE | \
+> +               AW88081_PLLS_LOCKED_VALUE)
+> +
+> +#define AW88081_SWS_SYSST_CHECK \
+> +       (AW88081_SWS_SWITCHING_VALUE | \
+> +       AW88081_CLKS_STABLE_VALUE | \
+> +       AW88081_PLLS_LOCKED_VALUE)
+> +
+> +#define AW88081_ULS_HMUTE_START_BIT    (14)
+> +#define AW88081_ULS_HMUTE_BITS_LEN     (1)
+> +#define AW88081_ULS_HMUTE_MASK         \
+> +       (~(((1<<AW88081_ULS_HMUTE_BITS_LEN)-1) << AW88081_ULS_HMUTE_START=
+_BIT))
+> +
+> +#define AW88081_ULS_HMUTE_DISABLE      (0)
+> +#define AW88081_ULS_HMUTE_DISABLE_VALUE        \
+> +       (AW88081_ULS_HMUTE_DISABLE << AW88081_ULS_HMUTE_START_BIT)
+> +
+> +#define AW88081_ULS_HMUTE_ENABLE       (1)
+> +#define AW88081_ULS_HMUTE_ENABLE_VALUE \
+> +       (AW88081_ULS_HMUTE_ENABLE << AW88081_ULS_HMUTE_START_BIT)
+> +
+> +#define AW88081_HMUTE_START_BIT        (8)
+> +#define AW88081_HMUTE_BITS_LEN         (1)
+> +#define AW88081_HMUTE_MASK             \
+> +       (~(((1<<AW88081_HMUTE_BITS_LEN)-1) << AW88081_HMUTE_START_BIT))
+> +
+> +#define AW88081_HMUTE_DISABLE          (0)
+> +#define AW88081_HMUTE_DISABLE_VALUE    \
+> +       (AW88081_HMUTE_DISABLE << AW88081_HMUTE_START_BIT)
+> +
+> +#define AW88081_HMUTE_ENABLE           (1)
+> +#define AW88081_HMUTE_ENABLE_VALUE     \
+> +       (AW88081_HMUTE_ENABLE << AW88081_HMUTE_START_BIT)
+> +
+> +#define AW88081_EN_PA_START_BIT        (1)
+> +#define AW88081_EN_PA_BITS_LEN         (1)
+> +#define AW88081_EN_PA_MASK             \
+> +       (~(((1<<AW88081_EN_PA_BITS_LEN)-1) << AW88081_EN_PA_START_BIT))
+> +
+> +#define AW88081_EN_PA_WORKING          (1)
+> +#define AW88081_EN_PA_WORKING_VALUE    \
+> +       (AW88081_EN_PA_WORKING << AW88081_EN_PA_START_BIT)
+> +
+> +#define AW88081_EN_PA_POWER_DOWN       (0)
+> +#define AW88081_EN_PA_POWER_DOWN_VALUE \
+> +       (AW88081_EN_PA_POWER_DOWN << AW88081_EN_PA_START_BIT)
+> +
+> +#define AW88081_PWDN_START_BIT         (0)
+> +#define AW88081_PWDN_BITS_LEN          (1)
+> +#define AW88081_PWDN_MASK              \
+> +       (~(((1<<AW88081_PWDN_BITS_LEN)-1) << AW88081_PWDN_START_BIT))
+> +
+> +#define AW88081_PWDN_WORKING           (0)
+> +#define AW88081_PWDN_WORKING_VALUE     \
+> +       (AW88081_PWDN_WORKING << AW88081_PWDN_START_BIT)
+> +
+> +#define AW88081_PWDN_POWER_DOWN        (1)
+> +#define AW88081_PWDN_POWER_DOWN_VALUE  \
+> +       (AW88081_PWDN_POWER_DOWN << AW88081_PWDN_START_BIT)
+> +
+> +#define AW88081_VOL_START_BIT          (0)
+> +#define AW88081_VOL_BITS_LEN           (10)
+> +#define AW88081_VOL_MASK               \
+> +       (~(((1<<AW88081_VOL_BITS_LEN)-1) << AW88081_VOL_START_BIT))
+> +
+> +#define AW88081_VOLUME_STEP_DB         (64)
+> +#define AW88081_MUTE_VOL               (1023)
+> +
+> +#define AW88081_I2STXEN_START_BIT      (6)
+> +#define AW88081_I2STXEN_BITS_LEN       (1)
+> +#define AW88081_I2STXEN_MASK           \
+> +       (~(((1<<AW88081_I2STXEN_BITS_LEN)-1) << AW88081_I2STXEN_START_BIT=
+))
+> +
+> +#define AW88081_I2STXEN_DISABLE        (0)
+> +#define AW88081_I2STXEN_DISABLE_VALUE  \
+> +       (AW88081_I2STXEN_DISABLE << AW88081_I2STXEN_START_BIT)
+> +
+> +#define AW88081_I2STXEN_ENABLE         (1)
+> +#define AW88081_I2STXEN_ENABLE_VALUE   \
+> +       (AW88081_I2STXEN_ENABLE << AW88081_I2STXEN_START_BIT)
+> +
+> +#define AW88081_NOISE_GATE_EN_START_BIT        (13)
+> +#define AW88081_NOISE_GATE_EN_BITS_LEN (1)
+> +#define AW88081_NOISE_GATE_EN_MASK     \
+> +               (~(((1<<AW88081_NOISE_GATE_EN_BITS_LEN)-1) << AW88081_NOI=
+SE_GATE_EN_START_BIT))
+> +
+> +#define AW88081_NOISE_GATE_EN_DISABLE  (0)
+> +#define AW88081_NOISE_GATE_EN_DISABLE_VALUE    \
+> +               (AW88081_NOISE_GATE_EN_DISABLE << AW88081_NOISE_GATE_EN_S=
+TART_BIT)
+> +
+> +#define AW88081_NOISE_GATE_EN_ENABLE   (1)
+> +#define AW88081_NOISE_GATE_EN_ENABLE_VALUE     \
+> +               (AW88081_NOISE_GATE_EN_ENABLE << AW88081_NOISE_GATE_EN_ST=
+ART_BIT)
+> +
+> +#define AW88081_CCO_MUX_START_BIT      (13)
+> +#define AW88081_CCO_MUX_BITS_LEN       (1)
+> +#define AW88081_CCO_MUX_MASK           \
+> +       (~(((1<<AW88081_CCO_MUX_BITS_LEN)-1) << AW88081_CCO_MUX_START_BIT=
+))
+> +
+> +#define AW88081_CCO_MUX_DIVIDED        (0)
+> +#define AW88081_CCO_MUX_DIVIDED_VALUE  \
+> +       (AW88081_CCO_MUX_DIVIDED << AW88081_CCO_MUX_START_BIT)
+> +
+> +#define AW88081_CCO_MUX_BYPASS         (1)
+> +#define AW88081_CCO_MUX_BYPASS_VALUE   \
+> +       (AW88081_CCO_MUX_BYPASS << AW88081_CCO_MUX_START_BIT)
+> +
+> +#define AW88081_START_RETRIES          (5)
+> +#define AW88081_START_WORK_DELAY_MS    (0)
+> +
+> +#define AW88081_I2C_NAME               "aw88081"
+> +#define AW88081_CHIP_ID                0x2116
+> +
+> +#define AW88081_RATES (SNDRV_PCM_RATE_8000_48000 | \
+> +                       SNDRV_PCM_RATE_96000)
+> +#define AW88081_FORMATS (SNDRV_PCM_FMTBIT_S16_LE | \
+> +                       SNDRV_PCM_FMTBIT_S24_LE | \
+> +                       SNDRV_PCM_FMTBIT_S32_LE)
+> +
+> +#define FADE_TIME_MAX                  100000
+> +
+> +#define AW88081_DEV_DEFAULT_CH         (0)
+> +#define AW88081_ACF_FILE               "aw88081_acf.bin"
+> +#define AW88081_DEV_SYSST_CHECK_MAX    (10)
+> +#define AW88081_SOFT_RESET_VALUE       (0x55aa)
+> +
+> +#define AW88081_INIT_PROFILE           (0)
+> +
+> +#define AW88081_PROFILE_EXT(xname, profile_info, profile_get, profile_se=
+t) \
+> +{ \
+> +       .iface =3D SNDRV_CTL_ELEM_IFACE_MIXER, \
+> +       .name =3D xname, \
+> +       .info =3D profile_info, \
+> +       .get =3D profile_get, \
+> +       .put =3D profile_set, \
+> +}
+> +
+> +enum {
+> +       AW88081_SYNC_START =3D 0,
+> +       AW88081_ASYNC_START,
+> +};
+> +
+> +enum {
+> +       AW88081_500_US =3D 500,
+> +       AW88081_1000_US =3D 1000,
+> +       AW88081_2000_US =3D 2000,
+> +       AW88081_5000_US =3D 5000,
+> +};
+> +
+> +enum {
+> +       AW88081_DEV_PW_OFF =3D 0,
+> +       AW88081_DEV_PW_ON,
+> +};
+> +
+> +enum {
+> +       AW88081_DEV_FW_FAILED =3D 0,
+> +       AW88081_DEV_FW_OK,
+> +};
+> +
+> +#endif
+> --
+> 2.47.0
+>
+>
 
