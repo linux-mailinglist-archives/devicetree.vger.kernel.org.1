@@ -1,267 +1,186 @@
-Return-Path: <devicetree+bounces-115049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FA39ADD01
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:04:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BA0D9ADD09
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:05:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B9B9282CFA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:04:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9FA81F2168B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3831A175568;
-	Thu, 24 Oct 2024 07:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3368189909;
+	Thu, 24 Oct 2024 07:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Toq6ut2J"
+	dkim=pass (2048-bit key) header.d=nokia.com header.i=@nokia.com header.b="A9NiiRDm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2056.outbound.protection.outlook.com [40.107.105.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A02566F305;
-	Thu, 24 Oct 2024 07:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729753452; cv=none; b=fsYyTZ1aOvqgigerYbaXu+U3L+PbQ+Mze4OaWfHl2KVX4Kr9FQEdK8IvZ1zHWAqKIIXvFM1s2FTpczW6ipyFUDIRURVda13gjLs44z+bdVfhuZy55u4Byu4xL07wMCj4YrRhg+5iZRVzlhxktWy/YBmAx17vssONEle4oM/SLmU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729753452; c=relaxed/simple;
-	bh=mDC/8Q59Kp9X3A7MbNw+GloLWP3YocOvDtvtbVfdKL0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=spMhxGzrVT5odrcHbwpd3/LTzOk1NExpMSyEIb12XHwjc8m9K7L01/nTRB8y8bX+CyTboSFt6dTWRIXv2oqZG5xOfmHVsYDVXSpaZAtNwhxhnv/vl+ycodZK5rd+Lf9Lv8HCcuqJI5DL7oJtey72tNDMeuAQmZihHaJArHBPtd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Toq6ut2J; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37d50fad249so370352f8f.1;
-        Thu, 24 Oct 2024 00:04:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729753448; x=1730358248; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=gaO5ZJCKrm/xR1gk3wMiIjpwWvNXeWYk0cMuBrThX8I=;
-        b=Toq6ut2J7KnxkraQpRK29djiMHF2qt483ZagFn+i+DtXz0XoT32BdMVoEdpdcZqZo3
-         3EL02iLAzTHJ7V4Kwd8LFf4eObTfBrk3LFugfXD+mMPsbiRswXbFeormpyoeyNSmHoCu
-         gsXVsW0W1INtKKCqHdq7+GlDnLkb8477kRpvHXIBSTpBZmLy5Pvav8hsxr78WX77iTEx
-         Yk1f0hhAFuYDLec2DCAy6R1RhVyKrvOMCeUMHVpLgTlXYk77Yc1eR00V6wzvN4hxTRAS
-         spZE3keBsvUcf0yzC57X13fdOjPd28a8q3OrzbAlr9FJCkIHKf8xxR6XrvuMs+fSyBH7
-         kixw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729753448; x=1730358248;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gaO5ZJCKrm/xR1gk3wMiIjpwWvNXeWYk0cMuBrThX8I=;
-        b=cJDisMhgW7dnG49WAhK9pHsK6g4B348J6846/QzVbCWX3B4saD7bxcOYebOOe0F8H7
-         dqIfepuINGXTYVxCiilKXNXu8QNsoc6aOizE2GDs6ZEHkrcG6392JImBWJnqbk1wsCLx
-         tkbs7xEfb9IqgmSEdWcBXgUCBMZU3mG4YOWbcexmaz15TQRfRslKbPv0E0y2wXH7xu6/
-         KsIghWb6UDzuh3bg3j+G2u/Qruh8uxHMQaoOiBrZ0bk0Ev2XuRZRcJYqXLn1rKuKuwWj
-         l2y2LkhWOShEeGgCnbOIguTmx8xlkT00VyLeG56+Aua1Gg8cMdamaocord1VQGZGN7uQ
-         21ug==
-X-Forwarded-Encrypted: i=1; AJvYcCW2WeGf+Zr+GKXrLlLUcVOQfUaUCPWoRGEg/Sv+6nyS/52dx5dI5S9OwtkHn5zP78FFNb8c3pI2xfOH@vger.kernel.org, AJvYcCXNHXcIy9fUvZdRAhsivYfexao8Y4NR1Lt7WONUlSi6u/BS1XttZ/O0vJVfLGQhFhcaLjXTQTDFX77E@vger.kernel.org, AJvYcCXr5CSudVxDCkg0oQiHYz2uvkz/DuOMdicELdmVg/3qeRAHTluDjWEW2fPbA/fNgeyQdTzwkUFSJMoo7fMJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzn0JuCmay0NPjPV7ZlCUqceuZSM+6l4Qgp8BXBXWRVCLILCyVn
-	JUQPWXlRkFDBnx7MF+BRxbQj5y+zP02wg73v7wasOzI6/201Acf5
-X-Google-Smtp-Source: AGHT+IHo5m6TFs7UWYRTvOo3gKx6qOYaFwuywUAmYUpYXCZ604f0zwHp6Hak2iSl/iXSgbzUBbI+Dg==
-X-Received: by 2002:a5d:6b03:0:b0:37d:476d:2d58 with SMTP id ffacd0b85a97d-380458d5b69mr644802f8f.45.1729753447630;
-        Thu, 24 Oct 2024 00:04:07 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0b9b41fsm10502004f8f.93.2024.10.24.00.04.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 00:04:07 -0700 (PDT)
-Message-ID: <172316a342407e74840894f553d7647a19fd89d4.camel@gmail.com>
-Subject: Re: [PATCH v7 4/8] iio: dac: adi-axi-dac: extend features
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Angelo Dureghello <adureghello@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
- <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
- <olivier.moysan@foss.st.com>,  linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
- dlechner@baylibre.com, Mark Brown <broonie@kernel.org>
-Date: Thu, 24 Oct 2024 09:04:06 +0200
-In-Reply-To: <20241023-nifty-electable-64d3b42bce3b@spud>
-References: 
-	<20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-0-969694f53c5d@baylibre.com>
-	 <20241021-wip-bl-ad3552r-axi-v0-iio-testing-v7-4-969694f53c5d@baylibre.com>
-	 <b1ac7d51280caf729d192ca871c26260fdf3697c.camel@gmail.com>
-	 <20241022-napped-labored-6956ce18d986@spud>
-	 <7a4f8c718029c8c57596d950495fcf28562c6e78.camel@gmail.com>
-	 <20241023-nifty-electable-64d3b42bce3b@spud>
-Content-Type: text/plain; charset="UTF-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9B3175568;
+	Thu, 24 Oct 2024 07:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729753523; cv=fail; b=r3KEkhW1mXsN5b23GdA4/9H9QlHqKa4HSru+kHgVZZqbLY+5UBA9ahQoTJvt2Z8pP6kzyjfr9udujcKA9vIppW+PZhRTH3U6sMCA7bidt8xH+Ul6vB3F4gkIWQwPS5QwUMKKz8PRoWjeVPMO5MMGMEHB/ly5l2IdqTZdJ8aZuVc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729753523; c=relaxed/simple;
+	bh=+FVXWF3rnkCIV0aOEuyvyXZCCVgOmBMRSSu+ERrzkvg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=B7wbcXunMbltLvx64RH/kCX6EefKJr5F7nKR/acObHOMGJdt2MmnUN/IniaxwZhnwZdL9DUPCHC9jz0atzFRNhwLtO9UPC+CDXaDH6jtRNzs3JUFlEP1n5OH8ZUuKoCb1GlPSHeSPM7NcME6imesg3QZb2yFtF1zRy7VgKzN83Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nokia.com; spf=fail smtp.mailfrom=nokia.com; dkim=pass (2048-bit key) header.d=nokia.com header.i=@nokia.com header.b=A9NiiRDm; arc=fail smtp.client-ip=40.107.105.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nokia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nokia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZzHigutDUytzO+1OVTqBQxqD/+BOqy65QpzDT9AlEArpcsTc4vnAbMjeHHJcD0tQXa4CAhl9KP/Sv77bXNTKdhVh6x+UzxF052XILqDhwtjvIZWqWug3IY5YnUq1rpkJOxSP006mxNzIJPiUr2sop5UeuxPtVzdLfqikmrtNwAR06EPxQkdikYiaE/9fsKMts4l/F80FduMVJxArpOp1Wde0iDrXMaq751UXumU++kLGVSo6JwOEEvxJGLcHqtjFWvkjUgGUfRzDz738By5zAoXJK7z+ul1WA72it7Ug9YZo2CF1MAQIRIzaPeNgmto8ghN2JcgIkLLj7jYm3VVFKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PCsOP3gzfzwEaTyUIYYGFi0VHyHB4dsM4H6BJAofKUE=;
+ b=d2G3ZupoK1iLQ3SBcfwgJzu1kU1W77vCqPEsqnZDfG30PSOV8xmgpbPUlLQMrET4f/2v2px9Wfvn8m+IKDIEcBMmmjcnjPDg8hB0/r0K6aD9q3aj9mTp3HSkbTx12P6Gci75g7qEqmS5ddTWcq5AeJUt5Mo8PcFqE4MzU9ZZ9qYomemXZzE2whpCe+2aapaS5N4o06fvnpOd+l4x+fF+rtuYaj5V3LTRl0QXrFpn6muCV9hF8dJEpFVBl2MSOvD6eLKJRlKsm/J4CXru6Y6vXzeeX3VTNzJ4ZKPNsOALOAQgGS/8JihnTrEwllSILmbAOYBQPQP9piLjKE8YgVYTEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PCsOP3gzfzwEaTyUIYYGFi0VHyHB4dsM4H6BJAofKUE=;
+ b=A9NiiRDmmFpIU0IiuqC1ZKgjlEA8NHoKkmHEOc+iwjkziIYqTuu7Gg3NXxkaPtKnye/OesQkHDsR1/yuz3vvdWmJR18WgbuoL6wfrZ+63xK1L9yDkYPSTjViG6oGsZrZxi4vVTCgC47tDUO3FY4IFZM+hDd30j9z7kK8CUFJoRruXCqfxP23FyX4jRUH4suzPYQ86OOk/FTd6J7y4D9mLCdQ+dlzG5ZGm5MCtWdOpaZ+Z32mA4p2kuEN4l2Fii83HthgsgR+FpYJQMHssNiffU1J+OY21ez3zV+eKbUPlfGPFbSNdSAxuQKjL6BWFce5oIES7L3NZ/eqI5EPkGjR1A==
+Received: from DB6PR07MB3509.eurprd07.prod.outlook.com (2603:10a6:6:21::16) by
+ DB9PR07MB8749.eurprd07.prod.outlook.com (2603:10a6:10:30d::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8093.18; Thu, 24 Oct 2024 07:05:17 +0000
+Received: from DB6PR07MB3509.eurprd07.prod.outlook.com
+ ([fe80::5484:a966:1322:f78b]) by DB6PR07MB3509.eurprd07.prod.outlook.com
+ ([fe80::5484:a966:1322:f78b%4]) with mapi id 15.20.8069.016; Thu, 24 Oct 2024
+ 07:05:17 +0000
+From: "Wojciech Siudy (Nokia)" <wojciech.siudy@nokia.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Rob Herring <robh@kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-i2c@vger.kernel.org"
+	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "andi.shyti@kernel.org"
+	<andi.shyti@kernel.org>, "peda@axentia.se" <peda@axentia.se>
+Subject: ODP: [PATCH v5 1/2] dt-bindings: i2c: pca954x: Add timeout reset
+ property
+Thread-Topic: [PATCH v5 1/2] dt-bindings: i2c: pca954x: Add timeout reset
+ property
+Thread-Index: AQHbIUUFrG6WthXGGkih0sA3DyggLLKMh5wAgAFjS9+AAugMgIAErybZ
+Date: Thu, 24 Oct 2024 07:05:17 +0000
+Message-ID:
+ <DB6PR07MB350922B1A1458EE3D7EB3F019D4E2@DB6PR07MB3509.eurprd07.prod.outlook.com>
+References: <20241018100338.19420-1-wojciech.siudy@nokia.com>
+ <20241018100338.19420-2-wojciech.siudy@nokia.com>
+ <20241018135314.GA91900-robh@kernel.org>
+ <DB6PR07MB35091425FE5CBCD782B465A69D412@DB6PR07MB3509.eurprd07.prod.outlook.com>
+ <pkse4jc6muqwo4zrvb6auhcdv4zrt6zd5zmp4yea5usagw62o3@lgzwggtz4uv3>
+In-Reply-To: <pkse4jc6muqwo4zrvb6auhcdv4zrt6zd5zmp4yea5usagw62o3@lgzwggtz4uv3>
+Accept-Language: pl-PL, en-US
+Content-Language: pl-PL
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nokia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB6PR07MB3509:EE_|DB9PR07MB8749:EE_
+x-ms-office365-filtering-correlation-id: d6b3d0c2-d25e-4eed-3e9a-08dcf3fa377b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-2?Q?t3CFTDWjBZ6FsQ98romVn/GrcppWAavuE00tGpqF/PTWx/XuI09OPV5XHt?=
+ =?iso-8859-2?Q?4MK5mcjNAEpYjreOqt3Am1UB7Yas4+m0mokEb/9fQ4OxWn4FlcuPHgu03C?=
+ =?iso-8859-2?Q?CUL30jTOifZZ2MsovglQJ7TXMTdkygdzfYPLarsREc2FYLqbH/b2+EgAK0?=
+ =?iso-8859-2?Q?jRy1NrIDLvlmgEKY7goeZaDZTQ7KaoMw25wg0zUyQnXbawMlBnUhpCUD81?=
+ =?iso-8859-2?Q?AV/kMU0mW3vycse+gjRRWuMK5qnmoBrlpEEnsX47qfVW9KiEhF4cVb2t7k?=
+ =?iso-8859-2?Q?/VToMprW+lhE3qgWx0TiSopGUxAwi5RSuYL/DDlt32u3sB+p/54+7Nrc1M?=
+ =?iso-8859-2?Q?ujpmEV2CgjvJ0bma6XaKrMjiFMwqToEKAl8oWLo/D/7r/sLTCrJtwCO4+6?=
+ =?iso-8859-2?Q?+rLv3MjHmkuanUjTLcJ6S+lNV6y/4vnfrfqi478vepQ79GloW3DBrYl3DC?=
+ =?iso-8859-2?Q?kL9H99C10ySmB8Xw7JrMy9z+HM+p1M08xr69HvoiKa0nTfzvlnKBvbqBk+?=
+ =?iso-8859-2?Q?i3vkocxWRNsVkr6uCPyZ6lh5bequIG60rvdc63Y96EB86FhgCxM6OA05lh?=
+ =?iso-8859-2?Q?8MB2MD2T2g0gkcmvUNibugcQvF/EaQf0DiC27xiRQO5U02XPbpl0H9hH3u?=
+ =?iso-8859-2?Q?JKosV3d7RdsxqNwi4F8KojT6+1RAsCMts3f3RBktYuGhIoUdmE7qQTakUp?=
+ =?iso-8859-2?Q?Soy68nuwpxYE0aZWUuUxZuAotDPmuxfLmz8WbeNt3C8gky8nNN15um/P+q?=
+ =?iso-8859-2?Q?HkqbshK3rcL/JTC1hjrpeHw0Ln1TUG58CS347JE2XZJlgAbJjwHu4Ntqp2?=
+ =?iso-8859-2?Q?57G4pH6qhmkl76/o3A69f0AnHL+V5jWLZtfVbPj7mRtX2skCsookgw1khD?=
+ =?iso-8859-2?Q?UtshKN37lf31/EqdC8kH1bKFLgp4fue6youUzKkyWtElRazpfEe7rkB2Kk?=
+ =?iso-8859-2?Q?fqoMAH/LwPWdXtKi8ERkOCYeaTnTPGx0IAr+SH2BtMRhLwc4xdoukxyhhV?=
+ =?iso-8859-2?Q?u+Anqz6+TS9XXT8MXcKbbcuQ1rFMVYUVACYCKJ6Qv/en86Mqu1piTJs82h?=
+ =?iso-8859-2?Q?vIEOfu3GHO8fIGR7+JhfQMc8w5DTDil7c7W1pISPoMU0lJfLyeyyELPG8u?=
+ =?iso-8859-2?Q?zyzg9H1oHdGSxnC8Havj6m3ZBmdtoJEcP0n2c6/9YrvSYmwArE+dXKFDdM?=
+ =?iso-8859-2?Q?3GMy+7VyGqpDBrN9DWEjISv8bk9TpZaN0ma8XN9L7JOLsEhSF4Jw5gsfbg?=
+ =?iso-8859-2?Q?l3u6kcnOZKax7kx/1tCM+nB4GapAGNmfkL8WG2CmxFK2h+kh4aaALQi3Ul?=
+ =?iso-8859-2?Q?TKmM8e4jExaYJ62MjjhqKbLh0UAM7yhpqip1RkT9/HVcdOqUJ75LUHyRU2?=
+ =?iso-8859-2?Q?L6fnx7mx+wIlcWzH8P3YGEJCSSYJJP2bv9tklP2V5ijrG4YkRNBgE=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR07MB3509.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?6jN7SIbx7K3YzLbmxm8Js0CBTmfJLoww/jlzoESYhKbVjFrTZmHDcR5Wwk?=
+ =?iso-8859-2?Q?yRQAm0MEPYKkYxguptkjqvjV0r7qHNcKNv8Bu1WZqEKFWQO9KDTonODnce?=
+ =?iso-8859-2?Q?TSRNgoF+A2Ww4h+qIaN3HkIEISRAa+QqbmK3dAes4nkdsGk1f3osqpyWNT?=
+ =?iso-8859-2?Q?vf8pvcOguGLszYdUzbSYYffV7IazYejckp8tTneSt/drz/RCwP/HbYD6Fw?=
+ =?iso-8859-2?Q?muaM+nHPzGwSzKmCADvDlE9na1qRII7ilshnl3KDhV7WPdWq1kEJ0pxI5l?=
+ =?iso-8859-2?Q?+lhmOlE1Wthz4UUSce136LyHSX/wIV8ASGwGSC9lCJyRELbKTZZenLECAA?=
+ =?iso-8859-2?Q?R83xDV+LqYOC9RNcGshLSz1onZQa9Q94BC2Ohknl1iJRoFw/kFVm90neRM?=
+ =?iso-8859-2?Q?f9zbDIs3O1eisXIRYke/f1aof+3lGLINJi6cWECuT1yrnv2VmH4OFNkHW2?=
+ =?iso-8859-2?Q?SM90WxXLYYqCpCIbmVZlqTHj6UciMESKdFlSKJ18ifdBILtcIy6T9kfHLA?=
+ =?iso-8859-2?Q?ZqWKPEwA/ZVXdXO0Pr+iU5NBSDuZuv2NHAw3+homP7KY8Peagi1c7rFNXx?=
+ =?iso-8859-2?Q?65ggiEUyKF3YzRDcuVkCoZSfRn610M3KkmEeQdcX1jcalWS1AgGhD9b3YA?=
+ =?iso-8859-2?Q?lUEphCKRlDSPf41y2qkJDMHcqXXnDVvBwuVESSG6fYpkxorY0ZyeEYP1lY?=
+ =?iso-8859-2?Q?qUQdlhXAP1MqNn+yG3yHvXthfb4j6/TFH1MXE9HNUBTAij+mvP5y8kMISe?=
+ =?iso-8859-2?Q?pJ0tgdhoAVg/ID5rr2iwhrvnHQqOZe0LBtYR9I6i9yWzGOniQ++nhWdiTe?=
+ =?iso-8859-2?Q?bjOCXRCe5lV2wAFEVMQOakAvVBGmhRl4s+lGSHTm3+Rf8rUpW1/U0myRVi?=
+ =?iso-8859-2?Q?wxWn5aOJdskNf/1ROENQAy2VA6o+8t64nlUldeHYycfYx9PFQZS8BqKU6J?=
+ =?iso-8859-2?Q?sqUjM/hZGhVJrIDFTO+cXdsnAfBA3jVvHICLQNDqtWHtiAMWCT1/eCCAzF?=
+ =?iso-8859-2?Q?vqT7AFrVFvoto2cH+i50ZbE/gtTT8VSj/B3LeFOQNrkxFZosf/VdQE/KzC?=
+ =?iso-8859-2?Q?vQ/J9Q4f0CkLOFt4/w/yZUSQiseYNK97Apw+ddW37y7mUAjCc6DNHSxSqA?=
+ =?iso-8859-2?Q?m3QEPb89whSlofQIZdQNnMYchXL3WInD5O2HE5mOGUs38m/tCQ8bGNnNxL?=
+ =?iso-8859-2?Q?st8Ai9D4rV+daXTax/avsYdlcR8KX5T4Y4SG83f0Fnx1Pd5etuOnb07L59?=
+ =?iso-8859-2?Q?yRvpz2IM8udbJknNgkbsuW7Qi/xnWuwFWgUYVnnVva5V85qzRZ2bB/hg0a?=
+ =?iso-8859-2?Q?SHWLLrJnBWODO+Bt4xNTGz9zGEKDSMxsm/IHMCKcnmwb6cs1BC8Kl3m7ma?=
+ =?iso-8859-2?Q?Yt61Y4VaSj88SWWxyA5VAdDwpRo9VmRmA1Hxi3+oe3yDHR+azNSX3VOLkq?=
+ =?iso-8859-2?Q?OjsXNJLrhRBT7Tzgzlf726oHNH0zRIKZv+2ZhNs1WkOvP1zQIP/qturITV?=
+ =?iso-8859-2?Q?fWlUNcu/pVH4Twxmn6Vyh9DIyZ4NSGdSUbhAgv5xjPOhqszAhzbBObvDwP?=
+ =?iso-8859-2?Q?ADy48ZObYppKzYwdi7lBpk1WsxC57RrMjNOZL7nadfiLZqTDlW8Ed4Omsp?=
+ =?iso-8859-2?Q?8pRuhzoArRwcxHP9XWYjpv54I5YYFOxkmR?=
+Content-Type: text/plain; charset="iso-8859-2"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR07MB3509.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6b3d0c2-d25e-4eed-3e9a-08dcf3fa377b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2024 07:05:17.7394
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j1154e5rJWZPaGnvxs+E15SJ9VnoEWPNkiO0gszaCtRl/5+jrDP7++CNDGsdAKTd/RUfr18lD3BCZU1CE7rXi5MmrovqT0BG37dMNtfsK1M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR07MB8749
 
-On Wed, 2024-10-23 at 16:22 +0100, Conor Dooley wrote:
-> On Wed, Oct 23, 2024 at 04:56:39PM +0200, Nuno S=C3=A1 wrote:
-> > On Tue, 2024-10-22 at 18:21 +0100, Conor Dooley wrote:
-> > > On Tue, Oct 22, 2024 at 02:36:44PM +0200, Nuno S=C3=A1 wrote:
-> > > > On Mon, 2024-10-21 at 14:40 +0200, Angelo Dureghello wrote:
-> > > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > > >=20
-> > > > > Extend AXI-DAC backend with new features required to interface
-> > > > > to the ad3552r DAC. Mainly, a new compatible string is added to
-> > > > > support the ad3552r-axi DAC IP, very similar to the generic DAC
-> > > > > IP but with some customizations to work with the ad3552r.
-> > > > >=20
-> > > > > Then, a series of generic functions has been added to match with
-> > > > > ad3552r needs. Function names has been kept generic as much as
-> > > > > possible, to allow re-utilization from other frontend drivers.
-> > > > >=20
-> > > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > > > ---
-> > > >=20
-> > > > Looks mostly good,
-> > > >=20
-> > > > one minor thing that (I think) could be improved
-> > > > > =C2=A0drivers/iio/dac/adi-axi-dac.c | 269
-> > > > > +++++++++++++++++++++++++++++++++++++++--
-> > > > > -
-> > > > > =C2=A01 file changed, 255 insertions(+), 14 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-=
-axi-dac.c
-> > > > > index 04193a98616e..9d6809fe7a67 100644
-> > > > > --- a/drivers/iio/dac/adi-axi-dac.c
-> > > > > +++ b/drivers/iio/dac/adi-axi-dac.c
-> > > > > @@ -46,9 +46,28 @@
-> > > > > =C2=A0#define AXI_DAC_CNTRL_1_REG			0x0044
-> > > > > =C2=A0#define=C2=A0=C2=A0 AXI_DAC_CNTRL_1_SYNC			BIT(0)
-> > > > > =C2=A0#define AXI_DAC_CNTRL_2_REG			0x0048
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SDR_DDR_N		BIT(16)
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_SYMB_8B		BIT(14)
-> > > > > =C2=A0#define=C2=A0=C2=A0 ADI_DAC_CNTRL_2_R1_MODE		BIT(5)
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CNTRL_2_UNSIGNED_DATA		BIT(4)
-> > > > > +#define AXI_DAC_STATUS_1_REG			0x0054
-> > > > > +#define AXI_DAC_STATUS_2_REG			0x0058
-> > > > > =C2=A0#define AXI_DAC_DRP_STATUS_REG			0x0074
-> > > > > =C2=A0#define=C2=A0=C2=A0 AXI_DAC_DRP_STATUS_DRP_LOCKED		BIT(17)
-> > > > > +#define AXI_DAC_CUSTOM_RD_REG			0x0080
-> > > > > +#define AXI_DAC_CUSTOM_WR_REG			0x0084
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_WR_DATA_8		GENMASK(23, 16)
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_WR_DATA_16		GENMASK(23, 8)
-> > > > > +#define AXI_DAC_UI_STATUS_REG			0x0088
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_UI_STATUS_IF_BUSY		BIT(4)
-> > > > > +#define AXI_DAC_CUSTOM_CTRL_REG			0x008C
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_ADDRESS		GENMASK(31, 24)
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_SYNCED_TRANSFER	BIT(2)
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_STREAM		BIT(1)
-> > > > > +#define=C2=A0=C2=A0 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA	BIT(0)
-> > > >=20
-> > > > ...
-> > > > =C2=A0
-> > > > > =C2=A0static int axi_dac_probe(struct platform_device *pdev)
-> > > > > =C2=A0{
-> > > > > -	const unsigned int *expected_ver;
-> > > > > =C2=A0	struct axi_dac_state *st;
-> > > > > =C2=A0	void __iomem *base;
-> > > > > =C2=A0	unsigned int ver;
-> > > > > @@ -566,14 +780,29 @@ static int axi_dac_probe(struct platform_de=
-vice
-> > > > > *pdev)
-> > > > > =C2=A0	if (!st)
-> > > > > =C2=A0		return -ENOMEM;
-> > > > > =C2=A0
-> > > > > -	expected_ver =3D device_get_match_data(&pdev->dev);
-> > > > > -	if (!expected_ver)
-> > > > > +	st->info =3D device_get_match_data(&pdev->dev);
-> > > > > +	if (!st->info)
-> > > > > =C2=A0		return -ENODEV;
-> > > > > +	clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
-> > > > > +	if (IS_ERR(clk)) {
-> > > >=20
-> > > > If clock-names is not given, then we'll get -EINVAL. Hence we could=
- assume
-> > > > that:
-> > > >=20
-> > > > 		if (PTR_ERR(clk) !=3D -EINVAL)
-> > > > 			return dev_err_probe();
-> > >=20
-> > > clock-names isn't a required property, but the driver code effectivel=
-y
-> > > makes it one. Doesn't this lookup need to be by index, unless
-> > > clock-names is made required for this variant?
-> >=20
-> > Likely I'm missing something but the driver is not making clock-names m=
-andatory,
-> > is it?
->=20
-> Did you miss the "for this variant"? Maybe I left the comment in not
-
-I guess so :)
-
-> exactly the right place, but I don't think the code works correctly for
-> the new variant if clock-names aren't provided:
->=20
-> +	if (st->info->has_dac_clk) {
-> +		struct clk *dac_clk;
-> +		dac_clk =3D devm_clk_get_enabled(&pdev->dev, "dac_clk");
-> +		if (IS_ERR(dac_clk))
-> +			return dev_err_probe(&pdev->dev, PTR_ERR(dac_clk),
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 "failed to get dac_clk clock\n");
-> +
-> +		/* We only care about the streaming mode rate */
-> +		st->dac_clk_rate =3D clk_get_rate(dac_clk) / 2;
->=20
-> Isn't this going to cause a probe failure?
-
-Exactly. And that goes in line with what I wrote about the bindings not des=
-cribing
-(currently) this. So yes, for the new variant (which has 'has_dac_clk' set =
-to true)
-clock-names is indeed mandatory and probe will fail if it's not given.
-
-> =20
-> > At least for the s_axi_aclk, we first try to get it using clock-names a=
-nd if
-> > that fails we backup to what we're doing which is passing NULL (which
-> > effectively get's the first clock in the array).
-> >=20
-> > The reasoning is that on the generic variant we only need the AXI clk a=
-nd we
-> > can't now enforce clock-names on it. But to keep things flexible, this =
-was
-> > purposed.
->=20
-> Why not always just get the first clock by index and avoid the
-> complexity?
-
-And that was also suggested in the previous version but then Jonathan sugge=
-sted this
-[1]. I agree things now are a bit confusing because we expect clock-names t=
-o be
-optional for the generic but mandatory for this new variant and the code is=
- not being
-that explicit about it.
-
->=20
-> > Another alternative that might have more lines of code (but simpler to
-> > understand the intent) is to have (for example) a callback get_clocks f=
-unction
-> > that we set depending on the variant. And this also makes me realize th=
-at we
-> > could improve the bindings. I mean, for the generic dac variant we do n=
-ot need
-> > clock-names but for this new variant, clock-names is mandatory and I'm =
-fairly
-> > sure we can express that in the bindings.
->=20
-> Right. You can "edit" required in the if/then/else branch for the new
-> variant.
-
-Yeah, and IMO that should be set in the bindings (it would help understandi=
-ng what
-the driver is actually doinfg.
-
-[1]: https://lore.kernel.org/linux-iio/20241019160817.10c3a2bf@jic23-huawei=
-/
-
-- Nuno S=C3=A1
-
+Hello,=0A=
+=0A=
+> This is reset of the I2C devices (children), not the controller, right?=
+=0A=
+Right, the mux is child device.=0A=
+=0A=
+>  switch to reset controller framework=0A=
+Please note that I left the function pca954x_reset_deassert() unchanged,=0A=
+just moved it up and implemented two corresponding ones.=0A=
+Do you mean that we should get rid of gpiod_set_value_cansleep(),=0A=
+because the reset controller will handle it? I can agree but this is topic=
+=0A=
+for another submission since there we change when the reset is done,=0A=
+not the way we achieve that.=0A=
+=0A=
+Regards,=0A=
+Wojciech=0A=
+=0A=
 
