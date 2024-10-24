@@ -1,317 +1,159 @@
-Return-Path: <devicetree+bounces-115139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D4F9AE2EA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:43:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD4A9AE2FA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:48:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FB03283D8C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:43:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69931F231FB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1511C4A31;
-	Thu, 24 Oct 2024 10:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A561C3025;
+	Thu, 24 Oct 2024 10:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nMBBXH+O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fJ6sZHMB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F7691C4A35;
-	Thu, 24 Oct 2024 10:43:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD15F148838;
+	Thu, 24 Oct 2024 10:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729766622; cv=none; b=oPjQvJLa9vXH7dwZQ2oU3OkeBMLo0vzBh5zIezslkmhgRBeE+urivm5EGKG7bjsJuKYgW98CHtiVz6NjRBn7NjLEvRs7pNc+GWs+kzKNi6dwsp+TP+GFgNDQURTnlcXLeEeOISHqb5bSj+UAPTB62MpKi0c0GqG5iM5TSFSPdSY=
+	t=1729766881; cv=none; b=DDHtjP0gStRlks7Q8HeaZdz6+Ao/cJl1zsDaHiGr7KCBFcZHj4nwTilvOG/Jkq/nxjiOFcZzeAMk3jjdso5zsTPcVWzuEuO0/eZchaoFGnH6sROy2C0wke7VPeyimQivoD5tZsx8pkKnusPP9DAxuXYwVSOb1Nd9GaKY67rjyBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729766622; c=relaxed/simple;
-	bh=aid5VQDzPG0mdJCMTnQwrZbIv9FMJ3m+Cy3OPxXXqZA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=XC+EJPvLO3W2K7tfZSyccUHv6e9DZU+S60Jr3bleIu6/jF/y6lXPcEbNJm90Vmt1eajNs25915Dt2awlyWt/Wc0rbySPJ6RXdwXIJ847YcCc+TaGSPAiM/CTgWWaE4IbzmPdsdWQnDKEGOr1eoBNqhqt31PXQatmrsvXcl8OfeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nMBBXH+O; arc=none smtp.client-ip=209.85.216.43
+	s=arc-20240116; t=1729766881; c=relaxed/simple;
+	bh=Fa4ZeugCZulqq3yRjA8uOwaDIqdku/njHsQsYlodq+g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jIFCFiqcUY+gejHeH0EZcEgzIGpUF8b8TK5HWYhHrWYaFWUAIIAuGHGFD9+gCDQS/6TVWrRwFmEmCpj8ES6UzLyKKOmeW/A5hcxS/MKHLMa0YLNO/K5KpUjRasJYUJmU2DlZDT1S1VM+mNggeMuuqSXsRaCvJAz/SJxNjfaagqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fJ6sZHMB; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2e2e2d09decso1298913a91.1;
-        Thu, 24 Oct 2024 03:43:40 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53b13ea6b78so1259087e87.2;
+        Thu, 24 Oct 2024 03:47:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729766620; x=1730371420; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zRHNXiFcV59fxmHmMntz6nyLKnvOOI66klVDEaq5Ik4=;
-        b=nMBBXH+Ow9eP14aMkqDJbGKnqlex0+8A26IUkbaQoXqCWX/7sw1clt/pFyi9aOT73w
-         xf9igKY7F7tAR72syBeQlA0Mk2OfESVG3Dad7Qi3h8w9U+HlLrpBzaDDpzFJyzkZfVPD
-         85U9n8O1GhjGmsHIYkwrVaTzYQbEic7ougzabmpS+tF1412wQFYUw1+wVHf9DlY7/94F
-         YdS3cUx2p3i1ZGC/d3xjbeSNE+kmy0rXYDl+HR/8sL0aqi8Ch0UzY28YfJxSn4mUm9q+
-         QiPEgwzA16Bs1Z8bREcMXdHvk0dtBsgKxqxZUOgWE4MQkAmaigym+bDxohbBS+/6NHUi
-         0lXg==
+        d=gmail.com; s=20230601; t=1729766877; x=1730371677; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V3DKzoGRNNveCs6SOsESX4/t1nglUdmun8SVRIZGpys=;
+        b=fJ6sZHMB0hd0b1ivbcbhhiELok3748GNQx+bu5c4hc8ru0gms2Z2cLtrZFgrNfIaPz
+         DRpxWa/0iuoAJ15slMkSthHIt0kLBNAB73gAC0WXxFjfEx6hL5eHJ+RmgoAEyJoRa8iD
+         m2X9YctZbn4SoGdRyFMmKbQfHumZ3Oq2GHBcZ3zLG0oFYtSeyd8Ba9ZWbIW4ouKxPMN3
+         cE8tarKNZZneM+zb2yVzCDBcX39eHz+He+lZLdKKR5mw1TzL3QuSnMDCZEJ85vYNyfjX
+         hirbiyb4U9nxXX3Xir7GHXUKK6kuLlxKzF4H80cbzU9tGiULf+EXhVDBuQZpaBnYCFLr
+         z3aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729766620; x=1730371420;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zRHNXiFcV59fxmHmMntz6nyLKnvOOI66klVDEaq5Ik4=;
-        b=baYT9DMatV6k0G6mu4LqFH6VeumBRxtaqfY91JcAUB7bENHG+hpSZXaRQQKr7dbAET
-         OPtkp0yEiqo+b47gjj3niXoahX935yDPXqcdkmCM6av5R0RKlPQWgb3jSmqbthg4I5bB
-         BadCTkKRi301WIk/R79Cq5+9FfmSMMiDxIor8X+lEyvnkIivjne+TQG8Dutt1MDfYOrF
-         vlVNTSg2qv4NUZqX+FmsQqzrMfhb4waVwzmsWBx+2prY3ondfOJTY1W96634GadDgow+
-         dthEHxAICsEHnOFY2wUTTPzY5yuy+a0gHh4Cfkgi/RNtNXHk1zmPdhpZMoiKF/1EJ+hB
-         BeGA==
-X-Forwarded-Encrypted: i=1; AJvYcCWqZ4eMk9rLvJyHqlJf5oCJblBz+6p1awb9f/RQfi+itAnhRu2+9muoLxnivOgOtVJpKPx+StEogRPs@vger.kernel.org, AJvYcCWqe9QVyNIaiKh/uJkF7RsGMa2+KW80PRM9y1XmUn5jV5w8xYoRGI0mQm0IGrW9sP8uUeVrTlwQsyx7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGrOkeoH1qmjWLVTyEpUYPjz+pMtV7KmNU/hS5+S+K9hiMcTLB
-	IZT5L5y/PcHNoKIGNnprg+qHhaiLSJILIrFl/XMM6WFaU3Jyrlnz
-X-Google-Smtp-Source: AGHT+IEyu2LBzoK1jrKSyc/dmt8Bk4WkGfGpykTuMWioWUajNQhRdgYEQ7V93T7LsrjI33qFMLSe5w==
-X-Received: by 2002:a17:90b:4b46:b0:2e2:c744:2eea with SMTP id 98e67ed59e1d1-2e77e640bdemr2577107a91.13.1729766619641;
-        Thu, 24 Oct 2024 03:43:39 -0700 (PDT)
-Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e77e48ed34sm1252785a91.9.2024.10.24.03.43.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 03:43:39 -0700 (PDT)
-From: Chi-Wen Weng <cwweng.linux@gmail.com>
-To: ukleinek@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	cwweng@nuvoton.com,
-	Chi-Wen Weng <cwweng.linux@gmail.com>
-Subject: [PATCH RESEND v2 2/2] pwm: Add Nuvoton MA35D1 PWM controller support
-Date: Thu, 24 Oct 2024 18:43:09 +0800
-Message-Id: <20241024104309.169510-3-cwweng.linux@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241024104309.169510-1-cwweng.linux@gmail.com>
-References: <20241024104309.169510-1-cwweng.linux@gmail.com>
+        d=1e100.net; s=20230601; t=1729766877; x=1730371677;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V3DKzoGRNNveCs6SOsESX4/t1nglUdmun8SVRIZGpys=;
+        b=lQVe6SmYdzl4IiqjCoz9gl6EgFIYXVCyr5XXwMy9nuS2ZbbB+8gCK/BbgV3OZ7cvJL
+         7Z3xE4K4HZUHj2NWzf6/CTzLqqD6BG6/jQhh5LFpI9EpDuRju1HEg4zsdNFMtuJrvh38
+         TtY7pFmKqB6WvaellZQZrSCIyjsyvba0xHjhSiJihDxjEnSnk73MAybvROVdcWl4/LVI
+         fwF5lV5ZVErp6f7wra856xhTqJ/T1LJSkgoYOtEU9Dvyl4eJ+K0NP5A6tph+UVbfWSd5
+         5uGDdMzjxUjeiV6z6IwL6FJTLqokBOyyxyYrU7Ttzs4kOCrtksrZs/Q/yZRdQWPFg7vs
+         fSlA==
+X-Forwarded-Encrypted: i=1; AJvYcCWYIzOq2/hav5roURogGXsugD1Gj7TnvQvme1zqi3arFCH1iJieMwI2HkIoVQXgf4Me1lBMVHxiroYYTzY=@vger.kernel.org, AJvYcCWhRvj6yn+SXxots1gLQMyHhN2z5MiOjC8i5Mt6ivTv1y6+3JI1UITA8N6rpICzoGTfoZezECa3Wa/KCThA@vger.kernel.org, AJvYcCWwi6DHtKfpxLg7T74J5hxhwqIo2hleOjEj4lBJAp3osKm6cbRtaqsdqH1jJNsq8s6G04g5LZ3oKWCi@vger.kernel.org, AJvYcCX5Z2cARk45Y8EjtM8pAqX1pKpu26RqznfcgnU5XH7RY1S64FZOqYIjF1nqkvNMakP2p3sNeVb9gVSiNkrHBRC/Pg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIguarCUq0QvhBcn25SmvVUqYnncaMdw4Dm0nJ5qIXbMDu1Puu
+	8yJ/0haXm9aqBjNEkfzth+Jrdb8WGZdHsoWpowIZhiwpoT8mW1Zc
+X-Google-Smtp-Source: AGHT+IHHCGUunbU1WBMJq+sAZx9YzaIXr41UGHDPNjS2vbTVWpJJQid4DmPQCcWS5iyhHtNJjwXglg==
+X-Received: by 2002:a05:6512:4489:b0:53b:1f59:dc59 with SMTP id 2adb3069b0e04-53b1f59de4cmr4200149e87.6.1729766876589;
+        Thu, 24 Oct 2024 03:47:56 -0700 (PDT)
+Received: from [192.168.4.167] ([92.120.5.12])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a91306fc0sm600659666b.91.2024.10.24.03.47.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Oct 2024 03:47:56 -0700 (PDT)
+Message-ID: <8a017e66-6d84-4bdf-8188-9ae3428b6d17@gmail.com>
+Date: Thu, 24 Oct 2024 13:47:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: fsl,imx-rproc: add new
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Daniel Baluta <daniel.baluta@nxp.com>,
+ Peng Fan <peng.fan@nxp.com>, Mark Brown <broonie@kernel.org>,
+ Takashi Iwai <tiwai@suse.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Bard Liao <yung-chuan.liao@linux.intel.com>,
+ Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+ Jaroslav Kysela <perex@perex.cz>,
+ Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Iuliana Prodan <iuliana.prodan@nxp.com>, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-sound@vger.kernel.org,
+ sound-open-firmware@alsa-project.org, linux-kernel@vger.kernel.org
+References: <20241023162114.3354-1-laurentiumihalcea111@gmail.com>
+ <20241023162114.3354-2-laurentiumihalcea111@gmail.com>
+ <ub7yylef6qyztjtg3pciamg6jjznxh3ydlqsdcg2xcoxqngpi4@j5jlex4qukyz>
+Content-Language: en-US
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+In-Reply-To: <ub7yylef6qyztjtg3pciamg6jjznxh3ydlqsdcg2xcoxqngpi4@j5jlex4qukyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This commit adds a generic PWM framework driver for Nuvoton MA35D1
-PWM controller.
 
-Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
----
- drivers/pwm/Kconfig      |   9 +++
- drivers/pwm/Makefile     |   1 +
- drivers/pwm/pwm-ma35d1.c | 169 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 179 insertions(+)
- create mode 100644 drivers/pwm/pwm-ma35d1.c
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 0915c1e7df16..97b9e83af020 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -411,6 +411,15 @@ config PWM_LPSS_PLATFORM
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-lpss-platform.
- 
-+config PWM_MA35D1
-+	tristate "Nuvoton MA35D1 PWM support"
-+	depends on ARCH_MA35 || COMPILE_TEST
-+	help
-+	  Generic PWM framework driver for Nuvoton MA35D1.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-ma35d1.
-+
- config PWM_MESON
- 	tristate "Amlogic Meson PWM driver"
- 	depends on ARCH_MESON || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 9081e0c0e9e0..c1d3a1d8add0 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -36,6 +36,7 @@ obj-$(CONFIG_PWM_LPC32XX)	+= pwm-lpc32xx.o
- obj-$(CONFIG_PWM_LPSS)		+= pwm-lpss.o
- obj-$(CONFIG_PWM_LPSS_PCI)	+= pwm-lpss-pci.o
- obj-$(CONFIG_PWM_LPSS_PLATFORM)	+= pwm-lpss-platform.o
-+obj-$(CONFIG_PWM_MA35D1)	+= pwm-ma35d1.o
- obj-$(CONFIG_PWM_MESON)		+= pwm-meson.o
- obj-$(CONFIG_PWM_MEDIATEK)	+= pwm-mediatek.o
- obj-$(CONFIG_PWM_MICROCHIP_CORE)	+= pwm-microchip-core.o
-diff --git a/drivers/pwm/pwm-ma35d1.c b/drivers/pwm/pwm-ma35d1.c
-new file mode 100644
-index 000000000000..0c4eec4a0b07
---- /dev/null
-+++ b/drivers/pwm/pwm-ma35d1.c
-@@ -0,0 +1,169 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for the Nuvoton MA35D1 PWM controller
-+ *
-+ * Copyright (C) 2024 Nuvoton Corporation
-+ *               Chi-Wen Weng <cwweng@nuvoton.com>
-+ */
-+
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/io.h>
-+#include <linux/clk.h>
-+#include <linux/math64.h>
-+
-+/* The following are registers for PWM controller */
-+#define REG_PWM_CTL0            (0x00)
-+#define REG_PWM_CNTEN           (0x20)
-+#define REG_PWM_PERIOD0         (0x30)
-+#define REG_PWM_CMPDAT0         (0x50)
-+#define REG_PWM_WGCTL0          (0xB0)
-+#define REG_PWM_POLCTL          (0xD4)
-+#define REG_PWM_POEN            (0xD8)
-+
-+#define PWM_TOTAL_CHANNELS      6
-+#define PWM_CH_REG_SIZE         4
-+
-+struct nuvoton_pwm {
-+	void __iomem *base;
-+	u64 clkrate;
-+};
-+
-+static inline struct nuvoton_pwm *to_nuvoton_pwm(struct pwm_chip *chip)
-+{
-+	return pwmchip_get_drvdata(chip);
-+}
-+
-+static int nuvoton_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			     const struct pwm_state *state)
-+{
-+	struct nuvoton_pwm *nvtpwm;
-+	unsigned int ch = pwm->hwpwm;
-+
-+	nvtpwm = to_nuvoton_pwm(chip);
-+	if (state->enabled) {
-+		u64 duty_cycles, period_cycles;
-+
-+		/* Calculate the duty and period cycles */
-+		duty_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
-+						  state->duty_cycle, NSEC_PER_SEC);
-+		if (duty_cycles > 0xFFFF)
-+			duty_cycles = 0xFFFF;
-+
-+		period_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
-+						    state->period, NSEC_PER_SEC);
-+		if (period_cycles > 0xFFFF)
-+			period_cycles = 0xFFFF;
-+
-+		/* Write the duty and period cycles to registers */
-+		writel(duty_cycles, nvtpwm->base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE));
-+		writel(period_cycles, nvtpwm->base + REG_PWM_PERIOD0 + (ch * PWM_CH_REG_SIZE));
-+		/* Enable counter */
-+		writel(readl(nvtpwm->base + REG_PWM_CNTEN) | BIT(ch),
-+		       nvtpwm->base + REG_PWM_CNTEN);
-+		/* Enable output */
-+		writel(readl(nvtpwm->base + REG_PWM_POEN) | BIT(ch),
-+		       nvtpwm->base + REG_PWM_POEN);
-+	} else {
-+		/* Disable counter */
-+		writel(readl(nvtpwm->base + REG_PWM_CNTEN) & ~BIT(ch),
-+		       nvtpwm->base + REG_PWM_CNTEN);
-+		/* Disable output */
-+		writel(readl(nvtpwm->base + REG_PWM_POEN) & ~BIT(ch),
-+		       nvtpwm->base + REG_PWM_POEN);
-+	}
-+
-+	/* Set polarity state to register */
-+	if (state->polarity == PWM_POLARITY_NORMAL)
-+		writel(readl(nvtpwm->base + REG_PWM_POLCTL) & ~BIT(ch),
-+		       nvtpwm->base + REG_PWM_POLCTL);
-+	else
-+		writel(readl(nvtpwm->base + REG_PWM_POLCTL) | BIT(ch),
-+		       nvtpwm->base + REG_PWM_POLCTL);
-+
-+	return 0;
-+}
-+
-+static int nuvoton_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				 struct pwm_state *state)
-+{
-+	struct nuvoton_pwm *nvtpwm;
-+	unsigned int duty_cycles, period_cycles, cnten, outen, polarity;
-+	unsigned int ch = pwm->hwpwm;
-+
-+	nvtpwm = to_nuvoton_pwm(chip);
-+
-+	cnten = readl(nvtpwm->base + REG_PWM_CNTEN);
-+	outen = readl(nvtpwm->base + REG_PWM_POEN);
-+	duty_cycles = readl(nvtpwm->base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE));
-+	period_cycles = readl(nvtpwm->base + REG_PWM_PERIOD0 + (ch * PWM_CH_REG_SIZE));
-+	polarity = readl(nvtpwm->base + REG_PWM_POLCTL) & BIT(ch);
-+
-+	state->enabled = (cnten & BIT(ch)) && (outen & BIT(ch));
-+	state->polarity = polarity ? PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
-+	state->duty_cycle = DIV64_U64_ROUND_UP((u64)duty_cycles * NSEC_PER_SEC, nvtpwm->clkrate);
-+	state->period = DIV64_U64_ROUND_UP((u64)period_cycles * NSEC_PER_SEC, nvtpwm->clkrate);
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops nuvoton_pwm_ops = {
-+	.apply = nuvoton_pwm_apply,
-+	.get_state = nuvoton_pwm_get_state,
-+};
-+
-+static int nuvoton_pwm_probe(struct platform_device *pdev)
-+{
-+	struct pwm_chip *chip;
-+	struct nuvoton_pwm *nvtpwm;
-+	struct clk *clk;
-+	int ret;
-+
-+	chip = devm_pwmchip_alloc(&pdev->dev, PWM_TOTAL_CHANNELS, sizeof(*nvtpwm));
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	nvtpwm = to_nuvoton_pwm(chip);
-+
-+	nvtpwm->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(nvtpwm->base))
-+		return PTR_ERR(nvtpwm->base);
-+
-+	clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(clk), "unable to get the clock");
-+
-+	nvtpwm->clkrate = clk_get_rate(clk);
-+	if (nvtpwm->clkrate > NSEC_PER_SEC)
-+		return dev_err_probe(&pdev->dev, -EINVAL, "pwm clock out of range");
-+
-+	chip->ops = &nuvoton_pwm_ops;
-+	chip->atomic = true;
-+
-+	ret = devm_pwmchip_add(&pdev->dev, chip);
-+	if (ret < 0)
-+		return dev_err_probe(&pdev->dev, ret, "unable to add pwm chip");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id nuvoton_pwm_of_match[] = {
-+	{ .compatible = "nuvoton,ma35d1-pwm" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, nuvoton_pwm_of_match);
-+
-+static struct platform_driver nuvoton_pwm_driver = {
-+	.probe = nuvoton_pwm_probe,
-+	.driver = {
-+		.name = "nuvoton-pwm",
-+		.of_match_table = nuvoton_pwm_of_match,
-+	},
-+};
-+module_platform_driver(nuvoton_pwm_driver);
-+
-+MODULE_AUTHOR("Chi-Wen Weng <cwweng@nuvoton.com>");
-+MODULE_DESCRIPTION("Nuvoton MA35D1 PWM driver");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+On 10/24/2024 10:45 AM, Krzysztof Kozlowski wrote:
+> On Wed, Oct 23, 2024 at 12:21:11PM -0400, Laurentiu Mihalcea wrote:
+>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>
+>> Add new compatible for imx95's CM7 with SOF.
+>>
+>> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>> ---
+>>  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 58 +++++++++++++++++--
+>>  1 file changed, 53 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>> index 57d75acb0b5e..ab0d8e017965 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>> @@ -28,6 +28,15 @@ properties:
+>>        - fsl,imx8qxp-cm4
+>>        - fsl,imx8ulp-cm33
+>>        - fsl,imx93-cm33
+>> +      - fsl,imx95-cm7-sof
+>> +
+>> +  reg:
+>> +    maxItems: 2
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: dram
+>> +      - const: mailbox
+> That's quite different programming model. Are you sure these are devices
+> from similar class/type?
+Yep, these are all Cortex-M cores. It's just that their usage differs quite a lot.
+>
+> Your big if:then: block suggests this could be separate binding.
+Ideally I would have wanted to place the compatible inside dsp/fsl,dsp.yaml as the
+programming model would have been more similar.
+
+Unfortunately, these are different physical devices (HiFi DSP core vs CM core) even
+though they're all used for DSP purposes so I'm not sure this is entirely appropriate.
+
+Alternatively, if you think grouping these devices (i.e: those represented by the -dsp compatibles
+from fsl,dsp and the one represented by the compatible introduced here) under the same binding
+is alright we can just branch off from fsl,dsp and fsl,imx-rproc and create a new binding for
+these devices. I'm expecting this to be relatively clean as they have the same programming
+model.
+
+Let me know your thoughts on this.
+>
+> Best regards,
+> Krzysztof
+>
 
 
