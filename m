@@ -1,130 +1,82 @@
-Return-Path: <devicetree+bounces-115272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA7169AEB92
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:13:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 150919AEB97
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77865B21D85
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:13:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA5551F239EA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965ED1D0DD5;
-	Thu, 24 Oct 2024 16:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1A01B0F16;
+	Thu, 24 Oct 2024 16:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HW7Xe38c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vIvBfst6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD4E139578;
-	Thu, 24 Oct 2024 16:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB241547D2;
+	Thu, 24 Oct 2024 16:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729786416; cv=none; b=YKmWCQeNaeCoDmjh15nD17tScpUhBBpWlTZwHByqtO+dbCxjZbcQ4mtSMdaVM7EXFWx5QyLatofmw0ePYlJVpBOrmlLk62piJwprmlhuHlnheRCiFXDxFyEWfJgztkmCYWXMOcflX103GB/FOSwiuQWkgxp+EPc0Ew/iuEwCQTw=
+	t=1729786513; cv=none; b=gqGzrW9peZJUyhZcvhcCUynHN094KGP/JitGNA/1+9hFbBZtaV2CQP536TEcp75CCIySZAnvaaEyreEsdlIjXF+mYNiBTaI1afKUbjp6IljW93Qvfmlv37SCso39ARV94UFfAxUJ0zQOgdfiG0PYlqaXd1ifnxl3vLTy+w+pNCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729786416; c=relaxed/simple;
-	bh=A1QQF2KKSKuGF3OFLqE2euaN7kkuNR0b1HOIO/uLn0w=;
+	s=arc-20240116; t=1729786513; c=relaxed/simple;
+	bh=a8XUIXmSwn3FMAXyuMm+VKbLCqiY3txch6Yo+wm1HOc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HzpbHOznWECrArbqqPF7Nu9M1+KaarBkRN9QsUZZvjfwgVslx7qOr29n3oDN+XTDqOTWWx/Z765yZZ4ZCWS7z3jXqiGx1lozAWzv50UeMbCXd/kAouMURqT9bMn//S6WCSaWpLm0VeQ2dIs0pDv+yUaqFXK9Urow+uLyoxCJQVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HW7Xe38c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9DA0C4CEC7;
-	Thu, 24 Oct 2024 16:13:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SZLQl0Gy3bgwqbWIk5Q1sXIWIcAcpZwZFIH2UBwBSYAaO7fP3auCJdwRjIoxBX40e8qDDHefRMWdUKLt1epcRWLIKP81EasFX5097p8r/wQbXB4gHB2HHhTGogQB34U8tIQGncMP4xxd+IsLGKekXRqXsuWNfALYBX0hNomKHro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vIvBfst6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBEE7C4CEE3;
+	Thu, 24 Oct 2024 16:15:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729786416;
-	bh=A1QQF2KKSKuGF3OFLqE2euaN7kkuNR0b1HOIO/uLn0w=;
+	s=k20201202; t=1729786513;
+	bh=a8XUIXmSwn3FMAXyuMm+VKbLCqiY3txch6Yo+wm1HOc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HW7Xe38cxD+8AmaZH51in6btZDwfYtKC6/QuS2EE17V0Ke91NZxcrLMdvuZ/joy5A
-	 8DdtK5VnITWDCjOEvxP5y9jLRvbD1e5526uCTvtx951uq1liesWNXDEvZQip5FUUbf
-	 iL8iG27YLs722t5uwsT43QtxcHn7GcEamsk8nWvtWq5DI6rf/+WuPMDwByMdO1Qjri
-	 a5j4vfQfFKt5wgxiWlAy06ocKOhNPdpO/6bh/S8nYNN3e/wx4QM+q9WjVirGq6QfUX
-	 sDBaXZUbamZ7AfTvpXFLtbMG4R7rucE+to62ShP4JPhTLL2O/YuUSNg76jnm3xMUNS
-	 uoSyNGdVCXl2w==
-Date: Thu, 24 Oct 2024 17:13:31 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: axi-clkgen: include AXI clk
-Message-ID: <20241024-wildfowl-pushiness-d5f46c9c538a@spud>
-References: <20241023-axi-clkgen-fix-axiclk-v1-0-980a42ba51c3@analog.com>
- <20241023-axi-clkgen-fix-axiclk-v1-1-980a42ba51c3@analog.com>
- <20241023-tucking-pacific-7360480bcb61@spud>
- <1e0097f6a15f47c173cb207e369909c1cb5943f9.camel@gmail.com>
+	b=vIvBfst6qB5Fr6s64C+mGYI76ibwQTq7TWHH5PWMHOvQrsZ7YXBIpXr63fOzX2wUV
+	 /b89nrXqbkV0CxduNhrbfhy1MhR5A2aLSANu++VHG7IDm3TmNKxoK3XNEhoHVUgCXm
+	 Mfcb0pMbFRkgTA4qOkJzeEmSj+1cp69VSxM8No+wEBzSlHZz1wnn0yyXU8EOdKptgW
+	 1NbINZt+lR341aKHajDrfSk2Xfw+4F58OcWqreAqj6lR2rcRfCip4foVksAO3b0T5V
+	 HNdn0hMMq+AApsFLXPWwxZu919e1Oj/z0F5Ss/TVGh6pd9oxj6gh4E9NUpc+/4yorC
+	 3N0cFNtD8W5bg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t40Ui-000000002M9-0Egw;
+	Thu, 24 Oct 2024 18:15:28 +0200
+Date: Thu, 24 Oct 2024 18:15:28 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+	konradybcio@kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	abel.vesa@linaro.org, srinivas.kandagatla@linaro.org
+Subject: Re: [PATCH 0/2] X1E001DE Snapdragon Devkit for Windows
+Message-ID: <ZxpyoFjA0jR_sxbg@hovoldconsulting.com>
+References: <20240911073337.90577-1-quic_sibis@quicinc.com>
+ <f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
+ <86r08532wa.wl-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pJZ6Eu/AhPrcPOYK"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1e0097f6a15f47c173cb207e369909c1cb5943f9.camel@gmail.com>
+In-Reply-To: <86r08532wa.wl-maz@kernel.org>
 
+On Thu, Oct 24, 2024 at 05:02:29PM +0100, Marc Zyngier wrote:
 
---pJZ6Eu/AhPrcPOYK
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> The only change I made was to enable the ITS for pcie5, which was
+> routed via the PCIe MSI widget instead. But that's a SoC dtsi issue
+> for which I'll post a patch separately.
 
-On Thu, Oct 24, 2024 at 02:35:37PM +0200, Nuno S=E1 wrote:
-> On Wed, 2024-10-23 at 17:30 +0100, Conor Dooley wrote:
-> > On Wed, Oct 23, 2024 at 04:56:54PM +0200, Nuno Sa wrote:
-> > > In order to access the registers of the HW, we need to make sure that
-> > > the AXI bus clock is enabled. Hence let's increase the number of cloc=
-ks
-> > > by one.
-> > >=20
-> > > In order to keep backward compatibility, the new axi clock must be the
-> > > last phandle in the array. To make the intent clear, a non mandatory
-> > > clock-names property is also being added.
-> >=20
-> > Hmm, I'm not sure. I think clock-names actually may need to be mandatory
-> > here, as otherwise you'll not what the second clock is. The driver would
-> > have to interpret no clock-names meaning clock 2 was clkin2.
-> >=20
-> >=20
->=20
-> So the way things are now is that we just get the parents count with
-> of_clk_get_parent_count() and then get the names with of_clk_get_parent_n=
-ame() and
-> this is given into 'struct clk_init_data'. So they are effectively clk_pa=
-rents of the
-> clock we're registering and as you can see clock-names does not really ma=
-tter. What
-> I'm trying to do is to keep this and still allow to get the AXI bus clock=
- which is
-> something we should get and enable and not rely on others to do it. The i=
-dea is then
-> to add the axi bus clock as the last one in the clocks property and I wil=
-l get it by
-> index with of_clk_get(). The rest pretty much remains the same and we jus=
-t need to
-> decrement by one the number of parent clocks as the axi clock is not real=
-ly a parent
-> of our output clock.
+That's done on purpose since the boot firmware is not setting things up
+so that we can use the ITS with PCIe5 (or PCIe3) when running in EL1
+currently.
 
-I mean, if it works, and you can always disambiguate between whether or
-not someone has two clkins or one clkin and the axi clock, then
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---pJZ6Eu/AhPrcPOYK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxpyKwAKCRB4tDGHoIJi
-0gAYAQDpBACiB2z0Z00EB300D/5eHN04qFai/dmCyJx+diqzWAEAhm5ADaRzdZWm
-S7tI2Mbdjv0UrExvOCfe9sD9iCW4GQc=
-=6sSx
------END PGP SIGNATURE-----
-
---pJZ6Eu/AhPrcPOYK--
+Johan
 
