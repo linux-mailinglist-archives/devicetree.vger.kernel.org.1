@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-115071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F5FB9ADD6B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:16:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ECAC9ADD6E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:18:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 594AD282DD1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:16:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD4281F2118A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:18:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1134E1A38E3;
-	Thu, 24 Oct 2024 07:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67B8C175D54;
+	Thu, 24 Oct 2024 07:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e21QQXKb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WmgrsvLA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55661A0B15;
-	Thu, 24 Oct 2024 07:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B7E17333D;
+	Thu, 24 Oct 2024 07:18:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729754160; cv=none; b=uvPlL1Z/H3ZUw86sNrL5wfb3jc2a9qECaiNmI5rFRutloGj5b4CC+sXXJzUA3n+wPs/SqcdoZPGSpwwG3CkHRfE760c0+CD6qN9lF5xcSzTeezERTWsz6/7tbc3Ho/KJKYFT1uEggpj1VIw205h1S5CuNP31BEegZpxUYbzpKNY=
+	t=1729754288; cv=none; b=umXf+EvfhuvAa4scDrJe7JMzku2R0fPV0x2nHD9NvKkIqXTntGM4aFTlis90zCzJOTvXFzSbpRok5GKycP7rsI1nDd7Z4XHBr8A43WA0b2V2RjDq3fq0dFp8fiSmEvGPU+CYSBbNqGN6/zpDl7Jaimtl14qyGw2u9PZ88Ct2kC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729754160; c=relaxed/simple;
-	bh=LtkRyFa+ptwpI3BjcDqChmf25+0CofX0xNDvVdF3tjE=;
+	s=arc-20240116; t=1729754288; c=relaxed/simple;
+	bh=NL6t+0WOOqEim4x8DSe/Ot6FeYyEc1uFdXg1LzFfjjQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q7LIWlbxn/nXZhfhP9TlWFFxGL7w3izGePEAoUbTGeQEcd0DZRqyZRa/F6LuoJ1GHuJROt6sbzkfP31Qa+ov0QyqKwkwQgCaWHJnJThFV6GD5dxvXFFkVeAS72J3Ox+XN/6USRSX8k3FvmjJzEKq3X5cq9K9HampWtM6TDM5oNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e21QQXKb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D103CC4CECC;
-	Thu, 24 Oct 2024 07:15:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZOeaXlsxadNMRfhswvWhq1g7rVJ76jA3u16T9qAbH7ERZeG/Pz9VZuF6ZU98exD4AfbChf7BuM8FhgiaOP620fphBa99puzM/M9SVTLn29Edhs4KJzP4rzDjpdZ/mwp+dUTYnbPzrniqk6ZteBYicSP7Bmx1ni17qq7+6E8vwsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WmgrsvLA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACC15C4CEC7;
+	Thu, 24 Oct 2024 07:18:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729754159;
-	bh=LtkRyFa+ptwpI3BjcDqChmf25+0CofX0xNDvVdF3tjE=;
+	s=k20201202; t=1729754287;
+	bh=NL6t+0WOOqEim4x8DSe/Ot6FeYyEc1uFdXg1LzFfjjQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e21QQXKbd//X8OwJs3bVISaxQiWtu3fneFc3BZayNh/BwxO89zUaGZauxCeoJ5kao
-	 UbI4PvEouuSFfPGfZISFvMCLF0ryd0boaYZp0yfXDsWsg3KSaV8Qr3phweel8nE9En
-	 GYpqdARDfy3VXLRQRACLv4Rbc1f8Luk6TiG1DlgOQrpLQ4OZUZ9GMnQR/vYXWzD0fz
-	 gyRNFNfwLyHayyBlY6I5XAeFFhhXl7k3GvPmGQiyj93xhLEPKdETZL1WQvsHl8URJg
-	 9LY4wIQ3Ibz2IzUkJlf2vEsT+rJiAOukekGxobroD7ehkBs1KrothEAKQGQ3rLXKHD
-	 X02d11SX0X52w==
-Date: Thu, 24 Oct 2024 09:15:57 +0200
+	b=WmgrsvLA5hthlAe2o0k13DsTM/azsKHeWqceOFTGlKXD0fU7gU1MeBBacEF7a0m2e
+	 qrjneh8gFOQJv8WnlM2QwYBfux6PRlTRrf8K4O/syfSwa7UaHYQRXSxGMXMUvMwdR7
+	 7YB4KTCtvG3U6ypm09plosqbhWhViFyW0B2pDwzkfeAUzvcSDzYdHCVzT36iavI0P6
+	 U3Re8wfjvtIgkeWKA0KrR+9Y3DQ8EWysDDgwbe8ocehdWUFkJAENeRK3E8WgEhcVbv
+	 fFjQ2xo3blwXzXe6LjlvUugCdMExSEZjIEGEHUwbZ+N4zK0IiqaK+WlFGbRVCLwLNS
+	 9/XlVMRKYbCUw==
+Date: Thu, 24 Oct 2024 09:18:04 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Chris Morgan <macroalpha82@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
-	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] dt-bindings: allwinner: add H616 sun4i audio
- codec binding
-Message-ID: <6sj56amrx3dtnznafzsycgq6r6do65uq3z3v3pwbcgwdktqqgo@qbrfpmx22b4s>
-References: <20241023075917.186835-1-ryan@testtoast.com>
- <20241023075917.186835-3-ryan@testtoast.com>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	Conor Dooley <conor@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: serial: snps,dw-apb-uart: merge
+ duplicate compatible entry.
+Message-ID: <o7lhcbdw6ixqlkdies2tx42k6uoo7blbbeysdgs6fszitponqw@wq4cvv2vxjsc>
+References: <20241024062105.782330-1-inochiama@gmail.com>
+ <20241024062105.782330-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,54 +64,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241023075917.186835-3-ryan@testtoast.com>
+In-Reply-To: <20241024062105.782330-2-inochiama@gmail.com>
 
-On Wed, Oct 23, 2024 at 08:56:58PM +1300, Ryan Walklin wrote:
-> The H616 has an audio codec compatible with the sun4i-a10 driver.
+On Thu, Oct 24, 2024 at 02:21:01PM +0800, Inochi Amaoto wrote:
+> Each vendor have an items entry of its own compatible, It is needless
+> and can be merged as it share the same base "snps,dw-apb-uart"
+> compatible.
 > 
-> The codec is relatively cut down compared to some of the other Allwinner
-> SoCs and only has a single line-out route (relying on a separate digital
-> microphone IP block for input). HDMI and SPDIF audio are handled
-> separately by an audio hub IP block, which is not currently implemented
-> in mainline kernels. This requires some additional flexibility in the
-> DMA bindings.
+> Merge the duplicate compatible entry into one item entry.
 > 
-> Add compatible string and routing for the H616 audio codec, and update
-> the required DMA descriptions.
-> 
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Suggested-by: Conor Dooley <conor@kernel.org>
 > ---
-> Changelog v1..v2:
-> - Remove PLL_AUDIO_4X clock from definition (defined internally but
->   not used by driver and so not required in DTSI)
-> - Restrict TX-only DMA definition to H616
-> 
-> Changelog v2..v3:
-> 
-> - Fix missing - in H616 conditional binding reported by dt_binding_check.
-> ---
->  .../sound/allwinner,sun4i-a10-codec.yaml      | 53 ++++++++++++++++---
->  1 file changed, 47 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-> index 78273647f7665..ebc9097f936ad 100644
-> --- a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-> +++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
-> @@ -22,6 +22,7 @@ properties:
->        - allwinner,sun8i-a23-codec
->        - allwinner,sun8i-h3-codec
->        - allwinner,sun8i-v3s-codec
-> +      - allwinner,sun50i-h616-codec
-
-Are you keeping preferred ordering of entries? Usually it is
-alphanumerical, but you introduce now by model number.
-
->  
->    reg:
->      maxItems: 1
-> @@ -40,14 +41,20 @@ properties:
->        - const: codec
+>  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml   | 10 ++--------
+>  1 file changed, 2 insertions(+), 8 deletions(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
