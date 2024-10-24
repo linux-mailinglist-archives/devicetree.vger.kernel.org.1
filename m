@@ -1,103 +1,136 @@
-Return-Path: <devicetree+bounces-115181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347179AE5B3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 15:08:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B15BE9AE5B9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 15:09:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF97BB2540E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:08:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20393283DD5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6471DD88B;
-	Thu, 24 Oct 2024 13:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDD91D6DA1;
+	Thu, 24 Oct 2024 13:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="geEXMPWH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z+DhenBA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7454F1DD0E6;
-	Thu, 24 Oct 2024 13:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C09D1CB33E;
+	Thu, 24 Oct 2024 13:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729775225; cv=none; b=fYlVSLmPbnYX9It1x1NqN+yGEVHQ38Ah63oGJgi13f3WjT+Dd1wjjHhzs96lZEk1+3u82qvpS4JynCUk5rMBFV+dgP7ii/632D1jUwNCvBy+iC8nkiZe7o108051YBTYBy+qwbH6Tm5NCAMVCt1Fmgd9aPIITjgV266AmSgsSmU=
+	t=1729775361; cv=none; b=byYvuPq2mmCrD9gGzIHQtl4sF7jcqxkCmlCwcsDivOBH6W1JheaPmyoRX3gnxBQ/g5h3+N8fmUDAIZnzIxOThjttqw274GylErp5iuxETOZtYdTUH1VhooV3kd08vjgCNfwKI3+OqfxqsBz77fy4uiDUzRaopOhR8Dxud2Q30EU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729775225; c=relaxed/simple;
-	bh=R3pA8ojsMDNT1XdCtiG0vsOjX/BIQQ3XMMeNIDGpxkQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=m7y9JjChBII/QT76WFYz/cJlFvDnRaDgYUw8xb4GWtr+OBRBvxaBnn6nN+Kkm59YTzdRh6JFIDi8Jl/Ijq5qpbDK3jYvDy9gOMopBALAvnmEeUCY+7gzhHe9cMGH2LNDxSqk/7TxR/8YKcGWwkhmcEfTjQGKvxmrVXuQu3f9qaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=geEXMPWH; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 9F08C1F9BA;
-	Thu, 24 Oct 2024 15:06:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1729775220;
-	bh=OaWYCbKne0jIgmMCGe5IUHjDjae7PV5dOPwFEy5t4e8=; h=From:To:Subject;
-	b=geEXMPWHAE7ALD9fcu+awGzVuukhe+61VmA8Fn/O/hZZEfrNyK6HRkVwg9sP7bHxz
-	 woLrzvxLyL1R9nVlcF1EjLb5VU71l5OcW4pZfZg9irJJaTCBR9ut3XRaUPOo8AYG5+
-	 NY1NrfZwkTu7MGRg+R9ZUxXKSwSKT5FvIiKudUfOpxyLHO4VfztblIT5pNOTIkF8kr
-	 nIkscfqJLUcZVDLoiVy+WTkmF1o/ru7WN/TXWxNXiF6dV9pWYE5YrGy6bVMFZkjGBF
-	 Dx2CvbTkwi3ZaFT1iMSz53LGmOf3R9QgATPomoBfr+wgburCOgLBuka+lSst8vkHt4
-	 w+ymp5oZKEsxg==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1729775361; c=relaxed/simple;
+	bh=nb17tpFBEr4PRv+4HRivZY+/kDVAsGeu50KxgyQfFtM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bJTV6BkSLhlyhfTHLcXy7K1uCib+LZfItuYKXpDu9eznmaynFxhhunB/e3Balpt3Z/lGOhxjRQRwaQCFcBBG+QSmV43QPHsBoQhRY5BetsaK+Nbysu+arGIq3jyOjFUzX0aC9hEIZO47FhcJfUgZeDHt0jTYX4H/8QfrAgLYl5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z+DhenBA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70EEBC4CEE6;
+	Thu, 24 Oct 2024 13:09:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729775361;
+	bh=nb17tpFBEr4PRv+4HRivZY+/kDVAsGeu50KxgyQfFtM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z+DhenBAKevA2lfvMQCT080RR15CYZlFd2OBex6DKPZSr3GlSJCnwVUvC/6MZpWav
+	 atJeLaRqsLRsSbOgLmN9Dwjf2ik8vwDpRp/O2qkRL1ypA9TJFHhSJ6h8jjxZDcFSNG
+	 kosMIC5Nt2BjAK39z4huh/7xjQKN1UF+X9TaSIx2RzTMCcK4amX66HejnuWydxomkS
+	 tbcx3hdsDo7hWfeHHv4iP83Eroipu8AnnLKrEHA8HBRWMKBa0D7ZgyVHMJXogENKhG
+	 bOMXwfdLhlWJfJnsnCEUJI8F29OJIMRSnnTlT+rmub7IRRCGCPO8hD4eNxXQAYyk1W
+	 Y69zdtfXGdQ9Q==
+Date: Thu, 24 Oct 2024 14:09:15 +0100
+From: Will Deacon <will@kernel.org>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Robin Murphy <robin.murphy@arm.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Nick Kossifidis <mick@ics.forth.gr>,
+	Sebastien Boeuf <seb@rivosinc.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: freescale: imx8mp-verdin: Fix SD regulator startup delay
-Date: Thu, 24 Oct 2024 15:06:51 +0200
-Message-Id: <20241024130651.49718-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241024130651.49718-1-francesco@dolcini.it>
-References: <20241024130651.49718-1-francesco@dolcini.it>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux@rivosinc.com
+Subject: Re: [PATCH v10 0/7] Linux RISC-V IOMMU Support
+Message-ID: <20241024130914.GF30704@willie-the-truck>
+References: <cover.1729059707.git.tjeznach@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1729059707.git.tjeznach@rivosinc.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Tue, Oct 15, 2024 at 11:52:12PM -0700, Tomasz Jeznach wrote:
+> This patch series introduces support for RISC-V IOMMU architected
+> hardware into the Linux kernel.
+> 
+> The RISC-V IOMMU specification, which this series is based on, is
+> ratified and available at GitHub/riscv-non-isa [1].
+> 
+> At a high level, the RISC-V IOMMU specification defines:
+> 
+> 1) Data structures:
+>   - Device-context: Associates devices with address spaces and holds
+>     per-device parameters for address translations.
+>   - Process-contexts: Associates different virtual address spaces based
+>     on device-provided process identification numbers.
+>   - MSI page table configuration used to direct an MSI to a guest
+>     interrupt file in an IMSIC.
+> 2) In-memory queue interface:
+>   - Command-queue for issuing commands to the IOMMU.
+>   - Fault/event queue for reporting faults and events.
+>   - Page-request queue for reporting "Page Request" messages received
+>     from PCIe devices.
+>   - Message-signaled and wire-signaled interrupt mechanisms.
+> 3) Memory-mapped programming interface:
+>   - Mandatory and optional register layout and description.
+>   - Software guidelines for device initialization and capabilities discovery.
+> 
+> 
+> This series introduces RISC-V IOMMU hardware initialization and complete
+> single-stage translation with paging domain support.
+> 
+> The patches are organized as follows:
+> 
+> Patch 1: Introduces minimal required device tree bindings for the driver.
+> Patch 2: Defines RISC-V IOMMU data structures, hardware programming interface
+>          registers layout, and minimal initialization code for enabling global
+>          pass-through for all connected masters.
+> Patch 3: Implements the device driver for PCIe implementation of RISC-V IOMMU
+>          architected hardware.
+> Patch 4: Introduces IOMMU interfaces to the kernel subsystem.
+> Patch 5: Implements device directory management with discovery sequences for
+>          I/O mapped or in-memory device directory table location, hardware
+>          capabilities discovery, and device to domain attach implementation.
+> Patch 6: Implements command and fault queue, and introduces directory cache
+>          invalidation sequences.
+> Patch 7: Implements paging domain, using highest page-table mode advertised
+>          by the hardware. This series enables only 4K mappings; complete support
+>          for large page mappings will be introduced in follow-up patch series.
+> 
+> Follow-up patch series providing MSI interrupt remapping, complete ATS/PRI/SVA
+> and VFIO/IOMMUFD support are available at the GitHub [2], and has been tested
+> with published QEMU RISC-V IOMMU device model [3].
+> 
+> Changes from v9:
+> - rebase on v6.12-rc3
+> - #6 Memory ordering fix and updated commentary, based on Will’s suggestions.
+> - #7 Remove riscv_iommu_device_domain_type() and use head-less kfree_rcu in
+>      riscv_iommu_release_device(), based on Jason's suggestions.
 
-The power switch used to power the SD card interface might have
-more than 2ms turn-on time, increase the startup delay to 20ms to
-prevent failures.
+Thanks, looks ok to me now.
 
-Fixes: a39ed23bdf6e ("arm64: dts: freescale: add initial support for verdin imx8m plus")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-index e9518b7c7aa8..b8c24fe228fa 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-@@ -175,7 +175,7 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
- 		regulator-max-microvolt = <3300000>;
- 		regulator-min-microvolt = <3300000>;
- 		regulator-name = "+V3.3_SD";
--		startup-delay-us = <2000>;
-+		startup-delay-us = <20000>;
- 	};
- 
- 	reserved-memory {
--- 
-2.39.5
-
+Will
 
