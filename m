@@ -1,189 +1,202 @@
-Return-Path: <devicetree+bounces-115394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E04B59AF555
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 00:24:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 611C69AF55E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 00:28:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 650F41F2452A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 22:24:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20F3628147C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 22:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3369921833F;
-	Thu, 24 Oct 2024 22:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED77217912;
+	Thu, 24 Oct 2024 22:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mtBio/n9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mIMXG4BA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9423721832D
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 22:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D13F14A4CC;
+	Thu, 24 Oct 2024 22:27:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729808673; cv=none; b=YjErz47+V1WcMMDHi8chYRBQfWlpRl28HrnY2ZncnO9HxjgxbZqdFQVSRJSMCg/rwI5Id/JuuSHoVZIyjADFxl+VDTS+6hwnoId6uyP5LvGEb0d/+0T75pO70SOdeuVDCnkqd5He4GjnQxyfykUXkFFmR2Q2ikx2ZAvYDrmQyzI=
+	t=1729808879; cv=none; b=YIl7Dttp6Hv2tNIKH8jOEVYbVRqP64jlK75BfOl2LFcnioq/V7hewdSAVamm9i8cY44CBYTlxghi6Pop1g3Ze456P9MxJ1TngCu5gT1uDhOYWu1dULBzRjsfuFuWawOiKxc+rJlyd7mv10U4oVih4fUPzaJBpLDa3gUXxY1tZVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729808673; c=relaxed/simple;
-	bh=b3Oqdz9XIKXZD2gr94AL8g1IimMVqiVBRgfe0bV1erk=;
+	s=arc-20240116; t=1729808879; c=relaxed/simple;
+	bh=tDvMcOPBbLZ81Q+N1FMjB7QzXRLwq50AvCYD+kYpyEM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ag8gXfVXcGungy6iM5vKBw149CxD8tAaDVR1QB9yNm097IlwP6ZHcDhaeGKO2cgvmR9toPgW2QFbpjNyI+/JwvZXYgpwmrUe8W85n8swdjn7vJQG4toJQhLuYEvH5dqZtZCcMTis59RpBF0ICH8uX1VPpgmivLYhDibtG4BVl8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mtBio/n9; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539f7606199so1857088e87.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 15:24:30 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lYWKjz3ttTngjmHtidOfjvGOVHJZ7jIpx8NUK+LJZOhlsGGSAFtkQm4LqnwJxZN1ioB4IViTU7OcdGq5rtye/SL2xIYclxoi3FoXo8dSz7cBsruUaFqUwTSioIpSESeeqVD3W0gN+UxIahWXRgb7Ko2jZeKQC16kD0B2Y+Mdnck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mIMXG4BA; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-7ea8c4ce232so1078797a12.0;
+        Thu, 24 Oct 2024 15:27:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729808668; x=1730413468; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oNMGjw++sMHfaJpTwkpeeb5+CZwbF2kDV2e17WrmTm0=;
-        b=mtBio/n9Iy30NY/Vx+xkT+laZSzQFD52QUrDpLiZCNtoIGrAx/eqyIViKrwSVaIie8
-         WCMWQghjE5gXWrhFoWApfpQRNbHMTM3AWj31HKZyDYBTYHFtW6uBDFXEx9vrVLfc8JVH
-         +ZDsxQxbP1UWwBigUGi7QrXPbaBb13dHZJBLYTvPJR9g3fwoiAL29hkONX2uvTH5EV0S
-         UnjoxtlN3XgSI8fq8FSTofI3ddPC07vOpD82y2p/Ww+XEWJYxzKJNOk+pc4EnIcBuKGJ
-         U6lU/OxAvkHJXM9clTrA4axWjsHrCRJJMHuFWsoFFoiK2BkUkIsfuPenlOsryNUweGTd
-         2PZg==
+        d=gmail.com; s=20230601; t=1729808877; x=1730413677; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=fD7JZCX3WSpRYBUjkGKdk6/F/9roVP52zuSU1cyvQeQ=;
+        b=mIMXG4BASQDBFKGZJRQK2d6jkY6AHxPf+tEJazxIIN2newXW4FeRpWJVQp89t4O4An
+         xI5KTw7jhRRrqVLea0++P80roh6hI7DjrE/sQscHPGuQpaMgnXGWnVYYRPZ3vq+hdELi
+         ao/YJL3pouwwXqTIW99iJtWnQTmjE78Cw3PvIZMkAbD4G1G+f/A7pB9evSvgCgRZHRgJ
+         FUynuvZ3H3VGPjAaPmDEI6jPpPVY6r23FFscPowfXYmqbJ8AZbEwTC0PZd+Cqggboyue
+         Rbn9IreNCCi3npheopM5MssxQaVGkHGrUIijboJrmf7ZZgJVygShxgURnNIhItG8e4FK
+         JuhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729808668; x=1730413468;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oNMGjw++sMHfaJpTwkpeeb5+CZwbF2kDV2e17WrmTm0=;
-        b=cmzpf4TXxIPIgECxlssALRLb1xF+u6+DWNSI5rrbiN1uPEYc1RETUm2ldlLAhyArxJ
-         MwIKqtWpeV2LQHR/eCM0pq5lu2cIs+O0rscf57YJVXM9+Hj00HAs1bK871j9zksvRWFL
-         mcAfSsFa23k0kKAFdyk6IGflsz3BjNsytAKTLBiPhri2wC5vVWc5olRw5q33x1YaDISM
-         3xDfQuWlR9fOhPuo0lcfITC/CCUBh2kq/GMrXla+124PWmuq0TbsGK2Is65XUjY5kzZ5
-         DySGCYVyJGsjn6Cll3rQTQXJBBV0y03UXryLcNzSznMsZtk41zSQESPhLYmStKI6Dzjp
-         TLnw==
-X-Forwarded-Encrypted: i=1; AJvYcCX0fqtM4aJiiVRE/2JjVoqtmvzPR7HflBrCgB08H7ZkQ6dAG4Joa1nrfvjsBcZN0Q6l2No8+UG+hZQp@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywc2qWchrSsRjLjrbRu4sdh7NvA7r9wCsyT5f6BlGPZOHYhKjkg
-	UKLNMeTAv0edM2jwReoMH2k9iR0LkFyZnef66HFCzJJMqbWh3j462DCiPMb7lAs=
-X-Google-Smtp-Source: AGHT+IGMGFhwLsswBUxiX+Gh6Mwmw4Gpv/RT0zNWikzUs+v1WjRd6mzd0pMZGj9Em8bkTL+w/Phbng==
-X-Received: by 2002:a05:6512:6511:b0:539:faef:35ec with SMTP id 2adb3069b0e04-53b1a375c09mr3432667e87.49.1729808668438;
-        Thu, 24 Oct 2024 15:24:28 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a223e5ab6sm1481972e87.13.2024.10.24.15.24.26
+        d=1e100.net; s=20230601; t=1729808877; x=1730413677;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fD7JZCX3WSpRYBUjkGKdk6/F/9roVP52zuSU1cyvQeQ=;
+        b=TmgS5T1+NTjHLiGvxCZBN3kjQFVclMUX5jbjyyAHBuJdoeo3DkbQDXp2KT3V7nidvC
+         7DPTzLQDTpNlPl1hCHDb4ksEkzlY3UnQVwSTmyJH8oItU9J0aeVhXwutVGAkbgZ6g/Sf
+         2EjAQT6I6RWS53w+givjvoGw4EDDXL0CU3CmQ8J3s8N7y77N1/c05c7/AaVFOiYcwW71
+         SZs/bDcEF3FjAPLeIUGxaoJRoaMxpAW/QqyBQ/KLbVuGhPg82EWUhaZJhQkCbP84csy8
+         qgcSW3Gera45fIZjRG4zTiE1IOuiqmUMqtNZtkwUQgBGZfGnhFR/hMJ1Zy0mi1i9Oteg
+         wvJw==
+X-Forwarded-Encrypted: i=1; AJvYcCW9Lvl/QaANJAYQqt2H2ggnL7RGV1xqeisN8KLfV+xa++gcIoNKwpSkL5pfsRXQYtV8pu7++5vjhqEw7F3z@vger.kernel.org, AJvYcCWGrwKPQss8YICwwx6T5DEkU2MOTlG3UV1XIY81dlKc+b+DBN6HcTMtAbHFhTi0u14vEsX03uoc@vger.kernel.org, AJvYcCXf3qEdw5LfxEcnG2RNgEx65rET+4rTrsGe5yBty0uANbHh3ELHo/ElXzEkbGbcJhdqAv/qd5BTlKvC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGHhAxxajTSidK+aetP2XqatGnjxQfB2Yx3Infn0mxLWFLSCVA
+	qWPb94bsFg02PW6ZehIm4ptLtjpzrz5tYEt2u6fiEr91I/FihqgW
+X-Google-Smtp-Source: AGHT+IGQmCYk2RoxkOpXP4PJ+QT2gDC7178GzCSx0ES9YMS9JzYskSa3vPomTHV9tDwOnPLPR2pM0w==
+X-Received: by 2002:a17:90b:17c1:b0:2e0:9d3e:bc2a with SMTP id 98e67ed59e1d1-2e76b6cda50mr8866774a91.32.1729808876652;
+        Thu, 24 Oct 2024 15:27:56 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e77e57f74asm2019615a91.46.2024.10.24.15.27.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 15:24:27 -0700 (PDT)
-Date: Fri, 25 Oct 2024 01:24:25 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: barnabas.czeman@mainlining.org
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+        Thu, 24 Oct 2024 15:27:56 -0700 (PDT)
+Date: Fri, 25 Oct 2024 06:27:02 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Lee Jones <lee@kernel.org>, Amit Kucheria <amitk@kernel.org>, 
-	Thara Gopinath <thara.gopinath@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
-	Otto =?utf-8?Q?Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Subject: Re: [PATCH RFC 12/14] arm64: dts: qcom: Add initial support for
- MSM8917
-Message-ID: <h4dy2fesraalsri4gclenp4luwqjoh7iv2xysqnf6uwy3qp5de@x6iqc6pa365i>
-References: <20241019-msm8917-v1-0-f1f3ca1d88e5@mainlining.org>
- <20241019-msm8917-v1-12-f1f3ca1d88e5@mainlining.org>
- <2iayllvk5ohrmbhnn7up5gvys2ijzxuyf44c53uwcbsunre6np@ncrimgac2idz>
- <19884457f1133a20a6ad014a75906e55@mainlining.org>
+	Inochi Amaoto <inochiama@outlook.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: net: Add support for Sophgo SG2044 dwmac
+Message-ID: <s2rbj66rarjs33fvmyrwtmeq562pbx7mif5fld56tnk3fm73m5@hlsufkbunu3t>
+References: <20241021103617.653386-1-inochiama@gmail.com>
+ <20241021103617.653386-3-inochiama@gmail.com>
+ <20241022-crisply-brute-45f98632ef78@spud>
+ <yt2idyivivcxctosec3lwkjbmr4tmctbs4viefxsuqlsvihdeh@alya6g27625l>
+ <20241023-paper-crease-befa8239f7f0@spud>
+ <5cv7wcdddxa4ruggrk36cwaquo5srcrjqqwefqzcju2s3yhl73@ekpyw6zrpfug>
+ <20241024-wad-dusk-3d49f9ac4dff@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <19884457f1133a20a6ad014a75906e55@mainlining.org>
+In-Reply-To: <20241024-wad-dusk-3d49f9ac4dff@spud>
 
-On Mon, Oct 21, 2024 at 11:14:55PM +0200, barnabas.czeman@mainlining.org wrote:
-> On 2024-10-19 15:43, Dmitry Baryshkov wrote:
-> > On Sat, Oct 19, 2024 at 01:50:49PM +0200, Barnabás Czémán wrote:
-> > > From: Otto Pflüger <otto.pflueger@abscue.de>
+On Thu, Oct 24, 2024 at 06:04:31PM +0100, Conor Dooley wrote:
+> On Thu, Oct 24, 2024 at 06:38:29AM +0800, Inochi Amaoto wrote:
+> > On Wed, Oct 23, 2024 at 09:49:34PM +0100, Conor Dooley wrote:
+> > > On Wed, Oct 23, 2024 at 08:31:24AM +0800, Inochi Amaoto wrote:
+> > > > On Tue, Oct 22, 2024 at 06:28:06PM +0100, Conor Dooley wrote:
+> > > > > On Mon, Oct 21, 2024 at 06:36:15PM +0800, Inochi Amaoto wrote:
+> > > > > > The GMAC IP on SG2044 is almost a standard Synopsys DesignWare MAC
+> > > > > > with some extra clock.
+> > > > > > 
+> > > > > > Add necessary compatible string for this device.
+> > > > > > 
+> > > > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > > > > > ---
+> > > > > >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+> > > > > >  .../bindings/net/sophgo,sg2044-dwmac.yaml     | 145 ++++++++++++++++++
+> > > > > >  2 files changed, 146 insertions(+)
+> > > > > >  create mode 100644 Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > > > index 3c4007cb65f8..69f6bb36970b 100644
+> > > > > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > > > @@ -99,6 +99,7 @@ properties:
+> > > > > >          - snps,dwmac-5.30a
+> > > > > >          - snps,dwxgmac
+> > > > > >          - snps,dwxgmac-2.10
+> > > > > > +        - sophgo,sg2044-dwmac
+> > > > > >          - starfive,jh7100-dwmac
+> > > > > >          - starfive,jh7110-dwmac
+> > > > > >  
+> > > > > > diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..93c41550b0b6
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > > > > @@ -0,0 +1,145 @@
+> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: http://devicetree.org/schemas/net/sophgo,sg2044-dwmac.yaml#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: StarFive JH7110 DWMAC glue layer
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Inochi Amaoto <inochiama@gmail.com>
+> > > > > > +
+> > > > > > +select:
+> > > > > > +  properties:
+> > > > > > +    compatible:
+> > > > > > +      contains:
+> > > > > > +        enum:
+> > > > > > +          - sophgo,sg2044-dwmac
+> > > > > > +  required:
+> > > > > > +    - compatible
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    items:
+> > > > > > +      - const: sophgo,sg2044-dwmac
+> > > > > > +      - const: snps,dwmac-5.30a
+> > > > > > +
+> > > > > > +  reg:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  clocks:
+> > > > > > +    items:
+> > > > > > +      - description: GMAC main clock
+> > > > > > +      - description: PTP clock
+> > > > > > +      - description: TX clock
+> > > > > > +
+> > > > > > +  clock-names:
+> > > > > > +    items:
+> > > > > > +      - const: stmmaceth
+> > > > > > +      - const: ptp_ref
+> > > > > > +      - const: tx
+> > > > > > +
+> > > > > > +  sophgo,syscon:
+> > > > > 
+> > > > > How many dwmac instances does the sg2044 have?
+> > > > > 
+> > > > 
+> > > > Only one, there is another 100G dwxgmac instance, but it does not
+> > > > use this syscon.
 > > > 
-> > > Add initial support for MSM8917 SoC.
-> > > 
-> > > Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
-> > > [reword commit, rebase, fix schema errors]
-> > > Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/msm8917-pins.dtsi |  344 ++++++
-> > >  arch/arm64/boot/dts/qcom/msm8917.dtsi      | 1557
-> > > ++++++++++++++++++++++++++++
-> > >  arch/arm64/boot/dts/qcom/pm8916.dtsi       |    9 +-
-> > >  3 files changed, 1909 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8917-pins.dtsi
-> > > b/arch/arm64/boot/dts/qcom/msm8917-pins.dtsi
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..f283ffd59b8aca8e510ef95d5526af9592a1c036
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8917-pins.dtsi
+> > > That dwxgmac is a different device, with a different compatible etc?
 > > 
-> > Please merge into msm8917.dtsi (for generic parts) and
-> > msm8917-boatd.dtsi (for board-specific parts).
-> > 
-> > > @@ -0,0 +1,344 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > 
-> > If possible, GPL-2.0 OR MIT, or GPL-2.0 OR BSD-2/3-Clause
-> Unfortunatelly i cannot change the license i do not own the original code.
+> > Yes, it needs a different compatiable, and maybe a new binding is needed
+> > since the 100G and 1G IP are different.
+> 
+> In that case, you don't /need/ a syscon property at all, much less one
+> with offsets. You can just look up the syscon by compatible and hard
+> code the offset in the driver.
 
-Ack
+Good, look up the syscon is a good idea. Thanks for this suggestion.
 
-> > 
-> > > +			tsens_caldata: caldata@d0 {
-> > > +				reg = <0x01d8 0x14>;
-> > > +			};
-> > 
-> > No, individual bit definitions for each of tsens fuse values.
-> > 
-> > > +		};
-> > > +
-> > > +		rpm_msg_ram: sram@60000 {
-> > > +			compatible = "qcom,rpm-msg-ram";
-> > > +			reg = <0x00060000 0x8000>;
-> > > +		};
-> > > +
-> > > +		tsens: thermal-sensor@4a9000 {
-> > > +			compatible = "qcom,msm8917-tsens", "qcom,tsens-v1";
-> > > +			reg = <0x004a9000 0x1000>,
-> > > +			      <0x004a8000 0x1000>;
-> > > +			nvmem-cells = <&tsens_caldata>;
-> > > +			nvmem-cell-names = "calib";
-> > 
-> > And here too, individual bits instead of a single blob.
-> I do not know how to do that i have only find some parts at downstream
-> driver to be able to separate
-> the cells but i do not have every information for it.
-
-Well, you don't have to describe every information. I'm simply asking
-you to replace single tsens_caldata entry with per-sensor and per-point
-data, see e.g. msm8976.dtsi and data_8976 / ops_8976.
-
-> > 
-> > > +			#qcom,sensors = <10>;
-> > > +			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "uplow";
-> > > +			#thermal-sensor-cells = <1>;
-> > > +		};
-> > > +
-> > > +
-
-[...]
-
-> > > +		gpu: gpu@1c00000 {
-> > > +			compatible = "qcom,adreno-306.32", "qcom,adreno";
-> > 
-> > Is it really .32 ?
-> Yes it is A306A (Adreno 308)
-
-Ack
-
--- 
-With best wishes
-Dmitry
+Regards,
+Inochi
 
