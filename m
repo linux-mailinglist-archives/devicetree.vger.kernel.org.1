@@ -1,110 +1,160 @@
-Return-Path: <devicetree+bounces-115312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 791319AED6A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:13:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1569AED7E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D104287FD3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 17:13:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46D9CB25D24
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 17:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B9A1FC7D8;
-	Thu, 24 Oct 2024 17:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06A61FAF00;
+	Thu, 24 Oct 2024 17:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owkHAY8B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XLXXrzHU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B0811FAEEB;
-	Thu, 24 Oct 2024 17:11:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B2E1FAEE5;
+	Thu, 24 Oct 2024 17:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729789888; cv=none; b=tKrVzH9Px80flAmVF7knZyMuYPa7AmvnvxdOBRqIMwW7Km4EiWspsqrYQddOXvCBt8cGqp9vnm3JUKvmpP/yhITUNKluxxJaYy0Ch2u65L+O1L1C7OVYqY809VV9vnsXEzb/MLnnNKtkuXW/Gc5wSvCmIC/mKCRnp8taPtH2m7Q=
+	t=1729790103; cv=none; b=jiOAENDLtx2oJBRPaS235yWh+ZGvPEfP7MAVrK0SOEq+s44tSEumpcQLRD/eb5Ox3AotCPqZCyJy6cPyp0o7DN/ubc3ay2t1vgzR3u+kVVlMwMjCM+A36Fc6uc1zyCkw6t9hrnz/AW7NFeew9ZAmSa3DQXaWQWfc151B4Rm3Do8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729789888; c=relaxed/simple;
-	bh=1WdqHo2HGJNMs69cX9FV+ZG0Dwq2tMCHFmlCiNatbhU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sNRbYkZO7xsq6yoWH67CuTWC8YmquwcI8DMrNFjNO9O8YExJI6bzc5XMbpsDf0YOY3dWl8HT8xac7A9WA5as0VusWoMVGI3rhhMIzZFbGRax0PLKZ5jKgnx2DrTYtvIfCA+WMhVpTmXm8Ccv5CWmNlXfMZISmtrdqP7z4c9hqEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owkHAY8B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FE66C4CEC7;
-	Thu, 24 Oct 2024 17:11:24 +0000 (UTC)
+	s=arc-20240116; t=1729790103; c=relaxed/simple;
+	bh=qKUU2cq8v+5SaeVu6RRbmqKGY6u205flt7+P+PAhKt8=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AhmGVqoBujLfgTP9IyjbHmfUh8G3N39qHXs+I07U4ac4VrO+wizCbHdc3zTf53ydIeoI8WGPQNBqVBKSsNCKRtMWDWQfLXeKQmTZv3Gl96pLRFXXqGgv6boqWJyokj67+WA5aJ3O3Dw2b13BsjYPmkppytDS+I3UCrFwwDEjgp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XLXXrzHU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 459A7C4CEC7;
+	Thu, 24 Oct 2024 17:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729789886;
-	bh=1WdqHo2HGJNMs69cX9FV+ZG0Dwq2tMCHFmlCiNatbhU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=owkHAY8BWsoaieEkorRl9l8idOW8A7qWWrzJrQYEaIWd3/AiHDETi/2T12XOXPCAG
-	 2OrsyWVwm/2tNVdkY3IKD7AucgATNf06M2nRpRQnjhoi3CHhCBBNhJdsKPn8B39DMp
-	 cVlbGvcZ0medVgSlP9EmuiAvsIjzUhqG8QsJbuP0WXri0Jk9QHv8WlneCPEDeWsUsv
-	 /a1AmGH1nP6OtGRUfiLt3Stk68BZ4iLVUxDahrdIwh2eEB6eIKCcis23ejYTkkSWlz
-	 7FCKNWdglX+tdJLNtUaHQMPLV6eGguo0DWAxwxDvI6TbeL6+0Glb3G3k/qaS9GTj3K
-	 8B6uEiNuS2rYw==
-Date: Thu, 24 Oct 2024 18:11:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: tglx@linutronix.de, daniel.lezcano@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: timer: fsl,imxgpt: Document
- fsl,imx35-gpt
-Message-ID: <20241024-plaything-failing-8a91c9b051ce@spud>
-References: <20241023185841.1183706-1-festevam@gmail.com>
- <20241023185841.1183706-2-festevam@gmail.com>
+	s=k20201202; t=1729790103;
+	bh=qKUU2cq8v+5SaeVu6RRbmqKGY6u205flt7+P+PAhKt8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=XLXXrzHUAaUf/MCzx4vivPosRtuWGRFNg2bv7Lc6HMcc9UvSy3QscmxKbNY5GuJlE
+	 XX/qG+NPu/18qDb8rzdBeQrZr4WySMdwRdjcHplzCvcmA0CnRsVCKCENzgvR2x86sI
+	 yUnPDdsMjKr1iR5LnCTAs4ZrZ2+BH1O5jOX7zbFkoBV56fXCyXEFDcEv/zYOxPc+4x
+	 Hc2kPzHV9iJkUgu90yGuzHCsH43E0Z1pGEiKQRXkRNJ2O/ajK4U8OznO1g5nYCTasW
+	 qw3XBAe+p7izv6WqvgO258kcfLLjp3Kb23hqkqz0UdncqEeJm+i1Xiw3ogpDzSfB2j
+	 8d14lsWaswaBQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1t41QL-006X9S-0p;
+	Thu, 24 Oct 2024 18:15:01 +0100
+Date: Thu, 24 Oct 2024 18:15:00 +0100
+Message-ID: <86msit2zjf.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Route pcie5 MSIs to the GIC ITS
+In-Reply-To: <Zxp09Q1DPYf9BK0z@hovoldconsulting.com>
+References: <20241024161814.1827514-1-maz@kernel.org>
+	<Zxp09Q1DPYf9BK0z@hovoldconsulting.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Ht6i6mn5ygm0dad1"
-Content-Disposition: inline
-In-Reply-To: <20241023185841.1183706-2-festevam@gmail.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: johan@kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, quic_sibis@quicinc.com, konradybcio@kernel.org, abel.vesa@linaro.org, johan+linaro@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
+On Thu, 24 Oct 2024 17:25:25 +0100,
+Johan Hovold <johan@kernel.org> wrote:
+> 
+> On Thu, Oct 24, 2024 at 05:18:14PM +0100, Marc Zyngier wrote:
+> > There is no reason to use the PCIe root port widget for MSIs for
+> > pcie5 while both pcie4 and pcie6a are enjoying the ITS.
+> > 
+> > This is specially useful when booting the kernel at EL2, as KVM
+> > can then configure the ITS to have MSIs directly injected in guests
+> > (since this machine has a GICv4.1 implementation).
+> > 
+> > Tested on a x1e001de devkit.
+> > 
+> > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > Cc: Sibi Sankar <quic_sibis@quicinc.com>
+> > Cc: Konrad Dybcio <konradybcio@kernel.org>
+> > Cc: Abel Vesa <abel.vesa@linaro.org>
+> > Cc: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > index 3441d167a5cc..48f0ebd66863 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -3281,6 +3281,8 @@ pcie5: pci@1c00000 {
+> >  			linux,pci-domain = <5>;
+> >  			num-lanes = <2>;
+> >  
+> > +			msi-map = <0x0 &gic_its 0xd0000 0x10000>;
+> 
+> As I just mentioned in another thread, and in the commit message of
+> 9c4cd0aef259 ("arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe")
+> this was done on purpose as
+> 
+> 	PCIe5 (and PCIe3) can currently only be used with the internal
+> 	MSI controller due to a platform (firmware) limitation
+> 
+> Did you try this when booting in EL1? If so we may need to enable this
+> per board.
 
---Ht6i6mn5ygm0dad1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Nah, you are absolutely correct: when booted at EL1, the ITS driver
+reports that the ITS queue is no longer making forward progress as
+soon as we are trying to map something in that range:
 
-On Wed, Oct 23, 2024 at 03:58:41PM -0300, Fabio Estevam wrote:
-> The i.MX35 General Purpose Timer is compatible with i.MX31.
->=20
-> Document the fsl,imx35-gpt compatible.
->=20
-> This fixes the following dt-schema warning:
->=20
-> timer@53f90000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['fsl,imx35-gpt', 'fsl,imx31-gpt'] is too long
-> 	'fsl,imx1-gpt' was expected
-> 	'fsl,imx21-gpt' was expected
-> 	'fsl,imx27-gpt' was expected
-> 	'fsl,imx31-gpt' was expected
-> 	'fsl,imx35-gpt' is not one of ['fsl,imx25-gpt', 'fsl,imx50-gpt', 'fsl,im=
-x51-gpt', 'fsl,imx53-gpt', 'fsl,imx6q-gpt']
-> 	'fsl,imx6dl-gpt' was expected
-> 	'fsl,imx35-gpt' is not one of ['fsl,imx6sl-gpt', 'fsl,imx6sx-gpt', 'fsl,=
-imx8mp-gpt', 'fsl,imxrt1050-gpt', 'fsl,imxrt1170-gpt']
-> 	'fsl,imx35-gpt' is not one of ['fsl,imx6ul-gpt', 'fsl,imx7d-gpt']
-> 	'fsl,imx6sx-gpt' was expected
->=20
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+[    5.068749] ITS queue timeout (9984 9921)
+[    5.072871] ITS cmd its_build_mapd_cmd failed
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I suspect it trips over itself trying to interpret the command, and
+that the other PCIe ports work by pure luck (maybe thanks to having
+a even number?).
 
---Ht6i6mn5ygm0dad1
-Content-Type: application/pgp-signature; name="signature.asc"
+Comparing the logs, it is obvious that the hypervisor is not showing
+us the actual HW topology: the ITS supports 64kB pages, which we use
+when booted at EL2, while we only see 4kB support at EL1.
 
------BEGIN PGP SIGNATURE-----
+And the boot really is hilarious:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxp/ugAKCRB4tDGHoIJi
-0jDVAQDnbXO317H8zdaeX6UW4R5EaUI7ZGJMBdt9kKnxIZqtWwD/XO4mTjtsDeiy
-15VLLZlDLydimwb4mDZ+RxWfDQJOcQI=
-=GZyF
------END PGP SIGNATURE-----
+[    0.000000] ITS@0x0000000017040000: Devices Table too large, reduce ids 32->19
 
---Ht6i6mn5ygm0dad1--
+19 bits is the maximum the kernel can allocate with a 4kB page size.
+I would like to see the face of a HW person if they had to design a
+system with 32bit worth of DeviceID...
+
+[    0.000000] ITS@0x0000000017040000: Devices too large, reduce ITS pages 1024->256
+
+and 256 pages is the maximum we can describe to the ITS...
+
+Obviously, this emulation was never really tested, since Windows
+replaces it at boot time. Oh well.
+
+I'll stash this patch as part of my "make EL2 great again" branch! ;-)
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
