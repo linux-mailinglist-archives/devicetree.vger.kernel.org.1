@@ -1,110 +1,120 @@
-Return-Path: <devicetree+bounces-115164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B7D9AE4BB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 14:27:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F039AE4D4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 14:34:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16C9AB22C7E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:27:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12DF42823EA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC2D1D5AA7;
-	Thu, 24 Oct 2024 12:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192D81D4154;
+	Thu, 24 Oct 2024 12:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MAY2d50D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uonhDsAx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF1D1D5165;
-	Thu, 24 Oct 2024 12:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E260D1D357A;
+	Thu, 24 Oct 2024 12:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729772822; cv=none; b=dkmTjnprkJxy3W4XBhToI5vXwbn8qY6+Fhe5Dl6HHeo2fSvrnDDQclLj1PzCmrpRmYPMVHzH0SphE4FQiZY1G8j5HM8LaqzjPNbZMNpDNMjSFkmVdXD1y7mXQwkJHGu4THEgC2A9KDCZdNnWUR2GzfVUX4WE5EoFuEJFqzHgyPc=
+	t=1729773277; cv=none; b=BeIyvbPTIMeCj0xOXK2EJdStjap4oyCvLmuhwtO7kU6q16uS33XYrUPvuFknAytAVxprsuiN6z23I7CzZiFAcCn0Nsxau3b7P3L3k8GOUsMAZeSdkldiRusCid3idpxzUtBTvfTrRYQUk8lt7wyO2Upp3oEClZFslwp4yMtxDWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729772822; c=relaxed/simple;
-	bh=lw6sXiQ6wtFxX+kp2lb3mbfcoAhgOy+cKDBtWDndOkc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eLjakN5En/48fg9Nn69VBLasnAKV4MTqFK/uxKbrB3JuqD4ja5tj+UB7a8K2XdsbNMyHRS5p+fk1QxlQmcIdy8x7VnHrAQK5KP3maagv8BukguoHx4CCM+MB0wSLy8m6UcAW54Qkag6qM+C2LVav4MWWowo+//5jgHnMwHGLWkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MAY2d50D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 281EAC4CEC7;
-	Thu, 24 Oct 2024 12:26:56 +0000 (UTC)
+	s=arc-20240116; t=1729773277; c=relaxed/simple;
+	bh=3ygEjG6hTS+s76bWt2IvYPg8yyhSvz+WHj+DxEVzQJY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kM4IqnoU0DnmOLsgmoAAToV2FwC3j8YZXugk9ZU0YpKcB7HJc2ktdvqOgJ0KDXnRs00VIVPAlyHFUu+KqC8QZSVZKKHoxLtGI2zhW65jx8gtgNNGfeftCz0ovOndyicBXaYlJ2OfxZ4tgcAOsEJ1fxAHn5xK3495aHqpz6Dhu8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uonhDsAx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89700C4CEC7;
+	Thu, 24 Oct 2024 12:34:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729772821;
-	bh=lw6sXiQ6wtFxX+kp2lb3mbfcoAhgOy+cKDBtWDndOkc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MAY2d50D8Q7Wngqp0j8nZOH+BiwQOIsrnP+QRDrthfgGBvPGB9yfX9p0zHpriPPkK
-	 x8vR4T3QMoIoWPHiPF/dvosNZaUypb+QsESwMxmIostN6Vtso5Wtvw44heyRhCBWqy
-	 diff+uzfBTVyunZmp3KJ2kSJxnhzoj0WgfnTMiCch6SWcOqZnVyHr6S10+KlmNyf+F
-	 kJbKak7k3cEqMbYPIgXMTzTNn8yHhulHP8ORYa+Dfb0FgUAT0BtG1XdUuqDYJ0nZOE
-	 TOnDSplIg0k8dxGKQGQ3UimuK4ZkLTCeqQ/1CdbpRH/mKXopcb00jZ94r3kzsXSeCk
-	 hxVeyh2if7Y6g==
-Date: Thu, 24 Oct 2024 13:26:54 +0100
-From: Will Deacon <will@kernel.org>
-To: Namhyung Kim <namhyung@kernel.org>
-Cc: Xu Yang <xu.yang_2@nxp.com>, Frank.li@nxp.com, mark.rutland@arm.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, john.g.garry@oracle.com, james.clark@linaro.org,
-	mike.leach@linaro.org, leo.yan@linux.dev, peterz@infradead.org,
-	mingo@redhat.com, acme@kernel.org,
-	alexander.shishkin@linux.intel.com, jolsa@kernel.org,
-	irogers@google.com, adrian.hunter@intel.com,
-	kan.liang@linux.intel.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-perf-users@vger.kernel.org
-Subject: Re: [PATCH 3/3] perf vendor events arm64: Add i.MX91 DDR Performance
- Monitor metrics
-Message-ID: <20241024122651.GA30704@willie-the-truck>
-References: <20240924061251.3387850-1-xu.yang_2@nxp.com>
- <20240924061251.3387850-3-xu.yang_2@nxp.com>
- <ZvsTJ47yHFUjo1uw@google.com>
- <20241008054935.zi2kqcaj4fwf2bda@hippo>
- <ZwYncyUlAtTAeOjo@google.com>
+	s=k20201202; t=1729773276;
+	bh=3ygEjG6hTS+s76bWt2IvYPg8yyhSvz+WHj+DxEVzQJY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=uonhDsAxDtqHpYTOwA0RL5u/lqune/NxVAhq2wVRAgjNeuH3v8KhBLVMCZJImrKIi
+	 E0kvBrkUcshfxQXg0K4JFuvrk+GM3j47hylwCwddJmO27BWldvg9kEQrG7xnX63he9
+	 O5/yasof/iY3fMmtYFUgWv4s/L0V4dndgQjnkQXwbpvILjrWdc6oN75ejBQQ42iuCG
+	 LbPUpRQ6kAXix5qmxfe4LfTeQg6fFWRMJVbZZAx2GPDWzRJ9fyTCCfl+8FZTKCwHUf
+	 vUUkdNSifGBg5hqNsIr9HBl6FP1Pmo1b5/LwPmfMaZ9MYH2UUgM1bbURcnXJEys6DT
+	 7qE0Xku+zq4kg==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
+	Andy Chiu <andybnac@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] Add some validation for vector, vector crypto and fp stuff
+Date: Thu, 24 Oct 2024 13:34:28 +0100
+Message-ID: <20241024-fanning-enrage-bcc39f8ed47d@spud>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZwYncyUlAtTAeOjo@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1682; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=rFKvUC5WbGtzbbJAD2E+rOogADPDAQJQjX4YNpHNNNs=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOlSdlcDu+QXPLh8ReufWddjnuVnZ7a/l1bOe7nIcMcN+ VvVvC07OkpZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRHTUM/zPNewu1Sp/UNPFt nz/93d3+BUw8a5hDlDIK5Zb/W9Fz8zYjQ3vYSXt1ofrkqa7T0qOu+dSJ/J9qzliou0340o5n63a +YQcA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 08, 2024 at 11:49:23PM -0700, Namhyung Kim wrote:
-> On Tue, Oct 08, 2024 at 01:49:35PM +0800, Xu Yang wrote:
-> > Hi Namhyung,
-> > 
-> > On Mon, Sep 30, 2024 at 02:07:51PM -0700, Namhyung Kim wrote:
-> > > Hello,
-> > > 
-> > > On Tue, Sep 24, 2024 at 02:12:51PM +0800, Xu Yang wrote:
-> > > > Add JSON metrics for i.MX91 DDR Performance Monitor.
-> > > > 
-> > > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > > > ---
-> > > >  .../arch/arm64/freescale/imx91/sys/ddrc.json  |  9 +++++++
-> > > >  .../arm64/freescale/imx91/sys/metrics.json    | 26 +++++++++++++++++++
-> > > >  2 files changed, 35 insertions(+)
-> > > >  create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx91/sys/ddrc.json
-> > > >  create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx91/sys/metrics.json
-> > > 
-> > > How do you want to route this?  As it's mixed with kernel changes, I
-> > > would generally request to split but it's a change just to add new
-> > > files so it should be ok to go with other tree.  In that case,
-> > 
-> > Sorry for late.
-> > 
-> > How about you pick up this one to perf-tools tree and Will Deacon pick up
-> > the first 2 patches to his tree? I didn't see Will apply perf-tools patch
-> > before.
-> 
-> Did Will pick up the kernel patches already?
+From: Conor Dooley <conor.dooley@microchip.com>
 
-I have done now, sorry for the delay.
+Yo,
 
-Will
+This series is partly leveraging Clement's work adding a validate
+callback in the extension detection code so that things like checking
+for whether a vector crypto extension is usable can be done like:
+	has_extension(<vector crypto>)
+rather than
+	has_vector() && has_extension(<vector crypto>)
+which Eric pointed out was a poor design some months ago.
+
+The rest of this is adding some requirements to the bindings that
+prevent combinations of extensions disallowed by the ISA.
+
+Cheers,
+Conor.
+
+v2:
+- Fix an inverted clause Clément pointed out
+- Add Zvbb validation, that I had missed accidentally
+- Drop the todo about checking the number of validation rounds,
+  I tried in w/ qemu's max cpu and things looked right
+
+CC: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: "Clément Léger" <cleger@rivosinc.com>
+CC: Andy Chiu <andybnac@gmail.com>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+
+Conor Dooley (5):
+  RISC-V: add vector crypto extension validation checks
+  RISC-V: add f & d extension validation checks
+  dt-bindings: riscv: d requires f
+  dt-bindings: riscv: add vector sub-extension dependencies
+  dt-bindings: riscv: document vector crypto requirements
+
+ .../devicetree/bindings/riscv/extensions.yaml |  84 ++++++++++
+ arch/riscv/include/asm/cpufeature.h           |   3 +
+ arch/riscv/kernel/cpufeature.c                | 148 ++++++++++++------
+ 3 files changed, 185 insertions(+), 50 deletions(-)
+
+-- 
+2.45.2
+
 
