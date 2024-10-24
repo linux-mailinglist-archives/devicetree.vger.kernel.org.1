@@ -1,301 +1,131 @@
-Return-Path: <devicetree+bounces-115129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2867D9AE19F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:56:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD9D9AE224
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:10:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5CDE282D1C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:56:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DF6D1F24469
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F051C57B1;
-	Thu, 24 Oct 2024 09:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE97E1BDAB9;
+	Thu, 24 Oct 2024 10:10:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VbCsqeHF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YEqrXrDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932701B85E2;
-	Thu, 24 Oct 2024 09:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C7117B51A;
+	Thu, 24 Oct 2024 10:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729763750; cv=none; b=uPMnOcqX6Qq7RO0gg6exuUq6m5Ylnt5WgHpzfrLn6Kyn8xraZ6RE7vgRz3LCrfs5kE/SEPc8lnxrTkAVWilfd2lxOYE83h1DjLpSy+zWx3CA1/3zre5OusYdWUW3RnE6eL6h3zzj0FczfgTncm4mOwdSNm8uBrOZQgSTBRrmEI8=
+	t=1729764601; cv=none; b=a5B3K+GmuIHdEPXnml/hEThfWWOeThCyfoeQiH9r0Uq+Nj5X5W9ck9manmnv3+p2NBlRm9WnFHM+NbMP4L2BiyX6DzBRRf4LrpBHVGv93mwLtJZdpZNVOt8M3zKrI2Fs2yWTX9yVLF5KgpM5DDFj1+0CWygkb5rG5hU5Cyl2s2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729763750; c=relaxed/simple;
-	bh=IEDWlRrG0DDSC67begBEfQGU7uvDlVWxu7DCnp6qwGs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RYmYSHgBMQz2ThIIPIRArAJbs3SXaZrD0Mz3cmgNKRlF2pfdRWUt1Z9O+pwZY/dIFyPNZp+hFSrVT+M+ErswCetr9QDtDcEnLCODu34UOzzFJY87RiYjRNsOLD9HLtyFk4G2oi6K9kKEcm62Thhna4kIdJh1CJOTcnrsVZ2zqiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VbCsqeHF; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id E5EC140010;
-	Thu, 24 Oct 2024 09:55:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729763745;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nUQXtdTvn9UVSZH4EkPi10r3WhhKAUdc+B9p/wH61yw=;
-	b=VbCsqeHFuQuz6k8aevTlfEhl56CY4MWWNhlHmsvB6VkN8iPVhuEauYY+AZNnirOHwO0Apv
-	AUNnXTHt0tgm7OHwmuyfKOV47SEzDT9JD1flKPQ7VZ3LX/bitFkSeIUkM91wEQMfgEr1zz
-	cF4PQltKsnh0jX9Yq91L1cfjam1tm9zy6SEWHjjUdq8yeT8SxIIctrUrZ5+dTlD4pLUYnr
-	LUjoEsHYcRjW5hBVYm5srZIZI6QPxtO+0H/gAR2tSzT8UgZmoyy/Hq0i8PETZn/zl0+qlo
-	/6wbDUbZLbZfeTEOV6DIj64Xkk9kMklqbn2fD+j/hknCeCsZy0sGHMXmCC+rKA==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marex@denx.de>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery mechanism
-Date: Thu, 24 Oct 2024 11:55:38 +0200
-Message-ID: <20241024095539.1637280-3-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20241024095539.1637280-1-herve.codina@bootlin.com>
-References: <20241024095539.1637280-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1729764601; c=relaxed/simple;
+	bh=engmJwWWarFhbbbGk2yuL/t2q2JrqeyZFQ90uq8h+4Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oi4+hPf3rBtwrxJeXzPqWY5k/vuQ0uRkK3uneL8rqhCoI08b90lhVklwdoqVV42O+KMJj/5q4xHx6/GrQ8XHaL+yOUYFLJxWJDDgRXNqq34WblNrb56TiUXRkGOaR0Pb2ey1ANn4KqbLmMZO3+LaaS0U2nlumanMqwAe6QPvFE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YEqrXrDB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66CE0C4CEC7;
+	Thu, 24 Oct 2024 10:09:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729764601;
+	bh=engmJwWWarFhbbbGk2yuL/t2q2JrqeyZFQ90uq8h+4Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YEqrXrDBrtGgH0/gCx20QY05rgXJq9N2GRIFF6U7sVVmeONYDJioTR80LWhssYJkb
+	 wDZn8oxxamMFa2ZiYzDLBIP70hfSsxhLUf2OHhiJaMj9Aw8+XQF6Xhd15h9lmGnX8y
+	 XjF/X8COxXVWuBmMc3C/xkw4gSOQ6IL6u8ONWo5RINVfbgm1kVxqYgLK18HBka3sXX
+	 ppVZcHK/18CHYlZ2YcIw5h2byTcWCDFzVrD7l+6tM+KclekSqab6pfbb4KCUJ88i2a
+	 Qm3Q8aT085Q0VaOuyc74F2oB4JTWfFvWyKjGIF/MHcgSZbvTHdXfUdWaSGOfnmKGHE
+	 VDnq7Y8jwdWbA==
+Message-ID: <4c071100-f49c-4dcb-add8-99427fda268a@kernel.org>
+Date: Thu, 24 Oct 2024 12:09:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/12] dt-bindings: arm: cpus: Add Samsung Mongoose M3
+To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Tomasz Figa
+ <tomasz.figa@gmail.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Maksym Holovach <nergzd@nergzd723.xyz>
+References: <20241024-exynos9810-v1-0-ed14d0d60d08@gmail.com>
+ <20241024-exynos9810-v1-1-ed14d0d60d08@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241024-exynos9810-v1-1-ed14d0d60d08@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-In some cases observed during ESD tests, the TI SN65DSI83 cannot recover
-from errors by itself. A full restart of the bridge is needed in those
-cases to have the bridge output LVDS signals again.
+On 24/10/2024 00:36, Markuss Broks wrote:
+> Add the compatible for Samsung Mongoose M3 CPU core to the schema.
+> 
+> Co-authored-by: Maksym Holovach <nergzd@nergzd723.xyz>
 
-The TI SN65DSI83 has some error detection capabilities. Introduce an
-error recovery mechanism based on this detection.
+There is no such tag. Maybe you wanted Co-developed-by? But then missing
+SoB - see submitting patches.
 
-The errors detected are signaled through an interrupt. On system where
-this interrupt is not available, the driver uses a polling monitoring
-fallback to check for errors. When an error is present, the recovery
-process is launched.
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> ---
 
-Restarting the bridge needs to redo the initialization sequence. This
-initialization sequence has to be done with the DSI data lanes driven in
-LP11 state. In order to do that, the recovery process resets the entire
-pipeline.
-
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- drivers/gpu/drm/bridge/ti-sn65dsi83.c | 128 ++++++++++++++++++++++++++
- 1 file changed, 128 insertions(+)
-
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-index 96e829163d87..22975b60e80f 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-@@ -35,9 +35,12 @@
- #include <linux/of_graph.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/timer.h>
-+#include <linux/workqueue.h>
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_drv.h> /* DRM_MODESET_LOCK_ALL_BEGIN() need drm_drv_uses_atomic_modeset() */
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-@@ -147,6 +150,9 @@ struct sn65dsi83 {
- 	struct regulator		*vcc;
- 	bool				lvds_dual_link;
- 	bool				lvds_dual_link_even_odd_swap;
-+	bool				use_irq;
-+	struct delayed_work		monitor_work;
-+	struct work_struct		reset_work;
- };
- 
- static const struct regmap_range sn65dsi83_readable_ranges[] = {
-@@ -321,6 +327,92 @@ static u8 sn65dsi83_get_dsi_div(struct sn65dsi83 *ctx)
- 	return dsi_div - 1;
- }
- 
-+static int sn65dsi83_reset_pipeline(struct sn65dsi83 *sn65dsi83)
-+{
-+	struct drm_device *dev = sn65dsi83->bridge.dev;
-+	struct drm_modeset_acquire_ctx ctx;
-+	struct drm_atomic_state *state;
-+	int err;
-+
-+	/* Use operation done in drm_atomic_helper_suspend() followed by
-+	 * operation done in drm_atomic_helper_resume() but without releasing
-+	 * the lock between suspend()/resume()
-+	 */
-+
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-+
-+	state = drm_atomic_helper_duplicate_state(dev, &ctx);
-+	if (IS_ERR(state)) {
-+		err = PTR_ERR(state);
-+		goto unlock;
-+	}
-+
-+	err = drm_atomic_helper_disable_all(dev, &ctx);
-+	if (err < 0)
-+		goto unlock;
-+
-+	drm_mode_config_reset(dev);
-+
-+	err = drm_atomic_helper_commit_duplicated_state(state, &ctx);
-+
-+unlock:
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
-+	if (!IS_ERR(state))
-+		drm_atomic_state_put(state);
-+	return err;
-+}
-+
-+static void sn65dsi83_reset_work(struct work_struct *ws)
-+{
-+	struct sn65dsi83 *ctx = container_of(ws, struct sn65dsi83, reset_work);
-+	int ret;
-+
-+	dev_warn(ctx->dev, "reset pipeline\n");
-+
-+	/* Reset the pipeline */
-+	ret = sn65dsi83_reset_pipeline(ctx);
-+	if (ret) {
-+		dev_err(ctx->dev, "reset pipeline failed %pe\n", ERR_PTR(ret));
-+		return;
-+	}
-+}
-+
-+static void sn65dsi83_handle_errors(struct sn65dsi83 *ctx)
-+{
-+	unsigned int irq_stat;
-+	int ret;
-+
-+	/*
-+	 * Schedule a reset in case of:
-+	 *  - the bridge doesn't answer
-+	 *  - the bridge signals an error
-+	 */
-+
-+	ret = regmap_read(ctx->regmap, REG_IRQ_STAT, &irq_stat);
-+	if (ret || irq_stat)
-+		schedule_work(&ctx->reset_work);
-+}
-+
-+static void sn65dsi83_monitor_work(struct work_struct *work)
-+{
-+	struct sn65dsi83 *ctx = container_of(to_delayed_work(work),
-+					     struct sn65dsi83, monitor_work);
-+
-+	sn65dsi83_handle_errors(ctx);
-+
-+	schedule_delayed_work(&ctx->monitor_work, msecs_to_jiffies(1000));
-+}
-+
-+static void sn65dsi83_monitor_start(struct sn65dsi83 *ctx)
-+{
-+	schedule_delayed_work(&ctx->monitor_work, msecs_to_jiffies(1000));
-+}
-+
-+static void sn65dsi83_monitor_stop(struct sn65dsi83 *ctx)
-+{
-+	cancel_delayed_work_sync(&ctx->monitor_work);
-+}
-+
- static void sn65dsi83_atomic_pre_enable(struct drm_bridge *bridge,
- 					struct drm_bridge_state *old_bridge_state)
- {
-@@ -509,6 +601,15 @@ static void sn65dsi83_atomic_enable(struct drm_bridge *bridge,
- 	regmap_read(ctx->regmap, REG_IRQ_STAT, &pval);
- 	if (pval)
- 		dev_err(ctx->dev, "Unexpected link status 0x%02x\n", pval);
-+
-+	if (ctx->use_irq) {
-+		/* Enable irq to detect errors */
-+		regmap_write(ctx->regmap, REG_IRQ_GLOBAL, REG_IRQ_GLOBAL_IRQ_EN);
-+		regmap_write(ctx->regmap, REG_IRQ_EN, 0xff);
-+	} else {
-+		/* Use the polling task */
-+		sn65dsi83_monitor_start(ctx);
-+	}
- }
- 
- static void sn65dsi83_atomic_disable(struct drm_bridge *bridge,
-@@ -517,6 +618,15 @@ static void sn65dsi83_atomic_disable(struct drm_bridge *bridge,
- 	struct sn65dsi83 *ctx = bridge_to_sn65dsi83(bridge);
- 	int ret;
- 
-+	if (ctx->use_irq) {
-+		/* Disable irq */
-+		regmap_write(ctx->regmap, REG_IRQ_EN, 0x0);
-+		regmap_write(ctx->regmap, REG_IRQ_GLOBAL, 0x0);
-+	} else {
-+		/* Stop the polling task */
-+		sn65dsi83_monitor_stop(ctx);
-+	}
-+
- 	/* Put the chip in reset, pull EN line low, and assure 10ms reset low timing. */
- 	gpiod_set_value_cansleep(ctx->enable_gpio, 0);
- 	usleep_range(10000, 11000);
-@@ -673,6 +783,14 @@ static int sn65dsi83_host_attach(struct sn65dsi83 *ctx)
- 	return 0;
- }
- 
-+static irqreturn_t sn65dsi83_irq(int irq, void *data)
-+{
-+	struct sn65dsi83 *ctx = data;
-+
-+	sn65dsi83_handle_errors(ctx);
-+	return IRQ_HANDLED;
-+}
-+
- static int sn65dsi83_probe(struct i2c_client *client)
- {
- 	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-@@ -686,6 +804,8 @@ static int sn65dsi83_probe(struct i2c_client *client)
- 		return -ENOMEM;
- 
- 	ctx->dev = dev;
-+	INIT_WORK(&ctx->reset_work, sn65dsi83_reset_work);
-+	INIT_DELAYED_WORK(&ctx->monitor_work, sn65dsi83_monitor_work);
- 
- 	if (dev->of_node) {
- 		model = (enum sn65dsi83_model)(uintptr_t)
-@@ -710,6 +830,14 @@ static int sn65dsi83_probe(struct i2c_client *client)
- 	if (IS_ERR(ctx->regmap))
- 		return dev_err_probe(dev, PTR_ERR(ctx->regmap), "failed to get regmap\n");
- 
-+	if (client->irq) {
-+		ret = devm_request_threaded_irq(ctx->dev, client->irq, NULL, sn65dsi83_irq,
-+						IRQF_ONESHOT, dev_name(ctx->dev), ctx);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "failed to request irq\n");
-+		ctx->use_irq = true;
-+	}
-+
- 	dev_set_drvdata(dev, ctx);
- 	i2c_set_clientdata(client, ctx);
- 
--- 
-2.46.2
+Best regards,
+Krzysztof
 
 
