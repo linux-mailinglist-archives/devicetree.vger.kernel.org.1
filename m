@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-115120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAB499AE13C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:43:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB289AE141
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:43:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42BF2B21683
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:42:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6FF1C20B7C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C817D1B4F32;
-	Thu, 24 Oct 2024 09:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A3D1B21AD;
+	Thu, 24 Oct 2024 09:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hr76N39h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oh4w0+zL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A46B757FC;
-	Thu, 24 Oct 2024 09:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB95A17D340;
+	Thu, 24 Oct 2024 09:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729762838; cv=none; b=BbmjjVwK5JA4F9G/+f+LMpC3lFuEmj37Il4ZUO+Nnm2eIx/MIfFnTEYOUR4bmElfPvP3wGK2Eu7nKW1d7JVl8mjda72sLtLjRTGAVnc/fYg2Vs232oZsbTCAQWSBPOELPlkfsYyNPoM4m5AbezaK0mHt6wJiCmsi5z1lbWxOEr8=
+	t=1729762975; cv=none; b=NO5F2ItLb0oDFMqRDe1pTAedxZNTPBIBIEUddlDus5Vo+yEBqIdeXRk0EcZEdY/01WJgTo9I+cCxo/abLqGZ/nAxnnnoPvIbyZZAYTwzUnginkyI3wczd9cJXoe6l1pHkRwB1HmsoxaGR+g48WBeXnsU4XU0FQHbWYJ7Xh7pylU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729762838; c=relaxed/simple;
-	bh=UgaClKqL89aOXGMXlS/Dbd/YI1FCmKhio1aXFNz6EXo=;
+	s=arc-20240116; t=1729762975; c=relaxed/simple;
+	bh=pVzAa+gkBK0ucsjVKni29QO63BQ7dWJBXHd6dsdvK5w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=duUD5YLnjcxE1eUNcmNFfXGHZZigjEbu4Pju8k4vaIHxk2JypgcmptGce21hN92ReTaEsDSiSb/w0ng4BwyIASu+yTuhdOeh6RkXbdvV+5LsAgiYZdpqkuRxpwp1X22X9HlHTlYPIp17WUfW8sVGcS6F+hSD4jvIq8BA1yyAKoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hr76N39h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAEC8C4CECC;
-	Thu, 24 Oct 2024 09:40:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=q8ChLY8Cc6IAw/r3B+2reVZ1RgSBG8pxbiHtQZ+6oE8bAWJDteGrd7MUiN8QwrnaU9x0M4vcmKyO3hWJxQ1o0/7uihkOMwGSt7bognVT0Nb988jHDdd3eVpQQ/XDbZ+8uJjTzXh2hAjviSwe3jJuv6CtAG7ROQV8hcQ+AEtZM6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oh4w0+zL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BA47C4CECC;
+	Thu, 24 Oct 2024 09:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729762838;
-	bh=UgaClKqL89aOXGMXlS/Dbd/YI1FCmKhio1aXFNz6EXo=;
+	s=k20201202; t=1729762975;
+	bh=pVzAa+gkBK0ucsjVKni29QO63BQ7dWJBXHd6dsdvK5w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Hr76N39hIJnuV3Z0taZKpbHfbWAQNv0lBI1UIefW9N9FfjUfMdCU8N0dK54cU5Z3X
-	 RFvlAA22N7+W703w7T6/pZ3HLckc0cqQmklwu5W9CQEXcnXNxalp10zYUOzbbt7ZA0
-	 uWrxc6UyoSi1qkyjS7vG2sfFK3EYduIngs4h186sl4axNCSpEHBx4mJwNy5cw3uood
-	 Ms6l+2ls8aDgxOXdyAhvz7PsMwUZ+v1s7ZMvyrf5+TPl8oovULEl2KmIRw2CdKhDsU
-	 qfsPRlLkmNV+MpNfQyD0H+Lz0kfQoCgwTpxEuXD3IOUH0FtQqH27XLFsh0T4cSp/GW
-	 x7s+tmNRelB2w==
-Message-ID: <7be853cb-6a8a-457b-9e70-0c962ab0df0c@kernel.org>
-Date: Thu, 24 Oct 2024 11:40:32 +0200
+	b=Oh4w0+zL9BhrSvdmuLuW3v/pPSkjUHcCQefraJ/bbMcn5xsxVA7WvJ11BxXPQ2b0O
+	 2a6DLQ+lOrdIDZZMBKfZkZFTGVgm242oPnl8y1yMlV1HMqmmcH2Yg3BF+X3jh6eqm8
+	 am9jTYcGGvSBDTPSDKlBCAVZJ5KOWQYkgkfeTI+PEqmcTQUH5VD+M0GNrddbI3GEn+
+	 rvU+VVHnO7yYayXGVFKf9SRGK4PVn/HoqubNVyFZSSo9UJs1dwye80KZEmn1pmz1Kw
+	 vJHGI2/IhcXfdBGqdD+ZcmyrWzZ5mrY+c5DpXMj24mfd6ftTjJYaBglr9pfejAth0R
+	 UFFdNVvVPmEJw==
+Message-ID: <c7aca0b4-e539-4b32-bd1d-f46734c46448@kernel.org>
+Date: Thu, 24 Oct 2024 11:42:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: i2c: pca954x: Add timeout reset
- property
-To: "Wojciech Siudy (Nokia)" <wojciech.siudy@nokia.com>
-Cc: Rob Herring <robh@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "peda@axentia.se" <peda@axentia.se>
-References: <20241018100338.19420-1-wojciech.siudy@nokia.com>
- <20241018100338.19420-2-wojciech.siudy@nokia.com>
- <20241018135314.GA91900-robh@kernel.org>
- <DB6PR07MB35091425FE5CBCD782B465A69D412@DB6PR07MB3509.eurprd07.prod.outlook.com>
- <pkse4jc6muqwo4zrvb6auhcdv4zrt6zd5zmp4yea5usagw62o3@lgzwggtz4uv3>
- <DB6PR07MB350922B1A1458EE3D7EB3F019D4E2@DB6PR07MB3509.eurprd07.prod.outlook.com>
- <655e9afc-cfe9-4b52-8308-7ffe1011e6d5@kernel.org>
- <DB6PR07MB3509F0612D61254728D49D279D4E2@DB6PR07MB3509.eurprd07.prod.outlook.com>
-Content-Language: en-US
+Subject: Re: [PATCH 1/3] dt-bindings: mailbox: mediatek: Add apu-mailbox
+ document
+To: "Karl.Li" <karl.li@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Chungying Lu <chungying.lu@mediatek.com>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20241024092608.431581-1-karl.li@mediatek.com>
+ <20241024092608.431581-2-karl.li@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -112,18 +108,100 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <DB6PR07MB3509F0612D61254728D49D279D4E2@DB6PR07MB3509.eurprd07.prod.outlook.com>
+In-Reply-To: <20241024092608.431581-2-karl.li@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/10/2024 11:18, Wojciech Siudy (Nokia) wrote:
-> No, I reset pac954x chip in pca954x driver.
+On 24/10/2024 11:25, Karl.Li wrote:
+> From: Karl Li <karl.li@mediatek.com>
+> 
+> Add apu-mailbox dt-binding document.
 
-How useful is such context? That's the last reply here, I am not going
-to waste more time on such style.
+We see from the diff. What we see is what is APU and this hardware?
 
-All my earlier comments stay valid. You have shared reset and you want
-some hacks to avoid that problem. I gave you the solution.
+A nit, subject: drop second/last, redundant "document". The
+"dt-bindings" prefix is already stating that these are bindings so a
+document.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+> 
+> Signed-off-by: Karl Li <karl.li@mediatek.com>
+> ---
+>  .../mailbox/mediatek,apu-mailbox.yaml         | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
+> new file mode 100644
+> index 000000000000..cb4530799bef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/mediatek,apu-mailbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek APU mailbox
+
+What is APU?
+
+> +
+> +maintainers:
+> +  - Karl Li <Karl.Li@mediatek.com>
+> +
+> +description:
+> +  The MediaTek APU-Mailbox facilitates communication with the
+> +  APU microcontroller. Within the MediaTek APU subsystem, a
+> +  message passing mechanism is built on top of the mailbox system.
+> +  The mailbox only has limited space for each message. The firmware
+> +  expects the message header from the mailbox, while the message body
+> +  is passed through some fixed shared memory.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8188-apu-mailbox
+> +      - mediatek,mt8196-apu-mailbox
+> +
+> +  "#mbox-cells":
+> +    const: 1
+> +    description:
+> +      The cell describe which channel the device will use.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - "#mbox-cells"
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    apu_mailbox: mailbox@4c200000 {
+
+Drop unused label.
+
+> +      compatible = "mediatek,mt8196-apu-mailbox";
+> +      reg = <0 0x4c200000 0 0xfffff>;
+> +      interrupts = <GIC_SPI 638 IRQ_TYPE_LEVEL_HIGH 0>;
+
+4 cells? No warnings on this?
+
+> +      #mbox-cells = <1>;
+> +    };
 
 Best regards,
 Krzysztof
