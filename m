@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-115155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA349AE434
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:56:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 397679AE44B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:59:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01465B247DA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:56:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB0481F23CA2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608A11CFED9;
-	Thu, 24 Oct 2024 11:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440141D0498;
+	Thu, 24 Oct 2024 11:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="T0o6FWSD"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="mc6LQAmU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73B71A0BC4;
-	Thu, 24 Oct 2024 11:56:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF2B51CF7AE;
+	Thu, 24 Oct 2024 11:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729770966; cv=none; b=QqbMUoSkABIwHIb00X60z84dQhhkBkx4uaP10Qa/GiFKduMvhomhHr4hRIUupzqzKbrK2Whawk+p9Iq9wgOaev2Vs3NR5Xw/iAxDPavSgfNPlrku2ySHlCDtm4D4FCDsRKUWVgu3DsG8Tof/5S2S26K6zxYFJzmnqwpvn/PyDAQ=
+	t=1729771186; cv=none; b=KXJfNI7/bSAwcm7rIlklOFUZwVQQaYAf9prcgzI8eVz+epk8gRQUqILuBSm8PQgZi8Omt94IJRJ59Ef5yAARC1zwpRwfUtMGbkFd+Aw/DnDU1BVCDLUeFGm0sa9nwhU16gKgqKW69vVvDATDCIwt7ac5vJpodhCN/85Full48v8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729770966; c=relaxed/simple;
-	bh=UTOsiYOsEFpIkcBWAg2RFk3EFbVEjNespoY0SWiII5U=;
+	s=arc-20240116; t=1729771186; c=relaxed/simple;
+	bh=A4o15toB6iNyZruRWfsVqZQLU8qUvQJABUWMfPi2iSo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wk9rr8BQ770HVJkmFsJXp8EAcofw1WQVlzrVeKtY3HEefilvxfuOzfVxUd7sSmbeTv/R55B/pLNkbmxYuw1gMC7KW4b1ppPYiY2IqW5kUS8XAiuIV2M2iSIbLb7+L2Xfw9fwtpAmTZX2u7Y6av/YoPc7YULcuo65BcO4D8I2XHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=T0o6FWSD; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=PmPr9Gh9F/ofZS5/ZMZ/mq1pkxtl9P8Neph31T9BpWEmigr5e5WsSSSbHl9xvGS9L3wVVO6IFiS/vM/qUjOJyF6w5CFx7H2soJXALHlr+SDSB7znxwCKFdqXz+9q0lYVru6psncMFywt4gLFw7yqQlZPjgifUMrfZ8HeFA9xwlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mc6LQAmU; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729770961;
-	bh=UTOsiYOsEFpIkcBWAg2RFk3EFbVEjNespoY0SWiII5U=;
+	s=mail; t=1729771181;
+	bh=A4o15toB6iNyZruRWfsVqZQLU8qUvQJABUWMfPi2iSo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T0o6FWSDRctpxeOSnO61m027Xay7aeUjYT4UlaTdZzw5J6fuf7g0u8rbyYieFWn2h
-	 4eEGivcWpMAtcdBMB09BOwXnIqawHFZ5qGKT1oECDFmsXAAEfJtN9wx5u3e/HG1V9p
-	 9ynl9YxM8ZLWIHY27sgTUWjylFDieaIaqXekh0Kfyww4PzRCoRCoYDCyGX6ovP2cXR
-	 GclklolAQRujPbYRQ7I0uMN51Z6+6mtW66dlQB4kIAJS+JMALmtQh6hnmuMUVw6/8A
-	 uOTMbG48FXheVmYpz9bHzHar+EHC4wO7XDNGcyTa3WRVjMkWqEDmn21DPBaGq9/9F3
-	 a2FUNHcigaaCw==
+	b=mc6LQAmU9/FOqpGAxAMqJPgaCT6WfWqhO0NNRI0/uuYbgS4DABY1ve7VwbmJy1VCw
+	 o7ZBqLB3yYP2bfGAeqJppzRUO5hf/u1M1pByqQO9G+Cr/wb2OyircblWzIJO99at+8
+	 lLwQMHkY6TI7emfnGNKTPsmK/sFnrLfr8b1iF69PZWdeSWwmMTWrpHF2zAcig74v6S
+	 1cNXnwPHdlwL9XRvPbLauw0bjfE0U3kX1AxDr/l6VOLiQzAYouDEoXC8lDhccUkLVh
+	 DxCpo+USMyyrk4e4OFpBRPdpZjIhlGjKgkuLwAE4IGABVOnkHRTcGh5/Ca+CgFtIuq
+	 5bDpz/hrucQwg==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5B5F717E35DC;
-	Thu, 24 Oct 2024 13:56:01 +0200 (CEST)
-Message-ID: <566e4de8-b8bb-466c-83c4-217dad8ace63@collabora.com>
-Date: Thu, 24 Oct 2024 13:56:00 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 51C9017E35E0;
+	Thu, 24 Oct 2024 13:59:41 +0200 (CEST)
+Message-ID: <216c62ae-04ae-4eb9-8344-9e5de2efdd14@collabora.com>
+Date: Thu, 24 Oct 2024 13:59:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] memory: mtk-smi: mt8188: Add SMI clamp function
+Subject: Re: [PATCH 2/4] dt-bindings: memory: mediatek: Add smi-sub-common
+ property for reset
 To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
  "robh@kernel.org" <robh@kernel.org>,
  "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
@@ -72,165 +73,161 @@ Cc: "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
  "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 References: <20240821082845.11792-1-friday.yang@mediatek.com>
- <20240821082845.11792-4-friday.yang@mediatek.com>
- <25b487b7-63e0-402d-a0a2-ed9d03e82630@kernel.org>
- <cdbac20d7a49ff2fbd3e6d4f24ae441ffbe87f05.camel@mediatek.com>
+ <20240821082845.11792-3-friday.yang@mediatek.com>
+ <3b31bf46-c5c0-41c9-bb4d-3ba9f64a5d1c@kernel.org>
+ <7ca196cf1c1f57426fc6b733d01d38f073da7d94.camel@mediatek.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <cdbac20d7a49ff2fbd3e6d4f24ae441ffbe87f05.camel@mediatek.com>
+In-Reply-To: <7ca196cf1c1f57426fc6b733d01d38f073da7d94.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 24/10/24 03:29, Friday Yang (杨阳) ha scritto:
-> On Wed, 2024-08-21 at 11:00 +0200, Krzysztof Kozlowski wrote:
+Il 24/10/24 03:28, Friday Yang (杨阳) ha scritto:
+> On Wed, 2024-08-21 at 10:55 +0200, Krzysztof Kozlowski wrote:
 >>   	
 >> External email : Please do not click links or open attachments until
 >> you have verified the sender or the content.
 >>   On 21/08/2024 10:26, friday.yang wrote:
->>> In order to avoid handling glitch signal when MTCMOS on/off, SMI
->> need
->>> clamp and reset operation. Parse power reset settings for LARBs
->> which
->>> need to reset. Register genpd callback for SMI LARBs and apply
->> reset
->>> operations in the callback.
+>>> On the MediaTek platform, some SMI LARBs are directly linked to SMI
+>>> common. While some SMI LARBs are linked to SMI sub common, then SMI
+>>> sub common is linked to SMI common. Add 'mediatek,smi-sub-comm' and
+>>> 'mediatek,smi-sub-comm-in-portid' properties here. The SMI reset
+>>> driver could query which port of the SMI sub common the current
+>> LARB
+>>> is linked to through the two properties. The hardware block diagram
+>>> could be described as below.
+>>>
+>>>               SMI Common(Smart Multimedia Interface Common)
+>>>                   |
+>>>           +----------------+-------
+>>>           |                |
+>>>           |                |
+>>>           |                |
+>>>           |                |
+>>>           |                |
+>>>         larb0       SMI Sub Common
+>>>                     |      |     |
+>>>                    larb1  larb2 larb3
 >>>
 >>> Signed-off-by: friday.yang <friday.yang@mediatek.com>
 >>> ---
->>>   drivers/memory/mtk-smi.c | 148
->> ++++++++++++++++++++++++++++++++++++++-
->>>   1 file changed, 146 insertions(+), 2 deletions(-)
+>>>   .../mediatek,smi-common.yaml                  |  2 ++
+>>>   .../memory-controllers/mediatek,smi-larb.yaml | 22
+>> +++++++++++++++++++
+>>>   2 files changed, 24 insertions(+)
 >>>
->>
->> ...
->>
->>> +
->>> +static int mtk_smi_larb_parse_reset_info(struct mtk_smi_larb
->> *larb)
->>> +{
->>> +struct device_node *reset_node;
->>> +struct device *dev = larb->dev;
->>> +int ret;
->>> +
->>> +/* only larb with "resets" need to get reset setting */
->>> +reset_node = of_parse_phandle(dev->of_node, "resets", 0);
->>
->> Nope, you do not parse rasets.
-> 
-> 1.If I need to use the Linux reset control framework, 'resets' is the
-> required property.
-
-Leave that to the reset API, don't manually parse the resets phandle here,
-that's what Krzysztof was meaning.
-
-> 2.'reset-names' give the list of reset signal name strings sorted in
-> the same order as the 'resets' property. SMI driver will use 'reset-
-> names' to match reset signal names with reset specifiers.
-> 3.Not all SMI larbs need to apply reset operations, only SMI larbs
-> which may have bus glitch issues need this. Just to confirm if this
-> larb support reset function.
-> 
->>
->>> +if (!reset_node)
->>> +return 0;
->>> +of_node_put(reset_node);
->>> +
->>> +larb->rst_con = devm_reset_control_get(dev, "larb_rst");
-
-"larb" is just fine as a name: it's clear that this is a reset, as
-it's specified as `reset-names = "name"`.
-
->>
->> Where are the bindings? Why do you add undocumented properties? How
->> possible this passes dtbs_check???
->>
-> 
-> This is not the new added property in SMI larb DT node.
-> It is the reset signal name which is inclued in 'reset-names'.
-> Just like this:
-> 
-> resets = <&imgsys1_dip_nr_rst MT8188_SIM_RST_LARB15>;
-> reset-name = 'larb_rst';
-> 
-> Maybe I can add this name to the 'reset-name' property binding
-> description, like this, is this clear for you?
-> 
-> reset-name:
-
-It's "reset-names" btw.
-
->      const: larb_rst
->      description: the name of reset signal. SMI driver need to obtain 		
->   the reset controller based on this.
-> 
->>
->>> +if (IS_ERR(larb->rst_con))
->>> +return dev_err_probe(dev, PTR_ERR(larb->rst_con),
->>> +     "cannot get larb reset controller\n");
->>> +
->>> +larb->nb.notifier_call = mtk_smi_genpd_callback;
->>> +ret = dev_pm_genpd_add_notifier(dev, &larb->nb);
->>> +if (ret) {
->>> +dev_err(dev, "Failed to add genpd callback %d\n", ret);
->>> +return -EINVAL;
->>> +}
->>> +
->>> +return 0;
->>> +}
->>> +
->>>   static int mtk_smi_larb_probe(struct platform_device *pdev)
->>>   {
->>>   struct mtk_smi_larb *larb;
->>> @@ -538,6 +662,7 @@ static int mtk_smi_larb_probe(struct
->> platform_device *pdev)
->>>   if (!larb)
->>>   return -ENOMEM;
+>>> diff --git a/Documentation/devicetree/bindings/memory-
+>> controllers/mediatek,smi-common.yaml
+>> b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-
+>> common.yaml
+>>> index 2f36ac23604c..4392d349878c 100644
+>>> --- a/Documentation/devicetree/bindings/memory-
+>> controllers/mediatek,smi-common.yaml
+>>> +++ b/Documentation/devicetree/bindings/memory-
+>> controllers/mediatek,smi-common.yaml
+>>> @@ -39,6 +39,7 @@ properties:
+>>>             - mediatek,mt8186-smi-common
+>>>             - mediatek,mt8188-smi-common-vdo
+>>>             - mediatek,mt8188-smi-common-vpp
+>>> +          - mediatek,mt8188-smi-sub-common
+>>>             - mediatek,mt8192-smi-common
+>>>             - mediatek,mt8195-smi-common-vdo
+>>>             - mediatek,mt8195-smi-common-vpp
+>>> @@ -107,6 +108,7 @@ allOf:
+>>>           compatible:
+>>>             contains:
+>>>               enum:
+>>> +              - mediatek,mt8188-smi-sub-common
+>>>                 - mediatek,mt8195-smi-sub-common
+>>>       then:
+>>>         required:
+>>> diff --git a/Documentation/devicetree/bindings/memory-
+>> controllers/mediatek,smi-larb.yaml
+>> b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-
+>> larb.yaml
+>>> index 2381660b324c..5f162bb360db 100644
+>>> --- a/Documentation/devicetree/bindings/memory-
+>> controllers/mediatek,smi-larb.yaml
+>>> +++ b/Documentation/devicetree/bindings/memory-
+>> controllers/mediatek,smi-larb.yaml
+>>> @@ -69,6 +69,16 @@ properties:
+>>>       description: the hardware id of this larb. It's only required
+>> when this
+>>>         hardware id is not consecutive from its M4U point of view.
 >>>   
->>> +larb->dev = dev;
->>>   larb->larb_gen = of_device_get_match_data(dev);
->>>   larb->base = devm_platform_ioremap_resource(pdev, 0);
->>>   if (IS_ERR(larb->base))
->>> @@ -554,15 +679,29 @@ static int mtk_smi_larb_probe(struct
->> platform_device *pdev)
->>>   if (ret < 0)
->>>   return ret;
->>>   
->>> -pm_runtime_enable(dev);
->>> +/* find sub common to clamp larb for ISP software reset */
->>> +ret = mtk_smi_larb_parse_clamp_info(larb);
->>> +if (ret) {
->>> +dev_err(dev, "Failed to get clamp setting for larb\n");
->>> +goto err_pm_disable;
->>> +}
->>> +
->>> +ret = mtk_smi_larb_parse_reset_info(larb);
->>> +if (ret) {
->>> +dev_err(dev, "Failed to get power setting for larb\n");
->>> +goto err_pm_disable;
->>> +}
->>> +
->>>   platform_set_drvdata(pdev, larb);
->>>   ret = component_add(dev, &mtk_smi_larb_component_ops);
->>>   if (ret)
->>>   goto err_pm_disable;
->>> +
->>> +pm_runtime_enable(dev);
->>> +
->>>   return 0;
->>>   
->>>   err_pm_disable:
->>> -pm_runtime_disable(dev);
->>>   device_link_remove(dev, larb->smi_common_dev);
+>>> +  mediatek,smi-sub-comm:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: a phandle of smi_sub_common that the larb is
+>> linked to.
 >>
->> Label asls pm disable. Where is the pm disable?
+>> Why do you have to smi phandle properties per each node?
 >>
 > 
-> Thanks, I will fix it to 'err_link_remove'.
+> As shown in the picture from the commit message, we have multipule smi-
+> sub-common, each SMI larb may link to one of the smi-sub-common. So we
+> need the 'mediatek,smi-sub-comm' to describe which smi-sub-common the
+> larb is linked to.
+> In next version, I will add two smi-sub-common to the diagram in the
+> commit message.
 > 
+>>> +
+>>> +  mediatek,smi-sub-comm-in-portid:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    minimum: 0
+>>> +    maximum: 7
+>>> +    description: which port of smi_sub_common that the larb is
+>> linked to.
+>>
+>> Merge it into phandle.
+>>
+> 
+> Just confirm,
+> Do you mean merge these two into one property, like:
+> mediatek,smi-sub-comm = <&phandle port-id>;
+> 
+>>> +
+>>>   required:
+>>>     - compatible
+>>>     - reg
+>>> @@ -125,6 +135,18 @@ allOf:
+>>>         required:
+>>>           - mediatek,larb-id
+>>>   
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - mediatek,mt8188-smi-larb
+>>> +
+>>> +    then:
+>>> +      required:
+>>> +        - mediatek,smi-sub-comm
+>>> +        - mediatek,smi-sub-comm-in-portid
+>>> +
+>>
+>> and add it to the example (since you claim it is valid for every
+>> device).
+>>
 
-...or you can just use devm_pm_runtime_enable() instead, and not worry
-about disabling it on your own.
+It's valid only for the Local Arbiters that have a sub-common port, which anyway
+are only the ones that are used by CAMSYS if I'm not wrong....
+
+Regardless of that, not all of the mt8188-smi-larb *require* smi-sub-comm.
+
+Besides, if the larb is anyway already linked to a sub-common, can't we just grab
+that from walking back?
+Or is this property's purpose to actually add a link to a sub-common?
 
 Regards,
 Angelo
+
+> 
+> OK, I will add this to the example.
+> 
+>> Best regards,
+>> Krzysztof
+>>
+
+
 
