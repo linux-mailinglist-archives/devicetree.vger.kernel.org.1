@@ -1,187 +1,200 @@
-Return-Path: <devicetree+bounces-115191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E95DB9AE68C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 15:33:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DFC09AE699
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 15:34:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5127EB26598
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:33:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30A961C230D9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB421F80CC;
-	Thu, 24 Oct 2024 13:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A84F1E571A;
+	Thu, 24 Oct 2024 13:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e09i9gPP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B2udlmzN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49DC1DD9D1;
-	Thu, 24 Oct 2024 13:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922211E283E;
+	Thu, 24 Oct 2024 13:29:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729776449; cv=none; b=QsBfqORfchAolwuq3YlB+0SOws8n166fdV2SeI1+GenmccDf4WCTapOed+q33U6PxyWif9wTkFdRvuc3uoRGoJoQglTQ4Gb/aMPOm0Uz0IVjYZ0x5UsB2kvTpwdShtDeH0W3JTG5K1x63lEhRpHy5843GbXIv4E+e7Qw3M79ml4=
+	t=1729776553; cv=none; b=XeA8KVcn+cWamJrzlJQwfhT45G02UXtfa4frcfjJUthoOMVUJG4gRj7xVA6sPIrH6+pmqvkh8xmIldBP+qfhQ0Ao5tdxPLVSKOYdXDesSBbO3zFIKrHw8HJ5MH4ud5CrfB4eM12EgMLenqxss0u8XAW9qLTuVRBkbRvbepgRONM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729776449; c=relaxed/simple;
-	bh=37vPV7z3GHny87sgA9pvUW5mM1Cy15dDQ648OmpjBCk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y94wUfhUbsH2kCiWa/XwzecQPLGd8ty3iHhuy2AhPZLM4fVujVKpkvIVMosa+HtqevSdnWjhlwQPHF/GfOYILNBGaMA9EWnbvmdlT/kDuMnFl2oBpmK2mCQRRjOIBiaSn+LYiVL5Ow+fNUv3t0p1IIwlRQCxBZxQ1AVioD/qsI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e09i9gPP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90653C4CECC;
-	Thu, 24 Oct 2024 13:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729776449;
-	bh=37vPV7z3GHny87sgA9pvUW5mM1Cy15dDQ648OmpjBCk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e09i9gPPGGBv4VFvDk58dg3uNhL/EiQkVOMA3VkjWksThWr7w07lpIzymzNUVrwuk
-	 8cd/cTTy+TSHfNZpH5MIH4ynTrXFS/tPzGJIKiLN/eRIJ1ZxTqy/4/Iv84NxyeWNoi
-	 Ngah0VA4C8zhiCi0FZOZRSi4R2ovzZ9Bwl5v9jeIcWbRkG3ox6lIMPcJyaZws6gRvx
-	 FoTqLypRGwjhaBDxqe/3qAWM/8BighYF42fdSDPLoH/yvoSNRwoEjuzMiVdrhxaW0j
-	 A7OyRN6kuO0OhDALIzSVsCH/O+tbPEnCV6yiM3LPRLemZwKMcXgJcVlyYJnjKvdF/F
-	 hU0uLMLub8xHg==
-Message-ID: <a1528ced-930c-4e5d-91e6-6be5f5363e8d@kernel.org>
-Date: Thu, 24 Oct 2024 15:27:21 +0200
+	s=arc-20240116; t=1729776553; c=relaxed/simple;
+	bh=C0PxOWxUABIbn4bVZ3b0fcNoLUZA3VjDKbwBoXarrJU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=AZHmPpfwB8B5kMI1Rm365yWmNyxlYKfDrddqEhHsRNckFjJXd858w0x6m7EyuBuoKzNnyCSfsEKjHYHHvdhhm7B07amSqU4vRfhcV6rdp4YH0ojcudLEswIwPH7ea9deit9R/gecodT5dPtj+Z+Ndu4BaQusBTC0Rk9kTg+/tMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B2udlmzN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49O8t7gY008302;
+	Thu, 24 Oct 2024 13:29:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=uXXd+3C/en7TMKshOhY0fw
+	ftSpV48iCJnEoz8d9zI74=; b=B2udlmzNpOt176I0qeDiGvkdk/mPx9UK5rqfTg
+	k9jIlpkJMm4N2HYIyjfbXmBuyKmdegcNwTQZLUeoZquj6eSVYtU+RJy2h+uaqeZa
+	WUZqvuIhN1xEwLXPRl5khRovk4u6ia8PFN9MwBhpAnr/5/34jBcYeWHG1WylI7E9
+	QqytWh8V23Jt4BwcOaCb0KcQjhbBGrg3TGZdOIpEUGbOYHyM7dCOtYetbrjga5ny
+	OK9fiFSeAZPpiOlFyznWtjPh69pALabfETOZE0NMu0kCN1Y+Sihfogu7/m6EHJX/
+	Ku5k/1/9UGALdYHABYwSl5hk4zpulka2LhlP+mlU8Fuoa9JA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42fk52gp06-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 24 Oct 2024 13:29:06 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49ODT4mp020862
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 24 Oct 2024 13:29:04 GMT
+Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 24 Oct 2024 06:29:01 -0700
+From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Date: Thu, 24 Oct 2024 18:58:49 +0530
+Subject: [PATCH v2] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for NETC
- blocks control
-To: Wei Fang <wei.fang@nxp.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
- <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
- Frank Li <frank.li@nxp.com>,
- "christophe.leroy@csgroup.eu" <christophe.leroy@csgroup.eu>,
- "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "horms@kernel.org" <horms@kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>
-References: <20241022055223.382277-1-wei.fang@nxp.com>
- <20241022055223.382277-4-wei.fang@nxp.com>
- <xx4l4bs4iqmtgafs63ly2labvqzul2a7wkpyvxkbde257hfgs2@xgfs57rcdsk6>
- <PAXPR04MB851034FDAC4E63F1866356B4884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <f7064783-983a-44bd-a9db-fd20f4e50e33@kernel.org>
- <PAXPR04MB85101A3DFF08F8C8DD7513F8884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <PAXPR04MB85101A3DFF08F8C8DD7513F8884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20241024-enable_pcie-v2-1-e5a6f5da74e4@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAJBLGmcC/x2MQQqAIBQFrxJ/nVAiUV0lIkyf9SFMFCIQ7560m
+ MUsZjIlREaiuckU8XDi21eRbUPm1P6AYFudZCdVXxHwer+wBcMQVhoMDtqOaqJahAjH739b1lI
+ ++LUe3l0AAAA=
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <dmitry.baryshkov@linaro.org>, <manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Krishna chaitanya chundru
+	<quic_krichai@quicinc.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1729776541; l=2802;
+ i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
+ bh=C0PxOWxUABIbn4bVZ3b0fcNoLUZA3VjDKbwBoXarrJU=;
+ b=kjX7518Dz+LIvuH+cQcXXxxmPl9mP3DDLW2fsdTbh8m+eWV1GlZAW9hd9/1pORcxF4nrAx3/j
+ eb2sPyJ+PLaCmLvZFhuBrXea9DYFRLXMNSxn3h/hVcxTXvXloBHSxl8
+X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: wgG0x__IrmCstQcsGp5Iieb0KdTrZAPi
+X-Proofpoint-ORIG-GUID: wgG0x__IrmCstQcsGp5Iieb0KdTrZAPi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 phishscore=0
+ adultscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0 bulkscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410240110
 
-On 23/10/2024 12:03, Wei Fang wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 2024年10月23日 16:56
->> To: Wei Fang <wei.fang@nxp.com>
->> Cc: davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
->> pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; Vladimir Oltean <vladimir.oltean@nxp.com>; Claudiu
->> Manoil <claudiu.manoil@nxp.com>; Clark Wang <xiaoning.wang@nxp.com>;
->> Frank Li <frank.li@nxp.com>; christophe.leroy@csgroup.eu;
->> linux@armlinux.org.uk; bhelgaas@google.com; horms@kernel.org;
->> imx@lists.linux.dev; netdev@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-kernel@vger.kernel.org; linux-pci@vger.kernel.org;
->> alexander.stein@ew.tq-group.com
->> Subject: Re: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for NETC
->> blocks control
->>
->> On 23/10/2024 10:18, Wei Fang wrote:
->>>>> +maintainers:
->>>>> +  - Wei Fang <wei.fang@nxp.com>
->>>>> +  - Clark Wang <xiaoning.wang@nxp.com>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - nxp,imx95-netc-blk-ctrl
->>>>> +
->>>>> +  reg:
->>>>> +    minItems: 2
->>>>> +    maxItems: 3
->>>>
->>>> You have one device, why this is flexible? Device either has exactly
->>>> 2 or exactly 3 IO spaces, not both depending on the context.
->>>>
->>>
->>> There are three register blocks, IERB and PRB are inside NETC IP, but
->>> NETCMIX is outside NETC. There are dependencies between these three
->>> blocks, so it is better to configure them in one driver. But for other
->>> platforms like S32, it does not have NETCMIX, so NETCMIX is optional.
->>
->> But how s32 is related here? That's a different device.
->>
-> 
-> The S32 SoC also uses the NETC IP, so this YAML should be compatible with
-> S32 SoC.
+Enable PCIe1 controller and its corresponding PHY nodes on
+qcs6490-rb3g2 platform.
 
-What? How? Where is this compatible documented?
+SMMU v2 has limited SID's to assign dynamic SID's with the existing
+logic. For now, use static iommu-map table assigning unique SID's for
+each port as dynamic approach needs boarder community discussions.
 
-> Or do you mean when S32 NETC is supported, we then add restrictions
-> to the reg property for S32?
+PCIe switch connected to this board has 3 downstream ports and
+to the one of the downstream an embedded ethernet is connected.
+Assign unique SID for each downstream port and to embedded ethernet,
+and also reserve a SID for the endpoints which are going to be
+connected to the other two downstream ports.
 
-I don't know what you are creating here. That's a binding for one
-specific device (see writing bindings guideline).
+As this PCIe switch is present in this platform only update iommu-map
+in this platform only as other board variants might have different
+PCIe topology and might need different mapping.
+
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+---
+Changes in v1:
+- Rebased on linux-next
+- Update the commit text to summerize the discussions on v1.
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20240207-enable_pcie-v1-1-b684afa6371c@quicinc.com/T/
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 42 ++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 0d45662b8028..2d14bdc1ff2d 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -684,6 +684,32 @@ &mdss_edp_phy {
+ 	status = "okay";
+ };
+ 
++&pcie1 {
++	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
++
++	pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
++	pinctrl-names = "default";
++
++	iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
++		    <0x100 &apps_smmu 0x1c81 0x1>,
++		    <0x208 &apps_smmu 0x1c84 0x1>,
++		    <0x210 &apps_smmu 0x1c85 0x1>,
++		    <0x218 &apps_smmu 0x1c86 0x1>,
++		    <0x300 &apps_smmu 0x1c87 0x1>,
++		    <0x400 &apps_smmu 0x1c88 0x1>,
++		    <0x500 &apps_smmu 0x1c89 0x1>,
++		    <0x501 &apps_smmu 0x1c90 0x1>;
++
++	status = "okay";
++};
++
++&pcie1_phy {
++	vdda-phy-supply = <&vreg_l10c_0p88>;
++	vdda-pll-supply = <&vreg_l6b_1p2>;
++
++	status = "okay";
++};
++
+ &pmk8350_rtc {
+ 	status = "okay";
+ };
+@@ -819,4 +845,20 @@ lt9611_irq_pin: lt9611-irq-state {
+ 		drive-strength = <2>;
+ 		bias-disable;
+ 	};
++
++	pcie1_reset_n: pcie1-reset-n-state {
++		pins = "gpio2";
++		function = "gpio";
++		drive-strength = <16>;
++		output-low;
++		bias-disable;
++	};
++
++	pcie1_wake_n: pcie1-wake-n-state {
++		pins = "gpio3";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-up;
++	};
++
+ };
+
+---
+base-commit: 42f7652d3eb527d03665b09edac47f85fb600924
+change-id: 20241024-enable_pcie-d2ce6fead849
 
 Best regards,
-Krzysztof
+-- 
+Krishna chaitanya chundru <quic_krichai@quicinc.com>
 
 
