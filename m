@@ -1,107 +1,104 @@
-Return-Path: <devicetree+bounces-115274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D7559AEBAC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:18:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7299AEBCC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9314B22C94
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:18:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D421E1C21B2B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395CC1F4707;
-	Thu, 24 Oct 2024 16:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A071F76D3;
+	Thu, 24 Oct 2024 16:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MAapXxRR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CHJUplRq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE4A1AB6CC;
-	Thu, 24 Oct 2024 16:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F981F5836;
+	Thu, 24 Oct 2024 16:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729786700; cv=none; b=ZL7wsQYtIidUC0NUgZzwtnvtnu1E7dlK2wIKd15uCOVW9QgerTVPAfM02BGqb537+njQ+370TmnZ6mUfF1PmbAWK2zh6StJPje4UJeB5qmIbDcs0o3a1u3b3bLW6Gi+aH+BOg3PpWZg1jNCq2Wl1WAj6Ty7wbYJROmV0TTUriK4=
+	t=1729786968; cv=none; b=XrQT5Ohvi+Dm9HjtrmXrI7GSNzEamKwKWSS+UhbBwUQfnePvkgogwUxjN591kZ+HQDZ5VeNoy881dh5bM6rueSidDzz4UbkO1wkbJgfbRTlD86MhUWf5p10FJtsYASx5/Os6QK02Ej7a3bi/aF6DGAlW8IxJ+KqVFqJzSIURLU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729786700; c=relaxed/simple;
-	bh=HMi4vh0ZfmM/XHXhdHdVQKPsA6QQ26DG3ecTNW+84QA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TtO7JPPQlm4PUfM15KsMo3y4vYvT28f+2PhnKAUlV+tIQArIatucPW4SS4SBxEP5KLMIhAyiVn5/8QgNLGHnZO0wz66FKfCwgXQAyFm2sC+rl3pJdeqQmrUqAB6nnMa9YmW6jbMW1TFFPHtMBM2zjrKNSK8HzXHuVRAVgHYZyxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MAapXxRR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8773EC4CEC7;
-	Thu, 24 Oct 2024 16:18:19 +0000 (UTC)
+	s=arc-20240116; t=1729786968; c=relaxed/simple;
+	bh=CT/ak6sW4ngfE5qWRkrugewcZeLkWkxUuO+GCZnm3C4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uNovatFyM6NVKuc2GGm6HRJCuanVLLyem5uRTYradYLCFKS6migewe8Xbc6fXOAUYOArb3F/sfYDr1wWj1MbjRXfhJE4eX0yJpogQB8aziDBPD/yYAQKdtUnB66tnFW8ZiqN10GMRedUeJv4OjRHNXiKnMk/RfB59LEERq4izcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CHJUplRq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E3FAC4CEE3;
+	Thu, 24 Oct 2024 16:22:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729786699;
-	bh=HMi4vh0ZfmM/XHXhdHdVQKPsA6QQ26DG3ecTNW+84QA=;
-	h=From:To:Cc:Subject:Date:From;
-	b=MAapXxRR2TlUdIr0ODf5QSUTkEMrtS9s0rIbJEQV5gkcLjDDxAuLvxCbKYiCeRMo5
-	 yRoiODHCbLt7SAszyz0uhGUAkt2rfrUXSdGIvCrViW3Y79S4lCbRYzkq4kuHx1pzQ0
-	 pvzrs659N0OIS9CkjL42/DcMJujdaWygH6X2aW5Xm4Zid++tSh/kQtnHb4/AnupRBG
-	 Zk4j6eJLMhEZeAJDIWgTnnERb/MW0At243UUFLGnezTqffnJHv5w265kM2LQNvKIkJ
-	 6OBXL4ROcDVDwDRWwFzlS1qE3stmWBaESFlNS2SDBs4ZyJ6YYkyNkK0eWl9YLTXGpn
-	 gE2y3Q/xt9hIQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1t40XR-006W9S-Go;
-	Thu, 24 Oct 2024 17:18:17 +0100
-From: Marc Zyngier <maz@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	s=k20201202; t=1729786968;
+	bh=CT/ak6sW4ngfE5qWRkrugewcZeLkWkxUuO+GCZnm3C4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CHJUplRqLBJE7kpQ8bSz+4Pn77i24Dg6m886deusCNpzBwGcmV6vHYBIjnMqrxPV9
+	 3yUHGNxJ5mktSPYXMlKkk+XyFuapBDFOhNF/ApPh8JkKPSgq7VTLk4IlUH7AEZXrYt
+	 QWbRgjQYfip6UrTn2Ud5GtXmEpgE3BKfDARpzAMMlG8mOj9q2pqFZ/BVinA0R5qlJ+
+	 uuyTKU5d2PeMB2wolJX5Nou7QV+4HvR/rTC/ezLFiALeH6pg5xb1+KbHIwQg+Kr8ff
+	 v+Egz9eYmUOwkTIYKkhRNBj2GLSYBH+dUI2c8s9MAycApnfY3e2yIEkM1GyiFOb3Wt
+	 n7iE7is56P9EQ==
+Date: Thu, 24 Oct 2024 17:22:44 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Trevor Gamblin <tgamblin@baylibre.com>, linux-pwm@vger.kernel.org,
 	devicetree@vger.kernel.org
-Cc: Sibi Sankar <quic_sibis@quicinc.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH] arm64: dts: qcom: x1e80100: Route pcie5 MSIs to the GIC ITS
-Date: Thu, 24 Oct 2024 17:18:14 +0100
-Message-Id: <20241024161814.1827514-1-maz@kernel.org>
-X-Mailer: git-send-email 2.39.2
+Subject: Re: [PATCH] dt-bindings: pwm: adi,axi-pwmgen: Increase #pwm-cells to
+ 3
+Message-ID: <20241024-rimmed-outing-642cda1b1941@spud>
+References: <20241024102554.711689-2-u.kleine-koenig@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, quic_sibis@quicinc.com, konradybcio@kernel.org, abel.vesa@linaro.org, johan+linaro@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fZPott//B9W48TT6"
+Content-Disposition: inline
+In-Reply-To: <20241024102554.711689-2-u.kleine-koenig@baylibre.com>
 
-There is no reason to use the PCIe root port widget for MSIs for
-pcie5 while both pcie4 and pcie6a are enjoying the ITS.
 
-This is specially useful when booting the kernel at EL2, as KVM
-can then configure the ITS to have MSIs directly injected in guests
-(since this machine has a GICv4.1 implementation).
+--fZPott//B9W48TT6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Tested on a x1e001de devkit.
+On Thu, Oct 24, 2024 at 12:25:54PM +0200, Uwe Kleine-K=F6nig wrote:
+> Using 3 cells allows to pass additional flags and is the normal
+> abstraction for new PWM descriptions. There are no device trees yet to
+> adapt to this change.
+>=20
+> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
+> ---
+> Hello,
+>=20
+> missed that during review of that new binding. Just noticed that now
+> when (internally) reviewing a machine dt using that device.
+>=20
+> There is no need for driver adaptions, the pwm core handles both cases
+> just fine.
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
-Cc: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Abel Vesa <abel.vesa@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 3441d167a5cc..48f0ebd66863 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3281,6 +3281,8 @@ pcie5: pci@1c00000 {
- 			linux,pci-domain = <5>;
- 			num-lanes = <2>;
- 
-+			msi-map = <0x0 &gic_its 0xd0000 0x10000>;
-+
- 			interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.39.5
+--fZPott//B9W48TT6
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxp0VAAKCRB4tDGHoIJi
+0kYGAQD4Zai7K/vfCVwi8hscJZ9OLH/bxDxogWe1tD+ABqM2qAD/aO05DaSdd72x
+Pyivk7M34P3t6yYOmqikYvichm8P1Qk=
+=cWT7
+-----END PGP SIGNATURE-----
+
+--fZPott//B9W48TT6--
 
