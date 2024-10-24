@@ -1,100 +1,110 @@
-Return-Path: <devicetree+bounces-115161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FBDE9AE498
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 14:15:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C2C9AE4B7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 14:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FB65B2211E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:15:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A230B1C21E98
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894EC1CF5C6;
-	Thu, 24 Oct 2024 12:15:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D405F1D5AAC;
+	Thu, 24 Oct 2024 12:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jGI5GtDd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nn8YD/0e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CED158858;
-	Thu, 24 Oct 2024 12:15:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EAF18784C;
+	Thu, 24 Oct 2024 12:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729772148; cv=none; b=e0wydcMGwodoNT09VvoHHGUnX4ap/k2hItYuBJ+8Qie0EV7Tm7xhHP+wkCd2oh3ci+xeU89rZ5+IqfVB6HF5FeJm0t4bXRD/BDvNt7b3rA5Qr7IOvxrmMDzmEvsDUcr6EaTvTPuEaquFh2AcuZC85qWIAbO+/CEv89eQathI5LI=
+	t=1729772743; cv=none; b=VFi6lwzHGxMlE6uhaA1qnXRRyAzTKl2rdSL4fq/2z8uxJCBakGQjnBuGBjZ7GOg8OCNfV4fTE9vkwnvc7GTcXhreaFoHj7r8jlNBMfurR3em2AKTaTR3JjX3LRFYzusC7fW7tt+7EVUTquwQ4Uj7P1nbgpVF9K7IhyKmL4pevBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729772148; c=relaxed/simple;
-	bh=RfdjdiQYotlIUhZ8rHFChi1FV177D7ZDIqtYjtsWyw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UTwDDs4TQzeWByT35qE8ZrP4kBij0ar6qe5DQl6e6cIToFBu3JIUNU2l/ERL0evYht4AwB/V/9LzCdeFx8QzgQtxkcIbnDAYwGlnlB9LYLKRwe5FgXOU+WTzDsfXqAhVfbLV0MPa5yBfPhZJjuywSItSahHD/aeo9BBLBHrmVJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jGI5GtDd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07DF1C4CEC7;
-	Thu, 24 Oct 2024 12:15:44 +0000 (UTC)
+	s=arc-20240116; t=1729772743; c=relaxed/simple;
+	bh=IjwkqMzdt6nNRdPNA6WvCMuffGMXH/yBD4kBHf+UQKg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VGhidempU1ubdZKeBtDvCFPix0TM5nMeU2H/+F5TP9xkm77tN9v8bRdwttjX0vJMqHDZEWQyx8DrAYXJ4K9oH1TZwktNdJ3RebhQe1Pv73r20JgENJeEFLDVIAiuBrxoJ7P/AmIrkGU/wPSf8bsVidWQE5s+DLHXjRO1vVAkBmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nn8YD/0e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 238C3C4CEC7;
+	Thu, 24 Oct 2024 12:25:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729772147;
-	bh=RfdjdiQYotlIUhZ8rHFChi1FV177D7ZDIqtYjtsWyw4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jGI5GtDdhYHB3Ie0tMKjkC4qM1M44gkbtu2iUam3ftfeLWXQIsYAlAyEbfhezwBGF
-	 oSwEqq/kgAJjMioRW7ExqT0BwR7Gy3adP82hdl/AnXDyq9yY1sg2DEVJeLdx//O1Ja
-	 KNYFxsJsP2KYEOloEXiDXvludUaXRLMoPwSDn4gA20cNJNL8e6QIlwDvT0yEfouvIQ
-	 v0LDvwQdT0GXkus6JbiJAj/VOpu2LgK/06iPsl9gcEDiQpDOVep8omBKNmqfVHWc5O
-	 w8xrkfr1wg0VTJQOLomnFfQCEpCRmrKQF78OoBErm19ekPUrADWpGOHon/AP0YBQjm
-	 kO9RK3898aY3w==
-Date: Thu, 24 Oct 2024 13:15:42 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] ASoC: add Allwinner H616 audio codec support
-Message-ID: <8b902b84-6199-4149-ae40-725fdbc33a5b@sirena.org.uk>
-References: <20241023075917.186835-1-ryan@testtoast.com>
+	s=k20201202; t=1729772743;
+	bh=IjwkqMzdt6nNRdPNA6WvCMuffGMXH/yBD4kBHf+UQKg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Nn8YD/0eu/WrApoW7uoZH05/vt26Rb2afHr7m40kUPmlp4p262X7y96yUvo67KeUp
+	 UDHqrq1dWBmR3E4qJyAOzC/j+ko0Iz98s67Jwn4abEeg2gYS+q88i4gH5iiHWVA+yN
+	 wHvGanO1owD0jWlqxQhHJZVZhcx56ZiaegIrv8G6Zxkbut9ulibJAYV3RAumYvn6Ss
+	 WEG9/p56Yb/2/hT0O5C26mcJ5MeaahBMBujwpeR8wlJEVgw1xJV319UM4H0zy9ysQX
+	 KDmheu7UFseYy+LPfO3+yljIQTCPBkEXpM5Ur4X4qgXBmkQDKIIKDbsXJktraIfl6J
+	 cNX0712ZLKi9g==
+From: Will Deacon <will@kernel.org>
+To: Frank.li@nxp.com,
+	mark.rutland@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	john.g.garry@oracle.com,
+	james.clark@linaro.org,
+	mike.leach@linaro.org,
+	leo.yan@linux.dev,
+	peterz@infradead.org,
+	mingo@redhat.com,
+	acme@kernel.org,
+	namhyung@kernel.org,
+	alexander.shishkin@linux.intel.com,
+	jolsa@kernel.org,
+	irogers@google.com,
+	adrian.hunter@intel.com,
+	kan.liang@linux.intel.com,
+	Xu Yang <xu.yang_2@nxp.com>
+Cc: catalin.marinas@arm.com,
+	kernel-team@android.com,
+	Will Deacon <will@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-perf-users@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: perf: fsl-imx-ddr: Add i.MX91 compatible
+Date: Thu, 24 Oct 2024 13:25:29 +0100
+Message-Id: <172976962763.3759096.9371300350428892441.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20240924061251.3387850-1-xu.yang_2@nxp.com>
+References: <20240924061251.3387850-1-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/yr4JFcgoKNigDoS"
-Content-Disposition: inline
-In-Reply-To: <20241023075917.186835-1-ryan@testtoast.com>
-X-Cookie: Real programs don't eat cache.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Tue, 24 Sep 2024 14:12:49 +0800, Xu Yang wrote:
+> i.MX91 has a DDR Performance Monitor Unit which is compatible with i.MX93.
+> This will add a compatible for i.MX91.
+> 
+> 
 
---/yr4JFcgoKNigDoS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied first two patches to will (for-next/perf), thanks!
 
-On Wed, Oct 23, 2024 at 08:56:56PM +1300, Ryan Walklin wrote:
+[1/3] dt-bindings: perf: fsl-imx-ddr: Add i.MX91 compatible
+      https://git.kernel.org/will/c/0263a1e4f5dd
+[2/3] perf: imx_perf: add support for i.MX91 platform
+      https://git.kernel.org/will/c/44798fe136dc
 
-> V3 of this patch adding support for the Allwinner H616 (and variant)'s audio codec. Some clarification of comments, particularly regarding the clock driver changes, and a small fix for the device tree binding (apologies I forgot to re-run dt_binding_check on V2). Review comments otherwise addressed and reviews noted.
+Cheers,
+-- 
+Will
 
-Please fix your mail client to word wrap within paragraphs at something
-substantially less than 80 columns.  Doing this makes your messages much
-easier to read and reply to.
-
---/yr4JFcgoKNigDoS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcaOm0ACgkQJNaLcl1U
-h9CjYAf+NQxORVWrFlO5dvxx0/C3SPj6ZxsrXWYL8XAnrgib9VRazo1qHMG58PP4
-rqogcBGonb3iWkcRL1Nlnlme2Acw6sSYJDW3bnHtMbDT46qs+AjZlem5hOrts1RU
-lLx3mRCwgYDYOaBKCKB/Rmis8Uxc3jNyC9jlz+dd9wgDSDEkdBPafRi/29hlnAYN
-MnqOYuSIovdCbLSFtaTlY/O+aLeU0rA1vWkIrXiTU++hN2Z1SMtMCXSfXR20Ihem
-noJVhgWBwai4QZ3tEjd+0cFHrO+OHfsvq7yw/etcOGog/1CRFQUvWeVGJ47JKTOe
-DrBkGHNVC0VSG5p5PHxuzl6T565c6Q==
-=ZTjS
------END PGP SIGNATURE-----
-
---/yr4JFcgoKNigDoS--
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
 
