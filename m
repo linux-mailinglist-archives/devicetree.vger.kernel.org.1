@@ -1,151 +1,204 @@
-Return-Path: <devicetree+bounces-114967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-114968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 616219AD8E7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 02:18:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C98D9AD904
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 02:54:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C4491F23370
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 00:18:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1C1C1F227E9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 00:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAAF820EB;
-	Thu, 24 Oct 2024 00:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5418B17F7;
+	Thu, 24 Oct 2024 00:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="YDAmSUvB"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="o4K/xXRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77FBA932;
-	Thu, 24 Oct 2024 00:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF2239AD6
+	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 00:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729729110; cv=none; b=o8X/FjGyev7btrWDgu7xuoXwHPmpm9dLo1zaclRBQxhN62lla6xnUb2b/qr45Fwcdb8DXnQKK8/NUghIoDIszBOEXRT+6cBO+k0mk16e/47IUC8Jg73JBJA8oobdWgALowL5HXPTAt8dzoXi765ra1lVlfOjehuKlzrAfpTSRKY=
+	t=1729731259; cv=none; b=uuHxu9By2xE8MB/9mgdKut9PsdO9ILnhnpbW0fRrHUuKakB5JpBSPRdSEUrDC0WHGfMt41iwQ1pkVXoPPy7Wxh+IqwAWOdVkSqEIM90WQXoDE8GM5JGfQOtiIcQQDvnGfxNSFR3r3sbEbjGAZVudFL+2WB5mEozQpUwjTJcJFVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729729110; c=relaxed/simple;
-	bh=w5vZCzcJVxYOYIuk5aHJF0HK91ZHIC7EZrhJuLYnQjM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=SNquQLmkszTp+msNZX3sAqeAO/79NGVE0lj4TFX6f66+EtBlllhugVsayFjV+JWd6yc5eUGGZR8MGQU+TwuyA2mnQ70BdJHkw8cdS6Nwr8gnq2nRGmYpnMounMDXbjKVpZtAWY00uaZSnbZUnA92VzbNGR9470mPZEknYK8uKeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=YDAmSUvB; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1729729104;
-	bh=WtnDx7HtpgMGToc67LvWVCZkY6l3tklYm20D0ZsZQYU=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=YDAmSUvBbl4YtLfaeZNLAXebR7kAnuQTy9tN79E1k/JZOhQi6XQiS2LcvGdpxqdxc
-	 qCjFi/DwBiL1/H8TCjOtcAPJLLeirRckkhJn6NL/g1sC2qxbYSv3Q5jmq+Iis+V8a2
-	 Qcv7FYFwhXXiVJhX5dZq1Wk5I0mGUzRoRjsefxJHALCE2TJbpjHx7CPEblHa6Qzfxi
-	 xgXWPT/hXrUKzIiBOSkosHGsLBX8O/kYmiWHokoIiH1zTPiPNC3lywBchKq0ihIQiS
-	 IMJgA31Yv6T/oYVrMUYKWiQOo1CLfMxo1h50yEqyP2TIf0imLC1DiBJtdOvBUe6mIf
-	 TNBOQ3pxVoYbQ==
-Received: from [192.168.68.112] (ppp118-210-190-208.adl-adc-lon-bras34.tpg.internode.on.net [118.210.190.208])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 815BB6494E;
-	Thu, 24 Oct 2024 08:18:23 +0800 (AWST)
-Message-ID: <32cb6d9388fb136f7cd7ad1ab0d60d83ae387982.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 0/2] Add Meta(Facebook) Ventura BMC(AST2600)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: =?UTF-8?Q?=E5=BE=90=E5=82=91=E7=94=9F?= <jasonhell19@gmail.com>
-Cc: yang.chen@quantatw.com, jerry.lin@quantatw.com, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, patrick@stwcx.xyz,
-  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 24 Oct 2024 10:48:22 +1030
-In-Reply-To: <CAFGtgY3BJcpC=Q0cYZQa01D5BFAQTt6GEr=0_mrPGUntHYVioA@mail.gmail.com>
-References: <20241022021230.2322132-1-jasonhell19@gmail.com>
-	 <de478e5f56bb67a9babe59afa6ad53c8dd4542ee.camel@codeconstruct.com.au>
-	 <CAFGtgY3BJcpC=Q0cYZQa01D5BFAQTt6GEr=0_mrPGUntHYVioA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1729731259; c=relaxed/simple;
+	bh=w2E3F9KPincj5xXYDy/XBpkry1Zk9hO+S2Or2DOjkGI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PjBxgyr1qeA/wTszJAQUJFx1scVseMjVhvSkF+KxwB/u/WZUBcn2dBv0jd4li4o9gP3ivouFIY7O782L0q7P+wDN2YR5Q7ia/vGmSz8aBX4z8N6QSQIrlk8pgF+pkLIxsrGtR/d7/hM4CgFE8BcWzPWoFcNIWH3kZOCh/XXf12c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=o4K/xXRx; arc=none smtp.client-ip=95.215.58.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <24147551-b639-4f9f-be5e-def2570a863d@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1729731254;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JVgoIaDu3a4uA7dKxjkeP2UOxgCvLj7AFtqJcyyqZug=;
+	b=o4K/xXRxT7AUFPwBCSjwf44lTQOHULpN9EbY4czS5zwWDveZVONFNXcb/9na/RgypdxIph
+	M9TrJanBk1TnRVtHOnyIFZn475xpRdqBWaSEMV1XTB4oZ4DnH77RdDhs8KCfUTVXORbfeA
+	3oEgq4Z96J+6r5TMClGOLTyFSz5LWp8=
+Date: Thu, 24 Oct 2024 01:54:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Subject: Re: [PATCH net-next v2 10/15] net: lan969x: add PTP handler function
+To: Daniel Machon <daniel.machon@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>, horatiu.vultur@microchip.com,
+ jensemil.schulzostergaard@microchip.com,
+ Parthiban.Veerasooran@microchip.com, Raju.Lakkaraju@microchip.com,
+ UNGLinuxDriver@microchip.com, Richard Cochran <richardcochran@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, jacob.e.keller@intel.com,
+ ast@fiberby.net, maxime.chevallier@bootlin.com, horms@kernel.org
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241024-sparx5-lan969x-switch-driver-2-v2-0-a0b5fae88a0f@microchip.com>
+ <20241024-sparx5-lan969x-switch-driver-2-v2-10-a0b5fae88a0f@microchip.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20241024-sparx5-lan969x-switch-driver-2-v2-10-a0b5fae88a0f@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, 2024-10-23 at 16:32 +0800, =E5=BE=90=E5=82=91=E7=94=9F wrote:
-> Andrew Jeffery <andrew@codeconstruct.com.au> =E6=96=BC 2024=E5=B9=B410=E6=
-=9C=8823=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=882:15=E5=AF=AB=E9=81=
-=93=EF=BC=9A
-> >=20
-> > On Tue, 2024-10-22 at 10:12 +0800, Jason-Hsu wrote:
-> > > Add Linux device tree entry related to Meta(Facebook) Ventura specifi=
-c
-> > > devices connected to BMC(AST2600) SoC.
-> > >=20
-> > > Signed-off-by: Jason-Hsu <jasonhell19@gmail.com>
-> >=20
-> > What commands are you running to generate and send your patch series?
-> >=20
-> > The patches must be threaded properly.
-> >=20
-> > `git send-email` or `b4` both do what is expected without any effort
-> > required. Please consider using them, particularly b4, if you're not
-> > already.
-> >=20
-> > Andrew
->=20
-> We use `git format-patch` and `git send-email` command to generate and
-> send patch series as below, could you help to check?  Thank you.
->=20
-> git format-patch -2 --cover-letter
->=20
-> git send-email --smtp-debug --to=3Drobh@kernel.org
-> --to=3Dkrzk+dt@kernel.org --to=3Dconor+dt@kernel.org --to=3Djoel@jms.id.a=
-u
-> --to=3Dandrew@codeconstruct.com.au --to=3Dpatrick@stwcx.xyz
-> --to=3Ddevicetree@vger.kernel.org
-> --to=3Dlinux-arm-kernel@lists.infradead.org
-> --to=3Dlinux-aspeed@lists.ozlabs.org --to=3Dlinux-kernel@vger.kernel.org
-> --cc=3Dyang.chen@quantatw.com --cc=3Djerry.lin@quantatw.com *.patch
->=20
+On 23/10/2024 23:01, Daniel Machon wrote:
+> Add PTP IRQ handler for lan969x. This is required, as the PTP registers
+> are placed in two different targets on Sparx5 and lan969x. The
+> implementation is otherwise the same as on Sparx5.
+> 
+> Also, expose sparx5_get_hwtimestamp() for use by lan969x.
+> 
+> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
+> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+> ---
+>   drivers/net/ethernet/microchip/lan969x/lan969x.c   | 90 ++++++++++++++++++++++
+>   .../net/ethernet/microchip/sparx5/sparx5_main.h    |  5 ++
+>   drivers/net/ethernet/microchip/sparx5/sparx5_ptp.c |  9 +--
+>   3 files changed, 99 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/microchip/lan969x/lan969x.c b/drivers/net/ethernet/microchip/lan969x/lan969x.c
+> index 2c2b86f9144e..a3b40e09b947 100644
+> --- a/drivers/net/ethernet/microchip/lan969x/lan969x.c
+> +++ b/drivers/net/ethernet/microchip/lan969x/lan969x.c
+> @@ -201,6 +201,95 @@ static int lan969x_port_mux_set(struct sparx5 *sparx5, struct sparx5_port *port,
+>   	return 0;
+>   }
+>   
+> +static irqreturn_t lan969x_ptp_irq_handler(int irq, void *args)
+> +{
+> +	int budget = SPARX5_MAX_PTP_ID;
+> +	struct sparx5 *sparx5 = args;
+> +
+> +	while (budget--) {
+> +		struct sk_buff *skb, *skb_tmp, *skb_match = NULL;
+> +		struct skb_shared_hwtstamps shhwtstamps;
+> +		struct sparx5_port *port;
+> +		struct timespec64 ts;
+> +		unsigned long flags;
+> +		u32 val, id, txport;
+> +		u32 delay;
+> +
+> +		val = spx5_rd(sparx5, PTP_TWOSTEP_CTRL);
+> +
+> +		/* Check if a timestamp can be retrieved */
+> +		if (!(val & PTP_TWOSTEP_CTRL_PTP_VLD))
+> +			break;
+> +
+> +		WARN_ON(val & PTP_TWOSTEP_CTRL_PTP_OVFL);
+> +
+> +		if (!(val & PTP_TWOSTEP_CTRL_STAMP_TX))
+> +			continue;
+> +
+> +		/* Retrieve the ts Tx port */
+> +		txport = PTP_TWOSTEP_CTRL_STAMP_PORT_GET(val);
+> +
+> +		/* Retrieve its associated skb */
+> +		port = sparx5->ports[txport];
+> +
+> +		/* Retrieve the delay */
+> +		delay = spx5_rd(sparx5, PTP_TWOSTEP_STAMP_NSEC);
+> +		delay = PTP_TWOSTEP_STAMP_NSEC_NS_GET(delay);
+> +
+> +		/* Get next timestamp from fifo, which needs to be the
+> +		 * rx timestamp which represents the id of the frame
+> +		 */
+> +		spx5_rmw(PTP_TWOSTEP_CTRL_PTP_NXT_SET(1),
+> +			 PTP_TWOSTEP_CTRL_PTP_NXT,
+> +			 sparx5, PTP_TWOSTEP_CTRL);
+> +
+> +		val = spx5_rd(sparx5, PTP_TWOSTEP_CTRL);
+> +
+> +		/* Check if a timestamp can be retrieved */
+> +		if (!(val & PTP_TWOSTEP_CTRL_PTP_VLD))
+> +			break;
+> +
+> +		/* Read RX timestamping to get the ID */
+> +		id = spx5_rd(sparx5, PTP_TWOSTEP_STAMP_NSEC);
+> +		id <<= 8;
+> +		id |= spx5_rd(sparx5, PTP_TWOSTEP_STAMP_SUBNS);
+> +
+> +		spin_lock_irqsave(&port->tx_skbs.lock, flags);
+> +		skb_queue_walk_safe(&port->tx_skbs, skb, skb_tmp) {
+> +			if (SPARX5_SKB_CB(skb)->ts_id != id)
+> +				continue;
+> +
+> +			__skb_unlink(skb, &port->tx_skbs);
+> +			skb_match = skb;
+> +			break;
+> +		}
+> +		spin_unlock_irqrestore(&port->tx_skbs.lock, flags);
+> +
+> +		/* Next ts */
+> +		spx5_rmw(PTP_TWOSTEP_CTRL_PTP_NXT_SET(1),
+> +			 PTP_TWOSTEP_CTRL_PTP_NXT,
+> +			 sparx5, PTP_TWOSTEP_CTRL);
+> +
+> +		if (WARN_ON(!skb_match))
+> +			continue;
+> +
+> +		spin_lock(&sparx5->ptp_ts_id_lock);
+> +		sparx5->ptp_skbs--;
+> +		spin_unlock(&sparx5->ptp_ts_id_lock);
+> +
+> +		/* Get the h/w timestamp */
+> +		sparx5_get_hwtimestamp(sparx5, &ts, delay);
+> +
+> +		/* Set the timestamp in the skb */
+> +		shhwtstamps.hwtstamp = ktime_set(ts.tv_sec, ts.tv_nsec);
+> +		skb_tstamp_tx(skb_match, &shhwtstamps);
+> +
+> +		dev_kfree_skb_any(skb_match);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
 
-So from the details in the cover letter I'm guessing that you're using
-Ubuntu 22.04 LTS (Jammy). At least, Jammy ships git-2.34.1, which is
-what is mentioned in the cover letter.
+This handler looks like an absolute copy of sparx5_ptp_irq_handler()
+with the difference in registers only. Did you consider keep one
+function but substitute ptp register sets?
 
-The --thread option in the man-page for git-format-patch[1] says:
-
-   The default is --no-thread, unless the format.thread configuration is
-   set. If --thread is specified without a style, it defaults to the style
-   specified by format.thread if any, or else shallow.
-  =20
-   Beware that the default for git send-email is to thread emails itself.
-   If you want git format-patch to take care of threading, you will want
-   to ensure that threading is disabled for git send-email.
-
-[1]: https://manpages.ubuntu.com/manpages/jammy/en/man1/git-format-patch.1.=
-html
-
-The --thread option in the man-page for git-send-email[2] says:
-
-   If disabled with "--no-thread", those headers will not be added (unless
-   specified with --in-reply-to). Default is the value of the
-   sendemail.thread configuration value; if that is unspecified, default
-   to --thread.
-
-[2]: https://manpages.ubuntu.com/manpages/jammy/en/man1/git-send-email.1.ht=
-ml
-
-Since you're not supplying any thread-related arguments in either case,
-I wonder if you have thread values set in your git config. What's the
-output of the following two commands for you?
-
-   $ git config --show-scope --get format.thread
-   $ git config --show-scope --get sendemail.thread
-
-Regardless, you may want to try passing `--thread` in your `git send-
-email` invocation.
-
-Finally, please pass `-v $X` to `git format-patch` to version your
-series (the value for X is how many times you've sent revisions of the
-series). Currently I count 3 distinct attempts, so next time you send
-out the patches you should pass `-v 4`. However, the b4 tool is helpful
-here, as it largely automates the process for you.
-
-Andrew
+>   static const struct sparx5_regs lan969x_regs = {
+>   	.tsize = lan969x_tsize,
+>   	.gaddr = lan969x_gaddr,
+> @@ -242,6 +331,7 @@ static const struct sparx5_ops lan969x_ops = {
+>   	.get_hsch_max_group_rate = &lan969x_get_hsch_max_group_rate,
+>   	.get_sdlb_group          = &lan969x_get_sdlb_group,
+>   	.set_port_mux            = &lan969x_port_mux_set,
+> +	.ptp_irq_handler         = &lan969x_ptp_irq_handler,
+>   };
+>   
 
