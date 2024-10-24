@@ -1,182 +1,116 @@
-Return-Path: <devicetree+bounces-115323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BCA9AEDD5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:22:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67FF39AEDE1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:24:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA28A1C231D7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 17:22:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99F731C21C05
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 17:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953561FC7F0;
-	Thu, 24 Oct 2024 17:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC901FBF4A;
+	Thu, 24 Oct 2024 17:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JMioIBhJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ngUkUrTJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603891FC7E7
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59CC1F76BF;
+	Thu, 24 Oct 2024 17:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729790538; cv=none; b=cNm/gncjl9TUTg8w2p0Zow/289JOx2tWo7j6hccvf2p1FmVtm5A838plSUfwGKFDUrJWcHJUc+OKcI7Kxve1OGNy+Q3cloPokkI35wcfdK4XTMGzeHINE1T0SL3G1U9immIuCs3uSsNgApTaot6cPJji0BN8tB9Vm/9ejJWOBmw=
+	t=1729790671; cv=none; b=NMtU1aSgzTOY2ZcEkitH3gZyurz3zUgcU7Ofjfhea/c/1o70jZIOvPYPuVK+XENJzUO+f5drsqw0COmKtoN4KulYN86uPnKWmPgwZ3dvKe4iB+R1+kXRTg6qmrrz8ErJe3k8169zHQOIMNWO/uTEebpabTZlE2pOUOvCkjRqslM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729790538; c=relaxed/simple;
-	bh=xvh0qobSKEeDTd9UXVzqjHTneCS4N9iZojwKHXERKN4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f7LQfQJEDBXW3g2kCAe3q9lRDSU3t+rV6shh82ZMBpSjoHl5kiLkQBgz/SBkNA35OV8ANLetMDeqkVCZ3iD79mbWncMh3V1QB08ESo0ttAYuS9lCoLcd2RUXtkhmpGZFq9azZH5FPk2u/ZWz5vT0Fh35dMyjvOWtFJXRciHULCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JMioIBhJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49O99TfX018657
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:22:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xmVEUo/xABf7aaYqxBjxjdmRkGZGXBcqXrb3toHDVYI=; b=JMioIBhJuSq3cCQI
-	HoCmlzvjHhLaERswC8WRy2RrY6SdtQ/f+CH7XhBWAYRMWLCyXHFVjuRznquDJ5OO
-	gbneUnpZMCUlw4BiewSiT9G2aODo2jwYiTepo0sg5bArwlaXoCqC/Bri863KUj4E
-	YA2wqAQ2AGbXur4eeSdSchPPd2qcgmEnU9Dgz0NAA+tnjh7FU4rYenCp0FgcCwTz
-	fSnqkZdH9RWegeVtrdpa876Befn/YWgopalZLRMLoIHQe6pt4On40E4Xjq5u7+PU
-	aInmLGWr+XgYuDSa39KCq1IYZr194g+CQBUuDLa78VFfSeYjk6otbjmO4Tc3AIH3
-	ppiA4A==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em66efqs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:22:15 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6cbe944435fso1408746d6.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 10:22:15 -0700 (PDT)
+	s=arc-20240116; t=1729790671; c=relaxed/simple;
+	bh=dEJuKtDgLrZKGnOu7p+sQEMzDRm0HmrS4w7BZ0eERdw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AUC4VdBdP5c2NL0Sc+wr2LFmUJzJvSg+56OcFwJOrxmMcoG/M2EkA8yjY9JwbmoqgevYFg57//ZUJcDx9S2577BHYlxIy4yNsLPISEdrS9nSOVAE9S4x4MTtGHJNfbNOuC1lWcY0iW7qbvZV11SaWYudMbwwzkTRhzpix7Q+6aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ngUkUrTJ; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4315e9e9642so11380445e9.0;
+        Thu, 24 Oct 2024 10:24:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729790668; x=1730395468; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xu7sebsROVup0TRKJm2VXXgM9dVMUDOYoyKG4aG3nDc=;
+        b=ngUkUrTJEBCBaNq9Z4aoFToOyC+Aquh3JjZP7UNP8gtiDT0dhGGXw6Dg8RTWB6jsgN
+         m9cIqd1XBtgc/MUa1vxdd6Gi/3pz/5qi4bGv5GlWa7YEikRQ7ro+A3zhVlAmRLsyF6ii
+         NrmQlyOz5Db4EeepP3UQN7RGxsCheozDJbFJ7setnT0eKzA0qeEseqS4qraRNZzPGQwm
+         ZmVr6KOMJvohOqnPakpxMjxQRmNEeVKfE8roSYfePZlB1hBTkKM0y8MmoxR4NFzIzpX6
+         YZTzOLJQEpHUMFQRKJLVoAOes+MMU/dMl0gV8/XCPGD0N9ghmggE0cnSSJw0WtCLb/yL
+         WwSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729790534; x=1730395334;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xmVEUo/xABf7aaYqxBjxjdmRkGZGXBcqXrb3toHDVYI=;
-        b=WUcGJnb13eKtRO4yX08eywv2BUpAUlf/jqQ0/Ay37MVfQbL28BurJ8bDGfmqa4eDKu
-         7t+kb57KKgzx8KNN928JhNHqob6ZD4KoC5unXMHfEINmILdEi/Nha9nEqfWJZ2WmetTW
-         jl9UoVFZecLhEBFwby7w1fjPfOB9PypP+mU4cc3VArTXGRAPWp1FMO+bB7jhFUkYEqh6
-         LUo9z6+AU3f5Tu6sMKBUIkjHShYPdE0XnvdJNZknHVjlSS2p/dGvhH2kUZEAgm53+EvT
-         hv6Uu4rcQA+WvllHl/NGvZQpS39pQfRcSTADEvdvya0tWmI2VmpELFuuM2Gy4rNHZdoz
-         okaA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8nMemuXJyFtEQ/LW9ZxO1fj1HcXnM2kb6GxwyTW/AwLWsq/nvq+X4izSLyxaRjdusLumFD8YxdOyw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeZXiT5iIUYnpqBygP6Jh+MojbYD8D9crYt1zNhFf4/GJvc/vD
-	uJie9e8AhSvYc6asR570RSoyh3DgaEzS3pef7WDxN/6vRJSoLLZzLazA/BA0DWyDZN1MF1SPE4k
-	jE3GpcDrJkX12yahqssVjFw1FD93JSR4vryNCjNKpPFB9w84635fp99xuD1tx
-X-Received: by 2002:ad4:5d67:0:b0:6bf:6d90:c084 with SMTP id 6a1803df08f44-6ce3413aee0mr45567556d6.3.1729790533894;
-        Thu, 24 Oct 2024 10:22:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGmDElvF4WY48ZSYmmi6ZIlDkPoW8/hW61PfyViulWHB9Uu9cc4VmhgeqWWdIDvsMeYtmFOgg==
-X-Received: by 2002:ad4:5d67:0:b0:6bf:6d90:c084 with SMTP id 6a1803df08f44-6ce3413aee0mr45567156d6.3.1729790533451;
-        Thu, 24 Oct 2024 10:22:13 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a912d63b1sm645658266b.42.2024.10.24.10.22.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Oct 2024 10:22:13 -0700 (PDT)
-Message-ID: <3ca1f7e8-1204-4898-9e7e-cb6423c122cc@oss.qualcomm.com>
-Date: Thu, 24 Oct 2024 19:22:10 +0200
+        d=1e100.net; s=20230601; t=1729790668; x=1730395468;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Xu7sebsROVup0TRKJm2VXXgM9dVMUDOYoyKG4aG3nDc=;
+        b=ZPJehXpj/bl94uwxpYkxeAmrIEto8gWA5EaEz8xOjSdYo+V2QeZVl7aew588vosj2t
+         dJFDcfXFEpC4HcmZJVHFMxiSSjhVteqLN2nkV8uniDQ+QjlQPSYQ559f8EXP65pS6JAq
+         m5o3WjsFYe8aRR+JQzkHFRVf/Yax0PxKSRvdLaXtNDdhIgwMGomeDdNWp7ffIfOcefgN
+         I8rLIDsdRgZzJ1I6UkN2Bt6AM9cbEOv7CGE+vjFiTAAyKebTBiANZnxNWbt5ERweSVey
+         SAc+gggyP+ddLPwMXVllp5rxqtbqJ9nZqaLELl62LqRZpmLMd7Yvw6L4thhh0QP7ZKXc
+         ViqA==
+X-Forwarded-Encrypted: i=1; AJvYcCU/6vjh7jTg5MK82NcT6xCmSWnyvpun3xTlfffKe4sU3yYJ2Psrzk2xJtSHJ0VGkUIzXJ35WACgPP8NthM=@vger.kernel.org, AJvYcCWYNEwJZLsMf2bvbBzswRQXaKkf8A6utl9PNvz7rPZHgguxWiYUAUYdT5BUrzHsHjEtEdGctzxqcra0FIg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYHpfqkNALXsUlOIxrILzrqLs8UcSc4FSyvrRbQV98GaeDzfs6
+	Jrsrj8vZHXMqevsJcGs+OuvKozkUkFNt6Kc3V5i+L5kUfA2w03dr
+X-Google-Smtp-Source: AGHT+IEYGWS7Oi+15sqnj0WAp2ZqaTN1sw/aFMWHdzRLOlvCWbQabJsRr1Lvks2WdDUtG0gbXC7PiA==
+X-Received: by 2002:a05:600c:3b16:b0:431:5194:1687 with SMTP id 5b1f17b1804b1-4318415c403mr53753155e9.18.1729790667797;
+        Thu, 24 Oct 2024 10:24:27 -0700 (PDT)
+Received: from localhost (p200300e41f26ec00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f26:ec00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43186c0e132sm52774745e9.34.2024.10.24.10.24.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Oct 2024 10:24:27 -0700 (PDT)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: Add SDMMC sdr104-offsets for Tegra X1
+Date: Thu, 24 Oct 2024 19:24:22 +0200
+Message-ID: <172979060256.717947.9252972783310396692.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20240923-sdr104-v1-1-ec7b3394f880@tecnico.ulisboa.pt>
+References: <20240923-sdr104-v1-1-ec7b3394f880@tecnico.ulisboa.pt>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] dts: qcom: Introduce SM8750 device trees
-To: "Rob Herring (Arm)" <robh@kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>
-Cc: Arnd Bergmann <arnd@arndb.de>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Will Deacon <will@kernel.org>
-References: <20241021232114.2636083-1-quic_molvera@quicinc.com>
- <172978739477.623395.5604249801475913676.robh@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <172978739477.623395.5604249801475913676.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: lyryOg_ybuMfU70d4nnl8IORVZc5s3oZ
-X-Proofpoint-GUID: lyryOg_ybuMfU70d4nnl8IORVZc5s3oZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 phishscore=0 impostorscore=0 malwarescore=0 mlxlogscore=606
- suspectscore=0 clxscore=1015 mlxscore=0 bulkscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410240143
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 24.10.2024 6:33 PM, Rob Herring (Arm) wrote:
+From: Thierry Reding <treding@nvidia.com>
+
+
+On Mon, 23 Sep 2024 19:24:51 +0100, Diogo Ivo wrote:
+> Define the sdr104-specific offsets, preventing the driver from
+> defaulting to the 1.8V offsets, which cause the system to hang during
+> the SDR104 mode calibration.
 > 
-> On Mon, 21 Oct 2024 16:21:09 -0700, Melody Olvera wrote:
->> This series adds the initial device tree support for the SM8750 SoCs
->> needed to boot to shell. This specifically adds support for clocks,
->> pinctrl, rpmhpd, regulators, interconnects, and SoC and board
->> compatibles.
->>
-
-[...]
-
-> New warnings running 'make CHECK_DTBS=y qcom/sm8750-mtp.dtb qcom/sm8750-qrd.dtb' for 20241021232114.2636083-1-quic_molvera@quicinc.com:
+> The zeroing of these values was chosen since it restores functionality
+> and no better suggestions are provided by the Tegra X1 TRM.
 > 
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: domain-idle-states: cluster-sleep-0:compatible:0: 'domain-idle-state' was expected
-> 	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: domain-idle-states: cluster-sleep-0:compatible:0: 'domain-idle-state' was expected
-> 	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
+> [...]
 
-These were recently dropped across the board, please drop them
-here as well.
+Applied, thanks!
 
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: pmic@7: 'eusb2-repeater@fd00' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
-> 	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: pmic@7: 'eusb2-repeater@fd00' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+[1/1] arm64: tegra: Add SDMMC sdr104-offsets for Tegra X1
+      commit: 87b90082179daf87969ad9ff44032acc59d9086a
 
-phy@ (as seen in x1e80100-pmics.dtsi)
-
-> 	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: regulators-0: Unevaluated properties are not allowed ('vdd-l1-supply', 'vdd-l10-supply', 'vdd-l4-supply' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: regulators-0: Unevaluated properties are not allowed ('vdd-l1-supply', 'vdd-l10-supply', 'vdd-l4-supply' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: regulators-4: Unevaluated properties are not allowed ('vdd-s7-supply', 'vdd-s8-supply' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: regulators-4: Unevaluated properties are not allowed ('vdd-s7-supply', 'vdd-s8-supply' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-
-These need bindings updates
-
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: 'power-domains' is a required property
-> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-
-This I'll address when reviewing the dt
-
-[...] (skipping a bunch of duplicates)
-
-> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: timer@16800000: #size-cells: 1 was expected
-> 	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer_mmio.yaml#
-> arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: timer@16800000: #size-cells: 1 was expected
-> 	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer_mmio.yaml#
-
-#address-cells <2> is fine, #size-cells must be 1, apparently
-
-Konrad
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
 
