@@ -1,228 +1,167 @@
-Return-Path: <devicetree+bounces-115098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A189ADF02
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:21:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFFB29ADF06
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:21:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A55D828A54E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:21:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 626A41F2221F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872271AF0A7;
-	Thu, 24 Oct 2024 08:19:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="dJLlWfvX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 963571B2192;
+	Thu, 24 Oct 2024 08:20:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011D21AB6CC
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 08:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 759CE1B218D;
+	Thu, 24 Oct 2024 08:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729757991; cv=none; b=hBCNsbOAy8X+11+wZ6UF0Ei1+bKVqTwrgYqUUUF5DnORbEyUaQ6zLEuq67mi75Qb+61udoUshNvEitByY8BlEY5XpqF+l3ipaY3wzE3+gMSw2z0iR3ufxmalNNPQNq/2y2O7WlbOoFNVNtujhYmRBDgBPfDkOgwY/Ju0eIsACPo=
+	t=1729758017; cv=none; b=mznVoqko3hHPQKX0qqmCsep8NAkaSJFBUdD2uSno8+E/qYDZQVC6b5lg0s5V+NX5teIOUgu+BLpToZE7dAuzOu8EldLoIpywOflyIqDys7YLMzHr37X9uY1w3xNvWJfWZITTY6CHIwrs/BI+gl4H8ipM6gh5a1dPVv8Gov9A7Ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729757991; c=relaxed/simple;
-	bh=jJpoDcZzcf17R/3zdN17SftmPrsJXoXPfK84W/H5pz4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bzjGMwGeGnOeoKlkOtepDC3DDPnKWtbhslDHY1r2mwX0dFJCgUsl87mdb0z9NHso/+cZ9TpvtbDxmvJOgQX7s0VIqh4FKnAGnDwKgB8YZD3TyPgpHfZ3xodtjlW06UXYaNCBP7s9ULGMytPQJspmtFrHph5ezEQLRkMSeJ79NC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=dJLlWfvX; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5cb6b2b7127so741968a12.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 01:19:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729757987; x=1730362787; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qs/aKFg3NFl0djqnSQfP+JloM/IzfO1teCS8RmqnkF8=;
-        b=dJLlWfvXuhEKV0cSSRuOIDOdoPHHuGdzxu9B+6jm46B80TYgrX0h+hQXfhixIuYYJJ
-         qgRVvlJe9svZ9oVRdWbRIU+Aa8Vuzbc6pyuaHb1jZMRsU6OJuFzR71W2WLh+ldFLceR4
-         t3MNYG1W2MeyAPsWN+MygfzO35/uqVg35n88qQj0XiFSpkhodFEdEW+wS1aoJ4e9PKT5
-         P1KwDcuv9JY8by1A9yhl81vR41rtf7tIwcGFwruUU0wK4x71dstoOlbflynVKi5wUSyh
-         QGInFRNWIr6UD77kjZCGo491No9yzObgGnx3Skl/+ep2sXxrExWdfGgeEBbO/54KIoZv
-         yuvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729757987; x=1730362787;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Qs/aKFg3NFl0djqnSQfP+JloM/IzfO1teCS8RmqnkF8=;
-        b=S9LP1pL9iX4TY0Jp2y43bAdDwE29xx/PTXeU48C5U5LWBrzEPwAenqaVlX8JuHMVQw
-         vkTn8LE2fm4STwYYyJI06EwsBZe4MKmddyjaVqPAjZqGqN9iuAA2urHaT3BrMfMNX/RN
-         ApSjy5slSYSWCtuXYu+ztp66UP5LPwqAKHgdJwJZC0Q33jiQPcue4GH6A+pZZAdeLrUg
-         1GBZmh8JnoMhU00N3XK7OEkpdYMaSfguu0H3d2hpopcR87ozC4ZzVFJbu1TRLPKk70ei
-         gZW4sNf2p976Uag9Di4kyzEw03LeVJlLPrAQKp0uwGrg8p8qkASCf5xisM3oUmcKI0FH
-         3C0w==
-X-Forwarded-Encrypted: i=1; AJvYcCVldrOjLr7si/W5Fp1PwMrqwFi7oHRSG6LHTn5UAkyMfN8Gl7wcINWOuHlvXnsfM05r660bcZevab/Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3PZlWdfuCvQ0HjB3vlAthET1y2q0NVNEDlAj30WC+Nux16Q0Y
-	WX+7XVYzq/+vmBgc3fT20eLOzzGwByLvR4Gqa9Di11EzI4hr0XPsmkod6aFPzNLMb2T+HmagILs
-	Vaw87eEE3/JNBUiEGlF5CxZzCFZZ1TQeZiRXEYQ==
-X-Google-Smtp-Source: AGHT+IEUz97/zglX4GUT3Pds+XQ9vhw/84CeXDgQkpGMRP1blc6osQow8h9eQWkAj9ZNoShkMCwOCiaT+o5nm4LK8oY=
-X-Received: by 2002:a17:907:3206:b0:a99:fb56:39cc with SMTP id
- a640c23a62f3a-a9abf8d2614mr562372866b.38.1729757987320; Thu, 24 Oct 2024
- 01:19:47 -0700 (PDT)
+	s=arc-20240116; t=1729758017; c=relaxed/simple;
+	bh=ZQ7iMwcbG2odFTxrjx2XElV786+NxUKNraz8S8vH8oI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GmAinqi1ZADLrCb1V3iJ6meWi1yu8onWI4l7wiV/c9/JipLEo0ZpQgsCertRpZmei3iiAsDzp2FMcXrEoa5VIg4Sps8Z8ztUNnsnBCKh6Pi2kVMJFey5yjTWJXpgib4iImTog3nX7LaZnVsYVYrpHN9tdE21nTOeyeWHACJEdow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B75FDC4CEC7;
+	Thu, 24 Oct 2024 08:20:13 +0000 (UTC)
+Message-ID: <4d9e340e-2ae7-495b-8623-0d10398e1c3d@xs4all.nl>
+Date: Thu, 24 Oct 2024 10:20:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241023-ad7380-add-adaq4380-4-support-v2-0-d55faea3bedf@baylibre.com>
- <20241023-ad7380-add-adaq4380-4-support-v2-1-d55faea3bedf@baylibre.com> <7uih5kvpy6i4ggq5o7eudzczbicopbdnmbtkyprfperkkqgsmt@42q6bncox3ml>
-In-Reply-To: <7uih5kvpy6i4ggq5o7eudzczbicopbdnmbtkyprfperkkqgsmt@42q6bncox3ml>
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Thu, 24 Oct 2024 10:19:32 +0200
-Message-ID: <CAEHHSvY3QWkjDo6LdyFg-X+UnyY-cJ6kAFUYP-ZWBqgHoKxmkQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: iio: adc: ad7380: add adaq4370-4 and
- adaq4380-4 compatible parts
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] media: raspberrypi: Add support for RP1-CFE
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Naushir Patuck
+ <naush@raspberrypi.com>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>
+References: <20241003-rp1-cfe-v6-0-d6762edd98a8@ideasonboard.com>
+ <20241003-rp1-cfe-v6-3-d6762edd98a8@ideasonboard.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20241003-rp1-cfe-v6-3-d6762edd98a8@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Le jeu. 24 oct. 2024 =C3=A0 09:29, Krzysztof Kozlowski <krzk@kernel.org> a =
-=C3=A9crit :
->
-> On Wed, Oct 23, 2024 at 11:19:33AM +0200, Julien Stephan wrote:
-> > +  vs-p-supply:
-> > +    description:
-> > +      Amplifiers positive supply.
-> > +
-> > +  vs-n-supply:
-> > +    description:
-> > +      Amplifiers negative supply.
-> > +
-> > +  ldo-supply:
-> > +    description:
-> > +      LDO supply. Connect to vs-p-supply or a 3.6 to 5.5 V supply.
-> >
-> >    aina-supply:
-> >      description:
-> > @@ -97,12 +115,46 @@ properties:
-> >        specify the ALERT interrupt.
-> >      maxItems: 1
-> >
-> > +  '#address-cells':
->
-> If there is going to be new version/resend, then keep consistent quotes:
-> " or '.
->
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> >    - vcc-supply
-> >    - vlogic-supply
-> >
-> > +patternProperties:
-> > +  "^channel@([0-3])$":
->
-> () are not necessary
->
-> > +    $ref: adc.yaml
-> > +    type: object
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description:
-> > +          The channel number. From 0 to 3 corresponding to channels A,=
-B,C,D
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 3
->
-> No improvements, no response to comment.
+Hi Tomi,
 
-Hi Krzysztof,
+I know this driver is already merged, but while checking for drivers that use
+q->max_num_buffers I stumbled on this cfe code:
 
-I am sorry, it got lost during my rebase. It was planned to be on the
-v2 (even added it to the changelog in the cover letter).
-Thank you for noticing it.  I sent a v3 with all the changes.
+<snip>
 
-Cheers
-Julien
->
-> > +
-> > +      adi,gain-milli:
-> > +        description:
-> > +          The hardware gain applied to the ADC input (in milli units).
-> > +          If not present, default to 1000 (no actual gain applied).
-> > +          Refer to the typical connection diagrams section of the data=
-sheet for
-> > +          pin wiring.
-> > +        $ref: /schemas/types.yaml#/definitions/uint16
-> > +        enum: [300, 600, 1000, 1600]
-> > +        default: 1000
-> > +
-> > +    required:
-> > +      - reg
-> > +
-> > +    additionalProperties: false
-> > +
-> >  unevaluatedProperties: false
-> >
-> >  allOf:
-> > @@ -140,6 +192,7 @@ allOf:
-> >          aind-supply: false
-> >
-> >    # ad7380-4 uses refin-supply as external reference.
-> > +  # adaq devices use internal reference only, derived from refin-suppl=
-y
-> >    # All other chips from ad738x family use refio as optional external =
-reference.
-> >    # When refio-supply is omitted, internal reference is used.
-> >    - if:
-> > @@ -147,6 +200,8 @@ allOf:
-> >          compatible:
-> >            enum:
-> >              - adi,ad7380-4
-> > +            - adi,adaq4370-4
-> > +            - adi,adaq4380-4
-> >      then:
-> >        properties:
-> >          refio-supply: false
-> > @@ -156,6 +211,27 @@ allOf:
-> >        properties:
-> >          refin-supply: false
-> >
-> > +  # adaq devices need more supplies and using channel to declare gain =
-property
-> > +  # only applies to adaq devices
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - adi,adaq4370-4
-> > +            - adi,adaq4380-4
-> > +    then:
-> > +      required:
-> > +        - vs-p-supply
-> > +        - vs-n-supply
-> > +        - ldo-supply
-> > +    else:
-> > +      properties:
-> > +        vs-p-supply: false
-> > +        vs-n-supply: false
-> > +        ldo-supply: false
-> > +      patternProperties:
-> > +        "^channel@([0-3])$": false
->
-> () are not necessary
->
-> Best regards,
-> Krzysztof
->
+> +/*
+> + * vb2 ops
+> + */
+> +
+> +static int cfe_queue_setup(struct vb2_queue *vq, unsigned int *nbuffers,
+> +			   unsigned int *nplanes, unsigned int sizes[],
+> +			   struct device *alloc_devs[])
+> +{
+> +	struct cfe_node *node = vb2_get_drv_priv(vq);
+> +	struct cfe_device *cfe = node->cfe;
+> +	unsigned int size = is_image_node(node) ?
+> +				    node->vid_fmt.fmt.pix.sizeimage :
+> +				    node->meta_fmt.fmt.meta.buffersize;
+> +
+> +	cfe_dbg(cfe, "%s: [%s] type:%u\n", __func__, node_desc[node->id].name,
+> +		node->buffer_queue.type);
+> +
+> +	if (vq->max_num_buffers + *nbuffers < 3)
+> +		*nbuffers = 3 - vq->max_num_buffers;
+
+This makes no sense: max_num_buffers is 32, unless explicitly set when vb2_queue_init
+is called. So 32 + *nbuffers is never < 3.
+
+If the idea is that at least 3 buffers should be allocated by REQBUFS, then set
+q->min_reqbufs_allocation = 3; before calling vb2_queue_init and vb2 will handle this
+for you.
+
+Drivers shouldn't modify *nbuffers, except in very rare circumstances, especially
+since the code is almost always wrong.
+
+Regards,
+
+	Hans
+
+> +
+> +	if (*nplanes) {
+> +		if (sizes[0] < size) {
+> +			cfe_err(cfe, "sizes[0] %i < size %u\n", sizes[0], size);
+> +			return -EINVAL;
+> +		}
+> +		size = sizes[0];
+> +	}
+> +
+> +	*nplanes = 1;
+> +	sizes[0] = size;
+> +
+> +	return 0;
+> +}
+
 
