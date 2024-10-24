@@ -1,111 +1,110 @@
-Return-Path: <devicetree+bounces-115278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3C39AEC0D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:28:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C6E9AEC14
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:30:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5208D283FEC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:28:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F31B1F2309E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 786101F81A1;
-	Thu, 24 Oct 2024 16:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9D31F80D3;
+	Thu, 24 Oct 2024 16:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uOZQKW+D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HFVTXZV4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2EA1F80BB;
-	Thu, 24 Oct 2024 16:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837E11D89F8;
+	Thu, 24 Oct 2024 16:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729787305; cv=none; b=OePJqKcFoxW5BprZW4dU18oWDbbQpHD/iVU93tdYbuaranIQ8FYhrCp/ySi747Il31vOMHGwD7pRZ9Td8njngp8McgvcUWM/I9PtYcEF3AGeU3asYUqUivdUDV1xug1WbIxDruwOOxHB4AlSIBbksNPV3G31vtH83aO+GXFNcI4=
+	t=1729787411; cv=none; b=g0gf5tIr3czv3MKgtkxHGhd1ZXre+fCOK5lRFrvhcxwugZuOmYgFlwoyensGDuL/x6yhmlMU+lhuqyrXPyiIrNnneIllnazk/3dHm4ixH5ltKHm4aVYKBzlccUrkjEHbrCWsH8ONVIzZbgGPYIDvHFtyMPggw570Gy5aLIvtokI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729787305; c=relaxed/simple;
-	bh=iccs7MTZ8uiIvo5H+mx81MX5JWht/rdEqtOJLP2xIk8=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LJCDuY9gC/LYys/sWio1PWozhGOCscAf5ErY2b095iXATqHDGvreOACWs94FuHFl6XUzO33gag9IEEa94cSYScXMe96c1u6McbCWbMzrkorqqKBDkizwfzlcer3cjicqhA0REuoJyyYa8qvUlbBIoZ3brl9NIXkj+/QsrXJF/Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uOZQKW+D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18894C4CEC7;
-	Thu, 24 Oct 2024 16:28:25 +0000 (UTC)
+	s=arc-20240116; t=1729787411; c=relaxed/simple;
+	bh=baCRscFJcyoIeJGjDhH7YHeA+ksnEpgYG35/hHxCOto=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CxQAjsWY86kN+apmIHbRocKoWgARms7cObbwjR3ZVN9TKIwodXD6R3TkSZPW1xBah1LjSrn30faGbLdaRiqelGPLrn2xnvJ/V/R6UjY+8rqh7sgCDh+XJmt0GwipfgpX2Xaee//0i2t3XC0CVoyRAzOBLYeFOk+nkcPQ/9bKoNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HFVTXZV4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5748CC4CEC7;
+	Thu, 24 Oct 2024 16:30:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729787305;
-	bh=iccs7MTZ8uiIvo5H+mx81MX5JWht/rdEqtOJLP2xIk8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=uOZQKW+Dy9h1PgKF6D4GlmqjeVTeF42Y/MHO2+myM1v9v1pW5oRr9oqfZNx1Lmw+O
-	 ACNe5cQB36FOGya4cTgc/coYhCqRU2LMzGT6YWNUideRAgUvwPsypiW7sadNhO1VHL
-	 nMLwKr8JRTjPcRzpsKAFiejI54ugGUTSobc+HBNEOk9g3p05zW7s0lVOX1ewAfiCEq
-	 EgVX4aSchV4NG+/Jb7m66fMN06llSPAyLnGEu7m+I5VtZlUBrpkwLsG278XVqLDYtk
-	 5K9DQCXjKgEnDYafoPNDHGAlH2zfMHCsYfX4z9VrOWBrU7gXz+QeJLY+qo4HV+bwwR
-	 g7Iqj766RqQHw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1t40hD-006WIw-2f;
-	Thu, 24 Oct 2024 17:28:23 +0100
-Date: Thu, 24 Oct 2024 17:28:22 +0100
-Message-ID: <86plnp31p5.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Sibi Sankar <quic_sibis@quicinc.com>,
-	andersson@kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	robh+dt@kernel.org,
+	s=k20201202; t=1729787411;
+	bh=baCRscFJcyoIeJGjDhH7YHeA+ksnEpgYG35/hHxCOto=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HFVTXZV4yGAsaKqgM5OMp7eJbPpb/WUKmiQiyXJ/S7l43PIBrrz6NbJx8SUpmkKws
+	 dMPjoNEEFiKTqyfRMKbhabw1+EUjGhCtWJnucDPpam0GwHPOk9l4B61NXkX7wrWT1T
+	 OFr5gy2LRxshLdhW78CL/BMHSlbEfcsFqlnKhXDCrIesy2ycV90/axFKPXVSZkFbdj
+	 GtDbfcmxGDVzmd871dZsyorgXUJLWR5POmBnKqXnzjiNcl9RlQV/KAzu8FiEe0EvCl
+	 jKMRhIUpJBq1IB2LjSMdIuZ4xkngxXWMh0G0EvVRB4pqhP0/J7K2WZjnkvvOGanwNa
+	 ReN0OU1DUu9gQ==
+Date: Thu, 24 Oct 2024 17:30:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	conor+dt@kernel.org,
-	abel.vesa@linaro.org,
-	srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH 0/2] X1E001DE Snapdragon Devkit for Windows
-In-Reply-To: <ZxpyoFjA0jR_sxbg@hovoldconsulting.com>
-References: <20240911073337.90577-1-quic_sibis@quicinc.com>
-	<f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
-	<86r08532wa.wl-maz@kernel.org>
-	<ZxpyoFjA0jR_sxbg@hovoldconsulting.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: sn65dsi83: Add
+ interrupt
+Message-ID: <20241024-cruelly-wool-f03401567c51@spud>
+References: <20241024095539.1637280-1-herve.codina@bootlin.com>
+ <20241024095539.1637280-2-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: johan@kernel.org, quic_sibis@quicinc.com, andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, abel.vesa@linaro.org, srinivas.kandagatla@linaro.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="9GMWCsnkIho7utQ/"
+Content-Disposition: inline
+In-Reply-To: <20241024095539.1637280-2-herve.codina@bootlin.com>
 
-On Thu, 24 Oct 2024 17:15:28 +0100,
-Johan Hovold <johan@kernel.org> wrote:
-> 
-> On Thu, Oct 24, 2024 at 05:02:29PM +0100, Marc Zyngier wrote:
-> 
-> > The only change I made was to enable the ITS for pcie5, which was
-> > routed via the PCIe MSI widget instead. But that's a SoC dtsi issue
-> > for which I'll post a patch separately.
-> 
-> That's done on purpose since the boot firmware is not setting things up
-> so that we can use the ITS with PCIe5 (or PCIe3) when running in EL1
-> currently.
 
-Really? I guess they don't install a mapping for the ITS translation
-register in the SMMUv3? That's rather sad.
+--9GMWCsnkIho7utQ/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I guess I will keep this as part of my "EL2-special" patch set then.
-Feel free to ignore the patch I have just sent.
+On Thu, Oct 24, 2024 at 11:55:37AM +0200, Herve Codina wrote:
+> Both the TI SN65DSI83 and SN65DSI84 bridges have an IRQ pin to signal
+> errors using interrupt.
+>=20
+> This interrupt is not documented in the binding.
+>=20
+> Add the missing interrupts property.
+>=20
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-Thanks,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-	M.
+--9GMWCsnkIho7utQ/
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Without deviation from the norm, progress is not possible.
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxp2CwAKCRB4tDGHoIJi
+0nElAP4nxMS+d9i9cBJT2NS/4zKx3DyetfbIhEUQg4atuPvAtQD7B9O02PJmTQQv
+HKR8oXpkoaC+W1Ia0J96LgL8Q/LG8As=
+=pY8d
+-----END PGP SIGNATURE-----
+
+--9GMWCsnkIho7utQ/--
 
