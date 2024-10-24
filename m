@@ -1,277 +1,147 @@
-Return-Path: <devicetree+bounces-115011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6F49ADB7A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:24:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E30E99ADB8E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:36:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC320281F34
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 05:24:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99AF228337E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 05:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C801A76A4;
-	Thu, 24 Oct 2024 05:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29001165F01;
+	Thu, 24 Oct 2024 05:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="haH+AIaM"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="epV0ymeS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD7817DFE4;
-	Thu, 24 Oct 2024 05:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7093CC8F0;
+	Thu, 24 Oct 2024 05:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729747331; cv=none; b=vEKMuppybaDIY6GCPGZ39BRUwIRuZR5JYmfc2Qg/ClkG2JIvW7fzPfMgHTmjUnTQNaytyZ8LQGQh3IkLsow8gE0PvxGUhrbMFpZyvo/VepBEVSUPswXE4UBlixNcvkA3dNnQzW/VYr0Osp0cyVi0xpL6TZ0+sSUhZoirfaSpqR0=
+	t=1729748156; cv=none; b=QRkc60Ts+bjLKgxfMqNB27UrAzd6Gu3bkllQEiF4oOxs+KC/2G9VddCNpLh+9axcTJNLzMa8zClNDm3Nw73lR3jFaJBZwMHFHL8awNV1IRs+Z10U8fjXWeFnZzJjluY0G3kKEzPhkrhrNjhL0Mbgg4+GMo53kkPx2SuXrcZHR9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729747331; c=relaxed/simple;
-	bh=46PvWcO1Y+g4FOBZ8tCATYLmz+1G6stPwizRvVFOk0w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=OYntwL9OpstJKeJvvd0bajyUR5AKwqoSmEKnbK0QIP6/wttS9CW2IC45jDhYqIb4pU/+vm+jtgI+SjWLRZo4TH4H+NP4QaveES0krP//+/OeXSbDEuRMZPNs2ViZcnHVfXcfMIAxmgHtR5mfBo6abaHq0wWvmCqHlYJwg2goj3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=haH+AIaM; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49O5M1Z0113426;
-	Thu, 24 Oct 2024 00:22:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1729747321;
-	bh=oqHQQLIWxl1kkVlHdoZdrdo4pztiw/iiLGggIBUJ0x0=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=haH+AIaMefzM/iAwi4nDOOFzpb/38IzdaM9Q34NYv165Gzr5IA7tXAb142SsyXWig
-	 RSZGC4z9Tbird23D1AhFPVTuyUBK7bPFkcxDMEGB6GB+0RLJx6CL3Fe36vEtyeX0la
-	 J1k/8i5ZE/vcVvItxJ2D77kUvnuM0Meq94dwlLsE=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49O5M13m025188;
-	Thu, 24 Oct 2024 00:22:01 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 24
- Oct 2024 00:22:01 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 24 Oct 2024 00:22:01 -0500
-Received: from [127.0.1.1] (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49O5L4lK090467;
-	Thu, 24 Oct 2024 00:21:57 -0500
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-Date: Thu, 24 Oct 2024 10:51:09 +0530
-Subject: [PATCH v6 12/12] arm64: dts: ti: k3-j7200-evm*: Add bootph-*
- properties
+	s=arc-20240116; t=1729748156; c=relaxed/simple;
+	bh=g60dll80FQxag8/SLufMUrNVGPzznH20zTIyl/HTuJY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=eF0Y+n9o9yP0/SWfw61GDVH3gFs1OYM2By2RdDSaYLdxSgSiNfTkl8PpCaMG0Zz9j1ki6tU5bTWjnn7GASJFVd1OmBkqUp80OxmMz0Js4Nt+BwqOFHiytyiglasWeEtJ+kG8UrIQLP4fxQF4TE0qP1vW+93brXtY+hxZNseUubg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=epV0ymeS; arc=none smtp.client-ip=212.227.17.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1729748151; x=1730352951;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=g60dll80FQxag8/SLufMUrNVGPzznH20zTIyl/HTuJY=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
+	 Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=epV0ymeSQ/AGz6GeBi7MT1laPzKqGZ3g/FUkTt5uP4eog8ZJ1S97wV1fFuatkgTG
+	 0tFRFnrFbem14pbLIauKs/DKAwgRUkqKhHLNY988qI49fQv71RkBF16SIk5i5i9Mo
+	 UaSxqs157wnPLZvzuqlobToleMNrnAA7UDTj+zw743Kh+ntlsnQttGkISLgCriLOC
+	 cNMDdKV7mwVv9ZMaPkz3KgAMsR+/5wS/bL+TR+p4pd2w8EetcxyyaRp2pumhTG+l3
+	 8SCFJWmtyKslCyA9KNs2sfHcmcreUwvT8ClS3uCAbtTkWMYkppf39NlegvBK/qCn4
+	 0ono0Eu0k+I1Wb8RvQ==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.174] ([91.64.229.215]) by mrelayeu.kundenserver.de
+ (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MRBac-1tI3tL0HGm-00LVMc; Thu, 24 Oct 2024 07:30:15 +0200
+Message-ID: <80334280-1c51-48a0-84ec-f0f81d834da6@oldschoolsolutions.biz>
+Date: Thu, 24 Oct 2024 07:30:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241024-b4-upstream-bootph-all-v6-12-2af90e3a4fe7@ti.com>
-References: <20241024-b4-upstream-bootph-all-v6-0-2af90e3a4fe7@ti.com>
-In-Reply-To: <20241024-b4-upstream-bootph-all-v6-0-2af90e3a4fe7@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Beleswar Padhi
-	<b-padhi@ti.com>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>, Andrew Davis
-	<afd@ti.com>,
-        Manorit Chawdhry <m-chawdhry@ti.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1729747264; l=5351;
- i=m-chawdhry@ti.com; s=20231127; h=from:subject:message-id;
- bh=46PvWcO1Y+g4FOBZ8tCATYLmz+1G6stPwizRvVFOk0w=;
- b=CVBTPby0nz1ySFr7EBcoQzKOm1TgU/bQUmapYyjxDelG5ShEod8v/kLaV078b45+r4EB0eZVM
- v3is5falx6xDCgPhzfvWwNinxKF5PzcC1IQ/sOZaR0b5/S/V4tpryni
-X-Developer-Key: i=m-chawdhry@ti.com; a=ed25519;
- pk=fsr6Tm39TvsTgfyfFQLk+nnqIz2sBA1PthfqqfiiYSs=
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Subject: Re: [PATCH 0/2] X1E001DE Snapdragon Devkit for Windows
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, conor+dt@kernel.org, abel.vesa@linaro.org,
+ srinivas.kandagatla@linaro.org
+References: <20240911073337.90577-1-quic_sibis@quicinc.com>
+ <f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <f67d0fcd-4940-a57a-0e11-b98ed29cd09d@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:qK+BrI5Vz73rqYM48skDu2mGNQ2ApZPiuZM814xNkSJcZ2i/xOH
+ N8KitGNqBKXfC30gteZ0aw7kk48FoeKYRJRZ+sO4SXAuisMubFWZtp7jSh07xHvA2Ele321
+ 7oAd9VRJssdHHobCZ6EB1h0e8O86eNPgOCZo7OxtnkNUUIrkViKAQUtX3LpsksdLVDQSL7o
+ ILlvVI+rLmNuDWBFxOe3w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:2wbg/tJno10=;S0BDExEUg0HU8c5y6IuaaA3ApJE
+ iliG+XiNjsibQsd+y/PzcgnpDNU9MDRo7zzN+ifzo8Xn1uH0b4IS3IrBg/yel+sauVcNVDLEy
+ yWXSwV/i5MWFep3UXV8NrIS49yE54kOCqatOpgCPmrFG33aqzPtdZyAWxPqaq1rA+k8qFCyXE
+ EJXlOktliKfAyVuEaTDn2o2Lw8P0f9h+MhVdHDDC8GLGe/3lzVnimcHJYsJtz++GLCktbdrb7
+ ubhIccs8lx3HQN13pjcFEv7EjttglvveY/EjmRdnSnqQZgWEoQN1tWA7cEwiaaM6cbXLl7ROH
+ GZp3xuywFJZUaYDbi8AVPuRAQBFZuiow91Fzvz8wRWQ5xO2lP3F2xJfPiX6Id1EUbCBjgTAWb
+ QSpumhnFlYFh8C1I55Hj390Vhc1B8ANxK19ep7QskAlUHyb0/KWwxHwme6eU2r1W29quZMvfl
+ 70hI016mllKH3FWHI2cXx84EoY1OHGbQcNIqDky/80lo3xXHr4+5ZG0UlHIB6tU1ejmB6Dujn
+ DfjNP4xfPWjJqCMT5haxWP/kx3WUM++GeepIyQA5A0Whpy3AZI1I5drzQxz9ykYX/+W+0igQN
+ btCh+dpK4GFrbPltMBzuoZcsc9PahWOyieClgrj6hi+aDfzAyPLlxwRSQyNYzLBugSVrpoD6k
+ Cyf33toI9+I6hPRtr54O13OzKfM7T29UWDuwQa7zl8Zu04vNDgZHc1skfjKuRCYvJeP9rh5+Q
+ 9hwzgyGlJOJyOqFXvv3yyie1UwxEG2qfA==
 
-Adds bootph-* properties to the leaf nodes to enable bootloaders to
-utilise them.
 
-Following adds bootph-* to:
-- pmic regulator for enabling AVS Support
-- main_uart0, mcu_uart0(DM), wkup_uart0(TIFS) for Traces
-- mmc0, mmc1, usb0, ospi0, hbmc for enabling various bootmodes.
+On 23.10.24 13:05, Sibi Sankar wrote:
+>
+>
+> On 9/11/24 13:03, Sibi Sankar wrote:
+>> Add initial support for X1E001DE Snapdragon Devkit for Windows. X1E001D=
+E
+>> is the speed binned variant of X1E80100 that supports turbo boost up to
+>> 4.3 Ghz. The initial support includes the following:
+>>
+>> -DSPs
+>> -Ethernet (RTL8125BG) over the pcie 5 instance.
+>> -NVme
+>> -Wifi
+>> -USB-C ports
+>>
+>
+> Hi All,
+>
+> With the X1E Devkit cancelled and with no firmware updates promised for
+> it perpetually, please chime in and let me know if you still want to get
+> this series and rest (external-dp, usb-A ports, sd card slot and 3.5 mm
+> Jack) merged and have it supported upstream for the folks who already
+> received it!
+>
+> -Sibi
+>
+>> Link:
+>> https://www.qualcomm.com/news/releases/2024/05/qualcomm-accelerates-dev=
+elopment-for-copilot--pcs-with-snapdrago
+>>
+>> Sibi Sankar (2):
+>> =C2=A0=C2=A0 dt-bindings: arm: qcom: Add Snapdragon Devkit for Windows
+>> =C2=A0=C2=A0 arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for Windo=
+ws
+>>
+>> =C2=A0 .../devicetree/bindings/arm/qcom.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
+>> =C2=A0 arch/arm64/boot/dts/qcom/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+>> =C2=A0 arch/arm64/boot/dts/qcom/x1e001de-devkit.dts=C2=A0 | 813 +++++++=
++++++++++++
+>> =C2=A0 3 files changed, 820 insertions(+)
+>> =C2=A0 create mode 100644 arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+>>
+>
+Hi there,
 
-Reviewed-by: Aniket Limaye <a-limaye@ti.com>
-Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
----
+as one of the few owners of this box I am very interested in getting an
+as complete dt as possible. It may be unsupported (who cares), but it is
+quite useful hardware. So, yes please! I already have it up with the
+published patch and its doing useful stuff.
 
-Notes:
-    R-by picked up in v5 ( Aniket )
-
- arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 13 +++++++++++++
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi           |  6 ++++++
- 2 files changed, 19 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index 6593c5da82c06463c2d7cbbe01d6fa481be1aa1a..d03690b8d65230d22b3630770a6bc819409837c1 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -129,6 +129,7 @@ J721E_WKUP_IOPAD(0x94, PIN_OUTPUT, 0) /* (E21) MCU_UART0_RTSn */
- 			J721E_WKUP_IOPAD(0x8c, PIN_INPUT, 0) /* (D20) MCU_UART0_RXD */
- 			J721E_WKUP_IOPAD(0x88, PIN_OUTPUT, 0) /* (D19) MCU_UART0_TXD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
-@@ -136,6 +137,7 @@ wkup_uart0_pins_default: wkup-uart0-default-pins {
- 			J721E_WKUP_IOPAD(0x48, PIN_INPUT, 0) /* (B14) WKUP_UART0_RXD */
- 			J721E_WKUP_IOPAD(0x4c, PIN_OUTPUT, 0) /* (A14) WKUP_UART0_TXD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_cpsw_pins_default: mcu-cpsw-default-pins {
-@@ -204,6 +206,7 @@ J721E_IOPAD(0xb4, PIN_OUTPUT, 0) /* (T17) UART0_TXD */
- 			J721E_IOPAD(0xc0, PIN_INPUT, 2) /* (W3) SPI0_CS0.UART0_CTSn */
- 			J721E_IOPAD(0xc4, PIN_OUTPUT, 2) /* (U5) SPI0_CS1.UART0_RTSn */
- 		>;
-+		bootph-all;
- 	};
- 
- 	main_uart1_pins_default: main-uart1-default-pins {
-@@ -238,6 +241,7 @@ J721E_IOPAD(0xf0, PIN_INPUT, 0) /* (N20) MMC1_DAT2 */
- 			J721E_IOPAD(0xec, PIN_INPUT, 0) /* (N19) MMC1_DAT3 */
- 			J721E_IOPAD(0xe4, PIN_INPUT, 8) /* (V1) TIMER_IO0.MMC1_SDCD */
- 		>;
-+		bootph-all;
- 	};
- 
- 	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
-@@ -259,6 +263,7 @@ main_usbss0_pins_default: main-usbss0-default-pins {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x04, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -267,12 +272,14 @@ &wkup_uart0 {
- 	status = "reserved";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &mcu_uart0 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &main_uart0 {
-@@ -281,6 +288,7 @@ &main_uart0 {
- 	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_uart0_pins_default>;
-+	bootph-all;
- };
- 
- &main_uart1 {
-@@ -379,6 +387,7 @@ &main_sdhci0 {
- 	/* eMMC */
- 	status = "okay";
- 	non-removable;
-+	bootph-all;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
- };
-@@ -390,6 +399,7 @@ &main_sdhci1 {
- 	pinctrl-names = "default";
- 	vmmc-supply = <&vdd_mmc1>;
- 	vqmmc-supply = <&vdd_sd_dv>;
-+	bootph-all;
- 	ti,driver-strength-ohm = <50>;
- 	disable-wp;
- };
-@@ -401,11 +411,13 @@ &serdes_ln_ctrl {
- 
- &usb_serdes_mux {
- 	idle-states = <1>; /* USB0 to SERDES lane 3 */
-+	bootph-all;
- };
- 
- &usbss0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_usbss0_pins_default>;
-+	bootph-all;
- 	ti,vbus-divider;
- 	ti,usb2-only;
- };
-@@ -413,6 +425,7 @@ &usbss0 {
- &usb0 {
- 	dr_mode = "otg";
- 	maximum-speed = "high-speed";
-+	bootph-all;
- };
- 
- &tscadc0 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-index e78b4622a7d1ff320259b17850e8f1735508f7dd..291ab9bb414d7883f102101035b19fd324767306 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -121,6 +121,7 @@ J721E_WKUP_IOPAD(0x20, PIN_INPUT, 1) /* (B8) MCU_OSPI0_D5.MCU_HYPERBUS0_DQ5 */
- 			J721E_WKUP_IOPAD(0x24, PIN_INPUT, 1) /* (A8) MCU_OSPI0_D6.MCU_HYPERBUS0_DQ6 */
- 			J721E_WKUP_IOPAD(0x28, PIN_INPUT, 1) /* (A7) MCU_OSPI0_D7.MCU_HYPERBUS0_DQ7 */
- 		>;
-+		bootph-all;
- 	};
- 
- 	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
-@@ -137,6 +138,7 @@ J721E_WKUP_IOPAD(0x0024, PIN_INPUT, 0)  /* MCU_OSPI0_D6 */
- 			J721E_WKUP_IOPAD(0x0028, PIN_INPUT, 0)  /* MCU_OSPI0_D7 */
- 			J721E_WKUP_IOPAD(0x0008, PIN_INPUT, 0)  /* MCU_OSPI0_DQS */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -146,6 +148,7 @@ wkup_i2c0_pins_default: wkup-i2c0-default-pins {
- 			J721E_WKUP_IOPAD(0x98, PIN_INPUT_PULLUP, 0) /* (F20) WKUP_I2C0_SCL */
- 			J721E_WKUP_IOPAD(0x9c, PIN_INPUT_PULLUP, 0) /* (H21) WKUP_I2C0_SDA */
- 		>;
-+		bootph-all;
- 	};
- };
- 
-@@ -186,6 +189,7 @@ &hbmc {
- 	flash@0,0 {
- 		compatible = "cypress,hyperflash", "cfi-flash";
- 		reg = <0x00 0x00 0x4000000>;
-+		bootph-all;
- 
- 		partitions {
- 			compatible = "fixed-partitions";
-@@ -347,6 +351,7 @@ bucka1: buck1 {
- 				regulator-max-microvolt = <1800000>;
- 				regulator-boot-on;
- 				regulator-always-on;
-+				bootph-all;
- 			};
- 
- 			bucka2: buck2 {
-@@ -520,6 +525,7 @@ partition@800000 {
- 			partition@3fc0000 {
- 				label = "ospi.phypattern";
- 				reg = <0x3fc0000 0x40000>;
-+				bootph-all;
- 			};
- 		};
- 	};
-
--- 
-2.46.0
+- Jens
 
 
