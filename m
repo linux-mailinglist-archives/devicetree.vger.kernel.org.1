@@ -1,133 +1,182 @@
-Return-Path: <devicetree+bounces-115317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4DE89AED8E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:17:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BCA9AEDD5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:22:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6692F28206F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 17:17:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA28A1C231D7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 17:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186581FAF08;
-	Thu, 24 Oct 2024 17:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953561FC7F0;
+	Thu, 24 Oct 2024 17:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JiEZ2i5L"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JMioIBhJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC451F76AF
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:17:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603891FC7E7
+	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:22:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729790250; cv=none; b=L75r+THebUJ6wZeeqtNSSOwr4xrJGcF4HsilkuVCyQIcgLzxIMXd4dLf03LhXGgw7mPR/bSwj9UvenCOS7nhOw5S4HzmiCiOaSUqMj8gyudE5SSFDdvfh8m+LgJwLxAUQVShZl2Oen3RuiTbHASEzovTDP5Y9cuUkHyfguUphjY=
+	t=1729790538; cv=none; b=cNm/gncjl9TUTg8w2p0Zow/289JOx2tWo7j6hccvf2p1FmVtm5A838plSUfwGKFDUrJWcHJUc+OKcI7Kxve1OGNy+Q3cloPokkI35wcfdK4XTMGzeHINE1T0SL3G1U9immIuCs3uSsNgApTaot6cPJji0BN8tB9Vm/9ejJWOBmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729790250; c=relaxed/simple;
-	bh=76N+Si6K+8dgLWMJ9V3NKmwxxyz+jGXcxE3eF50Hh6M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BUL/berkd4Iw98hMOMJB1KtpkNQEqqJeXlwB6WXgfkT3RytyRWJ1BtVxAR9fH6v5oqLXJXd0gvj0vh9HpccZEFX6shLWcmK/IYTR9ckgoVfCyfpVvtPgBhdA0+eHcKRCT+RK10MRd5OlRNPHG79v8++90JXcMDXXrD8YyOfJdFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JiEZ2i5L; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43168d9c6c9so12337025e9.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 10:17:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729790246; x=1730395046; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CaTrXkFXaNRHKXBh+COBpt8a1vEye13/gPVK1ExC51U=;
-        b=JiEZ2i5LInBI/oylnbw+zVcxtMnMYLfWF3OEvq3KvN9jDXY6CGR2z97RVEz31n4dAh
-         B+5DeKwQVjch11kVYFjMruJ4w/JWm38VEVz3Kl0iw/4o0NyUOilrtiSqsj95dw4YEKBz
-         AQskG8IfIqwLjyzFjfCosL1BiESPooXBVeUJ8gleLGApNHF5Sb/ZC88vZH/CEF611x+D
-         Z84wp1Tb6n+kNp+njhlqBAATfCklj87ZzoCABmo1s+PvJmN71M5ti536ekHVEu8uRrQe
-         5UE+f99Rw9nhmYJUqmocpSIaImiD+YOMsArHRdzqhXQCSeqB0x73So3QN4uvo/v6db6V
-         ME2A==
+	s=arc-20240116; t=1729790538; c=relaxed/simple;
+	bh=xvh0qobSKEeDTd9UXVzqjHTneCS4N9iZojwKHXERKN4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f7LQfQJEDBXW3g2kCAe3q9lRDSU3t+rV6shh82ZMBpSjoHl5kiLkQBgz/SBkNA35OV8ANLetMDeqkVCZ3iD79mbWncMh3V1QB08ESo0ttAYuS9lCoLcd2RUXtkhmpGZFq9azZH5FPk2u/ZWz5vT0Fh35dMyjvOWtFJXRciHULCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JMioIBhJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49O99TfX018657
+	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:22:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xmVEUo/xABf7aaYqxBjxjdmRkGZGXBcqXrb3toHDVYI=; b=JMioIBhJuSq3cCQI
+	HoCmlzvjHhLaERswC8WRy2RrY6SdtQ/f+CH7XhBWAYRMWLCyXHFVjuRznquDJ5OO
+	gbneUnpZMCUlw4BiewSiT9G2aODo2jwYiTepo0sg5bArwlaXoCqC/Bri863KUj4E
+	YA2wqAQ2AGbXur4eeSdSchPPd2qcgmEnU9Dgz0NAA+tnjh7FU4rYenCp0FgcCwTz
+	fSnqkZdH9RWegeVtrdpa876Befn/YWgopalZLRMLoIHQe6pt4On40E4Xjq5u7+PU
+	aInmLGWr+XgYuDSa39KCq1IYZr194g+CQBUuDLa78VFfSeYjk6otbjmO4Tc3AIH3
+	ppiA4A==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em66efqs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:22:15 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6cbe944435fso1408746d6.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 10:22:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729790246; x=1730395046;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CaTrXkFXaNRHKXBh+COBpt8a1vEye13/gPVK1ExC51U=;
-        b=Yp9vCFzZk+g3m0+GNOjNeO1YZdrj2ltgMBvSE9CX6HXBeQYCuEi5EiB10WuM20g9Pa
-         Aa4WZ3xEScCEp5bseH4nrUpE131rYySX7CQ4CZPtqGT2U36phe4P+piUbDtFK7sYbR4z
-         EN8CVQ3OBNAvQoHb2WO2si8uG9cHInFL3NwFxoHc3gcAX0FfQ/B+0GgNvLopssOKlmTT
-         C09QIQWk7vGyOuHc1OD0wJQpOJDWUKZlTDa7UaS7CfENl6cGFZjl//pUqXO3bCID04et
-         lV9v3daBwo34H/9wMPHuGkR+mbewCyZg9ZaJ0AA2ifT+cZIvk6nrmxBKY4N7QXXyz4Sc
-         Bx9w==
-X-Gm-Message-State: AOJu0YwCANiXF2KoufI/llWQBdyz/EXnzAO347DzhECMADwhLWKtlUo5
-	iD8sk4JgvNgi/nvisigINn4WPrmScD7bORP6JW9fXqdhxicw60MV8WE4YBM1/Io=
-X-Google-Smtp-Source: AGHT+IEwbgudZZknJJI3QPRz8S6wAXEhaDb0EsLnluZmeyI6CkuOGi/iWYa0RWHMwkgvamc84C7sow==
-X-Received: by 2002:a05:600c:310e:b0:426:602d:a246 with SMTP id 5b1f17b1804b1-4318c77ee56mr24494575e9.32.1729790245996;
-        Thu, 24 Oct 2024 10:17:25 -0700 (PDT)
-Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43186bfd059sm51365265e9.27.2024.10.24.10.17.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 10:17:24 -0700 (PDT)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Alexandru Tachici <alexandru.tachici@analog.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Dumitru Ceclan <dumitru.ceclan@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: [PATCH 3/3] iio: adc: ad7124: Disable all channels at probe time
-Date: Thu, 24 Oct 2024 19:17:05 +0200
-Message-ID: <20241024171703.201436-8-u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241024171703.201436-5-u.kleine-koenig@baylibre.com>
-References: <20241024171703.201436-5-u.kleine-koenig@baylibre.com>
+        d=1e100.net; s=20230601; t=1729790534; x=1730395334;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xmVEUo/xABf7aaYqxBjxjdmRkGZGXBcqXrb3toHDVYI=;
+        b=WUcGJnb13eKtRO4yX08eywv2BUpAUlf/jqQ0/Ay37MVfQbL28BurJ8bDGfmqa4eDKu
+         7t+kb57KKgzx8KNN928JhNHqob6ZD4KoC5unXMHfEINmILdEi/Nha9nEqfWJZ2WmetTW
+         jl9UoVFZecLhEBFwby7w1fjPfOB9PypP+mU4cc3VArTXGRAPWp1FMO+bB7jhFUkYEqh6
+         LUo9z6+AU3f5Tu6sMKBUIkjHShYPdE0XnvdJNZknHVjlSS2p/dGvhH2kUZEAgm53+EvT
+         hv6Uu4rcQA+WvllHl/NGvZQpS39pQfRcSTADEvdvya0tWmI2VmpELFuuM2Gy4rNHZdoz
+         okaA==
+X-Forwarded-Encrypted: i=1; AJvYcCV8nMemuXJyFtEQ/LW9ZxO1fj1HcXnM2kb6GxwyTW/AwLWsq/nvq+X4izSLyxaRjdusLumFD8YxdOyw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxeZXiT5iIUYnpqBygP6Jh+MojbYD8D9crYt1zNhFf4/GJvc/vD
+	uJie9e8AhSvYc6asR570RSoyh3DgaEzS3pef7WDxN/6vRJSoLLZzLazA/BA0DWyDZN1MF1SPE4k
+	jE3GpcDrJkX12yahqssVjFw1FD93JSR4vryNCjNKpPFB9w84635fp99xuD1tx
+X-Received: by 2002:ad4:5d67:0:b0:6bf:6d90:c084 with SMTP id 6a1803df08f44-6ce3413aee0mr45567556d6.3.1729790533894;
+        Thu, 24 Oct 2024 10:22:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGmDElvF4WY48ZSYmmi6ZIlDkPoW8/hW61PfyViulWHB9Uu9cc4VmhgeqWWdIDvsMeYtmFOgg==
+X-Received: by 2002:ad4:5d67:0:b0:6bf:6d90:c084 with SMTP id 6a1803df08f44-6ce3413aee0mr45567156d6.3.1729790533451;
+        Thu, 24 Oct 2024 10:22:13 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a912d63b1sm645658266b.42.2024.10.24.10.22.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Oct 2024 10:22:13 -0700 (PDT)
+Message-ID: <3ca1f7e8-1204-4898-9e7e-cb6423c122cc@oss.qualcomm.com>
+Date: Thu, 24 Oct 2024 19:22:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] dts: qcom: Introduce SM8750 device trees
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+        Melody Olvera <quic_molvera@quicinc.com>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Will Deacon <will@kernel.org>
+References: <20241021232114.2636083-1-quic_molvera@quicinc.com>
+ <172978739477.623395.5604249801475913676.robh@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <172978739477.623395.5604249801475913676.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1380; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=76N+Si6K+8dgLWMJ9V3NKmwxxyz+jGXcxE3eF50Hh6M=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnGoEXamHKqM9O+c9WtTaN+6LwCefEKyEwZ/S8C gUvJD9dLpiJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZxqBFwAKCRCPgPtYfRL+ Tp7UB/sHCxfRTC1Eo/unYY4t2veNOqHcpXdM4ubfIKORn11mWF9H2TezUlEJwGnKCwVSNmYqV4e LqIVVcz9dlv02GNMVmpKpUKd+3zzvpWKsInXrLA8GIgl5Bjz9SD9FcOSudiYldpoSiOkSorSW2d k+ye4Wwpe66wM2vn3fiDzZolHSAWp3ikLeRFdL0CXhldseSrfoYjwIsA6I5ocCEs5FyX27YvMlg iW/VtXCcap7aNv5GmWbzTjP3D9H7OF04uB47H64+sTtEdYXXD52p5yiP2FViZj0D4rfAK4lg4oR Mk+N0vv9P3nAUGTo4XzNYzwsW5JRe7wNjJp0Hj1JdGbSUyoR
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: lyryOg_ybuMfU70d4nnl8IORVZc5s3oZ
+X-Proofpoint-GUID: lyryOg_ybuMfU70d4nnl8IORVZc5s3oZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 phishscore=0 impostorscore=0 malwarescore=0 mlxlogscore=606
+ suspectscore=0 clxscore=1015 mlxscore=0 bulkscore=0 priorityscore=1501
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410240143
 
-When during a measurement two channels are enabled, two measurements are
-done that are reported sequencially in the DATA register. As the code
-triggered by reading one of the sysfs properties expects that only one
-channel is enabled it only reads the first data set which might or might
-not belong to the intended channel.
+On 24.10.2024 6:33 PM, Rob Herring (Arm) wrote:
+> 
+> On Mon, 21 Oct 2024 16:21:09 -0700, Melody Olvera wrote:
+>> This series adds the initial device tree support for the SM8750 SoCs
+>> needed to boot to shell. This specifically adds support for clocks,
+>> pinctrl, rpmhpd, regulators, interconnects, and SoC and board
+>> compatibles.
+>>
 
-To prevent this situation disable all channels during probe. This fixes
-a problem in practise because the reset default for channel 0 is
-enabled. So all measurements before the first measurement on channel 0
-(which disables channel 0 at the end) might report wrong values.
+[...]
 
-Fixes: 7b8d045e497a ("iio: adc: ad7124: allow more than 8 channels")
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
----
- drivers/iio/adc/ad7124.c | 3 +++
- 1 file changed, 3 insertions(+)
+> New warnings running 'make CHECK_DTBS=y qcom/sm8750-mtp.dtb qcom/sm8750-qrd.dtb' for 20241021232114.2636083-1-quic_molvera@quicinc.com:
+> 
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: domain-idle-states: cluster-sleep-0:compatible:0: 'domain-idle-state' was expected
+> 	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: domain-idle-states: cluster-sleep-0:compatible:0: 'domain-idle-state' was expected
+> 	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
 
-diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
-index a5d91933f505..912ba6592560 100644
---- a/drivers/iio/adc/ad7124.c
-+++ b/drivers/iio/adc/ad7124.c
-@@ -917,6 +917,9 @@ static int ad7124_setup(struct ad7124_state *st)
- 		 * set all channels to this default value.
- 		 */
- 		ad7124_set_channel_odr(st, i, 10);
-+
-+		/* Disable all channels to prevent unintended conversions. */
-+		ad_sd_write_reg(&st->sd, AD7124_CHANNEL(i), 2, 0x0001);
- 	}
- 
- 	ret = ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL, 2, st->adc_control);
--- 
-2.45.2
+These were recently dropped across the board, please drop them
+here as well.
 
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: pmic@7: 'eusb2-repeater@fd00' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+> 	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: pmic@7: 'eusb2-repeater@fd00' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+
+phy@ (as seen in x1e80100-pmics.dtsi)
+
+> 	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: regulators-0: Unevaluated properties are not allowed ('vdd-l1-supply', 'vdd-l10-supply', 'vdd-l4-supply' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: regulators-0: Unevaluated properties are not allowed ('vdd-l1-supply', 'vdd-l10-supply', 'vdd-l4-supply' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: regulators-4: Unevaluated properties are not allowed ('vdd-s7-supply', 'vdd-s8-supply' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: regulators-4: Unevaluated properties are not allowed ('vdd-s7-supply', 'vdd-s8-supply' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+
+These need bindings updates
+
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: rsc@16500000: 'power-domains' is a required property
+> 	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+
+This I'll address when reviewing the dt
+
+[...] (skipping a bunch of duplicates)
+
+> arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: timer@16800000: #size-cells: 1 was expected
+> 	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer_mmio.yaml#
+> arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: timer@16800000: #size-cells: 1 was expected
+> 	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer_mmio.yaml#
+
+#address-cells <2> is fine, #size-cells must be 1, apparently
+
+Konrad
 
