@@ -1,112 +1,123 @@
-Return-Path: <devicetree+bounces-115136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 018379AE2DA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:42:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C5F29AE2E8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 12:43:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 306BE1C2164E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:42:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F78CB21D68
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D441C4A1F;
-	Thu, 24 Oct 2024 10:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E63491C4A0D;
+	Thu, 24 Oct 2024 10:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G7+ho9kz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58B191B85E2
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 10:42:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDDC1B85C4;
+	Thu, 24 Oct 2024 10:43:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729766550; cv=none; b=tzcoWRs5gRoqGveQ07lFjfEGTov6Vux8k6bWof7g5T2iN0gJ0xd7shgmLN7Blzi1QrptT+h/g1C6yvtoX8TbrA3DF2yrnOVSMQXm6C6WBQ7h2jzO6whbB2eSajgibUNpjRf/mhEnZ8VYbtC+scLp2LeXw41BIACdoIg0nBV9F2Q=
+	t=1729766598; cv=none; b=F8i6Dgr1vU6JgCSOJSUbvJBrQcZpMtOOCxtcd/9PrmT/+Y3OJayP79sa7gt8/e41ZzBQMDKufQ4Aks4S4KklS1oZEC7BeTSp4RnSRd4R76PHCZEsS7A+RRd+thCmuWKAa+tRlRSKUL8PtmkigTHzqg4aUTLj0xbcvsicqWdmiYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729766550; c=relaxed/simple;
-	bh=sTc5tqVVtSrVkKf0tyuL0UDlunBMKpNJdKFckebZOTM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ODK7v7/KpjHgKIZGnIGBHcrBTXTuj6TaHHihgkqbX7p/Ed9IGOQQVczIxH231ChxTCVQJrYI4ki7MfQ5jkb2G+cud6gpaJXDnniztOyYz6AGNCiOj2bicLcbT3Ce+7t+N4k0H0sM13l14W+UhzsLyscP4AftrtWGYlmaqI4lpW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1t3vI7-0005ly-UW; Thu, 24 Oct 2024 12:42:07 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1t3vI5-000BPM-0K;
-	Thu, 24 Oct 2024 12:42:05 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1t3vI4-0007P8-3B;
-	Thu, 24 Oct 2024 12:42:04 +0200
-Message-ID: <7512cbb7911b8395d926e9e9e390fbb55ce3aea9.camel@pengutronix.de>
-Subject: Re: [PATCH v10 0/6] Add support for the LAN966x PCI device using a
- DT overlay
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Herve Codina <herve.codina@bootlin.com>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Andy Shevchenko <andy.shevchenko@gmail.com>, Simon
- Horman <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Lars Povlsen
- <lars.povlsen@microchip.com>, Steen Hegelund
- <Steen.Hegelund@microchip.com>,  Daniel Machon
- <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew
- Lunn <andrew@lunn.ch>,  devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
- Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>,  Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Date: Thu, 24 Oct 2024 12:42:04 +0200
-In-Reply-To: <20241014124636.24221-1-herve.codina@bootlin.com>
-References: <20241014124636.24221-1-herve.codina@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1729766598; c=relaxed/simple;
+	bh=fO61moAmptosg/u0egEsTyMjVhOR7hk3clxajJJwZ5c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oVNoIW4IoGEo6mWUmuzDIl1uh/8Um9ZKZyK/gtq9y9PtOMQ3EHyWu6HtK9jFQWmFDZQM3jxGbLmD8mIss4kMvKWRPOnaF1cjDg7YqBR9keouXvS7lSvLyTQ94jAybjfqvJkDT+mdTqVFMody/NGoIKZRUZrXlSvwvZaXVoTmfes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G7+ho9kz; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-20ceb8bd22fso5188875ad.3;
+        Thu, 24 Oct 2024 03:43:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729766596; x=1730371396; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h7HjZCPn22R/d/6vCRTZ9B7oHF5tk/EK1K6/sj2ocw8=;
+        b=G7+ho9kzMBVTmaOmDnPkli2l/bFHMLZOnJnc9/Vrfg5zC6pI4qqLy9m+JjxOTkmu4Y
+         cvBFScZ8Mt37UAs0jmwvcwuN+lVVcrbpPAyvfATpQ/VDGM6+M+c+SdKNxNbetIyDSlYd
+         QkOGbYBAF092O+sj02g60BtB0SgX+AYtCg4Gx2gvAo4NjTkve63gj8Qkt7wD5uTyWf/Z
+         ubbNUovZOfFHvBmNbiXb8J3HFFtMzNwRByLR+pUWUA2j9pOy5zOWKXJRvPlu9daF16qc
+         h4AOmtvwjUFFRh+NulawrQWy0KEmVP0nWy7zgpKUSDLRMhFeokyp2iT3+vISE67KLpcm
+         J0zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729766596; x=1730371396;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h7HjZCPn22R/d/6vCRTZ9B7oHF5tk/EK1K6/sj2ocw8=;
+        b=byebC6lYJU3YrzmS5SWvYFsbP7ZDfjYUWbqWPvqB51/aW5YTEpKGTtbBMEbQeQa75M
+         SHenOv9SzTetgNd7jHlfQAxEy8rgc++rBOi5GmqUMKZZ1Tw4xbzlv3zeS9gip/EvBBx1
+         7n9iNXMOlO9pFVTbQbUu2wWzwtUIyEQaeH4cOAfQ7eHurtL6+NLlHqpSnUKkzUBm1OHN
+         04NmllFZmSMOghQ/Zeh3juF8LUWmWfWM1YTISUqHE9Lycz02O04H/ExwSK9VJ0X8utyG
+         JiKDuCBOCxJ7mse6GTLkSz8LJ8MC5S9grHrupH5ByW9dLNsexmPhlFRRtYFnLnA75en2
+         xJBw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5fwcjM/1YSKL0C0wTxYWWxU0qlS1J1yRTrA1oN+D0o85uL4nLDtadBTkuE1AbouM+Q7tZFO4/o5H/@vger.kernel.org, AJvYcCWsyjEyqqSKSXhioIYbNdoF+z+hhdOxJd2Yci77Xac7FZK6a/eaZWt2ayQRwcM4PCRCBpu9CbeVAUT9@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmnJX8C6yk7C1Jec6drsZUlkUDP3oC1PublRc4f/h00y9L4/8b
+	vgRDjTZ1Z+rZVvKrDQKAGFHe1z9NOhBfatX1nlE+h4LXGdTD6DcW
+X-Google-Smtp-Source: AGHT+IERBF7N68rMaekUR1OZVbMc0yUseUnfhYs1PSJUJ7bL/4xEUyW/oQnjzLjfkeUypihI4zwOZQ==
+X-Received: by 2002:a17:902:e845:b0:20c:853a:52a7 with SMTP id d9443c01a7336-20fa9e9bb64mr68534735ad.36.1729766596164;
+        Thu, 24 Oct 2024 03:43:16 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e77e48ed34sm1252785a91.9.2024.10.24.03.43.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Oct 2024 03:43:15 -0700 (PDT)
+From: Chi-Wen Weng <cwweng.linux@gmail.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	cwweng@nuvoton.com,
+	Chi-Wen Weng <cwweng.linux@gmail.com>
+Subject: [PATCH RESEND v2 0/2] Add support for nuvoton ma35d1 pwm controller
+Date: Thu, 24 Oct 2024 18:43:07 +0800
+Message-Id: <20241024104309.169510-1-cwweng.linux@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-On Mo, 2024-10-14 at 14:46 +0200, Herve Codina wrote:
-> Hi,
->=20
-> This series adds support for the LAN966x chip when used as a PCI
-> device.
-[...]
+This patch series adds pwm driver for the nuvoton ma35d1 ARMv8 SoC.
+It includes DT binding documentation and the ma35d1 pwm driver.
 
-Applied to reset/next, thanks!
+v2 resend:
+  - Remove wrong 'Reviewed-by' tags.
 
-[1/6] misc: Add support for LAN966x PCI device
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D185686beb464
-[2/6] MAINTAINERS: Add the Microchip LAN966x PCI driver entry
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D86f134941a4b
-[3/6] reset: mchp: sparx5: Map cpu-syscon locally in case of LAN966x
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D0426a920d626
-[4/6] reset: mchp: sparx5: Add MCHP_LAN966X_PCI dependency
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Deba0dedd27f9
-[5/6] reset: mchp: sparx5: Allow building as a module
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D996737ef676f
-[6/6] reset: mchp: sparx5: set the dev member of the reset controller
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D37b395c2c489
+v2:
+  - Update nuvoton,ma35d1-pwm.yaml
+    - Fix 'maxItems' of 'reg' to 1.
+    - Remove unused label
+  - Update ma35d1 pwm driver
+    - Remove MODULE_ALIAS()
+    - Add chip->atomic = true
 
-regards
-Philipp
+
+
+Chi-Wen Weng (2):
+  dt-bindings: pwm: nuvoton: Add MA35D1 pwm
+  pwm: Add Nuvoton MA35D1 PWM controller support
+
+ .../bindings/pwm/nuvoton,ma35d1-pwm.yaml      |  45 +++++
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-ma35d1.c                      | 169 ++++++++++++++++++
+ 4 files changed, 224 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-ma35d1.c
+
+-- 
+2.25.1
+
 
