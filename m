@@ -1,322 +1,187 @@
-Return-Path: <devicetree+bounces-115190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3F2F9AE687
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 15:33:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95DB9AE68C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 15:33:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FC241F26847
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:33:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5127EB26598
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29DED1F5849;
-	Thu, 24 Oct 2024 13:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB421F80CC;
+	Thu, 24 Oct 2024 13:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lD8d0D6J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e09i9gPP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5623F1BBBEB;
-	Thu, 24 Oct 2024 13:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49DC1DD9D1;
+	Thu, 24 Oct 2024 13:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729776442; cv=none; b=ReGCdo8LozE9iJVWzwCe7IsmPIyyxgsN8X1xMP7I8cE/jwIdoPbtCo6T2fEJ83hOUSJ25nuaTqn1wre4vWS0zXXpGSUhi8OFYcsS34MaU2dKRD59h8mg/8H1dwziQvj09P7YlaqsFW/rjC420iLUulIkzGPQXjv7do7YyfLBHXQ=
+	t=1729776449; cv=none; b=QsBfqORfchAolwuq3YlB+0SOws8n166fdV2SeI1+GenmccDf4WCTapOed+q33U6PxyWif9wTkFdRvuc3uoRGoJoQglTQ4Gb/aMPOm0Uz0IVjYZ0x5UsB2kvTpwdShtDeH0W3JTG5K1x63lEhRpHy5843GbXIv4E+e7Qw3M79ml4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729776442; c=relaxed/simple;
-	bh=YqJofZ36BW/TRJuXv7SdP08LIVcE0smc5fN4el3bLKs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QQNoOChkSxiEKYAe/e5g25Vx7hb6Z3csdy6VY3sjgdOlZkI2IymMC1YGmPrIkQgHkDdyLTllwBXbZ9JJTSJs6vc6/KWuY/JZz4YfaZRISmo75zM2mU0Wjlg5yDOM89jEkjkfMomAgH3sQY6hMoJa21vb1SxNp1z7Z/i8CmW6aJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lD8d0D6J; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37d6ff1cbe1so628503f8f.3;
-        Thu, 24 Oct 2024 06:27:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729776438; x=1730381238; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=lh/Aemo/gwLUT93xOhFMFPtYx/PANCkObOqWYsHf0oU=;
-        b=lD8d0D6JzKgS6avhOD2Y8kCIaAWZwBC4r58OCH7ZXsmKtPlnZwWQW51D35axwB2ezm
-         G3lzBk+obpvKKkrb8+RfYvHXjhgtuD+A1a+Km0PZjgVMia3skSU35+vk9jyPL8qyA7fx
-         Cp6M5ZR3K8clBokpMEbtB0Uri0PN68m6GKRz1a/37gGFPCoNwLmxuAktcv4yTJRe5S/W
-         01ljBeE0UqkbqOsW3WiaXpa+bG4ucyKyXD+uwyOcMwNOkmS+BIP1/YUYSLDWrdTKUdGK
-         c8kDxAG/S2dBDX75V8peiCeO/lX5Q610fBUUhMc9Wk3l9C9dXopoYTZepuZiZsfkQ2SG
-         kiqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729776438; x=1730381238;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lh/Aemo/gwLUT93xOhFMFPtYx/PANCkObOqWYsHf0oU=;
-        b=QDaO1UHncYcmlkn89F0FWonzV6A72R+CVMc98kCeniBSVtLNMTY/A+8lw5sVfDORVR
-         TDpw4FahKIhbmggOipquanE06U/Z9UqtGmXDWiT+/L7n96dR9gwR8RKgMn7gURmWtlbv
-         WHbvfF/mb7n926AfRVl2SwK+uo2LhPv1b3N4rt4qPNe+SQlcvy/NbczETUjSimzxJ4Oz
-         aehpoL8THnLNbOg7P1Qce9DvX18R/U98wVs+P7uc6+yMBs1Q5tg74UON5xotwnZiI9gw
-         Bild6HTR19HuWOWfdT5j5V9BJGyOOfJQ9E0WtdK+SnOSbr1P42LicgFzyB6F1LkOQ7GF
-         3ZCg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8msp3eoYJ8BP7vFe1eKv5tvVZ29j2DuJxddNM/XG5CTusxHQbIrJff8RDKCGLWIHNQgAR0ctAkaU0@vger.kernel.org, AJvYcCVE1Y/u9F7sxwHlyb5u4sFj7tADxCQ1syW31WnZF+Dp+1/0Qowg1vSOPC8IlVF13KgpX9WuRTzr9LgP@vger.kernel.org, AJvYcCVaQxmXqnY35rStocCRKvGXxSnBANU3qkRgcNx2Qh3A7Vaks46d5w+jZxfP2Mn47nUPGkzjSip6dDUu/FNK@vger.kernel.org, AJvYcCX+E5TzQ3WDto6RWgbF2PYix4t/8Vdh4fUq39uEHVifyQdBHj3gQBNYTv3r1VmOSxmAjyGvUjxTaNS2@vger.kernel.org, AJvYcCXwE0b3wpMfAD2UuCasTgdvpXg38MIchddg4oDGtwgJXm7NioBJEQ8akrDqKtVahSaYGRuicRhVZ5QB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8kkk6VoHqJ+v4+sjbB8NjzO2z+JDC3Map1xg6AZFuHjgHiLmU
-	wGbMCS58wGtvrH9SdlbYXs05i7sPv0nRCX59i2Wjbj0p5ytvDn8l
-X-Google-Smtp-Source: AGHT+IF9o4FDi/qZPAdyapVJFH/1h0r+fDXv1zwkewBYzgCtc4WAQVTBFq7r/5rH6N5woWxjtXTKvA==
-X-Received: by 2002:adf:e54b:0:b0:37d:4d80:34ae with SMTP id ffacd0b85a97d-37efcf00d4amr4051647f8f.4.1729776437276;
-        Thu, 24 Oct 2024 06:27:17 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43186bd6a52sm47556215e9.8.2024.10.24.06.27.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 06:27:17 -0700 (PDT)
-Message-ID: <ba3eed090e29deda797b0dea8162949c82743ccf.camel@gmail.com>
-Subject: Re: [PATCH RFC v4 02/15] spi: add basic support for SPI offloading
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
-	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-Date: Thu, 24 Oct 2024 15:27:15 +0200
-In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
-References: 
-	<20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
-	 <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1729776449; c=relaxed/simple;
+	bh=37vPV7z3GHny87sgA9pvUW5mM1Cy15dDQ648OmpjBCk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y94wUfhUbsH2kCiWa/XwzecQPLGd8ty3iHhuy2AhPZLM4fVujVKpkvIVMosa+HtqevSdnWjhlwQPHF/GfOYILNBGaMA9EWnbvmdlT/kDuMnFl2oBpmK2mCQRRjOIBiaSn+LYiVL5Ow+fNUv3t0p1IIwlRQCxBZxQ1AVioD/qsI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e09i9gPP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90653C4CECC;
+	Thu, 24 Oct 2024 13:27:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729776449;
+	bh=37vPV7z3GHny87sgA9pvUW5mM1Cy15dDQ648OmpjBCk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=e09i9gPPGGBv4VFvDk58dg3uNhL/EiQkVOMA3VkjWksThWr7w07lpIzymzNUVrwuk
+	 8cd/cTTy+TSHfNZpH5MIH4ynTrXFS/tPzGJIKiLN/eRIJ1ZxTqy/4/Iv84NxyeWNoi
+	 Ngah0VA4C8zhiCi0FZOZRSi4R2ovzZ9Bwl5v9jeIcWbRkG3ox6lIMPcJyaZws6gRvx
+	 FoTqLypRGwjhaBDxqe/3qAWM/8BighYF42fdSDPLoH/yvoSNRwoEjuzMiVdrhxaW0j
+	 A7OyRN6kuO0OhDALIzSVsCH/O+tbPEnCV6yiM3LPRLemZwKMcXgJcVlyYJnjKvdF/F
+	 hU0uLMLub8xHg==
+Message-ID: <a1528ced-930c-4e5d-91e6-6be5f5363e8d@kernel.org>
+Date: Thu, 24 Oct 2024 15:27:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for NETC
+ blocks control
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+ Frank Li <frank.li@nxp.com>,
+ "christophe.leroy@csgroup.eu" <christophe.leroy@csgroup.eu>,
+ "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+ "bhelgaas@google.com" <bhelgaas@google.com>,
+ "horms@kernel.org" <horms@kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>
+References: <20241022055223.382277-1-wei.fang@nxp.com>
+ <20241022055223.382277-4-wei.fang@nxp.com>
+ <xx4l4bs4iqmtgafs63ly2labvqzul2a7wkpyvxkbde257hfgs2@xgfs57rcdsk6>
+ <PAXPR04MB851034FDAC4E63F1866356B4884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <f7064783-983a-44bd-a9db-fd20f4e50e33@kernel.org>
+ <PAXPR04MB85101A3DFF08F8C8DD7513F8884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <PAXPR04MB85101A3DFF08F8C8DD7513F8884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
-> Add the basic infrastructure to support SPI offload providers and
-> consumers.
->=20
-> SPI offloading is a feature that allows the SPI controller to perform
-> transfers without any CPU intervention. This is useful, e.g. for
-> high-speed data acquisition.
->=20
-> SPI controllers with offload support need to implement the get_offload
-> callback and can use the devm_spi_offload_alloc() to allocate offload
-> instances.
->=20
-> SPI peripheral drivers will call devm_spi_offload_get() to get a
-> reference to the matching offload instance. This offload instance can
-> then be attached to a SPI message to request offloading that message.
->=20
-> It is expected that SPI controllers with offload support will check for
-> the offload instance in the SPI message in the optimize_message()
-> callback and handle it accordingly.
->=20
-> CONFIG_SPI_OFFLOAD is intended to be a select-only option. Both
-> consumer and provider drivers should `select SPI_OFFLOAD` in their
-> Kconfig to ensure that the SPI core is built with offload support.
->=20
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
+On 23/10/2024 12:03, Wei Fang wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: 2024年10月23日 16:56
+>> To: Wei Fang <wei.fang@nxp.com>
+>> Cc: davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
+>> pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
+>> conor+dt@kernel.org; Vladimir Oltean <vladimir.oltean@nxp.com>; Claudiu
+>> Manoil <claudiu.manoil@nxp.com>; Clark Wang <xiaoning.wang@nxp.com>;
+>> Frank Li <frank.li@nxp.com>; christophe.leroy@csgroup.eu;
+>> linux@armlinux.org.uk; bhelgaas@google.com; horms@kernel.org;
+>> imx@lists.linux.dev; netdev@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-kernel@vger.kernel.org; linux-pci@vger.kernel.org;
+>> alexander.stein@ew.tq-group.com
+>> Subject: Re: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for NETC
+>> blocks control
+>>
+>> On 23/10/2024 10:18, Wei Fang wrote:
+>>>>> +maintainers:
+>>>>> +  - Wei Fang <wei.fang@nxp.com>
+>>>>> +  - Clark Wang <xiaoning.wang@nxp.com>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - nxp,imx95-netc-blk-ctrl
+>>>>> +
+>>>>> +  reg:
+>>>>> +    minItems: 2
+>>>>> +    maxItems: 3
+>>>>
+>>>> You have one device, why this is flexible? Device either has exactly
+>>>> 2 or exactly 3 IO spaces, not both depending on the context.
+>>>>
+>>>
+>>> There are three register blocks, IERB and PRB are inside NETC IP, but
+>>> NETCMIX is outside NETC. There are dependencies between these three
+>>> blocks, so it is better to configure them in one driver. But for other
+>>> platforms like S32, it does not have NETCMIX, so NETCMIX is optional.
+>>
+>> But how s32 is related here? That's a different device.
+>>
+> 
+> The S32 SoC also uses the NETC IP, so this YAML should be compatible with
+> S32 SoC.
 
-Hi David,
+What? How? Where is this compatible documented?
 
-Just one minor comment...
+> Or do you mean when S32 NETC is supported, we then add restrictions
+> to the reg property for S32?
 
->=20
-> v4 changes:
-> * SPI offload functions moved to a separate file instead of spi.c
-> =C2=A0 (spi.c is already too long).
-> * struct spi_offload and devm_spi_offload_get() are back, similar to
-> =C2=A0 but improved over v1. This avoids having to pass the function ID
-> =C2=A0 string to every function call and re-lookup the offload instance.
-> * offload message prepare/unprepare functions are removed. Instead the
-> =C2=A0 existing optimize/unoptimize functions should be used. Setting
-> =C2=A0 spi_message::offload pointer is used as a flag to differentiate
-> =C2=A0 between an offloaded message and a regular message.
->=20
-> v3 changes:
-> * Minor changes to doc comments.
-> * Changed to use phandle array for spi-offloads.
-> * Changed id to string to make use of spi-offload-names.
->=20
-> v2 changes:
-> * This is a rework of "spi: add core support for controllers with offload
-> =C2=A0 capabilities" from v1.
-> * The spi_offload_get() function that Nuno didn't like is gone. Instead,
-> =C2=A0 there is now a mapping callback that uses the new generic devicetr=
-ee
-> =C2=A0 binding to request resources automatically when a SPI device is pr=
-obed.
-> * The spi_offload_enable/disable() functions for dealing with hardware
-> =C2=A0 triggers are deferred to a separate patch.
-> * This leaves adding spi_offload_prepare/unprepare() which have been
-> =C2=A0 reworked to be a bit more robust.
-> ---
-> =C2=A0drivers/spi/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 ++
-> =C2=A0drivers/spi/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/spi/spi-offload.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 104=
- ++++++++++++++++++++++++++++++++++++++++
-> =C2=A0include/linux/spi/spi-offload.h |=C2=A0 64 ++++++++++++++++++++++++=
-+
-> =C2=A0include/linux/spi/spi.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 16 +++++++
-> =C2=A05 files changed, 188 insertions(+)
->=20
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index 823797217404..d65074b85f62 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -55,6 +55,9 @@ config SPI_MEM
-> =C2=A0	=C2=A0 This extension is meant to simplify interaction with SPI me=
-mories
-> =C2=A0	=C2=A0 by providing a high-level interface to send memory-like com=
-mands.
-> =C2=A0
-> +config SPI_OFFLOAD
-> +	bool
-> +
-> =C2=A0comment "SPI Master Controller Drivers"
-> =C2=A0
-> =C2=A0config SPI_AIROHA_SNFI
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index a9b1bc259b68..6a470eb475a2 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -10,6 +10,7 @@ ccflags-$(CONFIG_SPI_DEBUG) :=3D -DDEBUG
-> =C2=A0obj-$(CONFIG_SPI_MASTER)		+=3D spi.o
-> =C2=A0obj-$(CONFIG_SPI_MEM)			+=3D spi-mem.o
-> =C2=A0obj-$(CONFIG_SPI_MUX)			+=3D spi-mux.o
-> +obj-$(CONFIG_SPI_OFFLOAD)		+=3D spi-offload.o
-> =C2=A0obj-$(CONFIG_SPI_SPIDEV)		+=3D spidev.o
-> =C2=A0obj-$(CONFIG_SPI_LOOPBACK_TEST)		+=3D spi-loopback-test.o
-> =C2=A0
-> diff --git a/drivers/spi/spi-offload.c b/drivers/spi/spi-offload.c
-> new file mode 100644
-> index 000000000000..c344cbf50bdb
-> --- /dev/null
-> +++ b/drivers/spi/spi-offload.c
-> @@ -0,0 +1,104 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2024 Analog Devices Inc.
-> + * Copyright (C) 2024 BayLibre, SAS
-> + */
-> +
-> +#define DEFAULT_SYMBOL_NAMESPACE SPI_OFFLOAD
+I don't know what you are creating here. That's a binding for one
+specific device (see writing bindings guideline).
 
-Cool, was not aware of this :)
-> +
-> +#include <linux/cleanup.h>
-> +#include <linux/device.h>
-> +#include <linux/export.h>
-> +#include <linux/mutex.h>
-> +#include <linux/property.h>
-> +#include <linux/spi/spi-offload.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/types.h>
-> +
-> +/**
-> + * devm_spi_offload_alloc() - Allocate offload instances
-> + * @dev: Device for devm purposes
-> + * @num_offloads: Number of offloads to allocate
-> + * @priv_size: Size of private data to allocate for each offload
-> + *
-> + * Offload providers should use this to allocate offload instances.
-> + *
-> + * Return: Pointer to array of offloads or error on failure.
-> + */
-> +struct spi_offload *devm_spi_offload_alloc(struct device *dev,
-> +					=C2=A0=C2=A0 size_t num_offloads,
-> +					=C2=A0=C2=A0 size_t priv_size)
-> +{
-> +	struct spi_offload *offloads;
-> +	void *privs;
-> +	size_t i;
-> +
-> +	offloads =3D devm_kcalloc(dev, num_offloads, sizeof(*offloads) + priv_s=
-ize,
-> +				GFP_KERNEL);
-> +	if (!offloads)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	privs =3D (void *)(offloads + num_offloads);
-> +
-> +	for (i =3D 0; i < num_offloads; i++) {
-> +		struct spi_offload *offload =3D offloads + i;
-> +		void *priv =3D privs + i * priv_size;
-> +
-> +		offload->provider_dev =3D dev;
-> +		offload->priv =3D priv;
-> +	}
-> +
-> +	return offloads;
-> +}
-> +EXPORT_SYMBOL_GPL(devm_spi_offload_alloc);
-> +
-> +static void spi_offload_put(void *data)
-> +{
-> +	struct spi_offload *offload =3D data;
-> +
-> +	offload->spi =3D NULL;
-> +	put_device(offload->provider_dev);
-> +}
-> +
-> +/**
-> + * devm_spi_offload_get() - Get an offload instance
-> + * @dev: Device for devm purposes
-> + * @spi: SPI device to use for the transfers
-> + * @config: Offload configuration
-> + *
-> + * Peripheral drivers call this function to get an offload instance that=
- meets
-> + * the requirements specified in @config. If no suitable offload instanc=
-e is
-> + * available, -ENODEV is returned.
-> + *
-> + * Return: Offload instance or error on failure.
-> + */
-> +struct spi_offload *devm_spi_offload_get(struct device *dev,
-> +					 struct spi_device *spi,
-> +					 const struct spi_offload_config *config)
-> +{
-> +	struct spi_offload *offload;
-> +	int ret;
-> +
-> +	if (!spi || !config)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	if (!spi->controller->get_offload)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	offload =3D spi->controller->get_offload(spi, config);
-> +	if (IS_ERR(offload))
-> +		return offload;
-> +
-> +	if (offload->spi)
-> +		return ERR_PTR(-EBUSY);
-> +
-> +	offload->spi =3D spi;
-> +	get_device(offload->provider_dev);
-
-Isn't this redundant? From what I can tell, we're assuming that the spi con=
-troller
-(of the spi device) is the offload provider. Therefore, getting an extra re=
-ference
-for it does not really seems necessary. The device cannot go away without u=
-nder the
-spi_device feet. If that could happen, then we would also need to take care=
- about
-callback access and things like that. Going this way, it would also be argu=
-able to
-have a try_module_get().
-
-- Nuno S=C3=A1
-
+Best regards,
+Krzysztof
 
 
