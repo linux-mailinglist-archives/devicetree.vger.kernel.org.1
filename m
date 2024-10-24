@@ -1,89 +1,92 @@
-Return-Path: <devicetree+bounces-115357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A959AEFCB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:46:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 206319AF047
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:57:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F37A71C22016
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:46:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD057281A4E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:57:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6D01F9EDA;
-	Thu, 24 Oct 2024 18:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B98E21644E;
+	Thu, 24 Oct 2024 18:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UVgkk0Yn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sn3GhESW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1349482EF;
-	Thu, 24 Oct 2024 18:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02FC215F7D;
+	Thu, 24 Oct 2024 18:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729795611; cv=none; b=HzoLWdzJQxyMAA3FAqzgyRmglf+4NAJh1a7cZxW5siM8qQf95bmOiu9gzvvCH9jNr2IzIG/ku+nv8hdiDf7l8g0c47/ZFkgSTlufbeJp8s/lO4uvw2sROXbsE6mMb0SvDeqHKg7ChI9xy9cZo4HxRalukiV/UPvGNSoZv7v62oo=
+	t=1729796219; cv=none; b=bqr/itABwaI9VvbTzhWUDULy0okzqmFkkMaZRElcdC3B7TJZe/GW0Iu3eLGfbfWyTTpixCtTGxxTmcOrTdoMRQ0FLnJIfN5p8MhTj6Lwi80dWG68CMwvtkL5VE5swLfWABLavr1Eta8n9rduUIRMsv00nkcy1RntWIaIcmNoXCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729795611; c=relaxed/simple;
-	bh=5FVyEGboaM4rj+GScXdt9qEVYfTNOXNL6tZ7z4VeYFo=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=qPAcR+bxmJH9dSxnG45S8Zlh9UGG1I7gdfkwdPEy/36EuLuBOxnfmsyHFqE58eFQpQ/naGEGJftjbfKo+Y8jb0WowHuRf9ibxbDnxNg5qdNFsDIHkZa+rTdUYwtn1RfRMRtV1XTOg8FaPEdDRW0T+ChSaqiX4s1mMG84a2pZ3WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UVgkk0Yn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6897C4CEC7;
-	Thu, 24 Oct 2024 18:46:50 +0000 (UTC)
+	s=arc-20240116; t=1729796219; c=relaxed/simple;
+	bh=uH4oLbSJp5tK7l6Ubd/0LL3oX1y7PMVtESPqwn0P0f8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Gy0qLt5WvfK64vccK5iCWZLG9rBnt505MAqLQk8cbipPJp9HG19dCXV20vAQr5Jv5a+DDMfoEkMlSzy0N7lUk7DVu8cZw8erfj8stnesz4vYPvyKpqQwzKDG5mqZ+c6rc9QGUftxMl0EYC8iDcUsSLVe0Vm2aCdPc8cdMnnnbvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sn3GhESW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4276C4CEE4;
+	Thu, 24 Oct 2024 18:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729795611;
-	bh=5FVyEGboaM4rj+GScXdt9qEVYfTNOXNL6tZ7z4VeYFo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=UVgkk0YnFNtvfXKZbtHA23X2t0DzDyhu17nPkgpQtV/XewjU9cZpGGRGY29oopDx2
-	 jeQ+6pQ+4u/zDsdh7qT2DeFqTOYRwLbzccirvWp0KwT1QLmYLRtHgd0fkVWeblVExC
-	 ptAvZ4ntayRZsIdrF24TyQxb9+XtMfvzNOpWwnI0ou2hC+jnNpwzXIa2FyRD2AU8I3
-	 WVGSw0VmdPkxxPXwZXl3Ut9E/L35tPM8GmiHUddw6oZKtxdXl6uM9yzBSfgHg5ru3j
-	 C7j8ulGmYRuieHdCXHxQMCvBmwA8QSMvawhxjk3jH6Cx4CQIqbgbf+jigVf8XVaEla
-	 CwbcKlzONrSOA==
-Date: Thu, 24 Oct 2024 13:46:49 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-pci@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	s=k20201202; t=1729796218;
+	bh=uH4oLbSJp5tK7l6Ubd/0LL3oX1y7PMVtESPqwn0P0f8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=sn3GhESWHVyFNqiDGL77nobP6TAhL5xjpcwcjmTstlAJjmk38vkX8AZqGuGf1LRV+
+	 gztMm3C2B1smWoIab8gQvq+xU/tIRogpdS3Xf4jmuJHnm8DD/9p4JD6Hd++jiKsCK8
+	 BV1/otWxaOJNzV7o2b5B5rLYHxSrKCHBLJuzLYj3QMHjGalAE/L7AfHi8e3K/SLxgW
+	 J6mqN7IhuBE4bw0j1o8qqysNgUXXsDUpMoGBpwY7fOeuAMneHZENjBSUOnRpdH1dHw
+	 3jSN+Tc/if/WJTOh7/uGId6bFqs3WqR9w5iY5rrpMOEZJC+3JzaN7TnWfOnzO/2ny4
+	 g3XHxQ6hqZNgw==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 0/2] PCI: microchip: support using either instance 1
- or 2
-Message-ID: <20241024184649.GA967731@bhelgaas>
+	Conor Dooley <conor+dt@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: qcom: x1e80100: fix PCIe interconnects
+Date: Thu, 24 Oct 2024 13:56:54 -0500
+Message-ID: <172979621229.309364.4258661392750678343.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241024131101.13587-1-johan+linaro@kernel.org>
+References: <20241024131101.13587-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241024-gout-kinfolk-0f24b28d41b7@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 24, 2024 at 10:38:11AM +0100, Conor Dooley wrote:
-> On Wed, Aug 14, 2024 at 09:08:40AM +0100, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> > 
-> > The current driver and binding for PolarFire SoC's PCI controller assume
-> > that the root port instance in use is instance 1. The second reg
-> > property constitutes the region encompassing both "control" and "bridge"
-> > registers for both instances. In the driver, a fixed offset is applied to
-> > find the base addresses for instance 1's "control" and "bridge"
-> > registers. The BeagleV Fire uses root port instance 2, so something must
-> > be done so that software can differentiate. This series splits the
-> > second reg property in two, with dedicated "control" and "bridge"
-> > entries so that either instance can be used.
+
+On Thu, 24 Oct 2024 15:10:58 +0200, Johan Hovold wrote:
+> The fourth and fifth PCIe controllers on x1e80100 are connected to the
+> PCIe North ANoC.
 > 
-> Just attempting to bump this patchset. It has gone over 2 months without
-> response, and I am afraid it has completely fallen between the cracks.
+> Fix the corresponding interconnect properties so that the OS manages the
+> right paths.
+> 
+> These should go into 6.12-rc.
+> 
+> [...]
 
-Thanks for bumping this.  It looks pretty straightforward to me, so if
-nobody acts on it soon, I'll pick it up.
+Applied, thanks!
 
-Bjorn
+[1/2] arm64: dts: qcom: x1e80100: fix PCIe4 interconnect
+      commit: f3bba5eb46ddb8f460fc808a65050a9bf2f7ef23
+[2/2] arm64: dts: qcom: x1e80100: fix PCIe5 interconnect
+      commit: 54376fe116ef69c9e58794589c044abb2555169e
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
