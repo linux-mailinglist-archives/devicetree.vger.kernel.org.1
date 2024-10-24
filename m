@@ -1,114 +1,138 @@
-Return-Path: <devicetree+bounces-115288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24FA9AEC47
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:35:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BECDE9AEC49
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:35:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81FD61F22E1E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:35:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFB7D1C24E81
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76DCD1F9EB4;
-	Thu, 24 Oct 2024 16:34:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0L1zxL3r"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C818A1FAEE0;
+	Thu, 24 Oct 2024 16:35:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98EB1F941A
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 16:34:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788461F9EA6;
+	Thu, 24 Oct 2024 16:34:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729787687; cv=none; b=upX+y82h3ib+9yqRwkyLGJJ4cm0DiES/ouwTHj/aRwIE2rc8UpRuWDus+E30tTNNymaYZOyS+1cUax5Pd8EPY023E7bPP8EqBaQmTsq0EepsdB4DSwONclQUnTIsUqck0M7PgEMYU5q2DZSwE3TWA2u/2WfJYzp/rFNxDT0YazY=
+	t=1729787702; cv=none; b=PemS8li3cBVqEkujzX7SImHbqMEIMJGSLurKgMmz58rhRzaZYJsEYjBXhsMElanyyAiiigBOx7bNT/BuVUUFZzJHayMzFy7AA6UIf4D6tG8yv7A6Mh6t8bLF4/1PisBxmZrtR7m2icgTynJxeSucu3lPqA5L2phZXBdJfvFa9mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729787687; c=relaxed/simple;
-	bh=vuJVKKiBvq7x+Be8hBTG9qd+RUczGZ/Xifbjjii10Mo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CgPinZbq+NhymRmpB+/OfiKupm4TTsK1eiFmHA1ktYHAbMgDebWGI6PReWdocqyaT2iLQb+nd8HeEX9P5VENA8n7L5FeHUOIRDdAVAlGWAR0PSV53RkSKheSB1uUWWplfv9mwsyZGA4YNVn7VDD9Qar0oOpGOxSPQ2TVvt9JhcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0L1zxL3r; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-460d1145cd8so7679141cf.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 09:34:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729787683; x=1730392483; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vuJVKKiBvq7x+Be8hBTG9qd+RUczGZ/Xifbjjii10Mo=;
-        b=0L1zxL3r1X9u707heqhFpHRymH2WwE1ejfWF+ru1h11VyVrhuNih7Uq1W/Re0I6/gZ
-         bxvTWc9C5H0btacb+wBi1SVoUQE3l8bcICvFR8ty7V5R9vtyqW6+iMmlWM69/Mc+zNq7
-         uvZn/RGcstyu4iZRj1F/UROXzf2Et45eVVqlVejAUAKRV7XDXqLupd2aHOiwTf49ckjc
-         gWZ+oE+uOnJ0csoIFm34QMncyf/oFh7YtH1fGHv3D9EZzLy1mBTH5zCQx7SL22+AAFWI
-         M9RQ47t5WPCXUhIz86BAd/CjLfQ8fO5gbIMhXrctLMJn7EBbC0vMsQ66BqLiWNaauncX
-         GKmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729787683; x=1730392483;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vuJVKKiBvq7x+Be8hBTG9qd+RUczGZ/Xifbjjii10Mo=;
-        b=tG035iWv9O4TCTS2Wa6kblw9i2JrIyeE8+5J9dToteistfkUA2EdYlPiuYWvKwUl3T
-         QbnSbi0ogsAGHSZRsAzPRpeo8qj5mPjpj6znFdSFK+pZE6WEINRnKBdXBiJZCMYeZmYI
-         Tga3tLAtV0rexLRlfkSpqjO4q7ff6mwepKzEu3htGhbW7LHjyK0hwErZiWtZ8iWTX7P3
-         hqbPr7Hgk/wM98d3jZgX3+n8Qm1BkvLtRjA40d+CP0NKU0xEC+DARNUu5RUOXiuc1am3
-         GW8WsUR3ffWcO1JP0FkcHTWWVJQjYc1ETgCXK9zdqI0crOfwlbibpswis2lt3tK7uQkW
-         3XoA==
-X-Forwarded-Encrypted: i=1; AJvYcCU004COEkHv46AVJA/wAjv8vwhIlNIKkQP4eLUtNHjEyNFQgUXt1q4goZknsWly3w9sibkIPyiSx6QV@vger.kernel.org
-X-Gm-Message-State: AOJu0YylwOWvF31q1vBLvyNoyBCKQIaU/7p8q+VJbNt47hn8Pez/ykIp
-	69xH472b5xlHKSZdEc2M6GImU6JLxWw7DuOKHHJxPHfgTZOqEhSh1HUYmS3GgkTomxKMNnfZARU
-	R
-X-Google-Smtp-Source: AGHT+IEcO+1ZUR1LSQ32jmcrOAMZv0sGdou4K02lY+6UmpJDDyKgzyqsz9Nb54dwt4WMxE+TX0X93g==
-X-Received: by 2002:ac8:4444:0:b0:461:148b:1884 with SMTP id d75a77b69052e-461148b195fmr77786911cf.11.1729787683626;
-        Thu, 24 Oct 2024 09:34:43 -0700 (PDT)
-Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-460d3c3e701sm53188071cf.18.2024.10.24.09.34.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Oct 2024 09:34:43 -0700 (PDT)
-Message-ID: <1b6353c6-dab9-4751-8b50-a221f926b1bc@baylibre.com>
-Date: Thu, 24 Oct 2024 12:34:42 -0400
+	s=arc-20240116; t=1729787702; c=relaxed/simple;
+	bh=IoytTz6FlczuCtBnLxvEi0mTRI7KDE/USf6usLPfusg=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Sj7ZJNl1lW7xzc1EAtKsaRIB05Gjs/zkzAPPLtzznoEvgkwKQb4cozKc8HzdPLuUKQMFX2D7lUViXfWqjiKTf1v5Ah6fq2tboEk2j2WrYqO3i8kRCW+VUpx45hh6oGl6Mm9tSQoTQv92l8eYyx00BO2tTJ6GcCgCnKcEYSwMXIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XZBGb0lsxz6L74C;
+	Fri, 25 Oct 2024 00:30:15 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 2CC341404FC;
+	Fri, 25 Oct 2024 00:34:57 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 24 Oct
+ 2024 18:34:56 +0200
+Date: Thu, 24 Oct 2024 17:34:54 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+CC: Hans de Goede <hdegoede@redhat.com>, Rayyan Ansari <rayyan@ansari.sh>,
+	<linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-iio@vger.kernel.org>, Bjorn Andersson <andersson@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, <linux-kernel@vger.kernel.org>, "Rafael
+ J. Wysocki" <rafael@kernel.org>, Robert Yang <decatf@gmail.com>, Rob Herring
+	<robh@kernel.org>, Sean Rhodes <sean@starlabs.systems>
+Subject: Re: [PATCH 2/3] iio: accel: kxcjk-1013: Add support for KX022-1020
+Message-ID: <20241024173454.00006240@Huawei.com>
+In-Reply-To: <ZxpZfgsf-KldiX4w@black.fi.intel.com>
+References: <20240714173431.54332-1-rayyan@ansari.sh>
+	<20240714173431.54332-3-rayyan@ansari.sh>
+	<823ce598-dffd-4983-bffa-32559558235d@redhat.com>
+	<ZxpZfgsf-KldiX4w@black.fi.intel.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pwm: adi,axi-pwmgen: Increase #pwm-cells to
- 3
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241024102554.711689-2-u.kleine-koenig@baylibre.com>
-Content-Language: en-US
-From: Trevor Gamblin <tgamblin@baylibre.com>
-In-Reply-To: <20241024102554.711689-2-u.kleine-koenig@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
+ frapeml500008.china.huawei.com (7.182.85.71)
+
+On Thu, 24 Oct 2024 17:28:14 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+
+> On Mon, Jul 15, 2024 at 10:30:46AM +0200, Hans de Goede wrote:
+> > On 7/14/24 7:33 PM, Rayyan Ansari wrote:  
+> > > Add compatible for the KX022-1020 accelerometer [1] using the
+> > > KX022-1023 [2] register map as both have an identical i2c interface.
+> > > 
+> > > [1]: https://kionixfs.azureedge.net/en/datasheet/KX022-1020%20Specifications%20Rev%2012.0.pdf
+> > > [2]: https://kionixfs.azureedge.net/en/datasheet/KX023-1025%20Specifications%20Rev%2012.0.pdf
+> > > 
+> > > Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>  
+> > 
+> > Thanks, patch looks good to me:
+> > 
+> > Reviewed-by: Hans de Goede <hdegoede@redhat.com>  
+> 
+> Note, this patch broke kx231025 case...
+> 
+> > >  	KXCJ91008,
+> > >  	KXTJ21009,
+> > >  	KXTF9,
+> > > +	KX0221020,
+> > >  	KX0231025,
+> > >  	KX_MAX_CHIPS /* this must be last */
+> > >  };  
+> 
+> ...because this enum is used of ODR startup timeout settings which
+> are all moved now to be 0 and new ID inherited the timeouts from
+> the KX0231025 case.
+> 
+> Since I have been looking into the driver, and I have a few patches
+> coming, I propose to do the following (as it's still ODR data being
+> missed) to:
+> 1) revert this one
+> 2) apply my set;
+> 3) re-apply this with the fixed data.
+
+> 
+> Another approach can be done (but probably not by me) is to move the ID
+> to the proper location, add ODR startup timeouts or explain why it's not
+> needed and then apply my patch.
+> 
+> But, taking into account that we are almost at -rc5 and I want my stuff
+> not to be postponed, I tend to follow the first approach.
+> 
+> Opinions, comments?
+> 
+> P.S. FWIW, my set will include switching this driver to use chip_info
+> structure so the similar mistakes won't happen again, that's also why
+> I prefer the first approach I listed above.
+> 
+
+Hmm. Either I want the revert in before the release, or your series
+to make the merge window (and hence probably hit in first couple of stable
+releases).
+
+Ideal would be revert very soon and chase it in to togreg so your series
+can go on top, but that would rely on some lucky timing of pull requests
+and merges that is probably too optimistic.
+
+Jonathan
 
 
-On 2024-10-24 06:25, Uwe Kleine-König wrote:
-> Using 3 cells allows to pass additional flags and is the normal
-> abstraction for new PWM descriptions. There are no device trees yet to
-> adapt to this change.
->
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
-> ---
-> Hello,
->
-> missed that during review of that new binding. Just noticed that now
-> when (internally) reviewing a machine dt using that device.
->
-> There is no need for driver adaptions, the pwm core handles both cases
-> just fine.
->
-> Best regards
-> Uwe
-Reviewed-by: Trevor Gamblin <tgamblin@baylibre.com>
+
 
