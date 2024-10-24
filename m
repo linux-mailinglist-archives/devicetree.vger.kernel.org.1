@@ -1,69 +1,53 @@
-Return-Path: <devicetree+bounces-115102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E8EA9ADF24
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:31:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE3589ADF87
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 10:54:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D28A1C20C06
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:31:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10ACA1F2175A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8111B2195;
-	Thu, 24 Oct 2024 08:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5BA01B3921;
+	Thu, 24 Oct 2024 08:54:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EzLIN82D"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nvtSGN8V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4313218A6D9;
-	Thu, 24 Oct 2024 08:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3DD1B21B8;
+	Thu, 24 Oct 2024 08:54:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729758667; cv=none; b=Dr/4qoV37zJtRbKlpAF5u0BE++V1iyBGY82DhXl6xHexQBPzvv0VgmmMNJ5kJ4BDyCaTZU+wHKOqYEheWVzyUOxkqJPafUP8DvM8QFSsEot9ZVNtL6mDbM/8EZ3QJLKWhTcMgUijmWk0T2bLZLMQgbv3RUVxb6iGbCkT+i04bZY=
+	t=1729760078; cv=none; b=Txlkig/S0fDYJwYRry4WOLiMsC7cAwwNr9lAZsGXOcp358cLLFeTpZeVdZfDniaAxeGLs0hTxIc7FEbs6qSVSpv+kBgpHIsys+dOJOX66VHSnG1drCU86V48HUg8I6y04peYpf1Kx66apdiazz/dYiIr7cYi4HbLWbiuQIxr1mA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729758667; c=relaxed/simple;
-	bh=eyfzA6Z8+XhEo4eDN9egGayHNzjtTD4jwHQ7hziTcio=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cXgr5JE0uWo9fR/fJ3whGAo3ZfAStWpzYLL1Y2fiyOhazZkn0iykeDpw2FAkfAIMfKArRKKmBQZkAUT94SUnkvrozbsMh7XxOtgEWYT9N8cZFVVeJuShs9Y8vjJiJuCBAnmWQbNr4CdWhkYxztXW8O20b10Ig7gmevE3q6CVtWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EzLIN82D; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=5qQWxtU6GqzgrbCaUsvRleEvRl4Zs3up4/mkoq8kfWc=; b=EzLIN82D8z0dZajYuP09a2o727
-	P926hnzmqmrfZ1W4hKprfKNELKb74TYB+HS8BcmiMFahoht3ZghH1EWi7YnaItkugb7Ucsok3s9/y
-	uBZ56WubQdJ7orTam5pyMaF/O5JS23axhM/80SfKQvpSEk4F5nyQkIHzrEAHVBNA+932t9Pdi0MoV
-	xhwx3MvZtWI7s+1QPRLfTMZYOyNI0KQRzNqsc5zDX6c1FxhYAn/h54QD3c3lRZ3cvX8yvI795tC7v
-	0nUAB00CxtvTVEYDps2eDi7tzKdRi7fum0WPyei6p4hc5HvhiPmmnDA4GNXPohB8XdJcwyjYv0kvL
-	fZ9LBlcQ==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1t3tF6-0002iS-Tp; Thu, 24 Oct 2024 10:30:53 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Conor Dooley <conor+dt@kernel.org>,
-	Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable HDMI0 on rk3588-nanopc-t6
-Date: Thu, 24 Oct 2024 10:30:48 +0200
-Message-ID: <172975863600.1671562.9741515053746960937.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241023080605.623125-1-marcin.juszkiewicz@linaro.org>
-References: <20241023080605.623125-1-marcin.juszkiewicz@linaro.org>
+	s=arc-20240116; t=1729760078; c=relaxed/simple;
+	bh=IbKxZ4SDmQ0F/BJLjloXdSocPx19ISWagXO6KmOzM+Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NQdzVtQp4NcPqUOUxeibX4HviyHPVwr4k+x6Of8i40AC072LM1rK1InD6U2+g94gCgHYbmgHj7KBul9ncvYi0b5HVcnWF4qvOZF5SE1R5hChPE67jMJq2oVlChpDQAX2VUz4m/bDnah12Ku4yHZ2wCsK8zs437dhSCAFlLHClXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nvtSGN8V; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9D565C000A;
+	Thu, 24 Oct 2024 08:54:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1729760068;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=X4QGME8t/jvHkzGkoOj3E0l4H/GbPzxU1alYrgfWB48=;
+	b=nvtSGN8Vsgpbo7s5f1Hz0wnQKnSywzd+9bS4NQn+l92+/g63WzLZZne0Uf/y7Dww0fvGX8
+	6VqtgA70M6W33m0SuR06PZDZ3+S2iHaxhUBB2EMYndF+6Da1X3RkA+9y7gR3k22J2iEq1A
+	QEylzvuSNSn5pfBl/6d8AWPOFNvbNA8GNYxqsmwrmyPL92qaL66D1KuS/XyOgciILyy6hX
+	fTgioiZb98bYGq3ittExZ/FPG+E/gTAeX6SCw6WkSa2Wnw9BAdbklQGvqt0d7NYZ+gEQ8R
+	cHZCqq1zio3ZWT4suuvSWI729N19USGLq/Aoxg+ygsPbQhs6nE1BfwczgBGY4Q==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH v2 0/2] Add support for the TUSB1046-DCI Type-C crosspoint
+ switch
+Date: Thu, 24 Oct 2024 10:54:15 +0200
+Message-Id: <20241024-tusb1046-v2-0-d031b1a43e6d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,20 +55,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADgLGmcC/0XM0QrCIBTG8VcZ5zrD48RcV71H7GJO1w6UDrVRD
+ N89G0SX/4+P3wbJRXIJzs0G0a2UKPga4tDAOA/+5hjZ2iC4kMhRsvxMBrlUzBnLtVDypDsL9b5
+ EN9Frp6597ZlSDvG9yyt+1x+i/8iKjLOh1S2KCbXq8GJCyHfyxzE8oC+lfAAydsxdogAAAA==
+X-Change-ID: 20241014-tusb1046-ebd08264789d
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Romain Gantois <romain.gantois@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On Wed, 23 Oct 2024 10:06:04 +0200, Marcin Juszkiewicz wrote:
-> Add the necessary DT changes to enable HDMI0 on FriendlyELEC NanoPC-T6.
-> Tested on LTS variant of the board but this part is the same on both.
-> 
-> 
+Hello everyone,
 
-Applied, thanks!
+This is version two of my series which adds support for a Type-C linear
+redriver crosspoint switch which can function as a Type-C switch and
+DisplayPort altmode multiplexer.
 
-[1/1] arm64: dts: rockchip: Enable HDMI0 on rk3588-nanopc-t6
-      commit: c3c9cd8f65f7f833de95dd70aa17393afa58f50b
+Best Regards,
+
+Romain Gantois
+
+Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+---
+Changes in v2:
+- Fixed indentation in dt binding.
+- Added locking and svid checking to TUSB1046 driver.
+- Link to v1: https://lore.kernel.org/r/20241018-tusb1046-v1-0-a38312f18691@bootlin.com
+
+---
+Romain Gantois (2):
+      dt-bindings: usb: Describe TUSB1046 crosspoint switch
+      usb: typec: mux: Add support for the TUSB1046 crosspoint switch
+
+ .../devicetree/bindings/usb/ti,tusb1046.yaml       |  49 ++++++
+ MAINTAINERS                                        |   7 +
+ drivers/usb/typec/mux/Kconfig                      |   9 +
+ drivers/usb/typec/mux/Makefile                     |   1 +
+ drivers/usb/typec/mux/tusb1046.c                   | 196 +++++++++++++++++++++
+ 5 files changed, 262 insertions(+)
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20241014-tusb1046-ebd08264789d
 
 Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+Romain Gantois <romain.gantois@bootlin.com>
+
 
