@@ -1,137 +1,236 @@
-Return-Path: <devicetree+bounces-115154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4CC9AE40E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:38:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA349AE434
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:56:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A80F1C21B0C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:38:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01465B247DA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:56:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C23A1CBA12;
-	Thu, 24 Oct 2024 11:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608A11CFED9;
+	Thu, 24 Oct 2024 11:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XUGRfS9n"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="T0o6FWSD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9776CDBA;
-	Thu, 24 Oct 2024 11:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73B71A0BC4;
+	Thu, 24 Oct 2024 11:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729769932; cv=none; b=STcIxx13ZamfZ4Fij6MbS7L9KtVahc8u7DbXYxE8E/reWwBIK268xGKR3wmj3W3fqNOMRMjQ72qMMl4vs3Uf+3nhJeT4OtHCn1/XNkZptEcis7zCpfUizfpxEAhs+eGpMdJ9S0J1JKpRpsPDgVFs66sBT5Eu0qVhy0LS6c0PsDc=
+	t=1729770966; cv=none; b=QqbMUoSkABIwHIb00X60z84dQhhkBkx4uaP10Qa/GiFKduMvhomhHr4hRIUupzqzKbrK2Whawk+p9Iq9wgOaev2Vs3NR5Xw/iAxDPavSgfNPlrku2ySHlCDtm4D4FCDsRKUWVgu3DsG8Tof/5S2S26K6zxYFJzmnqwpvn/PyDAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729769932; c=relaxed/simple;
-	bh=hqlg2YtmWdiJmr9u0eruHGxP7S+SiiVgFKrJTmfS/9U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=FLa6MLvQfAAqeLFmd7sH3rfGhAvTgYO70rBnZI37PeL+7Xwzhlz8j8GsHg2ZjyEU9PUjh9G8d+gr7u0mpnW3ed49s5jS9yzZQOveci1Pkwy2/VxqgHEocOtCbYGV/jNzI6nw4ex+0BP9qvjPfYhCC/LmlmXhtlqzxQ8DdCk7u8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XUGRfS9n; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7ea16c7759cso329849a12.1;
-        Thu, 24 Oct 2024 04:38:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729769930; x=1730374730; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h51FzxuqZx84XIIcsnQe3sKi7dN+XbGmdPwCk73slTo=;
-        b=XUGRfS9n9y5KkSDyS1Pie3udtZEeOUszhjOHxD1MWlGLQCKuuQ2ZsrEkfzH7fI1XcH
-         j6Snf5tGFWHhINCgZxLf16duuS9TmxJw2mGC0FeepQ3Dg8+vd+v0tUGhRCo2RnIv2WWl
-         7NYFnAl23UU+QMUR26XOBwghRnk2VzFT2J5IoLIHTTtILwXdl3iK6Qa9WuD+DGHTKewz
-         rDb08T2Q/CGe7H18eeot+77PgMnyFHs/1hQ55NnB7pPGBdbyotgdC8nAVvxZcqgDsKqs
-         mw5BC142oRFLu71wPzLJo9fhac/AT3bkT4B/0Bmxn2y2t9tvogL5Vl0gaMgjtlDqmxfq
-         DzKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729769930; x=1730374730;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h51FzxuqZx84XIIcsnQe3sKi7dN+XbGmdPwCk73slTo=;
-        b=MTkXZbje4TvTwBydYXcBWJ9MGK41Mc+HuDprYgIWif5erX6VizHsyuYdRS3WYtVtlJ
-         VGQFYlNkrTiJrrO2dxtJ0718Zwh3gjlctPyC+sPh1V+4/5tdNYu93UaGAJNRWvTgP3eS
-         E8Sen0IIO0/Rj8ixUGCFMYZWbpQchN7pHArCfMYzpCiVSPaRDu49IB8khgB5yzyrQHgC
-         4Mf0/fh3tFIZrWJnrUrljXGpHTBpwBA3jaAydK0Js0arkSIgz+AHSh1HoBGHSyAd77Nk
-         eYkKAd3O+WxpaAI6dnbxMi2EbwPRl5GfAZ6PCGdBiH5eT7w22J27Q5Vzgd58ZBI2lIq8
-         wqzw==
-X-Forwarded-Encrypted: i=1; AJvYcCWMR3tUUem1Dec1rpK67wITMRTBojmmKvri84eYK9SUrk3mdbAntD0cR3GHstHCOJVPPVuD+azU7dgSumw=@vger.kernel.org, AJvYcCXW5HfxVNkQIEaoBxVF+SrZkSVncWaQkVLNcDVQILeN4hMruq7ipmlnArw6LVFvCn9T17adydrEjZDK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyhfcF/ZiLalJVh89gp1sr5lxzfTKDpe8Y4ljm3SqsHAUnRbvC
-	LLSIX1kASzmUDxXSCHBj8k6xCwV//eGSfS/OUMf8dlNgkYAl2llB
-X-Google-Smtp-Source: AGHT+IHY62GgRDdJj2B1P8mJl5CIT+4l632XBQQyTWVwGIj6oa6s+113AuHJDtUpTys50xLwBR9hzw==
-X-Received: by 2002:a05:6a20:e617:b0:1d9:275b:4f06 with SMTP id adf61e73a8af0-1d978b1cfaamr8015692637.19.1729769929861;
-        Thu, 24 Oct 2024 04:38:49 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:248:317f:2ba9:e66c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec13d765csm7798029b3a.115.2024.10.24.04.38.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 04:38:49 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: hverkuil-cisco@xs4all.nl
-Cc: lars@metafoo.de,
-	mchehab@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	shawnguo@kernel.org,
-	francesco.dolcini@toradex.com,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 3/3] ARM: dts: imx6qdl-apalis: Change to "adi,force-bt656-4"
-Date: Thu, 24 Oct 2024 08:37:53 -0300
-Message-Id: <20241024113753.1353023-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241024113753.1353023-1-festevam@gmail.com>
-References: <20241024113753.1353023-1-festevam@gmail.com>
+	s=arc-20240116; t=1729770966; c=relaxed/simple;
+	bh=UTOsiYOsEFpIkcBWAg2RFk3EFbVEjNespoY0SWiII5U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wk9rr8BQ770HVJkmFsJXp8EAcofw1WQVlzrVeKtY3HEefilvxfuOzfVxUd7sSmbeTv/R55B/pLNkbmxYuw1gMC7KW4b1ppPYiY2IqW5kUS8XAiuIV2M2iSIbLb7+L2Xfw9fwtpAmTZX2u7Y6av/YoPc7YULcuo65BcO4D8I2XHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=T0o6FWSD; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729770961;
+	bh=UTOsiYOsEFpIkcBWAg2RFk3EFbVEjNespoY0SWiII5U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T0o6FWSDRctpxeOSnO61m027Xay7aeUjYT4UlaTdZzw5J6fuf7g0u8rbyYieFWn2h
+	 4eEGivcWpMAtcdBMB09BOwXnIqawHFZ5qGKT1oECDFmsXAAEfJtN9wx5u3e/HG1V9p
+	 9ynl9YxM8ZLWIHY27sgTUWjylFDieaIaqXekh0Kfyww4PzRCoRCoYDCyGX6ovP2cXR
+	 GclklolAQRujPbYRQ7I0uMN51Z6+6mtW66dlQB4kIAJS+JMALmtQh6hnmuMUVw6/8A
+	 uOTMbG48FXheVmYpz9bHzHar+EHC4wO7XDNGcyTa3WRVjMkWqEDmn21DPBaGq9/9F3
+	 a2FUNHcigaaCw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5B5F717E35DC;
+	Thu, 24 Oct 2024 13:56:01 +0200 (CEST)
+Message-ID: <566e4de8-b8bb-466c-83c4-217dad8ace63@collabora.com>
+Date: Thu, 24 Oct 2024 13:56:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] memory: mtk-smi: mt8188: Add SMI clamp function
+To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "krzk@kernel.org" <krzk@kernel.org>
+Cc: "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20240821082845.11792-1-friday.yang@mediatek.com>
+ <20240821082845.11792-4-friday.yang@mediatek.com>
+ <25b487b7-63e0-402d-a0a2-ed9d03e82630@kernel.org>
+ <cdbac20d7a49ff2fbd3e6d4f24ae441ffbe87f05.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <cdbac20d7a49ff2fbd3e6d4f24ae441ffbe87f05.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+Il 24/10/24 03:29, Friday Yang (杨阳) ha scritto:
+> On Wed, 2024-08-21 at 11:00 +0200, Krzysztof Kozlowski wrote:
+>>   	
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>   On 21/08/2024 10:26, friday.yang wrote:
+>>> In order to avoid handling glitch signal when MTCMOS on/off, SMI
+>> need
+>>> clamp and reset operation. Parse power reset settings for LARBs
+>> which
+>>> need to reset. Register genpd callback for SMI LARBs and apply
+>> reset
+>>> operations in the callback.
+>>>
+>>> Signed-off-by: friday.yang <friday.yang@mediatek.com>
+>>> ---
+>>>   drivers/memory/mtk-smi.c | 148
+>> ++++++++++++++++++++++++++++++++++++++-
+>>>   1 file changed, 146 insertions(+), 2 deletions(-)
+>>>
+>>
+>> ...
+>>
+>>> +
+>>> +static int mtk_smi_larb_parse_reset_info(struct mtk_smi_larb
+>> *larb)
+>>> +{
+>>> +struct device_node *reset_node;
+>>> +struct device *dev = larb->dev;
+>>> +int ret;
+>>> +
+>>> +/* only larb with "resets" need to get reset setting */
+>>> +reset_node = of_parse_phandle(dev->of_node, "resets", 0);
+>>
+>> Nope, you do not parse rasets.
+> 
+> 1.If I need to use the Linux reset control framework, 'resets' is the
+> required property.
 
-According to adv7180.yaml, the correct property name is
-"adi,force-bt656-4".
+Leave that to the reset API, don't manually parse the resets phandle here,
+that's what Krzysztof was meaning.
 
-Update it accordingly to fix several dt-schema warnings:
+> 2.'reset-names' give the list of reset signal name strings sorted in
+> the same order as the 'resets' property. SMI driver will use 'reset-
+> names' to match reset signal names with reset specifiers.
+> 3.Not all SMI larbs need to apply reset operations, only SMI larbs
+> which may have bus glitch issues need this. Just to confirm if this
+> larb support reset function.
+> 
+>>
+>>> +if (!reset_node)
+>>> +return 0;
+>>> +of_node_put(reset_node);
+>>> +
+>>> +larb->rst_con = devm_reset_control_get(dev, "larb_rst");
 
-adv7280@21: 'adv,force-bt656-4' does not match any of the regexes: ...
+"larb" is just fine as a name: it's clear that this is a reset, as
+it's specified as `reset-names = "name"`.
 
-imx6qdl-apalis.dtsi is the only in-tree kernel user of this property.
+>>
+>> Where are the bindings? Why do you add undocumented properties? How
+>> possible this passes dtbs_check???
+>>
+> 
+> This is not the new added property in SMI larb DT node.
+> It is the reset signal name which is inclued in 'reset-names'.
+> Just like this:
+> 
+> resets = <&imgsys1_dip_nr_rst MT8188_SIM_RST_LARB15>;
+> reset-name = 'larb_rst';
+> 
+> Maybe I can add this name to the 'reset-name' property binding
+> description, like this, is this clear for you?
+> 
+> reset-name:
 
-BSD does have a adv7180 driver, so should not be impacted.
+It's "reset-names" btw.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Changes since v1:
-- Explained that BSD is not impacted. (Krzysztof)
-- Collected Krzysztof' Reviewed-by tag.
+>      const: larb_rst
+>      description: the name of reset signal. SMI driver need to obtain 		
+>   the reset controller based on this.
+> 
+>>
+>>> +if (IS_ERR(larb->rst_con))
+>>> +return dev_err_probe(dev, PTR_ERR(larb->rst_con),
+>>> +     "cannot get larb reset controller\n");
+>>> +
+>>> +larb->nb.notifier_call = mtk_smi_genpd_callback;
+>>> +ret = dev_pm_genpd_add_notifier(dev, &larb->nb);
+>>> +if (ret) {
+>>> +dev_err(dev, "Failed to add genpd callback %d\n", ret);
+>>> +return -EINVAL;
+>>> +}
+>>> +
+>>> +return 0;
+>>> +}
+>>> +
+>>>   static int mtk_smi_larb_probe(struct platform_device *pdev)
+>>>   {
+>>>   struct mtk_smi_larb *larb;
+>>> @@ -538,6 +662,7 @@ static int mtk_smi_larb_probe(struct
+>> platform_device *pdev)
+>>>   if (!larb)
+>>>   return -ENOMEM;
+>>>   
+>>> +larb->dev = dev;
+>>>   larb->larb_gen = of_device_get_match_data(dev);
+>>>   larb->base = devm_platform_ioremap_resource(pdev, 0);
+>>>   if (IS_ERR(larb->base))
+>>> @@ -554,15 +679,29 @@ static int mtk_smi_larb_probe(struct
+>> platform_device *pdev)
+>>>   if (ret < 0)
+>>>   return ret;
+>>>   
+>>> -pm_runtime_enable(dev);
+>>> +/* find sub common to clamp larb for ISP software reset */
+>>> +ret = mtk_smi_larb_parse_clamp_info(larb);
+>>> +if (ret) {
+>>> +dev_err(dev, "Failed to get clamp setting for larb\n");
+>>> +goto err_pm_disable;
+>>> +}
+>>> +
+>>> +ret = mtk_smi_larb_parse_reset_info(larb);
+>>> +if (ret) {
+>>> +dev_err(dev, "Failed to get power setting for larb\n");
+>>> +goto err_pm_disable;
+>>> +}
+>>> +
+>>>   platform_set_drvdata(pdev, larb);
+>>>   ret = component_add(dev, &mtk_smi_larb_component_ops);
+>>>   if (ret)
+>>>   goto err_pm_disable;
+>>> +
+>>> +pm_runtime_enable(dev);
+>>> +
+>>>   return 0;
+>>>   
+>>>   err_pm_disable:
+>>> -pm_runtime_disable(dev);
+>>>   device_link_remove(dev, larb->smi_common_dev);
+>>
+>> Label asls pm disable. Where is the pm disable?
+>>
+> 
+> Thanks, I will fix it to 'err_link_remove'.
+> 
 
- arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+...or you can just use devm_pm_runtime_enable() instead, and not worry
+about disabling it on your own.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-index 1c72da417011..dffab5aa8b9c 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-@@ -691,7 +691,7 @@ &i2c3 {
- 
- 	adv_7280: adv7280@21 {
- 		compatible = "adi,adv7280";
--		adv,force-bt656-4;
-+		adi,force-bt656-4;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_ipu1_csi0>;
- 		reg = <0x21>;
--- 
-2.34.1
-
+Regards,
+Angelo
 
