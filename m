@@ -1,156 +1,179 @@
-Return-Path: <devicetree+bounces-115211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A04C9AE848
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:22:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 190E79AE863
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:23:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D2A11C21565
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 14:22:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C801428F5D1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 14:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72CC81E6329;
-	Thu, 24 Oct 2024 14:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460D11EBA0E;
+	Thu, 24 Oct 2024 14:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OO8ojSh9"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VtS8f4nu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2069.outbound.protection.outlook.com [40.107.20.69])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37AB81E1C33;
-	Thu, 24 Oct 2024 14:12:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729779136; cv=none; b=SV31HwW/x3YVdzaZQQaM/Mlbam+k/TyTR68/FqLMbH9ntaNJMkUAbDtG+nnXI3hUC3Vf4Sash7zrBIaBzW2+6CF6KCiEoQ5rlAEygl5pYkvkaB27MRC8HVsjpSkdRh8t6h+4pH0d1XrlmS6BUTU76NaNcDmC9Qgh/pZbVfTgztA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729779136; c=relaxed/simple;
-	bh=Nj1ebmcv/mm+UDNIZ/dfe2bFowbODDJCifUQEhsRIc0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bWUMIsTZ0T0CZn267tXThIYOK5hVEQ0XYpak3aF7w4Lfx/xu6Sp2CFSQV3WRW8tDeSOfumJiRg7w50bEG7Ae//gLtVRQWppSORd31nX8+983bZ9JDhSvmbFObDYy5OCRoBOjcAzU6tTfZ80HcK/dqekl1UvOWE+vzzrP3fWM3hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OO8ojSh9; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a93c1cc74fdso124221566b.3;
-        Thu, 24 Oct 2024 07:12:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729779132; x=1730383932; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Nj1ebmcv/mm+UDNIZ/dfe2bFowbODDJCifUQEhsRIc0=;
-        b=OO8ojSh9WDsj0rSgpByfnZd8pchVCJixVmCqBD7Nuq/IafPo//zv4YvTA/jlmifCb6
-         F+sVpCVvOAz5iHnEPZw4xhzQO0+Ck8MlVUTwhNKnDr3ADCw/8KDNtac1+qngjzLVZWMf
-         M/QOHhBiWqgmRyaKwpM8rvTQcEP3f6urnJlFIHVDx2yRXoouMxZAr1C5PbpQD9SxHQih
-         4ryQY/MAY/y9HTia1nzCqLKRG7p+7MgQZ08sl/zG7mbPMaBGd7UH7XLAX0BCPV/yiCIs
-         8t8VwXenp1F3vVOqXjFZMOmLvs4wuvgcLZfG6aZhCIX357yj8vSFdoFofVxQz2y5Rh23
-         cYdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729779132; x=1730383932;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nj1ebmcv/mm+UDNIZ/dfe2bFowbODDJCifUQEhsRIc0=;
-        b=M1hfSyAFg+CcONEC7HzZUIxreW4aC2yiL67qybvvtItkeOHr76k4S2JEtIyvkI7m91
-         E5p0ZMq4LvTg1sStrCI3+/918mnE/BrMebXilZV6/eQKfk5bJpmpYl61PPfXPJRFTarE
-         xEYfGr9RjpDodZ2SWzx/V2Y7eudQPVsNHy2Wy4AiA67VaWrYDAGzpG3FF+jWLicc1ZTp
-         nUDRi1u6DPHxun+Pn2p9t1Jx7V7xB8S7cJSHH6FZJpKZkWyIZRz1TrDM5bnXiW8MHsim
-         hhwjJp812s3KKsz0JSsBBbwB7ZOQ7M9cDrb8zOD6N02o3tVcZl3lqDdExohs9Oewbekj
-         Zy8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVdtsi0NSvF5w9GLMocYLbK9+SBiCHsUPBQa2Y8TbnSUb90ApqjIi5sEhK6cjzctLlkeG/sNWK4QOds@vger.kernel.org, AJvYcCVjEPYBHTLeivO1s0jYtIDnkNmT3fG0gxXaDDuGGHE5q4WPtX6N0aIocPmCIjbeX1bgFza0oyD6vA+8@vger.kernel.org, AJvYcCWPqg0b22MDkQkSNYwcKwn80m0crJYIhGNtIzfye7mZbCGEUI9baRnme6t0GJCr5kvjdExp1knRpn3A@vger.kernel.org, AJvYcCXNyyHoN8M7BUuCFcpkpUZo5tSBRPjM+4NxswhUMDlWdCmu9oFp6g0EA70Dm1UHXvFX67Njt8Nesh5O@vger.kernel.org, AJvYcCXjF2z3wqXa5U6vPgAZ1suTuXjX0hU5E9UURxKB8krZWFiuFLQRqJeaaloI2saz+OYddMyoLiKcX1ndL53W@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhVBYtTEkX8wmGP/rcQ0JTqI+mDefSnoOtZcsb7UAkn8y0GvNV
-	ElvPGegIS9TwzFipYJ6+5+UMk0z3Jf478IXE29S/P2FyGoQKl5Sy
-X-Google-Smtp-Source: AGHT+IHpDlN3uiwFaGU+NjrmHJnbgiUpiTHuzfNHuRoy7uR9tWOnbsFsdxmjuDvqcRRC+hYZGgSCDw==
-X-Received: by 2002:a17:906:7309:b0:a9a:55de:11f4 with SMTP id a640c23a62f3a-a9abf96d176mr580734466b.54.1729779132047;
-        Thu, 24 Oct 2024 07:12:12 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a9159a214sm627093766b.213.2024.10.24.07.12.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 07:12:11 -0700 (PDT)
-Message-ID: <72afe00622075f77b410e9537cca0a7ac5a4cba3.camel@gmail.com>
-Subject: Re: [PATCH RFC v4 00/15] spi: axi-spi-engine: add offload support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
-	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-Date: Thu, 24 Oct 2024 16:12:11 +0200
-In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
-References: 
-	<20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA341E283E;
+	Thu, 24 Oct 2024 14:16:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729779405; cv=fail; b=HxEXijqmhuKejQSvNXlepOt5uXagygThxtqQnOXDHZ8/oOgEoin+4OsdupzNHNzILQo2IYFpyOCHyL/n/CEFKHjBdLbuXkWP8VC9isR71cgtbkje6J/jx6f+Q2JyXMujPABsXJhj2PsyFBguCY0lO0TSoHtdp6P4fXEDrycoPOY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729779405; c=relaxed/simple;
+	bh=SGbRxD2akB1ui+XnpCdNv43NZ38EGjrkGD4jZRjJ1TE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=WAPOk2bjFNumj4uN6KZMMbaIggwzgNvhb+eAuvX4HnimkBa5xEwFeoUhnxPfAM4MX7VCsDPLEC1gYpmSgHeAGHezVQuYzwWCMqVKVicIn92cC601IOkBD6QmlengMa/SfIJa7uD/cA1A5kmPih2hhrfAvB6dAwm/ZtrwPE9MwnQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VtS8f4nu; arc=fail smtp.client-ip=40.107.20.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Y5RN82/S572Q3k6YgXuAMxXiwoUmhCZEWud9ZtQ01dhEwG9U/5Q0jZGDPXZNERazlLE22DskmL4iXAD0HiQT4Do6hMTu/13kmPYWFQqQz5sKb3qwE5BLOs0ktYOfkYcRDkwRs8zQAubaBbOFWsOfTk8eN9upOsy3Xqkj7q1u/Yu3FWVQlfSxtVKRIgT3Cdq7gQg2GVm9bI8JO5LwhgMlAdyroTEkpDsycazgTWj0HOeU7Me7A3DGRGI7RHAaLaUL5nJQTeAGvLMxLKIwm5diVXl07P/c7hmKzuww2c2ZT93l7sUy1dEzPii8KzA8wg7Cp/Q1pIO/YYrOxF3kr+yM3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5bJqchE6dS9Z4fxCns1jj4YeAhJUr98Kyjedj16lN0Y=;
+ b=c5FluSE+6rzbv9fXZJ9zumAXa+fjUQn7FTStW+Np3KwL1W7OQwkbzJg7IQHgq8vr4QVpkKtJFGkKJo/Pq10Q7igfI1K14xw3L6ZzPckHnftgHj3zYaT7KgeNV7Qeo+zy4HWavTLkbeansZHIywaEMvHzEJ2CsWZQkEUhBOK5WUvUpg1OD7cvNcvag3JHjZieYaQWXkeoYka2BLPFm/E8H1xjY+eTTWmhHLVKrJswnh6L9YMZuHZN5HgzMTqdEdkqrV3Xyzh6xR/vvuARuyufx4dLBVRH6Ghwz7P0WJV3+oFL+0K+fo3giva2psn5zFfLYnAbejMi2BDpphzU7utIug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5bJqchE6dS9Z4fxCns1jj4YeAhJUr98Kyjedj16lN0Y=;
+ b=VtS8f4nux73mXfC0me+SshlNfFOVVDo7kV4HE4CNqhszSQTIHhc1/tIDoN/HLIEXTfN6CnVxnCsjqBpR01rvfdgwb6C7UMknjqYfml5gEgHqIcYZKEzRT6Hx/JCAsJD8/PAuCfdOvjHDes9nhU4v9JueLNMdCpM7hbancGlhcsICuYgG9VUHdTHxs57Fa/t7xpKxZgut9V4hz3oWk8rZvartYD0c8MHZlORjI2jsBBAt44niG9i+RCbtzdXLdGlw9u5k2MxoZF6YoW/t2b7SmzLsbatpeVmW18ZH26jckURhq0XjdjjCD4TtghWCw1ALdjvG1+LQ9w72Nraf9iA75g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
+ by DBAPR04MB7382.eurprd04.prod.outlook.com (2603:10a6:10:1ab::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.20; Thu, 24 Oct
+ 2024 14:16:37 +0000
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2]) by AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2%3]) with mapi id 15.20.8093.014; Thu, 24 Oct 2024
+ 14:16:37 +0000
+Date: Thu, 24 Oct 2024 17:16:34 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, claudiu.manoil@nxp.com, xiaoning.wang@nxp.com,
+	Frank.Li@nxp.com, christophe.leroy@csgroup.eu,
+	linux@armlinux.org.uk, bhelgaas@google.com, horms@kernel.org,
+	imx@lists.linux.dev, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, alexander.stein@ew.tq-group.com
+Subject: Re: [PATCH v4 net-next 01/13] dt-bindings: net: add compatible
+ string for i.MX95 EMDIO
+Message-ID: <20241024141634.v6rvomql6gkpnf6a@skbuf>
+References: <20241022055223.382277-1-wei.fang@nxp.com>
+ <20241022055223.382277-2-wei.fang@nxp.com>
+ <20241024140623.yr4lgjp7pryx344i@skbuf>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241024140623.yr4lgjp7pryx344i@skbuf>
+X-ClientProxiedBy: BE1P281CA0143.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:7c::17) To AM8PR04MB7779.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24b::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|DBAPR04MB7382:EE_
+X-MS-Office365-Filtering-Correlation-Id: 47e83e5a-ab8e-4dc1-c4b8-08dcf43678a9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?yPNBh4AoPr4Jet2lJDjIm+R23OTNOJRyyxRD2JY0h11ht5Ntgehz4z8Vs3l8?=
+ =?us-ascii?Q?5KnUWzYrghVIg/TOcL8Dr7K8/gw6w5M26j1AzVNiMta6cWyLIiE0BCIgCn13?=
+ =?us-ascii?Q?IpQN1nwkC8ankLLYYQEqelqv6evKOI4f3kbKZxb5HpD5HiEGJYQgXkW/bCjs?=
+ =?us-ascii?Q?VLZh+1ZgUyOUnMF+1FMJSWJgMWcA4qVnj5hkdAguGBaSCNSrQM+V++50H0Aq?=
+ =?us-ascii?Q?liIQEgj8nz3AEsp8lvTpU4cmzxmUSH6utNiidc/I9MyaBF3/QLfkRQjRxeb1?=
+ =?us-ascii?Q?LgYiXicA4R2UpusISpbAs1NlXB3nVFvbxVQVXfih6j+nPLGL2WZRlygdtZDR?=
+ =?us-ascii?Q?Xa2NJOrYZzvka3aPIZRqN+mT0BuNDSzk3GxWW0GW+6AoqtvJhYI/0WSmavUQ?=
+ =?us-ascii?Q?7DH3PDKCuTXvsCRdlerMy9SyjM3ge0ZeRosBynb7WN57CBYSFfGnYSm4Vf00?=
+ =?us-ascii?Q?zBiW/3PtBC2vAqc7ziZhSOllD9hRgOPIjIRTGO3SW/gtzkvGKxOJ0uoDEjFb?=
+ =?us-ascii?Q?kK5nMGFJYktqRDWEy3d1Cu0BUphIkIMdVpQmGrKEEFdDdvsnWVqpA5VAJkvB?=
+ =?us-ascii?Q?6bcYZyyJMbpU+jEOUN9n5wQKhDSG3QFcegrATzm7RiVF+ZZXk27iotovrkJI?=
+ =?us-ascii?Q?L8egfYDPPbX1KG5cXerWdG88XUX3vn7mootPu4vvPTkteQ4jdu5bhbWzEFAI?=
+ =?us-ascii?Q?VCQVKw9CsQgcSugInl5z9bWQrXp5meKsWU4Qx/dAbbG+79EVzQUPaPuaO9os?=
+ =?us-ascii?Q?neu0/Lq3ARd5YkkRqqBd38ixPHmRyCi6yfGqUR0Z2/Pvkr7Yv3k8WyySgLGw?=
+ =?us-ascii?Q?rqQ4qlt84Y/fAub4KdmOPDd9KJN8qMjLgSLaS5GL6cXLi3uw1qdqrEGiKtzN?=
+ =?us-ascii?Q?ThGHIUQd+OAHXIt/2wPIVIhEeapzopecX/6708H8PGyJSi9hgPaKnKCiIV1n?=
+ =?us-ascii?Q?xXGN3VLIM3N+z1XYd9DbfwEtRQh+WFvF33RJWL2jDI/ol9u0zrPVzOF2i4Sz?=
+ =?us-ascii?Q?KD1F+kEjcPLKAa9cU0WM4ljGYYaeRHyMcek9Gvta+QhaBLQUHRJYaCXhfcrM?=
+ =?us-ascii?Q?kSHHikxwEK1kDakjfFJ9K0FEFyoR2nYyVc5CiZoVK8g9eHBle2drHXb6dubl?=
+ =?us-ascii?Q?Pbwxku4fCbyqqfd/tKL9Du4BTIviU7ua3zQbvuzKKrYNBy+VFVDYZQK5JjLy?=
+ =?us-ascii?Q?pFgmn3OlShO1ZdJvywPClxTQZblZf7uEmTB5VbB4cL4KkPletguw9pOYbMrE?=
+ =?us-ascii?Q?cWAGds2Qdr5jldBDHZjX2+51GGAHSE1sYyDnUXSqiFYkamYnIcSYFSCcN2vV?=
+ =?us-ascii?Q?2zE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?rHYM/HUOmeIpUPR+j5/5KGSC1QiSpOpL2R/2gPHCY3U2+YCFv+VO4k03LPfY?=
+ =?us-ascii?Q?Y1l5RGHjzQgMjSW28pZRG7wBKr5SmW66215XlNj9clqPmMHYdj9Z3QYorxil?=
+ =?us-ascii?Q?/Yrr16THHQZnkoRgwB6aHlJuZ2TlrUnrI576VIumJ7cIkuk3mRWvcc8TJ1Qz?=
+ =?us-ascii?Q?5zue0muNuCjdZTg3dFFg8htCsE2XP/rSQD4Wdc0xGD2viImk6/QMTA79IXGQ?=
+ =?us-ascii?Q?iQy/HS53w1DbzKOvRDbQzbg0JEBz76z3mJf1ITB1UnPhhiGRdSbBt71Xv9zR?=
+ =?us-ascii?Q?wo3TErP2m0cfW2tLXrYsGNYf/NsHLGlPYd0maTNrlwMSr2FldGSAc/eACC1Z?=
+ =?us-ascii?Q?mA6GS/8A92971/IU2aCSMvEsud7/SNs1+DOmOPAvQZ+rPh56fHbU18yhr0en?=
+ =?us-ascii?Q?RJHA+Gz1t+WQmF5ujvXtSVcJlYr49fOGUv0BvdmdSAaY2dev3QIC0MFdLtmI?=
+ =?us-ascii?Q?NDGexC3VJA4tQYCXYcOS1A+uF+GVPWYp9mCpQAoGI+GbUE51KCm8nYK483vN?=
+ =?us-ascii?Q?JpPfLNYNFohV31Q2ibKoB1se8LZBRQFcgy8hqJvn4o3HC3XM7urek6YH2Iyv?=
+ =?us-ascii?Q?AC1pWz5JrktTLF0huZLMQfj52eAAZqDpisNtyf1ajG7vzjoRcvA0smEIqjy1?=
+ =?us-ascii?Q?kedE5yfebs7C8jzVSsBtPxuWunOZtCNcxZRuaIcVsvTHz2MaulJFPcP3sUYY?=
+ =?us-ascii?Q?LzZq0V/0qua/Vn658YzegMw8caXyawJoA2xcAWczW+xYkVcTJuJIMy2euMaN?=
+ =?us-ascii?Q?4ulVZt1NEBj6AYSgUOLrjM6lmFq01QuY8plsPrGV4itcuz6jK0PoXm30KxcX?=
+ =?us-ascii?Q?8mbPOc7g2ZAOHOqsN87/BUlXPtxaypR+j7RYgCctI5u4jbxBsIoe/IwZ7TAq?=
+ =?us-ascii?Q?vkG19BHBbQYx/xGCnxnSnbQGNL51Rw5r/0bYzF1fKJBTvVb9QKpLNSaHcia8?=
+ =?us-ascii?Q?vQSYJfz5V2XN0Hl1EYK7CpzXOsC3vnZpWapQOASZ3/tXFzu+FsAQFUfMg9GD?=
+ =?us-ascii?Q?F3WAbLwNOg89lygOOD2+Pg8oaOhOxIsoF5BYmoX5A/QU9yNtZBOYjAoDvXqY?=
+ =?us-ascii?Q?nRqcf2Z798cctnGGQogVG0KkeammCloJTJWFHCvZs9hD3/yi9mUdfIBQgUhP?=
+ =?us-ascii?Q?HSHr6mN4OTZZHjLbRrjkkPJ1OQNVIvRBLZjOkOzmyxVcYMGPPvruZbRXi7+d?=
+ =?us-ascii?Q?n+Vm3g2O19KjCqc6Vh/R2DejX6u5l+/AtNj/MK1nTN09hnQra39tK/dXtUXT?=
+ =?us-ascii?Q?gvXxt2m1u3e06TVrcQjnDJRcVBD9QRUoWmIeDoq/DAoiqBcOiXqbJ8hJx2su?=
+ =?us-ascii?Q?utpS4LrPdlKUrPTZMM0LFdQRUFtgwP+umzbdaGcOAfr87XR+oBor3UJ0l32n?=
+ =?us-ascii?Q?FF7LgrmTfATjpbKEO7Lz9BLndeVYfCsR5EVbhenSa0o41s4QZd4lmvCxyFn7?=
+ =?us-ascii?Q?1CxhQdZnSbqktSyUpjYg9JayP6Pa2gBmVq28UisQOFbi901hGSw0dwf/WMAj?=
+ =?us-ascii?Q?rNEnlbdB8k1puq8+FylUxMcv0yq33FTpGibW80lT2ftGAzOC2kKatvq0gTTf?=
+ =?us-ascii?Q?0uTaIljjHEUCSJrLiRJ+EzOZEQrO+lsvl7n4/HxACoilDRW72+Dr4rOE/E8g?=
+ =?us-ascii?Q?RA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 47e83e5a-ab8e-4dc1-c4b8-08dcf43678a9
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 14:16:37.0774
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CDnZ3d95Es6o16Veec7N7TckjQM9dkJVuszbrKyFm25ipbsc0rfcuqa4Mef30FsV6WINzBePyFPHuwfmoe0HwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7382
 
-Hi David,
+On Thu, Oct 24, 2024 at 05:06:23PM +0300, Vladimir Oltean wrote:
+> On Tue, Oct 22, 2024 at 01:52:11PM +0800, Wei Fang wrote:
+> > The EMDIO of i.MX95 has been upgraded to revision 4.1, and the vendor
+> > ID and device ID have also changed, so add the new compatible strings
+> > for i.MX95 EMDIO.
+> > 
+> > Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> 
+> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
-> In this revision, I ended up changing quite a bit more that I was
-> expecting.
->=20
-> In the DT bindings, I ended up dropping the #spi-offload-cells and
-> spi-offload properties. A couple of reasons for this:
->=20
-> 1. Several people commented that it is odd to have a separate provider/
-> =C2=A0=C2=A0 consumer binding for something that already has a parent/chi=
-ld
-> =C2=A0=C2=A0 relationship (both on this series and in another unrelated s=
-eries
-> =C2=A0=C2=A0 with io-backends). For now, the only SPI offload provider is=
- the AXI
-> =C2=A0=C2=A0 SPI Engine, which is a SPI controller.
-> 2. In a discussion unrelated to this series, but related to the idea
-> =C2=A0=C2=A0 of SPI offloads [1], it became apparent that the proposed us=
-e for
-> =C2=A0=C2=A0 the cells to select triggers and tx/rx streams doesn't actua=
-lly
-> =C2=A0=C2=A0 work for that case.
-> 3. In offline review, it was suggested that assigning specific offloads
-> =C2=A0=C2=A0 to specific peripherals may be too restrictive, e.g. if ther=
-e are
-> =C2=A0=C2=A0 controllers that have pools of identical offloads. This idea=
- of
-> =C2=A0=C2=A0 pools of generic offloads has also come up in previous discu=
-ssions
-> =C2=A0=C2=A0 on the mailing list.
->=20
-> [1]:
-> https://lore.kernel.org/linux-iio/e5310b63-9dc4-43af-9fbe-0cc3b604ab8b@ba=
-ylibre.com/
->=20
-> So the idea is that if we do end up needing to use DT to assign certain
-> resources (triggers, DMA channels, etc.) to specific peripherals, we
-> would make a mapping attribute in the controller node rather than using
-> phandle cells. But we don't need this yet, so it isn't present in The
-> current patches.
->=20
-> And if we ever end up with a SPI offload provider that is not a SPI
-> controller, we can bring back the #spi-offload-cells and
-> spi-offload properties.
-
-Well I do like we kind of gave a step back and are more focused in supporti=
-ng what we
-have and know at the moment. And I think (for what I saw so far) things are=
- being
-implemented in fairly flexible manner. So yeah, as far as I'm concerned, I =
-liked what
-I saw so far. Hopefully everyone can agree on this so we drop the RFC :)
-
-I'll try to look at the remaining patches tomorrow...
-
-- Nuno S=C3=A1
-
-
+Sorry, the v4 thread popped up in the top of my email client list due to
+the unfinished dt-bindings discussion, I meant to post the tag on v5
+(which I now see that it shouldn't have been posted until said discussion
+had settled).
 
