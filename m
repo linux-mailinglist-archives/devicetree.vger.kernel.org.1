@@ -1,367 +1,166 @@
-Return-Path: <devicetree+bounces-115365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 505529AF2FC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 21:54:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A35A89AF34C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 22:03:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7472E1C21923
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:54:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2881C1F216FD
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:03:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979D5189F5F;
-	Thu, 24 Oct 2024 19:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4801C1FBF6B;
+	Thu, 24 Oct 2024 20:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pcsxP+mt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UK6Cz6Rp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A44919C542
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 19:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55286189F5F;
+	Thu, 24 Oct 2024 20:03:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729799659; cv=none; b=kcOJpChvLcwOmAft5T6ZLw1NhMDO2tsgtAbj2BRI29/HOpXpMceIWzGBiP62qse5hBESBsxzmL5r+K8+x11stP854Z6aTFCzITyMGmtqTzvlFTk3aOmsEAq+19mddnUEdjn6WK4agx8CWe/fobs/ZtiqWP5NoNsUkNOBP1a9hd0=
+	t=1729800197; cv=none; b=ok+tLQx6Q/7Su5Mbqx8T+krQ6DQgnzqnMWKCTqDdpeGtst6cN8a0c4se2Xp5ddWzedY8gLKR+x6sa0VQP4em0cD67Tjk4FIVifrQoMFd7J37mrPgK+hwfA39lray/Pvx/bKbgjSGMPBwN0eVB38hEWg5HdLhKwh2Sg1BbHqSWcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729799659; c=relaxed/simple;
-	bh=28Z77EQ2o5/OOD9oFbhvwjJaySwLp6sVPl4XMpwn6i0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M/PQ4V5saRqaEW48n3CIjKC82L0BJIoxtJ0nrQaDroqyNvHDmElbIDeHUcmeNEi2hRzfI0Y0r+IHC8HAdCm7vINQmzba+ZZI5vIAShknl4l+Fo4dv9qo1Ds+UDAbNY1Q8NHNxOAUP781lg/FsZKLElH0XFA9yQTUm/GfSiTIeP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pcsxP+mt; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2fb56cb61baso10854341fa.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 12:54:16 -0700 (PDT)
+	s=arc-20240116; t=1729800197; c=relaxed/simple;
+	bh=5nMUI/omtZ7FZa+QOF2AxfStNqPeYET740FnjYNd0FI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZSiraF18hSRKeaR2hi1bNmO/txOODgb4f8wdtR2+nS0yNj2X2Ym//2XdU59Oq/14ty64JlGu1JSHKWhVPilSlfxm7hfJiiUOh9WXABDBCgRzBjLGh6K5vC2maKPTIbVyqkcFGKX5zRYmWG4c580BaTp9kccEI0q9uASofl97wWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UK6Cz6Rp; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-20cf3e36a76so12853915ad.0;
+        Thu, 24 Oct 2024 13:03:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729799655; x=1730404455; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oz0QfbFcBfrCj5V4z1JU4JGAn69rg5zGFkOEbcFhIzA=;
-        b=pcsxP+mt8+Z/WgjHdCywvyCvSF368dxlzC9KrejN71i+Jtfgj3nf+ZjVIpbojoRZtL
-         Svt8/sfrkjlRvn2r/ofv6g7F7cuyhJtRe9KAJ8SWOIgmTB5b2fHE2SjkiQLyCKR/WGfj
-         w5amaplxouh29CAJYswyKVzwmeDbQfvoUooPaGJjNg3YLVLXs5hnRuHY4nOGjWylhMFY
-         L3Bk+D05HxLeizi8NNwOQsDaX9DhMDWW3syQ/ts10/EcsaYAFDnc3aB6HjQHlhzHSU2E
-         1w3euOnxBISl52TwR09M9+YL2YkNk6jG/QE+NEzl8HBeTvcWv0BMgecTsTXCjSo892eQ
-         KrQQ==
+        d=gmail.com; s=20230601; t=1729800195; x=1730404995; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=xSCwf94w1WmqUAnGDSKsgZ0t3A6VP7ja+mWHhm5F+7k=;
+        b=UK6Cz6RpRn9GjN1Kzrctt6Hd4fjGE1Aa1ity6kZ7F3UoMsYL0HgBq4hkAEYYp0y+VJ
+         EBL1bNyQ60cIU5djtBEOwM0afQLbD0b04nzbXc2xyzE0lw0xYJC1cRgm4OtelsOfKHrp
+         HNBLd+pX1AcW4cj7OvmZ3nxmXvBrsntF7yDjMcKQq+sQGP96sueP+NB5C9LJRttfzdqB
+         MorCLIXKWL6utcTOQtHp1F54oJX3+V23+M1b+ies5keTtd2wPitsUL3mdOBrjCSc0N1M
+         qb1ROYZ19THPSgu9v4oY0zolitfS5R7aW9BA5R3k8di6Vu9Znoo2YI4ZyU1UrRx8bcFM
+         9NMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729799655; x=1730404455;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1729800195; x=1730404995;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oz0QfbFcBfrCj5V4z1JU4JGAn69rg5zGFkOEbcFhIzA=;
-        b=av3FhPnWqUJefstp1f6BPM+Cp/BvzJFpdPgSXwS1cO+MddQSC3XnsfOAP7Y+3zh9YM
-         VZLMG9qOxXOOqZOQnP9lZzxw4cwLZvTvUGn209qh9Q4m1x6ez5aoszL6FkbZvX7Zr2MV
-         ANVDdYi0c9gAOcTyiCxrbEFbh9As8nOJZx8Ooyd/g7vjJGGEFDiYRPlGBhnnZNAVhU+1
-         0FpyBO7pJY2w0w4Us2ls/Bpa9wFq3g/JsiczLi090gZ0Os0hoF8zffA2k0E/kPHhp8uZ
-         eD2+b3Ppv6QD5oYW3gyvVPktWRCmGTBLm6GN8OMtuJhXCq2CxQPFGSrUo+lMOEp5uz+r
-         AKbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRRwADQAeje5MfdwwspYhB4Y5D7sY0iEot2Tz9z91l7q3q7egE+xEijDIS2wUm7d7tPjprrypCh23V@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuhpmtljhfkURqYUW//n6a2RhGw6sRAer4Ol4ES0aqgKsiaBcR
-	R6NvtNUQwOnDh4nkPNOvKFyLKQyBt8kmQqA04ctO/DtO5ewwFiOlgVMqM3G1Dgw=
-X-Google-Smtp-Source: AGHT+IEetrpZ1w47TpL4hhnY+i6tZmfDQ45ZKhPS6dYa8I3PZ+1oN5tmmUCGsnRy/WGozI18HYbBig==
-X-Received: by 2002:a2e:be26:0:b0:2fb:4bee:47ec with SMTP id 38308e7fff4ca-2fc9d59ef88mr43668801fa.33.1729799654447;
-        Thu, 24 Oct 2024 12:54:14 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb9ad60d8asm14707751fa.38.2024.10.24.12.54.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 12:54:13 -0700 (PDT)
-Date: Thu, 24 Oct 2024 22:54:10 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, 
-	conor+dt@kernel.org, arm-scmi@vger.kernel.org
-Subject: Re: [PATCH V4 1/5] dt-bindings: firmware: Document bindings for QCOM
- SCMI Generic Extension
-Message-ID: <4kovyp7655kwkznnem5e4mg2yjroc2x76vsyp6w4bm5n7tn5xy@rrz2ih2u4p2x>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <20241007061023.1978380-2-quic_sibis@quicinc.com>
- <rqa7g5hfsxozw6m4ke3jygijz5rp3lwu2fmqsebrjq6hsgb7nm@mxaiaddvuijk>
- <911483df-ee09-033d-7fae-4090bf8a3713@quicinc.com>
+        bh=xSCwf94w1WmqUAnGDSKsgZ0t3A6VP7ja+mWHhm5F+7k=;
+        b=nzeWN60rIPPp6L31Yu3X36DkOXbTfrDDMcCMkZSpf2jbaJDDFskue4OLDIalE8mH2G
+         uMlL21hnaVJuCivlbjzyE3YXc3jrXzXAcAgFZK0LP1cGrRtK7MkKta2MP+xr5kElVBN/
+         AExw/lH3ghRXikgJU4F10qslNA79zD0BNe64KrJLQAY4EbPv2BsjxzcIKzOYrrt9ELzB
+         MU4OEp+Una8HD6Z57H8H+AadzdCUMRwt3qdQvfeYinWtr41oA4Kd4JQai6xSxJYf8cpv
+         1SwLiJM/H17JWdKLKYkYS4y7xNWy8R98ElquoYyNARstPYIMr/RJ8wLWaSG1SbTkpCPa
+         g/4g==
+X-Forwarded-Encrypted: i=1; AJvYcCUv3GwCBkLzU992AzEFhAjXeblO/7ABg7N3b7ElqOCAczJoTdQluYKEnWypVh4IWuu8OwhCDQOcEPf8@vger.kernel.org, AJvYcCVXt1a+tMUwAPQ4OSuyWu9FgtEJa+/JLDk8tYl7DcmotVy4WFjJjJ3BjV1E7isxTXfIqAIuDuyquZE8@vger.kernel.org, AJvYcCWXhzNgbsfuaxxtoVW4vhT1mdA3ReDvjETZSHc4NeiF+v0n3oOFo4lAWQiK2t15ymgWu4Sfjd0JjvX+BeM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoayZRyBH5A2CbOLMBM232YWgLDFlFFVF0znJTq5bnR33bkMwm
+	xtPxGbygySdPnJR56YpoFf/PCL9ISrgBEtYa6NsKbFKebu3SEqPE
+X-Google-Smtp-Source: AGHT+IHtRhzMILYXbZtooj22Y2+GrNlP86pPbugB4zhS5bRStjRPyvyKYRMvXWIHvClVKDN9zSE6CQ==
+X-Received: by 2002:a17:903:2284:b0:20c:c62f:d0e1 with SMTP id d9443c01a7336-20fab2dbb51mr94699135ad.55.1729800194557;
+        Thu, 24 Oct 2024 13:03:14 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20e7ef132f6sm75749905ad.111.2024.10.24.13.03.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Oct 2024 13:03:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <3f460b62-4cd1-49dd-a98b-1fbcfdbd3af0@roeck-us.net>
+Date: Thu, 24 Oct 2024 13:03:11 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <911483df-ee09-033d-7fae-4090bf8a3713@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] hwmon: (pmbus/isl68137) add support for voltage
+ divider on Vout
+To: Grant Peltier <grantpeltier93@gmail.com>
+Cc: robh@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+ grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <cover.1729646466.git.grantpeltier93@gmail.com>
+ <422a40e992e047e250a3b1295503e3b81b5515ae.1729646466.git.grantpeltier93@gmail.com>
+ <7d705ac9-a109-4b49-9ac6-78bd2e9ca091@roeck-us.net>
+ <ZxqjY-5MvsZfzf3U@raspberrypi>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <ZxqjY-5MvsZfzf3U@raspberrypi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 22, 2024 at 12:43:09PM +0530, Sibi Sankar wrote:
-> 
-> 
-> On 10/7/24 23:36, Dmitry Baryshkov wrote:
-> > On Mon, Oct 07, 2024 at 11:40:19AM GMT, Sibi Sankar wrote:
-> > > Document the various memory buses that can be monitored and scaled by
-> > > the memory latency governor hosted by the QCOM SCMI Generic Extension
-> > > Protocol v1.0.
-> > > 
-> > > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> 
-> Hey Dmitry,
-> 
-> Thanks for taking time to review the series!
-> 
-> > > ---
-> > > 
-> > > v3:
-> > > * Restructure the bindings to mimic IMX [Christian]
-> > > 
-> > >   .../bindings/firmware/arm,scmi.yaml           |   1 +
-> > >   .../bindings/firmware/qcom,scmi-memlat.yaml   | 246 ++++++++++++++++++
-> > >   .../dt-bindings/firmware/qcom,scmi-memlat.h   |  22 ++
-> > >   3 files changed, 269 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/firmware/qcom,scmi-memlat.yaml
-> > >   create mode 100644 include/dt-bindings/firmware/qcom,scmi-memlat.h
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > index 54d7d11bfed4..1d405f429168 100644
-> > > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > @@ -24,6 +24,7 @@ description: |
-> > >   anyOf:
-> > >     - $ref: /schemas/firmware/nxp,imx95-scmi.yaml
-> > > +  - $ref: /schemas/firmware/qcom,scmi-memlat.yaml
-> > >   properties:
-> > >     $nodename:
-> > > diff --git a/Documentation/devicetree/bindings/firmware/qcom,scmi-memlat.yaml b/Documentation/devicetree/bindings/firmware/qcom,scmi-memlat.yaml
-> > > new file mode 100644
-> > > index 000000000000..0e8ea6dacd6a
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/firmware/qcom,scmi-memlat.yaml
-> > > @@ -0,0 +1,246 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/firmware/qcom,scmi-memlat.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Qualcomm SCMI Memory Bus nodes
-> > > +
-> > > +maintainers:
-> > > +  - Sibi Sankar <quic_sibis@quicinc.com>
-> > > +
-> > > +description:
-> > > +  This binding describes the various memory buses that can be monitored and scaled
-> > > +  by memory latency governor running on the CPU Control Processor (SCMI controller).
-> > > +
-> > > +properties:
-> > > +  protocol@80:
-> > > +    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
-> > > +    unevaluatedProperties: false
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        const: 0x80
-> > > +
-> > > +    patternProperties:
-> > > +      '^memory-[0-9]$':
-> > > +        type: object
-> > > +        unevaluatedProperties: false
-> > > +        description:
-> > > +          The list of all memory buses that can be monitored and scaled by the
-> > > +          memory latency governor running on the SCMI controller.
-> > > +
-> > > +        properties:
-> > > +          qcom,memory-type:
-> > > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > > +            enum: [0, 1, 2]
-> > > +            description: |
-> > > +              Memory Bus Identifier
-> > > +              0 = QCOM_MEM_TYPE_DDR
-> > > +              1 = QCOM_MEM_TYPE_LLCC
-> > > +              2 = QCOM_MEM_TYPE_DDR_QOS
-> > 
-> > I'm sorry if this has been discussed and frowned upon, but can you
-> > squash memory type into device node?
-> 
-> I don't think anyone had any strong opinions on how the
-> nodes is to be named. We went with a generic node name since
-> it could accomodate multiple instances of llcc or ddr in the
-> future. We didn't want it be named ddr-0/ddr-1 and so on. So
-> I'll continue to stick with the current naming unless you have
-> a strong reason other than readability.
+On 10/24/24 12:43, Grant Peltier wrote:
+[ ... ]
 
-As I wrote in the other email, the memory types are not equal. They have
-different properties, etc. Having non-generic names allows describing
-that in schema.
-
-Last, but not least, please consider how reserved memory nodes are
-handled nowadays: they have non-generic names, each one describing the
-purpose / kind.
-
-> > protocol@80 {
-> > 	ddr {
-> > 	};
-> > 
-> > 	llcc {
-> > 	};
-> > 
-> > 	ddr-qos {
-> > 	};
-> > };
-> > 
-> > > +
-> > > +          freq-table-hz:
-> > > +            items:
-> > > +              items:
-> > > +                - description: Minimum frequency of the memory bus in Hz
-> > > +                - description: Maximum frequency of the memory bus in Hz
-> > 
-> > Does it make sense for the DDR-QOS type? Can we hardcode those values
-> > and drop freq-table-hz from the DDR-QOS node?
-> > 
-> > Also, can we drop this completely by adding one extra OPP entry with the
-> > minimum memory bus frequency?
+>>> +	of_property_read_u32_array(child, "renesas,vout-voltage-divider",
+>>
+>> Ultimately this potentially applies to _all_ hardware monitoring chips,
+>> so I would very much prefer a generic voltage divider property definition.
+>>
 > 
-> the map table doesn't necessarily list all the supported
-> frequencies. It was made that way so that the table is flexible
-> enough that it doesn't have to be changed a lot across platforms.
-> Hence a need for a separate property to list min/max freq.
+> There is a parallel conversation on PATCH v3 2/2 about this. Would you
+> prefer that I match the implementation for maxim20730?
+> 
 
-Please use opp-supported-hw or other similar techniques to describe
-supported frequencies.
+I would prefer, in the order of preference,
 
-> 
-> > 
-> > > +
-> > > +        patternProperties:
-> > > +          '^monitor-[0-9]$':
-> > > +            type: object
-> > > +            unevaluatedProperties: false
-> > > +            description:
-> > > +              The list of all monitors detecting the memory latency bound workloads using
-> > > +              various counters.
-> > > +
-> > > +            properties:
-> > > +              qcom,compute-type:
-> > > +                description:
-> > > +                  Monitors of type compute perform bus dvfs based on a rudimentary CPU
-> > > +                  frequency to memory frequency map.
-> > > +                type: boolean
-> > 
-> > This seems to be redundant. If there is no qcom,ipm-ceil property, then
-> > it's qcom,compute-type, isn't it?
-> 
-> ack
-> 
-> > 
-> > > +
-> > > +              qcom,ipm-ceil:
-> > > +                $ref: /schemas/types.yaml#/definitions/uint32
-> > > +                description:
-> > > +                  Monitors having this property perform bus dvfs based on the same
-> > > +                  rudimentary table but the scaling is performed only if the calculated
-> > > +                  IPM (Instruction Per Misses) exceeds the given ceiling.
-> > > +
-> > > +              cpus:
-> > > +                $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +                description:
-> > > +                  Should be a list of phandles to CPU nodes (as described in
-> > > +                  Documentation/devicetree/bindings/arm/cpus.yaml).
-> > 
-> > Which CPU nodes? I see that the examples list all CPUs here. Do we
-> > really need them?
-> 
-> This observation is only valid for X1E where all the cpus have
-> identical freq charecteristics. Even with this case we need to
-> list them to handle cases where cpus gets disabled by the bootloader
-> on lower cored X1E parts i.e. we use this to figure out the actual
-> physical mask.
+1) an applicable generic property definition
+2) a definition that is already used elsewhere
+3) a new chips specific definition
 
-This should be a part of the description.
+ From my perspective, matching the maxim20730 implementation should only
+be considered if the generic definition does not meet the chip requirements.
 
-BTW, why do you need to remove bootloader-removed cores? Can you simply
-ignore non-existing CPUs instead?
+Thanks,
+Guenter
 
-> 
-> > 
-> > > +
-> > > +              operating-points-v2: true
-> > > +              opp-table:
-> > > +                type: object
-> > > +
-> > > +            required:
-> > > +              - cpus
-> > > +              - operating-points-v2
-> > > +
-> > > +            oneOf:
-> > > +              - required: [ 'qcom,compute-type' ]
-> > > +              - required: [ 'qcom,ipm-ceil' ]
-> > > +
-> > > +        required:
-> > > +          - qcom,memory-type
-> > > +          - freq-table-hz
-> > > +
-> > > +additionalProperties: true
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/firmware/qcom,scmi-memlat.h>
-> > > +
-> > > +    firmware {
-> > > +        scmi {
-> > > +            compatible = "arm,scmi";
-> > > +            mboxes = <&cpucp_mbox 0>, <&cpucp_mbox 2>;
-> > > +            mbox-names = "tx", "rx";
-> > > +            shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
-> > > +
-> > > +            #address-cells = <1>;
-> > > +            #size-cells = <0>;
-> > > +
-> > > +            protocol@80 {
-> > > +                reg = <0x80>;
-> > > +
-> > > +                memory-0 {
-> > > +                    qcom,memory-type = <QCOM_MEM_TYPE_DDR>;
-> > > +                    freq-table-hz = /bits/ 64 <200000000 4224000000>;
-> > > +
-> > > +                    monitor-0 {
-> > 
-> > Hmm. Can we say that each memory type can have at most one IPM and one
-> > compute aka "passive" memlat monitor? Does it make sense to use them as
-> > node names and drop the extra monitor-M names?
-> 
-> Again this observation is valid only for X1E where the cpu freq
-> across cpu's are identical across clusters and is not true for
-> other mobile SoCs. So each memory can have more than 2 monitors
-> i.e. atleast one active/passibe monitor for each cluster.
-
-Description or commit message, please.
-
-> 
-> > 
-> > > +                        qcom,ipm-ceil = <20000000>;
-> > > +                        cpus = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
-> > > +                                &CPU8 &CPU9 &CPU10 &CPU11>;
-> > 
-> > Are CPU lists different between monitors? Can they be different? Can
-> > they be different between different memory types?
-> 
-> same explanation.
-> 
-> > 
-> > > +                        operating-points-v2 = <&memory0_monitor0_opp_table>;
-> > > +
-> > > +                        memory0_monitor0_opp_table: opp-table {
-> > 
-> > sensible names are better:
-> 
-> I think I just picked these names up from a cpufreq table upstream.
-
-Doesn't mean that you can't be better than that :-D
-
-> 
-> > 
-> > ddr_ipm_opp_table: opp-table {
-> > };
-> > 
-
--- 
-With best wishes
-Dmitry
 
