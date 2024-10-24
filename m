@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-115113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B679AE0B9
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:29:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02C019AE0BA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDE432852B0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:29:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC92F285255
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FF71B3939;
-	Thu, 24 Oct 2024 09:26:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC9E1B3945;
+	Thu, 24 Oct 2024 09:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="KyFx+V7z"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="S1kKsfzP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9DC1B392A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E98C1AA7B6;
 	Thu, 24 Oct 2024 09:26:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729762018; cv=none; b=PUvQPxBI6rjMPRYOK1X7hXe67daHFcx/PysDmHs32OfkS3ktdRfehUDzWcnL8UZI4YVtwr0IQT5F7EjyQyC+HUw1UipfCp1yYlctOFcWTnPFQU3W40qL9Q9Ppz28ldPeTj4f0YmEgTtFH2UGaPl/wr1QbRNtraDGLAjFUmY4wLk=
+	t=1729762018; cv=none; b=WF0A1wDavc3ImUgeeeBcoHhUjdnv1HCcYXaZltJdMWpifV2IPmCTFbMsxF2KRlFGVb/nDtpqEOj63lACcTv42erAEA105jbs4XOoczr1Svm8zasSEalyszVqWd5l6ax8gmDy60INOGnh2SuvXREBsqO9SdnMznXSdiTGY4RvXj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1729762018; c=relaxed/simple;
-	bh=U4+lAqQi8/KgkXdySdPpH2mQd467QA1SQF8lQ3CLhIM=;
+	bh=HncH2HOFlO5DQapGUnH4UPjCAjmb2uP6z2r3J+n+nls=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BVj2BXwxeySC84Vr5jmSXiR8RkuUaTblmOxum1fnOjRpJ9y+HoJle18j+pT+RhK+0Amc59UP4+Gl+tCx+qwM+VHX69ExAIztI/s7szs+0l8pR9Va4evAwyHHEDQn3q20EiAWry25tccbfw8R7I5GNQgF57pSbsclubi6RBRaykY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=KyFx+V7z; arc=none smtp.client-ip=210.61.82.184
+	 MIME-Version:Content-Type; b=sBhdhFijuM95Q3a3sgfA3mEIDTSYuIlem979v/k63pNxfngRnZOJ6gcW5SD5m/zNCRd0STUN3C2DegUZaYXOOQAwaTlZyZxQ+joE7yXgE7/u9kGurtXgvxmL1C/tsYRoWMvblqoIiljJ5hzvpM1oS2V7ZkwuED3MILfPOY2vcoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=S1kKsfzP; arc=none smtp.client-ip=210.61.82.184
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 19ef994a91ea11efbd192953cf12861f-20241024
+X-UUID: 1948a94691ea11efbd192953cf12861f-20241024
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=lRU6xMS4dEefnhGsln0x8bEQy8mZTyh/nEdKYPEt8C4=;
-	b=KyFx+V7zzoGalYgBrHT+oG6Xp12RqZLlyE5vzHprPG8rZ/ImeZn+WiiLkMqQrqcb36JQZl3AVAkQI2tocL8WX5Dfod6Y/jWNJHEHw5T2ClcMPaBFAyZv8opLvQZF8hYnrXY+dj+BlKrxi1R4RbQ1gmpQ1mvpR9VYtlNuJJma3jw=;
-X-CID-P-RULE: Spam_GS6885AD
-X-CID-O-INFO: VERSION:1.1.42,REQID:543021ee-76da-4524-a72b-8fb6f5be6939,IP:0,U
-	RL:25,TC:0,Content:100,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Spam_GS6885AD,AC
-	TION:quarantine,TS:125
-X-CID-META: VersionHash:b0fcdc3,CLOUDID:602dcccc-110e-4f79-849e-58237df93e70,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:801,TC:nil,Content:3,EDM:-3,IP:nil,U
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=jYLMF+xuWoTGHcH9ioamHRWs7pVJoNmieRacljrkDBI=;
+	b=S1kKsfzPV4SMDDCjHtAKPvaGnPatn91PyW101KSkPMqg7/1cYS6zYsXYcFw/6tThIfygzCEW16FpZVwsuL37gCgSirZvU6qGs0oDR5Pkqis30rlxfc2yB5zpbMJZMl5KvG9P8N1rOgom6wg/TwjL7xrY+6ehwsLMNVwRUGqCjPY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.42,REQID:c40c0bc9-62c7-4b47-9170-6ace436ac41f,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:b0fcdc3,CLOUDID:1f6a0b2e-a7a0-4b06-8464-80be82133975,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
 	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
 	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 19ef994a91ea11efbd192953cf12861f-20241024
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+X-UUID: 1948a94691ea11efbd192953cf12861f-20241024
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
 	(envelope-from <karl.li@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 780560753; Thu, 24 Oct 2024 17:26:51 +0800
+	with ESMTP id 1948286850; Thu, 24 Oct 2024 17:26:50 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 24 Oct 2024 17:26:47 +0800
+ 15.2.1118.26; Thu, 24 Oct 2024 17:26:49 +0800
 Received: from mtksitap99.mediatek.inc (10.233.130.16) by
  mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 24 Oct 2024 17:26:47 +0800
+ 15.2.1118.26 via Frontend Transport; Thu, 24 Oct 2024 17:26:49 +0800
 From: Karl.Li <karl.li@mediatek.com>
 To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
@@ -68,9 +68,9 @@ CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	Chungying Lu <chungying.lu@mediatek.com>,
 	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Karl Li
 	<karl.li@mediatek.com>
-Subject: [PATCH 1/3] dt-bindings: mailbox: mediatek: Add apu-mailbox document
-Date: Thu, 24 Oct 2024 17:25:43 +0800
-Message-ID: <20241024092608.431581-2-karl.li@mediatek.com>
+Subject: [PATCH 2/3] mailbox: add support for bottom half received data
+Date: Thu, 24 Oct 2024 17:25:44 +0800
+Message-ID: <20241024092608.431581-3-karl.li@mediatek.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241024092608.431581-1-karl.li@mediatek.com>
 References: <20241024092608.431581-1-karl.li@mediatek.com>
@@ -82,91 +82,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--13.460500-8.000000
-X-TMASE-MatchedRID: YXgS1C6OPWx/dZAjNXEbFgPZZctd3P4BWjWsWQUWzVoCsxyhR8y7CQaT
-	alM8C773wvUxdKBGcQwRA4hwIn2MDY2WQSzu3zX3T7jCYv2QJPG7atxTbKDEIPufvd3T2+v3oAW
-	Nnmn5m56Neg5tL2+jnh12U5je5b4a7bdBxC9wVFeBlNt4VSGvIV3HHpZF/7mweuOjdf174McfPl
-	xxE3mQszYLbDMMWtWewKX8fpO+yjINsM5qvTUs054CIKY/Hg3AaZGo0EeYG978V77yhJRgo99pj
-	zubZ2rHwrbXMGDYqV8kL2NLniq3NVDiHpFdHheQuDMYOBqTn6YXj2OqpTl9ta7mcBhy8Pft
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--13.460500-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	DBEC2FDE3AEB68C307DBA82FD95F9BB603F9FAFD5EF28C10EC52C826E39BFB0E2000:8
 
 From: Karl Li <karl.li@mediatek.com>
 
-Add apu-mailbox dt-binding document.
+Within the MediaTek APU subsystem, a message passing mechanism
+is constructed on top of the mailbox system.
+
+The mailbox only has limited space for each message. The MTK APU firmware
+expects the message header from the mailbox, while the message body
+is passed through some fixed shared memory.
+
+The mailbox interrupt also serves as a mutex for the shared memory.
+Thus the interrupt may only be cleared after the message is handled.
+Add a new sleepable rx callback for mailbox clients for cases
+where handling the incoming data needs to sleep.
 
 Signed-off-by: Karl Li <karl.li@mediatek.com>
 ---
- .../mailbox/mediatek,apu-mailbox.yaml         | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
+ drivers/mailbox/mailbox.c          | 16 ++++++++++++++++
+ include/linux/mailbox_client.h     |  2 ++
+ include/linux/mailbox_controller.h |  1 +
+ 3 files changed, 19 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
-new file mode 100644
-index 000000000000..cb4530799bef
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/mediatek,apu-mailbox.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/mailbox/mailbox.c b/drivers/mailbox/mailbox.c
+index d3d26a2c9895..d58a77fcf804 100644
+--- a/drivers/mailbox/mailbox.c
++++ b/drivers/mailbox/mailbox.c
+@@ -164,6 +164,22 @@ void mbox_chan_received_data(struct mbox_chan *chan, void *mssg)
+ }
+ EXPORT_SYMBOL_GPL(mbox_chan_received_data);
+ 
++/**
++ * mbox_chan_received_data_bh - A way for controller driver to push data
++ *				received from remote to the upper layer.
++ * @chan: Pointer to the mailbox channel on which RX happened.
++ * @mssg: Client specific message typecasted as void *
++ *
++ * For the operations which is not atomic can be called from
++ * mbox_chan_received_data_bh().
++ */
++void mbox_chan_received_data_bh(struct mbox_chan *chan, void *mssg)
++{
++	if (chan->cl->rx_callback_bh)
++		chan->cl->rx_callback_bh(chan->cl, mssg);
++}
++EXPORT_SYMBOL_GPL(mbox_chan_received_data_bh);
 +
-+title: MediaTek APU mailbox
-+
-+maintainers:
-+  - Karl Li <Karl.Li@mediatek.com>
-+
-+description:
-+  The MediaTek APU-Mailbox facilitates communication with the
-+  APU microcontroller. Within the MediaTek APU subsystem, a
-+  message passing mechanism is built on top of the mailbox system.
-+  The mailbox only has limited space for each message. The firmware
-+  expects the message header from the mailbox, while the message body
-+  is passed through some fixed shared memory.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8188-apu-mailbox
-+      - mediatek,mt8196-apu-mailbox
-+
-+  "#mbox-cells":
-+    const: 1
-+    description:
-+      The cell describe which channel the device will use.
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - "#mbox-cells"
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    apu_mailbox: mailbox@4c200000 {
-+      compatible = "mediatek,mt8196-apu-mailbox";
-+      reg = <0 0x4c200000 0 0xfffff>;
-+      interrupts = <GIC_SPI 638 IRQ_TYPE_LEVEL_HIGH 0>;
-+      #mbox-cells = <1>;
-+    };
+ /**
+  * mbox_chan_txdone - A way for controller driver to notify the
+  *			framework that the last TX has completed.
+diff --git a/include/linux/mailbox_client.h b/include/linux/mailbox_client.h
+index 734694912ef7..2cc6fa4e1bf9 100644
+--- a/include/linux/mailbox_client.h
++++ b/include/linux/mailbox_client.h
+@@ -22,6 +22,7 @@ struct mbox_chan;
+  *			if the client receives some ACK packet for transmission.
+  *			Unused if the controller already has TX_Done/RTR IRQ.
+  * @rx_callback:	Atomic callback to provide client the data received
++ * @rx_callback_bh:	Non-atomic callback to provide client the data received
+  * @tx_prepare: 	Atomic callback to ask client to prepare the payload
+  *			before initiating the transmission if required.
+  * @tx_done:		Atomic callback to tell client of data transmission
+@@ -33,6 +34,7 @@ struct mbox_client {
+ 	bool knows_txdone;
+ 
+ 	void (*rx_callback)(struct mbox_client *cl, void *mssg);
++	void (*rx_callback_bh)(struct mbox_client *cl, void *mssg);
+ 	void (*tx_prepare)(struct mbox_client *cl, void *mssg);
+ 	void (*tx_done)(struct mbox_client *cl, void *mssg, int r);
+ };
+diff --git a/include/linux/mailbox_controller.h b/include/linux/mailbox_controller.h
+index 6fee33cb52f5..74c6a31cd313 100644
+--- a/include/linux/mailbox_controller.h
++++ b/include/linux/mailbox_controller.h
+@@ -130,6 +130,7 @@ struct mbox_chan {
+ int mbox_controller_register(struct mbox_controller *mbox); /* can sleep */
+ void mbox_controller_unregister(struct mbox_controller *mbox); /* can sleep */
+ void mbox_chan_received_data(struct mbox_chan *chan, void *data); /* atomic */
++void mbox_chan_received_data_bh(struct mbox_chan *chan, void *data); /* can sleep */
+ void mbox_chan_txdone(struct mbox_chan *chan, int r); /* atomic */
+ 
+ int devm_mbox_controller_register(struct device *dev,
 -- 
 2.18.0
 
