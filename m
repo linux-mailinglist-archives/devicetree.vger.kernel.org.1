@@ -1,209 +1,88 @@
-Return-Path: <devicetree+bounces-115121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB289AE141
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:43:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B00AB9AE148
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:45:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6FF1C20B7C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:43:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63D6F1F23063
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A3D1B21AD;
-	Thu, 24 Oct 2024 09:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798731AF0C4;
+	Thu, 24 Oct 2024 09:45:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oh4w0+zL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ULBwzZbm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB95A17D340;
-	Thu, 24 Oct 2024 09:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB80170826;
+	Thu, 24 Oct 2024 09:45:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729762975; cv=none; b=NO5F2ItLb0oDFMqRDe1pTAedxZNTPBIBIEUddlDus5Vo+yEBqIdeXRk0EcZEdY/01WJgTo9I+cCxo/abLqGZ/nAxnnnoPvIbyZZAYTwzUnginkyI3wczd9cJXoe6l1pHkRwB1HmsoxaGR+g48WBeXnsU4XU0FQHbWYJ7Xh7pylU=
+	t=1729763101; cv=none; b=EZfQBecW/JOpNiniy9lo/k9jqyoW7G/QRYIU0sMXadTs5h8fvvPA0MjYX1XSnIwmWZc1DHsKBND9X1TdK9+0KmYlLMThas11fbP3mGh47f6y6EIqMklNuFaaCOH/6uoCJaNQ+GAvK0PMG08UE7lgpWCx4uJQb83P5/NR3PURfpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729762975; c=relaxed/simple;
-	bh=pVzAa+gkBK0ucsjVKni29QO63BQ7dWJBXHd6dsdvK5w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q8ChLY8Cc6IAw/r3B+2reVZ1RgSBG8pxbiHtQZ+6oE8bAWJDteGrd7MUiN8QwrnaU9x0M4vcmKyO3hWJxQ1o0/7uihkOMwGSt7bognVT0Nb988jHDdd3eVpQQ/XDbZ+8uJjTzXh2hAjviSwe3jJuv6CtAG7ROQV8hcQ+AEtZM6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oh4w0+zL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BA47C4CECC;
-	Thu, 24 Oct 2024 09:42:50 +0000 (UTC)
+	s=arc-20240116; t=1729763101; c=relaxed/simple;
+	bh=7kngg9pdtYpQtza0UYmezUYqLMx3hxlD2ZRjOunfoJQ=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=B8Z+rxh2uG2AAZBb2zj2PtLd1XXYPuLA8lqfLX7snOUPrNAWSTZxYtLpFPTscFA4UKMIy3z5NjCNquiJ8epY1aGlCQFh8z3fBHqbxy5t5t3ihcVUJEF3iQkJo5EkZRHr/qv5NlkvvHNUq0yiTfQ4aW/NAjmXJgMQvCmRWlG0LmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ULBwzZbm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 383A3C4CEC7;
+	Thu, 24 Oct 2024 09:44:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729762975;
-	bh=pVzAa+gkBK0ucsjVKni29QO63BQ7dWJBXHd6dsdvK5w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Oh4w0+zL9BhrSvdmuLuW3v/pPSkjUHcCQefraJ/bbMcn5xsxVA7WvJ11BxXPQ2b0O
-	 2a6DLQ+lOrdIDZZMBKfZkZFTGVgm242oPnl8y1yMlV1HMqmmcH2Yg3BF+X3jh6eqm8
-	 am9jTYcGGvSBDTPSDKlBCAVZJ5KOWQYkgkfeTI+PEqmcTQUH5VD+M0GNrddbI3GEn+
-	 rvU+VVHnO7yYayXGVFKf9SRGK4PVn/HoqubNVyFZSSo9UJs1dwye80KZEmn1pmz1Kw
-	 vJHGI2/IhcXfdBGqdD+ZcmyrWzZ5mrY+c5DpXMj24mfd6ftTjJYaBglr9pfejAth0R
-	 UFFdNVvVPmEJw==
-Message-ID: <c7aca0b4-e539-4b32-bd1d-f46734c46448@kernel.org>
-Date: Thu, 24 Oct 2024 11:42:48 +0200
+	s=k20201202; t=1729763100;
+	bh=7kngg9pdtYpQtza0UYmezUYqLMx3hxlD2ZRjOunfoJQ=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=ULBwzZbmzRqEiKMBg+X47y/WZVApeTALq+fPUp0CgDq00Mh+9w9V2ocx6l9qjRzad
+	 OEXHKio+E/V2kJX26fUDK+CAP8p3ORql12Q7rQynmue1Maye50WFNfH36vREdRG2EE
+	 08XkbOdmfPq+jmfNwapFhBspZxLg188Gnc9rwymRVZBEKEVijjRktE9Y1f47FqvMCZ
+	 VPfWg7bnEkcFk3LHVR4bh5sN58ufNf/a6YKf2+MVhC0jJzSYEyQP7Qy4E1sKW0PRFv
+	 arCwJY09rMZ0pED8kmfTv0IOPj596D7keiN7DSjfDO4MuCs+/XsSQ7LIs4g4b4fkZA
+	 Dpse0VaaF7jng==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-wireless@vger.kernel.org,  "David S. Miller"
+ <davem@davemloft.net>,  Adham Abozaeid <adham.abozaeid@microchip.com>,
+  Ajay Singh <ajay.kathat@microchip.com>,  Alexis =?utf-8?Q?Lothor=C3=A9?=
+ <alexis.lothore@bootlin.com>,  Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+  Conor Dooley <conor+dt@kernel.org>,  Eric Dumazet <edumazet@google.com>,
+  Jakub Kicinski <kuba@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
+ <robh@kernel.org>,  devicetree@vger.kernel.org,  netdev@vger.kernel.org
+Subject: Re: [PATCH v2] wifi: wilc1000: Rework bus locking
+References: <20241023144125.80296-1-marex@denx.de>
+Date: Thu, 24 Oct 2024 12:44:52 +0300
+In-Reply-To: <20241023144125.80296-1-marex@denx.de> (Marek Vasut's message of
+	"Wed, 23 Oct 2024 16:41:21 +0200")
+Message-ID: <87r085n8bv.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: mailbox: mediatek: Add apu-mailbox
- document
-To: "Karl.Li" <karl.li@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Chungying Lu <chungying.lu@mediatek.com>,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20241024092608.431581-1-karl.li@mediatek.com>
- <20241024092608.431581-2-karl.li@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241024092608.431581-2-karl.li@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-On 24/10/2024 11:25, Karl.Li wrote:
-> From: Karl Li <karl.li@mediatek.com>
-> 
-> Add apu-mailbox dt-binding document.
+Marek Vasut <marex@denx.de> writes:
 
-We see from the diff. What we see is what is APU and this hardware?
+> The bus locking in this driver is broken and produces subtle race
+> condition with ksdioirqd and its mmc_claim_host()/mmc_release_host()
+> usage in case of SDIO bus. Rework the locking to avoid this race
+> condition.
 
-A nit, subject: drop second/last, redundant "document". The
-"dt-bindings" prefix is already stating that these are bindings so a
-document.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+[...]
 
-> 
-> Signed-off-by: Karl Li <karl.li@mediatek.com>
-> ---
->  .../mailbox/mediatek,apu-mailbox.yaml         | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
-> new file mode 100644
-> index 000000000000..cb4530799bef
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/mediatek,apu-mailbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek APU mailbox
+> NOTE: I only tested the SDIO part
 
-What is APU?
+BTW if the patch is not yet ready to be applied to our trees it's a good
+idea to mark it as RFC. That way the maintainers know that they should
+skip it.
 
-> +
-> +maintainers:
-> +  - Karl Li <Karl.Li@mediatek.com>
-> +
-> +description:
-> +  The MediaTek APU-Mailbox facilitates communication with the
-> +  APU microcontroller. Within the MediaTek APU subsystem, a
-> +  message passing mechanism is built on top of the mailbox system.
-> +  The mailbox only has limited space for each message. The firmware
-> +  expects the message header from the mailbox, while the message body
-> +  is passed through some fixed shared memory.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8188-apu-mailbox
-> +      - mediatek,mt8196-apu-mailbox
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +    description:
-> +      The cell describe which channel the device will use.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - "#mbox-cells"
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    apu_mailbox: mailbox@4c200000 {
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Drop unused label.
-
-> +      compatible = "mediatek,mt8196-apu-mailbox";
-> +      reg = <0 0x4c200000 0 0xfffff>;
-> +      interrupts = <GIC_SPI 638 IRQ_TYPE_LEVEL_HIGH 0>;
-
-4 cells? No warnings on this?
-
-> +      #mbox-cells = <1>;
-> +    };
-
-Best regards,
-Krzysztof
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
