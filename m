@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-115148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99B349AE3A6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E809AE3AC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 13:20:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7FBC1C2293E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:18:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6097A1C22920
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F251CBE9A;
-	Thu, 24 Oct 2024 11:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F4281CDA31;
+	Thu, 24 Oct 2024 11:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dXjeNYL1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoH83ofs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39571CBA0E;
-	Thu, 24 Oct 2024 11:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FB91CCED8;
+	Thu, 24 Oct 2024 11:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729768733; cv=none; b=eqK5jufFDV0cVrZ+LD9h1EAHknMLtsoXFi2ff8ym8hX/L+8dE1U1pA80e61Fem5GZjRlro3I+N7/2MQBH0Sox38Ua7r4XMuwm+q5mFp3rb5m7oT2QA45hjvRw8M2pT/Y0jdkgmND5vw/I1dek1IkZ27vsOT69y8qpal1OCvpGqw=
+	t=1729768847; cv=none; b=re4a8yApSQPAJ6aGWOHl2dD3Hm5mAma5tJs/00pd7d/SEsBEhi7Ay9kHEWUhAwMUzZboIygmHtOswjhutnbiZHzt7pSEsHwQGvh6Si2O/X25HtCDvAZRVpifY+ZfGKZC+hCBHFNmE4mhcN90rrkhJMeWXMsVf9RU7XnNdM/CQHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729768733; c=relaxed/simple;
-	bh=ievhkostwsjD1LEmqka4wEYAni11kjJWnYzdensCh+g=;
+	s=arc-20240116; t=1729768847; c=relaxed/simple;
+	bh=Q0/OpzMZjVXX0LAR0kGTqam+qlzVaPSsqSlB1ASscy4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q3exILpmyNBRNw9YPsR3K+1jhPpSgKWg/EpLYP3o7rdK59xc3e2iXhK1zLofR8vXQ2E3mnqblYDQ0OLqKmTGS7SgfEhyrRFGdu7NtmRpc68XcNGolBr+6SGS2LujSa7zjhDKs4TV18RruXnokB/1SxZnd2Ys31YRsOebHRBxSWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dXjeNYL1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C912AC4CECC;
-	Thu, 24 Oct 2024 11:18:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bV2xzASJxd/rnsRhepExvHLLJgeQ1Ssb9xwoU1dDroxXpBJWOOQwuND6Yox9DFKcj6D7h6t3oZrnA1mmatWnVRxbwUnTbttcTMbc2E5iBSTRk5bG5XFm0oUbWrXZREY93vMq4x2E4HzwH94C1RFGef3PDW0d6deoHQtV6kXk948=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoH83ofs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48FB7C4CEC7;
+	Thu, 24 Oct 2024 11:20:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729768732;
-	bh=ievhkostwsjD1LEmqka4wEYAni11kjJWnYzdensCh+g=;
+	s=k20201202; t=1729768846;
+	bh=Q0/OpzMZjVXX0LAR0kGTqam+qlzVaPSsqSlB1ASscy4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dXjeNYL1vZUaPqszVjS9swBPijTik/DCsrczpNKKjdJBZQuB/kV9K0A0xP/A1ff52
-	 dOeZROWue3WTSaZXoVr3l8qH4FpJWbtId73OlF/z5+om0AuA7eX2nTfVLT9Dgiwbp4
-	 Z++iMXAzt2MNcSKaTbrJAaA7P/d4NF3+cWFnYSL1ktzB7QPznR/La+cGIFKtopJg4k
-	 t8jT+41OjIp0N+IQKH0g/MQMB1iDZe01W0Nj77Do9PPZ9tPg0KoyJK/QByzoHjqEfN
-	 FhOh3g3zwHGMsaYJuF+0nmvNXHx0wLWeYV5Xm3ICefdY54JqyoJQCrNqSYWqA8yaCL
-	 PtJsXM0Qv2PyA==
-Message-ID: <204ad774-a41a-4c3a-bb6c-57e180608341@kernel.org>
-Date: Thu, 24 Oct 2024 13:18:46 +0200
+	b=VoH83ofshTyn0jLDY97m5zxpxffpyTWtx9bwYp283M3+YLNNV/S7CO0S96lfxGNR5
+	 S9N0DSr7yEjeK/K1BV/DEkpsRoFtLUOM0Ept6khPB4J2Cj4UqNGaE5JBNcORDZSftZ
+	 jR7IX5BSV61imGDFS+kUic05S3XpnYkF+BwpN4s3uWA9eojpM4CO5Z8WJNBTlWITdZ
+	 v25ZXbZ1g/qWlwMrFNaSHn45R9eBTRgLZ6CecEKGcEP9PjhaoaBrZ8a/m9J6G33MeI
+	 AoLLE3rDr3gELLZLZ62IJbLZOWQuxcxsofjSnO6C11iHcgh8PlxOWRHiYWsvFXejGW
+	 M7T8bHupUovQw==
+Message-ID: <ea9e910a-a0e0-4059-b784-b6959786cb1d@kernel.org>
+Date: Thu, 24 Oct 2024 13:20:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: pwm: nuvoton: Add MA35D1 pwm
-To: Chi-Wen Weng <cwweng.linux@gmail.com>, ukleinek@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com,
- cwweng@nuvoton.com
-References: <20241024104309.169510-1-cwweng.linux@gmail.com>
- <20241024104309.169510-2-cwweng.linux@gmail.com>
-Content-Language: en-US
+Subject: Re: [PATCH 3/3] ARM: dts: imx6qdl-apalis: Change to
+ "adi,force-bt656-4"
+To: Fabio Estevam <festevam@gmail.com>
+Cc: hverkuil-cisco@xs4all.nl, lars@metafoo.de, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ shawnguo@kernel.org, francesco.dolcini@toradex.com,
+ linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
+References: <20241023144206.1099622-1-festevam@gmail.com>
+ <20241023144206.1099622-3-festevam@gmail.com>
+ <5qukgvhiszyyqoetl7go47qen27uwnq5mhgwz4lejdgyhyupkb@i2dre4tovzqh>
+ <CAOMZO5CqOwZ=h61x+iUnvPtrcwvvdJeU9aCOuW1_vZs1w40+ag@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,32 +107,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241024104309.169510-2-cwweng.linux@gmail.com>
+In-Reply-To: <CAOMZO5CqOwZ=h61x+iUnvPtrcwvvdJeU9aCOuW1_vZs1w40+ag@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/10/2024 12:43, Chi-Wen Weng wrote:
-> Add dt-bindings for Nuvoton MA35D1 SoC PWM controller.
+On 24/10/2024 13:00, Fabio Estevam wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
-> ---
+> On Thu, Oct 24, 2024 at 4:43 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> This will affect other users of this DTS, which we try to avoid. Some
+>> sort of analysis if this is used in BSD would be useful.
+> 
+> Thanks for the suggestion.
+> 
+> I checked the BSD source code and there is no adv7180 driver available.
 
+OK, thanks. I think it would be useful to add above to commit msg.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-<form letter>
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
 
 Best regards,
 Krzysztof
