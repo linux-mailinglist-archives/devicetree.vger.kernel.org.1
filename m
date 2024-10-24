@@ -1,88 +1,351 @@
-Return-Path: <devicetree+bounces-115122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00AB9AE148
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:45:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5059AE14B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 11:46:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63D6F1F23063
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:45:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67C2E284188
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798731AF0C4;
-	Thu, 24 Oct 2024 09:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19E818A6A8;
+	Thu, 24 Oct 2024 09:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ULBwzZbm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMB4oMO5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB80170826;
-	Thu, 24 Oct 2024 09:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7D0E15886D;
+	Thu, 24 Oct 2024 09:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729763101; cv=none; b=EZfQBecW/JOpNiniy9lo/k9jqyoW7G/QRYIU0sMXadTs5h8fvvPA0MjYX1XSnIwmWZc1DHsKBND9X1TdK9+0KmYlLMThas11fbP3mGh47f6y6EIqMklNuFaaCOH/6uoCJaNQ+GAvK0PMG08UE7lgpWCx4uJQb83P5/NR3PURfpo=
+	t=1729763161; cv=none; b=KZy6uFHN3E4O0vyklEvUD+sNV8v7TIORwmCcHWFAA2vKYRzDPC57wcD+XXCB686AiesPKZQsJiR0MD8In8zRoC3USu345y6yI1I3CpB5jtktxlr4mzCIIhmq6E60pvQhgRPMTLkUj95ycMNPWCaOIVHXNga5lh6c20guiEsdmcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729763101; c=relaxed/simple;
-	bh=7kngg9pdtYpQtza0UYmezUYqLMx3hxlD2ZRjOunfoJQ=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=B8Z+rxh2uG2AAZBb2zj2PtLd1XXYPuLA8lqfLX7snOUPrNAWSTZxYtLpFPTscFA4UKMIy3z5NjCNquiJ8epY1aGlCQFh8z3fBHqbxy5t5t3ihcVUJEF3iQkJo5EkZRHr/qv5NlkvvHNUq0yiTfQ4aW/NAjmXJgMQvCmRWlG0LmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ULBwzZbm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 383A3C4CEC7;
-	Thu, 24 Oct 2024 09:44:54 +0000 (UTC)
+	s=arc-20240116; t=1729763161; c=relaxed/simple;
+	bh=TP20U8M2gkMXngG5jt8yo0o5myFCfbGLJyktlLYRLxE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lsWsQi7A4f+8XVHKwvrrtRoLiX1aZhFxnoHMrDJ3bTAdtf9v6+QLwnHCHPyjGku22hZfO9rSMDW5UfGysflryaslEhN9kJF9iU6fAGUEtrRC5bli0LICXNuSV/aW47YoM0h4jEeMkmqjcKfjHi3BGlKzS6aPE3KPNCgDKLyKWoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMB4oMO5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 199C8C4CECC;
+	Thu, 24 Oct 2024 09:45:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729763100;
-	bh=7kngg9pdtYpQtza0UYmezUYqLMx3hxlD2ZRjOunfoJQ=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=ULBwzZbmzRqEiKMBg+X47y/WZVApeTALq+fPUp0CgDq00Mh+9w9V2ocx6l9qjRzad
-	 OEXHKio+E/V2kJX26fUDK+CAP8p3ORql12Q7rQynmue1Maye50WFNfH36vREdRG2EE
-	 08XkbOdmfPq+jmfNwapFhBspZxLg188Gnc9rwymRVZBEKEVijjRktE9Y1f47FqvMCZ
-	 VPfWg7bnEkcFk3LHVR4bh5sN58ufNf/a6YKf2+MVhC0jJzSYEyQP7Qy4E1sKW0PRFv
-	 arCwJY09rMZ0pED8kmfTv0IOPj596D7keiN7DSjfDO4MuCs+/XsSQ7LIs4g4b4fkZA
-	 Dpse0VaaF7jng==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-wireless@vger.kernel.org,  "David S. Miller"
- <davem@davemloft.net>,  Adham Abozaeid <adham.abozaeid@microchip.com>,
-  Ajay Singh <ajay.kathat@microchip.com>,  Alexis =?utf-8?Q?Lothor=C3=A9?=
- <alexis.lothore@bootlin.com>,  Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-  Conor Dooley <conor+dt@kernel.org>,  Eric Dumazet <edumazet@google.com>,
-  Jakub Kicinski <kuba@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
- <robh@kernel.org>,  devicetree@vger.kernel.org,  netdev@vger.kernel.org
-Subject: Re: [PATCH v2] wifi: wilc1000: Rework bus locking
-References: <20241023144125.80296-1-marex@denx.de>
-Date: Thu, 24 Oct 2024 12:44:52 +0300
-In-Reply-To: <20241023144125.80296-1-marex@denx.de> (Marek Vasut's message of
-	"Wed, 23 Oct 2024 16:41:21 +0200")
-Message-ID: <87r085n8bv.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1729763161;
+	bh=TP20U8M2gkMXngG5jt8yo0o5myFCfbGLJyktlLYRLxE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nMB4oMO5FoeZ4p/LGdZ2lPbtjU5xPPsN3KJwkC0MLrR5sq8z2LkktpgmETu+logty
+	 7GijuQcd0H0U/78gM/myotb56r8FN02IiSc5LW4Nf4mAvry78k9Vr5RQx2aLvjFF5J
+	 51C8eeJFIWig6dQixaMrBWlLQbW7EDpLG48ilXUv+cEVCI3azduXCYv2xTcJdFo4CR
+	 KiMH5A8zOqRwhOxYKh+LH/twQNWPnaGtzmNpeOQnCiyNtId8MR25BrhhtbMKnWWIiz
+	 clzm1vlY4dQ9sjh/mYDeUgeYMMCTfCz9araohAyeFokTgj+09tStr7aq+EfcsGscPR
+	 Y30Tz1IKbvD4Q==
+Message-ID: <d1264f6b-07bd-41e4-848d-1775a1f45884@kernel.org>
+Date: Thu, 24 Oct 2024 11:45:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] mailbox: mediatek: Add mtk-apu-mailbox driver
+To: "Karl.Li" <karl.li@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Chungying Lu <chungying.lu@mediatek.com>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20241024092608.431581-1-karl.li@mediatek.com>
+ <20241024092608.431581-4-karl.li@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241024092608.431581-4-karl.li@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Marek Vasut <marex@denx.de> writes:
+On 24/10/2024 11:25, Karl.Li wrote:
+> From: Karl Li <karl.li@mediatek.com>
+> 
+> Add mtk-apu-mailbox driver to support the communication with
+> APU remote microprocessor.
+> 
+> Also, the mailbox hardware contains extra spare (scratch) registers
+> that other hardware blocks use to communicate through.
+> Expose these with custom mtk_apu_mbox_(read|write)() functions.
+> 
+> Signed-off-by: Karl Li <karl.li@mediatek.com>
+> ---
+>  drivers/mailbox/Kconfig                 |   9 +
+>  drivers/mailbox/Makefile                |   2 +
+>  drivers/mailbox/mtk-apu-mailbox.c       | 222 ++++++++++++++++++++++++
+>  include/linux/mailbox/mtk-apu-mailbox.h |  20 +++
+>  4 files changed, 253 insertions(+)
+>  create mode 100644 drivers/mailbox/mtk-apu-mailbox.c
+>  create mode 100644 include/linux/mailbox/mtk-apu-mailbox.h
+> 
+> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+> index 6fb995778636..2338e08a110a 100644
+> --- a/drivers/mailbox/Kconfig
+> +++ b/drivers/mailbox/Kconfig
+> @@ -240,6 +240,15 @@ config MTK_ADSP_MBOX
+>            between processors with ADSP. It will place the message to share
+>  	  buffer and will access the ipc control.
+>  
+> +config MTK_APU_MBOX
+> +	tristate "MediaTek APU Mailbox Support"
+> +	depends on ARCH_MEDIATEK || COMPILE_TEST
+> +	help
+> +	  Say yes here to add support for the MediaTek APU Mailbox
+> +	  driver. The mailbox implementation provides access from the
+> +	  application processor to the MediaTek AI Processing Unit.
+> +	  If unsure say N.
+> +
+>  config MTK_CMDQ_MBOX
+>  	tristate "MediaTek CMDQ Mailbox Support"
+>  	depends on ARCH_MEDIATEK || COMPILE_TEST
+> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+> index 3c3c27d54c13..6b6dcc78d644 100644
+> --- a/drivers/mailbox/Makefile
+> +++ b/drivers/mailbox/Makefile
+> @@ -53,6 +53,8 @@ obj-$(CONFIG_STM32_IPCC) 	+= stm32-ipcc.o
+>  
+>  obj-$(CONFIG_MTK_ADSP_MBOX)	+= mtk-adsp-mailbox.o
+>  
+> +obj-$(CONFIG_MTK_APU_MBOX)	+= mtk-apu-mailbox.o
+> +
+>  obj-$(CONFIG_MTK_CMDQ_MBOX)	+= mtk-cmdq-mailbox.o
+>  
+>  obj-$(CONFIG_ZYNQMP_IPI_MBOX)	+= zynqmp-ipi-mailbox.o
+> diff --git a/drivers/mailbox/mtk-apu-mailbox.c b/drivers/mailbox/mtk-apu-mailbox.c
+> new file mode 100644
+> index 000000000000..b347ebd34ef7
+> --- /dev/null
+> +++ b/drivers/mailbox/mtk-apu-mailbox.c
+> @@ -0,0 +1,222 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2024 MediaTek Inc.
+> + */
+> +
+> +#include <asm/io.h>
+> +#include <linux/bits.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/mailbox/mtk-apu-mailbox.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define INBOX		(0x0)
+> +#define OUTBOX		(0x20)
+> +#define INBOX_IRQ	(0xc0)
+> +#define OUTBOX_IRQ	(0xc4)
+> +#define INBOX_IRQ_MASK	(0xd0)
+> +
+> +#define SPARE_OFF_START	(0x40)
+> +#define SPARE_OFF_END	(0xB0)
+> +
+> +struct mtk_apu_mailbox {
+> +	struct device *dev;
+> +	void __iomem *regs;
+> +	struct mbox_controller controller;
+> +	u32 msgs[MSG_MBOX_SLOTS];
+> +};
+> +
+> +struct mtk_apu_mailbox *g_mbox;
 
-> The bus locking in this driver is broken and produces subtle race
-> condition with ksdioirqd and its mmc_claim_host()/mmc_release_host()
-> usage in case of SDIO bus. Rework the locking to avoid this race
-> condition.
+Why this is global? And why do you support only one device?
 
-[...]
+No, drop.
 
-> NOTE: I only tested the SDIO part
+> +
+> +static irqreturn_t mtk_apu_mailbox_irq_top_half(int irq, void *dev_id)
+> +{
+> +	struct mtk_apu_mailbox *mbox = dev_id;
+> +	struct mbox_chan *link = &mbox->controller.chans[0];
+> +	int i;
+> +
+> +	for (i = 0; i < MSG_MBOX_SLOTS; i++)
+> +		mbox->msgs[i] = readl(mbox->regs + OUTBOX + i * sizeof(u32));
+> +
+> +	mbox_chan_received_data(link, &mbox->msgs);
+> +
+> +	return IRQ_WAKE_THREAD;
+> +}
+> +
 
-BTW if the patch is not yet ready to be applied to our trees it's a good
-idea to mark it as RFC. That way the maintainers know that they should
-skip it.
+...
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+> +/**
+> + * mtk_apu_mbox_write - Write value to specifice mtk_apu_mbox spare register.
+> + * @val: Value to be written.
+> + * @offset: Offset of the spare register.
+> + *
+> + * Return: 0 if successful
+> + *	   negative value if error happened
+> + */
+> +int mtk_apu_mbox_write(u32 val, u32 offset)
+> +{
+> +	if (!g_mbox) {
+> +		pr_err("mtk apu mbox was not initialized, stop writing register\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (offset < SPARE_OFF_START || offset >= SPARE_OFF_END) {
+> +		dev_err(g_mbox->dev, "Invalid offset %d for mtk apu mbox spare register\n", offset);
+> +		return -EINVAL;
+> +	}
+> +
+> +	writel(val, g_mbox->regs + offset);
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS(mtk_apu_mbox_write, MTK_APU_MAILBOX);
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Use mailbox API. This is really poor solution.
+
+> +
+> +/**
+> + * mtk_apu_mbox_read - Read value to specifice mtk_apu_mbox spare register.
+> + * @offset: Offset of the spare register.
+> + * @val: Pointer to store read value.
+> + *
+> + * Return: 0 if successful
+> + *	   negative value if error happened
+> + */
+> +int mtk_apu_mbox_read(u32 offset, u32 *val)
+> +{
+> +	if (!g_mbox) {
+> +		pr_err("mtk apu mbox was not initialized, stop reading register\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (offset < SPARE_OFF_START || offset >= SPARE_OFF_END) {
+> +		dev_err(g_mbox->dev, "Invalid offset %d for mtk apu mbox spare register\n", offset);
+> +		return -EINVAL;
+> +	}
+> +
+> +	*val = readl(g_mbox->regs + offset);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS(mtk_apu_mbox_read, MTK_APU_MAILBOX);
+> +
+> +static int mtk_apu_mailbox_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mtk_apu_mailbox *mbox;
+> +	int irq = -1, ret = 0;
+> +
+> +	mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
+> +	if (!mbox)
+> +		return -ENOMEM;
+> +
+> +	mbox->dev = dev;
+> +	platform_set_drvdata(pdev, mbox);
+> +
+> +	mbox->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(mbox->regs))
+> +		return PTR_ERR(mbox->regs);
+> +
+> +	mbox->controller.txdone_irq = false;
+> +	mbox->controller.txdone_poll = true;
+> +	mbox->controller.txpoll_period = 1;
+> +	mbox->controller.ops = &mtk_apu_mailbox_ops;
+> +	mbox->controller.dev = dev;
+> +	/*
+> +	 * Here we only register 1 mbox channel.
+> +	 * The remaining channels are used by other modules.
+> +	 */
+> +	mbox->controller.num_chans = 1;
+> +	mbox->controller.chans = devm_kcalloc(dev, mbox->controller.num_chans,
+> +					      sizeof(*mbox->controller.chans),
+> +					      GFP_KERNEL);
+> +	if (!mbox->controller.chans)
+> +		return -ENOMEM;
+> +
+> +	ret = devm_mbox_controller_register(dev, &mbox->controller);
+> +	if (ret)
+> +		return ret;
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	ret = devm_request_threaded_irq(dev, irq, mtk_apu_mailbox_irq_top_half,
+> +					mtk_apu_mailbox_irq_btm_half, IRQF_ONESHOT,
+> +					dev_name(dev), mbox);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to request IRQ\n");
+> +
+> +	g_mbox = mbox;
+> +
+> +	dev_dbg(dev, "registered mtk apu mailbox\n");
+
+No, drop such stuff.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void mtk_apu_mailbox_remove(struct platform_device *pdev)
+> +{
+> +	g_mbox = NULL;
+> +}
+> +
+> +static const struct of_device_id mtk_apu_mailbox_of_match[] = {
+> +	{ .compatible = "mediatek,mt8188-apu-mailbox" },
+> +	{ .compatible = "mediatek,mt8196-apu-mailbox" },
+
+So devices are compatible? Make them compatible in the binding and drop
+unneeded compatible here.
+
+Best regards,
+Krzysztof
+
 
