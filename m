@@ -1,146 +1,204 @@
-Return-Path: <devicetree+bounces-115300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5270B9AED09
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:03:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 862789AED10
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 19:04:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11739284663
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 17:03:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 083D31F22F4F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 17:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD151F941A;
-	Thu, 24 Oct 2024 17:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7D71F9EB1;
+	Thu, 24 Oct 2024 17:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fKESlf/c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dBaqX6iQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7DD33EA
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:03:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C69C19DF7A;
+	Thu, 24 Oct 2024 17:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729789385; cv=none; b=MHr+t2flJiGEicP+886ue3BrlaKjS/ViSJkj8nrEvX1CIogjI7BhUSgupFqVEMuro8+5+OhW3PGMoNjG+Oxe65fm3xnbBBVicZjUVN3NBJUD8cKYJBeu3VXFHPR+6A2qRe95X0uivF7751HFJ5Dz6q2zDMSZAJPsYlXO/Hv9Be4=
+	t=1729789478; cv=none; b=pZDb8QP2b0KlwSJ0FxololysmradOw+JC0o74id/OkqN9JsYlzONeKOjVBiE/T3vcPw8daaibBlrVxuGPW19fwr/tF8Ea0eYA1Izn5/1i/RSS5y0Kb4dCmkoMW+L86Z7mAx1qTvxZYLXz0VbIZg8oRUHobxp8FMuepgMmb0vri8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729789385; c=relaxed/simple;
-	bh=PQ4zZ+vpUUBZz98OPfmQ/f9IgAytod+hx01dezT1/kg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GMVL+n9nR3el8pF3b5UDjQ67sGCURXzN96hGOa4CZdp2hjdexLOi7obFUPcxPOrGnNZfMG0KQ8OsRofaadeR93cOMHfkgvRctfRFs+UY3lz12dmz97re19fA7oTHPJM71CHsKERk83B5WfZlvavQkHl6PrpI890nwVuCOwSpwDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fKESlf/c; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49OAEbQh026096
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:03:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DUlMzHI7+1FWYVHdeE+crFlz144uqgJoZlthEYfdU7U=; b=fKESlf/cCsBm2Ppp
-	RQIteynzNNWaFkaLO1FXpFcChrBOoPX5Vh/s9z7X17kGsuPU/czEpSpU8JfWWZJ5
-	Nu726f8E02rucu4KWubtnuuhkvbIZUhh2fnloFBOc2mf1i9vECZ83fP371gRewIo
-	accEVEYI2bCxapJkvRopZ1ohiVRF8j45LU5woXjWO5aUJBLY5NIpOVcugoVMLWpL
-	XGBaXKbtDvO7FDLExy56wdhPFeYhQXA4+GezctdGht4mYCT0WclulzmudByipIjo
-	5xno0bXZM68hnn8PHS+NPXscqTiTD/TY+PW54s+i1Ajs2KvskDMTObPnvfUPe8mP
-	wyLy3Q==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3wpcfk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:03:01 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6cbf5a3192aso2656316d6.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 10:03:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729789380; x=1730394180;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DUlMzHI7+1FWYVHdeE+crFlz144uqgJoZlthEYfdU7U=;
-        b=VpT7B3DdBQwInl2UFYIViZ9Ojf6180+jZxgdafOM9fC1kNgbDnUp2PyQjnCvI+7knA
-         DebdE2CRMCrwiDYAYgDOLc8/vvnAnAZSYg/S7KkhMh2NRVk++pNZTP0Bp3ejr3WRy85c
-         JzZMk5BDO6p/rR5Ut+zkgql7kAqLUbH21G8m9Vzgb3NA0NAW0+qAxC/DnD2oKK6JQLpY
-         iGvC7T3Ds3YDf7yqlObpJkTJfu2cIk2OHntfLR+tUzpCfOYP+Tt6+5ydibdtQVyaZea8
-         Meia9tp5337b+slVD/avBRo7G1peenicoYe0rLaA54UgBvg1JisRP0YZerohqrCMCiFH
-         RXPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVikt/vNPy/GUeATpapN8vwBlWL31zuKg6Eabbw7qIJVo30BeRSs9o+7bT4W52DrLhIxBksjmMw2uyw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy90t5j+yn6oCIgyPsI+tsiwbHEGewf+62NMNBERT9pk5myGFvv
-	VBad0k/AgvgmEF/TLdU++ArB/YvmSp9laiFk/sv4gjeJ2TvLzmApgNH5vYzPM+rxsC/vI828gwG
-	bH7tOE8k3oHCXef3uMwStjaieSp0KaeBPSeUqy/QA0h4Z2jvszqPFRAR7/k1n
-X-Received: by 2002:ad4:5e8e:0:b0:6cb:4e9f:7370 with SMTP id 6a1803df08f44-6ce3429efe7mr40119696d6.12.1729789380290;
-        Thu, 24 Oct 2024 10:03:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IErivPc6fmXIZH89b8InKtojO/piGnSylk4Q1RcUf5kCpJfBLE2UQ3WYyeNfa4RF6q6QGeTdg==
-X-Received: by 2002:ad4:5e8e:0:b0:6cb:4e9f:7370 with SMTP id 6a1803df08f44-6ce3429efe7mr40119036d6.12.1729789378414;
-        Thu, 24 Oct 2024 10:02:58 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a91571ef4sm639419366b.153.2024.10.24.10.02.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Oct 2024 10:02:58 -0700 (PDT)
-Message-ID: <adee8553-a531-4789-af19-1bbbe2adb59a@oss.qualcomm.com>
-Date: Thu, 24 Oct 2024 19:02:55 +0200
+	s=arc-20240116; t=1729789478; c=relaxed/simple;
+	bh=ywLWv1DymM9Q8rNWDVKF/A2+zd9RhYsw+C3ioFEB2fo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ST7Uw7LDMd7o5huUKUTvxuu4DnyIVwRCAikx21QdIC83RgoSdQEgJh8028dIF30mVdc6IXCVA9WS81Hb7YUl4xiBxD8Q39yR/hwi+H0Quj9ABovri3eRjZwGDYsH3D4MNVuFDODSBtoPMvgdeYxGc4qoSsTq7Ct6ggCfkW1nDG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dBaqX6iQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29819C4CEC7;
+	Thu, 24 Oct 2024 17:04:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729789478;
+	bh=ywLWv1DymM9Q8rNWDVKF/A2+zd9RhYsw+C3ioFEB2fo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dBaqX6iQKVO2I3p6DrGwLpuLJB3LSA0XH7X+UprC50IkkggRW+Y2RLdcIiDwDCh1X
+	 k+uJyk8o/qqWWHi++gPxZfzbD15LyxpL7tsAN911NmSofjDWqtsMyWrv9j8+PQ/chd
+	 KKLAcTKow+XkNETi9/tPj7EgkZb4/bv4CB27O4p8I8fTzDI6cgXZ9K8Uy1q3PbZJgY
+	 NDAPrF/8A+KBJZchG6LgnkuCzfmc7S2vi96lqSFyQsbJKNlo6Orqoj44edCGXhcRbv
+	 duePaGbfb7zsTbuX4hn7EHv1IC6gyoJce7RQg5U1tvB2KYrPrVUH2+ag7ZbxPjeP1M
+	 FygRhSMkxMAiw==
+Date: Thu, 24 Oct 2024 18:04:31 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Yixun Lan <dlan@gentoo.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: net: Add support for Sophgo SG2044 dwmac
+Message-ID: <20241024-wad-dusk-3d49f9ac4dff@spud>
+References: <20241021103617.653386-1-inochiama@gmail.com>
+ <20241021103617.653386-3-inochiama@gmail.com>
+ <20241022-crisply-brute-45f98632ef78@spud>
+ <yt2idyivivcxctosec3lwkjbmr4tmctbs4viefxsuqlsvihdeh@alya6g27625l>
+ <20241023-paper-crease-befa8239f7f0@spud>
+ <5cv7wcdddxa4ruggrk36cwaquo5srcrjqqwefqzcju2s3yhl73@ekpyw6zrpfug>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] interconnect: qcom: Add interconnect provider driver
- for SM8750
-To: Melody Olvera <quic_molvera@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Sibi Sankar
- <quic_sibis@quicinc.com>,
-        =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?=
- <barnabas.czeman@mainlining.org>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Danila Tikhonov <danila@jiaxyga.com>,
-        Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Mike Tipton <quic_mdtipton@quicinc.com>,
-        Abel Vesa <abel.vesa@linaro.org>, Trilok Soni <quic_tsoni@quicinc.com>,
-        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241021231823.2635534-1-quic_molvera@quicinc.com>
- <20241021231823.2635534-3-quic_molvera@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241021231823.2635534-3-quic_molvera@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: SoS8teUxE69DhP20EUngRWqWn-tDk4dH
-X-Proofpoint-ORIG-GUID: SoS8teUxE69DhP20EUngRWqWn-tDk4dH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- mlxlogscore=861 lowpriorityscore=0 malwarescore=0 suspectscore=0
- spamscore=0 mlxscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410240140
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="r+PW8kyxnTDRk3Vc"
+Content-Disposition: inline
+In-Reply-To: <5cv7wcdddxa4ruggrk36cwaquo5srcrjqqwefqzcju2s3yhl73@ekpyw6zrpfug>
 
-On 22.10.2024 1:18 AM, Melody Olvera wrote:
-> From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> 
-> Introduce SM8750 interconnect provider driver using the interconnect
-> framework.
-> 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
 
-[...]
+--r+PW8kyxnTDRk3Vc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +static struct qcom_icc_bcm *lpass_ag_noc_bcms[] = {
-> +};
+On Thu, Oct 24, 2024 at 06:38:29AM +0800, Inochi Amaoto wrote:
+> On Wed, Oct 23, 2024 at 09:49:34PM +0100, Conor Dooley wrote:
+> > On Wed, Oct 23, 2024 at 08:31:24AM +0800, Inochi Amaoto wrote:
+> > > On Tue, Oct 22, 2024 at 06:28:06PM +0100, Conor Dooley wrote:
+> > > > On Mon, Oct 21, 2024 at 06:36:15PM +0800, Inochi Amaoto wrote:
+> > > > > The GMAC IP on SG2044 is almost a standard Synopsys DesignWare MAC
+> > > > > with some extra clock.
+> > > > >=20
+> > > > > Add necessary compatible string for this device.
+> > > > >=20
+> > > > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > > > > ---
+> > > > >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+> > > > >  .../bindings/net/sophgo,sg2044-dwmac.yaml     | 145 ++++++++++++=
+++++++
+> > > > >  2 files changed, 146 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/net/sophgo,=
+sg2044-dwmac.yaml
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yam=
+l b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > > index 3c4007cb65f8..69f6bb36970b 100644
+> > > > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > > @@ -99,6 +99,7 @@ properties:
+> > > > >          - snps,dwmac-5.30a
+> > > > >          - snps,dwxgmac
+> > > > >          - snps,dwxgmac-2.10
+> > > > > +        - sophgo,sg2044-dwmac
+> > > > >          - starfive,jh7100-dwmac
+> > > > >          - starfive,jh7110-dwmac
+> > > > > =20
+> > > > > diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-=
+dwmac.yaml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..93c41550b0b6
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.y=
+aml
+> > > > > @@ -0,0 +1,145 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/net/sophgo,sg2044-dwmac.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: StarFive JH7110 DWMAC glue layer
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Inochi Amaoto <inochiama@gmail.com>
+> > > > > +
+> > > > > +select:
+> > > > > +  properties:
+> > > > > +    compatible:
+> > > > > +      contains:
+> > > > > +        enum:
+> > > > > +          - sophgo,sg2044-dwmac
+> > > > > +  required:
+> > > > > +    - compatible
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    items:
+> > > > > +      - const: sophgo,sg2044-dwmac
+> > > > > +      - const: snps,dwmac-5.30a
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    items:
+> > > > > +      - description: GMAC main clock
+> > > > > +      - description: PTP clock
+> > > > > +      - description: TX clock
+> > > > > +
+> > > > > +  clock-names:
+> > > > > +    items:
+> > > > > +      - const: stmmaceth
+> > > > > +      - const: ptp_ref
+> > > > > +      - const: tx
+> > > > > +
+> > > > > +  sophgo,syscon:
+> > > >=20
+> > > > How many dwmac instances does the sg2044 have?
+> > > >=20
+> > >=20
+> > > Only one, there is another 100G dwxgmac instance, but it does not
+> > > use this syscon.
+> >=20
+> > That dwxgmac is a different device, with a different compatible etc?
+>=20
+> Yes, it needs a different compatiable, and maybe a new binding is needed
+> since the 100G and 1G IP are different.
 
-Drop empty BCM lists, the code handles nulls fine
+In that case, you don't /need/ a syscon property at all, much less one
+with offsets. You can just look up the syscon by compatible and hard
+code the offset in the driver.
 
-Konrad
+--r+PW8kyxnTDRk3Vc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxp+HgAKCRB4tDGHoIJi
+0mRYAQC5zNH78v/p+H9bscKX2XQ4j6+YJ0OaAX6+AvjpwXd/WAEAzV4GkyhyPnWN
+1Bs5WxGAGbqBkGnxejt/DzUIguij7wc=
+=/5rz
+-----END PGP SIGNATURE-----
+
+--r+PW8kyxnTDRk3Vc--
 
