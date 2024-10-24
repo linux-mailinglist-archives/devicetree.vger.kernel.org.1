@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-115075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD249ADD90
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:27:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C89659ADD9E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 09:30:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BACBE1C20290
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:27:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E7371F224A7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 07:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A93DE18BC21;
-	Thu, 24 Oct 2024 07:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8856818BC21;
+	Thu, 24 Oct 2024 07:29:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q09TGzVT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QffVILSX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7997B18BB9B;
-	Thu, 24 Oct 2024 07:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56797169AE4;
+	Thu, 24 Oct 2024 07:29:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729754825; cv=none; b=CDWXGhxg8v2+9etnl9yLZImrlla6hr3sLjwgPVxRm+xaS66baOohNTVujTrP6sOwuTTNEu5ceitztqBubY2U47hUfkqwhNVXm2+I2vF42LgS1Zv9i/cmR2xmNvuERQR5EjxldPFj7Lx9usT3shNF/4l+QtPdErA+e/qc6TiNx2U=
+	t=1729754999; cv=none; b=q8u7yINzlvpv6B6c+HkCWYsl3cY27nOUWMsi4/oSQy4gJY767vVtwQmM2VickabDIHntBjcD9YENOhmyHp3N7HJgVczvxC68aJVdAcNn+eu2rKjtBGfxrgtKl1LuSbNSNec0DWXsIk9hPJ3NzdRsoIxZC6x4O3/AxBJPpCanG3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729754825; c=relaxed/simple;
-	bh=dm+M/P4NK/WpteoV6oB24kvkqvdyHw/jnfh7uzPyRMA=;
+	s=arc-20240116; t=1729754999; c=relaxed/simple;
+	bh=G22QRFhSX2UGYMXTZ/s188G3HnD+jJva75a/AyvugZM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PpklGgfJv5SUUyNIELLU4JGc9Ze8YlLkwuP4kUt5EIn1nXO5E90lxs3ly9L7nrQT59GnTmTLCYWu2NYYkQf3Kz8MoGaLvPskg+VKT+Fy8ZBnUV5qsL2VC+BvOwbGTsS3xjcTCe4YOX13XxUznynktulDzEmuMXKvSkaIirsgV1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q09TGzVT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F971C4CECC;
-	Thu, 24 Oct 2024 07:27:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YDVCpC5k8y3Mf0+/I1GP8QiAfrOJaSIM4RaXOIcrv4CYc1RddFyK+PKlYlh//dW7BH2SD9LfsHk6KPNlHk+5A+YuRpXfrZqs5YrFpf/5TfUH4KkAhNkgKPuV7rxHVt/nKWZRwfFAyf0f3SGNZVm8mM5Ww1fAHlm9oK8F+YV4zqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QffVILSX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4B5FC4CEC7;
+	Thu, 24 Oct 2024 07:29:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729754825;
-	bh=dm+M/P4NK/WpteoV6oB24kvkqvdyHw/jnfh7uzPyRMA=;
+	s=k20201202; t=1729754998;
+	bh=G22QRFhSX2UGYMXTZ/s188G3HnD+jJva75a/AyvugZM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q09TGzVTI/tJtefI50bhpQ9G/FdeaWNS2eT1/YNRgnzN8EkDfAdfbZYyeZF8mXjba
-	 e1bhgOCLl6oVdwkgr0KbGfcr56RheAC6MQELCeC+OXd81RNopNmrPgbMUX65gOO0ns
-	 Bjo6jw7wHRT2Q0ML1PK9PrfMghVc8TtGBMQwNRP7WqMV3/GrQpgeknyUC4QqL9sWzT
-	 Gu0T6QO/G2+cO+alsPYZ/cCbXcuhVy/LiQYejILbzB6CJXBvhnSisElvRiVbVV5xHa
-	 kvkto2YbjZOiHote9KbM5+0reKiD6PDn2Yza3Nc8EHDX5N72PWx9+Ltt6ESS7AKcFu
-	 9nRMRa65CxWNg==
-Date: Thu, 24 Oct 2024 09:27:01 +0200
+	b=QffVILSX4nWEfDxU73jAV9Ve5wNKTKFTWSDuIWMl8ARu6tGib9uJQvYDR2VAE39V/
+	 I/XLp41RPgpK/ycWEDLlWdswjvbdZmA17K/VJTkVSqCooGeOh0G0Ss/F0QEvHU/wKx
+	 +NRaioIzQjCD4+JbvMCbW0ZBZBu1TLj3R7qxsZCR69sZrA4uu4pBuhPBWaNlFLOmzm
+	 mDHqlCxVkQu5MP5nnuBtCz9D+Lu/2kAizhU6rOsdhqZa2WKUJSud0Pb5c7R8Fxl5wn
+	 9rmRIv66vFS3oNW6hWDSvH9TF/2iyBaJI7DynunSktWzfTjkNw0xh2xmcV0GdpIcwA
+	 zQo6X1DYdIoPw==
+Date: Thu, 24 Oct 2024 09:29:54 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: samsung: Add
- samsung,exynos8895-uart compatible
-Message-ID: <2kjgpsms7b2sdxny4s4s5ukg5j2ncaizg2kiqbvgk4rposrpuv@ijthdmntpbfb>
-References: <20241023090902.538040-1-ivo.ivanov.ivanov1@gmail.com>
- <20241023090902.538040-2-ivo.ivanov.ivanov1@gmail.com>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: iio: adc: ad7380: add adaq4370-4 and
+ adaq4380-4 compatible parts
+Message-ID: <7uih5kvpy6i4ggq5o7eudzczbicopbdnmbtkyprfperkkqgsmt@42q6bncox3ml>
+References: <20241023-ad7380-add-adaq4380-4-support-v2-0-d55faea3bedf@baylibre.com>
+ <20241023-ad7380-add-adaq4380-4-support-v2-1-d55faea3bedf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +63,123 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241023090902.538040-2-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20241023-ad7380-add-adaq4380-4-support-v2-1-d55faea3bedf@baylibre.com>
 
-On Wed, Oct 23, 2024 at 12:09:01PM +0300, Ivaylo Ivanov wrote:
-> Add dedicated samsung,exynos8895-uart compatible to the dt-schema for
-> representing uart of the Exynos8895 SoC.
-> 
-> Like GS101, it has a required DT property samsung,uart-fifosize, but
-> it does not exhibit the 32 bit register access limit.
-> 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->  .../devicetree/bindings/serial/samsung_uart.yaml   | 14 ++++++++++++--
->  1 file changed, 12 insertions(+), 2 deletions(-)
+On Wed, Oct 23, 2024 at 11:19:33AM +0200, Julien Stephan wrote:
+> +  vs-p-supply:
+> +    description:
+> +      Amplifiers positive supply.
+> +
+> +  vs-n-supply:
+> +    description:
+> +      Amplifiers negative supply.
+> +
+> +  ldo-supply:
+> +    description:
+> +      LDO supply. Connect to vs-p-supply or a 3.6 to 5.5 V supply.
+>  
+>    aina-supply:
+>      description:
+> @@ -97,12 +115,46 @@ properties:
+>        specify the ALERT interrupt.
+>      maxItems: 1
+>  
+> +  '#address-cells':
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If there is going to be new version/resend, then keep consistent quotes:
+" or '.
+
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - vcc-supply
+>    - vlogic-supply
+>  
+> +patternProperties:
+> +  "^channel@([0-3])$":
+
+() are not necessary
+
+> +    $ref: adc.yaml
+> +    type: object
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          The channel number. From 0 to 3 corresponding to channels A,B,C,D
+> +        items:
+> +          minimum: 0
+> +          maximum: 3
+
+No improvements, no response to comment.
+
+> +
+> +      adi,gain-milli:
+> +        description:
+> +          The hardware gain applied to the ADC input (in milli units).
+> +          If not present, default to 1000 (no actual gain applied).
+> +          Refer to the typical connection diagrams section of the datasheet for
+> +          pin wiring.
+> +        $ref: /schemas/types.yaml#/definitions/uint16
+> +        enum: [300, 600, 1000, 1600]
+> +        default: 1000
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+>  unevaluatedProperties: false
+>  
+>  allOf:
+> @@ -140,6 +192,7 @@ allOf:
+>          aind-supply: false
+>  
+>    # ad7380-4 uses refin-supply as external reference.
+> +  # adaq devices use internal reference only, derived from refin-supply
+>    # All other chips from ad738x family use refio as optional external reference.
+>    # When refio-supply is omitted, internal reference is used.
+>    - if:
+> @@ -147,6 +200,8 @@ allOf:
+>          compatible:
+>            enum:
+>              - adi,ad7380-4
+> +            - adi,adaq4370-4
+> +            - adi,adaq4380-4
+>      then:
+>        properties:
+>          refio-supply: false
+> @@ -156,6 +211,27 @@ allOf:
+>        properties:
+>          refin-supply: false
+>  
+> +  # adaq devices need more supplies and using channel to declare gain property
+> +  # only applies to adaq devices
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - adi,adaq4370-4
+> +            - adi,adaq4380-4
+> +    then:
+> +      required:
+> +        - vs-p-supply
+> +        - vs-n-supply
+> +        - ldo-supply
+> +    else:
+> +      properties:
+> +        vs-p-supply: false
+> +        vs-n-supply: false
+> +        ldo-supply: false
+> +      patternProperties:
+> +        "^channel@([0-3])$": false
+
+() are not necessary
 
 Best regards,
 Krzysztof
