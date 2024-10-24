@@ -1,145 +1,179 @@
-Return-Path: <devicetree+bounces-115340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F8589AEF26
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:04:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED32D9AEF4D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:11:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E10728104E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:04:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50348B242BE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:11:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B44F1F8196;
-	Thu, 24 Oct 2024 18:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2828A200CAD;
+	Thu, 24 Oct 2024 18:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kkYxyWGK"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wacLMw9N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A973C1D3195;
-	Thu, 24 Oct 2024 18:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A909200C88
+	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 18:11:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729793090; cv=none; b=XX9K01myViAzqW+9rVpmaHiQ+eRWh9VLsgnk6cDRvoN9UokREeTmIsXsbeBx0gFQGsb2nkVlQF6S1L9cVwmZ/PMMEvthIVkpfh/hYvudidXRXl4ILH7uVKcgmq8yLLpA0+25rPvec6vHtJBw/5S76tCeSK0HLGtQqwGZuowT/IY=
+	t=1729793467; cv=none; b=IL9tE2g3FYb4ypetXcujwcw27Ee76NlSufcrFb2tKXHAf7mBZzmY+IYt/ISXN+E75sBp+AFDgjxkx7XJg64Kn8EQv/NvKGEmeKjg8d7dQs3TInq5LUkcpbwNz8DtTJooAwhI2pIDRMxLujQIvASO0QKb4+NZBZxQ52gWXbpCUwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729793090; c=relaxed/simple;
-	bh=UUvsBdUGfSSU/kSjK234k4dPTiQ9P2UYe6HVxv5qs8s=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GdCACnMT9xadeMOx4getC0/4LWb1jhkzO0PMzt+ih+zPGEJ+Xnt/C46PlJknrBTRFNAT0Xa5HcD+JSyu5/Zoh8mISPi6P1MOVAHfNDGjGDaC55nK/NQ5MpkFaw6KZ/J8cgNnrrOoGxmnTP5r9VMeK0OhliKjZuC5sm3i+PywgtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kkYxyWGK; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-7ed9f1bcb6bso764919a12.1;
-        Thu, 24 Oct 2024 11:04:48 -0700 (PDT)
+	s=arc-20240116; t=1729793467; c=relaxed/simple;
+	bh=wuUDrWGldoGzLKmEDKRB+N+oojKVOt07T8M5dyrnk6A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ayG3CaPly6s6KkMrj9gPS50AKQ2fff/o5IBl+aNbvG6e4PQPrW7WpkusvmBJ34hjNZ4cyEW6KdITn++CkZK5D25EBHi3kEz2UmvBxpE0f084eHqnVn4BlcbKQYIl/L1bYTVUJ/mePkjdCCBUxs9eCKE9KxYft6YRaC8475AS+vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wacLMw9N; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37f52925fc8so835692f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 11:11:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729793088; x=1730397888; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=otnnjfo+UWzid12pRT8/cZV8/w3a2emTXWpbhB9Bt4Y=;
-        b=kkYxyWGKIvTuXGR5xeBmIDaKuP4NneLriFUv8kuD6l3HOGCHLxTy30nGZL33ndiSM6
-         7S/kCGR2GxQcibB3Goyae96RESREpqK5kkVNgw/2Hm/WAYe3wXk8jwHYxRkJ8TEX4hcj
-         pDB+vF5Cg72bDpit+AK2M8h8EY6znjNMlKbWhuY5/dc3MTIMiqHxZ0tZQ1IwY/bHDhj4
-         qRTe/R8VgegbY+M8wg9E4XXIup32JXqnTH0+A6tgjNgJeKF02c13z25kcdzIozjKUEBD
-         YPIstpNyuOOsJq2ZjvR3opp8l1mUvkYaJKnacSTRpw2ef+dxc0xQeIhL5v+uAIHHSseO
-         NhCA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729793462; x=1730398262; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IqU0yvR44kyPrUFOs9XxlTbM2CjS1kPGGNa549pruJ0=;
+        b=wacLMw9NLwTcPf6/cMlDcibqMP48rL2Yw0wzUZDO12oQuFM3AFIZrJTRl9DUT4n5Xw
+         ZIIgpkB70prKYJMA7U69FQ8irLUo5Gvy9MocCI0utufLYs5OSCYdByt5VapHouVF8PQ/
+         zaVWWmyMLql7Dua8uM2sT5fDzLpa8Bnt3Y3HZySOS+IsFOw4GEyd1QlVe3M2Q00bTsko
+         TvRh5kBOD6nFipU5n2evTNT9AA/IkMUDe53yO3jV65YtWSTrZsSanIAs7aZ54xndGI+I
+         Gzw1l26Y/b7BK5I2hsHuhFuTvi8FmzcF2HmNOHPZqW+jztoemTmtG6cAyWKR+JaRY1Yr
+         ZVOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729793088; x=1730397888;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1729793462; x=1730398262;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=otnnjfo+UWzid12pRT8/cZV8/w3a2emTXWpbhB9Bt4Y=;
-        b=jraAo2AScgaPzKnXHm6K4DwcKaztQDgW7WjIlNlPTq+G1OwAYvdBdvIfCpAWHRLDOH
-         /SzrJ9z98LepJyNXB9A/ZSwNNh0asZQXI+HuM6iaLEnFfReGV0GLuOtnrEzWrdmysx7K
-         euBGUu7BLNlcdA3R8ghOanZ2GkzbkRtHWi3Ml/larnerTf/te86oufZeMmL1GQJ5DBV0
-         BCgbuAMPrlOh9X+FmYTxOE0/y6U6TNpuJIM2rJ6K4FBRNIvvvUA5qGSxsWdU3o5PYUye
-         41HDKEblOCP8fDMdC+MYkQOmNUHHNZ/JHI3DZ6hXUWhdW6v6Rb+104dOYXpAk20J9MdD
-         lUwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUgSia4WsZCzY2HBrSSJN1WablpgXWoVqdryKcVMDxtMfxaFHy+OafEo0RnzNjhA3s8FBJdpGjGSoCQrMc=@vger.kernel.org, AJvYcCWqeMoCPFLr4pFQmStvsCQD+GfenKn767Hy/1D+ipozcFRL0QfQEO6W9b+9LomiLiPnOWlPfrNphkoJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YziJ8Ezl7tB+k95ZZc8FbwSj6/AWZhIxjjrWW+WCqbjKjtOYi+A
-	AEsQgVck50gqCy7xnZeuHUcAA2niwaojJs0Zyx0BZtj7Jv46WmtE
-X-Google-Smtp-Source: AGHT+IEub2+JtvqeXtaA7sT/CHywt1mAJG1Gr8DmLUILAmgC6hILD5sqLiu5VvrAB7MCT4dvlQPYdA==
-X-Received: by 2002:a05:6a21:4d8b:b0:1d8:f679:ee03 with SMTP id adf61e73a8af0-1d989b359fbmr3222214637.27.1729793087826;
-        Thu, 24 Oct 2024 11:04:47 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:b160:3edf:6e5d:8d4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec132fed9sm8256044b3a.61.2024.10.24.11.04.45
+        bh=IqU0yvR44kyPrUFOs9XxlTbM2CjS1kPGGNa549pruJ0=;
+        b=ivfTEuo0lHxhvYuGvovQVqqFEw3myW660CVeEl3lpeRjtsyNOcDAHcODVA8BnY2YVg
+         tr7swYfXUuzeMn+zE02RoEdfLTlxsqY8CAuP0AiL729tlv4BRJ6AfyYYpRKNuChGnZxs
+         PQpPHAJLE/uFmp5wZuDBb4DSruF4F0swgqZRFhWkfqSaKyUi3yAg3jDhuFJgY2Ut+KaW
+         Ch2jh9TxAGVDg5N+eZDQmLa7yMSn7/kqHJ86DEj7BIeO8lBV1ZO/p3CU/1WLP5OmOb1C
+         2IqKj2OnjSjOwMEqV0HVNjPw/3z3ToTsPVa7U3SrPp2GPRl2yMPB+OLfR6YL8N09bg+X
+         Jsww==
+X-Forwarded-Encrypted: i=1; AJvYcCU4rndXtzG0bDkDIK/V9iB43QwjyPDGmkRO2Za9JrrH8/aj7nF3+hiIeykvFA14I04+NR+RTs5cMzcq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8cGot5fD2GTe7wEz9RLf7FzD2t0+9d4HsIhBMw3nzpZt+f+yH
+	/NTVAMGVH6ZOEMvF6WlyITWyCtgZHfjoXHVbDQJ1/l9L3nQc6qgkDNy7gdF2MGE=
+X-Google-Smtp-Source: AGHT+IFHTyuVsCBfNROuxNLrz1m+g63n0f5uKNpwbhVb79Q5e4mIsRTsMpKrKaJPjPSMD95PJpY3+A==
+X-Received: by 2002:a5d:4f83:0:b0:37d:5046:571 with SMTP id ffacd0b85a97d-37efcf10dd8mr4687694f8f.22.1729793462147;
+        Thu, 24 Oct 2024 11:11:02 -0700 (PDT)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:c04c:f30a:b45c:dbb])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43186c0f248sm52551275e9.37.2024.10.24.11.11.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 11:04:47 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: broonie@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@nxp.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ASoC: dt-bindings: fsl_spdif: Document imx6sl/sx compatible fallback
-Date: Thu, 24 Oct 2024 15:04:41 -0300
-Message-Id: <20241024180441.1456490-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Thu, 24 Oct 2024 11:11:01 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+Subject: [PATCH v3 0/6] hwmon: pmbus: add tps25990 efuse support
+Date: Thu, 24 Oct 2024 20:10:34 +0200
+Message-Id: <20241024-tps25990-v3-0-b6a6e9d4b506@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJqNGmcC/22Py2rDMBBFf8VoXRVZb3nV/yhd6DFyBImdSoppC
+ Pn3ThJoQ+nyCp3DmQtpUAs0Mg0XUmErrawLDvEykLjzywy0JNyEMy6ZY472Y+PKOUaFjCzmzAM
+ wTfD7sUIuX3fV+wfuXWl9ree7eRtvr/9ItpGiyQVhQAowTr0Ff96XUOE1rgdy82z8ieXsieXIZ
+ gGIR1CjEX/Y6yOqwucJz+qPst+rpuFHWWE+7T3W0jIva4VEk++eGgvGW6U0pk2Ygb7gG1C0H0q
+ fBjXqlEKGbISOVgqrtWeBp6CUi2BdkCyCMBZTrt/xnE06aQEAAA==
+X-Change-ID: 20240909-tps25990-34c0cff2be06
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Jonathan Corbet <corbet@lwn.net>, 
+ Patrick Rudolph <patrick.rudolph@9elements.com>, 
+ Naresh Solanki <naresh.solanki@9elements.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-i2c@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ Vaishnav Achath <vaishnav.a@ti.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3011; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=wuUDrWGldoGzLKmEDKRB+N+oojKVOt07T8M5dyrnk6A=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnGo2uqLyLH6b8a+08Lm5MTRQl2OMVrjsX1pGku
+ PCvopCiPZeJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZxqNrgAKCRDm/A8cN/La
+ hYJ1D/4hcgp6yuUvwxrHxbwvSEe4PKEWna4DpzjRu9DXprZcMDnPviwD2pKOrmS2H9tOOIqcwNP
+ 1PxdGl9FUuK6XYFzRzJcF5rg7YZjdK6Z/FHz3i9bs1DB5AdwHFk70oOK+WVtm6X1MBuYZno+Msg
+ pKuOFg0qHXyeV9IOo5i84+qLXqDhWLFCNHUd/NfE1n1thnQwWAIsJ5wjn3EwoHA47T+su3HsXhe
+ +0CioVEFXMYgoSgr3sU0Cr4QAk5n+ZuHAa9eETvbIUn74KCblHSRzVPd1GR0HboKXxrpDR9zrTA
+ MyYpcAxYmB9DSw4NAfYbfX/vjN6kfZNoDRCNFOQF0yciPILVPLRIn1n6YdayWoVRTzARJ47uCX2
+ 2KWMwVZvu8LuKCfdW5ALIC1VuGVEqNKJKWXiwvQIla5o2u3cbt3YFxN8RDPV2liksxuOJM80OuB
+ Nz5hBI+ApC+eK4gJw6vhaAWuYjnovGo3CpmkR9Zt7kEqW07U+3lZF3oWAzImMNoEAf0B44KPo6z
+ ZdfJwgaO0abAXzY4nMzLM68AXlauujpvAoUR6EEWEy82xhbisoR9Byb9/+9w1+/q09SUK6ticuk
+ ID59EcGjNxIU5v7sun+7YmZ2apL255cJjWohULxpUBQckVbaZoFXy1shivpYTbOGLareUrDfbIG
+ qoA0ERK/u9/3ISQ==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 
-From: Fabio Estevam <festevam@denx.de>
+This patchset adds initial support for the Texas Instruments TPS25990
+eFuse. The TPS25990 is an integrated, high-current circuit protection and
+power management device. TPS25895 may be stacked on the TPS25990 for
+higher currents.
 
-i.MX6SL and i.MX6SX SPDIF blocks are compatible with i.MX35.
+This patchset provides basic telemetry support for the device.
+On boot, the device is write protected. Limits can be changed in sysfs
+if the write protection is removed using the introduced pmbus parameter.
 
-Document 'fsl,imx35-spdif' as a fallback compatible for these two
-chip variants.
+Limits will be restored to the default value device on startup, unless
+saved to NVM. Writing the NVM is not supported by the driver at the moment.
 
-This fixes the following dt-schema warnings:
+As part of this series, PMBus regulator support is improved to better
+support write-protected devices.
 
-compatible: ['fsl,imx6sl-spdif', 'fsl,imx35-spdif'] is too long
-compatible: ['fsl,imx6sx-spdif', 'fsl,imx35-spdif'] is too long
+This patchset depends on the regulator patchset available here [1]
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
+[1]: https://lore.kernel.org/r/20241008-regulator-ignored-data-v2-0-d1251e0ee507@baylibre.com
+
+Changes in v3:
+- Grouped hwmon write protect patches from:
+  https://lore.kernel.org/r/20240920-pmbus-wp-v1-0-d679ef31c483@baylibre.com
+- Link to v2: https://lore.kernel.org/r/20240920-tps25990-v2-0-f3e39bce5173@baylibre.com
+
+Changes in v2:
+- Drop PGOOD command support
+- Use micro-ohms for rimon property and better handle range.
+- Adjust read/write callbacks to let PMBus core do the job by default
+- Drop history reset specific properties and remap to the generic ones
+- Drop debugfs write_protect property and remap to the generic register
+- Link to v1: https://lore.kernel.org/r/20240909-tps25990-v1-0-39b37e43e795@baylibre.com
+
 ---
- .../devicetree/bindings/sound/fsl,spdif.yaml  | 25 +++++++++++--------
- 1 file changed, 15 insertions(+), 10 deletions(-)
+Jerome Brunet (6):
+      hwmon: (pmbus/core) allow drivers to override WRITE_PROTECT
+      hwmon: (pmbus/core) improve handling of write protected regulators
+      hwmon: (pmbus/core) add wp module param
+      hwmon: (pmbus/core) clear faults after setting smbalert mask
+      dt-bindings: hwmon: pmbus: add ti tps25990 support
+      hwmon: (pmbus/tps25990): add initial support
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-index 204f361cea27..3bc18c3b084f 100644
---- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-+++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-@@ -16,16 +16,21 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - fsl,imx35-spdif
--      - fsl,vf610-spdif
--      - fsl,imx6sx-spdif
--      - fsl,imx8qm-spdif
--      - fsl,imx8qxp-spdif
--      - fsl,imx8mq-spdif
--      - fsl,imx8mm-spdif
--      - fsl,imx8mn-spdif
--      - fsl,imx8ulp-spdif
-+    oneOf:
-+      - const: fsl,imx35-spdif
-+      - const: fsl,imx6sx-spdif
-+      - const: fsl,imx8mm-spdif
-+      - const: fsl,imx8mn-spdif
-+      - const: fsl,imx8mq-spdif
-+      - const: fsl,imx8qm-spdif
-+      - const: fsl,imx8qxp-spdif
-+      - const: fsl,imx8ulp-spdif
-+      - const: fsl,vf610-spdif
-+      - items:
-+          - enum:
-+              - fsl,imx6sl-spdif
-+              - fsl,imx6sx-spdif
-+          - const: fsl,imx35-spdif
- 
-   reg:
-     maxItems: 1
+ Documentation/admin-guide/kernel-parameters.txt    |   4 +
+ .../bindings/hwmon/pmbus/ti,tps25990.yaml          |  83 ++++
+ Documentation/hwmon/index.rst                      |   1 +
+ Documentation/hwmon/tps25990.rst                   | 148 +++++++
+ drivers/hwmon/pmbus/Kconfig                        |  17 +
+ drivers/hwmon/pmbus/Makefile                       |   1 +
+ drivers/hwmon/pmbus/pmbus.h                        |   4 +
+ drivers/hwmon/pmbus/pmbus_core.c                   |  90 ++++-
+ drivers/hwmon/pmbus/tps25990.c                     | 427 +++++++++++++++++++++
+ include/linux/pmbus.h                              |  14 +
+ 10 files changed, 780 insertions(+), 9 deletions(-)
+---
+base-commit: 516ddbfef736c843866a0b2db559ce89b40ce378
+change-id: 20240909-tps25990-34c0cff2be06
+prerequisite-change-id: 20240920-regulator-ignored-data-78e7a855643e:v2
+prerequisite-patch-id: 468882ab023813ffe8a7eeb210d05b5177a1954a
+prerequisite-patch-id: 2d88eb941437003c6ba1cebb09a352a65b94f358
+prerequisite-patch-id: e64c06b721cda2e3c41a670251335d8a2a66a236
+
+Best regards,
 -- 
-2.34.1
+Jerome
 
 
