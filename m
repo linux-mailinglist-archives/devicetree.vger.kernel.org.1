@@ -1,61 +1,85 @@
-Return-Path: <devicetree+bounces-115355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C1D39AEF88
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:16:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5F79AEFB5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CCAA1C23D51
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:16:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3249281574
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8CE200B9E;
-	Thu, 24 Oct 2024 18:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA931F81A8;
+	Thu, 24 Oct 2024 18:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vh6jwWlf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ei+G5WtI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D921ABEC5;
-	Thu, 24 Oct 2024 18:16:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2EB12FB1B;
+	Thu, 24 Oct 2024 18:32:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729793793; cv=none; b=SnkoL9zkFHr8XFIS/SZ9Uj7avKWZlTVHBE9JWHX6/zYEaeNX0yvVv7zNnN3RsyMxI5nNZKpxNzQ0CuwSKPd/U9WU5nSTvkaS/+RSIenzq0odn6NAUOfb5+A/lkRsQSHQiy4XGVVhAU+BFKEcVMGxZeja9LGV8ySIymzhWZugAnc=
+	t=1729794736; cv=none; b=rOt8BHQHf/E86wnNFltyFDCX08Nk7h0qcJq8dG5wItweAADOBJvFaaTioyJGSXnAgIwgzagvnbwWv7drbWPmD4ir7k5ct+gQcJXNpniRDdpmOJ2Fi/kONdidf5a/J2D75tyO1uYWT6AKPIoqOQJ2mcEVeBCKkbRmBiuUhwWdDfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729793793; c=relaxed/simple;
-	bh=wLQMy1fODAkR42k9k6/+Wm4LDF7pthKYgpT1trqgyOw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=f7f+AsqWmGpl50Ub80pl3SKNVLQrhgsSKMJxINv9OD6zjBV8fSk3JUDhwtupTytrJ88mghNuA1sur1rU9hZNxg4A7OPUkq6aNsMW3F5JZTqVuxQt7sXqiDJkC4vZWk216IucN7xxIxJz0Yc4NbYOAg1L5SlX66W3cJYecJTU5/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vh6jwWlf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FBD6C4CEC7;
-	Thu, 24 Oct 2024 18:16:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729793792;
-	bh=wLQMy1fODAkR42k9k6/+Wm4LDF7pthKYgpT1trqgyOw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Vh6jwWlfQPZQfjGlftsi17vLLxsL5zZfNiCQJA2ugdrSPwdnao4cYzJyH0fJ6SOtW
-	 EF4BpJJSaW/azYChmUCGPgtF60kJ5Ga+F4UOY8t7jAnOrlLrMyGn4oouunBZzHCT1M
-	 fvE8QLJsWMtwAf8CzmBC9u+E5eiOfJXEK1ooBb+gyXZpVlB5b8noHv+zXIw2wVG1Fu
-	 XrKE3eaAMgLNmhlgI+83nsVQldtJ8ATNVcV1uV+zZQgJ4B4p/0iP//CxA9VKOft6Q7
-	 moGu1Ut3ybCF+ODoRccN/cyOjJDWUAM3zQPUSl1hfdEOGZ0XB0t7lJ2ZVYWaUK8Knr
-	 YtTARepCr42mQ==
-Date: Thu, 24 Oct 2024 13:16:30 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, vladimir.oltean@nxp.com,
-	claudiu.manoil@nxp.com, xiaoning.wang@nxp.com, Frank.Li@nxp.com,
-	christophe.leroy@csgroup.eu, linux@armlinux.org.uk,
-	bhelgaas@google.com, horms@kernel.org, imx@lists.linux.dev,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	alexander.stein@ew.tq-group.com
-Subject: Re: [PATCH v5 net-next 08/13] PCI: Add NXP NETC vendor ID and device
- IDs
-Message-ID: <20241024181630.GA966301@bhelgaas>
+	s=arc-20240116; t=1729794736; c=relaxed/simple;
+	bh=x5TMrkcwVFwITI+kj6H73SBtq079kG0wMhxTYuJpNWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AEHJ+0c+2J4AO1gYuyc+XzZS7fOd+ZsV/yxJa7nGMTZPDm9slx5J43t8o8Cgi9DBg96nf19f/2iIfcdYy8v4ww2c9W7nOMhDU3kWMvlC77CMaCKTvKRDITTMDsEsmid/Fk1NYwjzyTE6EbmXsJDC9uuq4eYft8El33+iScXgkdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ei+G5WtI; arc=none smtp.client-ip=209.85.161.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5e98bfea0ceso619250eaf.0;
+        Thu, 24 Oct 2024 11:32:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729794733; x=1730399533; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gRKHkVHowCvUdaOL63DeqZvn2vxTeBbKPQmJOLnaQLU=;
+        b=Ei+G5WtIj5wCcQS0z2hrTd5zdwHCmeYU6PYVnl7gEVch8kRXuu3rHdMTaybCKYOTEi
+         ub13b9QUIAMKhY+WA9Zwqou+wbqqpoHkF2/a5/UksK6us56HMtX66jFLRqwoCaXWU29O
+         YzJ1nG4uGpL4Kaa0o4w6433q2U8pbrgKJz6KV0Yh2XHd2mNFiQEG98nF9LzwTQUsfWvw
+         t+DVOnvFlNtfY+tunuXKcMPodabDqnGRB5I1/4Ek3taX7pJcEFqcu1SxAEheoLxRzXFT
+         sPwUR+7t1OzMtFDfAxAJa0/pzLMKlZqTN7gkMjQVmouqRJTu+ElaaHbHPOhv/IbfhdrO
+         I5iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729794733; x=1730399533;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gRKHkVHowCvUdaOL63DeqZvn2vxTeBbKPQmJOLnaQLU=;
+        b=NJYJbWxBH+o18C5vnSDo8l9eG3YgYPdGtrj1bp6eoYp4EuVQjVnsW9d2L+4/VEEajU
+         UFVR+vuwucHtOZZpJCD3gifu0QZPXlLBC61lhQtuVjG7EkMrYggO4W9rvcPSreJxbSMT
+         IcKkqUduA15tqvbYq8cllC/0fGPDwfxVmNdw93vDjCD9TWwD5982r6+P73LB+hKNk+gM
+         FIZJERIxDj3xf+r5VwDgKksz3jR06OywYiYmNW38wtYul66Tq6fVNnK1QHWbaPkntNcC
+         aJvPPuqo+6QEU8EdPfCXh2kYLxSq4j141URpvcvrw+r9Vj2KNA2d2aja2i7tk4t+Ri4B
+         TJ8g==
+X-Forwarded-Encrypted: i=1; AJvYcCUqjZLRFUEI7Tdfd5+wAuARmcL2bh7lKEMhGjHPAM7ga+bghnHG18tRtuLgn/7hOGkcjJ3am5uBbTcaxDo=@vger.kernel.org, AJvYcCUtzNXWXkmqMrMjrET3HibrA8hIYT/+eLCOUAYgMpxGOdwQZh7PMf3PIXI1TDa7LootANyXyyp+b65B@vger.kernel.org, AJvYcCV5ZjcvUR9fz8eDB02gSFrYAuncDUFVwnkSD1IeQEFS5npCCjnbvTDJJQm08sjFZkPuyYEr8qw36/SJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUCCXOdwnGpwy4LEvg2Se6/+ss8qhgYHsuagnWShNECA067ncO
+	/tuuyx2PiX18DVHzsjvGZmH1Q4QCyJw3yfyaNACws4Sucq8f8mpt1Ln1kP8b
+X-Google-Smtp-Source: AGHT+IE4AC5dww3WVXBCkrX1t76OvrQk3DQ3teSiOoE+Z3M+gzefPD7Exfv1+/fP+4a4xqIE5xEj2w==
+X-Received: by 2002:a05:6820:610:b0:5e7:cb2e:e01c with SMTP id 006d021491bc7-5ebee96e08dmr6199210eaf.7.1729794733384;
+        Thu, 24 Oct 2024 11:32:13 -0700 (PDT)
+Received: from raspberrypi ([2600:1700:90:4c80::f])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec02aee518sm449494eaf.4.2024.10.24.11.32.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Oct 2024 11:32:11 -0700 (PDT)
+Date: Thu, 24 Oct 2024 13:32:09 -0500
+From: Grant Peltier <grantpeltier93@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: robh@kernel.org, linux@roeck-us.net, geert+renesas@glider.be,
+	magnus.damm@gmail.com, grant.peltier.jg@renesas.com,
+	brandon.howell.jg@renesas.com, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	jic23@kernel.org, Peter Rosin <peda@axentia.se>
+Subject: Re: [PATCH v3 2/2] dt-bindings: hwmon: isl68137: add bindings to
+ support voltage dividers
+Message-ID: <ZxqSqcN11fTambT4@raspberrypi>
+References: <cover.1729715599.git.grantpeltier93@gmail.com>
+ <2cc99616ff3dd9bcecb1309cd4d103d70aea862b.1729715599.git.grantpeltier93@gmail.com>
+ <20241024-corporate-faceted-811e8e5a8c58@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,65 +88,153 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241024065328.521518-9-wei.fang@nxp.com>
+In-Reply-To: <20241024-corporate-faceted-811e8e5a8c58@spud>
 
-On Thu, Oct 24, 2024 at 02:53:23PM +0800, Wei Fang wrote:
-> NXP NETC is a multi-function RCiEP and it contains multiple functions,
-> such as EMDIO, PTP Timer, ENETC PF and VF. Therefore, add these device
-> IDs to pci_ids.h.
+Hi Conor,
+
+Thank you for your review!
+
+On Thu, Oct 24, 2024 at 06:01:11PM +0100, Conor Dooley wrote:
+> On Wed, Oct 23, 2024 at 03:53:51PM -0500, Grant Peltier wrote:
+> > + [...]
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - renesas,isl68220
+> > +      - renesas,isl68221
+> > +      - renesas,isl68222
+> > +      - renesas,isl68223
+> > +      - renesas,isl68224
+> > +      - renesas,isl68225
+> > +      - renesas,isl68226
+> > +      - renesas,isl68227
+> > +      - renesas,isl68229
+> > +      - renesas,isl68233
+> > +      - renesas,isl68239
+> > +      - renesas,isl69222
+> > +      - renesas,isl69223
+> > +      - renesas,isl69224
+> > +      - renesas,isl69225
+> > +      - renesas,isl69227
+> > +      - renesas,isl69228
+> > +      - renesas,isl69234
+> > +      - renesas,isl69236
+> > +      - renesas,isl69239
+> > +      - renesas,isl69242
+> > +      - renesas,isl69243
+> > +      - renesas,isl69247
+> > +      - renesas,isl69248
+> > +      - renesas,isl69254
+> > +      - renesas,isl69255
+> > +      - renesas,isl69256
+> > +      - renesas,isl69259
+> > +      - renesas,isl69260
+> > +      - renesas,isl69268
+> > +      - renesas,isl69269
+> > +      - renesas,isl69298
+> > +      - renesas,raa228000
+> > +      - renesas,raa228004
+> > +      - renesas,raa228006
+> > +      - renesas,raa228228
+> > +      - renesas,raa229001
+> > +      - renesas,raa229004
 > 
-> Below are the device IDs and corresponding drivers.
-> PCI_DEVICE_ID_NXP2_ENETC_PF: nxp-enetc4
-> PCI_DEVICE_ID_NXP2_NETC_EMDIO: fsl-enetc-mdio
-> PCI_DEVICE_ID_NXP2_NETC_TIMER: ptp_netc
-> PCI_DEVICE_ID_NXP2_ENETC_VF: fsl-enetc-vf
+> Damn, that;s a list and a half, innit! Looking briefly at the driver
+> change, the match data implies that quite a few of these actually would
+> be suitable for fallback compatibles.
+
+Yes, there are quite a few part numbers (and likely to be more in the
+future). My intention was to make the driver more user friendly since the
+variants listed in the driver do not map to something in any of the
+datasheets. So using those instead would require users to inspect the
+source of the driver instead of simply referencing their part number(s).
+
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^channel@([0-3])$":
+> > +    type: object
+> > +    description:
+> > +      Container for properties specific to a particular channel (rail).
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description: The channel (rail) index.
+> > +        items:
+> > +          minimum: 0
+> > +          maximum: 3
+> > +
+> > +      renesas,vout-voltage-divider:
 > 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> There's already a binding for voltage dividers: voltage-divider.yaml
+> That said, I have no idea how that would work with an extant driver for
+> the hardware like we have here. I'd imagine it would really have to be
+> used with iio-hwmon? + Peter and Jonathan, since I don't know how the
+> driver side of using the voltage divider works.
 
-Please drop my ack.  I don't think these meet the spirit of the
-guidance in pci_ids.h, which is there to minimize churn in that file
-and make backports easier:
+In his recent revier, Guenter requested using a standard voltage divider
+schema as well. I see there is an implementation in maxim,maxim20730.yaml
+but that differs from the one in voltage-divider.yaml. Should I opt to
+match maxim,maxim20730.yaml?
 
- *      Do not add new entries to this file unless the definitions
- *      are shared between multiple drivers.
-
-PCI_DEVICE_ID_NXP2_NETC_TIMER and PCI_DEVICE_ID_NXP2_ENETC_VF aren't
-used at all by this series, so they shouldn't be added to pci_ids.h.
-
-PCI_DEVICE_ID_NXP2_NETC_EMDIO is used only by
-drivers/net/ethernet/freescale/enetc/enetc_pci_mdio.c, so it should be
-defined there, not in pci_ids.h.
-
-PCI_DEVICE_ID_NXP2_ENETC_PF is used by enetc.c and enetc4_pf.c, but
-it looks like those are basically part of the same driver, and it
-could be defined in enetc4_hw.h or similar.
-
-> ---
-> v5: no changes
-> ---
->  include/linux/pci_ids.h | 7 +++++++
->  1 file changed, 7 insertions(+)
 > 
-> diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
-> index 4cf6aaed5f35..acd7ae774913 100644
-> --- a/include/linux/pci_ids.h
-> +++ b/include/linux/pci_ids.h
-> @@ -1556,6 +1556,13 @@
->  #define PCI_DEVICE_ID_PHILIPS_SAA7146	0x7146
->  #define PCI_DEVICE_ID_PHILIPS_SAA9730	0x9730
->  
-> +/* NXP has two vendor IDs, the other one is 0x1957 */
-> +#define PCI_VENDOR_ID_NXP2		PCI_VENDOR_ID_PHILIPS
-> +#define PCI_DEVICE_ID_NXP2_ENETC_PF	0xe101
-> +#define PCI_DEVICE_ID_NXP2_NETC_EMDIO	0xee00
-> +#define PCI_DEVICE_ID_NXP2_NETC_TIMER	0xee02
-> +#define PCI_DEVICE_ID_NXP2_ENETC_VF	0xef00
-> +
->  #define PCI_VENDOR_ID_EICON		0x1133
->  #define PCI_DEVICE_ID_EICON_DIVA20	0xe002
->  #define PCI_DEVICE_ID_EICON_DIVA20_U	0xe004
-> -- 
-> 2.34.1
+> > +        description:
+> > +          Resistances of a voltage divider placed between Vout and the voltage
+> > +          sense pin for the given channel (rail). It has two numbers
+> > +          representing the resistances of the voltage divider provided as
+> > +          <R1 R2> which yields an adjusted Vout as
+> > +          Vout_adj = Vout * (R1 + R2) / R2 given the original Vout as reported
+> > +          by the Vsense pin.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +        minItems: 2
+> > +        maxItems: 2
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +    additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +
+> > +      isl68239@60 {
+> > +        compatible = "renesas,isl68239";
+> > +        reg = <0x60>;
+> > +      };
+> > +    };
 > 
+> Without any channels, what does this actually do? If you've got no
+> channels you cannot measure anything making this example invalid?
+> 
+> Thanks,
+> Conor.
+> 
+> > + [...]
+
+The channel structures are optional to allow users to arbitrarily define
+voltage dividers for any particular rail. Omitting the channel definitions
+still allow the device to be instantiated and probed as an I2C device
+along with all related hwmon PMBus telemetry dictated by the part variant.
+
+Thanks again,
+Grant
+
 
