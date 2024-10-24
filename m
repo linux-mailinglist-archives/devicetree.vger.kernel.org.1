@@ -1,196 +1,128 @@
-Return-Path: <devicetree+bounces-115354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 477EE9AEF86
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:16:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1D39AEF88
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:16:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08988280E22
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:16:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CCAA1C23D51
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC2A200B98;
-	Thu, 24 Oct 2024 18:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8CE200B9E;
+	Thu, 24 Oct 2024 18:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aHBFzUab"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vh6jwWlf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EDD1ABEC5;
-	Thu, 24 Oct 2024 18:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D921ABEC5;
+	Thu, 24 Oct 2024 18:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729793791; cv=none; b=ptFUdfImcYYKDXIOgChO5LpF086M3qYCWCBPveX48Z4TwqgQGz6csjk3t3rOh73I0+dnEZBsCmjN7bFOZZC5rRm82rBPcvr5mbRWZZT5dz3fOnAindY5ASVDZVD5nD/G0a4mhQQp0CJI4xSzXizBPetVNhWW9qMVCyZqw5af7oo=
+	t=1729793793; cv=none; b=SnkoL9zkFHr8XFIS/SZ9Uj7avKWZlTVHBE9JWHX6/zYEaeNX0yvVv7zNnN3RsyMxI5nNZKpxNzQ0CuwSKPd/U9WU5nSTvkaS/+RSIenzq0odn6NAUOfb5+A/lkRsQSHQiy4XGVVhAU+BFKEcVMGxZeja9LGV8ySIymzhWZugAnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729793791; c=relaxed/simple;
-	bh=mp+w/6c+kLm2PeoceMc05WLjbyMA2Nm5bQQoGr192yM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tOf91QuVbTLm3rNKraExXgODWBwlB38vQkogBrsTcAgOAGf7bm4DYgaFJTrLHEQ1vix3VrCibMgCt2uCntmfh+j/XZWDBLYjbsX78g7RvTnvi7KBP1a1aqYOJVv+UPQk5kI0TgnI3vTpz1uTfeN9r2MTD3Z9CQeXL1OeeHD0oJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aHBFzUab; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1729793783;
-	bh=mp+w/6c+kLm2PeoceMc05WLjbyMA2Nm5bQQoGr192yM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aHBFzUabG7H/j2px2YYpaNWXuigmZn9geZnq0JwkXAlPpMtomm8xY0/O2I8NdcM/j
-	 +Z5lnm2/QbNk3LncK58nX72sxN6o4+kLweYGXD9O//DxSbCWVYl5UtTpJX+KYIQjgC
-	 QSze2hGwz4fxs7kTpdCSX497tfJWs3TfsNJuMKNH52HjNlVZG8j2iIEECWhiW+Be8J
-	 sTfhpVFvZlHxmO/HKL6Rmq0LvWQ9ftWf1DUQNk8yOUpxFuuMWz9v70c9KP2uUvYJXo
-	 wwcmkwJuxVCHut0VhCM57efHpzj5+t6eTMbqSA1yE0OauHsL/cZdpVSNtv+l/EvUUc
-	 K4e+PHzNusfYw==
-Received: from jupiter.universe (dyndsl-091-248-214-110.ewe-ip-backbone.de [91.248.214.110])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3518C17E36CD;
-	Thu, 24 Oct 2024 20:16:23 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id ACBCA4800FE; Thu, 24 Oct 2024 20:16:22 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko Stuebner <heiko@sntech.de>,
-	linux-clk@vger.kernel.org
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	huangtao@rock-chips.com,
-	andy.yan@rock-chips.com,
-	Michal Tomek <mtdev79b@gmail.com>,
-	Ilya K <me@0upti.me>,
-	Chad LeClair <leclair@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com
-Subject: [PATCH v11 5/5] clk: rockchip: rk3588: drop RK3588_LINKED_CLK
-Date: Thu, 24 Oct 2024 20:15:32 +0200
-Message-ID: <20241024181621.210509-6-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241024181621.210509-1-sebastian.reichel@collabora.com>
-References: <20241024181621.210509-1-sebastian.reichel@collabora.com>
+	s=arc-20240116; t=1729793793; c=relaxed/simple;
+	bh=wLQMy1fODAkR42k9k6/+Wm4LDF7pthKYgpT1trqgyOw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=f7f+AsqWmGpl50Ub80pl3SKNVLQrhgsSKMJxINv9OD6zjBV8fSk3JUDhwtupTytrJ88mghNuA1sur1rU9hZNxg4A7OPUkq6aNsMW3F5JZTqVuxQt7sXqiDJkC4vZWk216IucN7xxIxJz0Yc4NbYOAg1L5SlX66W3cJYecJTU5/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vh6jwWlf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FBD6C4CEC7;
+	Thu, 24 Oct 2024 18:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729793792;
+	bh=wLQMy1fODAkR42k9k6/+Wm4LDF7pthKYgpT1trqgyOw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Vh6jwWlfQPZQfjGlftsi17vLLxsL5zZfNiCQJA2ugdrSPwdnao4cYzJyH0fJ6SOtW
+	 EF4BpJJSaW/azYChmUCGPgtF60kJ5Ga+F4UOY8t7jAnOrlLrMyGn4oouunBZzHCT1M
+	 fvE8QLJsWMtwAf8CzmBC9u+E5eiOfJXEK1ooBb+gyXZpVlB5b8noHv+zXIw2wVG1Fu
+	 XrKE3eaAMgLNmhlgI+83nsVQldtJ8ATNVcV1uV+zZQgJ4B4p/0iP//CxA9VKOft6Q7
+	 moGu1Ut3ybCF+ODoRccN/cyOjJDWUAM3zQPUSl1hfdEOGZ0XB0t7lJ2ZVYWaUK8Knr
+	 YtTARepCr42mQ==
+Date: Thu, 24 Oct 2024 13:16:30 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, vladimir.oltean@nxp.com,
+	claudiu.manoil@nxp.com, xiaoning.wang@nxp.com, Frank.Li@nxp.com,
+	christophe.leroy@csgroup.eu, linux@armlinux.org.uk,
+	bhelgaas@google.com, horms@kernel.org, imx@lists.linux.dev,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	alexander.stein@ew.tq-group.com
+Subject: Re: [PATCH v5 net-next 08/13] PCI: Add NXP NETC vendor ID and device
+ IDs
+Message-ID: <20241024181630.GA966301@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241024065328.521518-9-wei.fang@nxp.com>
 
-With the proper GATE_LINK support, we no longer need to keep the
-linked clocks always on. Thus it's time to drop the CLK_IS_CRITICAL
-flag for them.
+On Thu, Oct 24, 2024 at 02:53:23PM +0800, Wei Fang wrote:
+> NXP NETC is a multi-function RCiEP and it contains multiple functions,
+> such as EMDIO, PTP Timer, ENETC PF and VF. Therefore, add these device
+> IDs to pci_ids.h.
+> 
+> Below are the device IDs and corresponding drivers.
+> PCI_DEVICE_ID_NXP2_ENETC_PF: nxp-enetc4
+> PCI_DEVICE_ID_NXP2_NETC_EMDIO: fsl-enetc-mdio
+> PCI_DEVICE_ID_NXP2_NETC_TIMER: ptp_netc
+> PCI_DEVICE_ID_NXP2_ENETC_VF: fsl-enetc-vf
+> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- drivers/clk/rockchip/clk-rk3588.c | 27 ++++++++++++---------------
- 1 file changed, 12 insertions(+), 15 deletions(-)
+Please drop my ack.  I don't think these meet the spirit of the
+guidance in pci_ids.h, which is there to minimize churn in that file
+and make backports easier:
 
-diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-index d76ab27dd1b8..46dcbbcee54e 100644
---- a/drivers/clk/rockchip/clk-rk3588.c
-+++ b/drivers/clk/rockchip/clk-rk3588.c
-@@ -12,9 +12,6 @@
- #include <dt-bindings/clock/rockchip,rk3588-cru.h>
- #include "clk.h"
- 
--#define RK3588_LINKED_CLK		CLK_IS_CRITICAL
--
--
- #define RK3588_GRF_SOC_STATUS0		0x600
- #define RK3588_PHYREF_ALT_GATE		0xc38
- 
-@@ -1439,7 +1436,7 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 	COMPOSITE_NODIV(HCLK_NVM_ROOT,  "hclk_nvm_root", mux_200m_100m_50m_24m_p, 0,
- 			RK3588_CLKSEL_CON(77), 0, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(31), 0, GFLAGS),
--	COMPOSITE(ACLK_NVM_ROOT, "aclk_nvm_root", gpll_cpll_p, RK3588_LINKED_CLK,
-+	COMPOSITE(ACLK_NVM_ROOT, "aclk_nvm_root", gpll_cpll_p, 0,
- 			RK3588_CLKSEL_CON(77), 7, 1, MFLAGS, 2, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(31), 1, GFLAGS),
- 	GATE(ACLK_EMMC, "aclk_emmc", "aclk_nvm_root", 0,
-@@ -1668,13 +1665,13 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(42), 9, GFLAGS),
- 
- 	/* vdpu */
--	COMPOSITE(ACLK_VDPU_ROOT, "aclk_vdpu_root", gpll_cpll_aupll_p, RK3588_LINKED_CLK,
-+	COMPOSITE(ACLK_VDPU_ROOT, "aclk_vdpu_root", gpll_cpll_aupll_p, 0,
- 			RK3588_CLKSEL_CON(98), 5, 2, MFLAGS, 0, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(44), 0, GFLAGS),
- 	COMPOSITE_NODIV(ACLK_VDPU_LOW_ROOT, "aclk_vdpu_low_root", mux_400m_200m_100m_24m_p, 0,
- 			RK3588_CLKSEL_CON(98), 7, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(44), 1, GFLAGS),
--	COMPOSITE_NODIV(HCLK_VDPU_ROOT, "hclk_vdpu_root", mux_200m_100m_50m_24m_p, RK3588_LINKED_CLK,
-+	COMPOSITE_NODIV(HCLK_VDPU_ROOT, "hclk_vdpu_root", mux_200m_100m_50m_24m_p, 0,
- 			RK3588_CLKSEL_CON(98), 9, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(44), 2, GFLAGS),
- 	COMPOSITE(ACLK_JPEG_DECODER_ROOT, "aclk_jpeg_decoder_root", gpll_cpll_aupll_spll_p, 0,
-@@ -1725,9 +1722,9 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 	COMPOSITE(ACLK_RKVENC0_ROOT, "aclk_rkvenc0_root", gpll_cpll_npll_p, 0,
- 			RK3588_CLKSEL_CON(102), 7, 2, MFLAGS, 2, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(47), 1, GFLAGS),
--	GATE(HCLK_RKVENC0, "hclk_rkvenc0", "hclk_rkvenc0_root", RK3588_LINKED_CLK,
-+	GATE(HCLK_RKVENC0, "hclk_rkvenc0", "hclk_rkvenc0_root", 0,
- 			RK3588_CLKGATE_CON(47), 4, GFLAGS),
--	GATE(ACLK_RKVENC0, "aclk_rkvenc0", "aclk_rkvenc0_root", RK3588_LINKED_CLK,
-+	GATE(ACLK_RKVENC0, "aclk_rkvenc0", "aclk_rkvenc0_root", 0,
- 			RK3588_CLKGATE_CON(47), 5, GFLAGS),
- 	COMPOSITE(CLK_RKVENC0_CORE, "clk_rkvenc0_core", gpll_cpll_aupll_npll_p, 0,
- 			RK3588_CLKSEL_CON(102), 14, 2, MFLAGS, 9, 5, DFLAGS,
-@@ -1737,10 +1734,10 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(48), 6, GFLAGS),
- 
- 	/* vi */
--	COMPOSITE(ACLK_VI_ROOT, "aclk_vi_root", gpll_cpll_npll_aupll_spll_p, RK3588_LINKED_CLK,
-+	COMPOSITE(ACLK_VI_ROOT, "aclk_vi_root", gpll_cpll_npll_aupll_spll_p, 0,
- 			RK3588_CLKSEL_CON(106), 5, 3, MFLAGS, 0, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(49), 0, GFLAGS),
--	COMPOSITE_NODIV(HCLK_VI_ROOT, "hclk_vi_root", mux_200m_100m_50m_24m_p, RK3588_LINKED_CLK,
-+	COMPOSITE_NODIV(HCLK_VI_ROOT, "hclk_vi_root", mux_200m_100m_50m_24m_p, 0,
- 			RK3588_CLKSEL_CON(106), 8, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(49), 1, GFLAGS),
- 	COMPOSITE_NODIV(PCLK_VI_ROOT, "pclk_vi_root", mux_100m_50m_24m_p, 0,
-@@ -1910,10 +1907,10 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 	COMPOSITE(ACLK_VOP_ROOT, "aclk_vop_root", gpll_cpll_dmyaupll_npll_spll_p, 0,
- 			RK3588_CLKSEL_CON(110), 5, 3, MFLAGS, 0, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(52), 0, GFLAGS),
--	COMPOSITE_NODIV(ACLK_VOP_LOW_ROOT, "aclk_vop_low_root", mux_400m_200m_100m_24m_p, RK3588_LINKED_CLK,
-+	COMPOSITE_NODIV(ACLK_VOP_LOW_ROOT, "aclk_vop_low_root", mux_400m_200m_100m_24m_p, 0,
- 			RK3588_CLKSEL_CON(110), 8, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(52), 1, GFLAGS),
--	COMPOSITE_NODIV(HCLK_VOP_ROOT, "hclk_vop_root", mux_200m_100m_50m_24m_p, RK3588_LINKED_CLK,
-+	COMPOSITE_NODIV(HCLK_VOP_ROOT, "hclk_vop_root", mux_200m_100m_50m_24m_p, 0,
- 			RK3588_CLKSEL_CON(110), 10, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(52), 2, GFLAGS),
- 	COMPOSITE_NODIV(PCLK_VOP_ROOT, "pclk_vop_root", mux_100m_50m_24m_p, 0,
-@@ -2416,7 +2413,7 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- static struct rockchip_clk_branch rk3588_clk_branches[] = {
- 	GATE_LINK(ACLK_ISP1_PRE, "aclk_isp1_pre", "aclk_isp1_root", ACLK_VI_ROOT, 0, RK3588_CLKGATE_CON(26), 6, GFLAGS),
- 	GATE_LINK(HCLK_ISP1_PRE, "hclk_isp1_pre", "hclk_isp1_root", HCLK_VI_ROOT, 0, RK3588_CLKGATE_CON(26), 8, GFLAGS),
--	GATE_LINK(HCLK_NVM, "hclk_nvm", "hclk_nvm_root", ACLK_NVM_ROOT, RK3588_LINKED_CLK, RK3588_CLKGATE_CON(31), 2, GFLAGS),
-+	GATE_LINK(HCLK_NVM, "hclk_nvm", "hclk_nvm_root", ACLK_NVM_ROOT, 0, RK3588_CLKGATE_CON(31), 2, GFLAGS),
- 	GATE_LINK(ACLK_USB, "aclk_usb", "aclk_usb_root", ACLK_VO1USB_TOP_ROOT, 0, RK3588_CLKGATE_CON(42), 2, GFLAGS),
- 	GATE_LINK(HCLK_USB, "hclk_usb", "hclk_usb_root", HCLK_VO1USB_TOP_ROOT, 0, RK3588_CLKGATE_CON(42), 3, GFLAGS),
- 	GATE_LINK(ACLK_JPEG_DECODER_PRE, "aclk_jpeg_decoder_pre", "aclk_jpeg_decoder_root", ACLK_VDPU_ROOT, 0, RK3588_CLKGATE_CON(44), 7, GFLAGS),
-@@ -2428,9 +2425,9 @@ static struct rockchip_clk_branch rk3588_clk_branches[] = {
- 	GATE_LINK(HCLK_RKVDEC1_PRE, "hclk_rkvdec1_pre", "hclk_rkvdec1_root", HCLK_VDPU_ROOT, 0, RK3588_CLKGATE_CON(41), 4, GFLAGS),
- 	GATE_LINK(ACLK_RKVDEC1_PRE, "aclk_rkvdec1_pre", "aclk_rkvdec1_root", ACLK_VDPU_ROOT, 0, RK3588_CLKGATE_CON(41), 5, GFLAGS),
- 	GATE_LINK(ACLK_HDCP0_PRE, "aclk_hdcp0_pre", "aclk_vo0_root", ACLK_VOP_LOW_ROOT, 0, RK3588_CLKGATE_CON(55), 9, GFLAGS),
--	GATE_LINK(HCLK_VO0, "hclk_vo0", "hclk_vo0_root", HCLK_VOP_ROOT, RK3588_LINKED_CLK, RK3588_CLKGATE_CON(55), 5, GFLAGS),
-+	GATE_LINK(HCLK_VO0, "hclk_vo0", "hclk_vo0_root", HCLK_VOP_ROOT, 0, RK3588_CLKGATE_CON(55), 5, GFLAGS),
- 	GATE_LINK(ACLK_HDCP1_PRE, "aclk_hdcp1_pre", "aclk_hdcp1_root", ACLK_VO1USB_TOP_ROOT, 0, RK3588_CLKGATE_CON(59), 6, GFLAGS),
--	GATE_LINK(HCLK_VO1, "hclk_vo1", "hclk_vo1_root", HCLK_VO1USB_TOP_ROOT, RK3588_LINKED_CLK, RK3588_CLKGATE_CON(59), 9, GFLAGS),
-+	GATE_LINK(HCLK_VO1, "hclk_vo1", "hclk_vo1_root", HCLK_VO1USB_TOP_ROOT, 0, RK3588_CLKGATE_CON(59), 9, GFLAGS),
- 	GATE_LINK(ACLK_AV1_PRE, "aclk_av1_pre", "aclk_av1_root", ACLK_VDPU_ROOT, 0, RK3588_CLKGATE_CON(68), 1, GFLAGS),
- 	GATE_LINK(PCLK_AV1_PRE, "pclk_av1_pre", "pclk_av1_root", HCLK_VDPU_ROOT, 0, RK3588_CLKGATE_CON(68), 4, GFLAGS),
- 	GATE_LINK(HCLK_SDIO_PRE, "hclk_sdio_pre", "hclk_sdio_root", HCLK_NVM, 0, RK3588_CLKGATE_CON(75), 1, GFLAGS),
--- 
-2.45.2
+ *      Do not add new entries to this file unless the definitions
+ *      are shared between multiple drivers.
 
+PCI_DEVICE_ID_NXP2_NETC_TIMER and PCI_DEVICE_ID_NXP2_ENETC_VF aren't
+used at all by this series, so they shouldn't be added to pci_ids.h.
+
+PCI_DEVICE_ID_NXP2_NETC_EMDIO is used only by
+drivers/net/ethernet/freescale/enetc/enetc_pci_mdio.c, so it should be
+defined there, not in pci_ids.h.
+
+PCI_DEVICE_ID_NXP2_ENETC_PF is used by enetc.c and enetc4_pf.c, but
+it looks like those are basically part of the same driver, and it
+could be defined in enetc4_hw.h or similar.
+
+> ---
+> v5: no changes
+> ---
+>  include/linux/pci_ids.h | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+> index 4cf6aaed5f35..acd7ae774913 100644
+> --- a/include/linux/pci_ids.h
+> +++ b/include/linux/pci_ids.h
+> @@ -1556,6 +1556,13 @@
+>  #define PCI_DEVICE_ID_PHILIPS_SAA7146	0x7146
+>  #define PCI_DEVICE_ID_PHILIPS_SAA9730	0x9730
+>  
+> +/* NXP has two vendor IDs, the other one is 0x1957 */
+> +#define PCI_VENDOR_ID_NXP2		PCI_VENDOR_ID_PHILIPS
+> +#define PCI_DEVICE_ID_NXP2_ENETC_PF	0xe101
+> +#define PCI_DEVICE_ID_NXP2_NETC_EMDIO	0xee00
+> +#define PCI_DEVICE_ID_NXP2_NETC_TIMER	0xee02
+> +#define PCI_DEVICE_ID_NXP2_ENETC_VF	0xef00
+> +
+>  #define PCI_VENDOR_ID_EICON		0x1133
+>  #define PCI_DEVICE_ID_EICON_DIVA20	0xe002
+>  #define PCI_DEVICE_ID_EICON_DIVA20_U	0xe004
+> -- 
+> 2.34.1
+> 
 
