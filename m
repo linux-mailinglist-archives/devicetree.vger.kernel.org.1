@@ -1,110 +1,105 @@
-Return-Path: <devicetree+bounces-115279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65C6E9AEC14
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:30:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FCF29AEC2C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:33:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F31B1F2309E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:30:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43C741C23270
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 16:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9D31F80D3;
-	Thu, 24 Oct 2024 16:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5111D89F8;
+	Thu, 24 Oct 2024 16:33:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HFVTXZV4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MvdA7kTJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837E11D89F8;
-	Thu, 24 Oct 2024 16:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59485FEED;
+	Thu, 24 Oct 2024 16:33:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729787411; cv=none; b=g0gf5tIr3czv3MKgtkxHGhd1ZXre+fCOK5lRFrvhcxwugZuOmYgFlwoyensGDuL/x6yhmlMU+lhuqyrXPyiIrNnneIllnazk/3dHm4ixH5ltKHm4aVYKBzlccUrkjEHbrCWsH8ONVIzZbgGPYIDvHFtyMPggw570Gy5aLIvtokI=
+	t=1729787590; cv=none; b=Sk0zxV05dUCxS4ejJBiBw3L8g4c8XbLEvf1eFVesE7ucLitRqC7m5o8bHNsdBVjs13qc+pjk0d+UnKhXgvrAN4dbx3d2BENvKnt13zztitHd9UO7/C+bOEVB6ouvah3gwhSqvOeqohywLQ5Jh6RXomR7DuuSixaB9Lv1yoqqf5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729787411; c=relaxed/simple;
-	bh=baCRscFJcyoIeJGjDhH7YHeA+ksnEpgYG35/hHxCOto=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CxQAjsWY86kN+apmIHbRocKoWgARms7cObbwjR3ZVN9TKIwodXD6R3TkSZPW1xBah1LjSrn30faGbLdaRiqelGPLrn2xnvJ/V/R6UjY+8rqh7sgCDh+XJmt0GwipfgpX2Xaee//0i2t3XC0CVoyRAzOBLYeFOk+nkcPQ/9bKoNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HFVTXZV4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5748CC4CEC7;
-	Thu, 24 Oct 2024 16:30:06 +0000 (UTC)
+	s=arc-20240116; t=1729787590; c=relaxed/simple;
+	bh=5kxJTQW4XLnjK4PI9EbjL4QCTIY5IkCswPV0X0kgjXA=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=u0K2hURtOunyBPyZLU9n5QWwekAkHftImSZwbDfH7GiEMCUKtm/GCSWqKN4tQSdWpsHpFpzbGmEPfChBGoYeazkbGbQlsHJTzhWH1gkkVNxE/d9UAe/oG2NS4W/tmOAtdwIkXpIYCgfKTCYWvhGfRKPJyl1kkFbphl3Lgw0DtKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MvdA7kTJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 327CDC4CEC7;
+	Thu, 24 Oct 2024 16:33:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729787411;
-	bh=baCRscFJcyoIeJGjDhH7YHeA+ksnEpgYG35/hHxCOto=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HFVTXZV4yGAsaKqgM5OMp7eJbPpb/WUKmiQiyXJ/S7l43PIBrrz6NbJx8SUpmkKws
-	 dMPjoNEEFiKTqyfRMKbhabw1+EUjGhCtWJnucDPpam0GwHPOk9l4B61NXkX7wrWT1T
-	 OFr5gy2LRxshLdhW78CL/BMHSlbEfcsFqlnKhXDCrIesy2ycV90/axFKPXVSZkFbdj
-	 GtDbfcmxGDVzmd871dZsyorgXUJLWR5POmBnKqXnzjiNcl9RlQV/KAzu8FiEe0EvCl
-	 jKMRhIUpJBq1IB2LjSMdIuZ4xkngxXWMh0G0EvVRB4pqhP0/J7K2WZjnkvvOGanwNa
-	 ReN0OU1DUu9gQ==
-Date: Thu, 24 Oct 2024 17:30:04 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: sn65dsi83: Add
- interrupt
-Message-ID: <20241024-cruelly-wool-f03401567c51@spud>
-References: <20241024095539.1637280-1-herve.codina@bootlin.com>
- <20241024095539.1637280-2-herve.codina@bootlin.com>
+	s=k20201202; t=1729787590;
+	bh=5kxJTQW4XLnjK4PI9EbjL4QCTIY5IkCswPV0X0kgjXA=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=MvdA7kTJDan+helwSfB+pBk7ZfNqZXOtLsXsfW6yzTl3vRPFL/XxcwerzuTOZ1puK
+	 2Mg7bNCdbyAkDIN2peeWX546T1I5XGBdfJO6zug+2IC42QeTEkyaofRS+CS89X35Hg
+	 irnmfq5fVkK9Rq9qxnApgL8+X2iKcRgaz92/h0xKoQav5+U4ReeaB7G7vQGY4wksdb
+	 Z3IiQh6lMOZ/+HVeB5J8cXda3FLHWloMj2JXV9z4bh0p+vCKqJgL704IdjVhQwvbpV
+	 pX0kRNuSeP23oIkjfTLhvteyu/BUstgRXsNFYe3o1nwSuQ3B/+VeZ4VMG+Ri51Go/s
+	 kdFEMbWUrw1kQ==
+Date: Thu, 24 Oct 2024 11:33:09 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9GMWCsnkIho7utQ/"
-Content-Disposition: inline
-In-Reply-To: <20241024095539.1637280-2-herve.codina@bootlin.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: shawnguo2@yeah.net, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, festevam@gmail.com, 
+ imx@lists.linux.dev, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+ kernel@pengutronix.de
+In-Reply-To: <20241021163437.1007507-1-Frank.Li@nxp.com>
+References: <20241021163437.1007507-1-Frank.Li@nxp.com>
+Message-Id: <172978739353.623341.4645836929476354717.robh@kernel.org>
+Subject: Re: [PATCH v2 1/6] arm64: dts: imx8qxp-mek: add bluetooth audio
+ codec
 
 
---9GMWCsnkIho7utQ/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 21 Oct 2024 12:34:32 -0400, Frank Li wrote:
+> Add bluetooth audio codec.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> change from v1 to v2
+> -none
+> ---
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
 
-On Thu, Oct 24, 2024 at 11:55:37AM +0200, Herve Codina wrote:
-> Both the TI SN65DSI83 and SN65DSI84 bridges have an IRQ pin to signal
-> errors using interrupt.
->=20
-> This interrupt is not documented in the binding.
->=20
-> Add the missing interrupts property.
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
---9GMWCsnkIho7utQ/
-Content-Type: application/pgp-signature; name="signature.asc"
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
------BEGIN PGP SIGNATURE-----
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxp2CwAKCRB4tDGHoIJi
-0nElAP4nxMS+d9i9cBJT2NS/4zKx3DyetfbIhEUQg4atuPvAtQD7B9O02PJmTQQv
-HKR8oXpkoaC+W1Ia0J96LgL8Q/LG8As=
-=pY8d
------END PGP SIGNATURE-----
+  pip3 install dtschema --upgrade
 
---9GMWCsnkIho7utQ/--
+
+New warnings running 'make CHECK_DTBS=y freescale/imx8qxp-mek.dtb' for 20241021163437.1007507-1-Frank.Li@nxp.com:
+
+arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb: esai@59010000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/fsl,esai.yaml#
+arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb: usbphy@5b100000: 'nxp,sim' is a required property
+	from schema $id: http://devicetree.org/schemas/phy/fsl,mxs-usbphy.yaml#
+
+
+
+
+
 
