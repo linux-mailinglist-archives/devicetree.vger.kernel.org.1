@@ -1,85 +1,60 @@
-Return-Path: <devicetree+bounces-115356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F5F79AEFB5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:32:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A959AEFCB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:46:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3249281574
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:32:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F37A71C22016
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA931F81A8;
-	Thu, 24 Oct 2024 18:32:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6D01F9EDA;
+	Thu, 24 Oct 2024 18:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ei+G5WtI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UVgkk0Yn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2EB12FB1B;
-	Thu, 24 Oct 2024 18:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1349482EF;
+	Thu, 24 Oct 2024 18:46:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729794736; cv=none; b=rOt8BHQHf/E86wnNFltyFDCX08Nk7h0qcJq8dG5wItweAADOBJvFaaTioyJGSXnAgIwgzagvnbwWv7drbWPmD4ir7k5ct+gQcJXNpniRDdpmOJ2Fi/kONdidf5a/J2D75tyO1uYWT6AKPIoqOQJ2mcEVeBCKkbRmBiuUhwWdDfw=
+	t=1729795611; cv=none; b=HzoLWdzJQxyMAA3FAqzgyRmglf+4NAJh1a7cZxW5siM8qQf95bmOiu9gzvvCH9jNr2IzIG/ku+nv8hdiDf7l8g0c47/ZFkgSTlufbeJp8s/lO4uvw2sROXbsE6mMb0SvDeqHKg7ChI9xy9cZo4HxRalukiV/UPvGNSoZv7v62oo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729794736; c=relaxed/simple;
-	bh=x5TMrkcwVFwITI+kj6H73SBtq079kG0wMhxTYuJpNWc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AEHJ+0c+2J4AO1gYuyc+XzZS7fOd+ZsV/yxJa7nGMTZPDm9slx5J43t8o8Cgi9DBg96nf19f/2iIfcdYy8v4ww2c9W7nOMhDU3kWMvlC77CMaCKTvKRDITTMDsEsmid/Fk1NYwjzyTE6EbmXsJDC9uuq4eYft8El33+iScXgkdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ei+G5WtI; arc=none smtp.client-ip=209.85.161.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5e98bfea0ceso619250eaf.0;
-        Thu, 24 Oct 2024 11:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729794733; x=1730399533; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gRKHkVHowCvUdaOL63DeqZvn2vxTeBbKPQmJOLnaQLU=;
-        b=Ei+G5WtIj5wCcQS0z2hrTd5zdwHCmeYU6PYVnl7gEVch8kRXuu3rHdMTaybCKYOTEi
-         ub13b9QUIAMKhY+WA9Zwqou+wbqqpoHkF2/a5/UksK6us56HMtX66jFLRqwoCaXWU29O
-         YzJ1nG4uGpL4Kaa0o4w6433q2U8pbrgKJz6KV0Yh2XHd2mNFiQEG98nF9LzwTQUsfWvw
-         t+DVOnvFlNtfY+tunuXKcMPodabDqnGRB5I1/4Ek3taX7pJcEFqcu1SxAEheoLxRzXFT
-         sPwUR+7t1OzMtFDfAxAJa0/pzLMKlZqTN7gkMjQVmouqRJTu+ElaaHbHPOhv/IbfhdrO
-         I5iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729794733; x=1730399533;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gRKHkVHowCvUdaOL63DeqZvn2vxTeBbKPQmJOLnaQLU=;
-        b=NJYJbWxBH+o18C5vnSDo8l9eG3YgYPdGtrj1bp6eoYp4EuVQjVnsW9d2L+4/VEEajU
-         UFVR+vuwucHtOZZpJCD3gifu0QZPXlLBC61lhQtuVjG7EkMrYggO4W9rvcPSreJxbSMT
-         IcKkqUduA15tqvbYq8cllC/0fGPDwfxVmNdw93vDjCD9TWwD5982r6+P73LB+hKNk+gM
-         FIZJERIxDj3xf+r5VwDgKksz3jR06OywYiYmNW38wtYul66Tq6fVNnK1QHWbaPkntNcC
-         aJvPPuqo+6QEU8EdPfCXh2kYLxSq4j141URpvcvrw+r9Vj2KNA2d2aja2i7tk4t+Ri4B
-         TJ8g==
-X-Forwarded-Encrypted: i=1; AJvYcCUqjZLRFUEI7Tdfd5+wAuARmcL2bh7lKEMhGjHPAM7ga+bghnHG18tRtuLgn/7hOGkcjJ3am5uBbTcaxDo=@vger.kernel.org, AJvYcCUtzNXWXkmqMrMjrET3HibrA8hIYT/+eLCOUAYgMpxGOdwQZh7PMf3PIXI1TDa7LootANyXyyp+b65B@vger.kernel.org, AJvYcCV5ZjcvUR9fz8eDB02gSFrYAuncDUFVwnkSD1IeQEFS5npCCjnbvTDJJQm08sjFZkPuyYEr8qw36/SJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUCCXOdwnGpwy4LEvg2Se6/+ss8qhgYHsuagnWShNECA067ncO
-	/tuuyx2PiX18DVHzsjvGZmH1Q4QCyJw3yfyaNACws4Sucq8f8mpt1Ln1kP8b
-X-Google-Smtp-Source: AGHT+IE4AC5dww3WVXBCkrX1t76OvrQk3DQ3teSiOoE+Z3M+gzefPD7Exfv1+/fP+4a4xqIE5xEj2w==
-X-Received: by 2002:a05:6820:610:b0:5e7:cb2e:e01c with SMTP id 006d021491bc7-5ebee96e08dmr6199210eaf.7.1729794733384;
-        Thu, 24 Oct 2024 11:32:13 -0700 (PDT)
-Received: from raspberrypi ([2600:1700:90:4c80::f])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec02aee518sm449494eaf.4.2024.10.24.11.32.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 11:32:11 -0700 (PDT)
-Date: Thu, 24 Oct 2024 13:32:09 -0500
-From: Grant Peltier <grantpeltier93@gmail.com>
+	s=arc-20240116; t=1729795611; c=relaxed/simple;
+	bh=5FVyEGboaM4rj+GScXdt9qEVYfTNOXNL6tZ7z4VeYFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=qPAcR+bxmJH9dSxnG45S8Zlh9UGG1I7gdfkwdPEy/36EuLuBOxnfmsyHFqE58eFQpQ/naGEGJftjbfKo+Y8jb0WowHuRf9ibxbDnxNg5qdNFsDIHkZa+rTdUYwtn1RfRMRtV1XTOg8FaPEdDRW0T+ChSaqiX4s1mMG84a2pZ3WM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UVgkk0Yn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6897C4CEC7;
+	Thu, 24 Oct 2024 18:46:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729795611;
+	bh=5FVyEGboaM4rj+GScXdt9qEVYfTNOXNL6tZ7z4VeYFo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=UVgkk0YnFNtvfXKZbtHA23X2t0DzDyhu17nPkgpQtV/XewjU9cZpGGRGY29oopDx2
+	 jeQ+6pQ+4u/zDsdh7qT2DeFqTOYRwLbzccirvWp0KwT1QLmYLRtHgd0fkVWeblVExC
+	 ptAvZ4ntayRZsIdrF24TyQxb9+XtMfvzNOpWwnI0ou2hC+jnNpwzXIa2FyRD2AU8I3
+	 WVGSw0VmdPkxxPXwZXl3Ut9E/L35tPM8GmiHUddw6oZKtxdXl6uM9yzBSfgHg5ru3j
+	 C7j8ulGmYRuieHdCXHxQMCvBmwA8QSMvawhxjk3jH6Cx4CQIqbgbf+jigVf8XVaEla
+	 CwbcKlzONrSOA==
+Date: Thu, 24 Oct 2024 13:46:49 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
 To: Conor Dooley <conor@kernel.org>
-Cc: robh@kernel.org, linux@roeck-us.net, geert+renesas@glider.be,
-	magnus.damm@gmail.com, grant.peltier.jg@renesas.com,
-	brandon.howell.jg@renesas.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	jic23@kernel.org, Peter Rosin <peda@axentia.se>
-Subject: Re: [PATCH v3 2/2] dt-bindings: hwmon: isl68137: add bindings to
- support voltage dividers
-Message-ID: <ZxqSqcN11fTambT4@raspberrypi>
-References: <cover.1729715599.git.grantpeltier93@gmail.com>
- <2cc99616ff3dd9bcecb1309cd4d103d70aea862b.1729715599.git.grantpeltier93@gmail.com>
- <20241024-corporate-faceted-811e8e5a8c58@spud>
+Cc: linux-pci@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 0/2] PCI: microchip: support using either instance 1
+ or 2
+Message-ID: <20241024184649.GA967731@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,153 +63,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241024-corporate-faceted-811e8e5a8c58@spud>
+In-Reply-To: <20241024-gout-kinfolk-0f24b28d41b7@spud>
 
-Hi Conor,
-
-Thank you for your review!
-
-On Thu, Oct 24, 2024 at 06:01:11PM +0100, Conor Dooley wrote:
-> On Wed, Oct 23, 2024 at 03:53:51PM -0500, Grant Peltier wrote:
-> > + [...]
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - renesas,isl68220
-> > +      - renesas,isl68221
-> > +      - renesas,isl68222
-> > +      - renesas,isl68223
-> > +      - renesas,isl68224
-> > +      - renesas,isl68225
-> > +      - renesas,isl68226
-> > +      - renesas,isl68227
-> > +      - renesas,isl68229
-> > +      - renesas,isl68233
-> > +      - renesas,isl68239
-> > +      - renesas,isl69222
-> > +      - renesas,isl69223
-> > +      - renesas,isl69224
-> > +      - renesas,isl69225
-> > +      - renesas,isl69227
-> > +      - renesas,isl69228
-> > +      - renesas,isl69234
-> > +      - renesas,isl69236
-> > +      - renesas,isl69239
-> > +      - renesas,isl69242
-> > +      - renesas,isl69243
-> > +      - renesas,isl69247
-> > +      - renesas,isl69248
-> > +      - renesas,isl69254
-> > +      - renesas,isl69255
-> > +      - renesas,isl69256
-> > +      - renesas,isl69259
-> > +      - renesas,isl69260
-> > +      - renesas,isl69268
-> > +      - renesas,isl69269
-> > +      - renesas,isl69298
-> > +      - renesas,raa228000
-> > +      - renesas,raa228004
-> > +      - renesas,raa228006
-> > +      - renesas,raa228228
-> > +      - renesas,raa229001
-> > +      - renesas,raa229004
+On Thu, Oct 24, 2024 at 10:38:11AM +0100, Conor Dooley wrote:
+> On Wed, Aug 14, 2024 at 09:08:40AM +0100, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > The current driver and binding for PolarFire SoC's PCI controller assume
+> > that the root port instance in use is instance 1. The second reg
+> > property constitutes the region encompassing both "control" and "bridge"
+> > registers for both instances. In the driver, a fixed offset is applied to
+> > find the base addresses for instance 1's "control" and "bridge"
+> > registers. The BeagleV Fire uses root port instance 2, so something must
+> > be done so that software can differentiate. This series splits the
+> > second reg property in two, with dedicated "control" and "bridge"
+> > entries so that either instance can be used.
 > 
-> Damn, that;s a list and a half, innit! Looking briefly at the driver
-> change, the match data implies that quite a few of these actually would
-> be suitable for fallback compatibles.
+> Just attempting to bump this patchset. It has gone over 2 months without
+> response, and I am afraid it has completely fallen between the cracks.
 
-Yes, there are quite a few part numbers (and likely to be more in the
-future). My intention was to make the driver more user friendly since the
-variants listed in the driver do not map to something in any of the
-datasheets. So using those instead would require users to inspect the
-source of the driver instead of simply referencing their part number(s).
+Thanks for bumping this.  It looks pretty straightforward to me, so if
+nobody acts on it soon, I'll pick it up.
 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +patternProperties:
-> > +  "^channel@([0-3])$":
-> > +    type: object
-> > +    description:
-> > +      Container for properties specific to a particular channel (rail).
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description: The channel (rail) index.
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 3
-> > +
-> > +      renesas,vout-voltage-divider:
-> 
-> There's already a binding for voltage dividers: voltage-divider.yaml
-> That said, I have no idea how that would work with an extant driver for
-> the hardware like we have here. I'd imagine it would really have to be
-> used with iio-hwmon? + Peter and Jonathan, since I don't know how the
-> driver side of using the voltage divider works.
-
-In his recent revier, Guenter requested using a standard voltage divider
-schema as well. I see there is an implementation in maxim,maxim20730.yaml
-but that differs from the one in voltage-divider.yaml. Should I opt to
-match maxim,maxim20730.yaml?
-
-> 
-> > +        description:
-> > +          Resistances of a voltage divider placed between Vout and the voltage
-> > +          sense pin for the given channel (rail). It has two numbers
-> > +          representing the resistances of the voltage divider provided as
-> > +          <R1 R2> which yields an adjusted Vout as
-> > +          Vout_adj = Vout * (R1 + R2) / R2 given the original Vout as reported
-> > +          by the Vsense pin.
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +        minItems: 2
-> > +        maxItems: 2
-> > +
-> > +    required:
-> > +      - reg
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      isl68239@60 {
-> > +        compatible = "renesas,isl68239";
-> > +        reg = <0x60>;
-> > +      };
-> > +    };
-> 
-> Without any channels, what does this actually do? If you've got no
-> channels you cannot measure anything making this example invalid?
-> 
-> Thanks,
-> Conor.
-> 
-> > + [...]
-
-The channel structures are optional to allow users to arbitrarily define
-voltage dividers for any particular rail. Omitting the channel definitions
-still allow the device to be instantiated and probed as an I2C device
-along with all related hwmon PMBus telemetry dictated by the part variant.
-
-Thanks again,
-Grant
-
+Bjorn
 
