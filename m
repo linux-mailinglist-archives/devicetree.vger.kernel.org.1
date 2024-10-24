@@ -1,84 +1,77 @@
-Return-Path: <devicetree+bounces-115348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF869AEF77
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:14:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6409AEF84
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 20:16:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 171B31F2107F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:14:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE6E51C23CBA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 18:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7491FF020;
-	Thu, 24 Oct 2024 18:14:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438272003DA;
+	Thu, 24 Oct 2024 18:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HLm7mNQ/"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CNfxlxBJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C29741FBF50
-	for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 18:14:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81911ABEC5;
+	Thu, 24 Oct 2024 18:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729793661; cv=none; b=Jngxwdy4ILYaWvgJA0gBRjnoy+1EcIM0pUbBi0v82E7oMuqLQ9+dJ3VdUCCnY7H7idw8Aw0NJf/krqozwXW0MPThk/m8s5oORKZn8pDHPp2JKUcG1YJ4XKRh86pwttvXDi/buATsaEGLUTUZdOyOtdK6uANE8rF1l5wIrYvVU+A=
+	t=1729793788; cv=none; b=V53SGc48lNAjnFpeQv1WU/GbpqQxHm8Edwd08PM2fcsxvoN0XabH5wYH0/OtAzH7thVLpnJnFV+dFnsr+oSgKj7R+TM+vJfV14RbS8u8uUP0lvIPjOrdloiZM/jyxa7RmY3OK6TFIqq1zRvmuY5rCvFzxswKd9L8F/aAnir9x/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729793661; c=relaxed/simple;
-	bh=b6bXM70L8ttQQAERg0pKOeOQ7SPw82oq1yMl/099naY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BaV0+g6YyFx7B7ZoFo39ua1FxQ9oHQTKUKlQOn215oeMhShtQ5H2GtLvQmlXzaxSPs1e4DWiYNz8jGZcXR+D44c1SZjKPwUDmde+VadvnZiQ5SJCeSMC1K7e7BVmm6vfIaz5PSJQJnOdV6BTDX72htgB1KH6nHkZCzbrkJjK7Lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HLm7mNQ/; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7ea0ff74b15so749271a12.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 11:14:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729793659; x=1730398459; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=E2mRYwktrmZtlfT2nFMLWD2hPCZTt5hXE/NuFZYD1KE=;
-        b=HLm7mNQ/PBdC0NEbCWvNA+3N9Hdb6VHK6oLU1bU5TdnK5zCGu9akf26hCeBSyQoSjs
-         LPYYQTbzwOxZOoCA76ma6z7Hhnspn2jYsOr/rkk9Y47XI8JkUvItIQLv3B8s+x8gJ06z
-         0BuYeaQhELlOytv+ACx6lISAci/NFrXkeEj6GeZJ9Eue0pXg2Wtx1yI0L3pnha57bEKS
-         PswhkQDQZzJdpM5S74N+Vvwu9Q/i+peoUUCsqg7gJIiRsXUHhR09FW+ZbNAeAl6sPMWF
-         1kdMtpOVj1aQPXgHC1dcZiHFqJQI9bkoJjxkVZNIvT11JTionKJjEmJNEUSB0efQfb8e
-         /T/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729793659; x=1730398459;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E2mRYwktrmZtlfT2nFMLWD2hPCZTt5hXE/NuFZYD1KE=;
-        b=Wup5McYl5SJKicdJ6mja8kyI8iB6SQaP+LbWv+Ikwn2P3V08UubwVECIBGk3DTf5YE
-         2fctTsR5Q+QZx443vYsjdfrutwc+y7FpU9ltPkBnvrdJBWyg8U1CgPGFrmB7mfP2MbE1
-         Gf184z/EhdmrjdUJ7+u4vJj7YgNMY/sgty01F7JXQIg1E66sg0s50348t6z2bInyNSiI
-         sBS06TIP8uUhVbIxgvhJQEqOheyNXHg5PYwYeTUbLzHZzGUhn8ynNZeOY+pU4em1PraI
-         /EEerTkTWcvbIEUk8ICimdxdb8QJRnJmNiAYDInEDEyZ2ikFAmh1T+oRmy79RAinD0R0
-         6u6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWid/XVajEJGTfvzkMmDOXnofjb5inkeruryJrXh+r3jZbpxyIIeaKruUDmi3ePfBNNChLwalA/N/m9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOWMwyRliFo8OshjDZzlkJ+eWowysgPRasi0MPrKBVHKIC2AzY
-	YWcT3RiXRoMwANG/q8rHYwMa/GQhp/KVzIWjJ/Ags19ESw0dmmGB
-X-Google-Smtp-Source: AGHT+IF15FANv02/HX5OJM9MTivD/8lQBJRNT9ZUddV/kotfU3iNdSgaePzvpQs3OCWOW5wJ1NIpAQ==
-X-Received: by 2002:a05:6a20:43a7:b0:1d8:a3ab:7220 with SMTP id adf61e73a8af0-1d98976e70fmr3697478637.0.1729793658893;
-        Thu, 24 Oct 2024 11:14:18 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:b160:3edf:6e5d:8d4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec13d74d9sm8208171b3a.133.2024.10.24.11.14.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 11:14:18 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
+	s=arc-20240116; t=1729793788; c=relaxed/simple;
+	bh=e8Qe84wNa3ak4bpxn+ExVY7B/6mI6kx1FcZfyj9rIzY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jzC51Q3v9eqmSPbtKSKw+VDCPvmKfWL8mOI73NH/3XWDX87vq3q7GU9DuIJvPmE/vBXv0/5Q1v3Zym6w3cf+xjfdpwfvTj1+YFIEUQ/QsVduCl2nQRfCysyMRaWXfnzfc4gT27+w0vAeTQp3cnWu8ajdQdDgJHCBXcdb3r5pU08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CNfxlxBJ; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1729793783;
+	bh=e8Qe84wNa3ak4bpxn+ExVY7B/6mI6kx1FcZfyj9rIzY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=CNfxlxBJtIsSFWqFhQHXlYlf8RlNdxl4S/eewIBQLExECvNXSjWWZD/WXR6YLwchv
+	 qMpkqupH4xtvobsuWDyNcoSH9KEKt83e0DZ6BV6O8yxZoD8Vqbw4xR9TFuVpgumokR
+	 PpuNkqimAyazplqTN1TCCZ+iky/MrbswkBxVrW94gh5KzPsdIBF+JtFJ6nP7jDAS+O
+	 tHHmlCmsulZ1IuaWhN3baqSo13/OXkqURYw/o/uQuI9AUpMMXFMjUUDvjZR69Wd2WV
+	 444sCUkaTvIr15lq6i4/2CXZhZVFZFxP6fXdu6pmba8UAKx3dEZQjC3Q+XAyGoZA8I
+	 2v+uWhABuPcsA==
+Received: from jupiter.universe (dyndsl-091-248-214-110.ewe-ip-backbone.de [91.248.214.110])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id F332617E36CB;
+	Thu, 24 Oct 2024 20:16:22 +0200 (CEST)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id A2F374800EA; Thu, 24 Oct 2024 20:16:22 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-clk@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	huangtao@rock-chips.com,
+	andy.yan@rock-chips.com,
+	Michal Tomek <mtdev79b@gmail.com>,
+	Ilya K <me@0upti.me>,
+	Chad LeClair <leclair@gmail.com>,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	shengjiu.wang@nxp.com,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: imx6sll: Fix the last SPDIF clock name
-Date: Thu, 24 Oct 2024 15:14:09 -0300
-Message-Id: <20241024181409.1461997-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	linux-rockchip@lists.infradead.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v11 0/5] rockchip: clk: add GATE_LINK support
+Date: Thu, 24 Oct 2024 20:15:27 +0200
+Message-ID: <20241024181621.210509-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,34 +80,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+Hi,
 
-The last SPDIF clock is IMX6SLL_CLK_SPBA, so change the last
-clock-name entry to 'spba' as expected by fsl,spdif.yaml.
+This implements proper GATE_LINK support following the suggestion from Stephen
+Boyd to use clk PM operations by creating MFD dynamically. This required some
+restructuring, since CLK_OF_DECLARE() is called before devices are available.
 
-This fixes the following dt-schema warning:
+Apart from improved power consumption, this fixes the runtime errors from the
+pmdomain driver (failed to set idle on domain '%s'). Last but not least it is
+a first step towards reducing usage of CLK_OF_DECLARE_DRIVER() registered
+clocks, which should only be used for early clocks needed for the system
+timer (see this talk from LPC: https://www.youtube.com/watch?v=dofbbVuIAPk ).
 
-spdif@2004000: clock-names:9: 'spba' was expected
+Changes since PATCHv10:
+ * https://lore.kernel.org/linux-rockchip/20240913184720.57381-1-sebastian.reichel@collabora.com/
+ * rebased to v6.12-rc1
+ * make struct platform_driver static
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/nxp/imx/imx6sll.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since PATCHv9:
+ * https://lore.kernel.org/linux-rockchip/20240325193609.237182-1-sebastian.reichel@collabora.com/
+ * drop patches 1 & 5 (merged)
+ * keep reporting ENOENT for missing clocks after CRU has been fully initialized
+ * drop module remove support for the linked gate clock driver
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-index 85fe2a4ab97a..207b193db3ba 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-@@ -173,7 +173,7 @@ spdif: spdif@2004000 {
- 						      "rxtx1", "rxtx2",
- 						      "rxtx3", "rxtx4",
- 						      "rxtx5", "rxtx6",
--						      "rxtx7", "dma";
-+						      "rxtx7", "spba";
- 					status = "disabled";
- 				};
- 
+Changes since PATCHv8:
+ * https://lore.kernel.org/linux-rockchip/20240126182919.48402-1-sebastian.reichel@collabora.com/
+ * rebased to v6.9-rc1
+ * dropped all merged patches (i.e. all but the last one)
+ * rewrote and split the final patch
+   - should be easier to review
+   - properly calls pm_clk_suspend/pm_clk_resume
+   - now works on Orange Pi
+
+Changes since PATCHv7:
+ * https://lore.kernel.org/all/20231213185114.47565-1-sebastian.reichel@collabora.com/
+ * rebased to v6.8-rc1
+ * Collected Reviewed-by/Acked-by from Krzysztof Kozlowski for DT binding patches
+ * support nr_clk=0 in rockchip_clk_find_max_clk_id() for smatch
+
+Greetings,
+
+-- Sebstian
+
+Sebastian Reichel (5):
+  clk: rockchip: support clocks registered late
+  clk: rockchip: rk3588: register GATE_LINK later
+  clk: rockchip: expose rockchip_clk_set_lookup
+  clk: rockchip: implement linked gate clock support
+  clk: rockchip: rk3588: drop RK3588_LINKED_CLK
+
+ drivers/clk/rockchip/Makefile     |   1 +
+ drivers/clk/rockchip/clk-rk3588.c | 116 ++++++++++++++++++------------
+ drivers/clk/rockchip/clk.c        | 101 ++++++++++++++++++++++----
+ drivers/clk/rockchip/clk.h        |  40 +++++++++++
+ drivers/clk/rockchip/gate-link.c  |  85 ++++++++++++++++++++++
+ 5 files changed, 285 insertions(+), 58 deletions(-)
+ create mode 100644 drivers/clk/rockchip/gate-link.c
+
 -- 
-2.34.1
+2.45.2
 
 
