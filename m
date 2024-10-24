@@ -1,140 +1,128 @@
-Return-Path: <devicetree+bounces-115030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8A519ADC69
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EDE29ADC71
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 08:44:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 932A71F21DA8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 06:43:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0566D1F22B95
+	for <lists+devicetree@lfdr.de>; Thu, 24 Oct 2024 06:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5D718872D;
-	Thu, 24 Oct 2024 06:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5D9189911;
+	Thu, 24 Oct 2024 06:44:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Cljcn1xo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mg3TLwOc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCAB86CDBA;
-	Thu, 24 Oct 2024 06:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880206CDBA;
+	Thu, 24 Oct 2024 06:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729752174; cv=none; b=WDo1gfSQlI6ZpPkr0/X7Gq5F3WWPzxihP5CrD9jiE2m9mS5IWWotP/5w98ZDSzqR7QfHec2mpnbRiSIhLqsvVpKLn3Hh76bgmvoUPEZz7t2Itte6RcXf4JD7YwNDf7iPudHaCDw3B3KS05Yf50nEwbRrsRkg08WjYffQfIPjaB0=
+	t=1729752261; cv=none; b=FnLU/BTBqKa9dd7sUn6o0eqSSamNs73EYyLl6dNSH0P9Z1S4fogtEmGp+lZnHDK8oS+eSch0i7N8xSvu2AzYY7l7ikEhf2gVCX64k+Tzh13wI527ycfBFAgv59x5+MWG0rv+ohnoTkfdX2r4I4d3f0y4BRL4sTPo4vzdbDFB4Kw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729752174; c=relaxed/simple;
-	bh=AE41odrvovNQUesHpRK1dP38ZopOUuUByGzXS6QtEiw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qqTqsDl3g8cwIVNEc1By+jx0JPWqTLuM7TYyyQrsEg2HZyf/Oxj5o4z8ThKrDBw0QukCsK4n3GV+T1rENbvIlBY1XvtChHkIjTBi2+yFuOhckmJr4vOnMpfvKAlPctfMdi164fe4eY5Id15KiETjvdGVyxyzb6+Ctiuw2j5jy7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Cljcn1xo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49NLlpbi020224;
-	Thu, 24 Oct 2024 06:42:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MOui3FkqthLLxDG8jF1710A76nx3b/xntWLvkRqfo2o=; b=Cljcn1xoP8JShVp3
-	AazyhMbIbtcyGGi2TV15QQFaSwqoUitCmzV/gcoXNcch1hiBZqnCgt0x8nMCBpm1
-	XgmvibGoN8b3HS4+WN/fBzL0/7Tr3Vq76G3wX4RvcUPwkxblFu72gY7OTzlHny75
-	f1W1gDAEXsNSVZcPdRU0paiAb3lja2IgTDb3/z7yQWjN4x6ZqdboSqy1GSBnPjkn
-	wZB3VqzfXz0TZlOeQUDWx2hcCRPyAOYX7DKKwypg68CRw3elD1+Bt5iV7z0rtTpi
-	0ZfO/6aOcvuKhMuN1MJTkIIxdCzfkYTprKKXN8TkTnaKdpiagmBg4pr/+IeWQmvs
-	5hu/gA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3xmr0m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Oct 2024 06:42:44 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49O6geY0026399
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 24 Oct 2024 06:42:40 GMT
-Received: from [10.239.29.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 23 Oct
- 2024 23:42:35 -0700
-Message-ID: <91395c5e-22a0-4117-a4b5-4985284289ab@quicinc.com>
-Date: Thu, 24 Oct 2024 14:42:32 +0800
+	s=arc-20240116; t=1729752261; c=relaxed/simple;
+	bh=NXetDMK/L1pnmV2P2THQJEIEy11n4oSpCXDcoIwy05A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=X7quJemYQ20p+hbBNvUR7RkNSBiZO2EGS/Pt/6Sjx3vaMGzwf/tSXvyOeowwZq5VXgB8YLzKGqlbPJjKEQZk7RRxMZD93UInJ2ncUGZA1XONvXHVZp5unZdADdcDesFkeyChPo+536/vhWwmyEj9Il+1cEQh9nn8oCRvGTRdGBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mg3TLwOc; arc=none smtp.client-ip=209.85.160.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-28c7f207806so292860fac.3;
+        Wed, 23 Oct 2024 23:44:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729752258; x=1730357058; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2FoyLE/Cf4zQLw+m56F5a8lGY5yFq1EiEZ4WN3sp8cs=;
+        b=mg3TLwOc6LBlbfIlJLqjnRNSOXbBEhowRWG7Ih4oy8s27CRH7lPWgQyd77cqNmMNcW
+         bdh3v5WLIXma2sr37kFyzDUlT66apOEtzL0P6MSjyE4/bqUBgi7Fpzb7004X7RDe1Zy7
+         R3/OlxPrP+S+ffY2o5zgCJdOK4UNQlT/APg8dB40AjyHBB70wd7MWqCDM+S12i4R8yFZ
+         fEys2caM733lACRiUwidht+UZmPP4udbNzwF57KT/yXZfYekmvqZcDkurJftq5hOG44p
+         WLkVrzwsQNsCOD2OoOQWywlptPD1/Wd7phsLhxMJxWWnAlReTJxhgOoWZnos1rFZDH3Y
+         ZF8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729752258; x=1730357058;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2FoyLE/Cf4zQLw+m56F5a8lGY5yFq1EiEZ4WN3sp8cs=;
+        b=KNGQFMa9JGj9Xz9+D4JBPcPiuFH0/TeJiX84dMK/U5sKn2XECc4N956BsJIlRVtuBK
+         YyBIlyFrAaAcKrNfhjXfQMpdaaZWLAtRWcWE611n11VhzqPi62bCBOZoyFBS6BlzYYu+
+         Bv7kcX91K5YAZLupSrC8eGRBA4mIvS4IdJ4ePrA4NnwLejh+kbpLaDOqMAM9AYlIHVYd
+         mQMwZC380XqShS8QOHmBTQiMcIutwnY3xTg9DPxoERV8Qnswt/7Pry3fTq8SPOUIh1Tp
+         ez25pjNUPRXjxWVdVobdH0FLAT/O3idCDOtINYYPkwWfjP6Xb6QMd/Pq4lcjkS46IYKd
+         9SBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXDQDo9p0atVdx1JaWc7ks+NtdRr8ZxON6mP32mKJmprazTnwBNE5ikifxsuPTNfCKGlz/qitIWc7jH@vger.kernel.org, AJvYcCXTofoHPnqQN3oPu3rINXBQliIhREVWKRnvfkkoojZ8SXeMI+x/nLWvOKZSXnHMymupEFdiy7cBMfzBZ5ud@vger.kernel.org, AJvYcCXxETrdJljLQp0axzT4VWKv4F3NhAz9zx6qbp056GVUr2jJZXFNdgzZIZgLRwlb3M/eeqpVjkw628eSCQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAvQFnAR6XqSXRu8O04dIZ+kLv39GQ62JtyJJ3ckx1PZXrfocW
+	rb7hkD54YMXtL9R00l8/kYZqEgKJVeUXHvYERb0Q63NYyCkXYCiz
+X-Google-Smtp-Source: AGHT+IGZ+O2r4XtVYPHiHdNtVx8h+km4OBAtGWY/VsB1qpgXll72J2UuhE4eux2WpZ4NG1pffRU0nA==
+X-Received: by 2002:a05:6870:1701:b0:288:816a:72e6 with SMTP id 586e51a60fabf-28ccb44c8c7mr5021125fac.7.1729752258523;
+        Wed, 23 Oct 2024 23:44:18 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71ec1312ccbsm7311977b3a.1.2024.10.23.23.44.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Oct 2024 23:44:17 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Chen Wang <unicorn_wang@outlook.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Guo Ren <guoren@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>
+Cc: Yixun Lan <dlan@gentoo.org>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH 0/3] riscv: sophgo: Add pinctrl support for SG2042
+Date: Thu, 24 Oct 2024 14:43:53 +0800
+Message-ID: <20241024064356.865055-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 6/7] PCI: qcom: Disable ASPM L0s and remove BDF2SID
- mapping config for X1E80100 SoC
-To: Johan Hovold <johan@kernel.org>
-CC: <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <abel.vesa@linaro.org>,
-        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
-        <dmitry.baryshkov@linaro.org>, <kw@linux.com>, <lpieralisi@kernel.org>,
-        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <johan+linaro@kernel.org>,
-        <stable@vger.kernel.org>
-References: <20241017030412.265000-1-quic_qianyu@quicinc.com>
- <20241017030412.265000-7-quic_qianyu@quicinc.com>
- <ZxJrUQDGMDw3wI3Q@hovoldconsulting.com>
-Content-Language: en-US
-From: Qiang Yu <quic_qianyu@quicinc.com>
-In-Reply-To: <ZxJrUQDGMDw3wI3Q@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gagmCVtlOA3uf-nAqE7_D-lcVsNj_yVZ
-X-Proofpoint-ORIG-GUID: gagmCVtlOA3uf-nAqE7_D-lcVsNj_yVZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- impostorscore=0 mlxscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
- mlxlogscore=656 malwarescore=0 priorityscore=1501 adultscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410240050
+Content-Transfer-Encoding: 8bit
 
+SG2042 has a simple pinctrl device for all configurable pins.
+It supports setting pull up/down, drive strength and input schmitt
+trigger.
 
-On 10/18/2024 10:06 PM, Johan Hovold wrote:
-> Please use a more concise subject (e.g. try to stay within 72 chars)
-> than:
->
-> 	PCI: qcom: Disable ASPM L0s and remove BDF2SID mapping config for X1E80100 SoC
->
-> Here you could drop "SoC", maybe "ASPM" and "config" for example.
->
-> On Wed, Oct 16, 2024 at 08:04:11PM -0700, Qiang Yu wrote:
->> Currently, the cfg_1_9_0 which is being used for X1E80100 has config_sid
->> callback in its ops and doesn't disable ASPM L0s. However, as same as
->> SC8280X, PCIe controllers on X1E80100 are connected to SMMUv3, hence don't
->> need config_sid() callback and hardware team has recommended to disable
->> L0s as it is broken in the controller. Hence reuse cfg_sc8280xp for
->> X1E80100.
-> Since the x1e80100 dtsi, like sc8280xp, do not specify an iommu-map,
-> that bit is effectively just a cleanup and all this patch does is to
-> disable L0s.
->
-> Please rephrase to make this clear. This will also allow you to make the
-> Subject even shorter (no need to mention the SID bit in Subject).
->
-> Also say something about how L0s is broken so that it is more clear what
-> the effect of this patch is. On sc8280xp enabling L0s lead to
-> correctable errors for example.
-Need more time to confirm the exact reason about disabling L0s.
-Will update if get any progress
+Add support for SG2042 pinctrl device.
 
-Thanks,
-Qiang
->
->> Fixes: 6d0c39324c5f ("PCI: qcom: Add X1E80100 PCIe support")
->> Cc: stable@vger.kernel.org
-> Johan
+Inochi Amaoto (3):
+  dt-bindings: pinctrl: Add pinctrl for Sophgo SG2042 series SoC
+  pinctrl: sophgo: add support for SG2042 SoC
+  riscv: dts: sophgo: sg2042: add pinctrl support
+
+ .../pinctrl/sophgo,sg2042-pinctrl.yaml        |  96 +++
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |  72 ++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   6 +
+ drivers/pinctrl/sophgo/Kconfig                |  14 +
+ drivers/pinctrl/sophgo/Makefile               |   2 +
+ drivers/pinctrl/sophgo/pinctrl-sg2042-ops.c   | 583 ++++++++++++++++
+ drivers/pinctrl/sophgo/pinctrl-sg2042.c       | 642 ++++++++++++++++++
+ drivers/pinctrl/sophgo/pinctrl-sg2042.h       |  50 ++
+ include/dt-bindings/pinctrl/pinctrl-sg2042.h  | 196 ++++++
+ 9 files changed, 1661 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/sophgo,sg2042-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sg2042-ops.c
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sg2042.c
+ create mode 100644 drivers/pinctrl/sophgo/pinctrl-sg2042.h
+ create mode 100644 include/dt-bindings/pinctrl/pinctrl-sg2042.h
+
+--
+2.47.0
+
 
