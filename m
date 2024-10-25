@@ -1,233 +1,136 @@
-Return-Path: <devicetree+bounces-115472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5509AFAD9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:17:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 200669AFB76
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:48:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77BBC1F22736
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 07:17:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8A9528435B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 07:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 834EE199FD0;
-	Fri, 25 Oct 2024 07:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217A41BE871;
+	Fri, 25 Oct 2024 07:48:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="EhZOQ85w"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="WwYk1HBL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCCD51A4AAA;
-	Fri, 25 Oct 2024 07:17:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F93B18C928
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 07:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729840672; cv=none; b=XR5GCqLQiZaI1vi8vbr8dqS8/wQsuvBCj/CZf0k/PPJNOWN8KS/jsOzPODNnPq9DI9j1A+oW7uuSbIAnoKchtgUboKw2gv8a2twia92cLaE/TDIjYv68MqQpilD/ha8roYpdhj8TXjNPE1wLQN/hhyTolBvZ98hWo/awezGrd6w=
+	t=1729842534; cv=none; b=MLRR/wmu4YmTi+UNlffpQ3xUfiDjtWeizedVMm56bpnfAiq0REtQKu9WDAlO8an9U7oyoYpLv+8XkLNZKWtnkAJFlcoVG3zGCB6ZGe0Krl2oVRfCuulVYKpCN9AlnGrJ4FPNVmDtppT9Wcw8t+heJLRhNaqvR0k9eDjstUu9KlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729840672; c=relaxed/simple;
-	bh=dqqqvJ8g3AVzb03zYJsih0JTQPOidvJI2QvhRqV7u9g=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VsKvhkwKgYbu0AFXjVORYYEbIhss8LIYmLVsLo5+Cn6iUwYP7NxDtbqEAHyQhrhg52MaC4xzALy5zz2+jcbL2vZ2ceDPb4szFW5BgVIHoFdn/PGBkuP4zgzQCw4jCtNNWyRwG+WPchyuq2fJJebeVFvvPQWkdJkqb3+PVOtq/kM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=EhZOQ85w; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1729840670; x=1761376670;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dqqqvJ8g3AVzb03zYJsih0JTQPOidvJI2QvhRqV7u9g=;
-  b=EhZOQ85wbLoZtFFwqDB6sefaJpc9Qt4Pbx938s+5/nFJViQNwZibbQOU
-   lumbd2tiJQGhMpunJxLwfFREGobKhGE83vKUpQ2qYR71re2wMnU4gU/XL
-   ZVNINGOLopgT4eR0N6qG19/QsaO/yogHsTSuEUKXs+UMhdOvpXhEo4zGF
-   aDDtZK+svgtFNltGrj0uyzsHIhxBaBR7U/a3cYGSCKfb5ZJB0uNFXGHT6
-   4Egv+DeoESiwgTxxLYQ4xwp3kWbTOe6bBch/S+rTV31l1YvN02B5XM8h/
-   U5TaVVXJGEsfr3KbcdIEds1aZW1MKFfJ7b5JH2P80CHdKNcj6atYKPf6r
-   Q==;
-X-CSE-ConnectionGUID: Hp/0/euNT4aWmfDdVqjxpQ==
-X-CSE-MsgGUID: TdR5MXcUTliy1kkXe/9EYA==
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; 
-   d="scan'208";a="34008259"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Oct 2024 00:17:42 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 25 Oct 2024 00:17:22 -0700
-Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Fri, 25 Oct 2024 00:17:18 -0700
-Date: Fri, 25 Oct 2024 07:17:17 +0000
-From: Daniel Machon <daniel.machon@microchip.com>
-To: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>, Lars Povlsen
-	<lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
-	<horatiu.vultur@microchip.com>, <jensemil.schulzostergaard@microchip.com>,
-	<Parthiban.Veerasooran@microchip.com>, <Raju.Lakkaraju@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, Richard Cochran <richardcochran@gmail.com>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <jacob.e.keller@intel.com>,
-	<ast@fiberby.net>, <maxime.chevallier@bootlin.com>, <horms@kernel.org>,
-	<netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 10/15] net: lan969x: add PTP handler function
-Message-ID: <20241025071717.rz3zqppplu52cdpc@DEN-DL-M70577>
-References: <20241024-sparx5-lan969x-switch-driver-2-v2-0-a0b5fae88a0f@microchip.com>
- <20241024-sparx5-lan969x-switch-driver-2-v2-10-a0b5fae88a0f@microchip.com>
- <24147551-b639-4f9f-be5e-def2570a863d@linux.dev>
+	s=arc-20240116; t=1729842534; c=relaxed/simple;
+	bh=AcKtayDA1l3B02uNLoEC1MG1LG4klFVt49WT24NvHCY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=e6k3HgMXJHqBS55CfRq2WkkPQfewXilUXerIMtEJAj7ZvtczEt0o8GBAaA3UzYNucO/dxPNlqCOHY3qaZK00PPrRicYxsOOW4byyBLPonp76mMZNuLWCL/eo+6YosG0kbhxzR/55WImlp8VFkpY8lt1RFUsG1j8cPBcpJaOVmV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=WwYk1HBL; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7183a3f3beaso1043472a34.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 00:48:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729842530; x=1730447330; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=L/uGdh4k87UdLsVlqrkIfn4gIIwnutqsKO4ayJkibeU=;
+        b=WwYk1HBLeEN4hAMyOoNLvJeqPSD+JEEKToBcuhbQLAvoeRKvY6W3DXFDVaq1P0skO2
+         0uZ5jutFaH1T+O8ADF+Gb3tWJ1dAc9TMmhvIAhJywwHNV6aqeZpn2LKAv9teia0CZXQl
+         5iYw6aEZFpoQ5LqKhUk8RRDjJu/bujDzYaV6U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729842530; x=1730447330;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=L/uGdh4k87UdLsVlqrkIfn4gIIwnutqsKO4ayJkibeU=;
+        b=fD4J68ovYy0GSUfiotu0BthoqdULbxyIIC0hRVnKPiECJkJMnRP7tuwizFglmQICq2
+         M8uuBK8K4UndxobWmkKzRlO+1jfGh9lZGpV62GTFsPqSYsfEDDdB4EpFuA7Ra9qRyrjh
+         zSdyI9sjd6yLEUmasov1yvxbGAt10ZfZ9qi5TgYhRWHP7ixYetidGUpMTD9f1nROD0zU
+         DJwZuqjEYgxmQf+ccOe9654RZOx+VFGVqopBIhk8apIVMBP+Dl868Yda2RaZTtbcepHT
+         SX/FpN2gvDiys+FepFvwC4sI4maWzLeqx5hTz8m66ZL9QCKLa+i/9CvpdrMKPncz/6C6
+         tJGg==
+X-Gm-Message-State: AOJu0YyfSxEb+clHSXF7H6b21+HZNCa+NdZj9CbWDHGUTmw7MR0ktVHF
+	HaqeMGY4mx8u0BVDpFfBJRU27cbUtgzqlwUUBpIYlZzlliPwNM+S8eEKp/g6prUyicW8sZxP+Oc
+	=
+X-Google-Smtp-Source: AGHT+IGSIU/bFTwcE96kf/0wGJ0BJfJiuO8y8CrN5NyTUQ2vHijmdL2HboIEe85P5cA+/Hj/rUfY3A==
+X-Received: by 2002:a05:6830:25c2:b0:718:1606:c2df with SMTP id 46e09a7af769-7185940f8e5mr3286435a34.3.1729842530333;
+        Fri, 25 Oct 2024 00:48:50 -0700 (PDT)
+Received: from yuanhsinte-p620-1.tpe.corp.google.com ([2401:fa00:1:10:5a9f:16cc:8d5a:55e5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7205793189esm535527b3a.58.2024.10.25.00.48.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 00:48:49 -0700 (PDT)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Fri, 25 Oct 2024 15:48:44 +0800
+Subject: [PATCH RESEND v4] arm64: dts: mt8183: set DMIC one-wire mode on
+ Damu
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <24147551-b639-4f9f-be5e-def2570a863d@linux.dev>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241025-damu-v4-1-241bd9366c20@chromium.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Hsin-Yi Wang <hsinyi@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.15-dev-2a633
 
-Hi Vadim,
+From: Hsin-Yi Wang <hsinyi@chromium.org>
 
-Thanks for reviewing.
+Sets DMIC one-wire mode on Damu.
 
-> On 23/10/2024 23:01, Daniel Machon wrote:
-> > Add PTP IRQ handler for lan969x. This is required, as the PTP registers
-> > are placed in two different targets on Sparx5 and lan969x. The
-> > implementation is otherwise the same as on Sparx5.
-> > 
-> > Also, expose sparx5_get_hwtimestamp() for use by lan969x.
-> > 
-> > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
-> > ---
-> >   drivers/net/ethernet/microchip/lan969x/lan969x.c   | 90 ++++++++++++++++++++++
-> >   .../net/ethernet/microchip/sparx5/sparx5_main.h    |  5 ++
-> >   drivers/net/ethernet/microchip/sparx5/sparx5_ptp.c |  9 +--
-> >   3 files changed, 99 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/net/ethernet/microchip/lan969x/lan969x.c b/drivers/net/ethernet/microchip/lan969x/lan969x.c
-> > index 2c2b86f9144e..a3b40e09b947 100644
-> > --- a/drivers/net/ethernet/microchip/lan969x/lan969x.c
-> > +++ b/drivers/net/ethernet/microchip/lan969x/lan969x.c
-> > @@ -201,6 +201,95 @@ static int lan969x_port_mux_set(struct sparx5 *sparx5, struct sparx5_port *port,
-> >       return 0;
-> >   }
-> > 
-> > +static irqreturn_t lan969x_ptp_irq_handler(int irq, void *args)
-> > +{
-> > +     int budget = SPARX5_MAX_PTP_ID;
-> > +     struct sparx5 *sparx5 = args;
-> > +
-> > +     while (budget--) {
-> > +             struct sk_buff *skb, *skb_tmp, *skb_match = NULL;
-> > +             struct skb_shared_hwtstamps shhwtstamps;
-> > +             struct sparx5_port *port;
-> > +             struct timespec64 ts;
-> > +             unsigned long flags;
-> > +             u32 val, id, txport;
-> > +             u32 delay;
-> > +
-> > +             val = spx5_rd(sparx5, PTP_TWOSTEP_CTRL);
-> > +
-> > +             /* Check if a timestamp can be retrieved */
-> > +             if (!(val & PTP_TWOSTEP_CTRL_PTP_VLD))
-> > +                     break;
-> > +
-> > +             WARN_ON(val & PTP_TWOSTEP_CTRL_PTP_OVFL);
-> > +
-> > +             if (!(val & PTP_TWOSTEP_CTRL_STAMP_TX))
-> > +                     continue;
-> > +
-> > +             /* Retrieve the ts Tx port */
-> > +             txport = PTP_TWOSTEP_CTRL_STAMP_PORT_GET(val);
-> > +
-> > +             /* Retrieve its associated skb */
-> > +             port = sparx5->ports[txport];
-> > +
-> > +             /* Retrieve the delay */
-> > +             delay = spx5_rd(sparx5, PTP_TWOSTEP_STAMP_NSEC);
-> > +             delay = PTP_TWOSTEP_STAMP_NSEC_NS_GET(delay);
-> > +
-> > +             /* Get next timestamp from fifo, which needs to be the
-> > +              * rx timestamp which represents the id of the frame
-> > +              */
-> > +             spx5_rmw(PTP_TWOSTEP_CTRL_PTP_NXT_SET(1),
-> > +                      PTP_TWOSTEP_CTRL_PTP_NXT,
-> > +                      sparx5, PTP_TWOSTEP_CTRL);
-> > +
-> > +             val = spx5_rd(sparx5, PTP_TWOSTEP_CTRL);
-> > +
-> > +             /* Check if a timestamp can be retrieved */
-> > +             if (!(val & PTP_TWOSTEP_CTRL_PTP_VLD))
-> > +                     break;
-> > +
-> > +             /* Read RX timestamping to get the ID */
-> > +             id = spx5_rd(sparx5, PTP_TWOSTEP_STAMP_NSEC);
-> > +             id <<= 8;
-> > +             id |= spx5_rd(sparx5, PTP_TWOSTEP_STAMP_SUBNS);
-> > +
-> > +             spin_lock_irqsave(&port->tx_skbs.lock, flags);
-> > +             skb_queue_walk_safe(&port->tx_skbs, skb, skb_tmp) {
-> > +                     if (SPARX5_SKB_CB(skb)->ts_id != id)
-> > +                             continue;
-> > +
-> > +                     __skb_unlink(skb, &port->tx_skbs);
-> > +                     skb_match = skb;
-> > +                     break;
-> > +             }
-> > +             spin_unlock_irqrestore(&port->tx_skbs.lock, flags);
-> > +
-> > +             /* Next ts */
-> > +             spx5_rmw(PTP_TWOSTEP_CTRL_PTP_NXT_SET(1),
-> > +                      PTP_TWOSTEP_CTRL_PTP_NXT,
-> > +                      sparx5, PTP_TWOSTEP_CTRL);
-> > +
-> > +             if (WARN_ON(!skb_match))
-> > +                     continue;
-> > +
-> > +             spin_lock(&sparx5->ptp_ts_id_lock);
-> > +             sparx5->ptp_skbs--;
-> > +             spin_unlock(&sparx5->ptp_ts_id_lock);
-> > +
-> > +             /* Get the h/w timestamp */
-> > +             sparx5_get_hwtimestamp(sparx5, &ts, delay);
-> > +
-> > +             /* Set the timestamp in the skb */
-> > +             shhwtstamps.hwtstamp = ktime_set(ts.tv_sec, ts.tv_nsec);
-> > +             skb_tstamp_tx(skb_match, &shhwtstamps);
-> > +
-> > +             dev_kfree_skb_any(skb_match);
-> > +     }
-> > +
-> > +     return IRQ_HANDLED;
-> > +}
-> > +
-> 
-> This handler looks like an absolute copy of sparx5_ptp_irq_handler()
-> with the difference in registers only. Did you consider keep one
-> function but substitute ptp register sets?
->
+Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+---
+Changes in v4:
+- Add Reviewed-by tag back, which is dropped in v3
+- Link to v3: https://lore.kernel.org/r/20241009-damu-v3-1-1294c8e16829@chromium.org
 
-Yes, I did consider that. But since this is the only case where a group
-of registers are moved to a different register target in hw, I chose to
-instead copy the function.
+Changes in v3:
+- Add missing Sign-off-by tag
+- Link to v2: https://lore.kernel.org/r/20240910-one-wire-v2-1-2bb40d5a3cf8@chromium.org
 
-The indirection layer introduced in the previous series does not handle
-differences in register targets - maybe something to be added later if we
-have more cases (hopefully not).
+Changes in v2:
+- Add fixes tag
+- Link to v1: https://lore.kernel.org/r/20240910-one-wire-v1-1-d25486a6ba6d@chromium.org
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-/Daniel
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+index 0b45aee2e29953b6117b462034a00dff2596b9ff..06a689feff52945d141d196d439cba034f25fdf6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+@@ -26,6 +26,10 @@ &touchscreen {
+ 	hid-descr-addr = <0x0001>;
+ };
+ 
++&mt6358codec {
++	mediatek,dmic-mode = <1>; /* one-wire */
++};
++
+ &qca_wifi {
+ 	qcom,ath10k-calibration-variant = "GO_DAMU";
+ };
 
-> >   static const struct sparx5_regs lan969x_regs = {
-> >       .tsize = lan969x_tsize,
-> >       .gaddr = lan969x_gaddr,
-> > @@ -242,6 +331,7 @@ static const struct sparx5_ops lan969x_ops = {
-> >       .get_hsch_max_group_rate = &lan969x_get_hsch_max_group_rate,
-> >       .get_sdlb_group          = &lan969x_get_sdlb_group,
-> >       .set_port_mux            = &lan969x_port_mux_set,
-> > +     .ptp_irq_handler         = &lan969x_ptp_irq_handler,
-> >   };
-> > 
+---
+base-commit: 75b607fab38d149f232f01eae5e6392b394dd659
+change-id: 20241009-damu-a3f2f3478409
+
+Best regards,
+-- 
+Hsin-Te Yuan <yuanhsinte@chromium.org>
+
 
