@@ -1,158 +1,223 @@
-Return-Path: <devicetree+bounces-115418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D37AE9AF750
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 04:18:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD299AF72F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 04:00:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 569961F224A4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 02:18:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1550D282B7F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 02:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A49803B290;
-	Fri, 25 Oct 2024 02:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621E04436A;
+	Fri, 25 Oct 2024 02:00:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="Nrd2PLWB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2131.outbound.protection.partner.outlook.cn [139.219.17.131])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023097.outbound.protection.outlook.com [40.107.44.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A59C13FC2;
-	Fri, 25 Oct 2024 02:18:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F264B4409;
+	Fri, 25 Oct 2024 02:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.97
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729822715; cv=fail; b=VAyHdXzKz+oP6RFXzetLMICvtTYMQUpLnNEPpkRD0j9hiAGCCQ3Ow6EN9C2triwtPrO894XiGfIYlPJeJ8CITdn3yWIj/fGQzzhES/wsdlKL8tYoYoqKKX+9g2E3TH07Hpczxk0wpG80vp5iIj4wBtmdHIBj3OdbB8zj+aDGHms=
+	t=1729821650; cv=fail; b=LdJtTlneQEa/EPZm3yeFuWAa+sRNy+rUwXIy+5pB/Bd7LH9Kcw9F8lvbuHxg1TdYecrpiRMkgWFcm1XcQQoBOmFCPmm8QyBLdtpLrLomPfJZfFLO3NrxlGY8qPCDETkztpMiCu+pIOHW1NA5CqqmKtjIsexLMLMmfCOfQiVB24k=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729822715; c=relaxed/simple;
-	bh=sHTi5w7ptCjM+3SSXZN5ci9YrfILlnSH8rHDqUt1C+U=;
-	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=mriuiND226wg5ZTiCdKWz2yE8iGqk7koCHQ4K/Ca/tqOYA+sNS30mQiSup3EN45gZmOugv5LF3bgOWUc6ol9M9mWMO/8ISe4ClKjgFmOwfEytxGMLw3Idc26FuTW9upc5hIx5V8XN6v+LOQyevOM3Ox9W+DtUffLM2et6QoKjAA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FxU0+x8Lf5NXU3P+xeG0cXTEDtLl8K0hALxpE42c0iGSGlg7gO+wZa6WCbD2I+ncvDPngUizRmy7kBNTESVnzBUhSB87H4rsGdmjuFE1EoiUodFzv4GxvkeVDP9ICD6Qpm71v71lzvgdE1m7XN9svhRY7/QAiVMwgnlDZvsPyn2kaG6BMbSHdX7y68NDYg7Bj2fje9/W2oQFPJsflkdfrY/r6J6A8VltMGRRB6Am8/RFPAq/PRZi1RPxh4q2xUejuppR3X6SFyt32N5PaDBdx2p3PPSKRrxqIFGddLkTC+5XKv82IkQUM6GLophZAb4ry/MsiKbdWLZzvbxUoiqddg==
+	s=arc-20240116; t=1729821650; c=relaxed/simple;
+	bh=T4FjnRE5uxlGs70h1EDpmF8BxZ1uXkPC2Fe9ZHpFTOM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=cstYdApcot69d0VspRFaDL/eYhxOD8BpFZCz4OfOWM++gBrBrP9dpHjMrIfleyA6QF8pfSojCt8wZqOzDj3JuKnGuHOgGjKHRFNi3Ho8e+2oimMMdyWieynMbRIevYkCvlTse+XipX6F2t9lro2OEqd9cXo+UqHPdABEQud+qp4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=Nrd2PLWB; arc=fail smtp.client-ip=40.107.44.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zGkHC2cazMAWd4u3K9KnEzbBHBQS7ZI1ruhX108Abu4ifz2dOIn7Un67xW2woKKmrATO6sbzqoG/uUf0tQ2M5GwzNYa4P/5xOqxHLV9qCO2a6Th8SgC6FHNbb9u7e6J0BXI551FMvSAlJ7TnBaXQTYvOSPPG4R5tAlOlz2J+F0V1H6Bo8PfSEho/14TX6jDETQtt1OILXrGhGj/Mf+9MJlERdjOx/5ZQcVnBjz8gkAF9d+GcckZp3Gc5gMEmVGzM1sMj3N/dOSL61X08Cst3jdrwuuFlCd0MOIUsozGq6Xraknf5mOi1DZPvl3NInxoRo+UsjJ/BOJaRpjt2qd/N8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
+ s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sHTi5w7ptCjM+3SSXZN5ci9YrfILlnSH8rHDqUt1C+U=;
- b=Dqr4wvwDp1YDlJPBgXmKd3W4eftLeyJgfaEXLCIUGvimnQ4GgzMulnlhQ67z7SlA/VsEPGAaX68GPttrUZusupRlcDgW1WWuPX4KLma4/2S5tIxR+iwskkgiNPxSOFdvih02Lzcf/N+MEMeOYEkudB0jKJLtSyedPNC9tDQWomWBG/v8BjT3ACWRz+xvRuBMAJbWFnoexyIe0tvA/3IpJltBtBsKs4mhlgh/TnvgVYLPVzaVT2W687Db9xX9NGtnyKmdGIrD2dh9WKugW8R4Dliiam61Zn5dA6aXpu7izW/9g0uwEm47tp1I8VxzDuqZLAWOm3YZe5LH0klJ5bzD2g==
+ bh=NIBItyeLgS4NsJoFHC3Mns5cjUi0/WCdrZeWtr8m5OI=;
+ b=gwKrruzB8SosnxgaQDQNereudcENu8+THtEzB0BABpfclokhC/AC2GHGVhFIxUjnwrOMlQ2U1rs4u6JlZw915Qtc0Rvjq4tsFGp7UvcnjqbR4gxttWvvQiL5cSS+nxUJI8me5CX2jQ+Ip339XQvnmUT++L+WU51gDW2Q9EeLuqcN1VbUba09rmmSoa72UB2Lj58/HScM1QqngPCGK9iV52TFEWCok4++EGCPstXMIWT643zntSM14PBPBO1ZmTvwTT9Q/mf6DAWIvIw3Z9WEM0oVsEQfJBy+W2MEcQ+JbeiHv8jT6uHcIO+WV+1vwrsM0ikA4y/hW67kqRvaLeYmog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:7::14) by ZQ2PR01MB1226.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:11::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.32; Fri, 25 Oct
- 2024 01:45:30 +0000
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7%4]) with mapi id 15.20.8069.031; Fri, 25 Oct 2024
- 01:45:30 +0000
-From: Hal Feng <hal.feng@starfivetech.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vincent Mailhol
-	<mailhol.vincent@wanadoo.fr>, "David S . Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Emil Renner Berthing
-	<emil.renner.berthing@canonical.com>, William Qiu
-	<william.qiu@starfivetech.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-can@vger.kernel.org"
-	<linux-can@vger.kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 3/4] can: Add driver for CAST CAN Bus Controller
-Thread-Index: AQHbDP78QyTswaw7pki8MOjaOJeAtrJkTp4AgCRvd8A=
-Date: Fri, 25 Oct 2024 01:45:30 +0000
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NIBItyeLgS4NsJoFHC3Mns5cjUi0/WCdrZeWtr8m5OI=;
+ b=Nrd2PLWBeuQSOm3wGVMl8Hv18l9IOKtxHgAhxXvGG/r3uXQYfeHCi4qNHxU1i8RCpqKTlTOS8yu8y2PO/elo0jPhPwEBLBav5gpsD5LSQD280MgHTskqc9HB+pN7t7JCwuV1f82SojQOAhFnobGuU9sFukj3NNrNxGb30bS0qz2P7N5bsmmk1YW883r9NH3Pp0Hg+t5cfjmytYnVFLsvOqCdOFRWPbsGkT7VYfwQE7R3ubgg+anfBmy5f1CpEeGbXA5piA5DaCjYtaI1lVgJGnIoz5aqdCC+xvIrek9J+oGNIWQjCNGIrL35Ok7S7peIGa/ApxHx7pMr9gzt0U6ulg==
+Received: from OSQPR06MB7252.apcprd06.prod.outlook.com (2603:1096:604:29c::6)
+ by TY0PR06MB5658.apcprd06.prod.outlook.com (2603:1096:400:276::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.15; Fri, 25 Oct
+ 2024 02:00:39 +0000
+Received: from OSQPR06MB7252.apcprd06.prod.outlook.com
+ ([fe80::814e:819a:7d52:7448]) by OSQPR06MB7252.apcprd06.prod.outlook.com
+ ([fe80::814e:819a:7d52:7448%7]) with mapi id 15.20.8093.014; Fri, 25 Oct 2024
+ 02:00:39 +0000
+From: Billy Tsai <billy_tsai@aspeedtech.com>
+To: Guenter Roeck <linux@roeck-us.net>, =?Windows-1252?Q?Uwe_Kleine-K=F6nig?=
+	<u.kleine-koenig@baylibre.com>
+CC: "jdelvare@suse.com" <jdelvare@suse.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
+	<joel@jms.id.au>, "andrew@codeconstruct.com.au"
+	<andrew@codeconstruct.com.au>, "linux-hwmon@vger.kernel.org"
+	<linux-hwmon@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org"
+	<linux-pwm@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [PATCH v1 0/2] Enable WDT reload feature
+Thread-Topic: [PATCH v1 0/2] Enable WDT reload feature
+Thread-Index: AQHbJeSSyha0WSkjXEyiFAbwEDTDJrKWCnCAgAAHbgCAAKOQ0w==
+Date: Fri, 25 Oct 2024 02:00:39 +0000
 Message-ID:
- <ZQ2PR01MB1307D96BB8AC0B6BB78C97C9E64F2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
-Accept-Language: zh-CN, en-US
+ <OSQPR06MB72529E67E67D0D07E59AF1C08B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+References: <20241024071548.3370363-1-billy_tsai@aspeedtech.com>
+ <nm4ckxv6swajr6hnqlkq5uoo6ncjzlg6yfxroftat6dubiefyi@xbhi4dvqacxm>
+ <ea1be8af-0948-46b1-a1f4-fe572861cde4@roeck-us.net>
+In-Reply-To: <ea1be8af-0948-46b1-a1f4-fe572861cde4@roeck-us.net>
+Accept-Language: en-US, zh-TW
 Content-Language: en-US
 X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
+msip_labels:
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1226:EE_
-x-ms-office365-filtering-correlation-id: 6a65dc46-24da-45b1-e273-08dcf496b55d
+x-ms-traffictypediagnostic: OSQPR06MB7252:EE_|TY0PR06MB5658:EE_
+x-ms-office365-filtering-correlation-id: c026687c-aae9-47fc-86d1-08dcf498d2fa
 x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam:
- BCL:0;ARA:13230040|41320700013|1800799024|366016|7416014|38070700018;
+ BCL:0;ARA:13230040|7416014|366016|1800799024|376014|38070700018;
 x-microsoft-antispam-message-info:
- rbot1znoCX4lvo14Y705IxrheROiys5AxFF/LHPGoamt0YT1bi+wbIm6XTZ3ZqHIh+zFBzS+P5Ds5ul8qZOt75KN42bz4BEg/iAxgt2+R02NZvTiLUVb154T4sfiDAJCiDAGdhGwFlnUG0lX75iJmUZ7TQFIwT19+Lom0rg3o5andpyXyK3wuXjhaaPhfMTnG0m8jI8qhJZf0TU8a5SAacwm+p01muRjnmOQVrmAbJQ/J+Ok+GxKtg71FU8AcSH+s+rddisyeyTVFF/p6DIvfWmj7NTiZP/8dkeNo7i2yy1rc8x7Ifulvq0+okjo3vKjJI9ZumROs0ITxj2qfczzurAZPHzQiAHlyHFxV1xfUy3m4sTQPWAgz4YOhrWj+xQZlZORmJvBVdm5Su2R/Y5Hq2plPkUUQDk3ivzBp2j0jBtgZHRHoQ5zkE+RFDmWqBXzAdqkFcwohery220hAtP2pnFbWA5wGuq85EGBYGicqxjUcYsxZH5lGU9yr+ukNEPMKVzP5Hlq3ESkEjLGNcjWehaut9mIXVNt2mrfQgPMlgNlhdp6rAVAejEvNgjH9Ctl0bz5/Lj50mkOUusFUCEs/V+b4yHWFlvzmcYyWXfgXb6VtgsMmbM1vzU6RbjdNBkI
+ =?Windows-1252?Q?rjei5sVMOeLX2o9Mz5wQk8Lh5EbGFVdiQgzSLl3rnY3UA40sVg/qJVh2?=
+ =?Windows-1252?Q?6KLLv13lyfk5O+ZepKaoBCssKxB4tyilUvyWxE0LDl7kT9Tm58FtkxFV?=
+ =?Windows-1252?Q?KmLV7IrmRrEWiYfYqEH1Bj6V4LvBqgCXAn/UYibvxe55iYt+x5jNfcJP?=
+ =?Windows-1252?Q?2FeuP7dEzyEpGY3Bj56QkCAhatqmVlHPoEbo56GXLMHP7SzbSIRIY51a?=
+ =?Windows-1252?Q?2txq3amCgeGu+8tAT7Ei4xyfhnIHBC+i66oOKgz3i40MkbDUKQ7ay4cn?=
+ =?Windows-1252?Q?zdol9lLS6jMNeaqHKH9sxOuvYeEsEafN5wcNo7m0lrGWERyWQKEY4G5h?=
+ =?Windows-1252?Q?pT0D2mTCjAOeOHeEprMofRY57I7zj7tPT7ocgwFMbPl/s7cVQxNRvVWi?=
+ =?Windows-1252?Q?ahgVCkEuvAtw1ViUgiez52cZaoJpH7Yv2CuKaYxyRXnMqxh6OsYteP3S?=
+ =?Windows-1252?Q?Jte42dOmAgPiQcMZrTF6LYv6dfpVgheROf18wOee6tCuf+n0eUFqDgT+?=
+ =?Windows-1252?Q?bl2TX0+dhizxkAcllY8D1+I2IH4GAPXFkBr62NOJ713kbuW4rkrbOnVq?=
+ =?Windows-1252?Q?QyMj8pQJsN+tADgjm2UtRe02ZzlpMEnn0ABnYATHB2RKMRkXVdtvYtpW?=
+ =?Windows-1252?Q?p2f3+D+0yIEC8Dv5NibdMyqd5a/NDmEA5mneAY0Qckzt5Oh8KjXnpHY1?=
+ =?Windows-1252?Q?9jXwa2dvol7eTH++IsnI60O9k0y3b/GUNPXnXXGb1S/G7RcKFuvKm8Z5?=
+ =?Windows-1252?Q?xMozSGSO7/JrROlAH/IWNJcb+7qm2L6hUmJ91QfskFamC2RQrob9n5ey?=
+ =?Windows-1252?Q?KHPFrAVX34ZLqHK759QwYerae1cGmurRbeneIAT56ZG7ItNl/nDQtuI8?=
+ =?Windows-1252?Q?rDW63KxVE1Gg0LKGuAzot7dETyqeEC9y2OAmfjDhwkEeXO3PVlt535Eq?=
+ =?Windows-1252?Q?XePnm/ElEqJib8v4ABZhYAuZI5ZisaO9FP979ymVnoAqYQwYX83zJfcY?=
+ =?Windows-1252?Q?uxQmbkDof0qPSICG9qMoWYzEVCxGLWlbWmz2IAdXGNjoIYub3sJL9lyV?=
+ =?Windows-1252?Q?90Wp6JxSwD3qD+9mHsj2qQzh2fJh3WSnGReruGft+ec0wi8fnCijbClN?=
+ =?Windows-1252?Q?Mckf/K8FCdwPMO55KWQMc1YxsGzEzW7+T7Z8nxwIMC1RMXDw4ZRh/IoR?=
+ =?Windows-1252?Q?dHBZMgYSwQVAZpYM3wjYhtfY3sqP7ONXPhwLw7qH822ptyMvJg/8k8ZF?=
+ =?Windows-1252?Q?cAL3wA4M8q5UL152X2T9rJhNZaQ324ifWWypc4X8KQ0vNLekp31+V4ZS?=
+ =?Windows-1252?Q?KRpTgDNYwTFyTyL/yS3XrjfD0SyUGofzn5BwMn6Pao4eAQX6H5iSgTKN?=
+ =?Windows-1252?Q?7Lc4sWiVXD7oxTpu5p0/Xn9Y6fzP2pZ0iHkqyySGisdENSqRrrfGhYPl?=
+ =?Windows-1252?Q?0819yW1HhYXS7dDJ/2vDSEys17ZClrryUlgmVQNiMco=3D?=
 x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(41320700013)(1800799024)(366016)(7416014)(38070700018);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSQPR06MB7252.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(1800799024)(376014)(38070700018);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?Mmt0bDNLUHQzUFFTdTdHT2gxalgrd3pUTm5vOHE4T2ZDODR6bVFOa3k3YmJW?=
- =?utf-8?B?c1dsbzIrYk9uKzJXakEwdDB2KzkzeXRaWEM5M1BldS9oUlpnbUlDZU16M0M0?=
- =?utf-8?B?OENRQUJacXp5UTBTZmJJVEVSeWhuUm5TbStodWY1c291WDU3ZXRUS0tIN0ZT?=
- =?utf-8?B?TlVvb1VZUEJGbEhtTFA1ZTBUejV4SUtVRmREOWw3aWtWbUpxOTVVc3o3YlVY?=
- =?utf-8?B?c1VFdkgwbFd5MEY1Mnh3NVI3RGdGVjRDcmhDWHc2ZWhNMTVOSTlGaGR6R2Vm?=
- =?utf-8?B?bTl4SVM3YWtjbDZhUm1hL09uYkVKQ1NoNU9PVHZaajBrTmJsTnhQRHdzNFJu?=
- =?utf-8?B?M3ZvVXBGM1NPUGFKeTJDSGE5c1hhYTlRckIzSU1LTW13T2ZyYWRSQnhmQ3lD?=
- =?utf-8?B?Yk92VHo1RE5nS1RLcVNxd2E3UjEzNTFGTG5Hak4vMjFMMEdrRE1pTXN6bFBx?=
- =?utf-8?B?VUJ0cFhjQm1valpna3JsbXIvMVNRTkE0NTBKQjl4S3pXZmRkd2xPRHM4TlB0?=
- =?utf-8?B?eXZCVG1oVTlRODk2Snl1bUJIZlpUZmdOb1ZsVW1oNmlaNkkzYUFGVFZveGRq?=
- =?utf-8?B?NzRYVnkxNzRYUjh0R3hGNmowVUo5YXVkM3lLMVJVc0NTUlBrTGltek91YVZ3?=
- =?utf-8?B?aGxYa1JXUmwxa2xLK2VPSjRaaDJPSWd4REFoaFV2dW9zZVorNDBUd2FES2RK?=
- =?utf-8?B?dHVSUW9DUks2MkR4SU5YUm5QWkIyY3NmMkwxZC9DeEVFN0lhMEJsdmg1YTZU?=
- =?utf-8?B?bThFNTZ3ZUxudmZlMGxKeUo4c3BZUEdrZXBmbHJYeVp2Tm5zYjRsTFlmRXVj?=
- =?utf-8?B?czcrRkZGem54REpxdkgzaHVPbmkrcU5WQm9HOUpVVGNuYzNLNGpoYTNrMVVr?=
- =?utf-8?B?bFhwV014SFJNTlpUWEtWZGZvL1ZwM0lSK292YW05R0lNc2ZhWUk3T2ZhbHFI?=
- =?utf-8?B?dnRWVUdaZXZwUlI3NTZjUVVlbVBJbDhOMFFSSkZ2OUowRnJqL0VTMjEveGcy?=
- =?utf-8?B?NG1DUVBBMG1WandTQm9tMFBLekZkclhpYlRObDlxZCtZeFcweFdZeFRmb1VL?=
- =?utf-8?B?ODY4Nkc3RWVGMys3ZW9SemtVZVdod1hVVnhpRXpUNmRNRUs2bU14bVRUeit2?=
- =?utf-8?B?YzUwK0dFR3lqeUlEc2owaE5zRnd5QzE0UUZ2QXNNQnlNY1NZS3pMbkU3Q05n?=
- =?utf-8?B?MjB1VHdOZGFNaHZmOTN4ZUVhZUNuT0ZCMUo3bU1heWlrNXcvbGVPM3VsOTd4?=
- =?utf-8?B?YjJoSWJkeW41c0hVM3Bid01JNTBkSis2Snp4aExwblNJNi9zNHFDd1ZPRkhD?=
- =?utf-8?B?anRtVDFJRWZLT2RNNEJnY1J5TUE0ZmlqNzRUU3czUytSZWNVZWpmREg3aE5O?=
- =?utf-8?B?eE4zejFuSkFINU4yTUxUSlpOVDNYQzJ6MjI4NWp2cHBqWEtQaGVKNEx5eVg2?=
- =?utf-8?B?WEZYZWp3SW4yWGVnS2luTENKdy8wNjIwQUJNQ3NTR0xhT1BySkEva0xoVkxZ?=
- =?utf-8?B?NFExZjBJNDcvdkhZK1A5aFh4b3ZLdk9pQ1FNeDhXUHRQMHJSVnZ0V2hHeWhS?=
- =?utf-8?B?Zkw3ZC9tcGYxeEhGZ2t3VEJhM3hXMkREQmVUdjd6MUZiVzhGR0czR2VmNUVU?=
- =?utf-8?B?ZnZJTUFKM1hVSnl4NTNmYTBEM01KTmZvVlUvcURtN1pibG1FSHE0YjlwV3U4?=
- =?utf-8?B?NFlJMC8yZUUwb1dYVUJLWjNVTk9sZU1Cc0gycDY4NFNkRDJ4a0FwWUkxT2RC?=
- =?utf-8?B?aVJrdndZVTg4N2J0bHVOSTI2WDJHK2NDVFYrdG45T0lkTmJqQWNmUllNRTdo?=
- =?utf-8?B?dUR1RTRzMXZOSnJNclAwcE91K1pZRGVFcXRySFFnWXgvdTJOQUhtM0hLeVE4?=
- =?utf-8?B?ZzFNZFpBK29KNy8wZzdFTFpkVkd5dTh2dHgzMndpS2RlZFNWTTk4ZTVDYVhq?=
- =?utf-8?B?YVNpenJrY0xrdGNheTRNdGt0YnJJR2pKclUyUEdkZk5BdS9JWm5lNTlxNVJh?=
- =?utf-8?B?ZktkSFkxb3JMZG9nRWthUWJ4WFlaVDlDZGtPN0pxbG5lUHVmbXFCN2xpa3gr?=
- =?utf-8?B?R1h2QzZzdnQvaVJqRit6SSsrdm5nTVh1dEJwL0VqenNsOHpEbUVVdkhlZGxt?=
- =?utf-8?Q?G7MgvhC1ZZxWXZjt//f/O2fcV?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ =?Windows-1252?Q?Ul+0Ml2yaGancrIxQ0kkGKIMviwsAVbwJyhBlhuQTTzazjW1DnLIv7mq?=
+ =?Windows-1252?Q?p+afNV5EdXe2x1olFZOxe7UFwiWxPQeGyNpYgfkyDQs8C1AUZfgXDr85?=
+ =?Windows-1252?Q?3ypxYxRkop/7y9x1qQHQy4XxrDO0Izh9ToJPr/kT+vI3MhOuzr+8eB1C?=
+ =?Windows-1252?Q?m4n1QCUKbDkYDvuKotpRse5ITyxihdzfnnm/alOKJQY3PvVxz/ohEVdB?=
+ =?Windows-1252?Q?/kv3y5AAYu6wlrJ2mlBa1mRmQEmofq71Htg6VIgQXFkzqdQ3QbFHQ66/?=
+ =?Windows-1252?Q?4C7T4ac4sCN+AbRNdagZX9xXhCNdVYrGn05mG71hoSniVovmonxekP1L?=
+ =?Windows-1252?Q?0/soch5SsW5WzFuvWrN6EPbsT+OiEnqNjUmM2uM+bCxVXHF52rYAqRl2?=
+ =?Windows-1252?Q?unjFCXZG7OUz+huWMoTRFGDavEc+n6mWUcwAJRx08aF7ln/a70pPDJnH?=
+ =?Windows-1252?Q?yt2xn2li2bzMZjFbwOqALdQyHjF2+Df3iWE/WkmajsxM8+oGyBlRo04F?=
+ =?Windows-1252?Q?3gUD2OVF+/Xus3sthvvFW8Rhm0ymDeche4XVE36c5GLypWmdxBishGmm?=
+ =?Windows-1252?Q?vs6K2It0Xxd04F3gTClWOHk6cquZM0esPoUL3EuDTGUwxs+8F+WWcukb?=
+ =?Windows-1252?Q?H3kMqogXwyjjZ3rSBHgYSaBn25VG/JhHHT4FtCkkTbLx2Un+N4f4+ZgS?=
+ =?Windows-1252?Q?jc5XSWLgqDlYDfyA22Hay+NCvs4XF6oDATgwfsUN29XnBaf2VBkLMzRP?=
+ =?Windows-1252?Q?XQAJ8dGygBnSFKm4ha4KmKALP/ngKGvQKZHEYfm2bMlmx8od2TLXxgko?=
+ =?Windows-1252?Q?P2u0jeXQhvzAin8jLMiDWYAYkX5stJ9hgfD7NCA9Q9TMkmnPEQ6QbdjP?=
+ =?Windows-1252?Q?iEHdKaRa3OABX97983R2KgTGrAM6694L/Db8ZMuqcCB4RR4J2BMK/JUF?=
+ =?Windows-1252?Q?Uu/vZtsFKPQcp1JAblqjqg+HqzySrMMPNc8qdCnIRO8/UP1gAIY+x065?=
+ =?Windows-1252?Q?NbLmEpNrYjY7od/ak8dQ4kZAlkYstwfXnExBLjhVgKjkbe1NMcI5jazF?=
+ =?Windows-1252?Q?/3ugp6ZDY1iGP/5T6UROufI8QHS6GKTLogSjouS8c6OoMGOElMyb+rxe?=
+ =?Windows-1252?Q?khZdVx8Ft84aDQyqSuXTgpBC+nbUUXSYnDZW6/t06BnYjYF2o/0OWhV0?=
+ =?Windows-1252?Q?kdAZblwDqdFRCFJJ4eg2QfwaagWh61ptK4N9W8L0ydIpUHjUexbK+Z05?=
+ =?Windows-1252?Q?EH4xMWcb8YRCnK3Mp5aBbHw0RJ3GqFFG+88SuV3AiB8ulBAo8xj0/rSK?=
+ =?Windows-1252?Q?Amj6FsARvBud9pGdro7HxWMB3+GoDS1ZPrGu/A4kXOnkVJehcRwLoisk?=
+ =?Windows-1252?Q?N/ULKkTarEaEOGInaI8d1b8AGxdoc+4pI3Q+XgbNFFvhdwGgRisS95mC?=
+ =?Windows-1252?Q?pfojbyVv86cPs1uX1nEV8mlyQLokaJ8z3P3rwdz2144ktjvPsHh5SnpD?=
+ =?Windows-1252?Q?J6BCvQzmPpZcgJ1y+vGTc8vdTVIvqhyVp1ZYuzAi4984bcBY1Nxdnog6?=
+ =?Windows-1252?Q?ipSszhPwzu9OizF6914sAtcw5LUlzASB7yiQl7rvcQvtT53bpMp9GamL?=
+ =?Windows-1252?Q?BjAHDBfKsu92gA2kuqHqvukXg4DmdhXak/LnKdd22eBxIv9nXYln+fxv?=
+ =?Windows-1252?Q?cx46AWW2cbstaKeE8IdCl2MHEv+dq48e?=
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
+X-OriginatorOrg: aspeedtech.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a65dc46-24da-45b1-e273-08dcf496b55d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2024 01:45:30.4352
+X-MS-Exchange-CrossTenant-AuthSource: OSQPR06MB7252.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c026687c-aae9-47fc-86d1-08dcf498d2fa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2024 02:00:39.1464
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 79nhMMr6xVCni026s1iCs7U8Z6DOAveML4QVqSGGu6w/2ZTxvZNlgPbDCpxgBMwoA2I48gjgeoJu00fZh3DOC8Zy2iL9IDG0ij27e84dp5g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1226
+X-MS-Exchange-CrossTenant-userprincipalname: AvSnIgNuUaSWsxAmVQxmw1hdrgoQy3yG5f/anKM1dfdBbt4aNXUZIvzoO159/t08YbhqEgugA0puVM9AbQcxkqLDSDUCGrkG74SDnMT3q+U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5658
 
-T24gOS8yMy8yMDI0IDU6MTQgQU0sIE1hcmMgS2xlaW5lLUJ1ZGRlIHdyb3RlOiANCj4gT24gMjIu
-MDkuMjAyNCAyMjo1MTo0OSwgSGFsIEZlbmcgd3JvdGU6DQo+ID4gRnJvbTogV2lsbGlhbSBRaXUg
-PHdpbGxpYW0ucWl1QHN0YXJmaXZldGVjaC5jb20+DQo+ID4NCj4gPiBBZGQgZHJpdmVyIGZvciBD
-QVNUIENBTiBCdXMgQ29udHJvbGxlciB1c2VkIG9uIFN0YXJGaXZlIEpINzExMCBTb0MuDQo+IA0K
-PiBIYXZlIHlvdSByZWFkIG1lIHJldmlldyBvZiB0aGUgdjEgb2YgdGhpcyBzZXJpZXM/DQo+IA0K
-PiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNDAxMjktem9uZS1kZWZhbWUtYzU1ODBl
-NTk2ZjcyLQ0KPiBta2xAcGVuZ3V0cm9uaXguZGUvDQoNClllcywgSSBtb2RpZnkgYWNjb3JkaW5n
-bHkgZXhjZXB0IHVzaW5nIEZJRUxEX0dFVCgpIC8gRklFTERfUFJFUCgpLCB1c2luZw0Kcnhfb2Zm
-bG9hZCBoZWxwZXIgYW5kIHRoZSBzaGFyZWQgaW50ZXJydXB0IGZsYWcuIEkgZm91bmQgRklFTERf
-R0VUKCkgLyBGSUVMRF9QUkVQKCkNCmNhbiBvbmx5IGJlIHVzZWQgd2hlbiB0aGUgbWFzayBpcyBh
-IGNvbnN0YW50LCBhbmQgdGhlIENBTiBtb2R1bGUgd29uJ3QNCndvcmsgbm9ybWFsbHkgaWYgSSBj
-aGFuZ2UgdGhlIGludGVycnVwdCBmbGFnIHRvIDAuIEkgd2lsbCB0cnkgdG8gdXNpbmcgcnhfb2Zm
-bG9hZCBoZWxwZXINCmluIHRoZSBuZXh0IHZlcnNpb24uDQoNCkJlc3QgcmVnYXJkcywNCkhhbA0K
+> On 10/24/24 08:40, Uwe Kleine-K=F6nig wrote:=0A=
+> > Hello,=0A=
+> >=0A=
+> > On Thu, Oct 24, 2024 at 03:15:46PM +0800, Billy Tsai wrote:=0A=
+> >> Aspeed PWM controller has the WDT reload feature, which changes the du=
+ty=0A=
+> >> cycle to a preprogrammed value after a WDT/EXTRST#.=0A=
+> >>=0A=
+> >> Billy Tsai (2):=0A=
+> >>    hwmon: (aspeed-g6-pwm-tacho): Extend the #pwm-cells to 4=0A=
+> >>    hwmon: (aspeed-g6-pwm-tacho): Support the WDT reload=0A=
+> >=0A=
+> > Huh, I'm not convinced that extending #pwm-cells for that feature is a=
+=0A=
+> > good idea. Unless I'm missing something none of the other supported PWM=
+=0A=
+> > chips can do that, so I hesitate to change a standard for it. I suggest=
+=0A=
+> > to make this a separate property instead.=0A=
+> >=0A=
+=0A=
+> Agreed.=0A=
+> Guenter=0A=
+=0A=
+Hi Uwe and Guenter,=0A=
+=0A=
+Using a separate property to enable this feature is a straightforward metho=
+d, but I don=92t understand why extending #pwm-cells isn=92t a good idea in=
+ my situation. The feature =91WDT reload=92 can be set for individual PWM c=
+hannels, and the PWM subsystem has the of_xlate callback hook, which allows=
+ each driver to define its arguments for the PWM consumer. I=92m unsure if =
+I misunderstood this callback usage, as I couldn=92t find examples. If my u=
+nderstanding is correct, this method is better for adding our specific feat=
+ure, rather than using child nodes or separate properties to indicate which=
+ PWM channel should enable this feature with the corresponding duty cycle v=
+alues. I think using separate properties to achieve this feature would be q=
+uite cumbersome.=0A=
+As I know the arguments for this usage are as follows:=0A=
+First: PWM channel index=0A=
+Second: PWM period in ns=0A=
+Third: PWM polarity=0A=
+Therefore, I extended our feature to a fourth argument to avoid any confusi=
+on regarding usage and added the description in our yaml file.=0A=
+=0A=
+If my thinking is incorrect or doesn=92t make sense, please let me know.=0A=
+=0A=
+Thanks=0A=
+=0A=
 
