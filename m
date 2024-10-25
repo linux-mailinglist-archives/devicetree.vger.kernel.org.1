@@ -1,131 +1,113 @@
-Return-Path: <devicetree+bounces-115487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C929AFC1E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:08:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A17EA9AFC2E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6DE71F245FD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:08:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 676372822B3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD2A01C4A13;
-	Fri, 25 Oct 2024 08:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004171C4A29;
+	Fri, 25 Oct 2024 08:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JnpMC4X8"
+	dkim=pass (1024-bit key) header.d=jia.je header.i=@jia.je header.b="wOdIZxNQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from hognose1.porkbun.com (hognose1.porkbun.com [35.82.102.206])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C419F1CFEB1;
-	Fri, 25 Oct 2024 08:08:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B120E18CBF8;
+	Fri, 25 Oct 2024 08:09:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.82.102.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729843682; cv=none; b=iBfNRS0QSdGnP2FHB58G9aAjf65aJfGiq7hpG3dvkBFFtkFyHKVPakTjuRd4shjRTDnDFSQOEnT4o4IOjNtaVg1ebMrKDGyZNVBASm3o+QzBiTDU2BgQ7mJU3w+OmAQTYVZe7+58GIwDl8pwM1j8enFu1gQtAo+2IwEkrBnmDXA=
+	t=1729843743; cv=none; b=HLsTclBAuka+vI93JopwISXWxkqyyTDFKpYwQ8XshXD77vT8cSCRPzuaLIgoqdy2/GBS6/U9TOO4vX0VdwOPGJhzX7Bd8I/MUyksThk0gsUhKKfTvh8XY1jtsm38nLBnxR3U/EwpwkspX6VSxNoTdx2Uo6VehkJ6NP5CNMC619s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729843682; c=relaxed/simple;
-	bh=O8pyvZDag9iaANQFXZ/6mrX2jzrwvBo2OjNwZJ++M5M=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=leN6mo3j/gydK3bSpm0s1Esi7k2mUrB2JsX8eycWvyb3Cx1tzACMFOR+94WlkN6/GI1zmVp5gYRQ73CGEAq/IgIIyO7qdliE64BfyoKJMbpX6Ynmr8ztno6nIN2qr/wH/eBtwhS+tgR66HZPy25V6qsaKs5vutFHrv7u+ORC5kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JnpMC4X8; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7093997dffdso722873a34.2;
-        Fri, 25 Oct 2024 01:08:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729843680; x=1730448480; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rN5eVpbvHpbGL4WpynMeSKENdrHYe60OqvDbvd5Xiq4=;
-        b=JnpMC4X8Zo+mJvC94C/wBFBnWIV/P1Q6LCRK4WlGmWRTJLiE82oJXUAzTsGbNCGNwn
-         UkuG9Fs3r4RKKm8n2pZhLqkBgvtdjSo+rcyocV279lbihgZXpVjjUS0II+qiT8y1Musq
-         sCrPDYXnJpWOIWyEP4XI7M+gSGcQTmfd8BB82K8hr0O9xiLJxRwC/JlQiZ5ps95hWsYL
-         1M7eEOddA/GHdaPztcmSsStPuN9jnva86RnV2Pu6vD7k5X1yR2Z52A0xM+2RusKNMtJ7
-         1kd4/jl1BUzZknT0+i9+uxEHJFa7vy4zxEq6zju+LpDGkFOjt8kGJHsGZfSbCS5rnsDb
-         KBMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729843680; x=1730448480;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rN5eVpbvHpbGL4WpynMeSKENdrHYe60OqvDbvd5Xiq4=;
-        b=YK9LNcqeGhw3iaWoi1UuLsnLfiBgKMNb1jpXamfpkpVoZeud1XAg4+cAEo0IQPA7X5
-         6ujI77pZ8Ee1S5nMDsSW7Eo1nBxmMWJgP0MZnBD7N2bG/lAcUwKvVHEdZd09Fx5zcfGF
-         q7T0L1iecCFR+iCvzYF5X5dYaNysWJMYeXrfRV0rRPzJIKd6b4R150L047y7gNJaYEPH
-         nIDchng/AD9QIbaoKI27TXhRp6ixCu5XadgVdBjgHThSHn+GT2igZ8xi4HK3mllTiDuL
-         5xrO/sYJwJGxOe5OmSxckZQ5a3G5rgoVgv+Beuc6HCGqLRHNzzVBT1FJiCQaoC9F31ii
-         FYZw==
-X-Forwarded-Encrypted: i=1; AJvYcCW7Af8Jxgvg9kXhPpM0fvRA5t5t1mGmED4qFzcBjw+erkWFOjp/nUHSNwyEPVFTmhUon5FuiLAV8ZEtY754@vger.kernel.org, AJvYcCWrL4Jo05Oy8c1oVXfjewD2r8NjyvSM50dh4GZXxJS0YmYXNnAGrVGbJigpYYqouifWcdstJvpu6585@vger.kernel.org, AJvYcCXbB/HotLUOMNgX4nTxsaUzb7BIx+MqPDIiE5Egf3Me3Fk5+UllU1+D7kKozRe5zrXGGl2nA6g1jkkf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxfrc8jjfgkQraJh3KQUgVHrYt0v/VOo4s5ZaRzNCpZF2EdsKLF
-	ZBf1yOWIL8UWA1PDIfQIu4HDclq/NXIstp1+cSLK7uDkpj++qmCq
-X-Google-Smtp-Source: AGHT+IE+aA1kZV0Gkelsvo6Wh/wBlEOQ5MwEkYl2tGn0oofv0qQbf+/aSQ5fFXMTaUtSRKeXwOxgcg==
-X-Received: by 2002:a05:6830:6f01:b0:718:10ce:c6a7 with SMTP id 46e09a7af769-7184b348e49mr7419539a34.30.1729843679811;
-        Fri, 25 Oct 2024 01:07:59 -0700 (PDT)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec1859b627sm160231eaf.18.2024.10.25.01.07.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 01:07:58 -0700 (PDT)
-From: Chen Wang <unicornxw@gmail.com>
-To: ukleinek@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	unicorn_wang@outlook.com,
-	inochiama@outlook.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	chunzhi.lin@sophgo.com
-Subject: [PATCH v5 3/3] riscv: sophgo: dts: add pwm controller for SG2042 SoC
-Date: Fri, 25 Oct 2024 16:07:51 +0800
-Message-Id: <f3a0748a6c59ba3ee8090a9092040a63823affca.1729843087.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1729843087.git.unicorn_wang@outlook.com>
-References: <cover.1729843087.git.unicorn_wang@outlook.com>
+	s=arc-20240116; t=1729843743; c=relaxed/simple;
+	bh=udj4OU6vBVBTXv06RmJ/hQAKYTOBPesKc3qM4ATbetg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ibOaZdo0nVEjZhUXlEZ18Cf3HjnEF/FnxgEklUiNdCfuTmadQ+ezjSA96uc2NV0m5lC7pjgWVbDICO9PJFVkWgP1+08UadliQ1soWwZH59T8uNRjiLcyG8XLIFe+YsHX9IM5hYQzqSXHrTLYZPENKYEDCow0l57Pa8/execOp24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jia.je; spf=pass smtp.mailfrom=jia.je; dkim=pass (1024-bit key) header.d=jia.je header.i=@jia.je header.b=wOdIZxNQ; arc=none smtp.client-ip=35.82.102.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jia.je
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jia.je
+Received: from [192.168.0.18] (unknown [36.112.207.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client did not present a certificate)
+	(Authenticated sender: c@jia.je)
+	by hognose1.porkbun.com (Postfix) with ESMTPSA id 9F90B4BD68;
+	Fri, 25 Oct 2024 08:08:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jia.je; s=default;
+	t=1729843741; bh=hOgFl4xdVDlYtBMop6FvdwBRhm176QROYeQduhd9ay0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=wOdIZxNQV8TQzt6kMltfmTt8CZsQWCi4CZlKZBnGHc7mLKFEGW0vAXABDPn5xzRKJ
+	 4ilFy8v0v/egNLHrsRGK65uYJ5AcAyq3r385P0drickwUAQ6H5yP/HRHc32QCYzdM1
+	 BSTZObPqkMVordZUI7mN0DcDvYYRhy7CXgfQmwLc=
+Message-ID: <270a2b73-087e-466d-9ba9-fb696167d507@jia.je>
+Date: Fri, 25 Oct 2024 16:08:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Add performance hint for
+ boost clock
+To: Marc Zyngier <maz@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241025031257.6284-2-c@jia.je> <86jzdw3977.wl-maz@kernel.org>
+Content-Language: en-US
+From: Jiajie Chen <c@jia.je>
+In-Reply-To: <86jzdw3977.wl-maz@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Chen Wang <unicorn_wang@outlook.com>
 
-SG2042 has one PWM controller, which has 4 pwm output channels.
+On 2024/10/25 15:58, Marc Zyngier wrote:
+> On Fri, 25 Oct 2024 04:12:58 +0100,
+> Jiajie Chen <c@jia.je> wrote:
+>> The x1e80100 CPU can have up to two cores running at 4.0 GHz, with one
+>> core in the second cluster (cores 4-7) and the other in the third
+>> cluster (cores 8-11). However, the scheduler is currently unaware of
+>> this, leading to scenarios where a single core benchmark might run at
+>> 3.4 GHz when scheduled to the first cluster.
+>>
+>> This patch introduces capacity-dmips-mhz nodes to each CPU node in the
+>> DTS. For cores numbered 4 and 8, the capacities are set to 1200, while
+>> others are set to 1024. This ensures that the two cores can be
+>> prioritized for scheduling. The value 1200 is derived from approximately
+>> `1024/3.4*4.0`.
+>>
+>> Note that capacity-dmips-mhz is not ideally suited for this purpose, as
+>> it was designed to differentiate between performance and efficient
+>> cores, not for core boosting. According to its definition, DMIPS/MHz
+>> actually decreases with higher frequencies. However, since the CPU does
+>> not support AMU, and no elegant solution was found, this approach is
+>> used as a workaround.
+> Are you sure?
+>
+> [    0.570323] CPU features: detected: Activity Monitors Unit (AMU) on CPU0-11
+>
+> So activity monitors are available. Not that what you have here is not
+> useful, but this comment seems a bit... surprising.
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- arch/riscv/boot/dts/sophgo/sg2042.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Sorry for the false claim, I was looking for AMU at /proc/cpuinfo, which 
+is not there. But it did not help the scheduling somehow. Let me have a 
+look at it.
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 4e5fa6591623..cc33115fcd8c 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -165,6 +165,15 @@ port2a: gpio-controller@0 {
- 			};
- 		};
- 
-+		pwm: pwm@703000c000 {
-+			compatible = "sophgo,sg2042-pwm";
-+			reg = <0x70 0x3000c000 0x0 0x20>;
-+			#pwm-cells = <2>;
-+			clocks = <&clkgen GATE_CLK_APB_PWM>;
-+			clock-names = "apb";
-+			resets = <&rstgen RST_PWM>;
-+		};
-+
- 		pllclk: clock-controller@70300100c0 {
- 			compatible = "sophgo,sg2042-pll";
- 			reg = <0x70 0x300100c0 0x0 0x40>;
--- 
-2.34.1
 
+Best regards,
+
+Jiajie Chen
+
+>
+> Thanks,
+>
+> 	M.
+>
 
