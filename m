@@ -1,149 +1,125 @@
-Return-Path: <devicetree+bounces-115697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7C759B0633
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:52:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D119B0636
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:52:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBB951C22659
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:52:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 389BC1C225C0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB6513A40C;
-	Fri, 25 Oct 2024 14:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258071586D3;
+	Fri, 25 Oct 2024 14:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PUVLJP/Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DtbbuTAr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7FF82D98
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 14:51:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90DB14B06C
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 14:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729867916; cv=none; b=Cpm0i0XZBrpsmTGwiVUecZSi1tutrB783SqiFJJzwWbujxDaFIpcPv2q20K6xp1uljfLe6ZfOQpFW3ZMrxlR4fMOs/f4rMxqsbqU8Uej1/Ax49x+A0L/gkb4FlxOVZyvIwL0CVNVIlC78/EItH7C655FpBNK2bWA2otf57PBJd8=
+	t=1729867919; cv=none; b=gdhNJJEoyQdMeoC/zmkiRzhJXVWazaFqdvpkGfqCXY0E1NcsJRcRiAeCrLgQLVYMU8U1cWJb4mQ5WaIPFKWcQGVg+g9GMamoYZJsnGWlmoDV53urNiKpmYPq17pGk3E1FVVIsU1g/AlK27II8aGfDkl0LrNV2aEJu/K+LN8giVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729867916; c=relaxed/simple;
-	bh=v2So7uP5Tsr6CX6ubTUEEtYcoMRLvlU2scu8vjwx6BU=;
+	s=arc-20240116; t=1729867919; c=relaxed/simple;
+	bh=Vx8Bd9sC0kDg9EtadUja5JmXpyq7Oneb9WEXhTdHlV0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Oe/GMw7Q4C38GIrnd+16omjoyxp5XXXgpJwlrojoV/nfw5fBILozXjb5iHnP6sGttf3rEHIWD8V1++KymQxdEhRodKCG5eGuRI+g9alIZBTy/BZeC40LprTAzdysC8ZiYcGRrNZh3JxGl1HrgC/Z9tiWPGDcS7SFNl34AU99cJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PUVLJP/Z; arc=none smtp.client-ip=209.85.218.49
+	 To:Cc:Content-Type; b=VWCpvnK0+J2eMdt+RxObQpUXhFT3OyZWiGKSPywF1M6UAwSWkwDq1XeL1uj67MzDkp0ls8j2iVtZLj5cpSSAwvgi9iPlLFdQK0hSSrTw7r2i4DG0HVxiYzCOA/PQG6et/vjnZVw81fI+xsAwlV43Cxay5NVrokHxCUjp4AbA+wE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DtbbuTAr; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9a5f555cfbso137439966b.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 07:51:53 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5cacb76e924so2766280a12.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 07:51:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729867912; x=1730472712; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729867915; x=1730472715; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zgU53FZ8la9axnoKCOcvjKd+4k0u7BILSfDtxg0QRPI=;
-        b=PUVLJP/Z1dIAngXxdZtkY7Bv2ydv8eZJiA44dXMVCXxJ/pOiF6sO9NyvOCo46FbuFv
-         k9mNZn0EJRtPS4LrMimkNneBHzixtFTjzyqNXIFcTzlMjxq+hVAn6XRTxFXQWdzfmddd
-         pi8O0oPsyAwJXdk+UoUQ28e2mZTICHY0Ym1WXKcw1IJAkt8D+eKYqSCJW/JyYCVFO93g
-         5YC/Ll67cejzixN3f88BzHBmzZqZIzsTmg/EGKrMDCq/skxaEub80j5jPoO9j/n6SirI
-         HOnNCTEcyeju2gY503+oc6tX8oC3ty45I/bmPY572UYc4we/oX8sFp/Sf1H3f/5gRoIk
-         YZBA==
+        bh=XR/4Fvu0tMyoCCtOc6mB1xqHO3YtOWoM5ClealtuxgM=;
+        b=DtbbuTArMtW2T0bqSX1pVoWD20AfmSyMOJ8GbpoFowvd4ffVs/ujY1+qCQFqAFkTge
+         FquSFOvIjFqwj4y95Px555IpeFfQYj1/S9GqyZEgM3fVd2N6mvUMzoDge2C7Y11L22To
+         DW+BLGcnLneLl06Tn3ZeZIPnlK6fUTLzJCynvEGqzI1FZ/tg7jE5oK/OM7I406PadcfQ
+         FWGCDw4zSA/kf2Fpm6o+z09329HNieJCK5jW0aklvKlTF2fiqFXb1pwJ7E0BsooJ3D1K
+         74CIdt56kYTJTjmu7uqASx45gL5mArJc9uCEY4p9vF94DsZ8Djrua3h4iIFnK/QRLnw1
+         egJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729867912; x=1730472712;
+        d=1e100.net; s=20230601; t=1729867915; x=1730472715;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zgU53FZ8la9axnoKCOcvjKd+4k0u7BILSfDtxg0QRPI=;
-        b=j0Ru6oa/vW9yrlRmbFT2e2HEfrB33w4LBHJVoGT/k1Cx2NH3ybWX3MuNKo3k6ljOi8
-         pciBLpVh2JOr35ph+kzOvTppk46YJSkj3ZRejoS3t5zGzELbIdWJdgh46Hs/2yTph4qd
-         1HuzjHsRij0tk4tx+9RL47UOk0iosTp39R5VpIduI+QRVTYA3DiJt5YN/Cp01BVKW8eW
-         TuDTtAdT3NWAQ2Y+PLVaq7Qok2wdu5jcoqce8NZ3WxytAvtQoynfIqvXGvGPG07ZCng9
-         Y+lLuPvqDf3E556en+JHchq8M7iTK0v7fY1BRQEwH8qYmXYydylFsdwC6YTeZPwtG/fc
-         9S2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUm/xp6SOWJGKXuweS9JE3/06Wx+ZSxetyeHZsJofZak9aaCq2zl3s8ijdhTsTlCUKhbtcHqUGCuBho@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx00Wzi/zqlZXBJJEjREanZLjSuL8/JvlM3g1jydYy9Ki3N2qNO
-	1fcv7m89S3ODN5CjbhW8sQ0pkn50V4/QLfPWyeTSjLAk1hNiYuKhuwYMsiyriLYaBSyUXzSalp8
-	yw7jRm/K3tkOYNf2iF7t5dz0pBAI5pgyS/CjbqQ==
-X-Google-Smtp-Source: AGHT+IHnFb0iOpZ/0Hp5TvXS/ZuM2bGwLzFWSn0pQnl2sSkvF8LyDfB90uSqrDGmm+JEY5ML+QSfDQ6nhEYL9j8MdQM=
-X-Received: by 2002:a05:6402:254b:b0:5c9:34b4:69a8 with SMTP id
- 4fb4d7f45d1cf-5cb8af7eb66mr11748618a12.6.1729867912198; Fri, 25 Oct 2024
- 07:51:52 -0700 (PDT)
+        bh=XR/4Fvu0tMyoCCtOc6mB1xqHO3YtOWoM5ClealtuxgM=;
+        b=SfbqQT8IRAZTy6wylJ9zKeDy7a/PoaFzaGYahnQ+SHo0vMiS42SD7IdCM0RK+bE9RQ
+         qtkjCFPHvgIj0dLhDSp0cl/MgsmEFL0RO5cdT0rG2vUAK+QO4XmlhAPsE0AKbUDE2glf
+         SuXIwfmh+S2+Q5U10WPtFnA1cbTpolnDmkfpK444UUwjZMLqQjSj+HeKGLRXX8i9EL2j
+         OQQCXqF8u7QnW2ei/fkhr/PgI/h77/2TgLzzp2F9f7VaUN8sCJMRJg+1HSHODsgadlsg
+         uSZ9+fL/GIE7+k4REwnvVC0WU1QfK4OPa1zmpwKgn/rCzhVJzozMCjJKCgtGm6He/lAG
+         BSZg==
+X-Forwarded-Encrypted: i=1; AJvYcCXRvVMBJRS0o/0Or85wpjRJ1N0xKL0KpMDDfimldSWWE/02QrHL/zdnV0AiQor/vTowEIxVN0lYI8s2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjxdP6zOVB0MBkUAlmWBCOCHcPmGjQ21JcaiRHzOFnaK0Lk5MM
+	9stDR1tC7n/NL1+cXONvUrTIeSOhO88un62Q4+nQ1/gRnFzfCOHC+zblcM987jIBmawpf9z3c7D
+	1XUOLMLYpgFzrvu1udSlUEEs84oHeyhIr99b9nA==
+X-Google-Smtp-Source: AGHT+IER6oLuLAmMqy0L4qN7TusuZBghOustjiSV8015jNjOqosSq06NJ/Zu1YsQk+kV8Qw7CqO4h9Ex1wfPvyXxJpM=
+X-Received: by 2002:a05:6402:1ed6:b0:5ca:18bc:8358 with SMTP id
+ 4fb4d7f45d1cf-5cb8b264348mr8002531a12.24.1729867915170; Fri, 25 Oct 2024
+ 07:51:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241011024906.8173-1-andy-ld.lu@mediatek.com>
-In-Reply-To: <20241011024906.8173-1-andy-ld.lu@mediatek.com>
+References: <20241012143826.7690-1-linux@fw-web.de>
+In-Reply-To: <20241012143826.7690-1-linux@fw-web.de>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 25 Oct 2024 16:51:13 +0200
-Message-ID: <CAPDyKFrtKgqY_7MkZ6R51NhdD3s=rcp6RN41pQJr6JJZv6ugNw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] Add mtk-sd support for MT8196
-To: Andy-ld Lu <andy-ld.lu@mediatek.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, wenbin.mei@mediatek.com, 
+Date: Fri, 25 Oct 2024 16:51:16 +0200
+Message-ID: <CAPDyKFp192dy_OXXYk5zqJQPUvrTwkQYPaMoFVsHHQiO74U1eg@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] Add mmc support for mt7988
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Chaotian Jing <chaotian.jing@mediatek.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Wenbin Mei <wenbin.mei@mediatek.com>, Frank Wunderlich <frank-w@public-files.de>, 
 	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
+	linux-mediatek@lists.infradead.org, daniel@makrotopia.org, john@phrozen.org, 
+	eladwf@gmail.com, ansuelsmth@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 11 Oct 2024 at 04:49, Andy-ld Lu <andy-ld.lu@mediatek.com> wrote:
+On Sat, 12 Oct 2024 at 16:38, Frank Wunderlich <linux@fw-web.de> wrote:
 >
-> There are some new features for Mediatek SoC MT8196, which include new
-> command/data transmitting and receiving path (abbreviated as tx/rx), and
-> two modified register settings.
+> From: Frank Wunderlich <frank-w@public-files.de>
 >
-> The driver code has to be adapted to implement the above changes, and the
-> compatible string 'mediatek,mt8196-mmc' is added to driver and devicetree
-> bindings.
+> Add MMC-Support for MT798 SoC
 >
-> ---
-> Changes in v4:
-> - Reorder the first two commits, and update the commit message to explain
->   why the settings of stop_dly_sel and pop_en_cnt are variant.
+> changes in v4:
+> - drop minitems because of dt_binding_check error
+> - explain mt7988 compatible with mt7986 platform data in commit description
+> changes in v3:
+> - use mt7986 platform-data with the mt7988 compatible
 
-The series applied for next, thanks!
-
-Note that, I have put patch3 as the first one. Updates of the DT
-bindings should come prior to the driver updates that make use of the
-them.
+Applied for next, thanks!
 
 Kind regards
 Uffe
 
 
 >
-> Changes in v3:
-> - Separate the settings for stop_dly_sel and pop_en_cnt to a different
->   commit;
-> - Add the original value of stop_dly_sel to the platdata of legacy SoCs,
->   for unified code setting;
-> - Change to return if host->top_base is NULL in msdc_new_tx_setting function,
->   to simplify coding;
-> - Optimize the location of assignment for 'timing_changed' in msdc_set_mclk
->   function.
+> changes in v2:
+> - corrected minItems to require all 4 clocks
 >
-> Changes in v2:
-> - Use compatible string 'mediatek,mt8196-mmc' to replace 'mediatek,msdc-v2';
-> - Remove the 'mediatek,stop-dly-sel', 'mediatek,pop-en-cnt' and 'mediatek,
->   prohibit-gate-cg' in devicetree bindings, due to SoC dependent;
-> - Add 'stop_dly_sel' and 'pop_en_cnt' to the compatiblity structure for
->   different register settings;
-> - The SoC's upgraded version would discard the bus design that detect source
->   clock CG when the CPU access the IP registers, so drop the related control
->   flow with 'prohibit_gate_cg' flag.
 >
-> Link to v1:
-> https://patchwork.kernel.org/patch/13812924
+> Frank Wunderlich (2):
+>   dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+>   mmc: mtk-sd: add support for mt7988
 >
-> ---
-> Andy-ld Lu (3):
->   mmc: mtk-sd: Add stop_dly_sel and pop_en_cnt to platform data
->   mmc: mtk-sd: Add support for MT8196
->   dt-bindings: mmc: mtk-sd: Add support for MT8196
->
->  .../devicetree/bindings/mmc/mtk-sd.yaml       |   2 +
->  drivers/mmc/host/mtk-sd.c                     | 166 +++++++++++++++---
->  2 files changed, 147 insertions(+), 21 deletions(-)
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 22 +++++++++++++++++++
+>  drivers/mmc/host/mtk-sd.c                     |  1 +
+>  2 files changed, 23 insertions(+)
 >
 > --
-> 2.46.0
+> 2.43.0
 >
 
