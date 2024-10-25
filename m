@@ -1,77 +1,76 @@
-Return-Path: <devicetree+bounces-115528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CBEB9AFEF1
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 11:51:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7519AFEF5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 11:51:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CCB9B23984
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:51:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FDE5B23C8F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE2B1DD0D7;
-	Fri, 25 Oct 2024 09:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1B41DD891;
+	Fri, 25 Oct 2024 09:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ft5xk7zE"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="i3iQK5dm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1996D1D88D1
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44131DAC99
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729849862; cv=none; b=WRDw939sYNu7pTaRyJBVokxZZldyruhQNruZm/4hOjKurpkmaZ6QzWxJHS13xvAUHw1wNoXaXKLpeuMoAJZzsIFR9/TbjV/0WtL27Phh3eyYVvHZzxXd4/ku+dNGtyzaNf4o7NYt8UiM6oFeZYWyJQHzVY1uBFABmXr1HDLNTjI=
+	t=1729849864; cv=none; b=a6zhSu4SNCrXHAAA512e7hSC18s7RiLsVr5I/QWY9Kyqhx+AmLZCBxcgAhvbaIQYm6FxzKa4a7RUE+gatNjJnbrvTv/W7wq1x8VbdoHl3Bdn8Vag+dnarEcbLdscHBK30pCapP3NRUOAqC1TXwnDS0YjucP5L1GFioaldqrx6bQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729849862; c=relaxed/simple;
-	bh=ojKSNyD2EVe/IEDwrN7wNa8IQCtyeU4dv9gi0XQu3WA=;
+	s=arc-20240116; t=1729849864; c=relaxed/simple;
+	bh=I2hKyJkE5lSaVfqcBggLmA5y3mTRzqksloo07yQRvt0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=s/VrGWzrP4f+GEVJ5pFUXFVV9deAowB5g6rhDvShhW3PBCqqGEp1vCZ69sYDDTZbekiltqYNjK81l+Kyfej+ay74+Mj1bjAGWVZwJp06UWYTC0/5FnFF+jLebbxZBdmnZ4+BypDKL6NxoLbVZ/bsBZgmPea6B1GsPNs8tJFrqeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ft5xk7zE; arc=none smtp.client-ip=209.85.128.66
+	 In-Reply-To:To:Cc; b=lN0HYB8lDFRBc2/GWkwYWlqTPJmhR/28U7uyVbqme73DnNsUeVHUyHcpC+2kUzF3tjr2nNM1E7eFM5nvlUS2nk84V0zAnO/zdOXCB9j3Uz/dmGp2S6TFZeR1MApfKK7iK0kiFOeKAq9lJvMEmfJSZxLW5QB4AWoG2GPE8EIAR34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=i3iQK5dm; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-4314fa33a35so18275005e9.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 02:50:59 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4316f3d3c21so18161145e9.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 02:51:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729849858; x=1730454658; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729849860; x=1730454660; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6D/EkgzRCNFr6KoXbaTUBYL2k31iFO9iPQDbeDyGB5w=;
-        b=Ft5xk7zE3nekx2+aWnDPPFJ+Ft9/CgUtKSUPaAaDiNRcI5lJ0XZGDHgzSy7S/yOk2z
-         7gWKcyBmbM3+HSIVOGoTbpMKQZu18/EywWFk9CNqeTAZLOFEJRTba37JbTvKTtXwsTNK
-         E08/AMGEC8RLxWKEUBXWiHGkHqyZ8wBa1NZ3kdmnOQF3nrBkRYB/YpsaDeHKFBVG/zTd
-         FRknN6C12GH3njC8U7OGWfAtZsgMonMk7KASVA8xMnUpMXbKg/FLTqrTxz0alD0G6U/e
-         6eAV1AEnNRCpRW5AHjmbEBLrNMUlOWifMkI+ikQZUapmUzDEBNEgyduRXfsa+xZcFXKj
-         UUfw==
+        bh=tXD9nM+zJf+baf8I1HJHQEo8iyVRn909PphK3Jj4Bu4=;
+        b=i3iQK5dmUNIgOUjP4m3NfVGKF0bEq8ARhAeyImmRj4q1FMvPYB7cwBt62fr/7QbxhB
+         BWqB7E2pq7JI+ayHV9eHJ0N4zGl9a95C2pCQmSORPwNPFdmMSzlhu/b+xMcNkENko4cy
+         e8QEXSgjTVdRLvx2C7YYGn3DDd3vQxXtiqUTDQ0egawJHfraBD+D3vi11J+oWMTiWNb/
+         lQeESqdKX8dkJFmxshigPmrEnhlH9wrwtSVeOd3DL9yCRWoKaqD2pUXqMcK6SrsuTKLo
+         D79acEXDYBWei54aRVDYr5CjgeZliX4eOhJOltBwsEslnawfcuDcJcMDZVpnJhAq8d+W
+         B4ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729849858; x=1730454658;
+        d=1e100.net; s=20230601; t=1729849860; x=1730454660;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6D/EkgzRCNFr6KoXbaTUBYL2k31iFO9iPQDbeDyGB5w=;
-        b=Voifh2MVD225SdpTmqoZ5ZihOv4lBtloxwwXhWx+tK7DQj53HatCLKXiaL2DD1Utpy
-         eR4dF51EMAGpRA+0oB5UPqYcYjXWY8sHR3OYAvk3QctXTDYdrHgUL0TawqV+YQGF7+HO
-         u+TIDtikl4tV2B7xUO2wvJEvQUbJ66g0fuMJnp/Wl6pXznUcqo9t/pfJkKun5otYPZjx
-         TFeGDAydqwmnEnFxPALzqAjrl+pVGeQTDfAQIQXewDLlGqe4qCUqrUzEOx8SVroUgfSy
-         aZnb+8oRfHc/6FEcvwWh1Jm+3ME2IeEfqEwGb6no0aNqQk4ShjtpFPNM2DrvzXNn5VTp
-         lZow==
-X-Forwarded-Encrypted: i=1; AJvYcCVYoxjj7bA6xTbq0AYnq3s4jyENKFrgd073NEpu2r77lotlF7rH/+rBJD1OPychja2J2VaC2/SWERbS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNZrbcjzQiw1KtIgxMt+OPlQG76tbhl+0V4GONd1SXxdBMr5xI
-	GdGU4/kG2JAptDketsabdKcex/qH+YXfmEXC45L69Hw794BgTeVw4eQlLW/E1as=
-X-Google-Smtp-Source: AGHT+IE114LR0WTlntFSwYvAPrjadnxcQND4J2U/6Kz2h7quT6UCFbT41wRpZHjBSlJ4bfiRzrBrrg==
-X-Received: by 2002:a05:600c:35cd:b0:430:4db0:3fef with SMTP id 5b1f17b1804b1-4318415a2eemr70391325e9.15.1729849858237;
-        Fri, 25 Oct 2024 02:50:58 -0700 (PDT)
+        bh=tXD9nM+zJf+baf8I1HJHQEo8iyVRn909PphK3Jj4Bu4=;
+        b=Wkk4iufOt6XWNRT3nUtPPLoCbRvsdyiHv3sbfnP+MWWp8DXV3eVcfqp/FfudAp4Oau
+         aKOH/GULjp2/3Tp8wTOYmd9I6EN1AoSts2Ac94t3x5x5wtg5ofxKliQKZ61ERyFLz8Qy
+         PqO6D+iRJAlDGHykV3rkBHoXHwr9JUJMZ4gcLIW59MBJEXCCY+fOx2MvNLmjwoCjfcAk
+         ZtGOJj+3E3GnKy0dMhIbGvtVFMZNfGYNlm3YtWz1CiTgf8dt4uov9Ice+Q8CsSTKh+IN
+         BDNvRmTJYA6sC2wCeKRUWQAlThDkvu7CFwkHCllZHLe69pWmkIPitX/4evtVgYPdtSDV
+         Iorg==
+X-Forwarded-Encrypted: i=1; AJvYcCUm43iS6YT3jN8CTZFdPxoYjxnLIzxxG9goaLMGqUqUYhPyDiAhH7ou6xE7eNCf45RnbyvmcenPRDc2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoogaPHxHQGqtv0HdebfO6iPRcDbfDcU/lyPQzmpU5W6ryWAMc
+	UikSyi7b0KG9wbZhFDXJmcVAOy2F/NyvSGp7ejuzdSsGDvwNQ23NglI0wYARwOA=
+X-Google-Smtp-Source: AGHT+IGbhpft/eVvHp9ifhRbhCWE7pXkG3hpaj8mQK5Pwr2t5UHFmVNJAkHsRXcE6u3rqZxJ1q8PFg==
+X-Received: by 2002:a05:600c:3b9c:b0:431:60ac:9aef with SMTP id 5b1f17b1804b1-431841a3e07mr83444495e9.29.1729849859843;
+        Fri, 25 Oct 2024 02:50:59 -0700 (PDT)
 Received: from [127.0.1.1] (host-79-41-194-153.retail.telecomitalia.it. [79.41.194.153])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935f6df1sm12895085e9.35.2024.10.25.02.50.55
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935f6df1sm12895085e9.35.2024.10.25.02.50.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 02:50:56 -0700 (PDT)
+        Fri, 25 Oct 2024 02:50:59 -0700 (PDT)
 From: Angelo Dureghello <adureghello@baylibre.com>
 X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Fri, 25 Oct 2024 11:49:35 +0200
-Subject: [PATCH v8 2/8] dt-bindings: iio: dac: adi-axi-dac: add ad3552r axi
- variant
+Date: Fri, 25 Oct 2024 11:49:36 +0200
+Subject: [PATCH v8 3/8] iio: backend: extend features
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-2-74ca7dd60567@baylibre.com>
+Message-Id: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-3-74ca7dd60567@baylibre.com>
 References: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-0-74ca7dd60567@baylibre.com>
 In-Reply-To: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-0-74ca7dd60567@baylibre.com>
 To: Lars-Peter Clausen <lars@metafoo.de>, 
@@ -97,131 +96,174 @@ X-Mailer: b4 0.14.1
 
 From: Angelo Dureghello <adureghello@baylibre.com>
 
-Add a new compatible and related bindigns for the fpga-based
-"ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
+Extend backend features with new calls needed later on this
+patchset from axi version of ad3552r.
 
-The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
-generic AXI "DAC" IP, intended to control ad3552r and similar chips,
-mainly to reach high speed transfer rates using a QSPI DDR
-(dobule-data-rate) interface.
+The follwoing calls are added:
 
-The ad3552r device is defined as a child of the AXI DAC, that in
-this case is acting as an SPI controller.
+iio_backend_ddr_enable()
+	enable ddr bus transfer
+iio_backend_ddr_disable()
+	disable ddr bus transfer
+iio_backend_data_stream_enable()
+	enable data stream over bus interface
+iio_backend_data_stream_disable()
+	disable data stream over bus interface
+iio_backend_data_transfer_addr()
+	define the target register address where the DAC sample
+	will be written.
 
-Note, #io-backend is present because it is possible (in theory anyway)
-to use a separate controller for the control path than that used
-for the datapath.
-
+Reviewed-by: Nuno Sa <nuno.sa@analog.com>
 Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 ---
- .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   | 69 +++++++++++++++++++++-
- 1 file changed, 66 insertions(+), 3 deletions(-)
+ drivers/iio/industrialio-backend.c | 78 ++++++++++++++++++++++++++++++++++++++
+ include/linux/iio/backend.h        | 17 +++++++++
+ 2 files changed, 95 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-index a55e9bfc66d7..1adba9aceeb1 100644
---- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-+++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-@@ -19,11 +19,13 @@ description: |
-   memory via DMA into the DAC.
+diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
+index 20b3b5212da7..81f3d24f0c50 100644
+--- a/drivers/iio/industrialio-backend.c
++++ b/drivers/iio/industrialio-backend.c
+@@ -718,6 +718,84 @@ static int __devm_iio_backend_get(struct device *dev, struct iio_backend *back)
+ 	return 0;
+ }
  
-   https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
-+  https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
++/**
++ * iio_backend_ddr_enable - Enable interface DDR (Double Data Rate) mode
++ * @back: Backend device
++ *
++ * Enable DDR, data is generated by the IP at each front (raising and falling)
++ * of the bus clock signal.
++ *
++ * RETURNS:
++ * 0 on success, negative error number on failure.
++ */
++int iio_backend_ddr_enable(struct iio_backend *back)
++{
++	return iio_backend_op_call(back, ddr_enable);
++}
++EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_enable, IIO_BACKEND);
++
++/**
++ * iio_backend_ddr_disable - Disable interface DDR (Double Data Rate) mode
++ * @back: Backend device
++ *
++ * Disable DDR, setting into SDR mode (Single Data Rate).
++ *
++ * RETURNS:
++ * 0 on success, negative error number on failure.
++ */
++int iio_backend_ddr_disable(struct iio_backend *back)
++{
++	return iio_backend_op_call(back, ddr_disable);
++}
++EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_disable, IIO_BACKEND);
++
++/**
++ * iio_backend_data_stream_enable - Enable data stream
++ * @back: Backend device
++ *
++ * Enable data stream over the bus interface.
++ *
++ * RETURNS:
++ * 0 on success, negative error number on failure.
++ */
++int iio_backend_data_stream_enable(struct iio_backend *back)
++{
++	return iio_backend_op_call(back, data_stream_enable);
++}
++EXPORT_SYMBOL_NS_GPL(iio_backend_data_stream_enable, IIO_BACKEND);
++
++/**
++ * iio_backend_data_stream_disable - Disable data stream
++ * @back: Backend device
++ *
++ * Disable data stream over the bus interface.
++ *
++ * RETURNS:
++ * 0 on success, negative error number on failure.
++ */
++int iio_backend_data_stream_disable(struct iio_backend *back)
++{
++	return iio_backend_op_call(back, data_stream_disable);
++}
++EXPORT_SYMBOL_NS_GPL(iio_backend_data_stream_disable, IIO_BACKEND);
++
++/**
++ * iio_backend_data_transfer_addr - Set data address.
++ * @back: Backend device
++ * @address: Data register address
++ *
++ * Some devices may need to inform the backend about an address
++ * where to read or write the data.
++ *
++ * RETURNS:
++ * 0 on success, negative error number on failure.
++ */
++int iio_backend_data_transfer_addr(struct iio_backend *back, u32 address)
++{
++	return iio_backend_op_call(back, data_transfer_addr, address);
++}
++EXPORT_SYMBOL_NS_GPL(iio_backend_data_transfer_addr, IIO_BACKEND);
++
+ static struct iio_backend *__devm_iio_backend_fwnode_get(struct device *dev, const char *name,
+ 							 struct fwnode_handle *fwnode)
+ {
+diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+index 37d56914d485..10be00f3b120 100644
+--- a/include/linux/iio/backend.h
++++ b/include/linux/iio/backend.h
+@@ -14,12 +14,14 @@ struct iio_dev;
+ enum iio_backend_data_type {
+ 	IIO_BACKEND_TWOS_COMPLEMENT,
+ 	IIO_BACKEND_OFFSET_BINARY,
++	IIO_BACKEND_DATA_UNSIGNED,
+ 	IIO_BACKEND_DATA_TYPE_MAX
+ };
  
- properties:
-   compatible:
-     enum:
-       - adi,axi-dac-9.1.b
-+      - adi,axi-ad3552r
+ enum iio_backend_data_source {
+ 	IIO_BACKEND_INTERNAL_CONTINUOUS_WAVE,
+ 	IIO_BACKEND_EXTERNAL,
++	IIO_BACKEND_INTERNAL_RAMP_16BIT,
+ 	IIO_BACKEND_DATA_SOURCE_MAX
+ };
  
-   reg:
-     maxItems: 1
-@@ -36,7 +38,14 @@ properties:
-       - const: tx
+@@ -89,6 +91,11 @@ enum iio_backend_sample_trigger {
+  * @read_raw: Read a channel attribute from a backend device
+  * @debugfs_print_chan_status: Print channel status into a buffer.
+  * @debugfs_reg_access: Read or write register value of backend.
++ * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
++ * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
++ * @data_stream_enable: Enable data stream.
++ * @data_stream_disable: Disable data stream.
++ * @data_transfer_addr: Set data address.
+  **/
+ struct iio_backend_ops {
+ 	int (*enable)(struct iio_backend *back);
+@@ -129,6 +136,11 @@ struct iio_backend_ops {
+ 					 size_t len);
+ 	int (*debugfs_reg_access)(struct iio_backend *back, unsigned int reg,
+ 				  unsigned int writeval, unsigned int *readval);
++	int (*ddr_enable)(struct iio_backend *back);
++	int (*ddr_disable)(struct iio_backend *back);
++	int (*data_stream_enable)(struct iio_backend *back);
++	int (*data_stream_disable)(struct iio_backend *back);
++	int (*data_transfer_addr)(struct iio_backend *back, u32 address);
+ };
  
-   clocks:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: s_axi_aclk
-+      - const: dac_clk
-+    minItems: 1
- 
-   '#io-backend-cells':
-     const: 0
-@@ -47,7 +56,29 @@ required:
-   - reg
-   - clocks
- 
--additionalProperties: false
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: adi,axi-ad3552r
-+    then:
-+      $ref: /schemas/spi/spi-controller.yaml#
-+      properties:
-+        clocks:
-+          minItems: 2
-+        clock-names:
-+          minItems: 2
-+      required:
-+        - clock-names
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+        clock-names:
-+          maxItems: 1
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
-@@ -57,6 +88,38 @@ examples:
-         dmas = <&tx_dma 0>;
-         dma-names = "tx";
-         #io-backend-cells = <0>;
--        clocks = <&axi_clk>;
-+        clocks = <&clkc 15>;
-+        clock-names = "s_axi_aclk";
-+    };
-+
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    axi_dac: spi@44a70000 {
-+        compatible = "adi,axi-ad3552r";
-+        reg = <0x44a70000 0x1000>;
-+        dmas = <&dac_tx_dma 0>;
-+        dma-names = "tx";
-+        #io-backend-cells = <0>;
-+        clocks = <&clkc 15>, <&ref_clk>;
-+        clock-names = "s_axi_aclk", "dac_clk";
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        dac@0 {
-+            compatible = "adi,ad3552r";
-+            reg = <0>;
-+            reset-gpios = <&gpio0 92 GPIO_ACTIVE_HIGH>;
-+            io-backends = <&axi_dac>;
-+            spi-max-frequency = <20000000>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            channel@0 {
-+                reg = <0>;
-+                adi,output-range-microvolt = <(-10000000) (10000000)>;
-+            };
-+        };
-     };
- ...
+ /**
+@@ -164,6 +176,11 @@ int iio_backend_data_sample_trigger(struct iio_backend *back,
+ int devm_iio_backend_request_buffer(struct device *dev,
+ 				    struct iio_backend *back,
+ 				    struct iio_dev *indio_dev);
++int iio_backend_ddr_enable(struct iio_backend *back);
++int iio_backend_ddr_disable(struct iio_backend *back);
++int iio_backend_data_stream_enable(struct iio_backend *back);
++int iio_backend_data_stream_disable(struct iio_backend *back);
++int iio_backend_data_transfer_addr(struct iio_backend *back, u32 address);
+ ssize_t iio_backend_ext_info_set(struct iio_dev *indio_dev, uintptr_t private,
+ 				 const struct iio_chan_spec *chan,
+ 				 const char *buf, size_t len);
 
 -- 
 2.45.0.rc1
