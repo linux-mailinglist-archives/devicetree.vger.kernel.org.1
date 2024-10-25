@@ -1,164 +1,209 @@
-Return-Path: <devicetree+bounces-115759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 228709B0A0E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA309B0A13
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:37:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 294F2B21F1E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:36:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BD10B22421
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:37:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0EF1FB899;
-	Fri, 25 Oct 2024 16:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C5D1865ED;
+	Fri, 25 Oct 2024 16:37:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zrzEY/fe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UxtQfRyh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B111C07FC
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 16:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3554621A4C6
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 16:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729874150; cv=none; b=LrIEmGYbcS97MPjS+hX0OslTOgOITXWoeFHxfST7N1HGs1zHqdN4rxxmswJ0ADr4FDGJDeLiM9Jx0BxqEp7km91B8gtQoWEseM1bUcOhvhKQHCR09dkwh/JEpi5wk3O6PA7ZaTqOiswVPgnB3rvN+KE0s49P2dp0XL0y5YPxfjU=
+	t=1729874234; cv=none; b=VQ6bqUXirLZPdioEV6nlaH9ZkWnx6+mIG0IHy+mosB0XIKKJS8MA45EMgNTdWruoe34Ik6anq2BNS3IPi+mWEbAi9bokNjLcqIJSOZzYkJXDmemKNMwtcOIu/eHDYQvaiKXlp7TlOyjNjZ9hi+SSvSe7336roOsldbCII9YohH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729874150; c=relaxed/simple;
-	bh=+mKkqhjOfp/8NKKCudMMe/P4eWYuwxPS5xhBfWoY950=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UNiyW7EoW8mB2nkYIUj6Ly5hzRuPNhQqQQwoCscJqaENbevp9+aqXjZLk3AEwlBJPdQ8SmzgZVKjR0J6Kcvq8fdLNdO0jie0aUWeOdi8FwXbaWiMFc1T9yqELfRmS72vmLTD4NGbr0+r+TUn0HZ38aeXzOejzgvXs0TlnmIMCKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zrzEY/fe; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5ebc0e13d25so883804eaf.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:35:46 -0700 (PDT)
+	s=arc-20240116; t=1729874234; c=relaxed/simple;
+	bh=ySdcD7Me/PWPRhlRCagk1hkwrdCnc7x3yE8lgZoAf1I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=s93LIq2QjbsXOZCMS/FO785lOmF1iDIc0cHVZ2ZcOO5l8VZddlqSD319xmy098YCYrPXV54/LlINFKko20rjBYs0h+LiS6WDE2yf9DdefEII/c8VPiWBDa+P2P5RElHRakYtUru4TPQk27Hzob7g7PsgPN5M+9O2MlaEkj1eClc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UxtQfRyh; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-539e5c15fd3so2179312e87.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:37:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729874146; x=1730478946; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=989e9i6l9ZWGz9AVMP0M9BcfdKAXAdUqBJ5ScVIDhD8=;
-        b=zrzEY/feB5XjwpXRxjHwE6Oz456AYMACAKlTnpKqV0j7nZA8yC50fMxgI32mnLGOR3
-         IKmj2bwDSE1UzEI8zotFhxzguYr53qw1NB38OvvpEDl/0arc/+aSZ6fKl7J8Z/KDxL+9
-         b8qfnLGzdRMU3zKsmu8CjYUCOLpKuwpKdNlYhWehXxaTVTMOM50f3E1uZxuztsU3gsn7
-         3Jc2nvYImlrV7j8q/Pj42dq3xfz3nIFJYWTN2gi9t+C+hSkJxD4JFwA7UC21b8ELokN3
-         G3sv5xncNDshsZQSK3cEkTbsEKhAf3hGjeZuaXWYHQvNTm4smAYt867VF96t0My/vMm6
-         FtYw==
+        d=linaro.org; s=google; t=1729874230; x=1730479030; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JOEn92bswQiIh6B0O753YjxjbgH7xEMK7FXjbHm+E6k=;
+        b=UxtQfRyhEp7MOsqbdK2UxjKMrefGswVyOdgaaY5+3wrjLHweM+KiubZ1bjtDstHMJk
+         Kjda71OHwPpKgpf41yB/ewf9NzXbQuqQ8w+kj8bAOo73FdES75urJB0dmlYUcl0CJrVi
+         POXRBi+PuFx4binM2HgEXdpcNX0+vv5j+XhDMcOrrt7bSBPRDnNBpshhDptw9fpOVK+L
+         JRLlgmM6TtihouwznEc+29KAhf8kKVZRHndj/rC0n+WJGDuFh4lqNfN5dpNOXajmqGWX
+         iwx+cISyl9E6Uz2gsnpfdDBlU17ASeuAh4dV1oCL5EKZqnOupDILv/yX5J03rcUgEmP+
+         4b6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729874146; x=1730478946;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=989e9i6l9ZWGz9AVMP0M9BcfdKAXAdUqBJ5ScVIDhD8=;
-        b=F0mDF2/nH+TNeTxxAqGNvez2MR7SnHsxfeRb02C1ZCrieUSs2YODCuFl2siYQbMmB3
-         6ggJ3rpQnwNdX6y1z8pt4ehcLnLn+FNONwalS88SJxq8a+ZrcI9E+yhSqFsVE1Yv/tje
-         S+qZBxF2uUu3obtkbfEORASJohE2tZoigO/pBHrQ2x8BkIu0/l8wwy2zLSBVIzKhlqA6
-         +8huShKN4hQ53lM0HYV6Q9LuNvLfbicArEhPMbfpx3yYjKmjqPX3/dlvBtaMAUPQQshh
-         eWUq5B/p1Vi4TC4hC2gmv7GelpV3P8lNpuH6oWJKE+Z4+cGIw/UVdMbNwQlSzzrBRtSY
-         SYWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjxVmWqgu1PnCDU8MHAV1oarQDh/RhwD/7z5v32btF/+OgjHZ3s/seiSPnBw0pZ6YucSlAvd7UNFFw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwL1UssaWcU65/Pd8RxTPynGz9aqSt8G7/tBH6yUc0CecgT39CM
-	1LFvHPVV/0hydFN//OOGSeiaXlxOSs/9nXfi81Tch2rlVHn8PlolpkhBfDS9Dgk=
-X-Google-Smtp-Source: AGHT+IEFYO1M6pTkfu/lPvM0ue3WVlvBKRAjeNfd/LOIMo54KbBBMSvxxwGrLvo+2kGB0WtDyVR8Mw==
-X-Received: by 2002:a05:6820:1686:b0:5e7:aeed:97be with SMTP id 006d021491bc7-5ebee9a6161mr6603567eaf.8.1729874146115;
-        Fri, 25 Oct 2024 09:35:46 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5ec1843d4a5sm288248eaf.6.2024.10.25.09.35.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 09:35:44 -0700 (PDT)
-Message-ID: <f7fd8929-352a-46e2-8f78-15720ab31b9d@baylibre.com>
-Date: Fri, 25 Oct 2024 11:35:42 -0500
+        d=1e100.net; s=20230601; t=1729874230; x=1730479030;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JOEn92bswQiIh6B0O753YjxjbgH7xEMK7FXjbHm+E6k=;
+        b=fefI6McLqC4q7yCQB69cdJk9ge43BgWC+ROLT0vZbvIFralyvR5U4AOCqDWlX6TJse
+         YpJir7gekuFMYjpuCg6K7548CyY1Dn94CRaVlrmCksQeJke9JKT9ga1kOeht+RnHFWNG
+         acEhVC5a+G+Fj3loimmpNZLQS7WsV6D0V2sJer0jXTXunCc/GJYAQJQEwuGhJffU+CXS
+         XvCURQ0uDaFguU/kmGdaYVnkXWixCFyIt1V+av4RdkfziRaQKRHhbmwJuVZofkI/wH/u
+         2g54grq3qTLWWBZuwkGs+V6Uo8liE7nCqI/dQ84douB08rtMmfGB2U9FCeBmyz53zCuS
+         fXmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+DOy7n2SXmz86Co1YTGLK/39iVY+iH2IdNoTCk+aFUMquMPNxHfynG2uQI7b5O5leJVnOzDx12sS2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxT+wIclXzmTGrjm6YM5Upw2utCNY3yV7oXoJZ4M3WXsQI4+eB
+	9guJ+cfRWjwesFeH55GJRqUDpwr7neBuTDInhzHI4jC9FhJsEtLYXU7tJa1vWVSZutVLMihNKfH
+	ScRJzPU7um9VySvCycpyF1jTm+cGAYNuoUKmHJA==
+X-Google-Smtp-Source: AGHT+IHHe9pruRyF7p97JeWtRJklETd8ZL5WPfRry1VxSwNI6KCKvzhRBrSC7ttvxAMUZC3k8UOafWSQ0/P+03f3fPo=
+X-Received: by 2002:a05:6512:689:b0:539:f995:5b00 with SMTP id
+ 2adb3069b0e04-53b23dcb17bmr3714961e87.7.1729874230297; Fri, 25 Oct 2024
+ 09:37:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 09/15] spi: axi-spi-engine: implement offload
- support
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
- <20241023-dlech-mainline-spi-engine-offload-2-v4-9-f8125b99f5a1@baylibre.com>
- <35e3a616b1cd0b66096795f247604bbe1aa8300d.camel@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <35e3a616b1cd0b66096795f247604bbe1aa8300d.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <cover.1729738189.git.jahau@rocketmail.com> <bef462116190c26e6339cd58240773f035efcca9.1729738189.git.jahau@rocketmail.com>
+In-Reply-To: <bef462116190c26e6339cd58240773f035efcca9.1729738189.git.jahau@rocketmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 25 Oct 2024 18:36:59 +0200
+Message-ID: <CACRpkdY6w1LmKP+69TDRLJCszPpz_XAM_uoe8oC07MH-9ALAig@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] drm/panel: samsung-s6e88a0-ams427ap24: Add initial driver
+To: Jakob Hauser <jahau@rocketmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/25/24 8:09 AM, Nuno Sá wrote:
-> On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
->> Implement SPI offload support for the AXI SPI Engine. Currently, the
->> hardware only supports triggering offload transfers with a hardware
->> trigger so attempting to use an offload message in the regular SPI
->> message queue will fail. Also, only allows streaming rx data to an
->> external sink, so attempts to use a rx_buf in the offload message will
->> fail.
->>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->>
+Hi Jakob,
 
-...
+thanks for your patch!
 
->> +static int spi_engine_offload_prepare(struct spi_message *msg)
->> +{
->> +	struct spi_controller *host = msg->spi->controller;
->> +	struct spi_engine *spi_engine = spi_controller_get_devdata(host);
->> +	struct spi_engine_program *p = msg->opt_state;
->> +	struct spi_engine_offload *priv = msg->offload->priv;
->> +	struct spi_transfer *xfer;
->> +	void __iomem *cmd_addr;
->> +	void __iomem *sdo_addr;
->> +	size_t tx_word_count = 0;
->> +	unsigned int i;
->> +
->> +	if (p->length > spi_engine->offload_ctrl_mem_size)
->> +		return -EINVAL;
->> +
->> +	/* count total number of tx words in message */
->> +	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
->> +		if (!xfer->tx_buf)
->> +			continue;
->> +
->> +		if (xfer->bits_per_word <= 8)
->> +			tx_word_count += xfer->len;
->> +		else if (xfer->bits_per_word <= 16)
->> +			tx_word_count += xfer->len / 2;
->> +		else
->> +			tx_word_count += xfer->len / 4;
->> +	}
->> +
->> +	if (tx_word_count > spi_engine->offload_sdo_mem_size)
->> +		return -EINVAL;
->> +
->> +	if (test_and_set_bit_lock(SPI_ENGINE_OFFLOAD_FLAG_PREPARED, &priv->flags))
->> +		return -EBUSY;
->> +
-> 
-> This is odd. Any special reason for using this with aquire - release semantics? Can
-> optimize() and unoptimize() run concurrently? Because if they can this does not give
-> us mutual exclusion and we really need to do what we're doing with kind of stuff :)
-> 
-> - Nuno Sá
-> 
-> 
+On Thu, Oct 24, 2024 at 5:18=E2=80=AFAM Jakob Hauser <jahau@rocketmail.com>=
+ wrote:
 
-This looks like another leftover from an in-between revision that
-didn't get fully cleaned up. I will reconsider what is need here.
+> This initial part of the panel driver was mostly generated by the
+> "linux-mdss-dsi-panel-driver-generator" tool [1], reading downstream
+> Android kernel file "dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi" [2=
+].
+>
+> On top of the generic output of the tool, there were a couple of changes
+> applied:
+> - Added mipi_dsi_dcs_set_display_on() to function s6e88a0_ams427ap24_on()=
+,
+>   otherwise the display does not show up.
+> - In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off()
+>   changed DSI commands to multi context and used "accum_err" returns.
+> - In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off() repla=
+ced
+>   msleep() by mipi_dsi_msleep().
+> - The function s6e88a0_ams427ap24_get_modes() was changed to make use of
+>   drm_connector_helper_get_modes_fixed(). This also required to include
+>   drm/drm_probe_helper.h.
+> - In function s6e88a0_ams427ap24_probe() registring the regulators was ch=
+anged
+>   to devm_regulator_bulk_get_const(). This required to change supplies in=
+ struct
+>   s6e88a0_ams427ap24 to a pointer.
+> - Removed bool "prepared" from struct s6e88a0_ams427ap24 and according pa=
+rts in
+>   functions s6e88a0_ams427ap24_prepare() and s6e88a0_ams427ap24_unprepare=
+().
+>
+> [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-gener=
+ator
+> [2] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP=
+24_qhd_octa_video.dtsi
+>
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
 
-But to answer the question, strictly speaking, there isn't anything
-to prevent two concurrent calls spi_optimize_message() with different
-messages but the same offload instance.
+Nice job on this driver so far!
+
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+
+Why do you need this include? .of_match_table is part of
+<linux/driver.h>
+
+> +static int s6e88a0_ams427ap24_on(struct s6e88a0_ams427ap24 *ctx)
+> +{
+> +       struct mipi_dsi_device *dsi =3D ctx->dsi;
+> +       struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D dsi };
+> +
+> +       dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
+> +
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
+
+Can we provide #defines for at least some of this magic?
+See other drivers for a very good idea of what some of them mean.
+panel-samsung-s6d27a1.c:#define S6D27A1_PASSWD_L2       0xF0    /*
+Password Command for Level 2 Control */
+panel-samsung-s6d7aa0.c:#define MCS_PASSWD1             0xf0
+
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0x5a, 0x5a);
+
+panel-samsung-s6d7aa0.c:#define MCS_PASSWD3             0xfc
+
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x11);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfd, 0x11);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x13);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfd, 0x18);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x02);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb8, 0x30);
+(...)
+> +       mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> +       mipi_dsi_msleep(&dsi_ctx, 20);
+> +
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0x5a, 0x5a);
+
+panel-samsung-s6d7aa0.c:#define MCS_PASSWD2             0xf1
+
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcc, 0x4c);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x03, 0x0d);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0xa5, 0xa5);
+
+panel-samsung-s6d7aa0.c:#define MCS_PASSWD2             0xf1
+Send in the reverse password: disable access.
+
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca,
+> +                                    0x01, 0x00, 0x01, 0x00, 0x01, 0x00, =
+0x80,
+> +                                    0x80, 0x80, 0x80, 0x80, 0x80, 0x80, =
+0x80,
+> +                                    0x80, 0x80, 0x80, 0x80, 0x80, 0x80, =
+0x80,
+> +                                    0x80, 0x80, 0x80, 0x80, 0x80, 0x80, =
+0x80,
+> +                                    0x80, 0x80, 0x00, 0x00, 0x00);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2,
+> +                                    0x40, 0x08, 0x20, 0x00, 0x08);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb6, 0x28, 0x0b);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf7, 0x03);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x55, 0x00);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
+> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0xa5, 0xa5);
+
+Send in the reverse password: disable access.
+
+A bit of #defines and comments would make it much more clear what
+is going on.
+
+Yours,
+Linus Walleij
 
