@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-115544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A470C9AFF4B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:00:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 548B09AFF4E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:01:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C85B61C221C8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:00:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D05501F22E71
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:01:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390651F76CC;
-	Fri, 25 Oct 2024 10:00:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D8E1F9ECE;
+	Fri, 25 Oct 2024 10:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2qRjA9Se"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MrjrMUym"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90EF1E32AF
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:59:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E421F583E
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729850400; cv=none; b=m7vNZHGshwO93donRZR8k7WbILVfrj/cW6uYyQMoRzc5sLyErkCI8+xitJKzqufcYO4mexV5UMPJDzzUfD7w/nprjNPbZQBFjV2EVHicLbOQ7naOrZC0L8DpaLmgOSLIvyxGn7qr7odKYPuTJ+RGMxKVMf2zscxIg1fpO3KGtAQ=
+	t=1729850402; cv=none; b=jtZaYyMP83vsN03RGdqsgioU1p2JMwzRzw/DZkkvHKnIbueYLdBID4QxNjws0BA9U2qVjfy2PF1YUh25TbQS88UF56zaaA8PRyQNrB8ny1+CMfqJC/eOtJoiyxKxpJo7VndYEM4xaefOIMSsGyKfO+6i0H9vtzpr7ienULRQ/9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729850400; c=relaxed/simple;
-	bh=AHr8+bZPxOirShIhCBXHwG+5r586Z0HInHo9tKzwsOg=;
+	s=arc-20240116; t=1729850402; c=relaxed/simple;
+	bh=ZPKDDOSxbYilgrG4tLmWXDC2qLPxGrrf6mFdnqanB6s=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=beYGkSjpnTJPLMuZRy7JYxR97EcwvCcZNg6JcqWh4RoYi6Q5SIJx4LsckpjSEP+Yhjrz7SNMw/yqOYSaebiCm0cogAKeKKjzdq9WP5jsMFnGTyWZGi+te1Ealdx9ShAihEsAoR/Cg23eewCAkMGhfvjMwoZHgHfKlVU93WwJWkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2qRjA9Se; arc=none smtp.client-ip=209.85.218.45
+	 MIME-Version:Content-Type; b=V3tNBOj6KzruESgmJ2k6wpsRArmUOFfqvP3BcQI1NLreEeyHC8x/QWLGEk8FXySlxl0+ASMe+wx2+ay53SMjz/4L14RdTHsiqfMBmG39g4YeP0PU9qq0p6d/FKdSlYm0iLfF8Gvjz3pZ5816yOCfuW+SS7/hiFciwmhXf1pV7Iw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MrjrMUym; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a9abe139088so263957766b.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 02:59:57 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a7aa086b077so245476466b.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 02:59:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729850396; x=1730455196; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729850398; x=1730455198; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TJ6DHZ27Ytkbo5yrreDnReoJRhwwE+fVxb3ObxqCfkc=;
-        b=2qRjA9Se3jGVT0kScf7/7IhFew8OQBfgHGPbaSaPj/f4M8UiWus+QVbhTIE8vkkXA9
-         sZyVEA0Sw9RsifW70Qe1ZcN2J9OnpeqHsgFgw9/2b4hdVnJA+QeeBgGMBz7bnfd7dYLU
-         ABxaRezj5N4s3IAdVOIEmEVVuUpx+7aKcJ5yvmJxBuxV9zEYVmf2t5g3ZRhtdDZ1+wB5
-         pQaS4/jwa1Z1hyD3WVcoAJwCZBAXfzbUyp/WagNpBsnEwwIv+CrrbJtke5PPwyE9TEXd
-         1VlImwaawsQWPG3Te1KVpUPMYpPtFoEk+pFPUfQGfOh4IJQaCPzMNOa0NBHLWMZ9JKsJ
-         u+5A==
+        bh=2Z2Cp/0RuXPja2VnWMLGnI6YXRWhekI54aEssV25Ags=;
+        b=MrjrMUym/JRNWlmUg1TqXkZ8dy9tnyaP1Z/XjtzVsI9lY77I7LdIezlDzfUsmLcijC
+         5Ro4lB3JFgjGD/CidyqGe/rGkjDPH9HzHn/SSMwl4/aRDZqgd1KRZ1JPimYe8z6jWQzN
+         84+R99KeNogKm3/dL61kbmzzir6z/B2us/hZoJSpJNSt2hskLC3OG2Qh3qehnjyijQxM
+         d4+PiPi925Mu62z5l8Rojux+7W1iQc8t/nclYYP/1R1wq7NYl4OKnh7kUkSAb761KnRA
+         eoPVUZC2dd5sJ+7V8i7Q+VwRNObjr8DpCuvuVPH6+Tgk9Y2pW5Q32Xf4WJ9KEGND4TYL
+         I89w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729850396; x=1730455196;
+        d=1e100.net; s=20230601; t=1729850398; x=1730455198;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TJ6DHZ27Ytkbo5yrreDnReoJRhwwE+fVxb3ObxqCfkc=;
-        b=cpHZqbHiNUbA9gunUSwbdR8qyqBZF+NbGdX1iqx7zey/L+SRPFeIplEodZl21+Dhp3
-         E87mJ6nsBtgB4Z+r2Qxbl9LTNBIKTReiylhoTEhYVyNFyqnweTnIliNOLw2wVnbLGdUk
-         NVXGgJRtHWWgFrQmGaIX7E3kY6tESoltbMqQSVWhf0eqOJMf+xGKRZkjhHpoIbQopWQk
-         AasJcO+8d/BD8AnSrKRcr+jWCADlxusOCLgC8FXtzdm+0olL3KY81V5pxEBIsRK9FsTq
-         HfImosthN1d2GejtgfB+BJDw7CBkF7VS9naoxJp+nKfxm9Ps4K2PXrXXWVAMlcFkveO8
-         HDJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBUV7PpDMI9+GilGZ85U4S9P08oadO/ARFILBtI49kfTmvpGE08iq6GcGrHotG+LB+HvdkjDVf1FN3@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoPI9mZV1aKuZBHqso/xPcsCpTjerVcT6brwUnGihsLdzrysM/
-	2JioejGAr0rEctrk+4ZNjwtg5H5LDzSMJK93oBMaM+GSkTGdpCdmepif49h9c3o=
-X-Google-Smtp-Source: AGHT+IGC4Odl99z+7cktPBrI3HzWr9YCRt8QG1Iui8MG4JArqRNHoC2e+scaEn36iNftnLDlwe4gDg==
-X-Received: by 2002:a17:907:3daa:b0:a9a:7f37:2b62 with SMTP id a640c23a62f3a-a9ad2815a49mr445493766b.49.1729850396140;
-        Fri, 25 Oct 2024 02:59:56 -0700 (PDT)
+        bh=2Z2Cp/0RuXPja2VnWMLGnI6YXRWhekI54aEssV25Ags=;
+        b=rbk3bN+ZJ1LxjEV2FINqmj2D6yt0rTfirvOfe7D1RSGaD8OAqWMY3MpYAs1ZRk6Z7U
+         AjtF+2PofM2P/R1qpSktQZ0Zm0Hu35sHtx2tecr4MR+4AjQbcCty/aaUtsYPDrUuGQn8
+         XrhQtJ9lbbopWuOKKwnsjmUbgm4rQDievrqmdA9wYq1SGwxoJABCY0Mmlgn/pbJry9bi
+         EFBd+qhtlpFti5RyEVtkJBhfT3xfAv7KIgGXe7tLAT8imCuXHdwf782ox45NUInp6Mma
+         TIlTzUfjuIxT1niG+wQ6MtTzO3t1YpsuaVx9Vxk5PNFa8nK/St1mA5LIrLC+m6KIvD3+
+         ijbA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5tVM6auBAD5cUYf02pjfYh0ImZg9mphbvm7KwZVsdcLjBx3nY0eBS2oczbvGtLLisOvYg+I+nJ60Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZVpMeg+9zTOBpZhjUIMdeGXB7Pi3tIaJnn8UZkRoDYSoxfWqw
+	70/lSQeeKUk9iqeSyl5JPMgby3BzIEMg7hHEjjo0L0LR5Ph7Vqm1qZKKyYl4plE=
+X-Google-Smtp-Source: AGHT+IHo763g2tkSjDl77LlrxX9SC1j1w+RUJ1QYoF0MngkHKTcL+wMwFjjlOSz5xZhNREiseAJRkA==
+X-Received: by 2002:a17:906:c148:b0:a9a:3718:6d6 with SMTP id a640c23a62f3a-a9abf964714mr955294666b.58.1729850398115;
+        Fri, 25 Oct 2024 02:59:58 -0700 (PDT)
 Received: from localhost.localdomain ([188.27.128.50])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f02951esm51737266b.71.2024.10.25.02.59.54
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f02951esm51737266b.71.2024.10.25.02.59.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 02:59:55 -0700 (PDT)
+        Fri, 25 Oct 2024 02:59:57 -0700 (PDT)
 From: Alexandru Ardelean <aardelean@baylibre.com>
 To: linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
@@ -80,9 +80,9 @@ Cc: jic23@kernel.org,
 	dlechner@baylibre.com,
 	conor.dooley@microchip.com,
 	Alexandru Ardelean <aardelean@baylibre.com>
-Subject: [PATCH v2 4/5] dt-bindings: iio: adc: adi,ad7606: document AD760{7,8,9} parts
-Date: Fri, 25 Oct 2024 12:59:38 +0300
-Message-ID: <20241025095939.271811-5-aardelean@baylibre.com>
+Subject: [PATCH v2 5/5] iio: adc: ad7606: add support for AD760{7,8,9} parts
+Date: Fri, 25 Oct 2024 12:59:39 +0300
+Message-ID: <20241025095939.271811-6-aardelean@baylibre.com>
 X-Mailer: git-send-email 2.46.1
 In-Reply-To: <20241025095939.271811-1-aardelean@baylibre.com>
 References: <20241025095939.271811-1-aardelean@baylibre.com>
@@ -92,51 +92,300 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-This change adds the AD7607, AD7608 & AD7609 parts to the binding doc of
-the ad7606 driver.
+The AD7607, AD7608 and AD7609 are some older parts of the AD7606 family.
+They are hardware-only, meaning that they don't have any registers
+accessible via SPI or Parallel interface.
+They are more similar to the AD7605-4 part, which is supported by the
+'ad7606' driver, and are configurable via GPIOs.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Like the AD7605-4 part, all 3 parts have 2 CONVST (Conversion Start) pins
+(CONVST A and CONVST B). But in practice, these should be tied together to
+make reading of samples easier via a serial line.
+
+The AD7607 has an 14-bit resolution and AD7608 & AD7609 have an 18-bit
+resolution. The main difference between the AD7608 & AD7609 is that the
+AD7609 has a larger range (±10V & ±20V) vs the ±5V & ±10V ranges for AD7608.
+
+However, unlike AD7605-4 part, these 3 parts have oversampling which is
+configurable (like for the AD7606 in HW-mode) via GPIOs.
+
+Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ad7607.pdf
+Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ad7608.pdf
+Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ad7609.pdf
+
 Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
 ---
- .../devicetree/bindings/iio/adc/adi,ad7606.yaml          | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/iio/adc/ad7606.c     | 104 +++++++++++++++++++++++++++++++++++
+ drivers/iio/adc/ad7606.h     |   3 +
+ drivers/iio/adc/ad7606_par.c |   6 ++
+ drivers/iio/adc/ad7606_spi.c |  42 ++++++++++++++
+ 4 files changed, 155 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-index 0a612844029a..ab5881d0d017 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-@@ -16,6 +16,9 @@ description: |
-   https://www.analog.com/media/en/technical-documentation/data-sheets/AD7606B.pdf
-   https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-16.pdf
-   https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606c-18.pdf
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7607.pdf
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7608.pdf
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7609.pdf
-   https://www.analog.com/media/en/technical-documentation/data-sheets/AD7616.pdf
+diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+index 94756bb87b95..8b2046baaa3e 100644
+--- a/drivers/iio/adc/ad7606.c
++++ b/drivers/iio/adc/ad7606.c
+@@ -73,6 +73,14 @@ static const unsigned int ad7606_16bit_sw_scale_avail[3][2] = {
+ 	{ 0, 76293 }, { 0, 152588 }, { 0, 305176 }
+ };
  
- properties:
-@@ -28,6 +31,9 @@ properties:
-       - adi,ad7606b
-       - adi,ad7606c-16
-       - adi,ad7606c-18
-+      - adi,ad7607
-+      - adi,ad7608
-+      - adi,ad7609
-       - adi,ad7616
++static const unsigned int ad7607_hw_scale_avail[2][2] = {
++	{ 0, 610352 }, { 1, 220703 }
++};
++
++static const unsigned int ad7609_hw_scale_avail[2][2] = {
++	{ 0, 152588 }, { 0, 305176 }
++};
++
+ static const unsigned int ad7606_oversampling_avail[7] = {
+ 	1, 2, 4, 8, 16, 32, 64,
+ };
+@@ -113,6 +121,30 @@ static const struct iio_chan_spec ad7606_channels_18bit[] = {
+ 	AD7606_CHANNEL(7, 18),
+ };
  
-   reg:
-@@ -250,6 +256,9 @@ allOf:
-               - adi,ad7606-4
-               - adi,ad7606-6
-               - adi,ad7606-8
-+              - adi,ad7607
-+              - adi,ad7608
-+              - adi,ad7609
-     then:
-       properties:
-         adi,sw-mode: false
++static const struct iio_chan_spec ad7607_channels[] = {
++	IIO_CHAN_SOFT_TIMESTAMP(8),
++	AD7606_CHANNEL(0, 14),
++	AD7606_CHANNEL(1, 14),
++	AD7606_CHANNEL(2, 14),
++	AD7606_CHANNEL(3, 14),
++	AD7606_CHANNEL(4, 14),
++	AD7606_CHANNEL(5, 14),
++	AD7606_CHANNEL(6, 14),
++	AD7606_CHANNEL(7, 14),
++};
++
++static const struct iio_chan_spec ad7608_channels[] = {
++	IIO_CHAN_SOFT_TIMESTAMP(8),
++	AD7606_CHANNEL(0, 18),
++	AD7606_CHANNEL(1, 18),
++	AD7606_CHANNEL(2, 18),
++	AD7606_CHANNEL(3, 18),
++	AD7606_CHANNEL(4, 18),
++	AD7606_CHANNEL(5, 18),
++	AD7606_CHANNEL(6, 18),
++	AD7606_CHANNEL(7, 18),
++};
++
+ /*
+  * The current assumption that this driver makes for AD7616, is that it's
+  * working in Hardware Mode with Serial, Burst and Sequencer modes activated.
+@@ -149,6 +181,12 @@ static int ad7606c_16bit_chan_scale_setup(struct ad7606_state *st,
+ 					  struct iio_chan_spec *chan, int ch);
+ static int ad7606_16bit_chan_scale_setup(struct ad7606_state *st,
+ 					 struct iio_chan_spec *chan, int ch);
++static int ad7607_chan_scale_setup(struct ad7606_state *st,
++				   struct iio_chan_spec *chan, int ch);
++static int ad7608_chan_scale_setup(struct ad7606_state *st,
++				   struct iio_chan_spec *chan, int ch);
++static int ad7609_chan_scale_setup(struct ad7606_state *st,
++				   struct iio_chan_spec *chan, int ch);
+ 
+ const struct ad7606_chip_info ad7605_4_info = {
+ 	.channels = ad7605_channels,
+@@ -215,6 +253,39 @@ const struct ad7606_chip_info ad7606c_16_info = {
+ };
+ EXPORT_SYMBOL_NS_GPL(ad7606c_16_info, IIO_AD7606);
+ 
++const struct ad7606_chip_info ad7607_info = {
++	.channels = ad7607_channels,
++	.name = "ad7607",
++	.num_adc_channels = 8,
++	.num_channels = 9,
++	.oversampling_avail = ad7606_oversampling_avail,
++	.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
++	.scale_setup_cb = ad7607_chan_scale_setup,
++};
++EXPORT_SYMBOL_NS_GPL(ad7607_info, IIO_AD7606);
++
++const struct ad7606_chip_info ad7608_info = {
++	.channels = ad7608_channels,
++	.name = "ad7608",
++	.num_adc_channels = 8,
++	.num_channels = 9,
++	.oversampling_avail = ad7606_oversampling_avail,
++	.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
++	.scale_setup_cb = ad7608_chan_scale_setup,
++};
++EXPORT_SYMBOL_NS_GPL(ad7608_info, IIO_AD7606);
++
++const struct ad7606_chip_info ad7609_info = {
++	.channels = ad7608_channels,
++	.name = "ad7609",
++	.num_adc_channels = 8,
++	.num_channels = 9,
++	.oversampling_avail = ad7606_oversampling_avail,
++	.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
++	.scale_setup_cb = ad7609_chan_scale_setup,
++};
++EXPORT_SYMBOL_NS_GPL(ad7609_info, IIO_AD7606);
++
+ const struct ad7606_chip_info ad7606c_18_info = {
+ 	.channels = ad7606_channels_18bit,
+ 	.name = "ad7606c18",
+@@ -441,6 +512,39 @@ static int ad7606c_16bit_chan_scale_setup(struct ad7606_state *st,
+ 	return 0;
+ }
+ 
++static int ad7607_chan_scale_setup(struct ad7606_state *st,
++				   struct iio_chan_spec *chan, int ch)
++{
++	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
++
++	cs->range = 0;
++	cs->scale_avail = ad7607_hw_scale_avail;
++	cs->num_scales = ARRAY_SIZE(ad7607_hw_scale_avail);
++	return 0;
++}
++
++static int ad7608_chan_scale_setup(struct ad7606_state *st,
++				   struct iio_chan_spec *chan, int ch)
++{
++	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
++
++	cs->range = 0;
++	cs->scale_avail = ad7606_18bit_hw_scale_avail;
++	cs->num_scales = ARRAY_SIZE(ad7606_18bit_hw_scale_avail);
++	return 0;
++}
++
++static int ad7609_chan_scale_setup(struct ad7606_state *st,
++				   struct iio_chan_spec *chan, int ch)
++{
++	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
++
++	cs->range = 0;
++	cs->scale_avail = ad7609_hw_scale_avail;
++	cs->num_scales = ARRAY_SIZE(ad7609_hw_scale_avail);
++	return 0;
++}
++
+ static int ad7606_reg_access(struct iio_dev *indio_dev,
+ 			     unsigned int reg,
+ 			     unsigned int writeval,
+diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+index 32c6f776c5df..998814a92b82 100644
+--- a/drivers/iio/adc/ad7606.h
++++ b/drivers/iio/adc/ad7606.h
+@@ -237,6 +237,9 @@ extern const struct ad7606_chip_info ad7606_4_info;
+ extern const struct ad7606_chip_info ad7606b_info;
+ extern const struct ad7606_chip_info ad7606c_16_info;
+ extern const struct ad7606_chip_info ad7606c_18_info;
++extern const struct ad7606_chip_info ad7607_info;
++extern const struct ad7606_chip_info ad7608_info;
++extern const struct ad7606_chip_info ad7609_info;
+ extern const struct ad7606_chip_info ad7616_info;
+ 
+ #ifdef CONFIG_PM_SLEEP
+diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
+index 4e729777d373..a25182a3daa7 100644
+--- a/drivers/iio/adc/ad7606_par.c
++++ b/drivers/iio/adc/ad7606_par.c
+@@ -211,6 +211,9 @@ static const struct platform_device_id ad7606_driver_ids[] = {
+ 	{ .name	= "ad7606-6", .driver_data = (kernel_ulong_t)&ad7606_6_info, },
+ 	{ .name	= "ad7606-8", .driver_data = (kernel_ulong_t)&ad7606_8_info, },
+ 	{ .name	= "ad7606b", .driver_data = (kernel_ulong_t)&ad7606b_info, },
++	{ .name	= "ad7607", .driver_data = (kernel_ulong_t)&ad7607_info, },
++	{ .name	= "ad7608", .driver_data = (kernel_ulong_t)&ad7608_info, },
++	{ .name	= "ad7609", .driver_data = (kernel_ulong_t)&ad7609_info, },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(platform, ad7606_driver_ids);
+@@ -221,6 +224,9 @@ static const struct of_device_id ad7606_of_match[] = {
+ 	{ .compatible = "adi,ad7606-6", .data = &ad7606_6_info },
+ 	{ .compatible = "adi,ad7606-8", .data = &ad7606_8_info },
+ 	{ .compatible = "adi,ad7606b", .data = &ad7606b_info },
++	{ .compatible = "adi,ad7607", .data = &ad7607_info },
++	{ .compatible = "adi,ad7608", .data = &ad7608_info },
++	{ .compatible = "adi,ad7609", .data = &ad7609_info },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, ad7606_of_match);
+diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.c
+index 44c6031e9e9a..0662300cde8d 100644
+--- a/drivers/iio/adc/ad7606_spi.c
++++ b/drivers/iio/adc/ad7606_spi.c
+@@ -132,6 +132,19 @@ static int ad7606_spi_read_block(struct device *dev,
+ 	return 0;
+ }
+ 
++static int ad7606_spi_read_block14to16(struct device *dev,
++				       int count, void *buf)
++{
++	struct spi_device *spi = to_spi_device(dev);
++	struct spi_transfer xfer = {
++		.bits_per_word = 14,
++		.len = count * sizeof(u16),
++		.rx_buf = buf,
++	};
++
++	return spi_sync_transfer(spi, &xfer, 1);
++}
++
+ static int ad7606_spi_read_block18to32(struct device *dev,
+ 				       int count, void *buf)
+ {
+@@ -325,6 +338,14 @@ static const struct ad7606_bus_ops ad7606_spi_bops = {
+ 	.read_block = ad7606_spi_read_block,
+ };
+ 
++static const struct ad7606_bus_ops ad7607_spi_bops = {
++	.read_block = ad7606_spi_read_block14to16,
++};
++
++static const struct ad7606_bus_ops ad7608_spi_bops = {
++	.read_block = ad7606_spi_read_block18to32,
++};
++
+ static const struct ad7606_bus_ops ad7616_spi_bops = {
+ 	.read_block = ad7606_spi_read_block,
+ 	.reg_read = ad7606_spi_reg_read,
+@@ -387,6 +408,21 @@ static const struct ad7606_bus_info ad7606c_18_bus_info = {
+ 	.bops = &ad7606c_18_spi_bops,
+ };
+ 
++static const struct ad7606_bus_info ad7607_bus_info = {
++	.chip_info = &ad7607_info,
++	.bops = &ad7607_spi_bops,
++};
++
++static const struct ad7606_bus_info ad7608_bus_info = {
++	.chip_info = &ad7608_info,
++	.bops = &ad7608_spi_bops,
++};
++
++static const struct ad7606_bus_info ad7609_bus_info = {
++	.chip_info = &ad7609_info,
++	.bops = &ad7608_spi_bops,
++};
++
+ static const struct ad7606_bus_info ad7616_bus_info = {
+ 	.chip_info = &ad7616_info,
+ 	.bops = &ad7616_spi_bops,
+@@ -408,6 +444,9 @@ static const struct spi_device_id ad7606_id_table[] = {
+ 	{ "ad7606b",  (kernel_ulong_t)&ad7606b_bus_info },
+ 	{ "ad7606c-16", (kernel_ulong_t)&ad7606c_16_bus_info },
+ 	{ "ad7606c-18", (kernel_ulong_t)&ad7606c_18_bus_info },
++	{ "ad7607",   (kernel_ulong_t)&ad7607_bus_info },
++	{ "ad7608",   (kernel_ulong_t)&ad7608_bus_info },
++	{ "ad7609",   (kernel_ulong_t)&ad7609_bus_info },
+ 	{ "ad7616",   (kernel_ulong_t)&ad7616_bus_info },
+ 	{ }
+ };
+@@ -421,6 +460,9 @@ static const struct of_device_id ad7606_of_match[] = {
+ 	{ .compatible = "adi,ad7606b", .data = &ad7606b_bus_info },
+ 	{ .compatible = "adi,ad7606c-16", .data = &ad7606c_16_bus_info },
+ 	{ .compatible = "adi,ad7606c-18", .data = &ad7606c_18_bus_info },
++	{ .compatible = "adi,ad7607", .data = &ad7607_bus_info },
++	{ .compatible = "adi,ad7608", .data = &ad7608_bus_info },
++	{ .compatible = "adi,ad7609", .data = &ad7609_bus_info },
+ 	{ .compatible = "adi,ad7616", .data = &ad7616_bus_info },
+ 	{ }
+ };
 -- 
 2.46.1
 
