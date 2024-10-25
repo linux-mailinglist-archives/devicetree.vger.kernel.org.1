@@ -1,157 +1,141 @@
-Return-Path: <devicetree+bounces-115539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7D139AFF37
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 11:59:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD64E9AFF41
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:00:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49E201F21A93
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:59:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2027285A5B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:00:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9081DAC93;
-	Fri, 25 Oct 2024 09:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4308D1D967F;
+	Fri, 25 Oct 2024 09:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UOc7cpTR"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="d3Cw+6DM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB731D90C8;
-	Fri, 25 Oct 2024 09:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDBC1D47AD
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729850364; cv=none; b=tmcZ+QNs+tGRPHi/8wPmK7SY4ssv0UeZAZWKxmqFo/8RiufNLUQ6ZmSsi4QdfJV42NjqszWPj/1CKEhwROc8qpMRq/z8ookfyIHAraOshgCHFJ2uAXwxgsdEMwOKXMfz/fehsHRsFYvro04AFjEyO/hndBVnEvUZTxRP/W8k2Eo=
+	t=1729850393; cv=none; b=UaGDKdZ2j+XhW7QFmR7nQsGcep7I69Q2c8/baDVIuR3CT8VT7QPuiDytA0Sgytq/l06OkbkUiJSafQtt4xtymMj8W+S3OtwegVjG3ViZI9dv3HgIy++boCHTbZ5qszdO0VO1wP2oJBnSY0aucAxwLns0CKmCKJSsC0mPuJlgBHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729850364; c=relaxed/simple;
-	bh=fBmyIDKPno0DYsTiITeI60p5mA0bO0r2hrftp9ABmLA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=P04i6OkuRLrV2x/Ui1J7S5R7wRdAl3o71hOJgXZNQiz4Lh4XMCZ/t36loJ8waNZtPDxY8fO98fCs+o6LJnRmHxcXB7OqrJ6nxCbyfl05JoaVXwg5Cz2uMSG9ZwNzTcm4ZUNLtgjspIspc2GPqCvWhFWHYOvMINVJQn0GRjw1g4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UOc7cpTR; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37ec4e349f4so1344178f8f.0;
-        Fri, 25 Oct 2024 02:59:22 -0700 (PDT)
+	s=arc-20240116; t=1729850393; c=relaxed/simple;
+	bh=EOXu4RXiG/1nFkUUENz+48cVcqlUm4zIM+TQFU+MRk8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YmSNCVRg+y+AwMEeebui8wsQzesACgsZ59chIbGeSIvZ8qVLoXs+2SKpfUl53qmk1dr51iTJ9ciSF9nAEGC9CTRUjWk7kjppf+pi0x2zqFgO1Qsy3fWXSGqDdE/bXu5QCwQE1TTRLkpo/BZvU/uTRxDWXmNajoZW2BBpADzlZhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=d3Cw+6DM; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5c94c4ad9d8so2287542a12.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 02:59:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729850361; x=1730455161; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ujk9DybyKkZDF/2MtHXApKNICNk9/HaCwbVOr5hVCKk=;
-        b=UOc7cpTRse70IB3tQtRGm++6eM0cirKJK9P78MlYB6AwkAHgBj8+T+nh8hYsUwCvt6
-         UOHWvD2F65by1rRsVBDzD+WuUNqqKWaBu19vg6+Vj8f/q7UvKp/f5tC66aAXz3VQVsbR
-         Vf9YXa5PZp/XvDBQqN8sf3tKDxJj4tgr/wimG1c33r2+dPBWA+3rL/zQwzFCmvTxAxvE
-         hH+Ms/27dLopEQ8qhMz0h2vLgXhMjWcOc4fuo91NvYP873W861xyMr2MPFPBU+EIeCKR
-         QsBk5ikufof1h2L2TNSG1qMEgGk7c+5ZNMwBrJW7zUmXaTlGqCTbSovA8IhEbiaMHpF5
-         LTzw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729850388; x=1730455188; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l203ObTiAyHx4TgS5hw87uYDqdH7xPzhZxL+rMiEkDQ=;
+        b=d3Cw+6DMoVh/oB86jE+F0MS3/5Xg1YqnGczwEC2Z9Zx5Za27NHZRP1H7+nHIMSGuPX
+         CY3vUJq9YvMGlm6+8SmxGQzLoGreXnXn1lhJG9oF/WWFyYYRDvtp5wtO9Eu7BiEejuFQ
+         c8PaqgXIcIOSeYFw773XeeoHEn4S3+bvqbgX9lCvpXG69Rm6lybYNsVvpEpbpi9V6rij
+         203oeZO9X4fBRG2SXqHisUJmqxMRZtWQL7ZcWXznoMaRBmnI5zcQQ7YG/p7Isxn5F4oi
+         YXEBu7FVlJClHsuuIHBE4kPJ9fqWkq5nsa9AUvSBnDOltjzNvGN2NQqSY3oLjJZbcDHx
+         Cq9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729850361; x=1730455161;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ujk9DybyKkZDF/2MtHXApKNICNk9/HaCwbVOr5hVCKk=;
-        b=uKQZxNUkUI2ueqUlf9Z4ieh114XJel5yop67Jem/yLRBD0Wd1x4m4bEG2LFT79OaeS
-         wSGrX1+8/YZCi6sNxg4gAtoIDBU2wLl4JpPuthjI3RlwBvsEZwFnIt66nGDe1WoKVfH9
-         1mpybJL6+2zckWEUDucky7mp4Z6hsLUrlMhnBqCtVcbOerUGwcAEhJ7aVf0LdXOKyCk2
-         LFm8Y7yxTauoH2n9A1FyqGSnWZ3KIzKLK0XbRDPO14xlfxR7ggw/LivpO6jLU2hyid3C
-         NTWMT+CUa3oypuuLusnrxtTdZvGBwqljxcQXTMHcBQgLnD9EsJnHfI/vSvfDtPA7E22V
-         bhoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWwCULmCAa7vKINU7G40PZyJDE9aJUtgiN0vwZVIAssacpeQvf6ENGQoUwKphcr6Kd5RDFC1mqlIjPUuEg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbtZ38S62gfwuXFc3uIWk++eSJF9ZpcLkus0xlyPhdcz4ygQDZ
-	skEBEPNUlI1vcPZ4Mj3LVa7iX0lpvpT9limYloMRQvy9cgJttmWg
-X-Google-Smtp-Source: AGHT+IGQ/FkY+lqoyXqrOcHuZexookS5gw8fVWByzJEmmycGhV4kbog53gMdjkWU0W54WsbGNSPHXw==
-X-Received: by 2002:adf:a442:0:b0:378:7f15:d51e with SMTP id ffacd0b85a97d-37efcf7f306mr5781853f8f.43.1729850360713;
-        Fri, 25 Oct 2024 02:59:20 -0700 (PDT)
-Received: from eichest-laptop.lan ([2a02:168:af72:0:7bc0:826e:69e3:7e40])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b3c7b9sm1098214f8f.32.2024.10.25.02.59.20
+        d=1e100.net; s=20230601; t=1729850388; x=1730455188;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l203ObTiAyHx4TgS5hw87uYDqdH7xPzhZxL+rMiEkDQ=;
+        b=n+LdGrLfnmNPaDnxVL1+ZRPj2ai4yA40j5UYrTfnhq2JljXZrvl/YqcamZXt2pT/QT
+         r7fV8DqxQ+nLk68eAfWun1BAU/GTB/M2FXpofouhhkWBEXhwGgiJwgyVozYzzvJeCH1+
+         yyv2e1VwGN8U2DmLPoReiHSc88KFxQr2Vgh+4Xt1ne9us5cFoqI2yZWKIv4owEMJmAaO
+         ky/g/QREdLR3D7Ek6tvoyQ2V2gN8np5SF5r7Uuy/V86nH5HchdGbyEhmSbocjeHlQ2qG
+         nxnavmOhHs/2CL6rN2NVkdfMXcxpLzzui+dp6p+JMCJW00Qoi7Mc1QOEAcd48JmHNxsB
+         FFhg==
+X-Forwarded-Encrypted: i=1; AJvYcCVXGccSssFH3WVnFr4arOXLNX9IeI1lJU/KOQzzs2qnNZq7JSCV6UP4cY+oucuLwURasCnn9lLXq2mM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+DNDs2xx4FqDawECf89pr4DNW+BuFfIf7flKOUW64L/VI1QyF
+	yz3wEM6aETIV/vFnWrqedm+bEFOe3Fb+ry370NFGWsXCZW+pHaKC4nhHEREHbv4=
+X-Google-Smtp-Source: AGHT+IF5BKfv34MZ4Hk3VE7V9xDrF6KGVt5Ob9HfZVsG4aAxIrjWzlwC1BiRD7Bdpq2DWUGwA1qfBQ==
+X-Received: by 2002:a17:907:7ba1:b0:a99:f77f:b489 with SMTP id a640c23a62f3a-a9abf96ebcdmr860509566b.43.1729850387707;
+        Fri, 25 Oct 2024 02:59:47 -0700 (PDT)
+Received: from localhost.localdomain ([188.27.128.50])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f02951esm51737266b.71.2024.10.25.02.59.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 02:59:20 -0700 (PDT)
-From: Stefan Eichenberger <eichest@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	francesco.dolcini@toradex.com
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
+        Fri, 25 Oct 2024 02:59:47 -0700 (PDT)
+From: Alexandru Ardelean <aardelean@baylibre.com>
+To: linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: [PATCH v1 2/2] arm64: dts: imx8mp-verdin: add single-master property to all i2c nodes
-Date: Fri, 25 Oct 2024 11:58:03 +0200
-Message-ID: <20241025095915.22313-3-eichest@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241025095915.22313-1-eichest@gmail.com>
-References: <20241025095915.22313-1-eichest@gmail.com>
+	devicetree@vger.kernel.org
+Cc: jic23@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	lars@metafoo.de,
+	michael.hennerich@analog.com,
+	gstols@baylibre.com,
+	dlechner@baylibre.com,
+	conor.dooley@microchip.com,
+	Alexandru Ardelean <aardelean@baylibre.com>
+Subject: [PATCH v2 0/5] iio: adc: ad7606: add support for AD760{7,8,9} parts
+Date: Fri, 25 Oct 2024 12:59:34 +0300
+Message-ID: <20241025095939.271811-1-aardelean@baylibre.com>
+X-Mailer: git-send-email 2.46.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+This change-set adds support for AD7607, AD7608 and AD7609.
+These parts are simpler parts for the AD7606x family. They support only
+HW-only mode like AD7605, but they support oversampling like the other
+AD7606x parts.
 
-By default we expect all i2c nodes to be single-master, we do not have
-any module or carrier board that uses multi-master mode on any i2c
-controller. With this property set, we benefit from optimisations made
-exclusively for single-masters.
+AD7607 has a 14-bit resolution.
+AD7608 and AD7609 are 18-bit resolution.
+AD7607 & AD7608 supports +/-5V and +/-10V ranges.
+AD7609 supports +/-10V & +/-20V ranges.
 
-Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+The oversampling settings are the same.
+Because of AD7607, the scales had to be reworked (again), but this time
+doing away with the allocation at runtime for the scale-available-show
+values. This time, the full IIO_VAL_INT_PLUS_MICRO values are stored
+statically. AD7607 supports a scale of 1.220703, which is the first and
+only (so far) scale that is above 1.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-index a19ad5ee7f792..323b45bac281e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-@@ -478,6 +478,7 @@ &i2c1 {
- 	pinctrl-1 = <&pinctrl_i2c1_gpio>;
- 	scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	single-master;
- 	status = "okay";
- 
- 	pca9450: pmic@25 {
-@@ -669,6 +670,7 @@ &i2c2 {
- 	pinctrl-1 = <&pinctrl_i2c2_gpio>;
- 	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	single-master;
- 
- 	atmel_mxt_ts_mezzanine: touch-mezzanine@4a {
- 		compatible = "atmel,maxtouch";
-@@ -690,6 +692,7 @@ &i2c3 {
- 	pinctrl-1 = <&pinctrl_i2c3_gpio>;
- 	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	single-master;
- };
- 
- /* Verdin I2C_1 */
-@@ -700,6 +703,7 @@ &i2c4 {
- 	pinctrl-1 = <&pinctrl_i2c4_gpio>;
- 	scl-gpios = <&gpio5 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	sda-gpios = <&gpio5 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	single-master;
- 
- 	gpio_expander_21: gpio-expander@21 {
- 		compatible = "nxp,pcal6416";
-@@ -788,6 +792,7 @@ &i2c5 {
- 	pinctrl-1 = <&pinctrl_i2c5_gpio>;
- 	scl-gpios = <&gpio3 26 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	sda-gpios = <&gpio3 27 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	single-master;
- };
- 
- /* Verdin PCIE_1 */
+Changelog v1 -> v2:
+* https://lore.kernel.org/linux-iio/20241021130221.1469099-1-aardelean@baylibre.com/
+* Dropped patch 'iio: adc: ad7606: fix issue/quirk with find_closest() for oversampling'
+  - Will focus on fixing 'find_closest()' instead
+* Patch 'iio: adc: ad7606: use realbits for sign-extending in scan_direct'
+  - Applied David's suggestions to check only for > 16 bits
+* Patch 'iio: adc: ad7606: rework scale-available to be static'
+  - Applied David's sugestions
+    - Rename variable to 'scale_avail_uv'
+    - Use 'MICRO' definition for '1000000'
+* Patch ' dt-bindings: iio: adc: adi,ad7606: document AD760{7,8,9} parts'
+  - Added Connor's Acked-by tag
+
+Alexandru Ardelean (5):
+  iio: adc: ad7606: fix/persist oversampling_ratio setting
+  iio: adc: ad7606: use realbits for sign-extending in scan_direct
+  iio: adc: ad7606: rework scale-available to be static
+  dt-bindings: iio: adc: adi,ad7606: document AD760{7,8,9} parts
+  iio: adc: ad7606: add support for AD760{7,8,9} parts
+
+ .../bindings/iio/adc/adi,ad7606.yaml          |   9 +
+ drivers/iio/adc/ad7606.c                      | 221 +++++++++++++-----
+ drivers/iio/adc/ad7606.h                      |   9 +-
+ drivers/iio/adc/ad7606_par.c                  |   6 +
+ drivers/iio/adc/ad7606_spi.c                  |  42 ++++
+ 5 files changed, 220 insertions(+), 67 deletions(-)
+
 -- 
-2.43.0
+2.46.1
 
 
