@@ -1,100 +1,110 @@
-Return-Path: <devicetree+bounces-115720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09C199B07D1
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:19:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF989B080E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:24:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03E4BB23678
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:19:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B153B296FA
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:22:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0510F21F4D2;
-	Fri, 25 Oct 2024 15:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF381C07FC;
+	Fri, 25 Oct 2024 15:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="odaCxQsD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i2rqJPxA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479832064EC
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 15:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CE2187FE2;
+	Fri, 25 Oct 2024 15:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729869209; cv=none; b=DqViSPOSstSX0ybQ+cftj3F+K5QcWaIrGpudZYhvZhZM5O7DDbJcL+H/ed4+psfzUHha8fI8DpR2QPSB7GyaB7RrhnnuiHm4pxoCYQUs1KM/SdsHGJb1aj4gz46/F/THbZK4QnU6CAPDSnSl06Sqz8GQef1VWoc4hthePwbkajw=
+	t=1729869480; cv=none; b=oyawRIzQbHN6mzUFjpFbigsKz5K81/6IBnz+uPiyuxCvxhIrDScBWzTKuSaifm8An0qS4DOLBu+ZcgQtg9L7oE6ZK6IQlgD7+AZSsIdfMv2hG0JarFgri5LXVkkZtt3UzuqV6d8JSZvyBJn/mPe71XcCxpBK0TYuiGRaNsa7vRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729869209; c=relaxed/simple;
-	bh=1glypQCh6oU6vE3DESBggtLlZR/ohpj1NVGaFmiQlHQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iM9VTeLu9ngSiAL5mds+k0jL9znncpOBR9r4hG5R9JFDEouaRqesdL6IIplY/YaCl9e2X6S29fT9Bbsgfor9g1vsFHSlIBfQnZTalVnnBulZjnEjkfJDcIapMO1w0ar95gAwQyH7PB6t5hQWa6/mBqLauRGoTlMNrYiiANq4pOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=odaCxQsD; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-28cdd9d8d01so1175512fac.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:13:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729869206; x=1730474006; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cEZuHAA8jrvQYw1X6ZzndrKs/WqmOwXkzHNkdE13zG0=;
-        b=odaCxQsDwxbdMnVuZIjxGUmM80BQe9Ux1St3ELFUsGz/Mb+QyH33sRoh6tCnw8FGWE
-         BurqfLY1TCpftaj9qTgnHp8Try1vf/5s1rl3P/FQ69q1m69tyk5Dvs5bb5ekddrsRu8k
-         y+defOTU2fdLHU5gDEHxIx+4UX/9NjVt4szsAASG9qhFC5vxUtnt/nzjqcrxPHifqxak
-         l3W9efnIJNACTj2O+hvPE73mAHAIiidxsh4o3pQj5+Tj2CLn7z4a94y9xYnfAUA9spo6
-         YsbxdBHntSHvSfISB7Yv5iev2p/VBo28PRS4x4ikevqHrc3bQpRR9cDxSUuZUcxmN9fP
-         idnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729869206; x=1730474006;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cEZuHAA8jrvQYw1X6ZzndrKs/WqmOwXkzHNkdE13zG0=;
-        b=l1NLVoV7MyhZNAER7zdruV/TjMhpLqJaCbn1zVf9HiTHGZ0snA+/CizP/JrelVT9Ab
-         dEwfyygWnX2Xx9E2YaDc0qKHZUPGo8wXFNr9eg9tjPXm/u0G4Ps8lxEExvt1BPuMxoL2
-         oMiGYjs07v4CVoo0YgJoLFZOCCuYgXXf83ZjP+Zvm7f8uYlBNv+kYGIjpKrAbGSjzA+O
-         gdDWDOGZDJgc6mQyWTKpYCE9tAyG6KAJkHtX/4S6jy1pGq9Y0nBxL4Z/UfSLLyn723bi
-         Fb4F+c60NHO/gykDiRcaA0H3LIm4dmcIymJZsTxjDElUjbhKcAjoGIS+sk/8uknzmnzX
-         RtiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU218dBHKqqzF7sMBRDst7TIiBIDJeWeNdPWDxOAs3kgtEatK084dX7FwewXX38vIemCpcJX3WiISAA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzOTLawyRTdYlPqEE9RXhZD/Jse5PmaoezjGj7cPaZj02vCaJA
-	Wuk9PLFSSGNqz3nzO+Ef9JDfiorADK9GGqDmUDmk4UwPB9VmEFH7icDp5wH5IIU=
-X-Google-Smtp-Source: AGHT+IHDeF7XMCZ1zuEMXoudHjPnmgG8Mw/iYsPRBtIJJeM8OILnp8VsSaxLdCT6Ho5BEB4MGt2j+A==
-X-Received: by 2002:a05:6870:e0d1:b0:288:44cd:33a2 with SMTP id 586e51a60fabf-28ccb73264fmr8369570fac.46.1729869206291;
-        Fri, 25 Oct 2024 08:13:26 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-29035d20dc7sm304413fac.10.2024.10.25.08.13.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 08:13:24 -0700 (PDT)
-Message-ID: <127a3066-1ee0-43ca-8214-05c9409e0138@baylibre.com>
-Date: Fri, 25 Oct 2024 10:13:23 -0500
+	s=arc-20240116; t=1729869480; c=relaxed/simple;
+	bh=AFB5dBlvHcC/6M5uimJnSPRLELNuhWnZtKgP9ksYlcg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZgVT0oyJuBnx8oTzgDeg367spjNhtHr+9HkWA6jr7GvpZqySaB5Nz7upp1xt3VarjRKHjfpiS2pgpHz1ZdBV878dO32k96Tai/i/ftHvF3pXTC5m6Ubw5xyRILKHopavSRvhbooShxQ1Mt2eamuLIcf6mR1qcAgByyWJAHtvbtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i2rqJPxA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A836C4CEC3;
+	Fri, 25 Oct 2024 15:17:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729869479;
+	bh=AFB5dBlvHcC/6M5uimJnSPRLELNuhWnZtKgP9ksYlcg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=i2rqJPxA6j+KyKCKn9OVcq+jQB/rblSmR0AHXaguoSDFk83tFOAjdNO0VznGw6Qxt
+	 Qr+x46+MDX2D8JQHsJtvwU1U/eiJcRAURc6+cT7cfEQqh+uB2IofWoMNgRnrc9V4nL
+	 r5h/PWy9LElGBB/7KjCXOcv9FrW8oSTV1IjVbmttjziTHgIM13hdP9tCjAbLoFIBgs
+	 BkV+iaW6t2ixo89zscM8UFIbGtr2+SN8zloMqPV8m+ajcboZnzXjJFdDNjzMGDcs1O
+	 rvU6mblSuQrtkEUzkAcZCbkCzWrtJrbEBUJVR9YJiVnZLoL8Fx7tz5ahzbe+tK2p36
+	 qi3mQsUUqTJ0w==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1t4M4v-000000002Vj-1zWB;
+	Fri, 25 Oct 2024 17:18:18 +0200
+Date: Fri, 25 Oct 2024 17:18:17 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: x1e80100-crd: describe HID supplies
+Message-ID: <Zxu2uedfWhAYSCrE@hovoldconsulting.com>
+References: <20241015122427.15995-1-johan+linaro@kernel.org>
+ <Zw5w+eCBMQu3CSuz@linaro.org>
+ <Zw_tLjudvbTKGAMM@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] iio: adc: ad7606: add support for AD760{7,8,9}
- parts
-To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
- michael.hennerich@analog.com, gstols@baylibre.com, conor.dooley@microchip.com
-References: <20241025095939.271811-1-aardelean@baylibre.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241025095939.271811-1-aardelean@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zw_tLjudvbTKGAMM@linaro.org>
 
-On 10/25/24 4:59 AM, Alexandru Ardelean wrote:
-> This change-set adds support for AD7607, AD7608 and AD7609.
-> These parts are simpler parts for the AD7606x family. They support only
-> HW-only mode like AD7605, but they support oversampling like the other
-> AD7606x parts.
+On Wed, Oct 16, 2024 at 06:43:26PM +0200, Stephan Gerhold wrote:
+> On Tue, Oct 15, 2024 at 04:41:13PM +0300, Abel Vesa wrote:
+> > On 24-10-15 14:24:27, Johan Hovold wrote:
+ 
+> > > +&pm8550ve_8_gpios {
+> > > +	misc_3p3_reg_en: misc-3p3-reg-en-state {
+> > > +		pins = "gpio6";
+> > > +		function = "normal";
+> > > +		bias-disable;
+> > 
+> > Maybe output-enable and input-disable are needed. Can you please check?
 > 
-Reviewed-by: David Lechner <dlechner@baylibre.com>
+> FWIW, there is a reason behind explicitly describing the intended
+> direction of the pin for PMIC GPIOs with properties like "output-enable"
+> or "input-disable": On QC platforms, PMIC GPIOs can be either in "input"
+> mode, "output" mode, or "input+output" mode. If you don't specify
+> exactly what you want, then the pinctrl-spmi-gpio driver will only add
+> to the existing configuration.
+> 
+> For the configuration above this means:
+> 
+>  1. If GPIO6 is disabled or in "output" mode during boot, the resulting
+>     mode will be "output".
+> 
+>  2. If GPIO6 is in "input" mode during boot, the resulting mode will be
+>     "input+output".
+> 
+> I don't know if "input+output" mode has any negative impact compared to
+> pure "output" mode. We usually want to have the pins in a consistent
+> state though (i.e. independent of the boot up state).
 
+Fair enough. I was worried that configuring the pin as an output without
+setting the output value could cause trouble (e.g. always default to
+low), but it seems at least the Linux driver handles that.
+
+Johan
 
