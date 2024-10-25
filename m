@@ -1,240 +1,182 @@
-Return-Path: <devicetree+bounces-115671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FDAC9B03F9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:25:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B4B19B04A1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:53:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8123CB22749
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 13:25:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 907051F244B5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 13:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B701FB890;
-	Fri, 25 Oct 2024 13:25:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O/ORAz4F"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 885611632F3;
+	Fri, 25 Oct 2024 13:53:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770CA70830;
-	Fri, 25 Oct 2024 13:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F00670815;
+	Fri, 25 Oct 2024 13:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729862703; cv=none; b=ZhPqJ42kIUMdU76p/BCBrp/VoCrBilpVblZcTAB4rPuX0STbPRImZ2OHDZVMz/OWbc4fNGxudb5hZJa8iOuOCo80Bz+CjIcR6EHy0Mczz9eDAMdt2UG1Uvezj9kHY/kN6vpShPDMjI10Dxlw7my9KtBRqXHGUxf5omZb5koGPf8=
+	t=1729864398; cv=none; b=RsWN0W63CBUa/xAElWG/hIOyVdbJ9MKTsHHy9z6pRijlttV4qVZS10e33Iwx/nE9E+K+ZCbGfFCvmobL3UFxxG4t+0vZLKp/NhhPgk9zeYdxMLSHyOY4JSiipFbToYbfsEz1Ddb/eeehPSsr7oaRuw/gh7CtPNXkdJijoUZaVlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729862703; c=relaxed/simple;
-	bh=gQI8AnluPQVjf5h9lbIkR64rIZxE+qdCSb0pvD97Q9c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=s8mmlK9K/jPCeL5HjA/Xsq6s9dY2LyJmjNf3xfZMatwqo0ukyintLcUxz+Yx7TDKFs6U4cQEDs7TZt6ChbDoLWs45ktomGEWV0YFXp1+eynGzBr3taTjRy9aIeCQxUBUOfC8z/3JmoEr08baiLFdqJYxU/61xCtmNUU1pQREEsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O/ORAz4F; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1729864398; c=relaxed/simple;
+	bh=dLnhZv36ldJad16CK8s2AbD04/f19Oaqvlhu+fewXbE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b0mTxw0+UxJ3fKUdkV7OjJfjZ2sxAqCPdnrmNyuQu6Eqyf+cOs5+qfEn+jIAYqqiSbpaNChwQQ9M569/rZYE6hvCBcJ4NxKCoXWvyJW/mIabkqYnmZhaR0qcjoNI2Dae3S4G5KDJ1xI9SVAmgkYbTUZC1OZl/A6Qx8Dq5pHxCho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43152b79d25so18856215e9.1;
-        Fri, 25 Oct 2024 06:25:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729862700; x=1730467500; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6QG7Ws+6+SNR9ioREvh/7ICHjVTNzGhU7yaZq8M3HQ4=;
-        b=O/ORAz4FnSJLjL3QUDEqLPryBDlOwuYrGdgpcnIBqihcYlOWcZPLGqTl6t12x6iB7d
-         k/rvfJobgqeEHz3/1euOzjRT7jdcF8NQPxdp4tEb9YgzyQQtnhU1UPXpzXKec8Qv1Xzi
-         EK5WZQI+6ZAOQuLkQiYnq+UFJNciYs/F5K5XE0XIktCVcnZk0zWInGUwJeuoyMDpHq1+
-         4K1a9IiWQT3/FxsHSTANotkZBqjxcQVBalVVY6vgcVccdto0qPDdzQLu1NpssWueggOd
-         DYgC2axNWeDaPmvwDiN/4cyhyjf973w4fCeGxexpJbHyzSlL0QDwn2pZe+GRn0UtU6Ul
-         BQrA==
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e0875f1e9edso2143925276.1;
+        Fri, 25 Oct 2024 06:53:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729862700; x=1730467500;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6QG7Ws+6+SNR9ioREvh/7ICHjVTNzGhU7yaZq8M3HQ4=;
-        b=bzs8OxEx11H3Aoibsj5vK6eKdgpbNp2S1thxHwqc1Phu6VJTMHlljsvLxZu2OnmyEA
-         nPWdDtGcmRkQA4EoQemKM8ac+W3/vZRd6/c4oBdQtyjpXQLbM4hQrrlp9bPCB0L5RpmP
-         SAy0viGXjB5SYOUAx7pngV5UH8MX2T+oW82Wu2FeHvuJPVt1/u7nVsLyO+epMK+3UgZG
-         q+weJirLnbvZFAwQVfgolZTDsTkHj4floO9aGXheqJMuzn1/IU6rzGMY9qZSRqxxhml0
-         maJD7eGHx07ohT611aZN5RQitKBTWqJ5TRh1PlM3egpcbyUmqgLRhD1Oki2OgZBCD7wd
-         9PJA==
-X-Forwarded-Encrypted: i=1; AJvYcCUdpCoIHLvY6dyKAY0WhrGZsaljMyhk3AxYGwen6Q+/GWKpghHcNW3McDitDIKvom9SVlh9eXzKmux7C71k@vger.kernel.org, AJvYcCUqtj4cgD7PONt4k63eb7qV9YuHtQUPHfi3CzjQIUzgL7kG/5OKxHXfkoZTOdDnUjrhB3GKC2jbzLxn@vger.kernel.org, AJvYcCVRtG4EZeA5GuENCT4JKRREqv5RNbxCnly2cAtRsLtHL8kVdZSCuWy47R4YAOSv5LzOfX6rL+YqKdYJ@vger.kernel.org, AJvYcCWfaz29KHUngZjynUKbnDK3zp5zPMVe5lahCDt53wJfAejcW03aSvUkM1RBy/cgkYi2gfl/Nr11ujGu@vger.kernel.org, AJvYcCXcQ7wX6pAnx43dt4Q8QjI6OqxJ/5EuHZ7Ax3IlZskwnDtQFtZViHW8J8NfemIM6zOl+3JkntQyE7iu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyh4v2kfXQMKzQrfZPn1LDiD0G1gHa40evQy65IMSBKq4hI4umW
-	Y0Z4vRb4pbTavgrDcg9tLMOjSAS7WGuHMRJjsVyNE7eYJtpISCgb
-X-Google-Smtp-Source: AGHT+IF1i/8pAlv114ybh4HJ+3sr/T3dg6DbQ/nVTN+F6FLTDerxqpIrM0OKiBQlHItNSqGIpLa1ig==
-X-Received: by 2002:a05:600c:35cd:b0:430:52ec:1e41 with SMTP id 5b1f17b1804b1-4318415c0acmr96593995e9.17.1729862699565;
-        Fri, 25 Oct 2024 06:24:59 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935a4c0esm17805085e9.27.2024.10.25.06.24.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 06:24:59 -0700 (PDT)
-Message-ID: <1f4156e8c6c4da09fc5d72661d1e002ae6ee4f31.camel@gmail.com>
-Subject: Re: [PATCH RFC v4 11/15] iio: buffer-dmaengine: add
- devm_iio_dmaengine_buffer_setup_ext2()
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
-	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-Date: Fri, 25 Oct 2024 15:24:58 +0200
-In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-11-f8125b99f5a1@baylibre.com>
-References: 
-	<20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
-	 <20241023-dlech-mainline-spi-engine-offload-2-v4-11-f8125b99f5a1@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+        d=1e100.net; s=20230601; t=1729864392; x=1730469192;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Djva4KOP4v9Rg26S81bBmAQ/5dEE1/x6R+NZGGRbJmc=;
+        b=PGzu3cle5ntG7V7wl65VwNGsQ/aUbMAFz8cH4yA87vmwu9aZ2mOSU/rezrLOCZJNph
+         9tIHcBDbniNbIAAJ/2/DnICVGTto8n7p9mQl7S/ZEM1AYmpGc3sKbL1/ieBl0U93UqUw
+         YByVPqufu8grgkYeqVwkJ9Zlrt/dJgsd814yyLPRisEMbsgvNL4AqEAuv40v5SJOKuW7
+         pCwuPlkqfcaEigbG5LPDnecUYhLjg0BjZim5KLaqp36LLaqcdBKnIq/pYUb+Z9AIykDY
+         dylIm4n9zkXHZud+99xLaliftVbYAf4YC4SH25qhAwnwIYArIQ9rGrGiOmaKL1tKUFx9
+         KT7A==
+X-Forwarded-Encrypted: i=1; AJvYcCVUBJxNWWKV0A2QUoVO1k398yo5blOp9DkSgsutRuL16bnwI7VN9gnMDTk+2lBfF48nP61T2YKqpXDrvTQZ@vger.kernel.org, AJvYcCXLcPNidqZlKBDiKIO67kEJa2pPkbf1zDh/sUavL02vpglDQYIKUJBhOpOtWzfiinRBhJw7D7ST+bFh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yybj+JXkdb/YHRaZq5DOl8Lttht41qb9rfPdJXHiz1ZlKsO4irj
+	1gsMQkDMBe0FTXC35/cCY0ud6zGyaOuXi4E5pCBEjlOeetAn5WqS+XIlkr6S
+X-Google-Smtp-Source: AGHT+IFIQyZl+sDK9YNYRLYp5T8sT/b3XEOFcK1WUFIUsGl1AgB06yjV8bGt+0pERZsH7cbkkVhikw==
+X-Received: by 2002:a05:6902:2688:b0:e2e:3701:7824 with SMTP id 3f1490d57ef6-e2f22f1c60bmr6192502276.2.1729864392448;
+        Fri, 25 Oct 2024 06:53:12 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e307a01d70esm242380276.41.2024.10.25.06.53.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Oct 2024 06:53:11 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6db20e22c85so18242687b3.0;
+        Fri, 25 Oct 2024 06:53:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUPceWkseiQ4uGg/YbmCPW4Erv2HCJ0OyrGj2j9AYaj4EVJfmwPdIOG1c60C9Fz1byPdkQph0xH/SD/@vger.kernel.org, AJvYcCUVUAg2eWV8CMdMiCB5Z4k7oexHVJWRhxCi3S5/i5TWyG/VDJF1EHxaOeMv3zjk3U86QufctbG6cMPcL9zn@vger.kernel.org
+X-Received: by 2002:a05:690c:6610:b0:6e2:1527:446b with SMTP id
+ 00721157ae682-6e85814e730mr59897987b3.3.1729864390657; Fri, 25 Oct 2024
+ 06:53:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241023210313.1390767-1-Frank.Li@nxp.com>
+In-Reply-To: <20241023210313.1390767-1-Frank.Li@nxp.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 25 Oct 2024 15:52:58 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW-tXFYSfTerb-eYmmbJHYN9xNyiGMPoeGArmDnAajUmg@mail.gmail.com>
+Message-ID: <CAMuHMdW-tXFYSfTerb-eYmmbJHYN9xNyiGMPoeGArmDnAajUmg@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mn-tqma8mqnl-mba8mx-usbot: fix
+ coexistence of output-low and output-high in GPIO
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
+	"open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I still need to look better at this but I do have one though already :)
+Hi Frank,
 
-On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
-> Add a new devm_iio_dmaengine_buffer_setup_ext2() function to handle
-> cases where the DMA channel is managed by the caller rather than being
-> requested and released by the iio_dmaengine module.
->=20
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+On Wed, Oct 23, 2024 at 11:07=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+> Fix the issue where both 'output-low' and 'output-high' exist under GPIO
+> hog nodes  (rst_usb_hub_hog and sel_usb_hub_hog) when applying device
+> tree overlays. Since /delete-property/ is not supported in the overlays,
+> setting 'output-low' results in both properties being present. The
+> workaround is to disable these hogs and create new ones with 'output-low'
+> as needed.
+>
+> Fix below CHECK_DTBS warning:
+> arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtb: sel-usb=
+-hub-hog:
+>    {'output-low': True, 'gpio-hog': True, 'gpios': [[1, 0]], 'output-high=
+': True, 'phandle': 108, '$nodename': ['sel-usb-hub-hog']}
+>        is valid under each of {'required': ['output-low']}, {'required': =
+['output-high']
+>
+> Fixes: 3f6fc30abebc ("arm64: dts: imx8mn: tqma8mqnl-mba8mx: Add USB DR ov=
+erlay")
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->=20
-> v4 changes:
-> * This replaces "iio: buffer-dmaengine: generalize requesting DMA channel=
-"
+> Alex:
+>         I have not hardware to run it. I check dtb output is correct.
 > ---
-> =C2=A0drivers/iio/buffer/industrialio-buffer-dmaengine.c | 107 ++++++++++=
-+++++------
-> =C2=A0include/linux/iio/buffer-dmaengine.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +
-> =C2=A02 files changed, 81 insertions(+), 31 deletions(-)
->=20
-> diff --git a/drivers/iio/buffer/industrialio-buffer-dmaengine.c
-> b/drivers/iio/buffer/industrialio-buffer-dmaengine.c
-> index 054af21dfa65..602cb2e147a6 100644
-> --- a/drivers/iio/buffer/industrialio-buffer-dmaengine.c
-> +++ b/drivers/iio/buffer/industrialio-buffer-dmaengine.c
-> @@ -33,6 +33,7 @@ struct dmaengine_buffer {
-> =C2=A0	struct iio_dma_buffer_queue queue;
-> =C2=A0
-> =C2=A0	struct dma_chan *chan;
-> +	bool owns_chan;
-> =C2=A0	struct list_head active;
-> =C2=A0
-> =C2=A0	size_t align;
-> @@ -216,28 +217,23 @@ static const struct iio_dev_attr
-> *iio_dmaengine_buffer_attrs[] =3D {
-> =C2=A0 * Once done using the buffer iio_dmaengine_buffer_free() should be=
- used to
-> =C2=A0 * release it.
-> =C2=A0 */
-> -static struct iio_buffer *iio_dmaengine_buffer_alloc(struct device *dev,
-> -	const char *channel)
-> +static struct iio_buffer *iio_dmaengine_buffer_alloc(struct dma_chan *ch=
-an,
-> +						=C2=A0=C2=A0=C2=A0=C2=A0 bool owns_chan)
-> =C2=A0{
-> =C2=A0	struct dmaengine_buffer *dmaengine_buffer;
-> =C2=A0	unsigned int width, src_width, dest_width;
-> =C2=A0	struct dma_slave_caps caps;
-> -	struct dma_chan *chan;
-> =C2=A0	int ret;
-> =C2=A0
-> =C2=A0	dmaengine_buffer =3D kzalloc(sizeof(*dmaengine_buffer), GFP_KERNEL=
-);
-> -	if (!dmaengine_buffer)
-> -		return ERR_PTR(-ENOMEM);
-> -
-> -	chan =3D dma_request_chan(dev, channel);
-> -	if (IS_ERR(chan)) {
-> -		ret =3D PTR_ERR(chan);
-> -		goto err_free;
-> +	if (!dmaengine_buffer) {
-> +		ret =3D -ENOMEM;
-> +		goto err_release;
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	ret =3D dma_get_slave_caps(chan, &caps);
-> =C2=A0	if (ret < 0)
-> -		goto err_release;
-> +		goto err_free;
-> =C2=A0
-> =C2=A0	/* Needs to be aligned to the maximum of the minimums */
-> =C2=A0	if (caps.src_addr_widths)
-> @@ -252,6 +248,7 @@ static struct iio_buffer *iio_dmaengine_buffer_alloc(=
-struct
-> device *dev,
-> =C2=A0
-> =C2=A0	INIT_LIST_HEAD(&dmaengine_buffer->active);
-> =C2=A0	dmaengine_buffer->chan =3D chan;
-> +	dmaengine_buffer->owns_chan =3D owns_chan;
-> =C2=A0	dmaengine_buffer->align =3D width;
-> =C2=A0	dmaengine_buffer->max_size =3D dma_get_max_seg_size(chan->device->=
-dev);
-> =C2=A0
-> @@ -263,10 +260,12 @@ static struct iio_buffer *iio_dmaengine_buffer_allo=
-c(struct
-> device *dev,
-> =C2=A0
-> =C2=A0	return &dmaengine_buffer->queue.buffer;
-> =C2=A0
-> -err_release:
-> -	dma_release_channel(chan);
-> =C2=A0err_free:
-> =C2=A0	kfree(dmaengine_buffer);
-> +err_release:
-> +	if (owns_chan)
-> +		dma_release_channel(chan);
+>  .../imx8mn-tqma8mqnl-mba8mx-usbotg.dtso       | 29 +++++++++++++++++--
+>  1 file changed, 27 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg=
+.dtso b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> index 96db07fc9bece..1f2a0fe70a0a2 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> @@ -29,12 +29,37 @@ usb_dr_connector: endpoint {
+>         };
+>  };
+>
+> +/*
+> + * rst_usb_hub_hog and sel_usb_hub_hog have property 'output-high',
+> + * dt overlay don't support /delete-property/. Both 'output-low' and
+> + * 'output-high' will be exist under hog nodes if overlay file set
+> + * 'output-low'. Workaround is disable these hog and create new hog with
+> + * 'output-low'.
+> + */
 > +
-> =C2=A0	return ERR_PTR(ret);
-> =C2=A0}
-> =C2=A0
-> @@ -282,12 +281,38 @@ void iio_dmaengine_buffer_free(struct iio_buffer *b=
-uffer)
-> =C2=A0		iio_buffer_to_dmaengine_buffer(buffer);
-> =C2=A0
-> =C2=A0	iio_dma_buffer_exit(&dmaengine_buffer->queue);
-> -	dma_release_channel(dmaengine_buffer->chan);
-> -
-> =C2=A0	iio_buffer_put(buffer);
+>  &rst_usb_hub_hog {
+> -       output-low;
+> +       status =3D "disabled";
+> +};
 > +
-> +	if (dmaengine_buffer->owns_chan)
-> +		dma_release_channel(dmaengine_buffer->chan);
+> +&expander0 {
+> +       rst-usb-low-hub-hog {
+> +               gpio-hog;
+> +               gpios =3D <13 0>;
+> +               output-low;
+> +               line-name =3D "RST_USB_HUB#";
+> +       };
+>  };
+>
+>  &sel_usb_hub_hog {
+> -       output-low;
+> +       status =3D "disabled";
+> +};
+> +
+> +&gpio2 {
+> +       sel-usb-low-hub-hog {
+> +               gpio-hog;
+> +               gpios =3D <1 GPIO_ACTIVE_HIGH>;
+> +               output-low;
+> +       };
+>  };
+>
+>  &usbotg1 {
 
-Not sure if I agree much with this owns_chan flag. The way I see it, we sho=
-uld always
-handover the lifetime of the DMA channel to the IIO DMA framework. Note tha=
-t even the
-device you pass in for both requesting the channel of the spi_offload  and =
-for
-setting up the DMA buffer is the same (and i suspect it will always be) so =
-I would
-not go with the trouble. And with this assumption we could simplify a bit m=
-ore the
-spi implementation.
+Note that after this, there is still
 
-And not even related but I even suspect the current implementation could be
-problematic. Basically I'm suspecting that the lifetime of the DMA channel =
-should be
-attached to the lifetime of the iio_buffer. IOW, we should only release the=
- channel
-in iio_dmaengine_buffer_release() - in which case the current implementatio=
-n with the
-spi_offload would also be buggy.
+    /delete-property/ disable-over-current;
 
-But bah, the second point is completely theoretical and likely very hard to=
- reproduce
-in real life (if reproducible at all - for now it's only something I suspec=
-t)
+left, which does not actually remove the property.
 
-- Nuno S=C3=A1=20
+Gr{oetje,eeting}s,
 
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
