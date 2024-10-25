@@ -1,163 +1,148 @@
-Return-Path: <devicetree+bounces-115819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF86B9B0BFF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:43:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36DE89B0C0E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:46:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B290B23EC7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:43:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96AC81F243BB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A513218C915;
-	Fri, 25 Oct 2024 17:42:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 730D715444E;
+	Fri, 25 Oct 2024 17:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VE6wSRv7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ljImiyuC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9C718452E;
-	Fri, 25 Oct 2024 17:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C18314D6EF
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729878138; cv=none; b=JhTkGwOgj2hRYkU0PhR2YukVXmKrhiuOkCqXQPC6Gfd7u6ty1GblN1+7igTygx2ayAoTffKTlTvI58mYG4nyaFjGDUYtmrNnhZAL0Q6jswWLE/iq4BT3tGX8T6HQBPJlby67L4fRsy5IbAcThS7txcX+kpyhT+NvkS6q8rqNQcM=
+	t=1729878391; cv=none; b=OO8+diuI00ZIaDsfBpHkWLOrGQPgMlWtMsiuA+ofLFH4YF6jbTf7hOR2BQA1FOjB4VJc0kW3TvvAEy5vxHfqwFT7MCVgFuO56nyAstLWUrvWKoAUoMUaTgbw9z2pxxzFpszgOXbK1KK7KQvKR+wCbNXi8YXnF2bhjc8RwF50kNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729878138; c=relaxed/simple;
-	bh=PwyeLzwC8ipsRtMBNOMt7RMlZVMwSI+R8kgLXOHJxdE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P1iBEzXRqbDWNZaGnDczhRlQ9MSzzptRVNatDYwp4ljQau+zK5sQ74dlUFMK14GKwM3bTTkPpmoNQ+bTp7BArXHDLdC6YUYOGB8HOd69DdpwTApfWSdv5v0iuCr76AeKeWAALSs2ulftqVNsNvPI8b8kI5iVY7x7zCJZEMXzfEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VE6wSRv7; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49PHg5wc021530;
-	Fri, 25 Oct 2024 12:42:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1729878125;
-	bh=pwKM75sCFnfctTtbj/opwnkqiPuhZWuGKbKWcmwTyIY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=VE6wSRv7zxAis0MClAfx62Vw8upuraUz6En61GTY3JhXbfzImFcpblBr1W0a+nASO
-	 NaGFszhOPgI7MhmNVnGjjPHRtsUqfYjyKZpfr3mxRzE0NYwYstYXKDrbNjfJh8youM
-	 QbMHDDQhPNlGCe36910F7UUSlTKEBAWwgP/RrnZI=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49PHg5UT068344
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Oct 2024 12:42:05 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
- Oct 2024 12:42:05 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 25 Oct 2024 12:42:04 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49PHg4lt109361;
-	Fri, 25 Oct 2024 12:42:04 -0500
-Date: Fri, 25 Oct 2024 12:42:04 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Vishal Mahaveer
-	<vishalm@ti.com>,
-        Kevin Hilman <khilman@baylibre.com>, Dhruva Gole
-	<d-gole@ti.com>
-Subject: Re: [PATCH v3 2/6] firmware: ti_sci: Partial-IO support
-Message-ID: <20241025174204.xwmsn2arcy4q63xu@reaction>
-References: <20241012-topic-am62-partialio-v6-12-b4-v3-0-f7c6c2739681@baylibre.com>
- <20241012-topic-am62-partialio-v6-12-b4-v3-2-f7c6c2739681@baylibre.com>
+	s=arc-20240116; t=1729878391; c=relaxed/simple;
+	bh=oIuIuspz76OCuYP6ZhuCIco1Uhz8q72qC71gvsc83xY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kIBSh8pkeLJFvdsLdxhDHkFmrKrRZh5hslXxcP6KzoPZG7wVHvGk73Sp58ZTqchs5l0TODXtgWBF1fGqZNFa9OPU2MQp8pACzgUTcV4JyrFZabqFZPCbydDeD5vo3NFrpIw9QvXlGW1yFCLeabZqhfPlndH627abZ4oCbN/iGhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ljImiyuC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PAY9px027195
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:46:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gp4O+oOSOissF91Pvneay/lgbVotgfOx/AKhK7rAXrg=; b=ljImiyuC/X0YEfWW
+	pFPe7pES7hK57F+CBg7FmRM5K72bP+yG81uWphYP0gx29K5UB9ljCa0nACWMbidc
+	LliPRMH5+/PtJjs8pT9UT5PRTHSpymjwXZNCRYPgrtSs6aDieLC6ovKmMXLmhU5J
+	gcI9CoK1halYW5dhQPpcbWLMHa+VYu3vPKzebwV0LF92fpji3TaQhci3hNBlYNbs
+	rF4lYvILDUqZOV0nd26POlt7PnyLXl73zOwyzLcZxE9dJY6UR0hndsaKh1RUCTuJ
+	KIxO1A+8naMA3rnP4ATelU8q8RTW+U8ms4AAQ20FgHYfZ0nYe+6UTybbLv7v7sfk
+	TrVnwg==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3wt1e9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:46:27 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6cbe149b1cfso6428366d6.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:46:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729878371; x=1730483171;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gp4O+oOSOissF91Pvneay/lgbVotgfOx/AKhK7rAXrg=;
+        b=vXQ5wSbMOxVMsLs1AaToEXkPzT0lDbUXJORhV5jQxmr+f7L8ijXYOf2ajBOZ6VWMJR
+         XNHcye4IOVstO+wcpbuC40q3Mwo8ZUTs9n8YJxbh4HBy2HTNuRRRy6c3gXAfEJCeI0fu
+         qsiVo1rp+njM4ydc895Hp1/At7KtbOzTe1FpkDl6eQqRoL/uZ08MW+fteEkxiMfFkO0p
+         zScuyugkvbJXpMQ/qlGXw5gAxwAmxiQZe7Ywsf9Bc6MpoCPEoPFovNtADOHGfGG4botD
+         hM8pW3yBNkGJLcAJ23WW6sWd/O7EQ9aSkUyVUEhcRyUL0YxmEL5tLj5JMjqXQ+1coLx1
+         sSQw==
+X-Forwarded-Encrypted: i=1; AJvYcCWNpIuYUIBGsm8+bkw+DnCnpidQSTYbFUK1sXPixfvrwcVB/PMI7zLAsVszyMFqmI54eA0Uw9e+scB7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzC7elZRAQ4u7sORqrbOW2EQLof2V7r1RGwfMsq3GqDce8Ji1le
+	uk6d66g6Urw21pjNP4/SvnF05fz8TxDt+K9bwJwxOBxyzuumfytWbM3TkoNbhSD8V7r2c5j+fQh
+	12bFDFDpoESCWLW5r2O5QZ198OJUJxgpPa46OHtBFhCVyE1LhlNr82Yr1uE7k
+X-Received: by 2002:ad4:5cee:0:b0:6cb:f3df:cb9 with SMTP id 6a1803df08f44-6d185837663mr1613586d6.9.1729878371382;
+        Fri, 25 Oct 2024 10:46:11 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFpDSpwMF/KD6STy7ZyXj15CbXpF87KjDotLoxTNXjlOrvboEQbQCx49/+xITyhMb+FVdgP2g==
+X-Received: by 2002:ad4:5cee:0:b0:6cb:f3df:cb9 with SMTP id 6a1803df08f44-6d185837663mr1613396d6.9.1729878371019;
+        Fri, 25 Oct 2024 10:46:11 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cbb63197d5sm833015a12.72.2024.10.25.10.46.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Oct 2024 10:46:09 -0700 (PDT)
+Message-ID: <c81b26dc-1c52-42b6-ba68-95906b9c524c@oss.qualcomm.com>
+Date: Fri, 25 Oct 2024 19:46:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241012-topic-am62-partialio-v6-12-b4-v3-2-f7c6c2739681@baylibre.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcs615: Add LLCC support for QCS615
+To: Song Xue <quic_songxue@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241011-add_llcc_dts_node_for_qcs615-v1-1-e7aa45244c36@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241011-add_llcc_dts_node_for_qcs615-v1-1-e7aa45244c36@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: QIOoDnXWzIfrfXzQOdM9apWNP8b9k-T7
+X-Proofpoint-ORIG-GUID: QIOoDnXWzIfrfXzQOdM9apWNP8b9k-T7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
+ mlxlogscore=999 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ spamscore=0 mlxscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410250136
 
-On 16:39-20241012, Markus Schneider-Pargmann wrote:
-[...]
+On 11.10.2024 12:41 PM, Song Xue wrote:
+> The QCS615 platform has LLCC(Last Level Cache Controller) as the system
+> cache controller. It includes 1 LLCC instance and 1 LLCC broadcast
+> interface.
 > 
-> The possible wakeup devices are found by checking which devices are
-> powered by the regulator supplying the "vddshv_canuart" line. These are
-> considered possible wakeup sources. Only wakeup sources that are
-> actually enabled by the user will be considered as a an active wakeup
-> source. If none of the wakeup sources are enabled the system will do a
-> normal poweroff. If at least one wakeup source is enabled it will
-> instead send a TI_SCI_MSG_PREPARE_SLEEP message from the sys_off
-> handler. Sending this message will result in an immediate shutdown of
-> the system. No execution is expected after this point. The code will
-> wait for 5s and do an emergency_restart afterwards if Partial-IO wasn't
-> entered at that point.
+> Add LLCC node support for the QCS615 platform.
 > 
-[...]
+> Signed-off-by: Song Xue <quic_songxue@quicinc.com>
+> ---
+> This patch series depends on below patch series:
+> https://lore.kernel.org/all/20240926-add_initial_support_for_qcs615-v3-0-e37617e91c62@quicinc.com/
+> https://lore.kernel.org/linux-arm-msm/20241010-add_llcc_support_for_qcs615-v2-1-044432450a75@quicinc.com/
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> index ac4c4c751da1fbb28865877555ba317677bc6bd2..b718a4d2270d64ed43c2eca078bfe52b78ff680c 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> @@ -495,6 +495,14 @@ dc_noc: interconnect@9160000 {
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		llcc: system-cache-controller@9200000 {
+> +			compatible = "qcom,qcs615-llcc";
+> +			reg = <0x0 0x9200000 0x0 0x50000>,
+> +			      <0x0 0x9600000 0x0 0x50000>;
 
-> +static bool tisci_canuart_wakeup_enabled(struct ti_sci_info *info)
-> +{
-> +	static const char canuart_name[] = "vddshv_canuart";
-> +	struct device_node *wakeup_node = NULL;
-> +
-> +	for (wakeup_node = of_find_node_with_property(NULL, "vio-supply");
-> +	     wakeup_node;
-> +	     wakeup_node = of_find_node_with_property(wakeup_node, "vio-supply")) {
-> +		struct device_node *supply_node;
-> +		const char *supply_name;
-> +		struct platform_device *pdev;
-> +		int ret;
-> +
-> +		supply_node = of_parse_phandle(wakeup_node, "vio-supply", 0);
-> +		if (!supply_node)
-> +			continue;
-> +
-> +		ret = of_property_read_string(supply_node, "regulator-name", &supply_name);
-> +		of_node_put(supply_node);
-> +		if (ret) {
-> +			dev_warn(info->dev, "Failed to parse vio-supply phandle at %pOF %d\n",
-> +				 wakeup_node, ret);
-> +			continue;
-> +		}
-> +
-> +		if (strncmp(canuart_name, supply_name, strlen(canuart_name)))
-> +			continue;
-> +
-> +		pdev = of_find_device_by_node(wakeup_node);
-> +		if (!pdev)
-> +			continue;
-> +
-> +		if (device_may_wakeup(&pdev->dev)) {
-> +			dev_dbg(info->dev, "%pOF identified as wakeup source for Partial-IO\n",
-> +				wakeup_node);
-> +			put_device(&pdev->dev);
-> +			of_node_put(wakeup_node);
-> +			return true;
-> +		}
-> +		put_device(&pdev->dev);
-> +	}
-> +
-> +	return false;
-> +}
-> +
+Please pad both addresses to 8 hex digits (e.g. 0x09200000)
 
-What is the binding that supports this? I just do not think that
-scanning the entire tree for vio-supply implies you will get thr right
-property here.
+With that:
 
-Just giving an example to illustrate this point:
-Documentation/devicetree/bindings/net/wireless/ti,wl1251.txt says it
-needs vio-supply -> so i have a node with the wireless supply as
-vio-supply -> Since we are scanning from NULL for vio-supply, we hit
-that, that is a bad choice for enabling io-retention.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Konrad
 
