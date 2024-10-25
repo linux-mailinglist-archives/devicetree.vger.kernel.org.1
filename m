@@ -1,393 +1,301 @@
-Return-Path: <devicetree+bounces-115492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3966D9AFC43
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCEF59AFC6F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E538C28622D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:13:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B68D283379
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:23:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031451C07E4;
-	Fri, 25 Oct 2024 08:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D4281CACD9;
+	Fri, 25 Oct 2024 08:23:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="njn38wvm"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="j9o3/KPr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2046.outbound.protection.outlook.com [40.92.103.46])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010050.outbound.protection.outlook.com [52.101.69.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00739170A1C;
-	Fri, 25 Oct 2024 08:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8C51CEEB8;
+	Fri, 25 Oct 2024 08:23:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.50
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729843995; cv=fail; b=csdd8wJoOGaT6wxh5rV1OYCKcZMNA1aTtP56Jn7i8bgOJPg98fNvij+f0vqrUy3Hf+XA0dtpgNKsVLQXs4Ejtvqs7xxo4Di3l4Wg7R102j6vSlPp7sdbqKNwILWyCXpXY2djt0QNf1L3qco+4YZxL59fshVZrFb3CyOMvSUZD6A=
+	t=1729844585; cv=fail; b=PQ2PdewXrHqilq/olgQX0h9P9omjIP6fUW3BZaA2Ytt87QXskuiit1+l6/Hr60lY3lyzKpG2PklTl6CuubjGW4E4n2LsU+Cye4Au5v4F4FSsAnnPCDQlaWmlXk9qfyCaZCjt63Mx/ypCuptKMTP7miHSWFfDUnUdtjp1Qy4rUO8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729843995; c=relaxed/simple;
-	bh=E2b8Gmczmf2MNV4Tt8TUoHEoHkNFTarWcKbtYqO/rXI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=BWS3oBt1gtc4IIsdRiB9b7AjnT8yfJlWpZWaKdSxTF5E+GuEpciJxvReBf0LeIVXJ5l4cQ0L/JWg3xI+P7hHoEQIhrwWVF0TSG4cwmVPDYt9ZHGVgVX3aK3klT12gt2BjpoKdTSvKoQCoqRYl09xdwHnJlFnFH+/bOOLnCO84Zw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=njn38wvm; arc=fail smtp.client-ip=40.92.103.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1729844585; c=relaxed/simple;
+	bh=dF97soH7zSwN/cbXHEAPwF/grkTNrCDA0nam8MSrgTI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=LmE4IVtuuQRukY4prwa5VSTwxzSaAvUudxDI5kKCwYXLdL0dBsk1nerXLzF5DTCqxJSy4haWczXtagXJFQz13SjduMBwoMFf1T73pFjTOpHd6prIBf6hcVfHFAyj85qVkD3TOtIlCO5WnhFtMhVEsy1ykONcivG/atpAzbwguwA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=j9o3/KPr; arc=fail smtp.client-ip=52.101.69.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pQ1/2AxTfW3W3adS329j4JhKQAXMDPknf8QzJXS7DcMBHEGOypI0dVE+vkEUZANTPNh/TOqJTXFUF07Z5OLMFnfpbN0j0gc8GoDInRsnLCuJy/KKgnWyt0m8ATTe+ted5oNdLxDtbvS/pe3hgNm5rBkRC15iEVQl3k5G+N11Qh7e2xwImiiaO6lYUq26NYm2KzfraL/Jr/REhaFllqzdrCLosIvIS0tSzZovdsNp8VKihu5hNC50k5C2+18TvnCZsfUQcVCt/cpPA1+acEowzr/x0JTb/cTrmr6PzDZIyTwy6WDv0fDYHq+rJkjQ61RIWTgDEhXjIbUGjPhzvIejCw==
+ b=hcskPIhnD1lb8AbueW0vAps3mzBXLnhm2EzQ2IFTcqJsDzoH3EqBnXpV5n3LBumozLeVnFqEdwQrntjsGO1kQph3WTitBa5zUr385njByLu3moBzl9BCtiwrWNJX6x5igsX0Rk4Kllo1t0Vxzh9/j7oJ1qt1dBq/VLyFCdhDSuvcyVXFC7jsyjJTM6fl5V1AELMAIjQ31dTPw6oaXPfteGDyfh4aDxdhzKP+t9JHeFEnkYaWlKuq9tWSuSbWjP71E/Mn29aNLShVTyLOd7/qoxdxOYq/iZWlqiT9IprmK9b8RsJwL/aR4+8sOgWcUWpXSAK2vvzQVUCKQDTHMn+1JA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/ecwvGMEL3/6e4MMFJv9eE9qOpOm+Y2AZIS11nN3DEA=;
- b=RjZ+vRfDc21Zq0UK1zuL61r4FeQn8pUJlghK1mD6xBzO99pg/PGS6HTcZ6oj8RkJ/Z5GIyzJ/zllECLgS2WrHOxJov9nw2XgSozmZ8ngVmHHB26384maAswpPla+24ARmqXCXDvA1sZ0Es13UY57Vgu2xb3QbelbbwaGp71hEgtNXkP5hsuL/Q1k1z6yfNB9JBWZOMxXI7++wFAn1rGA1pGL408xWBzx6zr91Wd5+i6mKEWMjh22Iolve2nXFvgu/zHCMqb063Fqwgohdflbb+5Fl5v0VfmjMFu46H678PopW2E/pEbOwG7ynN/ZdEhJfngSCpXCMj+Thi5WkoRg/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ bh=9DZ0+xif4o7klnA83/mugVAtjqnArlER6f+/prtqknM=;
+ b=vNdDPCO1sGREGGHOQb+PS7e7h34mQhrKg5IVM7uNQ0kuEgyh1+4dDx11Z3bjACOMnEaTUb4dOGRFJMNB2XnqirA4fRX9r8JaXOzsnbp5LucARo11U/D6JWCOa1nc+sfGwP37tSCqDgI4MyJMmLGC346NR0qeOvFBIgIxEQ9P06Lsq9byQxcEG3WXJLFc5BIgjq+cBIkWhFCfN9D5mFCG8KGmKLO4ujqNog1hYqwaSi3VeVLUAC5zpVAlmLyyihFOlCk1/nYpky6lM7V8cIPwSEOdGQ5rJQ182MTB36cNwGC1xNpjWQ6yGksb7aUD073fkgdy2Wpf8I2LzbUgxZxYiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/ecwvGMEL3/6e4MMFJv9eE9qOpOm+Y2AZIS11nN3DEA=;
- b=njn38wvmDCAQISiMON+57A2t3ksc+3jJ+TXLSf6BNsxUJ4QvO6OdxH7J1oN3NbwRL43h5ouLTZO4M+MfyRHxRa75hE+SDuI3qmchiKfWAVobZN++PYGUSgwJ04FfEzfKJJ6//RIkCCFUUTQSj4qWftY/1F4EgJQgz3uiafwu/QAvAYuPzBRcXMHCUoQan//F5/9cvfnw/SLrC90IH2QJZfoBNAyuvP7Mh7nsj8XBcvuSAx7xvVXhrRH25D5hAVcGFdv2Hr0z/0O72WANCTy8XgCu2IJWmIEkaHyP3tQQnxPtzL7vWU04RVGwYrmmEjpQ1LA0fipIPPkTa3PPlUuq7g==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PN3P287MB0337.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:d6::6) with
+ bh=9DZ0+xif4o7klnA83/mugVAtjqnArlER6f+/prtqknM=;
+ b=j9o3/KPrgd6JrH3KI1kH+6w3YRnxuVptkQNN2vrEiMJtBsqfrg0wnTPPMOnS9WTtckoFbpRnIR6LkqqQ2ynrCXdjNhkH1gAP82af7dn5kx60YWzoxZWQqlJFQh0eWuLZwKpw7HAVABCqZPP5Zq1USAx1prE+RWdo++XVdIP2TxEgMiHEyVmsIlFSFzfNbLOtJMJ4x/CDZDxt7dU1K3n56FJvqRRKSfUNN2v/+k2jx1lDYe5XWADix+pcGPCniFTI+eldYEqQDFQz+jdwblQESD/TmOqLPQF/Qq8NSmHrW3f+gsjkYjwG5AJlg+SSbRDf8jqWO+7IROWY/+o1srqJ4A==
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by PA1PR04MB10296.eurprd04.prod.outlook.com (2603:10a6:102:44a::8) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Fri, 25 Oct
- 2024 08:13:05 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%3]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
- 08:13:05 +0000
+ 2024 08:22:57 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%7]) with mapi id 15.20.8069.027; Fri, 25 Oct 2024
+ 08:22:57 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, "davem@davemloft.net"
+	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Claudiu
+ Manoil <claudiu.manoil@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>, Frank Li
+	<frank.li@nxp.com>, "christophe.leroy@csgroup.eu"
+	<christophe.leroy@csgroup.eu>, "linux@armlinux.org.uk"
+	<linux@armlinux.org.uk>, "bhelgaas@google.com" <bhelgaas@google.com>,
+	"horms@kernel.org" <horms@kernel.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>
+Subject: RE: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for NETC
+ blocks control
+Thread-Topic: [PATCH v4 net-next 03/13] dt-bindings: net: add bindings for
+ NETC blocks control
+Thread-Index: AQHbJEi1opWCvzFL8kS18Y10TWXurLKT6McAgAAQObCAAgF4AIABJnHA
+Date: Fri, 25 Oct 2024 08:22:57 +0000
 Message-ID:
- <MA0P287MB28222636F2331748170B6F16FE4F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Fri, 25 Oct 2024 16:13:03 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
-To: Sean Young <sean@mess.org>
-Cc: Chen Wang <unicornxw@gmail.com>, ukleinek@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, inochiama@outlook.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
- chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
- chunzhi.lin@sophgo.com
-References: <cover.1729843087.git.unicorn_wang@outlook.com>
- <4abe3cd4a870fc15b5e54a48eb4554a7419a4ef8.1729843087.git.unicorn_wang@outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <4abe3cd4a870fc15b5e54a48eb4554a7419a4ef8.1729843087.git.unicorn_wang@outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI1PR02CA0011.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::19) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <b2930b21-319d-4e92-996f-23e8222cfdb1@outlook.com>
+ <PAXPR04MB8510BE30C31D55831BB276B2884F2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+References: <20241022055223.382277-1-wei.fang@nxp.com>
+ <20241022055223.382277-4-wei.fang@nxp.com>
+ <xx4l4bs4iqmtgafs63ly2labvqzul2a7wkpyvxkbde257hfgs2@xgfs57rcdsk6>
+ <PAXPR04MB851034FDAC4E63F1866356B4884D2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <20241024143214.qhsxghepykrxbiyk@skbuf>
+In-Reply-To: <20241024143214.qhsxghepykrxbiyk@skbuf>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|PA1PR04MB10296:EE_
+x-ms-office365-filtering-correlation-id: 4e7ac05c-3df1-4f19-71a2-08dcf4ce3b4b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?SUoDR7+18Qp+90erotOb4QKcPP+x5NS6D4jibh9pmVvPAzqCm8iqWCfLygR1?=
+ =?us-ascii?Q?vyVc6BZeIawfpdxReCOPtuXOq77wcIPYmxmGO8HSUbM7MHnOQ+K0Ma5uNFv6?=
+ =?us-ascii?Q?gDGItz1Fbg8R4yzZKecRvqqE+Pwpahe20RaAaAxpF3UzRIMId7yYl65q0PDN?=
+ =?us-ascii?Q?B7PvnS+ceiaNmCAuuip1N0mQzm8MagV9xwV/nuUSNaLHaCATUIwKA3hhK4zE?=
+ =?us-ascii?Q?94ahqJO8T2A7BpjZn27qGPeIv9x90853kaROOnZIC2Gt6WdNo3VXY6gsnP2i?=
+ =?us-ascii?Q?MfUSo7fOlw64A8NUPKHMf96g0i8BX9+0MD4rFCVvrpXFak1LoRqz6wX2X76H?=
+ =?us-ascii?Q?irc8x6sjaJmY0/cdzq3IwSyVnc7FT/O/QZ0Q/bjMp8GpbfJukAj09JFJGmEl?=
+ =?us-ascii?Q?BA5a5xNGS32cyFjQx4v+SJ2M7nym6Q6dARMlPJq8JY2JMGekCQTdkm7n9Glr?=
+ =?us-ascii?Q?DyeWdcf1HpQfI1HWZo9mda54DTHqEbsrjpDVweZY4qIATYvmIAMnSSNshobl?=
+ =?us-ascii?Q?s1b8gIonnXcvKBEyPm+g6lqtc5ha7bCK6r2mQxgC8pEhxWz8RMWajwgXJfgz?=
+ =?us-ascii?Q?5Gp+R8WquBPHjlo0Rmfb00mjmInwwXZ29BnNrKMHr5f1yCd6XIpu1KwdqokH?=
+ =?us-ascii?Q?jcGgwpE5MCpPg3oB53yqdC9COoBGc5WQhrwLy8INp8QnJO6Jyw9RcO++im6v?=
+ =?us-ascii?Q?AodVeMbd4HSfxIj4uLfqw+nnOhU4vblbg8rxaHrvDaFZhTWLmLNEUXQ1RNxw?=
+ =?us-ascii?Q?bXs/64daCRks9fyNv5yLSxvxBLCbLxbI8VlkvW7Gbex7KroKZPjc6BOkC/wn?=
+ =?us-ascii?Q?AD8MZBv5EEhNP10piKAHIvM/YZmWSDORIULEY/hsVciw0cO2fxybbHHUFF5+?=
+ =?us-ascii?Q?6zdfNsqHvk6PguFcBK/Ivu8iQuY2eQWSfWD5I3Zymy+A7Qu9bw+mt2Pdwfgy?=
+ =?us-ascii?Q?BYikM647gnMumXw7fbtOV1U1Tpm1Jqg7YjfnuOWwsApPbVotezgAYh09HOgP?=
+ =?us-ascii?Q?MT0upkxTjK8rejVAUlqVfK9vquwEoRTQ3ni+oh9kLpANsQWMNeP05SVtsJzP?=
+ =?us-ascii?Q?zZiqB2yIM2bFqxkt8DEWVy0v3OSrmcAEl01c7hz5by40xYeMW+jz0pZzHoKB?=
+ =?us-ascii?Q?FzXDaw0AGjpcpbdTLGx2WXGreEcMUXv/Ikj4k10O2JD5a5VePpOQCQVniaHg?=
+ =?us-ascii?Q?4o0+l1MrgVJNIvbN6iZ0FXZTEFdpwRFpSAUqPVQkA5fkvdMB5FRE3i4JaOpg?=
+ =?us-ascii?Q?S+HWsyFES4qw24wb/F3LJZfbxiLZOrdNV0d4mNc0+lFmFGD9b/jdXGGnWQVK?=
+ =?us-ascii?Q?SSzDHNdQYAMq1Q1wukXYu2wIA23EHDQjATnsQEvHBtBdFZzVMtOnyhXZoqrg?=
+ =?us-ascii?Q?hlxc0NY=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?hqZ52XtLGM9J9N7Y8kkizN6dXaiKAv3qi88Tlnmf4GyHKUjG5hSE5EuzlgOr?=
+ =?us-ascii?Q?4/S9c/xaHoRS4WttxtjeNhlhNTsXIZNe2aCG08RJNOheplpdvPuCBPTYfwTE?=
+ =?us-ascii?Q?yKv1OTUJ2qPQHnHi54dsnUD0o8pOa4/bT7pUsZzMePj03ob/jxh96cetzWn/?=
+ =?us-ascii?Q?EzpR9gNdsfqiMnKVYT/ilmsyuzCF418QBDc/da8Ro+CEaXrAW3CQliQsTTgj?=
+ =?us-ascii?Q?fK/vYZWCXg7esNeAagjBSIY3JjbiNYNsSvccxGIQlgFiDGBVqk1lK0Nivy1s?=
+ =?us-ascii?Q?nBbBEm/GFg9sao/iFKPfFX7YQFYViWf6zrzQ2+hESASA97kQusLAtWYIbkTR?=
+ =?us-ascii?Q?3vAipKxut800Jl5oxSq1gVYYkpn5cI7hqwq3r6JKMy9G7TqF/XbaeynQs5Bq?=
+ =?us-ascii?Q?er2A9Skv9sx4bKAQYlgQGH4IUKStQSFJfqt7AjxXt1X4YrTLnbntPh3dqQQp?=
+ =?us-ascii?Q?eDe/N0yh+hhhXbO5mqCfGKXeSlU9aC0C4cS3hyMt/qcIieBbHDnA+8z0JBE3?=
+ =?us-ascii?Q?GNOltGrvAPXL1xIwowQdlpFgn3CW0FgMcAgTp51nnxwKfBkoLC1WlPPYtQLV?=
+ =?us-ascii?Q?CgZPNOVVht5yvpMxrb1gaAkkSeerHiAFcphWk7ZRqPL5D+6CFgBc/ojbWaib?=
+ =?us-ascii?Q?q3xthNjHZcExWvm8GsNQBkE+LYBrt6auxbfLFFf7m5QSxJHI2NP0zUexAhPC?=
+ =?us-ascii?Q?a2E1AESxBIzUiS+OWjrac1ywSkMkiaaI3yExTcchyVQxfsldg6yEtWymfrbf?=
+ =?us-ascii?Q?KOF/Tqre7eOFbgIzd+ZnihuVEUUwGKWkO1zUkjZM2AJDVs7zvTUgbvDjpV0H?=
+ =?us-ascii?Q?fUPoQzoRSEnbGmxtYR9Y7gZXoaXXPGE0AH0uuCuU7nQhL3godMQbh71XoHRU?=
+ =?us-ascii?Q?q4X6/c0S3unhhYxFpPGLxFtEwjnl8RDC4gnPHCc2aLNlv19n+YUt++Kmux5E?=
+ =?us-ascii?Q?6rWs+GtmSKCGj0Smo2kLLHPo0OJ1Hoj7K4uOzepIkvirl4q+4BAX8V/KKZPs?=
+ =?us-ascii?Q?s/M8+hX46eaZ3A1AkCt/48N8HD1gS0iScn/8p/iY+Z9umeErjONU/KxwQoGt?=
+ =?us-ascii?Q?xWlswLVtSocyGYM3Moblh0qZn3rOJ+IocgtPG8hQ7XZMk3W/59WWs9O2eRmm?=
+ =?us-ascii?Q?07CeBjgNjfFcXNv8SvImPalwisq2H4fg5CS7jo3Crxr6rDa/p1hAEZy+ppnb?=
+ =?us-ascii?Q?FxokyMOTh/jCQ/mh4l1qCr0g1JlNQNJM8/U/1Sw1+IkRiDXSVCNl9fkYbL5T?=
+ =?us-ascii?Q?mEYd2v8ilBSMDwvg1cNFKHnvRg8JMa5J8lh9OqNuqrqSYfaIvC7Cisq9MOzA?=
+ =?us-ascii?Q?J9E0CMmuapc1NZRXJcDNqHG9g95oVkyCBsLwIQIvHW9fXMr5yqgOTLuzBqOT?=
+ =?us-ascii?Q?d3YCRHVLqbexfoZlqpGtes/zVCiaAxZpsyKFLW2WVVtyt326hWnHMlTHuqOI?=
+ =?us-ascii?Q?+e/y+9l0avsq4So/KQwmZ/QITEHxRuFEM6wkfqmdZaxV2GNdQxyCQJqM4Vf2?=
+ =?us-ascii?Q?3LOnWjZhCX+DlXx/xzZRqG5H4SsJU5069cK6gZZJhjKftvzGg0wSGoclg+Z4?=
+ =?us-ascii?Q?UryF7x53bOkNGVNCfaE=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN3P287MB0337:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2fad2497-e590-4296-261b-08dcf4ccda6a
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|5072599009|6090799003|461199028|19110799003|8060799006|7092599003|15080799006|440099028|3412199025;
-X-Microsoft-Antispam-Message-Info:
-	iqwXcWlM9zwOz9XxiV/qADmk8cPmVQrmiHlnWofoVDmQRRF6KZkR1FXLFfm2wRRVGd+PrvUbENd5yjzpjiA/kkVH+roLk1lhWqtkdxGYLLPmkkgcsV83D7TqUuKPO7G1CnVk4siK2KpL/hYTvWsrUEaJ5q0KhM1EvFsFSUPzAjaigHIq67P05EJqGK1n6dgnFM7wC42lgKSLGYmJSJH5WycTI91+lSKxeiKRMyJqhSuedM4CZvN8FYbSucAz30HVZuSBVtEAsLB8VrKM1waFqv2XjCLiVlqoX/92knVx3SOYnA+3wYFveJoRVy+p19LJEzkvK4Qj5quDHLfYofo1SQP039HbPcq9zczuHRfrpI0Jx87K08oh5GG/LvHjfT+UCzq8qH/4qZfPoiq82Zw3X0uukjaD0HKlwu9PF8Kn7M+X2K8PPb02UMSlm5QQjX3QPsQQgoBKG+E3D2X9OfyJpMjVnnViLKG8NqwuRZBlrpsf0fM00pZ3JSk0ERTS69fi9seCOeiHUp7o9YKiuvSpoI6ZuifxawwlnUtafqyvdOgP6YFMMAwyUHyJ6a+abyN9opI2Uy6UOp5mzhq6ai1wGcXkG+upUBJIAh8bQMVVhCaXRJkU/EV18brOq4CJVSjP2r04atOgBTTvWdtZHLShAFJhMRuHb+6Rz+Ggd3HDqRL41LMWFdvqivZ1tjw1aLM9DHZ+n1/sNHxMzFwlWbeNjYlbMGEdM66yruI/ewS323SGxob76TGde5rc/WcAzpcp0xQDHdBnlMpLNrVYMIxf0g==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZnhUenZLQmdxVzNpaHN4enlFdXdYRmVPNlJ5aWZLd3pOck9qQlVoVU9vbXVk?=
- =?utf-8?B?Zll5bEZ3QUlwRk1iR21BOUF4QWVCNkpUWTRaQVZ0WXlNZnN2RWRNdVZld29V?=
- =?utf-8?B?OC9xVWRyR21TS2FHYWNXOGE2NGdzemxIeHN3QnRTL3VQRDZJQStmYUl3VDZs?=
- =?utf-8?B?Ync3U281aVFPaHVIUG8zVnk3WExTcWNlN3FvV0pNTnM3ZmlHNFpQMzhzU3g2?=
- =?utf-8?B?VWxhMDYyRmtDN3F0bVZyOUZoU0IxMXYwSGp2SzQzbEd4Z1lXUm9QdHJBZDgw?=
- =?utf-8?B?bi84VUxzSWJxNitUcFdib0U2ZFluVkRYWnA3RW15Q3Qvazd6bU8xVnhwNmxn?=
- =?utf-8?B?MmNMVnhreXAyZzdWL0tLRUM2bkdKZ2ZUVk5oU2hsN1YwWnFpc3hiY21OUHdL?=
- =?utf-8?B?eVp4dzVjWjJxbnRwUmxuRSsrcFdlOUhpRXAwMjFkaWFmbk4zaWhQRXQ0Rzgz?=
- =?utf-8?B?TmFMMGllMHJEK1kwN1dHMi9ITWJTSjhmT0FaVVRvRzlkaUthMVRZNzhMV2RP?=
- =?utf-8?B?S2xvVWV6S3hPbnlxOUV2cVNtL21IZm5ZSlJHSDF1bTJHZXVxQndJSEhpbTU2?=
- =?utf-8?B?N2JFY1RpQndXYzkrcjlOY09zLytSVkRsWk9UZkNzODY2aE9XNUFvcU9LaHNG?=
- =?utf-8?B?a0hzcVg0d1BDbWlsRHBMZUF3YkRER2Z2cXFQSmYxWHRXL09tZzlVZ0tGUFFh?=
- =?utf-8?B?czF0elBlUk1iRUR6TEh3VWhkUmRnbFlaV1hiYWNWdTNqYVMyWkdhaG96U1hi?=
- =?utf-8?B?Q0FjbGtnN2c3N1JtUkU0RDFMcm5NVUZiTFFiYTVvOUpVVGlWNER3Nnp2S2dK?=
- =?utf-8?B?NzNhTjkrTzlNMVBWQ3B0R1JEQXFkdmhRUExEcG4vV3FtOFlKTjBVWVJpTGJu?=
- =?utf-8?B?QUcra01IVzRrZUQrT1B4dmoxVEI1dFRwR2NPUDJ0UENDUWtISlZDTE9YZEla?=
- =?utf-8?B?bnl2VVVCWnQyUDRmbXBuSktGRnNWL202QWtVVXZQbGVuRjlQb0NJNmhTRy9y?=
- =?utf-8?B?ZzNZVnVwSXNZaVkwVk1JcTk0RzFPakdLazV3NG54Tjhoc2Myb3MrVW1qZHVW?=
- =?utf-8?B?RGtHcmJvbkk0SnNXUDF2U1ZKRFZCeUNuYU9vNGhqcjFYKzNWcytWcURNNFNQ?=
- =?utf-8?B?aitkUDZOR2hqazNjTnN5SjFMV3Uxc3lDeVA0SmRtWUQ3amNmZXZwVkhRQ1Zk?=
- =?utf-8?B?TjVSa2theUR2Ry9CYlh1TktIZWh4ZmpwQS9SdWVXdGVFZ1Nod05qQytYT0Vx?=
- =?utf-8?B?UFM5Q2psRFZKTmUrMmhsMzJmeklZWUZPblEyNDR0NXFtQnFtS2ZJUkRRRzY5?=
- =?utf-8?B?SGRwV2J5a0lFYzQzR0JjbGdVVTBIMjRMZkFaYmZ0eXZrMHFsZ3A3eGVpRlZp?=
- =?utf-8?B?cklSd0NZVlBlaExQdzRWa1RLOEhoYlJDdnNra2NiZWlsaGszbWFQeHcxVUls?=
- =?utf-8?B?ZGxEQnNnS3l0WkVIbk9GV01wTzI1WGVySTJuVUlHOXFydDB0N1FGeTNSendU?=
- =?utf-8?B?cnNNb1ExNWt4R0p3aVIvUFlFa1RTdFdUZGp6T0I3U1h5N2c5Y1Q4bjFUUjlh?=
- =?utf-8?B?V29DN3ZRdkVxOUk2WUcxd2NPMzdvaVhoQjhwZnpqeklNZVg0dW9ONFdTaEY1?=
- =?utf-8?B?YmhNQ1lLRTdodDBJT1NsWWxjQ2NQai8yUFdDc0ZXV3NpN0E1WjFCVHFHQkpq?=
- =?utf-8?Q?L0S0UgDgITWpOU9tsDoe?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fad2497-e590-4296-261b-08dcf4ccda6a
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 08:13:05.6227
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e7ac05c-3df1-4f19-71a2-08dcf4ce3b4b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2024 08:22:57.4587
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB0337
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VfN7aRsxkJlfSm5/vzmeLLDN7gdMlAod3Jw9XRgpa6UV+RR3B2UKMbAng/QUhuiqZAkmSG7ta9VUqz70hQdsng==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10296
 
-Hi, Sean,
+> On Wed, Oct 23, 2024 at 11:18:43AM +0300, Wei Fang wrote:
+> > > > +maintainers:
+> > > > +  - Wei Fang <wei.fang@nxp.com>
+> > > > +  - Clark Wang <xiaoning.wang@nxp.com>
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - nxp,imx95-netc-blk-ctrl
+> > > > +
+> > > > +  reg:
+> > > > +    minItems: 2
+> > > > +    maxItems: 3
+> > >
+> > > You have one device, why this is flexible? Device either has exactly =
+2
+> > > or exactly 3 IO spaces, not both depending on the context.
+> > >
+> >
+> > There are three register blocks, IERB and PRB are inside NETC IP, but N=
+ETCMIX
+> > is outside NETC. There are dependencies between these three blocks, so =
+it is
+> > better to configure them in one driver. But for other platforms like S3=
+2, it
+> does
+> > not have NETCMIX, so NETCMIX is optional.
+>=20
+> Looking at this patch (in v5), I was confused as to why you've made
+> pcie@4cb00000
+> a child of system-controller@4cde0000, when there's no obvious parent/chi=
+ld
+> relationship between them (the ECAM node is not even within the same
+> address
+> space as the "system-controller@4cde0000" address space, and it's not
+> even clear what the "system-controller@4cde0000" node _represents_:
+>=20
+> examples:
+>   - |
+>     bus {
+>         #address-cells =3D <2>;
+>         #size-cells =3D <2>;
+>=20
+>         system-controller@4cde0000 {
+>             compatible =3D "nxp,imx95-netc-blk-ctrl";
+>             reg =3D <0x0 0x4cde0000 0x0 0x10000>,
+>                   <0x0 0x4cdf0000 0x0 0x10000>,
+>                   <0x0 0x4c81000c 0x0 0x18>;
+>             reg-names =3D "ierb", "prb", "netcmix";
+>             #address-cells =3D <2>;
+>             #size-cells =3D <2>;
+>             ranges;
+>             clocks =3D <&scmi_clk 98>;
+>             clock-names =3D "ipg";
+>             power-domains =3D <&scmi_devpd 18>;
+>=20
+>             pcie@4cb00000 {
+>                 compatible =3D "pci-host-ecam-generic";
+>                 reg =3D <0x0 0x4cb00000 0x0 0x100000>;
+>                 #address-cells =3D <3>;
+>                 #size-cells =3D <2>;
+>                 device_type =3D "pci";
+>                 bus-range =3D <0x1 0x1>;
+>                 ranges =3D <0x82000000 0x0 0x4cce0000  0x0 0x4cce0000
+> 0x0 0x20000
+>                           0xc2000000 0x0 0x4cd10000  0x0
+> 0x4cd10000  0x0 0x10000>;
+>=20
+> But then I saw your response, and I think your response answers my confus=
+ion.
+> The "system-controller@4cde0000" node doesn't represent anything in and
+> of itself, it is just a container to make the implementation easier.
+>=20
+> The Linux driver treatment should not have a definitive say in the device=
+ tree
+> bindings.
+> To solve the dependencies problem, you have options such as the component
+> API at
+> your disposal to have a "component master" driver which waits until all i=
+ts
+> components have probed.
+>=20
+> But if the IERB, PRB and NETCMIX are separate register blocks, they shoul=
+d
+> have
+> separate OF nodes under their respective buses, and the ECAM should be on
+> the same
+> level. You should describe the hierarchy from the perspective of the SoC
+> address
+> space, and not abuse the "ranges" property here.
 
-Since the changes are minor compared to v4, I have kept your signature. 
-If you find any problem, please let me know.
+I don't know much about component API. Today I spent some time to learn
+about the component API framework. In my opinion, the framework is also
+implemented based on DTS. For example, the master device specifies the
+slave devices through a port child node or a property of phandle-array type=
+.=20
 
-Thanks,
+For i.MX95 NETC, according to your suggestion, the probe sequence is as
+follows:
 
-Chen
+--> netxmix_probe() # NETCMIX
+		--> netc_prb_ierb_probe() # IERB and PRB
+				--> enetc4_probe() # ENETC 0/1/2
+				--> netc_timer_probe() #PTP Timer
+				--> enetc_pci_mdio_probe() # NETC EMDIO
+					=09
 
-On 2024/10/25 16:07, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
->
-> Add a PWM driver for PWM controller in Sophgo SG2042 SoC.
->
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> Signed-off-by: Sean Young <sean@mess.org>
-> ---
->   drivers/pwm/Kconfig             |  10 ++
->   drivers/pwm/Makefile            |   1 +
->   drivers/pwm/pwm-sophgo-sg2042.c | 194 ++++++++++++++++++++++++++++++++
->   3 files changed, 205 insertions(+)
->   create mode 100644 drivers/pwm/pwm-sophgo-sg2042.c
->
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 0915c1e7df16..ec85f3895936 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -584,6 +584,16 @@ config PWM_SL28CPLD
->   	  To compile this driver as a module, choose M here: the module
->   	  will be called pwm-sl28cpld.
->   
-> +config PWM_SOPHGO_SG2042
-> +	tristate "Sophgo SG2042 PWM support"
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	help
-> +	  PWM driver for the PWM controller on Sophgo SG2042 SoC. The PWM
-> +	  controller supports outputing 4 channels of PWM waveforms.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm_sophgo_sg2042.
-> +
->   config PWM_SPEAR
->   	tristate "STMicroelectronics SPEAr PWM support"
->   	depends on PLAT_SPEAR || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 9081e0c0e9e0..539e0def3f82 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -53,6 +53,7 @@ obj-$(CONFIG_PWM_RZ_MTU3)	+= pwm-rz-mtu3.o
->   obj-$(CONFIG_PWM_SAMSUNG)	+= pwm-samsung.o
->   obj-$(CONFIG_PWM_SIFIVE)	+= pwm-sifive.o
->   obj-$(CONFIG_PWM_SL28CPLD)	+= pwm-sl28cpld.o
-> +obj-$(CONFIG_PWM_SOPHGO_SG2042)	+= pwm-sophgo-sg2042.o
->   obj-$(CONFIG_PWM_SPEAR)		+= pwm-spear.o
->   obj-$(CONFIG_PWM_SPRD)		+= pwm-sprd.o
->   obj-$(CONFIG_PWM_STI)		+= pwm-sti.o
-> diff --git a/drivers/pwm/pwm-sophgo-sg2042.c b/drivers/pwm/pwm-sophgo-sg2042.c
-> new file mode 100644
-> index 000000000000..a3d12505e4aa
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-sophgo-sg2042.c
-> @@ -0,0 +1,194 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Sophgo SG2042 PWM Controller Driver
-> + *
-> + * Copyright (C) 2024 Sophgo Technology Inc.
-> + * Copyright (C) 2024 Chen Wang <unicorn_wang@outlook.com>
-> + *
-> + * Limitations:
-> + * - After reset, the output of the PWM channel is always high.
-> + *   The value of HLPERIOD/PERIOD is 0.
-> + * - When HLPERIOD or PERIOD is reconfigured, PWM will start to
-> + *   output waveforms with the new configuration after completing
-> + *   the running period.
-> + * - When PERIOD and HLPERIOD is set to 0, the PWM wave output will
-> + *   be stopped and the output is pulled to high.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/reset.h>
-> +
-> +#include <asm/div64.h>
-> +
-> +/*
-> + * Offset RegisterName
-> + * 0x0000 HLPERIOD0
-> + * 0x0004 PERIOD0
-> + * 0x0008 HLPERIOD1
-> + * 0x000C PERIOD1
-> + * 0x0010 HLPERIOD2
-> + * 0x0014 PERIOD2
-> + * 0x0018 HLPERIOD3
-> + * 0x001C PERIOD3
-> + * Four groups and every group is composed of HLPERIOD & PERIOD
-> + */
-> +#define SG2042_HLPERIOD(chan) ((chan) * 8 + 0)
-> +#define SG2042_PERIOD(chan) ((chan) * 8 + 4)
-> +
-> +#define SG2042_PWM_CHANNELNUM	4
-> +
-> +/**
-> + * struct sg2042_pwm_ddata - private driver data
-> + * @base:		base address of mapped PWM registers
-> + * @clk_rate_hz:	rate of base clock in HZ
-> + */
-> +struct sg2042_pwm_ddata {
-> +	void __iomem *base;
-> +	unsigned long clk_rate_hz;
-> +};
-> +
-> +static void pwm_sg2042_config(void __iomem *base, unsigned int chan, u32 period, u32 hlperiod)
-> +{
-> +	writel(period, base + SG2042_PERIOD(chan));
-> +	writel(hlperiod, base + SG2042_HLPERIOD(chan));
-> +}
-> +
-> +static int pwm_sg2042_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			    const struct pwm_state *state)
-> +{
-> +	struct sg2042_pwm_ddata *ddata = pwmchip_get_drvdata(chip);
-> +	u32 hlperiod;
-> +	u32 period;
-> +
-> +	if (state->polarity == PWM_POLARITY_INVERSED)
-> +		return -EINVAL;
-> +
-> +	if (!state->enabled) {
-> +		pwm_sg2042_config(ddata->base, pwm->hwpwm, 0, 0);
-> +		return 0;
-> +	}
-> +
-> +	/*
-> +	 * Period of High level (duty_cycle) = HLPERIOD x Period_clk
-> +	 * Period of One Cycle (period) = PERIOD x Period_clk
-> +	 */
-> +	period = min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->period, NSEC_PER_SEC), U32_MAX);
-> +	hlperiod = min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->duty_cycle, NSEC_PER_SEC), U32_MAX);
-> +
-> +	if (hlperiod > period) {
-> +		dev_err(pwmchip_parent(chip), "period < hlperiod, failed to apply current setting\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	dev_dbg(pwmchip_parent(chip), "chan[%u]: period=%u, hlperiod=%u\n",
-> +		pwm->hwpwm, period, hlperiod);
-> +
-> +	pwm_sg2042_config(ddata->base, pwm->hwpwm, period, hlperiod);
-> +
-> +	return 0;
-> +}
-> +
-> +static int pwm_sg2042_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> +				struct pwm_state *state)
-> +{
-> +	struct sg2042_pwm_ddata *ddata = pwmchip_get_drvdata(chip);
-> +	unsigned int chan = pwm->hwpwm;
-> +	u32 hlperiod;
-> +	u32 period;
-> +
-> +	period = readl(ddata->base + SG2042_PERIOD(chan));
-> +	hlperiod = readl(ddata->base + SG2042_HLPERIOD(chan));
-> +
-> +	if (!period && !hlperiod)
-> +		state->enabled = false;
-> +	else
-> +		state->enabled = true;
-> +
-> +	state->period = DIV_ROUND_UP_ULL((u64)period * NSEC_PER_SEC, ddata->clk_rate_hz);
-> +	state->duty_cycle = DIV_ROUND_UP_ULL((u64)hlperiod * NSEC_PER_SEC, ddata->clk_rate_hz);
-> +
-> +	state->polarity = PWM_POLARITY_NORMAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct pwm_ops pwm_sg2042_ops = {
-> +	.apply = pwm_sg2042_apply,
-> +	.get_state = pwm_sg2042_get_state,
-> +};
-> +
-> +static const struct of_device_id sg2042_pwm_ids[] = {
-> +	{ .compatible = "sophgo,sg2042-pwm" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, sg2042_pwm_ids);
-> +
-> +static int pwm_sg2042_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct sg2042_pwm_ddata *ddata;
-> +	struct reset_control *rst;
-> +	struct pwm_chip *chip;
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	chip = devm_pwmchip_alloc(dev, SG2042_PWM_CHANNELNUM, sizeof(*ddata));
-> +	if (IS_ERR(chip))
-> +		return PTR_ERR(chip);
-> +	ddata = pwmchip_get_drvdata(chip);
-> +
-> +	ddata->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ddata->base))
-> +		return PTR_ERR(ddata->base);
-> +
-> +	clk = devm_clk_get_enabled(dev, "apb");
-> +	if (IS_ERR(clk))
-> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get base clk\n");
-> +
-> +	ret = devm_clk_rate_exclusive_get(dev, clk);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to get exclusive rate\n");
-> +
-> +	ddata->clk_rate_hz = clk_get_rate(clk);
-> +	if (!ddata->clk_rate_hz || ddata->clk_rate_hz > NSEC_PER_SEC)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "Invalid clock rate: %lu\n", ddata->clk_rate_hz);
-> +
-> +	rst = devm_reset_control_get_optional_shared(dev, NULL);
-> +	if (IS_ERR(rst))
-> +		return dev_err_probe(dev, PTR_ERR(rst), "failed to get reset\n");
-> +
-> +	/* Deassert reset */
-> +	ret = reset_control_deassert(rst);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to deassert\n");
-> +
-> +	chip->ops = &pwm_sg2042_ops;
-> +	chip->atomic = true;
-> +
-> +	ret = devm_pwmchip_add(dev, chip);
-> +	if (ret < 0) {
-> +		reset_control_assert(rst);
-> +		return dev_err_probe(dev, ret, "failed to register PWM chip\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver pwm_sg2042_driver = {
-> +	.driver	= {
-> +		.name = "sg2042-pwm",
-> +		.of_match_table = sg2042_pwm_ids,
-> +	},
-> +	.probe = pwm_sg2042_probe,
-> +};
-> +module_platform_driver(pwm_sg2042_driver);
-> +
-> +MODULE_AUTHOR("Chen Wang");
-> +MODULE_DESCRIPTION("Sophgo SG2042 PWM driver");
-> +MODULE_LICENSE("GPL");
+From this sequence, there are two levels. The first level is IERB&PRB is
+the master device, NETCMIX is the slave device. The second level is
+IERB&PRB is the slave device, and ENETC, TIMER and EMDIO are the master
+devices. First of all, I am not sure whether the component API supports
+mapping a slave device to multiple master devices, I only know that
+multiple slave devices can be mapped to one master device. Secondly,
+the two levels will make the driver more complicated, which is a greater
+challenge for us to support suspend/resume in the future. As far as I
+know, the component helper also doesn't solve runtime dependencies, e.g.
+for system suspend and resume operations.
+
+I don't think there is anything wrong with the current approach. First,
+as you said, it makes implementation easier. Second, establishing this
+parent-child relationship in DTS can solve the suspend/resume operation
+order problem, which we have verified locally. Why do we need each register
+block to has a separated node? These are obviously different register
+blocks in the NETC system.
 
