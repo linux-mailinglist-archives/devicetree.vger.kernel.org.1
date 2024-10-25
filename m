@@ -1,131 +1,189 @@
-Return-Path: <devicetree+bounces-115745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A33E9B08CC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:46:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2B179B08D3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:48:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8FE0B26F62
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:44:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6A9528275B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E9E1FB8B5;
-	Fri, 25 Oct 2024 15:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E03A15C145;
+	Fri, 25 Oct 2024 15:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jn7hM+gt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="atUaxLq2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE657184522
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 15:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D409721A4B8;
+	Fri, 25 Oct 2024 15:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729871015; cv=none; b=WFHtB0c/1sYQFL0LeA1R/mQL3hUzanntx2OYSC3XRtsj6WRAQLj2By1T45maGfxdxPcQSNsqheIur5yWj/UlgFVNjesjRc4G6zFf5mVkYpcybK6UsXk+NBM4U+6MBOTC7G88YQMFuvtF6rvV44zNgL4OBq+5QgdK1I4cQb8dqiU=
+	t=1729871301; cv=none; b=nth8sr7gq/SuhWM8YX3wADvKrwY58HOdLTf5t+YU6tWjoDTxOQv7I/8O7K19Kzmm8m7po556GtM5G43659wOIANO/fnMqP7s/cXRuCxJyOvv0xS6vsiUYasSQCQi8xlspI/GaF0fssZJkjufAHZamDVrRCzkq8f8xJuh5R11eNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729871015; c=relaxed/simple;
-	bh=XvlW0vpiMSi9SfklLNRt5xYJcsZyzHInLa7y2PlPt9Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FTulMjh792eec+D550bdqq19ZHjoPZLKw5fLt2nnQz5NWd3DGu3TkHjjYvPS2MWLN3RudokjqNJ3d6yfrIOcd7/qSSiaVpn61qI346CTE3K4tMNDlzTazxnXKnVYgC6sJJ01Zdas16wd+TtU+fHuLbXV1G/xrmR9NmGrcYTVuFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jn7hM+gt; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4314c452180so22497965e9.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:43:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729871011; x=1730475811; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NhFbw1mBYu2Nay5X01WxZV5YBpfYsMrhWbGTAJYzk1Q=;
-        b=Jn7hM+gtHeNMD70IekwblTx/2nKgcq1OYolMI/exMolcSFxWw/FVGiyKu3qUjVJPQU
-         LiIrGwLdUAaE9HBrAIu4ErRpYGeU4U5jvdUkLjA6MhUlgYP+Oiu+fG+nRGbfznq0VUjk
-         yuPwy39OQzf3uMN78Fapf6GS26cpgq+k43RFHySgBVOICayi4cCtCMakZ59yI/U1sekq
-         WM515F1LqylcAZFvnfggg3RVm4u8lDLqy04d8hWzOjbJNOGd8DQFG9LjsmwQ+BwGCNzB
-         S3t5WGpvD9a2JQ9yUjUXdT5p3m5iwkJLton8jHE4WPN5SSqxpQKbJTpCLX4dUkhIkWiT
-         yb4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729871011; x=1730475811;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NhFbw1mBYu2Nay5X01WxZV5YBpfYsMrhWbGTAJYzk1Q=;
-        b=peGnYDwxqsRNQaKSXDMtC8EomcYjxYomqfa9nLXqXLE930QSHY10hGlgRRPXLWn6Q6
-         1IAU20IJfg7iqUjPydJeeNnBU3lVLI//ooTIg4JvjpKDLHImeuQj/h2Hig+HV4sB3bSM
-         o5He9C0i4L/LvYdPpPHUypmhu425DN/5BAsrvjrKbNLB2zt9xYTaOKAam0On5n0OcgdM
-         ZqY8fW9GHd+jlbONYJh71VC0VizzwD46UbPpcQRmTLw3ZT188MCdz1aTcjbNcj0P1LEe
-         SgLvgbs9Vuwis4AYu73INOW7LUVHOi+yXjvRhSSFXrJAPTyKdiSV1hud1sPDaLojsKvS
-         EW9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUvYExS25lcqBhkhdUEt6PenDDDZXhquhGXSIdKGsj4iHQUDD1q2yUUewwp1oNuczCuIArW6gXb82dp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdsubOy3sh9jpNE2rc8Axx1hU61/IJF/roYEIAVczjbzMmZswn
-	otMxKUo/QAhKq5elHBh+i1hcDqyHz1/MC1J5+tR06cnyiGzjlsxl8qH0Ynba79A=
-X-Google-Smtp-Source: AGHT+IEpR+L7S48fUXzS3mEfaT/r/b5+mLSfBoyEeFTAJU9NB8MaARkwZJjkqVqUt/KjOOIyL0+4eQ==
-X-Received: by 2002:adf:e8d1:0:b0:37c:ca20:52a with SMTP id ffacd0b85a97d-3803abb20cfmr5145111f8f.8.1729871011022;
-        Fri, 25 Oct 2024 08:43:31 -0700 (PDT)
-Received: from [127.0.0.1] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b479ffsm1829092f8f.49.2024.10.25.08.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 08:43:30 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Fri, 25 Oct 2024 16:43:28 +0100
-Subject: [PATCH 6/6] arm64: dts: qcom: sdm845-db845c-navigation-mezzanine:
- Add cma heap for libcamera softisp support
+	s=arc-20240116; t=1729871301; c=relaxed/simple;
+	bh=pYHHIJNTG01AQgTmBwG9U5BsfqO8HYoXVzbsu2Ldj1Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dej07h6ZVGrCfBWNLlTfPtZZpJYcP98K129GtWZZ/0OYjAYmn5Ith2AA+APHKvFk+XftBenbxLSCx8+l9g+6t0BMLNXYSoz7EHtyXXmngrKxiQNuX390rgastdN2JjdoJJ6dmGcY3jb89Zj/+V3WFeUyIPxWdRyy0oQpo2jckoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=atUaxLq2; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729871299; x=1761407299;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pYHHIJNTG01AQgTmBwG9U5BsfqO8HYoXVzbsu2Ldj1Y=;
+  b=atUaxLq2g4YKKd1vowsHVR3mhFSQ8GooeBFr3qjZAa3fzV4UPVpAv8NT
+   Aa7MV4Al1BuwTwiHl1Q10w9vR3+Nlvoks74MSKgyZNw6covAtPXWjH6hc
+   eNn100rpFY/apH9FLzZKVHQFpZIcmshFj3kr1T1zkMSEV/v+qzUE7qoiN
+   vUCoWS/z77Z2bNaMCKN4BCoJxmkOIQKifFWqtIbNGF/GNaAdU2smhREnI
+   UowSimO+bL7fsEyEg6GQ4jB00Qo2Tpga+qpm/M59DfAShHUcLcx4vsbFJ
+   /2qseHNudOO44jFYZi/ElI2TuJFu/Lbki5/d9fx8x0VRH9iWlQ0Lq3cKA
+   w==;
+X-CSE-ConnectionGUID: ntTYvcvFR7W26evvACJaZA==
+X-CSE-MsgGUID: k2RwiHT9TeO1yphmmukXMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="28996538"
+X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; 
+   d="scan'208";a="28996538"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 08:48:18 -0700
+X-CSE-ConnectionGUID: 6O3g3ryfTOyp22Ft1rrElQ==
+X-CSE-MsgGUID: TeHm3+K9ReK+WrkH/5guHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; 
+   d="scan'208";a="80865917"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 25 Oct 2024 08:48:11 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t4MXp-000YQm-1F;
+	Fri, 25 Oct 2024 15:48:09 +0000
+Date: Fri, 25 Oct 2024 23:48:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Inochi Amaoto <inochiama@gmail.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
+Message-ID: <202410252357.pCyOX2bg-lkp@intel.com>
+References: <20241025011000.244350-5-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-6-cdff2f1a5792@linaro.org>
-References: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-0-cdff2f1a5792@linaro.org>
-In-Reply-To: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-0-cdff2f1a5792@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Depeng Shao <quic_depengs@quicinc.com>, 
- Vikram Sharma <quic_vikramsa@quicinc.com>, 
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241025011000.244350-5-inochiama@gmail.com>
 
-libcamera softisp requires a linux,cma heap export in order to support
-user-space debayering, 3a and export to other system components such as
-pipewire, Firefox/Chromium - Hangouts, Zoom etc.
+Hi Inochi,
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso     | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-index d62a20f018e7a7e1c7e77f0c927c2d9fe7ae8509..c8507afcd1e0d1f9b14b6e4edcbc646032e7b6c9 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-@@ -9,6 +9,17 @@
- #include <dt-bindings/clock/qcom,camcc-sdm845.h>
- #include <dt-bindings/gpio/gpio.h>
- 
-+/ {
-+	reserved-memory {
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			size = <0x0 0x8000000>;
-+			reusable;
-+			linux,cma-default;
-+		};
-+	};
-+};
-+
- &camss {
- 	vdda-phy-supply = <&vreg_l1a_0p875>;
- 	vdda-pll-supply = <&vreg_l26a_1p2>;
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on sophgo/for-next sophgo/fixes net-next/main net/main linus/master v6.12-rc4 next-20241025]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Inochi-Amaoto/dt-bindings-net-snps-dwmac-Add-dwmac-5-30a-version/20241025-091315
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241025011000.244350-5-inochiama%40gmail.com
+patch subject: [PATCH v2 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20241025/202410252357.pCyOX2bg-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241025/202410252357.pCyOX2bg-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410252357.pCyOX2bg-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c: In function 'sophgo_dwmac_fix_mac_speed':
+>> drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:30:16: error: implicit declaration of function 'rgmii_clock' [-Wimplicit-function-declaration]
+      30 |         rate = rgmii_clock(speed);
+         |                ^~~~~~~~~~~
+   drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c: In function 'sophgo_sg2044_dwmac_init':
+>> drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:46:13: warning: unused variable 'ret' [-Wunused-variable]
+      46 |         int ret;
+         |             ^~~
+
+
+vim +/rgmii_clock +30 drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
+
+    23	
+    24	static void sophgo_dwmac_fix_mac_speed(void *priv, unsigned int speed, unsigned int mode)
+    25	{
+    26		struct sophgo_dwmac *dwmac = priv;
+    27		long rate;
+    28		int ret;
+    29	
+  > 30		rate = rgmii_clock(speed);
+    31		if (ret < 0) {
+    32			dev_err(dwmac->dev, "invalid speed %u\n", speed);
+    33			return;
+    34		}
+    35	
+    36		ret = clk_set_rate(dwmac->clk_tx, rate);
+    37		if (ret)
+    38			dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+    39	}
+    40	
+    41	static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
+    42					    struct plat_stmmacenet_data *plat_dat,
+    43					    struct stmmac_resources *stmmac_res)
+    44	{
+    45		struct sophgo_dwmac *dwmac;
+  > 46		int ret;
+    47	
+    48		dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
+    49		if (!dwmac)
+    50			return -ENOMEM;
+    51	
+    52		dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
+    53		if (IS_ERR(dwmac->clk_tx))
+    54			return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
+    55					     "failed to get tx clock\n");
+    56	
+    57		dwmac->dev = &pdev->dev;
+    58		plat_dat->bsp_priv = dwmac;
+    59		plat_dat->flags |= STMMAC_FLAG_SPH_DISABLE;
+    60		plat_dat->fix_mac_speed = sophgo_dwmac_fix_mac_speed;
+    61		plat_dat->multicast_filter_bins = 0;
+    62		plat_dat->unicast_filter_entries = 1;
+    63	
+    64		return 0;
+    65	}
+    66	
 
 -- 
-2.47.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
