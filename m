@@ -1,210 +1,229 @@
-Return-Path: <devicetree+bounces-115533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF2D19AFF00
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 11:52:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7084D9AFF09
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 11:53:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62483B24286
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:52:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CEE02823F0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35A9C1F9A98;
-	Fri, 25 Oct 2024 09:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE62A1D27AD;
+	Fri, 25 Oct 2024 09:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lA1tg0Eh"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="EJywoHHu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2044.outbound.protection.outlook.com [40.107.249.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A65A1F80CB
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:51:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729849873; cv=none; b=Mijsz0avIvL2kSHvBKlBuwULboak6tK1fuBEXlyLL36NWlTBjN6O2Abx7QmsBfir9sdLk0bG/wVQE0RUToXnOIbIO8Dny7zl9oAJt6fKECDV60otCmWFqpqPuR78snRuAOlJ2M967oHCWA3od7LWmGO7A8/PYiuqNpVU3tk0J/Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729849873; c=relaxed/simple;
-	bh=qkX0nl5rvNFAD4t3iDzIThyb/2D3UDTKreCfkCePaGQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eqfhuHAvSU2VMB9rMZZ/lIMm2CclOgQM79w7n3HcmAyyIWfkTVmP2sqhF1B1Zv3FhZnQz3+9G4kYSZ7O7LpkC1GY4oIl4tV7O7aP4TAJVMaEZE7UeMfFq9p2PeHGTMIb6orEt1MIzTKbxrgOIM2V+/XNDMWHvG64VSNou36d6Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lA1tg0Eh; arc=none smtp.client-ip=209.85.128.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-43155afca99so19829285e9.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 02:51:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729849869; x=1730454669; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/aYRx10LIx18s/5vpjDGgULjxldPzrrAdUjt9qoc4a4=;
-        b=lA1tg0EhCp6dO/I9egv8EA6rqK5v5UKRopaxlzw/CCC+vuhqwi8BhgIcEgCAVsk30U
-         J6tgfhaSfiC9Y7x6nIuM9+ygZyY0fIr7znJEKTZ9uBOqc0bkcdaTXfN0N8BRlV09EWQP
-         whCWCoikJtiCtJfI3MAEqQ9HBqVSZ0miFMnV2GsxdexoV+ahKaH7CashNJVW8+/c2EH8
-         8IaLPN8Ck8PMDeOow48W2nJtfK7Njcw+RM9SZCVtfv7msRebn6pAGydqDxpyOUT3r+c9
-         69PT0R10ybEyuRPtyde7q2yn/kUngvs1C8UpuJVanT6xl+A4+FZZeJ+aZY/kO8OeVHDE
-         fTnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729849869; x=1730454669;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/aYRx10LIx18s/5vpjDGgULjxldPzrrAdUjt9qoc4a4=;
-        b=FBOqkXsTMB+vLn6NCSkDolV+7sIdq5JqZG3g+mXdJcYWpsnUHzLuo1CGkhRu8LUXdG
-         +PHmibGFxoFAipmH7eD9RXfeM8AzOLJpbVV/SAagrPvsNkKLuQNmXVaaYIkC6bcJqPAR
-         s0llYbJjQY63smiKKoWI8438IT+O5bslwpEWCdFUv2r4SJnKNBfxJDzfhSuXW/olVok/
-         mIpZWqcnr3KPM97Vm/1jN2utnNHqk8nR6hV21qHEVfDyzdFPYYLue4VZKHHi/1FkvdMu
-         Lm43xylok/J9qXCcHk/tT1jTUvuoc+rrKtg2aGvm/tjBJseR6VYuj4o/WoWqJMA2GaYU
-         6K9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUzsCdDW1e4QpsQl9BjAPV6Qo9ilA0akqyAk+QwfVBremDUuEx8jFuEX9L5tCvyPtqE77x2z2K+ihDu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyou7bUIcYQl3ZdH2wY77N+lda2961p3ZUIiYerHxEjt736k3OG
-	VBEac5OOGHEpNgcPMYa65nEgchLoaZ2brhm3+uwcfvuoJ3bmypERJMrvVWsYvF0=
-X-Google-Smtp-Source: AGHT+IHmwWsFrbMw/Bs+MM2teeITRSFYRP5Geof+tpjdxm9iyQ5zs+9wro7UoDvxoKjOKk3Hp1Cmvg==
-X-Received: by 2002:a05:600c:35d5:b0:431:52da:9d89 with SMTP id 5b1f17b1804b1-4318b5b0cf5mr36654655e9.1.1729849869003;
-        Fri, 25 Oct 2024 02:51:09 -0700 (PDT)
-Received: from [127.0.1.1] (host-79-41-194-153.retail.telecomitalia.it. [79.41.194.153])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935f6df1sm12895085e9.35.2024.10.25.02.51.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 02:51:08 -0700 (PDT)
-From: Angelo Dureghello <adureghello@baylibre.com>
-X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Fri, 25 Oct 2024 11:49:41 +0200
-Subject: [PATCH v8 8/8] iio: dac: adi-axi-dac: add registering of child fdt
- node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C6921D27A4;
+	Fri, 25 Oct 2024 09:51:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729849905; cv=fail; b=nA1OTP1/2tZL8ihm2EOtOa7hrMRUS7YX/hiVbEXi0mi3LP1tjuNg/2T5Zsf52O0qAILuW/tLUgjABy4Uy1wpTHGIzcaUX0Q9/TKLghDzHnWERGL98cIq+RlhQxRcC8YuHMxpUgFMvVUxFuNPLuRZuevVO239erbAbWiVTfXbiLI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729849905; c=relaxed/simple;
+	bh=V8igBrSr0c+THoINQ+mh5QZ56L3VDrdcZUuhukyopwc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=hMKNVO8MXeTl5ayjx+G0RCJKy5fm9mvfKVexaHRL5Za389axl5jFGCddqpmWQjDERRLaIInJs87wdT3aGJPyNbOC8pCREZdnXYQ9VFmqdUGYXIkHOAPym+LoMA1gdxGk81L7+4q1NF2KzvHGYzF7TfFwEdW4AL5guRDpqZ1DboI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=EJywoHHu; arc=fail smtp.client-ip=40.107.249.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RJ9X9IGBzExyJR5gHqizWBGzs5JEwUQvtsSIuI614GsRFUrxxrm+bwsDe+fJVSJpTrMfeTj69N+KVz5aLhs7ASk0hwcW54AjnTE/WIYNpPqH1gzKzo39NLS8f9f22u6YvMKPbTnRU70vJg9ROPSmlDj8qqPJMq4nKZVsV0HufvskOvuB6QYZi7Ke9E0Air7t4O4e6bp1AQrul+P0EcJFJpkRIfQ+s0eNNREZXWNhD6TUVOdY6xTjAWlQL05g4KWa2vcY6rGL0pEKhPrpCS6RoglByadTv0o0t8NHf+2Y/R04K6iSVzFblJyNyhRgvWntghZyl1aC9tndipKGRD8W7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dtbdKIzZ2+s8m5okwWDyFOrOFdbAPU1cPV/HFGJkAb4=;
+ b=U7iHXEGYu6RgOBs8B9Y61Eib9zIlx3doHShmkyNvOF7X9RtS5/3CfgQAX03M29EADx3W1Ebr1wYN8iwtgogZXL2354op3D3PeeOkhfo/MXEqBT8mr/lotEYaUPOa857dtoGd26FDIBq8W1lreKdP4zP7W/1RBSI648DuNjYbBM5S1oLaqYP3PDCp6ULTpFArdFd5SAAQQrJ8ZeDXoO2oNVf/rAPiq93txa64CZJNeJsJ3Oc34S0+RjZnbwQbHZj8WSrST08CCkRyYxsz2ONLwocVhNYNEdMPfeFcxPR3b8cxE7dkRw0+7llNdePEy/1aXapNyKdYl1tyLPPAata3TA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dtbdKIzZ2+s8m5okwWDyFOrOFdbAPU1cPV/HFGJkAb4=;
+ b=EJywoHHuXCiEJk+gA2HXZ1SdtNSFqWzTg2uuOGEPA/Qh8C+Lu2nQioVx8DESFRuOtqY41DIwnHkAzVjw8o2FABDOciCi5ElJJG7xUPD3Ke0k6IbcdJXfs1YTcHeG61viUfajPGLSE6VfbZkDGcIv7bkFOiaY9qFq1EMhi97XVjCocZD+uwV6JTuiO58maoJQsnmpdcrrTNTGy8oSbtyqPaY7gl6xMDcwyizsc+OtmzpVvQrOxzjFFGDrSZcdwUPKkptUwUUwzoVBm7QXsb55cf0+5Kl7vd2RmD60ItJ1jFhfJG8BdRkKsyM2+KNTYKjlhzyCuJgK80KNK/K0LQteJw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
+ by AM8PR04MB8034.eurprd04.prod.outlook.com (2603:10a6:20b:249::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Fri, 25 Oct
+ 2024 09:51:40 +0000
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2]) by AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2%3]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
+ 09:51:39 +0000
+Date: Fri, 25 Oct 2024 12:51:36 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, claudiu.manoil@nxp.com, xiaoning.wang@nxp.com,
+	Frank.Li@nxp.com, christophe.leroy@csgroup.eu,
+	linux@armlinux.org.uk, bhelgaas@google.com, horms@kernel.org,
+	imx@lists.linux.dev, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, alexander.stein@ew.tq-group.com
+Subject: Re: [PATCH v5 net-next 11/13] net: enetc: optimize the allocation of
+ tx_bdr
+Message-ID: <20241025095136.dlft7ixliiixejkv@skbuf>
+References: <20241024065328.521518-1-wei.fang@nxp.com>
+ <20241024065328.521518-1-wei.fang@nxp.com>
+ <20241024065328.521518-12-wei.fang@nxp.com>
+ <20241024065328.521518-12-wei.fang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241024065328.521518-12-wei.fang@nxp.com>
+ <20241024065328.521518-12-wei.fang@nxp.com>
+X-ClientProxiedBy: VI1P195CA0045.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:802:5a::34) To AM8PR04MB7779.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24b::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-8-74ca7dd60567@baylibre.com>
-References: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-0-74ca7dd60567@baylibre.com>
-In-Reply-To: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-0-74ca7dd60567@baylibre.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
- dlechner@baylibre.com, Angelo Dureghello <adureghello@baylibre.com>
-X-Mailer: b4 0.14.1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|AM8PR04MB8034:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc92cacd-9ee9-4692-5493-08dcf4da9f9d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?RoSFyrHwUh70y/ZouRYOfGVczAa1SjAiWvyldtD+hpHGCzcopUPPharbzBlv?=
+ =?us-ascii?Q?VwtTbBBK6zUyErjOaLWX9mZ+qMGLZV50laliJbKDbOaCtVd0lAlUFFSar08M?=
+ =?us-ascii?Q?FXO/Wg4A04JgFNcHVOA+0FD9+neg05klAYicLXdXCg2fMxdTPuqUaJzr8JDI?=
+ =?us-ascii?Q?wS1b/pAb0m08uf+mxt3+QJ5+vfXFX8wfje+zhM0Yln6/DyWxo+OfJDNmZT4K?=
+ =?us-ascii?Q?ZQyyEy1Y3LNz7SXrqzaqQFyINlkS/m7yj8oeDhImhNa+omDmdpc5lrPy+sKe?=
+ =?us-ascii?Q?DA9Y8r/9PssKsZutzJw+ChaQw+i6md3h3+Gfghg/Mc9D20FiVhG1+0jzABDl?=
+ =?us-ascii?Q?u+ePqjQo8lQTPRkxju1ezojYXT1BOcDorm4hynDQtGMs4Zz7KZTmyZkeBnxN?=
+ =?us-ascii?Q?sOrffffjrLzd55Qj6rofMyseelGjTGZN49J1f9Av6cIWqaeSDi7KtVA9MXwW?=
+ =?us-ascii?Q?fUBzvzeiQl5xVDd4PiAHIB5sHK/y6cYRAJkc2NopHiKuaa7LE6L3qVEzZUHg?=
+ =?us-ascii?Q?7TBBdBvIl+vgvajIKozvjsymVoWGUC4XhLHhQduxGmEtAAz1CD59tiSxPaRw?=
+ =?us-ascii?Q?Zz6nrfR6xbV9+GNBejLhFYbvczjrA5/8Vyz9Ax5cesHQktVmngJMKpwDsA86?=
+ =?us-ascii?Q?D6e+/ZJjxHLWoAloTbe7aQDY16M1InaXeMrsV3NIJFngIiWWi9BI9Ccs2vcc?=
+ =?us-ascii?Q?HFvCKROqRlyy0BpC34xsXeUzZEo/Znn5OQUwBSoEu3kB0KAmFmsJdfc8j36g?=
+ =?us-ascii?Q?3UMQObliKRzh9u7vuUvL0tQtYxuHrTjs6YWD1wwNWYKXKPBoApmNa4haECdC?=
+ =?us-ascii?Q?2KTT9AULWdLua1iTWza50Uj17cY2OACqumpKhn+tsc1oevRcrER+/4w7oPWN?=
+ =?us-ascii?Q?q02YWKAv8mpqSqBZmsY94RZMBGzuFdsdb3bLHAefI37fpabh1WyrxDUvr4ho?=
+ =?us-ascii?Q?XxZuzS9g2IhWpJZFrfudARmDJcSVfTsTNBrpEYiQBbNC3yTNjHqrX/ILNYxC?=
+ =?us-ascii?Q?PSLJt3ZLrnthnSQXKZ2XKeACIoYlukvTCEKvVbkl7D8QxBr0coQL8FiGQmAk?=
+ =?us-ascii?Q?/0mEk1AU3NRQjz+4653oZ17IlPBHvN40plBFdke4kK8GfRlNTro4Qa+7Bakf?=
+ =?us-ascii?Q?NmMnvs9GI/0JvDx9/75sJCXrZIFaWFLVYuIfEx8WN6jZeGpUgIGyjQ9jL/QU?=
+ =?us-ascii?Q?FmLe3KnDbybu0bcddx/FFxn22klfoIA5QzH13+dUvmpwmymtEWrxdA4y/cTR?=
+ =?us-ascii?Q?6Cjnqp7xCK5YvmmCoWLDTaje84mWJeEk4KIPHgYr/2SraSbEzh4sr9MyAPPk?=
+ =?us-ascii?Q?OO4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?XKki82NmBcRa+9CHls80VRg+Etro8FoUxrVNTjxp9uf0HUm87QosGY9XsfYZ?=
+ =?us-ascii?Q?7OM1HSiIpAdSdTLT86HWY+BKRvCTgz5My53lu3WHNWMNSXRpJxSvR6xljkr8?=
+ =?us-ascii?Q?nD2cpwvr668OmSsdeMqIuEsFF5INZOSyX+pD9T6clcFkofaLhoKtwmK+k10q?=
+ =?us-ascii?Q?QWz7ME204vCOcQurhEc0Hp2wsFSQTfw9k6Z/EDVh18wcrhh3n6mRm0L2UOIb?=
+ =?us-ascii?Q?QzP1pvoSUZNFWJehSzzsA4KDkeUl278pH2pcFLzToBu2MgKTSiSRf67F/teJ?=
+ =?us-ascii?Q?LZtMYBfBeTSH000SeyuCdQb2ZouWlgF7kl3tXLoCz82I+RpYoWP1dLF4Lt36?=
+ =?us-ascii?Q?8j3Js3BGjxFL8XzQ2cch8YY6S3oevyAxX6KleIV6dkAjqnfQR9ZJx/2I0dgm?=
+ =?us-ascii?Q?FgF92d9NuzgfY/9FD3r7NwlYoarR29Rie4xbhFuofzWaVbR6qLebbpP0g8YW?=
+ =?us-ascii?Q?OMS2NTVG/6ZUSjHknbe/DhBL8STOqXtPf81WSILNcZ6dImvwgWn064qshRqJ?=
+ =?us-ascii?Q?cqcE1r+tvrYmNBmXC9cYELQl+ZYzdolK9ocKc1/64p9z9FrBs6sLAfjR2c+I?=
+ =?us-ascii?Q?6geBSI8CqQ9C1hsZ0ZlFFLfKhZdVyD2vJ8HK/1KWA67fVSv+een6fNq71YOq?=
+ =?us-ascii?Q?A35FfWQKzFR4qlhrDmpv1oWAuITMm9pxkE0fetHhnYyvkGGMLFlbeBCPmlc0?=
+ =?us-ascii?Q?sLwj8VGw3RGCXiDOaUq5jCHEofGu7ZWcdLTWhOH6GKpKGlvK/WuNeP1G8xDr?=
+ =?us-ascii?Q?1AT/9PHz9/D/pJh0WExsf5jZPmncvfEli8tvm52v4j9Om70O5g0zgpVoyTuM?=
+ =?us-ascii?Q?6ZUeoyvDhQFPJDToLPBERAl5LzrDzComrBmodjVwtYOwxFzzaytjircYz57E?=
+ =?us-ascii?Q?/jPQbRqiFNCHp++wdAcpd1uWFw2f2r/9GeBfPW2VIfSaCE7P/62dlrAj5KO7?=
+ =?us-ascii?Q?0a5ywKVSnhzalPSNnhuefEwdh4aR3ryRXJHF6XOSK+ruEeP4eylIkUXi3lLc?=
+ =?us-ascii?Q?yhtP4lrG9yATYvoHiNcVIXpZy4NsqWUPY/7235SYUW8+GkMX2zSILSWWiNSg?=
+ =?us-ascii?Q?q/YjrKTwzi65UaNc0gqFEKMVhsw/t/wnz/zEZVILlliLVYOO5qu2qvTe4vsC?=
+ =?us-ascii?Q?y2ebu+b+B/qJZ1HW2lHboQlW0LaGYd+bm5pqthynesTKdvno5PLtw7ivGelO?=
+ =?us-ascii?Q?fInHu8viHR7evxuR/FgONPmrsFvqC39Ouai0UVB/sxhrHpOpGkFlpcyM5qKy?=
+ =?us-ascii?Q?G46GttP9FVnC0zzFnDm0KjapDDqhooMW8ZJrEk0bsTP/XzWuNh3/3Ewvwg3i?=
+ =?us-ascii?Q?nmRljPXAOPJkcu14osIYqV0YdHRfYvfP7KciFDKT2QOBTtP1MtkG+mvrVpTh?=
+ =?us-ascii?Q?P+ZmZYdBEQ7L2mgb8A8Ax1XeTB/GSLQKBsQ8gLP5FiLX12Qm8h3mYV/f2ubm?=
+ =?us-ascii?Q?MYzEe+awAlsqvocKxInYD27+GkWfkpfGjwmfHrY3MB52SyRNP+SO5dsp8nEd?=
+ =?us-ascii?Q?3/3z32P4h/hly96L7p9sSH98xiDwyujumeYiRadxg88vnOzlYdTw/xNIMtMB?=
+ =?us-ascii?Q?6UBXEqwDrfBEtC3gzYsxPmnoAlgRQ5ojK8ANP1EIZA/VKMsSt06XrUxrOPzm?=
+ =?us-ascii?Q?4g=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc92cacd-9ee9-4692-5493-08dcf4da9f9d
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 09:51:39.9373
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uSQmBjANJBgfjp6dgKnJ6ir7atWGyaBat2ptgoHAHkvbWztM5AG3/ZeRJuXhsuyoHPDVELskj+6gA87JGzDdMg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB8034
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+On Thu, Oct 24, 2024 at 02:53:26PM +0800, Wei Fang wrote:
+> From: Clark Wang <xiaoning.wang@nxp.com>
+> 
+> There is a situation where num_tx_rings cannot be divided by bdr_int_num.
+> For example, num_tx_rings is 8 and bdr_int_num is 3. According to the
+> previous logic, this results in two tx_bdr corresponding memories not
+> being allocated, so when sending packets to tx ring 6 or 7, wild pointers
+> will be accessed. Of course, this issue doesn't exist on LS1028A, because
+> its num_tx_rings is 8, and bdr_int_num is either 1 or 2. However, there
+> is a risk for the upcoming i.MX95. Therefore, it is necessary to ensure
+> that each tx_bdr can be allocated to the corresponding memory.
+> 
+> Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> Reviewed-by: Claudiu Manoil <claudiu.manoil@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> v5: no changes
+> ---
+>  drivers/net/ethernet/freescale/enetc/enetc.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/freescale/enetc/enetc.c b/drivers/net/ethernet/freescale/enetc/enetc.c
+> index bd725561b8a2..bccbeb1f355c 100644
+> --- a/drivers/net/ethernet/freescale/enetc/enetc.c
+> +++ b/drivers/net/ethernet/freescale/enetc/enetc.c
+> @@ -3049,10 +3049,10 @@ static void enetc_int_vector_destroy(struct enetc_ndev_priv *priv, int i)
+>  int enetc_alloc_msix(struct enetc_ndev_priv *priv)
+>  {
+>  	struct pci_dev *pdev = priv->si->pdev;
+> +	int v_tx_rings, v_remainder;
+>  	int num_stack_tx_queues;
+>  	int first_xdp_tx_ring;
+>  	int i, n, err, nvec;
+> -	int v_tx_rings;
+>  
+>  	nvec = ENETC_BDR_INT_BASE_IDX + priv->bdr_int_num;
+>  	/* allocate MSIX for both messaging and Rx/Tx interrupts */
+> @@ -3066,9 +3066,12 @@ int enetc_alloc_msix(struct enetc_ndev_priv *priv)
+>  
+>  	/* # of tx rings per int vector */
+>  	v_tx_rings = priv->num_tx_rings / priv->bdr_int_num;
+> +	v_remainder = priv->num_tx_rings % priv->bdr_int_num;
+>  
+>  	for (i = 0; i < priv->bdr_int_num; i++) {
+> -		err = enetc_int_vector_init(priv, i, v_tx_rings);
+> +		int num_tx_rings = i < v_remainder ? v_tx_rings + 1 : v_tx_rings;
 
-Change to obtain the fdt use case as reported in the
-adi,ad3552r.yaml file in this patchset.
+It took me a moment to understand the mechanism through which this
+works, even though I read the intention in the commit message.
 
-The DAC device is defined as a child node of the backend.
-Registering the child fdt node as a platform devices.
+Do you think this additional comment would help?
 
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
----
- drivers/iio/dac/adi-axi-dac.c | 56 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+		/* Distribute the remaining TX rings to the first
+		 * v_tx_rings interrupt vectors
+		 */
 
-diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.c
-index 148e40a8ab2a..dc9f881bf9ce 100644
---- a/drivers/iio/dac/adi-axi-dac.c
-+++ b/drivers/iio/dac/adi-axi-dac.c
-@@ -29,6 +29,8 @@
- #include <linux/iio/buffer.h>
- #include <linux/iio/iio.h>
- 
-+#include "ad3552r-hs.h"
-+
- /*
-  * Register definitions:
-  *   https://wiki.analog.com/resources/fpga/docs/axi_dac_ip#register_map
-@@ -97,6 +99,7 @@ struct axi_dac_info {
- 	unsigned int version;
- 	const struct iio_backend_info *backend_info;
- 	bool has_dac_clk;
-+	bool has_child_nodes;
- };
- 
- struct axi_dac_state {
-@@ -699,6 +702,36 @@ static int axi_dac_bus_reg_read(struct iio_backend *back, u32 reg, u32 *val,
- 	return regmap_read(st->regmap, AXI_DAC_CUSTOM_RD_REG, val);
- }
- 
-+static void axi_dac_child_remove(void *data)
-+{
-+	platform_device_unregister(data);
-+}
-+
-+static int axi_dac_create_platform_device(struct axi_dac_state *st,
-+					  struct fwnode_handle *child)
-+{
-+	struct ad3552r_hs_platform_data pdata = {
-+		.bus_reg_read = axi_dac_bus_reg_read,
-+		.bus_reg_write = axi_dac_bus_reg_write,
-+		.bus_sample_data_clock_hz = st->dac_clk_rate,
-+	};
-+	struct platform_device_info pi = {
-+		.parent = st->dev,
-+		.name = fwnode_get_name(child),
-+		.id = PLATFORM_DEVID_AUTO,
-+		.fwnode = child,
-+		.data = &pdata,
-+		.size_data = sizeof(pdata),
-+	};
-+	struct platform_device *pdev;
-+
-+	pdev = platform_device_register_full(&pi);
-+	if (IS_ERR(pdev))
-+		return PTR_ERR(pdev);
-+
-+	return devm_add_action_or_reset(st->dev, axi_dac_child_remove, pdev);
-+}
-+
- static const struct iio_backend_ops axi_dac_generic_ops = {
- 	.enable = axi_dac_enable,
- 	.disable = axi_dac_disable,
-@@ -840,6 +873,28 @@ static int axi_dac_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, ret,
- 				     "failed to register iio backend\n");
- 
-+	device_for_each_child_node_scoped(&pdev->dev, child) {
-+		int val;
-+
-+		if (!st->info->has_child_nodes)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+					     "invalid fdt axi-dac compatible.");
-+
-+		/* Processing only reg 0 node */
-+		ret = fwnode_property_read_u32(child, "reg", &val);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, ret,
-+						"invalid reg property.");
-+		if (val != 0)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+						"invalid node address.");
-+
-+		ret = axi_dac_create_platform_device(st, child);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+						"cannot create device.");
-+	}
-+
- 	dev_info(&pdev->dev, "AXI DAC IP core (%d.%.2d.%c) probed\n",
- 		 ADI_AXI_PCORE_VER_MAJOR(ver),
- 		 ADI_AXI_PCORE_VER_MINOR(ver),
-@@ -857,6 +912,7 @@ static const struct axi_dac_info dac_ad3552r = {
- 	.version = ADI_AXI_PCORE_VER(9, 1, 'b'),
- 	.backend_info = &axi_ad3552r,
- 	.has_dac_clk = true,
-+	.has_child_nodes = true,
- };
- 
- static const struct of_device_id axi_dac_of_match[] = {
-
--- 
-2.45.0.rc1
-
+> +
+> +		err = enetc_int_vector_init(priv, i, num_tx_rings);
+>  		if (err)
+>  			goto fail;
+>  	}
+> -- 
+> 2.34.1
+>
 
