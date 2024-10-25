@@ -1,119 +1,134 @@
-Return-Path: <devicetree+bounces-115553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22DD49AFFC1
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:13:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FC589AFFD0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB0A428701F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:13:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BEE41F2204B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6711D1E1A39;
-	Fri, 25 Oct 2024 10:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C05301D63EA;
+	Fri, 25 Oct 2024 10:14:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="d/v+ddq8";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="msPGqsJP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9DFA1E00BF;
-	Fri, 25 Oct 2024 10:09:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DCA1D8E10
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729850978; cv=none; b=qMHWiTGW47CwgqLZ1SI7RNHfI4qV+xQIaMP/F5hVqFxi3bz9KBqWJ7ekmiKduU6Qe3y7cBvek0y3idO/RGYzJhvp13uG806D4aB14pGu8uqhj1rbaJzkbxCiUxnelmmxcpvJyStcoj3+VuSYcJOvc7klWEtuOUCPqHy/n3buvyY=
+	t=1729851292; cv=none; b=Kza8o5oiOCpDM/rICeLf5LQciYuJ9P9xpoVCfoeHTbuhFXH6RRalM18/efQU22v/Kjh3vQzpisC/nW8ciOKXXeLZHzpWqvlhQOTA1WypKNwgBMdHSPNkpUBJ78AyGD8dhaIBZpxiJTiAcuEc2dyP1IvK86CXk95JyLFIn2SKtdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729850978; c=relaxed/simple;
-	bh=2vKwd6wWS/n65Df3WGJ4gT9phN2JjJYt4uGnJUT3MYE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FBqAN38V/wpo5ZNTq5DTH2K9OcU3LdS7JEtbifv1grUy048Zs/AXCG3cGI5ltZiF7UhCIqjR2KHGBv+1lqDuzobMz8d0QWbVUUZx5h9YWi8MEyjRxZsepubAMhBNS8FOLeT4nfGxJmOs3Mw7yyAW+Ny0XlAk/LV2vawI2L7LfEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F00F3339;
-	Fri, 25 Oct 2024 03:10:03 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8419C3F73B;
-	Fri, 25 Oct 2024 03:09:29 -0700 (PDT)
-Date: Fri, 25 Oct 2024 11:09:26 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Cody Eksal <masterr3c0rd@epochal.quest>
-Cc: "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "linux-sunxi@lists.linux.dev"
- <linux-sunxi@lists.linux.dev>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "linux-phy@lists.infradead.org"
- <linux-phy@lists.infradead.org>, "linux-usb@vger.kernel.org"
- <linux-usb@vger.kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Parthiban <parthiban@linumiz.com>, Yangtao Li <frank@allwinnertech.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Vinod Koul
- <vkoul@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Thierry
- Reding <treding@nvidia.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Chen-Yu Tsai <wens@csie.org>, Maxime
- Ripard <mripard@kernel.org>, Yangtao Li <tiny.windzz@gmail.com>, Viresh
- Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd
- <sboyd@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>
-Subject: Re: [PATCH 04/13] dt-bindings: usb: Add A100 compatible string
-Message-ID: <20241025110926.6e033dfc@donnerap.manchester.arm.com>
-In-Reply-To: <20241024170540.2721307-5-masterr3c0rd@epochal.quest>
-References: <20241024170540.2721307-1-masterr3c0rd@epochal.quest>
-	<20241024170540.2721307-5-masterr3c0rd@epochal.quest>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1729851292; c=relaxed/simple;
+	bh=bnLMRIPG1uT1fyzLMtDgvyO+WWZCLslcDL7ZrN928b0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Yy7Hfk2D9OBfiLr0kMSzMdLF167pi3zuds5Nfjiu0wlgd8GkaeY/Abh9dlpzQTjh0JKJkWsLQkF+btWaBUAYEHsX/Hb1fPaOKg7vwRKSQKalOtVGJJ+Z5sBhrcTR7/pf1oCevb3rjFAm4Jc0dXxbLlurZk7Wc+78oUgppx1QMaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=d/v+ddq8; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=msPGqsJP reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1729851289; x=1761387289;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=7v6o4+naE0x6CItW5mEz8zlqR9bkW3D/RUmioNzQIUo=;
+  b=d/v+ddq8zYb8mg6HuxU6IlPD40h4RY6PJ1YAQvj5+5epvmsnpPxxBMAB
+   d15mywXM8UQ3bAjeRh/Nn6N1d7UyzpDkeZ4q2lf18ShaEB+9IGjRnkBpg
+   UkNAfa0C9SKT4xMkAbZQBPCd/B20blvCo15URnoIWm8JtokD/6xCo4z+Y
+   iSjpYtj1acwB7cLM0a0mf7Dkxlvb29aHLJfxEL9fkMfo1N0ck2xZV3Ec+
+   T2/pqx1mLEvAWAWSs4PNmW8QH56rVjZPKJis79Nt7sUrVT9CmZqsPlRi8
+   mrujgwcHcJvcsPM+yVP45IwYTOkekyYDf/F2k+wComr9EzqNozfZvoZPj
+   w==;
+X-CSE-ConnectionGUID: uabkpS4oTLKXMfXpxgMRow==
+X-CSE-MsgGUID: ycQgDt52TAeJqqBfpZqJvw==
+X-IronPort-AV: E=Sophos;i="6.11,231,1725314400"; 
+   d="scan'208";a="39672755"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 25 Oct 2024 12:14:46 +0200
+X-CheckPoint: {671B6F96-9-21611FC3-DAD22B0C}
+X-MAIL-CPID: 036AAD7BA8D7328E22C5439D9AECCE7F_4
+X-Control-Analysis: str=0001.0A682F27.671B6F96.0096,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7ABE816809A;
+	Fri, 25 Oct 2024 12:14:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1729851282;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=7v6o4+naE0x6CItW5mEz8zlqR9bkW3D/RUmioNzQIUo=;
+	b=msPGqsJPFEIgsFTBz+I8O12F2odlwZDIOd6TNNY85T1ielLBw+aVMYg6rbN6+eTcxqcTcJ
+	zNhdq57uUbwYWFhTcJgpkly4eQXkHk2ciiuxATlU/sTUSb62lIOJIgAVz8wGQWJSWCQEPT
+	xnI2eLf1wpdjkH6QEjIp9psQitEhEQfFsROBxSO0Ezq7ADHk3sHRwLOPoLyZ7oa/AEc/Hh
+	RL3YMY9D3C7VtJNIDPwLAgG5wV+9P96Fe7Z4wBTIO7Jxy+Tx042UlwZHzW1mXjCEUAJ6/V
+	9pbrtvzMFkPhvrhPxB0q9XsQnRtUQqFFdFGEpwyabs4SCzQfvzIfaNDQgk1c0w==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Fabio Estevam <festevam@denx.de>, Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: soc: imx: fsl, imx-anatop: Add additional regulators
+Date: Fri, 25 Oct 2024 12:14:40 +0200
+Message-ID: <3594795.iIbC2pHGDl@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20241025004159.1571782-2-festevam@gmail.com>
+References: <20241025004159.1571782-1-festevam@gmail.com> <20241025004159.1571782-2-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu, 24 Oct 2024 18:05:22 +0100
-Cody Eksal <masterr3c0rd@epochal.quest> wrote:
+Hi Fabio,
 
-> The Allwinner A100 contains two fully OHCI/EHCI compatible USB host
-> controllers. Add their compatible strings to the list of
-> generic OHCI/EHCI controllers.
-> 
-> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
+thanks for the patch.
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+Am Freitag, 25. Oktober 2024, 02:41:59 CEST schrieb Fabio Estevam:
+> From: Fabio Estevam <festevam@denx.de>
+>=20
+> i.MX7 has the following anatop regulators: vdd1p0d and vdd1p2.
+>=20
+> i.MX6SX has the following anatop regulators: vddpcie.
+>=20
+> Add them to the allowed patternProperties.
+>=20
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Cheers,
-Andre
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
 > ---
->  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
->  Documentation/devicetree/bindings/usb/generic-ohci.yaml | 1 +
->  2 files changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> index 2ed178f16a78..e00e98dd04af 100644
-> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> @@ -30,6 +30,7 @@ properties:
->                - allwinner,sun4i-a10-ehci
->                - allwinner,sun50i-a64-ehci
->                - allwinner,sun50i-h6-ehci
-> +              - allwinner,sun50i-a100-ehci
->                - allwinner,sun50i-h616-ehci
->                - allwinner,sun5i-a13-ehci
->                - allwinner,sun6i-a31-ehci
-> diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> index b9576015736b..6ce81979781b 100644
-> --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
-> @@ -17,6 +17,7 @@ properties:
->                - allwinner,sun4i-a10-ohci
->                - allwinner,sun50i-a64-ohci
->                - allwinner,sun50i-h6-ohci
-> +              - allwinner,sun50i-a100-ohci
->                - allwinner,sun50i-h616-ohci
->                - allwinner,sun5i-a13-ohci
->                - allwinner,sun6i-a31-ohci
+>  Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yam=
+l b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
+> index ae708a658d52..f40c157908aa 100644
+> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
+> @@ -44,7 +44,7 @@ properties:
+>      $ref: /schemas/thermal/imx-thermal.yaml
+> =20
+>  patternProperties:
+> -  "regulator-((1p1)|(2p5)|(3p0)|(vddcore)|(vddpu)|(vddsoc))$":
+> +  "regulator-((1p1)|(2p5)|(3p0)|(vdd1p0d)|(vdd1p2)|(vddcore)|(vddpcie)|(=
+vddpu)|(vddsoc))$":
+>      type: object
+>      unevaluatedProperties: false
+>      $ref: /schemas/regulator/anatop-regulator.yaml
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
