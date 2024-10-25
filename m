@@ -1,116 +1,269 @@
-Return-Path: <devicetree+bounces-115861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 624F79B0F1A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 21:33:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC8A9B0F28
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 21:35:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D610CB214E6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:33:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F5041F24AEB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F48520F3D3;
-	Fri, 25 Oct 2024 19:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B11520D51E;
+	Fri, 25 Oct 2024 19:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KaKc0WUU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hXq4sh8a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3E21865FC
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 19:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7016418F2C3;
+	Fri, 25 Oct 2024 19:35:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729884762; cv=none; b=GHnSN2GSkFtIwUZ58DqRRE6fizOdEGnHckIUSEF1Y0JMi004VBeXzzMypPvlrFiio6A29RvhGH5Vebms/14HQFJFFkB6/ZZe9gUR5wv10dcTfRMNb59u3e1Z7939kblhALn0fHJMFU+j1/Ea7pZb04ukjWLxUBpgFEqbN0MnmMo=
+	t=1729884938; cv=none; b=ihUutpJZLTy80DZPVHuHMIiiqFUqXmvDCaZ/1xZwan6yqXBLT35Oj0qcgoPEpNkjflavVIzoI3RaIZLwhOqCH3fklt78ef/AduZGEfwZsPQZXc1QflY+kXizp5KvJ5OlJDBT2B7WwDxZ1ZTz4bs1P6VqsGinL7LmwBS2AaEs3nM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729884762; c=relaxed/simple;
-	bh=Z6i/Hjeb/JPlscoyQ8d9eFiiniatnIGdcrXThIrqj8k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ekZIHxkeVn9F+cFZBziguUFeZXupXuuExPUThersPLyBWeZ+k2dR+H+RGZLQ3web2zEDQgBdr/mZnjCy4Qj4BQowkmmGezS+40qRyUxFfiCV1carz6MrQTw7GlG60pyJ2jJmO8IMU+943sijdJvId9gCPLpfk7zbM5peT6eFeEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KaKc0WUU; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53b1fbb8be5so2549139e87.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 12:32:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729884758; x=1730489558; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YNXBWXjhsZyIQldGW6G1S9FbbG2idqyPgFLxk9omLZg=;
-        b=KaKc0WUUttwDyQfw5vNOXxo7dp1qeFAAOaxBzljkousF1G6U3Az5SGqbu90Eh+8uSV
-         +9EK5Rqe2Q+9wN5gDIFH4C+PcbmBN8RLH14Oo0N86dxG6oL07h9HMwuHm9cgOsxjrBfK
-         1BB7BXAvrVt1rzNEzhX+q6G2QpyGnH4lrqokfxWWFSDDJl3tD+KOImNmNkNAW8tQ03w4
-         PNZ2rCq6VwgxrEQQkxs8b63MTa7okMe3KKwNh4NCYcCV6XLH3EREJFPHNAD3Mg9Qe03g
-         bEJE0RwqkwLFP7N2VwdwJvIiuVqEdS2TMa0HGzxLvqcykU/Q7frVfMdgwSSIR47SvhBx
-         Lxjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729884758; x=1730489558;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YNXBWXjhsZyIQldGW6G1S9FbbG2idqyPgFLxk9omLZg=;
-        b=mdhFh2FmoCe5nP1YbotxAfNvo/2LvtDm6OchW9vNxwy6QujBDWZ8Re5EwfaI99lOBr
-         KwCYLnqBBtZbhXAB6Bzql3wgXnG3CHdcxlBASyNwPO4P4rkg6oM6ydznmhvPGZ0fXHZ0
-         1nPvNxtwTE61h6tZ2dCyrOSwIFtN/MiBMg3TJ28JuB3LVJfBx/bjg6gZHJQ7gU06q5+Y
-         ODBcGE9NEedMk4J4QYiZsOcpTKe4p+5OM6eG5glD6Qtk8Ib0rX4xW0TzVDvZIow7NqdG
-         mL2Zu0cq8ntwwXu0M/fwGzjhYD5YyoAlfQxXvAREWpMVMDfma07+h11VElq9kIcrcxwA
-         JDgw==
-X-Forwarded-Encrypted: i=1; AJvYcCWaiftfg/JTg3g+c8477CXoyIMb4HCzSScmf1Cs6DbwVyAzeOidGWTIZxpcRjSW+yOr6GGXBFW6bEyh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzS+L134S4KlAbblT4Yv75XDgGvlpEiXY873mJPRdMRxVSJ1vG8
-	puirEoaJgj3z8EN0xd1wPwGL9l63Yx8j4233nSskfcfUGg8hoH7b9pR7ujW+ppo+pkMm5yvspBE
-	LFqGQM2Xe0VvK/HLwVb+SqpTavHyDaBlkLJ2gLw==
-X-Google-Smtp-Source: AGHT+IFLkzZ+wz+p+8WFoTEL7BHuwKGT7/kp/mS0VJouAv7JpyextHokY5bgqYOvVyRs/rvthT82dHBrrhPH7m27hXg=
-X-Received: by 2002:a05:6512:6ce:b0:539:fcf0:268e with SMTP id
- 2adb3069b0e04-53b237094admr2369094e87.14.1729884758231; Fri, 25 Oct 2024
- 12:32:38 -0700 (PDT)
+	s=arc-20240116; t=1729884938; c=relaxed/simple;
+	bh=EgyR/UbyJ4Voj9eU/40Jz25ghogHjnVJeexcYHhMjPo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hKE3VYW4u/wbOACRzbrvDm/ItgqbkcMZ65+Jhg5bMdJJBM9n5miIDRAsz4vd9MJRmxJ1qmiGEAoyCm7vQAQSR+v/HnocUwcje1wLnfLMlA2Zm98uqhhPmCgPqdLN1sCUu78Lf6RRqZNiyWM7F6puL55OBa9whRTJwXDYFXIBfJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hXq4sh8a; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729884935; x=1761420935;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EgyR/UbyJ4Voj9eU/40Jz25ghogHjnVJeexcYHhMjPo=;
+  b=hXq4sh8a+CNHRFtsfsXG27z2fbwkfM8+zYN3GE4Lmq8ES2DXvPkLZku9
+   d/K9e7DOYorgGsC3S3nCYb3b1I/IkNWFbytBsL5dHNcvl8pcthDaE6+w8
+   LigkCwRqz+8xf1ENJBkICa5KjNLzf+BtqDZaOLvImJnGQrdfhBP3zQg8Y
+   qfXjaH6HVIofM6vtDCG4nJWpqCUZQN4dqT2w6JkcUFFvaSoDLt25SFQJO
+   Uo6APOgY+tylZl5CN1px3YhYY6CCEhqkWKvO7LIZP2pk6BQMg4Ij/QqTU
+   07ZHVur4y80CWP60VwbQolbj68ZdXPj1YmL19wd/AC+WpHckDdF1SnZsi
+   A==;
+X-CSE-ConnectionGUID: huvUCd4cTK66tBlI9TafLg==
+X-CSE-MsgGUID: DAZlq5gZRfaVPKyq6L+C6A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="29007672"
+X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; 
+   d="scan'208";a="29007672"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 12:35:34 -0700
+X-CSE-ConnectionGUID: fJ4qj/scTtu8exG4VL8VPQ==
+X-CSE-MsgGUID: NN4ixM9NSji1YGfQYgpSdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; 
+   d="scan'208";a="118468872"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 25 Oct 2024 12:35:27 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t4Q5l-000YoY-0Z;
+	Fri, 25 Oct 2024 19:35:25 +0000
+Date: Sat, 26 Oct 2024 03:34:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Inochi Amaoto <inochiama@gmail.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	netdev@vger.kernel.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
+Message-ID: <202410260337.pPIMKkX6-lkp@intel.com>
+References: <20241025011000.244350-5-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1729738189.git.jahau@rocketmail.com> <886ce1a2443dfb58496f47734d1ceffd3325fb4b.1729738189.git.jahau@rocketmail.com>
-In-Reply-To: <886ce1a2443dfb58496f47734d1ceffd3325fb4b.1729738189.git.jahau@rocketmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 25 Oct 2024 21:32:27 +0200
-Message-ID: <CACRpkdYp+3sqbZPZt78wKaJPUxh7yq1+WS6jnZ9fFSTROJAqmA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] drm/panel: samsung-s6e88a0-ams427ap24: Add flip option
-To: Jakob Hauser <jahau@rocketmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241025011000.244350-5-inochiama@gmail.com>
 
-Hi Jakob,
+Hi Inochi,
 
-thanks for your patch!
+kernel test robot noticed the following build errors:
 
-On Thu, Oct 24, 2024 at 5:18=E2=80=AFAM Jakob Hauser <jahau@rocketmail.com>=
- wrote:
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on sophgo/for-next sophgo/fixes net-next/main net/main linus/master v6.12-rc4 next-20241025]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> The way of implementing a flip option follows the existing
-> panel-samsung-s6e8aa0.c [1][2][3].
+url:    https://github.com/intel-lab-lkp/linux/commits/Inochi-Amaoto/dt-bindings-net-snps-dwmac-Add-dwmac-5-30a-version/20241025-091315
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241025011000.244350-5-inochiama%40gmail.com
+patch subject: [PATCH v2 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20241026/202410260337.pPIMKkX6-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 5886454669c3c9026f7f27eab13509dd0241f2d6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241026/202410260337.pPIMKkX6-lkp@intel.com/reproduce)
 
-That driver is notoriously hard to read because it uses so much
-magic numbers so please don't copy that aspect of the driver.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410260337.pPIMKkX6-lkp@intel.com/
 
-(...)
+All errors (new ones prefixed by >>):
 
-> +       if (ctx->flip_horizontal)
-> +               mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcb, 0x0e);
+   In file included from drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:11:
+   In file included from include/linux/platform_device.h:13:
+   In file included from include/linux/device.h:32:
+   In file included from include/linux/device/driver.h:21:
+   In file included from include/linux/module.h:19:
+   In file included from include/linux/elf.h:6:
+   In file included from arch/s390/include/asm/elf.h:181:
+   In file included from arch/s390/include/asm/mmu_context.h:11:
+   In file included from arch/s390/include/asm/pgalloc.h:18:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:504:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     505 |                            item];
+         |                            ~~~~
+   include/linux/vmstat.h:511:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     512 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+   include/linux/vmstat.h:524:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     525 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   In file included from drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:14:
+   In file included from include/linux/phy.h:16:
+   In file included from include/linux/ethtool.h:18:
+   In file included from include/linux/if_ether.h:19:
+   In file included from include/linux/skbuff.h:28:
+   In file included from include/linux/dma-mapping.h:11:
+   In file included from include/linux/scatterlist.h:9:
+   In file included from arch/s390/include/asm/io.h:93:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
+         |                                                           ^
+   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
+     102 | #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
+         |                                                      ^
+   In file included from drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:14:
+   In file included from include/linux/phy.h:16:
+   In file included from include/linux/ethtool.h:18:
+   In file included from include/linux/if_ether.h:19:
+   In file included from include/linux/skbuff.h:28:
+   In file included from include/linux/dma-mapping.h:11:
+   In file included from include/linux/scatterlist.h:9:
+   In file included from arch/s390/include/asm/io.h:93:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
+         |                                                           ^
+   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
+     115 | #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
+         |                                                      ^
+   In file included from drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:14:
+   In file included from include/linux/phy.h:16:
+   In file included from include/linux/ethtool.h:18:
+   In file included from include/linux/if_ether.h:19:
+   In file included from include/linux/skbuff.h:28:
+   In file included from include/linux/dma-mapping.h:11:
+   In file included from include/linux/scatterlist.h:9:
+   In file included from arch/s390/include/asm/io.h:93:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:693:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     693 |         readsb(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:701:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     701 |         readsw(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:709:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     709 |         readsl(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:718:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     718 |         writesb(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:727:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     727 |         writesw(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:736:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     736 |         writesl(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+>> drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:30:9: error: call to undeclared function 'rgmii_clock'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      30 |         rate = rgmii_clock(speed);
+         |                ^
+   drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:46:6: warning: unused variable 'ret' [-Wunused-variable]
+      46 |         int ret;
+         |             ^~~
+   17 warnings and 1 error generated.
 
-#define S6E88A0_SET_FLIP 0xcb
-or something like this.
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
 
-Other than that it looks good!
 
-Yours,
-Linus Walleij
+vim +/rgmii_clock +30 drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
+
+    23	
+    24	static void sophgo_dwmac_fix_mac_speed(void *priv, unsigned int speed, unsigned int mode)
+    25	{
+    26		struct sophgo_dwmac *dwmac = priv;
+    27		long rate;
+    28		int ret;
+    29	
+  > 30		rate = rgmii_clock(speed);
+    31		if (ret < 0) {
+    32			dev_err(dwmac->dev, "invalid speed %u\n", speed);
+    33			return;
+    34		}
+    35	
+    36		ret = clk_set_rate(dwmac->clk_tx, rate);
+    37		if (ret)
+    38			dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+    39	}
+    40	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
