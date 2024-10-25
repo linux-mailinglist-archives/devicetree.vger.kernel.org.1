@@ -1,122 +1,179 @@
-Return-Path: <devicetree+bounces-115403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C619F9AF64E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 02:42:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E11339AF666
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 03:09:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B8742830B2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 00:42:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C5301C213BD
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 01:09:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7FC79C8;
-	Fri, 25 Oct 2024 00:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AFFE1097B;
+	Fri, 25 Oct 2024 01:09:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EPNBEsg1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W4vvwOLP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA575695
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 00:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFF73A8D2;
+	Fri, 25 Oct 2024 01:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729816933; cv=none; b=L7lvCtew2/Dd/HoWleo1JzGY0O5ILnNO4vRgCBnMdq+t4Soy3FLSbul+bYl3lvPqyInOEkB9i0ImTUM2n3VPws0PGd01fGS1PkXg448TdX1jJ40GP6OZDyKoXeVbL+kv80HcY9HoDpwD6TuhMuUv8Nr53qkB5MHOz12fPHhIWNY=
+	t=1729818552; cv=none; b=uf27W0jiGISSnPjGMStEFjknrXujnawAbjBotxtbZkbc3vdFbA/QhNbeNlo/pmYI/ptpxTi+XbKCblZIs2rvRBHwpvUpWnKp4VLSK6rARsc0kvWqKVqZFwKYvVaGySaMJbYlAIvio4kJkH2z+vUBp8qZ3CG5UumV3fx5tuF0biI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729816933; c=relaxed/simple;
-	bh=A0i/BPTOJCM56lujfQVhp0IouM3vgbmKHXveMTbOcQI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZTNYwnWB0ethtHMDa8zIa3CGeu/H3JHxFswlI3KlMLe7mkI/MHvp7zHVspIlbGP2TX9Wa/PTnowE84bqsYqZNgXHC9qKAvx2bLPrwKtUxSJjQb+MEIaw2UPu3sRrqZc4ppFMgNgn2omkTOnkMjQlXNA0l1HOP5G4o2jktVsv9/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EPNBEsg1; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3e602a73ba1so913463b6e.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:42:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729816931; x=1730421731; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O3glZN7tdnxqEr7AALFevER6kTHzPF//GTHKC2fD5T4=;
-        b=EPNBEsg1B1eBLFpoypYIV8Y+wP3XAYOclqTXT3hyC2xUbdu5D+oUfxzSUozW6xEw+h
-         0sQYHQXILlL5quePfJQpPHi7hGT0AgVqDZDJpKfVzOH5P+pxccf0HULauR/gLuUzgXkN
-         L5GU5dMKVMuBPsUfimvb968cho3o9ktjDq3qzysDDwBZKrcrj6L6zZE4KEsUh6V69e1b
-         lmZhZUsfd/n3fH+Ua4MQdQhVe39+mZ5XqxAXleG400JB1Ft4VJEXBJ/RwVRkUSzROEr2
-         VPBYcGFBHwdxBNbsTnV2EgJYLNfwOhwYW8+ju3vGm3JBQsiPtE0nAFce1q6+5HJEGPSS
-         f06A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729816931; x=1730421731;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O3glZN7tdnxqEr7AALFevER6kTHzPF//GTHKC2fD5T4=;
-        b=VWH4NOyKExejQ/O2pOgjubgIoNAkgAjTnvYGf9bKKlZ81a2XMI3ml1tkPCjjJhJF/+
-         IbuibHxQQy3hbcn7Xs2lZ/7NQDegKtkvEBDSqMtBjudrqRxz7SAilsC5jJZ+lEkmmqMW
-         DuIQ+GdHKCwSmGaLywTOf5QA5vhZOT/Tpo2RfKcPTiOCeuIw/sLnsReViQZ6Jv1FDD6z
-         ok4hYSU3bVOC0uoEhFlHlQyLAsQMy+DIwv4eJkH9z/91bbkBkixuXWuK3nRu8nbM9ggP
-         392DdNhs+GJc3GVxPoi/FhWy3AdAwcRwCyjRh3yKzyUSb486jsGg3mF6X/88pwurRyDo
-         WVbA==
-X-Forwarded-Encrypted: i=1; AJvYcCWw1VtoPOmH5UEWyMdagjwG20K47lQz11plrED8yfQMjf12Qw2fJ7wqejBOvbcwY0h1ozGpdRTmoMbr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPdQgfQvMwScaZGUVN6sYlfc+nnl9/fTG/HBmIba4yiUuJMCgM
-	9LYwrC6sf3+xwVOXAX84lX9Yo4kFVPFxfbo7fmbfB+czq4IsKA0T
-X-Google-Smtp-Source: AGHT+IH/yxaa5bTSEO6mVFg+zirKexUg+7iL8/DIbuhJOrW61wjJMRXPmsWuAZESLfEU0XQz2w5jgw==
-X-Received: by 2002:a05:6808:200b:b0:3e2:a1fe:f0c6 with SMTP id 5614622812f47-3e62450114amr7198590b6e.6.1729816931078;
-        Thu, 24 Oct 2024 17:42:11 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:b160:3edf:6e5d:8d4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7edc8a3d2easm27289a12.85.2024.10.24.17.42.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 17:42:10 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/2] dt-bindings: soc: imx: fsl,imx-anatop: Add additional regulators
-Date: Thu, 24 Oct 2024 21:41:59 -0300
-Message-Id: <20241025004159.1571782-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241025004159.1571782-1-festevam@gmail.com>
-References: <20241025004159.1571782-1-festevam@gmail.com>
+	s=arc-20240116; t=1729818552; c=relaxed/simple;
+	bh=wENN2XdTbRUcwTXnMipTh4bnfIGHZx4WtojFXUHh5+w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YFDi8cWlYTF0x17B9KKPX2d1t99Q0dGalMIt7l5ba52ber8/KSblJ7cyQ/AD0eD5OkhYnjtveWiTZsHZbP/dkxbfNIbU78UgkkDTvJr+XTjIe+zz2wC9C1TsEUA/ZEKQaNaZMeobhD7YcUoVeW9Yu5dNkSmq6C/Mo+9j5CQJXqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W4vvwOLP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49OM4uA4016005;
+	Fri, 25 Oct 2024 01:08:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0+1oLZauET+j+jh09kk+YkWrDtNFJkeHnfbIQSJpwvo=; b=W4vvwOLPzOGaas9B
+	jLSprNxIjvObGraTCmiF/1exlX2OadCSEfpI+huU9MpUlcDGnsG+k+sBCoIy9Y/0
+	BekzNapLtjx2wj9geo0YUmMxEyiXQ+JwQBWu6pv8GVqt6GO5j1GGCRsocVyGTGj3
+	6SkTFSMyvNnfens8uKFS5ZKXaCU8q7iLGXIUier6OV3HjpYFkJcokirgmRPHusoT
+	8Q04Sh+QOVdUNKZkZyrWDS+UzsH5DWpVBRv0mYa4iuAeAaTRJlBZuzBYLndYqobV
+	zBEVp45X82ccGByKYuPk1Ge43Ne0ORh9PevtaOeU4cZsSgdTe209UHBucV4H5XnG
+	q5FajA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3xqb1e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 01:08:47 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49P18kTV030019
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 01:08:46 GMT
+Received: from [10.216.22.131] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 24 Oct
+ 2024 18:08:40 -0700
+Message-ID: <77d3a1a9-c22d-0fd3-5942-91b9a3d74a43@quicinc.com>
+Date: Fri, 25 Oct 2024 06:38:37 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/1] RFC: dt bindings: Add property "brcm,gen3-eq-presets"
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, Jim Quinlan <james.quinlan@broadcom.com>
+CC: <linux-pci@vger.kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi
+	<lorenzo.pieralisi@arm.com>,
+        <bcm-kernel-feedback-list@broadcom.com>, <jim2101024@gmail.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM
+ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+        "moderated
+ list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+	<linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND
+ FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        open list
+	<linux-kernel@vger.kernel.org>
+References: <20241018182247.41130-1-james.quinlan@broadcom.com>
+ <20241018182247.41130-2-james.quinlan@broadcom.com>
+ <20241021190334.GA953710-robh@kernel.org>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <20241021190334.GA953710-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bByYqpBSH2WD1znRWTx9ptXkLbDecWdR
+X-Proofpoint-ORIG-GUID: bByYqpBSH2WD1znRWTx9ptXkLbDecWdR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ impostorscore=0 mlxscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
+ mlxlogscore=999 malwarescore=0 priorityscore=1501 adultscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410250008
 
-From: Fabio Estevam <festevam@denx.de>
 
-i.MX7 has the following anatop regulators: vdd1p0d and vdd1p2.
 
-i.MX6SX has the following anatop regulators: vddpcie.
+On 10/22/2024 12:33 AM, Rob Herring wrote:
+> On Fri, Oct 18, 2024 at 02:22:45PM -0400, Jim Quinlan wrote:
+>> Support configuration of the GEN3 preset equalization settings, aka the
+>> Lane Equalization Control Register(s) of the Secondary PCI Express
+>> Extended Capability.  These registers are of type HwInit/RsvdP and
+>> typically set by FW.  In our case they are set by our RC host bridge
+>> driver using internal registers.
+>>
+>> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+>> ---
+>>   .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+>> index 0925c520195a..f965ad57f32f 100644
+>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+>> @@ -104,6 +104,18 @@ properties:
+>>       minItems: 1
+>>       maxItems: 3
+>>   
+>> +  brcm,gen3-eq-presets:
+>> +    description: |
+>> +      A u16 array giving the GEN3 equilization presets, one for each lane.
+>> +      These values are destined for the 16bit registers known as the
+>> +      Lane Equalization Control Register(s) of the Secondary PCI Express
+>> +      Extended Capability.  In the array, lane 0 is first term, lane 1 next,
+>> +      etc. The contents of the entries reflect what is necessary for
+>> +      the current board and SoC, and the details of each preset are
+>> +      described in Section 7.27.4 of the PCI base spec, Revision 3.0.
+> 
+> If these are defined by the PCIe spec, then why is it Broadcom specific
+> property?
+> 
+Hi Rob,
 
-Add them to the allowed patternProperties.
+qcom pcie driver also needs to program these presets as you suggested
+this can go to common pci bridge binding.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+from PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4.2 for data rates
+of  8.0 GT/s, 16.0 GT/s, and 32.0 GT/s uses one class of preset (P0
+through P10) and where as data rates of 64.0 GT/s use different class of
+presets (Q0 through Q10) (Table 4-23). And data rates of 8.0 GT/s also
+have optional preset hints (Table 4-24).
 
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-index ae708a658d52..f40c157908aa 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-@@ -44,7 +44,7 @@ properties:
-     $ref: /schemas/thermal/imx-thermal.yaml
- 
- patternProperties:
--  "regulator-((1p1)|(2p5)|(3p0)|(vddcore)|(vddpu)|(vddsoc))$":
-+  "regulator-((1p1)|(2p5)|(3p0)|(vdd1p0d)|(vdd1p2)|(vddcore)|(vddpcie)|(vddpu)|(vddsoc))$":
-     type: object
-     unevaluatedProperties: false
-     $ref: /schemas/regulator/anatop-regulator.yaml
--- 
-2.34.1
+And there is possibility that for each data rate we may require
+different preset configuration.
 
+Can we have a dt binding for each data rate of 16 byte array.
+like gen3-eq-preset array, gen4-eq-preset array etc.
+
+- Krishna Chaitanya
+>> +
+>> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+> 
+> minItems: 1
+> maxItems: 16
+> 
+> Last I saw, you can only have up to 16 lanes.
+> 
+> Rob
+> 
 
