@@ -1,82 +1,63 @@
-Return-Path: <devicetree+bounces-115832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0FB9B0CAD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 20:09:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6256A9B0CDD
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 20:14:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE4FA284D29
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:09:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FBC7B22DF4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78216200B9E;
-	Fri, 25 Oct 2024 18:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF9820D4E8;
+	Fri, 25 Oct 2024 18:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Vw3NMJvZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W9QkW8Dp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDAB18DF91
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B25B187332;
+	Fri, 25 Oct 2024 18:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729879676; cv=none; b=NtmuKYebnaigQLe8+PM6upktCo/Vp+cEOF0pxfKsxHP9BMWIwWx8/cnj47UwhIlJRObexsTwUan6SjZnQbOpdk8bSibW3EL5+8UaScjntr73PxiVSjAKK/tIHWIa1ZRAwObMTwT8lvSCiUYK5GvF3nkDhOBwEUEvEp6OBCkLvbs=
+	t=1729879933; cv=none; b=a+NQOnL9xJwlfzObKTCr8gJj+cpT1dZahy8OzJ8NiuGMIPPWkcrpStJ0AS94mqtynmS6JEhkUIlZLs+kHT0gxUICkgRyiIIru/I4yjL0VoSqeoKbZKVlXSHP9t5gIXwZ9PwalFE7glKEvn52kyIHEYXDE+6+MsouNrOoEnabjnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729879676; c=relaxed/simple;
-	bh=t/xrCPBpX4IQs7qMaOpki3bpzxoML3WGXHvWaXgRNGs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KGIR18Ozi+EqxHzmp1BAh5ALaGc4pG/teOCnOnjhfRhXy0Eb84bC0+4LUVCP3/hCVaiQ5Q1xoWHe7sqh0Q3BPf6JYt5fJc8+mPY1iRBgZq8X5aKaoRqtyhTMTpiOZ6Qt9zs5R396vTVQyz2gcFnJcAunkx/SUo7JxFv52emZUPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Vw3NMJvZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PDRk86028679
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:07:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	s=arc-20240116; t=1729879933; c=relaxed/simple;
+	bh=EvqTHD3AOeoanjh0hJCV1UA/D77b/1zguJLN43kmrs8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MNw9SXsM0P6kdckwrinGvmhSABfEKcZvbeupj5JRD6yQaadaJiY24q0eZ8vdHDixyIXz8WPHMG7xLJ9EukOiNJRQ4Einh/qIsWNycBHAqwm7efLKRaZB7wgWWdEdSRTZlTlFFyhTFN/o+0s/CWhzCBMxO/0QONl0QH5KczJNyjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W9QkW8Dp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PBoPao026096;
+	Fri, 25 Oct 2024 18:12:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zEmK1BMqucZ0C/k7tFNaUt2VXWOjXrNa2caGsrfdp88=; b=Vw3NMJvZUnX8nzJ5
-	B71t+AeB4hZROgqWjdRx8HGjd0QQSepIvjRXgMudK527mNQ/J1AMycuU6NUSuiYA
-	vBU//qQaAApUOEsrPqVdybXMjYwn41a4XPU61DyVOPgTWf71jFCXwlEhdhM9fADO
-	ge+GsuZ6EHXdj5M4sGb/XAmyxIPNVBhuOZ8F0vpARinUizv1fiWFs/jwwx7mUk5B
-	0a2o/ZE+DH5h5+TXKjp4bshMDsUEKmWPnYqAj2riwS+cxfh3Q4UGPg7Ol/VRbn7p
-	xcnDn15VeFSp4qmB1vyc3H8QJI10hJiPzDeZvEaOuyOPLLbOEgDfSb7geWrfadhe
-	4WMWVg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42fdtxnv8d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:07:53 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6cbe6e6bcf2so6658806d6.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 11:07:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729879662; x=1730484462;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zEmK1BMqucZ0C/k7tFNaUt2VXWOjXrNa2caGsrfdp88=;
-        b=rIsQ0ldQ4HU3WQ5NbD7OwwSKxs6B8dLGGa2/OoBbg7+nPlNpot8KKIhJ51HwEyzH5E
-         jqZQB/83oh7bavTjsUtm6YmktI9oqtNiZN5nJqAzqKQ4scx7T4QW7KjUljb5T65w/+KA
-         eKSAKQ/nYguVTQFSZQv4Ii785vb46/ns7lGbxZtVxXUE/aHDwHyOTn0BkSmIu98MqQwK
-         NgZVPVSDahiYVDZEaGpJV2c7/9muWwCijGsmUtO+hUm4hSG4Tusc/hscCluwwlIj4cw1
-         puN7Gp4pFKtOliV6aW9dpzLvrgiYS0rsWc9pyAyzxsJGduSP9X67bkUbfbBRpGNXMnur
-         9nFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnELsVkOWXLTcinKVFBUJIob5XdPFTd1OU+iHughiANIRpHEIGtfHC9Zxtfw3668JrMdspoo809Wb/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzz/KEI5HyOLbJugcTBHTbpofmD/QktWmY7m6TOxd+2k6kuZs+7
-	xeIVEpuYgiSKWH6/wk2Qk0CcAB6kGcnKVMQDY/yVihKSpoTXthy8/t0P+Av0r6JB4HBi7tQfZef
-	FDTVha4jSfwjbbvIduy2HCqAD4aL+WTQ6hDmTPIYh3NR/AFpuisksUMOenTs5
-X-Received: by 2002:a05:6214:2583:b0:6c5:3338:45d6 with SMTP id 6a1803df08f44-6d18583be81mr1903446d6.11.1729879662368;
-        Fri, 25 Oct 2024 11:07:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHK00E6HWmhXwZzwTNTlPrpRgUxZ0JpTzXSxFTem0yV5d67LzVPL4Y8aZ2JDnm7bLd5A2AH0A==
-X-Received: by 2002:a05:6214:2583:b0:6c5:3338:45d6 with SMTP id 6a1803df08f44-6d18583be81mr1903246d6.11.1729879661968;
-        Fri, 25 Oct 2024 11:07:41 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1e0b2346sm94957066b.3.2024.10.25.11.07.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 11:07:41 -0700 (PDT)
-Message-ID: <4982b7be-da80-409b-b701-b065b565fe20@oss.qualcomm.com>
-Date: Fri, 25 Oct 2024 20:07:39 +0200
+	EvqTHD3AOeoanjh0hJCV1UA/D77b/1zguJLN43kmrs8=; b=W9QkW8DpDhHr5mh8
+	5uMFybPIkIbL4KDzDu8r6DxoT2eJK7tVXecG5yp/tjgWKKfzFAXqvWIzDSoOricA
+	pQ4abZsfsPXgkGRGaqWhUGGdpbCDCZt58n5UOxiqFvoTB2iDVnSqOD2pc2uCri9q
+	F5JdSyaWhJMEozHLc9IZAK22kOSA2xIcnK1T7i9GOeUk8G39TAR6ZmwvFqvfjVl2
+	vg61poePy4TJ/4NAEAkFErWnK5SYLpzcm1imTemFNOz982eBiK8/KR6YKHiYrSaF
+	j65YMxRhusUXxNhVZJiWNwNyEoLJHMVBNLJi2a+HK4LmfqrLcPy1shF9yPzt2XK3
+	cgec/g==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3wt384-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 18:12:04 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49PIC3ib005047
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 18:12:03 GMT
+Received: from [10.216.38.148] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Oct
+ 2024 11:11:57 -0700
+Message-ID: <7f0987c6-5f44-47c4-ad98-d10700b32383@quicinc.com>
+Date: Fri, 25 Oct 2024 23:41:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,47 +65,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sdm845-db845c-navigation-mezzanine:
- Add cma heap for libcamera softisp support
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v1 1/5] dt-bindings: dmaengine: qcom: gpi: Add additional
+ arg to dma-cell property
+To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Depeng Shao <quic_depengs@quicinc.com>,
-        Vikram Sharma <quic_vikramsa@quicinc.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-0-cdff2f1a5792@linaro.org>
- <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-6-cdff2f1a5792@linaro.org>
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konradybcio@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        "Sumit Semwal" <sumit.semwal@linaro.org>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?=
+	<christian.koenig@amd.com>
+CC: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linaro-mm-sig@lists.linaro.org>, <quic_msavaliy@quicinc.com>,
+        <quic_vtanuku@quicinc.com>
+References: <20241015120750.21217-1-quic_jseerapu@quicinc.com>
+ <20241015120750.21217-2-quic_jseerapu@quicinc.com>
+ <0c304de2-26c6-49b3-9809-bf1e7619e5b8@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241025-b4-linux-next-24-10-25-camss-dts-fixups-v1-6-cdff2f1a5792@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: Jyothi Kumar Seerapu <quic_jseerapu@quicinc.com>
+In-Reply-To: <0c304de2-26c6-49b3-9809-bf1e7619e5b8@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: nRK1E9x9n6J9R6E7bNs4M_aY3PVbRp0H
-X-Proofpoint-ORIG-GUID: nRK1E9x9n6J9R6E7bNs4M_aY3PVbRp0H
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -14JeimTgOlYk4AEPC3DqM1KaMGfH3IS
+X-Proofpoint-ORIG-GUID: -14JeimTgOlYk4AEPC3DqM1KaMGfH3IS
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 mlxlogscore=595
- priorityscore=1501 impostorscore=0 bulkscore=0 spamscore=0 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410250138
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
+ mlxlogscore=985 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ spamscore=0 mlxscore=0 impostorscore=0 clxscore=1011 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410250139
 
-On 25.10.2024 5:43 PM, Bryan O'Donoghue wrote:
-> libcamera softisp requires a linux,cma heap export in order to support
-> user-space debayering, 3a and export to other system components such as
-> pipewire, Firefox/Chromium - Hangouts, Zoom etc.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
 
-Same as patch 5
+On 10/15/2024 7:01 PM, Krzysztof Kozlowski wrote:
+> On 15/10/2024 14:07, Jyothi Kumar Seerapu wrote:
+>> When high performance with multiple i2c messages in a single transfer
+>> is required, employ Block Event Interrupt (BEI) to trigger interrupts
+>> after specific messages transfer and the last message transfer,
+>> thereby reducing interrupts.
+>>
+>> For each i2c message transfer, a series of Transfer Request Elements(TREs)
+>> must be programmed, including config tre for frequency configuration,
+>> go tre for holding i2c address and dma tre for holding dma buffer address,
+>> length as per the hardware programming guide. For transfer using BEI,
+>> multiple I2C messages may necessitate the preparation of config, go,
+>> and tx DMA TREs. However, a channel TRE size of 64 is often insufficient,
+>> potentially leading to failures due to inadequate memory space.
+> Please kindly test the patches before you sent them. Upstream is not a
+> testing service.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Sure, i will take care to test the required patches.
 
-Konrad
+
+>
+> Best regards,
+> Krzysztof
+>
 
