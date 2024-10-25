@@ -1,126 +1,158 @@
-Return-Path: <devicetree+bounces-115477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF289AFBC3
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B591A9AFBD2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:02:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F4E21F23E45
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:00:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BD7C1F24047
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E56891C174E;
-	Fri, 25 Oct 2024 08:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8864199948;
+	Fri, 25 Oct 2024 08:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="rJIRevGV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoOP9VQe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBCA199948
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:00:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F2F918C029;
+	Fri, 25 Oct 2024 08:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729843222; cv=none; b=Bth2JYP4xe/T/jpKCZd110Tx+UzHJFuHA6empbFKTia8oAu4+Yf7WwdWiGQrHYVPkw1k02i0iFYqIcKMIQhGv7gFvnX6bxhC5mK+mPxHrvQOo6qOx4G4YYciip63ixqs4tMAjA8ZYyKPcKECrcxoJXZgbbovpH4NH5pZWYgOBU0=
+	t=1729843318; cv=none; b=gXstMMAUiRtrbfWXDAH9OeZHNVZZu+KSRtDCU1VQPquqNBX8PMzPdpo0+KOdDU3hHyTr2thbjKuC3IEgjgPrWuhSgXPsxGyWg90pdgi2/oHpQD8UegY/w/zf198gmqnSoMoqIyA790lhShZpLgIbYveUHpNgIkZB1cFTR9GI1ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729843222; c=relaxed/simple;
-	bh=B/pPKlr0lRVJhgrG29eGgTDXqOAPeaIJatsGuvQ/Ch8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jaebZznhKxJ3aQJTwIrGFVH/QLtVjdfQbNHlRCTd95n0kaSfzxUsVJQJ7NGyIztFBveE12r0A+QGIvTgTkM6S3JUj/r+7Ysr/K3U9VWh0IQppSUcYm4aYqtGFm3camPeF8rETq4dCQbwIPVUvfMmM15Gsr4Si53W1mQ2OcxmvdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=rJIRevGV; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4315baa51d8so17946935e9.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 01:00:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1729843219; x=1730448019; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yvFcTWY0qWSGbaMXRds52cphNo7N/U6FFOoRM52IPjQ=;
-        b=rJIRevGVVgSQyIQp0G3bQ9bvKqG91fcrfcLTVe/9mLkO2H8JJK6jQT40NXOBax4SpX
-         Y8WyxmWVtHlF2yYn3XuJ+cIyi5Vxog+b7YhWjR5IDeTfZqZ1o0To7+HXpZVWDK7g9T33
-         d/s0B/Sf+P1QTbKcYaYjtY8cDKje8f/n9tJOU0vDMHsZWLYVa1jSmgbSTyd8IgQWIeYT
-         3hqcEdFlSTK/9FTAoCaLmR4TgU0gfXDkAJ3rs7e086uAloVNQQbIT6SmTM9AmpI40UFr
-         QXIx5GUXqS4S4PmOB9tqZ4sHZ/uOd62vONCr5oUotllTxB3M0FMW65e3PwIwuPgD/X2v
-         htbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729843219; x=1730448019;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yvFcTWY0qWSGbaMXRds52cphNo7N/U6FFOoRM52IPjQ=;
-        b=fZjK9kyGhlndipWXExBPHlVHiNLGmf2KXNawFseStyMnb8ZtRnyP/uzMm+u2GggQCa
-         r2VWHIhmEjkC+wYFm4TXQt5RvIBpkCEARuwgW8O9MB+ypacQFLX6feG6GqQ/llPnU9qF
-         W5LeS6cWcjNjuD9NW3l3fkO22xG3rW5fvc9cmknTI6yjNEmHfqKyx93E5vsO5mk9NGQT
-         qgVd14vhnRLU1PvO/xRM3Kb+mtH3gGa+WWShkOS19ieGWhtaZN3r5nH20jJYp9rWyk8N
-         dH74DVtRNdruDyOHKy1AjZyKxzpp+Qw92FCVRP7AMUxosMOWWfcjUmkCUCRDjD7PiMI9
-         jX+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWaqIRW7lUk8nRBSlrkeoQQfbBfXs3tpWHNzY/8ktu27SVj2FNiYPmPNzXNjA6iYQP2JjgcUSzfqPJk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqohAOew3vMPaQG0p1feXaoZo8sN539dBoXi0s0ps3YWKKVk+S
-	PbdcDHBxPbKonTWx0rznmh5RwwYwaSOZ8x1x9r3cg4jPwVPTmb/i6H0nfvLVgws=
-X-Google-Smtp-Source: AGHT+IFLSkse8IfhVHvgfEgOy5tBpZmoSqAyk/ZSA/CmtZwjlrTEnVPdKx/3WSd47HCYFbcdc5HV3w==
-X-Received: by 2002:a05:600c:1e22:b0:431:53db:3d29 with SMTP id 5b1f17b1804b1-4318415f712mr64765315e9.18.1729843219138;
-        Fri, 25 Oct 2024 01:00:19 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:a207:5d17:c81:613b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b570880sm40499215e9.35.2024.10.25.01.00.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 01:00:18 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Steev Klimaszewski <steev@kali.org>
-Subject: Re: (subset) [PATCH v6 0/6] arm64: dts: qcom: enable Bluetooth and WLAN on sc8280xp and sm8450 boards
-Date: Fri, 25 Oct 2024 10:00:16 +0200
-Message-ID: <172984321024.15202.13178717583088352972.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241018-sc8280xp-pwrseq-v6-0-8da8310d9564@linaro.org>
-References: <20241018-sc8280xp-pwrseq-v6-0-8da8310d9564@linaro.org>
+	s=arc-20240116; t=1729843318; c=relaxed/simple;
+	bh=9LRFwLPFM1t+b4EPBx2bHgjBdKGuFVFTrWFKNDZLGTA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZLr+Or0lULBHWz1AG/BUabA3whxCuobXBzqmHT0I29NihKjFD37CKGAK4vZzbNwqHFf7S+P24ND1VL1JAJZZCSEVI7reAhbkAB1t4lUL2B9qHhmO86hgoNBuFbDOHLXXAnqR/7L/iSiPWMUZffV6zjYDgoWkKA0IEhtBO2UxNXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoOP9VQe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D529C4CEC3;
+	Fri, 25 Oct 2024 08:01:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729843318;
+	bh=9LRFwLPFM1t+b4EPBx2bHgjBdKGuFVFTrWFKNDZLGTA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VoOP9VQe+8oyO3s4o10kuofbq+Ql7EquG4php7AvkyNINDuSBvXyCsvX7ZbrTgVRv
+	 VHilwKjv/2gmxCbq3TeARiHNjAS10Kghfcx9Oi8KqOCbMvyyXM1dPKAehbu0gquinx
+	 AQ4JkLa9V0xQhDllrAYt6gN5M2GJXpyM+HucWUkjrPtlgXm3EJ40RH5cMRVSjf1sNP
+	 bRFp3Kzkp29FArdw+NpenVecn0cU+lQvSozVpQ0WqOjwl1jeLV4uuECkmAthpL3yqy
+	 yaTyzKscq0yPJL6oU89Ue+sZQQa/e3WVNF0bMc8PpBxnp8C+vkrod91SAqUkzIDtS6
+	 IFEHpzUtJWTmQ==
+Message-ID: <bda5f5a6-b2ec-4d90-ae66-a6fed4ca30be@kernel.org>
+Date: Fri, 25 Oct 2024 10:01:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCHv2 12/23] ARM: socfpga: dts: add a10 clock binding yaml
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dinguyen@kernel.org, marex@denx.de, s.trumtrar@pengutronix.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241020194028.2272371-1-l.rubusch@gmail.com>
+ <20241020194028.2272371-13-l.rubusch@gmail.com>
+ <v4gqnsyhqjccdac3kgmo7y2aunigqquqc3f7n7wgt5hiv3rnip@jfmoq3is4rjh>
+ <CAFXKEHZOPioES4guqjco+BE7i=Eqe2DdHiUxAksBCZm7nx1Rog@mail.gmail.com>
+ <cdc7032b-4d09-40dc-86a7-16d244517d11@kernel.org>
+ <CAFXKEHZhGEJhOxqX04fAR6qs-vee4+-DWC4_pNGaDCzEumMsiw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAFXKEHZhGEJhOxqX04fAR6qs-vee4+-DWC4_pNGaDCzEumMsiw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-
-
-On Fri, 18 Oct 2024 14:49:10 +0200, Bartosz Golaszewski wrote:
-> This series previously only concerned sc8280xp but while enabling
-> WLAN/BT on sm8450 I noticed some more changes will be required so I
-> folded the latter into this series and updated the sc8280xp CRD and X13
-> patches.
-> 
-> ==
-> 
+On 25/10/2024 08:59, Lothar Rubusch wrote:
+> On Thu, Oct 24, 2024 at 8:24 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 24/10/2024 08:10, Lothar Rubusch wrote:
+>>> On Mon, Oct 21, 2024 at 9:05 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>
 > [...]
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml b/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000..795826f53
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/clock/altr,socfpga-a10.yaml
+>>>>> @@ -0,0 +1,107 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+> [...]
+>> What corresponding txt file? You are adding new binding. Are you saying
+>> you duplicated bindings instead of doing conversion?
+>>
+>> git log -p -- Documentation/devicetree | grep -i convert
 
-Applied, thanks!
+This would answer you... You would see hundreds of patches showing what
+to do, including patches from me, Rob or Conor.
 
-[2/6] power: sequencing: qcom-wcn: improve support for wcn6855
-      commit: bd4c8bafcf50b6bd415c8bf04e98ebfba78071f9
+> 
+> Please, try the following:
+
+I know this, what are you asking about?
+
+> $ find ./Documentation/devicetree/bindings -name socfpga-\*.txt
+> ./Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+> ./Documentation/devicetree/bindings/edac/socfpga-eccmgr.txt
+> ./Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
+> ./Documentation/devicetree/bindings/arm/altera/socfpga-system.txt
+> 
+> Currently, bindings described in these .txt files are not covered by
+> bindings check. Is it supposed to be like that, or is this just
+> something "historical"?
+
+These are TXT files, that's nothing to do with dtschema. Everything in
+TXT is just unconverted binding.
 
 Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Krzysztof
+
 
