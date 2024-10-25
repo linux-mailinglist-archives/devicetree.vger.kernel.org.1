@@ -1,138 +1,115 @@
-Return-Path: <devicetree+bounces-115475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C687D9AFBA4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:57:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCCE9AFBAE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:58:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 583031F23F38
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 07:57:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDB331F241A3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 07:58:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94AFA1C82F4;
-	Fri, 25 Oct 2024 07:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32FF1C07F7;
+	Fri, 25 Oct 2024 07:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="YG39SEZn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cpvgZVQ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9945B1C3027
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 07:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6BE51C07DA;
+	Fri, 25 Oct 2024 07:58:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729843003; cv=none; b=OLFySIySbWD7ne45z4Q2C3EiVJgV8nxNka7wJsZoqWBrKACCiKtGSTebGxBm/LFeM6fUmz/+GAeF81XaIwZo7IMNJ/ZmSlbdvSxvwdA73kt+x2qh5k51ltZkpEdSEM422Fbxl5UMWLecMhpp8Pa8+1aRlVVrAzA14prR/4SW3xA=
+	t=1729843120; cv=none; b=abCrjJiZIPFl/tS6m8z/Xnot6ksx9KBZ8VQtoeECqpymF3iOqab+ZluwDV96Z30CUAwE9mJLStSVhBCqyPaqOVHui5O0Nln8tKBDNVApUAwrj5YDFmKEQznd1jKz5QnewMmrZDnBHpWl9ZU+4UJBlK6y6nahaHs8BKLcbJkaz2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729843003; c=relaxed/simple;
-	bh=O0ZPXfmEtbLq9bEA6uggS+2nZDv5E8meibf9NtJRtqI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PUcwQUA5iXEtqiAIA6mMA65IiuyvfCzCEZW1HKZgzJpcWLB4aip5q4oYKgadgQHTMTlUELhkmwTkkng2r/FVaqOryvnmiY+XkElhWEeFS/VJD6Ju+Eu3halON0ffFBAb7JeUCF7cUlaUSx/GHFu29A8v55GfzJinfEjrU+eVHUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=YG39SEZn; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2e2e88cb0bbso1327854a91.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 00:56:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729843001; x=1730447801; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ocz8O19Ri16sCIqDKqqWyBeGwEbvKhFKD3K8dqT+N6c=;
-        b=YG39SEZnpMQIF3M4YRgXp63HeCypZAK9FCipr+g1ji2cvz9P5M1HL4kqAO42xRCNgJ
-         vkoylHdnfcY9qwU38secXt8tc/uCUKW4KQJmoXh6XbH8GdxuljDYJOFxGlDZllexfZa9
-         0tszhapU8agXfTdGIzw4TvSr/4t+MWPpwJTTI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729843001; x=1730447801;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ocz8O19Ri16sCIqDKqqWyBeGwEbvKhFKD3K8dqT+N6c=;
-        b=L9lfW5A2kEf+ZOebPpKD8EiJjuMeWfSYiqXBCcFsKqC/tLT+n2nczfyDZmelw/YDY5
-         ZJjZmlrfLRco5pkZJLeT6Z8n6D9YAwGfZRg+iDNWPSddD084WtLcmzyiwgcs5r350Pgo
-         rSHEKanuxPVugNtcPTtmXZvKc2BoiSfDKrQujdJGanXoqSJG2PmgUei06S0r71XmKf/F
-         TBpgHoUf10bfXL0AhaplpV0XeV1dDWwapRCBXVgWbR7NDemBsz1hbAC7RZYCN2Rz4f5K
-         UT+RHHg9tuHG6TVrLbdufyRe0m0E/rbexr8SgxuNk7YJnBvadwPxM++Vl875Back+U6t
-         Zv6g==
-X-Forwarded-Encrypted: i=1; AJvYcCXHDVNC6clHpnnNHxagr3lDHNHHd9nFF6/ftkdNd5M/iU8dMBE4yGprABXFwFOsrIuZf6KNtmU5WWPt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtNxOpE4jqNsGl6ZQSs2o0zrR5QGdJlIy6CzvBi3jtPBiJEQvw
-	Ynzqx6UrJxt9CA+2tbzILZiIuo+hPxoRPzpuEulTtmX/RWPRJHiuB8JudKxwGw==
-X-Google-Smtp-Source: AGHT+IEhpzhZePgnGrlXh89W3IHK0viadpu28ous3jPT9MS8vhveF6ukqC0oYeARpOE5I3mtsl0sYA==
-X-Received: by 2002:a17:90b:30f:b0:2e2:e82d:48cf with SMTP id 98e67ed59e1d1-2e77f4a274amr4863299a91.16.1729843000877;
-        Fri, 25 Oct 2024 00:56:40 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:d8f:752c:c7f1:3169])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e77e4c9c1bsm2797553a91.19.2024.10.25.00.56.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 00:56:40 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	s=arc-20240116; t=1729843120; c=relaxed/simple;
+	bh=Qc5sTAeQ60W3V2dierXWzsokifl75oKJ2qzBPZPP+eE=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=T+0qAyLculVFGU0NkX1WtoruQIhhV2F52Nh8APf4soGBd7FMkBZTXBy4OUJJ9t8/sDyakV0OMJDjF09pxhTtXZT0KfSokdP2pPurkZ17nx0CttLyVsWpF+qdeB/jpCXQYNLwavY8yVXALQduZBErvEge4WqubKb/8gd0lPhPa+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cpvgZVQ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EA76C4CEC3;
+	Fri, 25 Oct 2024 07:58:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729843120;
+	bh=Qc5sTAeQ60W3V2dierXWzsokifl75oKJ2qzBPZPP+eE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cpvgZVQ3WuTLNmsTjwLfp59utSAA4UNa0Do696ttV7tgylr06MR3eoLT/yG6mon9I
+	 IsDKmvifJBnH15Uvq7nDJEYZ3qWbmo2YAY1QoIVccFUVvt4PrLXd9WVQ36NV/kHP+L
+	 bZK6xan5iis+Yt+14sOQX9ic7Zb4WGaCC3Z922r702yett6BjrSvKv9ewe5s2JQ4Nu
+	 3MtRNDjxwGo3rjfXlFlTaPcrE1WT4K1SEgNtFWLknQkEGHJgfktqoeI/tS0XwZD9+g
+	 aKiucmOWd4F/FBRE5AVLE87wP8WWI3q0AKeNTWochWSGIYW50jPGkaiyEGyWPyzDYW
+	 RCTdkvst7p3lw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1t4FDQ-006gzT-JH;
+	Fri, 25 Oct 2024 08:58:38 +0100
+Date: Fri, 25 Oct 2024 08:58:36 +0100
+Message-ID: <86jzdw3977.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Jiajie Chen <c@jia.je>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8183: Disable DSI display output by default
-Date: Fri, 25 Oct 2024 15:56:28 +0800
-Message-ID: <20241025075630.3917458-2-wenst@chromium.org>
-X-Mailer: git-send-email 2.47.0.163.g1226f6d8fa-goog
-In-Reply-To: <20241025075630.3917458-1-wenst@chromium.org>
-References: <20241025075630.3917458-1-wenst@chromium.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Add performance hint for boost clock
+In-Reply-To: <20241025031257.6284-2-c@jia.je>
+References: <20241025031257.6284-2-c@jia.je>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: c@jia.je, andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Most SoC dtsi files have the display output interfaces disabled by
-default, and only enabled on boards that utilize them. The MT8183
-has it backwards: the display outputs are left enabled by default,
-and only disabled at the board level.
+On Fri, 25 Oct 2024 04:12:58 +0100,
+Jiajie Chen <c@jia.je> wrote:
+> 
+> The x1e80100 CPU can have up to two cores running at 4.0 GHz, with one
+> core in the second cluster (cores 4-7) and the other in the third
+> cluster (cores 8-11). However, the scheduler is currently unaware of
+> this, leading to scenarios where a single core benchmark might run at
+> 3.4 GHz when scheduled to the first cluster.
+> 
+> This patch introduces capacity-dmips-mhz nodes to each CPU node in the
+> DTS. For cores numbered 4 and 8, the capacities are set to 1200, while
+> others are set to 1024. This ensures that the two cores can be
+> prioritized for scheduling. The value 1200 is derived from approximately
+> `1024/3.4*4.0`.
+> 
+> Note that capacity-dmips-mhz is not ideally suited for this purpose, as
+> it was designed to differentiate between performance and efficient
+> cores, not for core boosting. According to its definition, DMIPS/MHz
+> actually decreases with higher frequencies. However, since the CPU does
+> not support AMU, and no elegant solution was found, this approach is
+> used as a workaround.
 
-Reverse the situation for the DSI output so that it follows the
-normal scheme. For ease of backporting the DPI output is handled
-in a separate patch.
+Are you sure?
 
-Fixes: 88ec840270e6 ("arm64: dts: mt8183: Add dsi node")
-Fixes: 19b6403f1e2a ("arm64: dts: mt8183: add mt8183 pumpkin board")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts | 4 ----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi        | 1 +
- 2 files changed, 1 insertion(+), 4 deletions(-)
+[    0.570323] CPU features: detected: Activity Monitors Unit (AMU) on CPU0-11
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-index 61a6f66914b8..dbdee604edab 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-@@ -522,10 +522,6 @@ &scp {
- 	status = "okay";
- };
- 
--&dsi0 {
--	status = "disabled";
--};
--
- &dpi0 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&dpi_func_pins>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 8f31fc9050ec..c7008bb8a81d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1834,6 +1834,7 @@ dsi0: dsi@14014000 {
- 			resets = <&mmsys MT8183_MMSYS_SW0_RST_B_DISP_DSI0>;
- 			phys = <&mipi_tx0>;
- 			phy-names = "dphy";
-+			status = "disabled";
- 		};
- 
- 		dpi0: dpi@14015000 {
+So activity monitors are available. Not that what you have here is not
+useful, but this comment seems a bit... surprising.
+
+Thanks,
+
+	M.
+
 -- 
-2.47.0.163.g1226f6d8fa-goog
-
+Without deviation from the norm, progress is not possible.
 
