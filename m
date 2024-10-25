@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-115777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 814929B0B22
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:21:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D80FC9B0B25
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B33A71C25BBD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:21:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4346B1F21B02
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FEE215C52;
-	Fri, 25 Oct 2024 17:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469FD20F3E1;
+	Fri, 25 Oct 2024 17:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="KSVVkqgJ"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="hq77L8ag"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE00214407
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B156C21442A
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729876569; cv=none; b=dMWeSNBBQNk3XpuugU3j7rg9Q3bf9BcZAed7GnJpWu/8JYOZXTBZvw2n6T322g12RFEHDhes6i1mIeOqMMSjoWhhvbzeCb6OYumCCD2czwl5G6xr17nAmbfcTOIufUjPLF3gt6XDw7ilpHPhpDnpPdvtr7fyk/4VPSztH82RpdE=
+	t=1729876571; cv=none; b=Nx1jXT92xUm5CKDTo0761Y1DvYy8wgt5sXeCoxJkvoI0ljbj9Pjxw4kQVRVLb7KcPjQyhhMArqECBsLrCu4G2/fvF01ypUAVRlRt8HkIhXIAaKkkS3YvgLEgJp+Dbz3PbJ7vTQmUFo+kKTLfQXBzRDq+UtYgT95+/47pAbrr0IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729876569; c=relaxed/simple;
-	bh=EzCY04J3dN6dTWo5FwrMuejIBtmJGz3e+StnFJARUp4=;
+	s=arc-20240116; t=1729876571; c=relaxed/simple;
+	bh=im8lPEqPibwrkF20d8j8rEeYbRDE7CTkHJHOC7HO310=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Sq13BAfdtK8EYk7AmleMZtmo6lhyd/w2CbSIe5b8ordJf0AyfZNpqvMmu9b0NRnNQZhwHVIR2uxvHVH5ayQY73vF2eMJPydeyUOUF2hkIO9s3v6f13MZFa00eZDJpOkLeO36Tal5nNYuhEWx2bwaXZMD8178Um6cfpvFlNmnCpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=KSVVkqgJ; arc=none smtp.client-ip=209.85.221.52
+	 In-Reply-To:To:Cc; b=MF7GcFTw9TPa9tJzNkNk/zSNzdTxqX1x/bBdK/tFCUh095cSEyEpMGlnC1x6w5Wm1ugA3opbiVGuN1z8rdO8kr8dJhA4+ZOWRyg0KbgnHsOmL1nj9BYmiBc9GsrP2a5ikGucRSwTjXSgVvqP+hTaJt4sT6oB76wXvXxITreEGc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=hq77L8ag; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-37d4c1b1455so1467693f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:16:07 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37d4a5ecc44so1445769f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:16:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1729876566; x=1730481366; darn=vger.kernel.org;
+        d=raspberrypi.com; s=google; t=1729876567; x=1730481367; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uvy6mw3HkfOGNiDeKKmifz1sEp4TpAMlLMBCwtNZJJ8=;
-        b=KSVVkqgJIKlthNKX/izMXmNMjDGtLIkFSPXqXt/ujb/FVcQYeW9rcGkTWbrqPnlcV9
-         AJvhVSZzK1XBLACYScU3Sf0WY4PTDGawmEQ8O6pJObV+1QmnnicBn1Osrpd9OG7qa5sn
-         YRTnYgJU/H3r5dsZ55317voR1tRuUUc8ldPuAlf7r3qXPK2KVOS8ACayZkWRvE2MvDlO
-         4M/ypvG86nDSAEvpzMofeymWbpTTrqoDj1Uq9AmzbV44zDoWD+OzSPJYd/H3cMoIG4qY
-         Z2YmWNi3EGFTAnuiMqEbXm7TWnNyGnV42c4w+bCs2jGCujca1+g0FxC3FGVzLPeVMgo9
-         WkjQ==
+        bh=N3D0msUfHXMuv4C1SeqQ0nPQBde1GE17PCvfA0szIc8=;
+        b=hq77L8agFTQHoKn/LUIhqFf6iqy6b+G1eAnm/qLM1cxLur0NTEegbLWzNJM8hEh+Of
+         nFX00/o0m9xoZBJjhRlO3Zu4fpfcs550HPEkoBA9rmXVrrqrRFmcGwIeDVtCnwWzvXNC
+         yBmyaru0/ptOat0zlO4NeedWxcMW4B1dDC/0c+RebeE4/FR9M3x+U4d2rAfwHV2tJSvz
+         vHCL2C+pDBCfazM8zxwjJQjxwTl7j1XizllsDSA5NJfZzMu0MJNrqkjN3bEgdGkvZ5gk
+         IwTeRGoqUbKPmHETc+4GemGhrhyjRGKKz5ktRwLyljo/m0C04TP7QO8btNpmjmH1wyb1
+         GLAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729876566; x=1730481366;
+        d=1e100.net; s=20230601; t=1729876567; x=1730481367;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uvy6mw3HkfOGNiDeKKmifz1sEp4TpAMlLMBCwtNZJJ8=;
-        b=VicbLk1nb5Kn3pPLZTfBY6DpDnB/VSqQDqmhu6m8R0vGPSxfBood3+SOeg/GDLUO3R
-         OiZvBEcMWduPRBCn6PPc/790bmOKKp7b85NoCCTzphg+hDYmgrY3ufXq52i3ZbIyeHU9
-         3x1heN7is1wKMagPgVf+uJluDp9OQT1ablZrCfF7nFgcTgk/C2JSpGmT5vdTL53g2jod
-         9NQQ1vpeNyGj4Z5X7+DNizvimtINn97t2Bqqc+6QL7OHBapdo3mpk/LeDzziXMRoQdg4
-         HAlWhU45HCtNwwkgxMPwpQ+9eOSRNZzdwSL/P0w2w3LECkgQ7KSZNquZVesAJgWr0QeE
-         +YyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4blmGjBBDMNA0m3HQPIRuTVGMSp4TzhnnszNv07+VFod2o3OEqFcjJOBXaKoJr4LPpED9vXRTeREF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTgSBdYPpgTC9pU5h9RIgR8HtQjZom0Tl5AJUnwzZ1+YvLsIDq
-	RMKMeCCNM6lyKYwEHVgVSW13iGdBeGWHJWwwrrXBRoZB7LipSH8UVvHW2k2aWGk=
-X-Google-Smtp-Source: AGHT+IHirezA1gYr0G/DUtQrSt/DP/1VMOY/GWyL0+CDPDCZHRfOmDWirKI9sgtwCb0jA2Kn8vQ++g==
-X-Received: by 2002:adf:ea8d:0:b0:37c:ddab:a626 with SMTP id ffacd0b85a97d-380610e69f9mr139123f8f.7.1729876565769;
-        Fri, 25 Oct 2024 10:16:05 -0700 (PDT)
+        bh=N3D0msUfHXMuv4C1SeqQ0nPQBde1GE17PCvfA0szIc8=;
+        b=SpDfOHHD2P4F0IfT8QQl3yYFfAbrl/og8ptNSM8Nao+uekFkTsKdMHEyOD8fDaM8I6
+         7Ip+6U3IoPgz0kuW0tk60ixrtx+euV1Jq2TCE9EsGU9SelGPNcdxyymjoEwqyLCxDmRX
+         TVqz761D9BmF1TlyluD+Vy7M93hRlVj+K5JjkUM/5tYWcfBk57jJ3wBwno7cNR6gAixT
+         u2r9oTlnJ/aMcK6nvb93f391jq7YjBl4L/pY45ZivvG3PvPG9BQs4heLCNB7ZLzjq8VT
+         4MsmtVsErkLw83tLNsg4yB4Kl/xyClVLqeGdQZhf6/XuNivNsU4KaaFRAQ9ELdG9a+Ox
+         4CzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVmfXoeonn2Ceub6iMBJ7+HpxM+QRUVNT0pAUmLUcjZBb5BZhKt1snY2E3peodNSLPxzwWWZXhqLI0R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3KQhA/QWOyPJ1p4MAuwKJwivySJ1uim/LiA0w5Y2gV/WZhjAB
+	bpNhcz38NF5PJsnFCk7j3aHjE7QsCk2lwlQqBU9xze+c6EPG3q+txxyk5o6w3TA=
+X-Google-Smtp-Source: AGHT+IG4wS89LpASUknXmvnY5DCWRnrRky+UYDTB7/8M+xpU5UpHS3oldLC31P65rzLuem6Jwptv4w==
+X-Received: by 2002:a05:6000:c90:b0:37d:511b:aecc with SMTP id ffacd0b85a97d-380611ff90bmr97416f8f.54.1729876566840;
+        Fri, 25 Oct 2024 10:16:06 -0700 (PDT)
 Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38058b91f50sm2013649f8f.94.2024.10.25.10.16.04
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38058b91f50sm2013649f8f.94.2024.10.25.10.16.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 10:16:05 -0700 (PDT)
+        Fri, 25 Oct 2024 10:16:06 -0700 (PDT)
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Fri, 25 Oct 2024 18:15:36 +0100
-Subject: [PATCH v2 05/36] dt-bindings: display: Add BCM2712 PixelValve
- bindings
+Date: Fri, 25 Oct 2024 18:15:37 +0100
+Subject: [PATCH v2 06/36] dt-bindings: display: Add BCM2712 MOP bindings
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241025-drm-vc4-2712-support-v2-5-35efa83c8fc0@raspberrypi.com>
+Message-Id: <20241025-drm-vc4-2712-support-v2-6-35efa83c8fc0@raspberrypi.com>
 References: <20241025-drm-vc4-2712-support-v2-0-35efa83c8fc0@raspberrypi.com>
 In-Reply-To: <20241025-drm-vc4-2712-support-v2-0-35efa83c8fc0@raspberrypi.com>
 To: Maxime Ripard <mripard@kernel.org>, 
@@ -105,30 +104,30 @@ X-Mailer: b4 0.14.1
 
 From: Maxime Ripard <mripard@kernel.org>
 
-The BCM2712 has 3 different pixelvalves that are similar to the ones
-found in the previous generations but with slightly different
-capabilities.
+The BCM2712 has a MOP controller which is basically a new revision of
+the TXP.
 
-Express that using a new set of compatibles.
+Express that by adding a new compatible for it.
 
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml          | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/display/brcm,bcm2835-txp.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
-index 4e1ba03f6477..6b5b1d3fbc0b 100644
---- a/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
-+++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
-@@ -20,6 +20,9 @@ properties:
-       - brcm,bcm2711-pixelvalve2
-       - brcm,bcm2711-pixelvalve3
-       - brcm,bcm2711-pixelvalve4
-+      - brcm,bcm2712-pixelvalve0
-+      - brcm,bcm2712-pixelvalve1
-+      - brcm,bcm2712-pixelvalve2
+diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-txp.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-txp.yaml
+index bb186197e471..c9c08042cffc 100644
+--- a/Documentation/devicetree/bindings/display/brcm,bcm2835-txp.yaml
++++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-txp.yaml
+@@ -11,7 +11,9 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: brcm,bcm2835-txp
++    enum:
++      - brcm,bcm2712-mop
++      - brcm,bcm2835-txp
  
    reg:
      maxItems: 1
