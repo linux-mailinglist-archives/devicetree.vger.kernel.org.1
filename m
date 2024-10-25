@@ -1,172 +1,191 @@
-Return-Path: <devicetree+bounces-115677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8554C9B04CE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:58:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 523DC9B04DA
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49540285274
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 13:58:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 130A5283AA8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A57A1FB891;
-	Fri, 25 Oct 2024 13:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54ED7080A;
+	Fri, 25 Oct 2024 14:00:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="bKSoGy63";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Uui/qTuk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C02370817;
-	Fri, 25 Oct 2024 13:57:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E96121217B;
+	Fri, 25 Oct 2024 14:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729864675; cv=none; b=L2FwWmpfwvQeqDV83LNKILZG3jmR74mVzvLMZNot1dPnFoEBmT3t6IwZ1xWrRUug70aY4j1Hl5JqozOXWN4DJd6vN4r2RaBSwL2aJOZfhPu3hCl6NbeGI/NZRLIY2KX1IETHs2J8ucDLnHu8pK0pX8iludtTVxZMyyqfyQ9Vcfc=
+	t=1729864846; cv=none; b=hlB/AtDG875msDUA1WkbA9/K9XaXXVA+/JiRPFilNItQSOITC5Gy0AuGGTVnXY+7l0CEkIRT0Aaj+a7ma5FuK8rNM+IC00djk/9MG+TVDF17SDH0nzV1bqKkA0R+Ht/ATYjrHkQhxMn5Hg2xm2Y25i3kYQUNz9AJEUMMDyFMrfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729864675; c=relaxed/simple;
-	bh=4bj2osbLKKawTTfWoZ1EPTAYQ0XvOXYe3se963/1blM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q12+wDK2Jspuz/JYvEnvIVIxt0MwwrSKYcgf3pZDwZsrPwYzTEK1KPBRaIjwr0V0ktMaPj8yjaJwIHbgN8D5sQEKDyoN6dvRCOVOIdqMkNSZGKfTrajPwc9CnF6J2qgJZ9nTss1DHS5yitUQ+0dHx1VXTJ1zS4FLwpwZRNFlvOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6e59a9496f9so24983257b3.0;
-        Fri, 25 Oct 2024 06:57:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729864671; x=1730469471;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IUx9mkzB7z8iaJH1DYALuYKXnCWuAd2L3YOKskqAexM=;
-        b=VCZNh25ZwFf+IjgphuV0oJWqKq85dsRkrZlfAj7qlZt0PwpAfeJuZ6oVrs8y9Q65ge
-         +4Q8o9COwipQAtuU9IgLh3DJavMJaKAlOBZLYntgKxlr575nDElYYMabesg2CldauEbF
-         8IA3+Zkwo+6LXSCpUgzLGIV06jwAroz7AnoHQ15pQvc3UTzVaPXsW7TeChdUvbJBbz1A
-         F3K3ivdH/YUZWptWQTFQbn+hNPcJagVyvrINrBJI7SUPefvvAY4c7KrnERPMAH9tYw8x
-         wpeNDicvN5bkvhFqxDV/TaMxMv38kka+zF7+CMyXzCp9RmG6Ikbyv7H+LPCdTuGWj4Pg
-         hnCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV6eUWUKD9JcLUwlrhVlSCJDxmwAL1fQfiiJCxOqS1F40UnwSm/MakvjYi+amqGsBk0f1eFnqGh0YXLKVfV@vger.kernel.org, AJvYcCX4SM9UMCYQAr9Xv6jCOitd6xq54mK+AF4QhrdpQkZli7qc2FfzIq1yhr7x1CWjRfbED2v/lXY1ncQ0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFDAcJ14nvaB5NBtEF5FQkVuuVnE4DQe7+/d233wN65OUnPYhZ
-	xIrLRu5DwUeNxLiv4X5xyhdYOAm3SKnzOaOFsemSaJdE61QZ+6jLSWj/pPY4
-X-Google-Smtp-Source: AGHT+IG/U4NbN+xhKjoFzmrBI5MaI5/TttQLZAhRQ8kU/GEv9CTwSfSlztjevPP+NFT+Frzfis4MhQ==
-X-Received: by 2002:a05:690c:4d46:b0:6dd:bcce:7cd7 with SMTP id 00721157ae682-6e7f0fd20e7mr119707597b3.42.1729864671405;
-        Fri, 25 Oct 2024 06:57:51 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e9c6c19d42sm2864007b3.71.2024.10.25.06.57.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 06:57:51 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6e390d9ad1dso18265397b3.3;
-        Fri, 25 Oct 2024 06:57:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVzWYmpfH2Zk4ClJCiHI32+lfhMmhWDt7/zAS41pOFgnj90SHnZSypcWmBAtinVx+2f3IEo4INRTTLFG+6O@vger.kernel.org, AJvYcCXCrBWb8nZdzI5WkFT6BNFH6NNY9HaH3aToH6fi7DrqpXVId7gNO4y59r6noHHyQINa1U1HDi91VpOO@vger.kernel.org
-X-Received: by 2002:a05:690c:4249:b0:6e3:2be1:a2dc with SMTP id
- 00721157ae682-6e7f0dee4fcmr84030847b3.11.1729864671059; Fri, 25 Oct 2024
- 06:57:51 -0700 (PDT)
+	s=arc-20240116; t=1729864846; c=relaxed/simple;
+	bh=+EPu0ng0mX46bmmhsOflGiTyDoqp0PK+j6PCVyQQKFs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ngRVZaAtyP6i5WXZ6sJtnNwlQ6jZmlC/iWpLuU/sxeRAOP/xftSmwwkJPQTVNq3Rt4J0aNWAnZQOnPLPm0sNlhCTrwjVIlEQb10Rc76msUXiKBhtz5OcPPBMGivLo76kZTurSRGU+pnHqn8ZzF5qsC8PQOtKYr16WnL9K1hXSkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=bKSoGy63; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Uui/qTuk reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1729864843; x=1761400843;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=D34ZQYAA4Xy1RlM6CHhSVEaUwrAOhpkBAO+draaH9ns=;
+  b=bKSoGy630WlIx2G9NHPxomiuKjH+SoFPHJx96COGxpuypn6JMnVThu4M
+   /iSGZl5+XAndjfgf4h7HsBzsbVeHwP76XcXG69ztWtr6VgN354AlDpxuY
+   nd/WT//IAk4H1lWnRx14Xh04/+5wleuzHWdKeEiIaufYslRetnMbyZzhN
+   APt4TU9oYaCpVMpQx4YWQ6Ivy211FPzlOEj7TlaL+9ax0js+EHfHF4LFY
+   SgdsGtxS62Ik3PpzK7cwyoXkswEUAv8r1VzbL+czOGR1Uuh8opc/tJexS
+   qTLpvPbc39RMHbUJVDXDOuyw2I2ZPUGUs61peUPPJR7etYW4nqqq5TyL0
+   w==;
+X-CSE-ConnectionGUID: RJyKPL4TQG2I7atbNc+ajg==
+X-CSE-MsgGUID: TkxXlj06TlWhC036/duQ9Q==
+X-IronPort-AV: E=Sophos;i="6.11,231,1725314400"; 
+   d="scan'208";a="39677654"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 25 Oct 2024 16:00:40 +0200
+X-CheckPoint: {671BA488-1-21611FC3-DAD22B0C}
+X-MAIL-CPID: 4622FD0EE2930BE343E156A47A186DF3_4
+X-Control-Analysis: str=0001.0A682F1A.671BA487.0021,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6297B1644A4;
+	Fri, 25 Oct 2024 16:00:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1729864835;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=D34ZQYAA4Xy1RlM6CHhSVEaUwrAOhpkBAO+draaH9ns=;
+	b=Uui/qTukAHJ7VFZhUcAlQ+OVdccdApCQQcklWBFNMNz1WGm7oXncKjOxbu7Baidju+3IqA
+	53U8ocywj33gbEYU3/JQsNkduuC5UBPIM0ZrkXDFsb7r/rKT32rpt+iBkk0HEBwJG3fXMv
+	MK6xfnWgo6wUGHhRTKkG21FIvzsH76vQfdp0ckeQyxQSU9EPGAlWtChUw7tsp738Mxm6pX
+	+98C+aJJ67rL6U2G7Nsf1nEPL8CFYWx1XRf5YmZ+JiA4DuM6ld3uhoWcv51PN/fh8D+nAM
+	fNdDhwwJBFAwZzhvGiIYYof375B5oisxCpL4y/fQ8oK3drHPa7cV+de9//SVlQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Frank Li <Frank.Li@nxp.com>, Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mn-tqma8mqnl-mba8mx-usbot: fix coexistence of output-low and output-high in GPIO
+Date: Fri, 25 Oct 2024 16:00:33 +0200
+Message-ID: <2005735.usQuhbGJ8B@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <CAMuHMdW-tXFYSfTerb-eYmmbJHYN9xNyiGMPoeGArmDnAajUmg@mail.gmail.com>
+References: <20241023210313.1390767-1-Frank.Li@nxp.com> <CAMuHMdW-tXFYSfTerb-eYmmbJHYN9xNyiGMPoeGArmDnAajUmg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219-add-am64-som-v7-0-0e6e95b0a05d@solid-run.com> <20240219-add-am64-som-v7-4-0e6e95b0a05d@solid-run.com>
-In-Reply-To: <20240219-add-am64-som-v7-4-0e6e95b0a05d@solid-run.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 25 Oct 2024 15:57:38 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXTgpTnJ9U7egC2XjFXXNZ5uiY1O+WxNd6LPJW5Rs5KTw@mail.gmail.com>
-Message-ID: <CAMuHMdXTgpTnJ9U7egC2XjFXXNZ5uiY1O+WxNd6LPJW5Rs5KTw@mail.gmail.com>
-Subject: Re: [PATCH v7 4/4] arm64: dts: ti: hummingboard-t: add overlays for
- m.2 pci-e and usb-3
-To: Josua Mayer <josua@solid-run.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yazan Shhady <yazan.shhady@solid-run.com>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Josua,
+Hi Geert,
 
-On Mon, Feb 19, 2024 at 4:05=E2=80=AFPM Josua Mayer <josua@solid-run.com> w=
-rote:
-> HummingBoard-T features two M.2 connectors labeled "M1" and "M2".
-> The single SerDes lane of the SoC can be routed to either M1 pci-e
-> signals, or M2 usb-3 signals by a gpio-controlled mux.
->
-> Add overlays for each configuration.
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+Am Freitag, 25. Oktober 2024, 15:52:58 CEST schrieb Geert Uytterhoeven:
+> Hi Frank,
+>=20
+> On Wed, Oct 23, 2024 at 11:07=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrot=
+e:
+> > Fix the issue where both 'output-low' and 'output-high' exist under GPIO
+> > hog nodes  (rst_usb_hub_hog and sel_usb_hub_hog) when applying device
+> > tree overlays. Since /delete-property/ is not supported in the overlays,
+> > setting 'output-low' results in both properties being present. The
+> > workaround is to disable these hogs and create new ones with 'output-lo=
+w'
+> > as needed.
+> >
+> > Fix below CHECK_DTBS warning:
+> > arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtb: sel-u=
+sb-hub-hog:
+> >    {'output-low': True, 'gpio-hog': True, 'gpios': [[1, 0]], 'output-hi=
+gh': True, 'phandle': 108, '$nodename': ['sel-usb-hub-hog']}
+> >        is valid under each of {'required': ['output-low']}, {'required'=
+: ['output-high']
+> >
+> > Fixes: 3f6fc30abebc ("arm64: dts: imx8mn: tqma8mqnl-mba8mx: Add USB DR =
+overlay")
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > Alex:
+> >         I have not hardware to run it. I check dtb output is correct.
+> > ---
+> >  .../imx8mn-tqma8mqnl-mba8mx-usbotg.dtso       | 29 +++++++++++++++++--
+> >  1 file changed, 27 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbo=
+tg.dtso b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> > index 96db07fc9bece..1f2a0fe70a0a2 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> > @@ -29,12 +29,37 @@ usb_dr_connector: endpoint {
+> >         };
+> >  };
+> >
+> > +/*
+> > + * rst_usb_hub_hog and sel_usb_hub_hog have property 'output-high',
+> > + * dt overlay don't support /delete-property/. Both 'output-low' and
+> > + * 'output-high' will be exist under hog nodes if overlay file set
+> > + * 'output-low'. Workaround is disable these hog and create new hog wi=
+th
+> > + * 'output-low'.
+> > + */
+> > +
+> >  &rst_usb_hub_hog {
+> > -       output-low;
+> > +       status =3D "disabled";
+> > +};
+> > +
+> > +&expander0 {
+> > +       rst-usb-low-hub-hog {
+> > +               gpio-hog;
+> > +               gpios =3D <13 0>;
+> > +               output-low;
+> > +               line-name =3D "RST_USB_HUB#";
+> > +       };
+> >  };
+> >
+> >  &sel_usb_hub_hog {
+> > -       output-low;
+> > +       status =3D "disabled";
+> > +};
+> > +
+> > +&gpio2 {
+> > +       sel-usb-low-hub-hog {
+> > +               gpio-hog;
+> > +               gpios =3D <1 GPIO_ACTIVE_HIGH>;
+> > +               output-low;
+> > +       };
+> >  };
+> >
+> >  &usbotg1 {
+>=20
+> Note that after this, there is still
+>=20
+>     /delete-property/ disable-over-current;
+>=20
+> left, which does not actually remove the property.
 
-Thanks for your patch, which is now commit bbef42084cc170cb ("arm64:
-dts: ti: hummingboard-t: add overlays for m.2 pci-e and usb-3") in v6.9.
+This is true, I noticed myself. As this patch does not concern about
+disable-over-current, it still is an improvement.
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dtso
-> @@ -0,0 +1,44 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
-> + *
-> + * Overlay for SolidRun AM642 HummingBoard-T to enable USB-3.1.
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/phy/phy.h>
-> +
-> +#include "k3-serdes.h"
-> +
-> +&serdes0 {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +
-> +       serdes0_link: phy@0 {
-> +               reg =3D <0>;
-> +               cdns,num-lanes =3D <1>;
-> +               cdns,phy-type =3D <PHY_TYPE_USB3>;
-> +               #phy-cells =3D <0>;
-> +               resets =3D <&serdes_wiz0 1>;
-> +       };
-> +};
-> +
-> +&serdes_ln_ctrl {
-> +       idle-states =3D <AM64_SERDES0_LANE0_USB>;
-> +};
-> +
-> +&serdes_mux {
-> +       idle-state =3D <0>;
-> +};
-> +
-> +&usbss0 {
-> +       /delete-property/ ti,usb2-only;
+Unfortunately there is currently no way to fix this right now. This is a
+boolean property, which is impossible to remove in overlays.
 
-/delete-property/ (and /delete-node/) to delete something in the base DTS
-does not work.
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
 
-> +};
-> +
-> +&usb0 {
-> +       maximum-speed =3D "super-speed";
-> +       phys =3D <&serdes0_link>;
-> +       phy-names =3D "cdns3,usb3-phy";
-> +};
 
-You can run
-
-    dtx_diff --color arch/arm64/boot/dts/ti/k3-am642-hummingboard-t{,-usb3}=
-.dtb
-
-to verify.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
