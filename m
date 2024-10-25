@@ -1,261 +1,238 @@
-Return-Path: <devicetree+bounces-115669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91D999B03D7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:20:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B498B9B03E8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:23:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5C5F1C21D27
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 13:20:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7326F28243B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 13:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81ADA7082D;
-	Fri, 25 Oct 2024 13:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D6A621218C;
+	Fri, 25 Oct 2024 13:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FjyOi0nA"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="mZl+H25r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2080.outbound.protection.outlook.com [40.107.21.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3E4E212170;
-	Fri, 25 Oct 2024 13:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729862435; cv=none; b=VaCpIMLxTqWFiW9v6rDzpcq3FUphttRReaZKTyMsYiOlxJDQcY9ieYF8hFINbYVOw5x5A/UKNsR/rZBu+w9GUeSR1I85pakqHO1/LZauyuhBBJ5jACtx0njUiXVnFWb40TCGwycWzzd85upSvLmZGwSx4Jg6Nx6C0Bn0903ny2U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729862435; c=relaxed/simple;
-	bh=Iv+dDQawJeTjfcaOHDOnBzb79d7/eAt8zBP/Pf9XIPs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YSd6JF4swwOS19ejtN72huVCQNAoGtvNxpDkA//0Kwuvk8k36FX908yay6wihi9mt51XPdtMPIG2zIPeQDQwBE7vhO7GqFVhpF0mWgiUvoq14Qq1Qv0+B4+ImlPyVL9B787dLjCLv4i4e+VqRA6VPvbpx44BOrKprM9lrTHLm4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FjyOi0nA; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a9a26a5d6bfso291941766b.1;
-        Fri, 25 Oct 2024 06:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729862431; x=1730467231; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uulKs7R9OvjriBWT/CC8Pnu+w5NlV4zIkkgOTtPu4c0=;
-        b=FjyOi0nAPdqL2xeppONkUNguD0J67JCHsviLFH3Hx69IptZrHFNHX50nX06V9Az8hX
-         6RP96Yq5gLCaiIhFm+Y/Rhq3o34IVWYujWuNVaFYfRPZUnstMfLkZ/QX2WFNfs/K8x4k
-         i/uqDnyCygHnH8C7JUQ4T8CwBCe7z1hfJVUfpOG4uVE3w8Fjg/G/Lc3G0f4CWNM77JhU
-         eYvu8yClM4ZGj7fIKc2ej3cXq0R7ltuXnoKAfVzo32epPRpvHqfhgwEWKmCOJV1ynWa2
-         Pu/CrBaiVakECozTDO7ghzu9bddaqn/XqaXpMLx5sLYvaWrbifF6O4wWDUMrzx16iyOT
-         SCkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729862431; x=1730467231;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uulKs7R9OvjriBWT/CC8Pnu+w5NlV4zIkkgOTtPu4c0=;
-        b=ZTZMCMRn+qoqV55YB5IvGMb1cOkDXLMuVUaM6BKh08UiiU9aZNjma1541VaEiJtFkV
-         pqpqu/ei+XxHhf3ZcqkrCr7GOtVvhORaPCSbQ+y/ve/Mj1DCoaEytqSq/O8BOjyhZne/
-         /QRVQomIwiIdiQxAUSSAW+tb3igaf6Ch4+IZOy/9Ft9knIwJHQBhgFs6TZ+djfLAPbjH
-         10fhvhym7/Sr4Wx/IDrfqYO8fpTFnOsz9hdJ+pl0DsvAKJciylgmUMFlb78U1PVn9kYj
-         1/NvPAyO9RZSUSHveP19P2AashWwhKJ6Np7U9L9ZnEcJelfy9gndsYEWB3laEYyKALJB
-         h3mw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2DQYSMh88T8+y7zwb6ziBcZoPCnPvItKmomiqaxt7S3lOlPw5hT/7ZVrFkLtK/QOQuxie/0E5ow/c4Ng=@vger.kernel.org, AJvYcCVLSRS5UiQm8ya63N90pr8u+pITusWJdVlvjNUX8Tb+FQRyfhj/MgBuZLhli9YW35PUxAc0ORMCRWBF@vger.kernel.org, AJvYcCVjitsh+/YYs4vHJbap/m2LUTVrKuGcn+9FUucCiPe5BdSJ3HpwY5+LMxdV2UBATL3svNQkXBLAV/bu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzn+4dU61EAGGkUTYzDU0CWCQwFmDHaNAtODj22ki8gpHG4LS5A
-	DRP6onqyfdUt3n7YqNwtyOE3kuSKR8vWDvhg4QCJ5Aa0lnMbZERv/VUdUOSUx3FIcvDnnSRZShS
-	evdR7MWUH/xEiwyOIcZs5QwsURFk=
-X-Google-Smtp-Source: AGHT+IEb35gUbGtP4InZ6WMm5/IyT/Soo1Ihl70JzBa200ZUM9m1Q+qFTBBqDBODI/YSTqvPEhe969TFOoc5ILzCzQI=
-X-Received: by 2002:a17:907:980c:b0:a99:a9b6:2eb6 with SMTP id
- a640c23a62f3a-a9abf53587cmr924971066b.0.1729862430611; Fri, 25 Oct 2024
- 06:20:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C381212182;
+	Fri, 25 Oct 2024 13:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729862607; cv=fail; b=GroI6WifXSTjZRugHuySEIjQH3gP9Iagdl3OcySctlpR7zS+TcHNYglnvNE/EUsrEUYNXs7w6f+S740Fw0Le8D12bVCA2oA3b2BeEZaa0qNnW25xufDP94my99juDpw44zKkuHbxo2LtvzSRwkwTekOyI1QqGuGXxLSa1c3nsJA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729862607; c=relaxed/simple;
+	bh=6n0casdYb+NutwCrfVqH3imDOPzzDIQv0To0xihVALw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Bgu38XrSD0WbUv7mTo1OAXHaVn5QCI+0D8f8DInRU1/+fxNNDtJPwVWrIRr0TI3G/rUzB2lI+H6ktZnCGj1cCw5cmnx/LRya1fTpy0mAS5mdkPf3edV7Icwe+h2D1vRCfBOPHJXBRkhZsrbpiM6JoHQSrrzSx/P4+EOI5jOq4wk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=mZl+H25r; arc=fail smtp.client-ip=40.107.21.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=E/+34iOfvsDFSBoJIIBbIfqPoX/D9ewk2XLIQANUrvJrA2sC4rm0E93uwNgJ0UC1nE/cq1OhCd6apM54NDRT3pv/MPzMdrJ4GW0oJPLhDvFtqCPAG6c1frP+Q/3et+CGJBzp5M5X8d4s/SuFBUSQMarTyUEJG03kOeQ3bHtJVl01j1W2LTJHH+DinRIZy4aj6EEJ4kA46w2COjZo/sRKCFWxCypEu7I/9nLayOADrVJsjSNqL57NazgOdxJY8WQiQvPFKxsOW7xj3boAQoMmtbGfG5EKT7bbczyHwd4fosz7UyhL4nzolONXSjimPIH9CdozT9IBavkqaGxM+5dQzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ULS9ONfdOI6X4p6QMMCTEzscTbPbihSzTlXyHtoTEj8=;
+ b=WGRu+WjRkXGsS2MLfp959BUXtaT5zv8Xb9PagQzYHEM7I1GZ2oBvDUK/sgg5FOqIOSYgNzBlGpZJ8Ha9x8e9NeD9JgYrb5jYjoFY0WL8w8kHXu3zVPDnVFoV4iWzHPzeD1SQPAMTWGwkQ4/KAv8yutgLnGUK7peFjGqRgnnJEAS2czxIvFaPZ8nN8jbtc5q1E3hLGpsTXW49ncVmRdmVpuPrfPkgsrQf+XMGflDKjlHDwixEO0LsvRwA8VM0/drG7N4pag+umi9yNPT16mcoMzT8JN2YJpXpXHRUOXTSapR8b9N0Rdzdekv+8Kg3DWUzf23VFXF/cjLIc2nE764dLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ULS9ONfdOI6X4p6QMMCTEzscTbPbihSzTlXyHtoTEj8=;
+ b=mZl+H25rZ+nErw4PO9rAOX1SKtdV/0AAJPbI+86Uh9YdwWEz5Pt6yWkFitvX2A6yTzm2iCcyGcXI7N+VPjGm9Gp1dRSkrJIPiy49YcuIb8ff4GlAtCMjOfnVODPbg9RyWQ15IYTVzHQ0AWaBAPa2SlqZAC7hf4x2QABOjVzdcdCjmg2/T3fnldGtRfDM+1rRUGiZQVjOGbTAZLwN1URFO1m2o84e5knVtM4gN6W1L0UKgKVwdF5lMDhY/8fudzu5xjkYnEA0w4TkXuuVvMpCXcr6mt255oDEkE7dI25Vl5AgMBD5mpAMW3jPYSOyX+TAGsZVaoIm/iX247ucHOD0tg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
+ by DBBPR04MB7945.eurprd04.prod.outlook.com (2603:10a6:10:1f3::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.26; Fri, 25 Oct
+ 2024 13:23:20 +0000
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2]) by AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2%3]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
+ 13:23:20 +0000
+Date: Fri, 25 Oct 2024 16:23:16 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>, Frank Li <frank.li@nxp.com>,
+	"christophe.leroy@csgroup.eu" <christophe.leroy@csgroup.eu>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"horms@kernel.org" <horms@kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v5 net-next 06/13] net: enetc: build enetc_pf_common.c as
+ a separate module
+Message-ID: <20241025132316.6pyamwivaupzwo6j@skbuf>
+References: <20241024065328.521518-1-wei.fang@nxp.com>
+ <20241024065328.521518-1-wei.fang@nxp.com>
+ <20241024065328.521518-7-wei.fang@nxp.com>
+ <20241024065328.521518-7-wei.fang@nxp.com>
+ <20241024173451.wsdhghmz4vyboelu@skbuf>
+ <PAXPR04MB8510468F88A236EA7ABB76D8884F2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB8510468F88A236EA7ABB76D8884F2@PAXPR04MB8510.eurprd04.prod.outlook.com>
+X-ClientProxiedBy: VI1P195CA0091.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:802:59::44) To AM8PR04MB7779.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24b::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241023075917.186835-1-ryan@testtoast.com> <20241023075917.186835-2-ryan@testtoast.com>
-In-Reply-To: <20241023075917.186835-2-ryan@testtoast.com>
-From: Code Kipper <codekipper@gmail.com>
-Date: Fri, 25 Oct 2024 15:20:18 +0200
-Message-ID: <CAEKpxB=BQ1GvzdVCYKyr_Q1eCfcYYEz1L_RqzEVBBgNu8jDfwA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/7] clk: sunxi-ng: h616: Add sigma-delta modulation
- settings for audio PLL
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Chris Morgan <macroalpha82@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
-	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|DBBPR04MB7945:EE_
+X-MS-Office365-Filtering-Correlation-Id: 455bba8c-e789-4825-6f3e-08dcf4f831e8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?i3ugNlB6X0br4XbgO/3V2ixzrn5QUwZ3WjOi2J7TBauNcI4gUqOzbiWnE+5A?=
+ =?us-ascii?Q?0wRkGl3/X/oAZTMVw4U6H36UnJ2zPlKILJNa/ms6J4TffdaOxQFy6tJ4wFQ7?=
+ =?us-ascii?Q?BQIUU7Io7bxqysT0U6VB847oBf4GkGdA7tGDkTmjU8Te1HDS7EleRs4VJxzZ?=
+ =?us-ascii?Q?p0bAtTOSn54dwlQXV7/lyYT14oS1RVTU5rnAbKdqto/TMBo6CCh1skbIssDW?=
+ =?us-ascii?Q?eYo0XhBP8YOE6BWY+LDIgt1+xZl3uTYM+MmAWNw7pr6lhmc7iYCi54QouDL0?=
+ =?us-ascii?Q?R7+HNT89wZOlZXA65P4DIm5VNGm3Z4OMKFYqkhQyT2IjN+dSdiqnuMEl9T2A?=
+ =?us-ascii?Q?Mz8rvKm2WyJsIrrfMTeZrbzkskKtY60nUK5/vUioDHxJjkGWDz5T79qyaL1E?=
+ =?us-ascii?Q?DSaaQ1kzHlgXjzwWq+r2YEJtj2NN0ZGrMcJuUcnK1k20X3S6F76+c54YWMj/?=
+ =?us-ascii?Q?k7piFg8P/pNzAU20UQe5Bi3lMIQKOZGpjfZMnYgRmtm40NEqwFBPXOxEjFTr?=
+ =?us-ascii?Q?dWEAF7OncIwcJQjrbbK4/J91wuyREd7NDA8BhHNL8eUiOXRc1Wu7dk3y4p5e?=
+ =?us-ascii?Q?PRnPzo9x8yGZlPOiGnNNInUE+C9uZ70TOxMfJsweUfuUleMa/R4hFhGwMaOk?=
+ =?us-ascii?Q?TT1Xy2LOjBpO3wyoyhNU1p4EQjZ7tB1Yh7SxDHkws2653RJHObb/F8VXyBSC?=
+ =?us-ascii?Q?nPhjs4SLd9RZACCOGA/w0qxsJMvAKWw/NfflgbcKvPjthtMUj8FLgN++JwKj?=
+ =?us-ascii?Q?AHeB7n8QkBtDC2mskWVeZj+BJiytcngUcvKhf12/7zW2692GFnbz309dlnR5?=
+ =?us-ascii?Q?9IzxbRVi8bQ12yrztL/vBEEEfQ/gBf6pXpNB7x5jy/fI0yuos2zTiAZWyWRq?=
+ =?us-ascii?Q?a6K1YfS9lGA/yUqx9lxKhODBKhAhU374UcpslfW4ATvVicJnzlV+Iz3Q0wMm?=
+ =?us-ascii?Q?FjitFwTpeoW+QJd1tijnZqUal/G9ARHb/tEN4q69soM0EQGfc/s/dzFMwz/O?=
+ =?us-ascii?Q?9pC+au7iTgVXL3qULi1mLFPI91zpkIn8L54aBN/VpQLmc/Da6IZnwQknctbb?=
+ =?us-ascii?Q?jUBaBxs5sFoHdlwjrefaCX0Jbnn/epvHBou7lnY4MxqPtmooicQbs7GQUuUQ?=
+ =?us-ascii?Q?h3eykYhtDnMYYHataq0pF4Q9CN6FWWnE7Nx2d6RzGtJ/UAnxehCHEOLF85eK?=
+ =?us-ascii?Q?jL67dpFv9Lb931BMJtxygt5jwm3LWS2mrOUzvG3VBL2H6eFkdVwI95SijlYl?=
+ =?us-ascii?Q?R1PI9YlqdbjODOnEIpCyIEsMxRUNwnC51iaFtS32QFnIWRSkcUYaUb2x8TCi?=
+ =?us-ascii?Q?thjsVKLAjU30wAJNt9oLX727?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qoWBc3jYeLn2a0qGe1Qo9xJfoz969NP73r8xYdIwUhVnBQa1OtD4sOz+G7fp?=
+ =?us-ascii?Q?JkoKEOOU2EaGmNOKyFAS75D8FPyPeEtVzAwchnKMu8IGTD1P2LBEuAuXh7Zw?=
+ =?us-ascii?Q?X+j4jKiHlHQk336lkvzAOEtoxGf0sbI2UtoUglLnWG5SPqWJ52nsOlJcmEhu?=
+ =?us-ascii?Q?nQcl4IU3g6kuN+W4rm+dKpK78py8I0DBbuzX/0fzgqpByP5Olv2NBWTdYA3A?=
+ =?us-ascii?Q?takVcVsvB1EHni8BxNDiUgN+OQlFng5WNCFYDnPg8ZQhM4A0Dc0UKROqsdi1?=
+ =?us-ascii?Q?lNKxIiQAbVSnQTOf0ENjeYu9t5Vglnd4GTgtJKEtX7F6n5i8wiBHq4upl4l0?=
+ =?us-ascii?Q?PAXcqozCsR4QeK9bLMeARRBGYlmP9HafPaAl6URrTbIHqQt6++NgLAEorYX0?=
+ =?us-ascii?Q?aqRIRAGpV40En3C29GGKSzajDY4pig2ZacrlHTMH7kFaZjZ2iTmg+y4xoI4C?=
+ =?us-ascii?Q?xy3TEBQYasY07uiusp1DaWKz3PVWLWJZBGgqNp45JzU5Dlf80Y4Fp552wskK?=
+ =?us-ascii?Q?xghcpQwVNmG7tv3tUyT0lsVVqH/uTBYWVRFwNpCfXMz4x1IL1bZZKLxv0mei?=
+ =?us-ascii?Q?+3ipXNcm8gbBssW0CwG1YnFCz6f9ohl6TZ6t88VKa5hW6qdpwUQtsz44+7LX?=
+ =?us-ascii?Q?Cams85+pmWahHwQYTzXe/vdGceNP2dCgK18aTPu6dp6KsrQPDJp8yiOfojeB?=
+ =?us-ascii?Q?SKuQIxLnMQtifBFZHM+UFwoZOQ6MSdXdhoOLr50JKsT6t7VvuEsJoZkBF72F?=
+ =?us-ascii?Q?LYli8syW/WO/eLRjmUNtvTEgfsnf8HlN2o7udz772RMjuOxqnGUZu/r8vRSz?=
+ =?us-ascii?Q?1O2J5gGWDO7dzIzKgjb+aJ6skdYlR68/qqHMK0UkeBKRuE3xlaEhbY76ArsG?=
+ =?us-ascii?Q?20+LJIxOASG2pkwv3PreRHxz4B1L5HB1aE25CnqYOnzGNw7n7kId48x9FUjZ?=
+ =?us-ascii?Q?ADEerS6qZ5Y0i7NwDu0JGv4SFz7D6FYO49vFQSlXX5u3eXC5ryEM8LSWvTYa?=
+ =?us-ascii?Q?XeXWLBbUz6wYyqYlG9xTKX0QkQK+JKugMJmK1IBMlesXOqFwDvGk9ZXWaCW0?=
+ =?us-ascii?Q?ZJI4V+oiWrN5ohO4hsGmioJ2Q8nMfjkM2zRRzxnSOCWQULgBiLZcivaocI2B?=
+ =?us-ascii?Q?eSpoh5Qsm+XdS9G29ipctjJZKlHQABoJMQZbqx0lE3zw3sa5v1keyOVPnLZE?=
+ =?us-ascii?Q?jLxvJ6tajuKHcoCUD/es4bpq2/s1Is/IzXSc10fywkLLhLmTqEhZ8mu61CFP?=
+ =?us-ascii?Q?8CAskyF9Wy6o1iEwj6sT9BVqsvPE1zBa9KRbRgJrv/WkMkFVNsPErn+1JkL5?=
+ =?us-ascii?Q?E83yjAl4TGgv0Lphhq7WX1XdAd1fVsVhcNZKLEWcjKcG6i1NtIOAy6fRM+yX?=
+ =?us-ascii?Q?N4/pjAdy8U4y6lYeqdS9cBU2WlMNGTpQ1Wo+3F4fS9QzqHWzRcEDIcbeFeyP?=
+ =?us-ascii?Q?k/jgVXWjXmFtfJd5F612EXMs8BoHK3tSqzw9CDvUrEpTo82guUeFfLqJWxO9?=
+ =?us-ascii?Q?2ZAF2Vh7gjSzgyiOLjM71UjebLOgtNAoEMfFjlikKKG3F7fMfsZJmcvhU8kp?=
+ =?us-ascii?Q?AE4D8Ss4+652fBCQ3X/pbj+10JiM6VKRciQLl28OCc1Pu1iEWd2tqpMW65Cx?=
+ =?us-ascii?Q?kw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 455bba8c-e789-4825-6f3e-08dcf4f831e8
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 13:23:20.7367
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ylYNEmKu2IJW8GW0igrKqZ9StGGiSX+81cM/mRRr3YGX/Iai5HWkDS+qfTKUBjGwQ4vtcDOQthHYx/ibrji+Rw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7945
 
-On Wed, 23 Oct 2024 at 09:59, Ryan Walklin <ryan@testtoast.com> wrote:
->
-> Allwinner has previously released a H616 audio driver which also
-> provides sigma-delta modulation for the audio PLL clocks. This approach
-> is used in other Allwinner SoCs, including the H3 and A64.
->
-> The manual-provided clock values are:
-> PLL_AUDIO(hs) = 24 MHz*N/M1
-> PLL_AUDIO(4X) = 24 MHz*N/M0/M1/P
-> PLL_AUDIO(2X) = 24 MHz*N/M0/M1/P/2
-> PLL_AUDIO(1X) = 24 MHz*N/M0/M1/P/4
->
-> A fixed post-divider of 2 is used to account for a M0 divider of
-> 2, which cannot be modelled by the existing macros and ccu_nm struct.
->
-> Add SDM to the H616 clock control unit driver.
->
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
->
-> ---
-> Changelog v1..v2:
-> - Add fixed_post_div to high-speed audio clock to correct M0 value to 1 (ie divide by 2) based on manual
-> - Correct PLL_AUDIO_(4/2/1)X clocks to manual-provided values
-> - Add/correct inline comments for the above.
-> - add CCU_FEATURE_FIXED_POSTDIV to pll_audio_hs_clk.common.features
->
-> Changelog v2..v3:
-> - Update comments and commit message to more accurately reflect SDM changes and rationale
-> ---
->  drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 46 +++++++++++++++++---------
->  1 file changed, 30 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-> index 6c7623d4c59ea..05727fa1ee46e 100644
-> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-> @@ -215,20 +215,30 @@ static struct ccu_nkmp pll_de_clk = {
->         },
->  };
->
-> -/*
-> - * TODO: Determine SDM settings for the audio PLL. The manual suggests
-> - * PLL_FACTOR_N=16, PLL_POST_DIV_P=2, OUTPUT_DIV=2, pattern=0xe000c49b
-> - * for 24.576 MHz, and PLL_FACTOR_N=22, PLL_POST_DIV_P=3, OUTPUT_DIV=2,
-> - * pattern=0xe001288c for 22.5792 MHz.
-> - * This clashes with our fixed PLL_POST_DIV_P.
-> +/*
-> + * Sigma-delta modulation settings table obtained from the vendor SDK driver.
-> + * There are additional M0 and M1 divider bits not modelled here, so forced to
-> + * fixed values in the probe routine. Sigma-delta modulation allows providing a
-> + * fractional-N divider in the PLL, to help reaching those specific
-> + * frequencies with less error.
->   */
-> +static struct ccu_sdm_setting pll_audio_sdm_table[] = {
-> +       { .rate = 90316800, .pattern = 0xc001288d, .m = 3, .n = 22 },
-> +       { .rate = 98304000, .pattern = 0xc001eb85, .m = 5, .n = 40 },
-> +};
-> +
->  #define SUN50I_H616_PLL_AUDIO_REG      0x078
->  static struct ccu_nm pll_audio_hs_clk = {
->         .enable         = BIT(31),
->         .lock           = BIT(28),
->         .n              = _SUNXI_CCU_MULT_MIN(8, 8, 12),
-> -       .m              = _SUNXI_CCU_DIV(1, 1), /* input divider */
-> +       .m              = _SUNXI_CCU_DIV(16, 6),
-> +       .sdm            = _SUNXI_CCU_SDM(pll_audio_sdm_table,
-> +                                        BIT(24), 0x178, BIT(31)),
-> +       .fixed_post_div = 2,
->         .common         = {
-> +               .features       = CCU_FEATURE_FIXED_POSTDIV |
-> +                                 CCU_FEATURE_SIGMA_DELTA_MOD,
->                 .reg            = 0x078,
->                 .hw.init        = CLK_HW_INIT("pll-audio-hs", "osc24M",
->                                               &ccu_nm_ops,
-> @@ -701,18 +711,20 @@ static const struct clk_hw *clk_parent_pll_audio[] = {
->  };
->
->  /*
-> - * The divider of pll-audio is fixed to 24 for now, so 24576000 and 22579200
-> - * rates can be set exactly in conjunction with sigma-delta modulation.
-> + * The PLL_AUDIO_4X clock defaults to 24.5714 MHz according to the manual, with
-> + * a final divider of 1. The 2X and 1X clocks use 2 and 4 respectively. The 1x
-> + * clock is set to either 24576000 or 22579200 for 48Khz and 44.1Khz (and
-> + * multiples).
->   */
->  static CLK_FIXED_FACTOR_HWS(pll_audio_1x_clk, "pll-audio-1x",
->                             clk_parent_pll_audio,
-> -                           96, 1, CLK_SET_RATE_PARENT);
-> +                           4, 1, CLK_SET_RATE_PARENT);
->  static CLK_FIXED_FACTOR_HWS(pll_audio_2x_clk, "pll-audio-2x",
->                             clk_parent_pll_audio,
-> -                           48, 1, CLK_SET_RATE_PARENT);
-> +                           2, 1, CLK_SET_RATE_PARENT);
->  static CLK_FIXED_FACTOR_HWS(pll_audio_4x_clk, "pll-audio-4x",
->                             clk_parent_pll_audio,
-> -                           24, 1, CLK_SET_RATE_PARENT);
-> +                           1, 1, CLK_SET_RATE_PARENT);
->
->  static const struct clk_hw *pll_periph0_parents[] = {
->         &pll_periph0_clk.common.hw
-> @@ -1162,12 +1174,14 @@ static int sun50i_h616_ccu_probe(struct platform_device *pdev)
->         }
->
->         /*
-> -        * Force the post-divider of pll-audio to 12 and the output divider
-> -        * of it to 2, so 24576000 and 22579200 rates can be set exactly.
-> +        * Set the output-divider for the pll-audio clocks (M0) to 2 and the
-> +        * input divider (M1) to 1 as recommended by the manual when using
-> +        * SDM.
->          */
->         val = readl(reg + SUN50I_H616_PLL_AUDIO_REG);
-> -       val &= ~(GENMASK(21, 16) | BIT(0));
-> -       writel(val | (11 << 16) | BIT(0), reg + SUN50I_H616_PLL_AUDIO_REG);
-> +       val &= ~BIT(1);
-> +       val |= BIT(0);
-> +       writel(val, reg + SUN50I_H616_PLL_AUDIO_REG);
->
->         /*
->          * First clock parent (osc32K) is unusable for CEC. But since there
-Hi Ryan,
-I noticed some white-space issues when cherry-picking this change from
-your repo.
-scripts/checkpatch.pl
-0001-clk-sunxi-ng-h616-Add-sigma-delta-modulation-setting.patch
-ERROR: trailing whitespace
-#51: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:218:
-+/* $
+On Fri, Oct 25, 2024 at 06:00:42AM +0300, Wei Fang wrote:
+> > Don't artificially create errors when there are really no errors to handle.
+> > Both enetc_pf_ops and enetc4_pf_ops provide .set_si_primary_mac(), so it
+> > is unnecessary to handle the case where it isn't present. Those functions
+> > return void, and void can be propagated to enetc_set_si_hw_addr() as well.
+> 
+> I thought checking the pointer is safer, so you mean that pointers that are
+> definitely present in the current driver do not need to be checked?
 
-ERROR: trailing whitespace
-#74: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:240:
-+^I^I.features^I= CCU_FEATURE_FIXED_POSTDIV | $
+Yes, there is no point to check for a condition which is impossible
+to trigger in the current code. The callee and the caller are tightly
+coupled (in the same driver), it's not a rigid API, so if the function
+pointers should be made optional for some future hardware IP, the error
+handling will be added when necessary. Ideally any change passes through
+review, and any inconsistency should be spotted when added.
 
-ERROR: trailing whitespace
-#85: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:698:
-+ * The PLL_AUDIO_4X clock defaults to 24.5714 MHz according to the
-manual, with $
+> > A bit inconsistent that pf->ops->set_si_primary_mac() goes through a
+> > wrapper function but this doesn't.
+> > 
+> 
+> If we really do not need to check these callback pointers, then I think I can
+> remove the wrapper.
 
-ERROR: trailing whitespace
-#86: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:699:
-+ * a final divider of 1. The 2X and 1X clocks use 2 and 4
-respectively. The 1x $
+Fine without wrapping throughout, my comment was first and foremost
+about consistency.
 
-ERROR: trailing whitespace
-#87: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:700:
-+ * clock is set to either 24576000 or 22579200 for 48Khz and 44.1Khz (and $
+> > This one looks extremely weird in the existing code, but I suppose I'm
+> > too late to the party to request you to clean up any of the PSFP code,
+> > so I'll make a note to do it myself after your work. I haven't spotted
+> > any actual bug, just weird coding patterns.
+> > 
+> > No change request here. I see the netc4_pf doesn't implement enable_psfp(),
+> > so making it optional here is fine.
+> 
+> Yes, PSFP is not supported in this patch set, I will remove it in future.
 
-ERROR: trailing whitespace
-#112: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:1152:
-+^I * input divider (M1) to 1 as recommended by the manual when using $
+If by "I will remove it in future" you mean "once NETC4 gains PSFP
+support, I will make enable_psfp() non-optional", then ok, great.
 
-ERROR: trailing whitespace
-#113: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:1153:
-+^I * SDM. $
+> Currently, we have not add the PCS support, so the 10G ENETC is not supported
+> yet. And we also disable the 10G ENETC in DTS. Only the 1G ENETCs (without PCS)
+> are supported for i.MX95.
 
-total: 7 errors, 0 warnings, 80 lines checked
+Also think about the case where the current version of the kernel
+will boot on a newer version of the device tree, which does not have
+'status = "disabled";' for those ports. It should do something reasonable.
+In any case, "they're now disabled in the device tree" is not an argument.
 
-NOTE: For some of the reported defects, checkpatch may be able to
-      mechanically convert to the typical style using --fix or --fix-inplace.
+My anecdotal and vague understanding of the Arm SystemReady (IR I think)
+requirements is that the device tree is provided by the platform,
+separately from the kernel/rootfs. It relies on the device tree ABI
+being stable, backwards-compatible and forwards-compatible.
 
-NOTE: Whitespace errors detected.
-      You may wish to use scripts/cleanpatch or scripts/cleanfile
+> > A message maybe, stating what's the deal? Just that users figure out
+> > quickly that it's an expected behavior, and not spend hours debugging
+> > until they find out it's not their fault?
+> 
+> I will explain in the commit message that i.MX95 10G ENETC is not currently
+> supported.
 
-but that didn't stop it from singing beautifully!,
-
-Tested-by: Marcus Cooper <codekipper@gmail.com>
-BR,
-CK
-> --
-> 2.47.0
->
->
+By "a message, maybe" I actually meant dev_err("Message here\n"); rather
+than silent/imprecise failure.
 
