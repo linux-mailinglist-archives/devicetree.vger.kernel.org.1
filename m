@@ -1,269 +1,274 @@
-Return-Path: <devicetree+bounces-115680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 747A49B0507
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:05:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDFE49B050C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:06:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0599F1F248EB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:05:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1EC41C21B1E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:06:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B021B394C;
-	Fri, 25 Oct 2024 14:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43CD1632D6;
+	Fri, 25 Oct 2024 14:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lf17I1vr"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="YsnlApLS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2085.outbound.protection.outlook.com [40.107.103.85])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF301494DA
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 14:05:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729865140; cv=none; b=nlTK7ktKcYNoOTiWaixF2tk8G4pgwYv6ndYgdZ4WvR7iJdx7CQpkLA3fMwuJ/FVOqQPuwSAgpE9ZZ9eO60nf3JcR0mgv4L7k6uGa/RfKUnkgemSxzZqrX3kRjWeaz9mrSMl/u2kkeiS0i727e/XEGSK14BAKi9VdvTss0/j/rbY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729865140; c=relaxed/simple;
-	bh=mhPDdtyt330mcdM63wrN5tqVH3NzsiWGOIKFvHowOnc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=glR+6OadoWzlyweMDoWPmFX1WtdFq1p6EidDgCY8y2NGQNDg6wTXQayXzu114ZrMpnEu/Eoj5CyhJoxpZZ+iN5KvMWrjFfmcaT1kNFDkcBWf6H6SL9LwBpSTy/HWhYNmknbahMF7T7Z8Ty+v73Na4WGmy8XfVVSVqKqxqjD6wgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lf17I1vr; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fb4fa17044so22889921fa.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 07:05:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729865136; x=1730469936; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rn9Pt5hyYOkst6E9UWfygPgyliex/XcNrU8hJHBnOOM=;
-        b=lf17I1vrXdqO6F0j2qoezG9jbFtdOSQvx3DnPG1uk0O45aIUYqEhOK4Hp6Q7PYZ/vt
-         foXS0PvU/7Uytt1n2bMCCRQhHlNf8upT0k9CmFIyeS1LgFhLSRCO//LmuQS8iJx7DKrq
-         1rWJWFP10mNffvj6Nzgnh4wh4qUYfTlncRUh/ispnOH10L+kWYjIqAMusH8HlaV9C7gD
-         ovRbN5HRAylRnM2f3IUzKur8R2q86g2uRg4BrWT3SINT5aZeoWMYAt3Kz4YsBPEnf4Hq
-         CahBEL++Hgtg21qjtCj1V88F20HPlzqhRWg1oZKchJyxZvNF6yrM7AteTalotjg6u5dZ
-         2W8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729865136; x=1730469936;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rn9Pt5hyYOkst6E9UWfygPgyliex/XcNrU8hJHBnOOM=;
-        b=H/TkT0MwNlLiAhTjKOvhREXBVeroUBzY0Ew+xVTbUNpNskYXDAB2CpVPQOU1zbf7CU
-         QZzLY2gOKXN+IzbpdDlo8QLpc240kDT0quZGgP7zboAtZ6sFslSWeEBwF+RwofVWsgL1
-         /85bIwOKyTbiXkvb/LY8+ccZhWO+PNY+mu50TwTp9hJS4LJTzaoG874WNGYEuh1EFTk/
-         +ZSF+BE/l9MdId8Ah2em+/SDA2xjzwgCMQPIDbOB3MI0qbcvdra6EQH9/4JpJ4Aj9mI+
-         0nVlFOp32X1p7/EK6GBegRbHrRxhFCP2S7xVE2TLDElOQxGehG5lwGFxPpudNXuGI1Fk
-         YHPg==
-X-Forwarded-Encrypted: i=1; AJvYcCVWL/QVN6q54eQb3IkjvrTpeA8xXqtEsWIFLD3qwbyZp50kCRRfA5wriAS9cTYJVhfa7Q8LJiNQolSi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyD4Z8+CrU1cXYcnK2HQIsPkSwzE5lcY0Q9Hpi2OI+EEbnXiaKo
-	peJebTQHoFol8LzWtIHSEQdIjyNhf23otsqT5/9Oqh6GD6Oe4kRmIcq4uQXJh+g=
-X-Google-Smtp-Source: AGHT+IGPO2N8dVilguOrd+D3mg0S1fdvTrVMbg1ZQKzSI2X+KHFMOXe6V+CSQpm6d8eAH4CXe6TVWw==
-X-Received: by 2002:a2e:4c0a:0:b0:2f6:4f17:aeaf with SMTP id 38308e7fff4ca-2fc9d586fc6mr34505861fa.45.1729865135784;
-        Fri, 25 Oct 2024 07:05:35 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fcb4612a5asm1984121fa.122.2024.10.25.07.05.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 07:05:34 -0700 (PDT)
-Date: Fri, 25 Oct 2024 17:05:31 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, 
-	quic_pavir@quicinc.com, quic_linchen@quicinc.com, quic_leiwei@quicinc.com, 
-	bartosz.golaszewski@linaro.org, srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
-Message-ID: <g3wh3yjkzgdfwbj4hnabtmziwsmqn3cloffblhshrkgj3tx4h7@2w2ho2mvs5c6>
-References: <20241015-qcom_ipq_cmnpll-v4-0-27817fbe3505@quicinc.com>
- <20241015-qcom_ipq_cmnpll-v4-4-27817fbe3505@quicinc.com>
- <abro3enahzbugcwokcyyhwybbokestbigvzhywxhnfrdjihni3@7ej2hkgbgtf6>
- <b336724c-1fea-4e1e-9477-66f53d746f09@quicinc.com>
- <CAA8EJprVNOLO-CoorNhvKrrSD1bNKdFrzth5BL0GHXffPv62jw@mail.gmail.com>
- <32dbf7ee-1190-401c-b6b1-bc8c70a5158c@quicinc.com>
- <cqgkc3qpupbv47rqxiyhe2m466zxcxepyfcgyaieo2sggffprx@mstqi4pqoiqc>
- <a2448df9-9b8b-4b7e-ada5-6f26d7e7da97@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A0E13AA2D;
+	Fri, 25 Oct 2024 14:06:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.85
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729865169; cv=fail; b=SzmH91OHtvIlUpXoKOUN8sOmMGPCQ0llFTLhY1MHuqgReHQI/rSn9LtfL/TD5WiKFVSmEdL7a8kc5x0VRhoZOMTmc6TF3CsOFrWXEx5TZEXLpdkjuyX+QqaQKRWEoA6nNrBX0f+kJ5iF1ANwWf6eaIz6/+3vfwsFGsGa6ad86Ls=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729865169; c=relaxed/simple;
+	bh=3w6b8R9Wg4w7lftSMhJexRzHQJo7dTH5/sLkpTQkfP8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=baguWA0Ik+96Sh5P/DPq8rV+/llwYc2JVzkzrmBnE+9eC+e442/u+Do9kYau3QXcq9WTor63i2BVvvxTT6XKwqA2c4bElRaevBBJqrNXcwe4E/R/odZ89rIBU1KQC/tNqf8rkAYsihLr9+3s4vpRuKU66yBwioPt6fCTxBXFCSo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=YsnlApLS; arc=fail smtp.client-ip=40.107.103.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BG5jErbWZUCt/lCDK8jolGanCzaRTefPeNlqjj2z8Ba5Rmd6kZ2NOgKuqEcKYFoOnqXxNrs9hE1M+APCZmNB57j9+WVvSvBiDWNuQrr6duofNOTIy2rEgaT4M8P4ztNgyJMMfB6WehdogZcA519lUAapj8kwdQy1wju5MJgpAO1koP1wcfiqzztDW5NXNqjjCpHcI5UfX+/1H3v9UQtcoX2HbfdN2Be6onH8+m+cqRUe3J0yhUEGGYRBWA/fufPm20fgH+XtkhKFzlbSbeGnYQ0h6upNFZ3b5vlXeNAG2BPMFtzn7OtqFf+S797kV1qiAL38A0cPKfoslxEBXHRHDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wPe+m81D9qHE8jRKM583PkGJD8NJm/bGsAFNeQpFLc0=;
+ b=dJCcovvMGjOZVYBhZzOln2rZzu2U1VE5EW3AraBgXeGvdNoJXDIYjkEM+UWMhhcW36ujNLEKImtB4Ar1Nca4gzpCeMPvMenS74ulSJlKIkm3RqjnmErlDU3KE1XZVlsehCwrWzLQYI31cJ0MMR+LAh/fX5r5xBq3KArR7QgHe3YhH3fO5CKpHQzV/cekD6kCQTUgVcSd9ttBqUOR8aGfui0OamuyYnQgYEKPyhEMtfAZHGRVoEYe46kGbj4czXL+tFcpRODN47sIBsNHPpu1fIE0q6Ai3HvAyYxL8uIVyr4xHpjL0Uoi1inHP4CN/QYSiAcrzECJs44E9cXtaOhn6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wPe+m81D9qHE8jRKM583PkGJD8NJm/bGsAFNeQpFLc0=;
+ b=YsnlApLSgGLDj6Y8ey2n5GCtaflvAoG+ATFw+cRLgtqy/o8h+3Vua/VvMgJ3oRnJb3dott4Iy5ZRieW35S3zfpn7UOOKWyTLeY8KrXKHdr7b+T6pBZHI79SaqCUepHJ165OJKPeM5I3LqkS3CDaSQnCb4niHPOXJJ1s0VpcCNhXWsZaIQudL7fRidPACozUw/EB9U91rnfL2hW9YaQXw2xw/ajsaBu3jUdyV2YX61QRk0a0rB9TI3rTpQ/6zG7e4A7Ho9zr7uWTgiZvi8Gl7+z8xPuyhiQsy6TftpkNKHZ84k8PJ/Rm9RfyGZQg9yZ1+KXCFk8jQ7ier0Ys/ujI/Zg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by VE1PR04MB7327.eurprd04.prod.outlook.com (2603:10a6:800:1ac::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Fri, 25 Oct
+ 2024 14:06:02 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d%3]) with mapi id 15.20.8069.018; Fri, 25 Oct 2024
+ 14:06:02 +0000
+Date: Fri, 25 Oct 2024 10:05:54 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	"open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mn-tqma8mqnl-mba8mx-usbot: fix
+ coexistence of output-low and output-high in GPIO
+Message-ID: <ZxulwvE3amILaFRT@lizhi-Precision-Tower-5810>
+References: <20241023210313.1390767-1-Frank.Li@nxp.com>
+ <CAMuHMdW-tXFYSfTerb-eYmmbJHYN9xNyiGMPoeGArmDnAajUmg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdW-tXFYSfTerb-eYmmbJHYN9xNyiGMPoeGArmDnAajUmg@mail.gmail.com>
+X-ClientProxiedBy: SJ0PR03CA0281.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::16) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a2448df9-9b8b-4b7e-ada5-6f26d7e7da97@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|VE1PR04MB7327:EE_
+X-MS-Office365-Filtering-Correlation-Id: c522e243-4b9b-4637-9eed-08dcf4fe28aa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|52116014|366016|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?U2JFbitqOGdGSUJEZE5tV0pmQnVtbFNka1BJNjA0ci83b09ReGpBSXduWjNW?=
+ =?utf-8?B?dnozNmFJVGNyYkNCZ25aNlh2Q0gxdVFhUFZCZGV5SklCWjNUaWFUSGthRzVF?=
+ =?utf-8?B?cTNNRTNYUDZLQXhaM254Zit0R2JqeUl6M2NoZUZ1QmIzOE5sUkZQT01tZTdr?=
+ =?utf-8?B?VDAvbm1qNW1CVHJPZEZvWktmU2pic3VsTkpNanNBazBVY2hiZFBRRDZTYjZk?=
+ =?utf-8?B?ZkVRTVp1aTZSaHVpemdIRHJ2V3R5Uk41RnJ1YWlLNHRxVzJEMWdLN0wyQW1k?=
+ =?utf-8?B?RHg0QWhmMU9wOEYyRE9FQ25SV0c3eFBGN1VsYnlSbkVwTnV4bDNwa0N1aWxV?=
+ =?utf-8?B?dVAxU2Ira3ZkWEVCbWtUSXNxTlh3K1o2UWxHazdBQjAvbVEzOXJINEFJTjZz?=
+ =?utf-8?B?Uy83OENkUXQrMmRmTHk3SHlPUldpbDh5L3VoeFgzT0NXaVlLKy8zUGhIT1lU?=
+ =?utf-8?B?RHdqSnMvQzRnN0liRFNwckdVVXM1cWNIVWE1NTRZMWZsVGR4WHFaL0IyNExn?=
+ =?utf-8?B?T2hySE1tczhLVlFUVzRSaXBJSCtEaGpGcnNQYWNjVmJxcjJQb0RCbm8vZUpm?=
+ =?utf-8?B?ZkN0Y1ZObnJySDNUS0hMN0sxTmhJandXZmNac2c4OGhKbEIyYUVpTXpxWWZB?=
+ =?utf-8?B?Uno3Uis0bStpSFB3ZE01Q1VMT1BLV21xMUZyeStwaENnUFRCQkZyNFpzbmJ2?=
+ =?utf-8?B?SXgvamhSVUNNNkZWUmtRRHhVbUMwblU4b282UXUwVEdYYmVSOHpzL0gzd29q?=
+ =?utf-8?B?cUFvQmJUcWJtT2xpUFZvOGxOejdPRXlkaitaMTdxblNHU2M0ejJRR3ltRzZJ?=
+ =?utf-8?B?TklxbXBkN2ZNbzBPTkdZMW1LWkxTT01WVVVCdmVxQ0dJOTZoOCtHMXR1UENL?=
+ =?utf-8?B?WERuWi83dWkvZG50ZThrVGQ2eGpmblFtSUV0SWZuSzVLYzM4RTF6aTBJYU83?=
+ =?utf-8?B?cEI0OGhMTjFreHJUcnZaSjJueHB1b2NNRHNZRkpxTHVpK24xaWg0WXQ0SXB5?=
+ =?utf-8?B?eDFMeHAyaTg5eGxPOTY5aWhWR2FiVVZ2emtxTEo1OEVOdFJ1d3BFcnFkOXJR?=
+ =?utf-8?B?SWt6RzdBKzExNWxvWEpyRWVEa1BKTC9xa2hRSWh1bVZQTTlPZUdnb2c3bWRw?=
+ =?utf-8?B?ZGhuUkV4MDZMSFdiWVFnR09nL1ZEY29xYXNmQUcvbStDbUJtRWNOWW9sc1F6?=
+ =?utf-8?B?VUswUnozbi9ydDl1Q2xJVDhwNVhsVGprSmc4S0RzUXBOWjFiejd1bGR0MUFq?=
+ =?utf-8?B?SFl4a1lONE52SDZWSUtyWEtXR0xYZCsyQzU1NUJORU1KYjFGNVB3dzFHQkVS?=
+ =?utf-8?B?bXFLdUl5S050eG1ockNpdGYzS3ZiQ1V4R3E1ei9EOWRpdTZFeG9vU3k1MW9i?=
+ =?utf-8?B?M2NWVEJzcTRURHoxY2pZY3Z1czRBQUpKamEzUWFSTXdjcERQY1E3UDZtZEFx?=
+ =?utf-8?B?VnNDeWJZT1drTzBsREludE1HZk15M3VhSURXN1Axc3VDK1NuWkpFN2p6WTAx?=
+ =?utf-8?B?Vlg1bWRxZjFLTkRITWIxandHbGtkY3BDYUI4U3NQVW5rcGUyZjJzRmp2bEti?=
+ =?utf-8?B?N0x6cTRsdEo5cHNkbGU2d0VMaHJuV0xucmM4aHZhMnpocTdJOWJmcmZBN3ZO?=
+ =?utf-8?B?azl5ZXg2R1JYaE9KQUhBVHdIcVNyWERaT2xOWUMyM1IzdDlVL1FtSUE4WjM5?=
+ =?utf-8?B?a2Q4L0plendxS3Q1OUJsVEExZnRsUkQwUGFBeTRzb1lnakFGN0I0MjBvaW5T?=
+ =?utf-8?B?cHVMcXJ2Y3Fqa0JJb3JrK0xGd3kwcURMR2RkMHZrVUtVamdHNmg4OEVHMWJr?=
+ =?utf-8?Q?ulLtA9zfrEM0aNZKT9I+tMwwoxVRFAZeFOLHc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(366016)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Q3lmcTVFVFhoYUNWRXNtdUFncnFhdnE1UXUzVnF6MFh0czV6Q3hjSFFvVXhH?=
+ =?utf-8?B?ZnF1QXo0TjZ0VGM5NitiSFBRWHd0V3EwbVQxeU1EZnZ4RnRubWdVbVI3U29x?=
+ =?utf-8?B?dzhLSit4amx6ZEpscjNRbk0vMkhaNTBzQkdmMC9ZcnloalVBR0pHdWFTcjYv?=
+ =?utf-8?B?TlJTNGI1R09sZTFqaUc5c2hoUW83ZSs4TFQvMzdBRS9rQ3doNUE0RHRtZGxy?=
+ =?utf-8?B?UEt1cGU5dlQzYXZaN0V6NWxZL29oQzlWc3VlR0wwZDBRNlNPRkc5Z0lzRVNL?=
+ =?utf-8?B?aUp5Zk41UGZlY3gwL3kzMjRDTS84eW9ER0gvRklrZjI2dWhML0M1UUw2WjMy?=
+ =?utf-8?B?ZnZhcTR2Q0x5TElSYXd6MStwLzB5cStmbU5Kd3p6a1pwZWZ4WEtMZ045eEp5?=
+ =?utf-8?B?Wm51RXFhRG85Y3ZxUCtBeHdNRXdwYUtqOVl6SSs3Y3NxbldaejhudlpNeE02?=
+ =?utf-8?B?SGdxS2I0YjdYYnJKd0lrM01rZHFXRklvUVZiSEo4VFhHK0FIdUxjL0QzbkMr?=
+ =?utf-8?B?V3I2SXJ5MENFZ3c1SXBzV2ZzTHlkbkdkMW9oNmtKbVJGSXEyZUFIL0ovakRr?=
+ =?utf-8?B?L0habFB0N3QxaW9jcGVDa2t1b1FnQmZibENvK1VJN2RBWWZkQVpYUE9YNHlt?=
+ =?utf-8?B?N0JoYk9CN1R4clhTdUtnWHUvZ25pYnJpa0p6S0c0RjZ2V0RFNHVDQzYvVzVx?=
+ =?utf-8?B?ZWdMYkh0WjFtVTA1RnJSakhzNkpkUWU5NTBBTW1RL2o5ekFaek1CK0cvZnJh?=
+ =?utf-8?B?K1lWbTVFOTVwRGhZc0d6RE12QytZMVRTaTExdXNhZkVDQUVtSHBYdWF1UXpK?=
+ =?utf-8?B?UHVIK3hmRkh1NWYxb05UN01ZY2dQekF1d1F0SFhRWmFRdEl5c2JFeWQwclM3?=
+ =?utf-8?B?VXlFNkF2SHVTRURYL0QrbGxqSkErUHNhbVRFT3R0L1EwRGc4UWtkdWc4L2xH?=
+ =?utf-8?B?MlluOWhjU0UrRTdId1VNeW5iVXo5ZkZSNnZob2QzSXRncHh5cm55QUNrUFcy?=
+ =?utf-8?B?V2pTdTFBenFFWmdQWGhFWnpTbVNTczR4N3ozcmRlMDJadWord2dqRFg1aDIz?=
+ =?utf-8?B?c2IyS3R2TkFkV2VETi92cXo0SWk5U1Y0OFZYQU1IWnAwdkJLcjh0NnNJZExv?=
+ =?utf-8?B?MGt2UFhnV0RKU0VEbXRXaHppS2pCd3E1MmlMYjc5UWFGRnlmc2E5ZEhuUFB6?=
+ =?utf-8?B?MDV3cUhhdHNxclg5dUhXMkp3SU51azZGbXcvMEkyWENmMkR6dkNGYkFHSkcz?=
+ =?utf-8?B?RTlZUVA2QktnMXlvWHNlS1N1ZnBEQ3I1dUZsTlJXNlV5ZDU0SDJSaTUxYW1r?=
+ =?utf-8?B?aE5sNWw1VGhGQjQxTjVYRHllYTFBeHV4K1BjdFZLclRZT25GbjJuenV3VjRX?=
+ =?utf-8?B?MDBDM0tNRHpUbTlwZGNqbzN4OUZyajdoeXgyd1Ziem84V2tvYU5XN2RjR0Zp?=
+ =?utf-8?B?UWg4OEg5ZzZLN2Z1eHgyUk1QVGdRMHVhWWdac2pVWFIxZlVlMlQ3bDR1Rmsv?=
+ =?utf-8?B?NlBEWkhoSEhINGhablcyZWJjSUhxK29XMGRkZ0orTXhBUWhRaklxS1dYUkIv?=
+ =?utf-8?B?czNteTY5c1dSdGVUWUxxTDlkRi84Z0loT3BYOHNNM3JobFlGcDV6eXBEZFU5?=
+ =?utf-8?B?bU1rQXdDc1NLY2Zvc2xPZ0dNaGdjcFN5R29vdEZCV1ltckx2bXJKVzdoU0xZ?=
+ =?utf-8?B?QldUbGdYdVBUWExkZ0xJWU1TbU41ZHNTdG83dUw4LzBHdmFwWm5FRVhVclFU?=
+ =?utf-8?B?ZWhXQ3RRZGdZdjZScVMwTkhFRkVMUlN0T2c0bDY2MlZEK0dSWTBQN0tWZFhq?=
+ =?utf-8?B?NFJkODZxNjFXYmJxZDJ5ZU1Gc3k5M090Y1drS0tMdFZqYzJ5K3NJbWEzZlFy?=
+ =?utf-8?B?ZEVkTjFJdTVqSjBZYTh0dkVDVlRWSC9MTktDTlRXak9sZU5vRmM3d1g1a2NY?=
+ =?utf-8?B?ZzZwR21iN1ZnYTUwNEd0N25hSzV1Yzc4Sk1yOEM1d3VJMGFSR1E1bzVQcFhC?=
+ =?utf-8?B?TDcvL2ZsSDZ6L0xYRWFIM1pkMkt6OTlqT0RaWEhqNzk2SFhDUDZTVlplcyta?=
+ =?utf-8?B?bW95b3Y4OEFHeTBqSFlhR3NURjRPWFhzRFlpOUJCSWdLamxqaVY5alYwa0lX?=
+ =?utf-8?Q?4/EkT/VqZT9a1Zaf/uZ+5obC2?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c522e243-4b9b-4637-9eed-08dcf4fe28aa
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 14:06:02.1776
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: i8q0OGNehJJ0igO1/lFbEtWFhxohNKyIK9753VC4D4xUAKt6kXdQ6mXXOFW70UQJTk0RNo7u4FpPHkhESXiPyg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7327
 
-On Wed, Oct 23, 2024 at 09:05:09PM +0800, Jie Luo wrote:
-> 
-> 
-> On 10/18/2024 11:38 PM, Dmitry Baryshkov wrote:
-> > On Fri, Oct 18, 2024 at 10:03:08PM +0800, Jie Luo wrote:
-> > > 
-> > > 
-> > > On 10/18/2024 4:11 PM, Dmitry Baryshkov wrote:
-> > > > On Fri, 18 Oct 2024 at 09:55, Jie Luo <quic_luoj@quicinc.com> wrote:
-> > > > > 
-> > > > > 
-> > > > > 
-> > > > > On 10/18/2024 6:32 AM, Dmitry Baryshkov wrote:
-> > > > > > On Tue, Oct 15, 2024 at 10:16:54PM +0800, Luo Jie wrote:
-> > > > > > > The CMN PLL clock controller allows selection of an input
-> > > > > > > clock rate from a defined set of input clock rates. It in-turn
-> > > > > > > supplies fixed rate output clocks to the hardware blocks that
-> > > > > > > provide ethernet functions such as PPE (Packet Process Engine)
-> > > > > > > and connected switch or PHY, and to GCC.
-> > > > > > > 
-> > > > > > > Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> > > > > > > ---
-> > > > > > >     arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi |  6 +++++-
-> > > > > > >     arch/arm64/boot/dts/qcom/ipq9574.dtsi            | 20 +++++++++++++++++++-
-> > > > > > >     2 files changed, 24 insertions(+), 2 deletions(-)
-> > > > > > > 
-> > > > > > > diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> > > > > > > index 91e104b0f865..77e1e42083f3 100644
-> > > > > > > --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> > > > > > > +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> > > > > > > @@ -3,7 +3,7 @@
-> > > > > > >      * IPQ9574 RDP board common device tree source
-> > > > > > >      *
-> > > > > > >      * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-> > > > > > > - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> > > > > > > + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> > > > > > >      */
-> > > > > > > 
-> > > > > > >     /dts-v1/;
-> > > > > > > @@ -164,6 +164,10 @@ &usb3 {
-> > > > > > >        status = "okay";
-> > > > > > >     };
-> > > > > > > 
-> > > > > > > +&cmn_pll_ref_clk {
-> > > > > > > +    clock-frequency = <48000000>;
-> > > > > > > +};
-> > > > > > > +
-> > > > > > >     &xo_board_clk {
-> > > > > > >        clock-frequency = <24000000>;
-> > > > > > >     };
-> > > > > > > diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > > > > > > index 14c7b3a78442..93f66bb83c5a 100644
-> > > > > > > --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > > > > > > +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > > > > > > @@ -3,10 +3,11 @@
-> > > > > > >      * IPQ9574 SoC device tree source
-> > > > > > >      *
-> > > > > > >      * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-> > > > > > > - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> > > > > > > + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> > > > > > >      */
-> > > > > > > 
-> > > > > > >     #include <dt-bindings/clock/qcom,apss-ipq.h>
-> > > > > > > +#include <dt-bindings/clock/qcom,ipq-cmn-pll.h>
-> > > > > > >     #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-> > > > > > >     #include <dt-bindings/interconnect/qcom,ipq9574.h>
-> > > > > > >     #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > > > > @@ -19,6 +20,11 @@ / {
-> > > > > > >        #size-cells = <2>;
-> > > > > > > 
-> > > > > > >        clocks {
-> > > > > > > +            cmn_pll_ref_clk: cmn-pll-ref-clk {
-> > > > > > > +                    compatible = "fixed-clock";
-> > > > > > > +                    #clock-cells = <0>;
-> > > > > > > +            };
-> > > > > > 
-> > > > > > Which block provides this clock? If it is provided by the external XO
-> > > > > > then it should not be a part of the SoC dtsi.
-> > > > > 
-> > > > > The on-chip WiFi block supplies this reference clock. So keeping it in
-> > > > > the SoC DTSI is perhaps appropriate.
-> > > > 
-> > > > Then maybe it should be provided by the WiFi device node? At least you
-> > > > should document your design decisions in the commit message.
-> > > 
-> > > This CMN PLL reference clock is fixed rate and is automatically
-> > > generated by the SoC's internal Wi-Fi hardware block with no software
-> > > configuration required from the Wi-Fi side.
-> > > 
-> > > Sure, I will enhance the commit message to add the information on the
-> > > fixed reference clock from Wi-Fi block. Hope this is ok.
-> > 
-> > We have other fixed clocks which are provided by hardware blocks.
-> > Without additional details it is impossible to answer whether it is fine
-> > or not.
-> 
-> There is an XO on the board which supplies reference clock (48Mhz or
-> 96Mhz) to the Wi-Fi block on the SoC. There is a multiplier/divider in
-> the Wi-Fi block, which ensures the output reference clock of 48Mhz is
-> supplied to CMN PLL block.
-> 
-> In summary, below is the path to receive the reference clock at CMN PLL:
-> The clock path is .XO (48 MHZ/96 MHZ) --> WiFi (multiplier/divider) -->(48
-> MHZ) --> CMN PLL.
-> 
-> There is no software configuration required for the entire path, as it
-> is fully controlled by bootstrap pins on the board. There are bootstrap
-> pins for selecting the selecting the XO frequency (48Mhz or 96Mhz) and
-> based on this, the divider is automatically selected by HW (1 for 48Mhz,
-> 2 for 96Mhz), to ensure output clock to CMN PLL is 48Mhz.
+On Fri, Oct 25, 2024 at 03:52:58PM +0200, Geert Uytterhoeven wrote:
+> Hi Frank,
+>
+> On Wed, Oct 23, 2024 at 11:07 PM Frank Li <Frank.Li@nxp.com> wrote:
+> > Fix the issue where both 'output-low' and 'output-high' exist under GPIO
+> > hog nodes  (rst_usb_hub_hog and sel_usb_hub_hog) when applying device
+> > tree overlays. Since /delete-property/ is not supported in the overlays,
+> > setting 'output-low' results in both properties being present. The
+> > workaround is to disable these hogs and create new ones with 'output-low'
+> > as needed.
+> >
+> > Fix below CHECK_DTBS warning:
+> > arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtb: sel-usb-hub-hog:
+> >    {'output-low': True, 'gpio-hog': True, 'gpios': [[1, 0]], 'output-high': True, 'phandle': 108, '$nodename': ['sel-usb-hub-hog']}
+> >        is valid under each of {'required': ['output-low']}, {'required': ['output-high']
+> >
+> > Fixes: 3f6fc30abebc ("arm64: dts: imx8mn: tqma8mqnl-mba8mx: Add USB DR overlay")
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > Alex:
+> >         I have not hardware to run it. I check dtb output is correct.
+> > ---
+> >  .../imx8mn-tqma8mqnl-mba8mx-usbotg.dtso       | 29 +++++++++++++++++--
+> >  1 file changed, 27 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> > index 96db07fc9bece..1f2a0fe70a0a2 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtso
+> > @@ -29,12 +29,37 @@ usb_dr_connector: endpoint {
+> >         };
+> >  };
+> >
+> > +/*
+> > + * rst_usb_hub_hog and sel_usb_hub_hog have property 'output-high',
+> > + * dt overlay don't support /delete-property/. Both 'output-low' and
+> > + * 'output-high' will be exist under hog nodes if overlay file set
+> > + * 'output-low'. Workaround is disable these hog and create new hog with
+> > + * 'output-low'.
+> > + */
+> > +
+> >  &rst_usb_hub_hog {
+> > -       output-low;
+> > +       status = "disabled";
+> > +};
+> > +
+> > +&expander0 {
+> > +       rst-usb-low-hub-hog {
+> > +               gpio-hog;
+> > +               gpios = <13 0>;
+> > +               output-low;
+> > +               line-name = "RST_USB_HUB#";
+> > +       };
+> >  };
+> >
+> >  &sel_usb_hub_hog {
+> > -       output-low;
+> > +       status = "disabled";
+> > +};
+> > +
+> > +&gpio2 {
+> > +       sel-usb-low-hub-hog {
+> > +               gpio-hog;
+> > +               gpios = <1 GPIO_ACTIVE_HIGH>;
+> > +               output-low;
+> > +       };
+> >  };
+> >
+> >  &usbotg1 {
+>
+> Note that after this, there is still
+>
+>     /delete-property/ disable-over-current;
+>
+> left, which does not actually remove the property.
+>
+> Gr{oetje,eeting}s,
 
-If the clock is always fixed to this frequency, then it's ok, thank you.
+Yes, but it should not impact much. I hope Alex or other tq-group's
+engineer can fix it. I have not hardware to test it.
 
-> 
-> > 
-> > > 
-> > > > 
-> > > > Also, I don't think this node passes DT schema validation. Did you check it?
-> > > 
-> > > Yes, the DT is validated against the schema, I have shared the logs
-> > > below. Could you please let me know If anything needs rectification?
-> > 
-> > I see, you are setting the cmn_pll_ref_clk frequency in the
-> > ipq9574-rdp-common.dtsi file. If the PLL is internal to the SoC, why is
-> > the frequency set outside of it? Is it generated by multiplying the XO
-> > clk? Should you be using fixed-factor clock instead?
-> > 
-> 
-> Since the reference clock is controlled by bootstrap pins on the board,
-> it may be appropriate to define the frequency for this reference clock
-> in the board DTS. Given the clock tree described above, I will update
-> the cmn_pll_ref_clk to define it as a fixed-factor clock as per your
-> suggestion, with its frequency and factors configured in board DTSI.
-> These values defined in rdp-common.dtsi will be default values that can
-> be overridden if necessary by different boards. Hope this approach is
-> fine.
-> 
-> In ipq9574.dtsi:
-> cmn_pll_ref_clk: cmn-pll-ref-clk {
-> 
->         compatible = "fixed-factor-clock";
-> 
->         clocks = <&xo_clk>;
-> 
-> 	#clock-cells = <0>;
-> };
-> 
-> xo_clk: xo {
-> 	compatible = "fixed-clock";
-> 	#clock-cells = <0>;
-> };
-> 
-> In ipq9574-rdp-common.dtsi.
-> &cmn_pll_ref_clk {
-> 	clock-div = <1>;
-> 	clock-mult = <1>;
-> };
-> 
-> &xo_clk {
-> 	clock-frequency = <48000000>;
-> }
+Frank
 
-Sounds perfect, thank you!
-
-
--- 
-With best wishes
-Dmitry
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
