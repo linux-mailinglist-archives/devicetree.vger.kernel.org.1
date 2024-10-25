@@ -1,82 +1,88 @@
-Return-Path: <devicetree+bounces-115453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10BF9AF97D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:02:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 096289AF99A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:09:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E47CB1C217AE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 06:02:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4253A1C2164E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 06:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9153B19A297;
-	Fri, 25 Oct 2024 06:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4F8192B65;
+	Fri, 25 Oct 2024 06:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YPC4lvjG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EnEFtAc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CEB7192B65
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 06:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054BB18C92C
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 06:09:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729836144; cv=none; b=IpJxwwtYcn1gGyS7OUI2JCobsD9i4K573i8dkHHS6V9VZfmwUxEcm8DQxCeeW7xeMO5C5kTlCx/7Yc5mMxKc2fnOi85T+lTlhwOXprKVBvmXDQKXdojsDtVtZPrmJO2XmSwUY8wSc20Sh7umP15ywb7BkdGHR7IZmqA9UlqzZCw=
+	t=1729836589; cv=none; b=XOakxetKu3HUJbASRw7bmosRDEAe0vzCakqhqwm0uiduBMlErFSCrm0dbSvaZgco+gCiReNNXoma3BMayJCSldBMh/TJ5Pa0R3mtaKUPsp/AirIhu3DaX4226y3TlIFqKEeUKbPwd96WFwTTBBn2RauF4UVzBZy4uPGysc60eTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729836144; c=relaxed/simple;
-	bh=PS5iJjvSFPbK5FEXLziypu7fTXMABNu84miiYhvpt8g=;
+	s=arc-20240116; t=1729836589; c=relaxed/simple;
+	bh=VKgOuDEd4K0E7JpJ6DvceT83rJrIPW/PLFYrcwLMdFQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hphKpl1EHz3jeueKi/cYUZrXN0G2ck4ICO8m21yXKdCYpQJI+7fWyeJrmyS46XnsyRVgOteY1OPoPvcuAgwXAibZwXWqtEOl1vRI16jpJdSJNQP97cy4qQrpK1eTxaEfLOYy+EgHJ31hctFgdTaI39Q10g9TS3k5loizVdkt3zM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YPC4lvjG; arc=none smtp.client-ip=209.85.167.48
+	 Content-Type:Content-Disposition:In-Reply-To; b=IP5B1RpfH+41mro2fxqZfw+RkZEDfhOzCtTE3LQjztDviprsWNf4x4HhqogUQlu5ysCHlPT/PTaM8Q1+N+Bxi9Is8kLgVteJU9F9DznzWtsXVu1kFOFePtdO/C4x6s4NV69YsFtOW1HJeYZl4IEYDJTiww6gn6m6JKh6NySJxz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EnEFtAc0; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-539e7e73740so1503975e87.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 23:02:22 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fb5fa911aaso22563861fa.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 23:09:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729836141; x=1730440941; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729836585; x=1730441385; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7HDN7ytRNWgu54yGYE5OkdeWkkOZdTmdIR9oyQdGmkg=;
-        b=YPC4lvjGrXV/e7XuVcUlAJMetKo3liaO4LixX3V/1GM7SrCn1kUfN0prk1uAChgnfU
-         iG2cLDLFdhdRAtYvrdSFhy7sjZO5cjZN9H6vfPc52EAqwKKouJhoKVGk81XoUwyqX2aW
-         jzGb0f49ZaU48MFu9kwj2WDF9m4EdCzvOTwiNxlqpT8oYRsu04zwV14Yly2kG4SWcnRm
-         ladZyB7EBfDofBzO02LY6xCeHJ5VGFHAdt0kb/T6+1gdwyU+CVzQq92AxD0DCkvlXNyM
-         jJBGkKoTz5aN8IDtXbfowk6vELZ+sEZrslYzavVqRVB+HkhzWy5WgWkFDrzubYckPPGO
-         xXzQ==
+        bh=WGSwOfNTwBF1RVfw0bMgmzFOpa40Rq4a6Ot02SFfHkk=;
+        b=EnEFtAc03jVWECQr6qj66CkBj0G512t672ermJog1U/2pWwVBWK7gosukv7wEDVijp
+         Ta1Ah3xWmcuDT2ZlAFloU0imFdldCeXQI/e2yNQwtnZ9YEO/kb+tOkDGMS6BdM+mSONB
+         IcvQECQ9vhau6cSU2uXVIeVyGZjb+V3AOym8bUXhm6RopSKMcO4iRQbJmTcx55KYWiee
+         gEscLtkzi3xg9pajlndhurcog0DXfRfaBRGqP47ASOjoPrmaHOnEU9ZOkJ+ww6TwrS7H
+         2nX13Q1quuKtvubEIF8CwG9cZ6WoA99jkPRvHiYNTo5SrmxCVxjcL3Zv6dM+dhEQrj/5
+         sYKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729836141; x=1730440941;
+        d=1e100.net; s=20230601; t=1729836585; x=1730441385;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7HDN7ytRNWgu54yGYE5OkdeWkkOZdTmdIR9oyQdGmkg=;
-        b=ikZPsCJOQ117TfEuDl9GROJIOrJlmL7kb4NSVA5+wlA5X7KYkiAIHQgVr2BpRbkp+p
-         wrlUlreEGzy59qe3dbE4wmzKpX5Z0xN5G31ln18wOHGW18xpM2lhThTuDRNdZODJrcm6
-         1dOwIr/Mc74ZBo6v1767MXaDWxoeQMPYmddDaQQ/hnVj46U1M/pArxGMRSp8JJYp5L4U
-         1YX1ThiVVo+98eSdHnMa4P76ap1Z2phk+KoJkMZF1MZZvMhrR7hXeAS995hUOt3jFvpa
-         KdCDYILEH7tgl5nz822fZPXX++tReZRc+8NaTor0xyVuiGg4uZ8Fyr7dnDeXqiqV72BG
-         06mw==
-X-Forwarded-Encrypted: i=1; AJvYcCWhQMQFTYU89hzzqIgqDKSTFpIbM2Mtm/ijTbmJhLrYOBhdy/pKPOr02FeKOe7nuMXpsa9UOnUN9tvX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXDXWB6JNg1l9pCLFTIWOXZ6wVHghFjS4Goo0hx+ovKynMIA1M
-	GSLuL5b1NldKTWevqqeqiu4NQB2+Q0Z0fpikccCjbsT7q031a09C1UAo2ktuFZc=
-X-Google-Smtp-Source: AGHT+IHSF6yq0M1S4molwHLUXGCrEjlPNYfcVTYft5wUoKPFyLEjD1ZMI1kRxPr5tkpFvG1fma7bFQ==
-X-Received: by 2002:a05:6512:3d17:b0:539:8c02:64d5 with SMTP id 2adb3069b0e04-53b1a32ed07mr5399220e87.27.1729836140645;
-        Thu, 24 Oct 2024 23:02:20 -0700 (PDT)
+        bh=WGSwOfNTwBF1RVfw0bMgmzFOpa40Rq4a6Ot02SFfHkk=;
+        b=HDtUjxgYp+6YOyCmMUyFKKoXQhScgmM8G48rH5dk6CKapmPpZYCX7U6KhYgTWN7WfV
+         M57W71wzHQXMWWgFHI3Sz3fPWs6aIjrMFyHlgJJntu73yG5IgSMFvYRMaemEb2j5JyW0
+         mumyo2TgAq5shM8RiCJK3HYa7hFO4ET/3Etp/Z6HHNMq2fYwIA7obxoUR3sk4cbz2XUO
+         w4O4G47qZFvttzj4RqO+0xJg8SqugOQXZOlRTmTseOxph4CufPF3aMHR/J5yWh3wxZBO
+         xl0eegGtRS2tUD2mQXd5pjZQBbTsYfzzk/p4yAHE63i9ZB+mhacpPN9bSDrToH5u4Jcp
+         8Q4g==
+X-Forwarded-Encrypted: i=1; AJvYcCV3Ea6hn9e5hIdQXcn5R6CusZaPTKRiStkWL0vj0O3iLC3mms6CWP66Z3OITgHUHTq5GWbw26o3Bo04@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxNI7bhIDdvaOiySovn6ZV2raL+Njxetkx5TVwIyicCS3urAC3
+	dGqVq0A9oAaM0jfj+qwvps82SKkuPDQZQBRzLtt9EQoU1xTEOOrh2DMqkjGV2zU=
+X-Google-Smtp-Source: AGHT+IH4kY+TfZ1uw4oFVFJNs6S8ff7aK9mZHUyqqpe7W5BmQI8FuCowWenPXdGmTodC/EhUEC9URw==
+X-Received: by 2002:a05:6512:258c:b0:53b:1e9b:b073 with SMTP id 2adb3069b0e04-53b1e9bb2d6mr7381629e87.3.1729836585041;
+        Thu, 24 Oct 2024 23:09:45 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e1af34asm62909e87.144.2024.10.24.23.02.18
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e10a915sm64598e87.12.2024.10.24.23.09.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 23:02:19 -0700 (PDT)
-Date: Fri, 25 Oct 2024 09:02:16 +0300
+        Thu, 24 Oct 2024 23:09:43 -0700 (PDT)
+Date: Fri, 25 Oct 2024 09:09:42 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Qingqing Zhou <quic_qqzhou@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, robimarko@gmail.com, will@kernel.org, 
-	robin.murphy@arm.com, joro@8bytes.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: qcs615: add the SCM node
-Message-ID: <flk7n534gfqyivlbl72qco4k5d3c6ravevumjfoh6464pe3qg4@r7ns6zr2i3bv>
-References: <20241025030732.29743-1-quic_qqzhou@quicinc.com>
- <20241025030732.29743-4-quic_qqzhou@quicinc.com>
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Connor Abbott <cwabbott0@gmail.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
+Message-ID: <tg3jxbw4dqafaikl3yfvbl6jwou4ow2t2dnknmm2xpvbkjejrb@7yg76ykbxjns>
+References: <20241022-a663-gpu-support-v2-0-38da38234697@quicinc.com>
+ <20241022-a663-gpu-support-v2-3-38da38234697@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,41 +91,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241025030732.29743-4-quic_qqzhou@quicinc.com>
+In-Reply-To: <20241022-a663-gpu-support-v2-3-38da38234697@quicinc.com>
 
-On Fri, Oct 25, 2024 at 08:37:31AM +0530, Qingqing Zhou wrote:
-> Add the SCM node for QCS615 platform. It is an interface to
-> communicate to the secure firmware.
+On Tue, Oct 22, 2024 at 03:16:05AM +0530, Akhil P Oommen wrote:
+> From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
 > 
-> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
+> Add gpu and gmu nodes for sa8775p chipset. As of now all
+> SKUs have the same GPU fmax, so there is no requirement of
+> speed bin support.
+> 
+> Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 94 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 94 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> index ac4c4c751da1..027c5125f36b 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> @@ -278,6 +278,13 @@
->  		reg = <0 0x80000000 0 0>;
->  	};
->  
-> +	firmware {
-> +		scm {
-> +			compatible = "qcom,scm-qcs615", "qcom,scm";
-> +			qcom,dload-mode = <&tcsr 0x13000>;
 
-No CRYPTO clock?
-
-> +		};
-> +	};
-> +
->  	camnoc_virt: interconnect-0 {
->  		compatible = "qcom,qcs615-camnoc-virt";
->  		#interconnect-cells = <2>;
-> -- 
-> 2.17.1
-> 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
