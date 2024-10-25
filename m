@@ -1,110 +1,84 @@
-Return-Path: <devicetree+bounces-115721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF989B080E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:24:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 072DC9B080B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B153B296FA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:22:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38E4E1C22AC9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF381C07FC;
-	Fri, 25 Oct 2024 15:18:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i2rqJPxA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F7B290F;
+	Fri, 25 Oct 2024 15:21:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CE2187FE2;
-	Fri, 25 Oct 2024 15:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7415821A4DE;
+	Fri, 25 Oct 2024 15:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729869480; cv=none; b=oyawRIzQbHN6mzUFjpFbigsKz5K81/6IBnz+uPiyuxCvxhIrDScBWzTKuSaifm8An0qS4DOLBu+ZcgQtg9L7oE6ZK6IQlgD7+AZSsIdfMv2hG0JarFgri5LXVkkZtt3UzuqV6d8JSZvyBJn/mPe71XcCxpBK0TYuiGRaNsa7vRM=
+	t=1729869678; cv=none; b=Mi7fxdVK8lRcljSRyYFpsBQl5awwQqV6C8NXzCrKoYcAxMDsHDRaVuVdM7DFxEk9ucq9KM9Ly/1eIkOpmMUstgGhTc8XlMCaNackVClgR7Hpq48r3J/VzW85dei50euelwYS3nqmXjxEIbWIFE8JRAs5K7JbbJVBoFAMHZNeU+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729869480; c=relaxed/simple;
-	bh=AFB5dBlvHcC/6M5uimJnSPRLELNuhWnZtKgP9ksYlcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZgVT0oyJuBnx8oTzgDeg367spjNhtHr+9HkWA6jr7GvpZqySaB5Nz7upp1xt3VarjRKHjfpiS2pgpHz1ZdBV878dO32k96Tai/i/ftHvF3pXTC5m6Ubw5xyRILKHopavSRvhbooShxQ1Mt2eamuLIcf6mR1qcAgByyWJAHtvbtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i2rqJPxA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A836C4CEC3;
-	Fri, 25 Oct 2024 15:17:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729869479;
-	bh=AFB5dBlvHcC/6M5uimJnSPRLELNuhWnZtKgP9ksYlcg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i2rqJPxA6j+KyKCKn9OVcq+jQB/rblSmR0AHXaguoSDFk83tFOAjdNO0VznGw6Qxt
-	 Qr+x46+MDX2D8JQHsJtvwU1U/eiJcRAURc6+cT7cfEQqh+uB2IofWoMNgRnrc9V4nL
-	 r5h/PWy9LElGBB/7KjCXOcv9FrW8oSTV1IjVbmttjziTHgIM13hdP9tCjAbLoFIBgs
-	 BkV+iaW6t2ixo89zscM8UFIbGtr2+SN8zloMqPV8m+ajcboZnzXjJFdDNjzMGDcs1O
-	 rvU6mblSuQrtkEUzkAcZCbkCzWrtJrbEBUJVR9YJiVnZLoL8Fx7tz5ahzbe+tK2p36
-	 qi3mQsUUqTJ0w==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1t4M4v-000000002Vj-1zWB;
-	Fri, 25 Oct 2024 17:18:18 +0200
-Date: Fri, 25 Oct 2024 17:18:17 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Abel Vesa <abel.vesa@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: x1e80100-crd: describe HID supplies
-Message-ID: <Zxu2uedfWhAYSCrE@hovoldconsulting.com>
-References: <20241015122427.15995-1-johan+linaro@kernel.org>
- <Zw5w+eCBMQu3CSuz@linaro.org>
- <Zw_tLjudvbTKGAMM@linaro.org>
+	s=arc-20240116; t=1729869678; c=relaxed/simple;
+	bh=e5U0U0Jx+3rxRT0k6XN01ajEY0mjjd9cbDBSKldKw5M=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=JKHyN/9aWVntYMilvb4S8Hc2qc92JT6rsWWJ9/E24MjH4Wu6Eu+6hg4NKS44yDu2epvu0J3U43ZPhza5YqLJIDY2el3mogAuZXrzMYvlFGdAUNrG1Tq3BgjlMa05byZHj51m9CAKw86u5Dj1CmTvNrjG3rFiewd2MQQgngDiCqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5B83C4CEC3;
+	Fri, 25 Oct 2024 15:21:17 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 466CB5F870;
+	Fri, 25 Oct 2024 23:21:15 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Chris Morgan <macroalpha82@gmail.com>, 
+ Philippe Simons <simons.philippe@gmail.com>, 
+ Ryan Walklin <ryan@testtoast.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
+ linux-clk@vger.kernel.org
+In-Reply-To: <20241023075917.186835-1-ryan@testtoast.com>
+References: <20241023075917.186835-1-ryan@testtoast.com>
+Subject: Re: (subset) [PATCH v3 0/7] ASoC: add Allwinner H616 audio codec
+ support
+Message-Id: <172986967525.723095.17341687251793477251.b4-ty@csie.org>
+Date: Fri, 25 Oct 2024 23:21:15 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zw_tLjudvbTKGAMM@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Wed, Oct 16, 2024 at 06:43:26PM +0200, Stephan Gerhold wrote:
-> On Tue, Oct 15, 2024 at 04:41:13PM +0300, Abel Vesa wrote:
-> > On 24-10-15 14:24:27, Johan Hovold wrote:
- 
-> > > +&pm8550ve_8_gpios {
-> > > +	misc_3p3_reg_en: misc-3p3-reg-en-state {
-> > > +		pins = "gpio6";
-> > > +		function = "normal";
-> > > +		bias-disable;
-> > 
-> > Maybe output-enable and input-disable are needed. Can you please check?
+On Wed, 23 Oct 2024 20:56:56 +1300, Ryan Walklin wrote:
+> V3 of this patch adding support for the Allwinner H616 (and variant)'s audio codec. Some clarification of comments, particularly regarding the clock driver changes, and a small fix for the device tree binding (apologies I forgot to re-run dt_binding_check on V2). Review comments otherwise addressed and reviews noted.
 > 
-> FWIW, there is a reason behind explicitly describing the intended
-> direction of the pin for PMIC GPIOs with properties like "output-enable"
-> or "input-disable": On QC platforms, PMIC GPIOs can be either in "input"
-> mode, "output" mode, or "input+output" mode. If you don't specify
-> exactly what you want, then the pinctrl-spmi-gpio driver will only add
-> to the existing configuration.
+> Changelog v1..v2:
+> - Reordered patches to group ASoC changes
+> - Corrected PLL_AUDIO clock dividers to match values from manual and vendor SDK.
+> - Remove PLL_AUDIO_4X clock from the device tree binding (not used in the driver).
+> - Restrict TX-only DMA changes to the H616.
+> - Change the codec name to fit into the 16 char limit.
+> - Move the codec (and spdif) blocks in the H616 DTSI to restore address-order.
+> - Add board enablement (and power/GPIO changes for RG35XX to support speaker amp).
 > 
-> For the configuration above this means:
-> 
->  1. If GPIO6 is disabled or in "output" mode during boot, the resulting
->     mode will be "output".
-> 
->  2. If GPIO6 is in "input" mode during boot, the resulting mode will be
->     "input+output".
-> 
-> I don't know if "input+output" mode has any negative impact compared to
-> pure "output" mode. We usually want to have the pins in a consistent
-> state though (i.e. independent of the boot up state).
+> [...]
 
-Fair enough. I was worried that configuring the pin as an output without
-setting the output value could cause trouble (e.g. always default to
-low), but it seems at least the Linux driver handles that.
+Applied to clk-for-6.13 in git@github.com:linux-sunxi/linux-sunxi.git, thanks!
 
-Johan
+[1/7] clk: sunxi-ng: h616: Add sigma-delta modulation settings for audio PLL
+      commit: d0c322b6e4bff8cc0e40ee4983bf2ab1f7f680f0
+
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
+
 
