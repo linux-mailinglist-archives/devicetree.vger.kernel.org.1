@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-115554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC589AFFD0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:14:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CD19AFFE2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:19:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BEE41F2204B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:14:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A75001C24F16
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C05301D63EA;
-	Fri, 25 Oct 2024 10:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9531D967F;
+	Fri, 25 Oct 2024 10:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="d/v+ddq8";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="msPGqsJP"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="EAOM7n7W";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HsLLxgTy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DCA1D8E10
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3F71DAC99
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729851292; cv=none; b=Kza8o5oiOCpDM/rICeLf5LQciYuJ9P9xpoVCfoeHTbuhFXH6RRalM18/efQU22v/Kjh3vQzpisC/nW8ciOKXXeLZHzpWqvlhQOTA1WypKNwgBMdHSPNkpUBJ78AyGD8dhaIBZpxiJTiAcuEc2dyP1IvK86CXk95JyLFIn2SKtdI=
+	t=1729851558; cv=none; b=Q4zqE3WVOLX9P6kEs9ej5NOuYwGFIL7kgejw11Wf6x9cuUll4qS0ZcqLMCPGzzD1zNyQjIz0xYib9rEn0fyH+0IoIwh01qK5B3ZXgDGNUuxai+RNGbU6ROuCJpjuTNxbfnO41OYzKU0ua+xO+TbPhekrMF5Yw55OKpLN602Hm4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729851292; c=relaxed/simple;
-	bh=bnLMRIPG1uT1fyzLMtDgvyO+WWZCLslcDL7ZrN928b0=;
+	s=arc-20240116; t=1729851558; c=relaxed/simple;
+	bh=wztGz+7mTnjQfQckDlenureqkG6+xK61b49dTcDj3sY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Yy7Hfk2D9OBfiLr0kMSzMdLF167pi3zuds5Nfjiu0wlgd8GkaeY/Abh9dlpzQTjh0JKJkWsLQkF+btWaBUAYEHsX/Hb1fPaOKg7vwRKSQKalOtVGJJ+Z5sBhrcTR7/pf1oCevb3rjFAm4Jc0dXxbLlurZk7Wc+78oUgppx1QMaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=d/v+ddq8; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=msPGqsJP reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+	 MIME-Version:Content-Type; b=R8o8IpKIwvGL87fJ49DIb73PxcuTn1OckE76SJLGCW1emaXSq3Q/pV1G8K2eo/6xKepxShE7x8QR4/H+HkHkRrK0XQ7teyFeqe93R3VQltFdsqgvpEWHFuR85ds5z+ABmcw3ASYo63PC02S7mEqA6Fiv35aIuscK2f9Mw4+70DM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=EAOM7n7W; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HsLLxgTy reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1729851289; x=1761387289;
+  t=1729851554; x=1761387554;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=7v6o4+naE0x6CItW5mEz8zlqR9bkW3D/RUmioNzQIUo=;
-  b=d/v+ddq8zYb8mg6HuxU6IlPD40h4RY6PJ1YAQvj5+5epvmsnpPxxBMAB
-   d15mywXM8UQ3bAjeRh/Nn6N1d7UyzpDkeZ4q2lf18ShaEB+9IGjRnkBpg
-   UkNAfa0C9SKT4xMkAbZQBPCd/B20blvCo15URnoIWm8JtokD/6xCo4z+Y
-   iSjpYtj1acwB7cLM0a0mf7Dkxlvb29aHLJfxEL9fkMfo1N0ck2xZV3Ec+
-   T2/pqx1mLEvAWAWSs4PNmW8QH56rVjZPKJis79Nt7sUrVT9CmZqsPlRi8
-   mrujgwcHcJvcsPM+yVP45IwYTOkekyYDf/F2k+wComr9EzqNozfZvoZPj
-   w==;
-X-CSE-ConnectionGUID: uabkpS4oTLKXMfXpxgMRow==
-X-CSE-MsgGUID: ycQgDt52TAeJqqBfpZqJvw==
+  bh=1itM/kyCdE0gs81rWSjrF3aXRgyfQNm1Tl9jiHBKESM=;
+  b=EAOM7n7W/ElkuQv9nl8vZ/g2cP/H8wk3bSa+E4aWdnxIX/hFlcI493wt
+   ekFEkVzphLaXoihW9VTybU19avU5yu4RMzixC2AnhWpMlDMBWfzisn/1B
+   werEmF1kGdKbbqa4s2F9G83zNdElHxlUzdE9tgn51MfllqKoyRmGzHONp
+   isFsVnMK9vX38fnszppl8U7zy2hQOmGAhcfK5xgl8OKyXr3WFaOO9IYzz
+   ZW5L9qhTmU7ZvkcQKTkz4C9fKyTWafTmWpl7SBAFcHfDO9pHCxGCF9Nyk
+   HgKaRisQQKNf/zuDf287EQaEMd5AEXnPU0iPRy9BlPccs/fxtWspa2ABX
+   g==;
+X-CSE-ConnectionGUID: 2eIj9DeVQVqdqX0utdSxuQ==
+X-CSE-MsgGUID: dwE/WrBaSKeaQH2e20x1LQ==
 X-IronPort-AV: E=Sophos;i="6.11,231,1725314400"; 
-   d="scan'208";a="39672755"
+   d="scan'208";a="39672877"
 Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 25 Oct 2024 12:14:46 +0200
-X-CheckPoint: {671B6F96-9-21611FC3-DAD22B0C}
-X-MAIL-CPID: 036AAD7BA8D7328E22C5439D9AECCE7F_4
-X-Control-Analysis: str=0001.0A682F27.671B6F96.0096,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7ABE816809A;
-	Fri, 25 Oct 2024 12:14:41 +0200 (CEST)
+  by mx1.tq-group.com with ESMTP; 25 Oct 2024 12:19:12 +0200
+X-CheckPoint: {671B70A0-21-69FF9A8E-EE9CEDAF}
+X-MAIL-CPID: F2B36C0168125F39CE454E81CF2DD6CA_0
+X-Control-Analysis: str=0001.0A682F24.671B70A0.00C9,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CA7441643AB;
+	Fri, 25 Oct 2024 12:19:07 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1729851282;
+	s=dkim; t=1729851548;
 	h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=7v6o4+naE0x6CItW5mEz8zlqR9bkW3D/RUmioNzQIUo=;
-	b=msPGqsJPFEIgsFTBz+I8O12F2odlwZDIOd6TNNY85T1ielLBw+aVMYg6rbN6+eTcxqcTcJ
-	zNhdq57uUbwYWFhTcJgpkly4eQXkHk2ciiuxATlU/sTUSb62lIOJIgAVz8wGQWJSWCQEPT
-	xnI2eLf1wpdjkH6QEjIp9psQitEhEQfFsROBxSO0Ezq7ADHk3sHRwLOPoLyZ7oa/AEc/Hh
-	RL3YMY9D3C7VtJNIDPwLAgG5wV+9P96Fe7Z4wBTIO7Jxy+Tx042UlwZHzW1mXjCEUAJ6/V
-	9pbrtvzMFkPhvrhPxB0q9XsQnRtUQqFFdFGEpwyabs4SCzQfvzIfaNDQgk1c0w==
+	bh=1itM/kyCdE0gs81rWSjrF3aXRgyfQNm1Tl9jiHBKESM=;
+	b=HsLLxgTy3ki3jI0JfhPZ/z4sFsoX7ufdNg5Q2Cns+eqf1SF0M8emb6jQ5sfc7GNoQT8YKL
+	lHKMWYdXqsHMPKMvrNu9zzfvMojX7THjWUGZBSLLX/WasP0rIyGCaaQJC0iyGDUXe6e/rQ
+	3VHBGzY4dBOL2XOo/OkS5pyP4ERUIJI0qtpc57QJCyYpaEQssP39/OaYtf3gYBw3jhO8X9
+	fa0GWxo264PZxVut2WnsFGKW/sFLPFQH2PChRrM7kUKMnoB/HzFpKxiX33bnIeZy1WbJfz
+	IKMRJOU9YNFsqMK3tJUSV1DmzZl5mMEjpjbwPcYj71FA4+nbwk2h1wlIFwLzSQ==
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Fabio Estevam <festevam@denx.de>, Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: soc: imx: fsl, imx-anatop: Add additional regulators
-Date: Fri, 25 Oct 2024 12:14:40 +0200
-Message-ID: <3594795.iIbC2pHGDl@steina-w>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: imx: fsl, imx-anatop: Fix the i.MX7 irq number
+Date: Fri, 25 Oct 2024 12:19:07 +0200
+Message-ID: <5991537.MhkbZ0Pkbq@steina-w>
 Organization: TQ-Systems GmbH
-In-Reply-To: <20241025004159.1571782-2-festevam@gmail.com>
-References: <20241025004159.1571782-1-festevam@gmail.com> <20241025004159.1571782-2-festevam@gmail.com>
+In-Reply-To: <20241025004159.1571782-1-festevam@gmail.com>
+References: <20241025004159.1571782-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,38 +89,62 @@ Hi Fabio,
 
 thanks for the patch.
 
-Am Freitag, 25. Oktober 2024, 02:41:59 CEST schrieb Fabio Estevam:
+Am Freitag, 25. Oktober 2024, 02:41:58 CEST schrieb Fabio Estevam:
 > From: Fabio Estevam <festevam@denx.de>
 >=20
-> i.MX7 has the following anatop regulators: vdd1p0d and vdd1p2.
+> Unlike the other i.MX devices, i.MX7 has only two anatop interrupts.
 >=20
-> i.MX6SX has the following anatop regulators: vddpcie.
+> Add logic that contemplates such case to fix the following
+> dt-schema warning:
 >=20
-> Add them to the allowed patternProperties.
+> anatop@30360000: interrupts: [[0, 49, 4], [0, 51, 4]] is too short
 >=20
 > Signed-off-by: Fabio Estevam <festevam@denx.de>
 
 Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
 > ---
->  Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/soc/imx/fsl,imx-anatop.yaml       | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 >=20
 > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yam=
 l b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-> index ae708a658d52..f40c157908aa 100644
+> index c4ae4f28422b..ae708a658d52 100644
 > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
 > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-> @@ -44,7 +44,7 @@ properties:
->      $ref: /schemas/thermal/imx-thermal.yaml
+> @@ -36,6 +36,7 @@ properties:
+>        - description: Temperature sensor event
+>        - description: Brown-out event on either of the support regulators
+>        - description: Brown-out event on either the core, gpu or soc regu=
+lators
+> +    minItems: 2
 > =20
->  patternProperties:
-> -  "regulator-((1p1)|(2p5)|(3p0)|(vddcore)|(vddpu)|(vddsoc))$":
-> +  "regulator-((1p1)|(2p5)|(3p0)|(vdd1p0d)|(vdd1p2)|(vddcore)|(vddpcie)|(=
-vddpu)|(vddsoc))$":
+>    tempmon:
 >      type: object
->      unevaluatedProperties: false
->      $ref: /schemas/regulator/anatop-regulator.yaml
+> @@ -52,6 +53,23 @@ required:
+>    - compatible
+>    - reg
+> =20
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx7d-anatop
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 2
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          minItems: 3
+> +          maxItems: 3
+> +
+>  additionalProperties: false
+> =20
+>  examples:
 >=20
 
 
