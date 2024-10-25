@@ -1,85 +1,102 @@
-Return-Path: <devicetree+bounces-115684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B16E79B0526
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:09:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 436079B0536
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:12:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7591F2821D2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:09:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EADAB1F2436D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB9A18E76C;
-	Fri, 25 Oct 2024 14:09:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FbSvb2CC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 184311FB881;
+	Fri, 25 Oct 2024 14:11:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00961859;
-	Fri, 25 Oct 2024 14:09:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95ED413B584
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 14:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729865369; cv=none; b=Fvbh3jgQS9nD1c9gvDqTBVJGTH88J08j1LwU0uTHfCoxYI2osdOxVtIK3ikIJ+GIxQFLOH+jSxOVmU45OWnX3cYbGgc+w8JaUA97KON4W4XKvcxhnHKmhRMA/gWlYDzZww2pInQFo8Wumj8wIzkQidO8GFKXjkMGooEXpfIKlZg=
+	t=1729865500; cv=none; b=LbYstoqgzfT+jq+E2BH0lOUG2apSmpFXytnzHc/tBlNol3KWgjHxjY+BUIn9N7Rf2Ed8S/VRRyQutGGlIr3hIjOkjEcIL9y13hcIOGn89ifYlaD/5ZgYWZXWPVivdfn5RqRQD7BBujMQwdkU8L9m7v+WNvNYGM/TvmjXJPMSQXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729865369; c=relaxed/simple;
-	bh=oaSAdUb8Lt5/ZPApU1GTkGXfYmg7yp1/jlNq8cLB5PE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZQT/QdCdIoEk6f2IMD7jWb3gY5JPuTactS5mZJskdNPc0oMpOmDTTZSVy/GrqBvYPMweuQn952Pr7uozmYVPm9hpJkOhd0qEQyj1tlvXTaKeOKBIMutx0S6r/TDi3uX/vmJvbRsZFvk//wZEG4YzceWr66Qq+K456scHJHHfCwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FbSvb2CC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12E82C4CEC3;
-	Fri, 25 Oct 2024 14:09:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729865369;
-	bh=oaSAdUb8Lt5/ZPApU1GTkGXfYmg7yp1/jlNq8cLB5PE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FbSvb2CC6g2rd8gRuldxfCQKYaIUWvr1gQueoI6XeZ7Fvw2lMwfydR+Ccwdx5Gqo8
-	 fiFX8X3DF0ph1IvddlhI6APUgmENXnFhKnUvnGGWrX63MpwzZgT2/G3vCiokLh8GXB
-	 0Wm8kwnIxIEyWFQrbcrDRaQKr93ynCcnNMKZosBjJQk3j+InC1EIzS8g6XtZhD5n4G
-	 qzhvSylbQh2lSoxbCPlDyRJjkedQ0gQTPoeFvNg5isHObG1mQP0cFQk3c+KJDmcTc/
-	 NvNCVHIivNWg65tDojBEPX1hwCF8pg8yhbl9LNUPbcKOU/a52+p6yNiAa4NdKHkFfF
-	 8zSvJXkKHIRdg==
-Date: Fri, 25 Oct 2024 09:09:28 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: wangweidong.a@awinic.com
-Cc: quic_pkumpatl@quicinc.com, broonie@kernel.org, conor+dt@kernel.org,
-	masahiroy@kernel.org, arnd@arndb.de, yijiangtao@awinic.com,
-	perex@perex.cz, neil.armstrong@linaro.org, tiwai@suse.com,
-	luca.ceresoli@bootlin.com, rf@opensource.cirrus.com,
-	linux-sound@vger.kernel.org, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	lgirdwood@gmail.com, herve.codina@bootlin.com,
-	pierre-louis.bossart@linux.dev
-Subject: Re: [PATCH V2 1/2] ASoC: dt-bindings: Add schema for "awinic,aw88081"
-Message-ID: <172986536397.2069820.12456852414527695462.robh@kernel.org>
-References: <20241024090324.131731-1-wangweidong.a@awinic.com>
- <20241024090324.131731-2-wangweidong.a@awinic.com>
+	s=arc-20240116; t=1729865500; c=relaxed/simple;
+	bh=PMa3XFW8isx7OEfx6EovNavMK8qZ+TaBedE9QEUSbxc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fhHV2cXm7sJwpGMWdBzhR8O86p6rPb6BKiRpiQ4+Q3He8e5KbDRFdHncDqadFvAcVXDYyRFlxHmhh/+Lm7A2nW+cUD9vz1nLdSycBtsLXwwcsL9czssYc+V1MV8bKBVc96fMoTuZt7+XhLVnFKRl+2Bk8NeWnRxfcfx78I5oOoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <rcz@pengutronix.de>)
+	id 1t4L2M-0005MV-CY; Fri, 25 Oct 2024 16:11:34 +0200
+Received: from dude06.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::5c])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <rcz@pengutronix.de>)
+	id 1t4L2L-000NRE-39;
+	Fri, 25 Oct 2024 16:11:33 +0200
+Received: from rcz by dude06.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <rcz@pengutronix.de>)
+	id 1t4L2L-00DL3M-2x;
+	Fri, 25 Oct 2024 16:11:33 +0200
+From: Rouven Czerwinski <r.czerwinski@pengutronix.de>
+To: Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: kernel@pengutronix.de,
+	Rouven Czerwinski <r.czerwinski@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add lxd
+Date: Fri, 25 Oct 2024 16:11:27 +0200
+Message-Id: <20241025141130.3179166-1-r.czerwinski@pengutronix.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241024090324.131731-2-wangweidong.a@awinic.com>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: rcz@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Add vendor prefix for LXD Research & Display, LLC.
+Link: https://www.lxdinc.com/
 
-On Thu, 24 Oct 2024 17:03:23 +0800, wangweidong.a@awinic.com wrote:
-> From: Weidong Wang <wangweidong.a@awinic.com>
-> 
-> Add the awinic,aw88081 property to support the aw88081 chip,
-> which is an I2S/TDM input, high efficiency digital
-> Smart K audio amplifie.
-> 
-> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
-> ---
->  Documentation/devicetree/bindings/sound/awinic,aw88395.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+Signed-off-by: Rouven Czerwinski <r.czerwinski@pengutronix.de>
+---
+v2:
+- no changes
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+v1: https://lore.kernel.org/all/20241023124411.1153552-1-r.czerwinski@pengutronix.de/
+
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index b320a39de7fe4..83d9e49eeb869 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -872,6 +872,8 @@ patternProperties:
+     description: Liebherr-Werk Nenzing GmbH
+   "^lxa,.*":
+     description: Linux Automation GmbH
++  "^lxd,.*":
++    description: LXD Research & Display, LLC
+   "^m5stack,.*":
+     description: M5Stack
+   "^macnica,.*":
+
+base-commit: c2ee9f594da826bea183ed14f2cc029c719bf4da
+-- 
+2.39.5
 
 
