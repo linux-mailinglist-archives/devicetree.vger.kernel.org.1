@@ -1,87 +1,147 @@
-Return-Path: <devicetree+bounces-115732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5D749B0864
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:34:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 345369B0874
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:37:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07A89B22760
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:32:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D50F51F23ECE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD9C1386C6;
-	Fri, 25 Oct 2024 15:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4130A1632CD;
+	Fri, 25 Oct 2024 15:37:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kCQBI6v3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7103A21A4A6;
-	Fri, 25 Oct 2024 15:32:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A82921A4DC;
+	Fri, 25 Oct 2024 15:37:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729870370; cv=none; b=luhZpVqKYpTzYHxtmokgiEq1QVUoyrinv5XBOyxaqeJDejDuVArRf3S1/XStMNfD7QUiExnYxtTRNVePY/9cnku8T9eWIJsRwUwyPlHCBDE55lx3tRzHRekI2YokBqhcGe9PwC73TvjzwalgL9G5T7MAIvBJlq0rMHa5BZlZIUs=
+	t=1729870625; cv=none; b=SWJ4ONW7bqoCg3qyeiopG/3aRpj87XBM8yuIgobLKD1P7lnhoHk4YkwkvNQB/OAyEj4DXanI/fMDvH7H0Qj1oiCgWOMus281lTxlO3PxUnEHZGtCwfdTd6qTjZhrCpaynsJuYFLcJ3PpDSgpIRj/eT7468sM25WAc37vsXhEZcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729870370; c=relaxed/simple;
-	bh=h4yHFR5CfxaWYHAiWca8egMLmsiIuHhN8G97pEqfb88=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=dFd26XyFqqtwNYYO3vReJ24UMUTzjQ3cy4HFkiQQyNyiyOtgSpSSt42Ndz1A9JWb2tHK5+2KBkgYov3M7nZ3me+TONmV9XwyA2bSCrzDxWuxMgPHqpk07tLm6MorFeAdkTa4p8IOtBk4fT3Iz15Oeh0VLonjU+iN9hDH6GN2y08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E376CC4CEC3;
-	Fri, 25 Oct 2024 15:32:49 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id 451CB5FA0C;
-	Fri, 25 Oct 2024 23:32:47 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Andre Przywara <andre.przywara@arm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev
-In-Reply-To: <20241007222916.19013-1-andre.przywara@arm.com>
-References: <20241007222916.19013-1-andre.przywara@arm.com>
-Subject: Re: [PATCH] ARM: dts: cubieboard4: Fix DCDC5 regulator constraints
-Message-Id: <172987036725.732494.12289812969711574519.b4-ty@csie.org>
-Date: Fri, 25 Oct 2024 23:32:47 +0800
+	s=arc-20240116; t=1729870625; c=relaxed/simple;
+	bh=U7a/FhaEaBlq9Y+GGNScoitt5QffxKkyGd7hLp9aPdw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IkOjji1RTyXsNd28aLXKrxOniSxTx76ucxPq6NiNZP/eq99VyQtZKGzPmCLsofdJd8Zi8zkGvjMERS8L35+oCvkcsPsMFldrO91uVO0s7aMjUU8fae81FoZcBLtOqOxlMmyUw78S/jRuhruSuY05w/TvuSiBxpPZW/aB5VqOVE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kCQBI6v3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PB5rAP015472;
+	Fri, 25 Oct 2024 15:36:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	myh7xxzrJi7sDbWl9S5raZY4azAtv3tbnoi2CofFHyw=; b=kCQBI6v3bHbU+FKV
+	pnt7uOqm/HG1KfLlPcXxur/S7fvAAndsxHbbWXNY/tpS1nf+XndgofFH6bjjebhJ
+	k6VUSa5z+OoTFXs7IBEAtSbE3c/6dZlPXMGwXgOW3ymiQrxeOSLRkrkRw1aeTGfo
+	sAXf7umI22wMIDkety2g91afBk1QaBBc6/u+Yh/K3o4SbpfiscchIOHy5qAM6rs4
+	Ebvi4FtDtBRkBl41wjU/e3oPShZdcmRRMIJYt2HcQk5ocb45erepaUK3vrSql6ty
+	lDIWkZl6LpNeISJnFGeqU5tFSSoJe2zB8MMuVY3d9eQJL80WZAl9OgEx2CCF19jc
+	oMJNGA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ga5jrx5v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 15:36:58 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49PFawll013357
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 15:36:58 GMT
+Received: from [10.216.47.209] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Oct
+ 2024 08:36:53 -0700
+Message-ID: <672ceb3d-1b19-461f-b17c-eaa50d936aa5@quicinc.com>
+Date: Fri, 25 Oct 2024 21:06:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Add EPSS L3 compatible for
+ SA8775P
+To: Krzysztof Kozlowski <krzk@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Odelu Kukatla
+	<quic_okukatla@quicinc.com>
+CC: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sibi Sankar
+	<quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240904171209.29120-1-quic_rlaggysh@quicinc.com>
+ <20240904171209.29120-2-quic_rlaggysh@quicinc.com>
+ <86fad872-ccfe-4aa2-906c-c938946af8b7@kernel.org>
+Content-Language: en-US
+From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+In-Reply-To: <86fad872-ccfe-4aa2-906c-c938946af8b7@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: AFNZojUn8lZUg60FfJuXSEKDSOdEm966
+X-Proofpoint-GUID: AFNZojUn8lZUg60FfJuXSEKDSOdEm966
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=999 malwarescore=0 clxscore=1011
+ priorityscore=1501 adultscore=0 mlxscore=0 spamscore=0 suspectscore=0
+ phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410250121
 
-On Mon, 07 Oct 2024 23:29:16 +0100, Andre Przywara wrote:
-> The DCDC5 voltage rail in the X-Powers AXP809 PMIC has a resolution of
-> 50mV, so the currently enforced limits of 1.475 and 1.525 volts cannot
-> be set, when the existing regulator value is beyond this range.
+
+
+On 9/4/2024 11:53 PM, Krzysztof Kozlowski wrote:
+> On 04/09/2024 19:12, Raviteja Laggyshetty wrote:
+>> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on
+>> SA8775P SoCs.
+>>
+>> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+>> ---
+>>  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> index 21dae0b92819..de2c59ddc94a 100644
+>> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> @@ -33,6 +33,8 @@ properties:
+>>                - qcom,sm6375-cpucp-l3
+>>                - qcom,sm8250-epss-l3
+>>                - qcom,sm8350-epss-l3
+>> +              - qcom,sa8775p-epss-l3-cl0
+>> +              - qcom,sa8775p-epss-l3-cl1
 > 
-> This will lead to the whole regulator driver to give up and fail
-> probing, which in turn will hang the system, as essential devices depend
-> on the PMIC.
-> In this case a bug in U-Boot set the voltage to 1.75V (meant for DCDC4),
-> and the AXP driver's attempt to correct this lead to this error:
-> ==================
-> [    4.447653] axp20x-rsb sunxi-rsb-3a3: AXP20X driver loaded
-> [    4.450066] vcc-dram: Bringing 1750000uV into 1575000-1575000uV
-> [    4.460272] vcc-dram: failed to apply 1575000-1575000uV constraint: -EINVAL
-> [    4.474788] axp20x-regulator axp20x-regulator.0: Failed to register dcdc5
-> [    4.482276] axp20x-regulator axp20x-regulator.0: probe with driver axp20x-regulator failed with error -22
-> ==================
+> Your device driver change suggests that cl0 is compatible with other
+> variants.
 > 
-> [...]
+> And what about generic fallback here? Can it be used and device will be
+> operating correctly?
+> 
 
-Applied to fixes-for-6.12 in git@github.com:linux-sunxi/linux-sunxi.git, thanks!
+Falling back to "qcom,epss-l3" won't work because we need to vote into perf state register.
+I am introducing a new fallback compatible "qcom,epss-l3-perf" for perf voting, which can be used for upcoming qcs8300.
 
-[1/1] ARM: dts: cubieboard4: Fix DCDC5 regulator constraints
-      commit: dd36ad71ad65968f97630808bc8d605c929b128e
+epss_l3_cl0: interconnect@18590000 {
+       compatible = "qcom,sa8775p-epss-l3", "qcom,epss-l3-perf";	   
+};
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@csie.org>
+> Best regards,
+> Krzysztof
+> 
 
 
