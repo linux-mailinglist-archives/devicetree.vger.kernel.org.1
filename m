@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-115406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BF459AF66A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 03:09:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 835689AF66B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 03:09:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FCCE1C2173B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 01:09:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 487832830C9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 01:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95511171D;
-	Fri, 25 Oct 2024 01:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE65171A7;
+	Fri, 25 Oct 2024 01:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ikrewvn/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lb2Mjgfc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFFB111711
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 01:09:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C6712E75
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 01:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729818570; cv=none; b=GvyI0nFYHhOO59ZFWVJrs1nD9fyzbz+ahJldZlkes9dipLhk486PZzH/h73sybcb7oa7SCogR7NO3qBQkiTLJqvh7RopfSEMwRDqOE/irnsCT86Qs+6X7j+1hGnabmwtwPn6fc85UHFcvfymMcDnc1cZR33Dex4eUmV9Bh+SrqU=
+	t=1729818572; cv=none; b=UgqBu2IbDXf961kX6g/mH4UF5J2pO2UXmXEo6NWyHIoSC8EGrnJSJRUHLoaVowRaabFsYjAKR9XovwGkmg/gcJ8xhI0+7yrxi4ArhehxKYcEsPSKnX+J/NB+mSI5+hNH98BQ32fe2kQSxb+m+giQCSswuAEXd1Xz6iVjzCj/HTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729818570; c=relaxed/simple;
-	bh=kwpQFCul6ljSc988E5zCOYCV2xunq5crF6fjEdTWrw8=;
+	s=arc-20240116; t=1729818572; c=relaxed/simple;
+	bh=+emsQFoCbsa5HyG/22HH3bVMiwgUB13Ah2l8gAn7jJA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RJOi78o+4EpGAc5zZSvuNyuz8509lCcMVHaF7D8AKiGQY9Lh2iOkI9/mYmdxf+AH7zdITZiL8fYauG8GxPfY+988AvthyG6DPhbhFBPVU+ZT4XF2+87mhssDSYyr7NLtQ6eIyA3MbW0EuGchsBjFYUdncw8WqpY93DYzUlwHW54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ikrewvn/; arc=none smtp.client-ip=209.85.215.172
+	 MIME-Version; b=nuuCKECw1TEOvUVA+6igO2kawIDZAJYCjDFURiwU7RL4hv1ixPc2vdB/jHdSoyO+J4h86T1PFDObRbEpBATlPTmeE3kjhcfVh582fB66jWsTqhuTuSkR1qr6dtaQ+VrjS4KKRX2NUUmsnls2z7idhordJSbRZFZFz3lmfIhtp+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lb2Mjgfc; arc=none smtp.client-ip=209.85.215.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7ea68af2f62so1090362a12.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 18:09:27 -0700 (PDT)
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7ea7e250c54so1088164a12.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 18:09:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729818567; x=1730423367; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1729818570; x=1730423370; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=A2I/3Lu6OBvOC4tuDnDafL3hhaN2i1Q4Fcz+C2/JdxM=;
-        b=Ikrewvn/OmUwC3Wr7vEG0gA0GcTkOHSc/B7X6FXl9RNQ6HuZVXVLQB3Kyu/3+xsOtK
-         OK4XuOIGNRlbrr7jbvs65jTnYKnSxDNlEVMjgYvKRrikp+9+Xf6dw5Y+0v1A3Up5QZb6
-         U3RspdWwyDcMYZ/hyBxd7RY/6HTjBL/Mir6wb3KDHCfCsKRKtVJPWckjsR8sjNQY4cId
-         ayZ5ItIGOIyhpJteHbxdRyC8H3X0Fk8xF1BddIaJybC3jLLTfmDeDqDYb2JyLK7gkHNq
-         0uDEX6+6YBMxXU3I+Y9wzHjV89zk2JaqY2yu5SnaADyo0Yamf3nxcjB7u+TxXSItmREU
-         ixZg==
+        bh=jGdp4UlHi9Rl6xWRgeoMoP+ShACtzGL6t7tsX92UPPE=;
+        b=lb2MjgfcVypsd8T/tOZKrYALU19rfq+MtWr79ImiFBbzVyN8OgKLBihNKE9ngNNfNy
+         3ioLsUaUwB5oVGhHRY7Pcf9Xo40df515n5wAmtH2nqVNiAD5bkvVHvRN4domoCGoCRES
+         XDTPuzyGVsTULlj/CXhJF7Z7otQA3p/jFHLwbnYifII8rUGYcARHwqZTYmMB3ziZkXsU
+         OAWSFZx6zQKqVWpmZR4vtCaTHwzyMnpeLPhPyq3CAStEixRzrPejA3d4PJjnhuVzWKsH
+         c4uQv6Ln8O6rQ6b6V5rEuVDjyK+RkRK/jHXs6Xn/dGrkbC6f5tAhOu1uz8l6QE6Cgi6K
+         IuWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729818567; x=1730423367;
+        d=1e100.net; s=20230601; t=1729818570; x=1730423370;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=A2I/3Lu6OBvOC4tuDnDafL3hhaN2i1Q4Fcz+C2/JdxM=;
-        b=C6osp8qlOupp9ueR5JrlKjwHo3vLvsIPuZMwG+cDLYFdtRWiXdu5vKVT2EHQzN7wAP
-         o4CHLulbKyhUaWUUwi0OfCalUcfBzIY9VoaiKrv5XIFYK+W5vI6RfLkP2cut5HeJOgsZ
-         zeQG88qSc86z96he4pbkIciVihkL6Z8VsVgbQ4YN772KJ2wcfExdBDA6e9d1VDlO5TBm
-         d4KOr5IySGRXHPrURg3eOHrX+Saxn5grl/BbHyrZU97ihCUpBJWOhCajC90vY6AQc/5p
-         oyEJKl4qk6MNjKZoeoJPBs7aDS21udDZUKzZR5Z8b0z6+Lb5g8geZDlijIsVhCOcvuMe
-         ajIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVn9VK/2iw59nrlrhAHjLp8TxU1j8iPQXtDn3kvb/9xTxoxuxAxN8StI8nOXxIEI2Qn1ltpzZIpXSpL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfXgIREo1xKxqYsfEu7KTS8ad8bYyiPbo4DfzkiMlCjb6aObNr
-	45zQRIJypzU4PEknQWbaDu3XTd8vn7y1qtGIvdaMIckZ3Xz2X7en
-X-Google-Smtp-Source: AGHT+IG0dZYus0dKlZXhILQCNo4QWnAtvU9O1prTfWjP1IqAIAetcVP41UgZHVHhX+1lDBk4WUiuGA==
-X-Received: by 2002:a05:6a20:c997:b0:1d9:1dcd:b22c with SMTP id adf61e73a8af0-1d978bd014amr9387766637.47.1729818567100;
-        Thu, 24 Oct 2024 18:09:27 -0700 (PDT)
+        bh=jGdp4UlHi9Rl6xWRgeoMoP+ShACtzGL6t7tsX92UPPE=;
+        b=WPD6bdnnly3YV6KGrZOVm5B1wNvnKeyvNHRlpBf3w6imvCHcHZ5QdjfeODRIitvzt3
+         hHVkGEUQNyBSAo+XwQkM3sTgM1byjd1qzNciPnDTMUTbA0UBe6M7HyUacYfJA+UeZTL3
+         KHCqlnzEu4evA7YrfGiwUjNFy/yWZOO9erLemG4skGVH2yQUwY2rtzMFmey5ZUq+DN3q
+         SY5MWcHzf+0bFx0/sY3ps5naTibYqYM5SpEwppK0vzPfZ4WMUnuRoLqhS4JWylqNPt42
+         6lRAfsWHN/SXrw1wl9+9wt2H93IeZZMBTthuPcoO3/mHAFZDRht0xUDEEt6owMif0SdU
+         eqKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVIXyRFIxiLaxvvJlARGDMrIPAysE6COk4Z26orD8+EuhhYU3OwSSQtvJ/v/b4qiTywp6wKAF8JhIHS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkT4lMTiT69+dvLCEbyRisFBI/7Kol8u+Mkg/UoAP7MIVxUsyl
+	kcMoRu/h6kzSU/ZjEwI3gW6DLD8cRZSG9kU3CbHrLzYm7BDe7ARc
+X-Google-Smtp-Source: AGHT+IHYYcX6rcKuACmUMAqT2j7xUKhF7rX1Eq0psxApSO+AaLQHyyTER201tiR+T8CoSPfZiRyBIw==
+X-Received: by 2002:a05:6a20:cf8c:b0:1d8:fcf2:9ce2 with SMTP id adf61e73a8af0-1d978bb3472mr9319125637.44.1729818570143;
+        Thu, 24 Oct 2024 18:09:30 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:b160:3edf:6e5d:8d4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a0b93csm52875b3a.137.2024.10.24.18.09.24
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a0b93csm52875b3a.137.2024.10.24.18.09.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 18:09:26 -0700 (PDT)
+        Thu, 24 Oct 2024 18:09:29 -0700 (PDT)
 From: Fabio Estevam <festevam@gmail.com>
 To: shawnguo@kernel.org
 Cc: robh@kernel.org,
@@ -76,9 +76,9 @@ Cc: robh@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	imx@lists.linux.dev,
 	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/3] ARM: dts: imx6sx: Fix tempmon description
-Date: Thu, 24 Oct 2024 22:08:54 -0300
-Message-Id: <20241025010855.1593365-2-festevam@gmail.com>
+Subject: [PATCH 3/3] ARM: dts: imx6sl: Pass tempmon #thermal-sensor-cells
+Date: Thu, 24 Oct 2024 22:08:55 -0300
+Message-Id: <20241025010855.1593365-3-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241025010855.1593365-1-festevam@gmail.com>
 References: <20241025010855.1593365-1-festevam@gmail.com>
@@ -92,32 +92,26 @@ Content-Transfer-Encoding: 8bit
 
 From: Fabio Estevam <festevam@denx.de>
 
-According to imx-thermal.yaml, the valid compatible string
-for i.MX6SX is just: compatible = "fsl,imx6sx-tempmon".
+According to fsl,imx-anatop.yaml, #thermal-sensor-cells is a required
+property.
 
-Also pass #thermal-sensor-cells = <0> as it is a required property.
+Add it to fix the following dt-schema warning: 
+
+tempmon: '#thermal-sensor-cells' is a required property
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/nxp/imx/imx6sx.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/nxp/imx/imx6sl.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sx.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sx.dtsi
-index b386448486df..a4abaee771eb 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sx.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sx.dtsi
-@@ -715,13 +715,14 @@ reg_soc: regulator-vddsoc {
- 				};
- 
- 				tempmon: tempmon {
--					compatible = "fsl,imx6sx-tempmon", "fsl,imx6q-tempmon";
-+					compatible = "fsl,imx6sx-tempmon";
- 					interrupt-parent = <&gpc>;
- 					interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
- 					fsl,tempmon = <&anatop>;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
+index 6aa61235e39e..6c98670a44ff 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
+@@ -631,6 +631,7 @@ tempmon: tempmon {
  					nvmem-cells = <&tempmon_calib>, <&tempmon_temp_grade>;
  					nvmem-cell-names = "calib", "temp_grade";
- 					clocks = <&clks IMX6SX_CLK_PLL3_USB_OTG>;
+ 					clocks = <&clks IMX6SL_CLK_PLL3_USB_OTG>;
 +					#thermal-sensor-cells = <0>;
  				};
  			};
