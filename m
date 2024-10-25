@@ -1,125 +1,131 @@
-Return-Path: <devicetree+bounces-115766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4509B0A3E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:48:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B56699B0A53
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:52:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E12AB21546
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:48:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CDD1283452
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8938B1C07FC;
-	Fri, 25 Oct 2024 16:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44DC91D63D7;
+	Fri, 25 Oct 2024 16:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B+RhSiz6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HyOcdprT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5031B189916
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 16:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF4A6F099;
+	Fri, 25 Oct 2024 16:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729874877; cv=none; b=hcdfuj9FdZCSd345ubJ/4bgCibkIIikx96W37Ks/E424O68ixSnRdHhP6tXA0ksnXmVF5WYlq+aO+mL6cntWAgSCancEJVmQ1+TEhOoxvPBk89HrV5VE9OxLqt8gRouAe2ZDXenTiN9RaUpJZBmD2uFVzAs2kE/nZ9LJIVDzOAY=
+	t=1729875154; cv=none; b=cX32zQ8kCoEdqLn8RG/c6BaKskx8cHco6eer5jseNW3LlwWaKlAQuezmxbxubz/vPmTJOAaAcicHWgpyJ6aGxVzj9n7G5O/W46U5wukjpqMirCTQppXffIQjFXhxSC5hUK1N4ltiKzYJY+bY/4Wkc2WNog1WMghWis0Mvk77g2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729874877; c=relaxed/simple;
-	bh=CObiHbi4jPloahOTX9vchq2ji+ft7iwH/VOmwjuwycU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=KHU1hcgd1Kl9X/iLr/GN9vl6FJBTxHzq3Lodrwa/8cm24K4WAuJEr3Nn19SlKXeQaFttxjSs+XwnUOeT1n4jfoIzuqy3+jXHQoexmDcuX52QZ7j6pQRYPvqQRsZ/EWAo7pFq1wzU1uOCocxAiqJp1biFdNtiC5+0uilMHJiiXz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B+RhSiz6; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d51055097so1476749f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:47:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729874873; x=1730479673; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pq8Pls6wfcoOIkkesonALKXUkplX5+7I7+nTvhjnX+Y=;
-        b=B+RhSiz6rLDUeFQgQXnM34HAsfMAlA/z4PBkcGgbjYNfFoZgCPWaqXP+eRx1t/KQDj
-         U7KiBRw/GNElnYa7tXGyE/LAK7t6nR9Jjv8qysnSqXON8A25uFIG3izq9eZyf28jAG1b
-         mY24CdUQCKjUrwe29SycsmgZyfmE+wevzso87lRMKyGMNWRAMCL5/DGtZpeaWXkpfCzg
-         tB0CCO5Ak93cH1WxdMcf5rF1CJJAcIZG3x3MZJkL/hVM9maSpxrEGDyRICDffHluZuU3
-         39tQ3z6+bY/9HENcsp1ttD6lSmKetIjBG7IKx8iuYOsnjJ7u8GFPhxrLgWjY19Umb/I3
-         xzzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729874873; x=1730479673;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pq8Pls6wfcoOIkkesonALKXUkplX5+7I7+nTvhjnX+Y=;
-        b=LAEhagLVXZlLeE4+edwo/kbcm73SylN6EnML1xLbpdlXpjOEbsHScrgo82FpS5cQnM
-         HcFWDS0lRp1uSb4oJs6msYkx4GiToHplyhBCm98edhjY/6el6BwXnQlkuqEIqbJ8B7uJ
-         YGc/FKSNVIDOKUpo4L11MgvQlxGz/oESU3+973NUcBuV11en8SiLNxVLIrGJvhiponC9
-         u/J0Z5ag6CbRBINJH1YU4z7HNCHHJLLMCx4osw77XaBsnwohpiq90BuCxA6gti9Q7lhD
-         rkrItYkdT7kzjTXDIj3br05VdEkRdK7JD4JBeKiwQWmxFneq/z/F2BoRlBKHmtTBZ+Wg
-         2nSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVDwMgAO85eK+zqE4DI79WPKslVhMm/zCL2krGHHNvBJwbHG/5CMNGhN8yVibCYk9VTmUXdQJHVHYNI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNzzqZPwS2FIHpk/ZgIIG7DQ7x6ds2rj7SNfrdLxJxs2UYc/1e
-	qvUdrDvOlWjQPcs9Q9lhZliXP77PMjbjUi0hNopoI0ZpG9t2EyCAXai6ay4OACk=
-X-Google-Smtp-Source: AGHT+IF02bj5hqk2pa2px5XKt3k6T5GNE8a/QRIUqmwQLRKjQmn5vBqDV0jEbdaIf8k7NaYO4RlifQ==
-X-Received: by 2002:adf:facd:0:b0:37d:5103:8894 with SMTP id ffacd0b85a97d-380611dc14bmr38014f8f.42.1729874873628;
-        Fri, 25 Oct 2024 09:47:53 -0700 (PDT)
-Received: from [192.168.68.111] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b4a3cesm1949511f8f.63.2024.10.25.09.47.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 09:47:52 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Daniel Thompson <daniel.thompson@linaro.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Frank Li <Frank.Li@nxp.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-leds@vger.kernel.org, linux-watchdog@vger.kernel.org
-In-Reply-To: <20241010-zii_yaml-v2-0-0ab730607422@nxp.com>
-References: <20241010-zii_yaml-v2-0-0ab730607422@nxp.com>
-Subject: Re: (subset) [PATCH v2 0/5] dt-bindings: mfd: convert
- zii,rave-sp.txt and child txt to yaml format
-Message-Id: <172987487249.288365.3434469015929868507.b4-ty@linaro.org>
-Date: Fri, 25 Oct 2024 17:47:52 +0100
+	s=arc-20240116; t=1729875154; c=relaxed/simple;
+	bh=a7pcHGKkFVmFhrleGAGaukGyxvAok9EA+JP8hsdU0I8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lya36IDp8wJYr+I5wjexKd4SCAs416yWPqp3h6GsyIdlorlv/qh01zfj2BFnaJ8raVTeZL4cXcaGNB8tjTha2jhgxzlgQNIH9SJY7rv9jzY26eJ0qvensa2GHJfMSUWl2/XG8j8YYxl+8MYbI0EzgZTdxIbfIvlyKvqOCexXcJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HyOcdprT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD6B8C4CEE4;
+	Fri, 25 Oct 2024 16:52:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729875154;
+	bh=a7pcHGKkFVmFhrleGAGaukGyxvAok9EA+JP8hsdU0I8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HyOcdprTl94d2sMV8FyIj1UDHCbpmi4nAdBaCYvKLGpF+DCUSg0U3X4A3OWJw2TWu
+	 hvTSpfoMTo4h7PtwWRMNuTGHKZgOaLKGE5sWPm19CqasTHnbO6u1xVQx9VJpVVKzwR
+	 ridJfn67K3NNZu/Nneht0zYAaRiSkA51hk/tHzor3oitwllwXWLM+EixjVjrF5iJUd
+	 AEgNLhEi4Ng14xoSPolgBulpJf7hLJMNx3t57Fi/xXS9dqP5vw9tQBQOCoa0KBc8mo
+	 gtthw70aFBoJqwGi0ZFVTqvGJvfAJIAHaQaeydfKgGiOdIFk5ga+EGCEzi3rxRTKQU
+	 7JjtOkUOQS9dA==
+Date: Fri, 25 Oct 2024 17:52:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Eric Biggers <ebiggers@kernel.org>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Andy Chiu <andybnac@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] RISC-V: add vector crypto extension validation
+ checks
+Message-ID: <20241025-angler-lyricism-83eacdadb776@spud>
+References: <20241024-fanning-enrage-bcc39f8ed47d@spud>
+ <20241024-bunny-unexposed-196d8da36e7a@spud>
+ <20241025020810.GA1781@sol.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="whY1gTwyYGrb9ong"
+Content-Disposition: inline
+In-Reply-To: <20241025020810.GA1781@sol.localdomain>
 
 
-On Thu, 10 Oct 2024 11:42:37 -0400, Frank Li wrote:
-> Fixed below warnings:
-> 
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu: failed to match any schema with compatible: ['zii,rave-sp-rdu2']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/watchdog: failed to match any schema with compatible: ['zii,rave-sp-watchdog']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/backlight: failed to match any schema with compatible: ['zii,rave-sp-backlight']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/pwrbutton: failed to match any schema with compatible: ['zii,rave-sp-pwrbutton']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/eeprom@a3: failed to match any schema with compatible: ['zii,rave-sp-eeprom']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/eeprom@a4: failed to match any schema with compatible: ['zii,rave-sp-eeprom']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu: failed to match any schema with compatible: ['zii,rave-sp-rdu2']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/watchdog: failed to match any schema with compatible: ['zii,rave-sp-watchdog']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/backlight: failed to match any schema with compatible: ['zii,rave-sp-backlight']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/pwrbutton: failed to match any schema with compatible: ['zii,rave-sp-pwrbutton']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/eeprom@a3: failed to match any schema with compatible: ['zii,rave-sp-eeprom']
-> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/eeprom@a4: failed to match any schema with compatible: ['zii,rave-sp-eeprom']
-> 
-> [...]
+--whY1gTwyYGrb9ong
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+On Thu, Oct 24, 2024 at 07:08:10PM -0700, Eric Biggers wrote:
+>=20
+> On Thu, Oct 24, 2024 at 01:34:29PM +0100, Conor Dooley wrote:
+> > @@ -308,12 +354,10 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =
+=3D {
+> >  	__RISCV_ISA_EXT_DATA(d, RISCV_ISA_EXT_d),
+> >  	__RISCV_ISA_EXT_DATA(q, RISCV_ISA_EXT_q),
+> >  	__RISCV_ISA_EXT_SUPERSET(c, RISCV_ISA_EXT_c, riscv_c_exts),
+> > -	__RISCV_ISA_EXT_SUPERSET(v, RISCV_ISA_EXT_v, riscv_v_exts),
+> > +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(v, RISCV_ISA_EXT_v, riscv_v_exts, r=
+iscv_ext_vector_float_validate),
+>=20
+> This patch adds validation for not just the vector crypto extensions but =
+also v,
+> zve32f, zve32x, zve64d, zve64f, and zve64x.  I think that should be split=
+ into a
+> separate patch or at least called out explicitly in the commit message.
 
-[3/5] dt-bindings: nvmem: convert zii,rave-sp-eeprom.txt to yaml format
-      commit: 17d6f058403d4e3458ec9c7dae607c065cabe089
+Sure. I think I even had it like that originally and must have
+waywardly squashed it. I actually checked before sending this to make
+sure that I hadn't do so by accident between v1 and v2 and I had not.
 
-Best regards,
--- 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> > +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zk, riscv_zk_bundled_exts, riscv_ext_=
+vector_crypto_validate),
+> > +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zkn, riscv_zkn_bundled_exts, riscv_ex=
+t_vector_crypto_validate),
+> >  	__RISCV_ISA_EXT_DATA(zknd, RISCV_ISA_EXT_ZKND),
+> >  	__RISCV_ISA_EXT_DATA(zkne, RISCV_ISA_EXT_ZKNE),
+> >  	__RISCV_ISA_EXT_DATA(zknh, RISCV_ISA_EXT_ZKNH),
+> >  	__RISCV_ISA_EXT_DATA(zkr, RISCV_ISA_EXT_ZKR),
+> > -	__RISCV_ISA_EXT_BUNDLE(zks, riscv_zks_bundled_exts),
+> > +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zks, riscv_zks_bundled_exts, riscv_ex=
+t_vector_crypto_validate),
+>=20
+> zk* are the scalar crypto extensions, which don't require vector.
 
+> Thanks for working on this!
+
+Thanks for taking a look. I'm surprised I didn't make more mistakes tbh.
+
+--whY1gTwyYGrb9ong
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxvMzQAKCRB4tDGHoIJi
+0v8NAP40+2Sulb7rcAUIarG4dUUbSTIhaG9lZ2cRwwUTnBj4vwEAwbw8Is8Uhfv1
+2WRlRpAI2/KCgmr020FXcOspR6SEHwI=
+=xZat
+-----END PGP SIGNATURE-----
+
+--whY1gTwyYGrb9ong--
 
