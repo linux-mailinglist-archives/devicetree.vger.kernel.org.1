@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-115768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B56699B0A53
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:52:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C539B0A5B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:54:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CDD1283452
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:52:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EA541F25EE2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44DC91D63D7;
-	Fri, 25 Oct 2024 16:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11D52036FC;
+	Fri, 25 Oct 2024 16:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HyOcdprT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rJ57wxgQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF4A6F099;
-	Fri, 25 Oct 2024 16:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653C31FB895;
+	Fri, 25 Oct 2024 16:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729875154; cv=none; b=cX32zQ8kCoEdqLn8RG/c6BaKskx8cHco6eer5jseNW3LlwWaKlAQuezmxbxubz/vPmTJOAaAcicHWgpyJ6aGxVzj9n7G5O/W46U5wukjpqMirCTQppXffIQjFXhxSC5hUK1N4ltiKzYJY+bY/4Wkc2WNog1WMghWis0Mvk77g2g=
+	t=1729875234; cv=none; b=j0vY7jrMJkoGyZey71CoJtUflJAAWuyngAD6LNRYrtNbavq/kgF57BKuy/WY8sVfm/KULcF91qQID3u7ahDbobX7xFnP5a7TFAksdLvtZexMEcEomLm7TR5T+kjY+oq4GvRDWwafcUEaIdiLHwmYK0z7ZHWrtaXuV7fpmzsFhS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729875154; c=relaxed/simple;
-	bh=a7pcHGKkFVmFhrleGAGaukGyxvAok9EA+JP8hsdU0I8=;
+	s=arc-20240116; t=1729875234; c=relaxed/simple;
+	bh=mZ20vGt23x6kwR08MBJTGLjtyFlZt4JECmZ6eocGZhQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lya36IDp8wJYr+I5wjexKd4SCAs416yWPqp3h6GsyIdlorlv/qh01zfj2BFnaJ8raVTeZL4cXcaGNB8tjTha2jhgxzlgQNIH9SJY7rv9jzY26eJ0qvensa2GHJfMSUWl2/XG8j8YYxl+8MYbI0EzgZTdxIbfIvlyKvqOCexXcJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HyOcdprT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD6B8C4CEE4;
-	Fri, 25 Oct 2024 16:52:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A8HN8HVH25S6AmE98YBDWA6iWFuiU38tzEafBALYDK8+CbRGKY9VHdBycLHHezYhf0jrNiZw14fQxngkA7iXDNsRd49tg0cuo3R4pErvCoP4NEsDp4xDuZd3uTIEd3ZRrl39El8wc4UpmFQUTkwsw3tRShwZIM63ASd0iwqMoNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rJ57wxgQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE92AC4CEE3;
+	Fri, 25 Oct 2024 16:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729875154;
-	bh=a7pcHGKkFVmFhrleGAGaukGyxvAok9EA+JP8hsdU0I8=;
+	s=k20201202; t=1729875234;
+	bh=mZ20vGt23x6kwR08MBJTGLjtyFlZt4JECmZ6eocGZhQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HyOcdprTl94d2sMV8FyIj1UDHCbpmi4nAdBaCYvKLGpF+DCUSg0U3X4A3OWJw2TWu
-	 hvTSpfoMTo4h7PtwWRMNuTGHKZgOaLKGE5sWPm19CqasTHnbO6u1xVQx9VJpVVKzwR
-	 ridJfn67K3NNZu/Nneht0zYAaRiSkA51hk/tHzor3oitwllwXWLM+EixjVjrF5iJUd
-	 AEgNLhEi4Ng14xoSPolgBulpJf7hLJMNx3t57Fi/xXS9dqP5vw9tQBQOCoa0KBc8mo
-	 gtthw70aFBoJqwGi0ZFVTqvGJvfAJIAHaQaeydfKgGiOdIFk5ga+EGCEzi3rxRTKQU
-	 7JjtOkUOQS9dA==
-Date: Fri, 25 Oct 2024 17:52:29 +0100
+	b=rJ57wxgQl26dw00jvHIkCz8BY1qNcJDhne+yEt/g4C1GpC37DYHrUWIihVaeIarNp
+	 mssbN/R1+BPJk1WgortTtVjvlA22spTtqlYk2OFsAkDieVUX1r2N00G1nLUzB5nbf7
+	 paofRo4TGF7QfBOFz0NKmyuw3T7aoLxozQejOcE42tC0jkSCFCMmX2ZuzilWIysDm4
+	 y2YEDe4wDXobiG49pUP3NdDDMvdEq8W64uvE66Ufxse+n3T/sLOzgbUskepEVbMchJ
+	 WeFTB1FvrvdUImm86JPec/9AwCpIotR7+NxC5801UHdVrASyXDQJkI4PdRuYqFlcQj
+	 LvcddiaYd8rOQ==
+Date: Fri, 25 Oct 2024 17:53:49 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Eric Biggers <ebiggers@kernel.org>
 Cc: linux-riscv@lists.infradead.org,
@@ -52,13 +52,15 @@ Cc: linux-riscv@lists.infradead.org,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
 	Andy Chiu <andybnac@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] RISC-V: add vector crypto extension validation
- checks
-Message-ID: <20241025-angler-lyricism-83eacdadb776@spud>
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 5/5] dt-bindings: riscv: document vector crypto
+ requirements
+Message-ID: <20241025-defile-blaming-12fc1e3a62e0@spud>
 References: <20241024-fanning-enrage-bcc39f8ed47d@spud>
- <20241024-bunny-unexposed-196d8da36e7a@spud>
- <20241025020810.GA1781@sol.localdomain>
+ <20241024-pungent-lasso-42dd3512a3c8@spud>
+ <20241025022411.GB1781@sol.localdomain>
+ <20241025024224.GC1781@sol.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,66 +68,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="whY1gTwyYGrb9ong"
+	protocol="application/pgp-signature"; boundary="C3HU7TQO57knau1B"
 Content-Disposition: inline
-In-Reply-To: <20241025020810.GA1781@sol.localdomain>
+In-Reply-To: <20241025024224.GC1781@sol.localdomain>
 
 
---whY1gTwyYGrb9ong
+--C3HU7TQO57knau1B
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 24, 2024 at 07:08:10PM -0700, Eric Biggers wrote:
+On Thu, Oct 24, 2024 at 07:42:24PM -0700, Eric Biggers wrote:
+> On Thu, Oct 24, 2024 at 07:24:11PM -0700, Eric Biggers wrote:
+> > On Thu, Oct 24, 2024 at 01:34:33PM +0100, Conor Dooley wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > >=20
+> > > Section 35.2. Extensions Overview of [1] says:
+> > > | The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly the =
+composite extensions Zvkn and
+> > > | Zvks-- (sic) require a Zve64x base, or application ("V") base Vecto=
+r Extension.
+> > > | All of the other Vector Crypto Extensions can be built on any embed=
+ded (Zve*) or application ("V") base
+> > > | Vector Extension
+> > >=20
+> > > Apply these rules in the binding, so that invalid combinations can be
+> > > avoided.
+> >=20
+> > It looks like that part of the spec is wrong, though.  The Zvknhb and Z=
+vbc are
+> > correct, but the list of the composite extensions that at least one of =
+them is
+> > included in is: Zvkn, Zvknc, Zvkng, Zvksc.
+> >=20
 >=20
-> On Thu, Oct 24, 2024 at 01:34:29PM +0100, Conor Dooley wrote:
-> > @@ -308,12 +354,10 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =
-=3D {
-> >  	__RISCV_ISA_EXT_DATA(d, RISCV_ISA_EXT_d),
-> >  	__RISCV_ISA_EXT_DATA(q, RISCV_ISA_EXT_q),
-> >  	__RISCV_ISA_EXT_SUPERSET(c, RISCV_ISA_EXT_c, riscv_c_exts),
-> > -	__RISCV_ISA_EXT_SUPERSET(v, RISCV_ISA_EXT_v, riscv_v_exts),
-> > +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(v, RISCV_ISA_EXT_v, riscv_v_exts, r=
-iscv_ext_vector_float_validate),
->=20
-> This patch adds validation for not just the vector crypto extensions but =
-also v,
-> zve32f, zve32x, zve64d, zve64f, and zve64x.  I think that should be split=
- into a
-> separate patch or at least called out explicitly in the commit message.
+> I am attempting to fix this in
+> https://github.com/riscv/riscv-isa-manual/pull/1697
 
-Sure. I think I even had it like that originally and must have
-waywardly squashed it. I actually checked before sending this to make
-sure that I hadn't do so by accident between v1 and v2 and I had not.
+Looks like at least one person agrees with you, but I'll wait til that's
+merged before submitting another version. Thanks for reporting it.
 
-> > +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zk, riscv_zk_bundled_exts, riscv_ext_=
-vector_crypto_validate),
-> > +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zkn, riscv_zkn_bundled_exts, riscv_ex=
-t_vector_crypto_validate),
-> >  	__RISCV_ISA_EXT_DATA(zknd, RISCV_ISA_EXT_ZKND),
-> >  	__RISCV_ISA_EXT_DATA(zkne, RISCV_ISA_EXT_ZKNE),
-> >  	__RISCV_ISA_EXT_DATA(zknh, RISCV_ISA_EXT_ZKNH),
-> >  	__RISCV_ISA_EXT_DATA(zkr, RISCV_ISA_EXT_ZKR),
-> > -	__RISCV_ISA_EXT_BUNDLE(zks, riscv_zks_bundled_exts),
-> > +	__RISCV_ISA_EXT_BUNDLE_VALIDATE(zks, riscv_zks_bundled_exts, riscv_ex=
-t_vector_crypto_validate),
->=20
-> zk* are the scalar crypto extensions, which don't require vector.
-
-> Thanks for working on this!
-
-Thanks for taking a look. I'm surprised I didn't make more mistakes tbh.
-
---whY1gTwyYGrb9ong
+--C3HU7TQO57knau1B
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxvMzQAKCRB4tDGHoIJi
-0v8NAP40+2Sulb7rcAUIarG4dUUbSTIhaG9lZ2cRwwUTnBj4vwEAwbw8Is8Uhfv1
-2WRlRpAI2/KCgmr020FXcOspR6SEHwI=
-=xZat
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxvNHQAKCRB4tDGHoIJi
+0rPiAQDKaBX0AuIAHT3DnlKh92juYKdfZUvId9M1ah/kZAXt0QEAmmMl+zMQ+XSZ
+rnymJW1NSZtykaUKiLZaZ5MgTaVR6Ag=
+=nlLZ
 -----END PGP SIGNATURE-----
 
---whY1gTwyYGrb9ong--
+--C3HU7TQO57knau1B--
 
