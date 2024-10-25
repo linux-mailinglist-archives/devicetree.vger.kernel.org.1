@@ -1,133 +1,111 @@
-Return-Path: <devicetree+bounces-115536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247649AFF10
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 11:54:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F27199AFF33
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 11:59:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D07301F217D7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:54:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 786A3B213C2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:59:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 408591D359A;
-	Fri, 25 Oct 2024 09:54:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C555E1D5159;
+	Fri, 25 Oct 2024 09:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="bBHGOoDs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TJj3meB5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A14E18B484;
-	Fri, 25 Oct 2024 09:54:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.50.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD2561D4359;
+	Fri, 25 Oct 2024 09:59:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729850077; cv=none; b=NINr0eJ29nmEu2XMvLuk62yadTe9chLir5pmMKbWZAmW/PBUJN1AxMl02azwYKn2ttuUFZCVyplY35WHXUIsfOwVDDdZhhhWgrOWpwdPByS/CZ1O+UzyGZujF7H4rS303+eoegJiXUr43omXeCVY3OEJxQ5VBX4EH3oaV9rf5lA=
+	t=1729850360; cv=none; b=S3n/74kBgcIW7db8kWEuLuUgt0HDAQn0z/0ZGkijRcTANAEPKlcjhzy//Mefhnm7osBR7Vs8D/b5cABjA/7QMOy50IWhEQ4XnFshDxVflhd8Nz/zkdI8zQ5QREaBVot90qGg7F482pjLkxwsBZzkrdFw2/6qDqXuiwmDFAOhFf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729850077; c=relaxed/simple;
-	bh=VaY2KYzLE62zhvzBnMR7wbJJZD8/BO9nA9OQj2/oiiY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G/o2jsZbkmwvX/Bpn19s9rP0ISZeoJTVY2hA46Knv0CT3/TTphvFBrT3Cc3sN/PNgtBfqcUHQipVol9zEfD+F89HLBjSwZQ3mReDAs+7FXupXMaPWZf5394lJrFFF+wpl1e5zoe6BnCgJ+BOfFKf/hoisuEUX7m2zHK+E/TeZsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=bBHGOoDs; arc=none smtp.client-ip=90.155.50.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=scgKpMyHPoXj/z+PG5byqhezzc3ZA105Pg/BIYUr3WQ=; b=bBHGOoDswiWdw55NBzvJt0oFKw
-	qO0ehaYYnR+uxDdFrwNid6yBWxDwkpSTYyZovZSHOfYBhsnEwG4wCt9ebUfqRgoZu4Q8fO8a3LgpL
-	a0gmky0glkIaWEB/FP4K9hdM0wkR/l/xzzNEiZY74Yxos5b65+smctVEjxbMefnCYht/z4GeabQSY
-	idfKxL/PcCaVryFlt9af0BycAN6om+astwOkaQ6+TAUslgG2NlUcuWIpMt8CLt1TRM9KDzWs+Kd4l
-	ZvBY0xViLV5vvqTptopPj3RvQJi6xRQdtXMWeLOyg484x0oVqulhBmgSw1oF4oxs4rPwMKQVGhVDd
-	XO9uKhWg==;
-Received: from j130084.upc-j.chello.nl ([24.132.130.84] helo=noisy.programming.kicks-ass.net)
-	by casper.infradead.org with esmtpsa (Exim 4.98 #2 (Red Hat Linux))
-	id 1t4H1V-0000000558l-1bIm;
-	Fri, 25 Oct 2024 09:54:26 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
-	id 9A8CE30083E; Fri, 25 Oct 2024 11:54:25 +0200 (CEST)
-Date: Fri, 25 Oct 2024 11:54:25 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>, Ingo Molnar <mingo@redhat.com>,
-	Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com
-Subject: Re: [PATCH v4 1/3] spinlock: extend guard with spinlock_bh variants
-Message-ID: <20241025095425.GI14555@noisy.programming.kicks-ass.net>
-References: <20241025094734.1614-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1729850360; c=relaxed/simple;
+	bh=N1CyolZ8tBLpfASJJeTZ0XeLoaebRErSyJBGK6pKilA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ILO0qaAMUS4OCrBGMM0LwqjWRDmwjme0M2+DuLUOE3mng2zWbxxJMQUfDMHzzBCKDQQO2wf+UBh3M/jIbSkufUB23VxeRCWNDIgvqcJSNUSKwC4JKtkiN+4c6tMKxyQnapv79vCWFEU/aTRexANeu8Nv4TUDdcI/JUsNAVjlmfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TJj3meB5; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43155afca99so19883035e9.1;
+        Fri, 25 Oct 2024 02:59:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729850357; x=1730455157; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E4cr4e2WpYdldiza6Smv9BM5tV2IoSAN/lMOvuaNoy8=;
+        b=TJj3meB5j8B0YvVxdP5mOmLLC88I42KHPjM8jnV+vgsL1ykXM4PLRHdyouKeAHtH36
+         IqK0lRmGuPbPPERk7B3Sg2FzM/Yjp5IRQMG6LFwZpAUVRrcLqB4EQVUD97srm7l+1KQU
+         w27ltf236ZS2GBellxBkmKnmey9lETt6xFGhLszcUtHRLPhbBqNUEFn7mBlSqahQl7Pj
+         V5dcufthzCfuIJ68LcZKQfGHRdGDdCP5cAjB3AZ3gOw4tNZbScTTsIYKMJe1meeZ6hE+
+         +yLeUSo4FfWl5SpBX+161I6Yt0QC01OrVC8EmB8Wj5G/DhqNhto2MdFyJk57TNZCYfgb
+         2r3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729850357; x=1730455157;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E4cr4e2WpYdldiza6Smv9BM5tV2IoSAN/lMOvuaNoy8=;
+        b=tvb0JFh09ZyfKBDuwoyR7XQZgqPAdEj0EvUWcYQ2yLlKre5TzQzoXIkGaMSH1y4O5R
+         uLhty4DZp0YmGRp40y2In3FdmiDbRj78LhMJ74vAURZlABu83tbQ6Z/in2PDqU4MJ+hK
+         PH+5oOC41wRwzgiDMbjlCuTcirbLCHFRMv3yJ3PeaLL/mgdhPZVc3hSpHzYuSYkMRE2k
+         wGTF0PSRqvgu/MqIkPMooVjC5mXUPoferQzMSjg5uyYN9acaQQfGLjCMljDTYGXElrL9
+         K8JCVsf4EHrTgb0PCvctrRpI3knGOVncSUYlJdMy/JknpSWtUC9697hErnY26jHZ7HF+
+         ZeMw==
+X-Forwarded-Encrypted: i=1; AJvYcCXf0s3V7TllBg1TVq1UpRyoBoOmBa8QmZNJz2ikdoKcveHGjQAbC/JKEPzrpa06kqE06WiNNvu8B1NCu10=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwyHmlQJ+5rmLVluKnIbIEUccEFMMPgLCIVbPg2pOXLIU5kAGxX
+	lmk5mVZDH7dTjD1R/FlreCcltl8qUpT78vBPqDi0/psnZF+DB3FQ
+X-Google-Smtp-Source: AGHT+IGsDr1xiNpVz0zWvEjm8K23MeXnqNJoj9pKxKeUpb6r2cNqS3tSAm+MEb1ei9011b3zn/BiAg==
+X-Received: by 2002:a05:600c:1c81:b0:42c:b67b:816b with SMTP id 5b1f17b1804b1-4318b587a84mr36861205e9.1.1729850356816;
+        Fri, 25 Oct 2024 02:59:16 -0700 (PDT)
+Received: from eichest-laptop.lan ([2a02:168:af72:0:7bc0:826e:69e3:7e40])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b3c7b9sm1098214f8f.32.2024.10.25.02.59.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 02:59:16 -0700 (PDT)
+From: Stefan Eichenberger <eichest@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	francesco.dolcini@toradex.com
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] arm64: dts: imx8mm/imx8mp-verdin: add single-master property to all i2c nodes
+Date: Fri, 25 Oct 2024 11:58:01 +0200
+Message-ID: <20241025095915.22313-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241025094734.1614-1-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Oct 25, 2024 at 11:47:22AM +0200, Christian Marangi wrote:
-> Extend guard APIs with missing raw/spinlock_bh variants.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Add the single-master property to all i2c nodes on the iMX8MM and iMX8MP
+Verdin modules. This will allow us to use some single-master
+optimisations on the i2c driver. Together with the following series, now
+in the i2c-host branch of Andis tree, we get rid of a timeout problem on
+the i2c bus with a SMBus ADC:
+https://lore.kernel.org/all/7ts577rxed4mmfkfin7kfdjfjkb6iak2y4vtgtz6merwxkzz6w@h5aefbvyx44u/
 
-Feel free to take this through whatever tree the rest of the patches are
-targeted at. I don't think I've seen conflicting 'demand' so far.
+Stefan Eichenberger (2):
+  arm64: dts: imx8mm-verdin: add single-master property to all i2c nodes
+  arm64: dts: imx8mp-verdin: add single-master property to all i2c nodes
 
-Acked-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 4 ++++
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 5 +++++
+ 2 files changed, 9 insertions(+)
 
-> ---
-> Changes v4:
-> - Out of RFC
-> Changes v2:
-> - Add this patch
-> 
->  include/linux/spinlock.h | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/include/linux/spinlock.h b/include/linux/spinlock.h
-> index 63dd8cf3c3c2..d3561c4a080e 100644
-> --- a/include/linux/spinlock.h
-> +++ b/include/linux/spinlock.h
-> @@ -548,6 +548,12 @@ DEFINE_LOCK_GUARD_1(raw_spinlock_irq, raw_spinlock_t,
->  
->  DEFINE_LOCK_GUARD_1_COND(raw_spinlock_irq, _try, raw_spin_trylock_irq(_T->lock))
->  
-> +DEFINE_LOCK_GUARD_1(raw_spinlock_bh, raw_spinlock_t,
-> +		    raw_spin_lock_bh(_T->lock),
-> +		    raw_spin_unlock_bh(_T->lock))
-> +
-> +DEFINE_LOCK_GUARD_1_COND(raw_spinlock_bh, _try, raw_spin_trylock_bh(_T->lock))
-> +
->  DEFINE_LOCK_GUARD_1(raw_spinlock_irqsave, raw_spinlock_t,
->  		    raw_spin_lock_irqsave(_T->lock, _T->flags),
->  		    raw_spin_unlock_irqrestore(_T->lock, _T->flags),
-> @@ -569,6 +575,13 @@ DEFINE_LOCK_GUARD_1(spinlock_irq, spinlock_t,
->  DEFINE_LOCK_GUARD_1_COND(spinlock_irq, _try,
->  			 spin_trylock_irq(_T->lock))
->  
-> +DEFINE_LOCK_GUARD_1(spinlock_bh, spinlock_t,
-> +		    spin_lock_bh(_T->lock),
-> +		    spin_unlock_bh(_T->lock))
-> +
-> +DEFINE_LOCK_GUARD_1_COND(spinlock_bh, _try,
-> +			 spin_trylock_bh(_T->lock))
-> +
->  DEFINE_LOCK_GUARD_1(spinlock_irqsave, spinlock_t,
->  		    spin_lock_irqsave(_T->lock, _T->flags),
->  		    spin_unlock_irqrestore(_T->lock, _T->flags),
-> -- 
-> 2.45.2
-> 
+-- 
+2.43.0
+
 
