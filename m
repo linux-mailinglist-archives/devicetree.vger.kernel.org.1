@@ -1,189 +1,132 @@
-Return-Path: <devicetree+bounces-115746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B179B08D3
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:48:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E93E19B0900
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:59:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6A9528275B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:48:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BF841C2154A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:59:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E03A15C145;
-	Fri, 25 Oct 2024 15:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6560E175D46;
+	Fri, 25 Oct 2024 15:59:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="atUaxLq2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NleGa/rK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D409721A4B8;
-	Fri, 25 Oct 2024 15:48:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B8C1741C6;
+	Fri, 25 Oct 2024 15:59:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729871301; cv=none; b=nth8sr7gq/SuhWM8YX3wADvKrwY58HOdLTf5t+YU6tWjoDTxOQv7I/8O7K19Kzmm8m7po556GtM5G43659wOIANO/fnMqP7s/cXRuCxJyOvv0xS6vsiUYasSQCQi8xlspI/GaF0fssZJkjufAHZamDVrRCzkq8f8xJuh5R11eNk=
+	t=1729871948; cv=none; b=gxoxYU1x1Nuvp5jb9NAU4Y9eN4gA66Hl/NcCEwATCzzgxF47rDioQUE6OpqoVbrc8ckcI3wJt0vVTIGBrWZsNnZxF/y7O2mnK5+4KhXRLb0lE9LIXq3qsYXb8SdXJCWxcANJfUEXuaIrgO01MUf8/M/AyzaG4FRbtkw6WUsJpm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729871301; c=relaxed/simple;
-	bh=pYHHIJNTG01AQgTmBwG9U5BsfqO8HYoXVzbsu2Ldj1Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dej07h6ZVGrCfBWNLlTfPtZZpJYcP98K129GtWZZ/0OYjAYmn5Ith2AA+APHKvFk+XftBenbxLSCx8+l9g+6t0BMLNXYSoz7EHtyXXmngrKxiQNuX390rgastdN2JjdoJJ6dmGcY3jb89Zj/+V3WFeUyIPxWdRyy0oQpo2jckoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=atUaxLq2; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729871299; x=1761407299;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pYHHIJNTG01AQgTmBwG9U5BsfqO8HYoXVzbsu2Ldj1Y=;
-  b=atUaxLq2g4YKKd1vowsHVR3mhFSQ8GooeBFr3qjZAa3fzV4UPVpAv8NT
-   Aa7MV4Al1BuwTwiHl1Q10w9vR3+Nlvoks74MSKgyZNw6covAtPXWjH6hc
-   eNn100rpFY/apH9FLzZKVHQFpZIcmshFj3kr1T1zkMSEV/v+qzUE7qoiN
-   vUCoWS/z77Z2bNaMCKN4BCoJxmkOIQKifFWqtIbNGF/GNaAdU2smhREnI
-   UowSimO+bL7fsEyEg6GQ4jB00Qo2Tpga+qpm/M59DfAShHUcLcx4vsbFJ
-   /2qseHNudOO44jFYZi/ElI2TuJFu/Lbki5/d9fx8x0VRH9iWlQ0Lq3cKA
-   w==;
-X-CSE-ConnectionGUID: ntTYvcvFR7W26evvACJaZA==
-X-CSE-MsgGUID: k2RwiHT9TeO1yphmmukXMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="28996538"
-X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; 
-   d="scan'208";a="28996538"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 08:48:18 -0700
-X-CSE-ConnectionGUID: 6O3g3ryfTOyp22Ft1rrElQ==
-X-CSE-MsgGUID: TeHm3+K9ReK+WrkH/5guHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; 
-   d="scan'208";a="80865917"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 25 Oct 2024 08:48:11 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t4MXp-000YQm-1F;
-	Fri, 25 Oct 2024 15:48:09 +0000
-Date: Fri, 25 Oct 2024 23:48:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Inochi Amaoto <inochiama@gmail.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-Message-ID: <202410252357.pCyOX2bg-lkp@intel.com>
-References: <20241025011000.244350-5-inochiama@gmail.com>
+	s=arc-20240116; t=1729871948; c=relaxed/simple;
+	bh=0ljjiMfY8z+Bl5+mDZWNjMpu9/ix8vBxLQdaWGAkiNY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zu66ATVzlhHpajAmVAStqi1Jy+pbQ51O9onHvdT2eUu01ZW9ojFQ+ew3Ee+fDq7Ub+72C6lDnPJb7yGOZmIyyW0xPyeooewIvqE3hbGA6aDyDEupGqYEQflUCRVgyKc6hYG440TYc54swxPxTx45poFvAOMpZ+mkBFI4zulcdw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NleGa/rK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C44A1C4AF0B;
+	Fri, 25 Oct 2024 15:59:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729871947;
+	bh=0ljjiMfY8z+Bl5+mDZWNjMpu9/ix8vBxLQdaWGAkiNY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=NleGa/rKKt6BULz8gusnuJ1dXN0KyU8ET6sl/GovJm/ewuQCofxEroGBmRsb5+Esx
+	 A6OYDPg/AHTfS14QbyI4JPGOe3emSwG9pe2lpKMZW+7izkI+3NbrC36WYRsfHpTq6m
+	 GFeXCKCmqK8GY1LjhYiQWJbqUJ7fYvBveUFpb41S83/FI+qiunDEhlqzs0+8MM6p+9
+	 V1BLFMoLOCD4L2v6icdLkHKr5SWj1D8YVlUzXk3y31ZITaW+A9XHw0ajLOUxWLvVwK
+	 5UJxFcSfJN4VC+PNj77xqIhI9HfE7tJ13D+8qbRgHz4MVauNs0kF/pzZEJwJqv6uvg
+	 c5KjXXXXxeEhQ==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539f6e1f756so2629167e87.0;
+        Fri, 25 Oct 2024 08:59:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVYDis/nIxD+N6XuFd7ssBGlAE2ZrKVUp/to+DpdlZuVEzJjUa1If7H2xNUY8asDrn1ZtsyM6ng6RPHc4A=@vger.kernel.org, AJvYcCVeZgFy4CFlwrlXvUIOXjsWv93MNHBNWHgA2dECNLrn4eFPfwUI/q6rOvZj1SxrqPmhtIxy4UebgRt8ZCPA@vger.kernel.org, AJvYcCWu4+FnWDCrXy6Qq7qwfLPTnpQSNX6T053kR/XFBJyhGpc4GywjzB5jqIMpM1kn8Qo5AL5x+A79J3w/@vger.kernel.org
+X-Gm-Message-State: AOJu0YygbfF5oty7975rJmsWw+YxXPjoLP+5CrZCNnNQVBMMrSwi6Wss
+	IocoqLFPSWCnm/RClU5ibnmqLkvu7zB8ro7ItmwvfOauBsWpjknu7uka4ukKvKxC+BBi9BeA/S4
+	+4LP47nxUoggYduuDcKm0TbE66Q==
+X-Google-Smtp-Source: AGHT+IGqfGBzoEoRPRIkEeREtu2dznxwKMzTFWNqYthKnWJMl+avTFRaLz8K5ozJ0DKucijr+bxNVflLKh2zQVRwy3w=
+X-Received: by 2002:a05:6512:3096:b0:539:f754:ae15 with SMTP id
+ 2adb3069b0e04-53b23e8ebabmr3741616e87.41.1729871946118; Fri, 25 Oct 2024
+ 08:59:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241025011000.244350-5-inochiama@gmail.com>
+References: <20241025114642.40793-2-charles.goodix@gmail.com>
+ <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3> <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+In-Reply-To: <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 25 Oct 2024 10:58:53 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
+Message-ID: <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Doug Anderson <dianders@chromium.org>
+Cc: Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com, 
+	hbarnor@chromium.org, conor.dooley@microchip.com, jikos@kernel.org, 
+	bentiss@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Inochi,
+On Fri, Oct 25, 2024 at 10:29=E2=80=AFAM Doug Anderson <dianders@chromium.o=
+rg> wrote:
+>
+> Charles,
+>
+> On Fri, Oct 25, 2024 at 5:03=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> >
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - goodix,gt7986u-spi
+> >
+> > Compatible is already documented and nothing here explains why we shoul=
+d
+> > spi variant.
+> >
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 1
+> > > +
+> > > +  goodix,hid-report-addr:
+> >
+> > I do not see this patch addressing previous review. Sending something
+> > like this as v1 after long discussions also does not help.
+>
+> Krzysztof is right that it's better to wait until we get consensus on
+> the previous discussion before sending a new patch. I know you were
+> just trying to help move things forward, but because of the way the
+> email workflow works, sending a new version tends to fork the
+> discussion into two threads and adds confusion.
+>
+> I know Krzysztof and Rob have been silent during our recent
+> discussion, but it's also a long discussion. I've been assuming that
+> they will take some time to digest and reply in a little bit. If they
+> didn't, IMO it would have been reasonable to explicitly ask them for
+> feedback in the other thread after giving a bit of time.
 
-kernel test robot noticed the following build errors:
+If the firmware creates fundamentally different interfaces, then
+different compatibles makes sense. If the same driver handles both bus
+interfaces, then 1 compatible should be fine. The addition of '-spi'
+to the compatible doesn't give any indication of a different
+programming model. I wouldn't care except for folks who will see it
+and just copy it when their only difference is the bus interface and
+we get to have the same discussion all over again. So if appending
+'-spi' is the only thing you can come up with, make it abundantly
+clear so that others don't blindly copy it. The commit msg is useful
+for convincing us, but not for that purpose.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on sophgo/for-next sophgo/fixes net-next/main net/main linus/master v6.12-rc4 next-20241025]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Inochi-Amaoto/dt-bindings-net-snps-dwmac-Add-dwmac-5-30a-version/20241025-091315
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241025011000.244350-5-inochiama%40gmail.com
-patch subject: [PATCH v2 4/4] net: stmmac: Add glue layer for Sophgo SG2044 SoC
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20241025/202410252357.pCyOX2bg-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241025/202410252357.pCyOX2bg-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410252357.pCyOX2bg-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c: In function 'sophgo_dwmac_fix_mac_speed':
->> drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:30:16: error: implicit declaration of function 'rgmii_clock' [-Wimplicit-function-declaration]
-      30 |         rate = rgmii_clock(speed);
-         |                ^~~~~~~~~~~
-   drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c: In function 'sophgo_sg2044_dwmac_init':
->> drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c:46:13: warning: unused variable 'ret' [-Wunused-variable]
-      46 |         int ret;
-         |             ^~~
-
-
-vim +/rgmii_clock +30 drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-
-    23	
-    24	static void sophgo_dwmac_fix_mac_speed(void *priv, unsigned int speed, unsigned int mode)
-    25	{
-    26		struct sophgo_dwmac *dwmac = priv;
-    27		long rate;
-    28		int ret;
-    29	
-  > 30		rate = rgmii_clock(speed);
-    31		if (ret < 0) {
-    32			dev_err(dwmac->dev, "invalid speed %u\n", speed);
-    33			return;
-    34		}
-    35	
-    36		ret = clk_set_rate(dwmac->clk_tx, rate);
-    37		if (ret)
-    38			dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
-    39	}
-    40	
-    41	static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
-    42					    struct plat_stmmacenet_data *plat_dat,
-    43					    struct stmmac_resources *stmmac_res)
-    44	{
-    45		struct sophgo_dwmac *dwmac;
-  > 46		int ret;
-    47	
-    48		dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-    49		if (!dwmac)
-    50			return -ENOMEM;
-    51	
-    52		dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
-    53		if (IS_ERR(dwmac->clk_tx))
-    54			return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
-    55					     "failed to get tx clock\n");
-    56	
-    57		dwmac->dev = &pdev->dev;
-    58		plat_dat->bsp_priv = dwmac;
-    59		plat_dat->flags |= STMMAC_FLAG_SPH_DISABLE;
-    60		plat_dat->fix_mac_speed = sophgo_dwmac_fix_mac_speed;
-    61		plat_dat->multicast_filter_bins = 0;
-    62		plat_dat->unicast_filter_entries = 1;
-    63	
-    64		return 0;
-    65	}
-    66	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
