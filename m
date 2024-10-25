@@ -1,90 +1,86 @@
-Return-Path: <devicetree+bounces-115559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF1B9B0060
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:43:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 911349B0066
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:46:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DF991C20CAA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:43:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7EB31C20E5A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600131DD54B;
-	Fri, 25 Oct 2024 10:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC061D90B4;
+	Fri, 25 Oct 2024 10:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="g9NgYi+C"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kniwZhWZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BD21DD0DD
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:43:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E23481B6
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:45:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729853006; cv=none; b=UOCMov7Uekeocy7OY9bnqMAx7ywh0irzEYNNf3PQKEWRStSxUA+NubsooN7FAdXIVqwdsIbatnX8o88321G+/yRVGeytFlutZuH6MZxGoZn+hi/Xc3A7iCvcJWJtIjYQads4FHiQMSpv9oERRtgCkiAtUPbbj5or0nWj4pioKRQ=
+	t=1729853161; cv=none; b=sZgpjhOdK0OGQuHKB7XfijFJEPc1Z/G24v5AVrR5Ni0i6GSMJNCzBLbwYL7+UyHU2CvGR1tceXMQPL7f2PHBVpQiDyvDdjbN1Pb+aL7uLLpNdjv1MDyrW+GgxyD49YTiFkBuRhwKAt0ZulXRk24WBtRk+NJr19ieq8XBIKDK5/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729853006; c=relaxed/simple;
-	bh=WSwybBvIgG1IpEW2B6Wpf43EoAYTHprR+E28IrEifwQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=svzrRBJAWpskJtN/lqX2HAJscV8AQ3tNHmtkLkmyzGP5tka65gbuaPdSp3JxJjyZoOswbG27xOof6jqWV10e38I44bcm6cPjuivEnNzNtQ9ZhW86btcLvCR63mUOAWdiVCm35LiZxLbOh3HILWvFP/SnnUUUC3qZtyPfFQvrXPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=g9NgYi+C; arc=none smtp.client-ip=209.85.216.42
+	s=arc-20240116; t=1729853161; c=relaxed/simple;
+	bh=glzZvvtMnrNVA3ZU2o91oo33HmV5OMU7rrTm5EWNvBw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hkLBGSDSI/wpa4QMsKaLH53HpTu8MfFA7pLHJTBrxVAUzuYoLkLHL4LFBIKSQerhfLq6AkWg9j5uPMHnMZ/3UNG81Yev5kWDMKwottIB91QfLE6tYbN/hlWmNcp4MVZJqV0DvUhzigD1hM881Z3tyHQO9HlTpMUSS2ogsTttsFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kniwZhWZ; arc=none smtp.client-ip=209.85.215.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e2bb1efe78so1243406a91.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 03:43:24 -0700 (PDT)
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-7163489149eso1309598a12.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 03:45:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729853004; x=1730457804; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1729853159; x=1730457959; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KxrytHmxkB3KbKiG8V4DcHZ1mCc5pLP/FlD1m68qCP4=;
-        b=g9NgYi+CszGlE5dgv8A0frGL716ftVu2yZqR7iTyJ9ZpeQMu0MrN2Qe+aEyXoIBAEW
-         Nel3MSHyQD9xBRendAv8zNKDjCRgdNzm6ekr6z7BW2jP+Jzsqf5fqBUM+imYC8oUY2sp
-         EpR3co5oDJttLPG+HnwfO/AMw5vILufo1jw+0=
+        bh=7qYdMoYNHEEjU8R4jRwxYNDvg+V+aPZxty5Pm7LhAwc=;
+        b=kniwZhWZtx5HQPxo4BPTHhrVzAuBNflyupyvwRpGTa2tMpQH6Bo6Yzu9lp7xHBmorS
+         CcjHKxA7UyUAAamb7ZVqWqK0zPhctY5CQTqhKI5UNI6MlBeeiuJtI08dQHilqOSd4RNC
+         Nb5finrktQM3ZV1d6DhqUm7D8vS5lHzgzVp6M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729853004; x=1730457804;
+        d=1e100.net; s=20230601; t=1729853159; x=1730457959;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KxrytHmxkB3KbKiG8V4DcHZ1mCc5pLP/FlD1m68qCP4=;
-        b=QM/xDo5cGCSZj7lls1VudOP2AX9IJD4vrUtIxyxJw7lssUQB8qBASt+vfeVX9eL1CX
-         v+DAxHPSQXl0rrlL98aBMtUvHS+kEquAHDyjpJz14OMImmuBLe2k4N4ZNTV0FiOCtYqV
-         dqcmtwAixsqtOTRniqSlQPYSQ8vAWH7+XyBlcDUsvqQW4IbZijF8Oe5xIV2QCSyHY6CX
-         ahy8XqUtGQKkHO9yqEdix44YD/h3dAUWNhfxjNczqD/5fF1HUVjnZrchosTO82DddGAU
-         NtGdxvNcuxzWkjLzIQAWG+Z029m4+jGQ1zgSeULP22bCcdxy9gznDSakzL5ZxxGEte1X
-         oA8A==
-X-Forwarded-Encrypted: i=1; AJvYcCWTAIUhEp1UjdCP0N29/6KLK4rEyEBEbJHK4UM3wZx9EhWUEsDP597INDIJmX2Mlbz/JHJdTWXfQGvn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyA2z+O6z8XhWczpT7c7BEoPQq8eSUeYd+HQfzhw/oPBxn3UYHH
-	0MccHuVJRuNAk+qGviDZ+1cfBWmfzDicbWhi+U6SOCYIpFwFst+mM0M66V9SWQ==
-X-Google-Smtp-Source: AGHT+IEc8DWXdGFrPxI2fzHPjMeSAyvo7Jul73y4KLbJM19gxhJsddXsu1xMH6CPalfcWwhWNeu3pg==
-X-Received: by 2002:a17:90a:4bc6:b0:2e1:8a41:aaba with SMTP id 98e67ed59e1d1-2e77e88ddfemr7745822a91.19.1729853003888;
-        Fri, 25 Oct 2024 03:43:23 -0700 (PDT)
+        bh=7qYdMoYNHEEjU8R4jRwxYNDvg+V+aPZxty5Pm7LhAwc=;
+        b=kRq3vLMFrHDkzxba22T4FFl2YWfVppgPfKYbHZqjtoKV8pUNnSUo8AcCoZZHSx7XwV
+         vpGG7TmVLo1EEtnTT4kqYu37v4oRa64uu9A2bhzxwjoW22PBuN8Kunu0fmqWWSimjsiP
+         gCGAnqJ65Kukyw2cjwAf/3O9WZC3Wj7IjGSkYJDFWuB+b87oxjq+k0t/iX23ur/TmGLx
+         x4uqaOK1Th7E7wn6diCCyi9MqOvPqPYcrlF/dSlC8H5o5sDScXRrJFC/ccf2EgG/JqDO
+         a8qzrpDDshENNAOZ/+N+voGE4uCfBgAP5vRImWPR6/SBnLjCVpvkrZltvJmj5lG/X08o
+         Ev/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXq/JV6MaDF+Nv8BimLFLhyw8M/OUZ84qGIirTMqqsJ5I+a5RjHFHWxSIrtHUvo8gOPrI6KHWhs/9gO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKbN0Hvq32m+SHPRujMPDrlpwd0hL+2UMYAbzXG572B2acF6JQ
+	kD53hR1naQ6tK/5OSc2Sv5KvENWuKB4aKzd/uqBgmCNqRF/8pfTGWxyx7JJ37w==
+X-Google-Smtp-Source: AGHT+IE/jF3qeEh2sSM6HPYBIUpFWAzndUsngpMsqXOHaVXBbGKPEsKfMjMtDshVaZr1AnM6b0wOrw==
+X-Received: by 2002:a05:6a21:31c8:b0:1d8:b962:6087 with SMTP id adf61e73a8af0-1d978ad70efmr11190210637.10.1729853158931;
+        Fri, 25 Oct 2024 03:45:58 -0700 (PDT)
 Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:ebe1:dd63:343d:8a4c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e8e36a26aasm1093307a91.27.2024.10.25.03.43.20
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a0d089sm829548b3a.99.2024.10.25.03.45.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 03:43:23 -0700 (PDT)
+        Fri, 25 Oct 2024 03:45:58 -0700 (PDT)
 From: Fei Shao <fshao@chromium.org>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+To: Mark Brown <broonie@kernel.org>
 Cc: Fei Shao <fshao@chromium.org>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jitao shi <jitao.shi@mediatek.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
 	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	Steve Lee <steves.lee@maximintegrated.com>,
+	Trevor Wu <trevor.wu@mediatek.com>,
 	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: display: mediatek: dp: Add #sound-dai-cells property
-Date: Fri, 25 Oct 2024 18:42:45 +0800
-Message-ID: <20241025104310.1210946-1-fshao@chromium.org>
+	linux-mediatek@lists.infradead.org,
+	linux-sound@vger.kernel.org
+Subject: [PATCH 0/4] Update properties in two ASoC DT bindings
+Date: Fri, 25 Oct 2024 18:44:40 +0800
+Message-ID: <20241025104548.1220076-1-fshao@chromium.org>
 X-Mailer: git-send-email 2.47.0.163.g1226f6d8fa-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -94,52 +90,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The MediaTek DP hardware supports audio, and the "#sound-dai-cells"
-property is required to describe DAI links and audio routing.
+Hi maintainers,
 
-Add "#sound-dai-cells" property to the binding and filter out non-DP
-compatibles, as MediaTek eDP doesn't support audio.
+This series includes four patches to update two ASoC DT bindings. The
+goal is to fix dtbs_check warnings found with DAI links and audio
+routing configuration on some MediaTek SoCs (MT8195 and MT8188).
 
-Signed-off-by: Fei Shao <fshao@chromium.org>
----
+This series doesn't introduce new properties - all are either commonly
+described in existing bindings or are available but undocumented.
 
- .../bindings/display/mediatek/mediatek,dp.yaml   | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Patches 1 and 2 focus on mediatek,mt8188-mt6359.yaml, adding two
+vendor-specific properties and updating the DAI link pattern to be more
+generic.
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-index 2aef1eb32e11..c05c2b409780 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-@@ -42,6 +42,9 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  "#sound-dai-cells":
-+    const: 0
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
-     properties:
-@@ -87,6 +90,19 @@ required:
- 
- additionalProperties: false
- 
-+allOf:
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - mediatek,mt8188-dp-tx
-+                - mediatek,mt8195-dp-tx
-+    then:
-+      properties:
-+        "#sound-dai-cells": false
-+
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
+Patches 3 and 4 focus on maxim,max98390.yaml, referencing
+dai-common.yaml and documenting a hidden vendor-specific property.
+
+Regards,
+Fei
+
+
+Fei Shao (4):
+  ASoC: dt-bindings: mediatek,mt8188-mt6359: Add adsp and dai-link
+    properties
+  ASoC: dt-bindings: mediatek,mt8188-mt6359: Update DAI link node
+    pattern
+  ASoC: dt-bindings: maxim,max98390: Refernce common DAI properties
+  ASoC: dt-bindings: maxim,max98390: Document maxim,dsm_param_name
+    property
+
+ .../devicetree/bindings/sound/maxim,max98390.yaml  |  9 ++++++++-
+ .../bindings/sound/mediatek,mt8188-mt6359.yaml     | 14 ++++++++++++--
+ 2 files changed, 20 insertions(+), 3 deletions(-)
+
 -- 
 2.47.0.163.g1226f6d8fa-goog
 
