@@ -1,132 +1,161 @@
-Return-Path: <devicetree+bounces-115729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 735829B0846
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:30:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 649199B0855
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:31:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32975B2B1C0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:27:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C354FB28FD4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:29:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AABB21A4DE;
-	Fri, 25 Oct 2024 15:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29E1B21A4DB;
+	Fri, 25 Oct 2024 15:29:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NRaGT+dV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B3716132A
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 15:25:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB55521A4C9
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 15:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729869947; cv=none; b=cDhifeO4NphTgyWX59yo774eEET8vbDIxCt1wv6yqJGIT6AX4Aocuy9+tv0Oq+pHYntQ/sd8tQqrw7Y9EvMDmm+klvyyqE7lrZ3uZcbN61ayZ1jXOyr4WcYbexzz7A8IsV3xosMV1lDqMaf0RQzKGtbs72RyzwTS6RwGIX4HwKY=
+	t=1729870179; cv=none; b=FbeRXT0P5Rfp505gL8LiaAowWFBMqbcsbiEWKMZTZJrOgc5ZyLib/rXsG7cWUEfniMmJQCj+zI1DebCUD/hQ8Y73wnWdPuKEFjCJOCIE101e4sZC0/SZIaBDKvVtgy41lkeFn3BTi5HXchnHOjqkPKUiDf0jXoLJmaCZoPSypOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729869947; c=relaxed/simple;
-	bh=QJ4ct5R+k4JUhIXK2DaM7a3tGaDmIy4b9aiqlPb9fXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OdjFx/S8mNjuoWAeJHzXc5C4a1QxxY9R1c5em8Ovksq3K0OcBAezN5RFtWPcSaCezti40M7PGF074ostCvCbfXbjh/SG6SC3rCy5pHpoqS5GtVWOcffx8+dPYVYQ4Yjh+SRUiog1QptRSqpOuhXP8Rd07qpKvtLHiOVN1aKcjJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4DA69339;
-	Fri, 25 Oct 2024 08:26:13 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DA4AB3F73B;
-	Fri, 25 Oct 2024 08:25:41 -0700 (PDT)
-Date: Fri, 25 Oct 2024 16:25:39 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] ARM: dts: cubieboard4: Fix DCDC5 regulator constraints
-Message-ID: <20241025162539.425660a2@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v65oHDkNG4dp3+Zh-wmMTMvRnBNPGLiGi68WGXzSR+64=g@mail.gmail.com>
-References: <20241007222916.19013-1-andre.przywara@arm.com>
-	<CAGb2v65oHDkNG4dp3+Zh-wmMTMvRnBNPGLiGi68WGXzSR+64=g@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1729870179; c=relaxed/simple;
+	bh=mfVU3o+HrP2O0BnPv1WlOSU0JlgkC5nDnn2XkoVB8u0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l9SxWngiZlwMevYomqVI0Ra6IZzM2WTP5chOClNpfIp61AAhgeEr91fqaDxW903VIA4EeKPwQ9jikxXPSd0BV3RaRUmWYPdYpGFmHuCqkH84RoP9VQ+tGb0aHDcPy5IopuCm0+ApgDXK9Pe+nQS6FDl2QXfqLdDwOCFaLa8h+SM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NRaGT+dV; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539f84907caso2439934e87.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:29:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1729870172; x=1730474972; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XGXZTlcKhnhORAVfmpbxlvJi6p/7XxY3P3Hx5lHoMU8=;
+        b=NRaGT+dVu4l7ByF1S2KZFQecyLR4ZZfaAY1HsDB7y8Fgy4GJZRhDPMjmPe6AJSvFEB
+         6Qkl/3xrOW/B+vHVecgEkf5DbAq3pZVzQgF2ONF1iEtF9Ja6gq7YSMIMmmzZ34AwPHxa
+         KXzStMHluzUbeBjrwRxJy2hiNcwUW7UyCYFhM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729870172; x=1730474972;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XGXZTlcKhnhORAVfmpbxlvJi6p/7XxY3P3Hx5lHoMU8=;
+        b=JDlvq1jDIw0zZRsDSkG9DUALQapxsnNlP6BGM7TQ6qR3IbPb1CZgvhhQSUWLKD5n1Q
+         0Pfht+pfr4HbmSmvYX9cfOyhW7BTMtdasi5geSC6MqUPvmpp7agd90D0kobuFm/l9btL
+         QphCEEBGe3tKAG/jZAya5Z0KvcrzDGET7iGWCwsKi83iQc12pDNRzf95bLloj8oEh21p
+         58zLsD3j0x1dcgfo84sBX/BdOh0myXxCgXoNm3BV9EC/8iXN30IUnZTXLqPaRVHssnkP
+         S6a+JLJvy4fAYCkhqK9tSTmoo+5hfNF08pF5M/GMu5gDoSAgoMOkaZ5mKVWAxh4MSc6a
+         aqbg==
+X-Forwarded-Encrypted: i=1; AJvYcCWTdYVHfM6VIlZi9afAHsCpMrgp307q/xvxYqlC9fkVUZMIcw2iCKwy+TfWYbaE9E/9SRSWa8LmM5Hc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWRDTwEfDoCQ2+tiEICbORkHbnNT7J2ylFNGqr/I9d9anf0Q8m
+	n6K8XdNGtqUjidU+6N3lTO4lTunhUSUIb7kd+nL6hcb/GuFsJ+b8lG2HAWKxHkcRuQB6vglQMWa
+	CXMNZ
+X-Google-Smtp-Source: AGHT+IFZvNRfa1cmQae2YVTxXeNevasaubGY7UsC2fS3RCrCLkKoaJ9hq7xrHB8f9LFEEoeNbV2LYg==
+X-Received: by 2002:a05:6512:3b8d:b0:539:f67b:b849 with SMTP id 2adb3069b0e04-53b23e9c453mr3729967e87.49.1729870172305;
+        Fri, 25 Oct 2024 08:29:32 -0700 (PDT)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e1245c8sm218186e87.65.2024.10.25.08.29.30
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Oct 2024 08:29:31 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb584a8f81so21496551fa.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:29:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUgoGS9gilG9nH85SDf2R0lpV9m+dYFh3CgyQMawBK9IPFKTkUWWJ0beONMot4xrdOcfT8IZ6do4wfR@vger.kernel.org
+X-Received: by 2002:a2e:6112:0:b0:2fb:5ac6:90ef with SMTP id
+ 38308e7fff4ca-2fca81d665cmr29753751fa.11.1729870170017; Fri, 25 Oct 2024
+ 08:29:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20241025114642.40793-2-charles.goodix@gmail.com> <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
+In-Reply-To: <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
+From: Doug Anderson <dianders@chromium.org>
+Date: Fri, 25 Oct 2024 08:29:13 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+Message-ID: <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
+To: Charles Wang <charles.goodix@gmail.com>
+Cc: dmitry.torokhov@gmail.com, hbarnor@chromium.org, 
+	conor.dooley@microchip.com, jikos@kernel.org, bentiss@kernel.org, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 25 Oct 2024 22:42:14 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
+Charles,
 
-> On Tue, Oct 8, 2024 at 6:30=E2=80=AFAM Andre Przywara <andre.przywara@arm=
-.com> wrote:
-> >
-> > The DCDC5 voltage rail in the X-Powers AXP809 PMIC has a resolution of
-> > 50mV, so the currently enforced limits of 1.475 and 1.525 volts cannot
-> > be set, when the existing regulator value is beyond this range.
-> >
-> > This will lead to the whole regulator driver to give up and fail
-> > probing, which in turn will hang the system, as essential devices depend
-> > on the PMIC.
-> > In this case a bug in U-Boot set the voltage to 1.75V (meant for DCDC4),
-> > and the AXP driver's attempt to correct this lead to this error:
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > [    4.447653] axp20x-rsb sunxi-rsb-3a3: AXP20X driver loaded
-> > [    4.450066] vcc-dram: Bringing 1750000uV into 1575000-1575000uV
-> > [    4.460272] vcc-dram: failed to apply 1575000-1575000uV constraint: =
--EINVAL
-> > [    4.474788] axp20x-regulator axp20x-regulator.0: Failed to register =
-dcdc5
-> > [    4.482276] axp20x-regulator axp20x-regulator.0: probe with driver a=
-xp20x-regulator failed with error -22
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >
-> > Set the limits to values that can be programmed, so any correction will
-> > be successful.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com> =20
->=20
-> Maybe
->=20
-> Fixes: 1e1dea72651b ("ARM: dts: sun9i: cubieboard4: Add AXP809 PMIC
-> device node and regulators")
->=20
-> What do you think? I can add it when applying.
+On Fri, Oct 25, 2024 at 5:03=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - goodix,gt7986u-spi
+>
+> Compatible is already documented and nothing here explains why we should
+> spi variant.
+>
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  goodix,hid-report-addr:
+>
+> I do not see this patch addressing previous review. Sending something
+> like this as v1 after long discussions also does not help.
 
-Well, I thought about it, but then it's a DT patch, so the Fixes: tag
-doesn't make much sense here, IMHO. Put it there if you see fit, but for
-my part I am just waiting for the commit hash, to pull into U-Boot, and
-then it would be done, even for older kernels.
+Krzysztof is right that it's better to wait until we get consensus on
+the previous discussion before sending a new patch. I know you were
+just trying to help move things forward, but because of the way the
+email workflow works, sending a new version tends to fork the
+discussion into two threads and adds confusion.
 
-Cheers,
-Andre.
+I know Krzysztof and Rob have been silent during our recent
+discussion, but it's also a long discussion. I've been assuming that
+they will take some time to digest and reply in a little bit. If they
+didn't, IMO it would have been reasonable to explicitly ask them for
+feedback in the other thread after giving a bit of time.
 
-> ChenYu
->=20
-> > ---
-> >  arch/arm/boot/dts/allwinner/sun9i-a80-cubieboard4.dts | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/allwinner/sun9i-a80-cubieboard4.dts b/ar=
-ch/arm/boot/dts/allwinner/sun9i-a80-cubieboard4.dts
-> > index c8ca8cb7f5c94..52ad95a2063aa 100644
-> > --- a/arch/arm/boot/dts/allwinner/sun9i-a80-cubieboard4.dts
-> > +++ b/arch/arm/boot/dts/allwinner/sun9i-a80-cubieboard4.dts
-> > @@ -280,8 +280,8 @@ reg_dcdc4: dcdc4 {
-> >
-> >                         reg_dcdc5: dcdc5 {
-> >                                 regulator-always-on;
-> > -                               regulator-min-microvolt =3D <1425000>;
-> > -                               regulator-max-microvolt =3D <1575000>;
-> > +                               regulator-min-microvolt =3D <1450000>;
-> > +                               regulator-max-microvolt =3D <1550000>;
-> >                                 regulator-name =3D "vcc-dram";
-> >                         };
-> >
-> > --
-> > 2.46.2
-> > =20
+As Krzysztof mentioned, if/when you send the "goodix,gt7986u-spi"
+bindings again you'd want to:
 
+* Make sure it's marked as v2.
+
+* Make sure any previous review feedback has been addressed. For
+instance, I think Krzysztof requested that you _remove_ the
+goodix,hid-report-addr from the bindings and hardcode this into the
+driver because every GT7986U will have the same hid-report-addr. I
+know that kinda got lost in the discussion but it still needs to be
+addressed or at least responded to. I guess there was at least one
+other comment about "additionalProperties" that you should look for
+and address.
+
+* Make sure there's some type of version history after-the-cut. Tools
+like "patman" and "b4" can help with this.
+
+* The commit message should proactively address concerns that came up
+during the review process. In this case if we go with
+"goodix,gt7986u-spi" the commit message would want to say something
+explaining _why_ the "-spi" suffix is appropriate here even though
+normally it wouldn't be. That will help anyone digging through
+history.
+
+-Doug
 
