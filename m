@@ -1,164 +1,261 @@
-Return-Path: <devicetree+bounces-115668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E69E29B03BE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:17:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91D999B03D7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:20:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78A181F2242D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 13:17:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5C5F1C21D27
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 13:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC1D1632C6;
-	Fri, 25 Oct 2024 13:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81ADA7082D;
+	Fri, 25 Oct 2024 13:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YLTpqkIN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FjyOi0nA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28A63DABE2
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 13:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3E4E212170;
+	Fri, 25 Oct 2024 13:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729862108; cv=none; b=iz0xClVFtieoUKNqenu2ATORa+L+ngDWPnGmU94hqJxDBm5C18QgndC+o6V/j3X0PfGH2ty239fja+FNSDuLtdYUAkVViE+jaIwyhAYUc/31xW8kegUhWlltSI5Io6d0aMan30qBvpaqTkhuaTRCyL1AYm5RFmfszHPem1WiVUU=
+	t=1729862435; cv=none; b=VaCpIMLxTqWFiW9v6rDzpcq3FUphttRReaZKTyMsYiOlxJDQcY9ieYF8hFINbYVOw5x5A/UKNsR/rZBu+w9GUeSR1I85pakqHO1/LZauyuhBBJ5jACtx0njUiXVnFWb40TCGwycWzzd85upSvLmZGwSx4Jg6Nx6C0Bn0903ny2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729862108; c=relaxed/simple;
-	bh=k9VgnamHeRSjv5GGKdOvAnnQA43iGAwv8ANgyYMaoCs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jMCfsfLG4F9RcxN4up1XOX2GfN2OIjamBFV3ngFoH/ZoxYPq9kKLWrJr6fxOglkD8g8bkfEaoGfu+mEmLFFYmvTsIoM5EFE9LsrKlPbkhFBFFU4aypeFtRT9o6CRFXUO+X2REpsHMAL0PBTC0jZL0MQMVnCjo/a+kYvDls0IkPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YLTpqkIN; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43168d9c6c9so20727295e9.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 06:15:05 -0700 (PDT)
+	s=arc-20240116; t=1729862435; c=relaxed/simple;
+	bh=Iv+dDQawJeTjfcaOHDOnBzb79d7/eAt8zBP/Pf9XIPs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YSd6JF4swwOS19ejtN72huVCQNAoGtvNxpDkA//0Kwuvk8k36FX908yay6wihi9mt51XPdtMPIG2zIPeQDQwBE7vhO7GqFVhpF0mWgiUvoq14Qq1Qv0+B4+ImlPyVL9B787dLjCLv4i4e+VqRA6VPvbpx44BOrKprM9lrTHLm4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FjyOi0nA; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a9a26a5d6bfso291941766b.1;
+        Fri, 25 Oct 2024 06:20:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729862104; x=1730466904; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0aTUxFFuuS7q4apCNsR9KGVB+f/W8Symh/UfMC9/XY8=;
-        b=YLTpqkINQl/k0Dmo/dHnkTCtWaDaxrXXf9ErowBdR4zfWFuU/nl86wGe5bfu2QG4IJ
-         dqy2IH85DJxdqO3vp5e/k9NJ+p4TWsKi00I4KManBdi8rg3eqMZ2c+VefxvNoZUWoScR
-         TYNWo/RYe7rRBeVlbqJ3s0tRpFiRh56rvE5RPGDOsaSxBRVV9lIaMVrPTqYbwpZ3S/Z8
-         ZL0d3he39HeE1rexS6w+jI/YyQq42kNu0SOhoSl0/HtV7oEuEn2dIi2XfA1m7PcC/z/S
-         23Tb48sCIxLM2mS4s5dyONyaGvIPq6horZas85YREmlEespKBvcgd2mKfBxDY1KwV858
-         +KQQ==
+        d=gmail.com; s=20230601; t=1729862431; x=1730467231; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uulKs7R9OvjriBWT/CC8Pnu+w5NlV4zIkkgOTtPu4c0=;
+        b=FjyOi0nAPdqL2xeppONkUNguD0J67JCHsviLFH3Hx69IptZrHFNHX50nX06V9Az8hX
+         6RP96Yq5gLCaiIhFm+Y/Rhq3o34IVWYujWuNVaFYfRPZUnstMfLkZ/QX2WFNfs/K8x4k
+         i/uqDnyCygHnH8C7JUQ4T8CwBCe7z1hfJVUfpOG4uVE3w8Fjg/G/Lc3G0f4CWNM77JhU
+         eYvu8yClM4ZGj7fIKc2ej3cXq0R7ltuXnoKAfVzo32epPRpvHqfhgwEWKmCOJV1ynWa2
+         Pu/CrBaiVakECozTDO7ghzu9bddaqn/XqaXpMLx5sLYvaWrbifF6O4wWDUMrzx16iyOT
+         SCkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729862104; x=1730466904;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0aTUxFFuuS7q4apCNsR9KGVB+f/W8Symh/UfMC9/XY8=;
-        b=nYMUfGqHXc7gzSiOpPLR8P8A6HByw5jMr9TU2fp1wONScpANggejndD9LHt9Gy2kdU
-         vsfZaY1FCkeSvUgN2SgwK590VgzhBHAU3Z/UmOO0SABGwnn9hjk2Nl8gTJZ6rqM8bKkP
-         4LhFz3fRXcGYsdO70r/bvEPHE3Pr2Gnb2baJgnxbgaw6fcPEAUTkKRB+egI7zZp5QlJz
-         IiVtJEwYpCIFkigkmSWiUeBRJNQYJMADkA2Y09S9yuPdUjjEyjWpo0om2AJkqwiX0OGF
-         TwqAk437vb+BXGG1vWTmXATyY7SSVa30T0R/mUtOzWAOeLWrWDnECdYgqjVdzx3xL7b2
-         rvPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW+WqICq/zpOuJy8HqeJotscftonb43cdyvy6TtwYInpJqW1cb+0/xjtQ65dO8ExPL+8RwYtUQxDGlx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4JlolOY60AohqsK8QzgaX7W0zrIsXgM/rpqn1DqRQZs8xHxbM
-	ttouuG8ZLZk+YFteEUSGgifeKjwSHk2ju7EBoXtPbtSpbL/muLOJFvoiQn3Iw7o=
-X-Google-Smtp-Source: AGHT+IFn4umTFqPxopB2GAJY2aOrR7RfiFspVJ8SdEfcnoO13PLJi0jzfHRWD2Ee5O6gR0xA2R/rxA==
-X-Received: by 2002:a05:600c:3b2a:b0:42c:af2a:dcf4 with SMTP id 5b1f17b1804b1-4318c754f00mr39202585e9.27.1729862104292;
-        Fri, 25 Oct 2024 06:15:04 -0700 (PDT)
-Received: from gpeter-l.lan ([145.224.67.228])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b58b6bdsm47616685e9.45.2024.10.25.06.15.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 06:15:03 -0700 (PDT)
-From: Peter Griffin <peter.griffin@linaro.org>
-To: alim.akhtar@samsung.com,
-	James.Bottomley@HansenPartnership.com,
-	martin.petersen@oracle.com,
-	avri.altman@wdc.com,
-	bvanassche@acm.org,
-	krzk@kernel.org
-Cc: tudor.ambarus@linaro.org,
-	andre.draszik@linaro.org,
-	kernel-team@android.com,
-	willmcvicker@google.com,
-	linux-scsi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ebiggers@kernel.org,
-	Peter Griffin <peter.griffin@linaro.org>
-Subject: [PATCH v2 11/11] scsi: ufs: exynos: gs101: enable clock gating with hibern8
-Date: Fri, 25 Oct 2024 14:14:42 +0100
-Message-ID: <20241025131442.112862-12-peter.griffin@linaro.org>
-X-Mailer: git-send-email 2.47.0.163.g1226f6d8fa-goog
-In-Reply-To: <20241025131442.112862-1-peter.griffin@linaro.org>
-References: <20241025131442.112862-1-peter.griffin@linaro.org>
+        d=1e100.net; s=20230601; t=1729862431; x=1730467231;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uulKs7R9OvjriBWT/CC8Pnu+w5NlV4zIkkgOTtPu4c0=;
+        b=ZTZMCMRn+qoqV55YB5IvGMb1cOkDXLMuVUaM6BKh08UiiU9aZNjma1541VaEiJtFkV
+         pqpqu/ei+XxHhf3ZcqkrCr7GOtVvhORaPCSbQ+y/ve/Mj1DCoaEytqSq/O8BOjyhZne/
+         /QRVQomIwiIdiQxAUSSAW+tb3igaf6Ch4+IZOy/9Ft9knIwJHQBhgFs6TZ+djfLAPbjH
+         10fhvhym7/Sr4Wx/IDrfqYO8fpTFnOsz9hdJ+pl0DsvAKJciylgmUMFlb78U1PVn9kYj
+         1/NvPAyO9RZSUSHveP19P2AashWwhKJ6Np7U9L9ZnEcJelfy9gndsYEWB3laEYyKALJB
+         h3mw==
+X-Forwarded-Encrypted: i=1; AJvYcCU2DQYSMh88T8+y7zwb6ziBcZoPCnPvItKmomiqaxt7S3lOlPw5hT/7ZVrFkLtK/QOQuxie/0E5ow/c4Ng=@vger.kernel.org, AJvYcCVLSRS5UiQm8ya63N90pr8u+pITusWJdVlvjNUX8Tb+FQRyfhj/MgBuZLhli9YW35PUxAc0ORMCRWBF@vger.kernel.org, AJvYcCVjitsh+/YYs4vHJbap/m2LUTVrKuGcn+9FUucCiPe5BdSJ3HpwY5+LMxdV2UBATL3svNQkXBLAV/bu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzn+4dU61EAGGkUTYzDU0CWCQwFmDHaNAtODj22ki8gpHG4LS5A
+	DRP6onqyfdUt3n7YqNwtyOE3kuSKR8vWDvhg4QCJ5Aa0lnMbZERv/VUdUOSUx3FIcvDnnSRZShS
+	evdR7MWUH/xEiwyOIcZs5QwsURFk=
+X-Google-Smtp-Source: AGHT+IEb35gUbGtP4InZ6WMm5/IyT/Soo1Ihl70JzBa200ZUM9m1Q+qFTBBqDBODI/YSTqvPEhe969TFOoc5ILzCzQI=
+X-Received: by 2002:a17:907:980c:b0:a99:a9b6:2eb6 with SMTP id
+ a640c23a62f3a-a9abf53587cmr924971066b.0.1729862430611; Fri, 25 Oct 2024
+ 06:20:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241023075917.186835-1-ryan@testtoast.com> <20241023075917.186835-2-ryan@testtoast.com>
+In-Reply-To: <20241023075917.186835-2-ryan@testtoast.com>
+From: Code Kipper <codekipper@gmail.com>
+Date: Fri, 25 Oct 2024 15:20:18 +0200
+Message-ID: <CAEKpxB=BQ1GvzdVCYKyr_Q1eCfcYYEz1L_RqzEVBBgNu8jDfwA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/7] clk: sunxi-ng: h616: Add sigma-delta modulation
+ settings for audio PLL
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Chris Morgan <macroalpha82@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
+	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Enable clock gating and hibern8 capabilities for gs101. This
-leads to a significantly cooler phone when running the upstream
-kernel.
+On Wed, 23 Oct 2024 at 09:59, Ryan Walklin <ryan@testtoast.com> wrote:
+>
+> Allwinner has previously released a H616 audio driver which also
+> provides sigma-delta modulation for the audio PLL clocks. This approach
+> is used in other Allwinner SoCs, including the H3 and A64.
+>
+> The manual-provided clock values are:
+> PLL_AUDIO(hs) = 24 MHz*N/M1
+> PLL_AUDIO(4X) = 24 MHz*N/M0/M1/P
+> PLL_AUDIO(2X) = 24 MHz*N/M0/M1/P/2
+> PLL_AUDIO(1X) = 24 MHz*N/M0/M1/P/4
+>
+> A fixed post-divider of 2 is used to account for a M0 divider of
+> 2, which cannot be modelled by the existing macros and ccu_nm struct.
+>
+> Add SDM to the H616 clock control unit driver.
+>
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+>
+> ---
+> Changelog v1..v2:
+> - Add fixed_post_div to high-speed audio clock to correct M0 value to 1 (ie divide by 2) based on manual
+> - Correct PLL_AUDIO_(4/2/1)X clocks to manual-provided values
+> - Add/correct inline comments for the above.
+> - add CCU_FEATURE_FIXED_POSTDIV to pll_audio_hs_clk.common.features
+>
+> Changelog v2..v3:
+> - Update comments and commit message to more accurately reflect SDM changes and rationale
+> ---
+>  drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 46 +++++++++++++++++---------
+>  1 file changed, 30 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> index 6c7623d4c59ea..05727fa1ee46e 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+> @@ -215,20 +215,30 @@ static struct ccu_nkmp pll_de_clk = {
+>         },
+>  };
+>
+> -/*
+> - * TODO: Determine SDM settings for the audio PLL. The manual suggests
+> - * PLL_FACTOR_N=16, PLL_POST_DIV_P=2, OUTPUT_DIV=2, pattern=0xe000c49b
+> - * for 24.576 MHz, and PLL_FACTOR_N=22, PLL_POST_DIV_P=3, OUTPUT_DIV=2,
+> - * pattern=0xe001288c for 22.5792 MHz.
+> - * This clashes with our fixed PLL_POST_DIV_P.
+> +/*
+> + * Sigma-delta modulation settings table obtained from the vendor SDK driver.
+> + * There are additional M0 and M1 divider bits not modelled here, so forced to
+> + * fixed values in the probe routine. Sigma-delta modulation allows providing a
+> + * fractional-N divider in the PLL, to help reaching those specific
+> + * frequencies with less error.
+>   */
+> +static struct ccu_sdm_setting pll_audio_sdm_table[] = {
+> +       { .rate = 90316800, .pattern = 0xc001288d, .m = 3, .n = 22 },
+> +       { .rate = 98304000, .pattern = 0xc001eb85, .m = 5, .n = 40 },
+> +};
+> +
+>  #define SUN50I_H616_PLL_AUDIO_REG      0x078
+>  static struct ccu_nm pll_audio_hs_clk = {
+>         .enable         = BIT(31),
+>         .lock           = BIT(28),
+>         .n              = _SUNXI_CCU_MULT_MIN(8, 8, 12),
+> -       .m              = _SUNXI_CCU_DIV(1, 1), /* input divider */
+> +       .m              = _SUNXI_CCU_DIV(16, 6),
+> +       .sdm            = _SUNXI_CCU_SDM(pll_audio_sdm_table,
+> +                                        BIT(24), 0x178, BIT(31)),
+> +       .fixed_post_div = 2,
+>         .common         = {
+> +               .features       = CCU_FEATURE_FIXED_POSTDIV |
+> +                                 CCU_FEATURE_SIGMA_DELTA_MOD,
+>                 .reg            = 0x078,
+>                 .hw.init        = CLK_HW_INIT("pll-audio-hs", "osc24M",
+>                                               &ccu_nm_ops,
+> @@ -701,18 +711,20 @@ static const struct clk_hw *clk_parent_pll_audio[] = {
+>  };
+>
+>  /*
+> - * The divider of pll-audio is fixed to 24 for now, so 24576000 and 22579200
+> - * rates can be set exactly in conjunction with sigma-delta modulation.
+> + * The PLL_AUDIO_4X clock defaults to 24.5714 MHz according to the manual, with
+> + * a final divider of 1. The 2X and 1X clocks use 2 and 4 respectively. The 1x
+> + * clock is set to either 24576000 or 22579200 for 48Khz and 44.1Khz (and
+> + * multiples).
+>   */
+>  static CLK_FIXED_FACTOR_HWS(pll_audio_1x_clk, "pll-audio-1x",
+>                             clk_parent_pll_audio,
+> -                           96, 1, CLK_SET_RATE_PARENT);
+> +                           4, 1, CLK_SET_RATE_PARENT);
+>  static CLK_FIXED_FACTOR_HWS(pll_audio_2x_clk, "pll-audio-2x",
+>                             clk_parent_pll_audio,
+> -                           48, 1, CLK_SET_RATE_PARENT);
+> +                           2, 1, CLK_SET_RATE_PARENT);
+>  static CLK_FIXED_FACTOR_HWS(pll_audio_4x_clk, "pll-audio-4x",
+>                             clk_parent_pll_audio,
+> -                           24, 1, CLK_SET_RATE_PARENT);
+> +                           1, 1, CLK_SET_RATE_PARENT);
+>
+>  static const struct clk_hw *pll_periph0_parents[] = {
+>         &pll_periph0_clk.common.hw
+> @@ -1162,12 +1174,14 @@ static int sun50i_h616_ccu_probe(struct platform_device *pdev)
+>         }
+>
+>         /*
+> -        * Force the post-divider of pll-audio to 12 and the output divider
+> -        * of it to 2, so 24576000 and 22579200 rates can be set exactly.
+> +        * Set the output-divider for the pll-audio clocks (M0) to 2 and the
+> +        * input divider (M1) to 1 as recommended by the manual when using
+> +        * SDM.
+>          */
+>         val = readl(reg + SUN50I_H616_PLL_AUDIO_REG);
+> -       val &= ~(GENMASK(21, 16) | BIT(0));
+> -       writel(val | (11 << 16) | BIT(0), reg + SUN50I_H616_PLL_AUDIO_REG);
+> +       val &= ~BIT(1);
+> +       val |= BIT(0);
+> +       writel(val, reg + SUN50I_H616_PLL_AUDIO_REG);
+>
+>         /*
+>          * First clock parent (osc32K) is unusable for CEC. But since there
+Hi Ryan,
+I noticed some white-space issues when cherry-picking this change from
+your repo.
+scripts/checkpatch.pl
+0001-clk-sunxi-ng-h616-Add-sigma-delta-modulation-setting.patch
+ERROR: trailing whitespace
+#51: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:218:
++/* $
 
-The exynos_ufs_post_hibern8() hook is also updated to remove the
-UIC_CMD_DME_HIBER_EXIT code path as this causes a hang on gs101.
+ERROR: trailing whitespace
+#74: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:240:
++^I^I.features^I= CCU_FEATURE_FIXED_POSTDIV | $
 
-The code path is removed rather than re-factored as no other SoC
-in ufs-exynos driver sets UFSHCD_CAP_HIBERN8_WITH_CLK_GATING
-capability. Additionally until the previous commit the hibern8
-callbacks were broken anyway as they expected a bool.
+ERROR: trailing whitespace
+#85: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:698:
++ * The PLL_AUDIO_4X clock defaults to 24.5714 MHz according to the
+manual, with $
 
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
----
- drivers/ufs/host/ufs-exynos.c | 24 ++++--------------------
- 1 file changed, 4 insertions(+), 20 deletions(-)
+ERROR: trailing whitespace
+#86: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:699:
++ * a final divider of 1. The 2X and 1X clocks use 2 and 4
+respectively. The 1x $
 
-diff --git a/drivers/ufs/host/ufs-exynos.c b/drivers/ufs/host/ufs-exynos.c
-index 3bbb71f7bae7..7c8195f27bb6 100644
---- a/drivers/ufs/host/ufs-exynos.c
-+++ b/drivers/ufs/host/ufs-exynos.c
-@@ -229,6 +229,9 @@ static int gs101_ufs_drv_init(struct device *dev, struct exynos_ufs *ufs)
- 	/* Enable WriteBooster */
- 	hba->caps |= UFSHCD_CAP_WB_EN;
- 
-+	/* Enable clock gating and hibern8 */
-+	hba->caps |= UFSHCD_CAP_CLK_GATING | UFSHCD_CAP_HIBERN8_WITH_CLK_GATING;
-+
- 	/* set ACG to be controlled by UFS_ACG_DISABLE */
- 	reg = hci_readl(ufs, HCI_IOP_ACG_DISABLE);
- 	hci_writel(ufs, reg & (~HCI_IOP_ACG_DISABLE_EN), HCI_IOP_ACG_DISABLE);
-@@ -1566,26 +1569,7 @@ static void exynos_ufs_post_hibern8(struct ufs_hba *hba, enum uic_cmd_dme cmd)
- {
- 	struct exynos_ufs *ufs = ufshcd_get_variant(hba);
- 
--	if (cmd == UIC_CMD_DME_HIBER_EXIT) {
--		u32 cur_mode = 0;
--		u32 pwrmode;
--
--		if (ufshcd_is_hs_mode(&ufs->dev_req_params))
--			pwrmode = FAST_MODE;
--		else
--			pwrmode = SLOW_MODE;
--
--		ufshcd_dme_get(hba, UIC_ARG_MIB(PA_PWRMODE), &cur_mode);
--		if (cur_mode != (pwrmode << 4 | pwrmode)) {
--			dev_warn(hba->dev, "%s: power mode change\n", __func__);
--			hba->pwr_info.pwr_rx = (cur_mode >> 4) & 0xf;
--			hba->pwr_info.pwr_tx = cur_mode & 0xf;
--			ufshcd_config_pwr_mode(hba, &hba->max_pwr_info.info);
--		}
--
--		if (!(ufs->opts & EXYNOS_UFS_OPT_SKIP_CONNECTION_ESTAB))
--			exynos_ufs_establish_connt(ufs);
--	} else if (cmd == UIC_CMD_DME_HIBER_ENTER) {
-+	if (cmd == UIC_CMD_DME_HIBER_ENTER) {
- 		ufs->entry_hibern8_t = ktime_get();
- 		exynos_ufs_gate_clks(ufs);
- 		if (ufs->opts & EXYNOS_UFS_OPT_BROKEN_AUTO_CLK_CTRL)
--- 
-2.47.0.163.g1226f6d8fa-goog
+ERROR: trailing whitespace
+#87: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:700:
++ * clock is set to either 24576000 or 22579200 for 48Khz and 44.1Khz (and $
 
+ERROR: trailing whitespace
+#112: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:1152:
++^I * input divider (M1) to 1 as recommended by the manual when using $
+
+ERROR: trailing whitespace
+#113: FILE: drivers/clk/sunxi-ng/ccu-sun50i-h616.c:1153:
++^I * SDM. $
+
+total: 7 errors, 0 warnings, 80 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
+
+NOTE: Whitespace errors detected.
+      You may wish to use scripts/cleanpatch or scripts/cleanfile
+
+but that didn't stop it from singing beautifully!,
+
+Tested-by: Marcus Cooper <codekipper@gmail.com>
+BR,
+CK
+> --
+> 2.47.0
+>
+>
 
