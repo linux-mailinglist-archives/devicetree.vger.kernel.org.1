@@ -1,198 +1,135 @@
-Return-Path: <devicetree+bounces-115763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 113129B0A31
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:44:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07FCB9B0A35
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:45:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 435851C21771
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:44:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C60A1C21749
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:45:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171E71865ED;
-	Fri, 25 Oct 2024 16:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614F2200BA0;
+	Fri, 25 Oct 2024 16:45:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hswP2hz3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JQUrxVW0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9082170854;
-	Fri, 25 Oct 2024 16:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD331F754F
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 16:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729874686; cv=none; b=qbTP6NhlxO3gnDwJt1aGFIDrQdCSGdh8zZeAYuwU9fYLSODptOpaRGqqeKSrU2HCOYbGsbKyMwJKQmHJaq+T28Cnv+8DySbVHKQR2NXtpuiITc8k8sVGhGvV3lNK6Dsc0VFYvnT28c37fDEI/5617So5SCRQmNTvfiAncYjp+cM=
+	t=1729874710; cv=none; b=friftEaLkszbsaSLmslQ1P/wj9JnUBWdvNTV5aVsX3R6Ui1q/H6cu6KXmO5xIEE/bHf3j/Wt5Ceu9JOBEldJhHyCMrD8mXcV4UsyQJD5QfuvwzCh/U21aJRNBAm2NaMuG3SXWgXBK75XR1PALQVUTcON87kf9oo08itZpPbAC0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729874686; c=relaxed/simple;
-	bh=dm33zfR58Grs1+44I7WoAOjuTC5WjP5JD5nKra0ImTg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g28SEwQeiZuT5lDEPbSWQ2GM6W7yMcUHduuCX/bPPbEvtq0DanEjOd+Sg3wfc55c1eRRNekzjMNF/mYtgtotKphBAheOctwN5Kwemhf60em9UM9R8emKY/tLe4dB2f7XuDfmP6IIYIoY7zj+jfq+dcLb/I0xLhxTMD0s58CMdk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hswP2hz3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FE18C4CEC3;
-	Fri, 25 Oct 2024 16:44:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729874685;
-	bh=dm33zfR58Grs1+44I7WoAOjuTC5WjP5JD5nKra0ImTg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hswP2hz3gcvFBqPW2ufUXWTcuBYuRsf0Rufswq+PTDT5102qv6Lf5pV/fGycTf2kV
-	 7+CE6GtPcMzlKKvg5aln5gtp4IFryAaxDf4Y9T9/zfa9Iz8Wf86WmtPHkhj+PrkXWo
-	 yRhLEjU1ahlRgd4D8cBDk6mXHnVbrv6lvuD9wCQ0p6bs3S7oMXrCSCVNVeCEc99ZMZ
-	 9mYIQ+FaNRwkQEfFEu6YIUq5M/1umKginTtqd46n9XLpJIjg5WeLK7//HBhUh08Sdt
-	 hX2ne6DcsZfhpd9OmA5f4xDXI/P9egVNlFbs8yxlEPLJvBGHjMQK25hkASimts2i+F
-	 4GQ2+LFjUAEHw==
-Date: Fri, 25 Oct 2024 17:44:39 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com
-Subject: Re: [PATCH v4 2/3] dt-bindings: crypto: Add Inside Secure SafeXcel
- EIP-93 crypto engine
-Message-ID: <20241025-marmalade-constant-1c733ef5f3e8@spud>
-References: <20241025094734.1614-1-ansuelsmth@gmail.com>
- <20241025094734.1614-2-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1729874710; c=relaxed/simple;
+	bh=y3jGx75Ma9tFzNhHFJU7+LtkeYM9g8+ty0cMjukmOs4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SmfyqmycOXnXHCt+l+qq+2mzpZudNb/lNkQf/KxtObbkoJqWx5fJWne0fzsY0e0CzsB4EGW3D31ko0JiHF+YMfSHaQIYmyNQ+xEd2EfGMXPoxe+4rbpGZZBB1N/kheH8hmU5C+UVFH/8hO/MKF+HvBODvnV7xDnvpB/r+Wx/slQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JQUrxVW0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PB1x4T000877
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 16:45:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jAZOsXr5fsDPQXW9p3QRY4SAZjYiB+yQ1LfwNbC6aOA=; b=JQUrxVW0z4d/cgp+
+	fOxhZqUD+VuPzFdrgo6rmi2XA2oZnsnoHkXEguuovDI8Sf5ojJb9j+dKhWj1Ae2U
+	tZHzXgOg9fJZ1qkTPf/6XABnQ3jTkEQNst5AqnQXUYobagsYrK/FZXFP7sll6fpo
+	+VeailN5PvK5fZHrQz2RUTUn0QOH0vwKsPLVpr8JQVNlkClNplok5Qy1tqTeE/d+
+	IX+I2SzkOcI1NcK31B4C7BX9NcXrl1itdJBMtODZ/vOd2gakMdZGIfIZe6DXVPZW
+	6d1DlsEGEzT+q9jpsW5oNk3PZC+yhuI0vDLhOyUFi4CzThAOM8q4NmRUM3ngmmrf
+	pVOdcg==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ga3s13pf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 16:45:07 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6cbe5e8658fso4481286d6.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:45:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729874705; x=1730479505;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jAZOsXr5fsDPQXW9p3QRY4SAZjYiB+yQ1LfwNbC6aOA=;
+        b=qH+eKTd3Ln3+7pkhzBgKJZhCD70NShVNjyKqYNyP3Qw4k3nzzv2I14qEMzdJriBNyl
+         6cX5Rw4Czvfaxyx9/AxyMhJu3BWMdaowii/hqsvB8sydHp+467jIiNqWVpgcIy1OI9R+
+         FHQCImltbK5zNPmWGNI/h7KJ7w2dQOSOyHS2842Xnh0GOc4inDsEwhcIGep1MLrzHUCX
+         GWl/58egZwAgRE/W3JwiYkly22v3ZCr+Jj0zIf9qXgv7ysJS6qol+RBiQ1imZdB0urb/
+         yDzrdVmc5tVw16G9RzSwFoBodmhjhefdoKuhF81oRM/ezPiRpab71tJuFm1gCQFmnrOG
+         WI5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUMC0CeNBVlBllgaFxfYT28srxo8TywSYlbjOdabELJ4xpMmRly7PXsOAyTT2BIekKGXatdBnH2Rd6u@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWGkoEo8fIcFqwaDvc8Us53kH5dI+3A4UDQVGNsDWNJ4kmVqY9
+	r2rS0uZx0L/OkBkkwTjzK2JjZv92lQmpXY3i+e2w1AifTYT9Cj5C8fw9o1OZgrp+kh3KR1f7Gr6
+	yHF1lWsMfMGXz0MFrjjocf7wVEHGK+r0CdZ0/6Vu33ST+WGZKFScYDPLnWBZZ
+X-Received: by 2002:a05:6214:202b:b0:6cb:e6b4:2d36 with SMTP id 6a1803df08f44-6d18584a5e9mr260126d6.7.1729874705020;
+        Fri, 25 Oct 2024 09:45:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG1sduBzfyy1TRRjvLCCS7rO3oxcnITvZektef5yIhCEjrG5D3MB0/QFdQf572p6gAAmalixA==
+X-Received: by 2002:a05:6214:202b:b0:6cb:e6b4:2d36 with SMTP id 6a1803df08f44-6d18584a5e9mr259776d6.7.1729874704539;
+        Fri, 25 Oct 2024 09:45:04 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1e75ff3bsm87945466b.1.2024.10.25.09.45.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Oct 2024 09:45:04 -0700 (PDT)
+Message-ID: <8c9804f2-ef4d-412b-97ea-f521dfd35ec2@oss.qualcomm.com>
+Date: Fri, 25 Oct 2024 18:45:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QPZZZgLU1JrXIOAQ"
-Content-Disposition: inline
-In-Reply-To: <20241025094734.1614-2-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: qcs615: add the APPS SMMU node
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Qingqing Zhou <quic_qqzhou@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, robimarko@gmail.com, will@kernel.org,
+        robin.murphy@arm.com, joro@8bytes.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev
+References: <20241025030732.29743-1-quic_qqzhou@quicinc.com>
+ <20241025030732.29743-5-quic_qqzhou@quicinc.com>
+ <8a60b729-b312-4afc-835b-a18060ad3f03@oss.qualcomm.com>
+ <zsphor7rpbwx4km6uxpepky2h7atbgjn2435puygmpssfc36mc@wkquqxud2yij>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <zsphor7rpbwx4km6uxpepky2h7atbgjn2435puygmpssfc36mc@wkquqxud2yij>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: KvVKgk6-M8BUmaAEEOJMZCs0ntHQIloN
+X-Proofpoint-GUID: KvVKgk6-M8BUmaAEEOJMZCs0ntHQIloN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ impostorscore=0 bulkscore=0 mlxlogscore=722 malwarescore=0 suspectscore=0
+ phishscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410250129
 
+On 25.10.2024 1:06 PM, Dmitry Baryshkov wrote:
+> On Fri, Oct 25, 2024 at 10:54:24AM +0200, Konrad Dybcio wrote:
+>> On 25.10.2024 5:07 AM, Qingqing Zhou wrote:
+>>> Add the APPS SMMU node for QCS615 platform. Add the dma-ranges
+>>> to limit DMA address range to 36bit width to align with system
+>>> architecture.
+>>>
+>>> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
+>>> ---
+>>
+>> You probably also want to mark it `dma-coherent` (see e.g.
+>> x1e80100.dtsi)
+> 
+> Is it? I don't think SM6150 had dma-coherent SMMU, at least it wasn't
+> marked as such.
 
---QPZZZgLU1JrXIOAQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I don't think I have any documentation on this, so.. one way to find out!
 
-On Fri, Oct 25, 2024 at 11:47:23AM +0200, Christian Marangi wrote:
-> Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
->=20
-> The IP is present on Airoha SoC and on various Mediatek devices and
-> other SoC under different names like mtk-eip93 or PKTE.
->=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v4:
-> - Out of RFC
-
-I left comments on v3, that I do not see addressed here.
-
-> Changes v3:
-> - Add SoC compatible with generic one
-> Changes v2:
-> - Change to better compatible
-> - Add description for EIP93 models
->=20
->  .../crypto/inside-secure,safexcel-eip93.yaml  | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secur=
-e,safexcel-eip93.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safex=
-cel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,saf=
-excel-eip93.yaml
-> new file mode 100644
-> index 000000000000..13341710ee31
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip=
-93.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/inside-secure,safexcel-eip93.y=
-aml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Inside Secure SafeXcel EIP-93 cryptographic engine
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +description: |
-> +  The Inside Secure SafeXcel EIP-93 is a cryptographic engine IP block
-> +  integrated in varios devices with very different and generic name from
-> +  PKTE to simply vendor+EIP93. The real IP under the hood is actually
-> +  developed by Inside Secure and given to license to vendors.
-> +
-> +  The IP block is sold with different model based on what feature are
-> +  needed and are identified with the final letter. Each letter correspond
-> +  to a specific set of feature and multiple letter reflect the sum of the
-> +  feature set.
-> +
-> +  EIP-93 models:
-> +    - EIP-93i: (basic) DES/Triple DES, AES, PRNG, IPsec ESP, SRTP, SHA1
-> +    - EIP-93ie: i + SHA224/256, AES-192/256
-> +    - EIP-93is: i + SSL/DTLS/DTLS, MD5, ARC4
-> +    - EIP-93ies: i + e + s
-> +    - EIP-93iw: i + AES-XCB-MAC, AES-CCM
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: airoha,crypto-eip93
-> +      - enum:
-> +          - inside-secure,safexcel-eip93i
-> +          - inside-secure,safexcel-eip93ie
-> +          - inside-secure,safexcel-eip93is
-> +          - inside-secure,safexcel-eip93ies
-> +          - inside-secure,safexcel-eip93iw
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    crypto@1e004000 {
-> +      compatible =3D "airoha,crypto-eip93", "inside-secure,safexcel-eip9=
-3ies";
-> +      reg =3D <0x1fb70000 0x1000>;
-> +
-> +      interrupts =3D <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> --=20
-> 2.45.2
->=20
-
---QPZZZgLU1JrXIOAQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxvK9wAKCRB4tDGHoIJi
-0mEJAQCgD/LVRzqypI/lSQC01t+ffVDixoJVQ2D32YNL/OTG7gD+NbRCXvRr+A28
-6r21JafKUgARYLDPKd0eohYPLM10Qg4=
-=TYuD
------END PGP SIGNATURE-----
-
---QPZZZgLU1JrXIOAQ--
+Konrad
 
