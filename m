@@ -1,408 +1,198 @@
-Return-Path: <devicetree+bounces-115614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D859A9B01F7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:14:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B71999B0247
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:24:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BD2C283AF0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:14:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9C0B1C2238B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC9A2022DA;
-	Fri, 25 Oct 2024 12:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7DC20265F;
+	Fri, 25 Oct 2024 12:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ESf501mK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iw/Pymjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE7D1F81AF;
-	Fri, 25 Oct 2024 12:14:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013702003BC;
+	Fri, 25 Oct 2024 12:24:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729858477; cv=none; b=Q/fafcLDqgYL/7+PWb2NbdpiNfK6zymIH0Ybw9HFLlZYwp3VM6+zM27HjOVo4vb2XBY040k1Tp3Y4KmOvqKS35lV3C0Cv/6U5fWxQbuO3+y+j5VPWryy++s8iNhx592dc/ktZo/EmKSu3M2W6aaP5vAxJsHYldI8OuWVS/SHXUw=
+	t=1729859087; cv=none; b=g3IcHh5zK60dAdILxz5ObH+VJ7BS/eY3mpvKoa0qoSbzCGYCPWq+ZkopOpBed2I+sI8QAYSpMSgNb+d8/tH2YetiVV+dl4sUBh8Kdw7N7XHMRue9qgjQ4mefSe7GdoueSDwYEROU0ajl1hbAUrttcW9ksT6OuPi0Uswq3/XGgN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729858477; c=relaxed/simple;
-	bh=f+rHu7ZQEJPbWcyuZPxTcWQL0ZS02pwDvuHMybNTepY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=O6z0iOH7KpZq89vSD6pEqMcEqZqtySGqQ4/HxBdCo+LMZh5ANNVRddr8AllTnf/uTt44JYbtBWkA0FZwKp71dpqXOSYeArXGx5TgIXPTcMQdfkfGHmRIFesrTY3HMhQ+TXTSTqJG4az8LGVx7n9wyL0RAmbxGHfYCM+v9dt7+i4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ESf501mK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PB2LML001170;
-	Fri, 25 Oct 2024 12:14:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	l2umKUDZroJhKWGugCA3KI+nJ29nYBg6+yfjh//bdgw=; b=ESf501mKksOL8WaZ
-	oHthjn1WorQOyADQLZeoCbY9tMA5wX+EEfTL4g2R3v7Gjd5tSVe1570esSqINzES
-	vU+DN4p7Su8wRLfNUZbWoPUhtK9o04nNXR0cL1if+WtiMYQwPooSaglCxxPqn/fj
-	bPeQTr4fWz/kOHcFITl8TTNXN+VmSJjTRqCfRZXTKbDxJyRlyZF27IUfGK+XvDW8
-	IzuXLOrKAk/HTLnKoEdDZYZmPEUl8X6EandEhhQNwFcplkY9E3C3JiFyOYs2KNkA
-	lntzj3bWmEHh7a5dhXwk97g7IvCR5LhjcqKdPL4uxQ1wAQ2aUsyQyGVGwx2+k685
-	rH/QXg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ga3s06b8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Oct 2024 12:14:24 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49PCENWY003953
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Oct 2024 12:14:23 GMT
-Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Oct
- 2024 05:14:17 -0700
-Message-ID: <6b70789a-a63b-42e6-beb0-9500cbe99ce7@quicinc.com>
-Date: Fri, 25 Oct 2024 20:14:15 +0800
+	s=arc-20240116; t=1729859087; c=relaxed/simple;
+	bh=Z5XDBQsaCkyP9D/5Io4jvAUKYDqeuCrR1g54KtPWi7k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lYALdBqPtTp+zlRl6qaPJyNaWlNTiv0f0lVLUMQWdtqcxeAJpbVtmXoVIBm1ELlAJndedHFpxNST3Dp638NLUkWpWt8KB7S1tHYUovpo7CY2qC5k6d+DpujHdZoz7FHRQzgCvRMCuxhGEKLjYu9CV5CoStWIbtH34O2gXF1dkgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iw/Pymjt; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43163667f0eso19617465e9.0;
+        Fri, 25 Oct 2024 05:24:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729859083; x=1730463883; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=cYzZ5plZjr/ivbDXkMNCAQd5Ocu3/uICeMDdVH85OAA=;
+        b=iw/PymjtRXgeCu3fbwrJx3+d/lykttD4x6MtEy3j6pfLP6FNqpsoW8gqTgAZf6/jOU
+         qvL0xOYdJ4jrYoXmRBPaazfOfzYlT+KbsZcApnfaAA1I0b4nK1/rr2ZNEomy/dLCCP2R
+         IhwWOXOoJgcPVjTNprkfq7yV72V41qzuS5HVc5cEA2pUpheyxqaBke1F4xVZkt1q8UyW
+         9vhhv4ZHR7GxVE7T9vxinV3jAtI8I7bCnQB+CWwPxHm6ogzImPwWZF0Kfac4GxqPCEWD
+         gDlnxF3HAFR7sdniUI4n0nRT7UxUaBSkR1+5Igz4VzxULk6tvTW1mkhMceaVVaLArSL+
+         +N4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729859083; x=1730463883;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cYzZ5plZjr/ivbDXkMNCAQd5Ocu3/uICeMDdVH85OAA=;
+        b=W/d5f5klV+RT0ViKtuu8/WM8q/ibmS4ycrj/I3OaPbpRWSWFbFqSeuIx/vzKnUBOPo
+         yy+q033j3Rr6WtVOH/7BwMkLUTfqETLGgMcZlhnZKOMM62S2PMDKJNY0KGPlG/+0BWbG
+         H2gXZEOouuz/InQ1pct9kZgBY9YL5Av17ZVJJPyhpBNmSKc5Hu0TUh6oDV0l7E60dYvY
+         kSsEsI817qR7S/tKqwprvgeV3mZn063UjNqWLCM2Wb4Sw9/aqewiL9iEoSYmuZUCnges
+         u0iHi3gAKETzLSYI1MTe7dxtiwg9H+0XH17A2gQ3itbywFNUtlU9+ZqSE/4R3Qjq+zeb
+         ifOw==
+X-Forwarded-Encrypted: i=1; AJvYcCUDBEGu6DC513BpKejxw+7aL/XTXW4Wh8PmvmEo1uZxiJiRKsjk1pMetb7JGQzJ7/Spns4Wd7pwBSPh@vger.kernel.org, AJvYcCUWXB11Z2R0hkAWOzG7xOHAiTG84xogAreoUfuy9R9eMNF/G5XMOwmXpURdH6zOb+Q8bc7OEyhny8Q7@vger.kernel.org, AJvYcCVV/+FNdtzuCeImVgxfxAMYxnjQ3hMcIfg++LR+wEfbL2IPGbOVXSeZpdaoLnKkHxNAdGRxUyxK2AjD@vger.kernel.org, AJvYcCVlFEuKkrOtr6c53Lb6CEFO5eCt1Bm5PmYBKmNyWNUUh7UG6arWiffcEGptpT0wyXkMjMfy5ilRTcGcYT1e@vger.kernel.org, AJvYcCWdB8/X/MLoNY9210uuxe/Ek615f9OeJKzeFQ6HUikdq9o0X956Io4+10jtn6+JcAGja2yvoDf/XmWc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8KwkGT0UYRjAOE+Uf41AROwTn5583WlIfEa6u7q+Iq5eWw90k
+	FG/BW3H0CqJFegZKIE845qJck6ZT2rCJ6im6vTg5GHyLTnO58Rf9
+X-Google-Smtp-Source: AGHT+IHag4RyX7Vdwg+d8jP6CBWJ1wmfQ0nBOBv+3wACgnWVRKihMStaMnkCocneC8wHwDpop6exXg==
+X-Received: by 2002:a05:600c:1c05:b0:431:5bb1:f088 with SMTP id 5b1f17b1804b1-431842460a0mr87195715e9.29.1729859082933;
+        Fri, 25 Oct 2024 05:24:42 -0700 (PDT)
+Received: from nsa.fritz.box ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935f74b6sm16286575e9.33.2024.10.25.05.24.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 05:24:42 -0700 (PDT)
+Message-ID: <535af173992948db675029bc33a7877cb9e75275.camel@gmail.com>
+Subject: Re: [PATCH RFC v4 07/15] spi: add offload TX/RX streaming APIs
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
+	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
+	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+Date: Fri, 25 Oct 2024 14:24:42 +0200
+In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-7-f8125b99f5a1@baylibre.com>
+References: 
+	<20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
+	 <20241023-dlech-mainline-spi-engine-offload-2-v4-7-f8125b99f5a1@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/7] arm64: dts: qcom: add base QCS615 RIDE dts
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tingguo Cheng
-	<quic_tingguoc@quicinc.com>
-References: <20241022-add_initial_support_for_qcs615-v4-0-0a551c6dd342@quicinc.com>
- <20241022-add_initial_support_for_qcs615-v4-6-0a551c6dd342@quicinc.com>
- <4bhsuysjm2uwkk52g4pkspiadsf5y4m2afotj7ggo2lnj24ip2@yqkijcdkiloj>
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-In-Reply-To: <4bhsuysjm2uwkk52g4pkspiadsf5y4m2afotj7ggo2lnj24ip2@yqkijcdkiloj>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: qCoYAuai4UbGPRAqXxGarM2Wbazx9fa8
-X-Proofpoint-GUID: qCoYAuai4UbGPRAqXxGarM2Wbazx9fa8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- impostorscore=0 bulkscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
- phishscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410250092
+
+On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
+> Most configuration of SPI offloads is handled opaquely using the offload
+> pointer that is passed to the various offload functions. However, there
+> are some offload features that need to be controlled on a per transfer
+> basis.
+>=20
+> This patch adds a flag field to struct spi_transfer to allow specifying
+> such features. The first feature to be added is the ability to stream
+> data to/from a hardware sink/source rather than using a tx or rx buffer.
+> Additional flags can be added in the future as needed.
+>=20
+> A flags field is also added to the offload struct for providers to
+> indicate which flags are supported. This allows for generic checking of
+> offload capabilities during __spi_validate() so that each offload
+> provider doesn't have to implement their own validation.
+>=20
+> As a first users of this streaming capability, getter functions are
+> added to get a DMA channel that is directly connected to the offload.
+> Peripheral drivers will use this to get a DMA channel and configure it
+> to suit their needs.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>=20
+> v4 changes:
+> * DMA API's now automatically release DMA channels instead of leaving
+> =C2=A0 it up to the caller.
+>=20
+> v3 changes:
+> * Added spi_offload_{tx,rx}_stream_get_dma_chan() functions.
+>=20
+> v2 changes:
+> * This is also split out from "spi: add core support for controllers with
+> =C2=A0 offload capabilities".
+> * In the previous version, we were using (void *)-1 as a sentinel value
+> =C2=A0 that could be assigned, e.g. to rx_buf. But this was naive since t=
+here
+> =C2=A0 is core code that would try to dereference this pointer. So instea=
+d,
+> =C2=A0 we've added a new flags field to the spi_transfer structure for th=
+is
+> =C2=A0 sort of thing. This also has the advantage of being able to be use=
+d in
+> =C2=A0 the future for other arbitrary features.
+> ---
+> =C2=A0drivers/spi/spi-offload.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 76 =
++++++++++++++++++++++++++++++++++++++++++
+> =C2=A0drivers/spi/spi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 10 ++++++
+> =C2=A0include/linux/spi/spi-offload.h | 24 +++++++++++++
+> =C2=A0include/linux/spi/spi.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 3 ++
+> =C2=A04 files changed, 113 insertions(+)
+>=20
+> diff --git a/drivers/spi/spi-offload.c b/drivers/spi/spi-offload.c
+> index 2a1f9587f27a..dd4cb3c2e985 100644
+> --- a/drivers/spi/spi-offload.c
+> +++ b/drivers/spi/spi-offload.c
+> @@ -8,6 +8,7 @@
+> =C2=A0
+> =C2=A0#include <linux/cleanup.h>
+> =C2=A0#include <linux/device.h>
+> +#include <linux/dmaengine.h>
+> =C2=A0#include <linux/export.h>
+> =C2=A0#include <linux/list.h>
+> =C2=A0#include <linux/mutex.h>
+> @@ -282,6 +283,81 @@ void spi_offload_trigger_disable(struct spi_offload =
+*offload,
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL_GPL(spi_offload_trigger_disable);
+> =C2=A0
+> +static void spi_offload_release_dma_chan(void *chan)
+> +{
+> +	dma_release_channel(chan);
+> +}
+> +
+> +/**
+> + * spi_offload_tx_stream_request_dma_chan_info - Get the DMA channel inf=
+o for the
+> TX stream
+> + * @spi: SPI device
+> + * @id: Function ID if SPI device uses more than one offload or NULL.
+> + *
+> + * This is the DMA channel that will provide data to transfers that use =
+the
+> + * %SPI_OFFLOAD_XFER_TX_STREAM offload flag.
+> + *
+> + * The caller is responsible for calling spi_offload_free_dma_chan_info(=
+) on the
+> + * returned pointer.
+
+I guess the above does not make sense now. But I would still document (just=
+ to really
+make it explicit) that the lifetime of the DMA channel is effectively being=
+ handed
+over to the consumer.
 
 
 
-在 10/23/2024 10:09 AM, Bjorn Andersson 写道:
-> On Tue, Oct 22, 2024 at 04:54:34PM GMT, Lijuan Gao wrote:
-> 
-> "arm64: dts: qcom: add base QCS615 RIDE dts"
->           ^ You already have dts here     ^ no need to put it here again
-> 
-> 
-> I'd suggest that we make the subject "arm64: dts: qcom: Add QCS615 RIDE board"
-> 
-
-Got it, I will update the title in the next version.
-
->> Add initial support for Qualcomm QCS615 RIDE board and enable
->> the QCS615 RIDE board to shell with uart console.
->>
->> [Tingguo: added regulator nodes]
-> 
-> Are you saying:
-> - Lijuan wrote the patch
-> - Lijuan signed the certificate of origin (i.e. he's allowed to
->    contribute its content)
-> - Tingguo added regulator nodes
-> - Tingguo signed the certificate of origin (i.e. patch was based on work
->    that was certified)
->    
-> Or are you saying:
-> "Tingguo and I developed this patch in pair programming fashion"
-> 
-> If so, I'd suggest dropping the "[Tingguo:...]" line.
-> 
-Yes, I wrote the base patch and Tingguo added the regulator nodes. I 
-will update the commit message with "Written with help from Tingguo 
-Cheng (added regulator nodes)" as suggested in the initial dtsi comments
-
->> Co-developed-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
->> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
->> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile        |   1 +
->>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 219 +++++++++++++++++++++++++++++++
->>   2 files changed, 220 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 065bb19481c1..f14643187cac 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -110,6 +110,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> new file mode 100644
->> index 000000000000..ee6cab3924a6
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> @@ -0,0 +1,219 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->> +#include "qcs615.dtsi"
->> +/ {
->> +	model = "Qualcomm Technologies, Inc. QCS615 Ride";
->> +	compatible = "qcom,qcs615-ride", "qcom,qcs615";
->> +	chassis-type = "embedded";
->> +
->> +	aliases {
->> +		serial0 = &uart0;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	clocks {
->> +		sleep_clk: sleep-clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <32000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		xo_board_clk: xo-board-clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <38400000>;
->> +			#clock-cells = <0>;
->> +		};
->> +	};
->> +};
->> +
->> +&apps_rsc {
->> +	regulators-0 {
->> +		compatible = "qcom,pm8150-rpmh-regulators";
->> +		qcom,pmic-id = "a";
->> +
->> +		vreg_s3a: smps3 {
-> 
-> You don't reference any of these regulators.
-> 
-> Can you please confirm that when you boot the qcs615 ride device with
-> this dtb it actually boots with a debug uart and does not crash when the
-> regulator framework disable all these "unused" regulators?
-> 
-> Regards,
-> Bjorn
-> 
-Yes, the device booted successfully. The regulator is part of Tingguo’s 
-PMIC-related modifications. The RPMhpd, which UART depends on, is also 
-part of this series of changes. The regulator will be used later, so 
-both of them were added.
-
->> +			regulator-name = "vreg_s3a";
->> +			regulator-min-microvolt = <600000>;
->> +			regulator-max-microvolt = <650000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_s4a: smps4 {
->> +			regulator-name = "vreg_s4a";
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1829000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_s5a: smps5 {
->> +			regulator-name = "vreg_s5a";
->> +			regulator-min-microvolt = <1896000>;
->> +			regulator-max-microvolt = <2040000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_s6a: smps6 {
->> +			regulator-name = "vreg_s6a";
->> +			regulator-min-microvolt = <1304000>;
->> +			regulator-max-microvolt = <1404000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l1a: ldo1 {
->> +			regulator-name = "vreg_l1a";
->> +			regulator-min-microvolt = <488000>;
->> +			regulator-max-microvolt = <852000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l2a: ldo2 {
->> +			regulator-name = "vreg_l2a";
->> +			regulator-min-microvolt = <1650000>;
->> +			regulator-max-microvolt = <3100000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l3a: ldo3 {
->> +			regulator-name = "vreg_l3a";
->> +			regulator-min-microvolt = <1000000>;
->> +			regulator-max-microvolt = <1248000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l5a: ldo5 {
->> +			regulator-name = "vreg_l5a";
->> +			regulator-min-microvolt = <875000>;
->> +			regulator-max-microvolt = <975000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l7a: ldo7 {
->> +			regulator-name = "vreg_l7a";
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1900000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l8a: ldo8 {
->> +			regulator-name = "vreg_l8a";
->> +			regulator-min-microvolt = <1150000>;
->> +			regulator-max-microvolt = <1350000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l10a: ldo10 {
->> +			regulator-name = "vreg_l10a";
->> +			regulator-min-microvolt = <2950000>;
->> +			regulator-max-microvolt = <3312000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l11a: ldo11 {
->> +			regulator-name = "vreg_l11a";
->> +			regulator-min-microvolt = <1232000>;
->> +			regulator-max-microvolt = <1260000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l12a: ldo12 {
->> +			regulator-name = "vreg_l12a";
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1890000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l13a: ldo13 {
->> +			regulator-name = "vreg_l13a";
->> +			regulator-min-microvolt = <3000000>;
->> +			regulator-max-microvolt = <3230000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l15a: ldo15 {
->> +			regulator-name = "vreg_l15a";
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1904000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l16a: ldo16 {
->> +			regulator-name = "vreg_l16a";
->> +			regulator-min-microvolt = <3000000>;
->> +			regulator-max-microvolt = <3312000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +			regulator-allow-set-load;
->> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->> +						   RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l17a: ldo17 {
->> +			regulator-name = "vreg_l17a";
->> +			regulator-min-microvolt = <2950000>;
->> +			regulator-max-microvolt = <3312000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +	};
->> +};
->> +
->> +&gcc {
->> +	clocks = <&rpmhcc RPMH_CXO_CLK>,
->> +		 <&rpmhcc RPMH_CXO_CLK_A>,
->> +		 <&sleep_clk>;
->> +};
->> +
->> +&qupv3_id_0 {
->> +	status = "okay";
->> +};
->> +
->> +&rpmhcc {
->> +	clocks = <&xo_board_clk>;
->> +};
->> +
->> +&uart0 {
->> +	status = "okay";
->> +};
->> +
->> +&watchdog {
->> +	clocks = <&sleep_clk>;
->> +};
->>
->> -- 
->> 2.46.0
->>
-
--- 
-Thx and BRs
-Lijuan Gao
-
+- Nuno S=C3=A1
 
