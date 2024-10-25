@@ -1,138 +1,167 @@
-Return-Path: <devicetree+bounces-115691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998DF9B05D6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:30:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68B699B05F3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:37:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 517B91F22474
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:30:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1821B24135
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E4A1FB8B2;
-	Fri, 25 Oct 2024 14:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FAF32003DC;
+	Fri, 25 Oct 2024 14:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="DV+qhtQY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QZCJnZog"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591B8212168
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 14:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73AD1F80DC;
+	Fri, 25 Oct 2024 14:37:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729866600; cv=none; b=gHfKUMLIbDEmJ/5H627VmmaPS8sKbq2/+UUfooCSBe/MgtHfInqqwEkryq84IMvkVDb1G/0iCjF6795cZ0h7uVexmwPPJ3rkEnme+PoBLWIUSqcPLLeYLPbsSRRDGDtG1lG9GkYAJlfwBFFuKY9UZBdbVFtEGowTdboj4Fe1AO8=
+	t=1729867035; cv=none; b=i/5aVBFC0yzrgi+NgfjGXhFpEPAB5m9lyBr3Zd+rIX9d5h6IzuDkOLC6yup5zAqJaCiyezJJyKIvX33Fd0x0Sz6gjPxL7gO3BpW/e2NYPOg4mUr/S8mnKYSbVNZ8k7F1x8eL/ww/WiLN5h/DdxjRZfU0JWCQGuavPyk6B5JkMFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729866600; c=relaxed/simple;
-	bh=pTftS9bMzZrb3oqKTgBMUbVyt0Jac+cE/be9TqBysXU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WoDjqAk7m0T77t5tEzNr/ejxji2WACzfsHu1r6YcrBlu9/ygDnjBGvv1YYpFz2klkT6YGGI1Mr6dD1crIbXDnob402qYcgZN1CAwCgOUafPbXHeCttQ5Am1Fawl2MokwzzfdaKlFBC+cryHw6HYhYNFic10xwV2fHDw/HXli32M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=DV+qhtQY; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3e6089a1d39so1043082b6e.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 07:29:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729866597; x=1730471397; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+hgsH8M46R374DX96A094+C1Sk2ZSQRIVp+udp7ZiHw=;
-        b=DV+qhtQYObO3aA6Enr6n4R6mT6QUE2TIrIdD+JlUvYjSiZNBqbgTsxHxL6wFaf9PCL
-         t21vG9k0tNN/Ux9Dk96sI73ZZh+yVewDAevHGma3vUPIrFzRw5rKS3WfE2+BxNvKA5c4
-         RxN1/ePEInOzgovwwGqPhG70QzCv/guqhTAag1GL4vRROMKs5uDbqx6k0MKmI+pm6dT3
-         Wg/Z09WKup/ySfpYYjNChOstmjueK/KD91ZtxfKn6ZLX1epf+PBpGb+hnRIMSq1Vn2bq
-         lDdxZd0pOw1wu7YtcekMP61cx5Hadrm8LiOn5NZyVr/Co7zKJXVg39uYZWzPfua15Eyd
-         7NxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729866597; x=1730471397;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+hgsH8M46R374DX96A094+C1Sk2ZSQRIVp+udp7ZiHw=;
-        b=Dr6XzaT5YBvB4NzVvBT3L2es2KWZo8Vp2Jm4aPvVuhZyQqQv1gb2BSA7pm+SAc1KIj
-         NzmqoCn+AC/hYv5P1MHFB56xJ6WRSb91w56VfhggCNUcp2dUIsMNZAf2hi+WGez183nY
-         Ai1cSac3+vkxnCm7s3eZNp3cmxj2aDYHKMlnV3igxdxTBy6STI/8z18oZIpy0/IQjXnD
-         Zq+YowHjyOhUr/EIjtfIE+BwcN35rlMKBPj9tyf7QNxa4OEz6OHXeJp20Df8eYaaIMRl
-         KLbLEHteA4Olw9PPxmDCAgrQY60o9iCHQD1m6LHzaMs2+f5C7Rwoiz0d0dLkrIkJ83AW
-         r8ww==
-X-Forwarded-Encrypted: i=1; AJvYcCVfypmNqN8akHEqfPLhqwe3uJS5mclWhlE1e/8k557bTCG2bu84ZV6SGlKPUa/NqHbQpxypeZzJB/Qj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcpckVdNrWF+ok6CDOa7IjCD3NA7XFbL7oP39MCH6ka3vzLFaQ
-	e9vkCuuXT5+E4ql4gv6RC6rdqDJOeWWKNcUdHyPJdZ0KZlbCuOtmKj/anTu8jzw=
-X-Google-Smtp-Source: AGHT+IE7uXQFXMZnIIYfSrbQaV5eC3DgZSr8FIpbdhTtwMJtNpEwUy+GoBKmo71g+DIf/sQ7MtT9Tw==
-X-Received: by 2002:a05:6808:2dc4:b0:3e3:bd1c:d584 with SMTP id 5614622812f47-3e6244e40d3mr10131691b6e.9.1729866597497;
-        Fri, 25 Oct 2024 07:29:57 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e6325b0a95sm223353b6e.42.2024.10.25.07.29.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 07:29:57 -0700 (PDT)
-Message-ID: <f3351a7f-318b-42d6-aa1a-e8279eb06b78@baylibre.com>
-Date: Fri, 25 Oct 2024 09:29:55 -0500
+	s=arc-20240116; t=1729867035; c=relaxed/simple;
+	bh=gqMDayfIrvLFEM57Oe6CkRsGcgBEOG8dhHuuq7scUkI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HgvKSiMiDu0YUxi44i8IqmQugZXvfvDrBLvC2g7le6j/vpg2k8prLfIyiUiL4epUbVcEBaDhvlUzlKVEXWwcXvNB5IhqEy7apm7/6UoZ9q1RwOId+kMxcoGaQgRaJhGOkng9MKOjWcn+VwoMKoON1kScExDMNamILFClQ1X/ZLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QZCJnZog; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729867032; x=1761403032;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gqMDayfIrvLFEM57Oe6CkRsGcgBEOG8dhHuuq7scUkI=;
+  b=QZCJnZogLRuEB0UAdwoKytvmM9ZQ7HmMcZnRGgKAVhJI4hh/v0t+uiG7
+   DIIc7WQjjxHR2kFwVhXBGetMhpITXNpFqIHBbTPBhMWGExICc56n66Drj
+   szGLR2+MrXHgz4xnNw9QiFBiehQF2kLKG4iYySwDXCYXWlQXBoydukNmi
+   k1BqNcZj0h+OhWZ/QclCLWI9bdtSVwiwVs5k2Yf8Y/WLUPaaIVZLAdYl6
+   KhzRRX+qED8T2q431OF0al4Yxm+bQwePfBmYVfcPoG6LvjCwyehScvkwR
+   Bd8v99PW+EgLF2Tv6xMF49dW6UQbB6ormU1bd97SNq9Nn1+xMp4KW6ds/
+   Q==;
+X-CSE-ConnectionGUID: UjaVoD0JSZKqpri3NJDY9A==
+X-CSE-MsgGUID: x5+6/vtJRGaamT5wC0zTww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="47021740"
+X-IronPort-AV: E=Sophos;i="6.11,232,1725346800"; 
+   d="scan'208";a="47021740"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 07:37:11 -0700
+X-CSE-ConnectionGUID: JUaV6GZmQBm9b9HdS7LYfQ==
+X-CSE-MsgGUID: EzQEA9EjTVmyV7Vu3PBkiA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="85699441"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 25 Oct 2024 07:37:08 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t4LR4-000YMv-0N;
+	Fri, 25 Oct 2024 14:37:06 +0000
+Date: Fri, 25 Oct 2024 22:36:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Grant Peltier <grantpeltier93@gmail.com>, robh@kernel.org,
+	linux@roeck-us.net, geert+renesas@glider.be, magnus.damm@gmail.com
+Cc: oe-kbuild-all@lists.linux.dev, grant.peltier.jg@renesas.com,
+	brandon.howell.jg@renesas.com, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] hwmon: (pmbus/isl68137) add support for voltage
+ divider on Vout
+Message-ID: <202410252204.ut3IIrVm-lkp@intel.com>
+References: <7138f3c551ce201ddc9b5e3889ce969d1cd0ac57.1729812789.git.grantpeltier93@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/6] iio: adc: ad4851: add ad485x driver
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
- "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-References: <20241014094154.9439-1-antoniu.miclaus@analog.com>
- <20241014094154.9439-6-antoniu.miclaus@analog.com>
- <60452f83-28a1-4a80-8e90-1f1ed32a594e@baylibre.com>
- <CY4PR03MB33996900AAB90A050375CBB39B4F2@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <CY4PR03MB33996900AAB90A050375CBB39B4F2@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7138f3c551ce201ddc9b5e3889ce969d1cd0ac57.1729812789.git.grantpeltier93@gmail.com>
 
-On 10/25/24 6:35 AM, Miclaus, Antoniu wrote:
->>
-...
+Hi Grant,
 
->>
->> See the ad7380 driver as an example of how to impelemt this. [2]
->>
->> [2]: https://urldefense.com/v3/__https://lore.kernel.org/linux-
->> iio/20240530-iio-add-support-for-multiple-scan-types-v3-5-
->> cbc4acea2cfa@baylibre.com/__;!!A3Ni8CS0y2Y!4LS7UI11XqIHRgT3ckx76VYn
->> CyeikpTumyjO0qDTn7eF7Fd-
->> jFFL8yqpYcMAxP_u3VC09bfIAB7gW_rvGoM_sEA$
->>
->> Also, I would expect the .sign value to depend on how the
->> input is being used. If it is differential or single-ended
->> bipolar, then it is signed, but if it is signle-ended unipoloar
->> then it is unsiged.
->>
->> Typically, this is coming from the devicetree because it
->> depends on what is wired up to the input.
-> 
-> This topic is mentioned in the cover letter, maybe not argued enough there.
-> Yes, the go-to approach is to specify the unipolar/bipolar configuration in the devicetree.
-> But this is a request from the actual users of the driver: to have the softspan fully
-> controlled from userspace. That's why the offset and scale implementations were added.
-> Both these attributes are influencing the softspan.
-> 
->>> +	},								\
->>> +}
->>
+kernel test robot noticed the following build warnings:
 
-The cover letter did not get sent, so we did not see this.
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on robh/for-next linus/master v6.12-rc4 next-20241025]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Still, I have doubts about using the offset attribute for
-this since a 0 raw value is always 0V for both unipolar
-and bipolar cases. There is never an offset to apply to
-the raw value.
+url:    https://github.com/intel-lab-lkp/linux/commits/Grant-Peltier/hwmon-pmbus-isl68137-add-support-for-voltage-divider-on-Vout/20241025-084244
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/7138f3c551ce201ddc9b5e3889ce969d1cd0ac57.1729812789.git.grantpeltier93%40gmail.com
+patch subject: [PATCH v4 1/2] hwmon: (pmbus/isl68137) add support for voltage divider on Vout
+config: x86_64-randconfig-161-20241025 (https://download.01.org/0day-ci/archive/20241025/202410252204.ut3IIrVm-lkp@intel.com/config)
+compiler: clang version 19.1.2 (https://github.com/llvm/llvm-project 7ba7d8e2f7b6445b60679da826210cdde29eaf8b)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241025/202410252204.ut3IIrVm-lkp@intel.com/reproduce)
 
-So I think we will need to find a different way to control
-this other than the offset attribute.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410252204.ut3IIrVm-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/hwmon/pmbus/isl68137.c:12:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:21:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/hwmon/pmbus/isl68137.c:233:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+     233 |                 u64 temp = DIV_U64_ROUND_CLOSEST((u64)word *
+         |                 ^
+   2 warnings generated.
+
+
+vim +233 drivers/hwmon/pmbus/isl68137.c
+
+   211	
+   212	static int raa_dmpvr2_write_word_data(struct i2c_client *client, int page,
+   213					      int reg, u16 word)
+   214	{
+   215		const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
+   216		const struct isl68137_data *data = to_isl68137_data(info);
+   217		int ret;
+   218	
+   219		switch (reg) {
+   220		case PMBUS_VOUT_MAX:
+   221		case PMBUS_VOUT_MARGIN_HIGH:
+   222		case PMBUS_VOUT_MARGIN_LOW:
+   223		case PMBUS_VOUT_OV_FAULT_LIMIT:
+   224		case PMBUS_VOUT_UV_FAULT_LIMIT:
+   225		case PMBUS_VOUT_COMMAND:
+   226			/*
+   227			 * In cases where a voltage divider is attached to the target
+   228			 * rail between Vout and the Vsense pin, Vout related PMBus
+   229			 * commands should be scaled based on the expected voltage
+   230			 * at the Vsense pin.
+   231			 * I.e. Vsense = Vout * Rout / Rtotal
+   232			 */
+ > 233			u64 temp = DIV_U64_ROUND_CLOSEST((u64)word *
+   234					data->channel[page].vout_voltage_divider[0],
+   235					data->channel[page].vout_voltage_divider[1]);
+   236			ret = clamp_val(temp, 0, 0xffff);
+   237			break;
+   238		default:
+   239			ret = -ENODATA;
+   240			break;
+   241		}
+   242		return ret;
+   243	}
+   244	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
