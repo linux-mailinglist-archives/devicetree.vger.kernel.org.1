@@ -1,85 +1,94 @@
-Return-Path: <devicetree+bounces-115899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A66B69B1334
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 01:31:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB529B1344
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 01:32:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF85D1C20830
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 23:31:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 977041F22C0A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 23:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CC31DD0CD;
-	Fri, 25 Oct 2024 23:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159151FDF8E;
+	Fri, 25 Oct 2024 23:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hfJVPIs9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X32EbKVA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F8C1957F9;
-	Fri, 25 Oct 2024 23:31:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22005157E99;
+	Fri, 25 Oct 2024 23:32:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729899105; cv=none; b=N0i8e5d8WbF323rP/RXmOWA1I3QBz3UT4obBQAz3RwLHDEeeEjJymlaz24QdeJ9mNNcdlPeU4Gaf46qhzMPo4On6t5YddNbNv9FQsa1ulvoTdk165F5XSzGXWG803RLCJDQKKDiBBLOomih4sFgLdVzWkMIu72/E3jsa7DbfCms=
+	t=1729899156; cv=none; b=AoD/l51SkUt16dNWaOhVrdBmapoCx+uTSdTyfcAZVl2L1lhkEdfElqr8yfPqP9Ud6uE/W6fQiq74L7/O5d5idIQXJtpevQk+R2NLVQLu7ZOlcHQQt4/7rw3F2QxBd3FBHRdlFFhpT255rKZXilMwvKUJu/g7cChWp3vPIJuMuoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729899105; c=relaxed/simple;
-	bh=WdGE8rRJ8ooRbPNbKNU3Hoy1T8K2+Fph3zMZRkda4SE=;
+	s=arc-20240116; t=1729899156; c=relaxed/simple;
+	bh=HQ24BCw0Yd+wMuNuCr+vHzj1uSpA024X5gNetuoRnac=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FYevjqHjotrykcDMRkYgyBeS7xE+Uc86s+r55gE1ChPfHgX5IaWr8KwyX5hr05DvMxanSlM9mWrw9dbGltYCAfEXy06tGEaJxMelIgmdF+/K8ywm+hX3MAwTY96v6SzXTEZa7voac5os48ckfOWIJ5ZCenWU5QjAPXcVKkxXSYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hfJVPIs9; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729899103; x=1761435103;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WdGE8rRJ8ooRbPNbKNU3Hoy1T8K2+Fph3zMZRkda4SE=;
-  b=hfJVPIs96p7IUIseZYg2eZy1RtTNZNHqSiZ0gr25ZzpA/sKoVlOT7vNi
-   4u21wytblR6l0Egl6tLQr2MKHXVwW4Jr7dzsEE7zmvOuV7G/07EoStwRC
-   kq+mgQZNOWRRgt/ZVBvM7CNeqtwvSBbTlaNoHoncNrvGggsZuTCCdaK4W
-   MkCt392LLoeXw9S6ZXUn6ZkRbeUI52wq2oNfU6bE0rNp1LEEJWfCLz0Fc
-   MdhLce8sv5IvbYw5Cf6lX49jU3+bDApS1/vy80PrjFq+wLN2ETlrDIHmi
-   /WMVREJAMiN1iNjfRlQpOpw/gJGnFVceFsGfNL9eCieh9pZ4bN1jGBHwo
-   w==;
-X-CSE-ConnectionGUID: /GFpBrLmR3Wd3Vz+3/G9LA==
-X-CSE-MsgGUID: W02pxr38RGyRmXG3XgZhhw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33278337"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="33278337"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 16:31:43 -0700
-X-CSE-ConnectionGUID: OLMACmv+TaOtuhdFaVR3Rw==
-X-CSE-MsgGUID: v4s9Hx64SkGsJKoNY5ASbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,233,1725346800"; 
-   d="scan'208";a="111871703"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 25 Oct 2024 16:31:36 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t4TmI-000Z1g-0k;
-	Fri, 25 Oct 2024 23:31:34 +0000
-Date: Sat, 26 Oct 2024 07:31:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-	richardcochran@gmail.com, geert+renesas@glider.be,
-	dmitry.baryshkov@linaro.org,
-	angelogioacchino.delregno@collabora.com, neil.armstrong@linaro.org,
-	arnd@arndb.de, nfraprado@collabora.com, quic_anusha@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, quic_srichara@quicinc.com,
-	quic_varada@quicinc.com
-Subject: Re: [PATCH v8 6/7] arm64: dts: qcom: ipq9574: Add nsscc node
-Message-ID: <202410260742.a9vvkaEz-lkp@intel.com>
-References: <20241025035520.1841792-7-quic_mmanikan@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=k7+lLBZCVE4flhxYIbbg46jsx2K1QY7oOQg8ycOfLDRE65X2aezElQaYGXXJIWtoOo1ZM3ESB5tJL5Fcc6dYqwhmNJtVucbh42hNGBYa/76AQpWABu+y6d42g6SsMIEM96vZU5/67tkXfRIvvfx3SrMcjlXfIkeOnhd74JWxoi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X32EbKVA; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7206304f93aso296688b3a.0;
+        Fri, 25 Oct 2024 16:32:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729899153; x=1730503953; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wp1HPOnz6KaDGaKZ01AnsiVak0lO4QvTbnFD63srZug=;
+        b=X32EbKVA/dH5LRxkiIYvr7iZJCA5FZih0wjKL1XFXezfEBjT0VYpZTaV55Zabyu1al
+         T6sgAoaghZOVrlg7nu2vAujBG6oXIwG4KoLJnwYhVJLloBogZQFWFLD65FL3q8Oskpk/
+         REoG0kPR59gHOYcM9jXHqxOtkEgSr0XXsG9FCQb1YiNa4FbpJOedU2S3ACB/k2UrbP54
+         QzNdij+7UhjNiS2BpahZ32Aw+Smw760RiQTSX6Y0lRSzz9m33A2qRjMfh8w8prK9Y8ba
+         E7TBhyI4i6xLOeN6HRLmspEUJSJNbCnCnSUZapO5m1dRYBGcTpuDiuYf9drPS5ycRsnN
+         //Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729899153; x=1730503953;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wp1HPOnz6KaDGaKZ01AnsiVak0lO4QvTbnFD63srZug=;
+        b=Jroias6Zvcb9lUj7VuH2sg5uJHbaxewwF4yVxbDAvyDljgD3RC3nmZZIXd6ocJdooS
+         ns8DsfKjHwR44gvb/HEdQdNp9+PWIUFQYHgT+9niyd6E4urRANda78saHjfs91eEUdYM
+         v8Lml6zi5DPm+qeOiYSelYRuqXCp1iEeStFBL/Y9qRwluPbCboZmUIaeibk37VK5plSl
+         9uGcuxJqbl73PqRq2+kdettcOuDpOgni4zI8w4N+0EZusD61CxozlZyYEfPY1A20Jaub
+         2fafwFJnNPBcOf1HXf31uF6/XUieTnCxV2mldU4dhuRU95HknWlQ9dNVsMiX7FGT75Vo
+         1T8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVNz9DtbIKY7znZoV/D6xiMXXZjEnqyj3dePpvBbXkocYpXyle8DV5kkdC/Fhg03/S2gvzt+OYnf5Hs@vger.kernel.org, AJvYcCVS9zDy5ENV9tbXEO6q4JrbdAUOROFUVwG+MEp2RTwkedF8zN/Fskm/X5IGgJCwqRTqnSr3RLdf@vger.kernel.org, AJvYcCX3359VlmN93hxgKAPu2FZ55Nzp6u/Lappa/qKzyvzshgvQhijvP/4QHe8K2LS1KZG61MKIEkACWSCyaxwA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuHbjiuDZd5vu0VcyWxFvjFpKRJ+TcDOHHstUPGF6C2NMrudrW
+	T0+WyDy2UeviL0g7hRwHZ+FmZtLj5FVA5XrMVoxyxDbgiDeE4Xim
+X-Google-Smtp-Source: AGHT+IFEMrLhc1Bg4iRCP4q4hozIJt6Sp7huOuGxcV+yJK49RmRzhj24Vshw5AfU6IcH7rJlxKNWYA==
+X-Received: by 2002:a05:6a00:b54:b0:71d:fb29:9f07 with SMTP id d2e1a72fcca58-72062fc7c5dmr1589435b3a.15.1729899153356;
+        Fri, 25 Oct 2024 16:32:33 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057931e2csm1641781b3a.63.2024.10.25.16.32.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 16:32:33 -0700 (PDT)
+Date: Sat, 26 Oct 2024 07:32:12 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Alexander Lobakin <aleksander.lobakin@intel.com>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Inochi Amaoto <inochiama@outlook.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] net: stmmac: platform: Add snps,dwmac-5.30a IP
+ compatible string
+Message-ID: <lsy4wjdce3bhnqgpnu6ysby6ghlzro2ghp6z3jzmwu6vuisr5m@dbljy7b3dhgs>
+References: <20241025011000.244350-1-inochiama@gmail.com>
+ <20241025011000.244350-4-inochiama@gmail.com>
+ <2b691bea-3b2a-469b-bf5f-5e80b9b9b9a8@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,37 +97,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241025035520.1841792-7-quic_mmanikan@quicinc.com>
+In-Reply-To: <2b691bea-3b2a-469b-bf5f-5e80b9b9b9a8@intel.com>
 
-Hi Manikanta,
+On Fri, Oct 25, 2024 at 04:44:55PM +0200, Alexander Lobakin wrote:
+> From: Inochi Amaoto <inochiama@gmail.com>
+> Date: Fri, 25 Oct 2024 09:09:59 +0800
+> 
+> > Add "snps,dwmac-5.30a" compatible string for 5.30a version that can avoid
+> > to define some platform data in the glue layer.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > index ad868e8d195d..3c4e78b10dd6 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > @@ -555,7 +555,8 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+> >  	    of_device_is_compatible(np, "snps,dwmac-4.10a") ||
+> >  	    of_device_is_compatible(np, "snps,dwmac-4.20a") ||
+> >  	    of_device_is_compatible(np, "snps,dwmac-5.10a") ||
+> > -	    of_device_is_compatible(np, "snps,dwmac-5.20")) {
+> > +	    of_device_is_compatible(np, "snps,dwmac-5.20") ||
+> > +	    of_device_is_compatible(np, "snps,dwmac-5.30a")) {
+> 
+> Please convert this to a const char * const [] table with all these
+> strings + one of_device_compatible_match().
+> 
 
-kernel test robot noticed the following build errors:
+I will, this make the check more clear, thanks.
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on robh/for-next arm64/for-next/core linus/master v6.12-rc4 next-20241025]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Mylavarapu/clk-qcom-clk-alpha-pll-Add-NSS-HUAYRA-ALPHA-PLL-support-for-ipq9574/20241025-121244
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20241025035520.1841792-7-quic_mmanikan%40quicinc.com
-patch subject: [PATCH v8 6/7] arm64: dts: qcom: ipq9574: Add nsscc node
-config: arm64-randconfig-001-20241026 (https://download.01.org/0day-ci/archive/20241026/202410260742.a9vvkaEz-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241026/202410260742.a9vvkaEz-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410260742.a9vvkaEz-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/qcom/ipq9574.dtsi:766.16-17 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Inochi
 
