@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-115402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304689AF64D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 02:42:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C619F9AF64E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 02:42:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAB15282FD9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 00:42:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B8742830B2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 00:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244F72FB6;
-	Fri, 25 Oct 2024 00:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7FC79C8;
+	Fri, 25 Oct 2024 00:42:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qds0cNiG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EPNBEsg1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0C45695
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 00:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA575695
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 00:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729816931; cv=none; b=egBN6gDuY4ZM9gmml0qFnNahLzhDIp7Q3ZtV59PuCqVqLCvSZvMnKUmRwspMMQEgb5eiVMhWjHKQVI5mSZHIBBzg3m4twHcucJf/Zx0uGltjQeaaOlMwKTNtclpInPeoYFHuAV5RKwUnNgfDS68WzOU755wZ1rg9uDl0MQN02FI=
+	t=1729816933; cv=none; b=L7lvCtew2/Dd/HoWleo1JzGY0O5ILnNO4vRgCBnMdq+t4Soy3FLSbul+bYl3lvPqyInOEkB9i0ImTUM2n3VPws0PGd01fGS1PkXg448TdX1jJ40GP6OZDyKoXeVbL+kv80HcY9HoDpwD6TuhMuUv8Nr53qkB5MHOz12fPHhIWNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729816931; c=relaxed/simple;
-	bh=kpvJRcPqWC+dVghUUdeaMiwqWPQQEmBm2CSq9EI3mwA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KkPLRRbqB3H61Tbtbv37/LeiEnYCF/7PzCB2dQCLWjdk22Hi72Pu+/D5Hx/Tegbxe81/gOJqZcZ/zaavAa7mwPdMZFRfX640E716YptWG2F2sWAZqhvw75ZPW6BX6VXCl2Py73ty7aUj3nAUKF8PekNz27Qw0RAvQ0iZBZK0q/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qds0cNiG; arc=none smtp.client-ip=209.85.167.182
+	s=arc-20240116; t=1729816933; c=relaxed/simple;
+	bh=A0i/BPTOJCM56lujfQVhp0IouM3vgbmKHXveMTbOcQI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ZTNYwnWB0ethtHMDa8zIa3CGeu/H3JHxFswlI3KlMLe7mkI/MHvp7zHVspIlbGP2TX9Wa/PTnowE84bqsYqZNgXHC9qKAvx2bLPrwKtUxSJjQb+MEIaw2UPu3sRrqZc4ppFMgNgn2omkTOnkMjQlXNA0l1HOP5G4o2jktVsv9/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EPNBEsg1; arc=none smtp.client-ip=209.85.167.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3e5fee32e76so858736b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:42:09 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3e602a73ba1so913463b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Oct 2024 17:42:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729816928; x=1730421728; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/JH4ZQU5AFvRH7Qn9sg9MSQ3ssLfCpHuJRXQbGQoDWQ=;
-        b=Qds0cNiG8lW6TjHPmTsVQ0JclKHY+H51I+oS+Jsrfnbxzycfo9oBhwqIDPGHoU15Nz
-         78uFUr2aGIwVl1Z9GLOpA3MdjgZ1wQnCjgbtNVmS/MjT+cEcu/OUzwsXmKSml8SZjuUh
-         x4q0SeHJdGPKl22Ehd7Qg5qa3hwM6fAqsgnz1MUnNKzeJQwcKwaH7Dma0ZsziVTzEhoD
-         FZNP0n8FbAR7rtMaTOiyr32u01TIwFDMOnYwgOBPN4ab6sHxaOQlGyonyllBG/7rK7hG
-         xYKfRcHZLiDoRM41Q8GJDWqCv9qeazR4KAKiCW6rKItZL/PDQ0yoFVyxoskwzGRVo5e7
-         gXPw==
+        d=gmail.com; s=20230601; t=1729816931; x=1730421731; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O3glZN7tdnxqEr7AALFevER6kTHzPF//GTHKC2fD5T4=;
+        b=EPNBEsg1B1eBLFpoypYIV8Y+wP3XAYOclqTXT3hyC2xUbdu5D+oUfxzSUozW6xEw+h
+         0sQYHQXILlL5quePfJQpPHi7hGT0AgVqDZDJpKfVzOH5P+pxccf0HULauR/gLuUzgXkN
+         L5GU5dMKVMuBPsUfimvb968cho3o9ktjDq3qzysDDwBZKrcrj6L6zZE4KEsUh6V69e1b
+         lmZhZUsfd/n3fH+Ua4MQdQhVe39+mZ5XqxAXleG400JB1Ft4VJEXBJ/RwVRkUSzROEr2
+         VPBYcGFBHwdxBNbsTnV2EgJYLNfwOhwYW8+ju3vGm3JBQsiPtE0nAFce1q6+5HJEGPSS
+         f06A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729816928; x=1730421728;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/JH4ZQU5AFvRH7Qn9sg9MSQ3ssLfCpHuJRXQbGQoDWQ=;
-        b=NvDJhjlpwcOOueHDVjhVGIjW6+6RElvFRzQ22JQD6uTY6JLRurlwq4uLkLyJjh7HEp
-         yKMmEMvAm+8ddjU1XGsQ4HKJtE00/GBAKdohJczx4lmM5nLz8GcIgn3DxVOJ27d0HtL+
-         3leMCz0wsBHK6K8/Yqw+F8EsB+je7J50SIfc5kAGc7x1fDDYZpJN8wGx2oAxmM36jPGU
-         gFmNVzVzme/Y4gopInxYNokiskbWUV6/sWs3dn/XKMh+6eUSyee0q0PhAXGUSKbxiEPe
-         OMpRQSNlWLK/1uk1SZPkotuc196mqx+onekNTifMBn5y9Sx5wjwoJW1SY+a1uaSMy+qg
-         mrxA==
-X-Forwarded-Encrypted: i=1; AJvYcCVj2ltgZz2u0Uf4Qa58MFGkKRlciA8RRW3mMfpsIVhITePKy1neRDNUlMEG9rxLGC5RVOYsKZIr7FEA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyam8AAujCRT1i9mB09ecmxohkn7eAjDeyYbQI4BOOoWBbE9tAm
-	VrXvuld87IaBUbmLyoL+0R7bkoFfGiXh/RPwmjLyppnQh727jNuXwGP7fg==
-X-Google-Smtp-Source: AGHT+IHhO0Oe/ES3dfFw2XAIiGrW09kdGvbnuxejTHYBTvDD9QQCbHbNJqfVJPaqKCqsiNhoGM7kEQ==
-X-Received: by 2002:a05:6808:1490:b0:3e6:21a:9a62 with SMTP id 5614622812f47-3e6245014cemr8084123b6e.11.1729816928153;
-        Thu, 24 Oct 2024 17:42:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729816931; x=1730421731;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=O3glZN7tdnxqEr7AALFevER6kTHzPF//GTHKC2fD5T4=;
+        b=VWH4NOyKExejQ/O2pOgjubgIoNAkgAjTnvYGf9bKKlZ81a2XMI3ml1tkPCjjJhJF/+
+         IbuibHxQQy3hbcn7Xs2lZ/7NQDegKtkvEBDSqMtBjudrqRxz7SAilsC5jJZ+lEkmmqMW
+         DuIQ+GdHKCwSmGaLywTOf5QA5vhZOT/Tpo2RfKcPTiOCeuIw/sLnsReViQZ6Jv1FDD6z
+         ok4hYSU3bVOC0uoEhFlHlQyLAsQMy+DIwv4eJkH9z/91bbkBkixuXWuK3nRu8nbM9ggP
+         392DdNhs+GJc3GVxPoi/FhWy3AdAwcRwCyjRh3yKzyUSb486jsGg3mF6X/88pwurRyDo
+         WVbA==
+X-Forwarded-Encrypted: i=1; AJvYcCWw1VtoPOmH5UEWyMdagjwG20K47lQz11plrED8yfQMjf12Qw2fJ7wqejBOvbcwY0h1ozGpdRTmoMbr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPdQgfQvMwScaZGUVN6sYlfc+nnl9/fTG/HBmIba4yiUuJMCgM
+	9LYwrC6sf3+xwVOXAX84lX9Yo4kFVPFxfbo7fmbfB+czq4IsKA0T
+X-Google-Smtp-Source: AGHT+IH/yxaa5bTSEO6mVFg+zirKexUg+7iL8/DIbuhJOrW61wjJMRXPmsWuAZESLfEU0XQz2w5jgw==
+X-Received: by 2002:a05:6808:200b:b0:3e2:a1fe:f0c6 with SMTP id 5614622812f47-3e62450114amr7198590b6e.6.1729816931078;
+        Thu, 24 Oct 2024 17:42:11 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:b160:3edf:6e5d:8d4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7edc8a3d2easm27289a12.85.2024.10.24.17.42.05
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7edc8a3d2easm27289a12.85.2024.10.24.17.42.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Oct 2024 17:42:07 -0700 (PDT)
+        Thu, 24 Oct 2024 17:42:10 -0700 (PDT)
 From: Fabio Estevam <festevam@gmail.com>
 To: shawnguo@kernel.org
 Cc: robh@kernel.org,
@@ -74,10 +76,12 @@ Cc: robh@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	imx@lists.linux.dev,
 	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 1/2] dt-bindings: soc: imx: fsl,imx-anatop: Fix the i.MX7 irq number
-Date: Thu, 24 Oct 2024 21:41:58 -0300
-Message-Id: <20241025004159.1571782-1-festevam@gmail.com>
+Subject: [PATCH 2/2] dt-bindings: soc: imx: fsl,imx-anatop: Add additional regulators
+Date: Thu, 24 Oct 2024 21:41:59 -0300
+Message-Id: <20241025004159.1571782-2-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241025004159.1571782-1-festevam@gmail.com>
+References: <20241025004159.1571782-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,54 +92,30 @@ Content-Transfer-Encoding: 8bit
 
 From: Fabio Estevam <festevam@denx.de>
 
-Unlike the other i.MX devices, i.MX7 has only two anatop interrupts.
+i.MX7 has the following anatop regulators: vdd1p0d and vdd1p2.
 
-Add logic that contemplates such case to fix the following
-dt-schema warning:
+i.MX6SX has the following anatop regulators: vddpcie.
 
-anatop@30360000: interrupts: [[0, 49, 4], [0, 51, 4]] is too short
+Add them to the allowed patternProperties.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- .../bindings/soc/imx/fsl,imx-anatop.yaml       | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-index c4ae4f28422b..ae708a658d52 100644
+index ae708a658d52..f40c157908aa 100644
 --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
 +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-@@ -36,6 +36,7 @@ properties:
-       - description: Temperature sensor event
-       - description: Brown-out event on either of the support regulators
-       - description: Brown-out event on either the core, gpu or soc regulators
-+    minItems: 2
+@@ -44,7 +44,7 @@ properties:
+     $ref: /schemas/thermal/imx-thermal.yaml
  
-   tempmon:
+ patternProperties:
+-  "regulator-((1p1)|(2p5)|(3p0)|(vddcore)|(vddpu)|(vddsoc))$":
++  "regulator-((1p1)|(2p5)|(3p0)|(vdd1p0d)|(vdd1p2)|(vddcore)|(vddpcie)|(vddpu)|(vddsoc))$":
      type: object
-@@ -52,6 +53,23 @@ required:
-   - compatible
-   - reg
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx7d-anatop
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+    else:
-+      properties:
-+        interrupts:
-+          minItems: 3
-+          maxItems: 3
-+
- additionalProperties: false
- 
- examples:
+     unevaluatedProperties: false
+     $ref: /schemas/regulator/anatop-regulator.yaml
 -- 
 2.34.1
 
