@@ -1,183 +1,264 @@
-Return-Path: <devicetree+bounces-115489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 085C79AFC32
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:10:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12E889AFC3D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:11:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CA951F23D02
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:10:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D1861F2428B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B1A1C4622;
-	Fri, 25 Oct 2024 08:10:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0AC1C4622;
+	Fri, 25 Oct 2024 08:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XdMLbG3U"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K4fC/WGi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61ADC1B4C35
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:10:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23CAA1B4F1A;
+	Fri, 25 Oct 2024 08:11:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729843830; cv=none; b=u246HA0lL7PMHvcUcE/z5WXfrwWMOPpYFqXU5YZz2Xet1jZowj4Szeatgh2MwecoSMjxajuc0Y0zOGW2tDGcj7sDeqVJ1EWej56foSCOUHXnGrUuGw9TPCmrHglZae09yczCrV9DmKeeSZq9Fqk7ak8FF0Jxl53+MouW9iQsEtk=
+	t=1729843884; cv=none; b=NqBV6/AZqRWlxyuy55h1VUKPaRrFpPlbl63MWJ/gE8DzBK6qmaguzBdoh5iuu0xpizLy7K15RbKVWYpegunV7x9AgIfPttqta9/A4H/rsikUf0y8iZwm5sVcpuiqhG6yuy78qz0wQxytbuBZD19Vo21m+juX8Ct7YKH6RF3GG1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729843830; c=relaxed/simple;
-	bh=uIHAB8knA67LAdTZXj2iF5vul+ZTR391oAkKc1jLRRs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y5NpG88Nv1HAW9RVryhbaBFszIstNJhMdPr9PnlqH2OnjrTzjxiL0JiYOfshIWJFOTc7H6jncUVX9kSt7Ggd1/CGGA4zIY3gb+pm4crTBusm1PK5kAhd3CuGDXtitGXBVJEm/2MNzVx+E7wWHWV4bLHujvOPwtIZ8tCDVBX4FF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XdMLbG3U; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb49510250so18600191fa.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 01:10:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729843826; x=1730448626; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=J/fMOoodbMzbwIVhNycuTPYQFdigoQOM3R/xwLCJOkg=;
-        b=XdMLbG3UijKzcGx4luJOSS3z2n3CHj91rWH1iVXDQy9rNjJIWR/xWrAKwKviZIPzUT
-         VmrZOWQqWHQtLTvy2VcKUW6iaRkE4U9+ZBuXp3KleimePv+nJI6LpsVfVjYkx6NjLgpo
-         y2IDxlbajJuXb+Kepjmb7pkwPFZtswJme4GYRwFSGgWhT4MeBqb5RQh3eu8vsweHXney
-         OW6icrloM3j5a9wMH84epGG2WreROzBzTu1HqRpUF97HEAmjSXZTM2DQqPJppn9DHmR3
-         5P/yDNsvOac5MfBaIAEJpWArOEo5T4JCQnDZ9mCTJ0kTBPrqj4Q8hbqE8AHCrPNm45wE
-         sEeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729843826; x=1730448626;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J/fMOoodbMzbwIVhNycuTPYQFdigoQOM3R/xwLCJOkg=;
-        b=j0mY7ARtj0GkR+WDiPe1lXeEfEXMiPxD6Geebbqt/hZvMlh+7AtnFI2v4NJYT0eWbU
-         SwI2DifOUnpW+7oA4e0uLp8EwcjG68Y7da5IRQEjofi2e0unAxVzCgi7awGzhyICnKSt
-         I9cGqnxz1YdBALw3bTxuFFIzlHZ6p08ZT6UMLwwIcKKLn/G/5QLAf22VUEye+HHVJks2
-         vQCz7t0l4EXjVeSyr0DDgyp12yWcQ3IBixg3bhRYMD3oOsiNoXVaYErBQMj+XjjXTkFn
-         mVuGiXZwUPoF0UIlb2nHYswsZu4diNEN84oVds0byFQgHiQfIIYzrobEZUHZv7cKoitO
-         OuZA==
-X-Forwarded-Encrypted: i=1; AJvYcCU0e9bCVDFF13vTM15nPMlJcm8nuon2MHIiG4zWDFkuOS+FC+2BZWfCx9REj+aJ2edtkmY+aIMeU26d@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXCz4WhhSkWWlWWWXGAUwJSPqTn8U2uMEP0jkusGIlkgRqbybA
-	eFbGPsr2h0/cIt75DAKG5wFguAz8RQ/zpMQ8KqgA1JyxSAmhv3IgASk5ZaAZ/SE=
-X-Google-Smtp-Source: AGHT+IFbMHt8LG7ynfMpwb1jF4aZ4NwAbHonDNawD4VDZMCWmBcTP0Lt3O+sjbBuFgQju/DrJheDFw==
-X-Received: by 2002:a05:651c:198c:b0:2fc:97a8:48f9 with SMTP id 38308e7fff4ca-2fc9d35a491mr51172391fa.19.1729843826415;
-        Fri, 25 Oct 2024 01:10:26 -0700 (PDT)
-Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935f6e47sm10446295e9.38.2024.10.25.01.10.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 01:10:25 -0700 (PDT)
-Date: Fri, 25 Oct 2024 10:10:24 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, 
-	"jdelvare@suse.com" <jdelvare@suse.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"joel@jms.id.au" <joel@jms.id.au>, "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>, 
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>, 
-	BMC-SW <BMC-SW@aspeedtech.com>
-Subject: Re: [PATCH v1 0/2] Enable WDT reload feature
-Message-ID: <6hkiqbgqkpdlr5f27drs7vcee7pb2uahek4zz5pd5ndativk53@42otb625deil>
-References: <20241024071548.3370363-1-billy_tsai@aspeedtech.com>
- <nm4ckxv6swajr6hnqlkq5uoo6ncjzlg6yfxroftat6dubiefyi@xbhi4dvqacxm>
- <ea1be8af-0948-46b1-a1f4-fe572861cde4@roeck-us.net>
- <OSQPR06MB72529E67E67D0D07E59AF1C08B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+	s=arc-20240116; t=1729843884; c=relaxed/simple;
+	bh=E/apcyB1w/92OmKRtJddri62CGkSs/I/kdgG399rUqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=B8TYB340kYgy+fbMLAPeKsQMHXeCkrhYIS2WYp9l64YyZXo8+80JK8CU9IpG4xwC8KjOu5A1RcTo8Zyj4kYd98t/yuK5viGXAPoeWc85hrNCktF01wDVRPfIexa4n1i6UDf5RHXWhyMabzfnqNtJjl8X++tCYQsAbkgj7Wn9Z1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K4fC/WGi; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49OKIl7Y031140;
+	Fri, 25 Oct 2024 08:10:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	e7IRHCiYcoaw9jtO5vigiOEHerBRKYUUQRuDw5/DXG8=; b=K4fC/WGi98wX9uB2
+	fVafKTflUfcRumDUUZjK6f1zEVy2DWxmhzgXpwbt16oDkFNfDbdAfTsWiDqJ67Ji
+	7cF7LSMPzTmh5C+dh6ZATWB0bJqzRr/ZqhmBsHew+U1gDRsxZSqosWB0t+urFxRJ
+	/bocPua1t7uWhEOGQbM1tFehAuy+YPNGPBFWcBFrUwTsf/jGthi8Vpz1btNlUEH8
+	1wzPyXbxbIv4uFiNJWKaGAiJjDM78lxd9QVCWZ9t/j9REwqe/jwGnO37LPItMNbP
+	5iU81YVFzcplE4iR5shl24Ggl3Y8xHI7Zl1XWBVboQqofAOA+u4Fxg9zpf8r9H22
+	igl7sw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3w09js-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 08:10:57 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49P8Auh2021635
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 08:10:56 GMT
+Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Oct
+ 2024 01:10:49 -0700
+Message-ID: <de0f9f1c-9d5e-492d-b7fa-cb7e9d05ae10@quicinc.com>
+Date: Fri, 25 Oct 2024 16:10:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="irgwyxo4ns45vjjz"
-Content-Disposition: inline
-In-Reply-To: <OSQPR06MB72529E67E67D0D07E59AF1C08B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/7] Add initial support for QCS615 SoC and QCS615 RIDE
+ board
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: Taniya Das <quic_tdas@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Tingguo Cheng <quic_tingguoc@quicinc.com>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Will
+ Deacon" <will@kernel.org>, <kernel@quicinc.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Swetha Chintavatla <quic_chintava@quicinc.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20241022-add_initial_support_for_qcs615-v4-0-0a551c6dd342@quicinc.com>
+ <172978739698.623494.13901719999982782781.robh@kernel.org>
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+In-Reply-To: <172978739698.623494.13901719999982782781.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CTbYYdIaI2Cq2J-7SVRATYo4BDz2HKXb
+X-Proofpoint-ORIG-GUID: CTbYYdIaI2Cq2J-7SVRATYo4BDz2HKXb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ malwarescore=0 spamscore=0 clxscore=1015 lowpriorityscore=0
+ mlxlogscore=999 priorityscore=1501 mlxscore=0 suspectscore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410250062
 
 
---irgwyxo4ns45vjjz
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 0/2] Enable WDT reload feature
-MIME-Version: 1.0
 
-Hello Billy,
+在 10/25/2024 12:33 AM, Rob Herring (Arm) 写道:
+> 
+> On Tue, 22 Oct 2024 16:54:28 +0800, Lijuan Gao wrote:
+>> Introduces the Device Tree for the QCS615 platform.
+>>
+>> Features added and enabled:
+>> - CPUs with PSCI idle states
+>> - Interrupt-controller with PDC wakeup support
+>> - Timers, TCSR Clock Controllers
+>> - Reserved Shared memory
+>> - QFPROM
+>> - TLMM
+>> - Watchdog
+>> - RPMH controller
+>> - Sleep stats driver
+>> - Rpmhpd power controller
+>> - Interconnect
+>> - GCC and Rpmhcc
+>> - QUP with Uart serial support
+>>
+>> Bindings and base Device Tree for the QCS615 SoC are splited
+>> in four parts:
+>> - 1-3: Binding files for QCS615 SoC and PDC (Reviewed)
+>> - 4  : Soc table entry (Reviewed)
+>> - 5-6: Initial DTSI and RIDE board device tree
+>> - 7  : Enable uart related configs
+>>
+>> Bindings Dependencies:
+>> - watchdog: https://lore.kernel.org/all/20240920-add_watchdog_compatible_for_qcs615-v2-1-427944f1151e@quicinc.com/ - Reviewed
+>> - qfprom: https://lore.kernel.org/all/20240912-add_qfprom_compatible_for_qcs615-v1-1-9ef2e26c14ee@quicinc.com/ - Reviewed
+>> - tcsr: https://lore.kernel.org/all/20240920-add_tcsr_compatible_for_qcs615-v2-1-8ce2dbc7f72c@quicinc.com/ - Applied
+>> - tlmm: https://lore.kernel.org/all/20240920-add_qcs615_pinctrl_driver-v2-1-e03c42a9d055@quicinc.com/ - Applied
+>> - interconnect: https://lore.kernel.org/all/20240924143958.25-2-quic_rlaggysh@quicinc.com/ - Reviewed
+>> - rpmhcc: https://lore.kernel.org/all/20241016-qcs615-clock-driver-v3-1-bb5d4135db45@quicinc.com/ - Reviewed
+>> - gcc: https://lore.kernel.org/all/20241016-qcs615-clock-driver-v3-3-bb5d4135db45@quicinc.com/ - Reviewed
+>> - rpmhpd: https://lore.kernel.org/all/20240927-add_qcs615_qcs8300_powerdomains_driver_support-v2-3-18c030ad7b68@quicinc.com/ - Applied
+>>
+>> Build Dependencies:
+>> - tlmm: https://lore.kernel.org/all/20240920-add_qcs615_pinctrl_driver-v2-2-e03c42a9d055@quicinc.com/ - Applied
+>> - rpmhcc: https://lore.kernel.org/all/20241016-qcs615-clock-driver-v3-2-bb5d4135db45@quicinc.com/ - Reviewed
+>> - gcc: https://lore.kernel.org/all/20241016-qcs615-clock-driver-v3-4-bb5d4135db45@quicinc.com/
+>>
+>> Patch made the following verifications:
+>> - Successfully passed dt_binding_check with DT_CHECKER_FLAGS=-m for earch binding file
+>> - Successfully passed dtbs_check with W=1 for dts
+>> - Verified CPU Hotplug, idle and online CPUs on QCS615 ride board
+>> - Checked pinctrl-maps path
+>> - Verified watchdog functionality with "echo 1 > /dev/watchdog", can trigger
+>>    a watchdog bark and later bite
+>> - Verified functionality with UART console on QCS615 ride board
+>> - RPMH controller driver probed successfully
+>> - Sleep stats driver probed successfully and checked qcom_stats
+>>    node on QCS615 ride board
+>>
+>> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+>> ---
+>> Changes in v4:
+>> - Configure vreg_l17a to High Power Mode (HPM) as it supplies power to UFS
+>>    and eMMC, which can be utilized as boot devices.
+>> - Link to v3: https://lore.kernel.org/r/20240926-add_initial_support_for_qcs615-v3-0-e37617e91c62@quicinc.com
+>>
+>> Changes in v3:
+>> - Added interconnect, GCC, RPMHCC, QPU, and RPMHPD related nodes for UART console
+>> - Enabled UART condole on ride board device
+>> - Link to v2: https://lore.kernel.org/r/20240913-add_initial_support_for_qcs615-v2-0-9236223e7dab@quicinc.com
+>>
+>> Changes in v2:
+>> - Collected reviewed-bys
+>> - Removed extra blank line
+>> - Removed redundant function
+>> - Renamed xo-board to xo-board-clk and move it and sleep-clk to board dts
+>> - Renamed system-sleep to cluster_sleep_2
+>> - Removed cluster1
+>> - Added entry-method for idle-states
+>> - Added DTS chassis type
+>> - Added TCSR Clock Controllers
+>> - Added Reserved Shared memory
+>> - Added QFPROM
+>> - Added TLMM
+>> - Added Watchdog
+>> - Added RPMH controller
+>> - Added Sleep stats driver
+>> - Link to v1: https://lore.kernel.org/r/20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com
+>> ---
+>>
+>> ---
+>> Lijuan Gao (7):
+>>        dt-bindings: arm: qcom: document QCS615 and the reference board
+>>        dt-bindings: arm: qcom,ids: add SoC ID for QCS615
+>>        dt-bindings: qcom,pdc: document QCS615 Power Domain Controller
+>>        soc: qcom: socinfo: Add QCS615 SoC ID table entry
+>>        arm64: dts: qcom: add initial support for QCS615 DTSI
+>>        arm64: dts: qcom: add base QCS615 RIDE dts
+>>        arm64: defconfig: enable clock controller, interconnect and pinctrl for QCS615
+>>
+>>   Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+>>   .../bindings/interrupt-controller/qcom,pdc.yaml    |   1 +
+>>   arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+>>   arch/arm64/boot/dts/qcom/qcs615-ride.dts           | 219 +++++++
+>>   arch/arm64/boot/dts/qcom/qcs615.dtsi               | 688 +++++++++++++++++++++
+>>   arch/arm64/configs/defconfig                       |   3 +
+>>   drivers/soc/qcom/socinfo.c                         |   1 +
+>>   include/dt-bindings/arm/qcom,ids.h                 |   1 +
+>>   8 files changed, 920 insertions(+)
+>> ---
+>> base-commit: de938618db2bafbe1a70c8fc43f06ccdd60364b2
+>> change-id: 20241022-add_initial_support_for_qcs615-2256f64a9c24
+>> prerequisite-change-id: 20240919-qcs615-clock-driver-d74abed69854:v3
+>> prerequisite-patch-id: cd9fc0a399ab430e293764d0911a38109664ca91
+>> prerequisite-patch-id: 07f2c7378c7bbd560f26b61785b6814270647f1b
+>> prerequisite-patch-id: a57054b890d767b45cca87e71b4a0f6bf6914c2f
+>> prerequisite-patch-id: d0c5edf9c06568ae2b3ffacba47e57ebb43acb15
+>> prerequisite-change-id: 20240920-add_watchdog_compatible_for_qcs615-eec8a8c2c924:v2
+>> prerequisite-patch-id: 3a76212d3a3e930d771312ff9349f87aee5c55d5
+>> prerequisite-change-id: 20240911-add_qfprom_compatible_for_qcs615-e3b02f6fa71e:v1
+>> prerequisite-patch-id: 8a2454d5e07e56a6dd03f762f498051065635d85
+>>
+>> Best regards,
+>> --
+>> Lijuan Gao <quic_lijuang@quicinc.com>
+>>
+>>
+>>
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>    pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y qcom/qcs615-ride.dtb' for 20241022-add_initial_support_for_qcs615-v4-0-0a551c6dd342@quicinc.com:
+> 
+> arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@100000: 'clock-names' is a required property
+> 	from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-gcc.yaml#
+> 
+Got it, it will be updated in the next version, thanks!
+> 
+> 
+> 
+> 
 
-On Fri, Oct 25, 2024 at 02:00:39AM +0000, Billy Tsai wrote:
-> > On 10/24/24 08:40, Uwe Kleine-K=C3=B6nig wrote:
-> > > On Thu, Oct 24, 2024 at 03:15:46PM +0800, Billy Tsai wrote:
-> > >> Aspeed PWM controller has the WDT reload feature, which changes the =
-duty
-> > >> cycle to a preprogrammed value after a WDT/EXTRST#.
-> > >>
-> > >> Billy Tsai (2):
-> > >>    hwmon: (aspeed-g6-pwm-tacho): Extend the #pwm-cells to 4
-> > >>    hwmon: (aspeed-g6-pwm-tacho): Support the WDT reload
-> > >
-> > > Huh, I'm not convinced that extending #pwm-cells for that feature is a
-> > > good idea. Unless I'm missing something none of the other supported P=
-WM
-> > > chips can do that, so I hesitate to change a standard for it. I sugge=
-st
-> > > to make this a separate property instead.
->
-> Using a separate property to enable this feature is a straightforward
-> method, but I don=E2=80=99t understand why extending #pwm-cells isn=E2=80=
-=99t a good
-> idea in my situation. The feature =E2=80=98WDT reload=E2=80=99 can be set=
- for
-> individual PWM channels, and the PWM subsystem has the of_xlate
-> callback hook, which allows each driver to define its arguments for
-> the PWM consumer. I=E2=80=99m unsure if I misunderstood this callback usa=
-ge,
-> as I couldn=E2=80=99t find examples. If my understanding is correct, this
-> method is better for adding our specific feature, rather than using
-> child nodes or separate properties to indicate which PWM channel
-> should enable this feature with the corresponding duty cycle values. I
-> think using separate properties to achieve this feature would be quite
-> cumbersome.
-> As I know the arguments for this usage are as follows:
-> First: PWM channel index
-> Second: PWM period in ns
-> Third: PWM polarity
-> Therefore, I extended our feature to a fourth argument to avoid any confu=
-sion regarding usage and added the description in our yaml file.
->=20
-> If my thinking is incorrect or doesn=E2=80=99t make sense, please let me =
-know.
+-- 
+Thx and BRs
+Lijuan Gao
 
-It might make sense if your bubble only contains that single PWM
-hardware. However if you extend the pwm cells semantic for your PWM to
-mean "period if the PWM watchdog triggers", i can hardly refuse the next
-developer who wants to extend for "period of the secondary output pin of
-the PWM" or a step counter or some property that defines how the duty
-cycle is modulated over time. And should the next one also use the 4th
-u32 for his purpose, or should we consider it reserved now for your
-purpose such that the duty_cycle modulation goes into the 7th cell?
-
-Today the bindings are (well nearly) used in the same way for all
-hardwares and I want to keep it that way. If your PWM has a special
-feature, give it a speaking name that the occasional dts reader has a
-chance to understand without reading HW docs or dt bindings.
-
-Best regards
-Uwe
-
---irgwyxo4ns45vjjz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcbUm0ACgkQj4D7WH0S
-/k669AgAm/vnBOGdRCsvDuzdHkwBbJUkiJHDGNT3nBEs43lY8F0I4G3bDEdGMfgj
-Z1EBM6cL0h4BPVxR4vaUd/R8xTuRMkgU5EZy5ic0U+j3KozA6bnYqXuBfUy1VCjL
-emUvBEdX7dN2TS2lWnNh/yRpy2IDNYkOEU2ffBGjX1s9xQtVHhtY2yUt3/t7cJwG
-HBaMhXhaZD2eUNuhuT5zxW8GA8yiF048vzqIfbBnh7bCqfY7i9XcLQKKcYpOdZ8E
-BJ3DF5SRcAv56F0PfkA25qr15QRvzUOt64dNKSVL38Cn7LH4joP2/UtdvjqWlCQm
-ytZRxFf+CRo6WHEyCrs0X3asdsChAQ==
-=4H4I
------END PGP SIGNATURE-----
-
---irgwyxo4ns45vjjz--
 
