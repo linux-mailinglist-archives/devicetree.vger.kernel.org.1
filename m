@@ -1,128 +1,181 @@
-Return-Path: <devicetree+bounces-115848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920BB9B0D88
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 20:40:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78BAA9B0D8C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 20:40:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 173BE28680F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:40:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85B381C22B07
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0330920BB32;
-	Fri, 25 Oct 2024 18:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC1720BB35;
+	Fri, 25 Oct 2024 18:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kVS1VXkm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PmUlchIc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2271C20C313
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80189185E50;
+	Fri, 25 Oct 2024 18:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729881635; cv=none; b=JH7sOHVxeygVuXUUAYECrRD0RnL40ZqrJsk2PIG38TFqMFqTN7FXzojF98iy0x+2imcwDvUvgRRI9u2TfIzrjMPCccC7wbibYTCKoWe4FqrFj4NWf9b+zDhiol/WsnPU638j5MS7VLh04Vr/l/Oda3P+fn6ho9y3+yBfB83ArUA=
+	t=1729881646; cv=none; b=Ed5awnu1NhkX9URuuMUW/6qU2ysMCntK+QWU85QVkJu2zslEg/OsjXuiwrGJkc2CakNyoirj8JoGmoPfTrDSRq2qdu8x/68cahoGwg4PhwtZa2holVyL6lisNZFuyLCpCXXJqCnvWRCSG8vdv1294aerNuCFTiTxy3jOpyXmpHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729881635; c=relaxed/simple;
-	bh=pHSh3XPSaFVV84kA7tilhdhkPW5JX36He6gVwTk2sUQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aCKH7+PzOf2B1VJqjmlvIJjiUP6O0ORopllo+r45sf3BUVenScOLYVPq0pupCyXLqpGkfQOcjLXYAqXINHqiaO6cHXFEnHNsPNxEshpm1hr7/YMCYD7gqyZSFmoYlb6HcotCf9SAxhXCf2t+OME2RPeEw7ERzYvZsu6AqEMvsSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kVS1VXkm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PBSNgM005091
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:40:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gVvgWoKlcV9LtUsUs6yWkyXRhBCiJ5gKYOTtTqqtPO8=; b=kVS1VXkmNnXzZMXO
-	RB96+9SH3GtfraqsLuzYUkLUGIGlGiZbu1jkPwiAFiyHPSv5YUs8L9BLxA28bAIx
-	vyxVRwKHa3G1ptCi9MnKnvcGe8ZYL1E72zpkRvfaWGLMt+UCf1IISoMHly0RLDk2
-	+su8DJr8YA1P0YoWd6D0tlT/lQbiNRH7F40s24miM7hlNQkQwinjvg67ndtATaCx
-	xc+dyeVsqgHbNC4jCeHgMieMq9sBkGIIZMoM5U7bMklfp98weGHF0Ta7n+tSd8BA
-	Iswx6CsLF9TwZus82XfgwGxgkYGicL7eueSSqDUIZTxiDHkQg/sUhgCo19bGVtIi
-	8m5drQ==
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com [209.85.166.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em68a3fh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:40:32 +0000 (GMT)
-Received: by mail-il1-f198.google.com with SMTP id e9e14a558f8ab-3a4dad0a63bso4508815ab.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 11:40:32 -0700 (PDT)
+	s=arc-20240116; t=1729881646; c=relaxed/simple;
+	bh=JRxNUr5yui2gNVAeX4FE/a5Z8KBgsyO2L2DGHu/TKtU=;
+	h=Date:From:To:Cc:Message-ID:Subject:MIME-Version:Content-Type; b=J4sBl3IhfUNIvQS8LUEBhFX2jMXVPrkCR9mL/esmXmQB6DFZvtxCAL3OKT++IKN7ttJ9Klw8jKM6uqpmZFl5FQ6+xnTaSOvL9DvwN/4H0GH32fo274mVXvnn9lfmdynyFtO3HzrHvHjskW2P2bEUxLzpo78iM4pPyxntUAui4So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PmUlchIc; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d462c91a9so1598331f8f.2;
+        Fri, 25 Oct 2024 11:40:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729881643; x=1730486443; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:subject:message-id:cc:to
+         :from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JRxNUr5yui2gNVAeX4FE/a5Z8KBgsyO2L2DGHu/TKtU=;
+        b=PmUlchIchkKzpGCZm2vPQcINgkMTki8G8xL4aQVHV4lIKyUHIblgMKFC0HQuBdh4w2
+         md1esL0R77wspbiz0v57LTCcdpBYluHBS14BIWj2sy2I6oIvF+s8mg9YGiVHdgqoSOqt
+         HyN6bBLG0Ph5VGL6XYTrKULSx6ICVVkSszKOD3iyErVeCQncF3ZbYEnEVXFPHTG4+Wt2
+         4zqzozTmcQeqd+bCzSBWZ/Qa0IdOzkbnRtNQsTaY2n8BxZMYX/+hklToscp8QpeTdHNv
+         uzLRulQS9uKVY51SZfIu9tuUQoXdSwUyjbj8h0ZoNFSmm3LQn44enhMkGkF2dahV3R99
+         Rrtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729881632; x=1730486432;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gVvgWoKlcV9LtUsUs6yWkyXRhBCiJ5gKYOTtTqqtPO8=;
-        b=tKqdZJeLp8kPXLBI7UUqHYr53f65t6VozLLV+HOmsO4ypwPzZ2At75YI9B4bltTiSW
-         yT7PBmNg/JYP37la/j0JvakQKoi13a2h+H/0WkpyqWQ1mQx78+0okIUoP8ZX8ll6L7WE
-         5NnW2EfWSVtXNZnZJ4j1u//KtnWhYzGRehNJ3JHCPSyMPapFjS0RWQl8Pj6NgiK1COzl
-         xqlxjM6f2wPkYMSi2W5JgF5OjccryqrjNC3a0RtwYphvMiMWYOurBU2g90iuHsVL1Hdz
-         2qPS0+1zBIOEHX3ksE+b52zuV0tE8RdQj43/YtG4MMhx+hsdf3rUwByA63A2PHc5gCOk
-         qStQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXj9D1Ignp+qjB5CWg+Hx7r4OXmT2Qr5qic6oWN2AqjWTvqwXYWzHOiN0M5DRSefPr5CMQa4sb3aQlf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHIUSByhgsCDcLQJVPXxBnWq9GPP867O6GsKWzT63rmahBGCpm
-	IQvd7+3l33IrN2JacVK37nGyk8lfpRXbbryxjpquYYe2D4B691P8fHf8ZbpArir1fKjzmqnNcjH
-	YAO1pDphqJnxMz2kLgEMWWIwrjB7Z6ovaoYP9T03pW3AWaUor7mDQIiH90m3u
-X-Received: by 2002:a05:6e02:1566:b0:3a1:a227:c8a5 with SMTP id e9e14a558f8ab-3a4ed31fea8mr360505ab.5.1729881631808;
-        Fri, 25 Oct 2024 11:40:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGjSzBGiWU/ckW48xJT/7uhrcEOsittz0zEh+q6ENMSKuiPW4j11zulREu0udCO3SUIwIwiUw==
-X-Received: by 2002:a05:6e02:1566:b0:3a1:a227:c8a5 with SMTP id e9e14a558f8ab-3a4ed31fea8mr360375ab.5.1729881631352;
-        Fri, 25 Oct 2024 11:40:31 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cbb631b0bcsm861369a12.60.2024.10.25.11.40.27
+        d=1e100.net; s=20230601; t=1729881643; x=1730486443;
+        h=content-transfer-encoding:mime-version:subject:message-id:cc:to
+         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JRxNUr5yui2gNVAeX4FE/a5Z8KBgsyO2L2DGHu/TKtU=;
+        b=xRWs4UwOraFmkorxze2F6cwl07h2MkwqRa9KJHozVsZy1BtehlYRua0pCaZmH7aFfU
+         KDmPvZvl00r/U1YVU2Vs+hFWurZtnKUDZgGvWL7USy59u2cXUgOtv+TzgcQX6LRpf4sh
+         FZqIcPox0RsVGjKvLcQghJ2pbtiJq1hG0lT0gxFPQI26FnAQNWjrFgIAiKStGWg3CYEh
+         dr/tuaA8qJRdfqcktmtMYdxiWxjU7rJG3CtZG78PC72qxIexPXFlyeSO4zG2N77T3NMD
+         0o1pSxnv1UadjN9UbkJHUPWmg/kkw/reJ+C13CpHNZgOZAkspR+JjHU7hL9pNwA9URDL
+         u1gA==
+X-Forwarded-Encrypted: i=1; AJvYcCU80Prdd9iHJTthnpNQfiQRK7iCfZ5uPMPnmLn2OPP6ueHPWP0Kk6Idd1Z8UYYDMRapCWXr8rphKs8j@vger.kernel.org, AJvYcCVBOlO4ZrpibAy0Rt2/xAi4vorXfSA5FaN0M/S0h5JXA9i/YKMtaariCKYKY0Yt9zXAyvKBdbYSAPWV@vger.kernel.org, AJvYcCX+OQET6fwLnlBNoiy4KBIronzbq1DE7HKfcwBfV0kCgQEL/TLgjlYC1WHKTZu4J65ss4S2ryq3qQ3c@vger.kernel.org, AJvYcCXCILfq2rWi4HxBw6dFBdbDG431pGcR+dE9mP87D9s0YwlXqMdLxcfUA45VnXp95pJgZaP8ACA/PBNN@vger.kernel.org, AJvYcCXqn17Q0wNCYjQaaXtWfuSDiiE8TMB+phzRXrzjDrOnxdWwCUbPjAGT/BhAsXBsMMEZIn1DCW1Cik04+Qft@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmdmgqyNNXaaRR0jmeL0/ipbdieoA6uYYx+PuMMD+qc0NbpXkP
+	Ono62HUdZiLJV7rrlw9W9dOPu3IyPKATuimMjT5BGBeBrp4SfpH99slHQj/jEb1kcqtt
+X-Google-Smtp-Source: AGHT+IGS6rcHOlbTprJsbT/HrRycQKHd080NuZIR69soUsvtun0u2f/I9JB4hvq+jJZoGz6PjNSYZQ==
+X-Received: by 2002:a5d:4311:0:b0:374:c17a:55b5 with SMTP id ffacd0b85a97d-3806111a1bemr275137f8f.14.1729881642551;
+        Fri, 25 Oct 2024 11:40:42 -0700 (PDT)
+Received: from [127.0.0.1] (aftr-62-216-210-211.dynamic.mnet-online.de. [62.216.210.211])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b70c91sm2193563f8f.85.2024.10.25.11.40.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 11:40:29 -0700 (PDT)
-Message-ID: <fae33f7a-aa29-4254-a846-cf90d49e0193@oss.qualcomm.com>
-Date: Fri, 25 Oct 2024 20:40:26 +0200
+        Fri, 25 Oct 2024 11:40:42 -0700 (PDT)
+Date: Fri, 25 Oct 2024 20:40:42 +0200 (GMT+02:00)
+From: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+	=?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+Message-ID: <dc52cda0-47d9-4cbf-a68e-0af304edc32e@gmail.com>
+Subject: Re: [PATCH RFC v4 11/15] iio: buffer-dmaengine: add
+ devm_iio_dmaengine_buffer_setup_ext2()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: x1e80100-qcp: Enable SD card
- support
-To: Abel Vesa <abel.vesa@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20241022-x1e80100-qcp-sdhc-v3-0-46c401e32cbf@linaro.org>
- <20241022-x1e80100-qcp-sdhc-v3-3-46c401e32cbf@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241022-x1e80100-qcp-sdhc-v3-3-46c401e32cbf@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: UsXYkeGUD5RHoHu50pLNGLbt7HNaIpBZ
-X-Proofpoint-GUID: UsXYkeGUD5RHoHu50pLNGLbt7HNaIpBZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 bulkscore=0 phishscore=0 mlxscore=0
- lowpriorityscore=0 mlxlogscore=674 impostorscore=0 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410250142
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Correlation-ID: <dc52cda0-47d9-4cbf-a68e-0af304edc32e@gmail.com>
 
-On 22.10.2024 12:46 PM, Abel Vesa wrote:
-> One of the SD card slots found on the X Elite QCP board is
-> controlled by the SDC2. Enable it and describe the board
-> specific resources.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
+Oct 25, 2024 18:42:02 David Lechner <dlechner@baylibre.com>:
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> On 10/25/24 8:24 AM, Nuno S=C3=A1 wrote:
+>> I still need to look better at this but I do have one though already=20
+>> :)
+>>
+>> On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
+>>> Add a new devm_iio_dmaengine_buffer_setup_ext2() function to handle
+>>> cases where the DMA channel is managed by the caller rather than=20
+>>> being
+>>> requested and released by the iio_dmaengine module.
+>>>
+>>> Signed-off-by: David Lechner <dlechner@baylibre.com>
+>>> ---
+>>>
+>>> v4 changes:
+>>> * This replaces "iio: buffer-dmaengine: generalize requesting DMA=20
+>>> channel"
+>>> ---
+>
+> ...
+>
+>>> @@ -282,12 +281,38 @@ void iio_dmaengine_buffer_free(struct=20
+>>> iio_buffer *buffer)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio_buffer_to_dmaengine_buff=
+er(buffer);
+>>> =C2=A0
+>>> =C2=A0=C2=A0=C2=A0 iio_dma_buffer_exit(&dmaengine_buffer->queue);
+>>> -=C2=A0=C2=A0 dma_release_channel(dmaengine_buffer->chan);
+>>> -
+>>> =C2=A0=C2=A0=C2=A0 iio_buffer_put(buffer);
+>>> +
+>>> +=C2=A0=C2=A0 if (dmaengine_buffer->owns_chan)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_release_channel(dmaengine_buf=
+fer->chan);
+>>
+>> Not sure if I agree much with this owns_chan flag. The way I see it,=20
+>> we should always
+>> handover the lifetime of the DMA channel to the IIO DMA framework.=20
+>> Note that even the
+>> device you pass in for both requesting the channel of the spi_offload=C2=
+=A0=20
+>> and for
+>> setting up the DMA buffer is the same (and i suspect it will always=20
+>> be) so I would
+>> not go with the trouble. And with this assumption we could simplify a=20
+>> bit more the
+>> spi implementation.
+>
+> I tried something like this in v3 but Jonathan didn't seem to like it.
+>
+> https://lore.kernel.org/all/20240727144303.4a8604cb@jic23-huawei/
+>
+>>
+>> And not even related but I even suspect the current implementation=20
+>> could be
+>> problematic. Basically I'm suspecting that the lifetime of the DMA=20
+>> channel should be
+>> attached to the lifetime of the iio_buffer. IOW, we should only=20
+>> release the channel
+>> in iio_dmaengine_buffer_release() - in which case the current=20
+>> implementation with the
+>> spi_offload would also be buggy.
+>
+> The buffer can outlive the iio device driver that created the buffer?
 
-Konrad
+Yes, it can as the IIO device itself. In case a userspace app has an open=
+=20
+FD for the buffer chardev, we get a reference that is only released when=20
+the FD is closed (which can outlive the device behind bound to its=20
+driver). That is why we nullify indio_dev->info and check for it on the=20
+read() and write() fops.
+
+FWIW, I raised concerns about this in the past (as we don't have any lock=
+=20
+in those paths) but Jonathan rightfully wanted to see a real race. And I=20
+was too lazy to try and reproduce one but I'm still fairly sure we have=20
+theoretical (at least) races in those paths. And one of them could be (I=20
+think) concurrently hitting a DMA submit block while the device is being=20
+unbound. In that case the DMA chan would be already released and we could=
+=20
+still try to initiate a transfer. I did not check if that would crash or=20
+something but it should still not happen.
+
+- Nuno S=C3=A1
 
