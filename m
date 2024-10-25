@@ -1,151 +1,163 @@
-Return-Path: <devicetree+bounces-115818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A389B0BF9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF86B9B0BFF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:43:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C46F4B21E75
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:42:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B290B23EC7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA41B41C69;
-	Fri, 25 Oct 2024 17:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A513218C915;
+	Fri, 25 Oct 2024 17:42:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KSlBfm+O"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VE6wSRv7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1722033A
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9C718452E;
+	Fri, 25 Oct 2024 17:42:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729878111; cv=none; b=iWoUJCHocBjrYaE7NeHQsNB1b/OQEyHlR6AaCColNDrX0PxdhpOy8PVXdkq9FZz4Ib0CC8wHYPO3RGfDcDDPugTkwnrJdtSSsKN5n5RQe3de+rB+0J2NNw/SvJRyNKsPkFbD1sFKqep1PUCGQZI0vgqhfyRVN/VeW8/ZFcy5O34=
+	t=1729878138; cv=none; b=JhTkGwOgj2hRYkU0PhR2YukVXmKrhiuOkCqXQPC6Gfd7u6ty1GblN1+7igTygx2ayAoTffKTlTvI58mYG4nyaFjGDUYtmrNnhZAL0Q6jswWLE/iq4BT3tGX8T6HQBPJlby67L4fRsy5IbAcThS7txcX+kpyhT+NvkS6q8rqNQcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729878111; c=relaxed/simple;
-	bh=JFUudwqmv14JueSq6ucl5OfPdZQpWR7y3jLotykLqV8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KZZlGv/u2HwiKg8lmm8e21HFu+8YzXd+0sBNmc2EBQCmkb8FS3v1DxdxeB045p4WpxMwHKUN6dZVn/xZIiBBrVCcqkZiV6LpcQOTlubshAwcDHu1MAK1DrkPPdIoAdrMI9ZmJaoxLS+3I57UC8OAmfhrc5l2jBQqaL2TWa0Cqfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KSlBfm+O; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PB2Ad4001022
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:41:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FHu7Dsvv0DBV1i9mgCw48KlX1tl0tTx9s/NTZdtmkws=; b=KSlBfm+OEuHMMrMA
-	aI6TnejfhH2w7Ou7w4JWf4YOVdp6MO7A0/f3ZNoVL+AracM2p1BocSBoQJ7FYiPX
-	3Hpw3HHW4GemWzP4aqEl6J/EIqac9unHt5Lrs+CHXw0iyVYTWZb6iwZli9JHcWNu
-	m9wygjLS4PlMS2SkEF4SAD4dtMO+tr6Rfi/5YzkeUaBKhLHyneokwpSz+9UUjm/o
-	8zNh8nAsjHnrfhY5Z2rFyPF/yB+vbXP8yVgFQWx9T73f06Sv2rzXXrs7pS0OwAPM
-	4/l3ymLe+mhfvAzETrpfmvFdse0DlBvp4gdan2j9V2Un53NKa5Y0ii0A9IllqgSr
-	5bDhuw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ga3s17p6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:41:48 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6cda6fd171bso5042076d6.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:41:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729878106; x=1730482906;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FHu7Dsvv0DBV1i9mgCw48KlX1tl0tTx9s/NTZdtmkws=;
-        b=sjrb2Lh5wKPcGX7kF/zWCKzBg0gR/Kuyv2cAlhDrzN7e+mHHCLasvHF9EFQwEIdf4f
-         R2RrdGfE1zNKiDNuOrsw+aXGhqyH0pcBZKf5H5ViUtiX4svEPGzOHHixH9Tuh3Djhjpe
-         /bPA9OyOaMb4BDJDrwfXW4ABSEsUKD8GTQRRMQzdMPZsuZoQbndb5m7tc08JTGFdlUvy
-         m1DpME4ctQtki3ejEjuu4U7WprNJkWscDFWH28V0iH45s8SXeL2Tm04A2OtYRyBjROJq
-         qEGXUessTfOS2zqyVxcu30msLgxQ6NYUca7UE4dGUiiL9V0jsMANV0H4qT01a9TolxBv
-         ASKA==
-X-Forwarded-Encrypted: i=1; AJvYcCVy9bzUu4zvXW1EYXvRidtg27U27ZVYdFs0hctb1dpTVfuZKOaI+bmetDnu+b4fMaYBG4Ip/xJ0z1Ud@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4fX+7O04LRGe8ia99c3Bn0VCZ4yMUpIamg7TP22ADsQ0qWGA5
-	AUdwUq9uy+6z5ED/3iMkWpd2H2Y63cFKbbRiQCUDNv8tYr0atH0ROLMPjOgtTP0IDbf0BXuLx6+
-	TShjvYUnl/xBzK+KhevmeJ+s1B90SZ7DfyRj4ywkDU1BLyp8cmfdWfCzyilvq
-X-Received: by 2002:ad4:5cc1:0:b0:6cb:4e9f:7370 with SMTP id 6a1803df08f44-6d185862964mr1286656d6.12.1729878106036;
-        Fri, 25 Oct 2024 10:41:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEhW4SFYE0P93aiXTyZ6Wv8eX/yrl4zliE5iVX82/C3QvC8L++dxHQwOPeBNcTiVrDp7AoBWA==
-X-Received: by 2002:ad4:5cc1:0:b0:6cb:4e9f:7370 with SMTP id 6a1803df08f44-6d185862964mr1286446d6.12.1729878105708;
-        Fri, 25 Oct 2024 10:41:45 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cbb6347f20sm816629a12.86.2024.10.25.10.41.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 10:41:45 -0700 (PDT)
-Message-ID: <8e49de35-59dc-4308-b93a-19791e6b05e2@oss.qualcomm.com>
-Date: Fri, 25 Oct 2024 19:41:41 +0200
+	s=arc-20240116; t=1729878138; c=relaxed/simple;
+	bh=PwyeLzwC8ipsRtMBNOMt7RMlZVMwSI+R8kgLXOHJxdE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P1iBEzXRqbDWNZaGnDczhRlQ9MSzzptRVNatDYwp4ljQau+zK5sQ74dlUFMK14GKwM3bTTkPpmoNQ+bTp7BArXHDLdC6YUYOGB8HOd69DdpwTApfWSdv5v0iuCr76AeKeWAALSs2ulftqVNsNvPI8b8kI5iVY7x7zCJZEMXzfEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VE6wSRv7; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49PHg5wc021530;
+	Fri, 25 Oct 2024 12:42:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1729878125;
+	bh=pwKM75sCFnfctTtbj/opwnkqiPuhZWuGKbKWcmwTyIY=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=VE6wSRv7zxAis0MClAfx62Vw8upuraUz6En61GTY3JhXbfzImFcpblBr1W0a+nASO
+	 NaGFszhOPgI7MhmNVnGjjPHRtsUqfYjyKZpfr3mxRzE0NYwYstYXKDrbNjfJh8youM
+	 QbMHDDQhPNlGCe36910F7UUSlTKEBAWwgP/RrnZI=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49PHg5UT068344
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 25 Oct 2024 12:42:05 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
+ Oct 2024 12:42:05 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 25 Oct 2024 12:42:04 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49PHg4lt109361;
+	Fri, 25 Oct 2024 12:42:04 -0500
+Date: Fri, 25 Oct 2024 12:42:04 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Vishal Mahaveer
+	<vishalm@ti.com>,
+        Kevin Hilman <khilman@baylibre.com>, Dhruva Gole
+	<d-gole@ti.com>
+Subject: Re: [PATCH v3 2/6] firmware: ti_sci: Partial-IO support
+Message-ID: <20241025174204.xwmsn2arcy4q63xu@reaction>
+References: <20241012-topic-am62-partialio-v6-12-b4-v3-0-f7c6c2739681@baylibre.com>
+ <20241012-topic-am62-partialio-v6-12-b4-v3-2-f7c6c2739681@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] soc: qcom: llcc: Add LLCC configuration for the
- QCS8300 platform
-To: Jingyi Wang <quic_jingyw@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: quic_tengfan@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com
-References: <20241010-qcs8300_llcc-v2-0-d4123a241db2@quicinc.com>
- <20241010-qcs8300_llcc-v2-2-d4123a241db2@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241010-qcs8300_llcc-v2-2-d4123a241db2@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: q27uFpiYeTwnGbee6-F8GgrWeI952wM_
-X-Proofpoint-GUID: q27uFpiYeTwnGbee6-F8GgrWeI952wM_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- impostorscore=0 bulkscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
- phishscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410250135
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20241012-topic-am62-partialio-v6-12-b4-v3-2-f7c6c2739681@baylibre.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 10.10.2024 12:08 PM, Jingyi Wang wrote:
-> Add LLCC configuration for the QCS8300 platform. There is an errata on
-> LB_CNT information on QCS8300 platform, override the value to get the
-> right number of banks.
+On 16:39-20241012, Markus Schneider-Pargmann wrote:
+[...]
 > 
-> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> ---
->  drivers/soc/qcom/llcc-qcom.c | 72 ++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 72 insertions(+)
+> The possible wakeup devices are found by checking which devices are
+> powered by the regulator supplying the "vddshv_canuart" line. These are
+> considered possible wakeup sources. Only wakeup sources that are
+> actually enabled by the user will be considered as a an active wakeup
+> source. If none of the wakeup sources are enabled the system will do a
+> normal poweroff. If at least one wakeup source is enabled it will
+> instead send a TI_SCI_MSG_PREPARE_SLEEP message from the sys_off
+> handler. Sending this message will result in an immediate shutdown of
+> the system. No execution is expected after this point. The code will
+> wait for 5s and do an emergency_restart afterwards if Partial-IO wasn't
+> entered at that point.
 > 
-> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-> index a470285f54a8..d867b1596725 100644
-> --- a/drivers/soc/qcom/llcc-qcom.c
-> +++ b/drivers/soc/qcom/llcc-qcom.c
-> @@ -2225,6 +2225,56 @@ static const struct llcc_slice_config sm8650_data[] = {
->  	},
->  };
->  
-> +static const struct llcc_slice_config qcs8300_data[] = {
-
-This part looks good and in line with the data I have
-
 [...]
 
->  
-> +	/* LB_CNT information is wrong on QCS8300, override the value */
-> +	if (of_device_is_compatible(dev->of_node, "qcom,qcs8300-llcc")) {
-> +		num_banks = 4;
-> +		drv_data->num_banks = 4;
+> +static bool tisci_canuart_wakeup_enabled(struct ti_sci_info *info)
+> +{
+> +	static const char canuart_name[] = "vddshv_canuart";
+> +	struct device_node *wakeup_node = NULL;
+> +
+> +	for (wakeup_node = of_find_node_with_property(NULL, "vio-supply");
+> +	     wakeup_node;
+> +	     wakeup_node = of_find_node_with_property(wakeup_node, "vio-supply")) {
+> +		struct device_node *supply_node;
+> +		const char *supply_name;
+> +		struct platform_device *pdev;
+> +		int ret;
+> +
+> +		supply_node = of_parse_phandle(wakeup_node, "vio-supply", 0);
+> +		if (!supply_node)
+> +			continue;
+> +
+> +		ret = of_property_read_string(supply_node, "regulator-name", &supply_name);
+> +		of_node_put(supply_node);
+> +		if (ret) {
+> +			dev_warn(info->dev, "Failed to parse vio-supply phandle at %pOF %d\n",
+> +				 wakeup_node, ret);
+> +			continue;
+> +		}
+> +
+> +		if (strncmp(canuart_name, supply_name, strlen(canuart_name)))
+> +			continue;
+> +
+> +		pdev = of_find_device_by_node(wakeup_node);
+> +		if (!pdev)
+> +			continue;
+> +
+> +		if (device_may_wakeup(&pdev->dev)) {
+> +			dev_dbg(info->dev, "%pOF identified as wakeup source for Partial-IO\n",
+> +				wakeup_node);
+> +			put_device(&pdev->dev);
+> +			of_node_put(wakeup_node);
+> +			return true;
+> +		}
+> +		put_device(&pdev->dev);
 > +	}
+> +
+> +	return false;
+> +}
+> +
 
-This, please rebase on <20241025-sar2130p-llcc-v2-0-7455dc40e952@linaro.org>
-and reuse the thing added there
+What is the binding that supports this? I just do not think that
+scanning the entire tree for vio-supply implies you will get thr right
+property here.
 
-Konrad
+Just giving an example to illustrate this point:
+Documentation/devicetree/bindings/net/wireless/ti,wl1251.txt says it
+needs vio-supply -> so i have a node with the wireless supply as
+vio-supply -> Since we are scanning from NULL for vio-supply, we hit
+that, that is a bad choice for enabling io-retention.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
