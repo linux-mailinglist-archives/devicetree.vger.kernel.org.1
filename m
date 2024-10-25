@@ -1,236 +1,161 @@
-Return-Path: <devicetree+bounces-115556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399BC9AFFE5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:19:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C5649B0023
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:29:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC150281750
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:19:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCABA283C84
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05CA1DD9D6;
-	Fri, 25 Oct 2024 10:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1EC1E3765;
+	Fri, 25 Oct 2024 10:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JCrlD5qS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xZ+TIgAT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF1E1D89E5
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:19:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C2A1EF958
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729851587; cv=none; b=Sa2CQb4i0zmmESkgfQJywMlgdEx9YNqoXejTlnncnQo2VO7M+Xlazk6+Xchv6NMVFyYJFUHAprCeH6pnfIQCED6Fhg8tTZHgxhwvz5KsB8c6NftwQqe23/OYOoG2JJNFGgLKQTqdpZ5Uqe1OrMXwuvkXah/OSywpdTGYWX9BjiI=
+	t=1729852175; cv=none; b=rRpXyQxHzMsNkqnF9qK/J+EHJBgv1agLjcNjiH8149tvNGkFsJPcOPn4EcaXQb/DmKEIP73wLLqij3m3wGag8OK/iktXYg9bpXVSrTl6sHmRrR6Hq0B3NX+kbIs+Fp1tsXsAeArgHpoWZZoUBsNL2DDa07Z8f78aMOC95yKXvFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729851587; c=relaxed/simple;
-	bh=h8nUr3ec1U3O/GOCFQCKtGsaSKKfc+vHX1qykT7Eng0=;
+	s=arc-20240116; t=1729852175; c=relaxed/simple;
+	bh=JrhgYyCLZPRkzVtp6DPiijk9umn+b9KZQOEJa44TuPw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=geGG5YVANQ5PLNjFI3QPDZvB+/cdXkZTwcw6+343PUTLNRe8PTIhxxTVA+/yt8M8I+WcivNO3cx6PO3lnjjV2ZFB4H9/nQEIi+rcGE3YDlQEiShNAcD29iwLsObUm+k3AC19eVa8flh2VGg2pxB3+A5+gWji93wlxEVlqW1NoGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JCrlD5qS; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37d4fd00574so1161205f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 03:19:45 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CqwHljYUrGfYhg+mfE517Rwnnd51kZY1bZKG4+au+qOkVf942nP2lrgN6/9BIOjIUt+aiMl5QBNnJgbQ3Ue5ZLm5j2TcvbXgosgeNl1nV4LeHqkPVciZVBCNyY2ndCaN0iCLqnAuG2ly4aWmvDDZUtgX15Lz7lJ+rC7FbUcrxYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xZ+TIgAT; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-539eb97f26aso1969246e87.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 03:29:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729851584; x=1730456384; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1729852171; x=1730456971; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rBpUL2K11YBUFELLMPn7J24EDYIInyskb6BQJNfarC8=;
-        b=JCrlD5qSIIIOUKQ7nGMLHug1ChJyybiRsT2R7dhAFKnKcQOZ3dp6A9kwgeG0grcymw
-         g2goTw7kPIYiSSJJkQJ2tt5lac+27B/ha3HF2usiBEOPFV+WJJ3cCTPtDjHmbWcHtvhk
-         Cxxq45+HmVJLrnT1GGhBhIrz4Vf52rOpMAb4xAj1OUhgloe210nCqE/Thso74GO1Pui6
-         88bkNaCIrGEjwfSgLmZrW2ciw+k2V2LzYEqmxG9Rbcce+IrFNbVLmUK6eDWdy3nJstLP
-         /yBADciZ+Kxd25y3e2tnVEJt0Pt2pGbAa6cfRkRjyRjTWbH2Uw9o8j/fIZgpGss/V2Ah
-         6K6Q==
+        bh=34AFLX+8EUxNZJyoQVRqIR0gBUDLnEgGQ40+m4GQ6vk=;
+        b=xZ+TIgATcpuW+Q511gtpS0Vi97laUIoQOBFWQeAcMFaW9MWmD4l5PA5NMgZX4xSRB7
+         q1teHHasmzVjm8u8BnyVnrqPgdZ5yJylIUI+L55sAHLw82riItdDXNSjcVkck0Qo7ty2
+         A2GZr6A3vvzjg69ZzJO36U+HiIfmDrKsOQpSrX5o9MhKq2YY6l8q0uN1/ixybryVnF89
+         MYzoRWs18JCVdceu9h50zYa4vdc3dJ4/paI1T2ZLPllOc4Y4TF/XaISS8992QQ0zEPJz
+         89k2WL1UodykKMel3d7/LfENjE57Unzdn9LMjR5Urtf8fsbCYsVRoGmLEMezo/c1dvV2
+         5hQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729851584; x=1730456384;
+        d=1e100.net; s=20230601; t=1729852171; x=1730456971;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rBpUL2K11YBUFELLMPn7J24EDYIInyskb6BQJNfarC8=;
-        b=vZVeF5zjbKOYPC+q5Vv+tRL02ajMGr6LwGt/6bLlt7pqJks2LHK4K1bP0LRJDT6hdE
-         J5WyEUpj0uslbGXxrJcRsZpt98GZGn9ZYUds/bYBmA5IR9C2CGWVfz2VflZkStZn1jsa
-         DFrWwq/malxksbLnMjngfxMz/ScwtXhLL6rVPy74w61YWrmkYqu8SH1sCFhMLK+r6vqb
-         XZI7fN5NvTiQqWvyKjcNHifDkfg1aPm7OeGzX+90AzZ+XSaZ155PiHnr31JfGg77HKqM
-         oJ/sOXg6hcj/2wusYeFujQBHkfPJv2glC2IHWhl96f+128on+DpJygJ2kyzi+8SguV60
-         ZNLg==
-X-Forwarded-Encrypted: i=1; AJvYcCVGAZV7ngZvGMArYrQtC60eQkj5yEmouv7bvJmYZlPJGHobacUpzORqgO8Tj/JquJ8t6rvm1+j+A45L@vger.kernel.org
-X-Gm-Message-State: AOJu0YywJqkJvXpGNrZ5khJQq/PC+8334P/Y1agATMpylAR4iUOK5LY3
-	QyBiXVLaxQmTq+Nc81UhMRSgG8U6Uyn/cLzrBjmyC05lwqYqxU+a9FXdPC8eVUA=
-X-Google-Smtp-Source: AGHT+IEpRucuYPggIRzYn2XOQ7y/jTfvJj1wJmmqoHqungWwIwNJArQ6uCMDVCocpBpGNsacy/BKpg==
-X-Received: by 2002:adf:e602:0:b0:37d:43a8:dee0 with SMTP id ffacd0b85a97d-3803ac7d59bmr3967804f8f.17.1729851582645;
-        Fri, 25 Oct 2024 03:19:42 -0700 (PDT)
-Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b46bffsm1132208f8f.46.2024.10.25.03.19.41
+        bh=34AFLX+8EUxNZJyoQVRqIR0gBUDLnEgGQ40+m4GQ6vk=;
+        b=IJx0g4eVMuCXkn/HednEDKY71t8NmF3d+zpg9NQe5PGCg26VDAnYLyoSwDrP/vz40L
+         x21eaLnk/mTxBpAtkBY7ckqEkhzPTXuX9uilt/ffDV5ljnMysVVwGvFFnaXPXRG6AyCr
+         GseDm6qyTgUOmO44tWoeTsa8bCIB83066Dfzj6v32JDOYhZTIouWWkw9OY38jmoSl8Iu
+         xnwBnPSIy+yqdDWHICVfzybUX2vuqCQXxTbUwdUXVc+G/gWCEVf9z+z1/JAgKo2IYsgy
+         nB47e6RURsi/HB4kwQIwyMcis8a7jFFK9A1UUJc18m6Y5AJEfTe7KpnVrJG/oguJJjiv
+         NBXA==
+X-Forwarded-Encrypted: i=1; AJvYcCUgTjXVUI9QSKhskWslh7cN7NylRg+FyAifLGx9o5reEiRsoOdMdy+2GfJp1JOD14uBCTs3bW0S80mr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKkw2PC+gNKpcNhu2ylexY9q+P0MK2Jgq5+/h8KXwHsWheaiY7
+	zMTNhyoigcCiqIxnkKwB3job8cK3utnAeBS+uVc0Ts5Nq4GGKMZr3ZNHQ2EKMJuilyuKRGtNxru
+	r
+X-Google-Smtp-Source: AGHT+IHiOOHVRpO8y8qGLFlmzCh/E8Yp3SeJuucuj4wXFVOr7ySKWOU7EQg0Jo4Lql2r7Oi1J5Wv8g==
+X-Received: by 2002:a05:6512:e89:b0:539:da76:4832 with SMTP id 2adb3069b0e04-53b1a36c4b4mr5705398e87.37.1729852171435;
+        Fri, 25 Oct 2024 03:29:31 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e1f4315sm127924e87.300.2024.10.25.03.29.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 03:19:42 -0700 (PDT)
-Date: Fri, 25 Oct 2024 12:19:40 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, 
-	"jdelvare@suse.com" <jdelvare@suse.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"joel@jms.id.au" <joel@jms.id.au>, "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>, 
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>, 
-	BMC-SW <BMC-SW@aspeedtech.com>
-Subject: Re: [PATCH v1 0/2] Enable WDT reload feature
-Message-ID: <ugont5utr7rwjfonm34fmafimree434orgqas4lknmbo6aep2s@ugkkuizosqhj>
-References: <20241024071548.3370363-1-billy_tsai@aspeedtech.com>
- <nm4ckxv6swajr6hnqlkq5uoo6ncjzlg6yfxroftat6dubiefyi@xbhi4dvqacxm>
- <ea1be8af-0948-46b1-a1f4-fe572861cde4@roeck-us.net>
- <OSQPR06MB72529E67E67D0D07E59AF1C08B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
- <6hkiqbgqkpdlr5f27drs7vcee7pb2uahek4zz5pd5ndativk53@42otb625deil>
- <OSQPR06MB72521C20B39B1469B5C6DCBC8B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+        Fri, 25 Oct 2024 03:29:30 -0700 (PDT)
+Date: Fri, 25 Oct 2024 13:29:28 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] usb: typec: mux: Add support for the TUSB1046
+ crosspoint switch
+Message-ID: <5cpa5e4mqq55gdkom3ug6ieocmbi2qaguwiaype6jijgzpuoij@ttukpn6mfsab>
+References: <20241024-tusb1046-v2-0-d031b1a43e6d@bootlin.com>
+ <20241024-tusb1046-v2-2-d031b1a43e6d@bootlin.com>
+ <bgqmq4kehejgud2eymcwusbu6ks4jnaeasr6ad735czxxazyht@ppzrbmce5mog>
+ <1945710.vURJNgTSzn@fw-rgant>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wivfejt2eayn7ufp"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <OSQPR06MB72521C20B39B1469B5C6DCBC8B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+In-Reply-To: <1945710.vURJNgTSzn@fw-rgant>
+
+On Fri, Oct 25, 2024 at 09:09:11AM +0200, Romain Gantois wrote:
+> Hello Dmitry,
+> 
+> On vendredi 25 octobre 2024 08:39:54 UTC+2 Dmitry Baryshkov wrote:
+> > On Thu, Oct 24, 2024 at 10:54:17AM +0200, Romain Gantois wrote:
+> ...
+> > > +
+> > > +static int tusb1046_mux_set(struct typec_mux_dev *mux,
+> > > +			    struct typec_mux_state *state)
+> > > +{
+> > > +	struct tusb1046_priv *priv = typec_mux_get_drvdata(mux);
+> > > +	struct i2c_client *client = priv->client;
+> > > +	struct device *dev = &client->dev;
+> > > +	int mode, val, ret = 0;
+> > > +
+> > > +	if (state->mode >= TYPEC_STATE_MODAL &&
+> > > +	    state->alt->svid != USB_TYPEC_DP_SID)
+> > > +		return -EINVAL;
+> > > +
+> > > +	dev_dbg(dev, "mux mode requested: %lu\n", state->mode);
+> > > +
+> > > +	mutex_lock(&priv->general_reg_lock);
+> > > +
+> > > +	val = i2c_smbus_read_byte_data(client, TUSB1046_REG_GENERAL);
+> > > +	if (val < 0) {
+> > > +		dev_err(dev, "failed to read ctlsel status, err %d\n", val);
+> > > +		ret = val;
+> > > +		goto out_unlock;
+> > > +	}
+> > > +
+> > > +	switch (state->mode) {
+> > > +	case TYPEC_STATE_USB:
+> > > +		mode = TUSB1046_CTLSEL_USB3;
+> > > +		break;
+> > 
+> > > +	case TYPEC_DP_STATE_C:
+> > These are only valid if you have checked that altmode SVID is a
+> > DisplayPort SVID.
+> 
+> I did check it near the beginning of the function didn't I?
+> 
+> > > +	if (state->mode >= TYPEC_STATE_MODAL &&
+> > > +	    state->alt->svid != USB_TYPEC_DP_SID)
+> > > +		return -EINVAL;
+> 
+> Or is there something I'm missing?
+
+Indeed, excuse me. I missed it.
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
---wivfejt2eayn7ufp
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 0/2] Enable WDT reload feature
-MIME-Version: 1.0
+> 
+> Thanks for the review,
+> 
+> -- 
+> Romain Gantois, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+> 
+> 
+> 
 
-Hello Billy,
-
-On Fri, Oct 25, 2024 at 09:37:53AM +0000, Billy Tsai wrote:
-> > > > On 10/24/24 08:40, Uwe Kleine-K=C3=B6nig wrote:
-> > > > > On Thu, Oct 24, 2024 at 03:15:46PM +0800, Billy Tsai wrote:
-> > > > >> Aspeed PWM controller has the WDT reload feature, which changes =
-the duty
-> > > > >> cycle to a preprogrammed value after a WDT/EXTRST#.
-> > > > >>
-> > > > >> Billy Tsai (2):
-> > > > >>    hwmon: (aspeed-g6-pwm-tacho): Extend the #pwm-cells to 4
-> > > > >>    hwmon: (aspeed-g6-pwm-tacho): Support the WDT reload
-> > > > >
-> > > > > Huh, I'm not convinced that extending #pwm-cells for that feature=
- is a
-> > > > > good idea. Unless I'm missing something none of the other support=
-ed PWM
-> > > > > chips can do that, so I hesitate to change a standard for it. I s=
-uggest
-> > > > > to make this a separate property instead.
-> > >
-> > > Using a separate property to enable this feature is a straightforward
-> > > method, but I don=E2=80=99t understand why extending #pwm-cells isn=
-=E2=80=99t a good
-> > > idea in my situation. The feature =E2=80=98WDT reload=E2=80=99 can be=
- set for
-> > > individual PWM channels, and the PWM subsystem has the of_xlate
-> > > callback hook, which allows each driver to define its arguments for
-> > > the PWM consumer. I=E2=80=99m unsure if I misunderstood this callback=
- usage,
-> > > as I couldn=E2=80=99t find examples. If my understanding is correct, =
-this
-> > > method is better for adding our specific feature, rather than using
-> > > child nodes or separate properties to indicate which PWM channel
-> > > should enable this feature with the corresponding duty cycle values. I
-> > > think using separate properties to achieve this feature would be quite
-> > > cumbersome.
-> > > As I know the arguments for this usage are as follows:
-> > > First: PWM channel index
-> > > Second: PWM period in ns
-> > > Third: PWM polarity
-> > > Therefore, I extended our feature to a fourth argument to avoid any c=
-onfusion regarding usage and added the description in our yaml file.
-> > >
-> > > If my thinking is incorrect or doesn=E2=80=99t make sense, please let=
- me know.
->=20
-> > It might make sense if your bubble only contains that single PWM
-> > hardware. However if you extend the pwm cells semantic for your PWM to
-> > mean "period if the PWM watchdog triggers", i can hardly refuse the next
-> > developer who wants to extend for "period of the secondary output pin of
-> > the PWM" or a step counter or some property that defines how the duty
-> > cycle is modulated over time. And should the next one also use the 4th
-> > u32 for his purpose, or should we consider it reserved now for your
-> > purpose such that the duty_cycle modulation goes into the 7th cell?
->=20
-> In my view, the order of arguments=E2=80=94such as PWM number, PWM period=
- in ns, and PWM polarity=E2=80=94is just
-> a convention for PWM consumers to follow. Even if another driver doesn=E2=
-=80=99t adhere strictly to this
-> rule, it shouldn=E2=80=99t be considered an error if the YAML file docume=
-nts the usage of each argument.
-
-And it's a good idea to follow known conventions. There must be a good
-reason to deviate because each deviation adds burden to the developers
-making use of that device. And to patch authors, patch reviewers and
-maintainers.
-
-So I'd not say, extending pwm cells is an error. But it's an action
-where the advantages don't outweight the disadvantages.
-
-> For example, some PWM controllers set #pwm-cells to 1, where the first ar=
-gument isn=E2=80=99t necessarily
-> the PWM number. In google,cros-ec-pwm.yaml, it=E2=80=99s treated as the P=
-WM index, while in marvell,pxa-pwm.yaml,
-> it represents the period in ns.
-
-Agreed. That is historic ballast that cannot be changed without breaking
-dt compatibility. New drivers are supposed to use #pwm-cells =3D <3> with
-the known semantics.
-
-And if I would design the pwm references today, I'd just mandate
-#pwm-cells =3D <1>; and don't specify a default period and flags in the
-reference which I think don't really belong there.
-
-> If users want to work with these PWM controllers, they should confirm the=
- purpose of each argument from the
-> YAML file, rather than assuming the PWM driver follows a conventional arg=
-ument order.
-
-Yes they should. However doing surprising stuff cannot be excused by
-documenting it and then pointing to that documentation.
-
-> If the YAML file doesn=E2=80=99t specify details, it can be treated as
-> described in pwm.yaml, which is fine. However, if there are any
-> differences, I think recording them in their own YAML file is
-> sufficient (Like google,cros-ec-pwm.yaml and  marvell,pxa-pwm.yaml).
->=20
-> > Today the bindings are (well nearly) used in the same way for all
-> > hardwares and I want to keep it that way. If your PWM has a special
-> > feature, give it a speaking name that the occasional dts reader has a
-> > chance to understand without reading HW docs or dt bindings.
->=20
-> Using another DTS property to achieve this isn=E2=80=99t as elegant as ut=
-ilizing PWM arguments, which will only
-> be applied when the PWM consumer uses it. This is another reason I want t=
-o extend the PWM cells semantic.
-
-It seems elegance is subjective as I don't agree.
-
-Best regards
-Uwe
-
---wivfejt2eayn7ufp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcbcLoACgkQj4D7WH0S
-/k5PIgf8DvAJswdKoKhqa0pXx9qPc8T33mvVsjlO5tR9bQ76xKfxuTHrOUW8DxnG
-i4TjzmCH4tvC0QuRVhgodbiB3+t0PEXoRPd1guBYWAgHEVjKH0V04BPKjreFmdbI
-DAr2ERc1OmVC53O9vFqJ8CILaWNpz7NwF/GfiCVKPtv569+4TcakSIuARoNWxMCA
-dRhG0lRjiYQ5NQC3fOS+DuhFcTdM5gQxP/L71SKA2CktrBHXgS6z8b8bU4muuNT1
-13RpkMBrXFmIuU+BRIk09gxG9LdlyE9fUaPE3TiPuo4Lh4E4abz4tmTIBoAPr13Q
-+G7QE8xQb8p4ZFg2IAp4kSP0E1KTaQ==
-=z2Vk
------END PGP SIGNATURE-----
-
---wivfejt2eayn7ufp--
+-- 
+With best wishes
+Dmitry
 
