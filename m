@@ -1,123 +1,189 @@
-Return-Path: <devicetree+bounces-115706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0009B0705
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:06:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED459B070F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:07:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA302B218F0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:06:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CB731C22BE7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB66213D8B1;
-	Fri, 25 Oct 2024 15:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52B0189F3F;
+	Fri, 25 Oct 2024 15:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HDMSEun7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082224C81
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 15:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38CE0187874
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 15:03:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729868494; cv=none; b=J6GFjmUMV1OMBJvM9maZ3S8/mFr/O6Ts9fYZ+TgGlLLkpfcKykuax80ajRiSHJNLxfRUSMz7LzJ4FVqtdk58+mBvVgXh6wxo6EXjka7TcJeIR9IvUZ94uWM6noUQBuZHZtl4VHJ2O3C9B/dvS3IgFj7fItiij148UuEWbNQ62Kw=
+	t=1729868637; cv=none; b=aajY9BfJbCpbK+czex7YzMXcXkv+Qe/i+sNArfghjPC2tsIWJ3srO3vih2K+y0F1Pz8ATMn0T0270TGsxUqbiTG8ILar4Ax05VTocl+++emCZpQrVHzYxoP1JpzhVA6UnRaxPCHa+d2nYtqQTDMFP3seHOW3qWlsnnpQWGush0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729868494; c=relaxed/simple;
-	bh=MK8FmZ6v+rcXgKNtPVRZS0A6wZdsPejcW85w6PXCsUg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Oo/ZEjuQ0MtEAvRzg1EEg6GVcWXBAhVrrUVChLxHzSGciaKh9vsm9+7iRJC5Iu1A6d/XTWGgsHCUfGBp0LQ9JAdYg2cGd+DdSIhSbFNxITUFW0qtcHvlnVUCnJ/sV5sNl0aLitJla/r730uanl7BOKmdeUvc7TgYog+6HRIfJr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1t4LoS-00021o-0L; Fri, 25 Oct 2024 17:01:16 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1t4LoQ-000Nwq-3C;
-	Fri, 25 Oct 2024 17:01:15 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1t4LoQ-00D1P8-2s;
-	Fri, 25 Oct 2024 17:01:14 +0200
-Date: Fri, 25 Oct 2024 17:01:14 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Network Development <netdev@vger.kernel.org>
-Subject: Re: [PATCH 2/2] hwmon: ltc4296-1: add driver support
-Message-ID: <Zxuyuj6sLMwRLTFn@pengutronix.de>
-References: <20241025115624.21835-1-antoniu.miclaus@analog.com>
- <20241025115624.21835-3-antoniu.miclaus@analog.com>
- <6955c8b6-58df-4b1a-bdd6-759de3d3c46b@roeck-us.net>
+	s=arc-20240116; t=1729868637; c=relaxed/simple;
+	bh=2I/TB9e/qvZscYuIM5ZhAGgZHV87H1IH0MC1lBIDRwk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JOdkegZyyC+Ehd/z6YRO58xiKubDNMUFQdMrGkngPxsWGHSmhfoswvxkbXJzPTnjBkQYCLZDPmUdXLB7SyWVdXxWVgI0Chc4J5FOuBMeWlTdKUM0EelAV7lXmovd3cbQKAdq6EEfCntj2slYdpmtvoAEGwPbv8I5YsuZ9hDLUOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HDMSEun7; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539ebb5a20aso2266533e87.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:03:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729868633; x=1730473433; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yJFbJaVmfKjDCzDIXM5j0dVs3u7mp+kaCik0adMD3es=;
+        b=HDMSEun77Bs3q5kl+3PAuXBV55stslqsRrVp5Ex7rWIa6+qsd2tcPbXtVeUb/dsvG+
+         NxZhFfj6MoSoyT6uqxTTRrgZsNIYjPZlevZDgDsq25HxMHRAT9TUcZuSgOZBzHB98J39
+         HeyFwRzUcWGgN8FudeQcfdXbHBJq1S15apHy1Pb+OXjJu5qBgBP26lfax8s2NnCdgENN
+         m6L9lfRP+kzOreG2R3lArqgkObwaYVAZ7UseW2SYlNCASprZPJtB11rh8VYOhMX0HEjP
+         GhhBY+AYcATIKR7ukBn0isNQCGczAyzSpgh3f1FNJRH/U1gqCCbd4WuMNEFnBXYCJWZv
+         wnrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729868633; x=1730473433;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yJFbJaVmfKjDCzDIXM5j0dVs3u7mp+kaCik0adMD3es=;
+        b=Rwe+9vrcSamvqDjnyASn2laIB65z8lF7O2CwZGJ8uyudgDYvHttZsgKROVOdWd2W2O
+         b6F3ozH8QeWxmnEFXqSquM1IF3KRtpEsLW9AQjPZlnR33TyhDeVZRW1RnjEuWr5GJ6f1
+         IsXuNepti+VyWfYIFLcXCSN+nFblSzXKIDbY9gaBt1wFno6yKErC1VaP/vfOxYDeANMa
+         n5hst4S6sgMlG1yLbK261FqowQqK3TPu3JZFbLoDDbkdPWsKIHcUVpqJaJqQg/Af8ZBf
+         yxwlzj4sB1MHe0pr/vgLTfDCWZdycyEcbsGGB6noa49q8KmmpDnTbtH5B5zt7SkfJFbn
+         gIxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUUfJXwLIBi9Xp+z64J1cxBNmQmwOVAdVRlVmJP2Hyvekmc/ECs/3nfQo/6H3idjHAJq+QkXWlCP6qA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWLyPJCgP6rgQbVZkVgjyp5aKvrZ2utz+3vmtBbe3XalKwGCfJ
+	+akdrycXLjziAXQ/ZbfJ23FpG8DwZhyLB8eGM/ZSolnY1A0+uRgU4G2CTj3dQmk=
+X-Google-Smtp-Source: AGHT+IEc1+LGIXXymPDrmIYeNix/JiUavCyvGz44DMoz7I4erNiOM5fsRMlgqHMSUe8uqhCXhnFs4w==
+X-Received: by 2002:a05:6512:3a82:b0:539:8b02:8f1d with SMTP id 2adb3069b0e04-53b1a3392bcmr5698242e87.30.1729868632666;
+        Fri, 25 Oct 2024 08:03:52 -0700 (PDT)
+Received: from [127.0.1.1] (2001-14ba-a0c3-3a00-70b-e6fc-b322-6a1b.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:70b:e6fc:b322:6a1b])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e10a915sm209542e87.12.2024.10.25.08.03.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 08:03:52 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 00/11] clk: qcom: add support for clock controllers on
+ the SAR2130P platform
+Date: Fri, 25 Oct 2024 18:03:34 +0300
+Message-Id: <20241025-sar2130p-clocks-v3-0-48f1842fd156@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6955c8b6-58df-4b1a-bdd6-759de3d3c46b@roeck-us.net>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEazG2cC/3XNQQ6CMBCF4auQrq3pTCGgK+9hXBQ6hUZCydQ0G
+ sLdLaw0xuX/kvlmEZHYUxTnYhFMyUcfphz6UIhuMFNP0tvcAhWWoKCW0TCCVrPsxtDdo6xca+2
+ pdaokEvlqZnL+uYvXW+7Bx0fg1/4gwbb+txJIJV1dUV0qp0xjL6OfDIdj4F5sWMIPAOEXwAzoR
+ lNFLaA2+AWs6/oGaOzjgfAAAAA=
+X-Change-ID: 20241017-sar2130p-clocks-5fbdd9bf04ee
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Kalpak Kawadkar <quic_kkawadka@quicinc.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3257;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=2I/TB9e/qvZscYuIM5ZhAGgZHV87H1IH0MC1lBIDRwk=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnG7NROmc0Tq8cKYJkTawSQHz7Cbdd8N9iUrLXh
+ uGv8U4rhFaJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZxuzUQAKCRAU23LtvoBl
+ uL9AEAC7fv5yrRXvi55cS54GRqGAsE3aTSY3cikJ5AqZHku7O6pkUDx2CizI70JANmhdi4QAUJS
+ dox5p7vsy3q0Je2iS87Rd5xPcdT2sjC+NZ2yD2I3X22/QLNUyqXId/xHPZormvjgRpUfQKBao2z
+ 7HFhc8y9/Xy3YCWHwPWWKV0S8xONPHHxapl6FabSeSWy1wymL4QVuvZxbovFwVHnZ3tB2L6toka
+ gdfSi6aEmAZgPh/CyhxlGRFFMPQmHAgPDV9AjQXjPZvpOVkpKwNiTFwtl3Fzb0MOwxvSKaUynAj
+ MRNUXRsfUi0xFcot/3MmbPJG/MJTu5jH/BddW9UlIbsNmUehANJNyrgiM3zzKNDFCnNXrPsXRX4
+ S6SeA7mbga/rCkV6gqqqgaiQ6sf3+jzVjeSfQF5Wxl11sDaz+Pv4hlmCLLFZpd0fU4iKlVQGduW
+ r+dKkrsoQFwjnPpSBOUbhuenAGiromI5X5I+hmmy1Du6cHe8C2zD9IvaN1qfOBDfrbUXKzXp5s7
+ eP0xzLl5PTarxQcIn4zzXYmQMmhx/poQragNU3n1t2czMEFLuzmvzvPTGIpPt/LG5h4pUadkusk
+ p6qTFegnrQRXNdpL8nZ45IoaPwHzbmev2GCg+2WajQ0XV2YulptW850NEnks50KDou0oaWwAu5z
+ +UxXvzO6iSG3JNA==
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Hi Guenter,
+Add support for the RPMh, TCSR, Global, Display and GPU clock
+controllers as present on the Qualcomm SAR2130P platform.
 
-On Fri, Oct 25, 2024 at 07:22:08AM -0700, Guenter Roeck wrote:
-> Hi,
-> 
-> On 10/25/24 04:56, Antoniu Miclaus wrote:
-> > Add support for LTC4296-1 is an IEEE 802.3cg-compliant,
-> > five port, single-pair power over Ethernet (SPoE), power
-> > sourcing equipment (PSE) controller.
-> > 
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > ---
-> 
-> ...
-> 
-> > +	hwmon_dev = devm_hwmon_device_register_with_groups(&spi->dev,
-> > +							   spi->modalias,
-> > +							   st, ltc4296_1_groups);
-> 
-> New drivers must use the the with_info() hardware monitoring API.
-> 
-> The API use is inappropriate: _enable attributes are supposed to enable
-> monitoring, not a power source. The hardware monitoring subsystem is
-> responsible for hardware _monitoring_, not control. It can be tied to
-> the regulator subsystem, but even that seems to be be inappropriate here.
-> I think the driver should probably reside in drivers/net/pse-pd/.
-> That doesn't mean it can not support hardware monitoring, but that
-> isn't really the chip's primary functionality.
-> 
-> Yes, I see that we already have ti,tps23861 in the hardware monitoring
-> subsystem, but that may be just as wrong.
-> 
-> I am copying the PSE subsystem maintainers and mailing list for advice.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Changes in v3:
+- Added rfclka1 to RPMh clocks for SAR2140P (Taniya)
+- Added HLOS1_VOTE_MM_SNOC_MMU_TBU_HF0_GDSC,
+	HLOS1_VOTE_MM_SNOC_MMU_TBU_SF0_GDSC,
+	HLOS1_VOTE_TURING_MMU_TBU0_GDSC,
+	HLOS1_VOTE_TURING_MMU_TBU1_GDSC
+ (Taniya)
+- Removed extra debug print in gpucc probe (Konrad)
+- Link to v2: https://lore.kernel.org/r/20241021-sar2130p-clocks-v2-0-383e5eb123a2@linaro.org
 
-Thank you! Yes, the PSE subsystem is the proper location for this chip.
+Changes in v2:
+- Dropped gcc_camera_hf_axi_clk, gcc_camera_sf_axi_clk,
+  gcc_qmip_camera_nrt_ahb_clk, gcc_qmip_camera_rt_ahb_clk,
+  gcc_iris_ss_hf_axi1_sreg, gcc_iris_ss_spd_axi1_sreg,
+  gcc_video_axi0_sreg and gcc_video_axi1_sreg clocks until corresponding
+  subsytems bringup (Taniya)
+- Program GDSC_SLEEP_ENA_VOTE directly from the probe function (Taniya)
+- Dropped sreg, BRANCH_HALT_POLL and collapse_sleep_mask patches
+  (Taniya)
+- Dropped gcc_parent_data_4, gcc_parent_map_4, gcc_parent_data_5,
+  gcc_parent_map_5 (LKP)
+- Link to v1: https://lore.kernel.org/r/20241017-sar2130p-clocks-v1-0-f75e740f0a8d@linaro.org
 
-Regards,
-Oleksij
+---
+Dmitry Baryshkov (9):
+      dt-bindings: clock: qcom,rpmhcc: Add SAR2130P compatible
+      dt-bindings: clock: qcom: document SAR2130P Global Clock Controller
+      dt-bindings: clock: qcom,sm8550-tcsr: Add SAR2130P compatible
+      dt-bindings: clock: qcom,sm8550-dispcc: Add SAR2130P compatible
+      clk: qcom: rcg2: add clk_rcg2_shared_floor_ops
+      clk: qcom: rpmh: add support for SAR2130P
+      clk: qcom: add support for GCC on SAR2130P
+      clk: qcom: tcsrcc-sm8550: add SAR2130P support
+      clk: qcom: dispcc-sm8550: enable support for SAR2130P
+
+Konrad Dybcio (2):
+      dt-bindings: clk: qcom,sm8450-gpucc: add SAR2130P compatibles
+      clk: qcom: add SAR2130P GPU Clock Controller support
+
+ .../devicetree/bindings/clock/qcom,rpmhcc.yaml     |    1 +
+ .../bindings/clock/qcom,sar2130p-gcc.yaml          |   65 +
+ .../bindings/clock/qcom,sm8450-gpucc.yaml          |    2 +
+ .../bindings/clock/qcom,sm8550-dispcc.yaml         |    1 +
+ .../bindings/clock/qcom,sm8550-tcsr.yaml           |    1 +
+ drivers/clk/qcom/Kconfig                           |   22 +-
+ drivers/clk/qcom/Makefile                          |    2 +
+ drivers/clk/qcom/clk-rcg.h                         |    1 +
+ drivers/clk/qcom/clk-rcg2.c                        |   48 +-
+ drivers/clk/qcom/clk-rpmh.c                        |   13 +
+ drivers/clk/qcom/dispcc-sm8550.c                   |   18 +-
+ drivers/clk/qcom/gcc-sar2130p.c                    | 2366 ++++++++++++++++++++
+ drivers/clk/qcom/gpucc-sar2130p.c                  |  503 +++++
+ drivers/clk/qcom/tcsrcc-sm8550.c                   |   18 +-
+ include/dt-bindings/clock/qcom,sar2130p-gcc.h      |  185 ++
+ include/dt-bindings/clock/qcom,sar2130p-gpucc.h    |   33 +
+ include/dt-bindings/reset/qcom,sar2130p-gpucc.h    |   14 +
+ 17 files changed, 3282 insertions(+), 11 deletions(-)
+---
+base-commit: f6202e7cb4762be30b01ca4e1666512171c16d2a
+change-id: 20241017-sar2130p-clocks-5fbdd9bf04ee
+
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
