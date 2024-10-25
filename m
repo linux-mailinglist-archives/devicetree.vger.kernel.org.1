@@ -1,275 +1,148 @@
-Return-Path: <devicetree+bounces-115495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA5E69AFC73
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:24:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1FD9AFC87
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08D081C20C04
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:24:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB7ECB24FBB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2C21D0DDE;
-	Fri, 25 Oct 2024 08:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245A61D1E75;
+	Fri, 25 Oct 2024 08:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="F8Svgnq2"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="MVrd6H/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011017.outbound.protection.outlook.com [52.101.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BFE1CF7C9;
-	Fri, 25 Oct 2024 08:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729844672; cv=fail; b=alQFxajkh7lDzEmKAYCXvSUySgMybRnxIYxLEE+AHY3xEqHjUHzXI/xnqnFLShP4lgoxgXaSjEgH8buJVcz65PRq4i50fYoEDwpwLF3MEaOmifJL/ZOtG/L/Fwgiv0g/v/tGT7Jrc+orXlGTsLOrmPWoHoZdU0XTqjk4thGVwd4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729844672; c=relaxed/simple;
-	bh=nrhjMRsthStQoLpZHFa7gTs3iHoF+gjoKxbfKZfmCSk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=kFfouclmEy452aPshO2QcWFXYbQyrZJmWJErmlUM6GlwKk1BxRFzWfe0tdASVGCe2yco+bUkV/jW6Dhk3Y5UL601CpMv+TrIVh3Qjmlz2nmT202Wbh3k+yOhu0Az8wkJOIEjpUVloKqeYdM3bhCM/Cdn/Pxe9gWuv8VsOuVHsn0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=F8Svgnq2; arc=fail smtp.client-ip=52.101.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n5HHtOPcC7Rhb/o29qT56kKKU5XSv6ajUXUr9kb5JrMyAGd2x+yIFpt9YFzjQ1aGT/6VzZslPy/V6JB27tlxWLuWEAdETdqOCk86B4mi4zhB6Ud+xl/Qs0noxEwIofVoqOSoZVK4SWsRgrzUP6X3vRq1KLzRggnN9Gm4s1PNj539HWJjNjokn2nz262KokazxnMT57NY69eKV7cOi8Kn1dHIO77j4SAeCmrtIb3AuNIeOLnhWZnbmU1O2JdZV94kdpkpJ4zYBZgoMmakPuPCTew+V5haNKoiSJ8dD7K2oPD1JaALSQtrPgoxrN3dd3mKXgFFx35nHsGpegLgcSho4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LcBeeXpFAl/d0FTrrF1GbY9c3oSEWrJNaipXM7WvgR0=;
- b=T7x1MJJLnhMsRlh8v7AFJeyS6/WbB8XZAzT9T2VhwAE8J8oXqBczmQCK9+BXY6qTWKZ7tZSHvH0lViKfNf5pkNeyQY8BUBFE7Ekx+OPo7rdQ0bMLsc5065HsmwOFn1BQXR9xc11FBFFIt63u3JG3oCY+N8aZOxNJsPZ3JexUlwUy/qMOTfYEG5JxN9/1VpcJYZxolJ57Oq4w4P0g4p9kBF4pIZkRJEdgKE0d16s76GuW2gzih13btcrc9jWL6PuHXB6HeKaFc5duK34d7gKhFjtj1xLzcyFoV6zRFyq3gx8D8d2kq+BS0W9qp30Nn1WNSlJRa3bGT1vKYXrxWEXrgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LcBeeXpFAl/d0FTrrF1GbY9c3oSEWrJNaipXM7WvgR0=;
- b=F8Svgnq24RqX5AWFD39QCQ7DhcLxSDeIheB/+fugpBbhYTmOnpBuKvjcA0jjH2qfXl5OZ22Lw/kU4cfYlKDzs1NsjVlPupYbQkI8OoCNz2RjFph3NA4FOjGfsZGYILPxHVZgsZgnkHq75pZEVFyROOnnmdMRGj703UmSqviyjSGuHviWL9xGQjwxmbEONhDEYz0PoZTcTOUmxGMGJo1LsDW1JQmgPH8DFyP5es2mqLk0omDyjJtMMnQyosaIw5C3QrKl2p9W9PVeJw80sBE8NWLPAhsZZcQRfoae452uoYHp1F/qVAH0epPTtQeTXkibtKAMUnaO1oaSYp3YVsGr5A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB7051.eurprd04.prod.outlook.com (2603:10a6:10:fd::20)
- by PAXPR04MB9140.eurprd04.prod.outlook.com (2603:10a6:102:22f::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Fri, 25 Oct
- 2024 08:24:26 +0000
-Received: from DB8PR04MB7051.eurprd04.prod.outlook.com
- ([fe80::8f9d:4273:ea83:167a]) by DB8PR04MB7051.eurprd04.prod.outlook.com
- ([fe80::8f9d:4273:ea83:167a%5]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
- 08:24:26 +0000
-Message-ID: <4e78781a-bce6-4582-b6aa-417f57c4725f@nxp.com>
-Date: Fri, 25 Oct 2024 16:24:48 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/15] drm/bridge: Add ITE IT6263 LVDS to HDMI
- converter
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Cc: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "rfoss@kernel.org" <rfoss@kernel.org>,
- "laurent.pinchart" <laurent.pinchart@ideasonboard.com>,
- "jonas@kwiboo.se" <jonas@kwiboo.se>,
- "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
- "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
- <simona@ffwll.ch>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "quic_jesszhan@quicinc.com" <quic_jesszhan@quicinc.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "will@kernel.org" <will@kernel.org>,
- "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
- "tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>,
- "quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "sam@ravnborg.org" <sam@ravnborg.org>, "marex@denx.de" <marex@denx.de>
-References: <20241021064446.263619-1-victor.liu@nxp.com>
- <20241021064446.263619-13-victor.liu@nxp.com>
- <TY3PR01MB113465BBC5FD4EAAE89D9EA57864E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <TY3PR01MB113465BBC5FD4EAAE89D9EA57864E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-X-ClientProxiedBy: SI2PR02CA0048.apcprd02.prod.outlook.com
- (2603:1096:4:196::23) To DB8PR04MB7051.eurprd04.prod.outlook.com
- (2603:10a6:10:fd::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84241D131D
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:28:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729844930; cv=none; b=taBNa8vX9IAIAhFrsnZh0XI4UMEVwxUXNd6n36LAEo9JhmfKR/gKJm698GDnjdRsRb8r+kBjP6yd7Q+QXT1Sbpwvg2Xtdm8s78neVujIZaAEdue2gbVVIZnU5tsDrYmvaGghkE7bktxQjpm3P9+v80/TaRG2DKeOtQuY9ixy1zE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729844930; c=relaxed/simple;
+	bh=jc+y/m1J5iDLVGvo7GE1rUcCJ9JarTubgikr5ubFVBU=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=By9XSl5QhvAczr6M7XY9+bS5AkB7prbuxjx2A3b+VqWUyfzUQ0NySSRhbvlsMBcvWWOdyhZk3xEuG7Po3tNviwxV40ISIqYZNZdXRnN7uFoCL/S1umCw51Sshp/jzx81QrWZ0rswZhBSSLbGr8wezeswdMX/cN4iXc8gm8/vZWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=MVrd6H/2; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a9a0cee600aso225169366b.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 01:28:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1729844926; x=1730449726; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GKQtKEQ691WB5aL1CY9xzFRryNO/YNcfGDP3okJsWkk=;
+        b=MVrd6H/2/vvwaAm9jZwHrv28+0/70CDDnOI3/SpFsy7l6BsTae8knAuq3Aohm0OOjQ
+         vng/RZGsX8VFvWWE1SDPfkxh72rbksDgB9WpibfFFk9/9M1UAFbPQqywBuq3LUe0UV4B
+         bx/Wp2aUFll0h0VDGkf3v5O0JXkviNBrwGhnqpvWzJQYlaHgPd3Q5ELF50WXZjDQNJND
+         ZdPXD5EiQ8EFeTCKoe+LmoD7eS6WoxZzbsVaUg4d3VdPQAdi5xLTNR0lr559JNzMd5Gi
+         RdO7UAnLa3Ewr8JmgT3AjNh5UBGLuCqajsHYfp5PYO96Bqen4wuaSOnfyL5ik/9ykxkb
+         TA1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729844926; x=1730449726;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GKQtKEQ691WB5aL1CY9xzFRryNO/YNcfGDP3okJsWkk=;
+        b=MxH//peOJIMx/O+kPLF8PzeyW6wQfS4aV3OQceaKusrAH+sBL3dLGx20zvxlq1BL0h
+         rhudZQKwW7r8moCTFOsbpBVP49pGA7b/FOD1lJiE2RNr1BIbqks1/zI5UrFZTxYcnJYW
+         sFIu+q7ei86W1ESvowmnMoUGkRfg0LgxGgWWdD40N7LIj2d8pREooVGts5fmTo+dgDcp
+         PTerIjZCyaFjeqHwvKg1VSKxlUM1A2CaZHUHEcwxLNsCyLi1j+NXys4XMFaU+HDG/O3u
+         f3SwfMJ5GtCg5DyhxXbDw6f843Oqj0hLY5y1jsYxg14dnO54O6SiEwuLfmR8nTlOktb6
+         p2vQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXZP9KSG5jpdSFTvMwiG7plwPnUroNXO9hz9qI9uG/GGWi69A/GsKS6UO+a830DQe2MrH2GLGe/Cc2w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4S75tcrHbamstWFwPXH9z7eyfqwhmOwpWinGFy7uoTbsfoard
+	xUloJyIpf9qr/ahEe+ELUDXyYs2LVtbHR8yJsitKHpBBhAfLoS/ipuzaO43nN9A=
+X-Google-Smtp-Source: AGHT+IEKAsvpP2dybXSJ7Ofjl3bCLXFPuuy1eHgZQTXd9CLcGnC5HYUafi69GsS8vo706m6wGKRfWw==
+X-Received: by 2002:a17:907:9406:b0:a99:e850:deb3 with SMTP id a640c23a62f3a-a9abf890eaamr841444666b.18.1729844925999;
+        Fri, 25 Oct 2024 01:28:45 -0700 (PDT)
+Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cbb62c803asm391336a12.56.2024.10.25.01.28.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 01:28:45 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Fri, 25 Oct 2024 10:29:07 +0200
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v2 11/14] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <ZxtW0z7-JaK3dWdQ@apocalypse>
+References: <cover.1728300189.git.andrea.porta@suse.com>
+ <c5b072393d2dc157d34f6dbeff6261d142d4de69.1728300190.git.andrea.porta@suse.com>
+ <CAPY8ntC0B0RdNmvGMaDcp-p9gZOcWBbeC6BjbcihrijRXjRVkA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB8PR04MB7051:EE_|PAXPR04MB9140:EE_
-X-MS-Office365-Filtering-Correlation-Id: 30020c35-450f-459d-dcc7-08dcf4ce703b
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?WXlqaEw0MUlWa1U0OHVaUlpjaW02eXNRQ05VdWxxN3BITE5GcXQ5N25qdWtF?=
- =?utf-8?B?ODl6YzFBQU5kMWNycktCdmRLUC9PQWtUU1VvM2pOVmJEclkwL0c5UHc3Z2F3?=
- =?utf-8?B?SFNVTEFYek10QWcrYnRDR1BhRGJmTTNTY1FiSllJRXZIc2RJVk8vai9UWjQ3?=
- =?utf-8?B?UmN1NlRxQ09DN0JUc2ZKSmFON3JQd1V2d0g2ZE45aS9vZGtVcHhodnpieHdy?=
- =?utf-8?B?azQrWTVKWVk0NEh1eXd5SVVJOG9GbDFvcVB6MFBPVUtXOWUyZDdiZ3F0UUVq?=
- =?utf-8?B?MTQ5NTRvZG9rMkQzSWovQTZzYUdTTGtJZGlwSUFUSUg3SUpOVjltSm1VTFZr?=
- =?utf-8?B?SVFnR1lNaFJWNjZWRHQremk3NENzdFEyRzRYaUhmWVlYYkVyNFlsRWNEVGNk?=
- =?utf-8?B?bjlTeS9nVTlIcDRna1dicEJlWGlkK3BUeDFyNWZXd1lqdHV4Y1RZY0ZCVDB2?=
- =?utf-8?B?U3FYVFRseC90RDJlaW9YdVp1L29RaGFzM1RqTHlwaSs5OUpYWGx1RjdVWURp?=
- =?utf-8?B?NkYyWTAxb2ZDc1FSRFlMNE0wMFdGWFF1dHZuSGNQbDc2aGFNS1ZTQnNPTWcx?=
- =?utf-8?B?YnNkNlZocVliKzNZYTVjMWNML3o2UGsyblZZYVduSElsNGpSOStOZmlaakdB?=
- =?utf-8?B?K3pLY1lRbkd3amh4dmQyZjEwSUpDKytrY3l4NHVEY01TUWNUOGlIcS8vTk01?=
- =?utf-8?B?R2xuVy92TXgyenhRcHR4UGdIaTI5SU1NU3JzbXg0SXE1dTA4b1dwL0RNVVVT?=
- =?utf-8?B?TW1JK055RW5HZU9TeVVJeS84bG4vYlhreS9xY0xRNjZVS2JZWXRkWHhjWXBZ?=
- =?utf-8?B?UkJQZnBjcWxycmlTN2QyektaK3cyZGhGclhYbldxaXdSem1jaHpvNjN6SVgr?=
- =?utf-8?B?STJtekVJMlA1L2lyUXBTM0NzaUxlQnpEcXhJMXAyRjNnQlRPcWNMTVhrb1E4?=
- =?utf-8?B?Y1ZaeW1pbXdFZUV1VzlBNkNsTjNoT3NnSFc3Wk10WG5pUmpFYVRRc1hvZjZF?=
- =?utf-8?B?d1kvTDlxT29ieWNScWJWVEw0by9YMm96WDlCbGtSd21aa2xuZFNEY05tRVNu?=
- =?utf-8?B?bXBxWlFYeHYyWGh6NktlNEp6K0ZzcjhTcWJwUVVzZ2lDUDVySU05QWJBZHBq?=
- =?utf-8?B?ZE9ZMS9UWVc5citXdTlyZzlkSE9uQngwVTlqT3VoeUpPUitXTzZ3TmtGemgx?=
- =?utf-8?B?TTBtZ1grQmdtY0N4ZHB6Tm5NNldWdHBhb1hZQjRQRVRoa2I4eHRlTkZnWEFy?=
- =?utf-8?B?cUtsRnJyMkNmUUZFZjdyZWxTMUZqVmFodTRDTk5oRmR6ZndVNUVxM2gwNVJF?=
- =?utf-8?B?aGt1Q3BHbTltR21HUmZOQzNuU3p4WW51Nk1lOHB3cTkxaVNERTh5UHBvZEdq?=
- =?utf-8?B?eE9XdWlFQ0dqMXZERnJRQm5oZG13dnhKR2VsOU82SGNaWEZmUzhaOVB1dTB2?=
- =?utf-8?B?UXQ5Skh1Q25HZVE2TW1XQnhUZTFaQW54b1NZd2FEeUdTSDJlRytMTFNsdkdt?=
- =?utf-8?B?ekh4S1hNSDNPY0h5RFBuUm1WNHRDdGh2ZFVOZjNHbWVsUEVydUdqOE9jTWpM?=
- =?utf-8?B?ZkxGbExHYUYzMXhQN1ZuSHB6RWRxYTlHbjJlOVpKSmN6SVZSMkVkL3VTMm9y?=
- =?utf-8?B?RUJDY1dGZUVFeTJ3cGdsdllnTW9TQmoxbDJUcWVPTkZNNUJORU9YS0xnQ1J1?=
- =?utf-8?B?MHFjMnQrenRKaUVSZnZXMm1BbkttbHo4eEtHd29UU1E3ZjVERWJadk5Mb2Fs?=
- =?utf-8?Q?iOure9T770azIK/H9TE4WQ9wskg8AkfEPMyDm8Y?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB7051.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?S0kzYzlpdVRDM3FXSnN5d0Q1SkorTHFGSFJsSERNbEkvMVFIZmFWY0ZDL1dv?=
- =?utf-8?B?ZUkxSjArcm1kNFZneTlOdlFGYVNjK0FOdmtET0J6anFvcHRGMjZ2dW5nYVgz?=
- =?utf-8?B?blVXSDZKRytiekVQeDZGaDhRNWlwazRqeWsxaDRCQjdjVGp5bnFrVG52bmNp?=
- =?utf-8?B?RTQ2Z3IycVh6VEdrWFhUcng5eXNRU2hQb08xREhYbSs2Z2c2RG5jOUtRN0da?=
- =?utf-8?B?TFZwc3Y3SFQzQ1BRd0xCMXYwNi9UemIvZ21TcVVIL2FuamJWNitmaThXNUFP?=
- =?utf-8?B?YkR1QnVhZmg3VTk5Z2htdG1UbzRSalZBd0tvYytyTmlUSnBWSy9QaEFKRUZU?=
- =?utf-8?B?d1h2NmlXT0JIU2hsRkdSOWpiaDNHU1M1dy9jRlphNlRHRFg2RElUMUYwMlgz?=
- =?utf-8?B?eHdvZ1duN2gzcnhwOEdYYlFpWm5TUmo1ZjRaeWlTV1VEOGlHcWZ3UkRMcXgv?=
- =?utf-8?B?bFJHalVxNmhKcFBrcGNyYm1Sc1VrMWVCMnFuZWNtOTRyUUU2emNSMkhLRU5j?=
- =?utf-8?B?QytUQm5xemtIM2ZIOGZBQWVGVU9nK0JQdWVMT29qMVRzYm1iZVU4b05aK0I3?=
- =?utf-8?B?MXpmME5TOUxiaWYzZXB1ZzQ5MEQ5cERsYkZ2UUxpNmIyMDkwcFNSaEdlbTlT?=
- =?utf-8?B?bXRaTWN3NmVvTUtrOHpDSmhGbm03K1BNK01aR0lGbmE1bnp1N2dTZE96dlZ4?=
- =?utf-8?B?KzRwYnU1TDdzVVVBcVhXb0FYdDhVaGlPVHV4S3d1THRVS1RBWjh0a1Nicnp0?=
- =?utf-8?B?dWNYaEVTejlUcndkaWNOY1M4TVlhR2VJY1M3ZG1tWStzUmlMeXNERndhOTZR?=
- =?utf-8?B?TmlkbGxBSkh3d0JqY2NkQ05wek00Sk1yUVNtNFljeEU4UkNjTWlubFM3QlQy?=
- =?utf-8?B?Y08wOE5iQ0Q0TGdNb2FGamZXRWtueWgzd1hvd3BEOWx6eitlV3dJVHhYd2tE?=
- =?utf-8?B?UzdGbktYL25MV1RqVUl2T1JyRWVKL1h2a1BCdlllc01IL0RSQnlJMlBSSlhq?=
- =?utf-8?B?SHoxMVNQaXIvNjFmT21xMGROaDFtZ0I1UTF6dVlieGJhRjhma1pFZUZaQ0JR?=
- =?utf-8?B?SURWSFZoV2J1cWhhWkRWUkl2SzhSd09pTjYxVGVpRE1EYU84dUIrbGFKZ1Z2?=
- =?utf-8?B?RFRYaGNrbHFqclBmS1VCL0lWbjNSNmpTUnY3Vk40Y3VadDNIYlFEaEd2TWhh?=
- =?utf-8?B?SExRazJxdU1HTWtzdmVpTXU1R3pqOGczK2NBb3ZzMkY2OFhvV2xwbEg5QWpZ?=
- =?utf-8?B?SnV5NDdBZ1FmV0xXVi9jeTZoTktzZkNxTW1wcHAxWjBqZ0JBOEdGNGJnQ3ha?=
- =?utf-8?B?VXNnVEs4Q0ZwV0xRNDJWZ2F4ajBLZ0JtYTJVNHNvWmR5ZTh5dGUzTHVmamtV?=
- =?utf-8?B?QjZqNzl2anRmRVIwaWl4NnY2RS9jRW5mc1Y2TVlhL2tpV0Jsc3hPSko3em1U?=
- =?utf-8?B?REh5NTlObExmc1RDUGhIV1FNQW5nNkRmV0tkcjJhcmpXQWNpaGRQdi9OSlFr?=
- =?utf-8?B?QVgyK25USjFxdElkeTR2aHFHeVBDMk1DRmp4citOMkNxMG51Y2phWVZhcU5R?=
- =?utf-8?B?RlkvWE5udmFpZWQ5alNaYTJRTVM4TitTaWdOQWZqdzA2SFNmaUl6SEh4eXc0?=
- =?utf-8?B?VThaclVwSTJFSnBlTlJ6VEdJcUNpVjhGODN6RW9oOGJaS0ZpMUdjYzlhMnRZ?=
- =?utf-8?B?K2Z3ZWxPeGxKMTh0QWZzOXZhT0ZmV2dHSXB3cXFVZXVTMmpsLzRrSjFzczcr?=
- =?utf-8?B?S2VGWCtOdWRjZExJQjNldktNd3RncmZicVBrMU1EYVhpdlN0QkhyOEJEUU1Y?=
- =?utf-8?B?TjRpZUhsZ3Exc1JiMExDRFF2MzVRK285STF5Y0VwNE9zaHFVd1ZHOVFBK0xH?=
- =?utf-8?B?azNiKzFyQUorNm9Bd2Q5M0JnQXkzZFlvZ1ZtQVBiNEpWeExBTHpsMHlUOUF0?=
- =?utf-8?B?cTBNc2dpMUVrQmpGTi9RbC9hWTJXOW11amYyWm9WY3VqRC9uTzlpNEFaZFNB?=
- =?utf-8?B?dTRuU2kwSXlsemNMa1Q2V3NnYnpXbGU2K3dFYXRTbUd0N3pnbVd2eXNtRjVI?=
- =?utf-8?B?RUx6U1VVMnVsVWZicEF0c1ZuSnF4Ti9QMVBUQ05UWjh0bWlFK2lJMlNGc25W?=
- =?utf-8?Q?uZfgvhn14yKvX+9kLSP5oVP5v?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30020c35-450f-459d-dcc7-08dcf4ce703b
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB7051.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 08:24:26.4705
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Yugeoa6XZy1wbvtUC2RlA+Cwrg6q51eoNeNk05ulFaoCPYLAC2GwBqMyUmZMMlJDZhoooaLfFxaxt/xTYxxINw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9140
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPY8ntC0B0RdNmvGMaDcp-p9gZOcWBbeC6BjbcihrijRXjRVkA@mail.gmail.com>
 
-On 10/24/2024, Biju Das wrote:
-> Hi Liu Ying,
+Hi Dave,
 
-Hi Biju,
-
+On 16:21 Thu 24 Oct     , Dave Stevenson wrote:
+> Hi Andrea
 > 
->> -----Original Message-----
->> From: Liu Ying <victor.liu@nxp.com>
->> Sent: Monday, October 21, 2024 7:45 AM
->> Subject: [PATCH v3 12/15] drm/bridge: Add ITE IT6263 LVDS to HDMI converter
->>
->> Add basic HDMI video output support. Currently, only RGB888 output pixel format is supported.  At the
->> LVDS input side, the driver supports single LVDS link and dual LVDS links with "jeida-24" LVDS
->> mapping.
->>
->> Product link:
->> https://www.ite.com.tw/en/product/cate1/IT6263
-> 
-> Just a question,
-> 
-> What is the maximum single link and dual link modes you have tested?
+> On Mon, 7 Oct 2024 at 14:07, Andrea della Porta <andrea.porta@suse.com> wrote:
+> >
 
-With single LVDS link on i.MX8MP EVK, the highest pixel clock rate I
-tested is 74.25MHz(1280x720@60).  i.MX8MP LVDS Display Bridge(LDB)
-supports the highest 80MHz pixel clock rate with single LVDS link.
+...
 
-With single LVDS link on i.MX8qxp MEK, the highest pixel clock rate I
-tested is 148.5MHz(1920x1080@60).  i.MX8qxp LDB supports the highest
-150MHz pixel clock rate with single LVDS link.
+> > +static const struct pci_device_id dev_id_table[] = {
+> > +       { PCI_DEVICE(PCI_VENDOR_ID_RPI, PCI_DEVICE_ID_RPI_RP1_C0), },
+> > +       { 0, }
+> > +};
+> 
+> You need a
+> 
+> MODULE_DEVICE_TABLE(pci, dev_id_table);
+> 
+> here in order to load the module for the cases where it isn't
+> built-in. Otherwise you have to manually modprobe the module.
 
-With dual LVDS links on both i.MX8MP EVK and i.MX8qxp MEK, the highest
-pixel clock rate I tested is 148.5MHz(1920x1080@60).
+Sure, thanks for the heads up!
 
-> 
-> On Renesas SMARC RZ/G3E platform I have tested with this patch set,
-> 
-> Dual link :1080p@60
-> 
-> and
-> 
-> Single link:720p@60
-> 
-> For single link > 720p@60, sometimes I get message
-> "it6263 7-004c: failed to wait for video stable"
-
-I don't see this with i.MX8MP EVK and i.MX8qxp MEK.
-
-> 
-> From SoC side, it can support max dot clock of 87MHz for single link.
-> 
-> So just wondering other than reject modes greater than 87MHz from SOC
-> side, do we need to limit any thing on bridge device for single link Case?
-
-Since IT6263 works with 1920x1080@60(148.5MHz pixel clock rate) on
-i.MX8qxp MEK by using single LVDS link, I'm currently fine with
-the existing clock rate validation against the maximal 150MHz pixel
-clock rate.
-
-> 
-> Cheers,
-> Biju
-
--- 
 Regards,
-Liu Ying
+Andrea
 
+> 
+> Cheers.
+>   Dave
+
+...
 
