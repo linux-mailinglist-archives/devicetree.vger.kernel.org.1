@@ -1,134 +1,347 @@
-Return-Path: <devicetree+bounces-115781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249409B0B2E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:22:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 037CB9B0B84
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:28:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFA3528A075
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:22:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D207C1C23516
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2EE1224410;
-	Fri, 25 Oct 2024 17:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102342308BE;
+	Fri, 25 Oct 2024 17:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZBw0YAPk"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="iPiniljf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8341A223A40;
-	Fri, 25 Oct 2024 17:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23518228049
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729876573; cv=none; b=dPYjfOETJe5m/qEk+f+o6YA8optNYzz+Ytmfl9oMSF9Q7mkb837avPmyk/EHIPyznQK25yEvDwarfGQMzJY5Oip9oUfWDnmX1yoKzLB/b/ed/fjSzMNGGROz5Ao5k6lDykkKeFomRhAeFVhOGwkEYEc76mI8P6YcR5Ld17ouYUQ=
+	t=1729876602; cv=none; b=BObu7NVXcOsveywJUdzlf5VYBGqHf8kp+VEa5G+L5OVSSqygwnilIanAmYaLn//dj8eJFfOlykazngN4EhHtYNaqUCEWQTvNNnNXruxQvY2Fru5xpQuBqftr4cA5G+H3fOvxhYWO5b5I1/P9PwQZpuM9B/Vcw8u1n3ulYKMPk8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729876573; c=relaxed/simple;
-	bh=jcEcoTsszIoIMZ2xRSK5qy6JtntcD2Ph1CgISGNF35I=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=RBLTY+Qa5tA8Hr0oDKO7/vsTCwmnTYJ+TMUvkvw6DYVn9obTF4inv7s/uDpjeMdX7Gw3eG9kBJ7vcGY4dm9IeKSHp/JtCJ3R+xGpUWi2kE0NbM0clPKWIEDI9djKY3eUKTzIET6JBrgPT/GFKFjAFP4AXz5Sl04WE2lC4MV+6AQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZBw0YAPk; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3e5fcf464ecso1544959b6e.0;
-        Fri, 25 Oct 2024 10:16:11 -0700 (PDT)
+	s=arc-20240116; t=1729876602; c=relaxed/simple;
+	bh=nMBH0rWLQkU2soF+Cg2c4yz0aba3rmak7d2lggM5H44=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=C2YnKqAmj+vaklOVLHs/0SP5AAesN02Q6fO7nuEn0PeNLWJg9X9iu/x/BP05H7s2+JHZD+y+ieIU3fvO1iZcR6iide10pztbFAGnhjZjJLQF56iBehwZs2iziDcldsJRyBLVdMEReZG1nRKEBsVWvPDhtKqA+Rp179k0YHPESXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=iPiniljf; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4314b316495so20675505e9.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:16:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729876570; x=1730481370; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9Z3zQpm6GYXhvqzRdwO9Jpq7KkMTm57EN0eMNt6MlUo=;
-        b=ZBw0YAPk05d9ReKLKAC4LjUk8f+w+yASCVAbt3YH1ZU5fw7hi2Q8BXs9a+xGM/wtTu
-         XnDc/m5F3Dywy5aNWvFwS0C+3jKkXMWPoI2iml7BUCP+HxcxVTn7cdcJRYBwi3hEyUu6
-         U0Tc5uRoybaapUtdsqqDLpNzTkKpOERTo8c7pAKpw85lafL0R7IoJqdcYnfbSKPLeQRb
-         KlU5ie+9VLi+2JzxCdPOT3vPmQ68yXGHO2We7s9QXiSmHKSFlQCAmwqxuYtRaCVIkenC
-         R7+dvGmXejFzJHP/JBLZj3LFwL4zwHnm5S8BcsJFuqsBvDgTkDWbqExKUyfGMXoJhVKY
-         njOw==
+        d=raspberrypi.com; s=google; t=1729876595; x=1730481395; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UZEz4/9qLe30swJeAKIBBvm5fHc5WeQ4yezYVAmOgKA=;
+        b=iPiniljfvGf/M21704gt2l1jqwdzOlJjIRhoKQ1Rjy1jM7lt9JQWHkB+l9adU39vMz
+         /vs4mzTcsLlNuqt0YI0skXwAGblcUVOlXVZ7yvBUfY6ZvGmZ1JEFeX/CmoeRfg6MRob2
+         qilHyEMud8J/o5Zc7EFZlMg4hMFW0SmB5jEuc/bC97vYUkT8Cc+xJfTC5UxBus1sGjy6
+         Md5fJ5/HzZFtKi2VoCwVtLj0Wxcm1IABHRH2PhX5VIK2TDk10DgHONAKawU5HbXo3Dn4
+         fjNHX79iiWpJcuRBI2DvT8I4xvlnlf1CKGUxvFCknVtv++uzkSPSdiBiwEv69ZeWX1zD
+         Wm3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729876570; x=1730481370;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Z3zQpm6GYXhvqzRdwO9Jpq7KkMTm57EN0eMNt6MlUo=;
-        b=tKoV0BgmLyXUG5TqWHUy0T79ZddtrX0nTfWA515If6S1k+EPoQmF8l7gAO3/2vAi/O
-         qgJQAU3iT/PYcqBbBWd38sw+t+EXH7Uf1cWtLqguUvtQnLbpvuzN5VZZq/oDHkAjtWoP
-         +pc/q46x0P975xda6uEz8hOTwSwPFpe3zP1WgKARFAF5BTfDp791hKmBFdj1kxudwiAk
-         jBAFaeRN0CN2ooQ+5hZ23krfHgJ+mP9Yh/SmFkyIbKgaiTHhSZRdTvozAQDDZv0ejgF+
-         GKPHc/M06WN3p0x2Lgdzz4GUiAA2zGvlX+9WKRljCfAoSDuu00tzPilRcSvLjfG/cCw/
-         Odfg==
-X-Forwarded-Encrypted: i=1; AJvYcCW5x57BewwB54mmlcv68qmB8bacTo29g1RKqd7mDFRz7yDAQgmdYaajk/JtAU/9Y38UzlKBxE+x2w55@vger.kernel.org, AJvYcCX7aprkjUFqSfSDXLdDr3S+fe5lkGbyUXqtGacVnznllyHuHkM3AT3prxKT/dIlWqIH6y0E97zvZ/l8+Ck=@vger.kernel.org, AJvYcCXpHE5UUAK4GZypOSZAb3PDCwlcM6RXaBEYlL4HfLhlzndIJOWMtkVuxqX0BVk4qIfZ+fqnVf+z4A4a@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZS4wgPsoGq+r/hfk7zI3JS7TqSzYy+yxaO6vMCRpRdskKpTs/
-	mO94zhjvmPI3IEVr8U88rMmpYo1RmMkG6MP0V64BdNh5b69yu3t89rk1c3sQ
-X-Google-Smtp-Source: AGHT+IF7zom+QO+FYuC6aOXq7hELfLS/xbWMicidVfzCN+atHEZGzRdamrKs/Wnk4uTvcP5eDz38vw==
-X-Received: by 2002:a05:6808:2384:b0:3e6:30e2:5411 with SMTP id 5614622812f47-3e6384403b0mr325556b6e.24.1729876570488;
-        Fri, 25 Oct 2024 10:16:10 -0700 (PDT)
-Received: from raspberrypi ([2600:1700:90:4c80::f])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e6325b0ac3sm289600b6e.36.2024.10.25.10.16.07
+        d=1e100.net; s=20230601; t=1729876595; x=1730481395;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UZEz4/9qLe30swJeAKIBBvm5fHc5WeQ4yezYVAmOgKA=;
+        b=gRzXzDEU3D4+mhmKR+XnsImqB00FcxjeEj2lFTQI49wslStESUHqiADMNtSDdji59k
+         6dPsCBxmSHG/kGxB3mAoqgoXkKWtSNVRX0caZFC/ebqXBDeXP/3qSeXzh96qXO2fjgfw
+         eqvcwzO6vBYUuy0J5paurbEceQpwBH3mU1cwN9MAMNgfbr0CN1e4vyXD6iJNiu8ZyyyV
+         E2cbO6oR7nM3pwb6gZxyepxCVaKIlVP9rrObBUC757wl+8vLAf5XzPBbzRRCyg53aFzZ
+         0GJbuaiDlogaDYASxuVwCPLIS3m8l2iQlMH4WGt2I5SWiNAoL7NOZtg3FRIGjLa77qoo
+         JpiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV6AIF74F9BMNBXDNZWo2Ijp3nCib3TOsgmRoM0e3oAb3JGO8a6vTHoInJ+2pT2AZ9xV2v4ywJ8tXS/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6X2Tr2GKJC291tjMyLIDRTriGBWfXW1RpLICy0cO73Fo+/zFI
+	+EkzTPCGVjYU3LZY8aKmjm+FOnNzKbJODTy9VR3x8fq5a/tOOEYjH+TTkCbSGDg=
+X-Google-Smtp-Source: AGHT+IFIR9g4wPz9AIYx6zXI6mtmRWJRoukoFOA0zSanhmararEgIJGNhppbZKvOIcKdNVw/sX50cg==
+X-Received: by 2002:a05:600c:1d84:b0:431:51e5:22fb with SMTP id 5b1f17b1804b1-4318413f0a8mr100184415e9.14.1729876595075;
+        Fri, 25 Oct 2024 10:16:35 -0700 (PDT)
+Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38058b91f50sm2013649f8f.94.2024.10.25.10.16.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 10:16:09 -0700 (PDT)
-Date: Fri, 25 Oct 2024 12:16:06 -0500
-From: Grant Peltier <grantpeltier93@gmail.com>
-To: robh@kernel.org, linux@roeck-us.net, geert+renesas@glider.be,
-	magnus.damm@gmail.com
-Cc: grant.peltier.jg@renesas.com, brandon.howell.jg@renesas.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH v5 0/2] dt-bindings: hwmon: pmbus: add bindings for isl68137
-Message-ID: <cover.1729874904.git.grantpeltier93@gmail.com>
+        Fri, 25 Oct 2024 10:16:34 -0700 (PDT)
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Fri, 25 Oct 2024 18:16:06 +0100
+Subject: [PATCH v2 35/36] arm64: dts: broadcom: Add display pipeline
+ support to BCM2712
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241025-drm-vc4-2712-support-v2-35-35efa83c8fc0@raspberrypi.com>
+References: <20241025-drm-vc4-2712-support-v2-0-35efa83c8fc0@raspberrypi.com>
+In-Reply-To: <20241025-drm-vc4-2712-support-v2-0-35efa83c8fc0@raspberrypi.com>
+To: Maxime Ripard <mripard@kernel.org>, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Javier Martinez Canillas <javierm@redhat.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>
+X-Mailer: b4 0.14.1
 
-Renesas digital multiphase voltage regulators are capable of regulating
-output voltages that exceed the range that their Vsense pins can detect.
-In such applications, users may place a voltage divider between Vout and
-the Vsense pin for a given rail. However, the driver currently has no
-way of knowing if a voltage divider is being used which results in
-erroneous telemetry being reported over hwmon.
+Adds the HVS and associated hardware blocks to support the HDMI
+and writeback connectors on BCM2712 / Pi5.
 
-This patch set defines a devicetree bindings schema for Renesas digital
-multiphase voltage regulators that are supported by the isl68137 driver
-to allow users to add voltage divider definitions for any rail powered
-by the device. This patch set also includes the required changes to the
-isl68137 driver to enable scaling Vout/Pout telemetry for rails with a
-defined voltage divider.
+Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+---
+ arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts |  14 ++
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi        | 188 +++++++++++++++++++++++
+ 2 files changed, 202 insertions(+)
 
-v5:
-- Fix clang compilation errors related to C23 syntax
-
-v4:
-- Revert devicetree property name to "vout-voltage-divider" and refactor
-  property description and driver implementation to match existing
-  vout-voltage-divider implementation in max20730 as no suitable generic
-  voltage divider schema exists.
-- Minor fixes based on Guenter's review of v2.
-- Initialize voltage dividers for all channels to defaults that simplify
-  logic in PMBus word read/write functions.
-
-v3:
-- Report and return errors reading the vout-voltage-divider property from
-  the devicetree when the property is defined
-- Change u64 division/rounding operations to use explicit math64 macros
-
-v2:
-- Fix devicetree bindings schema errors
-- Add "renesas," vendor prefix to "vout-voltage-divider" property
-- Rebase patch series on v6.12-rc1
-
-Grant Peltier (2):
-  hwmon: (pmbus/isl68137) add support for voltage divider on Vout
-  dt-bindings: hwmon: isl68137: add bindings to support voltage dividers
-
- .../hwmon/pmbus/renesas,isl68137.yaml         | 147 ++++++++++++
- drivers/hwmon/pmbus/isl68137.c                | 209 +++++++++++++++++-
- 2 files changed, 351 insertions(+), 5 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/renesas,isl68137.yaml
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+index 92a2ada037f3..fbc56309660f 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
++++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+@@ -88,5 +88,19 @@ power: power {
+ 		firmware = <&firmware>;
+ 		#power-domain-cells = <1>;
+ 	};
++};
++
++&hvs {
++	clocks = <&firmware_clocks 4>, <&firmware_clocks 16>;
++	clock-names = "core", "disp";
++};
++
++&hdmi0 {
++	clocks = <&firmware_clocks 13>, <&firmware_clocks 14>, <&dvp 0>, <&clk_27MHz>;
++	clock-names = "hdmi", "bvb", "audio", "cec";
++};
+ 
++&hdmi1 {
++	clocks = <&firmware_clocks 13>, <&firmware_clocks 14>, <&dvp 1>, <&clk_27MHz>;
++	clock-names = "hdmi", "bvb", "audio", "cec";
+ };
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+index 6e5a984c1d4e..39305e0869ec 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+@@ -265,6 +265,172 @@ gicv2: interrupt-controller@7fff9000 {
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
+ 		};
++
++		aon_intr: interrupt-controller@7d510600 {
++			compatible = "brcm,bcm2711-l2-intc", "brcm,l2-intc";
++			reg = <0x7d510600 0x30>;
++			interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++		};
++
++		pixelvalve0: pixelvalve@7c410000 {
++			compatible = "brcm,bcm2712-pixelvalve0";
++			reg = <0x7c410000 0x100>;
++			interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
++		pixelvalve1: pixelvalve@7c411000 {
++			compatible = "brcm,bcm2712-pixelvalve1";
++			reg = <0x7c411000 0x100>;
++			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
++		mop: mop@7c500000 {
++			compatible = "brcm,bcm2712-mop";
++			reg = <0x7c500000 0x28>;
++			interrupt-parent = <&disp_intr>;
++			interrupts = <1>;
++		};
++
++		moplet: moplet@7c501000 {
++			compatible = "brcm,bcm2712-moplet";
++			reg = <0x7c501000 0x20>;
++			interrupt-parent = <&disp_intr>;
++			interrupts = <0>;
++		};
++
++		disp_intr: interrupt-controller@7c502000 {
++			compatible = "brcm,bcm2711-l2-intc", "brcm,l2-intc";
++			reg = <0x7c502000 0x30>;
++			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++		};
++
++		dvp: clock@7c700000 {
++			compatible = "brcm,brcm2711-dvp";
++			reg = <0x7c700000 0x10>;
++			clocks = <&clk_108MHz>;
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++		};
++
++		ddc0: i2c@7d508200 {
++			compatible = "brcm,brcmstb-i2c";
++			reg = <0x7d508200 0x58>;
++			interrupt-parent = <&bsc_irq>;
++			interrupts = <1>;
++			clock-frequency = <97500>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
++		ddc1: i2c@7d508280 {
++			compatible = "brcm,brcmstb-i2c";
++			reg = <0x7d508280 0x58>;
++			interrupt-parent = <&bsc_irq>;
++			interrupts = <2>;
++			clock-frequency = <97500>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
++		bsc_irq: intc@7d508380 {
++			compatible = "brcm,bcm7271-l2-intc";
++			reg = <0x7d508380 0x10>;
++			interrupts = <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++		};
++
++		main_irq: intc@7d508400 {
++			compatible = "brcm,bcm7271-l2-intc";
++			reg = <0x7d508400 0x10>;
++			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++		};
++
++		hdmi0: hdmi@7ef00700 {
++			compatible = "brcm,bcm2712-hdmi0";
++			reg = <0x7c701400 0x300>,
++			      <0x7c701000 0x200>,
++			      <0x7c701d00 0x300>,
++			      <0x7c702000 0x80>,
++			      <0x7c703800 0x200>,
++			      <0x7c704000 0x800>,
++			      <0x7c700100 0x80>,
++			      <0x7d510800 0x100>,
++			      <0x7c720000 0x100>;
++			reg-names = "hdmi",
++				    "dvp",
++				    "phy",
++				    "rm",
++				    "packet",
++				    "metadata",
++				    "csc",
++				    "cec",
++				    "hd";
++			resets = <&dvp 1>;
++			interrupt-parent = <&aon_intr>;
++			interrupts = <1>, <2>, <3>,
++				     <7>, <8>;
++			interrupt-names = "cec-tx", "cec-rx", "cec-low",
++					  "hpd-connected", "hpd-removed";
++			ddc = <&ddc0>;
++		};
++
++		hdmi1: hdmi@7ef05700 {
++			compatible = "brcm,bcm2712-hdmi1";
++			reg = <0x7c706400 0x300>,
++			      <0x7c706000 0x200>,
++			      <0x7c706d00 0x300>,
++			      <0x7c707000 0x80>,
++			      <0x7c708800 0x200>,
++			      <0x7c709000 0x800>,
++			      <0x7c700180 0x80>,
++			      <0x7d511000 0x100>,
++			      <0x7c720000 0x100>;
++			reg-names = "hdmi",
++				    "dvp",
++				    "phy",
++				    "rm",
++				    "packet",
++				    "metadata",
++				    "csc",
++				    "cec",
++				    "hd";
++			resets = <&dvp 2>;
++			interrupt-parent = <&aon_intr>;
++			interrupts = <11>, <12>, <13>,
++				     <14>, <15>;
++			interrupt-names = "cec-tx", "cec-rx", "cec-low",
++					  "hpd-connected", "hpd-removed";
++			ddc = <&ddc1>;
++		};
++	};
++
++	axi: axi {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++
++		ranges = <0x00 0x00000000  0x00 0x00000000  0x10 0x00000000>,
++			 <0x10 0x00000000  0x10 0x00000000  0x01 0x00000000>,
++			 <0x14 0x00000000  0x14 0x00000000  0x04 0x00000000>,
++			 <0x18 0x00000000  0x18 0x00000000  0x04 0x00000000>,
++			 <0x1c 0x00000000  0x1c 0x00000000  0x04 0x00000000>;
++
++		dma-ranges = <0x00 0x00000000  0x00 0x00000000  0x10 0x00000000>,
++			     <0x10 0x00000000  0x10 0x00000000  0x01 0x00000000>,
++			     <0x14 0x00000000  0x14 0x00000000  0x04 0x00000000>,
++			     <0x18 0x00000000  0x18 0x00000000  0x04 0x00000000>,
++			     <0x1c 0x00000000  0x1c 0x00000000  0x04 0x00000000>;
++
++		vc4: gpu {
++			compatible = "brcm,bcm2712-vc6";
++		};
+ 	};
+ 
+ 	timer {
+@@ -280,4 +446,26 @@ IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) |
+ 					  IRQ_TYPE_LEVEL_LOW)>;
+ 	};
++
++	clk_27MHz: clk-27M {
++		#clock-cells = <0>;
++		compatible = "fixed-clock";
++		clock-frequency = <27000000>;
++		clock-output-names = "27MHz-clock";
++	};
++
++	clk_108MHz: clk-108M {
++		#clock-cells = <0>;
++		compatible = "fixed-clock";
++		clock-frequency = <108000000>;
++		clock-output-names = "108MHz-clock";
++	};
++
++	hvs: hvs@107c580000 {
++		compatible = "brcm,bcm2712-hvs";
++		reg = <0x10 0x7c580000 0x0 0x1a000>;
++		interrupt-parent = <&disp_intr>;
++		interrupts = <2>, <9>, <16>;
++		interrupt-names = "ch0-eof", "ch1-eof", "ch2-eof";
++	};
+ };
 
 -- 
-2.39.5
+2.34.1
 
 
