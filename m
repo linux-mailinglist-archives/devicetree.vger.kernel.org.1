@@ -1,271 +1,306 @@
-Return-Path: <devicetree+bounces-115610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EBF09B01DD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:05:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DE8F9B01E6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 315711C20A78
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:05:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D4B71F22D3C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF2D200BB2;
-	Fri, 25 Oct 2024 12:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2AC201029;
+	Fri, 25 Oct 2024 12:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ya7iZDTm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VQoxykPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC33D18BC1C;
-	Fri, 25 Oct 2024 12:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DFB18B48F;
+	Fri, 25 Oct 2024 12:07:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729857918; cv=none; b=lqtoZRVdCzb/IlepTmjaJ8ASDjA2Puv8JoowX+ef9/X59wpwQkgvGpJGZ+EkwX9qaMDhP135jqYD0Hd2Xh3wtHx6kwlus1lzaPfmURO9M5qbhE6l/69bY3aIFG7gBEi38Laknm6jCAiu2COZq1pGh6Pk0Zlj6B89x+ohBAEUSlk=
+	t=1729858059; cv=none; b=NTcUFBBQ6Y8JGFs1Ch2dqWY7rYwZTHhXuU3wf04S8XVsafoF0VWLnfEJHnsUQp+19fdP1VxCiKd+70RuxPDizzZFKRJPZb7Ja03ACovHawZm1KRzkpKfVh3FUjeCQAk/3WHa7Kjb8C8hDEwUqFqO4r7BR1P+plswwOjzpEWoURo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729857918; c=relaxed/simple;
-	bh=lHAYnjjJvKtBWzjgUPBA3lwa81rtXcr5PXvNNgnAe24=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ey2ZMktNBANTBzF4XgZUjMTNgDwC+usixdl837ivVW3ifAAM2SpsAVYbFapbEfkp5ss4Km06p9F3W5u93ujZ2lRxSFGfhmIdRRy9pik3o1RozxnXLExWygXiBqcQfLd2M8n+WbEgLOVpiVF5sP2Zck25pEe4VLrZ6e5KN67mNt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ya7iZDTm; arc=none smtp.client-ip=209.85.218.42
+	s=arc-20240116; t=1729858059; c=relaxed/simple;
+	bh=Fi7dXG4uaynmJ0n9RLdhB8ZP1J0VU4wgRJkJG9JJODY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YdlMvDrrF81ycBObcJg9bkvqq2dlroisfddG9trrDM1Ui4xeqYfxNj4+pAjlhxCPQZVQ9tyU+DRIwxRwOd+Fd6GeGoaXFNTZQHnAfHy9CphelQfTFXtjLVAy/DixKH9pYObkMrhLEREoKl+4LCfazsYIcU/EmLuKEarQ+5k5I+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VQoxykPB; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a86e9db75b9so265085666b.1;
-        Fri, 25 Oct 2024 05:05:15 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d4821e6b4so1236470f8f.3;
+        Fri, 25 Oct 2024 05:07:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729857914; x=1730462714; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n55Op3UqcWWU67N4sB49bAMgh41vNphv9As8fpaG8HY=;
-        b=Ya7iZDTm8tWqy0WtEGr0CU4MCIF6FmpElzocqARBxszk+qQ+bqmnF645fgvEWrpB+t
-         m34A9RQErZiVfi6qnmAvUSL+PYRlfnaqYxRXxvePI4xc03H3pn6IBNbbujuhUJ6a9UOT
-         p/fLr0SOLsMGVHPuG94WYDcYBU17zd3ngJakNdzZIZXSf4hfgZ59ELoJi5GLk3ZlHkL+
-         IOIfSZNVvf+JvRwhZ9UtpasV/GMb6S7/Ch/NlzEYshvcBmfe2/6gjcpysfJkcWSA13jR
-         AH4r4OTyrqYZcoW+Nxxoytipa4H611/SkpnHXMlJ6R4HQ8UXH9Wj5FWYS/ak07Fdueoa
-         TGig==
+        d=gmail.com; s=20230601; t=1729858055; x=1730462855; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=IWsuk5W4z0hys3FesjB0y6f/oYwGY3GGML7np/7ZRwk=;
+        b=VQoxykPBaUf7IYMnRou0CAs6OoZtu8ixvs5eLEG2/HoQnlRuNlyU8QRe/OJUYKIHnI
+         xm1FQaLX0osmtLBFiUWsvYhvBVwdlkSzQ89txif0cJzQOMLtZ/dTwnQg1P1PKU4mutKg
+         VnqBkDYbC3jPQY87CRQ01F1FmOxk5hT6mElU1FYRW0l21pDp9SatHR4nknODHzz4q+Oj
+         miK93fdCwYLPOatykyAwh4zf7CmMpcRgKvL9ifG3fOZqHfZ+t7jM6fa+2wsiGPz3nccH
+         dxGB3fYYXK5cLuWiVq7ymNh64ZInPDP8LHoKj5/RQbr/obT0QhBjmeAI/YG09LFzDPcj
+         1ymA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729857914; x=1730462714;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n55Op3UqcWWU67N4sB49bAMgh41vNphv9As8fpaG8HY=;
-        b=SOOQXQx+FuBO9fwsEjLoTHQSvFF3WLZ+vqAp9ohRl+Oik7sNyo38tkeB3loI/cTFK/
-         engS/Em+uB8Xkrhq8pG7nFsVTBlV/55PW9bj12GLrc9wuklzLIHAnor+hvSg6fffsxsB
-         dNGaR+rMsoes+BM7U7r1kh+/UZgZS88LFD4VRFhOCrrZUmr4lE256yqjNoBJbYQUxsBx
-         pfUBxL3JfUeezA9djY7Swo5scIdn+L7/tyFnJe2r6lBeqzNLfEqcabkgaNZ0BleLOjgG
-         mx6gn3RFzR2uzbMJR7Eq4efTjAXS56fyywksS/xK646rSiaAdoPiv9sLzFT9/YQzDMLA
-         ABNA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUoba+MLMLfXL+rGRoLJfDsRg8HaJIIuPPjduXds049ajMl6oufzEkyuYavcmVjKSv8koxrgSg65nAUokB@vger.kernel.org, AJvYcCVvqezQLfoZB+DHkl3vULVS1Hrcq6mIVpiPsdYiWlnLmp2Utxmryt6D4l+i7/L6sJb0E/K+Tb+TWhPM@vger.kernel.org, AJvYcCX8vTMJLFqMSOry1dTE2TURq8eIHSEmGRBnfFgy1ozlHorvANUnK2s55be9DTQui+Yf4yUY5iJLZ7V3stAWggUzYA8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCrLsnhkO20ezCKGLCD7SArcQHpVu6hdQhEqf3z9xbhjZxvpXT
-	kS+xBeL7kE6jHItPfAvkiY3LqtsneG5n0PNviZaDqtvmEC/wUYiU
-X-Google-Smtp-Source: AGHT+IEgxndYncmXIKU0ddfgTEva136EAcXhqGZWyYOw+Fz1SxoHJQFDKEucO2k00JnM5YuW4D7XDg==
-X-Received: by 2002:a17:907:3dac:b0:a99:ce2f:b0ff with SMTP id a640c23a62f3a-a9abf8a4f1dmr912091766b.33.1729857913759;
-        Fri, 25 Oct 2024 05:05:13 -0700 (PDT)
-Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b30d6fdd1sm64153366b.170.2024.10.25.05.05.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 05:05:13 -0700 (PDT)
-Message-ID: <77e2f191-3a40-4282-ac1e-d1a9069043d4@gmail.com>
-Date: Fri, 25 Oct 2024 15:05:11 +0300
+        d=1e100.net; s=20230601; t=1729858055; x=1730462855;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IWsuk5W4z0hys3FesjB0y6f/oYwGY3GGML7np/7ZRwk=;
+        b=VfvQEeSxbmnHJkt4k47fjynPSWzUT6pEoEJNfa0V23RFNwD0x7TbrvbZ0a7y4/AnoA
+         TBFp/5ihpqmhhEWgwFbix1uoWJOcAiWx992kH4GEXRgYv8zPwV+cSWg9s/AGyQNeTI2s
+         dWKksZiAWXhjwG4UbWBqioNeixI19hzgzE8im1/gEHhEmIUnxrP4aEpQh2peC5b9xz65
+         z/CsPrXWuSZYCcQ89sl3bvZiIKNO7545Jr+Q8A1Uhg5DU5cnTGLGqDaMmQ0Ikb5i9K3c
+         183hl7fOywcdtgjGO2FyrkpZ5PIZGKJbu5nbZYvg4Q9gTFMBe95L/Y2kl5ORbyvj1XHq
+         V/ag==
+X-Forwarded-Encrypted: i=1; AJvYcCUogBWz9mIiGvoy5AyOjPDdMnpVZg4fjjrfHpkc6Ej8cEEmFCaXbcLYdj3djx5K05nFu2kDXyoLli0K@vger.kernel.org, AJvYcCVPVm02/vHcXhPG6TOMYak3Lqnx9L/+TYGNtSv+tOhkCGLTwYkjJYGuN7RrpBAqK160ZYGFq9WkWDctVuS6@vger.kernel.org, AJvYcCXahqvyL/RGhd5E+TzZ6ddMoxR7T+zu/Csp8gmAOgM7OzQwOJXH5ZR4KYz1d/VViMEjg1ArUcBppbmY@vger.kernel.org, AJvYcCXciPtNUhgT1gizKOlPnhDnYhMrmCBApOICyChcdvJFVnMKQnAWcJmTin6a8E7R64z7g9DKd4mHwVNa@vger.kernel.org, AJvYcCXjQemDTJxkkoiB8EsNqlAl8ePVJMAwki9WI+Fvuq8QOoc+0567xXPYqYi9dyDLJqJhUTTbQb7ubzyE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCQIpzFtbAkHdx7oC0bEVAQnj9DzdImqqaP6YaRHusD3sBvtlB
+	BzgRUqLfoXwvzxHECLajeKx3hoa0Iig2OD+iDZxI4rl84NHnsEw6
+X-Google-Smtp-Source: AGHT+IFG/s/9pjlSrOD62Ubm5oO46WanxGuXBtDDnHqRg1d+Of3RBLbBi99eFc2jv9DF84GZ0kT77Q==
+X-Received: by 2002:adf:a79a:0:b0:37d:5405:817b with SMTP id ffacd0b85a97d-3803ac83979mr2993845f8f.7.1729858054728;
+        Fri, 25 Oct 2024 05:07:34 -0700 (PDT)
+Received: from nsa.fritz.box ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b9279esm1346939f8f.104.2024.10.25.05.07.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 05:07:34 -0700 (PDT)
+Message-ID: <b47e7168a58e840f65c1ef150c914c077905fabf.camel@gmail.com>
+Subject: Re: [PATCH RFC v4 06/15] spi: offload-trigger: add PWM trigger
+ driver
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
+	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
+	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+Date: Fri, 25 Oct 2024 14:07:33 +0200
+In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-6-f8125b99f5a1@baylibre.com>
+References: 
+	<20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
+	 <20241023-dlech-mainline-spi-engine-offload-2-v4-6-f8125b99f5a1@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/12] arm64: dts: exynos: Add initial support for
- Samsung Galaxy S9 (SM-G960F)
-To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Tomasz Figa
- <tomasz.figa@gmail.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
- Maksym Holovach <nergzd@nergzd723.xyz>
-References: <20241025-exynos9810-v2-0-99ca3f316e21@gmail.com>
- <20241025-exynos9810-v2-12-99ca3f316e21@gmail.com>
-Content-Language: en-US
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20241025-exynos9810-v2-12-99ca3f316e21@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
+Hi David,
 
+Looks mostly good... Just one minor comments from me.
 
-
-On 10/25/24 14:24, Markuss Broks wrote:
-> Samsung Galaxy S9 (SM-G960F), codenamed starlte, is a mobile phone
-> released in 2017. It has 4GB of RAM, 64GB of UFS storage, Exynos9810
-> SoC and 1440x2960 Super AMOLED display.
->
-> This initial device tree enables the framebuffer pre-initialised
-> by bootloader and physical buttons of the device, with more support
-> to come in the future.
->
-> Co-developed-by: Maksym Holovach <nergzd@nergzd723.xyz>
-> Signed-off-by: Maksym Holovach <nergzd@nergzd723.xyz>
->
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
+> Add a new driver for a generic PWM trigger for SPI offloads.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 > ---
->  arch/arm64/boot/dts/exynos/Makefile               |   1 +
->  arch/arm64/boot/dts/exynos/exynos9810-starlte.dts | 120 ++++++++++++++++++++++
->  2 files changed, 121 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-> index 7a934499b235892eef38cd926905e02f0ce08278..6760b3d59e819fb52bc8cf4dc6877a0b9db9ce47 100644
-> --- a/arch/arm64/boot/dts/exynos/Makefile
-> +++ b/arch/arm64/boot/dts/exynos/Makefile
-> @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
->  	exynos7885-jackpotlte.dtb	\
->  	exynos850-e850-96.dtb		\
->  	exynos8895-dreamlte.dtb		\
-> +	exynos9810-starlte.dtb		\
->  	exynos990-c1s.dtb		\
->  	exynosautov9-sadk.dtb		\
->  	exynosautov920-sadk.dtb
-> diff --git a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+>=20
+> v4 changes: new patch in v4
+> ---
+> =C2=A0drivers/spi/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 12 +++
+> =C2=A0drivers/spi/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
+> =C2=A0drivers/spi/spi-offload-trigger-pwm.c | 169 +++++++++++++++++++++++=
++++++++++++
+> =C2=A03 files changed, 184 insertions(+)
+>=20
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index d65074b85f62..50d04fa317b7 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -1286,4 +1286,16 @@ endif # SPI_SLAVE
+> =C2=A0config SPI_DYNAMIC
+> =C2=A0	def_bool ACPI || OF_DYNAMIC || SPI_SLAVE
+> =C2=A0
+> +if SPI_OFFLOAD
+> +
+> +comment "SPI Offload triggers"
+> +
+> +config SPI_OFFLOAD_TRIGGER_PWM
+> +	tristate "SPI offload trigger using PWM"
+> +	depends on PWM
+> +	help
+> +	=C2=A0 Generic SPI offload trigger implemented using PWM output.
+> +
+> +endif # SPI_OFFLOAD
+> +
+> =C2=A0endif # SPI
+> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+> index 6a470eb475a2..3a76b9c61486 100644
+> --- a/drivers/spi/Makefile
+> +++ b/drivers/spi/Makefile
+> @@ -161,3 +161,6 @@ obj-$(CONFIG_SPI_AMD)			+=3D spi-amd.o
+> =C2=A0# SPI slave protocol handlers
+> =C2=A0obj-$(CONFIG_SPI_SLAVE_TIME)		+=3D spi-slave-time.o
+> =C2=A0obj-$(CONFIG_SPI_SLAVE_SYSTEM_CONTROL)	+=3D spi-slave-system-contro=
+l.o
+> +
+> +# SPI offload triggers
+> +obj-$(CONFIG_SPI_OFFLOAD_TRIGGER_PWM)	+=3D spi-offload-trigger-pwm.o
+> diff --git a/drivers/spi/spi-offload-trigger-pwm.c b/drivers/spi/spi-offl=
+oad-
+> trigger-pwm.c
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..7e01118e591284267f155883c236ed811d5c629a
+> index 000000000000..ffb0bf75cace
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
-> @@ -0,0 +1,120 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+> +++ b/drivers/spi/spi-offload-trigger-pwm.c
+> @@ -0,0 +1,169 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * Samsung Galaxy S9 (starlte/SM-G960F) device tree source
+> + * Copyright (C) 2024 Analog Devices Inc.
+> + * Copyright (C) 2024 BayLibre, SAS
 > + *
-> + * Copyright (c) 2024 Markuss Broks <markuss.broks@gmail.com>
-> + * Copyright (c) 2024 Maksym Holovach <nergzd@nergzd723.xyz>
+> + * Generic PWM trigger for SPI offload.
 > + */
 > +
-> +/dts-v1/;
-> +#include "exynos9810.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/spi/spi-offload.h>
+> +#include <linux/types.h>
 > +
-> +/ {
-> +	model = "Samsung Galaxy S9 (SM-G960F)";
-> +	compatible = "samsung,starlte", "samsung,exynos9810";
-> +	chassis-type = "handset";
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		framebuffer@cc000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0x0 0xcc000000 (1440 * 2960 * 4)>;
-> +			width = <1440>;
-> +			height = <2960>;
-> +			stride = <(1440 * 4)>;
-> +			format = "a8r8g8b8";
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-0 = <&key_power &key_voldown &key_volup &key_wink>;
-> +		pinctrl-names = "default";
-> +
-> +		power-key {
-> +			label = "Power";
-> +			linux,code = <KEY_POWER>;
-> +			gpios = <&gpa2 4 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +
-> +		voldown-key {
-> +			label = "Volume Down";
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +			gpios = <&gpa0 4 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		volup-key {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&gpa0 3 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		/* In stock firmware used for assistant. Map it as a camera button for now */
-> +		wink-key {
-> +			label = "Camera";
-> +			linux,code = <KEY_CAMERA>;
-> +			gpios = <&gpa0 6 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0x3c800000>,
-> +		      <0x8 0x80000000 0x80000000>,
-
-Sort these.
-
-> +		      <0x0 0xc0000000 0x20000000>,
-> +		      <0x0 0xe1900000 0x1e700000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		framebuffer@cc000000 {
-> +			reg = <0x0 0xcc000000 (1440 * 2960 * 4)>;
-> +			no-map;
-> +		};
-> +	};
+> +struct spi_offload_trigger_pwm_state {
+> +	struct device *dev;
+> +	struct pwm_device *pwm;
 > +};
 > +
-> +&oscclk {
-> +	clock-frequency = <26000000>;
+> +static bool spi_offload_trigger_pwm_match(void *priv,
+> +					=C2=A0 enum spi_offload_trigger_type type,
+> +					=C2=A0 u64 *args, u32 nargs)
+> +{
+> +	if (nargs)
+> +		return false;
+> +
+> +	return type =3D=3D SPI_OFFLOAD_TRIGGER_PERIODIC;
+
+Hmm will we ever be in a place where a trigger provide might have multiple =
+types? If
+so, then I'm mostly fine with this match() callback. But we could still avo=
+id it if
+we use a bitmask for trigger types and having any trigger provider to give =
+the
+supported types. Then the core could pretty much do the match between the r=
+equested
+trigger type and what the provider supports.
+
+> +}
+> +
+> +static int spi_offload_trigger_pwm_validate(void *priv,
+> +					=C2=A0=C2=A0=C2=A0 struct spi_offload_trigger_config
+> *config)
+> +{
+> +	struct spi_offload_trigger_pwm_state *st =3D priv;
+> +	struct spi_offload_trigger_periodic *periodic =3D &config->periodic;
+> +	struct pwm_waveform wf =3D { };
+> +	int ret;
+> +
+> +	if (config->type !=3D SPI_OFFLOAD_TRIGGER_PERIODIC)
+> +		return -EINVAL;
+
+Checking the above every time seems redundant to me. We should match it onc=
+e during
+the trigger request and then just use that trigger type. Otherwise I'm not =
+seeing the
+point of the match() callback.
+
+> +
+> +	if (!periodic->frequency_hz)
+> +		return -EINVAL;
+> +
+> +	wf.period_length_ns =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic-
+> >frequency_hz);
+> +	/* REVISIT: 50% duty-cycle for now - may add config parameter later */
+> +	wf.duty_length_ns =3D wf.period_length_ns / 2;
+> +
+> +	ret =3D pwm_round_waveform_might_sleep(st->pwm, &wf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	periodic->frequency_hz =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC,
+> wf.period_length_ns);
+> +
+> +	return 0;
+> +}
+> +
+> +static int spi_offload_trigger_pwm_enable(void *priv,
+> +					=C2=A0 struct spi_offload_trigger_config
+> *config)
+> +{
+> +	struct spi_offload_trigger_pwm_state *st =3D priv;
+> +	struct spi_offload_trigger_periodic *periodic =3D &config->periodic;
+> +	struct pwm_waveform wf =3D { };
+> +
+> +	if (config->type !=3D SPI_OFFLOAD_TRIGGER_PERIODIC)
+> +		return -EINVAL;
+> +
+> +	if (!periodic->frequency_hz)
+> +		return -EINVAL;
+> +
+> +	wf.period_length_ns =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic-
+> >frequency_hz);
+> +	/* REVISIT: 50% duty-cycle for now - may add config parameter later */
+> +	wf.duty_length_ns =3D wf.period_length_ns / 2;
+> +
+> +	return pwm_set_waveform_might_sleep(st->pwm, &wf, false);
+> +}
+> +
+> +static void spi_offload_trigger_pwm_disable(void *priv)
+> +{
+> +	struct spi_offload_trigger_pwm_state *st =3D priv;
+> +	struct pwm_waveform wf;
+> +	int ret;
+> +
+> +	ret =3D pwm_get_waveform_might_sleep(st->pwm, &wf);
+> +	if (ret < 0) {
+> +		dev_err(st->dev, "failed to get waveform: %d\n", ret);
+> +		return;
+> +	}
+> +
+> +	wf.duty_length_ns =3D 0;
+> +
+> +	ret =3D pwm_set_waveform_might_sleep(st->pwm, &wf, false);
+> +	if (ret < 0)
+> +		dev_err(st->dev, "failed to disable PWM: %d\n", ret);
+> +}
+> +
+> +static const struct spi_offload_trigger_ops spi_offload_trigger_pwm_ops =
+=3D {
+> +	.match =3D spi_offload_trigger_pwm_match,
+> +	.validate =3D spi_offload_trigger_pwm_validate,
+> +	.enable =3D spi_offload_trigger_pwm_enable,
+> +	.disable =3D spi_offload_trigger_pwm_disable,
 > +};
 > +
-> +&pinctrl_alive {
-> +	key_power: key-power-pins {
-> +		samsung,pins = "gpa2-4";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-> +		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-> +	};
+> +static void spi_offload_trigger_pwm_release(void *data)
+> +{
+> +	pwm_disable(data);
+> +}
 > +
-> +	key_voldown: key-voldown-pins {
-> +		samsung,pins = "gpa0-4";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-> +		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-> +	};
-> +
-> +	key_volup: key-volup-pins {
-> +		samsung,pins = "gpa0-3";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-> +		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-> +	};
-> +
+> +static int spi_offload_trigger_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct spi_offload_trigger_info info =3D {
+> +		.name =3D "trigger",
 
-Drop empty \n.
-Otherwise looks OK to me.
+pwm-trigger or trigger-pwm?
 
-Best regards, Ivo
+> +		.id =3D 0,
 
-> +
-> +	key_wink: key-wink-pins {
-> +		samsung,pins = "gpa0-6";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-> +		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-> +	};
-> +};
->
+nit: Not really needed
+
+- Nuno S=C3=A1
+
 
 
