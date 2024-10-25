@@ -1,181 +1,132 @@
-Return-Path: <devicetree+bounces-115849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78BAA9B0D8C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 20:40:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ACDA9B0D96
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 20:42:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85B381C22B07
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:40:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 366B2281B68
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:42:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC1720BB35;
-	Fri, 25 Oct 2024 18:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A8620BB49;
+	Fri, 25 Oct 2024 18:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PmUlchIc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="f+3JH4aM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80189185E50;
-	Fri, 25 Oct 2024 18:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38F52036FC
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:42:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729881646; cv=none; b=Ed5awnu1NhkX9URuuMUW/6qU2ysMCntK+QWU85QVkJu2zslEg/OsjXuiwrGJkc2CakNyoirj8JoGmoPfTrDSRq2qdu8x/68cahoGwg4PhwtZa2holVyL6lisNZFuyLCpCXXJqCnvWRCSG8vdv1294aerNuCFTiTxy3jOpyXmpHM=
+	t=1729881728; cv=none; b=SNFJ4aGAYu6oW3NGEvUfDKAI518c4cTQbPxdC+dM/7jlPjRprNhnjm6mTb+UKkYU9Hy9RChoZSYG+0YG/lbGAIvRfkh9O12LVacNIWt1zNG75iDGzyoO0rXLNWwm7eGj2hFJo7c58rHo+gy6ZKmtQLBCQjqZ3MxljOUR9lijVkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729881646; c=relaxed/simple;
-	bh=JRxNUr5yui2gNVAeX4FE/a5Z8KBgsyO2L2DGHu/TKtU=;
-	h=Date:From:To:Cc:Message-ID:Subject:MIME-Version:Content-Type; b=J4sBl3IhfUNIvQS8LUEBhFX2jMXVPrkCR9mL/esmXmQB6DFZvtxCAL3OKT++IKN7ttJ9Klw8jKM6uqpmZFl5FQ6+xnTaSOvL9DvwN/4H0GH32fo274mVXvnn9lfmdynyFtO3HzrHvHjskW2P2bEUxLzpo78iM4pPyxntUAui4So=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PmUlchIc; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d462c91a9so1598331f8f.2;
-        Fri, 25 Oct 2024 11:40:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729881643; x=1730486443; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:subject:message-id:cc:to
-         :from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JRxNUr5yui2gNVAeX4FE/a5Z8KBgsyO2L2DGHu/TKtU=;
-        b=PmUlchIchkKzpGCZm2vPQcINgkMTki8G8xL4aQVHV4lIKyUHIblgMKFC0HQuBdh4w2
-         md1esL0R77wspbiz0v57LTCcdpBYluHBS14BIWj2sy2I6oIvF+s8mg9YGiVHdgqoSOqt
-         HyN6bBLG0Ph5VGL6XYTrKULSx6ICVVkSszKOD3iyErVeCQncF3ZbYEnEVXFPHTG4+Wt2
-         4zqzozTmcQeqd+bCzSBWZ/Qa0IdOzkbnRtNQsTaY2n8BxZMYX/+hklToscp8QpeTdHNv
-         uzLRulQS9uKVY51SZfIu9tuUQoXdSwUyjbj8h0ZoNFSmm3LQn44enhMkGkF2dahV3R99
-         Rrtw==
+	s=arc-20240116; t=1729881728; c=relaxed/simple;
+	bh=M5VYWMFQeK8U6JBb1z+bQr4mOznC2Me9nRhBWVcbFuA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d7Pn8jY5HSXuOoyGXReE7TlC5aCEb2SG9I+276j/g3eQOfQRc8/PXu05T0NHokQrpepBUqYQFzHzFZrBzDxcAMaVciw17Y/frYujbT5neHeL8HhP3eqTwohS7QmHhuChGRLOGq9aWIb//9FgIzvhr159HOPNZVWEgW7IIZqei6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=f+3JH4aM; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PB24wa000997
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:42:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DQ3FRvP1Zh0KKe4wQOOkZ4FJneCOv5bCiWn6Di39QG0=; b=f+3JH4aM4W4xqfUU
+	NkL3e1UnUsJxQAz799JKKH4VU38vbdDeCGYdluoH/jsL2jvW6CivWzqQkjGTIRAu
+	6H5JxgcFtbqJpVwALbd7yns4eZpl/R0YQuu0utUxYsOoy3L07+Z/yki+ADYOWSqu
+	jnkiU+39UlSwNKSaFaMhrzwkuGyIba70Jv4SaU6Kw+Y8cyLCU7IUtSzp5ItI+54c
+	F52wyIDvAk48m4yIQ3MbBw2dbQ67MDcFN2KcHyMraVlDNPaWJ8Q1RHMTbPOsCpfC
+	QMWlK1miyKsSa0JaYNcLyBT7/xeXOCMVl+Bb7gb01LtrYUAqwQBK5Je+O+FxyCDh
+	UcYsjA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ga3s1bv8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 18:42:05 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-20c9a9fdbe9so3568195ad.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 11:42:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729881643; x=1730486443;
-        h=content-transfer-encoding:mime-version:subject:message-id:cc:to
-         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JRxNUr5yui2gNVAeX4FE/a5Z8KBgsyO2L2DGHu/TKtU=;
-        b=xRWs4UwOraFmkorxze2F6cwl07h2MkwqRa9KJHozVsZy1BtehlYRua0pCaZmH7aFfU
-         KDmPvZvl00r/U1YVU2Vs+hFWurZtnKUDZgGvWL7USy59u2cXUgOtv+TzgcQX6LRpf4sh
-         FZqIcPox0RsVGjKvLcQghJ2pbtiJq1hG0lT0gxFPQI26FnAQNWjrFgIAiKStGWg3CYEh
-         dr/tuaA8qJRdfqcktmtMYdxiWxjU7rJG3CtZG78PC72qxIexPXFlyeSO4zG2N77T3NMD
-         0o1pSxnv1UadjN9UbkJHUPWmg/kkw/reJ+C13CpHNZgOZAkspR+JjHU7hL9pNwA9URDL
-         u1gA==
-X-Forwarded-Encrypted: i=1; AJvYcCU80Prdd9iHJTthnpNQfiQRK7iCfZ5uPMPnmLn2OPP6ueHPWP0Kk6Idd1Z8UYYDMRapCWXr8rphKs8j@vger.kernel.org, AJvYcCVBOlO4ZrpibAy0Rt2/xAi4vorXfSA5FaN0M/S0h5JXA9i/YKMtaariCKYKY0Yt9zXAyvKBdbYSAPWV@vger.kernel.org, AJvYcCX+OQET6fwLnlBNoiy4KBIronzbq1DE7HKfcwBfV0kCgQEL/TLgjlYC1WHKTZu4J65ss4S2ryq3qQ3c@vger.kernel.org, AJvYcCXCILfq2rWi4HxBw6dFBdbDG431pGcR+dE9mP87D9s0YwlXqMdLxcfUA45VnXp95pJgZaP8ACA/PBNN@vger.kernel.org, AJvYcCXqn17Q0wNCYjQaaXtWfuSDiiE8TMB+phzRXrzjDrOnxdWwCUbPjAGT/BhAsXBsMMEZIn1DCW1Cik04+Qft@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmdmgqyNNXaaRR0jmeL0/ipbdieoA6uYYx+PuMMD+qc0NbpXkP
-	Ono62HUdZiLJV7rrlw9W9dOPu3IyPKATuimMjT5BGBeBrp4SfpH99slHQj/jEb1kcqtt
-X-Google-Smtp-Source: AGHT+IGS6rcHOlbTprJsbT/HrRycQKHd080NuZIR69soUsvtun0u2f/I9JB4hvq+jJZoGz6PjNSYZQ==
-X-Received: by 2002:a5d:4311:0:b0:374:c17a:55b5 with SMTP id ffacd0b85a97d-3806111a1bemr275137f8f.14.1729881642551;
-        Fri, 25 Oct 2024 11:40:42 -0700 (PDT)
-Received: from [127.0.0.1] (aftr-62-216-210-211.dynamic.mnet-online.de. [62.216.210.211])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b70c91sm2193563f8f.85.2024.10.25.11.40.41
+        d=1e100.net; s=20230601; t=1729881725; x=1730486525;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DQ3FRvP1Zh0KKe4wQOOkZ4FJneCOv5bCiWn6Di39QG0=;
+        b=aBWfuoowcV5R3JujTajohUHuvPs4MOnj8tCTFLKImtpX1zJydeq3MmRQoR81xEKCvt
+         F0TUhBkaaVlUs4q65KjG6mqT0UKDLoFXyO9DBtbNMDG5pmFUOSO0QtZMP77Z1xmDg0fk
+         X3FVCY1OujORc23mjEyd0mEppZgB4of5nHg1T0aTff5XMO1yA1vHS5r5plIAiW5MoukF
+         AqBTuOacWYbZ+3vfei1DYRFAl562Pl3jFUWjgxLjssF9vS3gkGy0/kQ7srz+XFIblrH9
+         GPDefGmBSx+hcgHnqKSqHDS+KtJiqG7i8Ro1wvJNS+G/N7oDcQGXr0Z5gAzevnY+bnA5
+         scIw==
+X-Forwarded-Encrypted: i=1; AJvYcCU0Zz4ACBhTQAc76v8dQnfa/OsBfFhrabv0nFPf8cu/o41irRtg+E288GN1a+a2OW00NQjqaxsMyhYj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgtcLwzROICCy2PfvL/bS/VNVRJYhpixDwgykxDAU6+7xqPPsL
+	uguqQJPKIh0knus/7WsJt2WwcvTKUPD7znEjQv77OgSFE5vRTDNDZGuKoxjPOTGcc0d2ihjyCFi
+	cduxoAQpvV1xYOSqiJM7V4sga6ZZ5uU+UehqeXirkHvwpglFiSrtvWc17SnK7Y74AR5gX
+X-Received: by 2002:a17:903:234c:b0:20b:80e6:bce6 with SMTP id d9443c01a7336-210c6892c0fmr702415ad.4.1729881724868;
+        Fri, 25 Oct 2024 11:42:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGP+EmOV5oTrcfqt2RNx6qYSpSQtYrLfew1alsayN6FOtidh3t+LdPrNE1o9vsl++499tZU5w==
+X-Received: by 2002:a17:903:234c:b0:20b:80e6:bce6 with SMTP id d9443c01a7336-210c6892c0fmr702195ad.4.1729881724520;
+        Fri, 25 Oct 2024 11:42:04 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f2982c4sm96514366b.102.2024.10.25.11.42.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 11:40:42 -0700 (PDT)
-Date: Fri, 25 Oct 2024 20:40:42 +0200 (GMT+02:00)
-From: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	=?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-Message-ID: <dc52cda0-47d9-4cbf-a68e-0af304edc32e@gmail.com>
-Subject: Re: [PATCH RFC v4 11/15] iio: buffer-dmaengine: add
- devm_iio_dmaengine_buffer_setup_ext2()
+        Fri, 25 Oct 2024 11:42:03 -0700 (PDT)
+Message-ID: <e810ab3d-a225-4c85-a755-3aa18c311cc5@oss.qualcomm.com>
+Date: Fri, 25 Oct 2024 20:42:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Correlation-ID: <dc52cda0-47d9-4cbf-a68e-0af304edc32e@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: sa8775p: Add support for clock
+ controllers
+To: Taniya Das <quic_tdas@quicinc.com>,
+        Bjorn Andersson
+ <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, quic_imrashai@quicinc.com,
+        quic_jkona@quicinc.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20241025-sa8775p-mm-v4-resend-patches-v6-0-329a2cac09ae@quicinc.com>
+ <20241025-sa8775p-mm-v4-resend-patches-v6-2-329a2cac09ae@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241025-sa8775p-mm-v4-resend-patches-v6-2-329a2cac09ae@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: OdmjVG0DeG_5-HRMd7vkcdgkjGXWOht1
+X-Proofpoint-GUID: OdmjVG0DeG_5-HRMd7vkcdgkjGXWOht1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ impostorscore=0 bulkscore=0 mlxlogscore=805 malwarescore=0 suspectscore=0
+ phishscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410250142
 
-Oct 25, 2024 18:42:02 David Lechner <dlechner@baylibre.com>:
+On 25.10.2024 10:52 AM, Taniya Das wrote:
+> Add support for video, camera, display0 and display1 clock controllers
+> on SA8775P. The dispcc1 will be enabled based on board requirements.
+> 
+> Reviewed-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
 
-> On 10/25/24 8:24 AM, Nuno S=C3=A1 wrote:
->> I still need to look better at this but I do have one though already=20
->> :)
->>
->> On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
->>> Add a new devm_iio_dmaengine_buffer_setup_ext2() function to handle
->>> cases where the DMA channel is managed by the caller rather than=20
->>> being
->>> requested and released by the iio_dmaengine module.
->>>
->>> Signed-off-by: David Lechner <dlechner@baylibre.com>
->>> ---
->>>
->>> v4 changes:
->>> * This replaces "iio: buffer-dmaengine: generalize requesting DMA=20
->>> channel"
->>> ---
->
-> ...
->
->>> @@ -282,12 +281,38 @@ void iio_dmaengine_buffer_free(struct=20
->>> iio_buffer *buffer)
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio_buffer_to_dmaengine_buff=
-er(buffer);
->>> =C2=A0
->>> =C2=A0=C2=A0=C2=A0 iio_dma_buffer_exit(&dmaengine_buffer->queue);
->>> -=C2=A0=C2=A0 dma_release_channel(dmaengine_buffer->chan);
->>> -
->>> =C2=A0=C2=A0=C2=A0 iio_buffer_put(buffer);
->>> +
->>> +=C2=A0=C2=A0 if (dmaengine_buffer->owns_chan)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma_release_channel(dmaengine_buf=
-fer->chan);
->>
->> Not sure if I agree much with this owns_chan flag. The way I see it,=20
->> we should always
->> handover the lifetime of the DMA channel to the IIO DMA framework.=20
->> Note that even the
->> device you pass in for both requesting the channel of the spi_offload=C2=
-=A0=20
->> and for
->> setting up the DMA buffer is the same (and i suspect it will always=20
->> be) so I would
->> not go with the trouble. And with this assumption we could simplify a=20
->> bit more the
->> spi implementation.
->
-> I tried something like this in v3 but Jonathan didn't seem to like it.
->
-> https://lore.kernel.org/all/20240727144303.4a8604cb@jic23-huawei/
->
->>
->> And not even related but I even suspect the current implementation=20
->> could be
->> problematic. Basically I'm suspecting that the lifetime of the DMA=20
->> channel should be
->> attached to the lifetime of the iio_buffer. IOW, we should only=20
->> release the channel
->> in iio_dmaengine_buffer_release() - in which case the current=20
->> implementation with the
->> spi_offload would also be buggy.
->
-> The buffer can outlive the iio device driver that created the buffer?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Yes, it can as the IIO device itself. In case a userspace app has an open=
-=20
-FD for the buffer chardev, we get a reference that is only released when=20
-the FD is closed (which can outlive the device behind bound to its=20
-driver). That is why we nullify indio_dev->info and check for it on the=20
-read() and write() fops.
-
-FWIW, I raised concerns about this in the past (as we don't have any lock=
-=20
-in those paths) but Jonathan rightfully wanted to see a real race. And I=20
-was too lazy to try and reproduce one but I'm still fairly sure we have=20
-theoretical (at least) races in those paths. And one of them could be (I=20
-think) concurrently hitting a DMA submit block while the device is being=20
-unbound. In that case the DMA chan would be already released and we could=
-=20
-still try to initiate a transfer. I did not check if that would crash or=20
-something but it should still not happen.
-
-- Nuno S=C3=A1
+Konrad
 
