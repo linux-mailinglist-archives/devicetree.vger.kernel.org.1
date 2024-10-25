@@ -1,158 +1,236 @@
-Return-Path: <devicetree+bounces-115555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75CD19AFFE2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:19:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 399BC9AFFE5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:19:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A75001C24F16
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:19:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC150281750
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9531D967F;
-	Fri, 25 Oct 2024 10:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05CA1DD9D6;
+	Fri, 25 Oct 2024 10:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="EAOM7n7W";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HsLLxgTy"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JCrlD5qS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3F71DAC99
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:19:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF1E1D89E5
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:19:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729851558; cv=none; b=Q4zqE3WVOLX9P6kEs9ej5NOuYwGFIL7kgejw11Wf6x9cuUll4qS0ZcqLMCPGzzD1zNyQjIz0xYib9rEn0fyH+0IoIwh01qK5B3ZXgDGNUuxai+RNGbU6ROuCJpjuTNxbfnO41OYzKU0ua+xO+TbPhekrMF5Yw55OKpLN602Hm4E=
+	t=1729851587; cv=none; b=Sa2CQb4i0zmmESkgfQJywMlgdEx9YNqoXejTlnncnQo2VO7M+Xlazk6+Xchv6NMVFyYJFUHAprCeH6pnfIQCED6Fhg8tTZHgxhwvz5KsB8c6NftwQqe23/OYOoG2JJNFGgLKQTqdpZ5Uqe1OrMXwuvkXah/OSywpdTGYWX9BjiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729851558; c=relaxed/simple;
-	bh=wztGz+7mTnjQfQckDlenureqkG6+xK61b49dTcDj3sY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R8o8IpKIwvGL87fJ49DIb73PxcuTn1OckE76SJLGCW1emaXSq3Q/pV1G8K2eo/6xKepxShE7x8QR4/H+HkHkRrK0XQ7teyFeqe93R3VQltFdsqgvpEWHFuR85ds5z+ABmcw3ASYo63PC02S7mEqA6Fiv35aIuscK2f9Mw4+70DM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=EAOM7n7W; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HsLLxgTy reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1729851587; c=relaxed/simple;
+	bh=h8nUr3ec1U3O/GOCFQCKtGsaSKKfc+vHX1qykT7Eng0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=geGG5YVANQ5PLNjFI3QPDZvB+/cdXkZTwcw6+343PUTLNRe8PTIhxxTVA+/yt8M8I+WcivNO3cx6PO3lnjjV2ZFB4H9/nQEIi+rcGE3YDlQEiShNAcD29iwLsObUm+k3AC19eVa8flh2VGg2pxB3+A5+gWji93wlxEVlqW1NoGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JCrlD5qS; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37d4fd00574so1161205f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 03:19:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1729851554; x=1761387554;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=1itM/kyCdE0gs81rWSjrF3aXRgyfQNm1Tl9jiHBKESM=;
-  b=EAOM7n7W/ElkuQv9nl8vZ/g2cP/H8wk3bSa+E4aWdnxIX/hFlcI493wt
-   ekFEkVzphLaXoihW9VTybU19avU5yu4RMzixC2AnhWpMlDMBWfzisn/1B
-   werEmF1kGdKbbqa4s2F9G83zNdElHxlUzdE9tgn51MfllqKoyRmGzHONp
-   isFsVnMK9vX38fnszppl8U7zy2hQOmGAhcfK5xgl8OKyXr3WFaOO9IYzz
-   ZW5L9qhTmU7ZvkcQKTkz4C9fKyTWafTmWpl7SBAFcHfDO9pHCxGCF9Nyk
-   HgKaRisQQKNf/zuDf287EQaEMd5AEXnPU0iPRy9BlPccs/fxtWspa2ABX
-   g==;
-X-CSE-ConnectionGUID: 2eIj9DeVQVqdqX0utdSxuQ==
-X-CSE-MsgGUID: dwE/WrBaSKeaQH2e20x1LQ==
-X-IronPort-AV: E=Sophos;i="6.11,231,1725314400"; 
-   d="scan'208";a="39672877"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 25 Oct 2024 12:19:12 +0200
-X-CheckPoint: {671B70A0-21-69FF9A8E-EE9CEDAF}
-X-MAIL-CPID: F2B36C0168125F39CE454E81CF2DD6CA_0
-X-Control-Analysis: str=0001.0A682F24.671B70A0.00C9,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CA7441643AB;
-	Fri, 25 Oct 2024 12:19:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1729851548;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=1itM/kyCdE0gs81rWSjrF3aXRgyfQNm1Tl9jiHBKESM=;
-	b=HsLLxgTy3ki3jI0JfhPZ/z4sFsoX7ufdNg5Q2Cns+eqf1SF0M8emb6jQ5sfc7GNoQT8YKL
-	lHKMWYdXqsHMPKMvrNu9zzfvMojX7THjWUGZBSLLX/WasP0rIyGCaaQJC0iyGDUXe6e/rQ
-	3VHBGzY4dBOL2XOo/OkS5pyP4ERUIJI0qtpc57QJCyYpaEQssP39/OaYtf3gYBw3jhO8X9
-	fa0GWxo264PZxVut2WnsFGKW/sFLPFQH2PChRrM7kUKMnoB/HzFpKxiX33bnIeZy1WbJfz
-	IKMRJOU9YNFsqMK3tJUSV1DmzZl5mMEjpjbwPcYj71FA4+nbwk2h1wlIFwLzSQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, Fabio Estevam <festevam@denx.de>, Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: imx: fsl, imx-anatop: Fix the i.MX7 irq number
-Date: Fri, 25 Oct 2024 12:19:07 +0200
-Message-ID: <5991537.MhkbZ0Pkbq@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241025004159.1571782-1-festevam@gmail.com>
-References: <20241025004159.1571782-1-festevam@gmail.com>
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729851584; x=1730456384; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rBpUL2K11YBUFELLMPn7J24EDYIInyskb6BQJNfarC8=;
+        b=JCrlD5qSIIIOUKQ7nGMLHug1ChJyybiRsT2R7dhAFKnKcQOZ3dp6A9kwgeG0grcymw
+         g2goTw7kPIYiSSJJkQJ2tt5lac+27B/ha3HF2usiBEOPFV+WJJ3cCTPtDjHmbWcHtvhk
+         Cxxq45+HmVJLrnT1GGhBhIrz4Vf52rOpMAb4xAj1OUhgloe210nCqE/Thso74GO1Pui6
+         88bkNaCIrGEjwfSgLmZrW2ciw+k2V2LzYEqmxG9Rbcce+IrFNbVLmUK6eDWdy3nJstLP
+         /yBADciZ+Kxd25y3e2tnVEJt0Pt2pGbAa6cfRkRjyRjTWbH2Uw9o8j/fIZgpGss/V2Ah
+         6K6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729851584; x=1730456384;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rBpUL2K11YBUFELLMPn7J24EDYIInyskb6BQJNfarC8=;
+        b=vZVeF5zjbKOYPC+q5Vv+tRL02ajMGr6LwGt/6bLlt7pqJks2LHK4K1bP0LRJDT6hdE
+         J5WyEUpj0uslbGXxrJcRsZpt98GZGn9ZYUds/bYBmA5IR9C2CGWVfz2VflZkStZn1jsa
+         DFrWwq/malxksbLnMjngfxMz/ScwtXhLL6rVPy74w61YWrmkYqu8SH1sCFhMLK+r6vqb
+         XZI7fN5NvTiQqWvyKjcNHifDkfg1aPm7OeGzX+90AzZ+XSaZ155PiHnr31JfGg77HKqM
+         oJ/sOXg6hcj/2wusYeFujQBHkfPJv2glC2IHWhl96f+128on+DpJygJ2kyzi+8SguV60
+         ZNLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVGAZV7ngZvGMArYrQtC60eQkj5yEmouv7bvJmYZlPJGHobacUpzORqgO8Tj/JquJ8t6rvm1+j+A45L@vger.kernel.org
+X-Gm-Message-State: AOJu0YywJqkJvXpGNrZ5khJQq/PC+8334P/Y1agATMpylAR4iUOK5LY3
+	QyBiXVLaxQmTq+Nc81UhMRSgG8U6Uyn/cLzrBjmyC05lwqYqxU+a9FXdPC8eVUA=
+X-Google-Smtp-Source: AGHT+IEpRucuYPggIRzYn2XOQ7y/jTfvJj1wJmmqoHqungWwIwNJArQ6uCMDVCocpBpGNsacy/BKpg==
+X-Received: by 2002:adf:e602:0:b0:37d:43a8:dee0 with SMTP id ffacd0b85a97d-3803ac7d59bmr3967804f8f.17.1729851582645;
+        Fri, 25 Oct 2024 03:19:42 -0700 (PDT)
+Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b46bffsm1132208f8f.46.2024.10.25.03.19.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 03:19:42 -0700 (PDT)
+Date: Fri, 25 Oct 2024 12:19:40 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, 
+	"jdelvare@suse.com" <jdelvare@suse.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"joel@jms.id.au" <joel@jms.id.au>, "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>, 
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>, 
+	BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [PATCH v1 0/2] Enable WDT reload feature
+Message-ID: <ugont5utr7rwjfonm34fmafimree434orgqas4lknmbo6aep2s@ugkkuizosqhj>
+References: <20241024071548.3370363-1-billy_tsai@aspeedtech.com>
+ <nm4ckxv6swajr6hnqlkq5uoo6ncjzlg6yfxroftat6dubiefyi@xbhi4dvqacxm>
+ <ea1be8af-0948-46b1-a1f4-fe572861cde4@roeck-us.net>
+ <OSQPR06MB72529E67E67D0D07E59AF1C08B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+ <6hkiqbgqkpdlr5f27drs7vcee7pb2uahek4zz5pd5ndativk53@42otb625deil>
+ <OSQPR06MB72521C20B39B1469B5C6DCBC8B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wivfejt2eayn7ufp"
+Content-Disposition: inline
+In-Reply-To: <OSQPR06MB72521C20B39B1469B5C6DCBC8B4F2@OSQPR06MB7252.apcprd06.prod.outlook.com>
+
+
+--wivfejt2eayn7ufp
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Subject: Re: [PATCH v1 0/2] Enable WDT reload feature
+MIME-Version: 1.0
 
-Hi Fabio,
+Hello Billy,
 
-thanks for the patch.
-
-Am Freitag, 25. Oktober 2024, 02:41:58 CEST schrieb Fabio Estevam:
-> From: Fabio Estevam <festevam@denx.de>
+On Fri, Oct 25, 2024 at 09:37:53AM +0000, Billy Tsai wrote:
+> > > > On 10/24/24 08:40, Uwe Kleine-K=C3=B6nig wrote:
+> > > > > On Thu, Oct 24, 2024 at 03:15:46PM +0800, Billy Tsai wrote:
+> > > > >> Aspeed PWM controller has the WDT reload feature, which changes =
+the duty
+> > > > >> cycle to a preprogrammed value after a WDT/EXTRST#.
+> > > > >>
+> > > > >> Billy Tsai (2):
+> > > > >>    hwmon: (aspeed-g6-pwm-tacho): Extend the #pwm-cells to 4
+> > > > >>    hwmon: (aspeed-g6-pwm-tacho): Support the WDT reload
+> > > > >
+> > > > > Huh, I'm not convinced that extending #pwm-cells for that feature=
+ is a
+> > > > > good idea. Unless I'm missing something none of the other support=
+ed PWM
+> > > > > chips can do that, so I hesitate to change a standard for it. I s=
+uggest
+> > > > > to make this a separate property instead.
+> > >
+> > > Using a separate property to enable this feature is a straightforward
+> > > method, but I don=E2=80=99t understand why extending #pwm-cells isn=
+=E2=80=99t a good
+> > > idea in my situation. The feature =E2=80=98WDT reload=E2=80=99 can be=
+ set for
+> > > individual PWM channels, and the PWM subsystem has the of_xlate
+> > > callback hook, which allows each driver to define its arguments for
+> > > the PWM consumer. I=E2=80=99m unsure if I misunderstood this callback=
+ usage,
+> > > as I couldn=E2=80=99t find examples. If my understanding is correct, =
+this
+> > > method is better for adding our specific feature, rather than using
+> > > child nodes or separate properties to indicate which PWM channel
+> > > should enable this feature with the corresponding duty cycle values. I
+> > > think using separate properties to achieve this feature would be quite
+> > > cumbersome.
+> > > As I know the arguments for this usage are as follows:
+> > > First: PWM channel index
+> > > Second: PWM period in ns
+> > > Third: PWM polarity
+> > > Therefore, I extended our feature to a fourth argument to avoid any c=
+onfusion regarding usage and added the description in our yaml file.
+> > >
+> > > If my thinking is incorrect or doesn=E2=80=99t make sense, please let=
+ me know.
 >=20
-> Unlike the other i.MX devices, i.MX7 has only two anatop interrupts.
+> > It might make sense if your bubble only contains that single PWM
+> > hardware. However if you extend the pwm cells semantic for your PWM to
+> > mean "period if the PWM watchdog triggers", i can hardly refuse the next
+> > developer who wants to extend for "period of the secondary output pin of
+> > the PWM" or a step counter or some property that defines how the duty
+> > cycle is modulated over time. And should the next one also use the 4th
+> > u32 for his purpose, or should we consider it reserved now for your
+> > purpose such that the duty_cycle modulation goes into the 7th cell?
 >=20
-> Add logic that contemplates such case to fix the following
-> dt-schema warning:
+> In my view, the order of arguments=E2=80=94such as PWM number, PWM period=
+ in ns, and PWM polarity=E2=80=94is just
+> a convention for PWM consumers to follow. Even if another driver doesn=E2=
+=80=99t adhere strictly to this
+> rule, it shouldn=E2=80=99t be considered an error if the YAML file docume=
+nts the usage of each argument.
+
+And it's a good idea to follow known conventions. There must be a good
+reason to deviate because each deviation adds burden to the developers
+making use of that device. And to patch authors, patch reviewers and
+maintainers.
+
+So I'd not say, extending pwm cells is an error. But it's an action
+where the advantages don't outweight the disadvantages.
+
+> For example, some PWM controllers set #pwm-cells to 1, where the first ar=
+gument isn=E2=80=99t necessarily
+> the PWM number. In google,cros-ec-pwm.yaml, it=E2=80=99s treated as the P=
+WM index, while in marvell,pxa-pwm.yaml,
+> it represents the period in ns.
+
+Agreed. That is historic ballast that cannot be changed without breaking
+dt compatibility. New drivers are supposed to use #pwm-cells =3D <3> with
+the known semantics.
+
+And if I would design the pwm references today, I'd just mandate
+#pwm-cells =3D <1>; and don't specify a default period and flags in the
+reference which I think don't really belong there.
+
+> If users want to work with these PWM controllers, they should confirm the=
+ purpose of each argument from the
+> YAML file, rather than assuming the PWM driver follows a conventional arg=
+ument order.
+
+Yes they should. However doing surprising stuff cannot be excused by
+documenting it and then pointing to that documentation.
+
+> If the YAML file doesn=E2=80=99t specify details, it can be treated as
+> described in pwm.yaml, which is fine. However, if there are any
+> differences, I think recording them in their own YAML file is
+> sufficient (Like google,cros-ec-pwm.yaml and  marvell,pxa-pwm.yaml).
 >=20
-> anatop@30360000: interrupts: [[0, 49, 4], [0, 51, 4]] is too short
+> > Today the bindings are (well nearly) used in the same way for all
+> > hardwares and I want to keep it that way. If your PWM has a special
+> > feature, give it a speaking name that the occasional dts reader has a
+> > chance to understand without reading HW docs or dt bindings.
 >=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Using another DTS property to achieve this isn=E2=80=99t as elegant as ut=
+ilizing PWM arguments, which will only
+> be applied when the PWM consumer uses it. This is another reason I want t=
+o extend the PWM cells semantic.
 
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+It seems elegance is subjective as I don't agree.
 
-> ---
->  .../bindings/soc/imx/fsl,imx-anatop.yaml       | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yam=
-l b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-> index c4ae4f28422b..ae708a658d52 100644
-> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-> @@ -36,6 +36,7 @@ properties:
->        - description: Temperature sensor event
->        - description: Brown-out event on either of the support regulators
->        - description: Brown-out event on either the core, gpu or soc regu=
-lators
-> +    minItems: 2
-> =20
->    tempmon:
->      type: object
-> @@ -52,6 +53,23 @@ required:
->    - compatible
->    - reg
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx7d-anatop
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          minItems: 3
-> +          maxItems: 3
-> +
->  additionalProperties: false
-> =20
->  examples:
->=20
+Best regards
+Uwe
 
+--wivfejt2eayn7ufp
+Content-Type: application/pgp-signature; name="signature.asc"
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcbcLoACgkQj4D7WH0S
+/k5PIgf8DvAJswdKoKhqa0pXx9qPc8T33mvVsjlO5tR9bQ76xKfxuTHrOUW8DxnG
+i4TjzmCH4tvC0QuRVhgodbiB3+t0PEXoRPd1guBYWAgHEVjKH0V04BPKjreFmdbI
+DAr2ERc1OmVC53O9vFqJ8CILaWNpz7NwF/GfiCVKPtv569+4TcakSIuARoNWxMCA
+dRhG0lRjiYQ5NQC3fOS+DuhFcTdM5gQxP/L71SKA2CktrBHXgS6z8b8bU4muuNT1
+13RpkMBrXFmIuU+BRIk09gxG9LdlyE9fUaPE3TiPuo4Lh4E4abz4tmTIBoAPr13Q
++G7QE8xQb8p4ZFg2IAp4kSP0E1KTaQ==
+=z2Vk
+-----END PGP SIGNATURE-----
 
+--wivfejt2eayn7ufp--
 
