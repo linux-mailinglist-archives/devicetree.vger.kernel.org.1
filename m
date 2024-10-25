@@ -1,134 +1,96 @@
-Return-Path: <devicetree+bounces-115468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A00159AFAC3
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:13:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CABB69AFAC8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 09:13:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EBDD2839F6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 07:13:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07B341C22477
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 07:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD3B1B393B;
-	Fri, 25 Oct 2024 07:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB3AE1B4C23;
+	Fri, 25 Oct 2024 07:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LXGUCjFJ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="TprDS9JZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF2F18BB9A;
-	Fri, 25 Oct 2024 07:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.240
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF2B1B2EEB;
+	Fri, 25 Oct 2024 07:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729840390; cv=none; b=VVNDuA3Jq9Ht5TxTZOF2i5su1iQmcBkFs4X2ecAy/iIz88lS0Rpmz6hWSGwXvr+MIwVKn0YyE6XDmv8GI0y2evwPj4dUpvg0qQf659fdMctpwTGZ3xbYun8+smrWrqV00jxGI9Rd+3ZSEHevtmg01A5nKjrtbVn54AYkdPyNZsc=
+	t=1729840423; cv=none; b=hgMSfdK+s9kU0ajDn8Kt9ctgu12NwmKuect3lgo/d5kTnAV6vzHPKpIvX86nUJR6XOclcmq4CjiCglCS2Pc3eOMYW9uQfiO3J5hK6MifV8aSSqc8eiC5YDb6gybG0DvvwDGKqkm2DIIAFk443q6wDDJkY67jEd8sXxXq2000Ojw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729840390; c=relaxed/simple;
-	bh=QN6EjXcY2irVhc13Aq9jpxf7X7SKqK+KDUybD8p3cHw=;
+	s=arc-20240116; t=1729840423; c=relaxed/simple;
+	bh=9I7uqf8bnaCMpPhdMhio3iWHmE81AvKut74bKlXhVxo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YnBiIfe1383LGAqWyZmlv2vLZ/2e2BoedZ6/Mb/AkL7FN/JUpZbIeB0PoYZfR/CNkbcmXXBsRWTyqifIYbry1IoiLiNgZ6VkGEuwbRTtv8VfKfKteKmHL/0Szbfq2v5/TA+EzmoJ0UiwyJeQpcaZIybQ4pGVXWey4vzuiNU7Ocw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LXGUCjFJ; arc=none smtp.client-ip=217.70.178.240
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay5-d.mail.gandi.net (unknown [217.70.183.197])
-	by mslow1.mail.gandi.net (Postfix) with ESMTP id A7AE4C1537;
-	Fri, 25 Oct 2024 07:09:20 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EB8E61C0003;
-	Fri, 25 Oct 2024 07:09:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1729840153;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QvVGBYLCMZmK8swdEZ9GMYvRd6cHQ6uwFr7LEEGTPho=;
-	b=LXGUCjFJjDv6wg8yDbBEttD8DW5YNr1zomKDB9ZId4eAZ/Q3rkE10TtibB8Pklu6eYSOgL
-	hndzLsixy1lEpoHrCNLxAdy8BCEjHKQjZE7lTMW/5Pi5IOaaVAeA1JNX2+vKlPg6XKtpB7
-	3TVl17ssImmy10l3I0sNM8TMefhA1DSmojFtJ6IzdzDkZeCD15U1k37wARyOfM2b1FAaHd
-	dyUdlG5r8C9XSAD9EwCI9Z8ARs7NPuFfAJzXGR5Kwc5cY2YTO+mdeo7SEGNa13wxhEuBkr
-	vV1pJqMETwjuFbh5yc4R3Td1sOxAbvS6UrWqXunWjKd065+EQK+Ek0zSq2KRoA==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 2/2] usb: typec: mux: Add support for the TUSB1046 crosspoint
- switch
-Date: Fri, 25 Oct 2024 09:09:11 +0200
-Message-ID: <1945710.vURJNgTSzn@fw-rgant>
-In-Reply-To: <bgqmq4kehejgud2eymcwusbu6ks4jnaeasr6ad735czxxazyht@ppzrbmce5mog>
-References:
- <20241024-tusb1046-v2-0-d031b1a43e6d@bootlin.com>
- <20241024-tusb1046-v2-2-d031b1a43e6d@bootlin.com>
- <bgqmq4kehejgud2eymcwusbu6ks4jnaeasr6ad735czxxazyht@ppzrbmce5mog>
+	 MIME-Version:Content-Type; b=vAwBnVLQSqUbFRIIvwq6csHEO8MxQH93ZsAKKQ08MMOcqquMk0OIezddctvonGrUFG1dFJpgBKUlCCeGlrvBg9v20nSHxj+qFOnOcDfO5LrtWoXtbA9fWk+u+DdB5oT5SWl/e5WkC1/Dec0IFErRIaSFJwWarD+bZaWX96FOX0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=TprDS9JZ; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=enn3t52h/bw7Y5aOBI8X1K/59nvOCKaVHmDjz6Fts18=; b=TprDS9JZ2J1eX7KJTzixaefwPb
+	3M//lguL2KfoaPPrfaTrYpY0lcX8faNJRjxv0X7W+S7IoMObLUW098msv9XXVv3EBLe9ZKjxC1mxG
+	D+YOTu4urAjRxG0adiMYvBHa69ciArwIOS1PFWl8jCZP083ieHiOfGXUTTUFBquCD46YibrKCihTC
+	6o22vekJO8qWu/EpnGAaLFm0lMJfiHMH8Xm0W+q1J0zrdxa9VpkmM+olIBGfhjE9aTqw59mLQB3pm
+	nQVh3ApwtjbdlfLCZAsSRfFBMKCsGR0sZdUQclplpTwKd/hgC41wXMaZryWMqU8cpbynul6SwwqN1
+	6BufvjWA==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1t4EVr-0002dv-KD; Fri, 25 Oct 2024 09:13:35 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Cenk Uluisik <cenk.uluisik@googlemail.com>,
+	linux-rockchip@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org
+Cc: Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH v7 1/3] arm64: dts: rockchip: refactor common Orange Pi 5 board
+Date: Fri, 25 Oct 2024 09:13:32 +0200
+Message-ID: <172984040935.1798677.17350099060125150020.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241024095038.42079-1-cenk.uluisik@googlemail.com>
+References: <20241024095038.42079-1-cenk.uluisik@googlemail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Hello Dmitry,
-
-On vendredi 25 octobre 2024 08:39:54 UTC+2 Dmitry Baryshkov wrote:
-> On Thu, Oct 24, 2024 at 10:54:17AM +0200, Romain Gantois wrote:
-...
-> > +
-> > +static int tusb1046_mux_set(struct typec_mux_dev *mux,
-> > +			    struct typec_mux_state *state)
-> > +{
-> > +	struct tusb1046_priv *priv = typec_mux_get_drvdata(mux);
-> > +	struct i2c_client *client = priv->client;
-> > +	struct device *dev = &client->dev;
-> > +	int mode, val, ret = 0;
-> > +
-> > +	if (state->mode >= TYPEC_STATE_MODAL &&
-> > +	    state->alt->svid != USB_TYPEC_DP_SID)
-> > +		return -EINVAL;
-> > +
-> > +	dev_dbg(dev, "mux mode requested: %lu\n", state->mode);
-> > +
-> > +	mutex_lock(&priv->general_reg_lock);
-> > +
-> > +	val = i2c_smbus_read_byte_data(client, TUSB1046_REG_GENERAL);
-> > +	if (val < 0) {
-> > +		dev_err(dev, "failed to read ctlsel status, err %d\n", val);
-> > +		ret = val;
-> > +		goto out_unlock;
-> > +	}
-> > +
-> > +	switch (state->mode) {
-> > +	case TYPEC_STATE_USB:
-> > +		mode = TUSB1046_CTLSEL_USB3;
-> > +		break;
+On Thu, 24 Oct 2024 09:50:20 +0000, Cenk Uluisik wrote:
+> Unique to the Orange Pi 5 board:
+> - M.2 NVMe M-Key PCIe 2.0x1 on combphy0_ps
+> - SPI NOR flash
 > 
-> > +	case TYPEC_DP_STATE_C:
-> These are only valid if you have checked that altmode SVID is a
-> DisplayPort SVID.
+> 
 
-I did check it near the beginning of the function didn't I?
+Applied, thanks!
 
-> > +	if (state->mode >= TYPEC_STATE_MODAL &&
-> > +	    state->alt->svid != USB_TYPEC_DP_SID)
-> > +		return -EINVAL;
+[1/3] arm64: dts: rockchip: refactor common Orange Pi 5 board
+      commit: c37393b36c1d2a0f4fafe82d7e32bfb726f660db
+[2/3] dt-bindings: arm: rockchip: Add Orange Pi 5b enum to Orange Pi 5 entry
+      commit: 3d346d38367bf01e9a3aab7370973844e3808f65
+[3/3] arm64: dts: rockchip: Add rk3588-orangepi-5b device tree
+      commit: 46fa3fee0b1c027862b04717b51630195c253a30
 
-Or is there something I'm missing?
-
-Thanks for the review,
-
+Best regards,
 -- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-
-
+Heiko Stuebner <heiko@sntech.de>
 
