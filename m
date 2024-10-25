@@ -1,171 +1,268 @@
-Return-Path: <devicetree+bounces-115813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DB99B0BA9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:35:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B619B0BC7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 19:39:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E75A285CBD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:35:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 839991F2ABD5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDBEC2161F6;
-	Fri, 25 Oct 2024 17:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB11420C33B;
+	Fri, 25 Oct 2024 17:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dYJHjh1q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f33xLJ9k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0FF620A5D5
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5983820C31F;
+	Fri, 25 Oct 2024 17:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729877220; cv=none; b=QQ/ZSHQ6T798ONLB9YTa9Twp98sESouUdLfgvSH9CboJlN3LL71GpmjtDmjG1f/gHIFWl0n9UYUqtB3GAb+SkWyjMah3MXpEvfTmjCRPi7sAbfSKds1hMikylgWikyVWVpMqPzdZHxm5a8kizHOEcK/mfL70S4p+EKA7vFaF3Ak=
+	t=1729877915; cv=none; b=D3BhgoWMO6O7G7HRjpztGKZeWZmS1df+UaJWVt5OPEuoML1zBBXhB0cAoK2DZV4iL0GDEus4/81eWroMsIS5vK6OcgARcajCEp71L+3OwWh8JQx1Ti76QmC9fyV12jK2uvp08z2RAKtWz0vJ9tEXbmOv19yR3qQXCg41SGiWOQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729877220; c=relaxed/simple;
-	bh=ux4fyoryvlDRZZOu0dZOEtLyAosOVYVFlVj+nrSm3YU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XtBsfQuYRQoaj863u6goksQNecZhn+S/Di643F29dAx8iSF+K41k+ApoRYZBIC1htKGHKt1NeLBO1c73aPRStmz0BeHfrXs26CP+ugeJ2NTVH23xkMRnBLdHcJLjAStgUhU+WE4acuP7zPI2/+YiR7mAo1SEQaxQaZ96YNpiNlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dYJHjh1q; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49P9tG8c029632
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:26:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kYOS61s+4Ua8E53ppWv27vHnk8+CmbTTSSY3hk6zX/4=; b=dYJHjh1qawP3ZGml
-	XD5dtFJJV3GZTAvB5MlM9R7F9pRBNvFSv2kqxvk9cdfVTaeLzeGvhd/9CD4Bb7Xl
-	ghQVBVnNMvtLaGhcDd5nM1WSBQBaYpZ/m5SYqhlSYcpC3tp1Fx8E1EuZcmZvth4a
-	092R/w+6CbnIWcor3PXmx40cQMgcAbCqEyxaP4VMWvQEzDXtBcu3VI1G472VvGbc
-	LrmDTSVsLh97nj2JSmQBRI2YTs1snAx9Rab5B22tJXnZC0pGdZSGZv3qQ4CwPJJH
-	p6RSSx0A5YRYGYa7MJJHdRKvANv7VyQVvJAXUQaRJgz//O9+6AH9B/2FltJlJOp6
-	dfh+sA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42em3w9y4t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:26:57 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6cda6fd171bso5017016d6.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 10:26:57 -0700 (PDT)
+	s=arc-20240116; t=1729877915; c=relaxed/simple;
+	bh=gD7gai+8+e+XqyRYz6DgQyaNtMkK8qGXrU7mo/3ff9Y=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m08K002GBKYOyq1wKaGGobqDhasXcb7wac218YrjaMXAtP2rAFxy7IkO40WrysQUlYSQMHtuNKmzDLwIxjWn1LRcDXyhugn3UWNBsxcEg5G3N20HLHPYW/ZZr1O1MQHzQDgSmh77fyvD30UKPEb53ji1mNdG6S7Iv7Ej193UjpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f33xLJ9k; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37d4b0943c7so1511143f8f.1;
+        Fri, 25 Oct 2024 10:38:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729877911; x=1730482711; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=icrbjufJnRgwt68MAU/y4XC+360m+aOHWM5i4IT1Xks=;
+        b=f33xLJ9kfvJu4pLoKdFU+mcGduV2zeJBM4JDnegd1XPteKLTNs3Ax+Vcv5QJersFPQ
+         reWmS1a1sDm6Ii2bhGspULuR5kB5NdxiUDEl6LL5zBUXSV6zfZJgoDiRvS5p6RN19nHY
+         SBntlKJeIj5oxe1zu375Lnjtpx9oPnTRWBRY/vsWbN7cX5nhmf0vFC24I2qlnMZLQYHE
+         Sv+jFx/OUAFTj6gzS7aAqGyCy1w3LQRp1HKOeap4LYx6avaoF4uGtpZa3foB7C938X90
+         fVbtYtsEYvUlI7E0MniigiKB2jvKaa8IWuXY5tnXRrWgso5WdqKz1XAGOKOvfD3WyDFK
+         blGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729877216; x=1730482016;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kYOS61s+4Ua8E53ppWv27vHnk8+CmbTTSSY3hk6zX/4=;
-        b=Nt7PeYXXVatRoeAWlIUeynOI8zbpfF6Ii0y4flC10s+1vRVWJLTl+Dh0uVOjo5n9eK
-         7ORGTxIXzKONcbhv4eclXwWKaAfqYA3B8N983Ikg6V+e8WGKGKGaMAVDstfHVOFog71v
-         j1MSNEjZvhGmVYbDza9ENwsv+oZn2JW2UAjtgeMvCSQIDTn/WxS/splHkE6Z9lBxfp9c
-         od/cCPbpnQPachdvNl3+Rg44CB2+w+3qYU6r18IzzhD6hvXCGh66q1zvmKU3cq3k0ake
-         n/2NM1BBGetyaA8YoqhhbknkBAE3GSExFzHZTuOywQk3z4txoV2ldCB4zeJiz94t0alQ
-         nNlg==
-X-Forwarded-Encrypted: i=1; AJvYcCXF1cX7XUh340DI4en+5HifUPMEY7dDRT72mEv17Qu9ykIZUzsgruT/6QwwmLmOvdKl/p/ENAfFLptb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDWjKiMxrGRT1ku7/3I8aZPHDynLlLn1taoHNTK3UAGKDtadtC
-	nwCoyQM5sipqH6J2KtgUtYlDUgIQq9OM6DpShEAv4sQy5nJ70aTWhspJwT7NfpsOAKM7wq765eN
-	iP0CdK2KrPX2sEl8DWME1RLSPSGpmShdiViJW18GFtIyverIOfDjgetGKc7Ej
-X-Received: by 2002:ad4:5c6c:0:b0:6cc:12d3:b589 with SMTP id 6a1803df08f44-6d1856f2258mr1385836d6.4.1729877216482;
-        Fri, 25 Oct 2024 10:26:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEdtUaERmfWAnhiQDDdjVtcZz5sT4YcsSGXWw5y/MThZI4linWvUqyTaFyN8ev94EQBc+1Q8w==
-X-Received: by 2002:ad4:5c6c:0:b0:6cc:12d3:b589 with SMTP id 6a1803df08f44-6d1856f2258mr1385596d6.4.1729877216131;
-        Fri, 25 Oct 2024 10:26:56 -0700 (PDT)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b30f58991sm90413066b.159.2024.10.25.10.26.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 10:26:55 -0700 (PDT)
-Message-ID: <f02537ef-81e1-441c-bc0a-9d4eb5786361@oss.qualcomm.com>
-Date: Fri, 25 Oct 2024 19:26:52 +0200
+        d=1e100.net; s=20230601; t=1729877911; x=1730482711;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=icrbjufJnRgwt68MAU/y4XC+360m+aOHWM5i4IT1Xks=;
+        b=puTfgYPyT3iCO7olnzABhfDUI+1KPHr44u7Z0ib8+QJVJsLAWFOQiC59XX0qMP0Ffg
+         ii+tMu6vZ25z65lIg75dmLAIUsodn7drUcEd/UTGNgNMmdxxRVLGN7xR8nLxL2n9i4m6
+         TJLXjQwh4hvsUwPSa7kaEhsssmt281Y07IjbvMADuvh+Ol8iFvsnTINb8PRcoz6lnLmm
+         hPEWNPKUNV1uz70pPYOfqQDLjTb6CkZ6VGARpl3miSzyPvrr1oaUZPz7Eewg9wV/+0NW
+         Z/pOX8rCUcq60yQs/hxRAvt/jt5AmqpL+Sx0yBD+0Xrv3BCXFOR9UikKpgwKTPcQYd1+
+         vevw==
+X-Forwarded-Encrypted: i=1; AJvYcCUe7Bk6peOxxBchfxV+nCT1Yun9NY/x9kXSHaPJgivhUA9ajbt8d1am/vB/kmQSyNFqS/ofrntZviBO@vger.kernel.org, AJvYcCV8zRIc/FNzgOgc5yYFr8b3Ip93pOJQFAl+XZmeE+OiNn9xbSF4o8cdo27AQgTa8FuzE/e6oMm9Muyuuwd7@vger.kernel.org, AJvYcCXknDa3snFJ7TRi7FYu1sSqkc/xPTWpuMtx2ncXqWdwmtajk4j476TOB9MLdFhVLO5KYihYh1zV8ja4Y15M@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAGw6NLw1jJon+UmO1tDGc72HQo1bAFgrsyq+fqQJrhjSj5hH4
+	tzSEZ7S+4+E7W0krS2TmaKSU1lJoqXOzu92u8mlBTOLJHUdNS/W0yZCRrA==
+X-Google-Smtp-Source: AGHT+IFcGZFAS8CInDpA9qvFdcQqnYrmtRC4DUQ5GHTNRF3RvoHorTdnAhB8kgVDB0PC1FrWTEt9iA==
+X-Received: by 2002:adf:e0d2:0:b0:37d:493c:f7b8 with SMTP id ffacd0b85a97d-380610f245dmr173222f8f.2.1729877911277;
+        Fri, 25 Oct 2024 10:38:31 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b712bfsm2071948f8f.79.2024.10.25.10.38.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 10:38:30 -0700 (PDT)
+Message-ID: <671bd796.df0a0220.216be3.8504@mx.google.com>
+X-Google-Original-Message-ID: <ZxvXkl10_RuUJMxW@Ansuel-XPS.>
+Date: Fri, 25 Oct 2024 19:38:26 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev, upstream@airoha.com
+Subject: Re: [PATCH v4 2/3] dt-bindings: crypto: Add Inside Secure SafeXcel
+ EIP-93 crypto engine
+References: <20241025094734.1614-1-ansuelsmth@gmail.com>
+ <20241025094734.1614-2-ansuelsmth@gmail.com>
+ <20241025-marmalade-constant-1c733ef5f3e8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: qcs615: add the APPS SMMU node
-To: Qingqing Zhou <quic_qqzhou@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, robimarko@gmail.com, will@kernel.org,
-        robin.murphy@arm.com, joro@8bytes.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-References: <20241015081603.30643-1-quic_qqzhou@quicinc.com>
- <20241015081603.30643-5-quic_qqzhou@quicinc.com>
- <ac5081ce-e2e4-4201-bd7c-eb4ec2cf7e2d@oss.qualcomm.com>
- <ed4209a8-fb37-4354-a717-60dc1b5c29ab@quicinc.com>
- <bc1ab306-903a-4111-a428-8f28d8324207@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <bc1ab306-903a-4111-a428-8f28d8324207@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: UNF2cho-Ccsuy5noWN3HFx6nj93Sfvdx
-X-Proofpoint-GUID: UNF2cho-Ccsuy5noWN3HFx6nj93Sfvdx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- priorityscore=1501 impostorscore=0 bulkscore=0 lowpriorityscore=0
- clxscore=1015 suspectscore=0 spamscore=0 malwarescore=0 mlxscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410250133
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241025-marmalade-constant-1c733ef5f3e8@spud>
 
-On 23.10.2024 7:48 AM, Qingqing Zhou wrote:
+On Fri, Oct 25, 2024 at 05:44:39PM +0100, Conor Dooley wrote:
+> On Fri, Oct 25, 2024 at 11:47:23AM +0200, Christian Marangi wrote:
+> > Add bindings for the Inside Secure SafeXcel EIP-93 crypto engine.
+> > 
+> > The IP is present on Airoha SoC and on various Mediatek devices and
+> > other SoC under different names like mtk-eip93 or PKTE.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> > Changes v4:
+> > - Out of RFC
 > 
+> I left comments on v3, that I do not see addressed here.
+>
+
+I missed them sorry, I was confused with the other reply about RFC not
+asking for comments. Let me copy the comments here so we can continue
+here.
+
+> > Changes v3:
+> > - Add SoC compatible with generic one
+> > Changes v2:
+> > - Change to better compatible
+> > - Add description for EIP93 models
+> > 
+> >  .../crypto/inside-secure,safexcel-eip93.yaml  | 63 +++++++++++++++++++
+> >  1 file changed, 63 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+> > new file mode 100644
+> > index 000000000000..13341710ee31
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+> > @@ -0,0 +1,63 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/crypto/inside-secure,safexcel-eip93.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Inside Secure SafeXcel EIP-93 cryptographic engine
+> > +
+> > +maintainers:
+> > +  - Christian Marangi <ansuelsmth@gmail.com>
+> > +
+> > +description: |
+> > +  The Inside Secure SafeXcel EIP-93 is a cryptographic engine IP block
+> > +  integrated in varios devices with very different and generic name from
+> > +  PKTE to simply vendor+EIP93. The real IP under the hood is actually
+> > +  developed by Inside Secure and given to license to vendors.
+> > +
+> > +  The IP block is sold with different model based on what feature are
+> > +  needed and are identified with the final letter. Each letter correspond
+> > +  to a specific set of feature and multiple letter reflect the sum of the
+> > +  feature set.
+> > +
+> > +  EIP-93 models:
+> > +    - EIP-93i: (basic) DES/Triple DES, AES, PRNG, IPsec ESP, SRTP, SHA1
+> > +    - EIP-93ie: i + SHA224/256, AES-192/256
+> > +    - EIP-93is: i + SSL/DTLS/DTLS, MD5, ARC4
+> > +    - EIP-93ies: i + e + s
+> > +    - EIP-93iw: i + AES-XCB-MAC, AES-CCM
+> >
+> This implies that you should have a non-trivial set of fallbacks, with
+> the "i" model as the base for that. eg:
 > 
-> 在 10/18/2024 2:20 PM, Qingqing Zhou 写道:
->>
->>
->> 在 10/18/2024 4:05 AM, Konrad Dybcio 写道:
->>> On 15.10.2024 10:16 AM, Qingqing Zhou wrote:
->>>> Add the APPS SMMU node for QCS615 platform. Add the dma-ranges
->>>> to limit DMA address range to 36bit width to align with system
->>>> architecture.
->>>>
->>>> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 74 ++++++++++++++++++++++++++++
->>>>  1 file changed, 74 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>>> index 027c5125f36b..fcba83fca7cf 100644
->>>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>>> @@ -379,6 +379,7 @@
->>>>  	soc: soc@0 {
->>>>  		compatible = "simple-bus";
->>>>  		ranges = <0 0 0 0 0x10 0>;
->>>> +		dma-ranges = <0 0 0 0 0x10 0>;
->>>>  		#address-cells = <2>;
->>>>  		#size-cells = <2>;
->>>>  
->>>> @@ -524,6 +525,79 @@
->>>>  			reg = <0x0 0x0c3f0000 0x0 0x400>;
->>>>  		};
->>>>  
->>>> +		apps_smmu: iommu@15000000 {
->>>> +			compatible = "qcom,qcs615-smmu-500", "qcom,smmu-500", "arm,mmu-500";
->>>> +			reg = <0x0 0x15000000 0x0 0x80000>;
->>>> +			#iommu-cells = <2>;
->>>> +			#global-interrupts = <1>;
->>>> +
->>>> +			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
->>>> +					<GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
->>>> +					<GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
->>>
->>> The list seems perfectly sorted, which is suspicious.. if we set
->>> i = n - #global-interrupts, interrupt[i] signifies an error in the i-th
->>> context bank. If the order is wrong, we'll get bogus reports
->> Thanks for the review, the list refers to Qualcomm Interrupts design spec, checking this platform again, the list is right, first line is global interrupt and the others are context interrupts with right order.
-> Hi Konrad,
-> Hope above comments explain your question. If no more questions from you, I will post the next version. Thanks.
+> "ie", "i"
+> "is", "i"
+> "iw", "i"
+> "ies", "ie, "is", "i" (I dunno which would be a better order here)
+>
 
-Sorry, forgot to reply.
+These info are what I found around since informations about models are very
+scarce. The driver itself makes use of a bitmap in the IP to detect the
+supported stuff so the meaning of this is really to comunicate the set
+of feature mounted on the system.
 
-I was able to confirm this is just a happy coincidence with the numbers.
+Any hint on how to describe this better? I assume you refer to some kind
+of yaml logic structure to put in the compatible?
 
-Konrad
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: airoha,crypto-eip93
+> > +      - enum:
+> > +          - inside-secure,safexcel-eip93i
+> > +          - inside-secure,safexcel-eip93ie
+> > +          - inside-secure,safexcel-eip93is
+> > +          - inside-secure,safexcel-eip93ies
+> > +          - inside-secure,safexcel-eip93iw
+> > +
+>
+> I don't really get what's going on here. Why is the first compatible the
+> generic one? That seems suspect to me, as I doubt the crypto block on a
+> particular SoC varies? I'd expect to see some soc-specific compatibles
+> with a fallback to the inside-secure IP version that it integrates.
+>
+
+This was already discussed and hoped this solution was accepted (I
+didn't get any reply in the other revision, so I'm probably wrong)
+
+Everything started with:
+- airoha,mtk-eip93
+
+Was wrong as the compatible wasn't clear on what mtk was and if the IP
+was from airoha (it's not, it's licensed to...)
+
+Then only the inside-secure ones, following how it's done for the newer
+inside-secure eip197.
+
+Krzysztof then suggested that, since it's licensed but OEM can make
+modification, it should be sensible to put a compatible of the SoC where
+the thing is mounted at the front of the other compatible. Eip197 should
+have received the same treatement but for some reason it didn't.
+
+So here in v3/v4 with this proposed solution.
+
+First compatible is SoC name, useful if the Vendor made modification to
+the IP. Then the generic model that describe the set of feature
+supported.
+
+I checked the register of 3 different device where EIP93 is implemented
+and they ALL match them. ONLY additional register are added for debug
+purpose and never conflicting bits are introduced.
+
+Hence why IMHO it's OK to use the combo of Vendor + second compatible
+for the generic implementation.
+
+From both comments I'm not really sure what do you mean about fallback,
+anyway hope it's clear now.
+
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    crypto@1e004000 {
+> > +      compatible = "airoha,crypto-eip93", "inside-secure,safexcel-eip93ies";
+> > +      reg = <0x1fb70000 0x1000>;
+> > +
+> > +      interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> > +    };
+> > -- 
+> > 2.45.2
+> > 
+
+
+
+-- 
+	Ansuel
 
