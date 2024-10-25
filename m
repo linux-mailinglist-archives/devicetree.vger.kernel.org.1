@@ -1,272 +1,148 @@
-Return-Path: <devicetree+bounces-115652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0C59B0341
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:59:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB399B0352
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E56A7281898
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:59:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D1251F21E5A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 13:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C643206502;
-	Fri, 25 Oct 2024 12:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AEB370812;
+	Fri, 25 Oct 2024 13:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hqTMymUn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CPhkT2Bf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0852064FF;
-	Fri, 25 Oct 2024 12:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A120206500;
+	Fri, 25 Oct 2024 13:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729861166; cv=none; b=rhBs2pendHBWNzEaiMJFrRpvchzIFPxdwn+Kk5HYoGSPbvvtN5VAfnIbaXo28Fx9gtUkb0j47UpBCi4LjZDu3tAHFwQ3/xzr7SC4ribrYHYOnifVjISekIPF8ftdJba1NOmEMgUhrIV4pQ2W96ahRPjgyNJ3uKEdFbfsGc4kjWU=
+	t=1729861458; cv=none; b=Gy7MngGq8YzBrMPBc4Nr169U95xbPVS3G7IvaXh9fNWV81vTkorYOO0qWBtl2Wb9VIw0Y8m3onHSrQJe2722Cu+8ZiYQ21M+G6P/rOY3vfrDrnvQFarDXpjg62ScCxUWfFEelF3Zd9IhZDi2yI44dszCv9EWH3fWBMG6p+elk8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729861166; c=relaxed/simple;
-	bh=hdcfCxsXN5ta8lMkugI2tJMm2SyrMVogUPc8IAR3RTY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IMiy3nxR+kZkh4qxnhxuIqnrtIxIwqxL1mxWBPA0n5pyhTsxpQqovf5dJlBkX+H55OFmAggZYn6ItgpTay0VjcvjoE+3mUZXUxmQGH8vOyt7f2oue8tRN4J9q0JlP1NmTThbYwT1gq5pIxT3r45hMb26kzE/nmUdQN+podx2szM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hqTMymUn; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37d49a7207cso1394940f8f.0;
-        Fri, 25 Oct 2024 05:59:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729861162; x=1730465962; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/dK3DUAuPNtJN++MSCDzSk5rSBh2hkVm1V3fHnM0ADo=;
-        b=hqTMymUnn5mJH6Ar+LY7VqE5+shj8ZLrLFoutW5qNCjeLXGbSRNILXOOnsQLjYfnkc
-         vaHb1BLP8QJveFuw34K2PkJ7Vq3s3aDv/XA4Bcww14Xq4crDjJ61Pjxf/t7xhHRNakfc
-         e6QsPZyDieNtvCJKI5uqQFRqLDFTd0OR9T+fN9hwEyVSZMwjGeYlMmwDdNHMM6GXKFP8
-         f6gxcg5bGsKgJ60c3ysf2leHnf2/Cru2PBAHhtQr3bVCyGkdVTNTovIR+RZvKky3Qfa/
-         aAdkSgI0I5CEH2YiYhlAHc0V3NUfk/DH6TQODtMe4BftnFasebwvy0bHqkX5lAGoZciD
-         S+zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729861162; x=1730465962;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/dK3DUAuPNtJN++MSCDzSk5rSBh2hkVm1V3fHnM0ADo=;
-        b=NwTodfXxJW9RrPUqGLNchLZflo/STrFZEdoGr0siVrL1uZtU89Ay8BDixFASJr1Cz2
-         enQ/vEIsfXXN8+gfuosg0NBY1Y1sL3ZPvayKRZ1YJpvDy0NiIxnIysteosNyGkJzRWY3
-         ugKIPgBBmkhsov/HmDNhxf5c1KkuJkShE16JUPm8qxp14tUbX8Fg7nLdD4fV37w0dRIk
-         2v+8UkC48tVdQSEPF7SX1siEW6MWQM+OyxLA7l1vkKD2c3+tjR3SwjCZNPlBBkp5cQAw
-         /qvxAU+ZKKwGuGfnM2N7Ry5ZgItY10iOi9zw18O4z3wgGjCMFm+aU3NULN5CwtQAnn2x
-         9AYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6yb04L9W5whUhznTv3OdwYCLdaitLPr+XoNMuwHsBu8Wc2nBAr2RXEzxS3IyX2UdP1Vjcl+v2q6qU@vger.kernel.org, AJvYcCVGxntOFXag3fpHRV5KrzBHNgPh+kw0a5OlzF0JDIKYxRSzrDSRq9C/qGcFttX51aJRWhrTW0A/cClD/nUK@vger.kernel.org, AJvYcCVgwbAXaojsj1Qghf3w1zpON2L0Ha2aYT5O5Ffse30ZlrS5VRoJgyOq3/zlv+y355FeNfniwiQiDrFj@vger.kernel.org, AJvYcCX1kTi2kr2mNCvadh0clVQmWa3/vIYKNaCzz20816oyb69I0NyABuFVpY9l012ex/OWu58/IMEaeMz7@vger.kernel.org, AJvYcCXV2NNWbot1BG1JDhkJ7qQrGinuR1BoApAt7Tid3fCi9eKnEG+85Wy1g1LpOoub7yS61/99bHyDERWJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOgxAWPuNOx6i4jutsonTJOYklGQJU+vZbTk00gRMXLIfcb3IE
-	oBM6SchuvQpcXsIVpVM1+5Bi+GbQ1Kr/eW/usPkEyVNbtyfRF0Qy
-X-Google-Smtp-Source: AGHT+IGBYmPpYKtmXRSaOCQ1RVaiC+G41NQIoM5/5LkjcD3eKW3rDfPb/dkM1T28n78mtrCkDLm6OA==
-X-Received: by 2002:a5d:55cc:0:b0:37d:4e80:516 with SMTP id ffacd0b85a97d-37efcf1fe4cmr6269440f8f.34.1729861161844;
-        Fri, 25 Oct 2024 05:59:21 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b712cbsm1457071f8f.77.2024.10.25.05.59.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 05:59:21 -0700 (PDT)
-Message-ID: <2cec766bb77ef245f34e213f081b5e27b489aff7.camel@gmail.com>
-Subject: Re: [PATCH RFC v4 02/15] spi: add basic support for SPI offloading
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
-	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-Date: Fri, 25 Oct 2024 14:59:20 +0200
-In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
-References: 
-	<20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
-	 <20241023-dlech-mainline-spi-engine-offload-2-v4-2-f8125b99f5a1@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1729861458; c=relaxed/simple;
+	bh=iYshkXVaZGa2CynAN1Q5OYZln1XMSwkpwWeQNPOXpkE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SZezdo4vMoX4TJIjuEkncs4wtZ4BiYMx9Xh3LfPHY7EZTvZTOUNH1jJbHhT3B5QicSM68otDrOOX1qBwHCNy9AHTDqf04BrtT5Did1FFWmuHQ0U1ndx0emvjhsLXXaz6Dh9kIpbvZokqcjTl1XD/bOj+nMyJWHvOwV1bU8KmgF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CPhkT2Bf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49PAo6oT006746;
+	Fri, 25 Oct 2024 13:03:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	aPJOf0hH0aX6g4YEr+Wt//LZyubFLFor9QOprTwTcrE=; b=CPhkT2BfP2rInL2W
+	zEBNzqn561JPJygjvXy7mP0xg225SdbZCb2dO2gGvHh5FHtiqwJYK3kTnLZHZE3o
+	+5z6u1P++G9MYOGQESELuzvObAZwPbxtrsqFVj9OXkgAFZdFP88JyfRpzAnJutiQ
+	RDRWicgH3/PbPVQOuMFAfY783hwF2l9BsxOjjqU4a/Dmjdr5ZvsMOVmAtifovts8
+	qUePd42OcrGbO45B8R7bhEHuCiz0ddgmw3Ec4RZA7QUsJ1qA6BKWL1zLM61t1JUP
+	L2WSxE6h8cI/sodjBIzCRgdLY67pPOqWGjwFaRoJQULIoppSYIbFdiKSHMWNd9ha
+	eb/Z4g==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42g9x6gcpt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 13:03:53 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49PD3qQe015081
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Oct 2024 13:03:52 GMT
+Received: from [10.50.63.35] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 25 Oct
+ 2024 06:03:44 -0700
+Message-ID: <6e764e04-acbd-4973-af59-f58203a556dd@quicinc.com>
+Date: Fri, 25 Oct 2024 18:33:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: RFC: Advice on adding support for Qualcomm IPQ9574 SoC Ethernet
+To: Andrew Lunn <andrew@lunn.ch>
+CC: "Russell King (Oracle)" <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacob Keller
+	<jacob.e.keller@intel.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vsmuthu@qti.qualcomm.com>,
+        <arastogi@qti.qualcomm.com>, <linchen@qti.qualcomm.com>,
+        <john@phrozen.org>, Luo Jie <quic_luoj@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>,
+        "Suruchi Agarwal (QUIC)" <quic_suruchia@quicinc.com>,
+        "Lei Wei (QUIC)"
+	<quic_leiwei@quicinc.com>
+References: <f0f0c065-bf7c-4106-b5e2-bfafc6b52101@quicinc.com>
+ <d2929bd2-bc9e-4733-a89f-2a187e8bf917@quicinc.com>
+ <817a0d2d-e3a6-422c-86d2-4e4216468fe6@lunn.ch>
+ <c7d8109d-8f88-4f4c-abb7-6ebfa1f1daa3@quicinc.com>
+ <Zv_6mf3uYcqtHC2j@shell.armlinux.org.uk>
+ <ba1bf2a6-76b7-4e82-b192-86de9a8b8012@quicinc.com>
+ <7b5227fc-0114-40be-ba5d-7616cebb4bf9@lunn.ch>
+ <641f830e-8d21-4bc0-abe2-59e2c4d29b92@quicinc.com>
+ <28409cbc-09c8-4c88-b11e-2c46457c9e8e@lunn.ch>
+Content-Language: en-US
+From: Kiran Kumar C.S.K <quic_kkumarcs@quicinc.com>
+In-Reply-To: <28409cbc-09c8-4c88-b11e-2c46457c9e8e@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: m577pJaq61SzaSRNdszhVEql3s5P4HeD
+X-Proofpoint-ORIG-GUID: m577pJaq61SzaSRNdszhVEql3s5P4HeD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ clxscore=1015 mlxscore=0 phishscore=0 spamscore=0 lowpriorityscore=0
+ impostorscore=0 priorityscore=1501 mlxlogscore=999 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410250100
 
-On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
-> Add the basic infrastructure to support SPI offload providers and
-> consumers.
->=20
-> SPI offloading is a feature that allows the SPI controller to perform
-> transfers without any CPU intervention. This is useful, e.g. for
-> high-speed data acquisition.
->=20
-> SPI controllers with offload support need to implement the get_offload
-> callback and can use the devm_spi_offload_alloc() to allocate offload
-> instances.
->=20
-> SPI peripheral drivers will call devm_spi_offload_get() to get a
-> reference to the matching offload instance. This offload instance can
-> then be attached to a SPI message to request offloading that message.
->=20
-> It is expected that SPI controllers with offload support will check for
-> the offload instance in the SPI message in the optimize_message()
-> callback and handle it accordingly.
->=20
-> CONFIG_SPI_OFFLOAD is intended to be a select-only option. Both
-> consumer and provider drivers should `select SPI_OFFLOAD` in their
-> Kconfig to ensure that the SPI core is built with offload support.
->=20
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
->=20
-> v4 changes:
-> * SPI offload functions moved to a separate file instead of spi.c
-> =C2=A0 (spi.c is already too long).
-> * struct spi_offload and devm_spi_offload_get() are back, similar to
-> =C2=A0 but improved over v1. This avoids having to pass the function ID
-> =C2=A0 string to every function call and re-lookup the offload instance.
-> * offload message prepare/unprepare functions are removed. Instead the
-> =C2=A0 existing optimize/unoptimize functions should be used. Setting
-> =C2=A0 spi_message::offload pointer is used as a flag to differentiate
-> =C2=A0 between an offloaded message and a regular message.
->=20
-> v3 changes:
-> * Minor changes to doc comments.
-> * Changed to use phandle array for spi-offloads.
-> * Changed id to string to make use of spi-offload-names.
->=20
-> v2 changes:
-> * This is a rework of "spi: add core support for controllers with offload
-> =C2=A0 capabilities" from v1.
-> * The spi_offload_get() function that Nuno didn't like is gone. Instead,
-> =C2=A0 there is now a mapping callback that uses the new generic devicetr=
-ee
-> =C2=A0 binding to request resources automatically when a SPI device is pr=
-obed.
-> * The spi_offload_enable/disable() functions for dealing with hardware
-> =C2=A0 triggers are deferred to a separate patch.
-> * This leaves adding spi_offload_prepare/unprepare() which have been
-> =C2=A0 reworked to be a bit more robust.
-> ---
-> =C2=A0drivers/spi/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 ++
-> =C2=A0drivers/spi/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/spi/spi-offload.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 104=
- ++++++++++++++++++++++++++++++++++++++++
-> =C2=A0include/linux/spi/spi-offload.h |=C2=A0 64 ++++++++++++++++++++++++=
-+
-> =C2=A0include/linux/spi/spi.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 16 +++++++
-> =C2=A05 files changed, 188 insertions(+)
->=20
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index 823797217404..d65074b85f62 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -55,6 +55,9 @@ config SPI_MEM
-> =C2=A0	=C2=A0 This extension is meant to simplify interaction with SPI me=
-mories
-> =C2=A0	=C2=A0 by providing a high-level interface to send memory-like com=
-mands.
-> =C2=A0
-> +config SPI_OFFLOAD
-> +	bool
-> +
-> =C2=A0comment "SPI Master Controller Drivers"
-> =C2=A0
-> =C2=A0config SPI_AIROHA_SNFI
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index a9b1bc259b68..6a470eb475a2 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -10,6 +10,7 @@ ccflags-$(CONFIG_SPI_DEBUG) :=3D -DDEBUG
-> =C2=A0obj-$(CONFIG_SPI_MASTER)		+=3D spi.o
-> =C2=A0obj-$(CONFIG_SPI_MEM)			+=3D spi-mem.o
-> =C2=A0obj-$(CONFIG_SPI_MUX)			+=3D spi-mux.o
-> +obj-$(CONFIG_SPI_OFFLOAD)		+=3D spi-offload.o
-> =C2=A0obj-$(CONFIG_SPI_SPIDEV)		+=3D spidev.o
-> =C2=A0obj-$(CONFIG_SPI_LOOPBACK_TEST)		+=3D spi-loopback-test.o
-> =C2=A0
-> diff --git a/drivers/spi/spi-offload.c b/drivers/spi/spi-offload.c
-> new file mode 100644
-> index 000000000000..c344cbf50bdb
-> --- /dev/null
-> +++ b/drivers/spi/spi-offload.c
-> @@ -0,0 +1,104 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2024 Analog Devices Inc.
-> + * Copyright (C) 2024 BayLibre, SAS
-> + */
-> +
-> +#define DEFAULT_SYMBOL_NAMESPACE SPI_OFFLOAD
-> +
-> +#include <linux/cleanup.h>
-> +#include <linux/device.h>
-> +#include <linux/export.h>
-> +#include <linux/mutex.h>
-> +#include <linux/property.h>
-> +#include <linux/spi/spi-offload.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/types.h>
-> +
-> +/**
-> + * devm_spi_offload_alloc() - Allocate offload instances
-> + * @dev: Device for devm purposes
-> + * @num_offloads: Number of offloads to allocate
-> + * @priv_size: Size of private data to allocate for each offload
-> + *
-> + * Offload providers should use this to allocate offload instances.
-> + *
-> + * Return: Pointer to array of offloads or error on failure.
-> + */
-> +struct spi_offload *devm_spi_offload_alloc(struct device *dev,
-> +					=C2=A0=C2=A0 size_t num_offloads,
-> +					=C2=A0=C2=A0 size_t priv_size)
-> +{
-> +	struct spi_offload *offloads;
-> +	void *privs;
-> +	size_t i;
-> +
-> +	offloads =3D devm_kcalloc(dev, num_offloads, sizeof(*offloads) + priv_s=
-ize,
-> +				GFP_KERNEL);
-> +	if (!offloads)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	privs =3D (void *)(offloads + num_offloads);
-> +
-> +	for (i =3D 0; i < num_offloads; i++) {
-> +		struct spi_offload *offload =3D offloads + i;
-> +		void *priv =3D privs + i * priv_size;
-> +
-> +		offload->provider_dev =3D dev;
-> +		offload->priv =3D priv;
-> +	}
 
-Hmm looking at the spi_engine implementation, got me thinking about this. I=
- think
-like this we might mess up with natural alignments which can be pretty nast=
-y. Maybe
-do something like devres [1] (I guess we do not need the flex array though)=
-?
 
-Now that I also look at this better, I would not do it like this. I would k=
-eep it
-simple and just allocate one spi_offload object and be done with it. In the=
- future
-and when we actually support more than one instance you could introduce a
-devm_spi_offload_alloc_array() variant and I'm still not sure if it's that =
-useful.
-Anyways this is just personal preference I guess...
+On 10/24/2024 7:57 PM, Andrew Lunn wrote:
+>>> I'm just wondering if you have circular dependencies at runtime?
+>>>
+>>> Where you will need to be careful is probe time vs runtime. Since you
+>>> have circular phandles you need to first create all the clock
+>>> providers, and only then start the clock consumers. Otherwise you
+>>> might get into an endless EPROBE_DEFER loop.
+>>>
+>>
+>> The Rx/Tx clocks sourced from the SERDES are registered as provider
+>> clocks by the UNIPHY/PCS driver during probe time. There is no runtime
+>> operation needed for these clocks after this.
+> 
+> So they are always ticking. You cannot turn them on/off? It is nice to
+> model them a fixed-clocks, since it describes the architecture, but i
+> have to question if it is worth the effort.
+> 
 
-[1]: https://elixir.bootlin.com/linux/v6.12-rc4/source/drivers/base/devres.=
-c#L35
+Yes, we cannot turn them off. However the rates of these clocks from
+SERDES to NSSCC, is not fixed. It will be either 312.5Mhz or 125Mhz,
+depending on the whether the SERDES mode is USXGMII or SGMII respectively.
 
-- Nuno S=C3=A1
-
+> 	Andrew
 
