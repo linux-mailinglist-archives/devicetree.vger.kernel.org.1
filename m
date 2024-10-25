@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-115510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34BCD9AFD53
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:57:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98BBA9AFD5A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:58:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A99A3B228B7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:57:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA42B1C21771
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A951D2F64;
-	Fri, 25 Oct 2024 08:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA091D318C;
+	Fri, 25 Oct 2024 08:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VbqwVnO+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9246D1C878E;
-	Fri, 25 Oct 2024 08:57:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2004171E43;
+	Fri, 25 Oct 2024 08:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729846652; cv=none; b=YRpuWUhKaSp2jDtQVrgRVBPGjGUWfiP9+657SDGWyNjIdoDZdLLM4fvADBqNd2yUUFLZP/UXD6WdZ1t1D2mrNKGjBDWIzG2lM4wqmhcGTIug9P99ruD/ZOw3/T/gH+q5j1pUagxIkd5BrAuNwPbHXjvX/GrLuEgnwwFHHuQhjYs=
+	t=1729846678; cv=none; b=awUExLJW/eTNgF3JrDv4tkH8S6pfSUwun2D7JxXFanK1KIp4gx+iaL2hsFyK8sWd32YtY8rwDORJySCLmYh/KmwrvAxCAS1XsbVaKYDoywwPjtW4r0aXXP22rV9r8MOKpT8h5Q7qYG/RmaR71S+3Ny4zo+fQoGHL+jV2MBVAY+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729846652; c=relaxed/simple;
-	bh=BKU9eGjiGpcEW9DhjB7Jaj0ZFVcpGNTSeTnuNH8OLnM=;
+	s=arc-20240116; t=1729846678; c=relaxed/simple;
+	bh=Y/XIwrUUcIZ6gH1/w/6aJvG+nfnvrMmFH2qM6DZcppc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qgy4c5NValaXOgva+yuFxNx2sxtmst9H0aPnqniT7jB5b8WWm7PMyTuDAuH1/hhGJjGLcgx12nNncP1+k8zaUiN1WjXOyC3lgqK/quY4Fte5HTzr63grOihhLVK4kbvCEC/H4+Uw0pk4t81BYu1nPH+lEyMggRAubfU5YeX6Mq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 93963339;
-	Fri, 25 Oct 2024 01:57:59 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9815C3F528;
-	Fri, 25 Oct 2024 01:57:27 -0700 (PDT)
-Date: Fri, 25 Oct 2024 09:57:25 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
-	justin.chen@broadcom.com, opendmb@gmail.com,
-	Florian Fainelli <f.fainelli@gmail.com>, kapil.hali@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v4 2/2] firmware: arm_scmi: Support 'reg-io-width'
- property for shared memory
-Message-ID: <ZxtddQoBAjYN4hHa@bogus>
-References: <20240827182450.3608307-1-florian.fainelli@broadcom.com>
- <20240827182450.3608307-3-florian.fainelli@broadcom.com>
- <20240903154000.GA2080277@bogus>
- <ZxJbJa8Q3V02yf_z@bogus>
- <Zxop6E83YId0et5o@bogus>
- <04050b73-eb16-440f-acd7-986b1f39a6c9@broadcom.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vu7LxhOivDtMBBejHMhsETL5Z7CzJZMYptr4P6BbxLhzozzn566qKE7lBPVwKeBx/dIZv5FJN52MREBblUXF5nfdrCP91eKKlLI8Oz1vu7ARJgs4NeHLl7TBioUgk2n6FCc2NHdE7TY2EPl2a6T1F/0r5k4SOG/K2fUMywmtZ1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VbqwVnO+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ABB0C4CEC3;
+	Fri, 25 Oct 2024 08:57:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729846678;
+	bh=Y/XIwrUUcIZ6gH1/w/6aJvG+nfnvrMmFH2qM6DZcppc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VbqwVnO+5w95yjLROHnMXt4mjq4MFLyNjWvbMq1A2twdVnKld/MjsBXu2cs/EpNza
+	 PCVwtEr8xe0Lq0ODRA2KdhaIpvrPGsmq98mFp100Zl1GszNfdZpF5dR6azKbtejDip
+	 ypuPBCr2ZZNiR1QVsfNhWeJMpKjqY/XND4Ob0nYuI5i+vBelcs4MR8EbP1aEqPNA1i
+	 Lo+UF1QxP6gVnvtYtYa0x4XrLgQSmoJUHVf10miYX/zMbhetjF45BEQBaur61b9jeS
+	 6phfGWae7h1gNP1jvBYsujV4H36d5TbCLF2PFRj7y9jOM75JzFiWkD+wFU53TddlHK
+	 +cHyh8ahR7Y0Q==
+Date: Fri, 25 Oct 2024 09:57:52 +0100
+From: Lee Jones <lee@kernel.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v6 3/7] mfd: Add new driver for MAX77705 PMIC
+Message-ID: <20241025085752.GD10824@google.com>
+References: <20241007-starqltechn_integration_upstream-v6-0-0d38b5090c57@gmail.com>
+ <20241007-starqltechn_integration_upstream-v6-3-0d38b5090c57@gmail.com>
+ <20241015140224.GI8348@google.com>
+ <CABTCjFBpdMv6Qi3CLYNukMn+J1FwhbAg0hMy075Dt0H-g_hrUw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,64 +68,79 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <04050b73-eb16-440f-acd7-986b1f39a6c9@broadcom.com>
+In-Reply-To: <CABTCjFBpdMv6Qi3CLYNukMn+J1FwhbAg0hMy075Dt0H-g_hrUw@mail.gmail.com>
 
-On Thu, Oct 24, 2024 at 09:45:25AM -0700, Florian Fainelli wrote:
-> On 10/24/24 04:05, Sudeep Holla wrote:
-> > Gentle ping! Not sure if my earlier email got into spam or didn't land
-> > in lore/ML. Just thought of checking again.
->
-> You did not land in spam, just being quite busy.
->
+On Mon, 21 Oct 2024, Dzmitry Sankouski wrote:
 
-Ah good, at times our email server acts up, so there is always some
-doubt about it 😄.
-
+> > > diff --git a/drivers/mfd/max77705.c b/drivers/mfd/max77705.c
+> > > new file mode 100644
+> > > index 000000000000..553f20a6cdd5
+> > > --- /dev/null
+> > > +++ b/drivers/mfd/max77705.c
+> > > @@ -0,0 +1,248 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +//
+> > > +// max77705.c - mfd core driver for the MAX77705
 > >
-> > On Fri, Oct 18, 2024 at 01:57:09PM +0100, Sudeep Holla wrote:
-> > > On Tue, Sep 03, 2024 at 04:40:00PM +0100, Sudeep Holla wrote:
-> > > > On Tue, Aug 27, 2024 at 11:24:50AM -0700, Florian Fainelli wrote:
-> > > > > Some shared memory areas might only support a certain access width,
-> > > > > such as 32-bit, which memcpy_{from,to}_io() does not adhere to at least
-> > > > > on ARM64 by making both 8-bit and 64-bit accesses to such memory.
-> > > > >
-> > > > > Update the shmem layer to support reading from and writing to such
-> > > > > shared memory area using the specified I/O width in the Device Tree. The
-> > > > > various transport layers making use of the shmem.c code are updated
-> > > > > accordingly to pass the I/O accessors that they store.
-> > > > >
-> > > >
-> > > > This looks good to me now, much simpler. I will push this to -next soon,
-> > > > but it won't be for v6.12. I have already sent PR for that. I want this
-> > > > to be in -next for longer just to see if anyone has any comments and
-> > > > doesn't break any platform(which it shouldn't anyways).
-> > > >
-> > > > Just hoping if anyone looks at it and have feedback once it is in -next.
-> > > > I will apply formally at v6.12-rc1 and report back if no one complains
-> > > > until then.
-> > > >
-> > >
-> > > Hi Florian,
-> > >
-> > > Just thought I will check with you if the content is -next are fine as I now
-> > > recall I did the rebase as this patch was original posted before the rework
-> > > of transport as modules were merged. Please confirm if you are happy with the
-> > > rebase as you see in -next. I also had to rebase it on recent fixes that
-> > > Justin added as there were trivial conflicts.
-> > >
-> > > Another thing I wanted to check is if [1] series has any impact on this.
-> > > IIUC no, but it would be good to give a go in terms of testing just in case
-> > > that as well lands in -next.
->
-> linux-next as of today (2024-10-24) still works good on the affected
-> platform, thanks for asking!
+> (...)
+> > > +// Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.com>
+> >
+> > Only the SPDX in C++ comments please.
+> >
+> This conflicts with https://patchwork.kernel.org/comment/25898728/
 
-Thanks, though note that I am not sure if the series [1] I mentioned in queued
-yet or not.
+a) Mark is only talking about the file header
 
---
-Regards,
-Sudeep
+> > > +
+> (...)
+> 
+> > > +++ b/include/linux/mfd/max77705-private.h
+> > > @@ -0,0 +1,180 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > > +//
+> > > +// Maxim MAX77705 definitions.
+> > > +//
+> > > +// Copyright (C) 2015 Samsung Electronics, Inc.
+> > > +// Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.com>
+> >
+> > No C++ please.
+> 
+> This conflicts with https://patchwork.kernel.org/comment/25898728/
 
-[1] https://lore.kernel.org/all/20241010123627.695191-1-jvetter@kalrayinc.com
+a) Mark is only talking about the file header
+b) Different subsystem, different rules.
+
+> 
+> >
+> > > +
+> > > +#ifndef __LINUX_MFD_MAX77705_PRIV_H
+> > > +#define __LINUX_MFD_MAX77705_PRIV_H
+> > > +
+> > > +#include <linux/pm.h>
+> > > +
+> > > +#define MAX77705_SRC_IRQ_CHG BIT(0)
+> > > +#define MAX77705_SRC_IRQ_TOP BIT(1)
+> > > +#define MAX77705_SRC_IRQ_FG  BIT(2)
+> > > +#define MAX77705_SRC_IRQ_USBC        BIT(3)
+> > > +#define MAX77705_SRC_IRQ_ALL (MAX77705_SRC_IRQ_CHG | MAX77705_SRC_IRQ_TOP | \
+> > > +                             MAX77705_SRC_IRQ_FG | MAX77705_SRC_IRQ_USBC)
+> > > +
+> > > +// MAX77705_PMIC_REG_PMICREV register
+> >
+> > No C++ please.
+> 
+> This conflicts with https://patchwork.kernel.org/comment/25898728/
+
+a) Mark is only talking about the file header
+b) Different subsystem, different rules.
+
+> 
+> -- 
+> 
+> Best regards,
+> Dzmitry
+> 
+
+-- 
+Lee Jones [李琼斯]
 
