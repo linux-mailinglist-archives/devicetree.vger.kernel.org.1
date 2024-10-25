@@ -1,103 +1,100 @@
-Return-Path: <devicetree+bounces-115724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89BAE9B0845
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C199B07D1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DACF2B26174
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:25:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03E4BB23678
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2036D17BEA4;
-	Fri, 25 Oct 2024 15:22:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0510F21F4D2;
+	Fri, 25 Oct 2024 15:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="odaCxQsD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from riemann.telenet-ops.be (riemann.telenet-ops.be [195.130.137.80])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A8C21A4A3
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 15:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479832064EC
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 15:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729869721; cv=none; b=gptXZ+S60e9yGuepvRTEnu1AgbBB0U6X9j7zxscdm7qpkIDb2IhzlGWSKFn3iZP5IDWB8Qqxo7Rvq8nXfEeiYMTMDtcmmGzeBO4IW4hyuuPlw//Q2M91b/9IxHajN12aPvXvYExt0c3qXeztIZ538w14LSIaHBlbZplslR44TkU=
+	t=1729869209; cv=none; b=DqViSPOSstSX0ybQ+cftj3F+K5QcWaIrGpudZYhvZhZM5O7DDbJcL+H/ed4+psfzUHha8fI8DpR2QPSB7GyaB7RrhnnuiHm4pxoCYQUs1KM/SdsHGJb1aj4gz46/F/THbZK4QnU6CAPDSnSl06Sqz8GQef1VWoc4hthePwbkajw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729869721; c=relaxed/simple;
-	bh=Zw5LzwuhEUKiQEzoSZYvx6X6L5GiUzKRz/H836fxUqI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Fv3oItgFPo7AQqA03sYR7a4ufxcTO+g/9byD3gs0LIASARKv7qqyANBY29xaEL/F6rkR0W3GVx8uzW8G8nFbgj7VyQvf6KzQI8r5tsPMRoV+422cStwk1upq44JbOHsZdeQ5BC28GKFyuUrc3c8T6YEck56NP3FoW1EZIUtPbjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-	by riemann.telenet-ops.be (Postfix) with ESMTPS id 4XZmVb1w9mz4x2BP
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 17:12:39 +0200 (CEST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:6cce:9fcf:3351:6a67])
-	by xavier.telenet-ops.be with cmsmtp
-	id UfCS2D00M54cQus01fCStU; Fri, 25 Oct 2024 17:12:31 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1t4Lyz-005Vqz-4L;
-	Fri, 25 Oct 2024 17:12:26 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1t4LzG-00DnZc-B6;
-	Fri, 25 Oct 2024 17:12:26 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-	Paul Barker <paul.barker.ct@bp.renesas.com>,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: net: renesas,ether: Add iommus property
-Date: Fri, 25 Oct 2024 17:12:24 +0200
-Message-Id: <2ca890323477a21c22e13f6a1328288f4ee816f9.1729868894.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1729869209; c=relaxed/simple;
+	bh=1glypQCh6oU6vE3DESBggtLlZR/ohpj1NVGaFmiQlHQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iM9VTeLu9ngSiAL5mds+k0jL9znncpOBR9r4hG5R9JFDEouaRqesdL6IIplY/YaCl9e2X6S29fT9Bbsgfor9g1vsFHSlIBfQnZTalVnnBulZjnEjkfJDcIapMO1w0ar95gAwQyH7PB6t5hQWa6/mBqLauRGoTlMNrYiiANq4pOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=odaCxQsD; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-28cdd9d8d01so1175512fac.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:13:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729869206; x=1730474006; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cEZuHAA8jrvQYw1X6ZzndrKs/WqmOwXkzHNkdE13zG0=;
+        b=odaCxQsDwxbdMnVuZIjxGUmM80BQe9Ux1St3ELFUsGz/Mb+QyH33sRoh6tCnw8FGWE
+         BurqfLY1TCpftaj9qTgnHp8Try1vf/5s1rl3P/FQ69q1m69tyk5Dvs5bb5ekddrsRu8k
+         y+defOTU2fdLHU5gDEHxIx+4UX/9NjVt4szsAASG9qhFC5vxUtnt/nzjqcrxPHifqxak
+         l3W9efnIJNACTj2O+hvPE73mAHAIiidxsh4o3pQj5+Tj2CLn7z4a94y9xYnfAUA9spo6
+         YsbxdBHntSHvSfISB7Yv5iev2p/VBo28PRS4x4ikevqHrc3bQpRR9cDxSUuZUcxmN9fP
+         idnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729869206; x=1730474006;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cEZuHAA8jrvQYw1X6ZzndrKs/WqmOwXkzHNkdE13zG0=;
+        b=l1NLVoV7MyhZNAER7zdruV/TjMhpLqJaCbn1zVf9HiTHGZ0snA+/CizP/JrelVT9Ab
+         dEwfyygWnX2Xx9E2YaDc0qKHZUPGo8wXFNr9eg9tjPXm/u0G4Ps8lxEExvt1BPuMxoL2
+         oMiGYjs07v4CVoo0YgJoLFZOCCuYgXXf83ZjP+Zvm7f8uYlBNv+kYGIjpKrAbGSjzA+O
+         gdDWDOGZDJgc6mQyWTKpYCE9tAyG6KAJkHtX/4S6jy1pGq9Y0nBxL4Z/UfSLLyn723bi
+         Fb4F+c60NHO/gykDiRcaA0H3LIm4dmcIymJZsTxjDElUjbhKcAjoGIS+sk/8uknzmnzX
+         RtiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU218dBHKqqzF7sMBRDst7TIiBIDJeWeNdPWDxOAs3kgtEatK084dX7FwewXX38vIemCpcJX3WiISAA@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzOTLawyRTdYlPqEE9RXhZD/Jse5PmaoezjGj7cPaZj02vCaJA
+	Wuk9PLFSSGNqz3nzO+Ef9JDfiorADK9GGqDmUDmk4UwPB9VmEFH7icDp5wH5IIU=
+X-Google-Smtp-Source: AGHT+IHDeF7XMCZ1zuEMXoudHjPnmgG8Mw/iYsPRBtIJJeM8OILnp8VsSaxLdCT6Ho5BEB4MGt2j+A==
+X-Received: by 2002:a05:6870:e0d1:b0:288:44cd:33a2 with SMTP id 586e51a60fabf-28ccb73264fmr8369570fac.46.1729869206291;
+        Fri, 25 Oct 2024 08:13:26 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-29035d20dc7sm304413fac.10.2024.10.25.08.13.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Oct 2024 08:13:24 -0700 (PDT)
+Message-ID: <127a3066-1ee0-43ca-8214-05c9409e0138@baylibre.com>
+Date: Fri, 25 Oct 2024 10:13:23 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/5] iio: adc: ad7606: add support for AD760{7,8,9}
+ parts
+To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
+ michael.hennerich@analog.com, gstols@baylibre.com, conor.dooley@microchip.com
+References: <20241025095939.271811-1-aardelean@baylibre.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20241025095939.271811-1-aardelean@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-make dtbs_check:
-
-    arch/arm64/boot/dts/renesas/r8a77980-condor.dtb: ethernet@e7400000: 'iommus' does not match any of the regexes: '@[0-9a-f]$', 'pinctrl-[0-9]+'
-	    from schema $id: http://devicetree.org/schemas/net/renesas,ether.yaml#
-
-Ethernet Controllers on R-Car Gen2/Gen3 SoCs can make use of the IOMMU,
-so add the missing iommus property.
-
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/net/renesas,ether.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/renesas,ether.yaml b/Documentation/devicetree/bindings/net/renesas,ether.yaml
-index 29355ab98569daf6..d6c5983499b87d64 100644
---- a/Documentation/devicetree/bindings/net/renesas,ether.yaml
-+++ b/Documentation/devicetree/bindings/net/renesas,ether.yaml
-@@ -59,6 +59,9 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  iommus:
-+    maxItems: 1
-+
-   power-domains:
-     maxItems: 1
- 
--- 
-2.34.1
+On 10/25/24 4:59 AM, Alexandru Ardelean wrote:
+> This change-set adds support for AD7607, AD7608 and AD7609.
+> These parts are simpler parts for the AD7606x family. They support only
+> HW-only mode like AD7605, but they support oversampling like the other
+> AD7606x parts.
+> 
+Reviewed-by: David Lechner <dlechner@baylibre.com>
 
 
