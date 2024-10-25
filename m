@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-115481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D49A69AFBF2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:04:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F249AFBF5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:05:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 115271C223F2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:04:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30AEF284DDB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35EFC1D223E;
-	Fri, 25 Oct 2024 08:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A151D27A4;
+	Fri, 25 Oct 2024 08:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dDgh23HO"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Zs8wWcOH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6F51D2226
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:04:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934EE1CB9ED
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729843442; cv=none; b=NjJ16gdIw0iV3P5ZjHw5JN+xevMlxF7ku3Kenq7tDAy6TFG8Hm+OSK3Ji6cD6F+HgpmQNGtHMVV0Fg74gu6wo6XdjIcXYy22pJl2HLkybTNrVE3AX9KsMpYrQAJRzwQeh1+ouK27Zr6MQtQc083ZtqKzrPzlGD+ufxq4Q3obFJc=
+	t=1729843445; cv=none; b=sz3KuKhMp7XhMI112YFcUfnZax6uPpDXooR6mkHeoVwCsl9rJ49KY6CszNrpABDIyFbISIYbY+lhBYrTudePXhRzltLW5jL37cssM7pzRvKAOrANrLoYq+6oSSkkqy6R2oe1SEqKMXJgtUVHaExn6lwRzLLb+HnCOWagebllS4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729843442; c=relaxed/simple;
-	bh=aMBPJ6Vd4EmVp93lIiY7OjlP1Wbwmk20lpJHlco8Uuk=;
+	s=arc-20240116; t=1729843445; c=relaxed/simple;
+	bh=MKqyrRZYWKubYCITWw8Q5TrxroLI8BPgUsq2cs2pJ68=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=M3UBTMf6p0yroJHxtompUb2IHHnyRt4hTv7LkHgRG6CthiBsv861reEPiuD1rmPSjcEGFtCvgifF19zHUKi8kqmNKAwAMhFx43/u72FedC3xLaCUlXppbtL+yYQI+N0b7pXUkCllV173prBx0Yy4EyFgORmoefZ7BUsFhx5e/uQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dDgh23HO; arc=none smtp.client-ip=209.85.215.175
+	 In-Reply-To:To:Cc; b=aurzu7pFixWVdnF/y14M3gzVBobLV464rAxKN2d1+KNFGYtF1tNWSJlfmgzxvnW17dTdhBPq6fA0mJhez1t/qDvnGwcQbUtymeRMCKA6CQaJF2JdHUxLjRElwsZNb4mrdVtehkSxxYVTzozRgJJKCl974TzgVJhcMHfXoGrAIAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Zs8wWcOH; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-7ed67cfc1fcso1108150a12.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 01:04:00 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-71e953f4e7cso1251144b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 01:04:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729843439; x=1730448239; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1729843443; x=1730448243; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9978JY14w59ULMKg5mN8BKD9mGH4Z1Heuort4L6nsHM=;
-        b=dDgh23HOFGYEjQv6VrsSygxL7wDTVaXreXFuNXSYXfPvUnuNz9Ccz5TeFj0lowxRfQ
-         tFgfEha/8kzPZ5INb6+3InMte2qviGJ47bmuIyyGDZZFbT14iNMN5Lb+Om6xx6/z2gM2
-         vQsCZ+DPgRb7MWUrUDFJOxfa8tF2H61JS9cJU=
+        bh=FboZURjVUcmqOH+JZsWis9+u/grJQW0lknJr+SkmBQQ=;
+        b=Zs8wWcOHh/wbG33ETLzeDo1sJbtdUm1l9JaeuNLdwKJFaNAOEIGWVU4uQFmdlxMDvC
+         10MPWyFrjhZjLOCKd5fhL0YrDj1KK3kgys4AcGRG0AZ5YigtxJmD0HiCrvKph8j3bTnH
+         vQtx9oWaoaWD/TOTa7smxcTN8uVcNYso3b320=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729843439; x=1730448239;
+        d=1e100.net; s=20230601; t=1729843443; x=1730448243;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9978JY14w59ULMKg5mN8BKD9mGH4Z1Heuort4L6nsHM=;
-        b=J5/cRWvLTQqa88h50BMXS36amqZVFfxvYjkdG/dp2SQXBIU2QKR9uhsMf01JaEF6IN
-         j6/L5Ym3TEeOB3OPvOfVpA4Km1HyYuZFIybPBHyuNRmirAQH60UpSuzJ5AJoaQB8/p3K
-         nlFIrpFd0Om8KNdR9a5HUbhuIiZFtHmkk4RD7zjWvA2mG8R2ycBeX9eMrZSM5mKzvtPX
-         Rs+2z2bVIczdEX7GhYCje1oIs1D07Qd8rTtPYBh8DC+nQii09d5hIw2AvykXwFXwHZLk
-         waP1e8S9GfFzQQdmzcbmqG2C/DIXhNX0Vu35irN7llYwyFHXs6OzESXtwJbmEGqLFPND
-         antQ==
-X-Gm-Message-State: AOJu0YwPVtWEsUopLZk7zhhvTvqCRxCvbDps7g8gOUBMIhJb3SZfmAmC
-	rHKXM6P4gD897UhNrhZpCeqQbU52cul9V8EtEvnYSRr74uryO2eByLM40xM9Bw==
-X-Google-Smtp-Source: AGHT+IHGaBCdJPNmo+1SghxDLBaoYb7vIPUnB9rgksuYDIRKf/Aa/Z1cETZCG6RSrD08cs2t09cZpA==
-X-Received: by 2002:a05:6a20:9f45:b0:1d9:4837:ad7c with SMTP id adf61e73a8af0-1d978b1ddcemr10997249637.12.1729843439606;
-        Fri, 25 Oct 2024 01:03:59 -0700 (PDT)
+        bh=FboZURjVUcmqOH+JZsWis9+u/grJQW0lknJr+SkmBQQ=;
+        b=PAM97M+qXRzGYjusbr9on8KCmabfWJQ77aDHSN82sG5TtQkPWCmnEMhgbGUS7GYKEe
+         QsnCrJDBQv2EhEGH0zxXqxdtL/pcW/w3sSsu6iD5Q2wB7SoURlaTd/rutWcymAcM5vks
+         z7TwLfopYUzoYAekpD3H06I9LnQuR04fUeX1duiTk9hPNpDlYW8qYfZGEZEqeRD50NLq
+         mY5qdt0Z2WFB8Ih00ZbMQq1U8PN7C6DhAW3AWMu6QW5YvrmFTHxoEbp6vjXo0kipIlzJ
+         CcJT1W6w+QahDaUn97eJEOpcBO9gAQXHlCz2OgagmBZU6pMVtkU2igVFs5SWSZPPaLUI
+         1UxQ==
+X-Gm-Message-State: AOJu0YxJPdd/OYlXiUmghC90X4tA9IbFKGXnBfOXGIwx1Gkcb9F8Fbx6
+	G5AS1qnYJk4rP0MGlbVeCYbHUYmK9KxyaKXMmAhkbhpMagt3s1I1T+o274fTsQ==
+X-Google-Smtp-Source: AGHT+IE6aEDXPX7OUJEeP1hZS11M8BkJO1fdRVMhfFCbU/94VFdBQ35TBYN0pnrZfslaJJDKjmK1Ug==
+X-Received: by 2002:a05:6a00:84c:b0:71e:410:4764 with SMTP id d2e1a72fcca58-72030ba9e6cmr12403053b3a.8.1729843442771;
+        Fri, 25 Oct 2024 01:04:02 -0700 (PDT)
 Received: from yuanhsinte-p620-1.tpe.corp.google.com ([2401:fa00:1:10:5a9f:16cc:8d5a:55e5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a0d025sm558120b3a.101.2024.10.25.01.03.56
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a0d025sm558120b3a.101.2024.10.25.01.03.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 01:03:59 -0700 (PDT)
+        Fri, 25 Oct 2024 01:04:01 -0700 (PDT)
 From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Date: Fri, 25 Oct 2024 16:03:49 +0800
-Subject: [PATCH v2 2/4] arm64: dts: mt8183: burnet: add i2c2's
+Date: Fri, 25 Oct 2024 16:03:50 +0800
+Subject: [PATCH v2 3/4] arm64: dts: mt8183: cozmo: add i2c2's
  i2c-scl-internal-delay-ns
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -75,7 +75,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241025-i2c-delay-v2-2-9be1bcaf35e0@chromium.org>
+Message-Id: <20241025-i2c-delay-v2-3-9be1bcaf35e0@chromium.org>
 References: <20241025-i2c-delay-v2-0-9be1bcaf35e0@chromium.org>
 In-Reply-To: <20241025-i2c-delay-v2-0-9be1bcaf35e0@chromium.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -94,26 +94,28 @@ From: Daolong Zhu <jg_daolongzhu@mediatek.corp-partner.google.com>
 
 Add i2c2's i2c-scl-internal-delay-ns.
 
-Fixes: dd6e3b06214f ("arm64: dts: mt8183: Add kukui-jacuzzi-burnet board")
+Fixes: 52e84f233459 ("arm64: dts: mt8183: Add kukui-jacuzzi-cozmo board")
 Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Daolong Zhu <jg_daolongzhu@mediatek.corp-partner.google.com>
 Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
-index 19c1e2bee494c98c0db87308494713a26e304cd2..20b71f2e7159ade7e7d2135aabe6587c8f8d64de 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
-@@ -30,3 +30,6 @@ touchscreen@2c {
- 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts
+index f34964afe39b5353de7b17e82d14d1fba88551ab..83bbcfe620835ab6d34cd2f4c2183fbdf11d0909 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts
+@@ -18,6 +18,8 @@ &i2c_tunnel {
  };
  
-+&i2c2 {
-+	i2c-scl-internal-delay-ns = <4100>;
-+};
+ &i2c2 {
++	i2c-scl-internal-delay-ns = <25000>;
++
+ 	trackpad@2c {
+ 		compatible = "hid-over-i2c";
+ 		reg = <0x2c>;
 
 -- 
 2.47.0.163.g1226f6d8fa-goog
