@@ -1,306 +1,146 @@
-Return-Path: <devicetree+bounces-115611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DE8F9B01E6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:07:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D0E89B01ED
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:10:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D4B71F22D3C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:07:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08B3E1F22B9E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2AC201029;
-	Fri, 25 Oct 2024 12:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E87202637;
+	Fri, 25 Oct 2024 12:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VQoxykPB"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="grndIlir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DFB18B48F;
-	Fri, 25 Oct 2024 12:07:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB5A2022DA;
+	Fri, 25 Oct 2024 12:10:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729858059; cv=none; b=NTcUFBBQ6Y8JGFs1Ch2dqWY7rYwZTHhXuU3wf04S8XVsafoF0VWLnfEJHnsUQp+19fdP1VxCiKd+70RuxPDizzZFKRJPZb7Ja03ACovHawZm1KRzkpKfVh3FUjeCQAk/3WHa7Kjb8C8hDEwUqFqO4r7BR1P+plswwOjzpEWoURo=
+	t=1729858212; cv=none; b=sIrREFiWmpSRV/uu2CFJD+998MOMCF+D3Pp3KDD0nMLYlGuTmmz+f2vdHCKi9YC+Oh8Yu2EhErHwGYa9u+7TcqkZjjv12uoSawuYSxlESn7+ahjhz+wZlDTkLB2UNTmidxSU4dG2nvL71sfwJJBmCgGDWAOmygjPWXyYS0/JwZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729858059; c=relaxed/simple;
-	bh=Fi7dXG4uaynmJ0n9RLdhB8ZP1J0VU4wgRJkJG9JJODY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=YdlMvDrrF81ycBObcJg9bkvqq2dlroisfddG9trrDM1Ui4xeqYfxNj4+pAjlhxCPQZVQ9tyU+DRIwxRwOd+Fd6GeGoaXFNTZQHnAfHy9CphelQfTFXtjLVAy/DixKH9pYObkMrhLEREoKl+4LCfazsYIcU/EmLuKEarQ+5k5I+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VQoxykPB; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37d4821e6b4so1236470f8f.3;
-        Fri, 25 Oct 2024 05:07:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729858055; x=1730462855; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=IWsuk5W4z0hys3FesjB0y6f/oYwGY3GGML7np/7ZRwk=;
-        b=VQoxykPBaUf7IYMnRou0CAs6OoZtu8ixvs5eLEG2/HoQnlRuNlyU8QRe/OJUYKIHnI
-         xm1FQaLX0osmtLBFiUWsvYhvBVwdlkSzQ89txif0cJzQOMLtZ/dTwnQg1P1PKU4mutKg
-         VnqBkDYbC3jPQY87CRQ01F1FmOxk5hT6mElU1FYRW0l21pDp9SatHR4nknODHzz4q+Oj
-         miK93fdCwYLPOatykyAwh4zf7CmMpcRgKvL9ifG3fOZqHfZ+t7jM6fa+2wsiGPz3nccH
-         dxGB3fYYXK5cLuWiVq7ymNh64ZInPDP8LHoKj5/RQbr/obT0QhBjmeAI/YG09LFzDPcj
-         1ymA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729858055; x=1730462855;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IWsuk5W4z0hys3FesjB0y6f/oYwGY3GGML7np/7ZRwk=;
-        b=VfvQEeSxbmnHJkt4k47fjynPSWzUT6pEoEJNfa0V23RFNwD0x7TbrvbZ0a7y4/AnoA
-         TBFp/5ihpqmhhEWgwFbix1uoWJOcAiWx992kH4GEXRgYv8zPwV+cSWg9s/AGyQNeTI2s
-         dWKksZiAWXhjwG4UbWBqioNeixI19hzgzE8im1/gEHhEmIUnxrP4aEpQh2peC5b9xz65
-         z/CsPrXWuSZYCcQ89sl3bvZiIKNO7545Jr+Q8A1Uhg5DU5cnTGLGqDaMmQ0Ikb5i9K3c
-         183hl7fOywcdtgjGO2FyrkpZ5PIZGKJbu5nbZYvg4Q9gTFMBe95L/Y2kl5ORbyvj1XHq
-         V/ag==
-X-Forwarded-Encrypted: i=1; AJvYcCUogBWz9mIiGvoy5AyOjPDdMnpVZg4fjjrfHpkc6Ej8cEEmFCaXbcLYdj3djx5K05nFu2kDXyoLli0K@vger.kernel.org, AJvYcCVPVm02/vHcXhPG6TOMYak3Lqnx9L/+TYGNtSv+tOhkCGLTwYkjJYGuN7RrpBAqK160ZYGFq9WkWDctVuS6@vger.kernel.org, AJvYcCXahqvyL/RGhd5E+TzZ6ddMoxR7T+zu/Csp8gmAOgM7OzQwOJXH5ZR4KYz1d/VViMEjg1ArUcBppbmY@vger.kernel.org, AJvYcCXciPtNUhgT1gizKOlPnhDnYhMrmCBApOICyChcdvJFVnMKQnAWcJmTin6a8E7R64z7g9DKd4mHwVNa@vger.kernel.org, AJvYcCXjQemDTJxkkoiB8EsNqlAl8ePVJMAwki9WI+Fvuq8QOoc+0567xXPYqYi9dyDLJqJhUTTbQb7ubzyE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCQIpzFtbAkHdx7oC0bEVAQnj9DzdImqqaP6YaRHusD3sBvtlB
-	BzgRUqLfoXwvzxHECLajeKx3hoa0Iig2OD+iDZxI4rl84NHnsEw6
-X-Google-Smtp-Source: AGHT+IFG/s/9pjlSrOD62Ubm5oO46WanxGuXBtDDnHqRg1d+Of3RBLbBi99eFc2jv9DF84GZ0kT77Q==
-X-Received: by 2002:adf:a79a:0:b0:37d:5405:817b with SMTP id ffacd0b85a97d-3803ac83979mr2993845f8f.7.1729858054728;
-        Fri, 25 Oct 2024 05:07:34 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38058b9279esm1346939f8f.104.2024.10.25.05.07.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 05:07:34 -0700 (PDT)
-Message-ID: <b47e7168a58e840f65c1ef150c914c077905fabf.camel@gmail.com>
-Subject: Re: [PATCH RFC v4 06/15] spi: offload-trigger: add PWM trigger
- driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
-	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-Date: Fri, 25 Oct 2024 14:07:33 +0200
-In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-6-f8125b99f5a1@baylibre.com>
-References: 
-	<20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
-	 <20241023-dlech-mainline-spi-engine-offload-2-v4-6-f8125b99f5a1@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1729858212; c=relaxed/simple;
+	bh=a0NkGOWfPXvuC0pRrY2V1xNhHthWDgHcKYifaYQcMuI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DAISP3deAT0U/QTgCCf2vlkC+dZKe47kf68+hCAc253VYT54fakcpDuGvb8BZigPNPAsoOGUCk2y4H97eomWTmwg+4xFGmMbWmc7S70AZChJEiOecAtqA3HT+lBFHcIipCY+MRjz9PhYcFsIpM+SebCwHyPig8/ZmFD4QkEAaK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=grndIlir; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729858211; x=1761394211;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=a0NkGOWfPXvuC0pRrY2V1xNhHthWDgHcKYifaYQcMuI=;
+  b=grndIlirvwmJWQAfbj0CBCEvDKEt2cRMzFOmud3jEV+/q3q6JNn3tedq
+   YAUT+KvT4A80W6gqhuJ1+sPOj4u44TKBL8eMV1QrjUq7ipz4IKzEiJzFK
+   2Xbp9miwo1fprcOd8tllz0202o+r6DBoy5jcNERIs3yXOYo2W50y1eXGM
+   1hM5RwysnEzDj99nt/gw40PhO7JLp2zHuRy2jFowL5LQo6NamvtXr2C1G
+   JsZ/a32s4nERx/6npfu3lUBW9lEmSBHelAeit0YKvBnihrQphf0sYNVyl
+   wIH3xXHdMLQLnyQq3fHc/FluqnzI9CRj/zAuuRAMiI4yWtHrMAWL9Nprm
+   g==;
+X-CSE-ConnectionGUID: sTIWyVf7TqmmY6G6KXSezQ==
+X-CSE-MsgGUID: m+DIviJpTi+/nLhudoIzHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29692403"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="29692403"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 05:10:10 -0700
+X-CSE-ConnectionGUID: UO8b6M5ER5iqox+HpdnRPg==
+X-CSE-MsgGUID: g74Ybz18R9a361uG3aHnZg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; 
+   d="scan'208";a="111711060"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 25 Oct 2024 05:10:03 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t4J8j-000YD2-0w;
+	Fri, 25 Oct 2024 12:10:01 +0000
+Date: Fri, 25 Oct 2024 20:09:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	=?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 22/37] drm/vc4: txp: Add BCM2712 MOPLET support
+Message-ID: <202410251938.rnvcIesU-lkp@intel.com>
+References: <20241023-drm-vc4-2712-support-v1-22-1cc2d5594907@raspberrypi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241023-drm-vc4-2712-support-v1-22-1cc2d5594907@raspberrypi.com>
 
-Hi David,
+Hi Dave,
 
-Looks mostly good... Just one minor comments from me.
+kernel test robot noticed the following build warnings:
 
-On Wed, 2024-10-23 at 15:59 -0500, David Lechner wrote:
-> Add a new driver for a generic PWM trigger for SPI offloads.
->=20
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
->=20
-> v4 changes: new patch in v4
-> ---
-> =C2=A0drivers/spi/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 12 +++
-> =C2=A0drivers/spi/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
-> =C2=A0drivers/spi/spi-offload-trigger-pwm.c | 169 +++++++++++++++++++++++=
-+++++++++++
-> =C2=A03 files changed, 184 insertions(+)
->=20
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index d65074b85f62..50d04fa317b7 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -1286,4 +1286,16 @@ endif # SPI_SLAVE
-> =C2=A0config SPI_DYNAMIC
-> =C2=A0	def_bool ACPI || OF_DYNAMIC || SPI_SLAVE
-> =C2=A0
-> +if SPI_OFFLOAD
-> +
-> +comment "SPI Offload triggers"
-> +
-> +config SPI_OFFLOAD_TRIGGER_PWM
-> +	tristate "SPI offload trigger using PWM"
-> +	depends on PWM
-> +	help
-> +	=C2=A0 Generic SPI offload trigger implemented using PWM output.
-> +
-> +endif # SPI_OFFLOAD
-> +
-> =C2=A0endif # SPI
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index 6a470eb475a2..3a76b9c61486 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -161,3 +161,6 @@ obj-$(CONFIG_SPI_AMD)			+=3D spi-amd.o
-> =C2=A0# SPI slave protocol handlers
-> =C2=A0obj-$(CONFIG_SPI_SLAVE_TIME)		+=3D spi-slave-time.o
-> =C2=A0obj-$(CONFIG_SPI_SLAVE_SYSTEM_CONTROL)	+=3D spi-slave-system-contro=
-l.o
-> +
-> +# SPI offload triggers
-> +obj-$(CONFIG_SPI_OFFLOAD_TRIGGER_PWM)	+=3D spi-offload-trigger-pwm.o
-> diff --git a/drivers/spi/spi-offload-trigger-pwm.c b/drivers/spi/spi-offl=
-oad-
-> trigger-pwm.c
-> new file mode 100644
-> index 000000000000..ffb0bf75cace
-> --- /dev/null
-> +++ b/drivers/spi/spi-offload-trigger-pwm.c
-> @@ -0,0 +1,169 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2024 Analog Devices Inc.
-> + * Copyright (C) 2024 BayLibre, SAS
-> + *
-> + * Generic PWM trigger for SPI offload.
-> + */
-> +
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/spi/spi-offload.h>
-> +#include <linux/types.h>
-> +
-> +struct spi_offload_trigger_pwm_state {
-> +	struct device *dev;
-> +	struct pwm_device *pwm;
-> +};
-> +
-> +static bool spi_offload_trigger_pwm_match(void *priv,
-> +					=C2=A0 enum spi_offload_trigger_type type,
-> +					=C2=A0 u64 *args, u32 nargs)
-> +{
-> +	if (nargs)
-> +		return false;
-> +
-> +	return type =3D=3D SPI_OFFLOAD_TRIGGER_PERIODIC;
+[auto build test WARNING on 91e21479c81dd4e9e22a78d7446f92f6b96a7284]
 
-Hmm will we ever be in a place where a trigger provide might have multiple =
-types? If
-so, then I'm mostly fine with this match() callback. But we could still avo=
-id it if
-we use a bitmask for trigger types and having any trigger provider to give =
-the
-supported types. Then the core could pretty much do the match between the r=
-equested
-trigger type and what the provider supports.
+url:    https://github.com/intel-lab-lkp/linux/commits/Dave-Stevenson/drm-vc4-Limit-max_bpc-to-8-on-Pi0-3/20241024-005239
+base:   91e21479c81dd4e9e22a78d7446f92f6b96a7284
+patch link:    https://lore.kernel.org/r/20241023-drm-vc4-2712-support-v1-22-1cc2d5594907%40raspberrypi.com
+patch subject: [PATCH 22/37] drm/vc4: txp: Add BCM2712 MOPLET support
+config: arc-randconfig-r111-20241025 (https://download.01.org/0day-ci/archive/20241025/202410251938.rnvcIesU-lkp@intel.com/config)
+compiler: arc-elf-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20241025/202410251938.rnvcIesU-lkp@intel.com/reproduce)
 
-> +}
-> +
-> +static int spi_offload_trigger_pwm_validate(void *priv,
-> +					=C2=A0=C2=A0=C2=A0 struct spi_offload_trigger_config
-> *config)
-> +{
-> +	struct spi_offload_trigger_pwm_state *st =3D priv;
-> +	struct spi_offload_trigger_periodic *periodic =3D &config->periodic;
-> +	struct pwm_waveform wf =3D { };
-> +	int ret;
-> +
-> +	if (config->type !=3D SPI_OFFLOAD_TRIGGER_PERIODIC)
-> +		return -EINVAL;
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410251938.rnvcIesU-lkp@intel.com/
 
-Checking the above every time seems redundant to me. We should match it onc=
-e during
-the trigger request and then just use that trigger type. Otherwise I'm not =
-seeing the
-point of the match() callback.
+sparse warnings: (new ones prefixed by >>)
+   drivers/gpu/drm/vc4/vc4_txp.c:513:27: sparse: sparse: symbol 'bcm2712_mop_data' was not declared. Should it be static?
+>> drivers/gpu/drm/vc4/vc4_txp.c:527:27: sparse: sparse: symbol 'bcm2712_moplet_data' was not declared. Should it be static?
 
-> +
-> +	if (!periodic->frequency_hz)
-> +		return -EINVAL;
-> +
-> +	wf.period_length_ns =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic-
-> >frequency_hz);
-> +	/* REVISIT: 50% duty-cycle for now - may add config parameter later */
-> +	wf.duty_length_ns =3D wf.period_length_ns / 2;
-> +
-> +	ret =3D pwm_round_waveform_might_sleep(st->pwm, &wf);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	periodic->frequency_hz =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC,
-> wf.period_length_ns);
-> +
-> +	return 0;
-> +}
-> +
-> +static int spi_offload_trigger_pwm_enable(void *priv,
-> +					=C2=A0 struct spi_offload_trigger_config
-> *config)
-> +{
-> +	struct spi_offload_trigger_pwm_state *st =3D priv;
-> +	struct spi_offload_trigger_periodic *periodic =3D &config->periodic;
-> +	struct pwm_waveform wf =3D { };
-> +
-> +	if (config->type !=3D SPI_OFFLOAD_TRIGGER_PERIODIC)
-> +		return -EINVAL;
-> +
-> +	if (!periodic->frequency_hz)
-> +		return -EINVAL;
-> +
-> +	wf.period_length_ns =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic-
-> >frequency_hz);
-> +	/* REVISIT: 50% duty-cycle for now - may add config parameter later */
-> +	wf.duty_length_ns =3D wf.period_length_ns / 2;
-> +
-> +	return pwm_set_waveform_might_sleep(st->pwm, &wf, false);
-> +}
-> +
-> +static void spi_offload_trigger_pwm_disable(void *priv)
-> +{
-> +	struct spi_offload_trigger_pwm_state *st =3D priv;
-> +	struct pwm_waveform wf;
-> +	int ret;
-> +
-> +	ret =3D pwm_get_waveform_might_sleep(st->pwm, &wf);
-> +	if (ret < 0) {
-> +		dev_err(st->dev, "failed to get waveform: %d\n", ret);
-> +		return;
-> +	}
-> +
-> +	wf.duty_length_ns =3D 0;
-> +
-> +	ret =3D pwm_set_waveform_might_sleep(st->pwm, &wf, false);
-> +	if (ret < 0)
-> +		dev_err(st->dev, "failed to disable PWM: %d\n", ret);
-> +}
-> +
-> +static const struct spi_offload_trigger_ops spi_offload_trigger_pwm_ops =
-=3D {
-> +	.match =3D spi_offload_trigger_pwm_match,
-> +	.validate =3D spi_offload_trigger_pwm_validate,
-> +	.enable =3D spi_offload_trigger_pwm_enable,
-> +	.disable =3D spi_offload_trigger_pwm_disable,
-> +};
-> +
-> +static void spi_offload_trigger_pwm_release(void *data)
-> +{
-> +	pwm_disable(data);
-> +}
-> +
-> +static int spi_offload_trigger_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct spi_offload_trigger_info info =3D {
-> +		.name =3D "trigger",
+vim +/bcm2712_moplet_data +527 drivers/gpu/drm/vc4/vc4_txp.c
 
-pwm-trigger or trigger-pwm?
+   526	
+ > 527	const struct vc4_txp_data bcm2712_moplet_data = {
+   528		.base = {
+   529			.name = "moplet",
+   530			.debugfs_name = "moplet_regs",
+   531			.hvs_available_channels = BIT(1),
+   532			.hvs_output = 4,
+   533		},
+   534		.encoder_type = VC4_ENCODER_TYPE_TXP1,
+   535		.high_addr_ptr_reg = TXP_DST_PTR_HIGH_MOPLET,
+   536		.size_minus_one = true,
+   537		.supports_40bit_addresses = true,
+   538	};
+   539	
 
-> +		.id =3D 0,
-
-nit: Not really needed
-
-- Nuno S=C3=A1
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
