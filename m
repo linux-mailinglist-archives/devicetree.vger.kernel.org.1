@@ -1,174 +1,338 @@
-Return-Path: <devicetree+bounces-115751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2D1D9B09AC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:19:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A2F9B09B7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:21:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08E8CB22BA2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:19:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 397552830E0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39947185B7B;
-	Fri, 25 Oct 2024 16:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE93D187344;
+	Fri, 25 Oct 2024 16:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="oFXMV6hG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WQpTz7Iq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A4D170854
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 16:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0E1176251
+	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 16:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729873179; cv=none; b=J0/hAH1kKpEaLIxT1EscIkAS59f+KfbnLGWvK4LYEj+TNnxafveqH/KMPjWj6eyVJYKtUB3ArA5pqwMJGDtdZKmN+aYnhAabMjjr0exHo9ZisUPm1Euzli9WFulXLBUwwfn6g0y7ZBF8x4O0RKVtlwOi+9IW0T41KmgpohlBtf4=
+	t=1729873306; cv=none; b=CyFLSbLEZCEsvjznmP2yWhM962cjivbG6xbdQ03WHeM3IXYkjP5sLAkU3bkTcLCf916d0zLjx9L+XrVlXVEvxCOJlc7DWjj7AUZaJ61M6mE8HOPffH5CLqoV22QnvWRnB3mDWPU5Vx/sPpjLfRNI0bNDB1cOv1HW14XIt1/sqx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729873179; c=relaxed/simple;
-	bh=20kvON+allBWG+dOYdEwydFA2kFbEWyepoiWZBEaUn8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SmtWk2Pb2XwdTdkgSlT5BgbLsFGHG6MHU4lFKY1j9c14mNF+4hLS7RjNS//6AWxIaT7YNGXMZI6T7z2ZMafp2tD2v5QoRhUfkoQtqD7Lno0QUQ1McI2MIuWII/wf+gRUmaeuc2okW02Rer7CB8U7a7IYfQ+KpQH2bZH9k7gKwwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=oFXMV6hG; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539f8490856so2189527e87.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:19:36 -0700 (PDT)
+	s=arc-20240116; t=1729873306; c=relaxed/simple;
+	bh=4U6UHnhVIZfwooHUtB61nNdp00jUpPMdAj6gGI32hvo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iBPY9Poegl59ZRtLp0DRAfTUjEOK0xJS3BoElHV4H/CW3YtVdS0j+DeHOEFNZEIruMwj8COW+kV7u1MddLKeFJQ+rDywTfE/VoUQJRTt5AufMnHk262e0RQ9uUEWN16chHSgpBouPaEET5RJynqsJkTN2rnkiW6A9f4vQTOC12E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WQpTz7Iq; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4314c4cb752so21897245e9.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:21:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729873172; x=1730477972; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WvhVvwnQMETeLbhAdwS48ux8c3HSfVAk89SUO2m7NmQ=;
-        b=oFXMV6hG9ypjLVDNbGL0rc1B4OeRXvg0UnUM8GCIwQm3tuibYP0T/17ucARnNgiV8G
-         MFk+KdGh+vdisizgfA7dyz1wdUZypF51cVekHN1P9tOtdifuhRh5AuPS1sC07duDOI0D
-         PwnuM5kWzh/xpzVukjsC5FkMO3XaUuoTB32HQ=
+        d=linaro.org; s=google; t=1729873302; x=1730478102; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xKMe0kTY9Xwhvqu9PTgbz7NZVWtehoaaceI1KFjE78c=;
+        b=WQpTz7IqEs7VpVG96+A8dFoUMKJtg0oM1GdSMtRqxMs7+PYShkQYBv+F3fJfGH1GuR
+         X7SipYLS1bbDsEW7aI/IjLYc6n58UgppXrAaGI5UrAs64pn2ccNeFJHXFhSjRw7bXa+o
+         9vSp766AlOgLjEqOKp3csDbEeuD2zseieveMW1qdIeycLTNocjDx/jv1hYgn/DohwPF4
+         CgwdLFwtAqoKpST0MnXKkaAnLOREcgU8xTt5NFyjpNR2ADadCDl8OGSEUVsVGstgKyt7
+         5R7iobESrBLOTCG1k4kmwxRCpq3Q2ODNm1pekr9k1H610jHj3Ni7aa5RJA7fmIKzMV2N
+         d9Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729873172; x=1730477972;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WvhVvwnQMETeLbhAdwS48ux8c3HSfVAk89SUO2m7NmQ=;
-        b=gjN8sUqiFBfIyNjtLhwNxXE4Y7vbCvpOS0O+lSyBbR3q/l7sdyHia+iQZ5BLNuLLik
-         8KI7ILUlQtj7qyAjuf36FCFccO3gnWFX89MC27vfgMAC32TNdUVchINJat/1uxdMm3qk
-         0YxVWIATWN1bdYbvaEPdVzQ8r85/4/KVQTemSC7a0RLvb8lJ7UqVBJK8hxEBZIA+3Qwc
-         /fXrNkry9U4TqWqo0mp3VqHTiWrYFryofgJ3dgfMroKPN43DqzRRwp8Omjun8Hzyq+Yc
-         beJ5Yw8I/S5zVp6/zeDjAFkkjHz7R4IQ42vj66Wo410jiDztHY6dBrYMIHBzWMMXfzOr
-         6C3A==
-X-Forwarded-Encrypted: i=1; AJvYcCXi5noXiKLJ9uQ8zgOwmsI5snWqoboW+PALge8JWQUWTi/P0FtmySAIb/XuqnCNxYM2ARdDY5Lz7ePE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCFlazCh3uvSE+L1r6tywAPOey5qY7MYNff+dhz24Sq6VJp4ng
-	+O0G7GDzAYbvD3N7bWPlgVN6cUoyMaIfbw/3KXQ5ZkbobfMFSRwLY9h73Xkd4rNwT8d5hYWMMCB
-	xoP6q
-X-Google-Smtp-Source: AGHT+IG6l9UzTK6ed8vnPpqj+Ww7tOIdjK8CP0hK84uFyEWn3jCdaEJzXZ4fTe0AgNPzioNRMYQAuA==
-X-Received: by 2002:a05:6512:1327:b0:539:f4c1:71d3 with SMTP id 2adb3069b0e04-53b1a328663mr6734134e87.29.1729873171837;
-        Fri, 25 Oct 2024 09:19:31 -0700 (PDT)
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e1af6d4sm226284e87.173.2024.10.25.09.19.30
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 09:19:31 -0700 (PDT)
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb5111747cso22051731fa.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 09:19:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXSsjz/l+PUYc1t521YWOvZNSJrVEAaSRkWKlRl1UJNTpT4C8mgHIDNGItTWnEM/s3LaKia4LhIGFTZ@vger.kernel.org
-X-Received: by 2002:a2e:802:0:b0:2fb:587d:310 with SMTP id 38308e7fff4ca-2fc9d59ef65mr49259721fa.30.1729873169955;
- Fri, 25 Oct 2024 09:19:29 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1729873302; x=1730478102;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xKMe0kTY9Xwhvqu9PTgbz7NZVWtehoaaceI1KFjE78c=;
+        b=I73JVRMr3i6nEZ+xELNi9p5QfnXSOjCP0PykGwpaWPmTJc+s5GHvrJmBsudN7za6SK
+         N8vqZ5nU2/HtX7MOAEVsjoUNLB8x6mrtzya1Wj6lCUoip2WAa24VCUYwjQl/222o4T7R
+         SyjWS/A91sk5S3cCU9LKO2RhJS9yhZmSGKZ0/VXpFehxMgV86HDBWLstLsMH4fKHrczV
+         sW68texMVDAW45kqDAjfsmN2s1LPTM5BxTAp2u+fcw/UbWWIeQgSD8yIqtEIUk0YkpUS
+         cTKE5MA5CfH1sW0OifWE5ni57g/WwqFIVjAsbLs8OAj4GSnfmYyEhVnGDjqlF7S1CTZ8
+         ttYA==
+X-Forwarded-Encrypted: i=1; AJvYcCWdysv8s/OBU0fAGrV9UUzidYU4hIpKHmV7X/nd++ZebowkkS2V1DYj4BO6W4OV2hkXhj7Lr6aoM/E+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmoNwonX3UmZfnizxLp/wYuHfNh/zkR6cQ/qqYd+Qv9lspM33W
+	qqK2yu+X6YJhCea2VsbcCykJsAB+6In3yAbbk7J9gA1nPCseOhU4IFfA48SMgGw=
+X-Google-Smtp-Source: AGHT+IEvBNXGVxmL27N28gPJzfVMQ9d1oUlz1dnIvip3TXWHgZAWbblC123aTBWd1euJZj/YLE214A==
+X-Received: by 2002:a05:600c:5490:b0:431:5d14:1cae with SMTP id 5b1f17b1804b1-4318415fee0mr86584145e9.19.1729873302024;
+        Fri, 25 Oct 2024 09:21:42 -0700 (PDT)
+Received: from [127.0.0.1] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935f6df1sm22322915e9.35.2024.10.25.09.21.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2024 09:21:41 -0700 (PDT)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Date: Fri, 25 Oct 2024 17:21:40 +0100
+Subject: [PATCH v2] media: dt-bindings: Remove assigned-clock-* from
+ various schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025114642.40793-2-charles.goodix@gmail.com>
- <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3>
- <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com> <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
-In-Reply-To: <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 25 Oct 2024 09:19:14 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VHMfc2kJo2N3jkB9BR0H7SN2g9JqoDkZuZOOuq0OV6gw@mail.gmail.com>
-Message-ID: <CAD=FV=VHMfc2kJo2N3jkB9BR0H7SN2g9JqoDkZuZOOuq0OV6gw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-To: Rob Herring <robh@kernel.org>
-Cc: Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com, 
-	hbarnor@chromium.org, conor.dooley@microchip.com, jikos@kernel.org, 
-	bentiss@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241025-b4-linux-next-202041004-i2c-media-yaml-fixes-v2-1-1b4535174a5a@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAJPFG2cC/5WNTQqDMBBGryJZd0omxP6teo/iIiajDmhSEiuKe
+ PdG6QW6fG+Y760iUWRK4lGsItLEiYPPoE6FsJ3xLQG7zEJJpVHKEmoNPfvPDJ7mEbKWu9fAysJ
+ Ajg0sZuih4ZkSNLYprbRI8uZEnnxHOg558VVl7jiNIS5HfcLd/kKo/gtNCBKMqmtUBq/3i3vmX
+ xPDOcRWVNu2fQGLDFeI6QAAAA==
+X-Change-ID: 20241005-b4-linux-next-202041004-i2c-media-yaml-fixes-fcf5c0c1e08d
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Martin Kepplinger <martink@posteo.de>, 
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>, 
+ "Paul J. Murphy" <paul.j.murphy@intel.com>, 
+ Daniele Alessandrelli <daniele.alessandrelli@intel.com>, 
+ Tommaso Merciai <tomm.merciai@gmail.com>, 
+ Martin Hecht <martin.hecht@avnet.eu>, Zhi Mao <zhi.mao@mediatek.com>, 
+ Alain Volmat <alain.volmat@foss.st.com>, 
+ Mikhail Rudenko <mike.rudenko@gmail.com>, 
+ Ricardo Ribalda <ribalda@kernel.org>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Umang Jain <umang.jain@ideasonboard.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Dongchun Zhu <dongchun.zhu@mediatek.com>, 
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>, 
+ Todor Tomov <todor.too@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
 
-Hi,
+Remove extraneous assigned-clock* from media/i2c/* schemas, retain in the
+relevant examples.
 
-On Fri, Oct 25, 2024 at 8:59=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Fri, Oct 25, 2024 at 10:29=E2=80=AFAM Doug Anderson <dianders@chromium=
-.org> wrote:
-> >
-> > Charles,
-> >
-> > On Fri, Oct 25, 2024 at 5:03=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> > >
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - goodix,gt7986u-spi
-> > >
-> > > Compatible is already documented and nothing here explains why we sho=
-uld
-> > > spi variant.
-> > >
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interrupts:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  reset-gpios:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  goodix,hid-report-addr:
-> > >
-> > > I do not see this patch addressing previous review. Sending something
-> > > like this as v1 after long discussions also does not help.
-> >
-> > Krzysztof is right that it's better to wait until we get consensus on
-> > the previous discussion before sending a new patch. I know you were
-> > just trying to help move things forward, but because of the way the
-> > email workflow works, sending a new version tends to fork the
-> > discussion into two threads and adds confusion.
-> >
-> > I know Krzysztof and Rob have been silent during our recent
-> > discussion, but it's also a long discussion. I've been assuming that
-> > they will take some time to digest and reply in a little bit. If they
-> > didn't, IMO it would have been reasonable to explicitly ask them for
-> > feedback in the other thread after giving a bit of time.
->
-> If the firmware creates fundamentally different interfaces, then
-> different compatibles makes sense. If the same driver handles both bus
-> interfaces, then 1 compatible should be fine. The addition of '-spi'
-> to the compatible doesn't give any indication of a different
-> programming model. I wouldn't care except for folks who will see it
-> and just copy it when their only difference is the bus interface and
-> we get to have the same discussion all over again. So if appending
-> '-spi' is the only thing you can come up with, make it abundantly
-> clear so that others don't blindly copy it. The commit msg is useful
-> for convincing us, but not for that purpose.
+Link: https://lore.kernel.org/linux-media/j7kgz2lyxnler5qwd7yiazdq6fmsv77kyozdrxf33h54ydakjz@uqjhwhoyv6re
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+v2:
 
-OK, makes sense. Charles: Can you think of any better description for
-this interface than "goodix,gt7986u-spi"? I suppose you could make it
-super obvious that it's running different firmware with
-"goodix,gt7986u-spifw" and maybe that would be a little better.
+- Changes series name was: media: i2c: Cleanup assigned-clocks and endpoint: properties: unevaluatedProperties: false
+  Dropping the second patch in the series means the title changes too - bod
+- Drops unevaluatedProperties -> additionalProperties change
+  There is no clear consensus on this right now.
+- Adds Reviewed-by and Acked-by as indicated to patch #1 Laurent, Krzysztof 
+- Link to v1: https://lore.kernel.org/r/20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org
 
-I think what Rob is asking for to make it super obvious is that in the
-"description" of the binding you mention that in this case we're
-running a substantially different firmware than GT7986U touchscreens
-represented by the "goodix,gt7986u" binding and thus is considered a
-distinct device.
+v1:
 
-At this point, IMO you could wait until Monday in case Krzysztof wants
-to add his $0.02 worth and then you could send a "v2" patch addressing
-the comments so far, though of course you could continue to reply to
-this thread if you have further questions / comments.
+On a recent schema submission I did what most well adjusted schema writers
+do and tried to find a base file to work from to copy/paste and forget.
 
--Doug
+Confusingly/predictably I received feedback to remove or alter several of
+the properties included in my devious copy/paste plan.
+
+The first bit of feedback was that assigned-clock-* was to be dropped.
+Removing assigned-clock-* as assigned-clock-* is a core property which
+doesn't need to be listed in a schema.
+
+The second bit of feedback landed on use of additionalProperties:false
+along with enumeration of all required endpoint properties instead of an
+implied list of valid properties from unevaluatedProperties:false.
+
+Link: https://lore.kernel.org/linux-media/20241010-b4-master-24-11-25-ov08x40-v6-0-cf966e34e685@linaro.org
+
+This series removes the assigned-clock-* from upstream sensor property
+schemas and applies additionalProperities:false to properties: endpoint:.
+
+A few missing properties: or required: are added to the schemas based on
+output of DT checkers.
+
+The one new DT complaint I didn't fix with the move to
+additionalProperties: false is:
+
+/home/deckard/Development/qualcomm/qlt-kernel-tools/qlt-kernel/build/x1e80100-crd_qlt_integration/arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dtb: imx219@10: port:endpoint: 'remote-endpoint' is a required property
+
+Since this appears to be some sort of temporary/commented thing upstream
+which I don't know the provenance of.
+---
+ Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 8 --------
+ Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml | 8 --------
+ Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml | 8 --------
+ Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml | 4 ----
+ Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml | 4 ----
+ Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml | 4 ----
+ Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml | 4 ----
+ Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 4 ----
+ 8 files changed, 44 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+index 60f19e1152b33128cf3baa15b8c70a874ca6d52e..d18ead8f7fc43bfacc291aed85b5ca9166c46edb 100644
+--- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+@@ -28,12 +28,6 @@ properties:
+     items:
+       - description: Reference to the mclk clock.
+ 
+-  assigned-clocks:
+-    maxItems: 1
+-
+-  assigned-clock-rates:
+-    maxItems: 1
+-
+   reset-gpios:
+     description: Reference to the GPIO connected to the RESETB pin. Active low.
+     maxItems: 1
+@@ -82,8 +76,6 @@ required:
+   - compatible
+   - reg
+   - clocks
+-  - assigned-clocks
+-  - assigned-clock-rates
+   - vddio-supply
+   - vdda-supply
+   - vddd-supply
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
+index 1f497679168c8395a94b3867beb49b251ef621fc..622243cae03caa5d14aa312df40ef5907e190d2c 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
+@@ -20,12 +20,6 @@ properties:
+     items:
+       - description: XVCLK Clock
+ 
+-  assigned-clocks:
+-    maxItems: 1
+-
+-  assigned-clock-rates:
+-    maxItems: 1
+-
+   dvdd-supply:
+     description: Digital Domain Power Supply
+ 
+@@ -68,8 +62,6 @@ required:
+   - compatible
+   - reg
+   - clocks
+-  - assigned-clocks
+-  - assigned-clock-rates
+   - dvdd-supply
+   - dovdd-supply
+   - port
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+index 8a70e23ba6abed67d8b61c33bd7a261089bddda2..382d7de7a89bcea11be384a2a3800512994f9346 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+@@ -20,12 +20,6 @@ properties:
+     items:
+       - description: EXTCLK Clock
+ 
+-  assigned-clocks:
+-    maxItems: 1
+-
+-  assigned-clock-rates:
+-    maxItems: 1
+-
+   dvdd-supply:
+     description: Digital Domain Power Supply
+ 
+@@ -68,8 +62,6 @@ required:
+   - compatible
+   - reg
+   - clocks
+-  - assigned-clocks
+-  - assigned-clock-rates
+   - dvdd-supply
+   - avdd-supply
+   - dovdd-supply
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+index 79a7658f6d0547e4d6fb2267e5757eedf49fd416..38325cf318f7bd2cd60a4c7bbb6a65b54b855e26 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+@@ -27,10 +27,6 @@ properties:
+     description: I2C address
+     maxItems: 1
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description: Clock frequency from 6 to 27MHz
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+index c978abc0cdb35cfe2b85069946cf1be435a58cb8..f0f9726a2add89492b8c56e17ed607841baa3a0d 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+@@ -24,10 +24,6 @@ properties:
+       - sony,imx258
+       - sony,imx258-pdaf
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description:
+       Clock frequency from 6 to 27 MHz.
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+index bce57b22f7b63bd73f08d8831d9bb04858ef03e0..872b8288948b2bba743f2365a55165181df156ae 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+@@ -24,10 +24,6 @@ properties:
+     description: I2C address
+     maxItems: 1
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+index 77bf3a4ee89db3b5d16149470c0380ef8f1aeac1..38bd1c7304a59bb5fea90954c1e4e626a7c86f2f 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+@@ -24,10 +24,6 @@ properties:
+     description: I2C address
+     maxItems: 1
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+index d9b7815650fdb890418fc96c828acc9147dfb6e8..ece1e17fe34553671e61c965eb1833c5eb08131b 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+@@ -26,10 +26,6 @@ properties:
+     description: I2C address
+     maxItems: 1
+ 
+-  assigned-clocks: true
+-  assigned-clock-parents: true
+-  assigned-clock-rates: true
+-
+   clocks:
+     description: Clock frequency 6MHz, 12MHz, 18MHz, 24MHz or 27MHz
+     maxItems: 1
+
+---
+base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
+change-id: 20241005-b4-linux-next-202041004-i2c-media-yaml-fixes-fcf5c0c1e08d
+
+Best regards,
+-- 
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
