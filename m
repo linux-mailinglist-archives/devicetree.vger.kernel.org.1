@@ -1,143 +1,186 @@
-Return-Path: <devicetree+bounces-115635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FFFF9B029D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:41:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D959B02A3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 14:41:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70EF01C21A3A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:40:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF1491F22DD2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 12:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A20ED1F7563;
-	Fri, 25 Oct 2024 12:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE641F7552;
+	Fri, 25 Oct 2024 12:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GPodhBf0"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Va5fLxLo";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="E9hy1Wmt";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Va5fLxLo";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="E9hy1Wmt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711D21F755B;
-	Fri, 25 Oct 2024 12:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94CD1F7550;
+	Fri, 25 Oct 2024 12:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729860048; cv=none; b=SRYLrgvJngsShHj2cfLrhowewYPQaC2liQHADSqMbYnEheMZ8n0aXtyCXTfXrUTYinwM267S9gpuNgoK5+lUo+TkTRvch+sWvGo/rDdfaErogn9lZBXl66rw8JrgCVRgSVIgA5WltsRaf/ae/VCucTFO6hTuuSEsyFdJDDwTgzk=
+	t=1729860090; cv=none; b=r3g9Txk1Ycpad25Bm1Iye9dcCV7bIJ7wfJNaP4D/v/x1ymR/RCFMYj1wf7/iXzS92JlSp3wPAFIf4SUuKqYT78eJL8PQT5p9FryqqFIc8lD5hLviKfeBjZoBaTOJ7dCOO2eGgi3sRJOsrS4pCAyPwoQocAEwthSyqJaXFWPbY2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729860048; c=relaxed/simple;
-	bh=MfzjeI/yBGp3Rtb2zAkHIkJXsiLoANAebAwmlMXBm9k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VLWO0XA7vciIZmNYfc7/HKPEz+/TZ0vbH2HC7JYP64HYfvGsdA8A9BMY5P1iBY+w3muaSD1fpt5vtDc9CpWrVdMtxluGbRm7Q+unrY/wjZIboQ6cAAGhg9OcF+IGNDSD3DoJGWLwOUQldEz1fbHRPyamAWovtHIKztzIoS7jJ9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPodhBf0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22A35C4CEC3;
-	Fri, 25 Oct 2024 12:40:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729860047;
-	bh=MfzjeI/yBGp3Rtb2zAkHIkJXsiLoANAebAwmlMXBm9k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GPodhBf0+9qCaSELggrpq4ty0CH8zK7wLhXiPLNVI/H+cB6JQQ37bfqTTs8rLIe2/
-	 mChZtb+vWAX0KuOiPNIE3XLOjWFaJe3uLgtgDaSucrZzJ+F3Ft/7U7B0+N3dgQ7Li6
-	 0mzbYEAL2/TrnS5+EAKW9iYLrFB12qHFSifMwkl/ov/1mfJb+RgMbQBZ/Cmw21a0+V
-	 j6HAb5UHChFpRo6gwED+Am/zUErOCn0H4hDte2IFMdqp8ZhnaTIc2UiW8ZTawRrZ3P
-	 S9N3bnjajO1PhnBlS/InBzLAjbgeaDkCioYbSoMyzhdxYHSbhwXLMUxdqn9UZyJjVV
-	 7N0fnRwkWE+uw==
-Message-ID: <6e346bf5-4d38-49bd-9a3b-78c98b3a2205@kernel.org>
-Date: Fri, 25 Oct 2024 14:40:38 +0200
+	s=arc-20240116; t=1729860090; c=relaxed/simple;
+	bh=gEoL41SjEGxO1+nYDZAHohK4Dg3X1gGNXGTb4JwhhI0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ysc+12Ay9+ZzLtcx0dh9QPgv0qh9snhKRUMBsnGBCWwuEJdYedVLjjuZ4rzJALjEq/bezmOcUsqRThHErBmng+1kKdyfgXXDeTFTElPdksRtE7DUJGdI2DE/oQQj5NULcKmPfqgfL0vj+uG0Vypiz/9Hc40AY3pPIpRoPpZBsos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Va5fLxLo; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=E9hy1Wmt; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Va5fLxLo; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=E9hy1Wmt; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id A7AA621D54;
+	Fri, 25 Oct 2024 12:41:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1729860084; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=rclpcy2NkA/OAPsZkEcyTD0lijx7zaXfQCNiyX9YvLk=;
+	b=Va5fLxLoIQ9kHfOwL6E6qZAFYf0z6kMVgr+Gz6aTzhaYHYFZALxxDIj+AGasdFTP7ViI0Q
+	+rAgOLiHWwJ14MYsN5V2BKjizA11B+cZqJionnREPI+xhpsjQMHXiLll94QTPWwKpVCLxz
+	bO+U6CQKBSoNAar88PYWFtE2lMppd+o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1729860084;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=rclpcy2NkA/OAPsZkEcyTD0lijx7zaXfQCNiyX9YvLk=;
+	b=E9hy1WmtvIwYddJsvLQryMC2Q7OFAfe3yVLAN70Nu1f5pejFcFS+Wznwy1I7UL+DV40B5G
+	IottddhXDDNrG+Cw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1729860084; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=rclpcy2NkA/OAPsZkEcyTD0lijx7zaXfQCNiyX9YvLk=;
+	b=Va5fLxLoIQ9kHfOwL6E6qZAFYf0z6kMVgr+Gz6aTzhaYHYFZALxxDIj+AGasdFTP7ViI0Q
+	+rAgOLiHWwJ14MYsN5V2BKjizA11B+cZqJionnREPI+xhpsjQMHXiLll94QTPWwKpVCLxz
+	bO+U6CQKBSoNAar88PYWFtE2lMppd+o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1729860084;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=rclpcy2NkA/OAPsZkEcyTD0lijx7zaXfQCNiyX9YvLk=;
+	b=E9hy1WmtvIwYddJsvLQryMC2Q7OFAfe3yVLAN70Nu1f5pejFcFS+Wznwy1I7UL+DV40B5G
+	IottddhXDDNrG+Cw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A7A34136F5;
+	Fri, 25 Oct 2024 12:41:23 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id Pul7JvORG2ePNwAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Fri, 25 Oct 2024 12:41:23 +0000
+From: Stanimir Varbanov <svarbanov@suse.de>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	kw@linux.com,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Stanimir Varbanov <svarbanov@suse.de>
+Subject: [PATCH v4 00/10] Add PCIe support for bcm2712
+Date: Fri, 25 Oct 2024 15:41:21 +0300
+Message-ID: <20241025124121.12500-1-svarbanov@suse.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/12] perf: arm_pmuv3: Add support for Samsung
- Mongoose PMU
-To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Tomasz Figa
- <tomasz.figa@gmail.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-gpio@vger.kernel.org, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Maksym Holovach <nergzd@nergzd723.xyz>
-References: <20241025-exynos9810-v2-0-99ca3f316e21@gmail.com>
- <20241025-exynos9810-v2-8-99ca3f316e21@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241025-exynos9810-v2-8-99ca3f316e21@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-1.30 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_MISSING_CHARSET(0.50)[];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,broadcom.com,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com,suse.de];
+	RCVD_TLS_ALL(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	TO_DN_SOME(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Spam-Score: -1.30
+X-Spam-Flag: NO
 
-On 25/10/2024 13:24, Markuss Broks wrote:
-> Add support for the Samsung Mongoose CPU core PMU.
-> 
-> This just adds the names and links to DT compatible strings.
-> 
-> Co-developed-by: Maksym Holovach <nergzd@nergzd723.xyz>
-> Signed-off-by: Maksym Holovach <nergzd@nergzd723.xyz>
-> 
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> ---
->  drivers/perf/arm_pmuv3.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/perf/arm_pmuv3.c b/drivers/perf/arm_pmuv3.c
-> index 0afe02f879b45a8600b9cea1bfd88e6a68096a67..9eb5603e1dda18c4bdd2745304737932a27fde8a 100644
-> --- a/drivers/perf/arm_pmuv3.c
-> +++ b/drivers/perf/arm_pmuv3.c
+Here is v4 of the series which aims to add support for PCIe on bcm2712 SoC
+used by RPi5. Previous v3 can be found at [1].
 
-I believe perf patches are going through perf tree, so please split
-them. Only patches for Samsung SoC and clocks should be included here.
-Samsung pinctrl can stay, although it's also separate tree.
+v3 -> v4 changes include:
+ - Addressed comments on the interrupt-controller driver (Thomas)
+ - Moved "Reuse config structure" patch earlier in the series (Bjorn)
+ - Merged "Avoid turn off of bridge reset" into "Add bcm2712 support" (Bjorn)
+ - Fixed DTB warnings on broadcom/bcm2712-rpi-5-b.dtb 
 
-Best regards,
-Krzysztof
+For more detailed info check patches.
+
+Comments are welcome!
+~Stan
+
+[1] https://patchwork.kernel.org/project/linux-pci/list/?series=898891
+
+Stanimir Varbanov (10):
+  dt-bindings: interrupt-controller: Add bcm2712 MSI-X DT bindings
+  dt-bindings: PCI: brcmstb: Update bindings for PCIe on bcm2712
+  irqchip: Add Broadcom bcm2712 MSI-X interrupt controller
+  PCI: brcmstb: Reuse config structure
+  PCI: brcmstb: Expand inbound window size up to 64GB
+  PCI: brcmstb: Enable external MSI-X if available
+  PCI: brcmstb: Add bcm2712 support
+  PCI: brcmstb: Adjust PHY PLL setup to use a 54MHz input refclk
+  arm64: dts: broadcom: bcm2712: Add PCIe DT nodes
+  arm64: dts: broadcom: bcm2712-rpi-5-b: Enable PCIe DT nodes
+
+ .../brcm,bcm2712-msix.yaml                    |  60 ++++
+ .../bindings/pci/brcm,stb-pcie.yaml           |  21 ++
+ .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |   8 +
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 162 +++++++++
+ drivers/irqchip/Kconfig                       |  16 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-bcm2712-mip.c             | 310 ++++++++++++++++++
+ drivers/pci/controller/pcie-brcmstb.c         | 204 +++++++++---
+ 8 files changed, 735 insertions(+), 47 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
+ create mode 100644 drivers/irqchip/irq-bcm2712-mip.c
+
+-- 
+2.43.0
 
 
