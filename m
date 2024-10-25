@@ -1,121 +1,164 @@
-Return-Path: <devicetree+bounces-115483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDFB99AFBF7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:05:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A2E9AFC10
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 10:07:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B29C4280A75
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:05:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 400BC1F2455A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 08:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572271D2F42;
-	Fri, 25 Oct 2024 08:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85C81C7B75;
+	Fri, 25 Oct 2024 08:07:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="cMu/6Npe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DmYKRuuW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6036A1D2B17
-	for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 08:04:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF981C4A26;
+	Fri, 25 Oct 2024 08:07:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729843449; cv=none; b=iBDqkiGFNcQNFPL4bJZeTfaaz92HIKALNZ984Sww3sB8Bt9Vy17rrD1A2bmODz4rLaNCnsp+FArg9X6LS5cQ6+TJPCt1adbUIFsOeBmwV7OQbj0f4x62rJX0PBJdGNCB7VbL0d2XD46Qa9tLrQSyK5B4X+180akprCWLprG7AYQ=
+	t=1729843626; cv=none; b=liAdcPTM7FyqDTn0GuAaEWiU9irRkwHODWdxlsk8o37Rbm/yy94ZCsZx9k4LjudUY0+HzlFrBLLuXL+IrYULAjfKagUnyXNQmeZ06DfxtIAsmDZeN2beJJs6dKAA3EHmv+l/AMvMDRvlIBLQapC/CseElhFitX7g2s/K0tdFol0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729843449; c=relaxed/simple;
-	bh=0RUl0H/BXmrPx5mmgOjh1CEGTpiJIj6XAWAuimpM/oE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UfoQ4WEx3bp9YncN67ym80RVa2v9/1O16wYWzJBwB6PaAQENJtGnM/SpIKqx355HJW6PC+Er/sfbAfqpOW8dHpMAh0MsY/lVAhHFN6SXiD7dYNTvivoTvVuhM5yqq6MqcieRGht6CSI1e04e8aQ96rsBxKJIoAoZ7nj3HlU3864=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=cMu/6Npe; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-718e9c8bd83so1870999b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Oct 2024 01:04:07 -0700 (PDT)
+	s=arc-20240116; t=1729843626; c=relaxed/simple;
+	bh=6PhqsK4X0scvxeS2ZPiwz4VbAxk7bJYz4NaSrXbewV4=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ZVXYMGgtsv+3/vtlMvF0CwMpqmXmPMcw957sWeW103aUDH9KYSSjZX5nf5RQ+gdbfkb3GXnfqLNzHEpxKtnlwF5J3X93PPplNG9Q1LQE1JlvaATRWsOvVAqf1/iQOrjBZgUnJOxTWNY0fqHoNMO039EsUFu2VrgV5O5WPYjVXek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DmYKRuuW; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-288d70788d6so970965fac.1;
+        Fri, 25 Oct 2024 01:07:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1729843447; x=1730448247; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NDPyjQLJxhu/7enVOjQXyxhVyvrmjes2kCFmydRLWN0=;
-        b=cMu/6NpelsLGUtbCvDSpEVERwtzq2Vxp6VXWIyT5zzo5ipJAJEqnqwYGzq31dsMjqe
-         OW/x+tUlPuflHnQ0YqW4e6A1Lh/WQ0frnomwyggzYtc2hxfZzDtyb/RsFy4ku1GII2Xa
-         XATHX9Bz7fi4NV+QJCc1kD7IBDV1R3iur8ATQ=
+        d=gmail.com; s=20230601; t=1729843622; x=1730448422; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aCanS7lm2oIK9WyJeeAEIKg/+DUCUltSdlV8tSxgaXs=;
+        b=DmYKRuuWsbFMkve21jAPnoN4111wu0Ug2Bs90uUDcYZvn6R/qaQ+MVuzKuKKs9GeUO
+         P4yIHgXVEDoMRtaC0+OUaSajiRkm3PffVDuhGynO4VkcCAUlHeSzdPteDiYZljT6inCV
+         WHr3KnzzVQu+8TLQ9xZ3jsZV5+i+LuTaCGSkAb12O8dik+hSZ6m2BW2jxExopgmpLwQS
+         IpaiqybLd2r25KyQa89OnlWxwzqzhUsOnmGgf6nBCNz0pDuSAn4QFw91ZY7CI5azI6EC
+         Rw8I+J7fjheQZVAGtVF1U/2sOcYJMss6noJVZgQ7gcj9lhlzSPaHDka0XL7Sqn7+cd0+
+         C/Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729843447; x=1730448247;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NDPyjQLJxhu/7enVOjQXyxhVyvrmjes2kCFmydRLWN0=;
-        b=gn9lRzvFoTLi3h13RpBV1ksVmiVkDOfhw43qK3+Nh/Vu540/bjzksr3V/NQfa6/iVX
-         bD4nANzKxc8niCxOxs82GmxD7r2K+iC0J06F6thkshEZnu98rG16zQyWtS5964I89J0l
-         ksRb/miUnSmDAxD6IRztqv3NRtBC/WQyL+2IuA743JROvn0huK1NzJwyPwFGMmMdxJpC
-         QGHUbXRRrTfwzBhv80GSSJH14hMNHUl1nEqv28RXZIbfZX2Sz8lLQ1Ou7yYxFFEz7C6R
-         2mTVCHZUr4XiuvFumHdB3lgLhrCtQYrfGizGY1hS6BomZZyLTAl0mpkQUlnR5SVdD5oI
-         g16g==
-X-Gm-Message-State: AOJu0YzyR/yHsLwaaTlg7u70JTi45Dmx3D81LTqcGF+BYlxO1Xs/7e5B
-	3qPBzqkt8DrglcsGDORULCGj8sPHTWCY4bTsVe31+eOGu+6JbjjnpII50/52tw==
-X-Google-Smtp-Source: AGHT+IGMn5krXr2bDxQcM1KTz/KFZxm5bU1vktXqYGrTsZ3ivU3U8tGvEyAJw5wPsjNKYodNBtiSog==
-X-Received: by 2002:a05:6a00:22cb:b0:71e:4a46:fdb6 with SMTP id d2e1a72fcca58-7204522aff7mr6540383b3a.3.1729843446565;
-        Fri, 25 Oct 2024 01:04:06 -0700 (PDT)
-Received: from yuanhsinte-p620-1.tpe.corp.google.com ([2401:fa00:1:10:5a9f:16cc:8d5a:55e5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a0d025sm558120b3a.101.2024.10.25.01.04.03
+        d=1e100.net; s=20230601; t=1729843622; x=1730448422;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aCanS7lm2oIK9WyJeeAEIKg/+DUCUltSdlV8tSxgaXs=;
+        b=mJ42FuItIiQAXPnrGyo4LVKh91U7+Gg+A8bELkLKOsQGq5ykunscmj2i8PH/D/gFli
+         Ji+1dL1X88vO7msDDNWBqmNp1lVS71dV+buDq2R75A3tAEoYSI1GvewAUAHgHnUqlFVQ
+         3BD+q+StOmrEr42/Cg/tO0jsr/yYrCFrlS+aqeL8q+BtZrpL0IhVgp7icr8JHdSlvN65
+         cS2eLwd9T66g8sPjX9k7vUUxp+Ma/AEHZnquzqxvcqRo2uQqTyNkC4jOq6N/pEWjEpyk
+         kkEbA/fw85plsW5mkHr+WXwnIoZuieWR8BDmVH+NuvBCTyBIjLZyfa8UfQ33/7kyteQD
+         Yzsg==
+X-Forwarded-Encrypted: i=1; AJvYcCVMQhZYiJ9M/4PuMvv3pBHglLcxtvD//6NRijEPlfBKXepl7hENHxcbvRXiRCujmj0tvKNDhDpbXIeSzVD1@vger.kernel.org, AJvYcCVRSQgT9HC0bAf5ksHRYAYRCdWIXors8RAUNnXwCj3FywtJXbms9PuuUR2Ped4IJBXnLMMFjGHqgL9Q@vger.kernel.org, AJvYcCVwB3hKOOf23MTyBNb8Nb8sK7lSn/NEK58rX2rPe2oHRiDvGfQNW6/a6SCtePNfGtJaI6ylFIxmvXQ9@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywm286N3GOBj5PG/7ozmhEw2l/tkjHSfbidNEL/rnJUhXYkZwLs
+	Ma4E6SLtYguDhFgJxVMKCQ75UJzfSSAeXXulIBU68rkkLntSy6Id0yRSiA==
+X-Google-Smtp-Source: AGHT+IEWw+CFqp1TrLaz2UZqvWaNMZU4mMUog4jCovrgVt4urJ8rzGiEs9L4ZK07ucQAa4zt0NSGNA==
+X-Received: by 2002:a05:6870:c0d4:b0:270:276d:fb54 with SMTP id 586e51a60fabf-28ced2eeec4mr4850317fac.21.1729843622484;
+        Fri, 25 Oct 2024 01:07:02 -0700 (PDT)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-29035d20d70sm178319fac.8.2024.10.25.01.06.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Oct 2024 01:04:05 -0700 (PDT)
-From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Date: Fri, 25 Oct 2024 16:03:51 +0800
-Subject: [PATCH v2 4/4] arm64: dts: mt8183: Damu: add i2c2's
- i2c-scl-internal-delay-ns
+        Fri, 25 Oct 2024 01:07:01 -0700 (PDT)
+From: Chen Wang <unicornxw@gmail.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	unicorn_wang@outlook.com,
+	inochiama@outlook.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	chunzhi.lin@sophgo.com
+Subject: [PATCH v5 0/3] pwm: Add pwm driver for Sophgo SG2042
+Date: Fri, 25 Oct 2024 16:06:52 +0800
+Message-Id: <cover.1729843087.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241025-i2c-delay-v2-4-9be1bcaf35e0@chromium.org>
-References: <20241025-i2c-delay-v2-0-9be1bcaf35e0@chromium.org>
-In-Reply-To: <20241025-i2c-delay-v2-0-9be1bcaf35e0@chromium.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Hsin-Yi Wang <hsinyi@chromium.org>, 
- Enric Balletbo i Serra <eballetbo@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Hsin-Te Yuan <yuanhsinte@chromium.org>, 
- Daolong Zhu <jg_daolongzhu@mediatek.corp-partner.google.com>
-X-Mailer: b4 0.15-dev-2a633
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-From: Daolong Zhu <jg_daolongzhu@mediatek.corp-partner.google.com>
+From: Chen Wang <unicorn_wang@outlook.com>
 
-Add i2c2's i2c-scl-internal-delay-ns.
+Add driver for pwm controller of Sophgo SG2042 SoC.
 
-Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Daolong Zhu <jg_daolongzhu@mediatek.corp-partner.google.com>
-Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Thanks,
+Chen
+
 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-index 0b45aee2e29953b6117b462034a00dff2596b9ff..65860b33c01fe832f3a4b2e21d24ea6b4f0cba2b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-@@ -30,3 +30,6 @@ &qca_wifi {
- 	qcom,ath10k-calibration-variant = "GO_DAMU";
- };
- 
-+&i2c2 {
-+	i2c-scl-internal-delay-ns = <20000>;
-+};
+Changes in v5:
+  The patch series is based on v6.12-rc1.
 
+  Updated driver to add resets property for pwm controller node as per
+  suggestion from Inochi.
+
+Changes in v4:
+  The patch series is based on v6.12-rc1. You can simply review or test
+  the patches at the link [4].
+
+  Updated driver to set property atomic of pwm_chip to true as per suggestion
+  from Sean.
+
+Changes in v3:
+  The patch series is catched up with v6.12-rc1. You can simply review or test
+  the patches at the link [3].
+
+  Add patch #3 for dts part change.
+
+Changes in v2:
+  The patch series is based on v6.11-rc6. You can simply review or test the
+  patches at the link [2].
+
+  Fixed following issues as per comments from Yixun Lan, Krzysztof Kozlowski
+  and Uwe Kleine-König, thanks.
+
+  - Some minor issues in dt-bindings.
+  - driver issues, use macros with name prefix for registers access; add
+    limitations comments; fixed potential calculation overflow problem;
+    add .get_state() callback and other miscellaneous code improvements.
+
+Changes in v1:
+  The patch series is based on v6.11-rc6. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1725536870.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1725931796.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/linux-riscv/cover.1728355974.git.unicorn_wang@outlook.com/ [3]
+Link: https://lore.kernel.org/linux-riscv/cover.1729037302.git.unicorn_wang@outlook.com/ [4]
+---
+
+Chen Wang (3):
+  dt-bindings: pwm: sophgo: add PWM controller for SG2042
+  pwm: sophgo: add driver for Sophgo SG2042 PWM
+  riscv: sophgo: dts: add pwm controller for SG2042 SoC
+
+ .../bindings/pwm/sophgo,sg2042-pwm.yaml       |  58 ++++++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   9 +
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-sophgo-sg2042.c               | 194 ++++++++++++++++++
+ 5 files changed, 272 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-sophgo-sg2042.c
+
+
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
 -- 
-2.47.0.163.g1226f6d8fa-goog
+2.34.1
 
 
