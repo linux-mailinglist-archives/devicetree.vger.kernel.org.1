@@ -1,132 +1,122 @@
-Return-Path: <devicetree+bounces-115747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93E19B0900
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 17:59:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B119B0930
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:08:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BF841C2154A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 15:59:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B79C31C216DA
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6560E175D46;
-	Fri, 25 Oct 2024 15:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A91166F33;
+	Fri, 25 Oct 2024 16:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NleGa/rK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ibV6iOhX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B8C1741C6;
-	Fri, 25 Oct 2024 15:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86747A945;
+	Fri, 25 Oct 2024 16:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729871948; cv=none; b=gxoxYU1x1Nuvp5jb9NAU4Y9eN4gA66Hl/NcCEwATCzzgxF47rDioQUE6OpqoVbrc8ckcI3wJt0vVTIGBrWZsNnZxF/y7O2mnK5+4KhXRLb0lE9LIXq3qsYXb8SdXJCWxcANJfUEXuaIrgO01MUf8/M/AyzaG4FRbtkw6WUsJpm8=
+	t=1729872509; cv=none; b=u18yoXPNMIVvMrSTOFxJzU84lF/mXrpn1IWDpdRvW92o3Qnr8wvK0Ji8hdv3zTmLVFv2ajFvnsWBlhXiUXU9ddZjOVIub8NK7qaNjXy7vyNNYup4jpjVbEDZ8W/k0JdxQ3Y0FPygd9H0VhbbUM9mLhr78xsb04qIorh/f8WVCnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729871948; c=relaxed/simple;
-	bh=0ljjiMfY8z+Bl5+mDZWNjMpu9/ix8vBxLQdaWGAkiNY=;
+	s=arc-20240116; t=1729872509; c=relaxed/simple;
+	bh=m8UhqT2D8mXrCfBkPS2cGqIO6xu+2R3YfSp9wUkMwc0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zu66ATVzlhHpajAmVAStqi1Jy+pbQ51O9onHvdT2eUu01ZW9ojFQ+ew3Ee+fDq7Ub+72C6lDnPJb7yGOZmIyyW0xPyeooewIvqE3hbGA6aDyDEupGqYEQflUCRVgyKc6hYG440TYc54swxPxTx45poFvAOMpZ+mkBFI4zulcdw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NleGa/rK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C44A1C4AF0B;
-	Fri, 25 Oct 2024 15:59:07 +0000 (UTC)
+	 To:Cc:Content-Type; b=K1cRK9Uk2krGzmYXKG9YXzyLUWZL5TL2SvLa9ElSXGbXxdSOC5DqPceyaROo2nyfd7vPD/2dk3BGr12xumD9bQfkZd1ZSWrQ6T8B6XkKGN4kjz+OXYRveLSajqNCQ1jbfGHgPSPfHPcLWjoYdJEYqeLk690FHanRwQXjjbx3Yxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ibV6iOhX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F36A7C4AF0C;
+	Fri, 25 Oct 2024 16:08:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729871947;
-	bh=0ljjiMfY8z+Bl5+mDZWNjMpu9/ix8vBxLQdaWGAkiNY=;
+	s=k20201202; t=1729872509;
+	bh=m8UhqT2D8mXrCfBkPS2cGqIO6xu+2R3YfSp9wUkMwc0=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=NleGa/rKKt6BULz8gusnuJ1dXN0KyU8ET6sl/GovJm/ewuQCofxEroGBmRsb5+Esx
-	 A6OYDPg/AHTfS14QbyI4JPGOe3emSwG9pe2lpKMZW+7izkI+3NbrC36WYRsfHpTq6m
-	 GFeXCKCmqK8GY1LjhYiQWJbqUJ7fYvBveUFpb41S83/FI+qiunDEhlqzs0+8MM6p+9
-	 V1BLFMoLOCD4L2v6icdLkHKr5SWj1D8YVlUzXk3y31ZITaW+A9XHw0ajLOUxWLvVwK
-	 5UJxFcSfJN4VC+PNj77xqIhI9HfE7tJ13D+8qbRgHz4MVauNs0kF/pzZEJwJqv6uvg
-	 c5KjXXXXxeEhQ==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539f6e1f756so2629167e87.0;
-        Fri, 25 Oct 2024 08:59:07 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVYDis/nIxD+N6XuFd7ssBGlAE2ZrKVUp/to+DpdlZuVEzJjUa1If7H2xNUY8asDrn1ZtsyM6ng6RPHc4A=@vger.kernel.org, AJvYcCVeZgFy4CFlwrlXvUIOXjsWv93MNHBNWHgA2dECNLrn4eFPfwUI/q6rOvZj1SxrqPmhtIxy4UebgRt8ZCPA@vger.kernel.org, AJvYcCWu4+FnWDCrXy6Qq7qwfLPTnpQSNX6T053kR/XFBJyhGpc4GywjzB5jqIMpM1kn8Qo5AL5x+A79J3w/@vger.kernel.org
-X-Gm-Message-State: AOJu0YygbfF5oty7975rJmsWw+YxXPjoLP+5CrZCNnNQVBMMrSwi6Wss
-	IocoqLFPSWCnm/RClU5ibnmqLkvu7zB8ro7ItmwvfOauBsWpjknu7uka4ukKvKxC+BBi9BeA/S4
-	+4LP47nxUoggYduuDcKm0TbE66Q==
-X-Google-Smtp-Source: AGHT+IGqfGBzoEoRPRIkEeREtu2dznxwKMzTFWNqYthKnWJMl+avTFRaLz8K5ozJ0DKucijr+bxNVflLKh2zQVRwy3w=
-X-Received: by 2002:a05:6512:3096:b0:539:f754:ae15 with SMTP id
- 2adb3069b0e04-53b23e8ebabmr3741616e87.41.1729871946118; Fri, 25 Oct 2024
- 08:59:06 -0700 (PDT)
+	b=ibV6iOhXN0LWHRi8nL73fHlMvPhS6TUhJy8iKgHSKg4siemaRqo4cQ8kwRdA0AEDc
+	 XZ2dGX1K4scjvErwi1xBbf4PDKM3Le/CLP5p8+rHfFhU2sagk5g8SdvmrJz5zcBsed
+	 wlOKXsoV8j/jqcn8PX5jNNHxGO1BjGq+0Bph/dykP+MqVc99+1Cxsr4TgitTPITehf
+	 X8MXcxsksGYKOXSrRKAA+dMz3V+nS4JpYCYklDAjDOyEJtgAr5JyFf6iP+E6aiGXxn
+	 ffHutK/z/TFRVvezBvolNfZIo34YTWwAFSgoLwfkpdQBoImmKesEXGXel7x59/vOSZ
+	 W67aeKyuWUWOg==
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53b1fbb8be5so2382586e87.1;
+        Fri, 25 Oct 2024 09:08:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU57q6c15PcQdneCq4nB/4Wdu9KVVdDQEjM4jue6fEFSihPnCzHJaLl/R9FwhZAHx8eZJeGoYM5rLlNl25w@vger.kernel.org, AJvYcCW89ZnpZ7I96MJey43u29aeydC2y4xXCb01EbTpfD6UNJtaWzBw8I7LdFchXhAlMiSAwVF6v2MWP36H@vger.kernel.org, AJvYcCWHz7gw04pUDX69G7nNoblvR64UF03E73/yi7utSqUpYRbXBIRaO9WjcmBZQH6/NDEiEdgiYCqCxJej@vger.kernel.org, AJvYcCX6KW3+EsleePC40QyMGYe8YG4CWCwoYP4lkUrptMTpx3R17N3ByqIboHcbTLwalth8A/hDicgBTk7uTFXTEw0=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzg6NvZQILiFP5Z6zTyCTLHhB0oIcJvgPeztNGBFRnfwLWXc5SP
+	gOb7o00JjGTQGEsIJJtsKWIj2kFRVPAjXFjOXoOyO8xFTsnhRrlfKoN92wOno4skiPrpb8uUkWI
+	bi2udSgDzeLJJTJAI4OyPHSYqWw==
+X-Google-Smtp-Source: AGHT+IHljjKv2qhcHHlmzfYbXgiQ90Hr3WJDc2pE/XSMP8L+P9Fb91lskzB2hiKz32t6vMM1/rR3HOboQGzO7wn7kGk=
+X-Received: by 2002:a05:6512:12c4:b0:539:fa32:6c84 with SMTP id
+ 2adb3069b0e04-53b2373720amr1970236e87.18.1729872507229; Fri, 25 Oct 2024
+ 09:08:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025114642.40793-2-charles.goodix@gmail.com>
- <3ypn62dsgarvmxkmdglugcinxmvpmhdqub2zvkygaonn54odf6@amfgijfcd3l3> <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
-In-Reply-To: <CAD=FV=X1F3QC=eSXcCn-78iQBzHMzT3z9Sis3yXKW_Bzun3+EA@mail.gmail.com>
+References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-17-dakr@kernel.org>
+ <20241023000408.GC1848992-robh@kernel.org> <553bfc07-179e-4ca9-99ac-74b90badb6b0@de.bosch.com>
+In-Reply-To: <553bfc07-179e-4ca9-99ac-74b90badb6b0@de.bosch.com>
 From: Rob Herring <robh@kernel.org>
-Date: Fri, 25 Oct 2024 10:58:53 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
-Message-ID: <CAL_JsqLwOekE1mz+3g8NTE3o4GhE9PWwR1Jfk_tL0RYKQmCg-A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: input: Goodix SPI HID Touchscreen
-To: Doug Anderson <dianders@chromium.org>
-Cc: Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com, 
-	hbarnor@chromium.org, conor.dooley@microchip.com, jikos@kernel.org, 
-	bentiss@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Date: Fri, 25 Oct 2024 11:08:14 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKmKUxwY3O3m2iYPjN6eODaAzzTj+4CSqBg5RyGKPk_pA@mail.gmail.com>
+Message-ID: <CAL_JsqKmKUxwY3O3m2iYPjN6eODaAzzTj+4CSqBg5RyGKPk_pA@mail.gmail.com>
+Subject: Re: [PATCH v3 16/16] samples: rust: add Rust platform sample driver
+To: Dirk Behme <dirk.behme@de.bosch.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org, rafael@kernel.org, 
+	bhelgaas@google.com, ojeda@kernel.org, alex.gaynor@gmail.com, 
+	boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
+	benno.lossin@proton.me, tmgross@umich.edu, a.hindborg@samsung.com, 
+	aliceryhl@google.com, airlied@gmail.com, fujita.tomonori@gmail.com, 
+	lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com, 
+	lyude@redhat.com, daniel.almeida@collabora.com, saravanak@google.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 25, 2024 at 10:29=E2=80=AFAM Doug Anderson <dianders@chromium.o=
-rg> wrote:
+On Fri, Oct 25, 2024 at 5:33=E2=80=AFAM Dirk Behme <dirk.behme@de.bosch.com=
+> wrote:
 >
-> Charles,
+> On 23.10.2024 02:04, Rob Herring wrote:
+> > On Tue, Oct 22, 2024 at 11:31:53PM +0200, Danilo Krummrich wrote:
+> >> Add a sample Rust platform driver illustrating the usage of the platfo=
+rm
+> >> bus abstractions.
+> >>
+> >> This driver probes through either a match of device / driver name or a
+> >> match within the OF ID table.
+> >
+> > I know if rust compiles it works, but how does one actually use/test
+> > this? (I know ways, but I might be in the minority. :) )
+> >
+> > The DT unittests already define test platform devices. I'd be happy to
+> > add a device node there. Then you don't have to muck with the DT on som=
+e
+> > device and it even works on x86 or UML.
 >
-> On Fri, Oct 25, 2024 at 5:03=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> >
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - goodix,gt7986u-spi
-> >
-> > Compatible is already documented and nothing here explains why we shoul=
-d
-> > spi variant.
-> >
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +
-> > > +  goodix,hid-report-addr:
-> >
-> > I do not see this patch addressing previous review. Sending something
-> > like this as v1 after long discussions also does not help.
+> Assuming being on x86, having CONFIG_OF and CONFIG_OF_UNITTEST enabled,
+> seeing the ### dt-test ### running nicely at kernel startup and seeing
+> the compiled in test device tree under /proc/device-tree:
 >
-> Krzysztof is right that it's better to wait until we get consensus on
-> the previous discussion before sending a new patch. I know you were
-> just trying to help move things forward, but because of the way the
-> email workflow works, sending a new version tends to fork the
-> discussion into two threads and adds confusion.
->
-> I know Krzysztof and Rob have been silent during our recent
-> discussion, but it's also a long discussion. I've been assuming that
-> they will take some time to digest and reply in a little bit. If they
-> didn't, IMO it would have been reasonable to explicitly ask them for
-> feedback in the other thread after giving a bit of time.
+> Would using a compatible from the test device tree (e.g. "test-device")
+> in the Rust Platform driver sample [1] let the probe() of that driver
+> sample run?
 
-If the firmware creates fundamentally different interfaces, then
-different compatibles makes sense. If the same driver handles both bus
-interfaces, then 1 compatible should be fine. The addition of '-spi'
-to the compatible doesn't give any indication of a different
-programming model. I wouldn't care except for folks who will see it
-and just copy it when their only difference is the bus interface and
-we get to have the same discussion all over again. So if appending
-'-spi' is the only thing you can come up with, make it abundantly
-clear so that others don't blindly copy it. The commit msg is useful
-for convincing us, but not for that purpose.
+No, because that binds with the platform driver within the unittest.
+
+Maybe it would work if you manually unbind the unittest driver and
+bind the rust sample.
+
+> Or is this a wrong/not sufficient understanding?
+>
+> I tried that, without success ;)
+
+Did you try the patch I sent in this thread? That works and only
+depends on kconfig options to work.
 
 Rob
 
