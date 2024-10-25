@@ -1,94 +1,177 @@
-Return-Path: <devicetree+bounces-115767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E16D9B0A41
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:48:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0EA09B0A39
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 18:47:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FAD91C22A9B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:48:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D0691F213D8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Oct 2024 16:47:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7733B1C07FC;
-	Fri, 25 Oct 2024 16:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17AFC1885A0;
+	Fri, 25 Oct 2024 16:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="yNDRoj5u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SSGX+oRt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5315E320B;
-	Fri, 25 Oct 2024 16:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E131017CA1F;
+	Fri, 25 Oct 2024 16:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729874888; cv=none; b=r9TssbMM3lgzp+qdXmLdRgFDB8NYTveADQqCXpBrDI2wERuzu3/LxPUA0l22ySte6soDcPfvTou4RYVOoHDg6bW+lv7PCuU76E50NqqNaY+bgHgwx648ol24k4ikmllLDBoi/fkkow0ScRdo6T9L/hRqv0T1CD31WNtyIo/vAGQ=
+	t=1729874848; cv=none; b=g0thBHsw55f5eMupH/1/rqFCg5Wk8lDQEB9haRz/d5C1G6DRnnr8bUMZu260yEbqnZtCIozCWUsN9fN5SzFL/IoA444CoTX5YiubUX+THnJjODmn4a4iP+Ykq9piLfY8EeA4f4Z3Hj8L07sf3Iul8+2LwZXusI75fqhXpUEQfAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729874888; c=relaxed/simple;
-	bh=fVwzm4P5u07Hy8LlHj9Q2nmSI8l8tWAh/hqvlTS2Mt4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=J8sPuX7dN0/2/IrHKgFBBvaNgoIh9Vzqrv9c2qcY/t+hITG0QlmMJlEBwKT01wIeLCL1FOZ//tx1lHPpPp8pYkAVJGr4V6DfE32gs0DUwU66YUeGQJyrHcQFyeMZTDdI5NGe9BGamzwON2vYTN19IhKEQqww4cp6JJAI0xzON+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=yNDRoj5u; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References;
-	bh=QW/HkjmGFO/yZTAr6biSTVRn2MsrB/6XGGTE9/qU0pM=; b=yNDRoj5ukF9rhdBiTREMO05QCt
-	PbeBZiI9TbuuKyl2NIrPbdDVNtWbJJpL9Aft2QeLrKkzgPtkJ94MCLOJS+6L2CGalyfc+y+f/ku9d
-	Ln5ar3RBNz6XkjbWoOaSexnJN2DR7PPjqcqxd4t7SB2BduSu5kCSQ4c9vnBuyTRWbllcRHJjvLAsx
-	yFP8yUa1HtFQlPwM6KpQuG2V5A2qCmpCCLvTkqlybBf6jQHQRTSTFaHFxeK1cQLCigsbi3Hy0kVkI
-	jVeaiLzwxRX4OKnX500b3k3ityraPH+jarueOZPZYQMOxfExmPCxHIvOnz8WexeClTM1IilaA+VyA
-	c82yjoFw==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: tony@atomide.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-omap@vger.kernel.org,
+	s=arc-20240116; t=1729874848; c=relaxed/simple;
+	bh=3pcgPLz8IX2AcU4gZj7E94MsDpK+Fi6/BvYheYjLe10=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZH7lHsCKKMkTwKt3d+8azpwXq2Xi0gICrLXzZVe+2ZdY72NJGvRzbHsH3H3+YzdAxjDqx8lkvSdMaVtIpExGlsYhO9eN9Pih5JVgJRLGZVjiK7vSR0c+vgI+uCVmG+2MBgdYbocYYT+7jCvlrgOOuYynj4NAWBunrX6B1ROQyAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SSGX+oRt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BDDCC4CEC3;
+	Fri, 25 Oct 2024 16:47:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729874847;
+	bh=3pcgPLz8IX2AcU4gZj7E94MsDpK+Fi6/BvYheYjLe10=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SSGX+oRt+n5bGK/VVmNhAjNLrrnmP3e38qbwrsm+FRa6MqhuZZtu6g0D0NyM6Zimv
+	 /iSunFSOVlo1+Ewhn06TLz7L3cfhz9qNwoHUrXVThz1WWR61uDR5WiWIq1DfkyZoCe
+	 CPmzmyKqaq+Q6oPfBtzGtmI8rujqRLqxDRdpF1EWjvO6gJ8wCE4EX+/Fx0GllHq/Jp
+	 aGq0QRwKPlhc30qk7x6+5nXh1t2LG7y0A9jDbYflqF7WpfVX30kujeKzXVAFZxulVk
+	 /RW1vMK7PBugg6UeE6wGYzf8imGwirY/PKCpWkqB/o1ZV6+nmP1mHUA+jXEXB3kkXS
+	 yqrcNuTroHlfQ==
+Date: Fri, 25 Oct 2024 17:47:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Roger Quadros <rogerq@kernel.org>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Kevin Hilman <khilman@baylibre.com>
-Cc: Andreas Kemnade <andreas@kemnade.info>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH] ARM: dts: ti/omap: dra7: fix redundant clock divider definition
-Date: Fri, 25 Oct 2024 18:46:22 +0200
-Message-Id: <20241025164622.431146-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.5
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: axi-clkgen: include AXI clk
+Message-ID: <20241025-numerate-quirk-b622c5acdacc@spud>
+References: <20241023-axi-clkgen-fix-axiclk-v1-0-980a42ba51c3@analog.com>
+ <20241023-axi-clkgen-fix-axiclk-v1-1-980a42ba51c3@analog.com>
+ <20241023-tucking-pacific-7360480bcb61@spud>
+ <1e0097f6a15f47c173cb207e369909c1cb5943f9.camel@gmail.com>
+ <20241024-wildfowl-pushiness-d5f46c9c538a@spud>
+ <8b853ad3964cd2b7dafc225d4037ddbf11ebb2d3.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="9vKNs41rCsrdUECp"
+Content-Disposition: inline
+In-Reply-To: <8b853ad3964cd2b7dafc225d4037ddbf11ebb2d3.camel@gmail.com>
 
-Clock specifies ti,dividers as well as ti,max-div. That is in this case
-redundant and not allowed by schema. Both specify possible dividers of
-1 or 2. Remove redundant definition.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202410252030.8B2JoTuq-lkp@intel.com/
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+--9vKNs41rCsrdUECp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi b/arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi
-index 04f08b8c64d2..0de16ee262cf 100644
---- a/arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi
-@@ -1376,7 +1376,6 @@ optfclk_pciephy_div: clock-optfclk-pciephy-div-8@4a00821c {
- 		clocks = <&apll_pcie_ck>;
- 		#clock-cells = <0>;
- 		reg = <0x021c>;
--		ti,dividers = <2>, <1>;
- 		ti,bit-shift = <8>;
- 		ti,max-div = <2>;
- 	};
--- 
-2.39.5
+On Fri, Oct 25, 2024 at 08:56:34AM +0200, Nuno S=E1 wrote:
+> On Thu, 2024-10-24 at 17:13 +0100, Conor Dooley wrote:
+> > On Thu, Oct 24, 2024 at 02:35:37PM +0200, Nuno S=E1 wrote:
+> > > On Wed, 2024-10-23 at 17:30 +0100, Conor Dooley wrote:
+> > > > On Wed, Oct 23, 2024 at 04:56:54PM +0200, Nuno Sa wrote:
+> > > > > In order to access the registers of the HW, we need to make sure =
+that
+> > > > > the AXI bus clock is enabled. Hence let's increase the number of =
+clocks
+> > > > > by one.
+> > > > >=20
+> > > > > In order to keep backward compatibility, the new axi clock must b=
+e the
+> > > > > last phandle in the array. To make the intent clear, a non mandat=
+ory
+> > > > > clock-names property is also being added.
+> > > >=20
+> > > > Hmm, I'm not sure. I think clock-names actually may need to be mand=
+atory
+> > > > here, as otherwise you'll not what the second clock is. The driver =
+would
+> > > > have to interpret no clock-names meaning clock 2 was clkin2.
+> > > >=20
+> > > >=20
+> > >=20
+> > > So the way things are now is that we just get the parents count with
+> > > of_clk_get_parent_count() and then get the names with of_clk_get_pare=
+nt_name()
+> > > and
+> > > this is given into 'struct clk_init_data'. So they are effectively cl=
+k_parents of
+> > > the
+> > > clock we're registering and as you can see clock-names does not reall=
+y matter.
+> > > What
+> > > I'm trying to do is to keep this and still allow to get the AXI bus c=
+lock which
+> > > is
+> > > something we should get and enable and not rely on others to do it. T=
+he idea is
+> > > then
+> > > to add the axi bus clock as the last one in the clocks property and I=
+ will get it
+> > > by
+> > > index with of_clk_get(). The rest pretty much remains the same and we=
+ just need
+> > > to
+> > > decrement by one the number of parent clocks as the axi clock is not =
+really a
+> > > parent
+> > > of our output clock.
+> >=20
+> > I mean, if it works, and you can always disambiguate between whether or
+> > not someone has two clkins or one clkin and the axi clock, then
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> The assumption is that the axi clock is the last one in the phandle array=
+=2E But your
+> comment made me think a bit more about this and I do see a possible probl=
+em if we run
+> old DTs against a kernel with this patch. We have two possibilities:
+>=20
+> 1) DT only with one parent clock;
+> 2) DT with two parent clocks;
+>=20
+> 1) is "fine" as it would now fail to probe. 2) is more problematic as we =
+would assume
+> the second parent to be the axi_bus clock so effectively not fixing anyth=
+ing and
+> silently probing with a broken setup.
+>=20
+> So yeah, I think I overthinked the backward compatibility thing. I mean, =
+in theory,
+> all old DTs are not correct and should be fixed by including the axi_clk.=
+ And if we
+> now enforce clock-names we at least get probe errors right away making it=
+ clear
+> (which is far better from silently breaking after probe).
+>=20
+> Given the above, it should be fine to just enforce clock-names now, right?
 
+I think you need to enforce clock-names in the binding and take
+!clock-names and 2 clocks to mean that the second one is a clkin. I
+think that's a better solution than failing to probe for all extant
+devicestrees.
+
+--9vKNs41rCsrdUECp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZxvLmwAKCRB4tDGHoIJi
+0rkEAP9991Ir2SLb0lRIHVupuqyyaoeD51oMCMQT09RCmYFBigD+MLUrIFD7jjYG
+q1Uu0B68KX+svsfV8mU2CNjnsP4qRQQ=
+=/bY7
+-----END PGP SIGNATURE-----
+
+--9vKNs41rCsrdUECp--
 
