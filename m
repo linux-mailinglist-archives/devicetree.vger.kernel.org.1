@@ -1,219 +1,172 @@
-Return-Path: <devicetree+bounces-115903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99D849B140D
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 03:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EED7E9B1407
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 03:34:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 289F21F21571
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 01:38:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 389A61F21CE6
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 01:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360A529CE5;
-	Sat, 26 Oct 2024 01:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA46282EE;
+	Sat, 26 Oct 2024 01:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Wq7WzRrR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4815661;
-	Sat, 26 Oct 2024 01:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32944B665;
+	Sat, 26 Oct 2024 01:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729906681; cv=none; b=nWLQUt8PHZM7VkQyd4HXcdO7nqFHULKKw6zyFXL2NsYcEqT/jAEOSk7zI5g7N6F1R8bNujsSjch+B8oZgdbx7RFXPyxtS744m8TUTG79JHrlYMvGlYBqPye6YRJP7DpWt91VNCFpoNh4OEn7VReOD84Ph+HG13OqARtwP/RuHNk=
+	t=1729906489; cv=none; b=h3NViOV2PfXhRuwlkSNRyd8R/ACDrRDVN5QKgCnqE8XX9ZpflVE6X0HrBUYKWORZIg+0b5Ik7P567nEhWKtybYOrwrO5LK9KXsR0GtLSCOmU8hWpkZJpLaL3pbYunZAtUd3Zj9/BnE2vAn3utgSyfJ5WWtr7pWudz1GLNP5G13g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729906681; c=relaxed/simple;
-	bh=wan6ghRrYyCJS2yMSO6K6VxY4zUUUkYsmFebGzhfPBI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Tl8eFoC9Fz5GdmDstnntThRb1fxtuHN2dVUD24xQMPFNm3t7O0XrgujfWX1Yo4UI7MPJjxIuFUCLz7axQRqp0qpcRQGsTSn/dcPuyvzElnWP38ZjkUviC2OmSP/hM849xxBer14NVmEBJ40801D9K1GbVpCgB1ArNnLZwyKmF5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a93c1cc74fdso343978766b.3;
-        Fri, 25 Oct 2024 18:37:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729906676; x=1730511476;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=00KlULZXQFFyz7svzxYaJpGGf2+6ICGFX0E8y5C8Vlc=;
-        b=fX5rfWFq62FUmioDIO3Pj/XZhbdhrWGTvkNd+pAKP7cpkHc/9nq0z2xpFGRgErSNJq
-         s/G8ryAMX4sVkoYn+PmCP+YXBm6iPcbOW2Fp3APVaMt99fll5eSV9WguZBr8dUmqulYd
-         TYgDwCoIEh6fCw7NtEX2ju0krwEfUa7/bQTdeFcxRbk069KVzriWbgnfSGpfIqfflFIv
-         tEHdB1Z71rlt3cM5Q6FfCyB61sCkX3vVN3q/eb6h09Y6BEc8Tx72bUUWdCmOok+km51q
-         00fO3Owqo4sXPz8CQui3DrDkbPFX5No6omN9XNfdZbWQsgV7oCVXfGS5AbL0bTg8hV5/
-         nofw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMtr228KDDyV+hM2crzXHOwydvUP9Ye57DlVswoRaGrVK+Xg1CXaWSqteo6L98zBjyIkJPDojtAF0a@vger.kernel.org, AJvYcCWHkMrmcwQZghKk0fwWmFtjdIG9m+vEpMHFYtqC1nbXYdrMASAmXCk/f1E0aM17F3PrrbyPGhS9Dna4@vger.kernel.org, AJvYcCWoRofggFmwEMiwg0bbA3i13nIDAHnA4R5KR9fC6iPQtWxOhXkZ75QWGi6Ov5RkeGwbzZqfpQ4q/EF7Fv5M@vger.kernel.org
-X-Gm-Message-State: AOJu0YwR4bph0sFg+n0eNjGtnwIxFgDaA/z+cWl4AKymL5kjYvNtLTph
-	k+99s2WKDtZBdhQgtxdC99y7ostkGRCpSlerdsgncYNxPB5U96Jes72nv9ov6FQ=
-X-Google-Smtp-Source: AGHT+IGV8I5G54ZE7AkHgmJFJnFMDrlz/bmnYEipZYOcmItB5t5j+rFYglPpKbRYJXPTV4dKVA3OyQ==
-X-Received: by 2002:a17:907:97c6:b0:a9a:4158:494a with SMTP id a640c23a62f3a-a9de615bc4emr69706466b.41.1729906675865;
-        Fri, 25 Oct 2024 18:37:55 -0700 (PDT)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com. [209.85.218.54])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f2994ffsm121226366b.114.2024.10.25.18.37.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Oct 2024 18:37:54 -0700 (PDT)
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a9a0c7abaa6so300204766b.2;
-        Fri, 25 Oct 2024 18:37:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUvSqLTPRQQvAcnHasXw9XEwtYqk8RD8PwnRJm2BmxQfd8naXtDlDvkj4ACYpGoObQWhB3uMmjRkC5u@vger.kernel.org, AJvYcCVfk3D0mClPQHBymIPjWv+9J5IHSJWrA+KluV1Nl3p9OMZfPo2hXYPAIwwHWQt3S/RmuKECTPKfoqRj@vger.kernel.org, AJvYcCXofE0k50cfLVZsDfuXJqvUZCDI74jq7UGmmfGvLnjAEN1GsQkEIXQ9u/nu7kKZfIxDEsjpqX8w7+MoXvC3@vger.kernel.org
-X-Received: by 2002:a05:651c:19a1:b0:2fb:5138:a615 with SMTP id
- 38308e7fff4ca-2fcbddfcba6mr5324521fa.0.1729906179135; Fri, 25 Oct 2024
- 18:29:39 -0700 (PDT)
+	s=arc-20240116; t=1729906489; c=relaxed/simple;
+	bh=AvdnhwNRiXKf7G4bRAt5xJWxJrdRaqp5+mhlW0iRbJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hNbIf4HP2RchtvP6YmDJn1SVKYYRVZcTCNaP1bcXenvpEgJYZFEi+vzmP4VHurnQ9b9hxOu7iT39DkuC7wde5HmNMTD/SlXs2ixwFh1hTbLSJxKhaemezKJnvjBSA/pMO9XeRpa5qVAX5vyVwL4oBmUQFcOMP0yVfaV/1h1Etjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Wq7WzRrR; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729906487; x=1761442487;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AvdnhwNRiXKf7G4bRAt5xJWxJrdRaqp5+mhlW0iRbJo=;
+  b=Wq7WzRrRZOXME271vy48jIpUUW/IrhcI+rjbnGTGmnm4NnBJhZYkZCum
+   1RZlAGvZRCFn3MeLh9wjPWFXPQjSp9sQQXLHMmLOaxSGSkoBd/qyAD08a
+   fNnuwq0UTbDwimFLlCvk/16xXnbjd9ZLu6/BeARopus98t53DuBd6rO0R
+   TKAakvo319Hl6i6Qnvx5Mj8bcDEuk+LHaseyXhsoBcWaQq1do9rTe1AI6
+   AZtG0NjtbACdFlA84UVhq36pq7r2Mv67cs8UGsNWalUaNJekNEWmEt6OC
+   d0nnNRJZGbdynOAx9+auYYA0ID7sou98NZIhW/cqtj/RF0l80WJcnWVmd
+   Q==;
+X-CSE-ConnectionGUID: FaefWCtwROqymHOsvIrMDQ==
+X-CSE-MsgGUID: OjnkeOHSShGIQxvQ0UYmHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29536586"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="29536586"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 18:34:46 -0700
+X-CSE-ConnectionGUID: 70ikL1t/Sde4q68jIS/rvg==
+X-CSE-MsgGUID: SbfZrTSgSn69iYeE81rvuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,233,1725346800"; 
+   d="scan'208";a="111925452"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 25 Oct 2024 18:34:41 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t4VhO-000Z8C-1i;
+	Sat, 26 Oct 2024 01:34:38 +0000
+Date: Sat, 26 Oct 2024 09:34:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Wei Fang <wei.fang@nxp.com>, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, vladimir.oltean@nxp.com,
+	claudiu.manoil@nxp.com, xiaoning.wang@nxp.com, Frank.Li@nxp.com,
+	christophe.leroy@csgroup.eu, linux@armlinux.org.uk,
+	bhelgaas@google.com, horms@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	imx@lists.linux.dev, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, alexander.stein@ew.tq-group.com
+Subject: Re: [PATCH v5 net-next 05/13] net: enetc: extract common ENETC PF
+ parts for LS1028A and i.MX95 platforms
+Message-ID: <202410260911.fvWnX8cx-lkp@intel.com>
+References: <20241024065328.521518-6-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241024170540.2721307-1-masterr3c0rd@epochal.quest> <20241024170540.2721307-8-masterr3c0rd@epochal.quest>
-In-Reply-To: <20241024170540.2721307-8-masterr3c0rd@epochal.quest>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Sat, 26 Oct 2024 09:29:27 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64tQ_9C3mwJqt-tm-6SV=SHAk75sO5Ho7gT=p=iyRfLcw@mail.gmail.com>
-Message-ID: <CAGb2v64tQ_9C3mwJqt-tm-6SV=SHAk75sO5Ho7gT=p=iyRfLcw@mail.gmail.com>
-Subject: Re: [PATCH 07/13] arm64: dts: allwinner: a100: add usb related nodes
-To: Cody Eksal <masterr3c0rd@epochal.quest>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-usb@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Andre Przywara <andre.przywara@arm.com>, Parthiban <parthiban@linumiz.com>, 
-	Yangtao Li <frank@allwinnertech.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Vinod Koul <vkoul@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Thierry Reding <treding@nvidia.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Maxime Ripard <mripard@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241024065328.521518-6-wei.fang@nxp.com>
 
-On Fri, Oct 25, 2024 at 1:09=E2=80=AFAM Cody Eksal <masterr3c0rd@epochal.qu=
-est> wrote:
->
-> From: Yangtao Li <frank@allwinnertech.com>
->
-> Allwinner A64 have two HCI USB controllers, a OTG controller and a USB
+Hi Wei,
 
-            ^^^ Please update this.
+kernel test robot noticed the following build errors:
 
-> PHY device, let's add nodes on dts.
->
-> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
-> [masterr3c0rd@epochal.quest: fallback to a33-musb instead of h3-musb]
-> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
-> ---
->  .../arm64/boot/dts/allwinner/sun50i-a100.dtsi | 91 +++++++++++++++++++
->  1 file changed, 91 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/=
-boot/dts/allwinner/sun50i-a100.dtsi
-> index adb11b26045f..0aee1b578661 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> @@ -302,6 +302,97 @@ ths: thermal-sensor@5070400 {
->                         #thermal-sensor-cells =3D <1>;
->                 };
->
-> +               usbphy: phy@5100400 {
-> +                       #phy-cells =3D <1>;
-> +                       compatible =3D "allwinner,sun50i-a100-usb-phy";
-> +                       reg =3D <0x05100400 0x14>,
-> +                             <0x05101800 0x4>,
-> +                             <0x05200800 0x4>;
-> +                       reg-names =3D "phy_ctrl",
-> +                                   "pmu0",
-> +                                   "pmu1";
-> +                       clocks =3D <&ccu CLK_USB_PHY0>,
-> +                                <&ccu CLK_USB_PHY1>;
-> +                       clock-names =3D "usb0_phy",
-> +                                     "usb1_phy";
-> +                       resets =3D <&ccu RST_USB_PHY0>,
-> +                                <&ccu RST_USB_PHY1>;
-> +                       reset-names =3D "usb0_reset",
-> +                                     "usb1_reset";
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               ehci0: usb@5101000 {
-> +                       compatible =3D "allwinner,sun50i-a100-ehci",
-> +                                    "generic-ehci";
-> +                       reg =3D <0x05101000 0x100>;
-> +                       interrupts =3D <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&ccu CLK_BUS_OHCI0>,
-> +                                <&ccu CLK_BUS_EHCI0>,
-> +                                <&ccu CLK_USB_OHCI0>;
-> +                       resets =3D <&ccu RST_BUS_OHCI0>,
-> +                                <&ccu RST_BUS_EHCI0>;
-> +                       phys =3D <&usbphy 0>;
-> +                       phy-names =3D "usb";
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               ohci0: usb@5101400 {
-> +                       compatible =3D "allwinner,sun50i-a100-ohci",
-> +                                    "generic-ohci";
-> +                       reg =3D <0x05101400 0x100>;
-> +                       interrupts =3D <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&ccu CLK_BUS_OHCI0>,
-> +                                <&ccu CLK_USB_OHCI0>;
-> +                       resets =3D <&ccu RST_BUS_OHCI0>;
-> +                       phys =3D <&usbphy 0>;
-> +                       phy-names =3D "usb";
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               usb_otg: usb@5100000 {
-> +                       compatible =3D "allwinner,sun50i-a100-musb",
-> +                                    "allwinner,sun8i-a33-musb";
-> +                       reg =3D <0x05100000 0x0400>;
-> +                       clocks =3D <&ccu CLK_BUS_OTG>;
-> +                       resets =3D <&ccu RST_BUS_OTG>;
-> +                       interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names =3D "mc";
-> +                       phys =3D <&usbphy 0>;
-> +                       phy-names =3D "usb";
-> +                       extcon =3D <&usbphy 0>;
-> +                       dr_mode =3D "otg";
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               ehci1: usb@5200000 {
-> +                       compatible =3D "allwinner,sun50i-a100-ehci",
-> +                                    "generic-ehci";
-> +                       reg =3D <0x05200000 0x100>;
-> +                       interrupts =3D <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&ccu CLK_BUS_OHCI1>,
-> +                                <&ccu CLK_BUS_EHCI1>,
-> +                                <&ccu CLK_USB_OHCI1>;
-> +                       resets =3D <&ccu RST_BUS_OHCI1>,
-> +                                <&ccu RST_BUS_EHCI1>;
-> +                       phys =3D <&usbphy 1>;
-> +                       phy-names =3D "usb";
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               ohci1: usb@5200400 {
-> +                       compatible =3D "allwinner,sun50i-a100-ohci",
-> +                                    "generic-ohci";
-> +                       reg =3D <0x05200400 0x100>;
-> +                       interrupts =3D <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&ccu CLK_BUS_OHCI1>,
-> +                                <&ccu CLK_USB_OHCI1>;
-> +                       resets =3D <&ccu RST_BUS_OHCI1>;
-> +                       phys =3D <&usbphy 1>;
-> +                       phy-names =3D "usb";
-> +                       status =3D "disabled";
-> +               };
-> +
->                 r_ccu: clock@7010000 {
->                         compatible =3D "allwinner,sun50i-a100-r-ccu";
->                         reg =3D <0x07010000 0x300>;
-> --
-> 2.47.0
->
->
+[auto build test ERROR on net-next/main]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Wei-Fang/dt-bindings-net-add-compatible-string-for-i-MX95-EMDIO/20241024-151502
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20241024065328.521518-6-wei.fang%40nxp.com
+patch subject: [PATCH v5 net-next 05/13] net: enetc: extract common ENETC PF parts for LS1028A and i.MX95 platforms
+config: x86_64-buildonly-randconfig-001-20241026 (https://download.01.org/0day-ci/archive/20241026/202410260911.fvWnX8cx-lkp@intel.com/config)
+compiler: clang version 19.1.2 (https://github.com/llvm/llvm-project 7ba7d8e2f7b6445b60679da826210cdde29eaf8b)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241026/202410260911.fvWnX8cx-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410260911.fvWnX8cx-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/net/ethernet/freescale/enetc/enetc_pf.c:7:
+   In file included from include/linux/of_net.h:9:
+   In file included from include/linux/phy.h:16:
+   In file included from include/linux/ethtool.h:18:
+   In file included from include/linux/if_ether.h:19:
+   In file included from include/linux/skbuff.h:17:
+   In file included from include/linux/bvec.h:10:
+   In file included from include/linux/highmem.h:8:
+   In file included from include/linux/cacheflush.h:5:
+   In file included from arch/x86/include/asm/cacheflush.h:5:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/net/ethernet/freescale/enetc/enetc_pf.c:906:14: error: call to undeclared function 'of_find_compatible_node'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     906 |         ierb_node = of_find_compatible_node(NULL, NULL,
+         |                     ^
+>> drivers/net/ethernet/freescale/enetc/enetc_pf.c:906:12: error: incompatible integer to pointer conversion assigning to 'struct device_node *' from 'int' [-Wint-conversion]
+     906 |         ierb_node = of_find_compatible_node(NULL, NULL,
+         |                   ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     907 |                                             "fsl,ls1028a-enetc-ierb");
+         |                                             ~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/net/ethernet/freescale/enetc/enetc_pf.c:908:21: error: call to undeclared function 'of_device_is_available'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     908 |         if (!ierb_node || !of_device_is_available(ierb_node))
+         |                            ^
+>> drivers/net/ethernet/freescale/enetc/enetc_pf.c:912:2: error: call to undeclared function 'of_node_put'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     912 |         of_node_put(ierb_node);
+         |         ^
+   drivers/net/ethernet/freescale/enetc/enetc_pf.c:1115:14: error: call to undeclared function 'of_device_is_available'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    1115 |         if (node && of_device_is_available(node))
+         |                     ^
+   1 warning and 5 errors generated.
+
+
+vim +/of_find_compatible_node +906 drivers/net/ethernet/freescale/enetc/enetc_pf.c
+
+07bf34a50e3279 Vladimir Oltean 2021-02-04  900  
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  901  static int enetc_pf_register_with_ierb(struct pci_dev *pdev)
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  902  {
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  903  	struct platform_device *ierb_pdev;
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  904  	struct device_node *ierb_node;
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  905  
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17 @906  	ierb_node = of_find_compatible_node(NULL, NULL,
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  907  					    "fsl,ls1028a-enetc-ierb");
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17 @908  	if (!ierb_node || !of_device_is_available(ierb_node))
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  909  		return -ENODEV;
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  910  
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  911  	ierb_pdev = of_find_device_by_node(ierb_node);
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17 @912  	of_node_put(ierb_node);
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  913  
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  914  	if (!ierb_pdev)
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  915  		return -EPROBE_DEFER;
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  916  
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  917  	return enetc_ierb_register_pf(ierb_pdev, pdev);
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  918  }
+e7d48e5fbf30f8 Vladimir Oltean 2021-04-17  919  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
