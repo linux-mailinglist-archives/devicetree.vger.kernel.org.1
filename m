@@ -1,306 +1,239 @@
-Return-Path: <devicetree+bounces-115972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 152E39B1825
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 14:32:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF15B9B1832
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 14:46:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E0921F233E4
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 12:32:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A30932842B4
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 12:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67EC1D8A16;
-	Sat, 26 Oct 2024 12:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C961D26E8;
+	Sat, 26 Oct 2024 12:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qfv9I1rt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HlMHtpqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCEF1D88DB;
-	Sat, 26 Oct 2024 12:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B13218800D;
+	Sat, 26 Oct 2024 12:46:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729945893; cv=none; b=Af6XA/sPKvlTOY5+ZfrGT+OLR2Rm0jTMgNKZV3rJtlTE+gUzUWpX/sSjPHWv7OBzpIUQ6OE3uFaL1jZ/uamt9y+HrAm8igUKiWJgKFYldRQ3mGsrJOH3SeUgAvRrmQ764kpbMfWcm3OtIG3MKedf4QFKcffyVI7pb3dgSs354bA=
+	t=1729946769; cv=none; b=sDhZd+k2UZgtf0BSZlignx9VI5/2CEmF5ckKrYEayJ/CyyxPLCYdXSVO65L5h9+BRuctRt6VirxhzeFM7tE+zjFVBI2pVGUdstsibdAFDRKkxGUf41+VlU6vulWOr3DeX7b0IWzZyfa5s9Fni1hqiYUpx15r0W/7creGYqZCidA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729945893; c=relaxed/simple;
-	bh=SzF4iwg40Yk3LP9tn4obwKJli5odvfXDQ1SY7+sAlso=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iqH1/16dJhGZBBjk4NMVj5fhT8PN6WuFevseswm/ru6peX2U/hGylo6HeWT9IhR8bjShZmmzJUbaByKUPFDbxxAicBFxplhkjkg2ncfZTHmrx/KRfUuW0pg0Wc8oWz0zgcdG7HTRUjpKGyTSDQPPyTpeITQJ8xTasohgjSfxZq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qfv9I1rt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49QCF2QF025985;
-	Sat, 26 Oct 2024 12:31:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qVFx/90RmVLOtWhsHKk/Hl9TBJe/P3ThNnyz0IqJgQM=; b=Qfv9I1rt/1HsHJQ1
-	6DyC0GtXhAhbKbhVmi5dhu6C/siVUlkGUopDxxhofhN9e0HOZcv16+5YgpZ+jK3O
-	bteETOenEIstdyZM6caeN6Eg2R2F+t0/dhxedSRYeVfBgANJADkqtSzzfEKAW+OR
-	v3Zu5Ig0HVOUwmal+cAcT1NkRbAfllUjgAsWmDdyCmt4frxqV1TwN5riBdYLlAWf
-	9SZfMSR3/c3oldaLB+rWxFdcs0scaaf7DlL66HWWOrdECyxatLalYr6BnuwWqv5e
-	HNWBmVwmsTibKqUFSAvPq7I6dHMxBM2OYNxQRbcLPPF29NOGys+o9TJwxn8fOWg/
-	QFPj/w==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gqe5ryf9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 26 Oct 2024 12:31:27 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49QCVQQH025370
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 26 Oct 2024 12:31:26 GMT
-Received: from 55f3af46090c.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sat, 26 Oct 2024 05:31:23 -0700
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: Sibi Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH V2 3/3] interconnect: qcom: Add EPSS L3 support on SA8775P
-Date: Sat, 26 Oct 2024 12:30:58 +0000
-Message-ID: <20241026123058.28258-4-quic_rlaggysh@quicinc.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20241026123058.28258-1-quic_rlaggysh@quicinc.com>
-References: <20241026123058.28258-1-quic_rlaggysh@quicinc.com>
+	s=arc-20240116; t=1729946769; c=relaxed/simple;
+	bh=Ir8FkLHslMuuyZwduZxcZ09RxlFF0QcVt/0ML1tcSSw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q0KkJcnjHa+Mbax50tUUS2eyHHmHImsR0wZkgwsTVtySNrLegwausd8wxzhmktWKmPYn1uLpJOjiNekKc1F9p+kMdIlwe8N+2OxAU0rLjcWpus64WCAI/heofJYqmwkIEUlzQ+y+99FXncfbedA6UCftkyxPQkQKTWxNhk/fyqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HlMHtpqF; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729946767; x=1761482767;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ir8FkLHslMuuyZwduZxcZ09RxlFF0QcVt/0ML1tcSSw=;
+  b=HlMHtpqFLwt6e5ZWfxn+QH2WpFirYi1P+0Li3exf9j1tPdLKveE4SPov
+   suSbMcLKZHddzSar+rpXQGYXkw7pdmJRsZf5Pk9WYioSLWQrsAa3+0oo9
+   1iBFH39G8n7v3M2d8z/UzLgbIXJhAsyN19CtQhNqkvFLXaPEUPLlmsWvV
+   NoBLBFb64nGO88eKOtp3lIiyeG7VakZ4EbQC2etTxRraERbZ/BtmZg1e4
+   ZNdl46pg5ppVoDsFcBCTm98cSiLQGgUdLmbzFdeeEEYv7JyVyriaRn8Sd
+   PcMFQHkRSb6TgmP1tR58ePZfJaOoWLgsBPUBif5u7NneZn2VOlbSjb5u/
+   Q==;
+X-CSE-ConnectionGUID: BYK1S73LR4mIYGxs8GHGLg==
+X-CSE-MsgGUID: VhOJIHZhSrOQEfOljF0zbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40707432"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="40707432"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2024 05:46:07 -0700
+X-CSE-ConnectionGUID: 9HSKHftfRgSHktAkkf+4bQ==
+X-CSE-MsgGUID: ThDfStWoSiOeAgXlh2HKYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,235,1725346800"; 
+   d="scan'208";a="82011344"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 26 Oct 2024 05:46:02 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t4gB6-000Zem-1Y;
+	Sat, 26 Oct 2024 12:46:00 +0000
+Date: Sat, 26 Oct 2024 20:45:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
+	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: Re: [PATCH v12 7/7] remoteproc: stm32: Add support of an OP-TEE TA
+ to load the firmware
+Message-ID: <202410262040.PWNrKv2Q-lkp@intel.com>
+References: <20241025205924.2087768-8-arnaud.pouliquen@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yq5vSPbmG0wTkq7uma7gHXZ_s7H82JBg
-X-Proofpoint-ORIG-GUID: yq5vSPbmG0wTkq7uma7gHXZ_s7H82JBg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- phishscore=0 bulkscore=0 mlxlogscore=999 malwarescore=0 adultscore=0
- priorityscore=1501 impostorscore=0 mlxscore=0 clxscore=1015
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410260106
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241025205924.2087768-8-arnaud.pouliquen@foss.st.com>
 
-Add Epoch Subsystem (EPSS) L3 interconnect provider support on
-SA8775P SoCs.
+Hi Arnaud,
 
-Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
----
- drivers/interconnect/qcom/osm-l3.c | 86 ++++++++++++++++++++++--------
- 1 file changed, 64 insertions(+), 22 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
-index 6a656ed44d49..7937e7c16c71 100644
---- a/drivers/interconnect/qcom/osm-l3.c
-+++ b/drivers/interconnect/qcom/osm-l3.c
-@@ -1,16 +1,19 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/args.h>
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/idr.h>
- #include <linux/interconnect-provider.h>
- #include <linux/io.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_address.h>
- #include <linux/platform_device.h>
- 
- #include <dt-bindings/interconnect/qcom,osm-l3.h>
-@@ -34,9 +37,14 @@
- 
- #define OSM_L3_MAX_LINKS		1
- 
-+#define OSM_L3_NODE_ID_START		10000
-+#define OSM_NODE_NAME_SUFFIX_SIZE	10
-+
- #define to_osm_l3_provider(_provider) \
- 	container_of(_provider, struct qcom_osm_l3_icc_provider, provider)
- 
-+static DEFINE_IDA(osm_l3_id);
-+
- struct qcom_osm_l3_icc_provider {
- 	void __iomem *base;
- 	unsigned int max_state;
-@@ -55,46 +63,40 @@ struct qcom_osm_l3_icc_provider {
-  */
- struct qcom_osm_l3_node {
- 	const char *name;
--	u16 links[OSM_L3_MAX_LINKS];
-+	const char *links[OSM_L3_MAX_LINKS];
- 	u16 id;
- 	u16 num_links;
- 	u16 buswidth;
- };
- 
- struct qcom_osm_l3_desc {
--	const struct qcom_osm_l3_node * const *nodes;
-+	struct qcom_osm_l3_node * const *nodes;
- 	size_t num_nodes;
- 	unsigned int lut_row_size;
- 	unsigned int reg_freq_lut;
- 	unsigned int reg_perf_state;
- };
- 
--enum {
--	OSM_L3_MASTER_NODE = 10000,
--	OSM_L3_SLAVE_NODE,
--};
--
--#define DEFINE_QNODE(_name, _id, _buswidth, ...)			\
--	static const struct qcom_osm_l3_node _name = {			\
-+#define DEFINE_QNODE(_name, _buswidth, ...)				\
-+	static struct qcom_osm_l3_node _name = {			\
- 		.name = #_name,						\
--		.id = _id,						\
- 		.buswidth = _buswidth,					\
- 		.num_links = COUNT_ARGS(__VA_ARGS__),			\
--		.links = { __VA_ARGS__ },				\
-+		__VA_OPT__(.links = { #__VA_ARGS__ })			\
- 	}
- 
--DEFINE_QNODE(osm_l3_master, OSM_L3_MASTER_NODE, 16, OSM_L3_SLAVE_NODE);
--DEFINE_QNODE(osm_l3_slave, OSM_L3_SLAVE_NODE, 16);
-+DEFINE_QNODE(osm_l3_master, 16, osm_l3_slave);
-+DEFINE_QNODE(osm_l3_slave, 16);
- 
--static const struct qcom_osm_l3_node * const osm_l3_nodes[] = {
-+static struct qcom_osm_l3_node * const osm_l3_nodes[] = {
- 	[MASTER_OSM_L3_APPS] = &osm_l3_master,
- 	[SLAVE_OSM_L3] = &osm_l3_slave,
- };
- 
--DEFINE_QNODE(epss_l3_master, OSM_L3_MASTER_NODE, 32, OSM_L3_SLAVE_NODE);
--DEFINE_QNODE(epss_l3_slave, OSM_L3_SLAVE_NODE, 32);
-+DEFINE_QNODE(epss_l3_master, 32, epss_l3_slave);
-+DEFINE_QNODE(epss_l3_slave, 32);
- 
--static const struct qcom_osm_l3_node * const epss_l3_nodes[] = {
-+static struct qcom_osm_l3_node * const epss_l3_nodes[] = {
- 	[MASTER_EPSS_L3_APPS] = &epss_l3_master,
- 	[SLAVE_EPSS_L3_SHARED] = &epss_l3_slave,
- };
-@@ -123,6 +125,19 @@ static const struct qcom_osm_l3_desc epss_l3_l3_vote = {
- 	.reg_perf_state = EPSS_REG_L3_VOTE,
- };
- 
-+static u16 get_node_id_by_name(const char *node_name,
-+			       const struct qcom_osm_l3_desc *desc)
-+{
-+	struct qcom_osm_l3_node *const *nodes = desc->nodes;
-+	int i;
-+
-+	for (i = 0; i < desc->num_nodes; i++) {
-+		if (!strcmp(nodes[i]->name, node_name))
-+			return nodes[i]->id;
-+	}
-+	return 0;
-+}
-+
- static int qcom_osm_l3_set(struct icc_node *src, struct icc_node *dst)
- {
- 	struct qcom_osm_l3_icc_provider *qp;
-@@ -164,10 +179,11 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
- 	const struct qcom_osm_l3_desc *desc;
- 	struct icc_onecell_data *data;
- 	struct icc_provider *provider;
--	const struct qcom_osm_l3_node * const *qnodes;
-+	struct qcom_osm_l3_node * const *qnodes;
- 	struct icc_node *node;
- 	size_t num_nodes;
- 	struct clk *clk;
-+	u64 addr;
- 	int ret;
- 
- 	clk = clk_get(&pdev->dev, "xo");
-@@ -188,6 +204,10 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
- 	if (!qp)
- 		return -ENOMEM;
- 
-+	ret = of_property_read_reg(pdev->dev.of_node, 0, &addr, NULL);
-+	if (ret)
-+		return ret;
-+
- 	qp->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(qp->base))
- 		return PTR_ERR(qp->base);
-@@ -242,8 +262,13 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
- 
- 	icc_provider_init(provider);
- 
-+	/* Allocate unique id for qnodes */
-+	for (i = 0; i < num_nodes; i++)
-+		qnodes[i]->id = ida_alloc_min(&osm_l3_id, OSM_L3_NODE_ID_START, GFP_KERNEL);
-+
- 	for (i = 0; i < num_nodes; i++) {
--		size_t j;
-+		char *node_name;
-+		size_t j, len;
- 
- 		node = icc_node_create(qnodes[i]->id);
- 		if (IS_ERR(node)) {
-@@ -251,13 +276,29 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
- 			goto err;
- 		}
- 
--		node->name = qnodes[i]->name;
-+		/* len = strlen(node->name) + @ + 8 (base-address) + NULL */
-+		len = strlen(qnodes[i]->name) + OSM_NODE_NAME_SUFFIX_SIZE;
-+		node_name = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-+		if (!node_name) {
-+			ret = -ENOMEM;
-+			goto err;
-+		}
-+
-+		snprintf(node_name, len, "%s@%08llx", qnodes[i]->name, addr);
-+		node->name = node_name;
-+
- 		/* Cast away const and add it back in qcom_osm_l3_set() */
- 		node->data = (void *)qnodes[i];
- 		icc_node_add(node, provider);
- 
--		for (j = 0; j < qnodes[i]->num_links; j++)
--			icc_link_create(node, qnodes[i]->links[j]);
-+		for (j = 0; j < qnodes[i]->num_links; j++) {
-+			u16 link_node_id = get_node_id_by_name(qnodes[i]->links[j], desc);
-+
-+			if (link_node_id)
-+				icc_link_create(node, link_node_id);
-+			else
-+				goto err;
-+		}
- 
- 		data->nodes[i] = node;
- 	}
-@@ -277,6 +318,7 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
- 
- static const struct of_device_id osm_l3_of_match[] = {
- 	{ .compatible = "qcom,epss-l3", .data = &epss_l3_l3_vote },
-+	{ .compatible = "qcom,epss-l3-perf", .data = &epss_l3_perf_state },
- 	{ .compatible = "qcom,osm-l3", .data = &osm_l3 },
- 	{ .compatible = "qcom,sc7180-osm-l3", .data = &osm_l3 },
- 	{ .compatible = "qcom,sc7280-epss-l3", .data = &epss_l3_perf_state },
+[auto build test WARNING on 42f7652d3eb527d03665b09edac47f85fb600924]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Arnaud-Pouliquen/remoteproc-core-Introduce-rproc_pa_to_va-helper/20241026-050443
+base:   42f7652d3eb527d03665b09edac47f85fb600924
+patch link:    https://lore.kernel.org/r/20241025205924.2087768-8-arnaud.pouliquen%40foss.st.com
+patch subject: [PATCH v12 7/7] remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20241026/202410262040.PWNrKv2Q-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241026/202410262040.PWNrKv2Q-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410262040.PWNrKv2Q-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/remoteproc/stm32_rproc.c: In function 'stm32_rproc_probe':
+>> drivers/remoteproc/stm32_rproc.c:904:21: warning: assignment to 'int' from 'struct rproc_tee *' makes integer from pointer without a cast [-Wint-conversion]
+     904 |                 ret = rproc_tee_register(dev, rproc, proc_id);
+         |                     ^
+   drivers/remoteproc/stm32_rproc.c:963:30: error: passing argument 1 of 'rproc_tee_unregister' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     963 |         rproc_tee_unregister(rproc);
+         |                              ^~~~~
+         |                              |
+         |                              struct rproc *
+   In file included from drivers/remoteproc/stm32_rproc.c:21:
+   include/linux/remoteproc_tee.h:59:58: note: expected 'struct rproc_tee *' but argument is of type 'struct rproc *'
+      59 | static inline int rproc_tee_unregister(struct rproc_tee *trproc)
+         |                                        ~~~~~~~~~~~~~~~~~~^~~~~~
+   drivers/remoteproc/stm32_rproc.c: In function 'stm32_rproc_remove':
+   drivers/remoteproc/stm32_rproc.c:986:30: error: passing argument 1 of 'rproc_tee_unregister' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     986 |         rproc_tee_unregister(rproc);
+         |                              ^~~~~
+         |                              |
+         |                              struct rproc *
+   include/linux/remoteproc_tee.h:59:58: note: expected 'struct rproc_tee *' but argument is of type 'struct rproc *'
+      59 | static inline int rproc_tee_unregister(struct rproc_tee *trproc)
+         |                                        ~~~~~~~~~~~~~~~~~~^~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +904 drivers/remoteproc/stm32_rproc.c
+
+   874	
+   875	static int stm32_rproc_probe(struct platform_device *pdev)
+   876	{
+   877		struct device *dev = &pdev->dev;
+   878		struct stm32_rproc *ddata;
+   879		struct device_node *np = dev->of_node;
+   880		struct rproc *rproc;
+   881		unsigned int state;
+   882		u32 proc_id;
+   883		int ret;
+   884	
+   885		ret = dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
+   886		if (ret)
+   887			return ret;
+   888	
+   889		if (of_device_is_compatible(np, "st,stm32mp1-m4-tee")) {
+   890			/*
+   891			 * Delegate the firmware management to the secure context.
+   892			 * The firmware loaded has to be signed.
+   893			 */
+   894			ret = of_property_read_u32(np, "st,proc-id", &proc_id);
+   895			if (ret) {
+   896				dev_err(dev, "failed to read st,rproc-id property\n");
+   897				return ret;
+   898			}
+   899	
+   900			rproc = devm_rproc_alloc(dev, np->name, &st_rproc_tee_ops, NULL, sizeof(*ddata));
+   901			if (!rproc)
+   902				return -ENOMEM;
+   903	
+ > 904			ret = rproc_tee_register(dev, rproc, proc_id);
+   905			if (ret)
+   906				return dev_err_probe(dev, ret,  "signed firmware not supported by TEE\n");
+   907		} else {
+   908			rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
+   909			if (!rproc)
+   910				return -ENOMEM;
+   911		}
+   912	
+   913		ddata = rproc->priv;
+   914	
+   915		rproc_coredump_set_elf_info(rproc, ELFCLASS32, EM_NONE);
+   916	
+   917		ret = stm32_rproc_parse_dt(pdev, ddata, &rproc->auto_boot);
+   918		if (ret)
+   919			goto free_rproc;
+   920	
+   921		ret = stm32_rproc_of_memory_translations(pdev, ddata);
+   922		if (ret)
+   923			goto free_rproc;
+   924	
+   925		ret = stm32_rproc_get_m4_status(ddata, &state);
+   926		if (ret)
+   927			goto free_rproc;
+   928	
+   929		if (state == M4_STATE_CRUN)
+   930			rproc->state = RPROC_DETACHED;
+   931	
+   932		rproc->has_iommu = false;
+   933		ddata->workqueue = create_workqueue(dev_name(dev));
+   934		if (!ddata->workqueue) {
+   935			dev_err(dev, "cannot create workqueue\n");
+   936			ret = -ENOMEM;
+   937			goto free_resources;
+   938		}
+   939	
+   940		platform_set_drvdata(pdev, rproc);
+   941	
+   942		ret = stm32_rproc_request_mbox(rproc);
+   943		if (ret)
+   944			goto free_wkq;
+   945	
+   946		ret = rproc_add(rproc);
+   947		if (ret)
+   948			goto free_mb;
+   949	
+   950		return 0;
+   951	
+   952	free_mb:
+   953		stm32_rproc_free_mbox(rproc);
+   954	free_wkq:
+   955		destroy_workqueue(ddata->workqueue);
+   956	free_resources:
+   957		rproc_resource_cleanup(rproc);
+   958	free_rproc:
+   959		if (device_may_wakeup(dev)) {
+   960			dev_pm_clear_wake_irq(dev);
+   961			device_init_wakeup(dev, false);
+   962		}
+   963		rproc_tee_unregister(rproc);
+   964	
+   965		return ret;
+   966	}
+   967	
+
 -- 
-2.39.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
