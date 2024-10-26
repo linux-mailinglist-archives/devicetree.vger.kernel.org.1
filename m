@@ -1,319 +1,203 @@
-Return-Path: <devicetree+bounces-115974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 757559B1868
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 15:11:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 218609B186F
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 15:18:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EECD3B22F2A
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 13:11:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B967F2839CA
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 13:18:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE001D54FA;
-	Sat, 26 Oct 2024 13:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A871D040B;
+	Sat, 26 Oct 2024 13:18:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hQ4Ju955"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01on2116.outbound.protection.outlook.com [40.107.239.116])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD27B641;
-	Sat, 26 Oct 2024 13:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.239.116
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729948295; cv=fail; b=Q80Y1a0CY8ywQp0rnV29hiLgjvEWqFoQTT+T/YUccyHOQNraq4pvirhKWlCYIM0gwnQS6iaxmFIP1fqbCq6GJAZdGaxIX3/2Mqh5JTMdI3aMC9S1MdjwsQRm+f13UsFn1ELSRbDgsKDFZvEyAYgwZ6+5o97jV3x3+A15OKYg1Q4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729948295; c=relaxed/simple;
-	bh=twUwnznaUWAbZboErIya8D564ibpKNwfL1J3zxg2qB4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Vq8q/fvW7ZinkgG+l1LmHhAp7HYpvjysu0HIX4kL2bh3LBeGT+JRnVz3NGS33A3s6usGeAhVoTbfnQfLsAqBDCDaHGfcrHVNZFJb49rpJj7+p0jIvoYUeQ5Hf7CQcYRVK31w0XgJL2cMR2Kp/Cavgt+5o5kms9tSWNTX9k7lysg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.239.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jLDATvBDxR8rseEJ+8zoLaX+hrqd5PDGEMo2tRca87VBJ29K2hCZvacByconjr7vYiFBC+jSlflqx2h1R+bNwSjoJlqODIgcNpUAjsAtPSyZNT1I5szHu67y4K4Qs/yMghBMJTYMrV9yqTD01k20+CrqoXM35ckwi0ST0LOdSswApsiJ4AvzIghiCy3PptK3L2B7QxrAUFwb/WmF4Io7QcrvXcKP/oP/fSeRU7p4FEs64ydRWZxetDH57Pz2Jg+GMO0Rp57crkwFcFU3Tfxq1FbwuNIlyVvq/+ED+oTpOwI8jSSDmb6N5TxR+u+Owf6AVRzaqh18w0twKbWY6GBviw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KMVT8rbO0uC7OeoW9hm7vk56wPS/oXH6HmZr9+Xs+hM=;
- b=odAkP3XjZi3FiRuYHHpAhQdrmjpWfFeZgIq6jaRgxpCcJFhaPvcwOxrHsM4Nhyxd7gbXD2hOe6klEgZM+mDTd4ZcPILUWfzCL1yPzEaGtxZdBtzz6bRDOFs1UUXLE9ylxCoCulFDxsiPh1at9yuXTvu8wR8gVspTMhxqb3dS9RN/QfqBvkvfMUtJ0XnlBCUKgroywFG9SZaaQt55iiFvHK070o3jvylvUJWcBu7IyJ4+05/8NI+HMrEJwP9ALsKrBX2Ot2PdTNE4/avkGA7iW35gF50oMKm4jBcYWsksjbU5TC/hmxBA0puzAfuvlI2co9vkjWJr2HS5O+P4fUTIwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
- header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
-Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1b8::9)
- by MA0P287MB0878.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:e2::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.23; Sat, 26 Oct
- 2024 13:11:28 +0000
-Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
- ([fe80::368a:445f:b1be:4bd6]) by PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
- ([fe80::368a:445f:b1be:4bd6%6]) with mapi id 15.20.8093.021; Sat, 26 Oct 2024
- 13:11:28 +0000
-From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "linus.walleij@linaro.org" <linus.walleij@linaro.org>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, Tarang Raval
-	<tarang.raval@siliconsignals.io>, Conor Dooley <conor+dt@kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt to
- yaml format
-Thread-Topic: [PATCH v2] dt-bindings: pinctrl: convert pinctrl-mcp23s08.txt to
- yaml format
-Thread-Index: AQHbJhLZu2EJ4zneH0OiYhxVJJUFarKY9kcAgAANyBc=
-Date: Sat, 26 Oct 2024 13:11:28 +0000
-Message-ID:
- <PN0P287MB20195CAFA249448F66D13B659A482@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
-References: <20241024124654.26775-1-himanshu.bhavani@siliconsignals.io>
- <usqmeunejf44l6wjw67ocv4idyxfpw5ivt5v4hqkputd7d7xsk@3ies2iwutzsz>
-In-Reply-To: <usqmeunejf44l6wjw67ocv4idyxfpw5ivt5v4hqkputd7d7xsk@3ies2iwutzsz>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siliconsignals.io;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PN0P287MB2019:EE_|MA0P287MB0878:EE_
-x-ms-office365-filtering-correlation-id: b67b9789-2037-4db6-6ccc-08dcf5bfb3a0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?Windows-1252?Q?D8YcCgcX94lgAUTsYcUoTuaDE9UkuTBMQjJXl2yYArA4dr8nvscjp9XU?=
- =?Windows-1252?Q?QVe4L9ScjSrSWdZ2aJ88+yTaiIZBT7AeznortDSU4zjRXy8ZTmfxP7DP?=
- =?Windows-1252?Q?/XParWz5rpoV3WRROYkaDSTg8dloD0/J4a5nqPNZDpNsawUt4x4YXB3M?=
- =?Windows-1252?Q?y+NioyOicmHiGbx8ItALwefKKOhu8cr5BduROOEIrPzusYBHWUIbpR+u?=
- =?Windows-1252?Q?8rPJuDGO+MgVaoxQIG5uU8Pu/3LXHKJ9V4STSf7lCpTCX2TL5Fc5bUG/?=
- =?Windows-1252?Q?EXUBNyiXd8b5VeEwDxgFCOXwPrpvxa4aqrrjPp4xZeKkB8qG1Ib6dblk?=
- =?Windows-1252?Q?d7xm2RuWL5A1ALJNJB1YSnhhs3MlkwnXd5US0VB1ZKMmWZ+nnacUzgQ6?=
- =?Windows-1252?Q?O08rFAIPoveYD/VSxy8abhr5fTwdK+v5008NgGAHjs1YRGgJaDBTd1Yl?=
- =?Windows-1252?Q?GzxseG1SR/E4cZvtNbCMT3v1YDT+LnVufMyW+psLE7fTQ8XB3/Gqk9Be?=
- =?Windows-1252?Q?XwRIIRGL4fgDeM2ki8TqHs855AlBPAoEkqhV7YUzvmtYsipyuONq/xhx?=
- =?Windows-1252?Q?cbS7FacDMwlXrOjbfuLFUB3uroEJXJeLYa3hy97X6mT+0NCbufWBxvXZ?=
- =?Windows-1252?Q?i04TNEeZNgsULKGt/YWysQ43c/Wm1q9YSgYcGKqmAq0ssF3I7oLTqhGV?=
- =?Windows-1252?Q?DuIxXSddIYyNfRz40IWoBuwsRrJLM7r9TPzzXQY3i1WvjJEGr7AZsQXr?=
- =?Windows-1252?Q?BMfufNl+KG9pqguZqliE8VTkz+FiJw8+3PkC8GnFVjqHpGKgmXBmlIZS?=
- =?Windows-1252?Q?GU6O7V2gSb6oUaP4GS2qCi717m+r7UhIzo5zEblvEQcoUpEbV+ua/FMZ?=
- =?Windows-1252?Q?xOQoEZ4/Rx1kDQrGOQl1BvTy/qGRV/JmRQUYNEtDSq+U7W1VccG+yZRw?=
- =?Windows-1252?Q?wpfx8SI2nuK06npDV7imuHoA2rqzn/fdC2MPw1u6QZuHBrBeuGx2wE8i?=
- =?Windows-1252?Q?dZjtA1gKr/pREwAMVggZSd793nszfbVahTuG/uU6hBJAsXPrXKqRQIuV?=
- =?Windows-1252?Q?T+CUUR+lBHZr/wtV6YMaA+WkQRaRcvbdN0adPJe0NI6bnW0PqWS0ICKg?=
- =?Windows-1252?Q?NIv6YSZzUl1uwfY5zv14FSNPOCAyLJPsiJvyahgR4qDbCvGP4brvmoak?=
- =?Windows-1252?Q?37h+X4sMlNKCKws9kf5d6RIUWxXxBMd1EaLvftLlfo48ajdxl+2TND0h?=
- =?Windows-1252?Q?M2XvOlmkQn5iqprwYLMR67GzNppcgAiEXstyLOw18zOUSlcH6sip8cOZ?=
- =?Windows-1252?Q?rH5/CRpGUDvzWS3oqNGEp3T2T5c6HIr2PN0QUMj4BVxETkeMakZSBQVz?=
- =?Windows-1252?Q?T2IqyGsx6VdNzRRxQoJLh/3ZE9pL/HDRcB24p+ZS5zNcmaOd+4Ot6kjP?=
- =?Windows-1252?Q?7JiI3O/DgkAB5et3QhVsa/vZ4WZm4StsiJ9C1ZRsFfk=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN0P287MB2019.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?Windows-1252?Q?URIQChkfWVYulnnTMPhN3WExOHKMAN3m4dmJcI7tm7C37ayKVjliv8U7?=
- =?Windows-1252?Q?gMOfzQJXdoBbIN18ZBkcc10nUfKgomzlX3/4zZ4eG59dGNB+wq0L6H2W?=
- =?Windows-1252?Q?HfN+RqWEF8rOij8eTw8q+o7x3vZuJdJuO0rIDT3Jx4H8+11F1ylRXVB0?=
- =?Windows-1252?Q?046W+6BMNEQyoB6Beg6UxO4sQI1jt1E58XdcoPABIgJE9fyrCaak/8zw?=
- =?Windows-1252?Q?xIRTgy41b/PnOteoI88f6FH6awHJWv0Km8UyLe1Umic+THxj+7rHOTc0?=
- =?Windows-1252?Q?rdQU1p6LkF2OHERVAoO79Uhf5iHQwkvAVz1Did+vDk1Hnizw3/0L8lA/?=
- =?Windows-1252?Q?2ugRmRbvE/QzmmBRMVZ4l4fGetdL/Sc9x+JeGIx7N65MlVEgqikO/I+b?=
- =?Windows-1252?Q?PESvQQlElyZs9bbUcAy+Iz7cOYODd8gPcK72+z6jLOeQ1m2AmpNamJo/?=
- =?Windows-1252?Q?rXnpLxoM85Kn1soWkhhXlNkxBMvyhMMGCJNp0aOCnr8Q0tQMmTe9ElnU?=
- =?Windows-1252?Q?IoTdzNHU0OBhQyyGTfDK203dxgVhIXuL10bTOwFhUbbPdiyLFNWX8OCI?=
- =?Windows-1252?Q?G9bfJ2QHTqwrlxZNqooUm/I8TqP2Z0CHz1i+R2ySSJwOkUY29zhl5hGq?=
- =?Windows-1252?Q?BhasIWCyYEYy2beDpmjWt7zrJueBpfVuK+pMjK1fL7AYSJcC+lNRHJw+?=
- =?Windows-1252?Q?WJgYNTwXCmLWuskm/96okq94tfDzZWjR4IuVvVek7XZYWlu5OT58WAuC?=
- =?Windows-1252?Q?YSCiv3tZiZaN6MHKfX/f8w05YEIwg7nSyX0zy6wjfxs03/JjqYdKsRxp?=
- =?Windows-1252?Q?q/59VbSLqyUtbP1d3KpCP7krywcJy9j+06aK8im2i8oR3HkzNg0GR84P?=
- =?Windows-1252?Q?zRRG2IIdrBSlqFhvW5bcVGgMMQRVeufxKCaoSQKvcoyjORDny6Kic4xC?=
- =?Windows-1252?Q?q0VVAR/6Txx+KHHCTEVtPY4zIuSlNiHpZuWEzK2cETSIP2TUpTSklA+E?=
- =?Windows-1252?Q?jygwM4W5Cd65SiNypfSj1yJwlPMk+96LJ7cjVGfx8KoxQfrOR2TbQ0tg?=
- =?Windows-1252?Q?WP5MJuzmDZtjZL7pTJSHElKXbr88Lcvt+ppBfvzRJqJOs0EgtH24xLmG?=
- =?Windows-1252?Q?VWThaYMC4bMHOjxk1Vyi7dzl6Um0OeNLKYaj68SVI1ajQ+tFiFLxnIAd?=
- =?Windows-1252?Q?LHlRtBXku+NCESOLwm6vjCg/DvlcRwIHKNJS6LV0hsDYUa8EiptlbIzc?=
- =?Windows-1252?Q?Hqn7L0IuOonBOPa7sMjz7SA46ZV2Fodqqwy816RxCLJ7nwrDiLQfAO6p?=
- =?Windows-1252?Q?PxlwAnSAyrgZaKt+1wU2uBUMFULQjxlxNHLuxubad/LcRyqJGwgA454A?=
- =?Windows-1252?Q?IFu4RCCm8yiPB29mc3pwFEQFmZJgqhC79paXe0ylrQDCrZV14Y+kjI95?=
- =?Windows-1252?Q?U3lnmEsVmLyWgINCvCED8WgJeiLlJ9cb9vdP4dUgCGXW7x3DKY4PieRN?=
- =?Windows-1252?Q?C62inDIGETV6kWI5Yvq2epafJu7j1aL9K9aRJYt3ftILkSN/paxuRcnh?=
- =?Windows-1252?Q?fUzuzj2mc6NM3Oth9/EeZ0hUP+ddYODWUQP+miDRGbrVCO5061neXh7K?=
- =?Windows-1252?Q?Z+o1NQx0cV992VcyF5OMK8tmC6XbKZJ4vRgiF8LQkx29J/1y0B2Zb4U6?=
- =?Windows-1252?Q?CPtDu2U/cOnlMEtg2LQHy0Ea/o34psvspEKCkzJxbLu/o1X+goTLPw?=
- =?Windows-1252?Q?=3D=3D?=
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD0A1E50B;
+	Sat, 26 Oct 2024 13:18:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729948690; cv=none; b=mvMJJUMME5+L7wTKhDdJfWLFavOwIkRGlu+ddmgna/uafdI7c7xWWWfiDqw+xMBZxnOdngi9GEf2Y8T8FaM+o5BN3vHB6OBnqByRhxb0moLorn0cRzcCecL1u5kLIRpNsOJmPsNgvlnB8uTPn5himP8Slm66wUggGeSqNDcnAfY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729948690; c=relaxed/simple;
+	bh=WjWsN0BbqZ+ckDcOfpUetYKweI82x5iGSxAhBNqAuDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K3eQOvX3FKaIXqKrn7BAZOiDoGj2k/97SIATH5qQhrUZ9aiX/uoA3HQTJ9FSBrDVGzLnjvoh8hbj5RZh8HEwBsUhOsK8ac4RsYDkKSRylTufp2QgHbWcSrmwCVovryeLGzG4iA9YkkKpiJIbCriuZcmS6f2woMJz1TOivNn8YqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hQ4Ju955; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1729948688; x=1761484688;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WjWsN0BbqZ+ckDcOfpUetYKweI82x5iGSxAhBNqAuDg=;
+  b=hQ4Ju955V7LvNuc206+n31BmpmAZfR+51aqMm1BHK0x6suDBzPd7TDUw
+   3EJhfJ8sth7RybOPsI25hCoSbtEzu7J4jeSyN1xxBsxSCORuqd/fJLjp7
+   X3PYGuLg5iFZWthuLt4lLv18Dh9vjjjLad/6fWBkTmfxES+OKnIyngZRo
+   bYRbtVlhXvun43478BLH85lzMJL4ntBVCY5dngZ+IrIsk3mz/S/QZiWrZ
+   Q5RUwZQZMLWNGb1Jg7a3O6OYNdWh0bOTQEBbXTAW2kIdwwbV4jTNWHozN
+   IY9tTr3ipl8Livm9CTenHvMgUj1VSLbmJ18+QcGeTg0uA+EAgp2a0geD2
+   Q==;
+X-CSE-ConnectionGUID: EFYFuyXTTb6nqnc/hMYATg==
+X-CSE-MsgGUID: RUAGTXXiRo6pY9JkMEn5iA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40150235"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="40150235"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2024 06:18:08 -0700
+X-CSE-ConnectionGUID: /OYILA24ToSvrqTwVHf5Wg==
+X-CSE-MsgGUID: hYG2gfQvT+Sl12TvfHhyzA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,235,1725346800"; 
+   d="scan'208";a="80813600"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 26 Oct 2024 06:18:04 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t4gg5-000Zge-2G;
+	Sat, 26 Oct 2024 13:18:01 +0000
+Date: Sat, 26 Oct 2024 21:17:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>
+Cc: oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+	Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: Re: [PATCH v7 3/7] mfd: Add new driver for MAX77705 PMIC
+Message-ID: <202410262035.of6zMB8v-lkp@intel.com>
+References: <20241023-starqltechn_integration_upstream-v7-3-9bfaa3f4a1a0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siliconsignals.io
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: b67b9789-2037-4db6-6ccc-08dcf5bfb3a0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2024 13:11:28.0723
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7EUO0kXj/dckv9tc4WiEjziIsO2iFFGgz21k119dqp0WjxPxdAJTTtW0TCccPb4hvR09s3GvHgmRjL+Wty2fNyLJdNCR/3biTyq3VPRjTFj1o0FpF4GvB5BhK2ueiybE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB0878
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241023-starqltechn_integration_upstream-v7-3-9bfaa3f4a1a0@gmail.com>
 
-Hi Krzysztof,=0A=
- =0A=
-Thanks for your suggetions=0A=
- =0A=
->> +          corresponds to a physical pin on the GPIO expander.=0A=
->> +        items:=0A=
->> +          pattern: "^gpio([0-9]|[1][0-5])$"=0A=
->=0A=
->Since I expect resend, correct also quotes - use consistently either '=0A=
->or ".=0A=
- =0A=
-Yes, I will change=0A=
- =0A=
->> +=0A=
->> +    i2c {=0A=
->=0A=
->Keep one complete example for i2c and one for spi. This was not in=0A=
->previous patch and change log does not explain why you need three=0A=
->examples.=0A=
- =0A=
-Okay, I will drop one example of I2C=0A=
- =0A=
->> +        #address-cells =3D <1>;=0A=
->> +        #size-cells =3D <0>;=0A=
->> +=0A=
->> +        mcp23017: gpio@21 {=0A=
->=0A=
->Drop unused label=0A=
- =0A=
-May I know how its unused, AFAIK, Since it's an I/O expanded, it=92s refere=
-nced elsewhere, so keeping it is necessary for functionality.=0A=
- =0A=
-Regards,=0A=
-Himanshu=0A=
-________________________________________=0A=
-From:=A0Krzysztof Kozlowski <krzk@kernel.org>=0A=
-Sent:=A026 October 2024 17:48=0A=
-To:=A0Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
-Cc:=A0linus.walleij@linaro.org <linus.walleij@linaro.org>; robh@kernel.org =
-<robh@kernel.org>; krzk+dt@kernel.org <krzk+dt@kernel.org>; Tarang Raval <t=
-arang.raval@siliconsignals.io>; Conor Dooley <conor+dt@kernel.org>; linux-g=
-pio@vger.kernel.org <linux-gpio@vger.kernel.org>; devicetree@vger.kernel.or=
-g <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org <linux-kernel@=
-vger.kernel.org>=0A=
-Subject:=A0Re: [PATCH v2] dt-bindings: pinctrl: convert pinctrl-mcp23s08.tx=
-t to yaml format=0A=
-=A0=0A=
-CAUTION: This email originated from outside the organization. Do not click =
-links or open attachments unless you recognize the sender and know the cont=
-ent is safe.=0A=
-=0A=
-On Thu, Oct 24, 2024 at 06:16:18PM +0530, Himanshu Bhavani wrote:=0A=
-> +=A0 pinmux:=0A=
-> +=A0=A0=A0 type: object=0A=
-> +=A0=A0=A0 properties:=0A=
-> +=A0=A0=A0=A0=A0 pins:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 description:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 The list of GPIO pins controlled by this nod=
-e. Each pin name=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 corresponds to a physical pin on the GPIO ex=
-pander.=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 items:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 pattern: "^gpio([0-9]|[1][0-5])$"=0A=
-=0A=
-Since I expect resend, correct also quotes - use consistently either '=0A=
-or ".=0A=
-=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 maxItems: 16=0A=
-> +=0A=
-> +=A0=A0=A0=A0=A0 bias-pull-up:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 type: boolean=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 description:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 Configures pull-up resistors for the GPIO pi=
-ns. Absence of this=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0 property will leave the configuration in its=
- default state.=0A=
-> +=0A=
-> +=A0=A0=A0 required:=0A=
-> +=A0=A0=A0=A0=A0 - pins=0A=
-> +=0A=
-> +=A0=A0=A0 additionalProperties: false=0A=
-> +=0A=
-> +required:=0A=
-> +=A0 - compatible=0A=
-> +=A0 - reg=0A=
-> +=A0 - gpio-controller=0A=
-> +=A0 - '#gpio-cells'=0A=
-> +=0A=
-> +unevaluatedProperties: false=0A=
-> +=0A=
-> +examples:=0A=
-> +=A0 - |=0A=
-> +=A0=A0=A0 #include <dt-bindings/interrupt-controller/irq.h>=0A=
-> +=0A=
-> +=A0=A0=A0 i2c {=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 #address-cells =3D <1>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 #size-cells =3D <0>;=0A=
-> +=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 mcp23018: gpio@20 {=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 compatible =3D "microchip,mcp23018";=
-=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D <0x20>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 gpio-controller;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #gpio-cells =3D <2>;=0A=
-> +=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 interrupt-parent =3D <&gpio1>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 interrupts =3D <17 IRQ_TYPE_LEVEL_LOW>=
-;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 interrupt-controller;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #interrupt-cells =3D <2>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 microchip,irq-mirror;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 };=0A=
-> +=A0=A0=A0 };=0A=
-=0A=
-Drop this example.=0A=
-=0A=
-> +=0A=
-> +=A0 - |=0A=
-> +=A0=A0=A0 spi {=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 #address-cells =3D <1>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 #size-cells =3D <0>;=0A=
-> +=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 mcp23s17: gpio@0 {=0A=
-=0A=
-Drop unused label=0A=
-=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 compatible =3D "microchip,mcp23s17";=
-=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D <0>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 gpio-controller;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #gpio-cells =3D <2>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 spi-max-frequency =3D <1000000>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 microchip,spi-present-mask =3D /bits/ =
-8 <0x01>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 };=0A=
-> +=A0=A0=A0 };=0A=
-> +=0A=
-> +=A0 - |=0A=
-> +=A0=A0=A0 #include <dt-bindings/interrupt-controller/irq.h>=0A=
-> +=A0=A0=A0 #include <dt-bindings/gpio/gpio.h>=0A=
-> +=0A=
-> +=A0=A0=A0 i2c {=0A=
-=0A=
-Keep one complete example for i2c and one for spi. This was not in=0A=
-previous patch and changelog does not explain why you need three=0A=
-examples.=0A=
-=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 #address-cells =3D <1>;=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 #size-cells =3D <0>;=0A=
-> +=0A=
-> +=A0=A0=A0=A0=A0=A0=A0 mcp23017: gpio@21 {=0A=
-=0A=
-Drop unused label=0A=
-=0A=
-Best regards,=0A=
-Krzysztof=0A=
+Hi Dzmitry,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on 63b3ff03d91ae8f875fe8747c781a521f78cde17]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Dzmitry-Sankouski/power-supply-add-undervoltage-health-status-property/20241024-034645
+base:   63b3ff03d91ae8f875fe8747c781a521f78cde17
+patch link:    https://lore.kernel.org/r/20241023-starqltechn_integration_upstream-v7-3-9bfaa3f4a1a0%40gmail.com
+patch subject: [PATCH v7 3/7] mfd: Add new driver for MAX77705 PMIC
+config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20241026/202410262035.of6zMB8v-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241026/202410262035.of6zMB8v-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410262035.of6zMB8v-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/mfd/max77705.c: In function 'max77705_i2c_probe':
+>> drivers/mfd/max77705.c:107:12: warning: variable 'pmic_ver' set but not used [-Wunused-but-set-variable]
+     107 |         u8 pmic_ver, pmic_rev;
+         |            ^~~~~~~~
+
+
+vim +/pmic_ver +107 drivers/mfd/max77705.c
+
+    99	
+   100	static int max77705_i2c_probe(struct i2c_client *i2c)
+   101	{
+   102		struct max77693_dev *max77705;
+   103		struct regmap_irq_chip_data *irq_data;
+   104		struct irq_domain *domain;
+   105		int ret;
+   106		unsigned int pmic_rev_value;
+ > 107		u8 pmic_ver, pmic_rev;
+   108	
+   109	
+   110		max77705 = devm_kzalloc(&i2c->dev, sizeof(*max77705), GFP_KERNEL);
+   111		if (!max77705)
+   112			return -ENOMEM;
+   113	
+   114		max77705->i2c = i2c;
+   115		max77705->dev = &i2c->dev;
+   116		max77705->irq = i2c->irq;
+   117		max77705->type = TYPE_MAX77705;
+   118		i2c_set_clientdata(i2c, max77705);
+   119	
+   120		max77705->regmap = devm_regmap_init_i2c(i2c, &max77705_regmap_config);
+   121	
+   122		if (IS_ERR(max77705->regmap))
+   123			return PTR_ERR(max77705->regmap);
+   124	
+   125		if (regmap_read(max77705->regmap, MAX77705_PMIC_REG_PMICREV, &pmic_rev_value) < 0)
+   126			return -ENODEV;
+   127	
+   128		pmic_rev = pmic_rev_value & MAX77705_REVISION_MASK;
+   129		pmic_ver = (pmic_rev_value & MAX77705_VERSION_MASK) >> MAX77705_VERSION_SHIFT;
+   130	
+   131		if (pmic_rev != MAX77705_PASS3) {
+   132			dev_err(max77705->dev, "rev.0x%x is not tested",
+   133				pmic_rev);
+   134			return -ENODEV;
+   135		}
+   136	
+   137		max77705->regmap_leds = devm_regmap_init_i2c(i2c, &max77705_leds_regmap_config);
+   138	
+   139		if (IS_ERR(max77705->regmap_leds))
+   140			return PTR_ERR(max77705->regmap_leds);
+   141	
+   142		ret = devm_regmap_add_irq_chip(max77705->dev, max77705->regmap,
+   143						max77705->irq,
+   144						IRQF_ONESHOT | IRQF_SHARED, 0,
+   145						&max77705_topsys_irq_chip,
+   146						&irq_data);
+   147	
+   148		if (ret)
+   149			dev_err(max77705->dev, "failed to add irq chip: %d\n", ret);
+   150	
+   151		/* Unmask interrupts from all blocks in interrupt source register */
+   152		ret = regmap_update_bits(max77705->regmap,
+   153					 MAX77705_PMIC_REG_INTSRC_MASK,
+   154					 MAX77705_SRC_IRQ_ALL, (unsigned int)~MAX77705_SRC_IRQ_ALL);
+   155	
+   156		if (ret < 0) {
+   157			dev_err(max77705->dev,
+   158				"Could not unmask interrupts in INTSRC: %d\n", ret);
+   159			return ret;
+   160		}
+   161	
+   162		domain = regmap_irq_get_domain(irq_data);
+   163	
+   164		ret = devm_mfd_add_devices(max77705->dev, PLATFORM_DEVID_NONE,
+   165					   max77705_devs, ARRAY_SIZE(max77705_devs),
+   166					   NULL, 0, domain);
+   167	
+   168		if (ret) {
+   169			dev_err(max77705->dev, "Failed to register child devices: %d\n", ret);
+   170			return ret;
+   171		}
+   172	
+   173		device_init_wakeup(max77705->dev, true);
+   174	
+   175		return 0;
+   176	}
+   177	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
