@@ -1,140 +1,154 @@
-Return-Path: <devicetree+bounces-116011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C31F9B1A1A
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 19:36:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6AFE9B1A25
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 19:48:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14775B21918
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 17:36:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 627A4282A45
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 17:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19041D040B;
-	Sat, 26 Oct 2024 17:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970BA179958;
+	Sat, 26 Oct 2024 17:48:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LPYIdG7A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ijc6JI4z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A75917C7C9
-	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 17:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E3623A6;
+	Sat, 26 Oct 2024 17:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729964176; cv=none; b=CJ3uqeEUd3s629P/cv6ByCYu2XgC7Ze8Wb8xQQ5h5VTVDHDhZ0HL4I8EQoXg8aKHxIVxa5Ytg1mIpHF+2O25jJgHY8ioSvtV0rUHx7Iz4Afi/C2tQGa9UY/hjMSbKX/+/lVDXYGNApJUWR79sDDuXs4oBjmg6s9mFWdMwW5OoDk=
+	t=1729964909; cv=none; b=ob8c3UvvD9enMBuB98GcYUuNZxpAfRn1EFFBIc+QGJD/F/lXaANDkzpIIY5JI5nL/+b59nDKp38+LQ1pdrWKQFHW5yyVGTBKdHG8ohKkR2yx3D7hLpOojwUMl97j+WeDoRGgRr78NgRBlks9VbU1m5yVtPtxQi/APIH2spsBK28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729964176; c=relaxed/simple;
-	bh=phUfAcDTOItD03YWDpnRE3vQIi5vjTKDUM3kCtTifo0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DKI+j9JOuO36v3mAR1y0IYuBoH25wSMG2aJ7ssKArsgC6Waq8uTR4eNGWusLhYehVHrNCadwum7PtiPLnudYz+tlIx6Ixg8eXgNaBDktHrEpuXUd/7fnFhRBsXxdwy9gjZTRZNxdJCrJhrw1SEH0R0QYpI/HuSh+F6iNLSRDsCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LPYIdG7A; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-539f6e1f756so3421770e87.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 10:36:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729964172; x=1730568972; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fmS+fK2Pn+5Ry5DbVr2l2yafLL4Tr2a4G4QgAKiqolA=;
-        b=LPYIdG7AjLiSOOGoneJH7LnOpt+n8GNyRswqWdsDcZe51jALyG6eQ4kBbewMmregNa
-         JxHjW/dGH88x2O//AKObWRfFhjY0IqHV1WrJfJBVs9X0YUIjf2c918b9kLaU0gGyiMNU
-         SiTc3ux3n/pKBpn5eCrGjgT5hm/1E4I6QPjqZqjj7k/WPJ++9VpjopCXleEyyWYzObwM
-         L+Ms27Pgdg7oAoT3jNLWRl2AxRFXnKcjMdwH+Y67mSojFrIK3J6lXoAjWT4Y7+++JgBy
-         Z1F+7nYNI58oHZN8ZEU2QRB/mq6R1gZR7OQdQEMuqGonzYNNT24cuutYbov9cCQeWqST
-         UOJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729964172; x=1730568972;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fmS+fK2Pn+5Ry5DbVr2l2yafLL4Tr2a4G4QgAKiqolA=;
-        b=AcoOXVdc7SmFQtb0q5+PTLSOHAMfpYW6T96ywpbHAvZLYIhztVGy4DYt3h0MipSuPn
-         eetgrSXq+GDFr0N9x3F3KRVn5uSMtA9yflarYp788prucPzmkrmxhZ0vlWwAeiVJqySv
-         lGVl6BCCxZfLHfR+43Cn17DRIjkkTspHO1N5pTq/VLKhBoqYWRCJHkdNlTRdCTqZ6ITt
-         Az2yH5rEnCjGURDOWmqs9emFxlgSzoWfDBy1d9YG3F6hbrIuUeNRVRuo1fwazIdcn7wA
-         Y6ImNZbyzM10InuRWBZEjsdOL5rN7gGlOe5MQP/3R6k5OVx4WixaWjkvsOR5ASAxBNjZ
-         1hjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWo/PTHAkP8lykQ5rniXdyYAsUavEWIkz8M282VllwRwzhwFn5TvJIHwB+Y9EHs1eJ9MoJol17Y/KFH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqiaRCNV1mahAt5WCYoKeVFTG8RisG4Wq4D1KLdBseUEPS0o6K
-	Fb2uTveIdak7caZBVJWyg0g+ZHPjLC9ARnhXO17lZJgMXCgjtAbW3x4C9XDaHTo=
-X-Google-Smtp-Source: AGHT+IHxFtbh3mAC/q2yje7AqlBTOhREdJh9MYZEaNaVgKdJdZ09vcBo/Q+Pw/1GR6+WaFWYyICbXg==
-X-Received: by 2002:a05:6512:39cd:b0:539:f51e:17d3 with SMTP id 2adb3069b0e04-53b348d0ccamr1172908e87.14.1729964172292;
-        Sat, 26 Oct 2024 10:36:12 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e12452fsm566762e87.73.2024.10.26.10.36.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Oct 2024 10:36:10 -0700 (PDT)
-Date: Sat, 26 Oct 2024 20:36:08 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_ppratap@quicinc.com, 
-	quic_jackp@quicinc.com
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Enable USB controllers for
- QCS8300
-Message-ID: <xijjs445fzeuzbj2bg3ziwlzenrk4wo5zlyze4j5mldb444oj7@73ynic4xqfdj>
-References: <20241011074619.796580-1-quic_kriskura@quicinc.com>
- <20241011074619.796580-3-quic_kriskura@quicinc.com>
+	s=arc-20240116; t=1729964909; c=relaxed/simple;
+	bh=o9oZRErK9cr6PRplzWQmLO2V+yn8kM55lzCnsD5Fk0E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uTu99J/CgILcy0I34Pir4TnA/mGuZgELpcgMArIFofdGCWfJ33iqdcIzddbGYMTVDDMZ4pJcA3P4S0A/L8Zv/u0432ai82XmQSwB/s/Kif5tnimmOwFtDm7s00eue7aKKDuDSUok0HvzNrYqUSuPOdNZh5UVrL+eZaz2+oq+dVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ijc6JI4z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 383C6C4CEC6;
+	Sat, 26 Oct 2024 17:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729964908;
+	bh=o9oZRErK9cr6PRplzWQmLO2V+yn8kM55lzCnsD5Fk0E=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ijc6JI4zkGVa43MOp9BBdSUvVfdlX4ZdOZZopH9vRslfri8ob6cuIzHv+5L0FY7fh
+	 XuR41e24VT7Y+AZYN6J9va7Pq8Tc0IaeaPvRh2HxhzQcPIxr0Ae8a56RZc3h/GZLtq
+	 Gwl4WEoW94Z/b2MBIj8BesS5dqslmfw3R4Vqgf+0zBgec48hi8S5d3tDTrtmJfs8vq
+	 gI9OFQwwPRBluIeax93DkHAQw6XwCgEeIn8fIMLoqXcoiNSLbyaUzkmo/vNJATi8U0
+	 uwL+ggHchdvxWEzm5hMmIt1z+UPMxpTXa3Fm4N/J1o6ZWxYS7sPb7zKq29LSgk9zSq
+	 UzLFQN68osAtw==
+Date: Sat, 26 Oct 2024 18:47:54 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Mark Brown
+ <broonie@kernel.org>, dlechner@baylibre.com
+Subject: Re: [PATCH v8 6/8] iio: dac: ad3552r: extract common code (no
+ changes in behavior intended)
+Message-ID: <20241026184754.009ea6f7@jic23-huawei>
+In-Reply-To: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-6-74ca7dd60567@baylibre.com>
+References: <20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-0-74ca7dd60567@baylibre.com>
+	<20241025-wip-bl-ad3552r-axi-v0-iio-testing-v8-6-74ca7dd60567@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241011074619.796580-3-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 11, 2024 at 01:16:19PM +0530, Krishna Kurapati wrote:
-> Enable primary USB controller on QCS8300 Ride platform. The primary USB
-> controller is made "peripheral", as this is intended to be connected to
-> a host for debugging use cases.
+On Fri, 25 Oct 2024 11:49:39 +0200
+Angelo Dureghello <adureghello@baylibre.com> wrote:
+
+> From: Angelo Dureghello <adureghello@baylibre.com>
 > 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 23 +++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
+> Extracting common code, to share common code to be used later
+> by the AXI driver version (ad3552r-axi.c).
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> index 7eed19a694c3..3e925228379c 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> @@ -265,3 +265,26 @@ &ufs_mem_phy {
->  	vdda-pll-supply = <&vreg_l5a>;
->  	status = "okay";
->  };
-> +
-> +&usb_1_hsphy {
-> +	vdda-pll-supply = <&vreg_l7a>;
-> +	vdda18-supply = <&vreg_l7c>;
-> +	vdda33-supply = <&vreg_l9a>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_qmpphy {
-> +	vdda-phy-supply = <&vreg_l7a>;
-> +	vdda-pll-supply = <&vreg_l5a>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 
-So, can it be used as a USB host controller / connector? What needs to
-be done in such a case?
+Hi Angelo,
 
--- 
-With best wishes
-Dmitry
+A few trivial things but one bigger one that actually only becomes a problem
+in the next patch so I'll comment on that.
+
+> +
+> +MODULE_DESCRIPTION("ad3552r common functions");
+Ah. This rang alarm bells.  I'll comment in next patch but you can't link
+the same file twice.
+
+
+> +MODULE_LICENSE("GPL");
+
+
+> @@ -1072,3 +727,4 @@ module_spi_driver(ad3552r_driver);
+>  MODULE_AUTHOR("Mihail Chindris <mihail.chindris@analog.com>");
+>  MODULE_DESCRIPTION("Analog Device AD3552R DAC");
+>  MODULE_LICENSE("GPL v2");
+> +MODULE_IMPORT_NS(IIO_AD3552R);
+> diff --git a/drivers/iio/dac/ad3552r.h b/drivers/iio/dac/ad3552r.h
+> new file mode 100644
+> index 000000000000..22bd9ad27c65
+> --- /dev/null
+> +++ b/drivers/iio/dac/ad3552r.h
+> @@ -0,0 +1,226 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * AD3552R Digital <-> Analog converters common header
+> + *
+> + * Copyright 2021-2024 Analog Devices Inc.
+> + * Author: Angelo Dureghello <adureghello@baylibre.com>
+> + */
+> +
+> +#ifndef __DRIVERS_IIO_DAC_AD3552R_H__
+> +#define __DRIVERS_IIO_DAC_AD3552R_H__
+> +
+> +/* Register addresses */
+> +/* Primary address space */
+
+> +#define   AD3552R_MASK_MULTI_IO_MODE			GENMASK(7, 6)
+> +#define   AD3552R_MASK_STREAM_LENGTH_KEEP_VALUE		BIT(2)
+> +#define AD3552R_REG_ADDR_INTERFACE_CONFIG_C		0x10
+> +#define   AD3552R_MASK_CRC_ENABLE			(GENMASK(7, 6) |\
+> +							 GENMASK(1, 0))
+If for whatever reason we go around again, (otherwise I might tweak anyway)
+#define   AD3552R_MASK_CRC_ENABLE	\
+		(GENMASK(7, 6) | GENMASK(1, 0))
+
+
+> +#define   AD3552R_MASK_CH_OUTPUT_RANGE			GENMASK(7, 0)
+> +#define   AD3552R_MASK_CH_OUTPUT_RANGE_SEL(ch)		((ch) ? \
+> +							 GENMASK(7, 4) : \
+> +							 GENMASK(3, 0))
+I may tweak this whilst applying to be something like
+
+#define   AD3552R_MASK_CH_OUTPUT_RANGE_SEL(ch)	\
+		((ch) ? GENMASK(7, 4) : GENMASK(3, 0))
+
+
+> +/* Useful defines */
+Made me laugh.  I hope we don't ever have a comment that says "Useless defines" :)
+
+> +#define AD3552R_MAX_CH					2
+> +#define AD3552R_MASK_CH(ch)				BIT(ch)
+> +#define AD3552R_MASK_ALL_CH				GENMASK(1, 0)
+> +#define AD3552R_MAX_REG_SIZE				3
+> +#define AD3552R_READ_BIT				BIT(7)
+> +#define AD3552R_ADDR_MASK				GENMASK(6, 0)
+> +#define AD3552R_MASK_DAC_12B				GENMASK(15, 4)
+> +#define AD3552R_DEFAULT_CONFIG_B_VALUE			0x8
+> +#define AD3552R_SCRATCH_PAD_TEST_VAL1			0x34
+> +#define AD3552R_SCRATCH_PAD_TEST_VAL2			0xB2
+> +#define AD3552R_GAIN_SCALE				1000
+> +#define AD3552R_LDAC_PULSE_US				100
 
