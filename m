@@ -1,77 +1,82 @@
-Return-Path: <devicetree+bounces-115951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5139B9B1787
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 13:43:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969369B1756
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 13:14:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C87FA1F228B0
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 11:43:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AABC2811F2
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 11:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF9C1D3654;
-	Sat, 26 Oct 2024 11:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B6C91D319C;
+	Sat, 26 Oct 2024 11:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="Z45QrJZ3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PiSWcLJW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic307-53.consmr.mail.ir2.yahoo.com (sonic307-53.consmr.mail.ir2.yahoo.com [87.248.110.30])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08BD738DD3
-	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 11:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=87.248.110.30
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A0791D2F66
+	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 11:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729943011; cv=none; b=U56xE3sx/lTnC++CL/kb4svE7VwHyC9IJAm9vlaCVkD467SQtiMroCnOgg7yuLb5A6RNkfMxDTudUi3zNHomoUS/gdqyuP49Mwg95mmG1Z+AAkxBhYWPv3HmdOdAdigq6XOTxWqymPnA+xJt/EQ/gNjiUgUjUfOEHk6kw0/DGto=
+	t=1729941250; cv=none; b=YnWw4/keeBvvtkPSNyqMgvWeEeux4Vzmgb7ou5Me96S91k7LVam7J68AWqQ6CmQo2nx4aTibGbe9WZS0NFEyGepqFY40nU/qE9KABNq2IwhCcIzWL8yuB2AN8fLeG0wY/mo5VNBZCykL+YQmYDm5EkitsyCZiBfc0y2M+Ut0ZhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729943011; c=relaxed/simple;
-	bh=jzjqCwjIAn6SOKZQuKOVn4p0WJlb1canFhY/ix5Ne2g=;
+	s=arc-20240116; t=1729941250; c=relaxed/simple;
+	bh=6FvXG1+2BkeLGD3AY+/9YpHV5JAfMTLz69z6Znln92g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C6CXWy+Sg+dS2hFUzi00g8sV4+EoW2g6YKz9pElWgfpg5YeIPoUFC/xvZm6Hht65qirfzcbvxw+fD4qQEF0GF8Nl4pJ9mCD/xbkhaV0KaiCmdAI55dF/jbkYMB9uaJqUMdfcVpN7xFwLp98hlS9uBf5MuDhaordVDV/Jb5djeAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=Z45QrJZ3; arc=none smtp.client-ip=87.248.110.30
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1729943006; bh=jzjqCwjIAn6SOKZQuKOVn4p0WJlb1canFhY/ix5Ne2g=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=Z45QrJZ31GxWduGf07m2Mm4+k+cv38o8NnogRNjWehJw/eM1fXbPcnoi/E5aTJj1p79vNMAfQU+1ZnhTz0DuGBeKoZCTtSURlRgxDCcbGwq5PZIkiDucK0iV/BoG98xo23qNcH+fIaT5iV+Fwh3J73A0idQMGbxFheVMb+G0QbiGOQpXKa/4vrVHKyYx1DT7i8/zH2pn7bdsdbvl+y6+mVNslPL4zSlYik8Oi8ufYDUAnMVJz6G1E1nlbFbvYxHliZ0JOYA0hurSHlBQR6kGtGjzjvKY0ylVTsmxWvMYaCp58dSgRqzzihLySCJ0gqDof3URFx7lu6dbA0AiQ9MUOQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1729943006; bh=oEJzirxg8xX+34+hixdpbTmZLicjPO4PA7IvOdcJywJ=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=UBRkH2pknATGGXyMkEMGcvkQ6qZBI8U7d7E7GejxP185eeIMjo9ofVWajhu4JbElUXHlJUwEfjSpRtKWoCsJGMoIAYq9dNSdSo0nkZTWQRcTgiY7ru6JTo1juckq/Ijqdjev6rZgQ7UZh+0eSp08GbrtQUG8JIYs+YV5RDxasiPazWmvfEsPhShwXAvBOO/z0sM+Os0cJH6LxmJiLgzQqyoM+1bzQ+PAG7N2eCT0EaJ9KKuz+oQG7rxzrzT/jICkbHzwkdW970ejbv8RGru/NrqlSPh4tCU3nN9juuLoLeaRjklqT9/wa/fFGpuER09IdziqqiMNhOTNKosjD/maMg==
-X-YMail-OSG: 71ws99IVM1m7x0WCxX73k2X.ldWfFQbqgPdbmZr34lD9LYd5.FrJKSgnMAgLkmE
- f4c_Q6KgOqqbuj.fAXXCB3H8Olv464Upo4OwHKWLFzJr5HPY6RwQKzKzEbfTSm79_PzKPT90yFyJ
- YvVYWQAJP5FQQTM2ndLWxm958JyQpdlrlI0_pFH5TblJRBVXZ2A6qgN.QOVRPXaxM.fibb5HBr_E
- UTJ9RI2JgyvR0wiYaG3V9yQ0WMPajeaoO9Wj3x1SokpMIzdljNVhewjb9KqDxTX63QAE7gAWDBOT
- iSqrRO1.sQQAAYPpV.Qx6C.P.R8QeAS5Lqu.W61C3FsHitGR5Ymqh832kVSWzfdXq62ITCAiHmfs
- XjZJOF845WN20zKRsFK.vNqv1mUE_qCnjZf8gCfvTXcw1q3cvoN8ELG0yrL_ZsIgUBvaf4Vo4ln.
- 4dwDiDZ85UL6ATUDQfoI0lK2.If5H7vyQ_s4cyqoxkgvCq_.MI1vn.78nh0TotXqvXRcfAif.Qan
- 2TxkUY8B5cZ2NcroPgUJsI_D7Z7cHUCZESGe06DAovfMUxLEnDnwfQt0sY8aN9uw.9F1PCWzLbT1
- UypAGBK8vIsKtVDxteKZlwXLPynvQ.jQpcklFIh2kjVzTUga5F4AWwuOa4E832JX_ptrrV5kg_2E
- wMBTE8nnbux5dyN9372nB3lC21kGKo2iLRzCFSZZkxO8rkUmTJOFVW2MVkxQmXUeBcU2LeU.Nz8T
- .q8WsXH3xuQQbOl5wyvqtzVApP.VrNaE286_uAO1b44rqLIEjCmXydrhPacJHdeCtNtJPv8Nsgno
- 0_PmT5KpDyU0g8CTl3_gz1.vUIYD_jHd68qvMaIHFKl7Zkdt9xjsvaRRVXn3SFxl25a9wBFCpLtX
- vhpmvv94fXf9f6USIsqCYkZ4Dy1gY1JjQsjHgYcun_2wDlwjm7dOX1LsYhNCQAtxIRuNmcEYosxL
- 6CF29P_82rT6zsM.yI9w4h.tbe4RRhtuupvLfFrlIOlFc12GEgjLkfhCDzMsRqYVnsP56DTm9qM4
- 2teamAEj1BKAHzVh7JTZ3E_RPTRRCPmCxmm_PyTvlvr6hCRwr8R75IjG0ZZ8jWlJfRljjDSvqmtk
- 2u_Dti8qq1M_N9trVe_0qOOdkWu.xIYX_1bVW1Dt9ylduI7Ul9EwUY14qQdFH32kz.akNoBy7uYV
- Z_nzkwWiHgplHZUZT_qMd.ECQwP8aG84Bf3UIPBL1IgXYQCJvdHEdma8zv.eScxf61Ls_v3zBo.b
- 8OwHYH29sB8EDM2u8V2WertRXnYiHM_JFwnax4bXGc69aDbon2lmUc4kOgROMKs9afP2OphMgyIk
- _kt2.JeqWlpoBNZ33txKCjOFUXc63T1w0C5aOM7o81U67qgyUgD50jAdatoGLFEmKqh_3VIcgLLr
- RcxvQo3.yR7IZ3kt6gAqlxjqxaxgrPXv1_MsifoSYBRhxWGyZe6Z5dUq.PrGjoqNb6HQC1rtrbUZ
- 4yD09eHaXHAx1m7XLgbGb1.Qf6pgwgj01I6jQ4mH5ZFOgsWAiMxyeLyZc.axRWAJ0xro77UxUruW
- TnYo2jmbnP3wlVat8t2YTPnnQ_wbJjyiKzl.C8N.mR_qwamdpJPsSa55xXHNCnD6GBdH_SG1XCMV
- UHmzaroUJIXg3h0VR5UeqpKi6NY46_936t1lGMsCyVM5RwZBVZK7Ablvg0o7QYXe9XUgRYKbYeOE
- W7i2OPoPsIj6yjQQxkqjxa0_8AQXo49s47CxSxSYmTgGKY1I7BCtIGVxjp9JNK3ieJuLK.PEpEJt
- CJLC7XwRYAgTrDQBhtZEjDWiSzq6ZHNuJxAPET018cB7Ag.ilWX.fmFpfaXMfty.O3mzpqpB6pqT
- mStQomZqMYxuW0a2TUbLJdMXEi8DrHr5Ak8TWvxXu.N2QK1Wa9G9vey17mGwa_AkIN7eTiDoDU.0
- H6Isrsetqk8BVz8iCv_NuJfR7YsvA6BRN9x3mAbqFIla9863FUC7wK4SXBXSL4OPCYhD93FWVTTF
- giJR7GhIyDGWiPjcvOZpmLribhBRaiNsb1JAZk9VTRknYg0le0ewORm_Mrrh6L3xrdtybCh4jB6W
- T0tk8zn6dC6IJTgnnclXOK1XFqPs3RqDkP4IbZTAfkIox6NJAAH5O2zG_Wqbitn4.fXsipGwkfzS
- m4arAnDtUuU9d2HfUn_8p0YYhDXdsGKUCjM2w.KpnHxD5_PqBFMBNnWXE68YdYd9r1gNjESmVvRX
- wwtH1GOVQ71g7R0YZdp8k2KGwQd09T8cbvcA8ksEYTPCCKimH96alKd6j0SHqFY18yAX3_lOMlvq
- YuTvIekhqh2TVN17D1SRKI3A7NMFx8TKXHnZVFU0-
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 22a6f5cd-7af9-4326-b65e-8d6e4bc02132
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ir2.yahoo.com with HTTP; Sat, 26 Oct 2024 11:43:26 +0000
-Received: by hermes--production-ir2-c694d79d9-h5tj6 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 5bb438183100cab3b9878666a457b459;
-          Sat, 26 Oct 2024 11:13:03 +0000 (UTC)
-Message-ID: <c2c08d39-0be5-42fb-b888-0d4e8db3f85d@rocketmail.com>
-Date: Sat, 26 Oct 2024 13:13:01 +0200
+	 In-Reply-To:Content-Type; b=Jsz22z3rRLXwRWYcQQTDOXVm2kr5F7c4hMKZAFacBiAm78ohnqd76XHKB9OqY5HKFYq18v+VNMiI6NdRwd93w6RtqUHca+hXhCpuMLbafceiyuAAPA+ay/E8gm1whR5GXnbuo60UXSNbE2ubSj7Fdm8RAG6ptaG7CZdOHzV+pm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PiSWcLJW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49Q5xqEn004276
+	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 11:14:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2VIJyVShOKe202SikbYNzeQ/DoTsTn4fTzLjpZCO0Wo=; b=PiSWcLJW0ywSuUUk
+	6iJfPs7noBJcyDSH2ik9YFwKE8ZkKBqVhU1l0HU4UpVkqtYUTCZQ1nfgUD/JQKgv
+	7DAXuIu1ijaT6Ypt/PZfF8wybNlk1RcxXUqn+r1GziR1kvxtL3l9vtaj+gbrO3YR
+	pDQTheD0KKWnl0FfjRHnkSRkesJdDzw6oq7lC6Cj+Ro3k2T6CpGPN88XLbpJ785L
+	xt1/sVl8CC31BmDdOH2yAgsANhFfgS93o1j8hzQElWCT+fmOaI2DnWuw+bDSGQ51
+	T2A5WrP0IAXE4+rLtDuR+0L5o0LabB1IHp5pHEenugyyhfTkN4IwezQcWPw0sxeg
+	YT61Vg==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gqe5ruc4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 11:14:06 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6cda6fd171bso6511716d6.3
+        for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 04:14:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729941246; x=1730546046;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2VIJyVShOKe202SikbYNzeQ/DoTsTn4fTzLjpZCO0Wo=;
+        b=Gb13W2+JZiO5LwTrjf3FQ93eHcr3v7TAp2a58b4ZoOFl3lrS3Uhk8Jb1udEHKy72jj
+         fyvI2MLSxTMOjAmR3I1/s/AK09fZF8jHbo2BnQ6bSQED6Beg3WZrnRveTLrmbxPB8v4w
+         3cLi+FV87Er/SEbueCN8MJLn8WRZd9EGEY4NFV/WJRZaBSOlbWKvmB1QuSIZHrJ/sPm3
+         CDE6ZRR4fqtzu3YRWozfyAl74gtHT3UsOJaH0YgpcZ5L+yA5gSuynAHHq9bDAtVgPH+J
+         XbsB/oZq3e739y8x7U08DvCYzJHrB55cqxXzlRuoKmuMY9sBttL4fTzHiycPw1nDGTMy
+         dc/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVfvlknfLqsg8rQGshLdzf9+FVEgwerjS45i8+uO7OPmKxx/Kj1b0mjgaf4ZFHaWXhXdC/hqsG6DvHx@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywv7N7JWr3XexwZupdb5N8zn/lDdSjjevFmyVHLT9GJOQz+dWaV
+	utWnU4vN4Qm/ORQRXlGDLZQnUBEchDteCx8cTvwHFd5+EsK/1dW52AT0wd1QJNXShAPUTIbsN6Y
+	oNPXIDl5HxlTUjeNeqLBdvoPXU7neIFgm7b3dRHesOCONIhZgHWVsT4XZCZam
+X-Received: by 2002:a05:6214:2628:b0:6cb:6e29:bad4 with SMTP id 6a1803df08f44-6d185862784mr17394606d6.11.1729941246097;
+        Sat, 26 Oct 2024 04:14:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHIkNHz09S+ye/cfwnCyIzU7xG6/ASc4nNFWo8hNZkb/kELlL+FU6P19DEXNKKxitu/4IweCQ==
+X-Received: by 2002:a05:6214:2628:b0:6cb:6e29:bad4 with SMTP id 6a1803df08f44-6d185862784mr17394366d6.11.1729941245630;
+        Sat, 26 Oct 2024 04:14:05 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f297b04sm164496866b.134.2024.10.26.04.14.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 26 Oct 2024 04:14:05 -0700 (PDT)
+Message-ID: <56d061ea-1458-43b5-a823-eb625204913a@oss.qualcomm.com>
+Date: Sat, 26 Oct 2024 13:14:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,44 +84,180 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/5] drm/panel: samsung-s6e88a0-ams427ap24: Add flip
- option
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1729738189.git.jahau@rocketmail.com>
- <886ce1a2443dfb58496f47734d1ceffd3325fb4b.1729738189.git.jahau@rocketmail.com>
- <CACRpkdYp+3sqbZPZt78wKaJPUxh7yq1+WS6jnZ9fFSTROJAqmA@mail.gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: add base QCS615 RIDE dts
+To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Krzysztof Kozlowski
+ <krzk@kernel.org>,
+        Lijuan Gao <quic_lijuang@quicinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, kernel@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20240828-add_initial_support_for_qcs615-v1-0-5599869ea10f@quicinc.com>
+ <20240828-add_initial_support_for_qcs615-v1-6-5599869ea10f@quicinc.com>
+ <22qkvfravm6sxiq3xfavahg2u6b2pwlyzqbqvd55zym5zef3gi@m4bsqkdvggty>
+ <17d0017e-b55d-4b32-9fd3-1a1a84e5ebf9@quicinc.com>
+ <0ec92d59-0648-40ed-a522-307152b5c37d@kernel.org>
+ <148451f2-6b1b-4616-b703-fd52e7afa2be@quicinc.com>
+ <90c98fee-770c-4b83-9e05-6f04866094c2@kernel.org>
+ <729deff2-d5df-4409-b941-af22de408521@quicinc.com>
+ <9ded31cf-5b14-426a-a10c-694f20d4fb9e@kernel.org>
+ <22657edf-5df9-44dc-b2a8-134ae613d819@kernel.org>
+ <ded66421-9425-4b9d-9922-dacc66777b83@quicinc.com>
 Content-Language: en-US
-From: Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <CACRpkdYp+3sqbZPZt78wKaJPUxh7yq1+WS6jnZ9fFSTROJAqmA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
-X-Mailer: WebService/1.1.22806 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <ded66421-9425-4b9d-9922-dacc66777b83@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: Q62Zp_ypp1d4tmVTNLLhNpL4S9o6rafe
+X-Proofpoint-ORIG-GUID: Q62Zp_ypp1d4tmVTNLLhNpL4S9o6rafe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ phishscore=0 bulkscore=0 mlxlogscore=999 malwarescore=0 adultscore=0
+ priorityscore=1501 impostorscore=0 mlxscore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410260094
 
-SGkgTGludXMsDQoNCk9uIDI1LjEwLjI0IDIxOjMyLCBMaW51cyBXYWxsZWlqIHdyb3RlOg0K
-Li4uDQo+IE9uIFRodSwgT2N0IDI0LCAyMDI0IGF0IDU6MTjigK9BTSBKYWtvYiBIYXVzZXIg
-PGphaGF1QHJvY2tldG1haWwuY29tPiB3cm90ZToNCj4gDQo+PiBUaGUgd2F5IG9mIGltcGxl
-bWVudGluZyBhIGZsaXAgb3B0aW9uIGZvbGxvd3MgdGhlIGV4aXN0aW5nDQo+PiBwYW5lbC1z
-YW1zdW5nLXM2ZThhYTAuYyBbMV1bMl1bM10uDQo+IA0KPiBUaGF0IGRyaXZlciBpcyBub3Rv
-cmlvdXNseSBoYXJkIHRvIHJlYWQgYmVjYXVzZSBpdCB1c2VzIHNvIG11Y2gNCj4gbWFnaWMg
-bnVtYmVycyBzbyBwbGVhc2UgZG9uJ3QgY29weSB0aGF0IGFzcGVjdCBvZiB0aGUgZHJpdmVy
-Lg0KDQpBY3R1YWxseSBJIHVzZWQgdGhhdCBzYW1lIGFwcHJvYWNoIGZvciB0aGUgZmxpcCBv
-cHRpb24uIFRoZSANCmltcGxlbWVudGF0aW9uIG9mIGZsaXAgbG9va2VkIHZlcnkgd2VsbCB0
-byBtZS4gSSB3YW50ZWQgdG8gc3RhdGUgaXQgYXMgDQpzb3VyY2UgaW4gdGhlIGNvbW1pdCBt
-ZXNzYWdlLiBJIGRvbid0IGZlZWwgY29tZm9ydGFibGUgd2l0aG91dCBkZWNsYXJpbmcgaXQu
-DQoNCj4gKC4uLikNCj4gDQo+PiArICAgICAgIGlmIChjdHgtPmZsaXBfaG9yaXpvbnRhbCkN
-Cj4+ICsgICAgICAgICAgICAgICBtaXBpX2RzaV9kY3Nfd3JpdGVfc2VxX211bHRpKCZkc2lf
-Y3R4LCAweGNiLCAweDBlKTsNCj4gDQo+ICNkZWZpbmUgUzZFODhBMF9TRVRfRkxJUCAweGNi
-DQo+IG9yIHNvbWV0aGluZyBsaWtlIHRoaXMuDQoNClRoZSAweGNiIGNvbW1hbmQgcmVnaXN0
-ZXIgbWlnaHQgYmUgbW9yZSBhIGdlbmVyYWwgcGFuZWwgY29udHJvbCwgbm90IA0Kb25seSBz
-ZXJ2aW5nIHBhbmVsIGZsaXAuIEJ1dCBJIGNhbid0IHNheSBmb3Igc3VyZS4gVHJhbnNsYXRp
-bmcgc2luZ2xlIA0KY29tbWFuZHMgdG8gY29tbWFuZCByZWdpc3RlciBuYW1lcyBiZWNvbWVz
-IHRvbyBhcmJpdHJhcnkuDQoNCi4uLg0KDQpLaW5kIHJlZ2FyZHMsDQpKYWtvYg0K
+On 5.09.2024 7:29 AM, Aiqun Yu (Maria) wrote:
+> 
+> 
+> On 9/4/2024 6:23 PM, Konrad Dybcio wrote:
+>> On 4.09.2024 11:32 AM, Krzysztof Kozlowski wrote:
+>>> On 04/09/2024 10:35, Lijuan Gao wrote:
+>>>>
+>>>>
+>>>> 在 8/28/2024 5:34 PM, Krzysztof Kozlowski 写道:
+>>>>> On 28/08/2024 11:31, Lijuan Gao wrote:
+>>>>>>>>>> +/ {
+>>>>>>>>>> +	model = "Qualcomm Technologies, Inc. QCS615 Ride";
+>>>>>>>>>> +	compatible = "qcom,qcs615-ride", "qcom,qcs615";
+>>>>>>>>>> +
+>>>>>>>>>> +	chosen {
+>>>>>>>>>> +		bootargs = "console=hvc0";
+>>>>>>>>>
+>>>>>>>>> Noooo, last time I agreed on this, you told me later it is different.
+>>>>>>>>>
+>>>>>>>> In the early stages, enabling HVC is to more easily verify clock and
+>>>>>>>> PMIC related functions, as it’s difficult to debug without the console
+>>>>>>>> log. After the clock and PMIC are ready, we will enable the UART console.
+>>>>>>>
+>>>>>>> Working serial is supposed to be part of the early submission.
+>>>>>>>
+>>>>>> Okay, I will remove it in the next patch.
+>>>>>
+>>>>> Can you post next version with proper serial device?
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>>
+>>>> Hi Krzysztof,
+>>>>
+>>>> Can we use the dts without console enabled as the first version? When 
+>>>> the clock is ready, we will submit new changes to enable the UART console.
+>>>
+>>> It is very surprising not to have console available in the first, early
+>>> submission, but it is not a blocker for me.
+>>
+>> Lijuan,
+>>
+>> I see that the initial submission is very slim. GCC+UART+TLMM is
+>> usually the smallest we tend to accept.
+> 
+> We are exploring various ways to improve the efficiency of the upstream
+> change merge process. In the current QCS615 project, we are
+> experimenting with a slim "HVC console" verified base device tree to
+> minimize dependencies and enhance parallel work efficiency.
+> 
+> Currently, different developers are working on the same QCS615 project.
+> One developer is focusing on clock support for QCS615, another is
+> working on interconnect support, and a third is handling TLMM pinctrl
+> support. Additionally, the QUP UART validation depends on above soc
+> specific GCC clock/TLMM support.
+> 
+> Here is the proposed process chart for reference, Clock/TLMM, even other
+> functionality like LLCC can be validated apart from current Base support
+> with HVC console enabled:
+>                                +---------------+
+> 
+>                                | Clock         |
+> 
+>                                |               |
+> 
+>                                +---------------+
+> 
+> +---------------------+
+> 
+> |    Base support:    |        +---------------+       +-----+
+> 
+> | HVC console enabled |------> | TLMM          | ----->| UART|
+> 
+> +---------------------+        +---------------+       +-----+
+> 
+> 
+> 
+>                                +---------------+
+> 
+>                                | Interconnect  |
+> 
+>                                +---------------+
+> 
+> 
+> It is suggested to have process like this:
+> 1. Have hvc console enabled base device tree support.
+> 2. TLMM/GCC/Interconnect/LLCC/etc drivers can be pushed along with the
+> needful dt changes.
+> 3. QUP uart support change after TLMM/GCC dependency uploaded.
+> 
+> Here is an original example of qcs8300 project that the base device tree
+> wait until have all qup uart enabled support for reference:
+> 1. The first soc support[1] pushed at 08/14.
+> 2. TLMM support[2] pushed at 08/19.
+> 3. GCC clock support[3] pushed at 08/20.
+> 4. Interconnect support[4] pushed at 08/27.
+> 5. LLCC support[5] pushed at 09/03.
+> 6. Initial device tree support[6] pushed at 09/04. And it have 5
+> co-developer in the initial device tree support.
+
+Right, plumbing up all of the UART dependencies properly on these
+platforms is very much not straightforward.
+
+> 
+> 
+> [1]https://lore.kernel.org/all/20240814072806.4107079-1-quic_jingyw@quicinc.com/
+> [2]https://lore.kernel.org/all/20240819064933.1778204-1-quic_jingyw@quicinc.com/
+> [3]https://lore.kernel.org/all/20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com/
+> [4]https://lore.kernel.org/all/20240827151622.305-1-quic_rlaggysh@quicinc.com/
+> [5]https://lore.kernel.org/all/20240903-qcs8300_llcc_driver-v1-0-228659bdf067@quicinc.com/
+>>
+>> While hooking up these drivers may take some time, please consider
+>> at least describing a subset of the clocks and the QUP UART, as
+>> everything non-SoC-specific is already in place.
+> 
+> To be more specific, are you suggesting like adding the base device tree
+> describing with current nodes subset which only have non-soc-specific
+> info, like:
+> 1. "apps_rsc" nodes without info of
+> "qcom,qcs615-rpmh-clk","qcom,qcs615-gcc"?
+> 2."qcom,geni-debug-uart" nodes description without the clock properties?
+
+When writing that email, I thought about sending a small version of the
+GCC driver with just enough to turn on the UART clocks, but thinking
+about it again, that sounds like a really bad idea..
+
+I think it's best if we stick to what you did in this patch, and validate
+things with `earlycon=qcom_geni,0xaddress` in cmdline. This way, we can
+take advantage of the bootloader setting it up for us.
+
+You could then include the base address of the serial engine in the
+commit message to let others reproduce it easily.
+
+Krzysztof, would you agree ^?
+
+Konrad
 
