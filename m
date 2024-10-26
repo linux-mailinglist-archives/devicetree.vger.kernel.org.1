@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-116041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07069B1AF6
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 22:48:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 227779B1ABC
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 22:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FEAAB2150E
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 20:48:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B811E1F218F0
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 20:28:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5777C1D63E4;
-	Sat, 26 Oct 2024 20:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624E91CDA36;
+	Sat, 26 Oct 2024 20:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KqkaXmTS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IjP0uJwT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4683B1D54C2;
-	Sat, 26 Oct 2024 20:48:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4403920326;
+	Sat, 26 Oct 2024 20:28:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729975702; cv=none; b=p7mFw4mcp27o9JjJCQpcAWHB1MY/MZ5K0ivQ9PRwW3z+Ja1hh0xcfueqOyKzzkj3ixbVycE8zx4m/S0uGvEp1fwIZ+3EniywWktXWMAxDrq5TercNLOZjJJRWItiYd7mEJR65XMOPqENRO8ZMrrKXMkskzXYI/wdUiwOoqb9JG4=
+	t=1729974513; cv=none; b=u5Uk2TLXzcJKCkBqCOpWXzY0Agc2vXmAWKRGR5e/GbPb+0PUShG4B8p3UegMZGBPgyK85rm/8xNK/FtF0z/vLWWEgvJPDlORw80uXhY1G/6D2oo58FOaV3Ixwmx8augT9L0IpJz4L4d169V54bZVkm/Js7n08IjrV8PfH6vstjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729975702; c=relaxed/simple;
-	bh=LBHA8axdDgptLK0Z/drDDMkxSR3k9NMloOsHzw0RFbI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dLThqckyedrK3a7X6uQdyh+nKD1TNfbaqjmZqJ7/INsEo/GZj0aqrP2HX+CaZdSEXEWqGSZufYBJbDjUL2b3C3wjJLujgpN7vJhjsH/pKLHj7wjzGKUJcYg9x0gJlceT05gKFx9ElByXb1+EE70ZDspJ5VQWWSxaxonKpVZSTb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KqkaXmTS; arc=none smtp.client-ip=209.85.214.182
+	s=arc-20240116; t=1729974513; c=relaxed/simple;
+	bh=Ctuv+X/u4Q3Y6JaiCMyXRkwH6JLPkazQ4p5Gw8ErVTs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HNp60tLGp2BA5m8KaAlxA866I5I0miv9Hl7JNvTMCR+Ondu+Alqz1bSMlTrt0kBdi6EQeiPV2meRy8rBVumuZtCOvvNZt2trO47mqtnEdwUzh+UpeFltJCEF9moPwL3uYzKhAdJhk458CPN3zWpxo7230Crc+QgPOuEdtl4wkAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IjP0uJwT; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-20cb7139d9dso27039185ad.1;
-        Sat, 26 Oct 2024 13:48:20 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb51f39394so30727041fa.2;
+        Sat, 26 Oct 2024 13:28:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729975699; x=1730580499; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fIA9fyOJQl8Gu0sByK4pSmQgiops8sit5rWYrUHittM=;
-        b=KqkaXmTSLpa4o7sdV5k7apdjJdq7/1/bs9Zx58c+Dt+8/5XjlV8rtygaDnr45M8zfO
-         JEM2Vfz/UwFjQrXZh8yZ9SINnV9tJsp4mg462EPS7wa9TG3mtnKBF+GDo7NkesSdqMJK
-         TaDkrdjzAksBRGs0B7xG7VRxx7QmOvUxev7cKIDItxhBHA5nFQ09oRuJ96C84AIHfCDZ
-         dsRfPD67qsmcRLelyplfA65K3bjGZQiVo4FiqFcnjG5ZAhrNsvms1wimK+6kdyXHkR2H
-         raRvyTb6pc/Gl0NW2G6+BHL3yE/Iw/PZEN4M+JDImzv03REFLmMvdCOVcrAV8aZAlvc6
-         O4PA==
+        d=gmail.com; s=20230601; t=1729974509; x=1730579309; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cNNg7zzXFJSGsARqfxEpGo4FAbXgJfDgVsYkeL3nKao=;
+        b=IjP0uJwTbz1cRLMcdrlVM8aKv1aFKkUQUkVJG5hnT5N56pTKFXTAgRXc0IMlCBt0Fp
+         VkSqW8Eo9Af86BvAcd/YsJaUZEDTRqLAlGXsP1jc2FEc6QFUY94tfi5PeeLNlkQH3+ko
+         MqAo/kZmZZG4ZBsR+misedPx2pxK9rx459i1DCYkPTpICHd4WL8NBT7xX5q8BoVAd3JV
+         RQYXFL3WVP96z8EAX0LZQW1MXKj3F361WhOWJcjuGRlvZI3uLNwJUP3fLv1lI9H8KPwF
+         M5culvCzDLFSCfZlQ0Yed0ztMy/GiSHZ/v184FXnUxDEerrtFcXsJJPxIhZwUiKEEdTH
+         FSEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729975699; x=1730580499;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1729974509; x=1730579309;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fIA9fyOJQl8Gu0sByK4pSmQgiops8sit5rWYrUHittM=;
-        b=scvbWDyskQwml6j1F4QF8tZcEnQOaWtNHz9XRhOnVyJ5TFMFiPibE0VV3di3pJfppK
-         ffRucktlXs6ypjkv8VvkaHVAlmDyet0uuHCFwugNy/ambAWHCyc7JJyXIkz/eniqBP4o
-         aEesaUsOdl/F1P7vD2JqFYMZOFF2Dcgs2wd9VVc33u47r1v3W4KJZNA4r+i+vDmDefz1
-         s+3jz/he0lAGekBIK2v+tN2zSfQ8M0VVqfJfwerrgUAoE1zOMRlcVSNb0FqBogBsksO6
-         /jKrJlglbfWEKMI2+WBiDFZrE/w8tWkUzMWBziG7U7J8yobNhCqjdaDvQ1Qf8+XMkuv4
-         a6WQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWiMs/lkEoJvPJva4H0DJ4NYIsWlcNqzxPMXCbK9QZ1EXThm9KYx/HsWeT+sgbmbl7UViKjKTmssnPFpe4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQsDTBj4z6L/3NQ0U3qVD40aK+sNleQtQ58mo/KVZyRbExnh5q
-	zCrGfCp5GIxY6azYmkeYOXDb3EfeRLmA7Y9HiD0tYiPl2OptAZ+K
-X-Google-Smtp-Source: AGHT+IE333gdRW0oUHBCkmGDWZSQHfGYaDKn0tETw4Z0mGu0t3ZLNT8/4M/o2OAIEjGXwv5NgOXKVw==
-X-Received: by 2002:a17:903:2b08:b0:20b:bad4:5b6e with SMTP id d9443c01a7336-210c6c3ec62mr43945645ad.38.1729975699387;
-        Sat, 26 Oct 2024 13:48:19 -0700 (PDT)
-Received: from Emma ([2401:4900:1c96:f151:5054:ff:fe53:2787])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bbf4499esm27634295ad.8.2024.10.26.13.48.18
+        bh=cNNg7zzXFJSGsARqfxEpGo4FAbXgJfDgVsYkeL3nKao=;
+        b=ovmwZi8H3aIvSMhoqQkmjZm5rlKWOkRJ+ShbzO4YgV3LL5jWmUEEA27SNgR1LFdHDG
+         mYaYFYCWdHbUyo6DOxXjD61mw9Kziub+E8BVQ5XHtlZU3xgY4zw78qzQEhujCyKCo4BA
+         Ux4x8mWlXjMqRZSrP9ojyZRExT4MzGgYMtPBvb2CxLNVnGcnzryXUq0okwDDVzR3Nnf+
+         hC7Jh3u4k6/5IKNW6yGQGu/80rtcfuENtOpHpkiPdMEk3uYx7DhZHxVpe07r4im66B3S
+         QEdl4WYEdjg5eILMMGQ2vDO/bSN7qxgllx24FpigEr59LjNrJlTn1gyP/YiWx/3gcJIM
+         q4Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCWNbTgl3yje2Vt7rM7R5BWd3kywOnm24MyMW8WB621laTa5GXTj0Y+VxmUDirbCIEXTKOcfuUPinFMKQQ2S@vger.kernel.org, AJvYcCX/gueDhtbh5Qi6qQ3E4sqoOzlu4LLPXgsKTiUWq2w+IOCKDyQMV8sK8AMkjsr9kzp5OfJCd6+Vb0Qt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxm08O7J8/sWg0r1sqT/Wbqqzd5oN6yPIC/7/2HKUfQH0b63Wfm
+	qz2GaQyQmJeN1j/RDLhzPxLHZbv1OhLk9dE8YcrAFJngWF8sUsIP
+X-Google-Smtp-Source: AGHT+IESiuS1iKzvuE8ZzZM3tstDBPTHvi4LpV62cM6BsC9Kiz7nGmLch+PHppJzR77qJwttX7SpNQ==
+X-Received: by 2002:a05:651c:4ca:b0:2fa:cc86:f217 with SMTP id 38308e7fff4ca-2fcc940c73cmr351921fa.35.1729974509067;
+        Sat, 26 Oct 2024 13:28:29 -0700 (PDT)
+Received: from [192.168.1.105] ([178.136.36.129])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fcb451a494sm6370421fa.39.2024.10.26.13.28.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Oct 2024 13:48:18 -0700 (PDT)
-From: Karan Sanghavi <karansanghvi98@gmail.com>
-Date: Sat, 26 Oct 2024 13:59:13 +0000
-Subject: [PATCH v3] dt-bindings: power: Convert raspberrypi,bcm2835-power
- to Dt schema
+        Sat, 26 Oct 2024 13:28:28 -0700 (PDT)
+From: Markuss Broks <markuss.broks@gmail.com>
+Subject: [PATCH 0/2] arm_pmuv3: Add support for Samsung Mongoose PMU
+Date: Sat, 26 Oct 2024 23:28:07 +0300
+Message-Id: <20241026-mongoose-pmu-v1-0-f1a7448054be@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,159 +77,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241026-raspberrypi-bcm2835-power-v3-1-6621e075d33f@gmail.com>
-X-B4-Tracking: v=1; b=H4sIALD1HGcC/43NwQ6DIAyA4VcxnMciBYLstPdYdkDslGQKgYXNG
- N996MnTsvT0N+nXhSSMDhO5VAuJmF1yfirBTxWxg5l6pK4rTaAGwWqmaTQptBjjHBxt7QgNlzT
- 4N0YqjQDOWmy01KTch4gP99nt27304NLLx3l/ldm2/UfNjDKqJGoQneVKyGs/Gvc8Wz+STc1wk
- AB+SVAkZoRpykjF1VFa1/UL011ntwwBAAA=
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>
-Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Alexander Aring <alex.aring@gmail.com>, Eric Anholt <eric@anholt.net>, 
- Karan Sanghavi <karansanghvi98@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1729951167; l=3906;
- i=karansanghvi98@gmail.com; s=20241017; h=from:subject:message-id;
- bh=LBHA8axdDgptLK0Z/drDDMkxSR3k9NMloOsHzw0RFbI=;
- b=QNVj74pVLjwDeuupmFKqLDUzJPtmv+LaSfOiza5lgdVnLkNwuzLzZs5U6tBlWbzEBHHFh8p/w
- EpBzzhM2MhNAkO3dYdYfkZh0qkrSS6QFZK2rCIZcxRGqCt0XKL6+gUC
-X-Developer-Key: i=karansanghvi98@gmail.com; a=ed25519;
- pk=UAcbefT1C06npNVDJHdgpPqTm4WE9IhaA1fmJb3A37Y=
+X-B4-Tracking: v=1; b=H4sIANdQHWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDAyMz3dz8vPT8/OJU3YLcUl1TIyMTg9QUY0OD5BQloJaCotS0zAqwcdG
+ xtbUAi74RGF4AAAA=
+X-Change-ID: 20241026-mongoose-pmu-52240ed310cd
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
+ Maksym Holovach <nergzd@nergzd723.xyz>, 
+ Markuss Broks <markuss.broks@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1729974508; l=905;
+ i=markuss.broks@gmail.com; s=20241024; h=from:subject:message-id;
+ bh=Ctuv+X/u4Q3Y6JaiCMyXRkwH6JLPkazQ4p5Gw8ErVTs=;
+ b=oALoBWszqZ6dy47IJH8/aQnv86LTjr2f8ij5r5Ykxk6QX21A4nGEyqhUcqrf7qHphoKCrU9fu
+ AOx5ZzTBuslCdM9DDf04cbscGyCksv8DAbrc2uU4IDI2XP5PGKZN/bR
+X-Developer-Key: i=markuss.broks@gmail.com; a=ed25519;
+ pk=p3Bh4oPpeCrTpffJvGch5WsWNikteWHJ+4LBICPbZg0=
 
-Convert the raspberrypi,bcm2835-power binding to Dt schema
+Hello,
 
-Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
----
-Changes in v3:
-- Applied changes as per the feedback received for title and description
-- Removed power label and renamed node to power-controller	
-- Moved the file from bindings/soc/bcm to bindings/power
-- Link to v2: https://lore.kernel.org/r/20241022-raspberrypi-bcm2835-power-v2-1-1a4a8a8a5737@gmail.com
+This series adds support to performance monitoring unit of
+the Samsung Mongoose CPU cores. They were released between
+2016 and 2020, and they were used in Samsung Exynos SoCs,
+such as Exynos 8890, 8895, 9810, 9820 and 990 (9830).
+They implement ARMv8.2-A ISA and they are used as a fast
+cluster (big in the big.little scheme).
 
-Changes in v2:
-- Added original file maintainers
-- Removed unnecessary headers from example and formating from description 
-- Link to v1: https://lore.kernel.org/r/20241019-raspberrypi-bcm2835-power-v1-1-75e924dc3745@gmail.com
----
- .../bindings/power/raspberrypi,bcm2835-power.yaml  | 44 ++++++++++++++++++++
- .../bindings/soc/bcm/raspberrypi,bcm2835-power.txt | 47 ----------------------
- 2 files changed, 44 insertions(+), 47 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/power/raspberrypi,bcm2835-power.yaml b/Documentation/devicetree/bindings/power/raspberrypi,bcm2835-power.yaml
-new file mode 100644
-index 000000000000..71b3fa41c495
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/raspberrypi,bcm2835-power.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+
-+---
-+
-+$id: http://devicetree.org/schemas/power/raspberrypi,bcm2835-power.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM2835 power domain
-+
-+maintainers:
-+  - Alexander Aring <alex.aring@gmail.com>
-+  - Eric Anholt <eric@anholt.net>
-+
-+description:
-+  The Raspberry Pi power domain manages power for various subsystems
-+  in the Raspberry Pi BCM2835 SoC.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - raspberrypi,bcm2835-power
-+
-+  firmware:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Reference to the RPi firmware device node
-+
-+  "#power-domain-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - firmware
-+  - "#power-domain-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    power-controller {
-+      compatible = "raspberrypi,bcm2835-power";
-+      firmware = <&firmware>;
-+      #power-domain-cells = <1>;
-+      };
-diff --git a/Documentation/devicetree/bindings/soc/bcm/raspberrypi,bcm2835-power.txt b/Documentation/devicetree/bindings/soc/bcm/raspberrypi,bcm2835-power.txt
-deleted file mode 100644
-index 30942cf7992b..000000000000
---- a/Documentation/devicetree/bindings/soc/bcm/raspberrypi,bcm2835-power.txt
-+++ /dev/null
-@@ -1,47 +0,0 @@
--Raspberry Pi power domain driver
--
--Required properties:
--
--- compatible:		Should be "raspberrypi,bcm2835-power".
--- firmware:		Reference to the RPi firmware device node.
--- #power-domain-cells:	Should be <1>, we providing multiple power domains.
--
--The valid defines for power domain are:
--
-- RPI_POWER_DOMAIN_I2C0
-- RPI_POWER_DOMAIN_I2C1
-- RPI_POWER_DOMAIN_I2C2
-- RPI_POWER_DOMAIN_VIDEO_SCALER
-- RPI_POWER_DOMAIN_VPU1
-- RPI_POWER_DOMAIN_HDMI
-- RPI_POWER_DOMAIN_USB
-- RPI_POWER_DOMAIN_VEC
-- RPI_POWER_DOMAIN_JPEG
-- RPI_POWER_DOMAIN_H264
-- RPI_POWER_DOMAIN_V3D
-- RPI_POWER_DOMAIN_ISP
-- RPI_POWER_DOMAIN_UNICAM0
-- RPI_POWER_DOMAIN_UNICAM1
-- RPI_POWER_DOMAIN_CCP2RX
-- RPI_POWER_DOMAIN_CSI2
-- RPI_POWER_DOMAIN_CPI
-- RPI_POWER_DOMAIN_DSI0
-- RPI_POWER_DOMAIN_DSI1
-- RPI_POWER_DOMAIN_TRANSPOSER
-- RPI_POWER_DOMAIN_CCP2TX
-- RPI_POWER_DOMAIN_CDP
-- RPI_POWER_DOMAIN_ARM
--
--Example:
--
--power: power {
--	compatible = "raspberrypi,bcm2835-power";
--	firmware = <&firmware>;
--	#power-domain-cells = <1>;
--};
--
--Example for using power domain:
--
--&usb {
--       power-domains = <&power RPI_POWER_DOMAIN_USB>;
--};
+This series consists of a patch adding the support and
+a patch for the dt-bindings.
 
 ---
-base-commit: 8e929cb546ee42c9a61d24fae60605e9e3192354
-change-id: 20241019-raspberrypi-bcm2835-power-5a4231be8959
+Markuss Broks (2):
+      dt-bindings: arm: pmu: Add Samsung Mongoose core compatible
+      perf: arm_pmuv3: Add support for Samsung Mongoose PMU
+
+ Documentation/devicetree/bindings/arm/pmu.yaml | 1 +
+ drivers/perf/arm_pmuv3.c                       | 3 +++
+ 2 files changed, 4 insertions(+)
+---
+base-commit: f2493655d2d3d5c6958ed996b043c821c23ae8d3
+change-id: 20241026-mongoose-pmu-52240ed310cd
 
 Best regards,
 -- 
-Karan Sanghavi <karansanghvi98@gmail.com>
+Markuss Broks <markuss.broks@gmail.com>
 
 
