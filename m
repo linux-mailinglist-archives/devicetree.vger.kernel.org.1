@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-115920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B1739B15A1
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 08:57:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B93289B15AC
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 09:02:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D3D41C2191A
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 06:57:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F054284E75
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 07:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69202179954;
-	Sat, 26 Oct 2024 06:57:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B8113A41F;
+	Sat, 26 Oct 2024 07:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="ITmC0Ex5"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="joHN7ZRM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB0A1632F4;
-	Sat, 26 Oct 2024 06:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4821CF96;
+	Sat, 26 Oct 2024 07:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729925823; cv=none; b=nRZnOGNbA6GK+73sjTcLpccxwNhKQ3wLXf6hr8rE/P1AA1fT57bi+2+QXtHWxNykpZGziY2opT5KenZycrK7xVHgO4G7HPXih86zHB0IdpX7+NBCSTnROd0v1teaWJT9b2Ia7mruN0gYVJcvgaG0vmV9kA6uDBFwNdNkI7WeA8E=
+	t=1729926142; cv=none; b=FR+0+4s+aHUA5C/GSEqttZZkg248kA7Pjgl/1bJ2SF9qMxjYQOcU7T+5cIHkcORqs/ybNH8gwdg4hbgwEJ9Qwi6ZNl+eiKksZs5YULtnwc7qT28pCXKZ+tiD88EL9dw9xlHKaC6k91OeE0JqzNk/Oh6/ZYJB55Njrbp84k5sKLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729925823; c=relaxed/simple;
-	bh=YF/PC7/q1Wm3G+Ds4HW5HOfuFRuwPa1+1OpTFGnZNBg=;
+	s=arc-20240116; t=1729926142; c=relaxed/simple;
+	bh=G4YlyMtaUZ52d9zJvR7KIiupa3FC1G6PAMLBKOV5xss=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nFRJ8xxVjnmaa7HFO3B2cKJWgKT08gijJKrEp5FfFH5HHZCkhJjM5Ft6deDmnGd6Wt6cXULAPGl+YaDRFYDqht8jBnA7qGtgt0K5VLhFmg64UfP0V2bB1eEKXvi7BYVZHF6Bs5cLlrly+hxDLnhgYw7u9Y+ZleqZ7BRRWJuACFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=ITmC0Ex5; arc=none smtp.client-ip=144.6.53.87
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hy8e+w1dD9OSoUWdz/ATElwoDf2SqvPMfirSJiKYr4vP5a7QscKEAjx78wRIMAJwdilpUh7U4f1KH2uo6iajMcDTEEczfIITqf1BuwdKnNUMezLhIf3Cf3tG5ISIeN8o3th5BoTTRVXXHjajj7EIQDHYyOfrN/oP9lkRt4lpIFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=joHN7ZRM; arc=none smtp.client-ip=144.6.53.87
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
@@ -37,32 +37,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
 	List-Post:List-Owner:List-Archive;
-	bh=hBuPIS6+ZQ7QZigY7In18BLl6WbtmuNuTaKGdqh3q9A=; b=ITmC0Ex5SrggdQaW6YOKb7Ora3
-	p065txEO3fe8zaxUEzB5syDVDlbkMR897dUbcChSfZQOwwy4906+9/FfcphK60ZHtIuQV8Q3bR63c
-	l0F2gn65gYMhLtcg/PkyJK58jMWKzqIsPPosDFrvf3Ohg/ckfoSSwTlssTxBKO6n7V7Oe8O3xdzLb
-	Hb3CsvfKC+05bCSherBbM7MuEM/z5oSndRf29XPga+Jx/4O9XMt40PLWLNHvk/7ZhlMZnjAY4Hhq5
-	XPWZR4yTfg/BtcYeGinVgh64SBE8rspzFSqw1tn7WQyfZfXDzuWAifFiNCAfjpCIjSDlXifM0jrTk
-	qACFhdxA==;
+	bh=ioBiCpiY+/J8mnmC2qNgaLmgx7CP3zOYlEGf35DRQqo=; b=joHN7ZRMxmgn/0rZkqxksBiVtO
+	IjvupL6gyQg4Q+T/iqMlwrXaHA8sq428Hxv2prgLqGRxiQl80/sgof8AEQ0+ZTxLW+UE0R2B+0q3c
+	cs2IfM2OdZ5fwbPpoHTDGRkF4GR5zTZnPwMUHruMHTFCJXxgRHFm6TLvlSTY8yvR78Efid6Q9DoDh
+	atg5e0qA1r5JARFB38VC2XJ/rhka5gvUgjz8kBo2BilnjVkkP+uZRVPMVpOE4ahmshPCrZjUIkivM
+	OwgbYo/YTE5d6mEgtDhLeh4ORtfFqfmTq9hSzgyyDX1iahbPq2YORWV6dHiS8QGBtwKY4/6w+0zob
+	hVX00ieQ==;
 Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
 	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1t4aj1-00CFy1-0p;
-	Sat, 26 Oct 2024 14:56:40 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 26 Oct 2024 14:56:39 +0800
-Date: Sat, 26 Oct 2024 14:56:39 +0800
+	id 1t4ao1-00CFzl-1r;
+	Sat, 26 Oct 2024 15:01:50 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 26 Oct 2024 15:01:49 +0800
+Date: Sat, 26 Oct 2024 15:01:49 +0800
 From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
 Cc: Olivia Mackall <olivia@selenic.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Lionel Debieve <lionel.debieve@foss.st.com>, marex@denx.de,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/4] Add support for stm32mp25x RNG
-Message-ID: <ZxySp0kkUinBPhjD@gondor.apana.org.au>
-References: <20241016-rng-mp25-v2-v4-0-5dca590cb092@foss.st.com>
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Aurelien Jarno <aurelien@aurel32.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Daniel Golle <daniel@makrotopia.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: rng: add support for Airoha EN7581
+ TRNG
+Message-ID: <ZxyT3ex5Ck_SBaYW@gondor.apana.org.au>
+References: <20241017124456.32584-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,62 +72,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241016-rng-mp25-v2-v4-0-5dca590cb092@foss.st.com>
+In-Reply-To: <20241017124456.32584-1-ansuelsmth@gmail.com>
 
-On Wed, Oct 16, 2024 at 10:04:17AM +0200, Gatien Chevallier wrote:
-> This patchset adds support for the Random Number
-> Generator(RNG) present on the stm32mp25x platforms.
-> On these platforms, the clock management and the RNG
-> parameters are different.
+On Thu, Oct 17, 2024 at 02:44:37PM +0200, Christian Marangi wrote:
+> Add support for Airoha EN7581 True Random Number generator.
 > 
-> While there, update the RNG max clock frequency on
-> stm32mp15 platforms according to the latest specs.
+> This module can generate up to 4bytes of raw data at times and support
+> self health test at startup. The module gets noise for randomness from
+> various source from ADC, AP, dedicated clocks and other devices attached
+> to the SoC producing true random numbers.
 > 
-> Tested on the stm32mp257f-ev1 platform with a deep
-> power sequence with rngtest before/after the sequence with
-> satisfying results.
-> 
-> Same was done on stm32mp135f-dk to make sure no regression was added.
-> 
-> On stm32mp157c-dk2, I didn't perform a power sequence but the rngtest
-> results were satisfying.
-> 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
-> Changes in v4:
-> - Changed the restrictions on clock names per compatible
-> - Link to v3: https://lore.kernel.org/r/20241015-rng-mp25-v2-v3-0-87630d73e5eb@foss.st.com
+> Changes v2:
+> - Add Reviewed-by tag
 > 
-> Changes in v3:
-> - Add restriction on clock-names some compatibles
-> - Use clk_bulk APIs in the RNG driver to avoid manually handling clocks.
-> - Link to v2: https://lore.kernel.org/r/20241011-rng-mp25-v2-v2-0-76fd6170280c@foss.st.com
-> 
-> Changes in V2:
-> 	-Fixes in bindings
-> 	-Removed MP25 RNG example
-> 	-Renamed RNG clocks for mp25 to "core" and "bus"
-> 
-> ---
-> Gatien Chevallier (4):
->       dt-bindings: rng: add st,stm32mp25-rng support
->       hwrng: stm32 - implement support for STM32MP25x platforms
->       hwrng: stm32 - update STM32MP15 RNG max clock frequency
->       arm64: dts: st: add RNG node on stm32mp251
-> 
->  .../devicetree/bindings/rng/st,stm32-rng.yaml      | 28 +++++++-
->  arch/arm64/boot/dts/st/stm32mp251.dtsi             | 10 +++
->  drivers/char/hw_random/stm32-rng.c                 | 76 ++++++++++++++++------
->  3 files changed, 94 insertions(+), 20 deletions(-)
-> ---
-> base-commit: 8e929cb546ee42c9a61d24fae60605e9e3192354
-> change-id: 20241011-rng-mp25-v2-b6460ef11e1f
-> 
-> Best regards,
-> -- 
-> Gatien Chevallier <gatien.chevallier@foss.st.com>
+>  .../bindings/rng/airoha,en7581-trng.yaml      | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/airoha,en7581-trng.yaml
 
-Patches 1-3 applied.  Thanks.
+All applied.  Thanks.
 -- 
 Email: Herbert Xu <herbert@gondor.apana.org.au>
 Home Page: http://gondor.apana.org.au/~herbert/
