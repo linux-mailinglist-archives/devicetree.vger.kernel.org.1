@@ -1,219 +1,164 @@
-Return-Path: <devicetree+bounces-116006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE399B19EA
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 18:56:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4219B19F7
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 19:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BDFDB2174A
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 16:56:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CEA52827C8
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 17:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5FE1CCB2D;
-	Sat, 26 Oct 2024 16:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EA02186287;
+	Sat, 26 Oct 2024 17:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lnuZKIMK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jy01RoNS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8680168BE;
-	Sat, 26 Oct 2024 16:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CAA32F36;
+	Sat, 26 Oct 2024 17:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729961786; cv=none; b=vDVBdU5fQZlyJAM+QJ2F8s2Sdn9YbcLap5I+hGZuExFBk+rIGPuJI0ftyGx2CeN8cF/yErih2Z7/TEQzUbr6RZBDXxKUq7z6vbRM8n5b8lniPESerY9er5FZde4JDYRFsMn5ZpZ1c3AD78mAGeiMxn4g/QhCSaaOlbD8to5lpVA=
+	t=1729962671; cv=none; b=kcwQRId1GZtaAF9DBLC+htzzwNsMWA5s807OfbRRuejhze4agwjQKSoScYrwzSGcTyoQNjvPZ0k/gNczyu5hx4KV9cvSZ4ct3B6YKKCLnoQmkE8sp2Sc/eQYMXbuHQ+A90dPexCyV8Iq8mCj7UOACjaJnd0lPSICXi0GKLjd4YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729961786; c=relaxed/simple;
-	bh=QWX9Al1eRR+lMqa5aPqbsyfWiys6rAg2lSJQhS4Mq9I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nWL79fHYmCJ+cNW3DNNxRd4hEbzHwhuVFYOMUQncBvEsxIZCuGIEE5fajiHSdV9ExoZWkOFaGN3Lb3AgmFj3IsVuLvEHq6Lz3WgsHXv7JPsUNdkUPGzm43kC9RiAfSUn0Ogl7CRi9DvrawaVi+dqbIAIXOXkfxOIVvront8BTPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lnuZKIMK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49QB4I0l010720;
-	Sat, 26 Oct 2024 16:56:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	A+W4fH0PAlH4u00A+szfB8MvrLS0lorLwzsBYBKhTWQ=; b=lnuZKIMKWa1GyRc7
-	7RTBiIdVV8fx1jwIfg2a1xy9cmj4f5bwj51nHNkk8E6YvzTcYM/I2136T5PrmQY1
-	jIkVxhmTYGBdDxLFEeuYhrYg8qEuftYF/aaGz6CtlAXclbzj918GUD93mBm/HPcU
-	kF57HEbcHaqMVpDMNUU1UOzrQjsWlakJ9QE2TwkYX/3h/kMvScx0rDAwMJDVZGl8
-	FdZTaNfte1afxXJuX6kU9uXfiT/e3IIPujHwNKA7RMXdonSaDOdueI6wzS3KcA7+
-	mx/Bf2a/p8MNjtmc3c03zUGWBViTICro13fMrTdJnRQoBc9hFTjh9zlRJye2GeLo
-	lss/5Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gs6e188h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 26 Oct 2024 16:56:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49QGuHaZ009860
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 26 Oct 2024 16:56:17 GMT
-Received: from [10.216.11.201] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 26 Oct
- 2024 09:56:13 -0700
-Message-ID: <2da5e869-ae44-45b1-a751-8b5edfcdbd30@quicinc.com>
-Date: Sat, 26 Oct 2024 22:26:08 +0530
+	s=arc-20240116; t=1729962671; c=relaxed/simple;
+	bh=wJG7RauQd5nrrvEXZ40WfItE9gp5JKSZNYtYgBx0jII=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YvtOPELkbbh+4BcJfgCHRJBF41MP9EldI/UDDAocD+bBlmULhQKAnsvqtv61o/XDPMnAS2u6rVODLGD7K9n+ore2Fkl0QJPP8oKxxvlINy5N00RDkFFc6sV+iJTJ6idZ6cE1OFcnde3SrA17y87xXhM7o+YJ7mtgJLIdSV9PdSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jy01RoNS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CE58C4CEC6;
+	Sat, 26 Oct 2024 17:10:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729962670;
+	bh=wJG7RauQd5nrrvEXZ40WfItE9gp5JKSZNYtYgBx0jII=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=jy01RoNShE6koWDMeKaVLWmHmq2PF1w8ic0RrCiIORPNmfLg2c+XQF8ep6lminENr
+	 kbAd1IsfQhrrhjJvfPTUg5Fgx0D/VA1Mpm+ePg9fK6W3kA1VJIoQwkx4A0OiMVYR5C
+	 6h+tmFdDTFFTxIqL8j6hDt/R/tTETSQ2+uJR2c2BFWKuRGqlEEyiTyPAVi4zlOdGwf
+	 5+FOo4pAvai6XgMtLkPU5t87r7lHeEzPsbLy5yCChtSg0vaVJ2PWI3gjvF3asIHY+n
+	 13ymdflpv2tAEoc3XAAPuew3j5KNT3jaFIDg1zEeV3LktesyuELJPxQd0OuMXfgZpZ
+	 c4MbsO6V/X2Aw==
+Date: Sat, 26 Oct 2024 18:10:31 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Cc: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>, Rob Herring
+ <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Sa, Nuno"
+ <Nuno.Sa@analog.com>, "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
+Subject: Re: [PATCH v3 6/6] iio: adc: ad4851: add ad485x driver
+Message-ID: <20241026181031.73d29339@jic23-huawei>
+In-Reply-To: <315f158e-0c3b-48e3-b288-27170f0659ed@baylibre.com>
+References: <20241014094154.9439-1-antoniu.miclaus@analog.com>
+	<20241014094154.9439-6-antoniu.miclaus@analog.com>
+	<60452f83-28a1-4a80-8e90-1f1ed32a594e@baylibre.com>
+	<CY4PR03MB33996900AAB90A050375CBB39B4F2@CY4PR03MB3399.namprd03.prod.outlook.com>
+	<f3351a7f-318b-42d6-aa1a-e8279eb06b78@baylibre.com>
+	<315f158e-0c3b-48e3-b288-27170f0659ed@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: Add support for usb nodes on
- QCS8300
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
-References: <20241011074619.796580-1-quic_kriskura@quicinc.com>
- <20241011074619.796580-2-quic_kriskura@quicinc.com>
- <297dbc48-4c34-4bac-822c-be3ae2d00d32@oss.qualcomm.com>
-Content-Language: en-US
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-In-Reply-To: <297dbc48-4c34-4bac-822c-be3ae2d00d32@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Yh_QLpL1yVgwpAoe8WKbMB-S8h_42FxX
-X-Proofpoint-GUID: Yh_QLpL1yVgwpAoe8WKbMB-S8h_42FxX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- priorityscore=1501 lowpriorityscore=0 mlxlogscore=999 phishscore=0
- malwarescore=0 impostorscore=0 adultscore=0 spamscore=0 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410260143
+
+On Fri, 25 Oct 2024 14:55:13 -0500
+David Lechner <dlechner@baylibre.com> wrote:
+
+> On 10/25/24 9:29 AM, David Lechner wrote:
+> > On 10/25/24 6:35 AM, Miclaus, Antoniu wrote:  
+> >>>  
+> > ...
+> >   
+> >>>
+> >>> See the ad7380 driver as an example of how to impelemt this. [2]
+> >>>
+> >>> [2]: https://urldefense.com/v3/__https://lore.kernel.org/linux-
+> >>> iio/20240530-iio-add-support-for-multiple-scan-types-v3-5-
+> >>> cbc4acea2cfa@baylibre.com/__;!!A3Ni8CS0y2Y!4LS7UI11XqIHRgT3ckx76VYn
+> >>> CyeikpTumyjO0qDTn7eF7Fd-
+> >>> jFFL8yqpYcMAxP_u3VC09bfIAB7gW_rvGoM_sEA$
+> >>>
+> >>> Also, I would expect the .sign value to depend on how the
+> >>> input is being used. If it is differential or single-ended
+> >>> bipolar, then it is signed, but if it is signle-ended unipoloar
+> >>> then it is unsiged.
+> >>>
+> >>> Typically, this is coming from the devicetree because it
+> >>> depends on what is wired up to the input.  
+> >>
+> >> This topic is mentioned in the cover letter, maybe not argued enough there.
+> >> Yes, the go-to approach is to specify the unipolar/bipolar configuration in the devicetree.
+> >> But this is a request from the actual users of the driver: to have the softspan fully
+> >> controlled from userspace. That's why the offset and scale implementations were added.
+> >> Both these attributes are influencing the softspan.
+> >>  
+> >>>> +	},								\
+> >>>> +}  
+> >>>  
+> > 
+> > The cover letter did not get sent, so we did not see this.  
+> 
+> So please resend it so we can get the full explanation.
+> 
+> > 
+> > Still, I have doubts about using the offset attribute for
+> > this since a 0 raw value is always 0V for both unipolar
+> > and bipolar cases. There is never an offset to apply to
+> > the raw value.
+> > 
+> > So I think we will need to find a different way to control
+> > this other than the offset attribute.  
+> 
+> I thought about this some more and I have an idea to solve the
+> issue without using devicetree or the offset attribute.
+> 
+> But we should see what Jonathan thinks before implementing this
+> in case it isn't a good idea.
+> 
+> We can expose each voltage input to userspace as two different
+> channels, a single-ended channel and a differential channel.
+
+That was common in early drivers - such as the max1363 because they
+were well prior to having sufficiently complex bindings to specify
+wired channels.  We also have drivers that do this if no channel
+subnodes are provided (kind of a fallback).
+
+> 
+> For an 8 channel chip, we would have 16 IIO channels (in order
+> of scan_index):
+> 
+> in_voltage0_raw
+> in_voltage0-voltage8_raw
+> in_voltage1_raw
+> in_voltage1-voltage9_raw
+> ...
+> in_voltage7_raw
+> in_voltage7-voltage15_raw
+> 
+> If you read the voltage using in_voltageX_raw, then the SoftSpan
+> for that channel gets set to the 0V to +V value based on
+> in_voltageX_scale. Likewise, if you read the in_voltageX-voltageY_raw
+> attribute, the SoftSpan gets set to -V to +V according to
+> in_voltageX-voltageY_scale.
+> 
+> For buffered reads, only one of each in_voltageX_raw/in_voltageX-voltageY_raw
+> pair can be enabled at the same time (because the chip is simultaneous
+> sampling).
+> 
+This approach is fine as it's pretty much what some existing parts
+are doing even if mostly people are these days preferring the
+specified channel route.
+
+Jonathan
 
 
-
-On 10/25/2024 11:58 PM, Konrad Dybcio wrote:
-> On 11.10.2024 9:46 AM, Krishna Kurapati wrote:
-> 
-> The commit title should include a `qcs8300: ` part, like others in
-> the directory (see git log --oneline arch/arm64/boot/dts/qcom).
-> 
->> Add support for USB controllers on QCS8300. The second
->> controller is only High Speed capable.
->>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 168 ++++++++++++++++++++++++++
->>   1 file changed, 168 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> index 2c35f96c3f28..4e6ba9f49b95 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> @@ -1363,6 +1363,174 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
->>   				qcom,remote-pid = <5>;
->>   			};
->>   		};
->> +
->> +		usb_1_hsphy: phy@8904000 {
->> +			compatible = "qcom,qcs8300-usb-hs-phy",
->> +				     "qcom,usb-snps-hs-7nm-phy";
->> +			reg = <0x0 0x8904000 0x0 0x400>;
-> 
-> Please pad the address parts to 8 hex digits with leading zeroes.
-> 
->> +
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
->> +			clock-names = "ref";
->> +
->> +			resets = <&gcc GCC_USB2_PHY_PRIM_BCR>;
->> +
->> +			#phy-cells = <0>;
->> +
->> +			status = "disabled";
->> +		};
->> +
->> +		usb_2_hsphy: phy@8906000 {
->> +			compatible = "qcom,qcs8300-usb-hs-phy",
->> +				     "qcom,usb-snps-hs-7nm-phy";
->> +			reg = <0x0 0x08906000 0x0 0x400>;
->> +
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
->> +			clock-names = "ref";
->> +
->> +			resets = <&gcc GCC_USB2_PHY_SEC_BCR>;
->> +
->> +			#phy-cells = <0>;
->> +
->> +			status = "disabled";
->> +		};
->> +
->> +		usb_qmpphy: phy@8907000 {
->> +			compatible = "qcom,qcs8300-qmp-usb3-uni-phy";
->> +			reg = <0x0 0x8907000 0x0 0x2000>;
->> +
->> +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
->> +				 <&gcc GCC_USB_CLKREF_EN>,
->> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
->> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
->> +			clock-names = "aux", "ref", "com_aux", "pipe";
-> 
-> Please make this a vertical list like in the node below.
-> 
-> [...]
-> 
->> +			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
-> 
-> QCOM_ICC_TAG_ALWAYS, see x1e80100.dtsi
-> 
->> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
->> +			interconnect-names = "usb-ddr", "apps-usb";
->> +
->> +			wakeup-source;
->> +
->> +			status = "disabled";
->> +
->> +			usb_1_dwc3: usb@a600000 {
->> +				compatible = "snps,dwc3";
->> +				reg = <0x0 0x0a600000 0x0 0xe000>;
->> +				interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>;
->> +				iommus = <&apps_smmu 0x80 0x0>;
->> +				phys = <&usb_1_hsphy>, <&usb_qmpphy>;
->> +				phy-names = "usb2-phy", "usb3-phy";
->> +				snps,dis_u2_susphy_quirk;
->> +				snps,dis_enblslpm_quirk;
-> 
-> That's a very low number of quirks.. Should we have some more?
-> 
-
-snps,dis-u1-entry-quirk;
-snps,dis-u2-entry-quirk;
-snps,dis_u2_susphy_quirk;
-snps,ssp-u3-u0-quirk;
-
-I would actually like to add these as well, but there is no precedent in 
-upstream as to what quirks to add for usb nodes, so I kept only a couple 
-of them. Ideally downstream we disable u1u2 for almost all targets 
-because of some issues in the past. (atleast during tethering use cases, 
-but I need to double check though).
-
-> Should it also be marked dma-coherent?
-> 
-
-ACK.
-
-Regards,
-Krishna,
 
