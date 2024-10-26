@@ -1,145 +1,113 @@
-Return-Path: <devicetree+bounces-115982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3B049B191B
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 17:30:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4669B192E
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 17:35:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB42E1C20DD2
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 15:30:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D719D1F22039
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 15:35:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0358725762;
-	Sat, 26 Oct 2024 15:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD93413B5A9;
+	Sat, 26 Oct 2024 15:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pi50FkTA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NwCpPHRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DC412E4A;
-	Sat, 26 Oct 2024 15:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7361269959
+	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 15:35:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729956619; cv=none; b=PnVJnMu3XuOExf+x4tSJ0XrQpjhqnzVih+kKeNeSWYPvNSeM96sPR+Ao4KizFCSAuAoS0wPS1Yfo7sD6EEaFi8QPaDiqdFDLPnDWQ/ERfpzQaFwxH7H5NP2t16YcV4cf2S+paeYBf7eWL62qYWeeWyFbGIIi9p+uSFCW94HLIx8=
+	t=1729956918; cv=none; b=WEZRbmMS3bYZTGbwn2jJjxs/Nm/JngR9/XBFOmaRkz6xfcI7VDST7rL2t9CayfMAlU1HahrqITw3eEOqSugmjUROu7gAMt3pfCyJKvxzI3/R4q+44aFzTzOCDIWwz6fzkJkG724Fi/JFDyJLPBoTNESdCOIZF+Rb6l5sgeLMRQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729956619; c=relaxed/simple;
-	bh=JTyEKqZtPPx4SJlBOyY6fc+rEPd0RkxMnqkabI0F+5Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tQ3CuSpJmJTC5k9wm2Gt/zU/+ugvqQkIMkGY4Up7X4ket5OVW+ZI2WECyGNrq1W/DWdUg3kI8mU0Wmj3Qc2KTVeWWWgDT2RWyvWP+TTXSsD9q+s8096B3AXQrC+/SlOAG7zFiktlrUsNneDPHn3Z81h6/SfPw0NlT4NgRI/cqTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pi50FkTA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50550C4CECC;
-	Sat, 26 Oct 2024 15:29:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729956619;
-	bh=JTyEKqZtPPx4SJlBOyY6fc+rEPd0RkxMnqkabI0F+5Y=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Pi50FkTA3YDR302HawnJpraGdtgzRbWH+yPvbzZGr0PktKdBwqG3eek67mOVWs6D8
-	 JUaQVVlPS8/dUPG4OG9T28JGWL6IWJeqTcsUgboAeK6Eca66ywq5ane31w7kHHUu9j
-	 pb3hpA3UqEMIck2QR4NJK8ooJcgeXYGft4/CcWYNM06FmUamK6cgIchNNbc07s/l4A
-	 Dksw1ieA+9E31ASxgs4wGYHQRE+OwhtharUyKbxPWaOuU1N1kOrPyM/5UJxseiqLcp
-	 M6qvVsMx8y4PhWlXfwITnOFfgLWoW3lfFKYneBoDFBh+dwD6m2vUdkgoeIEK8Bw+N1
-	 5+EFvr8dCmOxg==
-Date: Sat, 26 Oct 2024 16:29:24 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
- Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-pwm@vger.kernel.org
-Subject: Re: [PATCH RFC v4 10/15] iio: buffer-dmaengine: document
- iio_dmaengine_buffer_setup_ext
-Message-ID: <20241026162924.2d7c8edc@jic23-huawei>
-In-Reply-To: <20241023-dlech-mainline-spi-engine-offload-2-v4-10-f8125b99f5a1@baylibre.com>
-References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
-	<20241023-dlech-mainline-spi-engine-offload-2-v4-10-f8125b99f5a1@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1729956918; c=relaxed/simple;
+	bh=Llx+XPRJNrysBhF1LvN8whfiHHKOOZIgjA6bxQ7XJKc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PUpzEWX6T8YFQRScwgXBpx0DnCIl7mabGIGLRpZzhsdNmsjBAC15InZf2d+VOVBL4dBWZBvRT2qbUYzoNG1dl/QheF7QSmlUk5OpNBB8eTWrJIZNZINuLxLIIzIMrgIkAe3Cd+nGWcVZ+fB5hotLfvpa6w0rDVAGNaLLfB14Aj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NwCpPHRx; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539f2b95775so3399587e87.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 08:35:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729956914; x=1730561714; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rt/tYXWIIxsry9kkJRH0JYnpXHyALFWOiwFr/jSdDb0=;
+        b=NwCpPHRxEeVZKoVB5Vu/AS9iDztr0i4hl5tbmEOIoBtPw8GuZL8evHWjHNrCSCYeQl
+         D34knSwnNJkyHA5oQPPIEbJvCp4hBlaBdWAJBjM0Y/nuD+Z3jo/gPySfhLntPVeAGdRK
+         k+UDad4pQ31RTtf3KAbCo2kzRN/pxyLrHnW/s9LQt4A2AfiXthWTaFYskJWWBStxGf2x
+         CsMrc+872BQeLlkjxs8beRwPOtjQtkjtDQt9QDR7e+TWUwfwICnj3PkgjRDalsz7Wma0
+         ZTUX8n+MPerfR6tdEsmkKSiLJJCPLBiD5LC+PYDzKaRkiZTAc2JRKisERqcpk0iW6hPX
+         djqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729956914; x=1730561714;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rt/tYXWIIxsry9kkJRH0JYnpXHyALFWOiwFr/jSdDb0=;
+        b=J5gIzFfp5CuJpEkVnR+sq7V95LwanVlXmPmTNgHIYBzADYnyYpT4SJjm8703NW6x6c
+         Xrwt33A7KrMEwn2eaZgioG4BB6AUqYIL9GMPcg3oU5Q7imCgOTBp8kInEphTOAm8tu+s
+         eEkxpLItk2pcE3a7Swsj6HE3N1PKcwIxFO4/CfChbbAJT1c70ksbDwyM8SDEiAWswbAb
+         zFUB+MjXCyzAXhzoNTHsBsKT3wHV/TxEsqiwFuL1mTbJncqENepmF5fEH5HuQFGZjm3k
+         MrRtGMEvEWMlUoBS/gD5Yx11doD3dpp8iiES1OE8MuZJc7qmQF4vYecdkuydjEiE8UXi
+         3fXg==
+X-Forwarded-Encrypted: i=1; AJvYcCX5uhNTTeylFmCQdacyBmBMn12cwtYGwNyLgHdtxYoHKCJusuw+bcGpKwZduWCDY5uSr/A0ua4BCxh0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2PinoMmtLDhmqSOiwUOmRfADBQGPTVBJDiIRmI9ehsb4LtL48
+	sdxsSo/cw+Wjd9Xups9DAE10ELYJBJLp4BhfGrqW6bfScFtQ960FxraLGHVQiok=
+X-Google-Smtp-Source: AGHT+IFG/neLAN94me4zADqziHHaojntKbMA0mWRCGaXwd03yz3ZtNdTkjXVSu3Tu/T9HlUdHdP88Q==
+X-Received: by 2002:a05:6512:1108:b0:53b:1f59:dc59 with SMTP id 2adb3069b0e04-53b348bac0cmr2442766e87.6.1729956914370;
+        Sat, 26 Oct 2024 08:35:14 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53b2e10a700sm534883e87.10.2024.10.26.08.35.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Oct 2024 08:35:13 -0700 (PDT)
+Date: Sat, 26 Oct 2024 18:35:12 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 3/3] interconnect: qcom: Add EPSS L3 support on SA8775P
+Message-ID: <bhnh2xcptccepv2sdyowmre6tm26klnfk5gunmy4lvc76pcfr6@lt7myqju77d6>
+References: <20241026123058.28258-1-quic_rlaggysh@quicinc.com>
+ <20241026123058.28258-4-quic_rlaggysh@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241026123058.28258-4-quic_rlaggysh@quicinc.com>
 
-On Wed, 23 Oct 2024 15:59:17 -0500
-David Lechner <dlechner@baylibre.com> wrote:
+On Sat, Oct 26, 2024 at 12:30:58PM +0000, Raviteja Laggyshetty wrote:
+> Add Epoch Subsystem (EPSS) L3 interconnect provider support on
+> SA8775P SoCs.
 
-> The iio_dmaengine_buffer_setup_ext() function is public and should be
-> documented. Also, while touching this, fix the description of @dev in
-> related functions. @dev does not strictly have to be the parent of the
-> IIO device. It is only passed to dma_request_chan() so strictly
-> speaking, it can be any device that is a valid DMA channel consumer.
+Please describe the reason for your changes. In its current form the
+patch doesn't provide enough details.
+
+Moreover I don't think it's a correct solution. Using a single ID space
+for an interconnects doesn't really scale. In the longer term we should
+follow CCF approach and switch to using the icc_node pointers when they
+are known.
+
 > 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
 > ---
-> 
-> v4 changes:
-> * This patch is new in v4.
-> 
-> Jonathan, I think this patch stands on its own if you want to take it
-> earlier than the rest of this series.
-I may do at some point, but want a few more eyes on it first so let's leave
-it here for now.
-
-Seems fine to me.
-
-
-> ---
->  drivers/iio/buffer/industrialio-buffer-dmaengine.c | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/iio/buffer/industrialio-buffer-dmaengine.c b/drivers/iio/buffer/industrialio-buffer-dmaengine.c
-> index 19af1caf14cd..054af21dfa65 100644
-> --- a/drivers/iio/buffer/industrialio-buffer-dmaengine.c
-> +++ b/drivers/iio/buffer/industrialio-buffer-dmaengine.c
-> @@ -206,7 +206,7 @@ static const struct iio_dev_attr *iio_dmaengine_buffer_attrs[] = {
->  
->  /**
->   * iio_dmaengine_buffer_alloc() - Allocate new buffer which uses DMAengine
-> - * @dev: Parent device for the buffer
-> + * @dev: DMA channel consumer device
->   * @channel: DMA channel name, typically "rx".
->   *
->   * This allocates a new IIO buffer which internally uses the DMAengine framework
-> @@ -288,6 +288,21 @@ void iio_dmaengine_buffer_free(struct iio_buffer *buffer)
->  }
->  EXPORT_SYMBOL_NS_GPL(iio_dmaengine_buffer_free, IIO_DMAENGINE_BUFFER);
->  
-> +/**
-> + * iio_dmaengine_buffer_setup_ext() - Setup a DMA buffer for an IIO device
-> + * @dev: DMA channel consumer device
-> + * @indio_dev: IIO device to which to attach this buffer.
-> + * @channel: DMA channel name, typically "rx".
-> + * @dir: Direction of buffer (in or out)
-> + *
-> + * This allocates a new IIO buffer with devm_iio_dmaengine_buffer_alloc()
-> + * and attaches it to an IIO device with iio_device_attach_buffer().
-> + * It also appends the INDIO_BUFFER_HARDWARE mode to the supported modes of the
-> + * IIO device.
-> + *
-> + * Once done using the buffer iio_dmaengine_buffer_free() should be used to
-> + * release it.
-> + */
->  struct iio_buffer *iio_dmaengine_buffer_setup_ext(struct device *dev,
->  						  struct iio_dev *indio_dev,
->  						  const char *channel,
-> @@ -321,7 +336,7 @@ static void __devm_iio_dmaengine_buffer_free(void *buffer)
->  
->  /**
->   * devm_iio_dmaengine_buffer_setup_ext() - Setup a DMA buffer for an IIO device
-> - * @dev: Parent device for the buffer
-> + * @dev: Device for devm ownership and DMA channel consumer device
->   * @indio_dev: IIO device to which to attach this buffer.
->   * @channel: DMA channel name, typically "rx".
->   * @dir: Direction of buffer (in or out)
+>  drivers/interconnect/qcom/osm-l3.c | 86 ++++++++++++++++++++++--------
+>  1 file changed, 64 insertions(+), 22 deletions(-)
 > 
 
+-- 
+With best wishes
+Dmitry
 
