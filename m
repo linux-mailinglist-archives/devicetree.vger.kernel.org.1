@@ -1,93 +1,102 @@
-Return-Path: <devicetree+bounces-115922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FAAD9B15AF
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 09:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C4A99B1635
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 10:05:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE5E31F23DA2
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 07:02:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 172421F22649
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 08:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7679E1534E9;
-	Sat, 26 Oct 2024 07:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FCBE17D8BF;
+	Sat, 26 Oct 2024 08:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="ojOkrDs0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tlgg9d8M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B71C13A41F;
-	Sat, 26 Oct 2024 07:02:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591CE217F3D;
+	Sat, 26 Oct 2024 08:05:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729926167; cv=none; b=XKuaUNb5o+wuD3DGHAiCLhh/7Qa5PvYMIj4qeoJm9/aJFy/yQ5Hhkuy5vt44enDudjQUfEBl9N2vUMxhX7D9CDy7uv2b8pyqUbFXA1HvJbPPpYo/1abagRgVySuD7qKYlqKEV+oRLkQzHvXAqDNXfOQ9Bpi3goxRTCZ6mrkLayE=
+	t=1729929952; cv=none; b=p89f4vKEw+K479ONtSm5tj3+WTRjFBRGgx4EtUSqQ6QxjZZDJ/uVTWAS/BMpyAACEW9Z3Nl0MMFvd6VYEGWiBvNfTIXR/Vk88HRkAireEtHvDN/hH84F0t3kszqi7MZIbgbWAh9E5ZZl9L4GP+3e5KnGTQI8wPRidk1UHYY1gq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729926167; c=relaxed/simple;
-	bh=WFxpYvbXvofAc6CPg9TSth3RYh/dsSg/t9m5lpnjNow=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FH1wKuoi2ZB7bglwP8BveRwSXJpyCRpnzv0sUAyGbLnzfk3PYUdHqva4YD78kgCcL+N4FKsxKpVZ2JarXO/mi+F5FO4tRy+q2uN8swyJ6XkjyLr2KCAOQHf126Q5JMgfPQYl+lkfO3iK19e1dsymkK2nWEUqfZE8+pSmmDlXIog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=ojOkrDs0; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=vOfR5nxbvz17I1jUUGbrnOm7gw72534O1iNYxZy8D0w=; b=ojOkrDs0dWMJCcav3D1n9Q3vtR
-	YcimPw3KwbUWy8e5jPz29yTuShPNe9ySPrO5RMCoAa/q6fJ2sCQ/WAvdrRpcH1jD0Epd155DqU+Uu
-	tCYdj9ZUIixYZt7czJi+ld9J0+2V5MkA7X1yCsVIJjDu8zr6GF6kCC7C0Y7NNfsId/MuKn1PAbKyv
-	U0vaYJTMHgZzrE+3+NTk4edxikHzdF4UNEKJ4X2/tcYfrNmyJQklAhAUkk3VZi6FUJyXB8b9wWvDb
-	0y+9hfXJMU6DqeqedVHdvfNgrAoIQwW3dzInvwUwemYKgP2owLXGYZgr9Aj9eBtQNUgEa8I0VkRIh
-	1YVzA4gw==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1t4aol-00CFzy-2w;
-	Sat, 26 Oct 2024 15:02:36 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 26 Oct 2024 15:02:35 +0800
-Date: Sat, 26 Oct 2024 15:02:35 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-Cc: Thara Gopinath <thara.gopinath@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_sravank@quicinc.com
-Subject: Re: [PATCH V1 1/2] dt-bindings: crypto: qcom-qce: document the
- SA8775P crypto engine
-Message-ID: <ZxyUC3j_H3TDZxGT@gondor.apana.org.au>
-References: <20241017144500.3968797-1-quic_yrangana@quicinc.com>
- <20241017144500.3968797-2-quic_yrangana@quicinc.com>
+	s=arc-20240116; t=1729929952; c=relaxed/simple;
+	bh=Sh4OlSUSOinU9Gcmy1Jjef4XWIvja88x5RH9Cl7atfE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nmplLQvzlx6B0FS+a08U1m2fCyyuwUPVdskfndAOFMnqQz7CKK8l1MT7ZZQ6UvcgaKi+vmyGIgwUihCLRkS0Le0jQJsjNwLX4baDhboIGq+cciujjrb4Dc9Gl4gbeyrO7Cy5/ZQXoNMtD3hY7fZenR7ysM1sA8WIfQBkAAWFjeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tlgg9d8M; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71ec997ad06so1994645b3a.3;
+        Sat, 26 Oct 2024 01:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729929949; x=1730534749; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2aFdd7lTNXY2oBADHotB5RImOsGkW4h5/amm8EYmlsM=;
+        b=Tlgg9d8M+ZLlqyvxRdAw4+y+EjVzuGWW8L2Zz7x48L0/SnK4X4iwJHVdbC12aSJ9n7
+         Hm7vuBC4rNX72xkV6JCinGPmE64ELimJv9vmrwv5AxrQDIn8VHYKaOeRTVuSwg6HZfkN
+         rAn5fiBa7BpgwOd6osROosseOJCRf6IXGdB7HMheaxYbmrHTb1jcQ34URd2CeyKDXCFD
+         QJtEWdeOaulT5FXp32GYrDsVMm2g5d5uPLqXsCisK+Rp2wmjLZNovw5EI6u0laU4ttIq
+         50SvVsIJEbrwCdUxIcRkQGr3Mtd0W+6mrKFhGp27yZwM2IO3NRoznvO+1bP2riAWqPOY
+         TxuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729929949; x=1730534749;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2aFdd7lTNXY2oBADHotB5RImOsGkW4h5/amm8EYmlsM=;
+        b=CebGY1bPt1/CnLTwew5K+9NBCheUZmuyoO3shl+UsFQIxi3z3HUOl1iqj35020rm3k
+         IaFTvgZZRJe9apTPlMPz+JYkQGteHzBU5G5VolnIIDTPDE9pyG+evBg2Lqp3iEs75MyD
+         9yMKJbJK1BOsGO1arCW9pfuKqDsfA3fVyKfND6qz+qcS01786ZP/vKhtfQSL6p8n0Nfi
+         QXGjzoZB8q1Fb+/q6ihgyRoV6yr0GSGHcr81Ix/RWTzeWBLPamY0tu6/v5ryWq6kVYqO
+         5RysH2lapwMP1y/k7dX6xCbydqf0dMqznXaHP099l9xkH6w4o9SIRGrJ7vjwZHQAimqW
+         GYQw==
+X-Forwarded-Encrypted: i=1; AJvYcCWsdHXnAgjKQ6/mxyoez1afACdxKCQcpnvKGOINjao2FmduvRB1L2bX1G6WgTOkGjPu0JVdM30g4qr9@vger.kernel.org
+X-Gm-Message-State: AOJu0YytqW3I1mfEeyTXP2jLzXwVNQkoXaXygp7PLG+W/loPONQ8nKGn
+	8xdRz6L7ZO7WvDZoezWpVF7W4amto/TAU195sh4hZHVLozzuiqKyo6CXOw==
+X-Google-Smtp-Source: AGHT+IEobrp6c16eCTSQLSlp+5xfLaJ92nM09kQGa8uE5YlpoT0Cly4Sh06grJPzEFb3sZV1Pl4a2Q==
+X-Received: by 2002:a05:6a00:985:b0:71e:55e2:2c58 with SMTP id d2e1a72fcca58-72062fb3d24mr3470459b3a.15.1729929949153;
+        Sat, 26 Oct 2024 01:05:49 -0700 (PDT)
+Received: from localhost.localdomain ([240f:34:212d:1:4618:4c6a:7feb:e53b])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7edc8a46f68sm2288666a12.89.2024.10.26.01.05.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Oct 2024 01:05:48 -0700 (PDT)
+From: Akinobu Mita <akinobu.mita@gmail.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	akinobu.mita@gmail.com
+Subject: [PATCH v2 0/2] hwmon: (pwm-fan) add option to leave fan on shutdown
+Date: Sat, 26 Oct 2024 17:05:33 +0900
+Message-Id: <20241026080535.444903-1-akinobu.mita@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241017144500.3968797-2-quic_yrangana@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 17, 2024 at 08:14:59PM +0530, Yuvaraj Ranganathan wrote:
-> Document the crypto engine on the SA8775P Platform.
-> 
-> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
->  1 file changed, 1 insertion(+)
+I sent these patches a long time ago, but I didn't cc them to the DT list,
+so the DT bindings changes weren't reviewed.
 
-Patch applied.  Thanks.
+There have been a lot of changes to pwm-fan since then, and I've updated
+the patch, so please review again.
+
+Akinobu Mita (2):
+  hwmon: (pwm-fan) add option to leave fan on shutdown
+  dt-bindings: hwmon: pwm-fan: add retain-state-shutdown property
+
+ Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 4 ++++
+ drivers/hwmon/pwm-fan.c                              | 6 +++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.34.1
+
 
