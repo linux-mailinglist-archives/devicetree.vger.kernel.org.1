@@ -1,214 +1,308 @@
-Return-Path: <devicetree+bounces-115947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C4509B175D
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 13:17:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E0CF9B1739
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 12:59:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8024A1C20EF6
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 11:17:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1576F1F2306C
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 10:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319B119DF8B;
-	Sat, 26 Oct 2024 11:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22A51D279F;
+	Sat, 26 Oct 2024 10:59:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="XqSV5BeB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lRzKcc6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic309-24.consmr.mail.ir2.yahoo.com (sonic309-24.consmr.mail.ir2.yahoo.com [77.238.179.82])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B1F217F29
-	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 11:17:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.179.82
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EB41D1F70;
+	Sat, 26 Oct 2024 10:59:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729941468; cv=none; b=cLXUY15vnYKvVZKXqJ6qOst5aB+IPA09cqDyYPNUr8E1SNX50fY7kf6I1c8zZEGOOsWSpVOMbf9mLBpmkgDfTILyM2BnZYIzxufz67fqu1q6ggsjh8khxEsxdFxgV33meKusioVHdeU9pCDCiMrU562x7QtbJwWCfX2dN++QE5w=
+	t=1729940370; cv=none; b=JpMHRajE3LpkzFAXfAAISRk0s6m5FlSdRusfcq0Kab1DbQkFsBgG0SCg0b0Ybq/kiift4AIw4AlYTqHlFBSyaOpeVuQf68F99uxn8Kqt2Xm52CrzrznIs5SBIO9UppSyOzo4zUHgN3NuBFiqJ9qhImYeJaFT0fafiWE2jhp3tiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729941468; c=relaxed/simple;
-	bh=ueJONdmNhq1F86xrFH1EE8C1zTVwrsQFqFxRxIzHRYI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=syq1oghUtCH0GvVxlrXPAjJBztcR8F9JO8+UDjkc08QqSJuQYN0opXg2iEM7K46nxW9CDiZfHo1Ocv2PVMRR3NjVsyZc94cEeDOTdC8ugqY+z07j80pg+pzM1CKqbR5qnzVb/Xhv9IZn4VizbDtUDPW1syvFsuBlvfEywxOIXQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=XqSV5BeB; arc=none smtp.client-ip=77.238.179.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1729941464; bh=ueJONdmNhq1F86xrFH1EE8C1zTVwrsQFqFxRxIzHRYI=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=XqSV5BeBztTUeok6mjyS0D19xM9jYhXBJNe7aCEgYLFrGPluLnO43LBUMLIHDo7KKjsN1uRFTklOpYHukkreT0y6X1rSWuah8uBr2S45VJ3+h3+vZs+C+V/Cprto6pLxrfNzT+dH+KVbekU4BprO3HijTzoTcRln/isorIEu5I0BaSKzRvEHV/Qac9IOMLpHeOeW+6z0ii5k9ENi8z+isxoWHgg0MI7jfg+Pn1MoLlhycb8EHA864CkFRc6/MIri3aLnrmRQLj8jljhs38OVjTP+4uNxC+hHdOP7vHuGMQ/xwmwB68K8AXR358eAv7Nur/q0wUKfuVQ32jVuQNTmhQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1729941464; bh=l3thqI8uTLjTGHvRAkk9fs37iS35/F6bikjV6WiN8rI=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=FmUnlWOEgjmHiSwDRpmX1TAcYuargALaWBkXxsS9HXrAIqR4rn7G7yuNSyyYqITvnMO+7vzV6Of4fRc30vZFZO1iQqWwqdPNqm8A1LXDrRyJvKTsiThM3k02/DyhYlcj4zeK9A5wsfSwvWaOy+CUMc/0kYm6UuMUvfFfm6kSwLewfIQGa9fvtB8mSvQ2L3R0lnfGCRu9OBoRBoFGPy+ZHEEhqoFk/+4wzB3yyD7YIS+DynEfpbX1z+TiYkm2hyH9c8y2bEAKR8OYSPYVuXej7lF0FbrZw9Y6JKZ+esovLsQubrLx6SXAWEI+Gbm0xNCE93RfUMPOxrlhU6agT31Fhw==
-X-YMail-OSG: B9wjYSAVM1ky62Q3wwgkupZDslFZQX8aAALaqVSmtRSCPzbkc8DjUVYtJ0R4ftD
- r0iRU9fUzfxzq1uhGlbr9wsEzfDsuPItit0fi832REkzuV365bQac2TtO24cv5IBL9mImd9JZiCb
- cn3e7G.v_1WOphfVaVouHbZIKPmcBID1Wzc1.w6n7Pll4bfGbjMACq4_IddL_hqa1rrpWwkj3Bau
- uY6wYU3sARlpNWnuzHoryjJeeSyQQtXJnO0Wjmdma.sUF7KWyqK6OzS529avA4aTntRVKSWQF5eq
- srKaKrs_a.lgxwDUe.DCPahxSa90denyBjP3MLCuLx3wLw74Pw5O8c4dnsqEAIeOUC8kD3tu4Up5
- TjDDP9pANu6MOi6lBjdiJvjfbQlC0pBiRmlvn5w7rtzrZ8luN8WSspg6tKbIh8KZ5YzhPrDp54qw
- nNWnrHv_VWbVDaNCwZsIhKaFYETBKR3EQAg0lbpXniI4_qVdKgdui2bAm9rQbjxMlUwEyEI0bMLt
- lu7cDfgmrhEKWNjhzHboBBkIAFljuRexVnP0lVXEQa9ZtmIfY7FzJtExgyJOLdYSJgR8qGCyrh.F
- Rd89LfmRlA82.pC2E7PxopyQOz.gRVS0hA2BiM6YWqjzJKhTJpH3Dd0SquLn.g8IfFs9tII2seqq
- gvjTyqqFclvVb2xBn86lLchO8Be2pTG6JC3hIWqcc1hCdxlvDNvYgKX.Rat2HfWubNxzHrI2cQ9G
- NIjQDsTWMNUsXjX.33iZTARqJf4Ms_SivgKlbXk3TeLPKxPQt6Uhl6P4zPEgTgeZA4Prq0Go27V6
- Olvw3hIRnUBgaB1EKwlR8rmePOCkH5KWvoi14gDuoR0LvZmDSmIl6VfxNhNr9anPlC3r.T9MoNne
- B1mgjM4XPC4.JBVt.dRcuYtQSd5Mr4MqyvCTyAz6OB71L9dkSOlVsY8uRuXIiBORUu9lvU2IgOnE
- uMtpUTsDTxUZUr4aFGaqK88lb9UxRS6CN46qj0rzaICV6x9W_y.LHmevHpE6pY7gM_Esoo6jdd5Y
- a2OAIKCft_CixFbjSssAJbSmOG0s_1KBVluSNJqMTQh9mE9i.3AMNDvxBSanJYZq4k6yqkdEtXP4
- 3wugohsotvs5KVheHlFVfo5AbbqwuKsGKSlQvWvgLExssZy_ZIowt6O2GDwaQB2rUIjlQtuL_.lP
- lIVALPBDu_WKJSafO8Y6nB.GS9mUtUYsl46l1Mv0vyi5XyIaiGQh9JwjMz5hd_iIAP_UU._0nYSi
- 0ce4bFphQ0cvTXo.JY0ujz7X8tLMxTPkubW4vv6aL.mBHmgAHeaV8fjQzWoohXJTSOgsdqSfmCtM
- YrJcs3yemo0iwkLvSg_yuVaAVOxgBJoxQHGgia.dcuPAStXzw9jGAbSRkE7D9B58WE4MRDN_WZvc
- pxRRuIGkOP8zrHw7NjMvwKyPO7JXHnbdDJmjYYxSpbxZhBfeOU15Zu_NNH53k8AgW1vNiZ5HDnms
- dTwps4.wxloTSa8HNED2jsfITfcCjs2h7MGA7FfLl38K6SOh0xUAMIOHOE8sJIDa3zKJHkqKYXsW
- neaT7MgcPxr._fPLHN3si2CtnWa9Ss_KtONk8L6ZnvymWns4Z5h.sxBiY.MJY_FVmUeRsY6IhkGk
- GJOL7HgAulu71.3UCe0Y_d98hqpv7uHPW8OKX8sHTdxz4uo0JK5u1T2A3rk3xV9NeolbQkxv3RF9
- ym734ggAt1dtULwVw4ILup5mAGLYSOsR7wBMfVWvlq9ebr2WhOcI0eWuVslCsV5rMS0h02.mtMV1
- LzexxCcmufNDIIFceZHiuQACnz2zZvjzGSodAAkSxsvqzx3po0noY3lwNWMpP.2JjP_wghv55fBX
- h8h1t17PhlL9kGMqB0F8jfni8aUFL2Ak4Vuwu.nscXMZDx4CI8Ui5_gBzehaX_Fc1TfKeT00Z9Cj
- FZuXwa33Gg7uhda3JN7RZUKxl9MzerHaQ_X22N7CzPWK7cHjKaDq20K8RbjWZVpaIRCwSAy4uRlO
- O8DE1jJTdpJZsFBIO08lDnGIvXGXaecsWZxv57rRSdwbJxtTqkgGDZ5CAHtC7bmkrjeqazY_orUn
- q6wHFg3TW9lYNO_SniCd.rWVjc35E1Zjw61pCKHcw8UkeFaTxVD1wC8HfZqQtFrQn3XS0xo8_FKi
- 2ARiTgdYyttxTghA0th3T2YCZC4LNXMuyxHqmZxY7BCro7QvJF_BajdRP6eCziPuRkjFzF97sfuZ
- tA9EX82dkxX.DVw7DXhbMn7SZK5__Rc573T7v81eaRGY9yqmOWjOujPTRx5FHl0b9bovDz0H1uF.
- 0gzEtjfJ6fJGytPR9DvVQpoKwZnbix1ucm2BN
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 7d63adfd-1c22-41fc-a45b-13f29412d1f5
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.ir2.yahoo.com with HTTP; Sat, 26 Oct 2024 11:17:44 +0000
-Received: by hermes--production-ir2-c694d79d9-qjs6q (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 6b14dd8266d930d0236b828cdbdee198;
-          Sat, 26 Oct 2024 10:47:18 +0000 (UTC)
-Message-ID: <6e4768d1-929e-4700-82bd-2e247b68de1f@rocketmail.com>
-Date: Sat, 26 Oct 2024 12:47:17 +0200
+	s=arc-20240116; t=1729940370; c=relaxed/simple;
+	bh=5qN3ocnSS/In5gA+jsyFZ5udS5CVdnNtOtYmm9mrTNk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tLJGvI62Jc51XSA2qP86uFHyM0QRt5+fckbP9n+E+W+9vqEHpz3fpCQGLBjpJOkr+pO92NMV8k7ycm6YDpZIrFzVzNB+/P2c7U7+D8ITirL+yLfqa6kjj+HGEHC1f3QIqMp9IuC3YOqImCe7jJyvcUSV4adqKFFeo8IBGp4gszk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lRzKcc6v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1033C4CEC6;
+	Sat, 26 Oct 2024 10:59:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729940370;
+	bh=5qN3ocnSS/In5gA+jsyFZ5udS5CVdnNtOtYmm9mrTNk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=lRzKcc6v2ZGmk0V9sShfWgo0pTvcLXIgbDl5e2Dew4+rPkv42zps3eoQW6KRxh3Yl
+	 nfLW6VBPnUgkAdb87LZmH8Of2rdR0jnWztkkAEOiEmg7bD5vDX9P+jfvwncA2bQ/mC
+	 kykTAt6acsiOzjhWKx+TkJDgil0U82xppz2ISosD2nqXFujqltYlCxzFZ+yIfjjJzP
+	 3c2PbOKeB92UFIzaozEYD/D4v1/z68k/KFw0WE9J6tGi98qNh2SoS+rdF2W5wGouhv
+	 6Zp14yLAYaf7EZ6rfCy4rmYzxlpavb9i91bSo4TNSo9wSniZZNpC9fPa/mV8PVI9n9
+	 W2SSBhYyOJx7Q==
+Date: Sat, 26 Oct 2024 11:59:21 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: light: veml6070: add support for
+ integration time
+Message-ID: <20241026115921.72d02a9f@jic23-huawei>
+In-Reply-To: <20241024-veml6070-integration-time-v2-2-d53272ec0feb@gmail.com>
+References: <20241024-veml6070-integration-time-v2-0-d53272ec0feb@gmail.com>
+	<20241024-veml6070-integration-time-v2-2-d53272ec0feb@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] drm/panel: samsung-s6e88a0-ams427ap24: Add
- brightness control
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1729738189.git.jahau@rocketmail.com>
- <594cc48e98b551cfeeba0fb475755a41b83283a0.1729738189.git.jahau@rocketmail.com>
- <CACRpkdYOgymfjOD3cAMXt7u8SH0vvVzwt75gamJvXuyyjdsMPw@mail.gmail.com>
-Content-Language: en-US
-From: Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <CACRpkdYOgymfjOD3cAMXt7u8SH0vvVzwt75gamJvXuyyjdsMPw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
-X-Mailer: WebService/1.1.22806 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-SGkgTGludXMsDQoNCk9uIDI1LjEwLjI0IDIxOjI3LCBMaW51cyBXYWxsZWlqIHdyb3RlOg0K
-Li4uDQo+IE9uIFRodSwgT2N0IDI0LCAyMDI0IGF0IDU6MTjigK9BTSBKYWtvYiBIYXVzZXIg
-PGphaGF1QHJvY2tldG1haWwuY29tPiB3cm90ZToNCj4+ICtzdGF0aWMgY29uc3QgaW50IHM2
-ZTg4YTBfYW1zNDI3YXAyNF9icl90b19jZFtOVU1fU1RFUFNfQ0FOREVMQV0gPSB7DQo+IA0K
-PiAoLi4uKQ0KPj4gKyAgICAgICAvKiBicmlnaHRuZXNzIHRpbGwsIGNhbmRlbGEgKi8NCj4g
-DQo+IEJyaWdodG5lc3MgdG8gY2FuZGVsYSBjb252ZXJzaW9uIHRhYmxlPyBFZGl0IGNvbW1l
-bnQ/DQoNCkluIHRoZSBkb3duc3RyZWFtIGRyaXZlciB0aGVyZSBpcyBhIHRhYmxlIHdpdGgg
-Zm91ciBjb2x1bW5zOg0KPGlkeD4gPGZyb20+IDx0aWxsPiA8Y2FuZGVsbGE+Lg0KDQpodHRw
-czovL2dpdGh1Yi5jb20vbXNtODkxNi1tYWlubGluZS9saW51eC1kb3duc3RyZWFtL2Jsb2Iv
-R1QtSTkxOTVJL2RyaXZlcnMvdmlkZW8vbXNtL21kc3Mvc2Ftc3VuZy9TNkU4OEEwX0FNUzQy
-N0FQMjQvZHNpX3BhbmVsX1M2RTg4QTBfQU1TNDI3QVAyNF9xaGRfb2N0YV92aWRlby5kdHNp
-I0wzNDEtTDM5Nw0KDQpUaGUgZmlyc3QgY29sdW1uIGlzIGEgY291bnRlciwgdGhlIHNlY29u
-ZCBhbmQgdGhpcmQgaXMgdGhlIA0KZnJvbS10aWxsLXJhbmdlIG9mIGJyaWdodG5lc3Mgc3Rl
-cHMgdGhhdCBjb3JyZXNwb25kIHRvIHRoZSBmb3J0aCBjb2x1bW4gDQpvZiBjYW5kZWxhIGlk
-ZW50aWZpZXIuDQoNCkluIHRoZSBwYXRjaCBoZXJlIEkgb25seSBhZG9wdGVkIHRoZSB0aGly
-ZCBhbmQgZm9ydGggY29sdW1uLCBiZWNhdXNlIHRoZSANCm90aGVycyB3ZXJlIG5vdCBuZWNl
-c3NhcnkuIFRoZSBjb21tZW50ICJicmlnaHRuZXNzIHRpbGwsIGNhbmRlbGEiIHdhcyANCmlu
-dGVuZGVkIHRvIGxhYmVsIHRob3NlIHR3byBjb2x1bW5zLg0KDQpUbyBtYWtlIGl0IG1vcmUg
-Y2xlYXIsIEkgY291bGQgYWRkIHRoZSBrZXl3b3JkICJjb2x1bW5zIiBhbmQgdGhlIGNvbHVt
-biANCiJicmlnaHRuZXNzIGZyb20iLg0KDQogICAgICAgICAvKiBjb2x1bW5zOiBicmlnaHRu
-ZXNzIGZyb20sIGJyaWdodG5lc3MgdGlsbCwgY2FuZGVsYSAqLw0KICAgICAgICAgLyogMCAq
-LyAgICAxMCwgIC8qIDEwQ0QgKi8NCiAgICAgICAgIC8qIDExICovICAgMTEsICAvKiAxMUNE
-ICovDQogICAgICAgICAvKiAxMiAqLyAgIDEyLCAgLyogMTJDRCAqLw0KICAgICAgICAgLyog
-MTMgKi8gICAxMywgIC8qIDEzQ0QgKi8NCiAgICAgICAgIC8qIDE0ICovICAgMTQsICAvKiAx
-NENEICovDQoNCiAgICAgICAgIC4uLg0KDQogICAgICAgICAvKiAzMCAqLyAgIDMwLCAgLyog
-MzlDRCAqLw0KICAgICAgICAgLyogMzEgKi8gICAzMiwgIC8qIDQxQ0QgKi8NCiAgICAgICAg
-IC8qIDMzICovICAgMzQsICAvKiA0NENEICovDQogICAgICAgICAvKiAzNSAqLyAgIDM2LCAg
-LyogNDdDRCAqLw0KDQogICAgICAgICAuLi4NCg0KICAgICAgICAgLyogOTIgKi8gICA5Nywg
-IC8qIDEyNkNEICovDQogICAgICAgICAvKiA5OCAqLyAgIDEwNCwgLyogMTM0Q0QgKi8NCiAg
-ICAgICAgIC8qIDEwNSAqLyAgMTEwLCAvKiAxNDNDRCAqLw0KICAgICAgICAgLyogMTExICov
-ICAxMTgsIC8qIDE1MkNEICovDQoNCiAgICAgICAgIC4uLg0KDQogICAgICAgICAvKiAxODIg
-Ki8gIDIwNSwgLyogMjQ5Q0QgKi8NCiAgICAgICAgIC8qIDIwNiAqLyAgMjM0LCAvKiAyNjVD
-RCAqLw0KICAgICAgICAgLyogMjM1ICovICAyNTQsIC8qIDI4MkNEICovDQogICAgICAgICAv
-KiAyNTUgKi8gIDI1NSwgLyogMzAwQ0QgKi8NCg0KPj4gK3N0YXRpYyBjb25zdCB1OCBzNmU4
-OGEwX2FtczQyN2FwMjRfYWlkW05VTV9TVEVQU19BSURdW1NFUV9MRU5HVEhfQUlEXSA9IHsN
-Cj4gDQo+IElmIHlvdSBrbm93IHRoYXQgdGhlIHNlcXVlbmNlIDB4YjIsIDB4NDAsIDB4MDgs
-IDB4MjAgbWVhbnMgInNldCBBSUQiDQo+IChvciBpcyBpdCBBT1I/PykgeW91IGNhbiAjZGVm
-aW5lDQo+IA0KPiAjZGVmaW5lIFM2RTg4QTBfU0VUX0FJRCAweGIyDQoNClRoYW5rcyB0byBB
-bGV4ZXkgTWluLCB3aG8gbG9va2VkIHRoaXMgdXAsIEkgY2FuIHNheToNCg0KIlRoZSBQV00g
-bWVjaGFuaXNtIHVzZWQgb24gU2Ftc3VuZyBkaXNwbGF5cyBpcyBjYWxsZWQgQU9SIChBTU9M
-RUQgb2ZmIA0KcmF0aW8pLCB0aGUgcmVsYXRlZCBmdW5jdGlvbiBvbiB0aGUga2VybmVsIGRy
-aXZlciBpcyBjYWxsZWQgQUlEIChBTU9MRUQgDQppbXB1bHNpdmUgZHJpdmluZykuIg0KDQpz
-b3VyY2U6IHhkYWZvcnVtcw0KDQpUaGUgZG93bnN0cmVhbSBkcml2ZXIgb2YgYW1zNDI3YXAy
-NCB1c2VzIHRoZSAiYWlkIiBsYWJlbGluZywgdGhlcmVmb3JlIEkgDQpzdGljayB0byB0aGF0
-LiAoSW50ZXJlc3RpbmdseSB0aGUgb2xkZXIgZG93bnN0cmVhbSBkcml2ZXIgYW1zNDI3YXAw
-MSANCnVzZXMgdGhlICJhb3IiIGxhYmVsaW5nLikNCg0KPiBUaGVuIG1ha2UgYSBzbWFsbCBi
-dWZmZXI6DQo+IA0KPiB1OCBzZXRfYWlkWzVdID0geyBTNkU4OEEwX1NFVF9BSUQsIDB4NDAs
-IDB4MDgsIDB4MjAsIDB4MDAsIDB4MDAgfTsNCj4gDQo+IHRoZW4geW91IGNhbiBzdHJpcCB0
-aGUgZmlyc3QgdGhyZWUgYnl0ZXMgZnJvbSB0aGUgZW50aXJlIHRhYmxlLA0KPiBqdXN0IGNv
-cHkgaW4gdGhlIHR3byByZWxldmFudCBieXRlcyBpbnRvIHNldF9hb3JbXQ0KPiBhbmQgc2Vu
-ZCB0aGF0Lg0KDQpPaywgSSdsbCB0cnkgdG8gaW1wbGVtZW50IHRoYXQuIFRoZSBzaXplIG9m
-IHRoZSBzZWNvbmQgYXJyYXkgZGltZW5zaW9uIA0Kb2YgdGhhdCB0YWJsZSB3aWxsIHRoZW4g
-YmVjb21lIFtTRVFfTEVOR1RIX0FJRCAtIDNdLg0KDQouLi4NCg0KPj4gK3N0YXRpYyBpbnQg
-czZlODhhMF9hbXM0MjdhcDI0X3NldF9icmlnaHRuZXNzKHN0cnVjdCBiYWNrbGlnaHRfZGV2
-aWNlICpiZCkNCj4+ICt7DQo+PiArICAgICAgIHN0cnVjdCBzNmU4OGEwX2FtczQyN2FwMjQg
-KmN0eCA9IGJsX2dldF9kYXRhKGJkKTsNCj4+ICsgICAgICAgc3RydWN0IG1pcGlfZHNpX2Rl
-dmljZSAqZHNpID0gY3R4LT5kc2k7DQo+PiArICAgICAgIHN0cnVjdCBtaXBpX2RzaV9tdWx0
-aV9jb250ZXh0IGRzaV9jdHggPSB7IC5kc2kgPSBkc2kgfTsNCj4+ICsgICAgICAgc3RydWN0
-IGRldmljZSAqZGV2ID0gJmRzaS0+ZGV2Ow0KPj4gKyAgICAgICBpbnQgYnJpZ2h0bmVzcyA9
-IGJkLT5wcm9wcy5icmlnaHRuZXNzOw0KPj4gKyAgICAgICBpbnQgY2FuZGVsYV9lbnVtOw0K
-Pj4gKyAgICAgICB1OCBiMltTRVFfTEVOR1RIX0FJRCArIDFdOw0KPj4gKyAgICAgICB1OCBi
-NltTRVFfTEVOR1RIX0VMVlNTICsgMV07DQo+PiArICAgICAgIHU4IGNhW1NFUV9MRU5HVEhf
-R0FNTUEgKyAxXTsNCj4gDQo+IFJlbmFtZSB0aGVtIHRvIHNvbWV0aGluZyBsaWtlIG15IHN1
-Z2dlc3Rpb25zIHNvIHdlIHVuZGVyc3RhbmQgd2hhdCBpdCBpcw0KPiBhbGwgYWJvdXQuIEl0
-IHNlZW1zIHRoZSBpbmZyYXN0cnVjdHVyZSBmb3Igd2hhdCBJIHN1Z2dlc3RlZCBpcyBtb3N0
-bHkgYWxyZWFkeQ0KPiB0aGVyZS4NCg0KVGhlc2UgZGVmaW5lcyBhcmUgaW50ZW5kZWQgdG8g
-YmUgdGhlIHNlcXVlbmNlIGxlbmd0aCBvZiB0aGUgcGF5bG9hZCBmb3IgDQpjb21tYW5kcyBh
-aWQsIGVsdnNzIGFuZCBnYW1tYS4gVGhlIG5hbWluZyBtYWtlcyBzZW5zZSB0byBtZS4NCg0K
-VGhlICIrIDEiIGJlY2FtZSBuZWNlc3NhcnkgYmVjYXVzZSB3aGVuIGNoYW5naW5nIHRoZSBE
-Q1MgY29tbWFuZHMgdG8gDQptdWx0aSB0eXBlIEkgcmFuIGludG8gdGhlIGlzc3VlIHRoYXQg
-dGhlcmUgaXMgb25lIGZvciANCiJtaXBpX2RzaV9kY3Nfd3JpdGVfc2VxIiBhbmQgb25lIGZv
-ciAibWlwaV9kc2lfZGNzX3dyaXRlX2J1ZmZlciIuLi4gYnV0IA0Kbm9uZSBmb3IgIm1pcGlf
-ZHNpX2Rjc193cml0ZSIgOiggU28gSSBoYWQgdG8gY29udmVydCB0aG9zZSBpbnRvIA0KIm1p
-cGlfZHNpX2Rjc193cml0ZV9idWZmZXIiK211bHRpLCB0aHVzIGluY2x1ZGluZyB0aGUgY29t
-bWFuZCByZWdpc3RlciANCnZhbHVlIGludG8gdGhlIHBheWxvYWQgc3RyaW5nLg0KDQouLi4N
-Cg0KPj4gKyAgICAgICBpZiAoY2FuZGVsYV9lbnVtIDw9IENBTkRFTEFfMTExQ0QpIHsNCj4+
-ICsgICAgICAgICAgICAgICBtZW1jcHkoJmI2WzFdLCBzNmU4OGEwX2FtczQyN2FwMjRfZWx2
-c3NbMF0sIFNFUV9MRU5HVEhfRUxWU1MpOw0KPj4gKyAgICAgICB9IGVsc2Ugew0KPj4gKyAg
-ICAgICAgICAgICAgIG1lbWNweSgmYjZbMV0sIHM2ZTg4YTBfYW1zNDI3YXAyNF9lbHZzc1tj
-YW5kZWxhX2VudW0gLSBDQU5ERUxBXzExMUNEXSwNCj4+ICsgICAgICAgICAgICAgICAgICAg
-ICAgU0VRX0xFTkdUSF9FTFZTUyk7DQo+PiArICAgICAgIH0NCj4+ICsNCj4+ICsgICAgICAg
-LyogZ2V0IGdhbW1hICovDQo+PiArICAgICAgIGNhWzBdID0gMHhjYTsNCj4gDQo+ICNkZWZp
-bmUgUzZFODhBMF9TRVRfR0FNTUEgMHhjYQ0KDQpBcyBzdGF0ZWQgaW4gbXkgcmVwbHkgb24g
-cGF0Y2ggMywgSSB3b3VsZCBsaWtlIHRvIGF2b2lkIHRob3NlIGRlZmluZXMgDQpiZWNhdXNl
-IGZpcnN0bHkgdGhlIG5hbWluZyBiZWNvbWVzIGFyYml0cmFyeSBhbmQgc2Vjb25kbHkgaXQg
-c3BvaWxzIHRoZSANCnJlYWRhYmlsaXR5IG9mIHRoZSBsYXJnZXIgRENTIGNvbW1hbmQgYmxv
-Y2tzIGR1ZSB0byBuZWNlc3NhcnkgbGluZSBicmVha3MuDQoNCkluIHRoaXMgc3BlY2lmaWMg
-Y2FzZSBoZXJlIGEgZGVmaW5lIHdvdWxkIG1ha2Ugc2Vuc2UuIEJ1dCBJIGNhbiBoYXJkbHkg
-DQppbXBsZW1lbnQgaXQgaGVyZSB3aXRob3V0IGRvaW5nIGl0IGVsc2V3aGVyZS4gVGhlcmVm
-b3JlIEkgd291bGQgbGlrZSB0byANCmtlZXAgdGhhdCBhcyBpdCBpcy4NCg0KLi4uDQoNCj4+
-ICsgICAgICAgbWlwaV9kc2lfZGNzX3dyaXRlX2J1ZmZlcl9tdWx0aSgmZHNpX2N0eCwgYjIs
-IEFSUkFZX1NJWkUoYjIpKTsNCj4+ICsgICAgICAgbWlwaV9kc2lfZGNzX3dyaXRlX3NlcV9t
-dWx0aSgmZHNpX2N0eCwgMHg1NSwgMHgwMCk7DQo+IA0KPiAweDU1IGlzIE1JUElfRENTX1dS
-SVRFX1BPV0VSX1NBVkUgaW4gPHZpZGVvL21pcGlfZGlzcGxheS5oPg0KDQpJdCdzIHRoZSBv
-bmx5IG9uZSB0aGF0IGNvdWxkIGJlIHVzZWQgZnJvbSA8dmlkZW8vbWlwaV9kaXNwbGF5Lmg+
-Lg0KDQpUaG91Z2ggIk1JUElfRENTX1dSSVRFX1BPV0VSX1NBVkUsIDB4MDAiIGRvZXNuJ3Qg
-c2F5IG11Y2guIEluIHRoZSANCmRvd25zdHJlYW0gZHJpdmVyIHRoZXJlIGFyZSBmb3VyIGxl
-dmVscyBvZiBBQ0w6DQogICAgICAgICAweDU1LCAweDAwIC0+IEFDTCBvZmYNCiAgICAgICAg
-IDB4NTUsIDB4MDEgLT4gZGVmYXVsdCBBQ0wgMTUgJQ0KICAgICAgICAgMHg1NSwgMHgwMiAt
-PiBBQ0wgMzAgJSwgYWxzbyBjb3JyZXNwb25kcyB0byB0aGUgIkFDTCBvbiIgY29tbWFuZA0K
-ICAgICAgICAgMHg1NSwgMHgwMyAtPiBkb2Vzbid0IHNlZW0gdG8gYmUgdXNlZA0KDQpodHRw
-czovL2dpdGh1Yi5jb20vbXNtODkxNi1tYWlubGluZS9saW51eC1kb3duc3RyZWFtL2Jsb2Iv
-R1QtSTkxOTVJL2RyaXZlcnMvdmlkZW8vbXNtL21kc3Mvc2Ftc3VuZy9TNkU4OEEwX0FNUzQy
-N0FQMjQvZHNpX3BhbmVsX1M2RTg4QTBfQU1TNDI3QVAyNF9xaGRfb2N0YV92aWRlby5kdHNp
-I0wyNzUtTDI4MQ0KDQpJIHdvdWxkIHByZWZlciB0byBzdGF5IGF0IDB4NTUgYW5kIGFkZCBj
-b21tZW50ICJhY2wgb2ZmIi4gRW1iZWRkZWQgaW4gYSANCmJsb2NrIG9mIG90aGVyIERDUyBj
-b21tYW5kcyB3aXRoIHBsYWluIGNvbW1hbmQgcmVnaXN0ZXIgdmFsdWVzIGFuZCANCnNpbmds
-ZSBsaW5lIGNvbW1lbnRzIGFwcGVuZGVkLCBhcyBwcm9wb3NlZCBpbiBteSByZXBseSBvbiBw
-YXRjaCAzLCBpdCANCmxvb2tzIG1vcmUgcmVhZGFibGUgYW5kIGRlc2NyaXB0aXZlIGluIHRo
-ZSBjb250ZXh0IG9mIHRoZSBvdGhlciBjb21tYW5kcy4NCg0KS2luZCByZWdhcmRzLA0KSmFr
-b2INCg==
+On Thu, 24 Oct 2024 22:44:49 +0200
+Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+
+> The integration time of the veml6070 depends on an external resistor
+> (called Rset in the datasheet) and the value configured in the IT
+> field of the command register, whose supported values are 1/2x, 1x,
+> 2x and 4x.
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
+Hi Javier,
+
+A few comments inline below.
+
+Thanks,
+
+Jonathan
+> ---
+>  drivers/iio/light/veml6070.c | 137 ++++++++++++++++++++++++++++++++++++++++---
+>  1 file changed, 129 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/iio/light/veml6070.c b/drivers/iio/light/veml6070.c
+> index d11ae00f61f8..d4d024e1b171 100644
+> --- a/drivers/iio/light/veml6070.c
+> +++ b/drivers/iio/light/veml6070.c
+> @@ -6,7 +6,7 @@
+>   *
+>   * IIO driver for VEML6070 (7-bit I2C slave addresses 0x38 and 0x39)
+>   *
+> - * TODO: integration time, ACK signal
+> + * TODO: ACK signal
+>   */
+>  
+>  #include <linux/bitfield.h>
+> @@ -29,18 +29,88 @@
+>  #define VEML6070_COMMAND_RSRVD	BIT(1) /* reserved, set to 1 */
+>  #define VEML6070_COMMAND_SD	BIT(0) /* shutdown mode when set */
+>  
+> -#define VEML6070_IT_10	0x01 /* integration time 1x */
+> +#define VEML6070_IT_05		0x00
+> +#define VEML6070_IT_10		0x01
+> +#define VEML6070_IT_20		0x02
+> +#define VEML6070_IT_40		0x03
+> +
+> +#define VEML6070_MIN_RSET_KOHM	75
+> +#define VEML6070_MIN_IT_US	15625 /* Rset = 75 kohm, IT = 1/2 */
+>  
+>  struct veml6070_data {
+>  	struct i2c_client *client1;
+>  	struct i2c_client *client2;
+>  	u8 config;
+>  	struct mutex lock;
+> +	u32 rset;
+> +	u32 it[4][2];
+
+int given how it is cast to an int * later. Should be no where near the point
+where that makes any functional difference of course.
+
+
+>  };
+>  
+> +static void veml6070_calc_it(struct device *dev, struct veml6070_data *data)
+> +{
+> +	u32 tmp_it;
+> +	int i, ret;
+> +
+> +	ret = device_property_read_u32(dev, "rset-ohms", &data->rset);
+> +	if (ret) {
+> +		dev_warn(dev, "no Rset specified, using default 270 kohms\n");
+> +		data->rset = 270000;
+Where the dt-binding defines a default (and that is sensible) don't print
+a warning if someone uses it.  Even dev_info is probably too noisy for this.
+
+A simple pattern for default cass is
+	data->rset = 270000;
+	device_property_read_u32(dev, "rset-ohms", &data->rset);
+
+That is don't check the error return and make sue of the lack of side effects
+on the value in &data->rset if there is an error (typically property not found).
+
+> +	}
+> +
+> +	if (data->rset < 75000) {
+> +		dev_warn(dev, "Rset too low, using minimum = 75 kohms\n");
+> +		data->rset = 75000;
+> +	}
+> +
+> +	if (data->rset > 1200000) {
+> +		dev_warn(dev, "Rset too high, using maximum = 1200 kohms\n");
+> +		data->rset = 1200000;
+> +	}
+> +
+> +	/**
+
+Not kernel-doc. So /* only.
+
+> +	 * convert to kohm to avoid overflows and work with the same units as
+> +	 * in the datasheet and simplify UVI operations.
+> +	 */
+> +	data->rset /= 1000;
+> +
+> +	tmp_it = VEML6070_MIN_IT_US * data->rset / VEML6070_MIN_RSET_KOHM;
+> +	for (i = 0; i < ARRAY_SIZE(data->it); i++) {
+> +		data->it[i][0] = (tmp_it << i) / 1000000;
+> +		data->it[i][1] = (tmp_it << i) % 1000000;
+> +	}
+> +}
+> +
+> +static int veml6070_get_it(struct veml6070_data *data, int *val, int *val2)
+> +{
+> +	int it_idx = FIELD_GET(VEML6070_COMMAND_IT, data->config);
+> +
+> +	*val = data->it[it_idx][0];
+> +	*val2 = data->it[it_idx][1];
+> +
+> +	return IIO_VAL_INT_PLUS_MICRO;
+> +}
+> +
+> +static int veml6070_set_it(struct veml6070_data *data, int val, int val2)
+> +{
+> +	int it_idx;
+> +
+> +	for (it_idx = 0; it_idx < ARRAY_SIZE(data->it); it_idx++) {
+> +		if (data->it[it_idx][0] == val && data->it[it_idx][1] == val2)
+> +			break;
+> +	}
+> +
+> +	if (it_idx >= ARRAY_SIZE(data->it))
+> +		return -EINVAL;
+> +
+> +	data->config = (data->config & ~VEML6070_COMMAND_IT) |
+> +		FIELD_PREP(VEML6070_COMMAND_IT, it_idx);
+> +
+> +	return i2c_smbus_write_byte(data->client1, data->config);
+> +}
+> +
+>  static int veml6070_read(struct veml6070_data *data)
+>  {
+> -	int ret;
+> +	int ret, it_ms, val, val2;
+>  	u8 msb, lsb;
+>  
+>  	guard(mutex)(&data->lock);
+> @@ -51,7 +121,9 @@ static int veml6070_read(struct veml6070_data *data)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	msleep(125 + 10); /* measurement takes up to 125 ms for IT 1x */
+> +	veml6070_get_it(data, &val, &val2);
+> +	it_ms = val * 1000 + val2 / 1000;
+
+Perhaps some unit.h defines would make this slightly more self documenting.
+
+	int_ms = val * MILLI + val2 / (MICRO / MILLI);
+
+> +	msleep(it_ms + 10);
+>  
+>  	ret = i2c_smbus_read_byte(data->client2); /* read MSB, address 0x39 */
+>  	if (ret < 0)
+> @@ -81,26 +153,37 @@ static const struct iio_chan_spec veml6070_channels[] = {
+>  		.modified = 1,
+>  		.channel2 = IIO_MOD_LIGHT_UV,
+>  		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
+> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME),
+>  	},
+>  	{
+>  		.type = IIO_UVINDEX,
+>  		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME),
+> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME),
+>  	}
+>  };
+>  
+> -static int veml6070_to_uv_index(unsigned int val)
+> +static int veml6070_to_uv_index(struct veml6070_data *data, unsigned int val)
+>  {
+>  	/*
+>  	 * conversion of raw UV intensity values to UV index depends on
+>  	 * integration time (IT) and value of the resistor connected to
+> -	 * the RSET pin (default: 270 KOhm)
+> +	 * the RSET pin (default: 270 KOhm, IT = 1x)
+
+I'm not sure documenting the default KOhm here is useful as that's
+a board wiring thing we don't control. IT isn't that useful documented
+here either so I'd just drop the bit in brackets.
+
+
+>  	 */
+>  	unsigned int uvi[11] = {
+>  		187, 373, 560, /* low */
+>  		746, 933, 1120, /* moderate */
+>  		1308, 1494, /* high */
+>  		1681, 1868, 2054}; /* very high */
+> -	int i;
+> +	int i, it_idx;
+> +
+> +	it_idx = FIELD_GET(VEML6070_COMMAND_IT, data->config);
+> +
+> +	if (!it_idx)
+> +		val = (val * 270  / data->rset) << 1;
+> +	else
+> +		val = (val * 270 / data->rset) >> (it_idx - 1);
+>  
+>  	for (i = 0; i < ARRAY_SIZE(uvi); i++)
+>  		if (val <= uvi[i])
+> @@ -123,10 +206,44 @@ static int veml6070_read_raw(struct iio_dev *indio_dev,
+>  		if (ret < 0)
+>  			return ret;
+>  		if (mask == IIO_CHAN_INFO_PROCESSED)
+> -			*val = veml6070_to_uv_index(ret);
+> +			*val = veml6070_to_uv_index(data, ret);
+>  		else
+>  			*val = ret;
+>  		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		return veml6070_get_it(data, val, val2);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int veml6070_read_avail(struct iio_dev *indio_dev,
+> +			       struct iio_chan_spec const *chan,
+> +			       const int **vals, int *type, int *length,
+> +			       long mask)
+> +{
+> +	struct veml6070_data *data = iio_priv(indio_dev);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		*vals = (int *)data->it;
+As above, it data type should just be an int not u32 array.
+> +		*length = 2 * ARRAY_SIZE(data->it);
+> +		*type = IIO_VAL_INT_PLUS_MICRO;
+> +		return IIO_AVAIL_LIST;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+>
 
