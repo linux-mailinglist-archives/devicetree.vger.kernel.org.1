@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-116021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61DB29B1A59
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 20:14:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EDF09B1A5A
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 20:16:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06EC12814DD
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 18:14:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA0A71C20EA5
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 18:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16B71D270B;
-	Sat, 26 Oct 2024 18:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819191D26F5;
+	Sat, 26 Oct 2024 18:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vDwNnoov"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f33mSFm/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D2D762E0;
-	Sat, 26 Oct 2024 18:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572064C62E;
+	Sat, 26 Oct 2024 18:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729966458; cv=none; b=TgrHD3jj5DjyiaIyVlBIczsI36yVht1zjob+H1vTqbGlpXMWnuMfUFtAEuaf8Rhljr/AvQDxqd++OTjaUHRX8fsHVL7CVz+2EjKakCQnR8WUyLzw2aXQWRZCjy0ECQGsJRGms3f8rKuubRDB8Z4sRmaZJirvge0lJb7uvXSnrm4=
+	t=1729966596; cv=none; b=UaWCWewvgucsW0krRFp08fcuxr0tTQfIQLs6orbCLY8OKCQ+j1VwmKTgnDain9HNgXUv2/qmPxLPasMNnp5PkCxUBNf7z4mCKVhIL1LlPTJkGDFgEFJQq+K5iegMslIu13WbxEf2cIIOme7c4GVgnT1eJ8HRksL4HznHEXCuLSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729966458; c=relaxed/simple;
-	bh=XaudYQkyPrtg2QoD+hZd27C6KBzcpjUk0rPaoe+VssI=;
+	s=arc-20240116; t=1729966596; c=relaxed/simple;
+	bh=3yqYGd///ushBtzSlGq/whw7X1GKbItU+IrCmH+NyMI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ciznx9V70hbjxCI2WO1Xny4utDoFQ8ZbG3/I/MaEqnElZHMbrmNWNPT9V1pMGoaNYNO+pMgnpqcvwjsW9K56COJK3qn2ch1Rp9CrmipZJdcbCY8HGgs8yy0eNKend/kEOazzZ/eplAt9Ri9sUOySLUs/F8iUOu+XWVhFcMhMo2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vDwNnoov; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41562C4CEC6;
-	Sat, 26 Oct 2024 18:14:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MCo2fLyUra0gtaZrHfU1zae+d9QvzRPMqmep3ajdSWuyhyrf5rMOeryI8bi6COypx6O8/mo3oBtzVk7O86mlC9XPzi5pLW3R8uFjz17s7ejJnJKLK+3Z2I9xPw+j7gBSeS1Kdkca8gi/5yj01h2e5cw6zxBPlp0qdjVKMwYxxag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f33mSFm/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91D99C4CEC6;
+	Sat, 26 Oct 2024 18:16:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729966457;
-	bh=XaudYQkyPrtg2QoD+hZd27C6KBzcpjUk0rPaoe+VssI=;
+	s=k20201202; t=1729966594;
+	bh=3yqYGd///ushBtzSlGq/whw7X1GKbItU+IrCmH+NyMI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vDwNnoovZPgcctHqMueNQSMUez3Tiu3287RvJJRPVhZc4i1u5ydKIlMPDvu6aJFfV
-	 F1fHr3u5FrcLL/th/f1NBmjUHKmz0CqW5kQRLxHv8sv27hi+o7m3TkHNbw4juWI1GV
-	 U8txc54a7JC97FSlh2iNciClhuOxYOm/8yB6wRn7tWlCNNlUZ2FKGc7Q5UYHysR593
-	 MS8NnrAINiSqx4byQI9nBQKebjER1T0QAkoQ787572yrQC4NL7s0rnXH0q15zGjp8o
-	 nQyuX+WS/BREIWJ6BryqVq9ML737fdrgy4P4HSxrEJmFWiDO5CQtWXTf9WQDnhVQbl
-	 3kbVfqLBZOT4w==
-Message-ID: <e6f4b1b9-f860-4625-9f77-ee475235e958@kernel.org>
-Date: Sat, 26 Oct 2024 20:14:10 +0200
+	b=f33mSFm/fUK1556F89OXJEW80dTSZcg069G7Q13AQda2v1Y2k1gw0z9DQFRsUw+iM
+	 KAmb4o+aS2JrrPnyY4csgq3jQRRidWadZZ0S9QH3p3rJe+D4Q60RQ8YWi01I//sZyQ
+	 PwJtRfIrYVf/ne1wM4kUwmO1w3KvOeWIKGwK+2IyBLJGKrQPCVirqcahZiTqWxRy2J
+	 RY060vKPN+wY5aJwifmzKLdYe32Lol3+NfeLLsVHXs7AI3FZRjkrJNrNNBv2VCRi1t
+	 0HUgG9gcIKX/6S3eX523XcCLzaYgpthZka/H/09wOMd2tYUfKVhnYgN9h3NZrgdLIc
+	 /2DBEh/1+BKHQ==
+Message-ID: <2b89379a-4d21-450e-b273-b6986dcf5b7a@kernel.org>
+Date: Sat, 26 Oct 2024 20:16:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: document the adau1373 Codec
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Nuno Sa <nuno.sa@analog.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
- <20241021-adau1373-shutdown-v1-2-bec4ff9dfa16@analog.com>
- <pj5clifybfwljpq3usfgca7cy54xpmzngdckyb53wc3u4lts53@gtm2mbuiiudw>
- <a38c5d3e4f1cdf90f53b8c17ef7508faaf760f89.camel@gmail.com>
+Subject: Re: [PATCH v5 2/2] dt-bindings: mtd: davinci: convert to yaml
+To: Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241008-ondie-v5-0-041ca4ccc5ee@gmail.com>
+ <20241008-ondie-v5-2-041ca4ccc5ee@gmail.com>
+ <4u5iv24enpz46funfvbo2aggx6yiqxy7beaa3ldt5ai5wf65kl@bnlm4eyuwkui>
+ <Zw0Ixx9Qu9tgGXGP@gmail.com>
+ <10a0efab-83a8-4168-993a-c4482a568c96@kernel.org>
+ <ZxImhhPhOWuYqSfK@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,25 +108,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <a38c5d3e4f1cdf90f53b8c17ef7508faaf760f89.camel@gmail.com>
+In-Reply-To: <ZxImhhPhOWuYqSfK@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22/10/2024 08:42, Nuno Sá wrote:
->>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>> +    oneOf:
->>> +      - minItems: 13
->>> +      - minItems: 26
->>> +      - minItems: 39
+On 18/10/2024 11:12, Marcus Folkesson wrote:
+>>> ```
+>>>         
+>>>
+>>> How do I set #address-cells in example-0 to 2?
+>>> I guess that is the problem.
 >>
->> and maxItems?
+>>
+>>
+>> You just set it... There are dozens/hundreds of schemas doing it, what
+>> is exactly a problem here?
 > 
-> Hmm, I had the idea that if maxItems was omitted, then it's the same as
-> minItems? Because that's the intent... We can either have an array of 13, 26 or
-> 39 entries.
+> I think I will solve the problem by including the parent nodes.
 
-That's not the case and none of the files follow such logic. If you
-manage to find one file, please correct or report it.
+Just like everyone else or some other way?
+
+> What do you think about this?
+> 
+> examples:
+>   - |
+>     aemif: aemif@68000000 {
+>       compatible = "ti,da850-aemif";
+>       #address-cells = <2>;
+>       #size-cells = <1>;
+> 
+>       reg = <0x68000000 0x00008000>;
+>       ranges = <0 0 0x60000000 0x08000000
+>       1 0 0x68000000 0x00008000>;
+>       clocks = <&psc0 3>;
+>       clock-names = "aemif";
+>       clock-ranges;
+
+That's some other way, so no, drop unrelated properties. Look how all
+other bindings are doing it - you need some wrapper node.
+
 
 Best regards,
 Krzysztof
