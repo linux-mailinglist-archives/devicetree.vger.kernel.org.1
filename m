@@ -1,76 +1,63 @@
-Return-Path: <devicetree+bounces-116005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21F39B19BE
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 18:19:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE399B19EA
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 18:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80F2F28259F
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 16:19:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BDFDB2174A
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 16:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6B93A1B5;
-	Sat, 26 Oct 2024 16:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5FE1CCB2D;
+	Sat, 26 Oct 2024 16:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BvHrisCF"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lnuZKIMK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8711C683;
-	Sat, 26 Oct 2024 16:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8680168BE;
+	Sat, 26 Oct 2024 16:56:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729959571; cv=none; b=DtmyG6GDKqaaXGudXOKYwCtU20o7uL+n1tsgqc4NRxNtYTE3aBSiU5WJZ51ugfoLTB2hInmCaf4xEdvOQblUoMv+EQWkUMX5il/TQadWq0bK8Hs2qoeRHCmp55I1xQ/yDLwryYRBEdTeKMEdvtJcl3GKbWi3/ZlWyguCgGhreKY=
+	t=1729961786; cv=none; b=vDVBdU5fQZlyJAM+QJ2F8s2Sdn9YbcLap5I+hGZuExFBk+rIGPuJI0ftyGx2CeN8cF/yErih2Z7/TEQzUbr6RZBDXxKUq7z6vbRM8n5b8lniPESerY9er5FZde4JDYRFsMn5ZpZ1c3AD78mAGeiMxn4g/QhCSaaOlbD8to5lpVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729959571; c=relaxed/simple;
-	bh=6WXSbDd8/2iqGUxHI6IagOpABfD2dhVATMNxOgLfm5Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QJXA4ekMc0UFFbHZYlUXc8Um25WEJ7AB1EW3NDDVTAsV//qEGHYuggxhC2xrC9uFyGtUiOXrwrLFk2HOJUDYs46NTxVlJU2A6BjVDza7JRBBR/LLseGPaQPNOkoKkdx+jGy3krhmfWHh3/2nS5Wg7DBwJbQHA9yDFQ8nI2D9gFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BvHrisCF; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2e34a089cd3so2398136a91.3;
-        Sat, 26 Oct 2024 09:19:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1729959568; x=1730564368; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=d27LVMRC35Im6Du3NXlx1OnGlU4pZy04qYszTFFJ5FY=;
-        b=BvHrisCFEhBo4yhgXkbgQG30VWSb1kFnU/2dGB9Ugr1P8XM6B1nrW0KCPFfYxv2bOY
-         7EItsPKE6s9GUK7mrODATSRcMObV0frJiFPAFbeubNRFUlJHgK6J21s7JzRaVoLTLj6a
-         4CxndCTVy/KjoJWhoBV6EsRXxgRlFFmSc1H+r4ti3aXH//0DTQnwBHfUDsMhw3CZbqKn
-         SSYnS/1VomsZRB5BMKH6fr66xFIcVvlHHpniWj70ZL4gRAF9HFkg1t6p2fKnRR7ZVwma
-         2YiqRqtHoUIBDdOdmCZqQVBHwT7gY9U8FUgzjVqWlT4WiOhel92+6EyR30u4pWPcd4xn
-         LuIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729959568; x=1730564368;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d27LVMRC35Im6Du3NXlx1OnGlU4pZy04qYszTFFJ5FY=;
-        b=jNlzZxw7GnxzNyXaNi4Z2mHvJ7cxf9cB/G8hNWzuTYMeDHD4X+poa1Wf+Os3g0wjeK
-         DWE21AIeJ65xLS65rkaxAhXdhjRox47Bpk9+NFLapwOFIj8FuI/FyUXOs58Pn2E8o5th
-         Q+HFa9+uxix5cSWJ/T7Q5n+4rrKef9Zv2/PjT791eDe6fnP1p61SPqk49JzpJx5lrHHg
-         9byEsE2WB9Uj2aVx9SPsXHLa/VEYuU515EQnYa9arYQ8vBMDKQApVxUj8/uL9O0gk45P
-         4IX9FycQSc1TGjDmEX2+FDSb0YEvIIgafIFKtnHXzgxUvlA+QsiTqt7yOk5f5SOYf0iz
-         PHaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ5wb9qksZ0pBVsmc9X96K5mjGk+V6IMfZjH/CWKvZV9Ay/lwrDBix2bpZgmaMDYgRRqaHSOI4sCLH@vger.kernel.org, AJvYcCWKoH0pxahaeae86tWJYhT+FyAWAPuKg5OookO6UFTO9fEfwclg6wzXEgySEOvuGEWcFRmDfukoqVDWUpW5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4Ip2W3d2UXvfWJ+zxpCs1kecPpbhWlqVtfhg1BxdW0qcFcO3C
-	BPFW2bGYjZe0SNH2I06luGGhup/gQlBHhsXWMrIOU2mPqb+qKbZIaRQscA==
-X-Google-Smtp-Source: AGHT+IGJiShM1/KWt0cQM6SdXIbLRnOZleVf2DVbook1H2awWBcFOJ9WNQiflG7kRve48QCuQBTbog==
-X-Received: by 2002:a17:90a:7c06:b0:2e2:a828:2982 with SMTP id 98e67ed59e1d1-2e8f11ba073mr3921571a91.38.1729959567795;
-        Sat, 26 Oct 2024 09:19:27 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e77e573421sm5647615a91.42.2024.10.26.09.19.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Oct 2024 09:19:26 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <baf87ae4-b9fe-4b6f-b4bb-16fb66492224@roeck-us.net>
-Date: Sat, 26 Oct 2024 09:19:24 -0700
+	s=arc-20240116; t=1729961786; c=relaxed/simple;
+	bh=QWX9Al1eRR+lMqa5aPqbsyfWiys6rAg2lSJQhS4Mq9I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nWL79fHYmCJ+cNW3DNNxRd4hEbzHwhuVFYOMUQncBvEsxIZCuGIEE5fajiHSdV9ExoZWkOFaGN3Lb3AgmFj3IsVuLvEHq6Lz3WgsHXv7JPsUNdkUPGzm43kC9RiAfSUn0Ogl7CRi9DvrawaVi+dqbIAIXOXkfxOIVvront8BTPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lnuZKIMK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49QB4I0l010720;
+	Sat, 26 Oct 2024 16:56:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	A+W4fH0PAlH4u00A+szfB8MvrLS0lorLwzsBYBKhTWQ=; b=lnuZKIMKWa1GyRc7
+	7RTBiIdVV8fx1jwIfg2a1xy9cmj4f5bwj51nHNkk8E6YvzTcYM/I2136T5PrmQY1
+	jIkVxhmTYGBdDxLFEeuYhrYg8qEuftYF/aaGz6CtlAXclbzj918GUD93mBm/HPcU
+	kF57HEbcHaqMVpDMNUU1UOzrQjsWlakJ9QE2TwkYX/3h/kMvScx0rDAwMJDVZGl8
+	FdZTaNfte1afxXJuX6kU9uXfiT/e3IIPujHwNKA7RMXdonSaDOdueI6wzS3KcA7+
+	mx/Bf2a/p8MNjtmc3c03zUGWBViTICro13fMrTdJnRQoBc9hFTjh9zlRJye2GeLo
+	lss/5Q==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gs6e188h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 26 Oct 2024 16:56:18 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49QGuHaZ009860
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 26 Oct 2024 16:56:17 GMT
+Received: from [10.216.11.201] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 26 Oct
+ 2024 09:56:13 -0700
+Message-ID: <2da5e869-ae44-45b1-a751-8b5edfcdbd30@quicinc.com>
+Date: Sat, 26 Oct 2024 22:26:08 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,79 +65,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] hwmon: (pwm-fan) add option to leave fan on
- shutdown
-To: Akinobu Mita <akinobu.mita@gmail.com>, linux-kernel@vger.kernel.org
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241026080535.444903-1-akinobu.mita@gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: Add support for usb nodes on
+ QCS8300
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20241011074619.796580-1-quic_kriskura@quicinc.com>
+ <20241011074619.796580-2-quic_kriskura@quicinc.com>
+ <297dbc48-4c34-4bac-822c-be3ae2d00d32@oss.qualcomm.com>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20241026080535.444903-1-akinobu.mita@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <297dbc48-4c34-4bac-822c-be3ae2d00d32@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Yh_QLpL1yVgwpAoe8WKbMB-S8h_42FxX
+X-Proofpoint-GUID: Yh_QLpL1yVgwpAoe8WKbMB-S8h_42FxX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=999 phishscore=0
+ malwarescore=0 impostorscore=0 adultscore=0 spamscore=0 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410260143
 
-On 10/26/24 01:05, Akinobu Mita wrote:
-> I sent these patches a long time ago, but I didn't cc them to the DT list,
-> so the DT bindings changes weren't reviewed.
+
+
+On 10/25/2024 11:58 PM, Konrad Dybcio wrote:
+> On 11.10.2024 9:46 AM, Krishna Kurapati wrote:
 > 
-> There have been a lot of changes to pwm-fan since then, and I've updated
-> the patch, so please review again.
+> The commit title should include a `qcs8300: ` part, like others in
+> the directory (see git log --oneline arch/arm64/boot/dts/qcom).
+> 
+>> Add support for USB controllers on QCS8300. The second
+>> controller is only High Speed capable.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 168 ++++++++++++++++++++++++++
+>>   1 file changed, 168 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> index 2c35f96c3f28..4e6ba9f49b95 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> @@ -1363,6 +1363,174 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+>>   				qcom,remote-pid = <5>;
+>>   			};
+>>   		};
+>> +
+>> +		usb_1_hsphy: phy@8904000 {
+>> +			compatible = "qcom,qcs8300-usb-hs-phy",
+>> +				     "qcom,usb-snps-hs-7nm-phy";
+>> +			reg = <0x0 0x8904000 0x0 0x400>;
+> 
+> Please pad the address parts to 8 hex digits with leading zeroes.
+> 
+>> +
+>> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+>> +			clock-names = "ref";
+>> +
+>> +			resets = <&gcc GCC_USB2_PHY_PRIM_BCR>;
+>> +
+>> +			#phy-cells = <0>;
+>> +
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		usb_2_hsphy: phy@8906000 {
+>> +			compatible = "qcom,qcs8300-usb-hs-phy",
+>> +				     "qcom,usb-snps-hs-7nm-phy";
+>> +			reg = <0x0 0x08906000 0x0 0x400>;
+>> +
+>> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+>> +			clock-names = "ref";
+>> +
+>> +			resets = <&gcc GCC_USB2_PHY_SEC_BCR>;
+>> +
+>> +			#phy-cells = <0>;
+>> +
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		usb_qmpphy: phy@8907000 {
+>> +			compatible = "qcom,qcs8300-qmp-usb3-uni-phy";
+>> +			reg = <0x0 0x8907000 0x0 0x2000>;
+>> +
+>> +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+>> +				 <&gcc GCC_USB_CLKREF_EN>,
+>> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+>> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+>> +			clock-names = "aux", "ref", "com_aux", "pipe";
+> 
+> Please make this a vertical list like in the node below.
+> 
+> [...]
+> 
+>> +			interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
+> 
+> QCOM_ICC_TAG_ALWAYS, see x1e80100.dtsi
+> 
+>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+>> +			interconnect-names = "usb-ddr", "apps-usb";
+>> +
+>> +			wakeup-source;
+>> +
+>> +			status = "disabled";
+>> +
+>> +			usb_1_dwc3: usb@a600000 {
+>> +				compatible = "snps,dwc3";
+>> +				reg = <0x0 0x0a600000 0x0 0xe000>;
+>> +				interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>;
+>> +				iommus = <&apps_smmu 0x80 0x0>;
+>> +				phys = <&usb_1_hsphy>, <&usb_qmpphy>;
+>> +				phy-names = "usb2-phy", "usb3-phy";
+>> +				snps,dis_u2_susphy_quirk;
+>> +				snps,dis_enblslpm_quirk;
+> 
+> That's a very low number of quirks.. Should we have some more?
 > 
 
-What changed ? Where is the change log ?
+snps,dis-u1-entry-quirk;
+snps,dis-u2-entry-quirk;
+snps,dis_u2_susphy_quirk;
+snps,ssp-u3-u0-quirk;
 
-Guenter
+I would actually like to add these as well, but there is no precedent in 
+upstream as to what quirks to add for usb nodes, so I kept only a couple 
+of them. Ideally downstream we disable u1u2 for almost all targets 
+because of some issues in the past. (atleast during tethering use cases, 
+but I need to double check though).
 
-> Akinobu Mita (2):
->    hwmon: (pwm-fan) add option to leave fan on shutdown
->    dt-bindings: hwmon: pwm-fan: add retain-state-shutdown property
+> Should it also be marked dma-coherent?
 > 
->   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 4 ++++
->   drivers/hwmon/pwm-fan.c                              | 6 +++++-
->   2 files changed, 9 insertions(+), 1 deletion(-)
-> 
 
+ACK.
+
+Regards,
+Krishna,
 
