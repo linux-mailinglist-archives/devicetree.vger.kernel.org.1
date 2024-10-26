@@ -1,84 +1,79 @@
-Return-Path: <devicetree+bounces-115976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-115977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2842F9B18A9
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 16:45:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2359B18AE
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 16:46:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0496C1C2121F
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 14:45:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EADA1C2119A
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 14:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A076D1CA9C;
-	Sat, 26 Oct 2024 14:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C2F1C695;
+	Sat, 26 Oct 2024 14:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VJlgHG3h"
+	dkim=pass (2048-bit key) header.d=remote-tech-co-uk.20230601.gappssmtp.com header.i=@remote-tech-co-uk.20230601.gappssmtp.com header.b="RAJoanSv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EDA41C695
-	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 14:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF0901862A
+	for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 14:46:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729953911; cv=none; b=XxsdHS3eWoY2CwsOwAj/JRTbuI6XFrDqiCKSJrTxZAd8voFo1l/ZwpWvTWOD9VK6PTQTQ8sNfhnz+u0uE/hvtqh5579TCJuIhtElem+BSWiee38ga+835wEksGpCHF/CqwuoeUHRvgQR45JC97MrNMxXIcC0Rn2JHO3qO3//tDw=
+	t=1729953972; cv=none; b=f03TvvH1M0XAOo21dWtqQyS5Ic6jnJNeijbYfvczZdorP+HGLvijVPPpOLQxlxOysNfM9pGtuUQHvPiI16QTAq+c4rNlfcNlwY1+xx91RU79FGR6bn/wqFbqacNu6uHxDd8Y1faukdyw2AN3FsyAQ85MnttEeAHvo7d1atufPSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729953911; c=relaxed/simple;
-	bh=H5JCTWHzJDfFcAzAjGbw0AJ975PXVf9SASk8fDJqYR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HzcAcjMSWcvi94Qp6jHZ5/3cNFQueymbGv1A2clll/HjZFycPoEMa/GMoN/rOMwR0dsoXkVFxwzBkObottOnfQhN5XN4TdJtCv31q++rsmxz3SlQwNPLkQw872q5BaFbrgaPLbnTuehFTAEIPF6XjvlpnSS5DjJ1e7kdUEdVUDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VJlgHG3h; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fb51e00c05so44419241fa.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 07:45:09 -0700 (PDT)
+	s=arc-20240116; t=1729953972; c=relaxed/simple;
+	bh=8CoRc6VVSdAOs0MhjAL9xRmWEpUdsZ2nZlVY/H/Dg+E=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=g4ixmDsVqm4H+rWauqB1J7u7DHZ78/Uu8dD4iYJ42GbipVAYWKKHJ5FeXS3MqFy9B992fG5MJzO6OsY6w12xIBTnip5O9R/E3YSqH4rViJ9vrH2crHsQ7Lz+PfWe/tAWH3I8P4Y/fDF/aehGHlQMD0tZo0BDXL0pFirH/0wGQho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=remote-tech.co.uk; spf=pass smtp.mailfrom=remote-tech.co.uk; dkim=pass (2048-bit key) header.d=remote-tech-co-uk.20230601.gappssmtp.com header.i=@remote-tech-co-uk.20230601.gappssmtp.com header.b=RAJoanSv; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=remote-tech.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=remote-tech.co.uk
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5c948c41edeso3366743a12.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 07:46:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729953907; x=1730558707; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=REkz7DRdRtxXTqGgy0w9BmyDW64v9/Nv/dpjM6jmtPU=;
-        b=VJlgHG3h6N7pH2KX6QblE6rKXu8CJ/BtWYMOCW3MNatYzP9uH9PVV2XB7Mj0x6uJ2A
-         Rv57RmWuQICVirYE5vFAKYqz2IGAz18ta8aIdCSA/EvO1DyeeC3/zFjHkeU6UT8BQuyG
-         ba5l/qBpxUAbSjZb422AsgjQ8fIMMBLpuK3tZ8MDcjjmeb/DGzA+q4cCiKxa1CB8OYvI
-         gF2Wi0ERZrC4JygmhYFvOHv7o3qM/1A/XMXDrSzS/l8qTGbeq5eQaJP/4A3bAJIyqKV0
-         rWWzy+9Hhygxjwru3hsMpHtYN74adrkfeDcQHX6B5brBBgpMHyoja13ZKEo94rHZlCDD
-         XRgw==
+        d=remote-tech-co-uk.20230601.gappssmtp.com; s=20230601; t=1729953967; x=1730558767; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TYdV1+I81l1u7g/Xvzt8Mck+vntRs86BbJfwFR1xvY8=;
+        b=RAJoanSvMV2QQwtBzJHU3v56stik4dPXfa5qi1NYVltu0HCgq6nAjydlSjLFB3PzWM
+         Uf3DOzVpZ26Vrr4RDq6vuUl9Wc4N5BfFub/JLV1thRoNvzb/+Is9jWirlmvCjmPOPCtc
+         guAqWdFK56gizeDXqCoYC/1qAaUYUKSNayp+IxwUetzzoTF3fEoJPLQBrNE/KGcRq9PC
+         y19ifUaDp5MwqLOMCBXznDJhL2RddHQ3x8ArMxXOA0jCooA3fvf1bulWfnsK5CcJEgzZ
+         x0IYG4CrE1I44iF6HlHD7Lus8/Y3jwzYAKSMVV0b+POTYiFcgZ121wQS4drKlNcIUC1k
+         7now==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729953907; x=1730558707;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=REkz7DRdRtxXTqGgy0w9BmyDW64v9/Nv/dpjM6jmtPU=;
-        b=O+Z/yK/TL+7ztpsjvH/7s5YcTC5NBD78BfWfNmL9ZQSFDeI5iWhGKGKWyNcnPMxS01
-         E0B6uUYIwb+QCZTfGI14FkB/vqcDDx+a+2d/X14234WQA8qjQxIcZYlNvgfad2X9cqHT
-         fppTtwlbVzkdfvPkm1F6fAT13MXTP0O+0ZM+4LVB5vy+3nW9Q4zFnzXIVTbph8PV76eH
-         SookjovdUZA3ERuFAMLjQ+0RZlJYtdSjHHDHPRSI6gspjsEKmG10LPeIgkdPkRXVVw8A
-         VZ3i780UiqfWLXJaF2wTjPik5jEbP5jg/aPLCsaI06aByDG89JeiGFMIPe7zkk790sQ7
-         s6ug==
-X-Forwarded-Encrypted: i=1; AJvYcCVV2OLPRE8u9UTXovkWmfpOroC1a6MvKaVhUFcyY/NgY9AAg7SGTBYL6dHcndCBkZ0BFHTmmwun07n+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzct+GhqN5+JtjNabPCF1QwYif6dKFTlsniqMKEnQ4lEl1GnhRE
-	viSmcvgv8IV7Co3n+KsYcfXpaSAJmQniYe4rg2/O7Ty6fqm3sg2yKS9waPzFmt8=
-X-Google-Smtp-Source: AGHT+IHPWOGIFx2rtlDawJl7JbLkIfvVYS64wBwBCl27j5ZKAZ0b6Wd5JFsRRAEPbMvro9n7y/Sdaw==
-X-Received: by 2002:a2e:5119:0:b0:2fb:8c9a:fe3f with SMTP id 38308e7fff4ca-2fcbdfc7509mr16228161fa.22.1729953907276;
-        Sat, 26 Oct 2024 07:45:07 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fcb4507b90sm5698381fa.12.2024.10.26.07.45.04
+        d=1e100.net; s=20230601; t=1729953967; x=1730558767;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TYdV1+I81l1u7g/Xvzt8Mck+vntRs86BbJfwFR1xvY8=;
+        b=OU1nglXyoSx9BtIRqnjs9QJkkPa6KY+Nky6t1QtnxpkOGy0GZpgDmJkpSwK6x5MlJt
+         wuJKD0WgA5Ni+1aIfQrFmwGjz9HYmQHJIQgrSe1nbnLUbQqM+iAaZHDg1mTby/E99F4q
+         keVEB3NZ2pRKX/moNI/lFdy5SC69Cbz+MSlpoP1QGzkfTQyWF96KtJKvRg4Int6LilPJ
+         E8sXUyE+Y9d3HvyP+r64UerVsy3UuNe02Sff6wn/uY7k+eML9TtnvYTRnYte4EpW3PIA
+         YzeCETUB/ME98OH/EVkPb+kU0PTyUd4KK5WH+trTkMA2D+s7kqKCccX0UoxhHThwLxfI
+         zwFg==
+X-Forwarded-Encrypted: i=1; AJvYcCW4dNMXoVPXRtbO+27Wg8VjDrsofHnGMk1E9DHcAC6TMjGjnYVHbkHS1+Zx4nSy2GCxLyagor4Azfv1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVNcKUK61NDJzhx2IBaGmfTh31SY1IVjw/nuZq/wvTgU4rwqfl
+	frsjpZOZUuihdbV42o7Pud9TR6I5/ctUWvfoBKXVgEZVPGlHsemlaWnc4Yd2Bxzl1ZM4ugVGGEN
+	w2DzSkR1Lcs8t8uWI+YfdIjaic6kA/Zooi7KEOFKgga+FOir1mct6HerqMaZL77tf+3cYOqUqsB
+	kju/ZHH9f5UKL01pRt5Q5wpsNv
+X-Google-Smtp-Source: AGHT+IGUnSipcSAWY4QhIiKUttouMU70Fi6sIKLp3DmCbqNNczG3lw23b8nTLFuxWsKBCgX91IN5kA==
+X-Received: by 2002:a05:6402:2694:b0:5c4:4dfd:9fd5 with SMTP id 4fb4d7f45d1cf-5cbbfa91e51mr2093364a12.29.1729953967080;
+        Sat, 26 Oct 2024 07:46:07 -0700 (PDT)
+Received: from admins-Air ([2a02:810d:aec0:2a54:158c:1efa:f963:7401])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cbb631afe1sm1563258a12.71.2024.10.26.07.46.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Oct 2024 07:45:05 -0700 (PDT)
-Date: Sat, 26 Oct 2024 17:45:03 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+        Sat, 26 Oct 2024 07:46:06 -0700 (PDT)
+Date: Sat, 26 Oct 2024 16:46:03 +0200
+From: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+To: pavel@ucw.cz, lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 1/3] dt-bindings: interconnect: Add EPSS L3 compatible
- for SA8775P
-Message-ID: <7k2vnjop6xyshquqlbe22gm7o5empeluvsohfmq5ulnaas3keb@yzomhzi4w7vf>
-References: <20241026123058.28258-1-quic_rlaggysh@quicinc.com>
- <20241026123058.28258-2-quic_rlaggysh@quicinc.com>
+Subject: [PATCH v3 1/3] dt-bindings: leds: Add LED1202 LED Controller
+Message-ID: <Zx0AqwUUchl4M6po@admins-Air>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,40 +82,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241026123058.28258-2-quic_rlaggysh@quicinc.com>
 
-On Sat, Oct 26, 2024 at 12:30:56PM +0000, Raviteja Laggyshetty wrote:
-> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on
-> SA8775P SoCs.
-> 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> ---
->  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> index 21dae0b92819..042ca44c32ec 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-> @@ -34,6 +34,10 @@ properties:
->                - qcom,sm8250-epss-l3
->                - qcom,sm8350-epss-l3
->            - const: qcom,epss-l3
-> +      - items:
-> +          - enum:
-> +              - qcom,sa8775p-epss-l3
-> +          - const: qcom,epss-l3-perf
+The LED1202 is a 12-channel low quiescent current LED driver with:
+  * Supply range from 2.6 V to 5 V
+  * 20 mA current capability per channel
+  * 1.8 V compatible I2C control interface
+  * 8-bit analog dimming individual control
+  * 12-bit local PWM resolution
+  * 8 programmable patterns
 
-Why is it -perf? What's so different about it?
+If the led node is present in the controller then the channel is
+set to active.
 
->  
->    reg:
->      maxItems: 1
-> -- 
-> 2.39.2
-> 
+Signed-off-by: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+---
 
+Changes in v3:
+  - remove active property
+Changes in v2:
+  - renamed label to remove color from it
+  - add color property for each node
+  - add function and function-enumerator property for each node
+
+ .../devicetree/bindings/leds/st,led1202.yml   | 103 ++++++++++++++++++
+ 1 file changed, 103 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/st,led1202.yml
+
+diff --git a/Documentation/devicetree/bindings/leds/st,led1202.yml b/Documentation/devicetree/bindings/leds/st,led1202.yml
+new file mode 100644
+index 000000000000..f64273599181
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/st,led1202.yml
+@@ -0,0 +1,103 @@
++patternProperties:
++    "^led@[0-9a-f]+$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++
++    properties:
++        reg:
++        minimum: 0
++        maximum: 11
++
++    required:
++        - reg
++
++additionalProperties: false
++
++examples:
++    - |
++        #include <dt-bindings/leds/common.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@58 {
++            compatible = "st,led1202";
++            reg = <0x58>;
++            address-cells = <1>;
++            size-cells = <0>;
++
++            led@0 {
++                reg = <0>;
++                label = "led1";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_RED>;
++                function-enumerator = <1>;
++            };
++
++            led@1 {
++                reg = <1>;
++                label = "led2";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_GREEN>;
++                function-enumerator = <2>;
++            };
++
++            led@2 {
++                reg = <2>;
++                label = "led3";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_BLUE>;
++                function-enumerator = <3>;
++            };
++
++            led@3 {
++                reg = <3>;
++                label = "led4";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_RED>;
++                function-enumerator = <4>;
++            };
++
++            led@4 {
++                reg = <4>;
++                label = "led5";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_GREEN>;
++                function-enumerator = <5>;
++            };
++
++            led@5 {
++                reg = <5>;
++                label = "led6";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_BLUE>;
++                function-enumerator = <6>;
++            };
++
++            led@6 {
++                reg = <6>;
++                label = "led7";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_RED>;
++                function-enumerator = <7>;
++            };
++
++            led@7 {
++                reg = <7>;
++                label = "led8";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_GREEN>;
++                function-enumerator = <8>;
++            };
++
++            led@8 {
++                reg = <8>;
++                label = "led9";
++                function = LED_FUNCTION_STATUS;
++                color = <LED_COLOR_ID_BLUE>;
++                function-enumerator = <9>;
++            };
++        };
++    };
 -- 
-With best wishes
-Dmitry
+2.39.3 (Apple Git-145)
+
 
