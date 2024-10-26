@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-116020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF819B1A57
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 20:11:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61DB29B1A59
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 20:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5569B1C20936
-	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 18:11:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06EC12814DD
+	for <lists+devicetree@lfdr.de>; Sat, 26 Oct 2024 18:14:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B8B1D3628;
-	Sat, 26 Oct 2024 18:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16B71D270B;
+	Sat, 26 Oct 2024 18:14:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TO30O1cH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vDwNnoov"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB2B1CACF7;
-	Sat, 26 Oct 2024 18:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D2D762E0;
+	Sat, 26 Oct 2024 18:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729966263; cv=none; b=LIgqWeCue8945DeczBqVmraTmtJC71wxn4DjrpA4VZdBEihFkeEcW4JQ3UkddpVot/cPmnnykkhCJU3gWac/ogFCmCNm5za4HpfbnuInv860qF5Tl33B4Ugfmd6IZI+hghzZktkUc8tC5ljcXozbJ74bFL7upQ/1qiDMzwWQhDU=
+	t=1729966458; cv=none; b=TgrHD3jj5DjyiaIyVlBIczsI36yVht1zjob+H1vTqbGlpXMWnuMfUFtAEuaf8Rhljr/AvQDxqd++OTjaUHRX8fsHVL7CVz+2EjKakCQnR8WUyLzw2aXQWRZCjy0ECQGsJRGms3f8rKuubRDB8Z4sRmaZJirvge0lJb7uvXSnrm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729966263; c=relaxed/simple;
-	bh=1cNvlV3IlLgdQqfBn3f5yVFlctd0IC4+Ag4gDrD9SkU=;
+	s=arc-20240116; t=1729966458; c=relaxed/simple;
+	bh=XaudYQkyPrtg2QoD+hZd27C6KBzcpjUk0rPaoe+VssI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nMMOuE0Wqft8sh5hMpoUyvmIHHCHSpBKi/ubTD8+kXj2IhEXOXrdxjSxw6qnY3rIILcooi2jd6vU+7fUC53I0TS5gObjZy8vPB0Sqh/iJLiHSh/HnBKN/bWRhnT1pNOyfcvxkmBD2QU6KjfSaqTm8zhdHMrEqA6DM1LgllnGjdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TO30O1cH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C1EC4CEC6;
-	Sat, 26 Oct 2024 18:10:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ciznx9V70hbjxCI2WO1Xny4utDoFQ8ZbG3/I/MaEqnElZHMbrmNWNPT9V1pMGoaNYNO+pMgnpqcvwjsW9K56COJK3qn2ch1Rp9CrmipZJdcbCY8HGgs8yy0eNKend/kEOazzZ/eplAt9Ri9sUOySLUs/F8iUOu+XWVhFcMhMo2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vDwNnoov; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41562C4CEC6;
+	Sat, 26 Oct 2024 18:14:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729966262;
-	bh=1cNvlV3IlLgdQqfBn3f5yVFlctd0IC4+Ag4gDrD9SkU=;
+	s=k20201202; t=1729966457;
+	bh=XaudYQkyPrtg2QoD+hZd27C6KBzcpjUk0rPaoe+VssI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TO30O1cHh39Y+bIttbmtIY/W78iQIzguiISV3LYTEJ3RFsLHQOpktqaeQ4CGQuOAJ
-	 XPIzuzsNAmSI2ANqYZwRdqjwKZWhYD07DZZq1d9dYgyrMcbLHVRziaNVm9d+9BCyc9
-	 hye+RAxzuOp/5PkKFGJqeXpuZJai6uvcsGpTbyxBog/C4hEUUhFqi6yFSggNJlMRk9
-	 5HuKIKXDNj3XEdgty+z/X43vOnMbXE4XAO/Y/1z0efR/eGJBYbfCRxUKnrWa6wxpO4
-	 y0g0A1KxQd47qIZOZXSHcQfeZ6Mw4/PhWMBEqdXvOkzDLDwAywh29MMe6eJczb4IsR
-	 cZlFXhB6jn3cw==
-Message-ID: <520c4ac3-a826-4504-9aff-6c2126a85793@kernel.org>
-Date: Sat, 26 Oct 2024 20:10:55 +0200
+	b=vDwNnoovZPgcctHqMueNQSMUez3Tiu3287RvJJRPVhZc4i1u5ydKIlMPDvu6aJFfV
+	 F1fHr3u5FrcLL/th/f1NBmjUHKmz0CqW5kQRLxHv8sv27hi+o7m3TkHNbw4juWI1GV
+	 U8txc54a7JC97FSlh2iNciClhuOxYOm/8yB6wRn7tWlCNNlUZ2FKGc7Q5UYHysR593
+	 MS8NnrAINiSqx4byQI9nBQKebjER1T0QAkoQ787572yrQC4NL7s0rnXH0q15zGjp8o
+	 nQyuX+WS/BREIWJ6BryqVq9ML737fdrgy4P4HSxrEJmFWiDO5CQtWXTf9WQDnhVQbl
+	 3kbVfqLBZOT4w==
+Message-ID: <e6f4b1b9-f860-4625-9f77-ee475235e958@kernel.org>
+Date: Sat, 26 Oct 2024 20:14:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/6] dt-bindings: net: wireless: ath12k: describe WSI
- property for QCN9274
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20241023060352.605019-1-quic_rajkbhag@quicinc.com>
- <20241023060352.605019-3-quic_rajkbhag@quicinc.com>
- <c7c6bf7e-0f79-44b1-aed4-db1fdbedc9a8@kernel.org>
- <db0a6797-0e51-45b2-bf8a-58d53d8cf959@quicinc.com>
+Subject: Re: [PATCH 2/4] ASoC: dt-bindings: document the adau1373 Codec
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Nuno Sa <nuno.sa@analog.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20241021-adau1373-shutdown-v1-0-bec4ff9dfa16@analog.com>
+ <20241021-adau1373-shutdown-v1-2-bec4ff9dfa16@analog.com>
+ <pj5clifybfwljpq3usfgca7cy54xpmzngdckyb53wc3u4lts53@gtm2mbuiiudw>
+ <a38c5d3e4f1cdf90f53b8c17ef7508faaf760f89.camel@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,41 +107,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <db0a6797-0e51-45b2-bf8a-58d53d8cf959@quicinc.com>
+In-Reply-To: <a38c5d3e4f1cdf90f53b8c17ef7508faaf760f89.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/10/2024 12:08, Raj Kumar Bhagat wrote:
->>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
->>> ---
->>>  .../bindings/net/wireless/qcom,ath12k.yaml    | 61 +++++++++++++++++++
->>>  1 file changed, 61 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->>> index ecf38af747f7..6c8f97865075 100644
->>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
->>> @@ -19,6 +19,7 @@ properties:
->>>    compatible:
->>>      enum:
->>>        - pci17cb,1107  # WCN7850
->>> +      - pci17cb,1109  # QCN9274
+On 22/10/2024 08:42, Nuno Sá wrote:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>>> +    oneOf:
+>>> +      - minItems: 13
+>>> +      - minItems: 26
+>>> +      - minItems: 39
 >>
->> Missing supplies. How does the device take power? Everything through
->> standard PCI pins? Are you sure? Please submit complete binding, so with
->> all required properties.
->>
+>> and maxItems?
 > 
-> QCN9274 gets powered from the standard Pcie (3.3 V) supply. No additional
-> regulators are required.
+> Hmm, I had the idea that if maxItems was omitted, then it's the same as
+> minItems? Because that's the intent... We can either have an array of 13, 26 or
+> 39 entries.
 
-OK, just keep in mind that if you come later with PMU approach to solve
-your sequencing problem, we can just NAK it based on above explanation
-that PMU approach is not required.
-
-Existing binding lists required supplies on purpose, that's not
-coincidence. But of course I don't know if it applies to your case, so
-above confirms that it does not apply.
+That's not the case and none of the files follow such logic. If you
+manage to find one file, please correct or report it.
 
 Best regards,
 Krzysztof
