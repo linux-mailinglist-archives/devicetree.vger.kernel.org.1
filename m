@@ -1,115 +1,120 @@
-Return-Path: <devicetree+bounces-116085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D53FC9B1CB9
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 10:22:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19D849B1CA1
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 10:15:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A8C1281E86
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 09:22:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5FF01F218AD
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 09:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B6F152E02;
-	Sun, 27 Oct 2024 09:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0643762D2;
+	Sun, 27 Oct 2024 09:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="pTzbvm66"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="petV00lO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79E7213D52E;
-	Sun, 27 Oct 2024 09:21:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A80E14D8D0;
+	Sun, 27 Oct 2024 09:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730020868; cv=none; b=pbOF5qJg9x+4ZKZf5qixGq6om3iBKcvqq8ldCFKqr7oDtWxopTx+jeIb2keZv5pLVBKxR4CkDeMyV8QKyAmMnhGcjQdsHrQ4mW9PqY4mbDj7nFnS6ldhzePxxbwrJdcEZ/WuJc/dzyM+HmjAk7x/nAg4P9VRO4083aq1LX4Tqz0=
+	t=1730020517; cv=none; b=Cng1H/YAk1LK6YOI3lgteBv+vQZmC6cDNuAzXojtKzhb2g1M+trD9WtTwYrpKoeUAVualWpLzZEajtwBgIyRBlVIZSMoCXCyR7cosIgDvz/xC1VwDqoNe5Aq1ctJp+gss5tIz9fzLEVQ3DDiuxv0nXoYcuy6869LQCyMjtRTlaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730020868; c=relaxed/simple;
-	bh=o8uExKqB5qYo54a2nVBhqm5tJs6jO0jYNm2MbZM9eVQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j7N/xOs+X2xDGgTBuYPXrprfIVMyPWpwUHXEk9KkA01i7u3ZZnxETsxbAr/ZrnDmQpZLhGoQYcX0yv4Rn4yRf1W/5mMoRJUXbECVbDDDywRETfj1orVaf1JkUB3Ov5Spe0nWXN0WWD5dQFleFHpA1lj77itYo6eDLufDm1AQ4xw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=pTzbvm66; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id DF660A064A;
-	Sun, 27 Oct 2024 10:21:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=ZZCQu8PNGzbUydOutitt
-	bytVy0ecwKj8suiZ8x5X5G4=; b=pTzbvm66ynymgrDhb5IeUDfKfrrFJeXacKhk
-	He1xi1hVx8+QmcaybexD01sOUur9n3DKDwko39/PMgg48CyHNUf3r+IzXGB6f/NW
-	rwdYtoROvxmBVtU1yqCjWJ2iHP6QsGdgGxDKxDAKPL0Gja7goG5rjY2dzX0iHDxj
-	zXR2MT9w8RB8ov+w2vyNaYxXLUG33COW5Ms4u5Yb5ugZIPnNu3aOOQ2RriFmOy7P
-	Xw2OavY7kGzLKSuqcFSvPzpG0MgKENp/qxkPbR26xGOb2HEVf5Udsd2f6A6a4qlR
-	M119xCi1NhqEMswCpSyZZVaiFi+WhlnRtAea1zzdSzugBKbGYLSkH5u3uh92Zjhm
-	EG1I6tZ/8SFfw+0lRBvSBixkQGuLn+iXxBNP/2dzeWMNA5b/M1gHwCxQ8A7wjobR
-	j2XuHjaTCaBvBBRyXFw4YEAH/CUdplNzS8NtQ7T7MxXA9XvZN93M1+oqdsuKwxep
-	GhUjInq3/CumHYpnzBdmsS1zLb+lAsEqgSGAquueIWh/r5ZJPBVIt+U+fQol8SjQ
-	J4S6F6oZ9aD1yBMpxBlS5SBVCsLamUT0tDntvGKAd+h6K/oXSlgSHcZbDQyp5xF4
-	J3+pwpvVwVRhMQznw12RE0A3r55kqpaMKQsHNpIRb6NOQP9Sm1X8mUhohet577iz
-	DoJ8ezY=
-From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
-To: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>
-CC: Mesih Kilinc <mesihkilinc@gmail.com>,
-	=?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v2 10/10] ARM: dts: suniv: f1c100s: Activate Audio Codec for Lichee Pi Nano
-Date: Sun, 27 Oct 2024 10:14:41 +0100
-Message-ID: <20241027091440.1913863-10-csokas.bence@prolan.hu>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241027091440.1913863-1-csokas.bence@prolan.hu>
-References: <20241027091440.1913863-1-csokas.bence@prolan.hu>
+	s=arc-20240116; t=1730020517; c=relaxed/simple;
+	bh=7oSbF6G9EUyIRrZ6g+8ggLmaKMcWLUykTzf5luUKV5o=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WhsOfNLixyPTq1XQxDuUvapRZYpRlhTbR9jnmaAv6HAoHok2L07IJrM1p292EPpGdcesZvQmTnafRgz1yFoi9lcl4wdYxKFwjqNQVlTyfgCzA2BoHaOfU54z0HCZA27UE+5M1VOTnZNcWQj6qq1q6kJhBtp2dqE08xJiIwzM4MI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=petV00lO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 179DDC4CEC3;
+	Sun, 27 Oct 2024 09:15:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730020517;
+	bh=7oSbF6G9EUyIRrZ6g+8ggLmaKMcWLUykTzf5luUKV5o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=petV00lO2Y9O41ktOH0ZptuZpz2PbV6eCHtaaf45tUSQqzTEdBYXqDtlYTl7UUMM6
+	 az2RqkU2WnTNENSzCqkXBNeDDErGGeGj4OBGXpAAX8HWMKtkplz92DvwmmVtbaVk/E
+	 uKcPs/LkBdQV9wSylLsLytU2uZtE3i4avhTCa9krwizXArGmalnTrXnwMccXowz/2/
+	 oYVXucF5PzxUPRVDnuh8FjYMpyAR+fy7DEoJyordJpyUxWVrs/BAt/vvhZ2WerRX4C
+	 MX5UdG3PG1SoXbdCS/HddciyzNMZhVENlm9s+tySRxDfa5+JcmjzKaqsJQGglBMwzR
+	 tRc9mgcH2ctDQ==
+Date: Sun, 27 Oct 2024 09:15:08 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
+ Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+Subject: Re: [PATCH RFC v4 15/15] iio: adc: ad4695: Add support for SPI
+ offload
+Message-ID: <20241027091508.2572785a@jic23-huawei>
+In-Reply-To: <7700b27a-9ffc-474e-8390-a69428fe7607@baylibre.com>
+References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
+	<20241023-dlech-mainline-spi-engine-offload-2-v4-15-f8125b99f5a1@baylibre.com>
+	<20241026170038.4b629cff@jic23-huawei>
+	<7700b27a-9ffc-474e-8390-a69428fe7607@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1730020864;VERSION=7978;MC=1006103771;ID=156046;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A29ACD94855677D65
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Mesih Kilinc <mesihkilinc@gmail.com>
+On Sat, 26 Oct 2024 19:05:44 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-Allwinner suniv F1C100s now has basic audio codec support. Activate it
-for Lichee Pi Nano board.
+> On 10/26/24 11:00 AM, Jonathan Cameron wrote:
+> > On Wed, 23 Oct 2024 15:59:22 -0500
+> > David Lechner <dlechner@baylibre.com> wrote:
+> >   
+> 
+> ...
+> 
+> >>  static int ad4695_write_raw(struct iio_dev *indio_dev,
+> >>  			    struct iio_chan_spec const *chan,
+> >>  			    int val, int val2, long mask)
+> >> @@ -779,6 +992,17 @@ static int ad4695_write_raw(struct iio_dev *indio_dev,
+> >>  			default:
+> >>  				return -EINVAL;
+> >>  			}
+> >> +		case IIO_CHAN_INFO_SAMP_FREQ: {
+> >> +			struct pwm_state state;
+> >> +
+> >> +			if (val <= 0)
+> >> +				return -EINVAL;
+> >> +
+> >> +			guard(mutex)(&st->cnv_pwm_lock);
+> >> +			pwm_get_state(st->cnv_pwm, &state);  
+> > 
+> > What limits this to rates the ADC can cope with?
+> >   
+> 
+> Nothing at the moment. The "obvious" thing to do would
+> be to limit this to the max rate from the datasheet.
+> 
+> But that feels a little too strict to me since maybe the
+> PWM can't get exactly the max rate, but can get the max
+> rate + 1% or so. It seems like we should allow that too.
+> It's not like the ADC is going to not work if we go a
+> few Hz over the datasheet rating.
+> 
+> Maybe limit it to max + 10% or something like that?
 
-Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>
-[ csokas.bence: Moved and fixed conflict ]
-Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
----
- .../boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts    | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Clamp it at datasheet value.   That's what is presumably verified
+not 10% over.  If that needs relaxing in future, the datasheet should
+be updated to reflect the higher verified value.
 
-diff --git a/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts b/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-index 43896723a994..472ded0aafcf 100644
---- a/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-+++ b/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-@@ -62,6 +62,14 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&codec {
-+	allwinner,audio-routing =
-+		"Headphone", "HP",
-+		"Headphone", "HPCOM",
-+		"MIC", "Mic";
-+	status = "okay";
-+};
-+
- &usb_otg {
- 	dr_mode = "otg";
- 	status = "okay";
--- 
-2.34.1
-
+Jonathan
 
 
