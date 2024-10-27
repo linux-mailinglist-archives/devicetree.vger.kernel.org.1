@@ -1,153 +1,113 @@
-Return-Path: <devicetree+bounces-116107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5809B1D6E
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 12:32:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE619B1D78
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 12:42:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4835F281CEE
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 11:32:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8164528198E
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 11:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868F4150997;
-	Sun, 27 Oct 2024 11:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024B81514C9;
+	Sun, 27 Oct 2024 11:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="gm9iBTrl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ly9NocAJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C6613B2B8
-	for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 11:32:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCB53F9D2;
+	Sun, 27 Oct 2024 11:42:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730028751; cv=none; b=Ww6qA7ddveUWrbCnszuDNmjyaSAgBk20UMutRruMC11xIo6lAPIFn5YP54jb0ib9DO0ITnKDh+8rRahQSSRYXwFguTwPwxFv4pqVw6fNJrdz/eYA27o4a/mGiK66QHa13OYFjRSMYKiTVQmRBARGyWAlJFrUz/CvhoTgk0VcadY=
+	t=1730029357; cv=none; b=bhiMf2bweJhvMcOvp7Pn6d9fq1uPOyZ9zGmE+yX580RY9kd4c6+IJ4+FeIu53n0w5XIf+TZxJnBVtZNpHdFYZf7XvXXQSgViWol+bmE5VCFi4baIaRE6cIwfI+KXoXIXOCf4n3Z4PDfZQD6MUzU2e6UZhqve9DxrNFMph2RLCeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730028751; c=relaxed/simple;
-	bh=kTHkP+pw95v9Q9sC8dmhm0Y1Njg3SQZdvxggj1A8yUM=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s9hho3aM544iobIqL6hyYJMuCzfW+KysCt8X+xIWmv8Rk8GWIwv1WUQQmoKKO7snrzMcGR6EjSywp0+cekia4GBUdDlKzertq7j4J8yCsczoPtK/++276pd/7b1SBHTdUos/2g2oW0AD5/yxnyfAOlrJgdqZ9A8JyoeJ1OqBmw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=gm9iBTrl; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a99ebb390a5so825278966b.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 04:32:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1730028747; x=1730633547; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kU0MCV0TeQuQC16GsgNJVVDz80GIbnmau4vhLNXnG6c=;
-        b=gm9iBTrlAdFDgy6nGIsU9gmysckxtx356qDlT7/Kzgt2lKJzc1bhT8X0vvyxuBWed2
-         tVB2zce4+tAi3zdCsoZ50YVE6pRXNs3j5eDl4QtJneyHvU1CeC9k333Lcb793rbYK3T4
-         4NtigsNVAtzgNeRxhyzsybcnQRH/VZSwVwH1skjThuu/x8C2qbNZHnhETImDVk7fdoF9
-         StA593+iCtSXNtM6zpCA/OGDQ/4oTdrK6PzS3DDMYJwOGgzWIQ5iYwLr02XS330/J+J/
-         nc2F+WFb23uALjJkB4HBg/rxmNNRZV7W/qjusuQiFKLkXsoMLBT8iVirjCHfCIh+3CYa
-         FSKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730028747; x=1730633547;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kU0MCV0TeQuQC16GsgNJVVDz80GIbnmau4vhLNXnG6c=;
-        b=q6onEjFtwRmaloTQya8FSFcCS6hmG7a3/rMLrRWStjKBNTCO7GnK00FOf9OJBCsgmk
-         vPhUhZH0Kx02WoEjZ/BHxKCSniFbOqOyQ02KgHYk+y00RlpLYF4AQUbZBloz39YAhepj
-         Do7MuWwo8GckomSH6drmIEygrEl4FYfQewMcd7EdZ8S2O+VO3fyxpgzwJHA4DVFyFlHq
-         PIBKevDSl3rQ+X7pwJBH6M250OS1sVYheB87RqrdGguI0zX+YezA9HsR1B1Z0tAa0APi
-         SmYXU4k0UqCuK1hfqC0VQLbhKgiWv0XXlnAX8/arlQTfOn2m10Z9HEFZWaGCNBWndg/1
-         tBbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVCR0g0Y9yHAxo/r/XlVK4y616/5SdjvQgL210LoJxlUI4Z1gUjU4qKXjyx3qRdQZc/OYHfNbleMaoM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDgs4rox9ty6AD+yItTpEbZf2EwAMw/UdzmyZGj919TjY3rHcO
-	HAQMsUu8TTJqTF88BXaJaXqCYysDp6Y9Iq92I1RBUKUaysWOpFaFJ+JfR9cBCoQ=
-X-Google-Smtp-Source: AGHT+IGFhxYKhcZGmct80kmOogS47m5N8se2XFqf8zdUkxnrd0dqlLKBimSbOYXFuOLdT6TQJTi2mw==
-X-Received: by 2002:a17:906:f592:b0:a9a:babb:b916 with SMTP id a640c23a62f3a-a9de3612eccmr487030466b.15.1730028747291;
-        Sun, 27 Oct 2024 04:32:27 -0700 (PDT)
-Received: from localhost (host-79-35-211-193.retail.telecomitalia.it. [79.35.211.193])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1f0292c2sm269235466b.69.2024.10.27.04.32.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Oct 2024 04:32:26 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Sun, 27 Oct 2024 12:32:50 +0100
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v2 09/14] pinctrl: rp1: Implement RaspberryPi RP1 gpio
- support
-Message-ID: <Zx4k4giM86vW7g0c@apocalypse>
-References: <cover.1728300189.git.andrea.porta@suse.com>
- <199a4994312b120c73c95fa368954ad5a2a8aee6.1728300190.git.andrea.porta@suse.com>
- <CACRpkdb1muovPmKoUw=Q5sNXj3bsCt84LcKVDSLY09_5_1rXZQ@mail.gmail.com>
- <a1b72875-6224-47b9-bc68-bcc66343bf46@gmx.net>
+	s=arc-20240116; t=1730029357; c=relaxed/simple;
+	bh=Nn2mF7gvOERyi5f3gjbRWSLp2aZhycO455b8573WBz0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CqUVDRn40llw/IIIp1+TtoARsIA+89eoN6wIX/599Ya+Im+3zEIpqZXC4ls+uW3Ma5o7RiZ6ILYri8jBHcrspHJ8qo3HgYMhNFbnHt2v3F84bCAqrhj6tMhrk8ck1ePFIzdcRCpJhTcIrJSfAD/jl230KLOd3LWQMLrMR79QW1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ly9NocAJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7577BC4CEE4;
+	Sun, 27 Oct 2024 11:42:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730029357;
+	bh=Nn2mF7gvOERyi5f3gjbRWSLp2aZhycO455b8573WBz0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Ly9NocAJ8M/GknjwcZPV0hn88OKm4OoAQXl1fTsMp3hbXraY0Bah2DpgVTSx5u/s+
+	 43rT6gxD1nj5C3C9KWQP+Ay7Ahpu4VmhqaSS0H+yWyK/npdI3hjb6rH9O8yQhdCm/L
+	 zFa/EiDXHBUjCrVOAR5UDY2ouGWjNG0dFheTKZWj+bKxJiuMhpDJ6ish/hkl9hY4zH
+	 iMR+mp9gPYKwh9gA8spOt0nDvvn7WQeAsJyuX7oDyXWJS2Ywt7vBYQC+9RlOj9u6Nn
+	 NA+Tsk2urokJ2GiieWBGsMZikJNpD0O8Y0qAltdHXOgcYZx5OnXqynqs9EewnhwwFb
+	 U3tKsCju1tp3A==
+Date: Sun, 27 Oct 2024 11:42:28 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>
+Cc: Alexandru Tachici <alexandru.tachici@analog.com>, Conor Dooley
+ <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, Dumitru
+ Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob
+ Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject: Re: [PATCH 3/3] iio: adc: ad7124: Disable all channels at probe
+ time
+Message-ID: <20241027114228.5e418341@jic23-huawei>
+In-Reply-To: <20241024171703.201436-8-u.kleine-koenig@baylibre.com>
+References: <20241024171703.201436-5-u.kleine-koenig@baylibre.com>
+	<20241024171703.201436-8-u.kleine-koenig@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a1b72875-6224-47b9-bc68-bcc66343bf46@gmx.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Stefan,
+On Thu, 24 Oct 2024 19:17:05 +0200
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> wrote:
 
-On 12:08 Fri 11 Oct     , Stefan Wahren wrote:
-> Am 11.10.24 um 11:03 schrieb Linus Walleij:
-> > On Mon, Oct 7, 2024 at 2:39 PM Andrea della Porta <andrea.porta@suse.com> wrote:
-> > 
-> > > The RP1 is an MFD supporting a gpio controller and /pinmux/pinctrl.
-> > > Add minimum support for the gpio only portion. The driver is in
-> > > pinctrl folder since upcoming patches will add the pinmux/pinctrl
-> > > support where the gpio part can be seen as an addition.
-> > > 
-> > > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > This is a nice driver and I find no issues with it, what causes
-> > an issue is gpiochip_set_names() as pointed out by Bartosz.
-> > If you can live without the names you can remove that part for
-> > now and we can merge the driver, then you can add the names
-> > later when we sorted out how to share that function.
-> I raised the concerns about missing gpio line names in the first version
-> of patch, without knowing the real efforts.
-> 
-> So I'm fine with Linus' suggestion, because I don't want to delay the
-> upstreaming effort unnecessarily.
+> When during a measurement two channels are enabled, two measurements are
+> done that are reported sequencially in the DATA register. As the code
+> triggered by reading one of the sysfs properties expects that only one
+> channel is enabled it only reads the first data set which might or might
+> not belong to the intended channel.
+>=20
+> To prevent this situation disable all channels during probe. This fixes
+> a problem in practise because the reset default for channel 0 is
+> enabled. So all measurements before the first measurement on channel 0
+> (which disables channel 0 at the end) might report wrong values.
+>=20
+> Fixes: 7b8d045e497a ("iio: adc: ad7124: allow more than 8 channels")
+> Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>
+Makes sense in general, but one comment inline.
 
-Perfect, thanks.
+> ---
+>  drivers/iio/adc/ad7124.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
+> index a5d91933f505..912ba6592560 100644
+> --- a/drivers/iio/adc/ad7124.c
+> +++ b/drivers/iio/adc/ad7124.c
+> @@ -917,6 +917,9 @@ static int ad7124_setup(struct ad7124_state *st)
+>  		 * set all channels to this default value.
+>  		 */
+>  		ad7124_set_channel_odr(st, i, 10);
+> +
+> +		/* Disable all channels to prevent unintended conversions. */
+> +		ad_sd_write_reg(&st->sd, AD7124_CHANNEL(i), 2, 0x0001);
+Why 1?  Build that default up from the register definitions rather than a m=
+agic
+constant.
 
-Regards,
-Andrea
 
-> 
-> Regards
-> > 
-> > Yours,
-> > Linus Walleij
-> 
+>  	}
+> =20
+>  	ret =3D ad_sd_write_reg(&st->sd, AD7124_ADC_CONTROL, 2, st->adc_control=
+);
+
 
