@@ -1,184 +1,119 @@
-Return-Path: <devicetree+bounces-116167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18DE49B1FF3
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 20:52:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F429B1FFD
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 20:55:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C82B1C20972
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 19:52:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 289D228157F
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 19:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C732A17C9F8;
-	Sun, 27 Oct 2024 19:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1486E17D366;
+	Sun, 27 Oct 2024 19:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nzxP9hJW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wuQ0ELyP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4FC286A1
-	for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 19:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2A556742
+	for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 19:55:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730058744; cv=none; b=FY4KX9R8BZKgPqvXR30vGPSUjqciTxjO3YfMb5J/OsY7znlQQxJsgD+3uacH1K+ftfrYk3jwx0IZnQ/g4KwCShF1O3N0Iz1O7+jgyyl0826Ja1CMfDrNFyz5cyECEyExDqhTk3ZF2r5k2X3bA553uDPa4vjSk3LDrh+oMgxchBk=
+	t=1730058944; cv=none; b=dM8xaEVieGWKAscR4kwJvQn5Fpi++DPKOYsGHpXxlcpvd1Z/Mah9dUqzOVGbjnhODqA81f1K6Hgq5AIBcj8eqQX/cd4hD8GNz+/DoLHNn2GxzS5IPpVZyus/A25uoluDfIaJtoHOLzGkwJ9A5TiLdIr1bs9FoL7IRWuY7FOHu/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730058744; c=relaxed/simple;
-	bh=ueiLs+nLh8dmTHigot/Hj12sD7IB5HdWNU888qp/+8E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KFaBR+SU7qoX+VT3pqnxwFthh3gjYvogW7MqLFBpQILbM/bSzulAHd79v5/gkDZvPEQ6GZDfWG43xCbFX5u7e42e7b/CWQAATyZCdN2TKp1BrJXX+XYB9Apq6AJiX2fXroLJDOHkLvGLIGllQK/cNFdM2pxUTgw3s9x3PIsfSas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nzxP9hJW; arc=none smtp.client-ip=209.85.160.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-287b8444ff3so1631628fac.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 12:52:20 -0700 (PDT)
+	s=arc-20240116; t=1730058944; c=relaxed/simple;
+	bh=YsdYH84ia/r50m5pkpbMCMIaheqADio7tevqfeKZsqA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=i6ZypfXQr2j/zSe9nBTJVzdgMoDsztMpr4wyf/Oze7V1Hmi+rlqRSGQPVjSkt+9bMNa/9D7iqYCZjs84OcyFAE6hV9J9SRF6V13806kMy2dM/fE8S5jAZPvBB6d2zTxwGXtA7VajnXIe5VYRb96xIUc5uVQk/WmlYdQ8sGPZikI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wuQ0ELyP; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4315b0bd4ddso4224015e9.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 12:55:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730058740; x=1730663540; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+9de6YcBQ4CAkrMC7sV/+iMopqKB6hodYcK4fGhfmxw=;
-        b=nzxP9hJWDi5WtCVyPod3kCMQJH0dWdV2ypIrCpHez1mgBjgyqBA41St91MngZ2miRV
-         tnRyY+Nbd6V1Tp5UzRa2UFa90JD0szKVZsJrP8ZW+4RZc0zikMNj1xHroFzHdDUvb/zZ
-         LZzTHDQ3cJ5zixqcvndUIrOleSGmGApK8OyYy/0gJrJoCjxKDZGeXrEj4lm1RyqEjKa3
-         UzK+wF0YQIOBNPE4j+sNfXP2DEdudP1AmupHT26gofd2Trfe/jN7NbG3Tsl+ysUJMv8P
-         bhYtTt4ISLYzzKzueRLVsoj8xmMI+12a0WnmucqF3+yuCb4z45hlXE1gg9hrp7z++0+v
-         uRKw==
+        d=linaro.org; s=google; t=1730058939; x=1730663739; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=27FjbLkvpsH6g9Edehxh385tMv9CQXY+0f2sWNF8DhE=;
+        b=wuQ0ELyPh86ig/gxmva6XbuGKQPi8EnnLODvA0gkiDfUEldNIORhTl6rVMdUqU53OJ
+         SSTIKLdR9NnZKtlFukmVdCk5PE73E9bCS5Rm1LxEnyGa8GxSr+j+ATwdl3d3h8ASHNB9
+         0gIuApZvb4geLCGtEBMLuNehw7CxhY6rjG2XKnCpvyWY6sUt+byxylrXF51hmGI9Fg5+
+         UxPozsfEgva6V5RzouOcheovBUwskyQyRzZuCTkBT2Y57/PYzUedC1GLi94r3ieasb8p
+         lyDWl02KZvf2ThOJuUmLbYEjP+/oQpHp9I+0JrHmmzkFD3cJLBSnkRZpiTKwyPGv2icn
+         OQug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730058740; x=1730663540;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+9de6YcBQ4CAkrMC7sV/+iMopqKB6hodYcK4fGhfmxw=;
-        b=KMujxB9+rz49yIG2DozSd/7b6eauaUDSMXiaZSeRt37zuP7QCbacbXzLv6sWjPlt6p
-         dq2kplJf5wYstDRCAQw7fpa0Nb2QGs1xxQsM+w7WJK4Eb1JXa1cIM19kPfXDlSIXyJOA
-         vKkaFgW9GNz00trMcYv7eN0YLjxNn7ls/Sjn25L37EfVPfAZ24doFG4UNVywZlBnyR2/
-         jfDa3k7/Ig1+2+MZq4n6dm1C/uo1zYskLkZYXX9XrZDgX/FNetlIlDRcUi2+ozA7Gn/i
-         QhdL1FzXSfGrOqW9T5XypPM2nq7uR96MPjLZS6hAqPIeQv57i+M37w5HuG6taXLxjANT
-         OxEg==
-X-Forwarded-Encrypted: i=1; AJvYcCV6+b+//Tb0eEsGXaV3RxRIX+0gikaqo3ZVk7bzKo/ZC+S76wO8W9oRrInGBxoKhPSG16NOIclKZdZt@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHalB4dixmpkDJMQzzsp9VMMx97aXySgaBVm4AGWimv9wxdhGj
-	IwkuRUW0zTCkQJPl51AFeq8/nSCR6vQ/eoNp0uNVC0A79vXPnzUTgZ7sDh4Gs08=
-X-Google-Smtp-Source: AGHT+IFepVB2QqdqP+C+Q8M8uASn8/LF4xicUTp5DH6V9fqU0SsmPYBPQioFgC1LGcXGMjTtSzGTeg==
-X-Received: by 2002:a05:6870:15d5:b0:278:978:9e9 with SMTP id 586e51a60fabf-29051e0360bmr4809398fac.44.1730058740066;
-        Sun, 27 Oct 2024 12:52:20 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-290380f4bdasm1563675fac.46.2024.10.27.12.52.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Oct 2024 12:52:18 -0700 (PDT)
-Message-ID: <2679570d-6255-467b-8312-117e553a52b4@baylibre.com>
-Date: Sun, 27 Oct 2024 14:52:17 -0500
+        d=1e100.net; s=20230601; t=1730058939; x=1730663739;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=27FjbLkvpsH6g9Edehxh385tMv9CQXY+0f2sWNF8DhE=;
+        b=cf7HeWL+qFLNrdcDWuqoo4JSX8vc7qnmmVY0VkpdukT69nKzCkYFFGZ7/xrtfyK2py
+         9UjErcCh2DjBGCJ4wXW/iXCoQ7fNiDrN0FZRi285mM89zZGgmsVUe3E/d8ewDYaLmm2P
+         mfKkeghPB2x3s+mjTUJ1mfVNg5R9OzGg+WrGEkcq3x7pEOrqyqLm15VAo0i5BdBZZpQn
+         LF5EyOFEcD08zWdm0l8IOP7g+T1DYvkE5ck4PMeVN37o4zLTXT5JGf71eci/7WoTfjgZ
+         t6pMKET9POVUBVYYK+b/H1Pi9yvsN/vDioNtS+zVYUnVQeb5zSvEmr31mSpu2NnJtWf7
+         tw0g==
+X-Gm-Message-State: AOJu0YwztiAy2dVIgH35vEtIBuiE378kFNTiMtpZIMO0YH3v8OUKtyoa
+	G1w9JsfKoP180Q3dp+1cB4N7vHIeutjfYWVG/bI6iVIqy6MGGATnMMq4FsBwWB4=
+X-Google-Smtp-Source: AGHT+IEYf9GlikS+9SRXkW34PJ/4J9ZywFzKp4RfuuNjQIqBExM3fQopO3FwUg5OJt8GXxV7i8FZgw==
+X-Received: by 2002:a05:600c:1d1f:b0:42c:df54:18f6 with SMTP id 5b1f17b1804b1-4319aca7abdmr19494075e9.3.1730058938975;
+        Sun, 27 Oct 2024 12:55:38 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431934be328sm85548215e9.0.2024.10.27.12.55.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Oct 2024 12:55:37 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Tomasz Figa <tomasz.figa@gmail.com>, Will Deacon <will@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>, 
+ Markuss Broks <markuss.broks@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
+ Maksym Holovach <nergzd@nergzd723.xyz>
+In-Reply-To: <20241026-exynos9810-v3-2-b89de9441ea8@gmail.com>
+References: <20241026-exynos9810-v3-0-b89de9441ea8@gmail.com>
+ <20241026-exynos9810-v3-2-b89de9441ea8@gmail.com>
+Subject: Re: (subset) [PATCH v3 02/10] dt-bindings: hwinfo:
+ samsung,exynos-chipid: Add Samsung exynos9810 compatible
+Message-Id: <173005893509.10219.7382293678249920610.b4-ty@linaro.org>
+Date: Sun, 27 Oct 2024 20:55:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 15/15] iio: adc: ad4695: Add support for SPI
- offload
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
- <20241023-dlech-mainline-spi-engine-offload-2-v4-15-f8125b99f5a1@baylibre.com>
- <20241026170038.4b629cff@jic23-huawei>
- <5a090847-ee53-41be-ad28-b7604cf9020a@baylibre.com>
- <20241027091244.2fe3c0ad@jic23-huawei>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241027091244.2fe3c0ad@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 10/27/24 4:12 AM, Jonathan Cameron wrote:
-> On Sat, 26 Oct 2024 19:01:53 -0500
-> David Lechner <dlechner@baylibre.com> wrote:
+
+On Sat, 26 Oct 2024 23:32:33 +0300, Markuss Broks wrote:
+> Add the compatible for Samsung Exynos9810 chipid to schema.
+> Exynos9810 is a flagship mobile SoC released in 2018 and used in
+> various Samsung devices, including Samsung Galaxy S9 (SM-G960F),
+> S9 Plus (SM-G965F), and Note 9 (SM-N960F).
 > 
->> On 10/26/24 11:00 AM, Jonathan Cameron wrote:
->>> On Wed, 23 Oct 2024 15:59:22 -0500
->>> David Lechner <dlechner@baylibre.com> wrote:
->>>   
-
-...
-
->>>   
->>>>  static int ad4695_probe(struct spi_device *spi)
->>>>  {
->>>>  	struct device *dev = &spi->dev;
->>>>  	struct ad4695_state *st;
->>>>  	struct iio_dev *indio_dev;
->>>> -	struct gpio_desc *cnv_gpio;
->>>>  	bool use_internal_ldo_supply;
->>>>  	bool use_internal_ref_buffer;
->>>>  	int ret;
->>>>  
->>>> -	cnv_gpio = devm_gpiod_get_optional(dev, "cnv", GPIOD_OUT_LOW);
->>>> -	if (IS_ERR(cnv_gpio))
->>>> -		return dev_err_probe(dev, PTR_ERR(cnv_gpio),
->>>> -				     "Failed to get CNV GPIO\n");
->>>> -
->>>> -	/* Driver currently requires CNV pin to be connected to SPI CS */
->>>> -	if (cnv_gpio)
->>>> -		return dev_err_probe(dev, -ENODEV,
->>>> -				     "CNV GPIO is not supported\n");
->>>> -
->>>>  	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
->>>>  	if (!indio_dev)
->>>>  		return -ENOMEM;
->>>> @@ -1002,8 +1374,13 @@ static int ad4695_probe(struct spi_device *spi)
->>>>  		return -EINVAL;
->>>>  
->>>>  	/* Registers cannot be read at the max allowable speed */
->>>> +	st->spi_max_speed_hz = spi->max_speed_hz;
->>>>  	spi->max_speed_hz = AD4695_REG_ACCESS_SCLK_HZ;
->>>>  
->>>> +	ret = devm_add_action_or_reset(dev, ad4695_restore_spi_max_speed_hz, st);  
->>>
->>> Why do you need to put it back in devm? What happens after this but without
->>> a driver restart that uses that faster rate?
->>>   
->> I should have added a comment here as this was a weird bug to trace.
->>
->> The core SPI framework sets the initial value of spi->max_speed_hz
->> to the minimum of the controller max rate and the max rate specified
->> by the devicetree.
->>
->> The SPI device lives beyond this driver, so if we bind the driver
->> and set spi->max_speed_hz to something other than what the SPI core
->> set it, then the next time we bind the driver, we don't get the
->> the max rate from the SPI core, but rather we changed it to when
->> the driver unbound.
->>
->> So on the second bind, the max rate would be the slow register
->> read rate instead of the actual max allowable rate.
->>
->> So we need to reset spi->max_speed_hz to what it was originally
->> on driver unbind so that everything works as expected on the
->> next bind.
->>
->> (Or we call this a SPI core bug and fix it there instead).
-> Definitely a question to ask.  Directly accessing spi_max_speed_hz may
-> be the fundamental issue as I don't think the driver is generally
-> expected to touch that in a dynamic fashion.  Should we be instead setting it
-> per transfer for the ones that need it controlled?
-> 
-> Jonathan
 > 
 
-The problem is that we are using regmap and that doesn't have
-a way to specify the max frequency for register reads that is
-different from other uses of the SPI bus (i.e. reading sample
-data). So we could fix it in the generic SPI regmap (not exactly
-trivial) or we could write our own regmap read/write callbacks
-in this driver that properly sets the per-transfer max speed.
+Applied, thanks!
+
+[02/10] dt-bindings: hwinfo: samsung,exynos-chipid: Add Samsung exynos9810 compatible
+        https://git.kernel.org/krzk/linux/c/18910d6b16bb4e71ee5aea5986a6577f347d69ec
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
