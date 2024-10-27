@@ -1,102 +1,104 @@
-Return-Path: <devicetree+bounces-116210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2AC39B20DA
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 22:23:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 749BA9B20DE
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 22:26:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA3531C20DDC
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 21:22:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EC341F211E5
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 21:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15875187555;
-	Sun, 27 Oct 2024 21:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8709187843;
+	Sun, 27 Oct 2024 21:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hhZb8jOA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="smN7F/0f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D76186E27;
-	Sun, 27 Oct 2024 21:22:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CDC187555;
+	Sun, 27 Oct 2024 21:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730064175; cv=none; b=nKA5XwvzxB0hmxNAJaX3UBaxpqE5n3QZn/GNHUVnvJaWxTRfc4qzQNyCpde6iKTJazD+/CiRBVvg25O5/jK6dn5zbTdWSS0B9K57NI7QvlgqOyU4cat3RdjdnzIBSWlawm36ZAatFN9BlkwQElwHuGcr6Xv7wa8uaTF5l+fa1WE=
+	t=1730064384; cv=none; b=qCYoV7vKARcL+5jy63m59pkJF9Ha4MEHc9tVUPvNeZ4JezkBgbZMVclK1VebK75205vfpwFRr1iJfFV4fxo9eg319xump2Rp27p6Lr/+/YWOsqxQ/895xnRs9RYgl1+/0+mR8oM4I9kwIh6mWH/w6r61FGqtwZ/5FjcaMqVzsJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730064175; c=relaxed/simple;
-	bh=uGeF6fhJYsqOGnMmd6g0ql7+lc90LCLzjPxmpQyJ48Y=;
+	s=arc-20240116; t=1730064384; c=relaxed/simple;
+	bh=zfkUXd4isNcVsjRFd0CnnDdETx0R8EqpcbKc4Xx5sDE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B/LLRS7Ug9jGf/SyOtZGzZ7Qnv2WOFkVVRI0J62D5IOTJjrrJB3hslYzlOggZ6BDJG/dycdQAD7Q+9+mA8qZ9qtiEYFyMv2h76L4xpxQsvps4fktajHKbDcML1HUjbcu6vC4zlAvYIs5njh1moQ0LTBuFktTiRvwwU1A6TRLkkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hhZb8jOA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B199C4CEC3;
-	Sun, 27 Oct 2024 21:22:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=S7sMY0cC15O2yZRvMm9EJFTwB4YpTT34csbrLqAlPuAZcVaBI3s9DWbew5IhhRVjvgMXnNkA39+aC+BSO2dLWz79q6rCGdIxvJcWF+pm6uncKWDASrHXRqs52YfYrAWM8BVYo/VMEtLb5fTpGpctNU1/SDcNEh8tLytwF93ILug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=smN7F/0f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4612C4CEC3;
+	Sun, 27 Oct 2024 21:26:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730064174;
-	bh=uGeF6fhJYsqOGnMmd6g0ql7+lc90LCLzjPxmpQyJ48Y=;
+	s=k20201202; t=1730064384;
+	bh=zfkUXd4isNcVsjRFd0CnnDdETx0R8EqpcbKc4Xx5sDE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hhZb8jOArLdcBAtkKDB0KQ7NICYF0jo3qvjleBFXtQ739hnWxUoLMc1jWvLU4rnGM
-	 zxtoNtukh3Kdzp6+gfkAmNHVi1QB9xBblRH3AdI3IxYsJ0t5D0Mgz7Ctjn7og225JH
-	 XLIxjOtOt8yTX1r04qHOziBulN7PIBkxSxjNkG0/6fZZK6brTlUfoG3aTMPaMwdLTG
-	 suF1nexrEhEAMf0t9AzsNRJ3e0miozS7w4+yD7mpfl/9GAWyMZveE3GMj5rYKp4YHC
-	 RpuVQht9dtvEg2byV8o5VFISquOuvBd0c+AzEPQFP8Lzk6wKjWWBR/GeZ1Bme347o4
-	 mMUC9KYCUXA1w==
-Date: Sun, 27 Oct 2024 16:22:53 -0500
+	b=smN7F/0fp4bmbU2z7CLYFR35gy7dShJfflBcmx6emp3x4/biWfoD+5IjAOiz7mPE/
+	 waSdwltTdZi1+zUHDYTF+ZyTky901y2ApQyhhm7CD41vJtuAmbWKzsmU8EStWChKHO
+	 aciHLg8d5dDB4visRKr38k5frpPiW/8NID/aAGsCiL0mqi78bQwxuN8hdtRKCWfeee
+	 GzdRNRKCETAZPz6iNS6AW9KXRPrkzpPP7YZ8jNAyBeDPQPOzyDoy9aBpmL2EZpWAVw
+	 OiK47ebSZ7gLSsE9xwKXBTdwZXHRmU8yMWJma/WPhalEo2ZWtErHfr1kt7L8B8bhXf
+	 POepQdRtc1+pw==
+Date: Sun, 27 Oct 2024 16:26:22 -0500
 From: Rob Herring <robh@kernel.org>
-To: Cody Eksal <masterr3c0rd@epochal.quest>
-Cc: Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Alexandru Tachici <alexandru.tachici@analog.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Dumitru Ceclan <dumitru.ceclan@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-sunxi@lists.linux.dev, Yangtao Li <tiny.windzz@gmail.com>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-pm@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>,
-	Yangtao Li <frank@allwinnertech.com>, linux-phy@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Parthiban <parthiban@linumiz.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>, linux-usb@vger.kernel.org,
-	Samuel Holland <samuel@sholland.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Thierry Reding <treding@nvidia.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 04/13] dt-bindings: usb: Add A100 compatible string
-Message-ID: <20241027212253.GA98977-robh@kernel.org>
-References: <20241024170540.2721307-1-masterr3c0rd@epochal.quest>
- <20241024170540.2721307-5-masterr3c0rd@epochal.quest>
- <173006354857.88418.13246529686874362124.robh@kernel.org>
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno Sa <nuno.sa@analog.com>, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: adi,ad7124: Allow
+ specifications of a gpio for irq line
+Message-ID: <20241027212622.GA101617-robh@kernel.org>
+References: <20241024171703.201436-5-u.kleine-koenig@baylibre.com>
+ <20241024171703.201436-6-u.kleine-koenig@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <173006354857.88418.13246529686874362124.robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241024171703.201436-6-u.kleine-koenig@baylibre.com>
 
-On Sun, Oct 27, 2024 at 04:12:29PM -0500, Rob Herring (Arm) wrote:
+On Thu, Oct 24, 2024 at 07:17:03PM +0200, Uwe Kleine-König wrote:
+> For the AD7124 chip the logical irq line (̅R̅D̅Y) is physically on the same
+> pin as the spi MISO output (DOUT) and so reading a register might
+> trigger an interrupt. For correct operation it's critical that the
+> actual state of the pin can be read to judge if an interrupt event is a
+> real one or just a spurious one triggered by toggling the line in its
+> MISO mode.
 > 
-> On Thu, 24 Oct 2024 14:05:22 -0300, Cody Eksal wrote:
-> > The Allwinner A100 contains two fully OHCI/EHCI compatible USB host
-> > controllers. Add their compatible strings to the list of
-> > generic OHCI/EHCI controllers.
-> > 
-> > Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
-> > ---
-> >  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
-> >  Documentation/devicetree/bindings/usb/generic-ohci.yaml | 1 +
-> >  2 files changed, 2 insertions(+)
-> > 
+> Allow specification of an "interrupt-gpios" property instead of a plain
+> interrupt. The semantic is that the GPIO's interrupt is to be used as
+> event source and reading the GPIO can be used to differentiate between a
+> real event and one triggered by MISO.
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad7124.yaml     | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> index 35ed04350e28..feb3a41a148e 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> @@ -37,6 +37,9 @@ properties:
+>      description: IRQ line for the ADC
+>      maxItems: 1
+>  
+> +  interrupt-gpios:
 
-Well, except that the compatibles should be alphabetical order.
+Name it for the pin/signal, not how you are going to use it: rdy-gpios
 
 Rob
 
