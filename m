@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-116189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C8799B2071
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 21:38:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE98A9B2074
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 21:41:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBDAC1F21849
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 20:38:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0231B1C20A22
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 20:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E6E17D354;
-	Sun, 27 Oct 2024 20:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3593217DFFD;
+	Sun, 27 Oct 2024 20:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rlNoq0eI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LnEcATsv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1513B558BB;
-	Sun, 27 Oct 2024 20:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 078C4558BB;
+	Sun, 27 Oct 2024 20:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730061527; cv=none; b=PwL1EpoATwqIsiqqigkF3QIZ7Y3Zzn0GRv5N3kqZJV2RXPmgX8+jiVB87QsF8SDM/NWdBUizzGw9Un4QP5K0ICwnh77cL4dYBKnv+k5zUPW57FbJkBcBFLlaYPWqKV7sSg3v+Sqe+G5xVTVWo22A/Ns/omWPnXUDryZkeDcix0w=
+	t=1730061658; cv=none; b=VB5r1uJtxAp0UOCEeZkxE0N7DCPOKhPEjrKnIXee/UZc+QPrNNdMVNYb/pyDvkOoCHfQfXYxuP2Xsdc51tVnRtfEj7BW8Uu6odZCmmGMXKGuL7mZ4kVa3Q6lvwHwsOeX1REeF5/JdHz54dic8gu+zLP5u1karETOobjMy8THeG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730061527; c=relaxed/simple;
-	bh=ktAYV2rb117r2Bc7owXHB7R3E7/79Vvp6m8NcDaF0pc=;
+	s=arc-20240116; t=1730061658; c=relaxed/simple;
+	bh=CbXmtdv3IjeDBQxB55AZf9jmxsHSvyuvWmObEhgds4Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l5dE16zpM2QNTUv/2OYrJgFwnnH6s02kvatHWSEXnfE/iIpz9hNQGEHAQn7vnXJ2poF2mGTBv4DW6O0fRz6LOuC6rXZ+ZzpQL/krDd/e1OKYtYDKFVNYk6ts7L8Z06ThSIQoUksDiVJXztAvuzt/u01C3Bct3kSAqFOmSRTbdkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rlNoq0eI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 094DDC4CEC3;
-	Sun, 27 Oct 2024 20:38:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BSkCVXSAqWyiyuhQg1WuWAxFOd3MP/ijhVaMaCXxct/wBIreIzfF7uzSAvN7alxGBLcbxd9AcGd/XPvZKLPwXc7ixY5gF2QMCQIbKDtHMX/+jg6f+WCKtFrVhFXlybYlC/A4U821sRZ+4qmrA+MLVPUCdE0Mcp65Kv5dr4YYNNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LnEcATsv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFB30C4CEC3;
+	Sun, 27 Oct 2024 20:40:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730061526;
-	bh=ktAYV2rb117r2Bc7owXHB7R3E7/79Vvp6m8NcDaF0pc=;
+	s=k20201202; t=1730061657;
+	bh=CbXmtdv3IjeDBQxB55AZf9jmxsHSvyuvWmObEhgds4Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rlNoq0eIeeLHbFbBOqGqYn8aaRS2vepFibIKaPyafeUC84ZVVrrlVjLOgFJOF3uOr
-	 IJCZefi8rdA6a4lO1HP3q1PRytsD8QMtSRVDIkLl2KC4eh6//fI0gV99kBke+AaCSh
-	 kChXvp4uPjchdwlH+5hcrBiyXKmV4NRrmq1L7i65XPFaFKuGYHDjWnKmoKvUoWME5d
-	 Rz/mUdgAwMFdlhWER1Vc2Wv4bacZRKt6xPvJdEwfZDUwB7k5P97pnqEwijjUv7YKTv
-	 zQ10P6xb9JbbG4os1a3iBrOlNRM8FFdsGyDPlYacrStN3EJK9vTFGVYzUKYfMOV8FS
-	 BJMiY7orvEBdw==
-Date: Sun, 27 Oct 2024 21:38:43 +0100
+	b=LnEcATsv4UT/1vK5R7I5/K9/vJjlyku4VD0Cz9tTzKxg/1okqaOmGYhSQzEAM6V4p
+	 Bqgb03IVNIqiJq6KW0v26HYIxTMTCWGjAgfHLP7db7WReBwc8ueZRCGXOE7hDBT3cJ
+	 EdzATkwXfLrdUZ7w5WKD7j28Vz3F49GEQpVxGh4QDN6MJYqgAovHUBTd1vRHq3acqE
+	 4tLI2AJtTNOOtFN2/MJ97OIuaLQwHvO/BIRjct6GUkBM7CTtzLW4g5Wks0Cbg6w1Pj
+	 JnM5fmvSBY/n132MaqDfC7WKLFaBSRvfHCaV8xuUmVawSfjDwbKAhP0K/KlY92wRuJ
+	 qH7pT4pOKG7zQ==
+Date: Sun, 27 Oct 2024 21:40:53 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Akinobu Mita <akinobu.mita@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+To: =?utf-8?B?Q3PDs2vDoXMs?= Bence <csokas.bence@prolan.hu>
+Cc: Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Billy Tsai <billy_tsai@aspeedtech.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: pwm-fan: add
- retain-state-shutdown property
-Message-ID: <ijdk5uuurnfd2shnwwj2nm64bno6lmrhdyqp42pzjc3i2e5cyh@v5ljkrsgo6ac>
-References: <20241026080535.444903-1-akinobu.mita@gmail.com>
- <20241026080535.444903-3-akinobu.mita@gmail.com>
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 03/10] dt-bindings: dmaengine: Add Allwinner suniv
+ F1C100s DMA
+Message-ID: <b44xrgwi3swuvliaxzzk5tvanxrmik5zm4tcqzavl32wbgce3e@yb4eerrluanv>
+References: <20241027091440.1913863-1-csokas.bence@prolan.hu>
+ <20241027091440.1913863-3-csokas.bence@prolan.hu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,37 +63,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241026080535.444903-3-akinobu.mita@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241027091440.1913863-3-csokas.bence@prolan.hu>
 
-On Sat, Oct 26, 2024 at 05:05:35PM +0900, Akinobu Mita wrote:
-> Document new retain-state-shutdown property.
-> 
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Billy Tsai <billy_tsai@aspeedtech.com>
-> Signed-off-by: Akinobu Mita <akinobu.mita@gmail.com>
-> ---
->  Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> index 4e5abf7580cc..86a069969e29 100644
-> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
-> @@ -40,6 +40,10 @@ properties:
->      maximum: 4
->      default: 2
->  
-> +  retain-state-shutdown:
-> +    description: Retain the state of the PWM on shutdown.
+On Sun, Oct 27, 2024 at 10:14:34AM +0100, Cs=C3=B3k=C3=A1s, Bence wrote:
+> Add compatible string for Allwinner suniv F1C100s DMA.
+>=20
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Link: https://lore.kernel.org/linux-kernel/20241024-recycler-borrowing-5d=
+4296fd4a56@spud/
+> [ csokas.bence: Reimplemented Mesih Kilinc's binding in YAML ]
+> Signed-off-by: Cs=C3=B3k=C3=A1s, Bence <csokas.bence@prolan.hu>
 
-You described the desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and its description to match actual hardware
-capabilities/features/configuration etc.
+Missing quotes? Are you sure this passes checkpatch?
 
 Best regards,
 Krzysztof
