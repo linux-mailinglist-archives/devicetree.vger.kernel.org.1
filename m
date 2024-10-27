@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-116212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479039B20E0
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 22:39:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D386A9B20E1
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 22:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBFB9281433
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 21:39:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F51AB20CBA
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 21:43:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8911862BB;
-	Sun, 27 Oct 2024 21:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C159F188010;
+	Sun, 27 Oct 2024 21:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMRgLFE6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JGdct4LP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A031E535;
-	Sun, 27 Oct 2024 21:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED531E535;
+	Sun, 27 Oct 2024 21:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730065175; cv=none; b=DaBV+Z7KwFeI5AlC7UQhhMCsS1Bo2OJ45X/WBEeh5sHO8mre12UQwJ6KdLFrVu6dHk4V65otawMFG/fhyPmI1BM1ZW8CflqPZiSeX6fT5ckrffi/5rAcq9q7AzQPF9nTQC3T9EEIYVgy+JdXbLZqEyNHfPR5KnuhAbPDQ8y2qiw=
+	t=1730065383; cv=none; b=OhY0xxKuF2o6KifJObB+etfmBpZ8fZq0Cl1WpxsrYwz8zPIqTcAyBfimeh6BI0pvDxpk0llEmfe0vYDSO1b//7yx390r0wHutvr20IUJXs/0mT3ElMccsJ9XCH9jiUyrhuOv7xVoKkQZOxF91Dr17wBxJ2nMuoP49m6t6M4vom0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730065175; c=relaxed/simple;
-	bh=CHxc3493MS3XNzEuR+gsev3hyBAPY8PbZdHpfqYvC4U=;
+	s=arc-20240116; t=1730065383; c=relaxed/simple;
+	bh=95sirABf7ucaPkTuGsjWtpLdOArUZGImNoaA5WncnR0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KDk9DMw0zEpDsjpFbE5jZrAXFI39TLnUnxOjZUisbIx/kRM3gumJFL9aKFoouD80wlXdmkhE7eu+0iSlEWJGWD0XsyubPU9Mt1dCXbZBwZXM7OHaAdV97dehW0Mqhd8kHaCa8yUXOaJOBjflIMCPSu6aA0SKs8ZhFEKZDYYsjvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMRgLFE6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F3DC4CEC3;
-	Sun, 27 Oct 2024 21:39:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=n+MgFa7bVDSRoLgEeMyyRgJPmd6VWK6jztvl77S8lbHgCEp8AYXCq+yVvT4YxgmzAYXqtguL2GlVu4QgBGDTFBPGSV5qIQD+/osYc3pMUL8FpVWb+Cbd5liTo4DVXt2fVp7Zj7Yu8h6HSdT1K4eyw0HMMdo1pIDeLNUvppQnNGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JGdct4LP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB7FAC4CEC3;
+	Sun, 27 Oct 2024 21:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730065175;
-	bh=CHxc3493MS3XNzEuR+gsev3hyBAPY8PbZdHpfqYvC4U=;
+	s=k20201202; t=1730065383;
+	bh=95sirABf7ucaPkTuGsjWtpLdOArUZGImNoaA5WncnR0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nMRgLFE60ibD4srccAP09WV4ZlkxhxNidCan0LOErzFbTjrVPC98ETDQi1UgB3aa8
-	 87I867Or1+PUgoUDt+tqAJuc1kZJKZY4ETA3hOYKCwOffVnTMUWMjjt2ucv08r4J/o
-	 OgJfN3zeqCrl5tUuHuJeZcMrKSjN1dFQG6lQCYKyDlnw8qXL5Bar9l9SobkjgI5aQ3
-	 3dPo0lAeWeUmWwhS0Ttp1WnJzMEX2hcOt7scAdiND7amkgM51ifWx7lxzzJaufcQhp
-	 M18xfM/5GmQ6qWY8KpqUheGKaknykB5pqdM9TDlSAlK6HW15t94muwkTF1g/9/qh7k
-	 xVxSQT+XWMs8A==
-Date: Sun, 27 Oct 2024 16:39:33 -0500
-From: Rob Herring <robh@kernel.org>
+	b=JGdct4LP6gtvYb/DAXYbq79Xua4YsVMkYPDKqy08AdyR0DiYxgiAgxvCqyFRLlvpV
+	 qjiZmYsinCu/J+nnG3RLuPaEZVQ2YZEVLRbYIGBkn+5tmUQt/Ce2ExRcjP8R4BSUKf
+	 Xb6XGURv7PvH9Dmo1JSUFaH5vLHWSG4oU5QMFlaGXVgO3b+XUC/UE5JhwADh4qXSSc
+	 57X/mRi2kiDgEScx0NyNs/GngJjvX3cc38We/RC6I9vflYPtaYKch9M/xcQwJnDPPT
+	 f/sL3/fawIoUb9+a7Kae2dZvLNuXUoGJ3bTTSn2SGqCBlP9PSBDND1WmeV5/zNO8CP
+	 Wj1QJwvlOsSUQ==
+Date: Sun, 27 Oct 2024 16:43:01 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Fabio Estevam <festevam@gmail.com>
-Cc: broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shengjiu.wang@nxp.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl_spdif: Document imx6sl/sx
- compatible fallback
-Message-ID: <20241027213933.GA104723-robh@kernel.org>
-References: <20241024180441.1456490-1-festevam@gmail.com>
+Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>, shawnguo@kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	conor+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: soc: imx: fsl,imx-anatop: Fix the i.MX7
+ irq number
+Message-ID: <173006538122.121456.17477548569074643577.robh@kernel.org>
+References: <20241025004159.1571782-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,66 +60,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241024180441.1456490-1-festevam@gmail.com>
+In-Reply-To: <20241025004159.1571782-1-festevam@gmail.com>
 
-On Thu, Oct 24, 2024 at 03:04:41PM -0300, Fabio Estevam wrote:
+
+On Thu, 24 Oct 2024 21:41:58 -0300, Fabio Estevam wrote:
 > From: Fabio Estevam <festevam@denx.de>
 > 
-> i.MX6SL and i.MX6SX SPDIF blocks are compatible with i.MX35.
+> Unlike the other i.MX devices, i.MX7 has only two anatop interrupts.
 > 
-> Document 'fsl,imx35-spdif' as a fallback compatible for these two
-> chip variants.
+> Add logic that contemplates such case to fix the following
+> dt-schema warning:
 > 
-> This fixes the following dt-schema warnings:
-> 
-> compatible: ['fsl,imx6sl-spdif', 'fsl,imx35-spdif'] is too long
-> compatible: ['fsl,imx6sx-spdif', 'fsl,imx35-spdif'] is too long
+> anatop@30360000: interrupts: [[0, 49, 4], [0, 51, 4]] is too short
 > 
 > Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
->  .../devicetree/bindings/sound/fsl,spdif.yaml  | 25 +++++++++++--------
->  1 file changed, 15 insertions(+), 10 deletions(-)
+>  .../bindings/soc/imx/fsl,imx-anatop.yaml       | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> index 204f361cea27..3bc18c3b084f 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> @@ -16,16 +16,21 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,imx35-spdif
-> -      - fsl,vf610-spdif
-> -      - fsl,imx6sx-spdif
-> -      - fsl,imx8qm-spdif
-> -      - fsl,imx8qxp-spdif
-> -      - fsl,imx8mq-spdif
-> -      - fsl,imx8mm-spdif
-> -      - fsl,imx8mn-spdif
-> -      - fsl,imx8ulp-spdif
-> +    oneOf:
-> +      - const: fsl,imx35-spdif
-> +      - const: fsl,imx6sx-spdif
-> +      - const: fsl,imx8mm-spdif
-> +      - const: fsl,imx8mn-spdif
-> +      - const: fsl,imx8mq-spdif
-> +      - const: fsl,imx8qm-spdif
-> +      - const: fsl,imx8qxp-spdif
-> +      - const: fsl,imx8ulp-spdif
-> +      - const: fsl,vf610-spdif
 
-Keep all the above as 1 enum.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +      - items:
-> +          - enum:
-> +              - fsl,imx6sl-spdif
-> +              - fsl,imx6sx-spdif
-> +          - const: fsl,imx35-spdif
->  
->    reg:
->      maxItems: 1
-> -- 
-> 2.34.1
-> 
 
