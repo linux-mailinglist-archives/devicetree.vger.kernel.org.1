@@ -1,145 +1,126 @@
-Return-Path: <devicetree+bounces-116071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262329B1C25
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 05:32:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F9D19B1C28
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 05:38:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF59B1F2195E
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 04:32:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B9561F21A4A
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 04:38:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68FFB24B29;
-	Sun, 27 Oct 2024 04:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCB328382;
+	Sun, 27 Oct 2024 04:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k5b/ci14"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ru49DLQW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 532CF2F29
-	for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 04:32:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC1924B29;
+	Sun, 27 Oct 2024 04:38:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730003553; cv=none; b=pSvwu1GRFO8Iwe3yU7ifz/kT6WcU641ukHqrJJu1TO18rqvQ6trpimYiyooKuOOd/Xia7gSe0hiVuX2betTiM3LX8/Ep3QtBmo8QhbR3foKPyt1VtxQzd0GF9k01fhlFCkW/qKMdXHLc98rSAu5DzMPPR7k7p6Pv8mmtWasxvQs=
+	t=1730003894; cv=none; b=fBDzwE8t+3Ghpc+17rILQwWn1ij8ICkDBwTPPYVIxwFHc4psI/JzKBbFwYq4B4pG/1Su/i5JNTtBQHto6x/sdXQ8Wi43cvBV7Xj0Dj8fT87ju56Mu+518jIa2u8HNT5K6tF7xO5VSo64sJryipN/6M6PBmu4lvVsYwlcs0YSxMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730003553; c=relaxed/simple;
-	bh=p4wi45L1qPyhxsEfHjmkoXWs6wdpqZ1bepuiqIVyodM=;
-	h=Mime-Version:From:References:In-Reply-To:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JKzwZ0Nejj0hf46bEu+1j6fzIQC62igm0ovKqT0iIO1YMWRnVzTppUuiTN5J1IHflh95xL1s/ap4GE3T2ydhxJ/nmwlStFDBDolFp9Co7epKT22EuSIKE+rpkggxAt3qNlTxJKrBQPrv/US+udLbvBOZOGYe3veozdgTEtrNkhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k5b/ci14; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-37d495d217bso3004367f8f.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 21:32:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730003549; x=1730608349; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:in-reply-to:references:from
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Z6F23C6zLzVFlSv5RbYbUcSU4ibwu1QkqOt0SVt3Sg=;
-        b=k5b/ci14d0czQp9NbdziYOMb9k6GxQtHYFUNH8WllU9/vBJs7cioI4MPjLsE/L72A2
-         CVv2xIHw1QFeSs1CxEfeVpbcZpBwe5Rlc3UxR3ROb6UTtsscs1egJ1ZkK45iELfKNO6s
-         SBXnUG6rHL2HfpRDHC1htwE6xVyW3Mx6GcSRhUrv7ENZo5RJHgo8LEaMbW6DLMoNmh2A
-         94LGmZLiaOsPzVuCjAD3R74/cRdB93VR/8FlJUn/dxPv3Hl3w9sMa49pkml7Bc2pP74m
-         nEeBQMA65XvSVKOWeiovRXqGKqvZM2Vk4HFJ3ee5WcJlDhQCkfkRpImOMRQ6a9ZSvGWB
-         aVtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730003549; x=1730608349;
-        h=cc:to:subject:message-id:date:in-reply-to:references:from
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2Z6F23C6zLzVFlSv5RbYbUcSU4ibwu1QkqOt0SVt3Sg=;
-        b=bpshCUma8b0xtZMZWGQTVSPl3SpQV+JkOIeJQMYXZRRINYKH+alsjtY2ToIvD4rxzg
-         f6/lBYTixW9efgQ5RnaQsKgSz22z2BxC7blfZgr3iZAmjI6K+SuxYQ5YCAi1c6tk+JGb
-         YQvrd7JgqvXX6imtr0CWIzJ+QwEHIS78zkbIbuCQLwgg3ugbA8oPnlB5OFLMe6Fnckd/
-         70hJ+rmx12vCxrN0iCZ1u95SD2qsmP146vLy5hrbhvaYd+0o8BhKFshQen4rnOnkin0A
-         sDDYnS1dN7LZGaj8Nh8j2JRDON9ta567sY989sZG3wN6NkeQQxnAebUhOxYRHEwuJuF3
-         1gyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWStgXWyks/w79V+Y2MNX313P0CbTcMvcXh7oZgpivIb5qGa3JcYL3f91g9PEU6LTPkQZQ1GsSMIq48@vger.kernel.org
-X-Gm-Message-State: AOJu0YwO+LNJD2u2JP5xVtldvvkwaEjpjb/mToKWv/CtyOxfsLD8F7K9
-	K9RplScwNmFXQ+LrgCsG+gA3FIMHyKa/t+xpYz7ctdYQAeP5NPnrmMOxPZ3zViDa5rUt2UOkVmq
-	AmCDTVwTtqXCsB7heZpVlSMcrJlmVpexeEumwcQ==
-X-Google-Smtp-Source: AGHT+IHs/6OOPc8kzlDIFRVtEy44CKpqgv8xhrev2iGPdoKmfKW3kRw5e2wUK/GvsQovDmVr7YNDSSHfpBkA1nB0bx4=
-X-Received: by 2002:a05:6000:c83:b0:37d:4a16:81d7 with SMTP id
- ffacd0b85a97d-380611417eamr4157255f8f.8.1730003549537; Sat, 26 Oct 2024
- 21:32:29 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Sat, 26 Oct 2024 21:32:28 -0700
+	s=arc-20240116; t=1730003894; c=relaxed/simple;
+	bh=ECxxFyhpO8qHRImcih3jeV1ktiIwqvcCsxWmhdKNxh4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H/JWgRUweW36T21dAr/TYe0ZVl89DwfiiYWXJaGgwGEjpLZilP6Hc1fo8E5l5zfAi2ublSQnE3MxOViD4t/HJzbRRE3k+4o3B7u37Dq4d6vyi1WUwRQDcfiLg6osWtytPY2yFk9u8G+4zVkIMib2c32zo8bdSphrCMUUm/ohftQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ru49DLQW; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1730003892; x=1761539892;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ECxxFyhpO8qHRImcih3jeV1ktiIwqvcCsxWmhdKNxh4=;
+  b=Ru49DLQWBXeFYhCAHUsRzVZzMHhz4TYz2m9U4pKRHl8DbiKRH9R9tuCO
+   BpFQ8x2OPnHWAIq6oiZxO13SXXrG6b4Q8kX8LiKXbRAChiyQzeY+vdt7U
+   tjmLsqpAyHiaEuKVcvNaFhsI6IonZXP8fJ15bgRLnZM1qDfoBzP8DElR/
+   V5pO8GbQJhbPj4pIRlieFuLQ+bfEwaFQiy0OZxzcfP25HbrkegEQ2FV9m
+   UmAaPhWOsg0xkC3tindgRCm7hAqtkK06aK8OBiACMb/chxz+DF4eW0rQ0
+   AMg4vPiWPdUfDHvaAoT5SwBvqmb+6gvVA+zKer3ZRG/ebQvTcNlkmEVrV
+   A==;
+X-CSE-ConnectionGUID: 8Ei0AJGySkqPUxOYFDOFag==
+X-CSE-MsgGUID: dmHpKKnNRsa13MId6jkuTQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11237"; a="32491949"
+X-IronPort-AV: E=Sophos;i="6.11,236,1725346800"; 
+   d="scan'208";a="32491949"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2024 21:38:11 -0700
+X-CSE-ConnectionGUID: TUJ2qrRORae0DfeeuQklgQ==
+X-CSE-MsgGUID: 8d3gP7ykRz+5Hpbrgjsbbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,236,1725346800"; 
+   d="scan'208";a="112140445"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 26 Oct 2024 21:38:08 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1t4v2U-000aMc-0Z;
+	Sun, 27 Oct 2024 04:38:06 +0000
+Date: Sun, 27 Oct 2024 12:38:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Karl.Li" <karl.li@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Chungying Lu <chungying.lu@mediatek.com>,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 3/3] mailbox: mediatek: Add mtk-apu-mailbox driver
+Message-ID: <202410271207.42FIkHwC-lkp@intel.com>
+References: <20241024092608.431581-4-karl.li@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-From: Fabien Parent <fabien.parent@linaro.org>
-X-Mailer: aerc 0.18.2
-References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-16-dakr@kernel.org>
-In-Reply-To: <20241022213221.2383-16-dakr@kernel.org>
-Date: Sat, 26 Oct 2024 21:32:28 -0700
-Message-ID: <CAPFo5VL_SoB0jupdn6R_2RgxLbrS26UdBTg3qJF05T70Kzsibg@mail.gmail.com>
-Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
- driver abstractions
-To: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org, rafael@kernel.org, 
-	bhelgaas@google.com, ojeda@kernel.org, alex.gaynor@gmail.com, 
-	boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
-	benno.lossin@proton.me, tmgross@umich.edu, a.hindborg@samsung.com, 
-	aliceryhl@google.com, airlied@gmail.com, fujita.tomonori@gmail.com, 
-	lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com, 
-	lyude@redhat.com, robh@kernel.org, daniel.almeida@collabora.com, 
-	saravanak@google.com
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241024092608.431581-4-karl.li@mediatek.com>
 
-Hi Danilo,
+Hi Karl.Li,
 
-On Tue Oct 22, 2024 at 2:31 PM PDT, Danilo Krummrich wrote:
-> +/// An adapter for the registration of platform drivers.
-> +pub struct Adapter<T: Driver>(T);
+kernel test robot noticed the following build warnings:
 
-...
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.12-rc4 next-20241025]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> +/// The platform driver trait.
-> +///
-> +/// # Example
-> +///
-> +///```
-> +/// # use kernel::{bindings, c_str, of, platform};
-> +///
-> +/// struct MyDriver;
-> +///
-> +/// kernel::of_device_table!(
-> +///     OF_TABLE,
-> +///     MODULE_OF_TABLE,
-> +///     <MyDriver as platform::Driver>::IdInfo,
-> +///     [
-> +///         (of::DeviceId::new(c_str!("redhat,my-device")), ())
-> +///     ]
-> +/// );
-> +///
-> +/// impl platform::Driver for MyDriver {
-> +///     type IdInfo = ();
-> +///     const ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
-> +///
-> +///     fn probe(
-> +///         _pdev: &mut platform::Device,
-> +///         _id_info: Option<&Self::IdInfo>,
-> +///     ) -> Result<Pin<KBox<Self>>> {
-> +///         Err(ENODEV)
-> +///     }
-> +/// }
-> +///```
-...
-> +/// Drivers must implement this trait in order to get a platform driver registered. Please refer to
-> +/// the `Adapter` documentation for an example.
+url:    https://github.com/intel-lab-lkp/linux/commits/Karl-Li/dt-bindings-mailbox-mediatek-Add-apu-mailbox-document/20241024-173032
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241024092608.431581-4-karl.li%40mediatek.com
+patch subject: [PATCH 3/3] mailbox: mediatek: Add mtk-apu-mailbox driver
+config: nios2-randconfig-r111-20241027 (https://download.01.org/0day-ci/archive/20241027/202410271207.42FIkHwC-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 14.1.0
+reproduce: (https://download.01.org/0day-ci/archive/20241027/202410271207.42FIkHwC-lkp@intel.com/reproduce)
 
-The `Adapter` doesn't have any examples, but there is one right
-above this paragraph. Anyway I think the example is in the right place and
-should not be moved over there.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410271207.42FIkHwC-lkp@intel.com/
 
-I think this paragraph should be moved above the example and the last
-sentence should be deleted.
+sparse warnings: (new ones prefixed by >>)
+>> drivers/mailbox/mtk-apu-mailbox.c:29:24: sparse: sparse: symbol 'g_mbox' was not declared. Should it be static?
 
-Fabien
+vim +/g_mbox +29 drivers/mailbox/mtk-apu-mailbox.c
+
+    28	
+  > 29	struct mtk_apu_mailbox *g_mbox;
+    30	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
