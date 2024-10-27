@@ -1,186 +1,205 @@
-Return-Path: <devicetree+bounces-116054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0432E9B1B7A
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 02:20:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 941A59B1B9C
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 02:24:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEDF8282327
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 00:20:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AB7AB20E37
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 01:24:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FE5323BE;
-	Sun, 27 Oct 2024 00:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73FEF9C0;
+	Sun, 27 Oct 2024 01:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kMPQ7/4v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YLnBi8BE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABEE1362
-	for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 00:20:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4826EDDDC
+	for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 01:24:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729988431; cv=none; b=JKWczEEsltQc3vUSWJf7ET0mYmgqp61vNAwUHqZtMwVHrfkcljB8g7pD6AooUU8zG+1uhjoJy4Mf3fHEJyBnloqtxvx5kyEVKFZqoQaWGHM7ckbmLRKsrcP2E+PvOQjzwSWMyD2CFcRLt7Z+mn1HaDJSvrrrPy9jtEqni6e1xGo=
+	t=1729992251; cv=none; b=KwZ4rUmbevY4im4gDU1z6IrN8Wdcn+6+91CmMRQGOniARNUYEfpJzsnQEVs39PtF56JmNES1RXp4cg3V3B2GcEOsGi+70zi24zKYvKcgVXHUGPnXj1tj4gn6SjaT+A38aY1pWC5kXKxxGlQ1I2bej1LSjhUQTQimjWmpgIfbd70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729988431; c=relaxed/simple;
-	bh=2m7qUxHWEfN8Q+t3kuiUvZE7GGoJLejjm+XHtfVBQVo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VfO/CZ4BCr3LMsbhZ9op6jdKsL532fUvQlanp+/uNpqt6vAQ5lNkueUXXhItOQ3i2QFArGdCTE8s9tnr0QYjcJGXjkfZCUFEPA027A90fWwr2ljQ61GnxSicSsAOtJBTU1Dv8CinrSErGD1C+oOQcMpCNHVld7h0nxRGgOA9qsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kMPQ7/4v; arc=none smtp.client-ip=209.85.167.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3e6075cba82so1678243b6e.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 17:20:28 -0700 (PDT)
+	s=arc-20240116; t=1729992251; c=relaxed/simple;
+	bh=1pZBI18oNqocqm6PR8RghihAT9odsvMpt5vSubrQKBs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gVQfZZnhMJO0azmgatSrLvwZHhthtpqrJ6dVrPN8DqtFmIuaGb6aapVU34qrXUVGSDSLzSpGsiWwvIfxDnS5JZi9tid0YCZ1hxXhhsLOP6MeTWVHTvMvtcoYBtQeF5NaQ9hkBGRJq3IhR5n2KtyZpYuvEpSB88FxpAa9Vyll/2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YLnBi8BE; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fb49510250so31960921fa.0
+        for <devicetree@vger.kernel.org>; Sat, 26 Oct 2024 18:24:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729988428; x=1730593228; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gC/B3ePh173CzPyAaHugirfX1pGB4UZuGgWIDFmLpTo=;
-        b=kMPQ7/4vkKP2irw4SPMbkIyqHURlf3C3aG0fN5AlDTuopVf15rTDA0AZzsBrwzjA+S
-         cuDBybYckuBogPpHjUbbDuxIO5Ex5wBWl8hNso4dnz9I1pl9Kyo0TYi/cORnB1+d54x6
-         9El/fbsvddlCwgP5v6RIVPWxAK57nWI3NZZGZq+VryETQORzVs65El9Ze8INNedf9oCc
-         dOfnRv6O93rtaxUZAn2njALZyeadUSUhSp/Q4Px56cGLUq20B9no7YGf6G1vApxv/WLL
-         HN2W/al/mr350xgLB6g0SF2RgqbMzcPKhgZuBHzAAFlJgSdtmn9ZkTVE2JusrQUuLn96
-         OHOQ==
+        d=linaro.org; s=google; t=1729992247; x=1730597047; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EppU3i5rDzOrHLzp7XLGSc7eRglYjMn3g4s/WhXqYQg=;
+        b=YLnBi8BEKjpKVQHUjbS2iDj6YY8gVzXcsxzMVakfG9F81kcAYIxVjH9lbpAN99l9iz
+         RO5Iw09HL3ogO3iwIc/lcOCbxP0fCTDgmzAhImnZ3RrfoXgxRVI/WmguR5+NUHYBF6xd
+         T60ZZZhWINvENVRIK4isYkGUJNoLNp4Wi8tJuYebqTOGn+Weyk2l5EgTDWsCu76ZWugE
+         kG8IjVYZQnFQv6t6QMpq/rz2kCVuuv2NRNgH6vXOBWBBivxDACKaNFVphe/zOFNBpzxr
+         Jr0jbCVkIMt3XDlUP1imBEthd8DMFqPCva2uWOOVHy5dqTBf0U0rhqsLwAWn7jdZMK/T
+         P99w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729988428; x=1730593228;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gC/B3ePh173CzPyAaHugirfX1pGB4UZuGgWIDFmLpTo=;
-        b=FTE/xUDOvyD8qSBKfytqlNlk9ncR/lghEhAR+fe8E2AWFDzNC/c0iIr8Mf+2TJSAkm
-         EvpNVBUSVurUNwGhSAAVJjUcCsWjWBsuUPw1Hh1mzaysxfmVzFRdqBagbe5Gft64oe27
-         9/fnXsl6lzlo+3QXJ6wF3WqPGftaMkMDseH/WyujuYK+raUXN8Vc55bgfHBUdmih/oGv
-         1hYBRh6VUyQU4mVCkkt533WE706+i0e9RRC40QYbo3QZ2YbzzwIs8Ietj57vNoHn5JQl
-         g000+9cwaFUSV2hheu4z1+TRCsnguE5+plefqRroGSE+dpFcdiqzY7FTRgrlRgVJdoNw
-         lzFw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdQxNuVrgl7FQd8x2tHjsebsd96Es2lFmVJdvUzwngdEIQ6rU1B7HJs26X80xMHJFv6/ttJnk7RLJl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqnV5KXGopBSsn2wq1p7PmdEooCWptotLn7wLSxhl2v2YBRCsF
-	hlH81wjc9XUyeiBfi4cZwrRSy8/ORXOwjCSA2vNCdw0cp/x4tZjZBKpPHDTVtdLQqP4Hkt8rMBn
-	n
-X-Google-Smtp-Source: AGHT+IG68kaonmbkL5dJ3DQuXHXhIQkLnDUW/ccB5u22eusFKceb3+B9YIC2/XLBHEhZz5NOUlJRMg==
-X-Received: by 2002:a05:6808:3384:b0:3e6:b46:4f76 with SMTP id 5614622812f47-3e63823e06cmr2500343b6e.1.1729988427879;
-        Sat, 26 Oct 2024 17:20:27 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e6325b8623sm915906b6e.49.2024.10.26.17.20.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Oct 2024 17:20:26 -0700 (PDT)
-Message-ID: <9669117f-667e-4a2b-b815-c49bf0731eec@baylibre.com>
-Date: Sat, 26 Oct 2024 19:20:24 -0500
+        d=1e100.net; s=20230601; t=1729992247; x=1730597047;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EppU3i5rDzOrHLzp7XLGSc7eRglYjMn3g4s/WhXqYQg=;
+        b=oD+rZKoGwBVlWiS1x8dJW/S99euXKQTH+3Wfo50LxcCRz8+xqGFFxfCZEdebjAIrv8
+         +fAIxYpn61wlzW3ULMY46vHHmWaLTMtbYVjFY+0XL1GI5ljOEVQEO+ehwhyF1EasaEI5
+         6YIOfFNP0/MQjRkmaSvgBibghdF72rt9DRe9J4fNPgUtmepql+0Ndtpsr12bjK2YC0o6
+         aCkdp5QjGxVtoY+idYUmCPMMnxK2NpH413bUToSednqLwhLrguUerHUBkRPV3TQu93sa
+         1fsUy0hahNd0JlRC6Y2WmxalEIF+z6A6v5rDHPKORrkfoeDL/sN5htR/HPi6dye9olEy
+         2Stw==
+X-Forwarded-Encrypted: i=1; AJvYcCVvhwisdvQN8FJFVIKJahztbbn+Op5ASUxRjSlWrnX6xZaASIu811A4IO6gaeqsmeCgYC+dVJbyYwVF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxne6lOm1wfwNaSmJUe2Jt12UwxQKo3YtRWFjPqScAMh4a6Wdd7
+	GVi/TgWceP1HLhZGLzW8/RkU9TUrbLWjvxOabqGQfpCuj0n96OZRVnQjtBNbt1BUkEMda3KsgoG
+	H
+X-Google-Smtp-Source: AGHT+IH0iNtKitb1gftd/JxSfoLMkb9fABEcXQZrnW3/kLmZBqL8hGEn9fWPJpagG0b/p0xxq64xAw==
+X-Received: by 2002:a2e:a99c:0:b0:2fb:6027:7c0a with SMTP id 38308e7fff4ca-2fcbdf5fcedmr13309041fa.8.1729992247053;
+        Sat, 26 Oct 2024 18:24:07 -0700 (PDT)
+Received: from [127.0.1.1] (2001-14ba-a0c3-3a00-70b-e6fc-b322-6a1b.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:70b:e6fc:b322:6a1b])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fcb4519b3esm6913881fa.44.2024.10.26.18.24.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Oct 2024 18:24:05 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 0/3] arm64: dts: qcom: add QAR2130P support
+Date: Sun, 27 Oct 2024 03:24:02 +0200
+Message-Id: <20241027-sar2130p-dt-v1-0-739d36d31c33@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 05/15] spi: dt-bindings: add PWM SPI offload
- trigger
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com>
- <20241023-dlech-mainline-spi-engine-offload-2-v4-5-f8125b99f5a1@baylibre.com>
- <20241026161837.30a56ae1@jic23-huawei>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241026161837.30a56ae1@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADKWHWcC/42SS27cMBBErzLQOg3wJzapqwResD+MhYxmZHFGc
+ GD47qbjRQwkgbVsAq+qWV0vQ9Nt1jZMp5dh031u8/XSB/vtNPBjufxQmKXPgzMuWOMQWtmc9WY
+ FuUFM4lU1xYx+6MS6aZ2ff6t9f/iYN326d9Hbx+Mfzen0t2KRtkJlX4uMQVT8tNvh8yL/gm5NL
+ w2MpaKCkt0Y/kfZT9R8XZY7BFaM3oy2Gjvt7ktq5RmEDTtHWhLqEaf18VeD4CJ6T8nYmI8Y3Ru
+ B0cwsWqOVeMSI13vtaYMglWhdlSx4hDufmaH/KdqIiN1x2v2X0ELXZ7C1opOkNHI64nTZF11gr
+ GmMkjMR4ZEsloUBayLvUsrq7aHQhcH2claTCgkdOhSfr/yz9fVIJFM1QTsW3jEqTYF7Y+bbdCo
+ +O2+Ua6TeHKxjykgcMISC2Rg0XEmxpOHh9fUNVNjNh14DAAA=
+X-Change-ID: 20241027-sar2130p-dt-68d3eee86973
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5242;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=1pZBI18oNqocqm6PR8RghihAT9odsvMpt5vSubrQKBs=;
+ b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnHZYzRlOweXi03vYaIFuRg33eRBACPqIbBbkg+
+ lXwi+S5P2SJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZx2WMwAKCRAU23LtvoBl
+ uGPKEADCVOeRJG7E4UziWV+YLKZsmVTDJGHjRQb53lJ8iUHLw4T+/pJ+0Pn2oj7GaHZcYTNVGHJ
+ g6yKWznmEXqyss16twwdhMgU7qQqq1aMR9tj0YQ1pJjixJKc/21jdry5qlJaCgCCocrKhlg7y4K
+ MVqT7x19lmvuMRqdFsShJPOhjdwaQGCWIZtFJE+HreuWkP8HL5VI75WhxnbICFggVIQbl3AlUjZ
+ esDL0DokX5jXRmApjMfI//xzF43WwMpksbgPKvg5DMc6YYEo4fiTmaHGGTdgsii1fZSABRwEhmy
+ /x5ic9+Ga582afWdoB3zMHd3Ih/NigvzzOHwegGYnD4m8qP0eqPpeb293o3SqttVfWuDEB+6JkW
+ wC/PZ9wVDzFaRqmsZgXlfs5sN3bnv8Wt+QvFfeocLg1Xcd5eS6qEMPKi3OK/F2UN7fxxlYvdUna
+ EnEF+xYJkqdmznlEhq2dqTnYE83vATUt3FDZXzwaUIw7JqxzfqjRSN/8nBXxOmEDvEcUupGGT+h
+ uE+3CiA9FVK+r6+3aWs45vxx70UPx4tIRrAQ8ywkMfGUmnGzPSYCmiB9KkDPC8jcfZimWBdC7sb
+ vy6Es1N9XQdIw/YjaoOenfw0/cGOuA4saqdy2u0zr37rVvXbGd37WBluomh9CGeZsd4THMxbI61
+ BAn2wXjAQsw6Zew==
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On 10/26/24 10:18 AM, Jonathan Cameron wrote:
-> On Wed, 23 Oct 2024 15:59:12 -0500
-> David Lechner <dlechner@baylibre.com> wrote:
-> 
->> Add a new binding for using a PWM signal as a trigger for SPI offloads.
-> 
-> I don't have a better suggestion for this, but it does smell rather like
-> other bridge binding (iio-hwmon for example) where we have had push back on
-> representing something that doesn't really exist but is just a way to
-> tie two bits of hardware together. Those kind of exist because we snuck
-> them in a long time back when no one was paying attention.
-> 
-> So this one may need more explanation and justification and I'd definitely
-> like some DT maintainer review on this at a fairly early stage!
-> (might have happened in earlier reviews but it has been a while so I've
-> forgotten if it did)
-> 
-> Jonathan
-> 
-We could probably make it work like the leds version of this
-binding where the trigger-sources property can have phandles
-to anything, not just a dedicated class of device. It just
-gets messy to implement because every subsystem needs to have
-core code modified to be able to handle using a device or
-one channel/gpio/etc. of a device as a trigger instead of
-whatever it normally is.
+Add device tree bindings for the QAR2130P also known as Qualcomm
+Snapdragon AR2 Gen1 Smart Viewer Development Kit. The device boots,
+provides serial console, I2C / SPI interfaces, WiFi (requires external
+BDF) and BT (requires external firmware).
 
-> 
->>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->>
->> v4 changes: new patch in v4
->> ---
->>  .../devicetree/bindings/spi/trigger-pwm.yaml       | 39 ++++++++++++++++++++++
->>  1 file changed, 39 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/spi/trigger-pwm.yaml b/Documentation/devicetree/bindings/spi/trigger-pwm.yaml
->> new file mode 100644
->> index 000000000000..987638aa4732
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/spi/trigger-pwm.yaml
->> @@ -0,0 +1,39 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/spi/trigger-pwm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Generic SPI offload trigger using PWM
->> +
->> +description: Remaps a PWM channel as a trigger source.
->> +
->> +maintainers:
->> +  - David Lechner <dlechner@baylibre.com>
->> +
->> +$ref: /schemas/spi/trigger-source.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: trigger-pwm
->> +
->> +  '#trigger-source-cells':
->> +    const: 0
->> +
->> +  pwms:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - '#trigger-source-cells'
->> +  - pwms
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    trigger {
->> +        compatible = "trigger-pwm";
->> +        #trigger-source-cells = <0>;
->> +        pwms = <&pwm 0 1000000 0>;
->> +    };
->>
-> 
+Dependencies:
+    - https://lore.kernel.org/r/20241026-sar2130p-clocks-v4-0-37100d40fadc@linaro.org
+      (clocks bindings)
+    - https://lore.kernel.org/r/20241017-sar2130p-nvmem-v1-1-6cc32789afc6@linaro.org
+      (critical bugfix)
+
+Additional bindings and drivers required for the device to function (on
+top of linux-next):
+    - https://lore.kernel.org/r/20241027-sar2130p-adsp-v1-0-bd204e39d24e@linaro.org
+    - https://lore.kernel.org/r/20241027-sar2130p-tsens-v1-1-8dee27fc02ae@linaro.org
+    - https://lore.kernel.org/r/20241018-sar2130p-iommu-v2-1-64c361fceac8@linaro.org
+    - https://lore.kernel.org/r/20241017-sar2130p-pci-v1-1-5b95e63d9624@linaro.org
+    - https://lore.kernel.org/r/20241021-sar2130p-phys-v2-0-d883acf170f7@linaro.org
+    - https://lore.kernel.org/r/20241017-sar2130p-usb-v1-1-21e01264b70e@linaro.org
+    - https://lore.kernel.org/r/20241018-sar2130p-cpufreq-v1-1-822e00b9a663@linaro.org
+    - https://lore.kernel.org/r/20241026-sar2130p-llcc-v3-0-2a58fa1b4d12@linaro.org
+    - https://lore.kernel.org/r/20241017-sar2130p-mbox-v1-1-906aa78b1358@linaro.org
+    - https://lore.kernel.org/r/20241017-sar2130p-mmc-v1-1-c84da16a001e@linaro.org
+    - https://lore.kernel.org/r/20241017-sar2130p-pdc-v1-1-cf9ccd9c37da@linaro.org
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Dmitry Baryshkov (3):
+      arm64: dts: qcom: sar2130p: add support for SAR2130P
+      dt-bindings: arm: qcom: add QAR2130P board
+      arm64: dts: qcom: sar2130p: add QAR2130P board file
+
+ Documentation/devicetree/bindings/arm/qcom.yaml |    7 +
+ arch/arm64/boot/dts/qcom/Makefile               |    2 +
+ arch/arm64/boot/dts/qcom/sar2130p-qar2130p.dts  |  551 ++++
+ arch/arm64/boot/dts/qcom/sar2130p.dtsi          | 3091 +++++++++++++++++++++++
+ 4 files changed, 3651 insertions(+)
+---
+base-commit: a39230ecf6b3057f5897bc4744a790070cfbe7a8
+change-id: 20241027-sar2130p-dt-68d3eee86973
+prerequisite-change-id: 20241027-sar2130p-adsp-fc3fad54ded3:v1
+prerequisite-patch-id: a19263ac2521636a3a7b0ed846cf1714326832c7
+prerequisite-patch-id: 7401c6f72aa9e510a01774b82586e5941980fbcc
+prerequisite-patch-id: 0b132b0936dda8e4c7443b4e7e23ff427dc0d798
+prerequisite-change-id: 20241027-sar2130p-tsens-01baed7d9254:v1
+prerequisite-patch-id: 20d50df9440a16e1cea78fb674794ebb7dc9e352
+prerequisite-change-id: 20241017-sar2130p-iommu-4ce763051f01:v2
+prerequisite-patch-id: 22f9d4a5b0c8d50b5a7317375060ff07ebcae4c3
+prerequisite-change-id: 20241017-sar2130p-pci-dc0c22bea87e:v1
+prerequisite-patch-id: 70ad0a8594e6d224648e0206f9d783fcbb69887d
+prerequisite-change-id: 20241017-sar2130p-phys-426733b80169:v2
+prerequisite-patch-id: 263dca689cc6e8334d825b19ec9005a44cdc979b
+prerequisite-patch-id: fcb8d377116bbcf9f165abba416d25c9be86d930
+prerequisite-patch-id: da7fe2737145e858d9572ff51dff3478cf15e1b0
+prerequisite-patch-id: 14e7540ecc4d365d2cea78016b2f9ffbac366921
+prerequisite-patch-id: 6b2ecc0490d903cee517301c462053d2472e6992
+prerequisite-patch-id: 874e118cd420166faa6247754c5f0a3f24de8a1b
+prerequisite-change-id: 20241017-sar2130p-usb-0e9ccdef61d6:v1
+prerequisite-patch-id: 283d975b372781bc4ab258583c82aa7edaa11edf
+prerequisite-change-id: 20241017-sar2130p-cpufreq-d7ba612fd9d7:v1
+prerequisite-patch-id: f0e7e53020e954149fc06988a583d4ca9deb7209
+prerequisite-change-id: 20241017-sar2130p-llcc-0c2616777cde:v3
+prerequisite-patch-id: 6ca6eacd9ceca6d060d23ef95594fb892e51a506
+prerequisite-patch-id: dc04e235391820e4ab04c72ac64fd852e73fade5
+prerequisite-patch-id: cdb161d351ba3ff4f9e53efaa67eb32b603af435
+prerequisite-change-id: 20241017-sar2130p-mbox-1ff72d8eb5c8:v1
+prerequisite-patch-id: f3975127d993dadf15bcffb81feb99d213471a22
+prerequisite-change-id: 20241017-sar2130p-nvmem-5f856d99bbb7:v2
+prerequisite-patch-id: a5520c74bc1a96a952ff6f744ea57636893f6278
+prerequisite-patch-id: 7a260ae7850d966e8fecd3ebc5114ac157d23c87
+prerequisite-change-id: 20241017-sar2130p-mmc-7f8b32889e31:v1
+prerequisite-patch-id: 76b640936b8b98775f8e17f719b98147dbb7be4f
+prerequisite-change-id: 20241017-sar2130p-pdc-18d3f08abdbe:v1
+prerequisite-patch-id: aa2d8a846ea684d1e127f94e01414ded8b599763
+prerequisite-change-id: 20241017-sar2130p-clocks-5fbdd9bf04ee:v4
+prerequisite-patch-id: e6927fe4ae24ab139d5fe595b36b9a9182960b70
+prerequisite-patch-id: 7cb0ec3c7122856fc33337b9e1e54693a6a7d0fa
+prerequisite-patch-id: ec05d49fb2cabbd37a462cee2761bb9509a6aa5d
+prerequisite-patch-id: 6c2171274b0615cef421498695bb61b3f1ec44d2
+prerequisite-patch-id: 3e7615c0e77e3dbe18267fe556bec7bd5b413c56
+prerequisite-patch-id: 8c0359d6075820139b0658ffcf74f8cd91f50875
+prerequisite-patch-id: a500c056466cd165fbe3acf824e0b96ee225794e
+prerequisite-patch-id: 0abbc5930afb89780a8d833b4fb7cf16865dedcd
+prerequisite-patch-id: a8016b8cda7f0f766acd92e6ba8644f45b04f30d
+prerequisite-patch-id: ddb641d43225f1165b30bb03b0243fc5bc3e7a96
+prerequisite-patch-id: 37062c04b8a3fc2a4434a32bed4b0ec66325ae2d
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
