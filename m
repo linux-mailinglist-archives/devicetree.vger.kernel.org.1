@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-116145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E6D9B1EF5
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 15:46:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5739B1EF7
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 15:46:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6651D281C78
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 14:46:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57C17281C86
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 14:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D427E168497;
-	Sun, 27 Oct 2024 14:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A62441552F6;
+	Sun, 27 Oct 2024 14:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="0qC7t+3Z"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="3QoU2oWL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C971552F6
-	for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 14:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A423B16ABC6
+	for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 14:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730040361; cv=none; b=H6Kbz3fUc1e8hYyRbGCkJjKr6r4ymeG47LfdmOEsXIlcF87JO8PPWdYno1BPuknGIUHefxzf7TuamE4dJO2IakLD7gwFMxT8feD2fwDVN3CeVv7XxFZ2rFSqQ2b6qVYgp9LUykS9E1/p7xRLC5tpoDguD42DmlbSq1eG5t1+i0w=
+	t=1730040385; cv=none; b=O0GJ00Kpqou7rhVH/YGQr4ANfkR6RExJXKDgwG9lvCmqG7v3mBYilLZM8rbj0WjtRwFg73VUZY5dMNr9k1US3lPAfmvVWfWJpfDrtUN1GuPufCYX32G4IrjUpyR27YBmurxwZQsTC6q9LsBq6GsgZ8B8pwHMhN/FD7QknA09fwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730040361; c=relaxed/simple;
-	bh=tUanrKhwXFYt9MSIAQPw+2GxwKgx0rYaAo6GfuhRWKU=;
+	s=arc-20240116; t=1730040385; c=relaxed/simple;
+	bh=IvkSHNImVaQCQIC/kJU65HoJni0fwLvPfRerPS4MTio=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EsOy7Rgp+ivE4FiunH4a3YNZxiJlQtJtESCdsJ6j5jtI87Otl0Of+c2IWx2H9dMtPq6odNkqTY6RTtjmKiPIO9oALwEPczT2eOXFeZYxOtUpVL4g/zAsfqC92xvKPICEShMS0Af+EAEu6lN6xsqvR89Cb8OTzDATVlhbc4XFaWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=0qC7t+3Z; arc=none smtp.client-ip=209.85.215.174
+	 MIME-Version; b=SH4hw/+E7mRo18KiFXRNHeoEp8VQ7aEze8tE64Kc48x88bOcvOZCMhk4ypNh1LyU9v6/pyxISxWAfRWFbbMiAbJWbFPn2T95kKL0cFhBuRkkDPC5IpWKigjRtEBEQvWu3qDbnsj4+fY7SMPMItpIU+KpOQqTYALH+6jYSTIFlRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=3QoU2oWL; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-7cd8803fe0aso2379781a12.0
-        for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 07:45:59 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7204dff188eso2098072b3a.1
+        for <devicetree@vger.kernel.org>; Sun, 27 Oct 2024 07:46:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1730040359; x=1730645159; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1730040383; x=1730645183; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xWEEDIuoc+ubQpnTY3Wis5Eq7A0dylpkEwbr0VsXG/k=;
-        b=0qC7t+3ZD4hZpvhAIq4zNxSFBYSukRlvxDsY1J6uScPr6Td9HRQzKCJmsqy132vxKG
-         OFtRKQqK3kJMoFwzaqUkkv6NEINJaVF+s8uFkmNtDqcS6EaF6ksFv8acl2dRtI6k7FjP
-         jOf3jzCOErh6RyM+G8U8VshOEzSurLl8czMnBIvegslOUIcD8soYHyq8/jfSd3SgIFCq
-         CtPnGI2d9/TmZ055vwd5rfcxczWeXFesvO62EGKqA0eE7hFsqcjdf/jVNJdSpPcVmDds
-         4bYGLXd8aM8tBwDKHsR/ZHSf9dLzHe8jZnsyWJpVfWkQEcgymC7uQKpANK9JI09qZzdG
-         nztw==
+        bh=paImQxICJubDh0CB6JnawmhEoOa3+oPQD0jlOQSWPcA=;
+        b=3QoU2oWL3U4gMEbCKssCVxGjqfArZyAKoOne40MyM+t99XAGXKRSbDS4T15imBs6eO
+         jf6BfKDXtHM62TxE/oIyNffPDAdmG1WPZJylJFJadrocmtn0grjPbtxZQkDCYYK47QdD
+         U33fKXXbyQf2LdiClRxtgla/56XeN0T5HKaXNAl2rOALdP+hjE0/2DX9YveUZXWKOKzu
+         CcZhHqnXwfEhFLswWjaY48mBAOu+K+99mTN8KKRBVtOlUr2H3chFraBRBrsjsCLiOxiK
+         Jk5KBaBDL49bnE3NC8Bz4A0jCH0beEr280ySyCwmzx1Q1GmX2KH71L6WfoOpUhI+dVAh
+         Wzpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730040359; x=1730645159;
+        d=1e100.net; s=20230601; t=1730040383; x=1730645183;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xWEEDIuoc+ubQpnTY3Wis5Eq7A0dylpkEwbr0VsXG/k=;
-        b=p2Di49a7pTf02NoV0CJMJXFw1Vyua67kGRoOPLLcMrw5eW+VdKuom/EHgMPdxbpYg2
-         9QtWSUmseoMRf4cgcmnCvWiBvlRKOADdA0q6t+dagtfhGTT8VILg+MeRnvIgQ5ovdjx3
-         f57DmHF2zs268PikdTKjsk3Gk3gPHYINEnMNzqPDDqfz+TSGgEku+cTDiZEuguU+aiNd
-         h/4oAK4aHyeA0yjAPuefPM4VOogLnQJYgLnqZH8msJPvTxfr2bJao6jqbMuNDs5yfERD
-         V7e8cTbcqlfMnIgtyfSyzTo4oI595OjKAl/RId9MEPTmu+bM+ZfO+YhXrk4XpWHTODK+
-         9VkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVdO06weyxzNmSq7m35iN64DpTAOIxygcOpoPgAnrRmMajbCaxM73+TeXihKCuPRoB/uJQUdDI1Ul2z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmxxK3sNaUBuxssQp7R54DYsF0HozEVgGGJ3E9AV+6gzFFr43S
-	/d3xweSCdB4Kb3b8quaAPV+rTmSsBVRVG2WW1SCHEn1k+MLfJZqIge2OT0cZzvg=
-X-Google-Smtp-Source: AGHT+IH9/LAPD9XkxqAgDEzE/OAVQvWb8BYcvTb5Lysws0ZyjzOdHM8FJiGWnGHE78Q99U2WeQiUiQ==
-X-Received: by 2002:a05:6a20:4499:b0:1d9:1f51:faeb with SMTP id adf61e73a8af0-1d9a85349ecmr7492678637.39.1730040358888;
-        Sun, 27 Oct 2024 07:45:58 -0700 (PDT)
+        bh=paImQxICJubDh0CB6JnawmhEoOa3+oPQD0jlOQSWPcA=;
+        b=Xc8SDXVmovWNNzb4aIxLayatIxWhL5brj1YJxdI1M5UXuS20l0mZjIwwrXLD2SEROb
+         ZYxAcxLdAGvVja9qrTYZPedGtZr3NN5WW3nolGJrTHzzele+U4I1fTYHjmIW9EtUCi3Z
+         Suk3jjwsJLUKg6/o7zgR2HbcILjQvB2693LsXF2usxKy/bikbyhFy1AYLPbzFx9fVV9P
+         1dyYi5ScGuq2fL+27HmHg8X+TJvhVCt/8eOV0+lHoFcvEbJsM4JjI/Joo4l4gBrbPRy9
+         Di0cVKRg2pqJ5XKtuGrrZ7yqh9ZpLg2zAbQFMXspAqYe+lA9PpF+Y25bwk3IHMbzFFlT
+         dNpw==
+X-Forwarded-Encrypted: i=1; AJvYcCXdm3+xK1WytUBrM/Z6NnAQvouTCBZX2etZy3UXTFvPVpwbKSWfJL+NchMvGhcmbeLnpwQ0n+JUrkx0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOUZlb+GGaLMovcoVhuYEafQR+pi9rM66toIJqnz6VP7qY/uG3
+	ipEQG3XTO1kizTuqofUdiUzuITSzZzyWQ8wHMUByZu0D0OU9xbzvx+Y+IIjyQPc=
+X-Google-Smtp-Source: AGHT+IGrHBHy42UGfdOw8ol8FwKHGgUjeMbRosfEWH1RC9fjIGT2l+bD0MYKbWWAyathH6jUocCy/A==
+X-Received: by 2002:a05:6a00:a1d:b0:71e:587d:f268 with SMTP id d2e1a72fcca58-72062f4be8fmr8205821b3a.4.1730040382835;
+        Sun, 27 Oct 2024 07:46:22 -0700 (PDT)
 Received: from localhost.localdomain ([2a11:3:200::401b])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a0cb06sm4065110b3a.115.2024.10.27.07.45.40
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72057a0cb06sm4065110b3a.115.2024.10.27.07.46.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Oct 2024 07:45:58 -0700 (PDT)
+        Sun, 27 Oct 2024 07:46:22 -0700 (PDT)
 From: Guodong Xu <guodong@riscstar.com>
 To: Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -92,9 +92,9 @@ Cc: Paul Walmsley <paul.walmsley@sifive.com>,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Guodong Xu <guodong@riscstar.com>
-Subject: [PATCH v6 1/5] riscv: dts: starfive: jh7110-common: revised device node
-Date: Sun, 27 Oct 2024 22:44:44 +0800
-Message-Id: <20241027144448.1813611-2-guodong@riscstar.com>
+Subject: [PATCH v6 2/5] riscv: dts: starfive: jh7110-common: move usb0 config to board dts
+Date: Sun, 27 Oct 2024 22:44:45 +0800
+Message-Id: <20241027144448.1813611-3-guodong@riscstar.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241027144448.1813611-1-guodong@riscstar.com>
 References: <20241027144448.1813611-1-guodong@riscstar.com>
@@ -106,197 +106,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Earlier this year a new DTSI file was created to define common
-properties for the StarFive VisionFive 2 and Milk-V Mars boards,
-both of which use the StarFive JH7110 SoC.  The Pine64 Star64
-board has also been added since that time.
+The JH7110 USB0 can operate as a dual-role USB device.  Different
+boards can have different configuration.
 
-Some of the nodes defined in "jh7110-common.dtsi" are enabled in
-that file because all of the boards including it "want" them
-enabled.
-
-An upcoming patch enables another JH7110 board, but for that
-board not all of these common nodes should be enabled.  Prepare
-for supporting the new board by avoiding enabling these nodes in
-"jh711-common.dtsi", and enable them instead in these files:
-   jh7110-milkv-mars.dts
-   jh7110-pine64-star64.dts
-   jh7110-starfive-visionfive-2.dtsi
+For all current boards this device operates in peripheral mode, but
+on a new board this operates in host mode.  This property will no
+longer be common, so define the "dr_mode" property in the board files
+rather than in the common DTSI file.
 
 Signed-off-by: Alex Elder <elder@riscstar.com>
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
 v6: New patch
 
- .../boot/dts/starfive/jh7110-common.dtsi      |  5 -----
- .../boot/dts/starfive/jh7110-milkv-mars.dts   | 17 ++++++++++++++++
- .../dts/starfive/jh7110-pine64-star64.dts     | 17 ++++++++++++++++
- .../jh7110-starfive-visionfive-2.dtsi         | 20 +++++++++++++++++++
- 4 files changed, 54 insertions(+), 5 deletions(-)
+ arch/riscv/boot/dts/starfive/jh7110-common.dtsi              | 5 -----
+ arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts           | 5 +++++
+ arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts        | 5 +++++
+ .../boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi      | 5 +++++
+ 4 files changed, 15 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index c7771b3b6475..9e77f79ec162 100644
+index 9e77f79ec162..87ea81e9fed4 100644
 --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
 +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
- .../boot/dts/starfive/jh7110-common.dtsi      |  5 -----
- .../boot/dts/starfive/jh7110-milkv-mars.dts   | 17 ++++++++++++++++
- .../dts/starfive/jh7110-pine64-star64.dts     | 17 ++++++++++++++++
- .../jh7110-starfive-visionfive-2.dtsi         | 20 +++++++++++++++++++
- 4 files changed, 54 insertions(+), 5 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index c7771b3b6475..9e77f79ec162 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -176,7 +176,6 @@ csi2rx_to_camss: endpoint {
- &gmac0 {
- 	phy-handle = <&phy0>;
- 	phy-mode = "rgmii-id";
--	status = "okay";
- 
- 	mdio {
- 		#address-cells = <1>;
-@@ -196,7 +195,6 @@ &i2c0 {
- 	i2c-scl-falling-time-ns = <510>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_pins>;
--	status = "okay";
+@@ -637,11 +637,6 @@ &uart0 {
+ 	status = "okay";
  };
  
- &i2c2 {
-@@ -311,7 +309,6 @@ &pcie1 {
- &pwmdac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwmdac_pins>;
+-&usb0 {
+-	dr_mode = "peripheral";
 -	status = "okay";
+-};
+-
+ &U74_1 {
+ 	cpu-supply = <&vdd_cpu>;
  };
- 
- &qspi {
-@@ -350,13 +347,11 @@ uboot@100000 {
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm_pins>;
--	status = "okay";
- };
- 
- &spi0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&spi0_pins>;
--	status = "okay";
- 
- 	spi_dev0: spi@0 {
- 		compatible = "rohm,dh2228fv";
 diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-index 5cb9e99e1dac..66ad3eb2fd66 100644
+index 66ad3eb2fd66..0d248b671d4b 100644
 --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
 +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-@@ -15,6 +15,11 @@ &gmac0 {
- 	starfive,tx-use-rgmii-clk;
- 	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
- 	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
- };
- 
- &pcie0 {
-@@ -35,3 +40,15 @@ &phy0 {
- 	rx-internal-delay-ps = <1500>;
- 	tx-internal-delay-ps = <1500>;
+@@ -52,3 +52,8 @@ &pwmdac {
+ &spi0 {
+ 	status = "okay";
  };
 +
-+&pwm {
-+	status = "okay";
-+};
-+
-+&pwmdac {
-+	status = "okay";
-+};
-+
-+&spi0 {
++&usb0 {
++	dr_mode = "peripheral";
 +	status = "okay";
 +};
 diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-index b720cdd15ed6..dbc8612b8464 100644
+index dbc8612b8464..d5180c67ac55 100644
 --- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
 +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-@@ -18,6 +18,7 @@ &gmac0 {
- 	starfive,tx-use-rgmii-clk;
- 	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
- 	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-+	status = "okay";
- };
- 
- &gmac1 {
-@@ -39,6 +40,10 @@ phy1: ethernet-phy@1 {
- 	};
- };
- 
-+&i2c0 {
-+	status = "okay";
-+};
-+
- &pcie1 {
+@@ -80,3 +80,8 @@ &pwmdac {
+ &spi0 {
  	status = "okay";
  };
-@@ -63,3 +68,15 @@ &phy1 {
- 	motorcomm,tx-clk-10-inverted;
- 	motorcomm,tx-clk-100-inverted;
- };
 +
-+&pwm {
-+	status = "okay";
-+};
-+
-+&pwmdac {
-+	status = "okay";
-+};
-+
-+&spi0 {
++&usb0 {
++	dr_mode = "peripheral";
 +	status = "okay";
 +};
 diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 18f38fc790a4..ef93a394bb2f 100644
+index ef93a394bb2f..5f14afb2c24d 100644
 --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
 +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -13,6 +13,10 @@ aliases {
- 	};
- };
- 
-+&gmac0 {
-+	status = "okay";
-+};
-+
- &gmac1 {
- 	phy-handle = <&phy1>;
- 	phy-mode = "rgmii-id";
-@@ -29,6 +33,10 @@ phy1: ethernet-phy@1 {
- 	};
- };
- 
-+&i2c0 {
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	non-removable;
- };
-@@ -40,3 +48,15 @@ &pcie0 {
- &pcie1 {
+@@ -60,3 +60,8 @@ &pwmdac {
+ &spi0 {
  	status = "okay";
  };
 +
-+&pwm {
-+	status = "okay";
-+};
-+
-+&pwmdac {
-+	status = "okay";
-+};
-+
-+&spi0 {
++&usb0 {
++	dr_mode = "peripheral";
 +	status = "okay";
 +};
 -- 
