@@ -1,194 +1,182 @@
-Return-Path: <devicetree+bounces-116114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52DBC9B1DA5
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 13:24:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A572F9B1DC0
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 14:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06D3A281B19
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 12:24:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB193B210F7
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 13:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32E613F43A;
-	Sun, 27 Oct 2024 12:24:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE93115573A;
+	Sun, 27 Oct 2024 13:02:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VAFtCyLD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XuvQZBkH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1EB62770B;
-	Sun, 27 Oct 2024 12:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE9E762D2;
+	Sun, 27 Oct 2024 13:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730031842; cv=none; b=UyCfeDR1gwsqfNs2xBf6FPo3q1D3JnlfWMp+9d4G80999WBgTs6IsdEqpRc28rvpuU3lo5s4HarOqCYPYyueaBp777WihsMPS0WisOXyJy6XFRTDI9sHqszCOZpoA4hgfprVwMeaXqHrN1vuljowQWw+UsGRC8UfhZ1QUdTLpE0=
+	t=1730034141; cv=none; b=l7FvjUvVxa/f/9IYHvEpeQ8HT4umRl/jhao+HwE3ERUdWymj9okcVeYGylEeqhTpD0y5vsdWZOy8w5tMpu/XwxQpTzlY9dWoxzVBtue6jQFIc4wY0Dex8KzKqw9GlBrZthS/eZhHZAiyEOyRkNwPV5W3ENeLefbRbQDRmWKQ2vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730031842; c=relaxed/simple;
-	bh=8BEcUjVXSgt7ZVdHArbN5cGhrKqtINZ0r1zgZsa29TE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gGPQnmBwZvXFmZOVsSDdcsekL8+wUrpoymw9LH+MT7Gif0KpuPV8CnuR3VFsRNvUzsFW82zWxAl1Ut462VgDAGWejCcfeerlbmVrmPkCZTd/D2NMExxqfUOXWlxOQn+eYE9iKV56LBC8vWdGsbiMUqOIq+9ekr1oP3qaKKlmOQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VAFtCyLD; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-431548bd1b4so33442765e9.3;
-        Sun, 27 Oct 2024 05:24:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730031839; x=1730636639; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kVEQu3tU/qXzrZf1hfF77Y9BaGDuOCVJOekxBG22NJo=;
-        b=VAFtCyLDYz1AFdqxPKDFY/9gGH6jILUuBh9leBeWG+t9IVh1FVoB2nWvUXAvyHtE7c
-         RG1sC4VSI7G/iyW//A9ihm8tNa958A3Qn5N4tsq6ERmKl+9MtOMzilw+6f0f/87l5a5W
-         nwvQuCPeOJp6Xd0X0UnogkZiFYDPXnZFdvOM6Hwy7kNIuuUVaCQqGeR1Z1fTpc5LZlzD
-         qmFx4iDAYiI/V6JToaeI8CNtFsJKtP18aBkfaF+PgJrPGBrbrOgpFVU9UAY5KAsyHhQU
-         S82OSTAPi+zF7+atT150GEt9TTOHsbd5i6UkdJoOIELpuEUrzZwY4zlN5TfTychCvpFq
-         HFwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730031839; x=1730636639;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kVEQu3tU/qXzrZf1hfF77Y9BaGDuOCVJOekxBG22NJo=;
-        b=slxtU6TJGC8loaN/3GLEMqY4f1Js+s8U+YzEQ+hQ9nPI5WH65lWRnfN20a99TO53sB
-         06Bkf/vGscpgK/MZalaX1L7r2qGynQX0Ebz8laT6c0Dd4istTACjV3uuQBO5TIiCRXZ/
-         f4sv41J1/Eeal8ePYH4GLl00NNyl7rbTkbLFPv8lSPZfmf00jK5w33Z7ejvAnL/XtXzR
-         bPXTpiRP5U0i1xFrsuAsVVXn7Yt/3+Nl7BbCrZ6s3aKFLgcUEgRpu+mq4Jsrp4k9WXHV
-         DmMqV30/+PwZhor3sA23ekWs/TJcwnfPcdp2KpLhwBBDYCwQAVEYH9yl9S2AJaWHowZR
-         cVXg==
-X-Forwarded-Encrypted: i=1; AJvYcCU3av2pmEWbggFFWk26Y1yqBYKbLxqa2r/njV0XPvsJfiYrkJyOymtmeS9vtvNXPhfZl6Xs1QL2iHtcRi26@vger.kernel.org, AJvYcCX8KVGd2DtAJE2mNARe1v5XHXDlJ5IWHsB3zQsP3XPV/qdUhGI7vxbS534IL3YLh6cWqUPD/NgMAcnQ@vger.kernel.org, AJvYcCXzpMgEBYAjRQChAXPAZd+LXLahwIo6PEEyXDTfp4MQ6+LWqUnc7/IZIIC7KkdCDgYA0DEbNZIP+w5s@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrWSP0cC/V7h9p/EQcqV1OWpY2TXg8+ptmGoczlwMocDmF2o9/
-	3qWWv9/215Rsw9GC8tNwcSwd15ZiZrJgn5uzYOlBE2hvD2kUkVGp
-X-Google-Smtp-Source: AGHT+IHpOK+Lv3dg8V4hr4K0sH/2+e+bw1brMh5Xn1jCRU17+3uvBpMz5BcUxkquTXe6UmJDzRQafA==
-X-Received: by 2002:a05:600c:5110:b0:431:54f3:11b1 with SMTP id 5b1f17b1804b1-4319ad36874mr48559505e9.34.1730031838825;
-        Sun, 27 Oct 2024 05:23:58 -0700 (PDT)
-Received: from ?IPV6:2a02:8389:41cf:e200:a7df:fd2d:69ec:cea7? (2a02-8389-41cf-e200-a7df-fd2d-69ec-cea7.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:a7df:fd2d:69ec:cea7])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b55f784sm103866385e9.19.2024.10.27.05.23.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Oct 2024 05:23:58 -0700 (PDT)
-Message-ID: <59d024d4-e27c-4fcc-9007-7622f9fa8bd5@gmail.com>
-Date: Sun, 27 Oct 2024 13:23:56 +0100
+	s=arc-20240116; t=1730034141; c=relaxed/simple;
+	bh=2rkjcFwK0Py1jv662REF1gLRHu3ZVW1+5EOnFztegdA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cm0pYirSVunHmuyirREpPAW+alB/nDB6SzH+1GUsEWXtPcnIFxBM2wlPUah3/ciltCFJHiggkgbPYicdGV1QfrQfyQ30N//B7/CBVTU2W1eE0m+2wer8l8dMpBz7YMsMEubn6gJAD87V+q9fmsJSRbA0BGQCXRVhKLVbf/po5f0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XuvQZBkH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 12CBAC4CEC3;
+	Sun, 27 Oct 2024 13:02:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730034141;
+	bh=2rkjcFwK0Py1jv662REF1gLRHu3ZVW1+5EOnFztegdA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=XuvQZBkH8NtfeLwHEG04eUIvH9v9XMQJ92exEt/PAld+dHAleHvKf/qyIDx7YDSpx
+	 sNO7sDaHypLzGAIL1wUFK+1fltpKuKzV0IKcnzYfsVNyJHqtRzMGOw5hdCXd4gmv9b
+	 uqlUl4wikNiUpgB7AsyUEwYV5DEsOcE1AmBIbCpDWfWY4d/klBf6CHJuqfd0gqET+V
+	 wbXh3vpG7A7eJkOutCdXLkSRef/Flbsp2uM+15459+a+d4BNkCPF13mchW3VEkV+hT
+	 axnpO9Pm7Oa+B0ZFOgKPojDiIVcyGTiQaRGS6TxAqqljqsZaMUaKp9fBpzwJF2EwDw
+	 TPh41wzkDCWAQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F2CD9D1171B;
+	Sun, 27 Oct 2024 13:02:20 +0000 (UTC)
+From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
+Subject: [PATCH v4 0/3] arm64: dts: qcom: sc8280xp-blackrock: dt definition
+ for Windows Dev Kit 2023
+Date: Sun, 27 Oct 2024 14:02:15 +0100
+Message-Id: <20241027-jg-blackrock-for-upstream-v4-0-703b254fc95f@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] iio: light: add support for veml3235
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: kernel test robot <lkp@intel.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>,
- oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241023-veml3235-v3-2-8490f2622f9a@gmail.com>
- <202410251610.kB7u6xMJ-lkp@intel.com>
- <19c8e07f-4b9b-4d4b-aa18-f6766b65b33e@gmail.com>
- <20241026191001.10acd773@jic23-huawei>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <20241026191001.10acd773@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANc5HmcC/43OQW7DIBAF0KtErDsVDFBDV71HlcUYDzGNGyJwr
+ LSR717iRXeNuvwjzfv/JiqXxFW87m6i8JJqyqcWzNNOhJFOB4Y0tCxQopEeJXwcoJ8oHEsOR4i
+ 5wOVc58L0CV3oKBBKdhpF+z8Xjum62e/7lsdU51y+tqpF3a/CRmtcxwrYWAeGNAFFiRAsspWBl
+ H8xb3kaahhznmqeLnPbV5/79C3u5IIb849xC4IE30eMqkflVXjI6l9WSaUfsbqxTvtBG6fJcfc
+ nu67rD49PNNhtAQAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ Merck Hung <merckhung@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730034139; l=3963;
+ i=jens.glathe@oldschoolsolutions.biz; s=20240919;
+ h=from:subject:message-id;
+ bh=2rkjcFwK0Py1jv662REF1gLRHu3ZVW1+5EOnFztegdA=;
+ b=0XeGeiyNBlb9dEK8wgisG4nlvq5mHqFL4ylLMud6YBtllUOO1Z0yKn3yllvx7ri6+zqSdSKQD
+ keq3TI0bYO+DL+UPOUuwMN2Ma41TMBan4kXhAnKTHYKMqLpTnOGjfrT
+X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
+ pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
+X-Endpoint-Received: by B4 Relay for
+ jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
+X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Reply-To: jens.glathe@oldschoolsolutions.biz
 
-On 26/10/2024 20:10, Jonathan Cameron wrote:
-> Hi Javier,
-> 
->>>    222	
->>>    223		return 0;
->>>    224	}
->>>    225	
->>>   
->>
->>
->> Unused as there is no processed values anymore. I will drop them for v4.
-> Given I didn't have any other comments I just fixed these up whilst applying.
-> 
-> Series applied to the togreg branch of iio.git and initially pushed out as
-> testing for 0-day to take a first look at it.
-> Thanks,
-> 
-> Jonathan
-> 
-> p.s. Diff was as follows, shout if I mess it up.
-> 
-> diff --git a/drivers/iio/light/veml3235.c b/drivers/iio/light/veml3235.c
-> index 18ab73f4377c..66361c3012a3 100644
-> --- a/drivers/iio/light/veml3235.c
-> +++ b/drivers/iio/light/veml3235.c
-> @@ -145,7 +145,7 @@ static int veml3235_get_it(struct veml3235_data *data, int *val, int *val2)
->  static int veml3235_set_it(struct iio_dev *indio_dev, int val, int val2)
->  {
->         struct veml3235_data *data = iio_priv(indio_dev);
-> -       int ret, new_it, it_idx;
-> +       int ret, new_it;
->  
->         if (val)
->                 return -EINVAL;
-> @@ -153,23 +153,18 @@ static int veml3235_set_it(struct iio_dev *indio_dev, int val, int val2)
->         switch (val2) {
->         case 50000:
->                 new_it = 0x00;
-> -               it_idx = 4;
->                 break;
->         case 100000:
->                 new_it = 0x01;
-> -               it_idx = 3;
->                 break;
->         case 200000:
->                 new_it = 0x02;
-> -               it_idx = 2;
->                 break;
->         case 400000:
->                 new_it = 0x03;
-> -               it_idx = 1;
->                 break;
->         case 800000:
->                 new_it = 0x04;
-> -               it_idx = 0;
->                 break;
->         default:
->                 return -EINVAL;
-> @@ -188,7 +183,7 @@ static int veml3235_set_it(struct iio_dev *indio_dev, int val, int val2)
->  static int veml3235_set_gain(struct iio_dev *indio_dev, int val, int val2)
->  {
->         struct veml3235_data *data = iio_priv(indio_dev);
-> -       int ret, new_gain, gain_idx;
-> +       int ret, new_gain;
->  
->         if (val2 != 0)
->                 return -EINVAL;
-> @@ -196,19 +191,15 @@ static int veml3235_set_gain(struct iio_dev *indio_dev, int val, int val2)
->         switch (val) {
->         case 1:
->                 new_gain = 0x00;
-> -               gain_idx = 3;
->                 break;
->         case 2:
->                 new_gain = 0x01;
-> -               gain_idx = 2;
->                 break;
->         case 4:
->                 new_gain = 0x03;
-> -               gain_idx = 1;
->                 break;
->         case 8:
->                 new_gain = 0x07;
-> -               gain_idx = 0;
->                 break;
->         default:
->                 return -EINVAL;
-> 
-> 
->>
-> 
+"Microsoft Windows Dev Kit 2023" aka "Blackrock" aka "Project Volterra"
 
+Device tree for the Microsoft Windows Dev Kit 2023. This work
+is based on the initial work of Merck Hung <merckhung@gmail.com>.
 
-Hi Jonathan, that is exactly the diff I wanted to add for v4. Thanks for
-fixing it.
+The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
+Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
+
+Supported features:
+- USB type-c and type-a ports
+- minidp connector
+- built-in r8152 Ethernet adapter
+- PCIe devices
+- nvme
+- ath11k WiFi (WCN6855)
+- WCN6855 Bluetooth
+- A690 GPU
+- Venus codec
+- ADSP and CDSP
+- GPIO keys
+- Audio definition (works via USB)
+
+Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Signed-off-by: Merck Hung <merckhung@gmail.com>
+
+Original work: https://github.com/merckhung/linux_ms_dev_kit/blob/ms-dev-kit-2023-v6.3.0/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-dev-kit-2023.dts
+
+This dt is more or less deducted from the Thinkpad X13s.
+It contains a lot of guesswork, and also a lot of research on
+what works with the Windows Dev Kit.
+
+The WiFi definition references qcom,ath11k-calibration-variant = "volterra"
+which is unfortunately not yet in the linux-firmware. You can leave it out,
+and the ath11k driver finds the default one for 
+"bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2|18,qmi-board-id=255"
+which is quite sub-optimal. I have placed a pr on github/qca-swiss-army-knife:
+https://github.com/qca/qca-swiss-army-knife/pull/9 that provides an amended 
+board-2.bin and a board-2.json to generate it. 
+
+pcie2 (nvme) is intentionally specified as max-link-speed = <16>. The 
+interface is capable of it, most current nvme ssds are capable of it, 
+but the physical slot isn't. This leads to a silent downgrade to <8> instead 
+of the "device is limited by bus, capable of..." message.
+
+It is in use and under development since May 2023, pretty stable now.
+
+---
+Changes in v4:
+- removed the redundant regulator definitions
+- changed the pinctrl property order
+- use microsoft instead of MICROSOFT as subdirectory and device name component
+- amend spacing in audio nodes
+- change external connector dp1 for mini-dp to DP-3 for consistency
+- Link to v3: https://lore.kernel.org/r/20241013-jg-blackrock-for-upstream-v3-0-839d3483a8e7@oldschoolsolutions.biz
+
+Changes in v3:
+- tried to heed all advice and comments given - thank you
+- re-ordered patches to definition before use
+- added "microsoft,blackrock" as compatible in QSEECOM driver
+- removed the qseecom node
+- ordered nodes alphabetically {address, node name, label}
+- amended indentation
+- consistently used blackrock as identifier / directory name
+- sorted identifiers by the same order for multiple instances
+- added some explanation re WiFi
+- added definition for PMU on the WCN6855
+- added some explanation for pcie2 max-link-speed
+- Link to v2: https://lore.kernel.org/r/20240920-jg-blackrock-for-upstream-v2-0-9bf2f1b2191c@oldschoolsolutions.biz
+
+Changes in v2:
+- removed whitespaces and breaks
+- added compatibility binding
+- added feature list
+- reformatted Signed-off list
+- Link to v1: https://lore.kernel.org/r/5f5487e1-e458-4a3a-af02-c52e50ca1964@oldschoolsolutions.biz
+
+---
+Jens Glathe (3):
+      dt-bindings: arm: qcom: Add Microsoft Windows Dev Kit 2023
+      firmware: qcom: scm: Allow QSEECOM for Windows Dev Kit 2023
+      arm64: dts: qcom: sc8280xp-blackrock: dt definition for WDK2023
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/sc8280xp-microsoft-blackrock.dts | 1383 ++++++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c                   |    1 +
+ 4 files changed, 1386 insertions(+)
+---
+base-commit: a39230ecf6b3057f5897bc4744a790070cfbe7a8
+change-id: 20240920-jg-blackrock-for-upstream-7c7aca20e832
 
 Best regards,
-Javier Carrasco
+-- 
+Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+
 
