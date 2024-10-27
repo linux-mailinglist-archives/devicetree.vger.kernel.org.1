@@ -1,117 +1,154 @@
-Return-Path: <devicetree+bounces-116074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91379B1C3B
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 06:32:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 270C79B1C4B
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 07:30:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6E23281FA6
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 05:31:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48F3C1C20C68
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 06:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124EB2F46;
-	Sun, 27 Oct 2024 05:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 679143FB9F;
+	Sun, 27 Oct 2024 06:30:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dwvXzpyR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Yc052Aw2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3127944C76;
-	Sun, 27 Oct 2024 05:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E4C638DD6;
+	Sun, 27 Oct 2024 06:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730007116; cv=none; b=ILngx2TER4qxrV8MhAIS4k+OSwD63YNEgJODb/PsVC3cq8lZKOaHf3NaWt6Xz5Mo4Q5XzGutYlSUJKqsrGgLMsXM0U/or45q79ihhXCLYM8IU+MLnBYoqeJq2btLgVlilDeYI2/Cun90jkRQddccYrsm7ZT2Cq73ln/wrFPCHW8=
+	t=1730010604; cv=none; b=QhrgHyN8hwZiqWuR+kUuMscXvGIzEskjeFmFtYIgFaAh0mOJf/Gw9Q+zqBqcrXvVrzDJetNXeAh/btM4N6FX3s587yCBP+51lYDVyD6l+cfuuT4q4u+n8qwzDgvZxDqP1mhG/eDL0btDpWm/BrKm+DWXvIHuI+gDtVVGxoiZa24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730007116; c=relaxed/simple;
-	bh=3sEEPUKtak+1qroOEce11kt9XYslJMJOCYdTtc5kEKw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MoZAox9ciqj4yH52YHvN7mtLrygYrUEBLxMbbTj5LeXROB+x94ivsLvBjb7txJRO/fIoqI1mF60sAs6UussXngO3pLI5oe+abcsdLNYJVmhXr/1SCl1AxGCPiWlsQnc+xxLLL6o3s1i6Urd+R8oye7iGWAeCveLMmf2NMG1CmKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dwvXzpyR; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6cbe53a68b5so24356986d6.1;
-        Sat, 26 Oct 2024 22:31:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730007113; x=1730611913; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tbeeXNHr+vhPzWEsEYv1uu6Nq6GjINj2/F0M6C/S/mk=;
-        b=dwvXzpyR7/JhnXq4k8Fz5J5mCbepPTLOkWMZApxFNlukgIKsPedlLf9euPxVvWnMe5
-         gwE3OWI89cdP9od169pI/GPpH/AphFdpTvjol473ctMGEyo18rABoYDiIW01jvIHj1/1
-         ktzKNJ+GGqGOrG8KpShjm6G29iSnCGpNPgIORuTm8lpdpsls+DuT1bQBBPRxoMHfGI/m
-         BVcJ5HTZ9KbpMPyIX7t4b4z/M//pmBIKTBeyqJYHFnU53J8rsjddpnqqjxq2auMwv4mq
-         UOli6MlNUkhBAuFXnmpCmZvk9B8ZDwDILFs0nydLcQxXWXQlGNbQT7sE4EjgXrnc4BP2
-         VYxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730007113; x=1730611913;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tbeeXNHr+vhPzWEsEYv1uu6Nq6GjINj2/F0M6C/S/mk=;
-        b=bytptYuyfeFqv4DPnc3cw795eE3wnQz7DoIGq9wD3zLydXDk5MhZuGsFph4+VDtyzJ
-         CXaLIpVRwVUqFzH9Ev5sGelP9qvtETb96TaIs5wKOUJ1WKTbuQiqa1L+NhiJOmt0xLEK
-         maadAwuQSbObDrYZEB2lo2oBY4dZFUXsyD7tMnl+xd7gZSEP0ohOma7+Bmf0iYnA+HPL
-         20Xk0e0ZH+4lLv2G+VLEGEmg0rqNXZGFKlIrjnRBF4VTC1T4EEPmikCSNVVDVy8BbGUs
-         a5MxhY8rGzycgg6EglXiWmqbJEIAryFmSKuKpjjwLt2WNtYhIgvyS2/Rc0NxVdJJYeAo
-         iWAA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8337IRliEnJ3x6ZWq8pnyOpIxc/UjnAQlocDDbFR6UR/PzZlLyqc46Xsc0I0gUt66l9MegkwNKT3g@vger.kernel.org, AJvYcCWHWAV9SCuC78ILVfampK4ZNQWQT66+ddEM75Xrlsggu19vWyPZM6+gzDLbFFGJsn8QDUP+xOAovee28Sw=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbkuTGI6+CuhM//iN7zMnPKBEio3vXO6FthYh/8irlkIJaDteu
-	O7yX6RahRms9Zrqe5LVthrKvcvImLXZFvxMHkMAlRaXJ352kKnW2N09HE13v5M9WxzWt11dSLFt
-	7rntkvwioGceTZsObB3CwxvMehnY=
-X-Google-Smtp-Source: AGHT+IETbcPLglJuj4RWtzcTD531Q7t6lTfBIXEerufv3+DoIy0hscVg65OCJPnwZJvH57o9rGwkV3VilNQ76El8K5g=
-X-Received: by 2002:a05:6214:4890:b0:6cc:22eb:4508 with SMTP id
- 6a1803df08f44-6d18589b839mr76937336d6.47.1730007112668; Sat, 26 Oct 2024
- 22:31:52 -0700 (PDT)
+	s=arc-20240116; t=1730010604; c=relaxed/simple;
+	bh=avM9bscmw2QHta7ureWBTBRL7m0i0B+GsDNeOYpZfe8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=pL3Ehj4LKhkG6NUqmqam137/mhrt/PUAZAAMmZpUw6U6CgeGg9YX4gaN7i1mQekGnSR0vxHIJ4lO55srGiE7PzoKpKMvpMYxLZ01cHkEiZVK7kl0r/VYr7AUPKAMlVhjrg1Myu19bu36BCCN4Snt+IUF9/TxCkWKhv7NIpOGQfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Yc052Aw2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49R4UWkd031630;
+	Sun, 27 Oct 2024 06:29:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4BXh3w3Mm2KlrSXeKfbmMC+DB3Hn+2Pd69z2tlEq8K4=; b=Yc052Aw2chRppGg+
+	8PfH2JgfbOPtV3XL+lq/H9BPcB0EpT+dzJkVjFVQkQPiKGd+5VqswSxYirkhc1Ak
+	uVjJJ9U468VgjQ0U3yACJAp3NVswDF4KeTihd2XOGo3XXxD1A9Xyl8Kmg3Na5+Uk
+	oXs/BSyLbZt05KoyARLu3RelaBFiIQCunNMc7EuLKRZilI3CCdunpQx6yldY98mI
+	PQy8rN+yLfw5nABh9AFh20dcIFwryyRkZ9iwuqd0WhV3cvAaN1Eujl/s2lDNg/i6
+	qIaPw/4TnLWJto1wOZdegV7JkcfVrGqmynHSIoMbl0yJd4f6G43aeGM4unWQj5L5
+	Zp7UZQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gqe5t2at-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 27 Oct 2024 06:29:55 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49R6Tsth002445
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 27 Oct 2024 06:29:54 GMT
+Received: from [10.216.2.255] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 26 Oct
+ 2024 23:29:50 -0700
+Message-ID: <720aa372-a04b-4b0f-b2da-3be37a319ec9@quicinc.com>
+Date: Sun, 27 Oct 2024 11:59:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241026080535.444903-1-akinobu.mita@gmail.com> <baf87ae4-b9fe-4b6f-b4bb-16fb66492224@roeck-us.net>
-In-Reply-To: <baf87ae4-b9fe-4b6f-b4bb-16fb66492224@roeck-us.net>
-From: Akinobu Mita <akinobu.mita@gmail.com>
-Date: Sun, 27 Oct 2024 14:31:41 +0900
-Message-ID: <CAC5umyjs7ZB7VBUgTN2N_uOukEunko_ZqboAaoqsgcRr8O+txQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] hwmon: (pwm-fan) add option to leave fan on shutdown
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Billy Tsai <billy_tsai@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Enable USB controllers for
+ QCS8300
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20241011074619.796580-1-quic_kriskura@quicinc.com>
+ <20241011074619.796580-3-quic_kriskura@quicinc.com>
+ <xijjs445fzeuzbj2bg3ziwlzenrk4wo5zlyze4j5mldb444oj7@73ynic4xqfdj>
+Content-Language: en-US
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <xijjs445fzeuzbj2bg3ziwlzenrk4wo5zlyze4j5mldb444oj7@73ynic4xqfdj>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KdrcJsoaEaZ41LBVmnzrdu8n7UJ4DWqU
+X-Proofpoint-ORIG-GUID: KdrcJsoaEaZ41LBVmnzrdu8n7UJ4DWqU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ phishscore=0 bulkscore=0 mlxlogscore=459 malwarescore=0 adultscore=0
+ priorityscore=1501 impostorscore=0 mlxscore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410270055
 
-2024=E5=B9=B410=E6=9C=8827=E6=97=A5(=E6=97=A5) 1:19 Guenter Roeck <linux@ro=
-eck-us.net>:
->
-> On 10/26/24 01:05, Akinobu Mita wrote:
-> > I sent these patches a long time ago, but I didn't cc them to the DT li=
-st,
-> > so the DT bindings changes weren't reviewed.
-> >
-> > There have been a lot of changes to pwm-fan since then, and I've update=
-d
-> > the patch, so please review again.
-> >
->
-> What changed ? Where is the change log ?
 
-Sorry, I forgot to write the changelog.
 
-Changes in v2
-Patch 1:
-- use device_property_read_bool() instead of of_property_read_bool()
-- skip calling pwn_fan_cleanup() when newly introduced property is set
-  (Since pwm_fan_disable() call in the shutdown() method has been changed t=
-o
-  pwm_fan_cleanup() call since commit b99152d4f04b ("hwmon: (pwm-fan) Switc=
-h
-  regulator dynamically"), pwm_fan_disable() no longer exists.)
+On 10/26/2024 11:06 PM, Dmitry Baryshkov wrote:
+> On Fri, Oct 11, 2024 at 01:16:19PM +0530, Krishna Kurapati wrote:
+>> Enable primary USB controller on QCS8300 Ride platform. The primary USB
+>> controller is made "peripheral", as this is intended to be connected to
+>> a host for debugging use cases.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 23 +++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+>> index 7eed19a694c3..3e925228379c 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+>> @@ -265,3 +265,26 @@ &ufs_mem_phy {
+>>   	vdda-pll-supply = <&vreg_l5a>;
+>>   	status = "okay";
+>>   };
+>> +
+>> +&usb_1_hsphy {
+>> +	vdda-pll-supply = <&vreg_l7a>;
+>> +	vdda18-supply = <&vreg_l7c>;
+>> +	vdda33-supply = <&vreg_l9a>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_qmpphy {
+>> +	vdda-phy-supply = <&vreg_l7a>;
+>> +	vdda-pll-supply = <&vreg_l5a>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_1_dwc3 {
+>> +	dr_mode = "peripheral";
+>> +};
+> 
+> So, can it be used as a USB host controller / connector? What needs to
+> be done in such a case?
+> 
+Adding vbus boost pinctrl and changing dr_mode to host must be enough 
+for this case.
 
-Patch 2:
-- document the new property according to yaml format conversion
+Regards,
+Krishna,
 
