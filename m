@@ -1,108 +1,134 @@
-Return-Path: <devicetree+bounces-116078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4474E9B1C8F
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 10:00:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7DF9B1CD5
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 10:37:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C1B41C20AE4
-	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 09:00:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 587BB1C20A30
+	for <lists+devicetree@lfdr.de>; Sun, 27 Oct 2024 09:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757525103F;
-	Sun, 27 Oct 2024 09:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2204126BF1;
+	Sun, 27 Oct 2024 09:37:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lncoz8Ik"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="mYIJYr1y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48771CA5A;
-	Sun, 27 Oct 2024 09:00:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE4F07DA79;
+	Sun, 27 Oct 2024 09:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730019652; cv=none; b=dhKxySJ9cBFlAa2teQyPDA6k+f79V7HWYgCf7z3IDSC95ykCDa8/nJpVA7wRn9Bhd6JBy1Xo7+rJeaGRybhq8BZwvtgiWmr0WHJtrEFHSz5PplC9W/Y3/cVe+SBrwHq5wMuk3t0qCByxYsJia0JUh/y9/E+Ly+LSfq7NNc4xyJc=
+	t=1730021830; cv=none; b=g37LmpnpO24Wc9aVeyPYEHS0++XSWt3tPpiD9KzaFUW0zTtgC5azzXzCqFbUSM4wEJufjPw0Ii1Sr8Ei48Kg0cddtP/yi30u/2LjXb839YM/zt0xxxHG4ozGl2U1kX+poLLXvFPkxOv0kC9SayD7fj9FMM/OtB3Rc0gCn3YNiC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730019652; c=relaxed/simple;
-	bh=TP5q4TPV0efyvcZ61NS9u4MC3kSo24Qws5zpXGj5VdY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Cn8AbHeRMYuKwHBDdojY+NRZFn+iETUFUlS2hG/C/5L1TGSutTGitHBMsCXODfuUOGoUZmodEM8srIbayxma9lgCZR81aJaw9C2Tj3xz4kGeWlrd528+AQPVxHA3r8sUlARnO5PA1KQ5CqlF44i9M03/5kcIfHizA7C47zkfWRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lncoz8Ik; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A6BCC4CEC3;
-	Sun, 27 Oct 2024 09:00:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730019651;
-	bh=TP5q4TPV0efyvcZ61NS9u4MC3kSo24Qws5zpXGj5VdY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Lncoz8IkVfpPsqSxOUUKd03JtnD1pRrGwjbsUoD/xOxiCJI7XMc8AXCmqPKUGfEQG
-	 ublEQKfrkwBEIU5+EQvPkfJ6ZWHLyijFW4Rs1Rh1k+4JwkgoZRDR0ZXwxMomnxZ9OV
-	 CA1Zj9IZ1GdvFe3JJGYTXaStFYXcOk2vU2Fderd7m1HgMICDb0CAmp/RzW8cRHxjJW
-	 4mgcxB5g2nuN7AUdT3MA0+3VshZYr3B6qLCVx9VT0Ciw8IE2dx+GIUaszP9pzO90yN
-	 NgsH3SMRsd1WzNNnnyqO/SWOejK1vPh1A7ISeix8/ipQwT7Dm30+1OFRshLMGvsMjX
-	 GZNXEl8R4eW/w==
-Date: Sun, 27 Oct 2024 09:00:46 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] iio: magnetometer: add support for the Allegro
- MicroSystems ALS31300 3-D Linear Hall Effect Sensor
-Message-ID: <20241027090046.63c50599@jic23-huawei>
-In-Reply-To: <20241026182643.1e6057e5@jic23-huawei>
-References: <20241021-topic-input-upstream-als31300-v2-0-36a4278a528e@linaro.org>
-	<20241026182643.1e6057e5@jic23-huawei>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1730021830; c=relaxed/simple;
+	bh=+o+e0yc8z2cYvVr7ThWL/jjTXKKohxTY35SoOejb2tA=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nEuYhQhIkbI6Yg+q641pk8UU30pE3lQwao5DgXbE+5R6TKn/MtcNVgywiBWqDCTP+brdFdkjYbQ7G8djMBIBgpvv2fSUFSkfaJ6nSHCxr1n+QJefkSMTCP7RUJ/M04Rek8U9lGVlud11asimlbSspQpcCtBkni4DyAg1Uy/4wUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=mYIJYr1y; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49R43dxa027775;
+	Sun, 27 Oct 2024 03:19:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=f7XnJ
+	LRudKUw+rCrfpYbgUrUwaQnQvaE21uxx+0aig0=; b=mYIJYr1y7vaW+eA5J8APk
+	d6Jb9BrCEP5JMVXlRY5zegx4xIt8pQivDmIx82dncJIaIPljHJwBqb/NH+pH0B1h
+	0pTjL0OdyClg5kOFnMrniPiuZIy7sTFJrcG/dhrDURzp8Pmh7267fnNCqr6ooz6K
+	J7UcTQN9HD+eR5X+SpAV7bXA6L6Isqbxsj+GiHdiBY0tPUCv9FQvAD+K9r4h5GuI
+	bzFhMK70jpeCQdO5buI6KGnlV2Ii7/kHLI9HynEl4ShBZTxZrFpFB8KS7Ur/97LP
+	+ygOjDzafcz89E9kg9TpNSYcM/dWWrnhUOGTuI+BHFHxHpXR+xQZ5MZ1F4ZE/9VF
+	A==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 42gt92ka19-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 27 Oct 2024 03:19:15 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 49R7JEuJ014722
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 27 Oct 2024 03:19:14 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Sun, 27 Oct
+ 2024 03:19:14 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Sun, 27 Oct 2024 03:19:14 -0400
+Received: from kim-VirtualBox.ad.analog.com (KPALLER2-L03.ad.analog.com [10.116.18.26])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 49R7IxwL009789;
+	Sun, 27 Oct 2024 03:19:07 -0400
+From: Kim Seer Paller <kimseer.paller@analog.com>
+To: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mike Looijmans <mike.looijmans@topic.nl>
+Subject: [PATCH 1/2] dt-bindings: power/supply: Add ltc4162-f/s and ltc4015
+Date: Sun, 27 Oct 2024 15:18:51 +0800
+Message-ID: <20241027071852.56240-2-kimseer.paller@analog.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241027071852.56240-1-kimseer.paller@analog.com>
+References: <20241027071852.56240-1-kimseer.paller@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: yp_7kNsaEm6WFwCMMaaDbT2wlHhj5tg9
+X-Proofpoint-ORIG-GUID: yp_7kNsaEm6WFwCMMaaDbT2wlHhj5tg9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ phishscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1015 adultscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410270062
 
-On Sat, 26 Oct 2024 18:26:43 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+Add support for ltc4162-f/s and ltc4015
 
-> On Mon, 21 Oct 2024 14:38:52 +0200
-> Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
-> > The Allegro MicroSystems ALS31300 is a 3-D Linear Hall Effect Sensor
-> > mainly used in 3D sensing applications for head-on motion.
-> > 
-> > The device is configured over I2C, and as part of the Sensor
-> > data the temperature core is also provided.
-> > 
-> > While the device provides an IRQ gpio, it depends on a configuration
-> > programmed into the internal EEPROM, thus only the default mode
-> > is supported and buffered input via trigger is also supported
-> > to allow streaming values with the same sensing timestamp.
-> > 
-> > The device can be configured with different sensitivities in factory,
-> > but the sensitivity value used to calculate value into the Gauss
-> > unit is not available from registers, thus the sensitivity is
-> > provided by the compatible/device-id string which is based
-> > on the part number as described in the datasheet page 2.
-> >     
-> > The datasheet is available on the product website at [1].
-> > 
-> > [1] https://www.allegromicro.com/en/products/sense/linear-and-angular-position/linear-position-sensor-ics/als31300
-> > 
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>  
-> Nice work. Applied to the togreg branch of iio.git and pushed out as testing
-> to let 0-day take a first look at it.
-And dropped again so you can respond to Andy's feedback.
+- Add compatible entries for ltc4162-f/s and ltc4015
+- Include datasheets for new devices
 
-Thanks,
+Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+---
+ .../devicetree/bindings/power/supply/ltc4162-l.yaml         | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Jonathan
-> 
-> Thanks,
-> 
-> Jonathan
-> 
+diff --git a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+index 29d536541..9b546150d 100644
+--- a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
++++ b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+@@ -17,12 +17,18 @@ description: |
+   panels, etc., and a rechargeable Lithium-Ion/Polymer battery.
+ 
+   Specifications about the charger can be found at:
++    https://www.analog.com/en/products/ltc4162-l.html
++    https://www.analog.com/en/products/ltc4162-f.html
+     https://www.analog.com/en/products/ltc4162-s.html
++    https://www.analog.com/en/products/ltc4015.html
+ 
+ properties:
+   compatible:
+     enum:
+       - lltc,ltc4162-l
++      - lltc,ltc4162-f
++      - lltc,ltc4162-s
++      - lltc,ltc4015
+ 
+   reg:
+     maxItems: 1
+-- 
+2.34.1
 
 
