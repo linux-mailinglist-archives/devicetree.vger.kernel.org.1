@@ -1,249 +1,143 @@
-Return-Path: <devicetree+bounces-116400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AC39B2BC9
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:46:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F27D09B2C06
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 10:53:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16F3E1F23A42
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:46:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 301D21C2193B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 09:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B641CCB57;
-	Mon, 28 Oct 2024 09:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09AF1CC890;
+	Mon, 28 Oct 2024 09:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KduwlZCD"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iwWl6bP5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF70C1CDA36
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 09:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD701CCB57
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 09:51:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730108791; cv=none; b=Awfjf1TdtKjMrPcBB0RRHGwLPtJ8tnGNMHclT4c9jG/6Xf6sJgjTbjHrbCiztFKZTVyLhJlYGHqsuv70xFykhgNkVqiBI19qa740gHlV6uVYKhpU5jCvTMqP60I1P9kYMIBw5miAA9gg6sICRg6WmJLkly58CuQAl7E7DIdcs3g=
+	t=1730109097; cv=none; b=IbAawUau2O/+AS3cNt6EcwqHDWEG1aDQeB/9GAxZ6+om0Y+U38TXZhh2FEr58vmADy4Cii5x9wOO50JPd8J+GR8t0U7aBxcNAjlbScXO5md1euG29Dj4DcMbOtmaN/mp/OLAm8Oab67vCk79PsFvC+7iyyebrlW4k5MLjAvMV/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730108791; c=relaxed/simple;
-	bh=v4dpwmXgnuwsF8/yHD3adPEz8Eg0U6STihDIIRZ4nRo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=m5TYDPBhtwkRcAGDcNDAyetcmEY9RgXtSQ2Fvp3pgoI8OLlZYHB/omQ1HfTJDbSAnc0XDj158SsA3Ob7JkDXIYq/mkIhyKwGD7daD/2pUlIQUYtK2pNqt1pJDBImj4gG2ZYE9N1KrzEHbFkwoTkuktbCzP3WSb6oZhgZNcvZ8I8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KduwlZCD; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb498a92f6so38526571fa.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 02:46:28 -0700 (PDT)
+	s=arc-20240116; t=1730109097; c=relaxed/simple;
+	bh=3BRXW9cfwpRrct9tKvtj+L6tY1rhh5qfZ00d6rDfbMM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uuS5/OanEhUgdeawnHbWIsjtUG5RETDmdBKfwINH0yllgOowj6nrwqDFytVYNCf/lyKud8A07Y0L8GlEQCdz2L8KwYw4lvJZG3Ed1E4QKi3ha8BXsxl2M9AhOYVo4ftcQ3I01Bd4SkUWJ79JchWU5IDJpgeKRFwAXLzyD3AX/NA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iwWl6bP5; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539f0f9ee49so4196381e87.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 02:51:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730108787; x=1730713587; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hxtPA/U78ERZ+ppdXXWbhxnMqxfDhJ72xcfBzWrzRXU=;
-        b=KduwlZCDpiSWHrxE4TjogmHV0AQ4300WryUpAwNVncBZBXX20M1T5Uz6ftXDQlkGie
-         F7RefrfeYA4BhLJdAyNlwJ63RsNALctBYxHrcthH2Cg2Amhn7z4oNKt7tDo3w0Uht9rU
-         GMhtZv/uaPrhR+bZxwdy4PpbeeG3m9V0KZLkwZzo+2s/5MU7wULTKqIiRppYZiyIRAZB
-         5tIafiG4DS3ZLpSbcSyPfUCeBC3cbzE8II5p0haVZt30T8BtgvQiRIDGqWIQqxXvqmU6
-         +JsSWIgq30L7dAi+RkNwR3P6Mx+xKQcrxjjMGC5mEte0uJygvvj+PWePjeFIHhAd5Qlo
-         mZig==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730109093; x=1730713893; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/Q2Vq68zV8lSK5qFKnxVcbIkIPK3/umhpkN3DusMj+A=;
+        b=iwWl6bP5fevhvtPEyab472nGCsItJcD3l2yQDzH9DO3reEyCZo+QrbUmsc9DBOCIO3
+         qtjV25zw6Z4WwC1PEBkdL7QnsElF3NP6QLkuqNifyrB9GBhB3V4nDzOMT8LwAzcD+0NX
+         ymBDMyqn3WQlbDa0GuXDDy1guc7XXBFHF1jLPcXeq07ed+/nyAqb0FlY4LiXLFK71488
+         /aut02/p3r3IuuXfu/YXG3LJra6q15Xy93DEB9PlmuAWNB0JvebPzi7VqcjFrkiOH8S/
+         I3HpZxWDh4buqxhmNyUo1Exujm6oxXi4/+0DLEk7ff6BRCZ89WfX15BP1rEGHAyfwHM9
+         BeCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730108787; x=1730713587;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=hxtPA/U78ERZ+ppdXXWbhxnMqxfDhJ72xcfBzWrzRXU=;
-        b=VNxj0F6CCu0bnw/v8HYyW/c4b5DYBFh0fTQxk4XH3A17ftaV4rfReOzFOQMGfWEAj3
-         XNb4Z4wT8D8BgqeLY2xkWbTvQLpcxkewoIJzCprX7TvN1zwEwfgH+kKW91h57jb7aPzJ
-         7wNzpI6uTl8YWnjdTY6ou+TtLRb2YhwfyPPkiA47Mw/ws3xf3V4Sedt2lbqqCvFCGDAo
-         9yCVrE1Sthd2WSjpaMtuHqglW2nHAoyAU6VRpTQMKNA1oYAxq4o7vXVNucOm60m+ZTgu
-         sNLlEue5YBfecQTvo5Rph06uj0N4MRU9BwVPkaTOwgFjcJ66++HLfrQ8TMt7V21Y/TxI
-         j4EA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjm50IHoRKHPK5VplA4E0/O3n3T+oX5k/PSqqBN5eTLeRxQSKaKVCqVXi/IFzNqtSRCfddvknX8mHk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzl51T1aeauMmx4AVAzbhGdW7qaY1rZy+p1oyzY6SyPy7VyqamX
-	2MO8ViWJLAr9pObDgEMzcAWHftRLTX5mtGm1mp3xk3OKWSxAyI8qy6fn3/lqKhE=
-X-Google-Smtp-Source: AGHT+IFWhDgOD4KwMZ5u7zjg9xk4YCKQ/VGKmAhMl71E6/XB3UI+mDlDu4avbbZcnOkfYTddUxKcDw==
-X-Received: by 2002:a05:651c:b20:b0:2fb:3bc0:9c7c with SMTP id 38308e7fff4ca-2fcbe005e17mr28310221fa.25.1730108786669;
-        Mon, 28 Oct 2024 02:46:26 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c11d:e163:200e:8a5d? ([2a01:e0a:982:cbb0:c11d:e163:200e:8a5d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431935a4ad8sm103872435e9.23.2024.10.28.02.46.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Oct 2024 02:46:26 -0700 (PDT)
-Message-ID: <a0c30691-ad28-4217-bf46-924fca5f48de@linaro.org>
-Date: Mon, 28 Oct 2024 10:46:24 +0100
+        d=1e100.net; s=20230601; t=1730109093; x=1730713893;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/Q2Vq68zV8lSK5qFKnxVcbIkIPK3/umhpkN3DusMj+A=;
+        b=bpAx0ef9emBHP6zlvaTzHnC6yQt2LQJ59rV2hv3/nHbUMP9IysOQcxnKCbhoF3HWNg
+         gnEo09b6DopjMy8EVlT0+3Q7VjO/Rqd6dOPiV5y1BECjYoz7RAkq2Mssxql5Xqns5OEt
+         1I9fZA12BklutPf5BEyIaeVs6OVp91KiRt7r9N5c23K+pf56El3HlWXCCOc1LyHOZftV
+         TFNbSrNg9WbrgdkCGZrS9CN/aQAySnH3IdT6WdoqSKnto/fmLDPpe7/KH7LZ7HGrlv3r
+         szud0GR1jZGXRd9ecW6OsRA0lUbqzhLA1W2fvQ+fCbNl9JHJLzT6Qv/fRk+spNwqVrcN
+         Zfvg==
+X-Forwarded-Encrypted: i=1; AJvYcCXk9fn0qGTbRktQOOCZs/uY6FgKR6HgJjsgQJFc/icWcXGoTpaGmf5vKQp9xLqNAqlZ1a4WK12/IrX2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKH/btWEajx7kknTIAHISOeRCJG3gftHQ6S1DiDRHQe7vZhl9r
+	4rN/STl2S8f7IDEJHMmhLlTNi8Koxj/IyFzXjW7/5FFu5+FLpNCB2b/8H2RGgJo=
+X-Google-Smtp-Source: AGHT+IHjcfJa14H/SQSNgrFHuJxjbRUq2w4+D9jz+bOQbYbSL65kTl/qkW2DyzH2S1XfD/ePgHM8vw==
+X-Received: by 2002:a05:6512:1314:b0:534:3cdc:dbef with SMTP id 2adb3069b0e04-53b3491cd2amr3489723e87.43.1730109092634;
+        Mon, 28 Oct 2024 02:51:32 -0700 (PDT)
+Received: from localhost (p50915d2d.dip0.t-ipconnect.de. [80.145.93.45])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4318b55f689sm134212505e9.16.2024.10.28.02.51.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Oct 2024 02:51:32 -0700 (PDT)
+Date: Mon, 28 Oct 2024 10:51:30 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Dumitru Ceclan <dumitru.ceclan@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Nuno Sa <nuno.sa@analog.com>, devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: adi,ad7124: Allow
+ specifications of a gpio for irq line
+Message-ID: <r4nk5euogq5k42exp2y3ujzwnwxvjocsa3g4qnipyesnbtulgy@k6m4bhvlhexx>
+References: <20241024171703.201436-5-u.kleine-koenig@baylibre.com>
+ <20241024171703.201436-6-u.kleine-koenig@baylibre.com>
+ <20241027212622.GA101617-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
- SoCs
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
- <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
- <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
- <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
- <4127b448-a914-4c69-b938-29512995326f@amlogic.com>
- <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
- <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
- <5ad8f396-84a5-486d-b90d-98fbf8882d1b@linaro.org>
- <e6cd13b5-2f7a-4ab1-899c-5867bc0ea64f@kernel.org>
- <fdb4d0eb-a5e5-4061-b3cc-14958473baf3@linaro.org>
- <c8a03fa6-9ac5-434f-ba13-78e47ad341b8@kernel.org>
- <f6c4cee8-dd22-4b30-a3b2-aee48e2c3611@linaro.org>
- <91bcc765-2e56-433d-a629-c5255fc8d256@kernel.org>
- <24acd645-4094-48aa-82e3-42d30a340884@amlogic.com>
- <78e6ca30-9fd6-4384-9583-440c485fb8ed@linaro.org>
- <d4ae04da-d841-49e8-be88-b0fe0c7b3de5@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <d4ae04da-d841-49e8-be88-b0fe0c7b3de5@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="agmvgdfrxefc2bxl"
+Content-Disposition: inline
+In-Reply-To: <20241027212622.GA101617-robh@kernel.org>
 
-On 28/10/2024 10:36, Xianwei Zhao wrote:
-> Hi Neil,
->     Thanks for your advice.
-> 
-> On 2024/10/28 17:09, neil.armstrong@linaro.org wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On 28/10/2024 10:07, Xianwei Zhao wrote:
->>> Hi Neil,
->>>      Based on the current discussion results, GPIO index macro definition does not belong to bindings. If so, the pinctrl driver keeps the existing architecture, and use numbers instead in dts file. Or the pinctrl driver use bank mode acess, this may not be compatible with existing frameworks. This is done by adding of_xlate hook functions in pinctrl_chip struct.
->>>
->>> What is your advice that I can implement in the next version. Thanks!
->>
->> Keep the driver as-is, but move the header file into arch/arm64/boot/dts/amlogic like it was done for the last reset controller support:
->> arch/arm64/boot/dts/amlogic/amlogic-t7-reset.h
->>
-> 
-> I don't see examples C file applies dts header file.
-> C file need to be defined once, and this needs to be defined again in dts header file.
 
-Sorry could you rephrase, the sentence isn't clear.
+--agmvgdfrxefc2bxl
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: adi,ad7124: Allow
+ specifications of a gpio for irq line
+MIME-Version: 1.0
 
-Neil
+Hello Rob,
 
-> 
->> Neil
->>
->>>
->>> On 2024/10/21 23:27, Krzysztof Kozlowski wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>
->>>> On 21/10/2024 12:38, neil.armstrong@linaro.org wrote:
->>>>>>> ====><=================
->>>>>>> +/* Standard port */
->>>>>>> +#define GPIOB_START        0
->>>>>>> +#define GPIOB_NUM  14
->>>>>>> +
->>>>>>> +#define GPIOD_START        (GPIOB_START + GPIOB_NUM)
->>>>>>> +#define GPIOD_NUM  16
->>>>>>> +
->>>>>>> +#define GPIOE_START        (GPIOD_START + GPIOD_NUM)
->>>>>>> +#define GPIOE_NUM  2
->>>>>>> +
->>>>>>> +#define GPIOT_START        (GPIOE_START + GPIOE_NUM)
->>>>>>> +#define GPIOT_NUM  23
->>>>>>> +
->>>>>>> +#define GPIOX_START        (GPIOT_START + GPIOT_NUM)
->>>>>>> +#define GPIOX_NUM  18
->>>>>>> +
->>>>>>> +#define PERIPHS_PIN_NUM    (GPIOX_START + GPIOX_NUM)
->>>>>>> +
->>>>>>> +/* Aobus port */
->>>>>>> +#define GPIOAO_START       0
->>>>>>> +#define GPIOAO_NUM 7
->>>>>>> +
->>>>>>> +/* It's a special definition, put at the end, just 1 num */
->>>>>>> +#define    GPIO_TEST_N     (GPIOAO_START +  GPIOAO_NUM)
->>>>>>> +#define    AOBUS_PIN_NUM   (GPIO_TEST_N + 1)
->>>>>>> +
->>>>>>> +#define AMLOGIC_GPIO(port, offset) (port##_START + (offset))
->>>>>>> ====><=================
->>>>>>>
->>>>>>> is exactly what rob asked for, and you nacked it.
->>>>>>
->>>>>> No, this is not what was asked, at least according to my understanding.
->>>>>> Number of GPIOs is not an ABI. Neither is their relationship, where one
->>>>>> starts and other ends.
->>>>>
->>>>> I confirm this need some work, but it moved the per-pin define to start
->>>>> and ranges, so what did rob expect ?
->>>>>
->>>>>>
->>>>>> Maybe I missed something, but I could not find any users of these in the
->>>>>> DTS. Look:
->>>>>>
->>>>>> https://lore.kernel.org/all/20241014-a4_pinctrl-v2-3-3e74a65c285e@amlogic.com/
->>>>>
->>>>> So you want consumers before the bindings ? strange argument
->>>>>
->>>>>>
->>>>>> Where is any of above defines?
->>>>>>
->>>>>> Maybe they will be visible in the consumer code, but I did not imagine
->>>>>> such use. You expect:
->>>>>> reset-gpios = <&ctrl GPIOAO_START 1>???
->>>>>
->>>>> No I expect:
->>>>> reset-gpios = <&ctrl AMLOGIC_GPIO(B, 0) 1>;
->>>>>
->>>>> but the macro should go along the dts like we did for the reset defines,
->>>>> so perhaps this is the solution ?
->>>>
->>>> OK, so I said it was not a binding:
->>>> https://lore.kernel.org/all/u4afxqc3ludsic4n3hs3r3drg3ftmsbcwfjltic2mb66foo47x@xe57gltl77hq/
->>>>
->>>> and you here confirm, if I understood you correctly, that it goes with
->>>> the DTS like reset defines (I assume non-ID like defines?), so also not
->>>> a binding?
->>>>
->>>> What are we disagreeing with?
->>>>
->>>> Just to recall, Jerome asked whether you have to now use arbitrary
->>>> numbers in DTS and my answer was: not. It's still the same answer.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>
+On Sun, Oct 27, 2024 at 04:26:22PM -0500, Rob Herring wrote:
+> On Thu, Oct 24, 2024 at 07:17:03PM +0200, Uwe Kleine-K=C3=B6nig wrote:
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> > index 35ed04350e28..feb3a41a148e 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> > @@ -37,6 +37,9 @@ properties:
+> >      description: IRQ line for the ADC
+> >      maxItems: 1
+> > =20
+> > +  interrupt-gpios:
+>=20
+> Name it for the pin/signal, not how you are going to use it: rdy-gpios
 
+Good idea. The line is called =CC=85=CC=85R=CC=85D=CC=85Y, is rdy-gpios sti=
+ll right? I'd
+consider nRDY-gpios.
+
+Best regards
+Uwe
+
+--agmvgdfrxefc2bxl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcfXqAACgkQj4D7WH0S
+/k7alQgApsx6F2quNu2e06rW4u3J4CkxuDjFu6ENEZXXKBeC7/IctIP7MpEtCPrK
+zt4r2zEmulWJl+vW0cXIpf0UZ1xBW9OrxPfVLqZhiGe1JG6LLtbFhcWxDH1PwYgZ
+tSdnMjk+WdIQY0p9XqACWDATlDr2hCkLi6xjGBNS6SLpHJHz6Ke70o1e7AYqd5re
+LT9+8CuaPWxbQShpZYfqdwLDwC60O63tOb9QEbtP3OkQUSdte1HIPRCyxj5G6tEa
+b7F8Z2/fTv6I9pyQCyUYawDpezsttmohpl1sgnhwoeFL00UpsWqx4yBTyHjPfui8
+n/EUo8jv04/jUIY7V+0jMNoh5GIMmA==
+=6AQK
+-----END PGP SIGNATURE-----
+
+--agmvgdfrxefc2bxl--
 
