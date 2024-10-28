@@ -1,131 +1,141 @@
-Return-Path: <devicetree+bounces-116490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44A349B30D4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:47:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD049B30D5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 13:47:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 767371C2176A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:47:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4015B282B3B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 12:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4CA1D63D2;
-	Mon, 28 Oct 2024 12:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41E91DA0EB;
+	Mon, 28 Oct 2024 12:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WkfXQba/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pnm9cACf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002DB1CC89D
-	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 12:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80891D9320
+	for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 12:46:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730119574; cv=none; b=hWPHYZOpSddng6OJOMHHORjsFNu0GLm434zdsUJDzvE8urcwZP5Rt3Y/HzpAorpmLqwNtwX2R+G5gbDM4/blzld7SL8tUF5PFEuGat8PT6BQ6+tiUxuh3+4U6pIJoDYUz1MHI/85+loOfsmMx92FvVQ0RpoMaZfl0q3c/onEWdM=
+	t=1730119587; cv=none; b=UtBYY2+PQ2+6kvZdC4TiruvsD6SfQ6G2S7bUeIoY/KPoj0rgzfhv5uuN9bSclaYtBnFILf5BmmwjPL0nvc5TeaQzbNI5YHiCh28g0u6OVqDceUGSc2NKzz5gRtes+bOvBAnDkNOGKljuY7fQrGO/JDEuRpYj8KwPWwMInEOT15c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730119574; c=relaxed/simple;
-	bh=wAkvCZwiROJTMp0FvIMxx0wZ+f/xjsjOreX8QGz/IF4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=AjUIsA0RDU3AMFDcw0J82AGUdMjQTfplKRxZqkoUb394Q6RQF1j7qulhQ+0tztlMIZjuMmG6Yg4XLY5hkJcGv2NeDXV/cB+rgubHpJDSEcg6S0crKW5AhUxZmP1utxxGSCtx+hfWW8BcPiTmkNoGGBcQ4wnaZOYRDKwwfgboiZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WkfXQba/; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-20cf6eea3c0so32824755ad.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 05:46:12 -0700 (PDT)
+	s=arc-20240116; t=1730119587; c=relaxed/simple;
+	bh=+AitCXjKq04W7cgcQoh9oz7Gk+0bO2Nu1FQBG5LO1zE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ScPsefN8oHc06buCHFOTh9l4+QPxXeZobqdwoWp/+yW+Rj5rsHh+pI9a+1GpftQgaTBozOJQ10wIfjWf2egJNjRVZoZos4hnqYFGn8Rh8gTiK0GQfc/+9osVUK6GK+Oaql0xQhEoPGy032NZ08+XhutsN2t4iSrysE3q/6McvZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pnm9cACf; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-539fbe22ac0so4218452e87.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2024 05:46:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1730119572; x=1730724372; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=idA2hEcUdIZdPkR2DtLiEItPPio04naz2YdamBrPyD0=;
-        b=WkfXQba/8WpV62o2D8qTrpIO93wt46xzbWjAbij2TS36e5+hgZhA02wXcIrx64P7jP
-         N+T/OldZbOgRF/NxYJOXijVFhH1hSh4hkahsSb8gWd/w5eAHE/fUcXghC1jT7NQff7Ky
-         lT+aeXfM2lEAbU2l5UdF14m6lJMYanp9TjxDe3UM2F5bzkMeVdFyBETLH9RNEYT/FwG8
-         LAaLwMLNLb8F9s9mMcsg4YIX5iBzB3I4DvTrc+/PfLf0lDV0+s+kdSUouVNgDTtyGOgg
-         R0YXemXOR7xmz+rutN/wy9ltL84gcDOkL0NflRC0aN1FDbQ0BC6msM9uDYOVzHfZs2o5
-         SEyQ==
+        d=linaro.org; s=google; t=1730119584; x=1730724384; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+aSTTKcsEues9Slud5u2I4oUCfkMRIvmSj7eb96RQ74=;
+        b=Pnm9cACf0iOoVU40zZmmphsUqrD5CybLxo0O3rfC/DyG0LoGwbLFSyaNR6XlT+/dBL
+         XOQajbOLN42d5A4hd5aJQUv2gLGf+YzQ9eHYRzt1KTSoNwCp8O5dwjbQLHTSg3qEkvKu
+         5WYABkz35HIOBttURkEfxl4bIpy+6Ur9CSty3NuS8Zwpx5e7q+rKwt4Cr792whTc9fgc
+         eyqW4Il7WhrQKG+vB5W79v09QVW/SSPjAB987UCcRZCMhJjdFa3z9IEcreDQ4o9h9Elj
+         juUr5YFjJ8rJuJrV6cFiU/Qi3UJHO01JFRUxbB8p79u+WbCsxvQDt0upFFhbjMrqunKF
+         Hynw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730119572; x=1730724372;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=idA2hEcUdIZdPkR2DtLiEItPPio04naz2YdamBrPyD0=;
-        b=IotCaMuWMPiwRMV/8os4P9lpTbluMLibPaAPOnymp6JsgwtltZTnUQqPNBvqAoRmKv
-         urs7sFBeTFyZRkQGAqTbmFMrfikV04llkJMxdPFpKgSqePBPQqyMaWrB+JN758ON8jIo
-         A1ljyDgnLCPInA4TQ5pnII68rCi7jIJUtL85LN8yRxEWjfPYgiGaO46fmotAyZAxmze+
-         LaB6SeHrDrQoxUitVPF9cVQWydU269M01gJ0BChxvx1o+9B4ZEoFnX7zqlo3FSkNTxXR
-         pBxMWoL71dIiLajftWq4nVx3TWYzvEsvzZcQCERxJ+SA0fGgj0sBuXcNJgMloKIMXlzR
-         YZNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXwETZsN0vw/cSng585rjvyWXros/9cwjGomhjOJdw0TyTA4RhbVXg6v0KxKaW5qJpl3TwcyyNHMoOO@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYfiBjzrlnA+T5k6ykglXGjuv6yQqDrb2h6L6Sf4l2UFQKmKP9
-	NAeZlcmpyM6MgIx/4mCJTowvPEJZvCXYsRYzl5qZy3CTfjaGrRfy
-X-Google-Smtp-Source: AGHT+IEhWhO8jWtASWcjVnLJnH+2CiugnkO8wyv3J5+FMlEyhT7K9Ky7XdsE9koqPkJFrgnGLvmvEw==
-X-Received: by 2002:a17:902:db0f:b0:20c:cf39:fe3c with SMTP id d9443c01a7336-210c6c34824mr111646485ad.41.1730119572121;
-        Mon, 28 Oct 2024 05:46:12 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:325c:8d87:ee5c:f04e])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bc017858sm49969895ad.134.2024.10.28.05.46.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2024 05:46:11 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: imx6sll: Improve gpc description
-Date: Mon, 28 Oct 2024 09:45:45 -0300
-Message-Id: <20241028124545.72652-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1730119584; x=1730724384;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+aSTTKcsEues9Slud5u2I4oUCfkMRIvmSj7eb96RQ74=;
+        b=Y1xmMBPs4itMIqmtLpDNGOOThEPJgbhnEa4E6i24+ZY3olqjiHeOxNpUw5tKtjlWcy
+         bliSvyse2AUtNQaVCF1fQx2It7ef2JtZBEyPKYrP17EtVgtAcbVRlGaoz26m/R5NkJbj
+         b34G3sW3m2X5oNnpxsZ2D9t25NFm0zP7zIFniED8j/ZceLsDjR9JoQnVAVFy9bBDLHhJ
+         LgaS0ZrHGcbXhBXTgW4UNFstEYPdPyIiYiExLDxOa7FB/mvOyFUmt0ehz6yIqgsbtOiY
+         UmKA6E99ElAnqBvvNPqVtpXi8oXThIQFFBVshfoR3iOuGuCDXq+d5dFrOC5YffR4074B
+         Fc2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWIo9WfVdcmKYV9htGXlBQ8StLGiVuOgwxhaRS6ccD7DdClOiie9r/eDbAEI5/2/88WrNX68WVbSni/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWgtpnyFLN4OR3IMdiVXtxIjf87xMpIqhi8MBenS6Z3lxJHn+s
+	zysL7KAIvdJ0/RdExqcPyEHvm3PpMnNwusJnApo8cZnOjKlsm6TFj3DZofXBxqgzGSJ/mlJaQ+D
+	c9Wj5fjjWjfWSPiK1pDj9TmuzzjHuEmFsHxVsiw==
+X-Google-Smtp-Source: AGHT+IHKBOt7btwvvrMi093N8L0HSsxQd++C6ep3baxxUYVZr5QdfiIpCSS/MoaRNRGceN2TTToscxI5mPA8SlKe6OY=
+X-Received: by 2002:a05:6512:318d:b0:539:f65b:401 with SMTP id
+ 2adb3069b0e04-53b34c463d9mr2861815e87.57.1730119583728; Mon, 28 Oct 2024
+ 05:46:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1730070570.git.jahau@rocketmail.com> <d92ef0036b66520bb6d1ec908165e776cf30c303.1730070570.git.jahau@rocketmail.com>
+In-Reply-To: <d92ef0036b66520bb6d1ec908165e776cf30c303.1730070570.git.jahau@rocketmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 28 Oct 2024 13:46:11 +0100
+Message-ID: <CACRpkdZSxvLri-9CQQMuFP-Q4UswoJq4YDySWR0GXz0=+xcLiw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] drm/panel: samsung-s6e88a0-ams427ap24: Add initial driver
+To: Jakob Hauser <jahau@rocketmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Fabio Estevam <festevam@denx.de>
+On Mon, Oct 28, 2024 at 12:42=E2=80=AFAM Jakob Hauser <jahau@rocketmail.com=
+> wrote:
 
-According to fsl,imx-gpc.yaml, 'clocks', 'clock-names', and 'pgc'
-are required properties.
+> This initial part of the panel driver was mostly generated by the
+> "linux-mdss-dsi-panel-driver-generator" tool [1], reading downstream
+> Android kernel file "dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi" [2=
+].
+>
+> On top of the generic output of the tool, there were a couple of changes
+> applied:
+> - Added mipi_dsi_dcs_set_display_on() to function s6e88a0_ams427ap24_on()=
+,
+>   otherwise the display does not show up.
+> - In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off()
+>   changed DSI commands to multi context and used "accum_err" returns.
+> - In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off() repla=
+ced
+>   msleep() by mipi_dsi_msleep().
+> - The function s6e88a0_ams427ap24_get_modes() was changed to make use of
+>   drm_connector_helper_get_modes_fixed(). This also required to include
+>   drm/drm_probe_helper.h.
+> - In function s6e88a0_ams427ap24_probe() registring the regulators was ch=
+anged
+>   to devm_regulator_bulk_get_const(). This required to change supplies in=
+ struct
+>   s6e88a0_ams427ap24 to a pointer.
+> - Removed bool "prepared" from struct s6e88a0_ams427ap24 and according pa=
+rts in
+>   functions s6e88a0_ams427ap24_prepare() and s6e88a0_ams427ap24_unprepare=
+().
+> - Removed include <linux/of.h>, it's not needed.
+> - Added comments to the mipi_dsi_dcs_write_seq_multi() lines in function
+>   s6e88a0_ams427ap24_on().
+>
+> [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-gener=
+ator
+> [2] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/d=
+rivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP=
+24_qhd_octa_video.dtsi
+>
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
 
-Describe them to fix the following dt-schema warnings:
+Comments instead of #defines?
 
-interrupt-controller@20dc000: 'clocks' is a required property
-interrupt-controller@20dc000: 'clock-names' is a required property
-interrupt-controller@20dc000: 'pgc' is a required property
+OK then, it's readable too.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/nxp/imx/imx6sll.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-index 85fe2a4ab97a..d219c2b67294 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-@@ -602,6 +602,18 @@ gpc: interrupt-controller@20dc000 {
- 				#interrupt-cells = <3>;
- 				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&intc>;
-+				clocks = <&clks IMX6SLL_CLK_IPG>;
-+				clock-names = "ipg";
-+
-+				pgc {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					power-domain@0 {
-+						reg = <0>;
-+						#power-domain-cells = <0>;
-+					};
-+				};
- 			};
- 
- 			iomuxc: pinctrl@20e0000 {
--- 
-2.34.1
-
+Yours,
+Linus Walleij
 
