@@ -1,120 +1,132 @@
-Return-Path: <devicetree+bounces-116582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC969B3511
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:38:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB0B9B3479
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 16:09:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C4F01F214C6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:38:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C30D280F3A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 15:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454B71DE3B5;
-	Mon, 28 Oct 2024 15:38:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6981DE3BE;
+	Mon, 28 Oct 2024 15:09:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="aB0OraB1"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="b+vT8B6q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA0A1DDC13;
-	Mon, 28 Oct 2024 15:38:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE638185B68;
+	Mon, 28 Oct 2024 15:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730129925; cv=none; b=Ow2WOK0t1Qv6tF926IwTpge9Ee5+DO+xuoUwJlYwpV7vsaMqUEcfn8exm9M2uRKXwgmNMiGeF2/FQ0U9Z/8/t6DTlA1L/kpPkpNnYTnOfWsz/ovMuU64aETfNle17MX0ghV6GiNRTGtG11i7oZqxLbLgH0Yd92pqqP57Vd31Iko=
+	t=1730128150; cv=none; b=Utv0PZmp9hZWmGEXj1scwyVcayjAB38MscGKBAP+pI298Wb0LQlOFwH3Dn1OhKZPZCXwTI0rmjYa6TwhIVOUS0sS8vnscCHrrif+aC5oGouK5CfxZWFiw9RJgiLYmAk+JH5IjQVbg/QSEHMdZP40Cde3RIwdRH4IPSCidqtD9gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730129925; c=relaxed/simple;
-	bh=gaA1FXCRnUA4p8HJeCOLasHPl+EKQWo/TWi9FoBC/PM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hYI9/KMzvUbV545re8BcGESzP0JpX8ELM67bxlzXReW+vTsQrbXaYdAT8pPSiDDd0l09mGtgK+FIJ8oW46LYjKSSQzo2aoy/VAna2JhFlzdxrtVYl4wWs9QgGU6TmcaZ6qocQ+wDYlDF5bcoUJtpJeOWcG8KZ9SozkIZxyQJwYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=aB0OraB1; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id C380688D06;
-	Mon, 28 Oct 2024 16:38:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1730129921;
-	bh=6XbJkeIa3iLwKBXFzr8b4G+oAY5+6vfUzf/eFUGme14=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aB0OraB1C39n7VIdst2KqQvnjeHhYTqCLt09iV2LL5wePYEt2/SujwSqCJd2MQio0
-	 bcseKVq/zkxFocl9Y7wzaOz4gU97bVEELRCU+VVnpZ+XjZBMehQcszJmqRBkleaISz
-	 V7DRvI1jJkxGP4jJRj6WJKi2bXO7HlMl4tSCkheaBqkZyI0S5EzMRoXDsXWyXxAWAL
-	 Yd90pn7oEPz3qKUxVLUyQVPJCVCv/9vnppDkY3n+IuLWq2hhXHRuyuO0lQ49WkgcO/
-	 4lZMBgqvlWhLQJ/h0XR9Lv3kdRc9L/6UYMGrGdeGE+JzuGLJEeFDUwH+eNlbRO83ui
-	 S9czEDYBpKimA==
-Message-ID: <c9c5064e-e780-4bfe-b85d-7930df7a5443@denx.de>
-Date: Mon, 28 Oct 2024 15:47:25 +0100
+	s=arc-20240116; t=1730128150; c=relaxed/simple;
+	bh=neoFJQoBplIOMB2Oli0Va+P0LfEckZZNG2EuEzQElTg=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=e4VAyQk4egwO10WoO5EhgqD04voYkmHHziPYuPKQ07Gw3AGHZp/RmkZm72XA0w/ydXzkIEaVwU3RCbYoAjrpBDbAfeJwqI99+tSnWOmFJWrxgqCkG2Vdet1CfhUssvbHuvTPMRPijw0kELmL3ufoDZMlMBKsra0nUawOXrCD+Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=b+vT8B6q; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49SF8JL1091957;
+	Mon, 28 Oct 2024 10:08:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1730128099;
+	bh=PcG6NepwaS5v72y5EW4BrZy3aZfCt9DWG2OfGvOadBQ=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=b+vT8B6q2raKBHSXuY35w2rCwScPCPJi5zOj91ho3/XcT4GZlyJkCGMufrCEjMs4O
+	 ZDNJvlPRfsafg3PhRB1HPR0cetK/SZA5vYZWCack5ewd3SJTq1KR4Q1msiGhrRmR95
+	 cWHYyyaCryvomCR6UxZpkfMAU6SoZ3sVg8kNfCVg=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SF8Jsq057726;
+	Mon, 28 Oct 2024 10:08:19 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 28
+ Oct 2024 10:08:18 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 28 Oct 2024 10:08:18 -0500
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49SF5tcs129665;
+	Mon, 28 Oct 2024 10:08:15 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: William Breathitt Gray <wbg@kernel.org>, Judith Mendez <jm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>, David Lechner
+	<david@lechnology.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v6 0/5] Enable eQEP DT support for Sitara K3 platforms
+Date: Mon, 28 Oct 2024 20:35:24 +0530
+Message-ID: <173012710989.558239.256253831200168385.b4-ty@ti.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20240924220700.886313-1-jm@ti.com>
+References: <20240924220700.886313-1-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20241024095539.1637280-1-herve.codina@bootlin.com>
- <20241024095539.1637280-3-herve.codina@bootlin.com>
- <78a09625-6bad-4fda-8ee5-92b8dd0de381@denx.de>
- <20241028090220.1fd803ff@bootlin.com>
- <16edb769-a608-4b6a-9391-a63a69df8c8d@denx.de>
- <20241028145259.5d520445@bootlin.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20241028145259.5d520445@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 10/28/24 2:52 PM, Herve Codina wrote:
-> Hi Marek,
+Hi Judith Mendez,
 
-Hi,
-
->>> On Sat, 26 Oct 2024 00:53:51 +0200
->>> Marek Vasut <marex@denx.de> wrote:
->>>    
->>>> On 10/24/24 11:55 AM, Herve Codina wrote:
->>>>> In some cases observed during ESD tests, the TI SN65DSI83 cannot recover
->>>>> from errors by itself. A full restart of the bridge is needed in those
->>>>> cases to have the bridge output LVDS signals again.
->>>>
->>>> I have seen the bridge being flaky sometimes, do you have any more
->>>> details of what is going on when this irrecoverable error occurs ?
->>>
->>> The panel attached to the bridge goes and stays black. That's the behavior.
->>> A full reset brings the panel back displaying frames.
->> Is there some noticeable change in 0xe0/0xe1/0xe5 registers, esp. 0xe5,
->> do they indicate the error occurred somehow ?
+On Tue, 24 Sep 2024 17:06:55 -0500, Judith Mendez wrote:
+> Git rebased the series since due to merge conflicts, part of the
+> series was not merged. Also dropped the patches that were already
+> merged.
 > 
-> 0xe5 register can signal any DSI errors (depending on when the ESD affects
-> the DSI bus) even PLL unlock bit was observed set but we didn't see any
-> relationship between the bits set in 0xe5 register and the recoverable or
-> unrecoverable behavior.
+> This patch series adds eQEP DT nodes for K3 Sitara devices:
+> - AM62x
+> - AM62ax
+> - AM62px
+> - AM64x
 > 
-> Also, in some cases, reading the register was not even possible (i2c
-> transaction nacked).
-Oh, wow, I haven't seen that one before. But this is really useful 
-information, can you please add it into the commit message for V2 ?
+> [...]
 
-Thank you
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/5] arm64: dts: ti: k3-am62-main: Add eQEP nodes
+      commit: 79e668d0d938ca05f340bd1faf37262f31c7a029
+[2/5] arm64: dts: ti: k3-am62a-main: Add eQEP nodes
+      commit: 36370ccf93bd0bd2be0c529ef7c0b687988ad3c0
+[3/5] arm64: dts: ti: k3-am62p-main: Add eQEP nodes
+      commit: 0f4a318ee64c647e2cbf7d802b8d06b03aef31e5
+[4/5] arm64: dts: ti: k3-am64-main: Add eQEP nodes
+      commit: 78b918b58e4b13ad53373882b01945106d196ff9
+[5/5] arm64: dts: ti: k3-am64x-sk: Enable eQEP
+      commit: 25da98eb3997d21e128ab75d426923a0dc23c4e4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
 
