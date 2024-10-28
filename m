@@ -1,591 +1,210 @@
-Return-Path: <devicetree+bounces-116746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-116747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD6609B3DA2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 23:21:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D139B3DB1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 23:24:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 520781F2185A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 22:21:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B973D1C20869
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2024 22:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249CB1E32DC;
-	Mon, 28 Oct 2024 22:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDBE1E1043;
+	Mon, 28 Oct 2024 22:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eThQFJzq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hUJNzU98"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E23E618B463;
-	Mon, 28 Oct 2024 22:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE5A42E414;
+	Mon, 28 Oct 2024 22:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1730154058; cv=none; b=XGl0qoG8JNZsBPHOjSBhYY3BGfhSj13wXyJJwoRwIHmS9YJu/Q7fYIYfSl40pOAN9z0TU/zqu+C+UjStHR4w4202js5QtwCvexZs/jnWbWHQ/YsmzBoVtyhf5+HW99B5rTQLdvdbotl+VL6eD6MQID0wN1HNWLRxicVD3sewGvw=
+	t=1730154264; cv=none; b=T2+fZYt3SevpQ+HgH2hCYsIjrBmPIfCKyXKIKkWO1n1h5OIaCq287AgzFY05fLfdsR+JSx3bMmocr7i7YdPiOtTFr2xMV7wwxA56CsSgX9xW4DLpyDH6LDLwfb4V8W3BCSxew5bmhnSig3GICA3cMXzyXJcX3Fa99otx+yFPCV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1730154058; c=relaxed/simple;
-	bh=WMRYUcLavYqTE8EbUvXmi+7VuPnEgFChTWF8ent1nGs=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:To:Date; b=MyQu5GcdvuKlO4zkLrMIVkTEZ0H5hluN9qY41xhe4jIuocGSqD1E/blmFA72qfqdx+Kevu/fOGtmIRMki9ap2Sa5kxR3281pKa3ncUAt4pVfdXUhI81XFn9jS9fLWWzI1VqGXWGhG+v8b2ccHdP0lrUsPYLJVhRPDd+gB2VEcL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eThQFJzq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4936AC4CEC3;
-	Mon, 28 Oct 2024 22:20:57 +0000 (UTC)
+	s=arc-20240116; t=1730154264; c=relaxed/simple;
+	bh=utzRzWn2WgVfj5Awm5sHq2hFk9MdCUocVEwrk6a3Cf8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T603dppMAoeg1H+ZS3ug1C/Ys8tOMuxm6S6+u3yJ+sSsFu8MKioXonF4FktKlqsV7iTpXF5E+6Mx9my4pasTDeNlE2I4xSJPcXANkWWMCNZidxuyOQGHY/VpuryotlQTlI5O4jZC1+mOdRZHg/fVB6tmHwKcn16t45L7u3dodus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hUJNzU98; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E376C4CEE9;
+	Mon, 28 Oct 2024 22:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730154057;
-	bh=WMRYUcLavYqTE8EbUvXmi+7VuPnEgFChTWF8ent1nGs=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=eThQFJzqw1ihWb+jcjbbv5tNbStxcjfWnv+sE1PVK0ANUT1lH/q9Mn6WxDQQ+/6JZ
-	 VBmceCKdEu7m128vPrRKJUelwViykA4O2zK7/x4uKHmh0BmNgMj1wzUk2nSERxgb6l
-	 hTPOa7JsojXTp2SYwroHEOT1Qog1P4xHsmEaPim343KqkTjCGmVuLlgCNr4UczWWlT
-	 c7h++mBHrr21zIPvwuOw80ZjMj0K4P7HKabfrF04O7A3Hrc3gjHoAh8M1v6BzlG70r
-	 xvpZ04g54Z7Aiwcq8RD2BoJ/rpJo18eiHAYerKKgZQ9LKa96ghuhyzmahp3fkHx7LN
-	 8FxGG+Ea6U5Cw==
-Message-ID: <01c2bb3609dcb32191a78293c1666b0a.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1730154264;
+	bh=utzRzWn2WgVfj5Awm5sHq2hFk9MdCUocVEwrk6a3Cf8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=hUJNzU985L4AU4CjwZtTv3dNXMiNod+1oI+SYTvzfQ57U9bxhqmNqPBhj+zl4E9YJ
+	 sk6u3jHtjXOipRJxandHioOfGoM527siAa1RX4Wk3R0o7PSMAPEzU79ZEwvA2I/kz4
+	 I+elprpyW25fTm9g/GZdSo9RBopOI7PFL1STzHl5fk6ZexEFPARA05iPPiY7Ls2DOu
+	 76r3klcDjJlME57jjnyMIuk2YakDA5ngpZlhpilAcftBh7NrUoZaVPzGcir3tbvbgi
+	 EhLt7zg/N+bct58Wi5A+Y7oSLX6hx1EMM0n55RQXkgfKEc7J/CD48kiCNu0jpfJriK
+	 gK5cvLHqlLU/g==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539e8607c2aso4949251e87.3;
+        Mon, 28 Oct 2024 15:24:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWzHXC6FMdLPPVYL14YNZIr4w257ag11qwM1Mbm6/pCvzA2mr2rFgu2KCVniKQeb33AGBfdsuqZFl4nePGH@vger.kernel.org, AJvYcCX0WyhiXfODj0izt13IXV8aUsZHOphcP5NPqhCOVyyTJeBA9wX3ArpwXanAxJQHmlmkwEy5evwFI4mJ@vger.kernel.org, AJvYcCXPaxXKa88aacTs4A/tBHsnl8zpSTvcrXP+m4zkFw3NyXdsf6iN3AigMDBmcFZPjpu5SNIhf70255o6bCTMzv8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwDbPXyMncjec39NoIU3PhbZBljsTEapZfme9xYm5dHKCxOH7f
+	TBM4QMuEZjP2RpR06EhFiTH67Ck4k5er1AWWcwiacpYmLVUdHkE+nb70DgeskrrTsw57Hr2BlK8
+	7GrEjHjsjYINjRXd3xIxsk22NSw==
+X-Google-Smtp-Source: AGHT+IE3MvKjtwnN0E1z+stXGG7L2reCi29C8P66XqcQR5Sj+SPtsxowZHkbeS+IBi+G7QFS27w/i1TDE/R6kPFZv4c=
+X-Received: by 2002:a05:6512:4020:b0:52f:d0f0:e37e with SMTP id
+ 2adb3069b0e04-53b3491ac48mr3760256e87.42.1730154262507; Mon, 28 Oct 2024
+ 15:24:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241025-rust-platform-dev-v1-0-0df8dcf7c20b@kernel.org>
+ <20241025-rust-platform-dev-v1-2-0df8dcf7c20b@kernel.org> <CAFRnB2WPEQaa6X6LqMk+JTxprguakNqFXvjaUGQ0QazxKH=z4Q@mail.gmail.com>
+In-Reply-To: <CAFRnB2WPEQaa6X6LqMk+JTxprguakNqFXvjaUGQ0QazxKH=z4Q@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 28 Oct 2024 17:24:09 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+nqFgK4D6ua+Kx8SiqCZFYaD-nse7vjPLqOLvP0hfo7A@mail.gmail.com>
+Message-ID: <CAL_Jsq+nqFgK4D6ua+Kx8SiqCZFYaD-nse7vjPLqOLvP0hfo7A@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/3] rust: Add bindings for device properties
+To: Alex Gaynor <alex.gaynor@gmail.com>
+Cc: Saravana Kannan <saravanak@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Dirk Behme <dirk.behme@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <c20e3d6d87c71691b149cdeeafc94009953346b2.1730123575.git.andrea.porta@suse.com>
-References: <cover.1730123575.git.andrea.porta@suse.com> <c20e3d6d87c71691b149cdeeafc94009953346b2.1730123575.git.andrea.porta@suse.com>
-Subject: Re: [PATCH v3 07/12] clk: rp1: Add support for clocks provided by RP1
-From: Stephen Boyd <sboyd@kernel.org>
-To: Andrea della Porta <andrea.porta@suse.com>, Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Helgaas <bhelgaas@google.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Florian Fainelli <florian.fainelli@broadcom.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Herve Codina <herve.codina@bootlin.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Krzysztof Wilczynski <kw@linux.com>, Linus Walleij <linus.walleij@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Masahiro Yamada <masahiroy@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Stefan Wahren <wahr
- enst@gmx.net>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Will Deacon <will@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
-Date: Mon, 28 Oct 2024 15:20:55 -0700
-User-Agent: alot/0.10
 
-Quoting Andrea della Porta (2024-10-28 07:07:24)
-> diff --git a/drivers/clk/clk-rp1.c b/drivers/clk/clk-rp1.c
-> new file mode 100644
-> index 000000000000..69b9cf037cb2
-> --- /dev/null
-[...]
-> +
-> +struct rp1_clockman {
-> +       struct device *dev;
-> +       void __iomem *regs;
+On Fri, Oct 25, 2024 at 4:12=E2=80=AFPM Alex Gaynor <alex.gaynor@gmail.com>=
+ wrote:
+>
+> On Fri, Oct 25, 2024 at 5:06=E2=80=AFPM Rob Herring (Arm) <robh@kernel.or=
+g> wrote:
+> >
+> > The device property API is a firmware agnostic API for reading
+> > properties from firmware (DT/ACPI) devices nodes and swnodes.
+> >
+> > While the C API takes a pointer to a caller allocated variable/buffer,
+> > the rust API is designed to return a value and can be used in struct
+> > initialization. Rust generics are also utilized to support different
+> > sizes of properties (e.g. u8, u16, u32).
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> > Not sure if we need the KVec variant, but I kept it as that was my firs=
+t
+> > pass attempt. Most callers are filling in some value in a driver data
+> > struct. Sometimes the number of elements is not known, so the caller
+> > calls to get the array size, allocs the correct size buffer, and then
+> > reads the property again to fill in the buffer.
+> >
+> > I have not implemented a wrapper for device_property_read_string(_array=
+)
+> > because that API is problematic for dynamic DT nodes. The API just
+> > returns pointer(s) into the raw DT data. We probably need to return a
+> > copy of the string(s) instead for rust.
+> >
+> > After property accessors, next up is child node accessors/iterators.
+> > ---
+> >  rust/bindings/bindings_helper.h |   1 +
+> >  rust/kernel/device.rs           | 145 ++++++++++++++++++++++++++++++++=
++++++++-
+> >  2 files changed, 145 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_h=
+elper.h
+> > index 217c776615b9..65717cc20a23 100644
+> > --- a/rust/bindings/bindings_helper.h
+> > +++ b/rust/bindings/bindings_helper.h
+> > @@ -19,6 +19,7 @@
+> >  #include <linux/pci.h>
+> >  #include <linux/phy.h>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/property.h>
+> >  #include <linux/refcount.h>
+> >  #include <linux/sched.h>
+> >  #include <linux/slab.h>
+> > diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
+> > index 0c28b1e6b004..bb66a28df890 100644
+> > --- a/rust/kernel/device.rs
+> > +++ b/rust/kernel/device.rs
+> > @@ -5,10 +5,14 @@
+> >  //! C header: [`include/linux/device.h`](srctree/include/linux/device.=
+h)
+> >
+> >  use crate::{
+> > +    alloc::KVec,
+> >      bindings,
+> > +    error::{to_result, Result},
+> > +    prelude::*,
+> > +    str::CStr,
+> >      types::{ARef, Opaque},
+> >  };
+> > -use core::{fmt, ptr};
+> > +use core::{fmt, mem::size_of, ptr};
+> >
+> >  #[cfg(CONFIG_PRINTK)]
+> >  use crate::c_str;
+> > @@ -189,6 +193,145 @@ unsafe fn printk(&self, klevel: &[u8], msg: fmt::=
+Arguments<'_>) {
+> >              )
+> >          };
+> >      }
+> > +
+> > +    /// Returns if a firmware property `name` is true or false
+> > +    pub fn property_read_bool(&self, name: &CStr) -> bool {
+> > +        unsafe { bindings::device_property_present(self.as_raw(), name=
+.as_ptr() as *const i8) }
+> > +    }
+> > +
+> > +    /// Returns if a firmware string property `name` has match for `ma=
+tch_str`
+> > +    pub fn property_match_string(&self, name: &CStr, match_str: &CStr)=
+ -> Result<usize> {
+> > +        let ret =3D unsafe {
+> > +            bindings::device_property_match_string(
+> > +                self.as_raw(),
+> > +                name.as_ptr() as *const i8,
+> > +                match_str.as_ptr() as *const i8,
+> > +            )
+> > +        };
+> > +        to_result(ret)?;
+> > +        Ok(ret as usize)
+> > +    }
+> > +
+> > +    /// Returns firmware property `name` scalar value
+> > +    ///
+> > +    /// Valid types are i8, u8, i16, u16, i32, u32, i64, u64
+> > +    pub fn property_read<T: Copy>(&self, name: &CStr) -> Result<T> {
+> > +        let mut val: [T; 1] =3D unsafe { core::mem::zeroed() };
+> > +
+> > +        Self::_property_read_array(&self, name, &mut val)?;
+> > +        Ok(val[0])
+> > +    }
+> > +
+>
+> This, and several of the other methods are unsound, because they can
+> be used to construct arbitrary types for which may not allow all bit
+> patterns. You can use:
+> https://rust.docs.kernel.org/kernel/types/trait.FromBytes.html as the
+> bound to ensure only valid types are used.
+>
+> Also, instead of using mem::zeroed(), you should use MaybeUnininit
+> (https://doc.rust-lang.org/stable/core/mem/union.MaybeUninit.html)
+> which allows you to avoid needing to zero initialize.
 
-Do you still need this if there's a regmap?
+Something like this what you had in mind?:
 
-> +       struct regmap *regmap;
-> +       spinlock_t regs_lock; /* spinlock for all clocks */
+pub fn property_read_array<T, const N: usize>(&self, name: &CStr) ->
+Result<[T; N]> {
+    let mut val: [MaybeUninit<T>; N] =3D [const { MaybeUninit::uninit() }; =
+N];
 
-Do you need this or is the spinlock in the regmap sufficient?
+    Self::_property_read_array(self, name, &mut val)?;
 
-> +
-> +       /* Must be last */
-> +       struct clk_hw_onecell_data onecell;
-> +};
-> +
-> +struct rp1_pll_core_data {
-> +       const char *name;
-
-These 'name' members can move to clk_init_data?
-
-> +       u32 cs_reg;
-> +       u32 pwr_reg;
-> +       u32 fbdiv_int_reg;
-> +       u32 fbdiv_frac_reg;
-> +       unsigned long flags;
-
-And probably flags as well? It seems like clk_init_data should be
-declared at the same time as struct rp1_pll_core_data is.
-
-> +       u32 fc0_src;
-> +};
-> +
-> +struct rp1_pll_data {
-> +       const char *name;
-> +       u32 ctrl_reg;
-> +       unsigned long flags;
-> +       u32 fc0_src;
-> +};
-> +
-> +struct rp1_pll_ph_data {
-> +       const char *name;
-> +       unsigned int phase;
-> +       unsigned int fixed_divider;
-> +       u32 ph_reg;
-> +       unsigned long flags;
-> +       u32 fc0_src;
-> +};
-> +
-> +struct rp1_pll_divider_data {
-> +       const char *name;
-> +       u32 sec_reg;
-> +       unsigned long flags;
-> +       u32 fc0_src;
-> +};
-> +
-> +struct rp1_clock_data {
-> +       const char *name;
-> +       int num_std_parents;
-> +       int num_aux_parents;
-> +       unsigned long flags;
-> +       u32 oe_mask;
-> +       u32 clk_src_mask;
-> +       u32 ctrl_reg;
-> +       u32 div_int_reg;
-> +       u32 div_frac_reg;
-> +       u32 sel_reg;
-> +       u32 div_int_max;
-> +       unsigned long max_freq;
-> +       u32 fc0_src;
-> +};
-> +
-> +struct rp1_clk_desc {
-> +       struct clk_hw *(*clk_register)(struct rp1_clockman *clockman,
-> +                                      struct rp1_clk_desc *desc);
-> +       const void *data;
-> +       struct clk_hw hw;
-> +       struct rp1_clockman *clockman;
-> +       unsigned long cached_rate;
-> +       struct clk_divider div;
-> +};
-> +
-> +#define FIELD_SET(_reg, _mask, _val)           \
-> +do {                                           \
-> +       u32 mask =3D (_mask);                     \
-> +       (_reg) &=3D ~mask;                        \
-> +       (_reg) |=3D FIELD_PREP(mask, (_val));     \
-
-Please just write
-
-	reg &=3D ~mask
-	reg |=3D FIELD_PREP(mask, val);
-
-instead of using this macro.
-
-> +} while (0)
-> +
-> +
-[...]
-> +
-> +static struct clk_hw *rp1_register_pll_core(struct rp1_clockman *clockma=
-n,
-> +                                           struct rp1_clk_desc *desc)
-> +{
-> +       const struct rp1_pll_core_data *pll_core_data =3D desc->data;
-> +       struct clk_init_data init =3D { };
-> +       int ret;
-> +
-> +       /* All of the PLL cores derive from the external oscillator. */
-> +       init.parent_data =3D desc->hw.init->parent_data;
-> +       init.num_parents =3D desc->hw.init->num_parents;
-> +       init.name =3D pll_core_data->name;
-> +       init.ops =3D &rp1_pll_core_ops;
-> +       init.flags =3D pll_core_data->flags | CLK_IGNORE_UNUSED | CLK_IS_=
-CRITICAL;
-> +
-> +       desc->clockman =3D clockman;
-> +       desc->hw.init =3D &init;
-> +
-> +       ret =3D devm_clk_hw_register(clockman->dev, &desc->hw);
-> +
-> +       if (ret)
-> +               return ERR_PTR(ret);
-> +
-> +       return &desc->hw;
-> +}
-> +
-> +static struct clk_hw *rp1_register_pll(struct rp1_clockman *clockman,
-> +                                      struct rp1_clk_desc *desc)
-> +{
-> +       const struct rp1_pll_data *pll_data =3D desc->data;
-> +       struct clk_init_data init =3D { };
-> +       int ret;
-> +
-> +       init.parent_data =3D desc->hw.init->parent_data;
-> +       init.num_parents =3D desc->hw.init->num_parents;
-> +       init.name =3D pll_data->name;
-> +       init.ops =3D &rp1_pll_ops;
-> +       init.flags =3D pll_data->flags | CLK_IGNORE_UNUSED | CLK_IS_CRITI=
-CAL;
-> +
-> +       desc->clockman =3D clockman;
-> +       desc->hw.init =3D &init;
-> +
-> +       ret =3D devm_clk_hw_register(clockman->dev, &desc->hw);
-> +
-> +       if (ret)
-> +               return ERR_PTR(ret);
-> +
-> +       return &desc->hw;
-> +}
-> +
-> +static struct clk_hw *rp1_register_pll_ph(struct rp1_clockman *clockman,
-> +                                         struct rp1_clk_desc *desc)
-> +{
-> +       const struct rp1_pll_ph_data *ph_data =3D desc->data;
-> +       struct clk_init_data init =3D { };
-> +       int ret;
-> +
-> +       init.parent_data =3D desc->hw.init->parent_data;
-> +       init.num_parents =3D desc->hw.init->num_parents;
-> +       init.name =3D ph_data->name;
-> +       init.ops =3D &rp1_pll_ph_ops;
-> +       init.flags =3D ph_data->flags | CLK_IGNORE_UNUSED;
-> +
-> +       desc->clockman =3D clockman;
-> +       desc->hw.init =3D &init;
-> +
-> +       ret =3D devm_clk_hw_register(clockman->dev, &desc->hw);
-> +
-> +       if (ret)
-> +               return ERR_PTR(ret);
-> +
-> +       return &desc->hw;
-> +}
-> +
-> +static struct clk_hw *rp1_register_pll_divider(struct rp1_clockman *cloc=
-kman,
-> +                                              struct rp1_clk_desc *desc)
-> +{
-> +       const struct rp1_pll_data *divider_data =3D desc->data;
-> +       struct clk_init_data init =3D { };
-> +       int ret;
-> +
-> +       init.parent_data =3D desc->hw.init->parent_data;
-> +       init.num_parents =3D desc->hw.init->num_parents;
-> +       init.name =3D divider_data->name;
-> +       init.ops =3D &rp1_pll_divider_ops;
-> +       init.flags =3D divider_data->flags | CLK_IGNORE_UNUSED | CLK_IS_C=
-RITICAL;
-> +
-> +       desc->div.reg =3D clockman->regs + divider_data->ctrl_reg;
-
-Why is 'regs' used here? Isn't everything using a regmap now so it's all
-offsets?
-
-> +       desc->div.shift =3D PLL_SEC_DIV_SHIFT;
-> +       desc->div.width =3D PLL_SEC_DIV_WIDTH;
-> +       desc->div.flags =3D CLK_DIVIDER_ROUND_CLOSEST;
-> +       desc->div.flags |=3D CLK_IS_CRITICAL;
-> +       desc->div.lock =3D &clockman->regs_lock;
-> +       desc->div.hw.init =3D &init;
-> +       desc->div.table =3D pll_sec_div_table;
-> +
-> +       desc->clockman =3D clockman;
-> +
-> +       ret =3D devm_clk_hw_register(clockman->dev, &desc->div.hw);
-> +
-> +       if (ret)
-> +               return ERR_PTR(ret);
-> +
-> +       return &desc->div.hw;
-> +}
-> +
-> +static struct clk_hw *rp1_register_clock(struct rp1_clockman *clockman,
-> +                                        struct rp1_clk_desc *desc)
-> +{
-> +       const struct rp1_clock_data *clock_data =3D desc->data;
-> +       struct clk_init_data init =3D { };
-> +       int ret;
-> +
-> +       if (WARN_ON_ONCE(MAX_CLK_PARENTS <
-> +              clock_data->num_std_parents + clock_data->num_aux_parents))
-> +               return NULL;
-> +
-> +       /* There must be a gap for the AUX selector */
-> +       if (WARN_ON_ONCE(clock_data->num_std_parents > AUX_SEL &&
-> +                        desc->hw.init->parent_data[AUX_SEL].index !=3D -=
-1))
-> +               return NULL;
-> +
-> +       init.parent_data =3D desc->hw.init->parent_data;
-> +       init.num_parents =3D desc->hw.init->num_parents;
-> +       init.name =3D clock_data->name;
-> +       init.flags =3D clock_data->flags | CLK_IGNORE_UNUSED;
-> +       init.ops =3D &rp1_clk_ops;
-> +
-> +       desc->clockman =3D clockman;
-> +       desc->hw.init =3D &init;
-> +
-> +       ret =3D devm_clk_hw_register(clockman->dev, &desc->hw);
-> +
-> +       if (ret)
-> +               return ERR_PTR(ret);
-> +
-> +       return &desc->hw;
-> +}
-> +
-> +/* Assignment helper macros for different clock types. */
-> +#define _REGISTER(f, ...)      { .clk_register =3D f, __VA_ARGS__ }
-> +
-> +#define PARENT_CLK(pnum, ...)  .hw.init =3D &(const struct clk_init_data=
-) { \
-
-Instead of this macro just use CLK_HW_INIT_HW() or
-CLK_HW_INIT_PARENTS_DATA()?
-
-> +                               .parent_data =3D (const struct           =
-    \
-> +                                               clk_parent_data[]) {     =
-  \
-> +                                                       __VA_ARGS__      =
-  \
-> +                                               },                       =
-  \
-> +                               .num_parents =3D pnum }
-> +
-> +#define CLK_DATA(type, ...)    .data =3D &(struct type) { __VA_ARGS__ }
-> +
-> +#define REGISTER_PLL_CORE(...) _REGISTER(&rp1_register_pll_core,       \
-> +                                         __VA_ARGS__)
-> +
-> +#define REGISTER_PLL(...)      _REGISTER(&rp1_register_pll,            \
-> +                                         __VA_ARGS__)
-> +
-> +#define REGISTER_PLL_PH(...)   _REGISTER(&rp1_register_pll_ph,         \
-> +                                         __VA_ARGS__)
-> +
-> +#define REGISTER_PLL_DIV(...)  _REGISTER(&rp1_register_pll_divider,    \
-> +                                         __VA_ARGS__)
-> +
-> +#define REGISTER_CLK(...)      _REGISTER(&rp1_register_clock,          \
-> +                                         __VA_ARGS__)
-> +
-> +static struct rp1_clk_desc clk_desc_array[] =3D {
-> +       [RP1_PLL_SYS_CORE] =3D REGISTER_PLL_CORE(PARENT_CLK(1, { .index =
-=3D 0 }),
-> +                               CLK_DATA(rp1_pll_core_data,
-> +                                        .name =3D "pll_sys_core",
-> +                                        .cs_reg =3D PLL_SYS_CS,
-> +                                        .pwr_reg =3D PLL_SYS_PWR,
-> +                                        .fbdiv_int_reg =3D PLL_SYS_FBDIV=
-_INT,
-> +                                        .fbdiv_frac_reg =3D PLL_SYS_FBDI=
-V_FRAC,
-> +                               )),
-> +
-> +       [RP1_PLL_AUDIO_CORE] =3D REGISTER_PLL_CORE(PARENT_CLK(1, { .index=
- =3D 0 }),
-> +                               CLK_DATA(rp1_pll_core_data,
-> +                                        .name =3D "pll_audio_core",
-> +                                        .cs_reg =3D PLL_AUDIO_CS,
-> +                                        .pwr_reg =3D PLL_AUDIO_PWR,
-> +                                        .fbdiv_int_reg =3D PLL_AUDIO_FBD=
-IV_INT,
-> +                                        .fbdiv_frac_reg =3D PLL_AUDIO_FB=
-DIV_FRAC,
-> +                               )),
-> +
-> +       [RP1_PLL_VIDEO_CORE] =3D REGISTER_PLL_CORE(PARENT_CLK(1, { .index=
- =3D 0 }),
-> +                               CLK_DATA(rp1_pll_core_data,
-> +                                        .name =3D "pll_video_core",
-> +                                        .cs_reg =3D PLL_VIDEO_CS,
-> +                                        .pwr_reg =3D PLL_VIDEO_PWR,
-> +                                        .fbdiv_int_reg =3D PLL_VIDEO_FBD=
-IV_INT,
-> +                                        .fbdiv_frac_reg =3D PLL_VIDEO_FB=
-DIV_FRAC,
-> +                               )),
-> +
-> +       [RP1_PLL_SYS] =3D REGISTER_PLL(PARENT_CLK(1,
-> +                               { .hw =3D &clk_desc_array[RP1_PLL_SYS_COR=
-E].hw }
-> +                               ),
-> +                               CLK_DATA(rp1_pll_data,
-> +                                        .name =3D "pll_sys",
-> +                                        .ctrl_reg =3D PLL_SYS_PRIM,
-> +                                        .fc0_src =3D FC_NUM(0, 2),
-> +                               )),
-> +
-> +       [RP1_CLK_ETH_TSU] =3D REGISTER_CLK(PARENT_CLK(1, { .index =3D 0 }=
-),
-> +                               CLK_DATA(rp1_clock_data,
-> +                                        .name =3D "clk_eth_tsu",
-> +                                        .num_std_parents =3D 0,
-> +                                        .num_aux_parents =3D 1,
-> +                                        .ctrl_reg =3D CLK_ETH_TSU_CTRL,
-> +                                        .div_int_reg =3D CLK_ETH_TSU_DIV=
-_INT,
-> +                                        .sel_reg =3D CLK_ETH_TSU_SEL,
-> +                                        .div_int_max =3D DIV_INT_8BIT_MA=
-X,
-> +                                        .max_freq =3D 50 * HZ_PER_MHZ,
-> +                                        .fc0_src =3D FC_NUM(5, 7),
-> +                               )),
-> +
-> +       [RP1_CLK_SYS] =3D REGISTER_CLK(PARENT_CLK(3,
-> +                               { .index =3D 0 },
-> +                               { .index =3D -1 },
-> +                               { .hw =3D &clk_desc_array[RP1_PLL_SYS].hw=
- }
-> +                               ),
-> +                               CLK_DATA(rp1_clock_data,
-> +                                        .name =3D "clk_sys",
-> +                                        .num_std_parents =3D 3,
-> +                                        .num_aux_parents =3D 0,
-> +                                        .ctrl_reg =3D CLK_SYS_CTRL,
-> +                                        .div_int_reg =3D CLK_SYS_DIV_INT,
-> +                                        .sel_reg =3D CLK_SYS_SEL,
-> +                                        .div_int_max =3D DIV_INT_24BIT_M=
-AX,
-> +                                        .max_freq =3D 200 * HZ_PER_MHZ,
-> +                                        .fc0_src =3D FC_NUM(0, 4),
-> +                                        .clk_src_mask =3D 0x3,
-> +                               )),
-> +
-> +       [RP1_PLL_SYS_PRI_PH] =3D REGISTER_PLL_PH(PARENT_CLK(1,
-> +                               { .hw =3D &clk_desc_array[RP1_PLL_SYS].hw=
- }
-> +                               ),
-> +                               CLK_DATA(rp1_pll_ph_data,
-> +                                        .name =3D "pll_sys_pri_ph",
-> +                                        .ph_reg =3D PLL_SYS_PRIM,
-> +                                        .fixed_divider =3D 2,
-> +                                        .phase =3D RP1_PLL_PHASE_0,
-> +                                        .fc0_src =3D FC_NUM(1, 2),
-> +                               )),
-> +
-> +       [RP1_PLL_SYS_SEC] =3D REGISTER_PLL_DIV(PARENT_CLK(1,
-> +                               { .hw =3D &clk_desc_array[RP1_PLL_SYS_COR=
-E].hw }
-> +                               ),
-> +                               CLK_DATA(rp1_pll_data,
-> +                                        .name =3D "pll_sys_sec",
-> +                                        .ctrl_reg =3D PLL_SYS_SEC,
-> +                                        .fc0_src =3D FC_NUM(2, 2),
-> +                               )),
-> +};
-> +
-> +static const struct regmap_range rp1_reg_ranges[] =3D {
-> +       regmap_reg_range(PLL_SYS_CS, PLL_SYS_SEC),
-> +       regmap_reg_range(PLL_AUDIO_CS, PLL_AUDIO_TERN),
-> +       regmap_reg_range(PLL_VIDEO_CS, PLL_VIDEO_SEC),
-> +       regmap_reg_range(GPCLK_OE_CTRL, GPCLK_OE_CTRL),
-> +       regmap_reg_range(CLK_SYS_CTRL, CLK_SYS_DIV_INT),
-> +       regmap_reg_range(CLK_SYS_SEL, CLK_SYS_SEL),
-> +       regmap_reg_range(CLK_SLOW_SYS_CTRL, CLK_SLOW_SYS_DIV_INT),
-> +       regmap_reg_range(CLK_SLOW_SYS_SEL, CLK_SLOW_SYS_SEL),
-> +       regmap_reg_range(CLK_DMA_CTRL, CLK_DMA_DIV_INT),
-> +       regmap_reg_range(CLK_DMA_SEL, CLK_DMA_SEL),
-> +       regmap_reg_range(CLK_UART_CTRL, CLK_UART_DIV_INT),
-> +       regmap_reg_range(CLK_UART_SEL, CLK_UART_SEL),
-> +       regmap_reg_range(CLK_ETH_CTRL, CLK_ETH_DIV_INT),
-> +       regmap_reg_range(CLK_ETH_SEL, CLK_ETH_SEL),
-> +       regmap_reg_range(CLK_PWM0_CTRL, CLK_PWM0_SEL),
-> +       regmap_reg_range(CLK_PWM1_CTRL, CLK_PWM1_SEL),
-> +       regmap_reg_range(CLK_AUDIO_IN_CTRL, CLK_AUDIO_IN_DIV_INT),
-> +       regmap_reg_range(CLK_AUDIO_IN_SEL, CLK_AUDIO_IN_SEL),
-> +       regmap_reg_range(CLK_AUDIO_OUT_CTRL, CLK_AUDIO_OUT_DIV_INT),
-> +       regmap_reg_range(CLK_AUDIO_OUT_SEL, CLK_AUDIO_OUT_SEL),
-> +       regmap_reg_range(CLK_I2S_CTRL, CLK_I2S_DIV_INT),
-> +       regmap_reg_range(CLK_I2S_SEL, CLK_I2S_SEL),
-> +       regmap_reg_range(CLK_MIPI0_CFG_CTRL, CLK_MIPI0_CFG_DIV_INT),
-> +       regmap_reg_range(CLK_MIPI0_CFG_SEL, CLK_MIPI0_CFG_SEL),
-> +       regmap_reg_range(CLK_MIPI1_CFG_CTRL, CLK_MIPI1_CFG_DIV_INT),
-> +       regmap_reg_range(CLK_MIPI1_CFG_SEL, CLK_MIPI1_CFG_SEL),
-> +       regmap_reg_range(CLK_PCIE_AUX_CTRL, CLK_PCIE_AUX_DIV_INT),
-> +       regmap_reg_range(CLK_PCIE_AUX_SEL, CLK_PCIE_AUX_SEL),
-> +       regmap_reg_range(CLK_USBH0_MICROFRAME_CTRL, CLK_USBH0_MICROFRAME_=
-DIV_INT),
-> +       regmap_reg_range(CLK_USBH0_MICROFRAME_SEL, CLK_USBH0_MICROFRAME_S=
-EL),
-> +       regmap_reg_range(CLK_USBH1_MICROFRAME_CTRL, CLK_USBH1_MICROFRAME_=
-DIV_INT),
-> +       regmap_reg_range(CLK_USBH1_MICROFRAME_SEL, CLK_USBH1_MICROFRAME_S=
-EL),
-> +       regmap_reg_range(CLK_USBH0_SUSPEND_CTRL, CLK_USBH0_SUSPEND_DIV_IN=
-T),
-> +       regmap_reg_range(CLK_USBH0_SUSPEND_SEL, CLK_USBH0_SUSPEND_SEL),
-> +       regmap_reg_range(CLK_USBH1_SUSPEND_CTRL, CLK_USBH1_SUSPEND_DIV_IN=
-T),
-> +       regmap_reg_range(CLK_USBH1_SUSPEND_SEL, CLK_USBH1_SUSPEND_SEL),
-> +       regmap_reg_range(CLK_ETH_TSU_CTRL, CLK_ETH_TSU_DIV_INT),
-> +       regmap_reg_range(CLK_ETH_TSU_SEL, CLK_ETH_TSU_SEL),
-> +       regmap_reg_range(CLK_ADC_CTRL, CLK_ADC_DIV_INT),
-> +       regmap_reg_range(CLK_ADC_SEL, CLK_ADC_SEL),
-> +       regmap_reg_range(CLK_SDIO_TIMER_CTRL, CLK_SDIO_TIMER_DIV_INT),
-> +       regmap_reg_range(CLK_SDIO_TIMER_SEL, CLK_SDIO_TIMER_SEL),
-> +       regmap_reg_range(CLK_SDIO_ALT_SRC_CTRL, CLK_SDIO_ALT_SRC_DIV_INT),
-> +       regmap_reg_range(CLK_SDIO_ALT_SRC_SEL, CLK_SDIO_ALT_SRC_SEL),
-> +       regmap_reg_range(CLK_GP0_CTRL, CLK_GP0_SEL),
-> +       regmap_reg_range(CLK_GP1_CTRL, CLK_GP1_SEL),
-> +       regmap_reg_range(CLK_GP2_CTRL, CLK_GP2_SEL),
-> +       regmap_reg_range(CLK_GP3_CTRL, CLK_GP3_SEL),
-> +       regmap_reg_range(CLK_GP4_CTRL, CLK_GP4_SEL),
-> +       regmap_reg_range(CLK_GP5_CTRL, CLK_GP5_SEL),
-> +       regmap_reg_range(CLK_SYS_RESUS_CTRL, CLK_SYS_RESUS_CTRL),
-> +       regmap_reg_range(CLK_SLOW_SYS_RESUS_CTRL, CLK_SLOW_SYS_RESUS_CTRL=
-),
-> +       regmap_reg_range(FC0_REF_KHZ, FC0_RESULT),
-> +       regmap_reg_range(VIDEO_CLK_VEC_CTRL, VIDEO_CLK_VEC_DIV_INT),
-> +       regmap_reg_range(VIDEO_CLK_VEC_SEL, VIDEO_CLK_DPI_DIV_INT),
-> +       regmap_reg_range(VIDEO_CLK_DPI_SEL, VIDEO_CLK_MIPI1_DPI_SEL),
-> +};
-> +
-> +static const struct regmap_access_table rp1_reg_table =3D {
-> +       .yes_ranges =3D rp1_reg_ranges,
-> +       .n_yes_ranges =3D ARRAY_SIZE(rp1_reg_ranges),
-> +};
-> +
-> +static const struct regmap_config rp1_clk_regmap_cfg =3D {
-> +       .reg_bits =3D 32,
-> +       .val_bits =3D 32,
-> +       .reg_stride =3D 4,
-> +       .max_register =3D PLL_VIDEO_SEC,
-> +       .name =3D "rp1-clk",
-> +       .rd_table =3D &rp1_reg_table,
-> +};
-> +
-> +static int rp1_clk_probe(struct platform_device *pdev)
-> +{
-> +       const size_t asize =3D ARRAY_SIZE(clk_desc_array);
-> +       struct rp1_clk_desc *desc;
-> +       struct device *dev =3D &pdev->dev;
-> +       struct rp1_clockman *clockman;
-> +       struct clk_hw **hws;
-> +       unsigned int i;
-> +
-> +       clockman =3D devm_kzalloc(dev, struct_size(clockman, onecell.hws,=
- asize),
-> +                               GFP_KERNEL);
-> +       if (!clockman)
-> +               return -ENOMEM;
-> +
-> +       spin_lock_init(&clockman->regs_lock);
-> +       clockman->dev =3D dev;
-> +
-> +       clockman->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(clockman->regs))
-> +               return PTR_ERR(clockman->regs);
-> +
-> +       clockman->regmap =3D devm_regmap_init_mmio(dev, clockman->regs,
-> +                                                &rp1_clk_regmap_cfg);
-> +       if (IS_ERR(clockman->regmap)) {
-> +               dev_err(dev, "could not init clock regmap\n");
-
-return dev_err_probe()?
-
-> +               return PTR_ERR(clockman->regmap);
-> +       }
-> +
-> +       clockman->onecell.num =3D asize;
-> +       hws =3D clockman->onecell.hws;
-> +
-> +       for (i =3D 0; i < asize; i++) {
-> +               desc =3D &clk_desc_array[i];
-> +               if (desc->clk_register && desc->data) {
-> +                       hws[i] =3D desc->clk_register(clockman, desc);
-> +                       if (IS_ERR_OR_NULL(hws[i]))
-> +                               dev_err_probe(dev, PTR_ERR(hws[i]),
-> +                                             "Unable to register clock: =
-%s\n",
-> +                                             clk_hw_get_name(hws[i]));
-> +               }
-> +       }
-> +
-> +       platform_set_drvdata(pdev, clockman);
-> +
-> +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-> +                                          &clockman->onecell);
-> +}
+    // SAFETY: On success, _property_read_array has filled in the array
+    let val =3D unsafe { mem::transmute_copy(&val) };
+    Ok(val)
+}
 
